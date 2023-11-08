@@ -29,7 +29,10 @@ public class View {
         }
     }
 
-
+    public void printLottosInfo(List<Lotto> lottos) {
+        outputView.printLottoCountMessage(lottos.size());
+        lottos.forEach(lotto -> outputView.printLottoNumber(lotto));
+    }
 
     private void validateMoney(int money) {
         verifySufficientMoney(money);

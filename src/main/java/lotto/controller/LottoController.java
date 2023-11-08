@@ -18,5 +18,6 @@ public class LottoController {
     public void run() {
         int money = view.getMoney();
         List<Lotto> lottos = lottoShop.buy(money);
+        view.printLottosInfo(lottos);
     }
 }

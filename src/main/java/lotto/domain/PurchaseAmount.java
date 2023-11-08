@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import lotto.exception.InvalidPurchaseAmountFormatException;
-import lotto.exception.InvalidPurchaseAmountUnitException;
-import lotto.exception.MissingPurchaseAmountException;
+import lotto.exception.InvalidNumberFormatException;
+import lotto.exception.InvalidUnitException;
+import lotto.exception.MissingNumberException;
 
 public class PurchaseAmount {
     private static final int LOTTO_PRICE = 1000;
@@ -30,19 +30,19 @@ public class PurchaseAmount {
 
     private void isNullPurchaseAmount(String amount) {
         if (amount.isEmpty()) {
-            throw new MissingPurchaseAmountException();
+            throw new MissingNumberException();
         }
     }
 
     private void isPurchaseAmount(String amount) {
         if (amount.matches(".*[^0-9].*")) {
-            throw new InvalidPurchaseAmountFormatException();
+            throw new InvalidNumberFormatException();
         }
     }
 
     private void isValidPurchaseAmount(String amount) {
         if (Integer.parseInt(amount) % LOTTO_PRICE != ZERO) {
-            throw new InvalidPurchaseAmountUnitException();
+            throw new InvalidUnitException();
         }
     }
 }

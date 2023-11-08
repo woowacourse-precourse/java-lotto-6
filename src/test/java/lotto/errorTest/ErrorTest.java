@@ -35,12 +35,22 @@ public class ErrorTest extends NsTest {
 
     @Test
     @DisplayName("당첨 금액 입력시 6개가 넘는 혹은 넘지 않는 입력이 들어 왔을때")
-    public void inputWinningNumberSizeFormatError(){
+    public void inputWinningNumberBigSizeError(){
         assertSimpleTest(() -> {
             runException("3000","1,2,3,4,5,6,7");
             assertThat(output()).contains(ExceptionMessage.inputWinningNumbersSizeError.getErrorMessage());
         });
     }
+    @Test
+    @DisplayName("당첨 금액 입력시 6개가 넘는 혹은 넘지 않는 입력이 들어 왔을때")
+    public void inputWinningNumberSmallSizeError(){
+        assertSimpleTest(() -> {
+            runException("3000","1,2,3,4,5");
+            assertThat(output()).contains(ExceptionMessage.inputWinningNumbersSizeError.getErrorMessage());
+        });
+    }
+
+
 
 
 

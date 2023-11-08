@@ -24,13 +24,16 @@ public class LottoController {
         int purchaseAmount = Integer.parseInt(inputView.readPurchaseAmount());
 
         List<Lotto> lottos = lottoService.createLottos(purchaseAmount);
-        int count = lottos.size();
-        outputView.printLottoCount(count);
+        outputView.printLottoCount(lottos.size());
         lottos.forEach((lotto -> outputView.printLottoNumbers(lotto.getNumbers())));
+
         outputView.printLotteryNumbers();
         List<Integer> lotteryNumbers = Arrays.stream(inputView.readLottryNumbers().split(","))
                 .mapToInt(Integer::parseInt)
                 .boxed()
                 .toList();
+
+        outputView.printBonusNumber();
+        int bonusNumber = Integer.parseInt(inputView.readBonusNumber());
     }
 }

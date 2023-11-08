@@ -33,6 +33,11 @@ public class InputView {
         return lotteryNumber;
     }
 
+    public String readBonusNumber() {
+        String bonusNumber = Console.readLine();
+        return bonusNumber;
+    }
+
     private void validate(String purchaseAmount) {
         if (isNotNaturalNumber(purchaseAmount) || isNotThousandUnit(purchaseAmount)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_PURCHASE_AMOUNT.getMessage());

@@ -8,6 +8,7 @@ import static lotto.service.LottoRank.THIRD;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 public class ProfitRateCalculator {
     public static String calculate(int firstPrizeCount, int secondPrizeCount, int thirdPrizeCount,
@@ -22,6 +23,8 @@ public class ProfitRateCalculator {
         BigDecimal profit = totalPrizeDecimal.divide(BigDecimal.valueOf(purchasedLottoCount),
                 3, RoundingMode.HALF_EVEN).multiply(multiple).stripTrailingZeros();
 
-        return profit.toPlainString();
+        DecimalFormat formatter = new DecimalFormat("###,###.##");
+
+        return formatter.format(profit);
     }
 }

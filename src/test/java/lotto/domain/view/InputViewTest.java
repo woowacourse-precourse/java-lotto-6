@@ -28,6 +28,7 @@ class InputViewTest {
         assertThat(number).isEqualTo(5000);
     }
 
+    @DisplayName("입력 받은 값이 숫자가 아니라면 예외가 발생한다.")
     @Test
     void convertToIntByNotNumber() {
         assertThatThrownBy(() -> inputView.convertToInt("aaa1"))

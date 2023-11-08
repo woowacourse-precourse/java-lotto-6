@@ -11,9 +11,9 @@ public class Input {
         return validateWinNumsInput(Console.readLine());
     }
 
-    public static int inputBonusNum() {
+    public static int inputBonusNum(List<Integer> winNums) {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return validateBonusNumInput(Console.readLine());
+        return validateBonusNumInput(Console.readLine(), winNums);
     }
 
     public static int inputPrice() {
@@ -25,8 +25,19 @@ public class Input {
         return null;
     }
 
-    public static int validateBonusNumInput(String bonusNumInput) {
-        return 0;
+    public static int validateBonusNumInput(String bonusNumInput, List<Integer> winNums) {
+        try {
+            Integer bonusNum = Integer.valueOf(bonusNumInput);
+            if (bonusNum < 1 || bonusNum > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+            if (winNums.contains(bonusNum)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안됩니다.");
+            }
+            return bonusNum;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 타입의 입력입니다.");
+        }
     }
 
     public static int validatePriceInput(String priceInput) {

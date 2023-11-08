@@ -6,7 +6,8 @@ package lotto.config;
 public enum LottoConfig {
     MAX_INPUT_LENGTH(9),
     LOTTO_AMOUNT(1000),
-    MAX_LOTTO_COUNT(10000);
+    MAX_LOTTO_COUNT(10000),
+    LOTTO_SIZE(6);
 
     private final Integer value;
 

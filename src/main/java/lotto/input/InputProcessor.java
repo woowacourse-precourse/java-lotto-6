@@ -31,7 +31,7 @@ public class InputProcessor {
         return Integer.valueOf(input);
     }
 
-    public static void validateWinningNumberInput(String input) {
+    private static void validateWinningNumberInput(String input) {
         String[] separatedInput = input.split(LOTTO_NUMBER_INPUT_SEPARATOR);
         Arrays.stream(separatedInput)
                 .forEach(InputProcessor::validateIsInteger);

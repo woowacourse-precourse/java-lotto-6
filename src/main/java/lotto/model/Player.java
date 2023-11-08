@@ -7,10 +7,8 @@ public class Player {
     private static final int PERCENTAGE_CONSTANT = 100;
     private final Lottos lottos;
     private final PaymentAmount paymentAmount;
-    private final RandomUtil randomUtil;
 
     public Player(int paymentAmount, RandomUtil randomUtil) {
-        this.randomUtil = randomUtil;
         this.paymentAmount = new PaymentAmount(paymentAmount);
         lottos = new Lottos(paymentAmount, randomUtil);
     }

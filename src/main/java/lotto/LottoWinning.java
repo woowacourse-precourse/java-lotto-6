@@ -47,17 +47,22 @@ public class LottoWinning {
     }
 
     public Map<LottoRank, Integer> assignRanks(List<Lotto> tickets) {
-        Map<LottoRank, Integer> winningCounts = new EnumMap<>(LottoRank.class);
-        for (LottoRank rank: LottoRank.values()) {
-            winningCounts.put(rank, 0);
-        }
+        Map<LottoRank, Integer> winningCount = createWinningCount();
         tickets.forEach(t -> {
             LottoRank wonRank = assignRank(t);
             if (wonRank != null) {
-                winningCounts.put(wonRank, winningCounts.getOrDefault(wonRank, 0) + 1);
+                winningCount.put(wonRank, winningCount.getOrDefault(wonRank, 0) + 1);
             }
         });
-        return winningCounts;
+        return winningCount;
+    }
+
+    private Map<LottoRank, Integer> createWinningCount() {
+        Map<LottoRank, Integer> winningCount = new EnumMap<>(LottoRank.class);
+        for (LottoRank rank: LottoRank.values()) {
+            winningCount.put(rank, 0);
+        }
+        return winningCount;
     }
 
     private LottoRank assignRank(Lotto ticket) {

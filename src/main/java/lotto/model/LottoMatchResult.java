@@ -12,6 +12,7 @@ public class LottoMatchResult {
     public WinnerJudge match(Lotto playerNumber) {
         int matchNum = playerNumber.matchingNumbers(lotto);
         boolean isBonus = playerNumber.containNumber(bonusNumber);
+
         return WinnerJudge.match(matchNum, isBonus);
     }
 }

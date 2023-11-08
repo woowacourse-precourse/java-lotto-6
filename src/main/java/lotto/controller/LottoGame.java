@@ -175,7 +175,8 @@ public class LottoGame {
 
     // 로또 번호 생성 및 정렬 후 리스트 반환
     public List<Integer> randomSortNumbers(){
-        List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        List<Integer> randomNumbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(1, 45, 6));
         // 오름차순 정렬
         randomNumbers.sort(Comparator.naturalOrder());
         return randomNumbers;
@@ -280,13 +281,17 @@ public class LottoGame {
             if(!isNumber(userNumbers[i])){
                 throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER);
             }
+            int number = Integer.parseInt(userNumbers[i]);
+            if(number > 45 || number < 1){
+                throw new IllegalArgumentException("[ERROR] 숫자가 이상합니다.");
+            }
             userInputNumbers.add(Integer.parseInt(userNumbers[i]));
         }
         return userInputNumbers;
     }
 
     // 보너스 번호 입력 받기
-    public String inputBonusNumber(){
+    public String inputBonus(){
         System.out.println(Input.INPUT_BONUS_NUMBER_MESSAGE);
         String bonusNumber = Console.readLine();
         return bonusNumber;
@@ -304,7 +309,7 @@ public class LottoGame {
     public void setBonusNumber(User user){
         int bonusNumber = 0;
         while(bonusNumber == 0){
-            String inputBonusNumber = inputBonusNumber();
+            String inputBonusNumber = inputBonus();
             try {
                 bonusNumber = inputBonusNumber(inputBonusNumber);
             }catch (IllegalArgumentException e){

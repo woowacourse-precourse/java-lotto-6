@@ -11,6 +11,7 @@ public class Application {
         int purchaseAmount = askPurchaseNumber();
         NumberGenerator[] purchaseNumbers = new NumberGenerator[purchaseAmount];
         System.out.println("\n" + purchaseAmount + "개를 구매했습니다.");
+        generateLottos(purchaseAmount, purchaseNumbers); // 구매한 개수만큼 로또 번호를 생성
         Lotto winningNumbers = askWiningNumber();
         int bonusNumber = askBonusNumber();
     }
@@ -78,5 +79,24 @@ public class Application {
             }
         }
         return numberList;
+    }
+
+    // NumGenerator 배열에서 Lotto들을 빼서 Lotto 배열을 만드는 메서드
+    private static Lotto[] getLottos(int purchaseAmount, NumberGenerator[] purchaseNumbers) {
+        Lotto[] userLotto = new Lotto[purchaseAmount];
+        // NumGenerator 배열에서 Lotto들을 빼서 Lotto 배열을 만들기
+        for (int i = 0; i < purchaseAmount; i++) {
+            userLotto[i] = purchaseNumbers[i].getLotto();
+        }
+        return userLotto;
+    }
+
+    // 구입 금액에 해당하는 만큼 로또를 발행하는 메서드
+    private static void generateLottos(int purchaseAmount, NumberGenerator[] purchaseNumbers) {
+        for (int i = 0; i < purchaseAmount; i++) {
+            purchaseNumbers[i] = new NumberGenerator();
+            purchaseNumbers[i].generateLottoNumbers();
+            System.out.println(purchaseNumbers[i].getLottoNumbers());
+        }
     }
 }

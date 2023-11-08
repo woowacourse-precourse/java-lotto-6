@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
@@ -9,6 +10,9 @@ import java.util.List;
 import lotto.validator.InputValidator;
 
 public class Program {
+    private static final int MIN_OF_LOTTO_NUMBER = 1;
+    private static final int MAX_OF_LOTTO_NUMBER = 45;
+    private static final int LOTTO_PRICE = 1000;
     private static final String matchesCount1stPlace = "6";
     private static final String matchesCount2ndPlace = "5+bonus";
     private static final String matchesCount3rdPlace = "5";
@@ -20,23 +24,22 @@ public class Program {
     private static final int Lotto2ndPlaceReward = 30000000;
     private static final int Lotto1stPlaceReward = 2000000000;
     private LottoTerminal lottoTerminal = new LottoTerminal();
-    private Customer customer = new Customer(lottoTerminal);
     private InputValidator inputValidator = new InputValidator();
 
     private long purchaseAmount;
+    private long countOfLottoIssued;
     private String[] winningNumbers;
     private String bonusNumber;
     private List<List<Integer>> allLottoIssued = new ArrayList<>();
     private int[] countMatching;
     private boolean[] bonusMatching;
     private HashMap<String, Integer> statistics = new HashMap<>();
-
     private BigDecimal rateOfReturn;
 
     public void start() {
         processPayment();
-        allLottoIssued = lottoTerminal.LottoIssuance();
-        lottoTerminal.printAllLotto();
+        allLottoIssued = lottoIssuance();
+        lottoTerminal.printAllLotto(countOfLottoIssued, allLottoIssued);
 
         processWinningNumber();
         processBonusNumber();
@@ -54,7 +57,6 @@ public class Program {
 
             isValidAmount = handlePurchaseAmount(inputAmount);
         }
-        customer.expendForLotto(purchaseAmount);
     }
 
     private boolean handlePurchaseAmount(String inputAmount) {
@@ -74,6 +76,22 @@ public class Program {
         inputValidator.validateOnlyNumeric(value);
         inputValidator.validateLongValueRange(value);
         inputValidator.validateAmountDivisibility(value);
+    }
+
+    public List<List<Integer>> lottoIssuance() {
+        long amountForCalculate = purchaseAmount;
+
+        while (amountForCalculate > 0) {
+            List<Integer> numbersOfLotto = new ArrayList<>(
+                    Randoms.pickUniqueNumbersInRange(MIN_OF_LOTTO_NUMBER, MAX_OF_LOTTO_NUMBER,
+                            6));
+
+            Lotto lotto = new Lotto(numbersOfLotto);
+            allLottoIssued.add(numbersOfLotto);
+            countOfLottoIssued++;
+            amountForCalculate -= LOTTO_PRICE;
+        }
+        return allLottoIssued;
     }
 
     private void processWinningNumber() {

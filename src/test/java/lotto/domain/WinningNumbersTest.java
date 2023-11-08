@@ -1,8 +1,9 @@
-package lotto;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumbers;
@@ -21,6 +22,13 @@ class WinningNumbersTest {
         String input = "1, 2, 3,4,5,6";
         String[] result = input.split(",");
         assertThat(result[1]).isEqualTo(" 2");
+    }
+
+    @Test
+    void split_구분자_사이_숫자를_입력하지_않은_경우() {
+        String input = "1,,2,3,4,5,6";
+        String[] result = input.split(",");
+        assertThat(Arrays.stream(result).toList()).isEqualTo(Arrays.asList("1", "", "2", "3", "4", "5", "6"));
     }
 
     @Test

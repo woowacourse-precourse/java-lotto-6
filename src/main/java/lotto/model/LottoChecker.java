@@ -1,7 +1,5 @@
 package lotto.model;
 
-import lotto.MatchStatus;
-
 import java.util.List;
 
 public class LottoChecker {

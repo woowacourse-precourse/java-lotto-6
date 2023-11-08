@@ -1,8 +1,7 @@
 package lotto.view;
 
-import lotto.MatchStatus;
+import lotto.model.MatchStatus;
 import lotto.constant.OutputConstants;
-import lotto.constant.LottoConstants;
 import lotto.model.Lotto;
 
 import java.util.List;
@@ -10,6 +9,7 @@ import java.util.List;
 public class OutputView {
     public static void printLottos(List<Lotto> lottos) {
         printPurchasedLottoCount(lottos.size());
+
         lottos.stream()
                 .map(Lotto::getNumbers)
                 .forEach(number -> System.out.println(number));
@@ -24,7 +24,8 @@ public class OutputView {
         MatchStatus[] values = MatchStatus.values();
 
         for (int i = 0; i < values.length; i++) {
-            System.out.println(String.format(OutputConstants.RESULT_MESSAGE_FORMAT, values[i].getName(), result[i]));
+            System.out.println(String.format(OutputConstants.RESULT_MESSAGE_FORMAT
+                    , values[i].getName(), result[i]));
         }
     }
 

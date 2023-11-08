@@ -11,5 +11,4 @@ public class ErrorConstants {
     public static final String INVALID_BONUS_LOTTO = "하나의 숫자를 입력해주셔야 합니다.";
     public static final String BONUS_LOTTO_OUT_OF_RANGE = "보너스 번호는 1 ~ 45 사이의 숫자이어야 합니다.";
     public static final String DUPLICATE_BONUS_LOTTO = "보너스 번호는 당첨 번호와 달라야 합니다.";
-
 }

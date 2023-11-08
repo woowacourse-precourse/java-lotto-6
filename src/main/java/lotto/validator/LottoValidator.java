@@ -12,13 +12,14 @@ public class LottoValidator {
     }
 
     public static void isDuplicated(List<Integer> numbers) {
-        if(numbers.stream().distinct().count() != numbers.size()) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException();
         }
     }
 
     public static void isInvalidNumber(List<Integer> numbers) {
-        if(numbers.stream().anyMatch(number -> number > LottoConstants.MAX_LOTTO_NUMBER || number < LottoConstants.MIN_LOTTO_NUMBER)) {
+        if (numbers.stream().anyMatch(number -> number > LottoConstants.MAX_LOTTO_NUMBER
+                || number < LottoConstants.MIN_LOTTO_NUMBER)) {
             throw new IllegalArgumentException();
         }
     }

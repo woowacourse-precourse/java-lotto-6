@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 public enum MatchStatus {
     THREE(3, "3개 일치 (5,000원)", 5000),

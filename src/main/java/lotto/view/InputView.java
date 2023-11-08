@@ -12,9 +12,11 @@ import java.util.List;
 public class InputView {
     public static long getMoney() {
         String money;
+
         do {
             money = printMoneyInputMessage();
         } while (validateMoneyInput(money));
+
         return Utils.convertStringToLong(money);
     }
 
@@ -33,10 +35,12 @@ public class InputView {
 
     public static List<Integer> getWinningLotto() {
         String winningLotto;
+
         do {
             System.out.println();
             winningLotto = printWinningLottoInputMessage();
         } while (validateWinningLottoInput(winningLotto));
+
         return Utils.convertStringToList(winningLotto);
     }
 
@@ -58,13 +62,16 @@ public class InputView {
 
     public static int getBonusLotto(List<Integer> winningLotto) {
         String bonusLotto;
+
         do {
             bonusLotto = printBonusLottoInputMessage();
         } while (validateBonusLottoInput(bonusLotto, winningLotto));
+
         return Utils.convertStringToInt(bonusLotto);
     }
 
     private static String printBonusLottoInputMessage() {
+        System.out.println();
         System.out.println(InputConstants.BONUS_LOTTO_MESSAGE);
         return Console.readLine();
     }

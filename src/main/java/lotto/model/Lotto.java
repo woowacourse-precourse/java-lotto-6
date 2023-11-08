@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.MatchStatus;
+import lotto.model.MatchStatus;
 import lotto.validator.LottoValidator;
 
 import java.util.Collections;
@@ -27,6 +27,7 @@ public class Lotto {
     public void compareLottoWithWinningLotto(List<Integer> winningNumbers, int[] sameNumberCount, int bonusNumber) {
         int count = countSameNumber(winningNumbers);
         boolean bonus = hasBonusNumber(numbers, bonusNumber);
+
         saveCount(count, sameNumberCount, bonus);
     }
 

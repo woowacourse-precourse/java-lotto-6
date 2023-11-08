@@ -17,6 +17,7 @@ public class MoneyValidator {
 
     public static boolean isValid(String stringMoney) {
         Long money = Utils.convertStringToLong(stringMoney);
+
         if (money % LottoConstants.LOTTO_PRICE != 0 || money == 0) {
             System.out.println(ErrorConstants.ERROR + ErrorConstants.INVALID_MONEY);
             return true;

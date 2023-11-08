@@ -4,8 +4,12 @@ import lotto.exception.LottoException;
 import lotto.validation.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -73,5 +77,22 @@ public class JunitTest {
         System.out.println(input);
         System.out.println(input.length());
         assertThat(input).isEqualTo("1, 2,   3");
+    }
+
+    @ParameterizedTest
+    @MethodSource("testData")
+    void testWithMethodSource(int intNum, double floatNum, boolean flag, String str) {
+        System.out.println(intNum);
+        System.out.println(floatNum);
+        System.out.println(flag);
+        System.out.println(str);
+    }
+
+    static Stream<Arguments> testData() {
+        return Stream.of(
+                Arguments.of(1, 2.3, true, "true"),
+                Arguments.of(3, 3.4, true, "true"),
+                Arguments.of(5, 10.5, false, "false")
+        );
     }
 }

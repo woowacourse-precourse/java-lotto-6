@@ -33,6 +33,7 @@ public class MainController extends RepeatModule {
 
     private void setWinningLotto() {
         AnswerLotto answerLotto = repeat(inputView::readAnswerLotto);
+        repeat(inputView::readBonusNo, answerLotto::registerBonusNo);
         lottoManager.registerAnswerLotto(answerLotto);
     }
 

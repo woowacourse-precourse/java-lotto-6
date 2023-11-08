@@ -1,5 +1,6 @@
 package lotto.util;
 
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class RepeatModule {
@@ -13,6 +14,15 @@ public class RepeatModule {
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_PREFIX + e.getMessage() + LINE_BREAK);
             return repeat(inputReader);
+        }
+    }
+
+    protected <T, R> void repeat(Supplier<T> inputReader, Consumer<T> setMethod) {
+        try {
+            setMethod.accept(inputReader.get());
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_PREFIX + e.getMessage());
+            repeat(inputReader, setMethod);
         }
     }
 }

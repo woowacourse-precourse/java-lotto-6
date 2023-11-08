@@ -1,9 +1,7 @@
 package lotto;
 
 import lotto.controller.GameController;
-import lotto.domain.generator.CustomRandomNumberGenerator;
-import lotto.utils.generator.RandomNumber;
-import lotto.utils.generator.RandomNumberGenerator;
+import lotto.utils.generator.CustomRandomNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.reader.CustomReader;

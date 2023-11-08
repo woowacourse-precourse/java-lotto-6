@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.AppConfig;
-import lotto.domain.generator.CustomRandomNumberGenerator;
+import lotto.utils.generator.CustomRandomNumberGenerator;
 import lotto.dto.LottoDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +17,6 @@ class LottosTest {
     private static final AppConfig APP_CONFIG = AppConfig.getInstance();
 
     private final CustomRandomNumberGenerator customRandomGenerator = APP_CONFIG.customRandomNumber;
-
 
     private Lottos generateLottos(final List<LottoDto> getLottos, final int count) {
         customRandomGenerator.initLottos(getLottos);

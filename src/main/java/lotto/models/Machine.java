@@ -1,9 +1,8 @@
 package lotto.models;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.List;
 import lotto.configs.Constant;
-import lotto.utils;
+import lotto.configs.Prize;
 
 public class Machine{
     private Lotto lotto;
@@ -31,5 +30,9 @@ public class Machine{
 
     public Lotto getLotto() {
         return lotto;
+    }
+
+    public Prize payPrize(Lotto lotto){
+        return Prize.valueOf(lotto.getComparisonScore(this.lotto, this.bonus));
     }
 }

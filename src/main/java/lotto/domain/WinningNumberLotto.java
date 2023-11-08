@@ -37,4 +37,12 @@ public class WinningNumberLotto {
             throw new IllegalArgumentException("[ERROR] 숫자 범위는 1~45까지 입니다.");
         }
     }
+
+    public int getBonusNumber(){
+        return bonusNumber;
+    }
+
+    public Lotto getWinningNumbers(){
+        return winningNumbers;
+    }
 }

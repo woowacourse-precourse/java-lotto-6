@@ -6,6 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GenerateLotto {
+    
+    public static List<Lotto> generateLottoList(int LottoCount) {
+        List<Lotto> lottoList = new ArrayList<>();
+
+        for (int i = 0; i < LottoCount; i++) {
+            lottoList.add(generateLotto());
+        }
+
+        return lottoList;
+    }
 
     private static Lotto generateLotto() {
 

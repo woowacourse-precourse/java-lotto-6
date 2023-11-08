@@ -10,7 +10,7 @@ public class InputView {
     private static final String INPUT_LOTTO_WINNING = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
-    private static List<Integer> winningNumberList;
+    private static List<Integer> winningNumbers;
 
     public static String inputPlayerAmount() {
         System.out.println(INPUT_LOTTO_AMOUNT);
@@ -29,11 +29,11 @@ public class InputView {
 
     public static List<Integer> numberList(String winningNumber) {
         String[] result = winningNumber.split(",");
-        winningNumberList = new ArrayList<>();
+        winningNumbers = new ArrayList<>();
         for (int i = 0; i < result.length; i++) {
-            winningNumberList.add(conventToInt(result[i]));
+            winningNumbers.add(conventToInt(result[i]));
         }
-        return winningNumberList;
+        return winningNumbers;
     }
 
     public static int conventToInt(String inputNumber) {

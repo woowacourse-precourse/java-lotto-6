@@ -13,14 +13,14 @@ public class LottoNumbers {
     private static List<Integer> lotto = new ArrayList<>();
 
     private static List<Integer> lottoNumberList;
-    private static List<Lotto> lottoList;
+    private static List<Lotto> lottos;
 
     public LottoNumbers() {
     }
 
     public LottoNumbers(int number) {
-        lottoList = new ArrayList<>();
-        IntStream.range(0, number).forEach(i ->  lottoList.add(makeLotto()));
+        lottos = new ArrayList<>();
+        IntStream.range(0, number).forEach(i ->  lottos.add(makeLotto()));
     }
 
     private static Lotto makeLotto() {
@@ -31,7 +31,7 @@ public class LottoNumbers {
     }
 
     public static List<Lotto> getLottos() {
-        return lottoList;
+        return lottos;
     }
 
     public static List<Integer> setRandomNumbers() {

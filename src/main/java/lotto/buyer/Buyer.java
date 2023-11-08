@@ -17,6 +17,12 @@ public class Buyer {
     private final List<Lotto> lottos;
     private final Map<Integer, Integer> rankResult;
 
+    private final int MINIMUM_MATCH_COUNT = 3;
+    private final int FIRST_PLACE_MATCH_COUNT = 6;
+    private final int MAXIMUM_MATCH_COUNT = 7;
+    private final int RANK_STD = 8;
+    private final int BUY_AMOUNT_UNIT = 1000;
+
     public Buyer() {
         this.lottos = new ArrayList<>();
         this.rankResult = initRankResult();
@@ -60,7 +66,7 @@ public class Buyer {
             if (isBonusNumMatch) {
                 count++;
             }
-            if (count >= 3) {
+            if (count >= MINIMUM_MATCH_COUNT) {
                 int rank = calculateRank(rankResult, count, isBonusNumMatch);
                 rankResult.put(rank, rankResult.get(rank) + 1);
             }
@@ -75,36 +81,30 @@ public class Buyer {
     }
 
     private int calculateRank(Map<Integer, Integer> rankResult, int count, boolean isBonusNumMatch) {
-        if (count == 7 || count == 6 && !isBonusNumMatch) {
+        if (count == MAXIMUM_MATCH_COUNT || count == FIRST_PLACE_MATCH_COUNT && !isBonusNumMatch) {
             return Rank.FIRST.getRank();
         }
-        if (count == 6 && isBonusNumMatch) {
+        if (count == FIRST_PLACE_MATCH_COUNT && isBonusNumMatch) {
             return Rank.SECOND.getRank();
         }
-        return 8 - count;
+        return RANK_STD - count;
     }
 
     public void printLotteryResult() {
         System.out.printf(
-                "당첨 통계\n" +
-                "---\n" +
-                "3개 일치 (5,000원) - %d개\n" +
-                "4개 일치 (50,000원) - %d개\n" +
-                "5개 일치 (1,500,000원) - %d개\n" +
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n" +
-                "6개 일치 (2,000,000,000원) - %d개\n"
-        , rankResult.get(Rank.FIFTH.getRank())
-        , rankResult.get(Rank.FOURTH.getRank())
-        , rankResult.get(Rank.THIRD.getRank())
-        , rankResult.get(Rank.SECOND.getRank())
-        , rankResult.get(Rank.FIRST.getRank())
+                String.valueOf(Message.PRINT_LOTTERY_RESULT)
+                , rankResult.get(Rank.FIFTH.getRank())
+                , rankResult.get(Rank.FOURTH.getRank())
+                , rankResult.get(Rank.THIRD.getRank())
+                , rankResult.get(Rank.SECOND.getRank())
+                , rankResult.get(Rank.FIRST.getRank())
         );
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", getProfitRate());
+        System.out.printf(String.valueOf(Message.PRINT_PROFIT_RATE), getProfitRate());
     }
 
     private double getProfitRate() {
         double profit = 0;
-        int buyAmount = lottos.size() * 1000;
+        int buyAmount = lottos.size() * BUY_AMOUNT_UNIT;
         for (Rank rank : Rank.values()) {
             profit += rankResult.get(rank.getRank()) * rank.getPrize();
         }

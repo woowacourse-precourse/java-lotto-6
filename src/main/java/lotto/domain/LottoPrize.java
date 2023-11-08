@@ -29,10 +29,10 @@ public class LottoPrize {
             addMatchCount(checkBonusNumber(userLottoNums, matchCount));
         }
 
-        printResultStats();
+        printResultStats(purchaseAmount);
     }
 
-    private void printResultStats() {
+    private void printResultStats(int purchaseAmount) {
         messageUtil.printWinningStatsResult(THREE_COUNT.getNumber(), THREE_COUNT.getPrice(), THREE_COUNT.getMatchCount());
         messageUtil.printWinningStatsResult(FOUR_COUNT.getNumber(), FOUR_COUNT.getPrice(), FOUR_COUNT.getMatchCount());
         messageUtil.printWinningStatsResult(FIVE_COUNT.getNumber(), FIVE_COUNT.getPrice(), FIVE_COUNT.getMatchCount());
@@ -55,6 +55,19 @@ public class LottoPrize {
         }
         if (matchCount == SIX_COUNT.getNumber()) {
             lottoResult.addSixCount();
+
+            int totalWinningAmount = getTotalWinningAmount();
+            Double earningRate = Double.valueOf(computeEarningRate(purchaseAmount, totalWinningAmount));
+            messageUtil.printEarningRate(earningRate);
+        }
+
+        private int getTotalWinningAmount() {
+            return THREE_COUNT.getMatchCount() * THREE_COUNT.getPrice()
+                    + FOUR_COUNT.getMatchCount() * FOUR_COUNT.getPrice()
+                    + FIVE_COUNT.getMatchCount() * FIVE_COUNT.getPrice()
+                    + FIVE_COUNT_WITH_BONUS.getMatchCount() * FIVE_COUNT_WITH_BONUS.getPrice()
+                    + SIX_COUNT.getMatchCount() * SIX_COUNT.getPrice();
+
         }
     }
 

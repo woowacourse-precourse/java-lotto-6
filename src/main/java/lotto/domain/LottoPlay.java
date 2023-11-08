@@ -15,9 +15,12 @@ public class LottoPlay {
 
     public void play() {
         messageUtil.printPurchaseInput();
-        List<Lotto> userLottos = lottoPurchase.getPurchaseInfo();
+        LottoPurchase purchaseInfo =lottoPurchase.getPurchaseInfo();
         LottoWinningNumber winningNumbersInfo = lottoWinningNumber.getWinningNumbersInfo();
         LottoPrize lottoPrize = new LottoPrize(winningNumbersInfo);
+
+        lottoPrize.getLottoStats(purchaseInfo.getUserLottos
+        ,purchaseInfo.getPurchaseAmount());
 
     }
 

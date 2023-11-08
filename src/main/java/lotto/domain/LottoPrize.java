@@ -17,4 +17,24 @@ public enum LottoPrize {
         this.prizeMoney = prizeMoney;
         this.hasBonusNumber = hasBonusNumber;
     }
+
+    public static LottoPrize getPrize(final int matchedCount, final boolean containsBonusNumber) {
+        for (LottoPrize prize : values()) {
+            if (prize.matchedCount == matchedCount && prize.hasBonusNumber == false) {
+                return prize;
+            }
+            if (prize.matchedCount == matchedCount && prize.hasBonusNumber == true) {
+                return SECOND;
+            }
+        }
+        return NOTHING;
+    }
+
+    public int getMatchedCount() {
+        return matchedCount;
+    }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
 }

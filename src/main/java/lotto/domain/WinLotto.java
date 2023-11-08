@@ -58,6 +58,7 @@ public class WinLotto {
         return winResult;
     }
 
+    // 당첨 내역 문자열 반환
     public String getWinString(List<Integer> winResult) {
         LottoResult[] values = LottoResult.values();
         String winString = "";

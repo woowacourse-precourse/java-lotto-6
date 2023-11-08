@@ -53,7 +53,7 @@ public class LottoView {
             printlnConstantMessage(ConstantMessage.EA);
         }
     }
-    public static void printTotalReturn(double totalReturn){
+    public static void printTotalEarningRate(double totalReturn){
         printConstantMessage(ConstantMessage.TOTAL_RETURN);
         System.out.printf("%.1f",totalReturn*100);
         printlnConstantMessage(ConstantMessage.IPNIDA);

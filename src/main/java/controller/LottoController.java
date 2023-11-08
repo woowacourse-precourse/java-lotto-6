@@ -23,7 +23,7 @@ public class LottoController {
         LottoView.printWinningResult();
         int[] lottoResult = lottoService.revealLottery(lottos, lottoSystem);
         LottoView.printLottoResults(lottoResult);
-        LottoView.printTotalReturn(lottoService.getEarningRate(lottoResult, lottos));
+        LottoView.printTotalEarningRate(lottoService.getEarningRate(lottoResult, lottos));
     }
     private Lottos makeLottos(){
         Lottos lottos = new Lottos(NumberOfLotto(getTotalMoneyByUserInput()));

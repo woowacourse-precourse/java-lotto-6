@@ -1,7 +1,10 @@
-package lotto.model;
+package lotto.fixture;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.LottoGenerator;
+import lotto.model.WinningLotto;
 
 public class LottoNotRandomGenerator implements LottoGenerator {
     public static Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));

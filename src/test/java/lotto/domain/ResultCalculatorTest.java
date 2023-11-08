@@ -11,8 +11,7 @@ class ResultCalculatorTest {
 
     @BeforeEach()
     void setUp() {
-        winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6));
-        winningLotto.setBonusNumber(7);
+        winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
     }
 
     @Test()

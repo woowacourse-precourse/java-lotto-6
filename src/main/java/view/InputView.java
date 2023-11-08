@@ -1,6 +1,7 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import util.ValidationNumbers;
 import util.ValidationPrice;
 
 public class InputView {
@@ -18,6 +19,7 @@ public class InputView {
         String message = InputMessages.WINNING_NUMBER_MESSAGE.getMessage();
         System.out.println(message);
         String winningNumbers = input();
+        ValidationNumbers.validateNumbers(winningNumbers);
         return winningNumbers;
     }
 

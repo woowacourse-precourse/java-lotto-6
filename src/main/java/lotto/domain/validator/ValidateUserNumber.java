@@ -3,8 +3,13 @@ package lotto.domain.validator;
 import java.util.List;
 
 public class ValidateUserNumber {
+
+    private static final int ABSOLUTE_SIX = 6;
+    private static final int MAX_RANGE = 45;
+    private static final int MIN_RANGE = 1;
+
     public static void isLengthSix(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != ABSOLUTE_SIX) {
             throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력 해주세요");
         }
     }
@@ -17,7 +22,7 @@ public class ValidateUserNumber {
 
     private static boolean check(List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(number -> number > 45 || number < 1);
+                .anyMatch(number -> number > MAX_RANGE || number < MIN_RANGE);
     }
 
     public static void isDuplicate(List<Integer> numbers) {

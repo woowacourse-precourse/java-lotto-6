@@ -80,9 +80,7 @@ public class GameService {
                 }
             }
         }
-        //TODO 클래스로 구현하기
-        System.out.println("총 수익: " + totalPrize + "입니다.");
-        System.out.println("총 수익률은: " + ((double)totalPrize/money)*100 + "%입니다.");
+        InputLottoUI.rateOfReturn(totalPrize, money);
     }
 
     private Rank matchingNumbersToRank(int matchingNumbers, boolean bonusNumberMatch) {

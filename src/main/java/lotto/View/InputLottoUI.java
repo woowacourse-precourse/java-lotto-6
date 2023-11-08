@@ -32,4 +32,8 @@ public class InputLottoUI {
         }
         return lottoNumbers;
     }
+
+    public static void rateOfReturn(int totalPrize, int money) {
+        System.out.println("총 수익률은: " + ((double)totalPrize/money)*100 + "%입니다.");
+    }
 }

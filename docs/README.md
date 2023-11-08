@@ -1,0 +1,107 @@
+# 학습 목표
+- Enum 활용
+- 클래스 분리하기
+
+# 기능 목록
+
+- [x] 에러 핸들링
+  - [x] 예외 발생시 에러 메시지를 출력한다.
+  - [x] 에러 발생시 다시 입력받는다.
+  - [x] 로또 구입
+  - [x] 당첨 번호
+  - [x] 보너스 번호
+- [x] 로또 구입 금액을 입력받는다.
+  - [x] 입력 안내문을 출력한다.
+  - [x] 입력이 숫자인지 검증한다.
+  - [x] 예외 발생시 에러 메시지를 출력한다.
+- [x] 로또를 생성한다.
+  - [x] 6개의 숫자
+  - [x] 1~45까지의 숫자
+  - [x] 중복되지 않는 숫자
+  - [x] 오름차순 정렬
+- [x] 로또를 구입한다.
+  - [x] 구입 금액이 1000원 단위인지 검증한다.
+  - [x] 예외 발생시 에러 메시지를 출력한다.
+  - [x] 1000원당 한장의 랜덤 로또를 생성한다.
+- [x] 구매한 로또를 관리한다.
+  - [x] 구매 금액을 저장한다.
+  - [x] 구매 로또를 저장한다.
+- [x] 구매 내역을 출력한다.
+  - [x] 몇개를 구매했는지 출력한다.
+  - [x] 구매한 로또 번호를 출력한다.
+- [x] 당첨 번호를 입력 받는다.
+  - [x] 입력 안내문을 출력한다.
+  - [x] 입력이 숫자와 쉼표로 이루어져 있는지 검증한다.
+  - [x] 예외 발생시 에러 메시지를 출력한다.
+  - [x] 숫자를 쉼표를 기준으로 구분한다.
+- [x] 보너스 번호를 입력 받는다.
+  - [x] 입력 안내문을 출력한다.
+  - [x] 입력이 숫자로 이루어져 있는지 검증한다.
+- [x] 당첨 로또를 생성한다.
+  - [x] 당첨 번호와 보너스 번호가 중복되지 않는지 검증
+- [x] 당첨번호와 로또를 비교한다.
+  - [x] 로또 번호간에 몇개의 번호가 일치하는지 확인한다. 
+  - [x] 보너스 번호가 존재하는지 확인한다.
+- [x] 비교 결과로 등수를 메긴다.
+- [x] 수익률을 계산한다.
+  - [x] 총 상금을 계산한다.
+- [x] 당첨 통계를 출력한다.
+  - [x] 당첨 내역을 출력한다.
+  - [x] 수익률을 출력한다.
+
+## 객체 목록
+  ### 도메인
+- User 
+  - int spending
+  - SaleLottos lottos
+  - void buyLottos(price)
+  - void checkLottoResult()
+  - double calculateProfitRate()
+- Lotto
+  - Number
+    - int number
+    - of(number)
+    - void validateInRange()
+  - Lotto
+    - List<Number> numbers
+    - void validateDuplicate()
+    - void validateSize()
+  - SaleLotto extends Lotto
+    - static createRandomLotto(RandomNumbersPicker) 
+    - boolean isChecked
+    - LottoRank rank
+    - void checkRank(WinningLotto)
+      - countOfMatch(WinningLotto)
+      - isMatchBonus(WinningLotto)
+  - WinningLotto extends Lotto
+    - bonusNumber
+    - validateBonusNumberUnique()
+    - int countOfMatch(List<Number>)
+    - boolean isMatchBonus(List<Number>)
+  - SaleLottos
+    - List<SaleLotto> lottos
+    - EnumMap<LottoRank, Integer> lottoResult
+    - checkLottoResult(WinningLotto)
+    - calculateTotalPrize()
+  - LottoRank Enum
+    - FIRST
+      - prize
+    - SECOND
+    - THIRD
+    - FOURTH
+    - FIFTH
+    - MISS
+    - MatchResult
+      - countOfMatch
+      - isMatchBonus
+      - equals()
+      - hashCode()
+    - rank<MatchResult, LottoRank>
+    - getRank(countOfMatch, isMatchBonus)
+- Shop
+  - randomNumbersPicker
+  - sellLotto(price)
+    - validatePrice()
+    - createRandomLotto()
+  - drawWinningLotto(numbers, bonusNumber)
+  - 

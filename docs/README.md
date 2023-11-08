@@ -2,8 +2,9 @@
 
 ## 🏁 목차
 
-- [설계 과정](#%EF%B8%8F-설계-과정)
-- [기능 목록](#-기능-목록)
+- [🏗️ 설계 과정](#%EF%B8%8F-설계-과정)
+- [✨ 기능 목록](#-기능-목록)
+- [✅ 테스트 결과](#-테스트-결과)
 
 ---
 
@@ -87,3 +88,9 @@
     - [x] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생
     - [x] 예외 상황 시 에러 문구를 출력해야 한다. 단, 에러 문구는 "[ERROR]" 로 시작해야 한다.
     - [x] 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+
+---
+
+## ✅ 테스트 결과
+![_Users_gimseonjae_Downloads_Test%20Results%20-%20Tests_in_'java-lotto_test' html](https://github.com/wooteco-daram/java-lotto-6/assets/148437666/e2abeb3a-9e88-4bb4-a867-4b7882f73cc0)
+

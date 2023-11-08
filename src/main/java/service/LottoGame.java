@@ -47,22 +47,26 @@ public class LottoGame {
         for (Lotto ticket : tickets) {
             int matchedCount = countMatchedCount(ticket.getNumbers(), winningNumbers.getNumbers());
 
-            LottoRank rank;
-
-            if (matchedCount == LottoRank.FIRST.getMatchedCount()) {
-                rank = LottoRank.FIRST;
-            } else if (matchedCount == LottoRank.SECOND.getMatchedCount() && checkBonusNumber(ticket.getNumbers(), bonusNumber.getNumbers())) {
-                rank = LottoRank.SECOND;
-            } else if (matchedCount == LottoRank.THIRD.getMatchedCount()) {
-                rank = LottoRank.THIRD;
-            } else if (matchedCount == LottoRank.FOURTH.getMatchedCount()) {
-                rank = LottoRank.FOURTH;
-            } else if (matchedCount == LottoRank.FIFTH.getMatchedCount()) {
-                rank = LottoRank.FIFTH;
-            } else rank = LottoRank.FAIL;
-
+            LottoRank rank = getRank(bonusNumber, ticket, matchedCount);
             rankCounter.put(rank, rankCounter.get(rank) + 1);
         }
+    }
+
+    private LottoRank getRank(Lotto bonusNumber, Lotto ticket, int matchedCount) {
+        LottoRank rank;
+        if (matchedCount == LottoRank.FIRST.getMatchedCount()) {
+            return LottoRank.FIRST;
+        } else if (matchedCount == LottoRank.SECOND.getMatchedCount() && checkBonusNumber(ticket.getNumbers(), bonusNumber.getNumbers())) {
+            return LottoRank.SECOND;
+        } else if (matchedCount == LottoRank.THIRD.getMatchedCount()) {
+            return LottoRank.THIRD;
+        } else if (matchedCount == LottoRank.FOURTH.getMatchedCount()) {
+            return LottoRank.FOURTH;
+        } else if (matchedCount == LottoRank.FIFTH.getMatchedCount()) {
+            return LottoRank.FIFTH;
+        }
+        
+        return LottoRank.FAIL;
     }
 
     private boolean checkBonusNumber(List<Integer> ticket, List<Integer> bonusNumber) {

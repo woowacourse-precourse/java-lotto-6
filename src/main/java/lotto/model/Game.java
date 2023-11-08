@@ -62,7 +62,7 @@ public class Game {
         return bonusLotto;
     }
 
-    public boolean containBonusLotto(Lotto lotto) {
+    private boolean containBonusLotto(Lotto lotto) {
         if (lotto.getNumbers().contains(bonusNumber.getBonusNumber())) {
             return true;
         }

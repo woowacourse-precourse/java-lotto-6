@@ -4,11 +4,14 @@ import lotto.domain.Lotto;
 
 public class ValidateBonusBall {
 
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
+
     public static void isInRange(int bonusBall) {
-        if (bonusBall < 1) {
+        if (bonusBall < MIN_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 1보다 작은 숫자는 입력 할 수 없습니다.");
         }
-        if (bonusBall > 45) {
+        if (bonusBall > MAX_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 45보다 큰 숫자는 입력 할 수 없습니다.");
         }
     }

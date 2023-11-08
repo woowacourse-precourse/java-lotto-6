@@ -16,8 +16,9 @@ public class OutputView {
     }
 
     public static void printLottoResult(Double count, WinningDetails details){
-        String result = details.getResult();
-        System.out.println(result);
-        System.out.println("총 수익률은 " + String.format("%.1f",Double.valueOf(details.calculatePrize()/(count*10)))+ "%입니다.");
+        System.out.println(details.getResult());
+        System.out.println("총 수익률은 " +
+                String.format("%.1f",Double.valueOf(details.calculatePrize()/(count*10)))
+                + "%입니다.");
     }
 }

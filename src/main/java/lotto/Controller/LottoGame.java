@@ -1,21 +1,14 @@
 package lotto.Controller;
 
-import static lotto.Model.Prize.FIFTH;
-import static lotto.Model.Prize.FIRST;
-import static lotto.Model.Prize.FOURTH;
-import static lotto.Model.Prize.SECOND;
-import static lotto.Model.Prize.THIRD;
 import static lotto.View.InputView.getBonusNumber;
 import static lotto.View.InputView.getHowMuchLottoWillYouBuy;
 import static lotto.View.InputView.getWinningLottoNumbers;
 import static lotto.View.OutputView.printLottoList;
 import static lotto.View.OutputView.printLottoResult;
-import static lotto.util.Generator.generateNumbers;
+import static lotto.util.Generator.generateLotto;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.Model.Lotto;
-import lotto.Model.Prize;
 import lotto.Model.WinningDetails;
 
 public class LottoGame {
@@ -37,21 +30,12 @@ public class LottoGame {
         notifyBonusNumber();
         Integer bonusNumber = getBonusNumber();
 
-        WinningDetails detail = lottoResult(lottoList, winningNumbers, bonusNumber);
+        WinningDetails detail = makeLottoResult(lottoList, winningNumbers, bonusNumber);
         notifyForResult();
         printLottoResult(Double.valueOf(buyCount),detail);
     }
 
-    public static List<Lotto> generateLotto(Integer buyCount){
-        List<Lotto> lottoList = new ArrayList<>();
-        for(int i=0; i<buyCount; i++){
-            Lotto lotto = generateNumbers();
-            lottoList.add(lotto);
-        }
-        return lottoList;
-    }
-
-    public static WinningDetails lottoResult(List<Lotto> lottoList, Lotto winningNumbers, Integer bonusNumber){
+    public static WinningDetails makeLottoResult(List<Lotto> lottoList, Lotto winningNumbers, Integer bonusNumber){
         Integer[] result = {0,0,0,0};
         Integer bonus = 0;
         for(int i=0; i<lottoList.size();i++){

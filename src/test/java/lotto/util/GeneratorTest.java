@@ -2,6 +2,7 @@ package lotto.util;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
+import static lotto.util.Generator.generateLotto;
 import static lotto.util.Generator.generateNumbers;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -13,7 +14,8 @@ import lotto.Model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class GeneratorTest extends NsTest{
+public class GeneratorTest {
+    public static Generator generator = new Generator();
 
 //    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
 //    @Test
@@ -23,6 +25,14 @@ public class GeneratorTest extends NsTest{
 //                () ->  generateNumbers()
 //        ).isInstanceOf(IllegalArgumentException.class);
 //    }
+
+    @Test
+    void n개로또구매_출력해보기(){
+        List<Lotto> lottoList = generateLotto(2);
+        for(int i=0; i<lottoList.size();i++){
+            System.out.println(lottoList.get(i).printLotto());
+        }
+    }
 
     @DisplayName("로또 번호에 중복된 숫자가 없을 경우 성공!.")
     @Test
@@ -35,8 +45,5 @@ public class GeneratorTest extends NsTest{
                 List.of(1, 3, 5, 14, 22, 45)
         );
     }
-    @Override
-    public void runMain() {
-        generateNumbers();
-    }
+
 }

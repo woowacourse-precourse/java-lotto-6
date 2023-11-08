@@ -7,7 +7,6 @@ public enum Prize {
     SECOND(30000000),
     FIRST(2000000000);
 
-
     private final Integer prize;
 
     Prize(Integer prize){

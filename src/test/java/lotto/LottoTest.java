@@ -34,4 +34,28 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 주어진번호와_당첨번호가_몇개_일치하는지() {
+        List<Integer> numbers = new ArrayList<>();
+        List<Integer> lottoNumber = new ArrayList<>();
+
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        numbers.add(5);
+
+        lottoNumber.add(3);
+        lottoNumber.add(4);
+        lottoNumber.add(5);
+        lottoNumber.add(6);
+        lottoNumber.add(7);
+
+        Game game =new Game();
+
+        int result = game.countMatchResult(numbers, lottoNumber);
+
+        assertThat(result).isEqualTo(3);
+    }
 }

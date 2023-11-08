@@ -11,6 +11,7 @@ public class Application {
         try {
             int lottoAmount = askAmount();
             List<Lotto> lottos = issueLotto(lottoAmount / 1000);
+            printLottos(lottos);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -38,4 +39,10 @@ public class Application {
         return lottos;
     }
 
+    private static void printLottos(List<Lotto> lottos) {
+        System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.toString());
+        }
+    }
 }

@@ -10,11 +10,10 @@ public class Lucky {
     private final List<Integer> lucky;
     private final int bonus;
 
-    public Lucky(String lucky, int bonus) {
-        List<Integer> number=translateLucky(lucky);
-        validateDuplication(number);
-        validateBonus(number,bonus);
-        this.lucky = number;
+    public Lucky(List<Integer> lucky, int bonus) {
+
+        validateBonus(lucky,bonus);
+        this.lucky = lucky;
         this.bonus = bonus;
     }
 
@@ -36,21 +35,7 @@ public class Lucky {
     }
 
 
-    private List<Integer> translateLucky(String target){
-        return translateToInt(separateNames(target));
-    }
-    private List<String> separateNames(String names) {
-        String[] luckyNumber = names.split(",");
-        List<String> lucky = new ArrayList<>(Arrays.asList(luckyNumber));
-        return lucky;
-    }
 
-    private List<Integer> translateToInt(List<String> target){
-        List<Integer> lucky=new ArrayList<>();
-        target.stream()
-                .forEach(t->lucky.add(Integer.parseInt(t)));
-        return lucky;
-    }
 
     private void validateDuplication(List<Integer> numbers){
         if(numbers.size()!=numbers.stream().distinct().count()){
@@ -61,6 +46,12 @@ public class Lucky {
     private void validateBonus(List<Integer> numbers,int bonus){
         if(numbers.contains(bonus)){
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다.");
+        }
+    }
+
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 6자리의 당첨 번호를 입력해야 합니다.");
         }
     }
 

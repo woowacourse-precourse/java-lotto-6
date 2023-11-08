@@ -15,6 +15,7 @@ public class OutputView {
     public void printLotto(Lotto lotto) {
         String numbers = lotto.getNumbers().stream()
                 .map(Object::toString)
+                .sorted()
                 .collect(Collectors.joining(", "));
         System.out.println("[" + numbers + "]");
     }

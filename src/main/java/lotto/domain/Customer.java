@@ -7,7 +7,7 @@ public class Customer {
 
     private static final int LOTTO_PRICE = 1000;
     private int money;
-    private List<Lotto> lottos = new ArrayList<>();
+    private List<Lotto> lottos;
 
     public Customer(int money) {
         validateMoney(money);

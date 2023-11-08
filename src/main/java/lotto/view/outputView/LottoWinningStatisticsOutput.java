@@ -4,11 +4,14 @@ package lotto.view.outputView;
 import lotto.model.lottoResultChecker.LottoRank;
 import java.util.Map;
 
+import static lotto.constant.ViewMessages.Distinction;
+import static lotto.constant.ViewMessages.Winning_Statistics;
+
 public class LottoWinningStatisticsOutput {
 
     public void printStatistics(Map<LottoRank, Integer> rankResult) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(Winning_Statistics );
+        System.out.println(Distinction);
         printRankResult(LottoRank.FIFTH, rankResult);
         printRankResult(LottoRank.FOURTH, rankResult);
         printRankResult(LottoRank.THIRD, rankResult);

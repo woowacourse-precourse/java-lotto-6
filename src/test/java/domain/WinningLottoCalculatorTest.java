@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class WinningLottoCalculatorTest {
 	private static HashMap<LottoPrize, Integer> getLottoPrizeIntegerHashMap() {
-		HashMap<LottoPrize, Integer> result = new HashMap<>() {{
+		return new HashMap<>() {{
 			put(LottoPrize.FIRST_PRIZE, 1);
 			put(LottoPrize.SECOND_PRIZE, 1);
 			put(LottoPrize.THIRD_PRIZE, 1);
@@ -16,7 +16,6 @@ class WinningLottoCalculatorTest {
 			put(LottoPrize.FIFTH_PRIZE, 1);
 			put(LottoPrize.BLANK, 0);
 		}};
-		return result;
 	}
 
 	private static PurchaseLotto getPurchaseLotto() {
@@ -34,14 +33,13 @@ class WinningLottoCalculatorTest {
 		Lotto lotto = new Lotto("1,2,3,4,5,6");
 		BonusNumber bonusNumber = new BonusNumber("7", lotto);
 
-		WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
-		return winningLotto;
+		return new WinningLotto(lotto, bonusNumber);
 	}
 
 	@DisplayName("당첨 번호와 로또 번호를 비교해 같은 숫자 카운트")
 	@Test
 	public void countMatchingNumbers() {
-		//given
+		// given
 		int expected = 4;
 		WinningLotto winningLotto = getWinningLotto();
 
@@ -58,7 +56,7 @@ class WinningLottoCalculatorTest {
 	@DisplayName("로또 번호 중 보너스 번호가 있는지 체크")
 	@Test
 	public void checkBonusNumberInLottoNumbers() {
-		//given
+		// given
 		WinningLotto winningLotto = getWinningLotto();
 		Lotto purchaseLotto = new Lotto("1,2,8,4,5,7");
 
@@ -73,7 +71,7 @@ class WinningLottoCalculatorTest {
 	@DisplayName("1등~5등 중 당첨 개수 카운트 - 1등부터 5등까지 1번씩 당첨된 경우")
 	@Test
 	public void createForEachLottoPrizes() {
-		//given
+		// given
 		PurchaseLotto purchaseLotto = getPurchaseLotto();
 		WinningLotto winningLotto = getWinningLotto();
 

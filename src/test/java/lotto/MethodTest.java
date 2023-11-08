@@ -1,24 +1,15 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
-import java.lang.constant.Constable;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static lotto.LottoService.*;
+import static lotto.LottoService.lottoWinsCount;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class MethodTest {
-
     @DisplayName("구매금액을 입력하면 구매한 로또 갯수가 출력된다.")
     @Test
     void setBoughtTest() {

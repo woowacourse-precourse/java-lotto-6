@@ -14,13 +14,14 @@ public class LottoService {
     static final int[] lottoWinsCount = new int[RANKING];
     static final Rank[] ranks = Rank.values();
 
-    public int readPaid() {
+    static int winsCount = 0;
+    static boolean bonusCount = false;
+
+    int readPaid() {
         while (true) {
             try {
                 int paid = InputUI.inputPaid();
-                if (paid % LOTTO_PRICE != 0) {
-                    throw new IllegalArgumentException("[ERROR] " + ExceptionMessage.notMultipleOfPrice());
-                }
+                checkMultipleOfPrice(paid);
                 System.out.println();
                 return paid;
             } catch (NumberFormatException e) {
@@ -31,13 +32,19 @@ public class LottoService {
         }
     }
 
-    protected int setBought(int paid) {
+    private void checkMultipleOfPrice(int paid) {
+        if (paid % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException("[ERROR] " + ExceptionMessage.notMultipleOfPrice());
+        }
+    }
+
+    int setBought(int paid) {
         int bought = paid / LOTTO_PRICE;
         OutputUI.outputBought(bought);
         return bought;
     }
 
-    protected Lotto[] createLottoNums(int bought) {
+    Lotto[] createLottoNums(int bought) {
         Lotto[] lottoNum = new Lotto[bought];
         for (int i = 0; i < bought; i++) {
             lottoNum[i] = new Lotto(Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_COUNT).stream()
@@ -46,14 +53,14 @@ public class LottoService {
         return lottoNum;
     }
 
-    protected void printLottoNums(Lotto[] lottoNum) {
+    void printLottoNums(Lotto[] lottoNum) {
         for (Lotto l : lottoNum) {
             System.out.println(l.getNumbers().toString());
         }
         System.out.println();
     }
 
-    protected Lotto readUserNum() {
+    Lotto readUserNum() {
         while (true) {
             try {
                 List<Integer> nums = InputUI.inputUserNum();
@@ -68,7 +75,7 @@ public class LottoService {
         }
     }
 
-    public int readBonusNum(Lotto userNum) {
+    int readBonusNum(Lotto userNum) {
         while (true) {
             try {
                 int bonusNum = InputUI.inputBonusNum();
@@ -82,24 +89,28 @@ public class LottoService {
         }
     }
 
-    protected void setResult(Lotto[] lottoNum, Lotto userNum, int bonusNum) {
-        for (Lotto l : lottoNum) {
-            int winsCount = 0;
-            boolean bonusCount = false;
+    void setResult(Lotto[] lottoNum, Lotto userNum, int bonusNum) {
+        for (Lotto lotto : lottoNum) {
+            winsCount = 0;
+            bonusCount = false;
 
-            for (int n : userNum.getNumbers()) {
-                if (l.getNumbers().contains(n)) {
-                    winsCount++;
-                }
-                bonusCount = l.getNumbers().contains(bonusNum);
-            }
+            checkLottoMatched(userNum, bonusNum, lotto);
 
             Rank rank = getRank(winsCount, bonusCount);
             addResult(rank);
         }
     }
 
-    public Rank getRank(int winsCount, boolean bonusCount) {
+    private void checkLottoMatched(Lotto userNum, int bonusNum, Lotto lotto) {
+        for (int n : userNum.getNumbers()) {
+            if (lotto.getNumbers().contains(n)) {
+                winsCount++;
+            }
+            bonusCount = lotto.getNumbers().contains(bonusNum);
+        }
+    }
+
+    private Rank getRank(int winsCount, boolean bonusCount) {
         for (Rank rank : Rank.values()) {
             if (winsCount == rank.getWins() && (rank != Rank.SECOND || bonusCount)) {
                 return rank;
@@ -114,7 +125,7 @@ public class LottoService {
         }
     }
 
-    protected long getEarned() {
+    long getEarned() {
         long earned = 0;
 
         for (Rank rank : Rank.values()) {
@@ -124,7 +135,7 @@ public class LottoService {
         return earned;
     }
 
-    protected void printResult() {
+    void printResult() {
         OutputUI.outputResultTitle();
 
         for (int i = RANKING - 1; i >= 0; i--) {
@@ -133,7 +144,7 @@ public class LottoService {
         }
     }
 
-    protected void printProfit(int paid, long earned) {
+    void printProfit(int paid, long earned) {
         double profit = (double) earned / paid * 100.0;
         OutputUI.outputProfit(profit);
     }

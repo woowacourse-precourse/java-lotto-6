@@ -55,7 +55,7 @@ public class Lotto {
                 .toList();
     }
 
-    public List<Integer> getIntegerNumber() {
+    public List<Integer> getIntegerNumbers() {
         return lottoNumbers.stream()
                 .map(LottoNumber::getLottoNumber)
                 .toList();

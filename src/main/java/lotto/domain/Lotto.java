@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.constant.NumberStrategy;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -20,13 +21,13 @@ public class Lotto {
     }
 
     private void validateNumberCount(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
+        if (numbers.stream().distinct().count() != NumberStrategy.LOTTO_NUMBER_COUNT.getNumber()) {
             throw new IllegalArgumentException();
         }
     }
 
     private void validateNumberDuplicate(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
+        if (numbers.stream().distinct().count() != NumberStrategy.LOTTO_NUMBER_COUNT.getNumber()) {
             throw new IllegalArgumentException();
         }
     }

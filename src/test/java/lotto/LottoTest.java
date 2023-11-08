@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.Lotto.countWinningNumberInLotto;
-import static lotto.Lotto.judgeLottoRank;
+import static lotto.Lotto.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+
 import camp.nextstep.edu.missionutils.test.NsTest;
 
 class LottoTest {
@@ -38,7 +38,7 @@ class LottoTest {
 
     @DisplayName("로또 번호, 보너스 번호, 당첨 번호로 등수 판단하는 메서드 테스트")
     @Test
-    void testJudgeLottoRank() {
+    void testJudgingLottoRank() {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
 
@@ -73,7 +73,19 @@ class LottoTest {
         assertEquals(Rank.FIRST, resultRankFIRST);
     }
 
+    @DisplayName("한 정수가 당첨 번호 안에 있는지 판단하는 메서드 테스트")
+    @Test
+    void testCheckingLottoNumberInWinningNumber() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
 
+        // 포함되는 숫자 테스트
+        int numberTrue = 3;
+        assertTrue(checkLottoNumberInWinningNumber(winningNumbers, numberTrue));
+
+        // 포함되지 않는 숫자 테스트
+        int numberFalse = 7;
+        assertFalse(checkLottoNumberInWinningNumber(winningNumbers, numberFalse));
+    }
 
 
 }

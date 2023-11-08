@@ -17,7 +17,7 @@ public class LottoWinResult {
     public int getFiveWin(){
         return fiveWinCount;
     }
-    public int getFiveWithBonusCount(){
+    public int getFiveWithBonus(){
         return fiveWithBonusCount;
     }
     public int getSixWin(){

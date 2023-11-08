@@ -3,11 +3,13 @@ package lotto.domain;
 import java.util.List;
 import java.util.function.Predicate;
 import lotto.util.InputUtil;
+import lotto.util.MessageUtil;
 import lotto.util.ValidationUtil;
 
 public class LottoWinCheck {
     // 로또 하나 몇개 당첨 되었는지
     private final ValidationUtil validationUtil = new ValidationUtil();
+    private final MessageUtil messageUtil = new MessageUtil();
     private List<Integer> playerWinningNums;
     private Integer bonusNum;
     public LottoWinCheck(){}
@@ -16,12 +18,11 @@ public class LottoWinCheck {
         this.playerWinningNums = playerNums;
         this.bonusNum = bonusNum;
     }
-    public LottoWinCheck getPlayerNumbersInfo(String playerNums, String bonusNum){
+    public LottoWinCheck(List<Integer> playerNums){
+        this.playerWinningNums = playerNums;
+    }
+    public LottoWinCheck getPlayerNumbersInfo(String playerNums){
         this.playerWinningNums = getPlayerWinningNumbers(playerNums);
-        //print 부분 필요함 당첨번호
-        this.bonusNum = getBonusNumbers(bonusNum);
-        // print 부분 필요함 버스 번호
-
         return this;
     }
 
@@ -47,7 +48,12 @@ public class LottoWinCheck {
         return false;
     }
     private List<Integer> getPlayerWinningNumbers(String playersNums){
-        return validationUtil.validateWinningNumber(playersNums);
+        List<Integer> lottoNums = validationUtil.validateWinningNumber(playersNums);
+//        messageUtil.printLottoNums(lottoNums);
+        String playerBonusNums = messageUtil.printBonusInput();
+        this.bonusNum = getBonusNumbers(playerBonusNums);
+        messageUtil.printBonusOutput(bonusNum);
+        return lottoNums;
     }
     private int getBonusNumbers(String bonusNum){
         validationUtil.validateBonusNumberRange(Integer.parseInt(bonusNum));

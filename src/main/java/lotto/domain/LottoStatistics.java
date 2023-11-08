@@ -1,24 +1,34 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.util.MessageUtil;
+
 import static lotto.enums.LottoWinningResult.*;
 
 public class LottoStatistics {
-    // lottoWinResult 에 당첨결과 넣어주기
-    // winCheck 으로 몇개나 당첨됐는지 확인
-    private final LottoBuy lottoBuy = new LottoBuy(); // 로또 산 금액
-    private LottoWinCheck lottoWinCheck = new LottoWinCheck(); // 로또 산 사람의 당첨, 보너스 번호
+
+    private final MessageUtil messageUtil = new MessageUtil();
+    private LottoWinCheck lottoWinCheck = new LottoWinCheck(); // playingNums 에 관한 데이터가 없음
     private final LottoWinResult lottoWinResult = new LottoWinResult();
     public LottoStatistics(LottoWinCheck lottoWinCheck){
         this.lottoWinCheck = lottoWinCheck;
     }
     public LottoStatistics(){}
-    public void getLottoStatistics(List<Lotto> userLottos){
+    public void getLottoStatistics(List<Lotto> userLottos, int amount){
         for(Lotto lotto : userLottos){
             List<Integer> lottoNums = lotto.getNumbers();
             int matchCount = getMatchCount(lottoNums);
             addLottoResult(getBonusNumber(lottoNums, matchCount));
         }
+        messageUtil.printWinningStat();
+        printResult();
+    }
+    private void printResult(){
+        messageUtil.printWinningStatResult(THREE_WIN.getNumber(), THREE_WIN.getPrice(), lottoWinResult.getThreeWin());
+        messageUtil.printWinningStatResult(FOUR_WIN.getNumber(), FOUR_WIN.getPrice(), lottoWinResult.getFourWin());
+        messageUtil.printWinningStatResult(FIVE_WIN.getNumber(), FIVE_WIN.getPrice(), lottoWinResult.getFiveWin());
+        messageUtil.printWinningStatResult(FIVE_WITH_BONUS.getNumber(), FIVE_WITH_BONUS.getPrice(), lottoWinResult.getFiveWithBonus());
+        messageUtil.printWinningStatResult(SIX_WIN.getNumber(), SIX_WIN.getPrice(), lottoWinResult.getSixWin());
     }
     private void addLottoResult(int matchCount){
         if(matchCount == THREE_WIN.getNumber()){

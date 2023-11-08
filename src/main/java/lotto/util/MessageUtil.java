@@ -10,38 +10,50 @@ import java.util.List;
 
 public class MessageUtil {
 
+    private final InputUtil inputUtil = new InputUtil();
+
     public void printBuyInput(){
         System.out.println(BUY_INPUT.getMessage());
     }
-    public void printWinningInput(){
+    public String printWinningInput(){
+        System.out.println();
         System.out.println(WINNING_INPUT.getMessage());
+        return inputUtil.getInput();
     }
-    public void printBonusInput(){
+    public String printBonusInput(){
         System.out.println(BONUS_INPUT.getMessage());
+        System.out.println();
+        return inputUtil.getInput();
+    }
+    public void printBonusOutput(int bonus){
+        System.out.println(bonus);
+        System.out.println();
+    }
+    public void printBuyCount(int count){
+        System.out.println();
+        System.out.println(count + BUY_COUNT.getMessage());
     }
     public void printLottoNums(List<Integer> lottoNums){
         List<Integer> sortLottoNums = new ArrayList<>(lottoNums);
         sortLottoNums.sort(Comparator.naturalOrder());
-
         StringBuilder strNum = new StringBuilder("");
         strNum.append("[");
-        for(Integer num : lottoNums){
-            strNum.append(lottoNums).append(", ");
+        for(Integer num : sortLottoNums){
+            strNum.append(num).append(", ");
         }
         strNum.delete(strNum.length()-2, strNum.length()).append("]");
-
         System.out.println(strNum);
     }
     public void printWinningStat(){
-        System.out.println(WINNING_STATISTICS);
+        System.out.println(WINNING_STATISTICS.getMessage());
     }
     public void printWinningStatResult(int rank, int price, int matchCount){
         String priceComma = String.format("%,d", price);
         if(rank == FIVE_WITH_BONUS.getNumber()){
-            System.out.printf(WINNING_STATISTICS_BONUS_RESULT.getMessage(), rank, price);
+            System.out.printf(WINNING_STATISTICS_BONUS_RESULT.getMessage(), priceComma, matchCount);
             return;
         }
-        System.out.printf(WINNING_STATISTICS_RESULT.getMessage(), rank, price);
+        System.out.printf(WINNING_STATISTICS_RESULT.getMessage(),rank, priceComma, matchCount);
     }
 
 }

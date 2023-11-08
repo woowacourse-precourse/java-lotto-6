@@ -5,6 +5,7 @@ import static java.util.stream.Collectors.toList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
+import lotto.utils.LottoValidateUtils;
 
 public final class InputView extends ConsoleView {
 
@@ -34,7 +35,9 @@ public final class InputView extends ConsoleView {
         final String input = this.read();
         this.lineBreak();
         validateNotEmpty(input, String.format(ERROR_MANDATORY_INPUT, WINNING_NUMBERS_STRING));
-        return parse(input, this::parseToList);
+        List<Integer> winningNumbers = parse(input, this::parseToList);
+        LottoValidateUtils.validateLottoNumbers(winningNumbers);
+        return winningNumbers;
     }
 
     public int inputBonusNumber() {

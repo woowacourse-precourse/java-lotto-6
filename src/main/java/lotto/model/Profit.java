@@ -5,6 +5,7 @@ import lotto.entity.Prize;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class Profit {
     private final Map<Prize, Integer> resultCount;
@@ -27,8 +28,8 @@ public class Profit {
 
     public Map<Prize, Integer> init() {
         Map<Prize, Integer> result = new EnumMap<>(Prize.class);
-        Arrays.stream(Prize.values())
-                .forEach(prize -> result.put(prize, 0));
+        Stream<Prize> stream = Arrays.stream(Prize.values());
+        stream.forEach(prize -> result.put(prize, 0));
         return result;
     }
     public Map<Prize,Integer> getResultCount(){

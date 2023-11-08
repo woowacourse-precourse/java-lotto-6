@@ -123,6 +123,8 @@ public class LottoService {
     }
 
     private boolean prizeMatcher(Prize prize, Integer matchCount, boolean bonus){
-        return prize.getBonusMatch() == bonus && Objects.equals(prize.getMatchCount(), matchCount);
+        boolean isMatch = Objects.equals(prize.getMatchCount(),matchCount);
+        boolean isBonus = prize.getBonusMatch() == bonus;
+        return isBonus && isMatch;
     }
 }

@@ -29,6 +29,7 @@ public class Winning extends InputNumbers {
         String noEmptyReadLine = removeEmpty(readLine);
         checkOtherCharacter(noEmptyReadLine);
         List<Integer> numbers = translateToValueType(noEmptyReadLine);
+        checkSize(numbers);
         numbers.forEach(this::checkBoundary);
         checkDuplication(numbers);
         return numbers;

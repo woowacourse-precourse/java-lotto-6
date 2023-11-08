@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import lotto.constance.GameConst;
 import lotto.exception.LottoGameException;
-import lotto.model.domain.result.LottoCompareResult;
+import lotto.model.domain.result.compare.LottoCompareResult;
 
 public class Lotto {
 
@@ -74,7 +74,7 @@ public class Lotto {
      */
     public LottoCompareResult compareLotto(Lotto lotto) {
         int collectNumber = countCollectNumber(lotto);
-        return new LottoCompareResult(collectNumber, false);
+        return new LottoCompareResult(collectNumber);
     }
 
     private int countCollectNumber(Lotto lotto) {

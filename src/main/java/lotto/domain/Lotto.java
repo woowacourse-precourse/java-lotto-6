@@ -25,11 +25,25 @@ public class Lotto {
         }
     }
 
+    public int countMatchingNumbers(List<Integer> winningNumbers) {
+        return (int) numbers.stream()
+                        .filter(winningNumbers::contains)
+                        .count();
+    }
+
     @Override
     public String toString() {
         return numbers.stream()
                 .sorted()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ", "[", "]"));
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public boolean containNumber(int number) {
+        return numbers.contains(number);
     }
 }

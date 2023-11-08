@@ -15,4 +15,11 @@ public class JackpotNumberExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨번호 입력 시 숫자외의 다른 문자를 입력하면 예외가 발생한다.")
+    @Test
+    public void inputJackpotNumberByNotNumber() {
+        assertThatThrownBy(() -> InputValidator.checkJackpotNumberInput("1,2,3,4,5,e"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

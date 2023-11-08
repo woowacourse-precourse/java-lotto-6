@@ -31,7 +31,7 @@ public class LottoCalculator {
     }
 
     public double calculatePayOff(int purchaseMoney) {
-        double payOff = (double) Ranking.getTotalPrizeMoney(rankingCounter) / purchaseMoney * HUNDRED_PERCENT;
-        return Math.round(payOff * HUNDRED_PERCENT) / HUNDRED_PERCENT_DOUBLE;
+        double payOff = ((double) Ranking.getTotalPrizeMoney(rankingCounter) / purchaseMoney) * HUNDRED_PERCENT;
+        return  Math.round(payOff * HUNDRED_PERCENT) / HUNDRED_PERCENT_DOUBLE;
     }
 }

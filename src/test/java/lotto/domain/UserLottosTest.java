@@ -17,6 +17,8 @@ class UserLottosTest {
     @Test
     @DisplayName("사용자가 구매한 로또 리스트가 구매 수량만큼 없을 시 실패")
     void getLottos() {
+        UserLottos userLottos = new UserLottos(10000);
+        assertEquals(userLottos.getLottos().size(), 10);
     }
 
     @Test

@@ -27,6 +27,7 @@ public class GameController {
         GameView.printAmountInputPhrase();
         inputAmount();
     }
+
     public void inputAmount() {
         int amount = 0;
 
@@ -87,15 +88,13 @@ public class GameController {
     }
 
     public void inputBonusNumber() {
-        boolean validInput = false;
-        while (!validInput) {
+        while (true) {
             try {
-                int number = Integer.parseInt(Console.readLine());
+                int number = stringToInteger(Console.readLine());
                 game.setBonusNumber(number);
-
-                validInput = true;
+                break;
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력입니다. 다시 입력해주세요.");
+                System.out.println(e.getMessage());
             }
         }
     }

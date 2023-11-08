@@ -18,6 +18,8 @@ public class Game {
     public void run() {
         Integer BuyMoney;
         int LottoTicketsCount;
+        int specialNumber;
+        List<Integer> hitNumberList;
 
         Output output = new Output();
         Input input = new Input();
@@ -39,13 +41,11 @@ public class Game {
         }
 
         List<Lotto> lottoTickets = new ArrayList<>();
-
         generateLotto(LottoTicketsCount, lottoTickets);
         printOutLottoInformation(lottoTickets);
 
         Output.printMessage(output.insertLottoNumberMessage());
 
-        List<Integer> hitNumberList;
         while (true) {
             try {
                 String hitNumbersStrings = input.scan();
@@ -59,7 +59,7 @@ public class Game {
         }
 
         Output.printMessage(output.insertBonusLottoNumberMessage());
-        int specialNumber;
+
         while (true) {
             try {
                 String stringSpecialNumber = input.scan();
@@ -68,11 +68,8 @@ public class Game {
             } catch (IllegalArgumentException e) {
                 Output.printMessage(e.getMessage());
             }
-
         }
-
         Output.printMessage(output.hitAverageMessage());
-
         int totalAmountMoney = judgement.resultHitLottoCheck(hitNumberList, specialNumber,
                 lottoTickets);
         judgement.calculateLottoProfit(BuyMoney, totalAmountMoney);
@@ -94,7 +91,6 @@ public class Game {
             List<Integer> numbers = lotto.getNumbers();
             Output.printMessage(numbers.toString());
         }
-
     }
 
     public void inputHitNumbersCheckFunction(String hitNumbersStrings,

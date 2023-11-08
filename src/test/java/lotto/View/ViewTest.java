@@ -60,7 +60,7 @@ class ViewTest {
     void putLottoResult() {
         HashMap<String, Integer> result = new HashMap<>();
         for (LottoResult type : LottoResult.values()) {
-            result.put(type.getName(), 0);
+            result.put(type.name(), 0);
         }
 
         view.putLottoResult(result, 25.5F);

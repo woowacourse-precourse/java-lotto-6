@@ -63,7 +63,7 @@ public class LottoResultGenerator {
         HashMap<String, Integer> result = new HashMap<>();
         for (LottoResult lottoResult : LottoResult.values()) {
             MatchType matchType = LottoNumberMatch.valueOf(lottoResult.name()).getMatchType();
-            result.put(lottoResult.getName(), getTotalResultNumber(lottoResult.name(), matchType));
+            result.put(lottoResult.name(), getTotalResultNumber(lottoResult.name(), matchType));
         }
         return result;
     }
@@ -71,7 +71,7 @@ public class LottoResultGenerator {
     public float getLottoRateOfResult(HashMap<String, Integer> lottoResult) {
         float result = 0;
         for (LottoResult lotto : LottoResult.values()) {
-            result += lottoResult.get(lotto.getName()) * LottoAmount.valueOf(lotto.name()).getAmount();
+            result += lottoResult.get(lotto.name()) * LottoAmount.valueOf(lotto.name()).getAmount();
         }
         result = (result / (selledLottos.size() * LOTTO_SALES_AMOUNT_MONEY)) * 100;
         return result;

@@ -28,7 +28,7 @@ class LottoResultGeneratorTest {
     @Order(3)
     @Test
     void 로또_결과_검증() {
-        assertThat(lottoResultGenerator.getLottosResult().get(FIRST_RESULT.getName()) == 1);
+        assertThat(lottoResultGenerator.getLottosResult().get(FIRST_RESULT.name()) == 1);
     }
 
     @Order(4)

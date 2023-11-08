@@ -48,7 +48,7 @@ class LottoMachineTest {
 
         HashMap<String, Integer> result = lottoMachine.getLottoWinningResult();
         System.out.println(result);
-        assertThat(result.get(FIRST_RESULT.getName()).intValue() == 1);
+        assertThat(result.get(FIRST_RESULT.name()).intValue() == 1);
     }
 
     @Order(4)

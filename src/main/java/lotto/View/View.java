@@ -30,22 +30,30 @@ public class View {
         return inputView.singleNumberInput();
     }
 
+    private void putSpacing() {
+        outputView.printPhrase("");
+    }
+
     public void putLottoSellResult(List<String> lottos) {
+        putSpacing();
         outputView.printPhrase(PURCHASE_RESULT.getResultState(lottos.size()));
         outputView.printMultiplePhrase(lottos);
     }
 
     public List<Integer> getWinningLottoNumber(int length) {
+        putSpacing();
         outputView.printPhrase(WINNER_NUMBER_INPUT.getPhrase());
         return inputView.numberListSplitInput(length);
     }
 
     public int getBonusLottoNumber() {
+        putSpacing();
         outputView.printPhrase(BONUS_NUMBER_INPUT.getPhrase());
         return inputView.singleNumberInput();
     }
 
     public void putLottoResult(HashMap<String, Integer> result, float rateOfResult) {
+        putSpacing();
         outputView.printPhrase(WINNING_INFORMATION_OUTPUT.getPhrase());
         outputView.printMultiplePhrase(getLottoResultPhrase(result, rateOfResult));
     }
@@ -54,7 +62,7 @@ public class View {
         List<String> result = new ArrayList<>();
         List<LottoResult> resultType = List.of(LottoResult.values());
         for (LottoResult type : resultType) {
-            result.add(type.getResultState(lottoResult.get(type.getName())));
+            result.add(type.getResultState(lottoResult.get(type.name())));
         }
         result.add(RATE_OF_RETURN_RESULT.getResultState(rateOfResult));
         return result;

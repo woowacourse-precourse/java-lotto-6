@@ -22,7 +22,7 @@ public class BonusNumber {
 
     private static void validateIsNumber(String number) {
         try {
-            Double.parseDouble(number);
+            Integer.parseInt(number);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getMessage());
         }

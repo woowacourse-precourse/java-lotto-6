@@ -2,6 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import lotto.model.player.BonusNumber;
 import lotto.model.player.WinningNumber;
 import org.junit.jupiter.api.DisplayName;
@@ -32,6 +33,23 @@ public class NumberTest {
     @Test
     void createWinningNumberByOutOfRange() {
         assertThatThrownBy(() -> new WinningNumber("0,1,2,3,4,5"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @DisplayName("보너스 번호가 정수가 아닐 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"0.1", "1번", "자동", "-0.9"})
+    void createBonusNumberByNonInteger(String number) {
+        assertThatThrownBy(() -> new BonusNumber(List.of(1, 2, 3, 4, 5, 6), number))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @DisplayName("보너스 번호가 1부터 45 사이의 숫자가 아닐 경우 예외가 발생한다.")
+    @Test
+    void createBonusNumberByOutOfRange() {
+        assertThatThrownBy(() -> new BonusNumber(List.of(1, 2, 3, 4, 5, 6), "46"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }

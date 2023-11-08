@@ -25,8 +25,8 @@ public class Result {
     }
 
     public void addWinInformation(int matched) {
-        matchResult.replace(LottoPrize.findByMatchedNumber(matched),
-                matchResult.get(LottoPrize.findByMatchedNumber(matched)) + ConstantNumber.ONE_CASE);
+        LottoPrize win = LottoPrize.findByMatchedNumber(matched);
+        matchResult.replace(win, matchResult.get(win) + ConstantNumber.ONE_CASE);
     }
 
     public void addFiveMatchWithBonus() {

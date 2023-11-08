@@ -12,9 +12,8 @@ public class OutputStatistics {
         Arrays.stream(Ranking.values())
                 .filter(ranking -> !ranking.equals(Ranking.SIXTH))
                 .forEach(ranking -> System.out.println(printResult(ranking, showRanking)));
-        System.out.printf("총 수익률은 %.1f%%입니다.");
+        System.out.printf("총 수익률은 %.1f%%입니다.", calculate.getRate());
         System.out.println();
-        System.out.println(calculate.getRate());
     }
 
     private static String printResult(Ranking ranking, ShowRanking showRanking) {

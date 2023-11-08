@@ -16,8 +16,8 @@ public class Application {
         LottoMachine.printingLottoTickets();
 
         // 당첨 번호와 보너스 번호 입력 받기
-        WinningNumber.gettingWinningNumber();
-        WinningNumber.gettingBonusNumber();
+        WinningLotto.gettingWinningNumbers();
+        WinningLotto.gettingBonusNumber();
 
 
         // 통계 계산 후 수익률 출력

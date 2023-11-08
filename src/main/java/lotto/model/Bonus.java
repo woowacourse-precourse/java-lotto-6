@@ -14,7 +14,7 @@ public class Bonus {
         this.number = Integer.valueOf(tempNumber);
     }
 
-    public Bonus(int number, Lotto winLotto) {
+    public Bonus(Integer number, Lotto winLotto) {
         validate(number, winLotto);
 
         this.number = Integer.valueOf(number);

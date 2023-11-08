@@ -21,9 +21,14 @@ public class GameInit {
     public void lottoView(List<Integer> list){
         StringBuilder sb = new StringBuilder();
         sb.append("[");
-        for (int paper:list){
-            sb.append(paper+", ");
+
+        for(int i=0; i< list.size(); i ++){
+            sb.append(list.get(i));
+            if(i != 5){
+                sb.append(", ");
+            }
         }
+
         sb.append("]\n");
         System.out.println(sb);
     }

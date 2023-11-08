@@ -18,21 +18,6 @@ public class WinningNumbers{
         this.bonusNumber = validateBonus(bonusNumber);
     }
 
-    private void checkDuplicate(List<Integer> numbers){
-        Set<Integer> duplicateTest = new HashSet<>(numbers);
-        if (duplicateTest.size() < numbers.size()){
-            throw new IllegalArgumentException(LottoExceptions.DuplicateError.getErrorMessage());
-        }
-    }
-
-    private void isInRange(List<Integer> numbers){
-        numbers.forEach(num ->{
-            if (num > Constants.MAXIMUM || num < Constants.MINIMUM){
-                throw new IllegalArgumentException(LottoExceptions.NotInRangeError.getErrorMessage());
-            }
-        });
-    }
-
     private List<Integer> validateNumbers(String[] numbers){
         List<String> filteredNumbers = checkNumberCounts(numbers);
         List<Integer> formattedNumbers = formatNumbers(filteredNumbers);
@@ -59,6 +44,21 @@ public class WinningNumbers{
                 .stream()
                 .map(num -> Integer.parseInt(num.trim()))
                 .toList();
+    }
+
+    private void checkDuplicate(List<Integer> numbers){
+        Set<Integer> duplicateTest = new HashSet<>(numbers);
+        if (duplicateTest.size() < numbers.size()){
+            throw new IllegalArgumentException(LottoExceptions.DuplicateError.getErrorMessage());
+        }
+    }
+
+    private void isInRange(List<Integer> numbers){
+        numbers.forEach(num ->{
+            if (num > Constants.MAXIMUM || num < Constants.MINIMUM){
+                throw new IllegalArgumentException(LottoExceptions.NotInRangeError.getErrorMessage());
+            }
+        });
     }
 
     private int validateBonus(String bonusNumber){

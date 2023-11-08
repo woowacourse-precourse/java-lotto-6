@@ -4,14 +4,12 @@ import java.util.regex.Pattern;
 
 public class Validator {
 
-	public static final Pattern NUMBER_PATTERN = Pattern.compile("^-?\\d+$");
-
 	private Validator() {
 		throw new AssertionError();
 	}
 
-	public static void validateNumberFormat(String inputValue, String message) {
-		if (!NUMBER_PATTERN.matcher(inputValue).matches()) {
+	public static void validateSpecificFormat(Pattern pattern, String inputValue, String message) {
+		if (!pattern.matcher(inputValue).matches()) {
 			throw new IllegalArgumentException(message);
 		}
 	}

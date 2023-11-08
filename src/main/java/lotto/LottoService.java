@@ -12,12 +12,12 @@ public class LottoService {
     static final int COUNT_NUMBER = 6;
 
     int getInput() {
+        String input;
         int parsedInput;
-
-        String input = Console.readLine();
 
         while (true) {
             try {
+                input = Console.readLine();
                 parsedInput = Integer.parseInt(input);
                 break;
             } catch (IllegalArgumentException e) {

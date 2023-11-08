@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
         UserInput userInput = new UserInput();
         int insertedMoney = userInput.insertMoney("구입금액을 입력해 주세요.");
         System.out.println();

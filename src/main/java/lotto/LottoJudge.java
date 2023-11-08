@@ -23,8 +23,8 @@ public class LottoJudge {
         return winningLotto != null;
     }
 
-    public LottoResult judge(LottoBundle lottoBundle, WinningLotto winningLotto) {
-        configure(winningLotto);
+    public LottoResult judge(LottoBundle lottoBundle) {
+        validateConfiguration();
 
         Map<LottoRank, Long> rankMap = lottoBundle.getLottos().stream()
                 .collect(Collectors.groupingBy(

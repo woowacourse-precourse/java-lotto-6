@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.LottoGenerator;
-import lotto.domain.Lottos;
-import lotto.domain.Price;
-import lotto.domain.WinningNumberLotto;
+import lotto.domain.*;
 import lotto.view.InputBonusNumber;
 import lotto.view.InputPurchaseAmountView;
 import lotto.view.InputWinningNumberView;
@@ -31,5 +28,9 @@ public class LottoController {
         int bonusNumber = inputBonusNumber.inputBonusNumber();
 
         return new WinningNumberLotto(winningNumbers, bonusNumber);
+    }
+
+    private void countLottoResult(RankResult rankResult, WinningNumberLotto winningNumberLotto, Lottos lottos){
+        rankResult.countRankResult(winningNumberLotto, lottos);
     }
 }

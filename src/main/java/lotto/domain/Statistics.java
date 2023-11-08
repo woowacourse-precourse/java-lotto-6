@@ -23,6 +23,10 @@ public class Statistics {
         return rateOfReturn;
     }
 
+    public Map<Rank, Integer> getWinningResult(){
+        return winningResult;
+    }
+
     public static Map<Rank, Integer> calculateWinningResult(
             List<Lotto> lottoTickets, WinningNumber winningNumbers) {
         Map<Rank, Integer> winningResult = initWinningResult();

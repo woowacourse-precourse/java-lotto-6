@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import javax.swing.LookAndFeel;
 
 public enum Rank {
     FIRST(6, 2_000_000_000),
@@ -27,7 +26,11 @@ public enum Rank {
                 .orElse(MISS);
     }
 
-    public int getWinningMoney(){
+    public int getCountOfMatch() {
+        return countOfMatch;
+    }
+
+    public int getWinningMoney() {
         return winningMoney;
     }
 }

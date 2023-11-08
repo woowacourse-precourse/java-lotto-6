@@ -3,18 +3,16 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Judge {
 
-    public List<LottoResult> countMatchingNumbers(List<Lotto> lottoList, List<Integer> winNumbers) {
+    public List<LottoResult> countMatchingNumbers(List<Lotto> lottoList, List<Integer> winNumbers, int bonusNumber) {
         List<LottoResult> results = new ArrayList<>();
-
         for (Lotto lotto : lottoList) {
             int matchingCount = countMatchingNumbersInLotto(lotto, winNumbers);
             boolean isWinner = isWinner(matchingCount);
-            results.add(new LottoResult(isWinner, matchingCount));
+            WinningResult winningResult = determineWinningResult(matchingCount, isBonusMatch(lottoList, bonusNumber));
+            results.add(new LottoResult(isWinner, matchingCount, winningResult));
         }
-
         return results;
     }
 
@@ -60,5 +58,4 @@ public class Judge {
         }
         return false;
     }
-
 }

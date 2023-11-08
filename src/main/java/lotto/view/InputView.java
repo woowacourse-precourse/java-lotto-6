@@ -7,29 +7,43 @@ import lotto.service.LottoService;
 
 public class InputView {
     public static int inputPurchaseAmount() {
-        String input = inputNotBlank();
-        Lotto.validateInputString(input);
-        int purchaseInput = Integer.parseInt(input);
-        Lotto.validateInputPurchaseAmount(purchaseInput);
-        return LottoService.amountPurchaseDivide(purchaseInput);
+        try {
+            String input = inputNotBlank();
+            Lotto.validateInputString(input);
+            int purchaseInput = Integer.parseInt(input);
+            Lotto.validateInputPurchaseAmount(purchaseInput);
+            return LottoService.amountPurchaseDivide(purchaseInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputPurchaseAmount();
+        }
     }
 
     public static Lotto inputWinningNum() {
-        String input = inputNotBlank();
-        List<Integer> winNumberList = Lotto.validateInputWinningNumber(input);
-        Lotto.validateNoDuplicates(winNumberList);
-        Lotto.validateNumberRange(winNumberList);
-        Lotto.validateSixNumbers(winNumberList);
-        return new Lotto(winNumberList);
+        try {
+            String input = inputNotBlank();
+            List<Integer> winNumberList = Lotto.validateInputWinningNumber(input);
+            Lotto.validateNoDuplicates(winNumberList);
+            Lotto.validateNumberRange(winNumberList);
+            Lotto.validateSixNumbers(winNumberList);
+            return new Lotto(winNumberList);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinningNum();
+        }
     }
 
     public static int inputBonusNum(Lotto winningNumbers) {
-        String input = inputNotBlank();
-        Lotto.validateInputString(input);
-        Lotto.validateBonusNumberRange(Integer.parseInt(input), winningNumbers);
-        int bonusNumber = Integer.parseInt(input);
-
-        return bonusNumber;
+        try {
+            String input = inputNotBlank();
+            Lotto.validateInputString(input);
+            Lotto.validateBonusNumberRange(Integer.parseInt(input), winningNumbers);
+            int bonusNumber = Integer.parseInt(input);
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBonusNum(winningNumbers);
+        }
     }
 
     private static String inputNotBlank() {

@@ -39,11 +39,9 @@ public class GameController {
             Lottos lottos = purchaseLotto(cash);
             WinnerLotto winnerLotto = getWinnerLotto();
             compareLottosWithWinnerLotto(lottos, winnerLotto, cash);
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             outputView.printErrorMessage(e);
-        } catch (IllegalStateException e) {
-            outputView.printErrorMessage(e);
-        } finally {
+        }  finally {
             inputView.close();
         }
     }

@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -112,60 +113,62 @@ public class InputValidationTest {
         }
     }
 
-//    @Nested
-//    class 보너스번호_입력_예외_테스트 {
-//
-//        public String bonusNumber;
-//        public List<String> lottoNumbers;
-//
-//        @BeforeEach
-//        void 로또_설정() {
-//            lottoNumbers = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6"));
-//        }
-//
-//        @Test
-//        void 보너스번호_빈_입력_예외_확인() {
-//            bonusNumber = "";
-//            assertThatThrownBy(
-//                () -> inputValidation.validateBonusNumberInput(lottoNumbers, bonusNumber))
-//                .isInstanceOf(IllegalArgumentException.class)
-//                .hasMessageContaining("값을 입력하세요.");
-//        }
-//
-//        @Test
-//        void 보너스번호_문자_입력_예외_확인() {
-//            bonusNumber = "abc";
-//            assertThatThrownBy(
-//                () -> inputValidation.validateBonusNumberInput(lottoNumbers, bonusNumber))
-//                .isInstanceOf(IllegalArgumentException.class)
-//                .hasMessageContaining("입력값은 정수여야 합니다.");
-//        }
-//
-//        @Test
-//        void 보너스번호_숫자_범위_초과_예외_확인() {
-//            bonusNumber = "50";
-//            assertThatThrownBy(
-//                () -> inputValidation.validateBonusNumberInput(lottoNumbers, bonusNumber))
-//                .isInstanceOf(IllegalArgumentException.class)
-//                .hasMessageContaining("입력값은 1에서 45 사이의 정수여야 합니다.");
-//        }
-//
-//        @Test
-//        void 보너스번호_숫자_범위_미만_예외_확인() {
-//            bonusNumber = "0";
-//            assertThatThrownBy(
-//                () -> inputValidation.validateBonusNumberInput(lottoNumbers, bonusNumber))
-//                .isInstanceOf(IllegalArgumentException.class)
-//                .hasMessageContaining("입력값은 1에서 45 사이의 정수여야 합니다.");
-//        }
-//
-//        @Test
-//        void 보너스번호_당첨번호_중복_예외_확인() {
-//            bonusNumber = "5";
-//            assertThatThrownBy(
-//                () -> inputValidation.validateBonusNumberInput(lottoNumbers, bonusNumber))
-//                .isInstanceOf(IllegalArgumentException.class)
-//                .hasMessageContaining("보너스 숫자는 선택한 로또 번호와 중복될 수 없습니다.");
-//        }
+    @Nested
+    class 보너스번호_입력_예외_테스트 {
 
+        public String bonusNumber;
+        public List<Integer> lottoNumbers;
+
+        @BeforeEach
+        void 로또_설정() {
+            lottoNumbers = Arrays.asList(1,2,3,4,5,6);
+        }
+
+
+        @Test
+        void 보너스번호_빈_입력_예외_확인() {
+            bonusNumber = "";
+            assertThatThrownBy(
+                () -> inputValidation.validateBonusNumberInput(lottoNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 값을 입력하세요.");
+        }
+
+        @Test
+        void 보너스번호_문자_입력_예외_확인() {
+            bonusNumber = "abc";
+            assertThatThrownBy(
+                () -> inputValidation.validateBonusNumberInput(lottoNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 입력값은 정수여야 합니다.");
+        }
+
+        @Test
+        void 보너스번호_숫자_범위_초과_예외_확인() {
+            bonusNumber = "50";
+            assertThatThrownBy(
+                () -> inputValidation.validateBonusNumberInput(lottoNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 입력값은 1에서 45 사이의 정수여야 합니다.");
+        }
+
+        @Test
+        void 보너스번호_숫자_범위_미만_예외_확인() {
+            bonusNumber = "0";
+            assertThatThrownBy(
+                () -> inputValidation.validateBonusNumberInput(lottoNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 입력값은 1에서 45 사이의 정수여야 합니다.");
+        }
+
+        @Test
+        void 보너스번호_당첨번호_중복_예외_확인() {
+            bonusNumber = "5";
+            assertThatThrownBy(
+                () -> inputValidation.validateBonusNumberInput(lottoNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 숫자는 선택한 로또 번호와 중복될 수 없습니다.");
+        }
+
+    }
 }

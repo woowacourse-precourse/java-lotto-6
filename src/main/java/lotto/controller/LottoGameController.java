@@ -8,5 +8,6 @@ public class LottoGameController {
     public void start() {
         OutputView.printPayInputMessage();
         User user = InputView.readPayment();
+        int lottoCnt = user.getLottoCnt();
     }
 }

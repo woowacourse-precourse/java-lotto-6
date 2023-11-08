@@ -1,5 +1,6 @@
-package Domain.Board;
+package Board;
 
+import Domain.Board.Board;
 import Domain.lotto.LottoOutcome;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

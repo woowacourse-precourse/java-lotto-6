@@ -1,5 +1,6 @@
-package Domain.Market;
+package Market;
 
+import Domain.Market.LotteryMarket;
 import camp.nextstep.edu.missionutils.Randoms;
 import Domain.lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;

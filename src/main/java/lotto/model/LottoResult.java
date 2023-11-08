@@ -27,7 +27,7 @@ public class LottoResult {
         });
     }
 
-    public int getMatchCount(Lotto lotto, LotteryNumbers lotteryNumbers) {
+    private int getMatchCount(Lotto lotto, LotteryNumbers lotteryNumbers) {
         return (int) lotto.getNumbers().stream()
                 .filter(number -> lotteryNumbers.getWinningNumbers().stream()
                         .anyMatch(Predicate.isEqual(number))).count();
@@ -40,7 +40,7 @@ public class LottoResult {
         return false;
     }
 
-    public boolean matchCountRequiresBonusCheck(int matchCount) {
+    private boolean matchCountRequiresBonusCheck(int matchCount) {
         return matchCount == MATCH_COUNT_FOR_BONUS_CHECK;
     }
 

@@ -29,7 +29,8 @@ public class Judgement {
             totalMoney += result.get(i) * mount.get(i);
         }
         totalMoney = totalMoney / (inputMoney * PERCANTAGE);
-        System.out.print("총 수익률은 " + totalMoney + "%입니다.");
+        String rate = String.format("%.1f", totalMoney);
+        System.out.print("총 수익률은 " + rate + "%입니다.");
     }
 
     public void showStatics(List<Integer> result) {
@@ -40,4 +41,5 @@ public class Judgement {
                 "5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.get(1) + "개\n" +
                 "6개 일치 (2,000,000,000원) - " + result.get(0) + "개");
     }
+
 }

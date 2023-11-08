@@ -33,4 +33,8 @@ public enum MatchCount {
     public int getIndex() {
         return this.index;
     }
+
+    public int getCount() {
+        return this.count;
+    }
 }

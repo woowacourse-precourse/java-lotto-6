@@ -6,10 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.winning.Winning;
-import lotto.dto.LottoArgumentDTO;
+import lotto.dto.LottoArgument;
 import lotto.service.LottoGenerator;
 import lotto.service.LottoMessagePrinter;
-import lotto.validation.LottoValidator;
 import lotto.view.read.InputView;
 
 public class LottoArgumentResolver {
@@ -28,7 +27,7 @@ public class LottoArgumentResolver {
         this.validator = validator;
     }
 
-    public LottoArgumentDTO resolve() {
+    public LottoArgument resolve() {
         int lottoSize = readLottoSize();
 
         List<Lotto> lottos = generateLottos(lottoSize);
@@ -39,10 +38,10 @@ public class LottoArgumentResolver {
 
         Winning winning = Winning.of(winNumbers, bonusNumber);
 
-        return LottoArgumentDTO.of(lottoSize, lottos, winning);
+        return LottoArgument.of(lottoSize, lottos, winning);
     }
 
-    private int readLottoSize() {
+    protected int readLottoSize() {
         printer.printPurchaseAmountInputMessage();
 
         int purchaseAmount;
@@ -50,9 +49,10 @@ public class LottoArgumentResolver {
         while (true) {
             try {
                 String purchaseAmountInput = reader.readLine();
-                ensurePurchaseAmountIsValid(purchaseAmountInput);
+                validator.verifyPurchaseAmount(purchaseAmountInput);
                 purchaseAmount = Integer.parseInt(purchaseAmountInput);
                 break;
+
             } catch (IllegalArgumentException ex) {
                 printer.printExceptionMessage(ex.getMessage());
             }
@@ -64,13 +64,13 @@ public class LottoArgumentResolver {
         return lottoSize;
     }
 
-    private List<Integer> readWinNumbers() {
+    protected List<Integer> readWinNumbers() {
         printer.printLottoWinNumbersInputMessage();
 
         while (true) {
             try {
                 String winNumbersInput = reader.readLine();
-                ensureWinNumbersIsValid(winNumbersInput);
+                validator.verifyWinNumbers(winNumbersInput);
 
                 return Arrays.stream(winNumbersInput.split(","))
                         .map(it -> Integer.parseInt(it.trim()))
@@ -83,13 +83,13 @@ public class LottoArgumentResolver {
         }
     }
 
-    private int readBonusNumber(List<Integer> winNumbers) {
+    protected int readBonusNumber(List<Integer> winNumbers) {
         printer.printLottoBonusNumberInputMessage();
 
         while (true) {
             try {
                 String bonusNumberInput = reader.readLine();
-                ensureBonusNumberIsValid(winNumbers, bonusNumberInput);
+                validator.verifyBonusNumber(winNumbers, bonusNumberInput);
 
                 return Integer.parseInt(bonusNumberInput);
 
@@ -99,24 +99,12 @@ public class LottoArgumentResolver {
         }
     }
 
-    private List<Lotto> generateLottos(int lottoSize) {
+    protected List<Lotto> generateLottos(int lottoSize) {
         LottoGenerator generator = LottoGenerator.of(lottoSize);
         List<Lotto> lottos = generator.generate();
 
         printer.printAllLotto(lottos);
 
         return lottos;
-    }
-
-    private void ensureBonusNumberIsValid(List<Integer> winNumbers, String bonusNumberInput) {
-        validator.verifyBonusNumber(winNumbers, bonusNumberInput);
-    }
-
-    private void ensureWinNumbersIsValid(String winNumbersInput) {
-        validator.verifyWinNumbers(winNumbersInput);
-    }
-
-    private void ensurePurchaseAmountIsValid(String purchaseAmountInput) {
-        validator.verifyPurchaseAmount(purchaseAmountInput);
     }
 }

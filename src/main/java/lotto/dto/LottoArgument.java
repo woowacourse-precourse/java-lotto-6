@@ -4,17 +4,17 @@ import java.util.List;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.winning.Winning;
 
-public class LottoArgumentDTO {
+public class LottoArgument {
 
     private final int lottoSize;
     private final List<Lotto> lottos;
     private final Winning winning;
 
-    public static LottoArgumentDTO of(int lottoSize, List<Lotto> lottos, Winning winning) {
-        return new LottoArgumentDTO(lottoSize, lottos, winning);
+    public static LottoArgument of(int lottoSize, List<Lotto> lottos, Winning winning) {
+        return new LottoArgument(lottoSize, lottos, winning);
     }
 
-    private LottoArgumentDTO(int lottoSize, List<Lotto> lottos, Winning winning) {
+    private LottoArgument(int lottoSize, List<Lotto> lottos, Winning winning) {
         this.lottoSize = lottoSize;
         this.lottos = lottos;
         this.winning = winning;

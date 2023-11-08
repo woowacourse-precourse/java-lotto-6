@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domainTest;
 
 import lotto.domain.Lottos;
 import lotto.utils.Constants;

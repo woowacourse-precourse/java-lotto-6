@@ -17,7 +17,7 @@ public class LottoResultCalculator {
     private static final int THIRD_PRIZE = 3;
     private static final int FOURTH_PRIZE = 4;
     private static final int FIFTH_PRIZE = 5;
-    public static final int INCREMENT_VALUE = 1;
+    private static final int INCREMENT_VALUE = 1;
 
     private final List<Integer> winningNumbers;
     private final int bonusNumber;

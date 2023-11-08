@@ -20,7 +20,6 @@ public class RunApplication {
      * 구입한 수만큼 로또를 발행한다.
      * 당첨번호, 보너스 번호 입력
      * 발행한 로또의 등수를 확인한다.
-     * 각 등수는 ranks에 저장하고 0 인덱스는 5등, 1 인덱스는 4등처럼 저장되어 1등까지 저장한다.
      * 당첨 통계
      */
     public void run() {
@@ -45,7 +44,7 @@ public class RunApplication {
         System.out.printf("총 수익률은 %s%%입니다.\n", profitDecimal);
     }
 
-    private Map<LottoRank, Integer> getRanks(int numberOfLotto, List<Integer> lottoNumbers, int bonus, List<List<Integer>> myLottoNumbers) {
+    public Map<LottoRank, Integer> getRanks(int numberOfLotto, List<Integer> lottoNumbers, int bonus, List<List<Integer>> myLottoNumbers) {
         Map<LottoRank, Integer> ranks = Arrays.stream(LottoRank.values()).collect(Collectors.toMap(lottoRank -> lottoRank, lottoRank -> 0));
         for (int i = 0; i < numberOfLotto; i++) {
             LottoRank rank = getRank(lottoNumbers, bonus, myLottoNumbers, i);
@@ -56,7 +55,7 @@ public class RunApplication {
         return ranks;
     }
 
-    private List<List<Integer>> getMyLottoNumbers(int numberOfLotto) {
+    public List<List<Integer>> getMyLottoNumbers(int numberOfLotto) {
         System.out.printf("%d개를 구매했습니다.\n", numberOfLotto);
         List<List<Integer>> myLottoNumbers = new ArrayList<>();
         for (int i = 0; i < numberOfLotto; i++) {
@@ -84,7 +83,7 @@ public class RunApplication {
         return null;
     }
 
-    private int getCostOfLotto() {
+    public int getCostOfLotto() {
         int cost;
         try {
             cost = getCostOfLottoWithChainedException();
@@ -99,7 +98,7 @@ public class RunApplication {
     /**
      * 위에 메서드랑 다르게 try안에서 return해도 문제가 없네?
      */
-    private int getCostOfLottoWithChainedException() throws IllegalArgumentException {
+    public int getCostOfLottoWithChainedException() throws IllegalArgumentException {
         try {
             System.out.println("구입금액을 입력해 주세요.");
             int cost = Integer.parseInt(readLine());
@@ -118,7 +117,7 @@ public class RunApplication {
      * 당첨 번호를 1에서 45 사이의 값을 확인하는 메서드를
      * isNumberIn1And45 말고 더 좋은 이름은 없을까?
      */
-    private List<Integer> getLottoNumbers() {
+    public List<Integer> getLottoNumbers() {
         Lotto lotto = null;
         try {
             System.out.println("당첨 번호를 입력해 주세요.");
@@ -135,11 +134,11 @@ public class RunApplication {
         return lotto.getNumbers();
     }
 
-    private static boolean isNotNumberIn1And45(Lotto lotto) {
+    public boolean isNotNumberIn1And45(Lotto lotto) {
         return lotto.getNumbers().stream().anyMatch(number -> number < 1 || 45 < number);
     }
 
-    private int getBonus(List<Integer> lotto) {
+    public int getBonus(List<Integer> lotto) {
         int bonus;
         try {
             bonus = getBonusWithChainedException();
@@ -165,7 +164,7 @@ public class RunApplication {
         }
     }
 
-    private void isNotDuplicateNumberWithLotto(List<Integer> lotto, int bonus) throws IllegalArgumentException {
+    public void isNotDuplicateNumberWithLotto(List<Integer> lotto, int bonus) throws IllegalArgumentException {
         for (Integer number : lotto) {
             if (number.equals(bonus)) {
                 System.out.println(ExceptionMessage.보너스번호_중복);

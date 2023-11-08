@@ -26,7 +26,7 @@ public class Lotto {
     private void lottoSizeValidate(List<Integer> numbers) {
         if (numbers.size() != LottoRule.LOTTO_SIZE.getValue()) {
             throw new IllegalArgumentException(
-                    String.format(ErrorMessage.START.getValue() + ErrorMessage.LOTTO_IS_NOT_SIZE.getValue()
+                    String.format(ErrorMessage.LOTTO_IS_NOT_SIZE.getValue()
                             , LottoRule.LOTTO_SIZE.getValue())
             );
         }
@@ -36,14 +36,14 @@ public class Lotto {
         numbers.forEach(number -> {
             if (number < LottoRule.LOTTO_MIN_NUMBER.getValue()
                     || number > LottoRule.LOTTO_MAX_NUMBER.getValue()) {
-                throw new IllegalArgumentException(ErrorMessage.START.getValue() + ErrorMessage.LOTTO_OUT_OF_RANGE.getValue());
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_OUT_OF_RANGE.getValue());
             }
         });
     }
 
     private void lottoDuplicateNumberValidate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != LottoRule.LOTTO_SIZE.getValue()) {
-            throw new IllegalArgumentException(ErrorMessage.START.getValue() + ErrorMessage.LOTTO_DUPLICATE.getValue());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_DUPLICATE.getValue());
         }
     }
 

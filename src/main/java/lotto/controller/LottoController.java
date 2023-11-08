@@ -8,20 +8,19 @@ import lotto.view.OutputView;
 import java.util.stream.IntStream;
 
 public class LottoController {
-    private LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
-
+    private final LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
     private Amount amount;
     private Buyer buyer;
     private WinningLotto winningLotto;
 
     public void play() {
         buyLotto();
-        setWinningLotto();
+        winningLottoSetting();
         resultLotto();
     }
 
     private void buyLotto() {
-        setAmount();
+        settingAmount();
         this.buyer = new Buyer(getBuyerLottos());
         OutputView.purchaseLottos(buyer);
     }
@@ -34,37 +33,50 @@ public class LottoController {
         );
     }
 
-    private void setAmount() {
+    private void settingAmount() {
         while (true) {
             try {
                 this.amount = new Amount(getPurchaseAmount());
                 return;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.errorMessage(e.getMessage());
+            } finally {
                 System.out.println();
             }
         }
     }
 
     private double getPurchaseAmount() {
-        return InputView.getPurchaseAmount();
+        return InputView.getPurchaseAmountFromInput();
     }
 
-    private void setWinningLotto() {
-        Lotto winningLotto = InputView.getWinningLotto();
-        BonusNumber bonusNumber = getBonusNumberAndContainsCheck(winningLotto);
-        this.winningLotto = new WinningLotto(winningLotto, bonusNumber);
+    private void winningLottoSetting() {
+        Lotto winningNumberLotto = getWinningLottoAndCheck();
+        BonusNumber bonusNumber = getBonusNumberAndCheck(winningNumberLotto);
+        this.winningLotto = new WinningLotto(winningNumberLotto, bonusNumber);
     }
 
-    private BonusNumber getBonusNumberAndContainsCheck(Lotto winningLotto) {
-        BonusNumber bonusNumber;
+    private Lotto getWinningLottoAndCheck() {
         while (true) {
             try {
-                bonusNumber = InputView.getBonusNumber();
-                bonusNumber.containsException(winningLotto);
+                return InputView.getWinningLottoFromInput();
+            } catch (IllegalArgumentException e) {
+                OutputView.errorMessage(e.getMessage());
+            } finally {
+                System.out.println();
+            }
+        }
+    }
+
+    private BonusNumber getBonusNumberAndCheck(Lotto winningNumberLotto) {
+        while (true) {
+            try {
+                BonusNumber bonusNumber = InputView.getBonusNumberFromInput();
+                bonusNumber.containsException(winningNumberLotto);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.errorMessage(e.getMessage());
+            } finally {
                 System.out.println();
             }
         }

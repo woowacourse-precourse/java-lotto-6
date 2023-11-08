@@ -1,7 +1,7 @@
 package lotto.message;
 
 public enum ErrorMessage {
-    START("[ERROR] "),
+    PREFIX("[ERROR] "),
     BLANk("입력한 값이 존재하지 않습니다."),
     PURCHASE_AMOUNT_IS_NOT_NUMBER("구입금액은 숫자만 입력 가능합니다."),
     PURCHASE_AMOUNT_IS_NOT_ZERO("0원이 초과된 구입금액을 입력 부탁드립니다."),

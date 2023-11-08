@@ -10,58 +10,31 @@ import java.util.Arrays;
 
 public class InputView {
 
-    public static double getPurchaseAmount() {
-        while (true) {
-            System.out.println(InputMessage.PURCHASE_AMOUNT.getValue());
-            String inputAmount = Console.readLine();
-            try {
-                InputValidator.validateBlank(inputAmount);
-                InputValidator.validateNumber(inputAmount);
-                return Double.parseDouble(inputAmount);
-            } catch (IllegalArgumentException e) {
-                System.out.println();
-                System.out.println(e.getMessage());
-            } finally {
-                System.out.println();
-            }
-        }
+    public static double getPurchaseAmountFromInput() {
+        System.out.println(InputMessage.PURCHASE_AMOUNT.getValue());
+        String inputAmount = Console.readLine();
+        InputValidator.validateBlank(inputAmount);
+        InputValidator.validateNumber(inputAmount);
+        return Double.parseDouble(inputAmount);
     }
 
-    public static Lotto getWinningLotto() {
-        while (true) {
-            try {
-                System.out.println(InputMessage.WINNING_LOTTO.getValue());
-                String inputWinningLotto = Console.readLine();
-                String blankRemoveWinningLotto = inputWinningLotto.replace(" ", "");
-                Arrays.stream(blankRemoveWinningLotto.split(",", -1)).forEach(InputValidator::validateLottoNumber);
-                return new Lotto(
-                        Arrays.stream(blankRemoveWinningLotto.split(","))
-                                .map(Integer::parseInt)
-                                .toList()
-                );
-            } catch (IllegalArgumentException e) {
-                System.out.println();
-                System.out.println(e.getMessage());
-            } finally {
-                System.out.println();
-            }
-        }
+    public static Lotto getWinningLottoFromInput() {
+        System.out.println(InputMessage.WINNING_LOTTO.getValue());
+        String inputWinningLotto = Console.readLine();
+        String blankRemoveWinningLotto = inputWinningLotto.replace(" ", "");
+        InputValidator.validateBlank(inputWinningLotto);
+        return new Lotto(
+                Arrays.stream(blankRemoveWinningLotto.split(",", -1))
+                        .map(InputValidator::validateLottoNumberAndConvertToNumeric)
+                        .toList()
+        );
     }
 
-    public static BonusNumber getBonusNumber() {
-        while (true) {
-            try {
-                System.out.println(InputMessage.BONUS.getValue());
-                String inputBonusNumber = Console.readLine();
-                InputValidator.validateBlank(inputBonusNumber);
-                InputValidator.validateBonusNumber(inputBonusNumber);
-                return new BonusNumber(Integer.parseInt(inputBonusNumber.trim()));
-            } catch (IllegalArgumentException e) {
-                System.out.println();
-                System.out.println(e.getMessage());
-            } finally {
-                System.out.println();
-            }
-        }
+    public static BonusNumber getBonusNumberFromInput() {
+        System.out.println(InputMessage.BONUS.getValue());
+        String inputBonusNumber = Console.readLine();
+        InputValidator.validateBlank(inputBonusNumber);
+        InputValidator.validateBonusNumber(inputBonusNumber);
+        return new BonusNumber(Integer.parseInt(inputBonusNumber.trim()));
     }
 }

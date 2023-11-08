@@ -7,21 +7,21 @@ public class InputValidator {
 
     public static void validateBlank(String input) {
         if (input.isEmpty() || input.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.START.getValue() + ErrorMessage.BLANk.getValue());
+            throw new IllegalArgumentException(ErrorMessage.BLANk.getValue());
         }
     }
 
     public static void validateNumber(String inputNumber) {
         if (!inputNumber.matches(RegularExpression.NUMBER_REGEX_INCLUDE_NEGATIVE.getValue())) {
-            throw new IllegalArgumentException(ErrorMessage.START.getValue() + ErrorMessage.PURCHASE_AMOUNT_IS_NOT_NUMBER.getValue());
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_IS_NOT_NUMBER.getValue());
         }
     }
 
-    public static void validateLottoNumber(String number) {
+    public static int validateLottoNumberAndConvertToNumeric(String number) {
         try {
-            Integer.parseInt(number);
+            return Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.START.getValue() + ErrorMessage.LOTTO_IS_NOT_NUMBER.getValue());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_IS_NOT_NUMBER.getValue());
         }
     }
 
@@ -29,7 +29,7 @@ public class InputValidator {
         try {
             Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.START.getValue() + ErrorMessage.BONUS_IS_NOT_NUMBER.getValue());
+            throw new IllegalArgumentException(ErrorMessage.BONUS_IS_NOT_NUMBER.getValue());
         }
     }
 }

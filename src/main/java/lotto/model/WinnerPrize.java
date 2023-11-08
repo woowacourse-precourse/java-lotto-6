@@ -33,7 +33,7 @@ public enum WinnerPrize {
                 return winnerPrize;
             }
         }
-        return null; // TODO: refactoring
+        return null;
     }
 
     public static WinnerPrize[] getAllWinnerPrize() {

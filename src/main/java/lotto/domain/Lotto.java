@@ -59,6 +59,16 @@ public class Lotto {
         }
     }
 
+    public int countDuplicateNumbers(final Lotto otherLotto) {
+        int result = 0;
+        for (Integer number : numbers) {
+            if (otherLotto.isContains(number)) {
+                result += 1;
+            }
+        }
+        return result;
+    }
+
     @Override
     public String toString() {
         String result = String.join(COMMA + BLANK, converToStringList());

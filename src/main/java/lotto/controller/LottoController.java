@@ -8,6 +8,8 @@ import static lotto.view.Messages.WINNING_LOTTO_INPUT_MESSAGE;
 import java.util.List;
 import lotto.domain.LottoTicket;
 import lotto.domain.LottoTickets;
+import lotto.domain.Ranking;
+import lotto.domain.RankingResult;
 import lotto.domain.Store;
 import lotto.domain.WinningLotto;
 import lotto.util.Parser;
@@ -31,6 +33,20 @@ public class LottoController {
         lottoTickets = store.sellLottoTickets(budget);
         printLottoTickets();
         winningLotto = readWinningLotto();
+        RankingResult result = calculateCountOfRankings();
+        OutputView.printResult(result);
+    }
+
+    private RankingResult calculateCountOfRankings() {
+        List<Ranking> rankings = lottoTickets.calculateRanking(winningLotto);
+
+        RankingResult result = new RankingResult();
+
+        for (Ranking ranking : rankings) {
+            result.updateResult(ranking);
+        }
+
+        return result;
     }
 
     private WinningLotto readWinningLotto() {

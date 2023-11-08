@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.view.Messages;
 
@@ -13,6 +14,23 @@ public class LottoTickets {
 
     public int getSizeOfLottoTickets() {
         return lottoTickets.size();
+    }
+
+    public List<Ranking> calculateRanking(final WinningLotto winningLotto) {
+        List<Ranking> result = new ArrayList<>();
+
+        for (LottoTicket lottoTicket : this.lottoTickets) {
+            int matchCount = lottoTicket.calculateMatchCount(winningLotto);
+            boolean bonusNumberMatched = lottoTicket.containsBonusNumber(winningLotto);
+
+            Ranking ranking = Ranking.findRankingWithResult(matchCount, bonusNumberMatched);
+
+            if (ranking != null) {
+                result.add(ranking);
+            }
+        }
+
+        return result;
     }
 
     @Override

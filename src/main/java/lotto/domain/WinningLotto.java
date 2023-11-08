@@ -9,7 +9,6 @@ public class WinningLotto {
 
     private final Lotto lotto;
     private final int bonusNumber;
-
     public static final int LOWER_BOUND_OF_BONUS_NUMBER = 1;
     public static final int UPPER_BOUND_OF_BONUS_NUMBER = 45;
 
@@ -38,5 +37,11 @@ public class WinningLotto {
         }
     }
 
+    public int countDuplicateNumbers(final Lotto lotto) {
+        return lotto.countDuplicateNumbers(this.lotto);
+    }
 
+    public boolean containsBonusNumber(final Lotto lotto) {
+        return lotto.isContains(bonusNumber);
+    }
 }

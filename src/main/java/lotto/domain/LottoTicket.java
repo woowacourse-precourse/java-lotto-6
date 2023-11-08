@@ -11,6 +11,14 @@ public class LottoTicket {
         this.lotto = lotto;
     }
 
+    public int calculateMatchCount(final WinningLotto winningLotto) {
+        return winningLotto.countDuplicateNumbers(lotto);
+    }
+
+    public boolean containsBonusNumber(final WinningLotto winningLotto) {
+        return winningLotto.containsBonusNumber(lotto);
+    }
+
     public static void validateAffordability(final int budget) {
         if (budget % PRICE_OF_LOTTO_TICKET != 0) {
             OutputView.println(LottoTicketExceptionMessages.EXPECTED_DIVISIBLE_BY_COST);

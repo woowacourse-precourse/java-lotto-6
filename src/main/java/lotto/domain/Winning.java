@@ -32,7 +32,7 @@ public class Winning extends LottoRule {
     }
 
     public double calcRevenueRate(Map<Prize, Integer> totalPrize, int purchaseAmount) {
-        List<Prize> prizes = getPrizesWithValueGreaterThanOne(totalPrize);
+        List<Prize> prizes = getPrizesByMoreThanOne(totalPrize);
         int totalPrizeAmount = getTotalPrizeAmount(prizes);
 
         double revenueRate = (double) totalPrizeAmount / purchaseAmount * 100;
@@ -100,7 +100,7 @@ public class Winning extends LottoRule {
         return Prize.FAIL;
     }
 
-    private List<Prize> getPrizesWithValueGreaterThanOne(Map<Prize, Integer> totalPrize) {
+    private List<Prize> getPrizesByMoreThanOne(Map<Prize, Integer> totalPrize) {
         return totalPrize.entrySet().stream()
                 .filter(entry -> entry.getValue() >= 1)
                 .map(Map.Entry::getKey)

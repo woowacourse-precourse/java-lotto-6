@@ -14,7 +14,7 @@ public class User {
     public int payment;
     public final List<Lotto> lottos;
 
-    public final Map<String, Integer> totalResult;
+    public final Map<ResultConfig, Integer> totalResult;
 
     public int totalAmount = 0;
 
@@ -22,21 +22,33 @@ public class User {
         this.payment = payment;
         this.lottos = Lotto.publish(payment);
         this.totalResult = Arrays.stream(values())
-                                 .collect(Collectors.toMap(ResultConfig::getCount, value -> 0));
+                                 .collect(Collectors.toMap(e -> e, value -> 0));
     }
 
-    public void processCheckResult(String count, boolean getBonus) {
-        if (count.equals("5") && getBonus) count += "0";
-        saveResult(count);
-        calculateTotalAmount(count);
+    public boolean processCheckResult(long count, boolean getBonus) {
+        if (count == 3) return process(THREE_COINCIDE);
+        if (count == 4) return process(FOUR_COINCIDE);
+        if (count == 6) return process(SIX_COINCIDE);
+        if (count == 5) {
+            if (getBonus) return process(FIVE_BONUS_COINCIDE);
+            return process(FIVE_COINCIDE);
+        }
+        return false;
     }
 
-    private void saveResult(String message) {
-        totalResult.put(message, totalResult.getOrDefault(message, 0) + 1);
+    private boolean process(ResultConfig name) {
+        saveResult(name);
+        addTotalAmount(name);
+        return true;
     }
 
-    private void calculateTotalAmount(String message) {
-        totalAmount += ResultConfig(message);
+    private void saveResult(ResultConfig name) {
+        totalResult.put(name, totalResult.getOrDefault(name, 0) + 1);
+//        totalResult.put(message, totalResult.getOrDefault(message, 0) + 1);
+    }
+
+    private void addTotalAmount(ResultConfig name) {
+        totalAmount += name.getAmount();
     }
 
     @Override

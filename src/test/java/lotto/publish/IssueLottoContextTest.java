@@ -2,6 +2,7 @@ package lotto.publish;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.Input.IssueLottoCommand;
 import lotto.Input.amount.IssuedNumber;
 import lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;

@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.function.IntFunction;
 import lotto.Either;
+import lotto.Input.IssueLottoCommand;
 import lotto.Lotto;
 
 public class IssueLottoContext {

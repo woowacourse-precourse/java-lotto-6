@@ -1,6 +1,6 @@
 package lotto.Input.amount;
 
-import lotto.publish.IssueLottoCommand;
+import lotto.Input.IssueLottoCommand;
 
 public class InputtedPurchaseAmountEvent {
 

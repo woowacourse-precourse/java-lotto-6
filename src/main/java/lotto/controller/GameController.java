@@ -19,15 +19,25 @@ public class GameController {
     }
 
     public void start() {
+        Lottos lottos = purchaseLottos();
+        draw(lottos);
+    }
+
+
+    private Lottos purchaseLottos() {
         PurchaseLottoDto purchaseAmount = inputView.getPurchaseAmount();
         Money money = Money.from(purchaseAmount.amount());
         Lottos lottos = lottoStore.purchaseLottoTickets(money);
         LottosDto lottosDto = lottos.toLottosDto();
         outputView.printPurchasedLotto(lottosDto);
+        return lottos;
+    }
+
+    private void draw(Lottos lottos) {
         Lotto winningNumbers = inputView.getWinningNumber();
         LottoNumber bonusNumber = inputView.getBonusNumber(winningNumbers);
-        WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers(winningNumbers, bonusNumber);
-        DrawMachine drawMachine = new DrawMachine(winningLottoNumbers);
+        WinningLottoNumbers winningLottoNumbers = WinningLottoNumbers.of(winningNumbers, bonusNumber);
+        DrawMachine drawMachine = DrawMachine.from(winningLottoNumbers);
         DrawLottoDto drawLottoDto = drawMachine.drawAllTicket(lottos);
         outputView.printDrawResult(drawLottoDto);
     }

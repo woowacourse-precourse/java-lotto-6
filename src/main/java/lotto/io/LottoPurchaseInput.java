@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
@@ -7,7 +7,6 @@ import lotto.data.Amount;
 import lotto.data.Lotto;
 import lotto.data.WinningCombination;
 import lotto.message.ErrorMessage;
-import lotto.message.OutputMessage;
 import lotto.utils.Util;
 
 public class LottoPurchaseInput {

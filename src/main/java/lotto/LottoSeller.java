@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Map;
 import lotto.data.Amount;
 import lotto.data.Lotto;
-import lotto.domain.LottoResult;
 import lotto.data.WinningCombination;
-import lotto.domain.LottoPurchaseInput;
+import lotto.domain.LottoResult;
+import lotto.io.LottoPurchaseInput;
+import lotto.io.OutputMessage;
 import lotto.message.LottoPrize;
-import lotto.message.OutputMessage;
 import lotto.utils.LottoUtil;
 import lotto.utils.Util;
 

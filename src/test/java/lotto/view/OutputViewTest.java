@@ -36,4 +36,22 @@ public class OutputViewTest {
         //then
         assertEquals("[1, 2, 3, 4, 5, 6]\n[7, 8, 9, 10, 11, 12]", outputStreamCaptor.toString().trim());
     }
+
+    @Test
+    void 당첨_통계를_잘출력해주는지() {
+        //given
+        OuputView outputView = new OuputView();
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 8, 9, 20));
+        Lotto lotto2 = new Lotto(List.of(5, 6, 3, 10, 11, 12));
+        //when
+        Lottos lottos = new Lottos(List.of(lotto1, lotto2));
+        outputView.printWinningStatistic(lottos.getWinningStatistics(List.of(1, 2, 3, 4, 5, 6), 7));
+        // then
+        assertEquals("3개 일치 (5,000원) - 2개\n"
+                + "4개 일치 (50,000원) - 0개\n"
+                + "5개 일치 (1,500,000원) - 0개\n"
+                + "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n"
+                + "6개 일치 (2,000,000,000원) - 0개", outputStreamCaptor.toString().trim());
+
+    }
 }

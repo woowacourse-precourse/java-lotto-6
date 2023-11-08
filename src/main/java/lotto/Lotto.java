@@ -50,4 +50,9 @@ public class Lotto {
     private boolean hasNumberGreaterThan45(List<Integer> numbers) {
         return numbers.stream().anyMatch(number -> number < 1 || number > 45);
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

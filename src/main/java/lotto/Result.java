@@ -30,11 +30,17 @@ public class Result {
     }
 
     private void printMatchCounts() {
-        for (int i = 3; i < matchCounts.length; i++) {
-            if (i != MATCH_5_WITH_BONUS_PRIZE_INDEX) {
-                System.out.printf("%d개 일치 (%d원) - %d개.\n", i, PRIZE_MONEY[i], matchCounts[i]);
-            } else {
-                System.out.printf("5개 일치, 보너스 볼 일치 (%d원) - %d개.\n", PRIZE_MONEY[i], matchCounts[i]);
+        for (int i = 3; i < matchCounts.length + 1; i++) {
+            if (i == 3) {
+                System.out.printf("3개 일치 (5,000원) - %d개\n", matchCounts[3]);
+            } else if (i == 4) {
+                System.out.printf("4개 일치 (50,000원) - %d개\n", matchCounts[4]);
+            } else if (i == 5) {
+                System.out.printf("5개 일치 (1,500,000원) - %d개\n", matchCounts[5]);
+            } else if (i == 6) {
+                System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", matchCounts[MATCH_5_WITH_BONUS_PRIZE_INDEX]);
+            } else if (i == 7) {
+                System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", matchCounts[6]);
             }
         }
     }

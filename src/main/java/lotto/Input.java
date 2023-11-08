@@ -16,7 +16,7 @@ public class Input {
     private String amountSpeech = "개를 구매했습니다.";
     private String winningInputSpeech = "당첨 번호를 입력해 주세요.";
     private String bonusInputSpeech = "보너스 번호를 입력해 주세요.";
-    private String amountError = "[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.";
+
 
     public Input() {
         System.out.println(inputSpeech);
@@ -30,7 +30,7 @@ public class Input {
 
     private void amountValidate(int amount) {
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException(amountError);
+            new ThrowNewException().amountException();
         }
 
         lottoCount(amount / 1000);

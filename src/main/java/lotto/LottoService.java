@@ -33,30 +33,30 @@ public class LottoService {
     public int getLotto5st() {
         return lotto5st;
     }
-
     public int moneyInput() {
         int moneyInput = 0;
         while (moneyInput == 0) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 moneyInput = Integer.parseInt(Console.readLine());
-                do {
-                    if ((moneyInput % 1000) != 0) {
-                        System.out.println("[ERROR] 구입금액은 1000원 단위로 입력해주세요.");
-                        System.out.println("구입금액을 입력해 주세요.");
-                        moneyInput = Integer.parseInt(Console.readLine());
-                    }
-                } while ((moneyInput % 1000) != 0);
-            }catch (NumberFormatException e) {
+                moneyInput = validateMoneyInput(moneyInput);
+            } catch (NumberFormatException e) {
                 moneyInput = 0;
                 System.out.println("[ERROR] 구입금액은 숫자로 입력해주세요.");
-                new IllegalArgumentException().printStackTrace();
-                moneyInput = 0;
+                e.printStackTrace();
             }
         }
         return moneyInput;
     }
 
+    private int validateMoneyInput(int moneyInput) {
+        while (moneyInput % 1000 != 0) {
+            System.out.println("[ERROR] 구입금액은 1000원 단위로 입력해주세요.");
+            System.out.println("구입금액을 입력해 주세요.");
+            moneyInput = Integer.parseInt(Console.readLine());
+        }
+        return moneyInput;
+    }
 
     public int lottoCount(int moneyInput) {
         int lottoCount = moneyInput / 1000;
@@ -110,23 +110,28 @@ public class LottoService {
 
     public int bonusNumberInput() {
         int bonusNum = 0;
+
         while (bonusNum == 0) {
             try {
-                System.out.println();
                 System.out.println("보너스 번호를 입력해 주세요.");
                 bonusNum = Integer.parseInt(Console.readLine());
-                if (bonusNum > 45 || bonusNum < 0) {
-                    throw new IllegalArgumentException();
-                }
-            }catch (NumberFormatException e) {
+                bonusNum = validateBonusNumberInput(bonusNum);
+            } catch (NumberFormatException e) {
                 bonusNum = 0;
                 System.out.println("[ERROR] 숫자로 입력해주세요.");
-                new IllegalArgumentException().printStackTrace();
-            }catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            } catch (IllegalArgumentException e) {
                 bonusNum = 0;
                 System.out.println("[ERROR] 1 ~ 45 사이의 숫자를 입력해주세요.");
                 e.printStackTrace();
             }
+        }
+        return bonusNum;
+    }
+
+    private int validateBonusNumberInput(int bonusNum) {
+        if (bonusNum > 45 || bonusNum < 1) {
+            throw new IllegalArgumentException();
         }
         return bonusNum;
     }

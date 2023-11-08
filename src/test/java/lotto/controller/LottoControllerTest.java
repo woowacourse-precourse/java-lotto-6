@@ -36,12 +36,13 @@ class LottoControllerTest {
     @Test
     void makeLottoResultTest() {
         // given
-        Lotto winningNumber = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> winningNumber = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;
         Lotto lotto1 = new Lotto(List.of(8, 21, 23, 41, 42, 43));
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 16, 32, 38));
         List<Lotto> lottos = new ArrayList<>(List.of(lotto1, lotto2));
         // when
-        List<Integer> counts = LottoController.makeLottoResult(winningNumber, lottos);
+        List<Integer> counts = LottoController.makeLottoResult(winningNumber, bonusNumber, lottos);
         // then
         assertThat(counts).isEqualTo(new ArrayList<>((List.of(1, 0, 0, 0, 0))));
     }

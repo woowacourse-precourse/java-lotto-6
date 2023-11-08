@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.constant.LottoConstants;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
@@ -7,6 +8,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +19,21 @@ class LottoUtilTest {
     @BeforeEach
     void set() {
         lottoController = new LottoUtil();
+    }
+
+    @Test
+    void 수익률_계산_기능_테스트() {
+        int amount = 3;
+        Map<Rank, Integer> lottoResult = new HashMap<>();
+        lottoResult.put(Rank.ONE, 1);
+        lottoResult.put(Rank.FOUR, 3);
+
+        float rateOfReturn = lottoController.rateOfReturn(amount * LottoConstants.UNIT, lottoResult);
+        String rate = String.format("%.1f", rateOfReturn);
+
+        Assertions.assertThat(rate)
+                .isEqualTo(String.format("%.1f",
+                        (float) (2000000000 + 150000) / (amount * LottoConstants.UNIT) * LottoConstants.PERCENTAGE));
     }
 
     @Test

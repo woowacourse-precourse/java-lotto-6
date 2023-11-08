@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.constant.LottoConstants;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
@@ -17,7 +18,6 @@ public class LottoUtil {
         return new Lotto(lottoNumbers);
     }
 
-    //List의 사이즈가 로또 발행 개수를 의미
     public List<Lotto> lottoCreateCount(List<List<Integer>> randomNumbers) {
         List<Lotto> lottos = new ArrayList<>();
 
@@ -37,7 +37,14 @@ public class LottoUtil {
             result.put(Rank.getRank(shot, bonus),
                     result.getOrDefault(Rank.getRank(shot, bonus), 0) + 1);
         }
-
         return result;
+    }
+
+    public float rateOfReturn(int amount, Map<Rank, Integer> result) {
+        int sum = 0;
+        for (Rank rank : result.keySet()) {
+            sum += rank.getMoney() * result.get(rank);
+        }
+        return (float) sum / amount * LottoConstants.PERCENTAGE;
     }
 }

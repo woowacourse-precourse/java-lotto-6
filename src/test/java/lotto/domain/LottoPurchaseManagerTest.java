@@ -1,4 +1,4 @@
-package domain;
+package lotto.domain;
 
 import lotto.domain.LottoPurchaseManager;
 import lotto.model.Lotto;

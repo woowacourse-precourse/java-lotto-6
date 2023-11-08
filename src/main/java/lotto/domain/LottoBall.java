@@ -8,19 +8,9 @@ public class LottoBall {
 
     private final int number;
 
-    private LottoBall(int number) {
+    public LottoBall(int number) {
         validateNumberRange(number);
         this.number = number;
-    }
-
-    public static LottoBall getInstance(int number) {
-        if (LottoBallFactory.isExists(number)) {
-            return LottoBallFactory.grabFromPool(number);
-        } else {
-            LottoBall lottoBall = new LottoBall(number);
-            LottoBallFactory.addToPool(number, lottoBall);
-            return lottoBall;
-        }
     }
 
     public int getNumber() {
@@ -42,5 +32,24 @@ public class LottoBall {
         if (number > MAX_RANGE) {
             throw new ArgumentRangeOutOfBoundsException();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        LottoBall lottoBall = (LottoBall) o;
+
+        return number == lottoBall.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return number;
     }
 }

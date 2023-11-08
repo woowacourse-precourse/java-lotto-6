@@ -23,7 +23,7 @@ public class UserLottoInput implements LottoInput {
     public Lotto getLotto() {
         List<LottoBall> winningLottoBalls = getNumbers()
                 .stream()
-                .map(LottoBall::getInstance)
+                .map(LottoBall::new)
                 .toList();
 
         return new Lotto(winningLottoBalls);
@@ -46,7 +46,7 @@ public class UserLottoInput implements LottoInput {
         String input = Console.readLine();
         validateNumericString(input);
         int number = Integer.parseInt(input);
-        return LottoBall.getInstance(number);
+        return new LottoBall(number);
     }
 
     private void validateNumericString(String input) {

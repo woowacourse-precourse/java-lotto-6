@@ -57,7 +57,7 @@ class UserLottoInputTest {
         WinningNumbers winningNumbers = new WinningNumbers(playerLotto, bonusNumber);
         // then
         Lotto lotto = new Lotto(Stream.of(1, 2, 3, 4, 5, 7)
-                .map(LottoBall::getInstance)
+                .map(LottoBall::new)
                 .toList());
         MatchDetail match = winningNumbers.match(lotto);
 

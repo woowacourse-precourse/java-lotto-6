@@ -13,7 +13,6 @@ public class GameController {
 
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
-
     LottoNumGenerator lottoNumGenerator = new LottoNumGenerator();
     Portfolio portfolio = new Portfolio();
 
@@ -29,8 +28,6 @@ public class GameController {
         Double turnOutRate = portfolio.calculateTurnOut(gameResult, lotteryBudgetInput);
 
         outputView.printHowManyLotteryBought(lotteryBudgetInput);
-        outputView.printRegisteredLottery(lottoGroup.getLottoGroup());
-        outputView.printGameResult(gameResult);
-        outputView.printTurnOutRate(turnOutRate);
+        outputView.printGameResult(lottoGroup.getLottoGroup(), gameResult, turnOutRate);
     }
 }

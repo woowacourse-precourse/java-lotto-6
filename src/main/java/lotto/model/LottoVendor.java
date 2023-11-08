@@ -1,6 +1,7 @@
 package lotto.model;
 
 import static lotto.common.exception.PurchaseAmountErrorMessage.NOT_DIVIDE_BY_LOTTO_PRICE;
+import static lotto.common.exception.PurchaseAmountErrorMessage.NOT_NEGATIVE_NUMBER;
 import static lotto.common.exception.PurchaseAmountErrorMessage.NOT_NULL;
 
 import java.math.BigDecimal;
@@ -32,6 +33,7 @@ public class LottoVendor {
     private void validateAmount(BigDecimal paymentAmount) {
         validateNull(paymentAmount);
         validatePaymentAmountIsMultipleOf1000(paymentAmount);
+        validateNonPositivePaymentAmount(paymentAmount);
     }
 
     private void validateNull(BigDecimal paymentAmount) {
@@ -43,6 +45,12 @@ public class LottoVendor {
     private void validatePaymentAmountIsMultipleOf1000(BigDecimal paymentAmount) {
         if(isPaymentNotDivisibleByLottoPrice(paymentAmount)) {
             throw new PurchaseAmountException(NOT_DIVIDE_BY_LOTTO_PRICE);
+        }
+    }
+
+    private void validateNonPositivePaymentAmount(BigDecimal paymentAmount) {
+        if (paymentAmount.compareTo(BigDecimal.ZERO) < 0) {
+            throw new PurchaseAmountException(NOT_NEGATIVE_NUMBER);
         }
     }
 

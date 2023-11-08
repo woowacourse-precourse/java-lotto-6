@@ -13,6 +13,9 @@ public class LottoGameController {
         List<Integer> winningLotto = InputView.getWinningLotto();
         Integer bonusNumber = InputView.getBonusNumber(winningLotto);
 
+        System.out.println(winningLotto.toString());
+        System.out.println(bonusNumber);
+
 
     }
 }

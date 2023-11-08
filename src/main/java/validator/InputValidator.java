@@ -1,6 +1,5 @@
 package validator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class InputValidator {
@@ -15,22 +14,10 @@ public class InputValidator {
     }
 
     public static void validateWinningNumber(String[] winningNumber) {
-        if (winningNumber.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또는 6개의 숫자여야 합니다.");
-        }
-
-        List<Integer> uniqueNumbers = new ArrayList<>();
         for (String number : winningNumber) {
             if (!number.matches("\\d+")) {
                 throw new NumberFormatException("[ERROR] 숫자만 입력 가능합니다.");
             }
-            if (Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
-            if (uniqueNumbers.contains(Integer.parseInt(number))) {
-                throw new IllegalArgumentException("[ERROR] 중복되는 숫자가 있습니다.");
-            }
-            uniqueNumbers.add(Integer.parseInt(number));
         }
     }
 

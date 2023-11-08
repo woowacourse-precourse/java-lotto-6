@@ -3,6 +3,7 @@ package game;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import lotto.Lotto;
 import lotto.WinningNumber;
@@ -16,12 +17,21 @@ public class GameService {
         System.out.println(ConstantMessage.PURCHASE_PRICE_INPUT.getMessage());
         int price = getPrice();
 
+        System.out.println();
+
         List<Lotto> lottos = createLottoByPrice(price);
         getLottoByPrice(lottos);
 
+        System.out.println();
+
         List<Integer> winningNumber = getWinningNumber();
+
+        System.out.println();
+
         int bonus = getBonusNumber(winningNumber);
         WinningNumber winningNumberAndBonus = new WinningNumber(winningNumber, bonus);
+
+        System.out.println();
 
         printWinningResult(lottos, winningNumberAndBonus, price);
 
@@ -48,8 +58,8 @@ public class GameService {
         System.out.println(createLottoNumber + ConstantMessage.PURCHASE_NUMBER_OUTPUT.getMessage());
 
         for (int i = 0; i < createLottoNumber; i++) {
-            List<Integer> newLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-//            Collections.sort(newLotto);
+            List<Integer> newLotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            newLotto.sort(Comparator.naturalOrder());
             lottos.add(new Lotto(newLotto));
         }
         return lottos;
@@ -97,7 +107,7 @@ public class GameService {
                 InputValidator.validateBonus(bonusInput, winningNumbers);
                 bonus = Integer.parseInt(bonusInput);
                 break;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,9 +42,19 @@ class PurchaseAmountValidationTest {
 
     @DisplayName("구입금액이 1,000원 단위가 아니면 에러가 발생한다.")
     @ParameterizedTest
-    @ValueSource(ints = {1230, 12300,123001,10001})
+    @ValueSource(ints = {1230, 12300, 123001, 10001})
     void enterNonMultipleOf1000Number(Integer input) {
         assertThatThrownBy(() -> purchaseAmountValidation.validatePurchaseAmountUnit(input))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구입금액을 입력하면 숫자로 반환한다")
+    @ParameterizedTest
+    @ValueSource(strings = {"10000", "100000000"})
+    void generatePurchaseAmount(String input) {
+        int answer = Integer.parseInt(input);
+        int result = purchaseAmountValidation.validatePurchaseAmount(input);
+
+        assertThat(result).isEqualTo(answer);
     }
 }

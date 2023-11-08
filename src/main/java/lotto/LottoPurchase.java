@@ -9,12 +9,10 @@ public class LottoPurchase {
     public int requestPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
-        return validateAmount(input);
+        return validateAmount(Integer.parseInt(input));
     }
 
-    private int validateAmount(String input) {
-        int amount = Integer.parseInt(input);
-
+    public int validateAmount(int amount) {
         if (amount % LOTTO_PRICE_UNIT != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
         }

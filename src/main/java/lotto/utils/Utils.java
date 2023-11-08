@@ -1,6 +1,6 @@
 package lotto.utils;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -13,11 +13,14 @@ public class Utils {
 	private static final int NOT_SAME = 0;
 	
 	public static void sortListAscendingOrder(List<Integer> numbers) {
-		Collections.sort(numbers);
+		numbers.sort(null);
 	}
 
-	public static List<Integer> generateUniqueNumberListInRange(int startInclusive, int endInclusive, int count) {
-		return Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
+	public static ArrayList<Integer> generateUniqueNumberListInRange(int startInclusive, int endInclusive, int count) {
+		List<Integer> RandomNumbers = Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
+		ArrayList<Integer> numbers = new ArrayList<>();
+		numbers.addAll(RandomNumbers);
+		return numbers;
 	}
 	
 	public static List<String> splitString(String input) {

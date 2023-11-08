@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import camp.nextstep.edu.missionutils.Console;
@@ -22,7 +23,7 @@ public class Service {
 	
 	public void goLottoGame() {
 		lottoGame = new LottoGame(getInputWinningNumbers());
-		System.out.println(); // 당첨번호 정상 입력 후 보너스 번호 입력 사이 빈줄
+		System.out.println();
 		int bonusNumber = getInputBonusNumberForRetry();
 		lottoGame.setBonusNumber(bonusNumber);
 	}
@@ -30,12 +31,14 @@ public class Service {
 	public int getInputBonusNumberForRetry() {
 		int bonusNumber;
 		while(true) {
-			try {
-				bonusNumber = getInputBonusNumber();
+			try {  // 입력된 보너스 번호값이 적절하지 않은 경우 재시도 
+				InputView.inputBonusNumber();
+				String input = Console.readLine().trim();
+				bonusNumber = validateBonusNumber(input);
 				Validation.validateNumberNotInList(lottoGame.getWinningNumbers(), bonusNumber);
 				break;
 			} catch (IllegalArgumentException e) {
-				System.out.println(ErrorView.CONTAIN_ALREADY.message());
+				System.out.println(ErrorView.BONUS_NUMBER_ERROR.message());
 			}
 		}
 		return bonusNumber;
@@ -43,6 +46,7 @@ public class Service {
 	
 	public void initBuyer() {
 		buyer = new Buyer(getInputAmount());
+		buyer.initLottoResult();
 	}
 	
 	public void buyOneLotto() {
@@ -66,53 +70,34 @@ public class Service {
 	}
 	
 	public Lotto generateLotto() {
-		List<Integer> numbers = Utils.generateUniqueNumberListInRange(LOTTO_RANGE_MIN, LOTTO_RANGE_MAX, LOTTO_SIZE);
+		ArrayList<Integer> numbers = new ArrayList<>();
+		numbers = Utils.generateUniqueNumberListInRange(LOTTO_RANGE_MIN, LOTTO_RANGE_MAX, LOTTO_SIZE);
 		Utils.sortListAscendingOrder(numbers);
 		return new Lotto(numbers);
 	}
 	
 	public int getInputAmount() {
 		int paid;
-		while(true) {  // 구입 가능 최대 금액 이상이면 재시도
-			try {
-				paid = validateDividableForRetry();
-				Validation.validateBuyableAmount(paid, LIMITED_AMOUNT);
-				break;
-			} catch (IllegalArgumentException e) {
-				System.out.println(ErrorView.TOO_MUCH.message());
-			}
-		}
-		return paid;
-	}
-
-	public int validateDividableForRetry() {
-		int paid;
-		while(true) {  // 구매금액이 로또 가격 단위가 아니면 재시도
-			try {
-				String input = validateInputAmountNaturalNumberForRetry();
-				paid = Integer.valueOf(input);
-				Validation.validateDividablePaid(paid, LOTTO_PRICE);
-				break;
-			} catch (IllegalArgumentException e) {
-				System.out.println(ErrorView.INDIVISIBLE.message());
-			}
-		}
-		return paid;
-	}
-
-	public String validateInputAmountNaturalNumberForRetry() {
-		String input;
-		while(true) {  // 구매금액 입력값이 숫자가 아니면 재시도
+		while(true) {  // 구입금액이 적절하지 않은 경우 재시도
 			try {
 				InputView.inputAmount();
-				input = Console.readLine().trim();
-				Validation.validateNaturalNumber(input);
+				String input = Console.readLine().trim();
+				paid = validateInputAmount(input);
 				break;
 			} catch (IllegalArgumentException e) {
-				System.out.println(ErrorView.NOT_NUMBER.message());
+				System.out.println(ErrorView.AMOUNT_ERROR.message());
 			}
 		}
-		return input;
+		return paid;
+	}
+
+	public int validateInputAmount(String input) {
+		int paid;
+		Validation.validateNaturalNumber(input);
+		paid = Integer.valueOf(input);
+		Validation.validateDividablePaid(paid, LOTTO_PRICE);
+		Validation.validateBuyableAmount(paid, LIMITED_AMOUNT);
+		return paid;
 	}
 	
 	public List<Integer> getInputWinningNumbers() {
@@ -130,62 +115,33 @@ public class Service {
 
 	public List<Integer> validateNumbersRangeForRetry() {
 		List<Integer> numbers;
-		while (true) {   //  당첨번호가 유효한 범위 안의 숫자가 아닐 경우 재시도
-			try {
-				String input = validateInputFormatForRetry();
-				numbers = Utils.stringToIntegerList(input);
-				Validation.validateListNumbersInRange(numbers, LOTTO_RANGE_MIN, LOTTO_RANGE_MAX);
-				break;
-			} catch (IllegalArgumentException e) {
-				System.out.println(ErrorView.OUT_OF_RANGE.message());
-			}
-		}
-		return numbers;
-	}
-
-	public String validateInputFormatForRetry() {
-		String input;
-		while (true) {  // 당첨번호의 입력값이 유효하지 않을 경우 재시도
+		while (true) {   //  당첨번호가 유효한 입력값이 아닐 경우 재시도
 			try {
 				InputView.inputWinningNumbers();
-				input = Console.readLine().trim();
-				Validation.validateInputFormat(input);
+				String input = Console.readLine().trim();
+				numbers = validateInputWinningNumbers(input);
 				break;
 			} catch (IllegalArgumentException e) {
 				System.out.println(ErrorView.INVALID_FORMAT.message());
 			}
 		}
-		return input;
-	}
-	
-	public int getInputBonusNumber() {
-		int bonusNumber;
-		while(true) {  // 보너스 번호가 유효한 범위 안의 숫자가 아닐 경우 재시도
-			try {
-				String input = validateNaturalNumberForRetry();
-				bonusNumber = Integer.valueOf(input);
-				Validation.validateNumberInRange(bonusNumber, LOTTO_RANGE_MIN, LOTTO_RANGE_MAX);
-				break;
-			} catch (IllegalArgumentException e) {
-				System.out.println(ErrorView.OUT_OF_RANGE.message());
-			}
-		}
-		return bonusNumber;
+		return numbers;
 	}
 
-	public String validateNaturalNumberForRetry() {
-		String input;
-		while(true) {  // 보너스 번호의 입력값이 숫자가 아닐 경우 재시도
-			try {
-				InputView.inputBonusNumber();
-				input = Console.readLine().trim();
-				Validation.validateNaturalNumber(input);
-				break;
-			} catch (IllegalArgumentException e) {
-				System.out.println(ErrorView.NOT_NUMBER.message());
-			}
-		}
-		return input;
+	public List<Integer> validateInputWinningNumbers(String input) {
+		List<Integer> numbers;
+		Validation.validateInputFormat(input);
+		numbers = Utils.stringToIntegerList(input);
+		Validation.validateListNumbersInRange(numbers, LOTTO_RANGE_MIN, LOTTO_RANGE_MAX);
+		return numbers;
+	}
+
+	public int validateBonusNumber(String input) {
+		int bonusNumber;
+		Validation.validateNaturalNumber(input);
+		bonusNumber = Integer.valueOf(input);
+		Validation.validateNumberInRange(bonusNumber, LOTTO_RANGE_MIN, LOTTO_RANGE_MAX);
+		return bonusNumber;
 	}
 	
 	public int countCorrectLottoNumber(Lotto lotto) {
@@ -203,7 +159,6 @@ public class Service {
 	}
 	
 	public void countEachRank() {
-		buyer.initLottoResult();
 		Map<Rank, Integer> lottoResults = buyer.getLottoResult();
 		for (Lotto lotto : buyer.getPurchasedLotteries()) {
 			int count = (int)lottoResults.get(checkLottoRank(lotto));
@@ -215,7 +170,7 @@ public class Service {
 	public void showResultStats() {
 		OutputView.printResultIntro();
 		showAllRankResult(buyer.getLottoResult());
-		OutputView.printYieldRate(buyer.getProfitRate());
+		OutputView.printYieldRate(buyer.getYield());
 	}
 	
 	public void showAllRankResult(Map<Rank, Integer> map) {

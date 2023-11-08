@@ -8,8 +8,9 @@ import java.util.Map;
 public class Buyer {
 	
 	private List<Lotto> purchasedLotteries = new ArrayList<>();
-	private int purchaseAmount;
+	private final int purchaseAmount;
 	private Map<Rank, Integer> lottoRankResult = new HashMap<>();
+	private static final double PERCENT = 100;
 	
 	public Buyer(int purchaseAmount) {
 		this.purchaseAmount = purchaseAmount;
@@ -46,15 +47,16 @@ public class Buyer {
 	public long getTotalPrize() {
 		long totalPrize = 0;
 		for(Rank rank : lottoRankResult.keySet()) {
-			totalPrize += rank.getPrize() * getLottoResult().get(rank);
+			totalPrize += rank.getPrize() * lottoRankResult.get(rank);
 		}
 		return totalPrize;
 	}
 	
-	public double getProfitRate() {
-		double ProfitRate = 0;
-		ProfitRate = getTotalPrize()/ purchaseAmount;
-		return ProfitRate;
+	public double getYield() {
+		double yield = 0;
+		double profitRate = (double) getTotalPrize() / purchaseAmount;
+		yield = profitRate * PERCENT;
+		return yield;
 	}
 
 }

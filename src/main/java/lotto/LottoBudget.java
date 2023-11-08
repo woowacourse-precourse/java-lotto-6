@@ -39,4 +39,8 @@ public class LottoBudget{
     public int getLottoCount() {
         return this.lottoCount;
     }
+    
+    public int getLottoBudget() {
+        return this.lottoBudget;
+    }
 }

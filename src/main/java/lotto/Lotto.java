@@ -28,5 +28,15 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public int calculate(List<Integer> input) {
+        int score = 0;
+
+        for (int num: this.numbers) {
+            if (input.contains(num)) {
+                score++;
+            }
+        }
+
+        return score;
+    }
 }

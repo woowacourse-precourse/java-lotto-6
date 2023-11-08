@@ -63,4 +63,8 @@ public class Purchase {
         randomNubmers();
         printTickets();
     }
+
+    public ArrayList<List<Integer>> getTicketArray() {
+        return this.tickets;
+    }
 }

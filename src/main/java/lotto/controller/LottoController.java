@@ -2,10 +2,11 @@ package lotto.controller;
 
 import static lotto.constant.message.OutputMessage.RESULT_MESSAGE;
 
-import lotto.domain.Customer;
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCalculator;
 import lotto.domain.LottoMaker;
+import lotto.domain.PrizeResult;
 import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,21 +22,22 @@ public class LottoController {
     }
 
     public void run() {
-        Customer customer = purchaseLotto();
-        Lotto winningNumbers = getWinningLotto();
-        WinningNumbers winningLotto = generateWinningLotto(winningNumbers);
-        LottoCalculator calculator = new LottoCalculator(customer.checkWinningResult(winningLotto));
+        List<Lotto> tickets = makeLotteries();
+        Lotto winningLotto = getWinningLotto();
+        WinningNumbers winningNumbers = generateWinningNumbers(winningLotto);
+        PrizeResult prizeResult = new PrizeResult(winningNumbers, tickets);
+        LottoCalculator calculator = new LottoCalculator(prizeResult.getWinningResult());
         printPrizeResult(calculator);
     }
 
-    private Customer purchaseLotto() {
+    private List<Lotto> makeLotteries() {
         while (true) {
             try {
                 int money = inputView.requestMoney();
                 LottoMaker lottoMaker = new LottoMaker(money);
-                Customer customer = new Customer(lottoMaker.makeLottoTickets());
-                outputView.printLottoNumbers(customer.getLotteryTicket());
-                return customer;
+                List<Lotto> lottoTickets = lottoMaker.makeLottoTickets();
+                outputView.printLottoNumbers(lottoTickets);
+                return lottoTickets;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -52,7 +54,7 @@ public class LottoController {
         }
     }
 
-    private WinningNumbers generateWinningLotto(Lotto winningLotto) {
+    private WinningNumbers generateWinningNumbers(Lotto winningLotto) {
         while (true) {
             try {
                 int bonusNumber = inputView.requestBonusNumber();

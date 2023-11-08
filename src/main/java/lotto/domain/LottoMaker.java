@@ -28,7 +28,6 @@ public class LottoMaker {
 
     public List<Lotto> makeLottoTickets() {
         List<Lotto> lottoTickets = new ArrayList<>();
-
         for (int i = 0; i < sellCount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT)
                     .stream()

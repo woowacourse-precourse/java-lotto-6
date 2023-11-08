@@ -1,0 +1,132 @@
+package game;
+
+import camp.nextstep.edu.missionutils.Randoms;
+import io.Input;
+import io.Output;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import lotto.Lotto;
+
+public class Game {
+
+    public void run() {
+        Integer BuyMoney;
+        int LottoTicketsCount;
+
+        Output output = new Output();
+        Input input = new Input();
+        Judgement judgement = new Judgement();
+
+        Output.printMessage(output.introduceGameMessage());
+
+        while (true) {
+            try {
+                String stringBuyMoney = input.scan();
+                Judgement.checkBuyMoneyIsValid(stringBuyMoney);
+                BuyMoney = Integer.parseInt(stringBuyMoney);
+                LottoTicketsCount = judgement.isDivisibleByTicketPrice(BuyMoney);
+                break;
+            } catch (IllegalArgumentException e) {
+                Output.printMessage(e.getMessage());
+            }
+
+        }
+
+        List<Lotto> lottoTickets = new ArrayList<>();
+
+        generateLotto(LottoTicketsCount, lottoTickets);
+        printOutLottoInformation(lottoTickets);
+
+        Output.printMessage(output.insertLottoNumberMessage());
+
+        List<Integer> hitNumberList;
+        while (true) {
+            try {
+                String hitNumbersStrings = input.scan();
+                hitNumberList = new ArrayList<>();
+                inputHitNumbersCheckFunction(hitNumbersStrings, hitNumberList);
+                break;
+            } catch (IllegalArgumentException e) {
+                Output.printMessage(e.getMessage());
+            }
+
+        }
+
+        Output.printMessage(output.insertBonusLottoNumberMessage());
+        int specialNumber;
+        while (true) {
+            try {
+                String stringSpecialNumber = input.scan();
+                specialNumber = judgement.checkSpecialNumber(stringSpecialNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                Output.printMessage(e.getMessage());
+            }
+
+        }
+
+        Output.printMessage(output.hitAverageMessage());
+
+        int totalAmountMoney = judgement.resultHitLottoCheck(hitNumberList, specialNumber,
+                lottoTickets);
+        judgement.calculateLottoProfit(BuyMoney, totalAmountMoney);
+
+    }
+
+    public void generateLotto(int LottoTicketsCount, List<Lotto> lottoTickets) {
+        for (int i = 0; i < LottoTicketsCount; i++) {
+            List<Integer> randomNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> sortedList = randomNumber.stream().sorted().collect(Collectors.toList());
+            Lotto lotto = new Lotto(sortedList);
+            lottoTickets.add(lotto);
+        }
+    }
+
+    public void printOutLottoInformation(List<Lotto> lottoTickets) {
+        Output.printMessage(Output.buyLottoMessage(lottoTickets.size()));
+        for (Lotto lotto : lottoTickets) {
+            List<Integer> numbers = lotto.getNumbers();
+            Output.printMessage(numbers.toString());
+        }
+
+    }
+
+    public void inputHitNumbersCheckFunction(String hitNumbersStrings,
+            List<Integer> hitNumberList) {
+        String[] hitNumbers = hitNumbersStrings.split(",");
+        inputHitNumbersDuplicateCheck(hitNumbers, hitNumberList);
+        isinputHitNumberOver6Check(hitNumbers);
+
+    }
+
+    public void inputHitNumbersDuplicateCheck(String[] hitNumbers, List<Integer> hitNumberList) {
+        Set<Integer> numberSet = new HashSet<>();
+        for (String numStr : hitNumbers) {
+            try {
+                int number = Integer.parseInt(numStr);
+                if (numberSet.contains(number)) {
+                    throw new IllegalArgumentException(Output.errorSameNumberInInputMessage);
+                }
+                hitNumberList.add(number);
+                numberSet.add(number);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(Output.errorCanNotDivideMessage);
+
+            }
+        }
+    }
+
+    public void isinputHitNumberOver6Check(String[] hitNumbers) {
+        if (hitNumbers.length > 6) {
+            throw new IllegalArgumentException(Output.errorOver6NumbersMessage);
+        }
+        ;
+    }
+
+
+}
+

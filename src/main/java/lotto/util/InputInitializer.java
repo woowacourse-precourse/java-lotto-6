@@ -17,43 +17,33 @@ public class InputInitializer {
     LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
     BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
     String input;
-    boolean hasException;
-
 
     public int inputPurchaseAmount() {
-        System.out.println(INPUT_PURCHASE_MONEY.getMessage());
-
-        do {
-            hasException = false;
+        while (true) {
+            System.out.println(INPUT_PURCHASE_MONEY.getMessage());
             input = Console.readLine();
-
             try {
                 purchaseAmountValidator.validate(input);
+                break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-                hasException = true;
             }
 
-        } while (hasException);
-
+        }
         return Integer.parseInt(input) / 1000;
     }
 
     public Lotto inputLottoNumber() {
-
-        do {
-            hasException = false;
+        while (true) {
             System.out.println(INPUT_WINNING_LOTTO_NUMBER.getMessage());
             input = Console.readLine();
-
             try {
                 lottoNumberValidator.validate(input);
+                break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-                hasException = true;
             }
-
-        } while (hasException);
+        }
 
         List<Integer> lottoNumbers = lottoNumberToList(input);
         return new Lotto(lottoNumbers);
@@ -71,22 +61,19 @@ public class InputInitializer {
     }
 
     public int inputBonusNumber(Lotto lotto) {
-
-        do {
-            hasException = false;
+        while (true) {
             System.out.println(INPUT_BONUS_NUMBER.getMessage());
             input = Console.readLine();
 
             try {
                 bonusNumberValidator.validate(input, lotto);
+                break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-                hasException = true;
             }
 
-        } while (hasException);
+        }
 
         return Integer.parseInt(input);
     }
-
 }

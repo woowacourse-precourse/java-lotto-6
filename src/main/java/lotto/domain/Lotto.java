@@ -7,11 +7,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        try {
-            validate(numbers);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[Error] 6자리의 수를 입력 하세요");
-        }
+        validate(numbers);
         validateRange(numbers);
         validateUnique(numbers);
         this.numbers = numbers;
@@ -19,7 +15,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[Error] 6자리의 수를 입력 하세요");
         }
     }
 
@@ -51,7 +47,7 @@ public class Lotto {
         return bonusNumber;
     }
 
-    public void validateBonusNumber(int bonusNumber) {
+    private void validateBonusNumber(int bonusNumber) {
         ValidateUtil.isInRange(bonusNumber, Constant.LOTTO_MINIMUM_NUMBER.getValue(),
                 Constant.LOTTO_MAXIMUM_NUMBER.getValue());
         if (numbers.contains(bonusNumber)) {

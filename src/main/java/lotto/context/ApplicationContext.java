@@ -1,5 +1,6 @@
 package lotto.context;
 
+import lotto.component.LottoArgumentResolver;
 import lotto.component.LottoController;
 import lotto.component.LottoValidator;
 import lotto.component.LottoViewResolver;
@@ -17,6 +18,7 @@ public class ApplicationContext {
     private LottoController lottoController;
     private LottoService lottoService;
     private LottoViewResolver viewResolver;
+    private LottoArgumentResolver argumentResolver;
 
     public static ApplicationContext of() {
         return new ApplicationContext();
@@ -30,6 +32,7 @@ public class ApplicationContext {
         this.lottoService = lottoService();
         this.lottoController = lottoController();
         this.viewResolver = viewResolver();
+        this.argumentResolver = argumentResolver();
     }
 
     private InputView inputView() {
@@ -81,6 +84,13 @@ public class ApplicationContext {
         return lottoService;
     }
 
+    private LottoArgumentResolver argumentResolver() {
+        if (argumentResolver == null) {
+            argumentResolver = LottoArgumentResolver.of(inputView(), printer(), validator());
+        }
+        return argumentResolver;
+    }
+
     public InputView getInputView() {
         return inputView;
     }
@@ -99,5 +109,9 @@ public class ApplicationContext {
 
     public LottoController getLottoController() {
         return lottoController;
+    }
+
+    public LottoArgumentResolver getArgumentResolver() {
+        return argumentResolver;
     }
 }

@@ -6,25 +6,21 @@ import lotto.exception.PurchaseAmountExceptionMessage;
 /**
  * 로또 구입 금액 검증 클래스
  */
-public class LottoPurchaseAmountValidator implements AmountValidator {
+public class LottoPurchaseAmountValidator {
 
     /**
      * 입력한 구입금액이 유효한지 검증
      * @param input 입력한 구입금액
      * @return 유효한 금액인지 여부
      */
-    @Override
     public boolean isValid(String input) throws IllegalArgumentException {
         if (!isPositiveNumber(input)) {
             throw new IllegalArgumentException(String.format("%s = %s", PurchaseAmountExceptionMessage.NOT_POSITIVE_NUMBER, input));
         }
-
-        int purchaseAmount = Integer.parseInt(input);
-
-        if (!isMultipleOf1000(purchaseAmount)) {
+        int inputToInt =  Integer.parseInt(input);
+        if (!isMultipleOf1000(inputToInt)) {
             throw new IllegalArgumentException(String.format("%s = %s", PurchaseAmountExceptionMessage.NOT_MULTIPLE_OF_1000, input));
         }
-
         return true;
     }
 

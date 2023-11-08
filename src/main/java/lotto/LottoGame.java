@@ -15,7 +15,6 @@ public class LottoGame {
     public static List<Lotto> lottos = new ArrayList<>();
     public static Lotto winningLotto;
     public static int bonusNumber;
-    public static int result;
     public static List<Integer> rewardList = Arrays.asList(0,0,0,0,0);
     public static Exception exception = new Exception();
 

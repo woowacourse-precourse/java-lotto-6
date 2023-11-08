@@ -34,10 +34,34 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호의 각 번호를 검증 (숫자x, 양수x, 숫자 앞0, 범위 초과)")
+    @DisplayName("입력된 로또 번호가 숫자가 아닐 때, 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"a", "1.5", "01", "0", "46"})
-    void checkLottoNumber(String lottoNumber) {
+    @ValueSource(strings = {"a", " ", ""})
+    void checkLottoNumberByNotNumber(String lottoNumber) {
+        assertThatThrownBy(() -> Lotto.checkLottoNumber(lottoNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력된 로또 번호가 정수가 아닐 때, 예외 처리 ")
+    @ParameterizedTest
+    @ValueSource(strings = {"1.1","10.0"})
+    void checkLottoNumberByNotInteger(String lottoNumber) {
+        assertThatThrownBy(() -> Lotto.checkLottoNumber(lottoNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력된 로또 번호가 로또 범위를 벗어날 때, 예외 처리 ")
+    @ParameterizedTest
+    @ValueSource(strings = {"-1","0","46"})
+    void checkLottoNumberByNotRange(String lottoNumber) {
+        assertThatThrownBy(() -> Lotto.checkLottoNumber(lottoNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력된 로또 번호 앞에 0이 포함될 때, 예외 처리 ")
+    @ParameterizedTest
+    @ValueSource(strings = {"01","00000010"})
+    void checkLottoNumberByFirstNumberZero(String lottoNumber) {
         assertThatThrownBy(() -> Lotto.checkLottoNumber(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }

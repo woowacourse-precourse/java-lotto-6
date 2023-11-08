@@ -3,8 +3,8 @@ package lotto.controller;
 import java.util.Arrays;
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.service.LottoGameService;
 import lotto.model.LottoResult;
+import lotto.service.LottoGameService;
 import lotto.validator.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -42,7 +42,7 @@ public class LottoGameController {
 
         /// 당첨 번호 입력
         List<Integer> winningNumbers;
-        while(true) {
+        while (true) {
             try {
                 String winningNumberInput = InputView.inputWinningNumbers();
                 InputValidator.validateWinningNumber(winningNumberInput);
@@ -52,7 +52,7 @@ public class LottoGameController {
                     .map(Integer::parseInt)
                     .toList();
                 break;
-            }catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 continue;
             }

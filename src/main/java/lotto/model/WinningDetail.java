@@ -20,7 +20,7 @@ public class WinningDetail {
 
     private void initWinningCount() {
         List<Ranking> rankings = Ranking.getRankings();
-        rankings.stream().forEach(ranking -> winningCount.put(ranking, 0));
+        rankings.forEach(ranking -> winningCount.put(ranking, 0));
     }
 
     private void computeWinningCount(List<Lotto> lottos, WinningNumbers winningNumbers) {
@@ -39,14 +39,11 @@ public class WinningDetail {
     }
 
     public long totalProfit() {
-        long profit = 0L;
-        for (Ranking ranking : winningCount.keySet()) {
-            profit += calculateProfit(ranking, winningCount.get(ranking));
-        }
-        return profit;
+        return winningCount.keySet().stream().mapToLong(ranking -> calculateProfit(ranking, winningCount.get(ranking)))
+                .sum();
     }
 
     private long calculateProfit(Ranking ranking, int amount) {
-        return Long.valueOf(amount) * ranking.getWinningAmount();
+        return (long) amount * ranking.getWinningAmount();
     }
 }

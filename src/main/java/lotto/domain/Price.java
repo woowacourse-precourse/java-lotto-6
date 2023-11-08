@@ -11,8 +11,9 @@ public class Price {
 
     private long price;
 
-    public Price(String input) {
-        validate(input);
+    public Price(long price) {
+        validate(price);
+        this.price = price;
     }
 
     public long getPrice() {
@@ -23,35 +24,26 @@ public class Price {
         return price / 1000;
     }
 
-    private void validate(String input) {
-        validateNumeric(input);
-        validateRemainder();
-        validateMinimum();
-        validateMaximum();
+    private void validate(long price) {
+        validateRemainder(price);
+        validateMinimum(price);
+        validateMaximum(price);
     }
 
-    private void validateNumeric(String input) {
-        try {
-            this.price = Long.parseLong(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ONLY_NUMBERS_ALLOWED.getMessage());
-        }
-    }
-
-    private void validateRemainder() {
-        if (this.price % 1000 != 0 || this.price <= 0) {
+    private void validateRemainder(long price) {
+        if (price % 1000 != 0 || price <= 0) {
             throw new IllegalArgumentException(WRONG_BUY_PRICE.getMessage());
         }
     }
 
-    private void validateMinimum() {
-        if ((this.price / 1000) < MIN_LOTTO_AMOUNT.getNumber()) {
+    private void validateMinimum(long price) {
+        if ((price / 1000) < MIN_LOTTO_AMOUNT.getNumber()) {
             throw new IllegalArgumentException(WRONG_MINIMUM_BUY.getMessage());
         }
     }
 
-    private void validateMaximum() {
-        if ((this.price / 1000) > MAX_LOTTO_AMOUNT.getNumber()) {
+    private void validateMaximum(long price) {
+        if ((price / 1000) > MAX_LOTTO_AMOUNT.getNumber()) {
             throw new IllegalArgumentException(WRONG_MAXIMUM_BUY.getMessage());
         }
     }

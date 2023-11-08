@@ -5,6 +5,7 @@ import static lotto.constant.GameMessage.INPUT_BUY_PRICE;
 import static lotto.constant.GameMessage.INPUT_WIN_NUMBERS;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.conversion.Convert;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Price;
@@ -16,7 +17,8 @@ public class Input {
             System.out.println(INPUT_BUY_PRICE.getMessage());
             try {
                 String input = Console.readLine();
-                return new Price(input);
+                long price = Convert.toPrice(input);
+                return new Price(price);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

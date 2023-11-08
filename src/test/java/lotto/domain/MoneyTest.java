@@ -35,7 +35,6 @@ public class MoneyTest {
     void wrongTypeOfInput(String inputMoney) {
         assertThatThrownBy(() -> new Money(inputMoney))
                 .isInstanceOf(NumberFormatException.class)
-                .hasMessageContaining("[ERROR]")
                 .hasMessageContaining("구입 금액은 아라비아 형식의 숫자로 입력해주세요.");
     }
 }

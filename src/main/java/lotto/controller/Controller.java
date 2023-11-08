@@ -75,7 +75,7 @@ public class Controller {
             outputView.outputPurchasedLottos(purchasedLottos);
             return purchasedLottos;
         } catch (IllegalArgumentException e) {
-            System.out.println("");
+            System.out.println(e.getMessage());
             return tryPurchaseLotto();
         }
     }

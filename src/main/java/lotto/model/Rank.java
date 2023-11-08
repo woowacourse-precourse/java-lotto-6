@@ -21,9 +21,12 @@ public enum Rank {
     }
 
     public static Rank findRankByMatchCount(int countOfMatch, boolean hasBonus) {
+        if (countOfMatch == SECOND.matchCount && hasBonus) {
+            return SECOND;
+        }
+
         return Arrays.stream(values())
-                .filter(rank -> rank.matchCount == countOfMatch
-                && rank.hasBonusNumber == hasBonus)
+                .filter(rank -> rank.matchCount == countOfMatch)
                 .findFirst()
                 .orElse(NO_MATCH);
     }

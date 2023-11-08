@@ -33,10 +33,13 @@ public class Money {
     }
 
     public int calculateTotalWinnings(List<LottoRank> lottoRanks) {
-        return lottoRanks.stream()
-                .mapToInt(rank -> rank == LottoRank.SECOND ? LottoRank.FIRST.getPrizeMoney() : rank.getPrizeMoney())
-                .sum();
+        int totalWinnings = 0;
+        for (LottoRank rank : lottoRanks) {
+            totalWinnings += rank.getPrizeMoney();
+        }
+        return totalWinnings;
     }
+
 
     public double calculateReturnOfRate(int totalPurchaseAmount, int totalWinnings) {
         if (totalPurchaseAmount == 0) {

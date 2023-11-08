@@ -22,8 +22,9 @@ public class InputView {
         try {
             System.out.println(INPUT_CASH_MESSAGE.getMessage());
             final String requestCash = getInput();
-            final Integer cash = Parser.parseInt(requestCash);
-            return RequestCash.of(cash);
+            InputValidator.validateCashFormat(requestCash);
+            final Integer amount = Parser.parseInt(requestCash);
+            return RequestCash.of(amount);
         } catch (Exception e) {
             throw e;
         }
@@ -34,13 +35,8 @@ public class InputView {
             System.out.println();
             System.out.println(INPUT_WINNER_NUMBER_MESSAGE.getMessage());
             final String requestWinnerNumbers = getInput();
-            InputValidator.validateCommaAtEdge(requestWinnerNumbers);
-            final List<String> numberDummy = Parser.parseNumberDummy(requestWinnerNumbers);
-            InputValidator.validateNumbers(numberDummy);
-            InputValidator.validateInputNumbersFormat(numberDummy);
-            InputValidator.validateNumbersSize(numberDummy);
-            InputValidator.validateDuplicatedNumber(numberDummy);
-            return Parser.parseNumbers(numberDummy);
+            InputValidator.validateWinnerNumberFormat(requestWinnerNumbers);
+            return Parser.parseNumbers(requestWinnerNumbers);
         } catch (Exception e) {
             throw e;
         }
@@ -51,8 +47,7 @@ public class InputView {
             System.out.println();
             System.out.println(INPUT_BONUS_NUMBER.getMessage());
             final String requestBonusNumber = getInput();
-            InputValidator.validateRangeNumber(requestBonusNumber);
-            InputValidator.validateNumber(requestBonusNumber);
+            InputValidator.validateBonusNumberFormat(requestBonusNumber);
             return Parser.parseInt(requestBonusNumber);
         } catch (Exception e) {
             throw e;
@@ -60,12 +55,12 @@ public class InputView {
     }
 
 
-    private String getInput() throws IllegalStateException {
+    private String getInput() throws IllegalArgumentException, IllegalStateException {
         try {
             final String input = Console.readLine();
-            InputValidator.validateBlank(input);
+            InputValidator.validateInputFormat(input);
             return input;
-        } catch (IllegalStateException e) {
+        } catch (Exception e) {
             throw e;
         }
     }

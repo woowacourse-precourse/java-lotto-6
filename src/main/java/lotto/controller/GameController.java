@@ -20,24 +20,17 @@ public class GameController {
     }
 
     public void run() {
-        String inputPayment = InputView.inputPayment();
-        Payment payment = Payment.create(inputPayment);
-
+        Payment payment = Payment.create(InputView.inputPayment());
         createLottos(payment.getPayment());
 
-        String inputWinningNumber = InputView.inputWinningNumber();
-        WinningNumber winningNumber = WinningNumber.create(inputWinningNumber);
-
-        String inputBonusNumber = InputView.inputBonusNumber();
-        BonusNumber bonusNumber = BonusNumber.create(inputBonusNumber);
-
+        WinningNumber winningNumber = WinningNumber.create(InputView.inputWinningNumber());
+        BonusNumber bonusNumber = BonusNumber.create(InputView.inputBonusNumber());
         Result result = calculator.calculateResult(lottos.getLottos(),
                 winningNumber.getWinningNumber(),
                 bonusNumber.getBonusNumber());
-        OutputView.printResult(result);
 
-        double incomeRate = calculator.calculateIncomeRate(result, payment);
-        OutputView.printIncomeRate(incomeRate);
+        OutputView.printResult(result);
+        OutputView.printIncomeRate(calculator.calculateIncomeRate(result, payment));
     }
 
     private void createLottos(int payment){

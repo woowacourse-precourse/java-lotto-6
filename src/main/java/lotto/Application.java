@@ -9,25 +9,37 @@ import camp.nextstep.edu.missionutils.Console;
 public class Application {
     public static void main(String[] args) {
         //1. 로또 구입 금액 입력 받기
+        int howMuch = 0;
+        int numberOfLotteries = 0;
         while(true) {
-            int howMuch = 0;
-            int numberOfLotteries = 0;
             try{
                 System.out.println("구입 금액을 입력해 주세요.");
-                String input = Console.readLine();
-                howMuch = isNumber(input);
+                String inputHowMuch = Console.readLine();
+                howMuch = isNumber(inputHowMuch);
                 numberOfLotteries = numberOfLottery(howMuch);
                 break;
-            } catch(IllegalArgumentException e) {
-                howMuch = 0;
-            }
+            } catch(IllegalArgumentException e) { }
         }
+        //확인용
+//        System.out.println(howMuch + ", " + numberOfLotteries);
 
-        //2. 번호 입력 받기
-        System.out.println("당첨 번호를 입력해 주세요.");
+        //2. 당첨 금액 입력 받아 저장하기
+
 
         //3. 보너스 번호 입력 받기
-        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = 0;
+        while(true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String inputBonusNumber = Console.readLine();
+                bonusNumber = isNumber(inputBonusNumber);
+                rangeValidation(bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) { }
+        }
+        //확인용
+//        System.out.println(bonusNumber);
+
 
 
         //4. 로또 발행

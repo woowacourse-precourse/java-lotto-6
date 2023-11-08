@@ -30,6 +30,9 @@
     - Integer.parseInt()로 검증
     - 예외 발생시 IllegalArgumentException 던지고 “[ERROR] 숫자를 입력하세요” 출력
         - 다시 입력받기
+- 1~45 범위의 수를 입력했는지 검증
+  - 예외 발생시 IllegalArgumentException 던지고 “[ERROR] 1~45 범위의 숫자를 입력하세요.” 출력
+    - 다시 입력받기
 
 # 5. 로또 발행 - Lottery 클래스로 관리
 

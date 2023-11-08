@@ -1,14 +1,11 @@
 package lotto.domain;
 
-import java.text.DecimalFormat;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
     private final int DEFAULT_VALUE = 0;
-    private final String MONEY_PATTERN = "#,###.#";
 
     private final Map<Rank, Integer> result;
 
@@ -30,8 +27,8 @@ public class LottoResult {
         }
     }
 
-    public Map<Rank, Integer> get() {
-        return Collections.unmodifiableMap(result);
+    public int getRankCount(Rank rank) {
+        return result.get(rank);
     }
 
     private double getTotalPrizeMoney() {

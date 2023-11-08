@@ -7,6 +7,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.constant.LottoConstant;
+import lotto.domain.util.RandomNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,7 +23,7 @@ public class TicketTest {
         Ticket ticket = new Ticket(5000);
 
         // when
-        List<Integer> ticketNumbers = ticket.randomNumbers();
+        List<Integer> ticketNumbers = RandomNumber.gernerate();
 
         // then
         assertThat(ticketNumbers.size()).isEqualTo(6);
@@ -35,7 +36,7 @@ public class TicketTest {
         Ticket ticket = new Ticket(5000);
 
         // when
-        List<Integer> ticketNumbers = ticket.randomNumbers();
+        List<Integer> ticketNumbers = RandomNumber.gernerate();
         List<Integer> ascNumbers = ticket.ascendingNumber(ticketNumbers);
 
         // then

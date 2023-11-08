@@ -1,4 +1,4 @@
-package lotto.domain.rule;
+package lotto.domain.constant;
 
 import static lotto.domain.constant.LottoConstant.MATCH_ALL_FIVE_COUNT;
 import static lotto.domain.constant.LottoConstant.MATCH_ALL_FOUR_COUNT;

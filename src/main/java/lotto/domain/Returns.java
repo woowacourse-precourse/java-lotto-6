@@ -4,7 +4,7 @@ package lotto.domain;
 import java.util.Map;
 import lotto.config.output.MessageType;
 import lotto.config.output.OutputMessage;
-import lotto.domain.rule.PrizeAmount;
+import lotto.domain.constant.PrizeAmount;
 
 public class Returns {
     private String returns;

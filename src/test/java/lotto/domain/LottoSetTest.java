@@ -5,6 +5,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.util.RandomNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -35,7 +36,7 @@ public class LottoSetTest {
     void sameLottoNumber(){
         // given
         Ticket ticket = new Ticket(5000);
-        List<Integer> tickets = ticket.randomNumbers();
+        List<Integer> tickets = RandomNumber.gernerate();
         LottoSet lottoSet = new LottoSet(this.lotto, 7);
 
         // when
@@ -50,7 +51,7 @@ public class LottoSetTest {
     void sameBonusNumber(){
         // given
         Ticket ticket = new Ticket(5000);
-        List<Integer> tickets = ticket.randomNumbers();
+        List<Integer> tickets = RandomNumber.gernerate();
         LottoSet lottoSet = new LottoSet(this.lotto, 7);
 
         // when

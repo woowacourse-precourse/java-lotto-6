@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.config.output.MessageType;
 import lotto.config.output.OutputMessage;
+import lotto.domain.util.RandomNumber;
 
 public class Tickets {
     private List<List<Integer>> tickets = new ArrayList<>();
@@ -21,7 +22,7 @@ public class Tickets {
     public void generate() {
         IntStream.range(0, ticket.ticketCount())
                 .mapToObj(i -> {
-                    List<Integer> disorderTicket = ticket.randomNumbers();
+                    List<Integer> disorderTicket = RandomNumber.gernerate();
                     List<Integer> orderedTicket = ticket.ascendingNumber(disorderTicket);
                     OutputMessage.printf(MessageType.INPUT_BUYER_FORMAT, orderedTicket);
                     return orderedTicket;

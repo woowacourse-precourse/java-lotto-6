@@ -1,11 +1,7 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 import lotto.config.exception.ExceptionType;
 import lotto.config.exception.InputException;
 import lotto.config.output.MessageType;
@@ -36,11 +32,6 @@ public class Ticket {
         return this.money / LottoConstant.PRICE_PER_TICKET;
     }
 
-    public List<Integer> randomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LottoConstant.LOTTO_START_NUMBER,
-                LottoConstant.LOTTO_END_NUMBER, LottoConstant.LOTTO_PICK_NUMBER);
-    }
-
     public List<Integer> ascendingNumber(List<Integer> numbers) {
         List<Integer> sortedNumbers = numbers.stream()
                 .sorted()
@@ -48,5 +39,4 @@ public class Ticket {
 
         return sortedNumbers;
     }
-
 }

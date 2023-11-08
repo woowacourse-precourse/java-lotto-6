@@ -1,7 +1,7 @@
 package lotto.config;
 
 import lotto.controller.LottoController;
-import lotto.domain.rule.PrizeAmount;
+import lotto.domain.constant.PrizeAmount;
 import lotto.model.LottoModel;
 import lotto.view.LottoBuyer;
 import lotto.view.LottoDrawer;

@@ -31,7 +31,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호와 결과를 비교하여 요구 사항에 맞게 반환한다.")
+    @DisplayName("로또 번호와 결과를 비교하여 요구 사항는 결과를 반환한다.")
     @Test
     void compareLottoNumWithResultNum() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));

@@ -28,27 +28,48 @@ public class Lotto {
     }
 
     public Result match(List<Integer> winnerNums, int bonusNum) {
+        int matchCount = getMatchCount(winnerNums);
+        boolean hitBonusNum = isHitBonusNum(bonusNum);
+        return getResult(matchCount, hitBonusNum);
+    }
+
+    private int getMatchCount(List<Integer> winnerNums) {
         int matchCount = 0;
-        boolean hitBonusNum = false;
         for (Integer number : numbers) {
             for (Integer winnerNum : winnerNums) {
                 if (number.equals(winnerNum)) {
                     matchCount++;
                 }
             }
+        }
+        return matchCount;
+    }
+
+    private boolean isHitBonusNum(int bonusNum) {
+        boolean hitBonusNum = false;
+        for (Integer number : numbers) {
             if (number == bonusNum) {
                 hitBonusNum = true;
+                break;
             }
         }
+        return hitBonusNum;
+    }
+
+    private Result getResult(int matchCount, boolean hitBonusNum) {
         if (matchCount == 5 && hitBonusNum) {
             return Result.FIVE_BONUS;
-        } else if (matchCount == 3) {
+        }
+        if (matchCount == 3) {
             return Result.THREE;
-        } else if (matchCount == 4) {
+        }
+        if (matchCount == 4) {
             return Result.FOUR;
-        } else if (matchCount == 5) {
+        }
+        if (matchCount == 5) {
             return Result.FIVE;
-        } else if (matchCount == 6) {
+        }
+        if (matchCount == 6) {
             return Result.SIX;
         }
         return Result.LOSE;

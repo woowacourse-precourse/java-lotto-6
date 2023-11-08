@@ -1,9 +1,12 @@
 package controller;
 
+import constant.Rank;
 import domain.*;
 import validator.LottoValidator;
 import view.Input;
 import view.Output;
+
+import java.util.HashMap;
 
 public class LottoController {
     private LottoMoney lottoMoney;
@@ -33,8 +36,8 @@ public class LottoController {
         bonusNumber = getBonusNumber();
 
         // 당첨 여부 가리기
-        winningRankController = new WinningRankController(new WinningMachine(winningNumber, bonusNumber));
-        winningRankController.run(lottos.getLottos());
+        determineWinningLottos();
+
     }
 
     private LottoMoney getLottoMeney() {
@@ -92,5 +95,18 @@ public class LottoController {
                 Output.errorMessage(error);
             }
         }
+    }
+
+    private void printResult(HashMap<Rank, Integer> result){
+        Output.printWinningStatisticMessage();
+        Output.printStatistics(result);
+    }
+
+    private void determineWinningLottos(){
+        winningRankController = new WinningRankController(new WinningMachine(winningNumber, bonusNumber));
+        HashMap<Rank, Integer> reult = winningRankController.getRankCountResult(lottos.getLottos());
+
+        // 당첨 여부 출력
+        printResult(reult);
     }
 }

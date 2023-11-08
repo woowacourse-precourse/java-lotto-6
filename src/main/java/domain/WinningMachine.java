@@ -11,6 +11,7 @@ public class WinningMachine {
         this.winningLotto = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
+
     public Rank getWinningRank(Lotto lotto){
         List<Integer> winningNumbers =  winningLotto.getNumbers();
         List<Integer> lottoNumbers = lotto.getNumbers();

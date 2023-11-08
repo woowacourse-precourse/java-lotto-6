@@ -16,16 +16,22 @@ public class WinningRankController {
         rankResult = new HashMap<Rank, Integer>();
     }
 
-    public void run(List<Lotto> lottos){
+
+    public HashMap<Rank, Integer> getRankCountResult(List<Lotto> lottos){
+        initRankResult();
         for(Lotto lotto : lottos){
-            Rank currentLottoRank = winningMachine.getWinningRank(lotto);
-            addRank(currentLottoRank);
+            Rank rank = winningMachine.getWinningRank(lotto);
+            int rankCount = rankResult.getOrDefault(rank, 0);
+            rankResult.put(rank, rankCount +1);
         }
+        return rankResult;
     }
 
-    private void addRank(Rank rank){
-        int rankCount = rankResult.getOrDefault(rank, 0);
-        rankResult.replace(rank, rankCount +1);
+    private void initRankResult() {
+        rankResult = new HashMap<>();
+        for (Rank rank : Rank.values()) {
+            rankResult.put(rank, 0);
+        }
     }
 
 

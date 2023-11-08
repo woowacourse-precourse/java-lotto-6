@@ -9,8 +9,8 @@ import lotto.view.OutputView;
 import java.util.Map;
 
 public class GameController {
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
     private int purchaseAmount;
 
     public GameController(InputView inputView, OutputView outputView) {

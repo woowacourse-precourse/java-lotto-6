@@ -1,7 +1,8 @@
 package lotto.domain;
 
 
-import lotto.constance.PrizeEnum;
+import lotto.constants.ConstNums;
+import lotto.constants.PrizeEnum;
 
 import java.util.HashMap;
 
@@ -35,17 +36,17 @@ public class LotteryDraw {
     }
 
     private void readRank(Lotto lotto, int matchedCount) {
-        if (matchedCount == 3) {
+        if (matchedCount == ConstNums.WinCondition.FIFTH.getCondition()) {
             matchCountLotto.put("FIFTH", matchCountLotto.get("FIFTH") + 1);
-        } else if (matchedCount == 4) {
+        } else if (matchedCount == ConstNums.WinCondition.FOURTH.getCondition()) {
             matchCountLotto.put("FOURTH", matchCountLotto.get("FOURTH") + 1);
-        } else if (matchedCount == 5) {
+        } else if (matchedCount == ConstNums.WinCondition.THIRD.getCondition()) {
             if (checkBonus(lotto)) {
                 matchCountLotto.put("SECOND", matchCountLotto.get("SECOND") + 1);
                 return;
             }
             matchCountLotto.put("THIRD", matchCountLotto.get("THIRD") + 1);
-        } else if (matchedCount == 6) {
+        } else if (matchedCount == ConstNums.WinCondition.FIRST.getCondition()) {
             matchCountLotto.put("FIRST", matchCountLotto.get("FIRST") + 1);
         }
     }

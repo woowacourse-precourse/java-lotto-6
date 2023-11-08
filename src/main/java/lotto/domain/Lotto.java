@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constants.ConstNums;
 import lotto.constants.ErrorMessages;
 
 import java.util.ArrayList;
@@ -25,14 +26,14 @@ public class Lotto {
 
     private void validateNumberRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (!(1 <= number && number <= 45)) {
+            if (!(ConstNums.BOUND_MIN <= number && number <= ConstNums.BOUND_MAX)) {
                 throw new IllegalArgumentException(ErrorMessages.ERR_OUT_OF_BOUND.getMessage());
             }
         }
     }
 
     private void validNumberUnique(List<Integer> numbers) {
-        boolean[] uniqueChecker = new boolean[46];
+        boolean[] uniqueChecker = new boolean[ConstNums.BOUND_MAX + 1];
         for (int number : numbers){
             if (uniqueChecker[number]) {
                 throw new IllegalArgumentException(ErrorMessages.ERR_DUPLICATED_NUMBER.getMessage());

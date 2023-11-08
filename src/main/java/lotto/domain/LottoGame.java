@@ -33,16 +33,15 @@ public class LottoGame {
         return result;
     }
 
-    private boolean matchBonus(Lotto otherLotto){
+    public boolean matchBonus(Lotto otherLotto){
         boolean check = otherLotto.contains(bonus);
         return check;
     }
 
-    private int countMatchLotto(Lotto otherLotto){
+    public int countMatchLotto(Lotto otherLotto){
         int count = otherLotto.countMatchNumbers(winningLotto);
 
         return count;
     }
-
 
 }

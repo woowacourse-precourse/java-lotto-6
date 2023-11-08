@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.function.Function;
 import lotto.constant.LottoMessage;
+import lotto.dto.BonusNumberRequest;
 import lotto.dto.LottoInfoResponse;
 import lotto.dto.PurchaseAmountRequest;
 import lotto.dto.WinningNumberRequest;
@@ -34,9 +35,10 @@ public class LottoView {
         return readUntilValidInput(inputMapper::inputToWinningNumberRequest);
     }
 
-    public void readBonusNumber() {
+    public BonusNumberRequest readBonusNumber() {
         write(LottoMessage.getEmpty());
         write(LottoMessage.getBonusNumberInputMessage());
+        return readUntilValidInput(inputMapper::inputToBonusNumberRequest);
     }
 
     private void write(String output) {

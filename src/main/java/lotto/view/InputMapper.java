@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.dto.BonusNumberRequest;
 import lotto.dto.PurchaseAmountRequest;
 import lotto.dto.WinningNumberRequest;
 import lotto.validator.InputValidator;
@@ -22,5 +23,10 @@ public class InputMapper {
                 .map(Integer::valueOf)
                 .toList()
         );
+    }
+
+    public BonusNumberRequest inputToBonusNumberRequest(String input) {
+        InputValidator.validateIsInteger(input);
+        return new BonusNumberRequest(Integer.valueOf(input));
     }
 }

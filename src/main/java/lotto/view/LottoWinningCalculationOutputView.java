@@ -29,5 +29,13 @@ public class LottoWinningCalculationOutputView {
     public void printWinningRate(WinningStatistics winningStatistics) {
         System.out.println(WINNING_RATE + winningStatistics.getWinningRate() + END);
     }
+
+    public void printInputWinningNumber() {
+        System.out.println(INPUT_WINNING_NUMBER);
+    }
+
+    public void printInputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER);
+    }
 }
 

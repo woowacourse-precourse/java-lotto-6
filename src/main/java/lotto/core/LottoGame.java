@@ -63,7 +63,6 @@ public class LottoGame {
         this.numOfLotto = numOfPurchase;
     }
 
-
     public void setWinningNumbers(List<Integer> winningNumbers) {
         this.winningLotto = new Lotto(winningNumbers);
     }

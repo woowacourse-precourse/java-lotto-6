@@ -75,7 +75,7 @@ public class LottoGameController {
         System.out.println("---");
         for (int i = Rank.values().length-1; i >= 0; i--) {
             String matchOfNumResult = makeMatchOtNumsResult(Rank.values()[i]);
-            printMatchOtNumsResult(matchOfNumResult);
+            reportMatchOtNumsResult(matchOfNumResult);
         }
     }
 
@@ -83,7 +83,7 @@ public class LottoGameController {
         System.out.println("총 수익률은 " + String.format("%.1f", (double) earning / amount * 100) + "%입니다.");
     }
 
-    private void printMatchOtNumsResult(String matchOfNumResult) {
+    private void reportMatchOtNumsResult(String matchOfNumResult) {
         System.out.println(matchOfNumResult);
     }
 

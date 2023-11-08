@@ -2,13 +2,12 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.List;
 import lotto.preprocessor.BonusNumPreprocessor;
 import lotto.preprocessor.PurchasePreprocessor;
 import lotto.preprocessor.WinningNumsPreprocessor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 class LottoGameControllerTest {
 

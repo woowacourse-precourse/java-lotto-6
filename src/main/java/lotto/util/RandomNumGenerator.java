@@ -16,5 +16,4 @@ public class RandomNumGenerator {
     public List<Integer> generate(int count) {
         return Randoms.pickUniqueNumbersInRange(startNum, endNum, count);
     }
-
 }

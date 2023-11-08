@@ -12,6 +12,10 @@ public class Amount {
         this.amount = calculateLottosAmount(amount);
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     private void validate(String amount) {
         try {
             int parsedAmount = Integer.parseInt(amount);

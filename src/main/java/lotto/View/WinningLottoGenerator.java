@@ -21,6 +21,10 @@ public class WinningLottoGenerator {
     public static List<Integer> getWinningNumbers() {
         return winningNumbers;
     }
+
+    public static Integer getBonusNumber() {
+        return bonusNumber;
+    }
     private static List<Integer> convertStringToInteger(String[] numberStrings) {
         List<Integer> winningNumbers = new ArrayList<>();
         for (String numberString : numberStrings) {
@@ -37,7 +41,11 @@ public class WinningLottoGenerator {
 
     public static Integer generateBonusNumber() {
         System.out.println(BONUS_NUMBER_MESSAGE);
-        bonusNumber = Integer.parseInt(Console.readLine());
+        try {
+            bonusNumber = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 입력된 값이 정수가 아닙니다.");
+        }
         return bonusNumber;
     }
 }

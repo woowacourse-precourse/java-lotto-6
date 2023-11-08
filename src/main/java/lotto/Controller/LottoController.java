@@ -22,8 +22,8 @@ public class LottoController {
     }
 
     public void checkWinningResult() {
-        lottoChecker = new LottoChecker(lottoBuyer.getBoughtLottos(), winningLottoGenerator.getWinningNumbers());
+        lottoChecker = new LottoChecker(lottoBuyer.getBoughtLottos(), winningLottoGenerator.getWinningNumbers(), winningLottoGenerator.getBonusNumber());
         lottoChecker.printCheckStart();
-        lottoChecker.checkWinning();
+        lottoChecker.checkWinningCounts();
     }
 }

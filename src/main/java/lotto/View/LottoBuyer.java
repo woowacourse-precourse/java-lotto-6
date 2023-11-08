@@ -18,7 +18,11 @@ public class LottoBuyer {
     private static final String LOTTO_COUNT_MESSAGE = "\n%d개를 구매했습니다.";
     public static Integer inputMoney() {
         System.out.println(LOTTO_BUY_MESSAGE);
-        money = Integer.valueOf(Console.readLine());
+        try {
+            money = Integer.valueOf(Console.readLine());
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 입력된 값이 정수가 아닙니다.");
+        }
         validateLottoPrice(money);
         return money;
     }

@@ -8,20 +8,26 @@ import org.junit.jupiter.api.Test;
 
 class LottoGroupTest {
 
+    private final String moneyValue1 = "14000";
+    private final String moneyValue2 = "1000";
+    private final int moneyCount1 = 14;
+    private final int moneyCount2 = 1;
+    private final int invalidMoneyCount = 10000;
+
     @DisplayName("구매가능한 로또의 수와 실제로 구매한 로또의 수를 비교하는 로직 - 정상시나리오")
     @Test
     void findLottoCountTest1() {
         // given
-        Money money1 = Money.from("14000");
-        Money money2 = Money.from("1000");
+        Money money1 = Money.from(moneyValue1);
+        Money money2 = Money.from(moneyValue2);
 
         // when
         LottoGroup lottoGroup1 = LottoGroup.from(money1);
         LottoGroup lottoGroup2 = LottoGroup.from(money2);
 
         // then
-        assertEquals(14, lottoGroup1.findLottoNumbersSize());
-        assertEquals(1, lottoGroup2.findLottoNumbersSize());
+        assertEquals(moneyCount1, lottoGroup1.findLottoNumbersSize());
+        assertEquals(moneyCount2, lottoGroup2.findLottoNumbersSize());
     }
 
 
@@ -29,16 +35,16 @@ class LottoGroupTest {
     @Test
     void findLottoCountTest2() {
         // given
-        Money money1 = Money.from("14000");
-        Money money2 = Money.from("1000");
+        Money money1 = Money.from(moneyValue1);
+        Money money2 = Money.from(moneyValue2);
 
         // when
         LottoGroup lottoGroup1 = LottoGroup.from(money1);
         LottoGroup lottoGroup2 = LottoGroup.from(money2);
 
         // then
-        assertNotEquals(15, lottoGroup1.findLottoNumbersSize());
-        assertNotEquals(2, lottoGroup2.findLottoNumbersSize());
+        assertNotEquals(invalidMoneyCount, lottoGroup1.findLottoNumbersSize());
+        assertNotEquals(invalidMoneyCount, lottoGroup2.findLottoNumbersSize());
     }
 
 
@@ -46,7 +52,7 @@ class LottoGroupTest {
     @Test
     void findLottoTest() {
         // given
-        Money money = Money.from("5000");
+        Money money = Money.from(moneyValue1);
         LottoGroup lottoGroup = LottoGroup.from(money);
 
         // when

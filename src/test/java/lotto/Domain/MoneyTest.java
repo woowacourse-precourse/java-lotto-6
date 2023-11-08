@@ -9,51 +9,50 @@ import org.junit.jupiter.api.Test;
 
 class MoneyTest {
 
+    private final String invalidInputMoney1 = "999";
+    private final String invalidInputMoney2 = "100001";
+    private final String invalidInputMoney3 = "1001";
+    private final String validInputMoney1 = "1000";
+    private final String validInputMoney2 = "100000";
+    private final int validMoney1 = 1000;
+    private final int validMoney2 = 100000;
+
     @DisplayName("올바른 범위에 속한 값이 아닐때 예외 발생하는 지 확인")
     @Test
     void createMoneyByOutOfRange() {
-        String inputMoney1 = "999";
-        String inputMoney2 = "100001";
-
-        assertThrows(MoneyException.class, () -> Money.from(inputMoney1));
-        assertThrows(MoneyException.class, () -> Money.from(inputMoney2));
+        assertThrows(MoneyException.class, () -> Money.from(invalidInputMoney1));
+        assertThrows(MoneyException.class, () -> Money.from(invalidInputMoney2));
     }
 
     @DisplayName("올바른 범위에 속한 값일때 정상 수행되는지 확인")
     @Test
     void createMoneyByInRange() {
         //given
-        String inputMoney1 = "1000";
-        String inputMoney2 = "100000";
 
         //when
-        Money money1 = Money.from(inputMoney1);
-        Money money2 = Money.from(inputMoney2);
+        Money money1 = Money.from(validInputMoney1);
+        Money money2 = Money.from(validInputMoney2);
 
         //then
-        assertThat(money1.getValue()).isEqualTo(1000);
-        assertThat(money2.getValue()).isEqualTo(100000);
+        assertThat(money1.getValue()).isEqualTo(validMoney1);
+        assertThat(money2.getValue()).isEqualTo(validMoney2);
     }
 
     @DisplayName("1000원 단위가 아닌 금액을 입력했을때 예외발생하는지 확인")
     @Test
     void createMoneyByNotDivisible() {
-        String inputMoney = "1001";
-
-        assertThrows(MoneyException.class, () -> Money.from(inputMoney));
+        assertThrows(MoneyException.class, () -> Money.from(invalidInputMoney3));
     }
 
     @DisplayName("1000원 단위로 금액이 입력되었을때 정상 수행되는지 확인")
     @Test
     void createMoneyByDivisible() {
         //given
-        String inputMoney = "1000";
-
         //when
-        Money money = Money.from(inputMoney);
+        Money money = Money.from(validInputMoney1);
 
         //then
-        assertThat(money.getValue()).isEqualTo(1000);
+        assertThat(money.getValue()).isEqualTo(validMoney1);
     }
 
 
@@ -61,10 +60,8 @@ class MoneyTest {
     @Test
     void createMoneyBySize() {
         //given
-        String inputMoney = "1000";
-
         //when
-        Money money = Money.from(inputMoney);
+        Money money = Money.from(validInputMoney1);
 
         //then
         assertThat(money).isNotNull();

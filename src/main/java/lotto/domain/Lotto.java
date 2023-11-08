@@ -14,6 +14,10 @@ public class Lotto {
         return numbers;
     }
 
+    public boolean hasNumber(int number) {
+        return numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);

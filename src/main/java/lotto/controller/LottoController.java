@@ -8,8 +8,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.Money;
-import lotto.domain.WinningLotto;
+import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -21,7 +22,8 @@ public class LottoController {
         Money money = inputMoney();
         List<Lotto> lottos = purchaseLottos(money.getCount());
 
-        WinningLotto winningLotto = getTotalWinningNumbers();
+        WinningNumbers winningNumbers = getTotalWinningNumbers();
+        LottoResult lottoResult = winningNumbers.checkLottos(lottos);
     }
 
     private Money inputMoney() {
@@ -57,23 +59,23 @@ public class LottoController {
         outputView.printLottos(lottos);
     }
 
-    private WinningLotto getTotalWinningNumbers() {
-        Lotto winningNumbers = getWinningLotto();
+    private WinningNumbers getTotalWinningNumbers() {
+        Lotto winningNumbers = getWinningNumbers();
         return createTotalWinningNumbers(winningNumbers);
     }
 
-    private Lotto getWinningLotto() {
+    private Lotto getWinningNumbers() {
         try {
             return new Lotto(inputView.readWinningNumbers());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return getTotalWinningNumbers();
+            return getWinningNumbers();
         }
     }
 
-    private WinningLotto createTotalWinningNumbers(Lotto lotto) {
+    private WinningNumbers createTotalWinningNumbers(Lotto lotto) {
         try {
-            return new WinningLotto(lotto, inputView.readBonusNumber());
+            return new WinningNumbers(lotto, inputView.readBonusNumber());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return createTotalWinningNumbers(lotto);

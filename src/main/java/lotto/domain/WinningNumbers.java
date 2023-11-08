@@ -5,12 +5,16 @@ import static lotto.constant.LottoConstant.MIN_LOTTO_NUMBER;
 import static lotto.constant.message.ErrorMessage.BONUS_NUMBER_DUPLICATION_ERROR;
 import static lotto.constant.message.ErrorMessage.LOTTO_NUMBER_RANGE_ERROR;
 
-public class WinningLotto extends Lotto {
+import java.util.List;
+
+public class WinningNumbers {
+    private Lotto winningLotto;
+
     private int bonusNumber;
 
-    public WinningLotto(Lotto lotto, int bonusNumber) {
-        super(lotto.getNumbers());
+    public WinningNumbers(Lotto lotto, int bonusNumber) throws IllegalArgumentException {
         validateBonusNumber(lotto, bonusNumber);
+        this.winningLotto = lotto;
         this.bonusNumber = bonusNumber;
     }
 
@@ -29,5 +33,25 @@ public class WinningLotto extends Lotto {
         if (lotto.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION_ERROR);
         }
+    }
+
+    public LottoResult checkLottos(List<Lotto> lottos) {
+        LottoResult lottoResult = new LottoResult();
+        lottos.forEach(lotto -> lottoResult.addResult(checkLotto(lotto)));
+        return lottoResult;
+    }
+
+    private Rank checkLotto(Lotto userLotto) {
+        return Rank.decideRank(countCollectNumbers(userLotto), checkBonusNumber(userLotto));
+    }
+
+    private int countCollectNumbers(Lotto lotto) {
+        return (int) this.winningLotto.getNumbers().stream()
+                .filter(lotto::hasNumber)
+                .count();
+    }
+
+    private boolean checkBonusNumber(Lotto lotto) {
+        return lotto.hasNumber(bonusNumber);
     }
 }

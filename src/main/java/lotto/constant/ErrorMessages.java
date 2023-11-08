@@ -2,9 +2,9 @@ package lotto.constant;
 
 public enum ErrorMessages {
 
-    NOT_NUMBER("입력값이 정수가 아닙니다."),
-    NOT_THOUSAND("입력한 금액이 천원 단위가 아닙니다."),
-    NOT_ENOUGH_MONEY("입력한 금액이 로또 한 장의 가격보다 적습니다."),
+    NOT_NUMBER("입력한 구입 금액이 유효하지 않습니다. 정수만 입력 가능합니다."),
+    NOT_THOUSAND("입력한 금액이 유효하지 않습니다. 1000원 단위로 입력 가능합니다."),
+    NOT_ENOUGH_MONEY("입력한 금액이 유효하지 않습니다. 1000원 이상의 금액을 입력해주세요."),
     NOT_LOTTO_NUMBER("입력한 로또 번호가 유효하지 않습니다. 쉼표로 구분한 숫자만 입력 가능합니다."),
     NOT_SIX("입력한 로또 번호가 유효하지 않습니다. 6개의 숫자를 입력해주세요."),
     NOT_IN_RANGE("입력한 로또 번호가 유효하지 않습니다. 1부터 45까지의 숫자만 입력 가능합니다.");

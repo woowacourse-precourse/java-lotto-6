@@ -50,7 +50,7 @@ public class WinningStatics {
 
     public float getRateOfReturn(int purchasePrice) {
         int totalReward = getTotalReward();
-        return (float) totalReward/purchasePrice;
+        return (float) totalReward/purchasePrice * 100;
     }
 
     private int getTotalReward() {

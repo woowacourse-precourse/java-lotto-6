@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.Message.ErrorMessage;
 import lotto.domain.Lotto;
+import lotto.domain.Money;
 import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -67,12 +68,11 @@ class LottoTest {
     @DisplayName("돈은 1000원 단위가 들어와야 한다. ")
     @ParameterizedTest
     @ValueSource(ints = {1111,1113,1114})
-    void createMinusNumberWithBonusAndLottoNumber(int lottoNumber) {
+    void createMoneyCheck1000(int inputMoney) {
         //given
-        List<Integer> lottoNumbers = List.of(lottoNumber, 2, 3, 4, 5, 6);
-        int bonusNumber = lottoNumber;
+        int money = inputMoney;
         // when //then
-        assertThatThrownBy(() -> new WinningLotto(lottoNumbers, bonusNumber))
+        assertThatThrownBy(() -> new Money(money))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -30,7 +30,6 @@ public class GameController {
     private Money insertMoney(){
         consoleLine(GameMessage.OUT_REQUEST_MONEY_MESSAGE);
         Money count = new Money(Integer.parseInt(Input.consoleLine()));
-        count.checkmoney();
         consoleLine("");
         return count;
     }

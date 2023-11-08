@@ -12,15 +12,16 @@ public class Money {
 
         public Money(int money) {
             this.money = money;
+            checkmoney(money);
         }
 
-        public void checkmoney() {
-            if (this.money % 1000 != 0) {
+        public void checkmoney(int inputMoney) {
+            if (inputMoney % 1000 != 0) {
                 throw new IllegalArgumentException(ErrorMessage.MONEY_SHOULD_BE_1000.toString());
-            } else if (this.money < 0) {
+            } else if (inputMoney < 0) {
                 throw new IllegalArgumentException(ErrorMessage.MONEY_SHOUD_BE_POSITIVE_NUMBER.toString());
-            } else if (this.money % 1000 == 0) {
-                this.count = this.money / 1000;
+            } else if (inputMoney % 1000 == 0) {
+                this.count = inputMoney / 1000;
             }
         }
 

@@ -12,7 +12,6 @@ public class LottoService {
     static final int START_NUMBER = 1;
     static final int END_NUMBER = 45;
     static final int COUNT_NUMBER = 6;
-    static final String ERROR_MESSAGE = "[ERROR] ";
 
     int getInput() {
         int parsedInput;
@@ -30,7 +29,7 @@ public class LottoService {
 
         List<String> splitedInput = Arrays.asList(input.split(","));
 
-//        validator.validateInputForNumbers(splitedInput, COUNT_NUMBER);
+        // validator.validateInputForNumbers(splitedInput, COUNT_NUMBER);
 
         for (int i = 0; i < splitedInput.size(); i++) {
             parsedInput.add(Integer.parseInt(splitedInput.get(i)));

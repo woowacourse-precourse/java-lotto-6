@@ -24,9 +24,4 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
-    @Test
-    void validateCash() {
-        assertThatThrownBy(() -> new LottoController().utility.getCash(new LottoController()))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }

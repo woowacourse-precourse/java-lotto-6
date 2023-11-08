@@ -10,7 +10,9 @@ public enum ExceptionMessage {
     BONUS_NUMBER_DUPLICATE("보너스 번호는 당첨 번호와 중복될 수 없습니다."),
 
     PURCHASE_AMOUNT_NOT_DIVIDED("구매 금액은 " + LottoPrice.THOUSAND_WON.getPrice() + "원 단위로 입력해주세요."),
-    LOTTOS_COUNT_MISMATCH_COUNT("로또의 개수가 구매한 개수와 일치하지 않습니다.");
+    LOTTOS_COUNT_MISMATCH_COUNT("로또의 개수가 구매한 개수와 일치하지 않습니다."),
+
+    INPUT_NOT_NUMBER("숫자만 입력하실 수 있습니다.");
 
     private static final String prefix = "[ERROR] ";
     private final String message;

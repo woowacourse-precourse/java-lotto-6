@@ -33,7 +33,11 @@ public class OutputView {
 
     public static void printLottos(Lottos lottos) {
         lottos.getLottos()
-            .forEach(l -> System.out.println(l.getLottoNumbers()));
+            .stream()
+            .map(lotto -> lotto.getLottoNumbers())
+            .map(lottoNumbers -> lottoNumbers.stream().sorted().toList())
+            .forEach(lottoNumbers -> System.out.println(lottoNumbers));
+
         printEmptyLine();
     }
 

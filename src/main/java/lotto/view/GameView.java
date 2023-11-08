@@ -8,4 +8,8 @@ public class GameView {
     public static void printAmountInputPhrase() {
         System.out.println(Phrase.AMOUNT_INPUT.getPrintPhrase());
     }
+
+    public static void printPurchaseCountOutputPhrase(int num) {
+        System.out.println(num + Phrase.PURCHASE_COUNT_OUTPUT.getPrintPhrase());
+    }
 }

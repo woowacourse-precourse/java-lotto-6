@@ -13,6 +13,7 @@ public enum Message {
             "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n" +
             "6개 일치 (2,000,000,000원) - %d개\n"),
     PRINT_PROFIT_RATE("총 수익률은 %.1f%%입니다.\n"),
+    PRINT_BOUGHT_LOTTO_AMOUNT("%d개를 구매했습니다.\n"),
     ;
 
     private String message;

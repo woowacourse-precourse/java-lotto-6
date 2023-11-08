@@ -2,6 +2,7 @@ package lotto.company;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.broadcaster.Broardcaster;
+import lotto.message.Message;
 
 import java.util.*;
 
@@ -25,7 +26,7 @@ public class LottoCompany implements Company {
 
     @Override
     public void printLottoList(List<Lotto> lottos) {
-        System.out.printf("%d개를 구매했습니다.\n", lottos.size());
+        System.out.printf(String.valueOf(Message.PRINT_BOUGHT_LOTTO_AMOUNT), lottos.size());
         lottos.stream()
             .map(lotto -> lotto.getNumbers())
             .forEach(System.out::println);

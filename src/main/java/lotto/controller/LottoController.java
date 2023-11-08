@@ -1,12 +1,12 @@
 package lotto.controller;
 
-import lotto.constant.InputMessage;
 import lotto.model.Lotto;
 import lotto.model.RandomSixNumber;
 import lotto.model.User;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
@@ -33,6 +33,8 @@ public class LottoController {
                 outputView.printErrorMessage(e);
             }
         }
+        List<List<Integer>> RandomSixNumbers = generatePurchaseAmountRandomSixNumber(purchaseAmount);
+        outputView.printRandomSixNumbers(RandomSixNumbers);
         while (true) {
             inputView.inputLottoNumbersView();
             try {
@@ -52,5 +54,16 @@ public class LottoController {
                 outputView.printErrorMessage(e);
             }
         }
+    }
+
+    private List<List<Integer>> generatePurchaseAmountRandomSixNumber(int purchaseAmount) {
+        int amount = purchaseAmount / 1000;
+        RandomSixNumber randomSixNumber = new RandomSixNumber();
+        List<List<Integer>> randomSixNumbers = new ArrayList<>();
+        for (int round = 1; round <= amount; round++) {
+            List<Integer> sixNumber = randomSixNumber.generate();
+            randomSixNumbers.add(sixNumber);
+        }
+        return randomSixNumbers;
     }
 }

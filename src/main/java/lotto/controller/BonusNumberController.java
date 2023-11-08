@@ -9,6 +9,7 @@ import lotto.view.LottoView;
 public class BonusNumberController {
 
     private LottoView lottoView = new LottoView();
+
     public Bonus runBonusNumber(Lotto winningNumber){
         int bonusNum;
         while(true){

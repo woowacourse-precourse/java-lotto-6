@@ -27,4 +27,8 @@ public class LottoPurchaseMoney {
         }
     }
 
+    public int getNumberOfLottoAvailableForPurchase() {
+        return money / LOTTO_PRICE;
+    }
+
 }

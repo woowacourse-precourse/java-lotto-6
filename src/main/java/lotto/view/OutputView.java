@@ -9,6 +9,7 @@ import static lotto.util.OutputEnum.ROI_OUTPUT_PREFIX;
 import static lotto.util.OutputEnum.ROI_OUTPUT_SUFFIX;
 import static lotto.util.OutputEnum.SECOND_OUTPUT;
 import static lotto.util.OutputEnum.THIRD_OUTPUT;
+import static lotto.util.OutputEnum.WINNING_RESULT_OUTPUT;
 
 import lotto.domain.WinningResult;
 import lotto.domain.lotto.Lotto;
@@ -28,6 +29,7 @@ public class OutputView {
     }
 
     public void printWinningResult(WinningResult result) {
+        System.out.println(WINNING_RESULT_OUTPUT.message());
         System.out.println(buildWinningResult(FIFTH_OUTPUT, result.getFifthPrizeCount()));
         System.out.println(buildWinningResult(FOURTH_OUTPUT, result.getFourthPrizeCount()));
         System.out.println(buildWinningResult(THIRD_OUTPUT, result.getThirdPrizeCount()));

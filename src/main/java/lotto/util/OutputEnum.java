@@ -3,6 +3,7 @@ package lotto.util;
 public enum OutputEnum {
 
     PUBLISHED_LOTTO_COUNT_OUTPUT("개를 구매했습니다."),
+    WINNING_RESULT_OUTPUT("당첨 통계\n---"),
     FIRST_OUTPUT("6개 일치 (2,000,000,000원) - "),
     SECOND_OUTPUT("5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     THIRD_OUTPUT("5개 일치 (1,500,000원) - "),

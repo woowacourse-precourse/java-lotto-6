@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 
 class LottoCheckerTest {
 
+    private final LottoChecker lottoChecker = new LottoChecker();
+
     @Test
     @DisplayName("로또 1등 검증")
     void findWinningLottosFirst() {
@@ -19,7 +21,6 @@ class LottoCheckerTest {
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7);
 
-        LottoChecker lottoChecker = new LottoChecker();
         LottoResult lottoResult = lottoChecker.findWinningLottos(List.of(lotto), winningNumbers, bonusNumber);
 
         Assertions.assertThat(lottoResult.getLottoRanks())
@@ -33,7 +34,6 @@ class LottoCheckerTest {
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 7));
         BonusNumber bonusNumber = new BonusNumber(6);
 
-        LottoChecker lottoChecker = new LottoChecker();
         LottoResult lottoResult = lottoChecker.findWinningLottos(List.of(lotto), winningNumbers, bonusNumber);
 
         Assertions.assertThat(lottoResult.getLottoRanks())
@@ -47,7 +47,6 @@ class LottoCheckerTest {
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 7));
         BonusNumber bonusNumber = new BonusNumber(10);
 
-        LottoChecker lottoChecker = new LottoChecker();
         LottoResult lottoResult = lottoChecker.findWinningLottos(List.of(lotto), winningNumbers, bonusNumber);
 
         Assertions.assertThat(lottoResult.getLottoRanks())
@@ -61,7 +60,6 @@ class LottoCheckerTest {
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 8, 7));
         BonusNumber bonusNumber = new BonusNumber(10);
 
-        LottoChecker lottoChecker = new LottoChecker();
         LottoResult lottoResult = lottoChecker.findWinningLottos(List.of(lotto), winningNumbers, bonusNumber);
 
         Assertions.assertThat(lottoResult.getLottoRanks())
@@ -75,7 +73,6 @@ class LottoCheckerTest {
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 9, 8, 7));
         BonusNumber bonusNumber = new BonusNumber(10);
 
-        LottoChecker lottoChecker = new LottoChecker();
         LottoResult lottoResult = lottoChecker.findWinningLottos(List.of(lotto), winningNumbers, bonusNumber);
 
         Assertions.assertThat(lottoResult.getLottoRanks())
@@ -90,7 +87,6 @@ class LottoCheckerTest {
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 11, 9, 8, 7));
         BonusNumber bonusNumber = new BonusNumber(10);
 
-        LottoChecker lottoChecker = new LottoChecker();
         LottoResult lottoResult = lottoChecker.findWinningLottos(List.of(lotto), winningNumbers, bonusNumber);
 
         Assertions.assertThat(lottoResult.getLottoRanks())
@@ -105,12 +101,10 @@ class LottoCheckerTest {
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(10);
 
-        LottoChecker lottoChecker = new LottoChecker();
         LottoResult lottoResult = lottoChecker.findWinningLottos(List.of(lotto, lotto2), winningNumbers, bonusNumber);
 
         Assertions.assertThat(lottoResult.getLottoRanks())
                 .containsExactly(LottoRank.FIRST_PLACE, LottoRank.NO_LUCK);
     }
-
 
 }

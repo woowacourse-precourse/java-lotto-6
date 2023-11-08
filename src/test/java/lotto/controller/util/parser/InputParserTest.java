@@ -7,10 +7,11 @@ import org.junit.jupiter.api.Test;
 
 class InputParserTest {
 
+    private final InputParser inputParser = new InputParser();
+
     @Test
     @DisplayName("정상 금액 변환")
     public void parseMoney() {
-        InputParser inputParser = new InputParser();
         String money = "8000";
 
         int moneyInt = inputParser.parseMoney(money);
@@ -21,7 +22,6 @@ class InputParserTest {
     @Test
     @DisplayName("숫자가 아닌 금액 변환")
     public void parseMoneyFail() {
-        InputParser inputParser = new InputParser();
         String money = "8000j";
 
         Assertions.assertThatThrownBy(() -> inputParser.parseMoney(money))
@@ -31,7 +31,6 @@ class InputParserTest {
     @Test
     @DisplayName("정상 로또 번호 변환")
     public void parseLottoNumber() {
-        InputParser inputParser = new InputParser();
         String lotto = "1,2,3,4,5,6";
 
         List<Integer> lottoNumbers = inputParser.parseLottoNumbers(lotto);
@@ -43,7 +42,6 @@ class InputParserTest {
     @Test
     @DisplayName("잘못된 로또 번호 변환")
     public void parseLottoNumberFail() {
-        InputParser inputParser = new InputParser();
         String lotto = "1,2,3,4,5,a";
 
         Assertions.assertThatThrownBy(() -> inputParser.parseLottoNumbers(lotto))
@@ -53,7 +51,6 @@ class InputParserTest {
     @Test
     @DisplayName("정상 보너스 번호 변환")
     public void parseBonusNumber() {
-        InputParser inputParser = new InputParser();
         String bonusNumber = "45";
 
         Integer bonusNumberInt = inputParser.parseBonusNumber(bonusNumber);
@@ -65,7 +62,6 @@ class InputParserTest {
     @Test
     @DisplayName("잘못된 보너스 번호 변환")
     public void parseBonusNumberFail() {
-        InputParser inputParser = new InputParser();
         String bonusNumber = "45a";
 
         Assertions.assertThatThrownBy(() -> inputParser.parseBonusNumber(bonusNumber))

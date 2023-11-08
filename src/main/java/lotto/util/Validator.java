@@ -7,6 +7,7 @@ import static lotto.util.ErrorMessage.*;
 
 public class Validator {
 
+
     public static void validateAmount(String amountInput){
         validateNumericInput(amountInput);
         validateLottoPurchaseAmount(amountInput);
@@ -27,10 +28,18 @@ public class Validator {
 
     public static void validateWinningNumber(String winningNumberStr){
         String[] winningNumbers = winningNumberStr.split(",");
+        validateNumberCount(winningNumbers);
+
         Arrays.stream(winningNumbers).forEach((number)->{
             validateNumericInput(number);
             validateNumberInRange(Integer.parseInt(number));
         });
+    }
+
+    private static void validateNumberCount(String[] numbers){
+        if(numbers.length!=LOTTO_NUMBER_COUNT){
+            throw new IllegalArgumentException(INVALID_NUMBER_COUNT.getMessage());
+        }
     }
 
     public static void validateBonusNumber(String bonusNumberStr){

@@ -32,7 +32,7 @@ public class LottoStore {
         StringBuilder sb = new StringBuilder();
         sb.append("당첨 통계\n---\n");
 
-        for (int i = lottoResult.length-1; i > 0; i--) {
+        for (int i = lottoResult.length - 1; i > 0; i--) {
             sb.append(getLottoMatchMessage(i, lottoResult[i]));
         }
         sb.append("총 수익률은 ").append(rateOfReturn).append("%입니다.");
@@ -54,7 +54,7 @@ public class LottoStore {
         sb.append(count);
         sb.append("개");
 
-        return sb.toString()+"\n";
+        return sb.toString() + "\n";
     }
 
     private boolean isSecondPrize(int rank) {

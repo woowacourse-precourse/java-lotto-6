@@ -49,4 +49,15 @@ public class LottoController {
             }
         }
     }
+
+    private int inputBonusNumber(WinningNumber winningNumber) {
+        while (true) {
+            try {
+                outputView.printBonusNumberMessage();
+                return inputView.getBonusNumber(winningNumber.getNumbers());
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorCode(e.getMessage());
+            }
+        }
+    }
 }

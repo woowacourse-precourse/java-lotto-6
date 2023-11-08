@@ -18,19 +18,19 @@ enum WinningDetails {
     MISS(0, 0,
             (matchCount, isBonusNumberMatch) -> matchCount < 3);
 
-    private int matchCount;
+    private int countOfSameNumber;
     private long prize;
-    private BiPredicate<Integer, Boolean> matchingPrize;
+    private BiPredicate<Integer, Boolean> rankDeterminer;
 
-    WinningDetails (int matchCount, long prize, BiPredicate<Integer, Boolean> matchingPrize) {
-        this.matchCount = matchCount;
+    WinningDetails (int countOfSameNumber, long prize, BiPredicate<Integer, Boolean> rankDeterminer) {
+        this.countOfSameNumber = countOfSameNumber;
         this.prize = prize;
-        this.matchingPrize = matchingPrize;
+        this.rankDeterminer = rankDeterminer;
     }
 
     public WinningDetails getRank(final int matchCount, Boolean containBonusNumber) {
         return Arrays.stream(WinningDetails.values())
-                .filter(rank -> rank.matchingPrize.test(matchCount, containBonusNumber))
+                .filter(rank -> rank.rankDeterminer.test(matchCount, containBonusNumber))
                 .findAny()
                 .orElse(MISS);
     }
@@ -40,7 +40,6 @@ public class Calculate {
     private List<Lotto> lottos;
     private List<Integer> answer;
     private int bonus;
-    private int[] rank = new int[7];
 
     public Calculate(List<Lotto> lottos, List<Integer> answer, int bonus) {
         this.lottos = lottos;
@@ -61,21 +60,12 @@ public class Calculate {
     public void countAll() {
         for (int i = 0; i < lottos.size(); i++) {
             int cnt = count(lottos.get(i).getLotto());
-            if (cnt == 6) rank[1] += 1;
-            else if (cnt == 5) {
-                rank[containBonus(lottos.get(i).getLotto())] += 1;
-            }
-            else if (cnt == 4) rank[4] += 1;
-            else if (cnt == 3) rank[5] += 1;
-            else if (cnt < 3) rank[0] += 1;
+
         }
     }
 
-    public int containBonus(List<Integer> lotto) {
-        if (lotto.contains(bonus)) {
-            return 2;
-        }
-        return 3;
+    public boolean containBonus(List<Integer> lotto) {
+        return lotto.contains(bonus);
     }
 
     public int[] getRank() {

@@ -59,7 +59,7 @@ public enum LottoRank {
         this.money = money;
     }
 
-    public LottoRank findByMatchCountAndBonus(int count, boolean isBonusMatch) {
+    public static LottoRank findRankByMatchCountAndBonus(int count, boolean isBonusMatch) {
         if (isBonusMatch) {
             return BONUS_LOTTO_RANKS.stream()
                     .filter(match ->

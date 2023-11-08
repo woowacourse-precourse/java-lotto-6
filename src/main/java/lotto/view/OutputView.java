@@ -3,7 +3,7 @@ package lotto.view;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.constants.OutputConstants;
-import lotto.domain.MatchNumber;
+import lotto.domain.LottoRank;
 import lotto.dto.AutoLottoDto;
 
 public class OutputView {
@@ -11,11 +11,6 @@ public class OutputView {
     private final static String WINNING_COUNT_MESSAGE = "당첨 통계\n---\n";
     private final static String RATEOFRESULT_START_MESSAGE = "총 수익률은 %.1f";
     private final static String RATEOFRESULT_END_MESSAGE = "%입니다.";
-
-
-    public static void printException(String errorMessage) {
-        System.out.println(errorMessage);
-    }
 
     public static void printAutoLottos(final AutoLottoDto autoLottos, final int lottoCount) {
         System.out.printf(String.format(AUTO_BUY_MESSAGE, lottoCount));
@@ -34,8 +29,8 @@ public class OutputView {
     public static void printResultCount(final List<Integer> matchCount) {
         System.out.printf(String.format(WINNING_COUNT_MESSAGE));
         StringBuilder result;
-        for (int i = 0; i < MatchNumber.getMembers().size(); i++) {
-            MatchNumber match = MatchNumber.getMembers().get(i);
+        for (int i = 0; i < LottoRank.getMembers().size(); i++) {
+            LottoRank match = LottoRank.getMembers().get(i);
             result = new StringBuilder();
             result.append(match.getResultMessage()).append(OutputConstants.SPACE.getConstants());
             result.append(match.getMoneyMessage());

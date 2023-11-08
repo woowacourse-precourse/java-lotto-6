@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -16,7 +15,7 @@ class LottoRankTest {
         // given
         int count = 3;
         // when
-        LottoRank lottoRank = LottoRank.findByMatchCountAndBonus(count, isBonusMatch);
+        LottoRank lottoRank = LottoRank.findRankByMatchCountAndBonus(count, isBonusMatch);
         // then
         assertThat(lottoRank).isEqualTo(LottoRank.FIFTH);
     }
@@ -27,7 +26,7 @@ class LottoRankTest {
         // given
         int count = 4;
         // when
-        LottoRank lottoRank = LottoRank.findByMatchCountAndBonus(count, isBonusMatch);
+        LottoRank lottoRank = LottoRank.findRankByMatchCountAndBonus(count, isBonusMatch);
         // then
         assertThat(lottoRank).isEqualTo(LottoRank.FOURTH);
     }
@@ -38,7 +37,7 @@ class LottoRankTest {
         int count = 5;
         boolean isBonusMatch = false;
         // when
-        LottoRank lottoRank = LottoRank.findByMatchCountAndBonus(count, isBonusMatch);
+        LottoRank lottoRank = LottoRank.findRankByMatchCountAndBonus(count, isBonusMatch);
         // then
         assertThat(lottoRank).isEqualTo(LottoRank.THIRD);
     }
@@ -49,7 +48,7 @@ class LottoRankTest {
         int count = 5;
         boolean isBonusMatch = true;
         // when
-        LottoRank lottoRank = LottoRank.findByMatchCountAndBonus(count, isBonusMatch);
+        LottoRank lottoRank = LottoRank.findRankByMatchCountAndBonus(count, isBonusMatch);
         // then
         assertThat(lottoRank).isEqualTo(LottoRank.SECOND);
     }
@@ -60,7 +59,7 @@ class LottoRankTest {
         // given
         int count = 6;
         // when
-        LottoRank lottoRank = LottoRank.findByMatchCountAndBonus(count, isBonusMatch);
+        LottoRank lottoRank = LottoRank.findRankByMatchCountAndBonus(count, isBonusMatch);
         // then
         assertThat(lottoRank).isEqualTo(LottoRank.FIRST);
     }
@@ -69,23 +68,9 @@ class LottoRankTest {
     @CsvSource(value = {"1, true", "0, false", "2, false"})
     void findByMatchCountAndBonus_일치하는_등수_못찾으면_NOTHING반환(int count, boolean isBonusMatch) {
         // when
-        LottoRank lottoRank = LottoRank.findByMatchCountAndBonus(count, isBonusMatch);
+        LottoRank lottoRank = LottoRank.findRankByMatchCountAndBonus(count, isBonusMatch);
         // then
         assertThat(lottoRank).isEqualTo(LottoRank.NOTHING);
-    }
-
-    @Test
-    void totalCountOfMatchNumber는_등수별_당첨개수를_센다() {
-        // given
-        List<LottoRank> matchs = List.of(LottoRank.NOTHING, LottoRank.FIFTH, LottoRank.FIRST);
-        // when
-        List<Integer> result = LottoRank.totalCountOfMatchNumber(matchs);
-        // then
-        assertThat(result.get(LottoRank.FIFTH.getListIndex())).isEqualTo(1);
-        assertThat(result.get(LottoRank.FOURTH.getListIndex())).isEqualTo(0);
-        assertThat(result.get(LottoRank.THIRD.getListIndex())).isEqualTo(0);
-        assertThat(result.get(LottoRank.SECOND.getListIndex())).isEqualTo(0);
-        assertThat(result.get(LottoRank.FIRST.getListIndex())).isEqualTo(1);
     }
 
 }

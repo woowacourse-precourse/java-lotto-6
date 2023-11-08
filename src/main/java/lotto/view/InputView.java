@@ -17,4 +17,10 @@ public class InputView {
         String inputLottoNumbers = Console.readLine();
         return inputLottoNumbers;
     }
+
+    public String getInputBonusNumber() {
+        System.out.println(IOMessage.INPUT_BONUS_NUMBER_MESSAGE);
+        String inputBonusNumber = Console.readLine();
+        return inputBonusNumber;
+    }
 }

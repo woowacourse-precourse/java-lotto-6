@@ -38,8 +38,20 @@ public class View {
                 String inputLottoNumbers = inputView.getInputLottoNumbers();
                 outputView.printLine();
                 return IntegerParser.parse(Arrays.asList(inputLottoNumbers.split(",")));
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
+            } catch (NumberFormatException e) {
+                outputView.printErrorMessage(ErrorMessage.NOT_INTEGER_ERROR);
+            }
+        }
+    }
+
+    public int getBonusNumber() {
+        while (true) {
+            try {
+                String inputBonusNumber = inputView.getInputBonusNumber();
+                outputView.printLine();
+                return IntegerParser.parse(inputBonusNumber);
+            } catch (NumberFormatException e) {
+                outputView.printErrorMessage(ErrorMessage.NOT_INTEGER_ERROR);
             }
         }
     }

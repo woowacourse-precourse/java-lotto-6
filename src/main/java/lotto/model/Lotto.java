@@ -38,4 +38,10 @@ public class Lotto {
         return numbers.stream().map(String::valueOf)
                 .collect(Collectors.joining(", "));
     }
+
+    public void validateBonusNumber(int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS_NUMBER_ERROR);
+        }
+    }
 }

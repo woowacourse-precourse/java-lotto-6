@@ -10,6 +10,16 @@ public class Application {
 
     public static final int NUM_OF_LOTTO_NUMBERS = 6;
 
+    public static class Winner {
+        List<Integer> winnigNums = new ArrayList<Integer>();
+        int bonusNum = 0;
+
+        public Winner() {
+            this.winnigNums = new ArrayList<Integer>();
+            this.bonusNum = 0;
+        }
+    }
+
     public static int strToNum(String inp) {
         int num;
 
@@ -75,6 +85,7 @@ public class Application {
         // TODO: 프로그램 구현
         int lottoCount;
         Lotto[] lottos;
+        Winner winner;
         
         lottoCount = buying();
         lottos = getLottos(lottoCount);

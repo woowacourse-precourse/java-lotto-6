@@ -115,8 +115,8 @@
 ## 테스트
 
 ### 예외처리 테스트
-- [ ] LottoTest
-- [o] LottoPurchaseTest 
+- [o] LottoPurchaseTest
+- [O] LottoAdditionalTest
 - [ ] LottoBonusTest
 
 ### 기능 테스트

@@ -2,6 +2,10 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Input {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
@@ -18,5 +22,13 @@ public class Input {
         }
     }
 
+    public List<Integer> getWinningNumber(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> numbers = Arrays
+                .stream(Console.readLine().split(","))
+                .map(number-> Integer.parseInt(number.trim()))
+                .collect(Collectors.toList());
+        return numbers;
+    }
 
 }

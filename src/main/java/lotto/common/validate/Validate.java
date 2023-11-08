@@ -18,21 +18,21 @@ public class Validate {
         notThousandUnit(price);
     }
 
-    public static void inputSixHitLottoNumberValidate(List<String> lottoNumbers) {
+    public static void inputLottoNumberValidate(List<String> lottoNumbers) {
         notNumbers(lottoNumbers);
     }
 
-    public static void sixHitLottoNumberValidate(List<Integer> lottoNumbers) {
+    public static void lottoDomainValidate(List<Integer> lottoNumbers) {
         overInput(lottoNumbers);
         outOfNumberRange(lottoNumbers);
         overlapInput(lottoNumbers);
     }
 
-    public static void inputBonusHitLottoNumberValidate(String bonusNumber) {
+    public static void inputBonusLottoNumberValidate(String bonusNumber) {
         notNumber(bonusNumber);
     }
 
-    public static void bonusHitLottoNumberValidate(int bonusNumber) {
+    public static void bonusDomainValidate(int bonusNumber) {
         outOfNumber(bonusNumber);
     }
 

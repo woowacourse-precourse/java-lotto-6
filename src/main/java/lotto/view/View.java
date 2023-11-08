@@ -44,7 +44,7 @@ public class View {
 
     public List<Integer> inputLottoNumber() {
         List<String> inputSixNumber = Utils.stringToStringList(inputConsole());
-        Validate.inputSixHitLottoNumberValidate(inputSixNumber);
+        Validate.inputLottoNumberValidate(inputSixNumber);
         return Utils.stringListToIntegerList(inputSixNumber);
     }
 
@@ -54,7 +54,7 @@ public class View {
 
     public int inputBonusNumber() {
         String inputBonusNumber = inputConsole();
-        Validate.inputBonusHitLottoNumberValidate(inputBonusNumber);
+        Validate.inputBonusLottoNumberValidate(inputBonusNumber);
         return Integer.parseInt(inputBonusNumber);
     }
 

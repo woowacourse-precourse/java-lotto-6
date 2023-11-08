@@ -13,7 +13,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         try {
-            Validate.sixHitLottoNumberValidate(numbers);
+            Validate.lottoDomainValidate(numbers);
         } catch (IllegalArgumentException e){
             throw new IllegalArgumentException();
         }

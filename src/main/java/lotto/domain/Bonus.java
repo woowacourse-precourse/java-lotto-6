@@ -12,7 +12,7 @@ public class Bonus {
 
     private void validate(int number) {
         try {
-            Validate.bonusHitLottoNumberValidate(number);
+            Validate.bonusDomainValidate(number);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException();
         }

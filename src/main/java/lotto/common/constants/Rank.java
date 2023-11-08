@@ -1,8 +1,5 @@
 package lotto.common.constants;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public enum Rank {
     FIRST_RANK("1st"),
     SECOND_RANK("2nd"),

@@ -14,10 +14,9 @@ public class LottoNumberGenerator {
     }
 
     public List<Integer> makeLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+        return Randoms.pickUniqueNumbersInRange(
                 LottoNumConstant.MIN_LOTTO_NUMBER_BOUND.getValue(),
                 LottoNumConstant.MAX_LOTTO_NUMBER_BOUND.getValue(),
                 LottoNumConstant.VALID_LOTTO_NUMBER_NUM.getValue());
-        return numbers;
     }
 }

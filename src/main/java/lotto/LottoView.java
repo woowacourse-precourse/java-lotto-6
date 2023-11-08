@@ -2,12 +2,15 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoView {
 
     public int price;
     public int number;
+    public String winNumber;
 
     public void inputPrice(){
         System.out.println("구입금액을 입력해 주세요.");
@@ -35,6 +38,10 @@ public class LottoView {
         System.out.println(randomNumbers);
     }
 
+    public void inputWinNumber(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        winNumber = Console.readLine();
+    }
 
 
 }

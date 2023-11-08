@@ -29,4 +29,8 @@ public class Lottos {
     private static void sort(List<Integer> randomLotto) {
         randomLotto.sort(Comparator.naturalOrder());
     }
+
+    public List<List<Integer>> getLottos() {
+        return lottos;
+    }
 }

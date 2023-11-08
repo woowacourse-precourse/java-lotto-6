@@ -14,7 +14,7 @@ public class Money {
 
     private void validate(int money) {
         if (money % DIVIDE_AMOUNT != 0) {
-            throw new IllegalArgumentException(MONEY_UNIT_ERROR_MESSAGE.getMessage());
+            throw new IllegalArgumentException();
         }
     }
 

@@ -14,4 +14,8 @@ public class OutPutView {
         System.out.println();
     }
 
+    public void printResult(String result) {
+        System.out.println(OutPutMessage.WINNING_STATISTICS_MESSAGE.getValue());
+        System.out.println(result);
+    }
 }

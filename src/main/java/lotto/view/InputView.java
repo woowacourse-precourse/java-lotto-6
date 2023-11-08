@@ -59,6 +59,8 @@ public class InputView {
                 .toList();
         inputNumbers.forEach(Validator::validateNumber);
         LottoNumbersValidator.validate(convertToNumbers(inputNumbers));
+        System.out.println();
+
         return convertToNumbers(inputNumbers);
     }
 
@@ -68,6 +70,8 @@ public class InputView {
         Validator.validateNumber(inputNumber);
 
         BonusNumberValidator.validate(lotto,Integer.parseInt(inputNumber));
+        System.out.println();
+
         return Integer.parseInt(inputNumber);
     }
 

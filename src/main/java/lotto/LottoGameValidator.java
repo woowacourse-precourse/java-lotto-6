@@ -36,7 +36,7 @@ public class LottoGameValidator {
     }
 
     private static void validateLottoDuplicate(List<Integer> numbers) {
-        Set<Integer> nonDuplicateNumbers = new HashSet<>();
+        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
         if (nonDuplicateNumbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호들은 중복될 수 없습니다.");
         }

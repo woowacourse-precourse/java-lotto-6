@@ -45,13 +45,15 @@ public class Application {
 
     public static Lotto generateRandomLottoTicket() {
         List<Integer> numbers = new ArrayList<>();
-        while (numbers.size() < LOTTO_SIZE) {
-            int randomNumber = Randoms.pickNumberInRange(1, 45);
-            if (!numbers.contains(randomNumber)) {
-                numbers.add(randomNumber);
-            }
+        int randomNumber;
+        for (int i = 0; i < LOTTO_SIZE; i++) {
+            do {
+                randomNumber = Randoms.pickNumberInRange(1, 45);
+            } while (numbers.contains(randomNumber));
+            numbers.add(randomNumber);
         }
         numbers.sort(Comparator.naturalOrder());
+        System.out.println(numbers);
         return new Lotto(numbers);
     }
 

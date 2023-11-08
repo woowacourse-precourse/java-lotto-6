@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
-import java.util.stream.IntStream;
+import java.util.stream.Collectors;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -29,46 +29,28 @@ public class RunApplication {
         List<List<Integer>> myLottoNumbers = getMyLottoNumbers(numberOfLotto);
         List<Integer> lottoNumbers = getLottoNumbers();
         int bonus = getBonus(lottoNumbers);
-        List<Integer> ranks = getRanks(numberOfLotto, lottoNumbers, bonus, myLottoNumbers);
+        Map<LottoRank, Integer> ranks = getRanks(numberOfLotto, lottoNumbers, bonus, myLottoNumbers);
         getResult(costOfLotto, ranks);
     }
 
-    private void getResult(int costOfLotto, List<Integer> ranks) {
+    private void getResult(int costOfLotto, Map<LottoRank, Integer> ranks) {
         System.out.println("당첨 통계");
         System.out.println("---");
         double profit = 0.0;
-        for (int i = 0; i < NUMBER_OF_RANKS; i++) {
-            if (i == 0){
-                System.out.println(LottoRank.five.getResult(ranks.get(i)));
-                profit += LottoRank.five.getWinningPrice() * ranks.get(i);
-            }
-            if (i == 1){
-                System.out.println(LottoRank.four.getResult(ranks.get(i)));
-                profit += LottoRank.four.getWinningPrice() * ranks.get(i);
-            }
-            if (i == 2){
-                System.out.println(LottoRank.three.getResult(ranks.get(i)));
-                profit += LottoRank.three.getWinningPrice() * ranks.get(i);
-            }
-            if (i == 3){
-                System.out.println(LottoRank.two.getResult(ranks.get(i)));
-                profit += LottoRank.two.getWinningPrice() * ranks.get(i);
-            }
-            if (i == 4){
-                System.out.println(LottoRank.one.getResult(ranks.get(i)));
-                profit += LottoRank.one.getWinningPrice() * ranks.get(i);
-            }
+        for (LottoRank value : LottoRank.values()) {
+            System.out.println(value.getResult(ranks.get(value)));
+            profit += value.getWinningPrice() * ranks.get(value);
         }
         BigDecimal profitDecimal = new BigDecimal(profit / costOfLotto * 100).setScale(1, RoundingMode.HALF_UP);
-        System.out.printf("총 수익률은 %s%%입니다.", profitDecimal);
+        System.out.printf("총 수익률은 %s%%입니다.\n", profitDecimal);
     }
 
-    private List<Integer> getRanks(int numberOfLotto, List<Integer> lottoNumbers, int bonus, List<List<Integer>> myLottoNumbers) {
-        List<Integer> ranks = new ArrayList<>(IntStream.range(0, NUMBER_OF_RANKS).boxed().map(num -> 0).toList());
+    private Map<LottoRank, Integer> getRanks(int numberOfLotto, List<Integer> lottoNumbers, int bonus, List<List<Integer>> myLottoNumbers) {
+        Map<LottoRank, Integer> ranks = Arrays.stream(LottoRank.values()).collect(Collectors.toMap(lottoRank -> lottoRank, lottoRank -> 0));
         for (int i = 0; i < numberOfLotto; i++) {
-            Integer indexOfRank = getIndexOfRank(lottoNumbers, bonus, myLottoNumbers, i);
-            if (indexOfRank != null) {
-                ranks.set(indexOfRank, ranks.get(indexOfRank) + 1);
+            LottoRank rank = getRank(lottoNumbers, bonus, myLottoNumbers, i);
+            if (rank != null) {
+                ranks.put(rank, ranks.get(rank) + 1);
             }
         }
         return ranks;
@@ -87,18 +69,18 @@ public class RunApplication {
         return myLottoNumbers;
     }
 
-    private Integer getIndexOfRank(List<Integer> lottoNumbers, int bonus, List<List<Integer>> myLottoNumbers, int i) {
+    private LottoRank getRank(List<Integer> lottoNumbers, int bonus, List<List<Integer>> myLottoNumbers, int i) {
         List<Integer> numbers = myLottoNumbers.get(i);
         long count = numbers.stream()
                 .filter(lottoNumbers::contains)
                 .count();
-        if (count >= 6) return 4;
+        if (count >= 6) return LottoRank.one;
         if (count == 5) {
-            if (lottoNumbers.contains(bonus)) return 3;
-            return 2;
+            if (lottoNumbers.contains(bonus)) return LottoRank.two;
+            return LottoRank.three;
         }
-        if (count == 4) return 1;
-        if (count == 3) return 0;
+        if (count == 4) return LottoRank.four;
+        if (count == 3) return LottoRank.five;
         return null;
     }
 

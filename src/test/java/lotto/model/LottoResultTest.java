@@ -87,5 +87,4 @@ class LottoResultTest {
         lottoResults.put(FIFTH, fifth);
         return lottoResults;
     }
-
 }

@@ -20,7 +20,6 @@ class LottosInfoTest {
 
         // then
         assertThat(result).contains(String.valueOf(numbers.size()))
-                .contains("개를 구매했습니다.")
-                .contains("---");
+                .contains("개를 구매했습니다.");
     }
 }

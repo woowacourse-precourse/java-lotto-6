@@ -11,7 +11,7 @@ import java.util.Map;
 import lotto.constant.LottoRanking;
 
 public record WinningStatistics(Map<LottoRanking, Integer> lottoResults) {
-    private static final DecimalFormat decimalFormat = new DecimalFormat("#,###");
+    private static final DecimalFormat decimalFormat = new DecimalFormat("#,##0");
 
     @Override
     public String toString() {

@@ -39,32 +39,64 @@
       1️⃣ 1, 2, 3, 4, 5, 6
       2️⃣ 1 , 2, 3, 4 ,5, 6  
       ```
+<br>
 
-## 🍞 도메 중심 설계
+## 🏛️ 프로젝트 패키지 구조
+### ✦ Domain <br><br>
 `Lotto` <br><br>
-구입한 로또의 6자리 번호를 가진다.<br><br>
+로또의 6자리 번호를 가진다. 당첨 번호와 발행 받은 로또 번호 모두 이 도메인이다.<br><br>
+
+`LottoTicketMachine` <br><br>
+로또발권기이다. 로또를 구입 PurchaseNumber 만큼 발행한다.<br><br>
 
 `PurchaseNumber`<br><br>
 구입한 로또의 개수이다. 금액으로부터 계산된다.<br><br>
 
 `IssuedLottos`<br><br>
-구입한 개수만큼 발행된 로또들이다.<br><br>
-
-`WinningNumber`<br><br>
-입력 받은 로또 당첨 번호이다.<br><br>
+구입한 개수만큼 발행된 로또들이다. 이 로또들 각각 당첨번호와의 비교를 통해 등수가 결정된다.<br><br>
 
 `BonusNumber`<br><br>
 입력 받은 보너스 번호이다.<br><br>
 
 `Rank`<br><br>
-로또 당첨 등수를 관리하고 등수를 산출한다.<br><br>
+로또 당첨 등수를 관리하고 일치 개수를 통해 등수를 산출한다.<br><br>
+
+`WinningRanks`<br><br>
+발행된 로또의 등수를 산정한 결과이다.<br><br>
 
 `Profit`<br><br>
 수익률을 계산한다.<br><br>
 
+### ✦ Controller <br><br>
+`LottoController`<br><br>
+`View`와 `Domain`을 관리하여 프로그램을 제어한다. <br><br>
 
-## 🏛️ 프로젝트 패키지 구조
+### ✦ Value Object <br>
+요청과 응답을 주고 받을 때 쓰이는 값 객체로 입•출력 형식을 담당하고 유효한 값으로 변환한다.<br><br>
 
+`BonusNumberRequest` : 보너스 번호 입력 요청<br>
+
+`PurchaseAmountRequest` : 구매 금액 입력 요청<br>
+
+`WinningNumberRequest` : 당첨 번호 입력 요청<br><br>
+
+`LottoResponse`: 발행된 로또 번호 출력 응답<br>
+
+`WinningResponse` : 당첨 결과 출력 응답<br>
+
+`ProfitResponse` : 수익률 출력 응답<br><br>
+
+### ✦ Utility <br><br>
+#### Validation
+여러 도메인 클래스의 `validation` 을 담당하는 클래스들이다.<br><br>
+
+`LottoNumberChecker`<br><br>
+로또 번호의 유효성을 검사한다.<br><br>
+
+`WinningNumberChecker`<br><br>
+당첨 번호와 보너스 번호 간의 중복을 검사한다.<br><br>
+#### IO
+입•출력 도구이다.
 
 ## 📩 커밋 메세지
 아래와 같은 형식을 지킨다.

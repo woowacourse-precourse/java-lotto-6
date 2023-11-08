@@ -25,13 +25,25 @@ public class LottoGenerator {
     private int getInputAmount() {
         System.out.println("구입금액을 입력해 주세요: ");
         String input = Console.readLine();
-        while (isNotNumeric(input) || !isMultipleOf1000(input)) {
-            System.out.println("[ERROR] 잘못된 입력입니다. 1000원 단위로 입력해주세요.");
-            System.out.println("구입금액을 입력해 주세요: ");
-            input = Console.readLine();
+        while (true) {
+            try {
+                validateInput(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 잘못된 입력입니다. 1000원 단위로 입력해주세요.");
+                System.out.println("구입금액을 입력해 주세요: ");
+                input = Console.readLine();
+            }
         }
         return Integer.parseInt(input);
     }
+
+    public void validateInput(String input) {
+        if (isNotNumeric(input) || !isMultipleOf1000(input)) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위로 입력해야 합니다.");
+        }
+    }
+
 
     private void validateAmount(int amount) {
         if (amount % 1000 != 0) {

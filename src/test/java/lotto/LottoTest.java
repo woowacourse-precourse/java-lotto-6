@@ -38,5 +38,12 @@ class LottoTest {
                 .hasMessageContaining(INVALID_LOTTO_FORMAT.getMessage());
     }
 
+    @Test
+    @DisplayName("로또 번호 중 하나라도 유효 범위 밖이면 예외가 발생한다.")
+    void createLottoByInvalidRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 100)))
+                .isInstanceOf(LottoException.class)
+                .hasMessageContaining(OUT_OF_RANGE_LOTTO_NUMBERS.getMessage());
+    }
 
 }

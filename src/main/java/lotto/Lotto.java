@@ -1,20 +1,46 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import static lotto.constant.LottoConstant.*;
+import static lotto.constant.LottoErrorMessage.LOTTO_LENGTH_ERROR_MESSAGE;
+import static lotto.constant.LottoErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE;
 
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    protected Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
+    public static Lotto make() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER.getConstant(), MAXIMUM_LOTTO_NUMBER.getConstant(), LOTTO_LENGTH.getConstant()));
+    }
+
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        validateLottoLength(numbers);
+        validateLottoNumberDuplicate(numbers);
+    }
+
+    private void validateLottoLength(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_LENGTH.getConstant()) {
+            throw new IllegalArgumentException(LOTTO_LENGTH_ERROR_MESSAGE.getErrorMessage());
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateLottoNumberDuplicate(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>(numbers);
+        if (numbers.size() != set.size()) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE.getErrorMessage());
+        }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

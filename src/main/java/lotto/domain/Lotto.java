@@ -5,11 +5,6 @@ import java.util.stream.Collectors;
 import lotto.utils.StringValidator;
 
 public class Lotto {
-    private static final int LOTTO_SIZE = 6;
-    private static final int LOTTO_START_NUMBER = 1;
-    private static final int LOTTO_END_NUMBER = 45;
-    private static final String DELIMITER = ",";
-
     private final List<Integer> numbers;
 
 
@@ -30,7 +25,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != LottoPolicy.LOTTO_SIZE) {
             throw new IllegalArgumentException(ExceptionStatus.LOTTO_COMMON_INVALID_SIZE.getMessage());
         }
         if (!isValidRange(numbers)) {
@@ -61,11 +56,12 @@ public class Lotto {
     }
 
     private boolean isValidRange(List<Integer> numbers) {
-        return numbers.stream().allMatch(number -> LOTTO_START_NUMBER <= number && LOTTO_END_NUMBER <= number);
+        return numbers.stream()
+                .allMatch(number -> LottoPolicy.LOTTO_START_NUMBER <= number && LottoPolicy.LOTTO_END_NUMBER <= number);
     }
 
     private List<String> splitByDelimiter(String number) {
-        return List.of(number.split(DELIMITER));
+        return List.of(number.split(LottoPolicy.DELIMITER));
     }
 
     private List<Integer> convertToIntegerList(List<String> numbers) {

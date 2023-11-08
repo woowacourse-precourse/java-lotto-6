@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.List;
 
-public class Profit{
+public class Profit {
     public double calculateProfit(List<Integer> result, int numberOfLotto) {
         int totalPrize = calculateTotalPrize(result);
         int totalCost = calculateTotalCost(numberOfLotto);

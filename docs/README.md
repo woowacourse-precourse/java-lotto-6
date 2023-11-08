@@ -57,5 +57,5 @@
 
 ## 테스트 코드
 - [x] RandomNumberGeneratorTest
-- [] WinnerTest
-- [] ProfitTest
+- [x] WinnerTest
+- [x] ProfitTest

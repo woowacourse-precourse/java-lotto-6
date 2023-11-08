@@ -22,12 +22,12 @@ public class LottosTest extends NsTest {
         lottoGenerator = new LottoGenerator();
     }
 
-    @DisplayName("로또 발행시 1~45의 6개의 숫자가 중복없이 오름차순으로 정렬되어 출력된다.")
+    @DisplayName("로또 발행시 오름차순으로 정렬되어 AMOUNT 만큼 출력된다.")
     @Test
-    void createLottos() {
+    void printLottoNumbersAsc() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    run("1000");
+                    run();
                     assertThat(output()).contains(
                             "1개를 구매했습니다.",
                             "[13, 14, 16, 38, 42, 45]"

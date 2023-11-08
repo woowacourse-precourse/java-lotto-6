@@ -1,6 +1,6 @@
 package lotto.Controller;
 
-import lotto.Model.LottoGameDecisionMachine;
+import lotto.Domain.LottoGameDecisionMachine;
 import lotto.View.LottoGameView;
 
 import java.util.*;

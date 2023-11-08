@@ -1,4 +1,6 @@
-package lotto.Model;
+package lotto.Domain;
+
+import lotto.Domain.Lotto;
 
 import java.util.*;
 
@@ -34,12 +36,20 @@ public class LottoGameDecisionMachine {
         return tickets;
     }
 
+    public Prize checkTickets1(){
+         for(Lotto ticket : tickets){
+             ticket.getNumbers() = F
+
+         }
+    }
     public Map<Integer, Integer> checkTickets() {
         Map<Integer, Integer> result = new HashMap<>();
         for (Lotto ticket : tickets) {
             int numMatching = countMatchingNumbers(ticket.getNumbers());
             if (numMatching == 6) {
                 result.put(6, result.getOrDefault(6, 0) + 1);
+
+
                 System.out.println(result.get(6));
             } else if (numMatching == 5 && ticket.getNumbers().contains(bonusNumber)) {
                 result.put(7, result.getOrDefault(7, 0) + 1);

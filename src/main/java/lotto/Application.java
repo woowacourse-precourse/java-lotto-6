@@ -1,9 +1,9 @@
 package lotto;
-import lotto.Domain.LottoGameDomain;
+import lotto.Model.LottoGameModel;
 
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        LottoGameDomain domain = new LottoGameDomain();
+        LottoGameModel domain = new LottoGameModel();
     }
 }

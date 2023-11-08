@@ -9,6 +9,8 @@ import java.util.List;
 public class User {
 
     private static final int ONE_LOTTO = 1000;
+    private static final int MORE_THAN_ONE = 0;
+
     private List<Lotto> lottos;
     private final int money;
 
@@ -50,8 +52,19 @@ public class User {
     }
 
     private void validate(int money) {
+        validateUnit(money);
+        validateNumberRange(money);
+    }
+
+    private void validateUnit(int money) {
         if (money % ONE_LOTTO != 0) {
             throw new IllegalArgumentException(Error.ERROR_MSG_UNIT.getMessage());
+        }
+    }
+
+    private void validateNumberRange(int money) {
+        if (money < MORE_THAN_ONE) {
+            throw new IllegalArgumentException(Error.ERROR_MSG_NEGATIVE_NUMBER.getMessage());
         }
     }
 }

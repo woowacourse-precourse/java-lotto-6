@@ -1,27 +1,31 @@
 package lotto.constant;
 
 public enum WinningAmount {
-    NONE(0, 0),
-    FIRST(6, 2000000000),
-    SECOND(5, 30000000),
-    THIRD(5, 1500000),
-    FOURTH(4, 50000),
-    FIFTH(3, 5000);
-
+    ALL_MATCH(6, 2000000000, false),
+    FIVE_MATCH_WITH_BONUS(5, 30000000, true),
+    FIVE_MATCH(5, 1500000, false),
+    FOUR_MATCH(4, 50000, false),
+    THREE_MATCH(3, 5000, false),
+    NONE_MATCH(0, 0, false);
 
     private final int matchCount;
-    private final int winningMoney;
+    private final int winningAmount;
 
-    WinningAmount(int matchCount, int winningMoney) {
+    private final boolean isBonusNumberMatch;
+
+    WinningAmount(int matchCount, int winningAmount, boolean isBonusNumberMatch) {
         this.matchCount = matchCount;
-        this.winningMoney = winningMoney;
+        this.winningAmount = winningAmount;
+        this.isBonusNumberMatch = isBonusNumberMatch;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public int getWinningMoney() {
-        return winningMoney;
+    public static Integer getWinningAmount(Integer generalNumberMatchCount, Boolean isBonusNumberMatch) {
+        for (WinningAmount winningAmount : WinningAmount.values()) {
+            if (winningAmount.matchCount == generalNumberMatchCount
+                    && winningAmount.isBonusNumberMatch == isBonusNumberMatch) {
+                return winningAmount.winningAmount;
+            }
+        }
+        return NONE_MATCH.winningAmount;
     }
 }

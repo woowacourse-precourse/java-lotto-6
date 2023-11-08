@@ -37,10 +37,10 @@ public enum LottoRule {
     }
     @Override
     public String toString(){
-        String format = "%d개 일치";
+        String bonusMatch = "";
         if( isBonusBall ){
-            format += ", 보너스 볼 일치";
+            bonusMatch = ", 보너스 볼 일치";
         }
-        return String.format(format, matchCount);
+        return String.format(LottoStringFormat.LOTTO_RULE_FORMAT, matchCount, bonusMatch);
     }
 }

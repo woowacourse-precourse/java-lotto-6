@@ -45,9 +45,10 @@ public class Order {
 
     public String getResult(WinStatistics winStatistics) {
         StringBuilder stringBuilder = new StringBuilder();
+        String profitRate = String.format("%.1f",calculateProfitRate(winStatistics));
 
         return stringBuilder.append(OutputMessage.TOTAL_PROFIT_RATE_MESSAGE)
-                .append(calculateProfitRate(winStatistics))
+                .append(profitRate)
                 .append(OutputMessage.RESULT_SUFFIX)
                 .toString();
     }
@@ -59,7 +60,7 @@ public class Order {
             profitRate += 100;
         }
 
-        return Math.round((profitRate * 10.0) / 1.0) / 10.0;
+        return Math.round(profitRate * 10.0) / 10.0;
     }
 
 

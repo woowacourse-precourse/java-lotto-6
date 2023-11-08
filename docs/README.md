@@ -6,6 +6,8 @@ java
     ├── domain
     │   ├── Lotto.java
     │   ├── LottoRepository.java
+    │   ├── LottoPrize.java
+    │   ├── LottoConstraint.java
     │   └── WinningNumber.java
     ├── controller
     │   └── LottoController.java
@@ -19,6 +21,8 @@ java
     │   └── RandomLottoNumGenerator.java
     ├── dto
     │   ├── LottoResultDto.java
+    │   ├── Money.java
+    │   ├── WinningNumber.java
     │   └── LottoRepositoryDto.java
     └── exception
         ├── LottoErrorMsg.java

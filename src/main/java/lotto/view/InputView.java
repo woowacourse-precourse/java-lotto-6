@@ -5,7 +5,7 @@ import lotto.dto.input.WinningCombinationDto;
 import lotto.dto.input.builder.WinningCombinationBuilder;
 import lotto.io.input.StdReader;
 import lotto.io.output.StdWriter;
-import lotto.io.output.Writer;
+import lotto.util.ViewConstants;
 import lotto.validator.InputValidator;
 
 public class InputView {
@@ -18,7 +18,7 @@ public class InputView {
     }
 
     public MoneyDto inputMoney() {
-        writer.writeLine("구입금액을 입력해 주세요.");
+        writer.writeLine(ViewConstants.INPUT_MONEY_MESSAGE);
         try {
             String input = reader.readLine();
             InputValidator.verifyNonEmptyInput(input);
@@ -38,7 +38,7 @@ public class InputView {
     }
 
     public WinningCombinationBuilder inputWinningNumbers(WinningCombinationBuilder builder) {
-        writer.writeLine("당첨 번호를 입력해 주세요.");
+        writer.writeLine(ViewConstants.INPUT_WINNING_NUMBERS_MESSAGE);
         try {
             String input = reader.readLine();
             InputValidator.verifyNonEmptyInput(input);
@@ -52,7 +52,7 @@ public class InputView {
     }
 
     public WinningCombinationBuilder inputBonusNumber(WinningCombinationBuilder builder) {
-        writer.writeLine(Writer.NEW_LINE + "보너스 번호를 입력해 주세요.");
+        writer.writeLine(ViewConstants.INPUT_BONUS_NUMBER_MESSAGE);
         try {
             String input = reader.readLine();
             InputValidator.verifyNonEmptyInput(input);

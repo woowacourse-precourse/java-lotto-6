@@ -15,8 +15,10 @@ public class WinnerNumberException {
     private static final String IS_RIGHT_RANGE_MESSAGE = " 당첨번호는 1부터 45 사이의 숫자로만 구성되어야 합니다.";
 
     public WinnerNumberException(String input) {
-        isNumber(input);
         isComma(input);
+        for (String number : input.split(",")){
+            isNumber(number);
+        }
     }
 
     public WinnerNumberException(List<Integer> list) {

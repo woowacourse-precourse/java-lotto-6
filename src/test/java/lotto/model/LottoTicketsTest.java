@@ -14,14 +14,14 @@ class LottoTicketsTest {
     @Test
     @DisplayName("로또 당첨 결과 확인")
     void resultOfLottoTickets() {
-        WinningNumbers winningNumbers = new WinningNumbers(new LottoNumbers(Arrays.asList(1, 2, 3, 4, 5, 6)), 7);
-        List<LottoNumbers> lottoNumbers = new ArrayList<>();
+        WinningNumbers winningNumbers = new WinningNumbers(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 7);
+        List<Lotto> lottoNumbers = new ArrayList<>();
 
-        lottoNumbers.add(new LottoNumbers(Arrays.asList(1, 2, 3, 4, 5, 6)));
-        lottoNumbers.add(new LottoNumbers(Arrays.asList(2, 3, 4, 5, 6, 7)));
-        lottoNumbers.add(new LottoNumbers(Arrays.asList(3, 4, 5, 6, 7, 8)));
-        lottoNumbers.add(new LottoNumbers(Arrays.asList(8, 9, 10, 11, 12, 13)));
-        lottoNumbers.add(new LottoNumbers(Arrays.asList(1, 9, 10, 11, 12, 13)));
+        lottoNumbers.add(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        lottoNumbers.add(new Lotto(Arrays.asList(2, 3, 4, 5, 6, 7)));
+        lottoNumbers.add(new Lotto(Arrays.asList(3, 4, 5, 6, 7, 8)));
+        lottoNumbers.add(new Lotto(Arrays.asList(8, 9, 10, 11, 12, 13)));
+        lottoNumbers.add(new Lotto(Arrays.asList(1, 9, 10, 11, 12, 13)));
 
         LottoTickets lottoTickets = new LottoTickets(lottoNumbers);
 

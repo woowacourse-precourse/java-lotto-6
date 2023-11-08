@@ -3,7 +3,7 @@ package lotto.view;
 import static lotto.view.Sentence.*;
 
 import lotto.global.util.StringConverter.IntegerListToStringConverter;
-import lotto.model.LottoNumbers;
+import lotto.model.Lotto;
 import lotto.model.LottoTickets;
 import lotto.model.WinningStatistic;
 
@@ -28,15 +28,15 @@ public class OutputView {
     }
 
     public void printPurchaseLottoTicketsInfo(LottoTickets lottoTickets) {
-        for (LottoNumbers lottoNumbers : lottoTickets.getLottoTickets()) {
-            System.out.println(makeLottoTicketInfo(lottoNumbers));
+        for (Lotto lotto : lottoTickets.getLottoTickets()) {
+            System.out.println(makeLottoTicketInfo(lotto));
         }
         System.out.println();
     }
 
-    private String makeLottoTicketInfo(LottoNumbers lottoNumbers) {
+    private String makeLottoTicketInfo(Lotto lotto) {
         String lottoTicketInfo = "[";
-        lottoTicketInfo += integerListToStringConverter.convert(lottoNumbers.getLottoNumbers());
+        lottoTicketInfo += integerListToStringConverter.convert(lotto.getLottoNumbers());
         lottoTicketInfo += "]";
         return lottoTicketInfo;
     }

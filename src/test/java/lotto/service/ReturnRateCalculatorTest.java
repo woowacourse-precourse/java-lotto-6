@@ -12,7 +12,7 @@ class ReturnRateCalculatorTest {
     @Test
     public void caculateRuturnRate() {
         ReturnRateCalculator returnRateCalculator = new ReturnRateCalculator();
-        HashMap<String, Integer> countByPrize = new HashMap<>(){{
+        HashMap<String, Integer> countByPrize = new HashMap<>() {{
             put(LottoConfig.FIRST_PRIZE_REWARD, 0);
             put(LottoConfig.SECOND_PRIZE_REWARD, 0);
             put(LottoConfig.THIRD_PRIZE_REWARD, 0);

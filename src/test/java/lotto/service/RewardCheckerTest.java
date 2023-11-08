@@ -20,12 +20,12 @@ class RewardCheckerTest {
             put(2, List.of(5, 1));
         }};
 
-        HashMap<String, Integer> result = new HashMap<>(){{
-           put(LottoConfig.FIRST_PRIZE_REWARD, 1);
-           put(LottoConfig.SECOND_PRIZE_REWARD, 1);
-           put(LottoConfig.THIRD_PRIZE_REWARD, 0);
-           put(LottoConfig.FOURTH_PRIZE_REWARD, 0);
-           put(LottoConfig.FIFTH_PRIZE_REWARD, 0);
+        HashMap<String, Integer> result = new HashMap<>() {{
+            put(LottoConfig.FIRST_PRIZE_REWARD, 1);
+            put(LottoConfig.SECOND_PRIZE_REWARD, 1);
+            put(LottoConfig.THIRD_PRIZE_REWARD, 0);
+            put(LottoConfig.FOURTH_PRIZE_REWARD, 0);
+            put(LottoConfig.FIFTH_PRIZE_REWARD, 0);
         }};
 
         assertThat(rewardChecker.countLottoByPrize(matchNumberByLotto)).isEqualTo(result);

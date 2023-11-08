@@ -20,7 +20,7 @@ class WinningNumberTest {
     @DisplayName("당첨 번호에 중복된 숫자가 있으면 에러 메시지를 출력한다.")
     @Test
     void createWinningNumberByDuplicatedNumber() {
-        assertThatThrownBy(() -> new WinningNumber(List.of(41,42,43,44,45,45)))
+        assertThatThrownBy(() -> new WinningNumber(List.of(41, 42, 43, 44, 45, 45)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
     }
@@ -28,7 +28,7 @@ class WinningNumberTest {
     @DisplayName("당첨 번호에 1~45 외의 숫자가 있으면 에러 메시지를 출력한다.")
     @Test
     void createWinningNumberByOutOfRange() {
-        assertThatThrownBy(() -> new WinningNumber(List.of(41,42,43,44,45,46)))
+        assertThatThrownBy(() -> new WinningNumber(List.of(41, 42, 43, 44, 45, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
     }

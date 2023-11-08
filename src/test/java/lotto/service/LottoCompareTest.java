@@ -23,7 +23,7 @@ class LottoCompareTest {
     @DisplayName("로또별 당첨 번호, 보너스 번호 일치 개수 확인")
     @Test
     public void checkWinningAndBonusNumberByLotto() {
-        HashMap<Integer, List<Integer>> result = new HashMap<>(){{
+        HashMap<Integer, List<Integer>> result = new HashMap<>() {{
             put(0, List.of(6, 0));
             put(1, List.of(0, 1));
             put(2, List.of(5, 1));

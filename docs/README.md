@@ -43,6 +43,11 @@
     - [x]  예외처리 - 보너스 번호 문자 입력될 경우, 0-45범위의 숫자인지 확인
   - WinningStatistics
     - [x]  당첨 여부를 계산
+  - LottoRank
+    - [x]  전체 당첨 순위를 계산
+    - [x]  문자열로 변환
+    - [x]  수익률을 계산
+    - [x]  소수점 둘째 자리에서 반올림
 - service
 - controller
 

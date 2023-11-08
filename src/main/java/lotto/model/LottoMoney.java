@@ -1,15 +1,15 @@
 package lotto.model;
 
+import static lotto.exception.ExceptionMessage.MESSAGE_LIMIT_MONEY;
+import static lotto.exception.ExceptionMessage.MESSAGE_THOUSAND_UNIT;
+import static lotto.utils.Constants.LIMIT_MONEY;
+import static lotto.utils.Constants.LOTTO_PRICE;
+import static lotto.utils.Constants.REMAINDER_ZERO;
+
 import lotto.exception.ClientException;
-import lotto.exception.ExceptionMessage;
 
 public class LottoMoney {
-
-    private final static int LOTTO_PRICE = 1000;
-    private final static int REMAINDER_ZERO = 0;
-    private final static int LIMIT_MONEY = 1000000;
-
-    private int money;
+    private final int money;
 
     public LottoMoney(final int money) {
         validation(money);
@@ -23,13 +23,13 @@ public class LottoMoney {
 
     private void validateThousandUnit(int money) {
         if (money % LOTTO_PRICE > REMAINDER_ZERO) {
-            throw new ClientException(ExceptionMessage.MESSAGE_THOUSAND_UNIT);
+            throw new ClientException(MESSAGE_THOUSAND_UNIT);
         }
     }
 
     private void validateLimit(int money) {
         if (money > LIMIT_MONEY) {
-            throw new ClientException(ExceptionMessage.MESSAGE_LIMIT_MONEY);
+            throw new ClientException(MESSAGE_LIMIT_MONEY);
         }
     }
 

@@ -1,23 +1,25 @@
 package lotto.model;
 
+import static lotto.utils.Constants.DECIMAL_POINT;
+import static lotto.utils.Constants.HUNDRED_RATE;
+import static lotto.utils.Constants.LOTTO_PRICE;
+
 import java.util.List;
 import java.util.Map;
 
 public class WiningTypeCount {
 
-    private static final double LOTTO_PRICE = 1000.0;
-    private static final double DECIMAL_POINT = 1000.0;
-    private static final double HUNDRED_RATE = 100.0;
+    private final Map<WiningType, Integer> winingCountMap;
 
-    private Map<WiningType, Integer> winingCountMap;
-
-    public WiningTypeCount(Map<WiningType, Integer> winingCountMap) {
+    public WiningTypeCount(final Map<WiningType, Integer> winingCountMap) {
         this.winingCountMap = winingCountMap;
     }
 
     public double calculateRateOfReturn(List<Lotto> lottos) {
         long amount = sumAmount();
-        return Math.round((amount / (lottos.size() * LOTTO_PRICE)) * DECIMAL_POINT) / DECIMAL_POINT * HUNDRED_RATE;
+        double money = lottos.size() * LOTTO_PRICE;
+        double rateOfReturn = Math.round((amount / money) * DECIMAL_POINT) / DECIMAL_POINT * HUNDRED_RATE;
+        return rateOfReturn;
     }
 
     private long sumAmount() {

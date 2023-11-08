@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public class LottoResult {
     private static final int[] PRICE = {5000, 50000, 1500000, 2000000000, 30000000};

@@ -1,9 +1,12 @@
-package lotto;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.ErrorMessage;
+import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 
 public class LottoService {
     private static final int LIMIT_NUMBER = 45;

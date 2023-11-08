@@ -1,7 +1,7 @@
 package lotto.view;
 
-import lotto.Lotto;
-import lotto.LottoService;
+import lotto.domain.Lotto;
+import lotto.service.LottoService;
 
 public class InputView {
     private static final LottoService lottoService = new LottoService();

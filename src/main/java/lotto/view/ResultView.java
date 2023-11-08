@@ -1,9 +1,9 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.Lotto;
-import lotto.LottoResult;
-import lotto.LottoService;
+import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
+import lotto.service.LottoService;
 
 public class ResultView {
     private static final LottoService lottoService = new LottoService();

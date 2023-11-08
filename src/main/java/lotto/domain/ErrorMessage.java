@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public enum ErrorMessage {
     NUMBER_OVER_LIMIT("[ERROR] 숫자는 45를 넘기면 안됩니다."),

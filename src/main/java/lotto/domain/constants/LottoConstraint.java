@@ -3,9 +3,9 @@ package lotto.domain.constants;
 public enum LottoConstraint {
 
     LOTTO_PRICE(1000),
-    LOTTO_NUMBER_COUNT(6),
-    LOWER_BOUND(1),
-    UPPER_BOUND(45),
+    LOTTO_SIZE(6),
+    MIN_NUMBER(1),
+    MAX_NUMBER(45),
     BONUS_COUNT(1);
     private final int value;
 

@@ -38,9 +38,6 @@ public class LottoGame {
             profit += winningHistory.get(key) * key.getPrizeMoney();
         }
 
-        double profitRate = (profit / purchaseAmount) * 100;
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
-
-        return Double.parseDouble(decimalFormat.format(profitRate));
+        return (profit / purchaseAmount) * 100;
     }
 }

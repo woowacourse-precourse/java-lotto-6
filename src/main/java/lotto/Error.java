@@ -18,9 +18,10 @@ public class Error {
 		try {
 			List<Integer> winningNumbersTemp = new ArrayList<>();
 			for (String winningNumber : digit.split(Message.SEPARATOR.getMessage())) {
-				checkWinningLotto(winningNumbersTemp, winningNumber);
+				checkLottoCommons(winningNumbersTemp, winningNumber);
 				winningNumbersTemp.add(Integer.parseInt(winningNumber));
 			}
+			checkLottoSize(winningNumbersTemp, Number.SIX.getNumber());
 		} catch (IllegalStateException | IllegalArgumentException e) {
 			Message.ERROR_MESSAGE.printMessageWithString(e.getMessage());
 			return false;
@@ -30,7 +31,7 @@ public class Error {
 
 	public boolean validateBonusNumber(List<Integer> winningNumbers, String bonusNumber){
 		try {
-			checkWinningLotto(winningNumbers, bonusNumber);
+			checkLottoCommons(winningNumbers, bonusNumber);
 		} catch (IllegalStateException | IllegalArgumentException e) {
 			Message.ERROR_MESSAGE.printMessageWithString(e.getMessage());
 			return false;
@@ -51,11 +52,15 @@ public class Error {
 			throw new IllegalArgumentException(Message.REMAINDER.getMessage());
 	}
 
-	public void checkWinningLotto(List<Integer> winningNumbers, String digit) {
+	private void checkLottoCommons(List<Integer> winningNumbers, String digit) {
 		checkCommons(digit);
 		if (!judgement.isInRange(Integer.parseInt(digit)))
 			throw new IllegalArgumentException(Message.RANGE.getMessage());
 		if (judgement.isDuplicate(winningNumbers, Integer.parseInt(digit)))
 			throw new IllegalArgumentException(Message.DUPLICATE.getMessage());
+	}
+	private void checkLottoSize(List<Integer> winningNumbers, int size) {
+		if (winningNumbers.size() != size)
+			throw new IllegalArgumentException(Message.SIZE.getMessage());
 	}
 }

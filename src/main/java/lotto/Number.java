@@ -14,6 +14,7 @@ public enum Number {
 	FIVE_PRIZE(1500000),
 	FIVE_WITH_BONUS_PRIZE(30000000),
 	SIX(6),
+	SEVEN(7),
 	SIX_PRIZE(2000000000);
 
 	private final int number;

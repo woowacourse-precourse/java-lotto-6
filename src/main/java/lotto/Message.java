@@ -18,7 +18,8 @@ public enum Message {
 	REMAINDER("Remainder error is occurred"),
 	NEGATIVE("Negative error is occurred"),
 	RANGE("Range error is occurred"),
-	DUPLICATE("Duplicate error is occurred");
+	DUPLICATE("Duplicate error is occurred"),
+	SIZE("Size error is occurred");
 
 	private final String message;
 	Message(String message) {
@@ -31,12 +32,15 @@ public enum Message {
 		System.out.println(message);
 	}
 	public void printMessageWithNumber(int number) {
-		System.out.println(message + number);
+		System.out.println(message + number + "개");
 	}
 	public void printMessageWithString(String message) {
 		System.out.println(this.message + message);
 	}
 	public static void printStringMessage(String message) {
 		System.out.printf(message);
+	}
+	public static void printProfitMessage(int total, int money) {
+		System.out.printf("총 수익률은 %.1f%%입니다.", (double) (total * 100) / money);
 	}
 }

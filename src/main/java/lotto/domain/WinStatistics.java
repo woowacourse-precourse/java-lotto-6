@@ -1,10 +1,11 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class WinStatistics {
 
-    private static final String STATISTICS = "당첨 통계\n";
+    private static final String STATISTICS = "\n당첨 통계\n";
     private static final String DIVIDER = "---\n";
     private static final String COUNTER = "개\n";
     private static final String TOTAL_REVENUE = "총 수익률은 ";
@@ -28,22 +29,16 @@ public class WinStatistics {
             this.win = win;
         }
 
-        public String getDescription() {
-            return description;
-        }
-        public int getWin() {
-            return win;
-        }
     }
 
     public static String getStatisticsString(List<Integer> scores, long revenue) {
         PrizeLevel[] prizeLevels = PrizeLevel.values();
-        System.out.println(revenue);
         double payed = scores.size() * UNIT;
-        return toString(scores, prizeLevels, calculatePercentage(revenue, payed));
+        BigDecimal winAmount = BigDecimal.valueOf(calculatePercentage(revenue, payed));
+        return toString(scores, prizeLevels, winAmount);
     }
 
-    private static String toString(List<Integer> scores, PrizeLevel[] prizeLevels, double percentage) {
+    private static String toString(List<Integer> scores, PrizeLevel[] prizeLevels, BigDecimal percentage) {
         StringBuilder sb = new StringBuilder();
         sb.append(STATISTICS).append(DIVIDER);
         for (int i = 0; i < prizeLevels.length; i++) {

@@ -5,13 +5,17 @@ import java.util.List;
 import java.util.Set;
 
 public class Exceptions {
-    public static void showErrorMessage() {
-        System.out.println("[ERROR] 횟수는 숫자만 입력 가능합니다.");
+    public void isInvalidStringMoney(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 유효하지않은 금액 단위입니다.");
+        }
     }
 
     public void isInvalidDuplicatedLottoNumber(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if(numbers.size() != uniqueNumbers.size()) {
+        if(uniqueNumbers.size() != uniqueNumbers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 로또 번호가 있습니다.");
         }
     }

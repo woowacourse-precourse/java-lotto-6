@@ -2,6 +2,8 @@ package lotto.model;
 
 import lotto.service.LottoService;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,6 +19,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+        Set<Integer> num = new HashSet<>(numbers);
+        if (num.size() != numbers.size()) {
             throw new IllegalArgumentException();
         }
     }

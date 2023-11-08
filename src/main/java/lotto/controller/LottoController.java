@@ -29,6 +29,11 @@ public class LottoController {
         OutputView.printLottos(LottosResponse.from(lottos));
 
         WinningLotto winningLotto = receiveWinningLotto();
+
+        lottoStatistic.calculateWinningStatistics(lottos, winningLotto);
+        lottoStatistic.calculateEarningRate(purchaseAmount);
+
+        OutputView.printLottoStatistic(lottoStatistic.createStatisticResponse());
     }
 
     private PurchaseAmount receivePurchaseAmount() {

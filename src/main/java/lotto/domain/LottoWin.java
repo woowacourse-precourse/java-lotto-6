@@ -1,11 +1,11 @@
-package lotto;
+package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.ErrorMessage.DUPLICATE_NUMBER_ERROR;
-import static lotto.ErrorMessage.INVALID_RANGE_ERROR;
+import static lotto.view.ErrorMessage.DUPLICATE_NUMBER_ERROR;
+import static lotto.view.ErrorMessage.INVALID_RANGE_ERROR;
 
 public class LottoWin {
     private static final Integer WINNING_LOTTO_SIZE = 7;

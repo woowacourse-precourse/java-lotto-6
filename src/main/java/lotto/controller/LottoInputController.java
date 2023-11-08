@@ -43,7 +43,6 @@ public class LottoInputController {
             try {
                 InputView.printWinningBonusNumberMessage();
                 final String input = Console.readLine();
-                Console.close();
                 return InputValidator.validateBonusNumber(input, winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

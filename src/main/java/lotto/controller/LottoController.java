@@ -2,6 +2,7 @@ package lotto.controller;
 
 import static lotto.constant.Message.WINNING_STATS;
 
+import lotto.constant.MaxRetry;
 import lotto.dto.LottoPurchaseDto;
 import lotto.dto.LottosDto;
 import lotto.dto.ReturnRateDto;
@@ -9,7 +10,7 @@ import lotto.dto.WinningResultDto;
 import lotto.service.Service;
 import lotto.view.View;
 
-public class LottoController {
+public class LottoController extends AbstractRetry {
     private final View view;
     private final Service service;
 
@@ -23,15 +24,20 @@ public class LottoController {
     }
 
     public void start() {
-        LottoPurchaseDto lottoPurchaseDto = purchaseLotto();
-        LottosDto lottosDto = generateLottos(lottoPurchaseDto);
-        WinningResultDto winningResultDto = drawLotto(lottosDto);
-        showWinningStats(winningResultDto, lottoPurchaseDto);
+        try {
+            LottoPurchaseDto lottoPurchaseDto = purchaseLotto();
+            LottosDto lottosDto = generateLottos(lottoPurchaseDto);
+            WinningResultDto winningResultDto = drawLotto(lottosDto);
+            showWinningStats(winningResultDto, lottoPurchaseDto);
+        } catch (RuntimeException ignored) {
+        }
     }
 
     private LottoPurchaseDto purchaseLotto() {
-        String inputPurchaseAmount = view.askPurchaseAmount();
-        return service.buyLottery(inputPurchaseAmount);
+        return run(MaxRetry.COUNT.getValue(), () -> {
+            String inputPurchaseAmount = view.askPurchaseAmount();
+            return service.buyLottery(inputPurchaseAmount);
+        });
     }
 
     private LottosDto generateLottos(LottoPurchaseDto lottoPurchaseDto) {
@@ -42,13 +48,15 @@ public class LottoController {
     }
 
     private WinningResultDto drawLotto(LottosDto lottosDto) {
-        String inputWinningNumber = view.askWinningNumber();
-        String inputBonusNumber = view.askBonusNumber();
-        return service.generateWinningResult(
-                inputWinningNumber,
-                inputBonusNumber,
-                lottosDto
-        );
+        return run(MaxRetry.COUNT.getValue(), () -> {
+            String inputWinningNumber = view.askWinningNumber();
+            String inputBonusNumber = view.askBonusNumber();
+            return service.generateWinningResult(
+                    inputWinningNumber,
+                    inputBonusNumber,
+                    lottosDto
+            );
+        });
     }
 
     private void showWinningStats(WinningResultDto winningResultDto, LottoPurchaseDto lottoPurchaseDto) {

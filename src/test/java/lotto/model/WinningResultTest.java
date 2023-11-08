@@ -17,8 +17,8 @@ class WinningResultTest {
     @Test
     public void getTotalWinningAmount() {
         WinningResult winningResult = WinningResult.create();
-        winningResult = winningResult.withIncreasedFirstPlaceCount();
-        winningResult = winningResult.withIncreasedFifthPlaceCount();
+        winningResult = winningResult.withIncreasedPlaceCount(0);
+        winningResult = winningResult.withIncreasedPlaceCount(4);
 
 
         TotalWinningAmount totalWinningAmount = winningResult.getTotalWinningAmount();

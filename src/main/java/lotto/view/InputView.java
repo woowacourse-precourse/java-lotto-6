@@ -8,7 +8,7 @@ import lotto.global.util.StringConverter.StringToIntegerListConverter;
 import lotto.view.exception.InputException;
 
 public class InputView {
-    StringToIntegerListConverter stringToIntegerListConverter = new StringToIntegerListConverter();
+    StringToIntegerListConverter stringToIntegerListConverter = StringToIntegerListConverter.getInstance();
     private static InputView inputView = new InputView();
 
     private InputView() {

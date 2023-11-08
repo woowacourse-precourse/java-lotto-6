@@ -24,7 +24,7 @@ public class LottoController {
     public void play() {
         LottoAmountofMoney lottoAmountofMoney = controlLottoAmountOfMoney();
         RandomLottos randomLottos = getRandomLottos(lottoAmountofMoney);
-        Lotto answerLotto = new Lotto(getAnswerLottoNumber());
+        Lotto answerLotto = controlAnswerLotto();
         BounsNumber bounsNumber = new BounsNumber(getBonusNumber());
         LottoChecker lottoChecker = new LottoChecker(randomLottos, answerLotto, bounsNumber);
         HashMap<String, Integer> winningStatics = getWinningStatics(lottoChecker);
@@ -39,6 +39,16 @@ public class LottoController {
                 LottoAmountofMoney lottoAmountofMoney = new LottoAmountofMoney(getLottoAmountofMoney());
                 return lottoAmountofMoney;
             } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    private Lotto controlAnswerLotto(){
+        while(EXCEPTIONLOOPCHECKER){
+            try{
+                Lotto answerLotto = new Lotto(getAnswerLottoNumber());
+                return answerLotto;
+            }catch(IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }

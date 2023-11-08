@@ -1,16 +1,14 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
-import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 import lotto.validator.InputCSVNumbersValidator;
 import lotto.validator.InputNumberValidator;
 import lotto.validator.LottoNumbersValidator;
 import lotto.validator.LottoPurchaseValidator;
-
-// 다른 import 선언들...
 
 public class InputView {
 

@@ -1,16 +1,15 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.constants.LottoRankConstants;
-import lotto.domain.LottoRanks;
-import lotto.service.ReturnService;
-import lotto.view.InputView;
 import lotto.domain.Lotto;
+import lotto.domain.LottoRanks;
+import lotto.domain.WinningLotto;
 import lotto.service.LottoDrawService;
 import lotto.service.PurchaseService;
-import lotto.domain.WinningLotto;
+import lotto.service.ReturnService;
+import lotto.view.InputView;
 import lotto.view.OutputView;
-
-import java.util.List;
 
 public class LottoGameController {
     PurchaseService purchaseService = new PurchaseService();
@@ -35,24 +34,30 @@ public class LottoGameController {
         displayReturnsResult(getReturn(payment, winningAmount));
     }
 
-    private int getBonusNumber(Lotto winningLotto) {
-        return InputView.inputBonusNumber(winningLotto);
-    }
-
     private int getPurchaseAmount() {
+        OutputView.printMessage(OutputView.INPUT_AMOUNT_MESSAGE);
         return InputView.inputPurchaseAmount();
     }
 
     private Lotto getWinningLotto() {
+        OutputView.newLine();
+        OutputView.printMessage(OutputView.INPUT_WINNING_NUMBERS_MESSAGE);
         return new Lotto(InputView.inputWinningNumbers());
+    }
+
+    private int getBonusNumber(Lotto winningLotto) {
+        OutputView.newLine();
+        OutputView.printMessage(OutputView.INPUT_BONUS_NUMBER_MESSAGE);
+        return InputView.inputBonusNumber(winningLotto);
     }
 
     private List<Lotto> purchaseLotto(int payment) {
         int countOfPurchasable = purchaseService.getCountOfPurchasable(payment);
+        OutputView.newLine();
         OutputView.printPurchaseCountResult(countOfPurchasable);
         return purchaseService.purchaseLottoForCount(countOfPurchasable);
     }
-    
+
     private LottoRanks getRanks(WinningLotto winningLotto, List<Lotto> purchasedLottos) {
         return lottoDrawService.evaluateRanks(winningLotto, purchasedLottos);
     }
@@ -76,6 +81,8 @@ public class LottoGameController {
     }
 
     private void displayWinningResult(LottoRanks lottoRanks) {
+        OutputView.newLine();
+        OutputView.printMessage(OutputView.STATISTICS_MESSAGE);
         for (LottoRankConstants rank : LottoRankConstants.values()) {
             OutputView.printWinningLottoResult(rank, lottoRanks.getRankCount(rank));
         }

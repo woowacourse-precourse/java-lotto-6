@@ -126,32 +126,17 @@ public class Game {
     //----------결과 출력----------
     private void showResult() {
         List<Rank> rankList = createRankList();
-        HashMap<Rank, Integer> rankIntegerHashMap = getRankIntegerHashMap(rankList);
+
+        HashMap<Rank, Integer> rankIntegerHashMap = GameUtil.setLottoHit(rankList);
         view.printHittingResult(rankIntegerHashMap);
 
-        int totalHitMOney = caculateTotalHitMoney(rankIntegerHashMap);
-        view.printProfitResult(totalHitMOney, money);
+        int totalHitMoney = GameUtil.setTotalHitMoney(rankIntegerHashMap);
+        view.printProfitResult(totalHitMoney, money);
     }
 
     private List<Rank> createRankList() {
         List<Rank> rankList = new ArrayList<>();
         purchasedLotto.forEach(lotto -> rankList.add(prizeLotto.match(lotto)));
         return rankList;
-    }
-
-    private HashMap<Rank, Integer> getRankIntegerHashMap(List<Rank> rankList) {
-        HashMap<Rank, Integer> rankIntegerHashMap = new LinkedHashMap<>();
-        calculateLottoHit(rankList, rankIntegerHashMap);
-        return rankIntegerHashMap;
-    }
-
-    private void calculateLottoHit(List<Rank> rankList, HashMap<Rank, Integer> rankIntegerHashMap) {
-        Arrays.stream(Rank.values()).forEach(rank -> rankIntegerHashMap.put(rank, 0));
-        rankList.forEach(rank -> rankIntegerHashMap.put(rank, rankIntegerHashMap.get(rank) + 1));
-    }
-
-    private int caculateTotalHitMoney(HashMap<Rank, Integer> rankIntegerHashMap) {
-        return rankIntegerHashMap.entrySet().stream()
-                .mapToInt(e -> e.getKey().getWinningMoney() * e.getValue()).sum();
     }
 }

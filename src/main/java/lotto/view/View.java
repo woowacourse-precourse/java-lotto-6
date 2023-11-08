@@ -27,7 +27,6 @@ public class View {
 
     DecimalFormat formatter = new DecimalFormat("###,###");
 
-
     public void request_InputMoney() {
         System.out.println(INPUT_MONEY);
     }
@@ -39,7 +38,6 @@ public class View {
     public void request_InputBonusNumbers() {
         System.out.println(INPUT_BONUS_NUMBERS);
     }
-
 
     public void print_PurchasedLottoNumbers(int purchasedLottoNum) {
         System.out.println(purchasedLottoNum + OUTPUT_PURCHASED_LOTTO_NUMBERS);
@@ -57,7 +55,7 @@ public class View {
         map.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey(Comparator.reverseOrder()))
                 .filter(e -> e.getKey().getWinningMoney() != FAIL_PRIZE_NUM)
-                .forEach(e -> printResult(map.get(e.getKey()),e.getKey().getCountOfMatch(),e.getKey().getWinningMoney()));
+                .forEach(e -> printResult(map.get(e.getKey()), e.getKey().getCountOfMatch(), e.getKey().getWinningMoney()));
     }
 
     public void printResult(int totalCount, int countOfMatch, int winningMoney) {
@@ -70,12 +68,10 @@ public class View {
 
     //총 수익률 출력
     public void printProfitResult(int totalHitMoney, int money) {
-        String rateReturn = String.format("%.1f",totalHitMoney / (double) money * 100.0);
+        String rateReturn = String.format("%.1f", totalHitMoney / (double) money * 100.0);
 
-        System.out.println(OUTPUT_RATE_RETURN_1 + rateReturn+OUTPUT_RATE_RETURN_2);
+        System.out.println(OUTPUT_RATE_RETURN_1 + rateReturn + OUTPUT_RATE_RETURN_2);
     }
-
-
 
     public void print_Exception(String errorMessage) {
         System.out.println(errorMessage);

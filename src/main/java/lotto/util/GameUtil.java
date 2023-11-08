@@ -33,5 +33,21 @@ public class GameUtil {
                 .collect(Collectors.toList());
     }
 
+    //당첨 결과
+    public static HashMap<Rank, Integer> setLottoHit(List<Rank> rankList){
+        HashMap<Rank,Integer> rankIntegerHashMap = new LinkedHashMap<>();
+
+        Arrays.stream(Rank.values())
+                .forEach(rank -> rankIntegerHashMap.put(rank,0));
+        rankList.forEach(rank -> rankIntegerHashMap.put(rank,rankIntegerHashMap.get(rank)+1));
+
+        return rankIntegerHashMap;
+    }
+
+    //당첨 수령금
+    public static int setTotalHitMoney(HashMap<Rank, Integer> rankIntegerHashMap){
+        return rankIntegerHashMap.entrySet().stream()
+                .mapToInt(e -> e.getKey().getWinningMoney() * e.getValue()).sum();
+    }
 
 }

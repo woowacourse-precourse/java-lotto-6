@@ -1,17 +1,38 @@
 package lotto;
 
-import lotto.domain.Money;
+import java.util.List;
+import lotto.domain.Count;
+
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.view.Input;
 
 public class GameController {
 
     public void start() {
+        readyToGame();
+    }
+
+    private void readyToGame() {
+        Count count = insertMoney();
+        List<Lotto> lottos = generateUserLotto();
+
 
     }
 
-    private void insertMoney(){
+    private Count insertMoney(){
+        Count count = new Count(Integer.parseInt(Input.consoleLine()));
+        count.checkmoney();
 
-        Money money = new Money(Integer.parseInt(Input.consoleLine()));
+        return count;
+    }
+
+    private List<Lotto> generateUserLotto(){
+        List<Lotto> lottos =  Lottos.generateLotto();
+        return lottos;
+    }
+
+    private void generateWinningLottto(){
 
     }
 

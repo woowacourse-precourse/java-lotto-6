@@ -15,10 +15,10 @@ public class LottoNumber {
         this.number = number;
     }
 
-    private void validRange(Integer number){
-        if(number < MIN || number > MAX){
+    private void validRange(Integer number) {
+        if (number < MIN || number > MAX) {
             throw new IllegalArgumentException(Exception.ERROR_PREFIX.getMessage()
-                    + Exception.LOTTO_NUMBER_RANGE);
+                    + Exception.LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 

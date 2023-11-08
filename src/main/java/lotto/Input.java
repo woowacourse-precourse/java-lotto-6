@@ -2,8 +2,6 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Messages.ErrorMessage;
-import lotto.Messages.MainMessage;
 
 public class Input {
     private final Validater validater = new Validater();

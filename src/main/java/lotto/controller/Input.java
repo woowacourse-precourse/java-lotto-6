@@ -41,13 +41,14 @@ public class Input {
         }
     }
 
-    public static int bonusNumber() {
+    public static int bonusNumber(Lotto prizeNumber) {
         while (true) {
             try {
                 View.inputBonusNumber();
                 String str = Console.readLine();
                 int num = Tool.unsafeString2Int(str);
                 Validation.validateNumberRange(num);
+                Validation.isBonusNumberExceptPrizeNumber(prizeNumber, num);
                 View.println();
                 return num;
             } catch (IllegalArgumentException e) {

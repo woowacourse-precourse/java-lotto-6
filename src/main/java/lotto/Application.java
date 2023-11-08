@@ -16,7 +16,7 @@ public class Application {
         View.lottoList(lottos);
 
         Lotto prizeNumbers = Input.prizeNumber();
-        int bonusNumber = Input.bonusNumber();
+        int bonusNumber = Input.bonusNumber(prizeNumbers);
 
         var result = Calculate.countOfPrize(prizeNumbers, bonusNumber, lottos);
         var earningRate = Calculate.earningRate(result, money);

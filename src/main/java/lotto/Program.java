@@ -1,5 +1,8 @@
 package lotto;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +14,11 @@ public class Program {
     private static final String matchesCount3rdPlace = "5";
     private static final String matchesCount4thPlace = "4";
     private static final String matchesCount5thPlace = "3";
+    private static final int Lotto5thPlaceReward = 5000;
+    private static final int Lotto4thPlaceReward = 50000;
+    private static final int Lotto3rdPlaceReward = 1500000;
+    private static final int Lotto2ndPlaceReward = 30000000;
+    private static final int Lotto1stPlaceReward = 2000000000;
     private LottoTerminal lottoTerminal = new LottoTerminal();
     private Customer customer = new Customer(lottoTerminal);
     private InputValidator inputValidator = new InputValidator();
@@ -21,7 +29,9 @@ public class Program {
     private List<List<Integer>> allLottoIssued = new ArrayList<>();
     private int[] countMatching;
     private boolean[] bonusMatching;
-    HashMap<String, Integer> statistics = new HashMap<>();
+    private HashMap<String, Integer> statistics = new HashMap<>();
+
+    private BigDecimal rateOfReturn;
 
     public void start() {
         processPayment();
@@ -32,6 +42,7 @@ public class Program {
         processBonusNumber();
         calculateWinnings();
         calculateStatistics();
+        calculateRateOfReturn();
     }
 
     private void processPayment() {
@@ -193,5 +204,28 @@ public class Program {
         if (countMatching[idx] == Integer.parseInt(matchesCount1stPlace)) {
             statistics.put(matchesCount1stPlace, statistics.get(matchesCount1stPlace) + 1);
         }
+    }
+
+    public void calculateRateOfReturn() {
+        BigInteger rewardOf5th = BigInteger.valueOf(
+                (long) statistics.get(matchesCount5thPlace) * (long) Lotto5thPlaceReward);
+        BigInteger rewardOf4th = BigInteger.valueOf(
+                (long) statistics.get(matchesCount4thPlace) * (long) Lotto4thPlaceReward);
+        BigInteger rewardOf3rd = BigInteger.valueOf(
+                (long) statistics.get(matchesCount3rdPlace) * (long) Lotto3rdPlaceReward);
+        BigInteger rewardOf2nd = BigInteger.valueOf(
+                (long) statistics.get(matchesCount2ndPlace) * (long) Lotto2ndPlaceReward);
+        BigInteger rewardOf1st = BigInteger.valueOf(
+                (long) statistics.get(matchesCount1stPlace) * (long) Lotto1stPlaceReward);
+
+        BigInteger sum = rewardOf1st.add(rewardOf2nd).add(rewardOf3rd).add(rewardOf4th).add(rewardOf5th);
+        BigDecimal sumTemp = new BigDecimal(sum);
+
+        BigInteger purchaseAmountTemp = BigInteger.valueOf(purchaseAmount);
+
+        BigDecimal rateOfReturnTemp = sumTemp.multiply(new BigDecimal("100"))
+                .divide(new BigDecimal(purchaseAmountTemp), 2, RoundingMode.HALF_UP);
+
+        rateOfReturn = rateOfReturnTemp.setScale(1, RoundingMode.HALF_UP);
     }
 }

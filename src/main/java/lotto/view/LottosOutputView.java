@@ -11,9 +11,9 @@ public class LottosOutputView {
         for(Lotto lotto:lottos){
             String result="[";
             for(int number:lotto.getNumbers()) {
-                result += number + ",";
+                result += number + " ,";
             }
-            result = result.substring(0,result.length()-1);
+            result = result.substring(0,result.length()-2);
             result+="]";
             System.out.println(result);
         }

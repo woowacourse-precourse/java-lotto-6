@@ -1,0 +1,20 @@
+package lotto;
+
+public enum Prize {
+    NONE(0),
+    FIRST(2000000000),
+    SECOND(30000000),
+    THIRD(1500000),
+    FOURTH(50000),
+    FIFTH(5000);
+
+    private final int prize;
+
+    Prize(int value){
+        this.prize = value;
+    }
+
+    public int getPrize() {
+        return this.prize;
+    }
+}

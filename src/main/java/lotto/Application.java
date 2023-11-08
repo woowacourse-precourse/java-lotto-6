@@ -9,5 +9,6 @@ public class Application {
         LM.makeLotto();
         LM.printLotto();
         LM.getWin();
+        LM.addBonus();
     }
 }

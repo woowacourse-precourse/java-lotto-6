@@ -19,6 +19,7 @@ public class MainController {
     private int buyPrice;
     BuyPriceController buyPriceController = new BuyPriceController();
     WinningNumberController winningNumberController = new WinningNumberController();
+    BonusNumberController bonusNumberController = new BonusNumberController();
 
     public void execute() {
         set();
@@ -35,7 +36,7 @@ public class MainController {
         lottos.getLotto();
         winningNumber = winningNumberController.setWinningNumber();
         outputView.printInsertBonusNumber();
-        bonusNumber = inputView.insertBonusNumber();
+        bonusNumber = bonusNumberController.setBonusNumber();
     }
 
     public void announceWinning(List<Integer> winningNumber, int bonusNumber, int buyPrice) {

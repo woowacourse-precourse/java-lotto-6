@@ -49,7 +49,7 @@ public class Lotto {
             return LottoResult.FOUR;
         if(matched == 3)
             return LottoResult.THREE;
-        throw new IllegalArgumentException();
+        return LottoResult.NONE;
     }
 
     public LottoResult getLottoResult(Lotto winning, int bonus) {

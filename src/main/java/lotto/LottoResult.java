@@ -5,7 +5,8 @@ public enum LottoResult {
     FOUR("4개 일치", 50000),
     FIVE("5개 일치", 1500000),
     FIVE_BONUS("5개 일치, 보너스 볼 일치", 30000000),
-    SIX("6개 일치", 2000000000)
+    SIX("6개 일치", 2000000000),
+    NONE("", 0)
     ;
 
     private final String description;

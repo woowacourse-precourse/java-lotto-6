@@ -80,7 +80,9 @@ public class Application {
 
     public static long getTotalPrize(List<LottoResult> results) {
         long totalPrize = 0;
-        for(LottoResult resultType : LottoResult.values()) {
+        for (LottoResult resultType : LottoResult.values()) {
+            if (resultType.equals(LottoResult.NONE))
+                continue;
             long count = countResultByType(results, resultType);
             System.out.printf("%s (%,d원) - %d개\n", resultType.getDescription(), resultType.getPrize(), count);
             totalPrize += resultType.getPrize();

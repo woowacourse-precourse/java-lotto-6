@@ -1,6 +1,7 @@
 package lotto.model;
 
 import static lotto.constant.NumberConstant.LOTTO_PRICE;
+import static lotto.constant.NumberConstant.ZERO;
 import static lotto.message.ErrorMessage.NOT_MULTIPLE_OF_THOUSAND;
 import static lotto.message.ErrorMessage.NOT_POSITIVE;
 
@@ -31,11 +32,11 @@ public class PurchaseCost {
     }
 
     private boolean isPositive(int convertedCost) {
-        return convertedCost > 0;
+        return convertedCost > ZERO.value();
     }
 
     private boolean isMultipleOfThousand(int number) {
-        return number % 1000 == 0;
+        return number % LOTTO_PRICE.value() == ZERO.value();
     }
 
 }

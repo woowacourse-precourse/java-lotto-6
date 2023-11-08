@@ -6,7 +6,8 @@ public enum NumberConstant {
     LOTTO_PRICE(1000),
     LOTTO_NUMBER_SIZE_LIMIT(6),
     LOTTO_SIZE(6),
-    CHECK_BONUS_NUMBER_CONDITION(5);
+    CHECK_BONUS_NUMBER_CONDITION(5),
+    ZERO(0);
     private final int number;
 
     NumberConstant(int number) {

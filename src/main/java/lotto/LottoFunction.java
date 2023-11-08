@@ -27,6 +27,15 @@ public class LottoFunction {
         return lottoList;
     }
 
+    List<Integer> trimInput(String input) {
+        List<Integer> output = new ArrayList<>();
+        for (String sliced : List.of(input.split(","))) {
+            String trimmed = sliced.trim();
+            int trimmedNumber = Change.stringToInt(trimmed);
+            output.add(trimmedNumber);
+        }
+        return output;
+    }
 
 
 }

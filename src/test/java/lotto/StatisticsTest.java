@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.Stream;
+
+import lotto.domain.money.Money;
 import lotto.domain.statistics.LottoRank;
 import lotto.domain.statistics.LottoResult;
 import lotto.domain.statistics.WinningStatistics;
@@ -19,7 +21,8 @@ public class StatisticsTest {
 
     @BeforeEach
     void init() {
-        winningStatistics = new WinningStatistics();
+        Money money = new Money(1000);
+        winningStatistics = new WinningStatistics(money);
     }
 
 

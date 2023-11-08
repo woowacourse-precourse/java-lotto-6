@@ -5,6 +5,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,10 +23,15 @@ public class LottoPurchaseTest {
     @Test
     void 숫자가_아닌_로또_구매_금액() {
         LottoPurchase lottoPurchase = new LottoPurchase();
-        String input = "2000a";
+        String input = "2000a\n2000";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
-        assertThatThrownBy(() -> lottoPurchase.insult()).isInstanceOf(IllegalArgumentException.class);
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        lottoPurchase.insult();
+
+        assertThat(out.toString()).contains("[ERROR]");
     }
 
     @DisplayName("로또 구입 금액이 1000원으로 나누어 떨어지지 않으면 예외가 발생한다.")

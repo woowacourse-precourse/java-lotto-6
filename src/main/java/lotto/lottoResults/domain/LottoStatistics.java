@@ -41,7 +41,7 @@ public class LottoStatistics {
     }
 
     private Double calculateReturnRate(Integer spendMoney) {
-        return (totalReward / (double) spendMoney);
+        return (totalReward / (double) spendMoney) * 100;
     }
 
 }

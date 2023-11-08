@@ -34,7 +34,7 @@ public class LottoStatisticsTest {
         lottoStatistics.printStatistics();
         lottoStatistics.printReturnRate(7000);
 
-        assertThat(out.toString()).contains("1개", "1개", "1개", "1개", "1개", "286,365.0%");
+        assertThat(out.toString()).contains("1개", "1개", "1개", "1개", "1개", "28,636,500.0%");
     }
 
     @DisplayName("로또 당첨 통계를 출력한다.")

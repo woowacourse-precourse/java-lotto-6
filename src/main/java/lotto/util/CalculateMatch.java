@@ -16,9 +16,15 @@ public class CalculateMatch {
     public static void calculateMatchCount(Lotto lotto, List<Integer> winningNumberList) {
 
         for (int number : lotto.getNumbers()) {
-            if (winningNumberList.contains(number)) {
-                matchCount++;
-            }
+            isContain(winningNumberList, number);
+        }
+
+    }
+
+    private static void isContain(List<Integer> winningNumberList, int number) {
+
+        if (winningNumberList.contains(number)) {
+            matchCount++;
         }
 
     }

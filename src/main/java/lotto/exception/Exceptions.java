@@ -43,9 +43,10 @@ public class Exceptions {
         }
     }
 
-    public void isInvalidNullNumber(String number) {
-        if(number.contains(" ") || number.contains(",,")) {
-            throw new IllegalArgumentException("[ERROR] 이름은 null값이 될 수 없습니다.");
+    public void isInvalidPurchaseMoneyNull(int num){
+        String input = String.valueOf(num);
+        if(input == " " || input == ""){
+            throw new IllegalArgumentException("[ERROR] 유효하지않은 구매 금액입니다.");
         }
     }
 }

@@ -1,8 +1,8 @@
 package lotto.model;
 
+import lotto.exception.Exceptions;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class Customer {
     private static final int initLottoRanking = 0;
@@ -11,10 +11,12 @@ public class Customer {
     private static final double doubleTen = 10.0;
     private static final int zero = 0;
     private int purchaseMoney;
+    private Exceptions exceptions = new Exceptions();
     private ArrayList<Lotto> purchaseLotteries = new ArrayList<>();
     private HashMap<Ranking,Integer> lottoResult = new HashMap<>();
 
     public Customer(int purchaseMoney) {
+        exceptions.isInvalidPurchaseMoneyNull(purchaseMoney);
         this.purchaseMoney = purchaseMoney;
         initLottoResult();
     }

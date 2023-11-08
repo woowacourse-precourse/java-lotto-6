@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.Deposit;
 import lotto.model.LottoTicket;
+import lotto.service.LottoTicketIssuer;
 
 import static lotto.view.InputView.askPurchaseAmount;
 import static lotto.view.InputView.askUntilGetValidAnswer;

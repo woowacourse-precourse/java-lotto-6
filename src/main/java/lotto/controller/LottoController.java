@@ -4,6 +4,7 @@ import lotto.model.BonusNumber;
 import lotto.model.Deposit;
 import lotto.model.LottoTicket;
 import lotto.model.WinningNumbers;
+import lotto.service.LottoReader;
 import lotto.utils.PrizeType;
 
 import java.util.List;

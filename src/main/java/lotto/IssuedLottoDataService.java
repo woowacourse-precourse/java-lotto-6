@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class IssuedLottoDataService {
-    InputView inputView = new InputView();
     public IssuedLottos create_issued_lottos(){
         int amount = purchaceAmount()/1000;
         IssuedLottos issuedLottos = new IssuedLottos(new ArrayList<>(), amount);
@@ -17,7 +16,7 @@ public class IssuedLottoDataService {
         return issuedLottos;
     }
     private int purchaceAmount(){
-        String money = inputView.InputpurchaseAmount();
+        String money = InputView.InputpurchaseAmount();
         Validation.validateNumberType(money);
         return Integer.parseInt(money);
     }

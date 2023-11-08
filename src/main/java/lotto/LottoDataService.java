@@ -7,10 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoDataService {
-    InputView inputView;
     Validation validation;
     public Lotto create_official_Lotto(){
-        List<Integer> lotto_numbers = create_lotto_Numbers(inputView.InputLottoNumbers());
+        List<Integer> lotto_numbers = create_lotto_Numbers(InputView.InputLottoNumbers());
         int bonus_number = create_bonus_number();
         return create_Lotto(lotto_numbers, bonus_number);
     }
@@ -26,7 +25,7 @@ public class LottoDataService {
     }
 
     private int create_bonus_number(){
-        String bonus_Number = inputView.InputBonusNumbers();
+        String bonus_Number = InputView.InputBonusNumbers();
         validation.validateNumberType(bonus_Number);
         return Integer.parseInt(bonus_Number);
     }

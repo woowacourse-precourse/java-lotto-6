@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static lotto.Validator.isDuplicated;
 import static lotto.constants.LottoConfig.*;
 import static lotto.domain.InputHandler.*;
 
@@ -26,9 +27,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        isDuplicated(numbers);
     }
 
     // TODO: 추가 기능 구현

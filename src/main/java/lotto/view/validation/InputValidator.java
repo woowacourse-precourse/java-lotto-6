@@ -11,8 +11,10 @@ public class InputValidator {
         }
     }
 
-    public static void validateNumber(String inputNumber) {
-        if (!inputNumber.matches(RegularExpression.NUMBER_REGEX_INCLUDE_NEGATIVE.getValue())) {
+    public static void validatePurchaseNumber(String purchaseInputNumber) {
+        try {
+            Integer.parseInt(purchaseInputNumber);
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_IS_NOT_NUMBER.getValue());
         }
     }

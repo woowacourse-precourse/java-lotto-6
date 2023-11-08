@@ -12,19 +12,18 @@ public class InputView {
 
     public static double getPurchaseAmountFromInput() {
         System.out.println(InputMessage.PURCHASE_AMOUNT.getValue());
-        String inputAmount = Console.readLine();
+        String inputAmount = inputRemoveBlank(Console.readLine());
         InputValidator.validateBlank(inputAmount);
-        InputValidator.validateNumber(inputAmount);
+        InputValidator.validatePurchaseNumber(inputAmount);
         return Double.parseDouble(inputAmount);
     }
 
     public static Lotto getWinningLottoFromInput() {
         System.out.println(InputMessage.WINNING_LOTTO.getValue());
-        String inputWinningLotto = Console.readLine();
-        String blankRemoveWinningLotto = inputWinningLotto.replace(" ", "");
+        String inputWinningLotto = inputRemoveBlank(Console.readLine());
         InputValidator.validateBlank(inputWinningLotto);
         return new Lotto(
-                Arrays.stream(blankRemoveWinningLotto.split(",", -1))
+                Arrays.stream(inputWinningLotto.split(",", -1))
                         .map(InputValidator::validateLottoNumberAndConvertToNumeric)
                         .toList()
         );
@@ -32,9 +31,13 @@ public class InputView {
 
     public static BonusNumber getBonusNumberFromInput() {
         System.out.println(InputMessage.BONUS.getValue());
-        String inputBonusNumber = Console.readLine();
+        String inputBonusNumber = inputRemoveBlank(Console.readLine());
         InputValidator.validateBlank(inputBonusNumber);
         InputValidator.validateBonusNumber(inputBonusNumber);
         return new BonusNumber(Integer.parseInt(inputBonusNumber.trim()));
+    }
+
+    public static String inputRemoveBlank(String input) {
+        return input.replace(" ", "");
     }
 }

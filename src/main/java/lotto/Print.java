@@ -5,6 +5,11 @@ import java.util.List;
 
 public class Print {
 
+    public void printLottoCount(int purchaseCount){
+        System.out.printf("%d개를 구매했습니다.%n", purchaseCount);
+    }
+
+
     public void printLottos(List<List<Integer>> lottos) {
         List<Integer> lottoNumbers = null;
         List<Integer> eachLottoNumber = null;

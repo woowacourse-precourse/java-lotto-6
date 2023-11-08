@@ -17,13 +17,13 @@ public class UserInterface {
     }
     public int[][] UI_makeLotto(){
         int price = customer.inputpprice();
-        customer.forraffle();
+        customer.CustomerLotto();
         int[][] lottos = raffle.showLottes(customer);
         System.out.println("당첨 통계");
         System.out.println("---");
         return lottos;
     }
-    public void makingRank(int[][] lottos, Lotto userLotto, int bonus){
+    public void makingRank(int[][] lottos, Lotto userLotto, int bonus){//만들어진 로또를 여러개 순환하면서 랭킹을 매긴다.
         for (int[] lottoNumbers : lottos) {
             List<Integer> lottoList = Arrays.stream(lottoNumbers)
                     .boxed()
@@ -34,7 +34,7 @@ public class UserInterface {
             ranks.add(rank);
         }
     }
-    public void printResults() {
+    public void printResults() { //랭킹을 출력한다.
         int price = customer.getPrice();
         System.out.println("3개 일치 (5,000원) - " + countByRank.getOrDefault(Raffle.LottoRank.FIFTH, 0) + "개");
         System.out.println("4개 일치 (50,000원) - " + countByRank.getOrDefault(Raffle.LottoRank.FOURTH, 0) + "개");
@@ -44,7 +44,7 @@ public class UserInterface {
         String returnRate = raffle.calculateReturnRate(ranks, price);
         System.out.println(returnRate);
     }
-    public void doLotto(){
+    public void drawLotto(){
         int[][] lottos=UI_makeLotto();
         makingRank(lottos,customer.getLotto(),customer.getbonus());
         printResults();

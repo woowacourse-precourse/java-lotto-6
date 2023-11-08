@@ -23,7 +23,7 @@ public class Customer {
     private Lotto mylotto;
     private List<Integer> mynums;
 
-    public void forraffle() {
+    public void CustomerLotto() {//고객의 로또번호와 보너스 번호를 입력받는다
         while(true){
             try{
                 inputlotto();
@@ -37,7 +37,7 @@ public class Customer {
             }
         }
     }
-    public int inputpprice() {
+    public int inputpprice() {//얼마살지 입력받는다.
         while (true) {
             try {
                 System.out.print(wantprice);
@@ -50,13 +50,13 @@ public class Customer {
         }
         return price;
     }
-    public int caltrying(int price){
+    public int calcount(int price){//몇회하는지 계산한다.
         count=price/1000;
         System.out.println(getcount() + pricesuccess);
         return count;
     }
 
-    private void inputlotto() {
+    private void inputlotto() {//로또번호를 입력받는다.
         try {
             System.out.println(wantnum);
             String name = Console.readLine();
@@ -67,7 +67,7 @@ public class Customer {
             System.out.println(numstrerr);
         }
     }
-    private void inputbonus(){
+    private void inputbonus(){//ㅂ보너스 번호를 입력받는다.
         try {
             System.out.println(wantbonus);
             bonus = Integer.parseInt(Console.readLine());

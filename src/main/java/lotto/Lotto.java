@@ -18,7 +18,7 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자입니다.");
         }
     }
-    public List<Integer> getlotto(){
+    public List<Integer> getlotto(){//정렬하여 보여준다.
         List<Integer> lottonums = new ArrayList<>(numbers);
         Collections.sort(lottonums);
         return lottonums;

@@ -29,11 +29,11 @@ public class Raffle {
         public int getBonus(){return bonus;}
     }
 
-    public Lotto makeLotto() {
+    public Lotto makeLotto() {//무작위 로또하나를 만든다
         List<Integer> nums = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(nums);
     }
-    private int[][] makeLottoes(int count){
+    private int[][] makeLottoes(int count){//입력 횟수만큼 로또를 만든다.
         int[][] lottodeck= new int[count][6];
         while(count>0){
             lottodeck[count-1] = makeLotto().getlotto().stream().mapToInt(i->i).toArray();
@@ -41,16 +41,16 @@ public class Raffle {
         }
         return lottodeck;
     }
-    public int[][] showLottes(Customer customer){
+    public int[][] showLottes(Customer customer){//만들어진 로또를 보여준다.
         int price = customer.getPrice();
-        int count = customer.caltrying(price);
+        int count = customer.calcount(price);
         int[][] lottodeck = makeLottoes(count);
         for (int[] lottoNumbers : lottodeck) {
             System.out.println(Arrays.toString(lottoNumbers));
         }
         return lottodeck;
     }
-    public LottoRank rankLotto(Lotto lotto, Lotto winningLotto, int bonusNumber) {
+    public LottoRank rankLotto(Lotto lotto, Lotto winningLotto, int bonusNumber) {//몇등인지 반환한다.
         int matchCount = countMatch(lotto, winningLotto);
         boolean bonusMatch = lotto.getlotto().contains(bonusNumber);
         if (matchCount == 6 && lotto.equals(winningLotto)) {return LottoRank.FIRST;}
@@ -60,12 +60,12 @@ public class Raffle {
         if ((matchCount == 3)) {return LottoRank.FIFTH;}
         return LottoRank.미당첨;
     }
-    private int countMatch(Lotto lotto, Lotto winningLotto) {
+    private int countMatch(Lotto lotto, Lotto winningLotto) {//filter를 이용해 몇개나 로또랑 일치하는지 확인한다.
         return (int) lotto.getlotto().stream()
                 .filter(winningLotto.getlotto()::contains)
                 .count();
     }
-    public String calculateReturnRate(List<LottoRank> ranks, int inputMoney) {
+    public String calculateReturnRate(List<LottoRank> ranks, int inputMoney) {//수익률을 계산한다.
         int totalPrize = ranks.stream()
                 .mapToInt(LottoRank::getPrize)
                 .sum();

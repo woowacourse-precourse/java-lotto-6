@@ -115,12 +115,14 @@ public class LottoStart {
 
         while (true) {
             try {
-                winningNumbers = second_formattingWinningNumbers();
-                Lotto winningNumbersCheck = new Lotto(winningNumbers);
 
+                winningNumbers = second_formattingWinningNumbers();
+                second_ValidateInputNumbersDuplicates(winningNumbers);
                 break;
+
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해 주세요.");
+
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 중복된 숫자가 있습니다. 다시 입력해 주세요.");
             }
@@ -136,6 +138,21 @@ public class LottoStart {
                 .filter(s -> !s.isEmpty())
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+    private static boolean second_CheckInputNumbersDuplicates(List<Integer> inputNumbers) {
+        for (int i = 0; i < inputNumbers.size() - 1; i++) {
+            for (int j = i + 1; j < inputNumbers.size(); j++) {
+                if (inputNumbers.get(i).equals(inputNumbers.get(j))) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    private static void second_ValidateInputNumbersDuplicates(List<Integer> inputNumbers){
+        if(second_CheckInputNumbersDuplicates(inputNumbers)){
+            throw new IllegalArgumentException();
+        }
     }
     private static int second_InputBonusNumber(List<Integer> inputWinningNumbers) {
         while (true) {

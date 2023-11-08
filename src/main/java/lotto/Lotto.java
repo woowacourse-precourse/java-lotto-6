@@ -16,7 +16,7 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-    private boolean hasDuplicates(List<Integer> numbers) {
+    private boolean checkDuplicates(List<Integer> numbers) {
         for (int i = 0; i < numbers.size() - 1; i++) {
             for (int j = i + 1; j < numbers.size(); j++) {
                 if (numbers.get(i).equals(numbers.get(j))) {
@@ -27,8 +27,8 @@ public class Lotto {
         return false;
     }
 
-    public void validateDuplicates(List<Integer> numbers){
-        if(hasDuplicates(numbers)){
+    private void validateDuplicates(List<Integer> numbers){
+        if(checkDuplicates(numbers)){
             throw new IllegalArgumentException();
         }
     }

@@ -86,9 +86,10 @@
 
 ### Test
 
-- [ ] domain test 코드가 정상적으로 작동하는가?
-- [ ] ApplicationTest 코드가 정상적으로 작동하는가?
-    
+- [x] domain test 코드가 정상적으로 작동하는가?
+- [x] ApplicationTest 코드가 정상적으로 작동하는가?
+    - 궁금한 점 : NoSuchElementException이 발생하는데, 이를 어떻게 처리해야 할 지 모르겠습니다.
+
 ---
 
 ## ⭐️ Commit Convention

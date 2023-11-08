@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,5 +44,27 @@ public class LottoAgencyTest {
         assertThat(result.get(LottoRank.THIRD_PLACE)).isEqualTo(1);
         assertThat(result.get(LottoRank.FOURTH_PLACE)).isEqualTo(1);
         assertThat(result.get(LottoRank.FIFTH_PLACE)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("로또 당첨 총 금액을 구한다.")
+    void calculateTotalWinningAmount() {
+        // given
+        Map<LottoRank, Integer> winningResult = new HashMap<>();
+        winningResult.put(LottoRank.FIRST_PLACE, 1);
+        winningResult.put(LottoRank.SECOND_PLACE, 1);
+        winningResult.put(LottoRank.THIRD_PLACE, 1);
+        winningResult.put(LottoRank.FOURTH_PLACE, 1);
+        winningResult.put(LottoRank.FIFTH_PLACE, 1);
+
+        // when
+        long result = lottoAgency.calculateTotalWinningAmount(winningResult);
+
+        // then
+        long expected = LottoRank.FIRST_PLACE.getWinningAmount() + LottoRank.SECOND_PLACE.getWinningAmount()
+                + LottoRank.THIRD_PLACE.getWinningAmount() + LottoRank.FOURTH_PLACE.getWinningAmount()
+                + LottoRank.FIFTH_PLACE.getWinningAmount();
+
+        assertThat(result).isEqualTo(expected);
     }
 }

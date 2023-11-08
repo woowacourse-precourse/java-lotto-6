@@ -7,8 +7,6 @@ public class LottoPercentageCalculation {
 
     }
 
-
-
     public double percentageCalculation(List<LottoPrize> lottoPrizelist, LottoInformation lottoInformation) {
         double profit = 0;
         for(LottoPrize lottoPrize: lottoPrizelist){

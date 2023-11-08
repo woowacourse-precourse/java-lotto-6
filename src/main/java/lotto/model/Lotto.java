@@ -23,12 +23,9 @@ public class Lotto {
         for (List<Integer> integers : lottoNumber) {
             List<Integer> Result = integers.stream()
                     .filter(i -> this.numbers.stream().anyMatch(Predicate.isEqual(i)))
-//                    .collect(Collectors.toList());
                     .toList();
             long bonusResult = integers.stream()
                             .filter(bonusNumber::equals).count();
-//            System.out.println(bonusResult);
-
             CheckPrize(Result.size(),bonusResult).addWinCount();
 
         }

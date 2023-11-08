@@ -18,13 +18,11 @@ public class LottoController {
     private static LottoPercentageCalculation lottoPercentageCalculation = new LottoPercentageCalculation();
     private static final RandomIntGenerator randomIntGenerator = new RandomIntGenerator();
     static List<LottoPrize> LottoPrizelist= asList(FIFTH_PRIZE,FOURTH_PRIZE,THIRD_PRIZE,SECOND_PRIZE,FIRST_PRIZE);
-//    private static List<List<Integer>> buyLottoList = new ArrayList<>();
     public LottoController() {
 
     }
 
     public static void setPrice(){
-        //view에서 가격입력받고 모델로 전달
        randomIntGenerator.makeLottoNumber(lottoView.askPrice());
     }
 
@@ -42,9 +40,7 @@ public class LottoController {
         System.out.println();
     }
 
-    public static void winningStatstic() {
-
-
+    public static void winningStatistic() {
         lottoView.seeWinningStatstic(LottoPrizelist);
     }
 
@@ -53,11 +49,4 @@ public class LottoController {
 
     }
 
-//    public static Integer setBonusNumberInput() {
-//        return lottoView.bonusNumberInput();
-//    }
-
-    public void setRandomNumber(Integer Price) {
-
-    }
 }

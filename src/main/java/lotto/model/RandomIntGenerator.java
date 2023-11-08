@@ -3,8 +3,6 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -21,10 +19,6 @@ public class RandomIntGenerator {
         BUY_PRICE.setValue(count);
       IntStream.range(0, count/COUNT_DIVISION.getValue())
               .forEach(i -> numbers.add(makeRandomNumber()));
-//        System.out.println(numbers);
-
-
-
     }
 
     private List<Integer> makeRandomNumber() {

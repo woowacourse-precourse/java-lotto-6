@@ -14,22 +14,6 @@ public class LottoHandler {
     private static final int LOTTO_NUMBER_COUNT = 6;
     private static final int LOTTO_PRICE = 1000;
 
-    public int lottoCountForPurchasePrice() {
-        int lottoTicket = 0;
-        boolean validPrice = false;
-        OutputHandler.printMessage("구입금액을 입력해 주세요.");
-
-        while (!validPrice) {
-            try {
-                lottoTicket = calculateLottoTicketCount(Console.readLine());
-                validPrice = true;
-            } catch (IllegalArgumentException e) {
-                OutputHandler.printMessage(e.getMessage());
-            }
-        }
-        OutputHandler.printLineBreakMessage(lottoTicket + "개를 구매했습니다.");
-        return lottoTicket;
-    }
 
     public List<Lotto> issueLottoNumbers(int lottoTicket) {
         List<Lotto> lottos = new ArrayList<>();
@@ -40,38 +24,6 @@ public class LottoHandler {
 
         OutputHandler.printLottos(lottos);
         return lottos;
-    }
-
-    public Lotto winningLotto() {
-        boolean validWinning = false;
-        Lotto winningLotto = null;
-        OutputHandler.printLineBreakMessage("당첨 번호를 입력해 주세요.");
-
-        while (!validWinning) {
-            try {
-                winningLotto = receiveWinningLotto(Console.readLine());
-                validWinning = true;
-            } catch (IllegalArgumentException e) {
-                OutputHandler.printMessage(e.getMessage());
-            }
-        }
-        return winningLotto;
-    }
-
-    public int bonusNumber() {
-        boolean validBonusNumber = false;
-        int bonusNumber = 0;
-        OutputHandler.printLineBreakMessage("보너스 번호를 입력해 주세요.");
-
-        while (!validBonusNumber) {
-            try {
-                bonusNumber = receiveBonusNumber(Console.readLine());
-                validBonusNumber = true;
-            } catch (IllegalArgumentException e) {
-                OutputHandler.printMessage(e.getMessage());
-            }
-        }
-        return bonusNumber;
     }
 
     public Map<WinningKind, Integer> winningResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {

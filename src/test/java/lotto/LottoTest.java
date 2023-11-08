@@ -1,6 +1,8 @@
 package lotto;
 
 import lotto.model.Lotto;
+import lotto.model.Lottos;
+import lotto.service.LottoService;
 import lotto.validator.ValidateBonusNumber;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -40,6 +42,12 @@ class LottoTest {
         }
     }
 
-
+    @DisplayName("입력한 구매금액만큼 로또가 반환되는지 확인.")
+    @Test
+    void exchangeLottoTicket(){
+        LottoService service=new LottoService();
+        Lottos lottos = service.exchangeLottoTicket(3000);
+        assertThat(lottos.getLottos().size()).isEqualTo(3);
+    }
 
 }

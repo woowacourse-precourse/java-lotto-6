@@ -1,7 +1,11 @@
 package lotto.view;
 
 import lotto.domain.User;
+import lotto.domain.UserLottos;
+
 import static lotto.util.PrintConstants.*;
+
+import java.util.List;
 
 public class OutputView {
 
@@ -18,4 +22,11 @@ public class OutputView {
 	public int getNumberOfLottos(User user) {
 		return user.getBuyingLottosPrice()/1000;
 	}
+
+	public void printUserLottoNumbers(User user) {
+		List<UserLottos> lottos = user.getLottos();
+		for(UserLottos lotto : lottos) {
+			System.out.println(lotto.getLottoNumbers());
+		}
+		}
 }

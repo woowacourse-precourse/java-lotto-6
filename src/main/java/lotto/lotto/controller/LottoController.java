@@ -39,9 +39,7 @@ public class LottoController {
         List<Lotto> lottos = new ArrayList<>();
         try{
             for(int i=0;i<count;i++){
-                List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, MAX_INPUT_NUMBER));
-                Collections.sort(numbers);
-                Lotto lotto = new Lotto(numbers);
+                Lotto lotto = new Lotto(makeRandomNumbers());
                 lottos.add(lotto);
             }
             LottoValidate.checkLottos(lottos);
@@ -50,5 +48,11 @@ public class LottoController {
             System.out.println(e.getMessage());
         }
         return lottos;
+    }
+
+    private List<Integer> makeRandomNumbers(){
+        List<Integer> temp = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, MAX_INPUT_NUMBER));
+        Collections.sort(temp);
+        return temp;
     }
 }

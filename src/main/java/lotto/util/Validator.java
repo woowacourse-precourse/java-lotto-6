@@ -54,6 +54,10 @@ public class Validator {
 
     public static void validateWinningNumbers(WinningNumbersDto winningNumbersDto) {
         List<Integer> winningNumbers = winningNumbersDto.getNumbers();
+        validateWinningNumbers(winningNumbers);
+    }
+
+    public static void validateWinningNumbers(List<Integer> winningNumbers) {
         validateNotNull(winningNumbers);
 
         if (winningNumbers.isEmpty()) {
@@ -71,7 +75,10 @@ public class Validator {
     public static void validateBonusNumber(WinningNumbersDto winningNumbersDto, BonusNumberDto bonusNumberDto) {
         List<Integer> winningNumbers = winningNumbersDto.getNumbers();
         int bonusNumber = bonusNumberDto.getBonus();
+        validateBonusNumber(winningNumbers,bonusNumber);
+    }
 
+    public static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         validateNotNull(bonusNumber);
         validateNumberInRange(bonusNumber);
 

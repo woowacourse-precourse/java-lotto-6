@@ -27,8 +27,6 @@ public class LottoController {
         tryCreateBonusNumbers(gameNumbers);
 
         showWinningStatistics(lottos, gameNumbers, statisticsResult);
-
-        OutputView.printFinalReturnRate(statisticsResult.getFinalReturnRate());
     }
 
     private int createPurchaseAmount() {
@@ -74,5 +72,6 @@ public class LottoController {
         List<Result> results = lottos.getResults(gameNumbers);
         statisticsResult.addLottoResults(results);
         OutputView.printFinalResult(statisticsResult.getFinalResult());
+        OutputView.printFinalReturnRate(statisticsResult.getFinalReturnRate());
     }
 }

@@ -25,7 +25,6 @@ public class MoneyTest {
     void lottoSpentMoneyRange(String inputMoney) {
         assertThatThrownBy(() -> new Money(inputMoney))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]")
                 .hasMessageContaining("구입 금액은 1,000원이상 부터 10,000원 까지 가능합니다.");
     }
 

@@ -1,21 +1,28 @@
 package lotto.controller;
 
 import lotto.domain.*;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+
+import static lotto.view.InputView.*;
+import static lotto.view.OutputView.*;
 
 public class LottoController {
 
     public void play() {
-        PurchaseBudget purchaseBudget = InputView.getPurchaseBudget();
-        Lottos issuedLottos = OutputView.announceIssuedLottos(purchaseBudget.createQuantity());
+        PurchaseBudget purchaseBudget = getPurchaseBudget();
+        lineBreak();
 
-        Lotto winningLotto = InputView.getWinningLotto();
-        LottoNumber bonusLottoNumber = InputView.getBonusLottoNumber(winningLotto);
+        Lottos issuedLottos = announceIssuedLottos(purchaseBudget.createQuantity());
+        lineBreak();
+
+        Lotto winningLotto = getWinningLotto();
+        lineBreak();
+
+        LottoNumber bonusLottoNumber = getBonusLottoNumber(winningLotto);
+        lineBreak();
 
         WinnerStatistics winnerStatistic = getWinnerStatistic(issuedLottos, winningLotto, bonusLottoNumber);
-        OutputView.announceWinningStatistics(winnerStatistic);
-        OutputView.printObject(EarningRate.of(purchaseBudget, winnerStatistic));
+        announceWinningStatistics(winnerStatistic);
+        printObject(EarningRate.of(purchaseBudget, winnerStatistic));
     }
 
     private WinnerStatistics getWinnerStatistic(Lottos issuedLottos, Lotto winningLotto, LottoNumber bonusLottoNumber) {

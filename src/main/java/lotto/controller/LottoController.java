@@ -97,4 +97,15 @@ public class LottoController {
             Ranking.values()[i].printMessage(result.get(Ranking.values()[i]));
         }
     }
+
+    private void printEarningRate(Map<Ranking, Integer> result, int lottoAmount) {
+        double EarningRate = 0;
+        for (Ranking rank : result.keySet()) {
+            EarningRate =
+                    EarningRate + ((double) (rank.getWinningAmount()) / (lottoAmount * TICKET_PRICE) * (result.get(
+                            rank)) * (PERCENTAGE));
+
+        }
+        OutputView.printRevenueRate(EarningRate);
+    }
 }

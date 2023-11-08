@@ -42,7 +42,7 @@ class ApplicationTest extends NsTest {
                 List.of(13, 14, 16, 38, 42, 45),
                 List.of(7, 11, 30, 40, 42, 43),
                 List.of(2, 13, 22, 32, 38, 45),
-                List.of(1, 3, 5, 14, 22, 45)
+                List.of(1, 3, 5, 14, 45, 22)
         );
     }
 
@@ -50,6 +50,30 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_1000단위() {
+        assertSimpleTest(() -> {
+            runException("1001");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스번호_중복() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스번호_범위() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "0");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

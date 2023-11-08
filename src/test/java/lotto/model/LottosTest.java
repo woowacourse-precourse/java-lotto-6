@@ -52,8 +52,8 @@ class LottosTest {
 
     private WinLotto createWinLotto() {
         Lotto winTicket = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 7;
-        return new WinLotto(winTicket, bonusNumber);
+        BonusNumber bonusnumber = new BonusNumber(7);
+        return new WinLotto(winTicket, bonusnumber);
     }
 
     private Lotto createFirstTicket() {

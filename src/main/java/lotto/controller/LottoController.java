@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import java.util.function.Supplier;
 import lotto.model.Amount;
+import lotto.model.BonusNumber;
 import lotto.model.InputParser;
 import lotto.model.InputValidator;
 import lotto.model.Lotto;
@@ -14,7 +15,6 @@ import lotto.view.OutputView;
 
 public class LottoController {
     Lottos lottos;
-    InputValidator inputValidator = new InputValidator();
 
     public void run() {
         Amount amount = getValidInput(() -> new Amount(InputView.requestAmount()));
@@ -49,10 +49,13 @@ public class LottoController {
 
     // 우승 로또 생성
     private WinLotto createWinLotto() {
+        List<String> parsedNumbers = InputParser.parseInput(InputView.requestWinningNumbers());
         Lotto winNumbers = getValidInput(() -> new Lotto(
-                inputValidator.validateInput(InputParser.parseInput(InputView.requestWinningNumbers()))));
+                InputValidator.validateInteger(parsedNumbers)));
+
+        int bonusInput = InputValidator.validateInteger(InputView.requestBonusNumber());
         return getValidInput(() -> new WinLotto(winNumbers,
-                getValidInput(() -> inputValidator.validateInput(InputView.requestBonusNumber()))));
+                getValidInput(() -> new BonusNumber(bonusInput))));
     }
 
     // 최종 결과 출력

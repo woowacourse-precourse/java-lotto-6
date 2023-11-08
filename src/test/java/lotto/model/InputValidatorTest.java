@@ -6,8 +6,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.model.exceptions.NotIntegerException;
-import lotto.model.exceptions.OutOfRangeNumberException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -15,18 +13,11 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputValidatorTest {
-    InputValidator inputValidator;
-
-    @BeforeEach
-    void setUp() {
-        inputValidator = new InputValidator();
-    }
-
     @ParameterizedTest(name = "{index}: {0}")
     @MethodSource("notIntegerParameter")
     @DisplayName("정수가 아닐 시 예외 발생")
     void notIntegerNumbersInput(String testName, List<String> input) {
-        assertThatThrownBy(() -> inputValidator.validateInput(input))
+        assertThatThrownBy(() -> InputValidator.validateInteger(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NOT_CORRECT_INPUT_MESSAGE.getMessage());
     }
@@ -48,15 +39,7 @@ public class InputValidatorTest {
     @ValueSource(strings = {"", " ", "0.5", "안녕", "5+1"})
     @DisplayName("정수가 아닐 시 예외 발생")
     void notIntegerNumberInput(String input) {
-        assertThatThrownBy(() -> inputValidator.validateInput(input))
+        assertThatThrownBy(() -> InputValidator.validateInteger(input))
                 .isInstanceOf(NotIntegerException.class);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"-100", "-10", "0", "46", "100"})
-    @DisplayName("범위 밖의 숫자 예외 발생")
-    void outOfRangeNumberInput(String input) {
-        assertThatThrownBy(() -> inputValidator.validateInput(input))
-                .isInstanceOf(OutOfRangeNumberException.class);
     }
 }

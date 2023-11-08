@@ -24,7 +24,7 @@ class WinLottoTest {
     @ValueSource(ints = {1, 2, 3, 4, 5, 6})
     @DisplayName("우승 번호와 중복된 숫자 입력 예외 발생")
     void duplicateNumberInput(int input) {
-        assertThatThrownBy(() -> new WinLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), input))
+        assertThatThrownBy(() -> new WinLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new BonusNumber(input)))
                 .isInstanceOf(DuplicatedNumberException.class);
     }
 
@@ -32,7 +32,7 @@ class WinLottoTest {
     @MethodSource("LottoParameter")
     @DisplayName("로또 랭크 계산 테스트")
     void calculateLottoRank(String testName, List<Integer> input, Rank rank) {
-        WinLotto winLotto = new WinLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
+        WinLotto winLotto = new WinLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new BonusNumber(7));
         Rank result = winLotto.calculateLottoRank(new Lotto(input));
         assertThat(result).isEqualTo(rank);
     }

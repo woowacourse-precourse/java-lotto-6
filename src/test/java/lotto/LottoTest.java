@@ -231,9 +231,4 @@ class LottoTest {
 
     }
 
-    @DisplayName("당첨된 로또의 상금과 수익률을 구한다.")
-    @Test
-    void findPrizeAndRate(){
-
-    }
 }

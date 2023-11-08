@@ -26,7 +26,9 @@ public class LottoAnswer {
             int count = lotto.getMatchNumberCount(answer);
             boolean hasBonusNumber = lotto.hasBonusNumber(bonus);
             int rank = rankPolicy.apply(count, hasBonusNumber);
-            rankToCount.put(rank, rankToCount.getOrDefault(rank, 0) + 1);
+            if (rank > 0) {
+                rankToCount.put(rank, rankToCount.getOrDefault(rank, 0) + 1);
+            }
         });
         return rankToCount;
     }

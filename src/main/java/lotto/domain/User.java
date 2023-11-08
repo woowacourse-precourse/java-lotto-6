@@ -4,12 +4,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class User {
-    private final Integer cash;
+    private final Long cash;
     private final List<Lotto> lottos;
 
-    public User(List<Lotto> lottos, Integer cash) {
+    public User(List<Lotto> lottos, Long cash) {
         this.lottos = lottos;
         this.cash = cash;
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public Long getCash() {
+        return cash;
     }
 
     @Override
@@ -17,9 +25,5 @@ public class User {
         return lottos.stream()
                 .map(lotto -> lotto.toString() + "\n")
                 .collect(Collectors.joining());
-    }
-
-    public List<Lotto> getLottos() {
-        return lottos;
     }
 }

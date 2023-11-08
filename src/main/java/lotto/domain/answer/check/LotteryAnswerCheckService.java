@@ -5,8 +5,11 @@ import lotto.domain.User;
 import lotto.domain.answer.LottoAnswer;
 
 public class LotteryAnswerCheckService {
-    public Integer getWinningPrice(User user, LottoAnswer lottoAnswer) {
-        Map<Integer, Integer> rankToCount = lottoAnswer.getRankToCount(WinningPolicy.getRank, user);
+    public Map<Integer, Integer> getRankToCount(User user, LottoAnswer lottoAnswer) {
+        return lottoAnswer.getRankToCount(WinningPolicy.getRank, user);
+    }
+
+    public Long getWinningPrice(Map<Integer, Integer> rankToCount) {
         return WinningMoneyCalculator.calculateWinnigPrice(rankToCount);
     }
 

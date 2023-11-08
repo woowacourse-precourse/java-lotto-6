@@ -31,7 +31,7 @@ class OutputViewTest {
     @DisplayName("생성한 로또들을 포맷에 맞추어 출력합니다.")
     public void 로또들_출력() {
         // GIVEN
-        Integer cash = 2000;
+        Long cash = 2000L;
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(8, 21, 23, 41, 42, 43)));
         lottos.add(new Lotto(List.of(3, 5, 11, 16, 32, 38)));
@@ -45,5 +45,15 @@ class OutputViewTest {
         assertEquals("[8, 21, 23, 41, 42, 43]\n"
                 + "[3, 5, 11, 16, 32, 38]", outputStreamCaptor.toString()
                 .trim());
+    }
+
+    @Test
+    void printReturnOnInvestment() {
+        // GIVEN
+        Double roi = 62.5D;
+        // WHEN
+        OutputView.printReturnOnInvestment(roi);
+
+        // THEN
     }
 }

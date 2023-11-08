@@ -11,7 +11,7 @@ public class LotteryPurchaseController {
     private final LotteryIssueService lotteryIssueService = new LotteryIssueService();
 
     public User purchaseLottoTickets() {
-        Integer cash = lotteryCountService.getCash();
+        Long cash = lotteryCountService.getCash();
         Integer ticketCount = lotteryCountService.getTicketCount(cash);
         List<Lotto> lottos = lotteryIssueService.getLottos(ticketCount);
         return new User(lottos, cash);

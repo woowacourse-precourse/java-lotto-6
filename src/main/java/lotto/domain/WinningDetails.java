@@ -19,6 +19,10 @@ public class WinningDetails {
         }
     }
 
+    public Map<Integer, Integer> getWinningDetails() {
+        return winningDetails;
+    }
+
     public void increaseCount(int key) {
         validate(key);
         winningDetails.put(key, winningDetails.get(key) + 1);

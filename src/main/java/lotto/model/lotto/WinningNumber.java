@@ -8,7 +8,7 @@ import static lotto.model.validator.InputValidator.checkNumericWithCommaInput;
 import static lotto.model.validator.InputValidator.numberMustBe1To45;
 
 public class WinningNumber {
-    Lotto answer;
+    private final Lotto answer;
     public WinningNumber(String winningNumber) {
         checkNumericWithCommaInput(winningNumber);
         List<Integer> lotto
@@ -21,6 +21,10 @@ public class WinningNumber {
 
     public boolean compareWinningNumberAndBonusNumber(int bonusNumber){
         return answer.isBonusNumberDuplicatedWithWinningNumber(bonusNumber);
+    }
+
+    public boolean isContainNumber(int number){
+        return answer.isContainNumber(number);
     }
 
     @Override

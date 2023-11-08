@@ -3,6 +3,7 @@ package lotto.model.lotto;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static lotto.model.constants.IntegerConstants.*;
@@ -22,13 +23,13 @@ public class Lotto {
     }
 
     public int countSameNumber(WinningNumber winningNumber){
-        int count = 0;
-        for(int i=0; i<SIZE_OF_LOTTO.get(); i++){
-            if(winningNumber.answer.numbers.contains(numbers.get(i))){
-                count++;
-            }
-        }
-        return count;
+        return (int) IntStream.range(ZERO.get(), SIZE_OF_LOTTO.get())
+                .filter(index -> winningNumber.isContainNumber(numbers.get(index)))
+                .count();
+    }
+
+    public boolean isContainNumber(int number){
+        return numbers.contains(number);
     }
 
     public boolean isBonusNumberDuplicatedWithWinningNumber(int bonusNumber){

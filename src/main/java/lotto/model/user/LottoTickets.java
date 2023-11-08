@@ -34,17 +34,18 @@ public class LottoTickets {
         int forthPlace = 0;
         int fifthPlace = 0;
 
-        for(int i=0; i<tickets.size(); i++){
-            int hit = tickets.get(i).countSameNumber(winningNumber);
-            if(hit == 3) fifthPlace++;
-            if(hit == 4) forthPlace++;
+        for (Lotto ticket : tickets) {
+            int hit = ticket.countSameNumber(winningNumber);
+            if (hit == 3) fifthPlace++;
+            if (hit == 4) forthPlace++;
 
-            if((hit == 5) && (tickets.get(i).isHitBonusNumber(bonusNumber))) {
-                secondPlace++; continue;
+            if ((hit == 5) && (ticket.isHitBonusNumber(bonusNumber))) {
+                secondPlace++;
+                continue;
             }
 
-            if(hit == 5) thirdPlace++;
-            if(hit == 6) firstPlace++;
+            if (hit == 5) thirdPlace++;
+            if (hit == 6) firstPlace++;
         }
         return new LottoResults(firstPlace, secondPlace, thirdPlace, forthPlace, fifthPlace);
     }

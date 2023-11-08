@@ -2,7 +2,9 @@ package lotto.domain;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class RandomNumberGenerator {
@@ -12,12 +14,14 @@ public class RandomNumberGenerator {
     private static final int COUNT = 6;
 
     public List<Integer> createUniqueRandomNumbers() {
-        return sortRandomNumbers(pickUniqueNumbersInRange(STARTINCLUSIVE, ENDINCLUSIVE, COUNT));
+        List<Integer> randomNumbers = pickUniqueNumbersInRange(STARTINCLUSIVE, ENDINCLUSIVE, COUNT);
+        return sortRandomNumbers(new ArrayList<>(randomNumbers));
     }
 
     private List<Integer> sortRandomNumbers(List<Integer> randomNumbers) {
-        Collections.sort(randomNumbers);
+        Collections.sort(randomNumbers, Comparator.naturalOrder());
         return randomNumbers;
     }
+
 
 }

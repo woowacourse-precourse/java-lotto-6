@@ -22,61 +22,6 @@ public class Application {
         printEarningsRate(result, lottos.size());
     }
 
-    private static List<Lotto> buyLottos() {
-        int lottoCount = getLottoCount();
-        return generateLottos(lottoCount);
-    }
-
-    private static int getLottoCount() {
-        int amount = getInputAmount();
-        validateAmount(amount);
-        return amount / 1000;
-    }
-
-    private static int getInputAmount() {
-        System.out.println("구입금액을 입력해 주세요: ");
-        String input = Console.readLine();
-        while (isNotNumeric(input) || !isMultipleOf1000(input)) {
-            System.out.println("[ERROR] 잘못된 입력입니다. 1000원 단위로 입력해주세요.");
-            System.out.println("구입금액을 입력해 주세요: ");
-            input = Console.readLine();
-        }
-        return Integer.parseInt(input);
-    }
-
-    private static void validateAmount(int amount) {
-        if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위로 입력해야 합니다.");
-        }
-    }
-
-    private static boolean isNotNumeric(String str) {
-        try {
-            Integer.parseInt(str);
-            return false;
-        } catch (NumberFormatException e) {
-            return true;
-        }
-    }
-
-    private static boolean isMultipleOf1000(String str) {
-        int amount = Integer.parseInt(str);
-        return amount % 1000 == 0;
-    }
-
-    private static List<Lotto> generateLottos(int lottoCount) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
-            List<Integer> numbers = generateLottoNumbers();
-            lottos.add(new Lotto(numbers));
-        }
-        return lottos;
-    }
-
-    private static List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT);
-    }
-
     private static void printLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {

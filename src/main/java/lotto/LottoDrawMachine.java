@@ -3,7 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.common.Announcement;
 import lotto.common.Constraint;
 import lotto.common.ErrorMessage;
@@ -36,31 +35,31 @@ public class LottoDrawMachine {
         Announcement.INPUT_WINNING_NUMBERS.speak();
         while (true) {
             try {
-                String input = Console.readLine();
-                String[] inputWinningNumbers = input.split(",");
-                validateNumericInputNumbers(inputWinningNumbers);
-                validateOverSize(inputWinningNumbers);
-                return Arrays.stream(inputWinningNumbers)
+                String[] inputNumbers = Console.readLine().split(",");
+                validateNumericOfInputStrings(inputNumbers);
+                List<Integer> winningNumbers = Arrays.stream(inputNumbers)
                     .map(Integer::parseInt)
-                    .collect(Collectors.toList());
+                    .toList();
+                validateOverSize(winningNumbers, Constraint.LOTTO_MAX_SIZE.getValue());
+                return winningNumbers;
             } catch (IllegalArgumentException e) {
                 ErrorMessage.printExceptionMessage(e);
             }
         }
     }
 
-    private void validateNumericInputNumbers(String[] inputNumbers) {
+    private void validateNumericOfInputStrings(String[] inputStrings) {
         try {
-            for (String string : inputNumbers) {
-                Integer.parseInt(string);
+            for (String input : inputStrings) {
+                Integer.parseInt(input);
             }
         } catch (Exception exception) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_NUMERIC.getMessage());
         }
     }
 
-    private void validateOverSize(String[] inputNumbers) {
-        if (inputNumbers.length != Constraint.LOTTO_MAX_SIZE.getValue()) {
+    private void validateOverSize(List<Integer> numbers, int constraint) {
+        if (numbers.size() != constraint) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OVER_SIZE.getMessage());
         }
     }

@@ -1,28 +1,20 @@
-package lotto.controller;
+package lotto.controller.lotto;
 
-import java.util.ArrayList;
-import lotto.controller.lotto.LottoBonusNumberScanController;
-import lotto.controller.lotto.LottoNumberScanController;
-import lotto.controller.lotto.LottoPurchaseMoneyScanController;
-import lotto.controller.lotto.LottoTicketListGenerateController;
-import lotto.controller.lotto.LottoTicketListPrintController;
-import lotto.controller.lotto.LottoWinningStatusCheckingController;
-import lotto.controller.lotto.LottoWinningStatusPrinterController;
-import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.LottoBonus;
-import lotto.domain.lotto.LottoPurchaseMoney;
-import lotto.domain.lotto.LottoTicketList;
-import lotto.domain.lotto.LottoWinningStatus;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.LottoBonus;
+import lotto.model.lotto.LottoPurchaseMoney;
+import lotto.model.lotto.LottoTicketList;
+import lotto.model.lotto.LottoWinningStatus;
 
 public class LottoController {
 	public void start() {
 		LottoPurchaseMoney lottoPurchaseMoney = new LottoPurchaseMoney();
 		new LottoPurchaseMoneyScanController().scanLottoPurchaseMoney(lottoPurchaseMoney);
+		new LottoPurchaseMoneyPrintController().printLottoPurchaseMoney(lottoPurchaseMoney);
 		LottoTicketList lottoTicketList = new LottoTicketList();
 		new LottoTicketListGenerateController().generateLottoTicketList(lottoPurchaseMoney, lottoTicketList);
 		new LottoTicketListPrintController().printLottoTicketList(lottoTicketList);
-		Lotto lotto = new Lotto(new ArrayList<>());
-		new LottoNumberScanController().scanLottoNumber(lotto);
+		Lotto lotto = new LottoNumberScanController().scanLottoNumber();
 		LottoBonus lottoBonus = new LottoBonus();
 		new LottoBonusNumberScanController().scanLottoBonusNumber(lotto, lottoBonus);
 		LottoWinningStatus lottoWinningStatus = new LottoWinningStatus();

@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
@@ -11,39 +10,27 @@ import lotto.model.LottoAnswer;
 import lotto.model.Policy;
 import lotto.model.Result;
 import lotto.model.User;
-import lotto.service.LottoAnswerService;
 import lotto.service.LottoService;
 import lotto.service.ResultService;
-import lotto.service.UserService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 
 public class LottoController {
-    private LottoAnswerService lottoAnswerService;
-    private LottoService lottoService;
-    private ResultService resultService;
-    private UserService userService;
+    private final LottoService lottoService;
+    private final ResultService resultService;
 
     private User user;
 
-    private Policy lottoPolicy;
     private Budget budget;
     private Lotto winningLotto;
     private BonusNumber bonusNumber;
     private LottoAnswer lottoAnswer;
 
 
-    public LottoController(
-            LottoAnswerService lottoAnswerService,
-            LottoService lottoService,
-            ResultService resultService,
-            UserService userService
-    ) {
-        this.lottoAnswerService = lottoAnswerService;
+    public LottoController(LottoService lottoService, ResultService resultService) {
         this.lottoService = lottoService;
         this.resultService = resultService;
-        this.userService = userService;
     }
 
     public void start() {

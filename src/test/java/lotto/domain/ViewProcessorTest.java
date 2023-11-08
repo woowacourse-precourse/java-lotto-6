@@ -5,6 +5,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import lotto.data.Rewards;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -21,16 +21,6 @@ import java.util.stream.Stream;
 
 class ViewProcessorTest {
     private ViewProcessor viewProcessor;
-
-    static Stream<Arguments> parameterProviderMoneyEdit() {
-        return Stream.of(
-                arguments(Rewards.FIRST, "(2,000,000,000원)"),
-                arguments(Rewards.SECOND, "(30,000,000원)"),
-                arguments(Rewards.THIRD, "(1,500,000원)"),
-                arguments(Rewards.FOURTH, "(50,000원)"),
-                arguments(Rewards.FIFTH, "(5,000원)")
-        );
-    }
 
     @BeforeEach
     void setUp() {
@@ -46,8 +36,9 @@ class ViewProcessorTest {
                 .hasMessageContaining("[ERROR] 사용자 입력 값이 null");
     }
 
+    @DisplayName("입력된 로또 번호가 6개가 아니라면 에러처리 한다.")
     @Test
-    void checkLengthWinning_입력값_6자리_판단() {
+    void checkLengthWinning() {
         List<String> invalidInputs = Arrays.asList("1", "2", "3", "4", "5", "6", "7");
         assertThatThrownBy(() -> viewProcessor.checkLengthWinning(invalidInputs))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -73,6 +64,7 @@ class ViewProcessorTest {
                 .hasMessageContaining("[ERROR] 입력 값과 중복되는 숫자가 이미 존재합니다.");
     }
 
+    @DisplayName("전달 받은 보너스 번호 숫자에 대한 예외를 판단한다.")
     @ParameterizedTest
     @CsvSource({
             "100,[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.",
@@ -80,7 +72,7 @@ class ViewProcessorTest {
             "\0,[ERROR] 보너스 번호는 정수여야 합니다.",
             "삼십,[ERROR] 보너스 번호는 정수여야 합니다."
     })
-    void checkValidBonusNum_보너스_입력값_에러여부_판단(String input, String expect) {
+    void checkValidBonusNum(String input, String expect) {
 
         assertThatThrownBy(() -> viewProcessor.checkValidBonusNum(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -95,7 +87,7 @@ class ViewProcessorTest {
             "\0,[ERROR] 구입 금액은 정수여야 합니다.",
             "만원,[ERROR] 구입 금액은 정수여야 합니다."
     })
-    void checkValidPurchase_(String input, String expect) {
+    void checkValidPurchase(String input, String expect) {
 
         assertThatThrownBy(() -> viewProcessor.checkValidPurchase(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -118,11 +110,23 @@ class ViewProcessorTest {
                 .hasMessageContaining("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
     }
 
+    @DisplayName("등수에 해당하는 상금 액수를 출력 형식인 \"(#원)\" 으로 변경한다.")
     @ParameterizedTest
     @MethodSource("parameterProviderMoneyEdit")
-    void moneyEdit_상금액수_출력형식_변경_테스트(Rewards reward, String expect) {
+    void moneyEdit(Rewards reward, String expect) {
         assertThat(viewProcessor.moneyEdit(reward)).isEqualTo(expect);
     }
+
+    static Stream<Arguments> parameterProviderMoneyEdit() {
+        return Stream.of(
+                arguments(Rewards.FIRST, "(2,000,000,000원)"),
+                arguments(Rewards.SECOND, "(30,000,000원)"),
+                arguments(Rewards.THIRD, "(1,500,000원)"),
+                arguments(Rewards.FOURTH, "(50,000원)"),
+                arguments(Rewards.FIFTH, "(5,000원)")
+        );
+    }
+
 
     @DisplayName("보너스 번호 처리가 성공하면 SUCESS, 예외 발생시 FAILDURE 반환한다.")
     @ParameterizedTest

@@ -19,4 +19,8 @@ public class LottoTicketsDto {
         return lottoTickets;
     }
 
+    public int getTotalCount() {
+        return lottoTickets.size();
+    }
+
 }

@@ -9,8 +9,8 @@ import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("Cost Domain 테스트")
 public class CostTest {
+    private final int INIT_VALUE = 10;
     private Cost cost;
-    private int INIT_VALUE = 10;
 
     @BeforeEach
     public void initTest() {

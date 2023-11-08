@@ -33,7 +33,7 @@ public class LottoSalesman {
                 int count = matchingCounts.get(rank);
                 String resultDescription = rank.getDescription();
                 int prize = rank.getPrize();
-                System.out.println(resultDescription + " - " + count + "개");
+                InputLottoUI.rankViewTotal(resultDescription, count);
                 totalPrize = answerCount(count, prize, totalPrize);
             }
         }

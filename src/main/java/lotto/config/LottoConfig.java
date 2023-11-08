@@ -7,9 +7,10 @@ public enum LottoConfig {
     MIN_CHAR('0'),
     LOTTO_COUNT(6),
     LOTTO_PRICE(1000),
-    ;
+    INPUT_SEPARATER(",");
     private int num;
     private char value;
+    private String separater;
 
     LottoConfig(int num) {
         this.num = num;
@@ -17,12 +18,17 @@ public enum LottoConfig {
     LottoConfig(char value) {
         this.value = value;
     }
+    LottoConfig(String separater) {
+        this.separater = separater;
+    }
 
     public int getNum() {
         return num;
     }
-
     public char getValue() {
         return value;
+    }
+    public String getSeparater() {
+        return separater;
     }
 }

@@ -4,6 +4,7 @@ import lotto.common.LottoFinalConsts;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoRank;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoServiceTest implements LottoFinalConsts {
 
@@ -22,9 +23,24 @@ class LottoServiceTest implements LottoFinalConsts {
     private LottoMachine lottoMachine = new LottoMachine(lottoPurchase, lottos, lottoRanks);
     private LottoService lottoService = new LottoService();
     private List<Integer> winningNumbers = new ArrayList<>(List.of(3, 4, 5, 6, 7, 8));
+    private String winningNumber = "1,2,3,4,5,6";
+    private String bonusNumber = "7";
+
+    @BeforeEach
+    void 로또_머신을_초기화한다() {
+        lottoMachine = new LottoMachine(lottoPurchase, lottos, lottoRanks);
+    }
 
     @Test
-    void saveWinningAndBonusNumbers() {
+    void 사용자가_입력한_당첨번호와_보너스번호를_로또_머신에_저장한다() {
+        String[] winning = winningNumber.split(LOTTO_WINNING_SPLIT);
+        for(String number:winning){
+            lottoMachine.updateLottoWinningNumbers(Integer.parseInt(number));
+        }
+        lottoMachine.updateLottoBonusNumber(Integer.parseInt(bonusNumber));
+
+        assertThat(lottoMachine.getLottoWinningNumbers()).isEqualTo(List.of(1,2,3,4,5,6));
+        assertThat(lottoMachine.getLottoBonusNumber()).isEqualTo(7);
     }
 
     @Test

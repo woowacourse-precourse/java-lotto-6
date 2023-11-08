@@ -39,7 +39,7 @@ public enum Rank {
                 .orElseThrow(() -> new IllegalStateException(NOT_EXISTE_RANK_MESSAGE));
     }
 
-    public String showMessage(int count) {
+    public String showMessageWithCount(int count) {
         StringBuilder stringBuilder = new StringBuilder()
                 .append(this.matchCount).append("개 일치");
 

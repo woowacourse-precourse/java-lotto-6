@@ -9,33 +9,40 @@ import java.util.*;
 
 public class OutputViewImpl implements OutputView {
 
+    private static final String INPUT_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private static final String INPUT_PURCHASE_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String BUY_COUNT_LOTTO_MESSAGE = "%d개를 구매했습니다.\n";
+    private static final String YIELD_RESULT_MESSAGE = "총 수익률은 %s입니다.";
+    private static final String RESULT_STATICS_MESSAGE = "당첨 통계";
     private static final String HEADER = "[ERROR] ";
+    private static final String DIVISION = "---";
 
     @Override
     public void writeLottoPurchaseMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(INPUT_PURCHASE_MONEY_MESSAGE);
     }
 
     @Override
     public void writeGeneratedLotto(List<Lotto> lottos) {
-        System.out.printf("%d개를 구매했습니다.\n", lottos.size());
+        System.out.printf(BUY_COUNT_LOTTO_MESSAGE, lottos.size());
         lottos.forEach(System.out::println);
     }
 
     @Override
     public void writeLottoWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
     }
 
     @Override
     public void writeLottoBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
     }
 
     @Override
     public void writeResult(WinningResult winningResult, Yield yield) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(RESULT_STATICS_MESSAGE);
+        System.out.println(DIVISION);
 
         List<Rank> ranks = getRanksExceptMiss();
         for (Rank rank : ranks) {
@@ -64,12 +71,11 @@ public class OutputViewImpl implements OutputView {
 
     private void printIndividualRank(Map<Rank, Integer> rankMap, Rank rank) {
         int count = rankMap.getOrDefault(rank, 0);
-        String message = rank.showMessage(count);
-        System.out.println(message);
+        System.out.println(rank.showMessageWithCount(count));
     }
 
     private void printYield(Yield yield) {
-        String message = String.format("총 수익률은 %s입니다.", yield);
+        String message = String.format(YIELD_RESULT_MESSAGE, yield);
         System.out.println(message);
     }
 }

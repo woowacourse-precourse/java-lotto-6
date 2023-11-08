@@ -11,15 +11,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoGameController {
+    private static final String COMMA = ",";
     private final InputView inputView;
     private final OutputView outputView;
     private final InputValidatorService inputValidatorService;
+    private final List<Lotto> issueLottos = new ArrayList<>();
     private WinningLotto winningLotto;
     private int purchaseLottoAmount;
-    private String winningNumbers;
-    private String bonusNumber;
-    private final List<Lotto> issueLottos = new ArrayList<>();
-    private static final String COMMA = ",";
 
     public LottoGameController() {
         inputView = new InputView();
@@ -67,7 +65,7 @@ public class LottoGameController {
         outputView.printBonusNumberInputMessage();
         while (true) {
             try {
-                bonusNumber = inputView.inputBonusNumber();
+                String bonusNumber = inputView.inputBonusNumber();
                 inputValidatorService.validateInputBonusNumber(bonusNumber);
                 int lottoBonusNumber = Integer.parseInt(bonusNumber);
                 winningLotto = new WinningLotto(lottoWinningNumbers, lottoBonusNumber);
@@ -80,6 +78,7 @@ public class LottoGameController {
 
     private List<Integer> inputLottoWinningNumbers() {
         outputView.printWinningNumbersInputMessage();
+        String winningNumbers;
         while (true) {
             try {
                 winningNumbers = inputView.inputWinningNumbers();

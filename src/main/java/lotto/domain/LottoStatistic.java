@@ -3,8 +3,8 @@ package lotto.domain;
 import java.util.*;
 
 public class LottoStatistic {
-    private final Map<LottoGrade, Integer> result = new LinkedHashMap<>();
     private static final int HUNDRED = 100;
+    private final Map<LottoGrade, Integer> result = new LinkedHashMap<>();
 
     public LottoStatistic(List<Lotto> issueLottos, WinningLotto winningLotto) {
         initLottoRankCountMap();

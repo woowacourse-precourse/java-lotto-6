@@ -3,6 +3,7 @@ package lotto.validator;
 import static lotto.validator.ExceptionMessages.DUPLICATE_NUMBERS;
 import static lotto.validator.ExceptionMessages.INCORRECT_COUNT;
 import static lotto.validator.ExceptionMessages.INVALID_INPUT;
+import static lotto.validator.ExceptionMessages.INVALID_PURCHASE_AMOUNT;
 import static lotto.validator.ExceptionMessages.NON_NUMERIC_INPUT;
 import static lotto.validator.ExceptionMessages.OUT_OF_RANGE;
 
@@ -15,7 +16,7 @@ public class Validator {
         validateNumericInput(input);
         int purchaseAmount = Integer.parseInt(input);
         if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("금액은 1000원 단위로 입력해야 합니다");
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getErrorMessage());
         }
     }
 

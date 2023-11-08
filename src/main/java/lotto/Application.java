@@ -1,6 +1,6 @@
 package lotto;
 
-import java.util.List;
+import lotto.model.User;
 
 public class Application {
     public static void main(String[] args) {

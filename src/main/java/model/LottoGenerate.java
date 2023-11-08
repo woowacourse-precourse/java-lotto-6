@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoGenerate {
-    private static int lottoTicketsCount(int moneyNumber) {
+    public static int lottoTicketsCount(int moneyNumber) {
         return moneyNumber / 1000;
     }
 
@@ -21,12 +21,13 @@ public class LottoGenerate {
         return lotto;
     }
 
-    private static List<Lotto> generateLottoTickets(int lottoTicketsCount) {
+    public static List<Lotto> generateLottoTickets(int lottoTicketsCount) {
         List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 1; i <= lottoTicketsCount; i++) {
             List<Integer> numbers = generateLotto();
             Lotto lotto = lottoAscendingOrder(numbers);
             lottoTickets.add(lotto);
         }
+        return lottoTickets;
     }
 }

@@ -18,4 +18,9 @@ public class View {
             System.out.println(lotto);
         }
     }
+
+    public static void winningNumbersMessagePrint() {
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }

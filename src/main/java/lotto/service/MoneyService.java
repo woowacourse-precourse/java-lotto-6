@@ -19,7 +19,7 @@ public class MoneyService {
         while (!isSuccess) {
             try {
                 OutputView.printMoneyInputRequestMessage();
-                String cost = InputView.getMoneyForLottoPurchasing();
+                String cost = InputView.getUserInput();
                 money = new Money(cost);
                 check_null(money);
                 isSuccess = true;

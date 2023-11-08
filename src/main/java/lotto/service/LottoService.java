@@ -20,7 +20,7 @@ public class LottoService {
         while (!isSuccess) {
             try {
                 OutputView.printWinningNumberInputRequestMessage();
-                String winningNumber = InputView.getWinningNumber();
+                String winningNumber = InputView.getUserInput();
                 lotto = new Lotto(winningNumber);
                 check_null(lotto);
                 isSuccess = true;
@@ -37,7 +37,7 @@ public class LottoService {
         while (!isSuccess) {
             try {
                 OutputView.printBonusNumberInputRequestMessage();
-                String bonusNumber = InputView.getBonusNumber();
+                String bonusNumber = InputView.getUserInput();
                 winningLotto = new WinningLotto(lotto.getNumbers(), bonusNumber);
                 check_null(winningLotto);
                 isSuccess = true;

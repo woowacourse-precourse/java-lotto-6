@@ -23,7 +23,7 @@ public enum Result {
         this.status = status;
     }
 
-    public static ResultsDto getAllLottoResult(
+    public static ResultsDto getAllLottoResults(
         List<Lotto> lottos,
         Lotto winningLottoNumber,
         int BonusNumber

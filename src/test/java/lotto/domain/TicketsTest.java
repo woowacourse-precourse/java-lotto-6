@@ -22,7 +22,7 @@ class TicketsTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-
+        @DisplayName("구매금액만큼 로또가발행되는지 확인")
     @Test
     void buyTickets() {
         // given
@@ -33,6 +33,7 @@ class TicketsTest {
         assertEquals(1, tickets.getNumberOfTickets());
     }
 
+    @DisplayName("로또티켓에서 사용자구매금액 반환")
     @Test
     void getUserMoney() {
         // given

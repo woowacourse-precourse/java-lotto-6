@@ -44,7 +44,6 @@ class LottoTest {
         assertEquals(3, lottos.size());
     }
 
-
     @DisplayName("로또번호와 당첨번호의 일치하는 숫자 갯수를 구한다. 보너스 번호는 제외한다.")
     @Test
     void getMatchCount() {
@@ -69,5 +68,4 @@ class LottoTest {
         assertTrue(isDuplicate);
     }
 
-    // 아래에 추가 테스트 작성 가능
 }

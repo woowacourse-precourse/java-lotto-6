@@ -3,27 +3,33 @@ package lotto.constant;
 public enum PrizeMessage {
 
     FIRST(PrizeCondition.FIRST.getMatchNumbers()
-            + "개 일치 ("
+            + Constants.NUMBERS_SAME
             + PrizeMoney.FIRST.getValueWithDelimiter()
-            + "원) - "),
+            + Constants.WON),
     SECOND(PrizeCondition.SECOND.getMatchNumbers()
-            + "개 일치, 보너스 볼 일치 ("
+            + Constants.NUMBERS_SAME_AND_BONUS_SAME
             + PrizeMoney.SECOND.getValueWithDelimiter()
-            + "원) - "),
+            + Constants.WON),
     THIRD(PrizeCondition.THIRD.getMatchNumbers()
-            + "개 일치 ("
+            + Constants.NUMBERS_SAME
             + PrizeMoney.THIRD.getValueWithDelimiter()
-            + "원) - "),
+            + Constants.WON),
     FOURTH(PrizeCondition.FOURTH.getMatchNumbers()
-            + "개 일치 ("
+            + Constants.NUMBERS_SAME
             + PrizeMoney.FOURTH.getValueWithDelimiter()
-            + "원) - "),
+            + Constants.WON),
     FIFTH(PrizeCondition.FIFTH.getMatchNumbers()
-            + "개 일치 ("
+            + Constants.NUMBERS_SAME
             + PrizeMoney.FIFTH.getValueWithDelimiter()
-            + "원) - ");
+            + Constants.WON);
 
     private final String message;
+
+    private static class Constants {
+        private static final String NUMBERS_SAME = "개 일치 (";
+        private static final String WON = "원) - ";
+        private static final String NUMBERS_SAME_AND_BONUS_SAME = "개 일치, 보너스 볼 일치 (";
+    }
 
     PrizeMessage(String message) {
         this.message = message;
@@ -32,5 +38,4 @@ public enum PrizeMessage {
     public String getMessage() {
         return message;
     }
-
 }

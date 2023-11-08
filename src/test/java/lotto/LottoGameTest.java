@@ -96,4 +96,13 @@ class LottoGameTest {
         assertThat(result.getOrDefault(Rank.FOURTH, 0)).isEqualTo(0);
         assertThat(result.getOrDefault(Rank.FIFTH, 0)).isEqualTo(1);
     }
+
+    @Test
+    void buyLottos() {
+        int lottoCounts = 10;
+
+        List<Lotto> result = lottoGame.buyLottos(lottoCounts);
+
+        assertThat(result.size()).isEqualTo(lottoCounts);
+    }
 }

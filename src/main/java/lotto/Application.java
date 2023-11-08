@@ -1,16 +1,33 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
+        List<Lotto> lottos = new ArrayList<>();
+        List<Integer> winningNumbers= new ArrayList<>();
         int numberOfLotto = 0;
         int money = 0;
+
 
         System.out.println("구입 금액을 입력해 주세요.");
         money = moneyInput(money);
         System.out.println();
-        System.out.println("");
+        System.out.println(money+"개를 구매했습니다.");
+
+        for(int i = 0 ; i < money ; i++) {
+            makeLotto(lottos);
+            printLotto(lottos.get(i).getNumbers());
+            System.out.println();
+        }
+        System.out.println("당첨 번호를 입력해 주세요.");
+
     }
 
     public static int moneyInput(int money){
@@ -22,5 +39,18 @@ public class Application {
         if((money%1000)!=0) throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력하여야 합니다. ");
         return money;
     }
+
+    public static void makeLotto(List<Lotto> lottos){
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
+        Lotto firstLottoList = new Lotto(numbers);
+        lottos.add(firstLottoList);
+    }
+
+    public static void printLotto(List<Integer> lotto){
+        System.out.print(lotto);
+    }
+
+
 
 }

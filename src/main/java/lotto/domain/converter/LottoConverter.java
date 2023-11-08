@@ -1,6 +1,5 @@
 package lotto.domain.converter;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -9,11 +8,11 @@ import java.util.stream.Collectors;
 import lotto.domain.Money;
 import lotto.domain.Purchase;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.WinningLotto;
 import lotto.domain.number.CompareLottoNumber;
 import lotto.domain.result.LottoPrize;
 import lotto.dto.request.PurchaseRequest;
 import lotto.dto.request.WinningLottoRequest;
-import lotto.domain.lotto.WinningLotto;
 import lotto.dto.response.LottoNumbersResponse;
 import lotto.dto.response.LottoWinningStatsResponse;
 import lotto.dto.response.WinningStatsResponse;
@@ -37,7 +36,7 @@ public class LottoConverter {
 
     public WinningLotto winningLottoRequestConvertToWinningLotto(WinningLottoRequest request) {
         return new WinningLotto(
-            new Lotto(winningLottoConvertToList(request.getWinningLotto()))
+            new Lotto(request)
         );
     }
 

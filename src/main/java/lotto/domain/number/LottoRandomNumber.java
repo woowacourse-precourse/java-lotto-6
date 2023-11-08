@@ -1,8 +1,7 @@
 package lotto.domain.number;
 
-import static camp.nextstep.edu.missionutils.Randoms.*;
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 

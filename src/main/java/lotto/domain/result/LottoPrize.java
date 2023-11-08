@@ -17,7 +17,7 @@ public enum LottoPrize {
         this.prizeAmount = prizeAmount;
     }
 
-    public static LottoPrize findByNumberOfMatches(int numberOfMatches){
+    public static LottoPrize findByNumberOfMatches(int numberOfMatches) {
         return Arrays.stream(values())
             .filter(prize -> prize.getNumberOfMatches() == numberOfMatches)
             .findFirst().get();

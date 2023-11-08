@@ -1,4 +1,6 @@
-package lotto.modul;
+package lotto.module;
+
+import static camp.nextstep.edu.missionutils.Console.close;
 
 import lotto.controller.LottoController;
 import lotto.dto.request.BonusNumberRequest;
@@ -14,11 +16,11 @@ public class Play {
 
     public void play(){
         lottoStart();
-        var winning = inputView.InputWinningLotto();
-        control.receiverWinningLottoInput(new WinningLottoRequest(winning));
+        initWinningLotto();
         System.out.println();
-        var bonus = inputView.InputBonusNumber();
-        control.receiverBonusNumberInput(new BonusNumberRequest(bonus));
+        initBonusNumber();
+        close();
+
         outView.displayWinningStatus(control.getLottoWinningStatsResponse());
     }
 
@@ -31,5 +33,23 @@ public class Play {
             lottoStart();
         }
     }
+    public void initWinningLotto(){
+        try{
+            var winning = inputView.InputWinningLotto();
+            control.receiverWinningLottoInput(new WinningLottoRequest(winning));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            initWinningLotto();
+        }
+    }
 
+    public void initBonusNumber(){
+        try{
+            var bonus = inputView.InputBonusNumber();
+            control.receiverBonusNumberInput(new BonusNumberRequest(bonus));
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            initBonusNumber();
+        }
+    }
 }

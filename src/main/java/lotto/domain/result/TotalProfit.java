@@ -12,13 +12,13 @@ public class TotalProfit {
         createTotalProfit(status, money);
     }
 
-    public void createTotalProfit(Map<LottoPrize, Integer> status, Money money){
+    public void createTotalProfit(Map<LottoPrize, Integer> status, Money money) {
         var totalPrize = status.entrySet().stream()
             .mapToInt(entry -> entry.getKey().getPrizeAmount() * entry.getValue())
             .sum();
 
-        var result = (double) totalPrize/money.getMoney();
-        this.totalProfit = result*ROUNDING_PRECISION;
+        var result = (double) totalPrize / money.getMoney();
+        this.totalProfit = result * ROUNDING_PRECISION;
     }
 
     public double getTotalProfit() {

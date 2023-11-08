@@ -19,49 +19,49 @@ public class CompareLottoNumber {
         LottoTicket lottoTicket,
         WinningLotto winningLotto,
         BonusNumber bonusNumber
-    ){
+    ) {
         this.bonusNumber = bonusNumber;
         createDeterminePrize();
         compareLotto(lottoTicket, winningLotto);
     }
 
     public void createDeterminePrize() {
-      for(LottoPrize lottoPrize : LottoPrize.values()){
-          determinePrizeMap.put(lottoPrize, 0);
-      }
+        for (LottoPrize lottoPrize : LottoPrize.values()) {
+            determinePrizeMap.put(lottoPrize, 0);
+        }
     }
 
-    private void compareLotto(LottoTicket lottoTicket, WinningLotto winningLotto){
-        for (Lotto lotto : lottoTicket.getLottoTicket()){
+    private void compareLotto(LottoTicket lottoTicket, WinningLotto winningLotto) {
+        for (Lotto lotto : lottoTicket.getLottoTicket()) {
             selectSetMap(lotto, winningLotto);
         }
     }
 
-    public void setDeterminePrizeMap(int answerCount){
-        if(LIMIT_NUMBER < answerCount){
+    public void setDeterminePrizeMap(int answerCount) {
+        if (LIMIT_NUMBER < answerCount) {
             determinePrizeMap.put(LottoPrize.findByNumberOfMatches(answerCount),
-            determinePrizeMap.get(LottoPrize.findByNumberOfMatches(answerCount))+ONE);
+                determinePrizeMap.get(LottoPrize.findByNumberOfMatches(answerCount)) + ONE);
         }
     }
 
-    public void updateIfContainBonusNumber(Lotto lotto){
-        if(lotto.getNumbers().contains(bonusNumber.getBonusNumber())){
+    public void updateIfContainBonusNumber(Lotto lotto) {
+        if (lotto.getNumbers().contains(bonusNumber.getBonusNumber())) {
             determinePrizeMap.put(LottoPrize.FIVE_MATCH,
-            determinePrizeMap.get(LottoPrize.FIVE_MATCH) - ONE);
+                determinePrizeMap.get(LottoPrize.FIVE_MATCH) - ONE);
 
             determinePrizeMap.put(LottoPrize.FIVE_MATCH_WITH_BONUS,
-            determinePrizeMap.get(LottoPrize.FIVE_MATCH_WITH_BONUS) + ONE);
+                determinePrizeMap.get(LottoPrize.FIVE_MATCH_WITH_BONUS) + ONE);
         }
     }
 
-    public void selectSetMap(Lotto lotto, WinningLotto winningLotto){
-        var count =  (int) lotto.getNumbers().stream()
+    public void selectSetMap(Lotto lotto, WinningLotto winningLotto) {
+        var count = (int) lotto.getNumbers().stream()
             .filter(number -> winningLotto.getWinningLotto().isDuplicate(number))
             .count();
 
         setDeterminePrizeMap(count);
 
-        if(count == BONUS_CHECK_NUMBER){
+        if (count == BONUS_CHECK_NUMBER) {
             updateIfContainBonusNumber(lotto);
         }
     }

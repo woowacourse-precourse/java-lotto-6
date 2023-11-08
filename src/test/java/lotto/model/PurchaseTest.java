@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,5 +22,7 @@ class PurchaseTest {
 
     @Test
     void getNumberOfPurchases() {
+        Purchase purchase = new Purchase(10000);
+        assertThat(purchase.getNumberOfPurchases()).isEqualTo(10);
     }
 }

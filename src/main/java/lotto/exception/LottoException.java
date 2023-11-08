@@ -14,5 +14,10 @@ public class LottoException implements LottoFinalConsts {
         return false;
     }
 
+    public void validateStringSplited(String winningNumbers){
+        if (!winningNumbers.contains(",")) {
+            throw new IllegalArgumentException(LOTTO_ERROR_MESSAGE+LOTTO_CANNOT_SPLIT_WINNING);
+        }
+    }
 
 }

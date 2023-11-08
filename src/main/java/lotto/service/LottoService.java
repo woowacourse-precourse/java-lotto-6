@@ -60,7 +60,7 @@ public class LottoService implements LottoFinalConsts {
     }
 
     public void saveWinningAndBonusNumbers(LottoMachine lottoMachine, String winningNumber, String bonusNumber){
-        validateWinningSplited(winningNumber);
+        lottoException.validateStringSplited(winningNumber);
         String[] winning = winningNumber.split(LOTTO_WINNING_SPLIT);
         validateWinningSize(winning);
         for(String number:winning){
@@ -69,12 +69,6 @@ public class LottoService implements LottoFinalConsts {
         }
         isBonusNumberAlreadyExist(lottoMachine.getLottoWinningNumbers(), Integer.parseInt(bonusNumber));
         lottoMachine.updateLottoBonusNumber(Integer.parseInt(bonusNumber));
-    }
-
-    public void validateWinningSplited(String winningNumbers){
-        if (!winningNumbers.contains(",")) {
-            throw new IllegalArgumentException(LOTTO_ERROR_MESSAGE+LOTTO_CANNOT_SPLIT_WINNING);
-        }
     }
 
     public void validateWinningSize(String[] winning){

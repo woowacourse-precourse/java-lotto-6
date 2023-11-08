@@ -5,6 +5,8 @@ import lotto.exception.ErrorCode;
 import lotto.model.lottonumbersgenerator.LottoNumbersGenerator;
 
 public class LottoSeller {
+    private static final int COST_PER_LOTTO = 1000;
+    
     public static Lottos sellLotto(int purchaseAmount, LottoNumbersGenerator lottoNumbersGenerator) {
         int count = calculateCountByPurchaseAmount(purchaseAmount);
         return issueLottos(count, lottoNumbersGenerator);
@@ -17,7 +19,7 @@ public class LottoSeller {
 
     private static int calculateCountByPurchaseAmount(int purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
-        return purchaseAmount / 1000;
+        return purchaseAmount / COST_PER_LOTTO;
     }
 
     private static void validatePurchaseAmount(int purchaseAmount) {
@@ -26,7 +28,7 @@ public class LottoSeller {
     }
 
     private static void validatePurchaseAmountValue(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
+        if (purchaseAmount % COST_PER_LOTTO != 0) {
             throw new CustomIllegalArgumentException(ErrorCode.PURCHASE_AMOUNT_INVALID_VALUE);
         }
     }

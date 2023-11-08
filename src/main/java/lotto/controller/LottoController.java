@@ -47,6 +47,23 @@ public class LottoController {
         });
     }
 
+    private <T> T createInstance(final Class<T> classType, final Supplier<T> creator) {
+        T created = null;
+        while (created == null) {
+            created = tryGetInstance(creator, created);
+        }
+        return created;
+    }
+
+    private <T> T tryGetInstance(final Supplier<T> creator, T created) {
+        try {
+            created = creator.get();
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception.getMessage());
+        }
+        return created;
+    }
+
     private void printLottoHistory(final List<Lotto> lottos) {
         outputView.printBoughtLottoSize(lottos.size());
 
@@ -79,23 +96,6 @@ public class LottoController {
             String bonusNumberInput = inputView.readLine();
             return LottoNumber.from(bonusNumberInput);
         });
-    }
-
-    private <T> T createInstance(final Class<T> classType, final Supplier<T> creator) {
-        T created = null;
-        while (created == null) {
-            created = tryGetInstance(creator, created);
-        }
-        return created;
-    }
-
-    private <T> T tryGetInstance(final Supplier<T> creator, T created) {
-        try {
-            created = creator.get();
-        } catch (IllegalArgumentException exception) {
-            outputView.printExceptionMessage(exception.getMessage());
-        }
-        return created;
     }
 
     private void addPrizeMoney(final Investor investor, final List<PrizeResult> results) {

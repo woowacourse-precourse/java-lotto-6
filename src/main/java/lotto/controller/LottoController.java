@@ -24,28 +24,21 @@ public class LottoController {
     }
 
     public void run() {
-        outputView.printRequestPurchaseAmountMessage();
         LottoPurchase lottoPurchase = getLottoPurchase();
-
         LottoTicket lottoTicket = getLottoTicket(lottoPurchase);
         printLottoNumbers(lottoTicket);
 
-        outputView.printRequestWinningNumberMessage();
         Lotto winningLotto = getWinningLottoNumbers();
-
-        outputView.printRequestBonusNumberMessage();
         BonusNumber bonusNumber = getBonusNumber(winningLotto);
-
         LottoDraw lottoDraw = LottoDraw.of(winningLotto, bonusNumber);
 
-        Map<LottoWinCategory, Integer> winningResult = lottoDraw.getWinnings(lottoTicket);
-        outputView.printWinningStatistics(winningResult);
+        Map<LottoWinCategory, Integer> winningStatistics = getWinningStatistics(lottoDraw, lottoTicket);
 
-        double winningRate = lottoDraw.getWinningRate(winningResult, lottoPurchase.getMoney());
-        outputView.printWinningRate(winningRate);
+        getWinningRate(winningStatistics, lottoPurchase, lottoDraw);
     }
 
     public LottoPurchase getLottoPurchase() {
+        outputView.printRequestPurchaseAmountMessage();
         while (true) {
             try {
                 return inputView.getLottoPurchaseMoney();
@@ -66,6 +59,7 @@ public class LottoController {
     }
 
     public Lotto getWinningLottoNumbers() {
+        outputView.printRequestWinningNumberMessage();
         while (true) {
             try {
                 return inputView.getWinningLottoNumbers();
@@ -76,6 +70,7 @@ public class LottoController {
     }
 
     public BonusNumber getBonusNumber(Lotto winningLotto) {
+        outputView.printRequestBonusNumberMessage();
         while (true) {
             try {
                 BonusNumber bonusNumber = inputView.getBonusNumber();
@@ -85,6 +80,17 @@ public class LottoController {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
+    }
+
+    public Map<LottoWinCategory, Integer> getWinningStatistics(LottoDraw lottoDraw, LottoTicket lottoTicket) {
+        Map<LottoWinCategory, Integer> winningResult = lottoDraw.getWinnings(lottoTicket);
+        outputView.printWinningStatistics(winningResult);
+        return winningResult;
+    }
+
+    public void getWinningRate(Map<LottoWinCategory, Integer> winningStatistics, LottoPurchase lottoPurchase, LottoDraw lottoDraw) {
+        double winningRate = lottoDraw.getWinningRate(winningStatistics, lottoPurchase.getMoney());
+        outputView.printWinningRate(winningRate);
     }
 
     private void checkBonusNumberDuplicatedWithWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {

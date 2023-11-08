@@ -83,4 +83,22 @@ public class LottoService {
         return matchCount;
     }
 
+    public double getEarningsRate(List<LottoResult> lottoResult,int purchaseAmount) {
+        int totalPrizeMoney = calculatePrizeMoney(lottoResult);
+        int totalInvestment = purchaseAmount*1000;
+        return calculateEarningsRate(totalPrizeMoney,totalInvestment);
+    }
+
+    private double calculateEarningsRate(int totalPrizeMoney, int totalInvestment) {
+        double earningsRate = (double) totalPrizeMoney / totalInvestment * 100;
+        return Math.round(earningsRate * 10) / 10.0;
+
+    }
+
+    private int calculatePrizeMoney(List<LottoResult> lottoResult) {
+        return lottoResult.stream()
+                .mapToInt(LottoResult::getPrizeMoney)
+                .sum();
+    }
+
 }

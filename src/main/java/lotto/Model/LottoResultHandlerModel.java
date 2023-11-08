@@ -44,7 +44,7 @@ public class LottoResultHandlerModel {
             Integer matchCount = checkWinning(winningLotto.getLotto(), lottoByIndex);
             Integer rank = convertRank(matchCount, checkBonusNumber(lottoByIndex));
             if (rank != MISS.getRank()) {
-                lottoResult.IncreaseWinningCount(rank);
+                lottoResult.increaseWinningCount(rank);
             }
         }
     }

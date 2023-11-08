@@ -24,7 +24,7 @@ public class LottoResult {
     public static LottoResult from() {
         return new LottoResult();
     }
-    public void IncreaseWinningCount(Integer rank) {
+    public void increaseWinningCount(Integer rank) {
         lottoResult.get(rank).increaseWinningCount();
     }
 

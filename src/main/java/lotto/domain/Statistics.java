@@ -40,7 +40,7 @@ public class Statistics {
     public String calculateRevenueRate(Buyer buyer) {
         long totalPrize = 0;
         for (Rank rank : results.keySet()) {
-            totalPrize += rank.getPrize() * results.get(rank);
+            totalPrize += (long) rank.getPrize() * results.get(rank);
         }
         DecimalFormat rateFormat = new DecimalFormat("#,##0.0");
         return rateFormat.format(totalPrize / (float) buyer.getCost() * ONE_HUNDRED);

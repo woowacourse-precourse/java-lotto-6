@@ -12,7 +12,7 @@ public enum Rank {
 
     private static final int FIVE = 5;
     private final int match;
-    private final long prize;
+    private final int prize;
     private final String message;
 
     Rank(int match, int prize, String message) {
@@ -38,7 +38,7 @@ public enum Rank {
                 .orElse(LOSE);
     }
 
-    public long getPrize() {
+    public int getPrize() {
         return prize;
     }
 

@@ -31,5 +31,6 @@ public class Seller {
     public void check() {
         Result result = SellerHelper.compareAndRecord(lottos, win, bonusNumber);
         Double yieldRate = SellerHelper.calculateYieldRate(result.getTotalPrize(), purchaseAmount);
+        Print.statistic(result, yieldRate);
     }
 }

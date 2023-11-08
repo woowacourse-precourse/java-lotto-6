@@ -28,4 +28,16 @@ public class Print {
     public static void getBonusNumber() {
         System.out.println(Announce.NEW_LINE + Announce.Get_BONUS_NUMBER);
     }
+
+    public static void statistic(Result result, Double yieldRate) {
+        System.out.println(Announce.NEW_LINE + Announce.WIN_STATISTIC);
+
+        for (Prize prize: Arrays.asList(Prize.values())) {
+            if (prize == Prize.NONE) { 
+                continue;
+            }
+            System.out.println(Announce.result(prize, result.getWinCount(prize)));
+        }
+        System.out.println(Announce.yieldRate(yieldRate));
+    }
 }

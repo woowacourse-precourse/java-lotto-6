@@ -47,13 +47,13 @@ public class InputView {
                         hasError = true;
                         throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
                     }
-                } catch (NumberFormatException e) {
+                } catch (Exception e) {
                     hasError = true;
-                    throw new IllegalArgumentException("[ERROR] 숫자를 쉼표(',')를 기준으로 입력해야합니다.");
+                    System.out.println("[ERROR] 숫자를 쉼표(',')를 기준으로 입력해야합니다.");
+
                 }
             }
             if (hasError) {
-                //System.out.println("[ERROR] 잘못된 값이 포함되어 있습니다. 다시 입력하세요.");
                 System.out.println(INPUT_ORIGINALNUMBER.printMessage());
                 input = Console.readLine();
             } else {
@@ -67,11 +67,17 @@ public class InputView {
 
 
     public int inputBonus(){
-        System.out.println(INPUT_BONUS.printMessage());
-        String bonus = Console.readLine();
-        //exception
-        //return bonus;
-        return Integer.parseInt(bonus);
+
+        while (true) {
+            try {
+                System.out.println(INPUT_BONUS.printMessage());
+                String bonus = Console.readLine();
+                int parse = Integer.parseInt(bonus);
+                return parse;
+            } catch (Exception e) {
+                System.out.println("[ERROR] ");
+            }
+        }
     }
 
 }

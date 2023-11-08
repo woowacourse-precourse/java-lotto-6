@@ -36,9 +36,8 @@
 - 당첨 로또는 로또를 상속받는다.
 - 당첨 로또는 당첨 로또에 해당하는 정수 리스트 numbers와 보너스 번호 bonusNumber를 가진다.
 - 당첨 로또는 numbers와 bonusNumber를 validate한다.
-    - numbers는 6개의 번호를 가진다.
-    - numbers의 범위는 1~45이다.
-    - numbers는 서로 중복되지 않는다.
+    - 로또의 검증 조건을 만족하는지 validate한다.
+    - 보너스 번호의 범위가 1~45인지 검증한다.
     - 보너스 번호와 로또 번호가 중복되지 않는 값인지 검증한다.
 
 ## 로또 번들 (LottoBundle)

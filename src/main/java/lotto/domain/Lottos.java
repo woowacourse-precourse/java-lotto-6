@@ -1,23 +1,21 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.dto.WinningResultResponse;
 
 public class Lottos {
     private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
-        this.lottos = lottos.stream().toList();
+        this.lottos = lottos;
     }
 
     public List<Lotto> getLottos() {
-        return lottos.stream().toList();
+        return lottos;
     }
 
-    public WinningResultResponse generateWinningResult(WinningLotto winningLotto) {
-        WinningResultResponse compareResult = new WinningResultResponse();
-
-        lottos.forEach(lotto -> compareResult.increaseMatchingCount(winningLotto.getPrize(lotto)));
-        return compareResult;
+    public List<Prize> match(WinningLotto winningLotto) {
+        return lottos.stream()
+                .map(winningLotto::match)
+                .toList();
     }
 }

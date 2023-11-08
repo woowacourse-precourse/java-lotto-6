@@ -11,6 +11,7 @@ public class Play {
     private final int lottoCnt;   // 구입한 로또 개수
     private final int lottoNumber = 6;  // 로또는 숫자 6개를 가진다
     private final int maxLottoNum = 45; // 로또 가장 큰 숫자
+    private Integer[] answers;
 
     public Play(int cost) {
         // 구매 금액이 1000원으로 나누어 떨어지지 않는 경우 예외 발생
@@ -24,7 +25,7 @@ public class Play {
     // 각 로또의 6자리 숫자 랜덤 생성
     List<Integer> getLottoNums() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);  // 오름차순으로 정렬
+        numbers.sort(Comparator.naturalOrder());  // 오름차순으로 정렬
         return numbers;
     }
 
@@ -76,11 +77,22 @@ public class Play {
         return null;
     }
 
+    void checkDuplicate(int num) {
+        try {
+            if (answers[num] == 1) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
+        }
+    }
+
     int getBonusNum() {
         while (true) {
             try {
                 System.out.println("\n보너스 번호를 입력해 주세요.");
                 int bonus = Integer.parseInt(Console.readLine());
+                checkDuplicate(bonus);
                 checkEachNumRange(new ArrayList<>(bonus));
                 return bonus;
             } catch (IllegalArgumentException e) {
@@ -159,7 +171,6 @@ public class Play {
     }
 
     public void checkSuccess(List<Integer> answerNums, int bonusNum) {
-        Integer[] answers = makeListToArray(answerNums);
         int[] result = new int[lottoNumber + 2];  // n개 일치하는 로또 개수 저장할 배열. 마지막 자리는 5개일치+보너스
         for (Lotto lotto : lottos) {
             int cnt = 0;
@@ -183,9 +194,14 @@ public class Play {
         for (int i = 0; i < lottoCnt; i++) {
             List<Integer> numbers = getLottoNums();
             System.out.println(numbers);
-            lottos.add(new Lotto(numbers));
+            try {
+                lottos.add(new Lotto(numbers));
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 유효하지 않은 번호입니다.");
+            }
         }
         List<Integer> answerNums = getAnswerNums();
+        answers = makeListToArray(answerNums);
         int bonusNum = getBonusNum();
         checkSuccess(answerNums, bonusNum);
     }

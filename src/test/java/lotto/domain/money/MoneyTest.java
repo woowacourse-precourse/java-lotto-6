@@ -33,7 +33,7 @@ class MoneyTest {
         // when
         assertThatThrownBy(() -> Money.valueOf(value))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("금액은 음수일 수 없습니다.");
+            .hasMessage("금액은 0원보다 작을 수 없습니다.");
     }
 
     @DisplayName("입력한 금액 만큼 대금을 지불할 수 있다.")

@@ -29,10 +29,9 @@
 
 ### Controller
 
-- [ ] `LottoCashier`
-    - [ ] 로또 결과 계산
-    - [ ] 수익률 계산
-- [ ] `LottoService`
+- [x] `LottoCashier`
+    - [x] 로또 결과 계산
+    - [x] 수익률 계산
 
 ### Model
 
@@ -43,8 +42,5 @@
     - [x] [예외] 중복되는 숫자를 입력했을 경우 예외 처리 한다.
 - [x] `User` : 사용자의 구입 금액과 로또들
     - [x] List<Lotto>
-- [ ] `LottoAnswer` : 당첨 로또
-    - [ ] WinningNumber
-    - [ ] BonusNumber
 - [x] `Prize` : 번호 일치 갯수 - 상금으로 나타낸 enum
 - [x] `PrizeResult` : 로또 결과를 저장

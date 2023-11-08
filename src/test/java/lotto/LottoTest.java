@@ -8,8 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatNoException;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -49,5 +48,18 @@ class LottoTest {
     void createLottoSuccess() {
         assertThatNoException()
                 .isThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+    }
+
+    @DisplayName("당첨 번호에 대한 당첨 숫자 개수 계산하기 성공")
+    @Test
+    public void calculateCountOfNumberEqualToWinningNumber() throws  Exception {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto target = new Lotto(List.of(4, 5, 6, 7, 8, 9));
+        int expected = 3;
+        //when
+        int result = lotto.calculateCountOfNumberEqualToWinningNumber(target);
+        //then
+        assertThat(result).isEqualTo(expected);
     }
 }

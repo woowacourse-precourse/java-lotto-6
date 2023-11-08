@@ -19,6 +19,7 @@ public enum LottoRank {
 
     private final boolean isBonusCorrect;
     private final int prizeMoney;
+
     LottoRank(int rank, int correctCount, boolean isBonusCorrect, int prizeMoney) {
         this.rank = rank;
         this.correctCount = correctCount;
@@ -50,7 +51,7 @@ public enum LottoRank {
     }
 
     public String getFormattedPrizeMoney() {
-       return String.format("%,d", prizeMoney);
+        return String.format("%,d", prizeMoney);
     }
 
     public int getRank() {

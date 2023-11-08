@@ -8,8 +8,6 @@ import java.util.List;
 
 import static lotto.util.InputConvertUtils.lottoNumbersToIntegerList;
 import static lotto.util.InputValidationUtils.*;
-import static lotto.util.InputValidationUtils.validateHasInput;
-import static lotto.util.InputValidationUtils.validateIsIntFormat;
 
 public class InputUtils {
 

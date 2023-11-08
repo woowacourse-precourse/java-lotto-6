@@ -11,11 +11,11 @@ public class EarningRate {
     double earningRate;
 
     public EarningRate(double budget, double totalPrizeAmount) {
-        this.earningRate = totalPrizeAmount /budget * 100;
+        this.earningRate = totalPrizeAmount / budget * 100;
     }
 
     public static EarningRate of(PurchaseBudget purchaseBudget, WinnerStatistics winnerStatistics) {
-        return new EarningRate(purchaseBudget.getBudget(),winnerStatistics.getTotalPrizeAmount());
+        return new EarningRate(purchaseBudget.getBudget(), winnerStatistics.getTotalPrizeAmount());
     }
 
     @Override

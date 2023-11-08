@@ -21,5 +21,5 @@ public class LottoGeneratorTest {
         assertThat(numbers).allMatch((number) ->
                 MIN_LOTTO_NUMBER.getValue() <= number && number <= MAX_LOTTO_NUMBER.getValue()
         );
-     }
+    }
 }

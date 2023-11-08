@@ -11,7 +11,6 @@ public enum OutputMessage implements Message {
     ;
 
 
-
     private final String message;
 
     OutputMessage(String message) {

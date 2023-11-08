@@ -1,6 +1,8 @@
-## 구현할 기능 목록
+## 구현 기능 목록
 
-**기능 실행 순서**
+---
+
+### 기능 실행 순서
 1. 로또 구입 금액을 입력 받는다. 구입 금액은 1,000원 단위로 입력받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.
 
         구입 금액을 입력해 주세요.
@@ -36,22 +38,33 @@
         총 수익률은 62.5%입니다.
 
 
-**필요한 기능**
+### 구현 목록
 - 로또 구입 금액을 입력 받는다.
   - 입력받은 금액을 1,000원 단위로 나누어 로또의 개수를 센다.
-  - 구입 금액이 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.
+  - 구입 금액이 1,000원으로 나누어 떨어지지 않는 경우 에러 메시지(`[ERROR]`) 반환 후 재입력을 받는다.
 - 로또 구입 금액을 통해 사용자가 구매한 로또의 개수만큼 로또를 발행한다.
   - 1개의 로또를 발행할 때 1부터 45까지의 숫자 중 중복하지 않은 6개의 숫자를 뽑는다.
 - 당첨 번호를 입력 받는다.
   - 당첨 번호도 1부터 45까지의 숫자 중 중복하지 않은 6개의 숫자가 입력되어야 한다.
+  - 위의 조건을 만족하지 않을 경우 에러 메시지(`[ERROR]`) 반환 후 재입력을 받는다.
   - 번호는 쉼표(,)를 기준으로 구분한다.
 - 보너스 번호를 입력 받는다.
+  - 입력받은 보너스 번호는 1부터 45까지의 숫자 중 한 개여야 한다.
+  - 당첨 번호와 중복하지 않은 숫자여야 한다.
+  - 위의 조건을 만족하지 않을 경우 에러 메시지(`[ERROR]`) 반환 후 재입력을 받는다.
 - 로또 번호와 당첨 번호, 보너스 번호를 비교하여 같은 숫자가 포함된다면 세어준다.
-- 당첨금을 수령할 수 있는 로또의 개수를 각각 출력하여 사용자에게 알려준다.
-- 사용자가 처음 입력한 로또 구입 금액과 비교하여 수익률을 출력 해준다.
+  - 로또와 일치하는 당첨 번호, 보너스 번호의 개수와 상금을 나타내는 당첨 순위를 `Java Enum`을 사용하여 구현
+  - 로또(`Lotto`)와 당첨 번호 및 보너스 번호(`WinningNumber`)를 비교하여 개수를 세어주는 기능은 RankResult 클래스로 따로 분리
+- 당첨금을 수령할 수 있는 로또 당첨 내역을 각각 출력하여 사용자에게 알려준다.
+  - 사용자가 처음 입력한 로또 구입 금액과 비교하여 수익률을 출력 해준다.
+  - 수익률 계산법 (로또 개수를 분모로 놓고 0.1을 곱하는 계산식 사용)
+
+        수익률 = (상금 총 수익) / (구매한 로또 개수) * 0.1
+            = (상금 총 수익) / (구입 금액) * 100
+  - 소수점 이하 한자리까지 나타내기 위해 `%.1f%%` 사용
 
 
-**예외 처리**
+### 예외 처리
 - 로또 구입 금액
   - 1,000원으로 나누었을 때 나머지가 존재하지 않는다.
   - 숫자 형태의 값이 입력되어야 한다.
@@ -68,3 +81,134 @@
   - 입력된 숫자는 1 이상 45 이하여야 한다.
   - 숫자 형태의 값이 입력되어야 한다.
   - 입력값에 공백이 포함되면 안된다.
+
+## 패키지 구조
+
+---
+
+<div align="center">
+<table>
+<tr>
+    <th align="center">Package</th>
+    <th align="center">Class</th>
+    <th align="center">Description</th></th>
+</tr>
+<tr>
+    <td rowspan="1">controller</td>
+    <td>LottoController</td>
+    <td>전반적인 기능을 담당하는 컨트롤러</td>
+</tr>
+<tr><td colspan="3"></td></tr>
+<tr>
+    <td rowspan="9">domain</td>
+    <td>Lotto</td>
+    <td>로또 번호를 캡슐화하는 클래스</td>
+</tr>
+<tr>
+    <td>Lottos</td>
+    <td>여러 개의 로또 인스턴스를 관리하는 일급 컬렉션 클래스</td>
+</tr>
+<tr>
+    <td>LottoGenerator</td>
+    <td>로또를 생성하는 클래스</td>
+</tr>
+<tr>
+    <td>LottoNumberGenerator</td>
+    <td>로또 번호를 생성하는 클래스</td>
+</tr>
+<tr>
+    <td>Money</td>
+    <td>구매 금액의 유효성 검사, 티켓 수 계산을 맡은 클래스</td>
+</tr>
+<tr>
+    <td>Rank</td>
+    <td>로또 당첨 순위를 나타내는 Enum 클래스</td>
+</tr>
+<tr>
+    <td>RankResult</td>
+    <td>로또 당첨 내역을 계산하고 해당 순위의 개수를 세어주는 클래스</td>
+</tr>
+<tr>
+    <td>Rate</td>
+    <td>구매 비용과 당첨 내역을 통해 수익률을 계산하는 클래스</td>
+</tr>
+<tr>
+    <td>WinnningNumber</td>
+    <td>당첨 번호 및 보너스 번호 정보를 나타내는 클래스</td>
+</tr>
+<tr><td colspan="3"></td></tr>
+<tr>
+    <td rowspan="5">view</td>
+    <td>InputView</td>
+    <td>사용자 입력을 처리하고 문자열 값을 반환하는 클래스</td>
+</tr>
+<tr>
+    <td>InputMoneyView</td>
+    <td>구입 금액을 입력받는 하위 클래스</td>
+</tr>
+<tr>
+    <td>InputWinningNumberView</td>
+    <td>당첨 번호를 입력받는 하위 클래스</td>
+</tr>
+<tr>
+    <td>InputBonusNumberView</td>
+    <td>보너스 번호를 입력받는 하위 클래스</td>
+</tr>
+<tr>
+    <td>OutputView</td>
+    <td>로또 구매와 당첨 결과 출력을 담당하는 클래스</td>
+</tr>
+</table>
+</div>
+
+## 발생했던 문제점 및 해결 방법
+
+---
+
+1. **ApplicationTest의 두번째 예외 테스트가 통과되지 않음**
+
+    기능 요구 사항 중 "[ERROR]" 로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받아야 한다는 점을 간과하고 진행했습니다.
+`IllegalArgumentException`이 발생한 후 다시 입력받을 수 있도록 재귀 호출을 사용해 해결했습니다.
+<br>
+
+**이전 코드**
+```java
+public class InputView {
+    public int getInputMoney() {
+        System.out.println(REQUEST_INPUT_MONEY);
+        String input = Console.readLine();
+        System.out.println();
+        validateNumeric(input);
+        return Integer.parseInt(input);
+    }
+}
+```
+**수정한 코드**
+```java
+public class InputView {
+    public String getInputMoney() {
+        System.out.println(REQUEST_INPUT_MONEY);
+        String input = Console.readLine();
+        System.out.println();
+        try {
+            validateFormat(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_MESSAGE);
+            input = getInputMoney();
+        }
+        return input;
+    }
+}
+```
+<br>
+
+2. **예외 처리 메소드가 view 클래스와 해당 객체 클래스에 중복하여 작성됨**
+
+    사용자가 값을 입력할 시 예외 처리가 된다면 에러 메시지를 반환하고 재입력을 받아야하기 때문에
+    유효성 검사가 필요하다고 생각했습니다.
+    
+    그러나 테스트 코드를 작성하다보니 뷰가 아닌 각 객체를 관리하는 클래스에서 구현이 되어야 한다고 생각했고
+    코드를 추가하니 같은 예외 처리 검사를 두 번 하게 되었습니다.
+    
+    그래서 `정적 메소드`를 사용하여 객체를 관리하는 클래스에 예외 처리 메서드를 구현하고,
+    입력을 받는 클래스에서는 각 클래스의 유효성 검사 메서드를 불러오는 방식으로 리팩토링을 진행하였습니다.

@@ -22,7 +22,7 @@ public class UserMoney {
         return amount / LOTTO_PRICE;
     }
 
-    public float getRevenueRate(long prize) {
-        return (float) (Math.round((float) amount / prize * 100) / 100.0);
+    public double getRevenueRate(long prize) {
+        return Math.round((double) amount / prize * 100) / 100.0;
     }
 }

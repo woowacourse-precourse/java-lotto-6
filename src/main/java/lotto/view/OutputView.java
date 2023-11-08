@@ -57,7 +57,7 @@ public class OutputView {
 
     public void printRevenueRate(UserMoney userMoney, UserLottoRank userLottoRank) {
         long revenue = userLottoRank.getRevenue();
-        float revenueRate = userMoney.getRevenueRate(revenue);
+        double revenueRate = userMoney.getRevenueRate(revenue);
         printf(OUTPUT_USER_MONEY_REVENUE_RATE, revenueRate);
     }
 

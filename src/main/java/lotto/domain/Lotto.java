@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.Message.ErrorMessage;
 
 public class Lotto {
 
@@ -18,7 +19,15 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.toString());
+        }
+
+        for(int i = 0; i < numbers.size(); i++){
+            if (numbers.contains(numbers.get(i))){
+                throw new IllegalArgumentException(ErrorMessage.LOTTON_NUMBER_DUPLICATION.toString());
+            }else if (1 > numbers.get(i) && numbers.get(i) > 45){
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.toString());
+            }
         }
     }
 

@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.view.Output.consoleLine;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,32 +25,31 @@ public class GameController {
         WinningLotto winningLotto = generateWinningLottto();
         Map<Integer, Integer> resultLottos = winningLotto.compareLottos(lottos);
         printResult(resultLottos, count);
-
     }
 
     private Money insertMoney(){
-        System.out.println(GameMessage.OUT_REQUEST_MONEY_MESSAGE);
+        consoleLine(GameMessage.OUT_REQUEST_MONEY_MESSAGE);
         Money count = new Money(Integer.parseInt(Input.consoleLine()));
         count.checkmoney();
-        System.out.println();
+        consoleLine("");
         return count;
     }
 
     private List<Lotto> generateUserLotto(Money count){
         count.printCount();
         List<Lotto> lottos =  Lottos.generateLotto(count);
-        System.out.println();
+        consoleLine("");
         return lottos;
     }
 
     private WinningLotto generateWinningLottto(){
-        Output.consoleLine(GameMessage.OUT_REQUEST_WINNING_LOTTO_MESSAGE);
+        consoleLine(GameMessage.OUT_REQUEST_WINNING_LOTTO_MESSAGE);
         List<Integer> winningNumbers = splitNumber(Input.consoleLine());
 
-        Output.consoleLine(GameMessage.OUT_REQUEST_BONUS_NUMBER_MESSAGE);
+        consoleLine(GameMessage.OUT_REQUEST_BONUS_NUMBER_MESSAGE);
         int bonusNumbers = Integer.parseInt(Input.consoleLine());
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumbers);
-        System.out.println();
+        consoleLine("");
 
         return winningLotto;
     }

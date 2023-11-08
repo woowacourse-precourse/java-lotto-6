@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Map;
+import lotto.Message.ErrorMessage;
 import lotto.Message.GameMessage;
 import lotto.util.MoneyCalculation;
 
@@ -15,7 +16,9 @@ public class Money {
 
         public void checkmoney() {
             if (this.money % 1000 != 0) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ErrorMessage.MONEY_SHOULD_BE_1000.toString());
+            } else if (this.money < 0) {
+                throw new IllegalArgumentException(ErrorMessage.MONEY_SHOUD_BE_POSITIVE_NUMBER.toString());
             } else if (this.money % 1000 == 0) {
                 this.count = this.money / 1000;
             }

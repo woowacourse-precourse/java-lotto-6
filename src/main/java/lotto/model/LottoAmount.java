@@ -1,6 +1,6 @@
-package lotto;
+package lotto.model;
 
-import static lotto.LottoProperty.LOTTO_PRICE;
+import static lotto.type.LottoProperty.LOTTO_PRICE;
 
 public class LottoAmount {
     private static final String ERROR_NUMBER = "[ERROR] 구매금액에는 숫자를 입력하시오.";

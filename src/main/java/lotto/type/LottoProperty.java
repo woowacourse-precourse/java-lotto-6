@@ -1,4 +1,4 @@
-package lotto;
+package lotto.type;
 
 public enum LottoProperty {
     LOTTO_NUMBER_SIZE(6),

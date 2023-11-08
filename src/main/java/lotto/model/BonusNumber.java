@@ -1,9 +1,9 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
 
-import static lotto.LottoProperty.LOTTO_MIN_NUMBER;
-import static lotto.LottoProperty.LOTTO_MAX_NUMBER;
+import static lotto.type.LottoProperty.LOTTO_MIN_NUMBER;
+import static lotto.type.LottoProperty.LOTTO_MAX_NUMBER;
 
 public class BonusNumber {
     private static final String ERROR_NUMBER = "[ERROR] 보너스 번호는 숫자여야 합니다";

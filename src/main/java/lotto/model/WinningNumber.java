@@ -1,11 +1,11 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
 import java.util.Arrays;
 
-import static lotto.LottoProperty.LOTTO_MIN_NUMBER;
-import static lotto.LottoProperty.LOTTO_MAX_NUMBER;
-import static lotto.LottoProperty.LOTTO_NUMBER_SIZE;
+import static lotto.type.LottoProperty.LOTTO_MIN_NUMBER;
+import static lotto.type.LottoProperty.LOTTO_MAX_NUMBER;
+import static lotto.type.LottoProperty.LOTTO_NUMBER_SIZE;
 
 public class WinningNumber {
     public static final String SPLITOR = ",";

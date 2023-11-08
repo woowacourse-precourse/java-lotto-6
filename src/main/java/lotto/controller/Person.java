@@ -1,10 +1,13 @@
-package lotto;
+package lotto.controller;
 
-import lotto.InputView;
-import lotto.OutputView;
-import lotto.LottoAmount;
-import lotto.AutoLottoNumber;
-import lotto.Lotto;
+import lotto.service.AutoLottoNumber;
+import lotto.model.BonusNumber;
+import lotto.model.Lotto;
+import lotto.model.LottoAmount;
+import lotto.model.WinningNumber;
+import lotto.service.TotalReturn;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Person {
     private final InputView inputView;

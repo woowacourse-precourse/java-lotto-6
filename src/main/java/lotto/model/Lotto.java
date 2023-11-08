@@ -1,8 +1,8 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
 
-import static lotto.LottoProperty.LOTTO_NUMBER_SIZE;
+import static lotto.type.LottoProperty.LOTTO_NUMBER_SIZE;
 
 public class Lotto {
     private static final String ERROR_SIZE = "[ERROR] 로또 번호는 6개의 숫자이어야 합니다";

@@ -12,7 +12,7 @@ public enum OutputMessage {
                 """),
     PROFIT_START("총 수익률은 "),
     PROFIT_END("%입니다.");
-    
+
     private final String message;
 
     OutputMessage(String message) {

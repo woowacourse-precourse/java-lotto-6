@@ -81,7 +81,7 @@ public class Game {
         for (Lotto lotto : lottos) {
             int equal = lotto.countEqual(winning.getNumbers());
             if (resultCase == FIVE_AND_BONUS_CORRECTNESS) {
-                equal = addBonus(lotto, equal);
+                equal = countBonus(lotto, equal);
             }
             if (equal == resultCase.getCorrectness()) {
                 matchNumbers++;
@@ -90,7 +90,7 @@ public class Game {
         return matchNumbers;
     }
 
-    private Integer addBonus(Lotto lotto, Integer equalNumber) {
+    private Integer countBonus(Lotto lotto, Integer equalNumber) {
         if (lotto.contain(bonus.getNumber())) {
             equalNumber++;
         }

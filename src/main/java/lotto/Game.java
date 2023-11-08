@@ -30,6 +30,7 @@ public class Game {
         saveBuyingPrice();
         printBuyingCount();
         giveLotto();
+        printLotto();
         saveWinningNumber();
         saveBonusNumber();
         countWinning();
@@ -49,17 +50,18 @@ public class Game {
         for (int i = 0; i < buyingPrice.getBuyingCount(); i++) {
             List<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT);
             lottos.add(new Lotto(uniqueNumbers));
-            show(uniqueNumbers);
         }
     }
 
-    private void show(List<Integer> uniqueNumbers) {
-        ArrayList<Integer> copyNumbers = new ArrayList<>(uniqueNumbers);
-        Collections.sort(copyNumbers);
-        String result = copyNumbers.stream()
-                .map(Object::toString)
-                .collect(Collectors.joining(LOTTO_PRINT_DELIMITER, LOTTO_PRINT_START, LOTTO_PRINT_END));
-        System.out.println(result);
+    private void printLotto() {
+        for(Lotto lotto : lottos) {
+            ArrayList<Integer> copyNumbers = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(copyNumbers);
+            String result = copyNumbers.stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(LOTTO_PRINT_DELIMITER, LOTTO_PRINT_START, LOTTO_PRINT_END));
+            System.out.println(result);
+        }
     }
 
     private void saveWinningNumber() {

@@ -20,6 +20,10 @@ public class Lotto extends InputNumbers {
 
     // TODO: 추가 기능 구현
 
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
+
     public int countEqual(List<Integer> numbers) {
         List<Integer> originalNumbers = new ArrayList<>(this.numbers);
         originalNumbers.retainAll(numbers);

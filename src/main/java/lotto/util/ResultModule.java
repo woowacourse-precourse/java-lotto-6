@@ -1,5 +1,6 @@
 package lotto.util;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -21,7 +22,7 @@ public class ResultModule {
     }
 
     private static List<Integer> sumLottoAndWinningNum(List<Integer> winningNum, Lotto l) {
-        List<Integer> lotto = l.getNumbers();
+        List<Integer> lotto = new ArrayList<>(l.getNumbers());
         lotto.addAll(winningNum);
         return lotto;
     }

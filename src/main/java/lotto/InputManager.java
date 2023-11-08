@@ -32,5 +32,14 @@ public class InputManager {
         }
         return winningNumbers;
     }
+
+    public int getBonusNumber() {
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
+            System.out.println("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException();
+        }
+        return bonusNumber;
+    }
     
 }

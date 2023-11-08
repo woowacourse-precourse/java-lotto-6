@@ -1,17 +1,18 @@
 # 기능 목록
-- [] 사용자 입력 클래스 InputManager
-  - [] 구입금액 입력 getPurchaseAmount()
-  - [] 당첨번호 입력 getWinnigNumbers()
-  - [] 보너스 번호 입력 getBonusNumber()
+- [x] 사용자 입력 클래스 InputManager
+  - [x] 구입금액 입력 getPurchaseAmount()
+  - [x] 당첨번호 입력 getWinnigNumbers()
+  - [x] 보너스 번호 입력 getBonusNumber()
 - [] 로또 구입 클래스 LottoGenerator
   - [] 중복없는 로또 번호 발행 generateLotto()
 - [] 출력 클래스 ResultManager
   - [] 당첨 통계 출력 calculatePrizes()
   - [] 수익률 출력 displayResults()
-- [] 예외처리 클래스 InvalidInputException
-  - [] 구입 금액 1,000원 단위로 나누어 떨어지지 않는 경우 InvalidPurchaseAmountException() 
-  - [] 당첨번호 1~45 사이의 숫자가 아닌 경우 InvalidWinningNumbersException()
-  - [] 보너스번호 1~45 사이 숫자가 아닌 경우 InvalidBonusNumberException()
+- [] 예외처리 
+  - [x] 구입 금액 1,000원 단위로 나누어 떨어지지 않는 경우
+  - [x] 당첨번호 1~45 사이의 숫자가 아닌 경우
+  - [x] 보너스번호 1~45 사이 숫자가 아닌 경우
+  - [ ] 
 
 
 # 테스트 목록

@@ -9,9 +9,9 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import lotto.domain.model.Lotto;
-import lotto.domain.model.LottoResult;
 import lotto.domain.model.Lottos;
-import lotto.domain.model.LottosResult;
+import lotto.domain.model.GameResult;
+import lotto.domain.model.PrizeOption;
 import org.junit.jupiter.api.Test;
 
 public class LottosTest extends NsTest {
@@ -62,7 +62,7 @@ public class LottosTest extends NsTest {
         lottos = setUP();
         Lotto answerLotto = Lotto.newInstance(List.of(1, 2, 5, 17, 22, 45));
         int bonusNumber = 3;
-        List<LottoResult> target = new ArrayList<>(Arrays.asList(LottoResult.FOUR_MATCHES,LottoResult.SIX_MATCHES));
+        List<PrizeOption> target = new ArrayList<>(Arrays.asList(PrizeOption.FOUR_MATCHES,PrizeOption.SIX_MATCHES));
         assertThat(lottos.matchUp(answerLotto,bonusNumber)).isEqualTo(target);
     }
 
@@ -72,11 +72,11 @@ public class LottosTest extends NsTest {
         Lotto answerLotto = Lotto.newInstance(List.of(1, 2, 5, 17, 22, 45));
         int bonusNumber = 3;
 
-        List<LottoResult> lottoResults= lottos.matchUp(answerLotto,bonusNumber);
-        LottosResult results = new LottosResult(lottoResults);
-        EnumMap<LottoResult, Integer> resultCounts = new EnumMap<>(LottoResult.class);
-        resultCounts.put(LottoResult.FOUR_MATCHES,1);
-        resultCounts.put(LottoResult.SIX_MATCHES,1);
+        List<PrizeOption> lottoResults= lottos.matchUp(answerLotto,bonusNumber);
+        GameResult results = new GameResult(lottoResults);
+        EnumMap<PrizeOption, Integer> resultCounts = new EnumMap<>(PrizeOption.class);
+        resultCounts.put(PrizeOption.FOUR_MATCHES,1);
+        resultCounts.put(PrizeOption.SIX_MATCHES,1);
 
         assertThat(results.getResultCounts()).isEqualTo(resultCounts);
     }

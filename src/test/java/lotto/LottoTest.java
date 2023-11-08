@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.domain.model.Lotto;
-import lotto.domain.model.LottoResult;
+import lotto.domain.model.PrizeOption;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -79,8 +79,8 @@ class LottoTest {
         Lotto answerLotto =  Lotto.newInstance(List.of(1, 2, 3, 4, 5, 6));
         Integer bonusNumber = 10;
         Integer countOfBall = userLotto.matchUp(answerLotto);
-        LottoResult result= LottoResult.matchUp(countOfBall,userLotto,bonusNumber);
-        assertThat(result).isEqualTo(LottoResult.FIVE_PLUS_BONUS);
+        PrizeOption result= PrizeOption.matchUp(countOfBall,userLotto,bonusNumber);
+        assertThat(result).isEqualTo(PrizeOption.FIVE_PLUS_BONUS);
     }
 
 

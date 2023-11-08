@@ -3,9 +3,8 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.domain.model.LottoResult;
-import lotto.domain.model.LottosResult;
-import lotto.domain.service.KoreanMoneyService;
+import lotto.domain.model.GameResult;
+import lotto.domain.model.PrizeOption;
 import lotto.domain.service.Money;
 import org.junit.jupiter.api.Test;
 
@@ -13,12 +12,12 @@ public class LottosResultTest {
     @Test
     void countProfitableTest() {
 
-        List<LottoResult> givenLottoResults = List.of(LottoResult.FOUR_MATCHES, LottoResult.SIX_MATCHES);
+        List<PrizeOption> givenLottoResults = List.of(PrizeOption.FOUR_MATCHES, PrizeOption.SIX_MATCHES);
         int moneySpent = 200;
-        LottosResult lottosResult = new LottosResult(givenLottoResults);
+        GameResult lottosResult = new GameResult(givenLottoResults);
 
-        double expectedProfit = ((LottoResult.FOUR_MATCHES.getPrizeAmount() + LottoResult.SIX_MATCHES.getPrizeAmount()) / (double) moneySpent) * 100;
-        Money money = new KoreanMoneyService();
+        double expectedProfit = ((PrizeOption.FOUR_MATCHES.getPrizeAmount() + PrizeOption.SIX_MATCHES.getPrizeAmount()) / (double) moneySpent) * 100;
+        Money money = new Money();
         money.saveMoney(moneySpent);
         lottosResult.countProfitable(money);
 

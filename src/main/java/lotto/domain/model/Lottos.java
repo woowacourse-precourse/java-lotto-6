@@ -24,18 +24,17 @@ public class Lottos {
         return this.lottos;
     }
 
-    public List<LottoResult> matchUp(Lotto answerLotto, int bonusNumber) {
+    public List<PrizeOption> matchUp(Lotto answerLotto, int bonusNumber) {
         return lottos.stream()
                 .map(i -> getResult(i, answerLotto, bonusNumber))
                 .toList();
     }
-
+    private PrizeOption getResult(Lotto userLotto, Lotto answerLotto, Integer bonusNumber) {
+        int numberOfMatch = userLotto.matchUp(answerLotto);
+        return PrizeOption.matchUp(numberOfMatch, userLotto, bonusNumber);
+    }
     public List<Lotto> getLottosForMessage() {
         return lottos;
     }
 
-    private LottoResult getResult(Lotto userLotto, Lotto answerLotto, Integer bonusNumber) {
-        int numberOfMatch = userLotto.matchUp(answerLotto);
-        return LottoResult.matchUp(numberOfMatch, userLotto, bonusNumber);
-    }
 }

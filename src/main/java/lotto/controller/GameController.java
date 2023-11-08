@@ -3,7 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.model.Lotto;
 import lotto.domain.model.Lottos;
-import lotto.domain.model.LottosResult;
+import lotto.domain.model.GameResult;
 import lotto.domain.service.Money;
 import lotto.domain.service.User;
 import lotto.view.OutputView;
@@ -59,7 +59,7 @@ public class GameController {
 
     private void showWinnerPrice() {
         outputView.showResultHeadMessage();
-        LottosResult gameResult = user.matchUp(answer, bonusNumber);
+        GameResult gameResult = user.matchUp(answer, bonusNumber);
         outputView.showBallCountResult(gameResult);
         outputView.showProfit(gameResult);
     }

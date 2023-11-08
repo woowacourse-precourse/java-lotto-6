@@ -3,9 +3,9 @@ package lotto.view;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.model.Lotto;
-import lotto.domain.model.LottoResult;
 import lotto.domain.model.Lottos;
-import lotto.domain.model.LottosResult;
+import lotto.domain.model.GameResult;
+import lotto.domain.model.PrizeOption;
 
 public class OutputView {
     public static void showErrorMessage(String e){
@@ -42,17 +42,17 @@ public class OutputView {
         System.out.println("---");
     }
 
-    public void showBallCountResult(LottosResult lottosResult) {
+    public void showBallCountResult(GameResult lottosResult) {
         StringBuilder sb = new StringBuilder();
-        for (LottoResult result : LottoResult.values()) {
-            if (!result.equals(LottoResult.UNDER_THREE)) {
+        for (PrizeOption result : PrizeOption.values()) {
+            if (!result.equals(PrizeOption.UNDER_THREE)) {
                 sb.append(result.getMessage()).append(" - ").append(lottosResult.getResultCounts().getOrDefault(result, 0)).append("개\n");
             }
         }
         System.out.println(sb);
     }
 
-    public void showProfit(LottosResult lottosResult) {
+    public void showProfit(GameResult lottosResult) {
         StringBuilder sb = new StringBuilder();
         sb.append("총 수익률은 ").append(String.format("%.1f", lottosResult.getTotalProfit())).append("%입니다.");
         System.out.println(sb);

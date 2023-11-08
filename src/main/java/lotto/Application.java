@@ -3,7 +3,7 @@ package lotto;
 import lotto.controller.LottoController;
 import lotto.view.ConsoleInputView;
 import lotto.view.ConsoleOutputView;
-import lotto.view.InputValidator;
+import lotto.validator.InputValidator;
 
 public class Application {
     public static void main(String[] args) {

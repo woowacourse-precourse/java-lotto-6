@@ -31,7 +31,7 @@ public class LottoManager {
 
     public void inputLottoPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        purchaseAmount = Integer.getInteger(Console.readLine());
+        purchaseAmount = Integer.parseInt(Console.readLine());
     }
 
     public void createLotties() {
@@ -41,6 +41,12 @@ public class LottoManager {
         for(int i = 0; i < this.purchaseAmount/lottoPrice; i++) {
             List<Integer> numbers = numberGenerator.createRandomNumbers();
             lotties.add(new Lotto(numbers));
+        }
+    }
+
+    public void printLotties() {
+        for(Lotto l:lotties) {
+            l.printLotto();
         }
     }
 

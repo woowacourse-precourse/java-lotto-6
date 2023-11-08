@@ -10,21 +10,17 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class LottoRankingTest {
     @ParameterizedTest
-    @CsvSource(value = {"3,true", "4,false", "5,true", "6,false", "1,false"})
+    @CsvSource(value = {
+            "3,true,FIFTH",
+            "4,false,FOURTH",
+            "5,true,SECOND",
+            "5,false,THIRD",
+            "6,false,FIRST",
+            "1,false,NO_MATCH"
+    })
     @DisplayName("로또 등수를 반환한다.")
-    void lottoRankTest(int matchingNumber, boolean isBonusInclude) {
-        String prizeName = LottoRanking.valueOf(matchingNumber, isBonusInclude).name();
-        Map<Integer, String> prizeMap = new HashMap<>() {{
-            put(3, "FIFTH");
-            put(4, "FOURTH");
-            put(5, "SECOND");
-            put(6, "FIRST");
-            put(1, "NO_MATCH");
-        }};
-
-        for (int i = 0; i < prizeMap.size(); i++) {
-            String expect = prizeMap.get(matchingNumber);
-            assertEquals(expect, prizeName);
-        }
+    void lottoRankTest(int matchingNumber, boolean isBonusInclude, String expectedRank) {
+        String actualRank = LottoRanking.valueOf(matchingNumber, isBonusInclude).name();
+        assertEquals(expectedRank, actualRank);
     }
 }

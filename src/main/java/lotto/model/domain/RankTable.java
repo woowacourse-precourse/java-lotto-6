@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.domain;
 
 public enum RankTable {
     THREE( 3, false, 5_000),

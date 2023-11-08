@@ -1,7 +1,7 @@
 package lotto.view;
 
-import lotto.model.Lotto;
-import lotto.model.RankTable;
+import lotto.model.domain.Lotto;
+import lotto.model.domain.RankTable;
 import lotto.util.LottoTypeConverter;
 
 import java.util.List;

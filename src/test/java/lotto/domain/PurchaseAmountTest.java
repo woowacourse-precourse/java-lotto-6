@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import lotto.domain.ExceptionMessage;
 import lotto.domain.PurchaseAmount;

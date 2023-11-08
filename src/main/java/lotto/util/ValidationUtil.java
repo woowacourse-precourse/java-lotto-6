@@ -37,4 +37,11 @@ public class ValidationUtil {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void isValidAmount(String input) {
+        String str = input.trim();
+        if (str.isEmpty() || !str.matches("[0-9]*") || Integer.parseInt(str) % ConstVariable.STANDARD.getValue() != 0) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

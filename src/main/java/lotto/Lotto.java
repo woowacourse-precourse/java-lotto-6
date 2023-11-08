@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -8,12 +9,23 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        duplicateException(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    public void duplicateException(List<Integer>numbers) {
+        List<Integer> numberCount = new ArrayList<>(46);
+        for (int number = 0; number <=45 ; number++) numberCount.add(0);
+
+        for (int number : numbers) {
+            numberCount.set(number, numberCount.get(number) + 1);
+            if (numberCount.get(number) >= 2) throw new IllegalArgumentException();
         }
     }
 
@@ -43,8 +55,9 @@ public class Lotto {
         print.append("[");
         for (int number : numbers) {
             print.append(number);
-            print.append(",");
+            print.append(", ");
         }
+        print.deleteCharAt(print.length()-1);
         print.deleteCharAt(print.length() - 1);
         print.append("]");
 

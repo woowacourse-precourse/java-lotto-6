@@ -6,12 +6,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class WinningResultTest {
     private static final WinningNumber WINNING_NUMBER = new WinningNumber(List.of(1, 2, 3, 4, 5, 6), 11);
+    private WinningResult winningResult;
+
+    @BeforeEach
+    void setUp() {
+        winningResult = new WinningResult();
+    }
 
     @ParameterizedTest
     @CsvSource({"SIXTH,3", "FIFTH,0", "FOURTH,0", "THIRD,1", "SECOND,1", "FIRST,1"})
@@ -23,7 +30,6 @@ public class WinningResultTest {
         lottoTickets.add(new Lotto(List.of(2, 3, 4, 5, 6, 7)));
         lottoTickets.add(new Lotto(List.of(2, 3, 4, 5, 6, 11)));
         lottoTickets.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-        WinningResult winningResult = new WinningResult();
 
         Map<PrizeCategory, Integer> actual = winningResult.countNumberOfWinning(lottoTickets, WINNING_NUMBER);
 
@@ -39,10 +45,30 @@ public class WinningResultTest {
         map.put(PrizeCategory.THIRD, 1);
         map.put(PrizeCategory.SECOND, 1);
         map.put(PrizeCategory.FIRST, 0);
-        WinningResult winningResult = new WinningResult();
 
         long actual = winningResult.getTotalPrizeMoney(map);
 
         assertThat(actual).isEqualTo(31510000);
     }
+
+    @Test
+    void getRateOfReturn_메서드로_구입금액_대비_총_상금의_수익률을_반환() {
+        long purchaseAmount = 8000;
+        long totalPrizeMoney = 5000;
+
+        double actual = winningResult.getRateOfReturn(purchaseAmount, totalPrizeMoney);
+
+        assertThat(actual).isEqualTo(62.5);
+    }
+
+    @Test
+    void getRateOfReturn_메서드로_로또_100장을_구입해_모두_1등이_당첨되었을_때_수익률을_반환() {
+        long purchaseAmount = 100000;
+        long totalPrizeMoney = 200000000000L;
+
+        double actual = winningResult.getRateOfReturn(purchaseAmount, totalPrizeMoney);
+
+        assertThat(actual).isEqualTo(200000000.0);
+    }
+
 }

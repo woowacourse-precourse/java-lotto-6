@@ -27,4 +27,9 @@ public class WinningResult {
         }
         return totalPrizeMoney;
     }
+
+    public double getRateOfReturn(long purchaseAmount, long totalPrizeMoney) {
+        double rateOfReturn = totalPrizeMoney * 1000.0 / purchaseAmount;
+        return Math.round(rateOfReturn) / 10.0;
+    }
 }

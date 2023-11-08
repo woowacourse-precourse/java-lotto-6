@@ -45,6 +45,7 @@ public class OutputView {
         List<String> numbers = lotto
                 .getNumbers()
                 .stream()
+                .sorted()
                 .map(Object::toString)
                 .toList();
         return String.join(PrintMessage.JOIN_DELIMITER.getMessage(), numbers);

@@ -7,6 +7,8 @@
  */
 package model;
 
+import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.Map;
 import model.enums.LottoWinPrize;
 import model.enums.LottoWinResults;
@@ -26,7 +28,14 @@ public class LottoResultJudger {
         this.paidMoney = paidMoney;
     }
 
+    /**
+     * Description : 수익률 계산 (소수점 1개 )
+     *
+     * @Method : getProfit()
+     * @return : double
+     */
     public double getProfit(){
-        return Double.parseDouble(String.format("%.2f", (profit/paidMoney*100)));
+        double finalProfit = profit/paidMoney*100;
+        return Double.parseDouble(String.format("%.2f", finalProfit));
     }
 }

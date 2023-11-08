@@ -32,7 +32,6 @@ public class LottoController {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
-        // 구입금액 입력요청 출력하고 입력받은 후에 LottoTicketSeller에게 전달하여 구매, 구매완료문구 출력
         outputView.printLottoBuy();
         int money = inputView.inputLottoBuy();
         outputView.printNextLine();
@@ -41,7 +40,6 @@ public class LottoController {
         int lottoTicketNum = lottoTicketSeller.receiveLottotickets();
         outputView.printLottoBuyComplete(lottoTicketNum);
 
-        //산 티켓 수만큼 lottoNumberPicker를 이용해 로또수를 얻어 LottoNumberSetHolder에 저장하고 출력
         LottoNumberPicker lottoNumberPicker = new LottoNumberPicker();
         LottoNumberSetHolder lottoNumberSetHolder = new LottoNumberSetHolder();
         while(lottoTicketNum-- > 0){
@@ -52,7 +50,6 @@ public class LottoController {
         }
         outputView.printNextLine();
 
-        // 당첨번호와 보너스숫자 입력요청 출력, 입력받아서 LottoNumberComparater에 비교를 위해 넣어두기
         outputView.printLottoNumRequest();
         ArrayList<Integer> resultLottoNum = inputView.inputLottoNum();
         outputView.printNextLine();
@@ -60,7 +57,6 @@ public class LottoController {
         int resultBonusNum = inputView.inputBonusNum();
         LottoNumberComparater lottoNumberComparater = new LottoNumberComparater(resultLottoNum, resultBonusNum);
 
-        // lottoNumberSetHolder에 담긴 lotto들을 LottoNumberComparater에 넣어서 값을 받아 LottoWinResultsHolder에 넣기
         ArrayList<Lotto> LottoNumberSet = lottoNumberSetHolder.getLottoNumberSet();
         LottoWinResultsHolder lottoWinResultsHolder = new LottoWinResultsHolder();
         for (Lotto lotto : LottoNumberSet){
@@ -69,7 +65,6 @@ public class LottoController {
         }
         outputView.printNextLine();
 
-        // lottoWinResultsHolder에서 전체 결과 맵 가져와서 LottoResultJudger 이용해 톡계출력
         Map<String, Integer> winResults = lottoWinResultsHolder.getWinResults();
         outputView.printWinStatistic(winResults);
 

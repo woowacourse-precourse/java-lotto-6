@@ -1,5 +1,11 @@
 [플로우]
-lottoNumberSetHolder에 담긴 lotto들을 LottoNumberComparater에 넣어서 값을 받아 LottoWinResultsHolder에 넣기
+'구입 금액 입력 요청' 출력하고, 입력 받은 후에 LottoTicketSeller에게 전달하여 로또 구매하고 구매완료문구 출력.
+산 로또 수만큼 반복을 돌며 LottoNumberPicker를 이용해 로또번호 셋을 얻어 LottoNumberSetHolder에 저장하고, 출력.
+'당첨번호와 보너스숫자 입력요청' 출력, 입력 받아서 LottoNumberComparater에 비교를 위해 넣어두기.
+LottoNumberSetHolder에 담긴 lotto들에서 로또번호 셋을 가져와 LottoNumberComparater에 넣어서 상금여부판단을 받아 LottoWinResultsHolder에 저장.
+LottoWinResultsHolder에서 전체 결과 셋 가져와서 결과 출력하고,
+이를 LottoResultJudger에도 전달해 수익률을 게산한 후 출력.
+
 
 <lotto 패키지>
 - application 클래스 ( 게임컨트롤러 실행)⭕️1차구현완료

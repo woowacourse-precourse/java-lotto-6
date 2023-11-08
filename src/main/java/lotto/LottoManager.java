@@ -17,7 +17,6 @@ public class LottoManager {
         int purchaseAmount = inputPurchaseAmount();
         List<Lotto> lottos = purchaseLottos(purchaseAmount);
         printLottos(lottos);
-        // 로또 게임의 나머지 진행 로직을 추가
         // 에러 발생시 재시도 로직 추가
 
     }

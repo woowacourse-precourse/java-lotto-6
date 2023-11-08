@@ -84,7 +84,7 @@
 **test** *LottoTest*
 - [❌] 대응하는 각 메서드에 대한 UnitTest
 - 
-- **test** *LottoTest*
+- **test** *WinningNumberTest*
 - [❌] 대응하는 각 메서드에 대한 UnitTest
 - 
 **test** *ResultTest*

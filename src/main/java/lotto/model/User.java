@@ -9,6 +9,9 @@ import lotto.domain.Price;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+/**
+ * 유저에게 값 받아오는 로직 담고 있는 클래스
+ */
 public class User {
     public Price requestPurchasePrice() {
         while (true) {

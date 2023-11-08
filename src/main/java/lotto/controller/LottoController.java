@@ -5,6 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoMoney;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
+import lotto.domain.ProfitCalculator;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
 import lotto.util.StringUtils;
@@ -26,6 +27,10 @@ public class LottoController {
 
         LottoResult lottoResult = LottoService.getLottoResult(newlottos, winningLotto);
         OutputView.printStatisticsMessage(lottoResult);
+
+        String profit = ProfitCalculator.calculate(newlottos.getPriceSum(winningLotto),
+            newlottos.getLottoCount());
+        OutputView.printProfitMessage(profit);
     }
 
     public static LottoMoney getLottoMoney() {

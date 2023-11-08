@@ -16,6 +16,7 @@ public class OutputView {
     private static final String STATISTICS_MESSAGE = "당첨 통계";
     private static final String MATCH_MESSAGE = "%d개 일치 (%,d원)- %d개";
     private static final String MATCH_MESSAGE_FOR_SECOND = "%d개 일치, 보너스 볼 일치 (%d원) - %d개";
+    private static final String PROFIT_MESSAGE = "총 수익률은 %s%%입니다.";
     private static final String DIVIDER = "---";
 
     public static void printLottoPurchaseMoneyMessage() {
@@ -72,5 +73,9 @@ public class OutputView {
             message = MATCH_MESSAGE_FOR_SECOND;
         }
         System.out.println(message.formatted(rank.getMatchCount(), rank.getWinningMoney(), count));
+    }
+
+    public static void printProfitMessage(String profit) {
+        System.out.println(PROFIT_MESSAGE.formatted(profit));
     }
 }

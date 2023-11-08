@@ -10,7 +10,7 @@ public enum ErrorMessage {
 
     NON_INTEGER("정수를 입력해야 합니다."),
 
-    NOT_DIVISIBLE(Constant.LOTTO_PRICE.getValue() + "배수인 정수를 입력 해야 합니다.");
+    NOT_DIVISIBLE(Constant.LOTTO_PRICE + "배수인 정수를 입력 해야 합니다.");
 
     public final String prefix = "[ERROR] ";
     public final String message;

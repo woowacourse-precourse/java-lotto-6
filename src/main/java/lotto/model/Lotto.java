@@ -21,6 +21,7 @@ public class Lotto {
         for (String number: commaSeparatedNumbers)
             shiftedNumbers.add(Integer.parseInt(number));
         validate(shiftedNumbers);
+        validateUnique(shiftedNumbers);
         Collections.sort(shiftedNumbers);
         this.numbers = shiftedNumbers;
     }
@@ -42,11 +43,9 @@ public class Lotto {
     }
 
     private void validateUnique(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>();
-        for (int element : numbers) {
-            if (!uniqueNumbers.add(element)) {
-                throw new IllegalArgumentException(DOUBLE_ELEMENT_EXCEPTION);
-            }
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(DOUBLE_ELEMENT_EXCEPTION);
         }
     }
 
@@ -85,4 +84,15 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
-}
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(numbers);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (!(obj instanceof Lotto otherLotto)) return false;
+        return numbers.equals(otherLotto.numbers);
+    }}

@@ -50,6 +50,6 @@ public class UserInput {
 
     private static void validateDoubledWinningNumbers(BonusNumber bonusNumber, Lotto winningNumbers) {
         if (winningNumbers.isBonus(bonusNumber))
-            throw new IllegalStateException(DOUBLE_NUMBER);
+            throw new IllegalArgumentException(DOUBLE_NUMBER);
     }
 }

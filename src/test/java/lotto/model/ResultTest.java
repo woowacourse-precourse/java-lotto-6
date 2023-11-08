@@ -1,7 +1,6 @@
 package lotto.model;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ResultTest {
@@ -39,4 +38,5 @@ public class ResultTest {
         assertEquals(Rank.FIFTH.getReward(), fifthPrizeResult.getPrize());
         assertEquals(0, noPrizeResult.getPrize());
     }
+
 }

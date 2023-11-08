@@ -13,7 +13,8 @@ public class WinningLottoTest {
     @Test
     public void testCalculateWinningResults() {
         Lotto winningNumbers = new Lotto(Arrays.asList(5, 10, 15, 20, 25, 30));
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, 35);
+        Bonus bonus = new Bonus("35", winningNumbers);
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonus);
 
         List<Lotto> userLottos = new ArrayList<>();
         userLottos.add(new Lotto(Arrays.asList(5, 10, 15, 20, 25, 30)));

@@ -31,6 +31,7 @@ public class InputContext {
   }
 
   public static StatisticsStartCommand inputWinningNumber(NumberEnteredCommand command) {
+    out.println();
     out.println(InputPrompts.INPUT_WINNING_NUMBER.getMessage());
     Either<String, Lotto> either = WinningNumberInputContext.validatedWinningLotto(
         Console.readLine());
@@ -38,6 +39,7 @@ public class InputContext {
       out.println(either.getLeft());
       return inputWinningNumber(command);
     }
+    out.println();
     ValidatedBonusNumber bonusNumber = getValidatedBonusNumber(either);
     NumberEnteredEvent event = NumberEnteredEvent.of(either.getRight(), bonusNumber);
     out.println(event.getBonusNumber().getBonusNumber());

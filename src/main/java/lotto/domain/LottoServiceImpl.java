@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.util.RandomUtil;
+import lotto.util.WinningCase;
 import lotto.util.WinningResult;
 
 public class LottoServiceImpl implements LottoService {
@@ -36,12 +37,16 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public List<WinningResult> checkWinningResult() {
-        return null;
-    }
+    public WinningResult checkWinningResult(int[] winningNumbers, int bonusNumber) {
+        WinningResult winningResult = new WinningResult();
 
-    @Override
-    public double checkEarningRate(List<WinningResult> results) {
-        return 0;
+        for (Lotto ticket : user.getLottoTickets()) {
+            WinningCase winningCase = ticket.confirmWin(winningNumbers, bonusNumber);
+            if (winningCase == null) continue;
+            winningResult.addCount(winningCase);
+        }
+        winningResult.setEarningRate(user.getAmount());
+
+        return winningResult;
     }
 }

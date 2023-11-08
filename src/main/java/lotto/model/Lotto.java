@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.util.WinningCase;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -26,5 +27,32 @@ public class Lotto {
                 throw new IllegalArgumentException();
             }
         }
+    }
+
+    public WinningCase confirmWin(int[] winningNumbers, int bonusNumber) {
+        int count = 0;
+
+        for (int winningNumber : winningNumbers) {
+            if (numbers.contains(winningNumber)) {
+                count += 1;
+            }
+        }
+
+        if (count == 3) {
+            return WinningCase.FIFTH;
+        }
+        if (count == 4) {
+            return WinningCase.FOURTH;
+        }
+        if (count == 6) {
+            return WinningCase.FIRST;
+        }
+        if (numbers.contains(bonusNumber)) {
+            return WinningCase.SECOND;
+        }
+        if (count == 5) {
+            return WinningCase.THIRD;
+        }
+        return null;
     }
 }

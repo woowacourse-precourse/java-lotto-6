@@ -13,7 +13,7 @@ public class WinningLottos {
         this.winningLottos = winningLottos;
     }
 
-    public List<Lotto> getWiningLottos() {
+    public List<Lotto> getWinningLottos() {
         return winningLottos;
     }
 }

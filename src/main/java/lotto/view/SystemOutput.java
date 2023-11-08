@@ -23,7 +23,7 @@ public class SystemOutput {
     }
 
     public static void printWiningLotto(WinningLottos winningLottos) {
-        List<Lotto> winningLottoGroup = winningLottos.getWiningLottos();
+        List<Lotto> winningLottoGroup = winningLottos.getWinningLottos();
         for (Lotto lotto : winningLottoGroup) {
             System.out.println(lotto);
         }

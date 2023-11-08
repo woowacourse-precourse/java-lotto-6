@@ -19,7 +19,7 @@ public class Calculator {
 
 
     public void match(RankContainer rankContainer, UserLotto userLotto, WinningLottos winninglottos) {
-        for (Lotto lotto : winninglottos.getWiningLottos()) {
+        for (Lotto lotto : winninglottos.getWinningLottos()) {
             Rank rank = Rank.valueOf(calculateMatchLottoNumber(userLotto, lotto), lotto.isContain(userLotto.getBonusNumber()));
             rankContainer.incRank(rank);
         }

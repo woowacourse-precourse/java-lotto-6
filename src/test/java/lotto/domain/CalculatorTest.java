@@ -39,7 +39,7 @@ class CalculatorTest {
         UserLotto userLotto = new UserLotto(List.of(1, 2, 8, 9, 10, 11), 12);
 
         RankContainer rankContainer = new RankContainer();
-        for (Lotto lotto : winningLottos.getWiningLottos()) {
+        for (Lotto lotto : winningLottos.getWinningLottos()) {
             Rank rank = Rank.valueOf(calculator.calculateMatchLottoNumber(userLotto, lotto), lotto.isContain(userLotto.getBonusNumber()));
             System.out.println(rank);
             rankContainer.incRank(rank);

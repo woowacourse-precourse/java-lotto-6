@@ -2,12 +2,14 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
-import lotto.model.WinningNumber;
+import lotto.model.WinningManager;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GameController {
 
@@ -33,14 +35,15 @@ public class GameController {
     public void startGame() {
         outputView.notifyInputAmount();
         int amount = inputView.readAmount();
+
         ArrayList<Lotto> lottoBundle = lottoGenerator.generateLottoBundle(amount);
-        outputView.printAmount(lottoBundle.size());
+        outputView.printLottoCount(lottoBundle.size());
         outputView.printLottoNumbers(lottoBundle);
 
         List<Integer> mainNumbers = inputView.readMainNumbers();
         Integer bonusNumber = inputView.readBonusNumber();
+        WinningManager winningManager = new WinningManager(mainNumbers, bonusNumber);
 
-        WinningNumber winningNumber = new WinningNumber(mainNumbers, bonusNumber);
-
+        HashMap winningStats = winningManager.matchAll(lottoBundle);
     }
 }

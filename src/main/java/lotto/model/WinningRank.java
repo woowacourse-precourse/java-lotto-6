@@ -19,4 +19,19 @@ public enum WinningRank {
     WinningRank(int count, boolean bonus) {
         this.count = count;
     }
+
+    public static WinningRank valueOf(int count, boolean bonus) {
+        if (count == 3)
+            return WinningRank.MATCH3;
+        if (count == 4)
+            return WinningRank.MATCH4;
+        if (count == 5) {
+            if (bonus)
+                return WinningRank.MATCH5BONUS;
+            return WinningRank.MATCH5;
+        }
+        if (count == 6)
+            return WinningRank.MATCH6;
+        return WinningRank.LOSE;
+    }
 }

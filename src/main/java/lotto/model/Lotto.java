@@ -30,5 +30,13 @@ public class Lotto {
         sb.append("]");
         return sb.toString();
     }
-    // TODO: 추가 기능 구현
+
+    public WinningRank match(List<Integer> mainNumbers, Integer bonusNumber) {
+        int matchedCount = mainNumbers.stream()
+                .filter(numbers::contains)
+                .toList()
+                .size();
+        boolean bonus = numbers.contains(bonusNumber);
+        return WinningRank.valueOf(matchedCount, bonus);
+    }
 }

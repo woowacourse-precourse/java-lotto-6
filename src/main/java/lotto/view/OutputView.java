@@ -22,8 +22,8 @@ public class OutputView {
     }
 
 
-    public void printAmount(int amount) {
-        println(amount + "개를 구매했습니다.");
+    public void printLottoCount(int count) {
+        println(count + "개를 구매했습니다.");
     }
 
     public void printLottoNumbers(ArrayList<Lotto> lottoBundle) {

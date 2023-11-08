@@ -20,8 +20,12 @@
 
 ### 로또 수량 및 번호 출력
 - 구입한 로또 수량을 출력한다. ✅
-- 수량만큼 로또 번호를 출력한다. ✅
+- 수량만큼 로또 번호를 생성한다. ✅
 - 번호는 오름차순으로 출력한다. ✅
+- 번호에 대한 예외는 다음과 같이 처리한다.
+    - 값이 6개가 아닐 때: `IllegalArgumentException`
+    - 번호가 범위를 벗어났을 때: `IllegalArgumentException`
+    - 중복 번호가 있을 때: `IllegalArgumentException`
 
 
 ### 당첨 번호 입력

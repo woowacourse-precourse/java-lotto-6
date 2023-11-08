@@ -17,10 +17,10 @@ class InputPatternTest {
         String givenNotNumeric = "pobi";
 
         //when
-        boolean isNotNumeric = InputPattern.isNotNumeric(givenNotNumeric);
+        boolean actual = InputPattern.isNotNumeric(givenNotNumeric);
 
         //then
-        assertTrue(isNotNumeric);
+        assertTrue(actual);
     }
 
     @Test
@@ -30,10 +30,10 @@ class InputPatternTest {
         String givenNumeric = "123";
 
         //when
-        boolean isNotNumeric = InputPattern.isNotNumeric(givenNumeric);
+        boolean actual = InputPattern.isNotNumeric(givenNumeric);
 
         //then
-        assertFalse(isNotNumeric);
+        assertFalse(actual);
     }
 
     @Test
@@ -43,10 +43,10 @@ class InputPatternTest {
         String givenNotDivisionComma = "1/2/3";
 
         //when
-        boolean isNotDivisionComma = InputPattern.isNotDivisionComma(givenNotDivisionComma);
+        boolean actual = InputPattern.isNotDivisionComma(givenNotDivisionComma);
 
         //then
-        assertTrue(isNotDivisionComma);
+        assertTrue(actual);
     }
 
     @Test
@@ -56,10 +56,10 @@ class InputPatternTest {
         String givenDivisionComma = "pobi";
 
         //when
-        boolean isNotDivisionComma = InputPattern.isNotDivisionComma(givenDivisionComma);
+        boolean actual = InputPattern.isNotDivisionComma(givenDivisionComma);
 
         //then
-        assertTrue(isNotDivisionComma);
+        assertTrue(actual);
     }
 
     @Test
@@ -69,9 +69,9 @@ class InputPatternTest {
         String givenDivisionComma = "1,2,3";
 
         //when
-        boolean isNotDivisionComma = InputPattern.isNotDivisionComma(givenDivisionComma);
+        boolean actual = InputPattern.isNotDivisionComma(givenDivisionComma);
 
         //then
-        assertFalse(isNotDivisionComma);
+        assertFalse(actual);
     }
 }

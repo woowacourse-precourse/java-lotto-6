@@ -16,10 +16,10 @@ class TotalRateTest {
 
         //when
         totalRate.calculateRate(8000, 5000);
-        Double rate = totalRate.getRate();
+        Double actual = totalRate.getRate();
 
         //then
-        assertThat(rate).isEqualTo(62.5);
+        assertThat(actual).isEqualTo(62.5);
     }
 
 }

@@ -49,10 +49,10 @@ class BonusNumberTest {
         BonusNumber bonusNumber = BonusNumber.of(7, lotto);
 
         //when
-        boolean isMatchBonusNumber = bonusNumber.isMatchBonusNumber(7);
+        boolean actual = bonusNumber.isMatchBonusNumber(7);
 
         //then
-        assertTrue(isMatchBonusNumber);
+        assertTrue(actual);
     }
 
     @Test
@@ -62,9 +62,9 @@ class BonusNumberTest {
         BonusNumber bonusNumber = BonusNumber.of(7, lotto);
 
         //when
-        boolean isMatchBonusNumber = bonusNumber.isMatchBonusNumber(8);
+        boolean actual = bonusNumber.isMatchBonusNumber(8);
 
         //then
-        assertFalse(isMatchBonusNumber);
+        assertFalse(actual);
     }
 }

@@ -35,10 +35,10 @@ class GameResultFormatterTest {
         GameResultFormatter gameResultFormatter = new GameResultFormatter(statistics, totalRate);
 
         //when
-        String toStatisticsResultMessage = gameResultFormatter.toStatisticsResultMessage();
+        String actual = gameResultFormatter.toStatisticsResultMessage();
 
         //then
-        assertThat(toStatisticsResultMessage).isEqualTo(
+        assertThat(actual).isEqualTo(
                 """
                         3개 일치 (5,000원) - 1개
                         4개 일치 (50,000원) - 0개
@@ -56,9 +56,9 @@ class GameResultFormatterTest {
         GameResultFormatter gameResultFormatter = new GameResultFormatter(statistics, totalRate);
 
         //when
-        String toTotalRateMessage = gameResultFormatter.toTotalRateMessage();
+        String actual = gameResultFormatter.toTotalRateMessage();
 
         //then
-        assertThat(toTotalRateMessage).isEqualTo("총 수익률은 62.5%입니다.");
+        assertThat(actual).isEqualTo("총 수익률은 62.5%입니다.");
     }
 }

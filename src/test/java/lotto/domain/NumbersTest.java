@@ -32,10 +32,10 @@ class NumbersTest {
         Numbers numbers = new Numbers(value);
 
         //when
-        List<Number> numberValues = numbers.getValues();
+        List<Number> actualNumbers = numbers.getValues();
 
         //then
-        numberValues.forEach(number -> assertThat(number).isInstanceOf(Number.class));
+        actualNumbers.forEach(number -> assertThat(number).isInstanceOf(Number.class));
     }
 
     @ParameterizedTest
@@ -46,10 +46,10 @@ class NumbersTest {
         Numbers numbers = new Numbers(value);
 
         //when
-        List<Number> numberValues = numbers.getValues();
+        List<Number> actualNumbers = numbers.getValues();
 
         //then
-        assertThat(numberValues).hasSize(6);
+        assertThat(actualNumbers).hasSize(6);
     }
 
     @Test
@@ -60,12 +60,12 @@ class NumbersTest {
 
         //when
         List<Number> numberValues = numbers.getValues();
-        List<Integer> numbersAsc = numberValues.stream()
+        List<Integer> actualValues = numberValues.stream()
                 .map(Number::getValue)
                 .toList();
 
         //then
-        assertThat(numbersAsc).isEqualTo(List.of(8, 22, 23, 41, 42, 43));
+        assertThat(actualValues).isEqualTo(List.of(8, 22, 23, 41, 42, 43));
     }
 
     @Test
@@ -75,10 +75,10 @@ class NumbersTest {
         Numbers numbers = new Numbers(List.of(1, 2, 3, 4, 5, 6));
 
         //when
-        Long matchCount = numbers.getMatchCount(List.of(1, 2, 3, 4, 5, 6));
+        Long actual = numbers.getMatchCount(List.of(1, 2, 3, 4, 5, 6));
 
         //then
-        assertThat(matchCount).isEqualTo(6);
+        assertThat(actual).isEqualTo(6);
     }
 
     @Test
@@ -90,10 +90,10 @@ class NumbersTest {
         given(bonusNumber.isMatchBonusNumber(3)).willReturn(true);
 
         //when
-        Boolean isMatchBonusNumber = numbers.isMatchBonusNumber(bonusNumber);
+        Boolean actual = numbers.isMatchBonusNumber(bonusNumber);
 
         //then
-        assertTrue(isMatchBonusNumber);
+        assertTrue(actual);
     }
 
     @Test
@@ -105,10 +105,10 @@ class NumbersTest {
         given(bonusNumber.isMatchBonusNumber(7)).willReturn(false);
 
         //when
-        Boolean isMatchBonusNumber = numbers.isMatchBonusNumber(bonusNumber);
+        Boolean actual = numbers.isMatchBonusNumber(bonusNumber);
 
         //then
-        assertFalse(isMatchBonusNumber);
+        assertFalse(actual);
     }
 
 }

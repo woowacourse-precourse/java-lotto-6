@@ -17,10 +17,10 @@ class WinningFactorTest {
         Boolean isMatchBonusNumber = false;
 
         //when
-        WinningFactor winningFactor = WinningFactor.findWinningFactorByCondition(count, isMatchBonusNumber);
+        WinningFactor actual = WinningFactor.findWinningFactorByCondition(count, isMatchBonusNumber);
 
         //then
-        assertThat(winningFactor).isEqualTo(WinningFactor.THREE_MATCH);
+        assertThat(actual).isEqualTo(WinningFactor.THREE_MATCH);
     }
 
     @Test
@@ -31,9 +31,9 @@ class WinningFactorTest {
         Boolean isMatchBonusNumber = true;
 
         //when
-        WinningFactor winningFactor = WinningFactor.findWinningFactorByCondition(count, isMatchBonusNumber);
+        WinningFactor actual = WinningFactor.findWinningFactorByCondition(count, isMatchBonusNumber);
 
         //then
-        assertThat(winningFactor).isEqualTo(WinningFactor.NONE_MATCH);
+        assertThat(actual).isEqualTo(WinningFactor.NONE_MATCH);
     }
 }

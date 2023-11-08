@@ -58,10 +58,10 @@ class LottoTest {
         Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
 
         //when
-        List<Integer> lotto1Numbers = lotto.getNumbers();
+        List<Integer> actualValues = lotto.getNumbers();
 
         //then
-        assertThat(lotto1Numbers).containsExactly(1, 2, 3, 4, 5, 6);
+        assertThat(actualValues).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
 }

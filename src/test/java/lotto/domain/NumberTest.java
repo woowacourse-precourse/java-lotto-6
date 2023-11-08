@@ -23,10 +23,10 @@ class NumberTest {
         Number number = new Number(value);
 
         //when
-        Integer numberValue = number.getValue();
+        Integer actual = number.getValue();
 
         //then
-        assertThat(numberValue).isEqualTo(value)
+        assertThat(actual).isEqualTo(value)
                 .isInstanceOf(Integer.class);
     }
 

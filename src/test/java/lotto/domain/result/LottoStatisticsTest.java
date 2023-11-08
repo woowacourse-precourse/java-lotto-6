@@ -23,13 +23,13 @@ class LottoStatisticsTest {
     @DisplayName("생성시 통계 자료를 당첨 요소를 키로, 0을 값으로 초기화한다.")
     void Given_InitStatistics_When_GetStatistics_Then_ContainsEntry() {
         //when
-        Map<WinningFactor, Integer> statistics = lottoStatistics.getStatistics();
+        Map<WinningFactor, Integer> actualStatistics = lottoStatistics.getStatistics();
 
         //then
-        assertThat(statistics).isNotNull().isNotEmpty().hasSize(WinningFactor.values().length);
+        assertThat(actualStatistics).isNotNull().isNotEmpty().hasSize(WinningFactor.values().length);
 
-        for (WinningFactor winningFactor : WinningFactor.values()) {
-            assertThat(statistics).containsEntry(winningFactor, 0);
+        for (WinningFactor expectFactor : WinningFactor.values()) {
+            assertThat(actualStatistics).containsEntry(expectFactor, 0);
         }
     }
 

@@ -27,10 +27,10 @@ class PlayerLottosFormatterTest {
         PlayerLottosFormatter playerLottosFormatter = new PlayerLottosFormatter(values);
 
         //when
-        String resultLottoMessage = playerLottosFormatter.toPlayerLottosResultMessage();
+        String actual = playerLottosFormatter.toPlayerLottosResultMessage();
 
         //then
-        assertThat(resultLottoMessage).isEqualTo(
+        assertThat(actual).isEqualTo(
                 """
                         2개를 구매했습니다.
                         [1, 2, 3, 4, 5, 6]

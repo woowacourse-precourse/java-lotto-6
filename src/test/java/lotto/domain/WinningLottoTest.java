@@ -26,10 +26,10 @@ class WinningLottoTest {
         given(lotto.getNumbers()).willReturn(List.of(1, 2, 3, 4, 5, 6));
 
         //when
-        List<Integer> lotto = winningLotto.getLotto();
+        List<Integer> actualValues = winningLotto.getLotto();
 
         //then
-        assertThat(lotto).containsExactly(1, 2, 3, 4, 5, 6);
+        assertThat(actualValues).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
     @Test
@@ -39,9 +39,9 @@ class WinningLottoTest {
         WinningLotto winningLotto = WinningLotto.of(lotto, bonusNumber);
 
         //when
-        BonusNumber actualBonusNumber = winningLotto.getBonusNumber();
+        BonusNumber actual = winningLotto.getBonusNumber();
 
         //then
-        assertThat(actualBonusNumber).isEqualTo(bonusNumber);
+        assertThat(actual).isEqualTo(bonusNumber);
     }
 }

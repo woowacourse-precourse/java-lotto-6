@@ -32,10 +32,10 @@ class PlayerLottoNumbersTest {
 
         //when
         playerLottoNumbers.saveLottos(purchasePrice);
-        List<Numbers> lottoValues = playerLottoNumbers.getLottoValues();
+        List<Numbers> actualNumbers = playerLottoNumbers.getLottoValues();
 
         //then
-        assertThat(lottoValues).hasSize(2);
+        assertThat(actualNumbers).hasSize(2);
     }
 
     @Test
@@ -46,9 +46,9 @@ class PlayerLottoNumbersTest {
         playerLottoNumbers.saveLottos(purchasePrice);
 
         //when
-        Integer lottosPrice = playerLottoNumbers.getLottosPrice();
+        Integer actual = playerLottoNumbers.getLottosPrice();
 
         //then
-        assertThat(lottosPrice).isEqualTo(2000);
+        assertThat(actual).isEqualTo(2000);
     }
 }

@@ -25,10 +25,10 @@ class InputMapperTest {
         PurchasePrice PurchasePrice = inputMapper.toPurchasePrice("2000");
 
         //when
-        Integer lottosAmount = PurchasePrice.getLottosAmount();
+        Integer actual = PurchasePrice.getLottosAmount();
 
         //then
-        assertThat(lottosAmount).isEqualTo(2);
+        assertThat(actual).isEqualTo(2);
     }
 
     @Test
@@ -36,9 +36,9 @@ class InputMapperTest {
     void Given_ToLotto_When_GetNumbers_Then_ContainsExactly() {
         Lotto lotto = inputMapper.toLotto("1,2,3,4,5,6");
 
-        List<Integer> lottoNumbers = lotto.getNumbers();
+        List<Integer> actualValues = lotto.getNumbers();
 
-        assertThat(lottoNumbers).containsExactly(1, 2, 3, 4, 5, 6);
+        assertThat(actualValues).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
     @Test
@@ -49,10 +49,10 @@ class InputMapperTest {
         BonusNumber bonusNumber = inputMapper.toBonusNumber("3", lotto);
 
         //when
-        boolean isMatchBonusNumber = bonusNumber.isMatchBonusNumber(3);
+        boolean actual = bonusNumber.isMatchBonusNumber(3);
 
         //then
-        assertTrue(isMatchBonusNumber);
+        assertTrue(actual);
     }
 
     @Test
@@ -63,9 +63,9 @@ class InputMapperTest {
         BonusNumber bonusNumber = inputMapper.toBonusNumber("3", lotto);
 
         //when
-        boolean isMatchBonusNumber = bonusNumber.isMatchBonusNumber(4);
+        boolean actual = bonusNumber.isMatchBonusNumber(4);
 
         //then
-        assertFalse(isMatchBonusNumber);
+        assertFalse(actual);
     }
 }

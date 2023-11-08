@@ -1,15 +1,42 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.io.InputStream;
+import org.assertj.core.api.Condition.Status;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
+import lotto.model.LottoPlayer;
+import lotto.view.View;
+
 
 import java.util.List;
+
+
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
+
+    private LottoPlayer player;
+    private InputStream originalInputStream;
+
+    @BeforeEach
+    void setUp() {
+        player = new LottoPlayer();
+        originalInputStream = System.in;
+    }
+
+    @AfterEach
+    void tearDown(){
+        System.setIn(originalInputStream);
+    }
+
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
@@ -53,6 +80,22 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+
+    @Test
+    void testGetPurchaseAmountValidInput(){
+        String input = "2000\n";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
+
+        // 표준 입력을 임시로 변경
+        System.setIn(inputStream);
+
+        int purchaseAmount = View.getPurchaseAmount();
+
+        assertEquals(2000, purchaseAmount); // 예상 결과와 실제 결과 비교
+
+    }
+
 
     @Override
     public void runMain() {

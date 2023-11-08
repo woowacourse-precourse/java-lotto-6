@@ -13,13 +13,11 @@ public class LottoController {
         String lottoPurchaseRequest = lottoOrderRequest();
         LottoStore lottoStore = buyLottoTicketRequest(lottoPurchaseRequest);
         respondLottoTicketsHistory(lottoStore.getUserLottoTickets());
-        String InputWinningNumbers = requestInputWinningNumbers();
-        Lotto winningLotto = createLotto(InputWinningNumbers);
-        int bonusNumber = winningLotto.createBonusNumber(requestBonusNumber());
-    }
-
-    public String lottoOrderRequest() {
-        return UI.sendLottoPurchaseRequest();
+        Lotto winningLotto = createWinningNumbers();
+        int bonusNumber = createBonusNumber(winningLotto);
+        lottoStore.noticeWinningNumber(winningLotto, bonusNumber);
+        String lottoReceipt = lottoStore.makeLottoReceipt();
+        UI.displayLottoReceipt(lottoReceipt);
     }
 
     public LottoStore buyLottoTicketRequest(String lottoPurchaseRequest) {

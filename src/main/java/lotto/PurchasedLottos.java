@@ -39,5 +39,11 @@ public class PurchasedLottos {
         return lottos;
     }
 
-
+    public void calculateRewardsInPurchasedLotto(WinningLotto winningLotto) {
+        for (Lotto lotto : lottos) {
+            LottoReward reward = lotto.getRewardWithMatchedNumbers(winningLotto);
+            rewardmap.put(reward, rewardmap.getOrDefault(reward, 0) + 1);
+        }
+    }
+    
 }

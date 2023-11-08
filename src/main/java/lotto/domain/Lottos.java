@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 public class Lottos {
     private List<Lotto> lottos;
-
     private static int START_NUMBER = 1;
     private static int LAST_NUMBER = 45;
     private static int LOTTO_SIZE = 6;

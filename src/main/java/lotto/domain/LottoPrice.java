@@ -2,7 +2,6 @@ package lotto.domain;
 
 public class LottoPrice {
     private final int lottoPrice;
-
     private static Long MAXIMUM_PRICE = 10000000L;
     private static int PRICE_PER_LOTTO = 1000;
     private static int BUY_NOTHING = 0;
@@ -14,10 +13,6 @@ public class LottoPrice {
         divisionByThousand(buyLimitValidatePrice);
 
         this.lottoPrice = buyLimitValidatePrice;
-    }
-
-    public LottoPrice(){
-        lottoPrice = 0;
     }
 
     public int getLottoPrice(){

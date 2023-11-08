@@ -9,10 +9,8 @@ import java.util.Set;
 public class MatchNumber {
 
     private final List<Integer> matchNumbers;
-
     private static int START_NUMBER = 1;
     private static int LAST_NUMBER = 45;
-
     private static String COMMA_DELIMITER = ",";
 
     public MatchNumber(String userInput){

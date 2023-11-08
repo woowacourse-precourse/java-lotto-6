@@ -4,7 +4,6 @@ import java.util.List;
 
 public class BonusNumber {
     private final Integer bonusNumber;
-
     private static int START_NUMBER = 1;
     private static int LAST_NUMBER = 45;
 

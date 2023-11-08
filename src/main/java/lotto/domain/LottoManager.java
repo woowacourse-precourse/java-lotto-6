@@ -19,6 +19,14 @@ public class LottoManager {
         return lottoResult;
     }
 
+    private void initLottoResult(){
+        for(MatchRanking matchRanking : MatchRanking.values()){
+            if(!matchRanking.getRank().isEmpty()){
+                lottoResult.put(matchRanking,0);
+            }
+        }
+    }
+
     public void matchResult(Lottos lottos, List<Integer> totalMatchNumbers){
         int bonusNumber = parseBonusNumber(totalMatchNumbers);
 
@@ -62,16 +70,8 @@ public class LottoManager {
         return MatchRanking.THIRD_PLACE;
     }
 
-    private void initLottoResult(){
-        for(MatchRanking matchRanking : MatchRanking.values()){
-            if(!matchRanking.name().isEmpty()){
-                lottoResult.put(matchRanking,0);
-            }
-        }
-    }
-
     private void rankingCount(MatchRanking ranking){
-        if(!ranking.name().isEmpty()){
+        if(!ranking.getRank().isEmpty()){
             int count = lottoResult.get(ranking);
             lottoResult.put(ranking,count+1);
         }

@@ -6,7 +6,6 @@ import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
-
     private static int START_NUMBER = 1;
     private static int LAST_NUMBER = 45;
 

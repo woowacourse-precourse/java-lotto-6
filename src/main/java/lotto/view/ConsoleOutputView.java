@@ -70,13 +70,13 @@ public class ConsoleOutputView implements OutputView {
     }
 
     private String createResultFormat(final int rank) {
-        final StringBuilder sb = new StringBuilder(MATCH_COUNT_FORMAT);
+        final StringBuilder stringBuilder = new StringBuilder(MATCH_COUNT_FORMAT);
         if (rank == REQUIRED_BONUS_NUMBER_RANK) {
-            sb.append(MATCH_BONUS_BALL_MESSAGE);
+            stringBuilder.append(MATCH_BONUS_BALL_MESSAGE);
         }
 
-        sb.append(WINNING_PRICE_COUNT_FORMAT);
-        return sb.toString();
+        stringBuilder.append(WINNING_PRICE_COUNT_FORMAT);
+        return stringBuilder.toString();
     }
 
     private void printWinningStatistic(final Map<Integer, WinningStatistic> countGroupingByRank,

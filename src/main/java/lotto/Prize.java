@@ -4,14 +4,20 @@ package lotto;
 import java.util.List;
 
 public class Prize {
-    private int total = 0;
+    private int totalPrize = 0;
+    private int[] winningCount = new int[6];
+    private double totalReturn = 0;
+    private int money = 0;
 
-    public Prize(List<Integer> winningNumbers, List<Lotto> lottos, int bonusNumber){
+    public Prize(int money, List<Integer> winningNumbers, List<Lotto> lottos, int bonusNumber){
+        this.money = money;
+
         for(Lotto lotto: lottos){
             Rank rank = new Rank(winningNumbers, lotto, bonusNumber);
-            this.total += getPrize(rank.toString());
-
+            this.totalPrize += getPrize(rank.toString());
+            countWinningLotto(rank.toString());
         }
+
     }
 
     private int getPrize(String rank){
@@ -24,12 +30,37 @@ public class Prize {
                 return 1500000;
             case "FOURTH":
                 return 50000;
+            case "FIFTH":
+                return 5000;
             default:
                 return 0;
         }
     }
 
-    public double calculate(int payedMoney){
-        return (this.total - payedMoney) / payedMoney * 100;
+    private void countWinningLotto(String rank){
+        switch(rank){
+            case "FIRST":
+                this.winningCount[5]++;
+                break;
+            case "SECOND":
+                this.winningCount[4]++;
+                break;
+            case "THIRD":
+                this.winningCount[3]++;
+                break;
+            case "FOURTH":
+                this.winningCount[2]++;
+                break;
+            case "FIFTH":
+                this.winningCount[1]++;
+                break;
+            default:
+                this.winningCount[0]++;
+        }
     }
+
+    public double calculateReturn(){
+        return  (this.totalPrize - this.money) / this.money * 100;
+    }
+
 }

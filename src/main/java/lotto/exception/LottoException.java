@@ -18,6 +18,7 @@ public class LottoException {
 
     private static void validateLottoLength(List<Integer> numbers) {
         if (numbers.size() != LOTTO_LENGTH) {
+            System.out.println(ERROR_MESSAGE_3);
             throw new IllegalArgumentException(ERROR_MESSAGE_3);
         }
     }
@@ -25,13 +26,15 @@ public class LottoException {
     private static void validateLottoNumberRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number <= 0 || number > 45) {
+                System.out.println(ERROR_MESSAGE_1);
                 throw new IllegalArgumentException(ERROR_MESSAGE_1);
             }
         }
     }
 
     private static void validateLottoDuplicate(List<Integer> numbers) {
-        if (numbers.size() != new HashSet<>(numbers).size()) {
+        if (numbers.size() != (new HashSet<>(numbers).size())) {
+            System.out.println(ERROR_MESSAGE_4);
             throw new IllegalArgumentException(ERROR_MESSAGE_4);
         }
     }

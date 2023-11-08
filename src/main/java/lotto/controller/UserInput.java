@@ -13,7 +13,7 @@ import lotto.model.User;
 
 public class UserInput {
     public UserInput() {}
-    public static Integer PurchaseAmount() {
+    public static Integer PurchaseAmount() throws IllegalStateException {
         String userInput = Console.readLine();
         UserException.validatePurchaseAmountOnlyInt(userInput);
         Integer purchaseAmount = Integer.parseInt(userInput);
@@ -24,7 +24,7 @@ public class UserInput {
         return purchaseAmount / LOTTO_PRICE;
     }
 
-    public static void winningNumbers() {
+    public static void winningNumbers() throws IllegalArgumentException {
         String userInput = Console.readLine();
         List<Integer> winningNumbers = Arrays.stream(userInput.split(COMMA))
                                                 .map(Integer::parseInt)
@@ -33,7 +33,7 @@ public class UserInput {
         User.setWinningNumbers(winningNumbers);
     }
 
-    public static void bonusNumber() {
+    public static void bonusNumber() throws IllegalArgumentException {
         String userInput = Console.readLine();
         Integer bonusNumber = Integer.parseInt(userInput);
         User.setBonusNumber(bonusNumber);

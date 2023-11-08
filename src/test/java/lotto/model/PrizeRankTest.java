@@ -3,7 +3,7 @@ package lotto.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-public class PrizeRankTest {
+class PrizeRankTest {
 
     @DisplayName("6개의 번호가 일치했을때 1등이 됩니다")
     @Test

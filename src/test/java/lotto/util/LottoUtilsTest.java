@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-public class LottoUtilsTest {
+class LottoUtilsTest {
     @Test
     @DisplayName("입력받은 숫자 문자열을 로또 번호 리스트로 변환한다")
     void convertStringToLottoNumberList() {

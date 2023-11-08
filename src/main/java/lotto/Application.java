@@ -59,9 +59,9 @@ public class Application {
     
     private static void printRankResult(LottoRank rank, Map<LottoRank, Integer> result) {
         System.out.println(rank.getCountOfMatch()
-            + "개 일치 "
-            + (rank == SECOND ? ", 보너스 볼 일치" : "")
-            + "(" + String.format("%,d", rank.getWinningMoney()) + "원)- "
+            + "개 일치"
+            + (rank == SECOND ? ", 보너스 볼 일치 " : " ")
+            + "(" + String.format("%,d", rank.getWinningMoney()) + "원) - "
             + result.getOrDefault(rank, 0) + "개");
     }
     

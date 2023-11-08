@@ -9,21 +9,27 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+
+        validateDuplicate(numbers);
+    }
+
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalStateException("[ERROR] 로또 숫자 6개가 만들어지지 않았습나다.");
+            throw new IllegalArgumentException("[ERROR] 로또 숫자는 6개가 되어야 합니다.");
         }
     }
+
 
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.stream()
                 .distinct()
                 .count() != numbers.size()) {
-            throw new IllegalStateException("[ERROR] 중복된 숫자가 존재합니다.");
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 존재합니다.");
         }
     }
 

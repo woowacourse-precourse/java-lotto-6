@@ -1,49 +1,96 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import static lotto.NumberConstants.*;
+import static lotto.StringConstants.*;
+import static lotto.Validator.*;
+import static lotto.InputView.*;
+import static lotto.OutputView.*;
 
 public class GameController {
     public void run() {
-        try {
-            BuyingLotto buyingLotto = doBuyingLotto();
-            List<Lotto> lottos = receiveLottos(buyingLotto.getTicketNumber());
-            WinningNumbers winningNumbers = receiveWinningNumbers();
-
-            PrizeStats prizeStats = receivePrizeStats(lottos, winningNumbers);
-            PrizeProfit prizeProfit = receivePrizeProfit(prizeStats, buyingLotto.getBuyingPrice());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        BuyingLotto buyingLotto = doBuyingLotto();
+        List<Lotto> lottos = receiveLottos(buyingLotto.getTicketNumber());
+        WinningNumbers winningNumbers = receiveWinningNumbers();
+        PrizeStats prizeStats = receivePrizeStats(lottos, winningNumbers);
+        PrizeProfit prizeProfit = receivePrizeProfit(prizeStats, buyingLotto.getBuyingPrice());
     }
 
     private BuyingLotto doBuyingLotto() {
-        BuyingLotto buyingLotto = new BuyingLotto(InputView.BUYING_PRICE.scan());
-        OutputView.printTicketNumber(buyingLotto.getTicketNumber());
-        return buyingLotto;
+        while (true) {
+            String input = BUYING_PRICE.scan();
+            try {
+                validateNumberString(input);
+                BuyingLotto buyingLotto = new BuyingLotto(Integer.parseInt(input));
+                printTicketNumber(buyingLotto.getTicketNumber());
+                return buyingLotto;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private List<Lotto> receiveLottos(long ticketNumber) {
         List<Lotto> lottos = new LottoGenerator(ticketNumber).getLottos();
-        OutputView.printLottoNumbers(lottos);
+        printLottoNumbers(lottos);
         return lottos;
     }
 
     private WinningNumbers receiveWinningNumbers() {
-        WinningNumbers winningNumbers = new WinningNumbers(InputView.WINNING_NUMBERS.scan(), InputView.BONUS_NUMBER.scan());
-        return winningNumbers;
+        Lotto winningLotto = winningLottoFromInput();
+        int bonusNumber = bonusNumberFromInput(winningLotto);
+        return new WinningNumbers(winningLotto, bonusNumber);
     }
+
+    private Lotto winningLottoFromInput() {
+        while (true) {
+            String input = WINNING_NUMBERS.scan();
+            try {
+                validateNumberCommaString(input);
+                return new Lotto(inputToNumbers(input));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int bonusNumberFromInput(Lotto winningLotto) {
+        while (true) {
+            String input = BONUS_NUMBER.scan();
+            try {
+                validateNumberString(input);
+                int bonusNumber = Integer.parseInt(input);
+                validateRange(bonusNumber, MIN_NUMBER, MAX_NUMBER);
+                validateDuplicates(winningLotto, bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
 
     private PrizeStats receivePrizeStats(List<Lotto> lottos, WinningNumbers winningNumbers) {
         PrizeStats prizeStats = new PrizeStats(lottos, winningNumbers);
-        OutputView.printPrizeStats(prizeStats.getGradeDist());
+        printPrizeStats(prizeStats.getGradeDist());
         return prizeStats;
     }
 
-    private PrizeProfit receivePrizeProfit(PrizeStats prizeStats, long buyingPrice) {
+    private PrizeProfit receivePrizeProfit(PrizeStats prizeStats, int buyingPrice) {
         PrizeProfit prizeProfit = new PrizeProfit(prizeStats, buyingPrice);
-        OutputView.printProfitRate(prizeProfit.getRate());
+        printProfitRate(prizeProfit.getRate());
         return prizeProfit;
+    }
+
+    private List<Integer> inputToNumbers(String input) {
+        List<Integer> numbers = new ArrayList<>();
+        for (String splitInput : input.split(COMMA)) {
+            numbers.add(Integer.parseInt(splitInput));
+        }
+        Collections.sort(numbers);
+        return numbers;
     }
 }

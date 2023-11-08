@@ -1,8 +1,7 @@
 package lotto.domain;
 
-import java.util.List;
-import lotto.config.LottoConfig;
 import lotto.config.ErrorMessages;
+import lotto.config.LottoConfig;
 
 public class BonusNumber {
     private final int bonusNumber;

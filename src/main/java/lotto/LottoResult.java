@@ -9,10 +9,10 @@ public enum LottoResult {
 
 
     private final int count;
-    private final int money;
+    private final long money;
     private final String won;
 
-    LottoResult(int count, int money, String won) {
+    LottoResult(int count, long money, String won) {
         this.count = count;
         this.money = money;
         this.won = won;
@@ -22,7 +22,7 @@ public enum LottoResult {
         return count;
     }
 
-    public int getMoney() {
+    public long getMoney() {
         return money;
     }
 

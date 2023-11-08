@@ -8,5 +8,7 @@ public class LottoController {
 
     public void run() {
         LottoPrice lottoPrice = InputView.inputPrice();
+
+        Lotto winningNumber = InputView.inputWinningNumber();
     }
 }

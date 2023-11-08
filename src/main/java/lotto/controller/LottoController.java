@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
@@ -26,16 +27,11 @@ public class LottoController {
     }
 
     public void run() {
-        try {
-            setting();
-            settle();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-
+        start();
+        getTotalResult();
     }
 
-    private void setting() {
+    private void start() {
         PlayerAmount playerAmount = getPlayerAmount();
         Lottos lottos = createLottos(playerAmount);
         outputView.printCreatedLotto(playerAmount, lottos);
@@ -46,7 +42,12 @@ public class LottoController {
     }
 
     private PlayerAmount getPlayerAmount() {
-        return new PlayerAmount(inputView.getPlayerAmount());
+        try {
+            return new PlayerAmount(inputView.getPlayerAmount());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getPlayerAmount();
+        }
     }
 
     private Lottos createLottos(PlayerAmount playerAmount) {
@@ -59,14 +60,38 @@ public class LottoController {
         return Lottos.create(lottos);
     }
 
-    private LottoResult setLottoResult() {
-        List<Integer> winningNumber = Converter.convertToIntList(inputView.getLottoWinningNumbers());
-        String bonusNumber = inputView.getBonusNumber();
-
-        return LottoResult.create(winningNumber, bonusNumber);
+    private Lotto getWinningLotto() {
+        try {
+            List<Integer> winningNumber = Converter.convertToIntList(inputView.getLottoWinningNumbers());
+            return new Lotto(winningNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinningLotto();
+        }
     }
 
-    private void settle() {
+    private BonusNumber getBonusNumber() {
+        try {
+            return new BonusNumber(inputView.getBonusNumber());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumber();
+        }
+    }
+
+    private LottoResult setLottoResult() {
+        try {
+            Lotto winningLotto = getWinningLotto();
+            BonusNumber bonusNumber = getBonusNumber();
+
+            return LottoResult.create(winningLotto, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return setLottoResult();
+        }
+    }
+
+    private void getTotalResult() {
         RankResult rankResult = lottoService.getLottoRankResult();
         outputView.printLottoRank(rankResult);
 

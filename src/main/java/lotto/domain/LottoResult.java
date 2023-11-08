@@ -13,12 +13,8 @@ public class LottoResult {
         validate();
     }
 
-    private LottoResult(List<Integer> winningNumber, String bonusNumber) {
-        this(new Lotto(winningNumber), new BonusNumber(bonusNumber));
-    }
-
-    public static LottoResult create(List<Integer> winningNumber, String bonusNumber) {
-        return new LottoResult(winningNumber, bonusNumber);
+    public static LottoResult create(Lotto winningLotto, BonusNumber bonusNumber) {
+        return new LottoResult(winningLotto, bonusNumber);
     }
 
     private void validate() {

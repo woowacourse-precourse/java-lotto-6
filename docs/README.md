@@ -12,7 +12,7 @@
     - 로또 1장의 가격은 1,000원이다.
 - [X] 구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다. - Guest#divideExceptionHandling
 - [X] 중복되지 않는 숫자 6개 - Ask#winningNumber
-- [] 보너스 번호 1개를 입력받는다. - Ask#bonusNumber
+- [X] 보너스 번호 1개를 입력받는다. - Ask#bonusNumber
 - [] 당첨 내역 및 수익률을 출력할 수 있다. - Result#winningStatistic
 ## 기능 요구 사항
 - 로또 번호의 숫자 범위는 1~45까지이다.

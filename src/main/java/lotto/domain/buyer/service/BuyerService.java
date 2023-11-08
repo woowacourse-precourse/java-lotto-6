@@ -69,7 +69,7 @@ public class BuyerService {
         List<Lotto> lottos = new ArrayList<>();
         int buyingNum = money/LOTTO_PRICE;
 
-        System.out.println("\n %d개를 구매했습니다.".formatted(buyingNum));
+        System.out.println("\n%d개를 구매했습니다.".formatted(buyingNum));
 
         for(int i=0; i<buyingNum; i++) {
             LottoService lottoService = new LottoService();

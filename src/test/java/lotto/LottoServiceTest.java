@@ -24,7 +24,7 @@ public class LottoServiceTest {
 
     @Test
     @DisplayName("당첨번호가 전부 일치하면 1등이다.")
-    void whenAllNumbersMatch_ThenResultIsFirstPrize() {
+    void checkAllNumbersMatch() {
         List<Integer> userNumbers = Arrays.asList(3, 12, 21, 25, 38, 42);
         LottoRank result = lottoService.checkWinning(userNumbers, winningNumbers, bonusNumber);
         assertEquals(LottoRank.FIRST, result);
@@ -32,7 +32,7 @@ public class LottoServiceTest {
 
     @Test
     @DisplayName("일치하는 숫자가 5개이고 보너스 번호가 일치할 경우 2등이다.")
-    void whenFiveNumbersAndBonusMatch_ThenResultIsSecondPrize() {
+    void checkFiveNumbersAndBonusMatch() {
         List<Integer> userNumbers = Arrays.asList(3, 12, 21, 25, 38, 45);
         LottoRank result = lottoService.checkWinning(userNumbers, winningNumbers, bonusNumber);
         assertEquals(LottoRank.SECOND, result);
@@ -40,7 +40,7 @@ public class LottoServiceTest {
 
     @Test
     @DisplayName("일치하는 숫자가 5개인 경우 3등이다.")
-    void whenFiveNumbersMatch_ThenResultIsThirdPrize() {
+    void checkFiveNumbersMatch() {
         List<Integer> userNumbers = Arrays.asList(3, 12, 21, 25, 38, 1);
         LottoRank result = lottoService.checkWinning(userNumbers, winningNumbers, bonusNumber);
         assertEquals(LottoRank.THIRD, result);
@@ -48,7 +48,7 @@ public class LottoServiceTest {
 
     @Test
     @DisplayName("일치하는 숫자가 4개인 경우 4등이다.")
-    void whenFourNumbersMatch_ThenResultIsFourthPrize() {
+    void checkFourNumbersMatch() {
         List<Integer> userNumbers = Arrays.asList(3, 12, 21, 25, 1, 2);
         LottoRank result = lottoService.checkWinning(userNumbers, winningNumbers, bonusNumber);
         assertEquals(LottoRank.FOURTH, result);
@@ -56,7 +56,7 @@ public class LottoServiceTest {
 
     @Test
     @DisplayName("일치하는 숫자가 3개인 경우 5등이다.")
-    void whenThreeNumbersMatch_ThenResultIsFifthPrize() {
+    void checkThreeNumbersMatch() {
         List<Integer> userNumbers = Arrays.asList(3, 12, 21, 1, 2, 4);
         LottoRank result = lottoService.checkWinning(userNumbers, winningNumbers, bonusNumber);
         assertEquals(LottoRank.FIFTH, result);
@@ -64,7 +64,7 @@ public class LottoServiceTest {
 
     @Test
     @DisplayName("일치하는 숫자가 3개 미만일 경우 당첨 금액은 없다.")
-    void whenLessThanThreeNumbersMatch_ThenResultIsNoPrize() {
+    void checkLessThanThreeNumbersMatch() {
         List<Integer> userNumbers = Arrays.asList(3, 12, 1, 2, 4, 6);
         LottoRank result = lottoService.checkWinning(userNumbers, winningNumbers, bonusNumber);
         assertEquals(LottoRank.NONE, result);

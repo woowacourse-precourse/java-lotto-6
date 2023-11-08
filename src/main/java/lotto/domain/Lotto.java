@@ -23,35 +23,39 @@ private void validate(List<Integer> numbers) {
 private LottoInfo getLottoInfo(Lotto answer, int bonus) {
     int match = getMatch(answer);
     boolean hasBonus = numbers.contains(bonus);
-    if (match == 6){
+    if (match == 6) {
         return LottoInfo.FIRST;
     }
-    if (match == 5){
-        if (hasBonus){
+    if (match == 5) {
+        if (hasBonus) {
             return LottoInfo.SECOND;
         }
         return LottoInfo.THIRD;
     }
-    if (match == 4){
+    if (match == 4) {
         return LottoInfo.FOURTH;
     }
-    if (match == 3){
+    if (match == 3) {
         return LottoInfo.FIFTH;
     }
     return LottoInfo.NOPRIZE;
 }
 
-private int getRank(Lotto answer, int bonus) {
+int getRank(Lotto answer, int bonus) {
     return getLottoInfo(answer, bonus).getRank();
 }
 
-private int getPrize(Lotto answer, int bonus) {
+int getPrize(Lotto answer, int bonus) {
     return getLottoInfo(answer, bonus).getPrize();
 }
 
 private int getMatch(Lotto answer) {
     List<Integer> common = numbers.stream().filter(answer.getNumbers()::contains).toList();
     return common.size();
+}
+
+public boolean has(int num) {
+    return numbers.contains(num);
 }
 
 

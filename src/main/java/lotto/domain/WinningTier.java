@@ -30,14 +30,12 @@ public class WinningTier {
 
     public void estimate(List<Long> correctWinningsCount, List<Boolean> correctBonuses) {
         HashMap<Integer, Integer> tempWinningTier = new HashMap<>();
-
         for (int i = WINNING_TIER_START_INDEX; i < correctWinningsCount.size(); i++) {
             Long correctWinningCount = correctWinningsCount.get(i);
             boolean correctBonus = correctBonuses.get(i);
 
             WinningStatistics confirmResult = WinningStatistics.confirm(correctWinningCount, correctBonus);
             int rank = confirmResult.getRank();
-
             if(winningTier.containsKey(rank)) {
                 tempWinningTier.put(rank, tempWinningTier.getOrDefault(rank, DEFAULT_VALUE) + PLUS_UNIT);
             }

@@ -26,15 +26,20 @@ public class InputHandler {
 
     public static List<Integer> askWinningNumbers() {
         do {
-            System.out.println(StaticMessage.INPUT_WINNING_NUMBERS);
             try {
+                List<Integer> numbers = convertStringToArray(inputWinningNumbers());
+                Validator.isValidSize(numbers);
                 return convertStringToArray(Console.readLine());
             } catch (IllegalArgumentException e) {
-                System.out.println(ErrorMessage.NUMBER_FORMAT.getMessage());
+                System.out.println(ErrorMessage.NUMBER_FORMAT);
             }
         } while (true);
     }
 
+    private static String inputWinningNumbers() {
+        System.out.println(StaticMessage.INPUT_WINNING_NUMBERS);
+        return Console.readLine();
+    }
 //    public static User askPayment() {
 //        String input = "";
 //        do {

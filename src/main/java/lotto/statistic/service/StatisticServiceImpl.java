@@ -2,10 +2,14 @@ package lotto.statistic.service;
 
 import lotto.constant.Prize;
 import lotto.lotto.dto.LottoDto;
+import lotto.statistic.dto.ResultDto;
+import lotto.statistic.dto.StatisticDto;
 import lotto.statistic.repository.StatisticRepository;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StatisticServiceImpl implements StatisticService {
 
@@ -40,5 +44,19 @@ public class StatisticServiceImpl implements StatisticService {
     @Override
     public boolean compareToBonusNumber(LottoDto lottoDto, int bonusNumber) {
         return lottoDto.getNumbers().contains(bonusNumber);
+    }
+
+    @Override
+    public ResultDto getResult(int purchaseAmount) {
+        int[] ranks = new int[Prize.values().length];
+        List<StatisticDto> statisticDtos = statisticRepository.findAll();
+        double revenue = 0;
+        for (StatisticDto statisticDto : statisticDtos) {
+            ranks[statisticDto.getPrize().ordinal()]++;
+            revenue += statisticDto.getPrize().getReward();
+        }
+        revenue /= purchaseAmount;
+        revenue = (Math.round(revenue * 10000) / 100.0);
+        return new ResultDto(Arrays.stream(ranks).boxed().collect(Collectors.toList()), revenue);
     }
 }

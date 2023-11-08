@@ -2,6 +2,7 @@ package lotto.statistic.service;
 
 import lotto.constant.Prize;
 import lotto.lotto.dto.LottoDto;
+import lotto.statistic.dto.ResultDto;
 
 import java.util.List;
 
@@ -14,4 +15,6 @@ public interface StatisticService {
     boolean compareToBonusNumber(LottoDto lottoDto, int bonusNumber);
 
     Prize calculateRank(int hitWinningNumbersCount, boolean hitBonusNumberCount);
+
+    ResultDto getResult(int purchaseAmount);
 }

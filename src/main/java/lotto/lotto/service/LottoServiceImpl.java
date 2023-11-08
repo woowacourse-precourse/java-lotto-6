@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.lotto.dto.LottoDto;
 import lotto.lotto.repository.LottoRepository;
 
-import java.util.Collections;
 import java.util.List;
 
 public class LottoServiceImpl implements LottoService {
@@ -30,7 +29,6 @@ public class LottoServiceImpl implements LottoService {
     @Override
     public List<Integer> generateNumbers() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(randomNumbers);
         return randomNumbers;
     }
 }

@@ -11,10 +11,6 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public Lotto getWinningLotto() {
-        return winningLotto;
-    }
-
     public int getBonusNumber() {
         return bonusNumber;
     }

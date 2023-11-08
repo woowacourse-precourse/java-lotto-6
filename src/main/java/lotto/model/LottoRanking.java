@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 public enum LottoRanking {
     NONE_MATCH(0, 0, false),
-    MATCH_THREE(3, 5_000, false),
-    MATCH_FOUR(4, 50_000, false),
-    MATCH_FIVE(5, 1_500_000, false),
-    MATCH_FIVE_BONUS(5, 30_000_000, true),
-    MATCH_SIX(6, 2_000_000_000, false);
+    FIFTH(3, 5_000, false),
+    FOURTH(4, 50_000, false),
+    THIRD(5, 1_500_000, false),
+    SECOND(5, 30_000_000, true),
+    FIRST(6, 2_000_000_000, false);
 
     private final int matchCount;
     private final int prize;

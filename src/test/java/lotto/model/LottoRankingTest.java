@@ -35,6 +35,6 @@ class LottoRankingTest {
         boolean hasBonusNumber = true;
 
         LottoRanking lottoRanking = LottoRanking.determineRanking(matchCount, hasBonusNumber);
-        assertThat(lottoRanking).isEqualTo(LottoRanking.MATCH_FIVE_BONUS);
+        assertThat(lottoRanking).isEqualTo(LottoRanking.SECOND);
     }
 }

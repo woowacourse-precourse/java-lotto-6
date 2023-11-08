@@ -53,8 +53,8 @@ class LottoControllerTest {
         WinningResult result = calulcate(tickets, winningNumber, bonusNumber);
 
         Map<LottoRanking, Integer> expectedMap = Map.of(
-                LottoRanking.MATCH_SIX, 1,
-                LottoRanking.MATCH_FIVE_BONUS, 1,
+                LottoRanking.FIRST, 1,
+                LottoRanking.SECOND, 1,
                 LottoRanking.NONE_MATCH, 1
         );
         assertThat(result.getWinningResult()).isEqualTo(expectedMap);

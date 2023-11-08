@@ -20,8 +20,8 @@ class WinningResultTest {
          * when : addRanking()을 호출한다.
          * then : MATCH_FOUR가 2번 추가되었음으로, map의 value는 2다.
          */
-        LottoRanking ranking1 = LottoRanking.MATCH_FOUR;
-        LottoRanking ranking2 = LottoRanking.MATCH_FOUR;
+        LottoRanking ranking1 = LottoRanking.FOURTH;
+        LottoRanking ranking2 = LottoRanking.FOURTH;
 
         WinningResult winningResult = new WinningResult();
         winningResult.addRanking(ranking1);
@@ -38,7 +38,7 @@ class WinningResultTest {
          * when : addRanking()을 호출한다.
          * then : MATCH_FOUR가 1번 추가되었음으로, map의 value는 1다.
          */
-        LottoRanking ranking = LottoRanking.MATCH_FOUR;
+        LottoRanking ranking = LottoRanking.FOURTH;
 
         WinningResult winningResult = new WinningResult();
         winningResult.addRanking(ranking);
@@ -55,16 +55,16 @@ class WinningResultTest {
          * then : 계산 결과와 예상된 결과와 같아야 한다.
          */
         final Map<LottoRanking, Integer> winningResult = new HashMap<>();
-        winningResult.put(LottoRanking.MATCH_FOUR, 1);
-        winningResult.put(LottoRanking.MATCH_FIVE, 1);
-        winningResult.put(LottoRanking.MATCH_FIVE_BONUS, 1);
+        winningResult.put(LottoRanking.FOURTH, 1);
+        winningResult.put(LottoRanking.THIRD, 1);
+        winningResult.put(LottoRanking.SECOND, 1);
 
         double actualTotalPrize = winningResult.entrySet().stream()
                 .mapToDouble(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
-        double expectedTotalPrize = LottoRanking.MATCH_FOUR.getPrize()
-                + LottoRanking.MATCH_FIVE.getPrize()
-                + LottoRanking.MATCH_FIVE_BONUS.getPrize();
+        double expectedTotalPrize = LottoRanking.FOURTH.getPrize()
+                + LottoRanking.THIRD.getPrize()
+                + LottoRanking.SECOND.getPrize();
 
         assertEquals(expectedTotalPrize, actualTotalPrize);
     }

@@ -38,8 +38,19 @@ public class Validator {
     }
 
     public void validateMoney(int money) {
+        validateNumberFormat(money);
+        validateMoneyUnit(money);
+    }
+
+    private void validateMoneyUnit(int money) {
         if (money % Constant.MONEY_UNIT != 0 || money == 0) {
             throw new IllegalArgumentException(ErrorMessage.MONEY_WRONG_UNIT);
+        }
+    }
+
+    private void validateNumberFormat(int money) {
+        if (money < 0) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_WRONG_FORMAT);
         }
     }
 

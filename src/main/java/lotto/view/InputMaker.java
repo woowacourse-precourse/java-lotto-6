@@ -2,6 +2,8 @@ package lotto.view;
 
 import lotto.domain.LottoRole;
 
+import static lotto.view.ErrorMessageContainer.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,22 +13,20 @@ public class InputMaker {
         try {
             return Integer.parseInt(userInput.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 숫자입니다.");
+            throw new IllegalArgumentException(NOT_VALID_NUMBER.getMessage());
         }
     }
 
     public void inputCoinValidate(int coin) {
         if (coin % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1000단위만 허용합니다.");
+            throw new IllegalArgumentException(NOT_VALID_INPUT_FOR_COIN.getMessage());
         }
     }
 
     public void lottoNumRangeValidate(int num) {
         if (num < LottoRole.LOTTO_MIN_NUMBER.getNumber() ||
                 num > LottoRole.LOTTO_MAX_NUMBER.getNumber()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는"+
-                    LottoRole.LOTTO_MIN_NUMBER.getNumber()+"부터 "+
-                    LottoRole.LOTTO_MAX_NUMBER.getNumber()+" 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(NOT_VALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 

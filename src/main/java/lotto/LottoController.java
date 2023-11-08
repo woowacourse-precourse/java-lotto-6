@@ -5,7 +5,6 @@ import lotto.domain.*;
 import lotto.view.InputMaker;
 import lotto.view.OutputMaker;
 
-
 public class LottoController {
     private TicketMaster ticketMaster;
     private InputMaker inputMaker;
@@ -39,7 +38,7 @@ public class LottoController {
                 isvalid = true;
                 this.cs = new Customer(coin);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 금액은 1000단위 숫자로 다시 입력해주세요.");
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -65,7 +64,7 @@ public class LottoController {
                 ticketMaster.setWinningNum(winner);
                 isvalid = true;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 다시 입력하세요.");
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -81,7 +80,7 @@ public class LottoController {
                 isvalid = true;
                 ticketMaster.setBonusNum(bonusNum);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 다시 입력하세요.");
+                System.out.println(e.getMessage());
             } finally {
                 Console.close();
             }

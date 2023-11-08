@@ -23,6 +23,10 @@ public enum LottoRanking {
         return getRanking(isBonusBallHit);
     }
 
+    public int getWinningAmount() {
+        return winningAmount;
+    }
+
     private static LottoRanking getRanking(int hitCount) {
         return Arrays.stream(LottoRanking.values())
             .filter(ranking -> ranking.hitCount == hitCount)

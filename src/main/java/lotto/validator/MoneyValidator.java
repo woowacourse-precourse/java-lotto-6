@@ -7,7 +7,7 @@ import lotto.system.SystemMessages;
 public class MoneyValidator implements Validator {
 
     @Override
-    public void check(String input) throws IllegalArgumentException {
+    public void check(String input) {
         checkNumeric(input);
         checkOutOfTypeRange(input);
         checkPositive(input);

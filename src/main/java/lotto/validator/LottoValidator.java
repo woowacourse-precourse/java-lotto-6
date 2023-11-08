@@ -6,7 +6,7 @@ import lotto.system.SystemMessages;
 
 public class LottoValidator implements Validator {
     @Override
-    public void check(String input) throws IllegalArgumentException {
+    public void check(String input) {
         checkInputCount(input);
         checkNumeric(input);
         checkOutOfTypeRange(input);

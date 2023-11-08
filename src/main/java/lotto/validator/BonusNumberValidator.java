@@ -9,7 +9,7 @@ public class BonusNumberValidator implements Validator {
     private static final String BONUS_NUMBER_ERROR_MESSAGE = "보너스 번호는 숫자만 입력 가능합니다.";
 
     @Override
-    public void check(String input) throws IllegalArgumentException {
+    public void check(String input) {
         checkNumeric(input);
         checkOutOfTypeRange(input);
         checkOutOfRange(input);

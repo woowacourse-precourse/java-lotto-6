@@ -14,7 +14,7 @@ public class BonusNumber {
         return bonusNumber;
     }
 
-    public int readBonusNumber() {
+    private int readBonusNumber() {
         return InputView.readBonusNumber();
     }
 }

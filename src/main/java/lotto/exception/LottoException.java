@@ -4,7 +4,7 @@ import lotto.common.LottoFinalConsts;
 
 public class LottoException implements LottoFinalConsts {
 
-    public boolean isValidLottoPurchase(String lottoPurchase) {
+    public boolean isInputOnlyNumber(String lottoPurchase) {
         try {
             Integer.parseInt(lottoPurchase);
             return true;

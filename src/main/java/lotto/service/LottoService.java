@@ -18,7 +18,7 @@ public class LottoService implements LottoFinalConsts {
 
     public int getLottoCount(String lottoPurchase) {
         int lottoCount = VARIABLE_FORMAT;
-        if (lottoException.isValidLottoPurchase(lottoPurchase)) {
+        if (lottoException.isInputOnlyNumber(lottoPurchase)) {
             lottoCount = Integer.parseInt(lottoPurchase)/LOTTO_PURCHASE_DIVIDABLE;
         }
         return lottoCount;
@@ -53,7 +53,7 @@ public class LottoService implements LottoFinalConsts {
         List<Lotto> lottos = getLottos(lottoCount);
         HashMap<LottoRank, Integer> lottoRanks = new HashMap<>();
         int lottoPurchased = VARIABLE_FORMAT;
-        if (lottoException.isValidLottoPurchase(lottoPurchase)) {
+        if (lottoException.isInputOnlyNumber(lottoPurchase)) {
             lottoPurchased = Integer.parseInt(lottoPurchase);
         }
         return new LottoMachine(lottoPurchased, lottos, lottoRanks);

@@ -15,7 +15,7 @@ public class Application {
         Validate validate = new Validate();
         Input input = new Input(new InputGenerator(), validate);
 
-        final String ERROR_MESSAGE = "[ERROR]";
+
 
         int money = 0;
         List<Lotto> lottos;
@@ -25,13 +25,14 @@ public class Application {
                 money = input.inputLottoMoney();
                 System.out.println();
 
+                // 로또 발행
                 LottoShop lottoShop = new LottoShop(new LottoGenerator(), new Validate());
                 lottos = lottoShop.buyLotto(money);
                 System.out.println();
 
                 break;
             } catch (IllegalArgumentException ex) {
-                System.out.println(ERROR_MESSAGE + " " + ex.getMessage());
+                System.out.println(LottoConstants.ERROR_MESSAGE + " " + ex.getMessage());
             }
         }
 
@@ -44,7 +45,7 @@ public class Application {
 
                 break;
             } catch (IllegalArgumentException ex) {
-                System.out.println(ERROR_MESSAGE + " " + ex.getMessage());
+                System.out.println(LottoConstants.ERROR_MESSAGE + " " + ex.getMessage());
             }
         }
 
@@ -57,7 +58,7 @@ public class Application {
 
                 break;
             } catch (IllegalArgumentException ex) {
-                System.out.println(ERROR_MESSAGE + " " + ex.getMessage());
+                System.out.println(LottoConstants.ERROR_MESSAGE + " " + ex.getMessage());
             }
         }
 
@@ -70,6 +71,7 @@ public class Application {
             // 당첨 갯수와 보너스 번호에 따른 LottoResultType 검색
             LottoResultType lottoResultType = LottoResultType.findByCorrectNumberAndBonus(correctNumber, checkBonus);
 
+            // 당첨 타입에 맞는 갯수 증가
             if(lottoResultType != null) {
                 lottoResult.incrementCount(lottoResultType);
             }

@@ -62,4 +62,8 @@ public class ValidateConstant {
     public static String ERROR_WIN_NUMBER_RANGE() {
         return "[ERROR] 당첨 번호의 범위는 1 ~ 45 입니다.";
     }
+
+    public static String ERROR_DUPLICATE_BONUS_WIN_NUBERS() {
+        return "[ERROR] 당첨 번호중 중복되는 숫자가 있습니다.";
+    }
 }

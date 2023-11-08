@@ -144,7 +144,7 @@ public class ValidateException {
 
     public static boolean hasDuplicateNumAndNumbers(Integer targetNumber, List<Integer> numbers) {
         if (numbers.contains(targetNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호중 중복되는 숫자가 있습니다.");
+            throw new IllegalArgumentException(ValidateConstant.ERROR_DUPLICATE_BONUS_WIN_NUBERS());
         }
         return true;
     }

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.util.ModelCensor.validateLotto;
+import static lotto.util.validation.ModelCensor.validateLotto;
 
 import java.util.List;
 

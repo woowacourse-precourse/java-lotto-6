@@ -7,7 +7,7 @@ import static lotto.util.content.DisplayMessage.SET_WIN_NUMBERS;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
-import lotto.util.ViewCensor;
+import lotto.util.validation.ViewCensor;
 
 public class InputView {
 

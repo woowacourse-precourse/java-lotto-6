@@ -1,7 +1,7 @@
 package lotto.service;
 
-import static lotto.util.ModelCensor.validateAnnouncementNumber;
-import static lotto.util.ModelCensor.validatePurchaseUnit;
+import static lotto.util.validation.ModelCensor.validateAnnouncementNumber;
+import static lotto.util.validation.ModelCensor.validatePurchaseUnit;
 import static lotto.util.rule.GameRule.RANK_SIZE;
 import static lotto.util.rule.GameRule.TICKET_PRICE;
 

@@ -1,11 +1,11 @@
 package lotto.util;
 
-import static lotto.util.ModelCensor.validateAnnouncementNumber;
-import static lotto.util.ModelCensor.validateLotto;
-import static lotto.util.ModelCensor.validatePurchaseUnit;
-import static lotto.util.ViewCensor.containUniqueValue;
-import static lotto.util.ViewCensor.validatePurchase;
-import static lotto.util.ViewCensor.validateWinningNumber;
+import static lotto.util.validation.ModelCensor.validateAnnouncementNumber;
+import static lotto.util.validation.ModelCensor.validateLotto;
+import static lotto.util.validation.ModelCensor.validatePurchaseUnit;
+import static lotto.util.validation.ViewCensor.containUniqueValue;
+import static lotto.util.validation.ViewCensor.validatePurchase;
+import static lotto.util.validation.ViewCensor.validateWinningNumber;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;

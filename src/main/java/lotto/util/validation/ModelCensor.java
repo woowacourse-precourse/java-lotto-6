@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.util.validation;
 
 import static lotto.util.content.ErrorMessage.INPUT_UNIT_ERROR;
 import static lotto.util.content.ErrorMessage.LOTTO_RANGE_ERROR;

@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.util.validation;
 
 import static lotto.util.content.ErrorMessage.INPUT_COMMA_ERROR;
 import static lotto.util.content.ErrorMessage.INPUT_NUMERIC_ERROR;

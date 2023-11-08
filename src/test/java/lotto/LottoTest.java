@@ -37,6 +37,13 @@ class LottoTest {
                 .isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 
+    @Test
+    @DisplayName("로또 번호가 오름차순으로 정렬되는지 확인한다.")
+    void provide_UnSorted_Numbers() {
+        assertThat(new Lotto(List.of(6,5,4,3,2,1)))
+                .isEqualTo("[1, 2, 3, 4, 5 ,6]");
+    }
+
     @ParameterizedTest
     @MethodSource("provide_getScore_TestData")
     @DisplayName("점수를 제대로 리턴하는지 확인")

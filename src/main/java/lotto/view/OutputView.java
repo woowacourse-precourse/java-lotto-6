@@ -1,7 +1,9 @@
 package lotto.view;
 
+import java.util.List;
 import java.util.Map;
 import lotto.model.LotteryResult;
+import lotto.model.Lotto;
 import lotto.model.PersonLotto;
 import lotto.model.PurchaseMoney;
 import lotto.model.enums.WinningMoney;
@@ -52,7 +54,7 @@ public class OutputView {
         sb.append(SpecialSign.NEW_LINE.getSign())
                 .append(String.format(OutputMessage.PURCHASE_MESSAGE.message, purchaseMoney.getPurchaseAmount()))
                 .append(SpecialSign.NEW_LINE.getSign())
-                .append(purchaseLottoResult(personLotto));
+                .append(purchaseLottoElements(personLotto));
 
         System.out.println(sb);
     }
@@ -81,7 +83,13 @@ public class OutputView {
                 .toString();
     }
 
-    private String purchaseLottoResult(PersonLotto personLotto) {
-        return personLotto.getElements();
+    private String purchaseLottoElements(PersonLotto personLotto) {
+        List<Lotto> purchaseLotto = personLotto.getPurchaseLotto();
+        StringBuilder sb = new StringBuilder();
+        for (Lotto lotto : purchaseLotto) {
+            sb.append(lotto.getNumbers().toString())
+                    .append(SpecialSign.NEW_LINE.getSign());
+        }
+        return sb.toString();
     }
 }

@@ -28,4 +28,11 @@ public class Buyer {
         OutputView.printLottos(buyList);
     }
 
+    public List<Lotto> getBuyList() {
+        return buyList;
+    }
+
+    public int getBuyCount() {
+        return buyCount;
+    }
 }

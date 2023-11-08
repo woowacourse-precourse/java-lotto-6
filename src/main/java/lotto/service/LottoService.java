@@ -14,7 +14,7 @@ public class LottoService {
         winningCount = new int[LottoPrize.values().length];
     }
 
-    public void calculateWinningsCounts(LottoTicket lottoTickets, WinningNumbers winningNumbers) {
+    public int[] calculateWinningsCounts(LottoTicket lottoTickets, WinningNumbers winningNumbers) {
         List<Integer> winningList = winningNumbers.getWinningNumber();
         int bonusNum = winningNumbers.getBonusNumber();
 
@@ -23,6 +23,7 @@ public class LottoService {
             boolean hasBonusNum = lotto.contains(bonusNum);
             determineRank(count, hasBonusNum);
         }
+        return winningCount;
     }
 
     private void determineRank(int count, boolean hasBonusNum) {

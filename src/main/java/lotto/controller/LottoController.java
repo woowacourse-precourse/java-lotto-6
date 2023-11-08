@@ -4,6 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
 import lotto.domain.WinningNumbers;
 import lotto.service.LottoPurchaseService;
+import lotto.service.LottoService;
 import lotto.service.WinningNumbersService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -16,8 +17,8 @@ public class LottoController {
         String purchaseAmount = getPurchaseAmount();
         LottoTicket lottoTicket = getLottoTicket(purchaseAmount);
         printPurchasedLottoNumber(lottoTicket);
-        WinningNumbers winningInformation = getWinningInformation();
-
+        WinningNumbers winningNumbers = getWinningInformation();
+        printWinningStatistics(lottoTicket, winningNumbers);
     }
 
     private String getPurchaseAmount() {
@@ -57,8 +58,8 @@ public class LottoController {
 
     private String getWinningNumber() {
         try {
-            OutputView.printEnterPurchaseAmount();
-            return InputView.getInputPurchaseAmount();
+            OutputView.printEnterWinningNumber();
+            return InputView.getInputWinningNumber();
         } catch (Exception ex) {
             OutputView.printErrorMessage(ex.getMessage());
             return getWinningNumber();
@@ -74,5 +75,13 @@ public class LottoController {
             return getBonusNumber();
         }
     }
+
+    private void printWinningStatistics(LottoTicket lottoTicket,WinningNumbers winningNumbers ) {
+        LottoService lottoService = new LottoService();
+        int[] counts = lottoService.calculateWinningsCounts(lottoTicket, winningNumbers);
+        OutputView.printWinningStatistics(counts);
+    }
+
+
 
 }

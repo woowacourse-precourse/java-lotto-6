@@ -22,8 +22,8 @@ public class Money implements Comparable<Money> {
         return new Money(this.amount * amount.amount);
     }
 
-    public boolean hasNotMoney() {
-        return amount <= 0;
+    public boolean hasNotMoney(Money amount) {
+        return this.amount < amount.amount;
     }
 
     public double calculateRateOfReturn(Money finalAmount) {

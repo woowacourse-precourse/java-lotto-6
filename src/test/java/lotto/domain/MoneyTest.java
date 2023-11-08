@@ -51,27 +51,14 @@ class MoneyTest {
         assertThat(plus.compareTo(new Money(1000*2000))).isEqualTo(0);
     }
 
-    @DisplayName("Money에 돈이 있는지 알 수 있다.")
+    @DisplayName("Money는 인자로 오는 Money보다 돈이 없는지 알 수 있다.")
     @Test
     void hasMoney() {
         //given
         Money money = new Money(1000);
 
         //when
-        boolean hasNotMoney = money.hasNotMoney();
-
-        //then
-        assertThat(hasNotMoney).isFalse();
-    }
-
-    @DisplayName("Money에 돈이 없는지 알 수 있다.")
-    @Test
-    void hasNotMoney() {
-        //given
-        Money money = new Money(0);
-
-        //when
-        boolean hasNotMoney = money.hasNotMoney();
+        boolean hasNotMoney = money.hasNotMoney(new Money(2000));
 
         //then
         assertThat(hasNotMoney).isTrue();

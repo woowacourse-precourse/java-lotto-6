@@ -17,7 +17,7 @@ public class User {
     }
 
     public boolean buy(Money lottoPrice, Lotto lotto) {
-        if(money.hasNotMoney()) {
+        if(money.hasNotMoney(lottoPrice)) {
             return false;
         }
 

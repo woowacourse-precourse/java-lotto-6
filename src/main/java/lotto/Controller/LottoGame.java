@@ -39,6 +39,7 @@ public class LottoGame {
 
         WinningDetails detail = lottoResult(lottoList, winningNumbers, bonusNumber);
         notifyForResult();
+        printLottoResult(Double.valueOf(buyCount),detail);
     }
 
     public static List<Lotto> generateLotto(Integer buyCount){

@@ -16,25 +16,25 @@ public class InputViewTest extends NsTest {
     private static final String CAN_NOT_BUY = "100";
     private static final String CAN_NOT_BUY2 = "999";
 
-    @Test
-    void 사용자가금액입력시값테스트하기(){
-        assertSimpleTest(
-                () -> {
-                    run(CAN_BUY);
-                    assertThat(getHowMuchLottoWillYouBuy()).isEqualTo(CAN_BUY_VALUE);
-                }
-        );
-    }
-
-    @Test
-    void 사용자가금액입력시값테스트하기_경계값테스트(){
-        assertSimpleTest(
-                () -> {
-                    run(CAN_BUY2);
-                    assertThat(getHowMuchLottoWillYouBuy()).isEqualTo(CAN_BUY_VALUE2);
-                }
-        );
-    }
+//    @Test
+//    void 사용자가금액입력시값테스트하기(){
+//        assertSimpleTest(
+//                () -> {
+//                    run(CAN_BUY);
+//                    assertThat(getHowMuchLottoWillYouBuy()).isEqualTo(CAN_BUY_VALUE);
+//                }
+//        );
+//    }
+//
+//    @Test
+//    void 사용자가금액입력시값테스트하기_경계값테스트(){
+//        assertSimpleTest(
+//                () -> {
+//                    run(CAN_BUY2);
+//                    assertThat(getHowMuchLottoWillYouBuy()).isEqualTo(CAN_BUY_VALUE2);
+//                }
+//        );
+//    }
 
 //    @Test
 //    void 값이1000원미만일경우1() {

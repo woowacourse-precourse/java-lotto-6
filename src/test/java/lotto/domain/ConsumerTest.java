@@ -29,7 +29,7 @@ public class ConsumerTest {
     @DisplayName("구매 금액이 1000으로 나누어 떨어지지 않는다면 예외가 발생한다.")
     @Test
     void savePurchaseAmountByNotDivided() {
-        assertThatThrownBy(() -> consumer.setPurchaseAmount(5001))
+        assertThatThrownBy(() -> consumer.amountValidate(5001))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구매 금액은 1000원 단위로 입력해주세요.");
     }

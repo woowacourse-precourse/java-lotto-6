@@ -22,4 +22,14 @@ class UserValidateTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("입력된 숫자의 범위가 1 ~ 45사이가 아니면 예외 발생")
+    @Test
+    void 숫자_범위_확인(){
+        assertThatThrownBy(() -> UserValidate.checkNumberRange(0))
+            .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> UserValidate.checkNumberRange(46))
+            .isInstanceOf(IllegalArgumentException.class);
+
+    }
+
 }

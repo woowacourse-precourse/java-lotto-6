@@ -1,5 +1,6 @@
 package Validate;
 
+import lotto.constant.ValidateConstant;
 import lotto.utill.Utii;
 
 import java.util.HashSet;
@@ -28,7 +29,7 @@ public class ValidateException {
         Matcher matcher = pattern.matcher(strLine);
 
         if (matcher.matches()) {
-            throw new NumberFormatException("[ERROR] 입력에 문자가 포함되어 있습니다.");
+            throw new NumberFormatException(ValidateConstant.ERROR_INCLUDE_STRING());
         }
     }
 
@@ -37,7 +38,7 @@ public class ValidateException {
         Matcher matcher = pattern.matcher(strLine);
 
         if (matcher.matches()) {
-            throw new NumberFormatException("[ERROR] 입력에 숫자 or ',' 을 제외한 문자가 포함되어 있습니다.");
+            throw new NumberFormatException(ValidateConstant.ERROR_INCLUDE_STRING_EXCEPTION_COMMA());
         }
     }
 

@@ -48,7 +48,12 @@ public class WinningStatics {
         }
     }
 
-    public int getTotalReward() {
+    public float getRateOfReturn(int purchasePrice) {
+        int totalReward = getTotalReward();
+        return (float) totalReward/purchasePrice;
+    }
+
+    private int getTotalReward() {
         return matchThree * MATCH_THREE_REWARD +
                 matchFour * MATCH_FOUR_REWARD +
                 matchFive * MATCH_FIVE_REWARD +

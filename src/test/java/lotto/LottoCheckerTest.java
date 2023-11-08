@@ -10,10 +10,10 @@ public class LottoCheckerTest {
     @Test
     public void 입력한_정답번호가_숫자가_아닐_시_예외가_발생한다() {
         String input = "1,ㅇ,3";
-        String bonus = "10";
 
         Exception e = assertThrows(IllegalArgumentException.class, () -> {
-            new LottoChecker(input, bonus);
+            new LottoChecker().setAnswerNumber(input);
+
         });
         assertThat(e.getMessage()).isEqualTo("[ERROR] 로또의 번호는 숫자로만 입력해야 합니다.");
     }
@@ -21,10 +21,9 @@ public class LottoCheckerTest {
     @Test
     public void 입력한_정답번호가_6개가_아닐_시_예외가_발생한다() {
         String input = "1,2,3,4,5";
-        String bonus = "10";
 
         Exception e1 = assertThrows(IllegalArgumentException.class, () -> {
-            new LottoChecker(input, bonus);
+            new LottoChecker().setAnswerNumber(input);
         });
         assertThat(e1.getMessage()).isEqualTo("[ERROR] 당첨 번호는 6개여야 합니다.");
     }
@@ -32,11 +31,10 @@ public class LottoCheckerTest {
     @Test
     public void 입력한_정답번호중_중복된_숫자가_있을_시_예외가_발생한다() {
         String input = "1,2,3,4,5,1";
-        String bonus = "10";
 
 
         Exception e = assertThrows(IllegalArgumentException.class, () -> {
-            new LottoChecker(input, bonus);
+            new LottoChecker().setAnswerNumber(input);
         });
 
         assertThat(e.getMessage()).isEqualTo("[ERROR] 당첨 번호는 중복되지 않아야 합니다.");
@@ -48,7 +46,9 @@ public class LottoCheckerTest {
         String bonus = "6";
 
         Exception e = assertThrows(IllegalArgumentException.class, () -> {
-            new LottoChecker(input, bonus);
+            LottoChecker checker = new LottoChecker();
+            checker.setAnswerNumber(input);
+            checker.setBonusNumber(bonus);
         });
         assertThat(e.getMessage()).isEqualTo("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
     }
@@ -56,10 +56,9 @@ public class LottoCheckerTest {
     @Test
     public void 입력한_숫자가_로또범위를_넘어갈_시_예외가_발생한다() {
         String input = "1,2,3,4,5,61";
-        String bonus = "10";
 
         Exception e = assertThrows(IllegalArgumentException.class, () -> {
-            new LottoChecker(input, bonus);
+            new LottoChecker().setAnswerNumber(input);
         });
         assertThat(e.getMessage()).isEqualTo("[ERROR] 각각의 당첨 번호는 1~45 사이여야 합니다.");
     }
@@ -76,7 +75,10 @@ public class LottoCheckerTest {
         String answer = "1,2,3,4,5,6";
         String bonus = "7";
 
-        LottoChecker lottoChecker = new LottoChecker(answer, bonus);
+        LottoChecker lottoChecker = new LottoChecker();
+        lottoChecker.setAnswerNumber(answer);
+        lottoChecker.setBonusNumber(bonus);
+
         List<LottoPrize> lottoPrizes = Stream.of(first, second,  third, fourth, fifth, none)
                 .map(lottoChecker::check)
                 .toList();

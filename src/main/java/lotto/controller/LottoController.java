@@ -21,7 +21,7 @@ public class LottoController {
         Money money = inputMoney();
         List<Lotto> lottos = purchaseLottos(money.getCount());
 
-        WinningLotto winningLotto = createWinningLotto();
+        WinningLotto winningLotto = getTotalWinningNumbers();
     }
 
     private Money inputMoney() {
@@ -57,12 +57,26 @@ public class LottoController {
         outputView.printLottos(lottos);
     }
 
-    private WinningLotto createWinningLotto() {
+    private WinningLotto getTotalWinningNumbers() {
+        Lotto winningNumbers = getWinningLotto();
+        return createTotalWinningNumbers(winningNumbers);
+    }
+
+    private Lotto getWinningLotto() {
         try {
-            return new WinningLotto(inputView.readWinningNumbers());
+            return new Lotto(inputView.readWinningNumbers());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return createWinningLotto();
+            return getTotalWinningNumbers();
+        }
+    }
+
+    private WinningLotto createTotalWinningNumbers(Lotto lotto) {
+        try {
+            return new WinningLotto(lotto, inputView.readBonusNumber());
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return createTotalWinningNumbers(lotto);
         }
     }
 }

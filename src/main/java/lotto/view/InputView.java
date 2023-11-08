@@ -26,4 +26,8 @@ public class InputView {
         return stringToList(Console.readLine());
     }
 
+    public int readBonusNumber() {
+        return 0;
+    }
+
 }

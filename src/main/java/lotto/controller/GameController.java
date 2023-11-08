@@ -1,18 +1,25 @@
 package lotto.controller;
 
-import java.util.List;
-import lotto.model.GameResult;
-import lotto.model.LottoTicket;
-import lotto.view.GameResultOutputView;
+import lotto.model.LottoResult;
+import lotto.model.LottoTickets;
+import lotto.view.ResultView;
 import lotto.view.UserInputView;
 
 public class GameController {
-    public static void play() {
-        LottoTicket lottoTicket = UserInputView.inputPurchaseAmount();
-        GameResultOutputView.showLottoTickets(lottoTicket);
-        List<Integer> winningNumber = UserInputView.inputWinningNumber();
-        UserInputView.inputBonusNumber(winningNumber);
-        GameResult gameResult = new GameResult(winningNumber, lottoTicket);
-        gameResult.showResult();
+    public static void run() {
+        try {
+            play();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
+
+    private static void play() {
+        LottoTickets lottoTickets = UserInputView.inputBuyAmount();
+        ResultView.printLottoTickets(lottoTickets);
+        LottoResult lottoResult = new LottoResult(UserInputView.inputWinningNumbers(),
+                UserInputView.inputBonusNumber());
+        ResultView.printWinningsResult(lottoTickets, lottoResult);
+    }
+
 }

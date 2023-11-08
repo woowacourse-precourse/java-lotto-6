@@ -13,9 +13,9 @@ public class LottoManagerTest {
     Calculator calculator = new Calculator();
     LottoManager lottoManager = new LottoManager(numberGenerator, calculator);
 
-    @DisplayName("GenerateUserLottos() 결과 테스트")
+    @DisplayName("생성된 로또의 개수가 매개변수와 같으면 예외 발생하지않음")
     @Test
-    public void 생성된_로또의_개수가_매개변수와_다르면_예외가_발생한다() {
+    public void 만든_로또_개수가_ticketCount와_같은지_테스트() {
         Lottos lottos = lottoManager.generateUserLottos(5);
         Assertions.assertEquals(5, lottos.getLottos().size());
     }

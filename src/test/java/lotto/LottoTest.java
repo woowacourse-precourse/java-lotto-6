@@ -22,5 +22,17 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호 중 0이 있는 경우 예외 발생")
+    @Test
+    void 로또_번호_중에_0이_있는_경우_예외발생여부_테스트() {
+        Assertions.assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호 중 46이 있는 경우 예외 발생")
+    @Test
+    void 로또_번호_중에_46이_있는_경우_예외발생여부_테스트() {
+        Assertions.assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

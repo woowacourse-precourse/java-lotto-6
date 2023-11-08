@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import lotto.domain.WinningResult;
 
 public class WinningResultView implements View {
+    private static final String PREFIX = "당첨 통계\n---";
     private static final String WINNING_RESULT_OUTPUT = "%d개 일치 (%s원) - %d개";
     private static final String WINNING_RESULT_OUTPUT_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String RATE_OF_RETURN_OUTPUT = "총 수익률은 %.1f%%입니다.";
@@ -19,6 +20,7 @@ public class WinningResultView implements View {
 
     @Override
     public void render() {
+        System.out.println(PREFIX);
         System.out.println(outputWinningResult());
         System.out.print(toStringRateOfReturn());
     }

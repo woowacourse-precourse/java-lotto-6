@@ -103,15 +103,18 @@ public class Application {
         Map<PrizeCategory, Integer> winningCounts = winningResult.countNumberOfWinning(lottoTickets, lottoNumbers);
 
         System.out.println(messageContainer.getWinningStatistics());
-
-        StringJoiner stringJoiner = new StringJoiner("\n");
-        for (String winningDetail : messageContainer.createWinningDetails(winningCounts)) {
-            stringJoiner.add(winningDetail);
-        }
-        System.out.println(stringJoiner.toString());
+        System.out.println(createWinningCountsResult(winningCounts));
 
         long totalPrizeMoney = winningResult.getTotalPrizeMoney(winningCounts);
         double rateOfReturn = winningResult.getRateOfReturn(cashier.getPurchaseAmount(), totalPrizeMoney);
         System.out.println(messageContainer.createRateOfReturnMessage(rateOfReturn));
+    }
+
+    private static String createWinningCountsResult(Map<PrizeCategory, Integer> winningCounts) {
+        StringJoiner stringJoiner = new StringJoiner("\n");
+        for (String winningDetail : messageContainer.createWinningDetails(winningCounts)) {
+            stringJoiner.add(winningDetail);
+        }
+        return stringJoiner.toString();
     }
 }

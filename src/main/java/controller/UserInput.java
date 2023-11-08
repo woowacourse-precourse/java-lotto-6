@@ -17,7 +17,7 @@ public class UserInput {
         try {
             price = Integer.parseInt(Console.readLine());
         }catch (Exception e){
-            throw new IllegalArgumentException("[ERROR] 금액은 숫자만 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자만 가능합니다.");
         }
         return price;
     }

@@ -13,7 +13,7 @@ public class LottoGenerator {
     public static List<Lotto> createLottos(int number){
         List<Lotto> lottos = new ArrayList<>();
         while (number > 0){
-            List<Integer> randomNumber = Randoms.pickUniqueNumbersInRange(1,45,6);
+            List<Integer> randomNumber = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
             Lotto lotto = new Lotto(randomNumber);
             lottos.add(lotto);
             number--;

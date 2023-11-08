@@ -40,12 +40,11 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
         }
     }
-
-    @Override
-    public String toString(){
-        return String.format(numbers.toString());
+    public void printLotto(){
+        System.out.println(numbers);
     }
     void sortLotto(List<Integer> numbers){
+
         numbers.sort(Comparator.naturalOrder());
     }
 }

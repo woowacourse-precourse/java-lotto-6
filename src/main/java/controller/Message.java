@@ -20,7 +20,7 @@ public class Message {
 
     public static void printLotto(Lottos lottos){
         for(Lotto lotto : lottos.getLottos()){
-            System.out.println(lotto);
+            lotto.printLotto();
         }
     }
     public static void printOuttro(){

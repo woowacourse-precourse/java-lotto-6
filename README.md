@@ -61,21 +61,31 @@ BUILD SUCCESSFUL in 0s
 구현할 목록 작성 (1차)
 
 Input class
-[ ] 금액을 입력 InputAmount(Integer Amount){}
-[ ] 예외처리 AmountValidate()
-[ ] 금액에 따른 로또발행개수 출력 CheckNumberofLotto()
+[o] 금액을 입력 InputAmount(Integer Amount){}
+[o] 예외처리 AmountValidate()
+[o] 예외처리 포함 최종 입력 함수 readAmount()
+[o] 자동 로또 발행 IssueLotto()
+[o] 당첨 로또 번호 입력 InputLotto()
+[o] 예외처리 포함 최종 당첨 번호 입력 readLotto()
+[o] 보너스 번호 입력 readBonous() 
+[o] 금액에 따른 로또발행개수 출력 CheckNumberofLotto()
 
-lotto class
-[ ] 로또 발행 (6개) IssueLotto()
+Lotto class
+[o] 생성자(유효성 검증 method 사용) Lotto()
+[o] 크기 유효성 검증 validate(List<Integer> nunmbers)
+[o] 범위 유효성 검증 RangeValidate(List<Integer> numbers)
+[o] 중복 검증 Duplicatedvalidate(List<Integer> numbers)
+[o] Lotto List 출력 printLotto()
 
 Winner class
-[ ] 추첨 번호 생성 (6+1개) MakeWinnerLotto()
-[ ] 당첨내역 확인 ConfirmLotto()
-[ ] 당첨내역 출력 PrintResult()
+[o] 추첨 번호 생성 (6+1개) MakeWinnerLotto()
+[o] 당첨내역 확인 ConfirmLotto(ArrayList yours, ArrayList winner, Integer Bonus)
+[o] List 간 중복 갯수 확인 checkDuplicate(ArrayList A, ArrayList B)
+[o] 당첨내역 출력 PrintResult()
 
 Profit class
-[ ] 수익률 계산 CalProfit(Integer Amount, List<Integer> result)
-[ ] 수익률 출력 PrintProfit(float profit)
+[o] 수익률 계산 CalProfit(Integer Amount, List<Integer> result)
+[o] 수익률 출력 PrintProfit(double profit)
 
 
 ### 입출력 요구 사항

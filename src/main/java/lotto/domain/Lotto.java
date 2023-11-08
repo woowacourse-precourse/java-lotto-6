@@ -60,7 +60,8 @@ public class Lotto {
     private boolean isInRange(List<Integer> numbers) {
         return numbers.stream()
                 .allMatch(
-                        number -> number >= LOTTO_MINIMUM_BOUND.getValue() && number <= LOTTO_MAXIMUM_BOUND.getValue());
+                        number -> number >= LOTTO_MINIMUM_BOUND.getValue()
+                                && number <= LOTTO_MAXIMUM_BOUND.getValue());
     }
 
     private List<Integer> sortLottoNumbers(List<Integer> numbers) {

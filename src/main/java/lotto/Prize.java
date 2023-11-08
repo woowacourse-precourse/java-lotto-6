@@ -25,7 +25,7 @@ public class Prize {
 
     public void calcTotalPrizeRate(int startPayment){
         double totalPrizeRate;
-        totalPrizeRate = this.totalPrize * 1.0 / startPayment * 1.0 * 100;
+        totalPrizeRate = Math.round(this.totalPrize * 1.0 / startPayment * 1.0 * 10000) / 100.0;
         System.out.println("총 수익률은 " + totalPrizeRate + "%입니다.");
     }
 

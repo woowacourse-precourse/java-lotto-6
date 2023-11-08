@@ -44,11 +44,7 @@ public class LottoController {
     }
 
     private void initLotteryResult() {
-        lotteryResult.put(LottoVariables.LOTTO_FIRST.getPrice(), 0);
-        lotteryResult.put(LottoVariables.LOTTO_SECOND.getPrice(), 0);
-        lotteryResult.put(LottoVariables.LOTTO_THIRD.getPrice(), 0);
-        lotteryResult.put(LottoVariables.LOTTO_FOURTH.getPrice(), 0);
-        lotteryResult.put(LottoVariables.LOTTO_FIFTH.getPrice(), 0);
+        for(LottoVariables lottoVariables: LottoVariables.values()) lotteryResult.put(lottoVariables.getPrice(), 0);
     }
 
     private void countLottery(){

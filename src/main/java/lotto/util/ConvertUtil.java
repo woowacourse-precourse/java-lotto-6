@@ -14,4 +14,12 @@ public class ConvertUtil {
         String[] inputs = input.split(DELIMITER);
         return Arrays.stream(inputs).map(Integer::parseInt).collect(Collectors.toList());
     }
+
+    public static int convertInputToPurchaseAmount(String input) {
+        return Integer.parseInt(input);
+    }
+
+    public static int convertInputToBonusNumber(String input) {
+        return Integer.parseInt(input);
+    }
 }

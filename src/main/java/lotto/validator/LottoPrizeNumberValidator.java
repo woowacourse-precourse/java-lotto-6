@@ -88,7 +88,7 @@ public class LottoPrizeNumberValidator {
             }
         }
         catch (IllegalArgumentException e) {
-            errorMessage = ErrorMessage.ERROR_BONUS_NUM_OVERLAP;
+            errorMessage = ErrorMessage.ERROR_PRIZE_NUM_OVERLAP;
             return false;
         }
 

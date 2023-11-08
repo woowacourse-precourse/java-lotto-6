@@ -1,5 +1,10 @@
-package lotto;
+package lotto.controller;
 
+
+import lotto.model.Lotto;
+import lotto.model.Purchase;
+import lotto.model.PurchasedLottos;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

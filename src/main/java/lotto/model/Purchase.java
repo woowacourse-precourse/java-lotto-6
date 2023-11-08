@@ -1,8 +1,7 @@
-package lotto;
+package lotto.model;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
+import lotto.exception.NotMultipleOf1000Exception;
 
 public class Purchase {
 
@@ -17,7 +16,7 @@ public class Purchase {
 
     private void validateIsMultipleOf1000(Integer value) {
         if (value % 1000 != 0 || value == 0) {
-            throw new IllegalArgumentException();
+            throw new NotMultipleOf1000Exception();
         }
     }
 

@@ -1,8 +1,11 @@
-package lotto;
+package lotto.model;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.exception.DuplicateLottoNumberException;
+import lotto.exception.InvalidSizeOfLottoException;
+import lotto.exception.NumberNotInRangeException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -10,24 +13,25 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
+        validateNumbersInRange(numbers);
         this.numbers = numbers;
     }
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new InvalidSizeOfLottoException();
         }
     }
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (numbers.size() != uniqueNumbers.size()) {
-            throw new IllegalArgumentException();
+            throw new DuplicateLottoNumberException();
         }
     }
     private void validateNumbersInRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < 1 || number > 45) {
-                throw new IllegalArgumentException();
+                throw new NumberNotInRangeException();
             }
         }
     }

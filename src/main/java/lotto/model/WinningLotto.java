@@ -1,8 +1,9 @@
-package lotto;
+package lotto.model;
 
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Set;
+import lotto.exception.DuplicateNumberInBonusNumberException;
+import lotto.exception.NumberNotInRangeException;
 
 public class WinningLotto {
     private final Lotto lotto;
@@ -18,13 +19,13 @@ public class WinningLotto {
     private void validateBonusNumberDuplicateInNumbers(Integer bonusNumber) {
         for (Integer number : lotto.getNumbers()) {
             if (number.equals(bonusNumber)) {
-                throw new IllegalArgumentException();
+                throw new DuplicateNumberInBonusNumberException();
             }
         }
     }
     private void validateNumbersInRange(Integer bonusNumber) {
         if(bonusNumber < 1 || bonusNumber >45){
-        throw new IllegalArgumentException();
+        throw new NumberNotInRangeException();
         }
     }
 

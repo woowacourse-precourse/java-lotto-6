@@ -1,6 +1,7 @@
-package lotto;
+package lotto.model;
 
-import static lotto.LottoGenerator.makeRandomNumbersInLotto;
+
+import static lotto.model.LottoGenerator.makeRandomNumbersInLotto;
 
 import java.util.ArrayList;
 import java.util.EnumMap;

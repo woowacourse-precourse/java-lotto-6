@@ -6,7 +6,7 @@ import lotto.service.LottoResultCalculatorService;
 import lotto.service.LottoStoreService;
 import lotto.view.InputReader;
 import lotto.view.InputView;
-import lotto.view.MessageResolver;
+import lotto.view.OutputMessageResolver;
 import lotto.view.OutputView;
 
 public class LottoGameConfig {
@@ -22,8 +22,8 @@ public class LottoGameConfig {
         return new OutputView(messageResolver());
     }
 
-    public MessageResolver messageResolver() {
-        return new MessageResolver();
+    public OutputMessageResolver messageResolver() {
+        return new OutputMessageResolver();
     }
 
     public LottoResultCalculatorService lottoRankCalculatorService() {

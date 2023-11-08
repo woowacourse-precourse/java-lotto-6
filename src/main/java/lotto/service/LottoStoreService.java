@@ -1,7 +1,6 @@
 package lotto.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
@@ -16,9 +15,9 @@ public class LottoStoreService {
     }
 
     public List<Lotto> purchaseLotto(PurchaseAmount purchaseAmount) {
-        int count = purchaseAmount.affordableCountOfLotto();
+        int count = purchaseAmount.calculateAffordableCountOfLotto();
         return IntStream.range(START_INDEX, count)
                 .mapToObj(i -> lottoFactoryService.generateLotto())
-                .collect(Collectors.toList());
+                .toList();
     }
 }

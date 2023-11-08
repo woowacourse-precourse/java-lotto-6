@@ -35,7 +35,7 @@ class PurchaseAmountTest {
     @Test
     void testAffordableCountOfLotto() {
         PurchaseAmount purchaseAmount = PurchaseAmount.from(2000);
-        assertThat(purchaseAmount.affordableCountOfLotto()).isEqualTo(2);
+        assertThat(purchaseAmount.calculateAffordableCountOfLotto()).isEqualTo(2);
     }
 
     @DisplayName("벌어들인 금액이 주어질 때 수익률을 계산할 수 있다")

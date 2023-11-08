@@ -17,7 +17,7 @@ public class LottoResult {
         return rankCounts.getOrDefault(rank, 0);
     }
 
-    public Long getTotalPrize() {
+    public Long calculateTotalPrize() {
         return rankCounts.keySet()
                 .stream()
                 .mapToLong(rank -> (long) rankCounts.get(rank) * rank.getPrize())
@@ -25,6 +25,6 @@ public class LottoResult {
     }
 
     public double calculateProfitRate(PurchaseAmount purchaseAmount) {
-        return purchaseAmount.calculateProfitRate(getTotalPrize());
+        return purchaseAmount.calculateProfitRate(calculateTotalPrize());
     }
 }

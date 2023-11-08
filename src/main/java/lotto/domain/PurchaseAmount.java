@@ -16,7 +16,7 @@ public class PurchaseAmount {
         return new PurchaseAmount(purchaseAmount);
     }
 
-    public int affordableCountOfLotto() {
+    public int calculateAffordableCountOfLotto() {
         return purchaseAmount / LOTTO_PRICE;
     }
 

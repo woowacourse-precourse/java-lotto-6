@@ -5,21 +5,21 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 
 public class OutputView {
-    private final MessageResolver messageResolver;
+    private final OutputMessageResolver outputMessageResolver;
 
-    public OutputView(MessageResolver messageResolver) {
-        this.messageResolver = messageResolver;
+    public OutputView(OutputMessageResolver outputMessageResolver) {
+        this.outputMessageResolver = outputMessageResolver;
     }
 
     public void showPurchasedLottosInformation(List<Lotto> lottos) {
-        System.out.println(messageResolver.resolvePurchasedInformationMessage(lottos));
+        System.out.println(outputMessageResolver.resolvePurchasedInformationMessage(lottos));
     }
 
     public void showResults(LottoResult result) {
-        System.out.println(messageResolver.resolveResultMessage(result));
+        System.out.println(outputMessageResolver.resolveResultMessage(result));
     }
 
     public void showProfitRate(double profitRate) {
-        System.out.println(messageResolver.resolveProfitRateMessage(profitRate));
+        System.out.println(outputMessageResolver.resolveProfitRateMessage(profitRate));
     }
 }

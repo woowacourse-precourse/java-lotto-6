@@ -13,7 +13,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("메시지 리졸버 테스트")
-class MessageResolverTest {
+class OutputMessageResolverTest {
 
     @DisplayName("구매 정보 문자열을 올바르게 만든다")
     @Test
@@ -23,8 +23,8 @@ class MessageResolverTest {
         Lotto issuedLotto2 = createLotto(List.of(2, 3, 4, 5, 6, 7));
         List<Lotto> lottos = List.of(issuedLotto1, issuedLotto2);
 
-        MessageResolver messageResolver = new MessageResolver();
-        String message = messageResolver.resolvePurchasedInformationMessage(lottos);
+        OutputMessageResolver outputMessageResolver = new OutputMessageResolver();
+        String message = outputMessageResolver.resolvePurchasedInformationMessage(lottos);
         String expected = "2개를 구매했습니다.\n[1, 2, 3, 4, 5, 6]\n[2, 3, 4, 5, 6, 7]";
         assertThat(message.trim()).isEqualTo(expected.trim());
     }
@@ -35,8 +35,8 @@ class MessageResolverTest {
         EnumMap<LottoRank, Integer> countByRanks = new EnumMap<>(LottoRank.class);
         countByRanks.put(LottoRank.FIRST, 2);
         LottoResult result = LottoResult.from(countByRanks);
-        MessageResolver messageResolver = new MessageResolver();
-        String message = messageResolver.resolveResultMessage(result);
+        OutputMessageResolver outputMessageResolver = new OutputMessageResolver();
+        String message = outputMessageResolver.resolveResultMessage(result);
         String expected = "당첨 통계\n---\n3개 일치 (5,000원) - 0개\n4개 일치 (50,000원) - 0개\n5개 일치 (1,500,000원) - 0개\n5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n6개 일치 (2,000,000,000원) - 2개";
         assertThat(message.trim()).isEqualTo(expected.trim());
     }
@@ -44,8 +44,8 @@ class MessageResolverTest {
     @DisplayName("수익율 문자열을 올바르게 만든다")
     @Test
     void testProfitRateMessageResolve() {
-        MessageResolver messageResolver = new MessageResolver();
-        String message = messageResolver.resolveProfitRateMessage(95.5);
+        OutputMessageResolver outputMessageResolver = new OutputMessageResolver();
+        String message = outputMessageResolver.resolveProfitRateMessage(95.5);
         assertThat(message).isEqualTo("총 수익률은 95.5%입니다.");
     }
 

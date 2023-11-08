@@ -19,7 +19,7 @@ public class Lotto {
             throw new IllegalArgumentException(Message.ERROR_IS_NOT_SIX_BY_COMMMA.label());
         }
 
-        if (!Validator.isDisticnt(numbers)) {
+        if (!Validator.isDistinct(numbers)) {
             throw new IllegalArgumentException(Message.ERROR_IS_NOT_SIX_BY_COMMMA.label());
         }
     }

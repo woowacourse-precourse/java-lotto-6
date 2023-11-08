@@ -14,67 +14,28 @@ public class Validator {
     public static boolean isBuyAmountValid(String playerInput) {
         try {
             int buyAmount = Integer.parseInt(playerInput);
-            if (buyAmount < MIN_VALUE) {
-                Exception.isNotPlusInt();
+            if (!isPlusInt(buyAmount) || !isThousandUnit(buyAmount)) {
                 return false;
             }
-
-            if (buyAmount % UNIT != 0) {
-                Exception.isNotThousandUnit();
-                return false;
-            }
-
         } catch (NumberFormatException e) {
             Exception.isNotNumber();
             return false;
         }
-
         return true;
     }
 
-    public static boolean isDisticnt(List<Integer> numbers) {
-        return (numbers.size() == numbers.stream().distinct().count());
-    }
-
-    public static boolean isSizeSix(List<java.lang.Integer> numbers) {
-        return numbers.size() == SIZE;
-    }
-
-    public static boolean isContainComma(String playerInput) {
-        return playerInput.contains(DELEMTER);
-    }
-
     public static boolean isValidAnswerLottoNumbers(String playerInput) {
-
-        if (!isContainComma(playerInput)) {
-            Exception.isNotSixByComma();
-            return false;
-        }
-
         try {
             List<Integer> numbers = Arrays.stream(playerInput.split(DELEMTER)).map(Integer::parseInt)
-                    .peek(num -> {
-                        if (num < MIN_VALUE || num > MAX_VALUE) {
-                            Exception.isOutOfRange();
-                        }
-                    })
-                    .toList();
+                    .peek(Validator::isInOfRange).toList();
 
-            if (!isSizeSix(numbers)) {
-                Exception.isNotSixByComma();
+            if (!isSizeSix(numbers) || !isDistinct(numbers)) {
                 return false;
             }
-
-            if (!isDisticnt(numbers)) {
-                Exception.isNotDistinct();
-                return false;
-            }
-
         } catch (NumberFormatException e) {
             Exception.isNotNumber();
             return false;
         }
-
         return true;
     }
 
@@ -92,7 +53,47 @@ public class Validator {
         } catch (NumberFormatException e) {
             Exception.isNotNumber();
         }
-
         return true;
     }
+
+    private static boolean isPlusInt(int number) {
+        if (number < MIN_VALUE) {
+            Exception.isNotPlusInt();
+            return false;
+        }
+        return true;
+    }
+
+    private static boolean isThousandUnit(int number) {
+        if (number % UNIT != 0) {
+            Exception.isNotThousandUnit();
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isDistinct(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            Exception.isNotDistinct();
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isSizeSix(List<Integer> numbers) {
+        if (numbers.size() != SIZE) {
+            Exception.isNotSixByComma();
+            return false;
+        }
+        return true;
+    }
+
+    private static boolean isInOfRange(int number) {
+        if (number < MIN_VALUE || number > MAX_VALUE) {
+            Exception.isOutOfRange();
+            return false;
+        }
+        return true;
+    }
+
 }

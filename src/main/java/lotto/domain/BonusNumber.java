@@ -24,4 +24,8 @@ public class BonusNumber {
         // 당첨번호와 보너스번호 중복체크함
         // 중복되면 예외던짐
     }
+
+    public int getBONUS_NUMBER() {
+        return BONUS_NUMBER;
+    }
 }

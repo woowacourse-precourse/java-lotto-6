@@ -18,7 +18,7 @@ public class LottoPublisher {
         return new Lottos(lottos);
     }
 
-    private int getLottoCountByAmount(Amount amount) {
+    public int getLottoCountByAmount(Amount amount) {
         return amount.getAmount() / UNIT;
     }
 

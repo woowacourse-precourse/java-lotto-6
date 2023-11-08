@@ -30,4 +30,19 @@ public class LottoPublisherTest{
         //then
         assertThat(lottos.getSize()).isEqualTo(lottoCount);
     }
+
+    @DisplayName("주어진 금액으로 살 수 있는 만큼의 로또 개수를 반환한다.")
+    @Test
+    void 구매_가능한_로또_개수(){
+        //given
+        int price = 8000;
+        Amount amount = new Amount(price);
+        int count = price/1000;
+
+        //when
+        int lottoCount = lottoPublisher.getLottoCountByAmount(amount);
+
+        //then
+        assertThat(lottoCount).isEqualTo(count);
+    }
 }

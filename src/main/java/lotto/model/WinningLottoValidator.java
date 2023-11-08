@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.utils.Constants.INTEGER_RANGE;
+
 import java.util.List;
 import lotto.utils.Utils;
 
@@ -11,7 +13,7 @@ public class WinningLottoValidator {
     private static void isInteger(String winningLotto) {
         List<String> winningNumbers = Utils.splitStringToList(winningLotto);
 
-        if (winningNumbers.stream().anyMatch(number -> !number.matches("^[0-9]+$"))) {
+        if (winningNumbers.stream().anyMatch(number -> !number.matches(INTEGER_RANGE))) {
             throw new IllegalArgumentException("[ERROR] 로또 넘버는 숫자여야 합니다.");
         }
     }

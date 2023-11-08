@@ -1,9 +1,10 @@
 package lotto.model;
 
+import static lotto.utils.Constants.INTEGER_RANGE;
+import static lotto.utils.Constants.ONE_LOTTO_PRICE;
+
 public class Money {
-    private final String INTEGER_RANGE = "^[0-9]+$";
     private final String ERROR_NOT_INTEGER = "[ERROR] 구입 금액은 숫자여야 합니다.";
-    private final int ONE_LOTTO_PRICE = 1000;
     private final int ZERO = 0;
     private final String ERROR_NOT_PAPER_MONEY = "[ERROR] 구입 금액은 1,000원 단위로 이루어져야 합니다.";
     private final String money;

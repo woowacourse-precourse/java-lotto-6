@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.List;
 
 public class WinningLotto {
+    private final String ERROR_DUPLICATE_WINNING_NUMBERS = "[ERROR] 보너스 번호는 당첨 번호와 중복되면 안됩니다.";
     private final BonusNumber bonusNumber;
     private final Lotto winningLotto;
 
@@ -18,7 +19,7 @@ public class WinningLotto {
 
     private void isDuplicateWinningLotto(Lotto lotto, BonusNumber bonusNumber) {
         if (lotto.isContain(bonusNumber.getBonusNumber())) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안됩니다.");
+            throw new IllegalArgumentException(ERROR_DUPLICATE_WINNING_NUMBERS);
         }
     }
 

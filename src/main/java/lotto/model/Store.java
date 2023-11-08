@@ -1,5 +1,10 @@
 package lotto.model;
 
+import static lotto.utils.Constants.END_LOTTO_NUMBER;
+import static lotto.utils.Constants.LOTTO_SIZE;
+import static lotto.utils.Constants.ONE_LOTTO_PRICE;
+import static lotto.utils.Constants.START_LOTTO_NUMBER;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +22,11 @@ public class Store {
 
     public int countLotto(Money money) {
         int realMoney = Integer.parseInt(money.getMoney());
-        return realMoney / 1000;
+        return realMoney / ONE_LOTTO_PRICE;
     }
 
     public List<Integer> makeLotto() {
-        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(START_LOTTO_NUMBER, END_LOTTO_NUMBER, LOTTO_SIZE));
     }
 
     private LottoTickets makeLottoTickets() {

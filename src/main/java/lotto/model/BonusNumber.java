@@ -1,11 +1,12 @@
 package lotto.model;
 
+import static lotto.utils.Constants.END_LOTTO_NUMBER;
+import static lotto.utils.Constants.INTEGER_RANGE;
+import static lotto.utils.Constants.START_LOTTO_NUMBER;
+
 public class BonusNumber {
-    private final String INTEGER_RANGE = "^[0-9]+$";
-    private final String ERROR_NOT_INTEGER = "^[0-9]+$";
+    private final String ERROR_NOT_INTEGER = "[ERROR] 보너스 번호는 숫자여야 합니다.";
     private final String ERROR_NOT_CORRECT_RANGE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
-    private final int START_LOTTO_NUMBER = 1;
-    private final int END_LOTTO_NUMBER = 45;
     private final int bonusNumber;
 
     public BonusNumber(String bonusNumber) {

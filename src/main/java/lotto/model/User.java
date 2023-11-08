@@ -1,8 +1,11 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.utils.Constants;
 
 public class User {
+    private final int SECOND_MATCH_COUNT = 5;
+    private final int CONVERT_PERCENT = 100;
     private final int count;
     private final LottoTickets lottoTickets;
 
@@ -17,7 +20,8 @@ public class User {
                     .filter(number -> lotto.isContain(number))
                     .count();
 
-            boolean checkBonus = (countCorrectNumber == 5) && lotto.isContain(winningLotto.getBonusNumber());
+            boolean checkBonus =
+                    (countCorrectNumber == SECOND_MATCH_COUNT) && lotto.isContain(winningLotto.getBonusNumber());
 
             WinningResult.countLottoResult(countCorrectNumber, checkBonus);
 
@@ -26,11 +30,11 @@ public class User {
 
     public double calculateProfit(int money) {
         double totalPrice = (double) WinningResult.calculateTotalPrice();
-        return totalPrice / money * 100;
+        return totalPrice / money * CONVERT_PERCENT;
     }
 
     public int getMoney() {
-        return count * 1000;
+        return count * Constants.ONE_LOTTO_PRICE;
     }
 
     public int getCount() {

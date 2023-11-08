@@ -10,12 +10,10 @@ public class WinningLotto {
 
     private final Lotto winningLotto;
     private final LottoNumber bonusLottoNumber;
-    private final HitCounter hitCounter;
 
     private WinningLotto(Lotto winningLotto, LottoNumber bonusLottoNumber) {
         this.winningLotto = winningLotto;
         this.bonusLottoNumber = bonusLottoNumber;
-        this.hitCounter = createHitCounter(winningLotto, bonusLottoNumber);
     }
 
     public static WinningLotto createWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
@@ -41,20 +39,11 @@ public class WinningLotto {
         }
     }
 
-    private HitCounter createHitCounter(Lotto winningLotto, LottoNumber bonusLottoNumber) {
-        List<Integer> winningNumbers = winningLotto.getLottoNumbers()
-            .stream()
-            .map(LottoNumber::number)
-            .collect(Collectors.toList());
-
-        return new HitCounter(winningNumbers, bonusLottoNumber.number());
-    }
-
     private LottoRanking checkRanking(List<LottoNumber> lottoNumbers) {
-        List<Integer> numbers = lottoNumbers.stream()
-            .map(LottoNumber::number)
-            .toList();
-        HitResult hitResult = hitCounter.countHit(numbers);
-        return LottoRanking.getRanking(hitResult.hitCount(), hitResult.isBonusBallHit());
+        int hitCount = (int) lottoNumbers.stream()
+            .filter(winningLotto.getLottoNumbers()::contains)
+            .count();
+
+        return LottoRanking.getRanking(hitCount, lottoNumbers.contains(bonusLottoNumber));
     }
 }

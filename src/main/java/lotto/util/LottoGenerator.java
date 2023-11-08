@@ -1,9 +1,7 @@
 package lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.constant.LottoGameNumber;
 import lotto.model.Lotto;
 
@@ -13,25 +11,13 @@ public final class LottoGenerator {
     }
 
     public static Lotto generate() {
-        List<Integer> numbers = generateUniqueNumbers(LottoGameNumber.COUNT);
+        List<Integer> numbers = generateUniqueNumbers();
 
         return new Lotto(numbers);
     }
 
-    private static List<Integer> generateUniqueNumbers(int count) {
-        Set<Integer> numbers = new HashSet<>();
-
-        while (numbers.size() < count) {
-            int number = generateNumber();
-
-            numbers.add(number);
-        }
-
-        return numbers.stream()
-                .toList();
-    }
-
-    private static int generateNumber() {
-        return Randoms.pickNumberInRange(LottoGameNumber.MINIMUM, LottoGameNumber.MAXIMUM);
+    private static List<Integer> generateUniqueNumbers() {
+        return Randoms.pickUniqueNumbersInRange(LottoGameNumber.MINIMUM, LottoGameNumber.MAXIMUM,
+                LottoGameNumber.COUNT);
     }
 }

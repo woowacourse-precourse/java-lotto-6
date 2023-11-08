@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.constant.ErrorMessage;
+import lotto.view.message.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

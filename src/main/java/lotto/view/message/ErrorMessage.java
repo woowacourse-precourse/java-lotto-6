@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.view.message;
 
 public enum ErrorMessage {
     NOT_DIGIT_MONEY("투입 금액은 숫자만 입력해주세요."),

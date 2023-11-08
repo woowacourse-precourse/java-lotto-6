@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.constant.ErrorMessage;
+import lotto.view.message.ErrorMessage;
 
 import java.util.List;
 import java.util.stream.LongStream;

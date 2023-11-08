@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.view.message;
 
 public enum LottoGameMessage {
     BUY_LOTTO_MONEY("구입금액을 입력해 주세요."),

@@ -1,8 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.constant.ErrorMessage;
-import lotto.constant.LottoGameMessage;
+import lotto.view.message.ErrorMessage;
+import lotto.view.message.LottoGameMessage;
 
 import java.util.Arrays;
 import java.util.List;

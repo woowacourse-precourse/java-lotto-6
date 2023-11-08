@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.service.PurchaseService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,8 +9,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
-class PurchaseMachineTest {
-    PurchaseMachine purchaseMachine = new PurchaseMachine();
+class PurchaseServiceTest {
+    PurchaseService purchaseService = new PurchaseService();
     PurchaseRepository purchaseRepository = PurchaseRepository.getInstance();
 
     @DisplayName("한개당 1000원으로 계산하여 로또를 구매할 수 있다.")
@@ -17,7 +18,7 @@ class PurchaseMachineTest {
     @ValueSource(ints = {1000, 2000, 3000, 4000, 50000})
     void getCountOfPurchasableLotto(int payment) {
         // given
-        int count = purchaseMachine.getCountOfPurchasable(payment);
+        int count = purchaseService.getCountOfPurchasable(payment);
         // when & then
         Assertions.assertThat(count).isEqualTo(payment/1000);
     }
@@ -27,18 +28,18 @@ class PurchaseMachineTest {
     @ValueSource(ints = {1500, 2600, 3700, 4800, 50999})
     void getCountOfPurchasableLotto_백원단위_입력(int payment) {
         // given
-        int count = purchaseMachine.getCountOfPurchasable(payment);
+        int count = purchaseService.getCountOfPurchasable(payment);
         // when & then
         Assertions.assertThat(count).isEqualTo(payment/1000);
     }
 
-    @DisplayName("구입한 장수만큼 레포지토이에 저장된다.")
+    @DisplayName("구입한 장수만큼 레포지토리에 저장된다.")
     @Test
     void purchaseAndStoreAtRepository() {
         // given
         List<Integer> purchases = List.of(1, 2, 3, 4, 5);
         for (int purchase : purchases) {
-            purchaseMachine.purchaseLottoForCount(purchase);
+            purchaseService.purchaseLottoForCount(purchase);
         }
 
         // when & then

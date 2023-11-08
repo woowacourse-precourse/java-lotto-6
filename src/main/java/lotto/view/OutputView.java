@@ -1,7 +1,6 @@
 package lotto.view;
 
 import lotto.domain.LottoRank;
-import lotto.view.message.OutputMessage;
 
 import java.util.Arrays;
 import java.util.List;

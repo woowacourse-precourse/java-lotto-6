@@ -30,7 +30,7 @@ public class NumberUtil {
         int[] numbers = new int[values.length];
 
         for (int i = 0; i < values.length; i++) {
-            numbers[i] = toInt(values[i]);
+            numbers[i] = toInt(values[i].trim());
         }
 
         return numbers;

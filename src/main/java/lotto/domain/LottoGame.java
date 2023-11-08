@@ -20,8 +20,7 @@ public class LottoGame {
         OutputView.showPlayerLotto(player, lottoMachine.calculatePurchaseCount());
 
         winningNumber = new Lotto(InputView.inputWinningNumber());
-        bonusNumber = InputView.inputBonusNumber();
-        winningNumber.validateContainsBonusInLotto(bonusNumber);
+        bonusNumber = InputView.inputBonusNumber(winningNumber);
 
         player.checkWinning(winningNumber, bonusNumber);
 

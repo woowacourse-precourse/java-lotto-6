@@ -18,11 +18,7 @@ public class Perform {
         }
     }
     public void total(int result) {
-        for (Awards value : values) {
-            if (result == value.getMatching()) {
-                value.addCount();
-            }
-        }
+        for (Awards value : values) value.getMatching(result);
     }
     public void result(int cnt) {
         viewResult();

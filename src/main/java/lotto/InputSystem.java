@@ -1,5 +1,6 @@
 package lotto;
 import camp.nextstep.edu.missionutils.Console;
+
 import lotto.model.Errors;
 import lotto.model.Lotto;
 

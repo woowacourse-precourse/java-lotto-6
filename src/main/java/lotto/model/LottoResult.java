@@ -33,21 +33,16 @@ public enum LottoResult {
     }
 
     private static Boolean checkLottoResult(LottoResult lottoResult, Integer matchedWinningNumberCount, Boolean matchedBonusNumber) {
-        if (lottoResult.matchedWinningNumberCount.equals(matchedWinningNumberCount) &&
-                lottoResult.matchedBonusNumber.equals(matchedBonusNumber)) {
-            return true;
+        if (!lottoResult.matchedWinningNumberCount.equals(matchedWinningNumberCount)){
+            return false;
         }
-        return false;
+        if(LottoResult.THIRD_PRIZE.getMatchedWinningNumberCount() == matchedWinningNumberCount){
+            return lottoResult.matchedBonusNumber == matchedBonusNumber;
+        }
+
+        return true;
     }
 
-    public static void sort(List<LottoResult> lottoResults) {
-        Collections.sort(lottoResults, new Comparator<LottoResult>() {
-            @Override
-            public int compare(LottoResult o1, LottoResult o2) {
-                return o1.toString().compareTo(o2.toString());
-            }
-        });
-    }
 
     public Integer getIndex() {
         return index;

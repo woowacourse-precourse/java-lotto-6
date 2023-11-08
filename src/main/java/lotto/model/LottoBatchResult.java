@@ -14,14 +14,11 @@ public class LottoBatchResult {
     }
 
     public void calculateLottoResults() {
-
         lottoBatch.getLottos().forEach(lotto -> {
             lottoResults.add(LottoResult.determinePrize(
                     prizeNumbers.matchedWinningNumberCount(lotto),
                     prizeNumbers.matchedBonusNumber(lotto)));
         });
-
-        LottoResult.sort(lottoResults);
 
     }
 

@@ -61,10 +61,7 @@ public class Controller {
         JackpotNumber jackpotNumber = null;
         try {
             String jackpot = InputView.requestJackpotNumber();
-            List<Integer> jackpotIntList = Arrays.stream(jackpot.split(","))
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
-            //jackpotNumber = new JackpotNumber(new Lotto(jackpotIntList), 100);
+            List<Integer> jackpotIntList = stringToList(jackpot);
             jackpotNumber = new JackpotNumber(new Lotto(jackpotIntList));
             JackpotNumberException.isJackpotValid(jackpotNumber);
         } catch (IllegalArgumentException e){
@@ -72,6 +69,12 @@ public class Controller {
             jackpotNumber= JackpotSetting();
         }
         return jackpotNumber;
+    }
+    private static List<Integer> stringToList(String inputJackpot) {
+        List<Integer> jackpotIntList = Arrays.stream(inputJackpot.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        return jackpotIntList;
     }
     private static JackpotNumber BonusNumberSetting(JackpotNumber jackpotNumber) {
         try {

@@ -63,4 +63,17 @@ public class InputValidator {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void validateUserInputBonusNumber(String rawBonusNumber) throws IllegalArgumentException {
+        int bonusNumber;
+        try {
+            bonusNumber = Integer.parseInt(rawBonusNumber);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(INVALID_INPUT_MESSAGE);
+        }
+        if (checkNumberNotInRange(bonusNumber)) {
+            throw new IllegalArgumentException(String.format(NUMBER_NOT_IN_RANGE_FORMAT,
+                    MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER));
+        }
+    }
 }

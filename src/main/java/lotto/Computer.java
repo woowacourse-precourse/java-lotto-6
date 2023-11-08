@@ -8,6 +8,7 @@ import java.util.List;
 public class Computer {
     final String ASK_PRICE = "구입금액을 입력해 주세요.";
 
+    final String BUY_LOTTO_MESSAGE = "개를 구매했습니다.";
     final String ONLY_NUMBER_ERROR_MESSAGE = "[ERROR] 구입 금액은 숫자만 가능합니다.";
     final String AMOUNT_OF_MONEY_MUST_DIVIDED_THOUSAND = "[ERROR] 금액은 1000원 단위로 나누어 떨어져야합니다.";
     final int LOTTO_PRICE = 1000;
@@ -40,10 +41,13 @@ public class Computer {
         return Integer.parseInt(input);
     }
 
-
-    List<Lotto> buyLotto(int price){
+    void announcePurchase(int amount){
+        System.out.println((amount / LOTTO_PRICE)+BUY_LOTTO_MESSAGE);
+    }
+    List<Lotto> buyLotto(int amount){
         List<Lotto> lottos = new ArrayList<>();
-        for(int i = 0; i < (price % LOTTO_PRICE); i++){
+
+        for(int i = 0; i < (amount / LOTTO_PRICE); i++){
             lottos.add(issueNewLotto());
         }
 
@@ -51,6 +55,13 @@ public class Computer {
     }
 
     Lotto issueNewLotto(){
-        return new Lotto(Randoms.pickUniqueNumbersInRange(MIN_NUMBER,MAX_NUMBER,LOTTO_NUMBER));
+        Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(MIN_NUMBER,MAX_NUMBER,LOTTO_NUMBER));
+        return lotto;
+    }
+
+    void printLottos(List<Lotto> lottos){
+        for(Lotto lotto : lottos){
+            System.out.println(lotto.toString());
+        }
     }
 }

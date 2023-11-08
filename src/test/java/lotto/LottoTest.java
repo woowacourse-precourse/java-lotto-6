@@ -1,30 +1,42 @@
 package lotto;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.in;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
+import static org.mockito.Mockito.*;
 
+import java.text.DecimalFormat;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.constant.Condition;
 import lotto.constant.Message;
+import lotto.controller.LottoController;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBuyer;
 import lotto.domain.Prize;
 import lotto.domain.Procedure;
 import lotto.service.LottoService;
-import org.assertj.core.api.Assertions;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 
 class LottoTest {
     Procedure procedure;
     Prize prize;
+    @Mock
+    InputView inputView = mock(InputView.class);
+    private final OutputView outputView = new OutputView();
     private final LottoService lottoService = new LottoService();
+    private final LottoController lottoController = new LottoController(lottoService, outputView, inputView);
+
+    DecimalFormat commaWithThousand = new DecimalFormat("#,###");
 
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
@@ -219,13 +231,13 @@ class LottoTest {
 
         assertAll(
                 () -> assertThat(Prize.getPrizeInfo(rank_5)).contains(Message.FIFTH_PRIZE,
-                        Integer.toString(Condition.FIFTH_PRIZE_AMOUNT)),
+                        commaWithThousand.format(Condition.FIFTH_PRIZE_AMOUNT)),
                 () -> assertThat(Prize.getPrizeInfo(rank_3)).contains(Message.THIRD_PRIZE,
-                        Integer.toString(Condition.THIRD_PRIZE_AMOUNT)),
+                        commaWithThousand.format(Condition.THIRD_PRIZE_AMOUNT)),
                 () -> assertThat(Prize.getPrizeInfo(rank_2)).contains(Message.SECOND_PRIZE,
-                        Integer.toString(Condition.SECOND_PRIZE_AMOUNT)),
+                        commaWithThousand.format(Condition.SECOND_PRIZE_AMOUNT)),
                 () -> assertThat(Prize.getPrizeInfo(rank_1)).contains(Message.FIRST_PRIZE,
-                        Integer.toString(Condition.FIRST_PRIZE_AMOUNT))
+                        commaWithThousand.format(Condition.FIRST_PRIZE_AMOUNT))
         );
     }
 
@@ -261,18 +273,50 @@ class LottoTest {
         LottoBuyer customer = new LottoBuyer(lottos, winningNumbers, bonusNumber, 3000);
 
         List<Integer> myPrizes = customer.retrieveAllResult();
-
         //when + then
         assertThat(
-                IntStream.range(Condition.ZERO, Condition.SIX_WINNING_NUMBERS)
-                        .filter(idx -> myPrizes.get(idx) != 0)
-                        .mapToObj(Prize::getPrizeInfo)
+                IntStream.range(1, Condition.SIX_WINNING_NUMBERS)
+                        .mapToObj(idx -> Prize.getPrizeInfo(idx) + myPrizes.get(idx) + "개")
                         .toList())
                 .contains(
-                        Message.FIRST_PRIZE + "(" + Integer.toString(Condition.FIRST_PRIZE_AMOUNT) + "원) - ",
-                        Message.SECOND_PRIZE + "(" + Integer.toString(Condition.SECOND_PRIZE_AMOUNT) + "원) - ",
-                        Message.THIRD_PRIZE + "(" + Integer.toString(Condition.THIRD_PRIZE_AMOUNT) + "원) - "
+                        Message.FIRST_PRIZE + "(" + commaWithThousand.format(Condition.FIRST_PRIZE_AMOUNT) + "원) - 1개",
+                        Message.SECOND_PRIZE + "(" + commaWithThousand.format(Condition.SECOND_PRIZE_AMOUNT) + "원) - 1개",
+                        Message.THIRD_PRIZE + "(" + commaWithThousand.format(Condition.THIRD_PRIZE_AMOUNT) + "원) - 1개"
                 );
 
     }
+
+    @Test
+    void 구매한__로또를_보여주세요() {
+        //given
+        List<Lotto> lottos = List.of(
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
+                new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12)),
+                new Lotto(Arrays.asList(13, 14, 15, 16, 17, 18))
+        );
+
+        //when
+        String result = lottoService.ShowPurchasedLottoNumbers(lottos);
+
+        assertThat(result).contains(
+                "3개를 구매했습니다.",
+                "[1, 2, 3, 4, 5, 6]",
+                "[7, 8, 9, 10, 11, 12]",
+                "[13, 14, 15, 16, 17, 18]"
+        );
+    }
+
+    @Test
+    void 정제된_숫자_받기(){
+        when(inputView.inputPurchaseAmount()).thenReturn("1000");
+        when(inputView.drawWinningString()).thenReturn("1,2,3,4,5,6");
+        assertTimeoutPreemptively(Duration.ofSeconds(1L), () ->{
+                assertEquals(
+                        lottoController.inputMoney(),1000);
+                assertEquals(lottoController.drawWinLotto().seeLottoNumber(), new Lotto(Arrays.asList(1,2,3,4,5,6)).seeLottoNumber());
+        }
+
+        );
+    }
+
 }

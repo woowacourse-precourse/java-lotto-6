@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.constant.Condition;
+import lotto.constant.Message;
 
 public class LottoBuyer {
     private final List<Lotto> purchasedLottoes;
@@ -19,18 +20,23 @@ public class LottoBuyer {
         this.money = money;
     }
 
-    private void calculateRankEachLotto(List<Integer> myPrizes, Lotto lotto){
+    private void calculateRankEachLotto(List<Integer> myPrizes, Lotto lotto) {
         int matchNumbers = lotto.compareLottoWithWinningNumber(winningNumbers);
         boolean matchBonusNumber = lotto.compareLottoWithBonusNumber(bonusNumber);
         int idx = Prize.checkPrize(matchNumbers, matchBonusNumber);
         myPrizes.set(idx, myPrizes.get(idx) + 1);
     }
 
-    public List<Integer> retrieveAllResult(){
+    public List<Integer> retrieveAllResult() {
         List<Integer> myRanks = Arrays.asList(0, 0, 0, 0, 0, 0);
         purchasedLottoes
                 .forEach(lotto -> calculateRankEachLotto(myRanks, lotto));
         return myRanks;
     }
+
+    public Double calculateInterestRate(long interests){
+        return (interests / (double) money) * 100;
+    }
+
 
 }

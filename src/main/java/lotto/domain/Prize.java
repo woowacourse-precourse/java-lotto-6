@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import lotto.constant.Condition;
 import lotto.constant.Message;
@@ -42,12 +43,17 @@ public enum Prize {
 
     public static String getPrizeInfo(int idx){
         StringBuilder info = new StringBuilder();
+        DecimalFormat commaWithThousand = new DecimalFormat("#,###");
         Prize current = findPrizeByIndex(idx);
         info.append(current.PRIZE_MESSAGE)
                 .append("(")
-                .append(current.PRIZE_AMOUNT)
+                .append(commaWithThousand.format(current.PRIZE_AMOUNT))
                 .append("원) - ");
         return info.toString();
+    }
+
+    public static long getPrizeAmount(int idx){
+        return findPrizeByIndex(idx).PRIZE_AMOUNT;
     }
 
 }

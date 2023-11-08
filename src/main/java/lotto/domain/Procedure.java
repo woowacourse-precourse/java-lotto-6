@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.constant.Message;
 
@@ -10,7 +11,9 @@ public enum Procedure {
     DRAW_WINNING_NUMBERS(Message.WINNING_NUMBERS,
             List.of(ErrorType.NOT_SIX_WINNING_NUMBERS, ErrorType.NUMBER_OUT_OF_RANGE,
                     ErrorType.DUPLICATED_NUMBER)),
-    DRAW_BONUS_NUMBER(Message.BONUS_NUMBER, List.of(ErrorType.NOT_ONE_NUMBER, ErrorType.NUMBER_OUT_OF_RANGE));
+    DRAW_BONUS_NUMBER(Message.BONUS_NUMBER, List.of(ErrorType.NOT_ONE_NUMBER, ErrorType.NUMBER_OUT_OF_RANGE)),
+
+    SEE_RESULT(Message.ALL_PASS, Collections.EMPTY_LIST);
 
     private String subject;
 

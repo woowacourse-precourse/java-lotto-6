@@ -18,8 +18,15 @@
 --- 
 
 #### 메소드
-
--
+- `public void PlayLottoGame()`
+  - 메소드 내부 변수
+    - `Procedure`
+    - `money`
+    - `purchasedLotto`
+    - `LottoWinningNumbers`
+    - `bonusNumber`
+  - Procedure에 맞게 각 메소드 실행
+  - 
 
 ## service
 
@@ -128,10 +135,6 @@
     - 입력받은 보너스 번호
 - `private int money`
     - 구매한 금액
-
-[//]: # (- `private int prizes`)
-
-[//]: # (  - 당첨 금액)
 
 #### 메소드
 

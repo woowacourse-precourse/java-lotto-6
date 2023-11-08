@@ -7,24 +7,21 @@ import lotto.domain.WinningLotto;
 import lotto.util.LottoGenerator;
 import lotto.util.LottoUtil;
 
+import java.util.function.Function;
+import java.util.function.Supplier;
+
 public class InputView {
 
-    public static Price getPurchasePrice() {
-        int purchasePrice = 0;
-        boolean isValidInput = false;
-
-        while (!isValidInput) {
+    private static <T> T getInput(Supplier<String> messageSupplier, Function<String, T> inputProcessor) {
+        while (true) {
             try {
-                System.out.println("구입금액을 입력해 주세요.");
+                System.out.println(messageSupplier.get());
                 String input = Console.readLine();
-                purchasePrice = LottoUtil.parseInteger(input);
-                isValidInput = true;
+                return inputProcessor.apply(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
-        return new Price(purchasePrice);
     }
 
     public static WinningLotto getWinningLottoNumbers() {
@@ -34,28 +31,25 @@ public class InputView {
         return new WinningLotto(winningLotto, bonusNumber);
     }
 
-    private static Lotto getValidatedWinningNumbers() {
-        while (true) {
-            try {
-                System.out.println("당첨번호를 입력해주세요.");
-                String winningNumbersInput = Console.readLine();
-                return LottoGenerator.generateWinningLottoNumbers(winningNumbersInput);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public static Price getPurchasePrice() {
+        return getInput(
+                () -> "구입금액을 입력해 주세요.",
+                input -> new Price(LottoUtil.parseInteger(input))
+        );
     }
 
-    private static int getValidatedBonusNumber(Lotto winningLotto) {
-        while (true) {
-            try {
-                System.out.println("\n보너스번호를 입력해주세요.");
-                String bonusNumberInput = Console.readLine();
-                return LottoUtil.parseLottoBonusNumber(bonusNumberInput, winningLotto);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public static Lotto getValidatedWinningNumbers() {
+        return getInput(
+                () -> "당첨 번호를 입력해 주세요.",
+                LottoGenerator::generateWinningLottoNumbers
+        );
+    }
+
+    public static int getValidatedBonusNumber(Lotto winningLotto) {
+        return getInput(
+                () -> "\n보너스 번호를 입력해 주세요.",
+                input -> LottoUtil.parseLottoBonusNumber(input, winningLotto)
+        );
     }
 
 }

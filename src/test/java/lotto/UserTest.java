@@ -18,9 +18,17 @@ class UserTest {
         assertThat(expectedNumber).isEqualTo(actualNumber);
     }
 
+    @DisplayName("구입 금액이 정수가 아닌 경우")
+    @Test
+    void getMoneyByNotNumber() {
+        User user = new User();
+        assertThatThrownBy(() -> user.getMoneyNumber("money"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("구입 금액 1,000원 단위가 아닌 경우")
     @Test
-    void getMoneyNumberError() {
+    void getMoneyNumberByInvalidUnit() {
         User user = new User();
         assertThatThrownBy(() -> user.getMoneyNumber("11110"))
                 .isInstanceOf(IllegalArgumentException.class);

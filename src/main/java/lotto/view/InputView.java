@@ -1,7 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.message.InputMessage;
+import lotto.constant.message.InputMessage;
 
 public final class InputView {
 
@@ -9,19 +9,19 @@ public final class InputView {
     }
 
     public static String inputMoney() {
-        System.out.println(InputMessage.INPUT_AMOUNT_OF_PAYMENT.getMessage());
+        System.out.println(InputMessage.INPUT_AMOUNT_OF_PAYMENT);
 
         return Console.readLine();
     }
 
     public static String inputWinningNumbers() {
-        System.out.println(InputMessage.INPUT_WINNING_NUMBERS.getMessage());
+        System.out.println(InputMessage.INPUT_WINNING_NUMBERS);
 
         return Console.readLine();
     }
 
     public static String inputBonusNumber() {
-        System.out.println(InputMessage.INPUT_BONUS_NUMBER.getMessage());
+        System.out.println(InputMessage.INPUT_BONUS_NUMBER);
 
         return Console.readLine();
     }

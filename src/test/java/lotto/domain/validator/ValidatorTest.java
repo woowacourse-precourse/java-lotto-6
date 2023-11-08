@@ -1,6 +1,6 @@
 package lotto.domain.validator;
 
-import lotto.message.ErrorMessage;
+import lotto.constant.message.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -54,7 +54,7 @@ class ValidatorTest {
     void validateExistValue(String whiteSpace) {
         assertThatThrownBy(() -> Validator.validateExistValue(whiteSpace))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.ERROR_NON_EXISTENT_VALUE.getMessage());
+                .hasMessage(ErrorMessage.ERROR_NON_EXISTENT_VALUE);
     }
 
     @DisplayName("맨 앞자리가 0으로 시작하거나 숫자가 아닌 값이 입력되면 예외가 발생한다.")
@@ -63,7 +63,7 @@ class ValidatorTest {
     void validateNumericInput(String notNumber) {
         assertThatThrownBy(() -> Validator.validateNumericInput(notNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.ERROR_NOT_NUMERIC_VALUE.getMessage());
+                .hasMessage(ErrorMessage.ERROR_NOT_NUMERIC_VALUE);
     }
 
     @DisplayName("1000으로 나눠지지 않는 숫자가 입력되면 예외가 발생한다.")
@@ -72,7 +72,7 @@ class ValidatorTest {
     void validateDivisibleBy1000(int indivisible) {
         assertThatThrownBy(() -> Validator.validateDivisibleBy1000(indivisible))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.ERROR_INDIVISIBLE_BY_1000.getMessage());
+                .hasMessage(ErrorMessage.ERROR_INDIVISIBLE_BY_1000);
     }
 
     @DisplayName("중복 숫자가 존재하면 예외가 발생한다.")
@@ -81,7 +81,7 @@ class ValidatorTest {
     void validateDuplicateNumbers(List<Integer> testList) {
         assertThatThrownBy(() -> Validator.validateDuplicateNumbers(testList))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.ERROR_HAS_DUPLICATE_NUMBERS.getMessage());
+                .hasMessage(ErrorMessage.ERROR_HAS_DUPLICATE_NUMBERS);
     }
 
     @DisplayName("쉼표 전후에 아무런 값이 없으면 예외가 발생한다.")
@@ -90,7 +90,7 @@ class ValidatorTest {
     void hasCommasWithoutSurroundingValues(String valuesSeparatedByCommas) {
         assertThatThrownBy(() -> Validator.hasCommasWithoutSurroundingValues(valuesSeparatedByCommas))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.ERROR_CONTAIN_CONSECUTIVE_COMMAS.getMessage());
+                .hasMessage(ErrorMessage.ERROR_CONTAIN_CONSECUTIVE_COMMAS);
     }
 
     @DisplayName("올바른 값이 들어왔을 때 예외가 발생하지 않는다.")
@@ -107,7 +107,7 @@ class ValidatorTest {
     void validateCountOfValues(String[] splitValues) {
         assertThatThrownBy(() -> Validator.validateCountOfValues(splitValues))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.ERROR_COUNT_OF_VALUES.getMessage());
+                .hasMessage(ErrorMessage.ERROR_COUNT_OF_VALUES);
     }
 
     @DisplayName("1~45 에 해당하는 숫자 아니면 예외가 발생한다.")
@@ -116,7 +116,7 @@ class ValidatorTest {
     void validateNumberInRange(int testNum) {
         assertThatThrownBy(() -> Validator.validateNumberInRange(testNum))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.ERROR_OUT_OF_RANGES.getMessage());
+                .hasMessage(ErrorMessage.ERROR_OUT_OF_RANGES);
     }
 
     @DisplayName("6개로 이루어진 숫자 리스트가 아니면 예외가 발생한다.")
@@ -125,7 +125,7 @@ class ValidatorTest {
     void validateCountOfNumbers1(List<Integer> testList) {
         assertThatThrownBy(() -> Validator.validateCountOfNumbers(testList))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.ERROR_COUNT_OF_VALUES.getMessage());
+                .hasMessage(ErrorMessage.ERROR_COUNT_OF_VALUES);
     }
 
     @DisplayName("6개로 이루어진 숫자 리스트면 아니면 예외가 발생하지 않는다.")

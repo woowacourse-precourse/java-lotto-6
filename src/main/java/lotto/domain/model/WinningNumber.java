@@ -1,7 +1,7 @@
 package lotto.domain.model;
 
 import lotto.domain.validator.Validator;
-import lotto.message.ErrorMessage;
+import lotto.constant.message.ErrorMessage;
 
 import java.util.HashSet;
 import java.util.List;

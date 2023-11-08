@@ -2,7 +2,7 @@ package lotto.domain.validator;
 
 import lotto.constant.PatternConstant;
 import lotto.constant.RegularConstant;
-import lotto.message.ErrorMessage;
+import lotto.constant.message.ErrorMessage;
 
 import java.util.HashSet;
 import java.util.List;
@@ -17,7 +17,7 @@ public final class Validator {
     public static void validateExistValue(String inputValue) {
         String val = inputValue.trim();
         if (val.equals("")) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_NON_EXISTENT_VALUE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NON_EXISTENT_VALUE);
         }
     }
 
@@ -25,7 +25,7 @@ public final class Validator {
         Matcher matcher = PatternConstant.NUMBER_PATTERN.matcher(inputValue);
 
         if (!matcher.matches()) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_NUMERIC_VALUE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_NUMERIC_VALUE);
         }
 
         return Integer.parseInt(inputValue);
@@ -33,7 +33,7 @@ public final class Validator {
 
     public static void validateDivisibleBy1000(int inputMoney) {
         if (inputMoney % RegularConstant.UNIT_AMOUNT != 0) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_INDIVISIBLE_BY_1000.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_INDIVISIBLE_BY_1000);
         }
     }
 
@@ -49,7 +49,7 @@ public final class Validator {
         }
 
         if (hasDuplicates) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_HAS_DUPLICATE_NUMBERS.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_HAS_DUPLICATE_NUMBERS);
         }
     }
 
@@ -57,26 +57,26 @@ public final class Validator {
         Matcher matcher = PatternConstant.HAS_COMMAS_WITHOUT_SURROUNDING_VALUES_PATTERNS.matcher(valuesSeparatedByCommas);
 
         if (matcher.find())
-            throw new IllegalArgumentException(ErrorMessage.ERROR_CONTAIN_CONSECUTIVE_COMMAS.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_CONTAIN_CONSECUTIVE_COMMAS);
 
         return valuesSeparatedByCommas.split(RegularConstant.DELIMITER);
     }
 
     public static void validateCountOfValues(String[] splitValues) {
         if (splitValues.length != 6) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_COUNT_OF_VALUES.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_COUNT_OF_VALUES);
         }
     }
 
     public static void validateCountOfNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_COUNT_OF_VALUES.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_COUNT_OF_VALUES);
         }
     }
 
     public static int validateNumberInRange(int num) {
         if (num > 45 || num < 1) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_OUT_OF_RANGES.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_OUT_OF_RANGES);
         }
 
         return num;

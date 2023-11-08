@@ -27,11 +27,4 @@ public enum LottoResult {
                 .orElse(NONE);
     }
 
-    public long getMoneyAmount() {
-        return this.moneyAmount;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
 }

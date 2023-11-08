@@ -1,8 +1,9 @@
 package lotto.Model.Domain;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import lotto.Exceptions.DupeNumbersException;
+import lotto.Validator;
+
+import java.util.*;
 
 public class Lotto{
     private final List<Integer> numbers;
@@ -10,6 +11,17 @@ public class Lotto{
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        lottoDupeCheck();
+    }
+    private void lottoDupeCheck() throws IllegalArgumentException{
+        try{
+            Set<Integer> setNumbers = new HashSet<>(numbers);
+            if (setNumbers.size() != numbers.size()){
+                throw new DupeNumbersException();
+            }
+        }catch (DupeNumbersException e){
+            throw new IllegalArgumentException(e);
+        }
     }
     @Override
     public String toString(){

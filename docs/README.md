@@ -24,7 +24,8 @@ README를 적어나갈수록 점점 감이 안온다. Model, View, Controller, D
 리스트의 초깃값 설정을 위해 Collections.nCopies(n, ?) 메서드 활용
 enum 내의 값들을 인덱스처럼 순회하며 찾는 메서드가 있을 것 같은데 시간상 못찾겠다..
 ### 학습적 경험
-
+겨우 built-in ApplicationTest를 통과하는 데 성공했다.. 지금 시간 9시.. custom test를 만들수나 있을까?
+진짜 3주차 시련이다 시련..
 
 ## 과제 요구사항 파악
 ### 기능 요구

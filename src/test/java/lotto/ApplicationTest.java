@@ -141,6 +141,15 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("당첨 번호 입력: 정상")
+    @Test
+    void inputWinningNumbers() {
+        assertSimpleTest(() -> {
+            run("8000", "1,2,3,4,5,6");
+            assertThat(output()).contains("보너스 번호를 입력해 주세요.");
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

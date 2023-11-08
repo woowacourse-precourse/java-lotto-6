@@ -21,10 +21,10 @@
 - [x] WinningLotto
   - Lotto, bonusNumber
   - [x] LottoTickets와 비교해서 Rank 찾기
-- [ ] Statistic : 로또 당첨 통계
+- [x] Statistic : 로또 당첨 통계
   - Map<Rank, Integer> : 등수와 당첨 갯수
-  - [ ] WinningLotto의 Rank 찾기 메서드를 이용해 당첨 개수 증가시키기
-  - [ ] budget을 인자로 받아 수익률 구하기
+  - [x] WinningLotto의 Rank 찾기 메서드를 이용해 당첨 개수 증가시키기
+  - [x] budget을 인자로 받아 수익률 구하기
 - [ ] Rank - 로또 당첨 enum
   - 1등, 2등, 3등, 4등, 5등, 낙첨 
   - [ ] 일치하는 번호 개수와 보너스 번호 존재 유무를 통해 Rank 구하기

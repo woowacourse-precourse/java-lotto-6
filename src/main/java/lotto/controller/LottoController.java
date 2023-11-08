@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
+import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoPaymentService;
 import lotto.view.InputView;
@@ -32,6 +33,8 @@ public class LottoController {
 
         Lotto drawNumbers = askValidWinningLotto();
         WinningLotto drawWithBonus = askValidBonusBall(drawNumbers);
+        
+        LottoResult lottoResult = new LottoResult(purchasedLottos, drawWithBonus);
     }
 
 

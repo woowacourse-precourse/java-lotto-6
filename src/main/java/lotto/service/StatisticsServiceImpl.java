@@ -20,7 +20,7 @@ public class StatisticsServiceImpl implements StatisticsService {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
-    public static StatisticsService getInstance(List<Lotto> myLottos, Lotto winningNumbers, BonusNumber bonusNumber) {
+    public static synchronized StatisticsService getInstance(List<Lotto> myLottos, Lotto winningNumbers, BonusNumber bonusNumber) {
         if (instance == null) {
             instance = new StatisticsServiceImpl(myLottos, winningNumbers, bonusNumber);
         }

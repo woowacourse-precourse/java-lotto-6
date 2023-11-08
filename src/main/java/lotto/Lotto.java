@@ -43,4 +43,9 @@ public class Lotto {
 
         return Rank.of((correctCount >= 3) ? 8 - (int) correctCount : -1);
     }
+
+    @Override
+    public String toString() {
+        return String.join(", ", numbers.toString());
+    }
 }

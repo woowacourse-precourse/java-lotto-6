@@ -4,14 +4,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class InputValidator {
+import static lotto.Constants.*;
 
-    private static final String ERROR_BLANK = "[ERROR] 입력된 값이 없습니다.";
-    private static final String ERROR_NOT_NUMBER = "[ERROR] 숫자를 입력해야합니다.";
-    private static final String ERROR_NOT_MULTIPLE_1000 = "[ERROR] 1000단위로 나누어 떨어지는 숫자가 아닙니다.";
-    private static final String ERROR_INCORRECT_LENGTH = "[ERROR] 로또 번호는 6개의 숫자를 입력해야 합니다.";
-    private static final String ERROR_INCORRECT_RANGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
-    private static final String ERROR_DUPLICATED_NUMBER = "[ERROR] 로또 번호는 중복되지 않아야 합니다.";
+public class InputValidator {
 
     public static void validateIsNotBlank(String input) {
         if (input.isBlank()) {

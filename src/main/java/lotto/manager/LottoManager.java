@@ -33,11 +33,11 @@ public class LottoManager {
                 .toList();
     }
 
-    public WinningLotto createWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+    private WinningLotto createWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    public LottoRankings createWinningRankings(Lottos lottos, WinningLotto winningLotto) {
+    private LottoRankings createWinningRankings(Lottos lottos, WinningLotto winningLotto) {
         List<LottoRanking> winRankings = lottos.calculateRankings(winningLotto);
         return new LottoRankings(winRankings);
     }
@@ -45,5 +45,10 @@ public class LottoManager {
     public double calculateProfitPercentage(Payment payment, LottoRankings winningRankings) {
         long totalPrize = winningRankings.calculateTotalPrize();
         return payment.calculatePercentageOfProfit(totalPrize);
+    }
+
+    public LottoRankings calculateWinningRankings(Lottos lottos, List<Integer> winningNumbers, int bonusNumber) {
+        WinningLotto winningLotto = createWinningLotto(winningNumbers, bonusNumber);
+        return createWinningRankings(lottos, winningLotto);
     }
 }

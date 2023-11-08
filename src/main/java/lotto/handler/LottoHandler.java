@@ -3,7 +3,6 @@ package lotto.handler;
 import lotto.domain.LottoRankings;
 import lotto.domain.Lottos;
 import lotto.domain.Payment;
-import lotto.domain.WinningLotto;
 import lotto.dto.LottoDto;
 import lotto.manager.LottoManager;
 import lotto.view.LottoGuideMessage;
@@ -21,7 +20,9 @@ public class LottoHandler {
     private final LottoWriter writer;
     private final LottoViewResolver lottoViewResolver;
 
-    public LottoHandler(LottoManager lottoManager, LottoReader reader, LottoWriter writer, LottoViewResolver lottoViewResolver) {
+    public LottoHandler(
+            LottoManager lottoManager, LottoReader reader, LottoWriter writer, LottoViewResolver lottoViewResolver
+    ) {
         this.lottoManager = lottoManager;
         this.reader = reader;
         this.writer = writer;
@@ -36,8 +37,8 @@ public class LottoHandler {
 
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
-        WinningLotto winningLotto = lottoManager.createWinningLotto(winningNumbers, bonusNumber);
-        LottoRankings winningRankings = lottoManager.createWinningRankings(lottos, winningLotto);
+
+        LottoRankings winningRankings = lottoManager.calculateWinningRankings(lottos, winningNumbers, bonusNumber);
         double profitPercentage = lottoManager.calculateProfitPercentage(payment, winningRankings);
 
         showResult(winningRankings, profitPercentage);

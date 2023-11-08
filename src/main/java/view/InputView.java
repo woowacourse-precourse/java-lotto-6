@@ -78,9 +78,7 @@ public class InputView {
             try{
                 String[] numbers = readLine().split(",");
 
-                winningNumber = Arrays.stream(numbers)
-                        .map(Integer::parseInt)
-                        .toList();
+                winningNumber = checkingWinningNumberWrongInputException(numbers);
 
                 checkingWinningNumberOverSizeException(winningNumber);
                 checkingWinningNumberOverInputException(winningNumber);
@@ -88,7 +86,9 @@ public class InputView {
 
                 validate = true;
             }catch (IllegalArgumentException e){
-                if (e.getMessage().equals("OverSize")) {
+                if(e.getMessage().equals("WrongInput")){
+                    System.out.println("[ERROR] 숫자가 아닙니다.");
+                } else if (e.getMessage().equals("OverSize")) {
                     System.out.println("[ERROR] 로또 번호는 6개입니다.");
                 } else if (e.getMessage().equals("DuplicateNumber")) {
                     System.out.println("[ERROR] 로또 번호는 중복되면 안됩니다.");
@@ -96,6 +96,18 @@ public class InputView {
                     System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
                 }
             }
+        }
+        return winningNumber;
+    }
+
+    private static List<Integer> checkingWinningNumberWrongInputException(String[] numbers) {
+        List<Integer> winningNumber;
+        try{
+            winningNumber = Arrays.stream(numbers)
+                    .map(Integer::parseInt)
+                    .toList();
+        }catch (IllegalArgumentException e){
+            throw new IllegalArgumentException("WrongInput");
         }
         return winningNumber;
     }
@@ -134,20 +146,31 @@ public class InputView {
 
         while (!validate){
             try{
-                BonusNumber =  Integer.parseInt(readLine());
+                BonusNumber = checkingBonusNumberWrongInputException();
 
                 checkingBonusNumberOverInputException(winningNumber, BonusNumber);
                 checkingBonusNumberNumberReplicatedException(winningNumber, BonusNumber);
 
                 validate = true;
             }catch (IllegalArgumentException e){
-                if(e.getMessage().equals("DuplicateNumber")){
+                if(e.getMessage().equals("WrongInput")) {
+                    System.out.println("[ERROR] 숫자가 아닙니다.");
+                } else if(e.getMessage().equals("DuplicateNumber")){
                     System.out.println("[ERROR] 로또 번호는 중복되면 안됩니다.");
-                }
-                else if(e.getMessage().equals("OutOfRange")){
+                } else if(e.getMessage().equals("OutOfRange")){
                     System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
                 }
             }
+        }
+        return BonusNumber;
+    }
+
+    private static int checkingBonusNumberWrongInputException() {
+        int BonusNumber;
+        try{
+            BonusNumber =  Integer.parseInt(readLine());
+        }catch (IllegalArgumentException e){
+            throw new IllegalArgumentException("WrongInput");
         }
         return BonusNumber;
     }

@@ -57,9 +57,7 @@ public class Lotto {
     public static Lotto createLotto() {
         LottoGenerator lottoGenerator = new LottoGenerator();
         List<Integer> numbers = lottoGenerator.generateLottoNumbers();
-        Lotto lotto = new Lotto(numbers);
-        OutputView.printMessage(lotto.toString());
-        return lotto;
+        return new Lotto(numbers);
     }
 
     public List<Integer> getNumbers() {
@@ -73,5 +71,13 @@ public class Lotto {
                         .map(Objects::toString)
                         .collect(Collectors.joining(LOTTO_DELIMITER)) +
                 LOTTO_CLOSE_BRACKET;
+    }
+
+    public boolean containsNumber(int number) {
+        return numbers.contains(number);
+    }
+
+    public void printLotto() {
+        OutputView.printMessage(this.toString());
     }
 }

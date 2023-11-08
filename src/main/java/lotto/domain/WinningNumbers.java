@@ -25,7 +25,7 @@ public class WinningNumbers {
         try {
             return inputWinningNumbers();
         } catch (IllegalArgumentException ex) {
-            System.out.println(INPUT_ERROR_MESSAGE);
+            System.out.println(INPUT_ERROR_MESSAGE.getValue());
             return createWinningNumbers();
         }
     }

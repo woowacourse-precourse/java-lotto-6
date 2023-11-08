@@ -39,17 +39,7 @@ public class LottoController {
 
     private void getPurchasePrice() {
         OutputView.printGetPurchasePriceMessage();
-        try {
-            String input = InputView.inputPurchasePrice();
-
-            Validator.isNumericInput(input);
-            purchasePrice = Integer.parseInt(input);
-            Validator.purchasePrice(purchasePrice);
-
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            getPurchasePrice();
-        }
+        purchasePrice = GetLottoNumber.purchasePrice();
     }
 
     public void getNumberOfLottoTickets() {

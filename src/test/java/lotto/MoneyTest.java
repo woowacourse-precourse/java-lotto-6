@@ -1,4 +1,4 @@
-₩package lotto;
+package lotto;
 
 import lotto.domain.Money;
 import org.junit.jupiter.api.DisplayName;

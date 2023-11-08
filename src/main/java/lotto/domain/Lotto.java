@@ -55,9 +55,6 @@ public class Lotto {
 
     @Override
     public int hashCode() {
-        if (lottoNumbers == null) {
-            return 0;
-        }
         return lottoNumbers.hashCode();
     }
 

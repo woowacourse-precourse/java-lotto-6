@@ -101,7 +101,7 @@ public class Application {
         System.out.println(String.format("6개 일치 (2,000,000,000원) - %d개", numOfRankings.get(0)));
     }
 
-    private static List<Integer> getNumOfRankings(final List<Integer> lottoMatchCounts) {
+    public static List<Integer> getNumOfRankings(final List<Integer> lottoMatchCounts) {
         Integer[] numOfRankings = { 0, 0, 0, 0, 0 }; // 차례대로 1등, 2등, 3등, 4등, 5등 개수
 
         for (Integer lottoMatchCount : lottoMatchCounts) {
@@ -152,9 +152,7 @@ public class Application {
         List<Integer> lottoMatchCounts = new ArrayList<>();
 
         for (Lotto lotto : lotties) {
-//            lotto.printLottoNumbers();
             lottoMatchCounts.add(lotto.compareWithUserNumbers(userLottoNumbers, bonusNumber));
-//            System.out.println(lotto.compareWithUserNumbers(userLottoNumbers, bonusNumber));
         }
 
         return lottoMatchCounts;

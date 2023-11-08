@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 public class InputView {
     public static Integer inputPurchaseAmount(){
         try{
-            return validateInteger(preprocessValidateIntegerAmount(Console.readLine())));
+            return validatePositiveAmount(validateInteger(preprocessValidateIntegerAmount(Console.readLine())));
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return inputPurchaseAmount();
@@ -17,7 +17,7 @@ public class InputView {
 
     }
 
-
+    
     public static String preprocessValidateIntegerAmount(String playerPurchaseAmount){
         return playerPurchaseAmount.trim().replace(",","");
     }
@@ -29,6 +29,11 @@ public class InputView {
         }
     }
 
-
+    public static Integer validatePositiveAmount(Integer playerPurchaseAmount){
+        if(playerPurchaseAmount<=0){
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 0보다 커야 합니다.");
+        }
+        return playerPurchaseAmount;
+    }
 
 }

@@ -35,6 +35,7 @@ public class LottoManager {
     private static final int THIRD_PLACE_PRICE = 1500000;
     private static final int SECOND_PLACE_PRICE = 30000000;
     private static final int FIRST_PLACE_PRICE = 2000000000;
+    private static final double MAKING_PERCENTAGE_NUMBER = 100.0;
 
     private final LottoPrinter lottoPrinter = new ConsoleLottoPrinter();
     private final LottoReceiver lottoReceiver = new ConsoleLottoReceiver();
@@ -63,7 +64,7 @@ public class LottoManager {
     }
 
     private void calculateReturnRate() {
-        this.returnRate = Math.round((returnPrice - purchasePrice) * 100.0 / purchasePrice);
+        this.returnRate = Math.round((returnPrice - purchasePrice) * MAKING_PERCENTAGE_NUMBER / purchasePrice);
     }
 
     private void calculateResult(List<Lotto> lottos) {

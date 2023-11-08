@@ -3,7 +3,9 @@ package lotto.entity;
 import lotto.entity.mapper.FiledMapper;
 import lotto.property.MethodProperty;
 
+import java.text.DecimalFormat;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -43,14 +45,32 @@ public class LottoManager {
                 .orElseThrow(() -> new IllegalStateException(LOTTO_RESULT_GENERATE_ERROR.toString()));
     }
 
-    public Double calculateLottoRate(Cost cost) {
-        Long purchaseCost = cost.getPurchaseCost();
-        Long totalPrize = 0L;
-        for (LottoResult result : resultEnumMap.keySet()) {
-            totalPrize += result.prize * resultEnumMap.get(result);
+    public String calculateLottoRate(Cost cost) {
+        double purchaseCost = cost.getPurchaseCost();
+        double totalWinningPrize = totalWinningPrice();
+        if (totalWinningPrize == 0) {
+            return "0%";
         }
-        Double rate = ((totalPrize - purchaseCost) / (double) purchaseCost) * 100;
-        return Math.round(rate * 100.0) / 100.0;
+        return convertRateFormat(purchaseCost, totalWinningPrize);
+    }
+
+    private Long totalWinningPrice() {
+        List<Long> winningPrices = convertToWinningPrice();
+        return winningPrices.stream()
+                .reduce(0L, Long::sum);
+    }
+
+    private List<Long> convertToWinningPrice() {
+        return resultEnumMap.entrySet()
+                .stream()
+                .map(e -> e.getKey().prize * e.getValue())
+                .toList();
+    }
+
+    private String convertRateFormat(double purchaseCost, double totalWinningPrize) {
+        DecimalFormat df = new DecimalFormat("#.##%");
+        double result = (totalWinningPrize / purchaseCost);
+        return df.format(result);
     }
 
     public Map<LottoResult, Integer> getResultEnumMap() {

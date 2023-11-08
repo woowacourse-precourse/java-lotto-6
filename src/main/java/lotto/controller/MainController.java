@@ -65,7 +65,7 @@ public class MainController {
         writePurchaseResult(lottoManager.getResultEnumMap(), lottoManager.calculateLottoRate(cost));
     }
 
-    private void writePurchaseResult(Map<LottoResult, Integer> lottoResultMap, Double lottoRate) {
+    private void writePurchaseResult(Map<LottoResult, Integer> lottoResultMap, String lottoRate) {
         OutputGenerateTool outputGenerateTool = new OutputGenerateTool();
         for (LottoResult lottoResult : lottoResultMap.keySet()) {
             if (lottoResult.equals(LottoResult.NO_PRIZE)) continue;
@@ -80,8 +80,8 @@ public class MainController {
         outputFormatting(outputGenerateTool.getLottosFormat(MethodProperty.LOTTO_RESULT_FORMAT));
     }
 
-    private void displayLottoRate(Double lottoRate) {
-        outputFormatting(LOTTO_RATE_PREFIX.toString() + lottoRate + LOTTO_RATE_SUFFIX);
+    private void displayLottoRate(String lottoRate) {
+        outputFormatting(LOTTO_RATE_PREFIX + lottoRate + LOTTO_RATE_SUFFIX);
     }
 
     private WeekWinning publishWeekWinning() {

@@ -11,16 +11,12 @@ public class InputView {
 
 
 
-    public static Integer inputPurchaseSum(){
-
+    public static Integer inputPurchaseSum() {
         OutputView.printInputMessage(PURCHASE_SUM_INPUT_MESSAGE);
         String input = Console.readLine();
 
-        try{
-            Validation.checkNotNumber(input);
-            Validation.checkNotInteger(input);
-            Validation.checkNotDivided(input);
-
+        try {
+            checkInputPurchaseSumValid(input);
             return Integer.parseInt(input);
 
         } catch(IllegalArgumentException e) {
@@ -28,7 +24,12 @@ public class InputView {
         }
 
         return null;
+    }
 
+    private static void checkInputPurchaseSumValid(String input) {
+        Validation.checkNotNumber(input);
+        Validation.checkNotInteger(input);
+        Validation.checkNotDivided(input);
     }
 
 }

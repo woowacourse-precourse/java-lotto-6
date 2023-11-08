@@ -35,7 +35,6 @@ public class LottoRepository {
             }
             lottoResult.put(rank, lottoResult.get(rank) + 1);
         }
-        System.out.println(lottoResult);
         return lottoResult;
     }
 

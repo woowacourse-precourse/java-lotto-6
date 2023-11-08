@@ -13,6 +13,7 @@ public class LottoResultOutputView {
     public static final String LOTTO_PROFIT_FORMAT = "총 수익률은 %.1f%%입니다.";
 
     public void showWinningResult(Map<Rank, Integer> lottoWinningStatistics) {
+        System.out.println();
         System.out.println(WINNING_RESULT_HEADER);
         System.out.println(MATCH_THREE_PRIZE + lottoWinningStatistics.get(Rank.FIFTH) + "개");
         System.out.println(MATCH_FOUR_PRIZE + lottoWinningStatistics.get(Rank.FOURTH) + "개");

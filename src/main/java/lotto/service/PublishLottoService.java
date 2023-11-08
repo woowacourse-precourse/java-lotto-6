@@ -4,7 +4,6 @@ import lotto.model.PublishedLotto;
 import lotto.view.LottoOutputView;
 
 public class PublishLottoService implements Service {
-
     PublishLottoService() {
     }
 

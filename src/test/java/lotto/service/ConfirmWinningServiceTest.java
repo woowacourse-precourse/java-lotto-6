@@ -17,7 +17,7 @@ class ConfirmWinningServiceTest extends OutputChecker {
     private final Lotto WINNER_NUMBER = new Lotto(List.of(3, 4, 5, 6, 7, 8));
     private final Integer BONUS_NUMBER = 13;
     private final LottoOutputView OUTPUT_VIEW = (LottoOutputView) View.generateLottoOutputView();
-    
+
     @DisplayName("confirmWinning 메서드 작동 확인 테스트")
     @Test
     void confirmWinningTest() {

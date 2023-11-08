@@ -21,7 +21,7 @@ public class Lotto {
         System.out.println(Arrays.toString(numbers.toArray()));
     }
 
-    public List<Integer> getNumbers{
+    public List<Integer> getNumbers(){
         return numbers;
     }
     // TODO: 추가 기능 구현

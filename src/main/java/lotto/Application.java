@@ -95,17 +95,35 @@ public class Application {
 
     private  static  void resultPrint(int tiral, List<Lotto> lottos,List<Integer> winningnumber ){
         System.out.println("당첨 통계\n"+ "---");
+        int[] lottosresult = new int[5];
+
         for(int i =0; i < tiral; i++){
             Lotto lottoticket =  lottos.get(i);
             int matchednumber = checkNumber(lottoticket,winningnumber);
-
+            boolean isbonusmatch = lottoticket.getNumbers().contains(winningnumber.get(6));
+            lottosresult[checkWinning(matchednumber, isbonusmatch)] +=1;
         }
 
 
     }
 
     private  static int checkNumber(Lotto lottoticket,List<Integer> winningnumber ){
-        return (int) lottoticket.stream().filter(winningnumber::contains).count();
+        return (int) lottoticket.getNumbers().stream().filter(winningnumber::contains).count();
+    }
+
+    private  static int checkWinning(int matchdnumber, boolean isbonusmatch){
+        if (matchdnumber == 6)
+            return 0;
+        if (matchdnumber ==5 && isbonusmatch)
+            return 1;
+        if (matchdnumber == 5)
+            return 2;
+        if (matchdnumber == 4)
+            return 3;
+        if (matchdnumber == 3)
+            return 4;
+
+        return matchdnumber;
     }
     private static void printCheckNumber(){
 

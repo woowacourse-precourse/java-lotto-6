@@ -32,7 +32,7 @@ public class Controller {
         List<Integer> convertedNumbers = inputConverter.convertToListOfInteger(validWinningNumbers);
 
         System.out.println();
-        int bonusNumber = getValidBonusNumber();
+        int bonusNumber = getValidBonusNumber(convertedNumbers);
         System.out.println();
         gameManager.saveWinningNumbers(convertedNumbers, bonusNumber);
         gameManager.updatePrizeStatistic(lottoTickets);
@@ -95,12 +95,12 @@ public class Controller {
         }
     }
 
-    private int getValidBonusNumber() {
+    private int getValidBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
                 String input = inputView.askBonusNumber();
                 int bonusNumber = inputConverter.convertToInteger(input);
-                validateBonusNumber(bonusNumber);
+                validateBonusNumber(bonusNumber, winningNumbers);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -108,9 +108,12 @@ public class Controller {
         }
     }
 
-    private void validateBonusNumber(int bonusNumber) {
+    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         if (bonusNumber < LottoTicketGenerator.MINIMUM_NUMBER || bonusNumber > LottoTicketGenerator.MAXIMUM_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.PREFIX.message + ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.message);
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.PREFIX.message + ErrorMessage.INVALID_BONUS_NUMBER.message);
         }
     }
 

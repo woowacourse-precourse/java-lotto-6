@@ -1,24 +1,63 @@
 package lotto;
 
-import static lotto.InputView.inputMoney;
+import java.util.List;
 
-public class Controller {
+import static lotto.InputView.*;
+import static lotto.OutputView.*;
+
+public class LottoController {
+
+    private int lottoProfit;
+    private int matchedThreeProfit;
+    private int matchedFourProfit;
+    private int matchedFiveProfit;
+    private int matchedFiveAndBonusNumber;
+    private int matchedSixProfit;
+
+    private LottoPurchaseSystem lottoPurchase = new LottoPurchaseSystem();
+    private LottoWinningSystem lottoWinning = new LottoWinningSystem();
+    private LottoRandomSystem lottoRandom = new LottoRandomSystem();
+
     public void lottoStart() {
-
+        lottoPurchase.setMoney(inputMoney());
+        lottoPurchase.calculateLottoAmount();
+        printPurchaseQuantity(lottoPurchase.lottoAmount);
+        lottoRandom.generateLottoNumbers();
+        printRandomLottoNumbers();
+        lottoWinning.winningNumber(inputWinningNumber());
+        lottoWinning.bonusNumber(inputBonusNumber());
+        lottoWinning.winningStatics(lottoWinning.winningCheck());
+        printWinningStatics();
     }
 
-    public void moneyInformation() {
-        inputMoney();
-        // 구입 금액 입력 받은 거를 숫자로 변환하고 조건 및 유효성 검증
-        // 구입 금액에 따라 로또 몇개 샀는지
+    public void printWinningStatics() {
+        printResults();
+        printMatchesThreeNumber(lottoWinning.matchesThreeNumber);
+        printMatchesFourNumber(lottoWinning.matchesFourNumber);
+        printMatchesFiveNumber(lottoWinning.matchesFiveNumber);
+        printMatchesFiveAndBonusNumber(lottoWinning.matchesFiveAndBonusNumber);
+        printMatchesSixNumber(lottoWinning.matchesSixNumber);
+        printProfitRate(calculateprofitRate());
     }
 
-    // 로또 구매 개수만큼 로또 번호 생성
+    public void printRandomLottoNumbers() {
+        List<List<Integer>> lottonumbers = lottoRandom.getRandomLottoNumbers();
+        for(List<Integer> number : lottonumbers){
+            System.out.println(number);
+        }
+    }
 
-    // 당첨 번호 입력 받기 및 조건, 유효성 검증, 리스트로 저장
-
-    // 보너스 번호 입력 받기 및 조건, 유효성 검증, 리스트로 저장
-
-    // 당첨 통계 출력
+    public int sumLottoProfit() {
+        matchedThreeProfit = lottoWinning.matchesThreeNumber * 5000;
+        matchedFourProfit = lottoWinning.matchesFourNumber * 50000;
+        matchedFiveProfit = lottoWinning.matchesFiveNumber * 1500000;
+        matchedFiveAndBonusNumber = lottoWinning.matchesFiveAndBonusNumber * 30000000;
+        matchedSixProfit = lottoWinning.matchesSixNumber * 2000000000;
+        return matchedThreeProfit + matchedFourProfit + matchedFiveProfit +
+                matchedFiveAndBonusNumber + matchedSixProfit;
+    }
+    public int calculateprofitRate() {
+        return sumLottoProfit() / lottoPurchase.getMoney();
+    }
 
 }

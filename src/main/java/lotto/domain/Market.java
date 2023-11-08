@@ -8,6 +8,11 @@ import java.util.List;
 public class Market {
     public Market() {}
 
+    /**
+     * 지불 금액에 따라 1000원당 1장 가격으로 로또를 자동넘버로 생성하여 반환한다.
+     * @param payment 지불 금액
+     * @return 로또 리스트
+     */
     public List<Lotto> issueLotto(int payment) {
         int numberOfLotto = calculateNumberOfLotto(payment);
         showResultHowManyBought(numberOfLotto);

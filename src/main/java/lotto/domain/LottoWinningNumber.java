@@ -16,11 +16,22 @@ public class LottoWinningNumber {
         return this.bonusNumber;
     }
 
+    /**
+     * 로또 객체를 받아 보너스 번호와 중복되는지 검증한 뒤,
+     * 당첨 번호로 설정한다.
+     * @param lotto 로또 객체
+     */
     public void setLotto(Lotto lotto) {
         validateDuplication(lotto);
         this.lotto = lotto;
     }
 
+    /**
+     * 보너스 번호를 입력받아 유효한 로또 번호인지 검증하고
+     * 로또 당첨 번호와 겹치지 않은지 검증한 뒤,
+     * 당첨 로또의 보너스 번호로 설정한다.
+     * @param bonusNumber 보너스 번호
+     */
     public void setBonusNumber(int bonusNumber) {
         validateRangeOfNumbers(bonusNumber);
         validateDuplication(bonusNumber);

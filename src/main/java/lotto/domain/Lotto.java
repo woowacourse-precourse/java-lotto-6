@@ -11,6 +11,11 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
+    /**
+     * 번호 리스트를 받아 적절한 로또 번호들인지 검증한 뒤,
+     * 로또 객체를 생성한다.
+     * @param numbers 번호 리스트
+     */
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;

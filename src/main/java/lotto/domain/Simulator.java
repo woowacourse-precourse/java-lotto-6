@@ -28,6 +28,13 @@ public class Simulator {
         }
     }
 
+    /**
+     * 로또 당첨 번호와 로또 리스트를 받아서,
+     * 각 로또 리스트의 당첨 여부를 확인하여 총 당첨 통계를 만든다
+     * 지불 금액 대비 수익률도 계산한다.
+     * @param lottoWinningNumber 로또 당첨 번호
+     * @param lottos 로또 리스트
+     */
     public void run(LottoWinningNumber lottoWinningNumber, List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             calculateRank(lottoWinningNumber, lotto);

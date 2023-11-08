@@ -13,15 +13,27 @@ public class Game {
 
     private static final String WINNING_NUMBERS_DELIMITER = ",";
 
+    private final long money;
+    private final Lotto winningNumbers;
+    private final int bonus;
+    private final List<Lotto> tickets;
+    private final Map<Grade, Integer> winners;
+
     public Game() {
-        try {
-            long money = inputMoney();
-            List<Lotto> tickets = buy(money);
-            WinningNumbers winningNumbers = inputWinningNumbers();
-            Map<Grade, Integer> winners = winningNumbers.draw(tickets);
-            printResult(winners, money);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        money = money();
+        tickets = buy(money);
+        winningNumbers = winningNumbers();
+        bonus = inputBonus();
+        winners = draw();
+    }
+
+    private long money() {
+        while (true) {
+            try {
+                return inputMoney();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -30,10 +42,10 @@ public class Game {
         long money;
         try {
             money = Long.parseLong(Console.readLine());
+            validateMoney(money);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NUMBER_PARSING_ERROR_MESSAGE);
         }
-        validateMoney(money);
         return money;
     }
 
@@ -58,50 +70,90 @@ public class Game {
         return Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_SIZE);
     }
 
-    private WinningNumbers inputWinningNumbers() {
-        Lotto winning = new Lotto(inputNumbers());
-        int bonus = inputBonus();
-        return new WinningNumbers(winning, bonus);
+    private Lotto winningNumbers() {
+        while (true) {
+            try {
+                return inputWinningNumbers();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private List<Integer> inputNumbers() {
+    private Lotto inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> numbers = Arrays.stream(Console.readLine().split(WINNING_NUMBERS_DELIMITER))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-        return numbers;
+        try {
+            List<Integer> numbers = Arrays.stream(Console.readLine().split(WINNING_NUMBERS_DELIMITER))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+
+            return new Lotto(numbers);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NUMBER_PARSING_ERROR_MESSAGE);
+        }
+    }
+
+    private int bonus() {
+        while (true) {
+            try {
+                return inputBonus();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private int inputBonus() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonus;
         try {
-            bonus = Integer.parseInt(Console.readLine());
+            int bonus = Integer.parseInt(Console.readLine());
+            Lotto.validateRange(bonus);
+            return bonus;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NUMBER_PARSING_ERROR_MESSAGE);
         }
-        return bonus;
     }
 
-    private void printResult(Map<Grade, Integer> winners, long money) {
-        printWinners(winners);
+    public void printResult() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        printWinners();
+
+
+        printYield();
+    }
+
+    private long calculateProfit() {
         long profit = 0;
         for (Grade grade : winners.keySet()) {
             profit += grade.calculatePrize(winners.get(grade));
         }
-        printYield(profit, money);
+        return profit;
     }
 
-    private void printWinners(Map<Grade, Integer> winners) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+    private void printWinners() {
         for (Grade grade : Grade.values()) {
             grade.print(winners.getOrDefault(grade, 0));
         }
     }
 
-    private void printYield(long profit, long money) {
+    private void printYield() {
+        long profit = calculateProfit();
         String yield = String.format("%.1f", 100.0 * profit / money);
         System.out.println("총 수익률은 " + yield + "%입니다.");
+    }
+
+    public Map<Grade, Integer> draw() {
+        Map<Grade, Integer> winners = new HashMap<>();
+        for (Lotto ticket : tickets) {
+            Optional<Grade> optionalGrade = ticket.draw(winningNumbers, bonus);
+            if (optionalGrade.isPresent()) {
+                Grade grade = optionalGrade.get();
+                int numOfWinners = winners.getOrDefault(grade, 0);
+                winners.put(grade, numOfWinners + 1);
+            }
+        }
+        return winners;
     }
 }

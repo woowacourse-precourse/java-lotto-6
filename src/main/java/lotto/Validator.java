@@ -17,7 +17,7 @@ public class Validator {
         try{
             return Integer.parseInt(input);
         }catch (NumberFormatException exception){
-            throw new IllegalArgumentException(NOT_VALID_MONEY);
+            throw new IllegalArgumentException(NOT_PARSE_INTEGER);
         }
     }
 

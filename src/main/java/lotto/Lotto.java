@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
+    static final int NUMBER_OF_NUMBERS = 6;
+    
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -12,7 +14,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NUMBER_OF_NUMBERS) {
             throw new IllegalArgumentException();
         }
         if (numbers.stream().distinct().count() != numbers.size()) {

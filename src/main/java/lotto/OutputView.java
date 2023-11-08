@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.EnumMap;
+
 public class OutputView {
     static void outputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -22,12 +24,12 @@ public class OutputView {
         System.out.println("---");
     }
     
-    static void outputWinnintStatistics(int[] rank) {
-        System.out.println("3개 일치 (5,000원) - " + rank[5] + "개");
-        System.out.println("4개 일치 (50,000원) - " + rank[4] + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + rank[3] + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rank[2] + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + rank[1] + "개");
+    static void outputWinnintStatistics(EnumMap<Rank, Integer> enumMap) {
+        System.out.println("3개 일치 (5,000원) - " + enumMap.get(Rank.FIFTH) + "개");
+        System.out.println("4개 일치 (50,000원) - " + enumMap.get(Rank.FOURTH) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + enumMap.get(Rank.THIRD) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + enumMap.get(Rank.SECOND) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + enumMap.get(Rank.FIRST) + "개");
     }
     
     static void outputRateOfReturn(double number) {

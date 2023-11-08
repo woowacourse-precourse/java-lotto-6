@@ -7,6 +7,10 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lottos {
+    static final int NUMBER_OF_NUMBERS = 6;
+    static final int MIN_OF_NUMBER = 1;
+    static final int MAX_OF_NUMBER = 45;
+    
     List<Lotto> lottos = new ArrayList<>();
     
     Lottos(int number){
@@ -16,7 +20,7 @@ public class Lottos {
     }
     
     Lotto makeLotto() {
-        List<Integer> immutableNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> immutableNumbers = Randoms.pickUniqueNumbersInRange(MIN_OF_NUMBER, MAX_OF_NUMBER, NUMBER_OF_NUMBERS);
         List<Integer> numbers = new ArrayList<>(immutableNumbers);
         Collections.sort(numbers);
         Lotto lotto = new Lotto(numbers);

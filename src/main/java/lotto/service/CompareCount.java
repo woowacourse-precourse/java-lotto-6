@@ -6,7 +6,6 @@ public enum CompareCount {
     FOUR_MATCH(4),
     FIVE_MATCH(5),
     SIX_MATCH(6);
-
     private final int count;
 
     CompareCount(int count) {

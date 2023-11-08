@@ -13,7 +13,7 @@ public class GameGuidePrint {
     public void scanBonusNumberPrint() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
     }
-    
+
     public void resultGame() {
         System.out.println("\n당첨 통계");
         System.out.println("---");

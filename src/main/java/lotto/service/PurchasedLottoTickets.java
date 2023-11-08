@@ -9,7 +9,6 @@ import lotto.readUserInput.PurchaseAmount;
 
 public class PurchasedLottoTickets {
     private List<Lotto> tickets = new ArrayList<>();
-    
 
     public void register(PurchaseAmount purchaseAmount) {
         while (purchaseAmount.addTicketByPurchaseAmount(tickets.size())) {

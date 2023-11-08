@@ -15,11 +15,8 @@ public class LottoGame {
     private WinningNumbers winningNumbers = new WinningNumbers();
     private BonusNumbers bonusNumbers = new BonusNumbers();
     private PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets();
-
     private PurchasedLottoNumbersPrint purchasedLottoNumbersPrint = new PurchasedLottoNumbersPrint(
             purchasedLottoTickets);
-
-
     private WinningStatistics winningStatistics = new WinningStatistics();
     private RateOfReturn rateOfReturn = new RateOfReturn(purchasedLottoTickets);
 
@@ -47,7 +44,6 @@ public class LottoGame {
         bonusNumbers.read();
     }
 
-
     public void purchasedLottoPrint() {
         purchasedLottoNumbersPrint.purchaseCompletePrint(purchaseAmount);
         purchasedLottoNumbersPrint.printTickets();
@@ -63,5 +59,4 @@ public class LottoGame {
         rateOfReturn.initTicketResult();
         rateOfReturn.printRateOfReturn();
     }
-
 }

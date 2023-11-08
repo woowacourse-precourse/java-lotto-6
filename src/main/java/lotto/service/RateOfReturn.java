@@ -9,7 +9,6 @@ public class RateOfReturn {
     public static final int BENEFIT_ZERO_INITIAL_VALUE = 0;
     public static final int HUNDRED_TO_GET_PERCENTAGE = 100;
 
-
     public RateOfReturn(PurchasedLottoTickets purchasedLottoTickets) {
         this.purchasedLottoTickets = purchasedLottoTickets;
 

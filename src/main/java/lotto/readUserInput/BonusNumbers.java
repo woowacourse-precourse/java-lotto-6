@@ -34,6 +34,4 @@ public class BonusNumbers implements UserInput {
         }
         return bonusNumber;
     }
-
-
 }

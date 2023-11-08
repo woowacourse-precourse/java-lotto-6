@@ -1,5 +1,8 @@
 package lotto.util;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import lotto.validation.LottoException;
 
 public class Converter {
@@ -13,5 +16,14 @@ public class Converter {
         }
     }
 
-
+    public static List<Integer> convertWinningNumbers(String input) {
+        try {
+            List<Integer> inputNumbers = Arrays.stream(input.split(SPLIT_POINT))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+            return inputNumbers;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(LottoException.LETTER_ERROR_MESSAGE.getMessage());
+        }
+    }
 }

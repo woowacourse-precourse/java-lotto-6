@@ -6,13 +6,15 @@ public class LottoAmount {
     private static int price=0;
     public LottoAmount(){
         purchaseAmountValidate();
-        System.out.println(howManyLotto(price));
     }
     private static void lottoPrice() {
-        String purchaseAmount = inputLottoAmount();
+        price = inputNumberChange();
         System.out.println();
-        price = Integer.parseInt(purchaseAmount);
         purchaseAmount(price);
+    }
+    private static Integer inputNumberChange(){
+        String purchaseAmount = inputLottoAmount();
+        return Integer.parseInt(purchaseAmount);
     }
 
     public static void purchaseAmount(int amount) throws IllegalArgumentException{
@@ -29,11 +31,9 @@ public class LottoAmount {
             lottoPrice();
         }
     }
-    public static Integer priceCalculation(int amount){
-        return amount/1000;
+    public static Integer priceCalculation(int num){
+        return num/1000;
     }
 
-    public static String howManyLotto(int amount){
-        return priceCalculation(amount)+"개를 구매했습니다.";
-    }
+
 }

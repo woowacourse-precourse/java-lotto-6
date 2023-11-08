@@ -14,12 +14,14 @@ public class LottoAnswer extends Lotto {
     public LottoAnswer(String input) {
         parseInteger(input);
         validate(numbers);
+        validateInput(input);
     }
 
     public LottoAnswer(String input, int bonusNumber) {
         parseInteger(input);
-        validate(getNumbers());
+        validate(numbers);
         isUniqueBonus(numbers, bonusNumber);
+        validateInput(input);
         this.bonusNumber = new BonusNumber(bonusNumber);
     }
 
@@ -53,6 +55,13 @@ public class LottoAnswer extends Lotto {
         Set<Integer> set = new HashSet<>(numbers);
         if (set.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBERS);
+        }
+    }
+
+    private void validateInput(String input){
+        int length = input.length();
+        if (input.charAt(length - 1) == ',') {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_INPUT);
         }
     }
 }

@@ -9,6 +9,7 @@ public class WinnerRevenue {
     private static final int WINNING_REVENUE_START_INDEX = 0;
     private static final int INIT_VALUE = 0;
     private static final int TWO_DOT_ROUND_VALUE = 100;
+    private static final int RATE_OF_REVENUE_ONE_HUNDRED_VALUE = 100;
 
     private final long totalRevenue;
 
@@ -41,7 +42,7 @@ public class WinnerRevenue {
 
     public double calculateRateOfRevenue(int userPrice) {
         double totalPriceDivideByUserPrice =  (double) this.totalRevenue / userPrice;
-        double rateOfRevenue = totalPriceDivideByUserPrice * 100;
+        double rateOfRevenue = totalPriceDivideByUserPrice * RATE_OF_REVENUE_ONE_HUNDRED_VALUE;
 
         return rateOfRevenue;
     }

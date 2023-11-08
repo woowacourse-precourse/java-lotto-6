@@ -41,10 +41,6 @@ public enum WinningResult {
         throw new IllegalArgumentException(WRONG_LOTTO_RESULT_ERROR_MESSAGE);
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
     public int getTotalPrizeAmount() {
         return totalPrizeAmount;
     }

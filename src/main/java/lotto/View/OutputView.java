@@ -36,21 +36,6 @@ public class OutputView {
         System.out.println(message + numberOfMatch + UNIT_MESSAGE);
     }
 
-    public static void printResult(Map<WinningResult, Integer> result) {
-        for (WinningResult winningResult : result.keySet()) {
-            winningResult.printMessage(result.get(winningResult));
-        }
-    }
-
-    public static void printEarningRate(Map<WinningResult, Integer> result, int lottoAmount) {
-        double profitRate = 0;
-        for (WinningResult winningResult : result.keySet()) {
-            profitRate =
-                    profitRate + ((double) (winningResult.getTotalPrizeAmount()) / (lottoAmount * 1000) * (result.get(
-                            winningResult)) * (100));
-        }
-        printProfitRate(profitRate);
-    }
 
     public static void printProfitRate(double profitRate) {
         System.out.println(TOTAL_PROFIT_RATE_MESSAGE + String.format("%.1f", profitRate) + PERCENT_STATEMENT_MESSAGE);

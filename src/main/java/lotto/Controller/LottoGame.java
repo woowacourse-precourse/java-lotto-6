@@ -94,8 +94,24 @@ public class LottoGame {
             winningResult = winningLotto.compareNumbers(lottoList.get(i));
             result.put(winningResult, result.get(winningResult) + 1);
         }
-        OutputView.printResult(result);
-        OutputView.printEarningRate(result, amount);
+        setPrintMessage(result);
+        calculateProfitRate(result, amount);
+    }
+
+    public static void setPrintMessage(Map<WinningResult, Integer> result) {
+        for (WinningResult winningResult : result.keySet()) {
+            winningResult.printMessage(result.get(winningResult));
+        }
+    }
+
+    public static void calculateProfitRate(Map<WinningResult, Integer> result, int lottoAmount) {
+        double profitRate = 0;
+        for (WinningResult winningResult : result.keySet()) {
+            profitRate =
+                    profitRate + ((double) (winningResult.getTotalPrizeAmount()) / (lottoAmount * 1000) * (result.get(
+                            winningResult)) * (100));
+        }
+        OutputView.printProfitRate(profitRate);
     }
 
     private Map<WinningResult, Integer> setResult() {

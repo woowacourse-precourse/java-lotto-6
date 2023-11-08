@@ -57,7 +57,7 @@ public class View {
     private List<Integer> convertToIntegerList(String winningNumbers) {
         return Arrays.stream(winningNumbers.split(GameUtilConstants.LEST_DELIMITER.getValue(), -1))
             .peek(NumberValidator::validateNumber)
-            .map(View::convertToInt)
+            .map(this::convertToInt)
             .peek(NumberValidator::validateInRangeNumber)
             .toList();
     }
@@ -76,7 +76,7 @@ public class View {
         }
     }
 
-    private static int convertToInt(String value) {
+    private int convertToInt(String value) {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {

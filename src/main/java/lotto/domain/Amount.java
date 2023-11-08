@@ -20,7 +20,7 @@ public class Amount {
         isMultiple(value);
     }
 
-    private static void isLessThanEqualMostValue(int value) {
+    private void isLessThanEqualMostValue(int value) {
         if (value > MAX_LOTTO_PRICE) {
             throw AmountException.MOST_VALUE_EXCEPTION.getException();
         }

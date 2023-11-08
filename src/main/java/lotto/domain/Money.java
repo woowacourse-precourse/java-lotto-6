@@ -27,4 +27,8 @@ public class Money {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_MONEY.getMessage());
         }
     }
+
+    public int getTicket(){
+        return money / 1000;
+    }
 }

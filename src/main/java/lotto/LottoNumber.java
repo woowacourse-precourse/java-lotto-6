@@ -12,4 +12,9 @@ public class LottoNumber {
     public boolean calculateScore(int number) {
         return lottoNumber.contains(number);
     }
+
+    @Override
+    public String toString() {
+        return lottoNumber.toString();
+    }
 }

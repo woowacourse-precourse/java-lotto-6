@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.ErrorMessages.INVALID_BONUS_RANGE;
+import static lotto.Validator.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
@@ -11,7 +12,7 @@ public class InputReader {
     private static final int START_RANGE = 1;
     private static final int END_RANGE = 45;
     public static int inputPurchaseAmount() {
-        return Integer.parseInt(Console.readLine());
+        return checkIsInteger(Console.readLine());
     }
 
     public static Lotto inputWinningLotto() {

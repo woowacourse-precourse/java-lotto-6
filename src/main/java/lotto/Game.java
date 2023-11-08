@@ -16,8 +16,13 @@ public class Game {
     }
 
     private static int buyLotto() {
-        askPurchaseAmount();
-        return inputPurchaseAmount();
+        try {
+            askPurchaseAmount();
+            return inputPurchaseAmount();
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e.getMessage());
+            return buyLotto();
+        }
     }
 
     private static UserLotto completeBuyingLotto(int purchaseAmount) {

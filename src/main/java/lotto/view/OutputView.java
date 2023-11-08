@@ -5,6 +5,7 @@ import static lotto.constant.OutputMessage.LOTTO_NUMBERS_SEPARATOR;
 import static lotto.constant.OutputMessage.LOTTO_RESULT_FORMAT;
 import static lotto.constant.OutputMessage.NUMBER_OF_LOTTO;
 import static lotto.constant.OutputMessage.RATE_OF_RETURN_FORMAT;
+import static lotto.constant.OutputMessage.RESULT;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
@@ -36,6 +37,7 @@ public class OutputView {
     }
 
     public static void printResult(EnumMap<Ranking, Integer> result, double rateOfReturn) {
+        System.out.println(RESULT);
         result.entrySet().stream()
                 .filter(entry -> entry.getKey() != Ranking.FAIL)
                 .forEach(

@@ -45,8 +45,8 @@ public class GameManager {
             for (Lotto lotto : bundle) {
                 output.printMessage(lotto.toString() + "\n");
             }
-        } catch (Exception e) {
-            output.printMessage(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            output.printMessage("[ERROR] " + e.getMessage() + "\n");
             announcePublishedLotto(cashier, lottoCompany);
         }
     }
@@ -55,8 +55,8 @@ public class GameManager {
         try {
             output.printMessage("당첨 번호를 입력해 주세요.\n");
             return input.inputWinningNumbers();
-        } catch (Exception e) {
-            output.printMessage(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            output.printMessage("[ERROR] " + e.getMessage() + "\n");
             return requestInputWinningNumbers();
         }
 
@@ -66,8 +66,8 @@ public class GameManager {
         try {
             output.printMessage("보너스 번호를 입력해 주세요.\n");
             return input.inputBonusNumber();
-        } catch (Exception e) {
-            output.printMessage(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            output.printMessage("[ERROR] " + e.getMessage() + "\n");
             return requestInputBonusNumber();
         }
     }

@@ -20,7 +20,7 @@ public class ReceivedAmount {
     }
     private void validateIsLottoPrice(int amount) throws IllegalArgumentException{
         if (amount < LOTTO_PRICE || (amount % LOTTO_PRICE) != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구매 금액은 1000원단위 금액입니다.\n");
+            throw new IllegalArgumentException("로또 구매 금액은 1000원단위 금액입니다.\n");
         }
     }
 }

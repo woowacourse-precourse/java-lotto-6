@@ -1,10 +1,8 @@
 package lotto;
 
-
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -45,16 +43,6 @@ class LottoWinningTest {
                 Arguments.of(tickets, List.of(1,1,2,3,2))
         );
     }
-
-//    @DisplayName("로또가 당첨 기준에 따라 올바른 등수에 당첨되는지 확인한다.")
-//    @ParameterizedTest
-//    @MethodSource("provideLottoTicket")
-//    void testAssignRank(Lotto ticket, LottoRank expected) {
-//        LottoWinning testLottoWinning = new LottoWinning(List.of(5, 10, 15, 20, 25, 30));
-//        testLottoWinning.setBonusNumber(35);
-//        LottoRank actual = testLottoWinning.assignRank(ticket);
-//        assertEquals(expected, actual);
-//    }
 
     static Stream<Arguments> provideLottoTicket() {
         return Stream.of(

@@ -7,9 +7,6 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
-    /**
-     * Implementing Restrictions numbers should remain private Can't add *instance* variable
-     */
     private static int LOTTO_NUM_MIN = 1;
     private static int LOTTO_NUM_MAX = 45;
     private static int LOTTO_NUM_IN_A_TICKET = 6;

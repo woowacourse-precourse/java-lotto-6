@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.model.Wallet;
@@ -16,6 +17,7 @@ public class LottoGameController {
         checkPurchaseAmount();
         buyLottoes();
         checkWinningLottoNumbers();
+        printLottoesResult();
     }
 
     private void checkPurchaseAmount() {
@@ -70,5 +72,10 @@ public class LottoGameController {
                 OutputView.printErrorMessage(illegalArgumentException.getMessage());
             }
         }
+    }
+
+    private void printLottoesResult() {
+        Map<Integer, Integer> lottoesResult = user.checkLottoesRanking(winningLotto);
+        OutputView.printLottoesResult(lottoesResult);
     }
 }

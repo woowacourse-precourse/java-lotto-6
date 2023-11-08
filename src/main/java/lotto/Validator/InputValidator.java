@@ -6,6 +6,9 @@ import java.util.List;
 public class InputValidator {
 
     private static final String SEPARATOR = ",";
+    private static final int MONEY_MIN_AMOUNT = 1000;
+    private static final int MONEY_MAX_AMOUNT = 21 * 100000000;
+    private static final int MONEY_UNIT = 1000;
 
     public static void validateBlankString(String input) {
         if (input.isBlank()) {
@@ -30,11 +33,14 @@ public class InputValidator {
         return numbers;
     }
 
-    public static void validateMoney(long money){
-        if(money <= 0 || money > 21 * Math.pow(10, 8))
-                throw new IllegalArgumentException("[ERROR] 금액은 유효한 값으로 입력해주세요.");
-        if(money % 1000 != 0)
-            throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해주세요");
+    public static void validateMoney(long money) {
+        if (money < MONEY_MIN_AMOUNT || money > MONEY_MAX_AMOUNT) {
+            throw new IllegalArgumentException(
+                    "[ERROR] 금액은 " + MONEY_MIN_AMOUNT + "원 이상 " + MONEY_MAX_AMOUNT + "원 이하인 값으로 입력해주세요.");
+        }
+        if (money % MONEY_UNIT != 0) {
+            throw new IllegalArgumentException("[ERROR] 금액은 " + MONEY_UNIT + "원 단위로 입력해주세요");
+        }
 
     }
 }

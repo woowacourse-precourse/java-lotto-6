@@ -67,4 +67,7 @@ public class LottoResultWinners {
         return lottoResultWinner.get(rank);
     }
 
+    public Integer getNumberOfAllWinner() {
+        return lottoResultWinner.size();
+    }
 }

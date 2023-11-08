@@ -8,6 +8,7 @@ import java.util.List;
 public class InputView {
 
     private static final String MESSAGE_ENTER_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
+    private static final String MESSAGE_ENTER_WINNING_LOTTO = "당첨 번호를 입력해 주세요.";
 
     public int purchaseLottoAmount(){
         System.out.println(MESSAGE_ENTER_PURCHASE_AMOUNT);
@@ -16,6 +17,7 @@ public class InputView {
     }
 
     public List<Integer> readWinningLotto(){
+        System.out.println(MESSAGE_ENTER_WINNING_LOTTO);
         String input = Console.readLine();
         String[] inputSplit = input.split(",");
         List<Integer> winningLotto = new ArrayList<>();
@@ -24,6 +26,7 @@ public class InputView {
         }
         return winningLotto;
     }
+
 
 
 }

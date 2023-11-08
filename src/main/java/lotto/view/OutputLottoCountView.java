@@ -7,6 +7,7 @@ public class OutputLottoCountView {
 
     public static void printLottoCount(Price price){
         int purchasedCount = price.getPrice();
+        System.out.println();
         System.out.println((String.format(LOTTO_COUNT_MESSAGE, purchasedCount)));
     }
 }

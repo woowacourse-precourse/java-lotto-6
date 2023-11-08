@@ -39,8 +39,8 @@ public class LottoGame {
     }
 
     private void validateMinus(Integer budget) {
-        if(budget<=0){
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 0 또는 음수가 될 수 없습니다.");
+        if(budget<1000){
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000보다 작을 수 없습니다.");
         }
     }
 

@@ -53,12 +53,17 @@ public class UserView {
         }
     }
 
-    public void winningsLog(HashMap<Rewards, Integer> resultAll) {
-        Rewards[] rewards = Rewards.values();
-        Arrays.sort(rewards, Comparator.comparingInt(Rewards::correctLottos));
+    public void totalResult(HashMap<Rewards, Integer> resultAll, String winningRate) {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
+        winningsLog(resultAll);
+        rate(winningRate);
+    }
+
+    public void winningsLog(HashMap<Rewards, Integer> resultAll) {
+        Rewards[] rewards = Rewards.values();
+        Arrays.sort(rewards, Comparator.comparingInt(Rewards::correctLottos));
 
         for (Rewards reward : rewards) {
             System.out.printf("%s %s - %d개\n", reward.getNotifyMessege(), viewProcessor.moneyEdit(reward)

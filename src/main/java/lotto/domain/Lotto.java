@@ -5,6 +5,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class Lotto {
+    private static final int START_NUMBER = 1;
+    private static final int END_NUMBER = 45;
+    public static final int LOTTO_COUNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -22,7 +25,7 @@ public class Lotto {
     }
 
     public static Lotto makeLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LOTTO_COUNT);
         return new Lotto(numbers);
     }
 

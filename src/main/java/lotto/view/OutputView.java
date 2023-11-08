@@ -102,15 +102,15 @@ public class OutputView {
         println(message);
     }
 
-    public static void print(final String Message) {
+    private static void print(final String Message) {
         System.out.print(Message);
     }
 
-    public static void println(final String Message) {
+    private static void println(final String Message) {
         System.out.println(Message);
     }
 
-    public static void printNewLine() {
+    private static void printNewLine() {
         System.out.println();
     }
 }

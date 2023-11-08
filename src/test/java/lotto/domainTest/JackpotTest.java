@@ -21,7 +21,7 @@ public class JackpotTest {
     }
     @Test
     @DisplayName("입력 받은 당첨 로또 번호 중 중복된 수가 입력된다면 예외처리한다.")
-    void isDuplicatedTest() {
+    void isRepeatedTest() {
         assertThatThrownBy(() -> JackpotNumberException.isJackpotDuplicated(new JackpotNumber(new Lotto(List.of(23, 23, 2, 4, 5, 6)))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -33,7 +33,7 @@ public class JackpotTest {
     }
     @Test
     @DisplayName("입력 받은 당첨 로또 번호와 보너스 번호가 겹치면 예외처리한다.")
-    void isBonusDuplicatedTest() {
+    void isBonusRepeatedTest() {
         JackpotNumber jackpotNumber = new JackpotNumber(new Lotto(List.of(23, 2, 4, 5, 6,12)));
         jackpotNumber.changeBonus(2);
         assertThatThrownBy(() -> JackpotNumberException.isBounusNumberRepeated(jackpotNumber))

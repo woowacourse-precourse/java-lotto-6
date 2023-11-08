@@ -31,7 +31,6 @@ public class LottoMachine {
             Collections.sort(lottoNumbers);
             return new Lotto(lottoNumbers);
         } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
             return getLotto();
         }
     }

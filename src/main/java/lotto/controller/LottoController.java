@@ -21,5 +21,6 @@ public class LottoController {
         Lottos lottos = lottoMakeService.makeRandomLottos(purchaseAmountRequest);
         view.writeLottosInfo(lottos.getLottoInfoResponse());
         WinningNumberRequest winningNumberRequest = view.readWinningNumber();
+        view.readBonusNumber();
     }
 }

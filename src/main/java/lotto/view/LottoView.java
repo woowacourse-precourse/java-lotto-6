@@ -34,6 +34,11 @@ public class LottoView {
         return readUntilValidInput(inputMapper::inputToWinningNumberRequest);
     }
 
+    public void readBonusNumber() {
+        write(LottoMessage.getEmpty());
+        write(LottoMessage.getBonusNumberInputMessage());
+    }
+
     private void write(String output) {
         System.out.println(output);
     }

@@ -207,13 +207,10 @@ public class Application {
         SECOND_PRIZE(1500000),
         THIRD_PRIZE(50000),
         FOURTH_PRIZE(5000);
-
         private final long prizeMoney;
-
         WinningPrize(long prizeMoney) {
             this.prizeMoney = prizeMoney;
         }
-
         public long getPrizeMoney() {
             return prizeMoney;
         }

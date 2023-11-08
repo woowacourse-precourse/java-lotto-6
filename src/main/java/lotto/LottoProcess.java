@@ -6,8 +6,6 @@ import lotto.ui.InputView;
 import lotto.ui.OutputView;
 
 public class LottoProcess {
-    private static final String ERROR_PREFIX = "[ERROR] ";
-
     public LottoResult run(List<Lotto> lottos, WinningLotto winningLotto) {
         List<Integer> counted = new ArrayList<>();
         List<Boolean> checked = new ArrayList<>();
@@ -35,7 +33,7 @@ public class LottoProcess {
         try {
             return setUpPurchaseMoney();
         } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_PREFIX + e.getMessage());
+            OutputView.printErrorMessage(e);
         }
         return runPurchaseMoneyStep();
     }
@@ -49,7 +47,7 @@ public class LottoProcess {
         try {
             return setUpWinningNumbers();
         } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_PREFIX + e.getMessage());
+            OutputView.printErrorMessage(e);
         }
         return runWinningNumbersStep();
     }
@@ -63,7 +61,7 @@ public class LottoProcess {
         try {
             return setUpWinningLotto(winningNumber);
         } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_PREFIX + e.getMessage());
+            OutputView.printErrorMessage(e);
         }
         return runWinningLottoStep(winningNumber);
     }

@@ -19,6 +19,7 @@ public class OutputView {
     private static final String PRIZE_MESSAGE = "(%,d원)";
     private static final String WINNING_LOTTO_NUMBER_MESSAGE = "%d개";
     private static final String EARNING_RATE_NOTIFY_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
     public static void printLottoQuantity(int lottoQuantity) {
         System.out.print(NEW_LINE);
@@ -56,5 +57,9 @@ public class OutputView {
 
     public static void printEarningRate(double earningRate) {
         System.out.println(String.format(EARNING_RATE_NOTIFY_MESSAGE, earningRate));
+    }
+
+    public static void printErrorMessage(IllegalArgumentException e){
+        System.out.println(ERROR_PREFIX + e.getMessage());
     }
 }

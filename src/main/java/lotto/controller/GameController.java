@@ -1,10 +1,12 @@
 package lotto.controller;
 
+import lotto.domain.CompareResult;
 import lotto.domain.Lottos;
 import lotto.domain.Price;
 import lotto.domain.WinningLotto;
 import lotto.view.InputPurchaseView;
 import lotto.view.InputWinningNumView;
+import lotto.view.OutputCompareLottoView;
 import lotto.view.OutputPurchaseView;
 
 /**
@@ -14,6 +16,7 @@ public class GameController {
     private final InputPurchaseView inputPurchaseView = new InputPurchaseView();
     private final OutputPurchaseView outputPurchaseView = new OutputPurchaseView();
     private final InputWinningNumView inputWinningNumView = new InputWinningNumView();
+    private final OutputCompareLottoView outputCompareLottoView = new OutputCompareLottoView();
     private final Lottos lottos = new Lottos();
     private WinningLotto winningLotto;
 
@@ -23,6 +26,7 @@ public class GameController {
     public void start() {
         purchaseLotto();
         setWinningLotto();
+        result();
     }
 
     /**
@@ -38,6 +42,12 @@ public class GameController {
         winningLotto = new WinningLotto(inputWinningNumView.printWinningNum(),
                 inputWinningNumView.printBonusNum());  //당첨번호와 보너스 번호를 입력받는다.
 
+    }
+
+    public void result() {
+        CompareResult compareResult = new CompareResult(lottos, winningLotto);
+        outputCompareLottoView.printCompareLotto(compareResult); //비교한뒤 결과 출력
+        //수익률 출력
     }
 
 }

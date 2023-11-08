@@ -12,11 +12,11 @@ public enum Rank {
     ;
 
     private final int matched;
-    private final long winningMoney;
+    private final long prize;
 
     Rank(int matched, long winningMoney) {
         this.matched = matched;
-        this.winningMoney = winningMoney;
+        this.prize = winningMoney;
     }
 
     public static Rank Of(final int matched, final boolean matchedBonus) {
@@ -33,11 +33,11 @@ public enum Rank {
                 .orElse(MISS);
     }
 
-    public int getMatched() {
+    public int matched() {
         return matched;
     }
 
     public long prize() {
-        return winningMoney;
+        return prize;
     }
 }

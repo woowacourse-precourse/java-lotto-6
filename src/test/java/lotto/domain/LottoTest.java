@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.util.LottoValidator;
+import lotto.util.WinningLottoValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -31,7 +31,7 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("generateInvalidLottoNumbers")
     void lottoNumbersOutOfRangeTest(List<Integer> lottoNumbers) {
-        assertThatThrownBy(() -> LottoValidator.validateLotto(lottoNumbers))
+        assertThatThrownBy(() -> WinningLottoValidator.validateLotto(lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

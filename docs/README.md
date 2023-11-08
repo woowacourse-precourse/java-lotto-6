@@ -96,8 +96,8 @@
 ### util
 - InputValidator
   - 사용자의 입력이 입력 규칙에 맞는지 검증하는 기능
-- LottoValidator
-  - 로또 번호 입력이 입력 규칙에 맞는지 검증하는 기능
+- WinningLottoValidator
+  - 당첨 로또 번호 입력이 입력 규칙에 맞는지 검증하는 기능
 
 # 공통 피드백 중요 항목
 

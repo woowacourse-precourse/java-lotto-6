@@ -7,7 +7,7 @@ import java.util.List;
 import static lotto.constant.ConstantValue.END_INCLUSIVE;
 import static lotto.constant.ConstantValue.START_INCLUSIVE;
 
-public class LottoValidator {
+public class WinningLottoValidator {
 
     public static void validateLotto(List<Integer> lottoNumbers) {
         validateLottoNumbersOutOfRange(lottoNumbers);

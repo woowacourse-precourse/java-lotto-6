@@ -1,3 +1,5 @@
+![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=24&animation=fadeIn&height=250&section=header&text=[%EC%9A%B0%EC%95%84%ED%95%9C%ED%85%8C%ED%81%AC%EC%BD%94%EC%8A%A4]%20%ED%94%84%EB%A6%AC%EC%BD%94%EC%8A%A4%203%EC%A3%BC%EC%B0%A8&desc=%F0%9F%92%B8%20%EB%A1%9C%EB%98%90%20%20-%20%EC%9D%B4%EB%AF%BC%EA%B7%9C&fontSize=48&fontAlign=50&fontAlignY=36&descSize=24&descAlign=50&descAlignY=52)
+
 # 구현할 기능 목록
 
 - [x] 구입 금액 입력
@@ -46,26 +48,68 @@
 - [x] 게임 흐름 제어 기능
 - [x] 에러 핸들링 기능
 
-## 🚀 기능 요구 사항
+# 클래스 설명
 
-- 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-    - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
+ExceptionMessages
+- 에러 메세지 관리 클래스입니다. 메세지에 일괄적으로 "[ERROR] " 접두사를 붙여주는 역할을 하고 있습니다.
 
-### 추가된 요구 사항
+RandomNumberGenerator
+- 랜덤한 숫자를 생성하는 클래스입니다. 미션에 주어진 Randoms를 활용해서 6자리의 고유한 숫자를 생성할 수 있습니다.
 
-- 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
-    - 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
-- else 예약어를 쓰지 않는다.
-    - 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
-    - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
-- Java Enum을 적용한다.
-- 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
-    - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
-    - 단위 테스트 작성이 익숙하지 않다면 `test/java/lotto/LottoTest`를 참고하여 학습한 후 테스트를 구현한다.
+LottoControllerFactory
+- 컨트롤러 생성을 담당하는 클래스입니다. 의존 관계 설정을 하고 있습니다.
 
-### 라이브러리
+LottoController
+- inputView, outputView, lottoService를 이용해 게임을 진행하는 클래스입니다.
+- 사용자 입력 오류가 발생하면 다시 재시도하는 기능을 가지고 있습니다.
 
-- `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms` 및 `Console`
-  API를 사용하여 구현해야 한다.
-    - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용한다.
-    - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
+LottoService
+- 로또 서비스 클래스입니다. 도메인 객체를 사용해서 로또 서비스의 주요 기능을 제공하고 있습니다.
+
+Lotto
+- `List<LottoNumber>`를 들고있는 VO입니다. 로또의 사이즈와 중복 여부를 검사합니다.
+
+LottoNumber
+- int number를 들고있는 VO입니다. 로또 번호가 1~45 사이인지 검증하는 역할을 하고 있습니다.
+- OutputView에서 toString을 활용해서 출력하기 때문에 toString을 재정의했습니다.
+- OutputView에서 로또 번호를 오름차순으로 정렬해야 하기 때문에 compareTo를 재정의했습니다.
+
+LottoShop
+- 구매 금액을 받아서 `List<Lotto>`를 생성하는 클래스입니다.
+
+LottoTickets
+- 구매한 로또와 구매 금액을 들고있는 VO입니다. 
+- 당첨 번호를 받아서 등수를 가져올 수 있습니다.
+- 총 상금액을 받아서 수익률을 가져올 수 있습니다.
+
+PurchaseAmount
+- 구입 금액을 들고있는 VO입니다.
+- 총 상금액을 받아서 수익률을 계산하는 역할을 합니다.
+- 로또 가격을 받아서 구매 수량을 계산하는 역할을 합니다.
+
+Rank
+- 순위에 대한 정보를 가진 enum 클래스 입니다.
+- 맞춘 개수와 보너스 여부로 순위를 계산하는 역할을 합니다.
+- 순위는 점수를 구해서 가져옵니다. 맞춘 개수 1개당 2점, 보너스는 1점으로 계산합니다.
+- 각 등수에 맞는 점수를 미리 계산해놓고, 맞춘 개수와 보너스 여부가 들어오면 해당 점수에 맞는 등수를 바로 반환합니다.
+
+RankResult
+- 순위 결과를 저장하는 EnumMap을 관리하는 일급 컬렉션입니다.
+- EnumMap 초기화, 순위 개수 추가 기능을 제공합니다.
+- 저장된 EnumMap의 값을 가지고 총 상금액을 계산할 수 있습니다.
+
+WinningLotto
+- 당첨 번호와 보너스 번호를 가지고 있는 VO 입니다.
+- Lotto를 전달받아 맞춘 개수와 보너스 여부를 계산할 수 있습니다.
+
+WinningResult
+- 당첨 결과를 들고 있는 DTO 입니다.
+
+InputView
+- 사용자 입력과 간단한 검증을 하는 역할을 담당하고 있습니다.
+
+OutputView
+- 객체를 메세지로 변환하고 출력하는 역할을 담당하고 있습니다.
+
+Application
+- 컨트롤러 팩토리에서 lottoController를 가져와 실행하는 역할을 하고 있습니다.

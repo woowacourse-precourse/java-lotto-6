@@ -9,21 +9,21 @@ public class PurchaseController {
     private final OutputView outputView = OutputView.getInstance();
 
     public Integer getPurchaseNumber() {
-        Integer money = inputMoney();
-        Purchase purchase = new Purchase(money);
+        Purchase purchase = getPurchase();
 
         outputView.printNewLine();
         return purchase.getNumberOfPurchases();
     }
 
-    private Integer inputMoney() {
+    private Purchase getPurchase() {
         try {
             outputView.printInputPurchaseMoneySentence();
             Integer money = inputView.inputNumber();
-            return money;
+            Purchase purchase = new Purchase(money);
+            return purchase;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputMoney();
+            return getPurchase();
         }
     }
 }

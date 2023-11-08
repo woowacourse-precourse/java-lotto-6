@@ -24,12 +24,17 @@ public class LottoController {
     }
 
     public WinningLotto createWinningLotto() {
-        List<Integer> winningNumbers = inputWinningNumbers();
-        outputView.printNewLine();
+        try {
+            List<Integer> winningNumbers = inputWinningNumbers();
+            outputView.printNewLine();
 
-        Integer bonusNumber = inputBonusNumber();
-        outputView.printNewLine();
-        return lottoFactory.createWinningLotto(winningNumbers, bonusNumber);
+            Integer bonusNumber = inputBonusNumber();
+            outputView.printNewLine();
+            return lottoFactory.createWinningLotto(winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            outputView.print(e.getMessage());
+            return createWinningLotto();
+        }
     }
 
     private List<Integer> inputWinningNumbers() {

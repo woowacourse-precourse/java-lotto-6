@@ -23,6 +23,7 @@ public class DrawingHost {
         getWinningResult();
         Long prizeSum = CalculateUtility.calculatePrizeSum(winningResultMap);
         double earningsRate = CalculateUtility.calculateEarningsRate(prizeSum, LottoRepository.getBudget());
+        OutputView.printStats(winningResultMap, earningsRate);
     }
 
     private void getWinningResult() {

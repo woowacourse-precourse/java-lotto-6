@@ -7,38 +7,45 @@ import java.util.List;
 
 public class PlayerInput {
     //금액 입력받기
-    public int InputMoney() {
+    public int inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
         try {
             ErrorValidate.isNumberFormat(input);
-        } catch (IllegalArgumentException e) {
+            ErrorValidate.isMinimumInputMoney(Integer.parseInt(input));
+        } catch (NumberFormatException e) {
             System.out.println(ErrorMessage.ERROR_IS_NUMBER.getErrorMessage());
-            InputMoney();
+            inputMoney();
+        } catch (IllegalArgumentException e) {
+            System.out.println(ErrorMessage.ERROR_MINIMUM_INPUT_MONEY.getErrorMessage());
+            inputMoney();
         }
         int money = Integer.parseInt(input);
+        System.out.println("\n" + (money / 1000) + "개를 구매했습니다.");
         return money;
     }
 
-    public List<Integer> LottoNumber() {
+    public List<Integer> inputLottoNumber() {
         List<Integer> winNumber = new ArrayList<>();
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         for (String number : input.split(",")) {
             try {
                 ErrorValidate.inputNumberLimit(Integer.parseInt(number));
             } catch (IllegalArgumentException e) {
                 System.out.println(ErrorMessage.ERROR_NUMBER_RANGE.getErrorMessage());
-                LottoNumber();
+                inputLottoNumber();
             }
             winNumber.add(Integer.parseInt(number));
         }
+        System.out.println();
         return winNumber;
     }
 
-    public int BonusNumber() {
+    public int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
+        System.out.println();
         return bonusNumber;
     }
 }

@@ -1,7 +1,6 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +23,7 @@ public class LottoGame {
         while (true) {
             try {
                 String budget = UserInteraction.promptBudget();
-                return parseInteger(budget);
+                return parsePositiveInteger(budget);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -35,7 +34,7 @@ public class LottoGame {
         while (true) {
             try {
                 String[] numbers = UserInteraction.promptWinningNumbers().split(",");
-                return parseIntegers(numbers);
+                return parsePositiveIntegers(numbers);
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
             }
@@ -46,14 +45,14 @@ public class LottoGame {
         while (true) {
             try {
                 String number = UserInteraction.promptBonusNumber();
-                return parseInteger(number).intValue();
+                return parsePositiveInteger(number).intValue();
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
             }
         }
     }
 
-    private static Long parseInteger(String integer) {
+    private static Long parsePositiveInteger(String integer) {
         try {
             int number = Integer.parseInt(integer);
             if (number <= 0) {
@@ -65,10 +64,10 @@ public class LottoGame {
         }
     }
 
-    private static List<Integer> parseIntegers(String[] integers) {
+    private static List<Integer> parsePositiveIntegers(String[] integers) {
         List<Integer> parsedIntegers = new ArrayList<>();
         for(String integer: integers) {
-            parsedIntegers.add(parseInteger(integer).intValue());
+            parsedIntegers.add(parsePositiveInteger(integer).intValue());
         }
         return parsedIntegers;
     }

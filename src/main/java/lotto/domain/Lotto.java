@@ -39,7 +39,6 @@ public class Lotto {
     }
 
     private void checkLottoNumberRangeAndThrowException(List<Integer> numbers) throws IllegalArgumentException {
-
         for (int number : numbers) {
             if (number > LottoProperty.LOTTO_NUMBER_MAX_RANGE.getNumber()
                     || number < LottoProperty.LOTTO_NUMBER_MIN_RANGE.getNumber()) {

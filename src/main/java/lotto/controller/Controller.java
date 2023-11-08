@@ -14,7 +14,6 @@ public class Controller {
 
     LottoService lottoService;
     View view;
-
     InputController inputController;
 
     public Controller(LottoService lottoService, View view) {

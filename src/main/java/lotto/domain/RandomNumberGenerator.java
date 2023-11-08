@@ -9,6 +9,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class RandomNumberGenerator {
+    public RandomNumberGenerator() {
+    }
 
     static List<Integer> getNumbers() {
         return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_COUNT);

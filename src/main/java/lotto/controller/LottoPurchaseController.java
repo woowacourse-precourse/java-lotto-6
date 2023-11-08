@@ -14,10 +14,11 @@ public class LottoPurchaseController {
     private final OutputView outputView = new OutputView();
     private final LottoShop lottoShop = new LottoShop();
 
-    public void purchase(){
+    public List<Lotto> purchase(){
         int userPayment = getUserPayment();
         List<Lotto> purchasedLotto = purchaseLotto(userPayment);
         purchasedLotto.forEach(this::printPurchasedLotto);
+        return purchasedLotto;
     }
 
     private int getUserPayment() {

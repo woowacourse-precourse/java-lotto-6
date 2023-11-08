@@ -22,7 +22,9 @@ public class LottoServiceTest {
         lottoService.setPurchaseNum(inputValue);
 
         //then
-        assertThatThrownBy(() -> lottoService.userNumberList(inputValue))
+        assertThatThrownBy(() -> lottoService.setLottoNumberList())
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> lottoService.setBonusNumber())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

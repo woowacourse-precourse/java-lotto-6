@@ -23,6 +23,7 @@ public class LottoService {
     private static ConsistencyService consistencyService;
     private static int capital;
     private static String purchaseNum;
+    private static String bonusNum;
 
     public LottoService() {
         outputView = new OutputView();
@@ -63,14 +64,22 @@ public class LottoService {
     public void userNumber(){
         outputView.userNumberComment();
         purchaseNum = InputView.inputLine();
-        lotto = new Lotto(userNumberList(purchaseNum));
+        lotto = new Lotto(setLottoNumberList());
         outputView.bonusNumberComment();
-        int bonusNumber = Parsing.stringToInt(InputView.inputLine());
+        bonusNum = InputView.inputLine();
+        int bonusNumber = setBonusNumber();
         userLotto = new UserLotto(lotto, new BonusLotto(bonusNumber));
     }
 
-    public List<Integer> userNumberList(String purchaseNum) {
+    public int setBonusNumber() {
+        int bonusNumber = Parsing.stringToInt(bonusNum);
+        NumberValidation.isACorrectRange(bonusNumber);
+        return bonusNumber;
+    }
+
+    public List<Integer> setLottoNumberList() {
         List<Integer> userLottoList = Parsing.makeList(purchaseNum);
+        NumberValidation.isCorrectRange(userLottoList);
         NumberValidation.isSixSizeOfList(userLottoList);
         return userLottoList;
     }
@@ -84,6 +93,10 @@ public class LottoService {
 
     public void setPurchaseNum(String input){
         this.purchaseNum = input;
+    }
+
+    public void setBonusNum(String input) {
+        this.bonusNum = input;
     }
 
 }

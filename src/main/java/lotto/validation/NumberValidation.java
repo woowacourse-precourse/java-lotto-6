@@ -8,7 +8,10 @@ import java.util.*;
 
 public class NumberValidation {
     private static final int ONE_THOUSAND = 1000;
-    private static final String COMMA_SPLITTER = "([1-9]|[1-3][0-9]|4[0-5]),";
+    private static final String COMMA_SPLITTER = "^(\\d+,)+\\d+$";
+    private static final int START_NUMBER = 1;
+    private static final int END_NUMBER = 45;
+    private static final int LOTTO_LIST_SIZE = 6;
     public static void isDivisible(int inputValue){
         if(inputValue% ONE_THOUSAND != 0){
             handleCustomException(new NotDivisible());
@@ -30,7 +33,7 @@ public class NumberValidation {
     }
 
     public static void isSixSizeOfList(List<Integer> list){
-        if(list.size() != 6){
+        if(list.size() != LOTTO_LIST_SIZE){
             handleCustomException(new NotSizeOfList());
         }
     }
@@ -38,6 +41,24 @@ public class NumberValidation {
     public static void isCommaSplitter(String inputValue){
         if(!inputValue.matches(COMMA_SPLITTER)){
             handleCustomException(new NotCommaSplitter());
+        }
+    }
+
+    public static void isCorrectNumber(String inputValue){
+        if(!inputValue.isEmpty() || !inputValue.isBlank()){
+            handleCustomException(new NotAllNumber());
+        }
+    }
+
+    public static void isACorrectRange(int inputValue){
+        if(inputValue < START_NUMBER || inputValue > END_NUMBER){
+            handleCustomException(new NotInRange());
+        }
+    }
+
+    public static void isCorrectRange(List<Integer> inputValue){
+        if(!inputValue.stream().allMatch(number -> number>=START_NUMBER && number<=END_NUMBER)){
+            handleCustomException(new NotInRange());
         }
     }
 

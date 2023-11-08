@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -28,8 +29,9 @@ public class Lotto {
     // TODO: 추가 기능 구현
 
     private List<Integer> sortNumbersToAsc(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
+        List<Integer> result = new ArrayList<>(numbers);
+        Collections.sort(result);
+        return result;
     }
 }
 

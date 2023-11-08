@@ -3,8 +3,6 @@ package lotto.domain;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.Map;
-
 public class LottoGame {
     private LottoMachine lottoMachine;
     private Player player;
@@ -15,23 +13,23 @@ public class LottoGame {
 
     public void run() {
         int bonusNumber;
-        int inputMoney = InputView.inputBuyMoney();
+        int inputAmount = InputView.inputPurchaseAmount();
 
-        player = purchaseLotto(inputMoney);
+        player = purchaseLotto(inputAmount);
 
         OutputView.showPlayerLotto(player, lottoMachine.calculatePurchaseCount());
 
-        winningNumber = new Lotto(InputView.inputDrawingNumber());
+        winningNumber = new Lotto(InputView.inputWinningNumber());
         bonusNumber = InputView.inputBonusNumber();
         winningNumber.validateContainsBonusInLotto(bonusNumber);
 
         player.checkWinning(winningNumber, bonusNumber);
 
-        OutputView.showPlayerWinningStatistics(player, inputMoney);
+        OutputView.showPlayerWinningStatistics(player, inputAmount);
     }
 
-    private Player purchaseLotto(int inputMoney) {
-        lottoMachine = new LottoMachine(inputMoney);
+    private Player purchaseLotto(int inputAmount) {
+        lottoMachine = new LottoMachine(inputAmount);
         return lottoMachine.generatePlayerLotto();
     }
 }

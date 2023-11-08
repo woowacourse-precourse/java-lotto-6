@@ -13,27 +13,27 @@ public enum Rank {
 
     private final int correctCount;
     private final boolean isBonus;
-    private final long prizeMoney;
-    private final String showPrizeMoney;
+    private final long winningAmount;
+    private final String showWinningAmount;
 
-    Rank(int correctCount, boolean isBonus, long prizeMoney, String showPrizeMoney) {
+    Rank(int correctCount, boolean isBonus, long winningAmount, String showWinningAmount) {
         this.correctCount = correctCount;
         this.isBonus = isBonus;
-        this.prizeMoney = prizeMoney;
-        this.showPrizeMoney = showPrizeMoney;
+        this.winningAmount = winningAmount;
+        this.showWinningAmount = showWinningAmount;
     }
 
     public static Rank findByRank(int correctCount, boolean isBonus) {
         Stream<Rank> ranks = Arrays.stream(Rank.values());
 
         if (correctCount == Rank._2ND.correctCount) {
-            return ranks.filter(rank -> rank.hasCorrectCount(correctCount)
+            return ranks.filter(rank -> rank.isCorrectCount(correctCount)
                             && rank.isCorrectBonus(isBonus))
                     .findAny()
                     .orElse(BLANK);
         }
 
-        return ranks.filter(rank -> rank.hasCorrectCount(correctCount))
+        return ranks.filter(rank -> rank.isCorrectCount(correctCount))
                 .findAny()
                 .orElse(BLANK);
     }
@@ -42,16 +42,16 @@ public enum Rank {
         return this.isBonus == isBonus;
     }
 
-    private boolean hasCorrectCount(int correctCount) {
+    private boolean isCorrectCount(int correctCount) {
         return this.correctCount == correctCount;
     }
 
-    public long getPrizeMoney() {
-        return prizeMoney;
+    public long getWinningAmount() {
+        return winningAmount;
     }
 
-    public String getShowPrizeMoney() {
-        return showPrizeMoney;
+    public String getShowWinningAmount() {
+        return showWinningAmount;
     }
 
     public boolean isBlank() {

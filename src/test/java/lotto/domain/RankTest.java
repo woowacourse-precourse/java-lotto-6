@@ -39,6 +39,6 @@ class RankTest {
         Rank result = Rank.valueOf(expected);
 
         assertThat(rank).isEqualTo(result);
-        assertThat(rank.getPrizeMoney()).isEqualTo(0L);
+        assertThat(rank.getWinningAmount()).isEqualTo(0L);
     }
 }

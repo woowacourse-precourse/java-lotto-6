@@ -21,12 +21,12 @@ public class Player {
 
     private long calculatePrizeMoney() {
         return winningDetails.entrySet().stream()
-                .mapToLong(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
+                .mapToLong(entry -> entry.getKey().getWinningAmount() * entry.getValue())
                 .sum();
     }
 
-    public double calculateRateOfReturn(int inputMoney) {
-        BigDecimal purchaseAmount = new BigDecimal(inputMoney);
+    public double calculateRateOfReturn(int inputAmount) {
+        BigDecimal purchaseAmount = new BigDecimal(inputAmount);
         BigDecimal totalPrizeMoney = new BigDecimal(calculatePrizeMoney());
         BigDecimal percentage = new BigDecimal("0.01");
 

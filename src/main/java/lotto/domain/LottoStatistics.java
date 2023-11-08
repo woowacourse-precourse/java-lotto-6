@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -19,8 +20,8 @@ public class LottoStatistics {
     public LottoStatistics(List<Lotto> userLottos, List<Integer> winningNumbers,
                            int bonusNumber) {
         this.lottoService = LottoService.getInstance();
-        this.userLottos = userLottos;
-        this.winningNumbers = winningNumbers;
+        this.userLottos = Collections.unmodifiableList(userLottos);
+        this.winningNumbers = Collections.unmodifiableList(winningNumbers);
         this.bonusNumber = bonusNumber;
 
         winsPerCategory = calculateWinsPerCategory();

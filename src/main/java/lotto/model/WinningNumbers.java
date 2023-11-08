@@ -6,9 +6,9 @@ public class WinningNumbers {
     private final WinningNumber winningNumber;
     private final BonusNumber bonusNumber;
 
-    public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+    public WinningNumbers(int[] winningNumbers, int bonusNumber) {
         winningNumber = new WinningNumber(winningNumbers);
-        this.bonusNumber = new BonusNumber(bonusNumber);
+        this.bonusNumber = new BonusNumber(bonusNumber, winningNumber.getNumbers());
     }
 
     public List<Integer> getWinningNumber() {

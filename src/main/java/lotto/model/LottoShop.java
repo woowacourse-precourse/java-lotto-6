@@ -17,13 +17,10 @@ public class LottoShop {
     private final int ZERO = 0;
 
     public List<Lotto> purchase(final int purchaseAmount) {
-        final int purchasedCount = getPurchasedCount(purchaseAmount);
-        return generateLottos(purchasedCount);
-    }
-
-    private int getPurchasedCount(final int purchaseAmount) {
         validateLotto(purchaseAmount);
-        return purchaseAmount / LOTTO_PRICE;
+        
+        final int purchasedCount = purchaseAmount / LOTTO_PRICE;
+        return generateLottos(purchasedCount);
     }
 
     private void validateLotto(final int purchaseAmount) {

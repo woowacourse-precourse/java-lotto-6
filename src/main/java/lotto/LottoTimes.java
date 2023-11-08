@@ -7,9 +7,11 @@ public class LottoTimes {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     protected final int times;
+    protected final int money;
 
     public LottoTimes() {
-        this.times = purchaseLotto();
+        this.money = purchaseLotto();
+        this.times = money / LOTTO_MONEY_UNIT;
     }
 
     private static int purchaseLotto() {
@@ -18,7 +20,7 @@ public class LottoTimes {
             int lottoMoney = inputLottoMoney();
             validateLottoMoney(lottoMoney);
 
-            return lottoMoney / LOTTO_MONEY_UNIT;
+            return lottoMoney;
         } catch (IllegalArgumentException e) {
             return purchaseLotto();
         }

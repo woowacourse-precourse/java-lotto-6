@@ -14,26 +14,20 @@ public class Purchace {
     }
 
     public enum MatchType {
-        THREE("3개 일치 (5,000원) - ", 3),
-        FOUR("4개 일치 (50,000원) - ", 4),
-        FIVE("5개 일치 (1,500,000원) - ", 5),
-        BONUS("5개 일치, 보너스 볼 일치 (30,000,000원) - ", 7),
-        SIX("6개 일치 (2,000,000,000원) - ", 6);
+        THREE(5000, 3, "3개 일치 (5,000원) - "),
+        FOUR(50000, 4, "4개 일치 (50,000원) - "),
+        FIVE(1500000, 5, "5개 일치 (1,500,000원) - "),
+        BONUS(30000000, 7, "5개 일치, 보너스 볼 일치 (30,000,000원) - "),
+        SIX(2000000000, 6, "6개 일치 (2,000,000,000원) - ");
 
-        private final String money;
+        private final int money;
         private final int value;
+        private final String printResult;
 
-        private MatchType(String money, int value) {
+        private MatchType(int money, int value, String printResult) {
             this.money = money;
             this.value = value;
-        }
-
-        public String getMoney() {
-            return this.money;
-        }
-
-        public int getValue() {
-            return this.value;
+            this.printResult = printResult;
         }
     }
 
@@ -61,14 +55,15 @@ public class Purchace {
         System.out.println();
     }
 
-    protected static void analysisStatistic(WinLotto winLotto) {
+    protected static void analysisStatistic(WinLotto winLotto, int money) {
         HashMap<Integer, Integer> statistic = new HashMap<>();
         for (MatchType match : MatchType.values()) {
             statistic.put(match.value, 0);
         }
         statistic = analysisWinningStatistic(winLotto, statistic);
 
-        printStatistic(statistic);
+        int totalMoney = printStatistic(statistic);
+        calculateRateOrReturn(totalMoney, money);
     }
 
     private static HashMap<Integer, Integer> analysisWinningStatistic(WinLotto winLotto, HashMap<Integer, Integer> statistic) {
@@ -92,10 +87,18 @@ public class Purchace {
         return statistic;
     }
 
-    private static void printStatistic(HashMap<Integer, Integer> statistic) {
+    private static int printStatistic(HashMap<Integer, Integer> statistic) {
         System.out.println("당첨 통계\n---");
+        int totalMoney = 0;
         for (MatchType match : MatchType.values()) {
-            System.out.println(match.money + statistic.get(match.value) + "개");
+            System.out.println(match.printResult + statistic.get(match.value) + "개");
+            totalMoney += match.money * statistic.get(match.value);
         }
+        return totalMoney;
+    }
+
+    private static void calculateRateOrReturn(int totalMoney, int money) {
+        double rateOrReturn = (double) totalMoney / money * 100;
+        System.out.println("총 수익률은 " + rateOrReturn + "%입니다.");
     }
 }

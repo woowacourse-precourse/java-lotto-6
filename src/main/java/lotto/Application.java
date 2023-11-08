@@ -6,6 +6,6 @@ public class Application {
         Purchace purchace = new Purchace(lottoTimes.times);
         WinLotto winLotto = new WinLotto();
 
-        purchace.analysisStatistic(winLotto);
+        purchace.analysisStatistic(winLotto, lottoTimes.money);
     }
 }

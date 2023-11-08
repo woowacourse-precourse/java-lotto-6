@@ -18,14 +18,14 @@ public class LottoNumberValidatorTest {
     @ParameterizedTest
     @DisplayName("숫자가 아닐 경우 예외 발생")
     @ValueSource(strings = {"a", "bc"})
-    void validatePositiveIntegerThatIsNotMultipleOf1000(String number) {
+    void validateNotNumber(String number) {
         assertThatThrownBy(() -> LottoNumberValidator.validate(number)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @DisplayName("범위 내의 정수가 아닐 경우 예외 발생")
     @ValueSource(strings = {"-1", "-1000", "123"})
-    void validateNumberThatIsNotPositiveInteger(String number) {
+    void validateNumberOutOfRange(String number) {
         assertThatThrownBy(() -> LottoNumberValidator.validate(number)).isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -12,9 +12,9 @@ public enum Rank {
     FIFTH(3, 5_000L, false), // 5등
     NOTHING(0, 0L, false);
 
-    private int matchCount;
-    private long prizeMoney;
-    private boolean matchBonus;
+    private final int matchCount;
+    private final long prizeMoney;
+    private final boolean matchBonus;
 
     Rank(int matchCount, long prizeMoney, boolean matchBonus) {
         this.matchCount = matchCount;

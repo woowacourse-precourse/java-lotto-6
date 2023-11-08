@@ -127,7 +127,7 @@ public class Judgement {
 
     public static void calculateLottoProfit(int BuyMoney, int totalAmountMoney) {
         double profit = ((double) totalAmountMoney / BuyMoney) * 100;
-        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0#");
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
 
         String formattedProfit = decimalFormat.format(profit);
         Output.totalProfitMessage(formattedProfit);

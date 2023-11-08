@@ -3,10 +3,12 @@ package lotto.domain;
 import java.util.List;
 
 public class Calculator {
+    private static final int PERCENTAGE = 100;
+
     public float rateOFProfit(List<Integer> result, int lottoCount) {
         int pay = calculatePayAmount(lottoCount);
         int income = calculateProfit(result);
-        return (float) income / pay * 100;
+        return (float) income / pay * PERCENTAGE;
     }
 
     public int calculatePayAmount(int lottoCount) {

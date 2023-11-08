@@ -57,7 +57,7 @@ public class Controller {
     }
 
     public void checkLotto(List<Integer> winningNumber) {
-        if (!lottoChecker.checkLottoNumberRange(winningNumber, 1, 45)) {
+        if (!lottoChecker.checkLottoNumberRange(winningNumber, Lotto.MIN_VALUE, Lotto.MAX_VALUE)) {
             lottoNumbersMustBeBetweenException();
         }
         if (!lottoChecker.checkDuplicateLottoNumber(winningNumber)) {

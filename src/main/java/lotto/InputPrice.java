@@ -5,13 +5,13 @@ import static lotto.constants.COST;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputPrice {
-  
+
   public static int createPriceNumber() {
     System.out.println("구입금액을 입력해 주세요.");
     String inputValue = Console.readLine();
     System.out.println(inputValue);
 
-    int price = Integer.parseInt(inputValue);
+    int price = InputNumber.validInteger(inputValue);
     validatePrice(price);
     return price;
   }

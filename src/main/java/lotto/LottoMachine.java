@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
 public class LottoMachine {
 
     static final int BOUNUS_CHECK_MATCH_COUNT = 5;
@@ -101,13 +100,10 @@ public class LottoMachine {
     }
 
     List<Integer> toIntList(String[] strings) {
-
         List<Integer> nums = new ArrayList<>();
-
         for (String str : strings) {
             nums.add(iv.toInt(str));
         }
-
         return nums;
     }
 

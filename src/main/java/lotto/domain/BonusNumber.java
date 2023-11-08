@@ -21,10 +21,10 @@ public class BonusNumber {
         isInRange(number);
     }
 
-    private int isNum(String input){
-        try{
+    private int isNum(String input) {
+        try {
             return Integer.parseInt(input);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC);
         }
     }

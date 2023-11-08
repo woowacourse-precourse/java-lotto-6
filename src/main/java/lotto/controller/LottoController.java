@@ -47,13 +47,13 @@ public class LottoController {
         );
     }
 
-    private <T> T readUntilValidInput(Supplier<T> supplier) {
+    private <T> T readUntilValidInput(Supplier<T> inputSupplier) {
         T input = null;
         boolean isInValidInput = true;
 
         while (isInValidInput) {
             try {
-                input = supplier.get();
+                input = inputSupplier.get();
                 isInValidInput = false;
             } catch (IllegalArgumentException e) {
                 output.writeExceptionMessage(e);

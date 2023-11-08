@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.util.errorMessage.DUPLICATE_ERROR;
+import static lotto.util.errorMessage.OUT_BOUND_ERROR;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,7 +34,7 @@ public class Lotto {
 
         for (Integer number : numbers) {
             if (!set.add(number)) {
-                throw new IllegalArgumentException("[ERROR] 리스트에 중복된 숫자가 있습니다.");
+                throw new IllegalArgumentException(DUPLICATE_ERROR.getMessage());
             }
         }
     }
@@ -39,7 +42,7 @@ public class Lotto {
     private void checkLottoNumberInBound(List<Integer> oneLotto){
         for (int oneLottoNumber : oneLotto) {
             if (oneLottoNumber < START_NUMBER || oneLottoNumber > LAST_NUMBER) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException(OUT_BOUND_ERROR.getMessage());
             }
         }
     }

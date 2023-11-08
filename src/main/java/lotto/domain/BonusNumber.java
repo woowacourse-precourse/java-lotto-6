@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.util.errorMessage.DATA_TYPE_ERROR;
+import static lotto.util.errorMessage.DUPLICATE_ERROR;
+import static lotto.util.errorMessage.OUT_BOUND_ERROR;
+
 import java.util.List;
 
 public class BonusNumber {
@@ -23,7 +27,7 @@ public class BonusNumber {
         try{
             return Integer.parseInt(userInput);
         }catch(NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 숫자 형식에 맞지 않습니다.");
+            throw new IllegalArgumentException(DATA_TYPE_ERROR.getMessage());
         }
     }
 
@@ -32,14 +36,14 @@ public class BonusNumber {
 
         for (Integer number : numbers) {
             if (number.equals(bonusNumber)) {
-                throw new IllegalArgumentException("[ERROR] 리스트에 중복된 숫자가 있습니다.");
+                throw new IllegalArgumentException(DUPLICATE_ERROR.getMessage());
             }
         }
     }
 
     private void checkLottoNumberInBound(Integer number){
         if (number < START_NUMBER || number > LAST_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(OUT_BOUND_ERROR.getMessage());
         }
     }
 }

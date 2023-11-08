@@ -1,7 +1,9 @@
 package lotto.domain;
 
-import static lotto.util.errorMessage.ERROR_MESSAGE;
+import static lotto.util.errorMessage.DATA_TYPE_ERROR;
+import static lotto.util.errorMessage.DUPLICATE_ERROR;
 import static lotto.util.errorMessage.LOTTO_SIZE_ERROR;
+import static lotto.util.errorMessage.OUT_BOUND_ERROR;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +38,7 @@ public class MatchNumber {
 
     private void checkForInputSize(List<String> inputNumbers){
         if(inputNumbers.size()!=6){
-            throw new IllegalArgumentException(ERROR_MESSAGE.getMessage()+LOTTO_SIZE_ERROR.getMessage());
+            throw new IllegalArgumentException(LOTTO_SIZE_ERROR.getMessage());
         }
     }
 
@@ -48,7 +50,7 @@ public class MatchNumber {
             }
             return matchNumbers;
         }catch(NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 숫자 형식에 맞지 않습니다.");
+            throw new IllegalArgumentException(DATA_TYPE_ERROR.getMessage());
         }
     }
 
@@ -57,7 +59,7 @@ public class MatchNumber {
 
         for (Integer number : numbers) {
             if (!set.add(number)) {
-                throw new IllegalArgumentException("[ERROR] 리스트에 중복된 숫자가 있습니다.");
+                throw new IllegalArgumentException(DUPLICATE_ERROR.getMessage());
             }
         }
     }
@@ -65,7 +67,7 @@ public class MatchNumber {
     private void checkLottoNumberInBound(List<Integer> numbers){
         for (int number : numbers) {
             if (number < START_NUMBER || number > LAST_NUMBER) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException(OUT_BOUND_ERROR.getMessage());
             }
         }
     }

@@ -30,7 +30,7 @@ public class Validator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INPUT_IS_NOT_PRIME_NUMBER);
+            throw new NumberFormatException(INPUT_IS_NOT_PRIME_NUMBER);
         }
     }
 

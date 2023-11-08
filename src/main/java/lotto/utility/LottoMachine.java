@@ -27,8 +27,6 @@ public class LottoMachine {
 
     public static List<Integer> generateLottoNumber() {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        lottoNumbers = lottoNumbers.stream().collect(Collectors.toList());
-        Collections.sort(lottoNumbers);
-        return lottoNumbers;
+        return lottoNumbers.stream().sorted().collect(Collectors.toList());
     }
 }

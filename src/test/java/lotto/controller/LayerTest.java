@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningInformation;
 import lotto.utils.message.LottoExceptionMessage;
 import lotto.utils.message.PurchaseAmountExceptionMessage;
 import lotto.utils.message.WinningInformationExceptionMessage;
@@ -10,6 +12,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 /*
@@ -198,4 +201,78 @@ public class LayerTest {
         }
     }
 
+    @Nested
+    @DisplayName("보너스 번호를 입력했을 때")
+    class BonusNumberTest {
+
+        @ParameterizedTest
+        @ValueSource(strings = {"", " ", "  ", "   ", "     ", "\n", "\t", "\r"})
+        @DisplayName("[Exception] 공백 입력 시 view에서 예외가 발생한다.")
+        void blank(String wrongInput) {
+            InputView inputView = new InputView(() -> wrongInput);
+            Assertions.assertThatThrownBy(inputView::readBonusNumber)
+                    .hasMessageContaining(ERROR_CODE)
+                    .hasMessage(WinningInformationExceptionMessage.BLANK.getError());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"1  ", "100", " 12", "1 1", "2 3", "-10"})
+        @DisplayName("[Exception] 2자리 초과 입력 시 view에서 예외가 발생한다.")
+        void exceedLength(String wrongInput) {
+            InputView inputView = new InputView(() -> wrongInput);
+            Assertions.assertThatThrownBy(inputView::readBonusNumber)
+                    .hasMessageContaining(ERROR_CODE)
+                    .hasMessage(WinningInformationExceptionMessage.EXCEED_BONUS_NUMBER_LENGTH.getError());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"1 ", "r2", "I", "김", "뚜룼"})
+        @DisplayName("[Exception] 숫자가 아닌 문자 포함 시 view에서 예외가 발생한다.")
+        void notNumeric(String wrongInput) {
+            InputView inputView = new InputView(() -> wrongInput);
+            Assertions.assertThatThrownBy(inputView::readBonusNumber)
+                    .hasMessageContaining(ERROR_CODE)
+                    .hasMessage(WinningInformationExceptionMessage.NOT_NUMERIC.getError());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"0", "-1", "46"})
+        @DisplayName("[Exception] 1 ~ 45 범위가 아닐 시 domain에서 예외가 발생한다.")
+        void outOfRange(String wrongInput) {
+            InputView inputView = new InputView(() -> wrongInput);
+            int bonusNumber = inputView.readBonusNumber();
+            Assertions.assertThatThrownBy(() -> new LottoNumber(bonusNumber))
+                    .hasMessageContaining(ERROR_CODE)
+                    .hasMessage(LottoExceptionMessage.INVALID_NUMBER.getError());
+        }
+
+        @ParameterizedTest
+        @CsvSource(value = {"1,2,3,4,5,6:1", "12,13,21,31,41,42:12"}, delimiter = ':')
+        @DisplayName("[Exception] 당첨 번호와 중복일 시 domain에서 예외가 발생한다.")
+        void duplicate(String winningNumberInput, String bonusNumberInput) {
+            InputView inputView1 = new InputView(() -> winningNumberInput);
+            Lotto winningNumber = new Lotto(inputView1.readWinningNumbers());
+
+            InputView inputView2 = new InputView(() -> bonusNumberInput);
+            LottoNumber bonusNumber = new LottoNumber(inputView2.readBonusNumber());
+
+            Assertions.assertThatThrownBy(() -> new WinningInformation(winningNumber, bonusNumber))
+                    .hasMessageContaining(ERROR_CODE)
+                    .hasMessage(WinningInformationExceptionMessage.WINNING_AND_BONUS_DUPLICATE_EXISTS.getError());
+        }
+
+        @ParameterizedTest
+        @CsvSource(value = {"1,2,3,4,5,6:12"}, delimiter = ':')
+        @DisplayName("[Exception] 올바른 보너스 번호이면 view와 domain에서 예외가 발생하지 않는다.")
+        void correctBonusNumber(String winningNumberInput, String bonusNumberInput) {
+            InputView inputView1 = new InputView(() -> winningNumberInput);
+            Lotto winningNumber = new Lotto(inputView1.readWinningNumbers());
+
+            InputView inputView2 = new InputView(() -> bonusNumberInput);
+            LottoNumber bonusNumber = new LottoNumber(inputView2.readBonusNumber());
+
+            Assertions.assertThatCode(() -> new WinningInformation(winningNumber, bonusNumber))
+                    .doesNotThrowAnyException();
+        }
+    }
 }

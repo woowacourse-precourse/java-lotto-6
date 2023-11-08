@@ -20,18 +20,26 @@
 
 ---
 ### 구조
-#### <Model>
-1. LottoGame - 구입한 모든 로또를 관리한다
-2. Lotto - 각 로또의 로또 번호를 관리한다
-3. EachLottoResult - 각 로또의 당첨 번호를 관리한다
-4. PurchaseAmount - 로또 구매 금액을 관리한다
-5. WinningNumbers - 로또 당첨 번호를 관리한다
-6. ConfirmationWinning - 로또 당첨을 판단한다
-7. 
-#### <util>
-1. ErrorMessage - 에러 메시지를 관리하는 Enum 클래스
-2. LottoRules - 로또의 모든 룰을 관리하는 Enum 클래스
-3. MapMaker - 당첨 여부를 확인할 때 사용할 Map 객체를 생성하는 기능
+### < Model >
+| 클래스                 | 역할 |
+|---------------------|----|
+| LottoGame           | 구입한 모든 로또를 관리한다 |
+| Lotto               | 각 로또의 로또 번호를 관리한다 |
+| EachLottoResult     | 각 로또의 당첨 번호를 관리한다 |
+| PurchaseAmount      | 로또 구매 금액을 관리한다 |
+| WinningNumbers      | 로또 당첨 번호를 관리한다 |
+| ConfirmationWinning | 로또 당첨을 판단한다 |
+---
+### < util >
+| 클래스                 | 역할 |
+|---------------------|----|
+| ErrorMessage           | 에러 메시지를 관리하는 Enum 클래스 |
+| LottoRules               | 로또의 모든 룰을 관리하는 Enum 클래스 |
+| MapMaker     | 당첨 여부를 확인할 때 사용할 Map 객체를 생성하는 기능 |
 
-#### <vaildator>
-1. WinningNumbersVailator - 당첨 번호 유효성 체크를 위한 매서들을 관리한다
+
+### < vaildator >
+| 클래스                 | 역할 |
+|---------------------|----|
+| WinningNumbersVailator           | 당첨 번호 유효성 체크를 위한 매서들을 관리한다 |
+

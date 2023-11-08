@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class WinningNumberTest {
@@ -18,6 +19,16 @@ class WinningNumberTest {
         int bonusNumber = 7;
 
         winningNumber = new WinningNumber(lotto, bonusNumber);
+    }
+
+    @Test
+    @DisplayName("생성한 로또 당첨 번호와 보너스 번호가 같으면 예외가 발생 한다.")
+    void createWinningNumberByDuplicatedBonusNumber() {
+        Lotto lotto = new Lotto((List.of(1, 2, 3, 4, 5, 7)));
+        int bonusNumber = 7;
+
+        assertThatThrownBy(() -> new WinningNumber(lotto, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

@@ -3,9 +3,9 @@ package lotto.domain.model.lotto;
 public class LottoWinningNumbers {
 
     private final Lotto winningNumbers;
-    private final BonusNumber bonusNumber;
+    private final LottoNumber bonusNumber;
 
-    public LottoWinningNumbers(final Lotto winningNumbers, final BonusNumber bonusNumber) {
+    public LottoWinningNumbers(final Lotto winningNumbers, final LottoNumber bonusNumber) {
         validate(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
@@ -15,18 +15,18 @@ public class LottoWinningNumbers {
         return winningNumbers;
     }
 
-    public BonusNumber getBonusNumber() {
+    public LottoNumber getBonusNumber() {
         return bonusNumber;
     }
 
-    private void validate(final Lotto winningNumbers, final BonusNumber bonusNumber) {
+    private void validate(final Lotto winningNumbers, final LottoNumber bonusNumber) {
         if (hasDuplicates(winningNumbers, bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨번호와 보너스번호가 중복된 값을 가집니다.");
         }
     }
 
-    private boolean hasDuplicates(final Lotto winningNumbers, final BonusNumber bonusNumber) {
-        return winningNumbers.contains(bonusNumber.getNumber());
+    private boolean hasDuplicates(final Lotto winningNumbers, final LottoNumber bonusNumber) {
+        return winningNumbers.contains(bonusNumber);
     }
 
 }

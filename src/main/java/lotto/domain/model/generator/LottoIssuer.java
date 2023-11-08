@@ -20,7 +20,7 @@ public class LottoIssuer {
 
         List<Lotto> issuedLottos = new ArrayList<>();
         for (int issueCount = 0; issueCount < numberOfTickets; issueCount++) {
-            issuedLottos.add(new Lotto(lottoNumberGenerator.create()));
+            issuedLottos.add(Lotto.from(lottoNumberGenerator.create()));
         }
 
         return new LottoTickets(issuedLottos);

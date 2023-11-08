@@ -2,18 +2,18 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.domain.model.lotto.BonusNumber;
+import lotto.domain.model.lotto.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class BonusNumberTest {
+class LottoNumberTest {
 
     @DisplayName("보너스 번호가 로또 숫자 범위(1~45)를 벗어나면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 46})
     void createBonusNumberByNotInRangeNumber(Integer number) {
-        assertThatThrownBy(() -> new BonusNumber(number))
+        assertThatThrownBy(() -> LottoNumber.from(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -7,11 +7,18 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<LottoNumber> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto from(List<Integer> numbers) {
+        List<LottoNumber> lottoNumbers = numbers.stream()
+                .map(LottoNumber::from)
+                .toList();
+        return new Lotto(lottoNumbers);
     }
 
     public int countMatchingNumbers(Lotto winningNumbers) {
@@ -21,15 +28,15 @@ public class Lotto {
                 .count();
     }
 
-    public boolean contains(Integer number) {
+    public boolean contains(LottoNumber number) {
         return numbers.contains(number);
     }
 
-    public List<Integer> getNumbers() {
+    public List<LottoNumber> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(List<LottoNumber> numbers) {
         if (isSizeDifferent(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또는" +  LottoConfig.LOTTO_NUMBERS_SIZE + "여야합니다.");
         }
@@ -38,24 +45,16 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 중복된 값이 있습니다.");
         }
 
-        if (isNotInRange(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호 범위가 아닙니다.");
-        }
     }
 
-    private boolean isSizeDifferent(List<Integer> numbers) {
+    private boolean isSizeDifferent(List<LottoNumber> numbers) {
         return numbers.size() != LottoConfig.LOTTO_NUMBERS_SIZE;
     }
 
-    private boolean hasDuplicates(final List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+    private boolean hasDuplicates(final List<LottoNumber> numbers) {
+        Set<LottoNumber> uniqueNumbers = new HashSet<>(numbers);
 
         return numbers.size() != uniqueNumbers.size();
-    }
-
-    private boolean isNotInRange(final List<Integer> numbers) {
-        return numbers.stream()
-                .anyMatch(number -> number < LottoConfig.LOTTO_NUMBER_MIN || number > LottoConfig.LOTTO_NUMBER_MAX);
     }
 
 }

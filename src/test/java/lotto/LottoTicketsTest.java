@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import lotto.domain.model.result.WinningRank;
 import lotto.domain.model.result.WinningRankCalculator;
-import lotto.domain.model.lotto.BonusNumber;
+import lotto.domain.model.lotto.LottoNumber;
 import lotto.domain.model.lotto.Lotto;
 import lotto.domain.model.lotto.LottoTickets;
 import lotto.domain.model.lotto.LottoWinningNumbers;
@@ -20,12 +20,12 @@ class LottoTicketsTest {
     @Test
     void calculateWinningRanks() {
         //given
-        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6)); //1등
-        Lotto lotto2 = new Lotto(List.of(2, 3, 4, 5, 6, 8)); //2등
-        Lotto lotto3 = new Lotto(List.of(2, 3, 4, 5, 6, 7)); //3등
-        Lotto winningNumber = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        BonusNumber bonusNumber = new BonusNumber(8);
-        LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(winningNumber, bonusNumber);
+        Lotto lotto1 = Lotto.from(List.of(1, 2, 3, 4, 5, 6)); //1등
+        Lotto lotto2 = Lotto.from(List.of(2, 3, 4, 5, 6, 8)); //2등
+        Lotto lotto3 = Lotto.from(List.of(2, 3, 4, 5, 6, 7)); //3등
+        Lotto winningNumber = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+        LottoNumber lottoNumber = LottoNumber.from(8);
+        LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(winningNumber, lottoNumber);
         LottoTickets lottoTickets = new LottoTickets(List.of(lotto1, lotto2, lotto3));
 
         //when

@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoWallet;
+import lotto.domain.WinningNumbers;
 import lotto.service.LottoService;
 import lotto.view.LottoView;
 
@@ -18,6 +19,12 @@ public class LottoController {
     public void startGame() {
         LottoWallet lottoWallet = purchaseLotto();
         consoleLottoView.displayPurchased(lottoWallet);
+
+        List<Integer> inputWinningNumbers = consoleLottoView.getWinningNumbers();
+        Integer bonusNumber = consoleLottoView.getBonusNumber();
+        WinningNumbers winningNumbers = new WinningNumbers(inputWinningNumbers, bonusNumber);
+
+        
     }
 
     private LottoWallet purchaseLotto() {

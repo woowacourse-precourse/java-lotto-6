@@ -1,7 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import lotto.domain.LottoWallet;
 
 public class ConsoleLottoView implements LottoView {
@@ -48,14 +50,24 @@ public class ConsoleLottoView implements LottoView {
     }
 
     @Override
-    public String getWinningNumbers() {
+    public List<Integer> getWinningNumbers() {
         display(Message.WINNING_NUMBER_INPUT_MESSAGE.getMessage());
-        return input();
+
+        return Arrays.stream(input().split(","))
+                .map(Integer::parseInt)
+                .toList();
     }
 
     @Override
-    public String getBonusNumber() {
-        return null;
+    public Integer getBonusNumber() {
+        display(Message.BONUS_NUMBER_INPUT_MESSAGE.getMessage());
+
+        try {
+            return Integer.parseInt(input());
+        } catch (NumberFormatException e) {
+            display(Message.ERROR_MESSAGE_PREFIX.getMessage() + Message.NOT_NUMBER_ERROR_MESSAGE.getMessage());
+            return getBonusNumber();
+        }
     }
 
     @Override

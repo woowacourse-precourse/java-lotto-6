@@ -1,16 +1,13 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.UserLottos;
-import lotto.domain.WinningLotto;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-
-    private UserLottos userLottos;
+    private final LottoService lottoService = new LottoService();
 
     public void startLotto() {
         buyLotto();
@@ -18,28 +15,36 @@ public class LottoController {
         outputPurchasedLotto();
         outputNewLine();
 
-        inputWinningNumber();
+        createWinningLotto();
 
         outputWinningStatistics();
         outputRateOfReturn();
     }
 
     private void outputRateOfReturn() {
-        outputView.outputRateOfReturn(userLottos.calculateRateOfReturn(userLottos.calculateWinnings()));
+        outputView.outputRateOfReturn(lottoService.calculateRateOfReturn());
     }
 
     private void outputWinningStatistics() {
         outputView.outputWinningStatistics();
-        outputView.outputFifthPlace(userLottos.getThreeWins());
-        outputView.outputFourthPlace(userLottos.getFourWins());
-        outputView.outputThirdPlace(userLottos.getFiveWins());
-        outputView.outputSecondPlace(userLottos.getFiveAndBonusWins());
-        outputView.outputFirstPlace(userLottos.getSixWins());
+        outputView.outputFifthPlace(lottoService.getThreeWins());
+        outputView.outputFourthPlace(lottoService.getFourWins());
+        outputView.outputThirdPlace(lottoService.getFiveWins());
+        outputView.outputSecondPlace(lottoService.getFiveAndBonusWins());
+        outputView.outputFirstPlace(lottoService.getSixWins());
     }
 
-    private void inputWinningNumber() {
-        WinningLotto winningLotto = new WinningLotto(inputView.inputWinningNumber());
-        winningLotto.addBonusNumber(inputView.inputBonusNumber());
+    private void createWinningLotto() {
+        lottoService.createWinningLotto(inputWinningNumber());
+        lottoService.addBonusNumber(inputBonusNumber());
+    }
+
+    private String inputWinningNumber() {
+        return inputView.inputWinningNumber();
+    }
+
+    private String inputBonusNumber() {
+        return inputView.inputBonusNumber();
     }
 
     private void outputNewLine() {
@@ -52,17 +57,16 @@ public class LottoController {
     }
 
     private void buyLotto() {
-        userLottos = new UserLottos(inputLottoAmount());
+        lottoService.buyLotto(inputLottoAmount());
     }
 
     private void outputNumberOfPurchases() {
-        outputView.outputNumberOfPurchases(userLottos.getLottoNumbers());
+        outputView.outputNumberOfPurchases(lottoService.getLottoNumbers());
     }
 
     private void outputLotto() {
-        for (int i = 0; i < userLottos.getLottoNumbers(); i++) {
-            Lotto lotto = userLottos.getLotto(i);
-            outputView.outputLotto(lotto);
+        for (int i = 0; i < lottoService.getLottoNumbers(); i++) {
+            outputView.outputLotto(lottoService.getLotto(i));
         }
     }
 

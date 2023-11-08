@@ -14,13 +14,18 @@ public class LottoService {
     public static final int THIRD_PRICE = 1500000;
     public static final int FIRST_PRICE = 2000000000;
     public static final int SECOND_PRICE = 30000000;
+    public static final double HUNDRED = 100.0;
+    public static final int DEFAULT_ZERO = 0;
+    public static final int ONE = 1;
+    public static final int END_INCLUSIVE = 45;
+    public static final int MAX_SIZE = 6;
     private Player player;
     private Lottos lottos = new Lottos();
     private static int BONUS_MATCH_NUMBER = 7;
 
     public List<Lotto> buyLotto(int input) {
         lottos = new Lottos();
-        for (int i = 0; i < input; i++) {
+        for (int i = DEFAULT_ZERO; i < input; i++) {
             getLottoNumbers();
         }
         return lottos.getLottoList();
@@ -31,7 +36,7 @@ public class LottoService {
     }
 
     private void getLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(ONE, END_INCLUSIVE, MAX_SIZE);
         List<Integer> subList = new ArrayList<>();
         subList.addAll(numbers);
         Collections.sort(subList);
@@ -64,16 +69,16 @@ public class LottoService {
     }
 
     private void calculateBonusNumber(HashMap<Integer, Integer> resultMap, HashMap<Integer, Integer> moneyMap, int matchCount) {
-        resultMap.put(matchCount, resultMap.getOrDefault(matchCount, 0) - 1);
-        resultMap.put(BONUS_MATCH_NUMBER, resultMap.getOrDefault(matchCount, 0) + 1);
+        resultMap.put(matchCount, resultMap.getOrDefault(matchCount, DEFAULT_ZERO) - ONE);
+        resultMap.put(BONUS_MATCH_NUMBER, resultMap.getOrDefault(matchCount, DEFAULT_ZERO) + ONE);
         player.minus(moneyMap.get(matchCount));
         player.earn(moneyMap.get(BONUS_MATCH_NUMBER));
     }
 
     private int calculateLottoNumber(HashMap<Integer, Integer> resultMap, HashMap<Integer, Integer> moneyMap, Lotto lotto) {
         int matchCount = lotto.match(player.getWinningLotto().getLottoNumbers());
-        resultMap.put(matchCount, resultMap.getOrDefault(matchCount, 0) + 1);
-        player.earn(moneyMap.getOrDefault(matchCount, 0));
+        resultMap.put(matchCount, resultMap.getOrDefault(matchCount, DEFAULT_ZERO) + ONE);
+        player.earn(moneyMap.getOrDefault(matchCount, DEFAULT_ZERO));
         return matchCount;
     }
 
@@ -90,7 +95,7 @@ public class LottoService {
     }
 
     public double getEarnRatio() {
-        return (player.getLottoSum() / player.getMoney()) * 100.0;
+        return (player.getLottoSum() / player.getMoney()) * HUNDRED;
     }
 
     public void addLotto(Lotto lotto) {

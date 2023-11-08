@@ -7,7 +7,8 @@ public class Buyer {
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
-    public Buyer(List<Integer> winningNumbers, int bonusNumber) {
+    public Buyer(List<Integer> winningNumbers, int bonusNumber)
+            throws IllegalArgumentException, IndexOutOfBoundsException {
         validateWinningNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
         validateBonusNumber(winningNumbers, bonusNumber);

@@ -7,7 +7,7 @@ public class LottoMachine {
     private final int spend;
     private final List<Lotto> lottoTickets;
 
-    public LottoMachine(int spend, List<Lotto> lottoTickets) {
+    public LottoMachine(int spend, List<Lotto> lottoTickets) throws IllegalArgumentException {
         validateSpend(spend);
         this.spend = spend;
         this.lottoTickets = lottoTickets;

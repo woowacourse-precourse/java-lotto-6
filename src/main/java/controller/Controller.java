@@ -30,10 +30,15 @@ public class Controller {
     }
 
     private void createLottoMachine() {
-        OutputView.printInputSpend();
-        int spend = InputView.inputSpend();
-        List<Lotto> lottoTickets = lottoGame.generateLottoTickets(spend);
-        lottoMachine = new LottoMachine(spend, lottoTickets);
+        try {
+            OutputView.printInputSpend();
+            int spend = InputView.inputSpend();
+            List<Lotto> lottoTickets = lottoGame.generateLottoTickets(spend);
+            lottoMachine = new LottoMachine(spend, lottoTickets);
+        } catch (IllegalArgumentException error) {
+            System.out.println("[ERROR] 입력값을 올바르게 입력해 주세요.");
+            createLottoMachine();
+        }
     }
 
     private void showPurchasedLottoInfo() {
@@ -42,9 +47,17 @@ public class Controller {
     }
 
     private void createBuyer() {
-        List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber();
-        buyer = new Buyer(winningNumbers, bonusNumber);
+        try {
+            List<Integer> winningNumbers = getWinningNumbers();
+            int bonusNumber = getBonusNumber();
+            buyer = new Buyer(winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException error) {
+            System.out.println("[ERROR] 입력값을 올바르게 입력해 주세요.");
+            createBuyer();
+        } catch (IndexOutOfBoundsException error) {
+            System.out.println("[ERROR] 입력값이 유효한 범위를 벗어납니다. 다시 입력해주세요.");
+            createBuyer();
+        }
     }
 
     private List<Integer> getWinningNumbers() {

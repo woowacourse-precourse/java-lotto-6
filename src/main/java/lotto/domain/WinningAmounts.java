@@ -5,8 +5,8 @@ public enum WinningAmounts {
     SECOND_AMOUNT(30000000,0,6),
     THIRD_AMOUNT(1500000,0,5),
     FORTH_AMOUNT(50000,0,4),
-    FIFTH_AMOUNT(3000,0,3);
-    //NO_AMOUNT(0,0,0);
+    FIFTH_AMOUNT(3000,0,3),
+    NO_AMOUNT(0,0,0);
 
     private final int value;
     public int count;
@@ -16,8 +16,16 @@ public enum WinningAmounts {
         this.count = count;
         this.score = score;
     }
+
     public int getValue(){
         return value;
         // return count;
+    }
+
+    public int getCount(){
+        return count;
+    }
+    public int getPrize(){
+        return value * count;
     }
 }

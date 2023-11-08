@@ -8,6 +8,7 @@ public class CompareLottoValue {
     public static final int FIRST_RANK = 6;
     public static final int SECOND_OR_THIRD = 5;
     static int resultScore = 0;
+    static int resultMoney = 0;
     public static void compareValueStart(List<Integer> winningBalls, List<List<Integer>> lottoRepo, Integer bonusBall){
         System.out.println(lottoRepo);
         System.out.println(winningBalls);
@@ -16,7 +17,8 @@ public class CompareLottoValue {
             // 각 로또와 당첨볼을 받아 비교하는 함수
             compareLottoValue(winningBalls, lottoRepo.get(i), bonusBall);
         }
-        // 로또의 갯수만큼 전달 시(위의 반복문 수행완료시) 총 수익률 계산하고 로또결과와 수익률 출력하는 함수 호출
+        // 함수 추가: 로또의 갯수만큼 전달 시(위의 반복문 수행완료시) 총 수익률 계산하고 로또결과와 수익률 출력하는 함수 호출
+        lottoPrize();
     }
 
 
@@ -38,7 +40,8 @@ public class CompareLottoValue {
         if(resultScore == SECOND_OR_THIRD){
             secondRankChance(lottoBalls, bonusBall);
         }
-        lottoRank(resultScore);
+        lottoRank(); // 열거형(WinningAmounts)의 count값을 올릴 것임
+
     }
 
     public static Integer secondRankChance(List<Integer> lottoBalls, Integer bonusBall){
@@ -55,8 +58,37 @@ public class CompareLottoValue {
         return resultScore;
     }
 
-    public static void lottoRank(Integer resultScore){
+    public static void lottoRank(){
         System.out.println(resultScore);
-        // 이 함수에서는 몇개가 똑같은지에 대한 점수를 받아서 열거형(WinningAmounts)의 count값을 올릴 것임
+        if(resultScore == 7){
+            WinningAmounts firstAmount = WinningAmounts.FIRST_AMOUNT;
+            firstAmount.count += 1;
+        } else if (resultScore == 6) {
+            WinningAmounts secondAmount = WinningAmounts.SECOND_AMOUNT;
+            secondAmount.count +=1;
+        } else if(resultScore ==5){
+            WinningAmounts thirdAmount = WinningAmounts.THIRD_AMOUNT;
+            thirdAmount.count +=1;
+        }else if (resultScore ==4){
+            WinningAmounts forthAmount = WinningAmounts.FORTH_AMOUNT;
+            forthAmount.count +=1;
+        } else if (resultScore ==3) {
+            WinningAmounts fifthAmount = WinningAmounts.FIFTH_AMOUNT;
+            fifthAmount.count +=1;
+        } else{
+            WinningAmounts noAmount = WinningAmounts.NO_AMOUNT;
+            // 일단 NO_AMOUNT (score == 0) 이용해서 작성
+        }
+        // 이 함수에서는 몇개가 똑같은지에 대한 점수(resultScore)를 받아서 열거형(WinningAmounts)의 score와 비교 후 count값을 올릴 것임
     }
+    public static void lottoPrize(){
+        int firstPrize = WinningAmounts.FIRST_AMOUNT.getPrize();
+        int secondPrize = WinningAmounts.SECOND_AMOUNT.getPrize();
+        int thirdPrize = WinningAmounts.THIRD_AMOUNT.getPrize();
+        int forthPrize = WinningAmounts.FORTH_AMOUNT.getPrize();
+        int fifthPrize = WinningAmounts.FIFTH_AMOUNT.getPrize();
+        resultMoney += (firstPrize + secondPrize + thirdPrize+ forthPrize + fifthPrize);
+        System.out.println(resultMoney);
+    }
+
 }

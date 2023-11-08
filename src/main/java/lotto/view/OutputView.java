@@ -23,8 +23,8 @@ public class OutputView {
         System.out.print(INPUT_PURCHASE_AMOUNT.getSentence());
     }
 
-    public void printOutputPurchaseAmount(int purchaseAmount){
-        System.out.print(purchaseAmount+ OUTPUT_PURCHASE_AMOUNT.getSentence());
+    public void printOutputPurchaseAmount(int purchaseQuantity){
+        System.out.print(purchaseQuantity+ OUTPUT_PURCHASE_AMOUNT.getSentence());
     }
 
     public void printPurchaseLottoTicketsInfo(LottoTickets lottoTickets) {
@@ -64,7 +64,7 @@ public class OutputView {
                 + OUTPUT_WINNING_MATCHES_COUNT.getSentence());
     }
 
-    public void printTotalReturn(float totalReturn){
+    public void printTotalReturn(double totalReturn){
         System.out.print(OUTPUT_TOTAL_RETURN_FRONT.getSentence() + String.valueOf(totalReturn)
                 + OUTPUT_TOTAL_RETURN_BACK.getSentence());
     }

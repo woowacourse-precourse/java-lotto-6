@@ -38,22 +38,22 @@ class LottoTest {
     @DisplayName("보너스 로또 번호가 1~45 사이의 값이 아니면 예외가 발생한다.")
     @Test
     void inputBonusNumberByValidNumber() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)).inputBonusNumber(0))
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)).validate(0))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)).inputBonusNumber(47))
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)).validate(47))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)).inputBonusNumber(-10))
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)).validate(-10))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또번호중 보너스 로또 번호와 중복된 값이 있다면 예외가 발생한다.")
     @Test
     void inputBonusNumberByDuplicatedNumber() {
-        assertThatThrownBy(()->new Lotto(List.of(1,2,3,4,5,6)).inputBonusNumber(2))
+        assertThatThrownBy(()->new Lotto(List.of(1,2,3,4,5,6)).validate(2))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(()->new Lotto(List.of(1,2,3,4,5,6)).inputBonusNumber(3))
+        assertThatThrownBy(()->new Lotto(List.of(1,2,3,4,5,6)).validate(3))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(()->new Lotto(List.of(1,2,3,4,5,6)).inputBonusNumber(6))
+        assertThatThrownBy(()->new Lotto(List.of(1,2,3,4,5,6)).validate(6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

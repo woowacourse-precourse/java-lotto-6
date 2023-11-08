@@ -28,21 +28,21 @@ class LottoTicketGeneratorTest {
     @DisplayName("금액이 1000으로 나누어 떨어지지않으면 예외가 발생한다.")
     @Test
     void invalidAmountErrorTest() {
-        assertThatThrownBy(() -> new LottoTicketGenerator().insertMoney(1050))
+        assertThatThrownBy(() -> new LottoTicketGenerator().validate(1050))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("금액이 음수일 경우 예외가 발생한다.")
     @Test
     void invalidAmountErrorTest2() {
-        assertThatThrownBy(() -> new LottoTicketGenerator().insertMoney(-1000))
+        assertThatThrownBy(() -> new LottoTicketGenerator().validate(-1000))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("금액이 0일 경우 예외가 발생한다.")
     @Test
     void invalidAmountErrorTest3() {
-        assertThatThrownBy(() -> new LottoTicketGenerator().insertMoney(0))
+        assertThatThrownBy(() -> new LottoTicketGenerator().validate(0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

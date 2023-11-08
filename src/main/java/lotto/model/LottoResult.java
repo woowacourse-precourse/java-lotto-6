@@ -37,5 +37,26 @@ public enum LottoResult {
         return false;
     }
 
-   
+    public Integer getIndex(){
+        return index;
+    }
+
+    public static LottoResult findByIndex(int index){
+        return Arrays.stream(LottoResult.values())
+                .filter(lr -> lr.getIndex().equals(index))
+                .findAny().orElseThrow();
+    }
+
+    public Integer getMatchedWinningNumberCount() {
+        return matchedWinningNumberCount;
+    }
+
+    public Boolean matchedBonusNumber() {
+        return matchedBonusNumber;
+
+    }
+
+    public Integer getPrizeMoney() {
+        return prizeMoney;
+    }
 }

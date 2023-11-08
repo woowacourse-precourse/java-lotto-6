@@ -35,4 +35,29 @@ class LottoResultTest {
                 Arguments.of(NONE, 1)
         );
     }
+
+    @DisplayName("로또 구매 비용 대비 당첨 금액의 수익률을 계산한다.")
+    @ParameterizedTest
+    @MethodSource("calculatePrizeRateArgumentsProvider")
+    void calculatePrizeRate(LottoResult lottoResult, double expectedPrizeRate) {
+        assertThat(lottoResult.calculatePrizeRate()).isEqualTo(expectedPrizeRate);
+    }
+
+    static Stream<Arguments> calculatePrizeRateArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(lottoResultOf(FIFTH), 100.0 * FIFTH.prize() / Lotto.PRICE),
+                Arguments.of(
+                        lottoResultOf(FIRST, SECOND, THIRD),
+                        100.0 * (FIRST.prize() + SECOND.prize() + THIRD.prize()) / (Lotto.PRICE * 3)
+                ),
+                Arguments.of(
+                        lottoResultOf(FIRST, SECOND, SECOND, THIRD, THIRD, THIRD, NONE),
+                        100.0 * (FIRST.prize() + SECOND.prize() * 2 + THIRD.prize() * 3) / (Lotto.PRICE * 7)
+                )
+        );
+    }
+
+    private static LottoResult lottoResultOf(LottoRank... lottoRanks) {
+        return new LottoResult(List.of(lottoRanks));
+    }
 }

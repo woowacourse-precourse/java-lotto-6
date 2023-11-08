@@ -11,7 +11,7 @@ public class LottoPlayer {
     private int money = 0;
 
     public void buyLottos(int number) {
-        System.out.printf("%d개를 구매했습니다.\n", number);
+        System.out.printf("%d개를 구매했습니다.\r\n", number);
         for (int i = 0; i < number; i++) {
             Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)
                     .stream()

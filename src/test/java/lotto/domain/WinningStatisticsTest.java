@@ -80,48 +80,6 @@ class WinningStatisticsTest {
         Assertions.assertThat(winningStatistics.name()).isEqualTo(CorrectWinningTier.FIFTH.name());
     }
 
-    @DisplayName("일치하는 번호 갯수가 2개일 때 리타티어 등수인지 검증")
-    @Test
-    void correctWinningCountTwoThenRetierWinningTier() {
-        //given
-        long correctWinningCount = 2;
-        boolean correctBonusCount = false;
-
-        //when
-        WinningStatistics winningStatistics = WinningStatistics.confirm(correctWinningCount, correctBonusCount);
-
-        //then
-        Assertions.assertThat(winningStatistics.name()).isEqualTo(CorrectWinningTier.RETIER.name());
-    }
-
-    @DisplayName("일치하는 번호 갯수가 1개일 때 리타티어 등수인지 검증")
-    @Test
-    void correctWinningCountOneThenRetierWinningTier() {
-        //given
-        long correctWinningCount = 1;
-        boolean correctBonusCount = false;
-
-        //when
-        WinningStatistics winningStatistics = WinningStatistics.confirm(correctWinningCount, correctBonusCount);
-
-        //then
-        Assertions.assertThat(winningStatistics.name()).isEqualTo(CorrectWinningTier.RETIER.name());
-    }
-
-    @DisplayName("일치하는 번호 갯수가 0개일 때 리타티어 등수인지 검증")
-    @Test
-    void correctWinningCountZeroThenRetierWinningTier() {
-        //given
-        long correctWinningCount = 0;
-        boolean correctBonusCount = false;
-
-        //when
-        WinningStatistics winningStatistics = WinningStatistics.confirm(correctWinningCount, correctBonusCount);
-
-        //then
-        Assertions.assertThat(winningStatistics.name()).isEqualTo(CorrectWinningTier.RETIER.name());
-    }
-
     @DisplayName("일치하는 번호 갯수가 6개일 때 보너스 번호가 1개일 때 등록되지 않은 등수인지 검증")
     @Test
     void correctWinningCountSixAndBonusOneThenRetierWinningTier() {

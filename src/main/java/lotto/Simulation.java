@@ -35,6 +35,11 @@ public class Simulation {
     private void getMatchingNumber(List<Integer> winningNumber, int bonusNumber, long userCost) {
         winningStatistics.calculateStatistics(winningNumber, bonusNumber);
         double totalSum = winningStatistics.matchingTotal(userCost);
+        resultTotalPrint(totalSum);
+    }
+
+    // 최종 결과 출력
+    private void resultTotalPrint(double totalSum) {
         lottoResultPrinter.printResult(winningStatistics.getMatchingNumber(), totalSum); // 출력
     }
 
@@ -46,7 +51,7 @@ public class Simulation {
         return userInputHandler.inputUserBonusNumber();
     }
 
-    private void generateNumberToTicket(long ticket) {
+    void generateNumberToTicket(long ticket) {
         for (int i = 0; i < ticket; i++) {
             List<Integer> lottoNumbers = winningStatistics.generateSaveLottoNumbers();
             lottoResultPrinter.purchaseAllLotto(lottoNumbers); // 출력

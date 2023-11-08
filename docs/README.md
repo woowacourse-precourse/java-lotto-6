@@ -119,18 +119,19 @@
         - 1-45 범위 초과인 경우
         - 숫자가 아닌 경우
 
+
 ## 패키지 구조 변경
 
 ### 이전 구조
 
 - 패키지: lotto
-    - 클래스 : Application, Lotto, LottoResultPrinter, UserInputHandler, WinningStatistics, ErrorMessage,
+   - 클래스 : Application, Lotto, LottoResultPrinter, UserInputHandler, WinningStatistics, ErrorMessage, Simulation
       LottoInputMessages, LottoResultMessages
 
 ### 새로운 구조
 
 - 패키지 : lotto
-    - 클래스 : Application, Lotto, LottoResultPrinter, UserInputHandler, WinningStatistics
+   - 클래스 : Application, Lotto, LottoResultPrinter, UserInputHandler, WinningStatistics, Simulation
     - 패키지: messages
         - enum : ErrorMessage, LottoInputMessages, LottoResultMessages
 

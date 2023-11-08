@@ -11,6 +11,9 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 class UserInputHandlerTest {
 
     private UserInputHandler userInputHandler;
+    private final String nonNumericPattern = ".*[^0-9].*";
+    private final String duplicateNumber = "1,1,2,2,3,3";
+
 
     @BeforeEach
     void setUp() {
@@ -34,11 +37,37 @@ class UserInputHandlerTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 구매금액 문자열 테스트")
-    @ValueSource(strings = {"*, 1-2, , --1, 1--, --1--"})
-    @ParameterizedTest
-    void lottoPurchaseStringTest(String input) {
-        assertThatThrownBy(() -> userInputHandler.validUserLottoPurchase(input))
+    @Test
+    @DisplayName("숫자가 아닌 경우 테스트")
+    void lottoPurchaseStringTest() {
+        assertThatThrownBy(() -> userInputHandler.validUserLottoPurchase(nonNumericPattern))
+                .isInstanceOf(NumberFormatException.class);
+
+        assertThatThrownBy(() -> userInputHandler.validateUserWinningNumbers(nonNumericPattern))
+                .isInstanceOf(NumberFormatException.class);
+
+        assertThatThrownBy(() -> userInputHandler.validateNumbers(nonNumericPattern))
                 .isInstanceOf(NumberFormatException.class);
     }
+
+    @Test
+    @DisplayName("1-45 범위 초과 테스트")
+    void validateWinningNumberTest() {
+        String isInRange = "([1-9]|[1-3][0-9]|4[0-5])";
+        String[] newIsInRange = isInRange.split("");
+        assertThatThrownBy(() -> userInputHandler.validateLength(newIsInRange))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        int number = 0;
+        assertThatThrownBy(() -> userInputHandler.isOverLengthNumber(number))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("중복 입력 테스트")
+    void validateWinningNumbersTest() {
+        assertThatThrownBy(() -> userInputHandler.validDuplicateNumbers(new String[]{duplicateNumber}))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

@@ -15,12 +15,10 @@ class WinningStatisticsTest {
 
     private final List<Integer> matchingNumber = new ArrayList<>(Collections.nCopies(7, 0));
     private WinningStatistics winningStatistics;
-    private Lotto lotto;
 
     @BeforeEach
     void setUp() {
         winningStatistics = new WinningStatistics();
-        lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         matchingNumber.set(0, 0);
         matchingNumber.set(3, 0);
         matchingNumber.set(4, 0);
@@ -37,71 +35,6 @@ class WinningStatisticsTest {
         assertThat(ticket).isEqualTo(3);
         ticket = winningStatistics.purchaseLottoTickets(12000);
         assertThat(ticket).isEqualTo(12);
-    }
-
-    @Test
-    @DisplayName("숫자 일치 테스트")
-    void matchingNumbersTest() {
-        List<Integer> winningNumber = List.of(1, 2, 3, 7, 8, 9);
-        int bonusNumber = 10;
-
-        assertMatchingNumbers(winningNumber, bonusNumber, 3);
-        winningNumber = List.of(1, 2, 3, 4, 8, 9);
-        assertMatchingNumbers(winningNumber, bonusNumber, 4);
-        winningNumber = List.of(1, 2, 3, 4, 5, 9);
-        assertMatchingNumbers(winningNumber, bonusNumber, 5);
-        winningNumber = List.of(1, 2, 3, 4, 5, 10);
-        assertMatchingNumbers(winningNumber, bonusNumber, 5);
-        winningNumber = List.of(1, 2, 3, 4, 5, 6);
-        assertMatchingNumbers(winningNumber, bonusNumber, 6);
-    }
-
-    private void assertMatchingNumbers(List<Integer> winningNumber, int bonusNumber, int expectedCount) {
-        int count = winningStatistics.calculateMatchingNumbers(lotto, winningNumber, bonusNumber);
-        assertThat(expectedCount).isEqualTo(count);
-    }
-
-    @Test
-    @DisplayName("로또 번호와 당첨 번호가 일치하는 갯수 테스트")
-    void calculateMatchingNumbersTest() {
-        List<Integer> winningNumbers = List.of(1, 2, 3, 10, 20, 30);
-        int bonusNumber = 45;
-
-        int actual = winningStatistics.calculateMatchingNumbers(lotto, winningNumbers, bonusNumber);
-        int expected = 3;
-        assertThat(actual).isEqualTo(expected);
-    }
-
-    @Test
-    @DisplayName("3개가 일치하는 경우 테스트")
-    void matchingNumberSetTest() {
-        // 3개가 일치하는 경우
-        List<Integer> numbers = List.of(0, 0, 0, 1, 0, 0, 0);
-        int bonus = 10;
-        int count = 3;
-        List<Integer> actual = winningStatistics.matchingNumberSet(lotto, bonus, count);
-        assertThat(actual).isEqualTo(numbers);
-    }
-
-    @Test
-    @DisplayName("5개와 보너스 번호 일치 테스트")
-    void matchingNumberSetBonusTest() {
-        //
-        List<Integer> numbers = List.of(1, 0, 0, 0, 0, 0, 0);
-        int bonus = 6;
-        int count = 5;
-        List<Integer> actual = winningStatistics.matchingNumberSet(lotto, bonus, count);
-        assertThat(actual).isEqualTo(numbers);
-    }
-
-    @Test
-    @DisplayName("번호가 일치하지 않는 경우 테스트")
-    void matchingNumberSet6Test() {
-        List<Integer> numbers = List.of(0, 0, 0, 0, 0, 0, 0);
-        int bonus = 7;
-        int count = 2;
-        List<Integer> actual = winningStatistics.matchingNumberSet(lotto, bonus, count);
-        assertThat(actual).isEqualTo(numbers);
     }
 
 

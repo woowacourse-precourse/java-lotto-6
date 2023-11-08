@@ -20,6 +20,7 @@ public class UserInputHandler {
     public long inputUserLottoPurchase() {
         boolean restart = true;
         String lottoPurchase = null;
+
         while (restart) {
             System.out.println(INPUT_USER_LOTTO_PURCHASE.getMessage());
             lottoPurchase = Console.readLine();
@@ -120,7 +121,7 @@ public class UserInputHandler {
         }
     }
 
-    // 1 ~ 45 사이의 수 확인
+    // 1-45 사이의 수 확인
     public void isOverLengthNumber(int number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException(NUMBERS_OUT_OF_RANGE.getMessage());

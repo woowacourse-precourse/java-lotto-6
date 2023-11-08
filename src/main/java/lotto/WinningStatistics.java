@@ -19,9 +19,9 @@ public class WinningStatistics {
         return matchingNumber;
     }
 
-    // 로또 구매
+    // 로또 구매, 티켓 수 확인
     public long purchaseLottoTickets(long totalAmount) {
-        long ticket = totalAmount / DIVISION_ROLE; // 몇 장인지 확인
+        long ticket = totalAmount / DIVISION_ROLE;
         System.out.printf(COMPLETE_MESSAGE_LOTTO_COST.getMessage() + "\n", ticket);
 
         return ticket;
@@ -51,7 +51,6 @@ public class WinningStatistics {
             matchingNumber.set(i, originalValue + updateValue);
         }
     }
-
 
     // 이득률 계산
     public double matchingTotal(long userCost) {

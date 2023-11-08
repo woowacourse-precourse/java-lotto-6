@@ -37,4 +37,8 @@ public class Purchase {
             throw new IllegalArgumentException(ZERO_ERROR);
         }
     }
+
+    public int getQuantity() {
+        return amount / 1000;
+    }
 }

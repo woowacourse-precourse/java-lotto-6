@@ -17,7 +17,7 @@ public class WinningPriceResult {
 
     public void calcWinningPriceResult(LotteryNumbers lotteryNumbers, LottoObjectManagement lottoObjectManagement) {
         for (Lotto lotto : lottoObjectManagement.getObjectManagement()) {
-            WinningPrice winningPrice = WinningPrice.getWinningPrice(lotto.getCorrectLottoNumber(lotteryNumbers),
+            WinningPrice winningPrice = WinningPrice.winningPrice(lotto.getCorrectLottoNumber(lotteryNumbers),
                     lotto.isContain(lotteryNumbers.getBonusNumber()));
             updateWinningPriceCount(winningPrice);
         }

@@ -10,5 +10,4 @@ public interface Calculation {
 
 	WinningResult winningCalculation(WinningBonusNumber winningBonusNumber);
 
-
 }

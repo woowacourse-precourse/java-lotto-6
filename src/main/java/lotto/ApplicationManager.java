@@ -18,5 +18,7 @@ public class ApplicationManager {
         List<Lotto> lottos = lottoManager.createLotto(ticketCnt);
         OutputHandler outputHandler = new OutputHandler();
         outputHandler.printLottos();
+        List<Integer> userLottoNumbers = inputHandler.inputWinningNumbers();
+        int bonusNumber = CommonHelper.strToInt(inputHandler.inputBonusNumber());
     }
 }

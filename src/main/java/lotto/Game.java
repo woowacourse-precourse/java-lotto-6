@@ -13,6 +13,7 @@ public class Game {
     int money, count;
     List<Lotto> buy = new ArrayList<>();
     Lotto answer; int bonus;
+    int[] correct = new int[7];
 
     private void start(){
         System.out.println("구입 금액을 입력해 주세요.");
@@ -45,6 +46,12 @@ public class Game {
     private void userBonus(){
         System.out.println("보너스 번호를 입력해 주세요.");
         this.bonus = Integer.parseInt(Console.readLine());
+    }
+
+    private void checkLotto(){
+        for(int i=0;i<this.count;i++){
+            // 중복 여부 확인
+        }
     }
 
     public void DoIt(){

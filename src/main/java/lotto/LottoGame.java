@@ -60,9 +60,6 @@ public class LottoGame {
 
     private void printRandomLottoNumber() {
         lottoRepository.printLottoNumbers();
-        //System.out.println(lottoRepository.printLottoNumbers());
-        //for(int i = 0 ; i < l)
-        //System.out.println(lotto.getLotto());
 
     }
 
@@ -76,8 +73,6 @@ public class LottoGame {
     private void setLotto(List<Integer> numbers) {
         Lotto lotto = new Lotto(numbers);
         lottoRepository.add(lotto);
-
-        //System.out.println(lotto.getLotto());
     }
 
     private void inputWinningNumber() {
@@ -85,11 +80,13 @@ public class LottoGame {
         String winningNumber;
         winningNumber = readLine();
         winningNumbers = winningNumber.split(",");
+        System.out.println();
     }
 
     private void inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         bonusNumber = Integer.parseInt(readLine());
+        System.out.println();
     }
 
     private void compareLottoNumber(String[] winningNumbers, int bonusNumber) {
@@ -98,14 +95,14 @@ public class LottoGame {
     }
 
     private void printResult() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+//        System.out.println("당첨 통계");
+//        System.out.println("---");
         System.out.println("3개 일치 (" + Rank.FIFTH.getReward() + ") - " + Rank.FIFTH.getCount() + "개");
         System.out.println("4개 일치 (" + Rank.FOURTH.getReward() + ") - " + Rank.FOURTH.getCount() + "개");
         System.out.println("5개 일치 (" + Rank.THIRD.getReward() + ") - " + Rank.THIRD.getCount() + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (" + Rank.SECOND.getReward() + ") - " + Rank.SECOND.getCount() + "개");
         System.out.println("6개 일치 (" + Rank.FIRST.getReward() + ") - " + Rank.FIRST.getCount() + "개");
-        System.out.println("총 수익률은 " + getRateOfReturn() + "% 입니다.");
+        System.out.println("총 수익률은 " + getRateOfReturn() + "%입니다.");
 
     }
 

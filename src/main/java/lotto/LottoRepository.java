@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoRepository {
@@ -34,15 +35,10 @@ public class LottoRepository {
             for (int j = 0; j < 6; j++) {
                 checkSameNumber(lotto.getLottoIndex(i), Integer.parseInt(winningNumbers[j]));
             }
-//            if (lotto.getLottoIndex(i) == Integer.parseInt(winningNumbers[i])) {
-//                System.out.println("참");
-//                count++;
-//            }
         }
         //보너스 번호 체크
         for (int i = 0; i < 6; i++) {
             if (lotto.getLottoIndex(i) == bonusNumber) {
-                System.out.println("참참참");
                 bonusCount++;
             }
         }
@@ -56,23 +52,18 @@ public class LottoRepository {
 
     private void increaseRank(int count, int bonusCount) {
         if (count == 3) {
-            System.out.println("5등");
             Rank.FIFTH.increaseCount();
 
         } else if (count == 4) {
-            System.out.println("4등");
             Rank.FOURTH.increaseCount();
 
         } else if (count == 5 && bonusCount == 0) {
-            System.out.println("3등");
             Rank.THIRD.increaseCount();
 
         } else if (count == 5 && bonusCount == 1) {
-            System.out.println("2등");
             Rank.SECOND.increaseCount();
 
         } else if (count == 6) {
-            System.out.println("1등");
             Rank.FIRST.increaseCount();
         }
     }

@@ -1,15 +1,17 @@
 package lotto.Model;
 
+import lotto.Controller.ErrorMessage;
+
 public class CacheValidator {
 
 
     public static void validateCache(Integer insertData){
         if(isNonPositive(insertData)){
-            throw new IllegalArgumentException("[ERROR] 입력 금액은 0원을 초과해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.CASH_NOT_POSITIVE.getMessage());
         }
 
         if(isThousand(insertData)){
-            throw new IllegalArgumentException("[ERROR] 입력 금액은 1000원 단위로 입력되어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.CASH_NOT_THOUSAND.getMessage());
         }
 
     }

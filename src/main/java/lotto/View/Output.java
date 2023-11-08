@@ -9,14 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.JFormattedTextField;
+import lotto.Controller.ErrorMessage;
 import lotto.Model.Prize;
 import lotto.Model.ScoreBoard;
 import lotto.Model.VO.LottoData;
 
 public class Output {
-    public static void printEnterPurchaseMount(){
-        System.out.println(Enter_Purchase_Mount.message);
-    }
     public static void printLottos(ArrayList<LottoData> lottos){
         System.out.println();
         System.out.printf("%d개를 구매했습니다.",lottos.size());
@@ -25,11 +23,6 @@ public class Output {
                 .map(LottoData::getNumbers)
                 .forEach(Output::printLotto);
         System.out.println();
-    }
-    public static void printInsertLottoNumbers(){System.out.println(Enter_Lotto_Numbers.message);}
-
-    public static void printEarnRate(Double earnRate){
-        System.out.printf("총 수익률은 %.1f%%입니다.",earnRate);
     }
 
     public static void printScores(ScoreBoard roundScore){
@@ -43,6 +36,21 @@ public class Output {
             }
     }
 
+
+    public static void printError(String errorMessage){
+        System.out.println(errorMessage);
+    }
+
+
+    public static void printInsertLottoNumbers(){System.out.println(Enter_Lotto_Numbers.message);}
+
+    public static void printEnterPurchaseMount(){
+        System.out.println(Enter_Purchase_Mount.message);
+    }
+
+    public static void printEarnRate(Double earnRate){
+        System.out.printf("총 수익률은 %.1f%%입니다.",earnRate);
+    }
     private static void printScore(Prize prize,Integer prizeCount){
         if(prize == Prize.NO_RANK){
             return;

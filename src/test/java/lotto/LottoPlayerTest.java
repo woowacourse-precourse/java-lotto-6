@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.Controller.ErrorMessage;
 import lotto.Model.LottoPlayer;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,7 @@ public class LottoPlayerTest {
     public void 금액이_0원_이하인_경우_예외처리(Integer cache) {
         Assertions.assertThatThrownBy(() -> new LottoPlayer(cache))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 입력 금액은 0원을 초과해야 합니다.");
+                .hasMessage(ErrorMessage.CASH_NOT_POSITIVE.getMessage());
     }
 
     @ParameterizedTest
@@ -40,7 +41,7 @@ public class LottoPlayerTest {
     void 금액이_천원단위가_아닌_경우_예외처리(Integer cache) {
         Assertions.assertThatThrownBy(() -> new LottoPlayer(cache))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 입력 금액은 1000원 단위로 입력되어야 합니다.");;
+                .hasMessage(ErrorMessage.CASH_NOT_THOUSAND.getMessage());;
     }
 
 

@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import lotto.Controller.ErrorMessage;
 import lotto.Model.GameModel;
 import lotto.Model.LottoPlayer;
 import lotto.Model.VO.LottoData;
@@ -17,7 +18,7 @@ public class GameModelTest {
         GameModel gameModel= new GameModel();
         Assertions.assertThatThrownBy(() -> gameModel.initAnswerByStrings(lottos))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 당첨번호는 숫자값들로만 이루어져야 합니다.");
+                .hasMessage(ErrorMessage.LOTTO_NOT_NUMBER.getMessage());
     }
 
 }

@@ -1,20 +1,22 @@
 package lotto.View;
 
+import lotto.Controller.ErrorMessage;
+
 public class InputValidator {
     public static void validateInsertInteger(String inputValue){
         if(isBlank(inputValue)){
-            throw new IllegalArgumentException("[ERROR] 입력이 없습니다");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NONE.getMessage());
         }
 
         if(isNotNumber(inputValue)){
-            throw new IllegalArgumentException("[ERROR] 입력은 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER.getMessage());
         };
 
     }
 
     public static void validateInsertString(String inputValue){
         if(isBlank(inputValue)){
-            throw new IllegalArgumentException("[ERROR] 입력이 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NONE.getMessage());
         }
     }
 

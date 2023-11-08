@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.Controller.ErrorMessage;
 import lotto.Model.VO.LottoData;
 
 public class GameModel {
@@ -17,6 +18,7 @@ public class GameModel {
 
     public void initAnswerByStrings(String insertData){
         List<String> splitData= Arrays.asList(insertData.split(","));
+
         validateIntegerList(splitData);
 
         List<Integer> answerNumbers = splitData.stream()
@@ -44,7 +46,7 @@ public class GameModel {
 
     private void validateIntegerList(List<String> insertDatas){
        if(isContainsChar(insertDatas)){
-           throw new IllegalArgumentException("[ERROR] 당첨번호는 숫자값들로만 이루어져야 합니다.");
+           throw new IllegalArgumentException(ErrorMessage.LOTTO_NOT_NUMBER.getMessage());
        }
     }
 

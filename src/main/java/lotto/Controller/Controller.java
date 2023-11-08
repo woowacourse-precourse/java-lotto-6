@@ -44,7 +44,7 @@ public class Controller {
                 gameModel.initGameModel(playerInsert);
                 errorChecker=false;
             }catch (IllegalArgumentException error){
-                System.out.println(error.getMessage());
+                Output.printError(error.getMessage());
             }
         }
     }
@@ -57,7 +57,7 @@ public class Controller {
                 gameModel.initAnswerByStrings(playerInsert);
                 errorChecker=false;
             }catch (IllegalArgumentException error){
-                System.out.println(error.getMessage());
+                Output.printError(error.getMessage());
             }
         }
     }
@@ -73,7 +73,7 @@ public class Controller {
 
                 errorChecker=false;
             }catch (IllegalArgumentException error){
-                System.out.println(error.getMessage());
+                Output.printError(error.getMessage());
             }
         }
     }

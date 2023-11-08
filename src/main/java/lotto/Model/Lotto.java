@@ -3,6 +3,7 @@ package lotto.Model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.Controller.ErrorMessage;
 import lotto.Model.VO.LottoData;
 
 public class Lotto {
@@ -15,20 +16,28 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_LENGTH.getMessage());
         }
         if(isNumbersOutOfRange(numbers)){
-            throw new IllegalArgumentException("[ERROR] 로또의 번호는 1~45 사이어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_OUT_RANGE.getMessage());
         }
         if(isNumbersDuplicate(numbers)){
-            throw new IllegalArgumentException("[ERROR] 로또의 번호는 서로 다른 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_DUPLICATE.getMessage());
         }
     }
 
     public Prize calculatePrize(List<Integer> answer,Integer bonusNumber){
         int matchCount = calculateMatchCount(answer);
         boolean isBonusMatch = numbers.contains(bonusNumber);
+        return getRankByScore(matchCount,isBonusMatch);
+    }
 
+
+    public LottoData getData(){
+        return new LottoData(numbers);
+    }
+
+    private Prize getRankByScore(int matchCount,boolean isBonusMatch){
         if (matchCount == 6) {
             return Prize.FIRST;
         }
@@ -44,10 +53,9 @@ public class Lotto {
         if (matchCount == 3) {
             return Prize.FIFTH;
         }
-
         return Prize.NO_RANK;
-
     }
+
     private boolean isNumberOutOfRange(Integer number){
         return number < 1  || 45 < number;
     }
@@ -77,9 +85,6 @@ public class Lotto {
             }
         }
         return matchCount;
-    }
-    public LottoData getData(){
-        return new LottoData(numbers);
     }
 
 

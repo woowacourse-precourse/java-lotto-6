@@ -3,6 +3,7 @@ package lotto;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.Controller.ErrorMessage;
 import lotto.Model.GameModel;
 import lotto.Model.LottoHost;
 import org.assertj.core.api.Assertions;
@@ -20,6 +21,6 @@ public class LottoHostTest {
         LottoHost testLottoHost= new LottoHost();
         Assertions.assertThatThrownBy(() -> testLottoHost.initBonusNumber(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또의 번호는 1~45 사이어야 합니다.");
+                .hasMessage(ErrorMessage.BONUS_OUT_RANGE.getMessage());
     }
 }

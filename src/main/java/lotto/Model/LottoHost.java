@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.swing.ImageIcon;
+import lotto.Controller.ErrorMessage;
 import lotto.Model.VO.LottoData;
 
 public class LottoHost {
@@ -36,7 +37,7 @@ public class LottoHost {
 
     private void validateLottoNumber(Integer number){
         if(isNumberOutOfRange(number)){
-            throw new IllegalArgumentException("[ERROR] 로또의 번호는 1~45 사이어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_OUT_RANGE.getMessage());
         }
     }
 

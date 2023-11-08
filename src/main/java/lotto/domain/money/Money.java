@@ -1,6 +1,7 @@
 package lotto.domain.money;
 
 import lotto.domain.validator.MoneyValidator;
+import lotto.util.ErrorMessage;
 
 public class Money {
     public static final int LOTTO_PRICE = 1_000;
@@ -30,7 +31,7 @@ public class Money {
 
     public void checkForLottoPurchase() {
         if (money < LOTTO_PRICE) {
-            throw new IllegalArgumentException("로또를 더 이상 발행할 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_ISSUE_DISCONTINUED.get());
         }
     }
 

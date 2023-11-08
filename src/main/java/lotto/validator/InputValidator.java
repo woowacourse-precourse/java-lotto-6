@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import java.util.regex.Pattern;
+import lotto.util.ErrorMessage;
 
 public class InputValidator {
     private static final String NUMBERS_REGEX = "^(\\d+(,\\d+)*)+$";
@@ -10,19 +11,19 @@ public class InputValidator {
 
     public static void verifyValidaNumberFormat(String input) {
         if (!NUMBERS_PATTERN.matcher(input).matches()) {
-            throw new IllegalArgumentException("쉼표 구분하여 숫자만 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_FORMAT.get());
         }
     }
 
     public static void verifyNonEmptyInput(String input) {
         if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException("입력 값이 비어있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.get());
         }
     }
 
     public static void verifyNumericString(String input) {
         if (!NUMBER_PATTERN.matcher(input).matches()) {
-            throw new IllegalArgumentException("보너스 번호는 하나의 숫자만 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_COUNT.get());
         }
     }
 }

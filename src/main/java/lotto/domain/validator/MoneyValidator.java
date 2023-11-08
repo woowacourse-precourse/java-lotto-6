@@ -1,5 +1,7 @@
 package lotto.domain.validator;
 
+import lotto.util.ErrorMessage;
+
 public class MoneyValidator {
     public static final int LOTTO_PRICE = 1_000;
     private static final int POSITIVE_VALUE = 0;
@@ -7,25 +9,25 @@ public class MoneyValidator {
 
     public static void verifyDivisibleBy(int money) {
         if (money % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("구입 금액은 1000원 단위로 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_MONEY.get());
         }
     }
 
     public static void verifyMinAmount(int money) {
         if (money < LOTTO_PRICE) {
-            throw new IllegalArgumentException("구입 금액은 최소 1000원 이상으로 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_MONEY_AT_LEAST.get());
         }
     }
 
     public static void verifyMaxAmount(int money) {
         if (money > MAX_MONEY) {
-            throw new IllegalArgumentException("금액은 100,000원 이하로 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.EXCEEDS_MAX_AMOUNT.get());
         }
     }
 
     public static void verifyPositiveMoney(int money) {
         if (money < POSITIVE_VALUE) {
-            throw new IllegalArgumentException("구입 금액은 음수가 될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_AMOUNT.get());
         }
     }
 }

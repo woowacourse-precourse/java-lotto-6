@@ -3,6 +3,7 @@ package lotto.domain.validator;
 import java.util.List;
 import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.Lotto;
+import lotto.util.ErrorMessage;
 
 public class LottoValidator {
     public static final int LOTTO_NUMBERS = 6;
@@ -11,14 +12,14 @@ public class LottoValidator {
 
     public static void verifyNumbersSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBERS) {
-            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS_COUNT.get());
         }
     }
 
     public static void verifyNoDuplication(List<Integer> numbers) {
         int uniqueCount = getUniqueCount(numbers);
         if (uniqueCount != numbers.size()) {
-            throw new IllegalArgumentException("로또 번호에 중복되는 숫자가 있으면 안 됩니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBERS.get());
         }
     }
 
@@ -28,7 +29,7 @@ public class LottoValidator {
 
     public static void verifyLottoNumberRange(List<Integer> numbers) {
         if (isOutOfRange(numbers)) {
-            throw new IllegalArgumentException("로또 번호는 1에서 45사이의 숫자만 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_OUT_OF_RANGE.get());
         }
     }
 
@@ -38,13 +39,13 @@ public class LottoValidator {
 
     public static void verifyBonusNumberRange(int bonusNumber) {
         if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
-            throw new IllegalArgumentException("보너스 번호는 1에서 45 사이에 있어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE.get());
         }
     }
 
     public static void verifyBonusIsNotContainWinningNumbers(Lotto winningNumbers, BonusNumber bonusNumber) {
         if (hasBonusNumber(winningNumbers, bonusNumber)) {
-            throw new IllegalArgumentException("입력한 당첨번호와 동일한 숫자를 입력하면 안 됩니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBERS_AND_BONUS_NUMBER.get());
         }
     }
 
@@ -55,7 +56,7 @@ public class LottoValidator {
 
     public static void verifyLottosNotNullOrNotEmpty(List<Lotto> lottos) {
         if (lottos == null || lottos.isEmpty()) {
-            throw new IllegalArgumentException("Lottos 객체는 최소 하나 이상의 Lotto로 이루어져야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_LOTTOS.get());
         }
     }
 }

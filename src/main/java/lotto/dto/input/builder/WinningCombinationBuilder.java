@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.validator.LottoValidator;
 import lotto.dto.input.WinningCombinationDto;
+import lotto.util.ErrorMessage;
 
 public class WinningCombinationBuilder {
     private List<Integer> winningNumbers;
@@ -54,13 +55,13 @@ public class WinningCombinationBuilder {
 
     private void verifyAllFieldsAreSet() {
         if (isWinningNumbersNotSet || isBonusNumberNotSet) {
-            throw new IllegalArgumentException("당첨번호 또는 보너스 번호가 설정되지 않았습니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_SET_ALL_FIELDS_NUMBERS.get());
         }
     }
 
     private void verifyBonusNotContainedInWinningNumbers(int bonusNumber) {
         if (winningNumbers != null && winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("보너스 번호가 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBERS_AND_BONUS_NUMBER.get());
         }
     }
 }

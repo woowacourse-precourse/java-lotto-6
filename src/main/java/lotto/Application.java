@@ -13,6 +13,7 @@ public class Application {
             printLottos(lottos);
             Lotto winningLotto = askWinningNumber();
             int bonusNumber = askBonusNumber(winningLotto.getNumbers());
+            printWinningStatistics(lottos, winningLotto, bonusNumber, lottoAmount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -76,6 +77,19 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
         }
         return bonusNumber;
+    }
+
+    public static void printWinningStatistics(List<Lotto> lottos, Lotto winningLotto, int bonusNumber, int lottoAmount) {
+        Map<Rank, Integer> map = calculateMatchingNumbers(lottos, winningLotto, bonusNumber);
+        Long total = 0L;
+        for(Map.Entry<Rank, Integer> e : map.entrySet()){
+            total += e.getKey().getAmount() * e.getValue();
+            if (!e.getKey().equals(Rank.MISS)) {
+                System.out.println(e.getKey().getPhrase() + e.getValue() + "개");
+            }
+        }
+        double rateOfReturn = (double)total / lottoAmount * 100;
+        System.out.println("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
     }
 
     public static Map<Rank, Integer> calculateMatchingNumbers(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {

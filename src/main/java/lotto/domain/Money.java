@@ -3,18 +3,17 @@ package lotto.domain;
 import lotto.view.Input;
 
 public class Money {
+
     int totalMoney;
+
     public Money(int money) {
         this.totalMoney = money;
     }
 
-    public void Inputmoney(){
-        System.out.println("구입금액을 입력해 주세요.");
-        String notCheckedMoney = Input.consoleLine();
-
+    public void checkMoney () {
+        if(this.totalMoney % 1000 != 0){
+            throw new IllegalArgumentException();
+        }
     }
-
-
-
 
 }

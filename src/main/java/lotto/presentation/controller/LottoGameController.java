@@ -56,17 +56,26 @@ public class MC {
             String inputPurchaseAmount = readAndRemoveSpace();
             try {
                 getValidPurchaseAmount(inputPurchaseAmount);
-                return Integer.parseInt(inputPurchaseAmount);
+                return parseInt(inputPurchaseAmount);
             } catch (IllegalArgumentException e) {
-                view.promptForError(e);
-                view.promptForPurchaseAmount();
+                handleInvalidAmount(e);
             }
         }
     }
+
+    private int parseInt(String inputPurchaseAmount) {
+        return Integer.parseInt(inputPurchaseAmount);
+    }
+
     private void getValidPurchaseAmount(String inputPurchaseAmount) {
         isNotBlankValue(inputPurchaseAmount);
         isNotIntegerValue(inputPurchaseAmount);
         LottoTicket.isNotMultipleOfLottoPrice(Integer.parseInt(inputPurchaseAmount));
+    }
+
+    private void handleInvalidAmount(IllegalArgumentException e) {
+        view.promptForError(e);
+        view.promptForPurchaseAmount();
     }
 
     private void displayPurchaseResults() {
@@ -83,7 +92,6 @@ public class MC {
             try {
                 Lotto winningLotto = readAndGenerateWinningNumber();
                 int BonusNumber = readAndGenerateBonusNumber();
-
                 return new LottoWinningNumbers(winningLotto.getNumbers(), BonusNumber);
             } catch (IllegalArgumentException e) {
                 view.promptForError(e);
@@ -97,12 +105,10 @@ public class MC {
             List<String> inputWinningNumbers = Arrays.asList(readAndRemoveSpace().split(","));
             try {
                 getValidWinningNumber(inputWinningNumbers);
-                List<Integer> winningNumbers = inputWinningNumbers.stream()
-                        .map(Integer::parseInt)
-                        .toList();
-                return new Lotto(winningNumbers);
+                List<Integer> winningNumbers = parseWinningNumbers(inputWinningNumbers);
+                return createLottoWithWinningNumbers(winningNumbers);
             } catch (IllegalArgumentException e) {
-                view.promptForError(e);
+                handleInvalidWinningNumbers(e);
             }
         }
     }
@@ -112,6 +118,20 @@ public class MC {
             isNotBlankValue(inputNumber);
             isNotIntegerValue(inputNumber);
         });
+    }
+
+    private List<Integer> parseWinningNumbers(List<String> inputWinningNumbers) {
+        return inputWinningNumbers.stream()
+                .map(Integer::parseInt)
+                .toList();
+    }
+
+    private Lotto createLottoWithWinningNumbers(List<Integer> winningNumbers) {
+        return new Lotto(winningNumbers);
+    }
+
+    private void handleInvalidWinningNumbers(IllegalArgumentException e) {
+        view.promptForError(e);
     }
 
     private int readAndGenerateBonusNumber() {

@@ -6,7 +6,7 @@ public class CommonFunction {
     // 하나의 번호가 [1, 45] 구간에 있는지 확인
     public static void checkNumberIn1to45(int number){
         if(number < 1 || number > 45){
-            throw new IllegalArgumentException("보너스 번호는 1~45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("번호는 1~45 사이의 숫자여야 합니다.");
         }
     }
 

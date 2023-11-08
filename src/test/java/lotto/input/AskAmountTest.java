@@ -3,13 +3,13 @@ package lotto.input;
 import static lotto.exception.ErrorType.AmountMinimumException;
 import static lotto.exception.ErrorType.AmountUnitException;
 import static lotto.exception.ErrorType.InputMoneyNotDigitException;
+import static lotto.exception.ErrorType.InputMoneyOverflowException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import lotto.domain.MoneyManagement;
 import lotto.exception.ErrorType;
 import lotto.exception.LottoException;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -55,6 +55,20 @@ public class AskAmountTest {
                 () -> MoneyManagement.from(amount));
 
         ErrorType exceptionType = lottoException.getExceptionType();
-        Assertions.assertThat(exceptionType).isEqualTo(InputMoneyNotDigitException);
+        assertThat(exceptionType).isEqualTo(InputMoneyNotDigitException);
+    }
+
+    @Test
+    @DisplayName("로또 구입 금액이 Integer.MaxValue보다 클 때")
+    void overflow(){
+        //given
+        String amount = "2147483648";
+
+        //when & then
+        LottoException lottoException = assertThrows(LottoException.class,
+                () -> MoneyManagement.from(amount));
+
+        ErrorType exceptionType = lottoException.getExceptionType();
+        assertThat(exceptionType).isEqualTo(InputMoneyOverflowException);
     }
 }

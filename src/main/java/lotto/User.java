@@ -9,9 +9,14 @@ public class User {
     private int lottoCount;
     private int lottoPrice;
     private List<Lotto> lottos;
+    private List<Integer> ratings;
 
     public User() {
         lottos = new ArrayList<>();
+        ratings = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            ratings.add(0);
+        }
     }
 
     private void buyLotto() {
@@ -35,10 +40,14 @@ public class User {
         printLotto();
     }
 
-    private void printLotto(){
-        System.out.println(lottoCount+"개를 구매했습니다.");
+    private void printLotto() {
+        System.out.println(lottoCount + "개를 구매했습니다.");
         for (int i = 0; i < lottoCount; i++) {
-           lottos.get(i).printLottoNumber();
+            lottos.get(i).printLottoNumber();
         }
+    }
+
+    public void calcPrize(List<Integer> targetNumbers, int bonusNumber) {
+
     }
 }

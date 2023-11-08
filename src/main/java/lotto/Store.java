@@ -40,4 +40,12 @@ public class Store {
             targetNumbers.add(Integer.parseInt(splitInputData[i]));
         }
     }
+
+    public List<Integer> giveTargetNumbers(){
+        return targetNumbers;
+    }
+
+    public int giveBonusNumber(){
+        return bonusNumber;
+    }
 }

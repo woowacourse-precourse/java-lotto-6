@@ -18,10 +18,12 @@ public class LottoTickets {
 
     private void createLottoTickets(int purchaseCount) {
         for (int i = 0; i < purchaseCount; i++) {
-            tickets.add(new Lotto(
-                    Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBERS_SIZE)
-            ));
+            tickets.add(new Lotto(generateRandomLottoNumbers()));
         }
+    }
+
+    private List<Integer> generateRandomLottoNumbers() {
+        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBERS_SIZE);
     }
 
     public List<Lotto> getTickets() {

@@ -24,7 +24,8 @@ public class LottoResults {
     }
     public double calculateProfitRate(int purchaseAmount) {
         double totalPrize = calculateTotalPrize();
-        return (totalPrize - purchaseAmount) / purchaseAmount * 100.0;
+        // 계산식: 당첨 금액 / 구입 금액 * 100
+        return (totalPrize / purchaseAmount) * 100.0;
     }
     public Map<LottoRank, Integer> getResults() {
         return results;

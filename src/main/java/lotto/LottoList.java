@@ -21,7 +21,7 @@ public class LottoList {
         return lottoList.size();
     }
 
-    public void printNumberOfLottoList(){
+    public void printNumberOfLotto(){
         System.out.println("\n" + number_of_lotto + "개를 구매했습니다.");
     }
     private List<Integer> pickLottoNumbers(){

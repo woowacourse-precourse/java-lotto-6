@@ -20,4 +20,8 @@ public class User {
     public void setLottos(int buyingPrice) {
         this.lottos = generateLottoNumbers(buyingPrice);
     }
+
+    public List<UserLotto> getLottos() {
+        return lottos;
+    }
 }

@@ -219,4 +219,67 @@ class GameControllerTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨 통계와 수익률을 계산하여 출력한다.")
+    @Test
+    public void endGame_당첨_통계와_수익률_계산(){
+        //given
+        String lottoMoneyInput = "2000\n";
+        List<Integer> lotto1 = List.of(1,2,3,4,5,6);
+        List<Integer> lotto2 = List.of(4,5,6,7,8,9);
+        String lottoNumbersInput = "1,2,3,4,5,6\n7";
+        provideInput(lottoMoneyInput + lottoNumbersInput);
+
+        //when
+        assertRandomUniqueNumbersInRangeTest(() -> {
+            gameController.startGame();
+            gameController.playGame();
+            gameController.endGame();
+        }, lotto1,lotto2);
+
+        //then
+        Map<Rank, Integer> rankCountMap = gameService.getRankCountMap();
+        assertThat(rankCountMap.get(Rank.FIRST)).isEqualTo(1);
+        assertThat(rankCountMap.get(Rank.SECOND)).isEqualTo(0);
+        assertThat(rankCountMap.get(Rank.THIRD)).isEqualTo(0);
+        assertThat(rankCountMap.get(Rank.FOURTH)).isEqualTo(0);
+        assertThat(rankCountMap.get(Rank.FIFTH)).isEqualTo(1);
+
+        int totalWinningMoney = Rank.FIRST.getWinningMoney() + Rank.FIFTH.getWinningMoney();
+        assertThat(gameService.calculateProfitRate()).isEqualTo((double) totalWinningMoney / 2000 * 100);
+    }
+
+    @DisplayName("당첨 통계와 수익률을 계산하여 출력한다.")
+    @Test
+    public void endGame_당첨_통계와_수익률_출력(){
+        //given
+        String lottoMoneyInput = "2000\n";
+        List<Integer> lotto1 = List.of(1,2,3,4,5,6);
+        List<Integer> lotto2 = List.of(4,5,6,7,8,9);
+        String lottoNumbersInput = "1,2,3,4,5,6\n7";
+        provideInput(lottoMoneyInput + lottoNumbersInput);
+
+        //when
+        assertRandomUniqueNumbersInRangeTest(() -> {
+            gameController.startGame();
+            gameController.playGame();
+            gameController.endGame();
+        }, lotto1,lotto2);
+
+        //then
+        assertThat(outContent.toString())
+                .contains(String.format(
+                        OutputView.OUTPUT_WINNING_MONEY_FORMAT,
+                        Rank.FIRST.getMatchCount(),
+                        String.format("%,d", Rank.FIRST.getWinningMoney()),
+                        1))
+                .contains(String.format(
+                        OutputView.OUTPUT_WINNING_MONEY_FORMAT,
+                        Rank.FIFTH.getMatchCount(),
+                        String.format("%,d", Rank.FIFTH.getWinningMoney()),
+                        1));
+
+        assertThat(outContent.toString())
+                .contains(String.format(OutputView.OUTPUT_PROFIT_RATE_MESSAGE, gameService.calculateProfitRate()));
+    }
+
 }

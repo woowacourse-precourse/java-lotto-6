@@ -35,7 +35,7 @@ public class User {
 
     public List<Integer> getWinningNumbersAndBonus() {
         List<Integer> winningNumbers = inputAndGetWinningNumbers();
-        int bonusNumber = inputAndGetBonusNumber();
+        int bonusNumber = inputAndGetBonusNumber(winningNumbers);
         winningNumbers.add(bonusNumber);
         return winningNumbers;
     }
@@ -50,9 +50,14 @@ public class User {
         }
     }
 
-    public int inputAndGetBonusNumber() {
-        String bonusLotto = input("\n보너스 번호를 입력해 주세요.");
-        return getBonusNumber(bonusLotto);
+    public int inputAndGetBonusNumber(List<Integer> winningNumbers) {
+        try {
+            String bonusLotto = input("\n보너스 번호를 입력해 주세요.");
+            return getBonusNumber(bonusLotto, winningNumbers);
+        } catch (IllegalArgumentException e) {
+            printError(e.getMessage());
+            return inputAndGetBonusNumber(winningNumbers);
+        }
     }
 
     private static String input(String printMessage) {
@@ -100,8 +105,28 @@ public class User {
         }
     }
 
-    private static int getBonusNumber(String bonusNumber) {
-        return convertStringToInteger(bonusNumber);
+    private static int getBonusNumber(String bonusLotto, List<Integer> winningNumbers) {
+        try {
+            int bonusNumber = convertStringToInteger(bonusLotto);
+            validateNumber(bonusNumber, winningNumbers);
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("정수만 입력해야 합니다.");
+        }
+    }
+
+    private static void validateNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (bonusNumber < 1) {
+            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+
+        if (bonusNumber > 45) {
+            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+        }
     }
 
     private static List<Integer> convertStringToIntegerList(String input) {

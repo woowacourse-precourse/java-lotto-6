@@ -16,10 +16,10 @@ import lotto.util.Validator;
 public class LottoService {
 
     public User user;
-    private Lotto winningLotto;
+    public Lotto winningLotto;
 
-    private int bonusNumber;
-    private final int[] winningCount;
+    public int bonusNumber;
+    public final int[] winningCount;
 
     public LottoService() {
         winningCount = new int[Config.RANK_LOTTO];
@@ -90,7 +90,7 @@ public class LottoService {
         return winningCount;
     }
 
-    private LottoRank calculateLottoRank(Lotto lotto) {
+    public LottoRank calculateLottoRank(Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
         List<Integer> winningNumbers = winningLotto.getNumbers();
 

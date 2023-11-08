@@ -1,7 +1,9 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import lotto.dto.LottoResultNotifier;
@@ -109,6 +111,20 @@ public class LottoResultNotifierTest {
 
         assertThat(notifier.getRateOfReturn())
                 .isEqualTo("500.0");
+    }
+
+    @DisplayName("로또를 사지않았을때 수익률계산을 하면 예외처리")
+    @Test
+    void throw_when_noBuy_Lotto() {
+        LottoDraw lottoDraw = new LottoDraw(List.of(1, 2, 3, 4, 5, 6), 10);
+        Lottos lottos = new Lottos(new ArrayList<>());
+
+        LottoResultNotifier notifier = new LottoResultNotifier(lottos, lottoDraw);
+
+        assertThatThrownBy(notifier::getRateOfReturn)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또는 최소 1개이상 구입해야 합니다.");
+
     }
 
 }

@@ -1,23 +1,16 @@
 package lotto.domain;
 
 
-import java.util.ArrayList;
-import java.util.Collections;
+import static lotto.domain.Rank.FIFTH_RANK;
+import static lotto.domain.Rank.FIRST_RANK;
+import static lotto.domain.Rank.FOURTH_RANK;
+import static lotto.domain.Rank.SECOND_RANK;
+import static lotto.domain.Rank.THIRD_RANK;
+
+import java.util.EnumMap;
 import java.util.List;
 
-public class LottoGameHandler {
-
-    private static final int FIRST_PRIZE = 2000000000;
-    private static final int SECOND_PRIZE = 30000000;
-    private static final int THIRD_PRIZE = 1500000;
-    private static final int FOURTH_PRIZE = 50000;
-    private static final int FIFTH_PRIZE = 5000;
-    private static final int LOTTO_PRICE = 1000;
-
-    //로또 발행기능
-    public void createLotto() {
-
-    }
+public class GameHandler {
 
     //당첨로또 발행기능
     public WinningTicket createWinningTicket(List<Integer> winningNum, int bonumNum) {
@@ -26,43 +19,49 @@ public class LottoGameHandler {
     }
 
     //당첨통계 계산기능
-    public List<Integer> checkWinningResult(List<Lotto> lottos, WinningTicket winningTicket) {
-        List<Integer> winningRank = new ArrayList<>(Collections.nCopies(5, 0));
-        List<Integer> winningNums = winningTicket.getWinningNumbers();
-        int bonusNum = winningTicket.getBonusNumber();
+    public EnumMap<Rank, Integer> checkWinningResult(List<Lotto> lottos, WinningTicket winningTicket) {
+        EnumMap<Rank, Integer> winningStatics = new EnumMap<>(Rank.class);
 
-        for(int i=0; i< lottos.size(); i++) {
-            List<Integer> lottoNum = lottos.get(i).getNumbers();
-            int equalNum = 0;
+        for(Lotto lotto : lottos) {
+            List<Integer> lottoNum = lotto.getNumbers();
 
-            for(int j=0; j< lottoNum.size(); j++) {
-                if(winningNums.contains(lottoNum.get(j))) {
-                    equalNum++;
-                }
-            }
-
-            if(equalNum == 6) {
-                int oneRank = winningRank.get(0);
-                winningRank.set(0, oneRank + 1);
-            }
-            if(equalNum == 5 && lottoNum.contains(bonusNum)) {
-                int twoRank = winningRank.get(1);
-                winningRank.set(1, twoRank + 1);
-            }
-            if(equalNum == 5) {
-                int threeRank = winningRank.get(2);
-                winningRank.set(2, threeRank + 1);
-            }
-            if(equalNum == 4) {
-                int fourRank = winningRank.get(3);
-                winningRank.set(3, fourRank + 1);
-            }
-            if(equalNum == 3) {
-                int fiveRank = winningRank.get(4);
-                winningRank.set(4, fiveRank + 1);
-            }
+            winningStatics = calculateRank(lottoNum, winningTicket);
         }
-        return winningRank;
+
+        return winningStatics;
+    }
+
+    public EnumMap<Rank, Integer> calculateRank(List<Integer> lottoNums, WinningTicket winningTicket) {
+        EnumMap<Rank, Integer> winningStatics = new EnumMap<>(Rank.class);
+
+        for (Rank rank : Rank.values()) {
+            winningStatics.put(rank, 0);
+        }
+
+        List<Integer> winningNums = winningTicket.getWinningNumbers();
+        boolean bonusMatching = lottoNums.contains(winningTicket.getBonusNumber());
+
+        long matchingNum = lottoNums.stream()
+            .filter(winningNums::contains)
+            .count();
+
+        if(matchingNum == FIRST_RANK.getMatchingNum() ) {
+            winningStatics.put(FIRST_RANK, winningStatics.get(FIRST_RANK) + 1);
+        }
+        if(matchingNum == SECOND_RANK.getMatchingNum() && bonusMatching ) {
+            winningStatics.put(SECOND_RANK, winningStatics.get(SECOND_RANK) + 1);
+        }
+        if(matchingNum == THIRD_RANK.getMatchingNum() && !bonusMatching ) {
+            winningStatics.put(THIRD_RANK, winningStatics.get(THIRD_RANK) + 1);
+        }
+        if(matchingNum == FOURTH_RANK.getMatchingNum()) {
+            winningStatics.put(FOURTH_RANK, winningStatics.get(FOURTH_RANK) + 1);
+        }
+        if(matchingNum == FIFTH_RANK.getMatchingNum()) {
+            winningStatics.put(FIFTH_RANK, winningStatics.get(FIFTH_RANK) + 1);
+        }
+
+        return winningStatics;
     }
 
     //우승상금 수익률 계산하는 기능

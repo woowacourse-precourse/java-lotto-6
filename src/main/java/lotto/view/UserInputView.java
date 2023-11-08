@@ -8,7 +8,7 @@ public class UserInputView {
 
     public static void inputPurchaseAmount(){
         try{
-            LottoController.buyLottoTickets(Long.parseLong(Console.readLine()));
+            LottoController.getInstance().buyLottoTickets(Long.parseLong(Console.readLine()));
 
         }catch (IllegalArgumentException e){
             exceptionTypeMessage(e);

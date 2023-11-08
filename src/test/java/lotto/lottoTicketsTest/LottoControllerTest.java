@@ -23,7 +23,7 @@ public class LottoControllerTest   {
         long purchaseAmount = 8000;
 
         // when
-        LottoController.buyLottoTickets(purchaseAmount);
+        LottoController.getInstance().buyLottoTickets(purchaseAmount);
 
         //then
         Assertions.assertThat(LottoTickets.getBuyLottoTickets().size()).isEqualTo(8);
@@ -33,9 +33,9 @@ public class LottoControllerTest   {
     @Test
     void getBuyLottoTicketsNum(){
         long purchaseAmount = 8000;
-        LottoController.buyLottoTickets(purchaseAmount);
+        LottoController.getInstance().buyLottoTickets(purchaseAmount);
 
-        Assertions.assertThat(LottoController.getBuyLottoTicketsNum()).isEqualTo(8);
+        Assertions.assertThat(LottoController.getInstance().getBuyLottoTicketsNum()).isEqualTo(8);
     }
 
     @DisplayName("로또목록 확인 테스트")
@@ -43,9 +43,9 @@ public class LottoControllerTest   {
     void getBuyLottoTickets() {
         // given
         long purchaseAmount = 8000;
-        LottoController.buyLottoTickets(purchaseAmount);
+        LottoController.getInstance().buyLottoTickets(purchaseAmount);
         // when
-        List<Lotto> lottoTickets = LottoController.getBuyLottoTickets();
+        List<Lotto> lottoTickets = LottoController.getInstance().getBuyLottoTickets();
 
 
         //then

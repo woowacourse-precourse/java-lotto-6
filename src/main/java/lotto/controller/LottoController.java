@@ -7,16 +7,26 @@ import lotto.domain.WinningNumber;
 import java.util.List;
 
 public class LottoController {
+    public LottoController() {
+    }
 
-    public static  void buyLottoTickets(long purchaseAmount){
+    private static class LottoControllerHolder{
+        private static final LottoController lottoController = new LottoController();
+    }
+
+    public static LottoController getInstance(){
+        return LottoControllerHolder.lottoController;
+    }
+
+    public  void buyLottoTickets(long purchaseAmount){
         LottoTickets.buyLottoTickets(purchaseAmount);
     }
 
-    public static int getBuyLottoTicketsNum(){
+    public  int getBuyLottoTicketsNum(){
         return LottoTickets.getBuyLottoTickets().size();
     }
 
-    public static List<Lotto> getBuyLottoTickets(){
+    public  List<Lotto> getBuyLottoTickets(){
         return LottoTickets.getBuyLottoTickets();
     }
 

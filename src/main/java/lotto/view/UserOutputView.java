@@ -19,11 +19,11 @@ public class UserOutputView {
 
     public static void getBuyLottoTicketsNum(){
         System.out.println();
-        System.out.println(LottoController.getBuyLottoTicketsNum() + "개를 구매했습니다.");
+        System.out.println(LottoController.getInstance().getBuyLottoTicketsNum() + "개를 구매했습니다.");
     }
 
     public static void getBuyLottoTickets(){
-        for(Lotto lotto : LottoController.getBuyLottoTickets()){
+        for(Lotto lotto : LottoController.getInstance().getBuyLottoTickets()){
             System.out.println(getLottoNums(lotto));
         }
 

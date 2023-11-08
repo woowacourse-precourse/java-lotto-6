@@ -32,12 +32,5 @@ class BonusNumberInputValidatorTest {
         Assertions.assertThatThrownBy(() -> BonusNumberInputValidator.validate(wrongInput))
                 .hasMessage(WinningInformationExceptionMessage.NOT_NUMERIC.getError());
     }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"0", "-1", "46", "-1", "-2"})
-    @DisplayName("[Exception] 1 ~ 45 범위가 아닐시 예외가 발생한다.")
-    void outOfRange(String wrongInput) {
-        Assertions.assertThatThrownBy(() -> BonusNumberInputValidator.validate(wrongInput))
-                .hasMessage(WinningInformationExceptionMessage.OUT_OF_RANGE.getError());
-    }
+    
 }

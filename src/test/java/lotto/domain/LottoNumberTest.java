@@ -1,8 +1,11 @@
 package lotto.domain;
 
+import lotto.utils.message.LottoExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoNumberTest {
 
@@ -23,4 +26,12 @@ class LottoNumberTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1, 46, -1, -2})
+    @DisplayName("[Exception] 1 ~ 45 범위가 아닐시 예외가 발생한다.")
+    void outOfRange(int wrongInput) {
+        Assertions.assertThatThrownBy(() -> new LottoNumber(wrongInput))
+                .hasMessage(LottoExceptionMessage.INVALID_NUMBER.getError());
+    }
+    
 }

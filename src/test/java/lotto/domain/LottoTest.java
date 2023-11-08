@@ -47,8 +47,9 @@ class LottoTest {
         }
 
         @ParameterizedTest
-        @ValueSource(strings = {"1", "1,2", "1,2,3", "11,12,13,14", "23,24,26,27,29", "22,22,22,21,10",
-                "1,2,3,4,5,6,7,9,10"})
+        @ValueSource(strings = {"1", "1,2", "1,2,3", "11,12,13,14", "23,24,26,27,29",
+                "22,22,22,21,10", "1,2,3,4,5,6,7,9,10", "1,2,3,4,5,23,7", "11,12,13,45,15,8,4",
+                "31,32,33,34", "34,35,36", "39,38,23,24,25"})
         @DisplayName("[Exception - Invalid Count] 로또 번호의 개수가 6개가 아니면 예외 발생")
         void outOfRange(String input) {
             List<Integer> inValidCountNumbers = createLottoNumbers(input);
@@ -57,7 +58,17 @@ class LottoTest {
         }
 
         @ParameterizedTest
-        @ValueSource(strings = {"1,23,35,44,27,1", "45,1,2,3,45,7"})
+        @ValueSource(strings = {"1,2,3,4,5,23,7", "11,12,13,45,15,8,4", "31,32,33,34", "1", "1,2", "34,35,36",
+                "39,38,23,24,25"})
+        @DisplayName("[Exception] 번호가 6개가 아니면 예외가 발생한다.")
+        void invalidCount(String wrongInput) {
+            List<Integer> inValidCountNumbers = createLottoNumbers(wrongInput);
+            Assertions.assertThatThrownBy(() -> new Lotto(inValidCountNumbers))
+                    .hasMessage(LottoExceptionMessage.NOT_SATISFY_REQUIRED_COUNT.getError());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"1,23,35,44,27,1", "45,1,2,3,45,7", "1,2,3,4,5,1", "11,12,13,45,15,45", "4,1,2,3,4,5"})
         @DisplayName("[Exception - duplicate] 로또 번호가 중복이면 예외 발생")
         void duplicate(String input) {
             List<Integer> duplicateNumbers = createLottoNumbers(input);
@@ -66,8 +77,9 @@ class LottoTest {
         }
 
         @ParameterizedTest
-        @ValueSource(strings = {"1,21,32,14,23,46", "0,1,5,4,3,2", "-1,1,2,3,4,5", "2147483647,7,6,5,4,3"})
-        @DisplayName("[Exception - Invalid Number] 유효하지 않는 로또 번호면 Lotto 에서 예외 발생")
+        @ValueSource(strings = {"1,21,32,14,23,46", "0,1,5,4,3,2", "-1,1,2,3,4,5", "2147483647,7,6,5,4,3",
+                "1,2,3,4,5,0", "11,12,13,46,15,16", "12345678,1,2,3,4,5"})
+        @DisplayName("[Exception - Invalid Number] 각 번호의 범위가 1 ~ 45가 아니면 예외가 발생한다.")
         void invalidLottNumber(String input) {
             List<Integer> invalidNumbers = createLottoNumbers(input);
             assertThatThrownBy(() -> new Lotto(invalidNumbers))
@@ -130,10 +142,9 @@ class LottoTest {
     }
 
     private List<Integer> createLottoNumbers(String input) {
-        List<Integer> lottoNumbers = Lists.newArrayList(input.split(","))
+        return Lists.newArrayList(input.split(","))
                 .stream()
                 .map(Integer::parseInt)
                 .toList();
-        return lottoNumbers;
     }
 }

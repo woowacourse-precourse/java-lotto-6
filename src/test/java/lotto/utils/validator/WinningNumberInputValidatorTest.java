@@ -51,31 +51,6 @@ class WinningNumberInputValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,0", "11,12,13,46,15,16", "12345678,1,2,3,4,5"})
-    @DisplayName("[Exception] 각 번호의 범위가 1 ~ 45가 아니면 예외가 발생한다.")
-    void outOfRange(String wrongInput) {
-        Assertions.assertThatThrownBy(() -> WinningNumberInputValidator.validate(wrongInput))
-                .hasMessage(WinningInformationExceptionMessage.OUT_OF_RANGE.getError());
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,1", "11,12,13,45,15,45", "4,1,2,3,4,5"})
-    @DisplayName("[Exception] 번호가 중복이면 예외가 발생한다.")
-    void duplicate(String wrongInput) {
-        Assertions.assertThatThrownBy(() -> WinningNumberInputValidator.validate(wrongInput))
-                .hasMessage(WinningInformationExceptionMessage.DUPLICATE_EXISTS.getError());
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,23,7", "11,12,13,45,15,8,4", "31,32,33,34", "1", "1,2", "34,35,36",
-            "39,38,23,24,25"})
-    @DisplayName("[Exception] 번호가 6개가 아니면 예외가 발생한다.")
-    void invalidCount(String wrongInput) {
-        Assertions.assertThatThrownBy(() -> WinningNumberInputValidator.validate(wrongInput))
-                .hasMessage(WinningInformationExceptionMessage.INVALID_COUNT.getError());
-    }
-
-    @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,5,6", "11,12,13,45,15,43", "1,45,22,23,24,25", "39,38,23,24,25,11"})
     @DisplayName("[Success] 제한된 길이 이내이고, 양 끝에 콤마가 없고, 콤마로 구분된 문자가 숫자이고, 중복되지 않은 1 ~ 45 수이면 성공이다.")
     void validWinningNumber(String correctInput) {

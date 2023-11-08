@@ -1,16 +1,15 @@
-package model;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+package lotto.model;
 
 import lotto.exception.DuplicateBonusNumberException;
 import lotto.exception.InvalidWinningLottoFormatException;
 import lotto.exception.NonNumericBonusNumberException;
 import lotto.exception.OutOfLottoNumberRangeException;
-import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.WinningsInitializer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class WinningsInitializerTest {
 

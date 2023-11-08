@@ -1,11 +1,11 @@
-package model;
+package lotto.model;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.List;
-import lotto.model.HitNumberCalculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class HitNumberCalculatorTest {
     @DisplayName("구매한 로또와 당첨 로또 번호가 모두 일치하면 6을 리턴한다.")

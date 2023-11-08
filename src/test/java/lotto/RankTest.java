@@ -16,7 +16,7 @@ class RankTest {
         assertThat(result).isEqualTo(Rank.FOUR_MATCH);
     }
 
-    @DisplayName("랭크에 해당하는 일치 번호 개수를 반환한다")
+    @DisplayName("랭크에 해당하는 일치 번호 개수를 반환한다.")
     @Test
     void getCountDuplication() {
         int result = Rank.THREE_MATCH.getCountDuplication();
@@ -32,7 +32,7 @@ class RankTest {
         assertThat(result).isEqualTo(false);
     }
 
-    @DisplayName("랭크에 해당하는 상금을 반환한다")
+    @DisplayName("랭크에 해당하는 상금을 반환한다.")
     @Test
     void getPrize() {
         int result = Rank.SIX_MATCH.getPrize();

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
-import lotto.validator.Validate;
 import lotto.view.ErrorMessage;
 
 public class InputNumber {
@@ -20,12 +19,12 @@ public class InputNumber {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
-    private void validate(String inputValue) {
-        validateInput(inputValue);
+    private void validate(String userInput) {
+        validateInput(userInput);
     }
 
-    private void validateInput(String inputValue) {
-        if (!PATTERN.matcher(inputValue).matches()) {
+    private void validateInput(String userInput) {
+        if (!PATTERN.matcher(userInput).matches()) {
             throw new IllegalArgumentException(ErrorMessage.TYPE_ERROR.getMessage());
         }
     }

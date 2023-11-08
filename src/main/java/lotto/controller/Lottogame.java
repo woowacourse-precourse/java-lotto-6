@@ -36,7 +36,8 @@ public class Lottogame {
 
     private Money getLottoMoney() {
         Request request = new Request();
-        int money = ParserLotto.lottoParser(request.requestNubmer());
+        ParserLotto parserLotto = new ParserLotto();
+        int money = parserLotto.lottoParser(request.requestNubmer());
         return new Money(money);
     }
 

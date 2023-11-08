@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.validator.Validate;
 import lotto.view.ErrorMessage;
 
 public class Money {

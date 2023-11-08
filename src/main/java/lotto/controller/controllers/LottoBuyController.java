@@ -1,5 +1,6 @@
 package lotto.controller.controllers;
 
+import lotto.controller.ErrorHandler;
 import lotto.dto.BuyLottoDto;
 import lotto.dto.Dto;
 import lotto.service.LottoBuyService;
@@ -23,13 +24,14 @@ public final class LottoBuyController implements Controller {
     @Override
     public void process(Map<String, ? super Dto.Input> inputs,
                         Map<String, ? super Dto.Output> outputs) {
-        try {
-            Long price = getBuyLottoPrice(inputs, outputs);
-            viewBuyLottoNumbers(outputs, price);
-        } catch (IllegalArgumentException e) {
-            System.out.print(e.getMessage());
-            process(inputs, outputs);
-        }
+
+        ErrorHandler.tryUntilNoError(() -> runViewByLottoPrice(inputs, outputs));
+    }
+
+    private void runViewByLottoPrice(Map<String, ? super Dto.Input> inputs,
+                                     Map<String, ? super Dto.Output> outputs) {
+        Long price = getBuyLottoPrice(inputs, outputs);
+        viewBuyLottoNumbers(outputs, price);
     }
 
     private void viewBuyLottoNumbers(Map<String, ? super Dto.Output> outputs, Long price) {

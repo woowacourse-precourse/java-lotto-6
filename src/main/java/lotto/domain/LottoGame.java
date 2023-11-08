@@ -6,11 +6,11 @@ import java.util.HashMap;
 
 public class LottoGame {
   private final Integer MONEYUNIT = 1000;
-  private final Double THREEAWARD = 5000;
-  private final Double FOURAWARD = 50000;
-  private final Double FIVEAWARD = 1500000;
-  private final Double FIVEANDBONUSAWARD = 30000000;
-  private final Double SIXAWARD = 2000000000;
+  private final Double THREEAWARD = 5000.0;
+  private final Double FOURAWARD = 50000.0;
+  private final Double FIVEAWARD = 1500000.0;
+  private final Double FIVEANDBONUSAWARD = 30000000.0;
+  private final Double SIXAWARD = 2000000000.0;
   private final Integer THREEMATCH = 3;
   private final Integer FOURMATCH = 4;
   private final Integer FIVEMATCH = 5;
@@ -36,12 +36,14 @@ public class LottoGame {
     bonusNumber = teller.getBonusNumber(lottoNumbers);
     calculateWin();
     teller.showResult(wins);
-    calculateWinPercentage();
+    Double awardPercent = calculateWinPercentage();
+    teller.showTotalWin(awardPercent);
   }
 
   public void calculateWin() {
     for (Lotto lotto : reciept) {
       Integer matchCount = lotto.matchedLottoCount(lottoNumbers);
+      System.out.println(matchCount);
       if (lotto.didMatchBonus(bonusNumber) && matchCount == 5) {
         updateWins(7);
         return;
@@ -53,12 +55,19 @@ public class LottoGame {
 
   public void updateWins(Integer matchCount) {
     if(wins.containsKey(matchCount)) {
-      wins.put(matchCount, wins.get(matchCount) + 1);
+      Integer newValue = wins.get(matchCount) + 1;
+      wins.put(matchCount, newValue);
+      return;
     }
     wins.put(matchCount, 1);
   }
 
-  public void calculateWinPercentage() {
-    Double totalWin = wins.get(THREEMATCH) * THREEAWARD; 
+  public Double calculateWinPercentage() {
+    Double totalWin = teller.formatWins(wins.get(THREEMATCH)) * THREEAWARD;
+    totalWin += teller.formatWins(wins.get(FOURMATCH)) * FOURAWARD;
+    totalWin += teller.formatWins(wins.get(FIVEMATCH)) * FIVEAWARD;
+    totalWin += teller.formatWins(wins.get(FIVEMATCHANDBONUS)) * FIVEANDBONUSAWARD;
+    totalWin += teller.formatWins(wins.get(SIXMATCH)) * SIXAWARD;
+    return (totalWin / moneyAmount) * 100;
   }
 }

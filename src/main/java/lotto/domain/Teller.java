@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.text.DecimalFormat;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -121,5 +122,12 @@ public class Teller {
       return 0;
     }
     return win;
+  }
+
+  public void showTotalWin(Double awardPercent) {
+    System.out.print(Speaker.PROFIT.speak());
+    DecimalFormat df = new DecimalFormat("#.0");
+    System.out.print(df.format(awardPercent));
+    System.out.println(Speaker.PROFITEND.speak());
   }
 }

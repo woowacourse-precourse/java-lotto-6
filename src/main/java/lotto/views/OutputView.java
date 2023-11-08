@@ -17,5 +17,10 @@ public class OutputView {
             System.out.println(lotto);
         }
     }
-
+    public void printGetWinningNumber(){
+        System.out.println(Constant.VIEW_WINNING_NUMBER);
+    }
+    public void printGetBonusNumber(){
+        System.out.println(Constant.VIEW_BONUS_NUMBER);
+    }
 }

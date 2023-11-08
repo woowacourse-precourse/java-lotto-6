@@ -16,8 +16,14 @@ public class GameManager {
     }
 
     public void play(){
-        gameView.purchaseAmountView();
-        user.buyLottery(machine);
+        user.setMoney(gameView.purchaseAmountView());
+        while(user.hasMoney()){
+            user.buyLottery(machine);
+        }
+
+        gameView.lotteriesView(user.getLotteries());
+        machine.setNumbers(gameView.winningNumberView());
+        machine.setBonus(gameView.bonusView(machine.getLotto()));
 
     }
 }

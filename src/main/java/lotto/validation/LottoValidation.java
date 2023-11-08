@@ -10,25 +10,25 @@ import java.util.List;
 import java.util.Set;
 
 public class LottoValidation {
-    public void validateLottoNumber(List<Integer> numbers) {
+    public static void validateLottoNumber(List<Integer> numbers) {
         validateNull(numbers);
         validateSize(numbers);
         validateDuplication(numbers);
     }
 
-    private void validateNull(List<Integer> numbers) {
+    private static void validateNull(List<Integer> numbers) {
         if (numbers == null) {
             throw new IllegalArgumentException(NULL_EXCEPTION.getMessage());
         }
     }
 
-    private void validateSize(List<Integer> numbers) {
+    private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(LOTTO_NUMBER_SIZE_EXCEPTION.getMessage());
         }
     }
 
-    private void validateDuplication(List<Integer> numbers) {
+    private static void validateDuplication(List<Integer> numbers) {
         Set<Integer> distinctNumbers = new HashSet<>(numbers);
         if (distinctNumbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(DUPLICATION_EXCEPTION.getMessage());

@@ -6,12 +6,11 @@ import lotto.domain.Lotto;
 public class TestLottoGenerator implements LottoGenerator{
     private List<Integer> numbers;
 
+    public TestLottoGenerator(List<Integer> numbers){
+        this.numbers = numbers;
+    }
     @Override
     public Lotto generate() {
         return new Lotto(numbers);
-    }
-
-    public void setNumbers(List<Integer> numbers) {
-        this.numbers = numbers;
     }
 }

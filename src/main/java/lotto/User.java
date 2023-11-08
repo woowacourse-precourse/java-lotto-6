@@ -19,9 +19,10 @@ public class User {
         this.money = money;
     }
 
-    public void purchaseLotto(LottoSeller lottoSeller) {
+    public List<Lotto> purchaseLotto(LottoSeller lottoSeller) {
         this.lottos = lottoSeller.sellLotto(money);
         Printer.buyLotto(lottos.size());
+        return lottos;
     }
 
     public void printLotto() {

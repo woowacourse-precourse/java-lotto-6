@@ -25,7 +25,7 @@ public class LottoGame {
         List<Lotto> lottoBundle = buyLottoBundle(purchaseAmount);
 
         // 구매 결과를 출력
-        printPurchaseHistory(lottoBundle);
+        outputHandler.printPurchaseHistory(lottoBundle);
 
         // 당첨 번호와 보너스 번호 입력
         WinningNumbers winnerNumbers = getWinningNumbers();
@@ -36,44 +36,31 @@ public class LottoGame {
         double profitRate = lottoService.calculateProfitRate(totalPrize, purchaseAmount);
 
         // 당첨 결과를 출력
-        printResults(winningResults, profitRate);
-
-    }
-
-    private WinningNumbers getWinningNumbers() {
-        List<Integer> numbers = getNumbers();
-        int bonusNumber = inputHandler.getBonusNumberFromUser();
-
-        return new WinningNumbers(numbers, bonusNumber);
+        outputHandler.printResults(winningResults, profitRate);
     }
 
     private List<Integer> getNumbers() {
-        try {
-            String userInput = inputHandler.getWinningNumbersFromUser();
-            return Arrays.stream(userInput.split(","))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .sorted()
-                    .toList();
-        } catch (IllegalArgumentException e) {
-            return getNumbers();
+        List<Integer> winningNumbers = new ArrayList<>();
+        boolean isValid = false;
+
+        while (!isValid) {
+            try {
+                String userInput = inputHandler.getWinningNumbersFromUser();
+                winningNumbers = getWinningNumbers(userInput);
+                isValid = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
+        return winningNumbers;
     }
 
-    public void printPurchaseHistory(List<Lotto> lottoBundle) {
-        System.out.println(lottoBundle.size() + "개를 구매했습니다.");
-        for (Lotto lotto : lottoBundle) {
-            System.out.println(lotto.toString());
-        }
-    }
-
-    private void printResults(Map<LottoRank, Integer> winningResults, double profitRate) {
-        System.out.printf(Result.FIFTH_PLACE.getMessage() + "%n", winningResults.get(LottoRank.FIFTH_PLACE));
-        System.out.printf(Result.FOURTH_PLACE.getMessage() + "%n", winningResults.get(LottoRank.FOURTH_PLACE));
-        System.out.printf(Result.THIRD_PLACE.getMessage() + "%n", winningResults.get(LottoRank.THIRD_PLACE));
-        System.out.printf(Result.SECOND_PLACE.getMessage() + "%n", winningResults.get(LottoRank.SECOND_PLACE));
-        System.out.printf(Result.FIRST_PLACE.getMessage() + "%n", winningResults.get(LottoRank.FIRST_PLACE));
-        System.out.printf(Result.TOTAL_PROFIT_RATE.getMessage() + "%n", profitRate);
+    private List<Integer> getWinningNumbers(String userInput) {
+        return Arrays.stream(userInput.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .sorted()
+                .toList();
     }
 
     private List<Lotto> buyLottoBundle(int purchaseAmount) {
@@ -87,6 +74,24 @@ public class LottoGame {
         }
         return lottoBundle;
     }
+
+    private WinningNumbers getWinningNumbers() {
+        boolean isValid = false;
+        WinningNumbers winningNumbers = null;
+
+        while (!isValid) {
+            List<Integer> numbers = getNumbers();
+            int bonusNumber = inputHandler.getBonusNumberFromUser();
+            try {
+                winningNumbers = new WinningNumbers(numbers, bonusNumber);
+                isValid = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return winningNumbers;
+    }
+
 
     private List<Integer> generateNumbers() {
         return Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER_INCLUSIVE, LOTTO_END_NUMBER_INCLUSIVE, LOTTO_TOTAL_NUMBERS);

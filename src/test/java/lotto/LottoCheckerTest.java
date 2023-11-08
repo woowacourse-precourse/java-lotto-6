@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class LottoCheckerTest {
     @Test
@@ -76,7 +77,9 @@ public class LottoCheckerTest {
         String bonus = "7";
 
         LottoChecker lottoChecker = new LottoChecker(answer, bonus);
-        List<LottoPrize> lottoPrizes = lottoChecker.check(List.of(first, second,  third, fourth, fifth, none));
+        List<LottoPrize> lottoPrizes = Stream.of(first, second,  third, fourth, fifth, none)
+                .map(lottoChecker::check)
+                .toList();
 
         assertThat(lottoPrizes).containsExactly(LottoPrize.FIRST, LottoPrize.SECOND, LottoPrize.THIRD, LottoPrize.FOURTH, LottoPrize.FIFTH, LottoPrize.NONE);
     }

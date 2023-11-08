@@ -2,7 +2,6 @@ package lotto.model;
 
 import static lotto.exception.ExceptionMessage.NUMBER_FORMAT_EXCEPTION;
 
-import lotto.constants.LottoRule;
 import java.util.Objects;
 
 public class LottoNumber {

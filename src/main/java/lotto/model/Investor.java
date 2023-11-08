@@ -1,7 +1,5 @@
 package lotto.model;
 
-import lotto.constants.LottoRule;
-
 public class Investor {
 
     private final Money investMoney;

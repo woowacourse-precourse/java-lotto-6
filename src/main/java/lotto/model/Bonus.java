@@ -1,4 +1,4 @@
-package lotto.constants;
+package lotto.model;
 
 public enum Bonus {
 

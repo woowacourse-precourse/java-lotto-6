@@ -1,10 +1,10 @@
 package lotto.exception;
 
-import static lotto.constants.LottoRule.LOTTO_COST;
-import static lotto.constants.LottoRule.LOTTO_COST_REMAIN_VALUE;
-import static lotto.constants.LottoRule.LOTTO_NUMBER_LENGTH;
-import static lotto.constants.LottoRule.MAXIMUM_NUMBER;
-import static lotto.constants.LottoRule.MINIMUM_NUMBER;
+import static lotto.model.LottoRule.LOTTO_COST;
+import static lotto.model.LottoRule.LOTTO_COST_REMAIN_VALUE;
+import static lotto.model.LottoRule.LOTTO_NUMBER_LENGTH;
+import static lotto.model.LottoRule.MAXIMUM_NUMBER;
+import static lotto.model.LottoRule.MINIMUM_NUMBER;
 
 public enum ExceptionMessage {
 

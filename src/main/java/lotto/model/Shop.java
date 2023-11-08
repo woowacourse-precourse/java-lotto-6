@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.constants.LottoRule.LOTTO_COST;
+import static lotto.model.LottoRule.LOTTO_COST;
 
 import java.util.ArrayList;
 import java.util.List;

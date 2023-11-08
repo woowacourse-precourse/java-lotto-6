@@ -1,9 +1,8 @@
 package lotto.model;
 
-import static lotto.constants.LottoRule.LOTTO_NUMBER_LENGTH;
+import static lotto.model.LottoRule.LOTTO_NUMBER_LENGTH;
 import static lotto.exception.ExceptionMessage.NUMBER_DUPLICATE_EXCEPTION;
 
-import lotto.constants.LottoRule;
 import java.util.ArrayList;
 import java.util.List;
 

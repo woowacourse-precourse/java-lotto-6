@@ -1,7 +1,7 @@
-package lotto.constants;
+package lotto.model;
 
-import static lotto.constants.Bonus.BONUS_EXCLUDE;
-import static lotto.constants.Bonus.BONUS_INCLUDE;
+import static lotto.model.Bonus.BONUS_EXCLUDE;
+import static lotto.model.Bonus.BONUS_INCLUDE;
 
 import java.util.Optional;
 

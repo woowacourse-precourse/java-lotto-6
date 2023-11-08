@@ -1,4 +1,4 @@
-package lotto.constants;
+package lotto.model;
 
 import static lotto.exception.ExceptionMessage.GOAL_NUMBER_SIZE_EXCEPTION;
 import static lotto.exception.ExceptionMessage.INVEST_MONEY_VALUE_EXCEPTION;

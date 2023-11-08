@@ -1,9 +1,9 @@
 package lotto.model;
 
-import static lotto.constants.Bonus.BONUS_EXCLUDE;
-import static lotto.constants.Bonus.BONUS_INCLUDE;
-import static lotto.constants.Prize.FIFTH;
-import static lotto.constants.Prize.SECOND;
+import static lotto.model.Bonus.BONUS_EXCLUDE;
+import static lotto.model.Bonus.BONUS_INCLUDE;
+import static lotto.model.Prize.FIFTH;
+import static lotto.model.Prize.SECOND;
 import static lotto.exception.ExceptionMessage.BONUS_NUMBER_ALREADY_USE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

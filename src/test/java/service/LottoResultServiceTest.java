@@ -3,7 +3,7 @@ package service;
 import lotto.model.Lotto;
 import lotto.model.LottoManager;
 import lotto.model.LottoResult;
-import lotto.service.LottoPrize;
+import lotto.service.LottoPrizeMessage;
 import lotto.service.LottoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -35,10 +35,10 @@ public class LottoResultServiceTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 6))
         );
         LottoResult lottoResult = lottoService.calculateLottoResult(lottoManager, lottoList);
-        LottoPrize lottoPrize = LottoPrize.FIRST_PRIZE;
+        LottoPrizeMessage lottoPrizeMessage = LottoPrizeMessage.FIRST_PRIZE;
 
-        HashMap<LottoPrize, Integer> result = new HashMap<>();
-        result.put(lottoPrize, 1);
+        HashMap<LottoPrizeMessage, Integer> result = new HashMap<>();
+        result.put(lottoPrizeMessage, 1);
         assertEquals(lottoResult.getResultMap(), result);
     }
 
@@ -54,10 +54,10 @@ public class LottoResultServiceTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 7))
         );
         LottoResult lottoResult = lottoService.calculateLottoResult(lottoManager, lottoList);
-        LottoPrize lottoPrize = LottoPrize.SECOND_PRIZE;
+        LottoPrizeMessage lottoPrizeMessage = LottoPrizeMessage.SECOND_PRIZE;
 
-        HashMap<LottoPrize, Integer> result = new HashMap<>();
-        result.put(lottoPrize, 1);
+        HashMap<LottoPrizeMessage, Integer> result = new HashMap<>();
+        result.put(lottoPrizeMessage, 1);
         assertEquals(lottoResult.getResultMap(), result);
     }
 
@@ -73,10 +73,10 @@ public class LottoResultServiceTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 8))
         );
         LottoResult lottoResult = lottoService.calculateLottoResult(lottoManager, lottoList);
-        LottoPrize lottoPrize = LottoPrize.THIRD_PRIZE;
+        LottoPrizeMessage lottoPrizeMessage = LottoPrizeMessage.THIRD_PRIZE;
 
-        HashMap<LottoPrize, Integer> result = new HashMap<>();
-        result.put(lottoPrize, 1);
+        HashMap<LottoPrizeMessage, Integer> result = new HashMap<>();
+        result.put(lottoPrizeMessage, 1);
         assertEquals(lottoResult.getResultMap(), result);
     }
 
@@ -93,8 +93,8 @@ public class LottoResultServiceTest {
         );
         LottoResult lottoResult = lottoService.calculateLottoResult(lottoManager, lottoList);
 
-        HashMap<LottoPrize, Integer> result = new HashMap<>();
-        result.put(LottoPrize.FOURTH_PRIZE, 1);
+        HashMap<LottoPrizeMessage, Integer> result = new HashMap<>();
+        result.put(LottoPrizeMessage.FOURTH_PRIZE, 1);
         assertEquals(lottoResult.getResultMap(), result);
     }
 
@@ -110,8 +110,8 @@ public class LottoResultServiceTest {
                 new Lotto(List.of(1, 2, 3, 8, 9, 10))
         );
         LottoResult lottoResult = lottoService.calculateLottoResult(lottoManager, lottoList);
-        HashMap<LottoPrize, Integer> result = new HashMap<>();
-        result.put(LottoPrize.FIFTH_PRIZE, 1);
+        HashMap<LottoPrizeMessage, Integer> result = new HashMap<>();
+        result.put(LottoPrizeMessage.FIFTH_PRIZE, 1);
 
         assertEquals(lottoResult.getResultMap(), result);
     }
@@ -128,8 +128,8 @@ public class LottoResultServiceTest {
                 new Lotto(List.of(8, 9, 10, 11, 12, 13))
         );
         LottoResult lottoResult = lottoService.calculateLottoResult(lottoManager, lottoList);
-        HashMap<LottoPrize, Integer> result = new HashMap<>();
-        result.put(LottoPrize.NOTHING_MATCH, 1);
+        HashMap<LottoPrizeMessage, Integer> result = new HashMap<>();
+        result.put(LottoPrizeMessage.NOTHING_MATCH, 1);
 
         assertEquals(lottoResult.getResultMap(), result);
     }

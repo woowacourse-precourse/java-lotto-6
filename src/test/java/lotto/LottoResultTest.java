@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.model.LottoResult;
-import lotto.service.LottoPrize;
+import lotto.service.LottoPrizeMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,7 @@ public class LottoResultTest {
     @Test
     void addResultTest() {
         LottoResult lottoResult = new LottoResult();
-        LottoPrize prize = LottoPrize.FIRST_PRIZE;
+        LottoPrizeMessage prize = LottoPrizeMessage.FIRST_PRIZE;
         int count = 1;
 
         lottoResult.addResult(prize, count);
@@ -26,9 +26,9 @@ public class LottoResultTest {
     @Test
     void addResultWithDifferentPrizeTest() {
         LottoResult lottoResult = new LottoResult();
-        LottoPrize prize1 = LottoPrize.FIRST_PRIZE;
-        LottoPrize prize2 = LottoPrize.SECOND_PRIZE;
-        LottoPrize prize3 = LottoPrize.THIRD_PRIZE;
+        LottoPrizeMessage prize1 = LottoPrizeMessage.FIRST_PRIZE;
+        LottoPrizeMessage prize2 = LottoPrizeMessage.SECOND_PRIZE;
+        LottoPrizeMessage prize3 = LottoPrizeMessage.THIRD_PRIZE;
         int count1 = 1;
         int count2 = 2;
         int count3 = 3;

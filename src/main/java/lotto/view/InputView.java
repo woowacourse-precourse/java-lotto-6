@@ -16,7 +16,7 @@ public class InputView {
     }
 
     private List<Integer> changeStringToIntegerList(String input) {
-        List<Integer> result = Arrays.stream(input.split(","))
+        List<Integer> result = Arrays.stream(input.split(ViewMessages.SPLIT.getMessage()))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());

@@ -12,14 +12,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LottoConstants.LOTTO_NUMBER_COUNT) {
+            String.format("로또 번호는 %d개여야 합니다.", LottoConstants.LOTTO_NUMBER_COUNT);
         }
     }
 
     private void validateNoDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() != 6) {
+        if (uniqueNumbers.size() != LottoConstants.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("로또 번호에 중복된 숫자가 있습니다.");
         }
     }

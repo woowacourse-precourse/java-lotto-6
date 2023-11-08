@@ -1,13 +1,12 @@
 package lotto.service;
 
+import lotto.model.LottoConstants;
 import lotto.model.LottoManager;
 import lotto.view.InputView;
 
 import java.util.List;
 
 public class InputValidator {
-
-    private static final int LOTTO_PRICE = 1000;
 
     public LottoManager validateWinningNumbers(InputView inputView) {
         LottoManager result;
@@ -43,8 +42,8 @@ public class InputValidator {
     }
 
     public void validateLottoPurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("로또 구입 금액은 1000원 단위로 입력 받아야합니다.");
+        if (purchaseAmount % LottoConstants.LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(String.format("로또 구입 금액은 %d원 단위로 입력 받아야합니다.", LottoConstants.LOTTO_PRICE));
         }
     }
 

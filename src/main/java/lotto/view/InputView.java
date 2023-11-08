@@ -35,9 +35,7 @@ public class InputView {
         String winningNumbers = Console.readLine();
         validateFormat(winningNumbers);
 
-        return Arrays.stream(winningNumbers.split(WINNING_NUMBER_SEPARATOR))
-                .map(this::parseInt)
-                .toList();
+        return splitWinningNumbers(winningNumbers);
     }
 
     private void validateFormat(String winningNumbers) {
@@ -45,6 +43,12 @@ public class InputView {
         if (!matcher.find()) {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_FORMAT.getMessage());
         }
+    }
+
+    private List<Integer> splitWinningNumbers(String winningNumbers) {
+        return Arrays.stream(winningNumbers.split(WINNING_NUMBER_SEPARATOR))
+                .map(this::parseInt)
+                .toList();
     }
 
     public int inputBonusNumber() {

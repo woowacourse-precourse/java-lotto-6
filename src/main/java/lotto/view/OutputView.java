@@ -11,55 +11,53 @@ import lotto.dto.WinningResult;
 
 public class OutputView {
     public static final String PURCHASED = "\n%d개를 구매했습니다.\n";
-    public static final String WINNING_RESULT = "\n당첨 통계\n---\n";
-    public static final String MATCH_COUNT = "개 일치";
-    public static final String HAS_BONUS = ", 보너스 볼 일치";
-    public static final String PRIZE_COUNT = " (%s원) - %d개\n";
-    public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#,###");
+    public static final String WINNING_RESULT_INFORMATION = "\n당첨 통계\n---\n";
+    public static final DecimalFormat PRIZE_FORMAT = new DecimalFormat("#,###");
     public static final String RATE_OF_RETURN = "총 수익률은 %s%%입니다.";
+    public static final String WINNING_RESULT = "%d개 일치 (%s원) - %d개\n";
+    public static final String WINNING_RESULT_HAS_BONUS = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
 
     public void printPurchasedLottos(List<Lotto> purchasedLottos) {
         StringBuilder message = new StringBuilder();
         message.append(String.format(PURCHASED, purchasedLottos.size()));
         for (Lotto purchasedLotto : purchasedLottos) {
-            appendPurchasedLotto(purchasedLotto, message);
+            message.append(purchasedLottoMessage(purchasedLotto)).append("\n");
         }
         System.out.print(message);
     }
 
-    private void appendPurchasedLotto(Lotto purchasedLotto, StringBuilder message) {
+    private String purchasedLottoMessage(Lotto purchasedLotto) {
         List<LottoNumber> numbers = purchasedLotto.getNumbers();
         List<LottoNumber> sortedNumbers = numbers.stream()
                 .sorted()
                 .toList();
 
-        message.append(sortedNumbers).append("\n");
+        return sortedNumbers.toString();
     }
 
     public void printWinningResult(WinningResult winningResult) {
         StringBuilder message = new StringBuilder();
-        message.append(WINNING_RESULT);
-        appendStatistics(winningResult, message);
-        appendRateOfReturn(winningResult, message);
+        message.append(WINNING_RESULT_INFORMATION);
+        for (Entry<Rank, Integer> entry : winningResult.entrySet()) {
+            message.append(winningResultMessage(entry.getKey(), entry.getValue()));
+        }
+        message.append(rateOfReturnMessage(winningResult));
         System.out.print(message);
     }
 
-    private void appendStatistics(WinningResult winningResult, StringBuilder message) {
-        for (Entry<Rank, Integer> rankIntegerEntry : winningResult.entrySet()) {
-            message.append(rankIntegerEntry.getKey().getMatchCount()).append(MATCH_COUNT);
-
-            if (rankIntegerEntry.getKey().hasBonus()) {
-                message.append(HAS_BONUS);
-            }
-
-            long prize = rankIntegerEntry.getKey().getPrize();
-            Integer value = rankIntegerEntry.getValue();
-            message.append(String.format(PRIZE_COUNT, DECIMAL_FORMAT.format(prize), value));
+    private String winningResultMessage(Rank rank, Integer count) {
+        if (rank.hasBonus()) {
+            return String.format(WINNING_RESULT_HAS_BONUS, rank.getMatchCount(), prizeMessage(rank), count);
         }
+        return String.format(WINNING_RESULT, rank.getMatchCount(), prizeMessage(rank), count);
     }
 
-    private void appendRateOfReturn(WinningResult winningResult, StringBuilder message) {
+    private String prizeMessage(Rank rank) {
+        return PRIZE_FORMAT.format(rank.getPrize());
+    }
+
+    private String rateOfReturnMessage(WinningResult winningResult) {
         BigDecimal rateOfReturn = winningResult.rateOfReturn();
-        message.append(String.format(RATE_OF_RETURN, rateOfReturn.toPlainString()));
+        return String.format(RATE_OF_RETURN, rateOfReturn.toPlainString());
     }
 }

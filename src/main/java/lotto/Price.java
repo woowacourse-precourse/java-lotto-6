@@ -27,7 +27,7 @@ public class Price {
         }
     }
 
-    private boolean isValidPrice(String input) {
+    public boolean isValidPrice(String input) {
         try {
             validatePrice(input);
             return true;

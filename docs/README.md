@@ -136,10 +136,52 @@
 - 당첨 상금을 기반으로 수익률 계산
 - 백분률, 소수점 둘째자리 반올림
 
-
-
-
 # 📌 프로젝트 구조
+```
+📦 lotto
+├─ constant
+│  ├─ CashConstant.java
+│  ├─ LottoConstant.java
+│  └─ LottoResultConstant.java
+├─ controller
+│  └─ GameController.java
+├─ domain
+│  ├─ Cash.java
+│  ├─ Lotto.java
+│  ├─ LottoMachine.java
+│  ├─ LottoResult.java
+│  ├─ Lottos.java
+│  ├─ Prize.java
+│  └─ WinnerLotto.java
+├─ dto
+│  ├─ RequestCash.java
+│  ├─ RequestLotto.java
+│  ├─ RequestLottoResult.java
+│  ├─ RequestLottos.java
+│  └─ RequestWinnerLotto.java
+├─ exception
+│  ├─ CashExceptionMessage.java
+│  ├─ InputViewExceptionMessage.java
+│  ├─ LottoExceptionMessage.java
+│  └─ WinnerLottoExceptionMessage.java
+parse
+│  └─ Parser.java
+├─ util
+│  ├─ CharacterUnits.java
+│  ├─ NumberGenerator.java
+│  ├─ PatternUnits.java
+│  └─ UniqueRandomNumberGenerator.java
+├─ validator
+│  └─ InputValidator.java
+├─ view
+│  ├─ InputView.java
+│  ├─ InputViewMessage.java
+│  ├─ OutputView.java
+│  └─ OutputViewMessage.java
+└─ Application.java
+```
+
+# 📌 패키지 구조
 
 <div text-align="center">
 <table>
@@ -302,5 +344,6 @@
 ![work_flow_1](./imgs/work_flow_1.png)
 ![work_flow_2](./imgs/work_flow_2.png)
 ![work_flow_3](./imgs/work_flow_3.png)
+
 
 

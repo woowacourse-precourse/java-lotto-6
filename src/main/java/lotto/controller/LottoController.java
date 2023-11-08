@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.lang.reflect.Method;
 import java.util.List;
 import lotto.dto.LottoStatistics;
 import lotto.service.LottoService;
@@ -20,9 +19,9 @@ public class LottoController {
 
     public void run(){
         buyLotto();
-        setWinningNumbers();
-        setBonusNumber();
-        getWinningStatistic();
+        saveWinningNumbers();
+        saveBonusNumber();
+        printLottoStatistic();
     }
 
     private void buyLotto(){
@@ -39,7 +38,7 @@ public class LottoController {
         }
     }
 
-    private void setWinningNumbers(){
+    private void saveWinningNumbers(){
         while(true) {
             try {
                 List<Integer> winningNumbers = inputView.inputLottoWinningNumbers();
@@ -52,7 +51,7 @@ public class LottoController {
         }
     }
 
-    private void setBonusNumber(){
+    private void saveBonusNumber(){
         while(true) {
             try {
                 int bonusNumber = inputView.inputLottoBonusNumber();
@@ -65,7 +64,7 @@ public class LottoController {
         }
     }
 
-    private void getWinningStatistic(){
+    private void printLottoStatistic(){
         LottoStatistics lottoStatistics = lottoService.calcLotto();
 
         outputView.printLottoStatistics(lottoStatistics);

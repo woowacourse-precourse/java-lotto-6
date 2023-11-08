@@ -11,8 +11,20 @@ public class LottoGameManager {
     }
 
     public void start() {
-        lottos = lottoManager.buyLotto();
-        lottoManager.inputWinningNumbersAndBonusNumber();
+        buyLottos();
+        getInputWinningNumbersAndBonusNumber();
+        getWinningStatus();
+    }
+
+    private void getWinningStatus() {
         lottoManager.getWinningStatus(lottos);
+    }
+
+    private void getInputWinningNumbersAndBonusNumber() {
+        lottoManager.inputWinningNumbersAndBonusNumber();
+    }
+
+    private void buyLottos() {
+        lottos = lottoManager.buyLotto();
     }
 }

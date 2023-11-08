@@ -1,43 +1,18 @@
 package lotto.core.enums;
 
-import static lotto.core.enums.WinningChartEnum.FIVE_MATCH;
-import static lotto.core.enums.WinningChartEnum.FIVE_AND_BONUS_MATCH;
-import static lotto.core.enums.WinningChartEnum.THREE_MATCH;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.core.enums.WinningChartEnum;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class WinningChartEnumTest {
-
-    private static final Boolean BONUS = true;
-    private static final Boolean NO_BONUS = false;
-    @DisplayName("5개가 일치하고, bonus 가 참이면, FIVE_MATCH_PLUS_BONUS 가 된다.")
-    @Test
-    void valueOfWhen5CountBonus() {
-        WinningChartEnum winningChartEnum = WinningChartEnum.valueOf(FIVE_MATCH.getMatchCount(), BONUS);
-        Assertions.assertThat(winningChartEnum).isEqualTo(FIVE_AND_BONUS_MATCH);
-    }
-
-    @DisplayName("5개가 일치하고, bonus 가 거짓이면, FIVE_MATCH 가 된다.")
-    @Test
-    void valueOfWhen5Count() {
-        WinningChartEnum winningChartEnum = WinningChartEnum.valueOf(FIVE_MATCH.getMatchCount(), NO_BONUS);
-        Assertions.assertThat(winningChartEnum).isEqualTo(FIVE_MATCH);
-    }
-
-    @DisplayName("3개가 일치하고, bonus 가 거짓이면, THREE_MATCH 가 된다.")
-    @Test
-    void valueOfWhen3Count() {
-        WinningChartEnum winningChartEnum = WinningChartEnum.valueOf(THREE_MATCH.getMatchCount(), NO_BONUS);
-        Assertions.assertThat(winningChartEnum).isEqualTo(THREE_MATCH);
-    }
-
-    @DisplayName("3개가 일치하고, bonus 가 참이어도, THREE_MATCH 가 된다.")
-    @Test
-    void valueOfWhen3CountButBonus() {
-        WinningChartEnum winningChartEnum = WinningChartEnum.valueOf(THREE_MATCH.getMatchCount(), BONUS);
-        Assertions.assertThat(winningChartEnum).isEqualTo(THREE_MATCH);
+    @DisplayName("당첨번호와 일치하는 숫자의 수와 보너스번호 당첨여부에 따라서 Enum 값 여부가 달라진다.")
+    @ParameterizedTest
+    @CsvSource({"5,true,FIVE_AND_BONUS_MATCH", "5,false,FIVE_MATCH", "4,true,FOUR_MATCH", "3,true,THREE_MATCH",
+            "2,false,NO_MATCH", "1,true,NO_MATCH", "0,true,NO_MATCH"})
+    void valueOf(Integer matchCount, Boolean bonusNumber, String winningChartName) {
+        WinningChartEnum winningChartEnum = WinningChartEnum.valueOf(matchCount, bonusNumber);
+        assertThat(winningChartEnum.name()).isEqualTo(winningChartName);
     }
 }

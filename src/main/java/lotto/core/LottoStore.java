@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.function.Function;
 import lotto.core.calculator.Calculator;
 import lotto.core.exception.LottoApplicationException;
-import lotto.core.iomanangers.ExceptionOutputManager;
 import lotto.core.iomanangers.OutputManager;
 import lotto.core.lotto.BonusNumber;
 import lotto.core.lotto.LottoTicket;
@@ -74,7 +73,7 @@ public class LottoStore {
                 String input = this.readLine();
                 return processor.apply(input);
             } catch (LottoApplicationException e) {
-                ExceptionOutputManager.printException(e);
+                OutputManager.printException(e);
             }
         }
     }

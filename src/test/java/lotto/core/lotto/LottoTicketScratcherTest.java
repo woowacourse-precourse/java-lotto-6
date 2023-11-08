@@ -22,7 +22,6 @@ class LottoTicketScratcherTest {
     private final static LottoTicket lottoTicketWithFiveMatch =new LottoTicket(LOTTO_NUMBER_FIVE_MATCH);
     private final static LottoTicket lottoTicketWithFourMatch =new LottoTicket(LOTTO_NUMBER_FOUR_MATCH);
     private final static WinningNumbers winningNumbers = new WinningNumbers(new LottoTicket(WINNING_NUMBERS));
-    private final static WinningNumbers losingNumbers = new WinningNumbers(new LottoTicket(LOSING_NUMBERS));
     private final static BonusNumber loseBonusNumber = new BonusNumber(23);
     private final static BonusNumber winBonusNumber = new BonusNumber(15);
     @DisplayName("금액을 입력하면 최소금액 단위로 나누어 갯수를 반환한다.")
@@ -89,6 +88,8 @@ class LottoTicketScratcherTest {
     @DisplayName("로또 개수만큼 반복하여 ScratchedLottoTicket 리스트를 만들고, lottoTicketResult 로 반환한다")
     @Test
     void calculateResultLose() {
+        final WinningNumbers losingNumbers = new WinningNumbers(new LottoTicket(LOSING_NUMBERS));
+
         //given
         List<LottoTicket> lottoTickets = Arrays.asList(lottoTicketWithFiveMatch, lottoTicketWithFourMatch);
         ScratchedLottoTicketList scratchedLottoTicketList = TICKET_SCRATCHER.scratchAllTickets(losingNumbers, loseBonusNumber, lottoTickets);

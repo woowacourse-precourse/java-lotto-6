@@ -8,6 +8,7 @@ import static lotto.core.enums.WinningChartEnum.THREE_MATCH;
 
 import java.math.BigDecimal;
 import java.util.List;
+import lotto.core.exception.LottoApplicationException;
 import lotto.core.lotto.LottoTicket;
 import lotto.core.lotto.ScratchedLottoTicketList;
 
@@ -66,5 +67,9 @@ public class OutputManager {
     }
     public void makeRateOfReturnForm(String input) {
         System.out.println(input);
+    }
+
+    public static void printException(LottoApplicationException e) {
+        System.out.println(e.getMessage());
     }
 }

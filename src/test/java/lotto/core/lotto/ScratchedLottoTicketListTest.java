@@ -21,7 +21,7 @@ class ScratchedLottoTicketListTest {
     private final static WinningNumbers losingNumbers = new WinningNumbers(new LottoTicket(LOSING_NUMBERS));
     private final static BonusNumber loseBonusNumber = new BonusNumber(23);
     private final static BonusNumber winBonusNumber = new BonusNumber(15);
-    @DisplayName("각 Enum 값 마다의 개수를 상태로 가지는 ScratchedLottoTicketList 를 반환한다.")
+    @DisplayName("총 당첨된 로또의 수량을 반환한다.")
     @Test
     void createLottoResult() {
         //given

@@ -5,7 +5,6 @@ import lotto.Domain.Lotto;
 import lotto.Domain.Prize;
 import lotto.View.LottoInputView;
 import lotto.View.LottoOutputView;
-import lotto.Util.InputValidation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +25,7 @@ public class LottoController {
         List<Lotto> purchasedTickets = generateTickets(ticketCount);
         outputView.displayPurchasedTickets(purchasedTickets);
 
-        List<Integer> winningNumbers = InputValidation.getWinningNumbers();
+        List<Integer> winningNumbers = inputView.getWinningNumbers();
         int bonusNumber = inputView.getBonusNumber();
         List<String> results = calculatePrizes(purchasedTickets, winningNumbers, bonusNumber);
         outputView.displayResults(results);
@@ -107,6 +106,10 @@ public class LottoController {
     }
     private int getPrizeAmount(int matchingNumbers) {
         int[] prizeAmounts = {0, 0, 0, 5000, 50000, 1500000, 30000000};
-        return (matchingNumbers >= 0 && matchingNumbers <= 6) ? prizeAmounts[matchingNumbers] : 0;
+        if (matchingNumbers >= 0 && matchingNumbers <= 6) {
+            return prizeAmounts[matchingNumbers];
+        } else {
+            return 0; // 유효하지 않은 인덱스에 대한 처리
+        }
     }
 }

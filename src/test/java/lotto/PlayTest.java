@@ -14,26 +14,29 @@ class PlayTest {
         Play play = new Play();
         assertEquals(2, play.giveNumberOfTicket("2000"));
     }
+
     @Test
     void compare() {
         Play play = new Play();
-        List<Integer> expected = Arrays.asList(4,1);
-        List<Integer> compare1 = Arrays.asList(1,2,3,4,5,6,7);
-        List<Integer> compare2 = Arrays.asList(1,2,3,4,10,11,7);
+        List<Integer> expected = Arrays.asList(4, 1);
+        List<Integer> compare1 = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
+        List<Integer> compare2 = Arrays.asList(1, 2, 3, 4, 10, 11, 7);
         assertEquals(expected, play.compare(compare1, compare2));
     }
+
     @Test
     void givePrize() {
         Play play = new Play();
         int expected = 1;
-        List<Integer> test = Arrays.asList(6,1);
+        List<Integer> test = Arrays.asList(6, 1);
         assertEquals(expected, play.givePrize(test));
 
     }
+
     @Test
     void alignRanking() {
         Play play = new Play();
-        assertEquals(List.of(3,1,1,1,0,4), play.alignRanking(List.of(1,1,1,2,3,4,0,0,0,0)));
+        assertEquals(List.of(3, 1, 1, 1, 0, 4), play.alignRanking(List.of(1, 1, 1, 2, 3, 4, 0, 0, 0, 0)));
     }
 
 

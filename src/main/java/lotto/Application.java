@@ -2,6 +2,10 @@ package lotto;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        WinningStatistics winningStatistics = new WinningStatistics();
+        UserInputHandler userInputHandler = new UserInputHandler();
+        LottoResultPrinter lottoResultPrinter = new LottoResultPrinter();
+        Simulation simulation = new Simulation(winningStatistics, userInputHandler, lottoResultPrinter);
+        simulation.start();
     }
 }

@@ -12,5 +12,6 @@ public class Application {
         Price price = lottoGame.bougthPrice();
         Lottos lottos = lottoGame.showLotto(price);
         SelectedLottoNumber selectedLottoNumber = lottoGame.selectLotto();
+        lottoGame.showResult(price, lottos, selectedLottoNumber);
     }
 }

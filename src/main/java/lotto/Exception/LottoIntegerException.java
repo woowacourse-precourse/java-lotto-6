@@ -1,19 +1,23 @@
 package lotto.Exception;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class LottoIntegerException {
 
-    public int checkForPriceException(String initialPrice) {
-        int price = checkInt(initialPrice);
-
-        if (price < 0) {
-            throw new IllegalArgumentException("양수를 입력해주세요.");
+    public int checkForPriceException() {
+        while(true) {
+            try {
+                int price = Integer.parseInt(Console.readLine());
+                return price;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 정수를 입력해주세요.");
+            }
         }
-
-        return price;
     }
 
     public int checkForBonus(String initialBonus) {
@@ -23,18 +27,20 @@ public class LottoIntegerException {
         return bonus;
     }
 
-    public int checkInt(String initialNumber) {
-        try {
-            int number = Integer.parseInt(initialNumber);
-            return number;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("정수를 입력해주세요.");
+    public int checkInt(String initialNumber) {    //더 구현
+        while(true) {
+            try {
+                int number = Integer.parseInt(initialNumber);
+                return number;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 정수를 입력해주세요.");
+            }
         }
     }
 
-    public void checkPositive(int number) {
+    public void checkPositive(int number) {    //더 구현
         if (number < 1 && number > 45) {
-            throw new IllegalArgumentException("1부터 45까지의 숫자를 입력해주세요.");
+            System.out.println("[ERROR] 1부터 45까지의 숫자를 입력해주세요.");
         }
     }
 

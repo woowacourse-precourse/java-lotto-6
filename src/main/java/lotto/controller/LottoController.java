@@ -21,8 +21,8 @@ public class LottoController {
     private final LottoService lottoService = new LottoService();
 
     public int lottoSetPrice() {
-        String readPrice = Console.readLine();
-        int lottoPrice = lottoIntegerException.checkForPriceException(readPrice);
+//        String readPrice = Console.readLine();
+        int lottoPrice = lottoIntegerException.checkForPriceException();
         return lottoPrice;
     }
 
@@ -57,7 +57,7 @@ public class LottoController {
     public int[] correct(Price price, Lottos lottos, SelectedLottoNumber selectedLottoNumber) {
         int[] corrections = new int[6];
 
-        for (int i = 0; i < price.getPrice(); i++) {
+        for (int i = 0; i < price.getPrice()/1000; i++) {
             List<Integer> lotto = lottos.getLottos().get(i).getNumbers();
             long correctCount = lotto.stream()
                     .filter(selectedLottoNumber.getNumbers()::contains)

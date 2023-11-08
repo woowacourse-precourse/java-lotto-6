@@ -51,6 +51,7 @@ public class LottoGame {
         System.out.println("---");
         int[] corrections = lottoController.correct(price, lottos, selectedLottoNumber);
         showComment(corrections);
+        rate(price, corrections);
 
     }
 
@@ -71,13 +72,14 @@ public class LottoGame {
         System.out.println(String.format("%d개", corrections[0]));
     }
 
-    public float rate(Price price, int[] corrections) {
+    public void rate(Price price, int[] corrections) {
         int revenue = 0;
         for (int i = 0; i < 5; i++) {
             revenue += RevenuePrice.getPriceByIndex(i) * corrections[i];
         }
         float revenueRate = (float)revenue/price.getPrice();
+        revenueRate = (float) Math.round(revenueRate * 100 * 100.0) / 100.0f;
 
-        return revenueRate;
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", revenueRate));
     }
 }

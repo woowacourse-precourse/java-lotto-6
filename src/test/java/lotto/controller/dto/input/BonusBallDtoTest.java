@@ -10,59 +10,58 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class LottoPurchaseAmountDtoTest {
-    @CsvSource({"1000, 1000",
-            "100000000, 100000000",
-            "123000, 123000"})
+class BonusBallDtoTest {
+    @CsvSource({"1, 1",
+            "45, 45"})
     @ParameterizedTest
     void int로_변환한다(String input, int expected) {
         //given
-        LottoPurchaseAmountDto lottoPurchaseAmountDto = new LottoPurchaseAmountDto(input);
+        BonusBallDto bonusBallDto = new BonusBallDto(input);
         //when
-        int lottoPurchaseAmount = lottoPurchaseAmountDto.toInt();
+        int bonusBall = bonusBallDto.toInt();
         // then
-        assertThat(lottoPurchaseAmount).isEqualTo(expected);
+        assertThat(bonusBall).isEqualTo(expected);
     }
 
     @Nested
-    class 로또구입금액_입력값객체_생성시 {
+    class 보너스볼_입력값객체_생성시 {
 
         @Test
         void 성공적으로_생성한다() {
             //given
-            String amount = "1200";
+            String bonusBall = "1";
             //when
-            LottoPurchaseAmountDto lottoPurchaseAmountDto = new LottoPurchaseAmountDto(amount);
+            BonusBallDto bonusBallDto = new BonusBallDto(bonusBall);
             //then
-            assertThat(lottoPurchaseAmountDto.purchaseAmount()).isEqualTo(amount);
+            assertThat(bonusBallDto.bonusBall()).isEqualTo(bonusBall);
         }
 
-        @ValueSource(strings = {"1000000000", "10000000000"})
+        @ValueSource(strings = {"", "100"})
         @ParameterizedTest
-        void 유효한_입력길이가_아니라면_예외가발생한다(String amount) {
+        void 유효한_입력길이가_아니라면_예외가발생한다(String bonusBall) {
             //given
             //when then
-            Assertions.assertThatThrownBy(() -> new LottoPurchaseAmountDto(amount))
+            Assertions.assertThatThrownBy(() -> new BonusBallDto(bonusBall))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(Validator.INVALID_LENGTH_INPUT_ERROR_MESSAGE);
         }
 
         @ValueSource(strings = {" ", "\n", "\r", "\r\n", "\t"})
         @ParameterizedTest
-        void 공백만_있다면_예외가발생한다(String amount) {
+        void 공백만_있다면_예외가발생한다(String bonusBall) {
             //given
             //when then
-            Assertions.assertThatThrownBy(() -> new LottoPurchaseAmountDto(amount))
+            Assertions.assertThatThrownBy(() -> new BonusBallDto(bonusBall))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(Validator.BLANK_INPUT_ERROR_MESSAGE);
         }
 
-        @ValueSource(strings = {"1003as", "sd334", "asdf"})
+        @ValueSource(strings = {"as", "1a", "s1"})
         @ParameterizedTest
-        void 숫자이외문자가_있다면_예외가발생한다(String amount) {
+        void 숫자이외문자가_있다면_예외가발생한다(String bonusBall) {
             //given
             //when then
-            Assertions.assertThatThrownBy(() -> new LottoPurchaseAmountDto(amount))
+            Assertions.assertThatThrownBy(() -> new BonusBallDto(bonusBall))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(Validator.INVALID_NUMERIC_INPUT_ERROR_MESSAGE);
         }

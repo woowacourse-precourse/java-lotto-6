@@ -2,8 +2,6 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.utils.Constants;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class LotteryMachine {
@@ -23,4 +21,5 @@ public class LotteryMachine {
     public List<Integer> draw(){
         return Randoms.pickUniqueNumbersInRange(Constants.MINIMUM, Constants.MAXIMUM, Constants.DRAW_COUNT);
     }
+
 }

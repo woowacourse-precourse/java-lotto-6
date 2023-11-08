@@ -66,4 +66,5 @@ public class LottoController {
         double earnedPerPayed = lottoService.calculatePercentage(matches);
         outputView.printPrizes(matches, earnedPerPayed);
     }
+
 }

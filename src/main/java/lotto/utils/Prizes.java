@@ -10,13 +10,13 @@ public enum Prizes {
         this.matchCount = matchCount;
     }
 
-    public int getmatchCount() {
+    public int getMatchCount() {
         return matchCount;
     }
 
     public static Prizes findByMatchCount(int matchCount) {
         for (Prizes prize : values()) {
-            if (matchCount == prize.getmatchCount()) {
+            if (matchCount == prize.getMatchCount()) {
                 return prize;
             }
         }

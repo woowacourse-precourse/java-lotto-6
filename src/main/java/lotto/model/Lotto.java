@@ -2,7 +2,6 @@ package lotto.model;
 
 import lotto.utils.Constants;
 import lotto.utils.LottoExceptions;
-
 import java.util.*;
 
 public class Lotto {
@@ -23,8 +22,8 @@ public class Lotto {
     }
 
     private void checkDuplicate(List<Integer> numbers){
-        Set<Integer> duplicateTest = new HashSet<>(numbers);
-        if (duplicateTest.size() < numbers.size()){
+        Set<Integer> duplicateNotAllowed = new HashSet<>(numbers);
+        if (duplicateNotAllowed.size() < numbers.size()){
             throw new IllegalArgumentException(LottoExceptions.DuplicateError.getErrorMessage());
         }
     }
@@ -33,8 +32,8 @@ public class Lotto {
         return Collections.binarySearch(numbers, winnerNumber);
     }
 
-
     public String printLotto() {
        return Arrays.toString(numbers.toArray());
     }
+
 }

@@ -63,8 +63,8 @@ public class LottoService {
         return ((double)(firstPrize + secondPrize + thirdPrize + fourthPrize + fifthPrize) * 100 / user.getPayed());
     }
 
-    public void setWinningNumbers(String[] promptedNumbers) {
-       winningNumbers = new WinningNumbers(promptedNumbers);
+    public void setWinningNumbers(String promptedNumbers) {
+       winningNumbers = new WinningNumbers(promptedNumbers.split(","));
     }
 
     public void setBonusNumber(String bonus){

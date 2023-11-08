@@ -6,19 +6,16 @@ import java.util.*;
 
 public class WinningNumbers{
 
+    private static final int NON_EXISTENCE_INDICATOR = -1;
     private final List<Integer> numbers;
     private int bonusNumber;
 
-    private static final int NON_EXSISTENCE_INDICATOR = -1;
-
     public WinningNumbers(String[] numbers) {
-        List<Integer> validateNumbers = validateNumbers(numbers);
-        this.numbers = validateNumbers;
+        this.numbers = validateNumbers(numbers);
     }
 
     public void setBonus(String bonusNumber){
-        int validatedBonus = validateBonus(bonusNumber);
-        this.bonusNumber = validatedBonus;
+        this.bonusNumber = validateBonus(bonusNumber);
     }
 
     private void checkDuplicate(List<Integer> numbers){
@@ -37,6 +34,14 @@ public class WinningNumbers{
     }
 
     private List<Integer> validateNumbers(String[] numbers){
+        List<String> filteredNumbers = checkNumberCounts(numbers);
+        List<Integer> formattedNumbers = formatNumbers(filteredNumbers);
+        isInRange(formattedNumbers);
+        checkDuplicate(formattedNumbers);
+        return formattedNumbers;
+    }
+
+    private List<String> checkNumberCounts(String[] numbers){
         List<String> filteredNumbers = Arrays.stream(numbers)
                 .filter(num -> num.matches("[0-9 ]+"))
                 .toList();
@@ -46,10 +51,14 @@ public class WinningNumbers{
         if (filteredNumbers.size() != Constants.DRAW_COUNT){
             throw new IllegalArgumentException(LottoExceptions.InvalidCountError.getErrorMessage());
         }
-        List<Integer> finalNumbers = filteredNumbers.stream().map(num -> Integer.parseInt(num.trim())).toList();
-        isInRange(finalNumbers);
-        checkDuplicate(finalNumbers);
-        return finalNumbers;
+        return filteredNumbers;
+    }
+
+    private List<Integer> formatNumbers(List<String> filteredNumbers){
+        return filteredNumbers
+                .stream()
+                .map(num -> Integer.parseInt(num.trim()))
+                .toList();
     }
 
     private int validateBonus(String bonusNumber){
@@ -57,7 +66,7 @@ public class WinningNumbers{
             throw new IllegalArgumentException(LottoExceptions.InputTypeError.getErrorMessage());
         }
         int bonus = Integer.parseInt(bonusNumber.trim());
-        if (bonus > 45 || bonus < 1) {
+        if (bonus > Constants.MAXIMUM || bonus < Constants.MINIMUM) {
             throw new IllegalArgumentException(LottoExceptions.NotInRangeError.getErrorMessage());
         }
         for (int num : numbers){
@@ -71,7 +80,7 @@ public class WinningNumbers{
     public int compare(Lotto lotto){
         int matchCount = 0;
         for (int winningNum : numbers){
-            if (lotto.match(winningNum) > NON_EXSISTENCE_INDICATOR){
+            if (lotto.match(winningNum) > NON_EXISTENCE_INDICATOR){
                 matchCount++;
             }
         }
@@ -79,9 +88,6 @@ public class WinningNumbers{
     }
 
     public boolean matchesBonus(Lotto lotto) {
-        if (lotto.match(bonusNumber) > NON_EXSISTENCE_INDICATOR){
-            return true;
-        }
-        return false;
+        return lotto.match(bonusNumber) > NON_EXISTENCE_INDICATOR;
     }
 }

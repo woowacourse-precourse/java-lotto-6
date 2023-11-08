@@ -11,4 +11,5 @@ public class Application {
         lottoController.initiateBonus();
         lottoController.getResult();
     }
+
 }

@@ -13,6 +13,10 @@ public class Lottos {
         return new Lottos(lottos);
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

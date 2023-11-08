@@ -41,6 +41,4 @@ public final class LottoParser {
 
         return sortedLottosNumber;
     }
-
-
 }

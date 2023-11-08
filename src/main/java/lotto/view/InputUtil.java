@@ -32,7 +32,6 @@ public final class InputUtil {
         return input == null || input.isBlank();
     }
 
-
     private static void validateInteger(String input) {
         if (!Pattern.matches(INTEGER_REGEX, input)) {
             throw new InputException();

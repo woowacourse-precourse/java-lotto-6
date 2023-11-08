@@ -17,9 +17,9 @@ class StatisticsTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 7))
         );
         WinningLotto winningLotto = new WinningLotto((List.of(1, 2, 3, 4, 5, 6)));
-        int bonus = 7;
+        winningLotto.validateBonus(7);
 
-        Statistics statistics = new Statistics(lottos, winningLotto, bonus);
+        Statistics statistics = new Statistics(lottos, winningLotto);
         String actual = statistics.toString();
 
         String expected = "3개 일치 (5,000원) - 0개\n" +
@@ -38,9 +38,9 @@ class StatisticsTest {
                 new Lotto(List.of(8, 9, 10, 11, 12, 13))
         );
         WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6));
-        int bonus = 7;
+        winningLotto.validateBonus(7);
 
-        Statistics statistics = new Statistics(lottos, winningLotto, bonus);
+        Statistics statistics = new Statistics(lottos, winningLotto);
         Buyer buyer = new Buyer(2000);
         String actual = statistics.calculateRevenueRate(buyer);
 

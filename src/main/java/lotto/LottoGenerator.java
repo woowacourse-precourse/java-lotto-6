@@ -12,8 +12,8 @@ public class LottoGenerator {
 
     public static List<Integer> generate() {
         Set<Integer> numbers = new HashSet<>();
-        while (numbers.size() < 6) {
-            numbers.add(Randoms.pickNumberInRange(1, 45));
+        while (numbers.size() < Lotto.LOTTO_NUMBER_SIZE) {
+            numbers.add(Randoms.pickNumberInRange(Lotto.LOTTO_NUMBER_MIN, Lotto.LOTTO_NUMBER_MAX));
         }
         return new ArrayList<>(numbers);
     }

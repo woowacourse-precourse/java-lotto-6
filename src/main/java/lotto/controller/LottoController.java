@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.LottoWinningNumber;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.PrizeResult;
 import lotto.domain.generator.LottoGenerator;
 import lotto.view.InputBonusNumberView;
 import lotto.view.InputBuyLottoView;
@@ -32,5 +33,9 @@ public class LottoController {
         Integer bonusNumber = inputBonusNumberView.inputBonusNumber();
 
         return new LottoWinningNumber(lottoWinningNumbers, bonusNumber);
+    }
+
+    private void calcLottoResult(PrizeResult prizeResult, LottoWinningNumber lottoWinningNumber, Lottos lottos){
+        prizeResult.calcPrizeResult(lottoWinningNumber, lottos);
     }
 }

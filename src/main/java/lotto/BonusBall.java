@@ -12,4 +12,11 @@ public class BonusBall {
         ValidateBonusBall.isInRange(number);
         ValidateBonusBall.isDuplicate(number, lotto);
     }
+
+    public int contains(LottoNumber lottoNumber) {
+        if (lottoNumber.calculateScore(bonusBall)) {
+            return 2;
+        }
+        return 0;
+    }
 }

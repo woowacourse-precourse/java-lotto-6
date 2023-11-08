@@ -3,7 +3,7 @@ package lotto.util.validate;
 import java.util.regex.Pattern;
 import lotto.util.ErrorMessage;
 
-public class ValidationManager {
+public class InputValidator {
 
     private static final String REGEX = "^[0-9]+$";
 

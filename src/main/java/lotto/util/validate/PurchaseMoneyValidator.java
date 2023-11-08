@@ -7,7 +7,7 @@ import lotto.util.ErrorMessage;
 public class PurchaseMoneyValidator {
 
     public static void validatePurchaseMoney(String purchaseMoney) {
-        ValidationManager.validateInput(purchaseMoney);
+        InputValidator.validateInput(purchaseMoney);
         checkPurchaseMoneyDivisible(purchaseMoney);
     }
 

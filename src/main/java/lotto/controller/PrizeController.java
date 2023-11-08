@@ -42,7 +42,6 @@ public class PrizeController {
             System.out.println("PrizeMatchNum: " + p.getMatchNum());
         }
         winnerLotto.setLottoRankStore(lottoRankStore);
-        Set<PrizeMoney> set = lottoRankStore.keySet();
     }
 
     public void comparePrizeNumToLottoNum(PrizeLotto prizeLotto, UserLotto userLotto) {

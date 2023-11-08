@@ -90,8 +90,9 @@ public class LottoController {
         OutputView.printLottoStatusDescription(amount);
         for (Lotto lotto : userLottos) {
             List<Integer> row = lotto.getNumbers();
-            Collections.sort(row);
-            OutputView.printLotto(row);
+            List<Integer> sortedRow = new ArrayList<>(row);
+            Collections.sort(sortedRow);
+            OutputView.printLotto(sortedRow);
         }
     }
 

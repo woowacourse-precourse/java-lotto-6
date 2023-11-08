@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Objects;
+
 public class LottoTicketMoney extends Money {
     private final int totalTicketPrice;
     private static final int singleTicketPrice = 1000;
@@ -17,5 +19,17 @@ public class LottoTicketMoney extends Money {
 
     public double calculateIncomeRate(long literalPrice) {
         return literalPrice / (double) totalTicketPrice;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(totalTicketPrice);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (!(obj instanceof LottoTicketMoney lottoTicketMoney)) return false;
+        return totalTicketPrice == lottoTicketMoney.totalTicketPrice;
     }
 }

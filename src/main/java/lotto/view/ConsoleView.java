@@ -38,8 +38,6 @@ public class ConsoleView {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-        List<Ranking> allRankings = List.of(Ranking.values());
-
         for (Ranking ranking: Ranking.values()) {
             int rankingCount = rankingCounts.get(ranking);
             if (ranking != Ranking.NONE) {

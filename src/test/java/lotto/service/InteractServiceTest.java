@@ -64,6 +64,22 @@ public class InteractServiceTest extends NsTest {
         });
     }
 
+    @DisplayName("로또 구입 금액을 음수로 입력할 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(
+            strings = {
+                    "-400", "-800", "-1200"
+            }
+    )
+    void purchaseByNegative(String input) {
+        assertSimpleTest(() -> {
+            runException(
+                    input
+            );
+            assertThat(output()).contains(ErrorStatus.NEGATIVE_INPUT_ERROR.getMessage());
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

@@ -51,7 +51,7 @@ public class OutputView {
         System.out.printf(TOTAL_PROFIT_RATE_MSG, formattedRate);
     }
 
-    public static void printErrorMessage(final Exception e) {
+    public static void printErrorMessage(final IllegalArgumentException e) {
         System.out.println(ERROR_PREFIX + e.getMessage() + System.lineSeparator());
     }
 

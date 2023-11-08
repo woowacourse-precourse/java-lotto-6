@@ -31,6 +31,4 @@ public class Lottos {
     public int getSize() {
         return bundleLotto.size();
     }
-
-
 }

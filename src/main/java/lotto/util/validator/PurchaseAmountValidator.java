@@ -18,7 +18,7 @@ public class PurchaseAmountValidator extends Validator {
     }
 
     private void validateAmountUnit(int money) {
-        if (money % AMOUNT_UNIT > 0) {
+        if (money % AMOUNT_UNIT > REMAINDER) {
             throw new IllegalArgumentException(INVALID_AMOUNT_UNIT.getMessage());
         }
     }

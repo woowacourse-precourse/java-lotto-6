@@ -1,7 +1,8 @@
 package lotto.model;
 
+import static lotto.util.Constant.*;
+
 import java.util.HashMap;
-import lotto.util.Constant;
 
 public class Yield {
 
@@ -15,8 +16,8 @@ public class Yield {
             totalPrizeMoney += (long) rank.getWinningAmount() * lottoResult.get(rank);
         }
 
-        double result = (totalPrizeMoney * Constant.CONVERT_PERCENT) / (double) purchaseAmount;
+        double result = (totalPrizeMoney * CONVERT_PERCENT) / (double) purchaseAmount;
 
-        return String.format("%.1f", result);
+        return String.format(DECIMAL_PLACES, result);
     }
 }

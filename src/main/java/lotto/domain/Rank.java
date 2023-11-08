@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 public enum Rank {
@@ -24,12 +25,14 @@ public enum Rank {
     }
 
     public static Rank calculateRank(final int matchCounts, final boolean matchBonus) {
-        for (Rank rank : values()) {
-            if (rank.matchCounts == matchCounts && rank.matchBonus.contains(matchBonus)) {
-                return rank;
-            }
-        }
-        return NONE;
+        return Arrays.stream(values())
+                .filter(rank -> isMatchRank(matchCounts, matchBonus, rank))
+                .findFirst()
+                .orElse(NONE);
+    }
+
+    private static boolean isMatchRank(int matchCounts, boolean matchBonus, Rank rank) {
+        return rank.matchCounts == matchCounts && rank.matchBonus.contains(matchBonus);
     }
 
     public BigDecimal getPrize() {

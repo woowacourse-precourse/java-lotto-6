@@ -8,6 +8,7 @@ import lotto.data.Lotto;
 import lotto.data.Rewards;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -103,6 +104,23 @@ class LottoModelTest {
                 () -> {
                     assertThat(lottoModel.generateNewLotto())
                             .isEqualTo(expect);
+                }, List.of(5, 1, 7, 11, 9, 3)
+        );
+    }
+
+    @DisplayName("구매 금액만큼의 로또 번호를 발행 기능 단위 테스트")
+    @Test
+    void publishLotto() {
+        List<Lotto> expect = new ArrayList<>();
+        int numOfLotto = 1;
+        MockLotto mockLotto = new MockLotto(List.of(1, 3, 5, 7, 9, 11));
+        expect.add(mockLotto);
+
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    List<Lotto> result = lottoModel.publishLotto(numOfLotto);
+                    assertThat(result.get(0).getNumbers())
+                            .isEqualTo(mockLotto.getNumbers());
                 }, List.of(5, 1, 7, 11, 9, 3)
         );
     }

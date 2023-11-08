@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
+
 import static lotto.domain.Prize.FIRST_PLACE;
 import static lotto.domain.Prize.SECOND_PLACE;
 import static lotto.domain.Prize.THIRD_PLACE;
@@ -20,7 +21,8 @@ class PrizeTest {
 	@DisplayName("생성 성공 테스트")
 	@ParameterizedTest()
 	@MethodSource("createPrizeSuccessDummy")
-	void createPrizeSuccessTest(final Integer countOfSameNumber, final Boolean checkBonus, final Prize expected) {
+	void createPrizeSuccessTest(final Integer countOfSameNumber, final Boolean checkBonus,
+		final Prize expected) {
 		final Prize result = Prize.of(countOfSameNumber, checkBonus);
 		assertEquals(expected.getCountOfMatchedNumber(), result.getCountOfMatchedNumber());
 		assertEquals(expected.isBonusNumber(), result.isBonusNumber());

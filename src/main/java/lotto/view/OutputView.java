@@ -6,6 +6,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Prize;
 import lotto.domain.LottoResult;
 import java.text.DecimalFormat;
+
 import static lotto.util.CharacterUnits.ENTER;
 import static lotto.util.PatternUnits.PATTERN_FOR_DECIMAL_FORMAT;
 import static lotto.view.OutputViewMessage.PURCHASED_LOTTOS_MESSAGE_FORMAT;

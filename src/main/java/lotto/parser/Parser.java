@@ -3,6 +3,7 @@ package lotto.parser;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import static lotto.exception.InputViewExceptionMessage.WRONG_NUMBER_FORMAT;
 import static lotto.util.CharacterUnits.SEPARATOR;
 

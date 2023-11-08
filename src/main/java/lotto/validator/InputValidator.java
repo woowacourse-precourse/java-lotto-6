@@ -4,6 +4,7 @@ import lotto.parser.Parser;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
 import static lotto.constant.LottoConstant.LOTTO_LENGTH;
 import static lotto.constant.LottoConstant.RANGE_START_NUMBER;
 import static lotto.constant.LottoConstant.RANGE_END_NUMBER;

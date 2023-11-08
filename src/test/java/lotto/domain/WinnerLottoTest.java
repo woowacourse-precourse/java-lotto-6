@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -42,7 +43,8 @@ class WinnerLottoTest {
 	@DisplayName("당첨 로또 생성 성공")
 	@ParameterizedTest
 	@MethodSource("createWinneLottoSuccessDummy")
-	void createWinnerLottoSuccessTest(final List<Integer> winnerNumbers, final Integer bonusNumber) {
+	void createWinnerLottoSuccessTest(final List<Integer> winnerNumbers,
+		final Integer bonusNumber) {
 		assertDoesNotThrow(() -> WinnerLotto.create(winnerNumbers, bonusNumber));
 	}
 

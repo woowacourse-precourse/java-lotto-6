@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.dto.RequestCash;
 import lotto.parser.Parser;
 import lotto.validator.InputValidator;
+
 import static lotto.view.InputViewMessage.INPUT_CASH_MESSAGE;
 import static lotto.view.InputViewMessage.INPUT_WINNER_NUMBER_MESSAGE;
 import static lotto.view.InputViewMessage.INPUT_BONUS_NUMBER;

@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
 import static lotto.constant.LottoConstant.LOTTO_LENGTH;
 import static lotto.constant.LottoConstant.RANGE_START_NUMBER;
 import static lotto.constant.LottoConstant.RANGE_END_NUMBER;
@@ -80,12 +81,12 @@ public class Lotto {
 
 	@Override
 	public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null || getClass() != that.getClass()) {
-            return false;
-        }
+		if (this == that) {
+			return true;
+		}
+		if (that == null || getClass() != that.getClass()) {
+			return false;
+		}
 		Lotto lotto = (Lotto) that;
 		return Objects.equals(numbers, lotto.numbers);
 	}

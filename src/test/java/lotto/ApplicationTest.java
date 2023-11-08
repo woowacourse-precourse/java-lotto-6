@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
+
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -245,7 +246,8 @@ class ApplicationTest extends NsTest {
 
 	@DisplayName("당첨 번호 입력시 1~45를 벗어난 숫자를 입력하는 경우 다시 입력 받기")
 	@ParameterizedTest
-	@ValueSource(strings = {"1,2,3,4,5,100", "1,2,3,4,5,49", "-1,2,3,4,5,6", "0,1,2,3,4,5", "100,200,300,400,500,600"})
+	@ValueSource(strings = {"1,2,3,4,5,100", "1,2,3,4,5,49", "-1,2,3,4,5,6", "0,1,2,3,4,5",
+		"100,200,300,400,500,600"})
 	void restartScenario_2(final String wrongWinnerNumbers) {
 		assertRandomUniqueNumbersInRangeTest(
 			() -> {
@@ -286,7 +288,8 @@ class ApplicationTest extends NsTest {
 
 	@DisplayName("당첨 번호 입력시 숫자 이외의 값이 포함된 경우 다시 입력 받기")
 	@ParameterizedTest
-	@ValueSource(strings = {"1,2,3,4,5,ㅎ", "1,2,3,4,5,^", "아,2,3,4,5,6", "&,1,2,3,4,5", " ,1,2,3,4,5"})
+	@ValueSource(strings = {"1,2,3,4,5,ㅎ", "1,2,3,4,5,^", "아,2,3,4,5,6", "&,1,2,3,4,5",
+		" ,1,2,3,4,5"})
 	void restartScenario_3(final String wrongWinnerNumbers) {
 		assertRandomUniqueNumbersInRangeTest(
 			() -> {
@@ -328,7 +331,8 @@ class ApplicationTest extends NsTest {
 
 	@DisplayName("당첨 번호 입력 형식을 준수하지 않은 경우 다시 입력 받기")
 	@ParameterizedTest
-	@ValueSource(strings = {"1, 2, 3, 4, 5, 6", "1-2-3-4-5-6", ",1,2,3,4,5,6", "1,2,3,4,5,6,", "1/2/3/4/5/6"})
+	@ValueSource(strings = {"1, 2, 3, 4, 5, 6", "1-2-3-4-5-6", ",1,2,3,4,5,6", "1,2,3,4,5,6,",
+		"1/2/3/4/5/6"})
 	void restartScenario_4(final String wrongWinnerNumbers) {
 		assertRandomUniqueNumbersInRangeTest(
 			() -> {
@@ -449,6 +453,7 @@ class ApplicationTest extends NsTest {
 			List.of(1, 2, 3, 4, 5, 6)
 		);
 	}
+
 	@Test
 	void 예외_테스트() {
 		assertSimpleTest(() -> {

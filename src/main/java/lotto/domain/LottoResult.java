@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import static lotto.constant.LottoResultConstant.INIT_REWARD;
 import static lotto.constant.LottoResultConstant.NO_BENEFIT;
 import static lotto.constant.LottoResultConstant.PERCENTAGE_INDICATOR;

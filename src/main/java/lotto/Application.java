@@ -1,7 +1,9 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import view.InputView;
 import view.OutputView;
 
@@ -15,10 +17,15 @@ public class Application {
         int bonusNumber = InputView.inputBonusNumber();
         WinningLotto winningLotto = new WinningLotto(new Lotto(winningLottoNumbers), bonusNumber);
 
+        Map<Result, Integer> resultCount = new HashMap<>();
         for (Lotto lotto : lottoList) {
             int matchCount = winningLotto.matchCount(lotto);
             boolean isBonus = winningLotto.isBonus(lotto);
+            Result result = Result.valueOf(matchCount, isBonus);
+            resultCount.put(result, resultCount.getOrDefault(result, 0) + 1);
         }
+
+        OutputView.printResult(ticketCount, resultCount);
     }
 
     private static List<Lotto> createdLottos(Money money) {

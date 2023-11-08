@@ -20,7 +20,9 @@ public class LottoWinningNumberService {
             try {
                 lottoNumbers.add(Integer.parseInt(number.trim()));
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(StringConstants.FIRST_ERROR_MESSAGE + StringConstants.WINNING_NUMBERS_NOT_DIGIT_EXCEPTION_MESSAGE);
+                throw new IllegalArgumentException(
+                        StringConstants.FIRST_ERROR_MESSAGE
+                                + StringConstants.WINNING_NUMBERS_NOT_DIGIT_EXCEPTION_MESSAGE);
             }
         }
         return lottoNumbers;

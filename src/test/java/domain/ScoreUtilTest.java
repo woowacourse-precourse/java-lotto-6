@@ -18,7 +18,6 @@ class ScoreUtilTest {
     @Test
     @DisplayName("로토 당첨 내역 Map에 잘 저장되는지 확인하는 테스트")
     void updateScore() {
-        int lottoCnt = 2;
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 7, 8, 9));
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);

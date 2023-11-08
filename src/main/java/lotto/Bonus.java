@@ -4,11 +4,16 @@ import java.util.List;
 
 public class Bonus {
     private int number;
+
     Bonus(List<Integer> number, List<Integer> numbers){
         checkOnlyOne(number);
         checkOverlap(numbers, number.get(0));
         lottoInRange(number.get(0));
         this.number = number.get(0);
+    }
+
+    public int getNumber(){
+        return this.number;
     }
 
     private void checkOnlyOne(List<Integer> number){

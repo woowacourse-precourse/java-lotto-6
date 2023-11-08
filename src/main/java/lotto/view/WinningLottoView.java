@@ -26,6 +26,7 @@ public class WinningLottoView {
     public static int publishBonus(List<Integer> lottos) {
         String input;
 
+        System.out.println();
         do {
             System.out.println(MachineMessage.MACHINE_MESSAGE_BONUS.getMessage());
             input = Console.readLine().trim();

@@ -19,6 +19,7 @@ public class OutputView {
     }
 
     public static void displayLottoCompareResult(List<LottoCompare> lottoCompares) {
+        System.out.println();
         System.out.println(MachineMessage.MACHINE_MESSAGE_LOTTO_RESULT.getMessage());
         System.out.println(LottoCompare.FIFTH.getLabel() + MachineMessage.MACHINE_MESSAGE_DASH.getMessage() + Collections.frequency(lottoCompares, LottoCompare.FIFTH) + MachineMessage.MACHINE_MESSAGE_COUNT.getMessage());
         System.out.println(LottoCompare.FOURTH.getLabel() + MachineMessage.MACHINE_MESSAGE_DASH.getMessage() + Collections.frequency(lottoCompares, LottoCompare.FOURTH) + MachineMessage.MACHINE_MESSAGE_COUNT.getMessage());

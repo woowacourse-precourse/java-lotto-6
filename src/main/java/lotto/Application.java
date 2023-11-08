@@ -10,6 +10,7 @@ public class Application {
     public static void main(String[] args) {
         try {
             int lottoAmount = askAmount();
+            List<Lotto> lottos = issueLotto(lottoAmount / 1000);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -27,6 +28,14 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원으로 나누어 떨어져야 합니다.");
         }
         return amount;
+    }
+
+    public static List<Lotto> issueLotto(int count) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
+        return lottos;
     }
 
 }

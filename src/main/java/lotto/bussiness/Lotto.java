@@ -1,4 +1,4 @@
-package lotto;
+package lotto.bussiness;
 
 import java.util.List;
 

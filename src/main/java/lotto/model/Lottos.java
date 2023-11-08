@@ -66,19 +66,19 @@ public class Lottos {
 
     private WinningResult checkIfWin(int winningCount, WinningResult winningResult, boolean matchesBonusNumber) {
         if (winningCount == FIRST_PLACE.getCount()) {
-            winningResult = winningResult.withIncreasedFirstPlaceCount();
+            winningResult = winningResult.withIncreasedPlaceCount(0);
         }
         if (matchesBonusNumber && winningCount == SECOND_AND_THIRD_PLACE.getCount()) {
-            winningResult = winningResult.withIncreasedSecondPlaceCount();
+            winningResult = winningResult.withIncreasedPlaceCount(1);
         }
         if (winningCount == SECOND_AND_THIRD_PLACE.getCount()) {
-            winningResult = winningResult.withIncreasedThirdPlaceCount();
+            winningResult = winningResult.withIncreasedPlaceCount(2);
         }
         if (winningCount == FOURTH_PLACE.getCount()) {
-            winningResult = winningResult.withIncreasedFourthPlaceCount();
+            winningResult = winningResult.withIncreasedPlaceCount(3);
         }
         if (winningCount == FIFTH_PLACE.getCount()) {
-            winningResult = winningResult.withIncreasedFifthPlaceCount();
+            winningResult = winningResult.withIncreasedPlaceCount(4);
         }
         return winningResult;
     }

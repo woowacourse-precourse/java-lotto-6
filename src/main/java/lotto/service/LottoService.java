@@ -96,12 +96,14 @@ public class LottoService implements Service {
     }
 
     private WinningResult getWinningResult(WinningResultDto winningResultDto) {
-        return WinningResult.of(
-                winningResultDto.firstPlaceCount(),
-                winningResultDto.secondPlaceCount(),
-                winningResultDto.thirdPlaceCount(),
-                winningResultDto.fourthPlaceCount(),
-                winningResultDto.fifthPlaceCount()
+        return new WinningResult(
+                List.of(
+                        winningResultDto.firstPlaceCount(),
+                        winningResultDto.secondPlaceCount(),
+                        winningResultDto.thirdPlaceCount(),
+                        winningResultDto.fourthPlaceCount(),
+                        winningResultDto.fifthPlaceCount()
+                )
         );
     }
 

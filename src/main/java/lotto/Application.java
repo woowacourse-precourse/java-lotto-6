@@ -36,10 +36,10 @@ public class Application {
             String purchasePrice = InputService.purchasePrice();
             return Customer.create(purchasePrice);
         }catch (NumberFormatException e) {
-            PrintService.error("숫자를 입력해주세요.");
+            PrintService.error(e.getMessage());
             return getCustomer();
         }catch (IllegalArgumentException e) {
-            PrintService.error("1000원 단위 또는 1000원 이상을 입력해주세요");
+            PrintService.error(e.getMessage());
             return getCustomer();
         }
     }

@@ -2,19 +2,24 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static lotto.consts.ConstsString.INPUT_PURCHASE_PRICE;
+import static lotto.consts.ConstsString.INPUT_BONUS_NUMBER;
+import static lotto.consts.ConstsString.INPUT_WIN_NUMBER;
+
+
 public class InputView {
     public String setWinNumber(){
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(INPUT_WIN_NUMBER);
         return Console.readLine();
     }
 
     public String setBonusNumber(){
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(INPUT_BONUS_NUMBER);
         return Console.readLine();
     }
 
     public String setPurchasePrice(){
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(INPUT_PURCHASE_PRICE);
         return Console.readLine();
     }
 }

@@ -32,4 +32,11 @@ public class MoneyTest {
                 .hasMessageContaining(MONEY_UNDER_MINIMUM);
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"1000:1", "8000:8", "10000:10"}, delimiter = ':')
+    void getBuyLottoQuantity_메소드는_구매_수량을_반환한다(int money, int expect) {
+        Money testMoney = new Money(money);
+
+        assertEquals(testMoney.getBuyLottoQuantity(), expect);
+    }
 }

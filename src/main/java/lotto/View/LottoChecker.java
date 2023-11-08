@@ -7,4 +7,8 @@ public class LottoChecker {
     public static final Integer THIRD_PRIZE = PrizeMoney.THIRD.getPrizeAmount();
     public static final Integer FOURTH_PRIZE = PrizeMoney.FOURTH.getPrizeAmount();
     public static final Integer FIFTH_PRIZE = PrizeMoney.FIFTH.getPrizeAmount();
+
+    public static void printCheckMessage() {
+        System.out.println(CHECK_START_MESSAGE);
+    }
 }

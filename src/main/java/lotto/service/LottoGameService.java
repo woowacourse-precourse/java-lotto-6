@@ -13,7 +13,6 @@ public class LottoGameService {
     public String generateWinningResult(WinningResult result, Double rateOfReturn) {
         StringJoiner joiner = new StringJoiner("\n");
 
-
         joiner.add(result.toString());
         String format = String.format("총 수익률은 %.1f%%입니다.", rateOfReturn);
         joiner.add(format);
@@ -53,7 +52,7 @@ public class LottoGameService {
             } catch (IllegalArgumentException e) {
                 continue;
             }
-//            System.out.println(value);
+
             result.put(value, result.get(value) + 1);
         }
 

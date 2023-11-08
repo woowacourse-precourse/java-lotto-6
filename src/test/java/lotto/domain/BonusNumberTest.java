@@ -16,7 +16,7 @@ class BonusNumberTest {
         assertThatThrownBy(() -> {
             BonusNumber bonusNumber = new BonusNumber(underBonusNumber);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 당첨 번호가 1보다 낮을 수 없습니다.");
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45사이의 숫자이어야 합니다.");
     }
 
     @DisplayName("당첨 숫자가 45보다 높을 경우 예외가 발생한다.")
@@ -29,6 +29,6 @@ class BonusNumberTest {
         assertThatThrownBy(() -> {
             BonusNumber bonusNumber = new BonusNumber(upperBonusNumber);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 당첨 번호가 45보다 높을 수 없습니다.");
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45사이의 숫자이어야 합니다.");
     }
 }

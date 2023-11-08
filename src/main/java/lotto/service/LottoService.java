@@ -12,7 +12,8 @@ import lotto.domain.WinningPrize;
 
 public class LottoService {
 
-    public LottoService() {}
+    public LottoService() {
+    }
 
     public List<Lotto> createLottos(int lottoPurchaseAmount) {
         int lottoCount = calculateLottoCount(lottoPurchaseAmount);

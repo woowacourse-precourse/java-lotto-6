@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class InputView {
+
     private static final String PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String LOTTO_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
@@ -49,7 +50,7 @@ public class InputView {
             System.out.println();
             validateLottoNumbers(inputWinningNumbers);
             return convertWinningNumbersToList(inputWinningNumbers);
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return requestWinningNumbers();
         }
@@ -122,8 +123,8 @@ public class InputView {
 
     private void validateLottoNumberRange(int number) {
         if (
-            LOTTO_MIN_NUMBER > number ||
-            LOTTO_MAX_NUMBER < number
+                LOTTO_MIN_NUMBER > number ||
+                        LOTTO_MAX_NUMBER < number
         ) {
             throw new IllegalArgumentException(INVALID_INPUT_LOTTO_RANGE);
         }

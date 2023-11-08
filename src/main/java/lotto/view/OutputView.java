@@ -8,6 +8,7 @@ import lotto.domain.Lotto;
 import lotto.domain.WinningPrize;
 
 public class OutputView {
+
     private static final String LOTTO_COUNT_OF_PURCHASES_FORMAT = "%d개를 구매했습니다.";
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
     private static final String WINNING_PRIZE_MESSAGE = "%d개 일치 (%,d원) - %d개";
@@ -73,6 +74,6 @@ public class OutputView {
         if (winningPrize != WinningPrize.SECOND_PRIZE) {
             return WINNING_PRIZE_MESSAGE;
         }
-        return  WINNING_SECOND_PRIZE_MESSAGE;
+        return WINNING_SECOND_PRIZE_MESSAGE;
     }
 }

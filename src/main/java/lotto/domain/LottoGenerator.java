@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoGenerator {
+
     public static Lotto generatorLotto() {
         List<Integer> randomNumbers = generateRandomNumbers();
         return new Lotto(randomNumbers);

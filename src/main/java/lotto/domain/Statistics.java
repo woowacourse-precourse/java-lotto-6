@@ -8,35 +8,33 @@ import java.util.Map;
 import static lotto.domain.Rank.LOSE;
 
 public class Statistics {
-    private final Map<Rank, Integer> results;
     private static final int ONE = 1;
     private static final int ZERO = 0;
     private static final double ONE_HUNDRED = 100.0;
     private static final String ENTER = "\n";
+    private final Map<Rank, Integer> results;
 
-    private Statistics(Map<Rank, Integer> results) {
+    public Statistics(List<Lotto> lottos, WinningLotto winningLotto, int bonus) {
+        Map<Rank, Integer> results = initResults();
+        for (Lotto lotto : lottos) {
+            Rank rank = getRank(winningLotto, bonus, lotto);
+            results.computeIfPresent(rank, (key, v) -> v + ONE);
+        }
         this.results = results;
     }
 
-    public static Statistics calculate(List<Lotto> lottos, WinningLotto winningLotto, int bonus) {
-        Map<Rank, Integer> results = initResults();
-        for (Lotto lotto : lottos) {
-            boolean hasBonus = lotto.contains(bonus);
-            int matchCount = lotto.countMatch(winningLotto);
-            Rank rank = Rank.getRank(matchCount, hasBonus);
-
-            int count = results.get(rank) + ONE;
-            results.put(rank, count);
-        }
-        return new Statistics(results);
-    }
-
-    private static Map<Rank, Integer> initResults() {
+    private Map<Rank, Integer> initResults() {
         Map<Rank, Integer> initialResults = new LinkedHashMap<>();
         for (Rank rank : Rank.values()) {
             initialResults.put(rank, ZERO);
         }
         return initialResults;
+    }
+
+    private Rank getRank(WinningLotto winningLotto, int bonus, Lotto lotto) {
+        boolean hasBonus = lotto.contains(bonus);
+        int matchCount = lotto.countMatch(winningLotto);
+        return Rank.getRank(matchCount, hasBonus);
     }
 
     public String calculateRevenueRate(Buyer buyer) {
@@ -62,4 +60,5 @@ public class Statistics {
         });
         return stringBuilder.toString();
     }
+
 }

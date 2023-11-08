@@ -24,6 +24,10 @@ public class Validator {
         }
     }
 
+    public static boolean containOnlyDigitTest(String input) {
+        return input.chars().allMatch(Character::isDigit);
+    }
+
     public static void containOnlyDigit(String[] inputNumbers) {
         for (String input: inputNumbers) {
             containOnlyDigit(input);

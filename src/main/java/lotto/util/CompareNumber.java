@@ -14,7 +14,6 @@ public class CompareNumber {
     }
 
     public boolean compareBonusNum(int bonusNumber, List<Integer> randomWin) {
-        int bonusCount = 0;
         return randomWin.contains(bonusNumber);
     }
 

@@ -8,4 +8,12 @@ public class BonusNumberValidator {
             throw new IllegalArgumentException(ErrorCode.NULL_OR_EMPTY_BONUS_NUMBER.getMessage());
         }
     }
+
+    private int validateNumberType(String inputBonusNumber) {
+        try {
+            return Integer.parseInt(inputBonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorCode.INVALID_BONUS_NUMBER_TYPE.getMessage());
+        }
+    }
 }

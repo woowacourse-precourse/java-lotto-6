@@ -50,7 +50,9 @@ public class LottoController {
                                 .collect(Collectors.toList()),
                         Integer.valueOf(bonusNumbers))
         );
-        // return Successful
 
+        lottoDraw.checkNumbers(human);
+
+        // return Successful
     }
 }

@@ -25,6 +25,10 @@ public class Lotto {
         return numbers;
     }
 
+    public boolean isIncludes(int number){
+        return numbers.contains(number);
+    }
+
     public void printNumbers(){
             System.out.println(numbers.toString());
 

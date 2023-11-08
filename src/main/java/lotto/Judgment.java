@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 
 public class Judgment{
     private int bonus;
-    Lotto lotto;
+    private Lotto lotto;
 
-    public void getLotto(){
+    public void userInput(){
         while(true) {
             try {
                 lotto = new Lotto(inputNumbers());
@@ -59,13 +59,10 @@ public class Judgment{
 
     public List<Integer> splitNumbers(String input){
         String[] splitComma = input.split(",");
-
         int[] intArray = Arrays.stream(splitComma).mapToInt(Integer::parseInt).toArray();
-
         List<Integer> numbers = Arrays.stream(intArray).boxed().collect(Collectors.toList());
-        // 입력받은 문자열을  String[] -> int[] -> List<Integer> 순으로 변환
-
         Set<Integer> numbersSet = new HashSet<>(numbers);
+
         if(numbersSet.size()!= numbers.size()){ // 입력된 로또 번호에 중복값이 있는지 확인
             System.out.println("[ERROR] 중복된 번호입니다. 다시입력해주세요. ");
             throw new IllegalArgumentException();
@@ -110,9 +107,11 @@ public class Judgment{
         Collections.sort(ticket);
     }
 
-    public void printAll() {
-        System.out.println(bonus);
-        lotto.printNumbers();
+    public int getBonus() {
+        return bonus;
     }
 
+    public Lotto getLotto() {
+        return lotto;
+    }
 }

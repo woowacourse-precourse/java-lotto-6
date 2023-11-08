@@ -8,7 +8,7 @@
   - [0] 로또 번호를 오름차순으로 정렬한다 - Judgment#lottoSort
 - [0] 발행한 로또 번호들을 출력한다 - Player#lottoPrint
 
-
+- [0] 복권 번호와 보너스 번호를 입력받는다 - Judgment#userInput
 - [0] 당첨 번호를 입력받는다 - Judgment#inputNumbers
   - [0] 당첨 번호를 ","를 기준으로 구분하여 반환한다 - Judgment#splitNumbers
   - [0] 입력받은 로또 번호가 1~45 사이의 숫자인지 확인한다 - Judgment#isInRange
@@ -16,11 +16,11 @@
   - [0] 입력받은 보너스 번호가 1~45 사이의 숫자인지 확인한다 - Judgment#isInRange
 
 
-- [] 입력받은 로또 번호들의 당첨 여부를 판단한다 - Judgment#checkLotto
-    - [] 당첨 번호와 일치하는 개수를 확인하여 등수를 매긴다 - Judgment#rankLotto
-      - [] 로또 번호가 당첨 번호에 포함되는지 확인한다 - Judgment#CompareWinningNumber
-      - [] 보너스 번호가 일치하는지 확인한다 - Judgment#CompareBonusNumber
-- [] 당첨된 로또 목록을 출력한다 - Judgment#printWonLotto
+- [] 입력받은 로또 번호들의 당첨 여부를 판단한다 - Player#checkNumbers
+    - [] 당첨 번호와 일치하는 개수를 확인하여 등수를 매긴다 - Player#rankLotto
+      - [] 로또 번호가 당첨 번호에 포함되는지 확인한다 - Player#CompareWinningNumber
+      - [] 보너스 번호가 일치하는지 확인한다 - Player#CompareBonusNumber
+- [] 당첨된 로또 목록을 출력한다 - Player#printWonLotto
   - [] 로또 등수와 금액을 관리한다 - LottoMatchNumber *enum*
 - [] 당첨된 로또로 벌어들인 수익률을 계산한다 - Judgment#calculateProfitRate
 - [] 당첨된 로또 수익률을 출력한다 - Judgment#printProfitRate

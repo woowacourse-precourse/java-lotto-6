@@ -2,13 +2,13 @@ package lotto.validation;
 
 import java.util.HashSet;
 import java.util.List;
+import lotto.domain.LottoInfo;
 import lotto.view.ErrorMessage;
 
 public class Validation {
-    private static final int LOTTO_PRISE = 1000;
     private static final int ZERO = 0;
     public static void checkIsDivideByThousand(final String input) {
-        if (Integer.parseInt(input) % LOTTO_PRISE != 0) {
+        if (Integer.parseInt(input) % LottoInfo.PRISE.getValue() != 0) {
             throw new IllegalArgumentException(ErrorMessage.isNotDivideByLottoAmount());
         }
     }

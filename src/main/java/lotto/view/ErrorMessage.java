@@ -1,9 +1,9 @@
 package lotto.view;
 
+import lotto.domain.LottoInfo;
+
 public class ErrorMessage {
     private static final String ERROR = "[ERROR] ";
-    private static final int LENGTH = 6;
-    private static final int LOTTO_PRISE = 1000;
 
     public static String isNotNumber() {
         return ERROR + "숫자를 입력해 주세요.";
@@ -14,11 +14,11 @@ public class ErrorMessage {
     }
 
     public static String isNotMatchLottoLength() {
-        return ERROR + "입력하신 로또 번호의 개수가 맞지 않습니다. 다시 입력해 주세요. (" + LENGTH + "개)";
+        return ERROR + "입력하신 로또 번호의 개수가 맞지 않습니다. 다시 입력해 주세요. (" + LottoInfo.LENGTH.getValue() + "개)";
     }
 
     public static String isNotDivideByLottoAmount() {
-        return ERROR + "지불할 금액은 로또 가격의 배수여야 합니다. (현재 로또 가격: " + LOTTO_PRISE + ")";
+        return ERROR + "지불할 금액은 로또 가격의 배수여야 합니다. (현재 로또 가격: " + LottoInfo.PRISE.getValue() + ")";
     }
 
     public static String isNotInRange() {

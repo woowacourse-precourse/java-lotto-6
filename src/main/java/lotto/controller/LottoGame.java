@@ -3,14 +3,13 @@ package lotto.controller;
 import java.util.HashMap;
 import lotto.domain.Buyer;
 import lotto.domain.Lotto;
+import lotto.domain.LottoInfo;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.OutputView;
 
 public class LottoGame {
-    private static final String DECIMAL_FORMAT = "###,##0.0";
-    private static final int LOTTO_PRISE = 1000;
     private static final int PERCENT = 100;
     private final LottoService lottoService = new LottoService();
     private final HashMap<Rank, Integer> result = new HashMap<>();
@@ -62,6 +61,6 @@ public class LottoGame {
     }
 
     private long getAmount() {
-        return (long) buyer.getLottos().size() * LOTTO_PRISE;
+        return (long) buyer.getLottos().size() * LottoInfo.PRISE.getValue();
     }
 }

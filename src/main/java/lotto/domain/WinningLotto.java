@@ -18,7 +18,7 @@ public class WinningLotto extends Lotto {
     public void validate(final String bonus) {
         Validation.checkIsNumber(bonus);
         Validation.checkIsNatural(Integer.parseInt(bonus));
-        Validation.checkNumberIsBetweenStartAndEnd(START, END, Integer.parseInt(bonus));
+        Validation.checkNumberIsBetweenStartAndEnd(LottoInfo.START.value, LottoInfo.END.value, Integer.parseInt(bonus));
         Validation.checkLottoNumbersHasBonusNumber(numbers, Integer.parseInt(bonus));
     }
 }

@@ -4,10 +4,11 @@ public class BonusNumberGeneratorValidator {
     public static final String INVALID_BONUS_NUMBER_RANGE = "[ERROR] 보너스 숫자에는 1 ~ 45까지의 숫자만 입력해주세요.";
     public static final String INVALID_NON_NUMERIC_INPUT = "[ERROR] 로또 구입 금액에는 숫자만 입력해주세요.";
 
-    public void vaildBonusNumber(String bonusNumber) {
+    public int vaildBonusNumber(String bonusNumber) {
         vaildBonusNumberNonNumeric(bonusNumber);
         int bonusNumberValue = Integer.parseInt(bonusNumber);
         vaildBonusNumberNonNumeric(bonusNumber);
+        return bonusNumberValue;
     }
 
     void vaildBonusNumberRange(int bonusNumber) {

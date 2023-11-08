@@ -14,9 +14,19 @@ public class LottoWinningNumberInputView {
 
     public List<Integer> readLottoWinningNumber() {
         System.out.println(WINNING_NUMBER_PROMPT);
-        String winnnigLottoNumber = Console.readLine();
-        List<Integer> winningNumbers = commaSeparatedStringToIntList(winnnigLottoNumber);
-        return winningNumbers;
+        String winningLottoNumber = Console.readLine();
+
+        while (true) {
+            try {
+                List<Integer> winningNumbers = commaSeparatedStringToIntList(winningLottoNumber);
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+
+                System.out.println(WINNING_NUMBER_PROMPT);
+                winningLottoNumber = Console.readLine();
+            }
+        }
     }
 
     private List<Integer> commaSeparatedStringToIntList(String winnnigLottoNumber) {
@@ -27,7 +37,6 @@ public class LottoWinningNumberInputView {
         Collections.sort(winningNumbers);
         winnerNumberGeneratorValidator.vaildWinnerNumbers(winningNumbers);
         System.out.println();
-        vaildWinnerNumbers(winningNumbers);
         return winningNumbers;
     }
 

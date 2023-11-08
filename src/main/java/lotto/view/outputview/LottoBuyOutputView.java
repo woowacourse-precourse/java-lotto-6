@@ -30,10 +30,6 @@ public final class LottoBuyOutputView implements OutputView {
         }
     }
 
-    private void viewBuyPriceText() {
-        System.out.println("구입금액을 입력해 주세요.");
-    }
-
     private String sortByAscendingOrder(Lotto lotto) {
         List<Integer> sortedLotto = lotto.getNumbers()
                 .stream()
@@ -41,5 +37,9 @@ public final class LottoBuyOutputView implements OutputView {
                 .toList();
 
         return sortedLotto.toString();
+    }
+
+    private void viewBuyPriceText() {
+        System.out.println("구입금액을 입력해 주세요.");
     }
 }

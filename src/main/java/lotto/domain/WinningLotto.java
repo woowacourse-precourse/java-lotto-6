@@ -24,23 +24,6 @@ public final class WinningLotto {
         return LottoRankInfo.createLottoRank(hitCount, isHitBonus);
     }
 
-    private boolean isSameWithBonus(Lotto target) {
-        return target.getNumbers()
-                .stream()
-                .anyMatch(e -> e.equals(bonus));
-    }
-
-    private int countSameLottoNumber(Lotto target) {
-        return getIntersectionSize(target);
-    }
-
-    private int getIntersectionSize(Lotto target) {
-        Set<Integer> answer = new HashSet<>(answerLotto.getNumbers());
-
-        answer.retainAll(target.getNumbers());
-        return answer.size();
-    }
-
     private void validate(int bonus) {
         validateNumberSize(bonus);
         validateSameWithLottoNumbers(bonus);
@@ -60,5 +43,22 @@ public final class WinningLotto {
         if (isDuplicated) {
             throw new IllegalArgumentException(BONUS_NUMBER_ALREADY_EXIST.getText());
         }
+    }
+
+    private boolean isSameWithBonus(Lotto target) {
+        return target.getNumbers()
+                .stream()
+                .anyMatch(e -> e.equals(bonus));
+    }
+
+    private int countSameLottoNumber(Lotto target) {
+        return getIntersectionSize(target);
+    }
+
+    private int getIntersectionSize(Lotto target) {
+        Set<Integer> answer = new HashSet<>(answerLotto.getNumbers());
+
+        answer.retainAll(target.getNumbers());
+        return answer.size();
     }
 }

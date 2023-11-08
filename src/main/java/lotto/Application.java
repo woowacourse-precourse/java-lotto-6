@@ -1,7 +1,12 @@
 package lotto;
 
+import lotto.domain.PlayLotto;
+import lotto.view.InputMoney;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        int inputMoney = new InputMoney().input();
+        int cnt = new PlayLotto(inputMoney).lottoTry();
+
     }
 }

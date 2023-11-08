@@ -15,6 +15,7 @@ public class InputView {
         while (true) {
             try {
                 input = validateStringInput(Console.readLine());
+                validateAmount(input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 금액에는 문자를 입력하실 수 없습니다.");
@@ -48,5 +49,11 @@ public class InputView {
         }
 
         return input;
+    }
+
+    private static void validateAmount(String input) {
+        if (Integer.parseInt(input) % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 금액은 1,000원 단위로 입력해야 합니다.");
+        }
     }
 }

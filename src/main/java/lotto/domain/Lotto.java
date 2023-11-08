@@ -1,11 +1,11 @@
 package lotto.domain;
 
-import static lotto.controller.ErrorMessage.DUPLICATED_NUMBER_MESSAGE;
-import static lotto.controller.ErrorMessage.INVALID_INPUT_LENGTH_FORMAT;
-import static lotto.controller.ErrorMessage.NUMBER_NOT_IN_RANGE_FORMAT;
-import static lotto.domain.Constants.LOTTO_TICKET_LENGTH;
-import static lotto.domain.Constants.MAXIMUM_LOTTO_NUMBER;
-import static lotto.domain.Constants.MINIMUM_LOTTO_NUMBER;
+import static lotto.constants.ErrorMessage.DUPLICATED_NUMBER_MESSAGE;
+import static lotto.constants.ErrorMessage.INVALID_INPUT_LENGTH_FORMAT;
+import static lotto.constants.ErrorMessage.NUMBER_NOT_IN_RANGE_FORMAT;
+import static lotto.constants.Common.LOTTO_TICKET_LENGTH;
+import static lotto.constants.Common.MAXIMUM_LOTTO_NUMBER;
+import static lotto.constants.Common.MINIMUM_LOTTO_NUMBER;
 
 import java.util.ArrayList;
 import java.util.Collections;

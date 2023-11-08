@@ -3,7 +3,7 @@ package lotto.model;
 public class UserWallet {
 
     private int myMoney;
-    private int lottoPurchaseHistory;
+    private int usedMoney;
 
     private UserWallet(int money){
         myMoney = money;
@@ -18,7 +18,7 @@ public class UserWallet {
     }
 
     private int useMoney(int usedMoney){
-        lottoPurchaseHistory = myMoney/1000;
+        this.usedMoney = usedMoney;
         myMoney -= usedMoney;
         return usedMoney;
     }
@@ -31,4 +31,11 @@ public class UserWallet {
         myMoney += receiveMoney;
     }
 
+    public int usedMoney() {
+        return usedMoney;
+    }
+
+    public int getMoney(){
+        return myMoney;
+    }
 }

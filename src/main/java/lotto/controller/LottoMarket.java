@@ -6,6 +6,7 @@ import lotto.model.LottoRank;
 import lotto.model.WinningLotto;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoMarket {
 
@@ -25,5 +26,9 @@ public class LottoMarket {
 
     public int winningsReceive(List<LottoRank> winnings) {
         return lottoProvider.winningsPayments(winnings);
+    }
+
+    public Map<String, Integer> getMyHistory(List<LottoRank> lottoRanks){
+        return lottoProvider.lottoHistory(lottoRanks);
     }
 }

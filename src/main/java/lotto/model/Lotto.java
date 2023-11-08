@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Lotto {
@@ -12,11 +13,15 @@ public class Lotto {
     private static final String FOURTH = "FOURTH";
     private static final String FIFTH = "FIFTH";
     private static final String NO_RANK = "NO";
+    private static final String FORMAT_HEAD = "[";
+    private static final String FORMAT_TAIL = "]";
+    private static final String FORMAT_SEPARATOR = ", ";
     private static final int FIFTH_EQUAL_NUMBER = 3;
     private static final int FOURTH_EQUAL_NUMBER = 4;
     private static final int THIRD_EQUAL_NUMBER = 5;
     private static final int NUMBERS_ALL_EQUAL = 6;
     private static final int LOTTO_SIZE = 6;
+    private static final int FORMAT_END_LINE = 2;
 
     private final List<Integer> numbers;
 
@@ -81,5 +86,17 @@ public class Lotto {
                 .filter(winningLotto::isBonusNumber)
                 .findFirst()
                 .orElse(NOT_CONTAINS_BONUS_NUMBER) == NOT_CONTAINS_BONUS_NUMBER);
+    }
+
+    public String formatString(){
+        StringBuilder formatLine = new StringBuilder();
+        formatLine.append(FORMAT_HEAD);
+        for(int number : numbers){
+            formatLine.append(number)
+                    .append(FORMAT_SEPARATOR);
+        }
+        formatLine.setLength(formatLine.length()-FORMAT_END_LINE);
+        formatLine.append(FORMAT_TAIL);
+        return formatLine.toString();
     }
 }

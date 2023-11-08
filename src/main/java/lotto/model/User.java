@@ -2,16 +2,17 @@ package lotto.model;
 
 import lotto.controller.LottoMarket;
 import lotto.view.UserInputView;
+import lotto.view.UserOutputView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class User {
 
     private final UserWallet userWallet;
     private final LottoMarket lottoMarket;
     private final UserInputView userInputView;
+    private final UserOutputView userOutputView;
     private final WinningLotto winningNumber;
 
     private List<Lotto> myLottoNumbers = new ArrayList<>();
@@ -19,8 +20,11 @@ public class User {
 
     public User(){
         userInputView = new UserInputView();
+        userOutputView = new UserOutputView();
         userWallet = UserWallet.createWallet(userInputView.userMoneyInput());
         lottoMarket = new LottoMarket();
+        myLottoNumbers = lottoMarket.buyLotto(useMoney());
+        userOutputView.boughtLottoPrint(myLottoNumbers);
         winningNumber = lottoMarket.winNumberLottoGenerate(
                 userInputView.winLottoNumberInput(),
                 userInputView.bonusNumberInput()
@@ -32,15 +36,15 @@ public class User {
     }
 
     public void buyLotto(){
-        myLottoNumbers = lottoMarket.buyLotto(useMoney());
         List<LottoRank> winnings = winLottoCheck();
         userWallet.receiveWinningsMoney(
                 lottoMarket.winningsReceive(winnings)
         );
 
-//        Map<String, Integer> lottoHistory = lottoMarket.getMyHistory(winningsMoney);
-
-
+        userOutputView.statistics(userWallet.usedMoney(),
+                userWallet.getMoney(),
+                lottoMarket.getMyHistory(winningsMoney)
+        );
         check();
     }
 

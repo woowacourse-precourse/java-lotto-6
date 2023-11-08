@@ -1,11 +1,13 @@
 package lotto.model;
 
+import java.util.List;
+
 public enum LottoRank {
-    FIRST(2000000000),
-    SECOND(30000000),
-    THIRD(1500000),
-    FOURTH(50000),
     FIFTH(5000),
+    FOURTH(50000),
+    THIRD(1500000),
+    SECOND(30000000),
+    FIRST(2000000000),
     NO(0);
 
     private final int winnings;
@@ -19,6 +21,10 @@ public enum LottoRank {
     }
 
     public int myWinnings(){
+        return winnings;
+    }
+
+    public int lottoRankMapper(LottoRank lottoRank){
         return winnings;
     }
 

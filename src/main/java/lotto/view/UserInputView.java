@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,8 @@ public class UserInputView {
     private static final String SEPARATOR = ",";
     private static final String IS_INTEGER_NUMBER = "^[0-9]*$";
     private static final String BUY_MONEY_INFO = "구입금액을 입력해 주세요.";
-    private static final String LOTTO_NUM_INPUT_INFO = "당첨 번호를 입력해 주세요.";
-    private static final String LOTTO_BONUS_NUM_INPUT_INFO = "보너스 번호를 입력해 주세요.";
+    private static final String LOTTO_NUM_INPUT_INFO = System.lineSeparator() + "당첨 번호를 입력해 주세요.";
+    private static final String LOTTO_BONUS_NUM_INPUT_INFO = System.lineSeparator() + "보너스 번호를 입력해 주세요.";
     private static final String STRING_TO_INTEGER_ERROR = "[ERROR] 숫자를 입력해주세요.";
     private static final String THOUSAND_ERROR = "[ERROR] 1000단위로 입력해주세요.";
     private static final String PURCHASE_RANGE_OVER = "[ERROR] 구입 범위는 1개에서 500개까지 입니다.";
@@ -24,18 +25,18 @@ public class UserInputView {
     private static final String LOTTO_NUMBER_RANGE_ERROR = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String LOTTO_BONUS_NUMBER_DUPLICATE = "[ERROR] 로또 번호와 중복되는 번호를 고를 수 없습니다.";
 
-
     private int convertedLine;
+    private final UserOutputView userOutputView = new UserOutputView();
 
     /**
      * 보너스 번호를 입력받을 때 사용할 WinnerLottoNumbers
      */
     private List<Integer> bonusNumbersValidate = new ArrayList<>();
 
+
     public int userMoneyInput() {
         System.out.println(BUY_MONEY_INFO);
         String inputLine = Console.readLine();
-
         return moneyInputLineValidate(inputLine);
     }
 
@@ -45,7 +46,7 @@ public class UserInputView {
         List<String> inputLine = List.of(Console.readLine().split(SEPARATOR));
 
         List<Integer> convertedNumber = winLottoNumberConvertInteger(inputLine);
-        if(winLottoNumberValidate(convertedNumber)){
+        if (winLottoNumberValidate(convertedNumber)) {
             bonusNumbersValidate = convertedNumber.stream()
                     .toList();
         }
@@ -62,20 +63,20 @@ public class UserInputView {
 
 
     private int bonusNumberValidate(String inputLine) {
-        try{
+        try {
             validStringToInteger(inputLine);
             convertedLine = Integer.parseInt(inputLine);
             availableBonusNumber(convertedLine);
             eachNumberValidate(convertedLine);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             bonusNumberInput();
         }
         return convertedLine;
     }
 
-    private void availableBonusNumber(int convertedLine){
-        if(bonusNumbersValidate.contains(convertedLine)){
+    private void availableBonusNumber(int convertedLine) {
+        if (bonusNumbersValidate.contains(convertedLine)) {
             throw new IllegalArgumentException(LOTTO_BONUS_NUMBER_DUPLICATE);
         }
     }
@@ -89,7 +90,7 @@ public class UserInputView {
                     .sorted()
                     .distinct()
                     .toList();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             winLottoNumberInput();
         }
@@ -127,6 +128,7 @@ public class UserInputView {
             convertedLine = Integer.parseInt(validateLine);
             thousandValidate(convertedLine);
             purchaseMoneyValidate(convertedLine);
+            userOutputView.boughtLottoEachPrint(convertedLine/THOUSAND);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             userMoneyInput();

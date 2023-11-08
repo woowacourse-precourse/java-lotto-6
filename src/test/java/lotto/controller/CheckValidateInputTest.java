@@ -15,23 +15,37 @@ class CheckValidateInputTest {
 	}
 	
 	@Test
-	void money_입력_메서드_숫자가_아닌_값_입력시_예외_발생() {
+	void 구매_금액_입력_메서드_숫자가_아닌_값_입력시_예외_발생() {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
 	        checkValidateInput.money("not a number");
 	    });
 	}
 
 	@Test
-	void money_입력_메서드_1000단위가_아닌_값_입력시_예외_발생() {
+	void 구매_금액_입력_메서드_1000단위가_아닌_값_입력시_예외_발생() {
 	    Assertions.assertThrows(IllegalArgumentException.class, () -> {
 	        checkValidateInput.money("250");
 	    });
 	}
 
 	@Test
-	void money_입력_메서드_허용범위_밖의_값_입력시_예외_발생() {
+	void 구매_금액_입력_메서드_허용범위_밖의_값_입력시_예외_발생() {
 	    Assertions.assertThrows(IllegalArgumentException.class, () -> {
 	        checkValidateInput.money("10,000,000,000");
+	    });
+	}
+	
+	@Test
+	void 당첨_번호_입력_메서드_숫자가_아닌_값_입력시_예외_발생() {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+	        checkValidateInput.money("1,2,3,4,5,a");
+	    });
+	}
+	
+	@Test
+	void 당첨_번호_입력_메서드_복권_숫자_범위가_넘어간_값을_입력시_예외_발생() {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+	        checkValidateInput.money("1,2,3,4,5,46");
 	    });
 	}
 

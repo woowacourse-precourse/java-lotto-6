@@ -9,6 +9,10 @@ import java.util.List;
 public class LottoNumberMaker {
     public LottoNumberMaker() {lottoInput();}
 
+    public List<List<Integer>> getPurchaseLotto() {
+        return purchaseLotto;
+    }
+
     int getLottoNumber = MoneyInput.money / 1000;
     List<List<Integer>> purchaseLotto = new ArrayList<>();
 

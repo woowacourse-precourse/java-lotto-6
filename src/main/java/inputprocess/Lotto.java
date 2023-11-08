@@ -9,6 +9,9 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 
     public Lotto(String numberString) {
         String [] number = CheckNumber(numberString);

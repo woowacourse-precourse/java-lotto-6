@@ -6,7 +6,6 @@ public enum LottoConstants {
     MAXIMUM_NUMBER(45),
     NUMBERS_PER_TICKET(6);
 
-
     private final int value;
 
     LottoConstants(int value) {

@@ -10,4 +10,8 @@ public class Bonus {
     public Bonus(int bonus) {
         this.bonus = bonus;
     }
+
+    public int getBonus() {
+        return bonus;
+    }
 }

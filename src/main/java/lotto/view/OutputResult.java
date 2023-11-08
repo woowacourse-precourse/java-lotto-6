@@ -12,4 +12,9 @@ public class OutputResult {
         System.out.println("6개 일치 (2,000,000,000원) - " + prizeCount[1] + "개");
     }
 
+    public static void printReturnRate(int totalPrize, double buyMoney) {
+        String returnRate = String.format("%.1f", totalPrize / buyMoney * 100);
+        System.out.println("총 수익률은 " + returnRate + "%입니다.");
+    }
+
 }

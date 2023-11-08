@@ -14,13 +14,8 @@ public class Application {
         List<Lotto> lottoTickets=new ArrayList<>();
 
         for(int i=0;i<numberOfLotto;i++){
-            Set<Integer> uniqueNumbers=new HashSet<>();
-            while(uniqueNumbers.size()<6){
-                int randomNumber=Randoms.pickNumberInRange(1,45);
-                uniqueNumbers.add(randomNumber);
-            }
-
-            Lotto lottoTicket=new Lotto(new ArrayList<>(uniqueNumbers));
+            List<Integer> randomNumbers=LottoNumbersMaker.generateRandomNumbers();
+            Lotto lottoTicket=new Lotto(new ArrayList<>(randomNumbers));
             lottoTickets.add(lottoTicket);
         }
 

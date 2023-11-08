@@ -35,10 +35,10 @@ public class MoneyTest {
         //given
 
         //when
-        int quantity = money.getQuantity();
+        LottoQuantity lottoQuantity = money.generateQuantity();
 
         //then
-        assertThat(quantity).isEqualTo(1);
+        assertThat(lottoQuantity).extracting("quantity").isEqualTo(1);
     }
 
     @ParameterizedTest

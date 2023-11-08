@@ -13,8 +13,8 @@ public class Money {
         this.money = Integer.parseInt(userInput);
     }
 
-    public int getQuantity() {
-        return money / LOTTO_PRICE;
+    public LottoQuantity generateQuantity() {
+        return new LottoQuantity(money / LOTTO_PRICE);
     }
 
     public int getMoney() {

@@ -19,7 +19,7 @@ public class LottoController {
 
     public void start() {
         Money money = generateMoney();
-        LottoQuantity lottoQuantity = new LottoQuantity(money.getQuantity());
+        LottoQuantity lottoQuantity = money.generateQuantity();
         output.printPurchaseQuantity(lottoQuantity.getQuantity());
 
         List<Lotto> myLottos = buyLottos(lottoQuantity);

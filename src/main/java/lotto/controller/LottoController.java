@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.model.lotto.Bonus;
 import lotto.model.lotto.Lotto;
 import lotto.model.user.UserLotto;
 import lotto.model.user.UserLottoRank;

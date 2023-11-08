@@ -22,7 +22,7 @@ public class Match {
         return matchCounts;
     }
 
-    public int getSingleMatchCount(int index){
+    public int getSingleMatchCount(int index) {
         return matchCounts.get(index);
     }
 

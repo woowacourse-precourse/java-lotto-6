@@ -1,5 +1,10 @@
 package lotto.common;
 
+import static lotto.common.util.ErrorMessage.BLANK;
+import static lotto.common.util.ErrorMessage.DUPLICATE_BONUS;
+import static lotto.common.util.ErrorMessage.LIMIT;
+import static lotto.common.util.ErrorMessage.ONLY_NUMBER;
+import static lotto.common.util.ErrorMessage.PRICE_CHECK;
 import static lotto.common.util.LottoUtil.DUPLICATE;
 import static lotto.common.util.LottoUtil.MAX;
 import static lotto.common.util.LottoUtil.MIN;
@@ -11,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import lotto.common.util.ErrorMessage;
 
 public final class Validation {
 
@@ -18,7 +24,7 @@ public final class Validation {
 
     public static void lottoSize(List<Integer> numbers) {
         if (numbers.size() != SIZE.getNumber()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.SIZE.getMessage());
         }
     }
 
@@ -32,7 +38,7 @@ public final class Validation {
                 .toList();
 
         if (!duplicates.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE.getMessage());
         }
     }
 
@@ -42,13 +48,13 @@ public final class Validation {
                 .toList();
 
         if (!outOfRangeNumbers.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LIMIT.getMessage());
         }
     }
 
     public static Integer lottoDuplicateBonusNumber(String lotto, String bonus) {
         if (lotto.contains(bonus)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(DUPLICATE_BONUS.getMessage());
         }
 
         return Integer.parseInt(bonus);
@@ -56,19 +62,19 @@ public final class Validation {
 
     public static void blankCheck(String strLotto) {
         if (strLotto.isEmpty() || strLotto.equals(",")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(BLANK.getMessage());
         }
     }
 
     public static void lottoPriceCheck(Integer buyPrice) {
         if (buyPrice % THOUSAND.getNumber() != ZERO.getNumber()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(PRICE_CHECK.getMessage());
         }
     }
 
     public static void onlyNumberCheck(String inputData) {
         if (!(inputData != null && inputData.matches(ONLY_NUMBER_CHECK))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ONLY_NUMBER.getMessage());
         }
     }
 }

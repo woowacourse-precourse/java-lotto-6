@@ -1,14 +1,15 @@
-package lotto.domain.controller;
+package lotto.controller;
 
-import lotto.domain.controller.dto.LottoDtos;
+import lotto.controller.dto.LottoDtos;
 import lotto.domain.entity.User;
-import lotto.domain.service.LottoService;
-import lotto.domain.service.dto.GameResult;
-import lotto.domain.view.dto.LottoBonusNumberDto;
-import lotto.domain.view.dto.PurchasePriceDto;
-import lotto.domain.view.input.LottoInputView;
-import lotto.domain.view.input.LottoNumbersDto;
-import lotto.domain.view.output.LottoOutputView;
+import lotto.exception.ExceptionHandler;
+import lotto.service.LottoService;
+import lotto.service.dto.GameResult;
+import lotto.view.input.dto.LottoBonusNumberDto;
+import lotto.view.input.dto.PurchasePriceDto;
+import lotto.view.input.LottoInputView;
+import lotto.view.input.dto.LottoNumbersDto;
+import lotto.view.output.LottoOutputView;
 
 public class LottoController {
 
@@ -26,10 +27,10 @@ public class LottoController {
     }
 
     public void run() {
-        User user = createUser();
+        User user = ExceptionHandler.handle(this::createUser);
         lottoOutputView.printLottos(LottoDtos.of(user));
 
-        GameResult gameResult = getGameResult(user);
+        GameResult gameResult = ExceptionHandler.handle(this::getGameResult, user);
         lottoOutputView.printResult(gameResult);
     }
 

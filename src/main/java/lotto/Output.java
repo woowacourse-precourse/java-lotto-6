@@ -22,7 +22,7 @@ public class Output {
             if (results.containsKey(prizeTier)) {
                 count = results.get(prizeTier);
             }
-            if (prizeTier != PrizeTier.NONE) { // NONE은 출력하지 않습니다.
+            if (prizeTier != PrizeTier.NONE) {
                 System.out.println(prizeTier + " - " + count + "개");
             }
         }

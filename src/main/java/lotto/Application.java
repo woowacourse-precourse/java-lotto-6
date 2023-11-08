@@ -1,9 +1,6 @@
 package lotto;
-import lotto.Lotto;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
@@ -120,7 +117,7 @@ public class Application {
         int lottoResult;
         int rank;
         for (List<Integer> mylotto: lottoTotal){
-            lottoResult = lotto.LottoCheck(mylotto, bonusNumber, inputWinningLotto);
+            lottoResult = lotto.LottoCheck(mylotto, bonusNumber);
             rank = CheckLottoRank(lottoResult);
             myWinningLotto.set(rank, myWinningLotto.get(rank)+1) ;
         }

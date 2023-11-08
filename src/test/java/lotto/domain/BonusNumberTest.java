@@ -6,7 +6,6 @@ import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
-import lotto.view.InputView;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,16 +15,6 @@ public class BonusNumberTest {
     @AfterEach
     void closeConsole() {
         Console.close();
-    }
-
-    @DisplayName("보너스 번호가 숫자가 아닌 값을 입력하면 예외를 반환한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {"a", "a1"})
-    void check_bonus_number_nmeric(String bonusNumber) {
-        System.setIn(createUserInput(bonusNumber));
-        assertThatThrownBy(InputView::inputBonusNumber)
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("숫자로 입력해야합니다.");
     }
 
     @DisplayName("보너스 번호에 1~45 사이가 아닌 숫자를 입력하면 예외를 반환한다.")

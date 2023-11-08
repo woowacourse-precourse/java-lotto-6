@@ -7,6 +7,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.util.validator.LottoValidator;
+import lotto.util.validator.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,6 +17,13 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoTest {
+
+    @DisplayName("Lotto 클래스 지원")
+    @Test
+    void checkSupport() {
+        Validator lottoValidator = new LottoValidator();
+        assertThat(lottoValidator.support(Lotto.class)).isTrue();
+    }
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {

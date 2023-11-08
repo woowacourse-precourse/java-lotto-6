@@ -36,7 +36,7 @@ public class LottoCollectionTest {
         );
     }
 
-    @DisplayName("setResultGroup은 비교 결과들을 당첨 통계에 반영한다")
+    @DisplayName("applyResults는 비교 결과들을 당첨 통계에 반영한다")
     @ParameterizedTest
     @MethodSource("lottoResult")
     void check_setResultGroup(List<Lotto> lottos, MatchingCase matchingCase, int winningCount) {

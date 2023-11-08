@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.util.validator.PurchaseValidator;
+import lotto.util.validator.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,11 +13,18 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class PurchaseTest {
     PurchaseValidator purchaseValidator = new PurchaseValidator();
 
+    @DisplayName("purchaser 클래스 지원")
+    @Test
+    void checkSupport() {
+        Validator purchaseValidator = new PurchaseValidator();
+        assertThat(purchaseValidator.support(Purchase.class)).isTrue();
+    }
+
     @DisplayName("0 또는 음수를 입력할경우 예외를 반환한다.")
     @ParameterizedTest
     @ValueSource(ints = {0, -1, -12, -1000})
     void check_validatePositive(int value) {
-        assertThatThrownBy(() -> purchaseValidator.validate(value))
+        assertThatThrownBy(() -> Purchase.from(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("0보다 큰 숫자로 입력해야 합니다.");
     }
@@ -25,10 +33,11 @@ public class PurchaseTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 100, 1010})
     void check_validateUnit(int value) {
-        assertThatThrownBy(() -> purchaseValidator.validate(value))
+        assertThatThrownBy(() -> Purchase.from(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("1000원 단위의 숫자로 입력해야 합니다.");
     }
+
     @DisplayName("from은 Purchase 객체를 반환한다.")
     @ParameterizedTest
     @ValueSource(ints = {1000, 12000, 50000})

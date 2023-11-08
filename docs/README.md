@@ -88,10 +88,13 @@
 - [x] 테스트 클래스 리팩토링
 - [x] getter 리스트 레퍼런스에 unmodifaible 추가
 - [x] dto에 record, unmodifiableList 추가
-- [x] 이해를 위한 코드 전반의 공백 추가
+- [x] 이해를 위한 코드 전반의 공백 추가 
+- [x] validatorFacotyr에 대한 테스트
+- [x] 필요한 테스트가 되어있는지 확인
 
 
 # 🧐 고민해볼 주제
 
 - [x] final 키워드, 불변 컬렉션 적용 고민
 - [ ] bonusNumber 검증과 Lotto 클래스내 개별 번호 검증 중복
+- [ ] validate의 싱글톤, 정적 두개 방식의 적용이 각각 적절한지

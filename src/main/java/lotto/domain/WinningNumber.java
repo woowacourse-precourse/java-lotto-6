@@ -14,7 +14,7 @@ public class WinningNumber {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         List<Integer> winningNumberInput;
 
-        while(true) {
+        while (true) {
             try {
                 winningNumberInput = validateFormat(readLine());
                 validate(winningNumberInput);
@@ -55,8 +55,8 @@ public class WinningNumber {
     }
 
     private void validateDuplicate(List<Integer> winningNumberInput) {
-       if (winningNumberInput.stream().distinct().count() != THE_NUMBER_OF_WINNING_NUMBER) {
-           throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자 6개를 입력해주세요.");
-       }
+        if (winningNumberInput.stream().distinct().count() != THE_NUMBER_OF_WINNING_NUMBER) {
+            throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자 6개를 입력해주세요.");
+        }
     }
 }

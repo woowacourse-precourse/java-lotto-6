@@ -21,7 +21,7 @@ public class Generator {
 
     public List<Lotto> getAmountOfMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        while(true) {
+        while (true) {
             try {
                 MONEY = validateCorrectFormat();
                 NUMBER_OF_LOTTERY = calculateTheNumberOfLottery(MONEY);
@@ -40,7 +40,7 @@ public class Generator {
 
     private List<Lotto> createLotto() {
         printer.showLotteryCount(NUMBER_OF_LOTTERY);
-        while(lottos.size() != NUMBER_OF_LOTTERY) {
+        while (lottos.size() != NUMBER_OF_LOTTERY) {
             Lotto generatedLotto = new Lotto(generateRandomNumbers());
             lottos.add(generatedLotto);
         }

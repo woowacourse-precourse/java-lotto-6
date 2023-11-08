@@ -16,13 +16,13 @@ public class Judge {
 
     public void calculateResult(List<Lotto> lotto, List<Integer> winningNumbers, int bonusNumber) {
         for (int count = 0; count < lotto.size(); count++) {
-            int matchingCount = compareWinningNumber(lotto.get(count),winningNumbers);
+            int matchingCount = compareWinningNumber(lotto.get(count), winningNumbers);
 
             if (matchingCount == 3) matchingThreeNumbers++;
             if (matchingCount == 4) matchingFourNumbers++;
             //5개가 일치한다면, 보너스 번호와 비교
             if (matchingCount == 5) {
-                if(compareBonusNumber(lotto.get(count), bonusNumber)) {
+                if (compareBonusNumber(lotto.get(count), bonusNumber)) {
                     matchingFiveAndBonusNumbers++;
                 }
                 matchingFiveNumbers++;
@@ -48,7 +48,7 @@ public class Judge {
 
     public void calculateProfit() {
         long prizeMoney = calculatePrizeMoney();
-        double profitPercent = ((double)prizeMoney/generator.getMoney()) * 100;
+        double profitPercent = ((double) prizeMoney / generator.getMoney()) * 100;
         printer.showProfit(profitPercent);
     }
 

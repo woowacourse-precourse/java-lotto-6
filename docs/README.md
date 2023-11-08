@@ -83,7 +83,88 @@
 ## 📋 기능 명세서
 
 ------
-Todo
+## Controller
+- GameController
+  - InputView에서 InputMoney, InputWinnings, InputBonus와 같은 DTO를 입력받는다.
+  - 입력받은 DTO를 LottoService에 넘겨준다.
+  - 발행받은 로또(DTO)를 받아 OutputView에 넘겨준다.
+  - Lotto 결과(DTO)를 받아서 OutputView에 넘겨준다.
+  - Calculator에게 계산된 수익률을 받아 OutputView에 넘겨준다.
+## domain
+- Calculator
+  - 유저의 돈과 결과를 매개 변수로 받아 수익률을 계산한다.
+</br></br>
+- Lotto
+  - 우테코에서 제공해주는 Class
+  - 6개가 아닐 경우 예외처리
+  - 중복 숫자가 들어올 경우 예외처리
+</br></br>
+- LottoRank
+  - 1등부터 5등까지의 등수와 그에 따른 상금 및 당첨 메세지를 정의하는 Enum
+  - 'of' 메서드를 사용하여 일치하는 숫자 개수와 보너스를 기반으로 랭크를 반환한다.
+</br></br>
+- LottoResult
+  - 랭크별 당첨 횟수를 저장하기 위해 Map을 사용한다.
+</br></br>
+- PurchasedLotto
+  - 구매한 로또 목록을 저장한다.
+</br></br>
+- User
+  - 가지고 있는 금액을 저장한다.
+</br></br>
+- WinningBonusNumber
+  - 로또 당첨 보너스 번호를 저장한다.
+  - 보너스 번호가 당첨 번호와 중복이 되는지 검사하기 위해 생성자에 당첨 번호도 매개변수로 받게 하였다.
+  - 당첨 번호와 중복이 되는 보너스 번호면 예외 처리
+</br></br>
+- WinningNumbers
+  - 당첨 번호를 저장한다.
+## DTO
+- InputBonus
+  - 사용자가 입력한 보너스 번호에 대해 유효성을 검사하고 저장한다.
+  - Console.readline() 반환 값에 따라 String을 int로 변환한다.
+</br></br>
+- InputMoney
+  - 사용자가 입력한 금액에 대해 유효성을 검사하고 저장한다.
+  - Console.readline() 반환 값에 따라 String을 int로 변환한다.
+</br></br>
+- InputWinningNumbers
+  - 사용자가 입력한 당첨 번호에 대해 유효성을 검사하고 저장한다.
+  - Console.readline() 반환 값에 따라 String을 List<Integer>로 변환한다.
+</br></br>
+- LottoResultDTO
+  - 로또 결과를 OutputView로 보내기 위해 사용된다.
+  - LottoResult를 매개 변수로 받아 생성자로 생성한다.
+</br></br>
+- PurchasedLottoDTO
+  - 구매한 로또를 OutputView로 보내기 위해 사용된다.
+  - PurchasedLotto를 매개 변수로 받아 생성자로 생성한다.
+## service
+- LottoService
+  - 사용자가 입력한 금액을 받아 로또를 구매(생성)하고 GameController에 반환한다.
+  - 로또 당첨 번호와 보너스 번호를 이용하여 당첨 결과를 확인하고, LottoResult를 반환한다.
+  - ResultSerivce를 생성하고 당첨 번호와 보너스 번호를 넘겨줘서 결과에 대한 반환값을 받는다.
+  - 사용자가 입력한 금액, 당첨 번호, 보너스 번호에 대한 유효성 검사를 진행하고 반환한다.
+</br></br>
+- ResultService
+  - LottoService의 메서드에서 호출한 곳으로 당첨 결과를 반환한다.
+  - 구매한 로또 번호와 당첨 번호를 비교한다.
+
+## validator
+- InputPurchaseAmountValidator
+  - 구매 금액 입력에 대한 예외 처리
+</br></br>
+- InputWinningBonusNumberValidator
+  - 보너스 번호에 대한 예외 처리
+</br></br>
+- InputWinningNumbersValidator
+  - 당첨 번호에 대한 예외 처리
+## view
+- InputView
+  - 구매 금액, 당첨 번호, 보너스 번호에 대한 입력을 받아 GameController에 반환된다.
+</br></br>
+- OutputView
+  - GameController에서 받은 DTO를 출력한다.
 
 ## 📢 변경점
 

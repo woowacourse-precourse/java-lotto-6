@@ -14,25 +14,34 @@ public class Validator {
     private static final int MAX_LOTTO_NUMBER = 45;
 
     public static void validateLottoPurchaseAmount(String money) {
-        checkDivisibleByMoneyUnit(money);
+        try {
+            int moneyNum = Integer.parseInt(money);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(
+                    NUMERIC_INPUT_ERROR.getMessage());
+        }
+        int moneyNum = Integer.parseInt(money);
+        checkDivisibleByMoneyUnit(moneyNum);
         checkExistOfValue(money);
-        checkNegativeNumber(money);
+        checkNegativeNumber(moneyNum);
     }
 
     public static void validateWinningNumbers(List<String> winningNumbers) {
         checkSize(winningNumbers.size());
         checkDuplicate(winningNumbers);
         for (var winningNumber : winningNumbers) {
+            int num = Integer.parseInt(winningNumber);
             checkExistOfValue(winningNumber);
-            checkNegativeNumber(winningNumber);
-            checkRange(winningNumber);
+            checkNegativeNumber(num);
+            checkRange(num);
         }
     }
 
     public static void validateBonusNumber(String bonusNumber) {
+        int num = Integer.parseInt(bonusNumber);
         checkExistOfValue(bonusNumber);
-        checkRange(bonusNumber);
-        checkNegativeNumber(bonusNumber);
+        checkRange(num);
+        checkNegativeNumber(num);
     }
 
     public static void checkAlreadyExist(Lotto lotto, int bonusNumber) {
@@ -41,9 +50,8 @@ public class Validator {
         }
     }
 
-    private static void checkDivisibleByMoneyUnit(String inputValue) {
-        int inputNum = Integer.parseInt(inputValue);
-        if (inputNum % MONEY_UNIT != 0) {
+    public static void checkDivisibleByMoneyUnit(int inputValue) {
+        if (inputValue % MONEY_UNIT != 0) {
             throw new IllegalArgumentException(MONEY_UNIT_ERROR.getMessage());
         }
     }
@@ -55,14 +63,13 @@ public class Validator {
         }
     }
 
-    private static void checkNegativeNumber(String inputValue) {
-        int inputNum = Integer.parseInt(inputValue);
-        if (inputNum < 0) {
+    private static void checkNegativeNumber(int inputValue) {
+        if (inputValue < 0) {
             throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR.getMessage());
         }
     }
 
-    private static void checkSize(int size) {
+    public static void checkSize(int size) {
         if (size != LOTTO_SIZE) {
             throw new IllegalArgumentException(LOTTO_SIZE_ERROR.getMessage());
         }
@@ -75,9 +82,8 @@ public class Validator {
         }
     }
 
-    private static void checkRange(String inputValue) {
-        int inputNum = Integer.parseInt(inputValue);
-        if (inputNum > MAX_LOTTO_NUMBER || inputNum < MIN_LOTTO_NUMBER) {
+    public static void checkRange(int inputValue) {
+        if (inputValue > MAX_LOTTO_NUMBER || inputValue < MIN_LOTTO_NUMBER) {
             throw new IllegalArgumentException(NUMERIC_RANGE_ERROR.getMessage());
         }
     }

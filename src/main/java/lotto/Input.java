@@ -26,9 +26,7 @@ public class Input {
                     .map(Integer::valueOf)
                     .toList());
             Collections.sort(winningNumbers);
-            validateWinningNumbersSize(winningNumbers);
-            validateWinningNumbersVal(winningNumbers);
-            validateDuplication(winningNumbers);
+            validateWinningNumbers(winningNumbers);
             return winningNumbers;
         } catch (IllegalArgumentException e) {
             System.out.println(INPUT_ERROR.getErrMsg());
@@ -77,22 +75,16 @@ public class Input {
         }
     }
 
-    private void validateWinningNumbersSize(List<Integer> numbers) {
+    private void validateWinningNumbers(List<Integer> numbers) {
+        Set<Integer> temp = new HashSet<>();
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
-    }
-
-    private void validateWinningNumbersVal(List<Integer> numbers) {
         for (int i = 0; i < 6; i++) {
             if (numbers.get(i) < 1 || numbers.get(i) > 45) {
                 throw new IllegalArgumentException();
             }
         }
-    }
-
-    private void validateDuplication(List<Integer> numbers) {
-        Set<Integer> temp = new HashSet<>();
         for (Integer number : numbers) {
             if (!temp.add(number)) {
                 throw new IllegalArgumentException();

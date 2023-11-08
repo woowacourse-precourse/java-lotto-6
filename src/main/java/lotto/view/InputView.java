@@ -8,8 +8,13 @@ import lotto.validator.LottoMoneyValidator;
 import lotto.validator.LottoNumberValidator;
 
 public class InputView {
+
+    public static final String REQUEST_WINNING_LOTTO_NUMBER = "당첨 번호를 입력해 주세요.";
+    public static final String REQUEST_LOTTO_MONEY = "구입금액을 입력해 주세요.";
+    public static final String REQUEST_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+
     public static Integer getLottoMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(REQUEST_LOTTO_MONEY);
 
         String lottoMoneyInput = Console.readLine();
         try {
@@ -23,7 +28,7 @@ public class InputView {
 
     public static Lotto getWinningLotto() {
         System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(REQUEST_WINNING_LOTTO_NUMBER);
 
         String lottoNumberInput = Console.readLine();
         try {
@@ -37,7 +42,7 @@ public class InputView {
 
     public static Integer getBonusNumber(Lotto winningLotto) {
         System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(REQUEST_BONUS_NUMBER);
 
         String bonusNumberInput = Console.readLine();
         try {

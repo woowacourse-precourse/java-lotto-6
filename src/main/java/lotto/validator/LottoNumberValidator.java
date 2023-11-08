@@ -1,5 +1,9 @@
 package lotto.validator;
 
+import static lotto.constant.Constants.LOTTO_NUMBER_COUNT;
+import static lotto.constant.Constants.MAX_LOTTO_NUMBER;
+import static lotto.constant.Constants.MIN_LOTTO_NUMBER;
+
 import java.util.List;
 import java.util.Set;
 import lotto.constant.ErrorMessages;
@@ -24,7 +28,7 @@ public class LottoNumberValidator {
     private static void isInRange(String lottoNumberInput) {
         List<String> lottoNumbers = List.of(lottoNumberInput.split(","));
         for (String lottoNumber : lottoNumbers) {
-            if (Integer.parseInt(lottoNumber) < 1 || Integer.parseInt(lottoNumber) > 45) {
+            if (Integer.parseInt(lottoNumber) < MIN_LOTTO_NUMBER || Integer.parseInt(lottoNumber) > MAX_LOTTO_NUMBER) {
                 System.out.println(ErrorMessages.NOT_IN_RANGE.getMessage());
                 throw new IllegalArgumentException(ErrorMessages.NOT_IN_RANGE.getMessage());
             }
@@ -32,7 +36,7 @@ public class LottoNumberValidator {
     }
 
     private static void isCountSix(String lottoNumberInput) {
-        if (lottoNumberInput.split(",").length != 6) {
+        if (lottoNumberInput.split(",").length != LOTTO_NUMBER_COUNT) {
             System.out.println(ErrorMessages.NOT_SIX.getMessage());
             throw new IllegalArgumentException(ErrorMessages.NOT_SIX.getMessage());
         }

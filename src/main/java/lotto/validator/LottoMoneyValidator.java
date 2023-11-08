@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import static lotto.constant.Constants.LOTTO_PRICE;
+
 import lotto.constant.ErrorMessages;
 
 public class LottoMoneyValidator {
@@ -17,14 +19,14 @@ public class LottoMoneyValidator {
     }
 
     private static void isOverThousands(String lottoMoneyInput) {
-        if (Integer.parseInt(lottoMoneyInput) < 1000) {
+        if (Integer.parseInt(lottoMoneyInput) < LOTTO_PRICE) {
             System.out.println(ErrorMessages.NOT_ENOUGH_MONEY.getMessage());
             throw new IllegalArgumentException(ErrorMessages.NOT_ENOUGH_MONEY.getMessage());
         }
     }
 
     private static void isThousands(String lottoMoneyInput) {
-        if (Integer.parseInt(lottoMoneyInput) % 1000 != 0) {
+        if (Integer.parseInt(lottoMoneyInput) % LOTTO_PRICE != 0) {
             System.out.println(ErrorMessages.NOT_THOUSAND.getMessage());
             throw new IllegalArgumentException(ErrorMessages.NOT_THOUSAND.getMessage());
         }

@@ -21,6 +21,7 @@ public class LottoGameController {
         Integer bonusNumber = InputView.getBonusNumber(winningLotto);
 
         LottoResult result = calculateRanking(lottoBundle, winningLotto, bonusNumber);
+
         OutputView.showResult(result);
     }
 

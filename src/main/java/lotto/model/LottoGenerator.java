@@ -1,13 +1,13 @@
 package lotto.model;
 
+import static lotto.constant.Constants.LOTTO_PRICE;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGenerator {
-
-    public static final int LOTTO_PRICE = 1000;
 
     public static LottoBundle getLottoBundle() {
         Integer lottoMoney = InputView.getLottoMoney();

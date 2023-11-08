@@ -1,5 +1,8 @@
 package lotto.validator;
 
+import static lotto.constant.Constants.MAX_LOTTO_NUMBER;
+import static lotto.constant.Constants.MIN_LOTTO_NUMBER;
+
 import lotto.constant.ErrorMessages;
 import lotto.model.Lotto;
 
@@ -20,7 +23,8 @@ public class BonusNumberValidator {
     }
 
     private static void isInRange(String bonusNumberInput) {
-        if (Integer.parseInt(bonusNumberInput) < 1 || Integer.parseInt(bonusNumberInput) > 45) {
+        if (Integer.parseInt(bonusNumberInput) < MIN_LOTTO_NUMBER
+                || Integer.parseInt(bonusNumberInput) > MAX_LOTTO_NUMBER) {
             System.out.println(ErrorMessages.NOT_IN_RANGE.getMessage());
             throw new IllegalArgumentException(ErrorMessages.NOT_IN_RANGE.getMessage());
         }

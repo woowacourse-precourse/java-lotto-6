@@ -1,10 +1,11 @@
 package lotto.model;
 
+import static lotto.constant.Constants.HUNDRED;
+import static lotto.constant.Constants.LOTTO_PRICE;
+
 import java.util.Map;
 
 public class Revenue {
-
-    private static final int HUNDRED = 100;
 
     private final double value;
 
@@ -23,7 +24,7 @@ public class Revenue {
     }
 
     private static double calculateRevenue(double sumPrize, int amount) {
-        return (sumPrize / (amount * 1000)) * HUNDRED;
+        return (sumPrize / (amount * LOTTO_PRICE)) * HUNDRED;
     }
 
     public double getValue() {

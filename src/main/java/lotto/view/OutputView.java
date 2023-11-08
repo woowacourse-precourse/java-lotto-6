@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.EnumMap;
 import java.util.List;
@@ -40,7 +41,8 @@ public class OutputView {
     public void showEarningRate(int money, int prizeSum){
         double earningRate = 0;
         earningRate = Math.round((((double) prizeSum / money) * Constants.HUNDRED)* Constants.HUNDRED)/ Constants.DOUBLEHUNDRED;
-        System.out.println("총 수익률은 " + earningRate +"%입니다.");
+        BigDecimal bigDecimal = new BigDecimal(earningRate);
+        System.out.println("총 수익률은 " + bigDecimal +"%입니다.");
     }
 
 }

@@ -26,7 +26,6 @@ public class LottoWinningNumber {
             }
         }
     }
-
     private static boolean checkNumbersDuplicates(List<Integer> inputNumbers) {
         for (int i = 0; i < inputNumbers.size() - 1; i++) {
             for (int j = i + 1; j < inputNumbers.size(); j++) {

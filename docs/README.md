@@ -27,3 +27,11 @@
 7. [x] 당첨 내역 및 수익률 출력
 8. [x] 당첨 내역 비교
 9. [x] 수익률 계산
+
+
+### 테스트 목록 통과 여부
+1. [x] LottoTest 로또 번호의 개수가 6개가 넘어가면 예외가 발생 
+2. [x] LottoTest 로또 번호에 중복된 숫자가 있으면 예외가 발생
+3. [ ] LottoWinningNumberTest 당첨 번호의 개수가 6개가 넘어가면 예외가 발생
+4. [ ] LottoWinningNumberTest 당첨 번호에 중복된 숫자가 있으면 예외가 발생
+5. [ ] LottoWinningNumberTest 당첨 번호에 1이상 45 이하의 수가 있으면 예외가 발생

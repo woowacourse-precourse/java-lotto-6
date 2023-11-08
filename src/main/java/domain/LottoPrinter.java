@@ -1,19 +1,21 @@
 package domain;
 
+import lotto.Lotto;
+
 import java.util.List;
 
 public class LottoPrinter {
-    public static void printFormattedLottoNumbers(List<List<Integer>> lottoNumbers) {
-        for (List<Integer> lotto : lottoNumbers) {
+    public static void printFormattedLottoNumbers(List<Lotto> lottoNumbers) {
+        for (Lotto lotto : lottoNumbers) {
             toString(lotto);
         }
     }
 
-    private static void toString(List<Integer> lotto) {
+    private static void toString(Lotto lotto) {
         System.out.print("[");
-        for (int i = 0; i < lotto.size(); i++) {
-            System.out.print(lotto.get(i));
-            if (i < lotto.size() - 1) {
+        for (int i = 0; i < lotto.getNumbers().size(); i++) {
+            System.out.print(lotto.getNumbers().get(i));
+            if (i < lotto.getNumbers().size() - 1) {
                 System.out.print(", ");
             }
         }

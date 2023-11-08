@@ -20,7 +20,7 @@ public class LottoGameUtil {
         List<Lotto> lottoSaver = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
-            List<Integer> randomNumbers = RandomNumberGenerator.generateRandomNumbers();
+            List<Integer> randomNumbers = new ArrayList<>(RandomNumberGenerator.generateRandomNumbers());
             Collections.sort(randomNumbers);
             lottoSaver.add(new Lotto(randomNumbers));
         }

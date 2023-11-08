@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class Lotties {
     private final List<Lotto> lotties;
@@ -11,13 +12,12 @@ public class Lotties {
     }
 
     public String getLottiesStatus() {
-        StringBuilder builder = new StringBuilder();
-
+        StringJoiner joiner = new StringJoiner("\n");
         for (Lotto lotto : lotties) {
-            builder.append(lotto);
+            joiner.add(lotto.toString());
         }
 
-        return builder.toString();
+        return joiner.toString();
     }
 
     public List<Lotto> getLotties() {

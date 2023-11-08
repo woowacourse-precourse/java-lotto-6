@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.StringJoiner;
 import lotto.constant.WinningAmountConstant;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -10,13 +11,14 @@ import lotto.domain.WinningResult;
 public class LottoGameService {
 
     public String generateWinningResult(WinningResult result, Double rateOfReturn) {
-        StringBuilder builder = new StringBuilder();
+        StringJoiner joiner = new StringJoiner("\n");
 
-        builder.append(result);
-        String format = String.format("총 수익률은 %.1f 입니다.", rateOfReturn);
-        builder.append(format).append("\n");
 
-        return builder.toString();
+        joiner.add(result.toString());
+        String format = String.format("총 수익률은 %.1f%%입니다.", rateOfReturn);
+        joiner.add(format);
+
+        return joiner.toString();
     }
     public Double calculateRateOfReturn(int purchaseAmount, int totalWinningAmount) {
         Double amount = Double.valueOf(purchaseAmount);

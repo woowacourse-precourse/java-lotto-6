@@ -9,6 +9,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validateLottoSize(numbers);
+        
         this.numbers = numbers;
     }
 
@@ -24,7 +25,7 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString() + "\n";
+        return numbers.toString();
     }
 
 

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.StringJoiner;
 import lotto.constant.WinningAmountConstant;
 
 public class WinningResult {
@@ -31,25 +32,25 @@ public class WinningResult {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
+        StringJoiner joiner = new StringJoiner("\n");
         List<WinningAmountConstant> keys = result.keySet().stream().toList();
         List<Integer> values = result.values().stream().toList();
 
         String format;
         for (int i = 0; i < keys.size(); i++) {
             if (keys.get(i).equals(WinningAmountConstant.SECOND)) {
-                format = String.format("%d개 일치, 보너스 볼 일치 (%,d)원 - %d개",
+                format = String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개",
                         keys.get(i).getCount(), keys.get(i).getValue(), values.get(i));
-                builder.append(format);
-                builder.append("\n");
+                joiner.add(format);
                 continue;
             }
 
-             format = String.format("%d개 일치 (%,d)원 - %d개",
+             format = String.format("%d개 일치 (%,d원) - %d개",
                     keys.get(i).getCount(), keys.get(i).getValue(), values.get(i));
 
-            builder.append(format).append("\n");
+            joiner.add(format);
         }
 
-        return builder.toString();
+        return joiner.toString();
     }
 }

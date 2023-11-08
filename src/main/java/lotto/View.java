@@ -17,8 +17,9 @@ public class View {
     private static final String SHOW_PURCHASE_LOTTO_COUNT = "개를 구매했습니다.";
     private static final String SHOW_LOTTO_STATISTIC = "당첨 통계" + "\n" + "---";
     private static final String SHOW_RATE_OF_RETURN = "총 수익률은 %.1f%%입니다.";
-    private static final String ERROR_NEED_NUMBER = "[ERROR] 숫자를 입력해 주세요.";
-    private static final String ERROR_INVALID_LOTTO_FORMAT = "[ERROR] 당첨 번호 6자를 %s로 구분하여 입력해 주세요.".formatted(COMMA);
+    private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String ERROR_NEED_NUMBER = "숫자를 입력해 주세요.";
+    private static final String ERROR_INVALID_LOTTO_FORMAT = "당첨 번호 6자를 %s로 구분하여 입력해 주세요.".formatted(COMMA);
 
     public int askPurchaseMoney() {
         println(ASK_PURCHASE_MONEY);
@@ -55,9 +56,9 @@ public class View {
         println(SHOW_RATE_OF_RETURN.formatted(result.rateOfReturn()));
     }
 
-    public void showErrorMessage(IllegalArgumentException e) {
+    public void showErrorMessage(String errorMessage) {
+        println(ERROR_PREFIX + errorMessage);
         printBlankLine();
-        println(e.getMessage());
     }
 
     private static String showRankCount(Map<LottoRank, Integer> rankToCount, LottoRank rank) {
@@ -69,7 +70,14 @@ public class View {
     }
 
     private String showMatchCount(LottoRank rank) {
-        return rank.getMatchCount() + "개 일치";
+        return rank.getMatchCount() + "개 일치" + showNeedBonusNumber(rank);
+    }
+
+    private String showNeedBonusNumber(LottoRank rank) {
+        if (rank.isNeedBonusNumber()) {
+            return ", 보너스 볼 일치";
+        }
+        return BLANK;
     }
 
     private int askNumber() {

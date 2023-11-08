@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public class WinningLotto {
 
-    private static final String ERROR_BONUS_NUMBER_IN_WINNING_NUMBERS = "[ERROR] 보너스 번호는 당첨 번호와 중복되면 안됩니다.";
+    private static final String ERROR_BONUS_NUMBER_IN_WINNING_NUMBERS = "보너스 번호는 당첨 번호와 중복되면 안됩니다.";
     private final Lotto winningLottoTicket;
     private final int bonusNumber;
 

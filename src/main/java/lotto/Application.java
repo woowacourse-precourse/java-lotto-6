@@ -51,12 +51,12 @@ public class Application {
         return new WinningLotto(winningLottoTicket, bonusNumber);
     }
 
-    private static <T> T runUntilValidInput(View view, Supplier<T> inputFunction) {
+    private static <T> T runUntilValidInput(View view, Supplier<T> supplier) {
         while (true) {
             try {
-                return inputFunction.get();
+                return supplier.get();
             } catch (IllegalArgumentException e) {
-                view.showErrorMessage(e);
+                view.showErrorMessage(e.getMessage());
             }
         }
     }

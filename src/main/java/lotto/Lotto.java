@@ -2,13 +2,14 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
 
     private static final int LOTTO_LENGTH = 6;
-    private static final String ERROR_INVALID_LOTTO_LENGTH = "[ERROR] 로또 번호는 6자리여야 합니다.";
+    private static final String ERROR_INVALID_LOTTO_LENGTH = "로또 번호는 6자리여야 합니다.";
+    private static final String ERROR_DUPLICATE_NUMBER_EXIST = "로또 번호는 중복되지 않아야 합니다.";
 
     private final List<Integer> numbers;
 
@@ -21,8 +22,9 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream()
+                .sorted()
+                .toList();
     }
 
     public int countMatchNumber(Lotto lotto) {
@@ -47,6 +49,13 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateIsSatisfyLottoLength(numbers);
         validateIsInRange(numbers);
+        validateIsUnique(numbers);
+    }
+
+    private void validateIsSatisfyLottoLength(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_LENGTH) {
+            throw new IllegalArgumentException(ERROR_INVALID_LOTTO_LENGTH);
+        }
     }
 
     private void validateIsInRange(List<Integer> numbers) {
@@ -55,9 +64,10 @@ public class Lotto {
         }
     }
 
-    private void validateIsSatisfyLottoLength(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_LENGTH) {
-            throw new IllegalArgumentException(ERROR_INVALID_LOTTO_LENGTH);
+    private void validateIsUnique(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = Set.copyOf(numbers);
+        if (uniqueNumbers.size() != LOTTO_LENGTH) {
+            throw new IllegalArgumentException(ERROR_DUPLICATE_NUMBER_EXIST);
         }
     }
 }

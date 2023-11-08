@@ -35,7 +35,7 @@ public class Lotto {
         }
     }
 
-    private boolean isNotValidRange(int number) {
+    protected boolean isNotValidRange(int number) {
         return number < 1 || number > 45;
     }
 

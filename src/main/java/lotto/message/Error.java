@@ -5,7 +5,7 @@ public enum Error {
     THOUSAND_UNITS("[ERROR] 1,000 단위로 입력해야 합니다."),
     MAX_PURCHASE_LIMIT("[ERROR] 10만원을 초과해서 구매할 수 없습니다."),
 
-    LOTTO_NUMBER_OUT_OF_RANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
+    LOTTO_NUMBER_OUT_OF_RANGE("[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다."),
     LOTTO_NUMBER_DUPLICATE("[ERROR] 중복된 숫자를 입력할 수 없습니다."),
     LOTTO_MORE_THAN_SIX_NUMBER("[ERROR] 6개를 초과하는 숫자를 입력할 수 없습니다.");
 

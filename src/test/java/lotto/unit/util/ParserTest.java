@@ -12,17 +12,18 @@ import java.util.List;
 public class ParserTest {
     @Test
     @DisplayName("숫자로 이루어진 문자열을 입력하면 숫자를 반환한다.")
-    void returnNumberWithInfo(){
+    void returnNumberWithInfo() {
         int expectedResult = 1000;
 
         var result = Parser.parseInfoToNumber("1000");
 
-        Assertions.assertEquals(expectedResult,result);
+        Assertions.assertEquals(expectedResult, result);
     }
+
     @Test
     @DisplayName("숫자가 아닌 값을 포함한 문자열을 입력하면 예외를 발생한다.")
-    void throwExceptionWhenInfoIncludeNonNumber(){
-        var exceptionMessage = Assertions.assertThrows(ParserException.class,()->{
+    void throwExceptionWhenInfoIncludeNonNumber() {
+        var exceptionMessage = Assertions.assertThrows(ParserException.class, () -> {
             Parser.parseInfoToNumber("123a");
         }).getMessage();
         Assertions.assertTrue(
@@ -32,17 +33,18 @@ public class ParserTest {
 
     @Test
     @DisplayName("쉼표로 구분한 숫자들로 이루어진 문자열을 입력하면 숫자 리스트를 반환한다.")
-    void returnNumberListWithSeperatedInfo(){
-        List<Integer> expectedResult = List.of(5,3,15,23,44,7);
+    void returnNumberListWithSeperatedInfo() {
+        List<Integer> expectedResult = List.of(5, 3, 15, 23, 44, 7);
 
         var result = Parser.parseInfoToNumbers("5,3,15,23,44,7");
 
-        Assertions.assertEquals(expectedResult,result);
+        Assertions.assertEquals(expectedResult, result);
     }
+
     @Test
     @DisplayName("쉼표로 구분되지 않은 숫자들로 이루어진 문자열을 입력하면 예외를 발생한다.")
-    void throwExceptionWhenInputNonSeperatedNumbers(){
-        var exceptionMessage = Assertions.assertThrows(ParserException.class,()->{
+    void throwExceptionWhenInputNonSeperatedNumbers() {
+        var exceptionMessage = Assertions.assertThrows(ParserException.class, () -> {
             Parser.parseInfoToNumbers("5.3.15.23.44.7");
         }).getMessage();
         System.out.println(exceptionMessage);

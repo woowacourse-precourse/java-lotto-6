@@ -7,7 +7,7 @@ import lotto.domain.prize.Prize;
 import java.util.EnumMap;
 
 public class PrizeController {
-    public Prize createPrizeWithLottoResult(LottoResult lottoResult){
+    public Prize createPrizeWithLottoResult(final LottoResult lottoResult) {
         EnumMap<LottoRank, Integer> lottoResultBoard = lottoResult.lottoResultBoard();
         Prize prize = Prize.of(lottoResultBoard);
         return prize;

@@ -7,6 +7,5 @@ public class LottoException extends IllegalArgumentException implements Exceptio
     public LottoException(LottoExceptionMessage errorMessage) {
         super(ERROR_MESSAGE_PREFIX + errorMessage.getMessage());
     }
-
 }
 

@@ -9,27 +9,29 @@ import lotto.util.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public final class PaymentController{
-    public Payment createPayment(){
+public final class PaymentController {
+    public Payment createPayment() {
         OutputView.printPaymentMessage();
         Payment payment = generatePaymentFromAmount();
         return payment;
     }
-    private Payment generatePaymentFromAmount(){
-        try{
+
+    private Payment generatePaymentFromAmount() {
+        try {
             Integer amount = requestAmount();
             return Payment.of(amount);
-        } catch (PaymentException exception){
+        } catch (PaymentException exception) {
             OutputView.printErrorMessage(exception.getMessage());
             return generatePaymentFromAmount();
         }
     }
-    private Integer requestAmount(){
+
+    private Integer requestAmount() {
         String amountInfo = InputView.readLine();
-        try{
+        try {
             Integer amount = Parser.parseInfoToNumber(amountInfo);
             return amount;
-        } catch (ParserException exception){
+        } catch (ParserException exception) {
             throw new PaymentException(PaymentExceptionMessage.NOT_NUMBER);
         }
     }

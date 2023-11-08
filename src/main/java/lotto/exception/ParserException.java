@@ -7,6 +7,5 @@ public class ParserException extends IllegalArgumentException implements Excepti
     public ParserException(ParserExceptionMessage errorMessage) {
         super(ERROR_MESSAGE_PREFIX + errorMessage.getMessage());
     }
-
 }
 

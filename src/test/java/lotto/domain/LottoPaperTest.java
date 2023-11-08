@@ -14,19 +14,19 @@ import java.util.List;
 public class LottoPaperTest {
     @Test
     @DisplayName("금액 과 로또 들을 통해 LottoPaper 을 만든다.")
-    void purchaseLottoWithAmount(){
+    void purchaseLottoWithAmount() {
         Payment payment = Payment.of(5000);
         var amount = payment.amount();
         var ticketPurchaseCount = payment.ticketPurchaseCount();
         List<Lotto> lottoTickets = new ArrayList<>();
 
-        for ( int i = 0 ; i < ticketPurchaseCount; i++ ) {
+        for (int i = 0; i < ticketPurchaseCount; i++) {
             lottoTickets.add(new Lotto(NumberGenerator.generateOrderedNumbers()));
         }
-        LottoPaper lottoPaper = new LottoPaper(payment.amount(),lottoTickets);
+        LottoPaper lottoPaper = new LottoPaper(payment.amount(), lottoTickets);
 
-        Assertions.assertEquals(LottoPaper.class,lottoPaper.getClass());
-        Assertions.assertEquals(ticketPurchaseCount,lottoPaper.lottoTickets().size());
-        Assertions.assertEquals(amount,lottoPaper.amount());
+        Assertions.assertEquals(LottoPaper.class, lottoPaper.getClass());
+        Assertions.assertEquals(ticketPurchaseCount, lottoPaper.lottoTickets().size());
+        Assertions.assertEquals(amount, lottoPaper.amount());
     }
 }

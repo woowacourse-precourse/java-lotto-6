@@ -16,10 +16,12 @@ public enum OutputViewMessage {
     OutputViewMessage(String message) {
         this.message = message;
     }
+
     protected String getMessage() {
         return message;
     }
-    protected String getFormattedMessage(Object... args){
-        return String.format(message,args);
+
+    protected String getFormattedMessage(Object... args) {
+        return String.format(message, args);
     }
 }

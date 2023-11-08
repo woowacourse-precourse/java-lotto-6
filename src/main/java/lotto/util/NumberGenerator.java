@@ -15,7 +15,7 @@ public class NumberGenerator implements LottoConstant {
         return randomNumbers;
     }
 
-    private static List<Integer> generateNumbers(){
-        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER,MAX_NUMBER,PICK_COUNT);
+    private static List<Integer> generateNumbers() {
+        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, PICK_COUNT);
     }
 }

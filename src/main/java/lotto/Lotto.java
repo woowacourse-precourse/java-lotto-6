@@ -21,6 +21,11 @@ public class Lotto {
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
         }
+        for (int number : numbers) {
+            if (number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자입니다.");
+            }
+        }
     }
 
 }

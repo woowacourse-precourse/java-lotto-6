@@ -24,12 +24,7 @@ public class ResultService {
     }
 
     private boolean checkBonusNumber(List<Integer> userNumbers, int bonusNumber) {
-        for (int userNumber : userNumbers) {
-            if (userNumber == bonusNumber) {
-                return true;
-            }
-        }
-        return false;
+        return userNumbers.contains(bonusNumber);
     }
 
     private int compareNumbers(List<Integer> userNumbers, List<Integer> winningNumbers) {
@@ -45,7 +40,7 @@ public class ResultService {
     public double getProfitRate(User user, Result result) {
         int amount = user.getPurchaseCount();
         int totalProfit = getTotalProfit(result);
-        return (totalProfit / (double) (amount*1000)) * 100;
+        return (totalProfit / (double) (amount * 1000)) * 100;
     }
 
     private int getTotalProfit(Result result) {

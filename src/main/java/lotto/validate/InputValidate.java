@@ -27,9 +27,15 @@ public class InputValidate {
 
     public static void validateIsSizeCorrect(String number){
         String result[] = number.split(",");
-        int restCount = (int)countChar(number,',');
-        if(restCount!=Constant.LOTTO_TOTAL_NUMBERS-1 || result.length!= Constant.LOTTO_TOTAL_NUMBERS){
+        if(result.length!= Constant.LOTTO_TOTAL_NUMBERS){
             throw new IllegalArgumentException(InputError.INPUT_NOT_CORRECT_SIZE_ERROR_MESSAGE);
+        }
+    }
+
+    public static void validateIsRestCorrect(String number){
+        int restCount = (int)countChar(number,',');
+        if(restCount!=Constant.LOTTO_TOTAL_NUMBERS-1){
+            throw new IllegalArgumentException(InputError.INPUT_NOT_CORRECT_REST_ERROR_MESSAGE);
         }
     }
 

@@ -30,6 +30,7 @@ public class InputView {
         try{
             InputValidate.validateIsNumberOrRest(number);
             InputValidate.validateIsSizeCorrect(number);
+            InputValidate.validateIsRestCorrect(number);
             InputValidate.validateIsCorrectRange(number);
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());

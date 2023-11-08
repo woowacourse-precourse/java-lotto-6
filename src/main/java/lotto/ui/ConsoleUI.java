@@ -45,4 +45,26 @@ public class ConsoleUI {
         }
         return result;
     }
+
+    public static List<Integer> winnerInput(){
+        System.out.println("당첨 번호를 입력해주세요.");
+        while (true){
+            try{
+                String[] numbers = Console.readLine().split(",");
+                if (numbers.length != 6) {
+                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개를 입력해야 합니다.");
+                }
+                List<Integer> winningNumbers = new ArrayList<>();
+                for (int i = 0; i < 6; i++) {
+                    winningNumbers.add(parseInt(numbers[i].trim()));
+                }
+                Lotto lotto = new Lotto(winningNumbers);
+                return lotto.getNumbers();
+            } catch (NumberFormatException e){
+                System.out.println("[ERROR] 올바른 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

@@ -11,5 +11,7 @@ public class GameService {
 
         List<List<Integer>> bought = new ArrayList<>();
         bought = ConsoleUI.showLotto(tickets);
+
+        List<Integer> winner = ConsoleUI.winnerInput();
     }
 }

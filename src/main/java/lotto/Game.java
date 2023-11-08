@@ -6,6 +6,8 @@ import static lotto.constant.GameMessage.INPUT_WIN_NUMBERS;
 import static lotto.constant.GameMessage.MATCH_BONUS;
 import static lotto.constant.GameMessage.MATCH_N_NUMBERS;
 import static lotto.constant.GameMessage.N_NUMBERS;
+import static lotto.constant.GameMessage.N_PERCENTS;
+import static lotto.constant.GameMessage.TOTAL_REVENUE_RATE_IS;
 import static lotto.constant.GameMessage.WIN_STATISTICS;
 import static lotto.constant.GameMessage.YOU_BOUGHT_N_LOTTOS;
 
@@ -32,6 +34,8 @@ public class Game {
         List<Rank> ranks = findRanks(lottos, winLotto, bonus);
         EnumMap<Rank, Integer> result = getGameResult(ranks);
         printGameResult(result);
+        double revenueRate = getRevenueRate(price, result);
+        printRevenueRate(revenueRate);
     }
 
     private static Price inputBuyPrice() {
@@ -149,5 +153,20 @@ public class Game {
             System.out.print(result.get(rank));
             System.out.println(N_NUMBERS.getMessage());
         }
+    }
+
+    private static double getRevenueRate(Price price, EnumMap<Rank, Integer> result) {
+        long revenue = 0;
+        for (Rank rank : result.keySet()) {
+            revenue += rank.getPrizeMoney() * result.get(rank);
+        }
+
+        return (double) revenue / (double) price.getAmount() / 100;
+    }
+
+    private static void printRevenueRate(double revenueRate) {
+        System.out.print(TOTAL_REVENUE_RATE_IS.getMessage());
+        System.out.printf("%.1f", revenueRate);
+        System.out.println(N_PERCENTS.getMessage());
     }
 }

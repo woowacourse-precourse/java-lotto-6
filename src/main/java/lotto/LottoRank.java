@@ -12,15 +12,15 @@ public enum LottoRank {
     NO_WINNING(0, 0);
 
     private int match;
-    private Boolean requiredBonus;
+    private Boolean bonusRequired;
     private long reward;
 
     LottoRank(int match, long reward) {
         this(match, null, reward);
     }
-    LottoRank(int match, Boolean requiredBonus, long reward) {
+    LottoRank(int match, Boolean bonusRequired, long reward) {
         this.match = match;
-        this.requiredBonus = requiredBonus;
+        this.bonusRequired = bonusRequired;
         this.reward = reward;
     }
 
@@ -32,7 +32,7 @@ public enum LottoRank {
         // TODO: refactor complicated logical operation.
         return Arrays.stream(LottoRank.values())
                 .filter(w -> (w.match == match)
-                        && (w.requiredBonus == null || w.requiredBonus == bonus))
+                        && (w.bonusRequired == null || w.bonusRequired == bonus))
                 .findAny().orElse(NO_WINNING);
     }
 }

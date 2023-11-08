@@ -18,7 +18,9 @@ public enum ErrorCode {
 
     INVALID_LOTTO_NUMBER_RANGE("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     DUPLICATE_LOTTO_NUMBERS("로또 번호는 중복될 수 없습니다."),
-    INVALID_LOTTO_NUMBER_COUNT("6개의 로또 번호를 입력해주세요.");
+    INVALID_LOTTO_NUMBER_COUNT("6개의 로또 번호를 입력해주세요."),
+
+    ILLEGAL_STATE_ERROR("ILLEGAL_STATE_ERROR 발생");
 
     private final String message;
 

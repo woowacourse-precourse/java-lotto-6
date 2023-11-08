@@ -25,10 +25,10 @@ public enum MatchTypes {
 
     public static MatchTypes findMatchType(Integer matchCount, Integer hasBonusMatch) {
         return Arrays.stream(MatchTypes.values())
-                .filter(pc -> pc.matchNum.equals(matchCount))
-                .filter(pc -> (hasBonusMatch.equals(1) && pc.bonusMatch.equals(1))
-                        || (hasBonusMatch.equals(0) && pc.bonusMatch.equals(0)))
-                .findAny()
+                .filter(matchType -> matchType.matchNum.equals(matchCount))
+                .filter(matchType -> (!matchCount.equals(FIVE_MATCH_WITH_BONUS.matchNum)) || hasBonusMatch.equals(
+                        matchType.bonusMatch))
+                .findFirst()
                 .orElse(null);
     }
 

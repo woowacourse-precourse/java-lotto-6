@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.domain.WinningDetails.calculateResult;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.Map;
@@ -37,5 +38,15 @@ class LottoCoreTest {
         assertThat(profit.matchDecimalPlace(35.55)).isEqualTo("35.6");
         assertThat(profit.matchDecimalPlace(0.00)).isEqualTo("0.0");
     }
+
+    @Test
+    void 로또_일치갯수와_보너스_일치여부에_따라_해당하는_당첨내역_반환() {
+        assertThat(calculateResult(3, false)).isEqualTo(WinningDetails.THREE_MATCH);
+        assertThat(calculateResult(4, false)).isEqualTo(WinningDetails.FOUR_MATCH);
+        assertThat(calculateResult(5, false)).isEqualTo(WinningDetails.FIVE_MATCH);
+        assertThat(calculateResult(5, true)).isEqualTo(WinningDetails.FIVE_WITH_BONUS_MATCH);
+        assertThat(calculateResult(6, false)).isEqualTo(WinningDetails.SIX_MATCH);
+    }
+
 
 }

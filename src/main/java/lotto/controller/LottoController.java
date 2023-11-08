@@ -1,7 +1,8 @@
-package lotto.domain;
+package lotto.controller;
 
 import lotto.Lotto;
-import lotto.ui.InputView;
+import lotto.domain.LottoGenerator;
+import lotto.domain.Statistics;
 import lotto.ui.OutputView;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public class LottoController {
     private int bonusNumber;
     private List<Lotto> myLotto;
     private List<Integer> prizeNumbers;
-    private List<Integer> prizes;
+    private List<Integer> prizeCount;
     private float profitPercent;
 
     public void startGame() {
@@ -24,36 +25,33 @@ public class LottoController {
     }
 
     private void setMyLotto() {
-        UserInput userInput = new UserInput();
-        InputView.readCost();
-        userInput.setAmount();
-        lottoAmount = userInput.getAmount();
-        lottoCost = userInput.getCost();
+        InputController inputController = new InputController();
+        inputController.setAmount();
+        lottoAmount = inputController.getAmount();
+        lottoCost = inputController.getCost();
         LottoGenerator lottogenerator = new LottoGenerator(lottoAmount);
         myLotto = lottogenerator.getMyLotto();
+    }
+
+    private void setPrizeLotto() {
+        InputController inputController = new InputController();
+        inputController.setPrizeNumbers();
+        inputController.setBonusNumber();
+        this.prizeNumbers = inputController.getPrizeNumbers();
+        this.bonusNumber = inputController.getBonusNumber();
+    }
+
+    private void setResult() {
+        Statistics statistics = new Statistics(myLotto, prizeNumbers, bonusNumber, lottoCost);
+        this.prizeCount = statistics.getPrizesCount();
+        this.profitPercent = statistics.getProfitPercent();
     }
 
     private void printMyLotto() {
         OutputView.printLotto(myLotto);
     }
 
-    private void setPrizeLotto() {
-        UserInput userInput = new UserInput();
-        InputView.readNumbers();
-        userInput.setPrizeNumbers();
-        InputView.readBonusNumber();
-        userInput.setBonusNumber();
-        this.prizeNumbers = userInput.getPrizeNumbers();
-        this.bonusNumber = userInput.getBonusNumber();
-    }
-
-    private void setResult() {
-        Statistics statistics = new Statistics(myLotto, prizeNumbers, bonusNumber, lottoCost);
-        this.prizes = statistics.getPrizes();
-        this.profitPercent = statistics.getProfitPercent();
-    }
-
     private void printResult() {
-        OutputView.printStatistics(prizes, profitPercent);// parameter calculated something
+        OutputView.printStatistics(prizeCount, profitPercent);
     }
 }

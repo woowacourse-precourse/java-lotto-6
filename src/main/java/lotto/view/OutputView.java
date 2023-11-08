@@ -5,11 +5,11 @@ import java.util.Map;
 import lotto.model.Lotto;
 
 public class OutputView {
-    public void printInputPurchaseAmountMessage() {
+    public static void printInputPurchaseAmountMessage() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public void printPurchaseLottoesMessage(List<Lotto> lottoes) {
+    public static void printPurchaseLottoesMessage(List<Lotto> lottoes) {
         System.out.println();
         System.out.println(lottoes.size() + "개를 구매했습니다.");
         for (Lotto currentLotto : lottoes) {
@@ -17,17 +17,17 @@ public class OutputView {
         }
     }
 
-    public void printInputWinningLottoNumberMessage() {
+    public static void printInputWinningLottoNumberMessage() {
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    public void printInputWinningBonusNumberMessage() {
+    public static void printInputWinningBonusNumberMessage() {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public void printLottoesResult(Map<Integer, Integer> lottoesResult) {
+    public static void printLottoesResult(Map<Integer, Integer> lottoesResult) {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -38,7 +38,11 @@ public class OutputView {
         System.out.println("6개 일치 (2,000,000,000원) - " + lottoesResult.get(1) + "개");
     }
 
-    public void printProfitRate(double profitRate) {
+    public static void printProfitRate(double profitRate) {
         System.out.println("총 수익률은 " + profitRate +"%입니다.");
+    }
+
+    public static void printErrorMessage(String ErrorMessage) {
+        System.out.println(ErrorMessage);
     }
 }

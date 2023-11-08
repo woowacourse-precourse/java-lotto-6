@@ -1,10 +1,15 @@
 package lotto.service;
 
+import lotto.controller.SetWinningNumController;
 import lotto.vo.WinningNumber;
 
 public class SetWinningNumService {
 
     WinningNumber winningNumber;
+
+    public SetWinningNumService(){
+        SetWinningNumController controller =  new SetWinningNumController(this);
+    }
     public WinningNumber generateWinningNumber(String number) {
         this.winningNumber = new WinningNumber(number);
         return winningNumber;

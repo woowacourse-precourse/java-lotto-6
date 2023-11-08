@@ -7,11 +7,10 @@ import lotto.view.Output;
 public class OrderController {
     Output output;
     private final static int DUMMY_VALUE = -1;
-
-    OrderService orderService;
+    OrderService service;
 
     public OrderController(OrderService orderService) {
-        this.orderService = orderService;
+        this.service = orderService;
         output = new Output();
         output.printPurchasedResult(getMoney());
     }
@@ -23,7 +22,7 @@ public class OrderController {
             output.printMoneyPrompt();
             String money = input.get();
             try {
-                lottoNumber = orderService.generateLottoNumber(money);
+                lottoNumber = service.generateLottoNumber(money);
             } catch (IllegalArgumentException e) {
                 output.printError(e.getMessage());
             }

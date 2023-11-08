@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.controller.OrderController;
 import lotto.domain.OrderCalculator;
 
 import static lotto.values.ExceptionMessage.*;
@@ -7,6 +8,10 @@ import static lotto.values.ExceptionMessage.*;
 public class OrderService {
     int lottoNumber;
     int money;
+
+    public OrderService(){
+        OrderController controller = new OrderController(this);
+    }
 
     public int generateLottoNumber(String input) {
         checkException(input);

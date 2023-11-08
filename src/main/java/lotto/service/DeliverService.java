@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.controller.DeliverController;
 import lotto.vo.Lotto;
 import lotto.domain.LottoGenerator;
 
@@ -8,6 +9,9 @@ import java.util.List;
 
 public class DeliverService {
     List<Lotto> lottoPackage;
+    public DeliverService(int lottoNumber){
+        DeliverController controller = new DeliverController(lottoNumber, this);
+    }
     public List<Lotto> generateLotto(int num) {
         List<Lotto> lottoPackage = new ArrayList<>();
         LottoGenerator generator = new LottoGenerator();

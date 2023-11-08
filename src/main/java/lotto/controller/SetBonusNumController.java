@@ -9,7 +9,6 @@ import lotto.vo.WinningNumber;
 public class SetBonusNumController {
     BonusNumber bonusNumber;
     SetBonusNumService service;
-
     public SetBonusNumController(WinningNumber winningNumber, SetBonusNumService service) {
         this.service = service;
         setBonusNum(winningNumber);
@@ -28,9 +27,5 @@ public class SetBonusNumController {
                 output.printError(e.getMessage());
             }
         }
-    }
-
-    public BonusNumber getBonusNumber() {
-        return this.bonusNumber;
     }
 }

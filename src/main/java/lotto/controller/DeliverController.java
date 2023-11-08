@@ -4,16 +4,15 @@ import lotto.vo.Lotto;
 import lotto.service.DeliverService;
 import lotto.view.Output;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.values.ExceptionMessage.NOT_WORK_LOTTO_GENERATOR;
 
 public class DeliverController {
 
-    DeliverService deliverService;
+    DeliverService service;
     public DeliverController(int num, DeliverService deliverService) {
-        this.deliverService = deliverService;
+        this.service = deliverService;
         Output output = new Output();
         List<Lotto> lottoPackage = deliverLottoPackage(num);
         if (lottoPackage != null) output.printLotto(lottoPackage);
@@ -23,7 +22,7 @@ public class DeliverController {
         List<Lotto> lottoPackage = null;
         while (lottoPackage == null) {
             try {
-                lottoPackage = deliverService.generateLotto(num);
+                lottoPackage = service.generateLotto(num);
             } catch (IllegalArgumentException e) {
                 Output output = new Output();
                 output.printError(NOT_WORK_LOTTO_GENERATOR.getMessage());

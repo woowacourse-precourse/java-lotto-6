@@ -42,6 +42,17 @@ public class UserView {
         System.out.println("[ERROR] " + message);
     }
 
+    public static void printResults(List<LottoResult> results) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        for (LottoResult result : LottoResult.values()) {
+            if (result.getMatchCount() >= 3) {
+                long count = countMatchingResults(results, result);
+                String resultString = formatResultString(result, count);
+                System.out.println(resultString);
+            }
+        }
+    }
 
     private static long countMatchingResults(List<LottoResult> results, LottoResult result) {
         return results.stream().filter(r -> r == result).count();

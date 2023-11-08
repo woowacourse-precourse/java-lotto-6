@@ -4,22 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
-    private List<Integer> numbers;
+    public List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         numbers = new ArrayList<>(numbers);
 
         System.out.println("\n당첨번호를 입력해주세요.(쉼표(,)로 구분)");
 
-        validateOfLottoNumbers();
+        validateOfLottoNumbers(numbers);
+        this.numbers = numbers;
     }
+
+    public Lotto() { }
 
     public List<Integer> getNumbers() {
         return numbers;
     }
 
-    private List<Integer> validateOfLottoNumbers() {
-
+    private void validateOfLottoNumbers(List<Integer> numbers) {
         Errors errors = new Errors();
 
         boolean validInputLottoNumber = false;
@@ -37,7 +39,6 @@ public class Lotto {
                 numbers.clear();
             }
         }
-        return numbers;
     }
 
 }

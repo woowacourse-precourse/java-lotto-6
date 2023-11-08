@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 
 public class PlayGame {
 
-    private final Money money;
-    private final Lotto lotto;
-    private final Bonus bonus;
-
+    Money money;
+    Lotto lotto;
+	Bonus bonus;
+	
     private final String EA = "개";
     private int sum;
     private double profit;
@@ -41,13 +41,9 @@ public class PlayGame {
         }
     }
 
-    public PlayGame(Money money, Lotto lotto, Bonus bonus) {
-        this.money = money;
-        this.lotto = lotto;
-        this.bonus = bonus;
-    }
+    public PlayGame() { }
 
-    private void checkDuplicatedNumbers() {
+	private void checkDuplicatedNumbers() {
         matchingNumbersOfLottoCount = new ArrayList<>();
         matchingNumberOfBonusCount = new ArrayList<>();
 
@@ -56,11 +52,9 @@ public class PlayGame {
         for (int i = 0; i < money.playRound; i++) {
             final int count = i;
 
-            // 로또 당첨 번호 리스트에서 공통된 숫자 리스트로 뽑아냄.
             List<Integer> matchingNumbersOfLotto = lotto.getNumbers().stream()
                     .filter(o -> money.collectTotalWinningLottoNumbers.get(count).contains(o)).collect(Collectors.toList());
 
-            // 각 리스트별로 공통된 숫자 몇개인지 저장함.
             matchingNumbersOfLottoCount.add(matchingNumbersOfLotto.size());
 
             int bonusCount = 0;
@@ -111,8 +105,8 @@ public class PlayGame {
     }
 
     public void sumOfMoney() {
-        lotto.getNumbers();
         money.makeWinningNumbers();
+        lotto.getNumbers();
         resultOfLottoGame();
 
         profit = (double) sum / money.userInputCostOfLotto * 100;

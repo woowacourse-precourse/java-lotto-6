@@ -5,35 +5,30 @@ import java.util.List;
 
 public class Bonus {
 
-    private final Lotto lotto;
-    private final Money money;
+    public final int minInRange = 1;
+    public final int maxInRange = 45;
+    public final int LottoNumberSize = 6;
+    public final int bonusNumberSize = 1;
     private List<Integer> bonusNumber;
 
-    static final int minInRange = 1;
-    static final int maxInRange = 45;
-    static final int LottoNumberSize = 6;
-    static final int bonusNumberSize = 1;
-
-    public Bonus(Lotto lotto, Money money) {
+    public Bonus() {
         this.bonusNumber = new ArrayList<>();
-        this.lotto = lotto;
-        this.money = money;
     }
 
-    public void inputBonusNumber() {
+    public void inputBonusNumber(List<Integer> bonusNumber) {
         System.out.println("\n보너스 번호를 입력해주세요.");
-        validateOfBonusNumber();
+        validateOfBonusNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     public List<Integer> getBonusNumber() {
-        return this.bonusNumber;
+        return bonusNumber;
     }
 
-    private List<Integer> validateOfBonusNumber() {
+    private void validateOfBonusNumber(List<Integer> bonusNumber) {
         Errors errors = new Errors();
 
-        boolean validInputBonusNumber = false;
-        while (!validInputBonusNumber) {
+        while (true) {
             try {
                 errors.checkErrorsOfInputBonusNumber(bonusNumber);
             } catch (NumberFormatException e) {
@@ -46,7 +41,5 @@ public class Bonus {
                 bonusNumber.clear();
             }
         }
-        bonusNumber = this.bonusNumber;
-        return bonusNumber;
     }
 }

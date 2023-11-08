@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+// 로또 번호 생성 클래스
 public class LottoMachine {
 
     private LottoMachine() {
@@ -13,7 +14,7 @@ public class LottoMachine {
 
     public static List<Integer> generateLottoNumbers() {
         List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-        Collections.sort(numbers); // 번호를 오름차순으로 정렬합니다.
+        Collections.sort(numbers);
         return numbers;
     }
 }

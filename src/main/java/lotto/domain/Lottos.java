@@ -25,4 +25,8 @@ public class Lottos {
     public Lotto getLotto(int index) {
         return lottos.get(index);
     }
+
+    public int getLottoCnt() {
+        return lottos.size();
+    }
 }

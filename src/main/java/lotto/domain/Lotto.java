@@ -32,4 +32,14 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public boolean contain(int number) {
+        return numbers.contains(number);
+    }
+
+    public int getMatchCnt(WinningNumber winningNumber) {
+        return (int) numbers.stream()
+                .filter(winningNumber::contain)
+                .count();
+    }
 }

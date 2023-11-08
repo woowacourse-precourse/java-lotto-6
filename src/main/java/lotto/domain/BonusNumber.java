@@ -11,4 +11,8 @@ public class BonusNumber {
     public static BonusNumber consistOf(String bonusNumber) {
         return new BonusNumber(bonusNumber);
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

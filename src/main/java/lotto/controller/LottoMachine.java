@@ -6,7 +6,7 @@ import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBuyer;
 import lotto.domain.Rank;
-import lotto.input.PriceInputHandler;
+import lotto.input.PaymentInputHandler;
 import lotto.input.TargetNumberHandler;
 import lotto.service.Calculator;
 import lotto.service.LottoNumberGenerator;
@@ -15,7 +15,7 @@ import lotto.view.LottoView;
 
 public class LottoMachine {
     LottoView lottoView = new LottoView();
-    PriceInputHandler priceInputHandler = new PriceInputHandler();
+    PaymentInputHandler paymentInputHandler = new PaymentInputHandler();
     TargetNumberHandler targetNumberHandler = new TargetNumberHandler();
     LottoShop lottoShop = new LottoShop(new LottoNumberGenerator());
 
@@ -26,7 +26,7 @@ public class LottoMachine {
     }
 
     private LottoBuyer buyLotto() {
-        int amount = priceInputHandler.divideRequestPaymentIntoLottoPrice();
+        int amount = paymentInputHandler.divideRequestPaymentIntoLottoPrice();
         List<Lotto> lottoTickets = lottoShop.sell(amount);
         lottoView.printLotto(lottoTickets);
 

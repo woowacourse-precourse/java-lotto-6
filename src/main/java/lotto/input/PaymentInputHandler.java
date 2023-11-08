@@ -3,7 +3,7 @@ package lotto.input;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.config.Constants;
 
-public class PriceInputHandler {
+public class PaymentInputHandler {
 
     private static final int ZERO = 0;
     private static final int PURCHASE_MIN = 1000;

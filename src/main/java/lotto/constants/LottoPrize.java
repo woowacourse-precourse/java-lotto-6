@@ -1,20 +1,19 @@
 package lotto.constants;
 
-public enum LottoPrize {
-    PRIZE_FOR_3_MATCHES(5000),
-    PRIZE_FOR_4_MATCHES(50000),
-    PRIZE_FOR_5_MATCHES(1500000),
-    PRIZE_FOR_5_AND_BONUS_MATCHES(30000000),
-    PRIZE_FOR_6_MATCHES(2000000000);
+public class LottoPrize {
+    public static final long[] PRIZES = {
+            0L,
+            0L,
+            0L,
+            5000L,        // 3개 일치
+            50000L,       // 4개 일치
+            1500000L,     // 5개 일치
+            2000000000L,   // 6개 일치
+            30000000L
+    };
 
-    private final long prize;
-
-    LottoPrize(long prize) {
-        this.prize = prize;
+    private LottoPrize() {
     }
 
-    public long getPrizeMoney() {
-        return prize;
-    }
 }
 

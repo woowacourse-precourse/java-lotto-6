@@ -17,11 +17,6 @@ public class PlayerLottoAmount {
         return amount / LOTTO_MIN_AMOUNT;
     }
 
-    private void validateAmount(int amount) {
-        validateNatural(amount);
-        validateDivisible(amount);
-    }
-
     // 자료형이 숫자 인지 확인 메소드
     private static int validateNumber(String amount) throws IllegalArgumentException {
         try {
@@ -30,6 +25,11 @@ public class PlayerLottoAmount {
             ExceptionMessage.numberException();
             throw new IllegalArgumentException();
         }
+    }
+
+    private void validateAmount(int amount) {
+        validateNatural(amount);
+        validateDivisible(amount);
     }
 
     // 음수가 아닌지 확인 메소드

@@ -107,8 +107,7 @@ public class LottoController {
     private void printEarningRate(Map<Ranking, Integer> result, int lottoAmount) {
         double earningRate = 0;
         for (Ranking rank : result.keySet()){
-            earningRate = earningRate + ((double) (rank.getWinningAmount()) /
-                    (lottoAmount * TICKET_PRICE) * (result.get(rank)) * (PERCENTAGE));
+            earningRate = earningRate + ((double) (rank.getWinningAmount()) / (lottoAmount * TICKET_PRICE) * (result.get(rank)) * (PERCENTAGE));
         }
         OutputView.printRevenuRate(earningRate);
     }

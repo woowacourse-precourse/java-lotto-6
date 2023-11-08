@@ -16,9 +16,7 @@ public class InputView {
 
     public static String inputWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS);
-        String input = Console.readLine();
-        InputValidator.validateInputNumbers(input);
-        return input;
+        return Console.readLine();
     }
 
     public static String inputBonusNumber(){

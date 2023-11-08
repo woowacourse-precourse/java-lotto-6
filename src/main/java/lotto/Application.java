@@ -8,8 +8,7 @@ public class Application {
         // TODO: 프로그램 구현
 
         //1.로또 구입 금액 입력 받기, 구매 갯수 구하기.
-        int purchase_price = Base_Func.Input_Purchase_Price();
-        int purchase_num = Base_Func.Purchase_Lotto_Number(purchase_price);
+        int purchase_num = Base_Func.Input_Purchase_Price_Return_Number();
 
         //2.purchase_num 만큼 로또 번호를 생성해 list에 저장하고 출력한다.
         ArrayList<Lotto> Buy_lotto = Make_Buy_Lotto_List(purchase_num);
@@ -28,7 +27,6 @@ public class Application {
 
         //6. 수익률을 구하고 출력한다.
         Base_Func.Print_Earning_Rate(Jackpot_list, purchase_num);
-
     }
 
     public static ArrayList<Lotto> Make_Buy_Lotto_List(int purchase_num) {
@@ -60,7 +58,7 @@ public class Application {
         }
 
         public int get_money() {
-            return money/1000;
+            return money / 1000;
         }
     }
 

@@ -1,32 +1,40 @@
 package lotto.controller;
 
+import lotto.domain.Judgement;
 import lotto.domain.Lotto;
 import lotto.domain.LottoChanger;
 import lotto.domain.LottoGenerator;
+import lotto.dto.LottoResultDto;
 import lotto.dto.WinningNumberDto;
 import lotto.utility.Validation;
 import lotto.view.ExceptionView;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoManager {
     private int lottoCount;
-    private List<Lotto> lottoCollection;
 
     private LottoGenerator lottoGenerator;
+    private Judgement judgement;
 
     public LottoManager() {
         lottoGenerator = new LottoGenerator();
+        judgement = new Judgement();
     }
 
     public void startLottoService() {
         WinningNumberDto winningNumberDto;
+        List<Lotto> userLottoCollection;
+        List<LottoResultDto> lottosResult;
 
         purchaseLotto(); //로또 구매하기
-        generateLotto(); //로또 생성하기
+        userLottoCollection = generateLotto(); //로또 생성하기
         winningNumberDto = setWinningAndBounsNumber(); //당첨 숫자 입력하기
+        lottosResult = judgeLottoWinning(userLottoCollection, winningNumberDto); //로또와 당첨번호 비교하기
     }
 
     private void purchaseLotto() {
@@ -52,11 +60,15 @@ public class LottoManager {
         return purchaseAmount;
     }
 
-    private void generateLotto() {
-        lottoCollection = lottoGenerator.generate(lottoCount);
-        for (Lotto lotto : lottoCollection) {
+    private List<Lotto> generateLotto() {
+        List<Lotto> userLottoCollection;
+
+        userLottoCollection = lottoGenerator.generate(lottoCount);
+        for (Lotto lotto : userLottoCollection) {
             OutputView.printLottoNumbers(lotto.getLottoNumbers());
         }
+
+        return userLottoCollection;
     }
 
     private WinningNumberDto setWinningAndBounsNumber() {
@@ -95,5 +107,16 @@ public class LottoManager {
         }
 
         return bonusNumber;
+    }
+
+    private List<LottoResultDto> judgeLottoWinning(List<Lotto> userLottoCollection, WinningNumberDto winningNumberDto) {
+        List<LottoResultDto> lottosResult = new ArrayList<>();
+
+        for (int i = 0; i < userLottoCollection.size(); i++) {
+            lottosResult.add(judgement.countLottoCorrectNumbers(userLottoCollection.get(i), winningNumberDto));
+        }
+        Collections.unmodifiableList(lottosResult); //불변리스트로 변경
+
+        return lottosResult;
     }
 }

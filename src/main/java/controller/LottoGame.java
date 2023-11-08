@@ -57,7 +57,7 @@ public class LottoGame {
 
     public void getBonusNumber(){
         try{
-            bonusNumber = view.showUserBonusNumberViewAndGetNumber();
+            bonusNumber = view.showUserBonusNumberViewAndGetNumber(winNumber);
             view.printBlank();
         }catch (IllegalArgumentException e){
             view.printErrorMsg(e.getMessage());

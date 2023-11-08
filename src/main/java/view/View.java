@@ -30,9 +30,9 @@ public class View {
         return inputView.inputLottoWinnerNumberFromUser();
     }
 
-    public int showUserBonusNumberViewAndGetNumber(){
+    public int showUserBonusNumberViewAndGetNumber(List<Integer> winNumber){
         outputView.guideUserInsertBounsNumber();
-        return inputView.inputBonusNumberFromUser();
+        return inputView.inputBonusNumberFromUser(winNumber);
     }
 
     public void showUserLottoResultsView(String result, double amountRatio){

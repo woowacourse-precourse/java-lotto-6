@@ -48,9 +48,9 @@ public class InputView {
         return numbers;
     }
 
-    public int inputBonusNumberFromUser(){
+    public int inputBonusNumberFromUser(List<Integer> winNumber){
         int number = toInt(inputFromUser());
-        isInRange(Arrays.asList(number));
+        canGenerateBonusNumber(winNumber, number);
         return number;
     }
 

@@ -43,10 +43,24 @@ public class NumberValidator {
         return true;
     }
 
+    public static boolean canGenerateBonusNumber(List<Integer> numbers, int bonusNumber){
+        return isInRange(numbers)
+                && isNotDuplicateWinnerNumbers(numbers, bonusNumber);
+    }
+
     public static boolean isInRange(List<Integer> numbers){
         for(int number : numbers){
             if(!numberIsInRange(number)){
                 throw new IllegalArgumentException(LOTTO_NUMBER_INVALID_RANGE.getMessage());
+            }
+        }
+        return true;
+    }
+
+    public static boolean isNotDuplicateWinnerNumbers(List<Integer> numbers, int bonusNumber){
+        for(int number : numbers){
+            if(number == bonusNumber){
+                throw new IllegalArgumentException(LOTTO_BOUNS_NUM_IS_DUPLECATE.getMessage());
             }
         }
         return true;

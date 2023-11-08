@@ -32,6 +32,12 @@ public class Application {
         // 사용자로부터 보너스 번호를 받음
         int bonusNumber = UserHandler.getAndValidateBonusNumber(winningNumbers);
 
+        // 당첨 결과 계산
+        Map<Rank, Integer> result = lottoController.calculateResult(lottoController.lottos, winningLotto, bonusNumber);
+
+        // 결과 출력
+        ResultView.printResult(result);
+
     }
 }
 

@@ -17,15 +17,15 @@ public class CustomerTest extends NsTest {
         Integer inputMoney1 = 3000;
         Integer inputMoney2 = 1234;
         Integer inputMoney3 = 0;
-        Integer result1 = Customer.moneyValidate(inputMoney1);
+        Integer result1 = UserInterface.moneyValidate(inputMoney1);
 
         assertThat(result1 == 3).isTrue();
-        assertThatThrownBy(() -> Customer.moneyValidate(inputMoney2))
+        assertThatThrownBy(() -> UserInterface.moneyValidate(inputMoney2))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> Customer.moneyValidate(inputMoney3))
+        assertThatThrownBy(() -> UserInterface.moneyValidate(inputMoney3))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
+    @DisplayName("구매한 로또의 내용을 잘 출력하는지 검사")
     @Test
     void printPocketTest() {
         Customer tester = new Customer();
@@ -36,9 +36,8 @@ public class CustomerTest extends NsTest {
             tester.printPocket();
             assertThat(output()).contains("[1, 2, 3, 4, 5, 6]" , "[11, 12, 13, 14, 15, 16]");
         });
-
-
     }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

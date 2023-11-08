@@ -6,18 +6,16 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        InputView input = new InputView();
+        UserInterface controll = new UserInterface();
         Customer user = new Customer();
-        OutputView output = new OutputView();
-        // 구입금액 입력받기 // 로또 생성하기
-        user.buyLottos();
-        // 생성된 로또내용 출력하기
+        Integer money =controll.buyLottoInput();
+        List<LottoResults> judgeresult = Arrays.asList(LottoResults.values());
+        user.buyLottos(controll.moneyValidate(money));
         user.printPocket();
-        // 당첨번호 입력받고 처리하기
-        // 보너스 번호 입력받기
-        // 당첨내용 판정하기
-        // 당첨내용 출력하기
-        // 수익률 계산하기
-        // 수익률 출력하기
+        List<Integer> winningNumbers = controll.winningValidate(controll.winningNumberInput());
+        Integer bonusNumber = controll.bonusValidate(controll.bonusInput());
+        user.judgment(winningNumbers, bonusNumber, judgeresult);
+        controll.printJudgment(judgeresult);
+        controll.printPrizeRate(user.calculatePrizeRate(user.calculatePrize(judgeresult),money));
     }
 }

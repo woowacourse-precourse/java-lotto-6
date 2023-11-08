@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.event.ListDataListener;
 
@@ -10,7 +11,6 @@ public class Customer {
     Customer () {
         this.pocket = new ArrayList<Lotto>();
     }
-
     Customer (List<Lotto> pocket) {
         this.pocket = pocket;
     }
@@ -18,9 +18,7 @@ public class Customer {
     public void addPocket(Lotto lotto){
         this.pocket.add(lotto);
     }
-
     public List<Lotto> getPocket(){return this.pocket;}
-
     public void printPocket() {
         List<Lotto> pocket = this.getPocket();
         for(int i=0; i<pocket.size(); i++){
@@ -28,29 +26,50 @@ public class Customer {
             System.out.println(lotto);
         }
     }
-
-    public static Integer moneyValidate(Integer money){
-        if(money == 0){
-            throw new IllegalArgumentException("[ERROR] 0은 입력할 수 없습니다.");
-        }
-        if(money % 1000 != 0){
-            throw new IllegalArgumentException("[ERROR] 천원 단위의 금액만 입력가능합니다.") ;
-        }
-        return (money / 1000);
-    }
-
-    public void buyLottos(){
-        try{
-            Integer lottoamount = moneyValidate(InputView.buyLottoInput());
-            System.out.println(lottoamount+"개를 구매했습니다.");
+    public void buyLottos(Integer lottoamount){
             for(int i=0; i<lottoamount; i++){
                 Lotto singleLotto = Lotto.makingSingleLotto();
                 this.addPocket(singleLotto);
             }
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            this.buyLottos();
-        }
     }
 
+    public void judgment(List<Integer> winningNumbers, Integer bonus, List<LottoResults> results){
+        for(int i=0; i<this.getPocket().size(); i++) {
+            List<Integer> result = judgeSingleLotto(winningNumbers,bonus,i);
+
+            if(result.get(0) == 6) {results.get(0).addCounts();}
+            if(result.get(0) == 5 && result.get(1) == 1) {results.get(1).addCounts();}
+            if(result.get(0) == 5 && result.get(1) == 0) {results.get(2).addCounts();}
+            if(result.get(0) == 4) {results.get(3).addCounts();}
+            if(result.get(0) == 3) {results.get(4).addCounts();}
+        }
+    }
+    public List<Integer> judgeSingleLotto(List<Integer> winningNumbers, Integer bonus, int index){
+        Integer count = 0;
+        Integer bonusCount = 0;
+        for (int j = 0; j < 6; j++) {
+            if (this.getPocket().get(index).getNumbers().contains(winningNumbers.get(j))){
+                count += 1;
+            }
+            if(this.getPocket().get(index).getNumbers().contains(bonus)){
+                bonusCount += 1;
+            }
+        }
+        return Arrays.asList(count, bonusCount);
+    }
+
+    public Integer calculatePrize(List<LottoResults> results){
+        Integer prize = 0;
+        prize += (results.get(0).getCounts() * 2000000000);
+        prize += (results.get(1).getCounts() * 30000000);
+        prize += (results.get(2).getCounts() * 1500000);
+        prize += (results.get(3).getCounts() * 50000);
+        prize += (results.get(4).getCounts() * 5000);
+        return prize;
+    }
+    public long calculatePrizeRate(Integer prize, Integer money){
+        Double prizeRate = Double.valueOf(prize) / Double.valueOf(money);
+
+        return Math.round(prizeRate);
+    }
 }

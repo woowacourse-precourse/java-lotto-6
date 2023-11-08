@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
 
-import lotto.InputView;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -23,7 +22,6 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호가 중복되어 생성되었습니다.");
         }
     }
-
     // TODO: 추가 기능 구현
     public List<Integer> getNumbers() {
         return this.numbers;
@@ -34,4 +32,5 @@ public class Lotto {
         Lotto singleLotto = new Lotto(lottoList);
         return singleLotto;
     }
+
 }

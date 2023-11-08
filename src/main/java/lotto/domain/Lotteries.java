@@ -21,10 +21,9 @@ public class Lotteries {
 
     private Lotto Buy() {
         List<Integer> LottoNumberList = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        LottoNumberList =
-                LottoNumberList.stream().
-                        sorted().
-                        collect(Collectors.toList());
+        LottoNumberList = LottoNumberList.stream().
+                sorted().
+                collect(Collectors.toList());
 
         return new Lotto(LottoNumberList);
     }

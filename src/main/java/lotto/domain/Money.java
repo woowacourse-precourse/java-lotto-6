@@ -9,8 +9,8 @@ public class Money {
     private final int money;
 
     public Money(String inputMoney) {
-        int money = Convertor.getInstance().convertToInt(inputMoney);
-        Validator.getInstance().validateMoney(money);
+        int money = Convertor.convertToInt(inputMoney);
+        Validator.validateMoney(money);
         this.money = money;
     }
 

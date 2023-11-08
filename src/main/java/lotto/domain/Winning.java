@@ -10,8 +10,8 @@ public class Winning {
     private final List<Integer> numbers;
 
     public Winning(String inputNumbers) {
-        List<Integer> nubmers = Convertor.getInstance().convertToIntegerList(inputNumbers);
-        Validator.getInstance().validateLottoNumbers(nubmers);
+        List<Integer> nubmers = Convertor.convertToIntegerList(inputNumbers);
+        Validator.validateLottoNumbers(nubmers);
         this.numbers = nubmers;
 
     }

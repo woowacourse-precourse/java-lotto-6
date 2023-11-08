@@ -9,8 +9,8 @@ public class Bonus {
     private final int number;
 
     public Bonus(String inputNumber, List<Integer> winningNumbers) {
-        int number = Convertor.getInstance().convertToInt(inputNumber);
-        Validator.getInstance().validateBonusNumber(number, winningNumbers);
+        int number = Convertor.convertToInt(inputNumber);
+        Validator.validateBonusNumber(number, winningNumbers);
         this.number = number;
     }
 

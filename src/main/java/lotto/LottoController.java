@@ -114,7 +114,7 @@ public class LottoController {
         while (exceptionOccurrenceStatus) {
             try {
                 bonusNumber = view.inputNumber(INPUT_BONUS_NUMBER);
-                winnerNumbers = new WinnerNumbers(numbers, bonusNumber);
+                WinnerNumbers.validateBonusNumber(numbers, bonusNumber);
                 exceptionOccurrenceStatus = false;
 
             } catch (IllegalArgumentException e) {

@@ -28,7 +28,12 @@ public class WinnerNumbers extends Lotto {
         return bonusNumber;
     }
 
-    private void validateBonusNumberInNumbers(List<Integer> numbers, int bonusNumber) {
+    public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+        validateNumberRange(bonusNumber);
+        validateBonusNumberInNumbers(numbers, bonusNumber);
+    }
+
+    private static void validateBonusNumberInNumbers(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ERROR_BONUS_IN_WINNER_NUMBERS);
         }

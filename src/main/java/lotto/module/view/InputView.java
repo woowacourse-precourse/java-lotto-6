@@ -2,36 +2,29 @@ package lotto.module.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import lotto.global.utils.Validator;
+import lotto.global.utils.ValidatorUtils;
+import lotto.module.domain.Lotto;
 
 public class InputView {
-
-    private static final String SEPARATOR = ",";
-
-    public static Long readPurchaseAmount() {
+    public static Integer readBuyAmount() {
         String input = readLine();
-        Validator.validatePurchaseAmount(input);
-        return Long.parseLong(input);
+        return ValidatorUtils.validateBuyAmount(input);
     }
 
-    public static List<Integer> readWinningNumbers() {
+    public static Lotto readWinLotto() {
         String input = readLine();
-        List<String> numbers = separateNumbers(input);
-        Validator.validateWinningNumbers(numbers);
-        return numbers.stream().map(s -> Integer.parseInt(s)).toList();
+
+        List<Integer> winNumbers = Arrays.stream(input.split(","))
+                .map(ValidatorUtils::parseInt)
+                .toList();
+
+        return new Lotto(winNumbers);
     }
 
-    private static List<String> separateNumbers(String input) {
-        List<String> numbers = new ArrayList<>();
-        String[] arr = input.split(SEPARATOR);
-        numbers.addAll(List.of(arr));
-        return numbers;
-    }
-
-    public static String readBonusNumber() {
+    public static Integer readBonusNumber(Lotto winLotto) {
         String input = readLine();
-        return input;
+        return ValidatorUtils.validateBonusNumber(winLotto, input);
     }
 }

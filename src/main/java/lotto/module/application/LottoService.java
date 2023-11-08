@@ -1,34 +1,57 @@
 package lotto.module.application;
 
 
-import static lotto.global.constant.Game.LOTTO_PRICE;
-
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import lotto.global.constant.WinAmount;
 import lotto.module.domain.Lotto;
-import lotto.module.domain.LottoNumbersGenerator;
-import lotto.module.domain.Lottos;
+import org.assertj.core.util.Lists;
 
 public class LottoService {
 
-    private Lottos lottos;
+    private static final LottoService instance = new LottoService();
 
-    public void inputAmount(Long amount) {
-        int quantity = (int) (amount / LOTTO_PRICE);
+    public static LottoService getInstance() {
+        return instance;
     }
 
-    public void generateLottos(int quantity) {
-        lottos = new Lottos(generateLotto(quantity));
-    }
-
-    private List<Lotto> generateLotto(int quantity) {
-        List<Lotto> result = new ArrayList<>();
-        for (int i = 0; i < quantity; i++) {
-            Lotto lotto = new Lotto(LottoNumbersGenerator.generateLottoNumbers());
-            result.add(lotto);
+    public List<Lotto> generateLottoList(int count) {
+        List<Lotto> lottoList = Lists.newArrayList();
+        for (int i = 0; i < count; i++) {
+            lottoList.add(new Lotto());
         }
-        return result;
+
+        return lottoList;
     }
 
+    public Map<Long, Integer> getStaticsMap(List<Lotto> userLottoList, Lotto winLotto, Integer bonusNumber) {
+        Map<Long, Integer> statics = new HashMap<>();
+        for (Lotto userLotto : userLottoList) {
+            long winCount = userLotto.findWinCount(winLotto, bonusNumber);
+            // 미당첨 게임은 Pass
+            if (winCount == 0) {
+                continue;
+            }
+            int count = statics.getOrDefault(winCount, 0);
 
+            statics.put(winCount, ++count);
+        }
+
+        return statics;
+    }
+
+    public long calcTotalWinAmount(Map<Long, Integer> statics) {
+        long totalAmount = 0L;
+        for (Map.Entry<Long, Integer> item : statics.entrySet()) {
+            long winAmount = WinAmount.findWinAmount(item.getKey());
+            totalAmount += winAmount * item.getValue();
+        }
+
+        return totalAmount;
+    }
+
+    public String calcRate(long totalWinAmount, Integer buyAmount) {
+        return String.format("%,.1f", (totalWinAmount / buyAmount.doubleValue()) * 100);
+    }
 }

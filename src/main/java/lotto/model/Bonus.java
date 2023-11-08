@@ -21,7 +21,7 @@ public class Bonus {
     }
 
     public boolean matchBonus(Lotto lotto) {
-
+        return lotto.contains(number);
     }
 
     /**

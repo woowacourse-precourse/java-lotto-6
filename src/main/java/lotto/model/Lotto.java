@@ -1,10 +1,12 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+
 import lotto.constant.Number;
 import lotto.constant.ValidatorMessage;
 
@@ -27,7 +29,7 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     public boolean contains(int number) {
-
+        return this.numbers.contains(number);
     }
 
     public static Lotto createLotto() {
@@ -41,15 +43,17 @@ public class Lotto {
     }
 
     public Rank getRank(Lotto winNumbers, Bonus bonus) {
-
+        return Rank.lottoRank(getCorrectCount(winNumbers), bonus.matchBonus(this));
     }
 
-    public String getLottoNumber(){
+    public String getLottoNumber() {
 
     }
 
     private int getCorrectCount(Lotto winNumbers) {
-
+        return (int) numbers.stream()
+                .filter(winNumbers::contains)
+                .count();
     }
 
     private void validateSize(List<Integer> numbers) {

@@ -17,7 +17,7 @@ public class WinStatistics {
     }
 
     public void pushRank(Rank rank) {
-
+        winStatistics.put(rank, winStatistics.get(rank) + 1);
     }
 
     public double sum() {

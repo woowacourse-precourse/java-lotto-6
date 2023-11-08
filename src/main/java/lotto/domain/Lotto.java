@@ -1,13 +1,13 @@
 package lotto.domain;
 
+import java.util.List;
+
 import static lotto.constant.ExceptionMessage.LOTTO_DUPLICATE_NUMBER_EXCEPTION;
 import static lotto.constant.ExceptionMessage.LOTTO_WRONG_RANGE_EXCEPTION;
 import static lotto.constant.ExceptionMessage.LOTTO_WRONG_SIZE_EXCEPTION;
-import static lotto.constant.LottoConstant.LOTTO_MAX_NUMBER;
-import static lotto.constant.LottoConstant.LOTTO_MIN_NUMBER;
 import static lotto.constant.LottoConstant.LOTTO_SIZE;
-
-import java.util.List;
+import static lotto.constant.LottoConstant.MAX_NUMBER;
+import static lotto.constant.LottoConstant.MIN_NUMBER;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -43,7 +43,7 @@ public class Lotto {
 
     private boolean isWrongRange(List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(number -> number < LOTTO_MIN_NUMBER.getValue() || number > LOTTO_MAX_NUMBER.getValue());
+                .anyMatch(number -> number < MIN_NUMBER.getValue() || number > MAX_NUMBER.getValue());
     }
 
     public boolean isContain(int number) {

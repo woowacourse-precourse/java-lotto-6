@@ -4,6 +4,8 @@ import java.util.List;
 
 import static lotto.constant.ExceptionMessage.INVALID_BONUS_NUMBER_CONTAIN_EXCEPTION;
 import static lotto.constant.ExceptionMessage.INVALID_BONUS_NUMBER_RANGE_EXCEPTION;
+import static lotto.constant.LottoConstant.MAX_NUMBER;
+import static lotto.constant.LottoConstant.MIN_NUMBER;
 
 public class WinningNumber {
     private final Lotto lotto;
@@ -27,7 +29,7 @@ public class WinningNumber {
     }
 
     private boolean isWrongRange(int bonusNumber) {
-        return bonusNumber < 1 || bonusNumber > 45;
+        return bonusNumber < MIN_NUMBER.getValue() || bonusNumber > MAX_NUMBER.getValue();
     }
 
     private boolean isContainInLotto(List<Integer> lotto, int bonusNumber) {

@@ -70,6 +70,13 @@ class ApplicationTest extends NsTest {
         assertThatThrownBy(()->Validator.getInstance().validateWinningNumbers("0,1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 번호가 로또 번호와 겹치는 경우 예외가 발생한다.")
+    @Test
+    void 예외_테스트4() {
+        assertThatThrownBy(()->Validator.getInstance().validateBonusNumber("7",new Lotto(List.of(1, 2, 3, 4, 5, 6, 7))))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
     @Override
     public void runMain() {
         Application.main(new String[]{});

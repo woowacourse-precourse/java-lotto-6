@@ -36,18 +36,18 @@ public class MainController {
     }
 
     private static WinningLotto readWinningLotto() {
-        Lotto winningLottoNumbers = readWinningLottoNumbers();
+        Lotto lotto = readLotto();
         OutputView.printNewLine();
         LottoNumber bonusNumber = readBonusNumber();
-        return createWinningLotto(winningLottoNumbers, bonusNumber);
+        return createWinningLotto(lotto, bonusNumber);
     }
 
-    private static Lotto readWinningLottoNumbers() {
+    private static Lotto readLotto() {
         try {
             return new Lotto(InputView.readWinningLottoNumbers());
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
-            return readWinningLottoNumbers();
+            return readLotto();
         }
     }
 
@@ -60,12 +60,12 @@ public class MainController {
         }
     }
 
-    private static WinningLotto createWinningLotto(Lotto winningLottoNumbers, LottoNumber bonusNumber) {
+    private static WinningLotto createWinningLotto(Lotto lotto, LottoNumber bonusNumber) {
         try {
-            return new WinningLotto(winningLottoNumbers, bonusNumber);
+            return new WinningLotto(lotto, bonusNumber);
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
-            return createWinningLotto(winningLottoNumbers, readBonusNumber());
+            return createWinningLotto(lotto, readBonusNumber());
         }
     }
 }

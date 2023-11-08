@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface NumberProvider {
     public Integer getSingle() throws IllegalArgumentException, IOException;
-    public List<Integer> getMultiple() throws IllegalArgumentException;
+    public List<Integer> getMultiple() throws IllegalArgumentException, IOException;
 }

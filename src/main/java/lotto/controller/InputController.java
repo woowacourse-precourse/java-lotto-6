@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputController {
 
     Validation validation = new Validation();
-    public long purchaseAmount() {
+    public int purchaseAmount() {
 
         String input = Console.readLine();
         try {
@@ -15,6 +15,6 @@ public class InputController {
             purchaseAmount();
         }
 
-        return Long.parseLong(input);
+        return Integer.parseInt(input);
     }
 }

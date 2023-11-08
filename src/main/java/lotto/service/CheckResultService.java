@@ -28,10 +28,10 @@ public class CheckResultService {
         return lotto.contains(bonusNumber);
     }
 
-    public int calculateEarning(Map<LottoPrize, Integer> lottoResult) {
-        int earn = ConstantNumber.INITIAL_VALUE;
+    public long calculateEarning(Map<LottoPrize, Integer> lottoResult) {
+        long earn = ConstantNumber.INITIAL_VALUE;
         for (LottoPrize lottoPrize : lottoResult.keySet()) {
-            earn += lottoPrize.getPrize() * lottoResult.get(lottoPrize);
+            earn += (long) lottoPrize.getPrize() * lottoResult.get(lottoPrize);
         }
         return earn;
     }

@@ -35,7 +35,7 @@ public class Result {
         matchResult.replace(LottoPrize.FIVE_MATCH, matchResult.get(LottoPrize.FIVE_MATCH) - ConstantNumber.ONE_CASE);
     }
 
-    public void calculateEarningRate(int earning, int price) {
-        earningRate = (float) (earning / price) * PERCENT;
+    public void calculateEarningRate(long earning, int price) {
+        earningRate = (float) ((double) earning / price) * PERCENT;
     }
 }

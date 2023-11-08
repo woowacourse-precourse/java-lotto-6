@@ -16,7 +16,7 @@ public class LottoGame {
 
     public Price bougthPrice() {
         System.out.println("구입금액을 입력해 주세요.");
-        int lottoPrice = lottoController.LottoSetPrice();
+        int lottoPrice = lottoController.lottoSetPrice();
         Price price = new Price(lottoPrice);
 
         return price;
@@ -39,10 +39,45 @@ public class LottoGame {
         List<Integer> numbers = lottoController.selectedNumber();
 
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        int bonus = lottoController.BonusNumber();
+        int bonus = lottoController.bonusNumber();
 
         SelectedLottoNumber selectedLottoNumber = new SelectedLottoNumber(numbers, bonus);
 
         return selectedLottoNumber;
+    }
+
+    public void showResult(Price price, Lottos lottos, SelectedLottoNumber selectedLottoNumber) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        int[] corrections = lottoController.correct(price, lottos, selectedLottoNumber);
+        showComment(corrections);
+
+    }
+
+    public void showComment(int[] corrections) {
+        System.out.print(ResultComment.THREE.comment);
+        System.out.println(String.format("%d개", corrections[4]));
+
+        System.out.print(ResultComment.FOUR.comment);
+        System.out.println(String.format("%d개", corrections[3]));
+
+        System.out.print(ResultComment.FIVE.comment);
+        System.out.println(String.format("%d개", corrections[2]));
+
+        System.out.print(ResultComment.FIVE_BONUS.comment);
+        System.out.println(String.format("%d개", corrections[1]));
+
+        System.out.print(ResultComment.SIX.comment);
+        System.out.println(String.format("%d개", corrections[0]));
+    }
+
+    public float rate(Price price, int[] corrections) {
+        int revenue = 0;
+        for (int i = 0; i < 5; i++) {
+            revenue += RevenuePrice.getPriceByIndex(i) * corrections[i];
+        }
+        float revenueRate = (float)revenue/price.getPrice();
+
+        return revenueRate;
     }
 }

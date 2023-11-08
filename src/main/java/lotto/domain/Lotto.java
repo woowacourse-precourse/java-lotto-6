@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.Validator.LottoValidator;
@@ -29,6 +30,15 @@ public class Lotto {
         }
     }
 
+    public int compareNumbers(List<Integer> numbers) {
+        List<Integer> numbersCopy = new ArrayList<>(numbers);
+        numbersCopy.retainAll(this.numbers);
+        return numbersCopy.size();
+    }
+
+    public boolean compareOneNumber(int number) {
+        return this.numbers.contains(number);
+    }
 
     public List<Integer> getNumbers() {
         return numbers;

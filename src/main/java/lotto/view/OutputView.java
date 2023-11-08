@@ -11,4 +11,12 @@ public class OutputView {
     public void printLottoNumbers(List<Integer> numbers) {
         System.out.println(numbers);
     }
+
+    public void printResult(String result, int count) {
+        System.out.printf(result + "\n", count);
+    }
+
+    public void printProfitRate(String profitRate) {
+        System.out.printf(PrintMessage.PRINT_PROFIT_RATE.getMessage(), profitRate);
+    }
 }

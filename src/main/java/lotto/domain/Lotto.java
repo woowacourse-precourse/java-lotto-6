@@ -20,7 +20,7 @@ public class Lotto {
 		lottoNumbers.add(inputBonusNumber);
 	}
 	public void validateLottoNumbers(List<Integer> lottoNumbers) {
-		
+		inputLottoException.validateLottoNumbers(lottoNumbers);
 	}
 	public List<Integer> getLottoNumbers(){
 		return lottoNumbers;

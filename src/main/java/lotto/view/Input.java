@@ -23,6 +23,10 @@ public class Input {
     }
 
     public String inputBonus() {
+        System.out.println(OutputMessage.ENTER_BONUS_NUMBER_MESSAGE);
 
+        String bonus = Console.readLine();
+
+        return bonus;
     }
 }

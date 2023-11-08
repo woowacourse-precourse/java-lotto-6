@@ -73,7 +73,13 @@ public class LottoController {
     }
 
     private void inputBonus() {
+        try {
+            String tempBonus = inputView.inputBonus();
 
+            this.bonus = new Bonus(tempBonus, this.winingLotto);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
     }
 
     private void printWinStatistics() {

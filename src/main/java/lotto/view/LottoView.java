@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.utils.StatisticsMessage;
+
 import java.util.List;
 
 public class LottoView {
@@ -8,7 +10,6 @@ public class LottoView {
     private String lottoCountMessage = "개를 구매했습니다.";
     private String inputWinningNumberMessage = "당첨 번호를 입력해 주세요.";
     private String inputBonusNumberMessage = "보너스 번호를 입력해 주세요.";
-    private String statisticsMessage = "당첨통계\n---";
 
     public void printBuyLottomMoneyMessage() {
         System.out.println(inputBuyLottoMoneyMessage);
@@ -41,7 +42,8 @@ public class LottoView {
 
     public void printStatisticsMessage() {
         printEnterLine();
-        System.out.println(statisticsMessage);
+        System.out.println(StatisticsMessage.STATISTICS.getMessage());
+        System.out.println(StatisticsMessage.LINE.getMessage());
     }
 
 }

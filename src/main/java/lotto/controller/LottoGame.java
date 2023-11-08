@@ -4,7 +4,9 @@ import lotto.utils.ExceptionMessage;
 import lotto.utils.LottoUtil;
 import lotto.view.LottoView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoGame {
     LottoView lottoView = new LottoView();
@@ -12,13 +14,19 @@ public class LottoGame {
     Money money;
     Lotto lotto;
     int bonusNumber;
+    int revenue;
+    final int WINNING_LOCATION = 0;
+    final int BONUS_LOCATION = 1;
+    final List<String> BONUS_NUMBER = List.of("3", "4", "5", "5+", "6");
+
 
     public void start() {
         printMessageAndInputMoney();
         List<List<Integer>> myLottos = getRandamLottos();
         printMessageAndInputWinningNumber();
         printMessageAndInputBonusNumber();
-        printStatistics(myLottos);
+        Map<String, Integer> resultStatistics = getResultStatistics(myLottos);
+        printStatistics(resultStatistics);
     }
 
     public void printMessageAndInputMoney() {
@@ -50,8 +58,34 @@ public class LottoGame {
         duplicateBonusNumber(bonusNumber);
     }
 
-    public void printStatistics(List<List<Integer>> myLottos) {
+    public void printStatistics(Map<String, Integer> resultStatistics) {
         lottoView.printStatisticsMessage();
+        revenue = 0;
+        BONUS_NUMBER.forEach(num -> {
+            int sameCnt = resultStatistics.get(num);
+            System.out.println(lottoUtil.getStatisticsMessage(num) + sameCnt);
+            if(sameCnt > 0) {
+                revenue += lottoUtil.getStatisticsValue(num) * sameCnt;
+            }
+        });
+        System.out.println("총 수익률은 " + revenue / money.getInputMoney() + "%입니다.");
+    }
+
+    public Map<String, Integer> getResultStatistics(List<List<Integer>> myLottos) {
+        Map<String, Integer> winningTotal = new HashMap<>();
+        for(List<Integer> myLotto : myLottos) {
+            List<Integer> winning = lottoUtil.calculateVariance(lotto.getNumbers(), myLotto, bonusNumber);
+            if(winning.get(WINNING_LOCATION) == 5 && winning.get(BONUS_LOCATION) == 1) {
+                String winningValue = winning.get(WINNING_LOCATION) + "+";
+                winningTotal.put(winningValue, winningTotal.getOrDefault(winningValue, 0) + 1);
+                continue;
+            }
+            if(winning.get(WINNING_LOCATION) >= 3) {
+                String winningValue = winning.get(WINNING_LOCATION).toString();
+                winningTotal.put(winningValue, winningTotal.getOrDefault(winningValue, 0) + 1);
+            }
+        }
+        return winningTotal;
     }
 
     public void duplicateBonusNumber(int bonusNumber) {

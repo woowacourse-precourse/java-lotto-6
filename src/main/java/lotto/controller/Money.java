@@ -5,7 +5,7 @@ import lotto.utils.LottoUtil;
 
 public class Money {
     private final int MIN_MONEY = 1000;
-    private String inputMoney;
+    private int inputMoney;
     private int count;
 
     public Money() {
@@ -17,10 +17,10 @@ public class Money {
         validateThousand(payment);
 
         setCount(payment);
-        this.inputMoney = payment;
+        this.inputMoney = Integer.parseInt(payment);
     }
 
-    public String getInputMoney() {
+    public int getInputMoney() {
         return this.inputMoney;
     }
 

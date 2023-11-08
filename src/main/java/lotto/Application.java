@@ -3,16 +3,10 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 public class Application {
-    public static void listToList(List<Integer> fromList, List<Integer> toList) {
-        Collections.sort(fromList);
-        toList.addAll(fromList);
-    }
-
     public static void main(String[] args) {
         Output output = new Output();
         Input input = new Input(output);
@@ -24,11 +18,11 @@ public class Application {
         List<Integer> winningNumbers = input.inputWinningNumbers();
         int bonusNumber = input.inputBonusNumber();
 
-        List<Integer> allTicketNumbers = new ArrayList<>();
+        List<List<Integer>> allTicketNumbers = new ArrayList<>();
         Map<Integer, Integer> ticketResults;
 
         for (int i = 0; i < ticket; i++) {
-            listToList(lotto.generateLotto(), allTicketNumbers);
+            allTicketNumbers.add(new ArrayList<>(lotto.generateLotto()));
         }
         ticketResults = analyzer.fillTicketResults(ticket, winningNumbers, allTicketNumbers, bonusNumber);
         analyzer.calculateYield(purchaseAmount, ticketResults);

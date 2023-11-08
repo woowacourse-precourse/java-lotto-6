@@ -77,20 +77,25 @@ public class LottoController {
         ArrayList<Lotto> lottoTickets = new ArrayList<>();
 
         for (int i = 0; i < purchaseAmount / 1000; i++) {
-            List<Integer> lottoNumbers = createLottoNumbers();
-            lottoTickets.add(new Lotto(lottoNumbers));
+            createLottoTicket();
         }
 
         buyer = new Buyer(purchaseAmount, lottoTickets);
     }
 
-    /* 로또 6자리 랜덤 숫자 생성 */
-    private List<Integer> createLottoNumbers() {
-        List<Integer> lottoNumbers = new ArrayList<>(
-                Randoms.pickUniqueNumbersInRange(MIN_IN_LOTTO_NUMBER, MAX_IN_LOTTO_NUMBER, NUMBER_OF_WINNING_NUMBER)
-        );
-        Collections.sort(lottoNumbers);
-        return lottoNumbers;
+    /* 6자리 랜덤 숫자 생성해 로또 객체 생성 */
+    private Lotto createLottoTicket() {
+        try{
+            List<Integer> lottoNumbers = new ArrayList<>(
+                    Randoms.pickUniqueNumbersInRange(MIN_IN_LOTTO_NUMBER, MAX_IN_LOTTO_NUMBER, NUMBER_OF_WINNING_NUMBER)
+            );
+            Collections.sort(lottoNumbers);
+            return new Lotto(lottoNumbers);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return createLottoTicket();
+        }
+
     }
 
     /* 로또 구매 개수 출력 */

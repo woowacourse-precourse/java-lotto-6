@@ -28,26 +28,27 @@ public class LottoTickets {
     }
 
     public LottoResults calculateResult(WinningNumber winningNumber, BonusNumber bonusNumber){
-        int firstPlace = 0;
-        int secondPlace = 0;
-        int thirdPlace = 0;
-        int forthPlace = 0;
-        int fifthPlace = 0;
+        int firstPlace, secondPlace, thirdPlace, forthPlace, fifthPlace;
+        firstPlace = secondPlace = thirdPlace = forthPlace = fifthPlace = 0;
 
         for (Lotto ticket : tickets) {
             int hit = ticket.countSameNumber(winningNumber);
-            if (hit == 3) fifthPlace++;
-            if (hit == 4) forthPlace++;
+            if (hit == FIFTH_PLACE_HIT.get()) fifthPlace++;
+            if (hit == FOURTH_PLACE_HIT.get()) forthPlace++;
 
-            if ((hit == 5) && (ticket.isHitBonusNumber(bonusNumber))) {
+            if (isHitSecondPlace(hit, ticket, bonusNumber)) {
                 secondPlace++;
                 continue;
             }
 
-            if (hit == 5) thirdPlace++;
-            if (hit == 6) firstPlace++;
+            if (hit == SECOND_AND_THIRD_PLACE_HIT.get()) thirdPlace++;
+            if (hit == FIRST_PLACE_HIT.get()) firstPlace++;
         }
         return new LottoResults(firstPlace, secondPlace, thirdPlace, forthPlace, fifthPlace);
+    }
+
+    private boolean isHitSecondPlace(int hit, Lotto ticket, BonusNumber bonusNumber){
+        return (hit == SECOND_AND_THIRD_PLACE_HIT.get()) && ticket.isHitBonusNumber(bonusNumber);
     }
 
     public String printTickets(){

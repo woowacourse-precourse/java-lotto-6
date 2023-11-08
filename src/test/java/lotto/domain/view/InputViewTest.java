@@ -53,4 +53,12 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호를 콤마로 구분하여 입력해주세요.");
     }
+
+    @DisplayName("입력 받은 값이 빈 값이라면 예외가 발생한다.")
+    @Test
+    void enterByEmpty() {
+        assertThatThrownBy(() -> inputView.isEmptyValidate(""))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 빈 값을 입력하실 수 없습니다.");
+    }
 }

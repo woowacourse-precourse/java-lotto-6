@@ -12,18 +12,23 @@ public class InputView {
     public int enterPurchaseAmount(){
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
+
+        isEmptyValidate(input);
         return convertToInt(input);
     }
 
     public int enterBonusNumber(){
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
+
+        isEmptyValidate(input);
         return convertToInt(input);
     }
     public List<Integer> enterWinningNumber(){
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
 
+        isEmptyValidate(input);
         isCommaValidate(input);
         return convertToIntegerList(input);
     }
@@ -31,6 +36,12 @@ public class InputView {
     void isCommaValidate(String input){
         if(!isCommaSeparatedNumbers(input)){
             ExceptionMessage.INPUT_NOT_SEPARATED_COMMA.throwException();
+        }
+    }
+
+    void isEmptyValidate(String input) {
+        if(input.isEmpty()){
+            ExceptionMessage.INPUT_EMPTY.throwException();
         }
     }
 
@@ -60,4 +71,5 @@ public class InputView {
         Matcher matcher = regex.matcher(input);
         return matcher.matches();
     }
+
 }

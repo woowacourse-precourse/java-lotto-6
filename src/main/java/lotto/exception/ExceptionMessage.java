@@ -13,7 +13,8 @@ public enum ExceptionMessage {
     LOTTOS_COUNT_MISMATCH_COUNT("로또의 개수가 구매한 개수와 일치하지 않습니다."),
 
     INPUT_NOT_NUMBER("숫자만 입력하실 수 있습니다."),
-    INPUT_NOT_SEPARATED_COMMA("당첨 번호를 콤마로 구분하여 입력해주세요.");
+    INPUT_NOT_SEPARATED_COMMA("당첨 번호를 콤마로 구분하여 입력해주세요."),
+    INPUT_EMPTY("빈 값을 입력하실 수 없습니다.");
 
     private static final String prefix = "[ERROR] ";
     private final String message;

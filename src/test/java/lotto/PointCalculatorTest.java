@@ -18,10 +18,10 @@ class PointCalculatorTest {
                 .map(Integer::valueOf)
                 .map(LottoNumber::of)
                 .collect(Collectors.toList()));
-        AnswerLotto answerLotto = new AnswerLotto(Arrays.stream(answerLottoNumbers.split(","))
+        AnswerLotto answerLotto = new AnswerLotto(new Lotto(Arrays.stream(answerLottoNumbers.split(","))
                 .map(Integer::valueOf)
                 .map(LottoNumber::of)
-                .toList(), LottoNumber.of(bonusNumber));
+                .toList()), LottoNumber.of(bonusNumber));
         PointCalculator pointCalculator = new PointCalculator();
 
         //When

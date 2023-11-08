@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
+import lotto.enums.GlobalConstant;
 import lotto.enums.Reward;
 
 public class Tickets {
-    private static final int INIT_VAL = 0;
     private static final int ADD_NUM = 1;
 
     private final List<Lotto> tickets;
@@ -36,7 +36,7 @@ public class Tickets {
 
     private void initEnumMap(EnumMap<Reward, Integer> result) {
         for (Reward reward : Reward.values()) {
-            result.put(reward, INIT_VAL);
+            result.put(reward, GlobalConstant.INIT_VAL.getValue());
         }
     }
 

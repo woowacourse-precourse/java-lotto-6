@@ -10,7 +10,6 @@ import lotto.enums.ErrorMessages;
 import lotto.enums.GlobalConstant;
 
 public class Lotto {
-    private static final int RESULT_INIT_VAL = 0;
     private static final int TRUE_VAL = 1;
     private static final int FALSE_VAL = 0;
 
@@ -51,8 +50,8 @@ public class Lotto {
     }
 
     public Result compareNumberToAnswer(Answer answer) {
-        int hitResult = RESULT_INIT_VAL;
-        int bonusResult = RESULT_INIT_VAL;
+        int hitResult = GlobalConstant.INIT_VAL.getValue();
+        int bonusResult = GlobalConstant.INIT_VAL.getValue();
 
         for (int number : numbers) {
             hitResult += searchHitNumbers(answer, number);

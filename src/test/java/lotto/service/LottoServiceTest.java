@@ -181,13 +181,13 @@ class LottoServiceTest {
         WinningLevel result8 = lottoService.rankLottoResult(matchingWinningNumber4, consistencyBonusNumber);
 
         //then
-        Assertions.assertThat(result1).isEqualTo(WinningLevel.FIRST_PLACE);
-        Assertions.assertThat(result2).isEqualTo(WinningLevel.FIRST_PLACE);
-        Assertions.assertThat(result3).isEqualTo(WinningLevel.SECOND_PLACE);
-        Assertions.assertThat(result4).isEqualTo(WinningLevel.THIRD_PLACE);
-        Assertions.assertThat(result5).isEqualTo(WinningLevel.FOURTH_PLACE);
-        Assertions.assertThat(result6).isEqualTo(WinningLevel.FOURTH_PLACE);
-        Assertions.assertThat(result7).isEqualTo(WinningLevel.FIFTH_PLACE);
-        Assertions.assertThat(result7).isEqualTo(WinningLevel.FIFTH_PLACE);
+        Assertions.assertThat(result1).isEqualTo(WinningLevel.FIRST);
+        Assertions.assertThat(result2).isEqualTo(WinningLevel.FIRST);
+        Assertions.assertThat(result3).isEqualTo(WinningLevel.SECOND);
+        Assertions.assertThat(result4).isEqualTo(WinningLevel.SECOND);
+        Assertions.assertThat(result5).isEqualTo(WinningLevel.FOURTH);
+        Assertions.assertThat(result6).isEqualTo(WinningLevel.FOURTH);
+        Assertions.assertThat(result7).isEqualTo(WinningLevel.FIFTH);
+        Assertions.assertThat(result7).isEqualTo(WinningLevel.FIFTH);
     }
 }

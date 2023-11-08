@@ -76,8 +76,8 @@ public class LottoService {
 
         WinningLevel winningLevel = WinningLevel.values()[correctCount];
 
-        if (winningLevel == WinningLevel.THIRD_PLACE && correctBonusNumber) {
-            return WinningLevel.SECOND_PLACE;
+        if (winningLevel == WinningLevel.THIRD && correctBonusNumber) {
+            return WinningLevel.SECOND;
         }
 
         return winningLevel;

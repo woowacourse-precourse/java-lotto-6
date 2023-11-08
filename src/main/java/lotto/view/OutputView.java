@@ -24,11 +24,11 @@ public class OutputView {
         System.out.println();
         System.out.println(STATISTICS);
         System.out.println(DASH.repeat(3));
-        System.out.println(WinningLevel.FIFTH_PLACE.getResult() + " - " + scoreBoard.get("5th") / WinningLevel.FIFTH_PLACE.getReward() + "개");
-        System.out.println(WinningLevel.FOURTH_PLACE.getResult() + " - " + scoreBoard.get("4th") / WinningLevel.FOURTH_PLACE.getReward() + "개");
-        System.out.println(WinningLevel.THIRD_PLACE.getResult() + " - " + scoreBoard.get("3rd") / WinningLevel.THIRD_PLACE.getReward() + "개");
-        System.out.println(WinningLevel.SECOND_PLACE.getResult() + " - " + scoreBoard.get("2nd") / WinningLevel.SECOND_PLACE.getReward() + "개");
-        System.out.println(WinningLevel.FIRST_PLACE.getResult() + " - " + scoreBoard.get("1st") / WinningLevel.FIRST_PLACE.getReward() + "개");
+        System.out.println(WinningLevel.FIFTH.getResult() + " - " + scoreBoard.get("5th") / WinningLevel.FIFTH.getReward() + "개");
+        System.out.println(WinningLevel.FOURTH.getResult() + " - " + scoreBoard.get("4th") / WinningLevel.FOURTH.getReward() + "개");
+        System.out.println(WinningLevel.THIRD.getResult() + " - " + scoreBoard.get("3rd") / WinningLevel.THIRD.getReward() + "개");
+        System.out.println(WinningLevel.SECOND.getResult() + " - " + scoreBoard.get("2nd") / WinningLevel.SECOND.getReward() + "개");
+        System.out.println(WinningLevel.FIRST.getResult() + " - " + scoreBoard.get("1st") / WinningLevel.FIRST.getReward() + "개");
     }
 
     public static void outputViewTotalReturn(String totalReturn) {

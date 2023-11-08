@@ -28,6 +28,7 @@ public class Application {
 
     int[] results = lottoGame.calculateResults();
    
+    PrizeMoney Prize = new PrizeMoney(); 
 
 
   }

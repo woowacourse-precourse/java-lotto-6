@@ -84,7 +84,7 @@ public class Calculator {
         return lottoCount;
     }
 
-    public boolean isWinning(Winning winning, Lotto lotto, Lotto winningLotto, int bonusNumber) {
+    private boolean isWinning(Winning winning, Lotto lotto, Lotto winningLotto, int bonusNumber) {
         if (winning == Winning.FIRST) {
             return compareLotto(lotto, winningLotto) == winning.count();
         }
@@ -98,12 +98,12 @@ public class Calculator {
         return (compareLotto(lotto, winningLotto) + bonusCount) == winning.count();
     }
 
-    public boolean hasBonusNumber(Lotto lotto, int bonusNumber) {
+    private boolean hasBonusNumber(Lotto lotto, int bonusNumber) {
         List<Integer> numbers = lotto.numbers();
         return numbers.contains(bonusNumber);
     }
 
-    public int compareLotto(Lotto lotto, Lotto winningLotto) {
+    private int compareLotto(Lotto lotto, Lotto winningLotto) {
         int count = 0;
         List<Integer> numbers = lotto.numbers();
         for (Integer number : numbers) {
@@ -114,7 +114,7 @@ public class Calculator {
         return count;
     }
 
-    public boolean compareWinningNumbers(int number, Lotto winningLotto) {
+    private boolean compareWinningNumbers(int number, Lotto winningLotto) {
         List<Integer> winningNumbers = winningLotto.numbers();
         return winningNumbers.contains(number);
     }

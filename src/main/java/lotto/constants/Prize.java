@@ -47,6 +47,4 @@ public enum Prize {
     public int getPrizeAmount() {
         return prizeAmount;
     }
-
-
 }

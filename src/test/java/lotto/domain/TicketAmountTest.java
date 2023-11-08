@@ -14,4 +14,13 @@ public class TicketAmountTest {
         assertThatThrownBy(() -> new TicketAmount(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구입 금액이 1,000원으로 나누어 떨어지지 않는 경우 예외가 발생한다.")
+    @Test
+    void createTicketAmountByNotDivision() {
+        String input = "14820";
+
+        assertThatThrownBy(() -> new TicketAmount(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

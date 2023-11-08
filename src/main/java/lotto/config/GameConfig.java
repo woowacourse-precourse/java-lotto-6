@@ -14,8 +14,7 @@ import lotto.service.WinningNumberGenerator;
 public class GameConfig {
 
     public static GameController getGameController() {
-        CorrectLottoCalculator correctLottoCalculator = new CorrectLottoCalculator();
-        Player player = new Player(correctLottoCalculator);
+        Player player = getPlayer();
         PlayerService playerService = getPlayerService(player);
         OutputController outputController = getOutputController(player);
         WinningNumberGenerator winningNumberGenerator = new WinningNumberGenerator();
@@ -23,6 +22,13 @@ public class GameConfig {
 
         return new GameController(player, playerService, winningNumberGenerator, outputController, lottoCountGenerator);
     }
+
+    private static Player getPlayer() {
+        CorrectLottoCalculator correctLottoCalculator = new CorrectLottoCalculator();
+
+        return new Player(correctLottoCalculator);
+    }
+
 
     private static PlayerService getPlayerService(Player player) {
         LottoGenerator lottoGenerator = new LottoGenerator();

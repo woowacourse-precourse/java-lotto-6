@@ -58,7 +58,7 @@ public class ConsoleUI {
     }
 
     private String promptForLottoNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         return Console.readLine();
     }
 
@@ -83,13 +83,13 @@ public class ConsoleUI {
     }
 
     private String promptForBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         return Console.readLine();
     }
 
 
     public void displayLottoNumbers(List<Lotto> lottos) {
-        System.out.println(lottos.size()+"개를 구매했습니다.");
+        System.out.println("\n"+lottos.size()+"개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             System.out.println(formatNumbersForDisplay(lotto.getNumbers()));
         }
@@ -125,7 +125,7 @@ public class ConsoleUI {
     }
 
     private void printResultTemplate() {
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
     }
 }

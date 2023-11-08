@@ -10,13 +10,13 @@ public class InputValidator {
         }
     }
 
-    public static void validateIsNumbers(String input) {
+    public static void validateIsNumber(String input) {
         if (!input.matches("^[1-9]\\d*$")) {
             throw new IllegalArgumentException(ERROR_NOT_NUMBER);
         }
     }
 
-    public static void validateIsNumbers(String[] input) {
+    public static void validateIsNumber(String[] input) {
         for (String s : input) {
             if (!s.matches("^[1-9]\\d*$")) {
                 throw new IllegalArgumentException(ERROR_NOT_NUMBER);

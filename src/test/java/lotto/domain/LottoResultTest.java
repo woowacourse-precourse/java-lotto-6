@@ -30,8 +30,7 @@ class LottoResultTest {
     @MethodSource("provideLottoResultWithRankAndWinningCount")
     public void 구매_금액과_당첨_순위에_따른_총_수익률을_구할_수_있다(LottoResult lottoResult, Rank winningRank, int expectedWinningCount) {
         // when
-        Map<Rank, Integer> lottoResultMap = lottoResult.get();
-        Integer actualWinningCount = lottoResultMap.get(winningRank);
+        int actualWinningCount = lottoResult.getRankCount(winningRank);
 
         // then
         Assertions.assertThat(actualWinningCount).isEqualTo(expectedWinningCount);

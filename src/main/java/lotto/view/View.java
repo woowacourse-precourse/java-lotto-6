@@ -32,11 +32,6 @@ import lotto.view.constants.MessageType;
 public final class View {
 
 
-    public static void printLottos(Lottos lottos) {
-        printLottosCount(lottos.getSize());
-        printLottosInfo(lottos.getLottos());
-    }
-
     public static String requestWinningNumbers() {
         printlnMessageWithNewLine(WINNING_NUMBERS_REQUEST_MESSAGE);
         return Validator.validateWinningNumbers(enterMessage());
@@ -69,28 +64,6 @@ public final class View {
             return WINNING_RESULT_INFORMATION;
         }
         return WINNING_RESULT_WITH_BONUS_INFORMATION;
-    }
-
-    private static void printLottosCount(int count) {
-        printlnFormatWithNewLine(LOTTO_COUNT_MESSAGE, count);
-    }
-
-    private static void printLottosInfo(List<Lotto> lottos) {
-        for (Lotto lotto : lottos) {
-            printLottoInfo(lotto);
-        }
-    }
-
-    private static void printLottoInfo(Lotto lotto) {
-        String result = String.join(OUTPUT_SEPARATOR.getSymbol(), convertNumbers(lotto.getNumbers()));
-        printlnResult(PREFIX.getSymbol() + result + POSTFIX.getSymbol());
-    }
-
-    private static String[] convertNumbers(List<Integer> numbers) {
-        return numbers
-                .stream()
-                .map(Object::toString)
-                .toArray(String[]::new);
     }
 
 

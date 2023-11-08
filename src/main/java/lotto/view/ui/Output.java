@@ -2,18 +2,16 @@ package lotto.view.ui;
 
 import static lotto.view.constants.SymbolType.NEWLINE;
 
-import lotto.view.constants.MessageType;
-
 public final class Output {
     public static void printlnResult(String result) {
         System.out.println(result);
     }
 
-    public static void printlnFormat(MessageType message, Object... args) {
-        System.out.println(String.format(message.getMessage(), args));
+    public static void printlnFormat(String message, Object... args) {
+        System.out.println(String.format(message, args));
     }
 
-    public static void printlnFormatWithNewLine(MessageType message, Object... args) {
+    public static void printlnFormatWithNewLine(String message, Object... args) {
         System.out.print(NEWLINE.getSymbol());
         printlnFormat(message, args);
     }
@@ -22,11 +20,7 @@ public final class Output {
         System.out.println(message);
     }
 
-    public static void printlnMessage(MessageType messageType) {
-        System.out.println(messageType.getMessage());
-    }
-
-    public static void printlnMessageWithNewLine(MessageType messageType) {
+    public static void printlnMessageWithNewLine(String messageType) {
         System.out.print(NEWLINE.getSymbol());
         printlnMessage(messageType);
     }

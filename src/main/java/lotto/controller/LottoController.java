@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import static lotto.global.constants.NumberType.COST_UNIT;
 import static lotto.view.View.requestBonusNumber;
 import static lotto.view.View.requestWinningNumbers;
 
@@ -10,6 +9,7 @@ import lotto.domain.Lottos;
 import lotto.domain.WinningResult;
 import lotto.dto.DrawnNumbersDto;
 import lotto.view.CostRequestView;
+import lotto.view.LottoResultView;
 import lotto.view.View;
 
 public class LottoController {
@@ -22,7 +22,7 @@ public class LottoController {
 
     private Lottos issue(int count) {
         Lottos lottos = Lottos.from(count);
-        View.printLottos(lottos);
+        LottoResultView.printLottos(lottos);
         return lottos;
     }
 

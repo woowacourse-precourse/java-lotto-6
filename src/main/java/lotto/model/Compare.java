@@ -66,4 +66,8 @@ public class Compare {
         return winningRank;
     }
 
+    public String caculateProfits(int money) {
+        return String.format("%,.1f", 1.0 * revenue / money * 100.0);
+    }
+
 }

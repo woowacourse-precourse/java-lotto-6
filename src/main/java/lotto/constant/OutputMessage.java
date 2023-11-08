@@ -14,7 +14,7 @@ public enum OutputMessage {
             5개 일치 (1,500,000원) - %d개
             5개 일치, 보너스 볼 일치 (30,000,000원) - %d개
             6개 일치 (2,000,000,000원) - %d개"""),
-    TOTAL_REVENUE_RATE("\n총 수익률은 %.1f%%입니다.");
+    TOTAL_REVENUE_RATE("\n총 수익률은 %s%%입니다.");
 
     private final String message;
 

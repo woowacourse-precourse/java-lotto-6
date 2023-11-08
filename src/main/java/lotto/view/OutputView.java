@@ -27,7 +27,7 @@ public class OutputView {
                 winningRank.get(4), winningRank.get(3), winningRank.get(2), winningRank.get(1), winningRank.get(0));
     }
 
-    public void printRevenueRate(double revenue) {
+    public void printRevenueRate(String revenue) {
         System.out.printf(OutputMessage.TOTAL_REVENUE_RATE.getMessage(), revenue);
     }
 

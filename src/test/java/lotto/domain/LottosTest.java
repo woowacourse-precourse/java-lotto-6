@@ -8,8 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottosTest {
-
-    private final Lottos lottos = new Lottos();
     @DisplayName("로또 구입 갯수만큼 생성되었는지 테스트")
     @Test
     void createLottosTest(){
@@ -34,6 +32,7 @@ public class LottosTest {
         List<Integer> expectedNumbers = List.of(8, 21, 23, 41, 42, 43);
         assertRandomUniqueNumbersInRangeTest(
                 ()->{
+                    Lottos lottos = new Lottos(1);
                     List<Integer> lotto = lottos.createLotto();
                     assertThat(lotto).isEqualTo(expectedNumbers);
                 },

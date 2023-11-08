@@ -16,9 +16,6 @@ public class Lottos {
         createLottos(numberOfLotto);
     }
 
-    public Lottos(){
-    }
-
     public List<Lotto> getLottos(){
         return lottos;
     }

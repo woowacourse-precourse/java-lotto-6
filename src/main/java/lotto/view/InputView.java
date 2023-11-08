@@ -37,7 +37,7 @@ public class InputView {
         return lotto;
     }
 
-    public List<Integer> getValidatedNumbers(String[] inputAnswer){
+    public List<Integer> getValidatedNumbers(String[] inputAnswer) {
         List<Integer> numbers = new ArrayList<>();
         for (String input : inputAnswer) {
             validateNumber(input);
@@ -46,19 +46,19 @@ public class InputView {
         return numbers;
     }
 
-    public WinningLotto getWinningLotto(){
+    public WinningLotto getWinningLotto() {
         Lotto inputAnswerLotto = getInputAnswerLotto();
         return getBonusNumber(inputAnswerLotto);
     }
 
-    public WinningLotto getBonusNumber(Lotto lotto){
+    public WinningLotto getBonusNumber(Lotto lotto) {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         WinningLotto winningLotto;
-        try{
+        try {
             validateNumber(input);
-            winningLotto = new WinningLotto(lotto,Integer.parseInt(input));
-        }catch(IllegalArgumentException e){
+            winningLotto = new WinningLotto(lotto, Integer.parseInt(input));
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             winningLotto = getBonusNumber(lotto);
         }

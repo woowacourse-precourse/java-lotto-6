@@ -15,7 +15,7 @@ public class OutputView {
         System.out.println(lottos.size() + "개를 구매했습니다.");
     }
 
-    public void printLottoTickets(List<Lotto> lottos){
+    public void printLottoTickets(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             List<Integer> lottoNumbers = lotto.getNumbers();
             List<Integer> sorted = lottoNumbers.stream()
@@ -25,21 +25,22 @@ public class OutputView {
         }
     }
 
-    public void printRate(double rate){
-        System.out.printf("총 수익률은 %.1f%%입니다.",rate);
+    public void printRate(double rate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", rate);
     }
 
-    public void printWinningResult(Map<Rank, Integer> winningResult){
+    public void printWinningResult(Map<Rank, Integer> winningResult) {
         System.out.println("당첨 통계\n---");
         DecimalFormat df = new DecimalFormat("###,###");
         List<Rank> rankKeySet = getRankKeySetWithoutNORANK(winningResult);
-        for (Rank rank: rankKeySet) {
+        for (Rank rank : rankKeySet) {
             String money = df.format(rank.getRewardMoney());
-            System.out.printf("%d개 일치%s (%s원) - %d개\n", rank.getCorrectNumberCnt(), getBonusPrint(rank),money, winningResult.get(rank));
+            System.out.printf("%d개 일치%s (%s원) - %d개\n", rank.getCorrectNumberCnt(), getBonusPrint(rank), money,
+                    winningResult.get(rank));
         }
     }
 
-    private List<Rank> getRankKeySetWithoutNORANK(Map<Rank, Integer> winningResult){
+    private List<Rank> getRankKeySetWithoutNORANK(Map<Rank, Integer> winningResult) {
         List<Rank> keySet = new ArrayList<>(winningResult.keySet());
         return keySet.stream()
                 .sorted(Comparator.comparingInt(Rank::getRewardMoney))
@@ -47,8 +48,8 @@ public class OutputView {
                 .collect(Collectors.toList());
     }
 
-    private String getBonusPrint(Rank rank){
-        if(rank.equals(Rank.SECOND)){
+    private String getBonusPrint(Rank rank) {
+        if (rank.equals(Rank.SECOND)) {
             return ", 보너스 볼 일치";
         }
         return "";

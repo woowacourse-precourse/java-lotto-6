@@ -37,7 +37,7 @@ public enum Rank {
                 .orElse(NORANK);
     }
 
-    private boolean find(int count){
+    private boolean find(int count) {
         return this.correctNumberCnt == count;
     }
 

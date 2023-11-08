@@ -2,12 +2,12 @@ package lotto;
 
 public class WinningLotto {
 
-    private Lotto lotto;
-    private int bonusNumber;
+    private final Lotto lotto;
+    private final int bonusNumber;
 
-    public WinningLotto(Lotto lotto , int bonusNumber){
+    public WinningLotto(Lotto lotto, int bonusNumber) {
         validateRange(bonusNumber);
-        validateDuplication(lotto,bonusNumber);
+        validateDuplication(lotto, bonusNumber);
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
@@ -19,15 +19,15 @@ public class WinningLotto {
     }
 
     private void validateDuplication(Lotto lotto, int bonusNumber) {
-        if(lotto.getNumbers().contains(bonusNumber)){
+        if (lotto.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또번호와 중복이 없어야 합니다.");
 
         }
     }
 
-    public Rank match(Lotto userLotto){
+    public Rank match(Lotto userLotto) {
         int matchNumberCnt = this.lotto.getMatchNumberCnt(userLotto);
-        return Rank.findRank(matchNumberCnt,userLotto.hasNumber(this.bonusNumber));
+        return Rank.findRank(matchNumberCnt, userLotto.hasNumber(this.bonusNumber));
     }
 
 }

@@ -15,7 +15,7 @@ public class Game {
     private final WinningAnalyzer winningAnalyzer = new WinningAnalyzer();
 
 
-    public void run(){
+    public void run() {
         int money = inputView.getMoney();
         int lottoTicketCount = lottoMaker.calculateLottoTicketCount(money);
         List<Lotto> lottos = lottoMaker.makeLottoTickets(lottoTicketCount);

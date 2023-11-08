@@ -33,4 +33,8 @@ public class View {
             System.out.println(lotto.toSortedString());
         }
     }
+
+    public static void printString(String target) {
+        System.out.println(target);
+    }
 }

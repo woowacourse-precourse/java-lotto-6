@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
+import lotto.domain.Results;
 import lotto.domain.Tickets;
 import lotto.domain.Winning;
 import lotto.view.View;
@@ -17,15 +18,12 @@ public class Application {
         View.printLottos(lottos);
 
         Winning winning = getValidWinning();
-
         Bonus bonus = getValidBonus(winning);
 
-        List<Rank> results = new ArrayList<>();
-        for (Lotto lotto : lottos) {
-            results.add(lotto.checkResult(winning, bonus));
-        }
+        Results results = Results.of(lottos, winning, bonus);
 
-        // 당첨 결과와 수익률 출력
+        View.printString(results.makeResultToString());
+        //View.printString(results.makeProfitRateToString());
     }
 
     private static Tickets getValidTickets() {

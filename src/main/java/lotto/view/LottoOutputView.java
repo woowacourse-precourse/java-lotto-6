@@ -24,7 +24,6 @@ public class LottoOutputView {
         lineBreak();
         System.out.println(Message.WINNING_STATISTICS.getMessage());
         System.out.println(Message.WINNING_LINE_BREAK.getMessage());
-
         for(Winning rank : Winning.values()) {
             System.out.println(rank.getPrizeMessage() + Message.INFOR_SEPARATOR.getMessage()
                     + prize.get(rank)

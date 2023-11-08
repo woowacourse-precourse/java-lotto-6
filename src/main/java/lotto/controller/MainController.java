@@ -22,7 +22,7 @@ public class MainController {
         List<Integer> winningNumber = playerController.winningNumberController(); // 당첨 번호 입력
         int bonusNumber = playerController.bonusNumberController(winningNumber); // 보너스 번호 입력
         Map<Winning, Integer> allPrizeCount = calculatorController
-                .wonCalculatorManager(lottoPurchaseNumbers, winningNumber, bonusNumber); // 당첨 계산
+                .calculatorController(lottoPurchaseNumbers, winningNumber, bonusNumber); // 당첨 계산
         calculatorController.rateOfReturnController(purchase, allPrizeCount); // 수익률 계산
     }
 }

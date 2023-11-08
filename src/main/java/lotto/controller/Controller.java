@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -139,5 +138,6 @@ public class Controller {
         for (WinningRule rank : ranks) {
             OutputView.showWinningResult(results, rank);
         }
+        OutputView.showReturnRate(judgement.getReturnRate(buyer.getPurchasePrice()));
     }
 }

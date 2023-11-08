@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import lotto.domain.WinningRule;
@@ -25,4 +26,10 @@ public class OutputView {
         }
         System.out.println(rank.getMatchingNumbers() + "개 일치 " + "(" + rank.getConvertPrize()+ "원) - " + results.get(rank) + "개");
     }
+
+     public static void showReturnRate(double returnRate) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+        String formattedReturnRate = decimalFormat.format(returnRate);
+        System.out.println("총 수익률은 " + formattedReturnRate + "%입니다.");
+     }
 }

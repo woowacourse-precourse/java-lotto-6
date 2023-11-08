@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 public class Judgement {
     private HashMap<WinningRule, Integer> results = new HashMap<>();
+    private static final double PERCENT = 100.0;
+    private static final double ROUND_NUMBER = 100.0;
 
     public Judgement() {
         results.put(WinningRule.NOTHING, 0);
@@ -59,5 +61,18 @@ public class Judgement {
             return WinningRule.FIFTH_PRIZE;
         }
         return WinningRule.NOTHING;
+    }
+
+    public double getReturnRate(int purchasePrice) {
+        double returnRate = ((double) getTotalPrize() / purchasePrice) * PERCENT;
+        return Math.round(returnRate * ROUND_NUMBER) / ROUND_NUMBER;
+    }
+
+    private int getTotalPrize() {
+        int totalPrize = 0;
+        for (WinningRule rank : results.keySet()) {
+            totalPrize += rank.getPrize() * results.get(rank);
+        }
+        return totalPrize;
     }
 }

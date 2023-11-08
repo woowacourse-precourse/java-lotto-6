@@ -8,6 +8,8 @@ public class LottoPurchase {
     private final int amount;
 
     public LottoPurchase(int amount) {
+        validatePositiveNumber(amount);
+        validateUnitAmount(amount);
         this.amount = amount;
     }
 

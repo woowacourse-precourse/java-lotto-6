@@ -15,7 +15,7 @@ public class Calculation {
 
     public static long calculateTotalPrizeMoney(Map<RankMessage, Integer> winningResult) {
         return winningResult.keySet().stream()
-                .mapToLong(ranking -> ranking.getWinningPrize() * winningResult.get(ranking))
+                .mapToLong(ranking -> ranking.calculatePrizeMoney(winningResult.get(ranking)))
                 .sum();
     }
 }

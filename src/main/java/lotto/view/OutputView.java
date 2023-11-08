@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.model.Lotto;
+
 import lotto.model.LottoResult;
 
 public class OutputView {
     public static void printQuantityOfLotto(int quantity){
         System.out.println(quantity+"개를 구매했습니다.");
     }
-    public static void printRequestPurchaseAmont(){
+    public static void printRequestPurchaseAmount(){
         System.out.println("구입금액을 입력해 주세요.");
     }
 

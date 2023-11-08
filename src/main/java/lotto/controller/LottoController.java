@@ -1,8 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.model.Buyer;
-import lotto.model.GenerateLotto;
+
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.Lottos;
@@ -15,7 +14,7 @@ import lotto.view.OutputView;
 public class LottoController {
     LottoService service=new LottoService();
     public void run(){
-        OutputView.printRequestPurchaseAmont();
+        OutputView.printRequestPurchaseAmount();
         int purchaseAmount = requestPurchaseAmount();
 
         Lottos lottos = service.exchangeLottoTicket(purchaseAmount);

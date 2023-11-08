@@ -1,7 +1,8 @@
 package lotto.model;
 
+import lotto.model.constant.LottoConstant;
+
 public class Buyer {
-    static final int LOTTO_PRICE=1000;
     private int purchaseAmount;
 
     private int lottoQuantity;
@@ -12,7 +13,7 @@ public class Buyer {
     }
 
     private void calculateQuantity(int purchaseAmount){
-        this.lottoQuantity =purchaseAmount/LOTTO_PRICE;
+        this.lottoQuantity =purchaseAmount/ LottoConstant.LOTTO_PRICE.getConstant();
     }
 
     public int getPurchaseAmount() {

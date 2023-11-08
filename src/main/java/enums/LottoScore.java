@@ -17,4 +17,8 @@ public enum LottoScore {
         this.correctBonus = correctBonus;
         this.prizeMoney = prizeMoney;
     }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
 }

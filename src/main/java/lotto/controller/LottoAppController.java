@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import lotto.LottoResult;
-import lotto.WinningLotto;
+import lotto.constant.LottoResult;
+import lotto.model.WinningLotto;
 import lotto.model.Budget;
 import lotto.model.Lotto;
 import lotto.model.ProfitStats;
@@ -12,7 +12,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.view.InputView.*;
 
-public class AppController {
+public class LottoAppController {
     public Budget createBudget() {
         while (true) {
             try {

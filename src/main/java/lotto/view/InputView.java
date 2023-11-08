@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.Util.*;
+import static lotto.util.Util.*;
 
 public class InputView {
     public static void printPurchasePrompt() {

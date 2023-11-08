@@ -1,8 +1,8 @@
 package lotto.model;
 
-import static lotto.Constant.LOTTO_TICKET_PRICE;
-import static lotto.ErrorMessage.*;
-import static lotto.Util.convertStringToInt;
+import static lotto.constant.Constant.LOTTO_TICKET_PRICE;
+import static lotto.constant.ErrorMessage.*;
+import static lotto.util.Util.convertStringToInt;
 
 public class Budget {
     private int budget;

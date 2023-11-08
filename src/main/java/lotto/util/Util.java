@@ -1,10 +1,10 @@
-package lotto;
+package lotto.util;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.Constant.NUMBER_DELIMITER;
+import static lotto.constant.Constant.NUMBER_DELIMITER;
 
 public class Util {
     public static void println(String content) {

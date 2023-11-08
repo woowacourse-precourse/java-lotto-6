@@ -1,9 +1,9 @@
 package lotto.model;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
-import static lotto.Constant.*;
-import static lotto.ErrorMessage.INVALID_NUMBER_SIZE;
-import static lotto.ErrorMessage.NUMBER_DUPLICATE;
+import static lotto.constant.Constant.*;
+import static lotto.constant.ErrorMessage.INVALID_NUMBER_SIZE;
+import static lotto.constant.ErrorMessage.NUMBER_DUPLICATE;
 
 import java.util.ArrayList;
 import java.util.Collections;

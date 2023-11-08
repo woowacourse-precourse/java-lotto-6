@@ -1,7 +1,5 @@
 package lotto.model;
 
-import lotto.LottoResult;
-
 public class ProfitStats {
     private int profit;
     private double rate;

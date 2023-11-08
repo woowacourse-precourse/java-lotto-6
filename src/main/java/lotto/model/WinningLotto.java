@@ -1,15 +1,16 @@
-package lotto;
+package lotto.model;
 
+import lotto.constant.LottoResult;
 import lotto.model.Lotto;
 
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.Constant.MAX_NUMBER_SIZE;
-import static lotto.ErrorMessage.*;
-import static lotto.LottoResult.*;
-import static lotto.Util.convertStringToInt;
-import static lotto.Util.convertStringToIntegerList;
+import static lotto.constant.Constant.MAX_NUMBER_SIZE;
+import static lotto.constant.ErrorMessage.*;
+import static lotto.constant.LottoResult.*;
+import static lotto.util.Util.convertStringToInt;
+import static lotto.util.Util.convertStringToIntegerList;
 
 public class WinningLotto {
     private final List<Integer> numbers;

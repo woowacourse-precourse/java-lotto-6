@@ -1,8 +1,7 @@
 package lotto.model;
 
-import lotto.LottoResult;
+import lotto.constant.LottoResult;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 

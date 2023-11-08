@@ -1,7 +1,7 @@
-package lotto;
+package lotto.constant;
 
-import static lotto.Constant.LOTTO_TICKET_PRICE;
-import static lotto.Constant.MAX_NUMBER_SIZE;
+import static lotto.constant.Constant.LOTTO_TICKET_PRICE;
+import static lotto.constant.Constant.MAX_NUMBER_SIZE;
 
 public enum ErrorMessage {
     NOT_INT("[ERROR] 정수가 아닌 입력입니다."),

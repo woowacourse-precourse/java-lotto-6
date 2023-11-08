@@ -1,13 +1,13 @@
 package lotto.view;
 
-import lotto.LottoResult;
+import lotto.constant.LottoResult;
 import lotto.model.Lotto;
 import lotto.model.ProfitStats;
 import lotto.model.TotalResult;
 
 import java.util.List;
 
-import static lotto.Util.println;
+import static lotto.util.Util.println;
 
 public class OutputView {
     public static void printPurchaseAmount(int amount) {

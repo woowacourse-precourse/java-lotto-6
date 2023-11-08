@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
+import lotto.model.Money;
 import lotto.util.LottoConverter;
 import lotto.util.Validator;
 
@@ -10,12 +11,12 @@ public class InputView {
         throw new IllegalArgumentException("[ERROR]");
     }
 
-    public static Integer inputMoney() {
+    public static Money inputMoney() {
         try {
             String money = Console.readLine();
-            Validator.validateMoney(money);
+            Validator.validateInput(money);
 
-            return Integer.parseInt(money);
+            return new Money(Integer.parseInt(money));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputMoney();

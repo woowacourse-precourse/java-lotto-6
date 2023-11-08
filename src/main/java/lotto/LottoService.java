@@ -9,6 +9,7 @@ import lotto.domain.LottoWinnerCounter;
 import lotto.domain.Lottos;
 import lotto.domain.generator.LottoGeneratorImpl;
 import lotto.domain.generator.RandomLottoGenerator;
+import lotto.util.ExecuteUntilSuccess;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
@@ -20,26 +21,17 @@ public class LottoService {
         Lottos lottos = generateLotto(lottoBuyer);
         printLottoResult(lottos);
         Lotto winnerNumber = getLottoWinnerFromPrompt();
-        BonusNumber bonusNumber = getBonusNumberFromPromptWiteWinningNumber(winnerNumber);
+        BonusNumber bonusNumber = getBonusNumberFromPromptWithWinningNumber(winnerNumber);
         LottoWinnerCounter lottoWinnerCounter = LottoWinnerCounter.generateLottoWinnerCounter();
         lottoWinnerCounter.calculateLottoResult(lottos, winnerNumber, bonusNumber);
         outputEntireLottoResult(lottoWinnerCounter, lottoBuyer);
     }
 
     private LottoBuyer getLottoCountFromPrompt() {
-        boolean untilValid = true;
-        LottoBuyer result = null;
-        while (untilValid) {
-            try {
-                OutputView.printInputLottoBuyNumber();
-                result = LottoBuyer.fromString(InputView.getBuyingLottoNumber());
-                untilValid = false;
-            } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e);
-            }
-        }
-        OutputView.printNewLine();
-        return result;
+        return ExecuteUntilSuccess.execute(
+                OutputView::printInputLottoBuyNumber,
+                InputView::getBuyingLottoNumber,
+                LottoBuyer::fromString);
     }
 
     private void printLottoResult(Lottos lottos) {
@@ -54,36 +46,19 @@ public class LottoService {
     }
 
     private Lotto getLottoWinnerFromPrompt() {
-        boolean untilValid = true;
-        Lotto result = null;
-        while (untilValid) {
-            try {
-                OutputView.printInputWinnerLottoNumber();
-                result = Lotto.fromString(InputView.getBuyingLottoNumber());
-                untilValid = false;
-            } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e);
-            }
-        }
-        OutputView.printNewLine();
-        return result;
+        return ExecuteUntilSuccess.execute(
+                OutputView::printInputWinnerLottoNumber,
+                InputView::getBuyingLottoNumber,
+                Lotto::fromString);
     }
 
-    private BonusNumber getBonusNumberFromPromptWiteWinningNumber(Lotto winnerNumber) {
-        boolean untilValid = true;
-        BonusNumber result = null;
-        while (untilValid) {
-            try {
-                OutputView.printInputBonusNumber();
-                result = BonusNumber.fromStringWitValidateWinningNumber(InputView.getBonusLottorNumber(),
-                        winnerNumber.getNumbers());
-                untilValid = false;
-            } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e);
-            }
-        }
-        OutputView.printNewLine();
-        return result;
+    private BonusNumber getBonusNumberFromPromptWithWinningNumber(Lotto winnerNumber) {
+        return ExecuteUntilSuccess.executeWithArgument(
+                OutputView::printInputBonusNumber,
+                InputView::getBonusLottorNumber,
+                (input,number) -> BonusNumber.fromStringWitValidateWinningNumber(input, number),
+                winnerNumber.getNumbers()
+        );
     }
 
     private void outputEntireLottoResult(LottoWinnerCounter lottoWinnerCounter, LottoBuyer lottoBuyer) {

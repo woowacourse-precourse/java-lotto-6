@@ -15,16 +15,18 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public void validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicates(numbers);
         validateRange(numbers);
     }
+
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
+
     private void validateDuplicates(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {

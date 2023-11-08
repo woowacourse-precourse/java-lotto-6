@@ -42,7 +42,7 @@ public class LotteryMessageBuilder {
     }
 
     private String returnRateOfProfit() {
-        return PROFIT_MESSAGE_START.getMessage() + rateOfProfit + PROFIT_MESSAGE_END.getMessage();
+        return PROFIT_MESSAGE_PREFIX.getMessage() + rateOfProfit + PROFIT_MESSAGE_SUFFIX.getMessage();
     }
 
     private String returnEachResult(int result, int count) {

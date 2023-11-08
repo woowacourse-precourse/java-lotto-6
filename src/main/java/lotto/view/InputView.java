@@ -48,7 +48,7 @@ public class InputView {
         return convertStringToListWithDelimeter(input);
     }
 
-    public static int inputBonusNumbers() {
+    public static int inputBonusNumber() {
         String input = "";
         try {
             System.out.println(OutputMessage.ASK_BONUS_NUMBER.getMessage());

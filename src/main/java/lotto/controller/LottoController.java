@@ -40,9 +40,10 @@ public class LottoController {
 
     private WinningLotto selectWinningLottoNumbers() {
         try {
-            List<Integer> winningSixNumbers = InputView.inputWinnerNumbers();
-            int winningBonusNumbers = InputView.inputBonusNumbers();
-            return new WinningLotto(new Lotto(winningSixNumbers), winningBonusNumbers);
+            List<Integer> winningSixNumberList = InputView.inputWinnerNumbers();
+            Lotto WinningSixNumberLotto = new Lotto(winningSixNumberList);
+            int winningBonusNumber = InputView.inputBonusNumber();
+            return new WinningLotto(WinningSixNumberLotto, winningBonusNumber);
         } catch(IllegalArgumentException e) {
             System.out.println("");
             return selectWinningLottoNumbers();

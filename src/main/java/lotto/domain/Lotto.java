@@ -1,7 +1,9 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.view.message.ExceptionMessage;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,6 +26,7 @@ public class Lotto {
 
     private void validateDuplicatedNum(List<Integer> numbers) {
         if (Set.copyOf(numbers).size() != 6) {
+            System.out.println(ExceptionMessage.ERROR_MESSAGE_ABOUT_DUPLICATED_LOTTO_NUMBERS.getMessage());
             throw new IllegalArgumentException();
         }
     }
@@ -31,6 +34,7 @@ public class Lotto {
     private void validateRange(List<Integer> numbers) {
         for (int i=0; i<6; i++) {
             if (numbers.get(i) < 1 || numbers.get(i) > 45) {
+                System.out.println(ExceptionMessage.ERROR_MESSAGE_ABOUT_WRONG_RANGED_LOTTO_NUMBERS.getMessage());
                 throw new IllegalArgumentException();
             }
         }
@@ -38,6 +42,7 @@ public class Lotto {
 
     private void validateCountNums(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            System.out.println(ExceptionMessage.ERROR_MESSAGE_ABOUT_SIX_COUNT.getMessage());
             throw new IllegalArgumentException();
         }
     }

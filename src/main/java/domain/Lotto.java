@@ -21,4 +21,14 @@ public class Lotto {
     public List<Integer> getLottoNumbers() {
         return numbers;
     }
+
+    public int match(List<Integer> list) {
+        int count = 0;
+        for (Integer integer : list) {
+            if (numbers.contains(integer)) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

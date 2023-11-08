@@ -7,11 +7,13 @@ import domain.Player;
 import utils.Validator;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class LottoService {
     private Player player;
     private Lottos lottos = new Lottos();
+    private static int BONUS_MATCH_NUMBER = 7;
 
     public List<Lotto> buyLotto(int input) {
         lottos = new Lottos();
@@ -35,11 +37,20 @@ public class LottoService {
         player = new Player(winningNumbers, bonusNumber);
     }
 
-    public List<Lotto> getLottos() {
-        return lottos.getLottoList();
+    public HashMap getWinningResult() {
+        HashMap<Integer, Integer> resultMap = new HashMap<>();
+        for (Lotto lotto : lottos.getLottoList()) {
+            int matchCount  = lotto.match(player.getWinningLotto().getLottoNumbers());
+            resultMap.put(matchCount, resultMap.getOrDefault(matchCount, 0) + 1);
+            if (matchCount == 5 && isBonusNumberMatch(lotto)) {
+                resultMap.put(matchCount, resultMap.getOrDefault(matchCount, 0) - 1);
+                resultMap.put(BONUS_MATCH_NUMBER, resultMap.getOrDefault(matchCount, 0) + 1);
+            }
+        }
+        return resultMap;
     }
 
-    public Lotto getWinnerNumbers() {
-        return player.getWinningLotto();
+    private boolean isBonusNumberMatch(Lotto lotto) {
+        return lotto.getLottoNumbers().contains(player.getBonusNumber());
     }
 }

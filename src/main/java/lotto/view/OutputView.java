@@ -1,11 +1,20 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
+
 import lotto.message.OutMessage;
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
+import lotto.model.Rank;
 
 public class OutputView {
 
+    private static final String FIFTH_FORMAT = "3개 일치 (5,000원) - %s개";
+    private static final String FOURTH_FORMAT = "4개 일치 (50,000원) - %s개";
+    private static final String THIRD_FORMAT = "5개 일치 (1,500,000원) - %s개";
+    private static final String SECOND_FORMAT = "5개 일치, 보너스 볼 일치 (30,000,000원) - %s개";
+    private static final String FIRST_FORMAT = "6개 일치 (2,000,000,000원) - %s개";
 
     public void printNumberOfLotto(List<Lotto> lottos) {
         System.out.println(String.format(OutMessage.OUT_NUMBER_OF_LOTTO.getMessage(), lottos.size()));
@@ -14,9 +23,15 @@ public class OutputView {
         }
     }
 
-    public void printWinningStatics() {
-        System.out.println(OutMessage.OUT_WINNING_STATISTICS.getMessage());
+    public void printWinningStatics(LottoResult lottoResult) {
+        System.out.println(OutMessage.OUT_WINNING_STATISTICS);
+        System.out.println(String.format(FIFTH_FORMAT, lottoResult.getRankingCount(Rank.FIFTH)));
+        System.out.println(String.format(FOURTH_FORMAT, lottoResult.getRankingCount(Rank.FOURTH)));
+        System.out.println(String.format(THIRD_FORMAT, lottoResult.getRankingCount(Rank.THIRD)));
+        System.out.println(String.format(SECOND_FORMAT, lottoResult.getRankingCount(Rank.SECOND)));
+        System.out.println(String.format(FIRST_FORMAT, lottoResult.getRankingCount(Rank.FIRST)));
     }
+
 
     public void printTotalReturn(double totalReturn) {
         System.out.println(String.format(OutMessage.OUT_TOTAL_RETURN.getMessage(), totalReturn));

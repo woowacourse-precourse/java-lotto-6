@@ -1,10 +1,16 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumMap;
+import java.util.Map;
+
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
+import lotto.model.Rank;
 
 public class LottoService {
 
@@ -22,8 +28,24 @@ public class LottoService {
             Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
         }
-
         return lottos;
+    }
+
+    public static LottoResult calculateResult(List<Lotto> lottos, Lotto winningLotto, int boonusNumber) {
+        Map<Rank, Integer> result = new EnumMap<>(Rank.class);
+        for (Lotto lotto : lottos) {
+            int count = calculateMathCount(lotto.getNumbers(), winningLotto);
+            boolean bonusContain = lotto.contains(boonusNumber);
+            Rank rank = Rank.checkRank(count, bonusContain);
+            result.put(rank, result.getOrDefault(rank, 0) + 1);
+        }
+        return new LottoResult(result);
+    }
+
+    private static int calculateMathCount(List<Integer> lotto, Lotto winningLotto) {
+        return (int) lotto.stream()
+                .filter(winningLotto::contains)
+                .count();
     }
 }
 

@@ -8,7 +8,7 @@ public enum ErrorMessage {
     NUMERIC_RANGE_ERROR("1이상 45 이하의 숫자만 입력이 가능합니다."),
     LOTTO_SIZE_ERROR("6개의 숫자 구성으로 이루어져야합니다."),
     DUPLICATE_NUMBER_ERROR("중복된 숫자 사용은 불가능합니다."),
-    ALREADY_EXIST_ERROR("이미 존재하는 번호가 포함되어 있습니다."),
+    ALREADY_EXIST_ERROR("당첨 번호에 이미 존재하는 번호 입니다."),
     INVALID_COMMA_USAGE_ERROR("쉼표(,)를 올바르게 사용해야합니다");
 
     private final static String ERROR_MESSAGE_HEADER = "[ERROR] %s";

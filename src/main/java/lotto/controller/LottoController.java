@@ -1,11 +1,12 @@
 package lotto.controller;
 
 import java.util.List;
+
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.service.LottoService;
 import lotto.model.Lotto;
-import lotto.util.Validator;
+import lotto.model.LottoResult;
 
 public class LottoController {
 
@@ -17,30 +18,19 @@ public class LottoController {
         this.outputView = outputView;
     }
     public void run() {
-        purchaseLotto();
-        getWinningNumbers();
+        List<Lotto> lottos = purchaseLotto();
+
+        Lotto winningNumbers = inputView.getWinningNumbers();
+        int bonusNumber = inputView.getBonusNumber();
+
+        LottoResult result = LottoService.calculateResult(lottos, winningNumbers, bonusNumber);
+        outputView.printWinningStatics(result);
     }
 
-    private void purchaseLotto() {
+    private List<Lotto> purchaseLotto() {
         int money = inputView.getLottoPurchaseAmount();
         List<Lotto> lottos = LottoService.purchaseLotto(money);
         outputView.printNumberOfLotto(lottos);
+        return lottos;
     }
-
-    private void getWinningNumbers() {
-        Lotto inputLotto = inputView.getWinningNumbers();
-        getBonusNumber(inputLotto);
-    }
-
-    private void getBonusNumber(Lotto inputLotto) {
-        int bonusNumber = inputView.getBonusNumber();
-        Validator.checkAlreadyExist(inputLotto, bonusNumber);
-
-    }
-
-    private void getLottoResult() {
-
-    }
-
-
 }

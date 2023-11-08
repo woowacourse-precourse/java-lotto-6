@@ -38,7 +38,7 @@ public class InputView {
     public static int getBonusNumber() {
         System.out.println(InputMessage.INPUT_BONUS_NUMBER.getMessage());
         String input = Console.readLine();
-        Validator.validateLottoPurchaseAmount(input);
+        Validator.validateBonusNumber(input);
         return Integer.parseInt(input);
     }
 }

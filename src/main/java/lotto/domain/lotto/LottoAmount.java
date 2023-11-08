@@ -32,7 +32,7 @@ public class LottoAmount {
     }
 
     private static void validatePositive(int amount) {
-        if(amount <= 0){
+        if(amount <= 1000){
             throw new LottoMoneyLessException();
         }
     }

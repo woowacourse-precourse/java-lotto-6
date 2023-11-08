@@ -8,7 +8,8 @@ public enum ErrorMessage {
     NOT_COMMA_SEPARATED_EXCEPTION("[ERROR] 로또 번호는 쉼표(,)로 구분한 6개를 입력해야합니다."),
     NOT_ALL_NUMERIC_EXCEPTION("[ERROR] 로또 번호는 숫자만 입력 가능합니다."),
     NOT_IN_RANGE_EXCEPTION("[ERROR] 로또 번호는 1부터 45까지의 숫자만 입력 가능합니다."),
-    NOT_UNIQUE_EXCEPTION("[ERROR] 로또 번호는 중복될 수 없습니다.");
+    NOT_UNIQUE_EXCEPTION("[ERROR] 로또 번호는 중복될 수 없습니다."),
+    INVALID_SIZE_EXCEPTION("[ERROR] 로또 번호는 6개여야 합니다.");
 
 
     ErrorMessage(String message) {

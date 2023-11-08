@@ -30,7 +30,7 @@ class LottoTest {
         List<Integer> list = List.of(1, 2, 3, 4, 5, 6);
 
         //then
-        assertThat(lotto.numberMatch(list)).isEqualTo(6);
+        assertThat(lotto.countMatchNumber(list)).isEqualTo(6);
     }
 
     @DisplayName("로또번호에 숫자가 포함되는지 확인")

@@ -29,7 +29,7 @@ class WinningNumbersManagerTest {
         WinningStatus winningStatus = winningNumbersManager.getWinningStatus(lottos);
 
         //then
-        assertThat(winningStatus.getSum(PrizeType.MATCH6)).isEqualTo(PrizeType.MATCH6.getPrize());
+        assertThat(winningStatus.getPrizeMoney(PrizeType.MATCH6)).isEqualTo(PrizeType.MATCH6.getPrize());
     }
 
     @Test
@@ -43,7 +43,7 @@ class WinningNumbersManagerTest {
         WinningStatus winningStatus = winningNumbersManager.getWinningStatus(lottos);
 
         //then
-        assertThat(winningStatus.getSum(PrizeType.MATCH5_WITH_BONUS)).isEqualTo(PrizeType.MATCH5_WITH_BONUS.getPrize());
+        assertThat(winningStatus.getPrizeMoney(PrizeType.MATCH5_WITH_BONUS)).isEqualTo(PrizeType.MATCH5_WITH_BONUS.getPrize());
     }
 
     @Test
@@ -57,7 +57,7 @@ class WinningNumbersManagerTest {
         WinningStatus winningStatus = winningNumbersManager.getWinningStatus(lottos);
 
         //then
-        assertThat(winningStatus.getSum(PrizeType.MATCH5)).isEqualTo(PrizeType.MATCH5.getPrize());
+        assertThat(winningStatus.getPrizeMoney(PrizeType.MATCH5)).isEqualTo(PrizeType.MATCH5.getPrize());
     }
 
     @Test
@@ -71,7 +71,7 @@ class WinningNumbersManagerTest {
         WinningStatus winningStatus = winningNumbersManager.getWinningStatus(lottos);
 
         //then
-        assertThat(winningStatus.getSum(PrizeType.MATCH4)).isEqualTo(PrizeType.MATCH4.getPrize());
+        assertThat(winningStatus.getPrizeMoney(PrizeType.MATCH4)).isEqualTo(PrizeType.MATCH4.getPrize());
     }
 
     @Test
@@ -85,6 +85,6 @@ class WinningNumbersManagerTest {
         WinningStatus winningStatus = winningNumbersManager.getWinningStatus(lottos);
 
         //then
-        assertThat(winningStatus.getSum(PrizeType.MATCH3)).isEqualTo(PrizeType.MATCH3.getPrize());
+        assertThat(winningStatus.getPrizeMoney(PrizeType.MATCH3)).isEqualTo(PrizeType.MATCH3.getPrize());
     }
 }

@@ -19,7 +19,7 @@ class WinningStatusTest {
             winningStatus.add(prizeType);
         }
 
-        assertThat(winningStatus.getSum(prizeType)).isEqualTo(prizeType.getPrize() * count);
+        assertThat(winningStatus.getPrizeMoney(prizeType)).isEqualTo(prizeType.getPrize() * count);
     }
 
     @ParameterizedTest
@@ -34,6 +34,6 @@ class WinningStatusTest {
             winningStatus.add(prizeType);
         }
 
-        assertThat(winningStatus.getSum()).isEqualTo((double) prizeType.getPrize() * count);
+        assertThat(winningStatus.getPrizeMoney()).isEqualTo((double) prizeType.getPrize() * count);
     }
 }

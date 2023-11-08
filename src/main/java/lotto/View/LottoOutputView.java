@@ -4,13 +4,13 @@ import lotto.Domain.Lotto;
 
 import java.util.List;
 
-import lotto.Domain.ErrorMessage;
+import lotto.Domain.EntireMessage;
 
 public class LottoOutputView {
 
     public void displayPurchasedTickets(List<Lotto> tickets) {
         int totalPrice = tickets.size() * 1000;
-        System.out.println(totalPrice + ErrorMessage.PURCHASED_MSG_PREFIX + tickets.size() + ErrorMessage.PURCHASED_MSG_SUFFIX);
+        System.out.println(totalPrice + EntireMessage.PURCHASED_MSG_PREFIX + tickets.size() + EntireMessage.PURCHASED_MSG_SUFFIX);
 
         for (Lotto ticket : tickets) {
             List<Integer> sortedNumbers = ticket.getSortedNumbers();

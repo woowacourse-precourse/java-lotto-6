@@ -31,14 +31,14 @@ public class InputValidator {
 
     public static void validateAmountOfWinningLottoNumber(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
-            throw new IllegalStateException(ErrorMessage.NOT_RIGHT_AMOUNT_OF_WINNING_NUMBER_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessage.NOT_RIGHT_AMOUNT_OF_WINNING_NUMBER_EXCEPTION_MESSAGE);
         }
     }
 
     public static void validateDuplicatedWinningLottoNumber(List<Integer> winningNumbers) {
         Set<Integer> set = winningNumbers.stream().collect(Collectors.toSet());
         if (set.size() != winningNumbers.size()) {
-            throw new IllegalStateException(ErrorMessage.DUPLICATED_NUMBER_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER_EXCEPTION_MESSAGE);
         }
     }
 

@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.validator.InputValidator;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -12,9 +14,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        InputValidator.validateAmountOfWinningLottoNumber(numbers);
+        InputValidator.validateDuplicatedWinningLottoNumber(numbers);
     }
 
     public List<Integer> getNumbers() {

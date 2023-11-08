@@ -19,10 +19,11 @@ public class LottoGameController {
     public void run() {
         Money money = generateMoney();
         OutputView.printPurchaseCount(money.getPurchaseLottoCount());
+
         List<Lotto> lottos = lottoStore.buyLotto(money);
         OutputView.printPurchaseLottos(lottos);
-        WinningLotto winningLotto = generateWinningLotto();
-        GameResult gameResult = new GameResult(lottos, winningLotto);
+
+        GameResult gameResult = new GameResult(lottos, generateWinningLotto());
         OutputView.printWinningStats(gameResult, money);
     }
 

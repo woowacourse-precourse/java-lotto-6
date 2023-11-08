@@ -17,5 +17,13 @@ class LotteryTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호가 범위를 벗아난 숫자라면 예외가 발생한다.")
+    @Test
+    void givenValidLotto_whenCreateLotteryWithOutOfRangeBonusNumber_thenThrowException() {
+        final Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThatThrownBy(() -> new Lottery(lotto, 100))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }

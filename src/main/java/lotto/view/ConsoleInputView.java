@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 public class ConsoleInputView implements InputView {
+
     @Override
     public Integer inputNumber() {
         String line = Console.readLine().trim();
@@ -18,11 +19,12 @@ public class ConsoleInputView implements InputView {
     @Override
     public List<Integer> inputNumbersSplitByComma() {
         String line = Console.readLine().trim();
-        String[] l = line.split(",");
-        if (l.length == 0) {
-            throw new IllegalArgumentException("SDFDSF");
+        String[] splitLine = line.split(",");
+        if (splitLine.length == 0) {
+            throw new IllegalArgumentException(InputErrorCode.SHOULD_SPLIT_BY_COMMA.getMessage());
         }
-        List<Integer> numbers = Arrays.stream(l)
+
+        List<Integer> numbers = Arrays.stream(splitLine)
                 .map(this::toInteger)
                 .toList();
         checkUnique(numbers);

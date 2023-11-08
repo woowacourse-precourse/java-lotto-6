@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.UserLotto;
 
 public class InputView {
     public static Integer moneyInput() {
@@ -34,4 +35,10 @@ public class InputView {
         }
     }
 
+    public static UserLotto lottosInput(int money) {
+        System.out.printf("\n%d개를 구매했습니다.%n", money);
+        UserLotto userLotto = new UserLotto(money);
+
+        return userLotto;
+    }
 }

@@ -8,6 +8,8 @@ import java.util.List;
 public class Game {
     private InputUser inputUser;
     private List<Lotto> numberTickets;
+
+    private WinningLotto winningLotto;
     private Integer lottoMoney;
     private Integer totalLottoCount;
 
@@ -23,6 +25,9 @@ public class Game {
         }
         List<Integer> winningNumbers = inputUser.inputWinningNumber();
         Integer bonusNumber = inputUser.inputBonusNumber();
+        this.winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        System.out.println(winningLotto.getLotto().getNumbers());
+        System.out.println(winningLotto.getBonusNumber());
     }
     private void makeNumberTicket(Integer lottoMoney){
         this.totalLottoCount = lottoMoney/1000;

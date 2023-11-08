@@ -3,6 +3,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -10,9 +11,9 @@ public class Application {
 
     public static void main(String[] args) {
         int purchaseAmount = 0;
-        boolean validFlag = false;
+        boolean validInput = false;
 
-        while (!validFlag) {
+        while (!validInput) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 String input = Console.readLine();
@@ -23,54 +24,54 @@ public class Application {
                 if (purchaseAmount % 1000 != 0) {
                     throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위로 입력해야 합니다.");
                 }
-                validFlag = true;
+                validInput = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
 
-        int ticketsNumber = purchaseAmount / 1000;
-        System.out.println("\n" + ticketsNumber + "개를 구매했습니다.");
+        int numberOfTickets = purchaseAmount / 1000;
+        System.out.println("\n" + numberOfTickets + "개를 구매했습니다.");
 
-        List<Lotto> tickets = generateRandomLotto(ticketsNumber);
+        List<Lotto> tickets = generateLottoTickets(numberOfTickets);
         for (Lotto lotto : tickets) {
-            System.out.println(lotto.getLottoNums());
+            System.out.println(lotto.getNumbers());
         }
 
-        Lotto matchingLotto = null;
-        validFlag = false;
+        Lotto winningLotto = null;
+        validInput = false;
 
-        while (!validFlag) {
+        while (!validInput) {
             try {
                 System.out.println("\n당첨 번호를 입력해 주세요.");
-                matchingLotto = inputValidLotto();
-                validFlag = true;
+                winningLotto = readLotto();
+                validInput = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
 
-        int bonusNum = 0;
-        validFlag = false;
+        int bonusNumber = 0;
+        validInput = false;
 
-        while (!validFlag) {
+        while (!validInput) {
             try {
                 System.out.println("\n보너스 번호를 입력해 주세요.");
-                bonusNum = Integer.parseInt(Console.readLine());
-                if (bonusNum < 1 || bonusNum > 45) {
+                bonusNumber = Integer.parseInt(Console.readLine());
+                if (bonusNumber < 1 || bonusNumber > 45) {
                     throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
                 }
-                validFlag = true;
+                validInput = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
 
-        int[] result = calculateResult(tickets, matchingLotto, bonusNum);
-        printResult(ticketsNumber, result);
+        int[] result = calculateResult(tickets, winningLotto, bonusNumber);
+        printResult(numberOfTickets, result);
     }
 
-    public static Lotto inputValidLotto() {
+    private static Lotto readLotto() {
         System.out.println("로또 번호를 입력해 주세요. (1부터 45까지의 숫자, 중복 없이 6개, 쉼표(,)로 구분)");
         String input = Console.readLine();
         String[] numberStrings = input.split(",");
@@ -91,7 +92,7 @@ public class Application {
     }
 
 
-    public static List<Lotto> generateRandomLotto(int numberOfTickets) {
+    private static List<Lotto> generateLottoTickets(int numberOfTickets) {
         List<Lotto> tickets = new ArrayList<>();
         for (int i = 0; i < numberOfTickets; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -101,10 +102,10 @@ public class Application {
         return tickets;
     }
 
-    public static int countWinningLottos(Lotto ticket, Lotto winningNums) {
+    private static int countMatchingNumbers(Lotto ticket, Lotto winningNums) {
         int count = 0;
-        List<Integer> ticketNumbers = ticket.getLottoNums();
-        List<Integer> winningNumbers = winningNums.getLottoNums();
+        List<Integer> ticketNumbers = ticket.getNumbers();
+        List<Integer> winningNumbers = winningNums.getNumbers();
         for (int number : ticketNumbers) {
             if (winningNumbers.contains(number)) {
                 count++;
@@ -113,11 +114,11 @@ public class Application {
         return count;
     }
 
-    public static int[] calculateResult(List<Lotto> tickets, Lotto winningLotto, int bonusNumber) {
+    private static int[] calculateResult(List<Lotto> tickets, Lotto winningLotto, int bonusNumber) {
         int[] result = new int[6];
         for (Lotto ticket : tickets) {
-            int matchedNumbers = countWinningLottos(ticket, winningLotto);
-            boolean hasBonusNumber = ticket.getLottoNums().contains(bonusNumber);
+            int matchedNumbers = countMatchingNumbers(ticket, winningLotto);
+            boolean hasBonusNumber = ticket.getNumbers().contains(bonusNumber);
             if (matchedNumbers == 6) {
                 result[0]++;
             } else if (matchedNumbers == 5 && hasBonusNumber) {
@@ -133,12 +134,12 @@ public class Application {
         return result;
     }
 
-    public static void printResult(int numberOfTickets, int[] result) {
-        int totalAmount = result[0] * 2000000000 + result[1] * 30000000 + result[2] * 1500000
+    private static void printResult(int numberOfTickets, int[] result) {
+        int totalWinningAmount = result[0] * 2000000000 + result[1] * 30000000 + result[2] * 1500000
                 + result[3] * 50000 + result[4] * 5000;
         double totalPurchaseAmount = numberOfTickets * 1000;
 
-        double profitRate = (totalAmount / totalPurchaseAmount) * 100;
+        double profitRate = (totalWinningAmount / totalPurchaseAmount) * 100;
 
         System.out.println("\n당첨 통계");
         System.out.println("---");

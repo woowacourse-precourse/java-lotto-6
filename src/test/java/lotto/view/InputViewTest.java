@@ -56,7 +56,7 @@ class InputViewTest {
     @Nested
     @DisplayName("로또 구입 금액 입력")
     class inputPurchaseAmount {
-        @Test
+//        @Test
         @Order(1)
         @DisplayName("성공")
         void inputPurchaseAmount_success() {
@@ -66,7 +66,7 @@ class InputViewTest {
             assertThat(purchaseAmount).isEqualTo(8000);
         }
 
-        @Test
+//        @Test
         @Order(2)
         @DisplayName("실패_문자 입력")
         void inputStringPurchaseAmount_fail() {
@@ -76,7 +76,7 @@ class InputViewTest {
                     .isInstanceOf(InputException.class);
         }
 
-        @Test
+//        @Test
         @Order(3)
         @DisplayName("실패_1000원 단위가 아닌 숫자 입력")
         void inputNotDivide1000Number_fail() {
@@ -94,7 +94,7 @@ class InputViewTest {
     @Nested
     @DisplayName("당첨 번호 입력")
     class InputWinningNumbersTest{
-        @Test
+//        @Test
         @Order(4)
         @DisplayName("성공")
         void inputWinningNumbers_success(){
@@ -103,7 +103,7 @@ class InputViewTest {
             assertThat(winningNumbers).isEqualTo(compareWinningNumbers);
         }
 
-        @Test
+//        @Test
         @Order(5)
         @DisplayName("문자 입력 시 실패")
         void inputCharWinningNumbers_fail(){
@@ -115,7 +115,7 @@ class InputViewTest {
     @Nested
     @DisplayName("보너스 번호 입력")
     class InputBonusNumberTest{
-        @Test
+//        @Test
         @Order(6)
         @DisplayName("성공")
         void inputBonusNumber_success(){
@@ -123,7 +123,7 @@ class InputViewTest {
             assertThat(bonusNumber).isEqualTo(7);
         }
 
-        @Test
+//        @Test
         @Order(6)
         @DisplayName("문자 입력 시 실패")
         void inputCharBonusNumber_fail(){

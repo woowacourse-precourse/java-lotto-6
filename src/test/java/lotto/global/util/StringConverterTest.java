@@ -35,7 +35,7 @@ class StringConverterTest {
     @Test
     @DisplayName("숫자 리스트로 문자열로 만들기 성공")
     void convertIntListToString_success(){
-        String compareString = "1,2,3,4";
+        String compareString = "1, 2, 3, 4";
         List<Integer> integers = Arrays.asList(1, 2, 3, 4);
         String convert = integerListToStringConverter.convert(integers);
         Assertions.assertThat(convert).isEqualTo(compareString);

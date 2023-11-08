@@ -56,7 +56,7 @@ class OutputViewTest {
         LottoTickets lottoTickets = new LottoTickets(Arrays.asList(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
                 new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11))));
         outputView.printPurchaseLottoTicketsInfo(lottoTickets);
-        Assertions.assertThat(getOutput()).contains("[1,2,3,4,5,6]");
+        Assertions.assertThat(getOutput()).contains("[1, 2, 3, 4, 5, 6]");
     }
 
     @Test
@@ -88,7 +88,7 @@ class OutputViewTest {
     @Test
     @DisplayName("총 수익률 출력")
     void printTotalReturn() {
-        outputView.printTotalReturn(62.5F);
+        outputView.printTotalReturn(62.5);
         Assertions.assertThat(getOutput()).contains("총 수익률은 62.5%입니다.");
     }
 }

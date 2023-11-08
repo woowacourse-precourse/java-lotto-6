@@ -4,7 +4,6 @@ import lotto.domain.*;
 import lotto.dto.LottoBundle;
 import lotto.dto.LottoResult;
 import lotto.service.LottoService;
-import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -26,7 +25,7 @@ public class LottoController {
         LottoBundle lottoBundle = buyLottoBundle();
         outputView.printLottoBundle(lottoBundle);
 
-        WinningLotto winningLotto = getAnswerLotto();
+        WinningLotto winningLotto = getWinningLotto();
 
         LottoResult result = lottoService.calculateResult(lottoBundle, winningLotto);
         outputView.printLottoResult(result);
@@ -37,16 +36,14 @@ public class LottoController {
         return lottoService.buyLottoBundle(money);
     }
 
-    private WinningLotto getAnswerLotto() {
+    private WinningLotto getWinningLotto() {
         Lotto answerLotto = handle(inputView::getAnswerLotto);
-        BonusNumber bonusNumber = handle(() -> getBonusNumber(answerLotto));
-        return new WinningLotto(answerLotto, bonusNumber);
+        return handle(() -> makeWinningLotto(answerLotto));
     }
 
-    private BonusNumber getBonusNumber(Lotto answerLotto) {
+    private WinningLotto makeWinningLotto(Lotto answerLotto) {
         BonusNumber bonusNumber = handle(inputView::getBonusNumber);
-        Validator.checkAlreadyContains(answerLotto, bonusNumber);
-        return bonusNumber;
+        return new WinningLotto(answerLotto, bonusNumber);
     }
 
 }

@@ -53,6 +53,32 @@ public class Application {
         }
     }
 
+    public static void inputWinningNumber(List<Integer> winningNumbers) {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String inputWinningNumbers = Console.readLine();
+        String[] splitWinningNumbers = inputWinningNumbers.split(",");
+
+        while (!isValidWinningNumber(splitWinningNumbers)) {
+            inputWinningNumbers = Console.readLine();
+            splitWinningNumbers = inputWinningNumbers.split(",");
+        }
+
+        for (String splitWinningNumber : splitWinningNumbers) {
+            winningNumbers.add(Integer.parseInt(splitWinningNumber));
+        }
+    }
+
+    public static boolean isValidWinningNumber(String[] splitWinningNumbers) {
+        for (int i = 0; i<splitWinningNumbers.length; i++) {
+            if (Integer.parseInt(splitWinningNumbers[i]) < 1 || Integer.parseInt(splitWinningNumbers[i]) > 45) {
+                IllegalArgumentException e = new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                System.out.println(e.getMessage());
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         String purchaseAmount = inputPurchaseAmount();
         System.out.println();
@@ -61,7 +87,9 @@ public class Application {
         List<List<Integer>> issuedLottoNumbers = new ArrayList<>();
         generateLottoNumbers(lottoQuantity, issuedLottoNumbers);
         printLottoNumbers(issuedLottoNumbers);
+        System.out.println();
 
-
+        List<Integer> winningNumbers = new ArrayList<>();
+        inputWinningNumber(winningNumbers);
     }
 }

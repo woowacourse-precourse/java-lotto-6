@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.LottoChanger;
 import lotto.domain.LottoGenerator;
+import lotto.dto.WinningNumberDto;
 import lotto.utility.Validation;
 import lotto.view.ExceptionView;
 import lotto.view.InputView;
@@ -14,7 +15,6 @@ public class LottoManager {
     private int lottoCount;
     private List<Lotto> lottoCollection;
 
-
     private LottoGenerator lottoGenerator;
 
     public LottoManager() {
@@ -22,9 +22,11 @@ public class LottoManager {
     }
 
     public void startLottoService() {
+        WinningNumberDto winningNumberDto;
+
         purchaseLotto(); //로또 구매하기
         generateLotto(); //로또 생성하기
-        setWinningAndBounsNumber(); //당첨 숫자 입력하기
+        winningNumberDto = setWinningAndBounsNumber(); //당첨 숫자 입력하기
     }
 
     private void purchaseLotto() {
@@ -57,12 +59,14 @@ public class LottoManager {
         }
     }
 
-    private void setWinningAndBounsNumber() {
+    private WinningNumberDto setWinningAndBounsNumber() {
         String winningNumber;
         String bonusNumber;
 
         winningNumber = setWinningNumber();
         bonusNumber = setBonusNumber();
+
+        return new WinningNumberDto(winningNumber, bonusNumber);
     }
 
     private String setWinningNumber() {
@@ -79,13 +83,13 @@ public class LottoManager {
         return winningNumber;
     }
 
-    private String setBonusNumber(){
+    private String setBonusNumber() {
         String bonusNumber;
 
-        try{
+        try {
             bonusNumber = InputView.readBonusNumber();
             Validation.validateBonusNumber(bonusNumber);
-        }catch (IllegalArgumentException | IllegalStateException e){
+        } catch (IllegalArgumentException | IllegalStateException e) {
             ExceptionView.printExceptionMessage(e.getMessage());
             bonusNumber = setBonusNumber();
         }

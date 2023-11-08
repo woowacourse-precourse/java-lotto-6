@@ -33,7 +33,7 @@ class LottoTest {
         LottoTicket lottoTicket = new LottoTicket(3);
 
         // then
-        assertEquals(3, lottoTicket.getLottoTicket().size());
+        assertEquals(3, lottoTicket.getLottos().size());
     }
 
     @DisplayName("금액이 1000으로 나눠떨어지지 않으면 예외가 발생한다.")
@@ -41,5 +41,30 @@ class LottoTest {
     void createPriceDivide() {
         assertThatThrownBy(() -> new LottoManager(5600))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호와 보너스 번호가 올바르게 저장되었는지 확인")
+    @Test
+    void createLottoAnalyzer() {
+        // given
+        List<Integer> lottoNumber = List.of(2,3,4,5,6,7);
+        List<String> prizeNumber = List.of("2","3","4","5","6","7");
+        LottoAnalyzer lottoAnalyzer = new LottoAnalyzer(prizeNumber, 8);
+
+        // then
+        assertEquals(lottoNumber, lottoAnalyzer.getPrizeNumber());
+        assertEquals(8, lottoAnalyzer.getBonusNumber());
+    }
+
+    @DisplayName("당첨 번호와 동일한 숫자 개수 저장이 올바르게 되는지")
+    @Test
+    void checkSameNumber() {
+        // given
+        List<Integer> lottoNumber = List.of(2,3,4,5,6,7);
+        List<String> prizeNumber = List.of("2","3","4","5","11","15");
+        LottoAnalyzer lottoAnalyzer = new LottoAnalyzer(prizeNumber, 8);
+
+        // then
+        assertEquals(4, lottoAnalyzer.compare(lottoNumber));
     }
 }

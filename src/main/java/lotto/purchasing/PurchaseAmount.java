@@ -4,8 +4,9 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.function.Predicate;
 import lotto.Askable;
+import lotto.Numbers;
 
-public class PurchaseAmount implements Askable<Integer> {
+public class PurchaseAmount extends Numbers<String> implements Askable<Integer> {
     @Override
     public Integer ask() {
         System.out.println(INPUT_PURCHASE_AMOUNT);
@@ -15,29 +16,36 @@ public class PurchaseAmount implements Askable<Integer> {
             input = readLine();
             input = stripCommas(input);
 
-        } while (!validate(input));
+        } while (validate(input));
 
         System.out.println();
 
         return Integer.parseInt(input);
     }
 
-    private boolean validate(String input) {
-        boolean corretInput = true;
+    @Override
+    protected boolean validate(String input) {
+        boolean isIncorret = false;
 
         try {
-            if (!isPositiveInteger.test(input)) {
-                throw new IllegalArgumentException(NON_POSITIVE_INTEGER_ERROR);
-            }
-            if (!isThousandUnit.test(input)) {
-                throw new IllegalArgumentException(NON_THOUSAND_UNIT_ERROR);
-            }
+            checkValidity(input);
+
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            corretInput = false;
+            isIncorret = true;
         }
 
-        return corretInput;
+        return isIncorret;
+    }
+
+    @Override
+    protected void checkValidity(String input) {
+        if (!isPositiveInteger.test(input)) {
+            throw new IllegalArgumentException(NON_POSITIVE_INTEGER_ERROR);
+        }
+        if (!isThousandUnit.test(input)) {
+            throw new IllegalArgumentException(NON_THOUSAND_UNIT_ERROR);
+        }
     }
 
     private final Predicate<String> isPositiveInteger = input -> {

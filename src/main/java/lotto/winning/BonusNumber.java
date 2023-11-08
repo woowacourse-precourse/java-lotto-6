@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import lotto.Askable;
 import lotto.Settings;
 
-public class BonusNumber extends Numbers implements Askable<Integer> {
+public class BonusNumber extends WinningNumbers implements Askable<Integer> {
     @Override
     public Integer ask() {
         System.out.println(INPUT_BONUS_NUMBER);
@@ -16,9 +16,9 @@ public class BonusNumber extends Numbers implements Askable<Integer> {
         List<Integer> convertedInput;
         do {
             input = readLine();
-            convertedInput = convertInput(input);
+            convertedInput = super.convertInput(input);
 
-        } while (validate(convertedInput));
+        } while (super.validate(convertedInput));
 
         System.out.println();
 
@@ -26,21 +26,7 @@ public class BonusNumber extends Numbers implements Askable<Integer> {
     }
 
     @Override
-    protected boolean validate(List<Integer> convertedInput) {
-        boolean isIncorret = false;
-
-        try {
-            checkValidity(convertedInput);
-
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            isIncorret = true;
-        }
-
-        return isIncorret;
-    }
-
-    private void checkValidity(List<Integer> convertedInput) {
+    protected void checkValidity(List<Integer> convertedInput) {
         if (!isCorrectRange.test(convertedInput)) {
             throw new IllegalArgumentException(NUMBER_RANGE_ERROR);
         }

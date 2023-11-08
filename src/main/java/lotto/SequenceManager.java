@@ -12,19 +12,19 @@ import lotto.winning.Prize;
 import lotto.winning.PrizeRankChecker;
 import lotto.winning.ResultBoard;
 import lotto.winning.Tally;
-import lotto.winning.WinningNumbers;
+import lotto.winning.MainNumbers;
 
 public class SequenceManager {
     PurchaseAmount purchaseAmount;
     Printer printer;
-    WinningNumbers winningNumbers;
+    MainNumbers mainNumbers;
     BonusNumber bonusNumber;
     PrizeRankChecker prizeRankChecker;
     Analyst analyst;
     ResultBoard resultBoard;
     public SequenceManager() {
         this.purchaseAmount = new PurchaseAmount();
-        this.winningNumbers = new WinningNumbers();
+        this.mainNumbers = new MainNumbers();
         this.bonusNumber = new BonusNumber();
         this.prizeRankChecker = new PrizeRankChecker();
         this.analyst = new Analyst();
@@ -39,7 +39,7 @@ public class SequenceManager {
 
         HashMap<Prize, HashMap<Tally, Integer>> updatedPrizes =
                 analyst.updatePrizes(
-                        prizeRankChecker.computeMatchedNumberCounts(lottos, winningNumbers.ask()),
+                        prizeRankChecker.computeMatchedNumberCounts(lottos, mainNumbers.ask()),
                         prizeRankChecker.computeMatchedNumberCounts(lottos, List.of(bonusNumber.ask())));
 
         Console.close();

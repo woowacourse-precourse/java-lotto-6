@@ -18,25 +18,11 @@ public class MainNumbers extends WinningNumbers implements Askable<List<Integer>
             input = readLine();
             convertedInput = super.convertInput(input);
 
-        } while (validate(convertedInput));
+        } while (super.validate(convertedInput));
 
         System.out.println();
 
         return convertedInput;
-    }
-
-    private boolean validate(List<Integer> convertedInput) {
-        boolean isIncorret = false;
-
-        try {
-            checkValidity(convertedInput);
-
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            isIncorret = true;
-        }
-
-        return isIncorret;
     }
 
     protected void checkValidity(List<Integer> convertedInput) {

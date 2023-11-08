@@ -41,18 +41,23 @@ public class LottoService {
         for (Lotto lotto : lottos.toElements()) {
             List<Integer> lottoNumbers = lotto.getNumbers();
             long count = lottoNumbers.stream().filter(winningLottoNumbers::contains).distinct().count();
-            if (count == LottoConstant.BONUS_NUMBER_CHECK && lottoNumbers.contains(bonusNumber)) {
-                incrementEnumMap(enumMap, LottoResultRule.matchCount(LottoConstant.BONUS_NUMBER_CHECK, true));
-            }
-            if (count == LottoConstant.BONUS_NUMBER_CHECK && !lottoNumbers.contains(bonusNumber)) {
-                incrementEnumMap(enumMap, LottoResultRule.matchCount(LottoConstant.BONUS_NUMBER_CHECK, false));
-
-            }
-            if (count != LottoConstant.BONUS_NUMBER_CHECK) {
-                incrementEnumMap(enumMap, LottoResultRule.matchCount(Integer.parseInt(String.valueOf(count)), false));
-            }
+            increaseCount(bonusNumber, enumMap, lottoNumbers, count);
         }
         return new WinningStatistic(enumMap);
+    }
+
+    private void increaseCount(Integer bonusNumber, Map<LottoResultRule, Integer> enumMap, List<Integer> lottoNumbers,
+                           long count) {
+        if (count == LottoConstant.BONUS_NUMBER_CHECK && lottoNumbers.contains(bonusNumber)) {
+            incrementEnumMap(enumMap, LottoResultRule.matchCount(LottoConstant.BONUS_NUMBER_CHECK, true));
+        }
+        if (count == LottoConstant.BONUS_NUMBER_CHECK && !lottoNumbers.contains(bonusNumber)) {
+            incrementEnumMap(enumMap, LottoResultRule.matchCount(LottoConstant.BONUS_NUMBER_CHECK, false));
+
+        }
+        if (count != LottoConstant.BONUS_NUMBER_CHECK) {
+            incrementEnumMap(enumMap, LottoResultRule.matchCount(Integer.parseInt(String.valueOf(count)), false));
+        }
     }
 
     private void incrementEnumMap(final Map<LottoResultRule, Integer> enumMap, final LottoResultRule key) {

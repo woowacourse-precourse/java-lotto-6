@@ -25,8 +25,8 @@ public class LottoController {
 
     public void processLotto() {
         PurchaseAmount purchaseAmount = payOnAmount();
-        buyLotto(purchaseAmount.getPurchaseAmount());
 
+        buyLotto(purchaseAmount.getPurchaseAmount());
         printPurchasedLotto(purchaseAmount.getPurchaseAmount());
 
         storeLottoResult();

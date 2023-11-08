@@ -18,16 +18,13 @@ public class InputService {
     private List<Integer> winnerNumbers;
 
     public List<Lotto> createLottoTickets() {
-        while (true) {
-            try {
-                amount = inputView.getPurchaseAmount();
-                break;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            amount = inputView.getPurchaseAmount();
+            return createLotto();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createLottoTickets();
         }
-
-        return createLotto();
     }
 
     private List<Lotto> createLotto() {
@@ -40,16 +37,14 @@ public class InputService {
     }
 
     public GameInfo createGameInfo() {
-        while (true) {
-            try {
-                winnerNumbers = inputView.getWinnerNumbers();
-                bonusNumber = inputView.getBonusNumber();
-                Validation.duplicationCheck(winnerNumbers, bonusNumber);
-                break;
-            } catch (Exception e) {
-                System.out.printf(e.getMessage());
-            }
+        try {
+            winnerNumbers = inputView.getWinnerNumbers();
+            bonusNumber = inputView.getBonusNumber();
+            Validation.duplicationCheck(winnerNumbers, bonusNumber);
+            return new GameInfo(winnerNumbers, bonusNumber, amount * LOTTO_PRICE.getValue());
+        } catch (IllegalArgumentException e) {
+            System.out.printf(e.getMessage());
+            return createGameInfo();
         }
-        return new GameInfo(winnerNumbers, bonusNumber, amount * LOTTO_PRICE.getValue());
     }
 }

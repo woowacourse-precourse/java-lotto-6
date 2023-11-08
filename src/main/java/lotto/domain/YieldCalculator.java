@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.constant.LottoConstant.LOTTO_PRICE;
+import static lotto.constant.LottoConstant.ONE_HUNDRED;
 
 import lotto.utils.YieldFormatter;
 
@@ -17,6 +18,6 @@ public class YieldCalculator {
     }
 
     private String calculateYield(double sum, double totalLottoPrice) {
-        return YieldFormatter.format((sum / totalLottoPrice) * 100);
+        return YieldFormatter.format((sum / totalLottoPrice) * ONE_HUNDRED);
     }
 }

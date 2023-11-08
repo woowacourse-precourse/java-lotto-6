@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Application {
@@ -19,11 +20,20 @@ public class Application {
     }
 
     public void play() {
-        getPurchaseAmount();
-        getPurchaseCount();
-        setNumbers();
-        getSelectNumbers();
-        lottoResult();
+        try {
+            getPurchaseAmount();
+            getPurchaseCount();
+            setNumbers();
+            getSelectNumbers();
+            lottoResult();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            if (e.getMessage().contains("로또 구입 금액")) {
+                play();
+            } else {
+                getSelectNumbers();
+            }
+        }
     }
 
     private void getPurchaseAmount() {
@@ -33,6 +43,8 @@ public class Application {
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException("로또 구입 금액은 1000원 단위여야 합니다.");
         }
+        getPurchaseCount();
+        System.out.printf("%d개를 구매했습니다.\n", purchaseCount);
     }
 
     private void getPurchaseCount() {
@@ -49,7 +61,9 @@ public class Application {
     }
 
     private List<Integer> getNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
+        return numbers;
     }
 
     private void getSelectNumbers() {
@@ -77,13 +91,16 @@ public class Application {
     }
 
     private void checkLottoNumbers(List<Integer> numbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+
         int correctLottoNumbers = 0;
-        for (int i = 0; i < numbers.size(); i++) {
-            if (selectNumbers.contains(numbers.get(i))) {
+        for (int i = 0; i < sortedNumbers.size(); i++) {
+            if (selectNumbers.contains(sortedNumbers.get(i))) {
                 correctLottoNumbers++;
             }
         }
-        if (correctLottoNumbers == 5 && numbers.contains(selectNumbers.get(6))) {
+        if (correctLottoNumbers == 5 && sortedNumbers.contains(selectNumbers.get(6))) {
             ranking[0]++; // 2등.
             return;
         }
@@ -98,7 +115,9 @@ public class Application {
         System.out.printf("5개 일치 (1,500,000원) - %d개\n", ranking[2]);
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", ranking[0]);
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", ranking[1]);
-        System.out.printf("총 수익률은 %.1f", (float) (ranking[4] * 5000 + ranking[3] * 50000 + ranking[2] * 1500000 + ranking[0] * 30000000 + ranking[1] * 2000000000) / purchaseAmount);
+        double profitRate = (double) (ranking[4] * 5000 + ranking[3] * 50000 + ranking[2] * 1500000 + ranking[0] * 30000000 + ranking[1] * 2000000000) / purchaseAmount * 100;
+        profitRate = Math.round(profitRate * 10.0) / 10.0;
+        System.out.printf("총 수익률은 %.1f", profitRate);
         System.out.print("%입니다.");
     }
 }

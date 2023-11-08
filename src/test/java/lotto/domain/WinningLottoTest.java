@@ -4,6 +4,7 @@ import static lotto.constants.ErrorMessage.BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE;
 import static lotto.constants.ErrorMessage.LOTTO_NUMBER_COUNT_ERROR_MESSAGE;
 import static lotto.constants.ErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE;
 import static lotto.constants.ErrorMessage.LOTTO_NUMBER_RANGE_ERROR_MESSAGE;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -68,5 +69,15 @@ class WinningLottoTest {
         assertThatThrownBy(() -> new WinningLotto(lottoNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBER_RANGE_ERROR_MESSAGE);
+    }
+
+    @DisplayName("당첨 번호와 구입한 로또를 비교하고 당첨 등수를 반환한다.")
+    @Test
+    void calculateRank() {
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+
+        Rank rank = winningLotto.calculateRank(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
+
+        assertThat(rank).isEqualTo(Rank.SECOND);
     }
 }

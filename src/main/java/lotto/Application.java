@@ -22,7 +22,7 @@ public class Application {
                 ConsoleOutput.buyInfoMessage();
                 numberOfLottos = ConsoleInput.buy();
             } catch (IllegalArgumentException illegalArgumentException) {
-                illegalArgumentException.getMessage();
+                System.out.println(illegalArgumentException.getMessage());
             }
         }
         ConsoleOutput.howMuchLottoMessage(numberOfLottos);
@@ -35,7 +35,7 @@ public class Application {
                 ConsoleOutput.winningNumberInfoMessage();
                 winningNumbers = ConsoleInput.winningNumbers();
             } catch (IllegalArgumentException illegalArgumentException) {
-                illegalArgumentException.getMessage();
+                System.out.println(illegalArgumentException.getMessage());
             }
         }
 
@@ -44,7 +44,7 @@ public class Application {
                 ConsoleOutput.bonusNumberInfoMessage();
                 bonusNumber = ConsoleInput.bonusNumber();
             } catch (IllegalArgumentException illegalArgumentException) {
-                illegalArgumentException.getMessage();
+                System.out.println(illegalArgumentException.getMessage());
             }
         }
 

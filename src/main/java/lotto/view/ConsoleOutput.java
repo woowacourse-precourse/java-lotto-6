@@ -31,11 +31,12 @@ public class ConsoleOutput {
 
     public static void resultMessage(Model model) {
         System.out.println(InfoMessage.INFO_RESULT.getMessage());
-        System.out.println(InfoMessage.RESULT_5.getMessage() + model.getFifth());
-        System.out.println(InfoMessage.RESULT_4.getMessage() + model.getFourth());
-        System.out.println(InfoMessage.RESULT_3.getMessage() + model.getThird());
-        System.out.println(InfoMessage.RESULT_2.getMessage() + model.getSecond());
-        System.out.println(InfoMessage.RESULT_1.getMessage() + model.getFirst());
+        System.out.println("---");
+        System.out.println(InfoMessage.RESULT_5.getMessage() + model.getFifth() + "개");
+        System.out.println(InfoMessage.RESULT_4.getMessage() + model.getFourth() + "개");
+        System.out.println(InfoMessage.RESULT_3.getMessage() + model.getThird() + "개");
+        System.out.println(InfoMessage.RESULT_2.getMessage() + model.getSecond() + "개");
+        System.out.println(InfoMessage.RESULT_1.getMessage() + model.getFirst() + "개");
         System.out.printf("총 수익률은 %.1f%%입니다.", model.getEarningRate());
     }
 }

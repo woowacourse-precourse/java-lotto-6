@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.dto.LottosDto;
 import lotto.model.Lotto;
 import lotto.model.PurchaseAmount;
-import lotto.model.RnadomNumberGenerator;
+import lotto.model.RandomNumberGenerator;
 
 public class UserService {
     private PurchaseAmount purchaseAmount;
@@ -17,7 +17,7 @@ public class UserService {
 
     public LottosDto purchaseLottos() {
         for (int i = 0; i < calculateNumberOfPurchase(); i++) {
-            List<Integer> randomNumbers = RnadomNumberGenerator.generateUniqueSixNumber();
+            List<Integer> randomNumbers = RandomNumberGenerator.generateUniqueSixNumber();
             lottos.add(new Lotto(randomNumbers));
         }
         return getLottosDto();

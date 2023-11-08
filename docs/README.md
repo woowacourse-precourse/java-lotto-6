@@ -11,42 +11,133 @@
 
 ## 📁 &nbsp;패키지 구조
 
+<table>
+    <tr>
+        <th align="center">Package</th>
+        <th align="center">Class</th>
+        <th align="center">Description</th>
+    </tr>
+    <tr>
+        <td>&nbsp;controller</td>
+        <td>&nbsp;&nbsp;Game</td>
+        <td>로또 게임 로직에서 Service와 View를 호출하는 클래스</td>
+    </tr>
+    <tr><td colspan="3"></td></tr>
+    <tr>
+        <td rowspan="3">&nbsp;&nbsp;dto</td>
+        <td>&nbsp;&nbsp;LottoDto</td>
+        <td>로또 번호를 View에 전달하기 위한 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;LottosDto</td>
+        <td>로또 구매 개수와 로또 번호들을 View에 전달하기 위한 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;ResultDto</td>
+        <td>구매한 로또의 결과를 View에 전달하기 위한 클래스</td>
+    </tr>
+    <tr><td colspan="3"></td></tr>
+    <tr>
+        <td rowspan="6">&nbsp;&nbsp;model</td>
+        <td>&nbsp;&nbsp;BonusNumber</td>
+        <td>보너스 번호 조건에 부합하는 유효성 검사를 수행하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;Lotto</td>
+        <td>로또 번호 조건에 부합하는 유효성 검사를 수행하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;PurchaseAmount</td>
+        <td>구매 금액의 조건에 부합하는 유효성 검사를 수행하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;RandomNumberGenerator</td>
+        <td>1에서 45 사이의 랜덤값 6개를 생성하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;Result</td>
+        <td>로또 한개의 결과를 계산하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;WinningNumber</td>
+        <td>로또 당첨 번호의 조건에 부합하는 유효성 검사를 수행하는 클래스</td>
+    </tr>
+    <tr><td colspan="3"></td></tr>
+    <tr>
+        <td rowspan="3">&nbsp;&nbsp;service</td>
+        <td>&nbsp;&nbsp;LottoService</td>
+        <td>로또 당첨 번호와 보너스 번호를 생성하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;ResultService</td>
+        <td>구매한 모든 로또의 결과와 수익률을 계산하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;UserService</td>
+        <td>구매금액에 맞게 로또를 생성하는 클래스</td>
+    </tr>
+    <tr><td colspan="3"></td></tr>
+    <tr>
+        <td rowspan="2">&nbsp;&nbsp;view</td>
+        <td>&nbsp;&nbsp;InputView</td>
+        <td>사용자의 입력을 받는 동작을 수행하는 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;OutputView</td>
+        <td>사용자에게 메시지를 출력하는 클래스</td>
+    </tr>
+    <tr><td colspan="3"></td></tr>
+    <tr>
+        <td rowspan="3">view.message</td>
+        <td>&nbsp;&nbsp;Error</td>
+        <td>에러 메시지를 관리하는 enum 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;Prompt</td>
+        <td>공지 메시지를 관리하는 enum 클래스</td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;Rank</td>
+        <td>당첨 결과를 관리하는 enum 클래스</td>
+    </tr>
+</table>
+
 ---
 
 ## 📌 &nbsp;기능 목록
 
-- [x] **구입 금액을 입력받는다.** - View
+- [x] **구입 금액을 입력받는다.**
     - [x] 숫자가 아닐 경우 예외를 발생시키고 다시 입력받는다.
     - [x] 양수가 아닐 경우 예외를 발생시키고 다시 입력받는다.
     - [x] 1000 단위가 아닐 경우 예외를 발생시키고 다시 입력받는다. <br/>
 
 
 - [x] **구입 개수만큼 로또를 발행한다.**
-    - [x] 서로 다른 숫자 6개를 뽑는다 - RandomNumberGenerator
+    - [x] 서로 다른 숫자 6개를 뽑는다
     - [x] 6개의 숫자가 아닌 경우 예외를 발생시킨다.
     - [x] 서로 다른 숫자가 아닌 경우 예외를 발생시킨다.
     - [x] 1에서 45 사이의 숫자가 아닌 경우에 예외를 발생시킨다.<br/>
 
 
-- [x] **로또 수량과 번호를 출력한다.** - OutputView
-    - [x] 로또 번호는 오름차순 정렬하여 출력한다. - OutputView <br/>
+- [x] **로또 수량과 번호를 출력한다.**
+    - [x] 로또 번호는 오름차순 정렬하여 출력한다. <br/>
 
 
-- [x] **당첨 번호 숫자를 입력받는다.** - InputView
-    - [x] 쉼표를 기준으로 번호를 구분한다. - CommaDelimiterParser
+- [x] **당첨 번호 숫자를 입력받는다.**
+    - [x] 쉼표를 기준으로 번호를 구분한다.
     - [X] 숫자가 6개가 아닌경우 예외를 발생시키고 다시 입력받는다.
-    - [x] 정수가 아닌 문자가 포함되어 있을 경우 예외를 발생시키고 다시 입력받는다. - WinningNumber
+    - [x] 정수가 아닌 문자가 포함되어 있을 경우 예외를 발생시키고 다시 입력받는다.
     - [x] 1에서 45 사이 이외의 숫자가 포함되어 있을 경우 예외를 발생시키고 다시 입력받는다.
-    - [x] 중복된 숫자가 포함된 경우 예외를 발생시키고 다시 입력받는다. - WinningNumber<br/>
+    - [x] 중복된 숫자가 포함된 경우 예외를 발생시키고 다시 입력받는다. <br/>
 
 
-- [x] **보너스 번호를 숫자 1개를 입력 받는다.** - View
-    - [x] 숫자가 아닐 경우 예외를 발생시키고 다시 입력받는다. - BonusNumber
+- [x] **보너스 번호를 숫자 1개를 입력 받는다.**
+    - [x] 숫자가 아닐 경우 예외를 발생시키고 다시 입력받는다.
     - [x] 1에서 45 사이의 숫자가 아닐경우 예외를 발생시키고 다시 입력받는다.
-    - [x] 당첨 번호 숫자 6개와 중복되는 경우 예외를 발생시키고 다시 입력받는다. - BonusNumber<br/>
+    - [x] 당첨 번호 숫자 6개와 중복되는 경우 예외를 발생시키고 다시 입력받는다. <br/>
 
 
-- [x] **로또 번호와 당첨 번호를 비교한다.** - Result
+- [x] **로또 번호와 당첨 번호를 비교한다.**
     - [x] 6개의 번호가 일치하면 1등이다.
     - [x] 5개 번호 + 보너스 번호가 일치하면 2등이다.
     - [x] 5개 번호가 일치하면 3등이다.
@@ -55,11 +146,11 @@
     - [x] 그 이하는 순위에 포함되지 않는다.<br/>
 
 
-- [x] **수익률을 계산한다.** - ReturnRate
+- [x] **수익률을 계산한다.**
     - [x] 수익률을 소수 2째 자리에서 반올림한다.<br/>
 
 
-- [x] **당첨 내역과 수익률을 출력한다.** - OutputView
+- [x] **당첨 내역과 수익률을 출력한다.**
 
 ---
 

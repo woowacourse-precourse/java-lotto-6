@@ -104,6 +104,18 @@ public class Player{
 
     }
 
+    public void printProfitRate(){
+        System.out.print("총 수익률은 " + calculateProfitRate() + "%입니다.");
+    }
+
+    public double calculateProfitRate(){
+        double profit;
+        profit =  (double)totalProfit / amount * 100;
+        double profitRate = Math.round(profit*100)/100.0;
+
+        return profitRate;
+    }
+
     public void playGame(){
         inputAmount();
         buyLotto();
@@ -114,6 +126,6 @@ public class Player{
 
         checkNumbers();
         printWonLotto();
-
+        printProfitRate();
     }
 }

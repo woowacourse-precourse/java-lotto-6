@@ -16,15 +16,16 @@
   - [0] 입력받은 보너스 번호가 1~45 사이의 숫자인지 확인한다 - Judgment#isInRange
 
 
-- [] 입력받은 로또 번호들의 당첨 여부를 판단한다 - Player#checkNumbers
-    - [] 당첨 번호와 일치하는 개수를 확인하여 등수를 매긴다 - Player#rankLotto
-      - [] 로또 번호가 당첨 번호에 포함되는지 확인한다 - Player#CompareWinningNumber
-      - [] 보너스 번호가 일치하는지 확인한다 - Player#CompareBonusNumber
-- [] 당첨된 로또 목록을 출력한다 - Player#printWonLotto
-  - [] 로또 등수와 금액을 관리한다 - LottoMatchNumber *enum*
-- [] 당첨된 로또로 벌어들인 수익률을 계산한다 - Judgment#calculateProfitRate
-- [] 당첨된 로또 수익률을 출력한다 - Judgment#printProfitRate
+- [0] 입력받은 로또 번호들의 당첨 여부를 판단한다 - Player#checkNumbers
+    - [0] 당첨 번호와 일치하는 개수를 확인하여 등수를 매긴다 - Player#rankLotto
+      - [0] 로또 번호가 당첨 번호에 포함되는지 확인한다 - Player#CompareWinningNumber
+      - [0] 보너스 번호가 일치하는지 확인한다 - Player#CompareBonusNumber
+- [0] 당첨된 로또 목록을 출력한다 - Player#printWonLotto
+  - [0] 로또 등수와 금액을 관리한다 - LottoMatchNumber *enum*
+- [0] 당첨된 로또로 벌어들인 수익률을 계산한다 - Player#calculateProfitRate
+- [0] 당첨된 로또 수익률을 출력한다 - Player#printProfitRate
 
+- [0] 플레이어가 로또 게임을 시작한다 - Player#playGame
 
 ## 기능 요구 사항
 

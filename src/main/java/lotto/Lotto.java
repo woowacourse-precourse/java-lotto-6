@@ -1,10 +1,5 @@
 package lotto;
-
-import camp.nextstep.edu.missionutils.Console;
-
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -27,10 +22,5 @@ public class Lotto {
 
     public boolean isIncludes(int number){
         return numbers.contains(number);
-    }
-
-    public void printNumbers(){
-            System.out.println(numbers.toString());
-
     }
 }

@@ -1,11 +1,13 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -25,4 +27,11 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 생성 시 로또 번호가 오름차순 정렬된다.")
+    @Test
+    void lottoNumbersSorted() {
+        Lotto lotto1 = new Lotto(List.of(6, 5, 4, 3, 2, 1));
+        assertThat(lotto1.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
+
 }

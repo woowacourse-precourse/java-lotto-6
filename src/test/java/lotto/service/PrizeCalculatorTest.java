@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.model.Rank;
 import lotto.model.PurchaseAmount;
+import lotto.model.Revenue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -21,16 +22,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PrizeCalculatorTest {
 
-    private final Calculator prizeCalculator = new PrizeCalculator();
+    private final Calculator<Revenue> prizeCalculator = new PrizeCalculator();
 
     @DisplayName("로또 수익률 계산")
     @ParameterizedTest(name = "{displayName} prizes: {0}, expected: {1}")
     @MethodSource("totalReturnParametersProvider")
     void checkTotalReturn(List<Rank> prizes, PurchaseAmount amount, String expected) {
-        Long revenue = Rank.sum(prizes);
+        Long sumPrizes = Rank.sum(prizes);
         Long investmentCost = Long.valueOf(amount.getAmount());
-        Double totalReturn = prizeCalculator.calculate(revenue, investmentCost);
-        assertThat(String.format("%.1f", totalReturn * 100)).isEqualTo(expected);
+        Revenue revenue = prizeCalculator.calculate(sumPrizes, investmentCost);
+        assertThat(revenue.getPercentage()).isEqualTo(expected);
     }
 
     static Stream<Arguments> totalReturnParametersProvider() {

@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 import lotto.model.Result;
+import lotto.model.Revenue;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -33,8 +34,8 @@ public class OutputViewImpl implements OutputView {
     }
 
     @Override
-    public void printTotalReturn(Double totalReturn) {
-        System.out.printf(TOTAL_RETURN_PREFIX, String.format("%.1f", totalReturn * 100));
+    public void printTotalReturn(Revenue revenue) {
+        System.out.printf(TOTAL_RETURN_PREFIX, revenue.getPercentage());
     }
 
     @Override

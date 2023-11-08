@@ -1,13 +1,14 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
-import lotto.model.Rank;
 import lotto.model.PurchaseAmount;
+import lotto.model.Rank;
 import lotto.model.Result;
+import lotto.model.Revenue;
 import lotto.model.WinningLotto;
 import lotto.service.Calculator;
-import lotto.service.PrizeCalculator;
 import lotto.service.LottoIssuer;
+import lotto.service.PrizeCalculator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -34,8 +35,8 @@ public class LottoController {
         List<Rank> winners = collectWinners(boughtLotto, winningLotto);
         Result result = Result.from(winners);
         outputView.printWinningStatistics(result);
-        Double totalReturn = calculate(winners, amount);
-        outputView.printTotalReturn(totalReturn);
+        Revenue revenue = calculate(winners, amount);
+        outputView.printTotalReturn(revenue);
     }
 
     private List<Lotto> buyLotto(PurchaseAmount amount) {
@@ -43,11 +44,11 @@ public class LottoController {
         return lottoIssuer.issueLotto();
     }
 
-    private Double calculate(List<Rank> ranks, PurchaseAmount amount) {
-        Calculator prizeCalculator = new PrizeCalculator();
-        Long revenue = Rank.sum(ranks);
+    private Revenue calculate(List<Rank> ranks, PurchaseAmount amount) {
+        Calculator<Revenue> calculator = new PrizeCalculator();
+        Long prizes = Rank.sum(ranks);
         Long investmentCost = Long.valueOf(amount.getAmount());
-        return prizeCalculator.calculate(revenue, investmentCost);
+        return calculator.calculate(prizes, investmentCost);
     }
 
     private List<Rank> collectWinners(List<Lotto> boughtLotto, WinningLotto winningLotto) {

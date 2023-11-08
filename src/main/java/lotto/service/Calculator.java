@@ -1,5 +1,5 @@
 package lotto.service;
 
-public interface Calculator {
-    Double calculate(Long revenue, Long investmentCost);
+public interface Calculator<T> {
+    T calculate(Long revenue, Long investmentCost);
 }

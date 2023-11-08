@@ -1,8 +1,10 @@
 package lotto.service;
 
-public class PrizeCalculator implements Calculator {
+import lotto.model.Revenue;
+
+public class PrizeCalculator implements Calculator<Revenue> {
     @Override
-    public Double calculate(Long revenue, Long investmentCost) {
-        return (double) revenue / investmentCost;
+    public Revenue calculate(Long revenue, Long investmentCost) {
+        return new Revenue((double) revenue / investmentCost);
     }
 }

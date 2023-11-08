@@ -125,6 +125,6 @@
 - [o] LottoTicketCreatorTest
 - [o] LottoMatchingDataTest
 - [o] LottoRankCheckerTest
-- [ ] LottoReturnsCalculatorTest
+- [o] LottoReturnsCalculatorTest
 - [ ] LottoTotalWinningsTest
 - [ ] LottoWinningStatisticsTest 

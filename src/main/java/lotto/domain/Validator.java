@@ -106,5 +106,12 @@ public class Validator {
         return bonusNumber;
     }
 
+    public void compareWithLottoNumbers(List<Integer> winningLottoNumbers, int bonusNumber){
+        if(winningLottoNumbers.contains(bonusNumber)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복되면 안됩니다.");
+        }
+
+    }
+
 
 }

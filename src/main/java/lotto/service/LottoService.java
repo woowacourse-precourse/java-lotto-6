@@ -72,6 +72,7 @@ public class LottoService {
     }
 
     public int setBonusNumber() {
+        NumberValidation.isACorrectNumber(bonusNum);
         int bonusNumber = Parsing.stringToInt(bonusNum);
         NumberValidation.isACorrectRange(bonusNumber);
         return bonusNumber;

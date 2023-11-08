@@ -9,7 +9,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class UserLottoTest {
-    @DisplayName("사용자가 작성한 숫자 중에서 0 혹은 공백이 작성된 경우 예외가 발생한다.")
+    @DisplayName("사용자가 작성한 숫자 중에서 0이 작성된 경우 예외가 발생한다.")
     @Test
     void createLottoByZero() {
         //given
@@ -27,4 +27,25 @@ public class UserLottoTest {
         assertThatThrownBy(lottoService::setBonusNumber)
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("사용자가 작성한 숫자 중에서 공백이 작성된 경우 예외가 발생한다.")
+    @Test
+    void createLottoBySpace() {
+        //given
+        String lottoNum = " ,1,2,3,4,5";
+        String bonusNum = " ";
+        LottoService lottoService = new LottoService();
+
+        //when
+        lottoService.setPurchaseNum(lottoNum);
+        lottoService.setBonusNum(bonusNum);
+
+        //then
+        assertThatThrownBy(lottoService::setLottoNumberList)
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(lottoService::setBonusNumber)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    
 }

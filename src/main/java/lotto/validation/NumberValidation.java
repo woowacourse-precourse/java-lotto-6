@@ -5,6 +5,7 @@ import static lotto.exception.GlobalExceptionHandler.handleCustomException;
 import lotto.exception.errorzip.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class NumberValidation {
     private static final int ONE_THOUSAND = 1000;
@@ -44,8 +45,15 @@ public class NumberValidation {
         }
     }
 
-    public static void isCorrectNumber(String inputValue){
+    public static void isACorrectNumber(String inputValue){
         if(!inputValue.isEmpty() || !inputValue.isBlank()){
+            handleCustomException(new NotAllNumber());
+        }
+    }
+
+    public static void isCorrectNumber(String[] inputValue){
+        List<String> collect = Arrays.stream(inputValue).filter(s -> s.isBlank() || s.isEmpty()).toList();
+        if(!collect.isEmpty()){
             handleCustomException(new NotAllNumber());
         }
     }

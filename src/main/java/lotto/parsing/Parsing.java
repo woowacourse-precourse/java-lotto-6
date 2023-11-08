@@ -17,6 +17,7 @@ public class Parsing {
 
     public static List<Integer> makeList(String input){
         String [] splitString = splitByComma(input);
+        NumberValidation.isCorrectNumber(splitString);
         return stringArrayToIntegerList(splitString);
     }
 

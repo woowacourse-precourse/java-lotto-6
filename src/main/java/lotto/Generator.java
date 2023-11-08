@@ -27,4 +27,16 @@ public class Generator {
         return bonusNumberForReturn;
     }
 
+    public List<List<Integer>> createGames(int ticket) {
+        List<List<Integer>> games = new ArrayList<>();
+        List<Integer> tempLotto;
+        for (int i = 0; i < ticket; i++) {
+            Lotto lotto = new Lotto(numbersGenerator());
+            tempLotto = lotto.getNumbers();
+            System.out.println(tempLotto);
+            games.add(tempLotto);
+        }
+        return games;
+    }
+
 }

@@ -18,6 +18,14 @@ public class Messages {
         System.out.println("개를 구매했습니다.");
     }
 
+    public static void winNumberMessage() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public static void bonusNumberMessage() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
     public static void winsMessage(List<Integer> wins) {
         for (int i = 4; i >= 0; i--) {
             if (i == 4) {
@@ -39,6 +47,6 @@ public class Messages {
     }
     public static void prizeMessage(int prize, double earn) {
         System.out.println("상금은 "+prize+"원 입니다.");
-        System.out.println("총 수익률은"+earn+"%입니다.");
+        System.out.println("총 수익률은 "+earn+"%입니다.");
     }
 }

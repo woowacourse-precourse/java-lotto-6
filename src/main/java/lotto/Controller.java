@@ -10,24 +10,27 @@ public class Controller {
     Converter converter = new Converter();
 
     public void run() {
+        List<List<Integer>> createdGames;
         List<Integer> winNumbers;
         List<Integer> wins = new ArrayList<>(List.of(0,0,0,0,0,0));
         int bonusNumber;
 
         Messages.priceMessage();
+
         int price = input.inputPrice();
         int ticket = price / 1000;
+
         Messages.howManyBuy(ticket);
 
-        winNumbers = generator.numbersGenerator();
-        bonusNumber = generator.bonusNumberGenerator(winNumbers);
+        createdGames = generator.createGames(ticket);
+        Messages.winNumberMessage();
+        winNumbers = input.inputWinNumbers();
+        Messages.bonusNumberMessage();
+        bonusNumber = input.inputBonusNumber();
 
-        for (int i =0; i < ticket; i++) {
-            Lotto lotto = new Lotto(generator.numbersGenerator());
-            System.out.println(lotto.getNumbers());
-            List<Integer> createdNumber = lotto.getNumbers();
-            int place = judgeNumber(winNumbers, bonusNumber, createdNumber);
-            wins.set(place,wins.get(place)+1);
+        for (List<Integer> createdNumbers : createdGames) {
+            int place = judgeNumber(winNumbers, bonusNumber, createdNumbers);
+            wins.set(place, wins.get(place) + 1);
         }
 
         Messages.winsMessage(wins);

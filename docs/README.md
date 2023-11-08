@@ -47,3 +47,7 @@ check new branch
 - random()
   - input : null / return : List<Integer>
   - Lotto class에 보낼 6개의 랜덤 값
+  
+## (Class) Lotto
+- numbers(List<Integer>, 로또 번호)
+- 초기 Lotto 는 6개가 아닌 경우면 IllegalArgumentException 발생

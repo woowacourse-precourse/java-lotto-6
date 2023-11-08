@@ -19,6 +19,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LottoGameServiceTest {
     private LottoGameService lottoGameService = new LottoGameServiceImpl();
 
+    @DisplayName("입력 받은 구매 금액의 문자열 값을 정수값을 가지는 object type으로 포장할 수 있다.")
+    @ParameterizedTest
+    @CsvSource({"1000", "30000", "500000"})
+    void parsePurchaseAmount(int purchaseAmount) {
+        // given, when
+        PurchaseAmount parsedPurchaseAmount = lottoGameService.parsePurchaseAmount(String.valueOf(purchaseAmount));
+
+        // then
+        assertThat(parsedPurchaseAmount.getPurchaseAmount()).isEqualTo(purchaseAmount);
+    }
+
     @DisplayName("구입금액에서 로또 가격을 나눈 만큼의 로또 개수를 반환한다.")
     @ParameterizedTest
     @CsvSource({"1000", "3000", "10000", "600000", "7000000"})

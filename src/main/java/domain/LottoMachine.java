@@ -13,15 +13,15 @@ public class LottoMachine {
         this.lottoTickets = lottoTickets;
     }
 
+    public void validateSpend(int spend) {
+        InputValidator.validatePurchaseAmount(spend);
+    }
+
     public int getSpend() {
         return spend;
     }
 
     public List<Lotto> getLottoTickets() {
         return lottoTickets;
-    }
-
-    public void validateSpend(int spend) {
-        InputValidator.validatePurchaseAmount(spend);
     }
 }

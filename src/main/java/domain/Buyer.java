@@ -24,4 +24,12 @@ public class Buyer {
         InputValidator.validateBonusNumberInRange(bonusNumber);
         InputValidator.validateBonusNumberUniqueness(winningNumbers, bonusNumber);
     }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

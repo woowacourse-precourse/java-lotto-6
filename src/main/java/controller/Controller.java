@@ -1,9 +1,11 @@
 package controller;
 
+import domain.Buyer;
 import domain.Lotto;
 import domain.LottoMachine;
-import domain.Buyer;
+import domain.Ranking;
 import java.util.List;
+import java.util.Map;
 import service.LottoGame;
 import utils.Utils;
 import view.InputView;
@@ -13,9 +15,11 @@ public class Controller {
     private final LottoGame lottoGame = new LottoGame();
     private LottoMachine lottoMachine;
     private Buyer buyer;
+    private Map<Ranking, Integer> lottoResult;
 
     public void run() {
         setupLottoGame();
+        playLottoGame();
     }
 
     private void setupLottoGame() {
@@ -55,4 +59,9 @@ public class Controller {
         int bonusNumber = InputView.inputBonusNumber();
         return bonusNumber;
     }
+
+    private void playLottoGame() {
+        lottoResult = lottoGame.checkYourLottoNumbers(lottoMachine, buyer);
+    }
+
 }

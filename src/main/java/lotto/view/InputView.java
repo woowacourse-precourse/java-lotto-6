@@ -44,7 +44,6 @@ public class InputView {
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-        validateNumberRange(numbers);
         return numbers;
     }
 
@@ -74,12 +73,6 @@ public class InputView {
     private void validateSingleNumberRange(int number) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
-    }
-
-    private void validateNumberRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(n -> n < MIN_LOTTO_NUMBER || n > MAX_LOTTO_NUMBER)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 }

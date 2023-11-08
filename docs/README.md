@@ -33,7 +33,10 @@
 ```
 - `print_lottery_numbers()` : 로또 번호 출력
 
-## Application
+## LottoManager (enum 클래스)
+- 로또 등수와 그에 따른 상금에 맞게 계산
+
+## Application 클래스
 
 ### 변수
 - `my_lottery_tickects` : 사용자가 구매한 개수만큼 Lotto 객체를 List로 저장

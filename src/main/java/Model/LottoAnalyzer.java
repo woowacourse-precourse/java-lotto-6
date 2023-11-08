@@ -31,15 +31,15 @@ public class LottoAnalyzer {
 
     public int compare(List<Integer> lottoNumber) {
         int equalNum = 0;
-        for (int i = 0; i < lottoNumber.size(); i++) {
-            equalNum = compareNumbers(lottoNumber.get(i), equalNum);
+        for (Integer integer : lottoNumber) {
+            equalNum = compareNumbers(integer, equalNum);
         }
         return equalNum;
     }
 
     private int compareNumbers(int lottoNumber, int equalNum) {
-        for (int i = 0; i < prizeNumber.size(); i++) {
-            if (prizeNumber.get(i) == lottoNumber) {
+        for (Integer integer : prizeNumber) {
+            if (integer == lottoNumber) {
                 equalNum += 1;
                 return equalNum;
             }

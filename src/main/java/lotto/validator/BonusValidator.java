@@ -9,10 +9,10 @@ public class BonusValidator {
     private static final int BONUS_MIN_NUMBER = 1;
     private static final int BONUS_MAX_NUMBER = 45;
 
-    public static void validate(String input) {
+    public static void validate(String input, List<Integer> winningLotto) {
         validateNonNumber(input);
         validateRange(input);
-        // validateDuplicateWithWiningNumber(input, winningLotto);
+        validateDuplicateWithWiningNumber(input, winningLotto);
     }
 
     private static void validateNonNumber(String input) {

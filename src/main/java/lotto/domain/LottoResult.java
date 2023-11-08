@@ -22,13 +22,13 @@ public class LottoResult {
     }
 
     public double calculateProfit(int playerMoney) {
-        int sum = 0;
+        double sum = 0;
         for (Rank rank : rankHashMap.keySet()) {
             int prize = rank.getPrize();;
             int number = rankHashMap.get(rank);
             sum += prize * number;
         }
-        return (sum * 1.0 / playerMoney) * PERCENTAGE;
+        return (sum / playerMoney) * PERCENTAGE;
     }
 
 }

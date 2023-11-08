@@ -9,7 +9,6 @@ import static lotto.constant.message.InputMessage.*;
 import static lotto.constant.LottoPrice.FIVE_COUNT_WITH_BONUS;
 import static lotto.constant.message.OutputMessage.*;
 
-
 public class MessageUtil {
 
     public void printPurchaseInput() {

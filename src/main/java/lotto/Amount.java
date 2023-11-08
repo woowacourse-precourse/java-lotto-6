@@ -17,4 +17,8 @@ public class Amount {
     public int getMoney(){
         return this.money;
     }
+
+    public int getLottoCount(){
+        return this.money/10;
+    }
 }

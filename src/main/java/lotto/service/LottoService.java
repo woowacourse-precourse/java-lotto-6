@@ -2,22 +2,25 @@ package lotto.service;
 
 import static lotto.model.Lotto.LOTTO_PRICE;
 import static lotto.model.LottoPrize.PRIZE_2;
-import static lotto.model.LottoStatistic.RATE;
 import static lotto.model.LottoPurchaseMoney.INVALID_PURCHASE_AMOUNT;
+import static lotto.model.LottoStatistic.RATE;
 import static lotto.model.LottoWinningNumbers.INVALID_BONUS_NUMBER;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Stream;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.exception.InputCallback;
 import lotto.exception.InputExceptionTemplate;
 import lotto.model.Lotto;
+import lotto.model.LottoMatchResult;
 import lotto.model.LottoPrize;
 import lotto.model.LottoPrizeCount;
-import lotto.model.LottoStatistic;
-import lotto.model.Lottos;
 import lotto.model.LottoPurchaseMoney;
+import lotto.model.LottoStatistic;
 import lotto.model.LottoWinningNumbers;
-import lotto.model.LottoMatchResult;
+import lotto.model.Lottos;
 
 public class LottoService {
 
@@ -33,9 +36,11 @@ public class LottoService {
 
     public Lottos buyLottos(final LottoPurchaseMoney amount) {
         int lottoCount = amount.toInt() / LOTTO_PRICE;
-        return Lottos.from(Stream.generate(Lotto::create)
+        return Lottos.from(
+                Stream.generate(() -> new Lotto(createSortedRandomNumbers()))
                 .limit(lottoCount)
-                .toList());
+                .toList()
+        );
     }
 
     public Lotto askWinningNumbers(final InputCallback<Lotto> callback) {
@@ -60,6 +65,12 @@ public class LottoService {
         LottoPrizeCount prizeCount = countLottoPrizes(lottos, lottoWinningNumbers);
         double earningRate = computeEarningRate(lottoPurchaseMoney, prizeCount);
         return LottoStatistic.of(prizeCount, earningRate);
+    }
+
+    private List<Integer> createSortedRandomNumbers() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
+        return numbers;
     }
 
     private LottoPrizeCount countLottoPrizes(final Lottos lottos, final LottoWinningNumbers lottoWinningNumbers) {

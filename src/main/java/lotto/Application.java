@@ -3,26 +3,57 @@ package lotto;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
-        int purchaseAmount = purchaseAmountInput();
-        System.out.println();
-
-        List<Lotto> boughtLottos = buyLotto(purchaseAmount);
-        printBoughtLottos(boughtLottos);
-        System.out.println();
-
-        Lotto winningLotto = winningLottoInput();
-        System.out.println();
-
-        int bonusNumber = bonusNumberInput(winningLotto);
-        System.out.println();
-
-        Map<LottoRank, Integer> winningResult = makeWinningResult(winningLotto, bonusNumber, boughtLottos);
+            int purchaseAmount = purchaseAmountInput();
+            int purchaseNumber = purchaseAmount / 1000;
+            System.out.println();
 
 
+            List<Lotto> boughtLottos = buyLotto(purchaseNumber);
+            printBoughtLottos(boughtLottos);
+            System.out.println();
+
+            Lotto winningLotto = winningLottoInput();
+            System.out.println();
+
+            int bonusNumber = bonusNumberInput(winningLotto);
+            System.out.println();
+
+            Map<LottoRank, Integer> winningResult = makeWinningResult(winningLotto, bonusNumber, boughtLottos);
+            printWinningResult(winningResult);
+
+            int totalPrize = ProfitCalculator.calculateTotalPrize(winningResult);
+            double profitRate = ProfitCalculator.calculateProfitRate(purchaseAmount, totalPrize);
+            printProfitRate(profitRate);
+    }
+
+    public static void printProfitRate(double profitRate) {
+        System.out.println("총 수익률은 "+ profitRate + "%입니다.");
+    }
+
+
+    public static void printWinningResult(Map<LottoRank, Integer> winningResult) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        printWinningDetails(LottoRank.FIFTH, winningResult.get(LottoRank.FIFTH));
+        printWinningDetails(LottoRank.FOURTH, winningResult.get(LottoRank.FOURTH));
+        printWinningDetails(LottoRank.THIRD, winningResult.get(LottoRank.THIRD));
+        printWinningDetails(LottoRank.SECOND, winningResult.get(LottoRank.SECOND));
+        printWinningDetails(LottoRank.FIRST, winningResult.get(LottoRank.FIRST));
+    }
+
+    private static void printWinningDetails(LottoRank rank, int count) {
+        if (rank.getMatchBonusNumber()) {
+            System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개%n", rank.getMatchingCount(), rank.prizeMoneyToString(), count);
+            return;
+        }
+
+        System.out.printf("%d개 일치 (%s원) - %d개%n", rank.getMatchingCount(), rank.prizeMoneyToString(), count);
     }
 
     public static int purchaseAmountInput() {

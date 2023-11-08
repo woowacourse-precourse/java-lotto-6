@@ -25,7 +25,7 @@
 - [x] 복권을 개수만 구매한다. Application#buyLotto
 - [x] 로또 구매 정보를 출력한다. Application#printBoughtLottos
 - [x] 당첨 내역을 생성한다. Application#makeWinningResult
-- [ ] 당첨 내역을 출력한다.
+- [x] 당첨 내역을 출력한다. Application#printProfitRate
 - [x] 총상금을 계산한다. Application#calculateTotalPrize
 - [x] 수익률을 계산한다. Application#calculateProfitRate
   - [x] 수익률은 소수점 둘째 자리에서 반올림한다.

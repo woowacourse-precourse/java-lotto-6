@@ -4,6 +4,7 @@ import static lotto.constant.OutputMessage.LOTTO_FORMAT;
 import static lotto.constant.OutputMessage.LOTTO_NUMBERS_SEPARATOR;
 import static lotto.constant.OutputMessage.LOTTO_RESULT_FORMAT;
 import static lotto.constant.OutputMessage.NUMBER_OF_LOTTO;
+import static lotto.constant.OutputMessage.RATE_OF_RETURN_FORMAT;
 
 import lotto.Lotto;
 import lotto.LottoNumber;
@@ -38,5 +39,6 @@ public class OutputView {
                             System.out.println(String.format(LOTTO_RESULT_FORMAT, ranking.getDescription(), count));
                         }
                 );
+        System.out.println(String.format(RATE_OF_RETURN_FORMAT, result.calculateRateOfReturn() * 100));
     }
 }

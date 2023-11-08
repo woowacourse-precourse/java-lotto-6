@@ -11,13 +11,14 @@ public class Application {
     public static void main(String[] args) {
         HashMap<LottoGrade, Integer> lottoResult = initLottoResultGrade();
         int inputTry = readInputPrice();
-        List<Lotto> lottoList = makeLottoNumber(inputTry);
+        List<Lotto> makeLottoNumber = makeLottoNumber(inputTry);
         Lotto correctNumber = readInputCorrectNumber();
         int bonusNumber = readBonusNumber(correctNumber);
-        checkLottoResult(lottoResult, lottoList, correctNumber, bonusNumber);
-        printOutPut(lottoResult, inputTry);
+        checkLottoResult(lottoResult, makeLottoNumber, correctNumber, bonusNumber);
+        printOutput(lottoResult, inputTry);
     }
-    private static void printOutPut(HashMap<LottoGrade, Integer> lottoResult, int inputTry) {
+
+    private static void printOutput(HashMap<LottoGrade, Integer> lottoResult, int inputTry) {
         double sum = 0;
         for (LottoGrade rank : LottoGrade.values()) {
             showSingleRankResult(lottoResult, rank);
@@ -35,32 +36,36 @@ public class Application {
             return;
         }
         if (rank.equals(LottoGrade.second)) {
-            System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n",
-                    rank.getCorrect(), rank.getPrice(), map.get(rank));
+            printResult(map, rank, "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n");
             return;
         }
-        System.out.printf("%d개 일치 (%s원) - %d개\n", rank.getCorrect(), rank.getPrice(), map.get(rank));
+        printResult(map, rank, "%d개 일치 (%s원) - %d개\n");
 
     }
-    private static void checkLottoResult(HashMap<LottoGrade, Integer> lottoResult, List<Lotto> lottoList, Lotto correctNumber, int bonusNumber) {
-        for (Lotto userlotto : lottoList) {
+
+    private static void printResult(Map<LottoGrade, Integer> map, LottoGrade rank, String s) {
+        System.out.printf(s, rank.getCorrect(), rank.getPrice(), map.get(rank));
+    }
+
+    private static void checkLottoResult(HashMap<LottoGrade, Integer> lottoResult, List<Lotto> lottoes, Lotto correctNumber, int bonusNumber) {
+        for (Lotto userlotto : lottoes) {
             int correct = Lotto.countSameElements(userlotto, correctNumber);
-            List<LottoGrade> lottoCalculatorList =
+            List<LottoGrade> lottoCalculators =
                     Arrays.stream(LottoGrade.values())
                             .filter(lotto -> lotto.getCorrect()==correct).collect(Collectors.toList());
-            LottoGrade lottoGrade = getLottoGrade(bonusNumber, userlotto, lottoCalculatorList);
+            LottoGrade lottoGrade = getLottoGrade(bonusNumber, userlotto, lottoCalculators);
             lottoResult.put(lottoGrade, lottoResult.getOrDefault(lottoGrade, 0) + 1);
         }
     }
 
-    private static LottoGrade getLottoGrade(int bonusNumber, Lotto userlotto, List<LottoGrade> lottoCalculatorList) {
-        if((lottoCalculatorList.size()>1)){
+    private static LottoGrade getLottoGrade(int bonusNumber, Lotto userlotto, List<LottoGrade> lottoCalculators) {
+        if((lottoCalculators.size()>1)){
             if(bonusNumberCorrect(bonusNumber, userlotto)){
                 return LottoGrade.second;
             }
             return LottoGrade.third;
         }
-        return lottoCalculatorList.get(0);
+        return lottoCalculators.get(0);
     }
 
     private static HashMap<LottoGrade, Integer> initLottoResultGrade() {
@@ -84,14 +89,14 @@ public class Application {
         return userlotto.contains(bonusNumber);
     }
 
-    private static int readBonusNumber(Lotto correctNumberList) {
+    private static int readBonusNumber(Lotto correctNumber) {
         int bonusNumber;
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String inputBonusNumber = readLine();
                 bonusNumber = Integer.parseInt(inputBonusNumber);
-                validateOverLap(correctNumberList.contains(bonusNumber), "보너스와 당첨번호가 중복됩니다.");
+                validateOverLap(correctNumber.contains(bonusNumber), "보너스와 당첨번호가 중복됩니다.");
                 validateOverNumber45(bonusNumber);
                 System.out.println("보너스번호를 추가합니다.");
                 System.out.println(bonusNumber);
@@ -109,7 +114,7 @@ public class Application {
     }
 
     private static Lotto readInputCorrectNumber() {
-        List<Integer> correctNumberList = new ArrayList<>();
+        List<Integer> correctNumbers = new ArrayList<>();
         while (true) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
@@ -117,10 +122,10 @@ public class Application {
                 for (String correctNumber : inputCorrectNumber.split(",")) {
                     int correctNum = Integer.parseInt(correctNumber);
                     validateOverNumber45(correctNum);
-                    correctNumberList.add(correctNum);
+                    correctNumbers.add(correctNum);
                 }
-                validateListSizeIs6(correctNumberList.size(), 6, "[ERROR] 6개의 당첨번호를 입력해주세요");
-                return new Lotto(correctNumberList);
+                validateListSizeIs6(correctNumbers.size(), 6, "[ERROR] 6개의 당첨번호를 입력해주세요");
+                return new Lotto(correctNumbers);
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             }
@@ -136,19 +141,19 @@ public class Application {
     }
 
     private static List<Lotto> makeLottoNumber(int inputTry) {
-        List<Lotto> lottoList = new ArrayList<>();
+        List<Lotto> lottoes = new ArrayList<>();
         for (int i = 0; i < inputTry; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            List<Integer> orderedList = new ArrayList<>(numbers);
-            Collections.sort(orderedList);
+            List<Integer> orderNumbers = new ArrayList<>(numbers);
+            Collections.sort(orderNumbers);
             Lotto lotto = new Lotto(numbers);
-            lottoList.add(lotto);
+            lottoes.add(lotto);
         }
 
-        for (Lotto lottonum : lottoList) {
+        for (Lotto lottonum : lottoes) {
             System.out.println(lottonum.getNumbers());
         }
-        return lottoList;
+        return lottoes;
     }
 
     private static int readInputPrice() {

@@ -16,7 +16,8 @@ public class Game {
     public static void start() {
         Price price = inputBuyPrice();
         printBoughtAmount(price);
-        List<Lotto> lottos = makeLottos(price.getAmount() / 1000);
+        List<Lotto> lottos = makeLottos(price.getAmount());
+        printLottos(lottos);
     }
 
     private static Price inputBuyPrice() {
@@ -43,5 +44,11 @@ public class Game {
             lottos.add(lotto);
         }
         return lottos;
+    }
+
+    private static void printLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
+        }
     }
 }

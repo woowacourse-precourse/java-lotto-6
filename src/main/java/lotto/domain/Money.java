@@ -1,7 +1,6 @@
 package lotto.domain;
 
-import static lotto.constant.ErrorMessage.INPUT_NUMBER_INCLUDE_STRING_WARNING;
-import static lotto.constant.ErrorMessage.SPENT_AMOUNT_RANGE_WARNING;
+import static lotto.constant.ErrorMessage.*;
 
 public class Money {
     private final int spendAmount;
@@ -33,6 +32,9 @@ public class Money {
     }
 
     private void validateDividedByThousand(String spendAmount) {
-        
+        int spent = Integer.parseInt(spendAmount);
+        if(spent % 1000 != 0) {
+            throw new IllegalArgumentException(SPENT_AMOUNT_UNIT_WARNING);
+        }
     }
 }

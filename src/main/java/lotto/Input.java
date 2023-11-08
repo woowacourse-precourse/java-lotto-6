@@ -20,14 +20,13 @@ public class Input {
 
     public int startInput() {
         System.out.println("구입금액을 입력해 주세요.");
-        while(true) {
-            try {
-                String purchaseAmount = inputPurchaseAmount();
-                break;
-            } catch(IllegalArgumentException e) {
-                ;
-            }
-        }
+        String purchaseAmount = inputPurchaseAmount();
+
+        int numOfTicket = Integer.parseInt(purchaseAmount)/1000;
+        System.out.println(numOfTicket+"개를 구매했습니다.");
+        LottoGenerator.generate(lottoTicket, numOfTicket);
+        LottoGenerator.printLottoTicket(lottoTicket);
+        System.out.println();
 
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNum = inputWinningNum();
@@ -38,16 +37,18 @@ public class Input {
         return bonusNumber;
     }
 
-    private String inputPurchaseAmount() throws IllegalArgumentException {
-        String purchaseAmount = Console.readLine();
-        if(PurcahseAmountValidator.validate(purchaseAmount));
-        System.out.println();
-
-        int numOfTicket = Integer.parseInt(purchaseAmount)/1000;
-        System.out.println(numOfTicket+"개를 구매했습니다.");
-        LottoGenerator.generate(lottoTicket, numOfTicket);
-        LottoGenerator.printLottoTicket(lottoTicket);
-        System.out.println();
+    private String inputPurchaseAmount() {
+        String purchaseAmount;
+        while(true) {
+            try {
+                purchaseAmount = Console.readLine();
+                PurcahseAmountValidator.validate(purchaseAmount);
+                System.out.println();
+                break;
+            } catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return purchaseAmount;
     }
 

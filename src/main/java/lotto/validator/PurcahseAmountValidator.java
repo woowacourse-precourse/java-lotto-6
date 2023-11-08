@@ -8,29 +8,25 @@ public class PurcahseAmountValidator
         if(isThousands(purchaseAmount));
         return true;
     }
-
     private static boolean isNumber(String purchaseAmount) {
         try {
             Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 구입금액은 숫자여야 합니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");
         }
         return true;
     }
     private static boolean isPositive(String purchaseAmount) {
         int money = Integer.parseInt(purchaseAmount);
         if(money<0) {
-            System.out.println("[ERROR] 구입금액은 0이상의 숫자여야 합니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 구입금액은 0이상의 숫자여야 합니다.");
         }
         return true;
     }
     private static boolean isThousands(String purchaseAmount) {
         int money = Integer.parseInt(purchaseAmount);
         if(!(money%1000==0)) {
-            System.out.println("[ERROR] 구입금액은 1000의 배수여야 합니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 구입금액은 1000의 배수여야 합니다.");
         }
         return true;
     }

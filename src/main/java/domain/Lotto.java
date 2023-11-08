@@ -11,20 +11,27 @@ public class Lotto {
 
 	public Lotto(List<Integer> numbers) {
 		validate(numbers);
-		validateDuplicateNumber(numbers);
-		validateIsBetweenLottoRange(numbers);
-		validateDuplicateNumber(numbers);
+		validateListIntegerParameter(numbers);
 		this.numbers = numbers;
 	}
 
 	public Lotto(String numbers) {
 		List<String> parsedNumbers = convertStringToList(removeSpacesBetweenNumbersAndCommas(numbers));
+		validateListStringParameter(parsedNumbers);
+
+		List<Integer> validatedAndParsedNumbers = convertStringListToIntegerList(parsedNumbers);
+		validateListIntegerParameter(validatedAndParsedNumbers);
+		this.numbers = validatedAndParsedNumbers;
+	}
+
+	private void validateListStringParameter(List<String> parsedNumbers) {
 		validateIsDigit(parsedNumbers);
 		validateIsSixLength(parsedNumbers);
-		List<Integer> validatedAndParsedNumbers = convertStringListToIntegerList(parsedNumbers);
+	}
+
+	private void validateListIntegerParameter(List<Integer> validatedAndParsedNumbers) {
 		validateIsBetweenLottoRange(validatedAndParsedNumbers);
 		validateDuplicateNumber(validatedAndParsedNumbers);
-		this.numbers = validatedAndParsedNumbers;
 	}
 
 	public List<Integer> getNumbers() {

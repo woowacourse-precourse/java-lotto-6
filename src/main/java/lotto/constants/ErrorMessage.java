@@ -6,10 +6,15 @@ public enum ErrorMessage {
     private final String message;
 
     ErrorMessage(String message) {
-        this.message = "[ERROR]" + message;
+        this.message = message;
     }
 
     public String getMessage() {
         return message;
+    }
+
+    @Override
+    public String toString() {
+        return "[ERROR] " + message;
     }
 }

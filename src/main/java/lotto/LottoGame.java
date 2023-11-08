@@ -18,13 +18,39 @@ import lib.enumeration.LottoWinnerRule;
 public class LottoGame {
     PrintStream printStream = System.out;
     private List<Lotto> lottos;
+    private int price;
 
     public LottoGame() {
         this.lottos = new ArrayList<Lotto>();
     }
+
     public List<Lotto> getLottos() {
         return this.lottos;
     }
+
+    private int validateNumber(String input) {
+        String REGEXP_ONLY_NUM = "^[0-9]*$";
+
+        if (!Pattern.matches(REGEXP_ONLY_NUM, input)) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.");
+        }
+
+        return Integer.parseInt(input);
+    }
+
+    private void setPrice(String _price) {
+        int price = this.validateNumber(_price);
+
+        if (price % LottoConstants.LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로만 입력할 수 있습니다.");
+        }
+
+        if (price / LottoConstants.LOTTO_PRICE == 0) {
+            throw new IllegalArgumentException("[ERROR] 구입할 수 있는 금액이 아닙니다.");
+        }
+
+        this.price = price;
+    } 
 
     private Lotto createLotto() {
         while(true) {
@@ -46,6 +72,21 @@ public class LottoGame {
         }
     }
 
+    public void enterPurchaseAmount() {
+        while (true) {
+            try {
+                printStream.println("구입금액을 입력해 주세요.");
+                String price = Console.readLine();
+                
+                this.setPrice(price);
+                break;
+            } catch (IllegalArgumentException e) {
+                printStream.println(e.getMessage() + " 다시 입력해주세요.\n");
+                continue;
+            }
+        }
+        printStream.println();
+    }
     private void resultPut(Map<Integer, List<List<Integer>>> map, int key, List<Integer> value) {
         if (map.containsKey(key)) {
             map.get(key).add(value);

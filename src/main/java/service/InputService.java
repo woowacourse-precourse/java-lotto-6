@@ -15,4 +15,9 @@ public class InputService {
         System.out.println(WINNING_NUMBER_STRING);
         return Console.readLine();
     }
+
+    public static String inputBonusNumber(){
+        System.out.println(WINNING_NUMBER_STRING);
+        return Console.readLine();
+    }
 }

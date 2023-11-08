@@ -38,11 +38,11 @@ public class LottoManager {
         List<Integer>winningNumberList = convertToList(winningNumberString);
         Lotto winningNumber = new Lotto(winningNumberList);
 
-//        String bonusNumberString = inputBonusNumber();
-//        validateTypeNumeric(bonusNumberString);
-//        Integer bonusNumberInteger = Integer.parseInt(bonusNumberString());
-//        validateRangeNumber(bonusNumberInteger);
-//
+        String bonusNumberString = inputBonusNumber();
+        validateTypeNumeric(bonusNumberString);
+        Integer bonusNumberInteger = Integer.parseInt(bonusNumberString);
+        validateRangeNumber(bonusNumberInteger);
+
 //        HashMap<Integer, Integer> result = calucateResult(lottoList, winningNumbers, bonusNumberInteger);
 
 
@@ -60,7 +60,12 @@ public class LottoManager {
     private Integer calculateLottoCount(Integer priceInt){
         return priceInt%PRICE_MOD;
     }
-
+    private void validateRangeNumber(Integer number){
+        if(number<Lotto_BEGIN_RANGE || number>Lotto_END_RANGE){
+            throw new IllegalArgumentException(ERROR_STRING+
+                    "\nExpect : 1~45 범위 숫자" + "\nInput : " + number);
+        }
+    }
     private void validateTypeNumeric(String priceString){
         for(int i=0;i<priceString.length();i++){
             char c = priceString.charAt(i);

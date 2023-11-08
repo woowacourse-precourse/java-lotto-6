@@ -8,21 +8,15 @@ public class InputBonus {
     private static final String MESSAGE_INPUT_BONUS = "보너스 번호를 입력해 주세요.";
 
     private InputBonusValidator inputBonusValidator = InputBonusValidator.getInstance();
-
-    private boolean isError = true;
     private String input = "";
 
     public String getUserInput() {
         System.out.println(MESSAGE_INPUT_BONUS);
-        do {
-            input = Console.readLine();
-            try {
-                inputBonusValidator.validate(input);
-                isError = false;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        } while (isError == true);
+        input = Console.readLine();
         return input;
+    }
+
+    private void validate(String input) {
+        inputBonusValidator.validate(input);
     }
 }

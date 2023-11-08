@@ -7,7 +7,6 @@ public class InputLottoValidator {
 
     private InputLottoValidator() {}
 
-
     public static InputLottoValidator getInstance() {
         return inputLottoValidator;
     }

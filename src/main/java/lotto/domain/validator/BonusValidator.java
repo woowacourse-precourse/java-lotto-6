@@ -1,6 +1,6 @@
 package lotto.domain.validator;
 
-import java.util.List;
+import lotto.domain.Lotto;
 
 public class BonusValidator {
     private static final Integer MIN_NUMBER = 0;
@@ -8,15 +8,21 @@ public class BonusValidator {
     private static final String MESSAGE_DUPLICATE_ERROR = "[ERROR]: 로또 번호와 중복된 번호를 제외해주세요.";
     private static final String MESSAGE_RANGE_ERROR = "[ERROR]: 1 ~ 45 사이의 숫자만 입력해주세요.";
 
-    private List<Integer> lotto;
-    public BonusValidator(Integer number, List<Integer> lotto) {
-        this.lotto = lotto;
-        validateDuplicate(number, lotto);
+    private Integer lotto;
+
+    public BonusValidator(Integer number) {
         validateRange(number);
+        this.lotto = number;
     }
 
-    private void validateDuplicate(Integer number, List<Integer> lotto) {
-        if (lotto.contains(number)) {
+    public BonusValidator(Integer number, Lotto lotto) {
+        validateRange(number);
+        validateDuplicate(number, lotto);
+        this.lotto = number;
+    }
+
+    private void validateDuplicate(Integer number, Lotto lotto) {
+        if (lotto.isContain(number)) {
             throw new IllegalArgumentException(MESSAGE_DUPLICATE_ERROR);
         }
     }

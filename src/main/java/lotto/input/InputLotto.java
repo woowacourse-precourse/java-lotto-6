@@ -8,20 +8,15 @@ public class InputLotto {
 
     private InputLottoValidator inputLottoValidator = InputLottoValidator.getInstance();
 
-    private boolean isError = true;
     private String input = "";
 
     public String getUserInput() {
         System.out.println(MESSAGE_INPUT_LOTTO);
-        do {
-            input = Console.readLine();
-            try {
-                inputLottoValidator.validate(input);
-                isError = false;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        } while (isError == true);
+        input = Console.readLine();
         return input;
+    }
+
+    private void validate(String input) {
+        inputLottoValidator.validate(input);
     }
 }

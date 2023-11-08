@@ -8,20 +8,16 @@ public class InputMoney {
 
     private static final InputMoneyValidator inputMoneyValidator = InputMoneyValidator.getInstance();
 
-    private boolean isError = true;
     private String input = "";
 
     public String getUserInput() {
         System.out.println(MESSAGE_INPUT_PURCHASE_AMOUNT);
-        do {
-            input = Console.readLine();
-            try {
-                inputMoneyValidator.validate(input);
-                isError = false;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        } while (isError == true);
+        input = Console.readLine();
+        validate(input);
         return input;
+    }
+
+    private void validate(String input) {
+        inputMoneyValidator.validate(input);
     }
 }

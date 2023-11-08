@@ -13,7 +13,7 @@ public class RandomLotto {
         }
 
         public static List<List<Integer>> generateRandomLotto(int quantity) {
-        List<List<Integer>> randomLotto = new ArrayList<>();
+            List<List<Integer>> randomLotto = new ArrayList<>();
 
             for (int i = 0; i < quantity; i++) {
                 List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);

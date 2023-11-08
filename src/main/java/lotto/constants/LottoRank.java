@@ -4,19 +4,28 @@ import java.util.Arrays;
 import java.util.function.BiPredicate;
 
 public enum LottoRank {
-    FIRST(2000000000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 6),
-    SECOND(30000000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 5 && bonusWinningNumber),
-    THIRD(1500000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 5 && !bonusWinningNumber),
-    FOURTH(50000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 4),
-    FIFTH(5000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 3),
-    NONE(0, (matchedNumbers, bonusWinningNumber) -> matchedNumbers < 3);
+    FIFTH(5000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 3,
+            "3개 일치 (5,000원)"),
+    FOURTH(50000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 4,
+            "4개 일치 (50,000원)"),
+
+    THIRD(1500000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 5 && !bonusWinningNumber,
+            "5개 일치 (1,500,000원)"),
+    SECOND(30000000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 5 && bonusWinningNumber,
+            "5개 일치, 보너스 볼 일치 (30,000,000원)"),
+    FIRST(2000000000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 6,
+            "6개 일치 (2,000,000,000원)"),
+    NONE(0, (matchedNumbers, bonusWinningNumber) -> matchedNumbers < 3,
+            "일치하는 숫자 없음");
 
     private final BiPredicate<Integer, Boolean> picked;
     private final int prizeMoney;
+    private final String description;
 
-    LottoRank(int prizeMoney, BiPredicate<Integer, Boolean> picked) {
+    LottoRank(int prizeMoney, BiPredicate<Integer, Boolean> picked, String description) {
         this.prizeMoney = prizeMoney;
         this.picked = picked;
+        this.description = description;
     }
 
     public static LottoRank evaluateLottoRank(int matchedNumbers, boolean hasBonus) {
@@ -29,5 +38,14 @@ public enum LottoRank {
 
     public int getPrizeMoney() {
         return prizeMoney;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public String toString() {
+        return description;
     }
 }

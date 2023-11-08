@@ -1,7 +1,11 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class WinningNumbers {
     private final List<Integer> winningNumbers;
@@ -13,33 +17,24 @@ public class WinningNumbers {
     }
 
     public static WinningNumbers inputWinningNumbers() {
-        List<Integer> winningNumbers = Arrays.stream(Console.readLine("당첨 번호를 입력해 주세요.").split(","))
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        List<Integer> winningNumbers = Arrays.stream(Console.readLine().split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 
-        int bonusNumber = Integer.parseInt(Console.readLine("보너스 번호를 입력해 주세요."));
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine());
         return new WinningNumbers(winningNumbers, bonusNumber);
     }
 
-    public Rank calculateRank(Lotto lotto, int bonusNumber) {
+    public Rank calculateRank(Lotto lotto) {
         int matchCount = (int) lotto.getNumbers().stream()
                 .filter(winningNumbers::contains)
                 .count();
 
-        boolean hasBonusNumber = lotto.getNumbers().contains(bonusNumber);
+        boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
 
-        return Rank.valueOf(matchCount, hasBonusNumber);
+        return Rank.valueOf(matchCount, matchBonus);
     }
 
-    public double calculateProfitRate(Map<Rank, Integer> result) {
-        int totalPrize = result.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
-                .sum();
-
-        int totalPurchaseAmount = result.values().stream()
-                .mapToInt(count -> count * 1000)
-                .sum();
-
-        return (totalPrize / (double) totalPurchaseAmount) * 100;
-    }
 }

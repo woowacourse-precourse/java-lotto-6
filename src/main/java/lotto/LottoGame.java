@@ -10,6 +10,8 @@ public class LottoGame {
     private int purchaseAmount;
     private int numberOfPurchase;
     private LottoRepository lottoRepository = new LottoRepository();
+    private String[] winningNumbers;
+    private int bonusNumber;
 
     public void start() {
         System.out.println("구입 금액을 입력해주세요.");
@@ -17,6 +19,8 @@ public class LottoGame {
         printNumberOfPurchase();
         setRandomLottoNumber(this.numberOfPurchase);
         printRandomLottoNumber();
+        inputWinningNumber();
+        inputBonusNumber();
 
     }
 
@@ -73,5 +77,17 @@ public class LottoGame {
         lottoRepository.add(lotto);
 
         //System.out.println(lotto.getLotto());
+    }
+
+    private void inputWinningNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String winningNumber;
+        winningNumber = readLine();
+        winningNumbers = winningNumber.split(",");
+    }
+
+    private void inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        bonusNumber = Integer.parseInt(readLine());
     }
 }

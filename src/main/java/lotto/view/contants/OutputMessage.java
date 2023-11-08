@@ -11,7 +11,7 @@ public enum OutputMessage {
     WINNING_STATISTICS("당첨 통계\n---"),
     SAME("%s개 일치"),
     BONUS("보너스 볼 일치"),
-    AMOUNT("%s원"),
+    AMOUNT("%,d원"),
     COUNT("%s개"),
     RATE_OF_RETURN("총 수익률은 %.1f%%입니다.");
 

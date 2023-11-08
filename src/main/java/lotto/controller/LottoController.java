@@ -82,6 +82,6 @@ public class LottoController {
     }
 
     private void resultLotto() {
-        OutputView.winningResult(this.buyer, this.winningLotto);
+        OutputView.winningResult(new Result(buyer.confirmLotto(winningLotto)));
     }
 }

@@ -1,5 +1,7 @@
 package lotto.domain.constants;
 
+import lotto.view.contants.OutputMessage;
+
 public enum LottoRank {
     FIRST(6, false, 2_000_000_000),
     SECOND(5, true, 30_000_000),
@@ -29,5 +31,20 @@ public enum LottoRank {
 
     public int getWinningAmount() {
         return winningAmount;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(String.format(OutputMessage.SAME.getValue(), getCount()));
+        if (isBonus()) {
+            stringBuilder.append(OutputMessage.COMMA.getValue())
+                    .append(OutputMessage.BLANK.getValue()).append(OutputMessage.BONUS.getValue());
+        }
+        stringBuilder.append(OutputMessage.BLANK.getValue())
+                .append(OutputMessage.OPEN_PARENTHESIS.getValue())
+                .append(String.format(OutputMessage.AMOUNT.getValue(), getWinningAmount()))
+                .append(OutputMessage.CLOSE_PARENTHESIS.getValue());
+        return stringBuilder.toString();
     }
 }

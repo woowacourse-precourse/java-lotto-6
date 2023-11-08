@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class DrawResult {
+    private static final int PERCENT_CONSTANT = 100;
     private final Map<LottoRank, Integer> rankMap;
 
     public DrawResult(Map<LottoRank, Integer> rankMap) {
@@ -17,7 +18,7 @@ public class DrawResult {
 
     public double getEarningRate(int price) {
         int sum = calculateEarningAmount();
-        return (double) sum * 100 / price;
+        return (double) sum * PERCENT_CONSTANT / price;
     }
 
     private int calculateEarningAmount() {

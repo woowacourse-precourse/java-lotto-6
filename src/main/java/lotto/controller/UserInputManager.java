@@ -78,15 +78,20 @@ public class UserInputManager {
     private boolean areInRange(String input) {
         List<String> numbers = Arrays.asList(input.split(","));
         for (String number : numbers) {
-            try {
-                int num = Integer.parseInt(number.trim());
-                if (num < 1 || num > 45) {
-                    return false;
-                }
-            } catch (NumberFormatException e) {
+            if (!isAbleNumber(number.trim())) {
                 return false;
             }
         }
         return true;
     }
+
+    private boolean isAbleNumber(String number) {
+        try {
+            int num = Integer.parseInt(number);
+            return num >= 1 && num <= 45;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
 }

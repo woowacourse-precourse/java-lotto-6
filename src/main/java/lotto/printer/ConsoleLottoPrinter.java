@@ -24,7 +24,7 @@ public class ConsoleLottoPrinter implements LottoPrinter {
     @Override
     public void noticePurchaseLotto(List<Lotto> purchasedLottos) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(purchasedLottos.size()).append(PrintMessage.NOTICE_PURCHASE);
+        stringBuilder.append(purchasedLottos.size()).append(PrintMessage.NOTICE_PURCHASE.getMessage());
 
         for (Lotto lotto : purchasedLottos) {
             stringBuilder.append(OPENING_SQUARE_BRACKET);
@@ -40,12 +40,12 @@ public class ConsoleLottoPrinter implements LottoPrinter {
 
     @Override
     public void askWinningNumber() {
-        System.out.println(PrintMessage.ASK_WINNING_NUMBER);
+        System.out.println(PrintMessage.ASK_WINNING_NUMBER.getMessage());
     }
 
     @Override
     public void askBonusNumber() {
-        System.out.println(PrintMessage.ASK_BONUS_NUMBER);
+        System.out.println(PrintMessage.ASK_BONUS_NUMBER.getMessage());
     }
 
     @Override

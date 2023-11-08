@@ -201,7 +201,7 @@ public class Lotto {
 
 4. 로또 번호 출력
    - 번호는 1부터 45까지의 중복되지 않는 랜덤한 6개의 수 이다.
-   - `camp.nextstep.edu.missionutils.Console`의 `pickUniqueNumbersInRange()`를 활용한다.
+   - `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용한다.
    - 저장된 로또 번호들을 오름차순으로 정렬하여 출력한다.
       ```
       [8, 21, 23, 41, 42, 43]

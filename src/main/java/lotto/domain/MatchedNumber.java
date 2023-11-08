@@ -16,12 +16,6 @@ public class MatchedNumber {
         this.bonusNumber = bonusNumber;
     }
 
-    private void validationDuplicate(List<LottoNumber> matchedNumber, LottoNumber bonusLottoNumber) {
-        if (matchedNumber.contains(bonusLottoNumber)) {
-            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE);
-        }
-    }
-
     public List<LottoRank> getLottoRanks(List<Lotto> lottos) {
         return lottos.stream().map(lotto -> {
                     int matchedCount = countMatchedNumbers(matchedNumber.getLottoNumbers(), lotto);
@@ -29,6 +23,12 @@ public class MatchedNumber {
                     return LottoRank.evaluateLottoRank(matchedCount, hasBonus);
                 })
                 .collect(Collectors.toList());
+    }
+
+    private void validationDuplicate(List<LottoNumber> matchedNumber, LottoNumber bonusLottoNumber) {
+        if (matchedNumber.contains(bonusLottoNumber)) {
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE);
+        }
     }
 
     private int countMatchedNumbers(List<LottoNumber> userNumbers, Lotto lotto) {

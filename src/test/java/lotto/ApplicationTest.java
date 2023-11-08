@@ -13,6 +13,13 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
+    void 로또_구매하기() {
+        int purchaseAmount = 10;
+
+        assertThat(Application.buyLotto(purchaseAmount)).hasSize(10);
+    }
+
+    @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {

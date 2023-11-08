@@ -11,11 +11,11 @@ public class Player {
     private Capital capital;
 
     public Player(Capital capital) {
-        this.lottos = getLottery(capital.getNumberOfPurchasedLotto());
+        this.lottos = purchaseLotto(capital.getNumberOfPurchasedLotto());
         this.capital = capital;
     }
 
-    private List<Lotto> getLottery(int lottoCount) {
+    private List<Lotto> purchaseLotto(int lottoCount) {
         List<Lotto> result = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             result.add(new Lotto());
@@ -41,7 +41,10 @@ public class Player {
     }
 
     private float calculateROI(List<LotteryRank> lotteryRanks) {
-        long netReturn = lotteryRanks.stream().mapToLong(LotteryRank::getReward).sum();
+        long netReturn = lotteryRanks
+                .stream()
+                .mapToLong(LotteryRank::getReward)
+                .sum();
         int costOfInvestment = capital.amount();
 
         return (float) netReturn / costOfInvestment;
@@ -71,11 +74,15 @@ public class Player {
         return capital;
     }
 
-    public void setLotto(List<Lotto> lottos) {
+    protected void setLotto(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public void setCapital(Capital capital) {
+    protected void setCapital(Capital capital) {
         this.capital = capital;
+    }
+
+    public void clearLotto() {
+        this.lottos.clear();
     }
 }

@@ -11,7 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class BonusNumberValidatorTest {
-    private void assertExceptionTest(Validator<String> validator, String input, String message) {
+    private void assertExceptionTest(BonusNumberValidator validator, String input, String message) {
         assertThatThrownBy(() -> validator.validate(input))
                 // then
                 .isInstanceOf(IllegalArgumentException.class)

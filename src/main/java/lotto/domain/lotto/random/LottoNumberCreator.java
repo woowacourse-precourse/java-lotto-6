@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.lotto.Lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoNumberCreator {
@@ -19,6 +20,8 @@ public class LottoNumberCreator {
                 randomNumbers.add(randomNumber);
             }
         }
+        //정렬
+        Collections.sort(randomNumbers);
 
         return new Lotto(randomNumbers);
     }

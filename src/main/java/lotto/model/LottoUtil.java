@@ -13,6 +13,9 @@ import java.util.stream.Collectors;
 
 public class LottoUtil {
 
+    private static final int DEFAULTVALUE = 0;
+    private static final int ADD = 1;
+
     private Lotto lottoCreate(List<Integer> randomNumbers) {
         List<Integer> lottoNumbers = randomNumbers.stream().sorted().collect(Collectors.toList());
         return new Lotto(lottoNumbers);
@@ -35,13 +38,13 @@ public class LottoUtil {
             int shot = lotto.compareNumbers(winningLotto.getLotto().getNumbers());
             boolean bonus = lotto.getNumbers().stream().anyMatch(n -> winningLotto.getBonusNumber() == n);
             result.put(Rank.getRank(shot, bonus),
-                    result.getOrDefault(Rank.getRank(shot, bonus), 0) + 1);
+                    result.getOrDefault(Rank.getRank(shot, bonus), DEFAULTVALUE) + ADD);
         }
         return result;
     }
 
     public float rateOfReturn(int amount, Map<Rank, Integer> result) {
-        int sum = 0;
+        int sum = DEFAULTVALUE;
         for (Rank rank : result.keySet()) {
             sum += rank.getMoney() * result.get(rank);
         }

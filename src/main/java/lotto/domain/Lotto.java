@@ -12,6 +12,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) throws LottoGameException {
         validateLottoLength(numbers);
         validateDuplicateNumber(numbers);
+        validInRangeNumber(numbers);
 
         this.numbers = numbers;
     }

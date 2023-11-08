@@ -3,13 +3,11 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.Lotto;
 
 public class LottoGame implements Game {
-    private static final int lottoNumbers = 6;
+    public static final int lottoNumbers = 6;
     private static final int lottoPirce = 1000;
     private int lottoPurchaseAmount;
     private Lotto winningLotto;
@@ -65,15 +63,6 @@ public class LottoGame implements Game {
         return lottoPurchasePrice / lottoPirce;
     }
 
-    private List<Integer> validateDuplicates(List<Integer> winningNumbers) {
-        Set<Integer> numberSet;
-        numberSet = new HashSet<>(winningNumbers);
-        if (numberSet.size() != lottoNumbers) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않는 " + lottoNumbers + "개의 숫자입니다.");
-        }
-
-        return winningNumbers;
-    }
 
     private Lotto validateWinningNumbers(String winningNumbers) {
         List<Integer> numberArray;
@@ -83,7 +72,6 @@ public class LottoGame implements Game {
         for (String number : winningNumbersArray) {
             numberArray.add(validateNumber(number));
         }
-        validateDuplicates(numberArray);
 
         return new Lotto(numberArray);
     }

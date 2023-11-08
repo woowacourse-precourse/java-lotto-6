@@ -18,20 +18,21 @@ public class View {
     }
 
     public String inputWinningNumber(){
+        breakLine();
         println(INPUT_WINNING_NUMBER);
         return Console.readLine();
     }
 
     public String inputBonusNumber(){
+        breakLine();
         println(INPUT_BONUS_NUMBER);
         return Console.readLine();
     }
 
-    public void printIssuedLotto(List<Lotto> lottos){
-        println(lottos.size()+"개를 구매했습니다.");
-        for (Lotto lotto : lottos) {
-            println(lotto.toString());
-        }
+    public void printMessagePurchase(int count){
+        breakLine();
+        println(count + "개를 구매했습니다.");
+
     }
 
     public void printWinningStatistics(LottoGameResultDto resultDto){
@@ -70,5 +71,9 @@ public class View {
 
     private void println(String input){
         System.out.println(input);
+    }
+
+    private void breakLine(){
+        System.out.println();
     }
 }

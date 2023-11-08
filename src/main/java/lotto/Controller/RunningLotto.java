@@ -3,7 +3,7 @@ package lotto.Controller;
 import lotto.LottoFactory.Lotto;
 import lotto.LottoFactory.LottoContainer;
 import lotto.LottoFactory.LottoController;
-import lotto.Util.RateCalculator;
+import lotto.RateCalculator;
 
 public class RunningLotto implements Running {
     private static LottoContainer lottoContainer;

@@ -1,4 +1,4 @@
-package lotto.Util;
+package lotto;
 
 import lotto.LottoFactory.LottoChecker;
 import java.util.List;

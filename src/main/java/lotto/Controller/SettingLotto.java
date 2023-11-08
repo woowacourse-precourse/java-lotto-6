@@ -2,8 +2,7 @@ package lotto.Controller;
 
 import lotto.IO.IO;
 import lotto.LottoFactory.LottoContainer;
-import lotto.LottoFactory.LottoController;
-import lotto.Util.Validate;
+import lotto.Validate;
 
 import java.util.List;
 import java.util.NoSuchElementException;

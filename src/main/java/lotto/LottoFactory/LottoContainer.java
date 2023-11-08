@@ -1,6 +1,6 @@
     package lotto.LottoFactory;
 
-    import lotto.Util.Sorting;
+    import lotto.Sorting;
     import java.util.ArrayList;
     import java.util.List;
 

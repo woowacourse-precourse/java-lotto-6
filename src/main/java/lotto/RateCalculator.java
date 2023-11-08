@@ -1,4 +1,4 @@
-package lotto.Util;
+package lotto;
 
 public class RateCalculator {
 

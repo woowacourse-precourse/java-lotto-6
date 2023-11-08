@@ -15,7 +15,7 @@ class LottoRankTest {
     @CsvSource({
             "6, false, 2000000000",
             "6, true, 2000000000",
-            "5, true, 300000000",
+            "5, true, 30000000",
             "5, false, 1500000",
             "4, true, 50000",
             "3, false, 5000",
@@ -25,6 +25,11 @@ class LottoRankTest {
             "0, true, 0",
     })
     void testGetWinningRank(int match, boolean bonus, long expected) {
+        LottoRank rank = LottoRank.getWinningRank(match, bonus);
+        if (rank == null) {
+            assertEquals(expected, 0);
+            return;
+        }
         long actual = LottoRank.getWinningRank(match, bonus).getReward();
         assertEquals(expected, actual);
     }

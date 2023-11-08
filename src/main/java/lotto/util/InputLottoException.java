@@ -24,7 +24,7 @@ public class InputLottoException {
     } 
 	public void validateInputBonusNumbers(List<Integer> lottoNumbers, int inputBonusNumber) {
 		validateBonusNumberRange(inputBonusNumber);
-		validateRepeatedBonusNumber(lottoNumbers, inputBonusNumber);
+		validateDuplicatedBonusNumber(lottoNumbers, inputBonusNumber);
 	}
 	public void validateLottoNumbersListLength(List<Integer> lottoNumbers) {
 		if(lottoNumbers.size() != MAX_RANGE_OF_LOTTO_LENGTH) {
@@ -58,6 +58,15 @@ public class InputLottoException {
 		if(lottoNumbers.contains(bonusNumber)) {
 			throw new IllegalArgumentException(ERROR+DUPLICATED_BONUS_NUMBER);
 		}
+	}
+	
+	public void validateInputLottoNumbersContainsNumbersAndComma(String lottoNumber) {
+        for (int i = 0; i < lottoNumber.length(); i++) {
+            char c = lottoNumber.charAt(i);
+            if (!(Character.isDigit(c) || c == ',')) {
+                throw new IllegalArgumentException(ERROR + INPUT_LOTTO_CONTAINS_OTHER_THAN_NUMBERS_COMMA_ERROR);
+            }
+        }
 	}
 	
 }

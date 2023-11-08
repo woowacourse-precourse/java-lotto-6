@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Util;
 
 import lotto.LottoFactory.Lotto;
 import org.junit.jupiter.api.DisplayName;
@@ -14,14 +14,25 @@ class LottoTest {
         assertThatThrownBy(() -> Lotto.createLotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    @DisplayName("로또 번호의 개수가 6개보다 적으면 예외가 발생한다.")
+    @Test
+    void createLottoByLeastSize() {
+        assertThatThrownBy(() -> Lotto.createLotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        assertThatThrownBy(() -> Lotto.createLotto(List.of(1, 2, 3, 4, 5, 5)))
+        assertThatThrownBy(() -> Lotto.createLotto(List.of(1, 2, 2, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test
+    @DisplayName(" 유효한 로또 번호 목록을 입력하는 경우 예외 발생X")
+    void isDuplicateLotto_ValidInput() {
+        Validate.isDuplicateLotto(List.of(1, 2, 3, 4, 5, 6)); // 예외 발생하지 않음
+    }
+
+
 }

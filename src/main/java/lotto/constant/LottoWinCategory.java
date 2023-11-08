@@ -48,14 +48,14 @@ public enum LottoWinCategory {
             return SECOND_PRIZE;
         }
         return lottoWinningCategories.stream()
-                .filter(category -> category.isMatched(count))
+                .filter(category -> category.isMatched(count, bonus))
                 .findFirst()
                 .orElse(LottoWinCategory.NO_PRIZE);
     }
 
 
-    public boolean isMatched(int count) {
-        return this.count == count;
+    public boolean isMatched(int count, boolean bonus) {
+        return this.count == count && this.bonus == bonus;
     }
 
     public String convertPrizeToString() {

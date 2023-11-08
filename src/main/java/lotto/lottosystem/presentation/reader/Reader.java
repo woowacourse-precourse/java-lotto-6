@@ -64,4 +64,10 @@ public class Reader {
         }
         return lottoNumber;
     }
+
+    private void checkDuplicate(Lotto lotto, Integer bonusNumber) {
+        if (lotto.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException("보너스 숫자와 당첨 번호는 중복 되어선 안됩니다.");
+        }
+    }
 }

@@ -34,7 +34,7 @@
 - [x] WinningLotto
     - 당첨 Lotto와 1 이상 45 이하의 보너스 번호를 가진다.
     - 다른 Lotto와 당첨 Lotto, 보너스 번호를 비교해 당첨 등수를 반환한다.
-- [ ] PrizeResult
+- [x] PrizeResult
     - 각 Prize의 개수를 저장하는 map을 가진다.
     - prize의 count를 1 증가시킨다.
     - prize의 count를 반환한다.

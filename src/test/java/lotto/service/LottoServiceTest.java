@@ -11,11 +11,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
-import static lotto.ErrorMessage.CONTAINS_EMPTY_NUMBER;
-import static lotto.LottoWinningCase.FIFTH_PLACE;
-import static lotto.LottoWinningCase.UNRANK;
+import static lotto.LottoWinningCase.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class LottoServiceTest {
@@ -80,13 +79,17 @@ public class LottoServiceTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3})
+    @MethodSource("generateMap")
     @DisplayName("당첨으로 얻은 총 금액 증가 테스트")
-    void increaseTotalIncomeTest(int lottoWinCase) {
-        int prev = service.getCaseNum(lottoWinCase);
-        service.increaseTotalIncomeTest(lottoWinCase);
-        int current = service.getCaseNum(lottoWinCase);
-        assertThat(prev).isEqualTo(current - 1);
+    void calculateTotalIncomeTest(Map<LottoWinningCase, Integer> winStatisticMap) {
+        int totalIncome = service.calculateTotalIncome(winStatisticMap);
+        assertThat(totalIncome).isEqualTo(55000);
+    }
+
+    static Stream<Map<LottoWinningCase, Integer>> generateMap() {
+        return Stream.of(
+                Map.of(FIFTH_PLACE, 1, FOURTH_PLACE, 1)
+        );
     }
 
     @ParameterizedTest

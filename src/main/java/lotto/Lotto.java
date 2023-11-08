@@ -27,7 +27,7 @@ public class Lotto {
 
     public int getFirst(int collectCount, int bonusNumber) {
         if (collectCount == 6) {
-            return 1;
+            return 0;
         }
 
         return getSecondAndThird(collectCount, bonusNumber);
@@ -36,10 +36,10 @@ public class Lotto {
     public int getSecondAndThird(int collectCount, int bonusNumber) {
         if (collectCount == 5) {
             if (numbers.contains(bonusNumber)) {
-                return 2;
+                return 1;
             }
 
-            return 3;
+            return 2;
         }
 
         return getFourth(collectCount);
@@ -47,7 +47,7 @@ public class Lotto {
 
     public int getFourth(int collectCount) {
         if (collectCount == 4) {
-            return 4;
+            return 3;
         }
 
         return getFifth(collectCount);
@@ -55,7 +55,7 @@ public class Lotto {
 
     public int getFifth(int collectCount) {
         if (collectCount == 3) {
-            return 5;
+            return 4;
         }
 
         return getNone();
@@ -63,6 +63,6 @@ public class Lotto {
 
     public int getNone() {
 
-        return 6;
+        return 5;
     }
 }

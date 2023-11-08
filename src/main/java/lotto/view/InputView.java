@@ -12,18 +12,15 @@ public class InputView {
     private final String INPUT_BONUS_LOTTO_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public String inputMoneyAmount() {
-        while (true) {
-            try {
-                System.out.println(INPUT_MONEY_AMOUNT_MESSAGE);
-                String money = Console.readLine();
-                validateUserInputMoney(money);
-                return money;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            } catch (IllegalStateException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        System.out.println(INPUT_MONEY_AMOUNT_MESSAGE);
+        String userInputMoney = Console.readLine();
+        validateUserInputMoney(userInputMoney);
+        return userInputMoney;
+    }
+
+    private void validateUserInputMoney(String money) {
+        InputValidator.validateInputIsEmpty(money);
+        InputValidator.validateInputIsNumber(money);
     }
 
     public List<Integer> inputWinningLottoNumbers() {
@@ -61,12 +58,6 @@ public class InputView {
         InputValidator.validateInputIsNumber(bonusLottoNumber);
         InputValidator.validateLottoNumberIsNotInRightRange(bonusLottoNumber);
         InputValidator.validateIsWinningLottoNumberContains(bonusLottoNumber, winningLotto);
-    }
-
-    private void validateUserInputMoney(String money) {
-        InputValidator.validateInputIsEmpty(money);
-        InputValidator.validateInputIsNumber(money);
-        InputValidator.validateInputNumberIsNotDividedThousand(money);
     }
 
     private List<Integer> splitWinningLottoNumbers(String winningLottoNumbers) {

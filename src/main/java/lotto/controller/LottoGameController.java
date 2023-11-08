@@ -4,12 +4,11 @@ import lotto.LottoNumberGenerator.NormalLottoGenerator;
 import lotto.model.Game.Game;
 import lotto.model.Lotto.Lotto;
 import lotto.model.Result.Rank;
-import lotto.model.money.Money;
+import lotto.model.Money.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LottoGameController {
@@ -63,7 +62,16 @@ public class LottoGameController {
     }
 
     private Money inputUserMoneyAmount() {
-        return Money.create(inputView.inputMoneyAmount());
+        while (true) {
+            try {
+                int userInputMoney = Integer.parseInt(inputView.inputMoneyAmount());
+                return Money.create(userInputMoney);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            } catch (IllegalStateException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void printLottoAmount(Game game) {

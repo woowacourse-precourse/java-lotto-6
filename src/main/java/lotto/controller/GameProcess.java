@@ -7,12 +7,9 @@ import static lotto.config.WiningRank.RANK3;
 import static lotto.config.WiningRank.RANK4;
 import static lotto.config.WiningRank.RANK5;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import lotto.config.AppConfig;
 import lotto.config.WiningRank;
 import lotto.domain.Lotto;
@@ -22,6 +19,7 @@ import lotto.service.Payment;
 import lotto.service.Publish;
 import lotto.util.MakeList;
 import lotto.util.Statistics;
+import lotto.util.WrongChecker;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -29,6 +27,7 @@ public class GameProcess {
 
     Input input = new Input();
     Output output = new Output();
+    WrongChecker wrongChecker = new WrongChecker();
 
     ArrayList<Lotto> lottos = new ArrayList<>();
     List<Integer> winingNumbers;
@@ -37,9 +36,15 @@ public class GameProcess {
 
     public void buyLotto() {
         Payment payment = new AppConfig().payment();
-        output.requestAmount();
-        String inputAmount = input.enterAmount();
-        //wrongCheckRequire
+        boolean inputChecker = true;
+
+        String inputAmount = "";
+
+        while (inputChecker) {
+            output.requestAmount();
+            inputAmount = input.enterAmount();
+            inputChecker = wrongChecker.checkWrongAmount(inputAmount);
+        }
         int amount = Integer.parseInt(inputAmount);
         buyCount = payment.pay(amount, LOTTO_PRICE.getNum());
         output.printPurchaseCount(buyCount);
@@ -47,7 +52,8 @@ public class GameProcess {
     public void publishLotto() {
         Publish publish = new AppConfig().publish();
         for(int i = 0; i < buyCount; i++) {
-            List<Integer> list = publish.makeNumbers();
+            List<Integer> list = new ArrayList<>();
+            list = publish.makeNumbers();
             Lotto lotto = new Lotto(list);
             lottos.add(lotto);
         }
@@ -55,14 +61,24 @@ public class GameProcess {
     }
     public void enterWiningNumber() {
         MakeList makeList = new MakeList();
+        boolean inputChecker = true;
+        String rawWiningNumber = null;
+        String rawBonusNumber = null;
 
-        output.requestWiningNumber();
-        String rawWiningNumber = input.enterWiningNumber();
-        //wrongCheckRequire
+        while (inputChecker) {
+            output.requestWiningNumber();
+            rawWiningNumber = input.enterWiningNumber();
+            inputChecker = wrongChecker.checkWrongWiningNumberInput(rawWiningNumber);
+        }
         winingNumbers = makeList.makeStringToIntegerList(rawWiningNumber);
-        output.requestBonusNumber();
-        String rawBonusNumber = input.enterBonusNumber();
-        //wrongCheckRequire
+
+        inputChecker = true;
+
+        while (inputChecker) {
+            output.requestBonusNumber();
+            rawBonusNumber = input.enterBonusNumber();
+            inputChecker = wrongChecker.checkWrongBonusNumber(winingNumbers, rawBonusNumber);
+        }
         bonusNumber = Integer.parseInt(rawBonusNumber);
     }
     public void checkWiningResult() {

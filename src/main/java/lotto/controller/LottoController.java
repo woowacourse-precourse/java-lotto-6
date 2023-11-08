@@ -91,8 +91,13 @@ public class LottoController {
         configured = false;
         while (!configured) {
             configured = doReadBonus();
+            try {
+                lottoAnswer = new LottoAnswer(winningLotto, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                configured = false;
+            }
         }
-        lottoAnswer = new LottoAnswer(winningLotto, bonusNumber);
     }
 
     private boolean doReadAnswer() {

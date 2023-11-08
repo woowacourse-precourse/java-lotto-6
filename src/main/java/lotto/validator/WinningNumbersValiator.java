@@ -4,7 +4,7 @@ import lotto.util.LottoRules;
 
 import java.util.List;
 
-public class valiator {
+public class WinningNumbersValiator {
     private static int essentialCommaCount = LottoRules.LOTTO_NUMBER_COUNT.getValue() - 1;
     private static int startNumber = LottoRules.START_NUMBER.getValue();
     private static int endNumber = LottoRules.END_NUMBER.getValue();

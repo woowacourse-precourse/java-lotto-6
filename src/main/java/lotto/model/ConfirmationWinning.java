@@ -1,7 +1,6 @@
 package lotto.model;
 
-import lotto.util.LottoRules;
-import lotto.util.utils;
+import lotto.util.MapMaker;
 
 
 import java.util.ArrayList;
@@ -33,6 +32,8 @@ public class ConfirmationWinning {
 
     public void calculateWinningCountAboutEachLotto(List<Integer> winningNumbres, Lotto eachLotto) {
         List<Integer> lottoNumbers = eachLotto.getNumbers();
+
+
         this.tempWinningCount = 0;
         this.tempBounsNumberContains = false;
 
@@ -52,18 +53,15 @@ public class ConfirmationWinning {
 
 
     public Map<Integer, Integer> countAllLottosResult(List<EachLottoResult> lottoResult) {
-        Map<Integer, Integer> lottoResultCount = utils.makeEmptyResult();
+        Map<Integer, Integer> lottoResultCount = MapMaker.makeEmptyLottoResultCount();
 
         for (EachLottoResult eachLotto : lottoResult) {
             if (eachLotto.winningCount == 3) {
                 lottoResultCount = countUpLottoResult(3, lottoResultCount);
-
             } else if (eachLotto.winningCount == 4) {
                 lottoResultCount = countUpLottoResult(4, lottoResultCount);
-
             } else if (eachLotto.winningCount == 5) {
                 lottoResultCount = countUpLottoResult(5, lottoResultCount);
-
             } else if (eachLotto.winningCount == 6) {
                 lottoResultCount = splitBonusNumberCase(eachLotto, lottoResultCount);
             }
@@ -90,7 +88,7 @@ public class ConfirmationWinning {
 
 
     public void showLottoGameResult(Map<Integer, Integer> lottoResultCount) {
-        Map<Integer, String> winningAmount = utils.makeWinningAmount();
+        Map<Integer, String> winningAmount = MapMaker.makeWinningAmount();
 
         for (Integer key : lottoResultCount.keySet()) {
             int value = lottoResultCount.get(key);
@@ -109,7 +107,7 @@ public class ConfirmationWinning {
     }
 
     public int calculateTotalIncome(Map<Integer, Integer> lottoResultCount) {
-        Map<Integer, Integer> winningAmountForCalculation = utils.makeWinningAmountForCalculation();
+        Map<Integer, Integer> winningAmountForCalculation = MapMaker.makeWinningAmountForCalculation();
         int totalIncome = 0;
         for (int key : lottoResultCount.keySet()) {
             totalIncome += (lottoResultCount.get(key) * winningAmountForCalculation.get(key));

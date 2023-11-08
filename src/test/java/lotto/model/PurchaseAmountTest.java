@@ -10,7 +10,7 @@ public class PurchaseAmountTest {
     private static final String errMessage = "구매 금액은 숫자형으로 입력해주세요";
 
     @Test
-    void 구매금액이_나누어떨어지는가(){
+    void 구매금액단위가_알맞게_나누어떨어지는가(){
         assertThatThrownBy(() ->{
             PurchaseAmount purchaseAmount = new PurchaseAmount();
             purchaseAmount.IsInputPriceDividedPurchasePrice(3001);
@@ -28,7 +28,7 @@ public class PurchaseAmountTest {
     }
 
     @Test
-    void 구매금액에맞는_구매개수계산확인(){
+    void 구매금액에맞는_구매개수_계산확인(){
         PurchaseAmount purchaseAmount = new PurchaseAmount();
         int lottoCount =  purchaseAmount.calculateLottoCount(3000);
         assertThat(3).isEqualTo(lottoCount);

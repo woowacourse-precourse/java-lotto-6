@@ -2,7 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.util.ErrorMessages;
-import lotto.validator.valiator;
+import lotto.validator.WinningNumbersValiator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,7 @@ public class WinningNumbers {
     }
 
     public void checkCommonNumbersFormat(String winningNumbersBeforeSplit){
-        valiator.IsContainEssentialComma(winningNumbersBeforeSplit);
+        WinningNumbersValiator.IsContainEssentialComma(winningNumbersBeforeSplit);
     }
 
     public List<Integer> splitWinningNumbersByComma(String winningNumbersBeforeSplit) {
@@ -60,7 +60,7 @@ public class WinningNumbers {
     }
 
     public void saveCommonNumbers(List<Integer> splitedCommonNumbers){
-        valiator.validateSplitedCommonNumbers(splitedCommonNumbers);
+        WinningNumbersValiator.validateSplitedCommonNumbers(splitedCommonNumbers);
         this.winningNumbers = splitedCommonNumbers;
     }
 
@@ -80,11 +80,11 @@ public class WinningNumbers {
     }
 
     public void checkBonusNumber(String bonusNumberBeforeValidate){
-        valiator.checkBonusNumberLength(bonusNumberBeforeValidate);
+        WinningNumbersValiator.checkBonusNumberLength(bonusNumberBeforeValidate);
     }
 
     public void saveBonusNumber(int bonusNumber){
-        valiator.checkIsInRange(bonusNumber);
+        WinningNumbersValiator.checkIsInRange(bonusNumber);
         checkBonusNumberIsUnique(bonusNumber);
         this.winningNumbers.add(bonusNumber);
         this.bonusNumber = bonusNumber;
@@ -93,6 +93,6 @@ public class WinningNumbers {
     public void checkBonusNumberIsUnique(int bonusNumber){
         List<Integer> tempWinningNumberAddBonus = new ArrayList<>(winningNumbers);
         tempWinningNumberAddBonus.add(bonusNumber);
-        valiator.checkIsNumberUnique(tempWinningNumberAddBonus);
+        WinningNumbersValiator.checkIsNumberUnique(tempWinningNumberAddBonus);
     }
 }

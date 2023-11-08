@@ -3,7 +3,7 @@ package lotto.util;
 import java.util.HashMap;
 import java.util.Map;
 
-public class utils {
+public class MapMaker {
 
     static int PRINT_RESULT_COUNT = LottoRules.PRINT_RESULT_COUNT.getValue();
     public static Map<Integer, String> makeWinningAmount() {
@@ -26,7 +26,7 @@ public class utils {
         return winningAmountForCalculation;
     }
 
-    public static Map<Integer, Integer> makeEmptyResult() {
+    public static Map<Integer, Integer> makeEmptyLottoResultCount() {
         Map<Integer, Integer> lottoResultCount = new HashMap<>();
         for (int i = 0; i < PRINT_RESULT_COUNT; i++) {
             lottoResultCount.put(i + 3, 0);

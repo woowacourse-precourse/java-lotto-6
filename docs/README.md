@@ -22,7 +22,8 @@
 
 ### 구조
 1. LottoGame - 구입한 모든 로또를 관리한다
-2. Lotto - 각 로또와 로또 번호를 관리한다
-3. PurchaseAmount - 로또 구매 금액을 관리한다
-4. WinningNumbers - 로또 당첨 번호를 관리한다
-5. ConfirmationWinning - 로또 당첨 판단한다
+2. Lotto - 각 로또의 로또 번호를 관리한다
+3. EachLottoResult - 각 로또의 당첨 번호를 관리한다
+4. PurchaseAmount - 로또 구매 금액을 관리한다
+5. WinningNumbers - 로또 당첨 번호를 관리한다
+6. ConfirmationWinning - 로또 당첨을 판단한다

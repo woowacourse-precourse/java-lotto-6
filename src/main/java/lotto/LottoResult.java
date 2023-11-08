@@ -25,4 +25,12 @@ public class LottoResult {
     public Map<LottoRank, Integer> getRankResult() {
         return Collections.unmodifiableMap(rankResult);
     }
+
+    public int countPurchases() {
+        int count = 0;
+        for (int value : rankResult.values()) {
+            count += value;
+        }
+        return count;
+    }
 }

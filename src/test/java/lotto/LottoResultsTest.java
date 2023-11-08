@@ -40,4 +40,18 @@ public class LottoResultsTest {
         // THEN
         assertEquals(expectedTotalPrize, totalPrize);
     }
+    @Test
+    @DisplayName("수익률 계산 테스트")
+    public void testCalculateProfitRate() {
+        // GIVEN
+        int purchaseAmount = 3000;
+        lottoResults.addResult(LottoRank.FIRST); // Let's say the reward is 2,000,000,000
+        double expectedProfitRate = ((double) LottoRank.FIRST.getReward() - purchaseAmount) / purchaseAmount * 100.0;
+
+        // WHEN
+        double profitRate = lottoResults.calculateProfitRate(purchaseAmount);
+
+        // THEN
+        assertEquals(expectedProfitRate, profitRate);
+    }
 }

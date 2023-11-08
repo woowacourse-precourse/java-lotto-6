@@ -37,17 +37,6 @@ public class InputView {
         return winningLotto;
     }
 
-    private static Lotto convertToLotto(String lotto) {
-        lotto = lotto.replaceAll("\\s", "");
-        String[] split = lotto.split(",");
-
-        List<Integer> list = Arrays.stream(split)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-
-        return new Lotto(list);
-    }
-
     public int inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER);
 
@@ -66,5 +55,16 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private static Lotto convertToLotto(String lotto) {
+        lotto = lotto.replaceAll("\\s", "");
+        String[] split = lotto.split(",");
+
+        List<Integer> list = Arrays.stream(split)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        return new Lotto(list);
     }
 }

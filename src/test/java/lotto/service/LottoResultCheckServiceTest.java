@@ -21,7 +21,7 @@ class LottoResultCheckServiceTest {
         Bonus bonus = new Bonus(winningNumber.getNumbers(), "7");
         Result result = lottoResultCheckService.getCommonResult(lotto, winningNumber, bonus);
 
-        Ranking ranking = result.checkRanking();
+        Ranking ranking = result.findMatchingRanking();
 
         assertEquals(ranking.getMatchedCount(), 3);
         assertEquals(ranking, Ranking.THREE);

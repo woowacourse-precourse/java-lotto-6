@@ -33,7 +33,7 @@ class ResultTest {
     void 결과를_통해_랭킹을_판단한다(int matchingCount, boolean isMatchedBonus, Ranking ranking) {
         Result result = new Result(matchingCount, isMatchedBonus);
 
-        Ranking rank = result.checkRanking();
+        Ranking rank = result.findMatchingRanking();
 
         assertEquals(ranking, rank);
     }

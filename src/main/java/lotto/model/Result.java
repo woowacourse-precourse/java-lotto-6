@@ -16,7 +16,7 @@ public class Result {
         this.isMatchedBonus = isMatchedBonus;
     }
     
-    public Ranking checkRanking() {
+    public Ranking findMatchingRanking() {
         List<Ranking> allRankingCase = Ranking.getAllRankingCase();
         for (Ranking ranking : allRankingCase) {
             if (determineRanking(ranking)) {

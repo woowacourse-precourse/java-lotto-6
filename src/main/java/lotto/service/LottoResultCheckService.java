@@ -15,7 +15,7 @@ public class LottoResultCheckService {
         List<Ranking> results = new ArrayList<>();
         for (Lotto lotto : lottoMachine.getIssuedLotto()) {
             Result result = getCommonResult(lotto, winningNumber, bonus);
-            Ranking rankingOfLotto = result.checkRanking();
+            Ranking rankingOfLotto = result.findMatchingRanking();
             results.add(rankingOfLotto);
         }
         return results;

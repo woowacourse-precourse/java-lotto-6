@@ -52,4 +52,12 @@ public class GameResultService {
         }
     }
 
+    public void printResult(){
+        GameResultOutputService.printThreeMatch(this.matchThree);
+        GameResultOutputService.printFourMatch(this.matchFour);
+        GameResultOutputService.printFiveWithoutBonus(this.matchFiveWithoutBonus);
+        GameResultOutputService.printFiveWithBonus(this.matchFiveWithBonus);
+    }
+
+
 }

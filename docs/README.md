@@ -53,7 +53,7 @@
      - Lotto.howManySameNumbers(), Lotto.hasBonus()
      - [x] Enum 구현
 - [ ] 수익을 계산한다. ->  getRateOfReturn() 
-- [ ]  당첨 내역을 출력한다. -> printResult()
+- [x]  당첨 내역을 출력한다. -> printResult()
   - [ ] 수익률 출력 -> printRateOfReturn() 
       - 수익률은 소수점 둘쨰자리에서 반올림한다.
 

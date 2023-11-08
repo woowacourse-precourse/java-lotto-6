@@ -4,7 +4,7 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constant.LottoErrorMessage;
+import lotto.error.LottoErrorMessage;
 
 public class Store {
     public static List<Lotto> sellLottos(Integer money) {

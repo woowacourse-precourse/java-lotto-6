@@ -9,9 +9,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.constant.Grade;
-import lotto.constant.InputErrorMessage;
+import lotto.domain.Grade;
 import lotto.domain.Lotto;
+import lotto.error.InputErrorMessage;
 
 public class UI {
     public static Integer inputMoney() {

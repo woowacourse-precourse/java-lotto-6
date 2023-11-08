@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.error;
 
 public class LottoErrorMessage {
     public static final String BONUS_DUPLICATED = "로또 번호와 보너스 번호가 중복됩니다.";

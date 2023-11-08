@@ -1,16 +1,15 @@
 package lotto.domain;
 
-import static lotto.constant.Grade.FIFTH;
-import static lotto.constant.Grade.FIRST;
-import static lotto.constant.Grade.FOURTH;
-import static lotto.constant.Grade.NONE;
-import static lotto.constant.Grade.SECOND;
-import static lotto.constant.Grade.THIRD;
+import static lotto.domain.Grade.FIFTH;
+import static lotto.domain.Grade.FIRST;
+import static lotto.domain.Grade.FOURTH;
+import static lotto.domain.Grade.NONE;
+import static lotto.domain.Grade.SECOND;
+import static lotto.domain.Grade.THIRD;
 
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import lotto.constant.Grade;
 
 public class Calculator {
     public static Grade checkWinning(Lotto lotto, LottoDrawResult lottoDrawResult) {

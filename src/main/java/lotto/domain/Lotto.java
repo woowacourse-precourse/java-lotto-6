@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
-import lotto.constant.LottoErrorMessage;
+import lotto.error.LottoErrorMessage;
 
 public class Lotto {
     public static final Integer SIZE = 6;

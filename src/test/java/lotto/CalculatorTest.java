@@ -2,8 +2,8 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constant.Grade;
 import lotto.domain.Calculator;
+import lotto.domain.Grade;
 import lotto.domain.Lotto;
 import lotto.domain.LottoDrawResult;
 import org.assertj.core.api.Assertions;

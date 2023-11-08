@@ -3,13 +3,13 @@ package lotto;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.constant.Grade;
-import lotto.constant.LottoErrorMessage;
 import lotto.domain.BroadCastingStation;
 import lotto.domain.Calculator;
+import lotto.domain.Grade;
 import lotto.domain.Lotto;
 import lotto.domain.LottoDrawResult;
 import lotto.domain.Store;
+import lotto.error.LottoErrorMessage;
 
 public class Program {
     private List<Lotto> consumerLottos = null;

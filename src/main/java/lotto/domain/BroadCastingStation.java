@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.constant.LottoErrorMessage;
+import lotto.error.LottoErrorMessage;
 
 public class BroadCastingStation {
     public static LottoDrawResult drawLotto(Lotto lotto, Integer bonus) {

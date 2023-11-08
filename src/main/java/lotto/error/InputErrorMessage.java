@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.error;
 
 public class InputErrorMessage {
     public static final String NO_NATURAL = "자연수를 입력하지 않았습니다.";

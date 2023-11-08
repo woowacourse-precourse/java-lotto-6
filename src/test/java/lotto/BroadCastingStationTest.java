@@ -1,9 +1,9 @@
 package lotto;
 
 import java.util.List;
-import lotto.constant.LottoErrorMessage;
 import lotto.domain.BroadCastingStation;
 import lotto.domain.Lotto;
+import lotto.error.LottoErrorMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

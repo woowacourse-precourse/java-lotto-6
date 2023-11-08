@@ -3,13 +3,14 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.exception.ModelExceptionConstant;
+import lotto.util.ModelValidator;
 
 public class WinningNumbers {
     List<Integer> numbers;
 
     public WinningNumbers(List<Integer> numbers) {
         validateWinningNumbersSize(numbers);
-
+        ModelValidator.validateDuplicateNumber(numbers);
         this.numbers = numbers;
     }
 

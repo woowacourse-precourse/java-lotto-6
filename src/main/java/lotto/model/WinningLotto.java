@@ -11,7 +11,6 @@ public class WinningLotto {
 
 
     public WinningLotto(List<Integer> numbers, Integer bonusNum) {
-        validate(numbers);
         validateWinningNumberSize(numbers);
         validateWinningNumberUnique(numbers);
         this.winningNumbers = numbers;
@@ -20,19 +19,11 @@ public class WinningLotto {
 
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != numberLimit) {
-            throw new IllegalArgumentException();
-        }
-    }
-
     private void validateWinningNumberSize(List<Integer> numbers) {
         if (numbers.size() != numberLimit) {
             throw new IllegalArgumentException();
         }
     }
-
-
 
     private void validateWinningNumberUnique(List<Integer> numbers) {
         List<Integer> distinctList = numbers.stream().distinct().toList();

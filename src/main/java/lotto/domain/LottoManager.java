@@ -1,5 +1,79 @@
 package lotto.domain;
 
-public class LottoManager {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import lotto.util.MatchRanking;
 
+public class LottoManager {
+    private Map<MatchRanking, Integer> lottoResult;
+
+    public LottoManager(Lottos lottos, List<Integer> totalMatchNumbers){
+        lottoResult = new HashMap<>();
+        initLottoResult();
+        matchResult(lottos, totalMatchNumbers);
+    }
+
+    public Map<MatchRanking, Integer> getLottoResult() {
+        return lottoResult;
+    }
+
+    public void matchResult(Lottos lottos, List<Integer> totalMatchNumbers){
+        int bonusNumber = parseBonusNumber(totalMatchNumbers);
+
+        for(Lotto lotto : lottos.getLottos()){
+            List<Integer> numberIntersection = compareToMatch(lotto, totalMatchNumbers);
+            MatchRanking ranking = judgeLottoRanking(numberIntersection, bonusNumber);
+            rankingCount(ranking);
+        }
+    }
+
+    private Integer parseBonusNumber(List<Integer> totalMatchNumbers){
+        return totalMatchNumbers.get(totalMatchNumbers.size()-1);
+    }
+
+    private List<Integer> compareToMatch(Lotto lotto, List<Integer> totalMatchNumbers){
+        List<Integer> compareNumbers = new ArrayList<>(lotto.getNumbers());
+        compareNumbers.retainAll(totalMatchNumbers);
+        return compareNumbers;
+    }
+
+    private MatchRanking judgeLottoRanking(List<Integer> numberIntersection, Integer bonusNumber){
+        if(numberIntersection.size()==6){
+            return MatchRanking.FIRST_PLACE;
+        }
+        if(numberIntersection.size()==5){
+            return judgeSecondAndThirdRanking(numberIntersection, bonusNumber);
+        }
+        if(numberIntersection.size()==4){
+            return MatchRanking.FOURTH_PLACE;
+        }
+        if(numberIntersection.size()==3){
+            return MatchRanking.FIFTH_PLACE;
+        }
+        return MatchRanking.NO_MATCH;
+    }
+
+    private MatchRanking judgeSecondAndThirdRanking(List<Integer> numberIntersection, Integer bonusNumber){
+        if(numberIntersection.contains(bonusNumber)){
+            return MatchRanking.SECOND_PLACE;
+        }
+        return MatchRanking.THIRD_PLACE;
+    }
+
+    private void initLottoResult(){
+        for(MatchRanking matchRanking : MatchRanking.values()){
+            if(!matchRanking.name().isEmpty()){
+                lottoResult.put(matchRanking,0);
+            }
+        }
+    }
+
+    private void rankingCount(MatchRanking ranking){
+        if(!ranking.name().isEmpty()){
+            int count = lottoResult.get(ranking);
+            lottoResult.put(ranking,count+1);
+        }
+    }
 }

@@ -1,8 +1,10 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.util.MatchRanking;
 
 public class LottoView {
     public static final String START_MESSAGE = "구입금액을 입력해 주세요.";
@@ -11,11 +13,11 @@ public class LottoView {
     public static final String COMMA_DELIMITER = ", ";
     public static final String INPUT_MATCH_NUMBER_MESSAGE = "\n당첨 번호를 입력해 주세요.";
     public static final String INPUT_BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
-    public static final String MATCH_STATISTICS_MESSAGE = "\n당첨 통계\n---";
-    public static final String MATCH_RESULT_MESSAGE = "3개 일치 (5,000원) - %d개\n"
+    public static final String MATCH_RESULT_MESSAGE = "\n당첨 통계\n---";
+    public static final String MATCH_STATISTICS_MESSAGE = "3개 일치 (5,000원) - %d개\n"
             + "4개 일치 (50,000원) - %d개\n" + "5개 일치 (1,500,000원) - %d개"
-            + "5개 일치, 보내스 볼 일치 (30,000,000원) - %개"
-            + "6개 일치 (2,000,000,000원) - %개";
+            + "5개 일치, 보내스 볼 일치 (30,000,000원) - %d개"
+            + "6개 일치 (2,000,000,000원) - %d개";
     public static final String TOTAL_RETURN_MESSAGE = "총 수익률은 %s입니다.";
 
     public void startMessage(){
@@ -41,8 +43,18 @@ public class LottoView {
     public void inputBonusNumberMessage(){
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
     }
-    public void matchStatisticsMessage(){
-        System.out.println(MATCH_STATISTICS_MESSAGE);
+    public void matchResultMessage(){
+        System.out.println(MATCH_RESULT_MESSAGE);
+    }
+
+    public void matchStatisticsMessage(Map<MatchRanking, Integer> rankingCount){
+        int fifth = rankingCount.get(MatchRanking.FIFTH_PLACE);
+        int fourth = rankingCount.get(MatchRanking.FOURTH_PLACE);
+        int third = rankingCount.get(MatchRanking.THIRD_PLACE);
+        int second = rankingCount.get(MatchRanking.SECOND_PLACE);
+        int first = rankingCount.get(MatchRanking.FIRST_PLACE);
+
+        System.out.println(String.format(MATCH_STATISTICS_MESSAGE, fifth,fourth,third,second,first));
     }
     public void totalReturnMessage(){
         System.out.println(TOTAL_RETURN_MESSAGE);

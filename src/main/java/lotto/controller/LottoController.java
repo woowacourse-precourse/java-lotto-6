@@ -1,10 +1,15 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import lotto.domain.BonusNumber;
+import lotto.domain.LottoManager;
 import lotto.domain.LottoPrice;
 import lotto.domain.Lottos;
 import lotto.domain.MatchNumber;
+import lotto.util.MatchRanking;
 import lotto.view.LottoView;
 
 public class LottoController {
@@ -26,10 +31,23 @@ public class LottoController {
         lottoView.inputBonusNumberMessage();
         BonusNumber bonusNumber = new BonusNumber(userInput(), matchNumber);
 
-        lottoView.matchStatisticsMessage();
-
+        LottoManager lottoManager = matchResult(matchNumber, bonusNumber);
+        printMatchStatistics(lottoManager);
 
     }
+    public void printMatchStatistics(LottoManager lottoManager){
+        lottoView.matchResultMessage();
+        Map<MatchRanking, Integer> rankingCount = lottoManager.getLottoResult();
+        lottoView.matchStatisticsMessage(rankingCount);
+
+    }
+
+    public LottoManager matchResult(MatchNumber matchNumber, BonusNumber bonusNumber){
+        List<Integer> totalMatchNumbers = matchNumber.getMatchNumbers();
+        totalMatchNumbers.add(bonusNumber.getBonusNumber());
+        return new LottoManager(lottos, totalMatchNumbers);
+    }
+
     public void drawLottoNumbers(LottoPrice lottoPrice){
         int numberOfLotto = countLotto(lottoPrice);
         lottoView.buyMessage(numberOfLotto);
@@ -39,10 +57,6 @@ public class LottoController {
 
     public int countLotto(LottoPrice lottoPrice){
         return lottoPrice.getLottoPrice()/PRICE_OF_LOTTO;
-    }
-
-    public void validateBonusNumber(String inputBonusNumber){
-
     }
 
     private String userInput(){

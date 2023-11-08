@@ -16,6 +16,10 @@ public class BonusNumber {
         this.bonusNumber = bonusNumber;
     }
 
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
+
     private Integer checkForDataType(String userInput){
         try{
             return Integer.parseInt(userInput);

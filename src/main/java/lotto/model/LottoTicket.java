@@ -6,7 +6,7 @@ import java.util.List;
 public class LottoTicket {
     private final List<Lotto> lottoTicket;
 
-    private LottoTicket(List<Lotto> lottoTicket) {
+    protected LottoTicket(List<Lotto> lottoTicket) {
         this.lottoTicket = new ArrayList<>(lottoTicket);
     }
 
@@ -15,7 +15,16 @@ public class LottoTicket {
     }
 
     public WinStatistics getRank(Lotto winLotto, Bonus bonus) {
+        WinStatistics winStatistics = new WinStatistics();
 
+        lottoTicket.forEach(
+                lotto -> {
+                    Rank rank = lotto.getRank(winLotto, bonus);
+                    winStatistics.pushRank(rank);
+                }
+        );
+
+        return winStatistics;
     }
 
     public String printResult() {

@@ -15,6 +15,10 @@ public class Money {
         this.amount = amount;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     public int countNumberOfLotto() {
         return amount / UNIT_OF_AMOUNT.get();
     }

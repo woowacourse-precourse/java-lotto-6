@@ -14,7 +14,19 @@ public class Exception {
         throw new IllegalArgumentException(preface + Message.ERROR_IS_NOT_PLUS_INT.label());
     }
 
-    public static boolean isNotThousandUnit() {
+    public static void isNotThousandUnit() {
         throw new IllegalArgumentException(preface + Message.ERROR_IS_NOT_THOUSAND_UNIT.label());
+    }
+
+    public static void isNotSixByComma() {
+        throw new IllegalArgumentException(preface + Message.ERROR_IS_NOT_SIX_BY_COMMMA.label());
+    }
+
+    public static void isOutOfRange() {
+        throw new IllegalArgumentException(preface + Message.ERROR_IS_OUT_OF_RANGE.label());
+    }
+
+    public static void isNotDistinct() {
+        throw new IllegalArgumentException(preface + Message.ERROR_IS_NOT_DISTICNT.label());
     }
 }

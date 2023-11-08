@@ -12,10 +12,12 @@ public class LottoController {
 
     private static int lottoCnt;
     private static List<Lotto> lottos = new ArrayList<>();
+    private static List<Integer> answerlottoNumbers;
 
     public static void run() {
         setBuyAmount();
         buyLotto();
+        setAnswerLottoNumbers();
     }
 
     private static void setBuyAmount() {
@@ -25,7 +27,7 @@ public class LottoController {
 
     private static void buyLotto() {
         OutputView.printLottoCnt(lottoCnt);
-        while(lottoCnt-- > 0) {
+        while (lottoCnt-- > 0) {
             Lotto lotto = new Lotto(setLottoNumbers());
             lottos.add(lotto);
             OutputView.printLottoList(lotto.getNumbers());
@@ -37,5 +39,11 @@ public class LottoController {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
         return numbers;
+    }
+
+    private static void setAnswerLottoNumbers() {
+        OutputView.promptForAnswerLottoNumbers();
+        answerlottoNumbers = InputView.getAnswerLottoNumbers();
+
     }
 }

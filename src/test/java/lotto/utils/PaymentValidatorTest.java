@@ -9,13 +9,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class InputValidatorTest {
+class PaymentValidatorTest {
 
     @DisplayName("2147483647 이하 정수가 아니면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"0.0", "1.23", "ab1", "", "2147483648"})
     void testValidateInteger(String input) {
-        assertThatThrownBy(() -> InputValidator.validateInteger(input))
+        assertThatThrownBy(() -> PaymentValidator.validateInteger(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NUMBER_NOT_INTEGER.getMessage());
     }
@@ -24,7 +24,7 @@ class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(ints = {0, -1, -123})
     void testValidateNaturalNumber(int input) {
-        assertThatThrownBy(() -> InputValidator.validateNaturalNumber(input))
+        assertThatThrownBy(() -> PaymentValidator.validateNaturalNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(PAYMENT_NOT_NATURAL_NUMBER.getMessage());
     }
@@ -33,7 +33,7 @@ class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 100, 1100})
     void testValidateUnit(int input) {
-        assertThatThrownBy(() -> InputValidator.validateUnit(input))
+        assertThatThrownBy(() -> PaymentValidator.validateUnit(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(PAYMENT_INVALID_UNIT.getMessage());
     }

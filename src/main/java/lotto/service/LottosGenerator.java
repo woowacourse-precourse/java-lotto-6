@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;

@@ -16,23 +16,31 @@ public class User {
 
     public final Map<String, Integer> totalResult;
 
-    public User (int payment) {
+    public int totalAmount = 0;
+
+    public User(int payment) {
         this.payment = payment;
         this.lottos = Lotto.publish(payment);
-        this.totalResult = Arrays.stream(values()).collect(Collectors.toMap(ResultConfig::getCount, value->0));
+        this.totalResult = Arrays.stream(values())
+                                 .collect(Collectors.toMap(ResultConfig::getCount, value -> 0));
     }
 
-    public void processCheckResult (String count, boolean getBonus) {
+    public void processCheckResult(String count, boolean getBonus) {
         if (count.equals("5") && getBonus) count += "0";
         saveResult(count);
+        calculateTotalAmount(count);
     }
 
-    private void saveResult (String message) {
+    private void saveResult(String message) {
         totalResult.put(message, totalResult.getOrDefault(message, 0) + 1);
     }
 
+    private void calculateTotalAmount(String message) {
+        totalAmount += ResultConfig(message);
+    }
+
     @Override
-    public String toString () {
+    public String toString() {
         return "User{" +
                 "payment=" + payment +
                 ", lottos=" + lottos +

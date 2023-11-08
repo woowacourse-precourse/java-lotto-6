@@ -10,7 +10,6 @@ public class QuantityDisplayManager {
         List<List<Integer>> numbers = new ArrayList<List<Integer>>();
         for (int i = 0; i < purchaseQuantity; i++) {
             List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(randomNumbers);
             numbers.add(randomNumbers);
         }
         return numbers;

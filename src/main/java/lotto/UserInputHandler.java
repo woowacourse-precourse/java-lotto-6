@@ -18,8 +18,8 @@ public class UserInputHandler {
                 String purchase = Console.readLine();
                 checkMoneyUnitValidity(Integer.parseInt(purchase));
                 return Integer.parseInt(purchase);
-            } catch (Exception e) {
-                System.out.println("[ERROR] 구입 금액은 1,000원 단위로 입력헤야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
             }
         }
     }

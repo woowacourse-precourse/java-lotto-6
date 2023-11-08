@@ -31,10 +31,6 @@ public class LottoGame extends IndexModel {
         this.id = id;
     }
 
-    public int getPurchaseAmount() {
-        return purchaseAmount.getAmount();
-    }
-
     public List<List<Integer>> getPurchaseLottos() {
         return automaticLottos.getLottos();
     }
@@ -44,6 +40,6 @@ public class LottoGame extends IndexModel {
     }
 
     public double getRateOfReturn() {
-
+        return winningResult.getRateOfReturn();
     }
 }

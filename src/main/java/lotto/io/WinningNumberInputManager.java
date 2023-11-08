@@ -16,15 +16,21 @@ public class WinningNumberInputManager extends InputManager<List<Integer>> {
 
     @Override
     public List<Integer> input() {
-        while (true) {
-            try {
-                System.out.println("당첨 번호를 입력해 주세요.");
-                String inputLine = consoleAdapter.readLine();
-                return validation(inputLine);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        List<Integer> result = null;
+        try {
+            result = setResult(result);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            result = setResult(result);
         }
+        return result;
+    }
+
+    private List<Integer> setResult(List<Integer> result) {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String inputLine = consoleAdapter.readLine();
+        result = validation(inputLine);
+        return result;
     }
 
     @Override

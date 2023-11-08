@@ -24,9 +24,10 @@ class AnalyzerTest {
     void checkWinningRank() {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         List<Integer> ticketNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(ticketNumbers);
         int bonusNumber = 7;
 
-        int rank = analyzer.check(winningNumbers, ticketNumbers, bonusNumber);
+        int rank = analyzer.check(winningNumbers, lotto, bonusNumber);
 
         assertThat(rank).isEqualTo(1);
     }

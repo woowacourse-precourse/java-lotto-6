@@ -46,7 +46,7 @@ public class UserInput {
     }
 
     private static void validateNumber(int number) {
-        if (number < LottoInit.MINIMUM.getInitial() || number > LottoInit.MAXIMUM.getInitial()) {
+        if (number < LottoInit.LOTTO_MINIMUM.getInitial() || number > LottoInit.LOTTO_MAXIMUM.getInitial()) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_RANGE_NUMBER.getMessage());
         }
     }

@@ -2,8 +2,7 @@ package controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import model.Lotto;
-import model.LottoInit;
-import model.Lottos;
+import static model.LottoInit.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ public class LottoGenerator {
         List<Lotto> lottos = new ArrayList<>();
         while (number > ZERO) {
             List<Integer> randomNumber = new ArrayList<>(Randoms.pickUniqueNumbersInRange
-                    (LottoInit.MINIMUM.getInitial(), LottoInit.MAXIMUM.getInitial(), LottoInit.SIZE.getInitial()));
+                    (LOTTO_MINIMUM.getInitial(), LOTTO_MAXIMUM.getInitial(), LOTTO_SIZE.getInitial()));
             Lotto lotto = new Lotto(randomNumber);
             lottos.add(lotto);
             number--;

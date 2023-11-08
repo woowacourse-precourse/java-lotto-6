@@ -30,7 +30,7 @@ public class Lotto {
     }
 
     public static void validate(List<Integer> numbers) {
-        if (numbers.size() != LottoInit.SIZE.getInitial()) {
+        if (numbers.size() != LottoInit.LOTTO_SIZE.getInitial()) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_ORDER_COUNT.getMessage());
         }
     }

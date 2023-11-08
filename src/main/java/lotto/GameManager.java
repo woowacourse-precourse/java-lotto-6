@@ -41,7 +41,7 @@ public class GameManager {
     public void generateLotto() {
         int iterNum = moneyYouPut / Constants.LOTTOCOST;
         for(int i = 0; i < iterNum; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(numbers);
             Lotto lotto = new Lotto(numbers);
             this.lottos.add(lotto);

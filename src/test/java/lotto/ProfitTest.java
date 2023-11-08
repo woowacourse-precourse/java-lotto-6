@@ -10,8 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ProfitTest {
     @Test
-    @DisplayName("getProfitRate: 10개 뽑아서 2등과 4등에 하나씩 당첨되었을 때: 300500% 수익")
-    void getProfitRateTest() {
+    @DisplayName("findProfitRate: 10개 뽑아서 2등과 4등에 하나씩 당첨되었을 때: 300500% 수익")
+    void findProfitRateTest() {
         Result result = new Result();
         List<Score> scores = new ArrayList<>();
         Profit profit =new Profit();

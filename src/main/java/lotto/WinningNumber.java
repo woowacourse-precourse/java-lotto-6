@@ -14,9 +14,6 @@ public class WinningNumber {
     private static final String ERROR_BONUS_RANGE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String ERROR_DUPLICATION_NUMBER = "[ERROR] 보너스 번호는 당첨 번호와 다른 숫자여야 합니다.";
 
-    private static List<Long> matchWinningNumber = new ArrayList<>();
-    private static List<Long> matchBonusNumber = new ArrayList<>();
-
 
     public static List<Integer> inputWinningNumber() {
         List<Integer> winningNumbers;

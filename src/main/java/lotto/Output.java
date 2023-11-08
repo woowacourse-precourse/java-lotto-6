@@ -1,5 +1,7 @@
 package lotto;
 
+import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.List;
 
 public class Output {
@@ -18,6 +20,19 @@ public class Output {
     }
 
     public void printLottos(List<Lotto> lottos){
-        lottos.forEach(lotto -> System.out.println(lotto));
+        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+    }
+
+    public void printResult(HashMap<Ranking, Integer> result, Double profit){
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.0");
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + result.getOrDefault(Ranking.FIFTH,0) +"개");
+        System.out.println("4개 일치 (50,000원) - " + result.getOrDefault(Ranking.FOURTH,0) +"개");
+        System.out.println("5개 일치 (1,500,000원) - " + result.getOrDefault(Ranking.THIRD,0) +"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.getOrDefault(Ranking.SECOND,0) +"개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + result.getOrDefault(Ranking.FIRST,0) +"개");
+        System.out.println("총 수익률은 "+ decimalFormat.format(profit) +"%입니다.");
+
     }
 }

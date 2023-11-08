@@ -62,11 +62,11 @@ public class WinLotto {
         LottoResult[] values = LottoResult.values();
         String winString = "";
         for (int i = 0; i < 5; i++) {
-            winString += values[i].getWinMessage() + " - " + winResult.get(i) + "개";
+            winString += values[i].getWinMessage() + " - " + winResult.get(i) + "개\n";
             winAmount += winResult.get(i) * values[i].getReward();
         }
 
-        return winString;
+        return winString.strip();
     }
 
     // 보너스 번호 설정

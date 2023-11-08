@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoTest {
-    private final List<Integer> numbers = Arrays.asList(new Integer[] {1, 2, 3, 4, 5, 6});
+    private final List<Integer> numbers = Arrays.asList(new Integer[]{1, 2, 3, 4, 5, 6});
     private Lotto lotto;
 
     @BeforeEach

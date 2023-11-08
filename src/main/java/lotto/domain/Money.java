@@ -42,4 +42,7 @@ public class Money {
         }
     }
 
+    public int getMoney() {
+        return money;
+    }
 }

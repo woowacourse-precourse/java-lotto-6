@@ -16,7 +16,7 @@ public class Lotto {
         printer.showLotteryNumbers(numbers);
     }
 
-    public List<Integer> getLotteryNumbers() {
+    List<Integer> getLotteryNumbers() {
         return numbers;
     }
 

@@ -19,7 +19,7 @@ public class Printer {
         System.out.println(Arrays.toString(Lotto.toArray()));
     }
 
-    public void showResult(int matchingThreeNumbers, int matchingFourNumbers, int matchingFiveNumbers, int matchingFiveAndBonusNumbers, int matchingSixNumbers) {
+    void showResult(int matchingThreeNumbers, int matchingFourNumbers, int matchingFiveNumbers, int matchingFiveAndBonusNumbers, int matchingSixNumbers) {
         System.out.println("\n당첨 통계");
         System.out.println("--");
         System.out.println("3개 일치 (5,000원) - "+matchingThreeNumbers+"개");
@@ -29,7 +29,7 @@ public class Printer {
         System.out.println("6개 일치 (2,000,000,000원) - "+matchingSixNumbers+"개");
     }
 
-    public void showProfit(double profit) {
+    void showProfit(double profit) {
         // 수익률을 출력
         String profitFormat = String.format("%,.1f", profit);
         System.out.println("총 수익률은 "+ profitFormat +"%입니다.");

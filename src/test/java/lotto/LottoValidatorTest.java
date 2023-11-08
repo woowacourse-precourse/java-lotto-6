@@ -3,8 +3,8 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.controller.LottoGameController;
 import lotto.utils.LottoValidator;
+import lotto.utils.Parser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,9 +33,9 @@ public class LottoValidatorTest {
     @DisplayName("로또 번호에 숫자가 아닌 값 포함되어 있으면 예외가 발생한다.")
     @Test
     void invalidInputNonNumeric() {
-        LottoGameController controller = new LottoGameController();
+        Parser parser = new Parser(lottoValidator);
         String input = "1, 2, Three, 4, 5, 6";
-        assertThatThrownBy(() -> controller.parseNumbers(input))
+        assertThatThrownBy(() -> parser.parseNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 숫자가 아닌 값이 포함되어 있습니다.");
     }

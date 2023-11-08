@@ -17,7 +17,7 @@ public class LottoTickets {
         }
     }
 
-    public int getNumberOfLottoTickets() {
+    public int size() {
         return numberOfLottoTickets;
     }
 

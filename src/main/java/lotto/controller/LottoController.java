@@ -7,7 +7,6 @@ import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBuyer;
 import lotto.domain.LottoRank;
-import lotto.domain.LottoTickets;
 import lotto.domain.Payment;
 import lotto.domain.WinningLottoNumbers;
 import lotto.view.InputView;
@@ -18,7 +17,6 @@ public class LottoController {
     private static final OutputView OUTPUT_VIEW = OutputView.getInstance();
     private static final InputView INPUT_VIEW = InputView.getInstance();
     private Payment payment;
-    private LottoTickets lottoTickets;
     private LottoBuyer lottoBuyer;
     private Bonus bonus;
     private Lotto winningLotto;
@@ -31,10 +29,9 @@ public class LottoController {
 
     private void init() {
         initPayment();
-        lottoTickets = new LottoTickets(payment);
-        lottoBuyer = new LottoBuyer(payment, lottoTickets);
-        OUTPUT_VIEW.printNumberOfPurchased(lottoTickets.getNumberOfLottoTickets());
-        OUTPUT_VIEW.printLottoTickets(lottoTickets.toString());
+        lottoBuyer = new LottoBuyer(payment);
+        OUTPUT_VIEW.printNumberOfPurchased(lottoBuyer.getNumberOfLottoTickets());
+        OUTPUT_VIEW.printLottoTickets(lottoBuyer.getLottoTicketsInformation());
         initWinningLotto();
         initBonus();
         winningLottoNumbers = new WinningLottoNumbers(winningLotto, bonus);
@@ -68,7 +65,7 @@ public class LottoController {
     }
 
     private void showResult() {
-        List<LottoRank> resultRanks = lottoTickets.getWinningRanks(winningLottoNumbers);
+        List<LottoRank> resultRanks = lottoBuyer.getLottoResult(winningLottoNumbers);
         Map<LottoRank, Integer> countRanks = getCountRanks(resultRanks);
 
         List<String> results = countRanks.entrySet().stream()

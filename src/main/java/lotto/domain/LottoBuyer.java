@@ -6,9 +6,21 @@ public class LottoBuyer {
     private final Payment payment;
     private final LottoTickets lottoTickets;
 
-    public LottoBuyer(Payment payment, LottoTickets lottoTickets) {
+    public LottoBuyer(Payment payment) {
         this.payment = payment;
-        this.lottoTickets = lottoTickets;
+        this.lottoTickets = new LottoTickets(payment);
+    }
+
+    public List<LottoRank> getLottoResult(WinningLottoNumbers winningLottoNumbers) {
+        return lottoTickets.getWinningRanks(winningLottoNumbers);
+    }
+
+    public String getLottoTicketsInformation() {
+        return lottoTickets.toString();
+    }
+
+    public int getNumberOfLottoTickets() {
+        return lottoTickets.size();
     }
 
     public double getRateOfReturn(List<LottoRank> lottoRanks) {

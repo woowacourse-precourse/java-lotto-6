@@ -1,14 +1,19 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.utils.BonusNumberException;
 import lotto.utils.PurchaseAmountException;
 import lotto.utils.WinningNumbersException;
+
+import java.util.Arrays;
 
 import static lotto.utils.GameMessage.*;
 
 public class Input {
-    PurchaseAmountException purchaseAmountException = new PurchaseAmountException();
-    WinningNumbersException winningNumbersException = new WinningNumbersException();
+    private PurchaseAmountException purchaseAmountException = new PurchaseAmountException();
+    private WinningNumbersException winningNumbersException = new WinningNumbersException();
+    private BonusNumberException bonusNumberException = new BonusNumberException();
+    private String winningNumbers = "";
 
     public String inputPurchaseAmount() {
         while (true) {
@@ -28,15 +33,15 @@ public class Input {
         while (true) {
             try {
                 System.out.println(WINNING_NUMBERS.getMessage());
-                String input = Console.readLine();
-                winningNumbersException.underLength(input);
-                winningNumbersException.exceedsLength(input);
-                winningNumbersException.notNumeric(input);
-                winningNumbersException.outsideRange(input);
-                winningNumbersException.duplicateNumber(input);
-                winningNumbersException.nonComma(input);
-                winningNumbersException.lastComma(input);
-                return input;
+                this.winningNumbers = Console.readLine();
+                winningNumbersException.underLength(this.winningNumbers);
+                winningNumbersException.exceedsLength(this.winningNumbers);
+                winningNumbersException.notNumeric(this.winningNumbers);
+                winningNumbersException.outsideRange(this.winningNumbers);
+                winningNumbersException.duplicateNumber(this.winningNumbers);
+                winningNumbersException.nonComma(this.winningNumbers);
+                winningNumbersException.lastComma(this.winningNumbers);
+                return this.winningNumbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -44,8 +49,21 @@ public class Input {
     }
 
     public String inputBonusNumber() {
-        // 보너스 번호 입력
-        System.out.println(BONUS_NUMBER.getMessage());
-        return Console.readLine();
+        while (true) {
+            try {
+                System.out.println(BONUS_NUMBER.getMessage());
+                String input = Console.readLine();
+                bonusNumberException.outsideRange(input);
+                bonusNumberException.duplicateNumber(Arrays.asList(change(this.winningNumbers)), input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public String[] change(String winningNumbers) {
+        String[] changeWinningNumbers = winningNumbers.split(",");
+        return changeWinningNumbers;
     }
 }

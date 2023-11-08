@@ -40,13 +40,13 @@ public class LottoGame {
         List<Rank> rankValues = new ArrayList(List.of(Rank.values()));
         Collections.reverse(rankValues);
         rankValues.stream()
-                .filter(rank -> !rank.equals(Rank.OTHER))
-                .forEach(rank -> System.out.println(
-                    rank.getCorrectCount() + "개 일치"
-                    + (rank.isBonusCorrect() ? ", 보너스 볼 일치" : "")
-                    + " (" + Prize.valueOf(rank.name()).getPrintValue() + "원) - "
-                    + rankCount.getOrDefault(rank, 0) + "개"
-                ));
+                    .filter(rank -> !rank.equals(Rank.OTHER))
+                    .forEach(rank -> System.out.println(
+                        rank.getCorrectCount() + "개 일치"
+                        + (rank.isBonusCorrect() ? ", 보너스 볼 일치" : "")
+                        + " (" + Prize.valueOf(rank.name()).getPrintValue() + "원) - "
+                        + rankCount.getOrDefault(rank, 0) + "개"
+                    ));
     }
 
     public Map<Rank, Integer> getRankCount(List<Rank> ranks) {
@@ -63,11 +63,11 @@ public class LottoGame {
 
     public String getEarningRate(List<Rank> ranks, int price) {
         Integer prizeSum = ranks.stream()
-                .map(rank -> rank.name())
-                .map(name -> Prize.valueOf(name))
-                .map(Prize::getValue)
-                .reduce((x, y) -> x + y)
-                .get();
+                                .map(rank -> rank.name())
+                                .map(name -> Prize.valueOf(name))
+                                .map(Prize::getValue)
+                                .reduce((x, y) -> x + y)
+                                .get();
 
         double earningRate = (double) prizeSum / price * Consts.HUNDRED;
 

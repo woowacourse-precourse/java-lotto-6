@@ -27,8 +27,8 @@ public class Input {
     public static List<Integer> validateWinNumsInput(String winNumsInput) {
         try {
             List<Integer> winNums = Arrays.stream(winNumsInput.split(","))
-                    .map(Integer::valueOf)
-                    .toList();
+                                            .map(Integer::valueOf)
+                                            .toList();
             validateNumCounts(winNums);
             validateNumRange(winNums);
             validateDuplication(winNums);

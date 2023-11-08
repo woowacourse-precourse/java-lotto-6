@@ -4,6 +4,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.List;
 import lotto.global.ErrorCode;
+import lotto.global.constant.LottoNumber;
 import lotto.global.util.StringConverter.StringToIntegerListConverter;
 import lotto.view.exception.InputException;
 
@@ -33,19 +34,23 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new InputException(ErrorCode.INVALID_INPUT_LOTTO_NUMBERS);
         }
+        validateInputNumberRange(userInputNumbers);
+        validateInputNumberCount(userInputNumbers);
         return userInputNumbers;
     }
 
     public int inputBonusNumber(){
         String userInput = readLine();
         validateInputIsNumber(userInput);
-        return Integer.parseInt(userInput);
+        int bonusNumber = Integer.parseInt(userInput);
+        validateInputNumberRange(bonusNumber);
+        return bonusNumber;
     }
 
     private void validatePurchaseAmount(String userInput) {
         try {
             int purchaseAmount = Integer.parseInt(userInput);
-            if(purchaseAmount % 1000 != 0){
+            if(purchaseAmount % LottoNumber.LOTTO_PRICE != 0){
                 throw new InputException(ErrorCode.INVALID_INPUT_PURCHASE_AMOUNT);
             }
         } catch (NumberFormatException e) {
@@ -61,4 +66,23 @@ public class InputView {
         }
     }
 
+    private void validateInputNumberRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < LottoNumber.MIN_LOTTO_NUMBER || number > LottoNumber.MAX_LOTTO_NUMBER) {
+                throw new InputException(ErrorCode.INVALID_INPUT_LOTTO_NUMBERS);
+            }
+        }
+    }
+
+    private void validateInputNumberRange(int number) {
+        if (number < LottoNumber.MIN_LOTTO_NUMBER || number > LottoNumber.MAX_LOTTO_NUMBER) {
+            throw new InputException(ErrorCode.INVALID_INPUT_LOTTO_NUMBERS);
+        }
+    }
+
+    private void validateInputNumberCount(List<Integer> numbers){
+        if (numbers.size() != LottoNumber.LOTTO_NUMBER_COUNT) {
+            throw new InputException(ErrorCode.INVALID_INPUT_LOTTO_NUMBERS);
+        }
+    }
 }

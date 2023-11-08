@@ -4,6 +4,7 @@ package lotto.Validator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.OutputService;
 
 public class LottoValidator {
     private static final String ERROR_MESSAGE = "[ERROR] 당첨번호는 ";
@@ -13,8 +14,9 @@ public class LottoValidator {
     private static final int LOTTO_MAX = 45;
 
     private static boolean rangeBetweenMinToMax(List<Integer> numbers) {
-        for (int index = 0; index < numbers.size(); index++) {
-            int number = numbers.get(index);
+
+        for (Integer number :
+                numbers) {
             if (number < LOTTO_MIN || number > LOTTO_MAX) {
                 return false;
             }
@@ -23,12 +25,10 @@ public class LottoValidator {
     }
 
     private static boolean hasDuplicate(List<Integer> numbers) {
-        Set<Integer> duplicateCheck = new HashSet<>();
-        for (int index = 0; index < numbers.size(); index++) {
-            int number = numbers.get(index);
-            if (!duplicateCheck.add(number)) {
-                return false;
-            }
+
+        Set<Integer> duplicateCheck = new HashSet<>(numbers);
+        if (duplicateCheck.size() != LOTTO_SIZE) {
+            return false;
         }
         return true;
     }
@@ -44,7 +44,8 @@ public class LottoValidator {
         }
 
         if (!rangeBetweenMinToMax(numbers)) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + LOTTO_MIN + "이상 " + LOTTO_MAX + "인 숫자들로 구성되어있어야 합니다.");
+            throw new IllegalArgumentException(
+                    ERROR_MESSAGE + LOTTO_MIN + "이상 " + LOTTO_MAX + "인 숫자들로 구성되어있어야 합니다.");
         }
     }
 

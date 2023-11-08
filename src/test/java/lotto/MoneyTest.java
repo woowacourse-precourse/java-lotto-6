@@ -1,9 +1,14 @@
 package lotto;
 
 import lotto.domain.Money;
+import org.assertj.core.api.AbstractThrowableAssert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static lotto.constants.MessageConstants.BLANK_INPUT_ERROR;
+import static lotto.constants.MessageConstants.INVALID_INPUT_ERROR;
+import static lotto.constants.MessageConstants.NOT_INTEGER_ERROR;
+import static lotto.constants.MessageConstants.NULL_INPUT_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -20,7 +25,7 @@ class MoneyTest {
     void createNullMoneyInput() {
         assertThatThrownBy(() -> new Money(null))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("null 입력 불가");
+                .hasMessageContaining(NULL_INPUT_ERROR);
     }
 
     @Test
@@ -28,7 +33,7 @@ class MoneyTest {
     void createBlankMoneyInput() {
         assertThatThrownBy(() -> new Money(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("빈 금액은 입력 불가");
+                .hasMessageContaining(BLANK_INPUT_ERROR);
     }
 
     @Test
@@ -36,7 +41,7 @@ class MoneyTest {
     void createNotNumberInput() {
         assertThatThrownBy(() -> new Money("1391a"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("정수만 입력 가능");
+                .hasMessageContaining(NOT_INTEGER_ERROR);
     }
 
     @Test
@@ -44,7 +49,7 @@ class MoneyTest {
     void createNegativeIntegerInput() {
         assertThatThrownBy(() -> new Money("-1131"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("금액은 1000원 단위 양수만 가능");
+                .hasMessageContaining(INVALID_INPUT_ERROR);
     }
 
     @Test
@@ -52,6 +57,6 @@ class MoneyTest {
     void createInvalidInput() {
         assertThatThrownBy(() -> new Money("4100"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("금액은 1000원 단위 양수만 가능");
+                .hasMessageContaining(INVALID_INPUT_ERROR);
     }
 }

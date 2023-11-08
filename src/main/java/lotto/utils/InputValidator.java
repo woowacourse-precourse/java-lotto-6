@@ -1,15 +1,18 @@
 package lotto.utils;
 
+import static lotto.constants.MessageConstants.BLANK_INPUT_ERROR;
+import static lotto.constants.MessageConstants.NULL_INPUT_ERROR;
+
 public class InputValidator {
     public static void validateEmpty(String input) {
         if (input.trim().isEmpty()) {
-            throw new IllegalArgumentException("빈 금액은 입력 불가");
+            throw new IllegalArgumentException(BLANK_INPUT_ERROR);
         }
     }
 
     public static void validateNull(String input) {
         if (input == null) {
-            throw new IllegalArgumentException("null 입력 불가");
+            throw new IllegalArgumentException(NULL_INPUT_ERROR);
         }
     }
 }

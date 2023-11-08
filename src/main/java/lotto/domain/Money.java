@@ -1,9 +1,12 @@
 package lotto.domain;
 
+import static lotto.constants.Constants.LOTTO_PRICE;
+import static lotto.constants.MessageConstants.INVALID_INPUT_ERROR;
+import static lotto.constants.MessageConstants.NOT_INTEGER_ERROR;
+
 import lotto.utils.InputValidator;
 
 public class Money {
-    private static final int LOTTO_PRICE = 1000;
     private final int money;
 
     public Money(String inputMoney) {
@@ -22,11 +25,11 @@ public class Money {
         try {
             parsedMoney = Integer.parseInt(inputMoney);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("정수만 입력 가능");
+            throw new IllegalArgumentException(NOT_INTEGER_ERROR);
         }
 
         if (parsedMoney <= 0 || parsedMoney % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("금액은 1000원 단위 양수만 가능");
+            throw new IllegalArgumentException(INVALID_INPUT_ERROR);
         }
         return parsedMoney;
     }

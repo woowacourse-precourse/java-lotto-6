@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constants.MessageConstants.UNIQUE_ERROR;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,7 +26,7 @@ public class Lotto {
     private void isUniqueNumber(List<Integer> numbers) {
         long uniqueCount = numbers.stream().distinct().count();
         if (uniqueCount != (long) (numbers.size())) {
-            throw new IllegalArgumentException("각 숫자는 고유해야함");
+            throw new IllegalArgumentException(UNIQUE_ERROR);
         }
     }
 

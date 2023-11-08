@@ -2,6 +2,7 @@ package lotto.constants;
 
 public class MessageConstants {
     public static final String UNIQUE_ERROR = "각 숫자는 고유해야함";
+    public static final String UNIQUE_BONUS_ERROR = "보너스 번호는 고유해야함";
     public static final String INVALID_INPUT_ERROR = "금액은 1000원 단위 양수만 가능";
     public static final String NOT_INTEGER_ERROR = "정수만 입력 가능";
     public static final String NOT_POSITIVE_ERROR = "양의 정수만 입력 가능";

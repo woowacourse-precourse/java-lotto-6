@@ -1,16 +1,24 @@
 package lotto.domain;
 
+import static lotto.constants.Constants.LOTTO_SIZE;
+import static lotto.constants.Constants.MAX_VALUE;
+import static lotto.constants.Constants.MIN_VALUE;
+import static lotto.constants.MessageConstants.INVALID_LOTTO_COUNT_ERROR;
+import static lotto.constants.MessageConstants.NOT_INTEGER_ERROR;
+import static lotto.constants.MessageConstants.NOT_POSITIVE_ERROR;
+import static lotto.constants.MessageConstants.UNIQUE_BONUS_ERROR;
+import static lotto.constants.MessageConstants.UNIQUE_ERROR;
+import static lotto.constants.MessageConstants.VALID_RANGE;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 import lotto.utils.InputValidator;
 
 public class WinningLotto {
-    private static final int MIN_VALUE = 1;
-    private static final int MAX_VALUE = 45;
-    private static final int LOTTO_SIZE = 6;
 
     private final Lotto winningNumbers;
     private final int bonusNumber;
@@ -37,7 +45,7 @@ public class WinningLotto {
         int parsedNumber = parseNumber(bonusNumber);
         validateSingleRange(parsedNumber);
         if (winningNumbers.isExist(parsedNumber)) {
-            throw new IllegalArgumentException("보너스 번호는 고유해야함");
+            throw new IllegalArgumentException(UNIQUE_BONUS_ERROR);
         }
         return parsedNumber;
     }
@@ -58,24 +66,24 @@ public class WinningLotto {
         try {
             parsedNumber = Integer.parseInt(number.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("정수만 입력 가능");
+            throw new IllegalArgumentException(NOT_INTEGER_ERROR);
         }
         if (parsedNumber <= 0) {
-            throw new IllegalArgumentException("양의 정수만 입력 가능");
+            throw new IllegalArgumentException(NOT_POSITIVE_ERROR);
         }
         return parsedNumber;
     }
 
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("로또 6개만 입력 가능");
+            throw new IllegalArgumentException(INVALID_LOTTO_COUNT_ERROR);
         }
     }
 
     private static void validateUnique(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("각 숫자는 고유해야함");
+            throw new IllegalArgumentException(UNIQUE_ERROR);
         }
     }
 
@@ -87,8 +95,7 @@ public class WinningLotto {
 
     private static void validateSingleRange(int number) {
         if (number < MIN_VALUE || number > MAX_VALUE) {
-            throw new IllegalArgumentException(
-                    "로또번호는 " + MIN_VALUE + " 과 " + MAX_VALUE + " 사이만 가능");
+            throw new IllegalArgumentException(VALID_RANGE);
         }
     }
 

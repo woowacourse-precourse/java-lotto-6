@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class WinningStatistics {
-    Map<Statistics, Integer> winningStatistics;
+    private Map<Statistics, Integer> winningStatistics;
 
     public WinningStatistics(ResultDTO resultDTO, int quantity) {
         initialize();

@@ -28,7 +28,7 @@ public enum Statistics {
         return findStatisticValue(matchNumber);
     }
 
-    public static Statistics findStatisticValue(int matchNumber) {
+    private static Statistics findStatisticValue(int matchNumber) {
         for (Statistics stat : Statistics.values()) {
             if (stat != BONUS_MATCHES && stat.value == matchNumber) {
                 return stat;
@@ -43,5 +43,9 @@ public enum Statistics {
 
     public int getMoney() {
         return money;
+    }
+
+    public int getValue() {
+        return value;
     }
 }

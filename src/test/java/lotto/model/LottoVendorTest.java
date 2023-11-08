@@ -40,4 +40,18 @@ class LottoVendorTest {
                 () -> assertThat(lottos).hasSize(2)
         );
     }
+
+    @Test
+    @DisplayName("발행된 로또 수를 통해 전체 로또 구매 금액을 반환해준다.")
+    void calculateTotalPrice() {
+        // given
+        int count = 3;
+        LottoVendor lottoVendor = new LottoVendor();
+
+        // when
+        BigDecimal result = lottoVendor.calculateTotalPrice(count);
+
+        // then
+        assertThat(result.intValue()).isEqualTo(3000);
+    }
 }

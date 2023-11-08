@@ -21,6 +21,7 @@ public class Input {
             Integer paymentAmount = formatToNumber(input);
             new LottoMachine(paymentAmount);
         } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
             this.readPaymentAmount();
         }
     }
@@ -36,6 +37,7 @@ public class Input {
             List<Integer> winningNumbers = formatInputToLottoNumbers(input);
             new Lotto(winningNumbers);
         } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
             this.readWinningNumbers();
         }
     }
@@ -55,12 +57,13 @@ public class Input {
             Integer number = formatToNumber(input);
             Lotto.validateNumberRange(number);
         } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
             this.readBonusNumber();
         }
     }
 
     private String read(InputMessage inputMessage) {
-        System.out.println(inputMessage);
+        System.out.println(inputMessage.getInputMessage());
         return Console.readLine();
     }
 

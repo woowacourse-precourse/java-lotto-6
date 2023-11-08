@@ -25,7 +25,7 @@ public class MoneyManagement {
     }
 
     public static long totalAmount(final LottoResult lottoResult) {
-        return lottoResult.getResults().entrySet()
+        return lottoResult.results().entrySet()
                 .stream()
                 .mapToLong(entry -> entry.getKey().getAmount() * entry.getValue())
                 .sum();

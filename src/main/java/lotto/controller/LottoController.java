@@ -88,10 +88,10 @@ public class LottoController {
     }
 
     public Lotto createWinningNumberList(final String inputList) {
-        List<String> stringList = inputValidator.toStringList(inputList);
-        inputValidator.validateDigit(stringList);
-        List<Integer> integerList = inputValidator.toIntegerList(stringList);
-        return new Lotto(integerList);
+        List<String> userNumbers = inputValidator.toStringList(inputList);
+        inputValidator.validateDigit(userNumbers);
+        List<Integer> validatedNumbers = inputValidator.toIntegerList(userNumbers);
+        return new Lotto(validatedNumbers);
     }
 
     public Number askWinningBonusNumber() {

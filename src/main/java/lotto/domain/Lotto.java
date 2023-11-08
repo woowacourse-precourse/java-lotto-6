@@ -41,9 +41,9 @@ public class Lotto {
         return new Lotto(sortLottos);
     }
 
-    private static void validDuplicated(final List<Integer> list) {
-        long uniqueCount = list.stream().distinct().count();
-        if (uniqueCount < list.size()) {
+    private static void validDuplicated(final List<Integer> unValidatedNumbers) {
+        long uniqueCount = unValidatedNumbers.stream().distinct().count();
+        if (uniqueCount < unValidatedNumbers.size()) {
             throw new LottoException(InsideListDuplicatedException);
         }
     }

@@ -29,17 +29,17 @@ public class OutputView {
         print("보너스 번호를 입력해주세요.");
     }
 
-    public void showLottoList(final Lottos lottos) {
-        List<Lotto> lottoList = lottos.getLottos();
-        lottoList.forEach(System.out::println);
+    public void showLottoList(final Lottos inputLottos) {
+        List<Lotto> lottos = inputLottos.lottos();
+        lottos.forEach(System.out::println);
         print();
     }
 
-    public void showResults(final String str) {
+    public void showResults(final String message) {
         print();
         print("당첨 통계");
         print("---");
-        print(str);
+        print(message);
     }
 
     public void showYield(final double yield) {
@@ -50,8 +50,8 @@ public class OutputView {
         System.out.println();
     }
 
-    private void print(final String str) {
-        System.out.println(str);
+    private void print(final String message) {
+        System.out.println(message);
     }
 
     private void printYield(final double yield) {

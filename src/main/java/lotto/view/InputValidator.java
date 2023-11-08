@@ -18,14 +18,14 @@ public class InputValidator {
                 .toList();
     }
 
-    public List<Integer> toIntegerList(final List<String> userList) {
-        return userList.stream()
+    public List<Integer> toIntegerList(final List<String> userNumbers) {
+        return userNumbers.stream()
                 .map(Integer::parseInt)
                 .toList();
     }
 
-    public void validateDigit(final List<String> list) {
-        boolean isDigit = list.stream().allMatch(s -> s.matches(NUMERIC_PATTERN));
+    public void validateDigit(final List<String> unValidated) {
+        boolean isDigit = unValidated.stream().allMatch(s -> s.matches(NUMERIC_PATTERN));
         if (!isDigit) {
             throw new LottoException(OverValueException);
         }

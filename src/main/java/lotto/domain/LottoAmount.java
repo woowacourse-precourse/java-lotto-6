@@ -12,7 +12,7 @@ public class LottoAmount {
 				validateDivide(amount);
 				return amount / LOTTO_PRICE;
 			} catch (IllegalArgumentException e) {
-				System.out.println("[ERROR] 수가 아닙니다.");
+				System.out.println("[ERROR] 잘못된 입력입니다.");
 			}
 		}
 	}

@@ -10,7 +10,7 @@ public class User {
 
     public User(int amount) {
         this.amount = amount;
-        this.count /= 1_000;
+        this.count = amount / 1_000;
         lottoTickets = new java.util.ArrayList<>();
     }
 

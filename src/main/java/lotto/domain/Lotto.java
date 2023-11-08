@@ -36,12 +36,23 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
-    public static List<List<Integer>> publish(int payment) {
-        List<List<Integer>> lottos = new ArrayList<>();
-        while (lottos.size() < getLottoCount(payment)) {
-            lottos.add(generateNumbers());
-        }
-        return lottos;
+    public static List<Lotto> publish(int payment) {
+        return Stream.generate(Lotto::new)
+                     .limit(getLottoCount(payment))
+                     .collect(Collectors.toList());
+    }
+
+//    public static List<List<Integer>> publish(int payment) {
+//        List<List<Integer>> lottos = new ArrayList<>();
+//        while (lottos.size() < getLottoCount(payment)) {
+//            lottos.add(generateNumbers());
+//        }
+//        return lottos;
+//    }
+
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     public static void setWinningNumbers() {
@@ -63,6 +74,10 @@ public class Lotto {
 
     private static int getLottoCount (int payment) {
         return payment / LottoConfig.UNIT_PRICE.getValue();
+    }
+
+    private void compare() {
+
     }
 
 }

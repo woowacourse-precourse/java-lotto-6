@@ -55,4 +55,11 @@ public class Money {
         }
     }
 
+    boolean canPurchaseLotto() {
+        return money >= LOTTO_PRICE;
+    }
+
+    void purchaseLotto() {
+        money -= LOTTO_PRICE;
+    }
 }

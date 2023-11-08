@@ -1,33 +1,38 @@
 package lotto.validation;
 
+import lotto.model.WinningNumber;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 public class ValidationUtilsTest {
+    private ValidationUtils validationUtils = new ValidationUtils();
 
     @Test
-    public void 유저_입력_금액_검증_테스트() {
+    public void 유저_입력금액_검증_테스트() {
         //given
-        ValidationUtils validationUtils = new ValidationUtils();
         String input1 = "500";
         String input2 = "7000";
         String input3 = "13400";
+        String input4 = "a";
 
         //when
         boolean isValid1 = validationUtils.validateUserAmount(input1);
         boolean isValid2 = validationUtils.validateUserAmount(input2);
         boolean isValid3 = validationUtils.validateUserAmount(input3);
+        boolean isValid4 = validationUtils.validateUserAmount(input4);
 
         //then
         Assertions.assertThat(isValid1).isFalse();
         Assertions.assertThat(isValid2).isTrue();
         Assertions.assertThat(isValid3).isFalse();
+        Assertions.assertThat(isValid4).isFalse();
     }
 
     @Test
-    public void 입력_당첨금액_검증_테스트() {
+    public void 입력_당첨번호_검증_테스트() {
         //given
-        ValidationUtils validationUtils = new ValidationUtils();
         String input1 = "1,2,3,4,5,6";
         String input2 = "";
         String input3 = "1,2,8,9,20,45,";
@@ -59,6 +64,30 @@ public class ValidationUtilsTest {
         Assertions.assertThat(isValid7).isFalse();
         Assertions.assertThat(isValid8).isFalse();
         Assertions.assertThat(isValid9).isFalse();
+    }
+
+    @Test
+    public void 입력_보너스번호_검증_테스트() {
+        //given
+        WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6));
+        String input1 = "7";
+        String input2 = "";
+        String input3 = "46";
+        String input4 = "4";
+
+        //when
+        boolean isValid1 = validationUtils.validateBonusNumber(winningNumber, input1);
+        boolean isValid2 = validationUtils.validateBonusNumber(winningNumber, input2);
+        boolean isValid3 = validationUtils.validateBonusNumber(winningNumber, input3);
+        boolean isValid4 = validationUtils.validateBonusNumber(winningNumber, input4);
+
+        //then
+        Assertions.assertThat(isValid1).isTrue();
+        Assertions.assertThat(isValid2).isFalse();
+        Assertions.assertThat(isValid3).isFalse();
+        Assertions.assertThat(isValid4).isFalse();
+
+
     }
 
 }

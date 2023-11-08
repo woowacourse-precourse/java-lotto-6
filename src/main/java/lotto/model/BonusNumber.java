@@ -2,10 +2,8 @@ package lotto.model;
 
 public class BonusNumber {
     private static final String NUMERIC_REGEX = "^[0-9]+$";
-
     private final String BONUS_NUMBER;
     public BonusNumber(String bonusNumber){
-
         isNotDigits(bonusNumber);
         isWrongNumberRange(bonusNumber);
         this.BONUS_NUMBER = bonusNumber;

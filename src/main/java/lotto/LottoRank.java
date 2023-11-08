@@ -24,4 +24,11 @@ public enum LottoRank {
         }
         return NONE;
     }
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getReward() {
+        return reward;
+    }
 }

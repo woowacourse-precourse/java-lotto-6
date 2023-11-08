@@ -56,8 +56,12 @@ public class LottoMachine {
     public Lotto textToLotto(String winningNumberText) {
         List<Integer> winningNumbers = new ArrayList<>();
         for (String number : winningNumberText.split(SPLIT_COMMA)) {
-            winningNumbers.add(Integer.parseInt(number));
+            int winningNumber = Integer.parseInt(number);
+            if (!winningNumbers.contains(winningNumber)) {
+                winningNumbers.add(winningNumber);
+            }
         }
+        validateWinningNumber(winningNumbers);
         Lotto winningLotto = new Lotto(winningNumbers);
         return winningLotto;
     }
@@ -70,8 +74,19 @@ public class LottoMachine {
     }
 
     private void validatePurchaseAmount(int purchaseAmount) {
-        if (!(purchaseAmount % PURCHASE_UNIT==0)) {
+        if (purchaseAmount % PURCHASE_UNIT!=0) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateWinningNumber(List<Integer> winningNumbers) {
+        if (winningNumbers.size()!=6) {
+            throw new IllegalArgumentException();
+        }
+        for (Integer winningNumber : winningNumbers) {
+            if (winningNumber < 1 || winningNumber > 45) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 }

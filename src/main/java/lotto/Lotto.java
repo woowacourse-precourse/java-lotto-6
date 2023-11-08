@@ -8,7 +8,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        winningNum(numbers);
+        duplicatedWinningNum(numbers);
         this.numbers = numbers;
     }
 
@@ -19,13 +19,13 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public void bonusNum(int bonus) {
+    public void duplicatedBonusNum(int bonus) {
         if (numbers.contains(bonus)) {
             throw new IllegalArgumentException("[Error] 당첨 번호와 중복되는 숫자를 입력하셨습니다.");
         }
     }
 
-    public void winningNum(List<Integer> numbers) {
+    public void duplicatedWinningNum(List<Integer> numbers) {
         List<Integer> notDuplicateNumber = new ArrayList<>();
         for (int i = 0; i < numbers.size(); i++) {
             if (notDuplicateNumber.contains(numbers.get((i)))) {

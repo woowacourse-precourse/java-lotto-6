@@ -19,10 +19,10 @@ public class Application {
             List[] allTickets = buyingTickets.automaticNum(ticketNumber);
 
             List<Integer> numbers = new ArrayList<>();
-            Winning win = new Winning();
             int bonus = 0;
-            numbers = win.winningNum(numbers, bonus);
-            bonus = win.bonusNum(numbers, bonus);
+            Winning win = new Winning(numbers, bonus);
+            numbers = win.winningNum();
+            bonus = win.bonusNum();
 
             Rank rank = new Rank();
             int[] ranking;

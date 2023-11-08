@@ -21,6 +21,7 @@ public class Lotto {
         }
     }
 
+    private static final int LOTTO_NUMBER_LENGTH = 6;
     private static final int LOTTO_NUMBER_RANGE_START = 1;
     private static final int LOTTO_NUMBER_RANGE_END = 45;
     private final List<Integer> numbers;
@@ -41,12 +42,12 @@ public class Lotto {
     }
 
     private boolean isSameLength(List<Integer> numbers) {
-        return numbers.size() == 6;
+        return numbers.size() == LOTTO_NUMBER_LENGTH;
     }
 
     private boolean isWithValidRange(List<Integer> numbers) {
         boolean numberRangeState = true;
-        for (int numberIndex = 0; numberIndex < numbers.size(); numberIndex++) {
+        for (int numberIndex = 0; numberIndex < LOTTO_NUMBER_LENGTH; numberIndex++) {
             if (!isCheckRange(numbers.get(numberIndex))) {
                 numberRangeState = false;
             }

@@ -37,6 +37,7 @@ public class OutputView {
     private Map<Rank, Integer> CountingRanks(List<LottoResultDto> lottoResultDtos, Map<Rank, Integer> rankMap) {
         lottoResultDtos.forEach(result -> {
             int allAmount = result.matchedAmount() + result.bonusMatchedAmount();
+
             if (result.matchedAmount() == 6) {
                 rankMap.put(Rank.FIRST_PLACE, rankMap.get(Rank.FIRST_PLACE) + 1);
             }

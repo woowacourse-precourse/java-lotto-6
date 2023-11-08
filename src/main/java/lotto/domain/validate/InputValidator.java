@@ -7,6 +7,7 @@ import java.util.List;
 public class InputValidator {
     public void validatePurchaseAmount(String input) {
         int intInput = parseInt(input);
+
         isInMoneyRange(intInput);
         isDivided(intInput);
     }
@@ -21,6 +22,7 @@ public class InputValidator {
     public void validateBonusNumber(String input, List<Integer> lottoNumbers) {
         int intInput = parseInt(input);
         isInLottoNumberRange(intInput);
+
         if (lottoNumbers.contains(intInput)) {
             throw new IllegalArgumentException(InputException.NOT_DISTINCT_BONUS_NUMBER.getMessage());
         }
@@ -28,11 +30,13 @@ public class InputValidator {
 
     private int parseInt(String input) {
         int intInput;
+
         try {
             intInput = Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(InputException.NO_NUMBER.getMessage());
         }
+
         return intInput;
     }
 

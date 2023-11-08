@@ -12,6 +12,7 @@ import java.util.List;
 
 public class LottoService {
     private static final int LOTTO_COST = 1000;
+
     private final Player player;
     private final Lottos lottos;
     private final InputValidator inputValidator;

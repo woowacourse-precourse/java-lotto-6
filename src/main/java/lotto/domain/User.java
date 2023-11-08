@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.ErrorMessages;
 
 public class User {
-    public static final int DIVIDE_NUMBER = 1000;
+    public static final int DIVIDE_NUMBER = 1000; // 구매금액이 나누어 떨어지는지 구하는 상수
 
     private long purchaseAmount;
     private List<Integer> numbers;

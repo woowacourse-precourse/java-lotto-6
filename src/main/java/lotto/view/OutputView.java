@@ -6,7 +6,7 @@ import lotto.WinnerPrice;
 import lotto.domain.Lotto;
 
 public class OutputView {
-    public static final int LOTTO_SIZE = 6;
+    public static final int LOTTO_SIZE = 6; // 로또의 길이 상수
 
     public void printPurchaseAmount(long purchaseAmount) {
         System.out.println("\n" + purchaseAmount + "개를 구매했습니다.");

@@ -32,9 +32,6 @@ public class LottoService {
         double profitability = 0L;
         for (Rank rank : Rank.values()) {
             int winning = rank.getPrize();
-            if (rank == Rank.MATCH_5_BONUS) {
-
-            }
             int matchLottoCount = rankCounts.getOrDefault(rank, 0);
             profitability += matchLottoCount * winning;
         }

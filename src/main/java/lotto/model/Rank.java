@@ -13,23 +13,23 @@ public enum Rank {
 
     private final int matchedNumberCount;
     private final int reward;
-    private final boolean bonus;
+    private final boolean requiredBonusMatch;
 
-    Rank(int matchedNumberCount, int reward, boolean bonus) {
+    Rank(int matchedNumberCount, int reward, boolean requiredBonusMatch) {
         this.matchedNumberCount = matchedNumberCount;
         this.reward = reward;
-        this.bonus = bonus;
+        this.requiredBonusMatch = requiredBonusMatch;
     }
 
-    public static Rank judge(int matchNumberCount, boolean bonus) {
+    public static Rank judge(int matchNumberCount, boolean requiredBonusMatch) {
         return Arrays.stream(Rank.values())
-                .filter(rank -> isSameMatchedNumberCount(matchNumberCount, rank) && isSameBonusStatus(bonus, rank))
+                .filter(rank -> isSameMatchedNumberCount(matchNumberCount, rank) && isSameBonusStatus(requiredBonusMatch, rank))
                 .findFirst()
                 .orElse(PASS);
     }
 
-    private static boolean isSameBonusStatus(boolean bonus, Rank rank) {
-        return rank.bonus == bonus;
+    private static boolean isSameBonusStatus(boolean requiredBonusMatch, Rank rank) {
+        return rank.requiredBonusMatch == requiredBonusMatch;
     }
 
     private static boolean isSameMatchedNumberCount(int matchedNumberCount, Rank rank) {
@@ -49,7 +49,7 @@ public enum Rank {
         return formatter.format(reward);
     }
 
-    public boolean hasBonus() {
-        return bonus;
+    public boolean isRequiredBonusMatch() {
+        return requiredBonusMatch;
     }
 }

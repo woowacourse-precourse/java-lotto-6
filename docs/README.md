@@ -12,8 +12,10 @@
   - 1~45 이외의 값을 입력하는 경우 `IllegalArgumentException` 발생
   - 숫자 이외의 값을 입력하는 경우 `IllegalArgumentException` 발생
   - 중복된 값을 입력하는 경우 `IllegalArgumentException` 발생
+  - 입력 포멧이 맞지 않는 경우 `IllegalArgumentException` 발생
 - 보너스 번호 입력
   - 1~45 이외의 값을 입력하는 경우 `IllegalArgumentException` 발생
+  - 숫자 이외의 값을 입력하는 경우 `IllegalArgumentException` 발생
   - 보너스 숫자가 기존의 로또 번호와 중복되는 경우 `IllegalArgumentException` 발생
 - 당첨 통계
 - 수익률 계산

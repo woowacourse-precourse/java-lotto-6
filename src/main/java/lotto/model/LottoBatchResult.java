@@ -37,5 +37,18 @@ public class LottoBatchResult {
 
     }
 
-    
+
+    public Float calculateLottoProfitRate(Integer purchaseAmount){
+        Integer prizeMoney=0;
+        for(LottoResult lottoResult : lottoResults){
+            prizeMoney += lottoResult.getPrizeMoney();
+        }
+
+        return (prizeMoney.floatValue()/purchaseAmount.floatValue())*100;
+
+    }
+
+    public List<LottoResult> getValue(){
+        return lottoResults;
+    }
 }

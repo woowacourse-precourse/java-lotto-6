@@ -12,17 +12,29 @@ public class Game {
     private Lotto answer; private int bonus;
     private HashMap<String, Integer> correct = new HashMap<>();
 
+    private void input_Count(int money){
+        if(money%1000 !=0){
+            throw new IllegalArgumentException();
+        }
+        this.count = money / 1000;
+    }
 
     private void start(){
-        do {
+        try{
             System.out.println("구입 금액을 입력해 주세요.");
             this.money = Integer.parseInt(Console.readLine());
-            this.count = this.money / 1000;
-        }while((this.money%1000) !=0);
-
+            input_Count(this.money);
+        }catch (NumberFormatException e){
+            System.out.println("[ERROR]");
+            start();
+        }catch(IllegalArgumentException e){
+            System.out.println("[ERROR]");
+            start();
+        }
     }
 
     private void generate(){
+        System.out.println();
         System.out.println(this.count+"개를 구매했습니다.");
         for(int i=0;i<this.count;i++){
             //로또 생성
@@ -40,15 +52,13 @@ public class Game {
             List<Integer> list = new ArrayList<>();
             System.out.println();
             System.out.println("당첨 번호를 입력해 주세요.");
-            list = Arrays.stream(Console.readLine().split(","))
-                    .mapToInt(Integer::parseInt)
-                    .boxed().collect(Collectors.toList());
+            list = Arrays.stream(Console.readLine().split(",")).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
             this.answer = new Lotto(list);
         }catch (IllegalArgumentException e){
-            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다." );
+            System.out.println("[ERROR]" );
             userWinning();
         }catch (IllegalStateException e){
-            System.out.println("[ERROR] 서로 다른 값이 어야 합니다." );
+            System.out.println("[ERROR]" );
             userWinning();
         }
     }

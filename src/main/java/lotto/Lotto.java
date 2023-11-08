@@ -20,7 +20,7 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
         if(!checkDupliAll(numbers)){
-            throw new IllegalStateException();
+            throw new IllegalArgumentException();
         }
     }
 

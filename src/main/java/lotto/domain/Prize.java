@@ -15,6 +15,23 @@ public enum Prize {
 		this.prize = prize;
 	}
 
+	public static int getMinMatchAmount() {
+		return THREE.matchAmount;
+	}
+
+	public static Prize createResult(int matchAmount, boolean bonus) {
+		if (matchBonus(matchAmount, bonus)) {
+			return FIVEANDBONUS;
+		}
+
+		for (Prize prize : values()) {
+			if (prize.matchAmount == matchAmount) {
+				return prize;
+			}
+		}
+		return null;
+	}
+
 	public int getMatchAmount() {
 		return this.matchAmount;
 	}
@@ -23,15 +40,7 @@ public enum Prize {
 		return this.prize;
 	}
 
-	public static Prize createResult(int matchAmount, boolean bonus) {
-		if (matchAmount == FIVEANDBONUS.matchAmount && bonus) {
-			return FIVEANDBONUS;
-		}
-		for (Prize result : values()) {
-			if (result.matchAmount == matchAmount) {
-				return result;
-			}
-		}
-		return null;
+	private static boolean matchBonus(int matchAmount, boolean bonus) {
+		return matchAmount == FIVEANDBONUS.matchAmount && bonus;
 	}
 }

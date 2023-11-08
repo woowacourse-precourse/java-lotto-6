@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +16,7 @@ public class WinningLotto {
 
 	public Map calculateResult(List<Lotto> lottos) {
 		for (Lotto lotto : lottos) {
-			if (winningNumbers.compareWith(lotto) >= 3) {
+			if (canWinPrize(lotto)) {
 				int matchAmount = winningNumbers.compareWith(lotto);
 				boolean matchBonus = canMatchBonus(lotto);
 				Prize prize = Prize.createResult(matchAmount, matchBonus);
@@ -34,11 +33,15 @@ public class WinningLotto {
 
 	private double getTotalPrize() {
 		return results.keySet().stream()
-			.mapToDouble(k -> k.getPrize())
+			.mapToDouble(Prize::getPrize)
 			.sum();
 	}
 
-	public boolean canMatchBonus(Lotto lotto) {
+	private boolean canMatchBonus(Lotto lotto) {
 		return winningNumbers.compareWith(lotto) == 5 && bonus.compareWith(lotto.getLotto());
+	}
+
+	private boolean canWinPrize(Lotto lotto) {
+		return winningNumbers.compareWith(lotto) >= Prize.getMinMatchAmount();
 	}
 }

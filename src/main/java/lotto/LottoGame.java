@@ -9,7 +9,6 @@ import lotto.domain.Result;
 import lotto.domain.WinningLotto;
 
 public class LottoGame {
-
     private final LottoGameController lottoGameController;
 
     public LottoGame(LottoGameController lottoGameController) {
@@ -28,19 +27,15 @@ public class LottoGame {
     }
 
     private WinningLotto inputWinningLotto() {
-        WinningLotto winningLotto;
         Lotto winningNumbers = lottoGameController.inputWinningLotto();
 
         while (true) {
             try {
                 LottoNumber bonusNumber = lottoGameController.inputBonusNumber();
-                winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-                break;
+                return new WinningLotto(winningNumbers, bonusNumber);
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
         }
-
-        return winningLotto;
     }
 }

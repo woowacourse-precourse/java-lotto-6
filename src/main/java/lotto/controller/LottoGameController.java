@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.domain.BuyCash;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
@@ -30,23 +29,19 @@ public class LottoGameController {
     }
 
     public BuyCash inputBuyCash() {
-        BuyCash buycash;
         while (true) {
             try {
-                buycash = buyCashService.generateBuyCash(inputView.inputBuyCashFromUser());
-                break;
+                long inputBuyCash = inputView.inputBuyCashFromUser();
+                return buyCashService.generateBuyCash(inputBuyCash);
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
         }
-        return buycash;
     }
 
     public Lottos purchaseLotto(BuyCash buyCash) {
         long buyAmount = buyCash.getLottoAmount();
-        List<Lotto> lottos = lottoService.generateAutoLottos(buyAmount);
-
-        return new Lottos(lottos);
+        return new Lottos(lottoService.generateAutoLottos(buyAmount));
     }
 
     public void printBuyLottosInformation(Lottos lottos) {
@@ -54,18 +49,13 @@ public class LottoGameController {
     }
 
     public Lotto inputWinningLotto() {
-        Lotto winningNumbers;
-
         while (true) {
             try {
-                winningNumbers = lottoService.generateManualLotto(inputView.inputWinningNumbers());
-                break;
+                return lottoService.generateManualLotto(inputView.inputWinningNumbers());
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
         }
-
-        return winningNumbers;
     }
 
     public LottoNumber inputBonusNumber() {

@@ -43,7 +43,7 @@ public class LottoController {
     public void setBonusNumber(String bonus) throws IllegalArgumentException {
         bonusLottoNumber = new BonusLottoNumber(bonus);
         if (inputLottoNumber.getNumbers().contains(bonusLottoNumber.getBounsNum())) {
-            throw new IllegalArgumentException(ErrorMessageType.NOT_DIVIDE_THOUSAND.message());
+            throw new IllegalArgumentException(ErrorMessageType.DUPLICATE_NUMBER.message());
         }
     }
 

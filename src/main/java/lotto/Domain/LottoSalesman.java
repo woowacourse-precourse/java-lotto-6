@@ -1,7 +1,11 @@
 package lotto.Domain;
 
+import lotto.View.InputLottoUI;
+import lotto.View.OutputLottoUI;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LottoSalesman {
 
@@ -22,5 +26,19 @@ public class LottoSalesman {
         return lottos;
     }
 
+    public static void rankTotal(Map<Rank, Integer> matchingCounts, int totalPrize, int money) {
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.NO_MATCH) {
+                int count = matchingCounts.get(rank);
+                String resultDescription = rank.getDescription();
+                int prize = rank.getPrize();
+                System.out.println(resultDescription + " - " + count + "개");
+                if(count != 0 ) {
+                    totalPrize += count * prize;
+                }
+            }
+        }
+        InputLottoUI.rateOfReturn(totalPrize, money);
+    }
 
 }

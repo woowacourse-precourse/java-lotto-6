@@ -51,7 +51,6 @@ public class GameService {
     public void resultGame() {
         System.out.println("\n당첨 통계\n---");
         Map<Rank, Integer> matchingCounts = new HashMap<>();
-        int totalInvestment = money * lottoCount;
         int totalPrize = 0;
 
         for (Rank rank : Rank.values()) {
@@ -68,19 +67,7 @@ public class GameService {
             }
         }
 
-        //TODO 들여쓰기 3번이라 추후에 클래스로 구현하기
-        for (Rank rank : Rank.values()) {
-            if (rank != Rank.NO_MATCH) {
-                int count = matchingCounts.get(rank);
-                String resultDescription = rank.getDescription();
-                int prize = rank.getPrize();
-                System.out.println(resultDescription + " - " + count + "개");
-                if(count != 0 ) {
-                    totalPrize += count * prize;
-                }
-            }
-        }
-        InputLottoUI.rateOfReturn(totalPrize, money);
+        LottoSalesman.rankTotal(matchingCounts, totalPrize, money);
     }
 
     private Rank matchingNumbersToRank(int matchingNumbers, boolean bonusNumberMatch) {

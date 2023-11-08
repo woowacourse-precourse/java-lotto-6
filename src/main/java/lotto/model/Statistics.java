@@ -29,7 +29,7 @@ public class Statistics {
         return prizeMoney;
     }
 
-    public Map<MatchResult, Integer> calculateMatchCounts(List<MatchResult> matchResults) {
+    public Map<MatchResult, Integer> calculateMatchCounts() {
         return matchResults.stream()
             .collect(Collectors.toMap(Function.identity(), matchResult -> 1, Integer::sum));
     }
@@ -42,8 +42,9 @@ public class Statistics {
 
     public float evaluateTotalProfit() {
         // 각 MatchResult에 대한 카운트를 저장할 맵
-        Map<MatchResult, Integer> counts = calculateMatchCounts(matchResults);
+        Map<MatchResult, Integer> counts = calculateMatchCounts();
         float totalWinnings = calculateTotalWinnings(counts);
+//        return getProfitRate(totalWinnings);
 
         // 결과 출력
         System.out.println("당첨 통계\n---");

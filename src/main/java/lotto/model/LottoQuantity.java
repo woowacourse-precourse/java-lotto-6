@@ -14,4 +14,9 @@ public class LottoQuantity {
     private int calculate(int amount) {
         return amount / 1000;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(quantity);
+    }
 }

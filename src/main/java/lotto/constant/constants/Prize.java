@@ -3,7 +3,7 @@ package lotto.constant.constants;
 import java.util.List;
 
 public enum Prize {
-    // prizeCode,prize
+    // matched,prize
     THREE_MATCHED(List.of(3, 5000)),
     FOUR_MATCHED(List.of(4, 50000)),
     FIVE_MATCHED(List.of(5, 1500000)),
@@ -15,7 +15,6 @@ public enum Prize {
     Prize(List<Integer> result) {
         this.result = result;
     }
-
 
     public Integer getMatched() {
         return this.result.get(0);

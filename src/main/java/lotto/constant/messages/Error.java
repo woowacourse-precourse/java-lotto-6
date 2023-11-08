@@ -2,7 +2,6 @@ package lotto.constant.messages;
 
 
 public enum Error {
-
     NOT_DIGIT("숫자만 입력해주세요."),
     MONEY_TOO_LARGE("금액이 너무 큽니다."),
     NOT_DIVIDABLE("1000원 단위로 입력해주세요."),
@@ -10,10 +9,11 @@ public enum Error {
     INPUT_FORMAT_NULL_OR_EMPTY("입력을 해주세요"),
     LOTTO_NUMBER_OUT_OF_RANGE("유효한 번호가 아닙니다."),
     LOTTO_NOT_SIX_NUMBER("여섯 개의 수를 입력해 주세요"),
-    LOTTO_DUPLICATED_NUMBER("중복된 수는 입력할 수 없습니다.");
+    LOTTO_DUPLICATED_NUMBER("중복된 수는 입력할 수 없습니다."),
+    LOTTO_FORMAT("형식에 맞게 입력해주세요 예: 1,2,3,4,5,6");
 
     private final String message;
-    private final String PREFIX = "[ERROR] ";
+    public final String PREFIX = "[ERROR] ";
 
     Error(String message) {
         this.message = message;

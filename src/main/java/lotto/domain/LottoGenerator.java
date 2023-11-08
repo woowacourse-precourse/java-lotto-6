@@ -6,15 +6,12 @@ import lotto.constant.constants.Config;
 import lotto.constant.messages.Error;
 
 public class LottoGenerator {
-
     private int numberOfLotto;
-
 
     public void configMoney(String input) {
         validate(input);
         this.numberOfLotto = Integer.parseInt(input) / Config.LOTTO_PRICE.getConfig();
     }
-
 
     private List<Integer> generateLotto() {
         return Randoms.pickUniqueNumbersInRange(Config.LOTTO_MIN_NUMBER.getConfig(),
@@ -28,7 +25,6 @@ public class LottoGenerator {
         }
         return lottos;
     }
-
 
     private void validate(String input) {
         isAllDigit(input);

@@ -15,5 +15,4 @@ public enum Config {
     public Integer getConfig() {
         return this.config;
     }
-
 }

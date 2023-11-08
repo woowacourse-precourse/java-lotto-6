@@ -16,6 +16,4 @@ public class BoughtLottosDto {
     public int size() {
         return getMyLottos().size();
     }
-
-    ;
 }

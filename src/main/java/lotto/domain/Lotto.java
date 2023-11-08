@@ -69,20 +69,33 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-
     private static void validateToLotto(List<String> numbers) {
+
         try {
             for (String number : numbers) {
+                checkFormat(number);
                 Integer.parseInt(number);
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(Error.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
-
         }
     }
 
+    private static void checkLastCharacter(String input) {
+        if (input.charAt(input.length() - 1) == ',') {
+            throw new IllegalArgumentException(Error.LOTTO_FORMAT.getMessage());
+        }
+    }
+
+    private static void checkFormat(String input) {
+        if (!input.matches("[0-9]+")) {
+            throw new IllegalArgumentException(Error.LOTTO_FORMAT.getMessage());
+        }
+
+    }
 
     public static Lotto toLotto(String number) {
+        checkLastCharacter(number);
         List<String> numbers = new ArrayList<>(Arrays.asList(number.split(",")));
         validateToLotto(numbers);
 

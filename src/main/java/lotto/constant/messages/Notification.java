@@ -13,7 +13,6 @@ public enum Notification {
     RESULT_BONUS(", 보너스 볼 일치"),
     RESULT_PROFIT("총 수익률은 %.1f%%입니다.");
 
-
     private final String message;
 
     Notification(String message) {

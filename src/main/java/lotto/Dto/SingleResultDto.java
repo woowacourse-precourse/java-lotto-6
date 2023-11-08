@@ -1,9 +1,8 @@
 package lotto.Dto;
 
 public class SingleResultDto {
-
     // 3개 당첨시
-    // 3개를 matched했고 상금이 prize인 로또를 won개 만큼 당첨 됨
+    // 3개를 matched했고 상금이 prize인 로또를 won개 만큼 당첨 됨을 출력할 수 있게 해주는 dto
     int matched;
     int prize;
     int won;
@@ -15,7 +14,6 @@ public class SingleResultDto {
     public void setMatched(int matched) {
         this.matched = matched;
     }
-
 
     public int getPrize() {
         return prize;
@@ -32,5 +30,4 @@ public class SingleResultDto {
     public void setWon(int won) {
         this.won = won;
     }
-
 }

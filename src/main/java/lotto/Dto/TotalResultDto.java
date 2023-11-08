@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TotalResultDto {
-    // [match, prize, won]
     List<SingleResultDto> results = new ArrayList<>();
     double profit;
-    int size;
 
     public void add(SingleResultDto singleResultDto) {
         this.results.add(singleResultDto);

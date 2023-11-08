@@ -8,7 +8,6 @@ import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-
         LottoService lottoService = new LottoService(new InputView(), new OutputView(), new LottoComputer(),
                 new LottoGenerator());
         lottoService.run();

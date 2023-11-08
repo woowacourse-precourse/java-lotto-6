@@ -14,13 +14,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LottoWalletServiceTest extends NsTest {
+class LottoCalculateServiceTest extends NsTest {
 
-    LottoWalletService lottoWalletService;
+    LottoCalculateService lottoCalculateService;
 
     @BeforeEach
     void setup() {
-        this.lottoWalletService = new LottoWalletService();
+        this.lottoCalculateService = new LottoCalculateService();
     }
 
     @DisplayName("1등 로또 번호가 저장된다.")
@@ -34,11 +34,11 @@ class LottoWalletServiceTest extends NsTest {
         Field bonusField = getAccessibleField("bonusNumber");
 
         // when
-        lottoWalletService.saveRecentWinningNumbers(lottoWinningNumbers, lottoBonusNumber);
+        lottoCalculateService.saveRecentWinningNumbers(lottoWinningNumbers, lottoBonusNumber);
 
         // then
-        assertThat(winningField.get(lottoWalletService)).isEqualTo(lottoWinningNumbers);
-        assertThat(bonusField.get(lottoWalletService)).isEqualTo(lottoBonusNumber);
+        assertThat(winningField.get(lottoCalculateService)).isEqualTo(lottoWinningNumbers);
+        assertThat(bonusField.get(lottoCalculateService)).isEqualTo(lottoBonusNumber);
     }
 
     @DisplayName("필요한 데이터가 없으면 예외가 발생한다.")
@@ -46,13 +46,13 @@ class LottoWalletServiceTest extends NsTest {
     void readyCheckThrow() throws NoSuchMethodException {
         Method method = getAccessibleMethod("readyCheck");
 
-        assertThatThrownBy(() -> method.invoke(lottoWalletService))
+        assertThatThrownBy(() -> method.invoke(lottoCalculateService))
                 .isInstanceOf(InvocationTargetException.class)
                 .hasCauseInstanceOf(NonVariableException.class);
     }
 
     private Field getAccessibleField(String variableName) throws NoSuchFieldException {
-        Field field = lottoWalletService.getClass().getDeclaredField(variableName);
+        Field field = lottoCalculateService.getClass().getDeclaredField(variableName);
         field.setAccessible(true);
 
         return field;
@@ -60,7 +60,7 @@ class LottoWalletServiceTest extends NsTest {
 
     private Method getAccessibleMethod(String methodName, Class<?>... parameterTypes)
             throws NoSuchMethodException {
-        Method method = lottoWalletService.getClass().getDeclaredMethod(methodName, parameterTypes);
+        Method method = lottoCalculateService.getClass().getDeclaredMethod(methodName, parameterTypes);
         method.setAccessible(true);
 
         return method;

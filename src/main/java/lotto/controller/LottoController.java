@@ -19,27 +19,27 @@ import lotto.model.Money;
 import lotto.repository.LottoWinningRepository;
 import lotto.repository.UserLottoRepository;
 import lotto.service.LottoService;
-import lotto.service.LottoWalletService;
+import lotto.service.LottoCalculateService;
 import lotto.view.LottoInputView;
 
 public class LottoController {
 
     private final LottoService lottoService;
-    private final LottoWalletService lottoWalletService;
+    private final LottoCalculateService lottoCalculateService;
 
     public LottoController(DatabaseDto dto) { // 초기화
         this.lottoService = new LottoService(dto.getUserLottoDataRepository());
 
         UserLottoRepository userLottoRepository = dto.getUserLottoDataRepository();
         LottoWinningRepository lottoWinningRepository = dto.getLottoWinningDataRepository();
-        this.lottoWalletService = new LottoWalletService(userLottoRepository, lottoWinningRepository);
+        this.lottoCalculateService = new LottoCalculateService(userLottoRepository, lottoWinningRepository);
     }
 
     /**
      * 로또 당첨 통계 가져오기
      */
     public void getWinningStatistics() {
-        LottosCalculateResult result = lottoWalletService.winningStatistics(); // 서비스에 로또 통계 요청
+        LottosCalculateResult result = lottoCalculateService.winningStatistics(); // 서비스에 로또 통계 요청
 
         printWinningStatistics(result); // 서비스로부터 받은 결과 출력
     }
@@ -54,8 +54,8 @@ public class LottoController {
         printBonusNumber();
         LottoBonusNumber bonusNumber = getLottoBonusNumber(winningNumbers);
 
-        // 지갑에서 계산할 수 있도록 저장
-        lottoWalletService.saveRecentWinningNumbers(winningNumbers, bonusNumber);
+        // 계산할 수 있도록 저장
+        lottoCalculateService.saveRecentWinningNumbers(winningNumbers, bonusNumber);
     }
 
     /**
@@ -95,7 +95,7 @@ public class LottoController {
     }
 
     /**
-     * 사용자로부터 구매 금액을 입력받고, 로또를 구매하고, 지갑에 저장한다.
+     * 사용자로부터 구매 금액을 입력받고, 로또를 구매하고 출력한다.
      */
     public void buyLotto() {
         printPurchaseAmount();

@@ -25,8 +25,8 @@ public class WinningLotto extends Lotto {
         return lotto.contains(bonusNumber);
     }
 
-    public int numbersContains(Lotto lotto) {
-        return super.numbersContains(lotto);
+    public int getIncludedNumbersCount(Lotto lotto) {
+        return super.getIncludedNumbersCount(lotto);
     }
 
     private void validateBonusNumberDuplicate(final int bonusNumber) {

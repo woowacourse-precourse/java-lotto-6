@@ -21,23 +21,24 @@ public class Application {
     static boolean isRightRange = true;
 
     static int matchRecord = 0;
-    static int [] lottoRecord = new int[lottos.size()];
+    static int [] lottoRecord = new int[8];
 
-    public static enum Grade {
-        FIRST(2000000000),
-        SECOND(30000000),
-        THIRD(1500000),
-        FOURTH(50000),
-        FIFTH(5000);
-        private final int PRIZE;
-        private Grade (int prize){
+    public enum Grade {
+        FIRST("2,000,000,000"),
+        SECOND("30,000,000"),
+        THIRD("1,500,000"),
+        FOURTH("50,000"),
+        FIFTH("5,000");
+        private final String PRIZE;
+        private Grade (String prize){
             this.PRIZE = prize;
         }
-        public int getPrize(){
+        public String getPrize(){
             return this.PRIZE;
         }
     }
-
+    static Grade grade;
+    static List<Grade> grades = new ArrayList<>();
     public static int getMoney(){
         System.out.println("구입금액을 입력해 주세요.");
         purchasePrice = Integer.parseInt(Console.readLine());
@@ -132,7 +133,17 @@ public class Application {
             compareNumbers(lottos.get(i));
             lottoRecord[i] = matchRecord;
             matchRecord = 0;
+            System.out.print(lottoRecord[i] + " ");
         }
+    }
+
+    public static void printWinningStats(){
+        System.out.println("\n당첨 통계\n---");
+        System.out.println("3개 일치 (" + Grade.FIFTH.PRIZE +")원 - " + Collections.frequency(grades,Grade.FIFTH) + "개");
+        System.out.println("4개 일치 (" + Grade.FOURTH.PRIZE +")원 - " + Collections.frequency(grades,Grade.FOURTH)+"개");
+        System.out.println("5개 일치 (" + Grade.THIRD.PRIZE +")원 - " + Collections.frequency(grades,Grade.THIRD) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (" + Grade.SECOND.PRIZE +")원 - " + Collections.frequency(grades,Grade.SECOND)+"개");
+        System.out.println("6개 일치 (" + Grade.FIRST.PRIZE +")원 - " + Collections.frequency(grades,Grade.FIRST) + "개");
     }
 
     public static void main(String[] args) {
@@ -163,9 +174,10 @@ public class Application {
         // 로또 통계
         getLottoRecord();
 
-        Grade grade;
         //  당첨 유형 분류
         for (int i = 0; i < lottos.size(); i++) {
+            grade = null;
+
             if (lottoRecord[i] == 3)
                 grade = Grade.FIFTH;
             if (lottoRecord[i] == 4)
@@ -176,9 +188,13 @@ public class Application {
                 grade = Grade.SECOND;
             if (lottoRecord[i] == 6)
                 grade = Grade.FIRST;
+
+            grades.add(grade);
         }
 
+        System.out.println("\n" + grades);
 
+        printWinningStats();
 
 
 

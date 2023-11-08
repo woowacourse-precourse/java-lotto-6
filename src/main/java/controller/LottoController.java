@@ -18,6 +18,9 @@ import java.util.function.Supplier;
 import view.View;
 
 public class LottoController {
+    private final LottoTicketsPurchasingMachine lottoTicketsPurchasingMachine = new LottoTicketsPurchasingMachine();
+    private final LottoTicketsGeneratingMachine lottoTicketsGeneratingMachine = new LottoTicketsGeneratingMachine();
+    private final LottoWinningStatistics lottoWinningStatistics = new LottoWinningStatistics();
     private final View view;
 
     public LottoController(View view) {
@@ -29,19 +32,19 @@ public class LottoController {
         LottoTickets lottoTickets = buyLottoTickets(bill.getTicketSize());
         LottoWinningNumbers lottoWinningNumbers = repeatWhenEnterCorrectAnswer(this::createLottoWinningNumbers);
         List<LottoWinningTier> tiers = lottoWinningNumbers.calculateWinningStatistics(lottoTickets);
-        LottoStatisticsResult lottoStatisticsResult = LottoWinningStatistics.calculateStatistics(bill.getAmount(),
+        LottoStatisticsResult lottoStatisticsResult = lottoWinningStatistics.calculateStatistics(bill.getAmount(),
                 tiers);
         view.showLottoStatisticsResult(lottoStatisticsResult);
     }
 
     private Bill purchaseOfLottoTickets() {
         int purchaseAmount = view.requirePurchaseAmount();
-        int ticketsSize = LottoTicketsPurchasingMachine.purchaseOfLottoTickets(purchaseAmount);
+        int ticketsSize = lottoTicketsPurchasingMachine.purchaseOfLottoTickets(purchaseAmount);
         return Bill.createBill(purchaseAmount, ticketsSize);
     }
 
     private LottoTickets buyLottoTickets(TicketSize ticketSize) {
-        LottoTickets lottoTickets = LottoTicketsGeneratingMachine.generateRandomLottoTickets(ticketSize);
+        LottoTickets lottoTickets = lottoTicketsGeneratingMachine.generateRandomLottoTickets(ticketSize);
         view.showLottoTickets(lottoTickets);
         return lottoTickets;
     }

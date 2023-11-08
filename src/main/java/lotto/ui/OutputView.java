@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
-import lotto.NumberGenerator;
 import lotto.Rank;
 
 public class OutputView {
@@ -23,7 +22,7 @@ public class OutputView {
 
     public static void printLottoQuantity(int lottoQuantity) {
         System.out.print(NEW_LINE);
-        System.out.println(String.format(LOTTO_QUANTITY_NOTIFY_MESSAGE, lottoQuantity));
+        System.out.printf((LOTTO_QUANTITY_NOTIFY_MESSAGE) + "%n", lottoQuantity);
     }
 
     public static void printLottos(List<Lotto> lottos) {
@@ -56,10 +55,10 @@ public class OutputView {
     }
 
     public static void printEarningRate(double earningRate) {
-        System.out.println(String.format(EARNING_RATE_NOTIFY_MESSAGE, earningRate));
+        System.out.printf((EARNING_RATE_NOTIFY_MESSAGE) + "%n", earningRate);
     }
 
-    public static void printErrorMessage(IllegalArgumentException e){
+    public static void printErrorMessage(IllegalArgumentException e) {
         System.out.println(ERROR_PREFIX + e.getMessage());
     }
 }

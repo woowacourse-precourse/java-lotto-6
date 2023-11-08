@@ -17,4 +17,8 @@ public class WinningNumber {
     public static WinningNumber consistOf(String numbers) {
         return new WinningNumber(numbers);
     }
+
+    public boolean contain(int number) {
+        return numbers.contains(number);
+    }
 }

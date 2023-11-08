@@ -1,5 +1,7 @@
 package lotto.utils;
 
+import lotto.domain.WinningNumber;
+
 public class InputValidator {
     public static void validatePayNumber(String pay) {
         checkNumber(pay);
@@ -16,6 +18,13 @@ public class InputValidator {
             checkNumber(number);
             checkLottoRange(number);
         }
+    }
+
+    public static void validateBonusNumber(String number, WinningNumber winningNumber) {
+        checkNumber(number);
+        checkNegativeNumber(number);
+        checkDuplicateWithWinning(number, winningNumber);
+        checkLottoRange(number);
     }
 
     private static void checkNumber(String number) {
@@ -53,6 +62,12 @@ public class InputValidator {
 
     public static void checkLottoRange(String number) {
         if (Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void checkDuplicateWithWinning(String number, WinningNumber winningNumber) {
+        if (winningNumber.contain(Integer.parseInt(number))) {
             throw new IllegalArgumentException();
         }
     }

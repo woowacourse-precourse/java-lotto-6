@@ -28,7 +28,12 @@ public class InputView {
     }
 
     public static BonusNumber readBonusNumber(WinningNumber winningNumber) {
-        String bonusNumber = Console.readLine();
-        return BonusNumber.consistOf(bonusNumber);
+        try {
+            String bonusNumber = Console.readLine();
+            InputValidator.validateBonusNumber(bonusNumber, winningNumber);
+            return BonusNumber.consistOf(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            return readBonusNumber(winningNumber);
+        }
     }
 }

@@ -4,12 +4,11 @@ import java.util.List;
 import lotto.domain.constants.LottoConstraint;
 import lotto.domain.message.ErrorMessage;
 
-public class LottoNumbersValidator {
-    public static List<Integer> validate(final List<Integer> numbers) {
+public class LottoNumbersValidator extends Validator {
+    public static void validate(final List<Integer> numbers) {
         validateLength(numbers);
         validateDuplicates(numbers);
         validateRange(numbers);
-        return numbers;
     }
 
     private static void validateRange(final List<Integer> numbers) {

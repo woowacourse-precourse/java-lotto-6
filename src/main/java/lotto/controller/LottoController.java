@@ -1,10 +1,11 @@
 package lotto.controller;
 
-import lotto.domain.LottoCompany;
-import lotto.domain.SiteUser;
-import lotto.domain.WinningStatistics;
+import lotto.domain.*;
 import lotto.util.MathUtil;
+import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class LottoController {
     private SiteUser siteUser;
@@ -16,12 +17,14 @@ public class LottoController {
         outputLottoCnt();
 
         inputWinningNumberAndBonusNumber();
+
         summaryStatistics();
+
         outputStatistics();
     }
 
     private void inputMoney() {
-        this.siteUser = SiteUser.createSiteUser();
+        this.siteUser = SiteUser.createSiteUser((int) InputView.INPUT_MONEY.activateView());
         System.out.println();
     }
 
@@ -32,7 +35,17 @@ public class LottoController {
     }
 
     private void inputWinningNumberAndBonusNumber() {
-        this.lottoCompany = LottoCompany.createlottoCompany();
+        List<Integer> numbers;
+
+        numbers = (List<Integer>) InputView.INPUT_WINNING_NUMBER.activateView();
+        WinningNumbers winningNumbers = new WinningNumbers(numbers);
+
+        System.out.println();
+
+        numbers = (List<Integer>) InputView.INPUT_BONUS_NUMBER.activateView();
+        BonusNumbers bonusNumbers = new BonusNumbers(numbers);
+
+        this.lottoCompany = LottoCompany.createLottoCompany(winningNumbers, bonusNumbers);
         System.out.println();
     }
 

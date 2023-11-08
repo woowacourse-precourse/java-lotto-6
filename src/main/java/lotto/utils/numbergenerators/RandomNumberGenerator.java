@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 
+import static lotto.utils.LottoConstants.*;
+
 
 public class RandomNumberGenerator implements NumberGenerator {
     private static RandomNumberGenerator randomNumberGenerator;
@@ -20,6 +22,6 @@ public class RandomNumberGenerator implements NumberGenerator {
 
     @Override
     public List<Integer> generateNumber() {
-        return Randoms.pickUniqueNumbersInRange(MIN_NUM, MAX_NUM, RANGE);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_MINIMUM_VALUE.getConstants(), LOTTO_MAXIMUM_VALUE.getConstants(), LOTTO_NUMBER_SIZE.getConstants());
     }
 }

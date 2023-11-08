@@ -1,6 +1,9 @@
-package lotto.controller;
+package lotto.service;
 
-import lotto.*;
+import lotto.model.Lotto;
+import lotto.model.LottoNumber;
+import lotto.model.PurchaseAmount;
+import lotto.model.Winning;
 import lotto.util.ErrorMessage;
 import lotto.validate.Check;
 import lotto.view.InputView;
@@ -11,7 +14,7 @@ import java.util.List;
 import static lotto.view.InputView.inputBonusNumber;
 import static lotto.view.InputView.inputWinningNumber;
 
-public class LottoController {
+public class LottoService {
 
     public static int setPurchaseAmount() {
         try {

@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.domain.enums.LottoConstants.MIN_PLAYER_AMOUNT;
+
+import lotto.exception.InvalidMinPlayAmountException;
+import lotto.exception.NonDivisibleException;
 import lotto.util.Validator;
 
 public class PlayerAmount {
@@ -16,7 +20,21 @@ public class PlayerAmount {
     }
 
     private void validate(int amount) {
-        Validator.validateDivisible(amount, DIVISOR);
+        validateDivisible(amount);
+        validateMinPlayerAmount(amount);
+
+    }
+
+    private void validateDivisible(int money) {
+        if (money % DIVISOR != 0) {
+            throw new NonDivisibleException();
+        }
+    }
+
+    private void validateMinPlayerAmount(int money) {
+        if (money < MIN_PLAYER_AMOUNT) {
+            throw new InvalidMinPlayAmountException();
+        }
     }
 
     public int getLottoCount() {

@@ -73,7 +73,6 @@ public class Validator {
                 throw new IllegalArgumentException("[ERROR] : 보너스 숫자가 기존 당첨 숫자의 번호와 같습니다.");
             }
         }
-
     }
 
 

@@ -3,6 +3,8 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.System.in;
+
 public class CompareLottoValue {
     public static final int LOTTO_LEN = 6;
     public static final int FIRST_RANK = 6;
@@ -13,8 +15,8 @@ public class CompareLottoValue {
                                          List<List<Integer>> lottoRepo,
                                          Integer bonusBall,
                                          Integer amount){
-        System.out.println(lottoRepo);
-        System.out.println(winningBalls);
+//        System.out.println(lottoRepo);
+//        System.out.println(winningBalls);
         // 당첨볼을 정수리스트로 변환
         for (int i = 0; i<lottoRepo.size(); i++){
             // 각 로또와 당첨볼을 받아 비교하는 함수
@@ -30,7 +32,7 @@ public class CompareLottoValue {
     public static void compareLottoValue(List<Integer> winningBalls, List<Integer> lottoBalls, Integer bonusBall){ // 점수 비교하는 함수
         resultScore = 0;
         for(int j = 0; j<LOTTO_LEN; j++){ // 생성된 로또를 반복하며
-            if(winningBalls.get(j) == lottoBalls.get(j)){
+            if(winningBalls.contains(lottoBalls.get(j))){
                 // 자동으로 같은 자리가 비교되어 값만 같은지 알면 됨
                 resultScore +=1;
             }
@@ -63,7 +65,7 @@ public class CompareLottoValue {
     }
 
     public static void lottoRank(){
-        System.out.println(resultScore);
+//        System.out.println(resultScore);
         if(resultScore == 7){
             WinningAmounts firstAmount = WinningAmounts.FIRST_AMOUNT;
             firstAmount.count += 1;
@@ -92,7 +94,7 @@ public class CompareLottoValue {
         int forthPrize = WinningAmounts.FORTH_AMOUNT.getPrize();
         int fifthPrize = WinningAmounts.FIFTH_AMOUNT.getPrize();
         resultMoney += (firstPrize + secondPrize + thirdPrize+ forthPrize + fifthPrize);
-        System.out.println(resultMoney);
+//        System.out.println(resultMoney);
     }
 
     public static int getResultMoney(){
@@ -101,7 +103,7 @@ public class CompareLottoValue {
 
     public static double getRateOfTurn(Integer amount){
         double turn = (double)resultMoney / (double)amount ;
-        System.out.println(turn);
+//        System.out.println(turn);
         double rateOfTurn =  (double) Math.round(turn * 10000) / 100;
         return rateOfTurn; // 수익률 계산 공식 : 상금 / 사용한 금액
     }

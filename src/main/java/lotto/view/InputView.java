@@ -1,16 +1,17 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.BuyInfo;
 
 public class InputView {
 
     private static final String INPUT_AMOUNT_IS_NOT_POSTIVE_NUMBER_ERROR = "양수를 입력해 주세요.";
     private static final String INPUT_AMOUNT_IS_NOT_NUMBER_ERROR = "문자가 아닌 숫자를 입력해 주세요.";
 
-    public static int readLottoBuyAmount() {
+    public static BuyInfo readLottoBuyAmount() {
         int buyAmount = StringToInteger(Console.readLine());
         validatePostiveNumber(buyAmount);
-        return buyAmount;
+        return new BuyInfo(buyAmount);
     }
 
     private static int StringToInteger(String input) {

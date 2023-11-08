@@ -9,7 +9,8 @@ public enum PrizeMessage {
     PRIZE_MONEY(" (%s원)"),
     MONEY_FORMAT("#,###"),
     WINNING_COUNT(" - %d개"),
-    PROFIT_RATE("총 수익률은 %.2f입니다.");
+    PROFIT_RATE("총 수익률은 %.1f%%입니다.");
+
 
     private final String message;
 

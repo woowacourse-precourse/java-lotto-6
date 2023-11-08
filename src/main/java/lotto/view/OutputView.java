@@ -1,10 +1,10 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.Utils;
 import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.model.WinningResult;
+import lotto.utils.Utils;
 
 public class OutputView {
     public static void printUserLotto(User user) {

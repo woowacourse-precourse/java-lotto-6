@@ -1,7 +1,7 @@
 package lotto.model;
 
 import java.util.List;
-import lotto.Utils;
+import lotto.utils.Utils;
 
 public class WinningLottoValidator {
     public static void validateWinningLotto(String winningLotto) {

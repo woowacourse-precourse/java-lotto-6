@@ -21,20 +21,49 @@ public class LottoController {
     }
 
     public void doGame(){
-        BuyLottoInfo buyLottoInfo = buyTickets();
-        outputView.printUserLottoInfo(buyLottoInfo);
+        BuyLottoInfo lottoTickets = buyTicket();
+        outputView.printUserLottoInfo(lottoTickets);
 
-        List<Integer> winningNumbers = inputView.inputWinningNumber();
-        BonusNumber bonusNumber = inputView.inputBonusNumber();
-        lottoService.createWinningLotto(winningNumbers, bonusNumber);
+        createWinningLotto();
 
         LottoWinResult lottoWinResult = lottoService.checkWinningLotto();
         outputView.printLottoResult(lottoWinResult);
     }
 
-    private BuyLottoInfo buyTickets() {
-        int amount = inputView.inputPurchaseAmount();
-        return lottoService.createLottoTickets(amount);
+    private BuyLottoInfo buyTicket() {
+        while(true){
+            try{
+                int amount = inputView.inputPurchaseAmount();
+                BuyLottoInfo lottoTickets = lottoService.createLottoTickets(amount);
+                return lottoTickets;
+            } catch (IllegalArgumentException e){
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    private void createWinningLotto(){
+        while(true){
+            try{
+                List<Integer> winningNumbers = getWinningNumber();
+                int bonusNumber = inputView.inputBonusNumber();
+                lottoService.createWinningLotto(winningNumbers, bonusNumber);
+                return;
+            } catch (IllegalArgumentException e){
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> getWinningNumber() {
+        while(true){
+            try{
+                List<Integer> winningNumbers = inputView.inputWinningNumber();
+                return winningNumbers;
+            }catch (IllegalArgumentException e){
+                outputView.printError(e.getMessage());
+            }
+        }
     }
 
 }

@@ -37,4 +37,8 @@ public class OutputView {
         });
         System.out.printf(TOTAL_ERAN_RATE, rateOfReturn);
     }
+
+    public void printError(String errorMessage){
+        System.out.println(errorMessage);
+    }
 }

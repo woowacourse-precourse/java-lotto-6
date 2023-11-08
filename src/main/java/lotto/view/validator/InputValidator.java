@@ -2,6 +2,8 @@ package lotto.view.validator;
 
 import java.util.regex.Pattern;
 
+import static java.lang.Integer.*;
+
 public class InputValidator {
 
     private InputValidator() {
@@ -9,32 +11,31 @@ public class InputValidator {
     }
 
     public static void validatePurchaseAmountInput(String input) {
-        try {
-            validateIsEmpty(input);
-            validateIsDigit(input);
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+        validateIsEmpty(input);
+        validateIsDigit(input);
+        validatePurchaseUnit(input);
+    }
+
+    private static void validatePurchaseUnit(String input) {
+        if (parseInt(input) % 1000 != 0) {
+            throw new IllegalArgumentException("구입 금액은 1,000원 단위이어야 합니다.");
         }
     }
 
     public static void validateBonusNumberInput(String input) {
-        try {
             validateIsEmpty(input);
             validateIsDigit(input);
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-        }
     }
 
     private static void validateIsDigit(String input) {
-        if(!isDigit(input)) {
+        if (!isDigit(input)) {
             throw new IllegalArgumentException("입력값은 정수이어야 합니다.");
         }
     }
 
     private static boolean isDigit(String input) {
         try {
-            Integer.parseInt(input);
+            parseInt(input);
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -42,12 +43,8 @@ public class InputValidator {
     }
 
     public static void validateLottoNumberInput(String input) {
-        try {
             validateIsEmpty(input);
             validateIsRightFormat(input);
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-        }
     }
 
     private static void validateIsEmpty(String input) {

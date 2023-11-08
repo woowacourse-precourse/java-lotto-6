@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.validator.Validator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,14 +12,25 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        Validator.validateLottoNumbers(numbers);
     }
-
-    // TODO: 추가 기능 구현
 
     public List<Integer> getNumbers() {
         return this.numbers;
+    }
+
+    public int countContainsLottoNumber(WinningNumbers winningNumbers) {
+        return (int) this.numbers.stream()
+                .filter(number -> winningNumbers.containsLottoNumber(number))
+                .count();
+    }
+
+    public LottoResult getResult(WinningNumbers winningNumbers) {
+        int count = countContainsLottoNumber(winningNumbers);
+        boolean bonusNumberContains = winningNumbers.matchBonusNumbers(this.numbers);
+        if (count == 5 && bonusNumberContains) {
+            return LottoResult.SECOND;
+        }
+        return LottoResult.of(count);
     }
 }

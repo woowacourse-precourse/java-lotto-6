@@ -27,6 +27,16 @@ public class Lotto {
         return new Lotto(randomNumbers);
     }
 
+    public Lotto inputLotto() {
+        // 당첨 번호 입력을 요구하는 출력문
+        String[] input = readLine().split(",");
+        List<Integer> inputLotto = new ArrayList<Integer>();
 
+        for (String i : input) {
+            inputLotto.add(Integer.parseInt(i));
+        }
+        // 에러체크기능 -> 테스트를 보니 생성자 내에서 이게 체크되어야 하는 것 같다
+        return new Lotto(inputLotto);
+    }
 
 }

@@ -3,6 +3,8 @@ package lotto.model;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import lotto.enums.Bounds;
+import lotto.enums.Message;
 import lotto.enums.Prize;
 
 public class Lotto {
@@ -10,12 +12,24 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateUniqueness(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateUniqueness(List<Integer> numbers) {
+        long distinctNumbers = numbers.stream()
+                .distinct()
+                .count();
+        if (distinctNumbers != Bounds.MAX_LOTTO_SIZE.getValue()) {
+            throw new IllegalArgumentException(Message
+                    .EXCEPTION_DUPLICATED_NUMBER
+                    .getMessage());
         }
     }
 

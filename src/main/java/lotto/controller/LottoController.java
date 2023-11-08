@@ -76,7 +76,8 @@ public class LottoController {
 
     private void printResult(Map<Rank, Integer> lottosRanks, PurchaseAmount purchaseAmount) {
         outputView.printResultStatistics(LottosResult.countEachRank(lottosRanks));
-        outputView.printRateOfReturn(LottoShop.countLottoTicket(purchaseAmount), LottosResult.calculateTotalPrize(lottosRanks));
+        outputView.printRateOfReturn(LottoShop.countLottoTicket(purchaseAmount),
+                LottosResult.calculateTotalPrize(lottosRanks));
     }
 
     private Map<Rank, Integer> getRankOfLottos(List<Integer> winningNumbers, List<Lotto> lottos) {

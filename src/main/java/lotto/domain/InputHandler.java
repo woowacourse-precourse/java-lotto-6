@@ -24,7 +24,7 @@ public class InputHandler {
         } while (true);
     }
 
-    public static String[] askWinningNumbers() {
+    public static List<Integer> askWinningNumbers() {
         do {
             System.out.println(StaticMessage.INPUT_WINNING_NUMBERS);
             try {
@@ -87,11 +87,14 @@ public class InputHandler {
         return Integer.parseInt(input);
     }
 
-    public static String[] convertStringToArray (String input) {
+    public static List<Integer> convertStringToArray (String inputNumbers) {
         List<Integer> numbers = new ArrayList<>();
-//        for (String input: inputNumbers) {
-//
-//        }
-        return input.split(delimiter);
+        for (String input: inputNumbers.split(delimiter)) {
+            if (!Validator.containOnlyDigitTest(input)) {
+                throw new IllegalArgumentException();
+            }
+            numbers.add(Integer.parseInt(input));
+        }
+        return numbers;
     }
 }

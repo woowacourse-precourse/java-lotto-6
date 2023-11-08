@@ -7,11 +7,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.model.WinningStatistics;
-import lotto.view.OuputView;
+import lotto.view.OutputView;
 
 public class Lottos {
     private final List<Lotto> lottos;
-    OuputView ouputView = new OuputView();
+    OutputView outputView = new OutputView();
 
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
@@ -41,8 +41,13 @@ public class Lottos {
     public void getLottoList() {
         lottos.stream()
                 .map(lotto -> lotto.getNumbers().stream()
+                        .sorted()
                         .map(String::valueOf)
                         .collect(Collectors.joining(", ")))
-                .forEach(ouputView::printLotto);
+                .forEach(outputView::printLotto);
+    }
+
+    public void getLottoListSize() {
+        outputView.printLottoCount(lottos.size());
     }
 }

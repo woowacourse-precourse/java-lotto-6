@@ -2,7 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import lotto.lotto.LottoPaper;
-import lotto.money.Money;
+import lotto.money.LottoMoney;
 
 public class OutputView {
     private static final String INPUT_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
@@ -14,9 +14,9 @@ public class OutputView {
         System.out.println(INPUT_MONEY_MESSAGE);
     }
 
-    public static void buyLottoPaper(Money money, LottoPaper lottoPaper) {
+    public static void buyLottoPaper(LottoMoney lottoMoney, LottoPaper lottoPaper) {
         System.out.println();
-        System.out.println(money.getLottoCount() + BUY_LOTTO_PAPER);
+        System.out.println(lottoMoney.getLottoCount() + BUY_LOTTO_PAPER);
         List<String> lottoPaperMessage = lottoPaper.getLottoPaperMessage();
         lottoPaperMessage.forEach(System.out::println);
     }

@@ -3,7 +3,7 @@ package lotto.money;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class Money {
+public class LottoMoney {
 
     private static final String WRONG_MONEY_ERROR = "로또는 1000원씩 구매해야 합니다.";
     private static final String INVALID_RANGE_AMOUNT_ERROR = "1000원 이상 입력하세요";
@@ -12,7 +12,7 @@ public class Money {
 
     private final Price money;
 
-    public Money(String money) {
+    public LottoMoney(String money) {
         Price price = new Price(money);
         validate(price);
         this.money = price;

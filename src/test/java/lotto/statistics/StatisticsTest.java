@@ -2,7 +2,7 @@ package lotto.statistics;
 
 import java.util.List;
 import java.util.Map;
-import lotto.money.Money;
+import lotto.money.LottoMoney;
 import lotto.ranking.Ranking;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -27,10 +27,10 @@ class StatisticsTest {
     @Test
     void calculateProfit() {
         List<Ranking> rankings = List.of(Ranking.FIFTH, Ranking.FOURTH);
-        Money money = new Money("2000");
+        LottoMoney lottoMoney = new LottoMoney("2000");
 
         Statistics statistics = new Statistics(rankings);
-        Double profit = statistics.calculateProfit(money);
+        Double profit = statistics.calculateProfit(lottoMoney);
 
         Assertions.assertEquals(profit, 2750);
     }

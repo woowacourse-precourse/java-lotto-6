@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class MoneyTest {
+class LottoMoneyTest {
 
     @DisplayName("1000으로 나누어 떨어지지 않는 돈을 받으면 예외가 발생")
     @ValueSource(strings = {"100", "2300"})
     @ParameterizedTest
     void getIndivisibleMoney(String money) {
-        Assertions.assertThatThrownBy(() -> new Money(money))
+        Assertions.assertThatThrownBy(() -> new LottoMoney(money))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
@@ -20,7 +20,7 @@ class MoneyTest {
     @ValueSource(strings = {"ab", "10.5", "0.8"})
     @ParameterizedTest
     void getNotIntegerMoney(String money) {
-        Assertions.assertThatThrownBy(() -> new Money(money))
+        Assertions.assertThatThrownBy(() -> new LottoMoney(money))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
@@ -28,17 +28,17 @@ class MoneyTest {
     @ValueSource(strings = {"0", "-1000"})
     @ParameterizedTest
     void getMoneyBelowMinimum(String money) {
-        Assertions.assertThatThrownBy(() -> new Money(money))
+        Assertions.assertThatThrownBy(() -> new LottoMoney(money))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("전체 상금으로 수익률을 계산한다.")
     @Test
     void calculateProfit() {
-        Money money = new Money("10000");
+        LottoMoney lottoMoney = new LottoMoney("10000");
         Integer totalPrice = 12055;
 
-        Double profit = money.calculateProfit(totalPrice);
+        Double profit = lottoMoney.calculateProfit(totalPrice);
 
         Assertions.assertThat(profit).isEqualTo(120.6);
 

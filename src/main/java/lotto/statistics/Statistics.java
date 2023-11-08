@@ -2,7 +2,7 @@ package lotto.statistics;
 
 import java.util.List;
 import java.util.Map;
-import lotto.money.Money;
+import lotto.money.LottoMoney;
 import lotto.ranking.Ranking;
 
 public class Statistics {
@@ -20,8 +20,8 @@ public class Statistics {
         return statistics.getLottoResult();
     }
 
-    public Double calculateProfit(Money money) {
-        return money.calculateProfit(getTotalPrize());
+    public Double calculateProfit(LottoMoney lottoMoney) {
+        return lottoMoney.calculateProfit(getTotalPrize());
     }
 
     private Integer getTotalPrize() {

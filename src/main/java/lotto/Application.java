@@ -13,10 +13,21 @@ public class Application {
 
         List<Lotto> lottoList = createdLottos(money);
         OutputView.printLottos(lottoList);
+        WinningLotto winningLotto = createdWinningLotto();
+
+        Map<Result, Integer> resultCount = getResultCount(lottoList, winningLotto);
+
+        OutputView.printResult(ticketCount, resultCount);
+    }
+
+    private static WinningLotto createdWinningLotto() {
         List<Integer> winningLottoNumbers = InputView.inputWinningLotto();
         int bonusNumber = InputView.inputBonusNumber();
         WinningLotto winningLotto = new WinningLotto(new Lotto(winningLottoNumbers), bonusNumber);
+        return winningLotto;
+    }
 
+    private static Map<Result, Integer> getResultCount(List<Lotto> lottoList, WinningLotto winningLotto) {
         Map<Result, Integer> resultCount = new HashMap<>();
         for (Lotto lotto : lottoList) {
             int matchCount = winningLotto.matchCount(lotto);
@@ -24,8 +35,7 @@ public class Application {
             Result result = Result.valueOf(matchCount, isBonus);
             resultCount.put(result, resultCount.getOrDefault(result, 0) + 1);
         }
-
-        OutputView.printResult(ticketCount, resultCount);
+        return resultCount;
     }
 
     private static List<Lotto> createdLottos(Money money) {

@@ -11,7 +11,7 @@ class TotalWinningAmountTest {
         String input = "10000";
         BigDecimal purchaseAmount = BigDecimal.valueOf(Long.parseLong(input));
         TotalWinningAmount totalWinningAmount = new TotalWinningAmount(BigDecimal.valueOf(24242424));
-        ReturnRate returnRate = totalWinningAmount.getReturnRateFrom(purchaseAmount);
+        ReturnRate returnRate = totalWinningAmount.calculateReturnRateFrom(purchaseAmount);
 
         assertThat(returnRate.returnRate())
                 .isEqualTo(BigDecimal.valueOf(242424.24));

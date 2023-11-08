@@ -91,7 +91,7 @@ public class LottoService implements Service {
     public ReturnRateDto getReturnRate(LottoPurchaseDto lottoPurchaseDto, WinningResultDto winningResultDto) {
         ReturnRate returnRate = getWinningResult(winningResultDto)
                 .getTotalWinningAmount()
-                .getReturnRateFrom(lottoPurchaseDto.amount());
+                .calculateReturnRateFrom(lottoPurchaseDto.amount());
         return getReturnRateDto(returnRate);
     }
 

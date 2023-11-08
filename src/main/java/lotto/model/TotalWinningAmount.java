@@ -9,7 +9,7 @@ public record TotalWinningAmount(
         BigDecimal totalWinningAmount
 ) {
 
-    public ReturnRate getReturnRateFrom(BigDecimal amount) {
+    public ReturnRate calculateReturnRateFrom(BigDecimal amount) {
         BigDecimal returnRate = totalWinningAmount
                 .multiply(HUNDRED.getValue())
                 .divide(amount, 1, RoundingMode.HALF_UP);

@@ -6,6 +6,7 @@ import static lotto.model.LottoResult.matchResult;
 import static lotto.util.Constant.LOTTO_PER_PRICE;
 import static lotto.view.InputView.InputWinningNumbers;
 import static lotto.view.InputView.readLine;
+import static lotto.view.InputView.stringWithoutSpace;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class LottoController {
 
     private static void purchaseLotto() {
         OutputView.printPurchasePrice();
-        LottoPurchase lottoPurchase = new LottoPurchase(readLine());
+        LottoPurchase lottoPurchase = new LottoPurchase(stringWithoutSpace(readLine()));
         OutputView.printEmptyLine();
         lottoCount = lottoPurchase.getLottoCount();
         OutputView.printPurchaseMessage(lottoCount);
@@ -65,7 +66,7 @@ public class LottoController {
 
     private static void setBonusNumber() {
         OutputView.printInputBonusNumber();
-        BonusNumber bonus = new BonusNumber(readLine());
+        BonusNumber bonus = new BonusNumber(stringWithoutSpace(readLine()));
         OutputView.printEmptyLine();
         bonusNumber = bonus.getBonusNumber();
     }

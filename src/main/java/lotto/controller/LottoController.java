@@ -79,7 +79,7 @@ public class LottoController {
 
     private void printStatistics() {
         final Map<Winning, Integer> winningCounts = lottoService.getWinningCounts();
-        int totalPrize = lottoService.calculateTotalPrize(winningCounts);
+        long totalPrize = lottoService.calculateTotalPrize(winningCounts);
         outputView.printWinningStatistics();
         outputView.printStatistics(winningCounts, totalPrize, user.getPurchaseAmount().amount());
     }

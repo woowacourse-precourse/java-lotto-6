@@ -33,6 +33,12 @@ public class LottoRepository {
         resultCounts.put(SIX, 0);
     }
 
+    public LottoRepository(Lotto lotto, int bonusNumber, List<UserLotto> userLottos) {
+        this.lotto = lotto;
+        this.bonusNumber = bonusNumber;
+        this.userLottos = userLottos;
+    }
+
     public int getSpendMoney() {
         spendMoney = MoneyInput.getMoney();
         return spendMoney / 1000;
@@ -71,7 +77,6 @@ public class LottoRepository {
             }
 
             sum += result.getSumMoney();
-
             resultCounts.put(result, resultCounts.get(result) + 1);
         }
         LottoOutput.printResultCounting(resultCounts);

@@ -18,12 +18,15 @@ public class LottoController {
     private final Utils utils = new Utils();
     private final Validator validator = new Validator();
     private List<Integer> winningNumbers = new ArrayList<>();
+    private List<Integer> matchedNumber;
     private int money = 0;
     private int bonusBall;
+    private boolean isBonusBall;
     public void run() {
         receiveMoney();
         buyTicket();
         receiveWinningNumber();
+        compareLottos();
     }
     private void receiveMoney() {
         try {
@@ -69,5 +72,9 @@ public class LottoController {
         if (validator.hasDubplicatesUserNumbers(winningNumbers)||
                 !validator.isValidRange(winningNumbers)||
                 !validator.isValidLength(winningNumbers)) throw new IllegalArgumentException();
+    }
+    private void compareLottos() {
+        matchedNumber = lottoService.CompareNumbers(lottos.purchasedLottos, winningNumbers);
+        isBonusBall = lottoService.CompareBonusNumbers(lottos.purchasedLottos, bonusBall);
     }
 }

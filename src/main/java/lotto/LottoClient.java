@@ -40,8 +40,8 @@ public class LottoClient {
         Map<Rank, Integer> results = lottoReceipt.getResults(winningNumbers);
         lottoOutput.printResults(results);
 
-        double profitRateInPercentage = profitCalculator.calculateProfitRateInPercentage(results);
-        lottoOutput.printProfitAsPercentage(profitRateInPercentage);
+        double profitRate = profitCalculator.calculateProfitRateInPercentage(results);
+        lottoOutput.printProfitAsPercentage(profitRate);
     }
     
     private LottoReceipt purchaseLotto() {

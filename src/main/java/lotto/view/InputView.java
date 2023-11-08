@@ -26,13 +26,13 @@ public class InputView {
     }
 
     public static int changeToInt(String input) {
-        int changedInt = 0;
+        int inputNum = 0;
         try {
-            changedInt = Integer.parseInt(input);
+            inputNum = Integer.parseInt(input);
         } catch (NumberFormatException e) {
             validateNumber();
         }
-        return changedInt;
+        return inputNum;
     }
 
     public static List<Integer> inputWinningNum() {

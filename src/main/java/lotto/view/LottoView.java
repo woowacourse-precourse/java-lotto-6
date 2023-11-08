@@ -25,12 +25,14 @@ public class LottoView {
     }
 
     public List<String> prizeNumberInput() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         List<String> input = Arrays.asList(Console.readLine().split(","));
         return input;
     }
 
     public Integer bonusNumberInput() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         return Integer.parseInt(input);
@@ -41,11 +43,15 @@ public class LottoView {
 
 
     public void seeWinningStatstic(List<LottoPrize> lottoPrizelist) {
-        System.out.println();
         System.out.println("당첨통계");
         System.out.println("---");
         for(LottoPrize lottoPrize: lottoPrizelist){
             System.out.println(lottoPrize.getText()+lottoPrize.getWinCount()+lottoPrize.getUnit());
         }
+    }
+
+    public void seePercentage(double percentage) {
+        System.out.println("총 수익률은 "+percentage+"%입니다.");
+
     }
 }

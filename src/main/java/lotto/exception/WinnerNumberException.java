@@ -16,7 +16,7 @@ public class WinnerNumberException {
 
     public WinnerNumberException(String input) {
         isComma(input);
-        for (String number : input.split(",")){
+        for (String number : input.split(",")) {
             isNumber(number);
         }
     }
@@ -30,9 +30,9 @@ public class WinnerNumberException {
 
 
     public void isNumber(String winnerNum) {
-        try{
+        try {
             Integer.parseInt(winnerNum);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR + IS_NUMBER_MESSAGE);
         }
     }
@@ -46,25 +46,25 @@ public class WinnerNumberException {
     }
 
     public void isBlank(List<Integer> winnerNum) {
-        if(winnerNum.size() == 0){
+        if (winnerNum.size() == 0) {
             throw new IllegalArgumentException(ERROR + IS_BLANK_MESSAGE);
         }
     }
 
     public void isRightRange(List<Integer> winnerNum) {
-        if(winnerNum.stream().anyMatch(i -> i <WINNER_NUM_START || i > WINNER_NUM_FINISH)){
+        if (winnerNum.stream().anyMatch(i -> i < WINNER_NUM_START || i > WINNER_NUM_FINISH)) {
             throw new IllegalArgumentException(ERROR + IS_RIGHT_RANGE_MESSAGE);
         }
     }
 
     public void isSize(List<Integer> winnerNum) {
-        if(winnerNum.size() != WINNER_NUM_COUNT){
+        if (winnerNum.size() != WINNER_NUM_COUNT) {
             throw new IllegalArgumentException(ERROR + IS_SIZE_MESSAGE);
         }
     }
 
     public void isDuplicate(List<Integer> winnerNum) {
-        if(winnerNum.size() != winnerNum.stream().distinct().count()){
+        if (winnerNum.size() != winnerNum.stream().distinct().count()) {
             throw new IllegalArgumentException(ERROR + IS_DUPLICATE_MESSAGE);
         }
     }

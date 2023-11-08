@@ -6,16 +6,17 @@ import java.util.List;
 
 public class WinnerNumber {
     private final List<Integer> winnerNum;
+
     public WinnerNumber(List<Integer> winnerNum) {
         validate(winnerNum);
         this.winnerNum = winnerNum;
     }
 
     private void validate(List<Integer> input) {
-        WinnerNumberException winnerNumberException = new WinnerNumberException(input);
+        new WinnerNumberException(input);
     }
 
-    public List<Integer> getWinnerNumber(){
+    public List<Integer> getWinnerNumber() {
         return this.winnerNum;
     }
 }

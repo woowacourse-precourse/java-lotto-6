@@ -10,8 +10,6 @@ public class MakeRandomNumber implements RandomNum {
     @Override
     public List<Integer> getRandomNumber() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return numbers.stream()
-                .sorted()
-                .collect(Collectors.toList());
+        return numbers.stream().sorted().collect(Collectors.toList());
     }
 }

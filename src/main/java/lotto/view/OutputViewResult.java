@@ -1,7 +1,6 @@
 package lotto.view;
 
 import lotto.domain.LottoMoney;
-import lotto.domain.LottoMoneyPrize;
 
 import java.util.Map;
 
@@ -13,19 +12,19 @@ public class OutputViewResult {
     private static final String LOTTO_RESULT_CASE_BASIC_MESSAGE = "%d개 일치 (%s원) - %d개";
     private static final String SEPARATE = "---";
 
-    public static void printResultStart(){
+    public static void printResultStart() {
         System.out.println(WIN_STATICS_MESSAGE);
         System.out.println(SEPARATE);
     }
 
-    public static void printResultLotto(Map<LottoMoney,Integer> lottoResult){
+    public static void printResultLotto(Map<LottoMoney, Integer> lottoResult) {
         lottoResult.entrySet().stream()
                 .filter(entry -> entry.getKey() != LottoMoney.ZERO)
-                .forEach(entry -> System.out.println(getPrintResultLotto(entry.getKey(),entry.getValue())));
+                .forEach(entry -> System.out.println(getPrintResultLotto(entry.getKey(), entry.getValue())));
     }
 
     private static String getPrintResultLotto(LottoMoney lottoMoney, int count) {
-        if(lottoMoney == LottoMoney.SECOND){
+        if (lottoMoney == LottoMoney.SECOND) {
             return String.format(LOTTO_RESULT_CASE_SECOND_MESSAGE
                     , lottoMoney.getMatchCount()
                     , String.format("%,d", lottoMoney.getMoney())
@@ -36,7 +35,7 @@ public class OutputViewResult {
                 lottoMoney.getMatchCount(),
                 String.format("%,d", lottoMoney.getMoney()),
                 count
-                );
+        );
     }
 
     public static void printResultRate(Double rate) {

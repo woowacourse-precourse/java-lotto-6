@@ -26,9 +26,15 @@ public class Application {
         while (true) {
             try {
                 System.out.println("구입 금액을 입력해 주세요.");
-                return Integer.parseInt(Console.readLine());
+                int purchaseAmount = Integer.parseInt(Console.readLine());
+                if (purchaseAmount % 1000 != 0) {
+                    throw new IllegalArgumentException("구입 금액은 1000의 배수여야 합니다.");
+                }
+                return purchaseAmount;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }
@@ -56,9 +62,15 @@ public class Application {
             try {
                 System.out.println();
                 System.out.println("당첨 번호를 입력해 주세요.");
-                return parseNumbers(Console.readLine());
+                List<Integer> winningNumbers = parseNumbers(Console.readLine());
+                if (winningNumbers.size() != 6 || winningNumbers.size() > 6) {
+                    throw new IllegalArgumentException("당첨 번호는 6개를 입력해야 합니다.");
+                }
+                return winningNumbers;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }
@@ -67,7 +79,11 @@ public class Application {
         String[] inputNumbers = input.split(",");
         List<Integer> numbers = new ArrayList<>();
         for (String number : inputNumbers) {
-            numbers.add(Integer.parseInt(number));
+            int num = Integer.parseInt(number);
+            if (num > 45) {
+                throw new IllegalArgumentException("당첨 번호는 1부터 45 사이의 숫자만 입력해야 합니다.");
+            }
+            numbers.add(num);
         }
         return numbers;
     }

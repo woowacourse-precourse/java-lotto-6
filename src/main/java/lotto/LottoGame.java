@@ -6,12 +6,14 @@ import static lotto.view.InputView.inputLottoPurchaseAmount;
 import static lotto.view.InputView.inputWinningNumbers;
 import static lotto.view.OutputView.printLottoNumbers;
 import static lotto.view.OutputView.printLottoResult;
+import static lotto.view.OutputView.printNewLine;
 import static lotto.view.OutputView.printTotalYieldRate;
 import static lotto.view.OutputView.printWinningStatistics;
 
 import common.enumtype.ResultType;
 import common.exception.InvalidArgumentException;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.LottoPurchaseAmount;
 import lotto.domain.LottoResult;
@@ -27,7 +29,10 @@ public class LottoGame {
         Lottoes lottoes = createLottoes(lottoPurchaseAmount.getLottoCount());
         WinningNumbers winningNumbers = createWinningNumbersWithBonusNumber();
         LottoResult lottoResult = createLottoResult(lottoes, winningNumbers);
-        printResult(lottoResult, lottoResult.getYieldRate(lottoPurchaseAmount.getAmount()));
+        printResult(
+                lottoResult.getResult(),
+                lottoResult.getYieldRate(lottoPurchaseAmount.getAmount())
+        );
     }
 
     private Lottoes createLottoes(int count) {
@@ -55,11 +60,13 @@ public class LottoGame {
         List<LottoNumbers> lottoNumbers = lottoes.getAllLotto().stream()
                 .map(lotto -> new LottoNumbers(lotto.getLottoNumbers()))
                 .toList();
+        printNewLine();
         printLottoNumbers(lottoNumbers);
     }
 
     private WinningNumbers createWinningNumbersWithBonusNumber() {
         WinningNumbers winningNumbers = createWinningNumbers();
+        printNewLine();
         registerBonusNumber(winningNumbers);
         return winningNumbers;
     }
@@ -117,13 +124,10 @@ public class LottoGame {
                 .collect(Collectors.toList());
     }
 
-    private void printResult(LottoResult lottoResult, double yieldRate) {
-        printLottoResult(lottoResult.getResult());
-        printStatistics(yieldRate);
-    }
-
-    private void printStatistics(double yieldRate) {
+    private void printResult(Map<ResultType, Integer> result, double yieldRate) {
+        printNewLine();
         printWinningStatistics();
+        printLottoResult(result);
         printTotalYieldRate(yieldRate);
     }
 

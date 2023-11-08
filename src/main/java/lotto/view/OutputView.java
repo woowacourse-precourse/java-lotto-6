@@ -24,16 +24,20 @@ public final class OutputView {
     private OutputView() {
     }
 
+    public static void printNewLine() {
+        System.out.println();
+    }
+
     public static void printLottoNumbers(List<LottoNumbers> lottoNumbers) {
         StringBuilder sb = new StringBuilder();
-        sb.append('\n').append(lottoNumbers.size()).append("개를 구매했습니다.\n");
+        sb.append(lottoNumbers.size()).append("개를 구매했습니다.\n");
         lottoNumbers
                 .forEach(numbers -> makeLottoNumbersString(numbers, sb));
         System.out.println(sb);
     }
 
     public static void printWinningStatistics() {
-        System.out.println("\n당첨 통계");
+        System.out.println("당첨 통계");
         System.out.println("---");
     }
 

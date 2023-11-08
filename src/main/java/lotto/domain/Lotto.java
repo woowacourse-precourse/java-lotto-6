@@ -2,6 +2,8 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.IntStream;
 import lotto.constant.Condition;
 
 public class Lotto {
@@ -26,6 +28,16 @@ public class Lotto {
     // TODO: 추가 기능 구현
     private void sortNumbersAscending(){
         this.numbers.sort(Integer::compareTo);
+    }
+
+    public int compareLottoWithWinningNumber(Lotto WinningNumbers){
+        return (int) WinningNumbers.numbers.stream()
+                .filter(this.numbers::contains)
+                .count();
+    }
+
+    public boolean compareLottoWithBonusNumber(int bonusNumber){
+        return this.numbers.contains(bonusNumber);
     }
 
 }

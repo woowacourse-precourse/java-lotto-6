@@ -1,19 +1,13 @@
 package lotto.domain;
 
-import static lotto.utils.ConstantValues.DEFAULT_COUNT;
-
 import java.util.Map;
 import lotto.domain.wrapper.PurchaseAmount;
 
-public class PrizeReception {
+public class ProfitCalculator {
     private final Map<Prize, Integer> lottosResult;
 
-    public PrizeReception(Map<Prize, Integer> lottosResult) {
+    public ProfitCalculator(Map<Prize, Integer> lottosResult) {
         this.lottosResult = lottosResult;
-    }
-
-    public int getPrizeCount(Prize prize) {
-        return lottosResult.getOrDefault(prize, DEFAULT_COUNT);
     }
 
     public double getProfitRate(PurchaseAmount purchaseAmount) {

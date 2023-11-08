@@ -9,7 +9,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Prize;
 import lotto.domain.WinnigMachine;
-import lotto.domain.PrizeReception;
+import lotto.domain.ProfitCalculator;
 import lotto.domain.wrapper.PurchaseAmount;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -25,8 +25,8 @@ public class Application {
         // 로또 게임을 진행한다.
         WinnigMachine winnigMachine = new WinnigMachine(winningLotto, bonusNumber);
         Map<Prize, Integer> lottosResult = lottos.getLottosResult(winnigMachine);
-        PrizeReception prizeReception = new PrizeReception(lottosResult);
-        double profitRate = prizeReception.getProfitRate(purchaseAmount);
+        ProfitCalculator profitCalculator = new ProfitCalculator(lottosResult);
+        double profitRate = profitCalculator.getProfitRate(purchaseAmount);
         // 로또 게임 결과를 출력한다.
         OutputView.printPrizeResults(lottosResult);
         OutputView.printPrizeProfit(profitRate);

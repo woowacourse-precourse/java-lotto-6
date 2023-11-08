@@ -11,22 +11,43 @@ import lotto.domain.RankResult;
 
 public class Launcher {
     public static void run() {
-        // 금액 입력
-        PurchaseController purchaseController = new PurchaseController();
-        LottoPurchase lottoPurchase = purchaseController.processPurchase();
+        //로또 구매
+        PurchaseController purchaseController = createPurchaseController();
+        LottoPurchase lottoPurchase = processPurchase(purchaseController);
 
-        // 로또 발급
+        //로또 발급
+        LottoTickets lottoTickets = issueTickets(lottoPurchase);
+
+        //로또 결과 생성 및 화면 표시
+        RankResult rankResult = determineResults(lottoTickets);
+        displayResults(rankResult);
+        displayProfit(lottoPurchase, rankResult);
+    }
+
+    private static PurchaseController createPurchaseController() {
+        return new PurchaseController();
+    }
+
+    private static LottoPurchase processPurchase(PurchaseController purchaseController) {
+        return purchaseController.processPurchase();
+    }
+
+    private static LottoTickets issueTickets(LottoPurchase lottoPurchase) {
         IssueController issueController = IssueController.from(lottoPurchase);
-        LottoTickets lottoTickets = issueController.issueTickets();
+        return issueController.issueTickets();
+    }
 
-        // 당첨 번호, 보너스 번호 입력 처리
+    private static RankResult determineResults(LottoTickets lottoTickets) {
         WinningController winningController = WinningController.from(lottoTickets);
-        RankResult rankResult = winningController.determineResults();
+        return winningController.determineResults();
+    }
 
-        //당첨 결과 출력
+    private static void displayResults(RankResult rankResult) {
         ResultController resultController = ResultController.from(rankResult);
         resultController.showResults();
+    }
 
+    private static void displayProfit(LottoPurchase lottoPurchase, RankResult rankResult) {
         ProfitController profitController = ProfitController.of(lottoPurchase, rankResult);
         profitController.showProfit();
     }

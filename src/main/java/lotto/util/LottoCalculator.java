@@ -6,6 +6,8 @@ import lotto.domain.LottoTicket;
 import lotto.domain.WiningLotto;
 
 public class LottoCalculator {
+    private final static int MIN_WIN = 3;
+    private final static int MAX_WIN = 7;
 
     public HashMap<Integer, Integer> calculate(LottoTicket lottoTicket, WiningLotto winingLotto) {
         return calculateWin(lottoTicket, winingLotto.getWinNumber(), winingLotto.getBonus());
@@ -16,7 +18,7 @@ public class LottoCalculator {
 
         for (List<Integer> lottoNumbers : lottoTicket.showLottoNumbers()) {
             int key = makeKey(lottoNumbers, winNumbers, bonus);
-            if (key >= 3) {
+            if (key >= MIN_WIN) {
                 int value = result.get(key) + 1;
                 result.replace(key, value);
             }
@@ -26,7 +28,7 @@ public class LottoCalculator {
 
     private HashMap<Integer, Integer> makeResultStore() {
         HashMap<Integer, Integer> result = new HashMap<>();
-        for (int correct = 3; correct <= 7; correct++) {
+        for (int correct = MIN_WIN; correct <= MAX_WIN; correct++) {
             result.put(correct, 0);
         }
         return result;

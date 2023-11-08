@@ -1,5 +1,9 @@
 package lotto.util;
 
+import static lotto.config.SystemNumberConfig.RANDOM_END;
+import static lotto.config.SystemNumberConfig.RANDOM_START;
+import static lotto.config.SystemNumberConfig.SIZE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +21,10 @@ public class LottoTicketMaker {
 
     private Lotto makeLotto() {
         try {
-            return new Lotto(makeRandomUniqueNumber(1, 45, 6));
+            return new Lotto(
+                    makeRandomUniqueNumber(RANDOM_START.getConfig(), RANDOM_END.getConfig(), SIZE.getConfig()));
         } catch (IllegalStateException exception) {
-            OutputView.print(exception.getMessage());
-            OutputView.print("\n");
+            OutputView.println(exception.getMessage());
             return makeLotto();
         }
 

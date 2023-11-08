@@ -4,12 +4,14 @@ import java.util.HashMap;
 import lotto.config.LottoResultInform;
 
 public class StatisticsCalculator {
+    private final static float Divider = 10.0f;
+
     public String getRate(HashMap<Integer, Integer> winResult, int lottoCount) {
         return String.format("%.1f", calculate(winResult, lottoCount));
     }
 
     public float calculate(HashMap<Integer, Integer> winResult, int lottoCount) {
-        return addTotalPrize(winResult) / lottoCount / 10.0f;
+        return addTotalPrize(winResult) / lottoCount / Divider;
     }
 
     private float addTotalPrize(HashMap<Integer, Integer> winResult) {

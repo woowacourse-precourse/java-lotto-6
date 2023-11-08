@@ -15,6 +15,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -74,8 +75,8 @@ class ViewProcessorTest {
 
     @ParameterizedTest
     @CsvSource({
-            "100,[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.",
-            "-20,[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.",
+            "100,[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.",
+            "-20,[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.",
             "\0,[ERROR] 보너스 번호는 정수여야 합니다.",
             "삼십,[ERROR] 보너스 번호는 정수여야 합니다."
     })
@@ -158,4 +159,28 @@ class ViewProcessorTest {
         boolean expect = state.equals("FAILDURE");
         assertThat(viewProcessor.purchase(tempCost)).isEqualTo(expect);
     }
+
+    @DisplayName("출력할 로또별 당첨 결과값에 대한 생성 테스트")
+    @ParameterizedTest
+    @MethodSource("parameterProviderMakeResult")
+    void makeResult(HashMap<Rewards, Integer> input) {
+        assertThat(viewProcessor.makeResult(input))
+                .isEqualTo(List.of(
+                        "3개 일치 (5,000원) - 4개",
+                        "4개 일치 (50,000원) - 3개",
+                        "5개 일치 (1,500,000원) - 2개",
+                        "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+                        "6개 일치 (2,000,000,000원) - 0개"));
+    }
+
+    static Stream parameterProviderMakeResult() {
+        HashMap<Rewards, Integer> input = new HashMap<>();
+        Rewards[] rewards = Rewards.values();
+        for (int i = 0; i < rewards.length; i++) {
+            input.put(rewards[i], i);
+        }
+        return Stream.of(input);
+    }
+
+
 }

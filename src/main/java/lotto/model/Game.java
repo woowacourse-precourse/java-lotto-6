@@ -39,6 +39,13 @@ public class Game {
         return this.userLottoNumbers;
     }
 
+    public void generateLottoNumbers(int num) {
+        for (int i = 0; i < num; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(this.START, this.END, this.SIZE);
+            this.getUserLottoNumbers().add(numbers);
+        }
+    }
+
     public List<Integer> getMatchResult(List<Integer> lottoNumber) {
         this.result = initMatchResult();
         for (List<Integer> numbers : this.getUserLottoNumbers()) {

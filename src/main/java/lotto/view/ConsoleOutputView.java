@@ -21,7 +21,7 @@ public class ConsoleOutputView implements OutputView {
     private static final String REQUIRE_MATCH_BONUS = ", 보너스 볼 일치";
     private static final String PRIZE_AMOUNT = " (%s원)";
     private static final String WINNING_COUNT = " - %d개";
-    private static final String PERCENT_OF_TOTAL_WINNING_AMOUNT = "총 수익률은 %.1f%%입니다.";
+    private static final String PERCENT_OF_TOTAL_WINNING_AMOUNT = "총 수익률은 %,.1f%%입니다.";
 
     @Override
     public void requestPurchaseAmount() {

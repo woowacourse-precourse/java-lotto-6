@@ -19,6 +19,8 @@ public class Application {
 
         List<Integer> winningNumbers = getWinningNumbers(console);
         int bonusNumber = getBonusNumber(console);
+
+//        calculateAndPrintResult(lottos, winningNumbers, bonusNumber);
     }
 
     private static int getPurchaseAmount(Console console) {
@@ -74,5 +76,9 @@ public class Application {
     private static int getBonusNumber(Console console) {
         System.out.println("보너스 번호를 입력해 주세요.");
         return Integer.parseInt(console.readLine());
+    }
+
+    private static void calculateAndPrintResult() {
+
     }
 }

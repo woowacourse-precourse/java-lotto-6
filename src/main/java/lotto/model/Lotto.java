@@ -12,19 +12,7 @@ public class Lotto {
         userLottoUtil.duplicateLotto(numbers);
         this.numbers = numbers;
     }
-
-    public List<Lotto> makeLottos(int lottoAmount) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int count = 1; count <= lottoAmount; count++) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            lottos.add(lotto);
-        }
-
-        return lottos;
-    }
     public List<Integer> getNumbers() {
         return numbers;
     }
-
-
 }

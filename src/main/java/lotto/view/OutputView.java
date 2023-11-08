@@ -16,6 +16,8 @@ public class OutputView {
         System.out.println("---");
 
         showPrizeMoney(player.getWinningDetails());
+
+        System.out.printf("총 수익률은 %.1f%%입니다.", player.calculateRateOfReturn(inputMoney));
     }
 
     private static void showPrizeMoney(Map<Rank, Integer> winningDetails) {

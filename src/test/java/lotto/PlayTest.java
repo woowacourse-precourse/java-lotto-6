@@ -39,5 +39,12 @@ class PlayTest {
         assertEquals(List.of(3, 1, 1, 1, 0, 4), play.alignRanking(List.of(1, 1, 1, 2, 3, 4, 0, 0, 0, 0)));
     }
 
+    @Test
+    void profitCalculation() {
+        Play play = new Play();
+        assertEquals(0, play.profitCalculation(List.of(0,0,0,0,0,1)));
+        assertEquals(500.0, play.profitCalculation(List.of(0,0,0,0,1,0)));
+    }
+
 
 }

@@ -105,4 +105,13 @@ public class Play {
         return List.of(first, second, third, fourth, fifth, zero);
     }
 
+    public double profitCalculation(List<Integer> alignedRankings) {
+        double profit =
+                (2000000000 * alignedRankings.get(0) + 30000000 * alignedRankings.get(1)
+                        + 1500000 * alignedRankings.get(2) + 50000 * alignedRankings.get(3)
+                        + 5000 * alignedRankings.get(4)) / (alignedRankings.stream().mapToInt(Integer::intValue).sum()
+                        * 1000) * 100;
+        return Math.round(profit * 10 / 10.0);
+    }
+
 }

@@ -35,14 +35,19 @@ public class LottoGame {
     }
 
     private void checkLottos(){
-        Map<Rank, Integer> result = setResult();
+        Map<Rank, Integer> winningResult = checkWinningResult();
+        User.printWinningResult(winningResult);
+        double rateOfReturn = checkRateOfReturn(winningResult);
+        User.printRateOfReturn(rateOfReturn);
+    }
+
+    private Map<Rank, Integer> checkWinningResult(){
+        Map<Rank, Integer> winningResult = setResult();
         for (Lotto lotto:lottos){
             Rank rank = Rank.checkLotto(lotto, winningNumber, bonusNumber);
-            result.put(rank, result.get(rank) + 1);
+            winningResult.put(rank, winningResult.get(rank) + 1);
         }
-        User.printResult(result);
-        double rateOfReturn = checkRateOfReturn(result);
-        User.printRateOfReturn(rateOfReturn);
+        return winningResult;
     }
 
     private Map<Rank, Integer> setResult() {

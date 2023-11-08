@@ -55,7 +55,7 @@ public class User {
         }
     }
 
-    public static void printResult(Map<Rank, Integer> result){
+    public static void printWinningResult(Map<Rank, Integer> result){
         System.out.println(PRINT_RESULT_MSG);
         for (Rank rank : Rank.values()){
             printRank(rank, result.get(rank));

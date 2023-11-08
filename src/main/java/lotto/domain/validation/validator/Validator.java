@@ -5,7 +5,6 @@ import java.util.List;
 import static lotto.domain.constants.LottoConstraint.*;
 
 public class Validator {
-
     public boolean isInputInteger(String input){
         try {
             Integer.parseInt(input);

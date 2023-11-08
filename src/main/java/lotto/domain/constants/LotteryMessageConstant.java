@@ -1,7 +1,6 @@
 package lotto.domain.constants;
 
 public enum LotteryMessageConstant {
-
     JOIN_SYMBOL(" - "),
     MATCH_MESSAGE(" 일치"),
     COUNT_UNIT("개"),

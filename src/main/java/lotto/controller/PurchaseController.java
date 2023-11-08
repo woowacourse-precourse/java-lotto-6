@@ -12,11 +12,11 @@ import static lotto.domain.validation.ExceptionMessage.EXCEPTION_MESSAGE_PREFIX;
 import static lotto.domain.validation.ExceptionMessage.NUMBER_FORMAT_EXCEPTION;
 
 public class PurchaseController {
-
     private final InputView inputView = new InputView();
     private final LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
     private final LotteryMessageBuilder lotteryMessageBuilder = new LotteryMessageBuilder();
     private final Validator validator = new Validator();
+
     void purchaseStage() {
         OutputView.requestPurchaseAmountMessage();
         purchaseAmount = amountOfLottos();

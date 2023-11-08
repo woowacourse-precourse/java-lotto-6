@@ -12,7 +12,6 @@ import static lotto.domain.Computer.rewards;
 import static lotto.domain.constants.LotteryMessageConstant.*;
 
 public class LotteryMessageBuilder {
-
     private static final String REWARD_FORMAT = "###,###";
 
     public String returnLottoList(List<Lotto> lottos) {

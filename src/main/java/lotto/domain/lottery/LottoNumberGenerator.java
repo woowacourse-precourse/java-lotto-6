@@ -9,7 +9,6 @@ import java.util.List;
 import static lotto.domain.constants.LottoConstraint.*;
 
 public class LottoNumberGenerator {
-
     public List<Integer> generateSortedLottoNumber() {
         List<Integer> numbers = new ArrayList<>(generateSingleLottoNumber());
         Collections.sort(numbers);

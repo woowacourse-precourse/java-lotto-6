@@ -13,8 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumberController {
-
-    private final static String SPLIT_SYMBOL = ",";
+    private static final String SPLIT_SYMBOL = ",";
     private final InputView inputView = new InputView();
     private final Validator validator = new Validator();
 

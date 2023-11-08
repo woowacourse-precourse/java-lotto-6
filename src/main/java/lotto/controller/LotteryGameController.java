@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LotteryGameController {
-
     static int purchaseAmount;
     static int lottoAmount;
     static Lotto winningLotto;

@@ -12,9 +12,16 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static int getBonusNumber(){
+    public static Number getBonusNumber(){
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        try{
+            int number = Integer.parseInt(Console.readLine());
+            Number bonusNumber = new Number(number);
+            return bonusNumber;
+        }catch(NumberFormatException e){
+            throw new IllegalArgumentException("유효하지 않은 입력값입니다.");
+        }
+
     }
 
 }

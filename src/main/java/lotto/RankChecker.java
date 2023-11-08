@@ -4,9 +4,9 @@ import java.util.List;
 
 public class RankChecker {
     private final Lotto winningNumbers;
-    private final int bonusNumber;
+    private final Number bonusNumber;
 
-    public RankChecker(Lotto winningNumbers, int bonusNumber) {
+    public RankChecker(Lotto winningNumbers, Number bonusNumber) {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
@@ -24,7 +24,7 @@ public class RankChecker {
             }
         }
 
-        if (ticketNumbers.contains(bonusNumber)) {
+        if (bonusNumber.isContainedIn(ticketNumbers)) {
             countForMatchingBonusNumbers++;
         }
 

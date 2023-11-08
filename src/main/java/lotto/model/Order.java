@@ -18,7 +18,7 @@ public class Order {
     }
 
     public int getBuyCount() {
-
+        return this.buyCount;
     }
 
     private int convertStringToInteger(String cost) {

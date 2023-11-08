@@ -28,9 +28,10 @@ public class LottoResult {
     }
 
     private int getMatchCount(Lotto lotto, LotteryNumbers lotteryNumbers) {
-        return (int) lotto.getNumbers().stream()
-                .filter(number -> lotteryNumbers.getWinningNumbers().stream()
-                        .anyMatch(Predicate.isEqual(number))).count();
+        return (int) lotto.getNumbers()
+                .stream()
+                .filter(number -> lotteryNumbers.getWinningNumbers().stream().anyMatch(Predicate.isEqual(number)))
+                .count();
     }
 
     private boolean checkBonusNumber(int matchCount, Lotto lotto, int bonusNumber) {

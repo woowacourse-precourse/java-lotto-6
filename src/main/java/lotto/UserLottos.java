@@ -18,7 +18,7 @@ public class UserLottos {
     // 중복되지 않은 1~45사이 로또 번호 6개 랜덤 생성 및 정렬
     private void createLottos(int amount) {
         for(int i = 0 ; i < size ; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             if (numbers.size() != 6)
                 throw new IllegalArgumentException("[ERROR]");
 
@@ -34,6 +34,10 @@ public class UserLottos {
 
     public int getSize() {
         return this.size;
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 
     public String getLottosString() {

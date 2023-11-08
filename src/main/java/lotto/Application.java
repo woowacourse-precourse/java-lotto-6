@@ -1,18 +1,18 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.view.InputView;
-import lotto.view.outputView.LottoOutputView;
-import lotto.view.outputView.LottoResultOutputView;
+import lotto.model.LottoGame;
 
 public class Application {
+    private static final LottoGame lottoGame = new LottoGame();
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        LottoOutputView lottoOutputView = new LottoOutputView();
-        LottoResultOutputView lottoResultOutputView = new LottoResultOutputView();
+        try{
+            LottoController lottoController = new LottoController(lottoGame);
+            lottoController.run();
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
 
-        LottoController lottoController = new LottoController(inputView, lottoOutputView,lottoResultOutputView);
-        lottoController.run();
 
     }
 }

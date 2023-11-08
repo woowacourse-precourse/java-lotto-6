@@ -3,6 +3,8 @@ package lotto.validate;
 import lotto.message.ErrorMessage;
 
 import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static lotto.message.ErrorMessage.*;
 
@@ -38,6 +40,16 @@ public class Validator {
         return Arrays.stream(split)
                 .map(Integer::parseInt)
                 .allMatch(number -> number >= 1 && number <= 45);
+    }
+
+    public static boolean areNumbersUnique(String input) {
+        String[] split = input.split(",");
+
+        Set<Integer> numberSet = Arrays.stream(split)
+                .map(Integer::parseInt)
+                .collect(Collectors.toSet());
+
+        return numberSet.size() == split.length;
     }
 
     public static boolean isNumeric(String str) {

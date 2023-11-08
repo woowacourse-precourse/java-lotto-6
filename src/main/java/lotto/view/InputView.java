@@ -34,12 +34,19 @@ public class InputView {
             System.out.println("당첨 번호를 입력해 주세요.");
             String inputNumbersString = Console.readLine();
             String[] split = inputNumbersString.split(",", -1);
+            removeNumberGap(split);
             try {
                 LottoInputValidator.validateLottoWinningNumbers(split);
                 return createWinningNumbers(split);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private static void removeNumberGap(String[] split) {
+        for (int i = 0; i < split.length; i++) {
+            split[i] = split[i].strip();
         }
     }
 

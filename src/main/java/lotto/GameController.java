@@ -6,4 +6,8 @@ public class GameController {
 
     }
 
+    private void InputMoney(){
+
+    }
+
 }

@@ -15,6 +15,8 @@ public class RewardCalculator {
     private List<Integer> winCount;
     private int reward;
     private double profit;
+    private final String RESULT_STATS_TEXT = "당첨 통계\n" + "---";
+    private final String PROFIT_TEXT = "총 수익률은 %,.1f%%입니다.";
 
     public RewardCalculator(List<Lotto> lottos) {
         this.lottos = lottos;
@@ -30,6 +32,16 @@ public class RewardCalculator {
         calculateProfit();
     }
 
+    public void printResults() {
+        System.out.println(RESULT_STATS_TEXT);
+        for (int i = 4; i >= 0; i--) {
+            String summaryText = Rewards.values()[i].getSummaryText();
+            summaryText += String.format(" - %,d개", winCount.get(i));
+            System.out.println(summaryText);
+        }
+        System.out.println(String.format(PROFIT_TEXT, profit));
+    }
+
     public List<Integer> getWinCount() {
         return this.winCount;
     }
@@ -41,7 +53,7 @@ public class RewardCalculator {
             boolean isBonusMatch = lottoNumbers.contains(bonusNumber);
 
             Optional<Rewards> rewards = Rewards.getRewardByValues(matches, isBonusMatch);
-            int i = 0;
+            int i = 5;
             if (rewards.isPresent()){
                 i = rewards.get().ordinal();
             }
@@ -61,9 +73,12 @@ public class RewardCalculator {
     }
 
     private void calculateReward() {
-
+        for (int i = 0; i < 5; i++) {
+            reward += Rewards.values()[i].getPrize() * winCount.get(i);
+        }
     }
 
     private void calculateProfit() {
+        profit = (double) reward / Purchase.getMoney() * 100;
     }
 }

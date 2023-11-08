@@ -27,8 +27,12 @@ public enum Rewards {
     public static Optional<Rewards> getRewardByValues(int matches, boolean bonus) {
         return Arrays.stream(Rewards.values())
                 .filter(reward -> (reward.countOfMatch == matches)
-                        && (reward.isBonusMatch == (Boolean) bonus))
+                        && (reward.isBonusMatch == null || reward.isBonusMatch == (Boolean) bonus))
                 .findFirst();
+    }
+
+    public int getPrize() {
+        return this.prize;
     }
 
     private String getMatchText() {
@@ -38,7 +42,7 @@ public enum Rewards {
 
     private String getBonusText() {
         if (this.countOfMatch == 5 && this.isBonusMatch) {
-            return ", 보너스 번호 일치";
+            return ", 보너스 볼 일치";
         }
         return "";
     }

@@ -16,5 +16,6 @@ public class Application {
 
         RewardCalculator calc = new RewardCalculator(lottos.getLottoTrials());
         calc.getResults();
+        calc.printResults();
     }
 }

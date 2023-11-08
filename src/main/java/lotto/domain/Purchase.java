@@ -3,7 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Purchase {
-    private int money;
+    private static int money;
     private int trials;
     private final String PURCHASE_INPUT_TEXT = "구입금액을 입력해 주세요.";
     private final String PURCHASE_DONE_TEXT = "개를 구매했습니다.";
@@ -14,7 +14,7 @@ public class Purchase {
         while (true) {
             try {
                 System.out.println(PURCHASE_INPUT_TEXT);
-                this.money = readNumber();
+                money = readNumber();
                 validate1k();
                 this.trials = money / 1_000;
                 System.out.println(purchaseDone());
@@ -27,6 +27,10 @@ public class Purchase {
         return this.trials;
     }
 
+    public static int getMoney() {
+        return money;
+    }
+
     private int readNumber() {
         try {
             String money = Console.readLine();
@@ -37,7 +41,7 @@ public class Purchase {
     }
 
     private void validate1k() {
-        if (this.money % 1_000 != 0) {
+        if (money % 1_000 != 0) {
             throw new IllegalArgumentException(ERROR_NOT_1k_TEXT);
         }
     }

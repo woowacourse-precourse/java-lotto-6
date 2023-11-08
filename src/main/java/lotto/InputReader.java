@@ -9,7 +9,10 @@ import java.util.stream.Collectors;
 
 public class InputReader {
     public static int inputPurchaseAmount() {
-        return checkIsInteger(Console.readLine());
+        int purchaseAmount = checkIsInteger(Console.readLine());
+        validatePurchaseAmount(purchaseAmount);
+
+        return purchaseAmount;
     }
 
     public static Lotto inputWinningLotto() {

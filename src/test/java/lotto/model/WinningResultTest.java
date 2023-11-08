@@ -23,4 +23,11 @@ public class WinningResultTest {
         assertThat(WinningResult.SECOND.getCountResult()).isEqualTo(1);
     }
 
+    @Test
+    @DisplayName("카운트 한 등수 값으로 총 수익액 검증")
+    void testCalculateTotalPrice() {
+        int totalPrice = WinningResult.calculateTotalPrice();
+
+        assertThat(totalPrice).isEqualTo(30_055_000);
+    }
 }

@@ -21,4 +21,11 @@ public class InputView {
 				.map(Integer::parseInt)
 				.toList();
 	}
+
+	public static int inputBonusNumber() {
+		OutputView.printInputBonusNumberMessage();
+		String bonusNumber = Console.readLine();
+
+		return Integer.parseInt(bonusNumber);
+	}
 }

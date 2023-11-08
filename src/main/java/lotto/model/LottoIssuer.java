@@ -2,6 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constants.Constants;
+
 import java.util.List;
 
 public class LottoIssuer {

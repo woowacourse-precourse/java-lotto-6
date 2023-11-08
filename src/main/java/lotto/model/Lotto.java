@@ -4,6 +4,7 @@ import lotto.constants.Constants;
 import lotto.exception.DuplicateLottoNumberException;
 import lotto.exception.InvalidLottoLengthException;
 import lotto.exception.OutOfLottoNumberRangeException;
+
 import java.util.Collections;
 import java.util.List;
 

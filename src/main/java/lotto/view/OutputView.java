@@ -46,7 +46,7 @@ public class OutputView {
                 .collect(Collectors.joining(PurchasedMessage.PURCHASED_LOTTO_DELIMITER));
     }
 
-    public void printPurchasedAmount(int amount){
+    public void printPurchasedAmount(int amount) {
         System.out.printf(PurchasedMessage.PURCHASE_AMOUNT, amount);
     }
 

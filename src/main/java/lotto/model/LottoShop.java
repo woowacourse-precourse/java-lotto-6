@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.constants.Constants;
 import lotto.exception.NotDivisibleByLottoPriceException;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -8,7 +8,7 @@ import lotto.constant.LottoPrize;
 
 public class LottoRate {
     
-    public String calculateRate(int paidMoney, LottoResult lottoResult) {
+    public static String calculateRate(int paidMoney, LottoResult lottoResult) {
         int totalMoney = 0;
         double result;
 
@@ -24,7 +24,7 @@ public class LottoRate {
         return String.format("%.1f", result);
     }
 
-    public double roundRate(double rate) {
+    public static double roundRate(double rate) {
         return Math.round(rate * 10) / 10.0;
     }
 

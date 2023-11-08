@@ -14,6 +14,7 @@ public class WinningTier {
     private static final int START_TIER_VALUE = 1;
     private static final int PLUS_UNIT = 1;
     private static final int END_TIER_VALUE = 5;
+    private static final int WINNING_TIER_DEFAULT_VALUE = 0;
 
     private HashMap<Integer, Integer> winningTier;
 
@@ -24,7 +25,7 @@ public class WinningTier {
 
     private void initializeWinningTier() {
         for (int tier = START_TIER_VALUE; tier <= END_TIER_VALUE; tier++) {
-            this.winningTier.put(tier, 0);
+            this.winningTier.put(tier, WINNING_TIER_DEFAULT_VALUE);
         }
     }
 

@@ -1,6 +1,9 @@
 package lotto.view;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.util.message.Error.VALID_INPUT;
 import static lotto.util.message.Input.*;
@@ -22,7 +25,7 @@ public class InputLotto {
         }
     }
 
-    public static int[] answerNumber() {
+    public static List<Integer> answerNumber() {
         while (true) {
             try {
                 System.out.println(INPUT_ANSWER_NUMBER);
@@ -56,15 +59,16 @@ public class InputLotto {
         return input / MOD_NUM;
     }
 
-    private static int[] readAnswer() {
+    private static List<Integer> readAnswer() {
         String[] input = readLine().split(",");
         if (input.length != LOTTO_NUM_LENGTH) {
             throw new IllegalArgumentException(VALID_INPUT);
         }
-        int[] result = new int[LOTTO_NUM_LENGTH];
+        List<Integer> result = new ArrayList<>();
         for (int i = 0; i < LOTTO_NUM_LENGTH; i++) {
-            result[i] = Integer.parseInt(input[i]);
-            exceptNumberRange(result[i]); // 범위 체크
+            Integer num = Integer.parseInt(input[i]);
+            result.add(num);
+            exceptNumberRange(num); // 범위 체크
         }
         return result;
     }

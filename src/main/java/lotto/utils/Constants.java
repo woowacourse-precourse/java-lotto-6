@@ -10,5 +10,8 @@ public class Constants {
     public static final String DELIMITER = ",";
     public static final int MATCH_COUNT_FOR_BONUS = 5;
     public static final int LOTTO_TICKET_PRICE = 1000;
+    public static final int PERCENT_MULTIPLIER = 100;
+    public static final double ROUNDING_FACTOR = 100.0;
+    public static final int ZERO = 0;
     public static final Pattern WINNING_NUMBER_PATTERN = Pattern.compile("^\\s*\\d+(\\s*,\\s*\\d+)*\\s*$");
 }

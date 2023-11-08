@@ -76,17 +76,17 @@ public class LottoService {
         rankBoard.add(Rank.of(isMatch, matchingCount));
     }
 
-    public void displayResult(){
+    public void displayResult() {
         System.out.println("당첨 통계\n" + "---");
         displayRankCount();
         displayEarningRate();
     }
 
     private void displayEarningRate() {
-        int total=0;
-        for (Rank rank: Rank.values())
-            total+=countRankOf(rank)*rank.getPrizeMoney();
-        System.out.println("총 수익률은 "+getEarningRate(total)+"%입니다.");
+        int total = 0;
+        for (Rank rank : Rank.values())
+            total += countRankOf(rank) * rank.getPrizeMoney();
+        System.out.println("총 수익률은 " + getEarningRate(total) + "%입니다.");
     }
 
     private double getEarningRate(double total) {
@@ -94,14 +94,14 @@ public class LottoService {
     }
 
     private void displayRankCount() {
-        System.out.println("3개 일치 (5,000원) - "+countRankOf(Rank.FIFTH)+"개");
-        System.out.println("4개 일치 (50,000원) - "+countRankOf(Rank.FOURTH)+"개");
-        System.out.println("5개 일치 (1,500,000원) - "+countRankOf(Rank.THIRD)+"개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+countRankOf(Rank.SECOND)+"개");
-        System.out.println("6개 일치 (2,000,000,000원) - "+countRankOf(Rank.FIRST)+"개");
+        System.out.println("3개 일치 (5,000원) - " + countRankOf(Rank.FIFTH) + "개");
+        System.out.println("4개 일치 (50,000원) - " + countRankOf(Rank.FOURTH) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + countRankOf(Rank.THIRD) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + countRankOf(Rank.SECOND) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + countRankOf(Rank.FIRST) + "개");
     }
 
-    private int countRankOf(Rank rank){
-        return (int)rankBoard.stream().filter(r->r.equals(rank)).count();
+    private int countRankOf(Rank rank) {
+        return (int) rankBoard.stream().filter(r -> r.equals(rank)).count();
     }
 }

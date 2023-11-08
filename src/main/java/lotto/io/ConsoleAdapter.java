@@ -8,6 +8,7 @@ public class ConsoleAdapter {
     public String readLine() {
         return Console.readLine();
     }
+
     public void close() {
         Console.close();
     }

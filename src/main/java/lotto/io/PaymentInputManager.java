@@ -15,7 +15,7 @@ public class PaymentInputManager extends InputManager<Integer> {
 
 
     @Override
-    public Integer input() throws IllegalArgumentException{
+    public Integer input() throws IllegalArgumentException {
         while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");

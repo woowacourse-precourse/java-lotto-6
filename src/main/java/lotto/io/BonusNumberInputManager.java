@@ -20,13 +20,12 @@ public class BonusNumberInputManager extends InputManager<Integer> {
                 return validation(inputLine);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                return input();
             }
         }
     }
 
     @Override
-    public Integer validation(String input)  {
+    public Integer validation(String input) {
         try {
             int bonusNumber = Integer.parseInt(input);
             validateNumberRange(bonusNumber);

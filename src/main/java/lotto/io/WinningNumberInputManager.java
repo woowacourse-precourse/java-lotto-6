@@ -28,7 +28,7 @@ public class WinningNumberInputManager extends InputManager<List<Integer>> {
     }
 
     @Override
-    public List<Integer> validation(String input)throws IllegalArgumentException{
+    public List<Integer> validation(String input) throws IllegalArgumentException {
         try {
             List<Integer> numbers = Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
             numbers.forEach(InputManager::validateNumberRange);

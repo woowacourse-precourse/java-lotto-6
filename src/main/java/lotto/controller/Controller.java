@@ -14,8 +14,6 @@ public class Controller {
 
     private static WinningNumber winningNumber;
 
-    private static WinningResult winningResult;
-
     public void run() {
         inputPurchaseAmount();
         drawLottos();
@@ -72,7 +70,7 @@ public class Controller {
     }
 
     private void showResults() {
-        winningResult = new WinningResult(lottoNumbers);
+        WinningResult winningResult = new WinningResult(lottoNumbers);
         showWinningResult(winningResult.getWinningResult(lottoNumbers.getDrawnLottoNumbers(), winningNumber));
         showTotalReturn(winningResult.getReturn());
     }

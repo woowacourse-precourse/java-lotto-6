@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import lotto.constant.LottoMatch;
 import lotto.model.Lotto;
 
@@ -61,11 +60,6 @@ public class LottoAnalyzer {
         }
 
         LottoMatch lottoMatch = LottoMatch.get(count);
-
-        if (lottoMatch == LottoMatch.NO) {
-            return;
-        }
-
         int prevCount = matchCounts.get(lottoMatch);
 
         matchCounts.put(lottoMatch, prevCount + 1);
@@ -84,9 +78,8 @@ public class LottoAnalyzer {
     private String statistic() {
         long totalAmount = 0L;
 
-        for (Entry<LottoMatch, Integer> entry : matchCounts.entrySet()) {
-            LottoMatch lottoMatch = entry.getKey();
-            int count = entry.getValue();
+        for (LottoMatch lottoMatch : LottoMatch.values()) {
+            int count = matchCounts.get(lottoMatch);
 
             totalAmount += lottoMatch.calculate(count);
         }

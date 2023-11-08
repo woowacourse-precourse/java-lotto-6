@@ -12,4 +12,11 @@ class CashierTest {
         assertThatThrownBy(() -> new Cashier("1000원"))
                 .isInstanceOf(IllegalArgumentException.class).isExactlyInstanceOf(NotDigitException.class);
     }
+
+    @DisplayName("구입 금액이 1,000원 단위가 아닌 경우 예외가 발생한다.")
+    @Test
+    void createCashierByNumberThatIsNotDivisibleByThousand() {
+        assertThatThrownBy(() -> new Cashier("0"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

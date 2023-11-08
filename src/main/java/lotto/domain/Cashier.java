@@ -6,6 +6,7 @@ public class Cashier {
     public Cashier(String purchaseAmount) {
         checkIsDigit(purchaseAmount);
         long number = Integer.parseInt(purchaseAmount);
+        checkIsDivisibleByThousand(number);
         this.purchaseAmount = number;
     }
 
@@ -15,6 +16,12 @@ public class Cashier {
             if (number < '0' || number > '9') {
                 throw new NotDigitException();
             }
+        }
+    }
+
+    private void checkIsDivisibleByThousand(long number) {
+        if (number == 0 || number % 1000 != 0) {
+            throw new NotDivisibleByThousandException();
         }
     }
 

@@ -9,29 +9,22 @@ import java.util.stream.Collectors;
 import lotto.PrintError;
 
 public class Lotto {
-
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers.stream().sorted().collect(Collectors.toList());
-
     }
-
-
-
     private void validate(List<Integer> numbers) {
         nullValidate(numbers);
         sizeValidate(numbers);
         duplicateValidate(numbers);
     }
-
     private void nullValidate(List<Integer> numbers) {
         if (numbers.isEmpty()){
             throw new IllegalArgumentException(PrintError.nullException());
         }
     }
-
     private void sizeValidate(List<Integer> numbers){
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(PrintError.countERROR());
@@ -43,11 +36,8 @@ public class Lotto {
             throw new IllegalArgumentException(PrintError.duplicateError());
         }
     }
-
     public List<Integer> getNumbers(){
         return numbers;
     }
-
-
     // TODO: 추가 기능 구현
 }

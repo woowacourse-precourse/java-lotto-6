@@ -16,22 +16,22 @@ public class RateOfReturn {
     private static final int REWORD_5ST = 5000;
     private static final int RANK_SIZE = 5;
 
+
     int[] Rewords = {REWORD_1ST,REWORD_2ST,REWORD_3ST,REWORD_4ST,REWORD_5ST};
 
     int[][] totalMatch;
-    int totalReword = 0;
     static int[] countRank = new int[RANK_SIZE]; // 0: 1등 , 1: 2등, 2: 3등, ... , 4: 5등
 
-    double ROR = 0.0;
+
 
     public RateOfReturn(int[][] totalMatch, int totalPayment){
         this.totalMatch = totalMatch;
         setRankCount(totalMatch);
-        setROR(totalPayment);
-        printResult();
+        double RoR = setROR(totalPayment);
+        printResult(RoR);
     }
 
-    private void printResult() {
+    public void printResult(double RoR) {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("----------------");
@@ -40,7 +40,7 @@ public class RateOfReturn {
         System.out.println(PRINT_3ST + countRank[2] + "개");
         System.out.println(PRINT_2ST + countRank[1] + "개");
         System.out.println(PRINT_1ST + countRank[0] + "개");
-        System.out.println("총 수익률은 "+ ROR +"%입니다.");
+        System.out.println("총 수익률은 "+ RoR +"%입니다.");
 
     }
 
@@ -66,16 +66,18 @@ public class RateOfReturn {
     }
 
 
-    public void setROR(int payment){
-        setTotalReword();
+    public double setROR(int payment){
+        int totalReword = setTotalReword();
         double temp = totalReword*100.0 / payment;
-        ROR = Math.round( temp * 100) /100.0;
+        return Math.round( temp * 100) /100.0;
     }
 
-    private void setTotalReword() {
+    public int setTotalReword() {
+        int totalReword = 0;
         for(int i = 0; i <RANK_SIZE; i++){
             totalReword += countRank[i] * Rewords[i];
         }
+        return totalReword;
     }
 
 }

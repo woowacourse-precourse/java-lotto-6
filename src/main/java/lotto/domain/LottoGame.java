@@ -5,6 +5,7 @@ import lotto.input.Input;
 import lotto.output.Output;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoGame {
     private static final List<Lotto> lottos = new ArrayList<>();
@@ -32,7 +33,7 @@ public class LottoGame {
 
     private List<Integer> makeRandomNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
+        numbers = numbers.stream().sorted().collect(Collectors.toList());
         return numbers;
     }
 

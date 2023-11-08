@@ -10,26 +10,44 @@ public class LottoController {
     }
 
     public static void game(){
-        OutputView.printInputPurchaseAmount();
-        Integer money = InputView.getMoney();
-        UserAccount userAccount = new UserAccount(money);
+        UserAccount userAccount = startAndCreateUserAccount();
         int trialCount = userAccount.getTrialCount();
-        OutputView.printPurchaseAmountIs(trialCount);
 
-        Lottos randomLottos = Lottos.ofRandom(trialCount);
-        OutputView.printLottosNumber(randomLottos);
+        Lottos randomLottos = generateRandomLottosByTrialCount(trialCount);
 
+        StandardLotto standardLotto = getStandardLottoByUserInputs();
+        
+        randomLottos.calculateWinning(standardLotto);
+
+        printEarnings(userAccount);
+    }
+
+    private static void printEarnings(UserAccount userAccount) {
+        OutputView.printEarningDetail();
+        long totalWinning = IncomeCalculator.getTotalIncome();
+        double earningRate = userAccount.getEarningRate(totalWinning);
+        OutputView.printTotalEarningRate(earningRate);
+    }
+
+    private static StandardLotto getStandardLottoByUserInputs() {
         OutputView.printInputLottoNumber();
         Lotto userLotto = InputView.getLottoInput();
         OutputView.printInputBonusNumber();
         Integer bonusNumber = InputView.getBonusNumberByUser(userLotto);
 
-        StandardLotto standardLotto = new StandardLotto(userLotto, bonusNumber);
-        randomLottos.calculateWinning(standardLotto);
+        return new StandardLotto(userLotto, bonusNumber);
+    }
 
-        OutputView.printEarningDetail();
-        long totalWinning = WinningCalculator.getTotalWinning();
-        double earningRate = userAccount.getEarningRate(totalWinning);
-        OutputView.printTotalEarningRate(earningRate);
+    private static Lottos generateRandomLottosByTrialCount(int trialCount) {
+        OutputView.printPurchaseAmountIs(trialCount);
+        Lottos randomLottos = Lottos.ofRandom(trialCount);
+        OutputView.printLottosNumber(randomLottos);
+        return randomLottos;
+    }
+
+    private static UserAccount startAndCreateUserAccount() {
+        OutputView.printInputPurchaseAmount();
+        Integer money = InputView.getMoney();
+        return new UserAccount(money);
     }
 }

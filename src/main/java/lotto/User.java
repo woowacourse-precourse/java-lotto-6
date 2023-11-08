@@ -6,4 +6,27 @@ public class User {
     private Lotto winningNumber;
     private int bonusNumber;
 
+    public void enterAmount() {
+
+    }
+
+    public void enterWinningNumber() {
+
+    }
+
+    public void enterBonusNumber() {
+
+    }
+
+    private void validateNumber() {
+
+    }
+
+    private void validateLotto() {
+
+    }
+
+    private void decideNumberOfLotto() {
+
+    }
 }

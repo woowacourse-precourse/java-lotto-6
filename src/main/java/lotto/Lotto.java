@@ -30,11 +30,7 @@ public class Lotto {
         if (new HashSet<Integer>(numbers).size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또에 중복되는 숫자가 사용되었습니다.");
         }
-        int numberOfValidElements =
-                (int)numbers.stream()
-                        .filter(n -> n <= LOTTO_NUM_MAX && n >= LOTTO_NUM_MIN)
-                        .count();
-        if (numberOfValidElements != 6) {
+        if (!numbers.stream().allMatch(n -> n <= LOTTO_NUM_MAX && n >= LOTTO_NUM_MIN)) {
             throw new IllegalArgumentException("[ERROR] 로또에 유효하지 않은 숫자가 사용되었습니다.");
         }
     }

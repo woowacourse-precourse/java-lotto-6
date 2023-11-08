@@ -10,5 +10,6 @@ public class Application {
         doLotto.makeBonusNumber();
         doLotto.checkEveryLottoMatch();
         doLotto.checkTotalPrizeInfo();
+        doLotto.prize.calcTotalPrizeRate(doLotto.getTotalPurchasePayment());
     }
 }

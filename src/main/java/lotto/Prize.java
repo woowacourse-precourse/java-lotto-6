@@ -19,15 +19,17 @@ public class Prize {
         prizeRankSum.set(rank, toChangeRank + 1);
     }
 
-    public void calcTotalPrize(int currentPrize){
-        this.totalPrize += currentPrize;
-    }
-
-    public int getTotalPrize(){
-        return totalPrize;
-    }
-
     public List<Integer> getTotalRankInfo(){
         return prizeRankSum;
+    }
+
+    public void calcTotalPrizeRate(int startPayment){
+        double totalPrizeRate;
+        totalPrizeRate = this.totalPrize * 1.0 / startPayment * 1.0 * 100;
+        System.out.println("총 수익률은 " + totalPrizeRate + "%입니다.");
+    }
+
+    public void calcTotalPrize(int currentPrize){
+        this.totalPrize += currentPrize;
     }
 }

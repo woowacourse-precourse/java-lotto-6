@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class LotteryService {
     private int totalLottoAmount;
     private int bonusNumber;
+    private int totalPurchasePayment;
     List<Lotto> buyLottoSet;
     List<Integer> winningNumber;
     Validation validator;
@@ -18,6 +19,7 @@ public class LotteryService {
     public LotteryService(){
         this.totalLottoAmount = 0;
         this.bonusNumber = -1;
+        this.totalPurchasePayment = 0;
         buyLottoSet = new ArrayList<Lotto>();
         winningNumber = new ArrayList<Integer>();
         validator = new Validation();
@@ -26,10 +28,13 @@ public class LotteryService {
         prize = new Prize();
     }
 
+    public int getTotalPurchasePayment(){
+        return this.totalPurchasePayment;
+    }
+
     public void purchaseLotto(){
-        int totalPurchasePayment;
         outputSets.printProgressMessage(Progress.PURCHASE);
-        totalPurchasePayment = inputSets.userInputPayment();
+        this.totalPurchasePayment = inputSets.userInputPayment();
 
         if(!validator.isPaymentDivided(totalPurchasePayment)){
             throw new IllegalArgumentException();
@@ -43,7 +48,6 @@ public class LotteryService {
     public void makeRandomLottoNumbers(){
         for(int i = 0; i < this.totalLottoAmount; i++){
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
             Lotto newLotto = new Lotto(numbers);
             buyLottoSet.add(newLotto);
             outputSets.printPurchaseLottoNumbers(numbers);
@@ -101,10 +105,11 @@ public class LotteryService {
     }
 
     public void checkTotalPrizeInfo(){
-        System.out.printf("%s %d개\n", Progress.FIFTH.getMessage(), this.prize.getTotalRankInfo().get(4));
-        System.out.printf("%s %d개\n", Progress.FOURTH.getMessage(), this.prize.getTotalRankInfo().get(3));
-        System.out.printf("%s %d개\n", Progress.THIRD.getMessage(), this.prize.getTotalRankInfo().get(2));
-        System.out.printf("%s %d개\n", Progress.SECOND.getMessage(), this.prize.getTotalRankInfo().get(0));
-        System.out.printf("%s %d개\n", Progress.FIRST.getMessage(), this.prize.getTotalRankInfo().get(1));
+//        System.out.printf("%s %d개\n", Progress.FIFTH.getMessage(), this.prize.getTotalRankInfo().get(4));
+        System.out.println(Progress.FIFTH.getMessage() + Integer.toString(this.prize.getTotalRankInfo().get(4)) +"개");
+        System.out.println(Progress.FOURTH.getMessage() + Integer.toString(this.prize.getTotalRankInfo().get(3)) +"개");
+        System.out.println(Progress.THIRD.getMessage() + Integer.toString(this.prize.getTotalRankInfo().get(2)) +"개");
+        System.out.println(Progress.SECOND.getMessage() + Integer.toString(this.prize.getTotalRankInfo().get(0)) +"개");
+        System.out.println(Progress.FIRST.getMessage() + Integer.toString(this.prize.getTotalRankInfo().get(1)) +"개");
     }
 }

@@ -2,6 +2,7 @@ package lotto.view.input;
 
 import static lotto.view.input.InputErrorMessage.EMPTY_INPUT_ERROR;
 import static lotto.view.input.InputErrorMessage.INVALID_DELIMITER_ERROR;
+import static lotto.view.input.InputErrorMessage.INVALID_SIZE_ERROR;
 import static lotto.view.input.InputErrorMessage.NOT_NUMBER_ERROR;
 import static lotto.view.input.InputRegex.NUMBER_REGEX;
 import static lotto.view.input.InputRegex.DELIMITER_REGEX;
@@ -41,6 +42,13 @@ public class InputConsoleView implements InputView {
             throw new IllegalArgumentException(INVALID_DELIMITER_ERROR.getMessage());
         }
         validateEachElementOfWinningNumbers(input.split(DELIMITER_REGEX.getRegex()));
+        if(isWinningNumbersSizeCorrect(input.split(DELIMITER_REGEX.getRegex()))){
+            throw new IllegalArgumentException(INVALID_SIZE_ERROR.getMessage());
+        }
+    }
+
+    private boolean isWinningNumbersSizeCorrect(String[] split) {
+        return split.length != 6;
     }
 
     private void validateEachElementOfWinningNumbers(String[] elements) {

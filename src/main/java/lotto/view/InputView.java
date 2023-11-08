@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
 
 import static lotto.util.GameMessage.*;
 
@@ -12,10 +14,16 @@ public class InputView {
         return Integer.parseInt(Console.readLine());
     }
 
-    public static String getLuckyNumber() {
+    public static List<Integer> getLuckyNumber() {
         System.out.println(INPUT_LUCKY_NUMBER_MESSAGE.getMessage());
+        String[] inputNumbers = Console.readLine().split(",");
+        List<Integer> winningNumber = new ArrayList<>();
 
-        return Console.readLine();
+        for (String number : inputNumbers) {
+            winningNumber.add(Integer.parseInt(number));
+        }
+
+        return winningNumber;
     }
 
     public static int getBonusNumber() {

@@ -17,10 +17,6 @@ public enum IllegalArgumentExceptionMessage {
 		this.message = ERROR_TAG + message;
 	}
 
-	public String getMessage() {
-		return message;
-	}
-
 	public void throwException() {
 		throw new IllegalArgumentException(message);
 	}

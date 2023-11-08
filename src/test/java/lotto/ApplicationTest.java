@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -52,6 +54,29 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @DisplayName("로또 구매 금액이 1000원 단위가 아닌 경우 예외가 발생한다.")
+    @Test
+    void 예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("7200");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("로또 번호가 1~45 사이의 숫자가 아닌 경우 예외가 발생한다.")
+    @Test
+    void 예외_테스트3() {
+        assertThatThrownBy(() -> Validator.getInstance().validateWinningNumbers("0,1,2,3,4,5"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 로또 번호와 겹치는 경우 예외가 발생한다.")
+    @Test
+    void 예외_테스트4() {
+        assertThatThrownBy(() -> Validator.getInstance().validateBonusNumber("7", new Lotto(List.of(2, 3, 4, 5, 6, 7))))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Override

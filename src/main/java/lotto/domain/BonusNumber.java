@@ -4,11 +4,11 @@ public class BonusNumber {
     private final int number;
 
     public BonusNumber(String number) {
-        // 검증로직
+//        verification(number);
         this.number = Integer.parseInt(number);
     }
 
-    public int getNumber() {
-        return number;
+    public boolean bonusNumberMatch(Lotto lotto) {
+        return lotto.getNumbers().contains(number);
     }
 }

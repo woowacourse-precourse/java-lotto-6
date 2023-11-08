@@ -18,6 +18,7 @@ public class InteractService {
     public static Integer purchasePhase() {
         while (true) {
             System.out.println("구입금액을 입력해 주세요.");
+
             try {
                 Integer tryNum = checkParseIntException(Console.readLine());
                 checkNegative(tryNum);
@@ -32,6 +33,7 @@ public class InteractService {
     public static List<Integer> winningNumPhase() {
         while (true) {
             System.out.println("당첨 번호를 입력해 주세요.");
+
             try {
                 List<Integer> winningNum = splitWinningNum();
                 checkWinningNumDubAndSize(winningNum);
@@ -44,6 +46,7 @@ public class InteractService {
 
     public static Integer bonusNumPhase(List<Integer> winningNum) {
         System.out.println("보너스 번호를 입력해 주세요.");
+
         while (true) {
             try {
                 Integer bonusNum = checkParseIntException(Console.readLine());
@@ -58,11 +61,13 @@ public class InteractService {
 
     private static List<Integer> splitWinningNum() throws IllegalArgumentException{
         List<Integer> winningNum = new ArrayList<>();
+
         for (String s : Console.readLine().split(",")) {
             Integer numElement = checkParseIntException(s);
             checkNumBoundary(numElement);
             winningNum.add(numElement);
         }
+
         return winningNum;
     }
 }

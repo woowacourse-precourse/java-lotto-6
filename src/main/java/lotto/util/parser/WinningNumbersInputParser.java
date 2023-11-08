@@ -38,14 +38,17 @@ public class WinningNumbersInputParser extends InputParser {
 
     private List<Integer> parseStringListToIntegerList(List<String> input) {
         List<Integer> result = new ArrayList<>();
-        for (String str : input) {
+        for (String value : input) {
             try {
-                int value = Integer.parseInt(str);
-                result.add(value);
+                result.add(parseInt(value));
             } catch (NumberFormatException e) {
                 throwException(PARSE_INT_ERROR_MESSAGE.get());
             }
         }
         return result;
+    }
+
+    private int parseInt(String value) {
+        return Integer.parseInt(value);
     }
 }

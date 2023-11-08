@@ -44,13 +44,19 @@ public class InputView {
   }
   
   public int requestBonusBall() {
-    while (true) {
-      try {
-        System.out.println("보너스 볼을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
-      } catch (NumberFormatException e) {
-        System.out.println("[ERROR] 숫자만 입력 가능합니다.");
+          while (true) {
+              try {
+                  System.out.println("보너스 볼을 입력해 주세요.");
+                  int bonusBall = Integer.parseInt(Console.readLine());
+                  if (bonusBall < 1 || bonusBall > 45) {
+                      throw new IllegalArgumentException("[ERROR] 보너스 볼은 1~45 사이의 숫자여야 합니다.");
+                  }
+                  return bonusBall;
+              } catch (NumberFormatException e) {
+                  System.out.println("[ERROR] 숫자만 입력 가능합니다.");
+              } catch (IllegalArgumentException e) {
+                  System.out.println(e.getMessage());
+              }
+          }
       }
-    }
-  }
 }

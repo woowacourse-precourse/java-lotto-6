@@ -1,4 +1,3 @@
-package lotto.controller;public class LottoController {
 package lotto.controller;
 
 import java.util.ArrayList;
@@ -92,6 +91,7 @@ public class LottoController {
         printResult(result);
         printEarningRate(result, amount);
     }
+
     private void printResult(Map<Ranking, Integer> result) {
         for (int i = Ranking.values().length - 1; i >= 0; i--) {
             Ranking.values()[i].printMessage(result.get(Ranking.values()[i]));

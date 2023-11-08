@@ -12,7 +12,7 @@ public class InputValidator {
             userInput = userInput.replaceAll(" ", "");
             return Integer.parseInt(userInput);
         } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 입력되었습니다.");
+            throw new IllegalArgumentException("숫자가 아닌 값이 입력되었습니다.");
         }
     }
 
@@ -21,7 +21,7 @@ public class InputValidator {
             userInput = userInput.replaceAll(" ", "");
             return Arrays.stream(userInput.split(",")).map(Integer::parseInt).collect(Collectors.toList());
         } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 입력되었습니다.");
+            throw new IllegalArgumentException("숫자가 아닌 값이 입력되었습니다.");
         }
     }
 
@@ -34,13 +34,13 @@ public class InputValidator {
 
     private void validatePositiveValue(int value) {
         if (value <= 0) {
-            throw new IllegalArgumentException("[ERROR] 양수 값이 입력되야 합니다.");
+            throw new IllegalArgumentException("양수 값이 입력되야 합니다.");
         }
     }
 
     private void validateDividedByThousand(int value) {
         if (value % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 1,000원으로 나누어 떨어지지 않는 값이 입력되었습니다.");
+            throw new IllegalArgumentException("1,000원으로 나누어 떨어지지 않는 값이 입력되었습니다.");
         }
     }
 }

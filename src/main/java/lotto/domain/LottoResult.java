@@ -12,6 +12,7 @@ public class LottoResult {
     public static final int INCREASE_COUNT = 1;
     public static final double DECIMAL_PLACE = 10.0;
     public static final int PERCENTAGE = 100;
+
     private final Map<ResultType, Integer> board;
 
     public LottoResult(List<ResultType> resultTypes) {

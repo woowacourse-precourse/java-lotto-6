@@ -14,6 +14,7 @@ import java.util.Set;
 public class WinningNumbers {
 
     private static final int VALID_SIZE = 6;
+
     private final List<WinningNumber> winningNumbers;
     private final WinningNumber bonusNumber;
 

@@ -9,6 +9,7 @@ import lotto.domain.strategy.LottoNumberStrategy;
 public class Lottoes {
 
     public static final int START_INCLUSIVE = 0;
+
     private final List<Lotto> lottoes;
 
     public Lottoes(LottoNumberStrategy strategy, int count) {

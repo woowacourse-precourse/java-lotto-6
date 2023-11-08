@@ -10,6 +10,7 @@ public class LottoPurchaseAmount {
     private static final int MINIMUM_MONEY = 1000;
     private static final int UNIT_AMOUNT = 1000;
     private static final int REST_AMOUNT = 0;
+
     private final int amount;
 
     public LottoPurchaseAmount(int amount) {

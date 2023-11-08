@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.util.Validator;
 
 public class WinningLotto {
     private final List<Integer> numbers;
@@ -8,6 +9,7 @@ public class WinningLotto {
 
     public WinningLotto(Lotto lotto, int bonusNumber) {
         this.numbers = lotto.getLottoNumbers();
+        Validator.validateBonusNumber(lotto, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 

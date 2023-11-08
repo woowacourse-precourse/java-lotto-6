@@ -47,5 +47,13 @@
 - 테스트 코드 통과를 위해 소수점 한 자리까지 표시 하도록 수정
     - 수익률 계산 : `double profitRate = Math.round(((totalPrize) / totalSpent) * 1000.0) / 10.0;`
 
+
+### 7) 당첨 번호와 보너스 번호의 예외 처리 구문 추가
+- 입력 받을 당첨 번호의 개수가 6이 아닌 경우 예외 처리가 발생하도록 당첨 번호를 담은 로또 객체 `winningLotto` 생성
+- `winningLotto` 객체 내 `validate` 메서드 호출로 당첨 번호 예외 처리
+- 입력받은 보너스 번호를 가지고 `winningLotto` 객체 내 `validateBonus` 메서드를 생성 및 호출하여 예외 처라
+- `validateBonus` 메서드에 당첨 번호와 보너스 번호가 중복되지 않도록 하는 조건 추가
+- 위 내용에 관한 테스트 코드 작성 (`createWinningLottoBySizeNotSix()`, `validateInvalidBonusNumber()`)
+- 
 --- 
 

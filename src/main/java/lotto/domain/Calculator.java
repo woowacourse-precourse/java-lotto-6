@@ -22,7 +22,7 @@ public class Calculator {
         return (double) totalPrize / price * 100;
     }
 
-    public static Integer calculateLotteryCount(Integer budget) {
+    public static Integer calculateCount(Integer budget) {
         return budget / LOTTERY_PRICE;
     }
 }

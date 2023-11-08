@@ -32,7 +32,7 @@ class CalculatorTest {
     @Test
     void calculateLotteryCount() {
         Integer budget = 12000;
-        Integer lotteryCount = Calculator.calculateLotteryCount(budget);
+        Integer lotteryCount = Calculator.calculateCount(budget);
 
         Assertions.assertThat(lotteryCount).isEqualTo(12);
     }

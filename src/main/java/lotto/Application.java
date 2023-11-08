@@ -22,12 +22,12 @@ public class Application {
         GameData gameData = new GameData();
         GameStatistics gameStatistics = new GameStatistics();
 
-        //로또 금액 입력
+        //게임 초기화
         View.printMessage(ASK_BUDGET);
         String lottoBudgetInput;
         Integer budget;
 
-        //로또 금액 검증
+        //로또 금액 입력 및 검증
         while (true) {
             lottoBudgetInput = View.getUserInput();
             if (Validator.isEmpty_(lottoBudgetInput)) {
@@ -46,7 +46,7 @@ public class Application {
             break;
         }
 
-        Integer lotteryCount = Calculator.calculateLotteryCount(budget);
+        int lotteryCount = Calculator.calculateCount(budget);
         View.printLotteryCount(lotteryCount);
 
         //로또 생성
@@ -65,6 +65,7 @@ public class Application {
         System.out.println();
 
 
+        //게임 진행
         //당첨 번호 입력
         View.printMessage(ASK_WINNING_NUMBERS);
         String winningNumbersInput;
@@ -116,7 +117,7 @@ public class Application {
             }
 
             bonusNumberTemp = Convertor.convert(bonusNumberInput);
-            if (Validator.isOnValidRange(bonusNumberTemp)) {
+            if (Validator.isOutOfRange(bonusNumberTemp)) {
                 continue;
             }
 
@@ -130,6 +131,7 @@ public class Application {
         gameData.setBonusNumber(bonusNumberTemp);
 
 
+        //게임 종료
         //당첨 통계 산출
         List<Integer> winningNumbers = gameData.getWinningNumbers();
         gameStatistics.generateMatchingCounts();
@@ -154,7 +156,7 @@ public class Application {
             }
         }
 
-        //당첨통계 출력
+        //당첨 통계 출력
         View.printMessage(GAME_STATISTICS);
         View.printMessage(SEPARATE_LINE);
 

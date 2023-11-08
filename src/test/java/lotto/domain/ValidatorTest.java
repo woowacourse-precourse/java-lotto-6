@@ -47,7 +47,7 @@ class ValidatorTest {
     @Test
     void isOnValidRange() {
         Integer winningNumber = 46;
-        assertThat(Validator.isOnValidRange(winningNumber)).isTrue();
+        assertThat(Validator.isOutOfRange(winningNumber)).isTrue();
     }
 
     @Test

@@ -16,8 +16,9 @@ public class Validator {
     public static final Integer MAX_LOTTERY_COUNT = 6;
     public static final Integer NUMBERS_MIN_DUPLICATE_COUNT = 2;
     public static final Integer BONUS_NUMBER_MIN_DUPLICATE_COUNT = 1;
-
     public static final Integer NO_REMAINDER = 0;
+
+
     public static boolean isEmpty_(String userInput) {
         try {
             if (userInput.isEmpty()) {
@@ -84,7 +85,7 @@ public class Validator {
         return false;
     }
 
-    public static boolean isOnValidRange(Integer winningNumber) {
+    public static boolean isOutOfRange(Integer winningNumber) {
         try {
             if (FIRST_LOTTERY_NUMBER > winningNumber || winningNumber > LAST_LOTTERY_NUMBER) {
                 throw new IllegalArgumentException(ErrorMessages.IS_NUMBER_OUT_OF_RANGE.writeErrorMessageByCase());
@@ -145,7 +146,7 @@ public class Validator {
 
     public static boolean areOutOfRange(List<Integer> winningNumbers) {
         for (Integer winningNumber : winningNumbers) {
-            if (Validator.isOnValidRange(winningNumber)) {
+            if (Validator.isOutOfRange(winningNumber)) {
                 return true;
             }
         }

@@ -13,6 +13,7 @@ public class Controller {
     public static final Integer FOUR_MATCHED = 4;
     public static final Integer THREE_MATCHED = 3;
     public static final Integer MATCHING_FAIL = 2;
+    public static final Integer INT_INIT = 0;
 
 
     public static void sortNumbers(List<Integer> numbers) {
@@ -20,7 +21,7 @@ public class Controller {
     }
 
     public static Integer countMatchingNumberBetween(List<Integer> winningNumbers, Integer lotteryNumber) {
-        int matchingCount = 0;
+        int matchingCount = INT_INIT;
         for (Integer winningNumber : winningNumbers) {
             if (lotteryNumber.equals(winningNumber)) {
                 matchingCount++;
@@ -69,7 +70,7 @@ public class Controller {
             List<Integer> winningNumbers,
             List<Integer> matchingCounts) {
         for (Lotto lotto : lottos) {
-            int countTemp = 0;
+            int countTemp = INT_INIT;
             List<Integer> lottoNumbers = lotto.getNumbers();
             for (Integer lottoNumber : lottoNumbers) {
                 countTemp += Controller.countMatchingNumberBetween(winningNumbers, lottoNumber);

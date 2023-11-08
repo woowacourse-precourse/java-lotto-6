@@ -18,6 +18,7 @@ import lib.enumeration.LottoWinnerRule;
 public class LottoGame {
     PrintStream printStream = System.out;
     private List<Lotto> lottos;
+    private Lotto winnerNumbers;
     private int price;
 
     public LottoGame() {
@@ -79,6 +80,23 @@ public class LottoGame {
                 String price = Console.readLine();
                 
                 this.setPrice(price);
+                break;
+            } catch (IllegalArgumentException e) {
+                printStream.println(e.getMessage() + " 다시 입력해주세요.\n");
+                continue;
+            }
+        }
+        printStream.println();
+    }
+
+    public void enterWinnerNumbers() {
+        while (true) {
+            try {
+                printStream.println("당첨 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                List<Integer> winnerNumbers = Arrays.stream(input.split(",")).map(Integer::valueOf).collect(Collectors.toList());
+
+                this.winnerNumbers = new Lotto(winnerNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 printStream.println(e.getMessage() + " 다시 입력해주세요.\n");

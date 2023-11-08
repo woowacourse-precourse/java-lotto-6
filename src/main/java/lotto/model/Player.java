@@ -6,10 +6,12 @@ import lotto.util.RandomUtil;
 public class Player {
     private final Lottos lottos;
     private final PaymentAmount paymentAmount;
+    private final RandomUtil randomUtil;
 
-    public Player(int paymentAmount) {
-        lottos = new Lottos(paymentAmount, new RandomUtil());
+    public Player(int paymentAmount, RandomUtil randomUtil) {
+        this.randomUtil = randomUtil;
         this.paymentAmount = new PaymentAmount(paymentAmount);
+        lottos = new Lottos(paymentAmount, randomUtil);
     }
 
     public double calculateProfitRate(WinningNumbers winningNumbers) {

@@ -13,7 +13,7 @@ RandomNumberGenerator
 - [x] 중복되지 않는 숫자 6개 생성
 - [x] 보너스 번호 1개 생성
 
-WinnersSelector
+WinnersCalculator
 - [x] 당첨자 선정
 
 LottoNumberComparator
@@ -21,6 +21,7 @@ LottoNumberComparator
 
 LottoGame
 - [ ] 로또 게임 시작
+- [ ] 로또 구매
 - [ ] 로또 게임 종료
 
 

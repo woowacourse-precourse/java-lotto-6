@@ -9,22 +9,19 @@ import java.util.Set;
 
 public class WinnersCalculator {
 
-    private List<Lotto> lottos;
 
     private final LottoNumberComparator lottoNumberComparator;
 
-    private Map<Integer, Integer> winners = new HashMap<>();
-
-    public WinnersCalculator(List<Lotto> lottos, List<Integer> winningNumbers) {
-        this.lottos = lottos;
+    public WinnersCalculator(List<Integer> winningNumbers) {
         this.lottoNumberComparator = new LottoNumberComparator(winningNumbers);
+    }
+
+    public Map<Integer, Integer> calculateWinners(List<Lotto> lottos) {
+        Map<Integer, Integer> winners = new HashMap<>();
         winners.put(3, 0);
         winners.put(4, 0);
         winners.put(5, 0);
         winners.put(6, 0);
-    }
-
-    public Map<Integer, Integer> calculateWinners() {
         for (Lotto lotto : lottos) {
             int count = lottoNumberComparator.calculateMatchingNumbers(lotto.getLottoNumbers());
             if (count == 3) {
@@ -42,6 +39,7 @@ public class WinnersCalculator {
         }
         return winners;
     }
+
 
 
 }

@@ -20,9 +20,10 @@ class WinnersCalculatorTest {
         List<Lotto> lottos = new ArrayList<>();
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         lottos.add(lotto);
-        WinnersCalculator winnersCalculator = new WinnersCalculator(lottos, List.of(1, 2, 3, 4, 5, 6));
+        WinnersCalculator winnersCalculator = new WinnersCalculator(List.of(1, 2, 3, 4, 5, 6));
         //when
-        Map<Integer, Integer> winners = winnersCalculator.calculateWinners();
+        Map<Integer, Integer> winners = winnersCalculator.calculateWinners(lottos);
+
         //then
         Assertions.assertThat(winners).contains(entry(6, 1));
 

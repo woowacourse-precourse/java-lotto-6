@@ -65,20 +65,20 @@
 
 ### 사용자 입력
 
-4. 사용자의 당첨 번호 입력 규칙
+5. 사용자의 당첨 번호 입력 규칙
     1. 당첨번호 6개와 보너스 번호 1개 입력 (총 7개)
     2. 중복되지 않는 숫자로만 이루어져 있을 것
     3. 1 이상 45 이하의 정수로 이루어져 있을 것
-5. 사용자의 구입 금액 입력 규칙
+6. 사용자의 구입 금액 입력 규칙
     1. 1000원 단위로만 입력 가능
 
 ### 실행 및 결과
 
-6. 사용자가 입력한 가격 전부를 이용하여 로또를 발행한다
+7. 사용자가 입력한 가격 전부를 이용하여 로또를 발행한다
     1. 예시) 14,000원 입력 -> 14장 발행
     2. 입력 제한 : 1000원 단위로만 입력 가능
 
-7. 로또 당첨 :
+8. 로또 당첨 :
     1. 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다.
         - 1등: 6개 번호 일치 / 2,000,000,000원
         - 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
@@ -86,20 +86,23 @@
         - 4등: 4개 번호 일치 / 50,000원
         - 5등: 3개 번호 일치 / 5,000원
     2. 사용자가 구매한 로또 번호와 당첨 번호를 비교
-8. 비교 결과에 따른 당첨 내역 및 수익률을 출력
-9. 출력 완료 후 게임 종료
-10. 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생.
+
+9. 비교 결과에 따른 당첨 내역 및 수익률을 출력
+
+10. 출력 완료 후 게임 종료
+
+11. 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생.
     1. `[ERROR]`로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 '다시' 받는다.
     2. `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형 처리.
 
 ### 추가 요구 사항
 
-- Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용
-- 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용
+- Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용
+- 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용
 - Lotto 클래스
-    - 제공된 Lotto 클래스를 활용해 구현해야 한다.
-    - numbers의 접근 제어자인 private을 변경할 수 없다.
-    - Lotto에 필드(인스턴스 변수)를 추가할 수 없다.
-    - Lotto의 패키지 변경은 가능하다.
-- Java Enum 적용
+    - 제공된 `Lotto` 클래스를 활용해 구현해야 한다.
+    - `numbers`의 접근 제어자인 `private`을 변경할 수 없다.
+    - `Lotto`에 필드`(인스턴스 변수)`를 추가할 수 없다.
+    - `Lotto`의 패키지 변경은 가능하다.
+- `Java Enum` 적용
 

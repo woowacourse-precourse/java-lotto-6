@@ -72,7 +72,9 @@ public class ViewProcessor {
     }
 
 
-    public void totalResult(HashMap<Rewards, Integer> winningTable, String computedRate) {
+    public void totalResult() {
+        HashMap<Rewards,Integer> winningTable = lottomodel.getWinningTable();
+        String computedRate = lottomodel.computeRate(lottomodel.getTotalEarnedMoney(),cost);
         userView.totalResult(winningTable, computedRate);
     }
 

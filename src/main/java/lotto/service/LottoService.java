@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
+
     public List<Integer> initLottoNumber(){
         int initNumber = Numbers.INIT_NUMBER_START.getNumber();
         int endNumber = Numbers.INIT_NUMBER_END.getNumber();
@@ -59,7 +60,9 @@ public class LottoService {
     }
 
     public int[] calcRanking(List<Integer> countWinningNum, Lotto winningNumber, Bonus bonus){
-        int[] winingRanking = new int[5];
+
+        int rankNum = Numbers.RANK_NUMBER.getNumber();
+        int[] winingRanking = new int[rankNum];
         int index;
 
         for(int i = 0; i < countWinningNum.size(); i++){

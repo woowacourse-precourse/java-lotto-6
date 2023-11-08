@@ -1,4 +1,4 @@
-package lotto.presentation.printer;
+package lotto.lottosystem.presentation.printer;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,4 +1,4 @@
-package lotto.presentation.reader;
+package lotto.lottosystem.presentation.reader;
 
 public interface LottoConsole {
     String readLine();

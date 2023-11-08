@@ -47,6 +47,7 @@ public class Controller {
         if (!getPurchasePriceFlag) {
             getPurchasePrice();
             getPurchasePriceFlag = true;
+            OutputView.printNewLine();
         }
     }
 
@@ -54,6 +55,7 @@ public class Controller {
         if (!getPurchaseLotteriesInformationFlag) {
             getPurchaseLotteriesInformation(buyer.getLottoQuantity());
             getPurchaseLotteriesInformationFlag = true;
+            OutputView.printNewLine();
         }
     }
 
@@ -61,6 +63,7 @@ public class Controller {
         if (!getWinningNumbersFlag) {
             getWinningNumbers();
             getWinningNumbersFlag = true;
+            OutputView.printNewLine();
         }
     }
 
@@ -68,6 +71,7 @@ public class Controller {
         if (!getBonusNumberFlag) {
             getBonusNumber();
             getBonusNumberFlag = true;
+            OutputView.printNewLine();
         }
     }
 

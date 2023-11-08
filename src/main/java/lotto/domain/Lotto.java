@@ -2,19 +2,32 @@ package lotto.domain;
 
 import java.util.List;
 
+import lotto.exception.LottoException;
+
 public class Lotto {
+    private final LottoException lottoException = new LottoException();
+    private final static int BONUS_INDEX = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateNumbers(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+    private void validateNumbers(List<Integer> numbers) {
+        lottoException.validateLottoNumbers(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    public void setBonusNumber(int inputBonusNumber) {
+        lottoException.validateBonusNumbers(numbers, inputBonusNumber);
+        numbers.add(inputBonusNumber);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int getBonusNumber() {
+        return numbers.get(BONUS_INDEX);
+    }
 }

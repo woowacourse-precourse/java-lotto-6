@@ -14,7 +14,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import common.enumtype.ResultType;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,16 +29,18 @@ class WinningNumbersTest {
 
     @BeforeEach
     void setUp() {
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
+        List<WinningNumber> numbers = IntStream.range(1, 7)
+                .mapToObj(WinningNumber::new)
+                .collect(Collectors.toList());
+        WinningNumber bonusNumber = new WinningNumber(7);
         winningNumbers = new WinningNumbers(numbers, bonusNumber);
     }
 
     @Test
     void 당첨_번호_6개_미만_예외() {
         // given
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5);
-        int bonusNumber = 45;
+        List<WinningNumber> numbers = createWinningNumbers(1, 2, 3, 4, 5);
+        WinningNumber bonusNumber = new WinningNumber(45);
 
         // when
         // then
@@ -47,8 +52,8 @@ class WinningNumbersTest {
     @Test
     void 당첨_번호_6개_초과_예외() {
         // given
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7);
-        int bonusNumber = 45;
+        List<WinningNumber> numbers = createWinningNumbers(1, 2, 3, 4, 5, 6, 7);
+        WinningNumber bonusNumber = new WinningNumber(45);
 
         // when
         // then
@@ -60,8 +65,8 @@ class WinningNumbersTest {
     @Test
     void 중복된_당첨_번호_에외() {
         // given
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
-        int bonusNumber = 45;
+        List<WinningNumber> numbers = createWinningNumbers(1, 2, 3, 4, 5, 5);
+        WinningNumber bonusNumber = new WinningNumber(45);
 
         // when
         // then
@@ -73,8 +78,8 @@ class WinningNumbersTest {
     @Test
     void 당첨_번호_생성() {
         // given
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 45;
+        List<WinningNumber> numbers = createWinningNumbers(1, 2, 3, 4, 5, 6);
+        WinningNumber bonusNumber = new WinningNumber(45);
 
         // when
         WinningNumbers result = new WinningNumbers(numbers, bonusNumber);
@@ -86,8 +91,8 @@ class WinningNumbersTest {
     @Test
     void 당첨_번호와_중복되는_보너스_번호_예외() {
         // given
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 1;
+        List<WinningNumber> numbers = createWinningNumbers(1, 2, 3, 4, 5, 6);
+        WinningNumber bonusNumber = new WinningNumber(1);
 
         // when
         // then
@@ -178,5 +183,11 @@ class WinningNumbersTest {
 
         // then
         assertThat(result).isEqualTo(FIRST_PLACE);
+    }
+
+    private List<WinningNumber> createWinningNumbers(int... numbers) {
+        return Arrays.stream(numbers)
+                .mapToObj(WinningNumber::new)
+                .collect(Collectors.toList());
     }
 }

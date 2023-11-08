@@ -81,18 +81,30 @@ public class Game {
     }
 
     private WinningNumbers createNumbers() {
-        List<Integer> winningNumbers = createWinningNumbers();
-        int bonusNumber = createBonusNumber();
-        return new WinningNumbers(winningNumbers, bonusNumber);
+        try {
+            List<WinningNumber> winningNumbers = createWinningNumbers();
+            WinningNumber bonusNumber = createBonusNumber();
+            return new WinningNumbers(winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createNumbers();
+        }
     }
 
-    private List<Integer> createWinningNumbers() {
+    private List<WinningNumber> createWinningNumbers() {
         try {
-            return createWinningNumbersFromUser();
+            List<Integer> winningNumbers = createWinningNumbersFromUser();
+            return convertToWiningNumber(winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createWinningNumbers();
         }
+    }
+
+    private List<WinningNumber> convertToWiningNumber(List<Integer> winningNumbers) {
+        return winningNumbers.stream()
+                .map(WinningNumber::new)
+                .collect(Collectors.toList());
     }
 
     private List<Integer> createWinningNumbersFromUser() {
@@ -102,9 +114,10 @@ public class Game {
                 .toList();
     }
 
-    private int createBonusNumber() {
+    private WinningNumber createBonusNumber() {
         try {
-            return createBonusNumberFromUser();
+            int bonusNumber = createBonusNumberFromUser();
+            return new WinningNumber(bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createBonusNumber();

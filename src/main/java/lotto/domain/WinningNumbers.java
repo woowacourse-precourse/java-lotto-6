@@ -17,20 +17,12 @@ public class WinningNumbers {
     private final List<WinningNumber> winningNumbers;
     private final WinningNumber bonusNumber;
 
-    public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
-        this.winningNumbers = getWinningNumbers(winningNumbers);
-        this.bonusNumber = getBonusNumberNumber(bonusNumber);
-    }
-
-    private List<WinningNumber> getWinningNumbers(List<Integer> winningNumbers) {
+    public WinningNumbers(List<WinningNumber> winningNumbers, WinningNumber bonusNumber) {
         validateNumbers(winningNumbers);
-        return convertWinningNumbers(winningNumbers);
-    }
+        this.winningNumbers = winningNumbers;
 
-    private WinningNumber getBonusNumberNumber(int number) {
-        WinningNumber bonusNumber = new WinningNumber(number);
         validateBonusNumber(bonusNumber);
-        return bonusNumber;
+        this.bonusNumber = bonusNumber;
     }
 
     public ResultType matchingResult(List<Integer> numbers) {
@@ -61,7 +53,7 @@ public class WinningNumbers {
                 .collect(toList());
     }
 
-    private void validateNumbers(List<Integer> numbers) {
+    private void validateNumbers(List<WinningNumber> numbers) {
         if (!isValidSize(numbers)) {
             throw new InvalidArgumentException(WINNING_NUMBERS_INVALID_SIZE);
         }
@@ -71,12 +63,12 @@ public class WinningNumbers {
         }
     }
 
-    private boolean isValidSize(List<Integer> numbers) {
+    private boolean isValidSize(List<WinningNumber> numbers) {
         return numbers.size() == VALID_SIZE;
     }
 
-    private boolean isUniqueNumbers(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+    private boolean isUniqueNumbers(List<WinningNumber> numbers) {
+        Set<WinningNumber> uniqueNumbers = new HashSet<>(numbers);
         return uniqueNumbers.size() == numbers.size();
     }
 

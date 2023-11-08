@@ -17,7 +17,6 @@ public class Lotto {
         ValidateUserNumber.isInRange(numbers);
     }
 
-    // TODO: 추가 기능 구현
     public boolean hasNumber(int bonusNumber) {
         return numbers.contains(bonusNumber);
     }

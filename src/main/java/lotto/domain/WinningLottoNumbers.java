@@ -9,7 +9,7 @@ import lotto.validate.InputValidation;
 
 public class WinningLottoNumbers {
     private Lotto winningLotto;
-    private int bouns;
+    private int bonus;
     InputValidation inputValidation = new InputValidation();
 
     public WinningLottoNumbers(String numbers, String bouns) {
@@ -17,8 +17,8 @@ public class WinningLottoNumbers {
         isDuplicateNumbers(numbers);
         this.winningLotto = convertWinningNumbers(numbers);
 
-        validateBonusNumber(numbers);
-        this.bouns = convertBonus(bouns);
+        validateBonusNumber(bouns);
+        this.bonus = convertBonus(bouns);
     }
 
     // 담첨번호 String > List<Integer>
@@ -61,6 +61,6 @@ public class WinningLottoNumbers {
     }
 
     public int getBonus() {
-        return bouns;
+        return bonus;
     }
 }

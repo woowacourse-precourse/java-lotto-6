@@ -37,6 +37,14 @@ public class ValidationUtils {
             return true;
         }
 
+        return isCorrectAmountUnit(userAmount);
+    }
+
+    private boolean isCorrectAmountUnit(int userAmount) {
+        if (userAmount / PRICE_LOTTO != 0 && userAmount % PRICE_LOTTO == 0) {
+            return true;
+        }
+
         try {
             throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
@@ -53,54 +61,7 @@ public class ValidationUtils {
         StringBuilder errorMessage = new StringBuilder();
 
         try {
-            //입력이 없는건 아닌지
-            if (stringBuilder.isEmpty()) {
-                errorMessage.append(INPUT_WINNING_NUMBER);
-                throw new IllegalArgumentException();
-            }
-            //마지막에 콤마로끝나는지
-            if (stringBuilder.substring(winningNumber.length()-1).equals(COMMA)) {
-                errorMessage.append(INVALID_COMMA_AT_START_END);
-                throw new IllegalArgumentException();
-            }
-            //시작이 콤마인지
-            if (stringBuilder.substring(0, 1).equals(COMMA)) {
-                errorMessage.append(INVALID_COMMA_AT_START_END);
-                throw new IllegalArgumentException();
-            }
-            //콤마가 연속 두개인지함
-            for (int i = 0; i < stringBuilder.length() - 2; i++) {
-                validateDoubleComma(stringBuilder, i, errorMessage);
-            }
-            //콤마옆에 공백이있는지 없는지
-            for (int i = 1; i < stringBuilder.length() - 1; i++) {
-                validateSpaceNextToComma(stringBuilder, i, errorMessage);
-            }
-
-            //1~45사이인지
-            //중복된 숫자가 있는지
-            int token;
-            while(stringTokenizer.hasMoreTokens()) {
-                token = Integer.parseInt(stringTokenizer.nextToken());
-
-                if (token < 1 || 45 < token) {
-                    errorMessage.append(RANGE_LIMIT);
-                    throw new IllegalArgumentException();
-                }
-
-                if (tempWinningNumber.contains(token)) {
-                    errorMessage.append(NO_DUPLICATE_NUMBERS);
-                    throw new IllegalArgumentException();
-                }
-
-                tempWinningNumber.add(token);
-            }
-
-            //숫자가 6개인지
-            if (tempWinningNumber.size() != 6) {
-                errorMessage.append(SIX_NUMBERS_REQUIRED);
-                throw new IllegalArgumentException();
-            }
+            isValidate(stringBuilder, stringTokenizer, tempWinningNumber, errorMessage);
 
             return true;
         } catch(IllegalArgumentException e) {
@@ -108,6 +69,83 @@ public class ValidationUtils {
         }
 
         return false;
+    }
+
+    private void isValidate(StringBuilder stringBuilder, StringTokenizer stringTokenizer, List<Integer> tempWinningNumber, StringBuilder errorMessage) {
+        isEmptyInput(stringBuilder, errorMessage);
+        isFirstComma(stringBuilder, errorMessage);
+        isLastComma(stringBuilder, errorMessage);
+        isDoubleComma(stringBuilder, errorMessage);
+        isSpaceNextToCOMMA(stringBuilder, errorMessage);
+        isValidateToken(stringTokenizer, tempWinningNumber, errorMessage);
+
+        isSixNumbers(tempWinningNumber, errorMessage);
+    }
+
+    private void isValidateToken(StringTokenizer stringTokenizer, List<Integer> tempWinningNumber, StringBuilder errorMessage) {
+        int token;
+        while(stringTokenizer.hasMoreTokens()) {
+            token = Integer.parseInt(stringTokenizer.nextToken());
+
+            isCorrectRange(errorMessage, token);
+            isDuplicate(tempWinningNumber, errorMessage, token);
+
+            tempWinningNumber.add(token);
+        }
+    }
+
+    private void isSixNumbers(List<Integer> tempWinningNumber, StringBuilder errorMessage) {
+        if (tempWinningNumber.size() != 6) {
+            errorMessage.append(SIX_NUMBERS_REQUIRED);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void isDuplicate(List<Integer> tempWinningNumber, StringBuilder errorMessage, int token) {
+        if (tempWinningNumber.contains(token)) {
+            errorMessage.append(NO_DUPLICATE_NUMBERS);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void isCorrectRange(StringBuilder errorMessage, int token) {
+        if (token < 1 || 45 < token) {
+            errorMessage.append(RANGE_LIMIT);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void isSpaceNextToCOMMA(StringBuilder stringBuilder, StringBuilder errorMessage) {
+        for (int i = 1; i < stringBuilder.length() - 1; i++) {
+            validateSpaceNextToComma(stringBuilder, i, errorMessage);
+        }
+    }
+
+    private void isDoubleComma(StringBuilder stringBuilder, StringBuilder errorMessage) {
+        for (int i = 0; i < stringBuilder.length() - 2; i++) {
+            validateDoubleComma(stringBuilder, i, errorMessage);
+        }
+    }
+
+    private void isFirstComma(StringBuilder stringBuilder, StringBuilder errorMessage) {
+        if (stringBuilder.substring(0, 1).equals(COMMA)) {
+            errorMessage.append(INVALID_COMMA_AT_START_END);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void isLastComma(StringBuilder stringBuilder, StringBuilder errorMessage) {
+        if (stringBuilder.substring(stringBuilder.length()-1).equals(COMMA)) {
+            errorMessage.append(INVALID_COMMA_AT_START_END);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void isEmptyInput(StringBuilder stringBuilder, StringBuilder errorMessage) {
+        if (stringBuilder.isEmpty()) {
+            errorMessage.append(INPUT_WINNING_NUMBER);
+            throw new IllegalArgumentException();
+        }
     }
 
     private void validateSpaceNextToComma(StringBuilder stringBuilder, int i, StringBuilder temp_err) {
@@ -131,20 +169,12 @@ public class ValidationUtils {
     }
 
     public boolean validateBonusNumber(WinningNumber winningNumber, String bonusNumber) {
-        String errorMessage = "";
+        StringBuilder errorMessage = new StringBuilder();
 
         try {
             int number = Integer.parseInt(bonusNumber);
-
-            if (number < 1 || 45 < number) {
-                errorMessage += RANGE_LIMIT;
-                throw new IllegalArgumentException();
-            }
-
-            if (winningNumber.contains(number)) {
-                errorMessage += NO_DUPLICATE_NUMBERS;
-                throw new IllegalArgumentException();
-            }
+            isCorrectRange(errorMessage , number);
+            isDuplicatedBonusNumber(winningNumber, errorMessage, number);
 
             return true;
         } catch(IllegalArgumentException e) {
@@ -152,5 +182,12 @@ public class ValidationUtils {
         }
 
         return false;
+    }
+
+    private void isDuplicatedBonusNumber(WinningNumber winningNumber, StringBuilder errorMessage, int number) {
+        if (winningNumber.contains(number)) {
+            errorMessage.append(NO_DUPLICATE_NUMBERS);
+            throw new IllegalArgumentException();
+        }
     }
 }

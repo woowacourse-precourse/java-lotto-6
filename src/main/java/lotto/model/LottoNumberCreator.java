@@ -24,10 +24,10 @@ public class LottoNumberCreator {
 
     public List<Integer> stringToList(String input) {
         List<Integer> winningNumbers = new ArrayList<>();
-        StringTokenizer stringTokenizer = new StringTokenizer(input, COMMA);
+        StringTokenizer winningNumberToken = new StringTokenizer(input, COMMA);
 
-        while(stringTokenizer.hasMoreTokens()) {
-            winningNumbers.add(Integer.parseInt(stringTokenizer.nextToken()));
+        while(winningNumberToken.hasMoreTokens()) {
+            winningNumbers.add(Integer.parseInt(winningNumberToken.nextToken()));
         }
 
         return winningNumbers;

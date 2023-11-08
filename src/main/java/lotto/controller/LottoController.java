@@ -37,8 +37,7 @@ public class LottoController {
             isValid = validationUtils.validateUserAmount(userInput);
         }
 
-        UserAmount userAmount = new UserAmount(userInput);
-        return userAmount;
+        return new UserAmount(userInput);
     }
 
     private Lottos createLottos(UserAmount userAmount) {
@@ -58,8 +57,7 @@ public class LottoController {
             isValid = validationUtils.validateWinningNumber(userInput);
         }
 
-        WinningNumber winningNumber = new WinningNumber(lottoNumberCreator.stringToList(userInput));
-        return winningNumber;
+        return new WinningNumber(lottoNumberCreator.stringToList(userInput));
     }
 
     private void addBonusNumberToWinningNumber(WinningNumber winningNumber) {
@@ -74,9 +72,8 @@ public class LottoController {
         winningNumber.addBonusNumber(bonusNumber);
     }
 
-    private static LottoResult createResult(UserAmount userAmount, Lottos lottos, WinningNumber winningNumber) {
-        LottoResult lottoResult = new LottoResult(lottos, winningNumber, userAmount);
-        return lottoResult;
+    private LottoResult createResult(UserAmount userAmount, Lottos lottos, WinningNumber winningNumber) {
+        return new LottoResult(lottos, winningNumber, userAmount);
     }
 
 

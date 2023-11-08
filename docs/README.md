@@ -4,12 +4,14 @@
 - [ ] 로또 구입 금액을 입력받는다. - `InputView.requestPurchasePrice()`
   - 입력값이 숫자가 아니면 예외 발생 - `InputView.validateNumeric()`
   - 금액이 1,000원으로 나누어 떨어지지 않으면 예외 발생 - `Purchase.validatePrice()`
+  - 구매 금액이 1,000원 미만인 경우 예외 발생 - `Purchase.validatePrice()`
 - [ ] (구입 금액 / 1000)개 만큼의 로또 숫자를 생성후 출력한다. - `OutputView.printPurchaseLottos()`
   - 로또 번호는 중복되지 않는 1 ~ 45 사이의 자연수 - `LottoService.createLottos()`
   - 오름차순으로 정렬 - `Lotto.getSortedNumbers()`
 - [ ] 당첨 번호를 입력받는다. - `InputView.requestWinningNumber()`
   - 분할된 값이 숫자가 아닌 경우 예외 발생 - `InputView.validateSplitEachNumeric()`
   - 쉼표(`,`)로 분할 시 6개가 아닌 경우 예외 발생 - `Lotto.validateSize()`
+  - 보너스 번호가 당첨 번호에 포함되는 경우 예외 발생 - `Winning.validateLottoNumberContainBonusNumber()` 
 - [ ] 보너스 번호를 입력받는다. - `InputView.requestBonusNumber()`
   - 숫자가 아닌 경우 예외 발생 - `InputView.validateNumeric()`
 - [ ] 당첨 번호 + 보너스 번호와 생성한 로또 번호를 비교하여 통계를 출력한다. - `GameManagerService.settleWinningResult()`, `OutputView.printResult()`

@@ -2,35 +2,33 @@ package lotto.Controller;
 
 import lotto.Domain.Lotto;
 import lotto.Domain.Prize;
-import lotto.View.LottoView;
+import lotto.View.LottoInputView;
+import lotto.View.LottoOutputView;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
-    private static final String WINNING_NUMBERS_MSG = "당첨 번호를 쉼표(,)로 구분하여 6개 입력해 주세요: ";
-    private static final String BONUS_NUMBER_MSG = "보너스 번호를 입력해 주세요: ";
-    private static final String INPUT_ERROR_MSG_BASIC = "당첨 번호는 1부터 45 사이의 숫자여야 합니다.";
-    private static final String INPUT_ERROR_MSG_BONUS = "보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
-    private static final String INPUT_ERROR_MSG_FORMAT = "올바른 숫자를 입력해 주세요.";
     private static final int LOTTO_TICKET_PRICE = 1000; // 로또 한 장의 가격
 
-    private LottoView view;
+    private LottoInputView inputView;
+    private LottoOutputView outputView;
 
-    public LottoController(LottoView view) {
-        this.view = view;
+    public LottoController(LottoInputView inputView, LottoOutputView outputView){
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void runGame() {
-        int ticketCount = view.getUserInput() / LOTTO_TICKET_PRICE;
+        int ticketCount = inputView.getUserInput() / LOTTO_TICKET_PRICE;
         List<Lotto> purchasedTickets = generateTickets(ticketCount);
-        view.displayPurchasedTickets(purchasedTickets);
+        outputView.displayPurchasedTickets(purchasedTickets);
 
-        List<Integer> winningNumbers = view.getWinningNumbers();
-        int bonusNumber = view.getBonusNumber();
+        List<Integer> winningNumbers = inputView.getWinningNumbers();
+        int bonusNumber = inputView.getBonusNumber();
         List<String> results = calculatePrizes(purchasedTickets, winningNumbers, bonusNumber);
-        view.displayResults(results);
+        outputView.displayResults(results);
     }
 
     private List<Lotto> generateTickets(int ticketCount) {
@@ -101,18 +99,4 @@ public class LottoController {
         return totalPrize;
     }
 
-    private void displayGameResults(List<Lotto> purchasedTickets, List<String> results) {
-        System.out.println("구입금액을 입력해 주세요.");
-        int totalTicketCount = purchasedTickets.size();
-        System.out.println(totalTicketCount + "개를 구매했습니다.");
-
-        for (Lotto lotto : purchasedTickets) {
-            System.out.println(lotto.getSortedNumbers());
-        }
-        System.out.println();
-
-        for (String result : results) {
-            System.out.println(result);
-        }
-    }
 }

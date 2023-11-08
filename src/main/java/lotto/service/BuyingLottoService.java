@@ -42,12 +42,6 @@ public class BuyingLottoService {
         }
     }
 
-    private void verifyRange(int moneyInput){
-        if(moneyInput>50000){
-            throw new IllegalArgumentExceptionHandler(InputErrorMessage.OVER_RANGE_MONEY);
-        }
-    }
-
     public List<Integer> sortLottoNumber(Lotto lotto){
         List<Integer> sortingNumber = new ArrayList<>(lotto.getNumbers());
         Collections.sort(sortingNumber);

@@ -19,7 +19,13 @@ public class PrizeTierTest {
 
     @DisplayName("일치하는 당첨 번호 수가 0개와 보너스 번호가 일치하지 않을때에 대한 PrizeTier 반환 테스트")
     @Test
-    void getPrizeTierTest() {
+    void getPrizeTierTest_0_0() {
         Assertions.assertEquals(PrizeTier.NONE, PrizeTier.getPrizeTier(0, false));
+    }
+
+    @DisplayName("일치하는 당첨 번호 수가 1개와 보너스 번호가 일치하지 않을때에 대한 PrizeTier 반환 테스트")
+    @Test
+    void getPrizeTierTest_1_0() {
+        Assertions.assertEquals(PrizeTier.NONE, PrizeTier.getPrizeTier(2, false));
     }
 }

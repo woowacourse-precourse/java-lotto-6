@@ -20,7 +20,7 @@ public class LottoView {
     public static void enterBuyPrice(){
         System.out.println("구입금액을 입력해 주세요.");
         String inputstr = Console.readLine();
-        price = validator.validatePrice(inputstr);
+        price = Validator.validatePrice(inputstr);
     }
     public static void enterLottoNum(){
         System.out.println("당첨 번호를 입력해 주세요.");
@@ -50,15 +50,17 @@ public class LottoView {
         }
     }
 
-    static void initRanking(){
-        Ranking.put(Rank.FIRST,0);
-        Ranking.put(Rank.SECOND,0);
-        Ranking.put(Rank.THIRD,0);
-        Ranking.put(Rank.FOURTH,0);
-        Ranking.put(Rank.FIFTH,0);
+    static Map<Rank, Integer> initRanking(Map<Rank, Integer> ranking){
+        ranking.put(Rank.FIRST,0);
+        ranking.put(Rank.SECOND,0);
+        ranking.put(Rank.THIRD,0);
+        ranking.put(Rank.FOURTH,0);
+        ranking.put(Rank.FIFTH,0);
+        return ranking;
     }
-    public static Map<Rank,Integer> drawLottoRank(Map<Rank, Integer> ranking){
-        for(List<Integer> pickedNum : lottoList){
+    public static Map<Rank,Integer> drawLottoRank(List<List<Integer>> lottolist, Map<Rank,Integer> ranking){
+        initRanking(ranking);
+        for(List<Integer> pickedNum : lottolist){
             int matchCount =  lotto.calculateNumbers(pickedNum);
             boolean isBonusMatched = lotto.isBonusinPicked(pickedNum);
             if(matchCount == 6) ranking.put(Rank.FIRST,ranking.get(Rank.FIRST)+1);
@@ -83,7 +85,7 @@ public class LottoView {
     static void printLottoRank(){
         System.out.println("당첨 통계");
         System.out.println("---");
-        Ranking = drawLottoRank(Ranking);
+        Ranking = drawLottoRank(lottoList, Ranking);
         for(Rank rank : Ranking.keySet()){
             System.out.println(rank.getStatus() + " - " + Ranking.get(rank)+"개");
         }
@@ -102,7 +104,6 @@ public class LottoView {
 
         enterBonus();
 
-        initRanking();
         printLottoRank();
 
         printReturn();

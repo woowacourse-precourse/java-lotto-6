@@ -3,10 +3,9 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -25,13 +24,35 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("당첨 번호와 발행 번호 비교")
+    @Test
+    void calculateLottoNumbersTest() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        lotto.setBonus(7);
+        int result = lotto.calculateNumbers(List.of(1, 2, 3, 7, 8, 9));
+        assertThat(result).isEqualTo(3);
+    }
 
+
+    @DisplayName("당첨 번호 범위 예외처리 테스트입니다")
+    @Test
+    void unableRangeLottoNumberTest(){
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,66)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("수익률 계산을 테스트합니다.")
     @Test
     void calculateReturnTest(){
+        LottoView view = new LottoView();
         Map<Rank, Integer> ranking = new EnumMap<Rank,Integer>(Rank.class);
         ranking.put(Rank.FIFTH,3);
         ranking.put(Rank.FOURTH,1);
+        float expected = view.calculateReturn(ranking, 40000);
+        assertThat(expected).isEqualTo(162.5f);
     }
+
+
     /*
         단위테스트 조심할것들
         given(준비) : 어떠한 데이터가 준비되었을 때

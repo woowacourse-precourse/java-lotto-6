@@ -48,7 +48,7 @@ public class InputValidatorTest {
         Integer userInputCorrect = 12;
         Integer userInputWrong = 46;
         Integer userInputWrong2 = -3;
-        String userInputWrong3 = "10000000000";
+        String userInputWrong3 = "1000000000";
         Integer minRange = 1;
         Integer maxRange = 45;
 

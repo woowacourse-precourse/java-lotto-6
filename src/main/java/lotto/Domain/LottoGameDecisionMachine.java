@@ -6,12 +6,6 @@ import java.util.*;
 
 public class LottoGameDecisionMachine {
     private List<Lotto> tickets = new ArrayList<>();
-    private final static ArrayList<Prize> PRIZE_TYPE = new ArrayList<>(Arrays.asList(
-            Prize.FIRST_PLACE,
-            Prize.SECOND_PLACE,
-            Prize.THIRD_PLACE,
-            Prize.FOURTH_PLACE,
-            Prize.FIFTH_PLACE));
 
     private List<Integer> winningNumbers = new ArrayList<>();
     private int bonusNumber;
@@ -19,17 +13,7 @@ public class LottoGameDecisionMachine {
     public void generateTickets_(int purchaseAmount) {
         int numTickets = purchaseAmount / 1000;
         for (int i = 0; i < numTickets; i++) {
-            //List<Integer> numbers = new ArrayList<>();
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            /*while (numbers.size() < 6) {
-
-                int number = Randoms.pickNumberInRange(1, 45) ;
-                if (!numbers.contains(number)) {
-                    numbers.add(number);
-                }
-            }*/
-            //System.out.println(numbers);
-            //Collections.sort(numbers);
             Lotto lotto = new Lotto(numbers);
             tickets.add(lotto);
         }
@@ -67,11 +51,7 @@ public class LottoGameDecisionMachine {
         }
         return result;
     }
-/*
-    public int countMatchinTickets(){
 
-    }
-*/
     private int countMatchingNumbers(List<Integer> ticket) {
         int count = 0;
         for (int number : ticket) {

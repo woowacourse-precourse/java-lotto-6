@@ -16,12 +16,10 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class LottoGameController {
     private LottoGameDecisionMachine machine;
     private LottoGameView view;
-    private isValid validator;
 
     public LottoGameController() {
         machine = new LottoGameDecisionMachine();
         view = new LottoGameView();
-        validator = new isValid();
     }
 
     public void run() {
@@ -57,11 +55,13 @@ public class LottoGameController {
         do {
             System.out.println("구입금액을 입력해 주세요: ");
             String input = readLine();
+
             try {
                 int money = Integer.parseInt(input);
-            } catch (NumberFormatException e) {
+
+            } catch (NoSuchElementException e) {
                 System.err.println(ERROR_MESSAGE);
-                throw new NumberFormatException(ERROR_MESSAGE);
+                throw new NoSuchElementException(ERROR_MESSAGE);
             }
             purchaseAmount =Integer.parseInt(input);
         }while (purchaseAmount % 1000 != 0);

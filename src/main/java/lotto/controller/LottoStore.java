@@ -53,7 +53,6 @@ public class LottoStore {
         winningNumbers = setWinningNumbers();
         bonusNumber = setBonusNumbers(winningNumbers);
     }
-
     private PurchasedLotto setPurchasedLottos(int numberOfLottoPurchased) {
         return new PurchasedLotto(numberOfLottoPurchased);
     }

@@ -38,7 +38,7 @@ public class LottoDto {
             return new Result(lottoResult.getResult());
         }
 
-        public Map<LottoRanking, Integer> result() {
+        public Map<LottoRanking, Integer> getResult() {
             return Map.copyOf(result);
         }
     }

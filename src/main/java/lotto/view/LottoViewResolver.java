@@ -25,7 +25,7 @@ public class LottoViewResolver {
     }
 
     public String parseLottoResult(LottoDto.Result lottoResult) {
-        Map<LottoRanking, Integer> result = lottoResult.result();
+        Map<LottoRanking, Integer> result = lottoResult.getResult();
         DecimalFormat decimalFormat = new DecimalFormat(WON_FORMAT_PATTERN);
 
         return Arrays.stream(LottoRanking.values())

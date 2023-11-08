@@ -12,7 +12,6 @@ public class Customer {
         this.NUMBER_OF_TICKETS = BUDGET / TICKET_UNIT;
     }
 
-    @Override
     public String toString() {
         return System.out.printf("%d개를 구매했습니다.", NUMBER_OF_TICKETS).toString();
     }

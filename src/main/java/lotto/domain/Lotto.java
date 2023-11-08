@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 public class Lotto {
-    private final List<Integer> numbers;
+    public static List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -19,13 +18,13 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
+    public List<Integer> lottoNumbers() {return numbers;}
     public String toString() {
         List<String> numbersForPrint = new ArrayList<>();
         for (int i : numbers) {
             numbersForPrint.add(Integer.toString(i));
         }
-        String lottoTicket = "[" + String.join(", ",numbersForPrint) + "]";
+        String lottoTicket = "[" + String.join(", ", numbersForPrint) + "]";
         return lottoTicket;
     }
 

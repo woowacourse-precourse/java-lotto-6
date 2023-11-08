@@ -1,8 +1,9 @@
 package lotto.domain;
 
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Validators {
     private static final int TICKET_UNIT = 1000;
@@ -19,6 +20,10 @@ public class Validators {
     }
 
     public static void validateStringIsIntegerConvertable(String inputString) {
+        if (inputString.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+
         try {
             Integer.parseInt(inputString);
         } catch (NumberFormatException e) {
@@ -31,6 +36,7 @@ public class Validators {
             throw new IllegalArgumentException();
         }
     }
+
     public static boolean validateWinningNumbers(String inputWinningNumbers) {
         try {
             validateSixNumbers(inputWinningNumbers);
@@ -43,6 +49,21 @@ public class Validators {
             return false;
         }
         return true;
+    }
+    public static void validateBonusNumber(int number, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(number)) {
+            throw new IllegalArgumentException();
+        }
+    }
+    public static void validateRedundance(List<Integer> numberList) {
+        try {
+            Set<Integer> numberSet = new HashSet<>(numberList);
+            if (numberSet.size() < 6) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 로또 번호는 서로 중복되지 않아야 합니다.");
+        }
     }
 
     private static void validateSixNumbers(String inputStringComma) {

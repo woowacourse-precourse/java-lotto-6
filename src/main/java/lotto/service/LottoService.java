@@ -48,6 +48,16 @@ public class LottoService {
         return lottoResult;
     }
 
+    private int calculateMatchCount(List<Integer> winningNumbers, Lotto lotto) {
+        int count = 0;
+        for (Integer lottoNumber : lotto.getNumbers()) {
+            if (winningNumbers.contains(lottoNumber)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     private int calculateRank(int matchCount, boolean isContainBonusNumber) {
         int rank = 0;
 
@@ -71,16 +81,6 @@ public class LottoService {
 
     private boolean isContainBonusNumber(Lotto lotto, int bonusNumber) {
         return lotto.getNumbers().contains(bonusNumber);
-    }
-
-    private int calculateMatchCount(List<Integer> winningNumbers, Lotto lotto) {
-        int count = 0;
-        for (Integer lottoNumber : lotto.getNumbers()) {
-            if (winningNumbers.contains(lottoNumber)) {
-                count++;
-            }
-        }
-        return count;
     }
 
     public LottoPrize getLottoPrize(int rank) {

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.constants.LottoConstants;
+import lotto.dto.TicketCountDto;
 
 public class TicketCount {
     private int ticketCount;
@@ -19,5 +20,9 @@ public class TicketCount {
 
     public int getTicketCount() {
         return ticketCount;
+    }
+
+    public TicketCountDto toDto() {
+        return new TicketCountDto(ticketCount);
     }
 }

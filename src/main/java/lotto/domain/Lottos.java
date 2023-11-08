@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.dto.LottosDto;
 import lotto.generator.LottosGenerator;
 
 public class Lottos {
@@ -16,5 +17,9 @@ public class Lottos {
 
     public List<Lotto> getLottos() {
         return lottos;
+    }
+
+    public LottosDto toDto() {
+        return new LottosDto(lottos);
     }
 }

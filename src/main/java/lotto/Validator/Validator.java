@@ -8,7 +8,9 @@ public class Validator {
     public static final int NUMBER_MIN =1;
     public static final int NUMBER_MAX =45;
     public static final int NUMBER_QUANTITY =6;
+    List<Integer>validatorWinningNumbers;
     public void validateLottoNumber(List<Integer> winningNumbers) {
+        validatorWinningNumbers=winningNumbers;
         if(!isValidLength(winningNumbers)){
             System.out.println("[ERROR] 로또 번호는 6자리 숫자로 이루어져야 합니다.");
             throw new IllegalArgumentException("로또 번호는 6자리 숫자로 이루어져야 합니다.");
@@ -38,17 +40,20 @@ public class Validator {
             System.out.println("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
             throw new IllegalArgumentException("보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
         }
-        if(hasDuplicateBonusNumber()){
+        if(hasDuplicateBonusNumber(bonusBall)){
             System.out.println("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
             throw new IllegalArgumentException("보너스 번호가 당첨 번호와 중복됩니다.");
         }
     }
-    private boolean isValidRangeBonusNumber(int number){
-        if (number < NUMBER_MIN || number > NUMBER_MAX) return false;
+    private boolean isValidRangeBonusNumber(int bonusNumber){
+        if (bonusNumber < NUMBER_MIN || bonusNumber > NUMBER_MAX) return false;
         return true;
     }
 
-    private boolean hasDuplicateBonusNumber() {
+    private boolean hasDuplicateBonusNumber(int bonusNumber) {
+        for(Integer winningNumber:validatorWinningNumbers){
+            if(winningNumber==bonusNumber) return true;
+        }
         return false;
     }
 }

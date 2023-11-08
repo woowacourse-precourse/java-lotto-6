@@ -5,11 +5,10 @@ import java.util.List;
 
 public class User {
     List<Integer> matchedNumber;
-    List<Integer> WinnersNumber = new ArrayList<>();
+    public List<Integer> WinnersNumber = new ArrayList<>();
 
-    int totalPrize = 0;
-    float profitPercentage = 0.0F;
-    Ranks rank;
+    public int totalPrize = 0;
+    public Ranks rank;
 
     public User(List<Integer> matchedNumber) {
         this.matchedNumber = matchedNumber;
@@ -38,8 +37,6 @@ public class User {
         }
         return ((float) totalPrize / cost) * 100;
     }
-
-
 
     public List<Ranks> getAllRanks() {
         List<Ranks> ranksList = List.of(Ranks.values());

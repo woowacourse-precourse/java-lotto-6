@@ -81,7 +81,6 @@ public class LottoController {
                 continue;
             }
         }
-
     }
     private void compareLottos() {
         matchedNumber = lottoService.CompareNumbers(lottos.purchasedLottos, winningNumbers);

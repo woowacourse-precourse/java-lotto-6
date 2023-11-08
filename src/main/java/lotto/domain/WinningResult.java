@@ -19,10 +19,10 @@ public class WinningResult {
         return map;
     }
 
-    public long getTotalPrizeMoney(Map<PrizeCategory, Integer> map) {
+    public long getTotalPrizeMoney(Map<PrizeCategory, Integer> winningCounts) {
         long totalPrizeMoney = 0;
         for (PrizeCategory prize : PrizeCategory.values()) {
-            long multipliedPrizeMoney = prize.getPrizeMoney() * map.get(prize);
+            long multipliedPrizeMoney = prize.getPrizeMoney() * winningCounts.get(prize);
             totalPrizeMoney += multipliedPrizeMoney;
         }
         return totalPrizeMoney;

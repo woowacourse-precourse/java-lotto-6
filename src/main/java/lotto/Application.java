@@ -2,10 +2,15 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import java.util.Map;
+import java.util.StringJoiner;
 import lotto.domain.Cashier;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.LottoNumberConverter;
+import lotto.domain.LottoNumbers;
+import lotto.domain.PrizeCategory;
+import lotto.domain.WinningResult;
 
 public class Application {
     public static void main(String[] args) {
@@ -53,6 +58,21 @@ public class Application {
             break;
         }
 
+        LottoNumbers lottoNumbers = new LottoNumbers(winningNumbers, bonusNumber);
+        WinningResult winningResult = new WinningResult();
+        Map<PrizeCategory, Integer> winningCounts = winningResult.countNumberOfWinning(lottoTickets, lottoNumbers);
+
+        System.out.println(messageContainer.getWinningStatistics());
+
+        StringJoiner stringJoiner = new StringJoiner("\n");
+        for (String winningDetail : messageContainer.createWinningDetails(winningCounts)) {
+            stringJoiner.add(winningDetail);
+        }
+        System.out.println(stringJoiner.toString());
+
+        long totalPrizeMoney = winningResult.getTotalPrizeMoney(winningCounts);
+        double rateOfReturn = winningResult.getRateOfReturn(cashier.getPurchaseAmount(), totalPrizeMoney);
+        System.out.println(messageContainer.createRateOfReturnMessage(rateOfReturn));
     }
 
     private static List<Lotto> createLottoTickets(Cashier cashier, MessageContainer messageContainer) {

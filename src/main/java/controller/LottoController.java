@@ -13,6 +13,7 @@ import view.OutputView;
 public class LottoController {
 
     private static final int START_INDEX = 0;
+    private static final Integer UNIT_NUMBER = 1000;
 
     private List<Lotto> lottoList;
     private User user;

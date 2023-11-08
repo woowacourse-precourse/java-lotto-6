@@ -13,7 +13,7 @@ public class AnswerTest {
 
     @DisplayName("보너스 번호에 1부터 45사이의 숫자를 입력하지 않으면 예외가 발생한다.")
     @Test
-    void temp() {
+    void bonusNumberRangeOut() {
         assertThatThrownBy(() -> new Answer(mockHitNumbers, 50))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.NUMBER_RANGE_EXCEPTION_MSG.getMsg());
@@ -21,7 +21,7 @@ public class AnswerTest {
 
     @DisplayName("당첨 번호에 기입한 숫자를 보너스 번호에 입력하면 예외가 발생한다.")
     @Test
-    void temp2() {
+    void bonusNumberConflictWithHitNumbers() {
         assertThatThrownBy(() -> new Answer(mockHitNumbers, 5))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.BONUS_NUMER_CONFLICT_EXCEPTION_MSG.getMsg());
@@ -29,7 +29,7 @@ public class AnswerTest {
 
     @DisplayName("정답 객체는 당첨 번호 내에 해당 번호가 존재하는지 확인한 후 결과를 반환한다.")
     @Test
-    void temp3() {
+    void provideNumberAndReturnExistFlag() {
         Answer answer = new Answer(mockHitNumbers, 7);
         assertThat(answer.isHitNumbersHaveThisNumber(3)).isEqualTo(true);
         assertThat(answer.isHitNumbersHaveThisNumber(20)).isEqualTo(false);
@@ -37,7 +37,7 @@ public class AnswerTest {
 
     @DisplayName("정답 객체는 보너스 번호가 해당 번호와 같은지 확인한 후 결과를 반환한다.")
     @Test
-    void temp4() {
+    void provideNumberAndReturnSameFlag() {
         Answer answer = new Answer(mockHitNumbers, 7);
         assertThat(answer.isBonusNumberTheSameAsThis(7)).isEqualTo(true);
         assertThat(answer.isBonusNumberTheSameAsThis(5)).isEqualTo(false);

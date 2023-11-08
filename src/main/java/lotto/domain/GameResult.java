@@ -9,7 +9,6 @@ public class GameResult {
     Map<LottoResultInfo, Integer> finalResult;
     double rateOfReturn;
 
-
     private GameResult() {
     }
 

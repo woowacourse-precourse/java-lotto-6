@@ -34,17 +34,25 @@ public class Lotto {
     private void bonusInput() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNum = Console.readLine();
-        while (!checkValidate(bonusNum) || !checkNumInRange(bonusNum)) {
+        while (checkValidate(bonusNum) || checkNumInRange(bonusNum) || bonusDuplicate(bonusNum)) {
             bonusNum = Console.readLine();
         }
         this.bonusNum = Integer.parseInt(bonusNum);
+    }
+
+    private Boolean bonusDuplicate(String num){
+        if(numbers.contains(Integer.parseInt((num)))){
+            System.out.println("[ERROR] 당첨번호와 중복됩니다. 다시 입력해주세요");
+            return true;
+        }
+        return false;
     }
 
     private void numberInput(/*String testnum*/) {
         boolean check = false;
         System.out.println("당첨 번호를 입력해 주세요.");
         String num = Console.readLine();
-        while (!checkNumberUnder7AndNonDuplicate(num)) {
+        while (checkNumberUnder7AndNonDuplicate(num)) {
             num = Console.readLine();
         }
     }
@@ -52,7 +60,7 @@ public class Lotto {
     private void moneyInput(/*int testNum*/) {
         System.out.println("구입금액을 입력해 주세요.");
         String money = Console.readLine();
-        while (!checkValidate(money) || !check1000(money)) {
+        while (checkValidate(money) || check1000(money)) {
             money = Console.readLine();
         }
         int checkedmoney = Integer.parseInt(money);
@@ -65,14 +73,14 @@ public class Lotto {
     private Boolean checkNumberUnder7AndNonDuplicate(String num) {
         List<Integer> checkNubmer = new ArrayList<>();
         for (String i : num.split(",")) {
-            if (checkValidate(i) == false) return false;
-            if (checkNumInRange(i) == false) return false;
+            if (checkValidate(i)) return true;
+            if (checkNumInRange(i)) return true;
             checkNubmer.add(Integer.parseInt(i));
         }
-        if (checkNumberSize(checkNubmer) == false) return false;
-        if (checkDuplicate(checkNubmer) == false) return false;
+        if (checkNumberSize(checkNubmer)) return true;
+        if (checkDuplicate(checkNubmer)) return true;
         numbers = checkNubmer;
-        return true;
+        return false;
     }
 
     private Boolean checkDuplicate(List<Integer> numbers) {
@@ -80,26 +88,26 @@ public class Lotto {
         for (Integer i : numbers) {
             if (!set.add(i)) {
                 System.out.println("[ERROR] 중복 번호가 있습니다. 다시 입력해주세요");
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     private Boolean checkNumberSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             System.out.println("[ERROR] 로또 번호는 6자리여야 합니다. 다시 입력해주세요");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     private Boolean check1000(String num) {
         if (Integer.parseInt(num) % 1000 != 0) {
             System.out.println("[ERROR] 급액은 1000단위여야 합니다. 다시 입력해주세요.");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     private Boolean checkValidate(String num) {
@@ -107,18 +115,18 @@ public class Lotto {
             int number = Integer.parseInt(num);
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 로또 또는 보너스 번호는 숫자여야 합니다. 다시 입력해주세요");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     private Boolean checkNumInRange(String num) {
         int number = Integer.parseInt(num);
         if (number < 1 || number > 45) {
             System.out.println("[ERROR] 로또 또는 보너스 번호는 1과 45 사이여야 합니다.다시 입력해주세요");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     private void generateLotto(int count) {

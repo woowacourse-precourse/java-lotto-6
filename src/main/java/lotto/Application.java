@@ -11,7 +11,6 @@ import java.util.Map;
 import static lotto.enums.LottoConfig.*;
 
 public class Application {
-
     private final Output output;
     private final Input input;
     private final Analyzer analyzer;

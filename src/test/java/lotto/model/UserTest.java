@@ -53,4 +53,13 @@ public class UserTest {
 
         assertThat(userMoney).isEqualTo(Integer.parseInt(money.getMoney()));
     }
+
+    @Test
+    @DisplayName("수익액과 사용한 돈으로 정확한 수익율이 나오는지 테스트")
+    void testCalculateProfit() {
+        double profit = user.calculateProfit(user.getMoney());
+        double roundProfit = Math.round(profit);
+
+        assertThat(roundProfit).isEqualTo(788750.0);
+    }
 }

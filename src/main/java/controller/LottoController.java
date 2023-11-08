@@ -13,18 +13,22 @@ import view.OutputView;
 
 public class LottoController {
     public static void runLottoGame() {
-        long userPayment = UserInput.getUserPayment();
-        long ticketsCount = Lotto.countLottoTickets(userPayment);
-        OutputView.printNumberOfLottoTickets(userPayment);
-        List<Lotto> totalLottos = Lotto.generateTotalLottoList(ticketsCount);
-        printAllLottoTickets(totalLottos);
-        Lotto winningNumbers = UserInput.getWinningNumbers();
-        double earningsRate = Result.calculateEarningsRate(userPayment);
-        int bonusNumber = UserInput.getBonusNumber(winningNumbers);
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-        System.out.println(Result.calculatePrize());
-        Result result = calculateResult(totalLottos, winningLotto);
-        printResult(result, earningsRate);
+        try {
+            long userPayment = UserInput.getUserPayment();
+            long ticketsCount = Lotto.countLottoTickets(userPayment);
+            OutputView.printNumberOfLottoTickets(userPayment);
+            List<Lotto> totalLottos = Lotto.generateTotalLottoList(ticketsCount);
+            printAllLottoTickets(totalLottos);
+            Lotto winningNumbers = UserInput.getWinningNumbers();
+            double earningsRate = Result.calculateEarningsRate(userPayment);
+            int bonusNumber = UserInput.getBonusNumber(winningNumbers);
+            WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+            System.out.println(Result.calculatePrize());
+            Result result = calculateResult(totalLottos, winningLotto);
+            printResult(result, earningsRate);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+        }
     }
 
     private static void printAllLottoTickets(List<Lotto> totalLottos) {

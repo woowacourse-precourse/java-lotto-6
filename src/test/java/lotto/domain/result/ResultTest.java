@@ -1,10 +1,10 @@
 package lotto.domain.result;
 
-import static lotto.domain.result.Grade.FIFTH;
-import static lotto.domain.result.Grade.FIRST;
-import static lotto.domain.result.Grade.FOURTH;
-import static lotto.domain.result.Grade.SECOND;
-import static lotto.domain.result.Grade.THIRD;
+import static lotto.domain.grade.Grade.FIFTH;
+import static lotto.domain.grade.Grade.FIRST;
+import static lotto.domain.grade.Grade.FOURTH;
+import static lotto.domain.grade.Grade.SECOND;
+import static lotto.domain.grade.Grade.THIRD;
 import static lotto.utils.LottoConstant.PROFIT_MULTIPLY;
 import static lotto.utils.LottoConstant.PURCHASE_AMOUNT_UNIT;
 import static lotto.view.write.OutputMessage.LOTTO_PROFIT_MESSAGE;
@@ -15,8 +15,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
-import lotto.domain.number.Lotto;
-import lotto.domain.number.Winning;
+import lotto.domain.grade.GradeCount;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.winning.Winning;
 import lotto.service.LottoOutputWriter;
 import lotto.view.write.OutputView;
 import org.junit.jupiter.api.AfterEach;

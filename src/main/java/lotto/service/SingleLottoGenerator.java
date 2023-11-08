@@ -6,7 +6,7 @@ import static lotto.utils.LottoConstant.LOTTO_START_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import lotto.domain.number.Lotto;
+import lotto.domain.lotto.Lotto;
 
 public class SingleLottoGenerator {
 

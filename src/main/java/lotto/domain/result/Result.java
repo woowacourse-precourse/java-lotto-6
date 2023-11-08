@@ -2,8 +2,9 @@ package lotto.domain.result;
 
 import java.math.BigDecimal;
 import java.util.List;
-import lotto.domain.number.Lotto;
-import lotto.domain.number.Winning;
+import lotto.domain.grade.Grade;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.winning.Winning;
 import lotto.service.LottoOutputWriter;
 
 public class Result {

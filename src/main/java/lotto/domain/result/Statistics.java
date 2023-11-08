@@ -2,6 +2,8 @@ package lotto.domain.result;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.grade.Grade;
+import lotto.domain.grade.GradeCount;
 import lotto.service.LottoOutputWriter;
 
 public class Statistics {

@@ -2,6 +2,8 @@ package lotto.domain.result;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.domain.grade.Grade;
+import lotto.domain.grade.GradeCount;
 import org.junit.jupiter.api.Test;
 
 class GradeCountTest {

@@ -1,9 +1,10 @@
-package lotto.domain.number;
+package lotto.domain.winning;
 
 import static lotto.utils.LottoConstant.LOTTO_NUMBER_COUNT;
 
 import java.util.List;
-import lotto.domain.result.Grade;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.grade.Grade;
 
 public class Winning {
 
@@ -43,7 +44,7 @@ public class Winning {
         if (lottoNumbers.contains(bonusNumber)) {
             return 1;
         }
-        
+
         return 0;
     }
 }

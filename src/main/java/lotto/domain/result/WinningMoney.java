@@ -1,6 +1,7 @@
 package lotto.domain.result;
 
 import java.math.BigDecimal;
+import lotto.domain.grade.GradeCount;
 
 public class WinningMoney {
 

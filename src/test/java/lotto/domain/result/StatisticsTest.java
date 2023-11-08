@@ -1,15 +1,17 @@
 package lotto.domain.result;
 
-import static lotto.domain.result.Grade.FIFTH;
-import static lotto.domain.result.Grade.FIRST;
-import static lotto.domain.result.Grade.THIRD;
-import static lotto.domain.result.Grade.values;
+import static lotto.domain.grade.Grade.FIFTH;
+import static lotto.domain.grade.Grade.FIRST;
+import static lotto.domain.grade.Grade.THIRD;
+import static lotto.domain.grade.Grade.values;
 import static lotto.view.write.OutputMessage.LOTTO_STATISTICS_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
+import lotto.domain.grade.Grade;
+import lotto.domain.grade.GradeCount;
 import lotto.service.LottoOutputWriter;
 import lotto.view.write.OutputView;
 import org.junit.jupiter.api.AfterEach;

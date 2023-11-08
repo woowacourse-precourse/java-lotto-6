@@ -2,7 +2,7 @@ package lotto.service;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.domain.number.Lotto;
+import lotto.domain.lotto.Lotto;
 
 public class MultiLottoGenerator {
 

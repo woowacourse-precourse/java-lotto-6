@@ -3,8 +3,8 @@ package lotto.controller;
 import static lotto.utils.LottoConstant.PURCHASE_AMOUNT_UNIT;
 
 import java.util.List;
-import lotto.domain.number.Lotto;
-import lotto.domain.number.Winning;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.winning.Winning;
 import lotto.domain.result.Result;
 import lotto.service.LottoInputReader;
 import lotto.service.LottoOutputWriter;

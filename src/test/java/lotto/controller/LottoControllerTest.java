@@ -10,7 +10,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
-import lotto.domain.result.Grade;
+import lotto.domain.grade.Grade;
 import lotto.service.LottoInputReader;
 import lotto.service.LottoOutputWriter;
 import org.junit.jupiter.api.Test;

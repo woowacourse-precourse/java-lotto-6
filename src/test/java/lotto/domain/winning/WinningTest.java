@@ -1,12 +1,11 @@
-package lotto.domain;
+package lotto.domain.winning;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.domain.number.Lotto;
-import lotto.domain.number.Winning;
-import lotto.domain.result.Grade;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.grade.Grade;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;

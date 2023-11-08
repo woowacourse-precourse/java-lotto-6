@@ -12,8 +12,8 @@ import static lotto.view.write.OutputMessage.LOTTO_STATISTICS_MESSAGE;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.domain.number.Lotto;
-import lotto.domain.result.Grade;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.grade.Grade;
 import lotto.view.write.OutputView;
 
 public final class LottoOutputWriter {

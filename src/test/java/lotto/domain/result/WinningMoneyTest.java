@@ -1,10 +1,10 @@
 package lotto.domain.result;
 
-import static lotto.domain.result.Grade.FIFTH;
-import static lotto.domain.result.Grade.FIRST;
-import static lotto.domain.result.Grade.FOURTH;
-import static lotto.domain.result.Grade.SECOND;
-import static lotto.domain.result.Grade.THIRD;
+import static lotto.domain.grade.Grade.FIFTH;
+import static lotto.domain.grade.Grade.FIRST;
+import static lotto.domain.grade.Grade.FOURTH;
+import static lotto.domain.grade.Grade.SECOND;
+import static lotto.domain.grade.Grade.THIRD;
 
 import java.math.BigDecimal;
 import org.assertj.core.api.Assertions;

@@ -3,14 +3,11 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import lotto.Util;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 import lotto.view.OutputView;
 
 public class GameController {
-
-    Util util = new Util();
 
     public void run() {
         InputController inputController = new InputController();
@@ -24,7 +21,7 @@ public class GameController {
         int bonusNumber = inputController.bonusNumber(winNumber);
 
         Map<Rank, Integer> result = getResult(lottos, winNumber, bonusNumber);
-        int totalPrize = calculatePrize(result);
+        int totalPrize = Rank.calculatePrize(result);
         double profitRate = calculateProfitRate(money, totalPrize);
 
         outputView.statistics(result, profitRate);
@@ -73,10 +70,6 @@ public class GameController {
         }
 
         return result;
-    }
-
-    public int calculatePrize(Map<Rank, Integer> result) {
-        return Rank.calculatePrize(result);
     }
 
     public double calculateProfitRate(int cost, int totalPrize) {

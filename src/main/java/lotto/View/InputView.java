@@ -9,6 +9,7 @@ public class InputView {
     private final static String INPUT_LOTTO_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private final static String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private List<Integer> winningNumberList;
+
     public static String inputLottoPurchaseAmount() {
 
         System.out.println(INPUT_LOTTO_PURCHASE_AMOUNT_MESSAGE);

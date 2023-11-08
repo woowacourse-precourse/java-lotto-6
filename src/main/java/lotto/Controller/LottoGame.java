@@ -27,7 +27,6 @@ public class LottoGame {
     private static CompareResult compareResult;
 
     public void LottoGameRun() {
-
         int lottoPurchaseCount = inputPurchaseAmount();
         lottoList = makeLottoList(lottoPurchaseCount);
 
@@ -124,4 +123,3 @@ public class LottoGame {
         return result;
     }
 }
-

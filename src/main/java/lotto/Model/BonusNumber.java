@@ -7,15 +7,14 @@ BonusNumber {
     private static final int MIN_BONUS_NUMBER = 1;
     private static final int MAX_BONUS_NUMBER = 45;
     private final int bonusNumber;
-    public BonusNumber(String bonusNumber)
-    {
+
+    public BonusNumber(String bonusNumber) {
         int bonusNumberInt = validateIsNumeric(bonusNumber);
         validateIsNumberInRange(bonusNumberInt);
         this.bonusNumber = bonusNumberInt;
     }
 
-    public int getBonusNumber()
-    {
+    public int getBonusNumber() {
         return bonusNumber;
     }
 

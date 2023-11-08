@@ -4,17 +4,18 @@ import java.util.List;
 import lotto.Model.BonusNumber;
 import lotto.Model.Lotto;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BonusNumberTest {
-        @Test
+    @Test
     public void validateIsNumeric_InvalidInput_ShouldThrowIllegalArgumentException() {
         String invalidInput = "abc";
 
-
         assertThrows(IllegalArgumentException.class, () -> BonusNumber.validateIsNumeric(invalidInput));
     }
+
     @Test
     public void validateIsNumberInRange_NumberOutOfRange_ShouldThrowIllegalArgumentException() {
         int numberOutOfRange = 0;

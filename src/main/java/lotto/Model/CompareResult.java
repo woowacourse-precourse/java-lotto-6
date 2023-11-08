@@ -10,7 +10,7 @@ public class CompareResult {
         this.bonusNumber = bonusNumber;
     }
 
-    public WinningResult compareNumbers(Lotto purchasedLotto){
+    public WinningResult compareNumbers(Lotto purchasedLotto) {
         int matchCount = purchasedLotto.countMatchNumber(lotto);
         boolean bonusNumberCheck = purchasedLotto.contains(bonusNumber);
 

@@ -41,6 +41,3 @@ public class OutputView {
         System.out.println(TOTAL_PROFIT_RATE_MESSAGE + String.format("%.1f", profitRate) + PERCENT_STATEMENT_MESSAGE);
     }
 }
-
-
-

@@ -1,8 +1,10 @@
 package lotto;
 
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
+
 import lotto.Model.LottoPurchaseAmount;
 
 public class PurchaseAmountTest {
@@ -24,7 +26,7 @@ public class PurchaseAmountTest {
     @Test
     void check_NotDividedThousandInput() {
         int notDividedThousand = 10005;
-        assertThatThrownBy(() -> LottoPurchaseAmount.validateFitPurchaseAmountCondition(notDividedThousand ))
+        assertThatThrownBy(() -> LottoPurchaseAmount.validateFitPurchaseAmountCondition(notDividedThousand))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

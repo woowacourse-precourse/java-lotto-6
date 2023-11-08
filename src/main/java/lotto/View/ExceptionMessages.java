@@ -12,43 +12,40 @@ public class ExceptionMessages {
     private final static String PURCHASE_AMOUNT_TYPE_ERROR_MESSAGE = "[ERROR] 숫자로 이루어진 값을 입력해주세요";
     private final static String PURCHASE_AMOUNT_RANGE_ERROR_MESSAGE = "[ERROR] 1000원 이상의 1000원 단위의 올바른 금액을 입력해주세요";
 
-    public static void lottoNumberRangeError()
-    {
+    public static void lottoNumberRangeError() {
         System.out.println(LOTTO_NUMBER_RANGE_ERROR_MESSAGE);
     }
 
-    public static void lottoNumberDuplicateError()
-    {
+    public static void lottoNumberDuplicateError() {
         System.out.println(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
     }
 
-    public static void lottoNumberTypeError()
-    {
+    public static void lottoNumberTypeError() {
         System.out.println(LOTTO_NUMBER_TYPE_ERROR_MESSAGE);
     }
 
-    public static void lottoNumberCountError()
-    {
+    public static void lottoNumberCountError() {
         System.out.println(LOTTO_NUMBER_COUNT_ERROR_MESSAGE);
     }
 
-    public static void bonusNumberDuplicateError()
-    {
+    public static void bonusNumberDuplicateError() {
         System.out.println(BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE);
     }
 
-    public static void bonusNumberTypeError()
-    {
+    public static void bonusNumberTypeError() {
         System.out.println(BONUS_NUMBER_TYPE_ERROR_MESSAGE);
     }
 
-    public static void bonusNumberRangeError()
-    {
+    public static void bonusNumberRangeError() {
         System.out.println(BONUS_NUMBER_RANGE_ERROR_MESSAGE);
     }
 
-    public static void purchaseAmountTypeError(){System.out.println(PURCHASE_AMOUNT_TYPE_ERROR_MESSAGE);}
+    public static void purchaseAmountTypeError() {
+        System.out.println(PURCHASE_AMOUNT_TYPE_ERROR_MESSAGE);
+    }
 
-    public static void purchaseAmountRangeError(){System.out.println(PURCHASE_AMOUNT_RANGE_ERROR_MESSAGE);}
+    public static void purchaseAmountRangeError() {
+        System.out.println(PURCHASE_AMOUNT_RANGE_ERROR_MESSAGE);
+    }
 
 }

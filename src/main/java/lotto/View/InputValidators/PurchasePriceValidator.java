@@ -4,8 +4,16 @@ import lotto.Model.Enums.ErrorMessages;
 
 public class PurchasePriceValidator extends InputValidator{
     private int validatedPurchasePrice;
-    public PurchasePriceValidator() throws IllegalArgumentException{
-        validatePurchasePrice(super.userInput);
+    public PurchasePriceValidator(){
+        while (true){
+            try{
+                super.userInputReadLine();
+                validatePurchasePrice(super.userInput);
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
     public int returnValidatedPrice(){
         return validatedPurchasePrice;

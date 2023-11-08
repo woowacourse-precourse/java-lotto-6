@@ -1,5 +1,6 @@
 package lotto.Model.Domain;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -9,9 +10,6 @@ public class Lotto{
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-    }
-    public void sortLottoNumbersAscending(){
-        numbers.sort(Comparator.naturalOrder());
     }
     @Override
     public String toString(){

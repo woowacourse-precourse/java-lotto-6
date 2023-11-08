@@ -19,11 +19,5 @@ public class DrawTicketController extends Controller {
         for (int i=0; i<ticketQuantity; i++){
             lotteryTickets.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
-        sortLottosAscending(lotteryTickets);
-    }
-    private void sortLottosAscending(List<Lotto> lottos){
-        for (Lotto lotto : lottos){
-            lotto.sortLottoNumbersAscending();
-        }
     }
 }

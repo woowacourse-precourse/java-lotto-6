@@ -9,8 +9,16 @@ import java.util.List;
 public class WinningNumberValidator extends InputValidator{
     private List<Integer> validatedWinningNumber;
 
-    public WinningNumberValidator() throws IllegalArgumentException{
-        validateWinningNumber(super.userInput);
+    public WinningNumberValidator(){
+        while (true){
+            try{
+                super.userInputReadLine();
+                validateWinningNumber(super.userInput);
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
     public List<Integer> returnValidatedWinningNumber(){
         return validatedWinningNumber;

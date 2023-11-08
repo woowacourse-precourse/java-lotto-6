@@ -65,7 +65,7 @@ public class ResultController extends Controller{
             int value = entry.getValue();
             Prices price = Prices.valueOf(place);
             totalPrize += price.intValue() * value;
-        }System.out.println(totalPrize);
+        }
         return totalPrize;
     }
 }

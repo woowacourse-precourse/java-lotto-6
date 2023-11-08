@@ -27,7 +27,7 @@ public class Customer {
         this.prize = prize;
     }
     public double calculateRateOfReturn(){
-        double rawRate = prize / purchasePrice;
-        return Math.floor((rawRate * 1000) + 0.5);
+        double rawRate = (double) prize / (double) purchasePrice;
+        return Math.floor((rawRate * 1000) + 0.5) / 1000;
     }
 }

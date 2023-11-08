@@ -44,8 +44,4 @@ public class LottoBonusNumber {
         }
         return false;
     }
-
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
 }

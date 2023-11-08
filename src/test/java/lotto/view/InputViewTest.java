@@ -4,7 +4,7 @@ import static lotto.constants.Message.CONTAINS_WHITESPACE;
 import static lotto.constants.Message.ENDS_WITH_DELIMITER;
 import static lotto.constants.Message.INVALID_NUMBER_FORMAT;
 import static lotto.constants.Message.INVALID_PURCHASE_AMOUNT;
-import static lotto.constants.Message.NEGATIVE_NUMBER;
+import static lotto.constants.Message.ZERO_OR_NEGATIVE_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -42,12 +42,20 @@ public class InputViewTest {
                 .hasMessageContaining(INVALID_NUMBER_FORMAT);
     }
 
+    @DisplayName("0인 구입 금액을 입력하면 예외가 발생한다.")
+    @Test
+    public void testInvalidPurchaseAmountWithZero() {
+        assertThatThrownBy(() -> inputView.validatePurchaseAmount("0"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ZERO_OR_NEGATIVE_NUMBER);
+    }
+
     @DisplayName("음수인 구입 금액을 입력하면 예외가 발생한다.")
     @Test
     public void testInvalidPurchaseAmountWithNegative() {
         assertThatThrownBy(() -> inputView.validatePurchaseAmount("-8000"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NEGATIVE_NUMBER);
+                .hasMessageContaining(ZERO_OR_NEGATIVE_NUMBER);
     }
 
     @DisplayName("1000원 단위가 아닌 구입 금액을 입력하면 예외가 발생한다.")
@@ -93,6 +101,6 @@ public class InputViewTest {
     public void testInvalidNumbersWithNegative() {
         assertThatThrownBy(() -> inputView.validateNumbers("1,2,3,4,-5,6"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NEGATIVE_NUMBER);
+                .hasMessageContaining(ZERO_OR_NEGATIVE_NUMBER);
     }
 }

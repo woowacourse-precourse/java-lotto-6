@@ -19,7 +19,7 @@ public class Message {
     /* error messages */
     public static final String CONTAINS_WHITESPACE = errorMessage("공백은 입력할 수 없습니다.");
     public static final String INVALID_NUMBER_FORMAT = errorMessage("숫자만 입력 가능합니다.");
-    public static final String NEGATIVE_NUMBER = errorMessage("음수는 입력할 수 없습니다.");
+    public static final String ZERO_OR_NEGATIVE_NUMBER = errorMessage("0 또는 음수는 입력할 수 없습니다.");
     public static final String INVALID_PURCHASE_AMOUNT = errorMessage("로또 구입 금액은 %d원 단위로 입력 가능합니다.",
             MINIMUM_LOTTO_PRICE_UNIT);
     public static final String ENDS_WITH_DELIMITER = errorMessage("구분자(,)로 끝날 수 없습니다.");

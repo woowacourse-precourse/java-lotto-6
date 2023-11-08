@@ -11,7 +11,7 @@ import static lotto.constants.Message.INPUT_PURCHASE_AMOUNT;
 import static lotto.constants.Message.INPUT_WINNING_LOTTO;
 import static lotto.constants.Message.INVALID_NUMBER_FORMAT;
 import static lotto.constants.Message.INVALID_PURCHASE_AMOUNT;
-import static lotto.constants.Message.NEGATIVE_NUMBER;
+import static lotto.constants.Message.ZERO_OR_NEGATIVE_NUMBER;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
@@ -112,7 +112,7 @@ public class InputView {
     private void validateInputIsPositiveNumber(String input) {
         int purchaseAmount = Integer.parseInt(input);
         if (purchaseAmount < MINIMUM_LOTTO_NUMBER) {
-            throw new IllegalArgumentException(NEGATIVE_NUMBER);
+            throw new IllegalArgumentException(ZERO_OR_NEGATIVE_NUMBER);
         }
     }
 

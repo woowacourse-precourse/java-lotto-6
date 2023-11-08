@@ -14,6 +14,7 @@ public class Lotto extends InputNumbers {
 
     private void validate(List<Integer> numbers) {
         checkSize(numbers);
+        numbers.forEach(this::checkBoundary);
         checkDuplication(numbers);
     }
 

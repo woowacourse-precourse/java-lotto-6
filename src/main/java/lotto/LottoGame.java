@@ -73,7 +73,7 @@ public class LottoGame {
 
     private LottoResultWinners findWinner(Lottos lottos, Lotto winnigNumbers, Integer bonusNumber) {
         LottoResultWinners lottoResultWinners =
-                LottoResultWinners.findWinnerOfLotto(lottos, winnigNumbers, bonusNumber);
+                Judge.findWinnerOfLotto(lottos, winnigNumbers, bonusNumber);
         return lottoResultWinners;
     }
 

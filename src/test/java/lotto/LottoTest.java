@@ -139,7 +139,7 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
         Lotto winning = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Integer bonus = 7;
-        LottoResult lottoResult = LottoResultWinners.compareLottoToWinningNumber(lotto, winning, bonus);
+        LottoResult lottoResult = Judge.compareLottoToWinningNumber(lotto, winning, bonus);
         assertThat(lottoResult.getNumberOfMatch()).isEqualTo(Rank.SIX_MATCH.getNumberOfMatch());
     }
 
@@ -149,7 +149,7 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
         Lotto winning = new Lotto(List.of(1,2,3,4,5,10));
         Integer bonus = 6;
-        LottoResult lottoResult = LottoResultWinners.compareLottoToWinningNumber(lotto, winning, bonus);
+        LottoResult lottoResult = Judge.compareLottoToWinningNumber(lotto, winning, bonus);
         assertThat(lottoResult.getNumberOfMatch()).isEqualTo(Rank.FIVE_MATCH_BONUS.getNumberOfMatch());
         assertThat(lottoResult.getBonus()).isEqualTo(Rank.FIVE_MATCH_BONUS.getBonus());
     }
@@ -160,7 +160,7 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
         Lotto winning = new Lotto(List.of(1, 2, 3, 4, 5, 10));
         Integer bonus = 10;
-        LottoResult lottoResult = LottoResultWinners.compareLottoToWinningNumber(lotto, winning, bonus);
+        LottoResult lottoResult = Judge.compareLottoToWinningNumber(lotto, winning, bonus);
         assertThat(lottoResult.getNumberOfMatch()).isEqualTo(Rank.FIVE_MATCH.getNumberOfMatch());
         assertThat(lottoResult.getBonus()).isNotEqualTo(Rank.FIVE_MATCH_BONUS.getBonus());
 
@@ -174,7 +174,7 @@ class LottoTest {
         Lotto winning = new Lotto(List.of(1, 2, 3, 43, 44, 45));
         Integer bonus = 7;
 
-        LottoResult lottoResult = LottoResultWinners.compareLottoToWinningNumber(lotto,winning,bonus);
+        LottoResult lottoResult = Judge.compareLottoToWinningNumber(lotto,winning,bonus);
         lottoResultWinners.add(lottoResult);
         assertThat(lottoResultWinners.getNumberOfAllWinner()).isEqualTo(1);
     }
@@ -187,7 +187,7 @@ class LottoTest {
         Lotto winning = new Lotto(List.of(1, 2, 42, 43, 44, 45));
         Integer bonus = 7;
 
-        LottoResult lottoResult = LottoResultWinners.compareLottoToWinningNumber(lotto,winning,bonus);
+        LottoResult lottoResult = Judge.compareLottoToWinningNumber(lotto,winning,bonus);
         lottoResultWinners.add(lottoResult);
         assertThat(lottoResultWinners.getNumberOfAllWinner()).isEqualTo(0);
 

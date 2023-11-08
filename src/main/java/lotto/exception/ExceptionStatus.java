@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.exception;
 
 public enum ExceptionStatus {
     // 공통 사용자 입력 예외

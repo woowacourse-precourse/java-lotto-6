@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.exception.ExceptionStatus;
 import lotto.utils.StringValidator;
 
 public class Lotto {

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.exception.ExceptionStatus;
 import lotto.utils.StringValidator;
 
 public class BonusNumber {

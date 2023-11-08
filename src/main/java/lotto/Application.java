@@ -1,3 +1,5 @@
+package lotto;
+
 import static controller.LottoController.buyLotto;
 import static controller.LottoController.lottoMachine;
 

@@ -74,8 +74,8 @@ public class WinningNumbersValidator {
 
     public static void winningNumberUnique(List<String> winningSixNumbers) {
         Set<String> uniqueWinningNumbers = new HashSet<>();
-        for (String name : winningSixNumbers) {
-            if (!uniqueWinningNumbers.add(name)) {
+        for (String number : winningSixNumbers) {
+            if (!uniqueWinningNumbers.add(number)) {
                 throw new IllegalArgumentException("[ERROR] 중복된 숫자를 사용하면 안됩니다.");
             }
         }

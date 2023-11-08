@@ -14,7 +14,8 @@ public class Base_Func {
         try {
             price = Integer.parseInt(tmp_input);
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 입력 오류 입니다.");
+            System.out.println("[ERROR] 입력 오류 입니다.\n");
+            Input_Purchase_Price();
         }
         return price;
     }
@@ -22,10 +23,11 @@ public class Base_Func {
     public static int Purchase_Lotto_Number(int price) {
         try {
             if (price % 1000 != 0) {
-                throw new IllegalStateException("[ERROR] 로또 금액이 1000으로 나누어 지지 않습니다.");
+                throw new IllegalStateException("[ERROR] 로또 금액이 1000으로 나누어 지지 않습니다.\n");
             }
         }catch(IllegalStateException e){
             System.out.println(e.getMessage());
+
         }
 
         return price / 1000;
@@ -85,14 +87,16 @@ public class Base_Func {
         money += Jackpot_Money.JP_6.get_money() *Jackpot_list[6];
         money += Jackpot_Money.JP_7.get_money() *Jackpot_list[7];
         if(money == 0){
-            System.out.println("총 수익률은 "+ 0 +"%입니다.");
+            System.out.println("총 수익률은 0.0%입니다.");
             return;
         }
 
         double rate = ((double) money) /((double)purchase_num)*100;
-        System.out.println("총 수익률은 "+ Earning_Rate_Float_to_String(rate) +"%입니다.");
+        DecimalFormat df = new DecimalFormat("0.0");
+        System.out.println("총 수익률은 "+ df.format(rate) +"%입니다.");
     }
 
+    /* 문제를 잘못 읽고 구현한 부분 이지만 나중에 한번 리마인드를 위해 남겨 둔다.
     public static String Earning_Rate_Float_to_String(double rate) {
         DecimalFormat df = new DecimalFormat("0.00");
         String tmp_str = df.format(rate);
@@ -104,5 +108,5 @@ public class Base_Func {
             }
         }
         return tmp_str;
-    }
+    }*/
 }

@@ -15,6 +15,7 @@
     - 당첨번호 입력오류
       - 1~45 사이의 숫자가 아니다.  
       - 문자나 공백이 입력 되었다. 
+    - 수익률 계산할 때 0을 나누는 오류
    
 ## 📮클래스와 Method📮
 - Base_Func 이름의 클래스를 만든다. Base_Func 클래스에는 Application.java에서 사용할 기본 입력,출력 함수 들의 모임이다.
@@ -24,8 +25,8 @@
   4. Input_Win_Lotto_List() -> 당첨 로또번호 입력 받아 List<Integer> 타입으로 리턴
   5. Input_Win_Lotto_Bonus_number() 
   6. Print_Jackpot_List() -> 당첨 내역 출력
-  7. Print_Earning_Rate() -> 수익률을 계산해서 수익률 출력.
-  8. Earning_Rate_Float_to_String() -> 수익률에서 소수점 부분 출력 처리. 62.50% -> 62.5% 처럼 수정.
+  7. Print_Earning_Rate() -> 수익률을 계산해서 수익률 출력. 문제를 잘못 읽었다. 문제 제시는 소수점 둘째 자리에서 반올림 하는것.
+  
 
 - Application.java 클래스
   1. main()

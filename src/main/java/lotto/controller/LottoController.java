@@ -6,15 +6,15 @@ import lotto.domain.user.LottoCount;
 import lotto.domain.user.UserLotto;
 import lotto.domain.win.Bonus;
 import lotto.domain.win.WinLotto;
-import lotto.generator.RandomNumberGenerator;
+import lotto.generator.NumberGenerator;
 import lotto.view.Input;
 import lotto.view.Output;
 
 public class LottoController {
-    private final RandomNumberGenerator randomNumberGenerator;
+    private final NumberGenerator numberGenerator;
 
-    public LottoController(RandomNumberGenerator randomNumberGenerator) {
-        this.randomNumberGenerator = randomNumberGenerator;
+    public LottoController(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
     }
 
     public void play() {
@@ -35,7 +35,7 @@ public class LottoController {
 
     private UserLotto setUserLotto(LottoCount lottoCount) {
         UserLotto userLotto = new UserLotto(lottoCount);
-        userLotto.create(randomNumberGenerator);
+        userLotto.create(numberGenerator);
         Output.userLotto(userLotto);
         return userLotto;
     }

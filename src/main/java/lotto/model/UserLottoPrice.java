@@ -17,6 +17,9 @@ public class UserLottoPrice {
     public void setLottoAmount(int price){
         lottoAmount = price / LOTTO_ONE_PRICE;
     }
+    public int getPrice(){
+        return price;
+    }
     public int getLottoAmount(){
         return lottoAmount;
     }

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
 
-public class WinningNumberInputView implements InputViewable, Supplier<String> {
+public class WinningNumberInputView implements LottoInputViewable, Supplier<String> {
     @Override
     public String get() {
         return receiveInput();

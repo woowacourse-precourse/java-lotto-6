@@ -5,7 +5,7 @@ import static lotto.view.constant.ViewConstant.InputViewConstant.InputErrorMessa
 
 import java.util.function.Supplier;
 
-public class BonusNumberInputView implements InputViewable, Supplier<Integer> {
+public class BonusNumberInputView implements LottoInputViewable, Supplier<Integer> {
     private final String winningNumber;
 
     public BonusNumberInputView(String winningNumber) {

@@ -7,22 +7,22 @@ import static lotto.view.constant.ViewConstant.OutputViewConstant.WINNING_NUMBER
 import java.util.List;
 import java.util.function.Supplier;
 import lotto.view.BonusNumberInputView;
-import lotto.view.OutputView;
+import lotto.view.LottoOutputView;
 import lotto.view.PurchaseAmountInputView;
 import lotto.view.WinningNumberInputView;
 
 public class LottoViewController {
-    private final OutputView outputView = new OutputView();
+    private final LottoOutputView lottoOutputView = new LottoOutputView();
 
     private <T> T retryInputOnException(final String order, final Supplier<T> supplier) {
         try {
-            outputView.request(order);
+            lottoOutputView.request(order);
             final T result = supplier.get();
 
-            outputView.printNewLine();
+            lottoOutputView.printNewLine();
             return result;
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+            lottoOutputView.printErrorMessage(e.getMessage());
             return retryInputOnException(order, supplier);
         }
     }
@@ -43,11 +43,11 @@ public class LottoViewController {
     }
 
     void printResultMessage(final List<Long> winCounts, final double earningRate) {
-        outputView.printStatistics(winCounts);
-        outputView.printEarningRate(earningRate);
+        lottoOutputView.printStatistics(winCounts);
+        lottoOutputView.printEarningRate(earningRate);
     }
 
     void printUserLotto(final long lottoCount, final String allLotto) {
-        outputView.printUserLotto(lottoCount, allLotto);
+        lottoOutputView.printUserLotto(lottoCount, allLotto);
     }
 }

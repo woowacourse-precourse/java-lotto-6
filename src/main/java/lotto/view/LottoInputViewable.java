@@ -8,7 +8,7 @@ import static lotto.view.constant.ViewConstant.InputViewConstant.ONLY_CONTAINS_N
 
 import camp.nextstep.edu.missionutils.Console;
 
-public interface InputViewable {
+public interface LottoInputViewable {
     void validate(String input);
 
     default String receiveInput() {

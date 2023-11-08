@@ -9,7 +9,7 @@ import static lotto.view.constant.ViewConstant.InputViewConstant.ZERO;
 
 import java.util.function.Supplier;
 
-public class PurchaseAmountInputView implements InputViewable, Supplier<Long> {
+public class PurchaseAmountInputView implements LottoInputViewable, Supplier<Long> {
     @Override
     public Long get() {
         return Long.parseLong(receiveInput());

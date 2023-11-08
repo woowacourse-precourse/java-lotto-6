@@ -1,6 +1,7 @@
 package lotto.Controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.Service.LottoInitService;
 import lotto.Service.LottoService;
 import lotto.domain.Lottos;
@@ -13,6 +14,8 @@ public class LottoController {
     public void run() {
         Integer amount = getUserAmount();
         Lottos lottos = printLottos(amount);
+
+        getWinningNumbers();
     }
 
     private Integer getUserAmount() {
@@ -32,6 +35,36 @@ public class LottoController {
         System.out.println();
         lottoService.printLottos(lottos);
         return lottos;
+    }
+
+//    private WinningNumber getWinningNumber() {
+//        List<Integer> winningNumbers = getWinningNumbers();
+//    }
+
+    private List<Integer> getWinningNumbers() {
+        System.out.println();
+
+        while (true) {
+            try {
+                InputView.printGetWinningNumbers();
+                return lottoInitService.inputWinningNumberToList(userInput());
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
+
+    private Integer getBonusNumber() {
+        System.out.println();
+
+        while (true) {
+            try {
+                InputView.printGetBonusNumber();
+                return lottoInitService.inputBonusNumberToInteger(userInput());
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
     }
 
     private String userInput() {

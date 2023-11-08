@@ -38,7 +38,7 @@ public class LottoArgumentResolver {
 
         Winning winning = Winning.of(winNumbers, bonusNumber);
 
-        return LottoArgument.of(lottoSize, lottos, winning);
+        return LottoArgument.of(lottos, winning);
     }
 
     protected int readLottoSize() {

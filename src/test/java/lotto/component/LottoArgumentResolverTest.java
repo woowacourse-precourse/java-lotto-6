@@ -144,7 +144,6 @@ class LottoArgumentResolverTest {
         LottoArgument argument = resolver.resolve();
 
         //Assert
-        assertThat(argument.getLottoSize()).isEqualTo(1);
         assertThat(argument.getLottos()).hasSize(1);
         assertThat(argument.getWinning())
                 .extracting("numbers", "bonusNumber")

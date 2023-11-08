@@ -32,6 +32,8 @@ public class PrizeCalculator {
         return results;
     }
 
+
+
     private int getMatchCount(List<Integer> lottoNumbers) {
         List<Integer> result = lottoNumbers.stream()
                 .filter(lottoNumber -> prizeLotto.getNumbers().stream()

@@ -39,9 +39,14 @@ class MessageContainerTest {
     @Test
     void createRateOfReturnMessage_메서드로_수익률_안내_메시지_생성() {
         double rateOfReturn = 62.5;
-
         String actual = messageContainer.createRateOfReturnMessage(rateOfReturn);
-
         assertThat(actual).isEqualTo("총 수익률은 62.5%입니다.");
+    }
+
+    @Test
+    void getPurchaseQuantityMessage_메서드로_발행한_로또_수량_안내_메시지_생성() {
+        long purchaseQuantity = 1000000000;
+        String actual = messageContainer.getPurchaseQuantityMessage(purchaseQuantity);
+        assertThat(actual).isEqualTo("1000000000개를 구매했습니다.");
     }
 }

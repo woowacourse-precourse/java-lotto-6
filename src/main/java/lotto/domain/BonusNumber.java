@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.view.InputView;
+
 public class BonusNumber {
 
     private int bonusNumber;
@@ -12,4 +14,7 @@ public class BonusNumber {
         return bonusNumber;
     }
 
+    public int readBonusNumber() {
+        return InputView.readBonusNumber();
+    }
 }

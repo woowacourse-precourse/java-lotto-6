@@ -21,7 +21,7 @@ class AmountValidatorTest {
         amountValidator = new AmountValidator();
     }
 
-    @DisplayName("숫자와 쉼표(,) 외에 다른 문자가 입력되면 예외처리를 위해 false를 전달한다.")
+    @DisplayName("숫자 외에 다른 문자가 입력되면 예외처리를 위해 false를 전달한다.")
     @Test
     void validAmountOtherString() {
         boolean result = amountValidator.validate("안녕");

@@ -19,7 +19,6 @@ public class Money {
         if (!isNumeric) {
             throw new IllegalArgumentException();
         }
-
         return Long.parseLong(input);
     }
 

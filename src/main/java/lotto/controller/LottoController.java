@@ -1,32 +1,34 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
-import lotto.domain.PurchasePrice;
+import lotto.domain.WinningCriteria;
+import lotto.domain.WinningDetails;
 import lotto.service.LottoService;
 import lotto.service.PriceService;
 import lotto.view.InputValue;
 import lotto.view.OutputValue;
 
+
+import java.util.Collections;
 import java.util.List;
+
+import static lotto.domain.WinningCriteria.SECOND_PRIZE;
+
 
 public class LottoController {
 
     private LottoService lottoService = new LottoService();
     private PriceService priceService = new PriceService();
 
-    private int lottoCount;
-
     public LottoController() {
         lottoInit();
         lottoProcess();
-//        lottoEnd();
+        lottoEnd();
     }
 
     private void lottoInit() {
 
         purchasePriceInputLogic();
-
-        //lottoService.repeatPurchase(lottoCount);
 
         purchaseLottoNumberOutputLogic();
 
@@ -70,7 +72,9 @@ public class LottoController {
         OutputValue.winningLottoNumbersMessage();
 
         try {
-            lottoService.setWinningLottoNumbers(InputValue.getWinningLottoNumbers());
+            List<Integer> winningLottoNumbers = InputValue.getWinningLottoNumbers();
+            Collections.sort(winningLottoNumbers);
+            lottoService.setWinningLottoNumbers(winningLottoNumbers);
             OutputValue.changeLine();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -94,20 +98,25 @@ public class LottoController {
     }
 
 
+    private void lottoEnd() {
+        WinningDetails winningDetails = lottoService.calculateWinningDetails();
+        priceService.calculateWinningPrice(winningDetails);
 
-//    private void lottoEnd() {
-//
-//        OutputValue.winStatisticsMessage();
-//
-//        lottoService.winStatistics();
-//        List<Integer> placeCounts = lottoService.getWinStatistics();
-//
-//        OutputValue.fifthPlaceMessage(placeCounts.get(4));
-//        OutputValue.fourthPlaceMessage(placeCounts.get(3));
-//        OutputValue.thirdPlaceMessage(placeCounts.get(2));
-//        OutputValue.secondPlaceMessage(placeCounts.get(1));
-//        OutputValue.firstPlaceMessage(placeCounts.get(0));
-//
-//        OutputValue.revenueMessage(lottoService.getRevenue(lottoCount * 1000));
-//    }
+        OutputValue.winStatisticsMessage();
+
+        for (WinningCriteria winningCriteria : WinningCriteria.values()) {
+            if (winningCriteria.getRank() == SECOND_PRIZE.getRank()) {
+                OutputValue.winningLottoSecondPrizeMessage(winningCriteria.getNumberMatch(), winningCriteria.getOutputPrice(),
+                        winningDetails.getWinningCount(winningCriteria.getRank()));
+                continue;
+            }
+            OutputValue.winningLottoResultMessage(winningCriteria.getNumberMatch(), winningCriteria.getOutputPrice(),
+                    winningDetails.getWinningCount(winningCriteria.getRank()));
+        }
+
+        OutputValue.revenueMessage(priceService.getEarningRate());
+    }
+
+    //private void
 }
+

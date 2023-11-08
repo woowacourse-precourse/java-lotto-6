@@ -7,7 +7,6 @@ import lotto.error.Error;
 import lotto.error.Error.ErrorType;
 
 public class LottoTicketGenerator {
-    List<LottoTicket> lottoTickets = new ArrayList<>();
     public int ticketCount;
 
     public LottoTicketGenerator() {
@@ -20,6 +19,7 @@ public class LottoTicketGenerator {
     }
 
     public List<LottoTicket> createLottoTickets() {
+        List<LottoTicket> lottoTickets = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
             lottoTickets.add(createLottoTicket());
         }

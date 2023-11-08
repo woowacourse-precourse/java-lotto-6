@@ -1,5 +1,6 @@
 package lotto.exception;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -11,6 +12,15 @@ public class ExceptionHandler {
         } catch (IllegalArgumentException e) {
             printExceptionMessage(e);
             return handle(function, t);
+        }
+    }
+
+    public static <T, U, R> R handle(BiFunction<T, U, R> function, T t, U u) {
+        try {
+            return function.apply(t, u);
+        } catch (IllegalArgumentException e) {
+            printExceptionMessage(e);
+            return handle(function, t, u);
         }
     }
 

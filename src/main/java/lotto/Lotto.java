@@ -8,12 +8,6 @@ import java.util.*;
 import java.util.List;
 
 public class Lotto {
-
-    private static final int FIRST_WINNING_PRICE = 2000000000;
-    private static final int SECOND_WINNING_PRICE = 30000000;
-    private static final int THIRD_WINNING_PRICE = 1500000;
-    private static final int FOURTH_WINNING_PRICE = 50000;
-    private static final int FIFTH_WINNING_PRICE = 5000;
     List<Integer> numbers = new ArrayList<>();
     List<List<Integer>> storedNumber = new ArrayList<>();
     int chance;
@@ -113,6 +107,10 @@ public class Lotto {
     private Boolean checkValidate(String num) {
         try {
             int number = Integer.parseInt(num);
+            if(number<0){
+                System.out.println("[ERROR] 양수를 입력해주세요.");
+                return true;
+            }
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 로또 또는 보너스 번호는 숫자여야 합니다. 다시 입력해주세요");
             return true;
@@ -184,7 +182,24 @@ public class Lotto {
     }
 
     private void calculateRateofReturn() {
-        rateOfReturn = (float) (FIRST_WINNING_PRICE * counts[6] + THIRD_WINNING_PRICE * counts[5] +
-                FOURTH_WINNING_PRICE * counts[4] + FIFTH_WINNING_PRICE * counts[3] + SECOND_WINNING_PRICE * counts[7]) / (chance * 10);
+        rateOfReturn = (float) (Value.FIRST_WINNING_PRICE.value * counts[6] +
+                Value.THIRD_WINNING_PRICE.value * counts[5] +
+                Value.FOURTH_WINNING_PRICE.value * counts[4] +
+                Value.FIFTH_WINNING_PRICE.value * counts[3] +
+                Value.SECOND_WINNING_PRICE.value * counts[7]) / (chance * 10);
+    }
+
+    public enum Value {
+        FIRST_WINNING_PRICE(2000000000),
+        SECOND_WINNING_PRICE(30000000),
+        THIRD_WINNING_PRICE(1500000),
+        FOURTH_WINNING_PRICE(50000),
+        FIFTH_WINNING_PRICE(5000);
+
+        final private Integer value;
+
+        Value(Integer value){
+            this.value = value;
+        }
     }
 }

@@ -1,6 +1,6 @@
 package lotto;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 public class WinResult {
 
@@ -9,12 +9,12 @@ public class WinResult {
     private Map<Rankings, Integer> winResult;
 
     public WinResult() {
-        winResult = new HashMap<>();
-        winResult.put(Rankings.FIRST, WIN_RESULT_INITIALIZATION);
-        winResult.put(Rankings.SECOND, WIN_RESULT_INITIALIZATION);
-        winResult.put(Rankings.THIRD, WIN_RESULT_INITIALIZATION);
-        winResult.put(Rankings.FOURTH, WIN_RESULT_INITIALIZATION);
+        winResult = new LinkedHashMap<>();
         winResult.put(Rankings.FIFTH, WIN_RESULT_INITIALIZATION);
+        winResult.put(Rankings.FOURTH, WIN_RESULT_INITIALIZATION);
+        winResult.put(Rankings.THIRD, WIN_RESULT_INITIALIZATION);
+        winResult.put(Rankings.SECOND, WIN_RESULT_INITIALIZATION);
+        winResult.put(Rankings.FIRST, WIN_RESULT_INITIALIZATION);
     }
 
     public void setWinResult(Rankings rankings) {

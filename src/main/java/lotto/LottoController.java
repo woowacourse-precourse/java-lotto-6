@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     private final static Integer START = 0;
@@ -18,6 +19,7 @@ public class LottoController {
         showLotto();
         inputLottoNumber();
         aggregateWinResult();
+        showWinResult();
     }
 
     private void buyLotto() {
@@ -63,7 +65,16 @@ public class LottoController {
 
     }
 
-
+    private void showWinResult() {
+        Output.printWinStatistics();
+        Output.printSeperationLine();
+        Map<Rankings, Integer> winResult = this.winResult.getWinResult();
+        Output.printFifthRanking(winResult.get(Rankings.FIFTH));
+        Output.printFourthRanking(winResult.get(Rankings.FOURTH));
+        Output.printThirdRanking(winResult.get(Rankings.THIRD));
+        Output.printSecondRanking(winResult.get(Rankings.SECOND));
+        Output.printFirstRanking(winResult.get(Rankings.FIRST));
+    }
 
 
 }

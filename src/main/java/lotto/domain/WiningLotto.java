@@ -1,5 +1,10 @@
 package lotto.domain;
 
+import static lotto.config.SystemNumberConfig.RANDOM_END;
+import static lotto.config.SystemNumberConfig.RANDOM_START;
+import static lotto.message.ErrorMessage.DUPLICATION_BONUS;
+import static lotto.message.ErrorMessage.NUMBER_RANGE;
+
 import java.util.List;
 
 public class WiningLotto {
@@ -19,14 +24,14 @@ public class WiningLotto {
     }
 
     private void validateRange(int bonus) {
-        if (bonus < 1 || bonus > 45) {
-            throw new IllegalArgumentException("[ERROR] 1과 45 사이의 수를 입력하세요");
+        if (bonus < RANDOM_START.getConfig() || bonus > RANDOM_END.getConfig()) {
+            throw new IllegalArgumentException(NUMBER_RANGE.getErrorMessage());
         }
     }
 
     private void validateBonusDuplication(Lotto winNumber, int bonus) {
         if (winNumber.getNumbers().contains(bonus)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 서로 중복된 숫자가 없어야 합니다.");
+            throw new IllegalArgumentException(DUPLICATION_BONUS.getErrorMessage());
         }
     }
 

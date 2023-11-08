@@ -6,6 +6,7 @@ import static lotto.view.ui.Output.printlnMessageWithNewLine;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.Number;
 import lotto.domain.WinningNumbers;
 import lotto.global.exception.ErrorMessage;
@@ -26,12 +27,12 @@ public class WinningRequestView {
         }
     }
 
-    private static List<Number> parseWinningNumbers(final String winningNumbers) {
+    private static Lotto parseWinningNumbers(final String winningNumbers) {
         try {
-            return Arrays.stream(split(winningNumbers))
+            return Lotto.from(Arrays.stream(split(winningNumbers))
                     .map(Integer::parseInt)
                     .map(Number::valueOf)
-                    .toList();
+                    .toList());
         } catch (NumberFormatException e) {
             throw LottoException.from(ErrorMessage.NOT_NUMBER_ERROR);
         }

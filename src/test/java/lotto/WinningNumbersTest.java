@@ -1,5 +1,6 @@
 package lotto;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -7,65 +8,57 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class WinningNumbersTest {
 
+    private WinningNumbers winningNumbers;
+
+    @BeforeEach
+    public void setWinningNumbers() {
+        winningNumbers = new WinningNumbers();
+    }
+
+
     @Test
-    public void testCreateWinningNumbers() {
-        // 유효한 로또 번호와 보너스 번호를 입력하여 객체 생성
-        WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6", "7");
-
-        // 객체의 메서드를 통해 값을 검증
-        assertEquals(winningNumbers.getNumbers(), List.of(1, 2, 3, 4, 5, 6));
-        assertEquals(winningNumbers.getBonus(), 7);
+    @DisplayName("당첨 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
+    public void 당첨_번호_입력_테스트_1() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            winningNumbers.setNumbers(List.of(1, 2, 3, 4, 5));
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            winningNumbers.setNumbers(List.of(1, 2, 3, 4, 5, 6, 7));
+        });
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"1,2,3, ,5,6", "a,b,c,1,2,3", "", " "})
-    @DisplayName("당첨 번호는 숫자여야 함")
-    public void testCreateWinningNumbersWithInvalidInput1(String numbers) {
+    @Test
+    @DisplayName("당첨 번호가 1~45 사이의 숫자가 아니면 예외가 발생한다.")
+    public void 당첨_번호_입력_테스트_2() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new WinningNumbers(numbers, "8");
+            winningNumbers.setNumbers(List.of(1, 2, 3, 4, 5, 46));
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            winningNumbers.setNumbers(List.of(1, 2, 3, 4, 5, 46));
         });
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5", "1,2,3,4,5,6,7"})
-    @DisplayName("당첨 번호는 6개여야함")
-    public void testCreateWinningNumbersWithInvalidInput2(String numbers) {
+    @ValueSource(ints = {0, 46})
+    @DisplayName("보너스가 1~45 사이의 숫자가 아니면 예외가 발생한다")
+    public void 보너스_번호_입력_테스트_1(int bonus) {
         assertThrows(IllegalArgumentException.class, () -> {
-            new WinningNumbers(numbers, "8");
+            winningNumbers.setNumbers(List.of(1, 2, 3, 4, 5, 6));
+            winningNumbers.setBonus(bonus);
         });
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,46", "0,2,3,4,5,6"})
-    @DisplayName("당첨 번호는 1~45 사이의 숫자여야함")
-    public void testCreateWinningNumbersWithInvalidInput3(String numbers) {
+    @ValueSource(ints = {1, 2, 3})
+    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
+    public void 보너스_번호_입력_테스트_2(int bonus) {
         assertThrows(IllegalArgumentException.class, () -> {
-            new WinningNumbers(numbers, "8");
+            winningNumbers.setNumbers(List.of(1, 2, 3, 4, 5, 6));
+            winningNumbers.setBonus(bonus);
         });
     }
-
-    @ParameterizedTest
-    @ValueSource(strings = {" ", "a"})
-    @DisplayName("당첨 번호는 숫자여야 함")
-    public void testCreateWinningNumbersWithInvalidInput4(String bonus) {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new WinningNumbers("1,2,3,4,5,6", bonus);
-        });
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"0", "46"})
-    @DisplayName("보너스는 1~45 사이의 숫자여야함")
-    public void testCreateWinningNumbersWithInvalidInput5(String bonus) {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new WinningNumbers("1,2,3,4,5,6", bonus);
-        });
-    }
-
-
 }

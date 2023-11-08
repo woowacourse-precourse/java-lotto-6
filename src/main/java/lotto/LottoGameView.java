@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,10 +12,12 @@ public class LottoGameView {
 
     public int inputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT);
-        String input = "";
+        String input;
         input = Console.readLine();
         try {
-            validatePurchaseAmount(input);
+            InputValidator.validateIsNotBlank(input);
+            InputValidator.validateIsNumbers(input);
+            InputValidator.validateIsMultipleOf(input, LOTTERY_PRICE);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             inputPurchaseAmount();
@@ -23,11 +26,33 @@ public class LottoGameView {
         return Integer.parseInt(input);
     }
 
-    private void validatePurchaseAmount(String input) {
-        String trimmed = input.trim();
-        InputValidator.validateIsNotBlank(trimmed);
-        InputValidator.validateIsNumbers(trimmed);
-        InputValidator.validateIsMultipleOf1000(trimmed);
+    public void inputWinningNumbers(WinningNumbers winningNumbers) {
+        System.out.println(INPUT_WINNING_NUMBERS);
+        String numbers = Console.readLine();
+        System.out.println();
+        try {
+            InputValidator.validateIsNotBlank(numbers);
+            String[] split = numbers.split(",");
+            InputValidator.validateIsNumbers(split);
+            List<Integer> list = Arrays.stream(numbers.split(",")).mapToInt(Integer::parseInt).boxed().toList();
+            winningNumbers.setNumbers(list);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputWinningNumbers(winningNumbers);
+        }
+    }
+
+    public void inputBonusNumbers(WinningNumbers winningNumbers) {
+        System.out.println(INPUT_BONUS_NUMBERS);
+        String bonus = Console.readLine();
+        try {
+            InputValidator.validateIsNotBlank(bonus);
+            InputValidator.validateIsNumbers(bonus);
+            winningNumbers.setBonus(Integer.parseInt(bonus));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputBonusNumbers(winningNumbers);
+        }
     }
 
     public void printLotteryAmount(int amount) {
@@ -39,22 +64,6 @@ public class LottoGameView {
             System.out.println(lotto.toString());
         }
         System.out.println();
-    }
-
-    public WinningNumbers inputWinningNumbers() {
-        System.out.println(INPUT_WINNING_NUMBERS);
-        String numbers = Console.readLine();
-        System.out.println();
-        System.out.println(INPUT_BONUS_NUMBERS);
-        String bonus = Console.readLine();
-        WinningNumbers winningNumbers = null;
-        try {
-            winningNumbers = new WinningNumbers(numbers, bonus);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            inputWinningNumbers();
-        }
-        return winningNumbers;
     }
 
     public void printResult(List<Prize> result) {

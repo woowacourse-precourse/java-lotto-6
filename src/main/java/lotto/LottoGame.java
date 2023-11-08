@@ -18,8 +18,12 @@ public class LottoGame {
     public void start() {
         int purchaseAmount = lottoGameView.inputPurchaseAmount();
         int tickets = purchaseAmount / LOTTERY_PRICE;
+        lottoGameView.printLotteryAmount(tickets);
         List<Lotto> lotteries = issueLottery(tickets);
-        WinningNumbers winningNumbers = lottoGameView.inputWinningNumbers();
+        lottoGameView.printLotteries(lotteries);
+        WinningNumbers winningNumbers = new WinningNumbers();
+        lottoGameView.inputWinningNumbers(winningNumbers);
+        lottoGameView.inputBonusNumbers(winningNumbers);
         List<Prize> result = lotteries.stream().map(lotto -> lotto.check(winningNumbers)).toList();
         Long resultSum = result.stream().mapToLong(Prize::getMoney).sum();
         lottoGameView.printResult(result);
@@ -29,14 +33,14 @@ public class LottoGame {
     public List<Lotto> issueLottery(int tickets) {
         List<Lotto> lotteries = new ArrayList<>();
 
-        lottoGameView.printLotteryAmount(tickets);
         for (int i = 0; i < tickets; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTERY_MIN_NUMBER, LOTTERY_MAX_NUMBER, LOTTERY_DIGIT_LENGTH);
-            Lotto lotto = new Lotto(numbers);
-            lotteries.add(lotto);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+                    LOTTERY_MIN_NUMBER,
+                    LOTTERY_MAX_NUMBER,
+                    LOTTERY_DIGIT_LENGTH
+            );
+            lotteries.add(new Lotto(numbers));
         }
-        lottoGameView.printLotteries(lotteries);
-
         return lotteries;
     }
 

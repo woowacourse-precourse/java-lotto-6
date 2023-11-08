@@ -24,8 +24,8 @@ public class InputValidator {
         }
     }
 
-    public static void validateIsMultipleOf1000(String input) {
-        if (Integer.parseInt(input) % 1000 != 0) {
+    public static void validateIsMultipleOf(String input, int target) {
+        if (Integer.parseInt(input) % target != 0) {
             throw new IllegalArgumentException(ERROR_NOT_MULTIPLE_1000);
         }
     }

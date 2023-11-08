@@ -1,25 +1,31 @@
 package lotto.enumeration;
 
 public enum WinningPrize {
-    FIRST(6, 2000000000),
-    SECOND(5, 30000000),
-    THIRD(5, 1500000),
-    FOURTH(4, 50000),
-    FIFTH(3, 5000);
+    FIRST(0, 2000000000, 6),
+    SECOND(1, 30000000, 5),
+    THIRD(2, 1500000, 5),
+    FOURTH(3, 50000, 4),
+    FIFTH(4, 5000, 3);
 
-    private final int count;
+    private final int rank;
     private final int prize;
+    private final int count;
 
-    private WinningPrize(int count, int prize) {
-        this.count = count;
+    private WinningPrize(int rank, int prize, int count) {
+        this.rank = rank;
         this.prize = prize;
+        this.count = count;
     }
 
-    public int getCount() {
-        return count;
+    public int getRank() {
+        return rank;
     }
 
     public int getPrize() {
         return prize;
+    }
+
+    public int getCount() {
+        return count;
     }
 }

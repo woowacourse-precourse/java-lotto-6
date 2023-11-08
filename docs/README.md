@@ -49,7 +49,6 @@
 - [x] 로또 당첨 번호에 보너스 번호가 포함된 경우 
 
 ## 개발 환경
-<div align=center> 
 <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
 <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">

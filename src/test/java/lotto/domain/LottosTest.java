@@ -1,9 +1,10 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.List;
-import lotto.Dto.BoughtLottos;
+import lotto.Dto.BoughtLottosDto;
 import lotto.constant.constants.Prize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,11 +12,11 @@ import org.junit.jupiter.api.Test;
 class LottosTest {
 
     @Test
-    @DisplayName("로또 모음에 로또가 잘 들어가는지 확인")
-    void add() {
-        Lottos lottos = new Lottos();
-        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+    @DisplayName("로또 모음에 생성자 확인")
+    void createNewLottos() {
+        assertThatCode(Lottos::new).doesNotThrowAnyException();
     }
+
 
     @Test
     @DisplayName("로또 모음에 정확한 수의 로또가 들어 갔는지 확인")
@@ -39,16 +40,16 @@ class LottosTest {
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-        BoughtLottos boughtLottos = lottos.toDto();
+        BoughtLottosDto boughtLottosDto = lottos.toDto();
         // then
-        assertThat(boughtLottos.getMyLottos()).isEqualTo(
+        assertThat(boughtLottosDto.getMyLottos()).isEqualTo(
                 List.of(List.of(1, 2, 3, 4, 5, 6),
                         List.of(1, 2, 3, 4, 5, 6),
                         List.of(1, 2, 3, 4, 5, 6)));
     }
 
     @Test
-    @DisplayName("로또 모음,우승 로또가 주어졌을 때 로또 모음에서 우승 로또와 일치하는 갯수를 잘 반환하는지 확인")
+    @DisplayName("로또 모음,우승 로또가 주어졌을 때 로또 모음에서 우승 로또와 일치하는 개수를 잘 반환하는지 확인")
     void Given_LottosAndList_When_AddedThreeLottoAndCaculatedMatched_ThenMatchedNumberIsThree() {
         // given
         List<Integer> list = List.of(1, 2, 3, 4, 5, 6);
@@ -66,7 +67,7 @@ class LottosTest {
     }
 
     @Test
-    @DisplayName("로또 모음,우승 로또,보너스 수가 주어졌을 때 로또 모음에서 우승 로또의 5개 수+보너스 번호가 일치하는 갯수를 잘 반환하는지 확인")
+    @DisplayName("로또 모음,우승 로또,보너스 수가 주어졌을 때 로또 모음에서 우승 로또의 5개 수+보너스 번호가 일치하는 개수를 잘 반환하는지 확인")
     void Given_LottosAndListAndBonusNumber_When_CaculatedMatched_ThenMatchedNumberIsSix() {
         // given
         List<Integer> list = List.of(1, 2, 3, 4, 5, 6);

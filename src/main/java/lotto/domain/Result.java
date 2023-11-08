@@ -11,6 +11,7 @@ public class Result {
     private int matchFiveWinningCount;
     private int matchFiveWinningAndBonusCount;
     private int matchSixWinningCount;
+    private int prizeAmount;
 
     public Result(List<LottoResultDto> lottosResult) {
         resetCount();
@@ -23,13 +24,15 @@ public class Result {
         matchFiveWinningCount = 0;
         matchFiveWinningAndBonusCount = 0;
         matchSixWinningCount = 0;
+        prizeAmount = 0;
     }
 
     private void setWinningResult(List<LottoResultDto> lottosResult) {
         setWinningCount(lottosResult);
+        calculatePrize();
     }
 
-    private void setWinningCount(List<LottoResultDto> lottosResult){
+    private void setWinningCount(List<LottoResultDto> lottosResult) {
         for (LottoResultDto lottoResult : lottosResult) {
             checkWinningCount(lottoResult);
         }
@@ -55,5 +58,17 @@ public class Result {
         if (lottoResult.getWinningNumberCount() == Standards.COUNT_SIX.getNumber()) {
             matchSixWinningCount++;
         }
+    }
+
+    private void calculatePrize() {
+        prizeAmount += multiplyCountAndPrize(matchThreeWinningCount, Standards.THREE_CORRECT_PRIZE.getNumber());
+        prizeAmount += multiplyCountAndPrize(matchFourWinningCount, Standards.FOUR_CORRECT_PRIZE.getNumber());
+        prizeAmount += multiplyCountAndPrize(matchFiveWinningCount, Standards.FIVE_CORRECT_PRIZE.getNumber());
+        prizeAmount += multiplyCountAndPrize(matchFiveWinningAndBonusCount, Standards.FIVE_CORRECT_AND_BONUS_CORRECT_PRIZE.getNumber());
+        prizeAmount += multiplyCountAndPrize(matchSixWinningCount, Standards.SIX_CORRECT_PRIZE.getNumber());
+    }
+
+    private int multiplyCountAndPrize(int count, int prize) {
+        return count * prize;
     }
 }

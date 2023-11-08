@@ -30,9 +30,9 @@ class PurchaseLottoEventTest {
         );
         final var repository = new LottoRepository();
         final var purchaseLottoEvent = new PurchaseLottoEvent(repository);
-
         final var store = new LottoStore(new FakeLottoPublisher(numbers));
         repository.save(store);
+
         final var state = purchaseLottoEvent.execute(4000);
 
         assertAll(
@@ -56,5 +56,5 @@ class PurchaseLottoEventTest {
             return lottoBundle.poll();
         }
     }
-    
+
 }

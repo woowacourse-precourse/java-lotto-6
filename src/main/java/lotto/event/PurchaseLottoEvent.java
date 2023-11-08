@@ -7,6 +7,7 @@ import lotto.repository.LottoRepository;
 import lotto.state.PurchasedLottoState;
 
 public record PurchaseLottoEvent(LottoRepository lottoRepository) implements ParameterAndReturnEvent<Integer, PurchasedLottoState> {
+
     @Override
     public PurchasedLottoState execute(Integer paymentInput) {
         final var payment = new Money(paymentInput);
@@ -21,4 +22,5 @@ public record PurchaseLottoEvent(LottoRepository lottoRepository) implements Par
                 purchasedLottoBundle.convert(Lotto::getNumbers)
         );
     }
+    
 }

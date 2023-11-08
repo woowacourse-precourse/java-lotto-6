@@ -1,9 +1,8 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import lotto.domain.exception.DomainExceptionCode;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -26,7 +25,7 @@ class MoneyTest {
     @Test
     void 수익률_계산() {
         final var margin = new Money(1000).calculateProfitMargin(new Money(200_000_000));
-        System.out.printf("%s%%", BigDecimal.valueOf(margin).setScale(1, RoundingMode.HALF_UP));
+        assertThat(margin).isEqualTo(20_000_000.0);
     }
 
 }

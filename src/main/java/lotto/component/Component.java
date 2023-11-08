@@ -27,6 +27,7 @@ public interface Component {
         public boolean isContinue() {
             return !isComplete;
         }
+
     }
-    
+
 }

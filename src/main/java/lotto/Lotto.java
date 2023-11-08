@@ -39,6 +39,7 @@ public class Lotto {
     public boolean isBonusNumberIn(WinningNumber winningNumber) {
         return numbers.stream().anyMatch(winningNumber::isBonusContain);
     }
+
     @Override
     public String toString() {
         List<Integer> sorted = new ArrayList<>(numbers);

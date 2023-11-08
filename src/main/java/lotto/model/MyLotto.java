@@ -33,6 +33,10 @@ public class MyLotto {
     return result.toString();
   }
 
+  public List<Lotto> getMyLotto() {
+    return myLotto;
+  }
+
   public int getLottoTickets() {
     return lottoTickets;
   }

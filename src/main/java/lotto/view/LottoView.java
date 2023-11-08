@@ -74,7 +74,7 @@ public class LottoView implements View {
     }
 
     @Override
-    public void printWinningCase(WinningResultDto winningResultDto) {
+    public void printWinningResult(WinningResultDto winningResultDto) {
         printMessage(
                 WINNING_CASE_MESSAGE,
                 winningResultDto.fifthPlaceCount(),

@@ -79,7 +79,7 @@ class LottoViewTest extends UiTest {
     @Test
     void printWinningCase() {
         WinningResultDto winningResultDto = new WinningResultDto(1, 2, 3, 4, 5);
-        lottoView.printWinningCase(winningResultDto);
+        lottoView.printWinningResult(winningResultDto);
 
         assertThat(getSystemOutput())
                 .contains("""

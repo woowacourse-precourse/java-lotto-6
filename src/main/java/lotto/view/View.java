@@ -25,7 +25,7 @@ public interface View {
 
     String askBonusNumber();
 
-    void printWinningCase(WinningResultDto winningResultDto);
+    void printWinningResult(WinningResultDto winningResultDto);
 
     void printReturnRateMessage(ReturnRateDto returnRateDto);
 }

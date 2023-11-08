@@ -2,7 +2,9 @@ package lotto.game;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.Lotto;
 
 public class LottoGame {
@@ -30,5 +32,20 @@ public class LottoGame {
         }
 
         return lottoList;
+    }
+
+    public WinningLotto createdWinningLotto(List<Integer> winningLottoNumbers, int bonusNumber) {
+        return new WinningLotto(new Lotto(winningLottoNumbers), bonusNumber);
+    }
+
+    public Map<Result, Integer> getResultCount(List<Lotto> lottoList, WinningLotto winningLotto) {
+        Map<Result, Integer> resultCount = new HashMap<>();
+        for (Lotto lotto : lottoList) {
+            int matchCount = winningLotto.matchCount(lotto);
+            boolean isBonus = winningLotto.isBonus(lotto);
+            Result result = Result.valueOf(matchCount, isBonus);
+            resultCount.put(result, resultCount.getOrDefault(result, 0) + 1);
+        }
+        return resultCount;
     }
 }

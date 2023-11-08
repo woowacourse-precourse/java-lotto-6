@@ -27,6 +27,7 @@ public class LottoController {
         receiveMoney();
         buyTicket();
         receiveWinningNumber();
+        receiveBonusNumber();
         compareLottos();
         showComparisonResults();
     }
@@ -61,22 +62,31 @@ public class LottoController {
                 String UserInputWinningNumbers = inputView.getWinningLottoNumbers();
                 winningNumbers = utils.StringToIntegerList(UserInputWinningNumbers);
                 validateLottoNumber(winningNumbers);
-                outputView.printGetBonusNumber();
-                bonusBall = utils.StringToInteger(inputView.getBonusNumbers());
-                checkValidBonusBall(bonusBall);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 잘못된 입력입니다.");
             }
         }
     }
+    private void receiveBonusNumber(){
+        while (true) {
+            try {
+                outputView.printGetBonusNumber();
+                String UserInputBonusNumber=inputView.getBonusNumbers();
+                bonusBall = utils.StringToInteger(UserInputBonusNumber);
+                validateBonusNumber(bonusBall);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 잘못된 입력입니다.");
+            }
+        }
 
-    private void checkValidBonusBall(int bonusBall) {
+    }
+    private void validateBonusNumber(int bonusBall) {
         if(!validator.isValidRangeBonusNumber(bonusBall)){
             throw new IllegalArgumentException("보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
         }
     }
-
     private void validateLottoNumber(List<Integer> winningNumbers) {
 
         if (validator.hasDubplicatesUserNumbers(winningNumbers)||

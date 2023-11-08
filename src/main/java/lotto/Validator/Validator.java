@@ -8,9 +8,6 @@ public class Validator {
     public static final int NUMBER_MIN =1;
     public static final int NUMBER_MAX =45;
     public static final int NUMBER_QUANTITY =6;
-    public boolean hasDuplicateNumbers(Set<Integer> numbers, int newNumber) {
-        return numbers.contains(newNumber);
-    }
     public boolean hasDubplicatesUserNumbers(List<Integer> winningNumbers){
         Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
         return uniqueNumbers.size() != winningNumbers.size();

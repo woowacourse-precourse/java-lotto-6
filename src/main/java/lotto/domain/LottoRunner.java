@@ -4,14 +4,14 @@ import java.util.List;
 import lotto.domain.generator.BonusNumberGenerator;
 import lotto.domain.generator.LottoAmountGenerator;
 import lotto.domain.generator.LottoGenerator;
-import lotto.domain.generator.WinningNumbersGenerator;
+import lotto.domain.generator.WinningLottoGenerator;
 import lotto.io.OutputHandler;
 import lotto.util.Calculator;
 
 public class LottoRunner {
     final LottoAmountGenerator lottoAmountGenerator;
     final LottoGenerator lottoGenerator;
-    final WinningNumbersGenerator winningNumbersGenerator;
+    final WinningLottoGenerator winningNumbersGenerator;
     final BonusNumberGenerator bonusNumberGenerator;
     List<Lotto> lottos;
     Lotto winningNumbers;
@@ -20,7 +20,7 @@ public class LottoRunner {
     public LottoRunner() {
         lottoAmountGenerator = new LottoAmountGenerator();
         lottoGenerator = new LottoGenerator();
-        winningNumbersGenerator = new WinningNumbersGenerator();
+        winningNumbersGenerator = new WinningLottoGenerator();
         bonusNumberGenerator = new BonusNumberGenerator();
     }
 

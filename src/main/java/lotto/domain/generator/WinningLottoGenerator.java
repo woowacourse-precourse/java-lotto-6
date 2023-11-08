@@ -7,7 +7,7 @@ import lotto.domain.Lotto;
 import lotto.io.InputHandler;
 import lotto.validation.LottoNumberValidator;
 
-public class WinningNumbersGenerator implements Generator<List<String>, Lotto> {
+public class WinningLottoGenerator implements Generator<List<String>, Lotto> {
     @Override
     public Lotto generate() {
         while (true) {

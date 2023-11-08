@@ -53,7 +53,7 @@ public class LottoGameController implements GameController {
         } catch (Exception e) {
             System.out.println("[ERROR] 잘못된 로또 번호입니다.");
         }
-        return number;
+        return number / 1000;
     }
 
     private List<Integer> validateWinningNumbers() {

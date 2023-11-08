@@ -36,6 +36,12 @@ public class InputValidation {
         }
     }
 
+    public static void validateNoDuplicateNumbers(List<Integer> list) {
+        if (list.stream().distinct().count() != list.size()) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_DUPLICATE_NUMBER);
+        }
+    }
+
     public static void validateAmount(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException(ERROR_MESSAGE_DIVISION_REMAINDER);

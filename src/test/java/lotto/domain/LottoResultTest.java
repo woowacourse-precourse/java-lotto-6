@@ -12,7 +12,7 @@ class LottoResultTest {
     void saveRank() {
         LottoResult lottoResult = new LottoResult();
         lottoResult.save(FIRST);
-        int countResult = lottoResult.getStatus().get(FIRST);
+        int countResult = lottoResult.getStatistics().get(FIRST);
         double priceResult = lottoResult.getTotalPrice();
 
         assertThat(countResult).isEqualTo(1);

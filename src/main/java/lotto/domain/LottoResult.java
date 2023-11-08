@@ -2,21 +2,22 @@ package lotto.domain;
 
 import static lotto.constants.Value.ZERO;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import lotto.constants.LottoPrize;
 
 public class LottoResult {
     private double totalPrice;
-    private HashMap<LottoPrize, Integer> status;
+    private LinkedHashMap<LottoPrize, Integer> statistics;
 
     public LottoResult() {
+
         totalPrice = ZERO.get();
-        status = new HashMap<>();
+        statistics = new LinkedHashMap<>();
         init();
     }
 
-    public HashMap<LottoPrize, Integer> getStatus() {
-        return status;
+    public LinkedHashMap<LottoPrize, Integer> getStatistics() {
+        return statistics;
     }
 
     public double getTotalPrice() {
@@ -34,13 +35,13 @@ public class LottoResult {
 
     private void init() {
         for (LottoPrize prize : LottoPrize.values()) {
-            status.put(prize, ZERO.get());
+            statistics.put(prize, ZERO.get());
         }
     }
 
     private void countLottoPrize(LottoPrize prize) {
-        int number = status.get(prize) + 1;
-        status.replace(prize, number);
+        int number = statistics.get(prize) + 1;
+        statistics.replace(prize, number);
     }
 
     private void addTotalPrice(LottoPrize prize) {

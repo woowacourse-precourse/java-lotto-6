@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.model.Lotto;
+import lotto.Lotto;
 import lotto.model.LottoRankResult;
 import lotto.view.enums.ErrorMessage;
 import lotto.view.enums.PrintMessage;
@@ -55,7 +55,7 @@ public class OutputView {
         builder.append(PrintMessage.WINNING_HEADER.getMessage());
         builder.append(PrintMessage.THREE_HYPHEN.getMessage());
         builder.append(makeRankString(rankResult));
-        System.out.println(builder);
+        System.out.print(builder);
     }
 
     private String makeRankString(LottoRankResult rankResult) {

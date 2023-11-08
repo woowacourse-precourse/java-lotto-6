@@ -40,9 +40,6 @@ enum Statistic {
 }
 public class Application {
     public static void main(String[] args) {
-        float totalPrize =0;
-        int[] prizes = {0, 0, 0, 0, 0, 0};
-
         int price = inputPrice();
         List<List<Integer>> answers = new ArrayList<>(generateAnswers(price));
         List<Integer> numbers;
@@ -56,14 +53,7 @@ public class Application {
             }
         }
         int bonus = inputBonus();
-        System.out.println(price/1000+"개를 구매했습니다.");
-        for(int i=0; i<price/1000; i++){
-            Statistic prize = getPrize(numbers, answers.get(i), bonus);
-            totalPrize += prize.prize;
-            prizes[prize.count]++;
-        }
-        float percent = totalPrize/price *100;
-        printResult(percent, prizes);
+        calculateTotalprice(price, numbers, answers, bonus);
     }
     private static int inputPrice(){
         System.out.println("구입금액을 입력해 주세요.");
@@ -109,27 +99,24 @@ public class Application {
     public static List<List<Integer>> generateAnswers(int price){
         List<List<Integer>> answers = new ArrayList<>();
         List<Integer> answer ;
+        System.out.println(price/1000+"개를 구매했습니다.");
         for(int i=0; i<price/1000; i++){
             answer = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             answers.add(answer);
-            List<Integer> sortedNums = answer.stream()
-                    .sorted()
-                    .collect(Collectors.toList());
-//            answer.sort(Comparator.naturalOrder());
+            List<Integer> sortedNums = answer.stream().sorted().collect(Collectors.toList());
             System.out.println(sortedNums);
         }
         return answers;
     }
-    public static Statistic getPrize(List<Integer> numbers, List<Integer> answers, int bonus){
-        boolean bonusYes = answers.contains(bonus);
-        List<Integer> answer = new ArrayList<>();
-        answer.addAll(answers);
-        answer.retainAll(numbers);
+    public static Statistic getPrize(List<Integer> numbers, List<Integer> answer, int bonus){
+        boolean bonusYes = answer.contains(bonus);
+        List<Integer> answerBuf = new ArrayList<>();
+        answerBuf.addAll(answer);
+        answerBuf.retainAll(numbers);
         int match = answer.size();
 
         if (match < 3)
             return Statistic.FAIL;
-
         return Statistic.getRank(match, bonusYes);
     }
     private static void printResult(float percent, int[] prizes){
@@ -140,6 +127,17 @@ public class Application {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+prizes[4]+"개");
         System.out.println("6개 일치 (2,000,000,000원) - "+prizes[5]+"개");
         System.out.println("총 수익률은 "+percent+"%입니다.");
+    }
+    private static void calculateTotalprice(float price, List<Integer> numbers, List<List<Integer>>answers, int bonus){
+        float totalPrize = 0;
+        int[] prizes={0,0,0,0,0,0};
+        for(int i=0; i<price/1000; i++){
+            Statistic prize = getPrize(numbers, answers.get(i), bonus);
+            totalPrize += prize.prize;
+            prizes[prize.count]++;
+        }
+        float percent = totalPrize/price * 100;
+        printResult(percent, prizes);
     }
 
     private static void validate(int price) {

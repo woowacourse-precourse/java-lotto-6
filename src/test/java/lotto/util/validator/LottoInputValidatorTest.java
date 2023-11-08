@@ -18,7 +18,7 @@ class LottoInputValidatorTest {
 
         //when,then
         Assertions.assertThatThrownBy(() -> lottoInputValidator.validate(values))
-                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.LOTTO_LENGTH_NOT_SIX_MESSAGE.getMessage());
+                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.WINNING_LENGTH_NOT_SIX_MESSAGE.getMessage());
     }
 
     @DisplayName("당첨 번호 입력 개수가 6개 미만일 경우 예외가 발생한다.")
@@ -29,7 +29,7 @@ class LottoInputValidatorTest {
 
         //when,then
         Assertions.assertThatThrownBy(() -> lottoInputValidator.validate(values))
-                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.LOTTO_LENGTH_NOT_SIX_MESSAGE.getMessage());
+                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.WINNING_LENGTH_NOT_SIX_MESSAGE.getMessage());
     }
 
     @DisplayName("당첨 번호에 숫자 이외의 값이 들어가있을 경우 예외가 발생한다.")
@@ -40,7 +40,7 @@ class LottoInputValidatorTest {
 
         //when,then
         Assertions.assertThatThrownBy(() -> lottoInputValidator.validate(values))
-                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.LOTTO_NUMBER_IS_NOT_NUMERIC.getMessage());
+                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.WINNING_NUMBER_IS_NOT_NUMERIC.getMessage());
     }
 
     @DisplayName("당첨 번호들이 45보다 큰 경우 예외가 발생한다.")
@@ -51,7 +51,7 @@ class LottoInputValidatorTest {
 
         //when,then
         Assertions.assertThatThrownBy(() -> lottoInputValidator.validate(values))
-                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.LOTTO_NUMBER_RANGE_ERROR_MESSAGE.getMessage());
+                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.WINNING_NUMBER_RANGE_ERROR_MESSAGE.getMessage());
     }
 
     @DisplayName("당첨 번호들이 1보다 작은 경우 예외가 발생한다.")
@@ -62,7 +62,7 @@ class LottoInputValidatorTest {
 
         //when,then
         Assertions.assertThatThrownBy(() -> lottoInputValidator.validate(values))
-                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.LOTTO_NUMBER_RANGE_ERROR_MESSAGE.getMessage());
+                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.WINNING_NUMBER_RANGE_ERROR_MESSAGE.getMessage());
     }
 
     @DisplayName("당첨 번호들이 중복된 값이 있을 경우 예외가 발생한다.")
@@ -73,6 +73,6 @@ class LottoInputValidatorTest {
 
         //when,then
         Assertions.assertThatThrownBy(() -> lottoInputValidator.validate(values))
-                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.LOTTO_NUMBER_DUPLICATE_MESSAGE.getMessage());
+                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.WINNING_NUMBER_DUPLICATE_MESSAGE.getMessage());
     }
 }

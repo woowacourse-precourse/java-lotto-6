@@ -21,14 +21,14 @@ public class LottoInputValidator implements InputValidator{
 
     private static void validateCount(String[] checkValues) {
         if(checkValues.length != LOTTO_MAX_COUNT.getNumber()) {
-            throw new IllegalArgumentException(LOTTO_LENGTH_NOT_SIX_MESSAGE.getMessage());
+            throw new IllegalArgumentException(WINNING_LENGTH_NOT_SIX_MESSAGE.getMessage());
         }
     }
     private static void validateConsistingNumber(String[] checkValues) {
         try {
             Arrays.stream(checkValues).forEach(Integer::parseInt);
         }catch (NumberFormatException e) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_IS_NOT_NUMERIC.getMessage());
+            throw new IllegalArgumentException(WINNING_NUMBER_IS_NOT_NUMERIC.getMessage());
         }
     }
 
@@ -36,13 +36,13 @@ public class LottoInputValidator implements InputValidator{
         if(Arrays.stream(checkValues)
                 .mapToInt(Integer::parseInt)
                 .anyMatch(LottoInputValidator::isValidRange)) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR_MESSAGE.getMessage());
+            throw new IllegalArgumentException(WINNING_NUMBER_RANGE_ERROR_MESSAGE.getMessage());
         }
     }
 
     private static void validateDuplicate(String[] checkValues) {
         if(Arrays.stream(checkValues).distinct().count() != LOTTO_MAX_COUNT.getNumber()) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_MESSAGE.getMessage());
+            throw new IllegalArgumentException(WINNING_NUMBER_DUPLICATE_MESSAGE.getMessage());
         }
     }
 

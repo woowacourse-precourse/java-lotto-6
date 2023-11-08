@@ -33,9 +33,14 @@ public class Game {
     }
 
     private static WinningLotto createWinningLotto() {
-        Lotto lotto = getWinningLotto();
-        int bonusNumber = getBonusNumber();
-        return new WinningLotto(lotto, bonusNumber);
+        try {
+            Lotto lotto = getWinningLotto();
+            int bonusNumber = getBonusNumber();
+            return new WinningLotto(lotto, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e.getMessage());
+            return createWinningLotto();
+        }
     }
 
     private static Lotto getWinningLotto() {

@@ -9,4 +9,5 @@ public class ErrorMessages {
     public static final String INVALID_INPUT_FORMAT = ERROR_MESSAGE_PREFIX + "입력값은 정수여야 합니다.";
     public static final String INVALID_PURCHASE_SIGN = ERROR_MESSAGE_PREFIX + "구매 금액은 양수여야 합니다.";
     public static final String INVALID_PURCHASE_AMOUNT_UNIT = ERROR_MESSAGE_PREFIX + "구매 금액은 1000으로 나누어 떨어지는 수여야 합니다.";
+    public static final String LOTTO_WITH_BONUS_DUPLICATION = ERROR_MESSAGE_PREFIX + "로또 번호와 보너스 번호는 중복될 수 없습니다. 당첨 번호부터 다시 입력해주세요.";
 }

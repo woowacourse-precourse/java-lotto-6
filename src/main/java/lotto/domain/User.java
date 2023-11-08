@@ -1,9 +1,10 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.enums.ExceptionMessages;
@@ -23,11 +24,13 @@ public class User {
     public User(String amount) {
         validateAmount(amount);
         this.amount = Integer.valueOf(amount);
-        this.lottoTicketCount = Integer.valueOf(amount) / AMOUNT_UNIT;
+        this.lottoTicketCount = this.amount / AMOUNT_UNIT;
+        this.lottos = generateRandomLottos();
         initializeResultCounts();
     }
 
     private void initializeResultCounts() {
+        this.lottoResult = new LinkedHashMap<>();
         for (LottoPrize prize : LottoPrize.values()) {
             this.lottoResult.put(prize, 0);
         }
@@ -63,7 +66,8 @@ public class User {
         for (LottoPrize lottoPrize : this.lottoResult.keySet()) {
             totalPrize += lottoPrize.getPrizeAmount() * this.lottoResult.get(lottoPrize);
         }
-        this.profitability = Math.round(((this.amount / totalPrize) * 100)) / 100.0;
+        BigDecimal profit = new BigDecimal(totalPrize / this.amount).setScale(3, RoundingMode.HALF_UP);
+        this.profitability = profit.doubleValue() * 100;
     }
 
     public Integer getLottoTicketCount() {
@@ -79,6 +83,6 @@ public class User {
     }
 
     public Double getProfitability() {
-        return profitability;
+        return this.profitability;
     }
 }

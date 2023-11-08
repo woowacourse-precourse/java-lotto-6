@@ -20,10 +20,15 @@ public class OutputManager {
         System.out.println(getTotalProfitMessage(user.getProfitability()));
     }
 
-    public void printUserLottos(List<Lotto> lottos) {
-        lottos.forEach(lotto -> {
+    public void printUserLottos(User user) {
+        System.out.println(String.format(OutputMessages.PRINT_LOTTO_COUNT_MESSAGE.getMessage(),user.getLottoTicketCount()));
+        user.getLottos().forEach(lotto -> {
             System.out.println(convertLottoNumbersToString(lotto.getNumbers()));
         });
+    }
+
+    public void printMessage(String message) {
+        System.out.println(message);
     }
 
     private String convertLottoNumbersToString(List<Integer> numbers) {

@@ -34,7 +34,7 @@ public class Output {
 
     public static void printProfit(int profit, int lottoCount) {
         double percentage = ((double) profit / lottoCount) * 100;
-        percentage = Math.round(percentage * 10.0) / 10.0;
-        System.out.println("총 수익률은 " + String.format("%.1f", percentage) + "%입니다.");
+        double percentage1 = Math.round(percentage * 10.0) / 10.0;
+        System.out.println("총 수익률은 " + String.format("%.1f", percentage1) + "%입니다.");
     }
 }

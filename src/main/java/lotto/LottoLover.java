@@ -41,4 +41,13 @@ public class LottoLover {
     public List<Lotto> bragAboutMyLottoButYouAreNotAllowedToTouchIt() {
         return Collections.unmodifiableList(bought);
     }
+
+    public PrizeRecord beholdMyAccomplishment(DrawResult drawResult) {
+        PrizeRecord prizeRecord = new PrizeRecord();
+        for (Lotto lotto : bought) {
+            prizeRecord.accumulate(drawResult.check(lotto), LOTTO_PRICE);
+        }
+
+        return prizeRecord;
+    }
 }

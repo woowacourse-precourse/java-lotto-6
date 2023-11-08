@@ -1,15 +1,18 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
 import lotto.constant.Message;
 import lotto.model.Customer;
 import lotto.model.Lotto;
-import lotto.model.LottoNumber;
 import lotto.model.Money;
 import lotto.validator.ExceptionHandler;
+import lotto.validator.ValidateObject;
 
 public final class InputController {
-    private InputController() {}
+    private InputController() {
+    }
 
     public static Customer inputMoney() {
         Money money = ExceptionHandler.handleException(
@@ -22,19 +25,27 @@ public final class InputController {
     }
 
     public static Lotto inputWinningNumber() {
-        LottoNumber lottoNumber = new LottoNumber();
-        String numbers = ExceptionHandler.handleException(
-                Message.INPUT_WINNING_NUMBER,
-                InputController::readLineWithMessage
+        return ExceptionHandler.handleException(
+                Message.NULL,
+                () -> {
+                    List<Integer> numbers = ExceptionHandler.handleException(
+                            Message.INPUT_WINNING_NUMBER,
+                            InputController::requestLottoNumbersWithMessage
+                    );
+                    return new Lotto(numbers);
+                }
         );
-        lottoNumber.createWinningNumber(numbers);
-        return new Lotto(lottoNumber.getLottoNumbers());
     }
 
-    public static int inputBonusNumber() {
+
+    public static int inputBonusNumber(Lotto lotto) {
         return ExceptionHandler.handleException(
                 Message.INPUT_BONUS_NUMBER,
-                InputController::parseIntWithMessage
+                () -> {
+                    int bonusNumber = parseIntWithMessage();
+                    ValidateObject.validateBonusNumber(lotto, bonusNumber);
+                    return bonusNumber;
+                }
         );
     }
 
@@ -48,5 +59,11 @@ public final class InputController {
 
     private static int parseIntWithMessage() {
         return Integer.parseInt(Console.readLine());
+    }
+
+    private static List<Integer> requestLottoNumbersWithMessage() {
+        return Arrays.stream(Console.readLine().split(","))
+                .map(Integer::parseInt)
+                .toList();
     }
 }

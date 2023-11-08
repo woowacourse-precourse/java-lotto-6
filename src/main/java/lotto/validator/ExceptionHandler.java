@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.NoSuchElementException;
 import java.util.function.Supplier;
 import lotto.constant.Message;
 import lotto.view.View;
@@ -10,14 +11,21 @@ public class ExceptionHandler {
     public static <T> T handleException(Message message, Supplier<T> supplier) {
         while (true) {
             try {
-                printMessage(message.getMessage());
+                if (message != Message.NULL)
+                    printMessage(message.getMessage());
                 return supplier.get();
             } catch (NumberFormatException e) {
                 View.printMessage(ERROR_MESSAGE + "숫자만 입력가능합니다.");
                 readLineWithMessage();
+            } catch(IllegalArgumentException e){
+                View.printMessage(ERROR_MESSAGE + "입력 형식이 잘못되었습니다");
+                readLineWithMessage();
+            }catch(NoSuchElementException e) {
+                View.printMessage(ERROR_MESSAGE +"입력 형식이 잘못되었습니다.");
+                readLineWithMessage();
             } catch (Exception e) {
                 View.printMessage(ERROR_MESSAGE +"예상치 못한 오류입니다 : "+e.getMessage());
-                throw e;
+                readLineWithMessage();
             }
         }
     }

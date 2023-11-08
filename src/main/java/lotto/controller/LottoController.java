@@ -49,7 +49,7 @@ public class LottoController {
     }
 
     private int inputBonusNumberFlow(Lotto winningLotto){
-        int bonusNumber = InputController.inputBonusNumber();
+        int bonusNumber = InputController.inputBonusNumber(winningLotto);
         ValidateObject.validateBonusNumber(winningLotto, bonusNumber);
         return bonusNumber;
     }

@@ -12,13 +12,11 @@ import java.util.List;
 
 public class GameHandler {
 
-    //당첨로또 발행기능
     public WinningTicket createWinningTicket(List<Integer> winningNum, int bonumNum) {
         return new WinningTicket(winningNum, bonumNum);
 
     }
 
-    //당첨통계 계산기능
     public EnumMap<Rank, Integer> checkWinningResult(List<Lotto> lottos, WinningTicket winningTicket) {
         EnumMap<Rank, Integer> winningStatics = new EnumMap<>(Rank.class);
 

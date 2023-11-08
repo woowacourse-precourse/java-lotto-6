@@ -61,18 +61,36 @@ public class LottoController {
     }
 
     private PurchaseAmount getPurchaseAmount() {
-        outputView.printPurchaseAmountInputMessage();
-        return new PurchaseAmount(inputView.readPurchaseAmount());
+        while(true) {
+            try {
+                outputView.printPurchaseAmountInputMessage();
+                return new PurchaseAmount(inputView.readPurchaseAmount());
+            }catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private WinningNumber getWinningNumber() {
-        outputView.printWinningNumbersInputMessage();
-        return new WinningNumber(inputView.readWinningNumber());
+        while(true) {
+            try {
+                outputView.printWinningNumbersInputMessage();
+                return new WinningNumber(inputView.readWinningNumber());
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private BonusNumber getBonusNumber(WinningNumber winningNumber) {
         outputView.printNewLine();
-        outputView.printBonusNumberInputMessage();
-        return new BonusNumber(inputView.readBonusNumber(),winningNumber);
+        while (true) {
+            try {
+                outputView.printBonusNumberInputMessage();
+                return new BonusNumber(inputView.readBonusNumber(), winningNumber);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }

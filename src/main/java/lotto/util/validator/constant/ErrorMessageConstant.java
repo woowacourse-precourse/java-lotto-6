@@ -14,7 +14,7 @@ public enum ErrorMessageConstant {
     PURCHASE_AMOUNT_IS_NOT_DIVISIBLE_BY_THOUSAND("구매 금액은 1000으로 나누어 떨어져야 합니다."),
     PURCHASE_AMOUNT_IS_NOT_POSITIVE_NUMBER("구매 금액은 양수여야합니다.");
 
-    private static final String ERROR = "[ERROR] ";
+    private static final String ERROR_MESSAGE = "[ERROR] ";
     private final String message;
 
     ErrorMessageConstant(String message) {
@@ -22,6 +22,6 @@ public enum ErrorMessageConstant {
     }
 
     public String getMessage() {
-        return ERROR + message;
+        return ERROR_MESSAGE + message;
     }
 }

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,9 +38,16 @@ public class RandomNumberTest {
 
     @DisplayName("중복되지 않는가")
     @Test
-    void 중복_검증(){
+    void 중복_검증() {
         List<Integer> testNumbers = randomNumber.randomNumbers();
         assertThat(testNumbers).doesNotHaveDuplicates();
+    }
+
+    @DisplayName("티켓 수 만큼 랜덤번호를 생성하고 모으기")
+    @Test
+    void 랜덤번호_리스트_모으기() {
+        List<List<Integer>> testAllRandomNumbers = randomNumber.generateAllRandomNumbers(8);
+        assertThat(testAllRandomNumbers.size()).isEqualTo(8);
     }
 }
 

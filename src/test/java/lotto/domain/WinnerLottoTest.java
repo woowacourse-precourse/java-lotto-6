@@ -27,12 +27,12 @@ public class WinnerLottoTest {
     @DisplayName("보너스 숫자가 허용된 범위 밖의 숫자면 예외가 발생한다.")
     @Test
     void createWinnerLottoWithBonusNumberOutOfRange() {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new WinnerLotto(lotto, new BonusNumber(zero)));
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new WinnerLotto(lotto, new BonusNumber(overRange)));
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new WinnerLotto(lotto, new BonusNumber(negative)));
+        assertThatThrownBy(() -> new WinnerLotto(lotto, new BonusNumber(zero)))
+                .isInstanceOf(NumberOutOfRangeException.class);
+        assertThatThrownBy(() -> new WinnerLotto(lotto, new BonusNumber(overRange)))
+                .isInstanceOf(NumberOutOfRangeException.class);
+        assertThatThrownBy(() -> new WinnerLotto(lotto, new BonusNumber(negative)))
+                .isInstanceOf(NumberOutOfRangeException.class);
     }
 
     @DisplayName("플레이어 로또 생성에 성공한다.")

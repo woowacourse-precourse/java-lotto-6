@@ -30,4 +30,10 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
         assertThat(lotto.compare(List.of(1,2,3,4,5,7),6)).isEqualTo(List.of(5,1));
     }
+
+    @Test
+    void 로또_출력() {
+        Lotto lotto = new Lotto(List.of(4,2,1,3,5,6));
+        lotto.printLotto();
+    }
 }

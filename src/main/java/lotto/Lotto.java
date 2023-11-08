@@ -1,7 +1,6 @@
 package lotto;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -30,5 +29,11 @@ public class Lotto {
             }
         }
         return Arrays.asList(winCnt, bonusCnt);
+    }
+
+    public void printLotto() {
+        List<Integer> printNumbers = new ArrayList<>(numbers);
+        printNumbers.sort(Comparator.naturalOrder());
+        System.out.println(printNumbers);
     }
 }

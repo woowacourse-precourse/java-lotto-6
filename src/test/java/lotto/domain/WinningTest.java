@@ -24,7 +24,7 @@ class WinningTest {
 
     @DisplayName("당첨 번호의 개수가 다를 경우 예외가 발생한다.")
     @Test
-    void testVerifyNumbersCountExceptionCheck() {
+    void testVerifyNumbersCountException() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Winning(List.of(1, 2, 3));
         });
@@ -32,9 +32,31 @@ class WinningTest {
 
     @DisplayName("당첨 번호가 범위를 벗어 났을때 예외가 발생한다.")
     @Test
-    void testVerifyNumbersRangeExceptionCheck() {
+    void testVerifyNumbersRangeException() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Winning(List.of(46, 1, 2, 3, 4, 5));
+        });
+    }
+
+    @DisplayName("보너스 번호가 범위를 벗어 났을때 예외가 발생한다.")
+    @Test
+    void testVerifyBonusNumberRangeException() {
+        Winning winning = new Winning(List.of(1, 2, 3, 4, 5, 6));
+        Integer bonusNumber = 47;
+
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            winning.setBonusNumber(bonusNumber);
+        });
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복될 경우 예외가 발생한다.")
+    @Test
+    void testVerifyBonusNumberDuplicateException() {
+        Winning winning = new Winning(List.of(1, 2, 3, 4, 5, 6));
+        Integer bonusNumber = 6;
+
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            winning.setBonusNumber(bonusNumber);
         });
     }
 }

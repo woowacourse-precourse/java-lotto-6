@@ -65,4 +65,24 @@ class NumberValidatorTest {
             NumberValidator.verifyWinningNumbers(winningNumbers);
         });
     }
+
+    @DisplayName("보너스 번호가 정상적인 값으로 전달 됬을 경우 에러가 발생하지 않는다.")
+    @Test
+    void testVerifyBonusNumberSuccess() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Integer bonusNumber = 7;
+        assertThatCode(() -> {
+            NumberValidator.verifyBonusNumber(winningNumbers, bonusNumber);
+        }).doesNotThrowAnyException();
+    }
+
+    @DisplayName("보너스 번호로 null 이 전달 됬을 경우 에러가 발생한다.")
+    @ParameterizedTest
+    @NullSource
+    void testVerifyBonusNumberNullExceptionCheck(Integer bonusNumber) {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            NumberValidator.verifyBonusNumber(winningNumbers, bonusNumber);
+        });
+    }
 }

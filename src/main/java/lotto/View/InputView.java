@@ -35,7 +35,6 @@ public class InputView {
         }
     }
 
-
     public static List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] numbertmp = Console.readLine().split(",");
@@ -43,17 +42,46 @@ public class InputView {
         for (String number : numbertmp) {
             numbers.add(Integer.parseInt(number));
         }
-        validateDuplicate(numbers);
-        validateRange(numbers);
+        validateWinDuplicate(numbers);
+        validateWinRange(numbers);
         return numbers;
     }
 
+    private static List<Integer> validateWinDuplicate(List<Integer> numbers) {
+        try {
+            validateDuplicate(numbers);
+        } catch(IllegalArgumentException e) {
+            System.out.println("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+            return getWinningNumbers();
+        }
+        return numbers;
+    }
+
+    private static List<Integer> validateWinRange(List<Integer> numbers) {
+        try {
+            validateRange(numbers);
+        } catch(IllegalArgumentException e) {
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            return getWinningNumbers();
+        }
+        return numbers;
+    }
 
     public static int getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
+        int bonus = validBonusRange();
+        return bonus;
+    }
+
+    public static int validBonusRange() {
         int bonus = Integer.parseInt(Console.readLine());
-        if (bonus < 1 || bonus > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        try {
+            if (bonus < 1 || bonus > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            return getBonusNumber();
         }
         return bonus;
     }

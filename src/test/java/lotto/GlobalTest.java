@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class GlobalTest {
@@ -109,5 +111,62 @@ class GlobalTest {
 
     private int getExpectedCount(HashMap<Rank, Integer> rankStatistics, Rank rank) {
         return rankStatistics.get(rank);
+    }
+
+    @DisplayName("수익률 == 0%")
+    @Test
+    void calculateZeroRate() {
+        Global global = new Global();
+        HashMap<Rank, Integer> rankStatistics = new HashMap<>(
+                Map.of(
+                        Rank.FIRST, 0,
+                        Rank.SECOND, 0,
+                        Rank.THIRD, 0,
+                        Rank.FOURTH, 0,
+                        Rank.FIFTH, 0
+                )
+        );
+        global.setRankStatistics(rankStatistics);
+        double autualRate = global.calculateRateOfReturn(8000);
+        double expectedRate = 0.0;
+        assertThat(autualRate).isEqualTo(expectedRate);
+    }
+
+    @DisplayName("0% < 수익률 < 100%")
+    @Test
+    void calculateLessThan100Rate() {
+        Global global = new Global();
+        HashMap<Rank, Integer> rankStatistics = new HashMap<>(
+                Map.of(
+                        Rank.FIRST, 0,
+                        Rank.SECOND, 0,
+                        Rank.THIRD, 0,
+                        Rank.FOURTH, 0,
+                        Rank.FIFTH, 1
+                )
+        );
+        global.setRankStatistics(rankStatistics);
+        double autualRate = global.calculateRateOfReturn(8000);
+        double expectedRate = 62.5;
+        assertThat(autualRate).isEqualTo(expectedRate);
+    }
+
+    @DisplayName("수익률 >= 100%")
+    @Test
+    void calculateMoreThan100Rate() {
+        Global global = new Global();
+        HashMap<Rank, Integer> rankStatistics = new HashMap<>(
+                Map.of(
+                        Rank.FIRST, 0,
+                        Rank.SECOND, 0,
+                        Rank.THIRD, 1,
+                        Rank.FOURTH, 0,
+                        Rank.FIFTH, 3
+                )
+        );
+        global.setRankStatistics(rankStatistics);
+        double autualRate = global.calculateRateOfReturn(8000);
+        double expectedRate = 18937.5;
+        assertThat(autualRate).isEqualTo(expectedRate);
     }
 }

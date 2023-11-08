@@ -104,7 +104,7 @@
 <td style="width: 452.008px; height: 29px;">입출력 상수를 저장해둔 enum</td>
 </tr>
 <tr style="height: 29px;">
-<td style="width: 161px; height: 17.5px;" rowspan="2">system</td>
+<td style="width: 161px; height: 17.5px;" rowspan="2">view</td>
 <td style="width: 198.992px; height: 29px;">InputView</td>
 <td style="width: 452.008px; height: 29px;">사용자 입력을 자료형 별로 받고 검증하고 반환하는 클래스</td>
 </tr>

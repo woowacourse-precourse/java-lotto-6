@@ -1,6 +1,7 @@
 package lotto.domain.customer;
 
 import lotto.domain.lotto.Lotto;
+import lotto.global.common.ErrorMessage;
 import lotto.global.util.Validation;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class Customer {
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getMessage());
         }
     }
 

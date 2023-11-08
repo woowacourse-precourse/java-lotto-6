@@ -11,6 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
 
     @Test
     void 기능_테스트() {
@@ -51,6 +52,38 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입_금액_예외_테스트1() {
+        assertSimpleTest(() -> {
+            runException("5000 ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입_금액_예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException(" 5000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입_금액_예외_테스트3() {
+        assertSimpleTest(() -> {
+            runException(" ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입_금액_통과_테스트() {
+        assertSimpleTest(() -> {
+            run("5000", "1,2,3,4,5,6", "7");
+            assertThat(output()).contains(PURCHASE_MESSAGE);
         });
     }
 

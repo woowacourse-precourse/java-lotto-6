@@ -35,6 +35,7 @@ public class LottoController {
     private static void purchaseLotto() {
         OutputView.printPurchasePrice();
         LottoPurchase lottoPurchase = new LottoPurchase(readLine());
+        OutputView.printEmptyLine();
         lottoCount = lottoPurchase.getLottoCount();
         OutputView.printPurchaseMessage(lottoCount);
     }
@@ -43,17 +44,20 @@ public class LottoController {
         LottoNumbers allLottoNumbers = new LottoNumbers(lottoCount);
         lottoNumbers = new ArrayList<>(allLottoNumbers.getLottoNumbers());
         OutputView.printLottoNumbers(lottoNumbers);
+        OutputView.printEmptyLine();
     }
 
     private static void setWinningNumbers() {
         OutputView.printInputWinningNumbers();
         Lotto lotto = new Lotto(InputWinningNumbers(readLine()));
+        OutputView.printEmptyLine();
         winningNumbers = lotto.getNumbers();
     }
 
     private static void setBonusNumber() {
         OutputView.printInputBonusNumber();
         BonusNumber bonus = new BonusNumber(readLine());
+        OutputView.printEmptyLine();
         bonusNumber = bonus.getBonusNumber();
     }
 

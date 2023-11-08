@@ -57,4 +57,8 @@ public class OutputView {
     public static void printLottoProfit(String lottoProfit) {
         System.out.printf(TOTAL_PROFIT_RATE, lottoProfit);
     }
+
+    public static void printEmptyLine() {
+        System.out.println();
+    }
 }

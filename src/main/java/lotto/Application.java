@@ -1,8 +1,11 @@
 package lotto;
 
 import lotto.domain.LottoPurchaseManager;
+import lotto.domain.LottoWinningManager;
 import lotto.model.Lotto;
+import lotto.model.WinningLotto;
 import lotto.ui.LottoPurchaseConsoleUI;
+import lotto.ui.LottoWinningConsoleUI;
 
 import java.util.List;
 
@@ -15,6 +18,10 @@ public class Application {
 
         List<Lotto> lottos = purchaseConsole.startPublishProcess(numOfLottos);
 
+        LottoWinningManager winningManager = new LottoWinningManager();
+        LottoWinningConsoleUI winningConsole = new LottoWinningConsoleUI(winningManager);
+
+        WinningLotto winningLotto = winningConsole.startDetermineWinningProcess();
 
     }
 }

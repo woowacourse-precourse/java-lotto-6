@@ -5,6 +5,8 @@ import lotto.constants.StaticMessage;
 
 import java.util.List;
 
+import static lotto.constants.StaticMessage.PRINT_RESULT_NOTICE;
+
 public class OutputHandler {
     public void printMessage(int count) {
         // TODO : "%d개 구매했습니다."
@@ -19,9 +21,10 @@ public class OutputHandler {
               .forEach(System.out::println);
     }
 
-    public static void printResultHistory() {
+    public static void printResultHistory(User user) {
+        System.out.println(PRINT_RESULT_NOTICE.getMessage());
         for (ResultConfig rc : ResultConfig.values()) {
-            System.out.println(rc.getMessage());
+            System.out.println(rc.getMessage() + user.totalResult.get(rc.getCount()) + "개");
         }
     }
 

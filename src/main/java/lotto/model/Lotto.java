@@ -34,12 +34,12 @@ public class Lotto {
     }
 
     private void validateNumberRange(List<Integer> numbers) {
-        if (!isValidRange(numbers)) {
+        if (isInvalidRange(numbers)) {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE);
         }
     }
 
-    private boolean isValidRange(List<Integer> numbers) {
+    private boolean isInvalidRange(List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(number -> number < MIN_RANGE || number > MAX_RANGE);
     }

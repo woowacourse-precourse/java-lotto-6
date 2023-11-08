@@ -23,6 +23,9 @@ public class Output {
     public static void printMoney(){
         System.out.println(MONEY);
     }
+    public static void printGap(){
+        System.out.println();
+    }
 
     public static void printWinning(){
         System.out.println(WINNING);

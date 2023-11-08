@@ -38,15 +38,15 @@ public class Input {
         return Integer.parseInt(result);
     }
 
-    public static void moneyValidate(String string) {
+    public static void moneyValidate(String string) throws IllegalArgumentException {
         IMoneyValidation.moneyValidation(new ViewValidation(), string);
     }
 
-    public static void bonusValidate(String string) {
+    public static void bonusValidate(String string) throws IllegalArgumentException {
         IBonusValidation.bonusValidation(new ViewValidation(), string);
     }
 
-    public static void lottoInputValidate(String string) {
+    public static void lottoInputValidate(String string) throws IllegalArgumentException{
         ILottoInputValidation.lottoInputValidation(new ViewValidation(), string);
     }
 

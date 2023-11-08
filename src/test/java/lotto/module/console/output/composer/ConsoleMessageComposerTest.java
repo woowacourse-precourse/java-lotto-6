@@ -1,6 +1,6 @@
-package lotto.module.console;
+package lotto.module.console.output.composer;
 
-import lotto.module.domain.lotto.Lotto;
+import lotto.module.lotto.Lotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 
 class ConsoleMessageComposerTest {
-
     private final ConsoleMessageComposer consoleMessageComposer = ConsoleMessageComposer.newInstance();
 
     @Test
@@ -22,7 +21,6 @@ class ConsoleMessageComposerTest {
         list.add(lotto1);
         list.add(lotto2);
         list.add(lotto3);
-
         // when
         String message = consoleMessageComposer.makePurchasedLottoTicketMessage(list);
 

@@ -14,8 +14,11 @@ public enum Command {
     OUTPUT_WINNING_RESULT;
 
     private String message;
+
     private Validator validator;
+
     Command() {};
+
     Command(String message, Validator validator) {
         this.message = message;
         this.validator = validator;
@@ -26,7 +29,9 @@ public enum Command {
     }
 
     public void validate(String input) {
-        if(validator == null) return;
+        if(validator == null) {
+            return;
+        }
 
         validator.validate(input);
     }

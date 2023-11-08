@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 public class InputValidator {
     static final int LOTTO_PRICE = 1000;
+    static final int SMALLEST_LOTTO_NUMBER = 1;
+    static final int BIGGEST_LOTTO_NUMBER = 45;
 
     private int convertToInt(String userInput) {
         try {
@@ -30,6 +32,10 @@ public class InputValidator {
         validatePositiveValue(value);
         validateDividedByThousand(value);
         return value;
+    }
+
+    public int checkInputBonusNumber(String userInput) {
+        return convertToInt(userInput);
     }
 
     private void validatePositiveValue(int value) {

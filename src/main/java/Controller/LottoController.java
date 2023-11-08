@@ -46,12 +46,14 @@ public class LottoController {
         }
     }
 
-    private Lotto generateWinningLotto(List<Integer> winningLottoNumbers) {
+    private int receiveBonusLottoNumber(Lotto winningLotto) {
         try {
-            return lottoAnswerSheet.generateWinningLotto(winningLottoNumbers);
+            String bonusNumberInput = inputView.getInputLottoBonusNumber();
+            int bonusNumber = inputValidator.checkInputBonusNumber(bonusNumberInput);
+            return lottoAnswerSheet.generateBonusNumber(winningLotto, bonusNumber);
         } catch (Exception e) {
             outputView.printErrorMessage(e.getMessage());
-            return receiveWinningLottoNumbers();
+            return receiveBonusLottoNumber(winningLotto);
         }
     }
 
@@ -60,5 +62,6 @@ public class LottoController {
         int lottoAmount = receiveUserMoneyAndGetAmount();
         List<Lotto> userLottos = randomLottoGenerator.generateLottos(lottoAmount);
         Lotto winningLotto = receiveWinningLottoNumbers();
+        int bonusNumber = receiveBonusLottoNumber(winningLotto);
     }
 }

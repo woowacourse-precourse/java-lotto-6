@@ -15,15 +15,15 @@ public class LottoController {
 
     public void play() {
         OutputView.printAskMoneyMessage();
-        Money money = new Money();
-        buyLottos(money.trial());
+        Money money = new Money(InputView.inputMoney());
+        buyLottos(money.trial);
         OutputView.printAskWinningNumbersMessage();
         winningLotto = new Lotto(InputView.inputWinningNumbers());
         OutputView.printAskBonusNumberMessage();
         bonusNumber = InputView.inputBonusNumber();
         OutputView.printAlertResultMessage();
         Winning.check();
-        calculateReturnRate(Money.amount);
+        calculateReturnRate(money.amount);
     }
 
     public void buyLottos(int trial) {

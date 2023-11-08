@@ -4,8 +4,6 @@ import lotto.domain.Lotto;
 import lotto.domain.Winning;
 import lotto.dto.NumbersParam;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 public class OutputView {

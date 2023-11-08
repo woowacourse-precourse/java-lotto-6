@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.LottoNumber;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,23 +27,12 @@ public class InputView {
     public static int inputBonusNumber() {
         int bonusNumber = Integer.parseInt(Console.readLine());
         try {
-            validateDuplicated(bonusNumber);
+            LottoNumber.validateNumberRange(bonusNumber);
+            LottoNumber.validateDuplicated(winningLotto.getNumbers(), bonusNumber);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             inputBonusNumber();
         }
         return bonusNumber;
-    }
-
-    private void validateMoney(int amount) {
-        if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 금액입니다.");
-        }
-    }
-
-    private static void validateDuplicated(int bonusNumber) {
-        if (winningLotto.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 이미 뽑은 공입니다.");
-        }
     }
 }

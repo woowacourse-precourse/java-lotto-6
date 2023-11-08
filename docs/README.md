@@ -78,13 +78,13 @@
 
 3. util package
 
-- [ ] LottoMachine ~~LottoService~~
-    - setLottoTicketNumber() : 로또 티켓 개수 발행
-    - ⚠️ setLottoTicket() : 로또 티켓 발행 - 여기서 new Lotto를 하는것이 맞을까?
-    - ⚠️ matchLottoCalculate() : 당첨 번호와 가진 번호 비교 및 data 저장
+- [x] LottoMachine ~~LottoService~~
+    - ~~setLottoTicketNumber()~~ : 로또 티켓 개수 발행
+    - [x] ⚠️ ~~setLottoTicket()~~ : 로또 티켓 발행 - 여기서 new Lotto를 하는것이 맞을까?
+    - [ ] ⚠️ matchLottoCalculate() : 당첨 번호와 가진 번호 비교 및 data 저장
         1. 내부 메서드를 줄일 수 잇지 않을까? countMatchNumber(), filterBonusNumber(), addMatchRank () 내부 메서드끼리 꼬리를 문다.
         2. 네이밍이 마땅한게 생각이 나지 않는다.
-    - setIncome() ~~getRateOfReturn()~~ : 수익률 계산 - 소수점 2째자리서 반올림
+    - ~~setIncome()~~ ~~getRateOfReturn()~~ : 수익률 계산 - 소수점 2째자리서 반올림
 - [x] LottoTypeConverter
     - toList() : , 연결된 String List<Integer>로 변환
     - toWon() : 숫자를 한국돈으로 format 변경
@@ -92,9 +92,14 @@
     - divideMoney() : 1000원 단위로 잘 나뉘는지 확인
     - checkWinningNumber() : 올바른 숫자 들어왔는지, 중복 숫자 없는지
     - checkBonusNumber() :  올바른 숫자 들어왔는지, 중복 숫자 없는지
+-  [x] ClientLottoData
+    - setLottoTicketNumber() : 로또 티켓 개수 발행
+    - setLottoTicket() : 로또 티켓 발행 - 여기서 new Lotto를 하는것이 맞을까?
+    - SetIncome() : 수익률 계산 - 소수점 2째자리서 반올림
+-  [x] WinningLottoNumber
 
-4. controller
+4.✅ controller
 
-- [ ] LottoController
+- [x] LottoController
     - [x] ⚠️ controller에서 iv를 최소한으로 줄이는 것이 좋지 않을까? 줄이는게 좋다.
     - [x] ⚠️ iv가 꼭 필요한 경우 생성자를 통해서 객체를 넣을 수 있지만, 해당 객체 내부에 값을 넣어야하는 경우는 어떻게 해결? run()

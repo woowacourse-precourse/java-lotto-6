@@ -4,6 +4,7 @@ import lotto.exception.ExceptionMessage;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
 
@@ -16,6 +17,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        numbers = sort(numbers);
         this.numbers = numbers;
     }
 
@@ -51,6 +53,12 @@ public class Lotto {
         return (int) numbers.stream()
                 .filter(winningLotto::isContain)
                 .count();
+    }
+
+    public List<Integer> sort(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public boolean isContain(int number) {

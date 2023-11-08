@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-@DisplayName("LottoNumber 클래스")
+@DisplayName("BonusNumber 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class BonusNumberTest {
 

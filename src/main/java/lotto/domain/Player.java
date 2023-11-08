@@ -1,18 +1,19 @@
 package lotto.domain;
 
 public class Player {
-    private int money;
-    private int quantity;
+    private final int money;
+    private final int quantity;
+    private final int change;
     private double prize;
 
-    private int change;
+    private final int ONE_LOTTO_PRICE = 1000;
 
     public Player(String money) {
         int parsingMoney = checkMoney(money);
         shortCheckMoney(parsingMoney);
         this.money = parsingMoney;
-        this.quantity = parsingMoney / 1000;
-        this.change = parsingMoney % 1000;
+        this.quantity = parsingMoney / ONE_LOTTO_PRICE;
+        this.change = parsingMoney % ONE_LOTTO_PRICE;
         this.prize = 0;
     }
 
@@ -25,7 +26,7 @@ public class Player {
     }
 
     private void shortCheckMoney(int money) {
-        if (money < 1000)
+        if (money < ONE_LOTTO_PRICE)
             throw new IllegalArgumentException("[ERROR] 1000원 이상의 금액을 입력해 주세요.");
     }
 

@@ -21,6 +21,7 @@ public class Application {
         printLottos(lottos);
 
         Lotto winningLotto = inputWinningNumbers();
+        int bonusNumber = inputBonusNumber();
     }
 
     private static int inputPurchaseAmount() {
@@ -77,6 +78,11 @@ public class Application {
         }
 
         return new Lotto(winningNumbers);
+    }
+
+    private static int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Integer.parseInt(Console.readLine().trim());
     }
 
 }

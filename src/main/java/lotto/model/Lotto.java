@@ -2,6 +2,8 @@ package lotto.model;
 
 import java.util.List;
 
+import static lotto.Enum.Constant.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -11,7 +13,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != AMOUNT_OF_LOTTO_NUMBER.getValue()) {
             throw new IllegalArgumentException();
         }
 
@@ -21,7 +23,7 @@ public class Lotto {
         }
 
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < MIN_NUMBER.getValue() || number > MAX_NUMBER.getValue()) {
                 throw new IllegalArgumentException();
             }
         }

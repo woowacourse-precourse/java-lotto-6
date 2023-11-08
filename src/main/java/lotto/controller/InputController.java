@@ -1,11 +1,15 @@
 package lotto.controller;
 
+import lotto.Enum.Constant;
 import lotto.util.CheckValidation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.Enum.Constant.NUMBER_FOR_INITIALIZATION;
+import static lotto.Enum.Message.COMMA;
+import static lotto.Enum.Message.ERROR_MSG;
 
 public class InputController {
     public static int money;
@@ -14,9 +18,9 @@ public class InputController {
     public static CheckValidation validator = new CheckValidation();
 
     public InputController() {
-        money = 0;
+        money = NUMBER_FOR_INITIALIZATION.getValue();
         winningNumbers = new ArrayList<>();
-        bonusNumber = 0;
+        bonusNumber = NUMBER_FOR_INITIALIZATION.getValue();
     }
     public static void validate (Runnable validation) {
         try {
@@ -30,7 +34,7 @@ public class InputController {
         try {
             validator.checkInputMoneyFigure(stringMoney);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            System.out.println(ERROR_MSG.getMessage() + e.getMessage());
             inputMoney();
             return;
         }
@@ -39,7 +43,7 @@ public class InputController {
     }
     public static void inputWinningNumbers() {
         winningNumbers = new ArrayList<>();
-        String[] numberStrings = readLine().split(",");
+        String[] numberStrings = readLine().split(COMMA.getMessage());
 
         for (String numberString : numberStrings) {
             numberString = numberString.trim();
@@ -49,7 +53,7 @@ public class InputController {
         try {
             validateWinningNumbers(numberStrings);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            System.out.println(ERROR_MSG.getMessage() + e.getMessage());
             inputWinningNumbers();
         }
     }
@@ -66,7 +70,7 @@ public class InputController {
         try {
             validateBonusNumber();
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            System.out.println(ERROR_MSG.getMessage() + e.getMessage());
             inputBonusNumber();
         }
     }

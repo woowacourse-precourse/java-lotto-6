@@ -1,6 +1,5 @@
 package lotto.service;
 
-import lotto.Enum.Constant;
 import lotto.Enum.Rank;
 import lotto.model.Lotto;
 import lotto.model.Statistics;

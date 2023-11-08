@@ -8,32 +8,9 @@ import lotto.service.DrawStatistics;
 import java.util.List;
 
 import static lotto.service.DrawStatistics.earningRate;
-import static lotto.service.DrawStatistics.lottoStatistics;
 
 public class LottoController {
     public static void run() {
-        /*
-        PrintController.printInputMoneyMsg();
-        InputController inputController = new InputController();
-        inputController.inputMoney();
-        PrintController.printNextLine();
-        int amountOfLottoTickets = IssueLotto.getAmountOfLottoTickets();
-        PrintController.printAmountOfLottoTickets(amountOfLottoTickets);
-        List<Lotto> lottoTickets = IssueLotto.makeLottoTickets();
-        PrintController.printLottoTickets(lottoTickets);
-        PrintController.printNextLine();
-        PrintController.printInputWinningNumbersMsg();
-        inputController.inputWinningNumbers();
-        PrintController.printNextLine();
-        PrintController.printInputBonusNumberMsg();
-        inputController.inputBonusNumber();
-        PrintController.printNextLine();
-         */
-
-        // List<Statistics> lottoStatistics = DrawStatistics.makeStatistics(DrawStatistics.countCorrectNumbers());
-        // PrintController.printStatistics(lottoStatistics);
-        // double earningRate = DrawStatistics.getEarningRate(lottoStatistics);
-        // PrintController.printEarningRate(earningRate);
         LottoController.runInputMoney();
         LottoController.runIssueLotto();
         LottoController.runInputNumber();

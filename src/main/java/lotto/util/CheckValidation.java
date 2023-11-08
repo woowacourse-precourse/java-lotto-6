@@ -1,31 +1,32 @@
 package lotto.util;
 
-import lotto.controller.InputController;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static lotto.Enum.Constant.MONEY_UNIT;
+import static lotto.Enum.Constant.NUMBER_FOR_INITIALIZATION;
+import static lotto.Enum.Message.*;
 import static lotto.controller.InputController.*;
 
 public class CheckValidation {
     public void checkInputMoneyUnit() {
-        if (money % 1000 !=0) {
-            throw new IllegalArgumentException("1000원 단위로 입력해주세요.");
+        if (money % MONEY_UNIT.getValue() != NUMBER_FOR_INITIALIZATION.getValue()) {
+            throw new IllegalArgumentException(CHECK_INPUT_MONEY_UNIT_MSG.getMessage());
         }
     }
     public void checkInputMoneyFigure(String stringMoney) {
         String regex = "[0-9]+";
         if (!Pattern.matches(regex, stringMoney)) {
-            throw new IllegalArgumentException("숫자만 입력가능합니다.");
+            throw new IllegalArgumentException(CHECK_INPUT_MONEY_FIGURE_MSG.getMessage());
         }
     }
     public void checkWinningNumBlank(String[] numberStrings) {
         boolean checkBlank = Arrays.stream(numberStrings).noneMatch(str -> str.equals(" "));
         if (!checkBlank) {
-            throw new IllegalArgumentException("입력하신 값 중에 공백이 존재합니다.");
+            throw new IllegalArgumentException(CHECK_WINNING_NUM_BLANK_MSG.getMessage());
         }
     }
     public void checkWinningNumDuplication() {
@@ -33,31 +34,31 @@ public class CheckValidation {
         checking = winningNumbers.stream().distinct().collect(Collectors.toList());
 
         if (winningNumbers.size() != checking.size()) {
-            throw new IllegalArgumentException("중복되지 않는 6개의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(CHECK_WINNING_NUM_DUPLICATION_MSG.getMessage());
         }
     }
     public void checkWinningNumRangeOver() {
         for (Integer number : winningNumbers) {
             if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("범위를 초과한 숫자를 입력하셨습니다. 로또 당첨 번호의 숫자 범위는 1 ~ 45 입니다.");
+                throw new IllegalArgumentException(CHECK_WINNING_NUM_RANGE_OVER_MSG.getMessage());
             }
         }
     }
     public void checkWinningNumAmount() {
         if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("당첨 번호는 6개 입니다. 6개의 당첨 번호를 입력해주세요");
+            throw new IllegalArgumentException(CHECK_WINNING_NUM_AMOUNT_MSG.getMessage());
         }
     }
     public void checkBonusNumDuplication() {
         for (Integer winningNum : winningNumbers) {
             if (bonusNumber == winningNum) {
-                throw new IllegalArgumentException("당첨 번호 중에 이미 존재하는 숫자 입니다. 당첨 번호와 중복되지 않는 숫자를 입력해주세요");
+                throw new IllegalArgumentException(CHECK_BONUS_NUM_DUPLICATION_MSG.getMessage());
             }
         }
     }
     public void checkBonusNumRangeOver() {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("범위를 초과한 숫자를 입력하셨습니다. 보너스 번호의 숫자 범위는 1 ~ 45 입니다.");
+            throw new IllegalArgumentException(CHECK_BONUS_NUM_RANGE_OVER_MSG.getMessage());
         }
     }
 }

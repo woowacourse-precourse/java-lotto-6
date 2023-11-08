@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.Enum.Constant.MONEY_UNIT;
+import static lotto.Enum.Constant.NUMBER_FOR_INITIALIZATION;
 import static lotto.controller.InputController.money;
 import static lotto.controller.InputController.validator;
 
@@ -14,13 +16,13 @@ public class IssueLotto {
     public static int amountOfLottoTickets;
     public static List<Lotto> lottoTickets;
     public static void getAmountOfLottoTickets() {
-        amountOfLottoTickets = money / 1000;
+        amountOfLottoTickets = money / MONEY_UNIT.getValue();
     }
 
     public static void makeLottoTickets() {
         lottoTickets = new ArrayList<>();
 
-        for (int i = 0; i < amountOfLottoTickets; i++) {
+        for (int i = NUMBER_FOR_INITIALIZATION.getValue(); i < amountOfLottoTickets; i++) {
             List<Integer> numbers = makeARandomNumbersList();
             Collections.sort(numbers);
             Lotto ticketNumbers = new Lotto(numbers);

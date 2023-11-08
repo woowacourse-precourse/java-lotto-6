@@ -1,8 +1,9 @@
 package lotto;
 
-import java.util.LinkedHashMap;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Lottos {
@@ -21,7 +22,7 @@ public class Lottos {
     }
 
     public Result calcuateResult(Buyer buyer) {
-        Map<Rank, Integer> result = new LinkedHashMap<>();
+        Map<Rank, Integer> result = initializeResult();
 
         lottos.forEach(lotto -> {
             Rank rank = buyer.calculateComparingResult(lotto);
@@ -29,5 +30,12 @@ public class Lottos {
         });
 
         return new Result(result);
+    }
+
+    private Map<Rank, Integer> initializeResult() {
+        Map<Rank, Integer> result = Arrays.stream(Rank.values())
+                .collect(Collectors.toMap(rank -> rank, rank -> 0));
+
+        return result;
     }
 }

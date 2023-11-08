@@ -8,8 +8,10 @@ public enum ErrorMessage {
 
     /** 구입 금액 **/
     INVALID_INPUT_MONEY("[ERROR] 구입금액은 1,000원 단위로 입력해야 합니다."),
-    INVALID_MONEY_ZERO("[ERROR] 구입 금액은 0원보다 커야 합니다.");
+    INVALID_MONEY_ZERO("[ERROR] 구입 금액은 0원보다 커야 합니다."),
 
+
+    INVALID_NUMBER_FORMAT("[ERROR] 숫자가 아닌 다른 값을 입력하였습니다.");
 
     private final String message;
 

@@ -6,6 +6,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class WinningStatistics {
+    private static final int INCREMENT_COUNT = 1;
+
     Map<Ranking, Integer> winningStatus = new LinkedHashMap<>();
 
     public WinningStatistics() {
@@ -21,6 +23,6 @@ public class WinningStatistics {
     }
 
     public void incrementWinningStatus(Ranking ranking) {
-        winningStatus.replace(ranking, winningStatus.get(ranking) + 1);
+        winningStatus.replace(ranking, winningStatus.get(ranking) + INCREMENT_COUNT);
     }
 }

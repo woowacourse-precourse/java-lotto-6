@@ -9,6 +9,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
+    private static final int START_INCLUSIVE = 1;
+    private static final int END_INCLUSIVE = 45;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -26,7 +29,7 @@ public class Lotto {
 
     private void validationRange(List<Integer> numbers) {
         numbers.stream()
-                .filter(number -> !(1 <= number && number <= 45))
+                .filter(number -> !(START_INCLUSIVE <= number && number <= END_INCLUSIVE))
                 .findAny()
                 .ifPresent(number -> {
                     throw new IllegalArgumentException(LOTTO_RANGE.errorMessage());

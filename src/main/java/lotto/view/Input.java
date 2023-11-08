@@ -14,6 +14,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Input {
+    private static final int START_INCLUSIVE = 1;
+    private static final int END_INCLUSIVE = 45;
+    private static final int LOTTO_AMOUNT = 1000;
+
     public int getValidPurchaseAmount() {
         int purchaseAmount;
 
@@ -33,7 +37,9 @@ public class Input {
     private int getPurchaseAmount() {
         try {
             int purchaseAmount = Integer.parseInt(Console.readLine());
+
             validationPurchaseAmountInThousands(purchaseAmount);
+
             return purchaseAmount;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NUMBER_FORMAT_MONEY.errorMessage());
@@ -52,6 +58,7 @@ public class Input {
 
     public List<Integer> getValidWinningNumbers() {
         List<Integer> winningNumbers;
+
         while (true) {
             Output.printWinningNumberMessage();
             try {
@@ -61,6 +68,7 @@ public class Input {
                 checkWinningNumbersExceptionCategory(e);
             }
         }
+
         return winningNumbers;
     }
 
@@ -102,6 +110,7 @@ public class Input {
 
     public int getValidBonusNumber() {
         int bonusNumber;
+
         while (true) {
             Output.printBonusNumberMessage();
             try {
@@ -111,12 +120,14 @@ public class Input {
                 checkBonusNumberExceptionCategory(e);
             }
         }
+
         return bonusNumber;
     }
 
     private int getBonusNumber() {
         try {
             int bonusNumber = Integer.parseInt(Console.readLine());
+
             validationBonusNumberRange(bonusNumber);
 
             return bonusNumber;
@@ -136,7 +147,7 @@ public class Input {
     }
 
     private void validationPurchaseAmountInThousands(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
+        if (purchaseAmount % LOTTO_AMOUNT != 0) {
             throw new IllegalArgumentException(DIVISIBLE_BY_1000.errorMessage());
         }
     }
@@ -148,7 +159,7 @@ public class Input {
     }
 
     private void validationWinningNumbersRange(List<Integer> winningNumbers) {
-        winningNumbers.stream().filter(number -> !(1 <= number && number <= 45))
+        winningNumbers.stream().filter(number -> !(START_INCLUSIVE <= number && number <= END_INCLUSIVE))
                 .findAny()
                 .ifPresent(number -> {
                     throw new IllegalArgumentException(WINNING_NUMBERS_RANGE.errorMessage());
@@ -162,7 +173,7 @@ public class Input {
     }
 
     private void validationBonusNumberRange(int bonusNumber) {
-        if (!(1 <= bonusNumber && bonusNumber <= 45)) {
+        if (!(START_INCLUSIVE <= bonusNumber && bonusNumber <= END_INCLUSIVE)) {
             throw new IllegalArgumentException(BONUS_NUMBER_RANGE.errorMessage());
         }
     }

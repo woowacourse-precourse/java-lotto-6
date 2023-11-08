@@ -11,9 +11,14 @@ import lotto.domain.Ranking;
 import lotto.domain.WinningStatistics;
 
 public class GameManager {
+    private static final int LOTTO_AMOUNT = 1000;
+    private static final int FIVE_MATCHES = 5;
+    private static final int MINIMUM_MATCHES = 3;
+    private static final int PERCENTAGE = 100;
+
     public List<Lotto> createLotto(int purchaseAmount) {
-        int purchaseQuantity = purchaseAmount / 1000;
         List<Lotto> totalLotto = new ArrayList<>();
+        int purchaseQuantity = purchaseAmount / LOTTO_AMOUNT;
 
         IntStream.range(0, purchaseQuantity)
                 .forEach(i -> {
@@ -55,20 +60,21 @@ public class GameManager {
             int bonusNumber,
             WinningStatistics winningStatistics
     ) {
-        if (matchCount == 5) {
+        if (matchCount == FIVE_MATCHES) {
             winningStatistics.incrementWinningStatus(Ranking.compareLottoWithBonusNumber(lotto, bonusNumber));
             return;
         }
 
-        if (matchCount >= 3) {
+        if (matchCount >= MINIMUM_MATCHES) {
             winningStatistics.incrementWinningStatus(Ranking.findByMatchCount(matchCount));
         }
     }
 
     public String calculateProfitPercentage(WinningStatistics winningStatistics, int purchaseAmount) {
         int totalWinningAmount = calculateTotalWinningAmount(winningStatistics);
-        double profit = ((double) totalWinningAmount / purchaseAmount) * 100;
+        double profit = ((double) totalWinningAmount / purchaseAmount) * PERCENTAGE;
         BigDecimal bigDecimal = new BigDecimal(profit).setScale(1, BigDecimal.ROUND_HALF_UP);
+
         return bigDecimal.toString();
     }
 

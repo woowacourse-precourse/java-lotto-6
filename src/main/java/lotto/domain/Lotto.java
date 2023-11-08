@@ -9,9 +9,10 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        LottoNumberValidator.validateLottoNumber(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        ArrayList<Integer> modifyNumbers = new ArrayList<>(numbers);
+        LottoNumberValidator.validateLottoNumber(modifyNumbers);
+        Collections.sort(modifyNumbers);
+        this.numbers = modifyNumbers;
     }
 
     public String getNumbersPrintFormat() {

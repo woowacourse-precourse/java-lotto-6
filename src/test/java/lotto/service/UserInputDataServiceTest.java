@@ -19,4 +19,15 @@ public class UserInputDataServiceTest {
         // then
         assertThat(result).isEqualTo(buyingPrice);
     }
+
+    @DisplayName("로또 구매 테스트")
+    @Test
+    public void setUserLottoTest() {
+        // given
+        User user = new User(10000);
+        // when
+        userInputDataService.setUserLotto(user);
+        // then
+        assertThat(user.getLottos().size()).isEqualTo(10);
+    }
 }

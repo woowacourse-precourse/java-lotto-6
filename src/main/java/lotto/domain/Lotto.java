@@ -50,4 +50,25 @@ public class Lotto {
         return numbers;
     }
 
+    private int getMatchCount(Lotto lotto) {
+        int matchCount = 0;
+        for(int number : lotto.getNumbers()){
+            if(this.numbers.contains(number)){
+                matchCount++;
+            }
+        }
+
+        return matchCount;
+    }
+
+    private boolean isMatchBonus(int bonusNumber) {
+        return this.numbers.contains(bonusNumber);
+    }
+
+    public Rank getRank(Lotto lotto, int bonusNumber) {
+        int matchCount = getMatchCount(lotto);
+        boolean isMatchBonus = isMatchBonus(bonusNumber);
+
+        return Rank.valueOf(matchCount, isMatchBonus);
+    }
 }

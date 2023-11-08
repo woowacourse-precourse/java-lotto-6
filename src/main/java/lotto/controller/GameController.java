@@ -1,12 +1,14 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.service.GameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class GameController {
     private InputView inputView;
@@ -37,6 +39,8 @@ public class GameController {
         String rawInputBonusNumber = inputView.requestInputBonusNumber();
         int bonusNumber = convertRawInputBonusNumberToInt(rawInputBonusNumber, playerLotto);
         gameService.setBonusNumber(bonusNumber);
+
+        gameService.comparePlayerLottoWithWinningLottos();
     }
 
     public void endGame() {

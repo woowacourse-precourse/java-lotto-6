@@ -2,9 +2,12 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GameService {
 
@@ -12,10 +15,18 @@ public class GameService {
     private Lotto playerLotto;
     private int bonusNumber;
     private List<Lotto> winningLottos;
+    private Map<Rank, Integer> rankCountMap = new HashMap<>();
 
     public void initGame(int money) {
         lottoCount = money / Lotto.LOTTO_PRICE;
         winningLottos = generateWinningLottos();
+        initRankCountMap();
+    }
+
+    private void initRankCountMap(){
+        for(Rank rank : Rank.values()){
+            rankCountMap.put(rank, 0);
+        }
     }
 
     private List<Lotto> generateWinningLottos(){
@@ -24,6 +35,18 @@ public class GameService {
             lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(Lotto.LOTTO_MIN_NUMBER, Lotto.LOTTO_MAX_NUMBER, Lotto.LOTTO_SIZE)));
         }
         return lottos;
+    }
+
+    public void comparePlayerLottoWithWinningLottos() {
+        for(Lotto lotto : winningLottos){
+            Rank rank = lotto.getRank(playerLotto, bonusNumber);
+
+            if(rankCountMap.containsKey(rank)){
+                rankCountMap.put(rank, rankCountMap.get(rank) + 1);
+            } else {
+                rankCountMap.put(rank, 1);
+            }
+        }
     }
 
     public int getLottoCount() {
@@ -38,5 +61,9 @@ public class GameService {
 
     public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
+    }
+
+    public Map<Rank, Integer> getRankCountMap() {
+        return rankCountMap;
     }
 }

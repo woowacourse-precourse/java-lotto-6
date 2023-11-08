@@ -13,20 +13,22 @@ public class Program {
         processPayment();
         lottoTerminal.LottoIssuance();
         lottoTerminal.printAllLotto();
+
+        processWinningNumber();
     }
 
     private void processPayment() {
         boolean isValidAmount = false;
 
         while (!isValidAmount) {
-            isValidAmount = handlePurchaseAmount();
+            String inputAmount = lottoTerminal.requestAndReadPurchaseAmount();
+
+            isValidAmount = handlePurchaseAmount(inputAmount);
         }
         customer.expendForLotto(purchaseAmount);
     }
 
-    private boolean handlePurchaseAmount() {
-        String inputAmount = lottoTerminal.requestAndReadPurchaseAmount();
-
+    private boolean handlePurchaseAmount(String inputAmount) {
         try {
             validatePurchaseAmount(inputAmount);
             purchaseAmount = Long.parseLong(inputAmount);
@@ -43,5 +45,33 @@ public class Program {
         inputValidator.validateOnlyNumeric(value);
         inputValidator.validateLongValueRange(value);
         inputValidator.validateAmountDivisibility(value);
+    }
+
+    private void processWinningNumber() {
+        boolean isValidInput = false;
+
+        while (!isValidInput) {
+            String winningNumber = lottoTerminal.requestAndReadWinningNumber();
+
+            isValidInput = handleWinningNumber(winningNumber);
+        }
+    }
+
+    private boolean handleWinningNumber(String value) {
+        try {
+            validateWinningNumber(value);
+            return true;
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            return false;
+        }
+    }
+
+    private void validateWinningNumber(String value) {
+        inputValidator.validateNonEmpty(value);
+        String[] winningNumbers = inputValidator.validateSeparatedByComma(value);
+        inputValidator.validateOnlyNumericValues(winningNumbers);
+        inputValidator.validateNumbersInRange(winningNumbers);
+        inputValidator.validateNoDuplicates(winningNumbers);
     }
 }

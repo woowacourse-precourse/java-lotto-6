@@ -6,7 +6,12 @@ public enum ExceptionMessage {
     AMOUNT_CANNOT_BE_ZERO("[ERROR] The purchase amount cannot be zero."),
     AMOUNT_OUT_OF_BOUNDS("[ERROR] The purchase amount is out of bounds."),
     VALUE_CANNOT_BE_EMPTY_OR_BLANK("[ERROR] It cannot be blank or an empty value."),
-    NUMERIC_VALUES_ONLY("[ERROR] Only numeric values are allowed.");
+    NUMERIC_VALUES_ONLY("[ERROR] Only numeric values are allowed."),
+    INVALID_WINNING_NUMBER_FORMAT("[ERROR] Six winning numbers must be entered, separated by commas."),
+    NUMBER_OUT_OF_RANGE("[ERROR] Value must be within the range."),
+    NO_DUPLICATES_ALLOWED("[ERROR] Values must be unique and cannot be duplicated."),
+    NON_ZERO_STARTING_POSITIVE_NUMBERS_REQUIRED(
+            "[ERROR] Each winning number must be a positive number that does not start with 0.");
 
     private final String message;
 

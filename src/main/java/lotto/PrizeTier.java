@@ -1,7 +1,6 @@
 package lotto;
 
 import java.text.NumberFormat;
-import java.util.Arrays;
 import java.util.Locale;
 
 public enum PrizeTier {

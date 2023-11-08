@@ -15,9 +15,7 @@ public class InputBonusNumberView extends InputView{
                 System.out.println();
                 validate(bonus);
                 return Integer.parseInt(bonus);
-            } catch (IllegalArgumentException e) {
-//                System.out.println("[ERROR] 보너스 번호가 올바르지 않습니다.");
-            }
+            } catch (IllegalArgumentException e) {}
         }
     }
 

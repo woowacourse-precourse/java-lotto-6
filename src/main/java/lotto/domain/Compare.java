@@ -24,8 +24,6 @@ public class Compare {
 
     public void scoringResult(WinningLotto win, Lottos lottos) {
         for(Lotto lotto : lottos.getLottos()) {
-//            System.out.println(lotto.sameNumberCount(win));
-//            System.out.println(lotto.isContain(win.getBonusNumber()));
             Score score = Score.getScore(lotto.sameNumberCount(win), lotto.isContain(win.getBonusNumber()));
             updateScoreResult(score);
         }

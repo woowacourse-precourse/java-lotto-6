@@ -2,7 +2,6 @@ package lotto.view;
 
 import lotto.domain.Compare;
 import lotto.domain.Score;
-import lotto.domain.WinningLotto;
 
 public class OutputLottoResultsView {
     private static final int ZERO = 0;

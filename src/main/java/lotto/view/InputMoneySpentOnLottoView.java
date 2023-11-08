@@ -16,9 +16,7 @@ public class InputMoneySpentOnLottoView extends InputView{
                 System.out.println();
                 validate(money);
                 return Integer.parseInt(money);
-            } catch (WrongFormatException e) {
-//                System.out.println("[ERROR] 구입금액은 1000원 단위로 입력가능합니다.");
-            }
+            } catch (WrongFormatException e) {}
         }
     }
 

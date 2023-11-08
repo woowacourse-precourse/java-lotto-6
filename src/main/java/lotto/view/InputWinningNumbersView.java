@@ -20,7 +20,6 @@ public class InputWinningNumbersView extends InputView{
                 String numbers = input();
                 System.out.println();
                 validate(numbers);
-//                validate(numbers);
                 return Stream.of(numbers.split(","))
                         .map(Integer::parseInt)
                         .collect(Collectors.toList());
@@ -34,12 +33,4 @@ public class InputWinningNumbersView extends InputView{
             throw new WrongFormatException();
         }
     }
-//
-//    public void validateSameNumbers(String winNum) {
-//        String[] winNumbers = winNum.split(",");
-//        ArrayList<String> win = new ArrayList<String>(Arrays.asList(winNumbers));
-//        if(win.size() != win.stream().distinct().count()){
-//            throw new SameNumberInLottoException();//SameNumberInLottoException
-//        }
-//    }
 }

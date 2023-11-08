@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.exception.LottoSizeException;
@@ -30,11 +29,9 @@ public class Lotto {
     }
 
     private List<Integer> sort() {
-//        Collections.sort(numbers);
         return numbers.stream()
                 .sorted()
                 .collect(Collectors.toList());
-//        return numbers;
     }
 
     public List<Integer> getNumbers(){

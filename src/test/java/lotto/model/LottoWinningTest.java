@@ -18,6 +18,13 @@ public class LottoWinningTest extends NsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("LottoWinning 매개변수가 6개가 아닌 경우")
+    @Test
+    void createLottoWinningByLengthIsNotSix() {
+        assertThatThrownBy(() -> new LottoWinning("2,32,33,12,43"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("LottoWinning 1~45 범위를 넘어서면 에러처리한다.")
     @Test
     void createLottoWinningByOutOfRange() {

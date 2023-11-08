@@ -12,7 +12,7 @@ public class MatchCounter {
     private final int NOT_EXIST = 0;
 
     private MatchCounter(List<Integer> answerNumbers) {
-        this.answerNumbers = answerNumbers;
+        this.answerNumbers = new ArrayList<>(answerNumbers);
     }
 
     public static MatchCounter from(List<Integer> answerNumbers) {
@@ -34,13 +34,13 @@ public class MatchCounter {
         return counting;
     }
 
-    private int countNumberMatch(List<Integer> numbers) {
+    int countNumberMatch(List<Integer> numbers) {
         return (int) numbers.stream()
                 .filter(answerNumbers::contains)
                 .count();
     }
 
-    private int countBonusMatch(List<Integer> list) {
+    int countBonusMatch(List<Integer> list) {
         if (list.contains(bonusNumber)) {
             return EXIST;
         }

@@ -52,7 +52,7 @@ public class LottoService {
     }
 
     private boolean hasBonusMatch(LottoData lottoData, Lotto userLotto) {
-        return calculateBonusMatch(lottoData.bonusNumber(), userLotto);
+        return isBonusMatch(lottoData.bonusNumber(), userLotto);
     }
 
     private int calculateMatchCount(Lotto winningNumbers, Lotto userLotto) {
@@ -61,19 +61,19 @@ public class LottoService {
         return (int) userLottoList.stream().filter(winningNumbersList::contains).count();
     }
 
-    public boolean calculateBonusMatch(BonusNumber bonusNumber, Lotto userLotto) {
-        return bonusNumber.equals(userLotto.getNumbers());
+    public boolean isBonusMatch(BonusNumber bonusNumber, Lotto userLotto) {
+        List<Integer> userNumbers = userLotto.getNumbers();
+        return userNumbers.contains(bonusNumber.bonusNumber());
     }
 
-    public int calculateTotalPrize(Map<Winning, Integer> winningCounts) {
-        int totalPrize = 0;
+    public long calculateTotalPrize(Map<Winning, Integer> winningCounts) {
+        long totalPrize = 0;
 
         for (Winning result : Winning.values()) {
             int count = winningCounts.getOrDefault(result, 0);
             int prize = result.getWinningAmount().amount();
-            totalPrize += count * prize;
+            totalPrize += (long) count * prize;
         }
-
         return totalPrize;
     }
 

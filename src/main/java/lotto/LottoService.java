@@ -18,13 +18,13 @@ public class LottoService {
         Lotto lotto = new Lotto(numbers);
     }
 
-    public void createLottoList(){
+    public List<Integer> createLottoList(){
         List<List<Integer>> numbersList = new ArrayList<>();
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
         Collections.sort(randomNumbers);
         numbersList.add(randomNumbers);
+        return randomNumbers;
     }
-
 
 
 }

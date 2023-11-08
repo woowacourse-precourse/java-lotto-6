@@ -12,7 +12,7 @@ public class Checker {
 
     private void make(Lotto lotto, WinningNumber winningNumber) {
         for (int number : lotto.getNumbers()) {
-            if (winningNumber.getWinningNumber().contains(number)) {
+            if (winningNumber.getNumbers().contains(number)) {
                 count++;
             }
             if (number == winningNumber.getBonusNumber()) {

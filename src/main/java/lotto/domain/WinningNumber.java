@@ -9,13 +9,11 @@ import static lotto.constant.LottoConstant.MINIMUM_LOTTO_NUMBER;
 import static lotto.constant.LottoErrorMessage.LOTTO_NUMBER_ERROR_MESSAGE;
 
 public class WinningNumber extends Lotto {
-    private final List<Integer> winningNumber;
     private int bonusNumber;
 
     public WinningNumber(List<Integer> winningNumber) {
         super(winningNumber);
         validate(winningNumber);
-        this.winningNumber = winningNumber;
     }
 
     private void validate(List<Integer> winningNumber) {
@@ -32,10 +30,6 @@ public class WinningNumber extends Lotto {
         if (lottoNumber < MINIMUM_LOTTO_NUMBER.getConstant() || lottoNumber > MAXIMUM_LOTTO_NUMBER.getConstant()) {
             throw new IllegalArgumentException(LOTTO_NUMBER_ERROR_MESSAGE.getErrorMessage());
         }
-    }
-
-    public List<Integer> getWinningNumber() {
-        return winningNumber;
     }
 
     public int getBonusNumber() {

@@ -21,6 +21,7 @@
 - [x] 당첨 내역을 출력한다. - LottoGame#printResult()
 - [x] 소수점 둘째 자리에서 반올림한 수익률을 출력한다. - LottoGame#printEarningRate()
   - [x] 수익을 구한다.
+- [ ] 구매하기로 한 갯수만큼 로또를 구매한다. -LottoGame#buyLottos() 
 
 
 ## 기능 요구 사항

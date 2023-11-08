@@ -38,6 +38,17 @@ class LottoServiceTest {
         assertEquals(lottoResult.getSix(), 0);
     }
 
+    @DisplayName("당첨 개수 추출")
+    @Test
+    void compareLottoNumberWithWinningNumbers() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumbers = List.of(3, 4, 5, 6, 7, 8);
+
+        int cnt = lottoService.count(numbers, winningNumbers);
+
+        assertEquals(cnt, 4);
+    }
+
     @Test
     void printLottos() {
         List<Lotto> lottos = new ArrayList<>();

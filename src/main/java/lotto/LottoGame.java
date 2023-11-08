@@ -30,7 +30,7 @@ public class LottoGame {
         lottoGameView.printRateReturn(calculateReturn(resultSum, purchaseAmount));
     }
 
-    public List<Lotto> issueLottery(int tickets) {
+    private List<Lotto> issueLottery(int tickets) {
         List<Lotto> lotteries = new ArrayList<>();
 
         for (int i = 0; i < tickets; i++) {

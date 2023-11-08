@@ -5,11 +5,13 @@ import lotto.constants.MessageConstants;
 import lotto.view.InputView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoGame {
     private final List<Lotto> lottos = new ArrayList<>();
-    private int firstPlaceCount = 0, secondPlaceCount = 0, thirdPlaceCount = 0, fourthPlaceCount = 0, fifthPlaceCount = 0;
+    private Map<Rank, Integer> rankMap = new HashMap<>();
 
     public void run() {
         Integer purchaseAmount = InputView.inputPurchaseAmount();
@@ -26,7 +28,7 @@ public class LottoGame {
     }
 
     private void incomeRate(Integer purchaseAmount) {
-        Double sum = (double) (firstPlaceCount * 2000000000 + secondPlaceCount * 30000000 + thirdPlaceCount * 1500000 + fourthPlaceCount * 50000 + fifthPlaceCount * 5000);
+        Double sum = (double) (rankMap.get(Rank.FIRST_PLACE) * 2000000000 + rankMap.get(Rank.SECOND_PLACE) * 30000000 + rankMap.get(Rank.THIRD_PLACE) * 1500000 + rankMap.get(Rank.FOURTH_PLACE) * 50000 + rankMap.get(Rank.FIFTH_PLACE) * 5000);
         Double per = ((sum - purchaseAmount) / purchaseAmount) * 100.;
         per = 100 + per;
         per = Math.round(per * 10) / 10.;
@@ -35,20 +37,20 @@ public class LottoGame {
     }
 
     private void checkLottoWinningRank(List<Integer> winningNumbers, Integer bonusNumber) {
+        rankMapInit();
         for (Lotto lotto : lottos) {
             Rank rank = lotto.checkLottoWinningRank(winningNumbers, bonusNumber);
-            if (rank == Rank.FIRST_PLACE) {
-                firstPlaceCount += 1;
-            } else if (rank == Rank.SECOND_PLACE) {
-                secondPlaceCount += 1;
-            } else if (rank == Rank.THIRD_PLACE) {
-                thirdPlaceCount += 1;
-            } else if (rank == Rank.FOURTH_PLACE) {
-                fourthPlaceCount += 1;
-            } else if (rank == Rank.FIFTH_PLACE) {
-                fifthPlaceCount += 1;
-            }
+            rankMap.put(rank, rankMap.get(rank) + 1);
         }
+    }
+
+    private void rankMapInit() {
+        rankMap.put(Rank.FIRST_PLACE, 0);
+        rankMap.put(Rank.SECOND_PLACE, 0);
+        rankMap.put(Rank.THIRD_PLACE, 0);
+        rankMap.put(Rank.FOURTH_PLACE, 0);
+        rankMap.put(Rank.FIFTH_PLACE, 0);
+        rankMap.put(Rank.OTHER_PLACE, 0);
     }
 
     private void createLottos(Integer purchaseAmount) {
@@ -66,11 +68,11 @@ public class LottoGame {
 
     private void printRank() {
         System.out.println(MessageConstants.WINNING_GUIDE);
-        System.out.println(MessageConstants.THREE_MATCH + fifthPlaceCount + "개");
-        System.out.println(MessageConstants.FOUR_MATCH + fourthPlaceCount + "개");
-        System.out.println(MessageConstants.FIVE_MATCH + thirdPlaceCount + "개");
-        System.out.println(MessageConstants.FIVE_BONUS_MATCH + secondPlaceCount + "개");
-        System.out.println(MessageConstants.SIX_MATCH + firstPlaceCount + "개");
+        System.out.println(MessageConstants.THREE_MATCH + rankMap.get(Rank.FIFTH_PLACE) + "개");
+        System.out.println(MessageConstants.FOUR_MATCH + rankMap.get(Rank.FOURTH_PLACE) + "개");
+        System.out.println(MessageConstants.FIVE_MATCH + rankMap.get(Rank.THIRD_PLACE) + "개");
+        System.out.println(MessageConstants.FIVE_BONUS_MATCH + rankMap.get(Rank.SECOND_PLACE) + "개");
+        System.out.println(MessageConstants.SIX_MATCH + rankMap.get(Rank.FIRST_PLACE) + "개");
     }
 
 }

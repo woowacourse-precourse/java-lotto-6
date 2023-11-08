@@ -5,16 +5,21 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class BonusNumber {
     WinningNumber winningNumbers;
     //상수(static final) 또는 클래스 변수
-    private final int BONUS_NUMBER;
+    private static int BONUS_NUMBER;
 
-    //인스턴스 변수
-
-    //생성자
-    public BonusNumber() {
+    public void createBonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        String bonusNumberInput = readLine();
+        int bonusNumberInput;
 
-        int result = Integer.parseInt(bonusNumberInput);
+        while(true) {
+            try {
+                bonusNumberInput = validateFormat(readLine());
+                validateRange(bonusNumberInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         compareWinningAndBonus();
         BONUS_NUMBER = bonusNumberInput;
     }

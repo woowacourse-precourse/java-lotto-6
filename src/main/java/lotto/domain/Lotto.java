@@ -18,11 +18,11 @@ public class Lotto {
     }
 
     private static void validate(final List<Integer> numbers) {
-        isSizeNotSix(numbers);
+        isSizeSix(numbers);
         isEachNumberUnique(numbers);
     }
 
-    private static void isSizeNotSix(final List<Integer> numbers) {
+    private static void isSizeSix(final List<Integer> numbers) {
         if (numbers.size() != LottoConstant.LOTTO_ITEM_COUNT.getValue()) {
             throw LottoInputException.of(LottoInputExceptionMessage.LOTTO_NUMBERS_SIZE_IS_NOT_SIX);
         }

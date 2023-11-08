@@ -1,6 +1,7 @@
 package lotto.service;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Locale;
@@ -20,7 +21,16 @@ public class Output {
         List<Lotto> lottoTickets = lottoReceipt.getLottoTickets();
         System.out.println();
         System.out.printf((MESSAGE_NUMBER_OF_LOTTO_PURCHASED) + "%n", lottoTickets.size());
-        lottoTickets.forEach(System.out::println);
+        setNaturalOrder(lottoTickets);
+//        lottoTickets.forEach(System.out::println);
+    }
+
+    public static void setNaturalOrder(List<Lotto> lottoTickets) {
+        for (Lotto lotto : lottoTickets) {
+            List<Integer> numbers = lotto.cloneNumbers();
+            Collections.sort(numbers);
+            System.out.println(Arrays.toString(numbers.toArray()));
+        }
     }
 
     public static void printLottoWinningResults(LottoReceipt lottoReceipt) {

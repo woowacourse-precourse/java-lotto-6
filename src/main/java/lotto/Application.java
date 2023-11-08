@@ -2,7 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPrizeCalculator;
@@ -60,7 +59,6 @@ public class Application {
 
     public static List<Integer> generateRandomNumber() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-//        Collections.sort(numbers);
         return numbers;
     }
 }

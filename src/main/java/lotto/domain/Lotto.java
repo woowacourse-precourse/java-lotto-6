@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,6 +31,10 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public List<Integer> cloneNumbers() {
+        return new ArrayList<>(numbers);
     }
 
     private void validateCount(List<Integer> numbers) {

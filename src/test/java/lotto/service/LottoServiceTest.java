@@ -21,6 +21,7 @@ class LottoServiceTest implements LottoFinalConsts {
     private HashMap<LottoRank, Integer> lottoRanks = new HashMap<>();
     private LottoMachine lottoMachine = new LottoMachine(lottoPurchase, lottos, lottoRanks);
     private LottoService lottoService = new LottoService();
+    private List<Integer> winningNumbers = new ArrayList<>(List.of(3, 4, 5, 6, 7, 8));
 
     @Test
     void saveWinningAndBonusNumbers() {
@@ -35,7 +36,10 @@ class LottoServiceTest implements LottoFinalConsts {
     }
 
     @Test
-    void isBonusNumberAlreadyExist() {
+    void 사용자가_입력한_보너스_번호가_이미_당첨번호에_존재할_경우_예외를_발생한다() {
+        int bonusNumber = 6;
+        assertThatThrownBy(() -> lottoService.isBonusNumberAlreadyExist(winningNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

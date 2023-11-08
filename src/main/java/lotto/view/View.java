@@ -55,6 +55,7 @@ public class View {
 
     private List<Integer> convertToIntegerList(String winningNumbers) {
         return Arrays.stream(winningNumbers.split(GameUtilConstants.LEST_DELIMITER.getValue(), -1))
+            .peek(NumberValidator::validateNumber)
             .map(Integer::parseInt)
             .peek(NumberValidator::validateInRangeNumber)
             .toList();

@@ -9,5 +9,7 @@ public class PurchasedLotto {
         this.lottos = lottos;
     }
 
-
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

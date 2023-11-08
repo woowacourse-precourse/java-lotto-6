@@ -11,10 +11,6 @@ public class View {
         System.out.println(message);
     }
 
-    public static void newLine() {
-        System.out.println();
-    }
-
     public static void seperateLine() {
         System.out.println("---");
     }

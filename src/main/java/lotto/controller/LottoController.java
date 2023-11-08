@@ -49,7 +49,6 @@ public class LottoController {
     }
 
     private int inputBonusNumberFlow(Lotto winningLotto){
-        int bonusNumber = InputController.inputBonusNumber(winningLotto);
-        return bonusNumber;
+        return InputController.inputBonusNumber(winningLotto);
     }
 }

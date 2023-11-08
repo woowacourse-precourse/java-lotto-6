@@ -53,10 +53,6 @@ public final class InputController {
         return new Money(parseIntWithMessage());
     }
 
-    private static String readLineWithMessage() {
-        return Console.readLine();
-    }
-
     private static int parseIntWithMessage() {
         return Integer.parseInt(Console.readLine());
     }

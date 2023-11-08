@@ -18,9 +18,6 @@ public class LottoNumber {
                 LottoConstant.DIGITS.getValue()
         );
     }
-    public void createWinningNumber(List<Integer> input){
-        this.lottoNumbers.addAll(input);
-    }
     public List<Integer> getLottoNumbers(){
         return this.lottoNumbers;
     }

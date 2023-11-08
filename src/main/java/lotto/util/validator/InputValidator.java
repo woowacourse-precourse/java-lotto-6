@@ -11,7 +11,7 @@ public class InputValidator {
     }
 
     private void validateEmpty(String input) {
-        if (input.isEmpty() || input.isBlank()) {
+        if (input.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.EMPTY.getMessage());
         }
     }

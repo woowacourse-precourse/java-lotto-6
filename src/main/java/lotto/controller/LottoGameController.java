@@ -38,7 +38,7 @@ public class LottoGameController {
         int purchaseLottoCount = calculatePurchaseLottoCount(purchaseLottoAmount);
         outputView.printCountPurchaseLotto(purchaseLottoCount);
         for (int issueLottoCount = 0; issueLottoCount < purchaseLottoCount; issueLottoCount++) {
-            issueLottos.add(new Lotto(LottoNumbersGenerator.generate()));
+            issueLottos.add(new Lotto(LottoNumbersGenerator.ascendingGenerate()));
         }
         issueLottos.forEach(lotto -> outputView.printIssuedLottoNumbers(lotto.getNumbers()));
     }

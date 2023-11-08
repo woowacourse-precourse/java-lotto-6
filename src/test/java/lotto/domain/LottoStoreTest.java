@@ -20,4 +20,13 @@ public class LottoStoreTest {
         Assertions.assertEquals(firstInstance, secondInstance);
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"8000:8", "10000:10", "15000:15"}, delimiter = ':')
+    void issue_메소드는_구매금액과_발행전략이_주어지면_로또를_발행한다(int money, int expect) {
+        LottoStore lottoStore = LottoStore.getInstance();
+
+        Lottos lottos = lottoStore.issue(new Money(money), new LottoAutoIssuePolicy());
+
+        Assertions.assertEquals(lottos.getLottos().size(), expect);
+    }
 }

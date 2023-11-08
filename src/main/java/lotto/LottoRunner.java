@@ -7,5 +7,6 @@ public class LottoRunner {
 
     static void run() {
         List<Lotto> lottoList = lottoService.createLotto();
+        lottoService.printLottoInfo(lottoList);
     }
 }

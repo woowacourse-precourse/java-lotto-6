@@ -36,4 +36,9 @@ public class OutputView {
         System.out.printf(GRADE_5_MATCH_WITH_BONUS_MESSAGE, GRADE_3_MATCH, prizeGradeCounts[2]);
         System.out.printf(GRADE_6_MATCH_MESSAGE, GRADE_3_MATCH, prizeGradeCounts[1]);
     }
+
+    public void printRevenueRate(double revenueRate) {
+        String revenueRateOutput = String.format("%.1f", revenueRate);
+        System.out.printf("총 수익률은 %s%%입니다",revenueRateOutput);
+    }
 }

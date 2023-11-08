@@ -42,7 +42,7 @@ public class InputView {
             return Integer.parseInt(bonusNumberInput);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputBonusNumber();
+            return inputBonusNumber(winningNumbers);
         }
     }
 

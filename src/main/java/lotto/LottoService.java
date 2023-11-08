@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoShop;
+import lotto.domain.ProfitCalculator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,9 +17,14 @@ public class LottoService {
     public void serviceStart() {
         int money = inputView.inputPurchaseAmount();
         int lottoCount = lottoShop.buyLotto(money);
+
         List<Lotto> lottoTickets = getLottoTickets(lottoCount);
         int[] prizeGradeCounts = countWinningLotto(lottoTickets);
         outputView.printWinningState(prizeGradeCounts);
+
+        ProfitCalculator profitCalculator = new ProfitCalculator();
+        double revenueRate = profitCalculator.getRevenueRate(prizeGradeCounts, money);
+        outputView.printRevenueRate(revenueRate);
     }
 
     public List<Lotto> getLottoTickets(int count) {

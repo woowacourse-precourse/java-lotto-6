@@ -14,12 +14,12 @@ public class InputViewHandler {
         return money;
     }
 
-    public Lotto inputLotto(){
-        Lotto lotto = new Lotto();
+    public CalculateLotto inputAnswerLotto(){
+        CalculateLotto lotto = new CalculateLotto();
         try{
-            lotto = new Lotto(Console.readLine());
+            lotto = new CalculateLotto(Console.readLine());
         }catch (IllegalArgumentException e){
-            inputLotto();
+            inputAnswerLotto();
         }
         return lotto;
     }

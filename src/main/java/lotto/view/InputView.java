@@ -1,24 +1,34 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.BonusNumber;
+import lotto.CalculateLotto;
+import lotto.InputViewHandler;
+import lotto.Money;
 
 public class InputView {
 
-    public int inputLottoPrice(){
+    private final InputViewHandler inputViewHandler;
+
+    public InputView(){
+        inputViewHandler = new InputViewHandler();
+    }
+
+    public Money inputLottoPrice(){
         System.out.println("구입금액을 입력해 주세요.");
-        int money = Integer.parseInt(Console.readLine());
+        Money money = inputViewHandler.inputMoney();
         return money;
     }
 
-    public int inputWinningNumber(){
+    public CalculateLotto inputWinningNumber(){
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        int winningNumber = Integer.parseInt(Console.readLine());
-        return winningNumber;
+        CalculateLotto winninglotto = inputViewHandler.inputAnswerLotto();
+        return winninglotto;
     }
 
-    public int inputBonusNumber(){
+    public BonusNumber inputBonusNumber(){
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
+        BonusNumber bonusNumber = inputViewHandler.inputBonusNumber();
         return bonusNumber;
     }
 }

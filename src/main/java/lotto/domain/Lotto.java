@@ -2,7 +2,9 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,6 +17,12 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 번호 6개를 입력해주세요.");
+        }
+
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
         }
     }
 }

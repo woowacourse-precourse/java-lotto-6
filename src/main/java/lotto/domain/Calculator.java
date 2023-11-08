@@ -92,13 +92,13 @@ public class Calculator {
         Ranking fourth = Ranking.valueOf("FOURTH");
         Ranking fifth = Ranking.valueOf("FIFTH");
         int firstRankingAmount = first.getRankingAmount() * countRanking.get(0);
-        int secondRankingAmount = second.getRankingAmount()  * countRanking.get(1);
+        int secondRankingAmount = second.getRankingAmount() * countRanking.get(1);
         int thirdRankingAmount = third.getRankingAmount() * countRanking.get(2);
         int fourthRankingAmount = fourth.getRankingAmount() * countRanking.get(3);
         int fifthRankingAmount = fifth.getRankingAmount() * countRanking.get(4);
         int sum = firstRankingAmount + secondRankingAmount + thirdRankingAmount + fourthRankingAmount + fifthRankingAmount;
 
-        float originRateOfReturn = (float) sum /inputPurchaseAmount * 100;
+        float originRateOfReturn = (float) sum / inputPurchaseAmount * 100;
         float rateOfReturn = (float) Math.round(originRateOfReturn * 100) / 100;
         System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }

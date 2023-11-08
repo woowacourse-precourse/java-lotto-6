@@ -46,7 +46,7 @@ public class Numbers {
         return Arrays.asList(luckyNumbers);
     }
 
-    public void validateInputNumbers(String inputNumbers){
+    public void validateInputNumbers(List<Integer> luckyNumbers) {
 
     }
 

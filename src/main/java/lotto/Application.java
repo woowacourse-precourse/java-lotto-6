@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import lotto.Lotto;
-import lotto.Enum.*;
+import lotto.prizeEnum.*;
 import lotto.util.*;
 import static lotto.view.InputView.*;
 import static lotto.view.OutputView.*;

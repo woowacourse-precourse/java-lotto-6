@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 import lotto.domain.WinningStatistic;
 import lotto.domain.vo.LottoNumber;
@@ -24,6 +25,7 @@ public class GameController {
 		buyLottoTickets();
 		setLottoResult(winningNumbers());
 		getWinningStatistic();
+		Console.close();
 	}
 
 	private void buyLottoTickets() {

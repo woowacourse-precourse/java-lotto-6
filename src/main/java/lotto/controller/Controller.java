@@ -120,7 +120,7 @@ public class Controller {
         outputView.printErrorMessage(errorMessage);
     }
 
-    private void printLottoWinningStatistics(LottoResultDTO lottoResultDTO) {
+    private void printLottoWinningStatistics(final LottoResultDTO lottoResultDTO) {
         outputView.printLottoWinningStatistics(lottoResultDTO);
     }
 

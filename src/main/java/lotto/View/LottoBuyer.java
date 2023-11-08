@@ -1,6 +1,11 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Model.Lotto;
+
+import java.util.Collections;
+import java.util.List;
 
 public class LottoBuyer {
     public static Integer LOTTO_COUNT;
@@ -27,4 +32,11 @@ public class LottoBuyer {
     public static void printLottoCount() {
         System.out.println(String.format(LOTTO_COUNT_MESSAGE, LOTTO_COUNT));
     }
+
+    private static List<Integer> generateLottoNumbers() {
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(lottoNumbers);
+        return lottoNumbers;
+    }
+
 }

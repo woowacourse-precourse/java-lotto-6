@@ -1,4 +1,4 @@
-[![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=24&animation=fadeIn&height=320&section=header&text=우아한테크코스%20Precourse%203주차&desc=🎱%20로또%20(Lotto)%20-%20김선재&fontSize=48&fontAlign=50&fontAlignY=36&descSize=24&descAlign=50&descAlignY=52)](https://github.com/h-beeen/java-racingcar-6/blob/h-beeen/docs/README.md)
+[![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=24&animation=fadeIn&height=320&section=header&text=우아한테크코스%20Precourse%203주차&desc=🎱%20로또%20(Lotto)%20-%20김선재&fontSize=48&fontAlign=50&fontAlignY=36&descSize=24&descAlign=50&descAlignY=52)](https://github.com/wooteco-daram/java-lotto-6/blob/wooteco-daram/docs/README.md)
 
 ## 🏁 목차
 

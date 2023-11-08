@@ -18,7 +18,8 @@ public enum LottoRank {
 	private final boolean isBonusNumber;
 	private final BiPredicate<Integer, Boolean> matchingCondition;
 
-	LottoRank(int lottoPrice, int matchedNumCount, boolean isBonusNumber, BiPredicate<Integer, Boolean> matchingCondition) {
+	LottoRank(int lottoPrice, int matchedNumCount, boolean isBonusNumber,
+			BiPredicate<Integer, Boolean> matchingCondition) {
 		this.lottoPrice = lottoPrice;
 		this.matchedNumCount = matchedNumCount;
 		this.isBonusNumber = isBonusNumber;

@@ -12,7 +12,7 @@ import lotto.util.validator.Validator;
 public class InputView {
 
 	public static final Pattern NUMBER_FORMAT = Pattern.compile("^-?\\d+$");
-	public static final Pattern INPUT_ANSWER_LOTTO_NUMBERS_FORMAT = 
+	public static final Pattern INPUT_ANSWER_LOTTO_NUMBERS_FORMAT =
 			Pattern.compile("^" + "-?\\d+,".repeat(Lotto.LOTTO_SIZE - 1) + "-?\\d+$");
 	public static final String NUMBERS_DELIMITER = ",";
 
@@ -35,9 +35,9 @@ public class InputView {
 
 		validateAnswerLottoNumbers(inputValue);
 
-		String[] inputValues = inputValue.split(NUMBERS_DELIMITER);
+		String[] separtedInputValue = inputValue.split(NUMBERS_DELIMITER);
 
-		return convertStrArrToCollection(inputValues);
+		return convertStrArrToCollection(separtedInputValue);
 	}
 
 	public int inputBonusNumber() {

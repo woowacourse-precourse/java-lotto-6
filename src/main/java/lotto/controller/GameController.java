@@ -1,0 +1,75 @@
+package lotto.controller;
+
+import lotto.domain.CompareResult;
+import lotto.domain.Lottos;
+import lotto.domain.Price;
+import lotto.domain.WinningLotto;
+import lotto.view.InputPurchaseView;
+import lotto.view.InputWinningNumView;
+import lotto.view.OutputCompareLottoView;
+import lotto.view.OutputPurchaseView;
+import lotto.view.OutputReturnRateView;
+
+/**
+ * 게임의 전체적인 흐름을 관리
+ */
+public class GameController {
+    private final InputPurchaseView inputPurchaseView = new InputPurchaseView();
+    private final OutputPurchaseView outputPurchaseView = new OutputPurchaseView();
+    private final InputWinningNumView inputWinningNumView = new InputWinningNumView();
+    private final OutputCompareLottoView outputCompareLottoView = new OutputCompareLottoView();
+    private final OutputReturnRateView outputReturnRateView = new OutputReturnRateView();
+    private Price price;
+    private final Lottos lottos = new Lottos();
+    private WinningLotto winningLotto;
+
+    /**
+     * 게임 시작하는 메서드
+     */
+    public void start() {
+        purchaseLotto();
+        setWinningLotto();
+        result();
+    }
+
+    /**
+     * 게임을 시작하기전에 구매할 금액에 따라 로또를 생성하고 출력하는 메서드
+     */
+    private void purchaseLotto() {
+        try {
+            price = new Price(inputPurchaseView.printPurchasePrice()); //구입 금액 입력받기
+            lottos.generateLotto(price.getAmount());// 입력받은 구입금액 만큼 lotto 생성
+            outputPurchaseView.printPurchaseLotto(price.getAmount(), lottos);//구입한 로또들을 출력
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            purchaseLotto();
+        } catch (IllegalStateException illegalStateException) {
+            System.out.println("[ERROR] 실행중 에러발생");
+        }
+    }
+
+    private void setWinningLotto() {
+        try {
+            winningLotto = new WinningLotto(inputWinningNumView.printWinningNum(),
+                    inputWinningNumView.printBonusNum());  //당첨번호와 보너스 번호를 입력받는다.
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+        } catch (IllegalStateException illegalStateException) {
+            System.out.println("[ERROR] 실행중 에러발생");
+        }
+    }
+
+    public void result() {
+        try {
+            CompareResult compareResult = new CompareResult(lottos, winningLotto, price);
+            outputCompareLottoView.printCompareLotto(compareResult); //비교한뒤 결과 출력
+            outputReturnRateView.printReturnRate(compareResult);//수익률 출력
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+        } catch (IllegalStateException illegalStateException) {
+            System.out.println("[ERROR] 실행중 에러발생");
+        }
+
+    }
+
+}

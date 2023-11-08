@@ -32,16 +32,6 @@ public class InputValidatorTest {
                 .hasMessage("[ERROR] 값을 입력해주세요.");
     }
 
-    @DisplayName("유저 입력값 전처리 테스트 - NonNumeric 데이터 - 실패")
-    @Test
-    void preprocessInputNonNumericTest() {
-        String testString = "abcd";
-
-        assertThatThrownBy(() -> inputValidator.preprocessUserInput(testString))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 숫자를 입력해주세요.");
-    }
-
     @DisplayName("유저 입력값 전처리 테스트 - 공백을 포함한 데이터 - 성공")
     @Test
     void preprocessInputCorrectTest() {

@@ -5,6 +5,7 @@ import static lotto.view.ui.Output.printlnMessage;
 import static lotto.view.ui.Output.printlnMessageWithNewLine;
 
 import java.util.Arrays;
+import java.util.List;
 import lotto.domain.Number;
 import lotto.domain.WinningNumbers;
 import lotto.global.exception.ErrorMessage;
@@ -18,19 +19,19 @@ public class WinningRequestView {
         printlnMessageWithNewLine(WINNING_NUMBERS_REQUEST_MESSAGE);
         try {
             String winningNumbers = Validator.validate(enterMessage());
-            return parseWinningNumbers(winningNumbers);
+            return WinningNumbers.from(parseWinningNumbers(winningNumbers));
         } catch (IllegalArgumentException e) {
             printlnMessage(e.getMessage());
             return request();
         }
     }
 
-    private static WinningNumbers parseWinningNumbers(final String winningNumbers) {
+    private static List<Number> parseWinningNumbers(final String winningNumbers) {
         try {
-            return WinningNumbers.from(Arrays.stream(split(winningNumbers))
+            return Arrays.stream(split(winningNumbers))
                     .map(Integer::parseInt)
                     .map(Number::valueOf)
-                    .toList());
+                    .toList();
         } catch (NumberFormatException e) {
             throw LottoException.from(ErrorMessage.NOT_NUMBER_ERROR);
         }

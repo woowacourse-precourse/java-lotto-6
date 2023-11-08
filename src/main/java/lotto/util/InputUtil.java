@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import lotto.model.domain.LottoNumber;
+import lotto.util.message.SystemMessage;
 
 public class InputUtil {
 
@@ -21,7 +22,7 @@ public class InputUtil {
     //로또 금액 입력 메소드
     public int inputMoney() {
         String moneyInput = "";
-        System.out.println("구입금액을 입력해 주세요.");
+        SystemMessage.INPUT_MONEY.printMessage();
         do {
             moneyInput = Console.readLine();
         } while (!validateMoneyInput(moneyInput));

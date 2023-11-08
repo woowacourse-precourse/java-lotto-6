@@ -22,6 +22,19 @@ public class WinningNumbers {
         return winningNumbers;
     }
 
+    public int calculateMatchCount(Lotto lotto) {
+        HashSet<Integer> lottoNumbers = new HashSet<>(lotto.getNumbers());
+        HashSet<Integer> winningNumbers = new HashSet<>(mainNumbers.getNumbers());
+
+        return (int) lottoNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    public boolean isBonusMatch(Lotto lotto) {
+        return lotto.hasBonusNumber(bonusNumber);
+    }
+
     private void validate(Lotto mainNumbers, int bonusNumber) {
         validateBonusNumberDuplicate(mainNumbers, bonusNumber);
         validateBonusNumberRange(bonusNumber);

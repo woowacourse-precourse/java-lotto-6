@@ -16,6 +16,25 @@ public enum WinningRule {
         this.prizeAmount = prizeAmount;
     }
 
+    public static WinningRule of(int matchCount, boolean bonusMatch) {
+        if (matchCount == 6) {
+            return FIRST_PRIZE;
+        }
+        if (matchCount == 5 && bonusMatch) {
+            return SECOND_PRIZE;
+        }
+        if (matchCount == 5) {
+            return THIRD_PRIZE;
+        }
+        if (matchCount == 4) {
+            return FOURTH_PRIZE;
+        }
+        if (matchCount == 3) {
+            return FIFTH_PRIZE;
+        }
+        return NO_PRIZE;
+    }
+
     public String getDescription() {
         return description;
     }

@@ -4,6 +4,7 @@ import static lotto.engine.LottoSystemConstant.LOTTO_MINIMUM_NUMBER_OF_WINNINGS;
 import static lotto.engine.LottoSystemConstant.LOTTO_PRICE;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.engine.LottoSystemConstant.TextMessage.Pattern;
 import lotto.engine.domain.Customer;
 import lotto.engine.domain.Lotto;
@@ -27,9 +28,7 @@ public final class LottoGame {
 
         viewer.println(() -> String.format(Pattern.BUY_RESULT.getMessage(), quantity));
         List<Lotto> lottos = lottoFactory.issueLotto(quantity);
-        String issuedTotalLotto = lottoFactory.showTotalLotto(lottos);
-        viewer.println(() -> issuedTotalLotto);
-        viewer.printNewLine();
+        showTotalLotto(lottos);
 
         List<Integer> numbers = viewer.interactForWinningNumber();
         viewer.printNewLine();
@@ -52,6 +51,15 @@ public final class LottoGame {
                 winningResult.winningCriteria().get(LOTTO_MINIMUM_NUMBER_OF_WINNINGS.value()),
                 winningResult.profit()
         );
+    }
+
+    private void showTotalLotto(List<Lotto> lottos) {
+        String issuedTotalLotto = lottos.stream()
+                .map(Lotto::showNumbers)
+                .collect(Collectors.joining("\n"));
+
+        viewer.println(() -> issuedTotalLotto);
+        viewer.printNewLine();
     }
 
 }

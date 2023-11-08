@@ -7,6 +7,7 @@ import static lotto.engine.LottoSystemConstant.LOTTO_NUMBER_MAXIMUM_VALUE;
 import static lotto.engine.LottoSystemConstant.LOTTO_NUMBER_MINIMUM_VALUE;
 import static lotto.engine.LottoSystemConstant.LOTTO_PRICE;
 import static lotto.engine.LottoSystemConstant.LOTTO_SPECIAL_MATCH_CONDITION_NUMBER;
+import static lotto.engine.LottoSystemConstant.LOTTO_SPECIAL_MATCH_PRIZE;
 import static lotto.engine.LottoSystemConstant.WINNING_PRIZE;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -47,13 +48,13 @@ public class LottoFactory {
     }
 
     public WinningResult aggregate(Customer customer, List<Lotto> lottos) {
-        Map<Integer, Integer> winningResult = createWinningResult();
-        AtomicInteger specialMatchCount = new AtomicInteger();
+        var matchResult = createMatchTable();
+        var specialMatchCount = new AtomicInteger();
         lottos.stream()
                 .filter(lotto -> lotto.matchCount(customer) >= LOTTO_MINIMUM_NUMBER_OF_WINNINGS.value())
                 .forEach(lotto -> {
                     int count = lotto.matchCount(customer);
-                    winningResult.put(count, winningResult.get(count) + 1);
+                    matchResult.put(count, matchResult.get(count) + 1);
 
                     boolean isSatisfy = lotto.isMatchSpecialCondition(customer,
                             LOTTO_SPECIAL_MATCH_CONDITION_NUMBER.value());
@@ -62,9 +63,9 @@ public class LottoFactory {
                     }
                 });
 
-        double profit = calculateProfit(lottos, winningResult, specialMatchCount.get());
+        double profit = calculateProfit(lottos, matchResult, specialMatchCount.get());
 
-        return new WinningResult(profit, winningResult, specialMatchCount.get());
+        return new WinningResult(profit, matchResult, specialMatchCount.get());
     }
 
     private double calculateProfit(List<Lotto> lottos,
@@ -78,18 +79,18 @@ public class LottoFactory {
     }
 
     private Integer getWinningPrize(Map<Integer, Integer> winningResult, int specialMatchCount) {
-        Integer winningPrize = IntStream.rangeClosed(LOTTO_MINIMUM_NUMBER_OF_WINNINGS.value(),
+        var winningPrize = IntStream.rangeClosed(LOTTO_MINIMUM_NUMBER_OF_WINNINGS.value(),
                         LOTTO_MAXIMUM_NUMBER_OF_WINNINGS.value())
                 .boxed()
                 .map(correctNumber -> WINNING_PRIZE.value().get(correctNumber) * winningResult.get(correctNumber))
                 .reduce(Integer::sum)
                 .orElseThrow(RuntimeException::new);
-        winningPrize += LOTTO_SPECIAL_MATCH_CONDITION_NUMBER.value() * specialMatchCount;
+        winningPrize += LOTTO_SPECIAL_MATCH_PRIZE.value() * specialMatchCount;
 
         return winningPrize;
     }
 
-    private Map<Integer, Integer> createWinningResult() {
+    private Map<Integer, Integer> createMatchTable() {
         return IntStream.rangeClosed(LOTTO_MINIMUM_NUMBER_OF_WINNINGS.value(),
                         LOTTO_MAXIMUM_NUMBER_OF_WINNINGS.value())
                 .boxed()

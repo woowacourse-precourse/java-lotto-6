@@ -44,14 +44,14 @@ public record LottoSystemConstant() {
         }
     }
 
+    public static final Policy<String> LOTTO_NUMBER_SEPARATOR = new Policy<>(",");
     public static final Policy<Integer> LOTTO_NUMBER_MINIMUM_VALUE = new Policy<>(1);
     public static final Policy<Integer> LOTTO_NUMBER_MAXIMUM_VALUE = new Policy<>(45);
     public static final Policy<Integer> LOTTO_NUMBER_LENGTH = new Policy<>(6);
-    public static final Policy<String> LOTTO_NUMBER_SEPARATOR = new Policy<>(",");
-    public static final Policy<Integer> LOTTO_SPECIAL_MATCH_CONDITION_NUMBER = new Policy<>(5);
-    public static final Policy<Integer> LOTTO_SPECIAL_MATCH_PRIZE = new Policy<>(5);
     public static final Policy<Integer> LOTTO_PRICE = new Policy<>(1000);
     public static final Policy<Integer> LOTTO_MONEY_MAXIMUM_VALUE = new Policy<>(100_000);
+    public static final Policy<Integer> LOTTO_SPECIAL_MATCH_CONDITION_NUMBER = new Policy<>(5);
+    public static final Policy<Integer> LOTTO_SPECIAL_MATCH_PRIZE = new Policy<>(30_000_000);
     public static final Policy<Integer> LOTTO_MINIMUM_NUMBER_OF_WINNINGS = new Policy<>(3);
     public static final Policy<Integer> LOTTO_MAXIMUM_NUMBER_OF_WINNINGS = new Policy<>(6);
 

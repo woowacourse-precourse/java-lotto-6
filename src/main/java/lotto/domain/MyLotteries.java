@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Lotteries {
+public class MyLotteries {
 
     public List<Lotto> BuyLotteries(int purchaseAmount) {
         List<Lotto> lotteries = new ArrayList<>();

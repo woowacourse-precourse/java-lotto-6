@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.domain.Lotteries;
+import lotto.domain.MyLotteries;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoRank;
@@ -16,7 +16,7 @@ public class LottoController {
         OutputView outputView = new OutputView();
 
         int purchaseAmount = inputInitializer.inputtingPurchaseAmount();
-        List<Lotto> userLotteries = new Lotteries().BuyLotteries(purchaseAmount);
+        List<Lotto> userLotteries = new MyLotteries().BuyLotteries(purchaseAmount);
         outputView.printLotteries(purchaseAmount, userLotteries);
 
         Lotto winningLotto = inputInitializer.inputtingLottoNumber();

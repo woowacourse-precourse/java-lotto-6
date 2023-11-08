@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.Lotto;
 import lotto.LottoService;
 
 public class InputView {
@@ -10,6 +11,13 @@ public class InputView {
         int purchaseAmount = lottoService.inputPurchaseAmount();
         System.out.println();
         return purchaseAmount;
+    }
+
+    public Lotto inputWinningLottoNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        Lotto winningLottoNumbers = lottoService.inputWinningNumbers();
+        System.out.println();
+        return winningLottoNumbers;
     }
 
 }

@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Set;
 
 import static lotto.configuration.GameConfiguration.LOTTO_NUMBER_SIZE;
+import static lotto.configuration.GameConfiguration.MAX_LOTTO_NUMBER;
+import static lotto.configuration.GameConfiguration.MIN_LOTTO_NUMBER;
 import static lotto.exception.errorcode.InputErrorCode.DUPLICATED_LOTTO_NUMBER;
+import static lotto.exception.errorcode.InputErrorCode.INVALID_LOTTO_NUMBER_RANGE;
 import static lotto.exception.errorcode.InputErrorCode.INVALID_LOTTO_NUMBER_SIZE;
 
 public class Lotto {
@@ -15,6 +18,7 @@ public class Lotto {
     public Lotto(final List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
+        validateRange(numbers);
         this.numbers = getSortedNumbers(numbers);
     }
 
@@ -40,6 +44,14 @@ public class Lotto {
     private void validateSize(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_SIZE) {
             throw new InputException(INVALID_LOTTO_NUMBER_SIZE);
+        }
+    }
+
+    private void validateRange(final List<Integer> numbers) {
+        boolean existInvalidRangeNumber = numbers.stream()
+                .anyMatch(e -> MIN_LOTTO_NUMBER > e || e > MAX_LOTTO_NUMBER);
+        if (existInvalidRangeNumber) {
+            throw new InputException(INVALID_LOTTO_NUMBER_RANGE);
         }
     }
 

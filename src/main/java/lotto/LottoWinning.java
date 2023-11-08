@@ -1,14 +1,13 @@
 package lotto;
 
 import java.util.Map;
-// 로또 결과 구현 클래스
 public class LottoWinning {
     private int sum = 0;
     private int prizeMoney = 0;
     public void winningLottos(Map<LottoGame.LottoResult, Integer> resultCounts){
         System.out.println("당첨 통계"+"\n---");
         for (LottoGame.LottoResult result : LottoGame.LottoResult.values()) {
-            System.out.println(result.getDescription() + " - " + resultCounts.get(result));
+            System.out.println(result.getDescription() + " - " + resultCounts.get(result)+"개");
         }
     }
 
@@ -27,9 +26,11 @@ public class LottoWinning {
     }
 
     // 수익률 계산
-    public double calcualteEarningRate(int amount, int prizeMoney){
-        double earningRate =  ((prizeMoney - amount)/amount) * 100;
-        System.out.printf("총 수익률은 %.2f%% 입니다.%n",earningRate);
+    public double calcualteEarningRate(int amount, int prizeMoney) {
+        double earningRate = 100 + (((double)(prizeMoney - amount) / amount) * 100);
+
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", earningRate);
         return earningRate;
     }
+
 }

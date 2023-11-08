@@ -11,7 +11,6 @@ public class LottoGame {
     private final static int MIN = 1;
     private final static int MAX = 45;
     private final static int NUMBER = 6;
-    private final String ERROR = "[ERROR]";
     private List<Lotto> lottos = new ArrayList<>();
     private final Map<LottoResult, Integer> resultCounts = new EnumMap<>(LottoResult.class);
     private LottoWinning winning = new LottoWinning();
@@ -23,14 +22,6 @@ public class LottoGame {
         winning.winningLottos(map); // 당첨 통계 출력
         int earningMoney = winning.money(resultCounts); // 총 당첨금
         winning.calcualteEarningRate(count*1000, earningMoney);
-    }
-
-    public boolean isNotDivisibleBy1000(int amount) {
-        if (amount % 1000 != 0) {
-            System.out.println(ERROR + " 1000으로 나누어 떨어지는 금액을 입력하세요.");
-            return false;
-        }
-        return true;
     }
 
     public List<Lotto> generateLottoNumbers(int count) {
@@ -47,8 +38,9 @@ public class LottoGame {
 
     public enum LottoResult {
         THREE_MATCH("3개 일치 (5,000원)", 5000),
-        FOUR_MATCH("4개 일치 (10,000원)", 10000),
+        FOUR_MATCH("4개 일치 (50,000원)", 50000),
         FIVE_MATCH("5개 일치 (1,500,000원)", 1500000),
+        FIVE_MATCH_BONUS("5개 일치, 보너스 볼 일치 (30,000,000원)", 30000000),
         SIX_MATCH("6개 일치 (2,000,000,000원)", 2000000000);
 
         private final String description;
@@ -65,6 +57,7 @@ public class LottoGame {
         public int getPrize(){
             return prize;
         }
+
     }
 
     public Map<LottoResult, Integer> guessNumbers(List<Lotto> randoms, List<Lotto> lucky, int bonus) {
@@ -84,9 +77,18 @@ public class LottoGame {
         for (Lotto random : randoms) {
             int count = countMatchingNumbersInLotto(random, lucky, bonus);
             if (count >= 3 && count <= 6) {
-                LottoResult result = LottoResult.values()[count - 3];
-                resultCounts.put(result, resultCounts.get(result) + 1);
+                handleMatchingCount(resultCounts, count, lucky, bonus);
             }
+        }
+    }
+
+    private void handleMatchingCount(Map<LottoResult, Integer> resultCounts, int count, List<Lotto> lucky, int bonus) {
+        if (count == 5 && lucky.stream().anyMatch(lotto -> lotto.containsNumber(bonus))) {
+            resultCounts.put(LottoResult.FIVE_MATCH_BONUS, resultCounts.get(LottoResult.FIVE_MATCH_BONUS) + 1);
+        }
+        if (count != 5){
+            LottoResult result = LottoResult.values()[count - 3];
+            resultCounts.put(result, resultCounts.get(result) + 1);
         }
     }
 

@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,8 +11,9 @@ public class Lotto {
         validate(numbers);
         duplicate(numbers);
         isValueInRange(numbers);
-        this.numbers = numbers;
-        Collections.sort(this.numbers);
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        this.numbers = Collections.unmodifiableList(sortedNumbers);
     }
 
 
@@ -47,5 +49,9 @@ public class Lotto {
             throw new IllegalArgumentException("유효하지 않은 인덱스입니다.");
         }
         return numbers.get(index);
+    }
+
+    public boolean containsNumber(int number) {
+        return numbers.contains(number);
     }
 }

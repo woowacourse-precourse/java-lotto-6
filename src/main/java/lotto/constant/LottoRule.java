@@ -1,6 +1,6 @@
 package lotto.constant;
 
-public enum LottoNumber {
+public enum LottoRule {
     MIN_NUMBER(1),
     MAX_NUMBER(45),
     NUMBER_COUNT(6),
@@ -10,7 +10,7 @@ public enum LottoNumber {
 
     private int value;
 
-    LottoNumber(int value) {
+    LottoRule(int value) {
         this.value = value;
     }
 

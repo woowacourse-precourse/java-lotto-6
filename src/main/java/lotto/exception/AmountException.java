@@ -1,7 +1,7 @@
 package lotto.exception;
 
 import lotto.constant.Error;
-import lotto.constant.LottoNumber;
+import lotto.constant.LottoRule;
 
 public class AmountException {
     private final static int BILLION_DIGITS = 10;
@@ -32,8 +32,8 @@ public class AmountException {
     public void checkLessThanMaxAmount(String input) {
         int amount = Integer.parseInt(input);
 
-        if (amount < LottoNumber.MIN_AMOUNT.getValue()
-                || amount > LottoNumber.MAX_AMOUNT.getValue()) {
+        if (amount < LottoRule.MIN_AMOUNT.getValue()
+                || amount > LottoRule.MAX_AMOUNT.getValue()) {
             throw new IllegalArgumentException(Error.OUT_OF_MAX_AMOUNT.getMessage());
         }
     }
@@ -47,7 +47,7 @@ public class AmountException {
     public void checkThousandUnits (String input) {
         int amount = Integer.parseInt(input);
 
-        if (amount % LottoNumber.PRICE.getValue() != 0) {
+        if (amount % LottoRule.PRICE.getValue() != 0) {
             throw new IllegalArgumentException(Error.THOUSAND_UNITS.getMessage());
         }
     }

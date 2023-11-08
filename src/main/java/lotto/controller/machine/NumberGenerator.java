@@ -1,7 +1,7 @@
 package lotto.controller.machine;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.constant.LottoNumber;
+import lotto.constant.LottoRule;
 import lotto.domain.Lotto;
 
 import java.util.ArrayList;
@@ -10,9 +10,9 @@ import java.util.List;
 public class NumberGenerator {
     private List<Integer> createUniqueNumbers() {
         return Randoms.pickUniqueNumbersInRange(
-                LottoNumber.MIN_NUMBER.getValue(),
-                LottoNumber.MAX_NUMBER.getValue(),
-                LottoNumber.NUMBER_COUNT.getValue());
+                LottoRule.MIN_NUMBER.getValue(),
+                LottoRule.MAX_NUMBER.getValue(),
+                LottoRule.NUMBER_COUNT.getValue());
     }
 
     public Lotto createLotto() {

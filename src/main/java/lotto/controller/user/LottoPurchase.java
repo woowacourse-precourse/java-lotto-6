@@ -1,14 +1,13 @@
 package lotto.controller.user;
 
+import lotto.constant.LottoRule;
 import lotto.controller.handler.ExceptionHandler;
-import lotto.exception.AmountException;
 import lotto.model.LottoReceipt;
 import lotto.view.InputView;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class LottoPurchase {
-    private static final int LOTTO_PRICE = 1000;
     private LottoReceipt lottoReceipt;
     private final InputView inputView;
 
@@ -48,7 +47,7 @@ public class LottoPurchase {
 
     public void purchase() {
         int amount = inputAmount();
-        int count = amount / LOTTO_PRICE;
+        int count = amount / LottoRule.PRICE.getValue();
 
         lottoReceipt.setAmount(amount);
         lottoReceipt.setPurchaseCount(count);

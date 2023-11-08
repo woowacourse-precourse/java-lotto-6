@@ -9,10 +9,10 @@ import lotto.io.OutputHandler;
 import lotto.util.Calculator;
 
 public class LottoRunner {
-    final LottoAmountGenerator lottoAmountGenerator;
-    final LottoGenerator lottoGenerator;
-    final WinningLottoGenerator winningNumbersGenerator;
-    final BonusNumberGenerator bonusNumberGenerator;
+    LottoAmountGenerator lottoAmountGenerator;
+    LottoGenerator lottoGenerator;
+    WinningLottoGenerator winningNumbersGenerator;
+    BonusNumberGenerator bonusNumberGenerator;
     List<Lotto> lottos;
     Lotto winningNumbers;
     int bonusNumber;

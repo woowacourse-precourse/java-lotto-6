@@ -11,8 +11,7 @@ import org.junit.jupiter.api.Test;
 public class RankCalculatorTest {
     Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     int bonusNumber = 7;
-
-
+    
     @Test
     void countFirstRankLotto() {
         List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)));

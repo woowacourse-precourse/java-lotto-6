@@ -34,5 +34,7 @@ public class Lotto {
                 .toList();
     }
 
-    // TODO: 추가 기능 구현
+    public boolean contains(LottoNumber number) {
+        return numbers.contains(number);
+    }
 }

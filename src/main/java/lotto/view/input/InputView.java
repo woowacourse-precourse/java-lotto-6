@@ -20,6 +20,13 @@ public class InputView {
         return integerInputs.values();
     }
 
+    public static int readBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+
+        IntegerInput integerInput = new IntegerInput(readTrimmedInput());
+        return integerInput.value();
+    }
+
     private static String readTrimmedInput() {
         Input input = Input.readLine();
         return input.trimmed();

@@ -22,6 +22,7 @@ public class MainController {
 
     private static WinningLotto readWinningLotto() {
         List<Integer> winningLottoNumbers = InputView.readWinningLottoNumbers();
-        return new WinningLotto(winningLottoNumbers);
+        int bonusNumber = InputView.readBonusNumber();
+        return new WinningLotto(winningLottoNumbers, bonusNumber);
     }
 }

@@ -22,4 +22,11 @@ class LottoNumberTest {
         assertThatThrownBy(() -> new LottoNumber(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("값을 기준으로 동등성을 비교한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 20, 45})
+    void equals(int number) {
+        assertThat(new LottoNumber(number)).isEqualTo(new LottoNumber(number));
+    }
 }

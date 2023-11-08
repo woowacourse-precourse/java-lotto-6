@@ -1,10 +1,13 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -22,5 +25,19 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호의 개수가 6개보다 작으면 예외가 발생한다.")
+    @Test
+    void createLottoByUnderSize() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("주어진 LottoNumber가 로또 번호에 포함되는지 확인한다.")
+    @ParameterizedTest
+    @CsvSource({"1,true", "2,true", "7,false", "8,false"})
+    void contains(int lottoNumber, boolean expected) {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(lotto.contains(new LottoNumber(lottoNumber))).isEqualTo(expected);
+    }
 }

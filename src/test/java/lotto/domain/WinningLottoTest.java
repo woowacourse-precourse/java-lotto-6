@@ -11,34 +11,41 @@ class WinningLottoTest {
     @DisplayName("유효한 입력으로 객체를 생성한다.")
     @Test
     void createByValidNumbers() {
-        assertThat(new WinningLotto(List.of(1, 2, 3, 4, 5, 6))).isNotNull();
+        assertThat(new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 10)).isNotNull();
     }
 
     @DisplayName("로또 번호의 개수가 6개를 넘어가면 예외가 발생한다.")
     @Test
     void createByOverSize() {
-        assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+        assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6, 7), 10))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호의 개수가 6개보다 작으면 예외가 발생한다.")
     @Test
     void createByUnderSize() {
-        assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5)))
+        assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5), 10))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createByDuplicatedNumbers() {
-        assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 5)))
+        assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 5), 10))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호에 1에서 45사이의 범위를 벗어나는 숫자가 있으면 예외가 발생한다.")
     @Test
     void createByInvalidRangeNumbers() {
-        assertThatThrownBy(() -> new WinningLotto(List.of(0, 1, 2, 3, 4, 46)))
+        assertThatThrownBy(() -> new WinningLotto(List.of(0, 1, 2, 3, 4, 46), 10))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
+    @Test
+    void createByDuplicatedBonusNumber() {
+        assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

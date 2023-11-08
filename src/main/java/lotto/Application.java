@@ -1,7 +1,10 @@
 package lotto;
 
+import lotto.userinterface.UserView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        UserView userView = new UserView();
+        userView.run();
     }
 }

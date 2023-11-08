@@ -10,19 +10,18 @@ import static lotto.constant.Number.RANK5_PRIZE;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import lotto.Converter;
 import lotto.checker.BonusNumberChecker;
 import lotto.checker.InputChecker;
 import lotto.checker.PaymentPriceChecker;
 import lotto.checker.WinningNumbersChecker;
-import lotto.constant.Number;
 import lotto.domain.Lotto;
 import lotto.domain.Statistic;
+import lotto.service.Converter;
+import lotto.service.LottoNumberGenerator;
 import lotto.service.LottoReader;
 import lotto.view.InputHandler;
 import lotto.view.OutputHandler;
 
-// TODO : service 나누기
 public class LottoController {
 
     long paymentPrice;
@@ -32,16 +31,20 @@ public class LottoController {
     List<Integer> winningNumbers;
     int bonusNumber;
     Statistic statistic = new Statistic();
+    LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
 
     public void start() throws IllegalArgumentException {
         callPaymentPriceLoop();
         winningNumbers = getWinningNumbersLoop();
         bonusNumber = getBonusNumberLoop();
         setStatic(lottos);
-        OutputHandler.showWinningDetails(statistic.getRank(1), statistic.getRank(2), statistic.getRank(3),
+        OutputHandler.showWinningDetails(
+                statistic.getRank(1),
+                statistic.getRank(2),
+                statistic.getRank(3),
                 statistic.getRank(4),
                 statistic.getRank(5));
-        showRateOfReturn(statistic, paymentPrice);
+        showRateOfReturn();
     }
 
     void callPaymentPriceLoop() {
@@ -74,8 +77,10 @@ public class LottoController {
 
     List<Lotto> issueLottos(long ticketCount) {
         List<Lotto> lottos = new ArrayList<>();
+        List<Integer> numbers;
         for (int i = 0; i < ticketCount; i++) {
-            Lotto lotto = new Lotto();
+            numbers = lottoNumberGenerator.getNumbers();
+            Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
             OutputHandler.printLottoNumbers(lotto.getNumbers());
         }
@@ -132,7 +137,7 @@ public class LottoController {
         }
     }
 
-    void showRateOfReturn(Statistic statistic, long paymentPrice) {
+    void showRateOfReturn() {
         long winningPrize = getWinningPrize(statistic);
         double rateOfReturn = (double) winningPrize / paymentPrice;
         OutputHandler.printRateOfReturn(rateOfReturn);

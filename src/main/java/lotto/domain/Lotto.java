@@ -7,22 +7,17 @@ import static lotto.constant.Number.LOTTO_MIN_NUM;
 import static lotto.constant.Number.LOTTO_NUM_COUNT;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
-import lotto.constant.Number;
 
 public class Lotto {
 
     private final List<Integer> numbers;
 
-    // 자동 숫자 추첨
-    public Lotto() {
-        this.numbers = issueLotto();
-        validate(numbers);
-    }
-
-    // 수동
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        checkUnique(numbers);
+        numbers.sort(Comparator.naturalOrder());
         this.numbers = numbers;
     }
 
@@ -30,12 +25,10 @@ public class Lotto {
         return this.numbers;
     }
 
-    public List<Integer> issueLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Number.LOTTO_MIN_NUM.getNumber(),
-                Number.LOTTO_MAX_NUM.getNumber(),
-                Number.LOTTO_NUM_COUNT.getNumber());
-        numbers.sort(Comparator.naturalOrder());
-        return numbers;
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUM_COUNT.getNumber()) {
+            throw new IllegalArgumentException(REQUIRE_SIX_NUMBERS.getMessage());
+        }
     }
 
     private void validate(List<Integer> numbers) throws IllegalArgumentException {

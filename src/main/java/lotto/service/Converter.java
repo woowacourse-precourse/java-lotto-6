@@ -36,7 +36,7 @@ public class Converter {
         }
         try {
             String[] numbers = numbersInput.split(",");
-            List<Integer> winningNumbers = Arrays.stream(numbers)
+            return Arrays.stream(numbers)
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
             return winningNumbers;

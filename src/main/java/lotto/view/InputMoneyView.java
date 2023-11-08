@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.regex.Pattern;
 import lotto.exception.InputValueIsNotNumber;
 
-public class InputView {
+public class InputMoneyView {
     private static final Pattern FORMAT = Pattern.compile("\\d+");
     public Integer getMoney() {
         System.out.println("구입금액을 입력해 주세요.");

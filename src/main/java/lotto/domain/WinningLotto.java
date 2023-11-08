@@ -32,9 +32,14 @@ public class WinningLotto {
     public List<Integer> setWinningLotto(String number) {
         Validator validator = new Validator();
         List<String> tempLotto = validator.validNumbers(Arrays.asList(number.split(",")));
-        tempLotto.stream().forEach(tempNumber -> winningLotto.add(validator.validWinning(tempNumber)));
+        validateWinningNumber(tempLotto, validator);
+        tempLotto.stream().forEach(tempNumber -> winningLotto.add(Integer.parseInt(tempNumber)));
 
         return winningLotto;
+    }
+
+    private void validateWinningNumber(List<String> tempLotto, Validator validator) {
+        tempLotto.stream().forEach(tempNumber -> validator.validWinning(tempNumber));
     }
 
     public void getCollectLottoNumber() {

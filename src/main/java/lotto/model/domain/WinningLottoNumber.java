@@ -3,10 +3,22 @@ package lotto.model.domain;
 import java.util.List;
 
 public class WinningLottoNumber {
-    public List<Integer> winningNumberWithBonusNumber;
-    public int bonusNumber;
+    private List<Integer> winningNumberWithBonusNumber;
+    private int bonusNumber;
 
-    public WinningLottoNumber(List<Integer> winningNumberWithBonusNumber) {
+    public List<Integer> getWinningNumberWithBonusNumber() {
+        return winningNumberWithBonusNumber;
+    }
+
+    public void setWinningNumberWithBonusNumber(List<Integer> winningNumberWithBonusNumber) {
         this.winningNumberWithBonusNumber = winningNumberWithBonusNumber;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
 }

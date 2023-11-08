@@ -30,18 +30,25 @@ public class LuckeyLotto {
     }
 
     private void validate(List<Integer> lottoNumbers, String inputBonusNumber) {
-        if (!inputBonusNumber.matches("\\d+")) {
+        if (!isNumber(inputBonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_TYPE.getMessage());
-        } else if (lottoNumbers.contains(Integer.valueOf(inputBonusNumber))) {
+        } else if (isSameBonusNumber(lottoNumbers, Integer.valueOf(inputBonusNumber))) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_SAME.getMessage());
         } else if (!isWithValidRange(Integer.valueOf(inputBonusNumber))) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_RANGE.getMessage());
         }
     }
 
+    private boolean isNumber(String inputBonusNumber) {
+        return inputBonusNumber.matches("\\d+");
+    }
+
+    private boolean isSameBonusNumber(List<Integer> lottoNumbers, int inputBonusNumber) {
+        return lottoNumbers.contains(Integer.valueOf(inputBonusNumber));
+    }
+
     private boolean isWithValidRange(int inputBonusNumber) {
-        return inputBonusNumber >= LOTTO_NUMBER_RANGE_START
-                && inputBonusNumber <= LOTTO_NUMBER_RANGE_END;
+        return inputBonusNumber >= LOTTO_NUMBER_RANGE_START && inputBonusNumber <= LOTTO_NUMBER_RANGE_END;
     }
 
     public int getLuckeyBonusNumber() {

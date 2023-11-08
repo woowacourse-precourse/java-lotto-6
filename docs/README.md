@@ -44,9 +44,12 @@
 - luckyBonusNumbers: 보너스 당첨 로또 번호 저장
 
 - validate()
-  - [x] 보너스 로또 번호가 숫자 타입인지 확인
-  - [x] 보너스 로또 번호 중복여부 판단
-  - [x] 보너스 로또 번호 1부터 45범위인지 확인
+  - isNumber()
+    - [x] 보너스 로또 번호가 숫자 타입인지 확인
+  - isSameBonusNumber()
+    - [x] 보너스 로또 번호 중복여부 판단
+  - isWithValidRange()
+    - [x] 보너스 로또 번호 1부터 45범위인지 확인
 - [x] get 메서드 생성
 - [x] 에러 메시지 Java Enum 적용
 

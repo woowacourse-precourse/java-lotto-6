@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.exception.InputException;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,8 +16,7 @@ public class Lotto {
     public Lotto(final List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
-        sortNumbers(numbers);
-        this.numbers = numbers;
+        this.numbers = getSortedNumbers(numbers);
     }
 
     public int getMatchedCount(final Lotto other) {
@@ -37,8 +35,8 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    private void sortNumbers(final List<Integer> numbers) {
-        Collections.sort(numbers);
+    private List<Integer> getSortedNumbers(final List<Integer> numbers) {
+        return numbers.stream().sorted().toList();
     }
 
     private void validateSize(final List<Integer> numbers) {

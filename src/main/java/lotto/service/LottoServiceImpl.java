@@ -70,12 +70,17 @@ public class LottoServiceImpl implements LottoService {
     public WinningResult calculateWinning(Lottos lottos, WinningLotto winningLotto) {
         Map<WinningRankType, Integer> rankingCounts = new HashMap<>();
         for (Lotto lotto : lottos.getLottos()) {
-            updateRankingCounts(lotto, winningLotto, rankingCounts);
+            WinningRankType rankType = matchRankType(lotto, winningLotto);
+            rankingCounts.put(
+                    rankType,
+                    rankingCounts.getOrDefault(rankType, 0) + 1
+            );
         }
         return new WinningResult(rankingCounts);
     }
 
-    private void updateRankingCounts(Lotto lotto, WinningLotto winningLotto, Map<WinningRankType, Integer> rankingCounts) {
+    @Override
+    public WinningRankType matchRankType(Lotto lotto, WinningLotto winningLotto) {
         int winningCount = 0;
         int bonusCount = 0;
         for (Integer number : lotto.getNumbers()) {
@@ -86,11 +91,7 @@ public class LottoServiceImpl implements LottoService {
                 bonusCount++;
             }
         }
-        WinningRankType rankingType = WinningRankType.selectRankingType(winningCount, bonusCount);
-        rankingCounts.put(
-                rankingType,
-                rankingCounts.getOrDefault(rankingType, 0) + 1
-        );
+        return WinningRankType.selectRankingType(winningCount, bonusCount);
     }
 
     @Override

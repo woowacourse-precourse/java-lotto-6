@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.LottoService;
 import lotto.domain.LottoServiceImpl;
 import lotto.model.Lotto;
+import lotto.util.WinningResult;
 import lotto.view.LottoUI;
 
 public class LottoController {
@@ -27,5 +28,8 @@ public class LottoController {
 
         int[] winningNumbers = lottoUI.winningNumbers();
         int bonusNumber = lottoUI.bonusNumber();
+
+        WinningResult winningResult = lottoService.checkWinningResult(winningNumbers, bonusNumber);
+        lottoUI.printWinningResult(winningResult);
     }
 }

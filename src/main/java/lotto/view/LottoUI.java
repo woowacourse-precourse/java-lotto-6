@@ -8,6 +8,7 @@ import java.util.Set;
 import lotto.exception.ErrorMessage;
 import lotto.model.Lotto;
 import lotto.util.Constants;
+import lotto.util.WinningResult;
 
 public class LottoUI {
 
@@ -109,5 +110,10 @@ public class LottoUI {
                 System.out.println(ErrorMessage.NOT_VALID_LOTTO_NUMBER.getMessage());
             }
         }
+    }
+
+    public void printWinningResult(WinningResult winningResult) {
+        winningResult.winningCountToString().forEach(System.out::println);
+        System.out.println(winningResult.earningRateToString());
     }
 }

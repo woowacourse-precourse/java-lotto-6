@@ -6,7 +6,8 @@ import lotto.constants.ErrorMessage;
 public class BonusNumber {
     public static final int LOTTO_NUMBER_RANGE_MIN = 1;
     public static final int LOTTO_NUMBER_RANGE_MAX = 45;
-    int bonusNumber;
+
+    private int bonusNumber;
 
     public BonusNumber(String bonusNumber, Lotto winningNumbers) {
         validate(bonusNumber, winningNumbers);

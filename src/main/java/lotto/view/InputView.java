@@ -13,16 +13,19 @@ public class InputView {
 
     private static List<Integer> winningNumberList;
 
+    // 구입 금액 입력 메소드
     public static int inputPurchaseAmount(){
         System.out.println(INPUT_LOTTO_AMOUT);
         return Integer.parseInt(Console.readLine());
     }
 
+    // 당첨 번호 입력 메소드
     public static List<Integer> inputLottoWinningNumber(){
         System.out.println(INPUT_LOTTO_WINNING);
         return numberList(Console.readLine());
     }
 
+    // 보너스 번호 입력 메소드
     public static int inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER);
         return Integer.parseInt(Console.readLine());
@@ -44,6 +47,5 @@ public class InputView {
             throw new IllegalArgumentException(INPUT_TYPE_ERROR);
         }
     }
-
 
 }

@@ -12,6 +12,7 @@ public class PlayerLottoAmount {
         this.amount = amount;
     }
 
+    // 구매 가능한 로또 개수 계산 메소드
     public int calculateLottoCount() {
         return amount / LOTTO_MIN_AMOUNT;
     }
@@ -22,6 +23,7 @@ public class PlayerLottoAmount {
         validateDivisible(amount);
     }
 
+    // 자료형이 숫자 인지 확인 메소드
     private void validateNumber(int amount) {
         try {
             return;
@@ -30,12 +32,14 @@ public class PlayerLottoAmount {
         }
     }
 
+    // 음수가 아닌지 확인 메소드
     private void validateNatural(int amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException(NOT_NATURAL_NUMBER_ERROR);
         }
     }
 
+    // 1000원 단위인지 확인 메소드
     private void validateDivisible(int amount) {
         if (amount % LOTTO_MIN_AMOUNT != 0){
             throw new IllegalArgumentException(NOT_DIVISIBLE_NUMBER_ERROR);

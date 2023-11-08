@@ -37,21 +37,49 @@
 
 
 ### 출력
+- [ ] 로또 구매갯수와 로또를
+
 - [ ] 당첨 통계을 출력한다
 
 - [ ] 수익률을 출력한다.
 ---
 ## 기능구현
 
-### 입력 기능을 구현한다 # InputView
+### ✏️입력 기능을 구현한다 # InputView
 - [ ] 구매 금액을 요청 / RequestPurchaseAmount()
 - [ ] 당첨 번호를 요청 / RequestWinningNumber()
 - [ ] 보너스 번호를 요청 /  RequestBonusNumber()
-- 
-### 출력 기능을 구현한다 # OutputView
-- [ ] 구매 금액을 요청 / RequestPurchaseAmount()
-- [ ] 당첨 번호를 요청 / RequestWinningNumber()
-- [ ] 보너스 번호를 요청 /  RequestBonusNumber()
+
+
+### ✏️출력 기능을 구현한다 # OutputView
+- [ ] 전체 로또를 출력 / printLottos()
+- [ ] 당첨번호와 비교한 결과 출력 / printLottoResult()
+- [ ] 로또 수익률 출력 /  printLottoProfit()
+
+
+### ✏️로또 한장에 관한 기능을 구현한다 # Lotto
+- [ ] 로또가 유효한지 검증 / validate()
+- [ ] 로또와 당첨번호 비교 / countMatchingNumbers()
+- [ ] 로또와 보너스 번호 비교 /  isContainBonusNumber()
+
+
+### ✏️로또 구매에 관한 기능을 구현한다 # LottoTicketStore
+- [ ] 로또 한장 생성 / printLottos()
+- [ ] 구매금액 만큼 로또 발급 / generateLotto()
+
+
+### ✏️로또 등수에 관한 상수를 구현한다 # LottoRank
+- [ ] 로또 한장의 등수를 상수로 반환 / calculateLottoRank()
+
+
+### ✏️로또 등수 결과를 저장하는 기능을 구현한다 # LottoResult
+- [ ] 각 등수마다 당첨횟수 저장 / calculateLottoResult()
+
+
+### ✏️수익률을 계산하는 기능을 구현한다 # LottoProfit
+- [ ] 전체 수익 계산 / calculateProfit()
+- [ ] 수익률 계산 / calculateProfitRate()
+
 
 
 ---

@@ -47,13 +47,20 @@
 - 테스트 코드 통과를 위해 소수점 한 자리까지 표시 하도록 수정
     - 수익률 계산 : `double profitRate = Math.round(((totalPrize) / totalSpent) * 1000.0) / 10.0;`
 
-
+## LottoTest 테스틐 코드 추가
 ### 7) 당첨 번호와 보너스 번호의 예외 처리 구문 추가
 - 입력 받을 당첨 번호의 개수가 6이 아닌 경우 예외 처리가 발생하도록 당첨 번호를 담은 로또 객체 `winningLotto` 생성
 - `winningLotto` 객체 내 `validate` 메서드 호출로 당첨 번호 예외 처리
 - 입력받은 보너스 번호를 가지고 `winningLotto` 객체 내 `validateBonus` 메서드를 생성 및 호출하여 예외 처라
 - `validateBonus` 메서드에 당첨 번호와 보너스 번호가 중복되지 않도록 하는 조건 추가
 - 위 내용에 관한 테스트 코드 작성 (`createWinningLottoBySizeNotSix()`, `validateInvalidBonusNumber()`)
-- 
+
+## Application 메서드 -> Lotto 클래스 메서드로 이동
+1. Application 클래스 내부의 로직은 사용자 입력, 출력 및 비즈니스 로직의 실행을 담당하고
+2. Lotto 클래스는 로또 게임의 여러 기능을 처리하며, 주로 로또 번호의 유효성을 검사하고 당첨 번호와의 일치를 확인하는 데 사용
+
+따라서, `buyLottos`, `parseNumbers` 와 같은 Lotto 클래스와 관련된 작업들을 Lotto 클래스로 이동
+
 --- 
+
 

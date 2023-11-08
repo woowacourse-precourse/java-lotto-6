@@ -24,6 +24,7 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
     @DisplayName("당첨 번호의 개수가 6이 아니고 1~45의 숫자가 아닐 경우 예외가 발생한다.")
     @Test
     void createWinningLottoBySizeNotSix() {

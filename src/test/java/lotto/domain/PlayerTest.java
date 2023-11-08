@@ -33,6 +33,14 @@ class PlayerTest {
     }
 
     @Test
+    void 보너스_번호_입력() {
+        String bonusNumber = "3";
+        player.insertBonusNumber(bonusNumber);
+
+        assertEquals(Integer.parseInt(bonusNumber), player.getBonusNumber());
+    }
+
+    @Test
     void 수익률_반환() {
         int purChaseAmountInput = 100000;
         player.insertPurchaseAmount(purChaseAmountInput);

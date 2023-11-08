@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.port.InputPort;
 
-public class UserInputAdaptor implements InputPort {
+public class UserInputAdapter implements InputPort {
 
     private static final String INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String INPUT_DRAW_NUMBERS = "당첨 번호를 입력해 주세요.";

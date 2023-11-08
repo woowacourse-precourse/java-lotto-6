@@ -32,7 +32,7 @@ class ValidatorTest {
                 .hasMessage(REMAINDER_ERROR.getMessage());
     }
 
-    @DisplayName("입력앞에 0이 있을 때, 예외 처리 + 메시지 출력")
+    @DisplayName("입력 앞에 0이 있을 때, 예외 처리 + 메시지 출력")
     @ParameterizedTest
     @ValueSource(strings = {"0a", "01", "0"})
     void checkZero(String userInput) {

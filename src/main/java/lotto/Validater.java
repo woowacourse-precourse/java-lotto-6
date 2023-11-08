@@ -26,7 +26,7 @@ public class Validater {
     private void purchaseAmountValidate(String inputStr){
         strEmptyCheck(inputStr);
         strNumericCheck(inputStr);
-        if (Integer.parseInt(inputStr) % LOTTO_PRICE != 0){
+        if (Integer.parseInt(inputStr) % LOTTO_PRICE != 0 || Integer.parseInt(inputStr) == 0){
             Print.printMessage(ErrorMessage.NOT_DIVIED_1000.getMessage());
             throw new IllegalArgumentException(ErrorMessage.NOT_DIVIED_1000.getMessage());
         }
@@ -87,7 +87,6 @@ public class Validater {
             }
         }
     }
-
     private void dividingSizeCheck(String[] splited, int checkSize){
         if (splited.length != checkSize){
             Print.printfMessage(ErrorMessage.SIZE_OVER.getMessage(), checkSize);

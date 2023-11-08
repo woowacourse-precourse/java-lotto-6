@@ -30,7 +30,7 @@ public enum Policy {
         if (count == 5 && isBonus) {
             return SECOND;
         }
-        if (count == 5 && !isBonus) {
+        if (count == 5) {
             return THIRD;
         }
         for (Policy rank : Policy.values()) {

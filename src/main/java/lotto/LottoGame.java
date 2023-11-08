@@ -2,7 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoGame {
 
@@ -18,7 +20,22 @@ public class LottoGame {
      * @param ranks 당첨금 받는 rank만 들어온다.
      */
     public void printResult(List<Rank> ranks) {
+        Map<Rank, Integer> rankCount = getRankCount(ranks);
 
+        System.out.println("당첨 통계\n---");
+        System.out.println("3개 일치 (5,000원) - " + rankCount.getOrDefault(Rank.FIFTH, 0) + "개");
+        System.out.println("4개 일치 (50,000원) - " + rankCount.getOrDefault(Rank.FOURTH, 0) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + rankCount.getOrDefault(Rank.THIRD, 0) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCount.getOrDefault(Rank.SECOND, 0) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + rankCount.getOrDefault(Rank.FIRST, 0) + "개");
+    }
+
+    public Map<Rank, Integer> getRankCount(List<Rank> ranks) {
+        Map<Rank, Integer> rankCount = new HashMap<>();
+        for (Rank rank : ranks) {
+            rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
+        }
+        return rankCount;
     }
 
     /**

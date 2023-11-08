@@ -47,14 +47,12 @@ public class Application {
 
     private static Jackpot createJackPotProcess(LottoController lottoController, InputView inputView) {
         Jackpot jackpot = null;
-        boolean isValidateInput = false;
 
-        while (!isValidateInput) {
+        while (jackpot == null) {
             try {
                 String winningNumbers = inputView.inputWinningNumbers();
                 String bonusNumber = inputView.inputBonusNumber();
                 jackpot = lottoController.createWinningNumbers(winningNumbers, bonusNumber);
-                isValidateInput = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -65,13 +63,11 @@ public class Application {
 
     private static List<Lotto> generateLottoTicketsProcess(LottoController lottoController, OutputView outputView, Purchase purchase) {
         List<Lotto> lottos = new ArrayList<>();
-        boolean isValidateInput = false;
 
-        while (!isValidateInput) {
+        while (lottos.isEmpty()) {
             try {
-                lottos = lottoController.generateLottoTickets(purchase);
+                lottos = lottoController.generateLottoTickets(purchase.getPurchaseCount());
                 outputView.printLottos(lottos);
-                isValidateInput = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -82,19 +78,15 @@ public class Application {
 
     private static Purchase purchaseLottosProcess(LottoController lottoController, InputView inputView, OutputView outputView) {
         Purchase purchase = null;
-        boolean isValidateInput = false;
-
-        while (!isValidateInput) {
+        while (purchase == null) {
             try {
                 String amount = inputView.inputPurchaseAmount();
                 purchase = lottoController.purcahseLottos(amount);
                 outputView.printPurchaseCount(purchase.getPurchaseCount());
-                isValidateInput = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
         return purchase;
     }
 }

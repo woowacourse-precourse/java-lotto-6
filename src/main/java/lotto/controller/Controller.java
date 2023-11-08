@@ -72,7 +72,7 @@ public class Controller {
     }
 
     private void showResults() {
-        winningResult = new WinningResult(lottoNumbers, winningNumber);
+        winningResult = new WinningResult(lottoNumbers);
         showWinningResult(winningResult.getWinningResult(lottoNumbers.getDrawnLottoNumbers(), winningNumber));
         showTotalReturn(winningResult.getReturn());
     }

@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.util.Constants;
 
 public class User {
 
@@ -10,7 +11,7 @@ public class User {
 
     public User(int amount) {
         this.amount = amount;
-        this.count = amount / 1_000;
+        this.count = amount / Constants.LOTTO_PURCHASE_UNIT;
         lottoTickets = new java.util.ArrayList<>();
     }
 

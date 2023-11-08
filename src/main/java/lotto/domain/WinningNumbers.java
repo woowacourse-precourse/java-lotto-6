@@ -8,9 +8,9 @@ import lotto.global.exception.LottoException;
  * 당첨 번호들을 저장하는 클래스
  */
 public class WinningNumbers {
-    private List<Number> winningNumbers;
+    private Lotto winningNumbers;
 
-    private WinningNumbers(final List<Number> winningNumbers) {
+    private WinningNumbers(final Lotto winningNumbers) {
         Validator.validateWinningNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
     }
@@ -21,7 +21,7 @@ public class WinningNumbers {
      * @param winningNumbers 당첨 번호 리스트
      * @return 당첨 번호 객체
      */
-    public static WinningNumbers from(final List<Number> winningNumbers) {
+    public static WinningNumbers from(final Lotto winningNumbers) {
         return new WinningNumbers(winningNumbers);
     }
 
@@ -53,23 +53,24 @@ public class WinningNumbers {
          *
          * @param winningNumbers 당첨 번호
          */
-        private static void validateWinningNumbers(final List<Number> winningNumbers) {
+        private static void validateWinningNumbers(final Lotto winningNumbers) {
             validateDuplication(winningNumbers);
         }
 
-        private static void validateDuplication(final List<Number> winningNumbers) {
+        private static void validateDuplication(final Lotto winningNumbers) {
             if (isDuplicated(winningNumbers)) {
                 throw LottoException.from(ErrorMessage.DUPLICATED_NUMBER_ERROR);
             }
         }
 
-        private static boolean isDuplicated(final List<Number> winningNumbers) {
+        private static boolean isDuplicated(final Lotto winningNumbers) {
             int uniqueSize = getUniqueSize(winningNumbers);
-            return uniqueSize != winningNumbers.size();
+            return uniqueSize != winningNumbers.getSize();
         }
 
-        private static int getUniqueSize(final List<Number> winningNumbers) {
-            return (int) winningNumbers.stream()
+        private static int getUniqueSize(final Lotto winningNumbers) {
+            return (int) winningNumbers.getNumbers()
+                    .stream()
                     .distinct()
                     .count();
         }

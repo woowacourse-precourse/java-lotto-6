@@ -29,14 +29,21 @@ public class StartLotto {
 
 
     private void initLotto() {
-        System.out.println(LottoString.beforePurchaseLotto());
-        inputMoney();
+        try {
+            System.out.println(LottoString.beforePurchaseLotto());
+            inputMoney();
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자를 입력해 주세요.");
+            initLotto();
+        }
     }
 
     private void inputMoney() {
         this.money = Long.parseLong(readLine());
         System.out.println();
-        this.countOfLotto = this.money/1000;
+        this.countOfLotto = this.money / 1000;
+
+
     }
 
     private void purchaseLotto() {
@@ -53,28 +60,46 @@ public class StartLotto {
             for (int y: x.getnumbers()) {
                 result.append(y).append(", ");
             }
-            result.replace(result.length()-1, result.length(), "]");
+            result.replace(result.length()-2, result.length()-1, "]");
             System.out.println(result);
         }
     }
 
     private void inputWinningNumber() {
-        System.out.println(LottoString.winningNumbers());
-        convertNumbers(readLine());
-        System.out.println();
+        try {
+            System.out.println(LottoString.winningNumbers());
+            convertNumbers(readLine());
+            System.out.println();
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자가 아닌 값이 포함되어 있습니다.");
+            inputWinningNumber();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputWinningNumber();
+        }
+
     }
 
     private void convertNumbers(String s) {
         String[] temp = s.split(",");
-        for (String tmp: temp) {
+        if (temp.length != 6) {
+            throw new IllegalArgumentException("[ERROR] 6개 숫자를 ','로 구분하여 입력해 주세요.");
+        }
+        for (String tmp : temp) {
             this.winningNumbers.add(Integer.parseInt(tmp));
         }
     }
 
     private void inputBonusNumber() {
-        System.out.println(LottoString.bonusNumber());
-        this.bonusNumber = Integer.parseInt(readLine());
-        System.out.println();
+        try {
+            System.out.println(LottoString.bonusNumber());
+            this.bonusNumber = Integer.parseInt(readLine());
+            System.out.println();
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자 한 개를 입력해 주세요.");
+            inputBonusNumber();
+        }
+
     }
 
     private void printResult() {

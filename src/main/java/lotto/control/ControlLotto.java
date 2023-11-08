@@ -99,12 +99,12 @@ public class ControlLotto {
     }
 
     private void printFirst() {
-        System.out.print("6개 일치, 보너스 볼 일치 (2,000,000,000원) - ");
+        System.out.print("6개 일치 (2,000,000,000원) - ");
         System.out.println(results.get(LottoRank.RANK2) + "개");
         this.totalReward += results.get(LottoRank.RANK2) * 2000000000;
     }
 
     private void printRateOfReturn(long purchaseMoney) {
-        System.out.println("총 수익률은 " + (this.totalReward / (double) purchaseMoney) + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", (100 * this.totalReward / (double) purchaseMoney)) + "%입니다.");
     }
 }

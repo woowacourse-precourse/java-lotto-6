@@ -24,4 +24,8 @@ public class OutputView {
 	public static void printMessage(String message) {
 		System.out.println(message);
 	}
+
+	public static void printReceipt(int size) {
+		printMessage(size + "개를 구매했습니다.");
+	}
 }

@@ -24,6 +24,15 @@ public enum LottoRank {
         }
         return NONE;
     }
+    public static LottoRank valueOf(int matchCount, boolean hasBonus) {
+
+        if (matchCount == 6) return FIRST;
+        if (matchCount == 5 && hasBonus) return SECOND;
+        if (matchCount == 5) return THIRD;
+        if (matchCount == 4) return FOURTH;
+        if (matchCount == 3) return FIFTH;
+        return NONE;
+    }
     public int getMatchCount() {
         return matchCount;
     }
@@ -31,4 +40,5 @@ public enum LottoRank {
     public int getReward() {
         return reward;
     }
+
 }

@@ -35,6 +35,11 @@ public class Lottos {
         }
     }
 
+    public void print(Result result) {
+        result.print();
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", calculateEarnings(result));
+    }
+
     public Result getResult(WinningLotto winningLotto) {
         Result result = new Result();
         for (Lotto lotto : lottos) {

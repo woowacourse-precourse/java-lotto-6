@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    public static final int LOTTO_NUMBER_COUNT = 6;
+    public static final int MIN_LOTTO_NUMBER = 1;
+    public static final int MAX_LOTTO_NUMBER = 45;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,13 +19,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers == null || numbers.size() != 6) {
+        if (numbers == null || numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
 
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (Integer number : numbers) {
-            if (number == null || number < 1 || number > 45) {
+            if (number == null || number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
             if (!uniqueNumbers.add(number)) {
@@ -31,7 +35,7 @@ public class Lotto {
     }
 
     public static Lotto generate() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
         return new Lotto(numbers);
     }
 

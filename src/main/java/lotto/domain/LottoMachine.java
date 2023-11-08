@@ -28,18 +28,18 @@ public class LottoMachine {
     }
 
     private Lotto makeLotto() {
-        return new Lotto(makeLottoNumbers());
+        return new Lotto(makeAutoNumbers());
     }
 
-    private List<Integer> makeLottoNumbers() {
+    private List<Integer> makeAutoNumbers() {
         return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBERS_SIZE);
     }
 
     public Lotto makeWinningLotto(String winningNumbers) {
-        return new Lotto(makeLottoNumber(winningNumbers));
+        return new Lotto(makeManualNumber(winningNumbers));
     }
 
-    private List<Integer> makeLottoNumber(String numbers) {
+    private List<Integer> makeManualNumber(String numbers) {
         return Arrays.stream(numbers.split(DELIMITER))
                 .map(String::trim)
                 .map(Integer::parseInt)

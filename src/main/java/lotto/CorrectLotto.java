@@ -9,10 +9,6 @@ public class CorrectLotto {
     private Lotto correct_lotto;
     private int bonus;
 
-    public void setCorrect_lotto(Lotto correct_lotto) {
-        this.correct_lotto = correct_lotto;
-    }
-
     public Lotto getCorrect_lotto() {
         return correct_lotto;
     }

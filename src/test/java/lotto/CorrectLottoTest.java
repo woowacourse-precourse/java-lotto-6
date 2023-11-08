@@ -40,8 +40,8 @@ class CorrectLottoTest {
     void 보너스번호_중복_확인() {
         // given
         int bonus = 1;
-        List<Integer> input_numbers = List.of(1,2,3,4,5,6);
-        correctLotto.setCorrect_lotto(new Lotto(input_numbers));
+        String input_numbers = "1,2,3,4,5,6";
+        correctLotto.inputCorrectLotto(input_numbers);
 
         // then
         assertThrows(IllegalArgumentException.class, () -> {

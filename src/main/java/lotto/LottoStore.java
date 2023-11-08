@@ -50,6 +50,9 @@ public class LottoStore {
                 throw new IllegalArgumentException("[ERROR] 숫자로 된 금액을 입력해야 합니다.");
             }
         }
+        if (Integer.parseInt(number) <= Value.ZERO.get()) {
+            throw new IllegalArgumentException("[ERROR] 금액은 양수를 입력해야 합니다")
+        }
         if (Integer.parseInt(number) % Value.LOTTO_PRICE.get() != Value.ZERO.get()) {
             throw new IllegalArgumentException("[ERROR] 1,000원 단위로 금액을 입력해야 합니다.");
         }

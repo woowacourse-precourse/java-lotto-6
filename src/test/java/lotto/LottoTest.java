@@ -1,13 +1,12 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Set;
+import lotto.userLotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import org.mockito.internal.matchers.Null;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -43,13 +42,9 @@ class LottoTest {
     @DisplayName("로또 번호가 null이면 예외를 발생한다.")
     @Test
     void createLottoNull(){
-        assertThatThrownBy(() -> new Lotto(List.of(null)))
+        assertThatThrownBy(() -> new Lotto(List.of(null,null)))
                 .isInstanceOf(NullPointerException.class);
     }
-
-
-
-
 
 
 

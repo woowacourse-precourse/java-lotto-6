@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.constants;
 
 public enum LottoConstants {
     LOTTO_NUMBER_RANGE_START(1),

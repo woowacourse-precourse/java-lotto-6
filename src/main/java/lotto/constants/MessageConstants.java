@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.constants;
 
 public enum MessageConstants {
     INPUT_MESSAGE_FOR_BUY_AMOUNT("구입금액을 입력해 주세요."),
@@ -9,9 +9,9 @@ public enum MessageConstants {
     OUTPUT_MESSAGE_FOR_LINE_SEPARATOR("---"),
     OUTPUT_MESSAGE_FOR_LOTTO_FORMAT("[%s]"),
     LOTTO_NUMBER_SEPARATOR(", "),
-    OUTPUT_MESSAGE_FOR_RESULT_WITHOUT_BONUS("%d개 일치 (%,d원) - %d개"),
-    OUTPUT_MESSAGE_FOR_RESULT_WITH_BONUS("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
-    OUTPUT_MESSAGE_FOR_EARNING_RATIO("총 수익률은 %.1f입니다.");
+    OUTPUT_MESSAGE_FOR_RESULT("%d개 일치%s (%,d원) - %d개"),
+    EXTRA_MESSAGE_FOR_BONUS_NUMBER(", 보너스 볼 일치"),
+    OUTPUT_MESSAGE_FOR_EARNING_RATIO("총 수익률은 %.1f%%입니다.");
 
 
     private final String message;

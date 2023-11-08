@@ -14,7 +14,7 @@ public enum ErrorMessage {
 
     private final String message;
     private static final String convention = "[ERROR] ";
-    ErrorMessage(String message) {
+    ErrorMessage(final String message) {
         this.message = message;
     }
 

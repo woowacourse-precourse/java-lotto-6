@@ -14,12 +14,12 @@ import java.util.stream.Collectors;
 public class PublishedLotto {
     private final List<Lotto> publishedLotto;
 
-    PublishedLotto(Integer money) {
+    PublishedLotto(final Integer money) {
         publishedLotto = new ArrayList<>();
         publishLotto(money);
     }
 
-    public static PublishedLotto getInstance(Integer money) {
+    public static PublishedLotto getInstance(final Integer money) {
         return new PublishedLotto(money);
     }
 

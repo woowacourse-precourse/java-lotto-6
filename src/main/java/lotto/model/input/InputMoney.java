@@ -8,11 +8,11 @@ import lotto.util.exception.LottoException;
 import lotto.util.input.InputNumber;
 
 public class InputMoney extends InputNumber {
-    InputMoney(String input) {
+    InputMoney(final String input) {
         super(input);
     }
 
-    public static InputMoney getInstance(String input) {
+    public static InputMoney getInstance(final String input) {
         return new InputMoney(input);
     }
 

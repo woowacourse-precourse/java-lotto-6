@@ -8,11 +8,11 @@ public enum Strings {
     LOTTO_BONUS_PAIR_STRING_FORMAT("당첨 번호 : %s\n보너스 번호 : %d");
     private final String string;
 
-    Strings(String string) {
+    Strings(final String string) {
         this.string = string;
     }
 
-    public String getFormat(Object... args) {
+    public String getFormat(final Object... args) {
         return String.format(string, args);
     }
 

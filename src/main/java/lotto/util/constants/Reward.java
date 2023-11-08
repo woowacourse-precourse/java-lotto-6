@@ -15,13 +15,13 @@ public enum Reward {
     private final Long reward;
     private final String message;
 
-    Reward(Integer rank, Long reward, String message) {
+    Reward(final Integer rank, final Long reward, final String message) {
         this.rank = rank;
         this.reward = reward;
         this.message = message;
     }
 
-    public static Long fromRank(Integer rank) {
+    public static Long fromRank(final Integer rank) {
         for (Reward reward : Reward.values()) {
             if (Objects.equals(reward.getRank(), rank)) {
                 return reward.getReward();
@@ -38,7 +38,7 @@ public enum Reward {
         return this.reward;
     }
 
-    public String getMessage(Integer count) {
+    public String getMessage(final Integer count) {
         return String.format(message, count);
     }
 }

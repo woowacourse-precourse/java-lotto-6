@@ -18,7 +18,7 @@ public class LottoController implements Controller {
     private final ConfirmWinningService confirmWinningService;
     private final CalculateProfitService calculateProfitService;
 
-    LottoController(View lottoInputView, View lottoOutputView) {
+    LottoController(final View lottoInputView, final View lottoOutputView) {
         this.lottoOutputView = (LottoOutputView) lottoOutputView;
         inputService = (InputService) Service.generateInputService(lottoInputView);
         publishLottoService = (PublishLottoService) Service.generatePublishLottoService();
@@ -42,7 +42,7 @@ public class LottoController implements Controller {
         return inputService.getInputMoney();
     }
 
-    private PublishedLotto getPublishedLotto(Integer money) {
+    private PublishedLotto getPublishedLotto(final Integer money) {
         return publishLottoService.getPublishedLotto(money, lottoOutputView);
     }
 
@@ -51,12 +51,12 @@ public class LottoController implements Controller {
         return inputService.getLottoBonusPair(winnerNumber);
     }
 
-    private Long getTotalReward(PublishedLotto publishedLotto, LottoBonusPair winnerNumberPair) {
+    private Long getTotalReward(final PublishedLotto publishedLotto, final LottoBonusPair winnerNumberPair) {
         confirmWinningService.confirmWinning(publishedLotto, winnerNumberPair, lottoOutputView);
         return confirmWinningService.getTotalReward();
     }
 
-    private void calculateProfit(Integer money, Long totalReward) {
+    private void calculateProfit(final Integer money, final Long totalReward) {
         calculateProfitService.calculateProfit(money, totalReward, lottoOutputView);
     }
 }

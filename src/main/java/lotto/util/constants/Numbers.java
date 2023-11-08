@@ -13,7 +13,7 @@ public enum Numbers {
 
     private final Integer number;
 
-    Numbers(Integer number) {
+    Numbers(final Integer number) {
         this.number = number;
     }
 

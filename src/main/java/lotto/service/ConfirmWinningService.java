@@ -17,7 +17,8 @@ public class ConfirmWinningService implements Service {
         reward = 0L;
     }
 
-    public void confirmWinning(PublishedLotto lotto, LottoBonusPair pair, LottoOutputView lottoOutputView) {
+    public void confirmWinning(final PublishedLotto lotto, final LottoBonusPair pair,
+                               final LottoOutputView outputView) {
         List<Integer> rankList = pair.getResults(lotto);
         Map<Integer, Integer> rankCount = new HashMap<>();
         for (Integer rank : rankList) {
@@ -26,18 +27,18 @@ public class ConfirmWinningService implements Service {
                 addReward(rank);
             }
         }
-        lottoOutputView.printWinningResult(rankCount);
+        outputView.printWinningResult(rankCount);
     }
 
     public Long getTotalReward() {
         return this.reward;
     }
 
-    private boolean hasWon(Integer rank) {
+    private boolean hasWon(final Integer rank) {
         return rank <= REWARD_CRITERIA.getNumber();
     }
 
-    private void addReward(Integer rank) {
+    private void addReward(final Integer rank) {
         reward += Reward.fromRank(rank);
     }
 }

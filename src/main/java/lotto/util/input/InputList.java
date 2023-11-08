@@ -12,14 +12,14 @@ import lotto.util.exception.LottoException;
 public abstract class InputList<T> implements InputValidator {
     protected final List<T> list;
 
-    protected InputList(String input) {
+    protected InputList(final String input) {
         List<String> stringList = toList(input);
         checkBlank(stringList);
         list = convertElements(stringList);
         validate();
     }
 
-    private void checkBlank(List<String> stringList) {
+    private void checkBlank(final List<String> stringList) {
         for (String element:stringList) {
             if (element.isEmpty()) {
                 throw LottoException.of(BLANK_ELEMENT);

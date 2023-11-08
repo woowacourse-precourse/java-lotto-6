@@ -8,9 +8,9 @@ public class PublishLottoService implements Service {
     PublishLottoService() {
     }
 
-    public PublishedLotto getPublishedLotto(Integer money, LottoOutputView lottoOutputView) {
+    public PublishedLotto getPublishedLotto(final Integer money, final LottoOutputView outputView) {
         PublishedLotto publishedLotto = PublishedLotto.getInstance(money);
-        lottoOutputView.printPublishedLotto(publishedLotto.getCount(), publishedLotto.toString());
+        outputView.printPublishedLotto(publishedLotto.getCount(), publishedLotto.toString());
         return publishedLotto;
     }
 }

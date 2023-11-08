@@ -12,11 +12,11 @@ import lotto.util.exception.LottoException;
 import lotto.util.input.InputList;
 
 public class InputWinnerNumbers extends InputList<Integer> {
-    InputWinnerNumbers(String input) {
+    InputWinnerNumbers(final String input) {
         super(input);
     }
 
-    public static InputWinnerNumbers getInstance(String input) {
+    public static InputWinnerNumbers getInstance(final String input) {
         return new InputWinnerNumbers(input);
     }
 
@@ -37,13 +37,13 @@ public class InputWinnerNumbers extends InputList<Integer> {
         return list.toString();
     }
 
-    protected List<Integer> convertElements(List<String> input) {
+    protected List<Integer> convertElements(final List<String> input) {
         return input.stream()
                 .map(this::checkNumber)
                 .collect(Collectors.toList());
     }
 
-    private Integer checkNumber(String element) {
+    private Integer checkNumber(final String element) {
         Integer number;
         try {
             number = Integer.parseInt(element);

@@ -14,11 +14,11 @@ public class LottoOutputView implements View {
     LottoOutputView() {
     }
 
-    public void printPublishedLotto(Integer count, String lottoList) {
+    public void printPublishedLotto(final Integer count, final String lottoList) {
         System.out.println(BOUGHT_LOTTO.getMessage(count, lottoList));
     }
 
-    public void printWinningResult(Map<Integer, Integer> rankCount) {
+    public void printWinningResult(final Map<Integer, Integer> rankCount) {
         StringBuilder print = new StringBuilder();
         print.append(WINNER_RESULT.getMessage());
         String result = Arrays.stream(Reward.values())
@@ -28,7 +28,7 @@ public class LottoOutputView implements View {
         System.out.println(print);
     }
 
-    public void printProfitRate(Double profitRate) {
+    public void printProfitRate(final Double profitRate) {
         System.out.print(PROFIT_RATE.getMessage(profitRate));
     }
 }

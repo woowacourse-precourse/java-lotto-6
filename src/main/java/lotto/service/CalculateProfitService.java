@@ -8,12 +8,12 @@ public class CalculateProfitService implements Service {
     CalculateProfitService() {
     }
 
-    public void calculateProfit(Integer money, Long totalReward, LottoOutputView lottoOutputView) {
+    public void calculateProfit(final Integer money, final Long totalReward, final LottoOutputView outputView) {
         Double profitRate = getProfitRate(money, totalReward);
-        lottoOutputView.printProfitRate(profitRate);
+        outputView.printProfitRate(profitRate);
     }
 
-    private Double getProfitRate(Integer money, Long totalReward) {
+    private Double getProfitRate(final Integer money, final Long totalReward) {
         return ((double) totalReward * PERCENTAGE.getNumber()) / money;
     }
 }

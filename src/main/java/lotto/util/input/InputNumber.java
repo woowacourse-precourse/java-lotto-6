@@ -10,7 +10,7 @@ import lotto.util.exception.LottoException;
 public abstract class InputNumber implements InputValidator {
     protected final Integer number;
 
-    protected InputNumber(String input) {
+    protected InputNumber(final String input) {
         checkBlank(input);
         number = isInteger(input);
         validate();
@@ -23,7 +23,7 @@ public abstract class InputNumber implements InputValidator {
         }
     }
 
-    private Integer isInteger(String input) {
+    private Integer isInteger(final String input) {
         Integer number;
         try {
             number = Integer.parseInt(input);

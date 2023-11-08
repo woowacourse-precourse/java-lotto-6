@@ -16,7 +16,7 @@ public enum ViewMessage {
 
     private final String message;
 
-    ViewMessage(String message) {
+    ViewMessage(final String message) {
         this.message = message;
     }
 

@@ -12,16 +12,16 @@ import lotto.util.exception.LottoException;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    public boolean contains(Integer number) {
+    public boolean contains(final Integer number) {
         return this.numbers.contains(number);
     }
 
-    public Integer countSameNumbers(Lotto other) {
+    public Integer countSameNumbers(final Lotto other) {
         return Math.toIntExact(other.numbers.stream()
                 .filter(this::contains)
                 .count());
@@ -35,7 +35,7 @@ public class Lotto {
                 .toString();
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(final List<Integer> numbers) {
         if (validateListSize(numbers)) {
             throw LottoException.of(NOT_SIX_NUMBERS);
         }
@@ -45,11 +45,11 @@ public class Lotto {
         }
     }
 
-    private boolean validateListSize(List<Integer> numbers) {
+    private boolean validateListSize(final List<Integer> numbers) {
         return numbers.size() != VALID_NUMBER_LIST_SIZE.getNumber();
     }
 
-    private boolean hasDuplicateNumber(List<Integer> numbers) {
+    private boolean hasDuplicateNumber(final List<Integer> numbers) {
         Set<Integer> set = new HashSet<>();
         for (Integer number : numbers) {
             if (!set.add(number)) {

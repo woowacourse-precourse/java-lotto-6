@@ -3,7 +3,7 @@ package lotto.service;
 import lotto.view.View;
 
 public interface Service {
-    static Service generateInputService(View lottoInputView) {
+    static Service generateInputService(final View lottoInputView) {
         return new InputService(lottoInputView);
     }
 

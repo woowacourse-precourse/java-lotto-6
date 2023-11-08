@@ -1,8 +1,10 @@
 package lotto.controller;
 
-import lotto.LottoPlayer;
+import lotto.model.LottoPlayer;
+import lotto.model.LottoNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import java.util.List;
 
 public class LottoController {
     private final InputView inputView = new InputView();
@@ -10,7 +12,7 @@ public class LottoController {
 
     public void run() {
         LottoPlayer lottoPlayer = createLottoPlayer(getPurchase());
-        createLottoList();
+        createLottoList(lottoPlayer);
         getPlayerNumbers();
         displayResult();
     }
@@ -30,11 +32,15 @@ public class LottoController {
         int lottoCount = lottoPlayer.getLottoCount();
         outputView.printLottoPurchaseCountMessage(lottoCount);
         for (int i=0; i<lottoCount; i++) {
-            createLotto();
+            createLotto(lottoPlayer);
         }
     }
 
-    private void createLotto() {}
+    private void createLotto(LottoPlayer lottoPlayer) {
+        List<Integer> lottoNumbers = LottoNumbers.setLottoNumbers();
+        outputView.printLottoPurchasedNumber(lottoNumbers);
+        lottoPlayer.lottoGeneration(lottoNumbers);
+    }
 
     private void getPlayerNumbers() {
     }

@@ -3,6 +3,7 @@ package lotto.controller;
 
 import static lotto.util.Util.changeStringToInt;
 import static lotto.validator.LottoInputValidator.validateBonusNumber;
+import static lotto.validator.LottoInputValidator.validatePurchaseMoney;
 import static lotto.view.PrintView.printErrorMessage;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -49,5 +50,22 @@ public class LottoController {
             }
         }
         return bonusNumber.getBonusNumber();
+    }
+
+    public int inputPurchaseMoney() {
+        boolean validInput = false;
+        int purchaseMoney = 0;
+        
+        while (!validInput) {
+            try {
+                String input = Console.readLine();
+                validatePurchaseMoney(input);
+                purchaseMoney = changeStringToInt(input);
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                printErrorMessage(e);
+            }
+        }
+        return purchaseMoney;
     }
 }

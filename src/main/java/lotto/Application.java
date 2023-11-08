@@ -9,21 +9,24 @@ import java.util.StringTokenizer;
 public class Application {
     public static void main(String[] args) {
 
+        long total_price = 0;
+        while (true) {
+            System.out.println("구입금액을 입력해 주세요.");
+            try {
+                total_price = Integer.parseInt(Console.readLine());
+                break;  // 정상적으로 정수가 입력되면 루프를 빠져나갑니다.
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR]");
+            }
+        }
+
         /**
-         * 구입 금액 입력
-         */
-        System.out.println("구입금액을 입력해 주세요.");
-        int total_price = Integer.parseInt(Console.readLine());
-        /**
-         * 구입 번호 출력
+         * 번호 출력
          */
         CreateLottoNumber createLottoNumber = new CreateLottoNumber(total_price);
 
-        /**
-         * 당첨 번호 입력
-         */
-        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
+
         List<Integer> winning_number = new ArrayList<>();
         StringTokenizer st = new StringTokenizer(Console.readLine(), ",");
         while (st.hasMoreTokens()) {
@@ -33,17 +36,11 @@ public class Application {
             }
         }
 
-        /**
-         * 보너스 번호 입력
-         */
-        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonus_number = Integer.parseInt(Console.readLine());
-
-
+        Integer bonus_number = Integer.parseInt(Console.readLine());
 
         /**
-         * 구입 번호, 당첨 번호 비교
+         * 당첨 번호 비교
          */
         createLottoNumber.compare(winning_number, bonus_number);
         Result result = new Result(total_price);

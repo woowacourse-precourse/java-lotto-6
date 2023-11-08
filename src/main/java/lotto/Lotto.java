@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -7,18 +8,22 @@ import java.util.Objects;
 public class Lotto {
     // 로또 번호 6 개 저장 리스트
     private final List<Integer> numbers;
-    private Result result;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
         printNumbers();
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또 번호는 6개만 가능합니다.");
+        }
+
+        long distinctCount = numbers.stream().distinct().count();
+        if (distinctCount != numbers.size()) {
+            throw new IllegalArgumentException("로또 번호에 중복된 숫자가 있습니다.");
         }
     }
 
@@ -34,13 +39,15 @@ public class Lotto {
         }
     }
 
-    public double compare(List<Integer> winning_num, int bonus_num) {
+    public double compare(List<Integer> winning_num, Integer bonus_num) {
         double count = 0;
-        for(int i = 0; i < 6; i++) {
-            if(numbers.get(i) == bonus_num) {
+
+        for(int a = 0; a < 6; a++) {
+            if(winning_num.get(a) == bonus_num) {
                 count += 0.5;
             }
         }
+
         for(int i =0; i < 6; i++) {
             for(int j = 0; j < 6; j++) {
                 if(Objects.equals(numbers.get(i), winning_num.get(j))) {

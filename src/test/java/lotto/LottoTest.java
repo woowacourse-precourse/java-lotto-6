@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -59,6 +60,18 @@ class LottoTest {
     void compareLottoNumWithResultNum(int num1, int num2, int num3, int num4, int num5, int num6, int bonusNum, Result expected) {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Result result = lotto.match(List.of(num1, num2, num3, num4, num5, num6), bonusNum);
+
         assertThat(result).isEqualTo(expected);
+    }
+
+    @DisplayName("생성된 로또 번호는 오름차순으로 정렬되어야 한다.")
+    @Test
+    void checkLottoNumsAscending() {
+        List<Integer> numbers = new ArrayList<>(List.of(3, 45, 7, 8, 9, 1));
+        Lotto lotto = new Lotto(numbers);
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        List<Integer> expected = List.of(1, 3, 7, 8, 9, 45);
+
+        assertThat(lottoNumbers).isEqualTo(expected);
     }
 }

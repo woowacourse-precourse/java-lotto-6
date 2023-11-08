@@ -58,23 +58,13 @@ public class Application {
         }
 
         //5. 집계하기
-        Map<Rank, Long> result = lotteries.stream()
-                .collect(Collectors.groupingBy(Lottery::getRank, Collectors.summingLong(l -> 1)));
-        for (Rank rank : Rank.values()) {
-            result.putIfAbsent(rank, 0L);
-        }
+        Map<Rank, Long> rankCount = makeRankCountMap(lotteries);
 
         //6. 수익률 계산
-        float sumOfWinnings = 0f;
-        for (Rank rank : Rank.values()) {
-            float numberOfRank = result.get(rank);
-            float winnings = rank.getWinnings();
-            sumOfWinnings += numberOfRank * winnings;
-        }
-        float rateOfReturn = (float) (sumOfWinnings/howMuch)*100;
+        float rateOfReturn = calculateRateOfReturn(rankCount, howMuch);
 
 
-        //6. 출력
+        //7. 출력
         System.out.println(numberOfLotteries + "개를 구매했습니다.");
         for (Lottery lottery : lotteries) {
             System.out.println(lottery.getWinningNumbers());
@@ -83,11 +73,11 @@ public class Application {
 
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + result.get(Rank.FIFTH) + "개");
-        System.out.println("4개 일치 (50,000원) - " + result.get(Rank.FORTH) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + result.get(Rank.THIRD) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.get(Rank.SECOND) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + result.get(Rank.FIRST) + "개");
+        System.out.println("3개 일치 (5,000원) - " + rankCount.get(Rank.FIFTH) + "개");
+        System.out.println("4개 일치 (50,000원) - " + rankCount.get(Rank.FORTH) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + rankCount.get(Rank.THIRD) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCount.get(Rank.SECOND) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + rankCount.get(Rank.FIRST) + "개");
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
     }
 }

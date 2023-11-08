@@ -1,6 +1,8 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Service {
 
@@ -29,7 +31,7 @@ public class Service {
         throw new IllegalArgumentException();
     }
 
-    //3. 보너스 번호가 1~45 숫자인지 확인
+    //3. 숫자가 1과 45사이의 숫자인지 확인
     public static void rangeValidation(int number) {
         if (LOWERBOUND <= number && number <= UPPERBOUND) {
             return;
@@ -47,4 +49,25 @@ public class Service {
         throw new IllegalArgumentException();
     }
 
+    //5. 순위 집계 Map 생성
+    public static Map<Rank, Long> makeRankCountMap(List<Lottery> lotteries) {
+        Map<Rank, Long> result = lotteries.stream()
+                .collect(Collectors.groupingBy(Lottery::getRank, Collectors.summingLong(l -> 1)));
+        for (Rank rank : Rank.values()) {
+            result.putIfAbsent(rank, 0L);
+        }
+        return result;
+    }
+
+    //6. 수익률 계산
+    public static float calculateRateOfReturn(Map<Rank, Long> rankCount, int howMuch) {
+        float sumOfWinnings = 0f;
+        for (Rank rank : Rank.values()) {
+            float numberOfRank = rankCount.get(rank);
+            float winnings = rank.getWinnings();
+            sumOfWinnings += numberOfRank * winnings;
+        }
+        float rateOfReturn = (sumOfWinnings/howMuch) *100;
+        return rateOfReturn;
+    }
 }

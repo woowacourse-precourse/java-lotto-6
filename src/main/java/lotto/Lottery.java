@@ -2,12 +2,11 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.Map;
 
 public class Lottery {
     private final List<Integer> winningNumbers;
     private final Rank rank;
-
-
 
 
     Lottery(List<Integer> lottoNumbers, int bonusNumber) {

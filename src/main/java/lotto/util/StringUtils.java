@@ -22,7 +22,7 @@ public class StringUtils {
     }
 
     public static boolean isNumeric(String target) {
-        if (NUMBER_ALLOWED_PATTERN.matcher(target).find()) {
+        if (NUMBER_ALLOWED_PATTERN.matcher(target.trim()).find()) {
             return false;
         }
 
@@ -32,7 +32,7 @@ public class StringUtils {
     public static List<Integer> convertNumbersStringToList(String target) {
         validateMultipleIntegerNumbers(target);
 
-        return Arrays.stream(target.split(NUMBER_SEPARATOR)).map(Integer::parseInt).toList();
+        return Arrays.stream(target.split(NUMBER_SEPARATOR)).map(s -> Integer.parseInt(s.trim())).toList();
     }
 
     private static void validateMultipleIntegerNumbers(String target) {

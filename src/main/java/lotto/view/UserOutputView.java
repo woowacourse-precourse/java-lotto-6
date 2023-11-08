@@ -13,6 +13,7 @@ public class UserOutputView {
 
     private final LottoCompareController lottoCompareController = LottoCompareController.getInstance();
     private final LottoController lottoController = LottoController.getInstance();
+    private final WinningLotto winningLotto = WinningLotto.getInstance();
 
     private UserOutputView() {
     }
@@ -61,11 +62,11 @@ public class UserOutputView {
     }
 
     public void winningStatisticsResult(){
-        System.out.println("3개 일치 (5,000원) - " + WinningLotto.getInstance().getTreeSameNumLotto() + "개");
-        System.out.println("4개 일치 (50,000원) - " + WinningLotto.getInstance().getFourSameNumLotto() + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + WinningLotto.getInstance().getFiveSameNumLotto() + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + WinningLotto.getInstance().getFiveAndBonusSameNumLotto() + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + WinningLotto.getInstance().getSixSameNumLotto() + "개");
+        System.out.println("3개 일치 (5,000원) - " + winningLotto.getTreeSameNumLotto() + "개");
+        System.out.println("4개 일치 (50,000원) - " + winningLotto.getFourSameNumLotto() + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + winningLotto.getFiveSameNumLotto() + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningLotto.getFiveAndBonusSameNumLotto() + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + winningLotto.getSixSameNumLotto() + "개");
     }
 
     public void winningLottoRateResult(){

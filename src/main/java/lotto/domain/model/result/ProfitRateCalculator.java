@@ -1,5 +1,7 @@
-package lotto;
+package lotto.domain.model.result;
 
+
+import lotto.domain.model.lotto.PaidAmount;
 
 import java.util.Arrays;
 

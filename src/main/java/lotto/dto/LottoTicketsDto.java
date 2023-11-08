@@ -1,4 +1,7 @@
-package lotto;
+package lotto.dto;
+
+import lotto.domain.model.lotto.Lotto;
+import lotto.domain.model.lotto.LottoTickets;
 
 import java.util.List;
 

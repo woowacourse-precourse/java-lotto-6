@@ -1,10 +1,12 @@
 package lotto;
 
+import lotto.domain.model.generator.LottoIssuer;
+import lotto.domain.model.generator.RandomLottoNumberGenerator;
+import lotto.domain.model.lotto.LottoTickets;
+import lotto.domain.model.lotto.PaidAmount;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

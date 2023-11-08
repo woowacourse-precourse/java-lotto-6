@@ -1,5 +1,12 @@
-package lotto;
+package lotto.controller;
 
+import lotto.domain.model.lotto.*;
+import lotto.domain.model.result.WinningRankCounts;
+import lotto.dto.LottoTicketsDto;
+import lotto.dto.ProfitRateDto;
+import lotto.dto.WinningRankCountsDto;
+import lotto.service.LottoService;
+import lotto.view.InputProcessor;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.dto;
 
 public class ProfitRateDto {
     private final double profitRate;

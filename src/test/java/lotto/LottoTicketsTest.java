@@ -2,6 +2,13 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.domain.model.result.WinningRank;
+import lotto.domain.model.result.WinningRankCalculator;
+import lotto.domain.model.lotto.BonusNumber;
+import lotto.domain.model.lotto.Lotto;
+import lotto.domain.model.lotto.LottoTickets;
+import lotto.domain.model.lotto.LottoWinningNumbers;
+import lotto.domain.model.result.WinningRankCounts;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

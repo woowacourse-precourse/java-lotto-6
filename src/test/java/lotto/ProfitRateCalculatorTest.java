@@ -2,6 +2,10 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.domain.model.result.ProfitRateCalculator;
+import lotto.domain.model.lotto.PaidAmount;
+import lotto.domain.model.result.WinningRank;
+import lotto.domain.model.result.WinningRankCounts;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

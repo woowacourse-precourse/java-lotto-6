@@ -1,12 +1,16 @@
 package lotto;
 
+import lotto.domain.model.result.WinningRankCalculator;
+import lotto.domain.model.lotto.BonusNumber;
+import lotto.domain.model.lotto.Lotto;
+import lotto.domain.model.lotto.LottoWinningNumbers;
+import lotto.domain.model.result.WinningRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class WinningRankCalculatorTest {
 

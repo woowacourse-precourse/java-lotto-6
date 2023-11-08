@@ -1,8 +1,8 @@
 package lotto.view;
 
-import lotto.LottoTicketsDto;
-import lotto.ProfitRateDto;
-import lotto.WinningRankCountsDto;
+import lotto.dto.LottoTicketsDto;
+import lotto.dto.ProfitRateDto;
+import lotto.dto.WinningRankCountsDto;
 
 import java.util.ArrayList;
 import java.util.Collections;

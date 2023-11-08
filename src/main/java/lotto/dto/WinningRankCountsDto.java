@@ -1,4 +1,7 @@
-package lotto;
+package lotto.dto;
+
+import lotto.domain.model.result.WinningRank;
+import lotto.domain.model.result.WinningRankCounts;
 
 import java.util.Arrays;
 import java.util.List;

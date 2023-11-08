@@ -1,4 +1,7 @@
-package lotto;
+package lotto.domain.model.result;
+
+import lotto.domain.model.lotto.Lotto;
+import lotto.domain.model.lotto.LottoWinningNumbers;
 
 public class WinningRankCalculator {
 

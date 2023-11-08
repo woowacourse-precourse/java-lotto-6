@@ -1,4 +1,13 @@
-package lotto;
+package lotto.service;
+
+import lotto.domain.model.generator.LottoIssuer;
+import lotto.domain.model.result.ProfitRateCalculator;
+import lotto.domain.model.result.WinningRankCalculator;
+import lotto.domain.model.lotto.LottoTickets;
+import lotto.domain.model.lotto.LottoWinningNumbers;
+import lotto.domain.model.lotto.PaidAmount;
+import lotto.domain.model.result.WinningRankCounts;
+import lotto.dto.ProfitRateDto;
 
 public class LottoService {
 

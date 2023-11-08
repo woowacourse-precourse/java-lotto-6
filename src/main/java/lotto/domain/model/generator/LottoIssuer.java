@@ -1,4 +1,8 @@
-package lotto;
+package lotto.domain.model.generator;
+
+import lotto.domain.model.lotto.PaidAmount;
+import lotto.domain.model.lotto.Lotto;
+import lotto.domain.model.lotto.LottoTickets;
 
 import java.util.ArrayList;
 import java.util.List;

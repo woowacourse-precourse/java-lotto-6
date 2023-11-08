@@ -1,5 +1,12 @@
 package lotto;
 
+import lotto.controller.LottoController;
+import lotto.domain.model.generator.LottoIssuer;
+import lotto.domain.model.result.ProfitRateCalculator;
+import lotto.domain.model.generator.RandomLottoNumberGenerator;
+import lotto.domain.model.result.WinningRankCalculator;
+import lotto.service.LottoService;
+import lotto.view.InputProcessor;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

@@ -10,6 +10,7 @@ public class Constant {
     public static final int CONVERT_PERCENT = 100;
     public static final int NOTHING = 0;
     public static final int REMAINDER = 0;
+    public static final int INPUT_AMOUNT_LENGTH_LIMIT = 10;
 
     public static final String PURCHASE_AMOUNT_PATTERN = "^[0-9]*$";
     public static final String WINNING_NUMBERS_PATTERN = "\\d{1,2},\\d{1,2},\\d{1,2},\\d{1,2},\\d{1,2},\\d{1,2}";

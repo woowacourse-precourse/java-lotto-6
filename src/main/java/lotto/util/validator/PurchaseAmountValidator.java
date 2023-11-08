@@ -7,6 +7,7 @@ public class PurchaseAmountValidator extends Validator {
 
     public Integer validate(String input) {
         validateNumber(input, PURCHASE_AMOUNT_PATTERN);
+        validateAmountRange(input);
         int amount = Integer.parseInt(input);
         validateMinimumAmount(amount);
         validateAmountUnit(amount);
@@ -17,14 +18,20 @@ public class PurchaseAmountValidator extends Validator {
         return new PurchaseAmountValidator();
     }
 
-    private void validateAmountUnit(int money) {
-        if (money % AMOUNT_UNIT > REMAINDER) {
+    private static void validateAmountRange(String input) {
+        if (input.length() >= INPUT_AMOUNT_LENGTH_LIMIT) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateAmountUnit(int amount) {
+        if (amount % AMOUNT_UNIT > REMAINDER) {
             throw new IllegalArgumentException(INVALID_AMOUNT_UNIT.getMessage());
         }
     }
 
-    private void validateMinimumAmount(int money) {
-        if (money < MINIMUM_AMOUNT) {
+    private void validateMinimumAmount(int amount) {
+        if (amount < MINIMUM_AMOUNT) {
             throw new IllegalArgumentException(INVALID_MINIMUM_AMOUNT.getMessage());
         }
     }

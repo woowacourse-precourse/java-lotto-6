@@ -1,9 +1,10 @@
 package lotto.View;
 
-import static lotto.util.StringTo.stringToLotto;
+import static lotto.util.Verify.verifyWinningNumbersStringToList;
 import static lotto.util.Verify.verifyAmount;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.Model.Lotto;
 
 public class InputView {
@@ -18,7 +19,12 @@ public class InputView {
 
     public static Lotto getWinningLottoNumbers(){
         String input = Console.readLine();
-        Lotto winningLotto= stringToLotto(input);
-        return winningLotto;
+        List<Integer> numbers = verifyWinningNumbersStringToList(input);
+        return new Lotto(numbers);
+    }
+
+    public static Integer getBonusNumber(){
+        String input = Console.readLine();
+        return Integer.parseInt(String.valueOf(input));
     }
 }

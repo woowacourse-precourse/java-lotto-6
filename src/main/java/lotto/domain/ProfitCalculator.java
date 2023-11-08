@@ -17,13 +17,13 @@ public class ProfitCalculator {
         return calculateTotalProfitRate(profitAmount, purchaseAmount);
     }
 
-    public long calculateTotalProfitAmount(List<LottoRank> ranks) {
+    private long calculateTotalProfitAmount(List<LottoRank> ranks) {
         return ranks.stream()
                 .mapToLong(LottoRank::getAmount)
                 .sum();
     }
 
-    public double calculateTotalProfitRate(double profitAmount, double purchaseAmount) {
+    private double calculateTotalProfitRate(double profitAmount, double purchaseAmount) {
         return profitAmount / purchaseAmount * PERCENTAGE_DOUBLE;
     }
 }

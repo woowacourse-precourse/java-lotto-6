@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +32,14 @@ class BuyerTest {
                 .hasMessage("[ERROR] 구매금액은 1,000원 단위여야 합니다.");
     }
 
+    @DisplayName("구매가격으로 구매 로또 개수를 계산한다.")
     @Test
     void getBuyCount() {
+        Buyer buyer = new Buyer(10000);
+
+        int actual = buyer.getBuyCount();
+
+        int expected = 10;
+        Assertions.assertThat(actual).isEqualTo(expected);
     }
 }

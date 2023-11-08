@@ -31,4 +31,9 @@ public class LottoValidator {
 
         return totalPrize;
     }
+
+    public double calculateProfitRate(long totalPrize, int purchaseAmount) {
+        double profitRate = (double) totalPrize / purchaseAmount * 100;
+        return Math.round(profitRate * 10) / 10.0;
+    }
 }

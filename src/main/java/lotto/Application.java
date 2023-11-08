@@ -32,5 +32,8 @@ public class Application {
         lottoValidator.printResult(scoreCountMap);
 
         long totalPrize = lottoValidator.calculateTotalPrize(scoreCountMap);
+        double rate = lottoValidator.calculateProfitRate(totalPrize, purchaseAmount);
+
+        System.out.println("총 수익률은 " + rate + "%입니다.");
     }
 }

@@ -1,7 +1,6 @@
 package lotto;
 
 import java.util.List;
-import net.bytebuddy.pool.TypePool.Resolution.Illegal;
 
 public class Bonus {
     private int number;

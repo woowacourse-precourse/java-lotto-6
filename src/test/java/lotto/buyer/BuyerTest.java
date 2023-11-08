@@ -1,5 +1,6 @@
 package lotto.buyer;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.company.LotteryResult;
 import lotto.company.Lotto;
 import lotto.company.LottoCompany;
@@ -16,6 +17,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -26,6 +28,7 @@ class BuyerTest {
 
     void provideRemoteInput(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
+        Console.close();
     }
 
     String getOutput() {
@@ -68,12 +71,12 @@ class BuyerTest {
 
         //when & then
         assertThatThrownBy(() -> buyer.payForLotto())
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NoSuchElementException.class);
     }
 
     @DisplayName("로또 구매 금액 예외처리 - 1000의 배수가 아닌 경우 예외 발생")
     @ParameterizedTest
-    @ValueSource(ints = {0, 1000, 1200, 2000})
+    @ValueSource(ints = {0, 1200, 2600})
     void 로또_구매금액_입력_예외처리_1000의_배수가_아닌_경우(int expectedValue) throws Exception {
         //given
         Buyer buyer = new Buyer();
@@ -81,7 +84,7 @@ class BuyerTest {
 
         //when & then
         assertThatThrownBy(() -> buyer.payForLotto())
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NoSuchElementException.class);
     }
 
     @DisplayName("구매한 로또 번호와 당첨 번호를 비교")

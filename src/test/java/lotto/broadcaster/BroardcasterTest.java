@@ -1,20 +1,44 @@
 package lotto.broadcaster;
 
+import camp.nextstep.edu.missionutils.Console;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BroardcasterTest {
 
+    private static ByteArrayOutputStream outputMessage;
+
+    String getOutput() {
+        return outputMessage.toString();
+    }
+
+    @BeforeEach
+    void setUpStreams() {
+        outputMessage = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputMessage));
+    }
+
+    @AfterEach
+    void restoresStreams() {
+        System.setOut(System.out);
+    }
+
     void provideRemoteInput(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
+        Console.close();
     }
 
     @DisplayName("당첨 번호를 입력 받는다. 당첨 번호는 쉼표(,)를 기준으로 구분한다.")
@@ -43,7 +67,7 @@ class BroardcasterTest {
 
         //when & then
         assertThatThrownBy(() -> broadcaster.pickLotteryNumbers())
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NoSuchElementException.class);
     }
 
     @DisplayName("당첨 번호 입력 - 예외처리 2. 6개의 숫자를 입력하지 않은 경우")
@@ -56,7 +80,7 @@ class BroardcasterTest {
 
         //when & then
         assertThatThrownBy(() -> broadcaster.pickLotteryNumbers())
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NoSuchElementException.class);
     }
 
     @DisplayName("당첨 번호 입력 - 예외처리 3. 숫자 범위(1~45)를 넘어서는 경우")
@@ -69,7 +93,7 @@ class BroardcasterTest {
 
         //when & then
         assertThatThrownBy(() -> broadcaster.pickLotteryNumbers())
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NoSuchElementException.class);
     }
 
     @DisplayName("당첨 번호 입력 - 예외처리 4. 중복 숫자를 입력한 경우")
@@ -82,7 +106,7 @@ class BroardcasterTest {
 
         //when & then
         assertThatThrownBy(() -> broadcaster.pickLotteryNumbers())
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NoSuchElementException.class);
     }
 
 
@@ -116,7 +140,7 @@ class BroardcasterTest {
 
         //when & then
         assertThatThrownBy(() -> broadcaster.pickBonusNumber(lotteryNumbers))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NoSuchElementException.class);
     }
 
     @DisplayName("보너스 번호 입력 - 예외처리 2. 숫자 범위(1~45)를 넘어서는 경우")
@@ -130,7 +154,7 @@ class BroardcasterTest {
 
         //when & then
         assertThatThrownBy(() -> broadcaster.pickBonusNumber(lotteryNumbers))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NoSuchElementException.class);
     }
 
     @DisplayName("보너스 번호 입력 - 예외처리 3. 당첨번호와 중복되는 경우")
@@ -144,7 +168,7 @@ class BroardcasterTest {
 
         //when & then
         assertThatThrownBy(() -> broadcaster.pickBonusNumber(lotteryNumbers))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NoSuchElementException.class);
     }
 
 

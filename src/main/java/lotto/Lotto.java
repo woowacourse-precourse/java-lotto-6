@@ -23,10 +23,6 @@ public class Lotto {
         return ret;
     }
 
-    public void printNumbersInAscendingOrder() {
-        OutputService.printLottoNumbers(this.getSortedNumbers());
-    }
-
     public int getHowManySameNumbers(Lotto compare) {
         int count = 0;
         for(int number = 0; number < numbers.size(); number++){

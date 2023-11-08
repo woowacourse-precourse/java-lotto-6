@@ -29,7 +29,8 @@ public class OutputService {
         return statement.concat(LOTTO_CLOSING_BRACKET);
     }
 
-    public static void printLottoNumbers(List<Integer> sortedNumbers) {
+    public static void printLottoNumbers(Lotto lotto) {
+        List<Integer> sortedNumbers = lotto.getSortedNumbers();
         System.out.println(makeLottoPrintStatement(sortedNumbers));
     }
 

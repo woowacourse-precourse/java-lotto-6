@@ -19,6 +19,8 @@ public class InputLottoNumber {
     private static final int MIN=1;
     private static final int MAX=45;
     private static final int SIZE=6;
+    private List<Integer> inputLottoNumber = new ArrayList<>();
+    boolean flag=false;
 
     public String input() {
         System.out.println(INPUT_LOTTO_MESSAGE);
@@ -34,53 +36,90 @@ public class InputLottoNumber {
         String lottoNumbs = "";
         while (!validInput) {
             lottoNumbs = input();
-            validateSize(lottoNumbs);
-            validateNumber(lottoNumbs);
-            validateDuplicate(lottoNumbs);
-            validateRangeNumber(lottoNumbs);
+            if (validException(lottoNumbs)) continue;
             validInput=true;
         }
         return lottoNumbs;
     }
-    private void validateNumber(String lottoNumbs) {
+
+    private boolean validException(String lottoNumbs) {
+        if (!validateSplit(lottoNumbs)) {
+            return true;
+        }
+        if (!validateSize(inputLottoNumber)) {
+            return true;
+        }
+        if (!validateNumber(lottoNumbs)) {
+            return true;
+        }
+        if (!validateDuplicate(inputLottoNumber)) {
+            return true;
+        }
+        if (!validateRangeNumber(inputLottoNumber)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean validateSplit(String lottoNumbs) {
+        for (String i:lottoNumbs.split(",")) {
+            try {
+                Integer.parseInt(i);
+            } catch (NumberFormatException e) {
+                System.out.println(NumberException.NOT_NUMBER_ERROR_MESSAGE);
+                return false;
+            }
+            inputLottoNumber.add(Integer.parseInt(i));
+        }
+        return true;
+    }
+
+    private boolean validateNumber(String lottoNumbs) {
         if (!Pattern.compile("(\\d{1,2},){5}\\d{1,2}").matcher(lottoNumbs).matches()) {
             System.out.println(NumberException.NOT_NUMBER_ERROR_MESSAGE);
-            throw new NumberException();
+            return false;
         }
+        return true;
     }
 
     private List<Integer> split(String lottoNumbs) {
         List<Integer> inputLottoNumber = new ArrayList<>();
         for (String i:lottoNumbs.split(",")) {
+            try {
+                Integer.parseInt(i);
+            } catch (NumberFormatException e) {
+                System.out.println(NumberException.NOT_NUMBER_ERROR_MESSAGE);
+                break;
+            }
             inputLottoNumber.add(Integer.parseInt(i));
         }
         return inputLottoNumber;
     }
 
-    private void validateRangeNumber(String lottoNumber) {
-        List<Integer> lottoNumbs = split(lottoNumber);
-        for (int number:lottoNumbs) {
+    private boolean validateRangeNumber(List<Integer> lottoNumber) {
+        for (int number:lottoNumber) {
             if (!checkNumberRange(number)) {
                 System.out.println(RangeException.RANGE_ERROR_MESSAGE);
-                throw new RangeException();
+                return false;
             }
         }
+        return true;
     }
-    private void validateSize(String lottoNumber) {
-        List<Integer> lottoNumbs = split(lottoNumber);
-        if (lottoNumbs.size() != SIZE) {
+    private boolean validateSize(List<Integer> lottoNumber) {
+        if (lottoNumber.size() != SIZE) {
             System.out.println(SizeException.SIZE_ERROR_MESSAGE);
-            throw new SizeException();
+            return false;
         }
+        return true;
     }
 
-    private void validateDuplicate(String lottoNumber) {
-        List<Integer> lottoNumbs = split(lottoNumber);
-        Set<Integer> lottoNumb = new HashSet<>(lottoNumbs);
+    private boolean validateDuplicate(List<Integer> lottoNumber) {
+        Set<Integer> lottoNumb = new HashSet<>(lottoNumber);
         if (lottoNumb.size() != SIZE) {
             System.out.println(DuplicateException.DUPLICATE_ERROR_MESSAGE);
-            throw new DuplicateException();
+            return false;
         }
+        return true;
     }
 
     private boolean checkNumberRange(int number) {

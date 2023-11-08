@@ -43,14 +43,12 @@ public class LottoGame {
   public void calculateWin() {
     for (Lotto lotto : reciept) {
       Integer matchCount = lotto.matchedLottoCount(lottoNumbers);
-      System.out.println(matchCount);
       if (lotto.didMatchBonus(bonusNumber) && matchCount == 5) {
         updateWins(7);
         return;
       }
       updateWins(matchCount);
     }
-    
   }
 
   public void updateWins(Integer matchCount) {

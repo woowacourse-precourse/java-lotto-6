@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.ExceptionHandler.checkBonusNumber;
 import static lotto.ExceptionHandler.checkMoneyUnitValidity;
 import static lotto.ExceptionHandler.checkWinningNumbersValidity;
 
@@ -30,7 +31,7 @@ public class UserInputHandler {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    public static List<Integer> inputWinningNumbers() {
+    public static ArrayList<Integer> inputWinningNumbers() {
         while (true) {
 
             try {
@@ -58,6 +59,26 @@ public class UserInputHandler {
             intNumList.add(number);
         }
         return intNumList;
+    }
+
+    public static void requestInputForBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+
+    public static int inputBonusNumber(ArrayList<Integer> winningNumbers) {
+        while (true) {
+
+            try {
+                String bonusNum = Console.readLine();
+                bonusNum = bonusNum.replace(" ", "");
+                checkBonusNumber(bonusNum, winningNumbers);
+                return Integer.parseInt(bonusNum);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
     }
 
 }

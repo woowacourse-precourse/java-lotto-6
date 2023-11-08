@@ -170,9 +170,8 @@ public class LottoService {
             totalPrize += Long.parseLong(prize) * winningCount;
         }
 
-        // 수익률 = (수익 / 총투자금액) * 100
-        long revenue = totalPrize - inputBuyLottoAmount; // 수익 금액
-        double rateOfReturn = (double) revenue / inputBuyLottoAmount * 100; // 수익률
+        // 수익률 = 총상금 / 구매금액 * 100
+        double rateOfReturn = (double) totalPrize / inputBuyLottoAmount * 100; // 수익률
         return Math.round(rateOfReturn * 10) / 10.0;
     }
 }

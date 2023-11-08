@@ -70,6 +70,8 @@ public class MessageManager {
                                                      BigDecimal rateOfReturn) {
         String winningChartMessage = this.winningChartMessage(scratchedLottoTicketList);
         String rateOfReturnMessage = this.rateOfReturnMessage(rateOfReturn);
-        return winningChartMessage + System.lineSeparator() + rateOfReturnMessage;
+        String announceMessage = this.winningChartAnnounceMessage();
+        return announceMessage + System.lineSeparator() + winningChartMessage + System.lineSeparator()
+                + rateOfReturnMessage;
     }
 }

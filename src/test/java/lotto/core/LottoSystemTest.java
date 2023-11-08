@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 class LottoSystemTest {
     private final static RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
     private final static NumberGenerator numberGenerator = new NumberGenerator(randomNumberGenerator);
-    private final static MessageManager consoleOutputMananger = new MessageManager();
+    private final static MessageManager consoleOutputManager = new MessageManager();
     private final static Calculator calculator = new Calculator();
     private final static LottoTicketScratcher LottoTicketScratcher = new LottoTicketScratcher();
 
@@ -30,7 +30,7 @@ class LottoSystemTest {
 
         //given
         LottoSystem lottoSystem = new LottoSystem(calculator, LottoTicketScratcher, numberGenerator,
-                consoleOutputMananger);
+                consoleOutputManager);
         //when
         Integer amountToQuantity = lottoSystem.chooseAmount("8000");
 
@@ -44,7 +44,7 @@ class LottoSystemTest {
 
         //given
         LottoSystem lottoSystem = new LottoSystem(calculator, LottoTicketScratcher, numberGenerator,
-                consoleOutputMananger);
+                consoleOutputManager);
 
         //when
         List<LottoTicket> lottoTickets = lottoSystem.saveLottoTickets(8);
@@ -59,7 +59,7 @@ class LottoSystemTest {
 
         //given
         LottoSystem lottoSystem = new LottoSystem(calculator, LottoTicketScratcher, numberGenerator,
-                consoleOutputMananger);
+                consoleOutputManager);
 
         //when
         WinningNumbers winningNumbers = lottoSystem.chooseWinningNumber("1,2,3,4,5,6");
@@ -80,7 +80,7 @@ class LottoSystemTest {
         BonusNumber bonusNumber = new BonusNumber(7);
 
         LottoSystem lottoSystem = new LottoSystem(calculator, LottoTicketScratcher, numberGenerator,
-                consoleOutputMananger);
+                consoleOutputManager);
 
         //when
         ScratchedLottoTicketList scratchedLottoTicketList = lottoSystem.calculateWinningChart(lottoTickets,
@@ -92,7 +92,7 @@ class LottoSystemTest {
 
     @DisplayName("최종 결과를 반환한다.")
     @Test
-    void printRateOfReturn() {
+    void printWinningChart() {
         //given
         LottoTicket lottoTicket = new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6));
         LottoTicket winningNumber = new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6));
@@ -101,7 +101,7 @@ class LottoSystemTest {
         WinningNumbers winningNumbers = new WinningNumbers(winningNumber);
         BonusNumber bonusNumber = new BonusNumber(7);
         LottoSystem lottoSystem = new LottoSystem(calculator, LottoTicketScratcher, numberGenerator,
-                consoleOutputMananger);
+                consoleOutputManager);
 
         ScratchedLottoTicketList scratchedLottoTicketList = lottoSystem.calculateWinningChart(lottoTickets,
                 winningNumbers, bonusNumber);

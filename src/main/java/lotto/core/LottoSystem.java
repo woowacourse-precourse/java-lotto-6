@@ -33,9 +33,8 @@ public class LottoSystem {
         return lottoTicketScratcher.scratchAllTickets(winningNumbers, bonusNumber, lottoTickets);
     }
 
-    public void printPurchaseAmountAsk() {
-        String purchaseAmountAskMessage = messageManager.purchaseAmountAskMessage();
-        ConsoleOutputManager.printOut(purchaseAmountAskMessage);
+    public String printPurchaseAmountAsk() {
+        return messageManager.purchaseAmountAskMessage();
     }
 
     public Integer chooseAmount(String input) {
@@ -57,18 +56,16 @@ public class LottoSystem {
         return lottoTickets;
     }
 
-    public void printWinningNumberAsk() {
-        String winningNumberAskMessage = messageManager.winningNumberAskMessage();
-        ConsoleOutputManager.printOut(winningNumberAskMessage);
+    public String printWinningNumberAsk() {
+        return messageManager.winningNumberAskMessage();
     }
 
     public WinningNumbers chooseWinningNumber(String input) {
         return numberGenerator.createWinningNumbersFromConsole(input);
     }
 
-    public void printBonusNumberAsk() {
-        String bonusNumberAskMessage = messageManager.bonusNumberAskMessage();
-        ConsoleOutputManager.printOut(bonusNumberAskMessage);
+    public String printBonusNumberAsk() {
+        return messageManager.bonusNumberAskMessage();
     }
 
     public BonusNumber chooseBonusNumber(String input) {
@@ -77,9 +74,6 @@ public class LottoSystem {
     }
 
     public String printWinningChart(Integer amountToQuantity, ScratchedLottoTicketList scratchedLottoTicketList) {
-        String winningChartAnnounceMessage = messageManager.winningChartAnnounceMessage();
-        ConsoleOutputManager.printOut(winningChartAnnounceMessage);
-
         calculator.calculate(scratchedLottoTicketList, amountToQuantity);
         BigDecimal rateOfReturn = calculator.getRateOfReturn();
         String winningChartAndRateOfReturnMessage = messageManager.winningChartAndRateOfReturnMessage(

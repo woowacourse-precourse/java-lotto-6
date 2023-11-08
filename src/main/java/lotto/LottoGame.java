@@ -7,8 +7,6 @@ public class LottoGame {
 	public static void run() {
 
 		String usermoney = Input.moneyInput();
-		
-		CheckValid.money(usermoney);
 
 		int lottoCount = Input.calculateLottoCount(usermoney);
 
@@ -18,11 +16,9 @@ public class LottoGame {
 
 		printLottoNum(lottos);
 
-		String userNums = Input.numsInput();
-		String bonusUserNum = Input.bonusInput();
+		List<Integer> userNums = Input.numbers();
 		
-		CheckValid.numbers(userNums,bonusUserNum);
-		
+		int bonusUserNum = Input.bonus(userNums);
 
 		List<WinningRank> rankingList = CheckNum.lotto(lottos, userNums, bonusUserNum);
 

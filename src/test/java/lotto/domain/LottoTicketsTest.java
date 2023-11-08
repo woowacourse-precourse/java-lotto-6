@@ -15,11 +15,11 @@ class LottoTicketsTest {
     @DisplayName("당첨 결과를 구할 수 있다.")
     @ParameterizedTest
     @MethodSource
-    void getRankResult(List<Lotto> tickets, WinningLotto winningLotto, Integer[] expected) {
+    void getRankResult(List<Lotto> tickets, WinningLotto winningLotto, List<Integer> expected) {
         LottoTickets lottoTickets = new LottoTickets(tickets, new PurchaseAmount(1000));
 
         RankResult rankResult = lottoTickets.getRankResult(winningLotto);
-        assertThat(rankResult.values()).containsExactly(expected);
+        assertThat(rankResult.values()).containsExactlyElementsOf(expected);
     }
 
     private static Stream<Arguments> getRankResult() {
@@ -32,14 +32,14 @@ class LottoTicketsTest {
                                 createLotto(1, 2, 3, 4, 5, 6)
                         ),
                         createWinningTicket(7, 1, 2, 3, 4, 5, 6),
-                        new Integer[]{1, 1, 1, 1, 1}
+                        List.of(1, 1, 1, 1, 1)
                 ),
                 Arguments.of(
                         List.of(createLotto(1, 2, 3, 4, 5, 6),
                                 createLotto(1, 2, 3, 4, 5, 6)
                         ),
                         createWinningTicket(7, 1, 2, 3, 4, 5, 6),
-                        new Integer[]{0, 0, 0, 0, 2}
+                        List.of(0, 0, 0, 0, 2)
                 )
         );
     }

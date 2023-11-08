@@ -40,4 +40,13 @@ public class OrderTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);;
     }
+
+    @DisplayName("구매 금액을 1000원 나눈것과 로또 수량이 같아야 한다.")
+    @Test
+    public void createOrderByCostEqualAmount() {
+        Order order = new Order(expectCost);
+        int result = order.getBuyCount();
+
+        assertThat(result).isEqualTo(expectBuyCount);
+    }
 }

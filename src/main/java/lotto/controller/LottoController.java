@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -35,5 +37,26 @@ public class LottoController {
 
         outputView.printBonusNumber();
         int bonusNumber = Integer.parseInt(inputView.readBonusNumber());
+        boolean hasBonusNumber = false;
+        Map<Integer, Integer> result = new HashMap<>();
+        for (Lotto lotto : lottos) {
+            List<Integer> numbers = lotto.getNumbers();
+            int count = 0;
+            for (int number : numbers) {
+                if (lotteryNumbers.contains(number)) {
+                    count++;
+                }
+                if (lotteryNumbers.contains(bonusNumber)) {
+                    hasBonusNumber = true;
+                }
+            }
+            if (count >= 3) {
+                result.put(count, result.getOrDefault(count, 0) + 1);
+            }
+            if (count == 5 && hasBonusNumber) {
+                result.put(bonusNumber, result.getOrDefault(bonusNumber, 0) + 1);
+            }
+        }
+        outputView.printResult(result, bonusNumber, purchaseAmount);
     }
 }

@@ -40,6 +40,7 @@ public class InputView {
 
     private void validate(String purchaseAmount) {
         if (isNotNaturalNumber(purchaseAmount) || isNotThousandUnit(purchaseAmount)) {
+            System.out.println(ExceptionMessage.INVALID_PURCHASE_AMOUNT.getMessage());
             throw new IllegalArgumentException(ExceptionMessage.INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }

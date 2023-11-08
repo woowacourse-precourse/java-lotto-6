@@ -27,4 +27,8 @@ public class BonusNumber {
             throw new IllegalArgumentException(DUPLICATE_NUMBER_MESSAGE);
         }
     }
+
+    public int getNumber() {
+        return number;
+    }
 }

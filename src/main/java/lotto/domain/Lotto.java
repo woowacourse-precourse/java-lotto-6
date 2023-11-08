@@ -40,8 +40,8 @@ public class Lotto {
                 .count();
     }
 
-    public boolean includes(int bonus) {
-        return this.numbers.contains(bonus);
+    public boolean includes(int number) {
+        return this.numbers.contains(number);
     }
 
     @Override

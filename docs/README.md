@@ -40,7 +40,8 @@
   6개 일치 (2,000,000,000원) - 0개
   총 수익률은 62.5%입니다.
 > ### 플로우차트
-![스크린샷 2023-11-08 오후 9.37.17.png](..%2F..%2FDesktop%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-11-08%20%EC%98%A4%ED%9B%84%209.37.17.png)
+<img width="196" alt="스크린샷 2023-11-08 오후 9 37 17" src="https://github.com/wooni97/java-lotto-6/assets/55667589/0fa331ae-f386-4ea4-87ac-c407cbc38411">
+
 > ### 예외 처리 요구사항
 1. "[ERROR]"로 시작하는 에러 메시지 출력
 2. Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.

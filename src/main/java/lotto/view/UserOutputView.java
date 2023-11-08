@@ -6,11 +6,13 @@ import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class UserOutputView {
+
+    private final LottoCompareController lottoCompareController = LottoCompareController.getInstance();
+    private final LottoController lottoController = LottoController.getInstance();
 
     private UserOutputView() {
     }
@@ -31,11 +33,11 @@ public class UserOutputView {
 
     public void getBuyLottoTicketsNum(){
         System.out.println();
-        System.out.println(LottoController.getInstance().getBuyLottoTicketsNum() + "개를 구매했습니다.");
+        System.out.println(lottoController.getBuyLottoTicketsNum() + "개를 구매했습니다.");
     }
 
     public void getBuyLottoTickets(){
-        for(Lotto lotto : LottoController.getInstance().getBuyLottoTickets()){
+        for(Lotto lotto : lottoController.getBuyLottoTickets()){
             System.out.println(getLottoNums(lotto));
         }
 
@@ -54,7 +56,7 @@ public class UserOutputView {
     public void winningStatistics(){
         System.out.println();
         System.out.println("당첨 통계");
-        LottoCompareController.getInstance().lottoTicketsCompareNum();
+        lottoCompareController.lottoTicketsCompareNum();
         System.out.println("---");
     }
 
@@ -67,7 +69,7 @@ public class UserOutputView {
     }
 
     public void winningLottoRateResult(){
-        System.out.println("총 수익률은 " + LottoCompareController.getInstance().winningLottoRate()+"%입니다.");
+        System.out.println("총 수익률은 " + lottoCompareController.winningLottoRate()+"%입니다.");
     }
 
 

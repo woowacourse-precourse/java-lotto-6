@@ -15,13 +15,9 @@ public class Controller {
     private WinningNumber winningNumber;
     private Customer customer;
     public void start() {
-        try {
             getBuyLottoMoney();
             winningNumberShow();
             gameResult();
-        } catch (IllegalArgumentException e) {
-            Exceptions.showErrorMessage();
-        }
     }
     private void getBuyLottoMoney() {
         InputMessage.inputMoney();
@@ -47,6 +43,7 @@ public class Controller {
     }
 
     private void winningNumberShow() {
+        exceptions.isInvalidDuplicatedLottoNumber(getWinningNumber());
         winningNumber = new WinningNumber(getWinningNumber(), getBonusNumber());
     }
 

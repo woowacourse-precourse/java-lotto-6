@@ -59,13 +59,14 @@ public class CorrectLotto {
     }
     public void inputCorrectLotto(){
         while(true) {
+            printInputNumbersMessage();
             String input_numbers = readLine();
             try {
                 List<Integer> converted_numbers = convertStringToInteger(input_numbers);
                 correct_lotto = new Lotto(converted_numbers);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[Error] " + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage() + "\n");
             }
         }
     }
@@ -92,6 +93,7 @@ public class CorrectLotto {
 
     public void inputBonus(){
         while(true){
+            printInputBonusMessage();
             String input_number = readLine();
             try {
                 int converted_number = convertToInt(input_number.strip());
@@ -100,7 +102,7 @@ public class CorrectLotto {
                 bonus = converted_number;
                 break;
             } catch(IllegalArgumentException e){
-                System.out.println("[Error] " + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage() + "\n");
             }
         }
     }

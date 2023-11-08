@@ -35,7 +35,7 @@ public class LottoList {
                 Lotto lotto = new Lotto(picked_numbers);
                 lottoList.add(lotto);
             } catch (IllegalArgumentException e){
-                System.out.println("[Error] " + e.getMessage() + " " + i + "번 로또를 재발행합니다.");
+                System.out.println("[ERROR] " + e.getMessage() + " " + i + "번 로또를 재발행합니다.");
                 i--;
             }
         }

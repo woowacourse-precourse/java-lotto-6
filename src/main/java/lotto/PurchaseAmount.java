@@ -31,6 +31,7 @@ public class PurchaseAmount {
 
     public void inputAmount(){
         while(true) {
+            printInputAmountMessage();
             String input_amount = readLine();
             try {
                 int converted_amount = convertToInt(input_amount);
@@ -38,7 +39,7 @@ public class PurchaseAmount {
                 amount = converted_amount;
                 break;
             } catch (IllegalArgumentException e){
-                System.out.println("[Error] " + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage() + "\n");
             }
         }
     }

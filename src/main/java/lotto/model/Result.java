@@ -19,6 +19,26 @@ public class Result {
         this.first += 1;
     }
 
+    public int getFirst() {
+        return first;
+    }
+
+    public int getSecond() {
+        return second;
+    }
+
+    public int getThird() {
+        return third;
+    }
+
+    public int getFourth() {
+        return fourth;
+    }
+
+    public int getFifth() {
+        return fifth;
+    }
+
     public void addSecond() {
         this.second += 1;
     }

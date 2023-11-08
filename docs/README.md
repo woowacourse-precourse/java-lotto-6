@@ -56,9 +56,11 @@
 * 각 시행의 당첨 여부 계산
   > calculateWinCount()
 * 상금 / 구매액의 수익률 계산
+  > calculateReward(), calculateProfit()
 * 결과 출력: "당첨 통계", "---"
 * 등수에 따른 결과 출력: "a개 일치 (b원) - c개"
 * 수익률 출력: "총 수익률은 nn.n%입니다."
+  > printResults()
 
 
 * 입력 예외 시 익셉션 발생

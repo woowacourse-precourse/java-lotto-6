@@ -2,23 +2,24 @@ package view;
 
 import camp.nextstep.edu.missionutils.Console;
 import domain.ErrorCode;
+import domain.Lotto;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BallsInput {
 
-    private final String ballsWord = "당첨 번호를 입력해 주세요.";
+    private final String BALLS_WORD = "당첨 번호를 입력해 주세요.";
 
-    private List<Integer> numberBalls;
+    private Lotto winningBall;
 
     public void ballsInput() {
-        System.out.println(ballsWord);
+        System.out.println(BALLS_WORD);
         String[] balls = Console.readLine().split(",");
         validationBalls(balls);
     }
 
-    private void validationBalls(String[] balls) {
-        this.numberBalls = new ArrayList<>();
+    public void validationBalls(String[] balls) {
+        List<Integer> temp = new ArrayList<>();
         try {
             if (balls.length != 6) {
                 throw new IllegalArgumentException(ErrorCode.BALLS_NOT_SIX.getErrorMessage());
@@ -28,12 +29,12 @@ public class BallsInput {
                 if (ballNumber < 1 || ballNumber > 45) {
                     throw new IllegalArgumentException(ErrorCode.BALL_NOT_NUMBER.getErrorMessage());
                 }
-                if (this.numberBalls.contains(ballNumber)) {
+                if (temp.contains(ballNumber)) {
                     throw new IllegalArgumentException(ErrorCode.BALL_DUPLICATE.getErrorMessage());
-                } else {
-                    this.numberBalls.add(ballNumber);
                 }
+                temp.add(ballNumber);
             }
+            winningBall = new Lotto(temp);
         } catch (NumberFormatException e) {
             System.out.println(ErrorCode.BALL_NOT_NUMBER.getErrorMessage());
             ballsInput();
@@ -43,8 +44,7 @@ public class BallsInput {
         }
     }
 
-    public List<Integer> getNumberBalls() {
-        return numberBalls;
+    public Lotto getWinningBall() {
+        return winningBall;
     }
-
 }

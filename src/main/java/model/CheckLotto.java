@@ -5,28 +5,31 @@ import java.util.List;
 
 public class CheckLotto {
 
+    private final int LOTTO_COUNT_NUMBER = 8;     // 0, 1, 2, 3, 4, 5, 6, 7(5 + bonus)
+
     public int[] checkLotto(List<Integer> answer, int bonusAnswer, List<Lotto> lottos) {
-        int[] sameNumberCount = new int[8];      // 3, 4, 5, 6, 7
+        int[] sameNumberCount = new int[LOTTO_COUNT_NUMBER];
         for (Lotto lotto : lottos) {
-            int count = sameNumberCount(answer, bonusAnswer, lotto);
+            int count = sameNumberCount(answer, bonusAnswer, lotto.getNumbers());
             sameNumberCount[count]++;
         }
         return sameNumberCount;
     }
 
-    public int sameNumberCount(List<Integer> answer, int bonusAnswer, Lotto lotto) {
-        List<Integer> temp = lotto.getNumbers();
+    public int sameNumberCount(List<Integer> answer, int bonusAnswer, List<Integer> lotto) {
         int count = 0;
-        for (int number : temp) {
+        for (int number : lotto) {
             if (answer.contains(number)) {
                 count++;
             }
         }
+        return count + checkBonusBall(count, bonusAnswer, lotto);
+    }
 
-        if (count == 5) {
-            if (temp.contains(bonusAnswer)) count += 2;
+    public int checkBonusBall(int count, int bonus, List<Integer> lotto) {
+        if (count == 5 && lotto.contains(bonus)) {
+            return 2;
         }
-
-        return count;
+        return 0;
     }
 }

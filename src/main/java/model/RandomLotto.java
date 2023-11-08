@@ -7,18 +7,20 @@ import java.util.List;
 
 public class RandomLotto {
 
-    private List<Lotto> allLotto;
+    private final List<Lotto> allLotto;
 
-    public List<Lotto> createAllLotto(int count) {
+    public RandomLotto() {
         allLotto = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
+    }
+
+    public List<Lotto> createAllLotto(int lottoCount) {
+        for (int i = 0; i < lottoCount; i++) {
             allLotto.add(new Lotto(createRandomLotto()));
         }
         return allLotto;
     }
 
-
-    private List<Integer> createRandomLotto() {
+    public List<Integer> createRandomLotto() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }

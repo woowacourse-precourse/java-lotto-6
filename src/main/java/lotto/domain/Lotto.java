@@ -1,10 +1,16 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstant.LOTTO_SIZE;
+import static lotto.constant.Message.ERROR_LOTTO_DUPLICATE;
+import static lotto.constant.Message.ERROR_LOTTO_SIZE;
+import static lotto.constant.Message.ERROR_NUMBER_RANGE;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import lotto.constant.LottoInfo;
+import lotto.util.LottoUtil;
 
 public class Lotto {
 private final List<Integer> numbers;
@@ -15,8 +21,14 @@ public Lotto(List<Integer> numbers) {
 }
 
 private void validate(List<Integer> numbers) {
-    if (numbers.size() != 6) {
-        throw new IllegalArgumentException();
+    if (numbers.size() != LOTTO_SIZE.getValue()) {
+        throw new IllegalArgumentException(ERROR_LOTTO_SIZE.getMsg());
+    }
+    if (numbers.stream().distinct().count() != numbers.size()) {
+        throw new IllegalArgumentException(ERROR_LOTTO_DUPLICATE.getMsg());
+    }
+    if (numbers.stream().anyMatch(num -> !LottoUtil.isNumberInRange(num))) {
+        throw new IllegalArgumentException(ERROR_NUMBER_RANGE.getMsg());
     }
 }
 

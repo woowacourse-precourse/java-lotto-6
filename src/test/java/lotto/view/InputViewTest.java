@@ -62,6 +62,12 @@ class InputViewTest {
         IllegalArgumentException invalidNumbersException3 = assertThrows(IllegalArgumentException.class,
                 () -> WinningNumbersValidator.validateWinningNumbers(invalidNumbers3));
         assertEquals("[ERROR] 중복되지 않는 숫자 6개를 입력해 주세요.", invalidNumbersException3.getMessage());
+
+        // 숫자가 아닌 당첨 번호 입력
+        String invalidNumbers4 = "ㄱ,2,a,4,4,5";
+        IllegalArgumentException invalidNumbersException4 = assertThrows(IllegalArgumentException.class,
+                () -> WinningNumbersValidator.validateWinningNumbers(invalidNumbers4));
+        assertEquals("[ERROR] 숫자와 쉼표(,)만 입력해 주세요.", invalidNumbersException4.getMessage());
     }
 
     @Test

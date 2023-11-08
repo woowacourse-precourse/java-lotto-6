@@ -10,7 +10,7 @@ import java.util.List;
 
 public class GameResult {
     private static final int INITIAL_AMOUNT = 0;
-    private static final int DECIMAL_POINT = 2;
+    private static final int DECIMAL_POINT = 1;
     private static final int PERCENTAGE_CONVERSION = 100;
 
     private final int[] lottoRankResult;
@@ -25,7 +25,7 @@ public class GameResult {
         lottoResult = new ArrayList<>();
     }
 
-    public GameResult of(List<Lotto> playerLotto, WinningLottoNumber winningLottoNumber) {
+    public static GameResult of(List<Lotto> playerLotto, WinningLottoNumber winningLottoNumber) {
         return new GameResult(playerLotto, winningLottoNumber);
     }
 

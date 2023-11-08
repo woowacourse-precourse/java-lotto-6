@@ -9,8 +9,6 @@ import lotto.WinnerPrice;
 
 public class LottoService {
     public static final int FIVE = 5;
-    public static final int RATE_RANGE_START = 3;
-    public static final int RATE_RANGE_END = 7;
 
     public Map<Integer, Integer> compareValue(List<Lotto> lottos, User user) {
         int equalCount;

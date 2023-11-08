@@ -17,6 +17,9 @@ public class ResultService {
     private final Integer THIRD_PRIZE_AMOUNT = 1500000;
     private final Integer FOURTH_PRIZE_AMOUNT = 50000;
     private final Integer FIFTH_PRIZE_AMOUNT = 5000;
+    private final Integer ADJUST_VALUE_FOR_INDEX = 1;
+    private final Integer ONE_COUNT = 1;
+    private final Integer MULTIPLE_FOR_PERCENT = 100;
 
     private final List<Integer> prizeAmount;
     private final List<Integer> totalResult;
@@ -32,17 +35,17 @@ public class ResultService {
                                            BonusNumber bonusNumber) {
         for (LottoDto lottoDto : purchasedLottos.getLottoDtos()) {
             Result result = Result.calculate(lottoDto, winningNumber, bonusNumber);
-            int resultIndex = result.getPrize() - 1;
+            int resultIndex = result.getPrize() - ADJUST_VALUE_FOR_INDEX;
             if (resultIndex >= 0) {
                 Integer currentValue = totalResult.get(resultIndex);
-                totalResult.set(resultIndex, currentValue + 1);
+                totalResult.set(resultIndex, currentValue + ONE_COUNT);
             }
         }
     }
 
     public void calculateReturnRate(LottosDto purchasedLottos) {
         int purchasedPrice = purchasedLottos.getCountOfPurchase() * Lotto.PRICE;
-        double unroundedReturnRate = (double) calculateTotalPrize() / purchasedPrice * 100;
+        double unroundedReturnRate = (double) calculateTotalPrize() / purchasedPrice * MULTIPLE_FOR_PERCENT;
         returnRate = Math.round(unroundedReturnRate * 10.0) / 10.0;
     }
 

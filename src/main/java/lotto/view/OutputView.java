@@ -13,7 +13,7 @@ import lotto.view.message.Rank;
 
 public class OutputView {
     private static final String PURCHASE_COUNT_FORMAT = "%d개를 구매했습니다.";
-    private static final String RESULT_FORMAT = "%s - %d개\n";
+    private static final String RESULT_FORMAT = "%s - %d개";
     private static final String DECIMAL_FORMAT = "0.#";
     private static final String RETURN_RATE_FORMAT = "총 수익률은 %s%%입니다.";
     private static final String COMMA_DELIMITER = ", ";
@@ -56,7 +56,8 @@ public class OutputView {
 
     public static void printLottoResults(List<Integer> lottoResult) {
         for (Rank rank : Rank.values()) {
-            System.out.printf(String.format(RESULT_FORMAT, rank.getDescription(), lottoResult.get(rank.getIndex())));
+            Integer lottoValue = lottoResult.get(rank.getIndex());
+            System.out.println(String.format(RESULT_FORMAT, rank.getDescription(), lottoValue) + NEW_LINE);
         }
     }
 

@@ -3,7 +3,7 @@ package lotto.model;
 import lotto.view.message.Error;
 
 public class PurchaseAmount {
-
+    private static final Integer VALID_NUMBER = 0;
     private Integer purchaseAmount;
 
     private PurchaseAmount(String input) {
@@ -26,13 +26,13 @@ public class PurchaseAmount {
     }
 
     private void checkPositive(Integer parsedInput) {
-        if (parsedInput <= 0) {
+        if (parsedInput <= VALID_NUMBER) {
             throw new IllegalArgumentException(Error.PURCHASE_AMOUNT_VALIDATION.getMessage());
         }
     }
 
     private void checkThousandMultiple(Integer parsedInput) {
-        if (parsedInput % Lotto.PRICE != 0) {
+        if (parsedInput % Lotto.PRICE != VALID_NUMBER) {
             throw new IllegalArgumentException(Error.PURCHASE_AMOUNT_VALIDATION.getMessage());
         }
     }

@@ -6,6 +6,7 @@ import java.util.Set;
 import lotto.view.message.Error;
 
 public class WinningNumber {
+    private static final Integer TOTAL_NUMBER_COUNT = 12;
 
     private Set<Integer> winningNumbers;
 
@@ -24,7 +25,7 @@ public class WinningNumber {
     public Integer compare(List<Integer> lottoNumbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
         uniqueNumbers.addAll(lottoNumbers);
-        return 12 - uniqueNumbers.size();
+        return TOTAL_NUMBER_COUNT - uniqueNumbers.size();
     }
 
     private List<String> split(String winningNumbers) {

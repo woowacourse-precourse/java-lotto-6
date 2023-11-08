@@ -13,11 +13,11 @@ public class TotalPrizeMoney {
     public static TotalPrizeMoney findTotalPrizeMoney(LottoResultWinners lottoResultWinners){
         Integer sum = 0;
         for (Rank rank : Rank.values()) {
-            if (lottoResultWinners.getNumberOfWinner(rank) == 0){
+            if (lottoResultWinners.getNumberOfRankWinner(rank) == 0){
                 continue;
             }
             sum += Integer.valueOf(Converter.convertCommaStringToString(rank.getPrizeMoney()))
-                    * lottoResultWinners.getNumberOfWinner(rank);
+                    * lottoResultWinners.getNumberOfRankWinner(rank);
         }
         return new TotalPrizeMoney(sum);
     }

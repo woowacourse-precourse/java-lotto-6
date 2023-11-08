@@ -62,7 +62,7 @@ public class GuideMessage{
         System.out.println(LINE_BREAK+WINNING_STATISTICS);
         System.out.println(DASH+DASH+DASH);
         for (Rank rank : Rank.values()) {
-            Integer numberOfWinner = lottoResultWinners.getNumberOfWinner(rank);
+            Integer numberOfWinner = lottoResultWinners.getNumberOfRankWinner(rank);
             if(Rank.isFiveMatchBonusRank(rank)){
                 printFiveMatchBonusResult(rank, numberOfWinner);
                 continue;

@@ -168,8 +168,8 @@ public class LottoMatcherTest {
 
         //when
         LottoResult lottoResult = new LottoResult(userNumbers, winningNumbers, bonusNumber);
-        List<Long> correctWinningsCount = lottoResult.getCorrectWinningsCount();
-        List<Boolean> correctBonuses = lottoResult.getCorrectBonuses();
+        List<Long> correctWinningsCount = lottoResult.toLongList();
+        List<Boolean> correctBonuses = lottoResult.toBoolList();
 
         //then
         Assertions.assertThat(correctWinningsCount.get(0)).isEqualTo(1);

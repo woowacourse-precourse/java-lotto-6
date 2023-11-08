@@ -27,8 +27,8 @@ public class WinningTierTest {
         WinningTier winningTier = new WinningTier();
         winningTier.estimate(userCorrectWinningsCount, userCorrectBonuses);
 
-        Assertions.assertThat(winningTier.getWinningTier().get(1)).isEqualTo(2);
-        Assertions.assertThat(winningTier.getWinningTier().get(2)).isEqualTo(1);
+        Assertions.assertThat(winningTier.toHashMap().get(1)).isEqualTo(2);
+        Assertions.assertThat(winningTier.toHashMap().get(2)).isEqualTo(1);
     }
 
     @Test

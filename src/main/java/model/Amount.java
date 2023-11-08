@@ -19,4 +19,8 @@ public class Amount {
     private void validateIsPositive(int amount){
         if(amount <= 0) throw new IllegalArgumentException();
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }

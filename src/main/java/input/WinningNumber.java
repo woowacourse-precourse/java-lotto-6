@@ -2,14 +2,13 @@ package input;
 
 import static constant.ErrorMessage.buildErrorMessage;
 
+import camp.nextstep.edu.missionutils.Console;
 import constant.ServiceMessage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class WinningNumber {
-    private String input;
     private final List<Integer> winningNumbers = new ArrayList<>();
     private boolean isValidInput = false;
 
@@ -20,10 +19,9 @@ public class WinningNumber {
     }
 
     private void setWinningNumbers(){
-        Scanner scanner = new Scanner(System.in);
         try {
             System.out.println(ServiceMessage.getMessageByCode(103));
-            this.input = scanner.nextLine();
+            String input = Console.readLine();
             isValidInput = isValidate(input);
             winningNumbers.addAll(
                     Arrays.stream(input.split(","))

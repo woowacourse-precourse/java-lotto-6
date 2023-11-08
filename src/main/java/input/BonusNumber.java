@@ -2,9 +2,9 @@ package input;
 
 import static constant.ErrorMessage.buildErrorMessage;
 
+import camp.nextstep.edu.missionutils.Console;
 import constant.ServiceMessage;
 import java.util.List;
-import java.util.Scanner;
 
 public class BonusNumber {
     private String input;
@@ -17,10 +17,9 @@ public class BonusNumber {
     }
 
     private void setBonnusNumber(List<Integer> winningNumbers){
-        Scanner scanner = new Scanner(System.in);
         try {
             System.out.println(ServiceMessage.getMessageByCode(104));
-            this.input = scanner.nextLine();
+            this.input = Console.readLine();
             isValidInput = isValidate(input, winningNumbers);
             System.out.println();
         } catch (IllegalArgumentException e) {

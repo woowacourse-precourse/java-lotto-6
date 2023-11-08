@@ -2,12 +2,14 @@ package input;
 
 import static constant.ErrorMessage.buildErrorMessage;
 
-import constant.ErrorMessage;
+import camp.nextstep.edu.missionutils.Console;
 import constant.ServiceMessage;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Purchase {
-    private String money;
+    private String money = "";
     private final int PRICE_PER_TICKET = 1000;
     private boolean isValidInput = false;
 
@@ -18,10 +20,9 @@ public class Purchase {
     }
 
     private void getPurchaseCount(){
-        Scanner scanner = new Scanner(System.in);
         try {
             System.out.println(ServiceMessage.getMessageByCode(101));
-            this.money = scanner.nextLine();
+            this.money = Console.readLine();
             isValidInput = isValidate(money);
         } catch (IllegalArgumentException e) {
             System.out.print(e.getMessage());

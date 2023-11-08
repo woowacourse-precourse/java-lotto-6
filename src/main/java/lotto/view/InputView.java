@@ -47,6 +47,39 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
+
+    public static int inputBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                System.out.println("\n보너스 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                validateBonusNumber(winningNumbers, input);
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(INPUT_ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private static void validateBonusNumber(List<Integer> winningNumbers, String input) {
+        if (!isPositiveNonZeroInteger(input)) {
+            throw new IllegalArgumentException();
+        }
+        int number = Integer.parseInt(input);
+        if (winningNumbers.contains(number)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static boolean isPositiveNonZeroInteger(String input) {
+        try {
+            int number = Integer.parseInt(input);
+            return number > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     private static boolean isDivisible(String input, int divisor) {
         int dividend = Integer.parseInt(input);
         return dividend % divisor == 0;

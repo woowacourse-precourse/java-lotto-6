@@ -1,6 +1,10 @@
 package lotto.service;
 
-import lotto.domain.*;
+import lotto.domain.User;
+import lotto.domain.Lotto;
+import lotto.domain.Result;
+import lotto.domain.JackpotNumber;
+import lotto.domain.Rank;
 
 public class DecideAward {
     public static Result userResult(User user, JackpotNumber jackpotNumber) {

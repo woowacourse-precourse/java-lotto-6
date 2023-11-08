@@ -1,8 +1,5 @@
 package lotto.domain;
 
-
-
-//보너스 넘버 수정
 public class JackpotNumber {
     private final Lotto jackpot;
     private Integer bonusNumber;

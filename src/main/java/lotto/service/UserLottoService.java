@@ -9,7 +9,6 @@ import lotto.domain.Lotto;
 import lotto.domain.User;
 
 public class UserLottoService {
-    public List<Lotto> UserTickets;
     public static User user;
     public static User lottoSetting(int amount) {
         List<Lotto> userTickets = generateLottoTickets(amount);

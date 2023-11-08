@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.domain.UserLotto;
+import lotto.domain.WinningMoney;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -57,10 +58,10 @@ public class LottoCalculator {
         return bonusCount;
     }
 
-    public double calculateRateOfReturn(int seedMoney, List<Integer> winningMoney, List<Integer> resultData) {
+    public double calculateRateOfReturn(int seedMoney, List<Integer> resultData) {
         int earnedMoney = 0;
-        for (int i = 0; i < winningMoney.size(); i++) {
-            earnedMoney += resultData.get(i) * winningMoney.get(i);
+        for (int i = 0; i < resultData.size(); i++) {;
+            earnedMoney += resultData.get(i) * WinningMoney.values()[i].getValue();
         }
         return Double.parseDouble(String.format("%.1f", ((double) earnedMoney / seedMoney) * 100));
     }

@@ -27,9 +27,8 @@ public class Application {
 
         List<Integer> resultData = lottoCalculator.calculateLottoWin(userLottos, winningNumber, bonusNumber);
         outputView.printWinningStatisticsMessage(resultData);
-
-        List<Integer> winningMoney = Arrays.asList(5000, 50000, 1500000, 30000000, 2000000000);
-        double rateOfReturn = lottoCalculator.calculateRateOfReturn(purchaseAmount, winningMoney, resultData);
+        
+        double rateOfReturn = lottoCalculator.calculateRateOfReturn(purchaseAmount, resultData);
         outputView.printRateOfReturnMessage(rateOfReturn);
     }
 

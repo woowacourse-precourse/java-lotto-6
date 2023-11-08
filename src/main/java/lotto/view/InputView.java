@@ -12,27 +12,39 @@ public class InputView {
 
     public int getUserInputPurchaseAmount() {
         System.out.println(PROMPT_PURCHASE_AMOUNT);
-        String userInput = Console.readLine();
-        System.out.println();
+        while (true) {
+            try {
+                String userInput = Console.readLine();
+                System.out.println();
 
-        InputValidator.validateNonSpaced(userInput);
-        InputValidator.validateNonZeroLeadingParsableNumber(userInput);
-        int purchaseAmount = Integer.parseInt(userInput);
-        InputValidator.validatePurchaseAmount(purchaseAmount);
-        return purchaseAmount;
+                InputValidator.validateNonSpaced(userInput);
+                InputValidator.validateNonZeroLeadingParsableNumber(userInput);
+                int purchaseAmount = Integer.parseInt(userInput);
+                InputValidator.validatePurchaseAmount(purchaseAmount);
+                return purchaseAmount;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     public List<Integer> getUserInputWinningNumbers() {
         System.out.println(PROMPT_WINNING_NUMBERS);
-        String userInput = Console.readLine();
-        System.out.println();
+        while (true) {
+            try {
+                String userInput = Console.readLine();
+                System.out.println();
 
-        InputValidator.validateNonSpaced(userInput);
-        InputValidator.validateLottoNumbersPattern(userInput);
-        return Arrays.stream(userInput.split(","))
-                .map(Integer::parseInt)
-                .peek(InputValidator::validateLottoNumber)
-                .collect(Collectors.toList());
+                InputValidator.validateNonSpaced(userInput);
+                InputValidator.validateLottoNumbersPattern(userInput);
+                return Arrays.stream(userInput.split(","))
+                        .map(Integer::parseInt)
+                        .peek(InputValidator::validateLottoNumber)
+                        .collect(Collectors.toList());
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     public int getUserInputBonusNumber() {

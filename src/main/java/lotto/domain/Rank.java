@@ -12,5 +12,14 @@ public enum Rank {
     private final int prizeMoney;
     private final boolean matchBonus;
 
-    
+    Rank(int matchCount, int prizeMoney) {
+        this(matchCount, prizeMoney, false);
+    }
+
+    Rank(int matchCount, int prizeMoney, boolean matchBonus) {
+        this.matchCount = matchCount;
+        this.prizeMoney = prizeMoney;
+        this.matchBonus = matchBonus;
+    }
+
 }

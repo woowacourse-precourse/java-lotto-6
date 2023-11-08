@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.List;
-
 import lotto.domain.Lotto;
 import lotto.service.LottoService;
 import lotto.service.LottoWinningCalculator;
@@ -30,19 +29,19 @@ public class GameController {
         return purchaseAmount;
     }
 
-    public static void lottoInputWinningNum() {
+    private static void lottoInputWinningNum() {
         winningNumbers = InputView.inputWinningNum();
         lottoPrintBonusNumber();
     }
 
-    public static void lottoPrintBonusNumber() {
+    private static void lottoPrintBonusNumber() {
         OutputView.printLottoBonusNumber();
         bonusNumber = InputView.inputBonusNum(winningNumbers);
         OutputView.printLottoWinningStatistics();
         lottoWinningCalculator();
     }
 
-    public static void lottoWinningCalculator() {
+    private static void lottoWinningCalculator() {
         LottoWinningCalculator.calculatorLotto(lottoNumber, winningNumbers, bonusNumber, purchaseAmount);
     }
 }

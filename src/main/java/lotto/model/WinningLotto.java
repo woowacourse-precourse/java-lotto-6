@@ -22,4 +22,8 @@ public class WinningLotto extends Lotto {
             throw new IllegalArgumentException(ErrorMsg.INVALID_BONUS_NUMBER_RANGE.getErrMsg());
         }
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

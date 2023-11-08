@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class WinningLottoTest {
@@ -20,5 +21,11 @@ public class WinningLottoTest {
     void createWinningLottoByInvalidRange() {
         assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 46))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호 확인")
+    @Test
+    void createWinningLotto() {
+        assertThat(new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7).getBonusNumber()).isEqualTo(7);
     }
 }

@@ -1,7 +1,5 @@
-package lotto.domain.policy;
+package lotto.policy;
 
-import lotto.policy.LottoNumberGeneratePolicy;
-import lotto.policy.NumberGeneratePolicy;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.RepeatedTest;

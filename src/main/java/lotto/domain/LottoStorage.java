@@ -48,7 +48,7 @@ public class LottoStorage {
     public void showLottoProfitRate(List<LottoRank> lottoRanks) {
         BigDecimal profit = LottoProfitCalculator.calculate(lottoRanks, automaticLottoStorage.getTotalPrice());
 
-        TextBuilder textBuilder = TextBuilder.fromString("총 수익률은 ").append(profit.toPlainString()).append("%입니다.").appendLineSeparator();
+        TextBuilder textBuilder = TextBuilder.fromString(String.format(PrintMessage.TOTAL_ROI_MESSAGE_FORMAT.getMessage(), profit.toPlainString())).appendLineSeparator();
         LottoGamePrinter.println(textBuilder.build());
     }
 

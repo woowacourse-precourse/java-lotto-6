@@ -12,7 +12,7 @@ public class LottoGeneratorTest {
 	@Test
 	void createLottoBySize() {
 		LottoGenerator lottoGenerator = new LottoGenerator();
-		List<Integer> lottoNumbers = lottoGenerator.makeLottoList();
+		List<Integer> lottoNumbers = LottoGenerator.makeLottoList();
 
 		assertThat(lottoNumbers.size()).isEqualTo(6);
 	}
@@ -21,7 +21,7 @@ public class LottoGeneratorTest {
 	@Test
 	void createLottoByRange() {
 		LottoGenerator lottoGenerator = new LottoGenerator();
-		List<Integer> lottoNumbers = lottoGenerator.makeLottoList();
+		List<Integer> lottoNumbers = LottoGenerator.makeLottoList();
 
 		for(Integer it : lottoNumbers){
 			assertThat(it >= 1 && it <= 45);
@@ -32,7 +32,7 @@ public class LottoGeneratorTest {
 	@Test
 	void createLottoByDisctinct() {
 		LottoGenerator lottoGenerator = new LottoGenerator();
-		List<Integer> lottoNumbers = lottoGenerator.makeLottoList();
+		List<Integer> lottoNumbers = LottoGenerator.makeLottoList();
 
 		assertThat(lottoNumbers.stream()
 				.distinct()

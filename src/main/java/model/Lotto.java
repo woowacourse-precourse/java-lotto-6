@@ -32,4 +32,11 @@ public class Lotto {
                 throw new IllegalArgumentException();
         }
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append(numbers);
+        return sb.toString();
+    }
 }

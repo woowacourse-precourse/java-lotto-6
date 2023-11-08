@@ -7,20 +7,20 @@ import static lotto.domain.lottery.constants.LottoConstraint.NUMBER_UPPER_BOUND;
 
 public abstract class NumberChecker {
     // Validation Method
-    protected boolean areOutOfRange(final List<Integer> numbers) {
+    protected boolean areOutOfRange(List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(this::isOutOfRange);
     }
 
-    protected boolean isOutOfRange(final Integer number) {
+    protected boolean isOutOfRange(Integer number) {
         return isSmallerThanLowerBound(number) || isBiggerThanUpperBound(number);
     }
 
-    private boolean isSmallerThanLowerBound(final Integer number) {
+    private boolean isSmallerThanLowerBound(Integer number) {
         return number > NUMBER_UPPER_BOUND.getValue();
     }
 
-    private boolean isBiggerThanUpperBound(final Integer number) {
+    private boolean isBiggerThanUpperBound(Integer number) {
         return number < NUMBER_LOWER_BOUND.getValue();
     }
 }

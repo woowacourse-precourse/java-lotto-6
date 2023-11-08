@@ -15,7 +15,7 @@ public class Parser {
     }
 
     // Utility Method
-    public static int parseStringToInt(final String input) {
+    public static int parseStringToInt(String input) {
         try {
             validateContainWhiteSpace(input);
             return Integer.parseInt(input);
@@ -24,7 +24,7 @@ public class Parser {
         }
     }
 
-    public static List<Integer> splitByDelimiter(final String input) {
+    public static List<Integer> splitByDelimiter(String input) {
         try {
             validateContainWhiteSpace(input);
             validateEndsWithDelimiter(input);
@@ -37,24 +37,24 @@ public class Parser {
     }
 
     // Exception Handling Method
-    private static void validateContainWhiteSpace(final String input) {
+    private static void validateContainWhiteSpace(String input) {
         if (hasWhiteSpace(input)) {
             throw LottoException.from(CONTAIN_WHITESPACE);
         }
     }
 
-    private static void validateEndsWithDelimiter(final String input) {
+    private static void validateEndsWithDelimiter(String input) {
         if (isEndsWithDelimiter(input)) {
             throw LottoException.from(ENDS_WITH_DELIMITER);
         }
     }
 
     // Validation Method
-    private static boolean hasWhiteSpace(final String input) {
+    private static boolean hasWhiteSpace(String input) {
         return input.chars().anyMatch(Character::isWhitespace);
     }
 
-    private static boolean isEndsWithDelimiter(final String input) {
+    private static boolean isEndsWithDelimiter(String input) {
         return input.endsWith(DELIMITER);
     }
 }

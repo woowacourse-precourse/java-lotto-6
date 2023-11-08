@@ -8,12 +8,12 @@ public class MatchingResults {
     private final List<MatchingResult> matchingResults;
 
     // Constructor
-    private MatchingResults(final List<MatchingResult> matchingResults) {
+    private MatchingResults(List<MatchingResult> matchingResults) {
         this.matchingResults = matchingResults;
     }
 
     // Static Factory Method
-    public static MatchingResults from(final List<MatchingResult> matchingCounts) {
+    public static MatchingResults from(List<MatchingResult> matchingCounts) {
         return new MatchingResults(matchingCounts);
     }
 

@@ -11,8 +11,8 @@ public class MatchingResult {
 
     // Constructor
     private MatchingResult(
-            final Lotto lotto,
-            final Prize prize
+            Lotto lotto,
+            Prize prize
     ) {
         final int normalMatchingCount = lotto.countPrizeNumberMatchingCount(prize);
 
@@ -22,8 +22,8 @@ public class MatchingResult {
 
     // Static Factory Method
     public static MatchingResult of(
-            final Lotto lotto,
-            final Prize prize
+            Lotto lotto,
+            Prize prize
     ) {
         return new MatchingResult(lotto, prize);
     }

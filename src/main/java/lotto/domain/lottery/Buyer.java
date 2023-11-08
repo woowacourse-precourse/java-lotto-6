@@ -43,7 +43,7 @@ public class Buyer {
 
     private void validateMaximumPayment(final int payment) {
         if (isBiggerThanMaximumPayment(payment)) {
-            throw LottoException.from(NUMBER_OUT_OF_RANGE);
+            throw LottoException.from(EXCEED_PAYMENT);
         }
     }
 

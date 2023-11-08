@@ -21,7 +21,7 @@ public class Lottos {
     }
 
     // Utility Method
-    public List<MatchingResult> generateMatchingResultList(final Prize prize) {
+    public List<MatchingResult> generateMatchingResultList(Prize prize) {
         return lottoTickets.stream()
                 .map(generateMatchingResult(prize))
                 .toList();

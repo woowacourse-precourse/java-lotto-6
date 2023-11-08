@@ -13,7 +13,7 @@ public final class Prize extends NumberChecker {
 
     // Constructor
     private Prize(
-            final Lotto prizeNumbers,
+            Lotto prizeNumbers,
             final int bonusNumber
     ) {
         this.prizeNumbers = prizeNumbers;
@@ -26,7 +26,7 @@ public final class Prize extends NumberChecker {
 
     // Static Factory Method
     public static Prize of(
-            final Lotto prizeNumbers,
+            Lotto prizeNumbers,
             final int bonusNumber
     ) {
         return new Prize(prizeNumbers, bonusNumber);

@@ -13,7 +13,7 @@ public class Lotto extends NumberChecker {
     private final List<Integer> numbers;
 
     // Constructor
-    public Lotto(final List<Integer> numbers) {
+    public Lotto(List<Integer> numbers) {
         validateNumberCount(numbers);
         validateNumbersRange(numbers);
         validateDuplicatedList(numbers);
@@ -22,13 +22,13 @@ public class Lotto extends NumberChecker {
     }
 
     // Utility Method
-    public int countPrizeNumberMatchingCount(final Prize prize) {
+    public int countPrizeNumberMatchingCount(Prize prize) {
         return (int) numbers.stream()
                 .filter(prize::isPrizeNumber)
                 .count();
     }
 
-    public boolean hasBonusNumber(final Prize prize) {
+    public boolean hasBonusNumber(Prize prize) {
         return numbers.stream()
                 .anyMatch(prize::isBonusNumber);
     }
@@ -38,30 +38,30 @@ public class Lotto extends NumberChecker {
     }
 
     // Exception Handling Method
-    private void validateNumbersRange(final List<Integer> numbers) {
+    private void validateNumbersRange(List<Integer> numbers) {
         if (areOutOfRange(numbers)) {
             throw LottoException.from(NUMBER_OUT_OF_RANGE);
         }
     }
 
-    private void validateNumberCount(final List<Integer> numbers) {
+    private void validateNumberCount(List<Integer> numbers) {
         if (isInvalidPickCount(numbers)) {
             throw LottoException.from(NUMBER_COUNT_INVALID);
         }
     }
 
-    private void validateDuplicatedList(final List<Integer> numbers) {
+    private void validateDuplicatedList(List<Integer> numbers) {
         if (isDuplicated(numbers)) {
             throw LottoException.from(NUMBER_DUPLICATED);
         }
     }
 
     // Validation Method
-    private boolean isInvalidPickCount(final List<Integer> numbers) {
+    private boolean isInvalidPickCount(List<Integer> numbers) {
         return !Objects.equals(numbers.size(), LOTTO_PICK_COUNT.getValue());
     }
 
-    private boolean isDuplicated(final List<Integer> numbers) {
+    private boolean isDuplicated(List<Integer> numbers) {
         final int uniqueNumberCount = (int) numbers.stream().distinct().count();
 
         return !Objects.equals(numbers.size(), uniqueNumberCount);

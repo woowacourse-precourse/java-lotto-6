@@ -11,9 +11,9 @@ public class FinalResultService {
     private FinalResultService() {
     }
 
-    public static EnumMap<PrizeGrade, Integer> generateResult(final List<PrizeGrade> prizeGrades) {
+    public static EnumMap<PrizeGrade, Integer> generateResult(List<PrizeGrade> prizeGrades) {
         EnumMap<PrizeGrade, Integer> results = new EnumMap<>(PrizeGrade.class);
-        final PrizeGrade[] entirePrizeGradeArray = PrizeGrade.values();
+        PrizeGrade[] entirePrizeGradeArray = PrizeGrade.values();
 
         Arrays.stream(entirePrizeGradeArray)
                 .forEach(grade -> putPrizeGradeCount(prizeGrades, results, grade));
@@ -22,17 +22,17 @@ public class FinalResultService {
     }
 
     private static void putPrizeGradeCount(
-            final List<PrizeGrade> prizeGrades,
-            final EnumMap<PrizeGrade, Integer> results,
-            final PrizeGrade grade
+            List<PrizeGrade> prizeGrades,
+            EnumMap<PrizeGrade, Integer> results,
+            PrizeGrade grade
     ) {
         results.put(grade,
                 countPrizeGrade(prizeGrades, grade));
     }
 
     private static Integer countPrizeGrade(
-            final List<PrizeGrade> prizeGrades,
-            final PrizeGrade prizeGrade
+            List<PrizeGrade> prizeGrades,
+            PrizeGrade prizeGrade
     ) {
         return (int) prizeGrades.stream()
                 .filter(grade -> Objects.equals(grade, prizeGrade))

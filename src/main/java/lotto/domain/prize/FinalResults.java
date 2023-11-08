@@ -9,12 +9,12 @@ public class FinalResults {
     private final EnumMap<PrizeGrade, Integer> finalResults;
 
     // Constructor
-    public FinalResults(final EnumMap<PrizeGrade, Integer> results) {
+    public FinalResults(EnumMap<PrizeGrade, Integer> results) {
         this.finalResults = results;
     }
 
     // Static Factory Method
-    public static FinalResults from(final EnumMap<PrizeGrade, Integer> results) {
+    public static FinalResults from(EnumMap<PrizeGrade, Integer> results) {
         return new FinalResults(results);
     }
 

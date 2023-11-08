@@ -15,8 +15,8 @@ public class FinalResultController {
     }
 
     public static FinalResults generateFinalResult(
-            final Lottos lottos,
-            final Prize prize
+            Lottos lottos,
+            Prize prize
     ) {
         List<MatchingResult> matchingResultList = lottos.generateMatchingResultList(prize);
         MatchingResults matchingResults = MatchingResults.from(matchingResultList);
@@ -27,8 +27,8 @@ public class FinalResultController {
     }
 
     public static FinalResultResponse responseFinalResult(
-            final Buyer buyer,
-            final FinalResults finalResults
+            Buyer buyer,
+            FinalResults finalResults
     ) {
         Revenue revenue = Revenue.of(buyer, finalResults);
         return new FinalResultResponse(revenue.getYield(), finalResults);

@@ -11,8 +11,8 @@ public class Revenue {
 
     // Constructor
     private Revenue(
-            final Buyer buyer,
-            final FinalResults finalResults
+            Buyer buyer,
+            FinalResults finalResults
     ) {
         final int payment = buyer.getPayment();
 
@@ -22,8 +22,8 @@ public class Revenue {
 
     // Static Factory Method
     public static Revenue of(
-            final Buyer buyer,
-            final FinalResults finalResults
+            Buyer buyer,
+            FinalResults finalResults
     ) {
         return new Revenue(buyer, finalResults);
     }

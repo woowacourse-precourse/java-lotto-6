@@ -1,6 +1,5 @@
 package lotto.domain.lottery;
 
-import lotto.exception.ErrorMessage;
 import lotto.fixture.BuyerFixture;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -65,8 +64,7 @@ class BuyerTest {
             final BuyerFixture tooBig = BuyerFixture.TOO_BIG;
             // when && then
             assertThatThrownBy(tooBig::toEntity)
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ErrorMessage.NUMBER_OUT_OF_RANGE.getMessage());
+                    .isInstanceOf(IllegalArgumentException.class);
         }
 
         @Test

@@ -32,4 +32,8 @@ public class Lotto {
         Set<Integer> deduplicationNumbers = new HashSet<>(numbers);
         return deduplicationNumbers.size() == LottoConstant.LOTTO_COUNT;
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

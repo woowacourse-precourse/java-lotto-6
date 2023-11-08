@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
-import lotto.WinningResultDTO;
+import lotto.dto.WinningResultDTO;
 
 public class WinningResult {
 

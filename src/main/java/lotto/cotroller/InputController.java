@@ -2,8 +2,8 @@ package lotto.cotroller;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.Util;
-import lotto.Validator;
+import lotto.utils.Util;
+import lotto.utils.Validator;
 import lotto.view.InputView;
 
 public class InputController {

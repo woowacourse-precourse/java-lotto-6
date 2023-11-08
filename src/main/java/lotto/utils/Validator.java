@@ -1,4 +1,4 @@
-package lotto;
+package lotto.utils;
 
 import org.junit.platform.commons.util.StringUtils;
 

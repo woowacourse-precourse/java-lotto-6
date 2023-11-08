@@ -4,8 +4,8 @@ import java.text.DecimalFormat;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import lotto.LottoDTO;
-import lotto.WinningResultDTO;
+import lotto.dto.LottoDTO;
+import lotto.dto.WinningResultDTO;
 import lotto.domain.Rank;
 
 public class OutputView {

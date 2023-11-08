@@ -6,6 +6,8 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumber;
 import lotto.domain.WinningResult;
+import lotto.dto.LottoDTO;
+import lotto.utils.LottoMaker;
 
 public class LottoService {
 

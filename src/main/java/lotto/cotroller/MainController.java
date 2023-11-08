@@ -3,7 +3,7 @@ package lotto.cotroller;
 import java.util.List;
 import lotto.LottoService;
 import lotto.domain.BonusNumber;
-import lotto.LottoDTO;
+import lotto.dto.LottoDTO;
 import lotto.view.OutputView;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumber;

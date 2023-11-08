@@ -30,7 +30,9 @@ public class InputValidator {
     }
 
     public static boolean validatePurchaseAmountInput(String input) {
-        validateStringInput(input);
+        if (input == null || !input.matches("^[0-9]+$")) {
+            throw new IllegalArgumentException(NON_NUMBER_EXCEPTION.getMessage());
+        }
         isMultipleOf1000(input);
 
         return true;

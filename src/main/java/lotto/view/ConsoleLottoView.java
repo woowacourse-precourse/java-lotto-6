@@ -49,7 +49,8 @@ public class ConsoleLottoView implements LottoView {
 
     @Override
     public String getWinningNumbers() {
-        return null;
+        display(Message.WINNING_NUMBER_INPUT_MESSAGE.getMessage());
+        return input();
     }
 
     @Override

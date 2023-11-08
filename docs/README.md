@@ -27,8 +27,8 @@
 - [x] 당첨 내역을 생성한다. Application#makeWinningResult
 - [ ] 당첨 내역을 출력한다.
 - [x] 총상금을 계산한다. Application#calculateTotalPrize
-- [ ] 수익률을 계산한다.
-  - [ ] 수익률은 소수점 둘째 자리에서 반올림한다.
+- [x] 수익률을 계산한다. Application#calculateProfitRate
+  - [x] 수익률은 소수점 둘째 자리에서 반올림한다.
 
 ## 지켜야 할 사항
 - [ ] 예외 상황 시 "[ERROR]"로 시작하는 에러 문구를 출력한다.

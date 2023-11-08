@@ -24,13 +24,11 @@ class LottoesDtoTest {
     @Test
     void 레코드는_생성자_기능을_자동으로_갖고있다() {
         List<LottoDto> annotherLottoDtoes = Arrays.asList(lottoDto, lottoDto2);
-        assertThat(lottoesDto.lottoDtos())
-                .isEqualTo(annotherLottoDtoes);
+        assertThat(lottoesDto.lottoDtos()).isEqualTo(annotherLottoDtoes);
     }
 
     @Test
     void 현재_본인이_갖고있는_LottoDto의_개수도_반환한다() {
-        assertThat(lottoesDto.getLottoCount())
-                .isEqualTo(2);
+        assertThat(lottoesDto.getLottoCount()).isEqualTo(2);
     }
 }

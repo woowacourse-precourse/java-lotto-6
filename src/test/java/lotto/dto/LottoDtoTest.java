@@ -14,7 +14,6 @@ class LottoDtoTest {
         LottoDto lottoDto = new LottoDto(list);
 
         List<Integer> sameElements = Arrays.asList(1, 2, 3);
-        assertThat(lottoDto.numbers())
-                .isEqualTo(sameElements);
+        assertThat(lottoDto.numbers()).isEqualTo(sameElements);
     }
 }

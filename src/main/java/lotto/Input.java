@@ -19,6 +19,12 @@ public class Input {
 
         System.out.println("구입금액을 입력해 주세요.");
         inputMoney = Console.readLine();
+        MoneyTest(inputMoney);
+
+        LottoQuantity(money);
+    }
+
+    public static void MoneyTest(String inputMoney){
         try{
             Input.money = Integer.parseInt(inputMoney);
         }catch (NumberFormatException n){
@@ -30,11 +36,14 @@ public class Input {
             }
         }
 
-        LottoQuantity(money);
-    }
-
-    public static void MoneyTest(){
-
+        if (Integer.parseInt(inputMoney) % 1000 > 0){
+            try {
+                throw new IllegalArgumentException("no int");
+            }catch (IllegalArgumentException e){
+                System.out.println("[ERROR] 1,000원 단위만 입력 가능합니다.");
+                InputMoney();
+            }
+        }
     }
 
     //구입 금액에서 갯수 뽑아오기

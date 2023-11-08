@@ -40,4 +40,16 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(-1, 2, 3, 4, 5, 65)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구매 금액에 맞는 개수의 로또를 할당한다.")
+    @Test
+    void createLottoByPurchaseAmountTest() {
+        LottoService lottoService = new LottoService(new LottoRepository());
+        LottoDto lottoDto = new LottoDto();
+
+        lottoDto.setLottoPurchaseAmount("14000");
+        lottoService.createLottos(lottoDto);
+
+        assertThat(lottoService.getLottos().getAllLotto().size()).isEqualTo(14);
+    }
 }

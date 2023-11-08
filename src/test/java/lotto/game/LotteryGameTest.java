@@ -50,7 +50,7 @@ public class LotteryGameTest extends IntegrationTest {
     }
 
     @Nested
-    @DisplayName("[가격 입력 테스트] ")
+    @DisplayName("[로또 번호 입력 테스트] ")
     class LottoNumberTest{
         @DisplayName("입력된 숫자가 6개가 아니면 예외가 발생합니다.")
         @ValueSource(strings = {"1,2,3,4,5", "1,2,3,4,5,6,7,8"})
@@ -76,8 +76,8 @@ public class LotteryGameTest extends IntegrationTest {
             });
         }
 
-        @DisplayName("중복 숫자가 입력되면 예외가 발생합니다.")
-        @ValueSource(strings = {"1,46,2,3,4,5", "-1,2,2,2,2,6"})
+        @DisplayName("1-45범위를 초과하면 예외가 발생합니다.")
+        @ValueSource(strings = {"1,46,2,3,4,5", "-1,2,3,4,5,999999999999999"})
         @ParameterizedTest
         void numberOutOfRangeTest(String numbers){
             String price = "1000";

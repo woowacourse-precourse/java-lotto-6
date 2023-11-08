@@ -44,6 +44,11 @@ public class LottoController {
     }
 
     private void inputCost() {
+        try {
+            this.order = new Order(inputView.inputCost());
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
 
     }
 

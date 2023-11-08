@@ -10,7 +10,8 @@ public class MatchLotto {
         return new MatchLotto();
     }
 
-    public List<LottoRankings> matchLotto(List<Integer> winningNumbers, int bonusNumber, List<Lotto> lottoPurchaseHistory) {
+    public List<LottoRankings> matchLotto(List<Integer> winningNumbers, int bonusNumber,
+                                          List<Lotto> lottoPurchaseHistory) {
         List<LottoRankings> matchResult = new ArrayList<>();
         for (Lotto lotto : lottoPurchaseHistory) {
             int match = matchWinningNumber(winningNumbers, lotto);

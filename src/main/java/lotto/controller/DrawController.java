@@ -24,7 +24,7 @@ public class DrawController {
     public void draw() {
         inputPurchaseAmount();
         List<Lotto> purchaseHistory = IssueLotto.createIssueLotto().issue(purchaseLotto.getNumberOfPurchases());
-        List<Integer> winningNumbers = inputWinningNumber().getNumbers();
+        List<Integer> winningNumbers = inputWinningsNumber().getNumbers();
         int bonusNumber = inputBonusNumber(winningNumbers);
 
         List<LottoRankings> matchResult = MatchLotto.createMatchLotto()
@@ -53,8 +53,8 @@ public class DrawController {
         }
     }
 
-    private Lotto inputWinningNumber() {
-        OutputView.printWinningNumberInputMessage();
+    private Lotto inputWinningsNumber() {
+        OutputView.printWinningNumbersInputMessage();
         try {
             return Lotto.createWinningNumbers(InputView.input());
         } catch (IllegalArgumentException e) {

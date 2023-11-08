@@ -56,6 +56,23 @@ public class Application {
         return tickets;
     }
 
+    private static List<Lotto> getValidateLottos(int tickets) {
+        List<Lotto> lottos = new ArrayList<Lotto>();
+        System.out.printf("\n%d개를 구매했습니다.\n", tickets);
+        while (lottos.size() < tickets) {
+            List<Integer> tempNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+
+            List<Integer> numbers = new ArrayList<>(tempNumbers);
+            Collections.sort(numbers);
+            System.out.println(numbers.toString());
+
+            Lotto lotto = new Lotto(numbers);
+            lottos.add(lotto);
+        }
+
+        return lottos;
+    }
+
     private static boolean isLottoLength(String[] sNumbers) {
         try {
             if (sNumbers.length != 6) {
@@ -163,20 +180,8 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        getValidateTickets();        
-
-        List<Lotto> lottos = new ArrayList<Lotto>();
-        System.out.printf("\n%d개를 구매했습니다.\n", tickets);
-        while (lottos.size() < tickets) {
-            List<Integer> tempNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-
-            List<Integer> numbers = new ArrayList<>(tempNumbers);
-            Collections.sort(numbers);
-            System.out.println(numbers.toString());
-
-            Lotto lotto = new Lotto(numbers);
-            lottos.add(lotto);
-        }
+        int tickets = getValidateTickets();        
+        List<Lotto> lottos = getValidateLottos(tickets);
 
         System.out.println("\n당첨 번호를 입력해 주세요.");
         List<Integer> playerNumbers;

@@ -18,7 +18,7 @@ public class Prize {
             countWinningLotto(rank.toString());
         }
 
-        this.totalPrize = calculateReturn();
+        this.totalReturn = this.calculateReturn();
     }
 
     private int getPrize(String rank){

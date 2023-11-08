@@ -93,8 +93,21 @@ public class Application {
         return List;
     }
 
-    private  static  void resultPrint(){
+    private  static  void resultPrint(int tiral, List<Lotto> lottos,List<Integer> winningnumber ){
         System.out.println("당첨 통계\n"+ "---");
+        for(int i =0; i < tiral; i++){
+            Lotto lottoticket =  lottos.get(i);
+            int matchednumber = checkNumber(lottoticket,winningnumber);
+
+        }
+
+
+    }
+
+    private  static int checkNumber(Lotto lottoticket,List<Integer> winningnumber ){
+        return (int) lottoticket.stream().filter(winningnumber::contains).count();
+    }
+    private static void printCheckNumber(){
 
     }
     public static void main(String[] args) {
@@ -104,6 +117,7 @@ public class Application {
         int bouncenumber;
         List<Lotto> lottes;
         List<Integer> winningnumber;
+
         money = moneyValidate();
         ticket = money /1000;
         lottes = generateLottes(ticket);
@@ -112,8 +126,7 @@ public class Application {
 
         winningnumber = stringToList(getWinningnumber());
 
-        bouncenumber = getBonceNumber(winningnumber);
-
+        winningnumber.add(getBonceNumber(winningnumber));
 
         resultPrint();
     }

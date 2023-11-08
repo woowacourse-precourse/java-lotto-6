@@ -20,6 +20,10 @@ public class Lotto {
     public void printLotto(){
         System.out.println(Arrays.toString(numbers.toArray()));
     }
+
+    public List<Integer> getNumbers{
+        return numbers;
+    }
     // TODO: 추가 기능 구현
     //1.임의의 숫자 리스트를 private list에 입력
     //  해당 매개변수가 list 타입이니 외부에서 돌려서 해당 숫자 입력

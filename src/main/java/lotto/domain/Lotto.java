@@ -39,6 +39,7 @@ public class Lotto {
     // TODO: 추가 기능 구현
 
     public Lotto(String numbers) {
+        numbers = numbers.replace(" ", "");
         validateString(numbers);
         this.numbers = convertStringListToIntegerList(convertStringToList(numbers));
     }

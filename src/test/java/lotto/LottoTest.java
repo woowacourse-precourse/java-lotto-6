@@ -66,7 +66,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 보너스 숫자가 1 이상 45 이하의 범위를 벗어나면 예외가 발생한다 - 45 초과")
+    @DisplayName("로또 내 보너스 숫자와의 중복이 있으면 예외가 발생한다.")
     @Test
     void createLottoThatLottoNumberContainsBonusNumber() {
         assertThatThrownBy(() -> new WinningLotto("1,8,3,24,11,37","11"))

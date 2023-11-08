@@ -14,10 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LottoGameTest {
 
-    private static final int FIRST_PRIZE = 7;
-    private static final int FIFTH_PRIZE = 3;
-    private static final List<Integer> PRIZE_MONEY = List.of(0, 0,5000, 50000, 1500000, 30000000, 2000000000);
-
     @Test
     void canCountWinningLottoResult() throws IllegalAccessException, NoSuchFieldException {
         LottoGame lottoGame = new LottoGame();

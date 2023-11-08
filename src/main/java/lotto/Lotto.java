@@ -26,8 +26,12 @@ public class Lotto {
 
     @Override
     public String toString() {
-        numbers.sort(Comparator.naturalOrder());
-        return numbers.toString();
+        ArrayList<Integer> lottoNum = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            lottoNum.add(numbers.get(i));
+        }
+        lottoNum.sort(Comparator.naturalOrder());
+        return lottoNum.toString();
     }
 
     public List<Integer> getNumbers() {

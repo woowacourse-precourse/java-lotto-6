@@ -1,6 +1,9 @@
 package lotto.input;
 
+import static lotto.exception.ErrorType.AmountMinimumException;
 import static lotto.exception.ErrorType.AmountUnitException;
+import static lotto.exception.ErrorType.InputMoneyNotDigitException;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import lotto.domain.MoneyManagement;
@@ -23,7 +26,35 @@ public class AskAmountTest {
                 () -> MoneyManagement.from(amount));
 
         ErrorType exceptionType = lottoException.getExceptionType();
-        Assertions.assertThat(exceptionType).isEqualTo(AmountUnitException);
+        assertThat(exceptionType).isEqualTo(AmountUnitException);
     }
 
+    @Test
+    @DisplayName("로또 구입 금액이 1000원 이하일 때 AmountMinimumException 타입 오류 발생")
+    void minimumTest(){
+        //given
+        String amount = "501";
+
+        //when & then
+        LottoException lottoException = assertThrows(LottoException.class,
+                () -> MoneyManagement.from(amount));
+
+        ErrorType exceptionType = lottoException.getExceptionType();
+        assertThat(exceptionType).isEqualTo(AmountMinimumException);
+    }
+
+
+    @Test
+    @DisplayName("로또 구입 금액에 숫자가 아닌 입력 값이 들어올 때 InputMoneyNotDigitException 타입 오류 발생")
+    void notDigit(){
+        //given
+        String amount = "lotto!";
+
+        //when & then
+        LottoException lottoException = assertThrows(LottoException.class,
+                () -> MoneyManagement.from(amount));
+
+        ErrorType exceptionType = lottoException.getExceptionType();
+        Assertions.assertThat(exceptionType).isEqualTo(InputMoneyNotDigitException);
+    }
 }

@@ -4,17 +4,18 @@ import lotto.model.constant.PurchaseAmountConstants;
 
 public class PurchaseAmount {
     private final int amount;
-    private int count;
+    private final int lottoCount;
 
     public PurchaseAmount(int amount) {
         this.amount = amount;
+        this.lottoCount = amount / PurchaseAmountConstants.PURCHASE_AMOUNT_UNIT.getNumber();
     }
 
     public int getAmount() {
         return amount;
     }
 
-    public void lottoCount() {
-        count = amount / PurchaseAmountConstants.PURCHASE_AMOUNT_UNIT.getNumber();
+    public int getLottoCount() {
+        return lottoCount;
     }
 }

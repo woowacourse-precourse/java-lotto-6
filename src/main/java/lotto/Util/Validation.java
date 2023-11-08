@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 public class Validation {
-
     private static final String INPUT_TYPE_ERROR_MSG
             = "[ERROR] 숫자를 입력해주세요.";
     private static final String INPUT_UNIT_ERROR_MSG

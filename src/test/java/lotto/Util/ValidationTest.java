@@ -10,7 +10,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class ValidationTest {
-
     @DisplayName("로또 구입 금액 입력 시 예외 테스트")
     @ParameterizedTest
     @CsvSource(value = {"abcd:[ERROR] 숫자를 입력해주세요.", "10500:[ERROR] 로또 구입 금액은 1,000원 단위로 입력해주세요."},

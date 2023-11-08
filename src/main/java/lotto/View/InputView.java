@@ -6,7 +6,6 @@ import java.util.List;
 import lotto.Util.Validation;
 
 public class InputView {
-
     public static int getAvailableMoney() {
         int availableMoney = 0;
 

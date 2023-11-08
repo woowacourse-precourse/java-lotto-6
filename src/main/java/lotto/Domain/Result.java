@@ -1,7 +1,6 @@
 package lotto.Domain;
 
 public enum Result {
-
     RANK_FIRST(1, 6, false, "2,000,000,000"),
     RANK_SECOND(2, 5, true, "30,000,000"),
     RANK_THIRD(3, 5, false, "1,500,000"),

@@ -18,7 +18,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 숫자 6개를 입력해주세요.");
+            throw new IllegalArgumentException(String.format(ErrorMessage.MISMATCH_LOTTO_INPUT_FORMAT, NUMBER_COUNT));
         }
     }
 
@@ -28,7 +28,7 @@ public class Lotto {
                 .distinct()
                 .count();
         if (numbers.size() != distinctSize) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력 하실 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER);
         }
     }
 

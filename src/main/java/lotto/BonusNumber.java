@@ -1,6 +1,6 @@
 package lotto;
 
-public class BonusNumber  {
+public class BonusNumber {
     private final LottoNumber lottoNumber;
 
     BonusNumber(Lotto lotto, Integer lottoNumber) {
@@ -10,7 +10,7 @@ public class BonusNumber  {
 
     private void validateDuplicateBonusNumber(Lotto lotto) {
         if (lotto.containLottoNumber(lottoNumber)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 번호 입니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER);
         }
     }
 

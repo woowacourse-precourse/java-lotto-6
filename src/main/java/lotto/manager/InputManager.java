@@ -16,8 +16,6 @@ public class InputManager {
     private final OutputUtils outputUtils = new OutputUtils();
 
     public int inputPayMoney() {
-        outputUtils.displayPayMoneyRequestMessage();
-
         while (true) {
             try {
                 String inputPayMoney = Console.readLine();

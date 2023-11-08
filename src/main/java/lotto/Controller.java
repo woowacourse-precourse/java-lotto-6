@@ -25,6 +25,7 @@ public class Controller {
     }
 
     private int getPayMoney() {
+        outputUtils.displayPayMoneyRequestMessage();
         int payMoney = inputManager.inputPayMoney();
         lottoManager.setBuyLottos(payMoney);
         return payMoney;

@@ -5,6 +5,7 @@ import lotto.domain.PurchaseAmount;
 import lotto.view.LottoView;
 
 public class PurchaseController {
+
     private LottoView lottoView = new LottoView();
 
     public PurchaseAmount runPurchaseAmount(){

@@ -13,9 +13,16 @@ import lotto.repository.LottoWinningRepository;
 import lotto.util.LottoGenerator;
 
 public class LottoService {
-    private final LottoGenerator lottoGenerator = new LottoGenerator();
-    private final LottoRepository lottoRepository = new LottoRepository();
-    private final LottoWinningRepository lottoWinningRepository = new LottoWinningRepository();
+    private final LottoGenerator lottoGenerator;
+    private final LottoRepository lottoRepository;
+    private final LottoWinningRepository lottoWinningRepository;
+
+    public LottoService(LottoGenerator lottoGenerator, LottoRepository lottoRepository,
+                        LottoWinningRepository lottoWinningRepository) {
+        this.lottoGenerator = lottoGenerator;
+        this.lottoRepository = lottoRepository;
+        this.lottoWinningRepository = lottoWinningRepository;
+    }
 
     public void buyLotto(int purchaseAmount){
         int lottoCount = purchaseAmount / LottoConfig.LOTTO_BUYING_UNIT.getValue();

@@ -1,6 +1,6 @@
-package lotto.Option;
+package lotto.option;
 
-public enum ErrorMessage {
+public enum Error {
     ONE_TO_FORTY_FIVE("로또 번호는 1부터 45 사이의 숫자여야 합니다."), //컨벤션 확인
     NOT_LOTTO_DUPLICATION("중복된 숫자는 입력할 수 없습니다."),
     NOT_BONUS_DUPLICATION("중복된 보너스 숫자는 입력할 수 없습니다."),
@@ -10,13 +10,13 @@ public enum ErrorMessage {
     NOT_NUMBER("10자리 이하의 숫자를 입력해주세요."),
     NOT_SIX_LENGTH("로또 번호는 6개여야 합니다.");
 
-    private final String errorMessage;
+    private final String message;
 
-    private ErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    private Error(String message) {
+        this.message = message;
     }
 
-    public String getErrorMessage() {
-        return "[ERROR] " + errorMessage;
+    public String getMessage() {
+        return "[ERROR] " + message;
     }
 }

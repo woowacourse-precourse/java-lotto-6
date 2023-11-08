@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.Option.ErrorMessage.NOT_LOTTO_DUPLICATION;
-import static lotto.Option.ErrorMessage.NOT_SIX_LENGTH;
-import static lotto.Option.ErrorMessage.ONE_TO_FORTY_FIVE;
+import static lotto.option.Error.NOT_LOTTO_DUPLICATION;
+import static lotto.option.Error.NOT_SIX_LENGTH;
+import static lotto.option.Error.ONE_TO_FORTY_FIVE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -19,7 +19,7 @@ class LottoTest {
     void NotSixNumberLengthThrowException() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NOT_SIX_LENGTH.getErrorMessage());
+                .hasMessage(NOT_SIX_LENGTH.getMessage());
     }
 
     @DisplayName("범위를 벗어난 수를 입력하면 예외가 발생한다.")
@@ -28,7 +28,7 @@ class LottoTest {
     void overRangeThrowException(List<Integer> numbers) {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ONE_TO_FORTY_FIVE.getErrorMessage());
+                .hasMessage(ONE_TO_FORTY_FIVE.getMessage());
     }
 
     static Stream<Arguments> invalidParameters() {
@@ -43,7 +43,7 @@ class LottoTest {
     void ifDuplicationThrowException() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NOT_LOTTO_DUPLICATION.getErrorMessage());
+                .hasMessage(NOT_LOTTO_DUPLICATION.getMessage());
     }
 
 }

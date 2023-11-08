@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import static lotto.Option.ErrorMessage.NOT_BONUS_DUPLICATION;
+import static lotto.option.Error.NOT_BONUS_DUPLICATION;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class WinLottoValidator {
         lottoAndBonus.add(bonus.number());
 
         if (isDuplication(lottoAndBonus)) {
-            throw new IllegalArgumentException(NOT_BONUS_DUPLICATION.getErrorMessage());
+            throw new IllegalArgumentException(NOT_BONUS_DUPLICATION.getMessage());
         }
     }
 

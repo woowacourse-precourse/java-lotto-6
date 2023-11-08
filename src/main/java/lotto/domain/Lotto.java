@@ -1,11 +1,11 @@
 package lotto.domain;
 
-import static lotto.Option.ErrorMessage.NOT_LOTTO_DUPLICATION;
-import static lotto.Option.ErrorMessage.NOT_SIX_LENGTH;
-import static lotto.Option.ErrorMessage.ONE_TO_FORTY_FIVE;
+import static lotto.option.Error.NOT_LOTTO_DUPLICATION;
+import static lotto.option.Error.NOT_SIX_LENGTH;
+import static lotto.option.Error.ONE_TO_FORTY_FIVE;
 
 import java.util.List;
-import lotto.Option.GameOption;
+import lotto.option.GameOption;
 
 public record Lotto(List<Integer> numbers) {
     public Lotto {
@@ -20,21 +20,21 @@ public record Lotto(List<Integer> numbers) {
 
     private void validateLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(NOT_SIX_LENGTH.getErrorMessage());
+            throw new IllegalArgumentException(NOT_SIX_LENGTH.getMessage());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         numbers.forEach(number -> {
             if (number < GameOption.LOTTO_MIN_NUMBER.getNumber() || number > GameOption.LOTTO_MAX_NUMBER.getNumber()) {
-                throw new IllegalArgumentException(ONE_TO_FORTY_FIVE.getErrorMessage());
+                throw new IllegalArgumentException(ONE_TO_FORTY_FIVE.getMessage());
             }
         });
     }
 
     private void validateDuplication(List<Integer> numbers) {
         if (isDuplication(numbers)) {
-            throw new IllegalArgumentException(NOT_LOTTO_DUPLICATION.getErrorMessage());
+            throw new IllegalArgumentException(NOT_LOTTO_DUPLICATION.getMessage());
         }
     }
 

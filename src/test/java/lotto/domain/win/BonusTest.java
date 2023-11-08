@@ -1,6 +1,6 @@
 package lotto.domain.win;
 
-import static lotto.Option.ErrorMessage.ONE_TO_FORTY_FIVE;
+import static lotto.option.Error.ONE_TO_FORTY_FIVE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -14,6 +14,6 @@ class BonusTest {
     void overRangeNumberThrowException(int number) {
         assertThatThrownBy(() -> new Bonus(number))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ONE_TO_FORTY_FIVE.getErrorMessage());
+                .hasMessage(ONE_TO_FORTY_FIVE.getMessage());
     }
 }

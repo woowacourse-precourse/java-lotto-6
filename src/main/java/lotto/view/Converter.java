@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.Option.ErrorMessage.NOT_NUMBER;
+import static lotto.option.Error.NOT_NUMBER;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +13,7 @@ public class Converter {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_NUMBER.getErrorMessage());
+            throw new IllegalArgumentException(NOT_NUMBER.getMessage());
         }
     }
 
@@ -24,7 +24,7 @@ public class Converter {
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_NUMBER.getErrorMessage());
+            throw new IllegalArgumentException(NOT_NUMBER.getMessage());
         }
 
     }

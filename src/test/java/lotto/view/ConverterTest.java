@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class ConverterTest {
+class ConverterTest {
     @Test
     @DisplayName("문자열을 숫자로 변환하는지 확인한다.")
     void convertStringToInt() {

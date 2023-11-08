@@ -1,8 +1,8 @@
 package lotto.validator;
 
-import static lotto.Option.ErrorMessage.NOT_DIVISION_1000;
-import static lotto.Option.ErrorMessage.NOT_NEGATIVE_NUMBER;
-import static lotto.Option.ErrorMessage.NOT_ZERO;
+import static lotto.option.Error.NOT_DIVISION_1000;
+import static lotto.option.Error.NOT_NEGATIVE_NUMBER;
+import static lotto.option.Error.NOT_ZERO;
 
 public class LottoCountValidator {
     private LottoCountValidator() {
@@ -16,19 +16,19 @@ public class LottoCountValidator {
 
     private static void validatePositiveNumber(int money) {
         if (money < 0) {
-            throw new IllegalArgumentException(NOT_NEGATIVE_NUMBER.getErrorMessage());
+            throw new IllegalArgumentException(NOT_NEGATIVE_NUMBER.getMessage());
         }
     }
 
     private static void validateZeroNumber(int money) {
         if (money == 0) {
-            throw new IllegalArgumentException(NOT_ZERO.getErrorMessage());
+            throw new IllegalArgumentException(NOT_ZERO.getMessage());
         }
     }
 
     private static void validateDivision(int money) {
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException(NOT_DIVISION_1000.getErrorMessage());
+            throw new IllegalArgumentException(NOT_DIVISION_1000.getMessage());
         }
     }
 }

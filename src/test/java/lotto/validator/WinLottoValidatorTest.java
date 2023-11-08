@@ -8,7 +8,7 @@ import lotto.domain.win.Bonus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class WinLottoValidatorTest {
+class WinLottoValidatorTest {
     @Test
     @DisplayName("중복된 로또 번호들을 입력했을 때 예외가 발생한다.")
     void ifDuplicationThrowException() {

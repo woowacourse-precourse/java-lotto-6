@@ -23,6 +23,18 @@ public class Game {
         return new Game();
     }
 
+    public void run() {
+        setLottoCount();
+        setLottoList(lottoCount);
+        printLottoList(lottoList);
+
+        setWinningLotto();
+        setWinningBonusNumber();
+
+        PrizeResultDto prizeResultDto = calculateResult(lottoList, winningLotto, winningBonusNumber);
+        printResult(prizeResultDto);
+    }
+
     public void setLottoCount() {
         String inputStringValue = InputView.inputBuyValue();
 

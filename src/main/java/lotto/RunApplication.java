@@ -3,30 +3,62 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class RunApplication {
 
     private final static Scanner scanner =  new Scanner(System.in);
     private final int PRICE_OF_LOTTO = 1000;
+    private final int NUMBER_OF_RANKS = 5;
 
+    /**
+     * 로또 구매비용 입력
+     * 구입한 수만큼 로또를 발행한다.
+     * 당첨번호, 보너스 번호 입력
+     * 발행한 로또의 등수를 확인한다.
+     * 각 등수는 ranks에 저장하고 0 인덱스는 5등, 1 인덱스는 4등처럼 저장되어 1등까지 저장한다.
+     * 당첨 통계
+     */
     public void run() {
-        // 로또 구매비용과 당첨비용, 보너스 번호 입력
         int costOfLotto = getCostOfLotto();
         int numberOfLotto = costOfLotto / PRICE_OF_LOTTO;
+        List<List<Integer>> myLottoNumbers = getMyLottoNumbers(numberOfLotto);
         List<Integer> lottoNumbers = getLottoNumbers();
         int bonus = getBonus(lottoNumbers);
-
-        // 구입한 수만큼 로또를 발행한다.
-        System.out.printf("%d개를 구매했습니다.\n", numberOfLotto);
-        List<List<Integer>> myLottoNumbers = getMyLottoNumbers(numberOfLotto);
-
-        // 발행한 로또의 등수를 확인한다.
-        // 각 등수는 ranks에 저장하고 1 인덱스는 1등, 2 인덱스는 2등처럼 저장되어 최대 5등까지 저장한다.
         List<Integer> ranks = getRanks(numberOfLotto, lottoNumbers, bonus, myLottoNumbers);
+        getResult(costOfLotto, ranks);
+    }
+
+    private void getResult(int costOfLotto, List<Integer> ranks) {
+        System.out.println("---");
+        double profit = 0.0;
+        for (int i = 0; i < NUMBER_OF_RANKS; i++) {
+            if (i == 0){
+                System.out.println(LottoRank.five.getResult(ranks.get(i)));
+                profit += LottoRank.five.getWinningPrice() * ranks.get(i);
+            }
+            if (i == 1){
+                System.out.println(LottoRank.four.getResult(ranks.get(i)));
+                profit += LottoRank.four.getWinningPrice() * ranks.get(i);
+            }
+            if (i == 2){
+                System.out.println(LottoRank.three.getResult(ranks.get(i)));
+                profit += LottoRank.three.getWinningPrice() * ranks.get(i);
+            }
+            if (i == 3){
+                System.out.println(LottoRank.two.getResult(ranks.get(i)));
+                profit += LottoRank.two.getWinningPrice() * ranks.get(i);
+            }
+            if (i == 4){
+                System.out.println(LottoRank.one.getResult(ranks.get(i)));
+                profit += LottoRank.one.getWinningPrice() * ranks.get(i);
+            }
+        }
+        System.out.printf("총 수익률은 %f%입니다.", profit / costOfLotto);
     }
 
     private List<Integer> getRanks(int numberOfLotto, List<Integer> lottoNumbers, int bonus, List<List<Integer>> myLottoNumbers) {
-        List<Integer> ranks = new ArrayList<>(List.of(0, 0, 0, 0, 0, 0));
+        List<Integer> ranks = new ArrayList<>(IntStream.range(0, NUMBER_OF_RANKS).boxed().map(num -> 0).toList());
         for (int i = 0; i < numberOfLotto; i++) {
             int rank = getRank(lottoNumbers, bonus, myLottoNumbers, i);
             ranks.set(rank, ranks.get(rank) + 1);
@@ -34,13 +66,16 @@ public class RunApplication {
         return ranks;
     }
 
-    private static List<List<Integer>> getMyLottoNumbers(int numberOfLotto) {
+    private List<List<Integer>> getMyLottoNumbers(int numberOfLotto) {
+        System.out.printf("%d개를 구매했습니다.\n", numberOfLotto);
         List<List<Integer>> myLottoNumbers = new ArrayList<>();
         for (int i = 0; i < numberOfLotto; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             myLottoNumbers.add(numbers);
             System.out.println(numbers);
         }
+        System.out.println();
+
         return myLottoNumbers;
     }
 
@@ -49,19 +84,20 @@ public class RunApplication {
         long count = numbers.stream()
                 .filter(lottoNumbers::contains)
                 .count();
-        if (count >= 6) return 1;
+        if (count >= 6) return 4;
         if (count == 5) {
-            if (lottoNumbers.contains(bonus)) return 2;
-            return 3;
+            if (lottoNumbers.contains(bonus)) return 3;
+            return 2;
         }
-        if (count == 4) return 4;
-        return 5;
+        if (count == 4) return 1;
+        return 0;
     }
 
     private int getCostOfLotto() {
         int cost;
         try {
             cost = getCostOfLottoWithChainedException();
+            System.out.println();
         } catch (IllegalArgumentException e) {
             return getCostOfLotto();
         }

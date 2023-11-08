@@ -1,0 +1,54 @@
+package lotto.ui;
+
+import static lotto.constant.GameMessage.INPUT_BONUS_NUMBERS;
+import static lotto.constant.GameMessage.INPUT_BUY_PRICE;
+import static lotto.constant.GameMessage.INPUT_WIN_NUMBERS;
+
+import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import lotto.conversion.Convert;
+import lotto.domain.Bonus;
+import lotto.domain.Lotto;
+import lotto.domain.Price;
+
+public class Input {
+
+    public static Price readBuyPrice() {
+        while (true) {
+            System.out.println(INPUT_BUY_PRICE.getMessage());
+            try {
+                String input = Console.readLine();
+                long price = Convert.toPrice(input);
+                return new Price(price);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static Lotto readWinningNumbers() {
+        while (true) {
+            System.out.println(INPUT_WIN_NUMBERS.getMessage());
+            try {
+                String input = Console.readLine();
+                List<Integer> numbers = Convert.toNumbers(input);
+                return new Lotto(numbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static Bonus readBonusNumber(Lotto winLotto) {
+        while (true) {
+            System.out.println(INPUT_BONUS_NUMBERS.getMessage());
+            try {
+                String input = Console.readLine();
+                int bonusNumber = Convert.toBonusNumber(input);
+                return new Bonus(bonusNumber, winLotto);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+}

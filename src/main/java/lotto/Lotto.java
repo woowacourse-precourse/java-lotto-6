@@ -23,7 +23,7 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
         }
         for (int i = 0; i < numbers.size(); i++) {
-            if (numbers.get(i) <= 0 | numbers.get(i) >= 45) {
+            if (numbers.get(i) < 1 | numbers.get(i) > 45) {
                 throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }

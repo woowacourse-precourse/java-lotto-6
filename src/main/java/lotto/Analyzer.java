@@ -32,8 +32,10 @@ public class Analyzer {
                                                    List<List<Integer>> allTicketNumbers, int bonusNumber) {
         Map<Integer, Integer> ticketResults = new HashMap<>();
         for (int i = 0; i < ticket; i++) {
+            ticketResults.putIfAbsent(i, 0);
+        }
+        for (int i = 0; i < ticket; i++) {
             int rank = check(winningNumbers, allTicketNumbers.get(i), bonusNumber);
-            ticketResults.putIfAbsent(rank, 0);
             ticketResults.put(rank, ticketResults.get(rank) + 1);
         }
         return ticketResults;

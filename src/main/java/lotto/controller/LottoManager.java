@@ -59,8 +59,10 @@ public class LottoManager {
 
     private void setWinningAndBounsNumber() {
         String winningNumber;
+        String bonusNumber;
 
         winningNumber = setWinningNumber();
+        bonusNumber = setBonusNumber();
     }
 
     private String setWinningNumber() {
@@ -75,5 +77,19 @@ public class LottoManager {
         }
 
         return winningNumber;
+    }
+
+    private String setBonusNumber(){
+        String bonusNumber;
+
+        try{
+            bonusNumber = InputView.readBonusNumber();
+            Validation.validateBonusNumber(bonusNumber);
+        }catch (IllegalArgumentException | IllegalStateException e){
+            ExceptionView.printExceptionMessage(e.getMessage());
+            bonusNumber = setBonusNumber();
+        }
+
+        return bonusNumber;
     }
 }

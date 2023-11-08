@@ -7,7 +7,33 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers(){
+        return this.numbers;
+    }
+
+    public int howMany(List<Integer> numbers){
+        int howMany=0;
+        for(int number:numbers){
+            howMany=isContained(number, howMany);
+        }
+        return howMany;
+    }
+    public boolean isContained(int n){
+        if(numbers.contains(n)){
+            return true;
+        }
+        return false;
+    }
+    public int isContained(int n, int value) {
+        if (numbers.contains(n)) {
+            value++;
+            return value;
+        }
+        return value;
     }
 
     private void validate(List<Integer> numbers) {

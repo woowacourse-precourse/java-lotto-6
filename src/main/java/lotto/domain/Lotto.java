@@ -49,8 +49,4 @@ public class Lotto {
             throw new InputException(DUPLICATED_LOTTO_NUMBER);
         }
     }
-
-    private boolean matched(final Lotto lotto, final int index) {
-        return numbers.get(index).equals(lotto.numbers.get(index));
-    }
 }

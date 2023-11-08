@@ -40,4 +40,14 @@ public class GameService {
     public void processGame() {
         this.lottoService.compareForEachTickets(this.purchasedTickets, this.winningTicket, this.bonusNumber);
     }
+
+    public double getRevenue() {
+        long totalIncome = 0;
+        long purchasePrice = this.purchaseAmount * LOTTO_TICKET_PRICE;
+
+        for (GameResult result : GameResult.values()) {
+            totalIncome += result.getPrizeMoney() * result.getResultCount();
+        }
+        return ((double) totalIncome / purchasePrice) * 100;
+    }
 }

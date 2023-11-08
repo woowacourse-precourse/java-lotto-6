@@ -13,6 +13,7 @@ public class Player {
     public Player(int money) {
         this.money = money;
     }
+
     private Player(List<Integer> numbers, int bonusNumber, int money) {
     }
 

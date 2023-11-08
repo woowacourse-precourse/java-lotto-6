@@ -12,7 +12,7 @@ public enum ErrorType {
 
     private final String errorText;
 
-    ErrorType (String errorText) {
+    ErrorType(String errorText) {
         this.errorText = errorText;
     }
 

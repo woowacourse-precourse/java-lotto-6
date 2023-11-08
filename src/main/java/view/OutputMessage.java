@@ -17,7 +17,7 @@ public class OutputMessage {
     public static final String CONNECT = "";
     public static final String DASH = " - ";
 
-    public static void moneyToNumberPrint(int number){
+    public static void moneyToNumberPrint(int number) {
         System.out.println(ENTER + number + CONNECT + TextType.PRICE_TO_NUMBER.getText());
     }
 

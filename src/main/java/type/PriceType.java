@@ -12,7 +12,7 @@ public enum PriceType {
     private final String price;
     private final int count;
 
-    PriceType (String text, String price, int count){
+    PriceType(String text, String price, int count) {
         this.text = text;
         this.price = price;
         this.count = count;

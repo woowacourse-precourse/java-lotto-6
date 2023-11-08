@@ -55,4 +55,8 @@ public class Lotto {
         return numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
 }

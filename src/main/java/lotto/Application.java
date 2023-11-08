@@ -12,7 +12,7 @@ public class Application {
     public static void main(String[] args) {
         //1. 로또 구입 금액 입력 받기
         int howMuch = 0;
-        int numberOfLotteries = 0;
+        int numberOfLotteries = 0; //로또 개수
         while(true) {
             try{
                 System.out.println("구입 금액을 입력해 주세요.");
@@ -52,8 +52,11 @@ public class Application {
         }
 
 
-
         //4. 로또 발행
+        List<Lottery> lotteries = new ArrayList<>();
+        for (int i = 0; i < numberOfLotteries; i++) {
+            lotteries.add(new Lottery(lottoNumbers, bonusNumber));
+        }
 
 
         //5. 당첨 여부 확인

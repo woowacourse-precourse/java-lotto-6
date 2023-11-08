@@ -80,7 +80,7 @@ public class LottoController {
     }
 
     private WinningCriteria computeLottoRank(WinningLotto winningLotto, List<Integer> lottoNumber) {
-        return WinningCriteria.NONE;
+        return winningLotto.computeRank(lottoNumber);
     }
 
     private int computeIncome(HashMap<WinningCriteria, Integer> result) {

@@ -45,18 +45,6 @@ class OutputTest {
                 .contains("[ERROR] 예외 처리 메시지");
     }
 
-    @DisplayName("구매한 로또 개수 출력")
-    @Test
-    void printCount() {
-        // when
-        Integer lottoCount = 8;
-        Output.printCount(lottoCount);
-
-        // then
-        assertThat(out.toString())
-                .contains(lottoCount + PURCHASE_LOTTO.getMessage());
-    }
-
     @DisplayName("금액 입력할 때, 출력")
     @Test
     void printPurchase() {
@@ -66,6 +54,37 @@ class OutputTest {
         // then
         assertThat(out.toString())
                 .contains(PURCHASE_MONEY.getMessage());
+    }
+
+    @DisplayName("구매한 로또 개수 출력")
+    @Test
+    void printCount() {
+        // given
+        Integer lottoCount = 8;
+
+        // when
+        Output.printCount(lottoCount);
+
+        // then
+        assertThat(out.toString())
+                .contains(lottoCount + PURCHASE_LOTTO.getMessage());
+    }
+
+    @DisplayName("로또 번호를 오름차순으로 정렬하여 구매한 로또 전체 출력")
+    @Test
+    void printLottos() {
+        // given
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(new Lotto(List.of(6, 5, 4, 3, 2, 1)));
+        lottos.add(new Lotto(List.of(20, 30, 10, 40, 1, 45)));
+
+        // when
+        Output.printLottos(lottos);
+
+        // then
+        assertThat(out.toString())
+                .contains("[1, 2, 3, 4, 5, 6]")
+                .contains("[1, 10, 20, 30, 40, 45]");
     }
 
     @DisplayName("당첨 번호 입력할 때, 출력")
@@ -88,24 +107,6 @@ class OutputTest {
         // then
         assertThat(out.toString())
                 .contains(BONUS_NUMBER.getMessage());
-    }
-
-    @DisplayName("로또 번호를 오름차순으로 정렬하여 구매한 로또 전체 출력")
-    @Test
-    void printLottos() {
-        // given
-        List<Lotto> lottos = new ArrayList<>();
-        lottos.add(new Lotto(List.of(6, 5, 4, 3, 2, 1)));
-        lottos.add(new Lotto(List.of(20, 30, 10, 40, 1, 45)));
-
-        // when
-        List<Lotto> sortedLottos = LottoManager.sortLottos(lottos);
-        Output.printLottos(sortedLottos);
-
-        // then
-        assertThat(out.toString())
-                .contains("[1, 2, 3, 4, 5, 6]")
-                .contains("[1, 10, 20, 30, 40, 45]");
     }
 
     @DisplayName("당첨 통계 출력, 수익률은 둘째 자리에서 반올림")

@@ -1,32 +1,38 @@
 package lotto.domain;
 
-import static lotto.domain.ValidateUtil.toNumeric;
-
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoStoreClerk {
-    public static List<Lotto> createLottoTickets(String orderInputAmount) {
-        int lottoTicketsNumber = calculateNumberOfTickets(toNumeric(orderInputAmount));
+
+    public static List<Lotto> createLottoTickets(int lottoPurchase) {
+        int lottoTicketsNumber = calculateNumberOfTickets(lottoPurchase);
         return lottoGenerater(lottoTicketsNumber);
     }
 
     public static int calculateNumberOfTickets(int lottoOrderAmount) {
         checkLottoOrderAmount(lottoOrderAmount);
-        int numberOfLottoTickets = lottoOrderAmount / Constant.MINIMUM_AMOUNT_IN_UNITS.getValue();
-        return numberOfLottoTickets;
-
+        return lottoOrderAmount / Constant.MINIMUM_AMOUNT_IN_UNITS.getValue();
     }
 
     public static void checkLottoOrderAmount(int lottoOrderAmount) {
-        if (lottoOrderAmount < Constant.MINIMUM_AMOUNT_IN_UNITS.getValue()
-                || lottoOrderAmount % Constant.MINIMUM_AMOUNT_IN_UNITS.getValue()
-                != Constant.NO_REMAINDER.getValue()) {
-            throw new IllegalArgumentException();
-        }
-
+        checkMinimumAmount(lottoOrderAmount);
+        checkDividableThousand(lottoOrderAmount);
     }
+
+    public static void checkMinimumAmount(int lottoOrderAmount) {
+        if (lottoOrderAmount < Constant.MINIMUM_AMOUNT_IN_UNITS.getValue()) {
+            throw new IllegalArgumentException("[ERROR] 1000원 이상의 금액을 입력해주세요");
+        }
+    }
+
+    public static void checkDividableThousand(int lottoOrderAmount) {
+        if (lottoOrderAmount % Constant.MINIMUM_AMOUNT_IN_UNITS.getValue() != Constant.NO_REMAINDER.getValue()) {
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요");
+        }
+    }
+
 
     public static List<Lotto> lottoGenerater(int lottoTicketNumber) {
         List<Lotto> generatedLottoTickets = new ArrayList<>();

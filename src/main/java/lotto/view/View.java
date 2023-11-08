@@ -44,11 +44,11 @@ public class View {
          }
     }
     public void scoreView(LottoScore lottoScore){
-        System.out.println("3개 일치 (5,000원): " + lottoScore.getCorrect3() + "개");
-        System.out.println("4개 일치 (50,000원): " + lottoScore.getCorrect4() + "개");
-        System.out.println("5개 일치 (1,500,000원): " + lottoScore.getCorrect5() + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원): " + lottoScore.getCorrect5Bonus() + "개");
-        System.out.println("6개 일치 (2,000,000,000원): " + lottoScore.getCorrect6() + "개");
+        System.out.println("3개 일치 (5,000원) - " + lottoScore.getCorrect3() + "개");
+        System.out.println("4개 일치 (50,000원) - " + lottoScore.getCorrect4() + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + lottoScore.getCorrect5() + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoScore.getCorrect5Bonus() + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + lottoScore.getCorrect6() + "개");
     }
 
     public void rateReturnView(LottoScore lottoScore,int money){

@@ -1,43 +1,33 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 
 public class ResultView {
 
-    /**
-     * 구매한 로또 티켓을 출력하는 메소드입니다.
-     *
-     * @param lottos 구매한 로또 티켓 목록
-     */
     public static void printPurchasedLottos(List<Lotto> lottos) {
-        // TODO: 구매한 로또 티켓 출력 로직 구현
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 
-    /**
-     * 당첨 결과를 출력하는 메소드입니다.
-     *
-     * @param results 당첨 결과
-     */
-    public static void printWinningResults(/* TODO: 당첨 결과 타입 */) {
-        // TODO: 당첨 결과 출력 로직 구현
+    public static void printWinningResults(Map<LottoRank, Integer> results) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank != LottoRank.NONE) {
+                System.out.printf("%d개 일치 (%d원)- %d개\n",
+                        rank.getMatchCount(),
+                        rank.getPrize(),
+                        results.getOrDefault(rank, 0));
+            }
+        }
     }
 
-    /**
-     * 총 수익률을 출력하는 메소드입니다.
-     *
-     * @param yield 수익률
-     */
     public static void printYield(double yield) {
-        // TODO: 수익률 출력 로직 구현
-    }
-
-    /**
-     * 에러 메시지를 출력하는 메소드입니다.
-     *
-     * @param message 에러 메시지
-     */
-    public static void printErrorMessage(String message) {
-        System.out.println("[ERROR] " + message);
+        System.out.printf("총 수익률은 %.2f%%입니다.\n", yield * 100);
     }
 }

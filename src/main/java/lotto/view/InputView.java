@@ -33,6 +33,7 @@ public class InputView {
     public static List<Integer> inputWinningNumber() {
         while (true) {
             try {
+                System.out.println();
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String[] numbers = scanner.nextLine().split(",");
                 if (numbers.length != LOTTO_NUMBERS_SIZE) {
@@ -61,6 +62,7 @@ public class InputView {
     public static int inputBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
+                System.out.println();
                 System.out.println("보너스 번호를 입력해 주세요.");
                 int bonusNumber = Integer.parseInt(scanner.nextLine());
                 if (bonusNumber < 1 || bonusNumber > MAX_LOTTO_NUMBER) {

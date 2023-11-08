@@ -7,6 +7,8 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoPurchase {
+
+
     private final int LottoPurchaseCnt;
     private final List<List<Integer>> randomNumbers;
 
@@ -15,6 +17,9 @@ public class LottoPurchase {
         return randomNumbers;
     }
 
+    public int getLottoPurchaseCnt() {
+        return LottoPurchaseCnt;
+    }
 
     public LottoPurchase(int LottoPurchaseCnt){
         validate(LottoPurchaseCnt);

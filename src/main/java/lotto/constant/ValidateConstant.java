@@ -58,4 +58,8 @@ public class ValidateConstant {
     public static String ERROR_WIN_NUMBER_COUNT_SIX() {
         return "[ERROR] 당첨 번호는 6개 입니다.";
     }
+
+    public static String ERROR_WIN_NUMBER_RANGE() {
+        return "[ERROR] 당첨 번호의 범위는 1 ~ 45 입니다.";
+    }
 }

@@ -136,7 +136,7 @@ public class ValidateException {
     public static boolean checkRangeWinNumbers(List<Integer> numbers) {
         for (int num : numbers) {
             if (num < MIN_WIN_NUMBERS || num > MAX_WIN_NUMBERS) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호의 범위는 1 ~ 45 입니다.");
+                throw new IllegalArgumentException(ValidateConstant.ERROR_WIN_NUMBER_RANGE());
             }
         }
         return true;

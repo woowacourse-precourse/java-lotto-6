@@ -17,6 +17,16 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    // 당첨번호 개수 세기
+    public int countMatch(Lotto winningLotto) {
+        return (int) numbers.stream().
+                filter(winningLotto::containNumber).
+                count();
+    }
+    public boolean containNumber(int number) {
+        return numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(NOT_NUMBER_SIZE);

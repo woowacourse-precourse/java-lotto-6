@@ -1,7 +1,6 @@
 package lotto.service;
 
 public enum EnumGame {
-    LOTTO_PRICE(1000, 0, false),
     RANK_1(2000000000 ,6, false),
     RANK_2(30000000, 5, true),
     RANK_3(1500000, 5, false),

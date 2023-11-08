@@ -14,7 +14,7 @@ class LottoPrizeTest {
         assertThat(LottoPrize.FIFTH).isEqualTo(LottoPrize.findLottoPrize(3, false));
         assertThat(LottoPrize.FOURTH).isEqualTo(LottoPrize.findLottoPrize(4, false));
         assertThat(LottoPrize.THIRD).isEqualTo(LottoPrize.findLottoPrize(5, false));
-        assertThat(LottoPrize.SECOND).isEqualTo(LottoPrize.findLottoPrize(4, false));
+        assertThat(LottoPrize.SECOND).isEqualTo(LottoPrize.findLottoPrize(4, true));
         assertThat(LottoPrize.FIRST).isEqualTo(LottoPrize.findLottoPrize(6, false));
     }
 

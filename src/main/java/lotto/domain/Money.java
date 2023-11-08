@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.constant.LottoConstant.LOTTO_PRICE;
+import static lotto.constant.LottoConstant.ZERO;
 import static lotto.exception.Message.CANNOT_BUY_LOTTO_EXCEPTION;
 import static lotto.exception.Message.MONEY_CREATION_EXCEPTION;
 
@@ -15,7 +16,7 @@ public class Money {
     }
 
     private boolean lessThanZero(long fee) {
-        return fee < 0;
+        return fee < ZERO;
     }
 
     public long toLottoCnt() {
@@ -26,7 +27,7 @@ public class Money {
     }
 
     private boolean dividable() {
-        return fee % LOTTO_PRICE > 0;
+        return fee % LOTTO_PRICE > ZERO;
     }
 }
 

@@ -29,6 +29,7 @@ public class LottoController {
         Lotto winningNumbers = getWinningNumbers();
         Bonus bonusNumber = getBonusNumber(winningNumbers);
         WinningStatics winningStatics = getWinningStatics(lottos, winningNumbers, bonusNumber);
+        printWinningStatics(winningStatics, purchasePrice);
     }
 
     private int getPurchasePrice() {
@@ -78,6 +79,12 @@ public class LottoController {
             winningStatics.applyLottoResult(matchCount, isMatchBonus);
         }
         return winningStatics;
+    }
+
+    private void printWinningStatics(WinningStatics winningStatics, int purchasePrice) {
+        float rateOfReturn = winningStatics.getRateOfReturn(purchasePrice);
+        outputView.printWinningStatics(winningStatics);
+        outputView.printRateOfReturn(rateOfReturn);
     }
 
 }

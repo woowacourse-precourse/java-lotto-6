@@ -39,11 +39,11 @@ public class Buyer {
             System.out.println(ie.getMessage());
             return payForLotto();
         }
+        System.out.println();
         return Integer.parseInt(buyAmount);
     }
 
     private void validateInput(String buyAmount) throws IllegalArgumentException{
-        System.out.println("buyAmount: " + buyAmount);
         if (!Validator.isNumber(buyAmount) || !Validator.validateBuyAmount(buyAmount)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BUY_AMOUNT_INPUT.getMessage());
         }
@@ -85,7 +85,10 @@ public class Buyer {
     }
 
     public void printLotteryResult() {
-        System.out.printf("3개 일치 (5,000원) - %d개\n" +
+        System.out.printf(
+                "당첨 통계\n" +
+                "---\n" +
+                "3개 일치 (5,000원) - %d개\n" +
                 "4개 일치 (50,000원) - %d개\n" +
                 "5개 일치 (1,500,000원) - %d개\n" +
                 "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n" +

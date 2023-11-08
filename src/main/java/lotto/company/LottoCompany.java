@@ -29,6 +29,7 @@ public class LottoCompany implements Company {
         lottos.stream()
             .map(lotto -> lotto.getNumbers())
             .forEach(System.out::println);
+        System.out.println();
     }
 
     @Override

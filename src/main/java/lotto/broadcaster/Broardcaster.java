@@ -19,6 +19,7 @@ public class Broardcaster {
             System.out.println(ie.getMessage());
             return pickLotteryNumbers();
         }
+        System.out.println();
         return getListFromArray(inputLotteryNumbers.split(","));
     }
 
@@ -47,6 +48,7 @@ public class Broardcaster {
             System.out.println(ie.getMessage());
             return pickBonusNumber(lotteryNumbers);
         }
+        System.out.println();
         return Integer.parseInt(inputBonusNumber);
     }
 

@@ -59,14 +59,11 @@ lotto
 │   │   │   숫자 생성을 위한 인터페이스
 │   │   └── RandomNumberGenerator.java
 │   │       무작위 숫자를 생성하는 구현 클래스
-│   ├── util
-│   │   ├── Constant.java
-│   │   │   상수를 저장
-│   │   └── LottoParser.java
-│   │       입력 데이터 변환
-│   └── validation
-│       └── Validator.java
-│           입력 데이터 검증
+│   └── util
+│       ├── Constant.java
+│       │   상수를 저장
+│       └── LottoParser.java
+│           입력 데이터 변환
 ├── exception
 │   ├── ErrorMessage.java
 │   │   에러 메시지를 나타내는 열거형
@@ -74,6 +71,11 @@ lotto
 │   │   입력 관련 기본 예외 클래스
 │   └── LottoException.java
 │       로또 관련 예외 클래스
+├── validation
+│   ├── InputValidator.java
+│   │   입력값 기존 검증
+│   └── LottoValidator.java
+│       로또 관련 비즈니스 로직 검증
 └── view
     ├── InputUtil.java
     │   사용자 입력의 기본 파싱과 검증 처리

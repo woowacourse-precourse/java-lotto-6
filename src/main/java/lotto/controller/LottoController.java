@@ -48,7 +48,8 @@ public class LottoController {
     }
 
     private void printBuyResult(Lottos lottos){
-        lottos.getLottos().forEach(lotto -> outputView.printLottoNumbers(lotto.getNumbers()));
+        lottos.getLottos()
+                .forEach(lotto -> outputView.printLottoNumbers(lotto.getNumbers()));
     }
 
     private TotalWinningNumbers askTotalWinningNumbers() {

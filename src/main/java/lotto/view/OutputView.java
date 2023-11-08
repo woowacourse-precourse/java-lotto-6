@@ -9,10 +9,19 @@ import java.util.Map;
 import static lotto.domain.Rank.*;
 
 public class OutputView {
+
+    private static final String LOTTO_COUNT_POSTFIX_MESSAGE = "개를 구매했습니다.";
+    private static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String LOTTO_NUMBERS_PREFIX_MESSAGE = "[";
+    private static final String LOTTO_NUMBERS_POSTFIX_MESSAGE = "]";
+    private static final String SEPARATION = ", ";
+
+
+
     DecimalFormat decimalFormat = new DecimalFormat("###,###");
 
     public void printLottoCount(long lottoCount) {
-        System.out.println(lottoCount + "개를 구매했습니다.");
+        System.out.println(lottoCount + LOTTO_COUNT_POSTFIX_MESSAGE);
     }
 
     public void printLottoNumbers(List<Integer> lottoNumbers) {
@@ -29,16 +38,15 @@ public class OutputView {
     }
 
     public void printRateOfReturn(double rateOfReturn){
-        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
+        System.out.printf(RATE_OF_RETURN_MESSAGE, rateOfReturn);
     }
 
 
     private String makeLottoNumberMessage(List<Integer> lottoNumbers) {
-        StringBuilder sb = new StringBuilder("[");
-        lottoNumbers.forEach(n -> sb.append(n + ", "));
-        sb.deleteCharAt(sb.length() - 1);
-        sb.deleteCharAt(sb.length() - 1);
-        sb.append("]");
+        StringBuilder sb = new StringBuilder(LOTTO_NUMBERS_PREFIX_MESSAGE);
+        lottoNumbers.forEach(n -> sb.append(n).append(SEPARATION));
+        sb.delete(sb.length()-2, sb.length());
+        sb.append(LOTTO_NUMBERS_POSTFIX_MESSAGE);
         return sb.toString();
     }
 

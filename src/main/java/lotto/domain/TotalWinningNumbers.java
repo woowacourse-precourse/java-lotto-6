@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.domain.Lotto.LOTTO_MAX_VALUE;
+import static lotto.domain.Lotto.LOTTO_MIN_VALUE;
+
 public class TotalWinningNumbers {
     Lotto winningLotto;
     int bonusNumber;
@@ -27,7 +30,7 @@ public class TotalWinningNumbers {
     }
 
     private void validateNumberBoundary(int bonusNumber) throws IllegalArgumentException{
-        if(bonusNumber<1 || bonusNumber>45){
+        if(bonusNumber < LOTTO_MIN_VALUE || bonusNumber > LOTTO_MAX_VALUE){
             throw new IllegalArgumentException("[ERROR] 보너스 번호의 범위는 1부터 45 사이여야 합니다.");
         }
     }

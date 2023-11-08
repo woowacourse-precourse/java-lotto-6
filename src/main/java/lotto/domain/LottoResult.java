@@ -6,16 +6,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LottoResult {
+    private static final int DEFAULT_VALUE = 0;
+    private static final int COUNT = 1;
+    private static final double PERCENT = 100;
+
     private final Map<Rank, Integer> results;
+
 
     public LottoResult() {
         results = new HashMap<>();
         Arrays.stream(Rank.values())
-                .forEach(rank -> results.put(rank, 0));
+                .forEach(rank -> results.put(rank, DEFAULT_VALUE));
     }
 
     public void addResult(Rank rank){
-        results.put(rank, results.get(rank)+ 1);
+        results.put(rank, results.get(rank)+ COUNT);
     }
 
     public Map<Rank, Integer> getResults() {
@@ -23,10 +28,10 @@ public class LottoResult {
     }
 
     public double getRateOfReturn(Money money){
-        double sumPrize = 0;
+        double sumPrize = DEFAULT_VALUE;
         for (Map.Entry<Rank, Integer> entry : results.entrySet()) {
             sumPrize += entry.getKey().getPrize() * entry.getValue();
         }
-        return sumPrize / money.getMoney() * 100;
+        return sumPrize / money.getMoney() * PERCENT;
     }
 }

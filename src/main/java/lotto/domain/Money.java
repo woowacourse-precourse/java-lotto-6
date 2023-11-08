@@ -1,10 +1,11 @@
 package lotto.domain;
 
 public class Money {
+    private static final int LOTTO_PRICE = 1000;
 
-    private final long money;
+    private final int money;
 
-    public Money(long money) {
+    public Money(int money) {
         validate(money);
         this.money = money;
     }
@@ -14,11 +15,11 @@ public class Money {
     }
 
     public int getCount() {
-        return (int)money/1000;
+        return money/LOTTO_PRICE;
     }
 
-    private void validate(long money) {
-        if(0 != money%1000){
+    private void validate(int money) {
+        if(0 != money % LOTTO_PRICE){
             throw new IllegalArgumentException("[ERROR] 돈의 단위는 1000원입니다.");
         }
     }

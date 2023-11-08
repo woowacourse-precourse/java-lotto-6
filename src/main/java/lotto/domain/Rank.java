@@ -10,6 +10,8 @@ public enum Rank {
     FIFTH(3, 5_000),
     NOTHING(0, 0);
 
+    private static final int THIRD_COLLECT = 5;
+
     private final int collectCount;
     private final long prize;
 
@@ -19,7 +21,7 @@ public enum Rank {
     }
 
     public static Rank decideRank(int collectCount, boolean bonusCheck) {
-        if (collectCount == 5 && !bonusCheck) {
+        if (collectCount == THIRD_COLLECT && !bonusCheck) {
             return Rank.THIRD;
         }
         return Arrays.stream(Rank.values())

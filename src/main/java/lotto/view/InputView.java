@@ -8,9 +8,9 @@ import static lotto.util.Parser.*;
 
 public class InputView {
 
-    public long requestMoney() throws IllegalArgumentException{
+    public int requestMoney() throws IllegalArgumentException{
         System.out.println("구입금액을 입력해 주세요");
-        return stringToLong(Console.readLine());
+        return stringToInt(Console.readLine());
     }
 
     public List<Integer> requestWinningNumbers() throws IllegalArgumentException{

@@ -6,4 +6,8 @@ public class Purchase {
     public Purchase(int money) {
         this.money = money;
     }
+
+    public int getAvailableCount() {
+        return money / 1000;
+    }
 }

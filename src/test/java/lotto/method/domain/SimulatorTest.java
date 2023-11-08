@@ -1,7 +1,7 @@
 package lotto.method.domain;
 
 import lotto.domain.Lotto;
-import lotto.domain.LottoRank;
+import lotto.domain.constant.LottoRank;
 import lotto.domain.LottoWinningNumber;
 import lotto.domain.Simulator;
 import org.assertj.core.api.Assertions;

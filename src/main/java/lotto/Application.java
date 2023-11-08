@@ -49,7 +49,7 @@ public class Application {
     public static void makeLottoes(int count) {
         while(true) {
             if(count == 0) break;
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             lottoes.add(new Lotto(numbers));
             count--;
         }

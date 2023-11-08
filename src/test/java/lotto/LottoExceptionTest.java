@@ -28,4 +28,11 @@ public class LottoExceptionTest {
         assertThatThrownBy(() -> InputValidator.checkLottoPayAmountInput("999"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 구입 금액 입력 시 아무것도 입력하지 않으면 예외가 발생한다.")
+    @Test
+    void inputPayAmountByNoInput() {
+        assertThatThrownBy(() -> InputValidator.checkLottoPayAmountInput(""))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

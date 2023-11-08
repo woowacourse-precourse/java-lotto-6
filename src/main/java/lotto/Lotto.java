@@ -14,16 +14,23 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
-
+        validateRange(numbers);
         validateDuplicate(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 숫자는 6개가 되어야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자는 6개가 되어야 합니다.");
         }
     }
 
+    private void validateRange(List<Integer> numbers) {
+        for (int num : numbers) {
+            if (num < 1 || num > 45) {
+                throw new IllegalArgumentException("[ERROR] 1과 45 사이의 숫자만 가능합니다.");
+            }
+        }
+    }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.stream()

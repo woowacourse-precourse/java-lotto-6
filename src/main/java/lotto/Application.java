@@ -29,7 +29,28 @@ public class Application {
 
         for (Lotto lottoTicket: lottoTickets){
             OutputView.printLottoTicketNumbers(lottoTicket);
+        }
 
+        List<Integer> winningNumbers=new ArrayList<>();
+        String[] winningNumbersInput=InputView.getWinningNumbers().split(",");
+        for(String winningNumber:winningNumbersInput){
+            winningNumbers.add(Integer.parseInt(winningNumber));
+        }
+
+        int bonusNumber=InputView.getBonusNumber();
+
+        for(Lotto lottoTicket: lottoTickets){
+            int countForMatchingWinningNumbers=0;
+            int countForMatchingBonusNumbers=0;
+            List<Integer> ticketNumbers=lottoTicket.getNumbers();
+            for(int ticketNumber: ticketNumbers){
+                if(winningNumbers.contains(ticketNumber)){
+                    countForMatchingWinningNumbers++;
+                }
+            }
+            if(ticketNumbers.contains(bonusNumber)){
+                countForMatchingBonusNumbers++;
+            }
         }
 
 

@@ -9,4 +9,6 @@ public class OutputView {
     public static void printLottoTicketNumbers(Lotto lottoTicket){
         System.out.println(lottoTicket.getNumbers());
     }
+
+
 }

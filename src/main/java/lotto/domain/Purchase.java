@@ -3,7 +3,6 @@ package lotto.domain;
 import static lotto.constant.ErrorMessage.NOT_DIVIDE;
 import static lotto.constant.ErrorMessage.STRANGE_INTEGER;
 
-import java.util.List;
 
 public class Purchase {
 
@@ -16,7 +15,6 @@ public class Purchase {
 
     private void validate(int money) {
         validateNotDivide(money);
-        validateUnderZero(money);
         validateUnderZero(money);
     }
 

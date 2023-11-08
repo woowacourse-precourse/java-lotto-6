@@ -93,10 +93,6 @@ public class InputView {
         System.out.printf(TICKETS_COUNT_OUTPUT, buyer.getTicketCnt());
     }
 
-    public static void printTicketCntForTest(int payment) {
-        System.out.printf(TICKETS_COUNT_OUTPUT, payment / 1000);
-    }
-
     public static void printLotto(Buyer buyer) {
         for (Lotto numbers : buyer.getLotto()) {
             System.out.println(numbers.getNumbers());

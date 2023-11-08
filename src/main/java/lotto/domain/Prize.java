@@ -22,4 +22,13 @@ public enum Prize {
     public int getPrizeAmount() {
         return prizeAmount;
     }
+
+    public static Prize matchPrize(int matchCount, boolean bonusMatch) {
+        if (matchCount == 6) return Prize.SIX_MATCH;
+        if (matchCount == 5 && bonusMatch) return Prize.FIVE_MATCH_BONUS;
+        if (matchCount == 5) return Prize.FIVE_MATCH;
+        if (matchCount == 4) return Prize.FOUR_MATCH;
+        if (matchCount == 3) return Prize.THREE_MATCH;
+        return null;
+    }
 }

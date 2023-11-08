@@ -46,7 +46,7 @@ public class Error {
 		if (judgement.isNegative(Integer.parseInt(digit)))
 			throw new IllegalArgumentException(Message.NEGATIVE.getMessage());
 	}
-	public void checkMoney(String purchaseMoney) {
+	private void checkMoney(String purchaseMoney) {
 		checkCommons(purchaseMoney);
 		if (!judgement.isRemainder(Integer.parseInt(purchaseMoney)))
 			throw new IllegalArgumentException(Message.REMAINDER.getMessage());

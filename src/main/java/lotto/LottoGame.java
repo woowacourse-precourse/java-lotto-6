@@ -9,7 +9,7 @@ public class LottoGame {
 	private List<Lotto> lottos = new ArrayList<>();
 	private int money;
 	private List<Integer> winningNumbers = new ArrayList<>();
-	private LottoService lottoService = new LottoService();
+	private final LottoService lottoService = new LottoService();
 
 	public void play() {
 		lottoInit();
@@ -20,7 +20,7 @@ public class LottoGame {
 		Result.printProfitRate(this.money);
 	}
 
-	public void lottoInit() {
+	private void lottoInit() {
 		this.money = lottoService.getMoney();
 		int lottoCount = lottoService.getLottoCount(this.money);
 		NumberGenerator generator = new NumberGenerator();

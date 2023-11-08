@@ -13,7 +13,7 @@ public class OutputView {
     private static final String NEW_LINE = "\n";
     private static final String DASH = "-";
     private static final String OVERLAP_NOTIFY_MESSAGE = "%d개 일치";
-    private static final String OVERLAP_AND_BONUS_NOTIFY_MESSAGE = "%d개 일치, 보너스 볼 일치";
+    private static final String BONUS_NOTIFY_MESSAGE = ", 보너스 볼 일치";
     private static final String SPACE = " ";
     private static final String PRIZE_MESSAGE = "(%,d원)";
     private static final String WINNING_LOTTO_NUMBER_MESSAGE = "%d개";
@@ -38,17 +38,16 @@ public class OutputView {
     }
 
     public static void printStatistics(Map<Rank, Integer> finalResult) {
-        System.out.println(NEW_LINE + WINNING_STATISTICS_MESSAGE + NEW_LINE + DASH + DASH + DASH);
+        System.out.println(NEW_LINE + WINNING_STATISTICS_MESSAGE + NEW_LINE + DASH.repeat(3));
         Rank[] ranks = Rank.values();
+
         for (Rank rank : ranks) {
             StringBuilder statistics = new StringBuilder();
-            if (!rank.getChecked()) {
-                statistics.append(String.format(OVERLAP_NOTIFY_MESSAGE, rank.getCounted())).append(SPACE);
-            }
+            statistics.append(String.format(OVERLAP_NOTIFY_MESSAGE, rank.getCounted()));
             if (rank.getChecked()) {
-                statistics.append(String.format(OVERLAP_AND_BONUS_NOTIFY_MESSAGE, rank.getCounted())).append(SPACE);
+                statistics.append(BONUS_NOTIFY_MESSAGE);
             }
-            statistics.append(String.format(PRIZE_MESSAGE, rank.getPrize())).append(SPACE + DASH + SPACE)
+            statistics.append(SPACE).append(String.format(PRIZE_MESSAGE, rank.getPrize())).append(SPACE + DASH + SPACE)
                     .append(String.format(WINNING_LOTTO_NUMBER_MESSAGE, finalResult.get(rank)));
             System.out.println(statistics);
         }

@@ -1,6 +1,5 @@
 package lotto.view;
 
-import static lotto.global.constants.NumberType.COST_UNIT;
 import static lotto.view.ui.Input.enterMessage;
 import static lotto.view.ui.Output.printlnMessage;
 
@@ -12,14 +11,13 @@ public final class CostRequestView {
 
     public static Integer request() {
         printlnMessage(COST_REQUEST_MESSAGE);
-        String cost = Validator.validateCost(enterMessage());
+        String cost = Validator.validate(enterMessage());
         return Integer.parseInt(cost);
     }
 
     private static class Validator {
-        private static String validateCost(String cost) {
+        private static String validate(String cost) {
             validateNumber(cost);
-            validateUnit(cost);
             return cost;
         }
 
@@ -31,16 +29,6 @@ public final class CostRequestView {
 
         private static boolean isNotNumber(String message) {
             return !message.matches("\\d+");
-        }
-
-        private static void validateUnit(String cost) {
-            if (isNotDivisible(cost)) {
-                throw LottoException.from(ErrorMessage.INVALID_UNIT_ERROR);
-            }
-        }
-
-        private static boolean isNotDivisible(String cost) {
-            return Integer.parseInt(cost) % COST_UNIT.getValue() != 0;
         }
     }
 }

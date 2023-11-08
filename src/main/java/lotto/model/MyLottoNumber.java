@@ -34,10 +34,15 @@ public class MyLottoNumber {
         return MyNumbers;
     }
 
+
+
     //Override 필수
     @Override
     public String toString(){
         return myLottoNumber.toString();
     }
 
+    public List<Integer> getMyLottoNumber() {
+        return myLottoNumber;
+    }
 }

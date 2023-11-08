@@ -18,15 +18,15 @@ public class LottoController {
         Money money = requestMoney();
         int count = lottoService.calculateCount(money.getMoney());
         HashMap<Integer, Lotto> lotties = lottoService.makeLotto(count);
-        outputView.printAmountOfLotto(count);
-        outputView.printLotto(lotties);
+        printLotto(count, lotties);
         WinningNumber winningNumber = requestWinningNumber();
         BonusNumber bonusNumber = requestBonusNumber(winningNumber);
         HashMap<Integer, List<Integer>> result = lottoService.calculateCompareResult(count, lotties, winningNumber.getWinningNumbers(), bonusNumber.getBonusNumber());
         HashMap<Integer, Integer> finalResult = lottoService.calculateFinalResult(result, count);
         int totalReward = lottoService.calculateTotalReward(finalResult);
-        String ror = lottoService.rorDoubleToString(lottoService.calculateRateOfReturn(finalResult, money.getMoney()));
-        printResult(finalResult, ror);
+        Double ror = lottoService.calculateRateOfReturn(finalResult, money.getMoney());
+        String formattedRor = lottoService.rorDoubleToString(ror);
+        printResult(finalResult, formattedRor);
     }
 
     public Money requestMoney(){
@@ -36,8 +36,8 @@ public class LottoController {
             return money;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            return requestMoney();
         }
-        return requestMoney();
     }
 
     public WinningNumber requestWinningNumber(){
@@ -47,8 +47,8 @@ public class LottoController {
             return winningNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            return requestWinningNumber();
         }
-        return requestWinningNumber();
     }
 
     public BonusNumber requestBonusNumber(WinningNumber winningNumber) {
@@ -59,12 +59,17 @@ public class LottoController {
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            return requestBonusNumber(winningNumber);
         }
-        return requestBonusNumber(winningNumber);
     }
 
     public void printResult(HashMap<Integer, Integer> finalResult, String ror) {
         outputView.printResultMessage(finalResult);
         outputView.printRateOfReturn(ror);
+    }
+
+    public void printLotto(int count, HashMap<Integer, Lotto> lotties) {
+        outputView.printAmountOfLotto(count);
+        outputView.printLotto(lotties);
     }
 }

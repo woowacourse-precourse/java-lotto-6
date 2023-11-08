@@ -28,7 +28,7 @@ public class LottoService {
     }
 
     public static List<Integer> makeRandomNumber(){
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45,6);
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45,6));
         Collections.sort(numbers);
         return numbers;
     }
@@ -135,7 +135,7 @@ public class LottoService {
 
     public static double calculateRateOfReturn(HashMap<Integer, Integer> finalResult, int money){
         int totalReward= calculateTotalReward(finalResult);
-        return (totalReward/money)*100;
+        return ((double) totalReward/ (double) money) * 100;
     }
 
     public static String rorDoubleToString(Double ror) {

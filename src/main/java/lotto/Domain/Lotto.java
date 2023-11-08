@@ -1,8 +1,12 @@
 package lotto.Domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import lotto.Exception.WinningNumberErrorMessage;
 
 public class Lotto {
+    private final int REFERENCE_VALUE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -11,10 +15,26 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != REFERENCE_VALUE) {
+            throw new IllegalArgumentException(WinningNumberErrorMessage.TOO_MANY_WINNING_NUMBERS.getMessage());
+        }
+
+        if (hasDuplicateNumbers(numbers)) {
+            throw new IllegalArgumentException(WinningNumberErrorMessage.DUPLICATE_WINNING_NUMBER.getMessage());
         }
     }
 
-    // TODO: 추가 기능 구현
+    private boolean hasDuplicateNumbers(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (Integer number : numbers) {
+            if (!uniqueNumbers.add(number)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

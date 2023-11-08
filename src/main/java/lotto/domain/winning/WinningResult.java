@@ -45,6 +45,6 @@ public enum WinningResult {
     }
 
     public int getWinningAmount() {
-        return winningMoney.getAmount();
+        return winningMoney.amount();
     }
 }

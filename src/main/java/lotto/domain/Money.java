@@ -2,14 +2,9 @@ package lotto.domain;
 
 import static lotto.ErrorMessage.MONEY_NEGATIVE_ERROR;
 
-import java.util.Objects;
-
-public final class Money implements Comparable<Money> {
-    private final int amount;
-
-    public Money(int amount) {
+public record Money(int amount) implements Comparable<Money> {
+    public Money {
         validate(amount);
-        this.amount = amount;
     }
 
     private void validate(int amount) {
@@ -39,27 +34,7 @@ public final class Money implements Comparable<Money> {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (!(object instanceof Money otherMoney)) {
-            return false;
-        }
-        return this.amount == otherMoney.amount;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(amount);
-    }
-
-    @Override
     public int compareTo(Money otherMoney) {
         return Integer.compare(this.amount, otherMoney.amount);
-    }
-
-    public int getAmount() {
-        return amount;
     }
 }

@@ -2,9 +2,12 @@ package lotto.domain;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PurchaseAmountTest {
@@ -27,5 +30,12 @@ class PurchaseAmountTest {
                     PurchaseAmount.of(input);
                 }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구입금액은 1000원 이상이어야 합니다");
+    }
+
+    @DisplayName("로또 구매 개수 확인 테스트")
+    @ParameterizedTest
+    @CsvSource(value = {"5000,5", "6000,6", "7000,7"})
+    void getPurchaseCountTest(int input, int expected) {
+        assertThat(PurchaseAmount.of(input).getPurchaseCount()).isEqualTo(expected);
     }
 }

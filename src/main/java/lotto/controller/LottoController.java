@@ -71,8 +71,7 @@ public class LottoController {
         while (loop) {
             List<String> inputWinningNumbers = Arrays.asList(input.winningNumbers().split(LottoConfig.SPLIT_SYMBOL));
             try {
-                isNumber(inputWinningNumbers);
-                Lotto lotto = new Lotto(inputWinningNumbers.stream().map(Integer::valueOf).toList());
+                Lotto lotto = new Lotto(toNumber(inputWinningNumbers));
                 winningNumber = new WinningNumber(lotto);
                 loop = false;
             } catch (IllegalArgumentException e) {
@@ -106,6 +105,11 @@ public class LottoController {
         return Integer.parseInt(inputValue);
     }
 
+    private List<Integer> toNumber(List<String> numbers) {
+        isNumber(numbers);
+        return numbers.stream().map(Integer::valueOf).toList();
+    }
+
     private void isNumber(String number) {
         boolean hasOnlyNum = !number.isEmpty() && number.chars().allMatch(Character::isDigit);
 
@@ -114,7 +118,7 @@ public class LottoController {
         }
     }
 
-    public void isNumber(List<String> numbers) {
+    private void isNumber(List<String> numbers) {
         boolean hasOnlyNum;
 
         for (String number : numbers) {

@@ -62,4 +62,67 @@ public class CalculatorTest {
         int rank = calculator.calculatingRank(winningLotto,purchaseLotto);
         assertEquals(rank,6);
     }
+
+    @DisplayName("수익률 계산 테스트 (1등)")
+    @Test
+    void testCalculateEarningRate1(){
+        int amount = 4000;
+        List<Integer> ranks = Arrays.asList(1,6,6,6);
+        double earningRate = calculator.calculateEarningRate(amount,ranks);
+        assertEquals(earningRate,50000000);
+    }
+
+    @DisplayName("수익률 계산 테스트 (2등)")
+    @Test
+    void testCalculateEarningRate2(){
+        int amount = 4000;
+        List<Integer> ranks = Arrays.asList(2,6,6,6);
+        double earningRate = calculator.calculateEarningRate(amount,ranks);
+        assertEquals(earningRate,750000);
+    }
+
+    @DisplayName("수익률 계산 테스트 (3등)")
+    @Test
+    void testCalculateEarningRate3(){
+        int amount = 4000;
+        List<Integer> ranks = Arrays.asList(3,6,6,6);
+        double earningRate = calculator.calculateEarningRate(amount,ranks);
+        assertEquals(earningRate,37500);
+    }
+
+    @DisplayName("수익률 계산 테스트 (4등)")
+    @Test
+    void testCalculateEarningRate4(){
+        int amount = 4000;
+        List<Integer> ranks = Arrays.asList(4,6,6,6);
+        double earningRate = calculator.calculateEarningRate(amount,ranks);
+        assertEquals(earningRate,1250);
+    }
+
+    @DisplayName("수익률 계산 테스트 (5등)")
+    @Test
+    void testCalculateEarningRate5(){
+        int amount = 4000;
+        List<Integer> ranks = Arrays.asList(5,6,6,6);
+        double earningRate = calculator.calculateEarningRate(amount,ranks);
+        assertEquals(earningRate,125);
+    }
+
+    @DisplayName("수익률 계산 테스트 (꽝)")
+    @Test
+    void testCalculateEarningRate6(){
+        int amount = 4000;
+        List<Integer> ranks = Arrays.asList(6,6,6,6);
+        double earningRate = calculator.calculateEarningRate(amount,ranks);
+        assertEquals(earningRate,0);
+    }
+
+    @DisplayName("수익률 계산 테스트 (혼합1)")
+    @Test
+    void testCalculateEarningRate7(){
+        int amount = 4000;
+        List<Integer> ranks = Arrays.asList(1,2,3,4);
+        double earningRate = calculator.calculateEarningRate(amount,ranks);
+        assertEquals(earningRate,50788750);
+    }
 }

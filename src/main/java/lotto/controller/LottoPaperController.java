@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoPaperController {
-    public LottoPaper createLottoPaperWithPayment(final Payment payment) {
+    public LottoPaper purchaseLottoPaper(final Payment payment) {
         int ticketPurchaseCount = payment.ticketPurchaseCount();
         int payAmount = payment.amount();
 

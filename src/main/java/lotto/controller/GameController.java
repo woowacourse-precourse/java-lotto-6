@@ -19,24 +19,24 @@ public class GameController {
     StatisticController statisticController = new StatisticController();
 
     public LottoPaper purchaseLotto() {
-        Payment payment = paymentController.createPayment();
-        LottoPaper lottoPaper = lottoPaperController.createLottoPaperWithPayment(payment);
+        Payment payment = paymentController.processPayment();
+        LottoPaper lottoPaper = lottoPaperController.purchaseLottoPaper(payment);
         return lottoPaper;
     }
 
     public LottoResult confirmResult(LottoPaper lottoPaper) {
         LottoDraw lottoDraw = lottoController.createLottoDraw();
-        LottoResult lottoResult = lottoResultController.createLottoResult(lottoPaper, lottoDraw);
+        LottoResult lottoResult = lottoResultController.evaluateLottoResult(lottoPaper, lottoDraw);
         return lottoResult;
     }
 
     public Prize receivePrize(LottoResult lottoResult) {
-        Prize prize = prizeController.createPrizeWithLottoResult(lottoResult);
+        Prize prize = prizeController.calculatePrize(lottoResult);
         return prize;
     }
 
     public void checkYield(LottoPaper lottoPaper, Prize prize) {
-        Statistic statistic = statisticController.createStatistic(lottoPaper, prize);
+        Statistic statistic = statisticController.calculateStatistic(lottoPaper, prize);
         statisticController.printStatistic(statistic);
     }
 

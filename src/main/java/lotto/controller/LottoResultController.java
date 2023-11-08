@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoResultController {
-    public LottoResult createLottoResult(
+    public LottoResult evaluateLottoResult(
             final LottoPaper lottoPaper,
             final LottoDraw lottoDraw
     ) {

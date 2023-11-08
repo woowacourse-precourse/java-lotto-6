@@ -12,7 +12,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public final class PaymentController {
-    public Payment createPayment() {
+    public Payment processPayment() {
         OutputView.printPaymentMessage();
         Payment payment = generatePaymentFromAmount();
         return payment;

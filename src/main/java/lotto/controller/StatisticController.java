@@ -7,7 +7,7 @@ import lotto.domain.prize.Statistic;
 import lotto.view.OutputView;
 
 public class StatisticController {
-    public Statistic createStatistic(LottoPaper lottoPaper, Prize prize) {
+    public Statistic calculateStatistic(LottoPaper lottoPaper, Prize prize) {
         int payAmount = lottoPaper.amount();
         int prizeAmount = prize.amount();
         Statistic statistic = Statistic.of(payAmount, prizeAmount);

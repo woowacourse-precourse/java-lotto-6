@@ -1,5 +1,12 @@
 package lotto;
 
+import static lotto.constants.Constants.LOTTO_COUNT;
+import static lotto.constants.Constants.MIN_NUMBER;
+import static lotto.constants.Constants.MAX_NUMBER;
+import static lotto.constants.Message.LOTTO_COUNT_ERROR;
+import static lotto.constants.Message.LOTTO_DUPLICATED_ERROR;
+import static lotto.constants.Message.LOTTO_NUMBER_ERROR;
+
 import java.util.List;
 
 public class Lotto {
@@ -10,21 +17,21 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 개수 오류");
-        }
-        if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException("로또 중복 오류");
-        }
-        for (int number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("로또 내 숫자 오류");
-            }
-        }
-    }
     public List<Integer> getNumbers() {
         return this.numbers;
     }
 
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_COUNT) {
+            throw new IllegalArgumentException(LOTTO_COUNT_ERROR.getErrorMessage());
+        }
+        if (numbers.stream().distinct().count() != LOTTO_COUNT) {
+            throw new IllegalArgumentException(LOTTO_DUPLICATED_ERROR.getErrorMessage());
+        }
+        for (int number : numbers) {
+            if (number < MIN_NUMBER || number > MAX_NUMBER) {
+                throw new IllegalArgumentException(LOTTO_NUMBER_ERROR.getErrorMessage());
+            }
+        }
+    }
 }

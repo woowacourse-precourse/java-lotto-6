@@ -51,10 +51,10 @@ public class LottoCompareController {
             WinningLotto.getInstance().increaseFourSameNumLotto();
         }
         if(mathNum == 5){
-            if(bonusNum == false){
+            if(!bonusNum){
                 WinningLotto.getInstance().increaseFiveSameNumLotto();
             }
-            if(bonusNum == true){
+            if(bonusNum){
                 WinningLotto.getInstance().increaseFiveAndBonusSameNumLotto();
             }
         }

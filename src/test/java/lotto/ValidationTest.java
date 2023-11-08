@@ -18,4 +18,11 @@ public class ValidationTest extends NsTest {
         assertThatThrownBy(() -> Validator.purchasePrice(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 숫자가_아니면_예외_처리 () {
+        String input = "1000j";
+        assertThatThrownBy(() -> Validator.isNumericInput(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

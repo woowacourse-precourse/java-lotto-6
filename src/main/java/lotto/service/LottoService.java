@@ -61,17 +61,15 @@ public class LottoService {
     }
 
     public String makeWinningStaticResult(HashMap<Ranking, Integer> winningStatic) {
-        StringBuilder result = new StringBuilder();
+        List<String> result = new ArrayList<>();
 
         for (Ranking ranking : Ranking.values()) {
             if (ranking.getRank() == 6) continue;
 
-            result.append(ranking);
-            result.append(String.format(" - %d개", winningStatic.getOrDefault(ranking, 0)));
-            result.append("\n");
+            result.add(ranking + String.format(" - %d개", winningStatic.getOrDefault(ranking, 0)));
         }
 
-        return result.toString();
+        return String.join("\n", result);
     }
 
     public Double getRateOfReturn(Integer price, HashMap<Ranking, Integer> winningStatic) {

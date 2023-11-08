@@ -4,7 +4,6 @@ public enum ExceptionStatus {
     // 공통 사용자 입력 예외
     INPUT_COMMON_NOT_A_NUMBER("입력 값은 양의 정수만 허용됩니다."),
 
-
     //  구매금액 입력 예외
     PURCHASE_PRICE_EMPTY("구입 금액이 입력되지 않았습니다."),
     PURCHASE_PRICE_NOT_DIVIDED("구입 금액은 1000원 단위로 나누어 떨어져야 합니다."),
@@ -22,6 +21,9 @@ public enum ExceptionStatus {
     //  보너스 예외
     BONUS_NUMBER_INVALID("보너스 번호는 1 ~ 45 숫자만 입력 가능합니다."),
     BONUS_NUMBER_EMPTY("보너스 번호가 입력되지 않았습니다."),
+
+    INPUT_AMOUNT_OUT_RANGE("입력 범위은 1 이상, 9,223,372,036,854,775,807 미만 입니다."),
+    INPUT_AMOUNT_NOT_THOUSAND_UNIT("입력 값은 1000원 단위로 나누어 떨어져야 합니다."),
 
     ;
 

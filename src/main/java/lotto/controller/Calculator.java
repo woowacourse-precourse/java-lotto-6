@@ -38,7 +38,6 @@ public class Calculator {
             int getValue = accordance.get(overlapCount);
             subdivideKey(overlapCount, getValue);
         } catch (Exception e) {
-            return;
         }
     }
 

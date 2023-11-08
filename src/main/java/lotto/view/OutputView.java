@@ -26,7 +26,7 @@ public class OutputView {
     }
 
     public static void printLotto(Lotto lotto) {
-        System.out.println(lotto.getNumbers());
+        println(lotto.getNumbers().toString());
     }
 
     public static void printLottoStatistics(WinningStatistics winningStatistics) {

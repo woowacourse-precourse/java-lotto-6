@@ -1,11 +1,11 @@
 package lotto.domain;
 
 import java.text.DecimalFormat;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public enum  Prize {
+    FAIL(0, "꽝 "),
     THREE_MATCH(5000, "3개 일치 "),
     FOUR_MATCH(50_000, "4개 일치 "),
     FIVE_MATCH(1_500_000, "5개 일치 "),

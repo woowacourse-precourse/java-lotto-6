@@ -25,7 +25,7 @@ public class Winning extends LottoRule {
             int matchCount = getMatchNumberCount(lotto);
             boolean isMatchBonus = isContainBonusNumber(lotto);
             Prize prize = getPrize(matchCount, isMatchBonus);
-            
+
             addPrizeCount(totalPrize, prize);
         }
         return totalPrize;
@@ -97,7 +97,7 @@ public class Winning extends LottoRule {
         } else if (matchCount == 3) {
             return Prize.THREE_MATCH;
         }
-        return null;
+        return Prize.FAIL;
     }
 
     private List<Prize> getPrizesWithValueGreaterThanOne(Map<Prize, Integer> totalPrize) {

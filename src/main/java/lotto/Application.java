@@ -105,19 +105,12 @@ public class Application {
         middleProcess.recordWins(lottos, winningNumbers, bonusNumber);
 
 
-
-
-
         //당첨 통계 출력
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        //루프 리팩토링 가능?
-        System.out.printf(WinningRankPrize.FIFTH.getMatchCount() + " (%s원) - %d개%n", WinningRankPrize.FIFTH.getPrizeAmount(), WinningRankPrize.FIFTH.getWinCount());
-        System.out.printf(WinningRankPrize.FOURTH.getMatchCount() + " (%s원) - %d개%n", WinningRankPrize.FOURTH.getPrizeAmount(), WinningRankPrize.FOURTH.getWinCount());
-        System.out.printf(WinningRankPrize.THIRD.getMatchCount() + " (%s원) - %d개%n", WinningRankPrize.THIRD.getPrizeAmount(), WinningRankPrize.THIRD.getWinCount());
-        System.out.printf(WinningRankPrize.SECOND.getMatchCount() + " (%s원) - %d개%n", WinningRankPrize.SECOND.getPrizeAmount(), WinningRankPrize.SECOND.getWinCount());
-        System.out.printf(WinningRankPrize.FIRST.getMatchCount() + " (%s원) - %d개%n", WinningRankPrize.FIRST.getPrizeAmount(), WinningRankPrize.FIRST.getWinCount());
+        Print winStatisticPrint = new Print();
+        winStatisticPrint.printWinStatistic();
 
 
         //수익률 계산 & 출력
@@ -125,7 +118,6 @@ public class Application {
 
         float rateOfReturn = endProcess.calculateRateOfReturn(purchaseAmount);
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
-
 
     }
 

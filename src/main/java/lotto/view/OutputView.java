@@ -16,7 +16,7 @@ public class OutputView {
 
     public void outputLottosNumber(List<Lotto> lottos) {
         lottos.stream()
-                .map(Lotto::toStringLotto)
+                .map(Lotto::getNumbers)
                 .forEach(System.out::println);
     }
     public void showResult(Map<RouletteResult, Integer> result) {

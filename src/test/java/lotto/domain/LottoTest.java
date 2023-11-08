@@ -43,8 +43,7 @@ class LottoTest {
     @DisplayName("발행된 로또의 숫자를 오름차순으로 조회한다.")
     public void getLottoNumberTest() throws Exception {
         // given
-        ArrayList arrayList = new ArrayList(List.of(1, 2, 3, 4, 9, 5));
-        Lotto lotto = new Lotto(arrayList);
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 9, 5));
 
         // when
 

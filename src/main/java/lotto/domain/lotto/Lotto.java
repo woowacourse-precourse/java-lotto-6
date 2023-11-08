@@ -15,17 +15,12 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
     public String toStringLotto() {
-        sortNumbers();
         return numbers.toString();
     }
 
-    public void sortNumbers() {
-        numbers.stream()
+    public List<Integer> getNumbers() {
+        return numbers.stream()
                 .sorted()
                 .collect(Collectors.toList());
     }

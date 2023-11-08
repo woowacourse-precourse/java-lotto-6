@@ -45,12 +45,6 @@ public class Lotto {
         return (number < MINIMUM_OF_NUMBER_RANGE.getNumber()) || (number > MAXIMUM_OF_NUMBER_RANGE.getNumber());
     }
 
-    public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
-        if (numbers.contains(bonusNumber)) {
-            throwDuplicateException();
-        }
-    }
-
     public List<Integer> getSortedNumbers() {
         return numbers.stream().sorted().collect(Collectors.toList());
     }

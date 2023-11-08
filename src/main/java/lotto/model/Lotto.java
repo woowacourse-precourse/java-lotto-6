@@ -10,27 +10,24 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateForDuplicates(numbers);
+        validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessages.LENGTH_ERROR.getMessage());
+            throw new IllegalArgumentException();
         }
     }
 
-    private void validateForDuplicates(List<Integer> numbers) {
+    private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>(numbers);
         if (numberSet.size() != numbers.size()) {
-            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_ERROR.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_NUMBER.getMessage());
         }
     }
+
     public List<Integer> getNumbers() {
         return numbers;
-    }
-
-    public boolean containsBonusNumber(int bonusNumber) {
-        return numbers.contains(bonusNumber);
     }
 }

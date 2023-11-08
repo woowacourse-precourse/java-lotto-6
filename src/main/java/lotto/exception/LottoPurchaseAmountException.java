@@ -14,7 +14,7 @@ public class LottoPurchaseAmountException {
 
     private void isDivideThousand(String input) {
         int purchaseAmount = Integer.parseInt(input);
-        if(purchaseAmount % 1000 != 0) {
+        if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException(ERROR + CAN_DIVIDE_THOUSAND_MESSAGE);
         }
     }
@@ -22,14 +22,14 @@ public class LottoPurchaseAmountException {
     private void isNumber(String input) {
         try {
             Integer.parseInt(input);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR + IS_NUMBER_MESSAGE);
         }
 
     }
 
     private void isBlank(String input) {
-        if(input.trim().isEmpty()){
+        if (input.trim().isEmpty()) {
             throw new IllegalArgumentException(ERROR + IS_BLANK_MESSAGE);
         }
     }

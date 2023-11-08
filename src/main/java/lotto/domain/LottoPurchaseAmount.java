@@ -8,11 +8,10 @@ public class LottoPurchaseAmount {
     public LottoPurchaseAmount(String input) {
         validate(input);
         this.input = input;
-
     }
 
     private void validate(String input) {
-        LottoPurchaseAmountException lottoPurchaseAmountException = new LottoPurchaseAmountException(input);
+        new LottoPurchaseAmountException(input);
     }
 
     public int getCount() {

@@ -1,12 +1,9 @@
 package lotto;
 
 import lotto.domain.Lotto;
-import lotto.exception.LottoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -36,8 +33,8 @@ class LottoTest {
 
     @Test
     @DisplayName("로또 숫자가 오름차순이 아니면 예외처리")
-    void isAscendingOrder(){
-        assertThatThrownBy(() -> new Lotto(List.of(1,3,4,2,5,6))).isInstanceOf(
+    void isAscendingOrder() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 3, 4, 2, 5, 6))).isInstanceOf(
                 IllegalStateException.class);
     }
 

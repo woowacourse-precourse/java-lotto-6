@@ -10,8 +10,9 @@ public class Validation {
         isDivisibleByThousand(purchaseAmount);
     }
 
-    private static void isEmpty(String purchaseAmount){
-        if(purchaseAmount.isEmpty()){
+    //사용자 구입 금액 예외처리
+    private static void isEmpty(String input){
+        if(input.isEmpty()){
             throw new IllegalStateException(ExceptionMessages.IS_EMPTY.getMessage());
         }
     }

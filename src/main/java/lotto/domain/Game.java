@@ -14,23 +14,21 @@ import common.exception.InvalidArgumentException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import lotto.domain.strategy.LottoNumberStrategy;
 import lotto.domain.strategy.RandomNumberStrategy;
 import lotto.dto.LottoNumbers;
 
 public class Game {
 
-    public static final int START_INCLUSIVE = 0;
     private final LottoPurchaseAmount amount;
-    private final List<Lotto> lottoes;
+    private final Lottoes lottoes;
     private final WinningNumbers winningNumbers;
     private final LottoResult lottoResult;
 
     public Game(LottoNumberStrategy strategy) {
         strategy = settingStrategy(strategy);
         this.amount = createAmount();
-        this.lottoes = createLottoes(strategy, amount.getLottoQuantity());
+        this.lottoes = new Lottoes(strategy, amount.getLottoQuantity());
         printLottoes();
         this.winningNumbers = createNumbers();
         this.lottoResult = createLottoResult();
@@ -59,24 +57,8 @@ public class Game {
         return new LottoPurchaseAmount(amount);
     }
 
-    private List<Lotto> createLottoes(LottoNumberStrategy strategy, int number) {
-        return IntStream.range(START_INCLUSIVE, number)
-                .mapToObj(i -> createLotto(strategy))
-                .collect(Collectors.toList());
-    }
-
-    private Lotto createLotto(LottoNumberStrategy strategy) {
-        try {
-            List<Integer> numbers = strategy.createNumber();
-            return new Lotto(numbers);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return createLotto(strategy);
-        }
-    }
-
     private void printLottoes() {
-        List<LottoNumbers> lottoNumbers = lottoes.stream()
+        List<LottoNumbers> lottoNumbers = lottoes.getAllLotto().stream()
                 .map(lotto -> new LottoNumbers(lotto.getLottoNumbers()))
                 .toList();
         printLottoNumbers(lottoNumbers);
@@ -137,7 +119,7 @@ public class Game {
     }
 
     private List<ResultType> calculateLottoResult() {
-        return lottoes.stream()
+        return lottoes.getAllLotto().stream()
                 .map(lotto -> winningNumbers.matchingResult(lotto.getLottoNumbers()))
                 .collect(Collectors.toList());
     }

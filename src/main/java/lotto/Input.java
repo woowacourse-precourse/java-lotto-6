@@ -10,27 +10,27 @@ public class Input {
         PURCHASE_AMOUNT, WINNING_NUMBERS, BONUS_NUMBER;
     }
 
-    public List<Integer> input(InputType inputtype){
+    public List<Integer> input(InputType inputType){
         String inputStr;
         List<Integer> inputResult;
-        Print.printInputMessage(inputtype);
+        Print.printInputMessage(inputType);
         do {
             inputStr = Utils.input();
-            inputResult = inputTypeSelect(inputStr, inputtype);
+            inputResult = inputTypeSelect(inputStr, inputType);
         } while (inputResult == null);
         return inputResult;
     }
-    private List<Integer> inputTypeSelect(String inputStr, InputType inputType){
+    private List<Integer> inputTypeSelect(String userInput, InputType inputType){
         List<Integer> conversionResult = new ArrayList<>();
         try{
             if (inputType == InputType.PURCHASE_AMOUNT){
-                conversionResult = purchaseAmountInput(inputStr);
+                conversionResult = purchaseAmountInput(userInput);
             }
             if (inputType == InputType.BONUS_NUMBER){
-                conversionResult = bonusNumberInput(inputStr);
+                conversionResult = bonusNumberInput(userInput);
             }
             if (inputType == InputType.WINNING_NUMBERS){
-                conversionResult = winningNumbersInput(inputStr);
+                conversionResult = winningNumbersInput(userInput);
             }
         }catch(IllegalArgumentException e){
             return null;
@@ -38,23 +38,23 @@ public class Input {
         return conversionResult;
     }
 
-    public List<Integer> purchaseAmountInput(String inputStr){
+    public List<Integer> purchaseAmountInput(String purchaseInput){
         List<Integer> conversionResult = new ArrayList<>();
-        validater.inputValidation(InputType.PURCHASE_AMOUNT, inputStr);
-        conversionResult.add(Integer.parseInt(inputStr));
+        validater.inputValidation(InputType.PURCHASE_AMOUNT, purchaseInput);
+        conversionResult.add(Integer.parseInt(purchaseInput));
         return conversionResult;
     }
-    public List<Integer> bonusNumberInput(String inputStr){
+    public List<Integer> bonusNumberInput(String bonusInput){
         List<Integer> conversionResult = new ArrayList<>();
-        validater.inputValidation(InputType.BONUS_NUMBER, inputStr);
-        validater.numberIsContainedCheck(winningNumber, Integer.parseInt(inputStr));
-        conversionResult.add(Integer.parseInt(inputStr));
+        validater.inputValidation(InputType.BONUS_NUMBER, bonusInput);
+        validater.numberIsContainedCheck(winningNumber, Integer.parseInt(bonusInput));
+        conversionResult.add(Integer.parseInt(bonusInput));
         return conversionResult;
     }
-    public List<Integer> winningNumbersInput(String inputStr){
+    public List<Integer> winningNumbersInput(String winningInput){
         List<Integer> conversionResult = new ArrayList<>();
-        validater.inputValidation(InputType.WINNING_NUMBERS, inputStr);
-        for (String splited : inputStr.split(",")){
+        validater.inputValidation(InputType.WINNING_NUMBERS, winningInput);
+        for (String splited : winningInput.split(",")){
             conversionResult.add(Integer.parseInt(splited));
         }
         winningNumber = new Lotto(conversionResult);

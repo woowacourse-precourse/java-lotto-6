@@ -33,22 +33,20 @@ public class UserInput {
     }
 
     public static void winningNumbers() throws IllegalArgumentException {
-        String userInput;
-        List<Integer> winningNumbers = null;
         while (true) {
             try {
-                userInput = Console.readLine();
-                winningNumbers = Arrays.stream(userInput.split(COMMA))
+                String userInput = Console.readLine();
+                List<Integer> winningNumbers = Arrays.stream(userInput.split(COMMA))
                         .map(String::trim) // 공백 제거
                         .map(Integer::parseInt) // 정수 변환
                         .collect(Collectors.toList());
                 LottoException.validateLottoAll(winningNumbers);
+                User.setWinningNumbers(winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        User.setWinningNumbers(winningNumbers);
     }
 
     public static void bonusNumber() throws IllegalArgumentException {

@@ -23,7 +23,7 @@ public class Parser {
 
     private static void validateNull(String string) {
         if (string == null) {
-           INPUT_ONLY_NUMBER.create();
+            INPUT_ONLY_NUMBER.create();
         }
     }
 

@@ -2,13 +2,11 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static lotto.constants.DomainConstants.*;
 
-public class RandomLottoGenerator implements LottoGenerator{
+public class RandomLottoGenerator implements LottoGenerator {
 
     private RandomLottoGenerator() {
     }

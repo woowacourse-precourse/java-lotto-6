@@ -12,7 +12,7 @@ public class LottoControllerTest {
     @Test
     void buyLottoByChange(){
         LottoController lottoController = new LottoController();
-        assertThatThrownBy(()->lottoController.buyLotto();
+        assertThatThrownBy(lottoController::buyLotto);
 
     }
 

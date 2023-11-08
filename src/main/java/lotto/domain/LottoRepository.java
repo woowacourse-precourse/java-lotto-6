@@ -6,12 +6,15 @@ import java.util.List;
 public class LottoRepository {
     private final List<Lotto> lottoRepository;
 
-    public LottoRepository(List<Lotto> lottoList){
-        this.lottoRepository = lottoList;
+    public LottoRepository(){
+        lottoRepository = new ArrayList<>();
     }
 
     public List<Lotto> getLottoRepository() {
         return lottoRepository;
+    }
+    public void addOne(Lotto lotto){
+        lottoRepository.add(lotto);
     }
 
 }

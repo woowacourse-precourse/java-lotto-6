@@ -6,5 +6,6 @@ public class LottoConstraint {
 
     public static final Integer LOTTO_LENGTH = 6;
 
+    public static final Integer MIN_PRICE = 1000;
 
 }

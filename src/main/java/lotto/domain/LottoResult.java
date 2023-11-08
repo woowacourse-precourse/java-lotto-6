@@ -24,13 +24,13 @@ public class LottoResult {
         return bonusCheck;
     }
 
-    private final int bounsNumber;
+    private final int bonusNumber;
 
     public LottoResult(List<Integer> numbers, List<List<Integer>> randomNumbers, int lottoPurchaseCnt, int bonusNumber) {
         this.lottoPurchaseCnt = lottoPurchaseCnt;
         this.numbers = numbers;
         this.randomNumbers = randomNumbers;
-        this.bounsNumber = bonusNumber;
+        this.bonusNumber = bonusNumber;
 
         this.lottoResult = cmpLotto();
         this.bonusCheck = bounusNumberCheck();
@@ -59,7 +59,7 @@ public class LottoResult {
         for(int i = 0; i < lottoPurchaseCnt; i++) {
             boolean result = false;
             for (int j = 0; j < 6; j++) {
-                if (Objects.equals(bounsNumber, randomNumbers.get(i).get(j))) {
+                if (Objects.equals(bonusNumber, randomNumbers.get(i).get(j))) {
                     result = true;
                 }
             }

@@ -80,7 +80,7 @@ public class LottoSystem {
     private int getMatchingNumberCount(Lotto winningLotto) {
         return (int) winningLotto.getLottoNumbers()
                 .stream()
-                .filter(winningLottoNumber -> player.getLotto().getLottoNumbers().contains(winningLottoNumber))
+                .filter(winningLottoNumber -> player.getLotto().getIntegerNumber().contains(winningLottoNumber.getLottoNumber()))
                 .count();
     }
 

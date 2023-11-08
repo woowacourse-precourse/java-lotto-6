@@ -15,7 +15,6 @@ public class LottoTicket {
     public List<String> makeLottoToString() {
         List<String> lottoInventory = new ArrayList<>();
         for (Lotto lotto : lottoTicket) {
-            lotto.sort();
             lottoInventory.add(lotto.toString());
         }
         return lottoInventory;

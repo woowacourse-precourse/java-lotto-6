@@ -1,36 +1,25 @@
 package lotto;
 
+import java.util.List;
+
 public class LottoController {
+    private final LottoView view;
+    private final LottoMachine machine;
 
-    private final LottoMachine lottoMachine = new LottoMachine();
-    private final LottoView view = new LottoView();
-
-    public void start() {
-        try {
-            int purchaseAmount = view.getPurchaseAmount();
-            List<Lotto> lottos = lottoMachine.generateLottos(purchaseAmount);
-            view.printLottos(lottos);
-
-            List<Integer> winningNumbers = view.getWinningNumbers();
-            int bonusNumber = view.getBonusNumber();
-
-            LottoResult result = calculateResult(lottos, winningNumbers, bonusNumber);
-            view.printResult(result);
-
-            double profitRate = calculateProfitRate(purchaseAmount, result.getTotalPrize());
-            view.printProfitRate(profitRate);
-
-        } catch (IllegalArgumentException e) {
-            view.printError(e.getMessage());
-        }
+    public LottoController(LottoView view, LottoMachine machine) {
+        this.view = view;
+        this.machine = machine;
     }
 
-    private LottoResult calculateResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        // 결과 계산 로직
-        return new LottoResult();
-    }
+    public void playLottoGame() {
+        int purchaseAmount = view.getPurchaseAmount();
+        List<Lotto> lottos = machine.purchaseLottos(purchaseAmount);
+        view.displayLottos(lottos);
 
-    private double calculateProfitRate(int purchaseAmount, long totalPrize) {
-        return (totalPrize / (double) purchaseAmount) * 100;
+        Lotto winningLotto = view.getWinningLotto();
+        int bonusNumber = view.getBonusNumber();
+
+        LottoResult result = machine.checkResults(lottos, winningLotto, bonusNumber);
+        view.displayResults(result);
     }
 }

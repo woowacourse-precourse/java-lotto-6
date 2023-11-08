@@ -1,11 +1,13 @@
 package lotto.domain;
 
+import java.util.Arrays;
+
 public class Stats {
     private static final int PRIZE_SIZE = 6;
 
-    public static final int[] prizeArray = new int[PRIZE_SIZE];
-    public static long purchased;
-    public static long earned = 0;
+    private static final int[] prizeArray = new int[PRIZE_SIZE];
+    private static long purchased;
+    private static long earned = 0;
 
     public static void setPurchased(int amount) {
         Stats.purchased = amount * 1000;
@@ -29,5 +31,11 @@ public class Stats {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + prizeArray[LottoPrize.SECOND_PRIZE.ordinal()] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + prizeArray[LottoPrize.FIRST_PRIZE.ordinal()] + "개");
         System.out.println("총 수익률은 " + calculateRate() + "%입니다.");
+    }
+
+    public static void clear() {
+        Arrays.fill(prizeArray, 0);
+        purchased = 0;
+        earned = 0;
     }
 }

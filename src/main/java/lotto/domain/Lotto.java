@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.utils.NumberGenerator;
 
@@ -24,8 +26,16 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 숫자는 6개여야 합니다.");
         }
+        if (isDuplicate(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 로또 숫자가 중복입니다.");
+        }
+    }
+
+    private boolean isDuplicate(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>(numbers);
+        return set.size() != numbers.size();
     }
 
     public boolean checkBonusballContain(LottoNumber bonusBall) {

@@ -5,7 +5,6 @@ import lotto.Lotto;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,28 +23,19 @@ public class ConsoleUI implements UI {
 
     @Override
     public int inputPurchaseAmount() {
-        int purchaseAmount = 0;
-        boolean isValid = false;
-        while (!isValid) {
             try {
-                purchaseAmount = validateInputPurchaseAmount();
-                isValid = true;
+                int purchaseAmount = validateInputPurchaseAmount();
+                return purchaseAmount;
             } catch (NumberFormatException numberFormatException) {
-                System.err.println("[ERROR] 값은 정수로 입력해야 합니다.");
-            } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                throw new IllegalArgumentException("[ERROR] 값은 정수로 입력해야 합니다.");
             }
-        }
-        return purchaseAmount;
     }
 
 
     @Override
     public void outputPurchaseLottoNumbers(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
-        lottos.forEach(lotto -> {
-            System.out.println(lotto);
-        });
+        lottos.forEach(System.out::println);
     }
 
     @Override
@@ -55,23 +45,12 @@ public class ConsoleUI implements UI {
 
     @Override
     public List<Integer> inputWinningNumbers() {
-        List<Integer> winningNumbers = new LinkedList<>();
-
-        boolean isValid = false;
-
-        while (!isValid) {
-
             try {
-                winningNumbers = validateInputWinningNumbers();
-                isValid = true;
+                List<Integer> winningNumbers = validateInputWinningNumbers();
+                return winningNumbers;
             } catch (NumberFormatException e) {
-                System.err.println("[ERROR] 값은 정수로 입력해야 합니다.");
-            } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                throw new IllegalArgumentException("[ERROR] 값은 정수로 입력해야 합니다.");
             }
-
-        }
-        return winningNumbers;
     }
 
 
@@ -84,19 +63,12 @@ public class ConsoleUI implements UI {
 
     @Override
     public int inputBonusNumber(List<Integer> winningNumbers) {
-        int bounusNumber = 0;
-        boolean isValid = false;
-        while (!isValid) {
             try {
-                bounusNumber = validateInputBonusNumber(winningNumbers);
-                isValid = true;
+                int bounusNumber = validateInputBonusNumber(winningNumbers);
+                return bounusNumber;
             } catch (NumberFormatException numberFormatException) {
-                System.err.println("[ERROR] 값은 정수로 입력해야 합니다.");
-            } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
-            }
+                throw new IllegalArgumentException("[ERROR] 값은 정수로 입력해야 합니다.");
         }
-        return bounusNumber;
     }
 
 
@@ -110,7 +82,7 @@ public class ConsoleUI implements UI {
         System.out.println("3개 일치 (5,000원) - " + matchThree + '개');
         System.out.println("4개 일치 (50,000원) - " + matchFour + '개');
         System.out.println("5개 일치 (1,500,000원) - " + matchFive + '개');
-        System.out.println("5개 일치, 보너스 일치 (30,000,000원) - " + matchFiveIncludeBonus + '개');
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchFiveIncludeBonus + '개');
         System.out.println("6개 일치 (2,000,000,000원) - " + matchSix + '개');
         System.out.println("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
     }

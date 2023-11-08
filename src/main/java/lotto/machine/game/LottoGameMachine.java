@@ -10,6 +10,10 @@ public class LottoGameMachine implements LottoGameMachineInterface {
     private final UI ui;
     private final RandomsProvider randomsProvider;
 
+    private List<Integer> winningNumbers;
+    private int purchaseAmount;
+    private int bonusNumber;
+
     public LottoGameMachine(UI ui, RandomsProvider randomsProvider) {
         this.ui = ui;
         this.randomsProvider = randomsProvider;
@@ -20,12 +24,10 @@ public class LottoGameMachine implements LottoGameMachineInterface {
 
         // 당첨 Lotto
         Lotto winningLotto;
-        // 보너스 숫자
-        int bonusNumber;
 
         // 구매
         ui.requirePurchaseView();
-        int purchaseAmount = ui.inputPurchaseAmount();
+        inputPurchaseNumberIncludeValidate();
 
         // 가격만큼 Lotto 구매
         int count = purchaseAmount / 1000;
@@ -36,13 +38,14 @@ public class LottoGameMachine implements LottoGameMachineInterface {
 
         // 당첨 번호 입력
         ui.requireWinningNumbers();
-        List<Integer> winningNumbers = ui.inputWinningNumbers();
+        inputWinningNumbersIncludeValidate();
+
         // 번호를 Lotto로 전환
         winningLotto = new Lotto(winningNumbers);
 
         // 보너스 번호 입력
         ui.requireBonusNumber();
-        bonusNumber = ui.inputBonusNumber(winningNumbers);
+        inputBonusNumberIncludeValidate();
 
         // 당첨 결과
         Map<Integer, Integer> winningCountsByRank = findWinningCountsByRank(winningLotto, bonusNumber, byingLottos);
@@ -80,11 +83,7 @@ public class LottoGameMachine implements LottoGameMachineInterface {
     }
 
     private Lotto randomLottoPick() {
-        Set<Integer> lottoExceptOverlap = new HashSet<>();
-        while (lottoExceptOverlap.size() != 6) {
-            lottoExceptOverlap.add(randomsProvider.pickNumberInRange(1, 45));
-        }
-        return new Lotto(lottoExceptOverlap.stream().toList());
+            return new Lotto(randomsProvider.pickUniqueNumbersInRange(1, 45, 6));
     }
 
     private Map<Integer, Integer> findWinningCountsByRank(Lotto winningLotto, int bonusNumber, List<Lotto> byingLottos) {
@@ -106,5 +105,31 @@ public class LottoGameMachine implements LottoGameMachineInterface {
         return winningCount;
     }
 
+    private void inputPurchaseNumberIncludeValidate() {
+        try {
+            purchaseAmount = ui.inputPurchaseAmount();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputPurchaseNumberIncludeValidate();
+        }
+    }
+
+    private void inputWinningNumbersIncludeValidate() {
+        try {
+            winningNumbers = ui.inputWinningNumbers();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputWinningNumbersIncludeValidate();
+        }
+    }
+
+    private void inputBonusNumberIncludeValidate() {
+        try{
+            bonusNumber = ui.inputBonusNumber(winningNumbers);
+        } catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputBonusNumberIncludeValidate();
+        }
+    }
 
 }

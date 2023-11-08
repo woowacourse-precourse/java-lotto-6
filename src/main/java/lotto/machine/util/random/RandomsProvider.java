@@ -1,5 +1,7 @@
 package lotto.machine.util.random;
 
+import java.util.List;
+
 public interface RandomsProvider {
-    int pickNumberInRange(int startInclusive, int endInclusive);
+    List<Integer> pickUniqueNumbersInRange(int startInclusive, int endInclusive, int count);
 }

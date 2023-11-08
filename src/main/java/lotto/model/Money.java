@@ -1,6 +1,5 @@
 package lotto.model;
 
-import lotto.exception.MoneyException;
 import lotto.exception.MoneyException.MoneyFormatException;
 import lotto.exception.MoneyException.MoneyUnitException;
 import lotto.exception.MoneyException.MoneyZeroException;

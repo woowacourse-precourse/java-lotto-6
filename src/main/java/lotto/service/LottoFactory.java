@@ -3,7 +3,6 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import lotto.exception.LottoException.LottoNumberDuplicateException;
 import lotto.exception.LottoException.LottoNumberFormatException;

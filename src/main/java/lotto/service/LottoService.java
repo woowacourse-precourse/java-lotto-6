@@ -26,7 +26,7 @@ public class LottoService {
         return validateAmountResponseDto.getLottoCount();
     }
     public List<Integer> inputLottoNum(){
-        System.out.println("당첨 번호를 입력하세요.");
+        System.out.println("당첨 번호를 입력해주세요.");
         List<Integer> winningLottoNumbers = new ArrayList<>();
         String inputStr = Console.readLine();
         String[] input = inputStr.split(",");
@@ -50,7 +50,7 @@ public class LottoService {
         return lottoNumbers;
     }
     public int getBonusNum(){
-        System.out.println("당첨 번호를 입력하세요.");
+        System.out.println("보너스 번호를 입력해주세요.");
         String inputStr = Console.readLine();
         int bonusNum = validateBonusNum(inputStr);
         return bonusNum;

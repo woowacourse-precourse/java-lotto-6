@@ -17,4 +17,9 @@ public class WinningLotto {
         return bonusNumber;
     }
 
+    public LottoRank makeRank(Lotto lotto) {
+        int matchCount = lotto.checkMatchCount(winningNumbers);
+        boolean matchBonus = lotto.contains(bonusNumber);
+        return LottoRank.belongedToRank(matchCount, matchBonus);
+    }
 }

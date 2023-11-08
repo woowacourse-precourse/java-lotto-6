@@ -54,11 +54,12 @@ class HandlingTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("변환하는 값이 양수가 아닐 때, 예외 처리")
-    @Test
-    void parseNumbersByNotPositiveNumber() {
+    @DisplayName("변환하는 값이 정수가 아닐 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"1.5,2,3,4,5,6", "1,2,3,4,5,6.0"})
+    void parseNumbersByNotPositiveNumber(String userInput) {
         // given
-        List<String> lotto = List.of("1.5", "2", "3", "4", "5", "6");
+        List<String> lotto = List.of(userInput);
 
         // when, then
         assertThatThrownBy(() -> Handling.parseNumbers(lotto))
@@ -77,7 +78,7 @@ class HandlingTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("변환하는 값앞에 0이 붙을 때, 예외 처리")
+    @DisplayName("변환하는 값 앞에 0이 붙을 때, 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"01,2,3,4,5,6", "010"})
     void parseNumbersByFirstNumberZero(String userInput) {

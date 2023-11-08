@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.exception.OverRangeBonusNumberException;
 import lotto.message.ExceptionMessage;
+import lotto.message.NumberUsedLotto;
 
 public class BonusNumber {
     private final int number;
@@ -12,7 +13,8 @@ public class BonusNumber {
     }
 
     private void validateRange(int number) {
-        if (number > 45 || number < 0) {
+        if (number > NumberUsedLotto.MAX_LANGE.getNumber()
+                || number < NumberUsedLotto.MIN_RANGE.getNumber()) {
             String exceptionMessage = ExceptionMessage.IS_OVER_RANGE_BONUS.toString();
             throw new OverRangeBonusNumberException(exceptionMessage);
         }

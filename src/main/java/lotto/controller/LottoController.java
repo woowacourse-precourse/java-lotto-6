@@ -70,7 +70,7 @@ public class LottoController {
         }
     }
 
-    private void getLottoResults(List<Integer> winningNumbers, List<Lotto> lottos, int bonusNumber) {
+    public Map<LottoResultFormat, Integer> getLottoResults(List<Integer> winningNumbers, List<Lotto> lottos, int bonusNumber) {
         LottoResult lottoResult = new LottoResult();
         int matchCount = 0;
 
@@ -88,6 +88,7 @@ public class LottoController {
         OutputView.LottoResults(lottoResult.getLottoResultHashMap());
 
         calculateReturnOnLotto(lottoResult.getLottoResultHashMap(), amount);
+        return lottoResult.getLottoResultHashMap();
     }
 
     private boolean isMatchBonus(Lotto lotto, int bonusNumber) {

@@ -38,7 +38,9 @@ public class Lotto {
     }
 
     private List<Integer> getSortedNumbers(final List<Integer> numbers) {
-        return numbers.stream().sorted().toList();
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 
     private void validateSize(final List<Integer> numbers) {

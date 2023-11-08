@@ -5,37 +5,46 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
+    private List<Lotto> lottos;
+    private Lotto winningNumber;
+    private int bonusNumber;
     private final Map<LottoRank, Integer> result;
 
-    public LottoResult() {
+    public LottoResult(List<Lotto> lottos, Lotto winningNumber, int bonusNumber) {
+        this.lottos = lottos;
+        this.winningNumber = winningNumber;
+        this.bonusNumber = bonusNumber;
         this.result = new HashMap<>();
 
         for (LottoRank rank : LottoRank.values()) {
             result.put(rank, 0);
         }
-    }
-
-    public void record(LottoRank rank) {
-        result.put(rank, result.get(rank) + 1);
-    }
-
-    public int getCount(LottoRank rank) {
-        return result.get(rank);
+        createResult();
     }
 
     public Map<LottoRank, Integer> getResult() {
         return result;
     }
 
-    public long getTotalAmount() {
+    public double getProfitPercentage(int purchasePrice) {
+        long totalAmount = getTotalAmount();
+        return (double) totalAmount / purchasePrice;
+    }
+
+    private void record(LottoRank rank) {
+        result.put(rank, result.get(rank) + 1);
+    }
+
+    private void createResult() {
+        for (Lotto lotto: lottos) {
+            LottoRank rank = lotto.checkRank(winningNumber, bonusNumber);
+            record(rank);
+        }
+    }
+
+    private long getTotalAmount() {
         return result.entrySet().stream()
                 .mapToLong(entry -> (long) entry.getKey().getWinnings() * entry.getValue())
                 .sum();
-    }
-
-    public double getProfitPercentage(int purchasePrice) {
-        long totalAmount = getTotalAmount();
-        System.out.println(totalAmount);
-        return (double) totalAmount / purchasePrice;
     }
 }

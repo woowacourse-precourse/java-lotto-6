@@ -1,15 +1,14 @@
 package lotto;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers); // 수정 가능한 리스트 복사본 생성
+        Collections.sort(this.numbers); // 이제 정렬할 수 있음
     }
 
     private void validate(List<Integer> numbers) {

@@ -24,4 +24,13 @@ public class LottoMachine {
         return new Lottos(lottos);
     }
 
+    public LottoStatistic getLottoStatistic(Lottos lottos, WinningNumber winningNumber) {
+        LottoStatistic lottoStatistic = new LottoStatistic();
+        for (Lotto lotto : lottos.getLottos()) {
+            LottoResult result = winningNumber.compare(lotto);
+            lottoStatistic.addLottoResult(result);
+        }
+        return lottoStatistic;
+    }
+
 }

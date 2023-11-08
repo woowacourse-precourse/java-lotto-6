@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.domain.lotto.LottoCount;
 import lotto.domain.lotto.LottoMachine;
+import lotto.domain.lotto.LottoStatistic;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.Price;
 import lotto.domain.lotto.WinningNumber;
@@ -29,6 +30,10 @@ public class LottoProgram {
         Lottos lottos = lottoMachine.createLottoNumbers(count);
         consoleManager.printLottos(lottos);
 
-        WinningNumber winningLotto = consoleManager.getWinningNumber();
+        WinningNumber winningNumber = consoleManager.getWinningNumber();
+
+        LottoStatistic lottoStatistic = lottoMachine.getLottoStatistic(lottos, winningNumber);
+        consoleManager.printLottoStatistic(lottoStatistic);
+
     }
 }

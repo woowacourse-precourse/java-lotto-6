@@ -3,8 +3,11 @@ package lotto.io;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoCount;
+import lotto.domain.lotto.LottoResult;
 
+import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Map;
 
 import static lotto.io.LottoMessage.*;
 
@@ -59,6 +62,29 @@ public class View implements InputView, OutputView {
         }
 
         System.out.println(lottoNumber.toString());
+    }
+
+    @Override
+    public void printLottoStatistic(Map<LottoResult, Integer> lottoResultMap) {
+        StringBuilder statistic = new StringBuilder();
+        statistic.append(LOTTO_STATISTIC_MESSAGE.getMessage());
+        for (LottoResult key : lottoResultMap.keySet()) {
+            if (key.isLose()) continue;
+
+            statistic.append(String.format(SAME_NUMBER_COUNT_MESSAGE.getMessage(), key.getHitNumberCount()));
+            if (key.getHasBonus()) {
+                statistic.append(BONUS_NUMBER_MESSAGE.getMessage());
+            }
+            statistic.append(String.format(WINNER_PRICE_MESSAGE.getMessage(), toMoneyFormat(key.getPrizeMoney())));
+            statistic.append(String.format(TOTAL_COUNT_MESSAGE.getMessage(), lottoResultMap.get(key)));
+
+        }
+        System.out.println(statistic);
+    }
+
+    private String toMoneyFormat(int money) {
+        DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT.getMessage());
+        return decimalFormat.format(money);
     }
 
 }

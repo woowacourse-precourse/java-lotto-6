@@ -3,6 +3,7 @@ package lotto.io;
 import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoCount;
+import lotto.domain.lotto.LottoStatistic;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.Price;
 import lotto.domain.lotto.WinningNumber;
@@ -71,4 +72,7 @@ public class ConsoleManager {
         view.printPurchaseLottos(lottos.getLottos());
     }
 
+    public void printLottoStatistic(LottoStatistic lottoStatistic) {
+        view.printLottoStatistic(lottoStatistic.getAnswer());
+    }
 }

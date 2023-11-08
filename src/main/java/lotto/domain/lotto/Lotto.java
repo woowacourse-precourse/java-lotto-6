@@ -24,6 +24,16 @@ public class Lotto {
         return numbers.size();
     }
 
+    public int getHitCount(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::isContainNumber)
+                .count();
+    }
+
+    public boolean isContainNumber(int number) {
+        return this.numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         validateLottoSize(numbers);
         validateLottoInRange(numbers);

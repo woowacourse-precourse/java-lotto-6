@@ -64,6 +64,8 @@ public class Controller {
     }
 
     public void PrintResult(double rate){
+        IO.printRanking(LottoRank.values());
+        IO.printRate(rate);
     }
 
 }

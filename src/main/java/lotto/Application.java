@@ -3,6 +3,7 @@ package lotto;
 import lotto.generator.Bonus;
 import lotto.generator.Purchase;
 import lotto.generator.LottoTicket;
+import lotto.generator.WinningNumber;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ public class Application {
         List<List<Integer>> ticketBundle = LottoTicket.lottoTicket(count);
 
         LottoTicket.printTickets(ticketBundle);
+
+        List<Integer> winningNumbers = WinningNumber.getWinningNumber();
 
         int bonusNumber = Bonus.getBonus();
     }

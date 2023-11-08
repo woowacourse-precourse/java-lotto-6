@@ -28,7 +28,7 @@ public class Purchase {
         int purchaseUnit = PurchaseUnit.THOUSAND.getValue();
         for (int i = 0; i < purchaseAmount / purchaseUnit; i++) {
             numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Util.sortList(numbers);
+            numbers = Util.sortList(numbers);
 
             lotto = new Lotto(numbers);
             lottos.add(lotto);

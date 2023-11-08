@@ -2,8 +2,8 @@ package lotto.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Util {
 
@@ -13,7 +13,7 @@ public class Util {
 
     public static List<String> stringToStringList(String str) {
         String[] strs = str.split(",");
-        return Arrays.asList(strs);
+        return new ArrayList<>(Arrays.asList(strs));
     }
 
     public static List<Integer> stringToSortedIntegerList(String str) {
@@ -25,13 +25,13 @@ public class Util {
             integers.add(integer);
         }
 
-        sortList(integers);
+        integers = sortList(integers);
 
         return integers;
     }
 
-    public static void sortList(List<Integer> list) {
-        Collections.sort(list);
+    public static List<Integer> sortList(List<Integer> list) {
+        return list.stream().sorted().collect(Collectors.toList());
     }
 
 }

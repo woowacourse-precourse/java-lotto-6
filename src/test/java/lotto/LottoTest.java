@@ -1,5 +1,8 @@
 package lotto;
 
+import static lotto.utils.ConstantValues.MAX_LOTTO_NUMBER;
+import static lotto.utils.ConstantValues.MIN_LOTTO_NUMBER;
+import static lotto.utils.ErrorMessages.LOTTO_NUMBER_OUT_OF_RANGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -7,6 +10,8 @@ import java.util.List;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 // domain 패키지 밑에 있는 것이 자연스럽지만 LottoTest의 패키지 이동에 대한 설명이 없으므로 그대로 두었습니다.
 class LottoTest {
@@ -22,6 +27,15 @@ class LottoTest {
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호에 1~45사이가 아닌 숫자가 있으면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 0, 46})
+    void createLottoByOverRangeOfNumber(int number) {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, number)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(String.format(LOTTO_NUMBER_OUT_OF_RANGE, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER));
     }
 
     @DisplayName("로또 번호에 특정 번호가 포함되어 있는지 검사한다.")

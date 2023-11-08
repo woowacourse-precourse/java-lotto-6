@@ -1,7 +1,20 @@
 package lotto.validation;
 
-public interface Validation {
+import java.util.Arrays;
+import java.util.List;
 
-    void validate(String object);
+public class Validation {
+
+    protected List<ValidationCondition> validationConditions;
+
+    public Validation(ValidationCondition... validationConditions){
+        this.validationConditions = Arrays.asList(validationConditions);
+    }
+
+    public void validate(Object object){
+        for (ValidationCondition condition : validationConditions) {
+            condition.isSatisfiedBy(object);
+        }
+    }
 
 }

@@ -60,19 +60,10 @@ public class Input {
     private void outputLottos() {
         StringBuilder lottosNumber = new StringBuilder();
         for (List<Integer> lotto : lottos) {
-            lottosNumber.append("[");
-            appendNumber(lotto, lottosNumber);
-            lottosNumber.append("]\n");
+            lottosNumber.append(lotto+"\n");
         }
+        System.out.println(lottosNumber);
     }
 
-    private void appendNumber(List<Integer> lotto, StringBuilder lottosNumber) {
-        for (int i = 0; i < lotto.size(); i++) {
-            if (i == lotto.size() - 1) {
-                lottosNumber.append(i);
-                return;
-            }
-            lottosNumber.append(i+", ");
-        }
-    }
+
 }

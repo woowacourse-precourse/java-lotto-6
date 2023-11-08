@@ -2,7 +2,6 @@ package lotto.core;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import lotto.core.calculator.Calculator;
 import lotto.core.exception.LottoApplicationException;
@@ -61,7 +60,7 @@ public class LottoStore {
             ScratchedLottoTicketList scratchedLottoTicketList = lottoSystem.calculateWinningChart(lottoTickets,
                     winningNumbers, bonusNumber);
 
-            ConsoleOutputManager.printOut( lottoSystem.printWinningChart(amountToQuantity, scratchedLottoTicketList));
+            ConsoleOutputManager.printOut(lottoSystem.printWinningChart(amountToQuantity, scratchedLottoTicketList));
         } finally {
             this.close();
         }

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
@@ -16,5 +16,17 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public int[] convertArray() {
+        return numbers.stream()
+                .mapToInt(Integer::intValue)
+                .toArray();
+    }
+
+    public boolean contain(int bonusNum) {
+        return numbers.contains(bonusNum);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

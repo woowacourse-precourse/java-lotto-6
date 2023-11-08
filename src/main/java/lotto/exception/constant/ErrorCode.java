@@ -1,0 +1,18 @@
+package lotto.exception.constant;
+
+public enum ErrorCode {
+    INVALID_NUMBER_REGEX("[ERROR] 숫자만 입력해야 합니다."),
+    INVALID_LOTTO_PURCHASE("[ERROR] 1000원 단위로 입력해야 합니다."),
+    INVALID_LOTTO_NUMBER("[ERROR] 1부터 45까지의 숫자만 입력할 수 있습니다."),
+    DUPLICATED_LOTTO_NUMBER("[ERROR] 당첨 번호는 중복될 수 없습니다."),
+    ALREADY_DRAW_NUMBER("[ERROR] 이미 당첨 번호로 뽑은 번호입니다.");
+    private final String message;
+
+    ErrorCode(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+}

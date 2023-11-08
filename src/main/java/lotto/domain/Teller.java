@@ -126,7 +126,7 @@ public class Teller {
 
   public void showTotalWin(Double awardPercent) {
     System.out.print(Speaker.PROFIT.speak());
-    DecimalFormat df = new DecimalFormat("#.0");
+    DecimalFormat df = new DecimalFormat("0.0");
     System.out.print(df.format(awardPercent));
     System.out.println(Speaker.PROFITEND.speak());
   }

@@ -1,7 +1,10 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,6 +17,15 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+        Set<Integer> uniqueNumbers = new HashSet<Integer>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException();
+        }
+        for (Integer number : numbers) {
+            if(number < 1 || number > 45) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 
@@ -32,7 +44,11 @@ public class Lotto {
     }
 
     public String toString() {
-        Collections.sort(numbers);
-        return numbers.toString();
+        ArrayList<Integer> sortedNumbers = new ArrayList();
+        for (Integer number : numbers) {
+            sortedNumbers.add(number);
+        }
+        Collections.sort(sortedNumbers);
+        return sortedNumbers.toString();
     }
 }

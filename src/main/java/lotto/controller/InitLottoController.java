@@ -9,6 +9,7 @@ import java.util.List;
 public class InitLottoController {
 
     private LottoService lottoService = new LottoService();
+
     public List<Lotto> runInitLotto(int ticketNumber){
         return processLottoNumber(ticketNumber);
     }

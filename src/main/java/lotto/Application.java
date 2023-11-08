@@ -117,22 +117,41 @@ public class Application {
     }
 
     private static List<Integer> generateRandomNumbers() {
-        Set<Integer> numbers;
-        do{
-            numbers = new HashSet<>();
-            for (int i=0; i<LOTTO_NUMBER_COUNT; i++){
-                int randomNumber = Randoms.pickNumberInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER);
-                numbers.add(randomNumber);
-            }
-        }while (numbers.size() < LOTTO_NUMBER_COUNT);
-        List<Integer> result = new ArrayList<>(numbers);
-        Collections.sort(result);
-        return result;
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_NUMBER_COUNT));
+        Collections.sort(numbers);
+        System.out.println(numbers);
+        return numbers;
     }
 
     public static void calculateRes(){
         for(Lotto lotto: lottos){
-            System.out.println(lotto);
+            long count = lotto.getNumbers().stream()
+                    .filter(answer.getNumbers()::contains)
+                    .count();
+            boolean isContainBonus = lotto.getNumbers().contains(bonusNum);
+            winngResIncrese(count, isContainBonus);
+        }
+    }
+
+    private static void winngResIncrese(long count, boolean isContainBonus){
+        if (count == 3){
+            WinningResult.THREE_MATCH.incrementCount();
+            return;
+        }
+        if (count == 4){
+            WinningResult.THREE_MATCH.incrementCount();
+            return;
+        }
+        if (count == 6){
+            WinningResult.THREE_MATCH.incrementCount();
+            return;
+        }
+        if (count == 5 && !isContainBonus){
+            WinningResult.FIVE_MATCH.incrementCount();
+            return;
+        }
+        if (count == 5 && isContainBonus){
+            WinningResult.BONUS_MATCH.incrementCount();
         }
     }
 }

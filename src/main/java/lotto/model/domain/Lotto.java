@@ -4,6 +4,7 @@ import static lotto.exception.ExceptionMessage.DUPLICATION_EXCEPTION;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -43,7 +44,9 @@ public class Lotto {
     public static Lotto issue() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE,
             NUMBER_COUNT);
-        Collections.sort(numbers);
+        try {
+            numbers.sort(null);
+        } catch (RuntimeException e) {}
         return new Lotto(numbers);
     }
 

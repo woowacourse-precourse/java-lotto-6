@@ -27,6 +27,13 @@ public class LottoBatch {
         return false;
     }
 
-    
+
+    public List<String> toStrings(){
+        return lottos.stream().map(Lotto::toString).collect(Collectors.toList());
+    }
+
+    public List<Lotto> getLottos(){
+        return lottos;
+    }
 
 }

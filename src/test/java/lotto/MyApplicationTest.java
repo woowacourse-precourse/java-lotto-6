@@ -6,7 +6,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class MyApplicationTest extends NsTest {
 
@@ -75,6 +78,39 @@ class MyApplicationTest extends NsTest {
             assertThat(output()).contains("[ERROR] 반드시 숫자로만 입력해야 합니다.");
         });
     }
+
+    @ParameterizedTest
+    @DisplayName("돈 입력의 모든 에러 경우 메세지가 [ERROR]를 포함하고 있는지 확인합니다.")
+    @ValueSource(strings = {"\n", " ", "1000j"})
+    void contain_ERROR_input_Money(String target) {
+        assertSimpleTest(() -> {
+            runException(target);
+            assertThat(output()).contains("[ERROR]");
+        });
+    }
+
+    @ParameterizedTest
+    @DisplayName("로또 6자리 입력의 모든 에러 경우 메세지가 [ERROR]를 포함하고 있는지 확인합니다.")
+    @ValueSource(strings = {"\n", " ", "1,2,3,4,5,k", ",1,2,3,4,5,6", "1,2,3,4,5,6,", "1,2,3,4,5", "1,2,3,4,5,46",
+            "0,1,2,3,4,5",
+            "1,1,2,3,4,5"})
+    void contain_ERROR_input_Lotto(String target) {
+        assertSimpleTest(() -> {
+            runException("5000", target);
+            assertThat(output()).contains("[ERROR]");
+        });
+    }
+
+    @ParameterizedTest
+    @DisplayName("보너스 번호 입력의 모든 에러 경우 메세지가 [ERROR]를 포함하고 있는지 확인합니다.")
+    @ValueSource(strings = {"\n", " ", "k", ",1,2", "0", "46", "1"})
+    void contain_ERROR_input_Bonus(String target) {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", target);
+            assertThat(output()).contains("[ERROR]");
+        });
+    }
+
 
     @Override
     public void runMain() {

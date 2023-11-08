@@ -55,12 +55,13 @@ public class InputView {
         checkInputEmpty(input);
         checkInputBlank(input);
         checkInputDigit(input);
-        checkInvalidComma(input);
+
     }
 
     private void validateLottoNumber(String input) {
         checkInputEmpty(input);
         checkInputBlank(input);
+        checkInvalidComma(input);
     }
 
     private void validateBonusNumber(String input) {

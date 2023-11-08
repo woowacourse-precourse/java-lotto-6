@@ -13,6 +13,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.constants.ErrorMessage.*;
+
 public class LottoManager {
 
 
@@ -50,11 +52,11 @@ public class LottoManager {
 
     private void validatePayAmount(int payMoney) {
         if (payMoney < Value.LOTTO_TICKET_PRICE) {
-            throw new IllegalArgumentException(ErrorMessage.PAY_MONEY_RANGE.getMessage());
+            throw new IllegalArgumentException(PAY_MONEY_RANGE_ERROR.getMessage());
         }
 
         if ((payMoney % Value.LOTTO_TICKET_PRICE) != 0) {
-            throw new IllegalArgumentException(ErrorMessage.PAY_MONEY_UNIT.getMessage());
+            throw new IllegalArgumentException(PAY_MONEY_UNIT_ERROR.getMessage());
         }
     }
 

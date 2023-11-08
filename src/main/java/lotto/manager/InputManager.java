@@ -9,6 +9,8 @@ import lotto.utils.ParseUtils;
 
 import java.util.List;
 
+import static lotto.constants.ErrorMessage.*;
+
 public class InputManager {
 
     ParseUtils parseUtils = new ParseUtils();
@@ -32,11 +34,11 @@ public class InputManager {
 
     private void validatePayMoney(int payMoney) {
         if (payMoney < Value.LOTTO_TICKET_PRICE) {
-            throw new IllegalArgumentException(ErrorMessage.PAY_MONEY_RANGE.getMessage());
+            throw new IllegalArgumentException(PAY_MONEY_RANGE_ERROR.getMessage());
         }
 
         if ((payMoney % Value.LOTTO_TICKET_PRICE) != 0) {
-            throw new IllegalArgumentException(ErrorMessage.PAY_MONEY_UNIT.getMessage());
+            throw new IllegalArgumentException(PAY_MONEY_UNIT_ERROR.getMessage());
         }
     }
 

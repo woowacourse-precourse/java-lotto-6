@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import static lotto.constants.Message.*;
+
 public class OutputUtils {
 
     public void displayPayMoneyRequestMessage() {
@@ -15,7 +17,7 @@ public class OutputUtils {
     }
 
     public void displayBuyLottos(List<Lotto> buyLottos) {
-        System.out.println(buyLottos.size() + Message.BUY_LOTTO_COUNT_MESSAGE);
+        System.out.println(buyLottos.size() + BUY_LOTTO_COUNT_MESSAGE);
 
         for (Lotto buyLotto : buyLottos) {
             System.out.println(buyLotto.toString());
@@ -23,15 +25,15 @@ public class OutputUtils {
     }
 
     public void displayWinningLottoRequestMessage() {
-        System.out.println(Message.WINNING_NUMBER_REQUEST_MESSAGE);
+        System.out.println(WINNING_NUMBER_REQUEST_MESSAGE);
     }
 
     public void displayBonusNumberRequestMessage() {
-        System.out.println(Message.BONUS_NUMBER_REQUEST_MESSAGE);
+        System.out.println(BONUS_NUMBER_REQUEST_MESSAGE);
     }
 
     public void displayLottoResult(Map<Rank, Integer> lottoResults, String profitRate) {
-        System.out.println(Message.LOTTO_WIN_RESULT_MESSAGE);
+        System.out.println(LOTTO_WIN_RESULT_MESSAGE);
         displayRank(lottoResults);
         displayProfitRate(profitRate);
     }

@@ -6,13 +6,15 @@ import lotto.constants.Value;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.constants.ErrorMessage.*;
+
 public class ParseUtils {
 
     public int parseStringToInt(String value) {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.TYPE_FORMAT.getMessage());
+            throw new IllegalArgumentException(TYPE_FORMAT_ERROR.getMessage());
         }
     }
 
@@ -25,7 +27,7 @@ public class ParseUtils {
             try {
                 numbers.add(Integer.parseInt(splitValue));
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_FORMAT.getMessage());
+                throw new IllegalArgumentException(WINNING_NUMBER_FORMAT_ERROR.getMessage());
             }
         }
 

@@ -25,6 +25,11 @@ public enum WinningPrice {
         return parseToLong(winningPrice.price);
     }
 
+    /**
+     * 구분점이 포함된 상금을 Long 형태로 변환
+     * @param price 구분점이 포함된 상금
+     * @return 구분점을 제외한 Long형 상금
+     */
     private static Long parseToLong(String price) {
         StringBuilder sb = new StringBuilder();
         Arrays.stream(price.split(",")).toList().forEach(str -> {
@@ -34,6 +39,12 @@ public enum WinningPrice {
         return Long.parseLong(sb.toString());
     }
 
+    /**
+     * 로또 번호와 일치하는 개수 및 보너스 번호를 이용해 상금 측정
+     * @param correctCount 로또 당첨 번호와 일치하는 로또 번호 개수
+     * @param bonus 보너스 번호 일치 여부
+     * @return 해당 로또의 상금
+     */
     public static WinningPrice getWinningPrice(Integer correctCount, Boolean bonus) {
         return Arrays.stream(values())
                 .filter(winningPrice -> winningPrice.correctCount == correctCount)
@@ -42,6 +53,11 @@ public enum WinningPrice {
                 .orElse(WinningPrice.NONE);
     }
 
+    /**
+     * 당첨 통계를 출력하기 위한 문구 생성
+     * @param winningPrice 해당 로또의 상금
+     * @return 로또 상금에 해당하는 당첨 결과 문구
+     */
     public static Optional<String> getInfo(WinningPrice winningPrice){
         StringBuilder sb = new StringBuilder();
         sb.append(winningPrice.correctCount+"개 일치");

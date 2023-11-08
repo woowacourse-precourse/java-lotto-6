@@ -2,20 +2,18 @@ package lotto;
 
 import static lotto.constant.ErrorMessage.DUPLICATED_BONUS;
 
-import java.util.List;
-
 public class WinningLotto {
 
     private final Lotto lottoNumbers;
     private final LottoNumber bonusNumber;
 
-    public WinningLotto(List<Integer> lottoNumbers, int bonusNumber) {
+    public WinningLotto(Lotto lottoNumbers, LottoNumber bonusNumber) {
         validateDuplicateBonusNumber(lottoNumbers, bonusNumber);
-        this.lottoNumbers = new Lotto(lottoNumbers);
-        this.bonusNumber = new LottoNumber(bonusNumber);
+        this.lottoNumbers = lottoNumbers;
+        this.bonusNumber = bonusNumber;
     }
 
-    private void validateDuplicateBonusNumber(List<Integer> lottoNumbers, int bonusNumber) {
+    private void validateDuplicateBonusNumber(Lotto lottoNumbers, LottoNumber bonusNumber) {
         if (lottoNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATED_BONUS);
         }

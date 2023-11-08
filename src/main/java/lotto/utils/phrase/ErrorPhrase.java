@@ -1,6 +1,6 @@
-package lotto.utils;
+package lotto.utils.phrase;
 
-import static lotto.utils.LottoSystemUtils.*;
+import static lotto.utils.system.LottoSystemUtils.*;
 
 public class ErrorPhrase {
 

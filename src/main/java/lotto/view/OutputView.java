@@ -6,7 +6,7 @@ import lotto.domain.WinningResult;
 import java.util.Map;
 
 import static lotto.domain.WinningResult.*;
-import static lotto.utils.OutputViewPhrase.*;
+import static lotto.utils.phrase.OutputViewPhrase.*;
 
 public class OutputView {
 

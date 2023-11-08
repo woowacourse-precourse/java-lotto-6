@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import static lotto.domain.WinningResult.valueOf;
-import static lotto.utils.ErrorPhrase.*;
-import static lotto.utils.LottoSystemUtils.*;
+import static lotto.utils.phrase.ErrorPhrase.*;
+import static lotto.utils.system.LottoSystemUtils.*;
 
 public class WinningLotto {
     private final Lotto winningLotto;

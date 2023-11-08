@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.utils.InputViewPhrase.*;
+import static lotto.utils.phrase.InputViewPhrase.*;
 
 public class InputView {
 

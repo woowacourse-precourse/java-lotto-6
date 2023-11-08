@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.*;
 
 import static lotto.domain.WinningResult.getWinningMoney;
-import static lotto.utils.LottoSystemUtils.*;
+import static lotto.utils.system.LottoSystemUtils.*;
 
 public class LottoSystem {
     private static long purchaseMoney;

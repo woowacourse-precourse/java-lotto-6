@@ -63,8 +63,11 @@
 * 문자 상수로 생각되는것들 Enum으로 구현
   
 
+### 예외처리
+* `IllegalArgumentException`, `IllegalStateException`, `NullPointerException` 적용하여 테스트처리
 
+### DI 적용해보기
+* 생성자와 인터페이스를 활용해서 생성자에 들어가는 매개변수 클레스만 변경해도 원하는 작동방식 적용가능하도록 제작
 ---
-
 ## 후기
 

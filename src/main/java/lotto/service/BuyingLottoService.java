@@ -10,18 +10,17 @@ import lotto.service.exception.IllegalArgumentExceptionHandler;
 
 public class BuyingLottoService {
 
-    public int validateMoney(String input){
+    public int validateInputMoney(String input){
         int validMoney;
         try {
             verifyNumberFormat(input);
             verifyMoneyUnit(convertStringtoInt(input));
-            verifyRange(convertStringtoInt(input));
-
         } catch (NumberFormattingExceptionHandler | IllegalArgumentExceptionHandler e){
             System.out.println(e.getMessage());
             return -1;
         }
         validMoney = convertStringtoInt(input);
+
         return validMoney;
     }
 

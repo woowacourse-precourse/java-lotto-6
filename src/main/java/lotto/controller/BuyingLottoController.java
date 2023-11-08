@@ -1,8 +1,6 @@
 package lotto.controller;
 
-import java.sql.SQLOutput;
 import lotto.domain.Buyer;
-import lotto.domain.Lotto;
 import lotto.service.BuyingLottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -15,11 +13,11 @@ public class BuyingLottoController {
 
     public Buyer buyLotto(){
         Buyer buyer;
-
         int money;
+
         do {
             String inputMoney = InputView.inputMoneyToBuyMessage();
-            money = buyingLottoService.validateMoney(inputMoney);
+            money = buyingLottoService.validateInputMoney(inputMoney);
         }while(STOP_FLAG>=money);
 
         buyer = new Buyer(money);

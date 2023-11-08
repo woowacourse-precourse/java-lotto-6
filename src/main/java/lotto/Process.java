@@ -12,8 +12,7 @@ public class Process {
     private static final int LOTTO_NUMEBER_RANGE_END = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;
 
-    public List<Integer> lottoNumbers;
-    List<Integer> eachLottoNumber;
+    private List<Integer> lottoNumbers;
 
     //로또 개수 환산하기
     public int countLottos(int purchaseAmount) {

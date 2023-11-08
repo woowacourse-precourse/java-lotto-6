@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoStore;
 import lotto.constant.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -61,7 +59,7 @@ public class LottoStoreTest {
 
         //when
         long money = 13000;
-        lottoStore.getMoney(money);
+        lottoStore.insertMoney(money);
 
         //then
         assertThat(lottoStore.getChargedMoney()).isEqualTo(money);
@@ -75,7 +73,7 @@ public class LottoStoreTest {
 
         //when
         long money = 13000;
-        lottoStore.getMoney(money);
+        lottoStore.insertMoney(money);
 
         long chargedMoney = lottoStore.getChargedMoney();
 
@@ -91,7 +89,7 @@ public class LottoStoreTest {
         long money = 20000;
 
         //when
-        lottoStore.getMoney(money);
+        lottoStore.insertMoney(money);
 
         //then
         assertThat(lottoStore.getChargedMoney() / LOTTO_PRICE).isEqualTo(20);
@@ -124,7 +122,7 @@ public class LottoStoreTest {
 
         //when
         long money = 250000;
-        lottoStore.getMoney(money);
+        lottoStore.insertMoney(money);
 
         //then
         List<Lotto> lottoPapers = lottoStore.generateAllLottos();

@@ -3,8 +3,6 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.ErrorMessage;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.LongStream;
 
@@ -17,7 +15,7 @@ public class LottoStore {
 
     private long chargedMoney;
 
-    public void getMoney(final long moneyInput) {
+    public void insertMoney(final long moneyInput) {
         validateChargedMoney(moneyInput);
         chargeMoney(moneyInput);
     }
@@ -36,7 +34,7 @@ public class LottoStore {
     }
 
     public void sellLottos(final Customer customer) {
-        customer.setLotto(generateAllLottos());
+        customer.setLottos(generateAllLottos());
     }
 
     public List<Lotto> generateAllLottos() {

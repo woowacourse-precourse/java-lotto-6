@@ -37,7 +37,10 @@ public class Result {
                 count++;
             }
         }
+        setMatchCount(count, purchased);
+    }
 
+    private void setMatchCount(int count, List<Integer> purchased) {
         if (count == 6) {
             matchCount.set(4, matchCount.get(4) + 1);
         }

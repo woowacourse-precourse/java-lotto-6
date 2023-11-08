@@ -1,11 +1,14 @@
 package lotto;
 
+import lotto.domain.Lotto;
+import lotto.exception.ErrorCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -23,5 +26,47 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호 리스트의 길이가 6이 아니면 예외가 발생한다.")
+    @Test
+    void createLottoWithInvalidSize() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 1 미만 또는 45 초과인 경우, 예외가 발생한다.")
+    @Test
+    void createLottoWithInvalidNumberRange() {
+        List<Integer> invalidRangeNumbers = List.of(0, 46, 20, 30, 40, 50);
+        assertThatThrownBy(() -> new Lotto(invalidRangeNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorCode.INVALID_LOTTO_NUMBER_RANGE.getMessage());
+    }
+
+    @DisplayName("로또 번호가 6개가 아닌 경우, 예외가 발생한다.")
+    @Test
+    void createLottoWithInvalidNumberCount() {
+        List<Integer> invalidNumbers = List.of(1, 2, 3, 4, 5);
+        assertThatThrownBy(() -> new Lotto(invalidNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorCode.INVALID_LOTTO_NUMBER_COUNT.getMessage());
+    }
+
+    @DisplayName("로또 객체를 생성할 수 있다.")
+    @Test
+    void createLotto() {
+        List<Integer> validNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(validNumbers);
+
+        assertThat(lotto).isNotNull();
+    }
+
+    @DisplayName("로또 번호 생성 시 정상적으로 생성되어야 한다.")
+    @Test
+    void createValidLotto() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+
+        Lotto lotto = new Lotto(numbers);
+
+        assertThat(lotto.getNumbers()).isExactlyInstanceOf(numbers.getClass());
+    }
 }

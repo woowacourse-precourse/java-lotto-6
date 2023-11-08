@@ -19,4 +19,5 @@ public enum RequestLine {
     public String getLine() {
         return line;
     }
+
 }

@@ -13,21 +13,21 @@ import lotto.util.LottoNumberGenerator;
 
 public class LottoPurchaseManager {
 
-    private static final int INIT = 0;
-    private static final int ZERO_VALUE = 0;
+    private static final int INITIAL_VALUE = 0;
+    private static final int ZERO = 0;
     private final int purchaseAmount;
-    private final int PurchaseCount;
+    private final int purchaseCount;
 
     private List<Lotto> lottos = new ArrayList<Lotto>();
 
     public LottoPurchaseManager(int purchaseAmount) {
         validate(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
-        this.PurchaseCount = purchaseAmount / LOTTO_PRICE_UNIT;
+        this.purchaseCount = purchaseAmount / LOTTO_PRICE_UNIT;
     }
 
     public void generateLottos() {
-        for (int i = INIT; i < PurchaseCount; i++) {
+        for (int i = INITIAL_VALUE; i < purchaseCount; i++) {
             lottos.add(new Lotto(LottoNumberGenerator.generateNumbers()));
         }
     }
@@ -41,7 +41,7 @@ public class LottoPurchaseManager {
     }
 
     public int getPurchaseCount() {
-        return PurchaseCount;
+        return purchaseCount;
     }
 
     private void validate(int purchaseAmount) throws IllegalArgumentException {
@@ -51,7 +51,7 @@ public class LottoPurchaseManager {
     }
 
     private void validateNegativeNum(int purchaseAmount) throws IllegalArgumentException {
-        if (purchaseAmount < ZERO_VALUE) {
+        if (purchaseAmount < ZERO) {
             throw new IllegalArgumentException(NEGATIVE_NUM_ERROR.getMessage());
         }
     }
@@ -63,7 +63,7 @@ public class LottoPurchaseManager {
     }
 
     private void validateAmountUnit(int purchaseAmount) throws IllegalArgumentException {
-        if (purchaseAmount % LOTTO_PRICE_UNIT != ZERO_VALUE) {
+        if (purchaseAmount % LOTTO_PRICE_UNIT != ZERO) {
             throw new IllegalArgumentException(ACCOUNT_UNIT_ERROR.getMessage());
         }
     }

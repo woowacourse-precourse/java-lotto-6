@@ -6,14 +6,19 @@ import lotto.domain.lotto.LottoCount;
 
 import java.util.List;
 
-import static lotto.io.LottoMessage.INPUT_PURCHASE_PRICE;
-import static lotto.io.LottoMessage.PRINT_LOTTO_COUNT;
+import static lotto.io.LottoMessage.*;
 
 public class View implements InputView, OutputView {
 
     @Override
     public String readPurchasePrice() {
         printLottoMessage(INPUT_PURCHASE_PRICE);
+        return Console.readLine();
+    }
+
+    @Override
+    public String readWinningNumbers() {
+        printLottoMessage(INPUT_WINNING_NUMBERS);
         return Console.readLine();
     }
 

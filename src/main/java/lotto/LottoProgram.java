@@ -1,10 +1,12 @@
 package lotto;
 
+import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoCount;
 import lotto.domain.lotto.LottoMachine;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.Price;
 import lotto.domain.lotto.random.LottoNumberCreator;
+import lotto.domain.lotto.random.LottoNumberParser;
 import lotto.io.ConsoleManager;
 import lotto.io.View;
 
@@ -14,7 +16,7 @@ public class LottoProgram {
     private final LottoMachine lottoMachine;
 
     public LottoProgram() {
-        this.consoleManager = new ConsoleManager(new View());
+        this.consoleManager = new ConsoleManager(new View(), new LottoNumberParser());
         this.lottoMachine = new LottoMachine(new LottoNumberCreator());
     }
 
@@ -26,5 +28,7 @@ public class LottoProgram {
 
         Lottos lottos = lottoMachine.createLottoNumbers(count);
         consoleManager.printLottos(lottos);
+
+        Lotto winningLotto = consoleManager.getWinningNumbers();
     }
 }

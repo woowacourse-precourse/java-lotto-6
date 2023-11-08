@@ -51,10 +51,6 @@ public enum Ranking {
         return accordedCount;
     }
 
-    public boolean isHasBonusNumber() {
-        return hasBonusNumber;
-    }
-
     public int getWinningAmount() {
         return winningAmount;
     }

@@ -20,7 +20,7 @@ public class Lotto {
 
     private void validateLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalStateException(LOTTO_SIZE.errorMessage());
+            throw new IllegalArgumentException(LOTTO_SIZE.errorMessage());
         }
     }
 
@@ -29,13 +29,13 @@ public class Lotto {
                 .filter(number -> !(1 <= number && number <= 45))
                 .findAny()
                 .ifPresent(number -> {
-                    throw new IllegalStateException(LOTTO_RANGE.errorMessage());
+                    throw new IllegalArgumentException(LOTTO_RANGE.errorMessage());
                 });
     }
 
     private void validationDuplication(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalStateException(LOTTO_DUPLICATE.errorMessage());
+            throw new IllegalArgumentException(LOTTO_DUPLICATE.errorMessage());
         }
     }
 

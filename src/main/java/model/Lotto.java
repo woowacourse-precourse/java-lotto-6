@@ -1,0 +1,27 @@
+package model;
+
+import java.util.List;
+import util.CustomIllegalArgumentException;
+import util.GameProperty;
+import util.InputException;
+
+public class Lotto {
+    private final List<Integer> numbers;
+
+    public Lotto(List<Integer> numbers) {
+        validate(numbers);
+        this.numbers = numbers;
+    }
+
+    public static void validate(List<Integer> numbers) {
+        lengthVlalidator(numbers);
+    }
+
+    private static void lengthVlalidator(List<Integer> numbers) {
+        if (numbers.size() != GameProperty.LOTTO_NUMBERS_LENGTH) {
+            throw new CustomIllegalArgumentException(InputException.NUMBERS_LENGTH_EXCEPTION);
+        }
+    }
+
+    // TODO: 추가 기능 구현
+}

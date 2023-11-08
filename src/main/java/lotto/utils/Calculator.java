@@ -6,9 +6,9 @@ import lotto.domain.Result;
 
 import java.util.List;
 
-public class Calculator {
-    private static final int LOTTO_LENGTH = 6;
+import static lotto.utils.UtilNumber.*;
 
+public class Calculator {
     private final Result result;
 
     public Calculator() {
@@ -18,6 +18,7 @@ public class Calculator {
     public Result calculateResult(List<Lotto> lottos, List<Integer> winningNumber, int bonusNumber) {
         for (int i = 0; i < lottos.size(); i++) {
             List<Integer> lottoNumbers = lottos.get(i).getLottoNumbers();
+
             int correctCount = countCorrectNumber(lottoNumbers, winningNumber);
             boolean correctBonus = checkCorrectBonusNumber(lottoNumbers, bonusNumber);
 
@@ -29,7 +30,7 @@ public class Calculator {
 
     private int countCorrectNumber(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         int correctNumber = 0;
-        for (int j = 0; j < LOTTO_LENGTH; j++) {
+        for (int j = 0; j < LOTTO_LENGTH.getNumber(); j++) {
             if (lottoNumbers.contains(winningNumbers.get(j))) {
                 correctNumber++;
             }
@@ -45,34 +46,34 @@ public class Calculator {
         return false;
     }
 
-        private void calculateRank ( int correctCount, boolean correctBonus){
-            if (correctCount == 6) {
-                result.countRank(1);
-                result.addIncome(2000000000);
-                return;
-            }
-            if (correctCount == 5 && correctBonus) {
-                result.countRank(2);
-                result.addIncome(30000000);
-                return;
-            }
-            if (correctCount == 5) {
-                result.countRank(3);
-                result.addIncome(1500000);
-                return;
-            }
-            if (correctCount == 4) {
-                result.countRank(4);
-                result.addIncome(50000);
-                return;
-            }
-            if (correctCount == 3) {
-                result.countRank(5);
-                result.addIncome(5000);
-            }
+    private void calculateRank(int correctCount, boolean correctBonus) {
+        if (correctCount == FIRST_CORRECT_CONDITION.getNumber()) {
+            result.countRank(FIRST.getNumber());
+            result.addIncome(FIRST_REWORD.getNumber());
+            return;
         }
-
-        public double calculateIncomeRate (Result result, Payment payment){
-            return (result.getIncome() / payment.getPayment()) * 100;
+        if (correctCount == SECOND_CORRECT_CONDITION.getNumber() && correctBonus) {
+            result.countRank(SECOND.getNumber());
+            result.addIncome(SECOND_REWORD.getNumber());
+            return;
+        }
+        if (correctCount == THIRD_CORRECT_CONDITION.getNumber()) {
+            result.countRank(THIRD.getNumber());
+            result.addIncome(THIRD_REWORD.getNumber());
+            return;
+        }
+        if (correctCount == FOURTH_CORRECT_CONDITION.getNumber()) {
+            result.countRank(FOURTH.getNumber());
+            result.addIncome(FOURTH_REWORD.getNumber());
+            return;
+        }
+        if (correctCount == FIFTH_CORRECT_CONDITION.getNumber()) {
+            result.countRank(FIFTH.getNumber());
+            result.addIncome(FIFTH_REWORD.getNumber());
         }
     }
+
+    public double calculateIncomeRate(Result result, Payment payment) {
+        return (result.getIncome() / payment.getPayment()) * 100;
+    }
+}

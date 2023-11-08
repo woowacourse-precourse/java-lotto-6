@@ -2,9 +2,11 @@ package lotto.utils;
 
 import lotto.domain.Payment;
 
+import static lotto.utils.UtilNumber.LOTTO_COST;
+
 public class Parser {
-    static final int cost = 1000;
     private static final String NOT_INTEGER_ERROR_MESSAGE = "[ERROR] 숫자를 입력해 주세요.";
+
     public static int parseStringToInt(String stringValue) {
         try {
             int intValue = Integer.parseInt(stringValue);
@@ -14,7 +16,7 @@ public class Parser {
         }
     }
 
-    public static int parseAmountToCoin(Payment payment){
-        return payment.getPayment()/cost;
+    public static int parseAmountToCoin(Payment payment) {
+        return payment.getPayment() / LOTTO_COST.getNumber();
     }
 }

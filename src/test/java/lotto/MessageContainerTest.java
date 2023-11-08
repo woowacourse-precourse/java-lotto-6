@@ -6,9 +6,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.PrizeCategory;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class MessageContainerTest {
+    private MessageContainer messageContainer;
+
+    @BeforeEach
+    void setUp() {
+        messageContainer = new MessageContainer();
+    }
+
     @Test
     void createWinningDetails_메서드로_당첨_내역_안내_메시지_생성() {
         Map<PrizeCategory, Integer> map = new HashMap<>();
@@ -18,7 +26,6 @@ class MessageContainerTest {
         map.put(PrizeCategory.THIRD, 1);
         map.put(PrizeCategory.SECOND, 1);
         map.put(PrizeCategory.FIRST, 0);
-        MessageContainer messageContainer = new MessageContainer();
 
         List<String> actual = messageContainer.createWinningDetails(map);
 
@@ -27,5 +34,14 @@ class MessageContainerTest {
                 "5개 일치 (1,500,000원) - 1개",
                 "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
                 "6개 일치 (2,000,000,000원) - 0개");
+    }
+
+    @Test
+    void createRateOfReturnMessage_메서드로_수익률_안내_메시지_생성() {
+        double rateOfReturn = 62.5;
+
+        String actual = messageContainer.createRateOfReturnMessage(rateOfReturn);
+
+        assertThat(actual).isEqualTo("총 수익률은 62.5%입니다.");
     }
 }

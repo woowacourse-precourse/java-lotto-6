@@ -7,6 +7,7 @@ import lotto.domain.PrizeCategory;
 
 public class MessageContainer {
     private static final String UNIT = "개";
+    private static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public List<String> createWinningDetails(Map<PrizeCategory, Integer> map) {
         List<String> WinningDetails = new ArrayList<>();
@@ -16,5 +17,9 @@ public class MessageContainer {
         WinningDetails.add(PrizeCategory.SECOND.getMessage() + map.get(PrizeCategory.SECOND) + UNIT);
         WinningDetails.add(PrizeCategory.FIRST.getMessage() + map.get(PrizeCategory.FIRST) + UNIT);
         return WinningDetails;
+    }
+
+    public String createRateOfReturnMessage(double rateOfReturn) {
+        return String.format(RATE_OF_RETURN_MESSAGE, rateOfReturn);
     }
 }

@@ -3,9 +3,9 @@ package lotto.domain;
 import java.util.List;
 
 public class LottoReceipt {
-    List<Lotto> lottoReceipt;
+    public List<Lotto> lottoReceipt;
 
-    LottoReceipt(List<Lotto> lottoReceipt) {
+    public LottoReceipt(List<Lotto> lottoReceipt) {
         this.lottoReceipt = lottoReceipt;
     }
 

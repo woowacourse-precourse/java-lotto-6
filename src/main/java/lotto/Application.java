@@ -1,5 +1,11 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoReceipt;
 import lotto.service.Input;
 
 public class Application {
@@ -8,7 +14,8 @@ public class Application {
         // TODO: 프로그램 구현
         int amount = validateAmount(Input.getPurchaseAmount());
         validateDivisible(amount);
-
+        List<Lotto> lottoTickets = generateLottoTicket(amount);
+        LottoReceipt lottoReceipt = new LottoReceipt(lottoTickets);
     }
 
     public static int validateAmount(String amount) {
@@ -23,5 +30,21 @@ public class Application {
         if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public static List<Lotto> generateLottoTicket(int amount) {
+        List<Lotto> lottoTickets = new ArrayList<>();
+        int value = amount / LOTTO_PRICE;
+        for (int i = 0; i < value; i++) {
+             Lotto lotto = new Lotto(generateRandomNumber());
+             lottoTickets.add(lotto);
+        }
+        return lottoTickets;
+    }
+
+    public static List<Integer> generateRandomNumber() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
+        return numbers;
     }
 }

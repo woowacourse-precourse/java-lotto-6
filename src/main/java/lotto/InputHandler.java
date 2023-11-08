@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputHandler {
-    private static final int MIN_UNIT_OF_AMOUNT = 1000;
+    private static final int MIN_NUMBER= 1;
+    private static final int MAX_NUMBER= 45;
 
     public static String purchaseAmountInput() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -26,7 +27,14 @@ public class InputHandler {
         List<Integer> winningNumbers = new ArrayList<>();
 
         for(int i=0;i<6;i++){
-            winningNumbers.add(Integer.parseInt(winningStringNumbers[i]));
+            try{
+                int winningNumber = Integer.parseInt(winningStringNumbers[i]);
+                checkRange(winningNumber);
+                winningNumbers.add(winningNumber);
+            }catch (IllegalArgumentException e){
+                throw new IllegalArgumentException("[ERROR] 정수만 입력 가능합니다.");
+            }
+
         }
 
         return winningNumbers;
@@ -34,11 +42,21 @@ public class InputHandler {
 
     public static int bonusNumberInput(){
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bounsNumber = Integer.parseInt(Console.readLine());
-        System.out.println();
+        try{
+            int bounsNumber = Integer.parseInt(Console.readLine());
+            checkRange(bounsNumber);
+            System.out.println();
 
-        return bounsNumber;
+            return bounsNumber;
+        }catch (IllegalArgumentException e){
+            throw new IllegalArgumentException("[ERROR] 정수만 입력 가능합니다.");
+        }
     }
 
+    public static void checkRange(int number){
+        if(number<1 || number>45){
+            throw new IllegalArgumentException("[ERROR] 숫자 범위는 1~45입니다.");
+        }
+    }
 
 }

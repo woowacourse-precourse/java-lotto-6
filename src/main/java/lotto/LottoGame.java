@@ -3,10 +3,11 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
-import java.util.regex.Pattern;
 
 public class LottoGame {
     private static final int PERCENTAGE = 100;
+    private static final int MIN_UNIT_OF_AMOUNT = 1000;
+
     public void playGame(){
 
         final int lottoAmount = 1000;
@@ -15,6 +16,9 @@ public class LottoGame {
         int purchaseAmount;
         try {
              purchaseAmount = Integer.parseInt(purchaseAmountString);
+             if(purchaseAmount%MIN_UNIT_OF_AMOUNT != 0){
+                 throw new IllegalArgumentException("[ERROR] 1000단위 정수만 입력가능합니다.");
+             }
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 정수만 입력 가능합니다.");
             return;
@@ -50,9 +54,9 @@ public class LottoGame {
         if(purchaseLotto.contains(bonusNumber)){
             return true;
         }
-        else{
-            return false;
-        }
+
+        return false;
+
     }
 
     public static Lotto[] purchaseAutoLotto(Lotto[] lottos,int purchaseNumber){

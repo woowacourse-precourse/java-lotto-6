@@ -20,13 +20,17 @@ public class OutputView {
         for (LottoRank rank : LottoRank.values()) {
             if (rank != LottoRank.NONE) {
                 int count = results.getOrDefault(rank, 0);
-                String prizeAmountWithComma = String.format("%,d원", rank.getPrizeAmount());
-                String message = rank.getMatchCount() + "개 일치 (" + prizeAmountWithComma + ") - " + count + "개";
-                if (rank == LottoRank.SECOND) {
-                    message += " 보너스 볼 일치";
-                }
-                System.out.println(message);
+                System.out.println(formatRankMessage(rank, count));
             }
+        }
+    }
+
+    private String formatRankMessage(LottoRank rank, int count) {
+        String prizeAmountWithComma = String.format("%,d원", rank.getPrizeAmount());
+        if (rank == LottoRank.SECOND) {
+            return rank.getMatchCount() + "개 일치, 보너스 볼 일치 (" + prizeAmountWithComma + ") - " + count + "개";
+        } else {
+            return rank.getMatchCount() + "개 일치 (" + prizeAmountWithComma + ") - " + count + "개";
         }
     }
 

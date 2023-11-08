@@ -1,7 +1,20 @@
 package lotto;
 
+import lotto.data.Lotto;
+import lotto.data.WinningNumber;
+
+import java.util.List;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoProgram lottoProgram = new LottoProgram();
+
+        List<Lotto> lottos = lottoProgram.buyLottos();
+        List<Integer> winningNumbers = lottoProgram.inputWinningNumbers();
+        int bonus = lottoProgram.inputBonus(winningNumbers);
+
+        WinningNumber winningNumber = new WinningNumber(winningNumbers, bonus);
+
+        lottoProgram.showLottoResult(winningNumber, lottos);
     }
 }

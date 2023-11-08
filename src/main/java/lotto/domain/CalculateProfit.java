@@ -47,6 +47,9 @@ public class CalculateProfit {
     private List<Integer> calculateCntProfit() {
         List<Integer> cntProfit = new ArrayList<>();
 
+        if (lottoResult.isEmpty())
+            return cntProfit;
+
         for(int i = 0; i < lottoPurchaseCnt; i++) {
             int cnt = lottoResult.get(i);
             int profit = 0;
@@ -70,6 +73,9 @@ public class CalculateProfit {
     private List<Integer> calculateBonusProfit() {
         List<Integer> bonusProfit = new ArrayList<>();
 
+        if (lottoResult.isEmpty())
+                return bonusProfit;
+
         for(int i = 0; i < lottoPurchaseCnt; i++) {
             int cnt = lottoResult.get(i);
             boolean bonus = bonusCheck.get(i);
@@ -88,6 +94,9 @@ public class CalculateProfit {
 
     private List<Integer> calculateTotalProfit() {
         List<Integer> totalProfit = new ArrayList<>();
+
+        if (lottoResult.isEmpty())
+            return totalProfit;
 
         for(int i = 0; i < lottoPurchaseCnt; i++)
         {

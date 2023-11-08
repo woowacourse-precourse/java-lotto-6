@@ -11,7 +11,7 @@ import static lotto.view.message.ValidationErrorMessage.*;
 
 public class BonusNumberValidator {
 
-    public void validateAndParse(String userInput, List<Integer> winningNumbers) {
+    public void validate(String userInput, List<Integer> winningNumbers) {
         validateNotEmpty(userInput);
         validateIntegerFormat(userInput);
         validateDuplicationWithWinningNumbers(userInput, winningNumbers);

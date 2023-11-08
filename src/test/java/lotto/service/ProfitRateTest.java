@@ -6,13 +6,18 @@ import lotto.model.ProfitRate;
 import lotto.model.LottoPurchaseAmount;
 import lotto.service.lotto.LottoResultService;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.EnumMap;
 
+@Nested
+@DisplayName("수익률 테스트")
 public class ProfitRateTest{
     @Test
-    void calculateProfitRate(){
+    @DisplayName("1개의 케이스에 대해 테스트 한다.")
+    void test1(){
         EnumMap<RankCategory, Integer> mockResults = new EnumMap<>(RankCategory.class);
         mockResults.put(RankCategory.FIRST,1);
         mockResults.put(RankCategory.SECOND,0);

@@ -4,10 +4,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoPurchaseAmount;
 import lotto.model.LottoTicketCount;
 import lotto.service.lotto.LottoTicketService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -18,6 +15,8 @@ import static lotto.constant.LottoConfig.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Nested
+@DisplayName("로또 생성을 테스트")
 class LottoTicketServiceTest {
     private LottoTicketService lottoTicketService;
     private int startInclusive;
@@ -33,26 +32,35 @@ class LottoTicketServiceTest {
     }
 
     @Test
-    @DisplayName("구입 금액에 따라 구매한 로또 계수를 계산 한다.")
-    void convertMoneyToTickets() {
+    @DisplayName("9000원을 구매하면 9개 티켓이 생성된다.")
+    void test1() {
         LottoPurchaseAmount lottoPurchaseAmount = new LottoPurchaseAmount(9000);
         LottoTicketCount lottoTicketCount = lottoTicketService.calculateTicketCount(lottoPurchaseAmount);
         assertThat(lottoTicketCount.count()).isEqualTo(9);
     }
 
-    /**
-     * 로또 번호는 정확히 6개여야 한다.
-     * 모든 로또 번호는 1과 45 사이의 값이어야 한다.
-     * 로또 번호에 중복된 값이 없어야 한다.
-     * */
-    @RepeatedTest(1000)
-    @DisplayName("각 로또 번호는 1부터 45 사이의 숫자 중 중복되지 않는 6개로 구성 한다.")
-    void generateNoDuplicationLottoNumbers() {
+    @Test
+    @DisplayName("로또 번호는 정확히 6개다.")
+    void test2() {
         Lotto lotto = lottoTicketService.createLotto();
         List<Integer> lottoNumbers = lotto.numbers();
         assertEquals(count, lottoNumbers.size());
+    }
+
+    @Test
+    @DisplayName("모든 로또 번호는 1과 45 사이의 값이어야 한다.")
+    void test3() {
+        Lotto lotto = lottoTicketService.createLotto();
+        List<Integer> lottoNumbers = lotto.numbers();
         assertTrue(lottoNumbers.stream()
                 .allMatch(n -> n >= startInclusive && n <= endInclusive));
+    }
+
+    @RepeatedTest(100)
+    @DisplayName("로또 번호에 중복된 값이 없어야 한다.")
+    void test4() {
+        Lotto lotto = lottoTicketService.createLotto();
+        List<Integer> lottoNumbers = lotto.numbers();
         assertTrue(lottoNumbers.stream()
                 .filter(n -> Collections.frequency(lottoNumbers, n) > 1)
                 .collect(Collectors.toSet())
@@ -61,10 +69,10 @@ class LottoTicketServiceTest {
 
     @Test
     @DisplayName("발행된 번호는 오름차순으로 정렬하여 저장한다.")
-    void generateAscendingLottoNumbers(){
+    void test5() {
         Lotto lotto = lottoTicketService.createLotto();
         List<Integer> lottoNumbers = lotto.numbers();
-        assertTrue(IntStream.range(0,lottoNumbers.size()-1)
-                .allMatch(i->lottoNumbers.get(i)<lottoNumbers.get(i+1)));
+        assertTrue(IntStream.range(0, lottoNumbers.size() - 1)
+                .allMatch(i -> lottoNumbers.get(i) < lottoNumbers.get(i + 1)));
     }
 }

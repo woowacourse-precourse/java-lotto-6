@@ -21,7 +21,7 @@ public class WinningNumberService {
     }
 
     public BonusNumber createBonusNumber(String userInput, List<Integer> winningNumbers) {
-        bonusNumberValidator.validateAndParse(userInput, winningNumbers);
+        bonusNumberValidator.validate(userInput, winningNumbers);
         int validatedNumber = numberParser.parseInteger(userInput);
         return new BonusNumber(validatedNumber);
     }

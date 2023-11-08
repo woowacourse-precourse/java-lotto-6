@@ -22,4 +22,7 @@ public enum Rank {
         this.matchBonus = matchBonus;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
 }

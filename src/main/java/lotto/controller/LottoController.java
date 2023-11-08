@@ -82,8 +82,7 @@ public class LottoController {
             String inputBonusNumber = input.bonusNumber();
             try {
                 int bonusNumber = toNumber(inputBonusNumber);
-                checkBonusNumberInWinningNumber(winningNumber.getWinningNumber(), bonusNumber);
-                lottoBonus = new BonusNumber(bonusNumber);
+                lottoBonus = new BonusNumber(winningNumber, bonusNumber);
                 loop = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -120,12 +119,6 @@ public class LottoController {
     private void printAllLotto(HashMap<Integer, Lotto> allLotto) {
         for (int key : allLotto.keySet()) {
             System.out.println(allLotto.get(key).getLotto());
-        }
-    }
-
-    private void checkBonusNumberInWinningNumber(List<Integer> winingNumber, int bonusNumber) {
-        if (winingNumber.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessages.ERROR_BONUS_NUMBER_DUPLICATE.getMessage());
         }
     }
 

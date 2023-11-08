@@ -74,6 +74,9 @@ public class Wallet {
     }
 
     public double calculateProfitRate(long profit) {
+        if (profit == 0) {
+            return 0.0;
+        }
         return Math.round(((double)initialAmount / (double)profit) * 10.0) / 10.0;
     }
 }

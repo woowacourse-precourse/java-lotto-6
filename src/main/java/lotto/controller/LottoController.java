@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import java.util.function.Supplier;
-import lotto.model.LottoNumbers;
+import lotto.model.WinningNumberAndBonusNumber;
 import lotto.dto.PurchaseAmountRequest;
 import lotto.dto.WinningNumberRequest;
 import lotto.model.Lottos;
@@ -26,7 +26,7 @@ public class LottoController {
         output.writeEmptyLine();
         output.writeLottosInfo(lottos.getLottoInfoResponse());
         output.writeEmptyLine();
-        LottoNumbers lottoNumbers = readLottoNumbers();
+        WinningNumberAndBonusNumber winningNumberAndBonusNumber = readWinningNumberAndBonusNumber();
     }
 
     private PurchaseAmountRequest readPurchaseAmount() {
@@ -34,7 +34,7 @@ public class LottoController {
         return readUntilValidInput(input::readPurchaseAmount);
     }
 
-    private LottoNumbers readLottoNumbers() {
+    private WinningNumberAndBonusNumber readWinningNumberAndBonusNumber() {
         output.writeWinningNumberInputMessage();
         WinningNumberRequest winningNumberRequest =
             readUntilValidInput(input::readWinningNumber);
@@ -43,7 +43,7 @@ public class LottoController {
 
         output.writeBonusNumberInputMessage();
         return readUntilValidInput(() ->
-            new LottoNumbers(
+            new WinningNumberAndBonusNumber(
                 winningNumberRequest.winningNumber(),
                 input.readBonusNumber().bonusNumber()
             )

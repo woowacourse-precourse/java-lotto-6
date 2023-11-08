@@ -22,7 +22,7 @@ public class Purchase {
         }
     }
 
-    private static void checkInputMoney(int purchaseQuantity) {
+    public static void checkInputMoney(int purchaseQuantity) {
         if (purchaseQuantity < LOTTO_PRICE) {
             throw new IllegalArgumentException("[ERROR] 로또 구입금액은 1000원 이상 입력 가능합니다.");
         }

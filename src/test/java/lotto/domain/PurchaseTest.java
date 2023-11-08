@@ -23,12 +23,4 @@ class PurchaseTest {
 
         System.setIn(System.in);
     }
-
-    @Test
-    void calculateQuantity() {
-    }
-
-    @Test
-    void printQuantity() {
-    }
 }

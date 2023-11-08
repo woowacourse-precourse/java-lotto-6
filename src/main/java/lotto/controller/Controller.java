@@ -8,10 +8,8 @@ import lotto.service.DecideAward;
 import lotto.service.UserLottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.utils.BillException;
 import lotto.utils.JackpotNumberException;
 import lotto.service.UserBillToAmount;
-import lotto.service.DecideAward;
 import lotto.service.ProfitCalculator;
 
 import java.util.Arrays;
@@ -28,7 +26,6 @@ public class Controller {
 
     private static User UserSetting() {
         int amount = UserAmountSetting();
-        System.out.println(amount);
         User user = UserLottoService.lottoSetting(amount);
         OutputView.printUserLotto(user);
         return user;
@@ -53,7 +50,6 @@ public class Controller {
     private static int UserAmountSetting() {
         int amount = 0;
         try {
-            //int bill = InputView.requestAmount();
             amount = UserBillToAmount.billToAmount(InputView.requestAmount());
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -68,7 +64,8 @@ public class Controller {
             List<Integer> jackpotIntList = Arrays.stream(jackpot.split(","))
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
-            jackpotNumber = new JackpotNumber(new Lotto(jackpotIntList), 100);
+            //jackpotNumber = new JackpotNumber(new Lotto(jackpotIntList), 100);
+            jackpotNumber = new JackpotNumber(new Lotto(jackpotIntList));
             JackpotNumberException.isJackpotValid(jackpotNumber);
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());

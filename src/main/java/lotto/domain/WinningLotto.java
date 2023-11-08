@@ -15,7 +15,7 @@ public class WinningLotto extends Lotto{
 
     public Rank calculateRank(Lotto purchaseLotto) {
         int count = super.getDuplicatedNumberCount(purchaseLotto);
-        return Rank.getRank(count, super.hasNumber(bonusNumber));
+        return Rank.getRank(count, purchaseLotto.hasNumber(bonusNumber));
     }
 
     private void validate(int bonusNumber) {

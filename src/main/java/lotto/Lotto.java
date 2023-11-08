@@ -24,6 +24,11 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    public boolean hasBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
     private void validateDuplicate(List<Integer> numbers) throws IllegalArgumentException {
         Set<Integer> duplicatedNumbers = new HashSet<>(numbers);
         if (duplicatedNumbers.size() < numbers.size()) {

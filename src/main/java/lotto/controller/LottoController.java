@@ -38,7 +38,7 @@ public class LottoController {
         while (true) {
             try {
                 outputView.printRequestMoneyMessage();
-                money = new Money(inputView.readMoney());
+                money = lottoService.getMoney(inputView.readMoney());
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

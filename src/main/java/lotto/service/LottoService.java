@@ -12,6 +12,10 @@ import lotto.domain.Winning;
 
 public class LottoService {
 
+    public Money getMoney(String money) {
+        return new Money(money);
+    }
+
     public List<Lotto> getLottos(Money money) {
         int tickets = money.calculateTicket();
         return new LottoQuantity(tickets).getLottos();

@@ -8,8 +8,8 @@ import java.util.List;
 
 public class Game {
     
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
     private LottoGenerator lottoGenerator;
 
     public Game() {

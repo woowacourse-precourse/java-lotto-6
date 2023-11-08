@@ -9,7 +9,6 @@ import lotto.model.purchase.LottoPurchaseAmount;
 import lotto.service.generator.LottoNumberGenerator;
 
 public class LottoPurchaseService {
-
     private final LottoNumberGenerator lottoNumberGenerator;
 
     public LottoPurchaseService(LottoNumberGenerator lottoNumberGenerator) {

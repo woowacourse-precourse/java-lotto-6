@@ -14,7 +14,6 @@ import lotto.service.LottoWinningStatisticsService;
 import lotto.view.LottoView;
 
 public class LottoController {
-
     private final LottoPurchaseService lottoPurchaseService;
     private final LottoWinningStatisticsService lottoWinningStatisticsService;
     private final LottoView lottoView;

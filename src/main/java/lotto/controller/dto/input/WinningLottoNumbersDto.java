@@ -8,6 +8,7 @@ import lotto.util.Parser;
 public record WinningLottoNumbersDto(String winningLottoNumbers) {
     private static final String DELIMITER = ",";
     private static final int WINNING_LOTTO_NUMBERS_MIN_LENGTH = 1;
+    // 구분자 길이와 로또 번호 길이를 기준으로 최대 로또 번호 입력 길이를 계산
     private static final int WINNING_LOTTO_NUMBERS_MAX_LENGTH =
             String.valueOf(LottoRule.LOTTO_NUMBER_MAX.value).length() * LottoRule.LOTTO_NUMBER_SIZE.value +
                     LottoRule.LOTTO_NUMBER_SIZE.value * DELIMITER.length();

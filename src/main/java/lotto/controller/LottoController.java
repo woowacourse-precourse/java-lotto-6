@@ -2,14 +2,18 @@ package lotto.controller;
 
 import static lotto.domain.LottoNumbers.setRandomLottoNumbers;
 
+import java.util.ArrayList;
+import java.util.List;
 import lotto.Lotto;
 import lotto.domain.PlayerLottoAmount;
+import lotto.domain.WinningDetails;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
     private static PlayerLottoAmount playerLottoAmount;
+    private static List<List<Integer>> randomLottos = new ArrayList<>();
 
     public void run() {
         try {
@@ -22,13 +26,28 @@ public class LottoController {
     public void start() {
         int ticketCount = inputPlayerAmount();
 
-        Lotto lotto = new Lotto(InputView.inputLottoNumber());
+        Lotto winningLottoNumbers = new Lotto(InputView.inputLottoNumber());
 
         int bonusNum = InputView.inputBonusNumber();
 
         OutputView.printPurchaseCount(ticketCount);
+
+        initializeLottos(ticketCount);
+
+        List<Integer> randomNumbers = null;
         for (int i = 0; i < ticketCount; ++i) {
-            OutputView.printRandomLottoNumbers(setRandomLottoNumbers());
+            randomNumbers = setRandomLottoNumbers();
+            randomLottos.add(randomNumbers);
+            OutputView.printRandomLottoNumbers(randomNumbers);
+        }
+
+        WinningDetails.findRanking(winningLottoNumbers, randomLottos, bonusNum);
+
+    }
+
+    private void initializeLottos(int ticketCount) {
+        for (int i = 0; i < ticketCount; ++i) {
+            randomLottos.add(new ArrayList<>());
         }
     }
 

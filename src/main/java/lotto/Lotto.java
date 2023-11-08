@@ -14,16 +14,19 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validateOverlap(List<Integer> numbers) {
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 
+    private void validateOverlap(List<Integer> numbers) {
 
         Set<Integer> overlapCheck = new HashSet<>();
 
-        for(int i : numbers){
+        for (int i : numbers) {
             overlapCheck.add(i);
         }
 
-        if(overlapCheck.size()!=6){
+        if (overlapCheck.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
@@ -35,7 +38,7 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    private void setRandomNumbers(){
-        new Lotto(Randoms.pickUniqueNumbersInRange(1,45,6));
+    private void setRandomNumbers() {
+        new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 }

@@ -1,29 +1,42 @@
 package lotto;
 
 public enum Message {
-	RESULT_MESSAGE("등 ㅊㅋ"),
+	SEPARATOR(","),
 	PURCHASE_MESSAGE("구입할 금액을 입력해 주세요."),
-	PURCHASE_COUNT_MESSAGE("\n개를 구매했습니다.\n"),
-	WINNING_NUMBER_MESSAGE("당첨 번호를 입력해 주세요."),
-	BONUS_NUMBER_MESSAGE("보너스 번호를 입력해 주세요."),
-	STATISTICS_MESSAGE("당첨 통계\n---\n"),
+	PURCHASE_COUNT_MESSAGE("개를 구매했습니다.\n"),
+	WINNING_NUMBER_MESSAGE("\n당첨 번호를 입력해 주세요."),
+	BONUS_NUMBER_MESSAGE("\n보너스 번호를 입력해 주세요."),
+	STATISTICS_MESSAGE("\n당첨 통계\n---"),
 	MATCH_THREE("3개 일치 (5,000원) - "),
 	MATCH_FOUR("4개 일치 (50,000원) - "),
 	MATCH_FIVE("5개 일치 (1,500,000원) - "),
 	MATCH_FIVE_WITH_BONUS("5개 일치, 보너스 볼 일치(30,000,000원) - "),
-	MATCH_SIX("6개 일치 (2,000,000,000원) - ");
+	MATCH_SIX("6개 일치 (2,000,000,000원) - "),
+	ERROR_MESSAGE("[ERROR]"),
+	EMPTY("Empty error is occurred"),
+	DIGIT("Digit error is occurred"),
+	REMAINDER("Remainder error is occurred"),
+	NEGATIVE("Negative error is occurred"),
+	RANGE("Range error is occurred"),
+	DUPLICATE("Duplicate error is occurred");
 
 	private final String message;
 	Message(String message) {
 		this.message = message;
 	}
-	public void getMessage() {
+	public String getMessage() {
+		return message;
+	}
+	public void printMessage() {
 		System.out.println(message);
 	}
-	public void getMessage(int number) {
+	public void printMessageWithNumber(int number) {
 		System.out.println(message + number);
 	}
-	public static void printMessage(String message) {
-		System.out.println(message);
+	public void printMessageWithString(String message) {
+		System.out.println(this.message + message);
+	}
+	public static void printStringMessage(String message) {
+		System.out.printf(message);
 	}
 }

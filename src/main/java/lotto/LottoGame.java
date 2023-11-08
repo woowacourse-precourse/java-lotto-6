@@ -6,41 +6,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGame {
-	private final static String SEPARATOR = ",";
 	private final Error error = new Error();
-	List<Lotto> lottos;
-	ArrayList<Integer> winningNumbers;
+	List<Lotto> lottos = new ArrayList<>();
+	List<Integer> winningNumbers = new ArrayList<>();
+	LottoService lottoService = new LottoService();
+
+	public void play() {
+		lottoInit();
+		winningNumberInit();
+		bonusNumberInit();
+		lottoService.compareLotto(lottos, winningNumbers);
+		Result.printResult();
+	}
+
 	public void lottoInit() {
-		LottoService lottoService = new LottoService();
-		NumberGenerator generator = new NumberGenerator();
 		int lottoCount = lottoService.getLottoCount(lottoService.getMoney());
-		Message.PURCHASE_COUNT_MESSAGE.getMessage(lottoCount);
+		NumberGenerator generator = new NumberGenerator();
+		String message = "\n" + lottoCount + Message.PURCHASE_COUNT_MESSAGE.getMessage();
+		Message.printStringMessage(message);
 		for (int i = Number.ZERO.getNumber(); i < lottoCount; i++) {
 			lottos.add(new Lotto(generator.numberGenerator()));
 		}
-	}
-
-	public void winningNumberInit() {
-		Message.WINNING_NUMBER_MESSAGE.getMessage();
-		String winningNumber = Console.readLine().trim();
-		for (String digit : winningNumber.split(SEPARATOR)) {
-			error.checkDigitWithDuplicate(winningNumbers, digit);
-			winningNumbers.add(Integer.parseInt(digit));
-		}
-	}
-
-	public void bonusNumberInit() {
-		Message.BONUS_NUMBER_MESSAGE.getMessage();
-		String bonusNumber = Console.readLine().trim();
-		error.checkDigitWithDuplicate(winningNumbers, bonusNumber);
-		winningNumbers.add(Integer.parseInt(bonusNumber));
-	}
-
-	public void compareLotto() {
 		for (Lotto lotto : lottos) {
-			int result = lotto.match(winningNumbers);
-			boolean bonus = lotto.matchBonus(winningNumbers.size() - 1);
-			Result.setResult(result, bonus);
+			lotto.lottoSort();
+			lotto.printLotto();
 		}
+	}
+
+	private void winningNumberInit() {
+		Message.WINNING_NUMBER_MESSAGE.printMessage();
+		winningNumbers = lottoService.getWinningNumbers();
+	}
+
+	private void bonusNumberInit() {
+		Message.BONUS_NUMBER_MESSAGE.printMessage();
+		winningNumbers.add(lottoService.getBonusNumber(winningNumbers));
 	}
 }

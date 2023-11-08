@@ -1,50 +1,61 @@
 package lotto;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Error {
+	Judgement judgement = new Judgement();
 
-	public boolean isInRange(int number) {
-		return (Number.MIN_NUMBER.getNumber() <= number && number <= Number.MAX_NUMBER.getNumber());
+	public boolean validateMoney(String money){
+		try {
+			checkMoney(money);
+		} catch (IllegalStateException | IllegalArgumentException e) {
+			Message.ERROR_MESSAGE.printMessageWithString(e.getMessage());
+			return false;
+		}
+		return true;
 	}
-
-	public boolean isNegative(int number) {
-		return number < Number.ZERO.getNumber();
-	}
-
-	private boolean isDigit(char digit) {
-		return Character.isDigit(digit);
-	}
-
-	public boolean isStringDigit(String number) {
-		for (int i = Number.ZERO.getNumber(); i < number.length(); i++) {
-			if (!isDigit(number.charAt(i)))
-				return false;
+	public boolean validateWinningNumbers(String digit){
+		try {
+			List<Integer> winningNumbersTemp = new ArrayList<>();
+			for (String winningNumber : digit.split(Message.SEPARATOR.getMessage())) {
+				checkWinningLotto(winningNumbersTemp, winningNumber);
+				winningNumbersTemp.add(Integer.parseInt(winningNumber));
+			}
+		} catch (IllegalStateException | IllegalArgumentException e) {
+			Message.ERROR_MESSAGE.printMessageWithString(e.getMessage());
+			return false;
 		}
 		return true;
 	}
 
-	public boolean isRemainder(int number) {
-		int remainder = number % Number.LOTTO_PRICE.getNumber();
-		return remainder == Number.ZERO.getNumber();
+	public boolean validateBonusNumber(List<Integer> winningNumbers, String bonusNumber){
+		try {
+			checkWinningLotto(winningNumbers, bonusNumber);
+		} catch (IllegalStateException | IllegalArgumentException e) {
+			Message.ERROR_MESSAGE.printMessageWithString(e.getMessage());
+			return false;
+		}
+		return true;
+	}
+	private void checkCommons(String digit) {
+		if (judgement.isEmpty(digit))
+			throw new IllegalStateException(Message.EMPTY.getMessage());
+		if (!judgement.isStringDigit(digit))
+			throw new IllegalArgumentException(Message.DIGIT.getMessage());
+		if (judgement.isNegative(Integer.parseInt(digit)))
+			throw new IllegalArgumentException(Message.NEGATIVE.getMessage());
+	}
+	public void checkMoney(String purchaseMoney) {
+		checkCommons(purchaseMoney);
+		if (!judgement.isRemainder(Integer.parseInt(purchaseMoney)))
+			throw new IllegalArgumentException(Message.REMAINDER.getMessage());
 	}
 
-	public boolean isDuplicate(List<Integer> numbers, int number) {
-		return numbers.contains(number);
-	}
-
-	public void checkDigitError(String purchaseMoney) {
-		if (!isStringDigit(purchaseMoney))
-			throw new IllegalArgumentException();
-		int money = Integer.parseInt(purchaseMoney);
-		if (isRemainder(money))
-			throw new IllegalArgumentException();
-		if (isNegative(money))
-			throw new IllegalArgumentException();
-	}
-
-	public void checkDigitWithDuplicate(List<Integer> winningNumbers, String digit) {
-		checkDigitError(digit);
-		if (isDuplicate(winningNumbers, Integer.parseInt(digit)))
-			throw new IllegalArgumentException();
+	public void checkWinningLotto(List<Integer> winningNumbers, String digit) {
+		checkCommons(digit);
+		if (!judgement.isInRange(Integer.parseInt(digit)))
+			throw new IllegalArgumentException(Message.RANGE.getMessage());
+		if (judgement.isDuplicate(winningNumbers, Integer.parseInt(digit)))
+			throw new IllegalArgumentException(Message.DUPLICATE.getMessage());
 	}
 }

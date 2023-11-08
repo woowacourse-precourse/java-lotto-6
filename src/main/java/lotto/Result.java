@@ -20,12 +20,12 @@ public class Result {
 			matchSix++;
 	}
 	public static void printResult(){
-		Message.STATISTICS_MESSAGE.getMessage();
-		Message.MATCH_THREE.getMessage(matchThree);
-		Message.MATCH_FOUR.getMessage(matchFour);
-		Message.MATCH_FIVE.getMessage(matchFive);
-		Message.MATCH_FIVE_WITH_BONUS.getMessage(matchFiveWithBonus);
-		Message.MATCH_SIX.getMessage(matchSix);
+		Message.STATISTICS_MESSAGE.printMessage();
+		Message.MATCH_THREE.printMessageWithNumber(matchThree);
+		Message.MATCH_FOUR.printMessageWithNumber(matchFour);
+		Message.MATCH_FIVE.printMessageWithNumber(matchFive);
+		Message.MATCH_FIVE_WITH_BONUS.printMessageWithNumber(matchFiveWithBonus);
+		Message.MATCH_SIX.printMessageWithNumber(matchSix);
 	}
 
 	public void printProfitRate(int money){
@@ -34,6 +34,6 @@ public class Result {
 				+ matchFive * 1500000
 				+ matchFiveWithBonus * 30000000
 				+ matchSix * 2000000000;
-		Message.printMessage("총 수익률은 " + total / money + "입니다.");
+		Message.printStringMessage("총 수익률은 " + total / money + "입니다.");
 	}
 }

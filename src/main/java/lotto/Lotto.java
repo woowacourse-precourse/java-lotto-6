@@ -25,7 +25,14 @@ public class Lotto {
         }
         return result;
     }
+    public void lottoSort(){
+        numbers.sort(Integer::compareTo);
+    }
     public boolean matchBonus(int number){
         return numbers.contains(number);
+    }
+
+    public void printLotto(){
+        System.out.println(numbers);
     }
 }

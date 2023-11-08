@@ -1,9 +1,9 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.common.exception.LottoErrorMessage;
+import lotto.common.exception.ErrorMessage;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 class BonusBallTest {
     @Nested
     class 보너스볼_생성시 {
-
         @Test
         void 성공적으로_생성한다() {
             //given
@@ -20,7 +19,7 @@ class BonusBallTest {
             //when
             BonusBall bonusBall = new BonusBall(number);
             //then
-            assertThat(bonusBall.getNumber()).isEqualTo(number);
+            assertThat(bonusBall.number()).isEqualTo(number);
         }
 
         @ValueSource(ints = {0, 46})
@@ -30,7 +29,7 @@ class BonusBallTest {
             //when then
             assertThatThrownBy(() -> new BonusBall(number))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(LottoErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getValue());
+                    .hasMessageContaining(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getValue());
         }
     }
 }

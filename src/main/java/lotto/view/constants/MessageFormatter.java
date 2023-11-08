@@ -1,11 +1,12 @@
 package lotto.view.constants;
 
-public enum MessageFormat {
-    LINE_SEPARATOR(System.lineSeparator());
+public enum MessageFormatter {
+    LINE_SEPARATOR(System.lineSeparator()),
+    ERROR_MESSAGE_PREFIX("[ERROR] ");
 
     private final String value;
 
-    MessageFormat(String value) {
+    MessageFormatter(String value) {
         this.value = value;
     }
 

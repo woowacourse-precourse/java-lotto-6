@@ -1,6 +1,9 @@
 package lotto.common.constants;
 
+import java.util.Arrays;
+
 public enum LottoRank {
+    NO_RANK(0, false, 0),
     FIFTH(3, false, 5_000),
     FOURTH(4, false, 50_000),
     THIRD(5, false, 1_500_000),
@@ -27,5 +30,13 @@ public enum LottoRank {
 
     public int getPrize() {
         return prize;
+    }
+
+    public static LottoRank from(int matchingNumbersCount, boolean hasBonusBall) {
+        return Arrays.stream(LottoRank.values())
+                .filter(rank -> rank.getMatchingNumbersCount() == matchingNumbersCount &&
+                        rank.hasBonusBall() == hasBonusBall)
+                .findFirst()
+                .orElse(NO_RANK);
     }
 }

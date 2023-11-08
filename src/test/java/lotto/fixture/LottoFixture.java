@@ -10,7 +10,6 @@ import lotto.model.purchase.LottoPurchase;
 import lotto.model.purchase.LottoPurchaseAmount;
 
 public class LottoFixture {
-
     private LottoFixture() {
     }
 

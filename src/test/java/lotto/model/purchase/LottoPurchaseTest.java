@@ -6,12 +6,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.common.exception.ErrorMessage;
 import lotto.model.lotto.Lotto;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class LottoPurchaseTest {
-
     @CsvSource({
             "1000, 1",
             "100000000, 100000"
@@ -40,6 +40,6 @@ class LottoPurchaseTest {
         //when then
         assertThatThrownBy(() -> new LottoPurchase(lottoPurchaseAmount, lottos))
                 .isInstanceOf(IllegalStateException.class)
-                .hasMessageContaining("로또의 수량이 다릅니다.");
+                .hasMessageContaining(ErrorMessage.INVALID_LOTTO_PURCHASE.getValue());
     }
 }

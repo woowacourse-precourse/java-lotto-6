@@ -11,6 +11,7 @@ public enum LottoRankMessage {
 
     private static final String FORMAT = "%d개 일치%s (%,d원)";
     private static final String HAS_BONUS_BALL_MESSAGE = ", 보너스 볼 일치";
+    private final LottoRank rank;
     private final String message;
 
     LottoRankMessage(LottoRank rank) {
@@ -19,6 +20,11 @@ public enum LottoRankMessage {
             bonusBallMessage = HAS_BONUS_BALL_MESSAGE;
         }
         this.message = String.format(FORMAT, rank.getMatchingNumbersCount(), bonusBallMessage, rank.getPrize());
+        this.rank = rank;
+    }
+
+    public LottoRank getRank() {
+        return rank;
     }
 
     public String getMessage() {

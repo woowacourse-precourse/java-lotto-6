@@ -1,6 +1,12 @@
 package lotto.controller.dto.output;
 
+import java.util.Collections;
 import java.util.List;
+import lotto.common.constants.LottoRank;
 
-public record WinningLottoResultDto(List<Integer> winningLottoCountByRank, float profitRate) {
+public record WinningLottoResultDto(List<LottoRank> winningResult, float profitRate) {
+    public WinningLottoResultDto(List<LottoRank> winningResult, float profitRate) {
+        this.winningResult = Collections.unmodifiableList(winningResult);
+        this.profitRate = profitRate;
+    }
 }

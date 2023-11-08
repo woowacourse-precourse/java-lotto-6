@@ -10,6 +10,7 @@ import java.util.Set;
 public class LottoMachine {
 
     static private int money;
+
     static private int ticketNumber;
     static List<Lotto> totalLottoTickets = new ArrayList<Lotto>();
 
@@ -23,7 +24,7 @@ public class LottoMachine {
         }
     }
 
-    static boolean validateFormat(String input) {
+    static public boolean validateFormat(String input) {
         try {
             money = Integer.parseInt(input);
             return true;
@@ -33,7 +34,8 @@ public class LottoMachine {
         }
     }
 
-    static boolean validateMoney(String input) {
+    static public boolean validateMoney(String input) {
+        money = Integer.parseInt(input);
         try {
             if (money < 0) {
                 throw new IllegalArgumentException(ErrorType.SIGN.getErrorMessage());
@@ -47,7 +49,7 @@ public class LottoMachine {
         return true;
     }
 
-    static void givingLottoTickets() {
+    static public void givingLottoTickets() {
         ticketNumber = money / 1000;
         for (int i = 0; i < ticketNumber; i++) {
             List<Integer> numbers = pickRandomLottoNumbers();
@@ -56,7 +58,7 @@ public class LottoMachine {
         }
     }
 
-    static List<Integer> pickRandomLottoNumbers() {
+    static public List<Integer> pickRandomLottoNumbers() {
         List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(numbers);
         return numbers;
@@ -74,4 +76,11 @@ public class LottoMachine {
         return money;
     }
 
+    public static void setMoney(int money) {
+        LottoMachine.money = money;
+    }
+
+    public static List<Lotto> getTotalLottoTickets() {
+        return totalLottoTickets;
+    }
 }

@@ -14,8 +14,8 @@ class WinningResultTest {
     private WinningResult winningResult;
 
     @BeforeEach
-    public void setUp() {
-        lottoNumbers = LottoNumbers.validate(3000);
+    public void setResults() {
+        LottoNumbers lottoNumbers = LottoNumbers.validate(3000);
         Lotto numbers = Lotto.validate(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
         winningNumber = WinningNumber.validate(numbers, bonusNumber);

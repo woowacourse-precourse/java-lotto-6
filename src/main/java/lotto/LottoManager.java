@@ -14,8 +14,18 @@ public class LottoManager {
 
 
     public void launch() {
+        User user = new User();
+        Result result = new Result();
 
-        // 에러 발생시 재시도 로직 추가
+        try {
+            int purchaseAmount = user.inputValidatedPurchaseAmount(this);
+            List<Lotto> purchasedLottos = purchaseLottos(purchaseAmount);
+            result.printNumberOfLottosPurchased(purchasedLottos.size());
+            result.printPurchasedLottos(purchasedLottos);
+        } catch (Exception e) {
+            System.out.println("오류 발생: " + e.getMessage());
+
+        }
 
     }
 
@@ -39,6 +49,5 @@ public class LottoManager {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(minLottoNumber, maxLottoNumber, lottoNumberCount);
         return new Lotto(numbers);
     }
-
 
 }

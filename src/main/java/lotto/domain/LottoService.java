@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.util.WinningResult;
 
 public interface LottoService {

@@ -12,6 +12,7 @@ public class LottoStart {
     private static Buyer buyer;
     private static Lotto lotto;
     private static LottoWinningNumber lottoWinningNumber;
+    private static LottoBonusNumber lottoBonusNumber;
     private static CalculateMachine calculateMachine;
     private static PrintWinningResult printWinningResult;
 
@@ -49,10 +50,9 @@ public class LottoStart {
         System.out.println();
 
         System.out.println(Messages.lottoStartMessages.MAKE_BONUS_NUMBER.getMessage());
-        int inputBonusNumbers = second_InputBonusNumber(inputWinningNumbers);
+        second_InputBonusNumber(inputWinningNumbers);
         System.out.println();
 
-        second_CreateLottoWinningNumber(inputWinningNumbers, inputBonusNumbers);
     }
 
     public static void last_GameProgress() {
@@ -85,15 +85,12 @@ public class LottoStart {
             }
         }
     }
-
     private static int first_CalculateMoneyToNum(int money) {
         return money / 1000;
     }
-
     private static Buyer first_CreateBuyer(int money) {
         return new Buyer(money);
     }
-
     private static void first_MakeLotto(Buyer buyer, int numberOfLotto) {
         for (int i = 0; i < numberOfLotto; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -101,7 +98,6 @@ public class LottoStart {
             buyer.setLottoCollection(lotto.getLottoSixNum());
         }
     }
-
     private static void first_PrintMadeLotto(Buyer buyer) {
         int numberOfTickets = first_CalculateMoneyToNum(buyer.getMoney());
         for (int i = 0; i < numberOfTickets; i++) {
@@ -115,16 +111,15 @@ public class LottoStart {
 
         while (true) {
             try {
-
                 winningNumbers = second_formattingWinningNumbers();
-                second_ValidateInputNumbersDuplicates(winningNumbers);
+                lottoWinningNumber = new LottoWinningNumber(winningNumbers);
                 break;
 
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해 주세요.");
 
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 중복된 숫자가 있습니다. 다시 입력해 주세요.");
+                System.out.println(e.getMessage());
             }
         }
 
@@ -139,43 +134,23 @@ public class LottoStart {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
-    private static boolean second_CheckInputNumbersDuplicates(List<Integer> inputNumbers) {
-        for (int i = 0; i < inputNumbers.size() - 1; i++) {
-            for (int j = i + 1; j < inputNumbers.size(); j++) {
-                if (inputNumbers.get(i).equals(inputNumbers.get(j))) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-    private static void second_ValidateInputNumbersDuplicates(List<Integer> inputNumbers){
-        if(second_CheckInputNumbersDuplicates(inputNumbers)){
-            throw new IllegalArgumentException();
-        }
-    }
     private static int second_InputBonusNumber(List<Integer> inputWinningNumbers) {
         while (true) {
             try {
                 String inputBonusNumbers = Console.readLine();
                 int num = Integer.parseInt(inputBonusNumbers);
-                if (inputWinningNumbers.contains(num)) {
-                    throw new IllegalArgumentException();
-                }
+                lottoBonusNumber = new LottoBonusNumber(num,inputWinningNumbers);
                 return num;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 당첨번호와 중복 됩니다. 중복 되지 않는 번호를 입력해주세요.");
+                System.out.println(e.getMessage());
             }
         }
     }
 
-    private static void second_CreateLottoWinningNumber(List<Integer> winningNumbers, int bonusNumber) {
-        lottoWinningNumber = new LottoWinningNumber(winningNumbers, bonusNumber);
-    }
 
     //로또 당첨 결과 출력 까지
     private static CalculateMachine last_CreateCalculateMachine() {
-        return new CalculateMachine(buyer.getAllLottoCollection(), lottoWinningNumber.getWinningNumbers(), lottoWinningNumber.getBonusNumber());
+        return new CalculateMachine(buyer.getAllLottoCollection(), lottoWinningNumber.getWinningNumbers(), lottoBonusNumber.getBonusNumber());
     }
 
 }

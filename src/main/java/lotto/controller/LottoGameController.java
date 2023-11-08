@@ -6,6 +6,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoCount;
 import lotto.model.LottoTickets;
 import lotto.model.WinningNumbers;
+import lotto.model.WinningPrize;
 import lotto.model.WinningResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -65,7 +66,7 @@ public class LottoGameController {
 
     private void printGameResult(Map<Ranking, Integer> result, int amount) {
         OutputView.printWinningDetails(result);
-        OutputView.printRateOfReturn(WinningResult.getProfit(result, amount));
+        OutputView.printRateOfReturn(WinningPrize.getProfit(result, amount));
     }
 
 }

@@ -9,8 +9,12 @@ public final class CostRequestView {
 
     public static Integer request() {
         printlnMessage(COST_REQUEST_MESSAGE);
-        String cost = Validator.validate(enterMessage());
-        return Integer.parseInt(cost);
+        try {
+            String cost = Validator.validate(enterMessage());
+            return Integer.parseInt(cost);
+        } catch (IllegalArgumentException e) {
+            return request();
+        }
     }
 
     private static class Validator {

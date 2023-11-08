@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.global.validator.Validator.validateNumber;
 import static lotto.view.ui.Input.enterMessage;
 import static lotto.view.ui.Output.printlnMessageWithNewLine;
 
@@ -12,8 +13,12 @@ public class BonusRequestVIew {
 
     public static Number request() {
         printlnMessageWithNewLine(BONUS_NUMBER_REQUEST_MESSAGE);
-        String bonusNumber = Validator.validate(enterMessage());
-        return parseBonusNumber(bonusNumber);
+        try {
+            String bonusNumber = Validator.validate(enterMessage());
+            return parseBonusNumber(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            return request();
+        }
     }
 
     private static Number parseBonusNumber(final String bonusNumber) {
@@ -27,7 +32,7 @@ public class BonusRequestVIew {
 
     private static class Validator {
         private static String validate(final String message) {
-            lotto.global.validator.Validator.validateNumber(message);
+            validateNumber(message);
             return message;
         }
     }

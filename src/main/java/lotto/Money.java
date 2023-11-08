@@ -18,5 +18,7 @@ public class Money {
         }
     }
 
-
+    public int calculatePurchasedLotto() {
+        return money / 1000;
+    }
 }

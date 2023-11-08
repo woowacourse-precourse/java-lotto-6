@@ -13,9 +13,11 @@ public class Controller {
     private LottoService lottoService = new LottoService();
     Exceptions exceptions = new Exceptions();
     private WinningNumber winningNumber;
+    private Customer customer;
     public void start(){
         getBuyLottoMoney();
         winningNumberShow();
+        gameResult();
     }
     private void getBuyLottoMoney() {
         InputMessage.inputMoney();
@@ -23,6 +25,10 @@ public class Controller {
         Customer customer = new Customer(inputMoney);
         lottoService.buyLottoByTicket(customer);
         resultLotto(customer);
+    }
+
+    private void gameResult() {
+        lottoService.checkLottoRanking(customer,winningNumber);
     }
 
     private void resultLotto(Customer customer) {

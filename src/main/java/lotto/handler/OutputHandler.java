@@ -24,9 +24,13 @@ public class OutputHandler {
     }
 
     public static void outputGameResult(GameResult gameResult) {
-        Map<LottoResultInfo, Integer> resultMap = gameResult.getResultMap();
-        Map<LottoResultInfo, Integer> sortedResultMap = new TreeMap<>(resultMap);
+        Map<LottoResultInfo, Integer> finalResult = gameResult.getFinalResult();
+        Map<LottoResultInfo, Integer> sortedResultMap = new TreeMap<>(finalResult);
 
+        printFinalResult(sortedResultMap);
+    }
+
+    private static void printFinalResult(Map<LottoResultInfo, Integer> sortedResultMap) {
         OutputView.printMessage(OUTPUT_WINNING_STATISTICS);
 
         for (Entry<LottoResultInfo, Integer> entry : sortedResultMap.entrySet()) {

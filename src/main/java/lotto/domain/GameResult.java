@@ -7,40 +7,42 @@ import java.util.Map.Entry;
 import lotto.globar.LottoResultInfo;
 
 public class GameResult {
-    Map<LottoResultInfo, Integer> resultMap;
+    Map<LottoResultInfo, Integer> finalResult;
     double rateOfReturn;
 
 
     private GameResult() {
     }
 
-    private GameResult(Map<LottoResultInfo, Integer> resultMap, double rateOfReturn) {
-        this.resultMap = resultMap;
+    private GameResult(Map<LottoResultInfo, Integer> finalResult, double rateOfReturn) {
+        this.finalResult = finalResult;
         this.rateOfReturn = rateOfReturn;
     }
 
     public static GameResult createGameResult(List<LottoResult> lottoResults, long lottoPurchasePrice) {
-        Map<LottoResultInfo, Integer> resultMap = new HashMap<>();
-        double allPrize = 0;
+        Map<LottoResultInfo, Integer> finalResult = new HashMap<>();
+        preprocessFinalResult(finalResult);
 
-        for (LottoResultInfo value : LottoResultInfo.values()) {
-            resultMap.put(value, 0);
-        }
+        double allPrize = 0;
 
         for (LottoResult lottoResult : lottoResults) {
             LottoResultInfo lottoResultInfo = lottoResult.lottoResultInfo;
-
-            resultMap.put(lottoResultInfo, resultMap.getOrDefault(lottoResultInfo,0) + 1);
+            finalResult.put(lottoResultInfo, finalResult.getOrDefault(lottoResultInfo,0) + 1);
             allPrize += lottoResult.lottoResultInfo.getPrize();
         }
 
-        //BigDecimal
-        double rateOfReturn = Math.round((allPrize / lottoPurchasePrice * 100) * 10.0)/ 10.0;
-        return new GameResult(resultMap, rateOfReturn);
+        double rateOfReturn = Math.round((allPrize / lottoPurchasePrice * 1000.0)/ 10.0;
+        return new GameResult(finalResult, rateOfReturn);
     }
 
-    public Map<LottoResultInfo, Integer> getResultMap() {
-            return resultMap;
+    private static void preprocessFinalResult(Map<LottoResultInfo, Integer> resultMap) {
+        for (LottoResultInfo value : LottoResultInfo.values()) {
+            resultMap.put(value, 0);
+        }
+    }
+
+    public Map<LottoResultInfo, Integer> getFinalResult() {
+            return finalResult;
     }
 
     public double getRateOfReturn() {

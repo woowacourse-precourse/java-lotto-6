@@ -20,9 +20,22 @@ public class GameController {
 
     public static void game() {
         long lottoPurchasePrice = InputHandler.setLottoPurchasePrice();
+
+        List<Lotto> lottos = setLottos(lottoPurchasePrice);
+
+        LottoWinningCombination lottoWinningCombination = setWinningCombination();
+
+        finalLottoGame(lottos, lottoWinningCombination, lottoPurchasePrice);
+
+    }
+
+    private static List<Lotto> setLottos(long lottoPurchasePrice) {
         List<Lotto> lottos = LottoService.issueLottoTickets(lottoPurchasePrice);
         OutputHandler.outputLottosInfo(lottos);
+        return lottos;
+    }
 
+    private static LottoWinningCombination setWinningCombination() {
         List<Integer> winnerNums = InputHandler.setWinningNums();
         OutputView.printMessageBlankLine();
 
@@ -30,12 +43,16 @@ public class GameController {
         OutputView.printMessageBlankLine();
 
         LottoWinningCombination lottoWinningCombination = createLottoWinningCombination(winnerNums, bonusNum);
+        return lottoWinningCombination;
+    }
+
+    private static void finalLottoGame(List<Lotto> lottos, LottoWinningCombination lottoWinningCombination,
+                                       long lottoPurchasePrice) {
         List<LottoResult> lottoResults = LottoService.determineLottoResults(lottos, lottoWinningCombination);
 
-        GameResult gameResult = createGameResult(lottoResults,lottoPurchasePrice);
+        GameResult gameResult = createGameResult(lottoResults, lottoPurchasePrice);
         OutputHandler.outputGameResult(gameResult);
         OutputHandler.outputRateOfReturn(gameResult);
-
     }
 
 }

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.repository.LottoRepository;
+import lotto.utils.CalculateUtility;
+import lotto.view.OutputView;
 
 public class DrawingHost {
     private Map<Ranking, Integer> winningResultMap;
@@ -15,6 +17,12 @@ public class DrawingHost {
         for (Ranking rank : Ranking.values()) {
             winningResultMap.put(rank, 0);
         }
+    }
+
+    public void produceResults() {
+        getWinningResult();
+        Long prizeSum = CalculateUtility.calculatePrizeSum(winningResultMap);
+        double earningsRate = CalculateUtility.calculateEarningsRate(prizeSum, LottoRepository.getBudget());
     }
 
     private void getWinningResult() {

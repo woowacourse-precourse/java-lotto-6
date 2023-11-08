@@ -25,4 +25,9 @@ public class View {
         outputView.requestLottoWinningNumbers();
         return inputView.enterWinningLottoNumbers();
     }
+
+    public int requireBonusLottoNumber() {
+        outputView.requestBonusLottoNumber();
+        return inputView.enterBonusLottoNumber();
+    }
 }

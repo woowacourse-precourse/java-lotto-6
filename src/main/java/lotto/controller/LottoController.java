@@ -22,7 +22,7 @@ public class LottoController {
     public void run() {
         purchaseLottos();
         inputWinningLotto();
-        resultLottoStatistics();
+        resultLottoGame();
     }
 
     private void purchaseLottos() {
@@ -37,7 +37,7 @@ public class LottoController {
         lottoService.saveWinningLotto(lotto, bonusNumber);
     }
 
-    private void resultLottoStatistics() {
+    private void resultLottoGame() {
         outputView.printWinningStatisticsMessage();
         lottoService.calculateWinningStatistics();
         lottoService.calculateTotalRate();

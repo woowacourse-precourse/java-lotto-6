@@ -33,7 +33,7 @@ public class Statistics {
             .collect(Collectors.toMap(Function.identity(), matchResult -> 1, Integer::sum));
     }
 
-    public int calculateTotalWinnings(Map<MatchResult, Integer> matchCounts) {
+    public int calculateTotalEaringPrize(Map<MatchResult, Integer> matchCounts) {
         return matchCounts.entrySet().stream()
             .mapToInt(entry -> entry.getValue() * PRIZE_MONEY.getOrDefault(entry.getKey(), 0))
             .sum();
@@ -46,9 +46,8 @@ public class Statistics {
             System.out.println(entry.getKey().toString() + entry.getValue());
         }
 
-        float totalWinnings = calculateTotalWinnings(counts);
-        System.out.println("totalWinnings = " + totalWinnings);
-        float totalProfit = getProfitRate(totalWinnings);
+        float totalEarningPrize = calculateTotalEaringPrize(counts);
+        float totalProfit = getProfitRate(totalEarningPrize);
         return totalProfit;
     }
 

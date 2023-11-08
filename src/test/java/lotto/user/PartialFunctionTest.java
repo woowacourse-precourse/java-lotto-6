@@ -21,11 +21,37 @@ class PartialFunctionTest {
         assertThat(expectedNumber).isEqualTo(actualNumber);
     }
 
+    @DisplayName("구입 금액 숫자로 가져오기")
+    @Test
+    void getMoneyNumberWithSpace() {
+        PartialFunction PARTIAL_FUNCTION = new PartialFunction();
+        int actualNumber = PARTIAL_FUNCTION.getMoneyNumber("  11000  ");
+        int expectedNumber = 11000;
+
+        assertThat(expectedNumber).isEqualTo(actualNumber);
+    }
+
     @DisplayName("구입 금액이 정수가 아닌 경우")
     @Test
     void getMoneyByNotNumber() {
         PartialFunction PARTIAL_FUNCTION = new PartialFunction();
         assertThatThrownBy(() -> PARTIAL_FUNCTION.getMoneyNumber("money"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구입 금액이 빈 값인 경우")
+    @Test
+    void getMoneyByNullInput() {
+        PartialFunction PARTIAL_FUNCTION = new PartialFunction();
+        assertThatThrownBy(() -> PARTIAL_FUNCTION.getMoneyNumber(""))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구입 금액이 0인 경우")
+    @Test
+    void getMoneyNumberByZero() {
+        PartialFunction PARTIAL_FUNCTION = new PartialFunction();
+        assertThatThrownBy(() -> PARTIAL_FUNCTION.getMoneyNumber("0"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

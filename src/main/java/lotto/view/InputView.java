@@ -3,11 +3,14 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.validator.UserInputValidator;
 
 public class InputView {
 
-    public static String getUserInput() {
-        return Console.readLine();
+    public static int inputPurchaseAmount() {
+        String userInput = Console.readLine();
+        int purchaseAmount = UserInputValidator.validatePurchaseAmount(userInput);
+        return purchaseAmount;
     }
 
     public static List<Integer> inputWinningNumbers() {

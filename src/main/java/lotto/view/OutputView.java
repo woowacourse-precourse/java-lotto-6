@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.constants.OutputMessages;
 import lotto.constants.WinningResult;
-import lotto.model.Lotto;
+import lotto.domain.Lotto;
 
 public class OutputView {
 

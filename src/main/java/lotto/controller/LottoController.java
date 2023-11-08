@@ -3,9 +3,9 @@ package lotto.controller;
 import java.util.List;
 import java.util.Map;
 import lotto.constants.WinningResult;
-import lotto.model.Lotto;
-import lotto.model.LottoStore;
-import lotto.model.WinLotto;
+import lotto.domain.Lotto;
+import lotto.domain.LottoStore;
+import lotto.domain.WinLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -24,7 +24,7 @@ public class LottoController {
     public void InputPurchaseAmount() {
         try {
             OutputView.askPurchaseAmount();
-            String purchaseAmount = InputView.getUserInput();
+            int purchaseAmount = InputView.inputPurchaseAmount();
             purchaseLottoList = lottoStore.buyLottos(purchaseAmount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

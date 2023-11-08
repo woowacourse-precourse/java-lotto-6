@@ -18,7 +18,7 @@ public class Result {
     public void countWinningRank(RandomLottos randomLottos, WinningLotto winningLotto, Bonus bonus) {
         for (Lotto randomLotto : randomLottos.getRandomLottos()) {
             Rank rank = Rank.calculateWinningRank(randomLotto, winningLotto, bonus);
-            countByWinningRank.put(rank, countByWinningRank.get(rank) + 1);
+            updateWinningRank(rank);
         }
     }
 
@@ -34,6 +34,10 @@ public class Result {
             }
         }
         return prize;
+    }
+
+    private void updateWinningRank(Rank rank) {
+        countByWinningRank.put(rank, countByWinningRank.get(rank) + 1);
     }
 
     private int getCount(Rank rank) {

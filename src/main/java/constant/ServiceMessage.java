@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.EnumMap;
 
 public enum ServiceMessage {
-    INPUT_BUY(101,"구입금액을 입력해 주세요.\n"),
-    BUY_RESULT(102,"개를 구매했습니다.\n"),
-    INPUT_WINNING_NUMBER(103,"당첨 번호를 입력해 주세요.\n"),
-    INPUT_BONNUS_NUMBER(104,"보너스 번호를 입력해 주세요.\n"),
+    INPUT_BUY(101,"구입금액을 입력해 주세요."),
+    BUY_RESULT(102,"개를 구매했습니다."),
+    INPUT_WINNING_NUMBER(103,"당첨 번호를 입력해 주세요."),
+    INPUT_BONNUS_NUMBER(104,"보너스 번호를 입력해 주세요."),
     FINAL_RESULT(105,"당첨 통계");
     private final int code;
     private final String message;

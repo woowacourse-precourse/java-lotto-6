@@ -1,6 +1,10 @@
 package lotto.view;
 
+import java.util.ArrayList;
+import java.util.List;
+import lotto.Lotto;
 import lotto.model.LottoCount;
+import lotto.model.Lottos;
 
 public class OutputView {
     private static final String NEW_LINE = System.lineSeparator();
@@ -14,6 +18,14 @@ public class OutputView {
     public static void printLottoCount(LottoCount lottoCount) {
         System.out.println(NEW_LINE);
         System.out.printf(PURCHASED_LOTTO_COUNT, lottoCount.getLottoCount());
+        System.out.println(NEW_LINE);
+    }
+
+    public static void printPurchasedLotto(Lottos lottos) {
+        for (Lotto lotto : lottos.get()) {
+            List<Integer> numbers = new ArrayList<>(lotto.get());
+            System.out.println(numbers);
+        }
         System.out.println(NEW_LINE);
     }
 }

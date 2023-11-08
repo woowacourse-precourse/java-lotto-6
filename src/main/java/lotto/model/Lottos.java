@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.Lotto;
 
@@ -8,6 +9,10 @@ public class Lottos {
 
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
+    }
+
+    public List<Lotto> get() {
+        return Collections.unmodifiableList(lottos);
     }
 
     public void addLotto(Lotto lotto) {

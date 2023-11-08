@@ -6,9 +6,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 
 public class Application {
-    final static int lottoMin = 1;
-    final static int lottoMax = 45;
-    final static int lottolength = 6;
     final static int coinStandard = 1000;
     final static int[] lottoRankMoney = {0, 2000000000, 30000000, 1500000, 50000, 5000};
     static int inputCoin;
@@ -18,6 +15,18 @@ public class Application {
     static List<List<Integer>> lottoTotal = new ArrayList<>();
     // myWinningLotto = {미당첨, 1등, 2등, 3등, 4등, 5등}
     static List<Integer> myWinningLotto = new ArrayList<>();
+
+    public enum LottoSetting{
+        LOTTOMIN(1),
+        LOTTOMAX(45),
+        LOTTOLENGTH(6);
+
+        private final int value;
+        LottoSetting(int value){
+            this.value = value;
+        }
+    }
+
 
     public enum LottoWinRank{
         FIRST(1),
@@ -73,7 +82,7 @@ public class Application {
     }
 
     public static List<Integer> RandomLottoNumber() {
-        List<Integer> randomNumber = Randoms.pickUniqueNumbersInRange(lottoMin, lottoMax, lottolength);
+        List<Integer> randomNumber = Randoms.pickUniqueNumbersInRange(LottoSetting.LOTTOMIN.value, LottoSetting.LOTTOMAX.value, LottoSetting.LOTTOLENGTH.value);
         Collections.sort(randomNumber);
         return randomNumber;
     }
@@ -98,7 +107,7 @@ public class Application {
             throw new IllegalArgumentException();
         }        
 
-        if (lottoNum < lottoMin || lottoNum > lottoMax){
+        if (lottoNum < LottoSetting.LOTTOMIN.value || lottoNum > LottoSetting.LOTTOMAX.value){
             System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             throw new IllegalArgumentException();
         }
@@ -151,7 +160,7 @@ public class Application {
     }
 
     public static void LotteryWinningInit(){
-        for(int i=0; i<lottolength; i++)
+        for(int i=0; i<LottoSetting.LOTTOLENGTH.value; i++)
             myWinningLotto.add(0);
     }
 
@@ -173,7 +182,7 @@ public class Application {
     public static void SumLottoResult(){
         System.out.println("당첨 통계");
         System.out.println("---");
-        for(int i=lottolength-1; i>0; i--){
+        for(int i=LottoSetting.LOTTOLENGTH.value-1; i>0; i--){
             totalLottoMoney += GetMoney(i, myWinningLotto.get(i));
         }
     }

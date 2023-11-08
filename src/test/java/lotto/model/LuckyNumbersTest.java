@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LuckyNumbersTest {
@@ -34,6 +35,15 @@ class LuckyNumbersTest {
         assertThatThrownBy(() -> new LuckyNumbers(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.NOT_DIGIT.getMessage());
+    }
+
+    @ParameterizedTest
+    @DisplayName("List<String>에서 List<Integer>로 변환 확인")
+    @ValueSource(strings = {"1,2,3,4,5,6"})
+    void 타입_변환_확인(String value) {
+        LuckyNumbers input = new LuckyNumbers(value);
+        input.getNumbers();
+        assertThat(input.getNumbers().get(0)).isInstanceOf(Integer.class);
     }
 
 }

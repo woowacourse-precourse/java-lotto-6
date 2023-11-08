@@ -85,4 +85,10 @@ public class Lotto {
 		return numbers.stream()
 				.allMatch(number -> 1 <= number && number <= 45);
 	}
+
+	public String getLottoNumbersAsString() {
+		return this.numbers.stream()
+				.map(String::valueOf)
+				.collect(Collectors.joining(", "));
+	}
 }

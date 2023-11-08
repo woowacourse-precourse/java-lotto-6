@@ -35,7 +35,7 @@ public class LottoController {
     private void result(LottoNumbers lottoNumbers, Lotto lotto) {
         BonusBall bonusBall = inputBonusBall(lotto);
         Score score = lottoNumbers.calculateScore(lotto, bonusBall);
-        Long revenue = score.getPrize();
+        long revenue = score.getPrize();
         List<Integer> scores = score.getScores();
         OutputView.printWinStatistics(WinStatistics.getStatisticsString(scores, revenue));
     }
@@ -59,7 +59,7 @@ public class LottoController {
             int money = userInput.money();
             return new Money(money);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return null;
         }
     }
@@ -77,7 +77,7 @@ public class LottoController {
             List<Integer> winNumber = userInput.lottoNumber();
             return new Lotto(winNumber);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return null;
         }
     }
@@ -95,7 +95,7 @@ public class LottoController {
             int bonusBall = userInput.bonusBall();
             return new BonusBall(bonusBall, lotto);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return null;
         }
     }

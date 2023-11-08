@@ -62,7 +62,7 @@ public class Application {
     }
     public static void compareLottoWithWinning() {
         for(Lotto lottoTicket : lottoTickets) {
-            Integer sameNumber = (int) lottoTicket.getNumbers().stream()
+            Integer matchNumber = (int) lottoTicket.getNumbers().stream()
                     .filter(winningNumbers::contains)
                     .count();
             //5개면 보너스가 맞는지

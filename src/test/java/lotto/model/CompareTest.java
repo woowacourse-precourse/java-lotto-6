@@ -26,7 +26,7 @@ class CompareTest {
 
     @Test
     @DisplayName("수익률 포맷 확인")
-    void 수익률_포맷_확인(){
+    void 수익률_포맷_확인() {
         List<Lotto> purchase = new ArrayList<>();
         purchase.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
         Lotto lucky = new Lotto(List.of(1, 2, 3, 30, 31, 32));

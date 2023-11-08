@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import static lotto.utility.Constants.COMMA;
+import static lotto.utility.Constants.ERROR_MESSAGE_1;
+import static lotto.utility.Constants.ERROR_MESSAGE_2;
 import static lotto.utility.Constants.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -13,11 +15,17 @@ import lotto.model.User;
 
 public class UserInput {
     public UserInput() {}
-    public static Integer PurchaseAmount() throws IllegalStateException {
-        String userInput = Console.readLine();
-        UserException.validatePurchaseAmountOnlyInt(userInput);
-        Integer purchaseAmount = Integer.parseInt(userInput);
-        return purchaseAmount;
+    public static Integer PurchaseAmount() throws IllegalArgumentException {
+        while (true) {
+            try {
+                String userInput = Console.readLine();
+                UserException.validatePurchaseAmountOnlyInt(userInput);
+                Integer purchaseAmount = Integer.parseInt(userInput);
+                return purchaseAmount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static Integer calculatePurchaseLottoNumber(Integer purchaseAmount) {
@@ -25,11 +33,20 @@ public class UserInput {
     }
 
     public static void winningNumbers() throws IllegalArgumentException {
-        String userInput = Console.readLine();
-        List<Integer> winningNumbers = Arrays.stream(userInput.split(COMMA))
-                                                .map(Integer::parseInt)
-                                                .collect(Collectors.toList());
-        LottoException.validateLottoAll(winningNumbers);
+        String userInput;
+        List<Integer> winningNumbers = null;
+        while (true) {
+            try {
+                userInput = Console.readLine();
+                winningNumbers = Arrays.stream(userInput.split(COMMA))
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList());
+                LottoException.validateLottoAll(winningNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         User.setWinningNumbers(winningNumbers);
     }
 

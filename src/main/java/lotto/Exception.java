@@ -10,7 +10,14 @@ public class Exception {
         System.out.println();
     }
 
-    public static void priceValidate(int price) {
+    public static void priceValidate(String input) {
+        int price;
+        try {
+            price = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자를 입력하셔야 합니다.");
+        }
+
         if (price % 1000 != 0) {
             throw new IllegalArgumentException("로또 1장의 가격은 1,000원입니다.");
         }

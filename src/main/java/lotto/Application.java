@@ -35,11 +35,11 @@ public class Application {
 
     public static void inputPrice() {
         System.out.println("구입금액을 입력해 주세요.");
-        int input = Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
 
         try {
             Exception.priceValidate(input);
-            price = input;
+            price = Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             Exception.printException(e.getMessage());
             inputPrice();

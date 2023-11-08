@@ -1,8 +1,8 @@
 package lotto.service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.constant.ErrorMessage;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.LottoValidator;
@@ -70,10 +70,6 @@ public class InputService {
     }
 
     public List<Integer> stringListToIntegerList(List<String> stringList) {
-        List<Integer> integerList = new ArrayList<>();
-        for (String string : stringList) {
-            integerList.add(Integer.parseInt(string));
-        }
-        return integerList;
+        return stringList.stream().map(s -> Integer.parseInt(s)).collect(Collectors.toList());
     }
 }

@@ -85,6 +85,9 @@ public class Application {
         if (bonusNum < LOTTO_START_NUMBER || bonusNum > LOTTO_END_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 정수로 입력해야 합니다.");
         }
+        if (answer.getNumbers().contains(bonusNum)){
+            throw new IllegalArgumentException("[ERROR] 당첨 숫자와 중복되지 않아야 합니다.");
+        }
     }
 
     private static void getAnswer(){

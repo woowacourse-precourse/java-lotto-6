@@ -13,58 +13,61 @@ import java.util.List;
 
 public class InputView {
     public static int inputPurchaseAmount() {
-        int purchaseAmount = 0;
         try {
-            purchaseAmount = changeToInt(readLine());
+            int purchaseAmount = changeToInt(readLine());
             validateExceedMinimum(purchaseAmount);
             validateDivisibleAmount(purchaseAmount);
+            return purchaseAmount;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputPurchaseAmount();
         }
-        return purchaseAmount;
     }
 
     public static int changeToInt(String input) {
-        int inputNum = 0;
         try {
-            inputNum = Integer.parseInt(input);
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             validateNumber();
+            return -1;
         }
-        return inputNum;
     }
 
     public static List<Integer> inputWinningNum() {
-        List<Integer> nums = new ArrayList<>();
         try {
-            String[] winningNum = readLine().split(",");
-            validateLottoLength(winningNum.length);
+            List<Integer> winningNums = new ArrayList<>();
+            String[] inputNums = readLine().split(",");
+            validateLottoLength(inputNums.length);
 
-            for (String num : winningNum) {
-                int number = changeToInt(num);
-                validateLottoNum(number);
-                validateDuplicateNum(number, nums);
-                nums.add(number);
+            for (String num : inputNums) {
+                int eachWinningNum = getEachWinningNum(num, winningNums);
+                winningNums.add(eachWinningNum);
             }
+            return winningNums;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputWinningNum();
         }
-        return nums;
     }
 
+    public static int getEachWinningNum(String num, List<Integer> winningNums) throws IllegalArgumentException {
+        int number = changeToInt(num);
+        validateLottoNum(number);
+        validateDuplicateNum(number, winningNums);
+        return number;
+    }
+
+
     public static int inputBonusNum(List<Integer> winningNum) {
-        int bonusNum = 0;
         try {
-            bonusNum = changeToInt(readLine());
+            int bonusNum = changeToInt(readLine());
             validateLottoNum(bonusNum);
             validateDuplicateNum(bonusNum, winningNum);
+            return bonusNum;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputBonusNum(winningNum);
         }
-        return bonusNum;
     }
 }
 

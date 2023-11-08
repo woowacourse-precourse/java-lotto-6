@@ -8,10 +8,10 @@ import java.util.List;
 
 public class LottoStore {
 
-    public List<Lotto> userLottoTickets;
-    public int lottoPurchase;
-    public Lotto winningNumbers;
-    public int bonusNumber;
+    private List<Lotto> userLottoTickets;
+    private int lottoPurchase;
+    private Lotto winningNumbers;
+    private int bonusNumber;
     LinkedHashMap<LottoRank, Integer> lottoResults = new LinkedHashMap<>();
     private static final String AVERAGE_REWARD_MESSAGE = "총 수익률은 %.1f%%입니다.";
     private static final String UNIT_OF_QUANTITY = "개\n";
@@ -29,7 +29,7 @@ public class LottoStore {
         this.bonusNumber = bonusNumber;
     }
 
-    public void makeLottoResult() {
+    private void makeLottoResult() {
         for (LottoRank rank : LottoRank.values()) {
             lottoResults.put(rank, 0);
         }
@@ -51,7 +51,7 @@ public class LottoStore {
         return lottoReceipt;
     }
 
-    public String addAverageRewardAtLottoReceipt(StringBuilder lottoReceipt) {
+    private String addAverageRewardAtLottoReceipt(StringBuilder lottoReceipt) {
         int reward = INITIAL_REWARD;
         for (LottoRank rank : LottoRank.values()) {
             reward += rank.getReward() * lottoResults.get(rank);
@@ -61,7 +61,7 @@ public class LottoStore {
         return lottoReceipt.toString();
     }
 
-    public StringBuilder toStringLottoResult() {
+    private StringBuilder toStringLottoResult() {
         StringBuilder lottoReceipt = new StringBuilder();
         for (LottoRank rank : LottoRank.values()) {
             lottoReceipt.append(rank.getRankMessage());

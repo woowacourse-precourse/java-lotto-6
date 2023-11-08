@@ -28,10 +28,10 @@ class CalculateWinningContextTest {
     // then
     assertThat(calculateResult.isRight()).isTrue();
     assertThat(calculateResult.getRight()).containsExactly(
-        new WinningRecord(Ranking.FIRST, 1),
-        new WinningRecord(Ranking.SECOND, 2),
+        new WinningRecord(Ranking.FIFTH, 2),
         new WinningRecord(Ranking.THIRD, 1),
-        new WinningRecord(Ranking.FIFTH, 1)
+        new WinningRecord(Ranking.SECOND, 1),
+        new WinningRecord(Ranking.FIRST, 1)
     );
   }
 

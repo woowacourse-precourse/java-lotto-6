@@ -113,16 +113,16 @@ public class Process {
 
 
     //수익률 계산
-    public float calculateRateOfReturn(int purchaseAmount, Map<Integer, Integer> winRecordBoard) {
+    public float calculateRateOfReturn(int purchaseAmount) {
 
-        int totalPrizeAmount = 0;
+        float totalPrizeAmount = 0;
         float rateOfReturn;
 
-        for (WinningRankPrize rank : WinningRankPrize.values()) {
-            totalPrizeAmount += Integer.parseInt(rank.getPrizeAmount().replace(",", "")) * winRecordBoard.get(rank.getRank());
+        for (WinningRankPrize rankPlace : WinningRankPrize.values()) {
+            totalPrizeAmount += Integer.parseInt(rankPlace.getPrizeAmount().replace(",", "")) * rankPlace.getWinCount();
         }
 
-        rateOfReturn = (totalPrizeAmount / purchaseAmount) * 100;
+        rateOfReturn = (totalPrizeAmount / (float) purchaseAmount) * 100;
 
         return rateOfReturn;
     }

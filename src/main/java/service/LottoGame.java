@@ -53,7 +53,6 @@ public class LottoGame {
     }
 
     private LottoRank getRank(Lotto bonusNumber, Lotto ticket, int matchedCount) {
-        LottoRank rank;
         if (matchedCount == LottoRank.FIRST.getMatchedCount()) {
             return LottoRank.FIRST;
         } else if (matchedCount == LottoRank.SECOND.getMatchedCount() && checkBonusNumber(ticket.getNumbers(), bonusNumber.getNumbers())) {

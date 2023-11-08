@@ -52,4 +52,10 @@ enum LottoRank {
         }
         return 0;
     }
+
+    public static void resetAdditionalMatches() {
+        for (LottoRank rank : values()) {
+            rank.additionalMatches = 0;
+        }
+    }
 }

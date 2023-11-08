@@ -1,5 +1,7 @@
 package lotto;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +12,15 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ServiceTest {
+
+    @BeforeEach
+    void beforeEach() {
+        LottoRank.resetAdditionalMatches();
+    }
+    @AfterEach
+    void afterEach() {
+        LottoRank.resetAdditionalMatches();
+    }
 
     @DisplayName("발행한 로또의 개수가 구매한 로또의 개수와 같은지 확인한다.")
     @Test
@@ -33,7 +44,7 @@ public class ServiceTest {
         int bonus = 7;
 
         Service.checkLottos(lottos, winningNumbers, bonus);
-        assertEquals(1,LottoRank.SIX_MATCH.getAdditionalMatches());
+        assertEquals(1, LottoRank.SIX_MATCH.getAdditionalMatches());
         assertEquals(0, LottoRank.FIVE_MATCH.getAdditionalMatches());
         assertEquals(0, LottoRank.FOUR_MATCH.getAdditionalMatches());
         assertEquals(0, LottoRank.THREE_MATCH.getAdditionalMatches());

@@ -28,7 +28,7 @@ public class ConvertInput {
         return num;
     }
 
-    static char[] str2CharArr(String input) {
+    public static char[] str2CharArr(String input) {
         char[] c = new char[input.length()];
         for (int i = 0; i < input.length(); i++) {
             c[i] = input.charAt(i);

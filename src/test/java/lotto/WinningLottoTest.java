@@ -1,6 +1,6 @@
 package lotto;
 
-import static lotto.Model.WinningLotto.ERROR_END_LOTTO_NUMBER_DELEMETER;
+import static lotto.Model.WinningLotto.ERROR_END_DELEMETER;
 import static lotto.Model.WinningLotto.ERROR_NOT_LOTTO_FORMAT;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -27,6 +27,6 @@ public class WinningLottoTest {
 
         assertThatThrownBy(() -> new WinningLotto(invalidInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ERROR_END_LOTTO_NUMBER_DELEMETER);
+                .hasMessage(ERROR_END_DELEMETER);
     }
 }

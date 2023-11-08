@@ -26,6 +26,7 @@ public class LottoGameManager {
         enterPurchaseAmount();
         printLottos();
         enterWinningNumber();
+        enterBonusNumber();
     }
 
     private void enterPurchaseAmount() {
@@ -50,9 +51,22 @@ public class LottoGameManager {
     private void enterWinningNumber() {
         while (true) {
             try {
-                winning.setNumbers(inputView.enterWinningNumber());
+                List<Integer> numbers = inputView.enterWinningNumber();
+                winning.setNumbers(numbers);
                 break;
             } catch (IllegalArgumentException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+    }
+
+    private void enterBonusNumber(){
+        while (true) {
+            try {
+                int bonusNumber = inputView.enterBonusNumber();
+                winning.setBonusNumber(bonusNumber);
+                break;
+            } catch (IllegalArgumentException e){
                 System.err.println(e.getMessage());
             }
         }

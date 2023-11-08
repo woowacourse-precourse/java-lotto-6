@@ -1,14 +1,18 @@
 package lotto.model;
 
+import java.util.Map;
+
 public class Wallet {
     private static final int MAXIMUM_PURCHASE_AMOUNT =  1000000000;
     private static final int LOTTO_PRICE = 1000;
 
+    private final int initialAmount;
     private int money;
 
     public Wallet(String money) {
         validateMoney(money);
-        this.money = convertStringToInt(money);
+        initialAmount = convertStringToInt(money);
+        this.money = initialAmount;
     }
 
     private void validateMoney(String money) {
@@ -67,5 +71,9 @@ public class Wallet {
                     + MAXIMUM_PURCHASE_AMOUNT + "원.");
         }
         return convertMoney;
+    }
+
+    public double calculateProfitRate(long profit) {
+        return Math.round(((double)initialAmount / (double)profit) * 10.0) / 10.0;
     }
 }

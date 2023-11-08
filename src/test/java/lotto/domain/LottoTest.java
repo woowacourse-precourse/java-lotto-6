@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.constant.Message;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ class LottoTest {
         // then
         assertThatThrownBy(() -> new Lotto(lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호의 개수가 6개가 아닙니다.");
+                .hasMessageContaining(Message.ERROR_LOTTO_NUMBERS_NOT_SIX.getMessage());
     }
 
     @DisplayName("로또 번호의 개수가 6개 미만이면 예외가 발생한다.")
@@ -32,7 +33,7 @@ class LottoTest {
         // then
         assertThatThrownBy(() -> new Lotto(lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호의 개수가 6개가 아닙니다.");
+                .hasMessageContaining(Message.ERROR_LOTTO_NUMBERS_NOT_SIX.getMessage());
     }
 
     @DisplayName("로또 번호의 개수가 6개이면 예외가 발생하지 않는다.")
@@ -57,7 +58,7 @@ class LottoTest {
         // then
         assertThatThrownBy(() -> new Lotto(lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+                .hasMessageContaining(Message.ERROR_LOTTO_NUMBERS_DUPLICATED.getMessage());
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 없으면 예외가 발생하지 않는다.")
@@ -82,7 +83,7 @@ class LottoTest {
         // then
         assertThatThrownBy(() -> new Lotto(lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호는 1에서 45 사이의 숫자만 가능합니다.");
+                .hasMessageContaining(Message.ERROR_LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
     }
 
     @DisplayName("로또 번호에 1에서 45 사이의 숫자보다 작은 숫자가 있으면 예외가 발생한다.")
@@ -95,7 +96,7 @@ class LottoTest {
         // then
         assertThatThrownBy(() -> new Lotto(lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호는 1에서 45 사이의 숫자만 가능합니다.");
+                .hasMessageContaining(Message.ERROR_LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
     }
 
     @DisplayName("로또 번호에 1에서 45 사이의 숫자만 있으면 예외가 발생하지 않는다.")

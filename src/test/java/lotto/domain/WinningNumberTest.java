@@ -3,6 +3,7 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.constant.Message;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +19,7 @@ public class WinningNumberTest {
         // then
         assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호의 개수가 6개가 아닙니다.");
+                .hasMessageContaining(Message.ERROR_LOTTO_NUMBERS_NOT_SIX.getMessage());
     }
 
     @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
@@ -32,7 +33,7 @@ public class WinningNumberTest {
         // then
         assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+                .hasMessageContaining(Message.ERROR_LOTTO_NUMBERS_DUPLICATED.getMessage());
     }
 
     @DisplayName("당첨 번호에 1에서 45 사이의 숫자보다 큰 숫자가 있으면 예외가 발생한다.")
@@ -46,7 +47,7 @@ public class WinningNumberTest {
         // then
         assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호는 1에서 45 사이의 숫자만 가능합니다.");
+                .hasMessageContaining(Message.ERROR_LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
     }
 
     @DisplayName("보너스 번호가 당첨 번호에 포함되면 예외가 발생한다.")
@@ -60,7 +61,7 @@ public class WinningNumberTest {
         // then
         assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 보너스 번호는 당첨 번호에 포함될 수 없습니다.");
+                .hasMessageContaining(Message.ERROR_BONUS_NUMBER_DUPLICATED.getMessage());
     }
 
     @DisplayName("보너스 번호가 1에서 45 사이의 숫자가 아니면 예외가 발생한다.")
@@ -74,6 +75,6 @@ public class WinningNumberTest {
         // then
         assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 보너스 번호는 1에서 45 사이의 숫자만 가능합니다.");
+                .hasMessageContaining(Message.ERROR_LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
     }
 }

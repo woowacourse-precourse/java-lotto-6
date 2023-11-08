@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.constant.Message;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
@@ -69,7 +70,7 @@ public class LottoServiceTest {
         // then
         assertThatThrownBy(() -> lottoService.purchaseLottoTickets(PURCHASE_AMOUNT))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 구입 금액은 1000원 단위로 가능합니다.");
+                .hasMessageContaining(Message.ERROR_PURCHASE_AMOUNT_INVALID_UNIT.getMessage());
     }
 
     @DisplayName("로또 구입 금액이 0원 이하이면 예외를 발생한다.")
@@ -82,6 +83,6 @@ public class LottoServiceTest {
         // then
         assertThatThrownBy(() -> lottoService.purchaseLottoTickets(PURCHASE_AMOUNT))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 구입 금액은 1000원 단위로 가능합니다.");
+                .hasMessageContaining(Message.ERROR_PURCHASE_AMOUNT_UNDER_MINIMUM.getMessage());
     }
 }

@@ -4,7 +4,7 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         LottoTicketGenerator generator = new LottoTicketGenerator();
-        Payment payment = UserIO.scanPayment();
+        Amount payment = UserIO.scanPayment();
 
         Lottos lottos = generator.generate(payment);
         lottos.printLottos();

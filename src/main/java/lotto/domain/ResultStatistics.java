@@ -14,6 +14,8 @@ public class ResultStatistics {
 
     public ResultStatistics(List<Result> results) {
         this.results = results;
+        initMap();
+        makeMapAndTotalProfit(results);
     }
 
     private void initMap() {

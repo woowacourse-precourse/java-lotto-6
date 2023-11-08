@@ -61,6 +61,6 @@ public class WinningNumbersExceptionTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
                 winningNumbersException.lastComma("1,2,3,4,5,6,"));
 
-        assertEquals("필요하지 않은 콤마는 지워주세요.", exception.getMessage());
+        assertEquals("[ERROR]필요하지 않은 콤마는 지워주세요.", exception.getMessage());
     }
 }

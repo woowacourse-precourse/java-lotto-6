@@ -1,20 +1,17 @@
 package lotto.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.model.PrizeRank;
 import lotto.model.WinningLotto;
 import lotto.util.LottoUtils;
-
 import java.util.ArrayList;
 import java.util.List;
-public class LottoService {
 
-    public List<Lotto> purchaseLottos(int purchaseLottos ) {
-        int howManyLotto = purchaseLottos  / 1000;
+public class LottoService {
+    public List<Lotto> purchaseLottos(int purchaseLottos) {
+        int howManyLotto = purchaseLottos / 1000;
         return LottoUtils.generateLottoPaper(howManyLotto);
     }
-
 
     public WinningLotto generateWinningLotto(List<Integer> winNumbers, int bonusNumbers) {
         Lotto winningNumber = new Lotto(winNumbers);

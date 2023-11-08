@@ -6,7 +6,6 @@ import lotto.model.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.ResultView;
-
 import java.util.List;
 
 public class LottoController {
@@ -27,7 +26,7 @@ public class LottoController {
             resultView.displayPurchasedLottos(purchasedLottos);
 
             List<Integer> winningNumbers = inputView.promptForWinningNumbers();
-            int bonusNumber = inputView.promptForBonusNumber();
+            int bonusNumber = inputView.promptForBonusNumber(winningNumbers);
             WinningLotto winningLotto = lottoService.generateWinningLotto(winningNumbers, bonusNumber);
 
             List<PrizeRank> prizeRanks = lottoService.determinePrizeRank(purchasedLottos, winningLotto);

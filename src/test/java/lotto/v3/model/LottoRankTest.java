@@ -1,11 +1,9 @@
 package lotto.v3.model;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoRankTest {
 
@@ -55,13 +53,27 @@ class LottoRankTest {
     void shouldNotConsiderBonusIfNotRequiredByMatchCount() {
         // given
         int matchCountForFifth = 3;
-        boolean bonusMatchForFifth = true; 
+        boolean bonusMatchForFifth = true;
 
         // when
         LottoRank result = LottoRank.valueOf(matchCountForFifth, bonusMatchForFifth);
 
         // then
         assertThat(result).isEqualTo(LottoRank.FIFTH);
+    }
+
+    @Test
+    @DisplayName("최대 일치 횟수에 대해 보너스를 고려하지 않고 FIRST를 반환해야 함")
+    void shouldReturnFirstForMaxMatchingCount() {
+        // given
+        int matchCountForFirst = 6;
+        boolean bonusMatchForFirst = false; 
+
+        // when
+        LottoRank result = LottoRank.valueOf(matchCountForFirst, bonusMatchForFirst);
+
+        // then
+        assertThat(result).isEqualTo(LottoRank.FIRST);
     }
 
 }

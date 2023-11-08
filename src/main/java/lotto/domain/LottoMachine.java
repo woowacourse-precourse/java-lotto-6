@@ -19,9 +19,13 @@ public class LottoMachine {
 
     private List<Lotto> lottos;
 
-    public int readAmount() {
+    public String readAmount() {
         System.out.println(PURCHASE_AMOUNT_GUIDE);
         String purchaseAmountText = readLine();
+        return purchaseAmountText;
+    }
+
+    public int purchaseAmountTextToInt(String purchaseAmountText) {
         int purchaseAmount = Integer.parseInt(purchaseAmountText);
         validatePurchaseAmount(purchaseAmount);
         return purchaseAmount;

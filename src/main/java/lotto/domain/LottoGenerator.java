@@ -9,7 +9,7 @@ public class LottoGenerator {
     public List<Lotto> LottosGenerator(int count){
         List<Lotto> lottos = new ArrayList<>();
 
-        while(lottos.size() <= count){
+        while(lottos.size() < count){
             lottos.add(createLotto());
         }
 

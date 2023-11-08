@@ -67,11 +67,11 @@ public class LottoCountService {
 
         double lottoReturn = 0;
         int index = 0;
-        for(int matchSingleResult : matchResult.getMatchCounts()){
+        for (int matchSingleResult : matchResult.getMatchCounts()) {
             lottoReturn += matchSingleResult * PRIZE_AMOUNTS[index++];
         }
 
-        return Math.round(lottoReturn/lottoInvest * 1000)/10.0;
+        return Math.round(lottoReturn / lottoInvest * 1000) / 10.0;
 
     }
 }

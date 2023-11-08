@@ -47,7 +47,7 @@ public class OutputView {
 
     }
 
-    public void printProfit(double profit){
+    public void printProfit(double profit) {
 
         System.out.println(PROFIT_MESSAGE.formatted(profit));
 

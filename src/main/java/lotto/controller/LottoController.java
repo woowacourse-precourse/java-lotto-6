@@ -45,6 +45,5 @@ public class LottoController {
         outputView.printProfit(profit);
 
     }
-
-
+    
 }

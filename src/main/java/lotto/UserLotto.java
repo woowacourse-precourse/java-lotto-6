@@ -36,8 +36,10 @@ public class UserLotto {
 
     //showUser: 유저 로또 전체 출력 매소드
     public void showUser() {
+        System.out.println(String.format("%d개를 구매했습니다.",user.size()));
         for (Lotto l : user) {
             System.out.println(l.getNumbers());
         }
+        System.out.println();
     }
 }

@@ -51,7 +51,8 @@ public class Lottery {
         DecimalFormat df = new DecimalFormat("###,###");
         int i = 0;
         System.out.println(
-                String.format("%d개 일치 (%s원) - %d개\n", target[i], df.format(prices[i]), Lottery_result[i++])
+                "당첨 통계"
+                        + String.format("%d개 일치 (%s원) - %d개\n", target[i], df.format(prices[i]), Lottery_result[i++])
                         + String.format("%d개 일치 (%s원) - %d개\n", target[i], df.format(prices[i]), Lottery_result[i++])
                         + String.format("%d개 일치 (%s원) - %d개\n", target[i], df.format(prices[i]), Lottery_result[i++])
                         + String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", target[i], df.format(prices[i]), Lottery_result[i++])

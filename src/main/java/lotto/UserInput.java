@@ -31,6 +31,7 @@ public class UserInput {
 
     //Money: 돈 입력 매소드 - 돈(정수)반환
     public int Money() {
+        System.out.println("구입금액을 입력해 주세요.");
         int res = -1;
         while (res == -1) {
             res = myParseInt(Console.readLine());
@@ -41,11 +42,13 @@ public class UserInput {
 
             System.out.println(ErrorType.MONEY.getName());
         }
+        System.out.println();
         return res;
     }
 
     //WinLotto: 당첨 번호 입력 매소드 - 당첨번호(Lotto객체) 반환
     public Lotto WinLotto() {
+        System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> numbox = new ArrayList<Integer>();
         while (numbox.isEmpty()) {
             numbox = strToIntegerList(Console.readLine());
@@ -54,11 +57,13 @@ public class UserInput {
 
             System.out.println(ErrorType.NUMBER.getName());
         }
+        System.out.println();
         return new Lotto(numbox);
     }
 
     //Bonus: 보너스 번호 입력 매소드 - 보너스 번호(정수)반환
     public int Bonus(Lotto winLotto) {
+        System.out.println("보너스 번호를 입력해 주세요.");
         int res = -1;
         while (res == -1) {
             res = myParseInt(Console.readLine());
@@ -67,6 +72,7 @@ public class UserInput {
 
             System.out.println(ErrorType.NUMBER.getName());
         }
+        System.out.println();
         return res;
     }
 

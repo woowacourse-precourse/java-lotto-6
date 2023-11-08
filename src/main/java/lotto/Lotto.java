@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
 import static lotto.util.Constant.ERROR;
 import static lotto.util.Constant.LOTTO_LENGTH;
 import static lotto.util.Constant.MAX_LOTTO_NUMBER;

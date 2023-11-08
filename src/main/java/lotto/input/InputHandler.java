@@ -6,7 +6,6 @@ import lotto.Lotto;
 import lotto.util.message.InputMessage;
 import lotto.util.message.OutputMessage;
 
-
 import static lotto.util.Constant.LOTTO_PRICE;
 
 public class InputHandler {

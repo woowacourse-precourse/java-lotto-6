@@ -7,7 +7,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
 import lotto.util.message.OutputMessage;
 
-
 import static lotto.util.Constant.LOTTO_LENGTH;
 import static lotto.util.Constant.LOTTO_PRICE;
 import static lotto.util.Constant.MAX_LOTTO_NUMBER;

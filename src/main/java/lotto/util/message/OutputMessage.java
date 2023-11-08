@@ -9,7 +9,6 @@ import java.util.Map;
 import lotto.Grade;
 import lotto.Lotto;
 
-
 import static lotto.util.Constant.DEFAULT_VALUE;
 
 public class OutputMessage extends Message {
@@ -25,7 +24,7 @@ public class OutputMessage extends Message {
         newLine();
     }
 
-    public static void winningStatistics(Map<Grade, Integer> map) {
+    public static void winningStatistics(Map<Grade, Integer> resultMap) {
         NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
         System.out.println("당첨 통계\n---");
 
@@ -33,7 +32,7 @@ public class OutputMessage extends Message {
                 .filter(grade -> grade != Grade.NONE)
                 .sorted(Comparator.comparing(Grade::ordinal).reversed())
                 .forEach(grade -> {
-                    Integer count = map.getOrDefault(grade, DEFAULT_VALUE);
+                    Integer count = resultMap.getOrDefault(grade, DEFAULT_VALUE);
                     String price = numberFormat.format(grade.getPrice());
                     String message = getMessageForGrade(grade, price, count);
                     System.out.println(message);

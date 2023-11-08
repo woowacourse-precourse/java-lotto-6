@@ -7,7 +7,6 @@ import lotto.Lotto;
 import lotto.util.message.ErrorMessage;
 import lotto.util.message.Message;
 
-
 import static lotto.util.Constant.DEFAULT_VALUE;
 import static lotto.util.Constant.LOTTO_LENGTH;
 import static lotto.util.Constant.LOTTO_PRICE;
@@ -19,6 +18,7 @@ public class Parser {
 
     public int parsePurchaseAmount() {
         int purchasePrice;
+
         while (true) {
             purchasePrice = attemptParseInt();
             if (purchasePrice < DEFAULT_VALUE) {
@@ -37,15 +37,15 @@ public class Parser {
     public List<Integer> parseWinningNumbers(String inputNumbers) {
         List<Integer> numbers = new ArrayList<>();
         String[] input = inputNumbers.split(SEPARATE_LETTER);
+
         for (String numberString : input) {
             int number = attemptParseInt(numberString);
-            if (number < 0 || !validateLottoNumber(number, numbers)) {
+            if (number < DEFAULT_VALUE || !validateLottoNumber(number, numbers)) {
                 return new ArrayList<>();
             }
         }
         return numbers;
     }
-
 
     public int parseBonusNumber(String inputBonus, Lotto winningLotto) {
         int bonusNumber = attemptParseInt(inputBonus);

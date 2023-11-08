@@ -1,6 +1,5 @@
 package lotto.util.message;
 
-
 import static lotto.util.Constant.ERROR;
 
 public class ErrorMessage extends Message {

@@ -6,7 +6,7 @@ import lotto.util.message.OutputMessage;
 
 public class StatisticsProcessor {
 
-    public void getStatistics(Map<Grade, Integer> map) {
-        OutputMessage.winningStatistics(map);
+    public void getStatistics(Map<Grade, Integer> resultMap) {
+        OutputMessage.winningStatistics(resultMap);
     }
 }

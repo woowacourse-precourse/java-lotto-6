@@ -14,12 +14,12 @@ public class Matcher {
             long count = lotto.getNumbers().stream()
                     .filter(winningLotto.getNumbers()::contains)
                     .count();
-            boolean isBonusMatched = lotto.getNumbers().contains(bonus);
-            Grade grade = Grade.of((int) count, isBonusMatched);
 
+            boolean isBonusMatched = lotto.getNumbers().contains(bonus);
+
+            Grade grade = Grade.of((int) count, isBonusMatched);
             result.addResult(grade);
         });
-
         return result;
     }
 }

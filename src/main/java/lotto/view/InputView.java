@@ -12,7 +12,7 @@ public class InputView {
 
     public static int inputMoney() {
         System.out.println(INPUT_MONEY_MESSAGE);
-        return read(() -> IntegerConverter.convert(Console.readLine()));
+        return IntegerConverter.convert(Console.readLine());
     }
 
     public static String inputWinningNumbers() {

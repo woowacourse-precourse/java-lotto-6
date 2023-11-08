@@ -23,18 +23,18 @@ public class LottoController {
     }
 
     public void run() {
-        Money money = payMoney();
-        Lottos lottos = buyLotto(money);
+        Money money = read(this::payMoney);
+        Lottos lottos = read(() -> buyLotto(money));
         Customer customer = new Customer(money, lottos);
 
-        WinningNumbers winningNumbers = drawWinningNumbers();
-        BonusNumber bonusNumber = drawBonusNumber(winningNumbers);
+        WinningNumbers winningNumbers = read(this::drawWinningNumbers);
+        BonusNumber bonusNumber = read(() -> drawBonusNumber(winningNumbers));
 
         showLottoResult(customer, winningNumbers, bonusNumber);
     }
 
     private Money payMoney() {
-        return new Money(read(InputView::inputMoney));
+        return new Money(InputView.inputMoney());
     }
 
     private Lottos buyLotto(Money money) {
@@ -45,11 +45,11 @@ public class LottoController {
     }
 
     private WinningNumbers drawWinningNumbers() {
-        return lottoStore.drawWinningNumbers(read(InputView::inputWinningNumbers));
+        return lottoStore.drawWinningNumbers(InputView.inputWinningNumbers());
     }
 
     private BonusNumber drawBonusNumber(WinningNumbers winningNumbers) {
-        return lottoStore.drawBonusNumber(read(InputView::inputBonusNumber), winningNumbers);
+        return lottoStore.drawBonusNumber(InputView.inputBonusNumber(), winningNumbers);
     }
 
     private void showLottoResult(Customer customer, WinningNumbers winningNumbers, BonusNumber bonusNumber) {

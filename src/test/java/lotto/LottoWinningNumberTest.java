@@ -26,9 +26,9 @@ class LottoWinningNumberTest {
     @DisplayName("당첨 번호에 1이상 45 이하의 수가 있으면 예외가 발생한다.")
     @Test
     void createWinningNumbersByOverRange() {
-        assertThatThrownBy(() -> new LottoWinningNumber(List.of(1, 2, 3, 4, 5, 123)))
+        assertThatThrownBy(() -> new LottoWinningNumber(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new LottoWinningNumber(List.of(-1, 2, 3, 4, 5, 6)))
+        assertThatThrownBy(() -> new LottoWinningNumber(List.of(0, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

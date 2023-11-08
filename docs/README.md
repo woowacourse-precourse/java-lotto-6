@@ -35,5 +35,5 @@
 3. [x] LottoWinningNumberTest 당첨 번호의 개수가 6개가 넘어가면 예외가 발생
 4. [x] LottoWinningNumberTest 당첨 번호에 중복된 숫자가 있으면 예외가 발생
 5. [x] LottoWinningNumberTest 당첨 번호에 1이상 45 이하의 수가 있으면 예외가 발생
-6. [ ] LottoBonusNumberTest 보너스 번호 당첨 번호와 중복시 예외가 발생
-7. [ ] LottoBonusNumberTest 보너스 번호에 1이상 45 이하의 수가 있으면 예외가 발생
+6. [x] LottoBonusNumberTest 보너스 번호 당첨 번호와 중복시 예외가 발생
+7. [x] LottoBonusNumberTest 보너스 번호에 1이상 45 이하의 수가 있으면 예외가 발생

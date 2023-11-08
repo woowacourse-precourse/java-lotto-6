@@ -14,4 +14,11 @@ public class BonusNumberExceptionTest {
         assertThatThrownBy(() -> InputValidator.checkBonusNumberInput("j"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 숫자 입력 시 1~45 범위 밖의 숫자를 입력하면 예외가 발생한다.")
+    @Test
+    public void inputBonusNumberByOutOfRange() {
+        assertThatThrownBy(() -> InputValidator.checkBonusNumberInput("77"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

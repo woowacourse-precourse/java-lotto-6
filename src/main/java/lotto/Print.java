@@ -44,11 +44,15 @@ public class Print {
     public static void printWinningStatistics(Float rateOfReturn, int[] winningCount){
         Print.printMessage("");
         Print.printMessage(MainMessage.WINNING_STATISTICS.getMessage());
-        System.out.printf((WinningStatistics.WIN_3_MATCH.getMessage()) + "%n", winningCount[RANK_5]);
-        System.out.printf((WinningStatistics.WIN_4_MATCH.getMessage()) + "%n", winningCount[RANK_4]);
-        System.out.printf((WinningStatistics.WIN_5_MATCH.getMessage()) + "%n", winningCount[RANK_3]);
-        System.out.printf((WinningStatistics.WIN_5_BONUS_MATCH.getMessage()) + "%n", winningCount[RANK_2]);
-        System.out.printf((WinningStatistics.WIN_6_MATCH.getMessage()) + "%n", winningCount[RANK_1]);
-        System.out.printf((WinningStatistics.TOTAL_AMOUNT.getMessage()) + "%n", rateOfReturn);
+        printfMessage(WinningStatistics.WIN_3_MATCH.getMessage(), winningCount[RANK_5]);
+        printfMessage(WinningStatistics.WIN_4_MATCH.getMessage(), winningCount[RANK_4]);
+        printfMessage(WinningStatistics.WIN_5_MATCH.getMessage(), winningCount[RANK_3]);
+        printfMessage(WinningStatistics.WIN_5_BONUS_MATCH.getMessage(), winningCount[RANK_2]);
+        printfMessage(WinningStatistics.WIN_6_MATCH.getMessage(), winningCount[RANK_1]);
+        printfMessage(WinningStatistics.TOTAL_AMOUNT.getMessage(), rateOfReturn);
+    }
+
+    public static void printfMessage(String printMessage, Object... args){
+        System.out.printf(printMessage + "%n", args);
     }
 }

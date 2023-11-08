@@ -15,7 +15,8 @@ public class InteractService {
         while (phase) {
             try {
                 Integer tryNum = checkParseIntException(Console.readLine());
-                phase = checkThousandException(tryNum, LOTTO_PRICE);
+                checkThousandException(tryNum, LOTTO_PRICE);
+                return tryNum;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 로또 구입 금액은 1000원의 양의 정수배만 입력 가능합니다.");
             }

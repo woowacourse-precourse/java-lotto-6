@@ -15,6 +15,10 @@ public class LottoGenerator {
         generate(amount);
     }
 
+    public List<Lotto> getMyLotto() {
+        return myLotto;
+    }
+
     private void generate(int amount) {
         while (amount > Constants.ZERO) {
             this.numbers = RandomNumberGenerator.getNumbers();
@@ -26,9 +30,5 @@ public class LottoGenerator {
 
     private void sort() {
         Collections.sort(numbers);
-    }
-
-    public List<Lotto> getMyLotto() {
-        return myLotto;
     }
 }

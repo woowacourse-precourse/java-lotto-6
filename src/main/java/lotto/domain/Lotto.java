@@ -38,15 +38,9 @@ public class Lotto {
     }
 
     private int matching(Lotto winninglotto) {
-        int sameCount = 0;
-
-        for (int number : winninglotto.numbers) {
-            if (contains(number)) {
-                sameCount++;
-            }
-        }
-
-        return sameCount;
+        return (int) winninglotto.numbers.stream()
+                .filter(this::contains)
+                .count();
     }
 
     @Override

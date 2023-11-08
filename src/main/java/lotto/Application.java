@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.LottoPurchaseController;
 import lotto.controller.LottoWinningController;
 
@@ -10,5 +11,6 @@ public class Application {
         LottoWinningController winning = new LottoWinningController();
 
         winning.winningLotto(purchase.purchaseLotto());
+        Console.close();
     }
 }

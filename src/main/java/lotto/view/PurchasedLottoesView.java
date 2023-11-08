@@ -6,7 +6,7 @@ import java.util.List;
 
 public class PurchasedLottoesView {
     // 구매한 로또 내역을 보여줄 클래스입니다.
-    public void printNumberOfIssues(int numberOfIssues) {
+    public void printNumberOfIssues(long numberOfIssues) {
         System.out.println("\n" + numberOfIssues + "개를 구매했습니다.");
     }
 

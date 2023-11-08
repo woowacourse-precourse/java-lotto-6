@@ -8,13 +8,13 @@ public class LottoStoreCounter {
     private final String errorMessageUnit = "[ERROR] 금액은 천 단위만 가능합니다.";
     private final int lottoPrice = 1000;
 
-    public int counter() {
-        int numberOfIssues = paying();
+    public long counter() {
+        long numberOfIssues = paying();
 
         return numberOfIssues;
     }
 
-    private int paying() {
+    private long paying() {
         String money;
         while (true) {
             try {
@@ -26,7 +26,7 @@ public class LottoStoreCounter {
                 System.out.println(e.getMessage());
             }
         }
-        return Integer.parseInt(money) / lottoPrice;
+        return Long.parseLong(money) / lottoPrice;
     }
 
     private void validate(String money) {
@@ -36,14 +36,14 @@ public class LottoStoreCounter {
 
     private void validateNumber(String money) {
         try {
-            Integer.parseInt(money);
+            Long.parseLong(money);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(errorMessageInputType);
         }
     }
 
     private void validateThousandUnits(String money) {
-        if (Integer.parseInt(money) % lottoPrice != 0) {
+        if (Long.parseLong(money) % lottoPrice != 0) {
             throw new IllegalArgumentException(errorMessageUnit);
         }
     }

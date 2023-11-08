@@ -9,14 +9,14 @@ public class LottoStoreMachine {
     // 로또 발행을 담당할 클래스입니다.
     private List<Lotto> purchasedLotto = new ArrayList<>();
 
-    public List<Lotto> saleLotto(int numberOfIssues) {
+    public List<Lotto> saleLotto(long numberOfIssues) {
         issuanceOfLotto(numberOfIssues);
 
         return purchasedLotto;
     }
 
-    private void issuanceOfLotto(int numberOfIssues) {
-        for (int i = 0; i < numberOfIssues; i++) {
+    private void issuanceOfLotto(long numberOfIssues) {
+        for (long i = 0; i < numberOfIssues; i++) {
             Lotto lotto = new Lotto(makeLottoNumbers());
             purchasedLotto.add(lotto);
         }

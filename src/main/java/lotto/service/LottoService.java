@@ -1,6 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.common.LottoFinalConsts;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoRank;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class LottoService {
+public class LottoService implements LottoFinalConsts {
 
     private LottoException lottoException = new LottoException();
 
@@ -49,8 +50,43 @@ public class LottoService {
         lottoMachine.updateLottoBonusNumber(Integer.parseInt(bonusNumber));
     }
 
-    public void saveRankCount(LottoMachine lottoMachine, List<Integer> winningNumbers, String bonusNumber){
+    public void saveRankCount(LottoMachine lottoMachine){
+        List<Integer> winningNumbers = lottoMachine.getLottoWinningNumbers();
+        int bonusNumber = lottoMachine.getLottoBonusNumber();
+        List<Lotto> lottos = lottoMachine.getLottos();
+        for (Lotto lotto:lottos){
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            LottoRank lottoRank = getLottoRank(lottoNumbers, winningNumbers, bonusNumber);
+            if (lottoRank!=null){
+                lottoMachine.updateLottoRanks(lottoRank);
+            }
+        }
+    }
 
+    public String getCorrectCount(List<Integer> lottoNumbers, List<Integer> winningNumbers, int bonusNumber){
+        int count = 0;
+        for (Integer winningNumber:winningNumbers){
+            if (lottoNumbers.contains(winningNumber)){
+                count+=1;
+            }
+        }
+        if (count==5){
+            if (lottoNumbers.contains(bonusNumber)){
+                return LOTTO_SECOND;
+            }
+        }
+        String result = Integer.toString(count);
+
+        return result;
+    }
+
+    public LottoRank getLottoRank(List<Integer> lottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
+        String correct = getCorrectCount(lottoNumbers, winningNumbers, bonusNumber);
+        if (Integer.parseInt(correct)<3) {
+            return null;
+        }
+
+        return LottoRank.findByRank(correct);
     }
 
 }

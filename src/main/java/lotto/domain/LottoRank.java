@@ -1,6 +1,10 @@
 package lotto.domain;
 
 import lotto.common.LottoFinalConsts;
+import net.bytebuddy.pool.TypePool;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 public enum LottoRank implements LottoFinalConsts{
 
@@ -13,8 +17,16 @@ public enum LottoRank implements LottoFinalConsts{
     private String sameCount;
     private int lottoReturn;
 
-    private LottoRank(String sameCount, int lottoReturn){
+    LottoRank(String sameCount, int lottoReturn){
         this.sameCount = sameCount;
         this.lottoReturn = lottoReturn;
     }
+
+    public static LottoRank findByRank(String rank){
+        return Arrays.stream(LottoRank.values())
+                .filter(lottoRank -> lottoRank.equals(rank))
+                .findAny()
+                .orElse(null);
+    }
+
 }

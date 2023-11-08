@@ -20,5 +20,7 @@ public class LottoController {
         String winningNumber = lottoView.inputLottoWinningNumber();
         String bonusNumber = lottoView.inputLottoBonusNumber();
         lottoService.saveWinningAndBonusNumbers(lottoMachine, winningNumber, bonusNumber);
+
+        lottoService.saveRankCount(lottoMachine);
     }
 }

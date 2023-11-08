@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoMachine {
     private int lottoCount;
@@ -30,6 +31,22 @@ public class LottoMachine {
 
     public void updateLottoBonusNumber(int lottoBonusNumber){
         this.lottoBonusNumber = lottoBonusNumber;
+    }
+
+    public void updateLottoRanks(LottoRank lottoRank){
+        if (lottoRanks.containsKey(lottoRank)){
+            lottoRanks.put(lottoRank, lottoRanks.get(lottoRank)+1);
+        } else if (!lottoRanks.containsKey(lottoRank)){
+            lottoRanks.put(lottoRank, 1);
+        }
+    }
+
+    public List<Integer> getLottoWinningNumbers(){
+        return this.lottoWinningNumbers;
+    }
+
+    public int getLottoBonusNumber(){
+        return this.lottoBonusNumber;
     }
 
 }

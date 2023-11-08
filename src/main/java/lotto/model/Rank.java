@@ -17,4 +17,25 @@ public enum Rank {
         this.gettingMoney = gettingMoney;
 
     }
+
+    public static Rank valueOf(int countOfMatch, boolean isMatchedBonus) {
+        if (countOfMatch == 6) {
+            return FIRST; // 1등
+        }
+        if (countOfMatch == 5 && isMatchedBonus) {
+            return SECOND; // 2등
+        }
+        if (countOfMatch == 5) {
+            return THIRD; // 3등
+        }
+        if (countOfMatch == 4) {
+            return FOURTH; // 4등
+        }
+        if (countOfMatch == 3) {
+            return FIFTH; // 5등
+        }
+        return MISS;
+    }
+
+
 }

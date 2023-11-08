@@ -46,11 +46,14 @@ public class InputView {
 
     }
 
-    public Bonus getBonusLottoNumber() {
+    public Bonus getBonusLottoNumber(WinningLottoNumbers winningLottoNumbers) {
 
         System.out.println(GET_BONUS_LOTTO_NUMBER_MESSAGE);
 
         String input = Console.readLine();
+
+        validateLottoNumber(input);
+        validateDuplicateNumberWhenBonus(input, winningLottoNumbers);
 
         return new Bonus(Integer.parseInt(input));
 
@@ -75,16 +78,27 @@ public class InputView {
 
     }
 
+    private void validateDuplicateNumberWhenBonus(String bonusInput, WinningLottoNumbers winningLottoNumbers) {
+
+        winningLottoNumbers.getNumbers().forEach(singleLottoNumber -> {
+
+            if (singleLottoNumber.equals(Integer.parseInt(bonusInput))) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호가 기존 당첨번호와 중복됩니다.");
+            }
+        });
+
+    }
+
     private void validateDuplicateNumber(WinningLottoNumbers winningLottoNumbers) {
 
-        if (winningLottoNumbers.getNumbers().stream().distinct().count() != LOTTO_NUMBER_COUNT){
+        if (winningLottoNumbers.getNumbers().stream().distinct().count() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 중복된 번호가 존재합니다.");
         }
 
     }
 
     private void validateNumberInRange(String lottoNumber) {
-        if (0 > Integer.parseInt(lottoNumber) || Integer.parseInt(lottoNumber) > 45){
+        if (0 > Integer.parseInt(lottoNumber) || Integer.parseInt(lottoNumber) > 45) {
             throw new IllegalArgumentException("[ERROR] 번호가 범위 밖입니다.");
         }
     }

@@ -34,7 +34,7 @@ public class LottoController {
 
         WinningLottoNumbers winningLottoNumbers = inputView.getWinningLottoNumbers();
 
-        Bonus bonus = inputView.getBonusLottoNumber();
+        Bonus bonus = inputView.getBonusLottoNumber(winningLottoNumbers);
 
         Match matchResult = lottoCountService.countMatching(userPurchasedLotto, winningLottoNumbers, bonus);
 

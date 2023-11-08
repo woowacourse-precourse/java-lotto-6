@@ -81,6 +81,27 @@ class ViewTest extends NsTest {
         });
     }
 
+    @DisplayName("당첨 로또에 숫자와 공백을 입력하면 공백을 무시한다.")
+    @Test
+    void inputWinningLottoOnlyBlank() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000", "1,2 , 3, 4 , 5 ,2 0", "7");
+                    assertThat(output()).contains(
+                            "1개를 구매했습니다.",
+                            "[8, 21, 23, 41, 42, 43]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 0.0%입니다."
+                    );
+                },
+                List.of(8, 21, 23, 41, 42, 43)
+        );
+    }
+
     @Test
     void inputAndValidateBonus() {
     }

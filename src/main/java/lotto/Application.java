@@ -19,7 +19,11 @@ public class Application {
 
         List<Integer> resultNumbers = getInputToResultNumbers();
         int bonusNumber = getInputToBonusNumber(resultNumbers);
+        LottoResult result = new LottoResult(resultNumbers, bonusNumber);
 
+        user.matchLottoNumbers(result);
+        user.printWinningStatistics();
+        user.printProfitRate();
     }
 
     private static int getInputToPurchaseAmount() {

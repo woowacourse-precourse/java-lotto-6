@@ -38,8 +38,8 @@ public class GameController {
         for (int count = 1; count <= ticketCount; count++) {
             String generateResult = gameService.generateNumber();
             System.out.println(generateResult);
-            System.out.println();
         }
+        System.out.println();
     }
 
     public String inputWinNumber() {
@@ -57,6 +57,7 @@ public class GameController {
                 break;
             }
         }
+        System.out.println();
         return winNumber;
     }
 }

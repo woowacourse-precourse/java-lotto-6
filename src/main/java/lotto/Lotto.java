@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,5 +34,23 @@ public class Lotto {
         return false;
     }
 
+    public boolean contains(int num) {
+        return numbers.contains(num);
+    }
+
+    public static int countSameElements(Lotto userLotto, Lotto correctLotto) {
+        int count = 0;
+        for (int number : correctLotto.getNumbers()) {
+            count += countContainNumber(userLotto.getNumbers(), number);
+        }
+        return count;
+    }
+
+    private static int countContainNumber(List<Integer> list1, int number) {
+        if (list1.contains(number)) {
+            return 1;
+        }
+        return 0;
+    }
     // TODO: 추가 기능 구현
 }

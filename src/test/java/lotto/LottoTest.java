@@ -3,9 +3,13 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -24,4 +28,19 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("enum 출력테스트")
+    @Test
+    void enumTest() {
+        List<LottoGrade> lottoCalculatorList =
+                Arrays.stream(LottoGrade.values())
+                        .filter(lotto -> lotto.getCorrect()==3).toList();
+        LottoGrade lottoGrade=lottoCalculatorList.get(0);
+        System.out.println(lottoGrade.getName());
+        /*Arrays.stream(LottoGrade.values())
+                .filter(lotto -> 5 == lotto.getCorrect())
+                .forEach(lotto -> System.out.println(lotto.getName()));*/
+/*        LottoCalculator test = LottoCalculator.fifth;
+        assertThat(test.getPrice()).isEqualTo(5000);
+        assertThat(test.getName()).isEqualTo("5등");*/
+    }
 }

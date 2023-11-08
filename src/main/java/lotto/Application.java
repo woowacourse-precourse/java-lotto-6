@@ -9,13 +9,56 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Application {
     public static void main(String[] args) {
-
+        HashMap<LottoGrade, Integer> lottoResult = initLottoResultGrade();
         int inputTry = readInputPrice();
         List<Lotto> lottoList = makeLottoNumber(inputTry);
         Lotto correctNumber = readInputCorrectNumber();
         int bonusNumber = readBonusNumber(correctNumber);
+        checkLottoResult(lottoResult, lottoList, correctNumber, bonusNumber);
+    }
+
+    private static void checkLottoResult(HashMap<LottoGrade, Integer> lottoResult, List<Lotto> lottoList, Lotto correctNumber, int bonusNumber) {
+        for (Lotto userlotto : lottoList) {
+            int correct = Lotto.countSameElements(userlotto, correctNumber);
+            List<LottoGrade> lottoCalculatorList =
+                    Arrays.stream(LottoGrade.values())
+                            .filter(lotto -> lotto.getCorrect()==correct).collect(Collectors.toList());
+            LottoGrade lottoGrade = getLottoGrade(bonusNumber, userlotto, lottoCalculatorList);
+            lottoResult.put(lottoGrade, lottoResult.getOrDefault(lottoGrade, 0) + 1);
+        }
+    }
+
+    private static LottoGrade getLottoGrade(int bonusNumber, Lotto userlotto, List<LottoGrade> lottoCalculatorList) {
+        if((lottoCalculatorList.size()>1)){
+            if(bonusNumberCorrect(bonusNumber, userlotto)){
+                return LottoGrade.second;
+            }
+            return LottoGrade.third;
+        }
+        return lottoCalculatorList.get(0);
+    }
+
+    private static HashMap<LottoGrade, Integer> initLottoResultGrade() {
+        HashMap<LottoGrade, Integer> lottoResult = new HashMap<>();
+        lottoResult.put(LottoGrade.first, 0);
+        lottoResult.put(LottoGrade.second, 0);
+        lottoResult.put(LottoGrade.third, 0);
+        lottoResult.put(LottoGrade.forth, 0);
+        lottoResult.put(LottoGrade.fifth, 0);
+        lottoResult.put(LottoGrade.sixth, 0);
+        lottoResult.put(LottoGrade.seventh, 0);
+        lottoResult.put(LottoGrade.zero, 0);
+        return lottoResult;
+    }
+
+    private void initLottoResult() {
 
     }
+
+    private static boolean bonusNumberCorrect(int bonusNumber, Lotto userlotto) {
+        return userlotto.contains(bonusNumber);
+    }
+
     private static int readBonusNumber(Lotto correctNumberList) {
         int bonusNumber;
         while (true) {
@@ -91,6 +134,7 @@ public class Application {
                 int inputPrice = Integer.parseInt(readLine());
                 validateThousandUnit(inputPrice);
                 inputTry = (inputPrice / 1000);
+                System.out.printf("\n%d개를 구매했습니다.\n", inputTry);
                 return inputTry;
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();

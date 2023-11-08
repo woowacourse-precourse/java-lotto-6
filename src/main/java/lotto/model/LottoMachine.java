@@ -34,7 +34,7 @@ public class LottoMachine {
     }
 
     private Lotto createLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(RANDOM_NUMBER_MIN_VALUE, RANDOM_NUMBER_MAX_VALUE, TOTAL_LOTTO_NUMBER);
         return new Lotto(numbers);
     }
 

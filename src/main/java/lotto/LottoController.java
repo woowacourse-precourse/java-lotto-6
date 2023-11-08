@@ -12,25 +12,25 @@ public class LottoController {
     }
 
     void play(){
-        MoneyInput();
-        LottoNumInput();
-        BonusNumInput();
+        moneyInput();
+        lottoNumInput();
+        bonusNumInput();
     }
 
-    private void MoneyInput() {
+    private void moneyInput() {
         System.out.print("Money : ");
         int Money = Integer.parseInt(readLine());
         System.out.println("Money = " + Money);
     }
 
-    private void BonusNumInput() {
+    private void bonusNumInput() {
         System.out.print("BonusNum : ");
         int BonusNum = Integer.parseInt(readLine());
         System.out.println("BonusNum = " + BonusNum);
     }
 
 
-    private void LottoNumInput(){
+    private void lottoNumInput(){
         System.out.print("List : ");
         List<Integer> list = Arrays.stream(readLine().split(","))
                 .mapToInt(Integer::parseInt)

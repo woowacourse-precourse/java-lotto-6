@@ -32,7 +32,7 @@ public class WinningLottoNumbersTest {
             int bonusNumber = 3;
 
             // when & then
-            Assertions.assertThatThrownBy(() -> new WinningLottoNumbers(numbers, bonusNumber))
+            Assertions.assertThatThrownBy(() -> new WinningLottoNumbers(new Lotto(numbers), new LottoNumber(bonusNumber)))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(LottoExceptionMessages.DUPLICATED_BONUS_NUMBER.getMessage());
         }
@@ -44,7 +44,7 @@ public class WinningLottoNumbersTest {
             int bonusNumber = 7;
 
             // when & then
-            Assertions.assertThatCode(() -> new WinningLottoNumbers(numbers, bonusNumber))
+            Assertions.assertThatCode(() -> new WinningLottoNumbers(new Lotto(numbers), new LottoNumber(bonusNumber)))
                     .doesNotThrowAnyException();
         }
 
@@ -69,15 +69,15 @@ public class WinningLottoNumbersTest {
     static Stream<Arguments> provideLottoNumbersAndExpectedDTO() {
         return Stream.of(
                 Arguments.of(
-                        new WinningLottoNumbers(List.of(1, 2, 3, 4, 5, 6), 45),
+                        new WinningLottoNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new LottoNumber(45)),
                         new LottoNumberMatchDTO(6, false)
                 ),
                 Arguments.of(
-                        new WinningLottoNumbers(List.of(1, 2, 3, 43, 44, 45), 6),
+                        new WinningLottoNumbers(new Lotto(List.of(1, 2, 3, 43, 44, 45)), new LottoNumber(6)),
                         new LottoNumberMatchDTO(3, true)
                 ),
                 Arguments.of(
-                        new WinningLottoNumbers(List.of(39, 40, 41, 42, 43, 44), 45),
+                        new WinningLottoNumbers(new Lotto(List.of(39, 40, 41, 42, 43, 44)), new LottoNumber(45)),
                         new LottoNumberMatchDTO(0, false)
                 )
         );

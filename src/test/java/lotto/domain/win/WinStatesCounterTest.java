@@ -3,6 +3,7 @@ package lotto.domain.win;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoNumber;
 import lotto.domain.lotto.WinningLottoNumbers;
 import lotto.dto.WinStateInformationDTO;
 import org.assertj.core.api.Assertions;
@@ -32,7 +33,7 @@ public class WinStatesCounterTest {
     private static Stream<Arguments> ProvideWinningNumbers() {
         return Stream.of(
                 Arguments.of(
-                        new WinningLottoNumbers(List.of(1, 2, 3, 4, 5, 6), 7),
+                        new WinningLottoNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new LottoNumber(7)),
                         List.of(
                                 new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                                 new Lotto(List.of(1, 2, 3, 4, 5, 7)),

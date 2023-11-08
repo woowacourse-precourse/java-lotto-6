@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.cash.Cash;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoNumber;
 import lotto.domain.lotto.LottoNumbersGenerator;
 import lotto.domain.lotto.WinningLottoNumbers;
 import lotto.domain.lotto.strategy.PickNumbersStrategy;
@@ -63,26 +64,28 @@ public class LottoController {
     }
 
     private void inputWinningLottoNumbers() {
-        winningLottoNumbers = new WinningLottoNumbers(inputWinningNumbers(), inputBonusNumber());
-    }
 
-    private List<Integer> inputWinningNumbers() {
-        outputView.print(Messages.INPUT_WINNING_NUMBERS.getMessage());
-        try {
-            return inputView.inputNumbers();
-        } catch (IllegalArgumentException e) {
-            outputView.print(e);
-            return inputWinningNumbers();
+        Lotto winningNumbers;
+        while(true) {
+            try {
+                outputView.print(Messages.INPUT_WINNING_NUMBERS.getMessage());
+                winningNumbers = new Lotto(inputView.inputNumbers());
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.print(e);
+            }
         }
-    }
 
-    private int inputBonusNumber() {
-        outputView.print(Messages.INPUT_BONUS_NUMBERS.getMessage());
-        try {
-            return inputView.inputNumber();
-        } catch (IllegalArgumentException e) {
-            outputView.print(e);
-            return inputBonusNumber();
+        LottoNumber bonusNumber;
+        while(true) {
+            try {
+                outputView.print(Messages.INPUT_BONUS_NUMBERS.getMessage());
+                bonusNumber = new LottoNumber(inputView.inputNumber());
+                winningLottoNumbers = new WinningLottoNumbers(winningNumbers, bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.print(e);
+            }
         }
     }
 

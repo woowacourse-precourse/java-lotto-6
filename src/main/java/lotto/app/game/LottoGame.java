@@ -22,7 +22,7 @@ public class LottoGame implements InteractionRepeatable {
 
     public void run() {
         payOfPurchaseAmount();
-        announceResult(receiveIssuedLottos(), getWinningLotto());
+        announceResult(receiveIssuedLottos(), askWinningLotto());
     }
 
     private void payOfPurchaseAmount() {
@@ -38,7 +38,7 @@ public class LottoGame implements InteractionRepeatable {
         return receivedLottos;
     }
 
-    private WinningLotto getWinningLotto() {
+    private WinningLotto askWinningLotto() {
         return supplyInteraction(() ->
                 new WinningLotto(
                         lottoGameView.askWinningNumbers(),

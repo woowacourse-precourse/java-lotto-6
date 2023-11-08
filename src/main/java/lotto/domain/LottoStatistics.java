@@ -41,8 +41,9 @@ public class LottoStatistics {
                         "%s%d개", e.getMessage(), e.getPrizeCount())
                 )
                 .collect(Collectors.joining("\n"));
+        
         String profitRate = String.format(
-                "총 수익률은 %f입니다.\n", ((double) totalPrize / LOTTO_COUNT.getValue() * LOTTO_UNIT_PRICE.getValue())
+                "\n총 수익률은 %.1f%%입니다.\n", ((double) totalPrize / (LOTTO_COUNT.getValue() * LOTTO_UNIT_PRICE.getValue()) * 100)
         );
         return String.format(
                 "%s%s%s",

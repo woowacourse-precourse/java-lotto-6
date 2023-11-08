@@ -10,6 +10,7 @@ public class LottoGame {
 	public static void playGame(List<Lotto> lottoNumbers, List<Integer> lottoPrizeNumber, int bonusNumber, int amount) {
 		Map<Prize, Integer> prizeCount = setPrizeCount();
 		long totalPrizeMoney = caculatePrizeMoney(lottoNumbers, lottoPrizeNumber, bonusNumber, prizeCount);
+		OutputView.printResult();
 		OutputView.printPrizeResult(prizeCount, totalPrizeMoney, amount);
 	}
 

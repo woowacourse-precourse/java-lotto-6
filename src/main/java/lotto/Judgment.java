@@ -25,7 +25,7 @@ public class Judgment{
         List<Integer> numbers;
         while (true) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요.");
+                System.out.println("\n당첨 번호를 입력해 주세요.");
                 numbers = splitNumbers(Console.readLine());
                 isInRange(numbers);
                 break;
@@ -38,7 +38,7 @@ public class Judgment{
     public void inputBonusNumber(){
         while (true) {
             try {
-                System.out.println("보너스 번호를 입력해 주세요.");
+                System.out.println("\n보너스 번호를 입력해 주세요.");
                 bonus = duplicate(Console.readLine());
                 isInRange(bonus);
                 break;

@@ -41,7 +41,7 @@ public class Player{
     }
 
     public void printLotto(){
-        System.out.println(numberOfTickets + "개를 구매했습니다.");
+        System.out.println("\n" + numberOfTickets + "개를 구매했습니다.");
 
         for(List<Integer> Ticket : this.lotto){
             System.out.println(Ticket.toString());

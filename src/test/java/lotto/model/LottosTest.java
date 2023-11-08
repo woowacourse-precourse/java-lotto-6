@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class LottosTest {
     @DisplayName("숫자 생성기를 사용하여 로또 묶음이 정확히 생성되는지 확인한다.")
     @Test
-    void testAssemble() {
+    void createLottosFromValidInput() {
         NumberGenerator mockNumberGenerator = () -> List.of(1, 2, 3, 4, 5, 6);
         Lottos lottos = Lottos.assemble(mockNumberGenerator, 3);
 

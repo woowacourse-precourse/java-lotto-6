@@ -43,32 +43,22 @@ public class InputView {
     }
 
     private static LottoNumbers inputWinningNumbers() {
-        try {
-            System.out.println(NEW_LINE + "당첨 번호를 입력해 주세요.");
-            String read = Console.readLine();
-            List<LottoNumber> lottoNumbers = Arrays.stream(read.split(NUMBERS_DELIMITER))
-                    .map(String::trim)
-                    .map(InputView::toInteger)
-                    .map(LottoNumber::from)
-                    .toList();
+        System.out.println(NEW_LINE + "당첨 번호를 입력해 주세요.");
+        String read = Console.readLine();
+        List<LottoNumber> lottoNumbers = Arrays.stream(read.split(NUMBERS_DELIMITER))
+                .map(String::trim)
+                .map(InputView::toInteger)
+                .map(LottoNumber::from)
+                .toList();
 
-            return new LottoNumbers(lottoNumbers);
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-            return inputWinningNumbers();
-        }
+        return new LottoNumbers(lottoNumbers);
     }
 
     private static LottoNumber inputBonusNumber() {
-        try {
-            System.out.println(NEW_LINE + "보너스 번호를 입력해 주세요.");
-            int bonus = toInteger(Console.readLine());
+        System.out.println(NEW_LINE + "보너스 번호를 입력해 주세요.");
+        int bonus = toInteger(Console.readLine());
 
-            return LottoNumber.from(bonus);
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-            return inputBonusNumber();
-        }
+        return LottoNumber.from(bonus);
     }
 
     private static int toInteger(String read) {

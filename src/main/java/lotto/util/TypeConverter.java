@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TypeConverter {
-    public static List<Integer> convertToIntegers(String numbers) {
+    public static List<Integer> convertToIntegers(String numbers) throws NumberFormatException {
         List<String> numbersSplit = Arrays.asList(numbers.split(","));
         List<Integer> numbersConverted = new ArrayList<>();
 
@@ -15,7 +15,7 @@ public class TypeConverter {
         return numbersConverted;
     }
 
-    public static int convertToInteger(String number) {
+    public static int convertToInteger(String number) throws NumberFormatException {
         return Integer.parseInt(number.strip());
     }
 }

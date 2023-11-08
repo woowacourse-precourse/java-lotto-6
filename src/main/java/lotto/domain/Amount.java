@@ -2,25 +2,23 @@ package lotto.domain;
 
 import lotto.constant.ExceptionType;
 import lotto.constant.LottoConstant;
+import lotto.util.TypeConverter;
 
 public class Amount {
     private final int amount;
 
     public Amount(String amount) {
-        this.amount = convertToInteger(amount);
+        try {
+            this.amount = TypeConverter.convertToInteger(amount);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionType.AMOUNT_NOT_INTEGER.getMessage());
+        }
+
         validate(this.amount);
     }
 
     public int getAmount() {
         return amount;
-    }
-
-    private int convertToInteger(String amount) {
-        try {
-            return Integer.parseInt(amount.strip());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionType.AMOUNT_NOT_INTEGER.getMessage());
-        }
     }
 
     private void validate(int amount) {

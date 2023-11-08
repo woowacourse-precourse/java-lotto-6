@@ -3,8 +3,8 @@ package lotto.controller;
 import lotto.domain.Amount;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBonus;
+import lotto.domain.LottoPurchase;
 import lotto.domain.LottoStatistics;
-import lotto.domain.LottosPurchase;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -41,7 +41,7 @@ public class GameController {
     }
 
     private void purchaseLotto() {
-        purchasedLottos = new LottosPurchase(amount).getLottos();
+        purchasedLottos = new LottoPurchase(amount).getLottos();
 
         outputView.printCountsOfPurchasing(purchasedLottos.size());
         outputView.printLottos(purchasedLottos);

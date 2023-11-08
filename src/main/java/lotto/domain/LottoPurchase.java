@@ -6,10 +6,10 @@ import lotto.constant.LottoConstant;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottosPurchase {
+public class LottoPurchase {
     private final List<Lotto> lottos;
 
-    public LottosPurchase(int amount) {
+    public LottoPurchase(int amount) {
         lottos = new ArrayList<>();
         int countsOfPurchasing = calculateCountsOfPurchasing(amount);
 

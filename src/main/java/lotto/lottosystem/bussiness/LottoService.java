@@ -12,14 +12,9 @@ public class LottoService {
 
     private static final int ONE_LOTTO_EXPENCE = 1000;
     private final LottoGenerator lottoGenerator;
-    private Lotto answerLotto;
-    private int bonusNumber;
-    private List<Lotto> userTickets;
 
-    public LottoService(LottoGenerator lottoGenerator, LottoNumbersVO lottoNumbersVO) {
+    public LottoService(LottoGenerator lottoGenerator) {
         this.lottoGenerator = lottoGenerator;
-        this.answerLotto = lottoNumbersVO.numbers();
-        this.bonusNumber = lottoNumbersVO.bonusNumber();
     }
 
     public TicketsVO issueTickets(MoneyVO moneyVO) {
@@ -30,7 +25,6 @@ public class LottoService {
         for(int i = 0; i < count; i++) {
             tickets.add(new Lotto(lottoGenerator.generateLotto()));
         }
-        this.userTickets = tickets;
         return new TicketsVO(tickets);
     }
 
@@ -44,16 +38,19 @@ public class LottoService {
         return (money / ONE_LOTTO_EXPENCE);
     }
 
-    public StatisticsVO calcStatistics() {
+    public StatisticsVO calcStatistics(LottoNumbersVO userInputNumbersVO, TicketsVO userTicketsVO) {
+        Lotto answerLotto = userInputNumbersVO.numbers();
+        int bonusNumber = userInputNumbersVO.bonusNumber();
+        List<Lotto> userTickets = userTicketsVO.tickets();
+
         int win3Count = 0;
         int win4Count = 0;
         int win5Count = 0;
         int win5WithBonusCount = 0;
         int win6Count = 0;
-        double revenueRatio = 0;
 
         for(Lotto ticket : userTickets) {
-            LottoStatus status = calcTicketStatus(ticket);
+            LottoStatus status = calcTicketStatus(ticket, answerLotto, bonusNumber);
             if (status == LottoStatus.WIN3) { win3Count++; continue;}
             if (status == LottoStatus.WIN4) { win4Count++; continue;}
             if (status == LottoStatus.WIN5) { win5Count++; continue;}
@@ -70,11 +67,11 @@ public class LottoService {
                     win6Count*LottoStatus.WIN6.getPrize()
                 );
 
-        revenueRatio = (totalRevenue / (userTickets.size()*1000.0)) * 100.0;
+        double revenueRatio = (totalRevenue / (userTickets.size()*1000.0)) * 100.0;
         return new StatisticsVO(win3Count, win4Count, win5Count, win5WithBonusCount, win6Count, revenueRatio);
     }
 
-    private int countMatchingNumbers(Lotto ticket) {
+    private int countMatchingNumbers(Lotto ticket, Lotto answerLotto) {
         int count = 0;
         for(Integer number : ticket.getNumbers()) {
             if (answerLotto.getNumbers().contains(number)) {
@@ -84,8 +81,8 @@ public class LottoService {
         return count;
     }
 
-    private LottoStatus calcTicketStatus(Lotto ticket) {
-        int count = countMatchingNumbers(ticket);
+    private LottoStatus calcTicketStatus(Lotto ticket, Lotto answerLotto, Integer bonusNumber) {
+        int count = countMatchingNumbers(ticket, answerLotto);
         boolean isBonus = ticket.getNumbers().contains(bonusNumber);
         if (count == 3) {
             return LottoStatus.WIN3;

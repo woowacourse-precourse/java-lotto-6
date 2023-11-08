@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -12,6 +14,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        numbers.sort(Integer::compareTo);
     }
 
     private void validate(List<Integer> numbers) {

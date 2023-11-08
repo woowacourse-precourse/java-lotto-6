@@ -2,6 +2,10 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class InputView {
 
     private static final String INPUT_IS_NOT_POSTIVE_NUMBER_ERROR = "양수를 입력해 주세요.";
@@ -25,6 +29,18 @@ public class InputView {
         if (number < 0) {
             throw new IllegalArgumentException(INPUT_IS_NOT_POSTIVE_NUMBER_ERROR);
         }
+    }
+
+    public static List<Integer> readWinningNumber() {
+        return splitToList(Console.readLine());
+    }
+
+    private static List<Integer> splitToList(String input) {
+        return Stream.of(input.split(","))
+                .map(String::trim)
+                .map(InputView::StringToInteger)
+                .peek(InputView::validatePostiveNumber)
+                .collect(Collectors.toList());
     }
 
 }

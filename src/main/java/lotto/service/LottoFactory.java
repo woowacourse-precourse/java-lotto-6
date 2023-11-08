@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import lotto.exception.LottoException.LottoNumberDuplicateException;
+import lotto.exception.LottoException.LottoNumberFormatException;
+import lotto.exception.LottoException.LottoNumberRangeException;
 import lotto.model.Lotto;
 import lotto.model.UserLotto;
 import lotto.model.WinningLotto;
@@ -33,7 +36,7 @@ public class LottoFactory {
         try {
             makeStringToList(winningLotto).forEach(s -> numbers.add(Integer.parseInt(s.trim())));
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new LottoNumberFormatException();
         }
         validate(numbers);
         sort(numbers);
@@ -50,7 +53,7 @@ public class LottoFactory {
     }
     private void validateDuplicateNumber(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
+            throw new LottoNumberDuplicateException();
         }
     }
     private void validateLottoNumberRange(List<Integer> numbers) {
@@ -63,7 +66,7 @@ public class LottoFactory {
             bonusNumber = Integer.parseInt(inputBonusNumber);
             validateBonusNumber(winningLottoNumber, bonusNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new LottoNumberFormatException();
         }
         return bonusNumber;
     }
@@ -75,13 +78,13 @@ public class LottoFactory {
 
     private void validateDuplicateBonusNumber(Lotto winningLottoNumber, int bonusNumber) {
         if(winningLottoNumber.isContain(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 이미 당첨 번호에 포함된 숫자입니다.");
+            throw new LottoNumberDuplicateException();
         }
     }
 
     private void validateLottoNumber(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자만 입력 가능합니다.");
+            throw new LottoNumberRangeException();
         }
     }
 

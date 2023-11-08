@@ -1,8 +1,9 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import lotto.exception.LottoException.LottoNumberDuplicateException;
+import lotto.exception.LottoException.LottoSizeException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,10 +15,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개만 입력 가능합니다.");
+            throw new LottoSizeException();
         }
         if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
+            throw new LottoNumberDuplicateException();
         }
     }
 

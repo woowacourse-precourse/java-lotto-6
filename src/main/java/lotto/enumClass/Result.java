@@ -18,15 +18,15 @@ public enum Result {
         this.prize = prize;
     }
 
-    public String getResultMessage(){
+    public String getResultMessage() {
         return resultMessage;
     }
 
-    public long getMoney(){
+    public long getMoney() {
         return money;
     }
 
-    public int[] getPrize(){
+    public int[] getPrize() {
         return prize;
     }
 }

@@ -3,17 +3,32 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Console;
 import exception.CustomException;
 import exception.ErrorCode;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import lotto.domain.Lotto;
 
 public class WinningNumberInput {
 
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
+
+    private Lotto lotto;
+
+    public WinningNumberInput(Lotto lotto){
+        this.lotto = lotto;
+    }
+
+    public WinningNumberInput(){
+        super();
+    }
+
     public Map<Lotto, Integer> inputWinningNumbers() {
-        Lotto lotto = inputNumbers();
-        int bonusNumber = inputBonusNumbers(lotto);
-        return Map.of(lotto,bonusNumber);
+        lotto = inputNumbers();
+        int bonusNumber = inputBonusNumbers();
+        return Map.of(lotto, bonusNumber);
     }
 
     private Lotto inputNumbers() {
@@ -28,14 +43,14 @@ public class WinningNumberInput {
         }
     }
 
-    private int inputBonusNumbers(Lotto lotto) {
+    private int inputBonusNumbers() {
         while (true) {
             try {
                 System.out.println("\n보너스 번호를 입력해 주세요.");
                 String userInput = Console.readLine();
                 int bonusNumber = transString(userInput);
                 isBetween1And45(bonusNumber);
-                containCheck(lotto, bonusNumber);
+                containCheck(bonusNumber);
                 return bonusNumber;
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());
@@ -59,9 +74,9 @@ public class WinningNumberInput {
         return winningNumbers;
     }
 
-    private void containCheck(Lotto lotto, int number) {
+    private void containCheck(int number) {
         if (lotto.getNumbers().contains(number)) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호와 중복되지 않은 값을 입력해 주세요.");
+            throw new CustomException(ErrorCode.DUPLICATE_WINNING_NUMBER);
         }
     }
 
@@ -69,13 +84,13 @@ public class WinningNumberInput {
         try {
             return Integer.parseInt(s);
         } catch (IllegalArgumentException illegalArgumentException) {
-            throw new CustomException(ErrorCode.PARSEERRORTYPE);
+            throw new CustomException(ErrorCode.PARS_EERROR_TYPE);
         }
     }
 
     private void isBetween1And45(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 1이상 45이하의 숫자를 입력해 주세요.");
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
+            throw new CustomException(ErrorCode.OUT_OF_RANGE);
         }
     }
 }

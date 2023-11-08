@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import exception.CustomException;
+import exception.ErrorCode;
+
 import java.util.*;
 
 public class Lotto {
@@ -15,7 +18,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         Set<Integer> temp = new HashSet<>(numbers);
         if (temp.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 중복되지 않은 숫자를 입력해주세요.");
+            throw new CustomException(ErrorCode.DUPLICATE_WINNING_NUMBER);
         }
     }
 
@@ -23,10 +26,10 @@ public class Lotto {
     @Override
     public String toString() {
         return "[" + String.join(", ", numbers
-            .stream().map(Object::toString).toArray(String[]::new)) + "]";
+                .stream().map(Object::toString).toArray(String[]::new)) + "]";
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return numbers;
     }
 }

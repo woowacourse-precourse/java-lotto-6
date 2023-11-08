@@ -9,7 +9,13 @@ import lotto.domain.Lotto;
 
 public class RandomNumberGenerator {
 
-    public List<Lotto> generateRandomNumber(int userPurchase) {
+    private final int userPurchase;
+
+    public RandomNumberGenerator(int userPurchase) {
+        this.userPurchase = userPurchase;
+    }
+
+    public List<Lotto> generateRandomNumber() {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < userPurchase; i++) {
             List<Integer> numbers = getRandomNumber();

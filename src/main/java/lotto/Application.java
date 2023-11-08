@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 import java.util.Map;
 
+import exception.CustomException;
 import lotto.domain.Lotto;
 import lotto.service.LottoPurchase;
 import lotto.service.LottoStatistics;
@@ -13,22 +14,24 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-
-        LottoPurchase lottoPurchase = new LottoPurchase();
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         WinningNumberInput winningNumberInput = new WinningNumberInput();
-        LottoStatistics lottoStatistics = new LottoStatistics();
 
-        String purchaseString = lottoPurchase.inputLottoString();
-        int userPurchase = lottoPurchase.inputLottoPurchase(purchaseString);
-        System.out.printf("\n%d개를 구매했습니다.\n", userPurchase);
+        int userPurchase;
+        while (true) {
+            try {
+                userPurchase = new LottoPurchase(new LottoPurchase().inputLottoString()).inputLottoPurchase();
+                System.out.printf("\n%d개를 구매했습니다.\n", userPurchase);
+                break;
+            } catch (CustomException customException) {
+                System.out.println(customException.getMessage());
+            }
+        }
 
-        List<Lotto> lottos = randomNumberGenerator.generateRandomNumber(userPurchase);
+        List<Lotto> lottos = new RandomNumberGenerator(userPurchase).generateRandomNumber();
         Map<Lotto, Integer> winningLotto = winningNumberInput.inputWinningNumbers();
 
         System.out.println("\n당첨 통계\n---");
-        String winRate = lottoStatistics.calculateWinRate(userPurchase, lottos, winningLotto);
-        System.out.println("총 수익률은 "+winRate+"%입니다.");
+        new LottoStatistics(userPurchase, lottos, winningLotto).calculateWinRate();
 
     }
 }

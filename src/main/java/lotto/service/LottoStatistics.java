@@ -10,23 +10,45 @@ import java.util.Map;
 
 public class LottoStatistics {
 
-    public String calculateWinRate(int userPurchase, List<Lotto> userLottos, Map<Lotto, Integer> winNumber) {
+    private int userPurchase;
+    private List<Lotto> userLottos;
+    private Map<Lotto, Integer> winNumber;
+    private static final double DIVISOR = 100.0;
+
+    public LottoStatistics(int userPurchase, List<Lotto> userLottos, Map<Lotto, Integer> winNumber) {
+        this.userPurchase = userPurchase;
+        this.userLottos = userLottos;
+        this.winNumber = winNumber;
+    }
+
+    public LottoStatistics() {
+        super();
+    }
+
+    public String calculateWinRate() {
         Map<Result, Integer> resultPrize = crateResultPrize();
         Lotto winLotto = winNumber.keySet().iterator().next();
         int bonusNumber = winNumber.get(winLotto);
 
-        for (Lotto lotto : userLottos) {
-            calculatePrize(resultPrize, lotto, winLotto, bonusNumber);
-        }
-        resultPrize.forEach((key, value) -> System.out.println(key.getResultMessage() + " - " + value+"개"));
+        calculatePrize(userLottos, resultPrize, winLotto, bonusNumber);
+        resultPrize.forEach((key, value) -> System.out.println(key.getResultMessage() + " - " + value + "개"));
 
         long totalPrize = calculateTotalPrize(resultPrize);
+        System.out.println("총 수익률은 " + calculateWinningPercentage(userPurchase, totalPrize) + "%입니다.");
         return calculateWinningPercentage(userPurchase, totalPrize);
     }
 
+    private void calculatePrize(List<Lotto> userLottos, Map<Result, Integer> resultPrize, Lotto winLotto, int bonusNumber) {
+        for (Lotto lotto : userLottos) {
+            lotto.getNumbers().removeAll(winLotto.getNumbers());
+            int[] prizeResult = cratePrize(lotto, bonusNumber);
+            updateResult(resultPrize, prizeResult);
+        }
+    }
+
     private String calculateWinningPercentage(int userPurchase, long totalPrize) {
-        double div = ((double) totalPrize / (userPurchase * 1000)) * 100.0;
-        double roundWinRate = Math.round(div * 100.0) / 100.0;
+        double div = ((double) totalPrize / (userPurchase * 1000)) * DIVISOR;
+        double roundWinRate = Math.round(div * DIVISOR) / DIVISOR;
         if (roundWinRate == (int) roundWinRate) {
             return String.format("%d", (int) roundWinRate);
         }
@@ -58,11 +80,6 @@ public class LottoStatistics {
         return prizeResult;
     }
 
-    private void calculatePrize(Map<Result, Integer> resultPrize, Lotto lotto, Lotto winLotto, int bonusNumber) {
-        lotto.getNumbers().removeAll(winLotto.getNumbers());
-        int[] prizeResult = cratePrize(lotto, bonusNumber);
-        updateResult(resultPrize, prizeResult);
-    }
 
     private void updateResult(Map<Result, Integer> resultPrize, int[] prizeResult) {
         for (Result result : Result.values()) {

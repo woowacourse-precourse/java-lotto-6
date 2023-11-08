@@ -1,7 +1,5 @@
 package lotto.view;
 
-import lotto.model.Result;
-
 public class OutputView {
     private static final String INFO_OF_NUM_OF_LOTTOS = "개를 구매했습니다.";
     private static final String RESULT_OF_LOTTOS = "당첨 통계\n---";

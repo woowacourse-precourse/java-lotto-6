@@ -9,8 +9,6 @@ import static lotto.constants.LottoConstants.MIN_LOTTO_NUMBER;
 import static lotto.constants.LottoConstants.NUMBER_OF_LOTTO_NUMBERS;
 
 import java.util.List;
-import lotto.constants.ExceptionMessages;
-import lotto.constants.LottoConstants;
 import lotto.converter.MessageConverter;
 import lotto.model.dto.WinningNumDTO;
 

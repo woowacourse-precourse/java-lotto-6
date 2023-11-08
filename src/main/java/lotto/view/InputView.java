@@ -2,10 +2,10 @@ package lotto.view;
 
 import java.util.List;
 import lotto.utils.GameUtils;
-import lotto.utils.validator.BonusNumberValidator;
-import lotto.utils.validator.PurchaseAmountValidator;
-import lotto.utils.validator.WinningNumberValidator;
 import lotto.view.reader.Reader;
+import lotto.view.validator.BonusNumberInputValidator;
+import lotto.view.validator.PurchaseAmountInputValidator;
+import lotto.view.validator.WinningNumberInputValidator;
 
 public class InputView {
 
@@ -21,21 +21,21 @@ public class InputView {
     public int readPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
         String purchaseAmountInput = reader.readLine();
-        PurchaseAmountValidator.validate(purchaseAmountInput);
+        PurchaseAmountInputValidator.validate(purchaseAmountInput);
         return Integer.parseInt(purchaseAmountInput);
     }
 
     public List<Integer> readWinningNumbers() {
         System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
         String winningNumbersInput = reader.readLine();
-        WinningNumberValidator.validate(winningNumbersInput);
+        WinningNumberInputValidator.validate(winningNumbersInput);
         return GameUtils.parse(winningNumbersInput);
     }
 
     public int readBonusNumber() {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
         String bonusNumber = reader.readLine();
-        BonusNumberValidator.validate(bonusNumber);
+        BonusNumberInputValidator.validate(bonusNumber);
         return Integer.parseInt(bonusNumber);
     }
 }

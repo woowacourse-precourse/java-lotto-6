@@ -1,32 +1,32 @@
-package Model;
-
-import lotto.Lotto;
+package lotto;
 
 import java.util.Arrays;
 import java.util.Objects;
 
-public enum RankCalculateModel {
-    first(2000000000,6,false),
-    second(30000000,5,true),
-    third(1500000,5,false),
-    fourth(50000,4,false),
-    fifth(5000,3,false),
-    boom(0,0,false);
+public enum Rank {
+    first(2000000000,6,false,1),
+    second(30000000,5,true,2),
+    third(1500000,5,false,3),
+    fourth(50000,4,false,4),
+    fifth(5000,3,false,5),
+    boom(0,0,false,0);
     private final Integer money;
     private final Integer matching;
     private final boolean hasBonus;
-    RankCalculateModel(Integer money, Integer matching, boolean hasBonus){
+    private final Integer num;
+    Rank(Integer money, Integer matching, boolean hasBonus, Integer num){
         this.money=money;
         this.matching=matching;
         this.hasBonus=hasBonus;
+        this.num=num;
     }
-    public RankCalculateModel getRank(Integer matchCount, boolean hasBonus){
+    public static Rank getRank(Integer matchCount, boolean hasBonus){
         return Arrays.stream(values()).
-                filter(rankCalculateModel -> Objects.equals(rankCalculateModel.matching, matchCount)).
-                filter(rankCalculateModel -> rankCalculateModel.hasBonus== hasBonus).
+                filter(rank -> Objects.equals(rank.matching, matchCount)).
+                filter(rank -> rank.hasBonus== hasBonus).
                 findAny().orElse(boom);
     }
-    public RankCalculateModel findLottoRank(Lotto lotto, Lotto winningLotto, Integer bonusNum){
+    public static Rank findLottoRank(Lotto lotto, Lotto winningLotto, Integer bonusNum){
         final Integer matchCount=getMatchCount(lotto,winningLotto);
         boolean hasBonus=false;
         if(matchCount==5){
@@ -34,11 +34,14 @@ public enum RankCalculateModel {
         }
         return getRank(matchCount,hasBonus);
     }
-    public Integer getMatchCount(Lotto lotto, Lotto winningLotto){
+    public static Integer getMatchCount(Lotto lotto, Lotto winningLotto){
         return (int)winningLotto.getNumbers().stream().filter(lotto::hasNum).count();
     }
     public Integer getMoney(){
         return money;
+    }
+    public Integer getNum(){
+        return  num;
     }
 
 }

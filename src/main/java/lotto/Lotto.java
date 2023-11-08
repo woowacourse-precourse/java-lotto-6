@@ -7,7 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
         Collections.sort(this.numbers);
     }
 
@@ -39,6 +39,12 @@ public class Lotto {
     }
     public void printLotto(){
         System.out.println(numbers);
+    }
+    public List<Integer> getNumbers(){
+        return numbers;
+    }
+    public boolean hasNum(Integer Num){
+        return numbers.contains(Num);
     }
 
     // TODO: 추가 기능 구현

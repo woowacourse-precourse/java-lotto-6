@@ -11,7 +11,7 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public List<LottoRank> checkRank(WinningNumber winningNumber) {
+    public List<LottoRank> checkRanks(WinningNumber winningNumber) {
         List<LottoRank> lottoRanks = new ArrayList<>();
 
         for (Lotto lotto : lottos) {

@@ -33,11 +33,11 @@ class LottosTest {
 
     @DisplayName("Lottos 순위 결정 테스트")
     @Test
-    void checkRank() {
+    void checkRanks() {
         Lottos lottoTicket = new Lottos(lottos);
         WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6), 7);
 
-        List<LottoRank> lottoRanks = lottoTicket.checkRank(winningNumber);
+        List<LottoRank> lottoRanks = lottoTicket.checkRanks(winningNumber);
 
         assertThat(lottoRanks).containsAll(List.of(LottoRank.RANK_ONE, LottoRank.RANK_TWO));
     }

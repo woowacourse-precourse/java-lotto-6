@@ -46,7 +46,7 @@ public class LottoController {
     }
 
     private void checkLottoRank() {
-        lottoRanks = lottos.checkRank(winningNumber);
+        lottoRanks = lottos.checkRanks(winningNumber);
         OutputHandler.printWinningStatsSign();
         OutputHandler.printWinningStats(lottoRanks);
     }

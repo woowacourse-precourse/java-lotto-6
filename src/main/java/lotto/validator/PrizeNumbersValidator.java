@@ -16,6 +16,9 @@ public class PrizeNumbersValidator {
     public List<Integer> numbers;
     private List<String> splitedNumbers;
 
+    public PrizeNumbersValidator() {
+    }
+
     public void validate(String numbers) {
         count(numbers);
         isNumber();

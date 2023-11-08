@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBall;
-import lotto.exception.InvalidMoneyInputException;
-import lotto.exception.LackOfMoneyException;
+import lotto.exception.InvalidRangeInputException;
+import lotto.exception.InvalidInputException;
 
 public class UserLottoInput implements LottoInput {
     private final String DELIMITER = ",";
@@ -14,10 +14,19 @@ public class UserLottoInput implements LottoInput {
     @Override
     public int getMoneyAmount() {
         String input = Console.readLine();
-        validateNumericString(input);
-        int amount = Integer.parseInt(input);
-        validateNotZero(amount);
-        return amount;
+        validateMoneyAmount(input);
+        return Integer.parseInt(input);
+    }
+
+    private void validateMoneyAmount(String input) {
+        validateInteger(input);
+        validatePositive(input);
+    }
+
+    private void validatePositive(String input) {
+        if (Integer.parseInt(input) <= 0) {
+            throw new InvalidRangeInputException();
+        }
     }
 
     @Override
@@ -34,8 +43,8 @@ public class UserLottoInput implements LottoInput {
         String input = Console.readLine();
         String[] numbersInput = input.split(DELIMITER);
 
-        Arrays.stream(input.split(DELIMITER))
-                .forEach(this::validateNumericString);
+        Arrays.stream(numbersInput)
+                .forEach(this::validateInteger);
 
         return Arrays.stream(numbersInput)
                 .map(Integer::parseInt)
@@ -45,22 +54,18 @@ public class UserLottoInput implements LottoInput {
     @Override
     public LottoBall getBall() {
         String input = Console.readLine();
-        validateNumericString(input);
+        validateInteger(input);
+
         int number = Integer.parseInt(input);
         return new LottoBall(number);
     }
 
-    private void validateNumericString(String input) {
-        for (Character c : input.toCharArray()) {
-            if (!Character.isDigit(c)) {
-                throw new InvalidMoneyInputException();
-            }
+    private void validateInteger(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException();
         }
     }
 
-    private void validateNotZero(int amount) {
-        if (amount == 0) {
-            throw new LackOfMoneyException();
-        }
-    }
 }

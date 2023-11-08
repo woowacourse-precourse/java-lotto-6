@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.exception.DuplicateBallNumberException;
-import lotto.exception.InvalidLengthException;
+import lotto.exception.InvalidLottoLengthException;
 
 public class Lotto {
     public static final int LOTTO_BALL_COUNT = 6;
@@ -38,7 +38,7 @@ public class Lotto {
 
     private void validateLength(List<LottoBall> numbers) {
         if (numbers.size() != LOTTO_BALL_COUNT) {
-            throw new InvalidLengthException();
+            throw new InvalidLottoLengthException();
         }
     }
 

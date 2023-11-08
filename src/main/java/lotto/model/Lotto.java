@@ -10,11 +10,17 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 발행 시 6개의 숫자만 뽑아야 합니다.");
-        }
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
-    // TODO: 추가 기능 구현
+    public boolean isDuplicatedBonus(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개의 숫자만 존재해야 합니다.");
+        }
+    }
 }

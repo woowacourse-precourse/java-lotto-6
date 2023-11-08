@@ -26,6 +26,12 @@ public class InputUser {
         validateInputWinningNumberIsInteger(splitRawWinningNumbers);
         return convertStringToInteger(splitRawWinningNumbers);
     }
+    public Integer inputBonusNumber(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String inputBonusNumber = camp.nextstep.edu.missionutils.Console.readLine();
+        validateinputBonusNumberIsInteger(inputBonusNumber);
+        return Integer.parseInt(inputBonusNumber);
+    }
 
     private List<Integer> convertStringToInteger(List<String> splitRawWinningNumbers) {
         WinningNumbers = new ArrayList<>();
@@ -60,6 +66,13 @@ public class InputUser {
             }
         }catch (NumberFormatException e){
             throw new NumberFormatException("[ERROR] 당첨 번호는 숫자를 입력해야 합니다.");
+        }
+    }
+    private void validateinputBonusNumberIsInteger(String inputBonusNumber){
+        try {
+            Integer.parseInt(inputBonusNumber);
+        }catch (NumberFormatException e){
+            throw new NumberFormatException("[ERROR] 보너스 번호는 숫자를 입력해야 합니다.");
         }
     }
 }

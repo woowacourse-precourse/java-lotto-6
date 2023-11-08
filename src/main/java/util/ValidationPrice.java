@@ -16,7 +16,7 @@ public class ValidationPrice {
         validateRemainder(priceString);
     }
 
-    private static void validateNumber(String priceString) {
+    public static void validateNumber(String priceString) {
         try {
             Integer price = Integer.parseInt(priceString);
         } catch (NumberFormatException notANumber) {
@@ -24,7 +24,7 @@ public class ValidationPrice {
         }
     }
 
-    private static void validateRemainder(String priceString) {
+    public static void validateRemainder(String priceString) {
         Integer price = Integer.parseInt(priceString);
         System.out.println(price);
         if (price % UNIT_NUMBER != VALID_REMAINDER) {
@@ -32,7 +32,7 @@ public class ValidationPrice {
         }
     }
 
-    private static void validateNegativeNumber(String priceString) {
+    public static void validateNegativeNumber(String priceString) {
         Integer price = Integer.parseInt(priceString);
         if (price < ZERO) {
             throw new IllegalArgumentException(ValidationPriceMessages.NEGATIVE_NUMBER.getMessage());

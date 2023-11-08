@@ -1,9 +1,6 @@
 package util;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.ArrayList;
-import lotto.Lotto;
 import lotto.LottoPrinciples;
 
 public class ValidationNumbers {
@@ -31,7 +28,7 @@ public class ValidationNumbers {
         validateDuplicateNumber(numbers);
     }
 
-    private static String listToString(List<Integer> numbers) {
+    public static String listToString(List<Integer> numbers) {
         StringBuilder numberString = new StringBuilder();
         int endIndex = numbers.size() - 1;
         for (int index = START_INDEX;index <= endIndex;index++) {
@@ -45,7 +42,7 @@ public class ValidationNumbers {
         return numberString.toString();
     }
 
-    private static void validateNumber(String numbers) {
+    public static void validateNumber(String numbers) {
         List<String> numbersList = List.of(numbers.split(COMMA, REMOVE_LAST_SPACE_NUMBER));
         try {
             numbersList.stream().forEach(Integer::parseInt);
@@ -54,14 +51,14 @@ public class ValidationNumbers {
         }
     }
 
-    private static void validateLength(String numbers) {
+    public static void validateLength(String numbers) {
         List<String> numbersList = List.of(numbers.split(COMMA, REMOVE_LAST_SPACE_NUMBER));
         if (numbersList.size() != LottoPrinciples.LIMIT_NUMBER.getNumber()) {
             throw new IllegalArgumentException(ValidationNumbersMessages.INVALID_LENGTH.getMessage());
         }
     }
 
-    private static void validateNumberRange(String numbers) {
+    public static void validateNumberRange(String numbers) {
         List<String> numbersList = List.of(numbers.split(COMMA, REMOVE_LAST_SPACE_NUMBER));
         Integer filteredNumberListCount = (int) numbersList.stream().map(Integer::parseInt)
                 .filter(number -> number >= LottoPrinciples.MIN_NUMBER.getNumber()
@@ -72,7 +69,7 @@ public class ValidationNumbers {
         }
     }
 
-    private static void validateDuplicateNumber(String numbers) {
+    public static void validateDuplicateNumber(String numbers) {
         List<String> numbersList = List.of(numbers.split(COMMA, REMOVE_LAST_SPACE_NUMBER));
         Integer filteredNumberListCount = (int) numbersList.stream().map(Integer::parseInt)
                 .distinct()

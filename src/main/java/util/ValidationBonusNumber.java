@@ -22,7 +22,7 @@ public class ValidationBonusNumber {
         }
     }
 
-    private static void validateNumber(String bonusNumberString) {
+    public static void validateNumber(String bonusNumberString) {
         try {
             Integer price = Integer.parseInt(bonusNumberString);
         } catch (NumberFormatException notANumberException) {
@@ -30,7 +30,7 @@ public class ValidationBonusNumber {
         }
     }
 
-    private static void validateNumberRange(String bonusNumberString) {
+    public static void validateNumberRange(String bonusNumberString) {
         Integer bonusNumber = Integer.parseInt(bonusNumberString);
 
         if (LottoPrinciples.MIN_NUMBER.getNumber() > bonusNumber

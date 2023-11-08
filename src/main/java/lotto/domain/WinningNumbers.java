@@ -21,8 +21,25 @@ public class WinningNumbers {
         return new WinningNumbers(winningNumbers, bonusNumber);
     }
 
-    public Rank calculateRank(Lotto lotto) {
+    public Rank calculateRank(Lotto lotto, int bonusNumber) {
+        int matchCount = (int) lotto.getNumbers().stream()
+                .filter(winningNumbers::contains)
+                .count();
 
-        return null;
+        boolean hasBonusNumber = lotto.getNumbers().contains(bonusNumber);
+
+        return Rank.valueOf(matchCount, hasBonusNumber);
+    }
+
+    public double calculateProfitRate(Map<Rank, Integer> result) {
+        int totalPrize = result.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+
+        int totalPurchaseAmount = result.values().stream()
+                .mapToInt(count -> count * 1000)
+                .sum();
+
+        return (totalPrize / (double) totalPurchaseAmount) * 100;
     }
 }

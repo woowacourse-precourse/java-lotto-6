@@ -55,8 +55,7 @@ public class DrawMachine {
         Map<DrawResult, Integer> statistic = createStatistic();
         for (Lotto userLotto : lottos.getLottoTickets()) {
             DrawResult drawResult = drawEach(userLotto);
-            Integer count = statistic.get(drawResult);
-            statistic.replace(drawResult, count + 1);
+            putResult(statistic, drawResult);
         }
         return new DrawLottosResponse(
                 statistic.get(FIRST),
@@ -64,7 +63,12 @@ public class DrawMachine {
                 statistic.get(THIRD),
                 statistic.get(FOURTH),
                 statistic.get(FIFTH),
-                getRateOfReturn(statistic, lottos.getSize())
+                getRateOfReturn(statistic, lottos.getQuantity())
         );
+    }
+
+    private void putResult(Map<DrawResult, Integer> statistic, DrawResult drawResult) {
+        Integer count = statistic.get(drawResult);
+        statistic.replace(drawResult, count + 1);
     }
 }

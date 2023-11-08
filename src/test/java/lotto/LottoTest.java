@@ -32,7 +32,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("다른 로또와의 일치 개수")
+    @DisplayName("다른 로또와의 일치 개수를 알맞게 리턴한다.")
     @Test
     void testCountMatches() {
         Lotto lotto1 = new Lotto(List.of(5,10,15,20,25,30));
@@ -43,7 +43,7 @@ class LottoTest {
         assertThat(result).isEqualTo(answer);
     }
 
-    @DisplayName("보너스 번호와의 일치 여부")
+    @DisplayName("보너스 번호와의 일치 여부를 알맞게 리턴한다.")
     @Test
     void testMatchWithBonus() {
         Lotto lotto = new Lotto(List.of(7,15,22,29,37,45));

@@ -1,6 +1,7 @@
-package lotto.Domain;
+package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

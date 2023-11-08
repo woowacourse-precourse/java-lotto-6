@@ -1,8 +1,14 @@
 package lotto;
 
+import lotto.Service.GameService;
+
 public class Application {
     public static void main(String[] args) {
-        Controller controller = new Controller();
-        controller.run();
+        GameService gameService = new GameService();
+
+        gameService.setMoney();
+        gameService.setAnswer();
+        gameService.setBonusNumber();
+        gameService.resultGame();
     }
 }

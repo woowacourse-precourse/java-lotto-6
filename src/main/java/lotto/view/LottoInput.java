@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.WinningLotto;
+import lotto.global.ResponseStatus;
 import lotto.utils.NumberHandler;
 
 import java.util.Arrays;
@@ -18,17 +19,17 @@ public class LottoInput {
 
     public int lottoPurchaseInput(){
         System.out.println(PURCHASE_MESSAGE);
-        int lottoPurchasePrice = NumberHandler.parseLottoNumber(Console.readLine());
-        InputValidator.purchasePriceCheck(lottoPurchasePrice);
-        return lottoPurchasePrice;
+        return NumberHandler.parseLottoPurchase(Console.readLine());
     }
 
     public WinningLotto winningLottoInput(){
         System.out.println(WINNING_LOTTO_MESSAGE);
         List<Integer> lottoNumbers = parseByComma(Console.readLine()).stream()
-                .mapToInt(NumberHandler::parseLottoNumber).boxed().toList();
+                .mapToInt(NumberHandler::parseLottoNumber)
+                .boxed().toList();
         InputValidator.lottoLengthCheck(lottoNumbers);
         System.out.println();
+
         System.out.println(BONUS_NUMBER_MESSAGE);
         int bonusNumber = NumberHandler.parseLottoNumber(Console.readLine());
         System.out.println();

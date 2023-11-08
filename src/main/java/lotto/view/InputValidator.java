@@ -50,7 +50,7 @@ public class InputValidator {
     }
 
     public static ResponseStatus isLottoInRange(int number){
-        if(number >= LottoConstant.LOTTO_NUMBER_RANGE_START && number <= LottoConstant.LOTTO_NUMBER_RANGE_END){
+        if(number < LottoConstant.LOTTO_NUMBER_RANGE_START || number > LottoConstant.LOTTO_NUMBER_RANGE_END){
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
         }
         return ResponseStatus.OK;

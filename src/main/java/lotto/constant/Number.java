@@ -6,7 +6,9 @@ public enum Number {
     THE_BIGGEST_LOTTO_NUMBER(45),
     HIT_COUNT_INDEX(0),
     HIT_BONUS_INDEX(1),
-    WINNING_AMOUNT_INDEX(2);
+    WINNING_AMOUNT_INDEX(2),
+    LOTTO_PRICE(1000),
+    PERSENT(100);
 
     private final int message;
 

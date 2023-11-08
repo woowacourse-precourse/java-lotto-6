@@ -35,7 +35,8 @@ public class LottoService {
 
     public void convertToIntegerList(String winningNumbers) {
         String[] arrayWinningNumbers = winningNumbers.split(",");
-        List<Integer> ListWinningNumbers = parseIntWinningNumbers(arrayWinningNumbers);
+        List<Integer> ListWinningNumbers = new ArrayList<>();
+        ListWinningNumbers = parseIntWinningNumbers(arrayWinningNumbers);
         checkValidLength(ListWinningNumbers);
         checkDuplicateInputNumber(ListWinningNumbers);
         checkOutOfLottoNumericalRange(ListWinningNumbers);
@@ -86,12 +87,12 @@ public class LottoService {
     }
 
     public void printLottoCount() {
-        OutputView.printPurChaseCount(lottoDatas.getLottoCount());
+        OutputView.printPurChaseCount(lottoDatas.getLottoPurchaseCount());
     }
 
     public void printLottoNumbers() {
 
-        for (int lottoCountIndex = 0; lottoCountIndex < lottoDatas.getLottoCount(); lottoCountIndex++) {
+        for (int lottoCountIndex = 0; lottoCountIndex < lottoDatas.getLottoPurchaseCount(); lottoCountIndex++) {
             StringBuilder printLottoNumbers = new StringBuilder();
             printLottoNumbers.append("[");
             printLottoNumbers = getEachLottoNumber(printLottoNumbers, lottoCountIndex);

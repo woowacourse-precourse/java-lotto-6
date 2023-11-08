@@ -2,6 +2,8 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import lotto.constant.Number;
 import lotto.constant.WinningValues;
 import lotto.model.LottoDatas;
 
@@ -13,14 +15,16 @@ public class CalculationLogic {
     }
 
     public void calculateFinalPrize() {
-        List<Integer> hitCounts = compareLottoNumber();
-        List<Integer> hitBonusCounts = compareBonusNumber();
+        List<Integer> hitCounts = new ArrayList<>();
+        hitCounts = compareLottoNumber();
+        List<Integer> hitBonusCounts = new ArrayList<>();
+        hitBonusCounts = compareBonusNumber();
         saveWinningDatas(hitCounts, hitBonusCounts);
     }
 
     private List<Integer> compareLottoNumber() {
         List<Integer> hitCounts = new ArrayList<>();
-        for (int lottoIndex = 0; lottoIndex < lottoDatas.getLottoCount(); lottoIndex++) {
+        for (int lottoIndex = 0; lottoIndex < lottoDatas.getLottoPurchaseCount(); lottoIndex++) {
             int hitCount = countHitNumber(lottoDatas.getlottoNumbers(lottoIndex), lottoDatas.getWinningNumbers());
             hitCounts.add(hitCount);
         }
@@ -29,7 +33,7 @@ public class CalculationLogic {
 
     private List<Integer> compareBonusNumber() {
         List<Integer> bonusCounts = new ArrayList<>();
-        for (int lottoIndex = 0; lottoIndex < lottoDatas.getLottoCount(); lottoIndex++) {
+        for (int lottoIndex = 0; lottoIndex < lottoDatas.getLottoPurchaseCount(); lottoIndex++) {
             int bonusCount = countBonusNumber(lottoDatas.getlottoNumbers(lottoIndex), lottoDatas.getBonusNumber());
             bonusCounts.add(bonusCount);
         }
@@ -65,7 +69,6 @@ public class CalculationLogic {
     }
 
     private void compareWinningValues(int hitCount, int hitBonusCount) {
-        List<Integer> winningDatasList = new ArrayList<>();
         WinningValues data = ClassificationWinningData(hitCount, hitBonusCount);
         savaWinningData(data);
     }
@@ -88,7 +91,57 @@ public class CalculationLogic {
         winningData.add(data.getWinningCount());
         winningData.add(data.getBonusNumberCount());
         winningData.add(data.getWinningAmount());
-        lottoDatas.inputWinningNumber(winningData);
+        lottoDatas.saveWinningData(winningData);
+    }
+
+    public double importProfitValue() {
+        int totalAmount = 0;
+        for (int lottoIndex = 0; lottoIndex < lottoDatas.getLottoPurchaseCount(); lottoIndex++) {
+            totalAmount += sumAmount(lottoIndex);
+        }
+        return calculationProfit(totalAmount, lottoDatas.getLottoPurchaseCount());
+    }
+
+    private int sumAmount(int index) {
+        return lottoDatas.getWinningData(index).get(Number.WINNING_AMOUNT_INDEX.getMessage());
+    }
+
+    private double calculationProfit(int totalAmount, int lottoPurchaseCount) {
+        return (double) totalAmount / (lottoPurchaseCount * Number.LOTTO_PRICE.getMessage())
+                * Number.PERSENT.getMessage();
+    }
+
+    public Map<Integer, Integer> getAllLottoCounts(Map<Integer, Integer> WinningCounts) {
+        List<Integer> hitCounts = new ArrayList<>();
+        hitCounts = compareLottoNumber();
+        List<Integer> hitBonusCounts = new ArrayList<>();
+        hitBonusCounts = compareBonusNumber();
+        WinningCounts = separatedCounts(WinningCounts, hitCounts, hitBonusCounts);
+        return WinningCounts;
+    }
+
+    private Map<Integer, Integer> separatedCounts(Map<Integer, Integer> WinningCounts, List<Integer> hitCounts,
+                                                  List<Integer> hitBonusCounts) {
+
+        for (int listIndex = 0; listIndex < hitCounts.size(); listIndex++) {
+            WinningCounts = addCountToMap(WinningCounts, hitCounts.get(listIndex), hitBonusCounts.get(listIndex));
+        }
+        return WinningCounts;
+    }
+
+    private Map<Integer, Integer> addCountToMap(Map<Integer, Integer> WinningCounts,
+                                                int hitCount, int hitBonusCount) {
+        if (hitBonusCount != 0) {
+            WinningCounts.put(2, WinningCounts.getOrDefault(2, 0) + 1);
+        }
+        for (WinningValues winningValue : WinningValues.values()) {
+            if (hitCount == winningValue.getWinningCount()) {
+                WinningCounts.put(hitCount, WinningCounts.getOrDefault(hitCount, 0) + 1);
+                return WinningCounts;
+            }
+        }
+        WinningCounts.put(0, WinningCounts.getOrDefault(0, 0) + 1);
+        return WinningCounts;
     }
 
 

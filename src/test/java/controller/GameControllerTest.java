@@ -54,7 +54,7 @@ public class GameControllerTest {
     void 변환_테스트(String inputPurchase) {
         lottoService.convertPurchaseToCount(inputPurchase);
         int number = Integer.parseInt(inputPurchase);
-        assertEquals(lottoDatas.getLottoCount(), number / 1000);
+        assertEquals(lottoDatas.getLottoPurchaseCount(), number / 1000);
 
     }
 

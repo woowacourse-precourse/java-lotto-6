@@ -40,7 +40,7 @@ public class LottoDatas {
         this.bonusNumber = BonusNumber.inputBonusNumber(bonusNumber);
     }
 
-    public void saveWinningDatas(final List<Integer> generatedLottoNumbers) {
+    public void saveWinningData(final List<Integer> generatedLottoNumbers) {
         WinningData winningData = WinningData.inputWinningDatas(generatedLottoNumbers);
         this.winningData.add(winningData);
     }
@@ -51,8 +51,16 @@ public class LottoDatas {
         return lottoNumbersIntegers;
     }
 
-    public int getLottoCount() {
+    public int getLottoPurchaseCount() {
         return purchase.getLottoCount();
+    }
+
+    public List<Integer> getWinningData(int index) {
+        List<Integer> allWinningData = new ArrayList<>();
+        allWinningData.add(winningData.get(index).getHitNumber());
+        allWinningData.add(winningData.get(index).getHitBonusNumber());
+        allWinningData.add(winningData.get(index).getWinningAmount());
+        return allWinningData;
     }
 
     public List<Integer> getWinningNumbers() {
@@ -71,7 +79,8 @@ public class LottoDatas {
     }
 
     private List<Integer> generateLottoNumber() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(
+        List<Integer> lottoNumbers = new ArrayList<>();
+        lottoNumbers = Randoms.pickUniqueNumbersInRange(
                 Number.THE_SMALLEST_LOTTO_NUMBER.getMessage(),
                 Number.THE_BIGGEST_LOTTO_NUMBER.getMessage(),
                 Number.LOTTO_LENGTH_LIMIT.getMessage());

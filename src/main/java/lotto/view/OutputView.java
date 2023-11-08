@@ -1,7 +1,7 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import lotto.constant.OutputMessage;
-import lotto.constant.WinningValues;
 
 public class OutputView {
 
@@ -22,9 +22,14 @@ public class OutputView {
         System.out.println(OutputMessage.OUTPUT_LOTTO_WINNING_STATISTICS.getMessage());
     }
 
-    public static void printFinalResults() {
-        for (WinningValues winningvalue : WinningValues.values()) {
 
-        }
+    public static void printFinalResults(String message, int hitCount) {
+        System.out.printf(message, hitCount);
+        System.out.println();
+    }
+
+    public static void printFinalProfit(String message, double profit) {
+        DecimalFormat df = new DecimalFormat("#.###");
+        System.out.printf(message, df.format(profit));
     }
 }

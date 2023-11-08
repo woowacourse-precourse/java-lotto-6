@@ -4,6 +4,7 @@ import lotto.model.constant.LottoConstants;
 import lotto.util.validator.InputValidator;
 import lotto.util.validator.constant.ErrorMessageConstant;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -25,5 +26,9 @@ public class Lotto {
         if(numbers.stream().distinct().count() != LottoConstants.LOTTO_MAX_COUNT.getNumber()) {
             throw new IllegalArgumentException(ErrorMessageConstant.LOTTO_NUMBER_DUPLICATE_MESSAGE.getMessage());
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

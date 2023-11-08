@@ -18,12 +18,16 @@ public class LottoController {
     public void start() {
         PurchaseAmount purchaseAmount = getPurchaseAmount();
         Lottos lottos = new Lottos(createLotto(purchaseAmount.getLottoCount()));
+        WinningNumber winningNumber = getWinningNumber();
+        BonusNumber bonusNumber = getBonusNumber();
     }
 
     private List<Lotto> createLotto(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
         for(int i = 0; i < lottoCount; i++) {
-            lottos.add(new Lotto(lottoNumberGenerator.generate()));
+            Lotto lotto = new Lotto(lottoNumberGenerator.generate());
+            outputView.printLottoNumber(lotto.getNumbers());
+            lottos.add(lotto);
         }
         return lottos;
     }

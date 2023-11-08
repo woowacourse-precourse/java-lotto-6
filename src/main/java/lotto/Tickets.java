@@ -32,4 +32,8 @@ public class Tickets {
         }
         return winningResult;
     }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
 }

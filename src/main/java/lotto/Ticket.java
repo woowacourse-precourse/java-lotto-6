@@ -35,4 +35,8 @@ public class Ticket {
         int bonusNumber = bonus.getNumber();
         return numbers.contains(bonusNumber);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

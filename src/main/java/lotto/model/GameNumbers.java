@@ -20,13 +20,14 @@ public class GameNumbers {
         return winningNumbers.containNumber(integer);
     }
 
+
+    public BonusNumber getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validateBonusNumber(BonusNumber bonusNumber) {
         if (winningNumbers.containNumber(bonusNumber.toInt())) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE_ERROR.getErrorMessage());
         }
-    }
-
-    public BonusNumber getBonusNumber() {
-        return bonusNumber;
     }
 }

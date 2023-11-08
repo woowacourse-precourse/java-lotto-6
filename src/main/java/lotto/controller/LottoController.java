@@ -17,7 +17,7 @@ public class LottoController {
     public void init() {
         int purchaseAmount = fetchPurchaseAmount();
         StatisticsResult statisticsResult = new StatisticsResult(purchaseAmount, LottoConstant.LOTTO_PRICE.getValue());
-        int lottoCount = statisticsResult.getLottoCount();
+        int lottoCount = statisticsResult.caculateLottoCount();
 
         OutputView.printLottoCount(lottoCount);
         Lottos lottos = new Lottos(LottoMachine.createLotto(lottoCount));

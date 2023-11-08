@@ -30,13 +30,13 @@ public class StatisticsResult {
         return resultsMap;
     }
 
+    public int caculateLottoCount() {
+        return purchaseAmount / lottoPrice;
+    }
+
     private int caculateTotalWinningAmount() {
         return results.stream()
                 .mapToInt(Result::getPrize)
                 .sum();
-    }
-
-    public int getLottoCount() {
-        return purchaseAmount / lottoPrice;
     }
 }

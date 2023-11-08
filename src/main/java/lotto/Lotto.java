@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.model.Constants;
 import lotto.model.PRIZE_TYPE;
 
 public class Lotto {
@@ -32,15 +33,15 @@ public class Lotto {
         }
 
         if (containCount == FIRST_PRIZE_CONTAIN_COUNT) {
-            return PRIZE_TYPE.FIRST;
+            containCount++;
         }
 
-        if (containCount == THIRD_PRIZE_CONTAIN_COUNT) {
-            if (numbers.contains(bonusNumber)) {
-                containCount++;
-            }
+        if (containCount == THIRD_PRIZE_CONTAIN_COUNT &&
+                numbers.contains(bonusNumber)) {
+            containCount++;
         }
-        return PRIZE_TYPE.values()[containCount];
+
+        return Constants.PRIZE_CONDITION.get(containCount);
     }
 
 }

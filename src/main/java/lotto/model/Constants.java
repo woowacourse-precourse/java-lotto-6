@@ -17,4 +17,15 @@ public class Constants {
             PRIZE_TYPE.FIVETH, 5_000, // 5천
             PRIZE_TYPE.NONE, 0
     );
+
+    public final static Map<Integer, PRIZE_TYPE> PRIZE_CONDITION = Map.of(
+            0,PRIZE_TYPE.NONE,
+            1,PRIZE_TYPE.NONE,
+            2,PRIZE_TYPE.NONE,
+            3,PRIZE_TYPE.FIVETH,
+            4,PRIZE_TYPE.FOURTH,
+            5,PRIZE_TYPE.THIRD,
+            6,PRIZE_TYPE.SECOND,
+            7,PRIZE_TYPE.FIRST
+    );
 }

@@ -1,9 +1,6 @@
 package lotto.service;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoCount;
-import lotto.domain.Lottos;
-import lotto.domain.WinningNumbers;
+import lotto.domain.*;
 import lotto.utility.FormatConverter;
 import lotto.utility.RandomNumberGenerator;
 import lotto.utility.TypeConverter;
@@ -12,9 +9,14 @@ import java.util.List;
 
 public class LottoGameServiceImpl implements LottoGameService {
     @Override
-    public LottoCount computeLottoCount(String purchaseAmount) {
-        int money = TypeConverter.convertStringToInt(purchaseAmount);
-        return LottoCount.from(money);
+    public PurchaseAmount parsePurchaseAmount(String purchaseAmountInput) {
+        int purchaseAmount = TypeConverter.convertStringToInt(purchaseAmountInput);
+        return new PurchaseAmount(purchaseAmount);
+    }
+
+    @Override
+    public LottoCount computeLottoCount(PurchaseAmount purchaseAmount) {
+        return LottoCount.from(purchaseAmount.getPurchaseAmount());
     }
 
     @Override

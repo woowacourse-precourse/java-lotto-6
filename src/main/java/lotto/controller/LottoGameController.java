@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.BonusNumber;
-import lotto.domain.LottoCount;
-import lotto.domain.Lottos;
-import lotto.domain.WinningNumbers;
+import lotto.domain.*;
 import lotto.service.LottoGameService;
 import lotto.service.LottoGameServiceImpl;
 import lotto.view.InputHandler;
@@ -13,7 +10,8 @@ public class LottoGameController {
     private static final LottoGameService lottoGameService = new LottoGameServiceImpl();
 
     public static void startLottoGame() {
-        String purchaseAmount = InputHandler.getPurchaseInputMessage();
+        String purchaseAmountInput = InputHandler.getPurchaseInputMessage();
+        PurchaseAmount purchaseAmount = lottoGameService.parsePurchaseAmount(purchaseAmountInput);
 
         LottoCount lottoCount = lottoGameService.computeLottoCount(purchaseAmount);
         Lottos lottos = lottoGameService.generateLottos(lottoCount);

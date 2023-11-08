@@ -1,11 +1,11 @@
 package lotto.service;
 
-import lotto.domain.LottoCount;
-import lotto.domain.Lottos;
-import lotto.domain.WinningNumbers;
+import lotto.domain.*;
 
 public interface LottoGameService {
-    LottoCount computeLottoCount(String purchaseAmount);
+    PurchaseAmount parsePurchaseAmount(String purchaseAmountInput);
+
+    LottoCount computeLottoCount(PurchaseAmount purchaseAmount);
 
     Lottos generateLottos(LottoCount lottoCount);
 

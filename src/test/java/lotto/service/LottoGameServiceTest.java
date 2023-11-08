@@ -35,13 +35,13 @@ class LottoGameServiceTest {
     @CsvSource({"1000", "3000", "10000", "600000", "7000000"})
     void computeLottoCount(String purchaseAmount) {
         // given
-        int money = TypeConverter.convertStringToInt(purchaseAmount);
+        PurchaseAmount parsedPurchaseAmount = new PurchaseAmount(TypeConverter.convertStringToInt(purchaseAmount));
 
         // when
-        LottoCount lottoCount = lottoGameService.computeLottoCount(purchaseAmount);
+        LottoCount lottoCount = lottoGameService.computeLottoCount(parsedPurchaseAmount);
 
         //then
-        assertThat(lottoCount.getLottoCount()).isEqualTo(money / LOTTO_PRICE);
+        assertThat(lottoCount.getLottoCount()).isEqualTo(parsedPurchaseAmount.getPurchaseAmount() / LOTTO_PRICE);
     }
 
     @DisplayName("설정된 개수만큼의 임의의 숫자를 가진 로또를, 구매한 로또 개수만큼 생성한다.")

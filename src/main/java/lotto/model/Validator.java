@@ -18,20 +18,20 @@ public class Validator {
         return (Integer.parseInt(cost) % lottoPrice != 0);
     }
 
-    public void validateAnswer(String number, Integer start, Integer end) {
+    public void validateAnswer(String number) {
         if (notNumeric(number)) {
             throw new IllegalArgumentException(Errors.ANSWER_NUMERIC);
         }
-        if (outOfRange(number, start, end)) {
+        if (outOfRange(number)) {
             throw new IllegalArgumentException(Errors.ANSWER_RANGE);
         }
     }
 
-    public void validateBonus(String number, Integer start, Integer end) {
+    public void validateBonus(String number) {
         if (notNumeric(number)) {
             throw new IllegalArgumentException(Errors.BONUS_NUMERIC);
         }
-        if (outOfRange(number, start, end)) {
+        if (outOfRange(number)) {
             throw new IllegalArgumentException(Errors.BONUS_RANGE);
         }
     }
@@ -40,9 +40,9 @@ public class Validator {
         return !number.matches(Message.REGULAR_NUMBER);
     }
 
-    private boolean outOfRange(String number, Integer start, Integer end) {
-        Integer num = Integer.parseInt(number);
+    private boolean outOfRange(String number) {
+        int num = Integer.parseInt(number);
 
-        return (num < start || end < num);
+        return (num < Constants.START || Constants.END < num);
     }
 }

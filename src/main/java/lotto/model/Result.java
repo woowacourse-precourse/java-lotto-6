@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.constants.Constants;
 import lotto.constants.Message;
 import lotto.constants.Prize;
 
@@ -12,14 +13,14 @@ public class Result {
     private final List<Integer> equalCount;
     private Integer bonusCount;
 
-    public Result(Integer numberCount) {
+    public Result() {
         equalCount = new ArrayList<>();
-        initialEqualCount(equalCount, numberCount);
+        initialEqualCount(equalCount);
         bonusCount = 0;
     }
 
-    private void initialEqualCount(List<Integer> equalCount, Integer numberCount) {
-        for (int i = 0; i <= numberCount; i++) {
+    private void initialEqualCount(List<Integer> equalCount) {
+        for (int i = 0; i <= Constants.NUMBER_COUNT; i++) {
             equalCount.add(0);
         }
     }
@@ -30,8 +31,8 @@ public class Result {
         equalCount.set(count, value + 1);
     }
 
-    public void addBonus(Integer numberCount) {
-        int index = numberCount - 1;
+    public void addBonus() {
+        int index = Constants.NUMBER_COUNT - 1;
         Integer value = equalCount.get(index);
 
         equalCount.set(index, value - 1);

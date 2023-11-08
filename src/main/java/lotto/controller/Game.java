@@ -130,7 +130,7 @@ public class Game {
         List<Integer> result = new ArrayList<>();
 
         for (String number : numbers) {
-            validator.validateAnswer(number, Constants.START, Constants.END);
+            validator.validateAnswer(number);
             result.add(Integer.parseInt(number));
         }
         Collections.sort(result);
@@ -141,7 +141,7 @@ public class Game {
         Integer bonus;
         String bonusInput = view.inputBonus();
 
-        validator.validateBonus(bonusInput, Constants.START, Constants.END);
+        validator.validateBonus(bonusInput);
         bonus = Integer.parseInt(bonusInput);
         if (answer.compareBonus(bonus)) {
             throw new IllegalArgumentException(Errors.BONUS_DUPLICATE);
@@ -157,7 +157,7 @@ public class Game {
     }
 
     private Result countResult(List<Lotto> lottos, Lotto answer, Integer bonus) {
-        Result result = new Result(Constants.NUMBER_COUNT);
+        Result result = new Result();
         Integer count;
 
         for (Lotto lotto : lottos) {
@@ -172,7 +172,7 @@ public class Game {
 
     private void bonusCheck(Lotto lotto, Integer bonus, Result result) {
         if (lotto.compareBonus(bonus)) {
-            result.addBonus(Constants.NUMBER_COUNT);
+            result.addBonus();
         }
     }
 

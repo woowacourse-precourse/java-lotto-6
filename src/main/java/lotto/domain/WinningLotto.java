@@ -6,9 +6,9 @@ public class WinningLotto {
     private final Lotto lotto;
     private final LottoNumber bonusNumber;
 
-    public WinningLotto(List<Integer> numbers, int bonusNumber) {
-        this.lotto = new Lotto(numbers);
-        this.bonusNumber = new LottoNumber(bonusNumber);
+    public WinningLotto(Lotto lotto, LottoNumber bonusNumber) {
+        this.lotto = lotto;
+        this.bonusNumber = bonusNumber;
 
         validateBonusNumberDuplicated();
     }

@@ -1,7 +1,8 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.domain.Customer;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.LottoPurchaseAmount;
 import lotto.domain.LottoResult;
 import lotto.domain.RandomLottoFactory;
@@ -32,14 +33,36 @@ public class MainController {
     }
 
     private static WinningLotto readWinningLotto() {
+        Lotto winningLottoNumbers = readWinningLottoNumbers();
+        OutputView.printNewLine();
+        LottoNumber bonusNumber = readBonusNumber();
+        return createWinningLotto(winningLottoNumbers, bonusNumber);
+    }
+
+    private static Lotto readWinningLottoNumbers() {
         try {
-            List<Integer> winningLottoNumbers = InputView.readWinningLottoNumbers();
-            OutputView.printNewLine();
-            int bonusNumber = InputView.readBonusNumber();
+            return new Lotto(InputView.readWinningLottoNumbers());
+        } catch (IllegalArgumentException exception) {
+            OutputView.printException(exception);
+            return readWinningLottoNumbers();
+        }
+    }
+
+    private static LottoNumber readBonusNumber() {
+        try {
+            return new LottoNumber(InputView.readBonusNumber());
+        } catch (IllegalArgumentException exception) {
+            OutputView.printException(exception);
+            return readBonusNumber();
+        }
+    }
+
+    private static WinningLotto createWinningLotto(Lotto winningLottoNumbers, LottoNumber bonusNumber) {
+        try {
             return new WinningLotto(winningLottoNumbers, bonusNumber);
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
-            return readWinningLotto();
+            return createWinningLotto(winningLottoNumbers, readBonusNumber());
         }
     }
 }

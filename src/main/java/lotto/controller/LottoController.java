@@ -37,13 +37,13 @@ public class LottoController {
         System.out.println();
     }
 
-    public void showPurchaseStatus() {
+    private void showPurchaseStatus() {
         printPurchasedTicketCount();
         printLottoTicketNumbers();
         System.out.println();
     }
 
-    public void drawLottoNumbers() {
+    private void drawLottoNumbers() {
         int[] winningNumbers = getWinningNumbers();
         System.out.println();
 
@@ -53,7 +53,7 @@ public class LottoController {
         lottoGame = new LottoGame(winningNumbers, bonusNumber);
     }
 
-    public void showWinningStatistics() {
+    private void showWinningStatistics() {
         computeLottoResults();
         printWinningStatisticsHeader();
         printWinningStatisticsContents();

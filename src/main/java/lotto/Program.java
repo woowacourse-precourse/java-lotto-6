@@ -6,6 +6,11 @@ import java.util.List;
 import lotto.validator.InputValidator;
 
 public class Program {
+    private static final String matchesCount1stPlace = "6";
+    private static final String matchesCount2ndPlace = "5+bonus";
+    private static final String matchesCount3rdPlace = "5";
+    private static final String matchesCount4thPlace = "4";
+    private static final String matchesCount5thPlace = "3";
     private LottoTerminal lottoTerminal = new LottoTerminal();
     private Customer customer = new Customer(lottoTerminal);
     private InputValidator inputValidator = new InputValidator();
@@ -146,47 +151,47 @@ public class Program {
         setDataStructureForStatistics();
 
         for (int i = 0; i < countMatching.length; i++) {
-            checkThreeMatching(i);
-            checkFourMatching(i);
-            checkFiveMatching(i);
-            checkSixMatching(i);
+            check1stPlaceMatching(i);
+            check2ndAnd3rdPlaceMatching(i);
+            check4thPlaceMatching(i);
+            check5thPlaceMatching(i);
         }
     }
 
     private void setDataStructureForStatistics() {
-        statistics.put("3", 0);
-        statistics.put("4", 0);
-        statistics.put("5", 0);
-        statistics.put("5+bonus", 0);
-        statistics.put("6", 0);
+        statistics.put(matchesCount5thPlace, 0);
+        statistics.put(matchesCount4thPlace, 0);
+        statistics.put(matchesCount3rdPlace, 0);
+        statistics.put(matchesCount2ndPlace, 0);
+        statistics.put(matchesCount1stPlace, 0);
     }
 
-    private void checkThreeMatching(int idx) {
-        if (countMatching[idx] == 3) {
-            statistics.put("3", statistics.get("3") + 1);
+    private void check5thPlaceMatching(int idx) {
+        if (countMatching[idx] == Integer.parseInt(matchesCount5thPlace)) {
+            statistics.put(matchesCount5thPlace, statistics.get(matchesCount5thPlace) + 1);
         }
     }
 
-    private void checkFourMatching(int idx) {
-        if (countMatching[idx] == 4) {
-            statistics.put("4", statistics.get("4") + 1);
+    private void check4thPlaceMatching(int idx) {
+        if (countMatching[idx] == Integer.parseInt(matchesCount4thPlace)) {
+            statistics.put(matchesCount4thPlace, statistics.get(matchesCount4thPlace) + 1);
         }
     }
 
-    private void checkFiveMatching(int idx) {
-        if (countMatching[idx] == 5) {
+    private void check2ndAnd3rdPlaceMatching(int idx) {
+        if (countMatching[idx] == Integer.parseInt(matchesCount3rdPlace)) {
             if (bonusMatching[idx]) {
-                statistics.put("5+bonus", statistics.get("5+bonus") + 1);
+                statistics.put(matchesCount2ndPlace, statistics.get(matchesCount2ndPlace) + 1);
             }
             if (!bonusMatching[idx]) {
-                statistics.put("5", statistics.get("5") + 1);
+                statistics.put(matchesCount3rdPlace, statistics.get(matchesCount3rdPlace) + 1);
             }
         }
     }
 
-    private void checkSixMatching(int idx) {
-        if (countMatching[idx] == 6) {
-            statistics.put("6", statistics.get("6") + 1);
+    private void check1stPlaceMatching(int idx) {
+        if (countMatching[idx] == Integer.parseInt(matchesCount1stPlace)) {
+            statistics.put(matchesCount1stPlace, statistics.get(matchesCount1stPlace) + 1);
         }
     }
 }

@@ -9,7 +9,7 @@ public enum Rank {
     THREE(5, "5개 일치", 1500000),
     FOUR(4, "4개 일치", 50000),
     FIVE(3, "3개 일치", 5000),
-    NONE(-1, "당첨 X", 0);
+    NONE(0, "당첨 X", 0);
 
     private int shot;
     private String reply;
@@ -42,7 +42,7 @@ public enum Rank {
                 .findAny().orElse(Rank.NONE);
     }
 
-    public String getMoenyWithComma() {
+    public String getMoneyWithComma() {
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         return decimalFormat.format(money);
     }

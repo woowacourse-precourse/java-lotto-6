@@ -37,13 +37,13 @@ public class Application {
             try {
                 int paid = InputUI.inputPaid();
                 if(paid % LOTTO_PRICE != 0) {
-                    throw new IllegalArgumentException("[ERROR] 구입금액은 " + LOTTO_PRICE + "의 배수여야 합니다.");
+                    throw new IllegalArgumentException("[ERROR] " + ExceptionMessage.notMultipleOfPrice());
                 }
                 System.out.println();
                 return paid;
             }
             catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자만 입력 가능합니다.");
+                System.out.println("[ERROR] " + ExceptionMessage.notInteger());
             }
             catch(IllegalArgumentException e) {
                 System.out.println(e.getMessage());

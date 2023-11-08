@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.model.domain.vo.Lotto;
 import lotto.model.domain.vo.Lottos;
+import lotto.model.domain.vo.Money;
 import lotto.model.domain.vo.Rank;
 
 public class RankingBoard {
@@ -29,7 +30,6 @@ public class RankingBoard {
         for (Lotto lotto : lottos) {
             int winCount = compareWinNumber(lotto, lottoWinNumber.getWinNumber());
             int bonusCount = compareBonusNumber(lotto, lottoWinNumber.getBonusNumber());
-
             registerRanking(winCount, bonusCount);
         }
     }
@@ -56,6 +56,18 @@ public class RankingBoard {
         Rank winner = Rank.winner(winCount, bonusCount);
         Integer i = rankCount.get(winner);
         rankCount.put(winner, ++i);
+    }
+
+    public double calculateYield(Money money) {
+        long lottoProfits = calculateLottoProfits();
+        return ((double)lottoProfits / money.getMoney()) * 100.0;
+    }
+
+    private long calculateLottoProfits() {
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rankCount.get(rank) > 0)
+                .mapToLong(rank -> rank.getMoney() * rankCount.get(rank))
+                .sum();
     }
 
     public Map<Rank, Integer> getRankCount() {

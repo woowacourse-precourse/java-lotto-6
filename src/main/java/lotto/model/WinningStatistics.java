@@ -8,9 +8,7 @@ import java.util.Map;
 
 public class WinningStatistics {
     private final WinningLotto winningLotto;
-
     private final List<Lotto> lottoTicketsPurchased;
-
     private final Map<LottoPrize, Integer> prizeCounter;
     private final double rateOfReturn;
 

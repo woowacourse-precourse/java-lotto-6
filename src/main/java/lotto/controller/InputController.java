@@ -28,8 +28,7 @@ public class InputController {
             }
         }
     }
-
-
+    
     public WinningLotto askWinningLotto() {
         Lotto winningNumbers = askWinningNumbers();
         int bonusNumber = askBonusNumber();

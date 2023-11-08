@@ -31,7 +31,6 @@ public class LottoGameService {
         outputController.printLottoTickets(player.getLottoTickets());
 
         WinningLotto winningLotto = inputController.askWinningLotto();
-
         player.calculateWinningLottoWithMine(winningLotto);
         outputController.printPrizeCounter(player.getWinningStatistics().getPrizeCounter());
         outputController.printRateOfReturn(player.getWinningStatistics().getRateOfReturn());

@@ -18,23 +18,15 @@ public class LottoGameController {
     private BonusLotto bonusLotto;
 
     public void startGame() {
-
         inputPurchasePriceHandler();
 
-        generateLotteries = new GenerateLotteries(purchasePrice.getTotalLottoTickets());
-        outputView.printPurchasedLotteries(generateLotteries.getLotteries());
+        generateLotteriesHandler();
 
         inputWinningNumbersHandler();
 
         inputBonusNumberHandler();
 
-        AllLotteriesNumbersInfoDTO allLotteriesInfo = new AllLotteriesNumbersInfoDTO(lotto, bonusLotto, generateLotteries);
-        LottoRank lottoRank = new LottoRank(allLotteriesInfo);
-
-
-        outputView.printWinningStatistics(lottoRank.getRank());
-        double profitPercentage = lottoRank.calculateProfitPercentage(purchasePrice);
-        outputView.printProfitPercentage(profitPercentage);
+        calculateLottoResultAndPrintHandler();
     }
 
     private void inputPurchasePriceHandler() {
@@ -74,5 +66,19 @@ public class LottoGameController {
                 outputView.printErrorMessage(e);
             }
         }
+    }
+
+    private void generateLotteriesHandler() {
+        generateLotteries = new GenerateLotteries(purchasePrice.getTotalLottoTickets());
+        outputView.printPurchasedLotteries(generateLotteries.getLotteries());
+    }
+
+    private void calculateLottoResultAndPrintHandler() {
+        AllLotteriesNumbersInfoDTO allLotteriesInfo = new AllLotteriesNumbersInfoDTO(lotto, bonusLotto, generateLotteries);
+        LottoRank lottoRank = new LottoRank(allLotteriesInfo);
+        double profitPercentage = lottoRank.calculateProfitPercentage(purchasePrice);
+
+        outputView.printWinningStatistics(lottoRank.getRank());
+        outputView.printProfitPercentage(profitPercentage);
     }
 }

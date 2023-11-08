@@ -3,14 +3,14 @@ package lotto.controller;
 import lotto.model.*;
 import lotto.view.View;
 
-import java.util.List;
-
 public class LottoController {
     View view = new View();
     LottoList lottoList;
     CorrectNum correctNum;
     BonusNum bonusNum;
-    LottoResult lottoResult;
+    LottoCalculator lottoCalculator = new LottoCalculator();
+    BuyingMoney buyingMoney;
+
 
     public void lottogame(){
         start();
@@ -22,10 +22,10 @@ public class LottoController {
     public void start(){
         String s = view.inputBuyingMoney();
         try {
-            BuyingMoney buyingMoney = new BuyingMoney(s);
+            buyingMoney = new BuyingMoney(s);
             int buyingnum = buyingMoney.buyingMoney;
             lottoList = new LottoList(buyingnum);
-            view.BuyingLottoOutput(lottoList.getLottoList());
+            view.BuyingLottoOutput(lottoList.getLottoList(),buyingnum/1000);
         }catch (IllegalArgumentException e){
             view.inputExceptionMessage();
             start();
@@ -53,10 +53,25 @@ public class LottoController {
     }
 
     public void end(){
-        for (Lotto lotto : lottoList.getLottoList()) {
-            for (int i : lotto.numbers) {
+        lottoResult();
+        view.outputResultMessage(lottoCalculator.getCounts());
+        double num = lottoCalculator.earningPercentage(buyingMoney.buyingMoney);
+        view.outputEarningResultMessage(num);
+    }
 
+    private void lottoResult() {
+        for (Lotto lotto : lottoList.getLottoList()) {
+            int count = 0;
+            boolean bsnum = false;
+            if(lotto.getNumbers().contains(bonusNum.getBonusNum())){
+                bsnum = true;
             }
+            for (Integer i : correctNum.getCorrectNum()) {
+                if(lotto.getNumbers().contains(i)){
+                    count++;
+                }
+            }
+            lottoCalculator.lottoCalculator(count,bsnum);
         }
     }
 }

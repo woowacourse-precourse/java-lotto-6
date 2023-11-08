@@ -21,7 +21,12 @@ public class IssuingMachine {
         return money / LOTTO_PRICE;
     }
 
-    public void operate() {
+    public List<Lotto> issueLotto() {
+        operate();
+        return lottos;
+    }
+
+    private void operate() {
         int count = calculateCount();
         while (count > 0) {
             Lotto lotto = createLotto();
@@ -33,10 +38,5 @@ public class IssuingMachine {
     public Lotto createLotto() {
         Lotto lotto = new Lotto(Random.makeNumber());
         return lotto;
-    }
-
-    public List<Lotto> issueLotto() {
-        operate();
-        return lottos;
     }
 }

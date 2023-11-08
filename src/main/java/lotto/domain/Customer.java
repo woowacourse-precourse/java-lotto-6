@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Customer {
 
-    private static final String MONEY_ERROR = "[ERROR] 1000원 단위의 값을 입력해햐 합니다.";
+    private static final String MONEY_ERROR = "[ERROR] 1000원 단위의 값을 입력해야 합니다.";
     private static final int LOTTO_PRICE = 1000;
     private int money;
     private List<Lotto> lottos;
@@ -20,7 +20,7 @@ public class Customer {
         lottos = issuingMachine.issueLotto();
     }
 
-    public void validateMoney(int money) {
+    private void validateMoney(int money) {
         if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(MONEY_ERROR);
         }

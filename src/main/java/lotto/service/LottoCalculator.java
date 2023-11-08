@@ -40,7 +40,7 @@ public class LottoCalculator {
         }
     }
 
-    private static int checkContainsWinning(List<Integer> winningNumber, List<Integer> lottoNumber) {
+    public int checkContainsWinning(List<Integer> winningNumber, List<Integer> lottoNumber) {
         int winningCount = 0;
         for (int i = 0; i < LOTTO_SIZE; i++) {
             if (winningNumber.contains(lottoNumber.get(i))) {
@@ -50,7 +50,7 @@ public class LottoCalculator {
         return winningCount;
     }
 
-    private static int checkContainsBonus(int bonusNumber, List<Integer> lottoNumber) {
+    public int checkContainsBonus(int bonusNumber, List<Integer> lottoNumber) {
         int bonusCount = 0;
         if (lottoNumber.contains(bonusNumber)) {
             bonusCount += 1;

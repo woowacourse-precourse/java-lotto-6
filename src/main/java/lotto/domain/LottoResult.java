@@ -15,6 +15,14 @@ public class LottoResult {
         init();
     }
 
+    public HashMap<LottoPrize, Integer> getStatus() {
+        return status;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
     public void save(LottoPrize prize) {
         countLottoPrize(prize);
         addTotalPrice(prize);

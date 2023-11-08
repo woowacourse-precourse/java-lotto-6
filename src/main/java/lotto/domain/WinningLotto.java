@@ -12,20 +12,29 @@ public class WinningLotto {
     private final Integer MAX_NUM = 45;
 
     private final Lotto win;
-    private final Integer bonus;
+    private Integer bonus;
 
+    public WinningLotto(List<Integer> win) {
+        validateSameNumbers(win);
+        for(Integer number : win) {
+            validateRange(number);
+        }
+        this.win = new Lotto(win);
+        this.bonus = 0;
+    }
     public WinningLotto(List<Integer> win, Integer bonus) {
-        validate(win, bonus);
+        validate(bonus);
         this.win = new Lotto(win);
         this.bonus = bonus;
     }
 
-    public void validate(List<Integer> win, Integer bonus) {
-        validateSameNumbers(win);
-        validateBonusInWin(win, bonus);
-        for(Integer number : win) {
-            validateRange(number);
-        }
+    public void setBonusNumber(Integer bonus) {
+        validate(bonus);
+        this.bonus = bonus;
+    }
+
+    public void validate(Integer bonus) {
+        validateBonusInWin(bonus);
         validateRange(bonus);
     }
 
@@ -33,10 +42,10 @@ public class WinningLotto {
         if(win.size() != win.stream().distinct().count()){
             throw new SameNumberInLottoException();
         }
-
     }
-    public void validateBonusInWin(List<Integer> win, Integer bonus) {
-        if(win.contains(bonus)){
+
+    public void validateBonusInWin(Integer bonus) {
+        if(win.getNumbers().contains(bonus)){
             throw new SameNumberInBonusException();
         }
     }

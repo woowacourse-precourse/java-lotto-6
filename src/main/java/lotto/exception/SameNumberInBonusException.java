@@ -5,5 +5,6 @@ public class SameNumberInBonusException extends IllegalArgumentException{
 
     public SameNumberInBonusException() {
         super(ERROR_MESSAGE);
+        System.out.println(ERROR_MESSAGE);
     }
 }

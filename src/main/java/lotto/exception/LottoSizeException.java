@@ -5,5 +5,6 @@ public class LottoSizeException extends IllegalArgumentException{
 
     public LottoSizeException() {
         super(ERROR_MESSAGE);
+        System.out.println(ERROR_MESSAGE);
     }
 }

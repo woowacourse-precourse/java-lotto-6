@@ -1,22 +1,30 @@
 package lotto.view;
 
+import java.util.InputMismatchException;
 import java.util.regex.Pattern;
+import lotto.exception.WrongFormatException;
 
 public class InputMoneySpentOnLottoView extends InputView{
     private static final Pattern FORMAT = Pattern.compile("\\d+");
     private static final String INPUT_MESSAGE = "구입금액을 입력해 주세요.";
 
     public Integer getValue(){
-        System.out.println(INPUT_MESSAGE);
-        String money = input();
-        System.out.println();
-        validate(money);
-        return Integer.parseInt(money);
+        while(true) {
+            try {
+                System.out.println(INPUT_MESSAGE);
+                String money = input();
+                System.out.println();
+                validate(money);
+                return Integer.parseInt(money);
+            } catch (WrongFormatException e) {
+//                System.out.println("[ERROR] 구입금액은 1000원 단위로 입력가능합니다.");
+            }
+        }
     }
 
     public void validate(String inputValue){
         if(!FORMAT.matcher(inputValue).matches()){
-            throw new IllegalArgumentException();
+            throw new WrongFormatException();
         }
     }
 }

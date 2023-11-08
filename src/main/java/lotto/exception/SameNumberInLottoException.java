@@ -5,5 +5,6 @@ public class SameNumberInLottoException extends IllegalArgumentException{
 
     public SameNumberInLottoException() {
         super(ERROR_MESSAGE);
+        System.out.println(ERROR_MESSAGE);
     }
 }

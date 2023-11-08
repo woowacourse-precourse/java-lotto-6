@@ -23,6 +23,7 @@ public class LottoController {
         printLottos(lottos);
 
         WinningLotto win = getWinningLotto();
+        win = getBonusLotto(win);
         Compare scoreResult = new Compare();
         scoringResult(scoreResult, win, lottos);
 
@@ -33,10 +34,16 @@ public class LottoController {
     }
 
     public User getMoney(){
-        InputMoneySpentOnLottoView spentMoney = new InputMoneySpentOnLottoView();
-        int money = spentMoney.getValue();
+        while(true) {
+            try {
+                InputMoneySpentOnLottoView spentMoney = new InputMoneySpentOnLottoView();
+                int money = spentMoney.getValue();
+                User user = new User(money);
+                return user;
+            } catch(IllegalArgumentException e) {
+            }
+        }
 
-        return new User(money);
     }
 
     public List<Lotto> getLottos(int numOfLotto){
@@ -45,17 +52,27 @@ public class LottoController {
     }
 
     public WinningLotto getWinningLotto() {
-        InputWinningNumbersView winningNumber = new InputWinningNumbersView();
-        List<Integer> win = winningNumber.getValue();
-
-        return new WinningLotto(win, getBonusLotto());
+        while(true) {
+            try {
+                InputWinningNumbersView winningNumber = new InputWinningNumbersView();
+                List<Integer> win = winningNumber.getValue();
+                WinningLotto winningLotto = new WinningLotto(win);
+                return winningLotto;
+            } catch (IllegalArgumentException e){
+            }
+        }
     }
 
-    public int getBonusLotto() {
-        InputBonusNumberView bonusNumber = new InputBonusNumberView();
-        int bonus = bonusNumber.getValue();
-
-        return bonus;
+    public WinningLotto getBonusLotto(WinningLotto win) {
+        while(true) {
+            try{
+                InputBonusNumberView bonusNumber = new InputBonusNumberView();
+                int bonus = bonusNumber.getValue();
+                win.setBonusNumber(bonus);
+                return win;
+            }catch (IllegalArgumentException e){
+            }
+        }
     }
 
     public void scoringResult(Compare score, WinningLotto win, Lottos lottos) {

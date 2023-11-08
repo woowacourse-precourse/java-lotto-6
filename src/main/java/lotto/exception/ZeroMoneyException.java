@@ -5,5 +5,6 @@ public class ZeroMoneyException extends IllegalArgumentException{
 
     public ZeroMoneyException() {
         super(ERROR_MESSAGE);
+        System.out.println(ERROR_MESSAGE);
     }
 }

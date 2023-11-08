@@ -5,5 +5,6 @@ public class MoneyNotTimesOfThousandException extends IllegalArgumentException{
 
     public MoneyNotTimesOfThousandException() {
         super(ERROR_MESSAGE);
+        System.out.println(ERROR_MESSAGE);
     }
 }

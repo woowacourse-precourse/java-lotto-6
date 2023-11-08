@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class WinningNumbersTest {
@@ -69,6 +70,18 @@ class WinningNumbersTest {
 
         //then
         assertThat(exception.getMessage()).isEqualTo(WinningNumbers.WINNING_LOTTO_NOT_NUMBER_EXCEPTION);
+    }
+
+    @DisplayName("쪼개진 당첨 번호 입력값이 6개의 중복없는 숫자로 이루어져 있으면 정상적으로 작동한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6"})
+    void createWinningLottoByValidNumbers(String input) {
+        //given
+        final String validNumbers = input;
+
+        // when, then
+        assertThatCode(() -> winningNumbers.initWinningLotto(validNumbers))
+                .doesNotThrowAnyException();
     }
 
     @DisplayName("보너스 번호 입력값이 null이면 예외가 발생한다.")
@@ -140,5 +153,18 @@ class WinningNumbersTest {
 
         //then
         assertThat(exception.getMessage()).isEqualTo(WinningNumbers.BONUS_NUMBER_DUPLICATE_EXCEPTION);
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복되지 않는 1부터 45 사이의 숫자면 정상적으로 작동한다.")
+    @Test
+    void createBonusNumberByValidNumber() {
+        //given
+        final String winningLotto = "1,2,3,4,5,6";
+        final String validNumber = "7";
+
+        // when, then
+        winningNumbers.initWinningLotto(winningLotto);
+        assertThatCode(() -> winningNumbers.initBonusNumber(validNumber))
+                .doesNotThrowAnyException();
     }
 }

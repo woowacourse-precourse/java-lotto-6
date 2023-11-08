@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PurchaseAmountTest {
@@ -78,5 +79,17 @@ class PurchaseAmountTest {
 
         //then
         assertThat(exception.getMessage()).isEqualTo(PurchaseAmount.PURCHASE_AMOUNT_NOT_DIVISIBLE_EXCEPTION);
+    }
+
+    @DisplayName("입력값이 로또 가격으로 나누어 떨어지면 정상적으로 작동한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1000", "2000", "5000", "10000"})
+    void createPurchaseAmountByValidNumber(String input) {
+        //given
+        final String validNumber = input;
+
+        // when, then
+        assertThatCode(() -> new PurchaseAmount(validNumber))
+                .doesNotThrowAnyException();
     }
 }

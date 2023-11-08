@@ -15,9 +15,9 @@ public class StatisticDto {
 
     private static final Integer DEFAULT_COUNT = 0;
 
-    private Map<LottoRank, Integer> rank;
+    private final Map<LottoRank, Integer> rank;
 
-    private StatisticDto(Map<LottoRank, Integer> rank) {
+    private StatisticDto(final Map<LottoRank, Integer> rank) {
         this.rank = rank;
     }
 

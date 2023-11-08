@@ -1,12 +1,9 @@
 package lotto.cotroller;
 
 import java.util.List;
+import lotto.LottoService;
 import lotto.domain.BonusNumber;
-import lotto.view.InputView;
-import lotto.domain.Lotto;
 import lotto.LottoDTO;
-import lotto.LottoMaker;
-import lotto.domain.Lottos;
 import lotto.view.OutputView;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumber;
@@ -14,26 +11,40 @@ import lotto.domain.WinningResult;
 
 public class MainController {
 
-    private final InputController inputController = new InputController(new InputView());
-    private final OutputView outputView = new OutputView();
+    private final InputController inputController;
+    private final OutputView outputView;
+    private final LottoService service = new LottoService();
+    private PurchaseAmount purchaseAmount;
+    private WinningResult winningResult;
 
-    public MainController() {
+    public MainController(InputController inputController, OutputView outputView) {
+        this.inputController = inputController;
+        this.outputView = outputView;
     }
 
     public void run() {
-        PurchaseAmount purchaseAmount = getPurchaseAmount();
+        purchaseLotto();
+        getWinningResult();
+        calculateTotalReturn();
+    }
+
+    private void purchaseLotto() {
+        purchaseAmount = getPurchaseAmount();
         int amountOfPurchasedLotto = purchaseAmount.getAmountOfPurchasedLotto();
 
-        Lottos lottos = createLottos(amountOfPurchasedLotto);
+        service.createLottos(amountOfPurchasedLotto);
         printPurchasedLottoAmount(amountOfPurchasedLotto);
-        printPurchasedLottos(lottos);
+        printPurchasedLottos(service.getLottoDTOs());
+    }
 
+    private void getWinningResult() {
         WinningNumber winningNumber = getWinningNumber();
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
-        WinningResult winningResult = lottos.getWinningResult(winningNumber, bonusNumber);
-
+        winningResult = service.getWinningResult(winningNumber, bonusNumber);
         outputView.printResult(winningResult.getResult());
+    }
 
+    private void calculateTotalReturn() {
         int totalPrize = winningResult.getTotalPrize();
         double totalReturn = purchaseAmount.getTotalReturn(totalPrize);
         outputView.printTotalReturn(totalReturn);
@@ -49,13 +60,7 @@ public class MainController {
         }
     }
 
-    private Lottos createLottos(int amountOfPurchasedLotto) {
-        List<Lotto> lottoList = LottoMaker.makeLotto(amountOfPurchasedLotto);
-        return new Lottos(lottoList);
-    }
-
-    private void printPurchasedLottos(Lottos lottos) {
-        List<LottoDTO> lottoDTOs = lottos.getLottoDTOs();
+    private void printPurchasedLottos(List<LottoDTO> lottoDTOs) {
         outputView.printPurchasedLottos(lottoDTOs);
     }
 

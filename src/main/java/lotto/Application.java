@@ -20,7 +20,7 @@ public class Application {
 
         // 로또 발행 및 표시
         lottoService.generateLottoTickets(purchaseAmount);
-        DisplayView.displayPurchasedLottoCount(purchaseAmount / UserInputUtil.PURCHASE_AMOUNT_UNIT);
+        DisplayView.displayPurchasedLottoCount(lottoService.calculateTicketAmount(purchaseAmount));
         DisplayView.displayTickets(lottoService.getLottoTickets());
 
         // 당첨 번호 및 보너스 번호 입력 요청

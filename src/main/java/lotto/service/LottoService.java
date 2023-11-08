@@ -3,15 +3,13 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
+import lotto.util.Constant;
 
 import java.util.*;
 
 public class LottoService {
 
-    private static final int LOTTO_NUMBER_COUNT = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int LOTTO_PRICE = 1000;
+
     private List<Lotto> lottoTickets;
 
     public LottoService() {
@@ -24,7 +22,7 @@ public class LottoService {
     }
 
     public void generateLottoTickets(int purchaseAmount) {
-        int numberOfTickets = purchaseAmount / LOTTO_PRICE;
+        int numberOfTickets = calculateTicketAmount(purchaseAmount);
 
         for (int i = 0; i < numberOfTickets; i++) {
             List<Integer> lottoNumbers = generateSortedLottoNumbers();
@@ -33,9 +31,16 @@ public class LottoService {
         }
     }
 
+    public int calculateTicketAmount(int purchaseAmount) {
+        return purchaseAmount / Constant.LOTTO_PRICE;
+    }
+
     private List<Integer> generateSortedLottoNumbers() {
-        List<Integer> lottoNumbers = new ArrayList<>(Randoms
-                .pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT));
+        List<Integer> lottoNumbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(
+                        Constant.MIN_LOTTO_NUMBER,
+                        Constant.MAX_LOTTO_NUMBER,
+                        Constant.LOTTO_NUMBER_COUNT));
         Collections.sort(lottoNumbers);
         return lottoNumbers;
     }
@@ -74,6 +79,6 @@ public class LottoService {
     }
 
     public double calculateYield(int purchaseAmount, int totalEarnings) {
-        return (double) totalEarnings / purchaseAmount * 100;
+        return (double) totalEarnings / purchaseAmount * Constant.HUNDRED_PERCENT;
     }
 }

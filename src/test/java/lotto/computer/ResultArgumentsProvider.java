@@ -32,6 +32,20 @@ public class ResultArgumentsProvider {
                         )
                         ,
                         List.of(0, 1, 0, 0, 2)
+                ),
+                Arguments.of(
+                        new Lotto(List.of(12, 18, 32, 33, 38, 41)),
+                        42,
+                        List.of(
+                                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                                new Lotto(List.of(12, 18, 32, 33, 38, 41)),
+                                new Lotto(List.of(13, 17, 27, 31, 44, 45)),
+                                new Lotto(List.of(3, 12, 34, 38, 41, 45)),
+                                new Lotto(List.of(7, 9, 20, 34, 35, 37)),
+                                new Lotto(List.of(32, 33, 35, 42, 44, 45))
+                        )
+                        ,
+                        List.of(1, 0, 0, 0, 1)
                 )
         );
     }

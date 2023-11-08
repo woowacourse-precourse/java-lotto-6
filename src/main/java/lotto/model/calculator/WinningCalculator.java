@@ -4,6 +4,7 @@ import static lotto.util.AmountOfLotto.LOTTO_PRICE;
 import static lotto.util.AmountOfLotto.MINIMUM_AMOUNT_OF_LOTTO;
 import static lotto.util.ExceptionMessage.INVALID_AMOUNT_OF_INVESTMENT;
 import static lotto.util.ExceptionMessage.INVALID_RATE_OF_RESULT;
+import static lotto.util.RateOfReturnDetails.ROUND_STANDARD;
 
 import java.util.List;
 import lotto.util.PrizeMoney;
@@ -30,7 +31,7 @@ public class WinningCalculator {
     public static Double calculateRateOfReturn(Integer amountOfInvestment, Long totalPrizeMoney) {
         checkAmountOfInvestment(amountOfInvestment);
 
-        Double rateOfReturn = (totalPrizeMoney.doubleValue() / amountOfInvestment.doubleValue()) * 100;
+        Double rateOfReturn = (totalPrizeMoney.doubleValue() / amountOfInvestment.doubleValue()) * PERCENT;
 
         checkRangeOfRateOfReturn(rateOfReturn);
 
@@ -61,6 +62,6 @@ public class WinningCalculator {
     }
 
     private static Double roundRateOfReturn(Double rateOfReturn) {
-        return Math.round(rateOfReturn * 10.0) / 10.0;
+        return Math.round(rateOfReturn * ROUND_STANDARD.getDetail()) / ROUND_STANDARD.getDetail();
     }
 }

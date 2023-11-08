@@ -51,8 +51,17 @@ public class Game {
     private void checkLottos(){
         for(int i=0;i<this.count;i++){
             // 중복 여부 확인
-            System.out.println(this.buy.get(i).compareOther(this.answer));
+            checkLotto(this.buy.get(i).compareOther(this.answer));
         }
+    }
+    private void checkLotto(int check_count){
+        if(check_count ==3){this.correct[0] = this.correct[0]+1; }
+        if(check_count ==4){this.correct[1] = this.correct[1]+1; }
+        if(check_count ==5){
+            this.correct[2] = this.correct[2]+1;
+        }
+        if(check_count ==6){this.correct[4] = this.correct[4]+1; }
+
     }
 
     private double result(){

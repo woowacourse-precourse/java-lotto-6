@@ -27,8 +27,13 @@ public class LottoController {
         outputView.printLotto(getLotto());
     }
 
-    public void getWinNumber() {
+    public List<Integer> getWinNumber() {
         outputView.displayWinNumberQuestion();
-        List<Integer> winNumber = inputView.inputWinNumbers();
+        return inputView.inputWinNumbers();
+    }
+
+    public int getBonusNumber(List<Integer> winNumber) {
+        outputView.displayBonusNumberQuestion();
+        return inputView.inputBonusNumber(winNumber);
     }
 }

@@ -96,4 +96,31 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
+
+    public int inputBonusNumber(List<Integer> winNumbers) {
+        String input = Console.readLine().replace(" ", "");
+
+        while (!validateBonusNumber(winNumbers, input)) {
+            input = Console.readLine().replace(" ", "");
+        }
+
+        return Integer.parseInt(input);
+    }
+
+    private boolean validateBonusNumber(List<Integer> winNumbers, String bonusNumber) {
+        try {
+            checkNumberInRange(bonusNumber);
+            checkDuplicatedBonusNumber(winNumbers,bonusNumber);
+        } catch (IllegalArgumentException ie) {
+            System.out.println("[ERROR] 보너스 번호는 1부터 45까지 당첨 번호와 중복되지 않는 숫자입니다.");
+            return false;
+        }
+        return true;
+    }
+
+    private void checkDuplicatedBonusNumber(List<Integer> winNumbers, String bonusNumber) throws IllegalArgumentException {
+        if (winNumbers.contains(Integer.parseInt(bonusNumber))) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

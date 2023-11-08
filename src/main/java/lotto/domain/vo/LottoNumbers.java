@@ -2,11 +2,11 @@ package lotto.domain.vo;
 
 import java.util.List;
 import lotto.domain.constant.LottoValue;
+import lotto.util.RandomNumberGenerator;
 import lotto.validation.Validator;
 import lotto.validation.validators.DuplicateNumber;
 import lotto.validation.validators.LottoGameValidator;
 import lotto.validation.validators.WinningNumbersSize;
-import util.RandomNumberGenerator;
 
 public class LottoNumbers extends LottoValue {
 	private final List<LottoNumber> lottoNumbers;

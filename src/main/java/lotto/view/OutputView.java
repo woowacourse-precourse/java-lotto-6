@@ -5,7 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.WinningStatistic;
 import lotto.exception.ErrorMessage;
-import util.Parser;
+import lotto.util.Parser;
 
 public class OutputView {
 

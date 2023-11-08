@@ -7,7 +7,7 @@ import static lotto.enums.Message.INPUT_WINNING_NUMBERS_MESSAGE;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    
+
     public void printInputPurchaseAmountMessage() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE.getMessage());
     }

@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.model.Result;
 import lotto.model.Validator;
-import lotto.view.Message;
+import lotto.view.View;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,11 +16,11 @@ public class Game {
     private final Integer END = 45;
     private final Integer NUMBER_COUNT = 6;
 
-    private final Message message;
+    private final View message;
     private final Validator validator;
 
     public Game() {
-        this.message = new Message();
+        this.message = new View();
         this.validator = new Validator();
     }
 

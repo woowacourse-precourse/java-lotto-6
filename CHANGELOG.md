@@ -1,3 +1,7 @@
+- test: add test function isNumberBelowZero()
+- feat(validation): add function validating that lotto number below zero
+- docs(readme): add more features
+- docs(changelog): create CHANGELOG.md
 - refactor: move file to new package
 - feat: add functions in main function
 - feat(output): add function printing winning result

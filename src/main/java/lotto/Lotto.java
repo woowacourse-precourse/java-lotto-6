@@ -21,7 +21,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
-        validateRange(numbers);
+        validateBound(numbers);
         validateDuplicate(numbers);
     }
 
@@ -31,11 +31,8 @@ public class Lotto {
         }
     }
 
-    private void validateRange(final List<Integer> numbers) {
-        boolean notMatchRange = numbers.stream().anyMatch(number -> number < 1 || number > 45);
-        if (notMatchRange) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.");
-        }
+    private void validateBound(final List<Integer> numbers) {
+        numbers.forEach(LottoNumber::validateBound);
     }
 
     private void validateDuplicate(final List<Integer> numbers) {

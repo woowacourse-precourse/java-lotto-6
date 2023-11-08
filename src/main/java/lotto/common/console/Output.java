@@ -4,6 +4,7 @@ import lotto.core.domain.Lotto;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Output {
@@ -24,6 +25,7 @@ public class Output {
 
     public static void writeLottoNumbers(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
+        Collections.sort(numbers);
 
         System.out.println(Arrays.toString(numbers.toArray()));
     }

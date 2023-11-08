@@ -19,7 +19,7 @@ public class LottoGame {
     public void play(){
         // 1. 로또 구입 금액에 해당하는 만큼 로또를 발행한다.
         List<Lotto> lottos = makeLottos();
-        // 2. 발행한 로또의 총 수량을 출력한다.
+        // 3. 발행한 로또의 번호를 오름차순으로 정렬하여 출력한다.
         writeAllLottoNumbers(lottos);
     }
 

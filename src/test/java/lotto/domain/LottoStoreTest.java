@@ -15,6 +15,6 @@ class LottoStoreTest {
         LottoStore lottoStore = new LottoStore(new LottoNumberGenerator());
         //when
         //then
-        Assertions.assertThat(lottoStore.purchaseLottoTickets(money).getSize()).isEqualTo(size);
+        Assertions.assertThat(lottoStore.purchaseLottoTickets(money).getQuantity()).isEqualTo(size);
     }
 }

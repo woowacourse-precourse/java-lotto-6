@@ -17,7 +17,7 @@ public class Lottos {
         return lottoTickets;
     }
 
-    public int getSize() {
+    public int getQuantity() {
         return lottoTickets.size();
     }
 }

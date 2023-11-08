@@ -39,6 +39,6 @@ class LottosTest {
         Lottos lottos = Lottos.from(lottoTickets);
         //when
         //then
-        assertThat(lottos.getSize()).isEqualTo(2);
+        assertThat(lottos.getQuantity()).isEqualTo(2);
     }
 }

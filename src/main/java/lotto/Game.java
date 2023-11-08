@@ -72,11 +72,11 @@ public class Game {
         }
     }
 
-    private long result(){
-        long res_result=0;
+    private double result(){
+        double res_result=0;
         checkLottos();
         res_result = (this.correct[0]*5000)+(this.correct[1]*50000)+(this.correct[2]*1500000)+(correct[3]*30000000)+(correct[4]*2000000000);
-        return res_result;
+        return ((double)res_result/(double)this.money)*100;
     }
 
     public void DoIt(){

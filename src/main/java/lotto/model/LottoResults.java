@@ -2,7 +2,6 @@ package lotto.model;
 
 import lotto.validator.InputValidator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,25 +25,26 @@ public class LottoResults {
         results = Arrays.asList(0,0,0,0,0);
     }
 
-    private int getLottoPrize(int LottoMatch, boolean BonusMatch) {
-        if (LottoMatch == 6) {return 0;}
-        if (LottoMatch == 5 && BonusMatch) {return 1;}
-        if (LottoMatch == 5) {return 2;}
-        if (LottoMatch == 4) {return 3;}
-        if (LottoMatch == 3) {return 4;}
-        return -1;
+    private LottoConstants getLottoPrize(int LottoMatch, boolean BonusMatch) {
+        if (LottoMatch == 6) {return LottoConstants.FIRST_PRIZE;}
+        if (LottoMatch == 5 && BonusMatch) {return LottoConstants.SECOND_PRIZE;}
+        if (LottoMatch == 5) {return LottoConstants.THIRD_PRIZE;}
+        if (LottoMatch == 4) {return LottoConstants.FOURTH_PRIZE;}
+        if (LottoMatch == 3) {return LottoConstants.FIFTH_PRIZE;}
+        return LottoConstants.NOTHING;
     }
 
     public void updateEachLottoResults(int LottoMatch, boolean BonusMatch) {
-        int prize = getLottoPrize(LottoMatch,BonusMatch);
-        if (prize >= 0) {
-            earnedMoney += LOTTO_CASH.get(prize);
-            results.set(prize,results.get(prize)+1);
+        LottoConstants prize = getLottoPrize(LottoMatch,BonusMatch);
+        if (prize != LottoConstants.NOTHING) {
+            earnedMoney += prize.getValue();
+            results.set(prize.ordinal(),results.get(prize.ordinal())+1);
         }
     }
 
     public String getRateOfProfit() {
-        return String.format("%.1f",earnedMoney*100.0/userInputMoney);
+        return String.format("%.1f",earnedMoney*100.0/userInputMoney)
+                .replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
     }
 
     public int getLottoPapers() {

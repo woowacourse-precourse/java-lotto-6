@@ -69,7 +69,7 @@ public class UserInput {
     }
 
 
-    private List<String> splitNumbers(String winningNumbersInput){
+    private List<String> splitNumbers(String winningNumbersInput) {
         List<String> splittedWinningNumbersInput;
 
         splittedWinningNumbersInput = Arrays.asList(winningNumbersInput.split(","));
@@ -83,9 +83,9 @@ public class UserInput {
             throw new IllegalArgumentException("당첨 번호 6개를 입력해 주세요");
         }
 
-        for(var number : splittedWinningNumbersInput) {
+        for (var number : splittedWinningNumbersInput) {
             int intNumber = Integer.parseInt(number);
-            if ( !((intNumber >= 1) && ( intNumber <= 45)) ){
+            if (!((intNumber >= 1) && (intNumber <= 45))) {
                 throw new IllegalArgumentException("1부터 45 사이의 숫자들을 입력해 주세요.");
             }
         }
@@ -105,7 +105,7 @@ public class UserInput {
     }
 
 
-    private List<Integer> saveIntWinningNumbers(List<String> splittedWinningNumbersInput, List<Integer> winningNumbers){
+    private List<Integer> saveIntWinningNumbers(List<String> splittedWinningNumbersInput, List<Integer> winningNumbers) {
 
         for (var number : splittedWinningNumbersInput) {
             Integer.parseInt(number);

@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static lotto.constant.ExceptionMessages.WRONG_INPUT_FORMAT;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -41,7 +43,7 @@ public class Inputter {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 올바른 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(WRONG_INPUT_FORMAT);
         }
     }
 }

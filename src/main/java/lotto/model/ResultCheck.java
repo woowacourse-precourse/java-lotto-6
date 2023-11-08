@@ -1,10 +1,6 @@
 package lotto.model;
-
 import lotto.view.View;
-
-import java.security.PublicKey;
 import java.text.DecimalFormat;
-import java.util.Arrays;
 
 public class ResultCheck {
     static int[][] lottos;
@@ -76,7 +72,6 @@ public class ResultCheck {
                 sixMatch ++;
             }
         }
-//        System.out.println(Arrays.toString(matchcount));
     }
 
     public static void benefitCheck() {

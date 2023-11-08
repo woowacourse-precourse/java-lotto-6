@@ -1,11 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.model.LottoGet;
 import lotto.model.LottoSetUp;
-import lotto.model.ResultCheck;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 

@@ -4,6 +4,8 @@ import lotto.constant.IntConstants;
 import lotto.message.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -19,18 +21,9 @@ public class PurchaseAmountTest {
     }
 
     @DisplayName("빈 칸을 입력하면 예외 발생")
-    @Test
-    void inputNoting() {
-        String inputValue = "";
-        assertThatThrownBy(() -> new PurchaseAmount(inputValue))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.INPUT_NOT_NUMBER_MESSAGE.getMessage());
-    }
-
-    @DisplayName("숫자를 입력하지 않으면 예외 발생")
-    @Test
-    void inputNotNumber() {
-        String inputValue = "1h";
+    @ParameterizedTest
+    @ValueSource(strings = {"", "   ", "1h"})
+    void inputNotNumber(String inputValue) {
         assertThatThrownBy(() -> new PurchaseAmount(inputValue))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.INPUT_NOT_NUMBER_MESSAGE.getMessage());

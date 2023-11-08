@@ -30,4 +30,12 @@ public class LottoUtil {
             throw new IllegalArgumentException(ErrorView.getInvalidInputFormatErrorMessage());
         }
     }
+
+    public static int parseStringToInt(String input) {
+        try {
+            return Integer.parseInt(input.trim());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorView.getInvalidInputAmountErrorMessage());
+        }
+    }
 }

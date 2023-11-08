@@ -69,3 +69,6 @@
 
 ## LottoConstant enum 클래스
 로또에서 사용하는 상수를 저장하는 클래스
+
+## ExceptionMessage enum 클래스
+예외 처리시 나오는 메세지를 저장하는 클래스

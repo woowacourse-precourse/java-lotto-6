@@ -30,10 +30,10 @@ public class OutputView {
             Integer counts = ranks.get(rank);
             int matchCount = rank.getMatchCount();
 
-            if(counts == null) {
+            if (counts == null) {
                 counts = 0;
             }
-                printStatics(rank, matchCount, counts);
+            printStatics(rank, matchCount, counts);
         }
     }
 

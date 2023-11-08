@@ -3,9 +3,9 @@ package lotto.view;
 import java.util.List;
 import lotto.domain.Lotto;
 
-public class PrintingLottos {
+public class OutputLottos {
 
-    public PrintingLottos(List<Lotto> lottos) {
+    public OutputLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             lotto.printLotto();
         }

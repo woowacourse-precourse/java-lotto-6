@@ -3,7 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Money;
 
-public class PuttingMoneyIn {
+public class InputMoney {
     private Money money;
     private final static String INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private final static String DIVIDE_ERROR = "[ERROR] 구입 금액을 1,000원 단위로 입력해주세요.";

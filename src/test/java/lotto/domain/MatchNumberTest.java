@@ -32,7 +32,7 @@ public class MatchNumberTest {
     void inputOverSize(){
         assertThatThrownBy(() -> new MatchNumber("1,23,12,34,14,45,16"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] ','를 구분자로 6개의 숫자를 입력해 주세요");
+                .hasMessage("[ERROR] ','를 구분자로 6개의 숫자를 입력해 주세요.");
     }
 
     @DisplayName("중복된 숫자가 있는 경우 예외 발생")

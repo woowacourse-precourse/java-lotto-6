@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import lotto.constant.ValidatorMessage;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.LottoTicket;
@@ -59,6 +60,8 @@ public class LottoController {
                 isValidInput = true;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
+            } catch (IllegalStateException exception) {
+                System.out.println(ValidatorMessage.INVALID_INPUT_COST);
             }
         }
     }
@@ -82,6 +85,8 @@ public class LottoController {
                 isValidInput = true;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
+            } catch (IllegalStateException exception) {
+                System.out.println(ValidatorMessage.INVALID_INPUT_WIN_LOTTO_NUMBER);
             }
         }
     }
@@ -97,6 +102,8 @@ public class LottoController {
                 isValidInput = true;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
+            } catch (IllegalStateException exception) {
+                System.out.println(ValidatorMessage.INVALID_INPUT_BONUS_NUMBER);
             }
         }
     }

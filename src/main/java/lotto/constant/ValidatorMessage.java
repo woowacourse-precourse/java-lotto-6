@@ -15,4 +15,7 @@ public class ValidatorMessage {
     public final static String INVALID_INPUT_NUMERIC = "[ERROR] 숫자를 입력하세요.";
     public final static String INVALID_COST_POSITIVE = "[ERROR] 0보다 큰 숫자를 입력하세요.";
     public final static String INVALID_LOTTO_COST = "[ERROR] 로또 1장 가격은 1000원 입니다. 1000원 단위로 입력해주세요.";
+    public final static String INVALID_INPUT_COST = "[ERROR] 보너스 번호를 입력해주세요.";
+    public final static String INVALID_INPUT_WIN_LOTTO_NUMBER = "[ERROR] 당첨 번호를 입력해주세요.";
+    public final static String INVALID_INPUT_BONUS_NUMBER = "[ERROR] 보너스 번호를 입력해주세요.";
 }

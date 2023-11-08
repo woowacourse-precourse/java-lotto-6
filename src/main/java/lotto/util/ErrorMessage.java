@@ -10,4 +10,5 @@ public class ErrorMessage {
     public static final String ERROR_BONUS_OUT_OF_RANGE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
     public static final String ERROR_BONUS_DUPLICATE = "[ERROR] 당첨 번호와 다른 숫자를 입력해주세요.";
     public static final String ERROR_BONUS_NUMERIC = "[ERROR] 1부터 45 사이의 숫자를 입력해주세요.";
+    public static final String ERROR_WINNING_NUMBERS_NUMERIC = "[ERROR] 1부터 45 사이의 숫자를 쉼표(,)를 기준으로 구분하여 입력해주세요.";
 }

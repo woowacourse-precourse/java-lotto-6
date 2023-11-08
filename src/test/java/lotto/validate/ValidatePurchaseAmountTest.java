@@ -3,8 +3,6 @@ package lotto.validate;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
-import lotto.domain.Amount;
-import lotto.domain.User;
 import lotto.utils.Validation;
 import lotto.constants.ExceptionMessages;
 import org.junit.jupiter.api.DisplayName;

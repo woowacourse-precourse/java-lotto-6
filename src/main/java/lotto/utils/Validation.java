@@ -26,10 +26,10 @@ public class Validation {
 
     public static void validateStringToInteger(String string) {
         if (string.isEmpty()) {
-            ExceptionMessages.STRING_TO_INTEGER.throwException();
+            ExceptionMessages.INPUT_TO_EMPTY.throwException();
         }
         if (string.isBlank()) {
-            ExceptionMessages.STRING_TO_INTEGER.throwException();
+            ExceptionMessages.INPUT_TO_BLANK.throwException();
         }
         if (!string.chars().allMatch(Character::isDigit)) {
             ExceptionMessages.STRING_TO_INTEGER.throwException();

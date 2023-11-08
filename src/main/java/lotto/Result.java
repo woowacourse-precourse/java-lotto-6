@@ -27,4 +27,14 @@ public class Result {
         return result.get(score);
     }
 
+    public void print() {
+        System.out.println("당첨 통계\n---");
+        for (Score score : Score.values()) {
+            if (score == Score.NONE) {
+                continue;
+            }
+            System.out.printf(score.getMessage(), result.get(score));
+        }
+    }
+
 }

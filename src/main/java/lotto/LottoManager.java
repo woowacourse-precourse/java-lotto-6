@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoManager {
+    int buyMoney=0;
+    int buyLottoAmount=0;
 
     public void insertMoney() {
         int money = 0;
@@ -14,12 +16,12 @@ public class LottoManager {
             money = Integer.parseInt(Console.readLine());
             try {
                 checkMoney(money);
-
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
                 pass = false;
             }
         } while (!pass);
+        buyMoney=money;
     }
 
     private void checkMoney(int money) {
@@ -28,5 +30,8 @@ public class LottoManager {
         }
     }
 
+    public void buyLottoAmount(){
+
+    }
 
 }

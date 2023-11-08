@@ -1,10 +1,10 @@
 ## 기능목록
 
 
-- 구입 금액을 입력받되, 에러메세지가 뜨면 다시 입력받는다. LottoManager#insertMoney
+- 구입 금액을 입력받아서 저장한다. 에러메세지가 뜨면 다시 입력받는다. LottoManager#insertMoney
     - 금액을 1000으로 나눈 나머지가 0이 아니면 에러메세지를 보낸다. LottoManager#checkMoney
 
-- 구입 금액을 1000으로 나눠 로또 수량을 저장한다. LottoManager#setBuyAmount
+- 구입 금액을 1000으로 나눠 로또 수량을 저장한다. LottoManager#buyLottoAmount
 - 로또 수량을 출력한다. LottoManager#showBuyAmount
 
 - 구입 수량만큼 로또 번호 세트 생성을 반복한다. LottoManager#loopCreateLottoCandidateNumbers

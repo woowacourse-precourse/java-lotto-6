@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.global.constant.LottoNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.LottoTickets;
@@ -13,8 +14,6 @@ import lotto.model.WinningNumbers;
 import lotto.model.WinningStatistic;
 
 public class LottoService {
-
-    private static final int LOTTO_PRICE = 1000;
     private static final int THREE_MATCH_REWARDS = 5000;
     private static final int FOUR_MATCH_REWARDS = 50000;
     private static final int FIVE_MATCH_REWARDS = 1500000;

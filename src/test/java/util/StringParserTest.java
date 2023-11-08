@@ -13,4 +13,11 @@ public class StringParserTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("쉼표로 구분된 값 사이에 다른 문자가 포함된 경우 예외가 발생한다.")
+    @Test
+    void parseIntegerNotPossibleForEachCommaSeperatedValue() {
+        assertThatThrownBy(() -> StringParser.toIntegers("1,2,3 ,4,5,5"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

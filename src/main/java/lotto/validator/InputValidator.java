@@ -1,8 +1,9 @@
 package lotto.validator;
 
+import static lotto.domain.constants.ErrorType.NUMBER_OVER_MAX_OR_MIN_RANGE;
+import static lotto.domain.constants.RangeType.PRIZE_NUMBER_MAX_RANGE;
+import static lotto.domain.constants.RangeType.PRIZE_NUMBER_MIN_RANGE;
 import static lotto.validator.constants.ErrorType.*;
-import static lotto.validator.constants.RangeType.PRIZE_NUMBER_MAX_RANGE;
-import static lotto.validator.constants.RangeType.PRIZE_NUMBER_MIN_RANGE;
 import static lotto.validator.constants.RegexType.REMOVE_WHITE_SPACE_REGEX;
 import static lotto.validator.constants.RegexType.SPLIT_DELIMITER;
 

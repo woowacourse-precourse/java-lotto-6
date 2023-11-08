@@ -1,7 +1,6 @@
-package lotto.validator.constants;
+package lotto.domain.constants;
 
 public enum RangeType {
-
     PRIZE_NUMBER_MIN_RANGE(0),
     PRIZE_NUMBER_MAX_RANGE(45);
     private final int range;

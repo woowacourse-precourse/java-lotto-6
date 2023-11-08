@@ -4,8 +4,8 @@ import java.util.Map;
 
 public class ProfitRate {
     private static final int INITAL_PROFIT = 0;
-    private final int purchaseAmount;
     private int totalProfit = INITAL_PROFIT;
+    private final int purchaseAmount;
     private final double profitRate;
 
     public ProfitRate(Map<WinningCriteria, Integer> lottoResult, int purchaseAmount) {

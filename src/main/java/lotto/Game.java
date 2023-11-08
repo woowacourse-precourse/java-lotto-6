@@ -20,7 +20,6 @@ public class Game {
         System.out.println();
         outputView.printLottoTicketCount(lottos);
         outputView.printLottoTickets(lottos);
-
-
+        WinningLotto winningLotto = inputView.getWinningLotto();
     }
 }

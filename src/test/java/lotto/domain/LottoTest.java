@@ -28,7 +28,6 @@ class LottoTest {
     @ParameterizedTest
     @CsvSource({"0,1,2,3,4,5,6", "1,2,3,4,5,46"})
     void createLottoByNumberInRange(int first, int second, int third, int fourth, int fifth, int sixth) {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(first, second, third, fourth, fifth, sixth)))
                 .isInstanceOf(IllegalArgumentException.class);
     }

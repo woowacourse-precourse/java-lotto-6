@@ -26,7 +26,6 @@ public class Lotto {
 
     @Override
     public String toString() {
-        Collections.sort(numbers);
         return numbers.toString();
     }
 }

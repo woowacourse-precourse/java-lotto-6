@@ -12,8 +12,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class StringConverterTest {
-    StringToIntegerListConverter stringToIntegerListConverter = new StringToIntegerListConverter();
-    IntegerListToStringConverter integerListToStringConverter = new IntegerListToStringConverter();
+    StringToIntegerListConverter stringToIntegerListConverter = StringToIntegerListConverter.getInstance();
+    IntegerListToStringConverter integerListToStringConverter = IntegerListToStringConverter.getInstance();
 
     @Test
     @DisplayName("문자열 숫자 리스트로 만들기 성공")

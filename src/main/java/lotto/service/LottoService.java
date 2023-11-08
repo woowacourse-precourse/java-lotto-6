@@ -14,12 +14,14 @@ import lotto.model.Rank;
 
 public class LottoService {
 
+    private static long purchaseAmount = 0;
     private static final int LOTTO_PRICE = 1000;
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
     private static final int LOTTO_LENGTH = 6;
 
     public static List<Lotto> purchaseLotto(int money) {
+        purchaseAmount = money;
         List<Lotto> lottos = new ArrayList<>();
         int numberOfLotto = money / LOTTO_PRICE;
 
@@ -42,10 +44,21 @@ public class LottoService {
         return new LottoResult(result);
     }
 
+    public static double getTotalReturn(LottoResult lottoResult) {
+        double sum = 0;
+
+        for (Rank rank : lottoResult.getRankInfo().keySet()) {
+            sum += (double) rank.getPrize() * lottoResult.getRankInfo().get(rank);
+        }
+
+        return (sum / purchaseAmount) * 100;
+    }
+
     private static int calculateMathCount(List<Integer> lotto, Lotto winningLotto) {
         return (int) lotto.stream()
                 .filter(winningLotto::contains)
                 .count();
     }
+
 }
 

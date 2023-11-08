@@ -25,6 +25,7 @@ public class LottoController {
 
         LottoResult result = LottoService.calculateResult(lottos, winningNumbers, bonusNumber);
         outputView.printWinningStatics(result);
+        outputView.printTotalReturn(result);
     }
 
     private List<Lotto> purchaseLotto() {

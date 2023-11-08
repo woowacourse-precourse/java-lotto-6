@@ -1,12 +1,13 @@
 package lotto.model.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public enum RankTable {
-    THREE( 3, false, 5_000),
+    THREE(3, false, 5_000),
     FOUR(4, false, 50_000),
-    FIVE(5, false,  1_500_000),
-    BONUS(5, true,  30_000_000),
+    FIVE(5, false, 1_500_000),
+    BONUS(5, true, 30_000_000),
     SIX(6, false, 2_000_000_000);
 
     private final int matchNumber;
@@ -19,15 +20,20 @@ public enum RankTable {
         this.money = money;
     }
 
-    public static RankTable filterBonusNumber(List<Integer> lottoNumber, int bonusNumber, int matchCount) {
-        boolean bonus = lottoNumber.contains(bonusNumber);
-        if (matchCount == 5 && bonus) {
-            return BONUS;
+    public static List<RankTable> filterBonusNumber(List<Lotto> lottos, int bonusNumber, List<Integer> matchCounts) {
+        List<RankTable> rankTables = new ArrayList<>();
+        for (int i = 0; i < lottos.size(); i++) {
+            boolean bonus = lottos.get(i).getNumbers().contains(bonusNumber);
+            Integer matchCount = matchCounts.get(i);
+
+            if (matchCount == BONUS.getMatchNumber() && bonus) {
+                rankTables.add(BONUS);
+            }
+            if (matchCount >= THREE.getMatchNumber() && !bonus) {
+                rankTables.add(addMatchRank(matchCount));
+            }
         }
-        if (matchCount >= 3 && !bonus) {
-            return addMatchRank(matchCount);
-        }
-        return null;
+        return rankTables;
     }
 
     private static RankTable addMatchRank(int matchCount) {
@@ -39,7 +45,6 @@ public enum RankTable {
         }
         return matchVale;
     }
-
 
     public int getMatchNumber() {
         return matchNumber;

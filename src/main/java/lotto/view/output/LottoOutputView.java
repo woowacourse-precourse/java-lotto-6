@@ -9,7 +9,7 @@ public class LottoOutputView {
         System.out.println(lotto);
     }
 
-    public void printStatistics() {
+    public void printStatisticsHeader() {
         System.out.println(STATISTICS_HEADER);
     }
 

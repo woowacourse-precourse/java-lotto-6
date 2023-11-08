@@ -35,42 +35,29 @@ public class Application {
         } while (winningNumbers == null);
         System.out.println();
 
-        int bonusNumber = 0;
+        BonusNumber bonus;
         do {
             System.out.println("보너스 번호를 입력해 주세요.");
-            bonusNumber = bonusNumberValidate(Console.readLine(), winningNumbers);
-        } while (bonusNumber == 0);
+            bonus = bonusNumberValidate(Console.readLine(), winningNumbers);
+        } while (bonus.getNumber() == 0);
         System.out.println();
 
         System.out.println("당첨 통계");
         System.out.println("---");
         LottoResult lottoResult = new LottoResult();
-        lottoResult.totalRanking(lottos, winningNumbers, bonusNumber);
-        lottoResult.calculateRateOfReturn(lottos, winningNumbers, bonusNumber, lottoAmount.getMoney());
+        lottoResult.totalRanking(lottos, winningNumbers, bonus.getNumber());
+        lottoResult.calculateRateOfReturn(lottos, winningNumbers, bonus.getNumber(), lottoAmount.getMoney());
         System.out.println(lottoResult);
     }
 
-    private static int bonusNumberValidate(String input, Lotto lotto) {
-        int bonusNumber = 0;
+    private static BonusNumber bonusNumberValidate(String input, Lotto lotto) {
+        BonusNumber bonus = new BonusNumber();
         try {
-            bonusNumber = isOnlyNumber(input);
-            checkRange(bonusNumber);
-            checkDuplicationWithBonus(lotto, bonusNumber);
+            bonus.setNumber(lotto, isOnlyNumber(input));
         } catch (IllegalArgumentException e) {
-            bonusNumber = 0;
             System.out.println(e.getMessage());
         }
-        return bonusNumber;
-    }
-
-    private static void checkDuplicationWithBonus(Lotto lotto, int bonusNumber) {
-        if (lotto.contains(bonusNumber))
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
-    }
-
-    private static void checkRange(int number) {
-        if (number < 1 || number > 45)
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        return bonus;
     }
 
     private static LottoAmount checkMoneyValidate(String input) {

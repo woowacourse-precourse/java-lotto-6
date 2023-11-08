@@ -10,7 +10,7 @@ public class Output {
     private static final String LOTTO_COUNT_FORMAT = "%d개를 구매했습니다.";
     private static final String LOTTO_RESULT_FORMAT = "%d개 일치%s (%,d원) - %d개";
     private static final String BONUS_NUMBER_FORMAT = ", 보너스 볼 일치";
-    private static final String LOTTO_RATE_FORMAT = "총 수익률은 %.1f%%입니다.";
+    private static final String LOTTO_RATE_FORMAT = "총 수익률은 %,.1f%%입니다.";
 
     private Output() {}
 

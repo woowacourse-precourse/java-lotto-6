@@ -41,6 +41,11 @@ public class LottoDrawMachine {
                     .map(Integer::parseInt)
                     .toList();
                 validateOverSize(winningNumbers, Constraint.LOTTO_MAX_SIZE.getValue());
+                validateOutOfRange(
+                    winningNumbers,
+                    Constraint.LOTTO_MIN_NUMBER.getValue(),
+                    Constraint.LOTTO_MAX_NUMBER.getValue()
+                );
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
                 ErrorMessage.printExceptionMessage(e);
@@ -61,6 +66,14 @@ public class LottoDrawMachine {
     private void validateOverSize(List<Integer> numbers, int constraint) {
         if (numbers.size() != constraint) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OVER_SIZE.getMessage());
+        }
+    }
+
+    private void validateOutOfRange(List<Integer> numbers, int startInclusive, int endInclusive) {
+        for (Integer number : numbers) {
+            if (number < startInclusive || number > endInclusive) {
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
+            }
         }
     }
 }

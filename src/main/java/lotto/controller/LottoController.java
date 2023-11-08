@@ -27,12 +27,8 @@ public class LottoController {
     }
 
     public void run() {
-        int price;
-        int lottoSheets;
-
-        price = purchaseLotto();
-        lottoSheets = price / PRICE_PER_LOTTO;
-
+        int price = purchaseLotto();
+        int lottoSheets = price / PRICE_PER_LOTTO;
         outputView.printLottoQuantity(lottoSheets);
 
         List<Lotto> lottos = lottoService.generateLotto(lottoSheets);
@@ -40,7 +36,6 @@ public class LottoController {
 
         List<Integer> lottoNumbers = writeUserLottoNumbers();
         int bonusNumber = writeUserBonusNumber(lottoNumbers);
-
         UserLotto userLotto = new UserLotto(lottoNumbers, bonusNumber);
 
         lottoResult(price, lottos, userLotto);

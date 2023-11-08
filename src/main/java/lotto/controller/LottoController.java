@@ -67,17 +67,20 @@ public class LottoController {
     private void showResult() {
         List<LottoRank> resultRanks = lottoBuyer.getLottoResult(winningLottoNumbers);
         Map<LottoRank, Integer> countRanks = getCountRanks(resultRanks);
-
-        List<String> results = countRanks.entrySet().stream()
-                .map(entry -> String.format(entry.getKey().getMessage(), entry.getValue()))
-                .toList();
-
-        OUTPUT_VIEW.printWinningResult(results);
+        OUTPUT_VIEW.printWinningResult(convertCountRanks(countRanks));
         showRateOfRevenue(resultRanks);
     }
 
     private void showRateOfRevenue(List<LottoRank> resultRanks) {
         OUTPUT_VIEW.printRateOfRevenue(lottoBuyer.getRateOfReturn(resultRanks));
+    }
+
+    private EnumMap<LottoRank, Integer> initCountRanks() {
+        EnumMap<LottoRank, Integer> countRanks = new EnumMap<>(LottoRank.class);
+        for (LottoRank rank : LottoRank.getValuesWithoutNone()) {
+            countRanks.put(rank, 0);
+        }
+        return countRanks;
     }
 
     private Map<LottoRank, Integer> getCountRanks(List<LottoRank> resultRanks) {
@@ -89,11 +92,9 @@ public class LottoController {
         return countRanks;
     }
 
-    private EnumMap<LottoRank, Integer> initCountRanks() {
-        EnumMap<LottoRank, Integer> countRanks = new EnumMap<>(LottoRank.class);
-        for (LottoRank rank : LottoRank.getValuesWithoutNone()) {
-            countRanks.put(rank, 0);
-        }
-        return countRanks;
+    private List<String> convertCountRanks(Map<LottoRank, Integer> countRanks) {
+        return countRanks.entrySet().stream()
+                .map(entry -> String.format(entry.getKey().getMessage(), entry.getValue()))
+                .toList();
     }
 }

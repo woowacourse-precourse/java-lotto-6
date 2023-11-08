@@ -11,6 +11,6 @@ public class Application {
     public static void main(String[] args) {
         Controller controller = new Controller(new View(), new Validator(), new GeneratorLotto(), new MatchingCounts(),
                 new Calculator());
-        controller.lotto_Logic();
+        controller.lottoLogic();
     }
 }

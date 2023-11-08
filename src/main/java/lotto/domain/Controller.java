@@ -26,7 +26,7 @@ public class Controller {
         this.calculator = calculator;
     }
 
-    public void lotto_Logic() {
+    public void lottoLogic() {
         int purchaseCount = processPurchaseAmount();
         System.out.println();
         view.displayPurchaseQuantityMessage(purchaseCount);
@@ -62,7 +62,7 @@ public class Controller {
 
     private List<List<Integer>> generateLottoNumbersForPurchase(int purchaseAmount) {
 
-        List<Lotto> generatedLotto  = GeneratorLotto.generateLottoTickets(purchaseAmount);
+        List<Lotto> generatedLotto = GeneratorLotto.generateLottoTickets(purchaseAmount);
         return generatorLotto.generateLottoNumbersList(generatedLotto);
     }
 

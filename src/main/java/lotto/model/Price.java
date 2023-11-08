@@ -15,8 +15,8 @@ public enum Price {
         return amount;
     }
 
-    public int divide(int money){
-        if(money == 0 || money % amount != 0){
+    public int divide(int money) {
+        if (money == 0 || money % amount != 0) {
             throw new IllegalArgumentException(Exception.ERROR_PREFIX.getMessage()
                     + Exception.LOTTO_PRICE.getMessage());
         }

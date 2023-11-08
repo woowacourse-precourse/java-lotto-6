@@ -29,6 +29,14 @@ public class InputTest {
             assertThatThrownBy(() -> PriceCheck.validatePrice(input))
                     .isInstanceOf(IllegalArgumentException.class);
         }
+
+        @DisplayName("구입 금액에 빈 입력값이 들어오지 않으면 예외가 발생한다.")
+        @ParameterizedTest
+        @ValueSource(strings = {""})
+        void inputEmpty(String input) {
+            assertThatThrownBy(() -> PriceCheck.validatePrice(input))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
     }
 
     @Nested
@@ -46,6 +54,14 @@ public class InputTest {
         @ParameterizedTest
         @ValueSource(strings = {"0", "55"})
         void inputOutOfRange(String input) {
+            assertThatThrownBy(() -> RangeCheck.validateRange(input))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @DisplayName("1보다 작거나 45보다 큰 번호가 들어오면 예외가 발생한다.")
+        @ParameterizedTest
+        @ValueSource(strings = {""})
+        void inputEmpty(String input) {
             assertThatThrownBy(() -> RangeCheck.validateRange(input))
                     .isInstanceOf(IllegalArgumentException.class);
         }

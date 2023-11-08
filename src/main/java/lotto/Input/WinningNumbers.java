@@ -6,15 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumbers {
+    static final int LOTTO_SIZE = 6;
+
     private static final List<Integer> numbers = new ArrayList<>();
 
     public static List<Integer> takeInput() {
         do {
+            System.out.println("당첨 번호를 입력해 주세요.");
             String input = camp.nextstep.edu.missionutils.Console.readLine();
             if (makeNumbers(input) && checkDuplicate()) {
                 break;
             }
         } while (true);
+        System.out.println();
         return numbers;
     }
 
@@ -23,6 +27,9 @@ public class WinningNumbers {
             for (String number : input.split(",")) {
                 RangeCheck.validateRange(number);
                 numbers.add(Integer.valueOf(number));
+            }
+            if (numbers.size() != LOTTO_SIZE) {
+                throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");

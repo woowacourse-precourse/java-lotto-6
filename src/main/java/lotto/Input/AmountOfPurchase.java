@@ -7,11 +7,13 @@ public class AmountOfPurchase {
 
     public static int takeInput() {
         do {
+            System.out.println("구입금액을 입력해 주세요.");
             String input = camp.nextstep.edu.missionutils.Console.readLine();
             if (calculateAmount(input)) {
                 break;
             }
         } while (true);
+        System.out.println();
         return amount;
     }
 

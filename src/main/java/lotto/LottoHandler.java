@@ -218,4 +218,8 @@ public class LottoHandler {
     public String formatPrice(int price) {
         return String.format("%,d", price);
     }
+
+    public String removeSpaces(String inputValue) {
+        return inputValue.replaceAll("\\s+", "");
+    }
 }

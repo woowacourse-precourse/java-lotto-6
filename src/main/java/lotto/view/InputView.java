@@ -38,4 +38,16 @@ public class InputView {
             }
         }
     }
+
+    public int inputBounusNumber() {
+        while (true) {
+            try {
+                String input = Console.readLine();
+                inputValidation.isNumber(input);
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException error) {
+                System.out.println(error);
+            }
+        }
+    }
 }

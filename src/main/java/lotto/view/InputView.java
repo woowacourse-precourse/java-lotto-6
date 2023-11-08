@@ -29,4 +29,10 @@ public class InputView {
         return List.of(numbers);
     }
 
+    public static int inputBonusNumber() {
+        String bonusNumber = Console.readLine();
+        System.out.println(bonusNumber);
+        return parseInt(bonusNumber);
+    }
+
 }

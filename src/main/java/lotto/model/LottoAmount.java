@@ -1,8 +1,8 @@
 package lotto.model;
 
-public class LottoAmount {
+import lotto.constant.LottoConstant;
 
-    private static final int LOTTO_PRICE = 1000;
+public class LottoAmount {
 
     private final int amount;
 
@@ -16,7 +16,7 @@ public class LottoAmount {
     }
 
     public int getLottoCount() {
-        return amount / LOTTO_PRICE;
+        return amount / LottoConstant.PRICE;
     }
 
     private void validateAmount(String amount) {
@@ -42,7 +42,7 @@ public class LottoAmount {
 
     private void validateIsDivisibleThousand(String amount) {
         int amountSum = Integer.parseInt(amount);
-        if (amountSum % LOTTO_PRICE != 0) {
+        if (amountSum % LottoConstant.PRICE != 0) {
             throw new IllegalArgumentException("로또 금액을 1000원 단위로 입력해주세요.");
         }
     }

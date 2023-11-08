@@ -1,11 +1,11 @@
 package lotto.model;
 
 
+import lotto.constant.LottoConstant;
+
 import java.util.List;
 
 public class Lotto {
-    
-    private final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -33,13 +33,13 @@ public class Lotto {
     }
 
     private void validateLottoSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != LottoConstant.SIZE) {
             throw new IllegalArgumentException();
         }
     }
 
     private void validateDuplicateNumber(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != LOTTO_SIZE) {
+        if (numbers.stream().distinct().count() != LottoConstant.SIZE) {
             throw new IllegalArgumentException();
         }
     }

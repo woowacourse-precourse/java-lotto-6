@@ -24,7 +24,7 @@ public class LottoController {
     public void startLotto() {
 
         getPurchasePrice();
-        getNumberOfLottoTicketsFromUser();
+        getNumberOfLottoTickets();
         getUserTicket();
 
         System.out.println();
@@ -41,7 +41,7 @@ public class LottoController {
         purchasePrice = InputView.inputPurchasePrice();
     }
 
-    public void getNumberOfLottoTicketsFromUser() {
+    public void getNumberOfLottoTickets() {
         numberOfLottoTickets = Calculator.getNumberOfLottoTickets(purchasePrice);
         OutputView.printLottoNumMessage(numberOfLottoTickets);
     }

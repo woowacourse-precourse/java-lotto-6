@@ -24,20 +24,24 @@ public class OutputView {
     public static void printResult(Result result) {
         System.out.println(WINNING_STATISTICS);
         System.out.println(DIVIDER_LINE);
-        for(Rank currentrank : Rank.values()) {
-            if (currentrank == Rank.NONE) {
+        for(Rank currentRank : Rank.values()) {
+            if (currentRank == Rank.NONE) {
                 continue;
             }
-            int count = result.getResults().stream()
-                    .filter(rank -> rank == currentrank)
-                    .mapToInt(rank -> 1)
-                    .sum();
-            int awardMoney = currentrank.getAwardMoney();
-            String message = currentrank.getMessage();
+            int count = calcCount(result, currentRank);
+            int awardMoney = currentRank.getAwardMoney();
+            String message = currentRank.getMessage();
 
             System.out.println(message + " ("+formatNumber(awardMoney)+"원) - "+ count+"개");
         }
 
+    }
+    private static int calcCount(Result result, Rank currentRank) {
+        int count = result.getResults().stream()
+                    .filter(rank -> rank == currentRank)
+                    .mapToInt(rank -> 1)
+                    .sum();
+        return count;
     }
     private static String formatNumber(int number) {
         DecimalFormat decimalFormat = new DecimalFormat("#,###");

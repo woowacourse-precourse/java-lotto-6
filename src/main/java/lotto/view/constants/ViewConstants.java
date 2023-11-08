@@ -3,9 +3,9 @@ package lotto.view.constants;
 public enum Front {
     REQUEST_PURCHASE_AMOUNT("구입 금액을 입력해 주세요."),
     CHECK_LOTTO_TICKETS("개를 구매했습니다."),
-    REQUEST_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
-    REQUEST_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
-    SHOW_THE_WINNING_STATISTICS("당첨 통계"),
+    REQUEST_WINNING_NUMBERS("\n당첨 번호를 입력해 주세요."),
+    REQUEST_BONUS_NUMBER("\n보너스 번호를 입력해 주세요."),
+    SHOW_THE_WINNING_STATISTICS("\n당첨 통계"),
     THREE_MATCH("3개 일치 (5,000원) - "),
     FOUR_MATCH("4개 일치 (50,000원) - "),
     FIVE_MATCH("5개 일치 (1,500,000원) - "),

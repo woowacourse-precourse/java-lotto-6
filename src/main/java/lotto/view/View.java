@@ -18,6 +18,7 @@ public class IO {
     }
 
     public static void checkLottoTickets(final int lottoTicketCount, Front message){
+        System.out.println();
         System.out.println(lottoTicketCount+message.getMessage());
     }
 
@@ -43,5 +44,9 @@ public class IO {
         System.out.println(FIVE_MATCH.getMessage() + String.valueOf(matches[5]) + "개");
         System.out.println(FIVE_AND_BONUS_MATCH.getMessage() + String.valueOf(matches[7]) + "개");
         System.out.println(SIX_MATCH.getMessage() + String.valueOf(matches[6]) + "개");
+    }
+
+    public static void showTotalProfit(double totalProfit){
+        System.out.println("총 수익률은 " + String.valueOf(totalProfit)+"%입니다.");
     }
 }

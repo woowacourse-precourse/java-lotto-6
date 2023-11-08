@@ -11,7 +11,7 @@ public class CheckValidateInput {
 	private final String NOT_NUMBER_MESSAGE = "숫자를 입력해야합니다.";
 	private final String NOT_UNITS_1000_MESSAGE = "1,000원 단위의 금액을 입력해야합니다.";
 	private final String NOT_IN_RANGE_MONEY_MESSAGE = "0보다 큰 값을 입력해야합니다.";
-	private final String NOT_IN_RANGE_BONUS_NUMBER_MESSAGE = "1~45 사이의 숫자를 입력해야합니다.";
+	private final String NOT_IN_RANGE_NUMBER_MESSAGE = "1~45 사이의 숫자를 입력해야합니다.";
 
 	private final String ERROR_MESSAGE_TAG = "[ERROR] ";
 	private final int MONEY_UNIT = 1000;
@@ -44,15 +44,13 @@ public class CheckValidateInput {
 
 		if (!isNumber(bonusNumber))
 			throw new IllegalArgumentException(ERROR_MESSAGE_TAG + NOT_NUMBER_MESSAGE);
-		if (!inRangeBonusNumber(Integer.parseInt(bonusNumber)))
-			throw new IllegalArgumentException(NOT_IN_RANGE_BONUS_NUMBER_MESSAGE + NOT_IN_RANGE_MONEY_MESSAGE);
+		if (!inRangeNumber(Integer.parseInt(bonusNumber)))
+			throw new IllegalArgumentException(ERROR_MESSAGE_TAG + NOT_IN_RANGE_NUMBER_MESSAGE);
 
 		return Integer.parseInt(bonusNumber);
 	}
 
-	private boolean inRangeBonusNumber(int bonusNumber) {
-		return (bonusNumber > ZERO) && (bonusNumber <= MAX_LOTTO_NUMBER);
-	}
+
 
 	public List<Integer> winningNumber(String numbers) {
 
@@ -63,10 +61,21 @@ public class CheckValidateInput {
 				.stream(separated(numbers))
 				.map(Integer::parseInt)
 				.collect(Collectors.toList());
+		
+		if(!isRangeWinningNumber(winnings))
+			throw new IllegalArgumentException(ERROR_MESSAGE_TAG+NOT_IN_RANGE_NUMBER_MESSAGE);
 		sort(winnings);
 		return winnings;
 	}
 
+	private boolean isRangeWinningNumber(List<Integer> winningNumbers) {
+		for(int winningNumber : winningNumbers) {
+			if(!inRangeNumber(winningNumber))
+				return false;
+		}
+		return true;
+	}
+	
 	private void sort(List<Integer> numbers) {
 		Collections.sort(numbers);
 	}
@@ -81,6 +90,10 @@ public class CheckValidateInput {
 				return false;
 		}
 		return true;
+	}
+	
+	private boolean inRangeNumber(int Number) {
+		return (Number > ZERO) && (Number <= MAX_LOTTO_NUMBER);
 	}
 
 	private boolean isNumber(String number) {

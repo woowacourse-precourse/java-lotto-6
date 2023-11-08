@@ -27,10 +27,9 @@ public class LottoFactory {
     }
 
     private static List<Integer> getSortedNumber(List<Integer> numbers) {
-        List<Integer> sortedLotto = new ArrayList<>(numbers);
-        Collections.sort(sortedLotto);
-
-        return sortedLotto;
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 
     public static Lotto createLotto(List<Integer> numbers){

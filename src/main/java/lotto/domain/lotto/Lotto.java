@@ -36,23 +36,6 @@ public class Lotto {
         }
     }
 
-    public LottoRank determineLottoRank(Lotto winningLotto, int bonus) {
-        final List<Integer> winningNumbers = winningLotto.numbers;
-        int matchCount = getMatchCount(winningNumbers);
-
-        return LottoRank.getRank(matchCount, isContainsBonus(bonus));
-    }
-
-    private int getMatchCount(List<Integer> winningNumbers) {
-        return (int) numbers.stream()
-                .filter(winningNumbers::contains)
-                .count();
-    }
-
-    private boolean isContainsBonus(final int bonus) {
-        return numbers.contains(bonus);
-    }
-
     private void validateSortedAscending(List<Integer> numbers) {
         List<Integer> sortedNumber = getSortedNumber(numbers);
         if (isNotSort(numbers,sortedNumber)) {
@@ -81,6 +64,23 @@ public class Lotto {
 
     private boolean isLottoNumberRange(int number) {
         return number < STANDARD.getStartNumber() || number > STANDARD.getLastNumber();
+    }
+
+    public LottoRank determineLottoRank(Lotto winningLotto, int bonus) {
+        final List<Integer> winningNumbers = winningLotto.numbers;
+        int matchCount = getMatchCount(winningNumbers);
+
+        return LottoRank.getRank(matchCount, isContainsBonus(bonus));
+    }
+
+    private int getMatchCount(List<Integer> winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    private boolean isContainsBonus(final int bonus) {
+        return numbers.contains(bonus);
     }
 
     public List<Integer> getNumbers() {

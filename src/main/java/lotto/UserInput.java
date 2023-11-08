@@ -7,12 +7,14 @@ public class UserInput {
     private static final TypeChanger typeChanger = TypeChanger.getTypeChanger();
 
     public int money() {
+        OutputView.printInputMoney();
         String input = Console.readLine();
         int money = typeChanger.from(input);
         return money;
     }
 
     public List<Integer> lottoNumber() {
+        OutputView.printInputWinNumber();
         String input = Console.readLine();
         List<Integer> lottoNumbers = from(input);
         return lottoNumbers;
@@ -25,6 +27,7 @@ public class UserInput {
     }
 
     public int bonusBall() {
+        OutputView.printInputBonusNumber();
         String input = Console.readLine();
         return typeChanger.from(input);
     }

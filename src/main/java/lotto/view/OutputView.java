@@ -39,6 +39,15 @@ public class OutputView {
             investedAmountAndPrintRandomLotto();
         }
 
+        inputLottoNumber();
+
+        game.calculate(prizeHandler);
+
+        printWinningStatistics();
+        printEarnRate(game.getInvestedAmount());
+    }
+
+    private void inputLottoNumber() {
         if (game.isNotWinningNumber()) {
             winningNumber();
         }
@@ -50,11 +59,6 @@ public class OutputView {
         if (game.isNotPaperCreated()) {
             game.createPaper();
         }
-
-        game.calculate(prizeHandler);
-
-        printWinningStatistics();
-        printEarnRate(game.getInvestedAmount());
     }
 
     private void bonusNumber() {

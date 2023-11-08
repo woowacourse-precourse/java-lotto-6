@@ -97,4 +97,13 @@ public class WalletTest {
 
         assertFalse(wallet.canBuyLotto());
     }
+
+    @DisplayName("수익률 계산이 잘 이루어지는지 확인한다 (소수점 둘째 자리에서 반올림)")
+    @Test
+    void testCalculateProfitRate() {
+        Wallet wallet = new Wallet("10000");
+
+        assertEquals(4.3, wallet.calculateProfitRate(2300));
+        assertEquals(4.2, wallet.calculateProfitRate(2400));
+    }
 }

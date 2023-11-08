@@ -22,8 +22,8 @@ public class LottoException {
 
     public static void validateBonusAll(String number) {
         validateBonusNumberType(number);
-        validateBonusNumberRange(Integer.parseInt(number));
-        validateBonusNumberDuplicate(Integer.parseInt(number));
+        validateBonusNumberRange(number);
+        validateBonusNumberDuplicate(number);
     }
 
     private static void validateLottoLength(List<Integer> numbers) {
@@ -54,14 +54,16 @@ public class LottoException {
         }
     }
 
-    private static void validateBonusNumberRange(Integer number) {
-        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+    private static void validateBonusNumberRange(String number) {
+        Integer bonusNumber = Integer.parseInt(number);
+        if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ERROR_MESSAGE_3);
         }
     }
 
-    private static void validateBonusNumberDuplicate(Integer number) {
-        if (User.getWinningNumbers().contains(number)) {
+    private static void validateBonusNumberDuplicate(String number) {
+        Integer bonusNumber = Integer.parseInt(number);
+        if (User.getWinningNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_3);
         }
     }

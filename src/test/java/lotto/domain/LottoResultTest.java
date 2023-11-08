@@ -85,7 +85,7 @@ class LottoResultTest {
         Map<Ranking, Integer> bigPrizeRankingCounts = new EnumMap<>(Ranking.class);
         Arrays.stream(Ranking.values()).forEach(key -> bigPrizeRankingCounts.put(key, 0));
         bigPrizeRankingCounts.put(Ranking.FIRST, LOTTOS_SIZE);
-        BigDecimal expectedPrizeRate = BigDecimal.valueOf(2000000.0).multiply(BigDecimal.valueOf(100L));
+        BigDecimal expectedPrizeRate = BigDecimal.valueOf(200_000_000L).setScale(SCALE, ROUNDING_MODE);
 
         lottoResult = new LottoResult(bigPrizeRankingCounts, LOTTOS_SIZE);
         Money money = mock(Money.class);

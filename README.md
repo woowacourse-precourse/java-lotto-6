@@ -232,13 +232,13 @@ public class Lotto {
 ## 구현할 기능 정리
 
 ### 입력
-- [ ] 로또 구입 금액을 입력받는다. InputView#getLottoPrice
-  - [ ] 금액은 1000원 이상이어야 한다. Validator#LottoPrice
-  - [ ] 1000원 단위로 입력받아야 한다. Validator#LottoPrice
-  - [ ] 위의 형식이 지켜지지 않을 경우 InvalidPurchaseAmountException
+- [x] 로또 구입 금액을 입력받는다. InputView#getLottoPrice
+  - [x] 금액은 1000원 이상이어야 한다. Validator#LottoPrice
+  - [x] 1000원 단위로 입력받아야 한다. Validator#LottoPrice
+  - [x] 위의 형식이 지켜지지 않을 경우 InvalidPurchaseAmountException
 
 ### 핵심
-- [ ] 로또 구입 금액/1000 만큼 로또 번호를 생성한다. LottoNumberCreator#createLottoTickets(int purchaseAmount)
+- [x] 로또 구입 금액/1000 만큼 로또 번호를 생성한다. LottoNumberCreator#createLottoTickets(int purchaseAmount)
 - [ ] 당첨번호와 보너스 번호를 입력받는다. LottoTicketGenerator#getWinningNumberAndBonus
   - [ ] 번호는 1-45 사이이다.
   - [ ] 위의 형식이 지켜지지 않을 경우 InValidLottoNumberException

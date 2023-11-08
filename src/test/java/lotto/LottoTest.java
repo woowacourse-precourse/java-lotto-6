@@ -1,11 +1,15 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoWin;
+import lotto.domain.Money;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -52,5 +56,13 @@ class LottoTest {
         Lotto lotto = new Lotto(numbers);
 
         assertThat(lotto.toString()).isEqualTo(answerNumbers.toString());
+    }
+
+    @DisplayName("로또 구입 금액이 0 이하이고, 1,000 단위가 아니면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {-1000, 0, 500, 5500, 5555})
+    void buyLottoMoneyTest(int amount) {
+        assertThatThrownBy(() -> new Money(amount))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

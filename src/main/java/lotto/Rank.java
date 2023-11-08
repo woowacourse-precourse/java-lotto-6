@@ -28,16 +28,12 @@ public enum Rank {
 
     public static Rank getRank(int matchCount, boolean isMatchBonusNumber) {
         return Arrays.stream(Rank.values())
-                .filter(rank -> rank.isSameMatchCount(matchCount) && rank.isSameMatchBounsNumber(isMatchBonusNumber))
+                .filter((rank) -> rank.isSameRank(matchCount, isMatchBonusNumber))
                 .findFirst().orElse(null);
     }
 
-    private boolean isSameMatchCount(int matchCount) {
-        return matchCount == this.matchCount;
-    }
-
-    private boolean isSameMatchBounsNumber(boolean isMatchBonusNumber) {
-        return isMatchBonusNumber == this.isMatchBonusNumber;
+    private boolean isSameRank(int matchCount, boolean isMatchBonusNumber) {
+        return this.matchCount == matchCount && this.isMatchBonusNumber == isMatchBonusNumber;
     }
 
     public long getRankReward(long count) {

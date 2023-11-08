@@ -145,7 +145,7 @@
 
 ### 당첨 내역을 구현한다. -> LottoResult
 
-- [ ] Rank와 Rank에 해당하는 로또 개수를 저장하는 Map 형식의 result를 갖는다.
+- [x] Rank와 Rank에 해당하는 로또 개수를 저장하는 Map 형식의 result를 갖는다.
 - [ ] 수익률을 계산한다.
 
 ### 당첨 내역을 제작해주는 클래스를 구현한다. -> ResultGenerator

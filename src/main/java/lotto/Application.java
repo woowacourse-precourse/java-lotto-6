@@ -11,20 +11,39 @@ import java.util.List;
 public class Application {
     static int numberOfLotto;
     static int money = 0;
-    static enum statistic {
-        correct3,
-        correct4,
-        correct5,
-        correct6,
+    enum Statistic {
+        correct3(3, 5000),
+        correct4(4, 50000),
+        correct5(5, 150000),
+        correct5Andbonus(5, 30000000),
+        correct6(6,2000000000);
+
+        int correctNums;
+        long prize;
+
+        Statistic(int correctNums, long prize){
+            this.correctNums = correctNums;
+            this.prize = prize;
+        }
+
+        public int getCorrectNums(){
+            return correctNums;
+        }
+
+        public long getPrize(){
+            return prize;
+        }
 
     }
     public static void main(String[] args) {
         List<Lotto> lottos = new ArrayList<>();
         List<Integer> winningNumbers = new ArrayList<>();
+        List<Integer> bonusNumber = new ArrayList<>();
+        List<Integer> winningBonusNumber = new ArrayList<>();
         buyOutput();
         myLottoOutput(lottos);
-        winningLottoOutput(winningNumbers);
-        statisticsOutput(lottos,winningNumbers);
+        winningLottoOutput(winningNumbers, bonusNumber);
+        statisticsOutput(lottos,winningNumbers,winningBonusNumber);
     }
 
     public static void buyOutput() {
@@ -43,22 +62,27 @@ public class Application {
         }
     }
 
-    public static void winningLottoOutput(List<Integer> winningNumbers){
+    public static void winningLottoOutput(List<Integer> winningNumbers, List<Integer> bonusNumber){
         System.out.println("당첨 번호를 입력해 주세요.");
         winningNumbersInput(winningNumbers);
         System.out.println("보너스 번호를 입력해 주세요.");
-        bonusNumberInput(winningNumbers);
+        bonusNumberInput(bonusNumber);
         System.out.println("당첨 번호를 입력해 주세요.");
         System.out.println();
     }
 
-    public static void statisticsOutput(List<Lotto> lottos, List<Integer> winningNumbers) {
+    public static void statisticsOutput(List<Lotto> lottos, List<Integer> winningNumbers, List<Integer> winningBonusNumber) {
         List<Integer> lottohaveWinningNumList = new ArrayList<>();
+        List<Integer> lottohaveWinningBonusNumList = new ArrayList<>();
+        Statistic prize;
 
         System.out.println("당첨 통계");
         System.out.println("---");
-        for(int i=0;i<lottos.size();i++)
-            lottohaveWinningNumList.add(findCorrectNums(lottos.get(i),winningNumbers));
+        for(int i=0;i<lottos.size();i++) {
+            lottohaveWinningNumList.add(findCorrectNums(lottos.get(i), winningNumbers));
+            lottohaveWinningBonusNumList.add(findCorrectBonusNum(lottos.get(i), winningBonusNumber));
+        }
+        whatIsPrize()
 
     }
 
@@ -106,13 +130,13 @@ public class Application {
         return num;
     }
 
-    public static void bonusNumberInput(List<Integer> winningNumbers) {
+    public static void bonusNumberInput(List<Integer> bonusNumber) {
         String userInput = Console.readLine();
         if (userInput.length() != 1)
             throw new IllegalArgumentException("[Error] 보너스 번호 1개를 입력하여야 합니다.");
         try {
             int num = compareBonus(userInput);
-            winningNumbers.add(num);
+            bonusNumber.add(num);
         } catch (IllegalArgumentException e) {
             System.out.println("[Error] 보너스 번호 1개를 입력하여야 합니다.");
         }
@@ -141,7 +165,48 @@ public class Application {
                 return 1;
         return 0;
     }
+    public static int findCorrectBonusNum(Lotto lotto, List<Integer> winningBonusNumber){
+        int winningLottoNum = winningBonusNumber.get(0);
+        for(int element : lotto.getNumbers())
+            if(element == winningLottoNum)
+                return 1;
+        return winningLottoNum;
+    }
 
-    public static
+
+
+    public static Statistic whatIsPrize(int correctNums, boolean hasBonus){
+        if (correctNums < 3 || correctNums > 6) {
+            return null;
+        }
+
+        if (correctNums == 5 && hasBonus) {
+            return Statistic.correct5Andbonus;
+        }
+
+        for (Statistic prize : Statistic.values()) {
+            if (prize.getCorrectNums() == correctNums) {
+                return prize;
+            }
+        }
+
+        return null;
+    }
+
+    public static List<Integer> winningLottoCl (Statistic statistic){
+        List<Integer> winningLottoList = null;
+        for(int i=0;i<=numberOfLotto;i++)
+            winningLottoList.add(0);
+        if(statistic.getCorrectNums() == 3)
+            winningLottoList.set(3, winningLottoList.get(3)+1);
+        else if(statistic.getCorrectNums() == 4)
+            winningLottoList.set(4, winningLottoList.get(4)+1);
+        else if(statistic.getCorrectNums() == 4)
+            if(statistic.getPrize())
+            winningLottoList.set(5, winningLottoList.get(5)+1);
+        else if(statistic.getCorrectNums() == 4)
+            winningLottoList.set(4, winningLottoList.get(4)+1);
+
+    }
 
 }

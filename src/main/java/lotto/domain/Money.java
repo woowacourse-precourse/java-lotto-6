@@ -2,6 +2,8 @@ package lotto.domain;
 
 import static lotto.domain.LottoStore.LOTTO_PRICE;
 
+import java.util.List;
+import lotto.constants.LottoRank;
 import lotto.view.InputView;
 
 public class Money {
@@ -28,5 +30,17 @@ public class Money {
 
     public int getMoney() {
         return money;
+    }
+
+    public int calculateTotalWinnings(List<LottoRank> lottoRanks) {
+        return lottoRanks.stream()
+                .mapToInt(LottoRank::getPrizeMoney)
+                .sum();
+    }
+
+    public double calculateReturnOfRate(int totalSpent, int totalWinnings) {
+        double profit = totalWinnings - totalSpent;
+        double rateOfReturn = (profit / totalSpent) * 100;
+        return 100 - Math.abs(rateOfReturn);
     }
 }

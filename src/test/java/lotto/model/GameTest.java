@@ -7,42 +7,28 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static lotto.utility.TestConstant.*;
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Game Domain 테스트")
 public class GameTest {
     private final List<Integer> lotto = List.of(1,2,3,4,5,6);
     private final List<Integer> gameResult = List.of(0,0,0,0,0);
-    private final int INIT_VALUE = 10_000;
-    private final int LOTTO_PRIZE = 1_000;
-    private final int WIN_CASE = 5;
-    private final int PROFIT = 0;
     private Game game;
 
     @BeforeEach
     public void initTest() {
-        game = new Game(INIT_VALUE);
-    }
-
-    @Test
-    @DisplayName("Game Domain이 성공적으로 생성된다.")
-    public void createDomainTest() {
-        // when - then
-        assertAll(
-                () -> assertThat(game.getGameProfit()).isEqualTo(PROFIT),
-                () -> assertThat(game.getLottoQuantity()).isEqualTo(INIT_VALUE / LOTTO_PRIZE)
-        );
+        game = new Game(INIT_COST.getConstant());
     }
 
     @Test
     @DisplayName("winTheGame() method 테스트")
     public void winTheGameTest() {
         // when
-        game.winTheGame(WIN_CASE);
+        game.winTheGame(VALID_MATCHED_NUMBER.getConstant());
 
         // then
-        assertThat(game.getGameProfit()).isNotEqualTo(PROFIT);
+        assertThat(game.getGameProfit()).isNotEqualTo(CONSTANT_ZERO.getConstant());
     }
 
     @Test
@@ -52,7 +38,7 @@ public class GameTest {
         int lottoQuantity = game.getLottoQuantity();
 
         // then
-        assertThat(lottoQuantity).isEqualTo(INIT_VALUE / LOTTO_PRIZE);
+        assertThat(lottoQuantity).isEqualTo(INIT_COST.getConstant() / LOTTO_PRICE.getConstant());
     }
 
     @Test
@@ -62,7 +48,7 @@ public class GameTest {
         double gameProfit = game.getGameProfit();
 
         // then
-        assertThat(gameProfit).isEqualTo(PROFIT);
+        assertThat(gameProfit).isEqualTo(CONSTANT_ZERO.getConstant());
     }
 
     @Test

@@ -1,11 +1,11 @@
 package lotto;
 
 public enum WinnerRank {
-    FIFTH(5),
-    FOURTH(4),
-    THIRD(3),
-    SECOND(2),
-    FIRST(1);
+    FIFTH_PLACE(5),
+    FOURTH_PLACE(4),
+    THIRD_PLACE(3),
+    SECOND_PLACE(2),
+    FIRST_PLACE(1);
 
     private final Integer rank;
 

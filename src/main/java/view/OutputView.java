@@ -12,8 +12,8 @@ public class OutputView {
             .concat("당첨 통계")
             .concat(System.lineSeparator())
             .concat("---");
-    public static final String BONUS_BALL_MATCH = "%d개 일치, 보너스 볼 일치 (%d원) - %d개".concat(System.lineSeparator());
-    public static final String LOTTO_MATCH = "%d개 일치 (%d원) - %d개".concat(System.lineSeparator());
+    public static final String BONUS_BALL_MATCH = "%d개 일치, 보너스 볼 일치 (%s원) - %d개".concat(System.lineSeparator());
+    public static final String LOTTO_MATCH = "%d개 일치 (%s원) - %d개".concat(System.lineSeparator());
     public static final String LOTTO_RETURNS = "총 수익률은 %.1f%%입니다.";
 
     public static void lottoNumbers(List<Integer> numbers) {
@@ -27,11 +27,11 @@ public class OutputView {
         if (rank.equals(Rank.SECOND)) {
             System.out.printf(BONUS_BALL_MATCH,
                     rank.getMatch(),
-                    rank.getPrize(),
+                    rank.getStringPrize(),
                     map.get(rank));
             return;
         }
-        System.out.printf(LOTTO_MATCH, rank.getMatch(), rank.getPrize(), map.get(rank));
+        System.out.printf(LOTTO_MATCH, rank.getMatch(), rank.getStringPrize(), map.get(rank));
     }
 
     public static void printAllRankResult(HashMap<Rank, Integer> map) {

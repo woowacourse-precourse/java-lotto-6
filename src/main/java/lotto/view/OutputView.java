@@ -14,7 +14,7 @@ public final class OutputView {
     private static final String WINNING_LOTTO_NUMBERS_GUIDE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_GUIDE = "보너스 번호를 입력해 주세요.";
     private static final String WINNING_STATISTICS_GUIDE = "당첨 통계";
-    private static final String LINE_SEPARATOR = "---";
+    private static final String HYPHEN_SEPARATOR = "---";
     private static final String RANK_RESULT_GUIDE = "%d개 일치 (%s) - %d개";
     private static final String SECOND_RANK_RESULT_GUIDE = "%d개 일치, 보너스 볼 일치 (%s) - %d개";
     private static final String TOTAL_YIELD_GUIDE = "총 수익률은 %s입니다.";
@@ -50,7 +50,7 @@ public final class OutputView {
 
     public static void printWinningStatistics(final EnumMap<Rank, Integer> rankResult) {
         System.out.println(addLineSeparatorInPrefix(WINNING_STATISTICS_GUIDE));
-        System.out.println(LINE_SEPARATOR);
+        System.out.println(HYPHEN_SEPARATOR);
         printEachRankResult(rankResult);
     }
 

@@ -11,4 +11,10 @@ public class LottoShop {
         return money / LOTTO_PRICE;
     }
 
+    public Lotto generateLottoTicket() {
+        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(lotto);
+        return new Lotto(lotto);
+    }
 }
+

@@ -41,9 +41,10 @@
     - [x] [예외] 6개의 숫자가 아닌 경우 예외 처리 한다.
     - [x] [예외] 각 수가 1~45 까지의 값이 아닌 경우 예외 처리 한다.
     - [x] [예외] 중복되는 숫자를 입력했을 경우 예외 처리 한다.
-- [ ] `User` : 사용자의 구입 금액과 로또들
-    - [ ] Money
-    - [ ] List<Lotto>
+- [x] `User` : 사용자의 구입 금액과 로또들
+    - [x] List<Lotto>
 - [ ] `LottoAnswer` : 당첨 로또
     - [ ] WinningNumber
     - [ ] BonusNumber
+- [x] `Prize` : 번호 일치 갯수 - 상금으로 나타낸 enum
+- [x] `PrizeResult` : 로또 결과를 저장

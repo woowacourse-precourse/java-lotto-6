@@ -15,12 +15,16 @@ public class Lotto {
     private final List<Number> numbers;
 
     public Lotto(final List<Integer> numbers) {
-        validateSize(numbers);
         validate(numbers);
         this.numbers = numbers
                 .stream()
                 .map(Number::from)
                 .toList();
+    }
+
+    private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validDuplicated(numbers);
     }
 
     private void validateSize(final List<Integer> numbers) {
@@ -54,19 +58,6 @@ public class Lotto {
 
     public boolean contains(final Number bonusNumber) {
         return numbers.contains(bonusNumber);
-    }
-
-    private static void validate(final List<Integer> list) {
-        validRange(list);
-        validDuplicated(list);
-    }
-
-
-    private static void validRange(final List<Integer> list) {
-        boolean overRange = list.stream().anyMatch(num -> num > LOTTO_MAX_NUM);
-        if (overRange) {
-            throw new IllegalArgumentException(ERROR_HEAD + "로또 번호의 범위는 45입니다!");
-        }
     }
 
     private static void validDuplicated(final List<Integer> list) {

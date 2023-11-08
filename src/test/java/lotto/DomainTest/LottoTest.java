@@ -1,5 +1,6 @@
-package lotto;
+package lotto.DomainTest;
 
+import lotto.Domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +27,7 @@ class LottoTest {
 
     @DisplayName("로또 번호 반환 | 데이터 변경 방지를 위한 단순 getter가 아닌 String으로 변경 하여 반환")
     @Test
-    void getLottoNumbers(){
+    void getLottoNumbersTest(){
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
         assertThat(lotto.getLottoNumbers()).isEqualTo("1, 2, 3, 4, 5, 6");
     }

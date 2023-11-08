@@ -12,9 +12,15 @@ public class InputView {
     private static final String MESSAGE_ENTER_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
     public int purchaseLottoAmount() {
-        System.out.println(MESSAGE_ENTER_PURCHASE_AMOUNT);
-        String input = Console.readLine();
-        return Integer.parseInt(input);
+        while (true) {
+            try {
+                System.out.println(MESSAGE_ENTER_PURCHASE_AMOUNT);
+                String input = Console.readLine();
+                return InputViewUtil.getValidAmount(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public List<Integer> readWinningLotto() {

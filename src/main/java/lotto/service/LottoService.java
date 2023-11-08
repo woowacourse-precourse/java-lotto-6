@@ -85,7 +85,7 @@ public class LottoService {
         PrizeCounter prizeCounter = new PrizeCounter();
         lottos.stream()
                 .map(this::findRanking)
-                .filter(p -> p.rank() > 0)
+                .filter(Ranking::inRanking)
                 .map(Enum::name)
                 .forEach(prizeCounter::addCount);
         return prizeCounter;

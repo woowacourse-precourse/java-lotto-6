@@ -3,19 +3,17 @@ package lotto.domain;
 import java.util.Arrays;
 
 public enum Ranking {
-    NONE(0, 0, false),
-    FIFTH(5, 3, false),
-    FOURTH(4, 4, false),
-    THIRD(3, 5, false),
-    SECOND(2, 5, true),
-    FIRST(1, 6, false);
+    NONE(0, false),
+    FIFTH(3, false),
+    FOURTH(4, false),
+    THIRD(5, false),
+    SECOND(5, true),
+    FIRST(6, false);
 
-    private final int rank;
     private final int numMatchingMainNumber;
     private final boolean hasBonusNumber;
 
-    Ranking(int rank, int numMatchingMainNumber, boolean hasBonusNumber) {
-        this.rank = rank;
+    Ranking(int numMatchingMainNumber, boolean hasBonusNumber) {
         this.numMatchingMainNumber = numMatchingMainNumber;
         this.hasBonusNumber = hasBonusNumber;
     }
@@ -29,7 +27,7 @@ public enum Ranking {
         return this.numMatchingMainNumber == numMatchingMainNumber && this.hasBonusNumber == hasBonusNumber;
     }
 
-    public int rank() {
-        return this.rank;
+    public boolean inRanking() {
+        return this != NONE;
     }
 }

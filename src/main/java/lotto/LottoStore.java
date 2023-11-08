@@ -18,7 +18,7 @@ public class LottoStore {
         this.ng = ng;
     }
 
-    public List<Lotto> purchaseLottoTickets(int amount) throws IllegalArgumentException {
+    public List<Lotto> purchaseLottoTickets(int amount) {
         int lottoCount = getLottoCount(amount);
 
         List<Lotto> lottos = new ArrayList<>();

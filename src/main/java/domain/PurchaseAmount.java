@@ -9,6 +9,7 @@ public class PurchaseAmount {
 
 	public PurchaseAmount(String amount) {
 		validateIsDigit(amount);
+		validateIsEmpty(amount);
 		int convertedAmount = convertStringToInt(amount);
 		validateIsPositive(convertedAmount);
 		validateIsThousandUnit(convertedAmount);
@@ -55,4 +56,9 @@ public class PurchaseAmount {
 		}
 	}
 
+	private void validateIsEmpty(String amount) {
+		if (amount.isBlank()) {
+			IllegalArgumentExceptionMessage.PURCHASE_AMOUNT_NUMERIC.throwException();
+		}
+	}
 }

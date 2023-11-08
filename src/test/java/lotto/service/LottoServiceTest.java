@@ -1,4 +1,4 @@
-package lotto;
+package lotto.service;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -8,7 +8,6 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.enums.LottoConfig;
 import lotto.enums.WinningRank;
-import lotto.service.LottoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

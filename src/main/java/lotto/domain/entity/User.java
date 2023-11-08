@@ -39,7 +39,7 @@ public class User {
         return purchasePrice / PRICE_PER_LOTTO;
     }
 
-    public float calculateEarningRate(final long totalPrize) {
+    public float calculateEarningRate(final Long totalPrize) {
         if (purchasePrice == 0) {
             return purchasePrice;
         }

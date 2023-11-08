@@ -52,16 +52,6 @@ public class WinningLottoViewTest extends NsTest {
             });
         }
 
-        @DisplayName("로또의 번호를 공백과 함께 입력했을 경우, 예외 처리")
-        @Test
-        void winningLotto_로또번호_공백과_함께_입력(){
-            String lottoInput = "1, 2, 3, 4, 5, 9";
-            assertSimpleTest(() -> {
-                runException(lottoInput);
-                assertThat(output()).contains(ErrorMessage.ERROR_MESSAGE_NO_SPACE.getMessage());
-            });
-        }
-
         @DisplayName("입력된 로또 번호가 숫자가 아닐 경우, 예외 처리")
         @Test
         void winningLotto_로또의_번호_숫자_아님() {
@@ -79,6 +69,26 @@ public class WinningLottoViewTest extends NsTest {
             assertSimpleTest(() -> {
                 runException(lottoInput);
                 assertThat(output()).contains(ErrorMessage.ERROR_MESSAGE_LOTTO_NUMBER.getMessage());
+            });
+        }
+
+        @DisplayName("로또의 번호를 콤마가 아닌 다른 특수문자로 구분할 경우, 예외 처리")
+        @Test
+        void winningLotto_로또번호_구분자(){
+            String lottoInput = "1.2.3,4,5,45";
+            assertSimpleTest(() -> {
+                runException(lottoInput);
+                assertThat(output()).contains(ErrorMessage.ERROR_MESSAGE_NO_SEPARATOR.getMessage());
+            });
+        }
+
+        @DisplayName("로또의 번호를 공백과 함께 입력했을 경우, 예외 처리")
+        @Test
+        void winningLotto_로또번호_공백과_함께_입력(){
+            String lottoInput = "1, 2, 3, 4, 5, 9";
+            assertSimpleTest(() -> {
+                runException(lottoInput);
+                assertThat(output()).contains(ErrorMessage.ERROR_MESSAGE_NO_SEPARATOR.getMessage());
             });
         }
     }

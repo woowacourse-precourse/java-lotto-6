@@ -72,13 +72,19 @@ public class WinningLottoView {
         }
     }
 
+    private static List<String> validateSeparator(String input) throws IllegalArgumentException {
+        if(!input.matches(Constants.R_SEPARATOR)) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_NO_SEPARATOR.getMessage());
+        }
+        return  Convertor.convertStringToList(input);
+    }
+
     private static void validateLottoNumbers(String input) throws IllegalArgumentException {
-        List<String> inputs = Convertor.convertStringToList(input);
+        List<String> inputs = validateSeparator(input);
 
         validateLottoNumberSize(inputs);
 
         for(String i : inputs) {
-            validateNoSpace(i);
             validateLottoNumber(i);
         }
     }
@@ -86,11 +92,6 @@ public class WinningLottoView {
     private static void validateLottoNumberSize(List<String> inputs) throws IllegalArgumentException {
         if(inputs.size() != Constants.COUNT_NO_BONUS) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_NOT_ENOUGH_LOTTO_NUMBER.getMessage());
-        }
-    }
-    private static void validateNoSpace(String input) throws IllegalArgumentException {
-        if(input.contains(Constants.SPACE)) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_NO_SPACE.getMessage());
         }
     }
 

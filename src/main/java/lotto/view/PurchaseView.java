@@ -18,9 +18,9 @@ public class PurchaseView {
 
     private static boolean isErrorOccurred(String input) {
         try {
+            validateAmountIsZero(input);
             validateAmountIsNumber(input);
             validateAmountUnit(input);
-            validateAmountIsZero(input);
         } catch (IllegalArgumentException exception) {
             exception.printStackTrace();
             System.out.println(exception.getMessage());
@@ -43,7 +43,7 @@ public class PurchaseView {
     }
 
     private static void validateAmountIsZero(String input) throws IllegalArgumentException {
-        if(input.equals(Constants.ZERO)) {
+        if(input.equals(Constants.ZERO) || input.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_BUY_MORE_THAN_ONE.getMessage());
         }
     }

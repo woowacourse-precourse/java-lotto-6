@@ -53,6 +53,11 @@ public class Application {
         return lottos;
     }
 
+    private static void printLottos(List<Lotto> lottos) {
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+    }
+
     private static Lotto getWinningLotto() {
         System.out.print("지난 주 당첨 번호를 입력해주세요: ");
         String[] winningNumbers = Console.readLine().split(", ");
@@ -62,6 +67,28 @@ public class Application {
         }
         return new Lotto(numbers);
     }
+
+    private static int getBonusBall() {
+        System.out.print("보너스 볼을 입력해주세요: ");
+        return Integer.parseInt(Console.readLine());
+    }
+
+    private static int[] countMatches(List<Lotto> lottos, Lotto winningLotto, int bonusBall) {
+        int[] matchCounts = new int[6];
+        for (Lotto lotto : lottos) {
+            int matchCount = countMatchNumbers(lotto, winningLotto);
+            boolean hasBonusBall = lotto.getNumbers().contains(bonusBall);
+            matchCounts[matchCount] += hasBonusBall ? 0 : 1;
+        }
+        return matchCounts;
+    }
+
+    private static int countMatchNumbers(Lotto lotto, Lotto winningLotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(winningLotto.getNumbers()::contains)
+                .count();
+    }
+
 
 
 

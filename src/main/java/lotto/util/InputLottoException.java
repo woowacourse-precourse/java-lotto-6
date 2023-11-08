@@ -19,7 +19,7 @@ public class InputLottoException {
     
     public void validateLottoNumbers(List<Integer> lottoNumbers) {
     	validateLottoNumbersListLength(lottoNumbers);
-    	validateRepeatedLottoNumbers(lottoNumbers);
+    	validateDuplicatedLottoNumbers(lottoNumbers);
     	validateLottoNumbersRange(lottoNumbers);
     } 
 	public void validateInputBonusNumbers(List<Integer> lottoNumbers, int inputBonusNumber) {
@@ -28,7 +28,16 @@ public class InputLottoException {
 	}
 	public void validateLottoNumbersListLength(List<Integer> lottoNumbers) {
 		if(lottoNumbers.size() != MAX_RANGE_OF_LOTTO_LENGTH) {
-			throw new IllegalArgumentException(ERROR + );
+			throw new IllegalArgumentException(ERROR + LOTTO_NUMBER_MUST_BE_SIX_NUMBERS_ERROR);
 		}
+	}
+	public void validateDuplicatedLottoNumbers(List<Integer> lottoNumbers) {
+		    for (int i = 0; i < lottoNumbers.size(); i++) {
+		        for (int j = i + 1; j < lottoNumbers.size(); j++) {
+		            if (lottoNumbers.get(i).equals(lottoNumbers.get(j))) {
+		                throw new IllegalArgumentException(ERROR + DUPLICATED_LOTTO_NUMBER_ERROR);
+		            }
+		        }
+		    }
 	}
 }

@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
@@ -28,12 +29,13 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 // 이 컨트롤러에서는 로또 구입 금액 입력, 로또 발행(데이터 전달)을 구현
 // 로또 구입 금액이 로또 클래스에 필요할까? ㄴㄴ, 로또 구입 금액은 로또컨트롤러에서만 필요
 public class LottoController {
-    final static int LOTTO_COUNTS = 6;
+    final static int LOTTO_COUNTS = 7;
     final static int BONUS_COUNTS = 1;
     final static int MOD_VALUE = 1000;
     final static int MAX_LOTTO_PRICES = 2147483000;
     final static int MIN_LOTTO_PRICES = 1000;
     int lottoCounts;
+    int lottoPrices;
     List<Integer> prizeNumbers = new ArrayList<>();
     int bonusNumber;
     List<Lotto> lottos = new ArrayList<>();
@@ -59,11 +61,15 @@ public class LottoController {
         this.lottoCounts = lottoCounts;
     }
 
+    public int getLottoPrices() {
+        return lottoPrices;
+    }
+
     public String printLottoPrices() {
         return "구입금액을 입력해 주세요.";
     }
     public void inputLottoPrices() {
-        int lottoPrices = isInteger();
+        lottoPrices = isInteger();
         if(!isPriceLowerThanMax(lottoPrices)) {
             throw new IllegalArgumentException("[ERROR] 최대 구입 가능 금액은 " + MAX_LOTTO_PRICES + "원 입니다.");
         }
@@ -99,12 +105,22 @@ public class LottoController {
         return lottoNumbers;
     }
     public void saveLottoNumbers(List<Integer> lottoNumbers) {
+        Collections.sort(lottoNumbers);
         lottos.add(new Lotto(lottoNumbers));
     }
     public void iterateLottos() {
         for (int i = 0; i < lottoCounts; i++) {
             saveLottoNumbers(GenerateRandomNumber());
         }
+    }
+    public String printLottoNumbers() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Lotto numbers:
+             lottos) {
+            stringBuilder.append(numbers.getNumbers().toString()).append("\n");
+        }
+        System.out.println(stringBuilder.toString());
+        return stringBuilder.toString();
     }
     public String printPrizeNumbers() {
         return "당첨 번호를 입력해 주세요.";
@@ -155,6 +171,7 @@ public class LottoController {
         System.out.println(printLottoPrices());
         inputLottoPrices();
         iterateLottos();
+        System.out.println(printLottoNumbers());
 
         System.out.println(printPrizeNumbers());
         this.prizeNumbers.addAll(inputPrizeNumbers());

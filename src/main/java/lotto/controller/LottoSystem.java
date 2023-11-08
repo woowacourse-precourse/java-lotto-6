@@ -2,8 +2,8 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.*;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.service.*;
+import lotto.view.*;
 
 import java.util.Map;
 
@@ -25,30 +25,48 @@ public class LottoSystem {
     }
 
     private void settingSystem(){
-        budget = new Budget(inputView.InputBudget());
-
-        LottosGenerator lottosGenerator = new LottosGenerator();
-        lottos = lottosGenerator.generateLottos(budget.getBudget());
-
-        inputView.displayLottos(lottos.getSize(),lottos.getLottosForDisplay());
-
-        WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers(inputView.InputWinningNumbers());
-        BonusNumber bonusNumber = new BonusNumber(Integer.parseInt(inputView.InputBonusNumber()));
-        winningCombination = new WinningCombination(winningLottoNumbers,bonusNumber);
-
+        inputBudgetSystem();
+        createLottosSystem();
+        displayLottosSystem();
+        createWinningCombinationSystem();
         Console.close();
     }
 
     private void ResultSystem(){
-        StatisticsGenerator statisticsGenerator = new StatisticsGenerator(lottos,winningCombination);
-        ProfitCalculator profitCalculator = new ProfitCalculator();
-
-        //통계
-        Map<String, Integer> statisticsMatchesCounts = statisticsGenerator.generateMatchesCount();
-
-        //수익률 계산
-        float profitPercent = profitCalculator.calculateProfit(budget.getBudget(),statisticsMatchesCounts);
-
+        Map<String, Integer> statisticsMatchesCounts= createStatisticsSystem();
+        float profitPercent = createProfitSystem(statisticsMatchesCounts);
         outputView.displayResult(statisticsMatchesCounts,profitPercent);
     }
+
+    private void inputBudgetSystem(){
+        budget = new Budget(inputView.InputBudget());
+    }
+
+    private void createLottosSystem(){
+        LottosGenerator lottosGenerator = new LottosGenerator();
+        lottos = lottosGenerator.generateLottos(budget.getBudget());
+    }
+
+    private void displayLottosSystem(){
+        inputView.displayLottos(lottos.getSize(),lottos.getLottosForDisplay());
+
+    }
+
+    private void createWinningCombinationSystem(){
+        WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers(inputView.InputWinningNumbers());
+        BonusNumber bonusNumber = new BonusNumber(Integer.parseInt(inputView.InputBonusNumber()));
+        winningCombination = new WinningCombination(winningLottoNumbers,bonusNumber);
+
+    }
+
+    private Map<String, Integer> createStatisticsSystem(){
+        StatisticsGenerator statisticsGenerator = new StatisticsGenerator(lottos,winningCombination);
+        return statisticsGenerator.generateMatchesCount();
+    }
+
+    private float createProfitSystem(Map<String, Integer> statisticsMatchesCounts){
+        ProfitCalculator profitCalculator = new ProfitCalculator();
+        return profitCalculator.calculateProfit(budget.getBudget(),statisticsMatchesCounts);
+    }
+
 }

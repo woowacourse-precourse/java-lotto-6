@@ -37,7 +37,7 @@ class PlayerBuyPriceTest {
                 .hasMessage(exceptionMessage);
     }
 
-    @DisplayName("validateRangeFromAmount() : 구입 금액이 1,000원 단위가 아닌 경우")
+    @DisplayName("validateUnitFromAmount() : 구입 금액이 1,000원 단위가 아닌 경우")
     @ParameterizedTest
     @ValueSource(strings = {"4321","1110","100100"})
     void validateUnitFromAmount_Fail(String amount) throws Exception {

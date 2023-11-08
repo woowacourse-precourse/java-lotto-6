@@ -5,7 +5,7 @@ import error.ErrorMessage;
 import java.util.List;
 import util.InputValidator;
 
-public class Lotto {
+public class Lotto implements Comparable<Lotto> {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -24,5 +24,27 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+
+    public boolean isContain(int lottoNumber) {
+        return numbers.contains(lottoNumber);
+    }
+
+    private int calContainCount(List<Integer> anOtherLotto) {
+        return anOtherLotto.stream()
+                .filter(this::isContain)
+                .toList()
+                .size();
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
+
+    @Override
+    public int compareTo(Lotto otherLotto) {
+        return this.calContainCount(otherLotto.numbers);
+    }
 }
+

@@ -28,4 +28,17 @@ public class OutputView {
     public void printNewLine() {
         System.out.println();
     }
+
+    public void printWinningResult(int matchingCount, int prize, int lottoCount) {
+        System.out.println(String.format(OutputMessageConstants.WINNING_RANK_AND_COUNT_OUTPUT_MESSAGE.getMessage(), matchingCount, prize, lottoCount));
+    }
+
+    public void printSecondPlace(int matchingCount, int prize, int lottoCount) {
+        System.out.println(String.format(OutputMessageConstants.SECOND_RANK_AND_COUNT_OUTPUT_MESSAGE.getMessage(), matchingCount, prize, lottoCount));
+    }
+
+    public void printResultMessage() {
+        System.out.println(OutputMessageConstants.WINNING_RESULT_OUTPUT_MESSAGE);
+        System.out.println(OutputMessageConstants.DIVIDER_OUTPUT_MESSAGE);
+    }
 }

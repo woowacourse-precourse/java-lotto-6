@@ -24,7 +24,9 @@ public class LottoController {
         LottoResult lottoResult = createLottoResult(winningNumber, lottos, bonusNumber);
 
     }
+    private void printWinningResult(LottoResult lottoResult) {
 
+    }
     private LottoResult createLottoResult(WinningNumber winningNumber, Lottos lottos, BonusNumber bonusNumber) {
         LottoResult lottoResult = new LottoResult(winningNumber, lottos, bonusNumber);
         lottoResult.calcurateLottoRank();

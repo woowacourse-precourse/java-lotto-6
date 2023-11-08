@@ -1,12 +1,12 @@
 package lotto.view;
 
-import java.util.List;
-import lotto.domain.LottoGame;
-import lotto.domain.Rankings;
+
+import lotto.domain.WinningResult;
+import lotto.domain.dto.PurchaseDto;
 
 public interface OutputView {
 
-    void outputPurchaseLottoList(List<String> purchaseLottoList);
+    void outputPurchaseLottoList(PurchaseDto lottos);
 
-    void outputWinningStatistics(Rankings rankings);
+    void outputWinningStatistics(WinningResult winningResult);
 }

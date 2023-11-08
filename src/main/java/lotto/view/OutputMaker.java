@@ -23,7 +23,7 @@ public class OutputMaker {
 
     public String makeLottoResultOutput(LottoResult lottoResult) {
         StringJoiner sj = new StringJoiner(NEW_LINE);
-        Map<LottoPrize, Integer> prizesCount = lottoResult.getPrizesCount();
+        Map<LottoPrize, Integer> prizesCount = lottoResult.prizesCount();
         for (LottoPrize lottoPrize : prizesCount.keySet()) {
             if (lottoPrize.equals(LottoPrize.NO_MATCH)) {
                 continue;

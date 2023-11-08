@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.constant.LottoMessage;
+import lotto.dto.BenefitRateResponse;
 import lotto.dto.LottoInfoResponse;
 import lotto.model.LottoResult;
 
@@ -41,8 +42,9 @@ public class OutputView {
         write(LottoMessage.getLottoResultWriteStartMessage());
     }
 
-    public void writeLottoResult(LottoResult lottoResult) {
+    public void writeLottoResult(LottoResult lottoResult, BenefitRateResponse benefitRateResponse) {
         write(outputMaker.makeLottoResultOutput(lottoResult));
+        write(LottoMessage.getBenefitRateMessage(benefitRateResponse.getBenefitRate()));
     }
 
     private void write(String output) {

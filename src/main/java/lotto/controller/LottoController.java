@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.function.Supplier;
+import lotto.dto.BenefitRateResponse;
 import lotto.dto.PurchaseAmountRequest;
 import lotto.dto.WinningNumberRequest;
 import lotto.model.LottoResult;
@@ -23,7 +24,8 @@ public class LottoController {
     }
 
     public void run() {
-        Lottos lottos = lottoMakeService.makeRandomLottos(readPurchaseAmount());
+        final PurchaseAmountRequest purchaseAmountRequest = readPurchaseAmount();
+        Lottos lottos = lottoMakeService.makeRandomLottos(purchaseAmountRequest);
         output.writeEmptyLine();
 
         output.writeLottosInfo(lottos.getLottoInfoResponse());
@@ -32,7 +34,7 @@ public class LottoController {
         WinningNumberAndBonusNumber winningNumberAndBonusNumber = readWinningNumberAndBonusNumber();
         output.writeEmptyLine();
         LottoResult lottoResult = lottos.getLottoResult(winningNumberAndBonusNumber);
-        writeLottoResult(lottoResult);
+        writeLottoResult(lottoResult, purchaseAmountRequest.purchaseAmount());
     }
 
     private PurchaseAmountRequest readPurchaseAmount() {
@@ -53,9 +55,11 @@ public class LottoController {
         );
     }
 
-    private void writeLottoResult(LottoResult lottoResult) {
+    private void writeLottoResult(LottoResult lottoResult, Integer purchaseAmount) {
         output.writeLottoResultWriteStartMessage();
-        output.writeLottoResult(lottoResult);
+        BenefitRateResponse benefitRateResponse = new BenefitRateResponse(lottoResult,
+            purchaseAmount);
+        output.writeLottoResult(lottoResult, benefitRateResponse);
     }
 
     private <T> T readUntilValidInput(Supplier<T> inputSupplier) {

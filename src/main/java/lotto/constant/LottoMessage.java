@@ -1,5 +1,6 @@
 package lotto.constant;
 
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -12,6 +13,7 @@ public class LottoMessage {
     private static final String LOTTO_RESULT_WRITE_START = "당첨 통계\n---";
     private static final String LOTTO_RESULT_FORMAT = "%d개 일치%s (%s원) - %d개";
     private static final String BONUS_CORRECT = ", 보너스 볼 일치";
+    private static final String BENEFIT_RATE_MESSAGE = "총 수익률은 %s%%입니다.";
     private static final String EMPTY = "";
     private static final NumberFormat formatter = NumberFormat.getInstance(Locale.US);
 
@@ -43,6 +45,10 @@ public class LottoMessage {
             formatter.format(prize.getPrize()),
             count
         );
+    }
+
+    public static String getBenefitRateMessage(BigDecimal benefitRate) {
+        return String.format(BENEFIT_RATE_MESSAGE, benefitRate.toPlainString());
     }
 
     private static String getBonusCorrectMessage(Boolean isBonusCorrect) {

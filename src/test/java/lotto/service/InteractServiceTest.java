@@ -73,6 +73,7 @@ public class InteractServiceTest extends NsTest {
         });
     }
 
+    @DisplayName("당첨 번호가 1~45 사이에 속하지 않을 경우 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {
             "0,2,3,4,5,6", "1,2,3,4,5,46", "11,22,33,44,55,66"

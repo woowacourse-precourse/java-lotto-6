@@ -1,11 +1,11 @@
 package lotto.util;
+import static lotto.util.PrintConstants.*;
 
 public class buyingLottoException {
-	private final static int LOTTO_PRICE = 1000;
-	private final static String ERROR="[ERROR] ";
-	private final static String LOTTO_NOT_IN_RANGE_OF_ONE_TO_FOURTY_FIVE_ERROR="로또 번호는 1부터 45 사이의 숫자여야 합니다.";
-	private final static String lOTTO_PRICE_MUST_BE_THOUSAND_ERROR="구매는 1,000원 단위로 가능합니다.";
-	private final static String LOTTO_PRICE_INPUT_INTEGER_ERROR="입력은 숫자만 가능합니다.";
+	public static final int LOTTO_PRICE = 1000;
+	public static final String LOTTO_NOT_IN_RANGE_OF_ONE_TO_FOURTY_FIVE_ERROR="로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+	public static final String lOTTO_PRICE_MUST_BE_THOUSAND_ERROR="구매는 1,000원 단위로 가능합니다.";
+	public static final String LOTTO_PRICE_INPUT_INTEGER_ERROR="입력은 숫자만 가능합니다.";
 
 	public static void validateBuyingPrice(String buyingPrice) {
 		isNumberCheck(buyingPrice);

@@ -14,7 +14,8 @@ public enum Speaker {
   MATCHEDSIX("6개 일치 (2,000,000,000원) - "),
   PROFIT("총 수익률은 "),
   PROFITEND("%입니다."),
-  ERRORLOTTONUMBER("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+  ERRORLOTTONUMBER("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
+  ERRORMONEYRANGE("[ERROR] 구입 금액은 1,000원 단위의 숫자여야 합니다.");
 
   private String text;
 

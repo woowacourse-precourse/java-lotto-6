@@ -11,16 +11,27 @@ public class Input {
     private int money = 0;
 
     public int getNumberOfLotto(){
-
-
         int numberOfLotto = calculate(money);
         return numberOfLotto;
     }
     public int getMoney(){
-        System.out.println("구입금액을 입력해 주세요.\n");
-        this.money = Integer.parseInt(Console.readLine());
-        validateMoney(money);
+        try{
+            System.out.println("구입금액을 입력해 주세요.\n");
+            String input = Console.readLine();
+            validateInput(input);
+            this.money = Integer.parseInt(input);
+            validateMoney(money);
+        } catch (IllegalArgumentException error){
+            System.out.println(error.getMessage());
+            return getMoney();
+        }
+
         return money;
+    }
+    private void validateInput(String input){
+        if(!input.matches("[0-9]")){
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
+        }
     }
     private void validateMoney(int money){
         if(money % 1000 != 0){

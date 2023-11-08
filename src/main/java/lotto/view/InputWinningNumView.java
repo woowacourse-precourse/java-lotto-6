@@ -8,6 +8,7 @@ public class InputWinningNumView {
     public List<Integer> printWinningNum() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
+        System.out.println();
         List<Integer> winningNums = validateInputWinningNum(input);
         return winningNums;
     }
@@ -15,6 +16,7 @@ public class InputWinningNumView {
     public int printBonusNum() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
+        System.out.println();
         int bonusNum = validateInputBonusNum(input);
         return bonusNum;
     }

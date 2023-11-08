@@ -32,6 +32,27 @@ public class LottoGameController {
             return inputPurchasePrice();
         }
     }
+
+    private List<Integer> parseRawWinningNumber(String rawInput) {
+        List<Integer> parsed = new ArrayList<>();
+        for (String rawNumber : rawInput.split(DELIMITER)) {
+            parsed.add(Integer.parseInt(rawNumber));
+        }
+        return parsed;
+    }
+
+    private List<Integer> inputWinningNumbers() {
+        try {
+            inputView.printInputWinningNumbersPrompt();
+            String rawWinningNumbers = Console.readLine();
+            InputValidator.validateUserInputWinningNumbers(rawWinningNumbers);
+            return parseRawWinningNumber(rawWinningNumbers);
+        } catch (IllegalArgumentException e) {
+            resultView.printErrorMessage(e.getMessage());
+            return inputWinningNumbers();
+        }
+    }
+
     public void process() {
         this.gameService.setPurchaseAmount(inputPurchasePrice());
         this.gameService.purchaseTickets();

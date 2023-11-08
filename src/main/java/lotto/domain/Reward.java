@@ -14,16 +14,16 @@ public enum Reward {
     NONE(0L, false, 0, 6);
 
     private static final Map<Integer, Map<Boolean, List<Reward>>> REWARD_GROUPING_BY_RANK = Arrays.stream(values())
-            .collect(Collectors.groupingBy(Reward::getMatchedCount, Collectors.groupingBy(Reward::isMatchedBonusNumber)));
+            .collect(Collectors.groupingBy(Reward::getMatchedCount, Collectors.groupingBy(Reward::isRequiredBonusNumber)));
 
     private final long amount;
-    private final boolean matchedBonusNumber;
+    private final boolean requiredBonusNumber;
     private final int matchedCount;
     private final int rank;
 
-    Reward(final long amount, final boolean matchedBonusNumber, final int matchedCount, final int rank) {
+    Reward(final long amount, final boolean requiredBonusNumber, final int matchedCount, final int rank) {
         this.amount = amount;
-        this.matchedBonusNumber = matchedBonusNumber;
+        this.requiredBonusNumber = requiredBonusNumber;
         this.matchedCount = matchedCount;
         this.rank = rank;
     }
@@ -41,7 +41,7 @@ public enum Reward {
 
         return REWARD_GROUPING_BY_RANK
                 .get(matchedCount)
-                .get(bonusNumberMatched)
+                .get(requiredBonusNumber)
                 .get(0);
     }
 
@@ -49,8 +49,8 @@ public enum Reward {
         return amount;
     }
 
-    private boolean isMatchedBonusNumber() {
-        return matchedBonusNumber;
+    private boolean isRequiredBonusNumber() {
+        return requiredBonusNumber;
     }
 
     public int getMatchedCount() {

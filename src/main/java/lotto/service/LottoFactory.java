@@ -24,7 +24,7 @@ public class LottoFactory {
         return new UserLotto(lottos);
     }
 
-    public Lotto makeLotto() {
+    private Lotto makeLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT);
         return new Lotto(numbers);
     }
@@ -59,6 +59,7 @@ public class LottoFactory {
             throw new LottoNumberDuplicateException();
         }
     }
+
     private void validateLottoNumberRange(List<Integer> numbers) {
         numbers.forEach(this::validateLottoNumber);
     }

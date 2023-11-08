@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.List;
-
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.Money;
@@ -42,7 +41,7 @@ public class GameController {
         LottoNumber bonusLottoNumber = ExceptionRetryHandler.retryUntilValid(this::createBonusLottoNumber);
 
         WinningStatistics statistics = gameService.determineWinningStatistics(winningLotto, bonusLottoNumber);
-        outputView.printStatistics(statistics.getStatistics());
+        printWinningStatistics(statistics);
         printRateOfReturn(statistics.getTotalWinningMoney());
     }
 
@@ -54,6 +53,13 @@ public class GameController {
     private LottoNumber createBonusLottoNumber() {
         int bonusNumber = inputView.readBonusNumber();
         return LottoNumber.valueOf(bonusNumber);
+    }
+
+    private void printWinningStatistics(WinningStatistics statistics) {
+        outputView.printStatisticsHeader();
+
+        statistics.getSortedStatistics()
+                .forEach(outputView::printStatistics);
     }
 
     private void printRateOfReturn(Money totalWinningMoney) {

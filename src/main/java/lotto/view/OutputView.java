@@ -1,8 +1,6 @@
 package lotto.view;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.StringJoiner;
 import lotto.domain.winning.WinningResult;
 
@@ -28,18 +26,13 @@ public class OutputView {
         System.out.println(lotto);
     }
 
-    public void printStatistics(Map<WinningResult, Integer> statistics) {
+    public void printStatisticsHeader() {
         System.out.println();
         System.out.println(STATISTICS_HEADER);
         System.out.println(STATISTICS_DIVIDER);
-
-        statistics.keySet().stream()
-                .sorted(Comparator.comparing(WinningResult::getWinningMoney))
-                .filter(winningResult -> winningResult != WinningResult.LOSING)
-                .forEach(result -> printStatistics(result, statistics.get(result)));
     }
 
-    private void printStatistics(WinningResult winningResult, int count) {
+    public void printStatistics(WinningResult winningResult, int count) {
         StringJoiner stringJoiner = new StringJoiner(WINNING_STATISTICS_DELIMITER);
         stringJoiner.add(createMatchCountMessage(winningResult));
 

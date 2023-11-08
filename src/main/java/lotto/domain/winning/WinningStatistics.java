@@ -1,7 +1,9 @@
 package lotto.domain.winning;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.EnumMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
@@ -43,7 +45,14 @@ public final class WinningStatistics {
         return winningMoney.multiply(winningCount);
     }
 
-    public Map<WinningResult, Integer> getStatistics() {
-        return new EnumMap<>(statistics);
+    public Map<WinningResult, Integer> getSortedStatistics() {
+        Map<WinningResult, Integer> sortedStatistics = new LinkedHashMap<>();
+
+        statistics.keySet().stream()
+                .filter(winningResult -> winningResult != WinningResult.LOSING)
+                .sorted(Comparator.comparing(WinningResult::getWinningMoney))
+                .forEach(result -> sortedStatistics.put(result, statistics.get(result)));
+
+        return sortedStatistics;
     }
 }

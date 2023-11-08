@@ -24,13 +24,19 @@ public class ConsoleOutputView implements Output {
     public void printWinningStatistics(LottoResults winningStatistics) {
         Map<LottoRank, Integer> result = winningStatistics.rankCounts();
         System.out.println(WINNING_STATISTICS_ANNOUNCE.getMessage());
-        Arrays.stream(LottoRank.values())
-                .forEach(rank -> {
-                    int count = result.getOrDefault(rank, 0);
-                    System.out.printf("%s - %d개\n", rank.getDescription(), count);
-                });
+        printEachRankStatistics(result);
     }
 
+    private void printEachRankStatistics(Map<LottoRank, Integer> rankCounts) {
+        Arrays.stream(LottoRank.values())
+                .forEach(rank -> printRankStatistic(rank, rankCounts.getOrDefault(rank, 0)));
+    }
+
+    private void printRankStatistic(LottoRank rank, int count) {
+        String formattedMessage = WINNING_STATISTICS_FORMAT.getFormattedWinningStatistics(
+                rank.getDescription(), count);
+        System.out.println(formattedMessage);
+    }
     @Override
     public void printTotalEarningsRate(double earningsRate) {
         System.out.println(TOTAL_EARNINGS_RATE.getFormattedEarningRate(earningsRate));

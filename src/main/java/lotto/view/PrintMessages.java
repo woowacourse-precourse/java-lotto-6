@@ -16,7 +16,8 @@ public enum PrintMessages {
     INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     WINNING_STATISTICS("당첨 통계"),
     SEPARATOR("---"),
-    TOTAL_EARNINGS_RATE("총 수익률은 %s%%입니다.\n");
+    TOTAL_EARNINGS_RATE("총 수익률은 %s%%입니다.\n"),
+    WINNING_STATISTICS_FORMAT("%s - %d개");
 
     private final String message;
 
@@ -31,5 +32,9 @@ public enum PrintMessages {
     public String getFormattedEarningRate(double earningRate) {
         DecimalFormat decimalFormat = new DecimalFormat("#,###.0");
         return String.format(message, decimalFormat.format(earningRate));
+    }
+
+    public String getFormattedWinningStatistics(String description, int count) {
+        return String.format(message, description, count);
     }
 }

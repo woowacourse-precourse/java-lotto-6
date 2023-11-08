@@ -5,8 +5,10 @@ import static lotto.exception.ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE;
 import static lotto.utils.constant.LottoConstant.LOTTO_NUMBER_MAX;
 import static lotto.utils.constant.LottoConstant.LOTTO_NUMBER_MIN;
 
+import java.util.List;
+
 public class BonusNumber {
-    private final int bonusNumber;
+    final int bonusNumber;
 
     private BonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
@@ -15,6 +17,10 @@ public class BonusNumber {
     public static BonusNumber of(int bonusNumber) {
         validateBonusNumberInRange(bonusNumber);
         return new BonusNumber(bonusNumber);
+    }
+
+    public boolean isBonusNumberMatches(List<Integer> numbers) {
+        return numbers.contains(bonusNumber);
     }
 
     public void validateBonusNumberDuplicated(Lotto lotto) {

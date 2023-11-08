@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -18,5 +19,14 @@ class CashierTest {
     void createCashierByNumberThatIsNotDivisibleByThousand() {
         assertThatThrownBy(() -> new Cashier("0"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void getPurchaseQuantity_메서드로_로또_구입_수량_반환() {
+        Cashier cashier = new Cashier("100000000");
+
+        long actual = cashier.getPurchaseQuantity();
+
+        assertThat(actual).isEqualTo(100000);
     }
 }

@@ -25,6 +25,10 @@ public class Cashier {
         }
     }
 
+    public long getPurchaseQuantity() {
+        return this.purchaseAmount / 1000;
+    }
+
     public long getPurchaseAmount() {
         long purchaseAmount = this.purchaseAmount;
         return purchaseAmount;

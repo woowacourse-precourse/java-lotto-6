@@ -3,7 +3,7 @@ package lotto.view;
 public class ExceptionView {
     public static final String error = "[ERROR] ";
 
-    public static void inputAmountErrorMessage() {
+    public static void inputMoneyErrorMessage() {
         System.out.println(error + "로또는 1000원부터 1000원 단위로 구매 가능합니다.");
     }
 

@@ -19,7 +19,7 @@ public class Input {
                 return money;
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
-                ExceptionView.inputAmountErrorMessage();
+                ExceptionView.inputMoneyErrorMessage();
             }
         }
     }

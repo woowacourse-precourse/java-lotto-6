@@ -24,14 +24,14 @@ public class Money {
     }
 
     private long validateUnit(long money) {
-        if (money % Constant.AMOUNT_UNIT != 0 || money < Constant.AMOUNT_UNIT) {
+        if (money % Constant.MONEY_UNIT != 0 || money < Constant.MONEY_UNIT) {
             throw new IllegalArgumentException();
         }
         return money;
     }
 
     public int calculateGameCount() {
-        return (int) (this.money / Constant.AMOUNT_UNIT);
+        return (int) (this.money / Constant.MONEY_UNIT);
     }
 
     public long getMoney() {

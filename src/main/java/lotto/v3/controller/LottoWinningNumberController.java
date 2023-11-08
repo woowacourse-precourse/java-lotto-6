@@ -15,7 +15,7 @@ public class LottoWinningNumberController {
             try {
                 return new LottoWinningNumber(lottoWinningNumbersView.requestWinningNumbers());
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }

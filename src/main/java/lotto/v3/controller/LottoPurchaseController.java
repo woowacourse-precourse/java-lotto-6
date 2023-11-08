@@ -21,7 +21,7 @@ public class LottoPurchaseController {
                 lottoPurchaseView.displayNumberOfLottoTicketsPurchased(numberOfLottoTickets);
                 return numberOfLottoTickets;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }

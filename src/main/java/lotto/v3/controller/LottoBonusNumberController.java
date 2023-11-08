@@ -19,7 +19,7 @@ public class LottoBonusNumberController {
                 int bonusNumber = lottoBonusNumberView.requestBonusNumber();
                 return new LottoBonusNumber(bonusNumber, winningNumber.getNumbers());
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }

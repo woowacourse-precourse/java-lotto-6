@@ -10,7 +10,8 @@ public class Statistics {
 
     private static final String CURRENCY_UNIT = "%,.1f";
 
-    private Statistics() {}
+    private Statistics() {
+    }
 
     private static Map<Rank, Integer> initWinningDetails() {
         Map<Rank, Integer> winningDetails = new EnumMap<>(Rank.class);

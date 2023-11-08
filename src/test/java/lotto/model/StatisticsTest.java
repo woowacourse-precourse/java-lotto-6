@@ -1,7 +1,6 @@
 package lotto.model;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -12,7 +11,6 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 
@@ -20,20 +18,20 @@ class StatisticsTest {
 
     @DisplayName("로또 번호와 당첨 번호를 비교하여 당첨 내역을 알 수 있다.")
     @ParameterizedTest
-    @MethodSource("rankDetailsData")
-    void convertToRank(List<Lotto> lottoTicket, Map<Rank, Integer> rankDetails) {
+    @MethodSource("winningDetailsData")
+    void calculateRank(List<Lotto> lottoTicket, Map<Rank, Integer> winningDetails) {
         WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new LottoNumber(7));
-        assertThat(Statistics.calculateRank(winningLotto, lottoTicket)).isEqualTo(rankDetails);
+        assertThat(Statistics.calculateRank(winningLotto, lottoTicket)).isEqualTo(winningDetails);
     }
 
     @DisplayName("당첨 내역을 기반으로 수익률을 알 수 있다.")
     @ParameterizedTest
     @MethodSource("profitData")
-    void calculateProfitRate(Map<Rank, Integer> rankDetails, int money, String profitRate) {
-        assertThat(Statistics.calculateProfitRate(rankDetails, money)).isEqualTo(profitRate);
+    void calculateProfitRate(Map<Rank, Integer> winningDetails, int money, String profitRate) {
+        assertThat(Statistics.calculateProfitRate(winningDetails, money)).isEqualTo(profitRate);
     }
 
-    static Stream<Arguments> rankDetailsData() {
+    static Stream<Arguments> winningDetailsData() {
         return Stream.of(
                 arguments(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                                 new Lotto(List.of(1, 2, 3, 4, 5, 7)),

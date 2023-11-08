@@ -3,6 +3,8 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,5 +35,21 @@ public class TicketAmountTest {
         int ticketCount = 8;
 
         assertEquals(ticketCount, ticketAmount.calculateTicketAmount());
+    }
+
+    @DisplayName("수익률을 계산한다.")
+    @Test
+    void createRateOfReturn() {
+        List<LottoRanking> lottoRank = new ArrayList<>();
+        lottoRank.add(LottoRanking.valueOf(4, false));
+        lottoRank.add(LottoRanking.valueOf(5, true));
+
+        String input = "8000";
+        TicketAmount ticketAmount = new TicketAmount(input);
+        Result lottoResult = new Result(lottoRank);
+        int totalPrize = 30_050_000;
+
+        double rateOfReturn = (double) totalPrize / Integer.parseInt(input) * 100;
+        assertEquals(rateOfReturn, ticketAmount.calculateRateOfReturn(lottoResult));
     }
 }

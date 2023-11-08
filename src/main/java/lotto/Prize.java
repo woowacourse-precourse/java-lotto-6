@@ -4,7 +4,7 @@ package lotto;
 import java.util.List;
 
 public class Prize {
-    private int totalPrize = 0;
+    private double totalPrize = 0;
     private int[] winningCount = new int[6];
     private double totalReturn = 0;
     private int money = 0;
@@ -18,7 +18,7 @@ public class Prize {
             countWinningLotto(rank.toString());
         }
 
-        this.totalReturn = this.calculateReturn();
+        this.totalReturn = calculateReturn();
     }
 
     private int getPrize(String rank){
@@ -61,7 +61,7 @@ public class Prize {
     }
 
     public double calculateReturn(){
-        return  (this.totalPrize - this.money) / this.money * 100;
+        return  100 - ((this.money - this.totalPrize) / this.money * 100);
     }
 
     private static String matchMoney(int rank){
@@ -76,13 +76,12 @@ public class Prize {
     }
 
     public void printResult(){
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
 
         for(int rank=1; rank < 6;rank++){
-            if(winningCount[rank] != 0){
-                System.out.println((rank+2)+"개 일치 ("+matchMoney(rank)+"원) - "+winningCount[rank]+" 개");
-            }
+            System.out.println((rank+2)+"개 일치 ("+matchMoney(rank)+"원) - "+winningCount[rank]+" 개");
         }
 
         System.out.println("총 수익률은 " + this.totalReturn +"%입니다.");

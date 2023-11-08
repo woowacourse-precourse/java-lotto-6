@@ -16,8 +16,8 @@ public class BonusNumber {
         this.bonusNumber = inputNumber;
     }
 
-    public static void validateDuplicate(List<Integer> winningNumbers, int number) {
-        if (winningNumbers.contains(number)) {
+    public static void validateDuplicate(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ERROR_BONUS_DUPLICATE);
         }
     }

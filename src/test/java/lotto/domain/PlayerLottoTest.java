@@ -14,7 +14,7 @@ class PlayerLottoTest {
 
     @Nested
     @DisplayName("최종 성적을 계산하는 기능 테스트")
-    class CalculateResultTest {
+    class CalculateFinalGradeTest {
 
         @ParameterizedTest
         @MethodSource("lotto.helper.TestHelper#createPlayerLotto")
@@ -23,8 +23,9 @@ class PlayerLottoTest {
             // given
             Lotto winningNumber = new Lotto(List.of(1, 3, 2, 4, 7, 5));
             LottoNumber bonusNumber = new LottoNumber(27);
+            WinningInformation winningInformation = new WinningInformation(winningNumber, bonusNumber);
             // when
-            FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningNumber, bonusNumber);
+            FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningInformation);
             EnumMap<Rank, Integer> eachRankCounts = finalGrade.getEachRankCounts();
             // then
             assertEachRankCounts(eachRankCounts, 1, 1, 1, 1, 1, 0);
@@ -37,8 +38,9 @@ class PlayerLottoTest {
             // given
             Lotto winningNumber = new Lotto(List.of(1, 2, 3, 5, 27, 9));
             LottoNumber bonusNumber = new LottoNumber(7);
+            WinningInformation winningInformation = new WinningInformation(winningNumber, bonusNumber);
             // when
-            FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningNumber, bonusNumber);
+            FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningInformation);
             EnumMap<Rank, Integer> eachRankCounts = finalGrade.getEachRankCounts();
             System.out.println(eachRankCounts);
             // then
@@ -46,7 +48,7 @@ class PlayerLottoTest {
         }
 
         @ParameterizedTest
-        @CsvSource(value = {"1,2,3,4,5,6:1,2,3,4,5,6:6",
+        @CsvSource(value = {"1,2,3,4,5,6:1,2,3,4,5,6:7",
                 "11,12,13,14,15,16:16,15,14,13,12,11:23"}, delimiter = ':')
         @DisplayName("1등 테스트 - 6개 일치, 보너스 볼 일치 여부 상관 없음")
         void firstRankWhetherBonusMatchOrNot(String playerLottoInput, String winningNumberInput, int bonusNumberInput) {
@@ -54,8 +56,9 @@ class PlayerLottoTest {
             PlayerLotto playerLotto = new PlayerLotto(List.of(new Lotto(TestHelper.parser(playerLottoInput))));
             Lotto winningNumber = new Lotto(TestHelper.parser(winningNumberInput));
             LottoNumber bonusNumber = new LottoNumber(bonusNumberInput);
+            WinningInformation winningInformation = new WinningInformation(winningNumber, bonusNumber);
             // when
-            FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningNumber, bonusNumber);
+            FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningInformation);
             EnumMap<Rank, Integer> eachRankCounts = finalGrade.getEachRankCounts();
             // then
             assertEachRankCounts(eachRankCounts, 1, 0, 0, 0, 0, 0);
@@ -70,8 +73,9 @@ class PlayerLottoTest {
             PlayerLotto playerLotto = new PlayerLotto(List.of(new Lotto(TestHelper.parser(playerLottoInput))));
             Lotto winningNumber = new Lotto(TestHelper.parser(winningNumberInput));
             LottoNumber bonusNumber = new LottoNumber(bonusNumberInput);
+            WinningInformation winningInformation = new WinningInformation(winningNumber, bonusNumber);
             // when
-            FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningNumber, bonusNumber);
+            FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningInformation);
             EnumMap<Rank, Integer> eachRankCounts = finalGrade.getEachRankCounts();
             // then
             assertEachRankCounts(eachRankCounts, 0, 1, 0, 0, 0, 0);
@@ -87,8 +91,9 @@ class PlayerLottoTest {
             PlayerLotto playerLotto = new PlayerLotto(List.of(new Lotto(TestHelper.parser(playerLottoInput))));
             Lotto winningNumber = new Lotto(TestHelper.parser(winningNumberInput));
             LottoNumber bonusNumber = new LottoNumber(bonusNumberInput);
+            WinningInformation winningInformation = new WinningInformation(winningNumber, bonusNumber);
             // when
-            FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningNumber, bonusNumber);
+            FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningInformation);
             EnumMap<Rank, Integer> eachRankCounts = finalGrade.getEachRankCounts();
             // then
             assertEachRankCounts(eachRankCounts, 0, 0, 1, 0, 0, 0);
@@ -103,8 +108,9 @@ class PlayerLottoTest {
             PlayerLotto playerLotto = new PlayerLotto(List.of(new Lotto(TestHelper.parser(playerLottoInput))));
             Lotto winningNumber = new Lotto(TestHelper.parser(winningNumberInput));
             LottoNumber bonusNumber = new LottoNumber(bonusNumberInput);
+            WinningInformation winningInformation = new WinningInformation(winningNumber, bonusNumber);
             // when
-            FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningNumber, bonusNumber);
+            FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningInformation);
             EnumMap<Rank, Integer> eachRankCounts = finalGrade.getEachRankCounts();
             // then
             assertEachRankCounts(eachRankCounts, 0, 0, 0, 1, 0, 0);
@@ -119,8 +125,9 @@ class PlayerLottoTest {
             PlayerLotto playerLotto = new PlayerLotto(List.of(new Lotto(TestHelper.parser(playerLottoInput))));
             Lotto winningNumber = new Lotto(TestHelper.parser(winningNumberInput));
             LottoNumber bonusNumber = new LottoNumber(bonusNumberInput);
+            WinningInformation winningInformation = new WinningInformation(winningNumber, bonusNumber);
             // when
-            FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningNumber, bonusNumber);
+            FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningInformation);
             EnumMap<Rank, Integer> eachRankCounts = finalGrade.getEachRankCounts();
             // then
             assertEachRankCounts(eachRankCounts, 0, 0, 0, 0, 1, 0);
@@ -144,8 +151,9 @@ class PlayerLottoTest {
             PlayerLotto playerLotto = new PlayerLotto(List.of(new Lotto(TestHelper.parser(playerLottoInput))));
             Lotto winningNumber = new Lotto(TestHelper.parser(winningNumberInput));
             LottoNumber bonusNumber = new LottoNumber(bonusNumberInput);
+            WinningInformation winningInformation = new WinningInformation(winningNumber, bonusNumber);
             // when
-            FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningNumber, bonusNumber);
+            FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningInformation);
             EnumMap<Rank, Integer> eachRankCounts = finalGrade.getEachRankCounts();
             // then
             assertEachRankCounts(eachRankCounts, 0, 0, 0, 0, 0, 1);

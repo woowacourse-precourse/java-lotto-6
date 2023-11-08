@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import lotto.service.Service;
+import lotto.utils.Utils;
 import lotto.validation.Validation;
 
 public class Buyer {
@@ -60,7 +61,7 @@ public class Buyer {
 	public double getYield() {
 		double yield = 0;
 		double profitRate = (double) getTotalPrize() / purchaseAmount;
-		yield = profitRate * PERCENT;
+		yield = Utils.rounding(profitRate * PERCENT);
 		return yield;
 	}
 	

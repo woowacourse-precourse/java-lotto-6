@@ -4,8 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import lotto.utils.Utils;
-
 public class Validation {
 	
     public static void validateDistinctedNumbers(List<Integer> numbers) {

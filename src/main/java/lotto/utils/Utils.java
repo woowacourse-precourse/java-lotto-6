@@ -11,6 +11,7 @@ public class Utils {
 	
 	private static final int SAME = 1;
 	private static final int NOT_SAME = 0;
+	private static final double ROUNT_ONE = 10.0;
 	
 	public static void sortListAscendingOrder(List<Integer> numbers) {
 		numbers.sort(null);
@@ -48,6 +49,11 @@ public class Utils {
 			count += countIfSame(number, list2);
 		}
 		return count;
+	}
+	
+	public static double rounding(double number) {
+		double roundedNumber = Math.round(number*ROUNT_ONE) / ROUNT_ONE ;
+		return roundedNumber;
 	}
 
 }

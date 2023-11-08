@@ -11,13 +11,6 @@ public class Winning extends LottoRule {
     private List<Integer> numbers;
     private int bonusNumber;
 
-    public Winning() {
-    }
-
-    public Winning(List<Integer> numbers) {
-        this.numbers = numbers;
-    }
-
     public Map<Prize, Integer> calcTotalPrize(List<Lotto> lottos) {
         Map<Prize, Integer> totalPrize = Prize.initTotalPrizeMap();
 

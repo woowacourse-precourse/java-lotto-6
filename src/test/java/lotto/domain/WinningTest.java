@@ -15,7 +15,8 @@ class WinningTest {
 
     @BeforeEach
     void setUp() {
-        winning = new Winning(List.of(1, 2, 3, 4, 5, 6));
+        winning = new Winning();
+        winning.setNumbers(List.of(1, 2, 3, 4, 5, 6));
     }
 
     @DisplayName("당첨 번호를 저장한다.")

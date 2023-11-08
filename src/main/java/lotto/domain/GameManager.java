@@ -28,7 +28,7 @@ public class GameManager {
         for (int i = 0; i < user.getPurchaseCount(); i++) {
             final int matchedCount = winning.getMatchedCount(user.getLottoFromIndex(i));
             final boolean containBonusNumber = winning.containBonusNumber(user.getLottoFromIndex(i));
-            rewards.add(Reward.getInstance(containBonusNumber, matchedCount));   // 메서드명 변경
+            rewards.add(Reward.getFromMatchingResult(containBonusNumber, matchedCount));   // 메서드명 변경
         }
 
         return new Rewards(rewards);

@@ -34,7 +34,7 @@ public enum Reward {
                 .toList();
     }
 
-    public static Reward getInstance(final boolean bonusNumberMatched, final int matchedCount) {
+    public static Reward getFromMatchingResult(final boolean bonusNumberMatched, final int matchedCount) {
         if (matchedCount < LAST_PLACE.matchedCount) {
             return NONE;
         }

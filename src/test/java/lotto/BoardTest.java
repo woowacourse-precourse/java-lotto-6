@@ -1,4 +1,4 @@
-package Board;
+package lotto;
 
 import Domain.Board.Board;
 import Domain.lotto.LottoOutcome;

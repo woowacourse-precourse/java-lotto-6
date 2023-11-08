@@ -1,4 +1,4 @@
-package Market;
+package lotto;
 
 import Domain.Market.LotteryMarket;
 import camp.nextstep.edu.missionutils.Randoms;

@@ -6,7 +6,6 @@ import lotto.domain.WinningResult;
 import java.util.List;
 import java.util.Map;
 
-
 public class OutputView {
 
     public void printLottoCount(int lottoAmount) {
@@ -29,7 +28,7 @@ public class OutputView {
     }
 
     public void printCalculateProfit(double profitRate) {
-        System.out.println("총 수익률은 " + profitRate + "% 입니다.");
+        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
     }
 
 }

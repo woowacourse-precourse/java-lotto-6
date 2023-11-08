@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
-import lotto.domain.WinningCombination;
-import lotto.domain.WinningLottoNumbers;
+import lotto.domain.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.BOOLEAN;
 
 class StatisticsGeneratorTest {
     private final StatisticsGenerator statisticsGenerator = new StatisticsGenerator();
@@ -20,6 +18,7 @@ class StatisticsGeneratorTest {
     void matchesNoneTest() {
         int budget = 1000;
         int bonus = 7;
+        BonusNumber bonusNumber = new BonusNumber(bonus);
         Map<String, Integer> statisticsMatchesCounts = Map.of(
                 "matchesThree",0,
                 "matchesFour",0,
@@ -32,7 +31,7 @@ class StatisticsGeneratorTest {
         lottos.addLotto(new Lotto(List.of(1,8,10,15,20,25))); //1
         lottos.addLotto(new Lotto(List.of(1,5,10,15,20,25))); //2
         WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers("1,2,3,11,22,33");
-        WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonus);
+        WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonusNumber);
 
         assertThat(statisticsGenerator.generateMatchesCount(lottos,winningCombination))
                 .isEqualTo(statisticsMatchesCounts);
@@ -43,6 +42,7 @@ class StatisticsGeneratorTest {
     void matchesNoneAndBonusTest() {
         int budget = 1000;
         int bonus = 7;
+        BonusNumber bonusNumber = new BonusNumber(bonus);
         Map<String, Integer> statisticsMatchesCounts = Map.of(
                 "matchesThree",0,
                 "matchesFour",0,
@@ -55,7 +55,7 @@ class StatisticsGeneratorTest {
         lottos.addLotto(new Lotto(List.of(1,8,10,15,20,7))); //1
         lottos.addLotto(new Lotto(List.of(1,5,10,15,20,7))); //2
         WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers("1,2,3,11,22,33");
-        WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonus);
+        WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonusNumber);
 
         assertThat(statisticsGenerator.generateMatchesCount(lottos,winningCombination))
                 .isEqualTo(statisticsMatchesCounts);
@@ -66,6 +66,7 @@ class StatisticsGeneratorTest {
     void matchesThreeTest() {
         int budget = 1000;
         int bonus = 7;
+        BonusNumber bonusNumber = new BonusNumber(bonus);
         Map<String, Integer> statisticsMatchesCounts = Map.of(
                 "matchesThree",1,
                 "matchesFour",0,
@@ -76,7 +77,7 @@ class StatisticsGeneratorTest {
         Lottos lottos = new Lottos();
         lottos.addLotto(new Lotto(List.of(1,2,3,4,5,6))); //3
         WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers("1,2,3,11,22,33");
-        WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonus);
+        WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonusNumber);
 
         assertThat(statisticsGenerator.generateMatchesCount(lottos,winningCombination))
                 .isEqualTo(statisticsMatchesCounts);
@@ -87,6 +88,7 @@ class StatisticsGeneratorTest {
     void matchesFourTest() {
         int budget = 1000;
         int bonus = 7;
+        BonusNumber bonusNumber = new BonusNumber(bonus);
         Map<String, Integer> statisticsMatchesCounts = Map.of(
                 "matchesThree",0,
                 "matchesFour",1,
@@ -97,7 +99,7 @@ class StatisticsGeneratorTest {
         Lottos lottos = new Lottos();
         lottos.addLotto(new Lotto(List.of(1,2,3,11,12,13))); //4
         WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers("1,2,3,11,22,33");
-        WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonus);
+        WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonusNumber);
 
         assertThat(statisticsGenerator.generateMatchesCount(lottos,winningCombination))
                 .isEqualTo(statisticsMatchesCounts);
@@ -108,6 +110,7 @@ class StatisticsGeneratorTest {
     void matchesFiveTest() {
         int budget = 1000;
         int bonus = 7;
+        BonusNumber bonusNumber = new BonusNumber(bonus);
         Map<String, Integer> statisticsMatchesCounts = Map.of(
                 "matchesThree",0,
                 "matchesFour",0,
@@ -118,7 +121,7 @@ class StatisticsGeneratorTest {
         Lottos lottos = new Lottos();
         lottos.addLotto(new Lotto(List.of(1,2,3,11,22,44))); //5
         WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers("1,2,3,11,22,33");
-        WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonus);
+        WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonusNumber);
 
         assertThat(statisticsGenerator.generateMatchesCount(lottos,winningCombination))
                 .isEqualTo(statisticsMatchesCounts);
@@ -129,6 +132,7 @@ class StatisticsGeneratorTest {
     void matchesFiveAndBonusTest() {
         int budget = 1000;
         int bonus = 7;
+        BonusNumber bonusNumber = new BonusNumber(bonus);
         Map<String, Integer> statisticsMatchesCounts = Map.of(
                 "matchesThree",0,
                 "matchesFour",0,
@@ -139,7 +143,7 @@ class StatisticsGeneratorTest {
         Lottos lottos = new Lottos();
         lottos.addLotto(new Lotto(List.of(1,2,3,11,22,7))); //5 + 보너스
         WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers("1,2,3,11,22,33");
-        WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonus);
+        WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonusNumber);
 
         assertThat(statisticsGenerator.generateMatchesCount(lottos,winningCombination))
                 .isEqualTo(statisticsMatchesCounts);
@@ -149,7 +153,7 @@ class StatisticsGeneratorTest {
     @Test
     void matchesSixTest() {
         int bonus = 7;
-
+        BonusNumber bonusNumber = new BonusNumber(bonus);
         Map<String, Integer> statisticsMatchesCounts = Map.of(
                 "matchesThree",0,
                 "matchesFour",0,
@@ -160,7 +164,7 @@ class StatisticsGeneratorTest {
         Lottos lottos = new Lottos();
         lottos.addLotto(new Lotto(List.of(1,2,3,11,22,33)));
         WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers("1,2,3,11,22,33");
-        WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonus);
+        WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonusNumber);
 
         assertThat(statisticsGenerator.generateMatchesCount(lottos,winningCombination))
                 .isEqualTo(statisticsMatchesCounts);

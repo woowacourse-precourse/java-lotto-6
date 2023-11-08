@@ -34,7 +34,8 @@ public class LottoSystem {
         inputView.displayLottos(lottos.getSize(),lottos.getLottosForDisplay());
 
         WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers(inputView.InputWinningNumbers());
-        winningCombination = new WinningCombination(winningLottoNumbers,Integer.parseInt(inputView.InputBonusNumber()));
+        BonusNumber bonusNumber = new BonusNumber(Integer.parseInt(inputView.InputBonusNumber()));
+        winningCombination = new WinningCombination(winningLottoNumbers,bonusNumber);
     }
 
     private void ResultSystem(){

@@ -7,9 +7,9 @@ import java.util.List;
 
 public class WinningCombination {
     private final WinningLottoNumbers winningLottoNumbers;
-    private final int bonusNumeber;
+    private final BonusNumber bonusNumeber;
 
-    public WinningCombination(WinningLottoNumbers winningLottoNumbers, int bonusNumeber){
+    public WinningCombination(WinningLottoNumbers winningLottoNumbers, BonusNumber bonusNumeber){
         WinningCombinationValidator.validateWinningCombination(winningLottoNumbers, bonusNumeber);
         this.winningLottoNumbers = winningLottoNumbers;
         this.bonusNumeber= bonusNumeber;
@@ -18,8 +18,8 @@ public class WinningCombination {
     public List<Integer> getWinningNumbers() {
         return winningLottoNumbers.getNumbers();
     }
-
     public int getBonusNumber(){
-        return bonusNumeber;
+        return bonusNumeber.getBonusNumber();
     }
+
 }

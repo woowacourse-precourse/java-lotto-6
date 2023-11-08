@@ -1,9 +1,13 @@
 package lotto.util;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class LottoNumberValidator {
 	public void validateLottoNumber(String input) {
 		validateNumberCount(input);
 		validateNumberRange(input);
+		validateDuplicatedNumber(input);
 	}
 
 	private void validateNumberCount(String input) {
@@ -17,6 +21,16 @@ public class LottoNumberValidator {
 			if (Integer.parseInt(number) < Constant.LOTTO_MIN_NUMBER || Integer.parseInt(number) > Constant.LOTTO_MAX_NUMBER) {
 				throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUM_OUT_OF_RANGE_MESSAGE);
 			}
+		}
+	}
+
+	private void validateDuplicatedNumber(String input) {
+		int inputNumberCount = input.split(",").length;
+		int inputNumberSetCount = Arrays.stream(input.split(","))
+				.collect(Collectors.toSet())
+				.size();
+		if (inputNumberCount != inputNumberSetCount) {
+			throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUM_DUPLICATED_MESSAGE);
 		}
 	}
 }

@@ -28,4 +28,8 @@ public enum WinningCriteria {
     public int getPrizeAmount() {
         return prizeAmount;
     }
+
+    public boolean matchNumberCount(int matchingNumberCount) {
+        return this.matchingNumberCount.equals(matchingNumberCount);
+    }
 }

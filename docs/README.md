@@ -7,7 +7,13 @@
 - [ ] Lottos
   - [ ] 로또 발행 함수
   - [ ] 로또 하나 get 함수
-- [ ] ResultLotto : 로또 당첨 내역 담는 클래스
+- [ ] ResultLotto : 로또 당첨 내용 가지고 있는 enum
+- [ ] ResultLottos : 로또 당첨 내역 담는 클래스
+- [ ] Amount : 로또 살 돈 변수 가진 클래스
+  - [ ] 1000의 배수
+  - [ ] 숫자인지 확인
+- [ ] WinningLotto : 당첨 로또 와 보너스 숫자 가진 클래스 및 검증 함수
+
 ### View
 - [ ] InputView
     - [ ] 로또 구입 금액 입력 받기
@@ -22,10 +28,7 @@
 - [ ] 당첨 번호 일치 개수 함수
 - [ ] 보너스 번호 일치 여부
 - [ ] 결과 담는 클래스에 옮겨 담는 함수
-### Validation
-- [ ] 로또 구입 금액 1000원 단위 확인
 
 ### Message
 - [ ] InputMessage
 - [ ] OutputMessage
-- [ ] ErrorMessage

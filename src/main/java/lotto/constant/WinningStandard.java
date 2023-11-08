@@ -3,15 +3,15 @@ package lotto.constant;
 import java.util.Arrays;
 
 public enum WinningStandard {
-    FIRST_PLACE(6, 0),
-    SECOND_PLACE(5, 1),
-    THIRD_PLACE(5, 0),
-    FOURTH_PLACE(4, 0),
-    FIFTH_PLACE(3, 0),
-    NO_PLACE(0, 0);
+    FIRST_PLACE(6, false),
+    SECOND_PLACE(6, true),
+    THIRD_PLACE(5, false),
+    FOURTH_PLACE(4, false),
+    FIFTH_PLACE(4, false),
+    NO_PLACE(4, false);
 
     private int matchCount;
-    private int bonusCount;
+    private boolean isBonusNumber;
 
     public static WinningStandard getMatchType(int matchCount, int bonusCount){
         return Arrays.stream(WinningStandard.values())
@@ -19,8 +19,8 @@ public enum WinningStandard {
                 .orElse(NO_PLACE);
     }
 
-    WinningStandard(int matchCount, int bonusCount) {
+    WinningStandard(int matchCount, boolean isBonusNumber) {
         this.matchCount = matchCount;
-        this.bonusCount = bonusCount;
+        this.isBonusNumber = isBonusNumber;
     }
 }

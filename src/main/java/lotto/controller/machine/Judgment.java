@@ -26,8 +26,10 @@ public class Judgment {
     private String findRank(Lotto lotto, WinningNumber winningNumber){
         int matchCount = winningNumber.calcMatchCount(lotto);
         int bonussCount = winningNumber.calcBonussMatchCount(lotto);
+        System.out.println(lotto.toString());
+        System.out.println(matchCount + "/" + bonussCount);
 
-        return String.valueOf(WinningStandard.getMatchType(matchCount,bonussCount));
+        return String.valueOf(WinningStandard.getMatchType(matchCount, bonussCount));
     }
 
     public void judge(LottoTicket lottoTicket) {
@@ -39,6 +41,7 @@ public class Judgment {
 
         for (Lotto lotto: lottos) {
             String rank = findRank(lotto, winningNumber);
+            System.out.println(rank);
             lottoCount = winningStatistics.get(rank) + 1;
 
             winningStatistics.put(rank, lottoCount);

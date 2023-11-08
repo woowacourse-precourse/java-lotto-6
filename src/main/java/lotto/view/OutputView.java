@@ -24,13 +24,10 @@ public class OutputView {
     }
 
     private String formatStatistics(Rank rank, int count){
-        String standard = rank.getStandard();
-        int money = rank.getMoney();
-
         return String.format(
                 WINNING_STATISTICS_FORMAT,
-                standard,
-                money,
+                rank.getStandard(),
+                rank.getMoney(),
                 count);
     }
 

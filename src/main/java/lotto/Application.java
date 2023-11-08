@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.constant.Rank;
 import lotto.controller.LottoMachine;
 
 public class Application {

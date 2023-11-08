@@ -19,7 +19,10 @@ public class LottoMachine {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < numberOfLottos; i++) {
-            lottos.add(new Lotto(RandMachine.generateRandomNumbers()));
+            List<Integer> numbers = RandMachine.generateRandomNumbers();
+            Collections.sort(numbers);
+            Lotto lotto = new Lotto(numbers);
+            lottos.add(lotto);
         }
         return lottos;
     }

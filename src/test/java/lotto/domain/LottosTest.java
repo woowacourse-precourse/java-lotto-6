@@ -64,6 +64,5 @@ class LottosTest {
 
         // then
         assertThat(lottoRankings).isEqualTo(expectedRankings);
-
     }
 }

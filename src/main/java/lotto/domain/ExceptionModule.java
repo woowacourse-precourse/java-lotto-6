@@ -25,15 +25,9 @@ public class ExceptionModule {
         }
     }
 
-    public static void checkWinningNumDub(List<Integer> winningNum) throws IllegalArgumentException{
+    public static void checkWinningNumDubAndSize(List<Integer> winningNum) throws IllegalArgumentException{
         if (new HashSet<>(winningNum).size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않는 6자리 숫자여야 합니다.");
-        }
-    }
-
-    public static void checkWinningNumSize(List<Integer> winningNum) throws IllegalArgumentException{
-        if (winningNum.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리의 숫자여야 합니다.");
         }
     }
 

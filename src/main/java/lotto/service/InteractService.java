@@ -3,8 +3,7 @@ package lotto.service;
 import static lotto.domain.ExceptionModule.checkNumBoundary;
 import static lotto.domain.ExceptionModule.checkParseIntException;
 import static lotto.domain.ExceptionModule.checkThousandException;
-import static lotto.domain.ExceptionModule.checkWinningNumDub;
-import static lotto.domain.ExceptionModule.checkWinningNumSize;
+import static lotto.domain.ExceptionModule.checkWinningNumDubAndSize;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
@@ -32,8 +31,7 @@ public class InteractService {
             System.out.println("당첨 번호를 입력해 주세요.");
             try {
                 List<Integer> winningNum = splitWinningNum();
-                checkWinningNumDub(winningNum);
-                checkWinningNumSize(winningNum);
+                checkWinningNumDubAndSize(winningNum);
                 return winningNum;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

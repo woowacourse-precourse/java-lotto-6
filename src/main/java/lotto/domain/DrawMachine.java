@@ -19,7 +19,7 @@ public class DrawMachine {
         return new DrawMachine(winningLottoNumbers);
     }
 
-    private DrawResult draw(Lotto userLotto) {
+    private DrawResult drawEach(Lotto userLotto) {
         int matchingCount = winningLottoNumbers.getMatchingCount(userLotto);
         boolean containBonusNumber = winningLottoNumbers.containBonusNumber(userLotto);
         return getResult(matchingCount, containBonusNumber);
@@ -51,10 +51,10 @@ public class DrawMachine {
         return statistic;
     }
 
-    public DrawLottoDto drawAllTicket(Lottos lottos) {
+    public DrawLottoDto drawAll(Lottos lottos) {
         Map<DrawResult, Integer> statistic = createStatistic();
-        for (Lotto lottoTicket : lottos.getLottoTickets()) {
-            DrawResult drawResult = draw(lottoTicket);
+        for (Lotto userLotto : lottos.getLottoTickets()) {
+            DrawResult drawResult = drawEach(userLotto);
             Integer count = statistic.get(drawResult);
             statistic.replace(drawResult, count + 1);
         }

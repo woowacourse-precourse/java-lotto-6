@@ -37,7 +37,7 @@ public class GameController {
         WinningLottoNumbersDto winningLottoNumbersDto = inputView.getWinningLottoNumbers();
         WinningLottoNumbers winningLottoNumbers = WinningLottoNumbers.from(winningLottoNumbersDto);
         DrawMachine drawMachine = DrawMachine.from(winningLottoNumbers);
-        DrawLottoDto drawLottoDto = drawMachine.drawAllTicket(lottos);
+        DrawLottoDto drawLottoDto = drawMachine.drawAll(lottos);
         outputView.printDrawResult(drawLottoDto);
     }
 }

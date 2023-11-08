@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import lotto.enums.ConstVariable;
+import lotto.enums.ErrorMessage;
 
 public class ValidationUtil {
 
@@ -35,39 +36,39 @@ public class ValidationUtil {
                 .findFirst();
 
         if (result.isPresent()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER.getValue());
         }
     }
 
     public static void isValidCount(List<Integer> numbers) {
         if (numbers.size() != ConstVariable.LOTTO_COUNT.getValue()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_COUNT.getValue());
         }
     }
 
     public static void hasDistinctNumbers(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
         if (set.size() != numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.HAVE_DUPLICATED_NUMBER.getValue());
         }
     }
 
     public static void isValidBonusNumber(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER.getValue());
         }
     }
 
     public static void isValidAmount(String input) {
         String str = input.trim();
         if (str.isEmpty() || !str.matches("[0-9]*") || Integer.parseInt(str) % ConstVariable.STANDARD.getValue() != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_INPUT.getValue());
         }
     }
 
     private static void makeNumbers(List<Integer> numbers, String str) {
         if (str.isEmpty() || str.matches("[0-9]*")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WIN_NUMBERS_INPUT.getValue());
         }
         numbers.add(Integer.parseInt(str));
     }

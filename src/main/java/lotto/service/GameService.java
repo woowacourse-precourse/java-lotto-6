@@ -13,29 +13,28 @@ import lotto.domain.winning.WinningStatistics;
 public class GameService {
     private final NumbersCreator numbersCreator;
     private Lottos userLottos;
+    Money purchaseMoney;
 
     public GameService(NumbersCreator numbersCreator) {
         this.numbersCreator = numbersCreator;
     }
 
-    public List<List<Integer>> purchaseLottos(Money purchaseMoney) {
+    public List<List<Integer>> purchaseLottos(int purchaseMoney) {
+        this.purchaseMoney = new Money(purchaseMoney);
         LottoMachine lottoMachine = new LottoMachine(numbersCreator);
-        userLottos = lottoMachine.purchaseLotto(purchaseMoney);
+        userLottos = lottoMachine.purchaseLotto(this.purchaseMoney);
 
         return userLottos.getLottos().stream()
                 .map(Lotto::getSortedNumbers)
                 .toList();
     }
 
-    public WinningStatistics determineWinningStatistics(List<Integer> drawNumbers, int bonusNumber) {
-        WinningNumbers winningNumbers = createWinningNumbers(drawNumbers, bonusNumber);
+    public WinningStatistics determineWinningStatistics(Lotto winningLotto, LottoNumber bonusLottoNumber) {
+        WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusLottoNumber);
         return WinningStatistics.of(winningNumbers, userLottos);
     }
 
-    private WinningNumbers createWinningNumbers(List<Integer> drawNumbers, int bonusNumber) {
-        Lotto winningLotto = new Lotto(drawNumbers);
-        LottoNumber bonusLottoNumber = LottoNumber.valueOf(bonusNumber);
-
-        return new WinningNumbers(winningLotto, bonusLottoNumber);
+    public double getRateOfReturn(Money totalWinningMoney) {
+        return totalWinningMoney.getRatio(purchaseMoney);
     }
 }

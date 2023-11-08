@@ -12,6 +12,14 @@ public class LottoResult {
         rateOfReturn = 0;
     }
 
+    public int[] getRankCount() {
+        return rankCount;
+    }
+
+    public double getRateOfReturn() {
+        return rateOfReturn;
+    }
+
     public void calculateRateOfReturn(List<Lotto> lottos, Lotto winningNumbers, int bonusNumber, int money) {
         int profit = totalProfit(lottos, winningNumbers, bonusNumber);
         rateOfReturn = ((double) profit / money) * 100;     // 수익률(%) = (순투자수익/투자 비용) * 100%

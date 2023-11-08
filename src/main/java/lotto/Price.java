@@ -13,7 +13,6 @@ public class Price {
 
     public Price(String input) {
         validate(input);
-        this.price = price;
     }
 
     private void validate(String input) {

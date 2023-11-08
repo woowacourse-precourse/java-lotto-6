@@ -1,5 +1,6 @@
 package view;
 
+import dto.LottoStatisticsResult;
 import dto.LottoTickets;
 import java.util.List;
 
@@ -29,5 +30,9 @@ public class View {
     public int requireBonusLottoNumber() {
         outputView.requestBonusLottoNumber();
         return inputView.enterBonusLottoNumber();
+    }
+
+    public void showLottoStatisticsResult(LottoStatisticsResult lottoStatisticsResult) {
+        outputView.printLottoStatisticsResult(lottoStatisticsResult);
     }
 }

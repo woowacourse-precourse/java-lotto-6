@@ -41,7 +41,6 @@ public class LottoController {
 
     private void calculateWinningPrice(UserLotto userLotto, WinningLotto winningLotto) {
         List<Lotto> userLottos = userLotto.getLottos();
-        List<Integer> winningNumbers = winningLotto.getNumbers();
         userLottos.stream()
                 .forEach(uL -> countWinningPrice(userLotto, uL.getNumbers(), winningLotto.getNumbers(), winningLotto.getBonusNumber()));
     }

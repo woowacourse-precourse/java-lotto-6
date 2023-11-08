@@ -8,6 +8,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class WinningNumber {
     //상수(static final) 또는 클래스 변수
     private final List<Integer> winningNumbers;
+    private final static int THE_NUMBER_OF_WINNING_NUMBER = 6;
 
     //인스턴스 변수
 
@@ -19,6 +20,7 @@ public class WinningNumber {
     private List<Integer> createWinningNumber() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String winningNumber = readLine();
+        validateCount(winningNumber);
 
         List<Integer> result = new ArrayList<>();
         for (String s : winningNumber.split(",")) {
@@ -33,8 +35,10 @@ public class WinningNumber {
         return winningNumbers;
     }
 
-    private void validateCount() {
-        // 입력받은 당첨번호의 개수 확인
+    private void validateCount(String winningNumber) {
+        if (winningNumber.split(",").length != THE_NUMBER_OF_WINNING_NUMBER) {
+            throw new IllegalStateException("[ERROR] 당첨 번호 6개를 입력해주세요.");
+        }
     }
 
     private void isDuplicate(List<Integer> winningNumber) {

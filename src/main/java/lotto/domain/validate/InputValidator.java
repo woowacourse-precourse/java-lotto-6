@@ -18,6 +18,14 @@ public class InputValidator {
         integerNumbers.forEach(this::isInLottoNumberRange);
     }
 
+    public void validateBonusNumber(String input, List<Integer> lottoNumbers) {
+        int intInput = parseInt(input);
+        isInLottoNumberRange(intInput);
+        if (lottoNumbers.contains(intInput)) {
+            throw new IllegalArgumentException(InputException.NOT_DISTINCT_BONUS_NUMBER.getMessage());
+        }
+    }
+
     private int parseInt(String input) {
         int intInput;
         try {

@@ -9,11 +9,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BonusNumValidatorTest {
 
-    private static final String ERROR = "[ERROR]";
-    private static final String NOT_NUMBER_ERROR_MESSAGE = "숫자만 입력해 주세요.";
-    private static final String RANGE_OVER_MESSAGE = "1~45사이의 번호를 입력해 주세요.";
-    private static final String NULL_ERROR_MESSAGE = "보너스 번호를 입력해 주세요.";
-    private static final String DUPLICATE_ERROR_MESSAGE = "당첨 숫자들과 다른 숫자를 입력해 주세요.";
+    private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String NOT_NUMBER_ERROR_MESSAGE = " 숫자만 입력해 주세요.";
+    private static final String RANGE_OVER_MESSAGE = " 1~45사이의 번호를 입력해 주세요.";
+    private static final String NULL_ERROR_MESSAGE = " 보너스 번호를 입력해 주세요.";
+    private static final String DUPLICATE_ERROR_MESSAGE = " 당첨 숫자들과 다른 숫자를 입력해 주세요.";
     private final List<Integer> input = List.of(1, 2, 3, 4, 5, 6);
     private BonusNumValidator bonusNumValidator;
 
@@ -23,7 +23,7 @@ public class BonusNumValidatorTest {
         String bonusNum = "";
         assertThatThrownBy(() -> bonusNumValidator = new BonusNumValidator(bonusNum, input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR + NULL_ERROR_MESSAGE);
+                .hasMessageContaining(ERROR_MESSAGE + NULL_ERROR_MESSAGE);
     }
 
     @Test
@@ -32,7 +32,7 @@ public class BonusNumValidatorTest {
         String bonusNum = "asd";
         assertThatThrownBy(() -> bonusNumValidator = new BonusNumValidator(bonusNum, input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR + NOT_NUMBER_ERROR_MESSAGE);
+                .hasMessageContaining(ERROR_MESSAGE + NOT_NUMBER_ERROR_MESSAGE);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class BonusNumValidatorTest {
         String bonusNum = "49";
         assertThatThrownBy(() -> bonusNumValidator = new BonusNumValidator(bonusNum, input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR + RANGE_OVER_MESSAGE);
+                .hasMessageContaining(ERROR_MESSAGE + RANGE_OVER_MESSAGE);
     }
 
     @Test
@@ -50,6 +50,6 @@ public class BonusNumValidatorTest {
         String bonusNum = "6";
         assertThatThrownBy(() -> bonusNumValidator = new BonusNumValidator(bonusNum, input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR + DUPLICATE_ERROR_MESSAGE);
+                .hasMessageContaining(ERROR_MESSAGE + DUPLICATE_ERROR_MESSAGE);
     }
 }

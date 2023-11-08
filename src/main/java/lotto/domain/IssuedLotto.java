@@ -1,11 +1,11 @@
 package lotto.domain;
 
-import static lotto.service.Validator.*;
-
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static lotto.service.Validator.*;
 
 public class IssuedLotto {
 
@@ -25,7 +25,7 @@ public class IssuedLotto {
     }
 
     private List<Lotto> createLottos(String amountInput) {
-        int convertedAmount = Integer.parseInt(amountInput) % LottoConstants.THOUSAND.getValue();
+        int convertedAmount = Integer.parseInt(amountInput) / LottoConstants.THOUSAND.getValue();
         return getLottos(convertedAmount);
     }
 

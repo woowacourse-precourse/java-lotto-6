@@ -3,14 +3,17 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import static lotto.Utils.RandomNumber.generator;
 
 public class ComputerLotto {
     private final List<Lotto> computerLottos;
-    public ComputerLotto(int lottoAmount){
+
+    public ComputerLotto(int lottoAmount) {
         this.computerLottos = new ArrayList<>();
         generateComputerLottoNumbers(lottoAmount);
     }
+
     public void generateComputerLottoNumbers(int lottoAmount) {
         for (int i = 0; i < lottoAmount; i++) {
             List<Integer> computerNumbers = generator();
@@ -18,6 +21,13 @@ public class ComputerLotto {
         }
     }
 
+    public void printLottos() {
+        for (Lotto lotto : computerLottos) {
+            System.out.println(lotto.getNumbers());
+        }
+    }
 
-
+    public List<Lotto> getComputerLottos() {
+        return computerLottos;
+    }
 }

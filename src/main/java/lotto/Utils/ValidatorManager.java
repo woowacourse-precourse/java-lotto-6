@@ -28,9 +28,11 @@ public class ValidatorManager {
     }
 
     // 돈을 입력받았을 때 검증하는 메서드
-    public void validateAndParseMoneyManager(String input) {
+    public int validateAndParseMoneyManager(String input) {
         Validator.validateNotEmpty(input);
+        Validator.validateNotNumber(input);
         int money = Integer.parseInt(input.trim());
         Validator.moneyValidator(money);
+        return money;
     }
 }

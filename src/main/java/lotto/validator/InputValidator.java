@@ -21,6 +21,7 @@ public class InputValidator {
 
     public static void checkWinningLottoInput(String input) throws IllegalArgumentException {
         checkEmptyAndThrowException(input);
+        checkSpaceAndThrowException(input);
         checkLastIndexAndThrowException(input);
         List<Integer> numbers = StringUtils.parseLottoNumber(input);
         checkLottoLengthAndThrowException(numbers);

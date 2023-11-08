@@ -15,14 +15,24 @@ public class InputConsoleView implements InputView {
     @Override
     public String readOneNumber() {
         String input = Console.readLine();
-        validateOneNumber(input);
+        try {
+                validateOneNumber(input);
+        } catch (Exception e) {
+                System.out.println(e.getMessage());
+                readOneNumber();
+        }
         return input;
     }
 
     @Override
     public String readWinningNumbers() {
         String input = Console.readLine();
-        validateWinningNumbers(input);
+        try {
+            validateWinningNumbers(input);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            readWinningNumbers();
+        }
         return input;
     }
     private void validateOneNumber(String input) {

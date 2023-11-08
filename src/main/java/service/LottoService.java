@@ -7,8 +7,10 @@ import dto.Result;
 import model.Amount;
 import model.Bonus;
 import model.Lotto;
+import model.Reward;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +19,7 @@ public class LottoService {
     private static int count = 0;
     private static List<Lotto> lottos = new ArrayList<>();
     private static List<Result> results = new ArrayList<>();
+    private static EnumMap<Reward, Integer> reward = new EnumMap<>(Reward.class);
     private static LottoService instance = new LottoService();
     private LottoService(){}
 

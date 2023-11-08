@@ -46,15 +46,16 @@ public enum Rank {
 
     public String getRankMessage() {
         StringJoiner stringJoiner = new StringJoiner(EMPTY_SPACE);
-        String correctMessages = CORRECT_MESSAGE;
-
-        if (isMatchBonusNumber) {
-            correctMessages += BONUS_NUMBER_MESSAGE;
-        }
-
-        stringJoiner.add(String.format(correctMessages, matchCount));
+        stringJoiner.add(String.format(getRankInformationMessage(), matchCount));
         stringJoiner.add(rewardMessage);
 
         return stringJoiner.toString();
+    }
+
+    private String getRankInformationMessage() {
+        if (isMatchBonusNumber) {
+            return CORRECT_MESSAGE + BONUS_NUMBER_MESSAGE;
+        }
+        return CORRECT_MESSAGE;
     }
 }

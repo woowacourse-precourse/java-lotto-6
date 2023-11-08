@@ -40,4 +40,6 @@ public class OutputViewTest {
 
 		assertThat(output).contains("당첨 통계", "3개 일치 (5,000원) - 1개", "총 수익률은 62.5%입니다.");
 	}
+
+
 }

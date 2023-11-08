@@ -13,6 +13,7 @@ public class User {
 		this.lottos = lottos;
 	}
 
+	//User의 getMoney와 중복됨. 어떻게 하는것이 좋을까
 	public Money getMoney(){return this.pay;}
 	public List<Lotto> getLottos(){
 		return this.lottos;

@@ -42,21 +42,28 @@ public class OutputView {
 		for (Map.Entry<Prize, Integer> entry : prizes.entrySet()) {
 			Prize prize = entry.getKey();
 			int count = entry.getValue();
-			int matchCount = prize.getCountMatch();
-			boolean isMatchBonus = prize.getIsMatchBonus();
-			int money = prize.getPrize();
 
-			StringBuilder result = new StringBuilder();
-			result.append(formatMatchCount(matchCount));
-			if (isMatchBonus) {
-				result.append(formatMatchBonus());
-			}
-			result.append(formatMoney(money));
-			result.append(formatCount(count));
-
+			String result = formatPrizeResult(prize, count);
 			System.out.println(result);
 		}
 	}
+
+	private static String formatPrizeResult(Prize prize, int count) {
+		int matchCount = prize.getCountMatch();
+		int money = prize.getPrize();
+
+		String matchCountStr = formatMatchCount(matchCount);
+		String matchBonusStr = "";
+		String moneyStr = formatMoney(money);
+		String countStr = formatCount(count);
+
+		if (prize.getIsMatchBonus()) {
+			matchBonusStr += formatMatchBonus();
+		}
+
+		return matchCountStr + matchBonusStr + moneyStr + countStr;
+	}
+
 
 	private static void printProfitRate(double profitRate){
 		DecimalFormat df = new DecimalFormat("0.##");

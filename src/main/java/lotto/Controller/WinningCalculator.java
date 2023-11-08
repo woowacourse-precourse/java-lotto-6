@@ -7,6 +7,7 @@ import java.util.Map;
 
 import lotto.Enum.Prize;
 import lotto.Lotto;
+import lotto.Money;
 import lotto.WinningInfo;
 import lotto.WinningNumbers;
 
@@ -32,7 +33,8 @@ public class WinningCalculator {
 		return prizeMap;
 	}
 
-	public double calculateProfitRate(Map<Prize, Integer> prizes, int pay){
+	public double calculateProfitRate(Map<Prize, Integer> prizes, Money money){
+		int pay = money.getMoney();
 		int totalPrize = calculateTotalPrize(prizes);
 		double profitRate = ((double) totalPrize / pay) * 100;
 		profitRate = Math.round(profitRate * 100) / 100.0;

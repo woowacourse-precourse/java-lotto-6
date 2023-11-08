@@ -52,7 +52,7 @@ public class WinningCalculatorTest {
 	@DisplayName("수익률을 올바르게 계산한다.")
 	void testCalculateProfitRate() {
 		Map<Prize, Integer> prizes = Map.of(Prize.FIFTH, 1);
-		int pay = 8_000;
+		Money pay = new Money("8000");
 
 		double profitRate = winningCalculator.calculateProfitRate(prizes, pay);
 

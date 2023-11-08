@@ -17,34 +17,26 @@ public class Money {
 	}
 
 	public int getMoney(){
-		return money;
+		return this.money;
 	}
 
-	private int validate(String input) {
+	private void validate(String input) {
+		//숫자가 아닐 경우
 		if(!input.matches("\\d+")){
-			System.out.println("Hey1");
 			throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
 		}
+
 		int pay = Integer.parseInt(input);
 
-		if (!isPositiveInteger(pay)) {
-			System.out.println("Hey2");
-			throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
-		}
-
+		//1000으로 나누어 떨어지지 않을 경우
 		if (!isDivisibleBy1000(pay)) {
 			throw new IllegalArgumentException(ErrorMessage.NOT_DIVISIBLE_BY_1000.getMessage());
 		}
 
+		//1000보다 적은 값을 입력한 경우
 		if (isLessThan1000(pay)) {
 			throw new IllegalArgumentException(ErrorMessage.LESS_THAN_1000.getMessage());
 		}
-
-		return pay;
-	}
-
-	private boolean isPositiveInteger(int value) {
-		return value > 0;
 	}
 
 	private boolean isDivisibleBy1000(int value) {

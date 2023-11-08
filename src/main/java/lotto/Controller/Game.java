@@ -21,24 +21,29 @@ public class Game {
 		this.lottoGenerator = lottoGenerator;
 		this.winningCalculator = winningCalculator;
 	}
-	public void run(){
+	public void run() {
 		Money pay = makeMoneyWithInput();
+		User user = buyLottoTickets(pay);
+		WinningInfo winningInfo = determineWinningInfo();
+		givePrizes(winningInfo, user);
+	}
+
+	private User buyLottoTickets(Money pay) {
 		int lottoCount = pay.calculateAffordableLottoCount();
 		List<Lotto> lottos = lottoGenerator.makeLotto(lottoCount);
-
-		User user = new User(pay, lottos);
-
 		OutputView.printPurchasedMessage(lottoCount, lottos);
+		return new User(pay, lottos);
+	}
 
+	private WinningInfo determineWinningInfo() {
 		WinningNumbers winningNumbers = makeWinningNumbersWithInput();
 		BonusNumber bonusNumber = makeBonusNumberWithInput(winningNumbers);
+		return new WinningInfo(winningNumbers, bonusNumber);
+	}
 
-		WinningInfo winningInfo = new WinningInfo(winningNumbers, bonusNumber);
-
-		List<Lotto> userLotto = user.getLottos();
-		Map<Prize, Integer> prizes = winningCalculator.calculatePrizes(winningInfo, userLotto);
-		double profitRate = winningCalculator.calculateProfitRate(prizes, pay.getMoney());
-
+	private void givePrizes(WinningInfo winningInfo, User user){
+		Map<Prize, Integer> prizes = winningCalculator.calculatePrizes(winningInfo, user.getLottos());
+		double profitRate = winningCalculator.calculateProfitRate(prizes, user.getMoney());
 		OutputView.printResult(prizes, profitRate);
 	}
 
@@ -48,7 +53,6 @@ public class Game {
 				String payInput = InputView.getPayInput();
 				return new Money(payInput);
 			}catch(IllegalArgumentException e){
-				System.out.println("I'm here");
 				System.out.println(e.getMessage());
 			}
 		}

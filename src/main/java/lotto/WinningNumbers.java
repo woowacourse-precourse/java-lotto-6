@@ -43,12 +43,14 @@ public class WinningNumbers {
 	}
 
 	private void checkFormat(String input) {
+		//","로 구분하지 않은 경우
 		if (!input.contains(",")) {
 			throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_FORMAT.getMessage());
 		}
 	}
 
 	private void checkNumberOfNumbers(String[] splitedInputs) {
+		//로또 숫자의 개수를 충족하지 않은 경우
 		if (splitedInputs.length != LottoInfo.getNUMBER_COUNT()) {
 			throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_COUNT.getMessage());
 		}
@@ -60,10 +62,12 @@ public class WinningNumbers {
 		for (String value : splitedInputs) {
 			int number = parseNumber(value);
 
+			//로또 숫자의 범위를 넘어서는 경우
 			if (number < LottoInfo.getMIN_NUMBER() || number > LottoInfo.getMAX_NUMBER()) {
 				throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
 			}
 
+			//중복된 숫자가 존재하는 경우
 			if (uniqueNumbers.contains(number)) {
 				throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
 			}

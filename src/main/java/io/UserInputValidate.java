@@ -9,8 +9,9 @@ public class UserInputValidate {
     static final int maxLotteryNum = 45;
     static final int lotteryCost = 1000;
     static final int lotteryNumLength = 6;
+    static final int invalidInput = -1;
 
-    static int userMoneyAmount(String userMoney) {
+    public static int userMoneyAmount(String userMoney) {
         int userMoneyAmount;
         try {
             userMoneyAmount = Integer.parseInt(userMoney);
@@ -25,7 +26,7 @@ public class UserInputValidate {
         return userMoneyAmount;
     }
 
-    static List<String> winLotteryDuplicateAndLength(String winningLotteryInput) {
+    public static List<String> winLotteryDuplicateAndLength(String winningLotteryInput) {
         List<String> winningLottery = Arrays.asList(winningLotteryInput.split(","));
         Set<String> removeDuplicatedNum = new HashSet<>(winningLottery);
 
@@ -38,7 +39,7 @@ public class UserInputValidate {
         return winningLottery;
     }
 
-    static List<String> winLotteryRange(String winningLotteryInput) {
+    public static List<String> winLotteryRange(String winningLotteryInput) {
         List<String> winningLottery = Arrays.asList(winningLotteryInput.split(","));
 
         int lotteryNum;
@@ -55,7 +56,7 @@ public class UserInputValidate {
         return winningLottery;
     }
 
-    static List<Integer> makeWinningLottery(List<String> winningLottery) {
+    public static List<Integer> makeWinningLottery(List<String> winningLottery) {
         List<Integer> winningLotteryNumber = new ArrayList<Integer>();
 
         for (String num: winningLottery) {
@@ -66,8 +67,8 @@ public class UserInputValidate {
     }
 
 
-    static int bonusNumCheck(String bonusInput, List<Integer> winningLotteryNum) {
-        int bonusNumber;
+    public static int bonusNumCheck(String bonusInput, List<Integer> winningLotteryNum) {
+        int bonusNumber = invalidInput;
         try {
             bonusNumber = Integer.parseInt(bonusInput);
         } catch (NumberFormatException exception) {
@@ -83,4 +84,35 @@ public class UserInputValidate {
         return bonusNumber;
     }
 
+    public static int judgeValidationOfUserMoney() {
+        String userMoney = "";
+        int userMoneyAmount = invalidInput;
+        try {
+            userMoney = userMoney();
+            userMoneyAmount = userMoneyAmount(userMoney);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return userMoneyAmount;
+    }
+
+    public static List<String> judgeValidationOfWinningNum() {
+        List<String> winningLotto = new ArrayList<String>();
+        try {
+            winningLotto = winLotteryDuplicateAndLength(winningLotteryNum());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return winningLotto;
+    }
+
+    public static int judgeValidationOfBonus(List<Integer> winningLotto) {
+        int bonusNum = invalidInput;
+        try {
+            bonusNum = bonusNumCheck(bonusNum(), winningLotto);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return bonusNum;
+    }
 }

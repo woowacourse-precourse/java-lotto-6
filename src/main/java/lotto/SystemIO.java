@@ -37,6 +37,11 @@ public class SystemIO {
                 throw new IllegalStateException(ExceptionCase.WINNING_NUMBER_IS_NOT_INTEGER.getErrMessage());
             }
         }
+        for (Integer winningNumber : winningNumbers) {
+            if (!(winningNumbers.indexOf(winningNumber) == winningNumbers.lastIndexOf(winningNumber))) {
+                throw new IllegalStateException();
+            }
+        }
         return winningNumbers;
     }
 

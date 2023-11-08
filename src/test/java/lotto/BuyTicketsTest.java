@@ -1,44 +1,44 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.NoSuchElementException;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BuyTicketsTest {
-    private final PrintStream standardOut = System.out;
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-
     @BeforeEach
     void InitTest() {
-        SystemIO systemIO = new SystemIO();
-        System.setOut(new PrintStream(outputStreamCaptor));
+        SystemIO systemIO = new SystemIO();;
+        PrintStream standardOut = System.out;
     }
 
     @Test
     @DisplayName("입력값은 숫자여야 한다.")
-    void validateInputIsIntegerTest() {
+    void validateInputIsIntegerTest() throws IOException {
         String purchaseAmount = "String INPUT";
         InputStream byteOfPurchaseAmount = new ByteArrayInputStream(purchaseAmount.getBytes());
         System.setIn(byteOfPurchaseAmount);
         Assertions.assertThrows(NoSuchElementException.class, () -> new BuyTickets());
+        byteOfPurchaseAmount.close();
+        Console.close();
     }
 
     @Test
     @DisplayName("입력값은 1000의 배수여야 한다.")
-    void validateInputIsMultipleNumberOfThousand() {
+    void validateInputIsMultipleNumberOfThousand() throws IOException {
         String purchaseAmount = "1200";
         InputStream byteOfPurchaseAmount = new ByteArrayInputStream(purchaseAmount.getBytes());
         System.setIn(byteOfPurchaseAmount);
         Assertions.assertThrows(NoSuchElementException.class, () -> new BuyTickets());
+        byteOfPurchaseAmount.close();
+        Console.close();
     }
 
     @Test
@@ -50,7 +50,7 @@ class BuyTicketsTest {
         System.setIn(byteOfPurchaseAmount);
         BuyTickets buyTickets = new BuyTickets();
         assertThat(buyTickets.getLotteryNumbers().size()).isEqualTo(ticketAmount);
-
-
+        byteOfPurchaseAmount.close();
+        Console.close();
     }
 }

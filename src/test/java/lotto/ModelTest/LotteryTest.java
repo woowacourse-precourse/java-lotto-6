@@ -14,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LotteryTest {
+    private static final String ERROR_MESSAGE = "[ERROR]";
     @DisplayName("구입할 Lotto의 개수가 정확한지 확인합니다.")
     @Test
     void checkCreatedLotteryNumberOfTicket() {

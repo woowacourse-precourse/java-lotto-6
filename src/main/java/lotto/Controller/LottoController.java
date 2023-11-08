@@ -3,6 +3,7 @@ package lotto.Controller;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Service.LottoInitService;
 import lotto.Service.LottoService;
+import lotto.domain.Lottos;
 import lotto.view.InputView;
 
 public class LottoController {
@@ -11,12 +12,7 @@ public class LottoController {
 
     public void run() {
         Integer amount = getUserAmount();
-
-
-//        Lottos lottos = lottoService.getLottos(amount);
-//        lottoService.printLottos(lottos);
-
-
+        Lottos lottos = printLottos(amount);
     }
 
     private Integer getUserAmount() {
@@ -29,6 +25,13 @@ public class LottoController {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
+    }
+
+    private Lottos printLottos(Integer amount) {
+        Lottos lottos = lottoService.getLottos(amount);
+        System.out.println();
+        lottoService.printLottos(lottos);
+        return lottos;
     }
 
     private String userInput() {

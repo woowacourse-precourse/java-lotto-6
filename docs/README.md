@@ -2,6 +2,7 @@
 
 * 모든 예외 발생될 수 있는 로또 번호 및 입력은 try catch문을 이용하여 `IllegalArgumentException` 예외 처리하며
 그 자리에서 다시 입력할 수 있도록 while문을 이용하여 예외처리된 부분은 다시 처리해준다.
+* 기능 분리를 위해 controller, domain,view 폴더 만든다.
 
 ### 사용자 로또 구입 금액
 1. 사용자 로또 구입 금액 입력 받기

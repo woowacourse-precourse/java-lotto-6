@@ -22,7 +22,7 @@ public double calculateProfit(int lottoCount, TreeMap<LottoPrize, Integer> winni
 public class CalculateProfitTest {
     @Test
     public void 이득_계산이_맞게_나오나() {
-        LottoMachine lottoMachine = new LottoMachine(new DecimalFormat("#.##"));
+        LottoMachine lottoMachine = new LottoMachine();
         int lottoCount = 10;
         TreeMap<LottoPrize, Integer> winningCount = new TreeMap<>();
         winningCount.put(LottoPrize.MATCH_5, 1);

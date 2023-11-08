@@ -31,8 +31,8 @@ public class Output {
         System.out.println(getLottoResult(winningCount));
     }
 
-    public static void printProfit(DecimalFormat decimalFormat, double profit) {
-        System.out.println("총 수익률은 " + decimalFormat.format(profit) + "%입니다.");
+    public static void printProfit(double profit) {
+        System.out.println("총 수익률은 " + String.format("%.1f", profit) + "%입니다.");
     }
 
     private static String lottoToString(List<List<Integer>> lottos) {

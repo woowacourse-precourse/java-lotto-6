@@ -27,7 +27,7 @@ public TreeMap<LottoPrize, Integer> countLottoPrize(List<LottoResult> lottoResul
 public class CountLottoPrizeTest {
     @Test
     public void LottoResult가_LottoPrize로_제대로_변환되나() {
-        LottoMachine lottoMachine = new LottoMachine(new DecimalFormat("#.##"));
+        LottoMachine lottoMachine = new LottoMachine();
         List<LottoResult> lottoResults = new ArrayList<>();
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonus = 10;

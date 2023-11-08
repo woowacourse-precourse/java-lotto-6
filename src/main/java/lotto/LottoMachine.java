@@ -18,14 +18,12 @@ public class LottoMachine {
     private final int MAX_NUMBER;
     private final int NUMBERS_PER_LOTTO;
     private final int LOTTO_PRICE;
-    private final DecimalFormat formatter;
 
-    public LottoMachine(DecimalFormat decimalFormat) {
+    public LottoMachine() {
         this.MIN_NUMBER = LottoInfo.MIN_NUMBER.getNumber();
         this.MAX_NUMBER = LottoInfo.MAX_NUMBER.getNumber();
         this.NUMBERS_PER_LOTTO = LottoInfo.NUMBERS_PER_LOTTO.getNumber();
         this.LOTTO_PRICE = LottoInfo.LOTTO_PRICE.getNumber();
-        this.formatter = decimalFormat;
     }
 
     public void run() {
@@ -39,7 +37,7 @@ public class LottoMachine {
         TreeMap<LottoPrize, Integer> winningCount = countLottoPrize(lottoResults);
         printLottoResult(winningCount);
         double profit = calculateProfit(lottoCount, winningCount)*100;
-        printProfit(formatter, profit);
+        printProfit(profit);
     }
 
     public List<List<Integer>> getAllLotto(int count) {

@@ -23,7 +23,7 @@ public List<LottoResult> getCountingMatches(Lotto lotto, int bonus, List<List<In
 public class GetCountingMatchesTest {
     @Test
     public void myLottos에_있는_정보를_LottoResult로_바꾸기() {
-        LottoMachine lottoMachine = new LottoMachine(new DecimalFormat("#.##"));
+        LottoMachine lottoMachine = new LottoMachine();
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonus = 10;
         List<List<Integer>> myLotto = new ArrayList<>();

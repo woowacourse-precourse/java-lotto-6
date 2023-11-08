@@ -23,10 +23,7 @@ public enum Prize {
         if (correctCount < 3) {
             return NONE;
         }
-        if (correctCount == 5 && !containsBonus){
-            return THIRD;
-        }
-        if (correctCount == 5){
+        if (correctCount == 5 && containsBonus){
             return SECOND;
         }
         return getPrizeByCount(correctCount);

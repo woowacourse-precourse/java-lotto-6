@@ -82,13 +82,13 @@ public class OutputView {
         if (prize == Prize.NONE) {
             return;
         }
-        if (prizeIsSecond(entry, prize)) return;
+        if (isPrizeSecond(entry, prize)) return;
         String output = String.format(MATCH_FORMAT + WINNING_FORMAT + COUNT_FORMAT,
                 prize.getCorrectCount(), prize.getWinning(), entry.getValue());
         System.out.println(output);
     }
 
-    private static boolean prizeIsSecond(Map.Entry<Prize, Integer> entry, Prize prize) {
+    private static boolean isPrizeSecond(Map.Entry<Prize, Integer> entry, Prize prize) {
         if (prize == Prize.SECOND) {
             String output = String.format(MATCH_FORMAT + BONUS_BALL_FORMAT + WINNING_FORMAT + COUNT_FORMAT,
                     prize.getCorrectCount(), prize.getWinning(), entry.getValue());

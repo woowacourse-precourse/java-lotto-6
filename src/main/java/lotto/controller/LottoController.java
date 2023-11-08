@@ -94,7 +94,9 @@ public class LottoController {
             configured = doReadAnswer();
         }
         configured = false;
-
+        while (!configured) {
+            configured = doReadBonus();
+        }
     }
 
     private boolean doReadAnswer() {
@@ -107,6 +109,12 @@ public class LottoController {
             System.out.println(e.getMessage());
             return false;
         }
+        return true;
+    }
+
+    private boolean doReadBonus() {
+        OutputView.printBounsInputDescription();
+
         return true;
     }
 

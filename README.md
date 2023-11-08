@@ -39,5 +39,5 @@
 - 번호 포함 개수에 따라 당첨 개수 카운트하기
 - 총 수익 구하기
 - 총 수익률 구하기
- 
 
+__소감:__  https://messy-passbook-e0b.notion.site/3-aa1ae3a862a444d69655b1885175cecb?pvs=4

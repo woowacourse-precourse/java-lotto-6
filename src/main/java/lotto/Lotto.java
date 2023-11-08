@@ -2,8 +2,6 @@ package lotto;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.HashSet;
 
 public class Lotto {
     private final static Integer LOTTO_SIZE = 6;

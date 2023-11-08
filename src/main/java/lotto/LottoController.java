@@ -15,7 +15,7 @@ public class LottoController {
         showLotto();
     }
 
-    private void buyLotto() {
+    protected void buyLotto() {
         Output.printBuyAmount();
         buyAmount = new BuyAmount(Input.user());
         List<Lotto> lottos = new ArrayList<>();
@@ -38,4 +38,6 @@ public class LottoController {
                             .toArray()));
         }
     }
+
+
 }

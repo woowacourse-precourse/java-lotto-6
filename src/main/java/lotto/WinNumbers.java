@@ -38,4 +38,8 @@ public class WinNumbers extends LottoNumber{
     private void sort() {
         Collections.sort(this.winNumbers);
     }
+
+    public List<Integer> getWinNumbers() {
+        return this.winNumbers;
+    }
 }

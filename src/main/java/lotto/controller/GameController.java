@@ -1,6 +1,10 @@
 package lotto.controller;
 
-import lotto.domain.*;
+import lotto.domain.Amount;
+import lotto.domain.Lotto;
+import lotto.domain.LottoBonus;
+import lotto.domain.LottoStatistics;
+import lotto.domain.LottosPurchase;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,7 +21,7 @@ public class GameController {
 
     public void playGame() {
         inputAmount();
-        purchaseLottos();
+        purchaseLotto();
         inputWinningLotto();
         inputLottoBonus();
         printStatistics();
@@ -36,7 +40,7 @@ public class GameController {
         System.out.println();
     }
 
-    private void purchaseLottos() {
+    private void purchaseLotto() {
         purchasedLottos = new LottosPurchase(amount).getLottos();
 
         outputView.printCountsOfPurchasing(purchasedLottos.size());

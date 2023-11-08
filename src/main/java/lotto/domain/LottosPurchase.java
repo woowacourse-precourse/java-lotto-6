@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constant.LottoConstant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +23,11 @@ public class LottosPurchase {
     }
 
     private int calculateCountsOfPurchasing(int amount) {
-        return amount / LottoConstants.PRICE.getNumber();
+        return amount / LottoConstant.PRICE.getNumber();
     }
 
     private List<Integer> generateRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LottoConstants.RANGE_BEGIN.getNumber(),
-                LottoConstants.RANGE_END.getNumber(), LottoConstants.SIZE.getNumber());
+        return Randoms.pickUniqueNumbersInRange(LottoConstant.RANGE_BEGIN.getNumber(),
+                LottoConstant.RANGE_END.getNumber(), LottoConstant.SIZE.getNumber());
     }
 }

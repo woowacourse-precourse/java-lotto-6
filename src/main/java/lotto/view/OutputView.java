@@ -1,7 +1,7 @@
 package lotto.view;
 
+import lotto.constant.LottoRank;
 import lotto.domain.Lotto;
-import lotto.domain.LottoRank;
 
 import java.util.HashMap;
 import java.util.List;

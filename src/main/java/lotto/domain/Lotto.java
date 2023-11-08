@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.constant.ExceptionType;
+import lotto.constant.LottoConstant;
+
 import java.util.*;
 
 public class Lotto {
@@ -27,7 +30,7 @@ public class Lotto {
     }
 
     private boolean isSixNumbers(List<Integer> numbers) {
-        return numbers.size() == LottoConstants.SIZE.getNumber();
+        return numbers.size() == LottoConstant.SIZE.getNumber();
     }
 
     private boolean isInRange(List<Integer> numbers) {
@@ -40,7 +43,7 @@ public class Lotto {
     }
 
     private boolean isInRangeForEach(int number) {
-        return (number >= LottoConstants.RANGE_BEGIN.getNumber()) && (number <= LottoConstants.RANGE_END.getNumber());
+        return (number >= LottoConstant.RANGE_BEGIN.getNumber()) && (number <= LottoConstant.RANGE_END.getNumber());
     }
 
     private boolean hasDuplicateNumbers(List<Integer> numbers) {
@@ -49,14 +52,14 @@ public class Lotto {
     }
 
     public int countMatchingWith(Lotto otherLotto) {
-        int numberOfMatching = 0;
+        int matchingCounts = 0;
 
         for (int number : numbers) {
             if (otherLotto.contains(number)) {
-                numberOfMatching += 1;
+                matchingCounts += 1;
             }
         }
-        return numberOfMatching;
+        return matchingCounts;
     }
 
     public boolean contains(int number) {

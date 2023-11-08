@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.constant;
 
 public enum ExceptionType {
     LOTTO_WRONG_SIZE("로또 번호는 6개의 정수여야 합니다."),

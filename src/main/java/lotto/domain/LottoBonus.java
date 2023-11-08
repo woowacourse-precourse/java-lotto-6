@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.constant.ExceptionType;
+import lotto.constant.LottoConstant;
+
 public class LottoBonus {
     private final int number;
 
@@ -29,6 +32,6 @@ public class LottoBonus {
     }
 
     private boolean isInRange(int number) {
-        return (number >= LottoConstants.RANGE_BEGIN.getNumber()) && (number <= LottoConstants.RANGE_END.getNumber());
+        return (number >= LottoConstant.RANGE_BEGIN.getNumber()) && (number <= LottoConstant.RANGE_END.getNumber());
     }
 }

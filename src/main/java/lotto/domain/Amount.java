@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.constant.ExceptionType;
+import lotto.constant.LottoConstant;
+
 public class Amount {
     private final int amount;
 
@@ -23,7 +26,7 @@ public class Amount {
     private void validate(int amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException(ExceptionType.AMOUNT_NOT_POSITIVE.getMessage());
-        } else if (amount % LottoConstants.PRICE.getNumber() != 0) {
+        } else if (amount % LottoConstant.PRICE.getNumber() != 0) {
             throw new IllegalArgumentException(ExceptionType.AMOUNT_NOT_DIVIDED_BY_PRICE.getMessage());
         }
     }

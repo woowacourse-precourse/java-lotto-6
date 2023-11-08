@@ -1,6 +1,6 @@
-package lotto.domain;
+package lotto.constant;
 
-public enum LottoConstants {
+public enum LottoConstant {
     SIZE(6),
     RANGE_BEGIN(1),
     RANGE_END(45),
@@ -8,7 +8,7 @@ public enum LottoConstants {
 
     private final int number;
 
-    private LottoConstants(int number) {
+    private LottoConstant(int number) {
         this.number = number;
     }
 

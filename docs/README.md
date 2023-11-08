@@ -1,6 +1,6 @@
 ## 0. 소개
 '우아한 테크 코스' 6기 선발 과정인 프리코스에 참여하여 제공된 3주차 미션인 로또를 구현하는 레포지토리입니다.   
-(우테코 프리코스 미션 공지 레포지토리 : https://github.com/woowacourse-precourse/java-lotto-6)
+(우테코 프리코스 미션 공지 레포지토리 : https://github.com/woowacourse-precourse/java-lotto-6)   
 </br>
 
 ## 1. 기능 구현 목록
@@ -57,6 +57,29 @@
 </br>
 
 ## 3. 패키지 구조
+```bash
+com.woowacourse.java-lotto-6
+┃ constants
+┃ ┣ ErrorMessage.java
+┃ ┗ SystemMessage.java
+┃
+┣ controller
+┃ ┗ LottoGameController.java
+┃
+┣ domain
+┃ ┣ BonusNumber.java
+┃ ┣ Lotto.java
+┃ ┣ LottoPrize.java
+┃ ┣ Lottos.java
+┃ ┣ PurchaseAmount.java
+┃ ┗ TotalWinningResult.java
+┃
+┣ view
+┃ ┣ InputView.java
+┃ ┗ OutputView.java
+```
+</br>
+
 
 ## 4. Git 커밋 컨벤션
 ```

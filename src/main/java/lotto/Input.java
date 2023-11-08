@@ -8,15 +8,8 @@ import static java.util.Arrays.stream;
 import static lotto.Error.*;
 
 public class Input {
-    private final Output output;
-
-    public Input(Output output) {
-        this.output = output;
-    }
-
     public String input() {
         try {
-            output.outputPurchaseAmount();
             return Console.readLine();
         } catch (NoSuchElementException e) {
             throw new IllegalArgumentException(INPUT_EMPTY.getErrMsg());

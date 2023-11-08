@@ -14,7 +14,8 @@ public class RandomNumberGeneratorTest {
 
     @BeforeEach
     void setUp() {
-        numbers = RandomNumberGenerator.generateRandomNumbers();
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        numbers = randomNumberGenerator.generateRandomNumbers();
     }
 
     @DisplayName("범위 안의 랜덤한 숫자를 생성한다.")

@@ -47,4 +47,18 @@ public class UserInputTest {
         System.out.println("winningNumbers = " + winningNumbers.size());
         assertThat(winningNumbers).isEqualTo(Arrays.asList(1, 2, 3, 4, 5, 6));
     }
+
+    @Test
+    @DisplayName("올바른 값을 입력할 때까지 보너스 번호를 재입력받는다.")
+    void readBonusNumber() {
+        // given
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        System.setIn(generateUserInput("1\n50\n10"));
+
+        // when
+        Integer bonusNumber = UserInput.readBonusNumber(winningNumbers);
+
+        // then
+        assertThat(bonusNumber).isEqualTo(10);
+    }
 }

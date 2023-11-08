@@ -16,6 +16,7 @@ public class JudgeWinningTicketsTest {
     private JudgeWinningTickets judgeWinningTickets;
     private List<Integer> winningTicketNumbers;
 
+
     @BeforeEach
     void SetUp() {
         judgeWinningTickets = new JudgeWinningTickets();

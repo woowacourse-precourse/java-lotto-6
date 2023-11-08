@@ -1,12 +1,11 @@
 package lotto.constant;
 
 public class constant {
-    public static final int RANK_INITIALIZE = 0;
-    public static final int RANK_ONE = 1;
-    public static final int RANK_TWO = 2;
-    public static final int RANK_THREE = 3;
-    public static final int RANK_FOUR = 4;
-    public static final int RANK_FIVE = 5;
+
+    public enum Rank {
+        INITIALIZE, FIRST, SECOND, THIRD, FOURTH, FIFTH
+    }
+
 
     public static final int RANK_ONE_REWARD = 2000000000;
     public static final int RANK_TWO_REWARD = 30000000;

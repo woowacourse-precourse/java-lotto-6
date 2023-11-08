@@ -8,6 +8,7 @@ import static lotto.constant.constant.*;
 
 public class JudgeWinningTickets {
 
+
     private static int compareTicketNumbers(List<Integer> ticketNumbers, List<Integer> winningTicketNumbers) {
         int matchCount = MATCH_INITIALIZE_NUMBER;
         for (int i : winningTicketNumbers) {
@@ -23,26 +24,27 @@ public class JudgeWinningTickets {
         return false;
     }
 
-    private static int ranking(List<Integer> ticketNumbers, int bonusNumber, List<Integer> winningTicketNumbers) {
-        int rank = RANK_INITIALIZE;
+
+    private static Rank ranking(List<Integer> ticketNumbers, int bonusNumber, List<Integer> winningTicketNumbers) {
+        Rank rank = Rank.INITIALIZE;
         int matchCount = compareTicketNumbers(ticketNumbers, winningTicketNumbers);
         boolean matchBonusNumber = compareBonusNumber(bonusNumber, winningTicketNumbers);
         if (matchCount == MATCH_6_NUMBER) {
-            rank = RANK_ONE;
+            rank = Rank.FIRST;
         } else if (matchCount == MATCH_5_NUMBER && matchBonusNumber == MATCH_BONUS_NUMBER) {
-            rank = RANK_TWO;
+            rank = Rank.SECOND;
         } else if (matchCount == MATCH_5_NUMBER) {
-            rank = RANK_THREE;
+            rank = Rank.THIRD;
         } else if (matchCount == MATCH_4_NUMBER) {
-            rank = RANK_FOUR;
+            rank = Rank.FOURTH;
         } else if (matchCount == MATCH_3_NUMBER) {
-            rank = RANK_FIVE;
+            rank = Rank.FIFTH;
         }
         return rank;
     }
 
     public Map<Integer, Integer> countWinningTickets(int ticketCount, List<List<Integer>> lotteryTickets, List<Integer> winningTicketNumbers, int bonusNumber) {
-        Map<Integer, Integer> winningTicketsCount = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> winningTicketsCount = new HashMap<>();
 
         for (int i = 0; i < ticketCount; i++) {
             winningTicketsCount.put(i + 1, 0);
@@ -50,17 +52,17 @@ public class JudgeWinningTickets {
 
         for (int i = 0; i < ticketCount; i++) {
             List<Integer> ticketNumbers = lotteryTickets.get(i);
-            int rank = ranking(ticketNumbers, bonusNumber, winningTicketNumbers);
-            if (rank == RANK_ONE) {
-                winningTicketsCount.put(RANK_ONE, (winningTicketsCount.get(RANK_ONE) + INCREMENT));
-            } else if (rank == RANK_TWO) {
-                winningTicketsCount.put(RANK_TWO, (winningTicketsCount.get(RANK_TWO) + INCREMENT));
-            } else if (rank == RANK_THREE) {
-                winningTicketsCount.put(RANK_THREE, (winningTicketsCount.get(RANK_THREE) + INCREMENT));
-            } else if (rank == RANK_FOUR) {
-                winningTicketsCount.put(RANK_FOUR, (winningTicketsCount.get(RANK_FOUR) + INCREMENT));
-            } else if (rank == RANK_FIVE) {
-                winningTicketsCount.put(RANK_FIVE, (winningTicketsCount.get(RANK_FIVE) + INCREMENT));
+            Rank rank = ranking(ticketNumbers, bonusNumber, winningTicketNumbers);
+            if (rank == Rank.FIRST) {
+                winningTicketsCount.put(rank.ordinal(), (winningTicketsCount.get(rank.ordinal()) + INCREMENT));
+            } else if (rank == Rank.SECOND) {
+                winningTicketsCount.put(rank.ordinal(), (winningTicketsCount.get(rank.ordinal()) + INCREMENT));
+            } else if (rank == Rank.THIRD) {
+                winningTicketsCount.put(rank.ordinal(), (winningTicketsCount.get(rank.ordinal()) + INCREMENT));
+            } else if (rank == Rank.FOURTH) {
+                winningTicketsCount.put(rank.ordinal(), (winningTicketsCount.get(rank.ordinal()) + INCREMENT));
+            } else if (rank == Rank.FIFTH) {
+                winningTicketsCount.put(rank.ordinal(), (winningTicketsCount.get(rank.ordinal()) + INCREMENT));
             }
         }
         return winningTicketsCount;

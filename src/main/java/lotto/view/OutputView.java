@@ -64,7 +64,10 @@ public class OutputView {
 
 
     }
-    
+
+    public static void printLottoProfitRate(Float lottoProfitRate){
+        System.out.printf("총 수익률은 %.1f%%입니다.\n",lottoProfitRate);
+    }
 
 
 }

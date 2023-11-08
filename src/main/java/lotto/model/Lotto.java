@@ -18,6 +18,7 @@ public class Lotto {
 
     /**
      * 로또 번호의 개수가 6개인지 검증하는 메서드
+     *
      * @param numbers 로또 번호 리스트
      */
     private void validate(List<Integer> numbers) {
@@ -28,6 +29,7 @@ public class Lotto {
 
     /**
      * 로또 번호의 중복을 확인하는 메서드
+     *
      * @param numbers 로또 번호 리스트
      */
     private void duplicateValidate(List<Integer> numbers) {

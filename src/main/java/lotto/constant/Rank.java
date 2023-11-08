@@ -20,7 +20,7 @@ public enum Rank {
         this.isMatchBonus = isMatchBonus;
     }
 
-    public Rank findRank(int matchCount, Boolean isMatchBonus) {
+    public static Rank findRank(int matchCount, Boolean isMatchBonus) {
         return Arrays.stream(values())
             .filter(r -> r.matchCount == matchCount)
             .filter(r -> r.isMatchBonus == isMatchBonus || r.isMatchBonus == null)

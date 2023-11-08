@@ -7,7 +7,7 @@ import lotto.domain.WinningNumber;
 import java.util.List;
 
 public class LottoController {
-    public LottoController() {
+    private LottoController() {
     }
 
     private static class LottoControllerHolder{

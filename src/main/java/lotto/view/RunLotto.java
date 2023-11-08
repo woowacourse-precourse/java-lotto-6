@@ -2,7 +2,7 @@ package lotto.view;
 
 public class RunLotto {
 
-    public RunLotto() {
+    private RunLotto() {
     }
     private static class RunLottoHolder{
         private static final RunLotto runLotto = new RunLotto();

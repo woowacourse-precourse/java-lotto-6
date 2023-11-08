@@ -6,7 +6,7 @@ import lotto.controller.WinningNumberController;
 
 public class UserInputView {
 
-    public UserInputView() {
+    private UserInputView() {
     }
     private static class UserInputViewHolder{
         private static final UserInputView userInputView = new UserInputView();

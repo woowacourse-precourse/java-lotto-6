@@ -5,7 +5,7 @@ import lotto.domain.*;
 public class LottoCompareController {
 
 
-    public LottoCompareController() {
+    private LottoCompareController() {
     }
 
     private static class LottoCompareControllerHolder{

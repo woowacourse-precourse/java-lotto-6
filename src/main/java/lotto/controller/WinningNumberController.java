@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.domain.WinningNumber;
 
 public class WinningNumberController {
-    public WinningNumberController() {
+    private WinningNumberController() {
     }
 
     private static class WinningNumberControllerHolder{

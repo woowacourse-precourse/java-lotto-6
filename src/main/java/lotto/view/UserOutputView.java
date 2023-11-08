@@ -12,7 +12,7 @@ import java.util.List;
 
 public class UserOutputView {
 
-    public UserOutputView() {
+    private UserOutputView() {
     }
 
     private static class UserOutputViewHolder{

@@ -8,7 +8,7 @@ import java.util.List;
 public class LottoTickets {
     private   List<Lotto> lottoTickets;
 
-    public LottoTickets() {
+    private LottoTickets() {
     }
 
     private static class LottoTicketsHolder{

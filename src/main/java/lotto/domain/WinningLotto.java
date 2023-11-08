@@ -8,7 +8,7 @@ public class WinningLotto {
     private  int fiveAndBonusSameNumLotto = 0;
     private  int sixSameNumLotto = 0;
 
-    public WinningLotto() {
+    private WinningLotto() {
     }
     private static class WinningLottoHolder{
         private static final WinningLotto winningLotto = new WinningLotto();

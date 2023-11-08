@@ -12,7 +12,7 @@ public class WinningNumber {
 
     private   int bonusNum;
 
-    public WinningNumber() {
+    private WinningNumber() {
     }
 
     private static class WinningNumberHolder{

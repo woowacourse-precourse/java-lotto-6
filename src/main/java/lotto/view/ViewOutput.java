@@ -1,6 +1,7 @@
-package lotto;
+package lotto.view;
 
-import java.util.ArrayList;
+import lotto.domain.Lotto;
+
 import java.util.List;
 
 public class ViewOutput {

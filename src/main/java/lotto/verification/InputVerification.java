@@ -1,4 +1,4 @@
-package lotto;
+package lotto.verification;
 
 import java.util.HashSet;
 import java.util.List;
@@ -62,34 +62,38 @@ public class InputVerification {
     }
 
     public boolean verifyWinningNumbers(List<Integer> numbers) {
-        boolean isValid = true;
+        try {
+            if(!isInputSizeCorrect(numbers)) {
+                throw new IllegalArgumentException(ERROR_MESSAGE_INPUT_SIZE);
+            }
 
-        if(!isInputSizeCorrect(numbers)) {
-            System.out.println(ERROR_MESSAGE_INPUT_SIZE);
-            isValid = false;
+            if(!isNumbersInRange(numbers)) {
+                throw new IllegalArgumentException(ERROR_MESSAGE_NUMBER_RANGE);
+            }
+
+            if(isNumbersDuplicated(numbers)) {
+                throw new IllegalArgumentException(ERROR_MESSAGE_WINNING_NUMBER_DUP);
+            }
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
         }
-        if(!isNumbersInRange(numbers)) {
-            System.out.println(ERROR_MESSAGE_NUMBER_RANGE);
-            isValid = false;
-        }
-        if(isNumbersDuplicated(numbers)) {
-            System.out.println(ERROR_MESSAGE_WINNING_NUMBER_DUP);
-            isValid = false;
-        }
-        return isValid;
+
     }
 
     public boolean verifyBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
-        boolean isValid = true;
-
-        if(!isNumberInRange(bonusNumber)) {
-            System.out.println(ERROR_MESSAGE_NUMBER_RANGE);
-            isValid = false;
+        try {
+            if(!isNumberInRange(bonusNumber)) {
+                throw new IllegalArgumentException(ERROR_MESSAGE_NUMBER_RANGE);
+            }
+            if(isBonusNumbersDuplicated(winningNumbers, bonusNumber)) {
+                throw new IllegalArgumentException(ERROR_MESSAGE_BONUS_NUMBER_DUP);
+            }
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
         }
-        if(isBonusNumbersDuplicated(winningNumbers, bonusNumber)) {
-            System.out.println(ERROR_MESSAGE_BONUS_NUMBER_DUP);
-            isValid = false;
-        }
-        return isValid;
     }
 }

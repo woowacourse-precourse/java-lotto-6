@@ -1,5 +1,11 @@
 package lotto;
 
+import lotto.domain.Computer;
+import lotto.domain.Game;
+import lotto.domain.User;
+import lotto.view.ViewInput;
+import lotto.view.ViewOutput;
+
 import java.util.List;
 
 public class Run {

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
@@ -17,7 +17,6 @@ public class User {
     public void setTotalReturn(int totalReturn) {
         this.totalReturn = totalReturn;
     }
-
 
     public int getPurchaseAmount() {
         return purchaseAmount;

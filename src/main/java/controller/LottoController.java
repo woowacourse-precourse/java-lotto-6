@@ -39,8 +39,7 @@ public class LottoController {
 
     private Bill purchaseOfLottoTickets() {
         int purchaseAmount = view.requirePurchaseAmount();
-        int ticketsSize = lottoTicketsPurchasingMachine.purchaseOfLottoTickets(purchaseAmount);
-        return Bill.createBill(purchaseAmount, ticketsSize);
+        return lottoTicketsPurchasingMachine.purchaseOfLottoTickets(purchaseAmount);
     }
 
     private LottoTickets buyLottoTickets(TicketSize ticketSize) {

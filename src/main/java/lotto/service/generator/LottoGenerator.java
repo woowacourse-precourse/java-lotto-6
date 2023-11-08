@@ -8,10 +8,6 @@ import lotto.domain.entity.Lottos;
 
 public class LottoGenerator {
 
-    public static final int START = 1;
-    public static final int END = 45;
-    public static final int COUNT = 6;
-
     public Lottos generate(final long purchaseAmount) {
         List<Lotto> lottos = new ArrayList<>((int) purchaseAmount);
         for (int i = 0; i < purchaseAmount; i++) {
@@ -26,9 +22,9 @@ public class LottoGenerator {
     private Lotto generate() {
         return new Lotto(
                 Randoms.pickUniqueNumbersInRange(
-                                START,
-                                END,
-                                COUNT
+                                Lotto.START,
+                                Lotto.END,
+                                Lotto.COUNT
                         )
                         .stream()
                         .sorted()

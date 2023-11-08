@@ -66,7 +66,7 @@ public class LottoController {
         Lotto lotto = requestLotto();
         OutputView.printLineFeed();
 
-        Bonus bonus = requestBonus();
+        Bonus bonus = requestBonus(lotto);
         OutputView.printLineFeed();
 
         selectWinningLottoService.select(new LottoAndBonusDTO(lotto, bonus));
@@ -91,7 +91,7 @@ public class LottoController {
         return lotto;
     }
 
-    private Bonus requestBonus() {
+    private Bonus requestBonus(Lotto lotto) {
         Bonus bonus;
 
         while(true) {
@@ -99,7 +99,7 @@ public class LottoController {
                 String inputNumber = InputView.getBonusNumber();
                 Integer bonusNumber = Converter.stringToInteger(inputNumber);
 
-                bonus = new Bonus(bonusNumber);
+                bonus = new Bonus(bonusNumber, lotto);
 
                 break;
             } catch (IllegalArgumentException e) {

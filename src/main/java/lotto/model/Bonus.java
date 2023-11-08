@@ -6,8 +6,9 @@ import lotto.enums.ErrorMessage;
 public class Bonus {
     private final Integer bonusNumber;
 
-    public Bonus(Integer bonusNumber) {
+    public Bonus(Integer bonusNumber, Lotto lotto) {
         validateRange(bonusNumber);
+        validateDuplicate(bonusNumber, lotto);
 
         this.bonusNumber = bonusNumber;
     }
@@ -20,6 +21,12 @@ public class Bonus {
                     Constant.START_RANGE_OF_NUMBER.getContentToInteger(),
                     Constant.END_RANGE_OF_NUMBER.getContentToInteger()
             ));
+        }
+    }
+
+    private void validateDuplicate(Integer number, Lotto lotto) {
+        if (lotto.isMatch(number)) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_HAS_NO_DUPLICATE.getMessage());
         }
     }
 

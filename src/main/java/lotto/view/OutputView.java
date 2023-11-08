@@ -11,9 +11,8 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printCount(int count, int change) {
+    public void printCount(int count) {
         System.out.println("\n" + count + "개를 구매했습니다.");
-        System.out.println("거스름돈은 " + change + "원 입니다.");
     }
 
     public void printLottos(List<Integer> nums) {

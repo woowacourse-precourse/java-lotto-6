@@ -43,7 +43,7 @@ public class LottoService {
     }
 
     private void printQuantity(Player player) {
-        outputView.printCount(player.getQuantity(), player.getChange());
+        outputView.printCount(player.getQuantity());
     }
 
     private void printLottos(Lottos lottos) {

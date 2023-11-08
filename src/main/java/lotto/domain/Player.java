@@ -3,7 +3,6 @@ package lotto.domain;
 public class Player {
     private final int money;
     private final int quantity;
-    private final int change;
     private double prize;
 
     private final int ONE_LOTTO_PRICE = 1000;
@@ -13,7 +12,6 @@ public class Player {
         shortCheckMoney(parsingMoney);
         this.money = parsingMoney;
         this.quantity = parsingMoney / ONE_LOTTO_PRICE;
-        this.change = parsingMoney % ONE_LOTTO_PRICE;
         this.prize = 0;
     }
 
@@ -40,9 +38,5 @@ public class Player {
 
     public int getQuantity() {
         return quantity;
-    }
-
-    public int getChange() {
-        return change;
     }
 }

@@ -1,4 +1,4 @@
-package lotto.domain.statistics;
+package lotto.domain.result;
 
 import lotto.constants.lotto.LottoRule;
 import lotto.constants.lotto.WinningFactor;
@@ -21,10 +21,6 @@ public class LottoStatistics {
         statistics.put(winningFactorByCount, statistics.get(winningFactorByCount) + LottoRule.MATCH_UP);
     }
 
-    public Map<WinningFactor, Integer> getStatistics() {
-        return new EnumMap<>(statistics);
-    }
-
     public Integer calculateWinningPrice() {
         int winningSum = LottoRule.INIT_VALUE;
         for (Map.Entry<WinningFactor, Integer> entry : statistics.entrySet()) {
@@ -33,5 +29,9 @@ public class LottoStatistics {
             winningSum += winningFactor.getMoney() * value;
         }
         return winningSum;
+    }
+
+    public Map<WinningFactor, Integer> getStatistics() {
+        return new EnumMap<>(statistics);
     }
 }

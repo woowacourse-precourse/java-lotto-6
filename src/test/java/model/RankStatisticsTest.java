@@ -2,7 +2,7 @@ package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.model.LottoRank;
+import lotto.model.Rank;
 import lotto.model.RankStatistics;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,9 +13,9 @@ class RankStatisticsTest {
     @Test
     void remainStatisticsNumberZeroWithoutAddingRank() {
         RankStatistics rankStatistics = new RankStatistics();
-        int firstCountBefore = rankStatistics.getRankStatistics().get(LottoRank.FIRST);
-        rankStatistics.add(LottoRank.FIRST);
-        int firstCountAfter = rankStatistics.getRankStatistics().get(LottoRank.FIRST);
+        int firstCountBefore = rankStatistics.getRankStatistics().get(Rank.FIRST);
+        rankStatistics.add(Rank.FIRST);
+        int firstCountAfter = rankStatistics.getRankStatistics().get(Rank.FIRST);
         assertThat(firstCountBefore).isEqualTo(0);
         assertThat(firstCountBefore).isEqualTo(1);
     }
@@ -24,9 +24,9 @@ class RankStatisticsTest {
     @Test
     void increaseFirstRankStatisticsByAddingFirstRank() {
         RankStatistics rankStatistics = new RankStatistics();
-        int firstCountBefore = rankStatistics.getRankStatistics().get(LottoRank.FIRST);
-        rankStatistics.add(LottoRank.FIRST);
-        int firstCountAfter = rankStatistics.getRankStatistics().get(LottoRank.FIRST);
+        int firstCountBefore = rankStatistics.getRankStatistics().get(Rank.FIRST);
+        rankStatistics.add(Rank.FIRST);
+        int firstCountAfter = rankStatistics.getRankStatistics().get(Rank.FIRST);
         assertThat(firstCountBefore).isEqualTo(0);
         assertThat(firstCountBefore).isEqualTo(1);
     }
@@ -35,14 +35,14 @@ class RankStatisticsTest {
     @Test
     void returnTotalPrizeBasedOnRankStatistics() {
         RankStatistics rankStatistics = new RankStatistics();
-        rankStatistics.add(LottoRank.FIRST);
-        rankStatistics.add(LottoRank.SECOND);
-        rankStatistics.add(LottoRank.FIFTH);
+        rankStatistics.add(Rank.FIRST);
+        rankStatistics.add(Rank.SECOND);
+        rankStatistics.add(Rank.FIFTH);
         int totalPrize = rankStatistics.getTotalPrize();
         assertThat(totalPrize).isEqualTo(
-                LottoRank.FIRST.getPrize() +
-                        LottoRank.SECOND.getPrize() +
-                        LottoRank.FIFTH.getPrize()
+                Rank.FIRST.getPrize() +
+                        Rank.SECOND.getPrize() +
+                        Rank.FIFTH.getPrize()
         );
     }
 }

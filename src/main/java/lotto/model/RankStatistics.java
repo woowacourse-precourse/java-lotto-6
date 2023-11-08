@@ -4,20 +4,20 @@ import java.util.EnumMap;
 
 public class RankStatistics {
 
-    private EnumMap<LottoRank, Integer> rankStatistics = new EnumMap<>(LottoRank.class);
+    private EnumMap<Rank, Integer> rankStatistics = new EnumMap<>(Rank.class);
 
-    public EnumMap<LottoRank, Integer> getRankStatistics() {
+    public EnumMap<Rank, Integer> getRankStatistics() {
         return this.rankStatistics;
     }
 
-    public void add(LottoRank rank) {
+    public void add(Rank rank) {
         int rankCount = rankStatistics.getOrDefault(rank, 0);
         rankStatistics.put(rank, rankCount + 1);
     }
 
     public int getTotalPrize() {
         return this.rankStatistics.keySet().stream()
-                .mapToInt(LottoRank::getPrize)
+                .mapToInt(Rank::getPrize)
                 .sum();
     }
 }

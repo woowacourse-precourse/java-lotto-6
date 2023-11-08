@@ -23,23 +23,23 @@ class UserLottoInputTest {
         System.setIn(byteArrayInputStream);
     }
 
+    UserLottoInput input = new UserLottoInput();
+
     @ParameterizedTest
-    @ValueSource(strings = {"100b", "1000 ", "10 a"})
+    @ValueSource(strings = {"100b\n", "1000 \n", "10 a\n", "-1\n", "0\n", "2100000000000", "\n"})
     @DisplayName("올바르지 않은 돈 입력이 들어오면 예외를 발생한다.")
     public void invalidMoneyInput(String in) {
         setupInputStream(in);
-        UserLottoInput input = new UserLottoInput();
 
         assertThatThrownBy(input::getMoneyAmount)
-                .isInstanceOf(InvalidInputException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"100", "1000", "12345"})
+    @ValueSource(strings = {"100\n", "1000\n", "12345\n"})
     @DisplayName("올바르게 입력된 돈이 정확하게 반환된다.")
     public void validMoneyInput(String in){
         setupInputStream(in);
-        UserLottoInput input = new UserLottoInput();
 
         long moneyAmount = input.getMoneyAmount();
         assertThat(moneyAmount).isEqualTo(Long.parseLong(in));
@@ -48,9 +48,8 @@ class UserLottoInputTest {
     @Test
     @DisplayName("입력을 통해 올바르게 당첨 로또를 받아낸다.")
     public void getWinningNumbers() {
-        setupInputStream("1,2,3,4,5,6\n7");
         // given
-        UserLottoInput input = new UserLottoInput();
+        setupInputStream("1,2,3,4,5,6\n7");
         // when
         Lotto playerLotto = input.getLotto();
         LottoBall bonusNumber = input.getBall();
@@ -66,15 +65,23 @@ class UserLottoInputTest {
     }
 
     @Test
-    @DisplayName("구입 금액이 0일 경우 예외를 발생한다.")
-    public void zeroMoneyException() {
+    @DisplayName("빈 줄이 입력으로 들어오는 경우 예외를 발생한다.")
+    public void noneInputException(){
         // given
-        setupInputStream("0\n");
-        // when
-        UserLottoInput input = new UserLottoInput();
-
-        // then
+        setupInputStream("\n");
+        // when, then
         assertThatThrownBy(input::getMoneyAmount)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {",,,,,\n", "1,,2,3,4,5\n", "1,2,3,4,5\n", "1,2,3,4,5,6,7\n", "1,2,3,3,4,5\n"})
+    @DisplayName("로또 번호를 올바르게 입력하지 않는 경우 예외를 발생한다.")
+    public void illegalLottoInput(String in){
+        // given
+        setupInputStream(in);
+        // when, then
+        assertThatThrownBy(input::getLotto)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

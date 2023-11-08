@@ -1,4 +1,4 @@
-package lotto.Model.Lottos;
+package lotto.Model.LottoSet;
 
 import java.util.List;
 import lotto.Model.Lotto.Lotto;

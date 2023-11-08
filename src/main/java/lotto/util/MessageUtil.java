@@ -1,53 +1,61 @@
 package lotto.util;
 
-import lotto.constant.message.ErrorOutMessage;
-import lotto.constant.message.InputMessage;
-import lotto.constant.message.OutPutMessage;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+import static lotto.constant.message.InputMessage.*;
+import static lotto.constant.message.OutputMessage.*;
+
 
 public class MessageUtil {
 
     public void printPurchaseInput() {
-        System.out.println(InputMessage.PURCHASE.getMessage());
+        System.out.println(PURCHASE.getMessage());
     }
 
     public void printWinningInput() {
-        System.out.println(InputMessage.WINNING.getMessage());
+        System.out.println(WINNING.getMessage());
     }
 
     public void printBonusInput() {
-        System.out.println(InputMessage.BONUS.getMessage());
+        System.out.println(BONUS.getMessage());
     }
 
-    public void printPurchaseError() {
-        System.out.println(ErrorOutMessage.PURCHASE);
+    public void printPurchaseCount(int purchaseCount) {
+        System.out.println(purchaseCount + PURCHASE_COUNT.getMessage());
     }
 
-    public void printWinningTypeError() {
-        System.out.println(ErrorOutMessage.WINNING_TYPE);
-    }
+    public void printPurchaseInfo(List<Integer> lottoNums) {
+        // 테스트 시 받은 리스트는 불변 객체이기 때문에 정렬을 위해 따로 받아서 처리
+        List<Integer> sortLottoNums = new ArrayList<>(lottoNums);
+        sortLottoNums.sort(Comparator.naturalOrder());
 
-    public void printWinningDuplicateError() {
-        System.out.println(ErrorOutMessage.WINNING_DUPLICATE);
-    }
+        StringBuilder lottoNum = new StringBuilder("");
 
-    public void printLottoNumError() {
-        System.out.println(ErrorOutMessage.LOTTO_NUM);
-    }
+        lottoNum.append("[");
+        for (Integer number : sortLottoNums) {
+            lottoNum.append(number).append(", ");
+        }
+        lottoNum.delete(lottoNum.length()-2, lottoNum.length()).append("]");
 
-    public void printPurchaseCount() {
-        System.out.println(OutPutMessage.PURCHASE_COUNT.getMessage());
+        System.out.println(lottoNum);
     }
 
     public void printWinningStats() {
-        System.out.println(OutPutMessage.WINNING_STATS.getMessage());
+        System.out.println(WINNING_STATS.getMessage());
     }
 
-    public void printWinningStatsResult(int matchCount, int amount, int lottoCount) {
-        System.out.printf(OutPutMessage.WINNING_STATS_RESULT.getMessage(), matchCount, amount, lottoCount);
+    public void printWinningStatsResult(int number, int price, int matchCount) {
+        String priceWithComma = String.format("%,d", price);
+        if (number == FIVE_COUNT_WITH_BONUS.getNumber()) {
+            System.out.printf(WINNING_STATS_BONUS_RESULT.getMessage(), priceWithComma, matchCount);
+            return;
+        }
+        System.out.printf(WINNING_STATS_RESULT.getMessage(), number, priceWithComma, matchCount);
     }
 
     public void printEarningRate(Double rate) {
-        System.out.printf(OutPutMessage.EARNING_RATE.getMessage(), rate);
+        System.out.printf(EARNING_RATE.getMessage(), rate);
     }
-
 }

@@ -35,10 +35,10 @@ class LotteryTest {
     void validatePickUniqueNumbersInRangeMethod()
     {
         assertThat(Randoms.pickUniqueNumbersInRange(LottoConstant.MINIMUM_NUMBER,
-                        LottoConstant.MAXIMUM_NUMBER, 100)
+                        LottoConstant.MAXIMUM_NUMBER, 40)
                 .stream()
                 .filter(i -> i>=LottoConstant.MINIMUM_NUMBER && i<=LottoConstant.MAXIMUM_NUMBER)
                 .collect(Collectors.toList())
-                .size() == 100);
+                .size() == 40);
     }
 }

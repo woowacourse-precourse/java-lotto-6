@@ -2,7 +2,9 @@ package lotto.Service;
 
 import static lotto.config.LottoConfig.LOTTO_AMOUNT;
 
+import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
+import lotto.domain.WinningNumber;
 
 /**
  * 로또 진행 과정에 필요한 작업을 진행하는 클래스
@@ -26,5 +28,15 @@ public class LottoService {
      */
     public void printLottos(Lottos lottos) {
         lottos.print();
+    }
+
+    /**
+     * 로또 결과를 반환
+     * @param lottos 구입한 로또 목록
+     * @param winningNumber 당첨 번호
+     * @return 당첨 결과
+     */
+    public LottoResult getResult(Lottos lottos, WinningNumber winningNumber) {
+        return lottos.checkResult(winningNumber);
     }
 }

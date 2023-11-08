@@ -17,6 +17,16 @@ public class WinningNumbersTest {
         WinningNumbers winningNumbers = new WinningNumbers(test);
         List<Integer> actualResult = winningNumbers.getWinningNumbers();
         assertThat(actualResult).isEqualTo(expectedResult);
+    }
 
+    @DisplayName("보너스 점수 정상적으로 저장되는지 테스트")
+    @Test
+    void validateBonusNumberStore() {
+        String test = "1,2,3,4,5,6";
+        int expectedResult = 44;
+        WinningNumbers winningNumbers = new WinningNumbers(test);
+        winningNumbers.setBonusNumber(expectedResult);
+        int actualResult = winningNumbers.getBonusNumber();
+        assertThat(actualResult).isEqualTo(expectedResult);
     }
 }

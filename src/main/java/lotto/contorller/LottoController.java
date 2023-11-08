@@ -67,6 +67,7 @@ public class LottoController {
             int bonus = getBonusNumInput();
             try {
                 winningLotto = ticketsService.getWinningLotto(lotto, bonus);
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

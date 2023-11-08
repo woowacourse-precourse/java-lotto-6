@@ -9,14 +9,14 @@ public class Purchase {
     private final Integer price;
     private final Integer ticketCount;
 
-    public Purchase(Integer price, Integer ticketCount) {
+    public Purchase(Integer price) {
         validateIsMultipleOf1000(price);
         this.price = price;
         this.ticketCount = price/1000;
     }
 
     private void validateIsMultipleOf1000(Integer value) {
-        if (value % 1000 != 0) {
+        if (value % 1000 != 0 || value == 0) {
             throw new IllegalArgumentException();
         }
     }

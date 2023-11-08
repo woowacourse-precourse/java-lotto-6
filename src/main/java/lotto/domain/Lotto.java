@@ -1,7 +1,13 @@
 package lotto.domain;
 
+import static lotto.constant.ErrorMessage.ONLY_NUMBERS_COMMA_ALLOWED;
+import static lotto.constant.ErrorMessage.WRONG_NORMAL_NUMBER_COUNT;
+import static lotto.constant.ErrorMessage.WRONG_NUMBER_RANGE;
+import static lotto.constant.GameNumber.MAX_NUMBER;
+import static lotto.constant.GameNumber.MIN_NUMBER;
 import static lotto.constant.GameNumber.NORMAL_NUMBER_COUNT;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Lotto {
@@ -9,13 +15,36 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != NORMAL_NUMBER_COUNT.getNumber()) {
-            throw new IllegalArgumentException();
+    public Lotto(String input) {
+        this.numbers = validateNumeric(input);
+        validateCount();
+        validateNumbers();
+    }
+
+    private List<Integer> validateNumeric(String input) {
+        try {
+            return Arrays.stream(input.split(","))
+                .map(Integer::parseInt)
+                .toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ONLY_NUMBERS_COMMA_ALLOWED.getMessage());
+        }
+    }
+
+    private void validateCount() {
+        if (this.numbers.size() != NORMAL_NUMBER_COUNT.getNumber()) {
+            throw new IllegalArgumentException(WRONG_NORMAL_NUMBER_COUNT.getMessage());
+        }
+    }
+
+    private void validateNumbers() {
+        for (Integer number : numbers) {
+            if (number < MIN_NUMBER.getNumber() || number > MAX_NUMBER.getNumber()) {
+                throw new IllegalArgumentException(WRONG_NUMBER_RANGE.getMessage());
+            }
         }
     }
 

@@ -34,7 +34,7 @@ public class Winning {
         }
     }
 
-    public Result checkWinning(List<Lotto> allLotto, Winning winning) {
+    public Result checkWinning(List<Lotto> allLotto) {
         Result result = null;
         for (Lotto lotto : allLotto) {
             int matchedCount = getMatchedCount(lotto);

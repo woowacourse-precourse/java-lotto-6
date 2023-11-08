@@ -35,7 +35,7 @@ public class Application {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         winning.inputBonusNumber();
 
-        checkedResult = winning.checkWinning(allLotto, winning);
+        checkedResult = winning.checkWinning(allLotto);
 
         printWinningStatistics();
 

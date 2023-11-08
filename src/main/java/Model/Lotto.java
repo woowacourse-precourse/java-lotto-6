@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,6 +11,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         equalNum(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -25,6 +27,8 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않는 숫자로 이루어져야 합니다.");
         }
     }
+
+
 
     public List<Integer> getNumbers() {
         return numbers;

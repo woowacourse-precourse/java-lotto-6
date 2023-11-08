@@ -26,4 +26,9 @@ public class TextView {
                 "6개 일치 (2,000,000,000원) - ");
         return prize;
     }
+
+    public void prize() {
+        System.out.print("당첨 통계\n");
+        System.out.print("---\n");
+    }
 }

@@ -39,7 +39,7 @@ class LottoTest {
     @DisplayName("금액이 1000으로 나눠떨어지지 않으면 예외가 발생한다.")
     @Test
     void createPriceDivide() {
-        assertThatThrownBy(() -> new LottoManager(5600))
+        assertThatThrownBy(() -> new LottoTicket(5600))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

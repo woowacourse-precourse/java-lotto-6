@@ -60,6 +60,10 @@ public class Validations {
             throw new IllegalArgumentException(LottoMessages.PRICE_ZERO.getKr());
         }
 
+        if(lottoPrice == 0) {
+            throw new IllegalArgumentException(LottoMessages.DIVIDE_BY_ZERO.getKr());
+        }
+
         if(givenPrice%lottoPrice != 0) {
             throw new IllegalArgumentException(LottoMessages.PRICE_DIVIDE_BY_LOTTO_PRICE.getKr());
         }

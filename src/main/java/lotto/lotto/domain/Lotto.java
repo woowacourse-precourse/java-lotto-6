@@ -1,7 +1,9 @@
 package lotto.lotto.domain;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,7 +16,15 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] numbers size must be 6");
+        }
+        validateUnique(numbers);
+    }
+
+    private void validateUnique(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] number must be unique");
         }
     }
 

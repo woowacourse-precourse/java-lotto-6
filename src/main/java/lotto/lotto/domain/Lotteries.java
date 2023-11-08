@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Lotteries {
 
-    private List<Lotto> lotteries;
+    private final List<Lotto> lotteries;
 
     public Lotteries() {
         this.lotteries = new ArrayList<>();
@@ -15,7 +15,7 @@ public class Lotteries {
 
     private void validate(Integer amount) {
         if (amount <= 0) {
-            throw new IllegalArgumentException("amount must be greater than zero");
+            throw new IllegalArgumentException("[ERROR] amount must be greater than zero");
         }
     }
 

@@ -28,10 +28,10 @@ class InputUtilTest {
     @DisplayName("정상적인 숫자가 들어왔을 때, int 값으로 반환을 한다.")
     void testParseNums() {
         // given
-        String input = "1,2,3,4,5,6";
+        List<String> splitInput = List.of("1", "2", "3", "4", "5", "6");
 
         // when
-        List<Integer> result = InputUtil.parseNums(input);
+        List<Integer> result = InputUtil.parseNums(splitInput);
 
         // then
         List<Integer> expectedResult = List.of(1,2,3,4,5,6);

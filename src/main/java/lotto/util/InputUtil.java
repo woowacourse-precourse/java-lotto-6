@@ -3,9 +3,7 @@ package lotto.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
-import lotto.exception.ParseIntException;
-import org.w3c.dom.ls.LSOutput;
+
 
 public class InputUtil {
     private InputUtil() {

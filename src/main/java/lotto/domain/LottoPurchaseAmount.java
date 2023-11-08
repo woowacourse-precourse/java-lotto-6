@@ -21,6 +21,10 @@ public class LottoPurchaseAmount {
         return amount / UNIT_AMOUNT;
     }
 
+    public int getLottoPurchaseAmount() {
+        return amount;
+    }
+
     private void validateAmount(int amount) {
         if (!isAboveMinimum(amount)) {
             throw new InvalidArgumentException(AMOUNT_LESS_THAN_MINIMUM);

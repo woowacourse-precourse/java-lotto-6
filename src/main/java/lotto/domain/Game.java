@@ -6,6 +6,7 @@ import static lotto.view.InputView.inputLottoPurchaseAmount;
 import static lotto.view.InputView.inputWinningNumbers;
 import static lotto.view.OutputView.printLottoNumbers;
 import static lotto.view.OutputView.printLottoResult;
+import static lotto.view.OutputView.printTotalYieldRate;
 
 import common.enumtype.ResultType;
 import common.exception.InvalidArgumentException;
@@ -143,6 +144,9 @@ public class Game {
     private void printResult() {
         Map<ResultType, Integer> result = lottoResult.getResult();
         printLottoResult(result);
+        int lottoPurchaseAmount = amount.getLottoPurchaseAmount();
+        double yieldRate = lottoResult.getYieldRate(lottoPurchaseAmount);
+        printTotalYieldRate(yieldRate);
     }
 
     private int parseInt(String input) {

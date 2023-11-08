@@ -31,13 +31,20 @@ public final class OutputView {
         System.out.println(sb);
     }
 
+    public static void printWinningStatistics(){
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+    }
+
     public static void printLottoResult(Map<ResultType, Integer> lottoResult) {
         StringBuilder sb = new StringBuilder();
-        sb.append("\n당첨 통계\n");
-        sb.append("---\n");
         Arrays.stream(ResultType.values())
                 .forEach(value -> makeLottoResultString(value, lottoResult, sb));
         System.out.println(sb);
+    }
+
+    public static void printTotalYieldRate(double yieldRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", yieldRate);
     }
 
     private static void makeLottoNumbersString(LottoNumbers lottoNumbers, StringBuilder sb) {

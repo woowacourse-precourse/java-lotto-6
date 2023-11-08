@@ -33,7 +33,7 @@
 
 ### LottoGenerator (로또 발행기)
 
-- [ ]  `로또를 생성`한다.
+- [x]  `로또를 개수만큼 생성`한다.
 
 ### Lotto (로또) → **First Class Collection**
 

@@ -9,38 +9,52 @@ public class LottoGame {
 
     public void startProcess() {
 
-        // money input
+        Integer money = setMoney();
+        Lottos lottos = setLottos(money);
+        Lotto winnigNumbers = setWinningNumber();
+        Integer bonusNumber = setBonusNumber(winnigNumbers);
+
+        LottoResultWinners lottoResultWinners = findWinner(lottos, winnigNumbers, bonusNumber);
+        TotalPrizeMoney totalPrizeMoney = TotalPrizeMoney.findTotalPrizeMoney(lottoResultWinners);
+        Double earningRate = totalPrizeMoney.getEarningRate(money);
+        GuideMessage.ofLottoWinnerResult(lottoResultWinners, earningRate);
+    }
+
+    private Integer setMoney() {
         Integer money = null;
         while (money == null) {
             GuideMessage.ofInputMoney();
             money = GameInput.insertMoney();
         }
+        return money;
+    }
 
-        // create lottos
+    private Lottos setLottos(Integer money) {
         Lottos lottos = Lottos.issueLottos(money);
         Integer issueNumber = lottos.getSize();
         GuideMessage.ofIssuedLottos(lottos, issueNumber);
+        return lottos;
+    }
 
-        // input winner number
+    private Lotto setWinningNumber() {
         GuideMessage.ofInputWinningNumber();
         Lotto winnigNumbers = GameInput.insertWinnigNumbers();
+        return winnigNumbers;
+    }
 
-        // input bonus number
+    private Integer setBonusNumber(Lotto winnigNumbers) {
         GuideMessage.ofInputBounsNumber();
         Integer bonusNumber = GameInput.insertBonusNumber();
-
-        // check duplicated number between winning and bonus
         LottoValidator.checkWinnerAndBonusDuplicatedNumber(winnigNumbers,bonusNumber);
 
-        // find result
+        return bonusNumber;
+    }
+
+    private LottoResultWinners findWinner(Lottos lottos, Lotto winnigNumbers, Integer bonusNumber) {
         LottoResultWinners lottoResultWinners =
                 LottoResultWinners.findWinnerOfLotto(lottos, winnigNumbers, bonusNumber);
-        TotalPrizeMoney totalPrizeMoney = TotalPrizeMoney.findTotalPrizeMoney(lottoResultWinners);
-        Double earningRate = totalPrizeMoney.getEarningRate(money);
-
-        // print result
-        GuideMessage.ofLottoWinnerResult(lottoResultWinners, earningRate);
-
+        return lottoResultWinners;
     }
+
 
 }

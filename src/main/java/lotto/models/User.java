@@ -41,4 +41,11 @@ public class User {
     public List<Lotto> getLotteries(){
         return lotteries;
     }
+
+    public void collectPrize(Machine machine){
+        for(Lotto lotto : lotteries){
+            Prize prize = machine.payPrize(lotto);
+            prizes.put(prize, prizes.getOrDefault(prize, 0)+1);
+        }
+    }
 }

@@ -40,4 +40,11 @@ class LottoTest {
         assertThat(lotto.contain(1)).isTrue();
         assertThat(lotto.contain(7)).isFalse();
     }
+
+    @DisplayName("로또의 위치에 제대로 된 숫자가 있는지 확인한다.")
+    @Test
+    public void getLottoNumber() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.getLottoNumber(0)).isEqualTo(1);
+    }
 }

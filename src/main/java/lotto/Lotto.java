@@ -5,6 +5,17 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
 
+    public Lotto(List<Integer> numbers) {
+        validate(numbers);
+        this.numbers = numbers;
+    }
+
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public Lotto(List<Integer> numbers, final int MIN_LOTTO_NUMBER, final int MAX_LOTTO_NUMBER, final int NUMBER_OF_LOTTO_NUMBERS) {
         validate(numbers, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO_NUMBERS);
         this.numbers = numbers;

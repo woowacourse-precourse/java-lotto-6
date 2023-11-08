@@ -32,6 +32,7 @@ public class Lottos {
 
     public WinningResult getWinningResult(String inputWinningNumber, String inputBonusNumber) {
         List<Integer> winningNumbers = Arrays.stream(inputWinningNumber.split(","))
+                .map(String::trim)
                 .map(Integer::parseInt)
                 .toList();
 

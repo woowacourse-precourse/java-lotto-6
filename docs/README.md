@@ -4,16 +4,16 @@
 
 - [0] 사용자로부터 구입금액을 입력받는다 - Player#inputAmount
   - [0] 입력받은 금액이 1,000원 단위로 나누어 떨어지는지 확인한다 - Judgment#divisibleByThousand 
-- [] 사용자가 입력한 구입 금액만큼 로또를 발행한다 - Player#buyLotto
-  - [] 로또 번호를 오름차순으로 정렬한다 - Judgment#lottoSort
-- [] 발행한 로또 번호들을 출력한다 - Player#lottoPrint
+- [0] 사용자가 입력한 구입 금액만큼 로또를 발행한다 - Player#buyLotto
+  - [0] 로또 번호를 오름차순으로 정렬한다 - Judgment#lottoSort
+- [0] 발행한 로또 번호들을 출력한다 - Player#lottoPrint
 
 
-- [] 당첨 번호를 입력받는다 - Lotto#inputNumbers
-  - [] 당첨 번호를 ","를 기준으로 구분하여 반환한다 - Lotto#splitNumbers
-  - [] 입력받은 로또 번호가 1~45 사이의 숫자인지 확인한다 - Judgment#isInRange
-- [] 보너스 번호를 입력받는다 - Lotto#inputBonusNumbers
-  - [] 입력받은 보너스 번호가 1~45 사이의 숫자인지 확인한다 - Judgment#isInRange
+- [0] 당첨 번호를 입력받는다 - Judgment#inputNumbers
+  - [0] 당첨 번호를 ","를 기준으로 구분하여 반환한다 - Judgment#splitNumbers
+  - [0] 입력받은 로또 번호가 1~45 사이의 숫자인지 확인한다 - Judgment#isInRange
+- [0] 보너스 번호를 입력받는다 - Judgment#inputBonusNumbers
+  - [0] 입력받은 보너스 번호가 1~45 사이의 숫자인지 확인한다 - Judgment#isInRange
 
 
 - [] 입력받은 로또 번호들의 당첨 여부를 판단한다 - Judgment#checkLotto
@@ -27,6 +27,14 @@
 
 
 ## 기능 요구 사항
+
+# 예외처리
+1. [] 구입 금액 0원 입력
+2. [0] 1000원으로 떨어지지 않는 금액 입력
+3. [0] 1~45 이외의 로또 숫자 입력
+4. [0] 로또 개수가 6개가 아닌 경우
+5. [] 로또 번호가 중복될 경우
+6. [] 로또 번호와 보너스 번호가 중복될경우
 
 # 추가된 요구 사항
     함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.

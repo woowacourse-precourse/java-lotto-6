@@ -4,8 +4,6 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -42,7 +40,7 @@ public class Lotto {
     }
 
     private boolean isRange(int number){
-        return MIN_NUMBER <= number && number <= MAX_NUMBER;
+        return 1 <= number && number <= 45;
     }
     @Override
     public String toString() {

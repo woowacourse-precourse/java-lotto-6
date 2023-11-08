@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.util.Constants.ERROR;
 import static lotto.util.Constants.LOTTO_LENGTH;
 import static lotto.util.Constants.MAX_NUMBER;
 import static lotto.util.Constants.ZERO;
@@ -14,6 +15,10 @@ public class BundleGenerator {
     private static final int START_INCLUSIVE = 1;
 
     private final PurchaseAmount purchaseAmount;
+
+    private BundleGenerator() {
+        throw new AssertionError(ERROR + "기본 생성자로 생성할 수 없습니다.");
+    }
 
     public BundleGenerator(PurchaseAmount purchaseAmount) {
         this.purchaseAmount = purchaseAmount;

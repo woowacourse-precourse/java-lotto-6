@@ -3,12 +3,12 @@ package lotto.util.validators;
 import static lotto.util.Constants.LOTTO_LENGTH;
 import static lotto.util.Constants.MAX_NUMBER;
 import static lotto.util.Constants.ZERO;
+import static lotto.util.Parser.parseString;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import lotto.util.Parser;
 import lotto.util.exception.input.DuplicationNumberException;
 import lotto.util.exception.input.NumberParsingException;
 import lotto.util.exception.input.NumberGreaterException;
@@ -21,7 +21,7 @@ public class WinningNumbersValidator {
     public static void validateWinningNumbers(String winningNumbers) {
         validateNotNullAndNotEmpty(winningNumbers);
 
-        List<String> parseWinningNumbers = Parser.parseString(winningNumbers);
+        List<String> parseWinningNumbers = parseString(winningNumbers);
         List<Integer> parseIntWinningNumbers = parseIntWinningNumbers(parseWinningNumbers);
         
         validateMaxNumber(parseIntWinningNumbers);

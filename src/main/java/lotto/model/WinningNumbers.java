@@ -1,10 +1,10 @@
 package lotto.model;
 
 
+import static lotto.util.Parser.parseString;
 import static lotto.util.validators.WinningNumbersValidator.validateWinningNumbers;
 
 import java.util.List;
-import lotto.util.Parser;
 
 
 public class WinningNumbers {
@@ -12,7 +12,7 @@ public class WinningNumbers {
 
     public WinningNumbers(String winning) {
         validateWinningNumbers(winning);
-        this.winning = Parser.parseString(winning).stream()
+        this.winning = parseString(winning).stream()
                 .map(Integer::valueOf)
                 .sorted()
                 .toList();

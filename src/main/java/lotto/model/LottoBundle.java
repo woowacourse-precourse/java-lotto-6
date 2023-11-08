@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.util.Constants.ERROR;
 import static lotto.util.Constants.ZERO;
 
 import java.util.ArrayList;
@@ -15,6 +16,10 @@ public class LottoBundle {
     private static final int INCREMENT_VALUE = 1;
 
     private final Map<Lotto, Integer> bundles;
+
+    private LottoBundle(){
+        throw new AssertionError(ERROR + "기본 생성자로 생성할 수 없습니다.");
+    }
 
     public LottoBundle(Map<Lotto, Integer> bundles) {
         this.bundles = bundles;

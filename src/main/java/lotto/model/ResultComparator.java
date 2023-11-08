@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.util.Constants.ERROR;
 import static lotto.util.enums.LottoResult.*;
 
 import java.util.Optional;
@@ -10,6 +11,10 @@ public class ResultComparator {
 
     private final WinningNumbers winningNumbers;
     private final BonusNumber bonusNumber;
+
+    private ResultComparator(){
+        throw new AssertionError(ERROR + "기본 생성자로 생성할 수 없습니다.");
+    }
 
     public ResultComparator(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         this.winningNumbers = winningNumbers;

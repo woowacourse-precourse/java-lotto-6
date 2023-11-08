@@ -5,6 +5,7 @@ import static lotto.LottoConfig.END_NUM;
 import static lotto.LottoConfig.START_NUM;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,7 +33,7 @@ public class LottoTickets {
         List<String> lines = new LinkedList<>();
         for (Lotto ticket : tickets) {
             String line = ticket.sayNumbers();
-            lines.add(line);
+            lines.add(MessageFormat.format("[{0}]", line));
         }
         return lines;
     }

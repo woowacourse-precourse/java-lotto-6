@@ -1,6 +1,5 @@
 package lotto;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,8 +35,7 @@ public class Lotto {
     public String sayNumbers() {
         ArrayList<Integer> sortableNumbers = new ArrayList<>(numbers);
         Collections.sort(sortableNumbers);
-        String numberLine = sortableNumbers.stream().map(String::valueOf).collect(Collectors.joining(", "));
-        return MessageFormat.format("[{0}]", numberLine);
+        return sortableNumbers.stream().map(String::valueOf).collect(Collectors.joining(", "));
     }
 
     public LottoPrize match(List<Integer> commonNumbers, int bonusNumber) {

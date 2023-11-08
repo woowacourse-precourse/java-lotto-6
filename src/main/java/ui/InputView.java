@@ -49,7 +49,7 @@ class InputView {
             try {
                 return supplier.get();
             } catch (NumberFormatException e) {
-                System.out.println(ErrorMessage.NOT_A_NUMBER);
+                System.out.println(ErrorMessage.NOT_A_NUMBER.value());
             } catch (IllegalArgumentException | IllegalStateException e) {
                 System.out.println(e.getMessage());
             }

@@ -37,7 +37,7 @@ class LottoTest {
         String said = lotto.sayNumbers();
 
         //then
-        assertThat(said).isEqualTo("[1, 2, 3, 4, 5, 6]");
+        assertThat(said).isEqualTo("1, 2, 3, 4, 5, 6");
     }
 
     @DisplayName("로또 번호 매칭 확인")

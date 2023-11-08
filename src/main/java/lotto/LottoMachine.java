@@ -149,8 +149,6 @@ public class LottoMachine {
         drawResult(winner);
     }
 
-
-
     public void drawResult(int[] winner){
         System.out.println("\n당첨 통계\n---");
         System.out.println("3개 일치 (5,000원) - " + winner[rank.FIFTH.index] + "개");

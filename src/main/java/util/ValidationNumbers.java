@@ -20,9 +20,9 @@ public class ValidationNumbers {
     }
 
     private static void validateNumber(String numbers) {
-        List<String> numbersList = new ArrayList<String>();
+        List<String> numbersList = List.of(numbers.split(COMMA, REMOVE_LAST_SPACE_NUMBER));
         try {
-            Arrays.stream(numbers.split(COMMA, REMOVE_LAST_SPACE_NUMBER)).forEach(Integer::parseInt);
+            numbersList.stream().forEach(Integer::parseInt);
         } catch (NumberFormatException notANumberException) {
             throw new IllegalArgumentException(ValidationNumbersMessages.NOT_A_NUMBER.getMessage());
         }

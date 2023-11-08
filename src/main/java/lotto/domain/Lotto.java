@@ -3,9 +3,13 @@ package lotto.domain;
 import java.util.List;
 import lotto.utils.Validator;
 
-public record Lotto(List<Integer> numbers) {
-    public Lotto {
+public class Lotto {
+
+    private final List<Integer> numbers;
+
+    public Lotto(List<Integer> numbers) {
         validate(numbers);
+        this.numbers = numbers;
     }
 
     private void validate(final List<Integer> numbers) {
@@ -43,8 +47,7 @@ public record Lotto(List<Integer> numbers) {
         return numbers.size();
     }
 
-    @Override
-    public List<Integer> numbers() {
+    public List<Integer> getNumbers() {
         return numbers.stream()
                 .toList();
     }

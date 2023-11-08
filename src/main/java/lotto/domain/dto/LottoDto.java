@@ -7,7 +7,7 @@ import lotto.domain.Lotto;
 public record LottoDto(List<Integer> numbers) {
 
     public static LottoDto from(final Lotto lotto) {
-        return new LottoDto(lotto.numbers());
+        return new LottoDto(lotto.getNumbers());
     }
 
     @Override

@@ -37,7 +37,7 @@ public class LottoController {
         );
         view.printMessage(Message.WINNING_STATS);
         view.printWinningCase(winningResultDto);
-        ReturnRateDto returnRateDto = service.getReturnRate(lottoPurchaseDto.amount(), winningResultDto);
+        ReturnRateDto returnRateDto = service.getReturnRate(lottoPurchaseDto, winningResultDto);
         view.printReturnRateMessage(returnRateDto);
         view.close();
     }

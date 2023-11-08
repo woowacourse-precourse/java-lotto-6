@@ -1,6 +1,5 @@
 package lotto.service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoPurchaseDto;
@@ -89,10 +88,10 @@ public class LottoService implements Service {
     }
 
     @Override
-    public ReturnRateDto getReturnRate(BigDecimal amount, WinningResultDto winningResultDto) {
+    public ReturnRateDto getReturnRate(LottoPurchaseDto lottoPurchaseDto, WinningResultDto winningResultDto) {
         ReturnRate returnRate = getWinningResult(winningResultDto)
                 .getTotalWinningAmount()
-                .getReturnRateFrom(amount);
+                .getReturnRateFrom(lottoPurchaseDto.amount());
         return getReturnRateDto(returnRate);
     }
 

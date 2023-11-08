@@ -24,7 +24,7 @@ public class LottoService {
             }
         }
         lottoController.setRandomLottoNumber(ticket);
-        System.out.println(ticket + "개를 구매했습니다.");
+        System.out.println("\n" + ticket + "개를 구매했습니다.");
         System.out.println(lottoController.getLottoString());
     }
 
@@ -33,6 +33,7 @@ public class LottoService {
             try {
                 String lottoNumbers = InputService.inputNumbers();
                 lottoController.setInputLottoNumber(lottoNumbers);
+                System.out.println();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -45,6 +46,7 @@ public class LottoService {
             try {
                 String lottoBonusNumber = InputService.inputBonusNumber();
                 lottoController.setBonusNumber(lottoBonusNumber);
+                System.out.println();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

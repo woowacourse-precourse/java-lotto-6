@@ -19,16 +19,16 @@ class BuyerTest {
         assertThat(Buyer.from(purchaseAmount)).isInstanceOf(Buyer.class);
     }
 
-    @DisplayName("Buyer 객체 구매한 로또 리스트 반환 테스트")
+    @DisplayName("Buyer 객체 구매한 로또 리스트 초기값 반환 테스트")
     @Test
-    void Buyer_구매한_로또_리스트_반환_테스트() {
+    void Buyer_구매한_로또_리스트_초기값_반환_테스트() {
         Buyer buyer = Buyer.from(1000);
         assertThat(buyer.getPurchasedLotto()).isEqualTo(new ArrayList<Lotto>());
     }
 
-    @DisplayName("Buyer 객체 구매한 로또 리스트 반환 실패 테스트")
+    @DisplayName("Buyer 객체 구매한 로또 리스트 초기값 반환 실패 테스트")
     @Test
-    void Buyer_구매한_로또_리스트_반환_실패_테스트() {
+    void Buyer_구매한_로또_리스트_초기값_반환_실패_테스트() {
         Buyer buyer = Buyer.from(1000);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(buyer.getPurchasedLotto()).isNotEqualTo(new ArrayList<Lotto>() {{
@@ -59,9 +59,9 @@ class BuyerTest {
         assertThat(buyer.getPurchaseAmount()).isNotEqualTo(1001);
     }
 
-    @DisplayName("Buyer 객체 로또 등수 반환 테스트")
+    @DisplayName("Buyer 객체 로또 등수 초기값 반환 테스트")
     @Test
-    void Buyer_로또_등수_반환_테스트() {
+    void Buyer_로또_등수_초기값_반환_테스트() {
         Buyer buyer = Buyer.from(1000);
         assertThat(buyer.getResultRank()).isEqualTo(new HashMap<Rank, Integer>() {{
             put(Rank.FIFTH, 0);
@@ -72,9 +72,9 @@ class BuyerTest {
         }});
     }
 
-    @DisplayName("Buyer 객체 로또 등수 반환 실패 테스트")
+    @DisplayName("Buyer 객체 로또 등수 초기값 반환 실패 테스트")
     @Test
-    void Buyer_로또_등수_반환_실패_테스트() {
+    void Buyer_로또_등수_초기값_반환_실패_테스트() {
         Buyer buyer = Buyer.from(1000);
         assertThat(buyer.getResultRank()).isNotEqualTo(new HashMap<Rank, Integer>() {{
             put(Rank.FIFTH, 0);

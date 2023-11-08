@@ -5,6 +5,7 @@ import static lotto.domain.LottoWinningCombination.createLottoWinningCombination
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.LottoWinningCombination;
 import lotto.handler.InputHandler;
 import lotto.handler.OutputHandler;
@@ -27,6 +28,10 @@ public class GameController {
         OutputView.printMessageBlankLine();
 
         LottoWinningCombination lottoWinningCombination = createLottoWinningCombination(winnerNums, bonusNum);
+        List<LottoResult> lottoResults = LottoService.detemineLottoResults(lottos, lottoWinningCombination);
+
+
+
 
     }
 

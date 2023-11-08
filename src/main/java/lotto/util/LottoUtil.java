@@ -1,6 +1,9 @@
 package lotto.util;
 
 import static lotto.Constants.DECIMAL_PLACES;
+import static lotto.Constants.LOTTO_NUMBER_MAX;
+import static lotto.Constants.LOTTO_NUMBER_MIN;
+import static lotto.Constants.MAX_LOTTO_SIZE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;
@@ -19,7 +22,8 @@ public class LottoUtil {
     public static List<Lotto> generateLottos(int lottoCount) {
         List<Lotto> generatedLottos = new ArrayList<>();
         IntStream.range(0, lottoCount).forEach(i -> {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX,
+                    MAX_LOTTO_SIZE);
             generatedLottos.add(new Lotto(numbers));
         });
         return generatedLottos;

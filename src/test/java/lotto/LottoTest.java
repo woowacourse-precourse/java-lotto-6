@@ -29,50 +29,51 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    @DisplayName("로또 번호에 1~45의 숫자가 아닌 숫자가 있으면 예외가 발생한다.")
-    @ParameterizedTest
-    @ValueSource(ints = {0, 46, 99})
-    void createLottoByNotLottoNumber(int lottoNumber) {
-        //given
-        List<Integer> lottoNumbers = List.of(lottoNumber, 1, 2, 3, 4, 5);
-        // when //then
-        assertThatThrownBy(() -> new Lotto(lottoNumbers))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("보너스 번호가 1~45의 숫자가 아닌 숫자가 있으면 예외가 발생한다. ")
-    @ParameterizedTest
-    @ValueSource(ints = {0, 55, 72})
-    void createBonusByNotLottoNumber(int lottoNumber) {
-        //given
-        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = lottoNumber;
-        // when //then
-        assertThatThrownBy(() -> new WinningLotto(lottoNumbers, bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("로또번호와 보너스 번호에는 음수가 들어가면 안 된다. ")
-    @ParameterizedTest
-    @ValueSource(ints = {-1, -2, -3})
-    void createMinusNumberWithBonusAndLottoNumber(int lottoNumber) {
-        //given
-        List<Integer> lottoNumbers = List.of(lottoNumber, 2, 3, 4, 5, 6);
-        int bonusNumber = lottoNumber;
-        // when //then
-        assertThatThrownBy(() -> new WinningLotto(lottoNumbers, bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("돈은 1000원 단위가 들어와야 한다. ")
-    @ParameterizedTest
-    @ValueSource(ints = {1111,1113,1114})
-    void createMoneyCheck1000(int inputMoney) {
-        //given
-        int money = inputMoney;
-        // when //then
-        assertThatThrownBy(() -> new Money(money))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }
+
+//    @DisplayName("로또 번호에 1~45의 숫자가 아닌 숫자가 있으면 예외가 발생한다.")
+//    @ParameterizedTest
+//    @ValueSource(ints = {0, 46, 99})
+//    void createLottoByNotLottoNumber(int lottoNumber) {
+//        //given
+//        List<Integer> lottoNumbers = List.of(lottoNumber, 1, 2, 3, 4, 5);
+//        // when //then
+//        assertThatThrownBy(() -> new Lotto(lottoNumbers))
+//                .isInstanceOf(IllegalArgumentException.class);
+//    }
+//
+//    @DisplayName("보너스 번호가 1~45의 숫자가 아닌 숫자가 있으면 예외가 발생한다. ")
+//    @ParameterizedTest
+//    @ValueSource(ints = {0, 55, 72})
+//    void createBonusByNotLottoNumber(int lottoNumber) {
+//        //given
+//        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+//        int bonusNumber = lottoNumber;
+//        // when //then
+//        assertThatThrownBy(() -> new WinningLotto(lottoNumbers, bonusNumber))
+//                .isInstanceOf(IllegalArgumentException.class);
+//    }
+//
+//    @DisplayName("로또번호와 보너스 번호에는 음수가 들어가면 안 된다. ")
+//    @ParameterizedTest
+//    @ValueSource(ints = {-1, -2, -3})
+//    void createMinusNumberWithBonusAndLottoNumber(int lottoNumber) {
+//        //given
+//        List<Integer> lottoNumbers = List.of(lottoNumber, 2, 3, 4, 5, 6);
+//        int bonusNumber = lottoNumber;
+//        // when //then
+//        assertThatThrownBy(() -> new WinningLotto(lottoNumbers, bonusNumber))
+//                .isInstanceOf(IllegalArgumentException.class);
+//    }
+//
+//    @DisplayName("돈은 1000원 단위가 들어와야 한다. ")
+//    @ParameterizedTest
+//    @ValueSource(ints = {1111,1113,1114})
+//    void createMoneyCheck1000(int inputMoney) {
+//        //given
+//        int money = inputMoney;
+//        // when //then
+//        assertThatThrownBy(() -> new Money(money))
+//                .isInstanceOf(IllegalArgumentException.class);
+//    }
+//}

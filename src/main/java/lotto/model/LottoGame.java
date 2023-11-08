@@ -36,7 +36,7 @@ public class LottoGame implements Game {
 
     @Override
     public void play() {
-        createLottoTickets(lottoPurchaseAmount);
+        createLottoTickets();
         checkWinningLottos();
     }
 
@@ -45,7 +45,7 @@ public class LottoGame implements Game {
         return false;
     }
 
-    public void createLottoTickets(int lottoPurchaseAmount) {
+    public void createLottoTickets() {
         for (int i = 0; i < lottoPurchaseAmount; i++) {
             List<Integer> purchasedLottoNumbers;
             purchasedLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -54,7 +54,7 @@ public class LottoGame implements Game {
         }
     }
 
-    private int validateLottoPurchaseAmount(String input) {
+    public int validateLottoPurchaseAmount(String input) {
         int lottoPurchasePrice;
         lottoPurchasePrice = validateNumber(input);
         if (lottoPurchasePrice % lottoPirce != 0) {

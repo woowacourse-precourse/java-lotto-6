@@ -19,6 +19,10 @@ public class Lotto implements LottoConstants {
         return numbers.toString();
     }
 
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE.getMessage(LOTTO_SIZE));

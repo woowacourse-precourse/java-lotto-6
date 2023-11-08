@@ -32,4 +32,9 @@ public class LottoService implements LottoConstants {
         List<Integer> numbers = Parser.parseNumbers(numbersInput);
         lottoRepository.updateWinningNumbers(numbers);
     }
+
+    public void createBonusNumber(String bonusInput) {
+        int bonus = Parser.parseSingleNumber(bonusInput);
+        lottoRepository.updateBonusNumber(bonus);
+    }
 }

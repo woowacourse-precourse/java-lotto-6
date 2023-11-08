@@ -46,4 +46,14 @@ public class LottoController {
             setWinningNumbers();
         }
     }
+
+    private void setBonusNumber() {
+        String bonusInput = lottoView.requestInput(InputRequestMessage.BONUS_NUMBER);
+        try {
+            lottoService.createBonusNumber(bonusInput);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            lottoView.printError(illegalArgumentException);
+            setBonusNumber();
+        }
+    }
 }

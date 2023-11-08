@@ -6,17 +6,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoMachineTest {
+    private LottoMachine lottoMachine;
+
+    @BeforeEach
+    void setUp() {
+        lottoMachine = new LottoMachine();
+    }
 
     @DisplayName("1000원단위가 아니면 예외가 발생한다.")
     @Test
     void purchaseAmountTextToInt() {
-        LottoMachine lottoMachine = new LottoMachine();
         String purchaseAmountText = "14500";
 
         assertThatThrownBy(() -> lottoMachine.purchaseAmountTextToInt(purchaseAmountText))
@@ -26,7 +32,6 @@ class LottoMachineTest {
     @DisplayName("당첨번호를 바르게 입력한 경우")
     @Test
     void textToLotto() {
-        LottoMachine lottoMachine = new LottoMachine();
         String winningNumberText = "1,2,3,4,5,6";
 
         Lotto actual = lottoMachine.textToLotto(winningNumberText);
@@ -37,14 +42,35 @@ class LottoMachineTest {
                 .isEqualTo(expected);
     }
 
-    @DisplayName("당첨번호를 6개 입력하지 않은 경우 예외 처리")
+    @DisplayName("당첨번호를 6개 입력하지 않은 경우, 중복된 번호를 입력한 경우, 1~45를 넘는 번호를 입력한경우 예외 발생")
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,5,6,7", "1,2,3,4,5", "1,1,2,2,3,4", "0,1,2,3,46,5"})
     void textToLotto(String value) {
-        LottoMachine lottoMachine = new LottoMachine();
         String winningNumberText = value;
 
         assertThatThrownBy(() -> lottoMachine.textToLotto(winningNumberText))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 1~45범위를 넘으면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "46"})
+    void BonusNumberTextToInt(String value) {
+        String bonusNumberText = value;
+
+        assertThatThrownBy(() -> lottoMachine.BonusNumberTextToInt(bonusNumberText))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 당첨번호와 중복되면 예외가 발생한다.")
+    @Test
+    void BonusNumberTextToInt() {
+        String winningNumberText = "1,2,3,4,5,6";
+        String bonusNumberText = "1";
+
+        lottoMachine.textToLotto(winningNumberText);
+
+        assertThatThrownBy(() -> lottoMachine.BonusNumberTextToInt(bonusNumberText))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

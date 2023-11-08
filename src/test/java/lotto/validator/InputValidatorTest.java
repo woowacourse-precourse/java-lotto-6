@@ -10,7 +10,7 @@ class InputValidatorTest {
 
     @DisplayName("입력값으로 문자가 입력되면 예외가 발생한다.")
     @Test
-    void isNotDigitTest1() {
+    void isNotDigit1() {
         String input = "string";
         assertThatThrownBy(() -> inputValidator.validateIsDigit(input))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -18,7 +18,7 @@ class InputValidatorTest {
 
     @DisplayName("입력값에 문자가 포함되면 예외가 발생한다.")
     @Test
-    void isNotDigitTest2() {
+    void isNotDigit2() {
         String input = "5000j";
         assertThatThrownBy(() -> inputValidator.validateIsDigit(input))
                 .isInstanceOf(IllegalArgumentException.class);

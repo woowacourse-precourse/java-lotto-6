@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import static org.assertj.core.api.Assertions.*;
 
 class LottoResultCalculatorTest {
 
+    @DisplayName("로또 당첨 결과를 만들고 정상적으로 데이터가 들어가있는지 확인한다.")
     @Test
     void createLottoResult() {
         LottoResultCalculator resultCalculator = new LottoResultCalculator();

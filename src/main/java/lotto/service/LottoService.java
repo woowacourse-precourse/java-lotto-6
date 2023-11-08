@@ -28,7 +28,7 @@ public class LottoService {
     }
 
     public void setBonusNumber(String inputBonusNumber) {
-        this.bonusNumber = new BonusNumber(inputBonusNumber);
+        this.bonusNumber = new BonusNumber(inputBonusNumber, winningLotto);
     }
 
     public void calculateWinningStatistics() {

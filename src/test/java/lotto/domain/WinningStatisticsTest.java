@@ -22,7 +22,7 @@ class WinningStatisticsTest {
         );
 
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        BonusNumber bonusNumber = new BonusNumber("7");
+        BonusNumber bonusNumber = new BonusNumber("7", winningLotto);
 
         Map<WinningRecord, Integer> result = new EnumMap<>(WinningRecord.class) {{
             put(WinningRecord.FIRST_PLACE, 1);

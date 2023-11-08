@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +27,7 @@ class LottoTest {
     @DisplayName("로또 번호 가져오기.")
     @Test
     void getLottoNumbers() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6)));
         List<Integer> numbers = lotto.getNumbers();
         assertEquals(6, numbers.size());
     }
@@ -34,7 +35,7 @@ class LottoTest {
     @DisplayName("로또 번호 출력하기.")
     @Test
     void lottoToString() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6)));
         String content = "[1, 2, 3, 4, 5, 6]";
         assertEquals(content, lotto.toString());
     }

@@ -1,9 +1,12 @@
 package lotto.controller;
 
 import lotto.service.LottoService;
+import lotto.service.dto.LottoResultDto;
 import lotto.service.dto.PurchaseResultDto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 
 public class LottoController {
@@ -53,5 +56,11 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public void getLottoResult() {
+        List<LottoResultDto> resultDtos = lottoService.getLottoResult();
+        double rateOfReturn = lottoService.getRateOfReturn();
+        outputView.notifyLottoResult(resultDtos, rateOfReturn);
     }
 }

@@ -14,23 +14,23 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public boolean contains(int number) {
+    public boolean contains(final int number) {
         return numbers.contains(number);
     }
 
-    public int compareWithAnotherLotto(Lotto another) {
+    public int compareWithAnotherLotto(final Lotto another) {
         return another.compareWithNumberList(this.numbers);
-    } // 당첨 갯수 확인 로또끼리 확인
-
-    public int compareWithNumberList(List<Integer> anotherNumbers) {
-        return (int) numbers.stream()
-                .filter(number -> anotherNumbers.stream()
-                .anyMatch(Predicate.isEqual(number)))
-                .count();
-    }
+    } // 당첨 갯수 Lotto 끼리 확인
 
     public void printLottoInfo() {
         OutputView.printLotto(numbers);
+    }
+
+    private int compareWithNumberList(List<Integer> anotherNumbers) {
+        return (int) numbers.stream()
+                .filter(number -> anotherNumbers.stream()
+                        .anyMatch(Predicate.isEqual(number)))
+                .count();
     }
 
     private void validate(List<Integer> numbers) {

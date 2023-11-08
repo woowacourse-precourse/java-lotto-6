@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.common.Lotto;
 import lotto.domain.common.Rank;
 import lotto.domain.consumer.Consumer;
@@ -97,7 +96,7 @@ public class LottoController {
         boolean valid = false;
         Bonus bonus = null;
 
-        while(!valid) {
+        while (!valid) {
             try {
                 int bonusInt = inputView.inputBonus();
                 bonus = new Bonus(producerLotto, bonusInt);

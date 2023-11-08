@@ -14,13 +14,11 @@ class PriceTest {
     private static final int VALUE_0 = 0;
     private static final int VALUE_MINUS_1 = -1;
 
-    @DisplayName("로또 구매 금액은 1,000 원 단위이어야 함")
+    @DisplayName("로또 구매 금액은 1,000원 단위이어야 함")
     @Test
     void testPriceNot1Ks() {
-
         Assertions.assertThatThrownBy(() -> new Price(VALUE_100)).isInstanceOf(PriceNot1KsException.class);
         Assertions.assertThatThrownBy(() -> new Price(VALUE_1001)).isInstanceOf(PriceNot1KsException.class);
-
     }
 
     @DisplayName("로또 구매 금액은 양의 정수이어야 함")
@@ -29,6 +27,4 @@ class PriceTest {
         Assertions.assertThatThrownBy(() -> new Price(VALUE_0)).isInstanceOf(PriceNotPositiveIntegerException.class);
         Assertions.assertThatThrownBy(() -> new Price(VALUE_MINUS_1)).isInstanceOf(PriceNotPositiveIntegerException.class);
     }
-
-
 }

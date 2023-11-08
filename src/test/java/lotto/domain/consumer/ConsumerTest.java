@@ -31,7 +31,6 @@ public class ConsumerTest {
         Count count = consumerPaying2000.count();
 
         Assertions.assertThat(count.value()).isEqualTo(COUNT_FROM_PRICE_2000);
-
     }
 
     @DisplayName("소비자가 로또를 3000원어치 구매했다면 3개를 가지고 있어야 함")

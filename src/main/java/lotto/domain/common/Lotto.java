@@ -1,7 +1,6 @@
 package lotto.domain.common;
 
 
-import lotto.exception.InputView.InputLottoNotPositiveIntegerException;
 import lotto.exception.Lotto.LottoDuplicationException;
 import lotto.exception.Lotto.LottoNotInRangeException;
 import lotto.exception.Lotto.LottoNotSizeSixException;
@@ -16,8 +15,6 @@ public record Lotto(List<Integer> numbers) {
     private static final int LOTTO_MAX_NUMBER = 45;
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_SIZE = 6;
-    private static final String NUMERIC_REGEX = "^[0-9]*$";
-
 
     public Lotto {
         validateLottoSize(numbers);

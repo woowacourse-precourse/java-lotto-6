@@ -44,14 +44,12 @@ public class InputView {
         return Integer.parseInt(line);
     }
 
-    // 가격 입력값 검증
     private void validateInputPricePositiveInteger(String line) {
         if (!line.matches(POSITIVE_INTEGER_REGEX)) {
             throw new InputPriceNotPositiveIntegerException();
         }
     }
 
-    // 로또 당첨 번호 입력값 검증
     private void validateInputLotto(String line) {
         String[] split = line.split(SEPARATOR_REGEX);
         for (String s : split) {
@@ -70,7 +68,6 @@ public class InputView {
         }
     }
 
-    // 로또 당첨 보너스 번호 입력값 검증
     private void validateInputBonus(String line) {
         if (!line.matches(POSITIVE_INTEGER_REGEX)) {
             throw new InputBonusNotPositiveIntegerException();

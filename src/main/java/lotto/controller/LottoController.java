@@ -47,28 +47,30 @@ public class LottoController {
 
     private void purchaseLotteries() {
         outputView.print(Messages.INPUT_PURCHASE_CASH_AMOUNT.getMessage());
-        try {
-            purchaseCash = new Cash(inputView.inputNumber());
-            int lotteriesCount = lottoShop.countPurchasableAmount(purchaseCash.amount());
-            outputView.print(Messages.PURCHASED_LOTTERIES_FORMAT.getMessage(lotteriesCount));
-            List<LottoNumbersDTO> lottoNumbersDTOs = lottoNumbersGenerator.generateByCount(lotteriesCount);
-            lotteries = lottoNumbersDTOs.stream()
-                    .map(LottoNumbersDTO::numbers)
-                    .map(Lotto::new)
-                    .toList();
-            outputView.print(messenger.getLotteriesNumbersMessage(lottoNumbersDTOs));
-        } catch (IllegalArgumentException e) {
-            outputView.print(e);
-            purchaseLotteries();
+        while(true) {
+            try {
+                purchaseCash = new Cash(inputView.inputNumber());
+                int lotteriesCount = lottoShop.countPurchasableAmount(purchaseCash.amount());
+                outputView.print(Messages.PURCHASED_LOTTERIES_FORMAT.getMessage(lotteriesCount));
+                List<LottoNumbersDTO> lottoNumbersDTOs = lottoNumbersGenerator.generateByCount(lotteriesCount);
+                lotteries = lottoNumbersDTOs.stream()
+                        .map(LottoNumbersDTO::numbers)
+                        .map(Lotto::new)
+                        .toList();
+                outputView.print(messenger.getLotteriesNumbersMessage(lottoNumbersDTOs));
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.print(e);
+            }
         }
     }
 
     private void inputWinningLottoNumbers() {
 
+        outputView.print(Messages.INPUT_WINNING_NUMBERS.getMessage());
         Lotto winningNumbers;
         while(true) {
             try {
-                outputView.print(Messages.INPUT_WINNING_NUMBERS.getMessage());
                 winningNumbers = new Lotto(inputView.inputNumbers());
                 break;
             } catch (IllegalArgumentException e) {
@@ -76,10 +78,10 @@ public class LottoController {
             }
         }
 
+        outputView.print(Messages.INPUT_BONUS_NUMBERS.getMessage());
         LottoNumber bonusNumber;
         while(true) {
             try {
-                outputView.print(Messages.INPUT_BONUS_NUMBERS.getMessage());
                 bonusNumber = new LottoNumber(inputView.inputNumber());
                 winningLottoNumbers = new WinningLottoNumbers(winningNumbers, bonusNumber);
                 break;

@@ -23,7 +23,7 @@ public class Money {
     }
 
     private void validateNegative(int money) {
-        if (money < 0) {
+        if (money <= 0) {
             throw new IllegalArgumentException(Errors.MESSAGE + Errors.NOT_NEGATIVE_NUMBER);
         }
     }

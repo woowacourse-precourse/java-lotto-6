@@ -3,47 +3,40 @@ package lotto.console.game.lotto;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.console.game.Game;
 import lotto.console.game.lotto.constants.GameMessages;
-import lotto.console.game.lotto.core.Lotto;
-import lotto.console.game.lotto.core.Player;
-import lotto.console.game.lotto.core.PrizeDetail;
-import lotto.console.game.lotto.core.PrizeHandler;
+import lotto.console.game.lotto.domain.Lotto;
+import lotto.console.game.lotto.domain.Player;
+import lotto.console.game.lotto.domain.PrizeDetail;
+import lotto.console.game.lotto.domain.PrizeManager;
 
 import java.util.List;
 
 public class LottoGame implements Game {
     private Player player;
-    private PrizeHandler prizeHandler;
-
-    public LottoGame() {
-
-    }
+    private PrizeManager prizeManager;
 
     public void createPlayer(Player player) {
         this.player = player;
     }
-
-    public void createPrizeHandler(PrizeHandler prizeHandler) {
-        this.prizeHandler = prizeHandler;
+    public void createPrizeManager(PrizeManager prizeManager) {
+        this.prizeManager = prizeManager;
     }
 
     @Override
     public void start(){
         createPlayer(new Player(enterPurchaseMoney()));
         player.issueLottoTickets();
-        printPurchasedCount(player.getIssuedQuantity());
-        printIssuedLottos(player.getIssuedLottos());
+        printPlayerPurchasedCount(player.getIssuedQuantity());
+        printPlayerIssuedLottos(player.getIssuedLottos());
 
-        createPrizeHandler(new PrizeHandler());
-        prizeHandler.registerWinningNumbers(enterWinningNumbers());
-        prizeHandler.registerBonusNumber(enterBonusNumber());
+        createPrizeManager(new PrizeManager());
+        prizeManager.registerWinningNumbers(enterWinningNumbers());
+        prizeManager.registerBonusNumber(enterBonusNumber());
 
-        PrizeDetail prizeDetail = prizeHandler.generatePrizeDetailByLottos(player.getIssuedLottos());
-        printPrizeDetail(prizeDetail);
+        PrizeDetail prizeDetail = prizeManager.generatePrizeDetailByLottos(player.getIssuedLottos());
+        printPlayerPrizeDetail(prizeDetail);
         player.receivePrizeDetail(prizeDetail);
-        printProfitRate(player.getProfitRate());
+        printPlayerProfitRate(player.exportProfitRate());
     }
-
-
 
     private int enterPurchaseMoney() {
         printGameMessage(GameMessages.ENTER_YOUR_PURCHASE_AMOUNT);
@@ -111,21 +104,21 @@ public class LottoGame implements Game {
         }
     }
 
-    private void printPurchasedCount(int issuedQuantity) {
+    private void printPlayerPurchasedCount(int issuedQuantity) {
         printGameMessage(issuedQuantity + GameMessages.YOUR_PURCHASED_COUNT);
     }
 
-    private void printIssuedLottos(List<Lotto> issuedLottos) {
+    private void printPlayerIssuedLottos(List<Lotto> issuedLottos) {
         issuedLottos.stream()
-                .map(Lotto::indicateNumbers)
+                .map(Lotto::exportMessage)
                 .forEach(System.out::println);
     }
 
-    private void printPrizeDetail(PrizeDetail prizeDetail) {
-        printGameMessage(prizeDetail.exportMessage());
+    private void printPlayerPrizeDetail(PrizeDetail prizeDetail) {
+        printGameMessage(GameMessages.PRIZE_INFO_PREFIX + prizeDetail.exportMessage());
     }
 
-    private void printProfitRate(String profitRate) {
+    private void printPlayerProfitRate(String profitRate) {
         printGameMessage(GameMessages.YOUR_PROFIT_RATE_PREFIX + profitRate + GameMessages.YOUR_PROFIT_RATE_POSTFIX);
     }
 

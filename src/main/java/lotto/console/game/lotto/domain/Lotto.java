@@ -1,4 +1,4 @@
-package lotto.console.game.lotto.core;
+package lotto.console.game.lotto.domain;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -25,7 +25,11 @@ public class Lotto {
         return numbers;
     }
 
-    public String indicateNumbers() {
+    public String exportMessage() {
+        return makeMessage();
+    }
+
+    private String makeMessage() {
         List<Integer> sortedList = new ArrayList<>(numbers);
         Collections.sort(sortedList);
         return sortedList.stream()

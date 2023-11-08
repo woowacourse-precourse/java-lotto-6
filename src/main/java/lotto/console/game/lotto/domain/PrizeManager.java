@@ -1,15 +1,14 @@
-package lotto.console.game.lotto.core;
+package lotto.console.game.lotto.domain;
 
 import java.util.List;
 
-public class PrizeHandler {
+public class PrizeManager {
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
     public void registerWinningNumbers(List<Integer> numbers) {
         this.winningNumbers = numbers;
     }
-
     public void registerBonusNumber(int number) {
         this.bonusNumber = number;
     }
@@ -21,6 +20,4 @@ public class PrizeHandler {
         }
         return prizeDetail;
     }
-
-
 }

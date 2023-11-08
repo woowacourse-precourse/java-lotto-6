@@ -6,6 +6,7 @@ public class GameMessages {
     public static final String ENTER_YOUR_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     public static final String ENTER_YOUR_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
+    public static final String PRIZE_INFO_PREFIX = "당첨통계\n___\n";
     public static final String FIRST_PRIZE_INFO = "6개 일치 (2,000,000,000원) - ";
     public static final String SECOND_PRIZE_INFO = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     public static final String THIRD_PRIZE_INFO = "5개 일치 (1,500,000원) - ";

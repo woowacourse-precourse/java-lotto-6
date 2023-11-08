@@ -1,4 +1,6 @@
-package lotto.console.game.lotto.core;
+package lotto.console.game.lotto.domain;
+
+import lotto.console.game.lotto.constants.PrizeRank;
 
 import java.util.List;
 
@@ -20,32 +22,38 @@ public class PrizeDetail {
         this.fifthPrizeCount = 0;
     }
 
-
-    public void updateDetailByLotto(List<Integer> numbers, List<Integer> winningNumbers, int bonusNumber) {
-        Match match = new Match();
-        for (int number : numbers) {
-            if (winningNumbers.contains(number)) {
-                match.addCount();
-            }
-            if (bonusNumber == number)
-                match.isBonus();
-        }
-
-        makeDetail(match);
+    public void updateDetailByLotto(List<Integer> playerNumbers, List<Integer> winningNumbers, int bonusNumber) {
+        PrizeMatchCount prizeMatchCount = new PrizeMatchCount();
+        updatePrizeMatchCount(playerNumbers, winningNumbers, bonusNumber, prizeMatchCount);
+        applyInPrizeDetail(prizeMatchCount);
     }
 
-    private void makeDetail(Match match) {
-        Rank rank = match.getRank();
-        if (rank == Rank.FIRST) firstPrizeCount++;
-        if (rank == Rank.SECOND) secondPrizeCount++;
-        if (rank == Rank.THIRD) thirdPrizeCount++;
-        if (rank == Rank.FOURTH) fourthPrizeCount++;
-        if (rank == Rank.FIFTH) fifthPrizeCount++;
+    private void updatePrizeMatchCount(List<Integer> playerNumbers, List<Integer> winningNumbers, int bonusNumber, PrizeMatchCount prizeMatchCount) {
+        for (int number : playerNumbers) {
+            if (winningNumbers.contains(number)) {
+                prizeMatchCount.addCount();
+            }
+            if (bonusNumber == number) {
+                prizeMatchCount.matchBonus();
+            }
+        }
+    }
+
+    private void applyInPrizeDetail(PrizeMatchCount prizeMatchCount) {
+        PrizeRank rank = prizeMatchCount.getPrizeRank();
+        if (rank == PrizeRank.FIRST) firstPrizeCount++;
+        if (rank == PrizeRank.SECOND) secondPrizeCount++;
+        if (rank == PrizeRank.THIRD) thirdPrizeCount++;
+        if (rank == PrizeRank.FOURTH) fourthPrizeCount++;
+        if (rank == PrizeRank.FIFTH) fifthPrizeCount++;
     }
 
     public String exportMessage() {
-        return
-                makeFifthPrizeMessage()
+        return makeMessage();
+    }
+
+    private String makeMessage() {
+        return makeFifthPrizeMessage()
                 + makeFourthPrizeMessage()
                 + makeThirdPrizeMessage()
                 + makeSecondPrizeMessage()
@@ -55,19 +63,15 @@ public class PrizeDetail {
     private String makeFirstPrizeMessage() {
         return FIRST_PRIZE_INFO + firstPrizeCount + PRIZE_INFO_POSTFIX;
     }
-
     private String makeSecondPrizeMessage() {
         return SECOND_PRIZE_INFO + secondPrizeCount + PRIZE_INFO_POSTFIX;
     }
-
     private String makeThirdPrizeMessage() {
         return THIRD_PRIZE_INFO + thirdPrizeCount + PRIZE_INFO_POSTFIX;
     }
-
     private String makeFourthPrizeMessage() {
         return FOURTH_PRIZE_INFO + fourthPrizeCount + PRIZE_INFO_POSTFIX;
     }
-
     private String makeFifthPrizeMessage() {
         return FIFTH_PRIZE_INFO + fifthPrizeCount + PRIZE_INFO_POSTFIX;
     }

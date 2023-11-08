@@ -1,4 +1,4 @@
-package lotto.console.game.lotto.core;
+package lotto.console.game.lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.console.game.lotto.constants.GameConstants;
@@ -42,10 +42,13 @@ public class Player {
     public void receivePrizeDetail(PrizeDetail prizeDetail) {
         this.prizeDetail = prizeDetail;
     }
-    public String getProfitRate() {
-        double profitRate = (double) prizeDetail.getPrizeMoney() / playerMoney * 100;
-        double roundedRate = Math.round(profitRate * 10) / 10.0; // 소수 첫째 자리까지 반올림
 
-        return String.format("%.1f%%", roundedRate);
+    public String exportProfitRate() {
+        return String.format("%.1f%%", calculateProfitRate());
+    }
+
+    private double calculateProfitRate() {
+        double profitRate = (double) prizeDetail.getPrizeMoney() / playerMoney * 100;
+        return Math.round(profitRate * 10) / 10.0;
     }
 }

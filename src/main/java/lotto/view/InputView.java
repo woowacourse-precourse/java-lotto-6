@@ -19,7 +19,9 @@ public class InputView {
         return LottoConverter.convertStringToLotto(winningLottoNumbers);
     }
 
-    public static String inputBonusNumber() {
-        return Console.readLine();
+    public static Integer inputBonusNumber() {
+        String bonusNumber = Console.readLine();
+        Validator.validateInputType(bonusNumber);
+        return Integer.parseInt(bonusNumber);
     }
 }

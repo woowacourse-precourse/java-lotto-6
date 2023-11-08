@@ -9,8 +9,8 @@
   - 1~45 사이의 숫자
   - 중복되지 않는 당첨 번호
 
-- [ ] 갖고 있는 숫자를 오름차순으로 출력한다. -> printNumbersInAscendingOrder()
-  - [ ] 갖고 있는 숫자를 오름차순으로 정렬한다. -> getsortedNumbers()
+- [x] 갖고 있는 숫자를 오름차순으로 출력한다. -> printNumbersInAscendingOrder()
+  - [x] 갖고 있는 숫자를 오름차순으로 정렬한다. -> getsortedNumbers()
 
 - [ ] 다른 로또와 겹치는 개수를 반환한다. -> howManySameNumbers()
 - [ ] 보너스 볼의 존재 유뮤를 반환한다. (실행 전제 조건: 로또의 나머지 5개의 숫자는 모두 갖고 있다.)-> hasBonus

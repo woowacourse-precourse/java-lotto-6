@@ -30,10 +30,17 @@ public class View {
     }
 
     public static void lottoResultMessagePrint(List<Integer> lottoResult) {
-        System.out.printf("3개 일치 (5,000원) - %d개", lottoResult.get(0));
-        System.out.printf("4개 일치 (50,000원) - %d개", lottoResult.get(1));
-        System.out.printf("5개 일치 (1,500,000원) - %d개", lottoResult.get(2));
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", lottoResult.get(3));
-        System.out.printf("6개 일치 (2,000,000,000원) - %d개", lottoResult.get(4));
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.printf("3개 일치 (5,000원) - %d개\n", lottoResult.get(0));
+        System.out.printf("4개 일치 (50,000원) - %d개\n", lottoResult.get(1));
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n", lottoResult.get(2));
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", lottoResult.get(3));
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", lottoResult.get(4));
+    }
+
+    public static void lottoRateMessagePrint(double rate) {
+        System.out.println("총 수익률은 " + rate + "%입니다.");
     }
 }

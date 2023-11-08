@@ -19,6 +19,12 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
+    public List<Integer> InputWinningNumbers(String input) {
+        return Arrays.stream(stringWithoutSpace(input).split(COMMA))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
+
     public String stringWithoutSpace(String input) {
         return input.replaceAll(REGEX_SPACE, REGEX_NOSPACE);
     }

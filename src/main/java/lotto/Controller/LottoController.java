@@ -11,6 +11,7 @@ public class LottoController {
 
     private static int lottoCount;
     private static List<List<Integer>> lottoNumbers;
+    private static List<Integer> winningNumbers;
 
     public static void start() {
 
@@ -28,5 +29,10 @@ public class LottoController {
         lottoNumbers = new ArrayList<>(allLottoNumbers.getLottoNumbers());
         OutputView.printLottoNumbers(lottoNumbers);
     }
+
+    private static void setWinningNumbers() {
+        OutputView.printInputWinningNumbers();
+    }
+
 
 }

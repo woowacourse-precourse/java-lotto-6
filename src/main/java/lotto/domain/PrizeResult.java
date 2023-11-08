@@ -30,6 +30,7 @@ public class PrizeResult {
     }
 
     public Map<Prize, Integer> getResult() {
-        return result;
+
+        return Collections.unmodifiableMap(result);
     }
 }

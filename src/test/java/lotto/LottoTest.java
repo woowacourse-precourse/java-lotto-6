@@ -1,5 +1,6 @@
 package lotto;
 
+import model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,6 +23,22 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 번호 입력 안하는 경우 예외 발생.")
+    @Test
+    void NullLotto(){
+        assertThatThrownBy(() -> new Lotto(null))
+                .isInstanceOf(NullPointerException.class);
+    }
+
+    @DisplayName("로또 번호 적게 입력하는 경우.")
+    @Test
+    void createLottoByBelowSize(){
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
 
     // 아래에 추가 테스트 작성 가능
 }

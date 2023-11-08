@@ -48,12 +48,4 @@ public class Winning {
 
         return IntegerConstant.ZERO;
     }
-
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
 }

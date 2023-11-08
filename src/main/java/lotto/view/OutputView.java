@@ -59,8 +59,4 @@ public class OutputView {
         final String formattedRate = RATE_PRECISION_FORMAT.format(profitRate.doubleValue());
         System.out.printf(PROFIT_RATE_FORMAT + "%n", formattedRate);
     }
-
-    public static void printErrorMessage(final Exception e) {
-        System.out.println(e.getMessage());
-    }
 }

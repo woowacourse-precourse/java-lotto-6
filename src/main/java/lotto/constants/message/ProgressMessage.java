@@ -9,7 +9,7 @@ public final class ProgressMessage {
     public static final String DASH = "---";
     public static final String WINNING_FACTOR_COUNT = "%d개 일치%s(%s원) - %d개";
     public static final String MATCH_BONUS_BALL = ", 보너스 볼 일치 ";
-    public static final String TOTAL_RATE = "총 수익률은 %s%%입니다.";
+    public static final String TOTAL_RATE = "총 수익률은 %.1f%%입니다.";
 
     private ProgressMessage() {
     }

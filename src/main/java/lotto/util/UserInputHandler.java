@@ -2,7 +2,6 @@ package lotto.util;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import lotto.constants.ErrorMessages;
 

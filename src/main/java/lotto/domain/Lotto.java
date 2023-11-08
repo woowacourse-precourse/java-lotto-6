@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.constant.ExceptionType;
 import lotto.constant.LottoConstant;
+import lotto.util.TypeConverter;
 
 import java.util.*;
 
@@ -15,7 +16,14 @@ public class Lotto {
     }
 
     public Lotto(String numbers) {
-        List<Integer> numbersConverted = Lotto.convertToIntegers(numbers);
+        List<Integer> numbersConverted;
+
+        try {
+            numbersConverted = TypeConverter.convertToIntegers(numbers);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionType.LOTTO_WRONG_SIZE.getMessage());
+        }
+
         validate(numbersConverted);
         numbersConverted.sort(Comparator.naturalOrder());
         this.numbers = numbersConverted;
@@ -71,23 +79,5 @@ public class Lotto {
 
     public boolean contains(int number) {
         return numbers.contains(number);
-    }
-
-    public static List<Integer> convertToIntegers(String numbers) {
-        List<String> numbersSplit = Arrays.asList(numbers.split(","));
-        List<Integer> numbersConverted = new ArrayList<>();
-
-        for (String number : numbersSplit) {
-            numbersConverted.add(convertToIntegersForEach(number));
-        }
-        return numbersConverted;
-    }
-
-    private static int convertToIntegersForEach(String number) {
-        try {
-            return Integer.parseInt(number.strip());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionType.LOTTO_WRONG_SIZE.getMessage());
-        }
     }
 }

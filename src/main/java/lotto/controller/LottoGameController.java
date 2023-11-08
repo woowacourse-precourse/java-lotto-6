@@ -21,4 +21,6 @@ public class LottoGameController {
                 .collect(Collectors.toList());
     }
 
+
+
 }

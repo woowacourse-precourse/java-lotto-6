@@ -10,6 +10,7 @@ public class LottoNumberVerifier {
 
     public LottoNumberVerifier(String winningNumbers) {
         this.winningNumbers = winningNumbers;
+        validateWinningNumbers();
     }
 
     private void validateWinningNumbers() {

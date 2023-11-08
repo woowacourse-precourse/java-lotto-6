@@ -5,8 +5,6 @@ import static lotto.constant.LottoInformation.MIN_NUMBER;
 import static lotto.constant.message.ErrorMessage.DUPLICATE_BONUS;
 import static lotto.constant.message.ErrorMessage.INVALID_NUMBER_RANGE;
 
-import lotto.constant.Prize;
-
 public class WinningNumbers {
     private final Lotto winningLotto;
     private final int bonusNumber;
@@ -17,23 +15,8 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public Prize checkPrize(Lotto otherLotto) {
-        int count = matchCount(otherLotto);
-        boolean bonusMatch = otherLotto.isContain(bonusNumber);
-        if (count == 5 && bonusMatch) {
-            return Prize.SECOND;
-        }
-        return Prize.getByMatch(count);
-    }
-
-    public int matchCount(Lotto otherLotto) {
-        int count = 0;
-        for (int number : otherLotto.getNumbers()) {
-            if (winningLotto.isContain(number)) {
-                count++;
-            }
-        }
-        return count;
+    public boolean isContain(int number) {
+        return winningLotto.isContain(number);
     }
 
     private void validateBonusNumber(int bonusNumber) {
@@ -55,5 +38,9 @@ public class WinningNumbers {
         if (winningLotto.isContain(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATE_BONUS.getMessage());
         }
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

@@ -65,6 +65,7 @@ public class LottoService {
         System.out.println("총 수익률은 " + returnRate + "%입니다.");
     }
 
+    // 이 메서드로 로또를 실행할 수 있다.
     public void printLottoService() {
         printRandomLotto();
         inputLottoNumbers();

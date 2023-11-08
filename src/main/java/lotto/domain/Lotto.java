@@ -15,6 +15,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    // 입력된 숫자 List에 대한 예외 처리
     private void validate(List<Integer> numbers) throws IllegalArgumentException {
         validateSizeException(numbers);
         validateDuplicatedExcepiton(numbers);

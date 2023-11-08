@@ -27,10 +27,12 @@ public class LottoController {
         bonusLottoNumber = null;
     }
 
+    // 구입한 티켓의 수 계산
     public int getLottoTicket(String money) throws IllegalArgumentException {
         return lottoResultCalculation.caculateLottoTicket(money);
     }
 
+    // 티켓 수에 따른 무작위 로또 번호 생성
     public void setRandomLottoNumber(int tickets) {
         randomLottos.clear();
         for (int i = 0; i < tickets; i++) {
@@ -40,13 +42,17 @@ public class LottoController {
         }
     }
 
-    public void setBonusNumber(String bonus) throws IllegalArgumentException {
-        bonusLottoNumber = new BonusLottoNumber(bonus);
-        if (inputLottoNumber.getNumbers().contains(bonusLottoNumber.getBounsNum())) {
-            throw new IllegalArgumentException(ErrorMessageType.DUPLICATE_NUMBER.message());
+    // 생성된 무작위 로또 번호에 대한 문자열 반환
+    public String getLottoString() {
+        StringBuffer stringResult = new StringBuffer();
+        for (Lotto lotto : randomLottos) {
+            stringResult.append(lotto.getNumbers().toString());
+            stringResult.append("\n");
         }
+        return stringResult.toString();
     }
 
+    // 입력한 번호에 따라 당첨 로또 번호 생성
     public void setInputLottoNumber(String numbers) throws IllegalArgumentException {
         String[] splitedNumbers = numbers.split(",");
         List<Integer> intNumbers = new ArrayList<>();
@@ -60,25 +66,27 @@ public class LottoController {
         inputLottoNumber = new Lotto(intNumbers);
     }
 
-    public String getLottoString() {
-        StringBuffer stringResult = new StringBuffer();
-        for (Lotto lotto : randomLottos) {
-            stringResult.append(lotto.getNumbers().toString());
-            stringResult.append("\n");
+    // 보너스 번호 생성
+    public void setBonusNumber(String bonus) throws IllegalArgumentException {
+        bonusLottoNumber = new BonusLottoNumber(bonus);
+        if (inputLottoNumber.getNumbers().contains(bonusLottoNumber.getBounsNum())) {
+            throw new IllegalArgumentException(ErrorMessageType.DUPLICATE_NUMBER.message());
         }
-        return stringResult.toString();
     }
 
+    // 로또 간의 비교 후 결과 반환
     public int getLottoResult(List<Integer> target, List<Integer> tryLotto) {
         int result = lottoResultCalculation.checkResult(target, tryLotto);
         return result;
     }
 
+    // 보너스 로또 비교 후 결과 반환
     public boolean getBonusResult(List<Integer> target, int bouns) {
         boolean result = lottoResultCalculation.checkBonusNumber(target, bouns);
         return result;
     }
 
+    // 하나의 결과에 대한 ResultType 반환
     public ResultType getRankResult(int sameNumber, boolean isBonus) {
         Optional<ResultType> resultType = Arrays.stream(ResultType.values())
                 .filter(result -> result.sameNumber() == sameNumber && result.isBonus() == isBonus)
@@ -86,6 +94,7 @@ public class LottoController {
         return resultType.orElse(ResultType.NOTHING);
     }
 
+    // 하나의 결과에 대한 최종 결과 반환
     public ResultType getTotalResult(List<Integer> target, List<Integer> tryLotto, int bonus) {
         int sameNumber = getLottoResult(target, tryLotto);
         boolean isBonus = getBonusResult(target, bonus);
@@ -93,11 +102,13 @@ public class LottoController {
         return resultType;
     }
 
+    // 여러 개의 ResultType 분류
     public Map<ResultType, Long> getResultTypeCount(List<ResultType> resultTypes) {
         return resultTypes.stream()
                 .collect(Collectors.groupingBy(e -> e, Collectors.counting()));
     }
 
+    // 여러 개의 로또 비교에 대한 결과 반환
     public Map<ResultType, Long> getAllOfResult() {
         List<ResultType> resultTypes = new ArrayList<>();
         List<Integer> tryLotto = inputLottoNumber.getNumbers();
@@ -111,6 +122,7 @@ public class LottoController {
         return resultTypeLongMap;
     }
 
+    // 수익률 계산
     public double getReturnRate(Map<ResultType, Long> resultTypeLongMap) {
         int totalWinningMoney = 0;
         Iterator<Map.Entry<ResultType, Long>> iterator = resultTypeLongMap.entrySet().iterator();

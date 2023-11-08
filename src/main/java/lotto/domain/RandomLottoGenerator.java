@@ -19,8 +19,7 @@ public class RandomLottoGenerator {
     }
 
     private static Lotto generateLottoFromUniqueNumbers() {
-        List<Integer> uniqueNumbers = generateRangeOfUniqueNumbers();
-        return new Lotto(uniqueNumbers);
+        return new Lotto(generateRangeOfUniqueNumbers());
     }
 
     private static List<Integer> generateRangeOfUniqueNumbers() {

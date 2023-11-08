@@ -56,6 +56,31 @@ public class CheckResultTest extends NsTest {
         );
     }
 
+    @DisplayName("'당첨금/입력 금액'의 값이 소수점 아래까지 이어지는 경우의 수익률을 확인한다.")
+    @Test
+    void checkEarningRateUnderDecimalPoint() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("3000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "3개를 구매했습니다.",
+                            "[1, 2, 3, 7, 8, 9]",
+                            "[10, 11, 12, 13, 14, 15]",
+                            "[16, 17, 18, 19, 20, 21]",
+                            "3개 일치 (5,000원) - 1개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 166.7%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 7, 8, 9),
+                List.of(10, 11, 12, 13, 14, 15),
+                List.of(16, 17, 18, 19, 20, 21)
+        );
+    }
+
     @DisplayName("숫자 5개가 일치하고 보너스 볼을 포함한 로또 개수를 확인한다.")
     @Test
     void checkFiveMatchWithBonusNumber() {
@@ -79,7 +104,7 @@ public class CheckResultTest extends NsTest {
         );
     }
 
-    @DisplayName("일치하는 숫자 개수가 5개가 아니고 보너스 볼을 포함 경우 일치하는 경우를 확인한다.")
+    @DisplayName("일치하는 숫자 개수가 5개가 아니고 보너스 볼을 포함하는 경우를 확인한다.")
     @Test
     void checkNotFiveMatchWithBonusNumber() {
         assertRandomUniqueNumbersInRangeTest(

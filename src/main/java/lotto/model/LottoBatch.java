@@ -20,6 +20,13 @@ public class LottoBatch {
         }
     }
 
+    public Boolean checkDuplication(Lotto lotto){
+        if(lottos.contains(lotto)){
+            return true;
+        }
+        return false;
+    }
+
     
 
 }

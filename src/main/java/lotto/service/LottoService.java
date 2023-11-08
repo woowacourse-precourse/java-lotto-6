@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.util.Converter;
 
 public class LottoService {
     private final List<Lotto> lottos = new ArrayList<>();
+    private WinningLotto winningLotto;
     private int purchaseAmount;
 
     public void buyLotto(int purchaseAmount) {
@@ -33,5 +35,9 @@ public class LottoService {
         return lottos.stream()
                 .map(Lotto::getFormalizedNumbers)
                 .collect(Collectors.toList());
+    }
+
+    public void makeWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        winningLotto = new WinningLotto(winningNumbers, bonusNumber);
     }
 }

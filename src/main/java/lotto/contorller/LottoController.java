@@ -7,6 +7,7 @@ import lotto.domain.Result;
 import lotto.domain.WinningLotto;
 import lotto.enumeration.NoticeType;
 import lotto.service.LottoService;
+import lotto.service.ResultService;
 import lotto.util.Validator;
 
 import java.math.BigDecimal;
@@ -14,11 +15,12 @@ import java.util.List;
 
 public class LottoController {
     WinningLotto winningLotto;
+    Amount amount;
     List<Lotto> tickets;
     Result result;
     BigDecimal profitRate;
-    Amount amount;
-    private final LottoService ticketsService = new LottoService();
+    private final LottoService lottoService = new LottoService();
+    private final ResultService resultService = new ResultService();
 
     public Lotto getLottoInput() {
         while (true) {
@@ -29,7 +31,7 @@ public class LottoController {
             }
             try {
                 System.out.println();
-                return ticketsService.stringToLotto(lottoInput);
+                return lottoService.stringToLotto(lottoInput);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -70,7 +72,7 @@ public class LottoController {
         while (true) {
             int bonus = getBonusNumInput();
             try {
-                winningLotto = ticketsService.getWinningLotto(lotto, bonus);
+                winningLotto = lottoService.getWinningLotto(lotto, bonus);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -78,40 +80,41 @@ public class LottoController {
         }
     }
 
-    public void issueTickets() {
-        tickets = ticketsService.issue(amount.getTicketCount());
-        printTickets();
-    }
-
-    public void getResult() {
-        result = ticketsService.compare(tickets, winningLotto);
-    }
-
     public void run() {
         init();
         getResult();
         getProfitRate();
         printResult();
-    }
-
-    public void getProfitRate() {
-        profitRate = ticketsService.calcProfitRate(amount.getAmount(), result);
-    }
-
-    private void printResult() {
-        System.out.println(NoticeType.WINNING_STATS.getMessage());
-        ticketsService.printWinningStat(result);
         printProfitRate();
     }
 
-    private void printProfitRate() {
-        System.out.print(NoticeType.PROFIT_FRONT.getMessage() + profitRate + NoticeType.PROFIT_END.getMessage());
+    public void issueTickets() {
+        tickets = lottoService.issue(amount.getTicketCount());
+        printTickets();
     }
 
     private void printTickets() {
         System.out.println(tickets.size() + NoticeType.TICKET_COUNT.getMessage());
         tickets.forEach(Lotto::printNumbers);
         System.out.println();
+    }
+
+    public void getResult() {
+        result = lottoService.compare(tickets, winningLotto);
+    }
+
+    public void getProfitRate() {
+        profitRate = resultService.calcProfitRate(result, amount.getAmount());
+    }
+
+    private void printResult() {
+        System.out.println(NoticeType.WINNING_STATS.getMessage());
+        resultService.printWinningStat(result);
+        printProfitRate();
+    }
+
+    private void printProfitRate() {
+        System.out.print(NoticeType.PROFIT_FRONT.getMessage() + profitRate + NoticeType.PROFIT_END.getMessage());
     }
 
 }

@@ -69,45 +69,4 @@ public class LottoService {
         }
         return count;
     }
-
-    public BigDecimal calcProfitRate(int amount, Result result) {
-        int totalPrize = getTotalPrize(result);
-        double profit = ((double) totalPrize / amount) * 100;
-
-        return roundDouble(profit);
-    }
-
-    public int getTotalPrize(Result result) {
-        int totalPrize = 0;
-        for (WinningType winningType : WinningType.values()) {
-            totalPrize += result.getResult().get(winningType) * winningType.getPrize();
-        }
-        return totalPrize;
-    }
-
-    private BigDecimal roundDouble(double value) {
-        return new BigDecimal(value).setScale(1, RoundingMode.HALF_UP);
-    }
-
-    public void printWinningStat(Result result) {
-        for (WinningType winningType : WinningType.values()) {
-            if (winningType == WinningType.MISS) {
-                continue;
-            }
-            int matchedCount = winningType.getMatchedCount();
-            String prize = formatWithComma(winningType.getPrize());
-            int count = result.getResult().get(winningType);
-
-            if (winningType == WinningType.SECOND) {
-                System.out.println(matchedCount + "개 일치, 보너스 볼 일치 (" + prize + "원) - " + count + "개");
-                continue;
-            }
-            System.out.println(matchedCount + "개 일치 (" + prize + "원) - " + count + "개");
-        }
-    }
-
-    private String formatWithComma(int amount) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###");
-        return decimalFormat.format(amount);
-    }
 }

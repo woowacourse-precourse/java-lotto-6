@@ -2,6 +2,7 @@ package lotto.Model.Domain;
 
 import java.util.List;
 import System.Exception;
+import System.Constant;
 
 public class Lotto {
 
@@ -17,8 +18,11 @@ public class Lotto {
             throw new IllegalArgumentException(Exception.LOTTO_SIZE_EXCEPTION.getMessage());
         }
 
-        long distinctSize = numbers.stream().distinct().count();
-        if (numbers.size() != distinctSize) {
+        if(validateNumber(numbers)) {
+            throw new IllegalArgumentException(Exception.LOTTO_WRONG_NUMBER_EXCEPTION.getMessage());
+        }
+
+        if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException(
                     Exception.LOTTO_DUPLICATE_NUMBER_EXCEPTION.getMessage());
         }
@@ -26,6 +30,11 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    private boolean validateNumber(List<Integer> numbers) {
+        return numbers.stream().allMatch(x -> Constant.LOTTO_MIN_VALUE.getConstant() <= x
+                && Constant.LOTTO_MAX_VALUE.getConstant() >= x);
     }
 
 }

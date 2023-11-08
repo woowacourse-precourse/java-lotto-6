@@ -15,7 +15,7 @@ class RankStatisticsTest {
     void remainStatisticsNumberZeroWithoutAddingRank() {
         List<Rank> ranks = new ArrayList<>();
         RankStatistics rankStatistics = new RankStatistics(ranks);
-        int firstCount = rankStatistics.getRankStatistics().get(Rank.FIRST);
+        int firstCount = rankStatistics.getRankStatistics().getOrDefault(Rank.FIRST, 0);
         assertThat(firstCount).isEqualTo(0);
     }
 
@@ -24,12 +24,12 @@ class RankStatisticsTest {
     void increaseFirstRankStatisticsByAddingFirstRank() {
         List<Rank> ranks = new ArrayList<>();
         RankStatistics rankStatistics1 = new RankStatistics(ranks);
-        int firstCountBefore = rankStatistics1.getRankStatistics().get(Rank.FIRST);
+        int firstCountBefore = rankStatistics1.getRankStatistics().getOrDefault(Rank.FIRST, 0);
         ranks.add(Rank.FIRST);
         RankStatistics rankStatistics2 = new RankStatistics(ranks);
-        int firstCountAfter = rankStatistics2.getRankStatistics().get(Rank.FIRST);
+        int firstCountAfter = rankStatistics2.getRankStatistics().getOrDefault(Rank.FIRST, 0);
         assertThat(firstCountBefore).isEqualTo(0);
-        assertThat(firstCountBefore).isEqualTo(1);
+        assertThat(firstCountAfter).isEqualTo(1);
     }
 
     @DisplayName("순위 통계에 따른 수익률을 리턴한다.")

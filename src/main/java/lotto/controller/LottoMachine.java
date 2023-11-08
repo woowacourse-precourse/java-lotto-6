@@ -30,7 +30,7 @@ public class LottoMachine {
                 lottoService.validateIsNumeric(inputValue);
 
                 money = Integer.parseInt(inputValue);
-                lottoService.validateHasCorrectUnit(money);
+                lottoService.validateMoney(money);
 
                 isDone = true;
             } catch (IllegalArgumentException e) {

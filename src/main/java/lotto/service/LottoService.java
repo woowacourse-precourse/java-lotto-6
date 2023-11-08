@@ -9,7 +9,7 @@ public class LottoService {
         }
     }
 
-    public void validateHasCorrectUnit(int money) {
+    public void validateMoney(int money) {
         if (money % 1000 != 0) {
             throw new IllegalArgumentException("1000원 단위로 입력하세요.");
         }

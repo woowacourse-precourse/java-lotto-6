@@ -6,6 +6,14 @@ public enum LottoGameSettingConstValue {
     LOTTO_NUMBER_SIZE(6),
     MAXIMUM_PURCHASE_AMOUNT(1000000000),
     LOTTO_PRICE(1000),
+    FIRST_RANK(1),
+    LAST_RANK(5),
+    FIRST_PRIZE_NUMBER(6),
+    SECOND_PRIZE_NUMBER(5),
+    SECOND_PRIZE_BONUS_NUMBER(1),
+    THIRD_PRIZE_NUMBER(5),
+    FOURTH_PRIZE_NUMBER(4),
+    FIFTH_PRIZE_NUMBER(3),
     FIRST_PRIZE_MONEY(2000000000),
     SECOND_PRIZE_MONEY(30000000),
     THIRD_PRIZE_MONEY(1500000),
@@ -22,16 +30,16 @@ public enum LottoGameSettingConstValue {
         return value;
     }
 
-    public int getPrizeMoney(int i) {
-        if (i == 1) {
+    public int getPrizeMoney(int rank) {
+        if (rank == 1) {
             return FIRST_PRIZE_MONEY.getValue();
-        } else if (i == 2) {
+        } else if (rank == 2) {
             return SECOND_PRIZE_MONEY.getValue();
-        } else if (i == 3) {
+        } else if (rank == 3) {
             return THIRD_PRIZE_MONEY.getValue();
-        } else if (i == 4) {
+        } else if (rank == 4) {
             return FOURTH_PRIZE_MONEY.getValue();
-        } else if (i == 5) {
+        } else if (rank == 5) {
             return FIFTH_PRIZE_MONEY.getValue();
         }
         return 0;

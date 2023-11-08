@@ -54,7 +54,7 @@ public class Lotto {
     }
 
     private void validateLengthOfNumber(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoGameSettingConstValue.LOTTO_NUMBER_SIZE.getValue()) {
             throw new IllegalArgumentException(Exception.LOTTO_NUMBER_COUNT_ERROR.getMessage());
         }
     }

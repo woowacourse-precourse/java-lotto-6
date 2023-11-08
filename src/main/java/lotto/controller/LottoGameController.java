@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.text.DecimalFormat;
 import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.User;
@@ -78,6 +79,12 @@ public class LottoGameController {
         Map<Integer, Integer> lottoesResult = user.checkLottoesRanking(winningLotto);
         OutputView.printLottoesResult(lottoesResult);
         long profit = wallet.calculateProfit(lottoesResult);
-        OutputView.printProfitRate(wallet.calculateProfitRate(profit));
+        double profitRate = wallet.calculateProfitRate(profit);
+        OutputView.printProfitRate(setDoubleWithCommas(profitRate));
+    }
+
+    private String setDoubleWithCommas(double number) {
+        DecimalFormat formatter = new DecimalFormat("#,##0.0");
+        return formatter.format(number);
     }
 }

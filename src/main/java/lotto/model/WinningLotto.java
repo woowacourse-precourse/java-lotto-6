@@ -87,16 +87,16 @@ public class WinningLotto extends Lotto{
     }
 
     private Integer searchLottoRanking (Integer numberOfHitLottoNumbers, boolean hitBonusNumber) {
-        if (numberOfHitLottoNumbers == 3) {
+        if (numberOfHitLottoNumbers == LottoGameSettingConstValue.FIFTH_PRIZE_NUMBER.getValue()) {
             return 5;
-        } else if (numberOfHitLottoNumbers == 4) {
+        } else if (numberOfHitLottoNumbers == LottoGameSettingConstValue.FOURTH_PRIZE_NUMBER.getValue()) {
             return 4;
-        } else if (numberOfHitLottoNumbers == 5) {
+        } else if (numberOfHitLottoNumbers == LottoGameSettingConstValue.THIRD_PRIZE_NUMBER.getValue()) {
             if (hitBonusNumber) {
                 return 2;
             }
             return 3;
-        } else if (numberOfHitLottoNumbers == 6) {
+        } else if (numberOfHitLottoNumbers == LottoGameSettingConstValue.FIRST_PRIZE_NUMBER.getValue()) {
             return 1;
         }
         return 0;

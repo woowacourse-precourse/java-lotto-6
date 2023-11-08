@@ -76,9 +76,10 @@ public class Wallet {
     public long calculateProfit(Map<Integer, Integer> lottoesResult) {
         long profit = 0;
 
-        for (int rank = 1; rank <= 5; rank++) {
+        for (int rank = LottoGameSettingConstValue.FIRST_RANK.getValue();
+             rank <= LottoGameSettingConstValue.LAST_RANK.getValue(); rank++) {
             profit += (long) lottoesResult.get(rank) * LottoGameSettingConstValue.FIRST_PRIZE_MONEY.getPrizeMoney(rank);
         }
         return profit;
     }
-}
+    }

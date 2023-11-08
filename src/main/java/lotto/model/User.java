@@ -15,7 +15,10 @@ public class User {
     }
 
     public void pickLottoNumber() {
-        List<Integer> sortedNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        List<Integer> sortedNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
+                LottoGameSettingConstValue.MIN_LOTTO_NUMBER.getValue()
+                        , LottoGameSettingConstValue.MAX_LOTTO_NUMBER.getValue()
+                        , LottoGameSettingConstValue.LOTTO_NUMBER_SIZE.getValue()));
         Collections.sort(sortedNumbers);
         addLotto(sortedNumbers);
     }
@@ -36,7 +39,8 @@ public class User {
     private Map<Integer, Integer> lottoesResultInitialize() {
         Map<Integer, Integer> lottoesResult = new HashMap<>();
 
-        for (int lottoRank = 1; lottoRank <= 5; lottoRank++) {
+        for (int lottoRank = LottoGameSettingConstValue.FIRST_RANK.getValue();
+             lottoRank <= LottoGameSettingConstValue.LAST_RANK.getValue(); lottoRank++) {
             lottoesResult.put(lottoRank, 0);
         }
         return lottoesResult;

@@ -38,7 +38,7 @@ public class OutputView {
         System.out.println("6개 일치 (2,000,000,000원) - " + lottoesResult.get(1) + "개");
     }
 
-    public static void printProfitRate(double profitRate) {
+    public static void printProfitRate(String profitRate) {
         System.out.println("총 수익률은 " + profitRate +"%입니다.");
     }
 

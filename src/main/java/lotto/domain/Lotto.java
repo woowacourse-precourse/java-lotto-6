@@ -27,7 +27,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto create(final List<Integer> numbers) {
+    public static Lotto create(final List<Integer> numbers)  {
         return new Lotto(numbers);
     }
 

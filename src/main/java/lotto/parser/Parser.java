@@ -28,7 +28,7 @@ public class Parser {
     }
 
 
-    public static Integer parseInt(String input) throws IllegalArgumentException {
+    public static Integer parseInt(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

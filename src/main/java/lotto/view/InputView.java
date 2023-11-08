@@ -18,49 +18,49 @@ import static lotto.view.InputViewMessage.INPUT_BONUS_NUMBER;
 
 public class InputView {
 
-    public RequestCash requestCash() throws IllegalArgumentException, IllegalStateException {
+    public RequestCash requestCash() {
         try {
             System.out.println(INPUT_CASH_MESSAGE.getMessage());
             final String requestCash = getInput();
             InputValidator.validateCashFormat(requestCash);
             final Integer amount = Parser.parseInt(requestCash);
             return RequestCash.of(amount);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException | IllegalStateException e) {
             throw e;
         }
     }
 
-    public List<Integer> requestWinnerNumbers() throws IllegalArgumentException, IllegalStateException  {
+    public List<Integer> requestWinnerNumbers() {
         try {
             System.out.println();
             System.out.println(INPUT_WINNER_NUMBER_MESSAGE.getMessage());
             final String requestWinnerNumbers = getInput();
             InputValidator.validateWinnerNumberFormat(requestWinnerNumbers);
             return Parser.parseNumbers(requestWinnerNumbers);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException | IllegalStateException e) {
             throw e;
         }
     }
 
-    public Integer requestBonusNumber() throws IllegalArgumentException, IllegalStateException {
+    public Integer requestBonusNumber() {
         try {
             System.out.println();
             System.out.println(INPUT_BONUS_NUMBER.getMessage());
             final String requestBonusNumber = getInput();
             InputValidator.validateBonusNumberFormat(requestBonusNumber);
             return Parser.parseInt(requestBonusNumber);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException | IllegalStateException e) {
             throw e;
         }
     }
 
 
-    private String getInput() throws IllegalArgumentException, IllegalStateException {
+    private String getInput() {
         try {
             final String input = Console.readLine();
             InputValidator.validateInputFormat(input);
             return input;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException | IllegalStateException e) {
             throw e;
         }
     }

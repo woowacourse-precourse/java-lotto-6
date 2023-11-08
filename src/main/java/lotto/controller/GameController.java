@@ -47,7 +47,7 @@ public class GameController {
     }
 
 
-    private Cash depositCash() throws IllegalStateException {
+    private Cash depositCash() {
         try {
             RequestCash requestCash = inputView.requestCash();
             return Cash.create(requestCash.depositAmount(),
@@ -70,7 +70,7 @@ public class GameController {
         return lottos;
     }
 
-    private WinnerLotto getWinnerLotto() throws IllegalStateException {
+    private WinnerLotto getWinnerLotto() {
         try {
             List<Integer> winnerNumbers = getWinnerNumbers();
             Integer bonusNumber = getBonusNumber();
@@ -86,7 +86,7 @@ public class GameController {
 
 
 
-    private List<Integer> getWinnerNumbers() throws IllegalStateException {
+    private List<Integer> getWinnerNumbers() {
         try {
             List<Integer> winnerNumbers = inputView.requestWinnerNumbers();
             return winnerNumbers;
@@ -98,7 +98,7 @@ public class GameController {
         }
     }
 
-    private Integer getBonusNumber() throws IllegalStateException {
+    private Integer getBonusNumber() {
         try {
             Integer bonusNumber = inputView.requestBonusNumber();
             return bonusNumber;

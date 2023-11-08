@@ -21,8 +21,7 @@ public class Cash {
     }
 
     public static Cash create(final Integer depositAmount,
-                              final Integer spendAmount)
-            throws IllegalArgumentException, IllegalStateException {
+                              final Integer spendAmount) {
         return new Cash(depositAmount, spendAmount);
     }
 

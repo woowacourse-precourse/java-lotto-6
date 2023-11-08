@@ -28,12 +28,11 @@ public class WinnerLotto {
     }
 
     public static WinnerLotto create(final List<Integer> winnerNumbers,
-                                     final Integer bonusNumber) throws IllegalArgumentException {
+                                     final Integer bonusNumber) {
         return new WinnerLotto(winnerNumbers,
                                bonusNumber);
     }
-    private void validateDuplicatedNumberBetweenWinnerNumbersAndBonusNumber(final List<Integer> winnerNumbers,
-                                                                            final Integer bonusNumber) {
+    private void validateDuplicatedNumberBetweenWinnerNumbersAndBonusNumber(final List<Integer> winnerNumbers, final Integer bonusNumber) {
         if (winnerNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATED_NUMBER_BETWEEN_WINNER_NUMBER_AND_BONUS_NUMBER.getMessage());
         }

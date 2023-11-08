@@ -22,6 +22,7 @@ public class Lottos {
         return new Lottos(lottoDummy);
     }
 
+
     public RequestLottoResult compareWithWinnerLotto(final WinnerLotto winnerLotto) {
         List<Prize> results = lottos.stream()
                 .map(lotto -> lotto.compareWithWinnerLotto(winnerLotto.getWinnerNumbers(), winnerLotto.getBonusNumber()))

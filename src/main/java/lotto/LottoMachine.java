@@ -16,4 +16,7 @@ public class LottoMachine {
             purchasedLottos.add(lotto);
         }
     }
+    public List<Lotto> getPurchasedLottos() {
+        return purchasedLottos;
+    }
 }

@@ -38,6 +38,7 @@ public class LottoMachine {
         // 당첨 통계 생성
         statisticController.generate(lottoController.getRandomLottos(), getWinningNumbers(), getBonusNumber());
         // 당첨 통계 출력
+        viewController.printTotalStatistics(statisticController.getResult(purchaseAmount));
     }
 
     public void setPurchaseAmount(int purchaseAmount) {

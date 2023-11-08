@@ -6,7 +6,6 @@ import lotto.statistic.dto.ResultDto;
 import lotto.statistic.dto.StatisticDto;
 import lotto.statistic.repository.StatisticRepository;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +23,11 @@ public class StatisticServiceImpl implements StatisticService {
         for (LottoDto lottoDto : lottoDtos) {
             statisticRepository.saveStatistic(calculateRank(compareToWinningNumbers(lottoDto, winningNumbers), compareToBonusNumber(lottoDto, bonusNumber)));
         }
+    }
+
+    @Override
+    public List<StatisticDto> getStatistics() {
+        return statisticRepository.findAll();
     }
 
     @Override
@@ -50,13 +54,15 @@ public class StatisticServiceImpl implements StatisticService {
     public ResultDto getResult(int purchaseAmount) {
         int[] ranks = new int[Prize.values().length];
         List<StatisticDto> statisticDtos = statisticRepository.findAll();
-        double revenue = 0;
+        int sum = 0;
         for (StatisticDto statisticDto : statisticDtos) {
             ranks[statisticDto.getPrize().ordinal()]++;
-            revenue += statisticDto.getPrize().getReward();
+            sum += statisticDto.getPrize().getReward();
         }
-        revenue /= purchaseAmount;
-        revenue = (Math.round(revenue * 10000) / 100.0);
-        return new ResultDto(Arrays.stream(ranks).boxed().collect(Collectors.toList()), revenue);
+        return new ResultDto(Arrays.stream(ranks).boxed().collect(Collectors.toList()), convertRevenue(sum, purchaseAmount));
+    }
+
+    public double convertRevenue(int sum, int purchaseAmount) {
+        return (Math.round((double) sum / purchaseAmount * 10000) / 100.0);
     }
 }

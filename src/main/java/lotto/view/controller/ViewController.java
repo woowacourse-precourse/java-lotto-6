@@ -1,6 +1,7 @@
 package lotto.view.controller;
 
 import lotto.lotto.dto.LottoDto;
+import lotto.statistic.dto.ResultDto;
 import lotto.view.service.ViewInputService;
 import lotto.view.service.ViewOutputService;
 
@@ -39,5 +40,9 @@ public class ViewController {
         viewInputService.printMessageBonusNumber();
         // 보너스 번호 입력
         return viewInputService.inputBonusNumber(winningNumbers);
+    }
+
+    public void printTotalStatistics(ResultDto resultDto) {
+        viewOutputService.printTotalStatistics(resultDto);
     }
 }

@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.constants.OutputMessage;
+import lotto.constants.message.OutputMessage;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseQuantity;
@@ -9,7 +9,7 @@ import lotto.domain.WinnerStatistics;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.constants.OutputMessage.*;
+import static lotto.constants.message.OutputMessage.*;
 import static lotto.util.LottoGenerator.generateLottoNumbers;
 
 public class OutputView {

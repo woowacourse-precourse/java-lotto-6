@@ -11,15 +11,6 @@ import static lotto.util.InputValidationUtils.*;
 
 public class InputUtils {
 
-    public static int readInt() {
-        String input = Console.readLine();
-
-        validateHasInput(input);
-        validateIsIntFormat(input);
-
-        return Integer.parseInt(input);
-    }
-
     public static List<Integer> readLottoNumbers() {
         String lottoNumbers = readLine();
         validateBadDelimiterPosition(lottoNumbers);
@@ -36,5 +27,14 @@ public class InputUtils {
         LottoNumber lottoNumber = new LottoNumber(readInt());
         validateDuplication(winningLotto, lottoNumber);
         return lottoNumber;
+    }
+
+    public static int readInt() {
+        String input = Console.readLine();
+
+        validateHasInput(input);
+        validateIsIntFormat(input);
+
+        return Integer.parseInt(input);
     }
 }

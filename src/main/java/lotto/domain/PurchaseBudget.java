@@ -2,8 +2,8 @@ package lotto.domain;
 
 import static lotto.constants.Constants.Integers.LOTTO_PRICE;
 import static lotto.constants.Constants.Integers.NOTHING_REMAIN;
-import static lotto.constants.ErrorMessage.HAVE_TO_INPUT_MORE_THAN_LOTTO_PRICE;
-import static lotto.constants.ErrorMessage.HAVE_TO_INPUT_MULTIPLE_OF_LOTTO_PRICE;
+import static lotto.constants.message.ErrorMessage.HAVE_TO_INPUT_MORE_THAN_LOTTO_PRICE;
+import static lotto.constants.message.ErrorMessage.HAVE_TO_INPUT_MULTIPLE_OF_LOTTO_PRICE;
 
 public class PurchaseBudget {
     private final int budget;

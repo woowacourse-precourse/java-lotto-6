@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 
 import static lotto.constants.Constants.Integers.LOTTO_SIZE;
-import static lotto.constants.ErrorMessage.DUPLICATED_NUMBER_EXIST;
-import static lotto.constants.ErrorMessage.WRONG_LOTTO_SIZE;
+import static lotto.constants.message.ErrorMessage.DUPLICATED_NUMBER_EXIST;
+import static lotto.constants.message.ErrorMessage.WRONG_LOTTO_SIZE;
 
 public class Lotto {
     private final List<LottoNumber> numbers;

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static lotto.constants.Constants.Strings.LOTTO_NUMBERS_INPUT_DELIMITER;
-import static lotto.constants.ErrorMessage.HAVE_TO_INPUT_ONLY_NUMBER_AND_DELIMITER;
+import static lotto.constants.message.ErrorMessage.HAVE_TO_INPUT_ONLY_NUMBER_AND_DELIMITER;
 
 public class InputConvertUtils {
     public static List<Integer> lottoNumbersToIntegerList(String lottoNumbers) throws NumberFormatException {

@@ -4,7 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 
 import static lotto.constants.Constants.Strings.LOTTO_NUMBERS_INPUT_DELIMITER;
-import static lotto.constants.ErrorMessage.*;
+import static lotto.constants.message.ErrorMessage.*;
 
 public class InputValidationUtils {
 

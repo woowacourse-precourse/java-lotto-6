@@ -1,4 +1,4 @@
-package lotto.constants;
+package lotto.constants.message;
 
 public enum OutputMessage implements Message {
 
@@ -9,7 +9,6 @@ public enum OutputMessage implements Message {
     DIVISION_LINE("---"),
     EARNING_RATE_OUTPUT_FORMAT("총 수익률은 %s%%입니다."), EARNING_RATE_NUMBER_FORMAT("#,##0.##"),
     ;
-
 
     private final String message;
 

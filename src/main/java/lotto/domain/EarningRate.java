@@ -1,11 +1,11 @@
 package lotto.domain;
 
-import lotto.constants.OutputMessage;
+import lotto.constants.message.OutputMessage;
 
 import java.text.DecimalFormat;
 
 import static lotto.constants.Constants.Integers.ONE_HUNDRED;
-import static lotto.constants.OutputMessage.EARNING_RATE_OUTPUT_FORMAT;
+import static lotto.constants.message.OutputMessage.EARNING_RATE_OUTPUT_FORMAT;
 
 public class EarningRate {
 

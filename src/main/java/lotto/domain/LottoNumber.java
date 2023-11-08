@@ -2,7 +2,7 @@ package lotto.domain;
 
 import static lotto.constants.Constants.Integers.MAX_LOTTO_NUMBER;
 import static lotto.constants.Constants.Integers.MIN_LOTTO_NUMBER;
-import static lotto.constants.ErrorMessage.LOTTO_NUMBER_NOT_IN_RANGE;
+import static lotto.constants.message.ErrorMessage.LOTTO_NUMBER_NOT_IN_RANGE;
 
 public class LottoNumber {
 

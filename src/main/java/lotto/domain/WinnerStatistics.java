@@ -3,8 +3,8 @@ package lotto.domain;
 import lotto.constants.LottoRank;
 
 import static lotto.constants.LottoRank.*;
-import static lotto.constants.OutputMessage.STATISTICS_RANK_INFO_OUTPUT_FORMAT;
-import static lotto.constants.OutputMessage.STATISTICS_RANK_INFO_OUTPUT_FORMAT_INCLUDE_BONUS_BALL;
+import static lotto.constants.message.OutputMessage.STATISTICS_RANK_INFO_OUTPUT_FORMAT;
+import static lotto.constants.message.OutputMessage.STATISTICS_RANK_INFO_OUTPUT_FORMAT_INCLUDE_BONUS_BALL;
 
 public class WinnerStatistics {
 

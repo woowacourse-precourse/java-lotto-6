@@ -7,8 +7,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.IntStream;
 
 import static lotto.constants.Constants.Integers.LOTTO_PRICE;
-import static lotto.constants.ErrorMessage.HAVE_TO_INPUT_MORE_THAN_LOTTO_PRICE;
-import static lotto.constants.ErrorMessage.HAVE_TO_INPUT_MULTIPLE_OF_LOTTO_PRICE;
+import static lotto.constants.message.ErrorMessage.HAVE_TO_INPUT_MORE_THAN_LOTTO_PRICE;
+import static lotto.constants.message.ErrorMessage.HAVE_TO_INPUT_MULTIPLE_OF_LOTTO_PRICE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

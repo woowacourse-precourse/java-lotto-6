@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
-import static lotto.constants.ErrorMessage.HAVE_TO_INPUT_ONLY_NUMBER_AND_DELIMITER;
+import static lotto.constants.message.ErrorMessage.HAVE_TO_INPUT_ONLY_NUMBER_AND_DELIMITER;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

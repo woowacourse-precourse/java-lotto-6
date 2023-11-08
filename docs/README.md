@@ -80,7 +80,7 @@
 - 양끝에 구분자가 들어간 경우 예외처리 추가
 ## 리팩터링 해야할 부분
 - [x] issuedLottos 생성로직과 출력로직 분리
-- [ ] 메서드 순서 정리 및 개행 제거 
+- [x] 메서드 순서 정리 및 개행 제거 
 - OutputMessage, OutPutView 등 점검
 - [ ] 테스트 정리
 - PurchaseBudgetTest 변경을 대비한 과한 테스트 로직 단순화 

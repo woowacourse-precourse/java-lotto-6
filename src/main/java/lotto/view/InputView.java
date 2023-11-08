@@ -4,7 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.PurchaseBudget;
 
-import static lotto.constants.InputMessage.*;
+import static lotto.constants.message.InputMessage.*;
 import static lotto.util.InputUtils.*;
 
 public class InputView {

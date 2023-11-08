@@ -1,4 +1,4 @@
-package lotto.constants;
+package lotto.constants.message;
 
 import static lotto.constants.Constants.Integers.LOTTO_SIZE;
 

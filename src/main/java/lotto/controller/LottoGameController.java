@@ -37,7 +37,7 @@ public class LottoGameController {
         Lottos lottos = getLottos(money);
         WinningLotto winningLotto = getWinningLotto();
         LottoResult results = getResults(lottos, winningLotto);
-        getProfitRate(money,results);
+        getProfitRate(money, results);
         inputView.close();
     }
 

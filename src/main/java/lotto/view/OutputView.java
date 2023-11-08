@@ -15,7 +15,7 @@ import lotto.io.OutputWriter;
 
 public class OutputView {
 
-    private static final String DELIMITER = ", " ;
+    private static final String DELIMITER = ", ";
     private final OutputWriter outputWriter;
 
     public OutputView(OutputWriter outputWriter) {

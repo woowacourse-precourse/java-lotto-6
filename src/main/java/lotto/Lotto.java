@@ -5,12 +5,12 @@ import java.util.*;
 public class Lotto {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-    protected final List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);
-        validateDuplication(numbers);
+        validateLottoDuplication(numbers);
         this.numbers = numbers;
     }
 
@@ -29,10 +29,20 @@ public class Lotto {
         }
     }
 
-    private void validateDuplication(List<Integer> numbers) {
+    private void validateLottoDuplication(List<Integer> numbers) {
         HashSet<Integer> duplicateCheck = new HashSet<>(numbers);
         if (duplicateCheck.size() != 6) {
             System.out.println(ERROR_MESSAGE + " 로또 번호는 중복이 없어야 합니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    protected void validateBonusDuplication(int bonus) {
+        HashSet<Integer> duplicateCheck = new HashSet<>(numbers);
+        duplicateCheck.add(bonus);
+
+        if (duplicateCheck.size() != 7) {
+            System.out.println(ERROR_MESSAGE + " 보너스 번호는 로또 번호와 중복이 없어야 합니다.");
             throw new IllegalArgumentException();
         }
     }

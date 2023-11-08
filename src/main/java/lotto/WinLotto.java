@@ -8,12 +8,12 @@ import java.util.stream.*;
 public class WinLotto {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-    protected Lotto lotto;
+    protected static Lotto lotto;
     protected LottoBonus bonus;
 
     public WinLotto() {
         this.lotto = setLottoWinningNumbers();
-        this.bonus = setLottoBonusNumber(this.lotto.numbers);
+        this.bonus = setLottoBonusNumber();
     }
 
     private static Lotto setLottoWinningNumbers() {
@@ -53,14 +53,14 @@ public class WinLotto {
         return winningLotto;
     }
 
-    private static LottoBonus setLottoBonusNumber(List<Integer> WinningNumbers) {
+    private static LottoBonus setLottoBonusNumber() {
         try {
             System.out.println("보너스 번호를 입력해 주세요.");
             int userInputNumber = inputBonusNumber();
 
-            return generateBonusNumber(userInputNumber, WinningNumbers);
+            return generateBonusNumber(userInputNumber);
         } catch (IllegalArgumentException e) {
-            return setLottoBonusNumber(WinningNumbers);
+            return setLottoBonusNumber();
         }
     }
 
@@ -75,9 +75,14 @@ public class WinLotto {
         }
     }
 
-    private static LottoBonus generateBonusNumber(int bonus, List<Integer> winningNumbers) {
-        LottoBonus lottoBonus = new LottoBonus(bonus, winningNumbers);
+    private static LottoBonus generateBonusNumber(int bonus) {
+        LottoBonus lottoBonus = new LottoBonus(bonus);
+        validateBonusNumber(lottoBonus.bonus);
 
         return lottoBonus;
+    }
+
+    private static void validateBonusNumber(int bonus) {
+        lotto.validateBonusDuplication(bonus);
     }
 }

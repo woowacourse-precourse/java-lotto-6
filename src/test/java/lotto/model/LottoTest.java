@@ -48,6 +48,16 @@ class LottoTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨 번호는 오름차순으로 출력되어야 한다.")
+    @Test
+    void getSortedOutputString() {
+        final Lotto lotto = new Lotto(List.of(5, 4, 3, 6, 2, 1));
+
+        final String outputString = lotto.numbersToString();
+
+        assertThat(outputString).contains("[1, 2, 3, 4, 5, 6]");
+    }
+
     private static Stream<List<Integer>> generateOutOfSize() {
         return Stream.of(
             List.of(1, 2, 3, 4, 5),

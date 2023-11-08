@@ -1,0 +1,60 @@
+- test: add test function isNumberBelowZero()
+- feat(validation): add function validating that lotto number below zero
+- docs(readme): add more features
+- docs(changelog): create CHANGELOG.md
+- refactor: move file to new package
+- feat: add functions in main function
+- feat(output): add function printing winning result
+- feat(output): add function printing count of lotto that user bought
+- feat(input): add function receiving bonus number from user
+- feat(input): add function receiving winning lotto numbers from user
+- feat(input): add function receiving purchase amount from user
+- test: refactor unit test code of getLotteryStatistics()
+- refactor: refactor LottoResult.java
+- refactor: refactor LottoService.java
+- docs(readme): add more features at docs/README.md
+- test: add @DisplayName at printLottos()
+- test: add unit for getPrizeMoney()
+- test: add unit for checkBonusNumberCorrect()
+- test: add unit for compareLottoNumberWithWinningNumbers()
+- test: add unit test for getLotteryStatistics()
+- refactor: refactor printLottos function
+- test: add test function checking winningNumbers contain bonus number
+- refactor(test): refactor function names in LottoServiceTest.java
+- refactor(test): refactor test code to use constructor of ArrayList in constructor of Lotto.java
+- feat(lotto): add features getting prize money and ROI
+- feat(lotto): add features getting lottery statistics
+- docs(readme): add more features to make
+- feat(error): add feature that constructor contains sorting numbers
+- feat(error): add more messages in ErrorMessage.java
+- refactor: refactor provideLotto()
+- refactor: refactor inputWinningNumbers()
+- refactor: refactor containsNonNumericCharacters() to permit blank in input value
+- refactor: refactor parameter and validation in inputBonusNumber
+- feat(validate): add function that checking winning numbers contain bonus number
+- test: add test case that printing lotto numbers
+- test: add test case that provide lotto numbers
+- test: add test case that raises an exception when non_numeric characters are in input
+- test: add test case that raises an exception when purchase amount is not divide by 1000
+- test: add test case that raises an exception when the lotto number exceeds 45
+- test(lotto): fix @DisplayName in lottoToString()
+- test(lotto): add test code of lotto toString()
+- test(lotto): add test code of getting numbers of lotto
+- feat(error): add validating function is lotto numbers have duplicate numbers
+- feat(error): add error message
+- feat(error): add error message
+- docs(readme): update docs/README.md
+- feat(lotto): add function in Lotto.java getting lotto numbers
+- feat(error): add enum class of error messages
+- feat(input): add function input bonus number
+- feat(validate): add function validate one number in once
+- feat(input): add function getting winning numbers from user
+- feat(validate): add function checking lotto number over 45
+- feat(print): add function printing lotto numbers
+- feat(lotto): override toString in Lotto
+- feat(lotto): add function providing lotto numbers
+- feat(input): add function checking is purchase amount divide by 1000
+- feat(input): add function checking is input has non_numeric characters
+- feat(purchaseamount): add function receiving purchase amount from the user
+- docs(readme): add feature list at docs/README.md
+- feat: setup precourse lotto project

@@ -24,6 +24,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("정렬되지 않은 로또인 경우 정렬하고 생성한다.")
+    @Test
+    void should_SortNumbers_When_NotSorted() {
+        Lotto lotto = new Lotto(List.of(5, 1, 14, 8, 15, 2));
+        assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 2, 5, 8, 14, 15));
+    }
+
     @DisplayName("범위를 벗어난 숫자를 가진경우 예외가 발생한다.")
     @Test
     void should_ThrowException_When_HasNumberOutOfRange() {
@@ -55,9 +62,9 @@ class LottoTest {
         assertThat(lotto.contains(bonusNumber)).isTrue();
     }
 
-    @DisplayName("올바른 로또번호를 반환한다.")
+    @DisplayName("올바른 로또번호를 갖는다.")
     @Test
-    void should_ReturnRightNumbers() {
+    void should_HaveRightNumbers() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }

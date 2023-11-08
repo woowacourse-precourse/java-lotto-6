@@ -28,7 +28,7 @@ public class Lotto {
             throw Errors.INVALID_RANGE.getLottoException();
         }
         if (isNotSorted(numbers)) {
-            throw Errors.INVALID_SORTING.getLottoException();
+            throw Errors.INVALID_SORTING.getStatusException();
         }
     }
 

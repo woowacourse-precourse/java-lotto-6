@@ -27,4 +27,8 @@ public enum Errors {
         return new FormatException(this.message);
     }
 
+    public StatusException getStatusException() {
+        return new StatusException(this.message);
+    }
+
 }

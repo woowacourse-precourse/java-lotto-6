@@ -40,4 +40,20 @@ public class InputViewUtil {
         }
         return lottoNumbers;
     }
+
+    public static int getValidBonusNumber(String input, List<Integer> winningNumbers) throws IllegalArgumentException {
+        try {
+            int bonusNumber = Integer.parseInt(input);
+
+            if (bonusNumber < LottoConst.MIN_RANGE_NUMBER.getValue() ||
+                    bonusNumber > LottoConst.MAX_RANGE_NUMBER.getValue() ||
+                    winningNumbers.contains(bonusNumber)) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER.getMessage());
+            }
+
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER.getMessage());
+        }
+    }
 }

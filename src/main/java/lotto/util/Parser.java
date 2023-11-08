@@ -19,7 +19,6 @@ public class Parser {
         return Arrays.stream(numbers)
                 .map(String::trim)
                 .map(Parser::parseSingleNumber)
-                .sorted()
                 .toList();
     }
 }

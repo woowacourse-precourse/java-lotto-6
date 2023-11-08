@@ -10,7 +10,9 @@ public class Lotto implements LottoConstants {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream()
+                .sorted()
+                .toList();
     }
 
     public String concatNumbers() {
@@ -24,9 +26,11 @@ public class Lotto implements LottoConstants {
         if (Set.copyOf(numbers).size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE.getMessage());
         }
-        int first = numbers.get(0);
-        int last = numbers.get(LOTTO_SIZE - 1);
-        if ((first < MIN_NUMBER) || (last > MAX_NUMBER)) {
+        numbers.forEach(number -> validateRange(number));
+    }
+
+    private void validateRange(int number) {
+        if ((number < MIN_NUMBER) || (number > MAX_NUMBER)) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE.getMessage(MIN_NUMBER, MAX_NUMBER));
         }
     }

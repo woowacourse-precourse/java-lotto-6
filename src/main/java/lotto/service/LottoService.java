@@ -1,7 +1,6 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Comparator;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.repository.LottoRepository;
@@ -23,7 +22,6 @@ public class LottoService implements LottoConstants {
         int totalQuantity = lottoRepository.getPurchaseQuantity();
         for (int quantity = 0; quantity < totalQuantity; quantity++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE);
-            numbers.sort(Comparator.naturalOrder());
             Lotto lotto = new Lotto(numbers);
             lottoRepository.insertLotto(lotto);
         }

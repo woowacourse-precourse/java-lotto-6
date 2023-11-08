@@ -18,7 +18,7 @@ public class LottoController {
     void play(){
         int LottoNum = moneyInput();
         List<Lotto> LottoList = buyLotto(LottoNum);
-        winningNumInput();
+        List<Integer> WinningNum = winningNumInput();
         bonusNumInput();
     }
 
@@ -42,27 +42,25 @@ public class LottoController {
     }
 
     private int moneyInput() {
-        System.out.print("Money : ");
+        System.out.println("구입금액을 입력해 주세요.");
         int Money = Integer.parseInt(readLine());
         int LottoNum = Money / 1000;
-        System.out.println("LottoNum = " + LottoNum);
+        System.out.println(LottoNum + "개를 구매했습니다.");
         return LottoNum;
     }
 
     private void bonusNumInput() {
-        System.out.print("BonusNum : ");
+        System.out.println("보너스 번호를 입력해 주세요.");
         int BonusNum = Integer.parseInt(readLine());
-        System.out.println("BonusNum = " + BonusNum);
     }
 
 
-    private void winningNumInput(){
-        System.out.print("List : ");
+    private List<Integer> winningNumInput(){
+        System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> list = Arrays.stream(readLine().split(","))
                 .mapToInt(Integer::parseInt)
                 .boxed().collect(Collectors.toList());
-        System.out.println("List = " + list);
-        Lotto lotto = new Lotto(list);
+        return list;
     }
 
 

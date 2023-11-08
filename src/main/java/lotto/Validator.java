@@ -32,4 +32,15 @@ public class Validator {
         }
     }
 
+    public static void validateNumberLength(List<Integer> numbers){
+        if(numbers.size() != 6) throw new IllegalArgumentException(NOT_VALID_LENGTH);
+    }
+
+    public static void validateComposedOfUniqueNumbers(List<Integer> numbers){
+        long unique_number = numbers.stream().distinct().count();
+        if(unique_number < numbers.size()){
+            throw new IllegalArgumentException(NOT_COMPOSED_OF_UNIQUE_NUMBERS);
+        }
+    }
+
 }

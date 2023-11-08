@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.ErrorMessage;
+import lotto.Validator;
 import lotto.domain.BonusNumber;
 import lotto.domain.WinningLotto;
 
@@ -35,9 +36,15 @@ public class InputView {
         System.out.println(WinningNumbersMessage);
         String input = Console.readLine();
         System.out.println();
-
         validateNotEmptyInput(input);
+
         List<Integer> numbers = validateCanSplittedInput(input);
+        validateNumberLength(numbers);
+        validateComposedOfUniqueNumbers(numbers);
+        for(Integer number : numbers){
+            validatePositiveNumber(number);
+            validateNumberInRange(number);
+        }
 
         return numbers;
     }
@@ -57,4 +64,6 @@ public class InputView {
         if(!input.matches(INPUT_REGEXP)) throw new IllegalArgumentException(NOT_VALID_LENGTH);
         return Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
     }
+
+
 }

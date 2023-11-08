@@ -3,12 +3,7 @@ package lotto;
 import java.util.List;
 
 public class Converter {
-    final static int firstPrize = 2000000000;
-    final static int secondPrize = 30000000;
-    final static int thridPrize = 1500000;
-    final static int forthPrize = 50000;
-    final static int fifthPrize = 5000;
-    final static int noPrize = 0;
+
 
     public static int parseToInt(String rawValue) {
         try {
@@ -18,16 +13,25 @@ public class Converter {
         }
     }
 
+    public enum Prize {
+       firstPrize(2000000000), secondPrize(30000000), thridPrize(1500000), forthPrize(50000)
+        , fifthPrize(5000), noPrize(0);
+
+        private final int prizeAmout;
+
+       Prize(int prizeAmout) {
+           this.prizeAmout = prizeAmout;
+       }
+
+       public int getPrizeAmount() {
+           return prizeAmout;
+       }
+    }
+
     public int carculateWinPrize(List<Integer> wins) {
         int sum = 0;
-        wins.set(0,wins.get(0)*firstPrize);
-        wins.set(1,wins.get(1)*secondPrize);
-        wins.set(2,wins.get(2)*thridPrize);
-        wins.set(3,wins.get(3)*forthPrize);
-        wins.set(4,wins.get(4)*fifthPrize);
-        wins.set(5,wins.get(5)*noPrize);
-        for (int value:wins) {
-            sum += value;
+        for (int i = 0; i < wins.size(); i++) {
+            sum += wins.get(i) * Prize.values()[i].getPrizeAmount();
         }
         return sum;
     }

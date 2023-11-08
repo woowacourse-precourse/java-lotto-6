@@ -5,9 +5,6 @@ import java.util.Map;
 
 import static lotto.domain.WinningCriteria.FIFTH_PRIZE;
 import static lotto.domain.WinningCriteria.FIRST_PRIZE;
-import static lotto.domain.WinningCriteria.FOURTH_PRIZE;
-import static lotto.domain.WinningCriteria.SECOND_PRIZE;
-import static lotto.domain.WinningCriteria.THIRD_PRIZE;
 
 public class Winner {
 

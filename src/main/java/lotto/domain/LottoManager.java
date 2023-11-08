@@ -44,7 +44,6 @@ public class LottoManager {
                 Prize prize = Prize.rank(countMatching, userLotto.getNumbers().contains(bonusNumber));
                 lottoResult.state.replace(prize, lottoResult.state.get(prize) + COUNT_ONE.get());
             }
-
         }
 
         return lottoResult;

@@ -39,7 +39,6 @@ public class StringTest {
         assertThat(numbers).isEqualTo("1,2");
     }
 
-
     @DisplayName("charAt()사용과 인덱스 예외 처리")
     @Test
     void 특정_문자_가져오기() {

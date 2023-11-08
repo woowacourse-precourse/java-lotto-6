@@ -14,7 +14,6 @@ import java.util.List;
 import lotto.constants.Prize;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

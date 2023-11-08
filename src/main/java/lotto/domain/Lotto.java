@@ -29,7 +29,7 @@ public class Lotto {
                 .count();
     }
 
-    public boolean matchWithBonus(int number) {
-        return getNumbers().contains(number);
+    public boolean matchWithBonus(int bonusNumber) {
+        return getNumbers().contains(bonusNumber);
     }
 }

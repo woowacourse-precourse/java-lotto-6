@@ -36,7 +36,7 @@ public class Validator {
 
     public static void validateDivision(long number) {
         if (number % LOTTO_PRICE != ZERO) {
-            throw new IllegalArgumentException(NOT_PLUS_SIGN.getMessage());
+            throw new IllegalArgumentException(NOT_UNIT.getMessage());
         }
     }
 

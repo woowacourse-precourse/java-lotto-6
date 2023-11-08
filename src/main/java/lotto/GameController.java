@@ -35,7 +35,7 @@ public class GameController {
         }
     }
 
-    private List<Lotto> receiveLottos(long ticketNumber) {
+    private List<Lotto> receiveLottos(int ticketNumber) {
         List<Lotto> lottos = new LottoGenerator(ticketNumber).getLottos();
         printLottoNumbers(lottos);
         return lottos;

@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import lotto.util.Logger;
 import lotto.util.RegxPattern;
 
-public class MoneyInputReader implements InputReader {
+public class MoneyConsoleReader implements ConsoleReader {
         @Override
         public String readLine() {
                 String money;

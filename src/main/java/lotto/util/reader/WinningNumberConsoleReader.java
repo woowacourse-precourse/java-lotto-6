@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import lotto.util.Logger;
 import lotto.util.RegxPattern;
 
-public class LottoResultInputReader implements InputReader {
+public class WinningNumberConsoleReader implements ConsoleReader {
         @Override
         public String readLine() {
                 String numbers;

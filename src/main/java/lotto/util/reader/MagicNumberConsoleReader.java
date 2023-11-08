@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.util.Logger;
 import lotto.util.RegxPattern;
 
-public class MagicNumberInputReader implements InputReader {
+public class MagicNumberConsoleReader implements ConsoleReader {
         @Override
         public String readLine() {
                 String magicNumber;

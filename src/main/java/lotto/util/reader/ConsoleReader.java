@@ -1,5 +1,5 @@
 package lotto.util.reader;
 
-public interface InputReader {
+public interface ConsoleReader {
         String readLine();
 }

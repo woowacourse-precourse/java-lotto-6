@@ -36,7 +36,7 @@ public class PurchaseAmount {
     }
 
     private void validateNotTooMuchPurchaseAmount(int purchaseAmount) {
-        if ((purchaseAmount / LOTTO_PRICE) > MAX_NUMBER_OF_LOTTOS) {
+        if (purchaseAmount > (LOTTO_PRICE * MAX_NUMBER_OF_LOTTOS)) {
             throw new IllegalArgumentException(String.format(TOO_MUCH_PURCHASE_AMOUNT, MAX_NUMBER_OF_LOTTOS));
         }
     }

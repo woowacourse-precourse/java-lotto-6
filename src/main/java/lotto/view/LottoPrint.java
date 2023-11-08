@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.domain.Lotto;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoPrint {
     public void inputAmountPrint(){
@@ -29,5 +30,19 @@ public class LottoPrint {
 
     public void inputBonusNumberPrint() {
         System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+    public void winningStaticsMent() {
+        System.out.println("당첨 통계");
+        System.out.println("—-");
+    }
+
+    public void winningStaticsPrint(Map<Integer, Integer> winningCount, double rate) {
+        System.out.println("3개 일치 (5,000원) - " + winningCount.get(5000) + "개");
+        System.out.println("4개 일치 (50,000원) - " + winningCount.get(50000) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + winningCount.get(1500000) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningCount.get(30000000) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + winningCount.get(2000000000) + "개");
+        System.out.println("총 수익률은 " + rate + "%입니다.");
     }
 }

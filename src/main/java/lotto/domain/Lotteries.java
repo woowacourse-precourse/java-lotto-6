@@ -1,7 +1,9 @@
 package lotto.domain;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.Lotto;
 
 public class Lotteries {
@@ -26,6 +28,21 @@ public class Lotteries {
                 .mapToInt(Rank::getPrice)
                 .sum();
         return BigDecimal.valueOf(sum);
+    }
+
+    public Map<Rank, Integer> calculateTotalRankCount(final UserLotto userLotto) {
+        Map<Rank, Integer> result = new HashMap<>();
+        for (Rank rank : getRanks(userLotto)) {
+            result.put(rank, result.getOrDefault(rank, 0) + 1);
+        }
+        return result;
+    }
+
+    private List<Rank> getRanks(final UserLotto userLotto) {
+        return lotteries.stream()
+                .map(userLotto::calculateRank)
+                .filter(Rank::isNotNone)
+                .toList();
     }
 
     @Override

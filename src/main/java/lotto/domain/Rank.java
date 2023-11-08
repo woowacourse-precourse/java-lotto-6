@@ -35,4 +35,8 @@ public enum Rank {
     public int getPrice() {
         return price;
     }
+
+    public boolean isNotNone() {
+        return this != NONE;
+    }
 }

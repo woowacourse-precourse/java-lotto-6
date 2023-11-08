@@ -18,6 +18,7 @@ public class CalculateTotalWinningPriceArgumentsProvider implements ArgumentsPro
                 Arguments.arguments(givenNumbers(1, 3, 5, 14, 22, 23), 24, BigDecimal.valueOf(1_500_000)),
                 Arguments.arguments(givenNumbers(1, 3, 5, 14, 15, 17), 18, BigDecimal.valueOf(50_000)),
                 Arguments.arguments(givenNumbers(1, 2, 3, 4, 5, 6), 7, BigDecimal.valueOf(5_000)),
+                Arguments.arguments(givenNumbers(1, 2, 3, 4, 7, 8), 9, BigDecimal.valueOf(0)),
                 Arguments.arguments(givenNumbers(1, 3, 5, 14, 15, 16), 17, BigDecimal.valueOf(55_000)),
                 Arguments.arguments(givenNumbers(1, 3, 5, 14, 16, 32), 33, BigDecimal.valueOf(100_000)),
                 Arguments.arguments(givenNumbers(1, 3, 5, 11, 14, 22), 24, BigDecimal.valueOf(1_505_000)),

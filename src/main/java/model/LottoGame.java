@@ -16,15 +16,16 @@ public class LottoGame {
     private static final List<Integer> PRIZE_MONEY = List.of(0, 0,5000, 50000, 1500000, 30000000, 2000000000);
      List<Lotto> lottos = new ArrayList<>();
 
-    List<Integer> makeLottoNumbers() {
+
+    public List<Integer> makeLottoNumbers() {
         List<Integer> LottoNumbers = new ArrayList<>();
         int currentLottoSize = 0;
         while (currentLottoSize < 6) {
             int LottoNumber = Randoms.pickNumberInRange(1, 45);
             if (!LottoNumbers.contains(LottoNumber)) {
                 LottoNumbers.add(LottoNumber);
+                currentLottoSize++;
             }
-            currentLottoSize++;
         }
         return LottoNumbers;
     }

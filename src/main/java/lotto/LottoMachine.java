@@ -50,14 +50,18 @@ public class LottoMachine {
                 printBonusNumEnterGuideStatement();
                 String input = Console.readLine();
                 bonusNum = iv.toInt(input);
-                iv.isWithinRange(bonusNum);
-                iv.isBonusDuplicateOfLotto(winningLotto, bonusNum);
+                bonusNumValidation();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
         return bonusNum;
+    }
+
+    private void bonusNumValidation() {
+        iv.isWithinRange(bonusNum);
+        iv.isBonusDuplicateOfLotto(winningLotto, bonusNum);
     }
 
     Map<Rank, Integer> draw(List<Lotto> lottos) {

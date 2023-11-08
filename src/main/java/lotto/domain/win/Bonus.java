@@ -4,9 +4,9 @@ import static lotto.Option.ErrorMessage.ONE_TO_FORTY_FIVE;
 
 import lotto.Option.GameOption;
 
-public record Bonus(int bonusNumber) {
+public record Bonus(int number) {
     public Bonus {
-        validate(bonusNumber);
+        validate(number);
     }
 
     private void validate(int bonusNumber) {

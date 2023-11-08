@@ -22,8 +22,8 @@ public class WinningLotto {
     }
 
     public static Lotto createWinningNumbers(String winningNumbers) {
-        InputValidator.validateEmpty(winningNumbers);
         InputValidator.validateNull(winningNumbers);
+        InputValidator.validateEmpty(winningNumbers);
         List<Integer> numbers = parseNumbers(winningNumbers);
         validateSize(numbers);
         validateUnique(numbers);
@@ -32,18 +32,14 @@ public class WinningLotto {
     }
 
     public static int createBonusNumber(Lotto winningNumbers, String bonusNumber) {
-        InputValidator.validateEmpty(bonusNumber);
         InputValidator.validateNull(bonusNumber);
+        InputValidator.validateEmpty(bonusNumber);
         int parsedNumber = parseNumber(bonusNumber);
         validateSingleRange(parsedNumber);
         if (winningNumbers.isExist(parsedNumber)) {
             throw new IllegalArgumentException("보너스 번호는 고유해야함");
         }
         return parsedNumber;
-    }
-
-    public Lotto getWinningNumbers() {
-        return this.winningNumbers;
     }
 
     public int getBonusNumber() {

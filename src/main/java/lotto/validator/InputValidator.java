@@ -3,7 +3,9 @@ package lotto.validator;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.message.ErrorMessage;
 import lotto.model.LottoCondition;
 
 public class InputValidator {
@@ -18,42 +20,46 @@ public class InputValidator {
         validateMultipleOfThousand(price);
     }
 
-    public void validateWinningNumber(String winningNumberInput, String bonusNumberInput) {
+    public void validateWinningNumber(String winningNumberInput) {
         validateLength(winningNumberInput);
         validateDuplicate(winningNumberInput);
         validateInRange(winningNumberInput);
+    }
 
+    public void validateBonusNumber(String bonusNumberInput) {
         validateInteger(bonusNumberInput);
         int bonusNumber = Integer.parseInt(bonusNumberInput);
         validateInRange(bonusNumber);
-
-        validateBonusNumberNotDuplicate(winningNumberInput, bonusNumber);
     }
 
     private void validateInteger(String input) {
         try {
             Integer.parseInt(input);
         } catch(NumberFormatException e) {
-            throw new IllegalArgumentException("허용하지 않는 숫자입니다");
+            throw new IllegalArgumentException(ErrorMessage.PREFIX.getErrorMessage() +
+                                                    ErrorMessage.NO_INTEGER.getErrorMessage());
         }
     }
 
     private void validatePositiveInteger(int input) {
         if (input <= 0) {
-            throw new IllegalArgumentException("허용하지 않는 숫자입니다.");
+            throw new IllegalArgumentException(ErrorMessage.PREFIX.getErrorMessage() +
+                                                    ErrorMessage.NO_POSITIVE_INTEGER.getErrorMessage());
         }
     }
 
     private void validateMultipleOfThousand(int number) {
         if(number % 1000 != 0) {
-            throw new IllegalArgumentException("허용하지 않는 숫자입니다.");
+            throw new IllegalArgumentException(ErrorMessage.PREFIX.getErrorMessage() +
+                                                    ErrorMessage.UNIT_RESTRICTION.getErrorMessage());
         }
     }
 
     private void validateLength(String winningNumber) {
         long winningNumberLength = Arrays.stream(winningNumber.split(",")).count();
         if(winningNumberLength != COUNT) {
-            throw new IllegalArgumentException("6개의 숫자가 아닙니다");
+            throw new IllegalArgumentException(ErrorMessage.PREFIX.getErrorMessage() +
+                                                    ErrorMessage.NOT_LENGTH_SIX.getErrorMessage());
         }
     }
 
@@ -64,17 +70,15 @@ public class InputValidator {
                                         .collect(Collectors.toList());
          HashSet<Integer> uniqueNumbers = new HashSet<>(numbers);
          if(numbers.size() > uniqueNumbers.size()) {
-             throw new IllegalArgumentException("중복 숫자가 존재합니다.");
+             throw new IllegalArgumentException(ErrorMessage.PREFIX.getErrorMessage() +
+                                                        ErrorMessage.HAS_DUPLICATED_NUMBER.getErrorMessage());
          }
     }
 
-    private void validateBonusNumberNotDuplicate(String winningNumber, int bonusNumber) {
-        List<Integer> numbers = Arrays.asList(winningNumber.split(","))
-                                        .stream()
-                                        .map(Integer::parseInt)
-                                        .collect(Collectors.toList());
-        if(numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("당첨 번호와 보너스 번호가 중복입니다.");
+    public void validateBonusNumberNotDuplicate(Set<Integer> winningNumbers, int bonusNumber) {
+        if(winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.PREFIX.getErrorMessage() +
+                                                    ErrorMessage.HAS_DUPLICATED_WINNING_NUMBER_WITH_BONUS_NUMBER.getErrorMessage());
         }
     }
 
@@ -85,15 +89,16 @@ public class InputValidator {
                                         .collect(Collectors.toList());
         for(int number : numbers) {
             if(number > MAX_NUMBER || number < MIN_NUMBER) {
-                throw new IllegalArgumentException("번호가 범위를 벗어났습니다.");
+                throw new IllegalArgumentException(ErrorMessage.PREFIX.getErrorMessage() +
+                                                        ErrorMessage.OUT_OF_RANGE.getErrorMessage());
             }
         }
     }
 
     private void validateInRange(int bonusNumber) {
         if(bonusNumber > MAX_NUMBER || bonusNumber < MIN_NUMBER) {
-            throw new IllegalArgumentException("번호가 범위를 벗어났습니다.");
+            throw new IllegalArgumentException(ErrorMessage.PREFIX.getErrorMessage() +
+                                                    ErrorMessage.OUT_OF_RANGE.getErrorMessage());
         }
     }
-
 }

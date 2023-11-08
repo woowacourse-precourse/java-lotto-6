@@ -31,8 +31,19 @@ public class RandomLottoNumbers {
 
     public List<List<Integer>> sortLotto(List<List<Integer>> lottoNumbers) {
         for(int i = 0; i < lottoNumbers.size(); i++) {
-            Collections.sort(lottoNumbers.get(i));
+            if (!isSorted(lottoNumbers.get(i))) {
+                Collections.sort(lottoNumbers.get(i));
+            }
         }
         return lottoNumbers;
+    }
+
+    private boolean isSorted(List<Integer> list) {
+        for (int i = 1; i < list.size(); i++) {
+            if (list.get(i - 1) > list.get(i)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

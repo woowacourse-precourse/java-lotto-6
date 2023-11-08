@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LottoGeneratorTest {
 
     private LottoGenerator generator;
+
     @BeforeEach
     void setUp() {
         generator = new LottoGenerator();
@@ -28,8 +29,8 @@ class LottoGeneratorTest {
     void createLottoWithSixNumbers() {
         assertThat(generator.createSingleLotto()
                 .getNumbers()
-                .size()
-        ).isEqualTo(6);
+                .size())
+                .isEqualTo(6);
     }
 
     @DisplayName("1~45 사이의 숫자만 가진 로또 번호를 생성한다.")
@@ -40,14 +41,14 @@ class LottoGeneratorTest {
         assertThat(lotto.getNumbers()
                 .stream()
                 .max(Integer::compareTo)
-                .orElseThrow()
-        ).isLessThanOrEqualTo(45);
+                .orElseThrow())
+                .isLessThanOrEqualTo(45);
 
         assertThat(lotto.getNumbers()
                 .stream()
                 .min(Integer::compareTo)
-                .orElseThrow()
-        ).isGreaterThanOrEqualTo(1);
+                .orElseThrow())
+                .isGreaterThanOrEqualTo(1);
     }
 
     @DisplayName("중복이 없는 숫자를 가진 로또 번호를 생성한다.")
@@ -58,8 +59,8 @@ class LottoGeneratorTest {
                 .stream()
                 .distinct()
                 .toList()
-                .size()
-        ).isEqualTo(6);
+                .size())
+                .isEqualTo(6);
     }
 
 }

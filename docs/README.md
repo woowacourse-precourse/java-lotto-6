@@ -15,9 +15,9 @@
 - [x] Budget
   - budget: 구입 예산
   - [x] 발권 개수 구하기
-- [ ] LottoTickets
+- [x] LottoTickets
   - List<Lotto> 
-  - [ ] 로또 번호 생성 (로또 번호는 오름차순으로 저장)
+  - [x] 로또 번호 생성 (로또 번호는 오름차순으로 저장)
 - [ ] WinningLotto
   - Lotto, bonusNumber
   - [ ] LottoTickets와 비교해서 Rank 찾기

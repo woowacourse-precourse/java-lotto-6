@@ -27,7 +27,8 @@ public class LottoService {
     public void run() {
         configMoneyOfGenerator();
 
-        boughtLottos = lottoGenerator.generateMyLottos();
+        boughtLottos = lottoGenerator.generateLottos();
+
         outputView.showMyTickets(boughtLottos.toDto());
 
         configWinningLottoOfComputer();
@@ -38,14 +39,14 @@ public class LottoService {
     }
 
     private void configBoughtLottoOfComputer() {
-        lottoComputer.config(boughtLottos);
+        lottoComputer.configBoughtLottos(boughtLottos);
     }
 
     private void configWinningLottoOfComputer() {
         outputView.askWinningLotto();
         while (true) {
             try {
-                lottoComputer.config(Lotto.toLotto(inputView.read()));
+                lottoComputer.configWinningLotto(Lotto.toLotto(inputView.read()));
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
@@ -57,8 +58,7 @@ public class LottoService {
         outputView.askBonusNumber();
         while (true) {
             try {
-
-                lottoComputer.config(inputView.read());
+                lottoComputer.configBonus(inputView.read());
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());

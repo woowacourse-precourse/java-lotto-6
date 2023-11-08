@@ -5,6 +5,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import lotto.controller.Exception;
+import lotto.controller.LottoController;
 import lotto.controller.Validator;
 import java.util.List;
 
@@ -29,5 +30,15 @@ public class InputView {
         }
 
         return null;
+    }
+
+    public static int getBonusNumber() {
+        String playerInput = readLine();
+
+        if (Validator.isValidBonusNumber(LottoController.getAnswerlottoNumbers(), playerInput)) {
+            return Integer.parseInt(playerInput);
+        }
+
+        return -1;
     }
 }

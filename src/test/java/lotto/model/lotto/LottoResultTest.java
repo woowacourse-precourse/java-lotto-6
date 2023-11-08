@@ -6,11 +6,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import lotto.Application;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoResultTest extends NsTest {
-    private static final String ERROR_MESSAGE = "[ERROR]";
-
+    @DisplayName("로또 3개 구매 후 로또 결과 출력 테스트")
     @Test
     void 로또_결과_테스트() {
         assertRandomUniqueNumbersInRangeTest(

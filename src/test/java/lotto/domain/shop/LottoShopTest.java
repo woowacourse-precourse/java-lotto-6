@@ -25,30 +25,30 @@ public class LottoShopTest {
 
     @DisplayName("로또 구매액 한도에 대해,")
     @Nested
-    class purchaseLimit {
+    class validateLimit {
 
         @DisplayName("구매 한도액 초과 시, 예외가 발생한다.")
         @Test
-        void purchaseWithOverPurchaseLimit() {
+        void validateWithOverPurchaseLimit() {
             // given
             int purchaseLimitValue = ShopConfig.LOTTO_PURCHASE_LIMIT.getValue();
             int oneLottoPriceValue = ShopConfig.LOTTO_PRICE.getValue();
             int overLimitValue = purchaseLimitValue + oneLottoPriceValue;
 
             // then
-            Assertions.assertThatThrownBy(() -> lottoShop.countPurchasableAmount(overLimitValue))
+            Assertions.assertThatThrownBy(() -> lottoShop.validateMaxPurchaseLimit(overLimitValue))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ShopExceptionMessages.LOTTO_PURCHASE_OVER_LIMIT.getMessage());
         }
 
         @DisplayName("구매 한도액으로 구매 시, 예외가 발생하지 않는다.")
         @Test
-        void purchaseWithPurchaseLimit() {
+        void validateWithPurchaseLimit() {
             // given
             int purchaseLimitValue = ShopConfig.LOTTO_PURCHASE_LIMIT.getValue();
 
             // then
-            Assertions.assertThatCode(() -> lottoShop.countPurchasableAmount(purchaseLimitValue))
+            Assertions.assertThatCode(() -> lottoShop.validateMaxPurchaseLimit(purchaseLimitValue))
                     .doesNotThrowAnyException();
         }
 

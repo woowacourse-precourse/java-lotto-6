@@ -22,16 +22,12 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
 
+    private final LottoShop lottoShop = new LottoShop();
+
     private final PickNumbersStrategy pickNumbersStrategy = new PickRandomNumbersStrategy();
     private final LottoNumbersGenerator lottoNumbersGenerator = new LottoNumbersGenerator(pickNumbersStrategy);
 
-    private final LottoShop lottoShop = new LottoShop();
-
     private final Messenger messenger = new Messenger();
-
-    private Cash purchaseCash;
-    private WinningLottoNumbers winningLottoNumbers;
-    private List<Lotto> lotteries;
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -39,36 +35,45 @@ public class LottoController {
     }
 
     public void run() {
-        purchaseLotteries();
-        inputWinningLottoNumbers();
-        printResult();
+        Cash purchasingCash = inputPurchaseCash();
+        List<Lotto> lotteries = purchaseLotteries(purchasingCash);
+
+        WinningLottoNumbers winningLottoNumbers = inputWinningLottoNumbers();
+
+        List<WinStateInformationDTO> winStateInformationDTOs = determineWinStates(winningLottoNumbers, lotteries);
+        printWinningStatistics(winStateInformationDTOs);
+        printYield(winStateInformationDTOs, purchasingCash);
     }
 
-    private void purchaseLotteries() {
+    private Cash inputPurchaseCash() {
         outputView.print(messenger.getInputPurchaseCashAmountMessage());
         while (true) {
             try {
-                purchaseCash = new Cash(inputView.inputNumber());
-                int lotteriesCount = lottoShop.countPurchasableAmount(purchaseCash.amount());
-                outputView.print(messenger.getPurchasedLotteriesCountMessage(lotteriesCount));
-                generateLotteries(lotteriesCount);
-                return;
+                int inputValue = inputView.inputNumber();
+                lottoShop.validateMaxPurchaseLimit(inputValue);
+                return new Cash(inputValue);
             } catch (IllegalArgumentException e) {
                 outputView.print(e);
             }
         }
     }
 
-    private void generateLotteries(int count) {
+    private List<Lotto> purchaseLotteries(Cash purchasingCash) {
+        int lotteriesCount = lottoShop.countPurchasableAmount(purchasingCash.amount());
+        outputView.print(messenger.getPurchasedLotteriesCountMessage(lotteriesCount));
+        return generateLotteries(lotteriesCount);
+    }
+
+    private List<Lotto> generateLotteries(int count) {
         List<LottoNumbersDTO> lottoNumbersDTOs = lottoNumbersGenerator.generateByCount(count);
         outputView.print(messenger.getLotteriesNumbersMessage(lottoNumbersDTOs));
-        lotteries = lottoNumbersDTOs.stream()
+        return lottoNumbersDTOs.stream()
                 .map(LottoNumbersDTO::numbers)
                 .map(Lotto::new)
                 .toList();
     }
 
-    private void inputWinningLottoNumbers() {
+    private WinningLottoNumbers inputWinningLottoNumbers() {
 
         outputView.print(messenger.getInputWinningNumbersMessage());
         Lotto winningNumbers = inputNumbers();
@@ -77,8 +82,7 @@ public class LottoController {
         while (true) {
             try {
                 LottoNumber bonusNumber = new LottoNumber(inputView.inputNumber());
-                winningLottoNumbers = new WinningLottoNumbers(winningNumbers, bonusNumber);
-                return;
+                return new WinningLottoNumbers(winningNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
                 outputView.print(e);
             }
@@ -95,11 +99,12 @@ public class LottoController {
         }
     }
 
-    private void printResult() {
+    private List<WinStateInformationDTO> determineWinStates(
+            WinningLottoNumbers winningLottoNumbers,
+            List<Lotto> lotteries
+    ) {
         WinStatesCounter winStatesCounter = new WinStatesCounter(winningLottoNumbers, lotteries);
-        List<WinStateInformationDTO> winStateInformationDTOs = winStatesCounter.getWinStateInformationDTOs();
-        printWinningStatistics(winStateInformationDTOs);
-        printYield(winStateInformationDTOs);
+        return winStatesCounter.getWinStateInformationDTOs();
     }
 
     private void printWinningStatistics(List<WinStateInformationDTO> winStateInformationDTOs) {
@@ -107,9 +112,9 @@ public class LottoController {
         outputView.print(messenger.getWinningStatisticsInformationMessage(winStateInformationDTOs));
     }
 
-    private void printYield(List<WinStateInformationDTO> winStateInformationDTOs) {
+    private void printYield(List<WinStateInformationDTO> winStateInformationDTOs, Cash purchasingCash) {
         Prize prize = Prize.from(winStateInformationDTOs);
-        double yield = prize.getYield(purchaseCash);
+        double yield = prize.getYield(purchasingCash);
         outputView.print(messenger.getYieldMessage(yield));
     }
 

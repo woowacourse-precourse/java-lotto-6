@@ -76,6 +76,15 @@ public class LottoGameController {
                 .collect(Collectors.toList());
     }
 
+    private WiningLotto saveWiningData(Lotto winNumber) {
+        try {
+            return new WiningLotto(winNumber, receiveBonusNumber());
+        } catch (IllegalArgumentException exception) {
+            OutputView.print(exception.getMessage());
+            return saveWiningData(winNumber);
+        }
+    }
+
     private int receiveBonusNumber() {
         try {
             OutputView.printBonusRequest();
@@ -85,15 +94,6 @@ public class LottoGameController {
         } catch (IllegalArgumentException exception) {
             OutputView.print(exception.getMessage());
             return receiveBonusNumber();
-        }
-    }
-
-    private WiningLotto saveWiningData(Lotto winNumber) {
-        try {
-            return new WiningLotto(winNumber, receiveBonusNumber());
-        } catch (IllegalArgumentException exception) {
-            OutputView.print(exception.getMessage());
-            return saveWiningData(winNumber);
         }
     }
 

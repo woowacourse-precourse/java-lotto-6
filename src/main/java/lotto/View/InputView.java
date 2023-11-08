@@ -6,9 +6,7 @@ import lotto.Exception.InvalidInputException;
 import lotto.Lotto;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class InputView
@@ -56,6 +54,7 @@ public class InputView
         {
             List<Integer> winningLotteryNumber = Arrays.stream(Console.readLine().split(","))
                     .mapToInt(Integer::parseInt)
+                    .sorted()
                     .boxed()
                     .collect(Collectors.toList());
 

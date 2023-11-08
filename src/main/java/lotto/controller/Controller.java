@@ -10,22 +10,24 @@ import lotto.model.Money;
 import lotto.model.WinningNumberChecker;
 import lotto.utils.Rank;
 import lotto.utils.StringParser;
-import lotto.view.BonusNumberInputView;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.view.PurchaseCostInputView;
-import lotto.view.WinningNumberInputView;
 
 public class Controller {
-    private InputView inputView;
+    private final InputView inputView;
     private Lottos lottos = new Lottos();
     private Money money;
     private Map<Rank, Integer> result;
+
+    public Controller(InputView inputView) {
+        this.inputView = inputView;
+    }
 
     public void start() {
         processBuyingLotto();
         processCalculateResult();
         processProfit();
+        inputView.close();
     }
 
     public void processBuyingLotto() {
@@ -59,8 +61,7 @@ public class Controller {
         OutputView.printGetMoneyMessage();
         while (true) {
             try {
-                inputView = new PurchaseCostInputView();
-                return new Money(StringParser.parseStringToInt(inputView.getUserInput()));
+                return new Money(StringParser.parseStringToInt(inputView.getPurchaseMoneyInput()));
             } catch (IllegalArgumentException e) {
                 OutputView.printCommonString(e.getMessage());
             }
@@ -71,8 +72,7 @@ public class Controller {
         OutputView.printGetWinningNumberMessage();
         while (true) {
             try {
-                inputView = new WinningNumberInputView();
-                return StringParser.parseStringToIntList(inputView.getUserInput());
+                return StringParser.parseStringToIntList(inputView.getWinningNumbersInput());
             } catch (IllegalArgumentException e) {
                 OutputView.printCommonString(e.getMessage());
             }
@@ -83,8 +83,7 @@ public class Controller {
         OutputView.printGetBonusNumberMessage();
         while (true) {
             try {
-                inputView = new BonusNumberInputView();
-                int bonus = StringParser.parseStringToInt(inputView.getUserInput());
+                int bonus = StringParser.parseStringToInt(inputView.getBonusNumberInput());
                 return new BonusNumber(bonus, winningNumbers);
             } catch (IllegalArgumentException e) {
                 OutputView.printCommonString(e.getMessage());

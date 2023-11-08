@@ -9,8 +9,8 @@ public enum Statistic {
     MATCH_FIVE_WITH_BONUS(5, 3_000_000),
     MATCH_SIX(6, 2_000_000_000);
 
-    private int matchCount;
-    private int prize;
+    private final int matchCount;
+    private final int prize;
 
     Statistic(int matchCount, int prize) {
         this.matchCount = matchCount;
@@ -26,5 +26,9 @@ public enum Statistic {
 
     public int getPrize() {
         return prize;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
     }
 }

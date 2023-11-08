@@ -1,11 +1,16 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import util.ValidationBonusNumber;
 import util.ValidationNumbers;
 import util.ValidationPrice;
 
 public class InputView {
+
+    private static final Integer removeLastSpaceNumber = 0;
 
     public static Integer inputPurchasePrice() {
         String message = InputMessages.PURCHASE_MESSAGE.getMessage();
@@ -16,12 +21,15 @@ public class InputView {
         return price;
     }
 
-    public static String inputWinningNumbers() {
+    public static List<Integer> inputWinningNumbers() {
         String message = InputMessages.WINNING_NUMBER_MESSAGE.getMessage();
         System.out.println(message);
         String winningNumbers = input();
         ValidationNumbers.validateNumbers(winningNumbers);
-        return winningNumbers;
+        return Arrays.stream(winningNumbers.split(",", removeLastSpaceNumber))
+                .map(Integer::parseInt)
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public static Integer inputBonusNumber() {

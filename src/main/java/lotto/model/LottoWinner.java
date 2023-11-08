@@ -2,10 +2,9 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.util.Message;
+import lotto.util.ValidationCheck;
 import lotto.view.InputView;
 
 public class LottoWinner {
@@ -25,12 +24,7 @@ public class LottoWinner {
     private List<Integer> winningNumbersValidate(String givenNumbers) {
         List<String> givenNumberStrings = Arrays.asList(givenNumbers.split(","));
 
-        // 1. 숫자 개수 검증
-        if (givenNumberStrings.size() != 6) {
-            throw new IllegalArgumentException(Message.EXCPTION_NOT_A_SIX);
-        }
-
-        // 2. 숫자 형식 검증
+        // 1. 숫자 형식 검증
         List<Integer> checkedNumbers = new ArrayList<>();
         for (String number : givenNumberStrings) {
             try {
@@ -41,10 +35,17 @@ public class LottoWinner {
             }
         }
 
+        ValidationCheck validationCheck = new ValidationCheck();
+
+        // 2. 숫자 개수 검증
+        validationCheck.checkNumLength(checkedNumbers);
+
         // 3. 숫자 중복 여부 검증
-        Set<Integer> uniqueNumbers = new HashSet<>(checkedNumbers);
-        if (uniqueNumbers.size() != checkedNumbers.size()) {
-            throw new IllegalArgumentException(Message.EXCPTION_DUPLICATED);
+        validationCheck.checkDuplicatedNum(checkedNumbers);
+
+        // 4. 숫자 범위 유효성 검증
+        for (int num : checkedNumbers) {
+            validationCheck.checkNumRange(num);
         }
 
         return checkedNumbers;

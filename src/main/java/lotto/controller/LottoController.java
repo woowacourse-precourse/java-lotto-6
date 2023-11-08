@@ -12,7 +12,7 @@ import lotto.view.WinningResultView;
 
 public class LottoController {
     public void run() {
-        Cost cost = Cost.from(CostRequestView.request());
+        Cost cost = CostRequestView.request();
         Lottos lottos = issue(cost.getCount());
         DrawnNumbers drawnNumbers = draw();
         conclude(lottos, drawnNumbers, cost);

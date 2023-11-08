@@ -1,11 +1,9 @@
 package lotto.domain;
 
 import static lotto.global.constants.NumberType.COST_UNIT;
-import static lotto.view.ui.Output.printlnMessage;
 
 import lotto.global.exception.ErrorMessage;
 import lotto.global.exception.LottoException;
-import lotto.view.CostRequestView;
 
 /**
  * 로또 구매 비용을 저장하는 클래스
@@ -14,12 +12,7 @@ public class Cost {
     private int cost;
 
     private Cost(int cost) {
-        try {
-            Validator.validate(cost);
-        } catch (IllegalArgumentException e) {
-            printlnMessage(e.getMessage());
-            cost = CostRequestView.request();
-        }
+        Validator.validate(cost);
         this.cost = cost;
     }
 

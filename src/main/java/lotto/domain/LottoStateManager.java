@@ -1,24 +1,23 @@
 package lotto.domain;
 
-import lotto.io.OutputAdaptor;
 import lotto.util.InputHelper;
 
 import java.util.List;
 
-public class Procedure {
+public class LottoStateManager {
     private WinningNumbers winningNumbers;
     private int numOfLotto;
     private List<Lotto> generatedLotto;
 
-    private Procedure() {
+    private LottoStateManager() {
     }
 
-    private static class SingletonProcedure {
-        private static final Procedure PROCEDURE = new Procedure();
+    private static class Singleton {
+        private static final LottoStateManager FLOW_MANAGER = new LottoStateManager();
     }
 
-    public static Procedure getInstance() {
-        return SingletonProcedure.PROCEDURE;
+    public static LottoStateManager getInstance() {
+        return Singleton.FLOW_MANAGER;
     }
 
     public void inputNumOfLotto() {

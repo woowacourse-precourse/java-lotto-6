@@ -11,7 +11,7 @@ import lotto.view.OutputMessage;
 import java.util.List;
 public class Controller {
     private LottoService lottoService = new LottoService();
-    Exceptions exceptions = new Exceptions();
+    private Exceptions exceptions = new Exceptions();
     private WinningNumber winningNumber;
     private Customer customer;
     public void start() {

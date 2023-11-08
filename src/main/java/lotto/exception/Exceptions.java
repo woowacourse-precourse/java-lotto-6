@@ -9,7 +9,7 @@ public class Exceptions {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효하지않은 금액 단위입니다.");
+            throw new IllegalArgumentException("[ERROR] 금액은 숫자만 입력 가능합니다.");
         }
     }
 

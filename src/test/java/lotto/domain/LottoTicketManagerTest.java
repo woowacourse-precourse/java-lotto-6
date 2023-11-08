@@ -84,7 +84,7 @@ class LottoTicketManagerTest {
     @DisplayName("당첨금 총 합계가 정상 작동하는지 확인 합니다.")
     public void 당첨금_총합계_테스트() {
         lottoTicketManager.countTickets("5000");
-        lottoTicketManager.getUserLottoTickets(new ArrayList<>(initLottoList()));
+        lottoTicketManager.setUserLottoTickets(new ArrayList<>(initLottoList()));
         lottoTicketManager.getLuckyNumber(new Lotto(List.of(11, 12, 13, 14, 25, 36)));
         lottoTicketManager.getBonusNumber(2);
         lottoTicketManager.makeResult();
@@ -95,7 +95,7 @@ class LottoTicketManagerTest {
     @DisplayName("수익률 계산이 정상 작동하는지 확인 합니다.")
     public void 수익률_계산_테스트() {
         lottoTicketManager.countTickets("5000");
-        lottoTicketManager.getUserLottoTickets(new ArrayList<>(initLottoList()));
+        lottoTicketManager.setUserLottoTickets(new ArrayList<>(initLottoList()));
         lottoTicketManager.getLuckyNumber(new Lotto(List.of(11, 12, 13, 14, 25, 36)));
         lottoTicketManager.getBonusNumber(2);
         lottoTicketManager.makeResult();

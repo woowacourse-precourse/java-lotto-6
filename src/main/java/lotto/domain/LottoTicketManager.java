@@ -33,7 +33,7 @@ public class LottoTicketManager {
         return this.price;
     }
 
-    public void getUserLottoTickets(List<Lotto> lottoTickets){
+    public void setUserLottoTickets(List<Lotto> lottoTickets){
         this.lottoTickets=lottoTickets;
     }
 

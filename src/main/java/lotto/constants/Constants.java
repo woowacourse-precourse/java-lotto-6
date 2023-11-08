@@ -11,6 +11,16 @@ public class Constants {
 
     public static final String RESULT = "\n당첨 통계\n---";
 
+    public static final String THREE_MATCHED = "3개 일치 (5,000원) - ";
+
+    public static final String FOUR_MATCHED = "4개 일치 (50,000원) - ";
+
+    public static final String FIVE_MATCHED = "5개 일치 (1,500,000원) - ";
+
+    public static final String BONUS_MATCHED = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
+
+    public static final String WHOLE_MATCHED = "6개 일치 (2,000,000,000원) - ";
+
     public static final String NUMBER_RANGE_ERROR = "로또 번호는 6개입니다.";
 
     public static final String DUPLICATE_ERROR = "중복된 값은 입력할 수 없습니다.";

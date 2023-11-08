@@ -3,6 +3,7 @@ package lotto.utils;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Predicate;
 import lotto.Lotto;
 import java.util.List;
 import lotto.views.SystemMessage;
@@ -31,9 +32,12 @@ public class LottoUtils {
     public List<Integer> setLottoNumbers() {
         String[] input = systemMessage.getLottoNumbers().split(",");
         List<Integer> numbers = new ArrayList<>();
-        for (int index = 0; index < input.length; index++) {
-            int number = parser(input[index]);
+        for (String s : input) {
+            int number = parser(s);
             numbers.add(number);
+        }
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(Constants.NUMBER_RANGE_ERROR);
         }
         isNumbersDuplicate(numbers);
         return numbers;
@@ -47,8 +51,34 @@ public class LottoUtils {
 
     public void setLottoResult(List<Lotto> lottos, List<Integer> winningNumbers) {
         systemMessage.setPrintResult();
-        System.out.println(lottos);
-        System.out.println(winningNumbers);
+        int threeWin = 0;
+        int fourWin = 0;
+        int fiveWin = 0;
+        int bonusWin = 0;
+        int wholeWin = 0;
+        for (Lotto lotto : lottos) {
+            compareLottoResult(lotto, winningNumbers);
+            if (lotto.getSize() == 3) {
+                threeWin++;
+            }
+            if (lotto.getSize() == 4) {
+                fourWin++;
+            }
+            if (lotto.getSize() == 5) {
+                fiveWin++;
+            }
+            if (lotto.getSize() == 6 && lotto.getNumbers().contains(winningNumbers.get(6))) {
+                bonusWin++;
+            }
+            if (lotto.getSize() == 6) {
+                wholeWin++;
+            }
+        }
+        systemMessage.printLottoResult(threeWin, fourWin, fiveWin, bonusWin, wholeWin);
+    }
+
+    private void compareLottoResult(Lotto lotto, List<Integer> winningNumbers) {
+        lotto.getNumbers().retainAll(winningNumbers);
     }
 
     private Integer parser(String input) {

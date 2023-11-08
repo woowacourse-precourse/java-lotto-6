@@ -1,16 +1,16 @@
-package lotto;
+package lotto.domain;
+
+import lotto.lottomarket.Lotto;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Domain {
     static private final int DECIMAL_POINT = 1;
-    public Rank ranking(List<Integer> winningNums,Integer bonus,Lotto lotto){
+    public Rank ranking(List<Integer> winningNums, Integer bonus, Lotto lotto){
         int hit = (int)lotto.getNumbers().stream()
                 .filter(num-> winningNums.contains(num))
                 .count();
@@ -26,15 +26,21 @@ public class Domain {
     }
 
     public Map<Rank,Integer> allRanking(List<Integer> winningNums,Integer bonus,List<Lotto> lottoes){
-        Map<Rank,Integer> allRankingResult = new LinkedHashMap<>();
-        for(Rank rank:Rank.values()){
-            allRankingResult.put(rank,0);
-        }
+        Map<Rank,Integer> rankingTable = createRankingTable();
+
         for(Lotto lotto : lottoes){
             Rank rankingResult = ranking(winningNums,bonus,lotto);
-            allRankingResult.replace(rankingResult,allRankingResult.get(rankingResult)+1);
+            rankingTable.replace(rankingResult,rankingTable.get(rankingResult)+1);
         }
-        return allRankingResult;
+        return rankingTable;
+    }
+
+    private Map<Rank,Integer> createRankingTable(){
+        Map<Rank,Integer> rankingTable = new LinkedHashMap<>();
+        for(Rank rank:Rank.values()){
+            rankingTable.put(rank,0);
+        }
+        return rankingTable;
     }
 
     public long calculateProfit(Map<Rank,Integer> rankingResults){

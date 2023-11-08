@@ -43,7 +43,7 @@ class LottoHandlerTest {
         // when // then
         assertThatThrownBy(() -> lottoHandler.calculateLottoTicketCount(receivedPurchasePrice))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1000원 단위로만 입력해 주세요.");
+                .hasMessage("[ERROR] 1,000원 단위로만 입력해 주세요.");
     }
 
     @DisplayName("구매 금액에 문자를 입력하면 예외가 발생한다.")

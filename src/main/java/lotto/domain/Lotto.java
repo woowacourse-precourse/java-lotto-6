@@ -25,13 +25,17 @@ public class Lotto {
         }
 
         for (int number : numbers) {
-            if (isNotValidRange(number)) {
-                throw new IllegalArgumentException(Error.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
-            }
+            validateLottoRange(number);
         }
     }
 
-    private static boolean isNotValidRange(int number) {
+    protected void validateLottoRange(int number) {
+        if (isNotValidRange(number)) {
+            throw new IllegalArgumentException(Error.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
+        }
+    }
+
+    private boolean isNotValidRange(int number) {
         return number < 1 || number > 45;
     }
 

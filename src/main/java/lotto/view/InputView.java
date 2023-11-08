@@ -1,0 +1,52 @@
+package lotto.view;
+
+import camp.nextstep.edu.missionutils.Console;
+import lotto.utils.Parser;
+import lotto.utils.validator.InputValidator;
+import lotto.utils.validator.NumberValidator;
+import lotto.utils.validator.UnitValidator;
+
+import java.util.List;
+
+public class InputView {
+    public static final String USER_PURCHASE_PRICE_INPUT = "구입금액을 입력해 주세요.";
+    public static final String WINNING_NUMBERS_INPUT = "당첨 번호를 입력해 주세요.";
+    public static final String WINNING_BONUS_NUMBER_INPUT = "보너스 번호를 입력해 주세요.";
+
+    public static int getPurchasePriceInput() {
+        print(USER_PURCHASE_PRICE_INPUT);
+        String money = Console.readLine();
+        InputValidator.validMoneyType(money);
+
+        int responseMoney = Integer.parseInt(money);
+
+        UnitValidator.validMoneyUnitCheck(responseMoney);
+        return responseMoney;
+    }
+    public static List<Integer> getWinningNumberInput() {
+        print(WINNING_NUMBERS_INPUT);
+
+        String winningNumbers = Console.readLine();
+        List<Integer> integers = Parser.parse(winningNumbers);
+
+        UnitValidator.validNumberUnitCheck(integers);
+        return integers;
+    }
+    public static int getBonusNumberInput(final List<Integer> winningNumberInput) {
+        print(WINNING_BONUS_NUMBER_INPUT);
+        String bonus = Console.readLine();
+        InputValidator.validMoneyType(bonus);
+
+        int numberBonus = Integer.parseInt(bonus);
+
+        UnitValidator.validBonusUnitCheck(numberBonus);
+        NumberValidator.duplicateBonusNumberCheck(winningNumberInput,numberBonus);
+        return numberBonus;
+
+    }
+    private static void print(String message) {
+        System.out.println(message);
+    }
+
+
+}

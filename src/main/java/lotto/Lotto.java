@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.utils.validator.LottoValidator;
+
 import java.util.List;
 
 public class Lotto {
@@ -11,10 +13,15 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        LottoValidator.valid(numbers);
     }
-
-    // TODO: 추가 기능 구현
+    public boolean numberCheck(int number) {
+        return numbers.contains(number);
+    }
+    public String getStringNumbers() {
+        return numbers.toString();
+    }
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

@@ -104,7 +104,7 @@ public class LottoServiceTest {
 
     static Stream<Arguments> generateTotalIncomeAndSpentFee() {
         return Stream.of(
-                Arguments.of(8000, FIRST_PLACE_REWARD, "62.5%")
+                Arguments.of(8000, 5000, "62.5%")
         );
     }
 }

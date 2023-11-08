@@ -37,6 +37,7 @@ public class LottoController {
      * */
 
     public void run() {
+        while(true){
             try{
                 savePurchaseAmount();
                 generateAndSaveRandomNumber();
@@ -44,10 +45,11 @@ public class LottoController {
                 saveBonusNumber();
                 performNumberComparisonLogic();
                 printWinningStatistics();
+                break;
             } catch (Exception e) {
                 System.out.println(ERROR_INTRO + e.getMessage());
+            }
         }
-
     }
 
     private void savePurchaseAmount() {

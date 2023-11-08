@@ -24,6 +24,7 @@ public class OutputView {
     private static final String TOTAL_INCOME_RATE_SUFFIX = "입니다.";
 
     public static void printTicketAmountAndEachRandomNumbers(int ticketAmount, List<Lotto> randomLottoNumbers) {
+        System.out.println();
         System.out.println(ticketAmount + LOTTO_TICKET_AMOUNT);
         printEachRandomNumbers(randomLottoNumbers);
     }
@@ -36,6 +37,7 @@ public class OutputView {
     }
 
     public static void printWinningStatistics(Map<LottoWinningCase, Integer> winStatisticMap, String incomeRate) {
+        System.out.println();
         System.out.println(WINNING_STATISTICS);
         System.out.println(DIVIDED_LINE);
         System.out.println(THREE_MATCHES + HYPHEN + winStatisticMap.get(FIFTH_PLACE) + COUNT_UNIT);

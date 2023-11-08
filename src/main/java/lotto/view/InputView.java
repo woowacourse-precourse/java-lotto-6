@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.converter.InputConverter;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.LottoMoneyValidator;
@@ -20,7 +21,7 @@ public class InputView {
         return InputConverter.convertLottoMoney(lottoMoneyInput);
     }
 
-    public static void getWinningLotto() {
+    public static List<Integer> getWinningLotto() {
         System.out.println("당첨 번호를 입력해 주세요.");
 
         String lottoNumberInput = Console.readLine();
@@ -30,6 +31,7 @@ public class InputView {
             return getWinningLotto();
         }
 
+        return InputConverter.convertWinningLotto(lottoNumberInput);
     }
 
     public static void getBonusNumber() {

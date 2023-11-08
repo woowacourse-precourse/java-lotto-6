@@ -10,6 +10,10 @@ public class BonusNumberValidator {
 
     }
 
+    private static void isUnique(String bonusNumberInput) {
+
+    }
+
     private static void isInRange(String bonusNumberInput) {
         if (Integer.parseInt(bonusNumberInput) < 1 || Integer.parseInt(bonusNumberInput) > 45) {
             System.out.println(ErrorMessages.NOT_IN_RANGE.getMessage());

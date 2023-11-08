@@ -28,7 +28,6 @@ public class Validator {
             throw new IllegalArgumentException("로또 번호는 45이하 이어야 합니다");
         if (lottoNumberList.stream().anyMatch(a -> a < 1))
             throw new IllegalArgumentException("로또 번호는 1이상 이어야 합니다");
-
     }
 
     public static Boolean hasDuplicatedNumber(List<Integer> lottoNumberList) {

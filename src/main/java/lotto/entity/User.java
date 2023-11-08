@@ -21,4 +21,8 @@ public class User {
     public Integer getBonusNumber() {
         return bonusNumber;
     }
+
+    public Integer getMoney() {
+        return money;
+    }
 }

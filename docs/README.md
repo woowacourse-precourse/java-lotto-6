@@ -20,24 +20,24 @@
   - [v] 입력한 보너스 번호 중 숫자가 아닌 것이 있으면 IllegalArgumentException 예외를 발생시킨다.
   - [v] 입력한 보너스 번호가 공백이면 IllegalArgumentException 예외를 발생시킨다.
 </br></br>
-- [] 사용자가 구매한 로또 번호와 당첨 번호를 비교하여, 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
-  - [] 당첨 내역 개수를 출력한다.
-  - [] 수익률은 소수점 둘째 자리에서 반올림한다.
+- [v] 사용자가 구매한 로또 번호와 당첨 번호를 비교하여, 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
+  - [v] 당첨 내역 개수를 출력한다.
+  - [v] 수익률은 소수점 둘째 자리에서 반올림한다.
 ## 예외
-- [] 예외 메시지는 "[ERROR]"로 시작한다.
-- [] 사용자 입력값에 대한 예외가 발생하면 예외가 발생한 부분부터 다시 입력을 받는다.
+- [v] 예외 메시지는 "[ERROR]"로 시작한다.
+- [v] 사용자 입력값에 대한 예외가 발생하면 예외가 발생한 부분부터 다시 입력을 받는다.
 - [] 객체 상태가 메서드 호출을 처리하기에 적절치 않을 때 IllegalStateException을 발생시킨다.
 
 # 프로그래밍 요구 사항
-- [] 인덴트, 들여쓰기 depth는 2까지만 허용한다.
-- [] 3항 연산자를 쓰지 않는다.
+- [v] 인덴트, 들여쓰기 depth는 2까지만 허용한다.
+- [v] 3항 연산자를 쓰지 않는다.
 - [] 메서드는 한 가지 일만 하도록, 최대한 작게 만들어라
 - [] JUnit5과 AssertJ를 이용해서 구현한 기능이 정상 작동하는지 테스트 코드를 작성한다.
 - [] 메서드의 길이가 15라인을 넘지 않아야 한다.
-- [] else 예약어를 쓰지 않는다.
-  - [] if 조건절에서 값을 return gksek.
-- [] Enum을 사용한다.
+- [v] else 예약어를 쓰지 않는다.
+  - [v] if 조건절에서 값을 return 한다.
+- [v] Enum을 사용한다.
 - [] 도메인 로직에 단위테스트를 구현한다.
-- [] 핵심 로직 부분과 UI를 담당하는 로직을 분리한다.
-- [] Random값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용한다.
-- [] 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
+- [v] 핵심 로직 부분과 UI를 담당하는 로직을 분리한다.
+- [v] Random값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용한다.
+- [v] 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.

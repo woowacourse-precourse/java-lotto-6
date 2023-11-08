@@ -10,6 +10,7 @@ import static lotto.util.TypeConvertor.stringToInteger;
 import static lotto.util.TypeConvertor.stringToIntegerList;
 import static lotto.util.Validator.checkDuplcate;
 import static lotto.util.Validator.validateLottoNumbers;
+import static lotto.view.Prompt.showResult;
 
 public class LottoController {
     private final LottoService lottoService = new LottoService();
@@ -26,7 +27,7 @@ public class LottoController {
         User user = new User(money, lottoNumbers, bonusNumber);
 
         LottoResult lottoResult = lottoService.matchResult(user, boughtLotto);
-
+        showResult(lottoResult, user);
 
     }
 

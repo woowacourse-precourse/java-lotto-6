@@ -1,6 +1,30 @@
 package lotto.entity;
 
 public class LottoResult {
+    public Integer getNumberOf_3Correction() {
+        return numberOf_3Correction;
+    }
+
+    public Integer getNumberOf_4Correction() {
+        return numberOf_4Correction;
+    }
+
+    public Integer getNumberOf_5Correction() {
+        return numberOf_5Correction;
+    }
+
+    public Integer getNumberOf_5CorrectionAndBonus() {
+        return numberOf_5CorrectionAndBonus;
+    }
+
+    public Integer getNumberOf_6Correction() {
+        return numberOf_6Correction;
+    }
+
+    public Double getProfitRate() {
+        return profitRate;
+    }
+
     private Integer numberOf_3Correction;
     private Integer numberOf_4Correction;
     private Integer numberOf_5Correction;
@@ -48,9 +72,9 @@ public class LottoResult {
                 + numberOf_6Correction * Price.CORRECTION_6.getPrice();
 
         double profit = (double) totalPrice / inputMoney * 100;
-        double profitRate = (double) Math.round(profit / 100);
+        double profitRate = (double) Math.round(profit * 100) / 100;
 
         this.profitRate = profitRate;
-        return this.profitRate;
+        return profitRate;
     }
 }

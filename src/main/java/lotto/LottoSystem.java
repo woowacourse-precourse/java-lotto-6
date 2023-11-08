@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import javax.print.DocFlavor;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,13 +10,15 @@ import java.util.HashSet;
 import java.util.List;
 
 public class LottoSystem {
-    private static final int PRICE_0 = 1000;
-    private static final int PRICE_1 = 5000;
-    private static final int PRICE_2 = 50000;
-    private static final int PRICE_3 = 1500000;
-    private static final int PRICE_4 = 3000000;
-    private static final int PRICE_5 = 2000000000;
     private static final int PERCENT = 100;
+    private static final int EQUAL_3 = 3;
+    private static final int EQUAL_4 = 4;
+    private static final int EQUAL_5 = 5;
+    private static final int EQUAL_6 = 6;
+    private static final int NOT_EQUAL = -1;
+    private static final int RANK = 5;
+
+
     private final LottoUI lottoUI;
     public LottoSystem(){
         this.lottoUI = new LottoUI();
@@ -40,10 +43,10 @@ public class LottoSystem {
         try{
             int parseMoney = Integer.parseInt(money);
 
-            if (parseMoney % PRICE_0 != 0 || parseMoney == 0){
+            if (parseMoney % LottoValue.PRICE.BUY_PRICE.getPrice() != 0 || parseMoney == 0){
                 throw new IllegalArgumentException(Message.Error.INVALID_MONEY_INPUT.getMessage());
             }
-            return parseMoney/PRICE_0;
+            return parseMoney/LottoValue.PRICE.BUY_PRICE.getPrice();
         }catch (NumberFormatException e) {
             throw new IllegalArgumentException(Message.Error.INVALID_INPUT.getMessage());
         }
@@ -107,11 +110,11 @@ public class LottoSystem {
     }
 
     public int[] lottoWinCheck(ArrayList<Lotto> lottoNumbers, List<Integer> winningNumbers, int bonusNumber){
-        int[] winCheckNumber = new int[5];
+        int[] winCheckNumber = new int[RANK];
         for(Lotto number : lottoNumbers){
             int equalNumbers = number.lottoNumbersContains(winningNumbers);
             int rank = lottoEqualNumber(equalNumbers, number, bonusNumber);
-            if (rank != -1) {
+            if (rank != NOT_EQUAL) {
                 winCheckNumber[rank]++;
             }
         }
@@ -119,31 +122,31 @@ public class LottoSystem {
     }
 
     public int lottoEqualNumber(int equalNumbers, Lotto lottoNumber, int bonusNumber){
-        if (equalNumbers == 3){
-            return 0;
+        if (equalNumbers == EQUAL_3){
+            return LottoValue.Reward.REWARD_5.getPrice();
         }
-        if (equalNumbers == 4){
-            return 1;
+        if (equalNumbers == EQUAL_4){
+            return LottoValue.Reward.REWARD_4.getPrice();
         }
-        if (equalNumbers == 5){
+        if (equalNumbers == EQUAL_5){
             return lottoEqualBonusNumber(equalNumbers, lottoNumber, bonusNumber);
         }
-        if (equalNumbers == 6){
-            return 4;
+        if (equalNumbers == EQUAL_6){
+            return LottoValue.Reward.REWARD_1.getPrice();
         }
-        return -1;
+        return NOT_EQUAL;
     }
 
     public int lottoEqualBonusNumber(int equalNumbers, Lotto lottoNumber, int bonusNumber){
         equalNumbers = lottoNumber.bonusNumberContains(equalNumbers, bonusNumber);
-        if (equalNumbers == 6){
-            return 3;
+        if (equalNumbers == EQUAL_6){
+            return LottoValue.Reward.REWARD_2.getPrice();
         }
-        return 2;
+        return LottoValue.Reward.REWARD_3.getPrice();
     }
 
     public void winnerLottoNumbersPrint(int lottoTicket, int[] winLotto){
-        double rateOfReturn = winningTotalMoney(winLotto)/(lottoTicket*PRICE_0)*PERCENT;
+        double rateOfReturn = winningTotalMoney(winLotto)/(lottoTicket*LottoValue.PRICE.BUY_PRICE.getPrice())*PERCENT;
         lottoUI.winnerLottoNumberPrint(winLotto, rateOfReturn);
     }
 
@@ -157,17 +160,17 @@ public class LottoSystem {
 
     public double moneySum(int rank, int lottoTickets){
         if (rank == 0){
-            return lottoTickets * PRICE_1;
+            return lottoTickets * LottoValue.PRICE.PRICE_5.getPrice();
         }
         if (rank == 1){
-            return lottoTickets * PRICE_2;
+            return lottoTickets * LottoValue.PRICE.PRICE_4.getPrice();
         }
         if (rank == 2){
-            return lottoTickets * PRICE_3;
+            return lottoTickets * LottoValue.PRICE.PRICE_3.getPrice();
         }
         if (rank == 3){
-            return lottoTickets * PRICE_4;
+            return lottoTickets * LottoValue.PRICE.PRICE_2.getPrice();
         }
-        return lottoTickets * PRICE_5;
+        return lottoTickets * LottoValue.PRICE.PRICE_1.getPrice();
     }
 }

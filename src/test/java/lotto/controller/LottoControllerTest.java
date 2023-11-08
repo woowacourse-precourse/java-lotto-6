@@ -58,10 +58,19 @@ public class LottoControllerTest extends NsTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
-//    @DisplayName("당첨번호 숫자가 1~45사이가 아닐 경우 예외가 발생한다")
-//
-//    @DisplayName("보너스번호 숫자가 1~45사이가 아닐 경우 예외가 발생한다")
+    @DisplayName("당첨번호 숫자가 1~45사이가 아닐 경우 예외가 발생한다")
+    @Test
+    void inputWinningNumberRange(){
+        assertThatThrownBy(() -> lottoController.validateWinningNumbers("1,2,3,4,5,86"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
+    @DisplayName("보너스번호 숫자가 1~45사이가 아닐 경우 예외가 발생한다")
+    @Test
+    void inputBonusNumberRange(){
+        assertThatThrownBy(() -> lottoController.validateBonusNumber("100"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @Override
     protected void runMain() {

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.List;
+
 public class WinningNumber {
     private Lotto lotto;
 
@@ -7,7 +9,7 @@ public class WinningNumber {
         this.lotto = lotto;
     }
 
-    public Lotto getWinningLotto() {
-        return lotto;
+    public List<Integer> getWinningLotto() {
+        return lotto.getLotto();
     }
 }

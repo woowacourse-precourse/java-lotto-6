@@ -93,7 +93,9 @@
 - [ ] 추가 요구 사항을 고려한다.
   - [ ] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
   - [ ] else 예약어를 쓰지 않는다. else 대체 방식으로 구현하는 switch/case도 허용하지 않는다.
-  - [ ] Java Enum을 적용한다.
+  - [X] Java Enum을 적용한다.
   - [ ] 도메인 로직에 단위 테스트를 구현한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
     - [ ] 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
+  - [X] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+    - [X] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다. 
   - [ ] 컨벤션을 검토한다.

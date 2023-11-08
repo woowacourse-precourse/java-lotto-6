@@ -51,4 +51,12 @@ public class PriceExceptionTest {
                 .hasMessage("[ERROR] : 빈값은 입력할 수 없습니다.");
     }
 
+    @Test
+    @DisplayName("1000의 배수가 아닌 값을 입력했을 경우")
+    public void testCheckPriceWithNotMultipleOfThousand() {
+        assertThatThrownBy(() -> PriceException.validPrice(300))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
+
 }

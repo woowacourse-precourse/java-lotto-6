@@ -13,23 +13,24 @@ public class Calculator {
                                 totalPrize += result.getPrizeAmount();
                         }
                 }
-
-
                 double profitRate = profitRate(totalPrize, coin);
                 System.out.println("당첨 통계\n---");
+                displayResult(profitRate, countOfResults);
+        }
 
+        public static void displayResult(double profitRate, int[]countOfResults){
                 for (Application.LottoResult result : Application.LottoResult.values()) {
                         if (result != Application.LottoResult.NO_PRIZE) {
                                 int countResult = countOfResults[result.ordinal()];
                                 System.out.println(result.getDescription() + " - " + countResult + "개");
                         }
                 }
-
                 System.out.println("총 수익률은 " + profitRate + "%입니다.");
         }
 
+
         public static double profitRate(int totalPrize, int coin) {
-                double toDoubleTotalProfit =((double) totalPrize) / (coin * 1000) * 100;
+                double toDoubleTotalProfit = ((double) totalPrize) / (coin * 1000) * 100;
 
                 return toDoubleTotalProfit;
         }
@@ -43,6 +44,7 @@ public class Calculator {
                         }
                 }
         }
+
         public static int countMatchingNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
                 int count = 0;
                 for (int number : lottoNumbers) {
@@ -52,6 +54,7 @@ public class Calculator {
                 }
                 return count;
         }
+
         public static Application.LottoResult checkLottoResults(
                 List<Integer> lottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
                 int matchedNumbers = countMatchingNumbers(lottoNumbers, winningNumbers);
@@ -76,7 +79,7 @@ public class Calculator {
         }
 
         public static void printResult(
-                List<Lotto> lottoList,List<Integer> winningNumbers,int bonusNumber, int coin) {
+                List<Lotto> lottoList, List<Integer> winningNumbers, int bonusNumber, int coin) {
                 List<Application.LottoResult> results = new ArrayList<>();
                 for (Lotto lotto : lottoList) {
                         Application.LottoResult result = checkLottoResults(lotto.getNumbers(), winningNumbers, bonusNumber);

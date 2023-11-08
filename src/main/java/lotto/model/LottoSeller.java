@@ -5,7 +5,6 @@ import lotto.exception.ErrorCode;
 import lotto.model.lottonumbersgenerator.LottoNumbersGenerator;
 
 public class LottoSeller {
-
     public static Lottos sellLotto(int purchaseAmount, LottoNumbersGenerator lottoNumbersGenerator) {
         int count = calculateCountByPurchaseAmount(purchaseAmount);
         return issueLottos(count, lottoNumbersGenerator);

@@ -47,7 +47,7 @@ public class LottoWinningAnalyzerTest {
 
         double yield = lottoWinningAnalyzer.calculateYield(winningResults);
 
-        assertThat(yield).isEqualTo((double) 4_000_000_000L / 2000 * 100);
+        assertThat(yield).isEqualTo(4_000_000_000D / 2000 * 100);
     }
 
     @Test
@@ -64,6 +64,6 @@ public class LottoWinningAnalyzerTest {
                         tuple(WinningRule.SECOND_PRIZE, 0),
                         tuple(WinningRule.FIRST_PRIZE, 2)
                 );
-        assertThat(analyzerWinningStatistics.yield()).isEqualTo((double) 4_000_000_000L / 2000 * 100);
+        assertThat(analyzerWinningStatistics.yield()).isEqualTo(4_000_000_000D / 2000 * 100);
     }
 }

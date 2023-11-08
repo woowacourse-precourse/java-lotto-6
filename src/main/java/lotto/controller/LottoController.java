@@ -16,11 +16,18 @@ public class LottoController {
     private Result result;
 
     public void run() {
+        set();
+        calculate();
+    }
+
+    private void set() {
         setTicketAmountAndCount();
         setLottoTickets();
         setWinningNumber();
         setBonusNumber();
+    }
 
+    private void calculate() {
         calculateResult();
         calculateRateOfReturn();
     }

@@ -1,6 +1,8 @@
 package lotto.exception.defaultexception;
 
-public class LottoDefaultException extends IllegalStateException{
+import java.util.InputMismatchException;
+
+public class LottoDefaultException extends InputMismatchException {
     public LottoDefaultException(String s) {
         super(s);
     }

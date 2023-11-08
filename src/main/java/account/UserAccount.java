@@ -17,4 +17,8 @@ public class UserAccount {
     public int getTrialCount() {
         return money / 1000;
     }
+
+    public double getEarningRate(long totalWinning) {
+        return (double) totalWinning / money;
+    }
 }

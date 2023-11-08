@@ -23,4 +23,11 @@ public class WinningCalculator { // 상금 계산기. 이상한 영어인가?
     public static Map<Prize, Integer> getPrizeCountMap(){
         return new HashMap<>(prizeCountMap);
     }
+
+    public static long getTotalWinning() {
+        return prizeCountMap.entrySet().stream()
+                .map(entry -> entry.getKey().getWinning() * entry.getValue())
+                .mapToLong(Long::valueOf)
+                .sum();
+    }
 }

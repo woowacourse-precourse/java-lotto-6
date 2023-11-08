@@ -30,4 +30,13 @@ class WinningCalculatorTest {
         assertThat(prizeCountMap.get(Prize.FIRST)).isOne();
         assertThat(prizeCountMap.get(Prize.NONE)).isOne();
     }
+
+    @Test
+    @DisplayName("총 상금의 계산을 테스트")
+    void getTotalWinning() {
+        WinningCalculator.addCount(Prize.FIRST);
+        WinningCalculator.addCount(Prize.FIRST);
+
+        assertThat(WinningCalculator.getTotalWinning()).isEqualTo(Prize.FIRST.getWinning() * 2);
+    }
 }

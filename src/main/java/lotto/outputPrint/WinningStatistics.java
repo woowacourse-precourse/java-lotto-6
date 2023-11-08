@@ -5,13 +5,9 @@ import lotto.service.PurchasedLottoTickets;
 import lotto.service.Reward;
 
 public class WinningStatistics {
-    private Map<Reward, Integer> counts;
-
-    public WinningStatistics(PurchasedLottoTickets purchasedLottoTickets) {
-        this.counts = purchasedLottoTickets.eachRankCount();
-    }
-
-    public void printStatistics() {
+    
+    public void printStatistics(PurchasedLottoTickets purchasedLottoTickets) {
+        Map<Reward, Integer> counts = purchasedLottoTickets.eachRankCount();
         System.out.println("3개 일치 (5,000원) - " + counts.get(Reward.FIFTH_PLACE) + "개");
         System.out.println("4개 일치 (50,000원) - " + counts.get(Reward.FOURTH_PLACE) + "개");
         System.out.println("5개 일치 (1,500,000원) - " + counts.get(Reward.THIRD_PLACE) + "개");

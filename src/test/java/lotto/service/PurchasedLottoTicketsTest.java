@@ -28,7 +28,8 @@ class PurchasedLottoTicketsTest {
         System.setIn(new ByteArrayInputStream(numbers.getBytes()));
         winningNumbers.read();
 
-        PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets(purchaseAmount);
+        PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets();
+        purchasedLottoTickets.register(purchaseAmount);
         int count = 0;
         for (Reward reward : Reward.values()) {
             count += purchasedLottoTickets.eachRankCount().get(reward);

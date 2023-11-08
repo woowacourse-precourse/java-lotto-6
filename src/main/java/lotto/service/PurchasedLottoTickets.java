@@ -8,16 +8,10 @@ import lotto.Lotto;
 import lotto.readUserInput.PurchaseAmount;
 
 public class PurchasedLottoTickets {
-    private List<Lotto> tickets;
-    private PurchaseAmount purchaseAmount;
+    private List<Lotto> tickets = new ArrayList<>();
+    
 
-    public PurchasedLottoTickets(PurchaseAmount purchaseAmount) {
-        this.tickets = new ArrayList<>();
-        this.purchaseAmount = purchaseAmount;
-        register();
-    }
-
-    public void register() {
+    public void register(PurchaseAmount purchaseAmount) {
         while (purchaseAmount.addTicketByPurchaseAmount(tickets.size())) {
             RandomNumbers randomNumbers = new RandomNumbers();
             Lotto lotto = new Lotto(randomNumbers.draw());

@@ -5,18 +5,16 @@ import lotto.service.PurchasedLottoTickets;
 
 public class PurchasedLottoNumbersPrint {
     private PurchasedLottoTickets purchasedLottoTickets;
-    private PurchaseAmount purchaseAmount;
 
-    public PurchasedLottoNumbersPrint(PurchasedLottoTickets purchasedLottoTickets, PurchaseAmount purchaseAmount) {
+    public PurchasedLottoNumbersPrint(PurchasedLottoTickets purchasedLottoTickets) {
         this.purchasedLottoTickets = purchasedLottoTickets;
-        this.purchaseAmount = purchaseAmount;
     }
 
     public void printTickets() {
         purchasedLottoTickets.textForTicketsPrint();
     }
 
-    public void purchaseCompletePrint() {
+    public void purchaseCompletePrint(PurchaseAmount purchaseAmount) {
         System.out.println(purchaseAmount.purchasedAmountPrint());
     }
 }

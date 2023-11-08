@@ -10,38 +10,58 @@ import lotto.service.PurchasedLottoTickets;
 import lotto.service.RateOfReturn;
 
 public class LottoGame {
+    GameGuidePrint gameGuidePrint = new GameGuidePrint();
+    private PurchaseAmount purchaseAmount = new PurchaseAmount();
+    private WinningNumbers winningNumbers = new WinningNumbers();
+    private BonusNumbers bonusNumbers = new BonusNumbers();
+    private PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets();
+
+    private PurchasedLottoNumbersPrint purchasedLottoNumbersPrint = new PurchasedLottoNumbersPrint(
+            purchasedLottoTickets);
+
+
+    private WinningStatistics winningStatistics = new WinningStatistics();
+    private RateOfReturn rateOfReturn = new RateOfReturn(purchasedLottoTickets);
 
     public void run() {
-        GameGuidePrint gameGuidePrint = new GameGuidePrint();
+        purchaseLotto();
+        whatWinningNumbers();
+        whatBonusNumber();
+        resultPrint();
+    }
+
+    public void purchaseLotto() {
         gameGuidePrint.scanPurchasePrint();
-
-        PurchaseAmount purchaseAmount = new PurchaseAmount();
         purchaseAmount.read();
+        purchasedLottoTickets.register(purchaseAmount);
+        purchasedLottoPrint();
+    }
 
-        PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets(purchaseAmount);
-
-        PurchasedLottoNumbersPrint purchasedLottoNumbersPrint = new PurchasedLottoNumbersPrint(purchasedLottoTickets,
-                purchaseAmount);
-        purchasedLottoNumbersPrint.purchaseCompletePrint();
-
-        purchasedLottoNumbersPrint.printTickets();
-
+    public void whatWinningNumbers() {
         gameGuidePrint.scanWinningNumberPrint();
-
-        WinningNumbers winningNumbers = new WinningNumbers();
         winningNumbers.read();
+    }
 
+    public void whatBonusNumber() {
         gameGuidePrint.scanBonusNumberPrint();
-
-        BonusNumbers bonusNumbers = new BonusNumbers();
         bonusNumbers.read();
+    }
 
+
+    public void purchasedLottoPrint() {
+        purchasedLottoNumbersPrint.purchaseCompletePrint(purchaseAmount);
+        purchasedLottoNumbersPrint.printTickets();
+    }
+
+    public void resultPrint() {
         gameGuidePrint.resultGame();
+        winningStatistics.printStatistics(purchasedLottoTickets);
+        resultReturn();
+    }
 
-        WinningStatistics winningStatistics = new WinningStatistics(purchasedLottoTickets);
-        winningStatistics.printStatistics();
-
-        RateOfReturn rateOfReturn = new RateOfReturn(purchasedLottoTickets);
+    public void resultReturn() {
+        rateOfReturn.initTicketResult();
         rateOfReturn.printRateOfReturn();
     }
+
 }

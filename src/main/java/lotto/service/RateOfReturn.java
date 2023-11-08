@@ -12,7 +12,7 @@ public class RateOfReturn {
 
     public RateOfReturn(PurchasedLottoTickets purchasedLottoTickets) {
         this.purchasedLottoTickets = purchasedLottoTickets;
-        initTicketResult();
+
     }
 
     public void initTicketResult() {

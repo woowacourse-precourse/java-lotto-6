@@ -28,7 +28,8 @@ class RateOfReturnTest {
         System.setIn(new ByteArrayInputStream(numbers.getBytes()));
         winningNumbers.read();
 
-        PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets(purchaseAmount);
+        PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets();
+        purchasedLottoTickets.register(purchaseAmount);
 
         double benefit = RateOfReturn.BENEFIT_ZERO_INITIAL_VALUE;
         benefit += purchasedLottoTickets.eachRankCount().get(Reward.FIRST_PLACE) * Reward.FIRST_PLACE.getReward();
@@ -41,6 +42,7 @@ class RateOfReturnTest {
                 * RateOfReturn.HUNDRED_TO_GET_PERCENTAGE;
 
         RateOfReturn rateOfReturn = new RateOfReturn(purchasedLottoTickets);
+        rateOfReturn.initTicketResult();
         Assertions.assertThat(rateOfReturn.calculate()).isEqualTo(String.format("%.1f", result));
     }
 }

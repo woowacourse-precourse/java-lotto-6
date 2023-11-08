@@ -19,6 +19,10 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public List<Integer> allCompare(List<Lotto> allLottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
         List<Integer> result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0));
         for (Lotto lottoNumbers : allLottoNumbers) {
@@ -32,7 +36,6 @@ public class Lotto {
         int count = 0;
         for (Integer i : numbers) {
             if (winningNumbers.contains(i)) {
-                winningNumbers.remove(i);
                 count++;
             }
         }

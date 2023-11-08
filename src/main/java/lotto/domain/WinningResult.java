@@ -9,9 +9,8 @@ public class WinningResult {
     private final LottoNumbers lottoNumbers;
     private final NumberOfRanks numberOfRanks;
 
-    public WinningResult(LottoNumbers lottoNumbers, WinningNumber winningNumber) {
+    public WinningResult(LottoNumbers lottoNumbers) {
         this.lottoNumbers = lottoNumbers;
-        this.winningNumber = winningNumber;
         this.numberOfRanks = NumberOfRanks.count();
     }
 

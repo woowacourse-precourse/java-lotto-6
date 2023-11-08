@@ -22,7 +22,7 @@ public class WinningResult {
     public Map<String, Long> getWinningResult() {
         return winningResult;
     }
-환
+
     public void calculate(List<Integer> matchResult) {
         winningResult = matchResult.stream()
                 .filter(number -> number >= Rule.MINIMUM_NUMBER_TO_WIN.value())

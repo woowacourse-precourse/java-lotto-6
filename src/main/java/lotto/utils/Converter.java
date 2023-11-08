@@ -1,13 +1,13 @@
 package lotto.utils;
 
-import lotto.ErrorMessages;
+import lotto.model.ErrorMessages;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class Converter {
 
-    public static Integer stringToInt(String purchaseAmount) throws IllegalArgumentException {
+    public static Integer stringToInt(String purchaseAmount) {
         try {
             return Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {

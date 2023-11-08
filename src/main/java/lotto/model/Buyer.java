@@ -1,7 +1,5 @@
 package lotto.model;
 
-import lotto.ErrorMessages;
-
 import java.util.List;
 
 public class Buyer {
@@ -13,6 +11,10 @@ public class Buyer {
     public Buyer(int budget) {
         validateBudget(budget);
         this.budget = budget;
+    }
+
+    public Integer getBudget() {
+        return budget;
     }
 
     public List<Lotto> getLottos() {
@@ -27,13 +29,13 @@ public class Buyer {
         this.lottos = lottos;
     }
 
-    private void validateBudget(int budget) throws IllegalArgumentException {
-        if (budget % Rule.LOTTO_PRICE.value() != ZERO) {
-            throw new IllegalArgumentException(ErrorMessages.NOT_ALLOW_REMAINDER.value());
-        }
-
+    private void validateBudget(int budget) {
         if (budget < Rule.LOTTO_PRICE.value()) {
             throw new IllegalArgumentException(ErrorMessages.TOO_LOW_BUDGET.value());
+        }
+
+        if (budget % Rule.LOTTO_PRICE.value() != ZERO) {
+            throw new IllegalArgumentException(ErrorMessages.NOT_ALLOW_REMAINDER.value());
         }
     }
 

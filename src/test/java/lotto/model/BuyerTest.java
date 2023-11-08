@@ -1,17 +1,20 @@
 package lotto.model;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class AssetManagerTest {
+public class BuyerTest {
 
+    @DisplayName("구입금액이 1000원 단위가 아닌 경우 예외 발생")
     @Test
-    public void validateBudget_구입금액이_1000원_단위가_아닌_경우_예외_발생() {
+    public void createBuyerWithNotUnitOf1000Budget() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Buyer(1500));
     }
 
+    @DisplayName("구입금액이 1000원 이하인 경우 예외 발생")
     @Test
-    public void validateBudget_구입금액이_1000원_이하인_경우_예외_발생() {
+    public void createBuyerWithTooSmallBudget() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Buyer(0));
     }
 }

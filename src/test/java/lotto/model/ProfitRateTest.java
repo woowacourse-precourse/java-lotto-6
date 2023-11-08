@@ -11,8 +11,9 @@ public class ProfitRateTest {
 
         double reward = 5000;
         double purchaseAmount = 10000;
+        long profitRateCompared = Math.round(reward / purchaseAmount * 100);
 
         profitRate.calculate(reward, purchaseAmount);
-        Assertions.assertThat(profitRate.getProfitRate()).isEqualTo(reward / purchaseAmount);
+        Assertions.assertThat(profitRate.getProfitRate()).isEqualTo(profitRateCompared);
     }
 }

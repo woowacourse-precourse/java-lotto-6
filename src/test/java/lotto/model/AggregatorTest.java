@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AggregatorTest {
+
     @Test
     void result_6개_당첨_1개와_0개_당첨_1개_인경우() {
         List<Lotto> lottos = new ArrayList<>();
@@ -14,11 +15,13 @@ public class AggregatorTest {
         lottos.add(new Lotto(List.of(11,12,13,14,15,16)));
 
         List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
-        int bonusNumber = 39;
+        List<Integer> bonusNumber = new ArrayList<>();
+        bonusNumber.add(7);
 
-        Aggregator aggregator = new Aggregator(winningNumbers, bonusNumber);
+        DrawNumbers drawNumbers = new DrawNumbers(winningNumbers, bonusNumber);
+        Aggregator aggregator = new Aggregator(drawNumbers);
 
-        List<Integer> result = aggregator.result(lottos);
+        List<Integer> result = aggregator.matchResult(lottos);
         Assertions.assertThat(result).isEqualTo(List.of(6, 0));
     }
 
@@ -29,11 +32,13 @@ public class AggregatorTest {
         lottos.add(new Lotto(List.of(11,12,13,14,15,16)));
 
         List<Integer> winningNumbers = List.of(40,41,42,43,44,45);
-        int bonusNumber = 1;
-        Aggregator aggregator = new Aggregator(winningNumbers, bonusNumber);
+        List<Integer> bonusNumber = new ArrayList<>();
+        bonusNumber.add(1);
 
+        DrawNumbers drawNumbers = new DrawNumbers(winningNumbers, bonusNumber);
+        Aggregator aggregator = new Aggregator(drawNumbers);
 
-        List<Integer> result = aggregator.result(lottos);
+        List<Integer> result = aggregator.matchResult(lottos);
         Assertions.assertThat(result).isEqualTo(List.of(Rule.SECOND_RANK.value(), 0));
     }
 
@@ -44,11 +49,13 @@ public class AggregatorTest {
         lottos.add(new Lotto(List.of(11,12,13,14,15,16)));
 
         List<Integer> winningNumbers = List.of(40,41,42,43,44,45);
-        int bonusNumber = 39;
-        Aggregator aggregator = new Aggregator(winningNumbers, bonusNumber);
+        List<Integer> bonusNumber = new ArrayList<>();
+        bonusNumber.add(39);
 
+        DrawNumbers drawNumbers = new DrawNumbers(winningNumbers, bonusNumber);
+        Aggregator aggregator = new Aggregator(drawNumbers);
 
-        List<Integer> result = aggregator.result(lottos);
+        List<Integer> result = aggregator.matchResult(lottos);
         Assertions.assertThat(result).isEqualTo(List.of(0, 0));
     }
 }

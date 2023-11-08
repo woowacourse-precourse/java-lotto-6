@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 public enum ErrorMessages {
     NO_CONTENT("[ERROR] 공백은 유효하지 않은 입력입니다."),

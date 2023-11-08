@@ -24,6 +24,15 @@ public class LotteryMessageBuilder {
         return sb.toString();
     }
 
+    public String returnWinningLottoList(Map<Integer, Integer> winningStats) {
+        StringBuilder sb = new StringBuilder();
+        for (int result = 5; result >= 1; result--) {
+            sb.append(returnEachResult(result, winningStats.get(result)));
+        }
+        sb.append(returnRateOfProfit());
+        return sb.toString();
+    }
+
     private String showLottoNumbers(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
 
@@ -34,14 +43,6 @@ public class LotteryMessageBuilder {
 
     private String returnRateOfProfit() {
         return PROFIT_MESSAGE_START.getMessage() + rateOfProfit + PROFIT_MESSAGE_END.getMessage();
-    }
-    public String returnWinningLottoList(Map<Integer, Integer> winningStats) {
-        StringBuilder sb = new StringBuilder();
-        for (int result = 5; result >= 1; result--) {
-            sb.append(returnEachResult(result, winningStats.get(result)));
-        }
-        sb.append(returnRateOfProfit());
-        return sb.toString();
     }
 
     private String returnEachResult(int result, int count) {

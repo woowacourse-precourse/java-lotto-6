@@ -16,9 +16,17 @@ public class GameNumbers {
         this.bonusNumber = bonusNumber;
     }
 
+    public boolean isContainWinningNumber(Integer integer) {
+        return winningNumbers.containNumber(integer);
+    }
+
     private void validateBonusNumber(BonusNumber bonusNumber) {
         if (winningNumbers.containNumber(bonusNumber.toInt())) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE_ERROR.getErrorMessage());
         }
+    }
+
+    public BonusNumber getBonusNumber() {
+        return bonusNumber;
     }
 }

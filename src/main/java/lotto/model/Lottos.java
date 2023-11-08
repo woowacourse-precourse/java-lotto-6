@@ -9,9 +9,15 @@ public class Lottos {
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
-    
+
     public void printLottos(Consumer<Lotto> printEachLotto) {
         lottos.forEach(printEachLotto);
+    }
+
+    public List<Result> getResults(GameNumbers gameNumbers) {
+        return lottos.stream()
+                .map(lotto -> lotto.checkResult(gameNumbers))
+                .toList();
     }
 
 }

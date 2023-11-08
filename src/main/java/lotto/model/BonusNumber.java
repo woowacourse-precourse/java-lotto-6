@@ -8,7 +8,7 @@ public class BonusNumber {
         this.bonusNumber = bonusNumber;
     }
 
-    public int toInt() {
+    public Integer toInt() {
         return bonusNumber;
     }
 }

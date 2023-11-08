@@ -21,6 +21,22 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public Result checkResult(final GameNumbers gameNumbers) {
+        int matchWinningNumbers = caculateMatchWinningNumber(gameNumbers);
+        boolean isMatchBonus = isMatchBonusNumber(gameNumbers);
+        return Result.checkResult(matchWinningNumbers, isMatchBonus);
+    }
+
+    private boolean isMatchBonusNumber(GameNumbers gameNumbers) {
+        return numbers.contains(gameNumbers.getBonusNumber().toInt());
+    }
+
+    private int caculateMatchWinningNumber(GameNumbers gameNumbers) {
+        return (int) numbers.stream()
+                .filter(gameNumbers::isContainWinningNumber)
+                .count();
+    }
+
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> distinctNumbers = new HashSet<>(numbers);
         if (numbers.size() != distinctNumbers.size()) {

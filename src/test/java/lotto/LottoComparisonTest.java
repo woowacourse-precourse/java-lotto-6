@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 public class LottoComparisonTest {
     LottoComparison lottoComparison = new LottoComparison();
+
     @Test
     @DisplayName("로또 번호와 당첨번호를 비교하여 맞힌 개수를 반환한다.")
     void compareLottoWinningNumber() {
@@ -42,7 +43,7 @@ public class LottoComparisonTest {
         long matchCount = 6;
         boolean isBonus = false;
 
-        Ranking ranking = lottoComparison.determineRanking(matchCount,isBonus);
+        Ranking ranking = lottoComparison.determineRanking(matchCount, isBonus);
 
         assertThat(ranking).isEqualTo(Ranking.FIRST);
     }
@@ -53,7 +54,7 @@ public class LottoComparisonTest {
         long matchCount = 5;
         boolean isBonus = true;
 
-        Ranking ranking = lottoComparison.determineRanking(matchCount,isBonus);
+        Ranking ranking = lottoComparison.determineRanking(matchCount, isBonus);
 
         assertThat(ranking).isEqualTo(Ranking.SECOND);
     }
@@ -64,7 +65,7 @@ public class LottoComparisonTest {
         long matchCount = 5;
         boolean isBonus = false;
 
-        Ranking ranking = lottoComparison.determineRanking(matchCount,isBonus);
+        Ranking ranking = lottoComparison.determineRanking(matchCount, isBonus);
 
         assertThat(ranking).isEqualTo(Ranking.THIRD);
     }
@@ -75,17 +76,18 @@ public class LottoComparisonTest {
         long matchCount = 4;
         boolean isBonus = false;
 
-        Ranking ranking = lottoComparison.determineRanking(matchCount,isBonus);
+        Ranking ranking = lottoComparison.determineRanking(matchCount, isBonus);
 
         assertThat(ranking).isEqualTo(Ranking.FOURTH);
     }
+
     @Test
     @DisplayName("숫자가 6개가 다 맞았을 때 Ranking에 FIRST를 반환한다")
     void FIFTHTest() {
         long matchCount = 3;
         boolean isBonus = false;
 
-        Ranking ranking = lottoComparison.determineRanking(matchCount,isBonus);
+        Ranking ranking = lottoComparison.determineRanking(matchCount, isBonus);
 
         assertThat(ranking).isEqualTo(Ranking.FIFTH);
     }

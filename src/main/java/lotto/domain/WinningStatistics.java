@@ -22,7 +22,7 @@ public class WinningStatistics {
         return rankingCounts.getOrDefault(ranking, 0);
     }
 
-    public double calculatePrizeMoney(){
+    public double calculatePrizeMoney() {
         int totalPrizeMoney = 0;
 
         for (Map.Entry<Ranking, Integer> entry : rankingCounts.entrySet()) {
@@ -33,7 +33,8 @@ public class WinningStatistics {
 
         return totalPrizeMoney;
     }
-    public double calculateYield(int amount){
-        return calculatePrizeMoney() /amount *100;
+
+    public double calculateYield(int amount) {
+        return calculatePrizeMoney() / amount * 100;
     }
 }

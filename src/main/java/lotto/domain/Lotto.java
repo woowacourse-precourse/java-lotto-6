@@ -21,23 +21,23 @@ public class Lotto {
         }
     }
 
-    private void validateWinningOverlap(List<Integer> winningNumbers){
+    private void validateWinningOverlap(List<Integer> winningNumbers) {
         Set<Integer> set = new HashSet<>(winningNumbers);
 
-        if( set.size() != winningNumbers.size()){
+        if (set.size() != winningNumbers.size()) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_OVERLAP.getMessage());
         }
     }
 
-    private void validateWinningRange(List<Integer> winningNumbers){
-        for(int number: winningNumbers){
-            if(number<1 || number>45){
+    private void validateWinningRange(List<Integer> winningNumbers) {
+        for (int number : winningNumbers) {
+            if (number < 1 || number > 45) {
                 throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_RANGE.getMessage());
             }
         }
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return numbers;
     }
 }

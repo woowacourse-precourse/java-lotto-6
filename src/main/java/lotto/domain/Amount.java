@@ -45,7 +45,6 @@ public class Amount {
         return amount / AMOUNT_MIN;
     }
 
-
     public int getCountLotto() {
         return countLotto;
     }

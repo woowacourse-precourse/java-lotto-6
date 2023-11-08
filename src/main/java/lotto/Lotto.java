@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.domain.WinningLotto;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,16 +10,21 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        List<Integer> modifiableNumbers = new ArrayList<>(numbers);
-        validate(modifiableNumbers);
-        Collections.sort(modifiableNumbers);
-        validateNonDuplicateForSorted(modifiableNumbers);
-        this.numbers = modifiableNumbers;
+        List<Integer> validated = new ArrayList<>();
+
+        validateSize(numbers);
+        for (int number : numbers) {
+            validateNumRange(number);
+            validateNonDuplicate(validated, number);
+            validated.add(number);
+        }
+        Collections.sort(validated);
+        this.numbers = validated;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(WinningLotto.ERROR_NOT_SIX_TEXT);
         }
     }
 
@@ -30,11 +37,15 @@ public class Lotto {
         System.out.println(numbers);
     }
 
-    private void validateNonDuplicateForSorted(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size() - 1; i++) {
-            if (numbers.get(i + 1).equals(numbers.get(i))) {
-                throw new IllegalArgumentException();
-            }
+    private static void validateNumRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(WinningLotto.ERROR_NOT_IN_RANGE_TEXT);
+        }
+    }
+
+    private static void validateNonDuplicate(List<Integer> validated, int current) {
+        if (validated.contains(current)) {
+            throw new IllegalArgumentException(WinningLotto.ERROR_DUPLICATE_NUM_TEXT);
         }
     }
 }

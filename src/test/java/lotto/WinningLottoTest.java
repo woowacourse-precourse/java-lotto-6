@@ -39,6 +39,30 @@ public class WinningLottoTest extends NsTest {
         });
     }
 
+    @Test
+    void bonus_non_number() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "a");
+            assertThat(output()).contains("숫자를 입력");
+        });
+    }
+
+    @Test
+    void bonus_not_in_range() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "46");
+            assertThat(output()).contains("1 ~ 45 범위 내의 숫자를 입력");
+        });
+    }
+
+    @Test
+    void bonus_duplicate_numbers() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "5");
+            assertThat(output()).contains("서로 다른 숫자를 입력");
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,26 @@ public class LottoService {
     }
 
     private static List<Lotto> lottoList;
-    private static WinningLotto winningLotto;
+    private static List<Integer> lotto = new ArrayList<>();
+
+    // 로또 번호 리스트 생성
+    public List<Lotto> getLottoLists(int lottoCount) {
+        lottoList = new ArrayList<>();
+        for (int i = 0; i < lottoCount; i++) {
+            lottoList.add(makeLottoNumbers());
+        }
+        return lottoList;
+    }
+
+    // 로또 번호 생성
+    public Lotto makeLottoNumbers() {
+        LottoNumbers lottoNumbers = new LottoNumbers();
+        lotto = new ArrayList<>();
+
+        lotto = lottoNumbers.getRandomNumbers();
+        System.out.println(lotto);
+        return new Lotto(lotto);
+    }
 
     // 당첨 통계
     public void getWinningTotal(List<Lotto> lottoList, WinningLotto winningLotto) {

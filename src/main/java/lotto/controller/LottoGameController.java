@@ -16,7 +16,6 @@ public class LottoGameController {
         Player player = inputAmount();
         ticketingLotto(player);
 
-        OutputView.printPlayerLottoTicketInfo(player);
 
         Lotto winningBall = createLotto();
         LottoBall bonusBall = createBonusBall();
@@ -35,6 +34,8 @@ public class LottoGameController {
         int quantity = player.getPlayerTicketQuantity();
         OutputView.printBuyingTicketQuantity(player);
         player.setLottoTicket(LottoAgency.createAutoTicket(quantity));
+
+        OutputView.printPlayerLottoTicketInfo(player);
     }
 
     private Lotto createLotto() {

@@ -16,4 +16,7 @@ public class ErrorMessage {
     public static final String LOTTO_NUMBER_WRONG_COUNT = "로또 번호는 6개여야 합니다.";
     public static final String LOTTO_NUMBER_DUPLICATED = "로또 번호는 중복될 수 없습니다.";
     public static final String LOTTO_NUMBER_OUT_OF_RANGE = "로또 번호는 1~45 이내의 숫자여야 합니다.";
+
+    // 로또 당첨 번호 입력
+    public static final String INPUT_WINNING_NUMBER_COUNT_IS_INCORRECT = "당첨 번호는 6개를 입력해 주세요.";
 }

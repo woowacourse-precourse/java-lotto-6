@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputLottoNumberTest {
-
+    private static final String ERROR_MESSAGE = "[ERROR]";
     @DisplayName("빈 칸이 입력으로 들어왔을 때 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {""})

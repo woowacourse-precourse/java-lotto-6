@@ -11,16 +11,14 @@ public class GameController {
         PurchaseAmount purchaseAmount = InputView.inputPurchaseAmount();
         OutputView.showBayLottoCount(purchaseAmount.getLottoCount());
 
-        LottoMachine lottoMachine = new LottoMachine();
-        Lottos lottos = lottoMachine.createLottos(purchaseAmount.getLottoCount());
+        Lottos lottos = LottoFactory.createLottos(purchaseAmount.getLottoCount());
 
         OutputView.showBayLottoNumber(lottos);
 
         WinningNumber winningNumber = InputView.inputLottoWinningNumbers();
         BonusNumber bonusNumber = InputView.inputLottoBonusNumbers();
 
-        LottoResult lottoResult = new LottoResult(lottos, winningNumber, bonusNumber, purchaseAmount);
+        LottoResult lottoResult =  LottoResult.resultCalculation(lottos,winningNumber,bonusNumber,purchaseAmount);
         OutputView.showLottoResult(lottoResult);
     }
-
 }

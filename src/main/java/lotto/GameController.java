@@ -6,6 +6,7 @@ import java.util.List;
 
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.Message.ResultMessage;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
@@ -21,7 +22,7 @@ public class GameController {
         Money count = insertMoney();
         List<Lotto> lottos = generateUserLotto(count);
         WinningLotto winningLotto = generateWinningLottto();
-        Map<Integer, String> resultLottos = winningLotto.compareLottos(lottos);
+        Map<Integer, Integer> resultLottos = winningLotto.compareLottos(lottos);
         printResult(resultLottos);
     }
 
@@ -58,15 +59,10 @@ public class GameController {
                 .collect(Collectors.toList());
     }
 
-    private void printResult(Map<Integer, String> resultLottos) {
+    private void printResult(Map<Integer, Integer> resultLottos) {
+        ResultMessage.printAllReultMessge(resultLottos);
+        }
 
+        private void
 
-            System.out.println(GameMessage.OUT_RESULT_LOTTO_START_MESSAGE);
-            System.out.println(GameMessage.OUT_RESULT_CORRECT_THREE_MESSAGE);
-            System.out.println(GameMessage.OUT_RESULT_CORRECT_FOUR_MESSAGE);
-            System.out.println(GameMessage.OUT_RESULT_CORRECT_FIVE_MESSAGE);
-            System.out.println(GameMessage.OUT_REQUEST_BONUS_NUMBER_MESSAGE);
-            System.out.println(GameMessage.OUT_RESULT_CORRECT_SIX_MESSAGE);
-
-    }
 }

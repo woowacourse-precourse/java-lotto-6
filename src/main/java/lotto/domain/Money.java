@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import java.util.Map;
 import lotto.Message.GameMessage;
+import lotto.util.MoneyCalculation;
 
 public class Money {
 
@@ -31,6 +33,11 @@ public class Money {
                 return false;
             }
             return true;
+        }
+
+        public float calculateProfit(Map<Integer, Integer> resultLottos){
+            long percentage = MoneyCalculation.calculateResult(resultLottos) / money;
+            return percentage;
         }
 
 }

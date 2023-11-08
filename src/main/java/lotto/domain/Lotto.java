@@ -22,11 +22,27 @@ public class Lotto {
         }
     }
 
-    public int checkNumber(List<Integer> numbers) {
+    public int checkNumber(List<Integer> numbers, Integer bonusNumber) {
         int number = (int) numbers.stream()
                 .filter(this.numbers::contains)
                 .count();
 
+
+
+        return checkbonusNumber(number,bonusNumber);
+    }
+
+    public int checkbonusNumber(int number, int bonusNumber) {
+
+        if(number == 5){
+            if(numbers.contains(bonusNumber)){
+                return 6;
+            }
+        }else if(number == 6){
+            return 7;
+        }
+
         return number;
     }
+
 }

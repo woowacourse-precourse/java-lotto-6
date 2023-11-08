@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -16,20 +17,23 @@ public class WinningLotto {
         this.bonusNumber = number;
     }
 
-    public Map<Integer, String> compareLottos(List<Lotto> lottos) {
+    public Map<Integer, Integer> compareLottos(List<Lotto> lottos) {
         List<Integer> resultNumber = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            resultNumber.add(lotto.checkNumber(numbers));
+            resultNumber.add(lotto.checkNumber(numbers,bonusNumber));
         }
         return changeNumbersMap(resultNumber);
     }
 
-    public Map<Integer,String> changeNumbersMap (List<Integer> resultNumber){
-        Map<Integer, String> countByNumberAsString =
-                resultNumber.stream().filter(number -> number != 0).
-                        collect(Collectors.groupingBy(number -> number,
-                                Collectors.collectingAndThen(Collectors.counting(), count -> count.toString())
-                        ));
-        return countByNumberAsString;
+    public Map<Integer,Integer> changeNumbersMap (List<Integer> resultNumber) {
+        List<Integer> excludeValues = Arrays.asList(0, 1, 2);
+
+        Map<Integer, Integer> countByNumberAsInteger = resultNumber.stream()
+                .filter(number -> !excludeValues.contains(number))
+                .collect(Collectors.groupingBy(
+                        number -> number,
+                        Collectors.summingInt(e -> 1)
+                ));
+        return countByNumberAsInteger;
     }
 }

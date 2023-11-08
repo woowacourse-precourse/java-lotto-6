@@ -49,7 +49,6 @@ public class LottoStatisticsOutputView extends OutputView {
     public void printPrizeEarningRate(final EarningRate earningRate) {
         final String formattedPrizeEarningRate = LottoFormat.EARNING_RATE.getFormat()
                 .format(earningRate.getEarningRate());
-        System.out.println(STRING_EARNING_RATE_FORMAT.formatted(formattedPrizeEarningRate));
         writer.println(STRING_EARNING_RATE_FORMAT.formatted(formattedPrizeEarningRate));
     }
 }

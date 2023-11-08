@@ -26,8 +26,9 @@ public class LottoService {
 
     public static Lotto createLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(minNum, maxNum, pickNum);
-        Collections.sort(numbers);
-        return new Lotto(numbers);
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return new Lotto(sortedNumbers);
     }
 
     public static void calculateLottoResult(LottoGame lottoGame) {

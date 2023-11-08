@@ -20,12 +20,12 @@ public class Person {
 
     public void buyLotto() {
 
-        LottoAmount lottoAmount = InputCashInHand();
+        LottoAmount lottoAmount = inputCashInHand();
         Lotto[] autoLotto = new Lotto[lottoAmount.getLottoAmount()];
-        AutoLotto(autoLotto, lottoAmount);
+        autoLotto(autoLotto, lottoAmount);
 
-        WinningNumber winningNumber = InputWinningNumber();
-        BonusNumber bonusNumber = InputBonus(winningNumber);
+        WinningNumber winningNumber = inputWinningNumber();
+        BonusNumber bonusNumber = inputBonus(winningNumber);
 
         int[] ranking = new int[8];
 
@@ -36,7 +36,7 @@ public class Person {
 
     }
 
-    private LottoAmount InputCashInHand() {
+    private LottoAmount inputCashInHand() {
         while (true) {
             try {
                 return new LottoAmount(inputView.readCash());
@@ -46,7 +46,7 @@ public class Person {
         }
     }
 
-    private void AutoLotto(Lotto[] autoLotto, LottoAmount Amount) {
+    private void autoLotto(Lotto[] autoLotto, LottoAmount Amount) {
         outputView.printAmount(Amount.getLottoAmount());
         for (int index = 0; index < Amount.getLottoAmount(); index++) {
             autoLotto[index] = new Lotto(AutoLottoNumber.putOutNumber());
@@ -54,7 +54,7 @@ public class Person {
         }
     }
 
-    private WinningNumber InputWinningNumber() {
+    private WinningNumber inputWinningNumber() {
         while (true) {
             try {
                 return new WinningNumber(inputView.readWinningNumber());
@@ -64,7 +64,7 @@ public class Person {
         }
     }
 
-    private BonusNumber InputBonus(WinningNumber winningNumber) {
+    private BonusNumber inputBonus(WinningNumber winningNumber) {
         while (true) {
             try {
                 return new BonusNumber(inputView.readBonusNumber(),

@@ -1,6 +1,8 @@
 package lotto.view;
 
 
+import static lotto.constants.RangeType.DIVISION_UNIT;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -12,7 +14,8 @@ import lotto.domain.Lottos;
 public class ConsoleOutput {
 
     public static void printPurchaseAmount(int amount) {
-        System.out.println(amount + "개를 구매했습니다.");
+        int count = amount / DIVISION_UNIT.getRange();
+        System.out.println(count + "개를 구매했습니다.");
     }
 
     public static void printAllRandomsLottos(Lottos lottos) {

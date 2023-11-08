@@ -9,7 +9,9 @@ public enum ErrorType {
 
     CAN_NOT_CONVERT_INTEGER("[ERROR] INTEGER로 변환할 수 없습니다."),
 
-    CAN_NOT_SATISFY_INTEGER_CONDITION("[ERROR] 1000원 단위로 입력해야 합니다.");
+    CAN_NOT_SATISFY_INTEGER_CONDITION("[ERROR] 1000원 단위로 입력해야 합니다."),
+
+    ALREADY_EXIST_LOTTO_NUMBER("[ERROR] 보너스 숫자는 기존 로또 숫자와 같을 수 없습니다.");
 
     private final String errorMessage;
 

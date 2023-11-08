@@ -23,9 +23,10 @@ public class InputValidator {
         return new Lotto(parsePrizeNumbers(prizeNumbers));
     }
 
-    public static int validateBonusNumber(String bonusNumber) {
+    public static int validateBonusNumber(Lotto lotto, String bonusNumber) {
         int validateBonusNumber = validateStringToInteger(bonusNumber);
         validateBonusNumberRange(validateBonusNumber);
+        validateDuplicateBonusNumber(lotto, validateBonusNumber);
         return validateBonusNumber;
     }
 
@@ -46,6 +47,12 @@ public class InputValidator {
     private static void validateAmountFormat(int amount) {
         if (amount % DIVISION_UNIT.getRange() != 0) {
             throw new IllegalArgumentException(CAN_NOT_SATISFY_INTEGER_CONDITION.getErrorMessage());
+        }
+    }
+
+    private static void validateDuplicateBonusNumber(Lotto lotto, int bonusNumber) {
+        if (lotto.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException(ALREADY_EXIST_LOTTO_NUMBER.getErrorMessage());
         }
     }
 

@@ -27,11 +27,12 @@ public class Game {
 
     private void init() {
         purchaseAmount = ConsoleInput.inputAmount();
+        ConsoleOutput.printPurchaseAmount(purchaseAmount);
         RandomLottoGenerator randomLottoGenerator = new RandomLottoGenerator(purchaseAmount);
         purchaseLottos = randomLottoGenerator.generate();
         ConsoleOutput.printAllRandomsLottos(purchaseLottos);
         prizeLotto = ConsoleInput.inputPrizeNumbers();
-        bonusNumber = ConsoleInput.inputBonusNumber();
+        bonusNumber = ConsoleInput.inputBonusNumber(prizeLotto);
     }
 
     private void progress() {

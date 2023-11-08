@@ -14,6 +14,7 @@ public class BonusNumValidatorTest {
     private static final String RANGE_OVER_MESSAGE = " 1~45사이의 번호를 입력해 주세요.";
     private static final String NULL_ERROR_MESSAGE = " 보너스 번호를 입력해 주세요.";
     private static final String DUPLICATE_ERROR_MESSAGE = " 당첨 숫자들과 다른 숫자를 입력해 주세요.";
+    private static final String ONE_NUMBER_ERROR_MESSAGE = " 한 개의 숫자만 입력해 주세요.";
     private final List<Integer> input = List.of(1, 2, 3, 4, 5, 6);
     private BonusNumValidator bonusNumValidator;
 
@@ -24,6 +25,15 @@ public class BonusNumValidatorTest {
         assertThatThrownBy(() -> bonusNumValidator = new BonusNumValidator(bonusNum, input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE + NULL_ERROR_MESSAGE);
+    }
+
+    @Test
+    @DisplayName("보너스 숫자 두 개 이상 입력 시 예외 처리")
+    void isOneNumber() {
+        String bonusNum = "7,8";
+        assertThatThrownBy(() -> bonusNumValidator = new BonusNumValidator(bonusNum, input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE + ONE_NUMBER_ERROR_MESSAGE);
     }
 
     @Test

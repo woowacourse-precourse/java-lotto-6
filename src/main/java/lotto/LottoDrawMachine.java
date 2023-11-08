@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class LottoDrawMachine {
 
     private List<Integer> winningNumbers;
+    private int bonusNumber;
 
     LottoDrawMachine() {
 //        this.winningNumbers = new ArrayList<>();
@@ -16,8 +17,18 @@ public class LottoDrawMachine {
     public void drawNumberManual() {
         // winningNumber 입력 받기
         this.winningNumbers = getWinningNumbersFromInput();
+        System.out.println(this.winningNumbers);
         // bonusNumber 입력받기
     }
+
+    public List<Integer> getWinningNumbers() {
+        return this.winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return this.bonusNumber;
+    }
+
     private List<Integer> getWinningNumbersFromInput() {
         while (true) {
             try {
@@ -25,6 +36,7 @@ public class LottoDrawMachine {
                 String input = Console.readLine();
                 String[] inputWinningNumbers = input.split(",");
                 validateNumericInputNumbers(inputWinningNumbers);
+                validateDigitCountInputNumbers(inputWinningNumbers);
                 return Arrays.stream(inputWinningNumbers)
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
@@ -40,6 +52,12 @@ public class LottoDrawMachine {
                 Integer.parseInt(string);
             }
         } catch (Exception exception) {
+            throw new IllegalArgumentException("[ERROR]");
+        }
+    }
+
+    private void validateDigitCountInputNumbers(String[] inputNumbers) {
+        if (inputNumbers.length != 6) { // TODO: 하드코딩
             throw new IllegalArgumentException("[ERROR]");
         }
     }

@@ -29,8 +29,7 @@ public class LottoController {
     }
 
     private UserMoney readMoney() {
-        UserMoney userMoney = userIoManager.readUserMoney();
-        return userMoney;
+        return userIoManager.readUserMoney();
     }
 
     private UserLotto generateUserLotto(UserMoney userMoney) {

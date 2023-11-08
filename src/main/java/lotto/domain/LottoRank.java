@@ -1,30 +1,30 @@
 package lotto.domain;
 
 public enum LottoRank {
-    FIRST(6,false, 2000000000),
-    SECOND(5,true, 30000000),
+    FIRST(6, false, 2000000000),
+    SECOND(5, true, 30000000),
     THIRD(5, false, 1500000),
-    FORTH(4,false, 50000),
-    FIFTH(3,false,  5000);
+    FORTH(4, false, 50000),
+    FIFTH(3, false, 5000);
 
     private final int numberMatches;
-    private final boolean bonusNumberMatches;
+    private final boolean bonusNumberCheck;
     private final int price;
 
-    LottoRank(int numberMatches, boolean bonusNumberMatches, int price) {
+    LottoRank(int numberMatches, boolean bonusNumberCheck, int price) {
         this.numberMatches = numberMatches;
-        this.bonusNumberMatches = bonusNumberMatches;
+        this.bonusNumberCheck = bonusNumberCheck;
         this.price = price;
     }
 
-    public int getNumberMatches() {
+    public int numberMatches() {
         return this.numberMatches;
     }
 
     public int price() {
         return this.price;
     }
-    public boolean bonusNumberMatches() {
-        return this.bonusNumberMatches;
+    public boolean bonusNumberCheck() {
+        return this.bonusNumberCheck;
     }
 }

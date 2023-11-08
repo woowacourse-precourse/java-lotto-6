@@ -47,18 +47,6 @@ public class Validation {
         }
     }
 
-    private static void validateNumbers(List<Integer> numbers) {
-        Set<Integer> sample = new HashSet<>(numbers);
-
-        if (sample.size() != numbers.size()) {
-            throw new IllegalArgumentException(INPUT_LOTTO_NUMBER_DUPLICATED_ERROR_MSG);
-        }
-
-        if (numbers.size() != SIZE) {
-            throw new IllegalArgumentException(INPUT_LOTTO_NUMBER_SIZE_ERROR_MSG);
-        }
-    }
-
     private static void validateDuplicatedBonusNumber(List<Integer> lottoNumbers, int bonusNumber) {
         if (lottoNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(INPUT_LOTTO_BONUS_DUPLICATED_ERROR_MSG);
@@ -69,6 +57,18 @@ public class Validation {
         int purchaseAmount = parseInteger(input);
         validateUnit(purchaseAmount);
         return purchaseAmount;
+    }
+
+    public static void validateNumbers(List<Integer> numbers) {
+        Set<Integer> sample = new HashSet<>(numbers);
+
+        if (sample.size() != numbers.size()) {
+            throw new IllegalArgumentException(INPUT_LOTTO_NUMBER_DUPLICATED_ERROR_MSG);
+        }
+
+        if (numbers.size() != SIZE) {
+            throw new IllegalArgumentException(INPUT_LOTTO_NUMBER_SIZE_ERROR_MSG);
+        }
     }
 
     public static List<Integer> validateLottoNumbers(String input) {

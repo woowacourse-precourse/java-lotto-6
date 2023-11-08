@@ -1,29 +1,31 @@
 package lotto.view;
 
+import lotto.util.OutputMessage;
+
 import java.util.List;
 
 public class Output {
 
     public void printLottoTickets(List<List<Integer>> lottoTickets) {
-        System.out.println(String.format("%d개를 구매했습니다.", lottoTickets.size()));
+        System.out.println(String.format(OutputMessage.COUNT_PURCHASED_TICKETS.getMessage(), lottoTickets.size()));
         for (List<Integer> lotto : lottoTickets) {
             System.out.println(lotto);
         }
     }
 
     public void printWinningStatistics(int[] lotteryResults, int matchFiveWithBonus) {
-        System.out.println("당첨 통계");
+        System.out.println(OutputMessage.WINNING_STATISTICS.getMessage());
         System.out.println("---");
 
-        System.out.println(String.format("3개 일치 (5,000원) - %d개", lotteryResults[3]));
-        System.out.println(String.format("4개 일치 (50,000원) - %d개", lotteryResults[4]));
-        System.out.println(String.format("5개 일치 (1,500,000원) - %d개", lotteryResults[5]));
-        System.out.println(String.format("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", matchFiveWithBonus));
-        System.out.println(String.format("6개 일치 (2,000,000,000원) - %d개", lotteryResults[6]));
+        System.out.println(String.format(OutputMessage.COUNT_MATCH_3.getMessage(), lotteryResults[3]));
+        System.out.println(String.format(OutputMessage.COUNT_MATCH_4.getMessage(), lotteryResults[4]));
+        System.out.println(String.format(OutputMessage.COUNT_MATCH_5.getMessage(), lotteryResults[5]));
+        System.out.println(String.format(OutputMessage.COUNT_MATCH_5_WITH_BONUS.getMessage(), matchFiveWithBonus));
+        System.out.println(String.format(OutputMessage.COUNT_MATCH_6.getMessage(), lotteryResults[6]));
     }
 
     public void printRateOfReturn(double rateOfReturn) {
-        System.out.println(String.format("총 수익률은 %.1f%%입니다.", rateOfReturn));
+        System.out.println(String.format(OutputMessage.RATE_OF_RETURN.getMessage(), rateOfReturn));
     }
 
 }

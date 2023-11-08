@@ -25,6 +25,13 @@ public class InputVIew {
                 .collect(Collectors.toUnmodifiableList());
     }
 
+    public static int getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        validateNumber(input);
+        return Integer.parseInt(input);
+    }
+
     private static void validateNumber(String input) throws IllegalArgumentException {
         if (!input.matches(NUMBER_PATTERN)) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");

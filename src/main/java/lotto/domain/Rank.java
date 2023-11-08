@@ -21,6 +21,7 @@ public enum Rank {
         this.matchCount = matchCount;
         this.hasBonusBall = hasBonusBall;
     }
+
     public static Rank calculate(int matchCount, boolean hasBonusBall) {
         if (matchCount == 5) {
             return checkBonusBall(hasBonusBall);

@@ -17,8 +17,7 @@ public class PurchasedLottos {
 
     public static PurchasedLottos createPurchasedLottos(NumberGenerator generator, Amount amount) {
         List<Lotto> lottos = IntStream.range(START_INDEX, amount.calculateLottoPurchaseSize())
-                .mapToObj(i -> Lotto.createLotto(generator))
-                .collect(Collectors.toList());
+                .mapToObj(i -> Lotto.createLotto(generator)).collect(Collectors.toList());
         return new PurchasedLottos(lottos);
     }
 
@@ -27,15 +26,12 @@ public class PurchasedLottos {
     }
 
     public List<Rank> matchLottos(WinningLotto winningLotto) {
-        return purchasedLottos.stream()
-                .map(purchasedLotto -> winningLotto.matchLotto(purchasedLotto))
+        return purchasedLottos.stream().map(purchasedLotto -> winningLotto.matchLotto(purchasedLotto))
                 .collect(Collectors.toList());
     }
 
     public List<List<String>> getCurrentPurchasedLottosList() {
-        return purchasedLottos.stream()
-                .map(lotto -> lotto.getLottoNumberStrings())
-                .collect(Collectors.toList());
+        return purchasedLottos.stream().map(lotto -> lotto.getLottoNumberStrings()).collect(Collectors.toList());
     }
 
     public Amount spendAmount() {

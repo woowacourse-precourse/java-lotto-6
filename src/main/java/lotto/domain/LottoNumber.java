@@ -35,6 +35,7 @@ public class LottoNumber {
         }
         return false;
     }
+
     @Override
     public String toString() {
         return String.valueOf(lottoNumber);

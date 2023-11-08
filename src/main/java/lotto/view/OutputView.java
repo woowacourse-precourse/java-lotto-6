@@ -17,7 +17,7 @@ public class OutputView {
 
         purchasedLottos.getCurrentPurchasedLottosList()
                 .stream()
-                .map(lotto -> lotto.stream().collect(Collectors.joining(", ", "[","]")))
+                .map(lotto -> lotto.stream().collect(Collectors.joining(", ", "[", "]")))
                 .forEach(System.out::println);
     }
 
@@ -33,9 +33,9 @@ public class OutputView {
     }
 
     public void outputLottoMatchResult(LottoMatchResultDto lottoMatchResultDto) {
-       outputLottoStatisticPreinput();
-       outputLottoStatistic(lottoMatchResultDto);
-       outputProfitRate(lottoMatchResultDto);
+        outputLottoStatisticPreinput();
+        outputLottoStatistic(lottoMatchResultDto);
+        outputProfitRate(lottoMatchResultDto);
     }
 
     private void outputProfitRate(LottoMatchResultDto lottoMatchResultDto) {

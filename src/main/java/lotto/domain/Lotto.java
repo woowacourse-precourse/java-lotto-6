@@ -47,6 +47,7 @@ public class Lotto {
                 .filter(lottoNumber -> lotto.contains(lottoNumber))
                 .count();
     }
+
     public boolean contains(LottoNumber bonusBall) {
         return numbers.contains(bonusBall);
     }

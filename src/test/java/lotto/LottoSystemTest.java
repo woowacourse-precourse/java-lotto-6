@@ -2,7 +2,6 @@ package lotto;
 
 import org.junit.jupiter.api.Test;
 
-import java.net.Inet4Address;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package lotto.util;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +13,19 @@ public class ValidationUtil {
         isValidNumber(numbers);
         isValidCount(numbers);
         hasDistinctNumbers(numbers);
+    }
+
+    public static List<Integer> isValidWinNumbers(String input) {
+        String[] splits = input.split(",");
+        List<Integer> numbers = new ArrayList<>();
+        for (String split : splits) {
+            makeNumbers(numbers, split.trim());
+        }
+        isValidNumber(numbers);
+        isValidCount(numbers);
+        hasDistinctNumbers(numbers);
+
+        return numbers;
     }
 
     public static void isValidNumber(List<Integer> numbers) {

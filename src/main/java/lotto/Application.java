@@ -74,8 +74,8 @@ public class Application {
         
         double profitRate = (double) totalPrizeMoney / purchaseAmount * 100;
         
-        return String.format("%.2f", profitRate);
+        DecimalFormat df = new DecimalFormat("0.#");
+        return df.format(profitRate);
     }
-    
     
 }

@@ -51,12 +51,9 @@ public class LottoService {
         return lottoList;
     }
 
-    public int compareMyNumberWithWinningNumber(List<Lotto> myLottoNumbers, List<Integer> winningNumber) {
-
-        return 0;
+    public LottoWinningCase compareMyNumberWithWinningNumber(Lotto myLottoNumbers, List<Integer> winningNumber, int bonusNumnber) {
+        return LottoWinningCase.compareWhichCaseItIs(myLottoNumbers, winningNumber, bonusNumnber);
     }
-
-    public boolean checkBonusPoint(List<Integer> myLottoNumber, int bonusNumber) {return true;}
 
     public int getCaseNum(int lottoWinCase) {return 0;}
 

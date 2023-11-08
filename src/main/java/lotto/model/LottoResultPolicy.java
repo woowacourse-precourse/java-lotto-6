@@ -34,6 +34,7 @@ public class LottoRankPolicy implements RankPolicy {
     }
 
     private String checkLottoRank(int winningCount, int bonusCount) {
+        //Enum 비교
         if (winningCount == 3) {
             return LottoRank.FIFTH_PRIZE.name();
         }

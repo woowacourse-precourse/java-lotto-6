@@ -57,7 +57,6 @@ public class Game {
         List<Lotto> lottos = new ArrayList<>();
         for (long i = 0; i < amount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }

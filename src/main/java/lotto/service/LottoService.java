@@ -67,8 +67,9 @@ public class LottoService {
     }
 
     public List<Integer> sortNumbersByAsc(List<Integer> integerList) {
-        Collections.sort(integerList);
-        return integerList;
+        List<Integer> temp = new ArrayList<>(integerList);
+        Collections.sort(temp);
+        return List.copyOf(temp);
     }
 
     private List<Integer> generateRandomNumbers() {

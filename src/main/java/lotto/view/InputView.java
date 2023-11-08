@@ -1,10 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.errorMessage.ErrorMessage;
-
-import java.util.Arrays;
-import java.util.List;
+import lotto.constant.ErrorMessage;
 
 public class InputView {
 

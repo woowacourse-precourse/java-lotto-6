@@ -32,6 +32,6 @@ public class Output {
     }
 
     public static void viewRate(double rate) {
-        System.out.println("총 수익률은 " + rate + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.2f", rate) + "%입니다.");
     }
 }

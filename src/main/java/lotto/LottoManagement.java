@@ -3,11 +3,20 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class LottoManagement {
     static final int pricePerPiece=1000;
-    private final int inputMoney;
+    private int inputMoney;
 
     LottoManagement(){
-        inputMoney = Integer.parseInt(Console.readLine());
+        String stringInput = Console.readLine();
+        notIntegerException(stringInput);
         inputMoneyException();
+    }
+
+    void notIntegerException(String stringInput){
+        try {
+            inputMoney = Integer.parseInt(stringInput);
+        }catch(NumberFormatException e){
+            throw new IllegalArgumentException();
+        }
     }
 
     boolean isDivisible() {

@@ -14,4 +14,8 @@ public class LottoResults {
     public void addResult(LottoRank rank) {
         results.merge(rank, 1, Integer::sum);
     }
+    public int getCount(LottoRank rank) {
+        return results.getOrDefault(rank, 0);
+    }
+
 }

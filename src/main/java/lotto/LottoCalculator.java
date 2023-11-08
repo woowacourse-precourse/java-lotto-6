@@ -5,27 +5,27 @@ import java.util.List;
 
 public class LottoCalculator {
 
-    public HashMap<String, Integer> calculate(LottoTicket lottoTicket, WiningLotto winingLotto) {
+    public HashMap<Integer, Integer> calculate(LottoTicket lottoTicket, WiningLotto winingLotto) {
         return calculateWin(lottoTicket, winingLotto.getWinNumber(), winingLotto.getBonus());
     }
 
-    private HashMap<String, Integer> calculateWin(LottoTicket lottoTicket, List<Integer> winNumbers, int bonus) {
-        HashMap<String, Integer> result = makeResultStore();
+    private HashMap<Integer, Integer> calculateWin(LottoTicket lottoTicket, List<Integer> winNumbers, int bonus) {
+        HashMap<Integer, Integer> result = makeResultStore();
 
         for (List<Integer> lottoNumbers : lottoTicket.showLottoNumbers()) {
             int key = makeKey(lottoNumbers, winNumbers, bonus);
             if (key > 3) {
-                int value = result.get(String.valueOf(key)) + 1;
-                result.replace(String.valueOf(key), value);
+                int value = result.get(key) + 1;
+                result.replace(key, value);
             }
         }
         return result;
     }
 
-    private HashMap<String, Integer> makeResultStore() {
-        HashMap<String, Integer> result = new HashMap<>();
+    private HashMap<Integer, Integer> makeResultStore() {
+        HashMap<Integer, Integer> result = new HashMap<>();
         for (int correct = 3; correct <= 7; correct++) {
-            result.put(String.valueOf(correct), 0);
+            result.put(correct, 0);
         }
         return result;
     }

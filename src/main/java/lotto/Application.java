@@ -9,12 +9,18 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+
+
         int lotto_num = integ_input_money();
         Lotto_Wallet Wallet = new Lotto_Wallet(); // 로또 지갑 객체 생성
         makeManyLottos(Wallet, lotto_num);
 
-        Lotto winning_lotto = integ_input_winning();
-        Integer bonus_num  = integ_input_bonus(winning_lotto);
+        final Lotto winning_lotto = integ_input_winning();
+        final Integer bonus_num  = integ_input_bonus(winning_lotto);
+
+        Wallet.Check_All_Lotto(winning_lotto, bonus_num);
+        Wallet.Result_Print();
+
 
     }
     private static int integ_input_money(){                // input 통합 부분, 재귀함수 처리

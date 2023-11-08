@@ -15,7 +15,9 @@ public class InputView {
         while (true) {
             try {
                 System.out.println(PURCHASE_AMOUNT_MESSAGE);
-                long amount = Long.parseLong(Console.readLine());
+                String input = Console.readLine();
+                Validator.isValidInteger(input);
+                long amount = Long.parseLong(input);
                 Validator.isValidAmount(amount);
                 return amount;
             } catch (IllegalArgumentException e) {
@@ -41,7 +43,9 @@ public class InputView {
         while (true) {
             try {
                 System.out.println("\n" + BONUS_NUMBER_MESSAGE);
-                int number = Integer.parseInt(Console.readLine());
+                String input = Console.readLine();
+                Validator.isValidInteger(input);
+                int number = Integer.parseInt(input);
                 Validator.isValidBonusNumber(number, winningNumbers);
                 return number;
             } catch (IllegalArgumentException e) {

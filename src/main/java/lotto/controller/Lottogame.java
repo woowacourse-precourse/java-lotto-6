@@ -2,10 +2,12 @@ package lotto.controller;
 
 
 import static lotto.view.OutputLottolist.printLottoList;
+import static lotto.view.OutputStatics.printStatistics;
 
 import java.util.List;
 import lotto.domain.InputNumber;
 import lotto.domain.LottoResult;
+import lotto.domain.Rate;
 import lotto.domain.Winner;
 import lotto.parser.ParserLotto;
 import lotto.domain.GenerateLotto;
@@ -27,6 +29,9 @@ public class Lottogame {
         Winner winner = getWinningLotto();
         LottoResult lottoResult = new LottoResult();
         calcLottoResult(lottoResult, winner, lottos);
+
+        Rate rate = getRate(money, lottoResult);
+        printStatistics(lottoResult, rate);
     }
 
     private Money getLottoMoney() {
@@ -54,5 +59,8 @@ public class Lottogame {
     }
     private void calcLottoResult(LottoResult prizeResult, Winner winningLotto, Lottos lottos) {
         prizeResult.calcPrizeResult(winningLotto, lottos);
+    }
+    private Rate getRate(Money money, LottoResult lottoResult) {
+        return new Rate(money, lottoResult);
     }
 }

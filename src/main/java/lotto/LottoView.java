@@ -55,18 +55,10 @@ public class LottoView {
         StringBuilder sb = new StringBuilder();
         purchasedLotto.forEach((winningPrice, lottos) -> {
             Optional<String> info = WinningPrice.getInfo(winningPrice);
-            sb.append(createOneRowResult(info, lottos));
+            info.ifPresent(s -> sb.append(s).append(lottos.size()).append("개\n"));
         });
 
         System.out.println(sb);
-    }
-
-    private String createOneRowResult(Optional<String> info, List<Lotto> lottos) {
-        if(info.isEmpty()){
-            return "";
-        }
-
-        return info.get()+lottos.size()+"개\n";
     }
 
     public void showEarningsRate(Double earningsRate) {

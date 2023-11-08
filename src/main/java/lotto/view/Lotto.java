@@ -1,6 +1,4 @@
-package lotto;
-
-import lotto.view.ExceptionMessage;
+package lotto.view;
 
 import java.util.Collections;
 import java.util.HashSet;

@@ -13,6 +13,12 @@ public enum Ranking {
     private static final int WINNING_MIN_COUNT = 3;
     private static final String ERROR_MESSAGE = "[ERROR]";
 
+    Ranking(int countOfMatch, int winningAmount, String message) {
+        this.countOfMatch = countOfMatch;
+        this.winningAmount = winningAmount;
+        this.message = message;
+    }
+
     private int countOfMatch;
     private int winningAmount;
     private String message;
@@ -32,12 +38,6 @@ public enum Ranking {
             }
         }
         throw new IllegalArgumentException(ERROR_MESSAGE);
-    }
-
-    Ranking(int countOfMatch, int winningAmount, String message) {
-        this.countOfMatch = countOfMatch;
-        this.winningAmount = winningAmount;
-        this.message = message;
     }
 
     public int getCountOfMatch() {

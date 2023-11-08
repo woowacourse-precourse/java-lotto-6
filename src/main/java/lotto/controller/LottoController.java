@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.Lotto;
+import lotto.view.Lotto;
 import lotto.domain.LottoNumbers;
 import lotto.domain.PlayerLottoAmount;
 import lotto.domain.Ranking;
@@ -39,6 +39,8 @@ public class LottoController {
 
         lottoList = makeLottoList(ticketCount);
         winningResult = validateBonus();
+
+        lottoResult(lottoList, winningResult, ticketCount);
     }
 
     // 발행할 로또 개수의 금액 입력 메소드
@@ -54,7 +56,7 @@ public class LottoController {
 
         int bonus = InputView.inputBonusNumber();
         lotto.validateBonusNumber(winningNumber, bonus);
-        return  new WinningResult(new Lotto(winningNumber), bonus);
+        return new WinningResult(new Lotto(winningNumber), bonus);
     }
 
     private static List<Lotto> makeLottoList(int ticketCount) {

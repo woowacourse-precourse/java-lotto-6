@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.Lotto;
+import lotto.view.Lotto;
 
 public class WinningResult {
 

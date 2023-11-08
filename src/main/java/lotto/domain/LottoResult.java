@@ -20,6 +20,10 @@ public class LottoResult {
         List<Integer> winnerNums = lottoWinningCombination.getWinnerNums();
         int bonusNum = lottoWinningCombination.getBonusNum();
 
+        return determineLottoResult(lottoNumbers, winnerNums, bonusNum);
+    }
+
+    private static LottoResult determineLottoResult(List<Integer> lottoNumbers, List<Integer> winnerNums, int bonusNum) {
         int matchingNumbersCount = countMatchingLottoWithWinnerNums(lottoNumbers, winnerNums);
 
         if (matchingNumbersCount == 6) {

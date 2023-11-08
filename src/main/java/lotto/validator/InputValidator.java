@@ -1,33 +1,39 @@
 package lotto.validator;
 
+import static lotto.constant.MessageConstants.CANNOT_INSTANTIATE;
+import static lotto.constant.MessageConstants.ONLY_NUMBER;
+import static lotto.constant.MessageConstants.OVER_MAX;
+import static lotto.constant.NumberConstants.LOTTO_PRICE;
+import static lotto.constant.NumberConstants.NOT_DIGIT;
+
 public class InputValidator {
 
     private InputValidator() {
-        throw new AssertionError("인스턴스화 불가능");
+        throw new AssertionError(CANNOT_INSTANTIATE);
     }
 
     public static void validateMoney(String money) {
         if (isNotDigit(money)) {
-            throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(ONLY_NUMBER);
         }
 
         if (isOverMax(money)) {
-            throw new IllegalArgumentException("입력할 수 있는 금액의 최댓값 그 이상입니다.");
+            throw new IllegalArgumentException(OVER_MAX);
         }
     }
 
     public static void validateBonusNumber(String number) {
         if (isNotDigit(number)) {
-            throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(ONLY_NUMBER);
         }
     }
 
     private static boolean isNotDigit(String number) {
-        return !number.matches("^[0-9]+$");
+        return !number.matches(NOT_DIGIT);
     }
 
     private static boolean isOverMax(String money) {
-        return Long.parseLong(money) > (Long.MAX_VALUE / 1000L) * 1000L;
+        return Long.parseLong(money) > (Long.MAX_VALUE / LOTTO_PRICE) * LOTTO_PRICE;
     }
 
 }

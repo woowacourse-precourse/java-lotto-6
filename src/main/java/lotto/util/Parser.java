@@ -1,12 +1,15 @@
 package lotto.util;
 
+import static lotto.constant.MessageConstants.CANNOT_INSTANTIATE;
+import static lotto.constant.NumberConstants.SPLIT_SEPARATOR;
+
 import java.util.List;
 import lotto.validator.ParserValidator;
 
 public class Parser {
 
     private Parser() {
-        throw new AssertionError("인스턴스화 불가능");
+        throw new AssertionError(CANNOT_INSTANTIATE);
     }
 
     public static List<Integer> parseStringToInteger(String numberString) {
@@ -21,7 +24,7 @@ public class Parser {
     }
 
     private static List<String> split(String numberString) {
-        return List.of(numberString.split(","));
+        return List.of(numberString.split(SPLIT_SEPARATOR));
     }
 
 }

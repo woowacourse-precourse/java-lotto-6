@@ -1,6 +1,13 @@
 package lotto.validator;
 
-import java.util.Arrays;
+import static lotto.constant.MessageConstants.CANNOT_DUPLICATE;
+import static lotto.constant.MessageConstants.NUMBER_FORMAT_AND_RANGE;
+import static lotto.constant.MessageConstants.WINNING_COUNT;
+import static lotto.constant.NumberConstants.LOTTO_NUMBER_MAX;
+import static lotto.constant.NumberConstants.LOTTO_NUMBER_MIN;
+import static lotto.constant.NumberConstants.LOTTO_NUMBER_SIZE;
+import static lotto.constant.NumberConstants.NOT_DIGIT;
+
 import java.util.List;
 
 public class ParserValidator {
@@ -19,33 +26,33 @@ public class ParserValidator {
 
     private void validateSize() {
         if (isWrongSize()) {
-            throw new IllegalArgumentException("당첨 개수는 6개여야 합니다.");
+            throw new IllegalArgumentException(WINNING_COUNT);
         }
     }
 
     private boolean isWrongSize() {
-        return splitNumbers.size() != 6;
+        return splitNumbers.size() != LOTTO_NUMBER_SIZE;
     }
 
     private void validateNumberCondition() {
         splitNumbers.stream()
                 .filter(number -> isNotDigit(number) || isWrongRangeNumber(Integer.parseInt(number)))
                 .forEach(number -> {
-                    throw new IllegalArgumentException("구분자 ','와 1 ~ 45 숫자 이외는 입력할 수 없습니다.");
+                    throw new IllegalArgumentException(NUMBER_FORMAT_AND_RANGE);
                 });
     }
 
     private boolean isNotDigit(String number) {
-        return !number.matches("^\\d+$");
+        return !number.matches(NOT_DIGIT);
     }
 
     private boolean isWrongRangeNumber(int number) {
-        return (number < 1 || number > 45);
+        return (number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX);
     }
 
     private void validateUnique() {
-        if (findUniqueNumberCount() != 6) {
-            throw new IllegalArgumentException("중복된 당첨 숫자를 입력할 수 없습니다.");
+        if (findUniqueNumberCount() != LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException(CANNOT_DUPLICATE);
         }
     }
 

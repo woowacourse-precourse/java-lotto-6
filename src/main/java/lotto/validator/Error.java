@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import static lotto.constant.MessageConstants.ERROR;
+
 public class Error {
 
     private Error() {
@@ -7,7 +9,7 @@ public class Error {
     }
 
     public static void printError(String message) {
-        System.out.println("[ERROR]: " + message);
+        System.out.println(ERROR + message);
     }
 
 }

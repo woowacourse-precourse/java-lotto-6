@@ -1,5 +1,9 @@
 package lotto.view;
 
+import static lotto.constant.MessageConstants.REQUEST_BONUS_NUMBER;
+import static lotto.constant.MessageConstants.REQUEST_INPUT_MONEY;
+import static lotto.constant.MessageConstants.REQUEST_WINNING_NUMBER;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.util.Parser;
@@ -9,7 +13,7 @@ import lotto.validator.MoneyValidator;
 public class LottoInputView {
 
     public long inputUserMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(REQUEST_INPUT_MONEY);
 
         String money = Console.readLine();
         InputValidator.validateMoney(money);
@@ -21,14 +25,14 @@ public class LottoInputView {
     }
 
     public List<Integer> inputWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(REQUEST_WINNING_NUMBER);
 
         String winningNumber = Console.readLine();
         return Parser.parseStringToInteger(winningNumber);
     }
 
     public int inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(REQUEST_BONUS_NUMBER);
 
         String bonusNumber = Console.readLine();
         InputValidator.validateBonusNumber(bonusNumber);

@@ -1,5 +1,10 @@
 package lotto.domain;
 
+import static lotto.constant.NumberConstants.LOTTO_NUMBER_MAX;
+import static lotto.constant.NumberConstants.LOTTO_NUMBER_MIN;
+import static lotto.constant.NumberConstants.LOTTO_NUMBER_SIZE;
+import static lotto.constant.NumberConstants.LOTTO_PRICE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +20,7 @@ public class LottoGenerator {
     }
 
     public List<Lotto> generateLottos() {
-        long lottoCount = money / 1000;
+        long lottoCount = money / LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();
 
         for (long i = 0; i < lottoCount; i++) {
@@ -31,7 +36,8 @@ public class LottoGenerator {
     }
 
     private Lotto generateSingleLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX,
+                LOTTO_NUMBER_SIZE);
         return new Lotto(sortNumbers(randomNumbers));
     }
 

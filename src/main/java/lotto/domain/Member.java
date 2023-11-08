@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.NumberConstants.LOTTO_PRICE;
+
 import java.util.List;
 import lotto.validator.LottoValidator;
 import lotto.validator.MoneyValidator;
@@ -23,7 +25,7 @@ public record Member(long inputMoney, List<Lotto> lottos) {
     }
 
     public long calculateQuantity() {
-        return inputMoney / 1000L;
+        return inputMoney / LOTTO_PRICE;
     }
 
 }

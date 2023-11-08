@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.NumberConstants.BONUS_COUNT;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public enum LottoRank {
         int matchCount = findMatchCount(lotto, winningNumber.getLotto().numbers());
 
         boolean bonus = false;
-        if (matchCount == 5) {
+        if (matchCount == BONUS_COUNT) {
             bonus = lotto.hasMatchedNumber(winningNumber.getBonusNumber());
         }
 

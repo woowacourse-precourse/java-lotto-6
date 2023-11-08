@@ -1,5 +1,13 @@
 package lotto.validator;
 
+import static lotto.constant.MessageConstants.CANNOT_DUPLICATE_LOTTO;
+import static lotto.constant.MessageConstants.CANNOT_DUPLICATE_LOTTO_AND_BONUS;
+import static lotto.constant.MessageConstants.LOTTO_COUNT;
+import static lotto.constant.MessageConstants.LOTTO_NUMBER_RANGE;
+import static lotto.constant.NumberConstants.LOTTO_NUMBER_MAX;
+import static lotto.constant.NumberConstants.LOTTO_NUMBER_MIN;
+import static lotto.constant.NumberConstants.LOTTO_NUMBER_SIZE;
+
 import java.util.List;
 
 public class LottoValidator {
@@ -17,43 +25,43 @@ public class LottoValidator {
     }
 
     private void validateSize() {
-        if (lottoList.size() != 6) {
-            throw new IllegalArgumentException("로또는 6개여야 합니다.");
+        if (lottoList.size() != LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException(LOTTO_COUNT);
         }
     }
 
     private void validateUnique() {
-        if (hasDuplicateNumber()){
-            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
+        if (hasDuplicateNumber()) {
+            throw new IllegalArgumentException(CANNOT_DUPLICATE_LOTTO);
         }
     }
 
     private boolean hasDuplicateNumber() {
         return lottoList.stream()
                 .distinct()
-                .count() != 6;
+                .count() != LOTTO_NUMBER_SIZE;
     }
 
     private void validateNumberRange() {
         lottoList.stream()
                 .filter(this::isNumberWrongRange)
                 .forEach(number -> {
-                    throw new IllegalArgumentException("1 ~ 45 사이의 숫자만 가능합니다.");
+                    throw new IllegalArgumentException(LOTTO_NUMBER_RANGE);
                 });
     }
 
     public void validateBonusNumber(int bonusNumber) {
         if (isNumberWrongRange(bonusNumber)) {
-            throw new IllegalArgumentException("1 ~ 45 사이의 숫자만 가능합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_RANGE);
         }
 
         if (lottoList.contains(bonusNumber)) {
-            throw new IllegalArgumentException("보너스 번호는 로또 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(CANNOT_DUPLICATE_LOTTO_AND_BONUS);
         }
     }
 
     private boolean isNumberWrongRange(int lotto) {
-        return (lotto < 1 || lotto > 45);
+        return (lotto < LOTTO_NUMBER_MIN || lotto > LOTTO_NUMBER_MAX);
     }
 
 }

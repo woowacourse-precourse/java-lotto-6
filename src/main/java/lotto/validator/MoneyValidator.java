@@ -1,5 +1,8 @@
 package lotto.validator;
 
+import static lotto.constant.MessageConstants.MONEY_RANGE;
+import static lotto.constant.NumberConstants.MIN_MONEY;
+
 public class MoneyValidator {
 
     private final String moneyString;
@@ -8,23 +11,23 @@ public class MoneyValidator {
         this.moneyString = moneyString;
     }
 
-    public void validateAll(){
+    public void validateAll() {
         validateRange();
     }
 
     private void validateRange() {
         long money = Long.parseLong(moneyString);
         if (isWrongRange(money) || isWrongMoneyUnit(money)) {
-            throw new IllegalArgumentException("1000 이상, 1000 단위의 금액을 입력하세요.");
+            throw new IllegalArgumentException(MONEY_RANGE);
         }
     }
 
     private boolean isWrongRange(long money) {
-        return money < 1000;
+        return money < MIN_MONEY;
     }
 
     private boolean isWrongMoneyUnit(long money) {
-        return money % 1000 > 0;
+        return money % MIN_MONEY > 0;
     }
 
 }

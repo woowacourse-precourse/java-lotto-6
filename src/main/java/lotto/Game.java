@@ -134,7 +134,8 @@ public class Game {
 
     private void printWinners() {
         for (Grade grade : Grade.values()) {
-            grade.print(winners.getOrDefault(grade, 0));
+            int numOfWinners = winners.getOrDefault(grade, 0);
+            System.out.println(grade.info() + " - " + numOfWinners + "개");
         }
     }
 

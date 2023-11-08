@@ -39,14 +39,13 @@ public enum Grade {
         return Optional.empty();
     }
 
-    public void print(int numOfWinners) {
+    public String info() {
         String output = count + "개 일치";
         if (bonus) {
             output += ", 보너스 볼 일치";
         }
         output += " (" + NumberFormat.getInstance().format(prize) + "원)";
-        output += " - " + numOfWinners + "개";
-        System.out.println(output);
+        return output;
     }
 
     public long calculatePrize(int numOfWinners) {

@@ -1,14 +1,22 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Validator;
 import lotto.constants.LottoConfig;
+import lotto.constants.StaticMessage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static lotto.constants.LottoConfig.*;
+import static lotto.domain.InputHandler.*;
 
 public class Lotto {
+    public static List<Integer> winningNumbers;
+    public static int bonusNumber;
     private final List<Integer> numbers;
 
     public Lotto () {
@@ -36,6 +44,15 @@ public class Lotto {
         return lottos;
     }
 
+    public static void setWinningNumbers() {
+        // TODO 1: 당첨 번호 입력 받기
+        winningNumbers = askWinningNumbers();
+
+        // TODO 2: 보너스 번호 입력 받기
+        bonusNumber = askNumber(StaticMessage.INPUT_BONUS_NUMBER);
+    }
+
+//    private static String[] convertInputTo
     private static List<Integer> generateNumbers () {
         return Randoms.pickUniqueNumbersInRange(
                 RANDOM_RANGE_MIN_NUMBER.getValue(),

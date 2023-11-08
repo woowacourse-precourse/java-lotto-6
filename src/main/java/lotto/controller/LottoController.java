@@ -40,11 +40,10 @@ public class LottoController {
         final Lottos userLottos = processLottoPurchaseTransaction();
         displayUserLottosInformation(userLottos);
 
-        Lotto winningLotto = processLottoWinningNumberPickTransaction();
-        LottoWinningBonusNumber lottoWinningBonusNumber = processLottoWinningBonusNumberTransaction(winningLotto);
+        final LottoWinningNumbers lottoWinningNumbers = processLottoWinningNumbersPickTransaction();
 
         final EnumMap<LottoWinningRanking, Integer> winningRankingCountMap =
-                processWinningRankingCalculationTransaction(userLottos, winningLotto, lottoWinningBonusNumber);
+                processWinningRankingCalculationTransaction(userLottos, lottoWinningNumbers);
         displayWinningRankingCount(winningRankingCountMap);
 
         final double profit = processUserProfitCalculationTransaction(userLottos, winningRankingCountMap);
@@ -91,6 +90,12 @@ public class LottoController {
         outputView.responseUserNumbersSet(userLottosDto);
     }
 
+    private LottoWinningNumbers processLottoWinningNumbersPickTransaction() {
+        Lotto winningLotto = processLottoWinningNumberPickTransaction();
+        LottoWinningBonusNumber bonusNumber = processLottoWinningBonusNumberPickTransaction(winningLotto);
+        return new LottoWinningNumbers(winningLotto, bonusNumber);
+    }
+
     private Lotto processLottoWinningNumberPickTransaction() {
         while (true) {
             try {
@@ -108,7 +113,7 @@ public class LottoController {
         return lottoWinningNumbersPickService.pickWinningNumbers(input);
     }
 
-    private LottoWinningBonusNumber processLottoWinningBonusNumberTransaction(Lotto lotto) {
+    private LottoWinningBonusNumber processLottoWinningBonusNumberPickTransaction(Lotto lotto) {
         while (true) {
             try {
                 outputView.requestBonusNumber();
@@ -127,8 +132,9 @@ public class LottoController {
         return lottoWinningNumbersPickService.pickBonusNumber(input);
     }
 
-    private EnumMap<LottoWinningRanking, Integer> processWinningRankingCalculationTransaction(final Lottos userLottos, Lotto winningLotto, LottoWinningBonusNumber lottoWinningBonusNumber) {
-        LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(winningLotto, lottoWinningBonusNumber);
+    private EnumMap<LottoWinningRanking, Integer> processWinningRankingCalculationTransaction
+            (final Lottos userLottos, LottoWinningNumbers lottoWinningNumbers) {
+
         return lottoWinningRankingService.countWinningRankings(userLottos, lottoWinningNumbers);
     }
 

@@ -13,8 +13,8 @@ public class AutoLottoGenerator implements LottoGenerator {
     public Lotto generate() {
         List<Integer> numbers = new ArrayList<>();
 
-        int number = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
         while (numbers.size() < LOTTO_SIZE) {
+            int number = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
             if (!numbers.contains(number)) {
                 numbers.add(number);
             }

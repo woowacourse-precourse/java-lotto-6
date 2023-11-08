@@ -5,10 +5,10 @@ import java.util.List;
 import lotto.constant.WinningValues;
 import lotto.model.LottoDatas;
 
-public class CalculationWinningCount {
+public class CalculationLogic {
     private final LottoDatas lottoDatas;
 
-    public CalculationWinningCount(final LottoDatas lottoDatas) {
+    public CalculationLogic(final LottoDatas lottoDatas) {
         this.lottoDatas = lottoDatas;
     }
 

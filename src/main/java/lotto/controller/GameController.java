@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.model.LottoDatas;
-import lotto.service.CalculationWinningCount;
+import lotto.service.CalculationLogic;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -10,12 +10,13 @@ public class GameController {
 
     private final LottoService lottoService;
     private final LottoDatas lottoDatas;
-    private final CalculationWinningCount calculationWinningCount;
+    private final CalculationLogic calculationLogic;
+
 
     public GameController() {
         this.lottoDatas = new LottoDatas();
         this.lottoService = new LottoService(lottoDatas);
-        this.calculationWinningCount = new CalculationWinningCount(lottoDatas);
+        this.calculationLogic = new CalculationLogic(lottoDatas);
     }
 
     public void run() {
@@ -70,7 +71,7 @@ public class GameController {
 
     private void printFinalPrize() {
         OutputView.printFinalOutput();
-        calculationWinningCount.calculateFinalPrize();
+        calculationLogic.calculateFinalPrize();
         OutputView.printFinalResults();
     }
 }

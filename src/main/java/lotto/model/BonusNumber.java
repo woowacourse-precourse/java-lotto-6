@@ -2,17 +2,17 @@ package lotto.model;
 
 public class BonusNumber {
 
-    private final int BonusNumber;
+    private final int bonusNumber;
 
-    public BonusNumber(int BonusNumber) {
-        this.BonusNumber = BonusNumber;
+    public BonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
 
     public int getBonusNumber() {
-        return BonusNumber;
+        return bonusNumber;
     }
 
-    public static BonusNumber inputBonusNumber(int BonusNumber) {
-        return new BonusNumber(BonusNumber);
+    public static BonusNumber inputBonusNumber(int bonusNumber) {
+        return new BonusNumber(bonusNumber);
     }
 }

@@ -3,8 +3,8 @@ package lotto.service;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseLottos;
-import lotto.domain.Winner;
-import lotto.exception.ErrorCode;
+import lotto.domain.WinningDetails;
+import lotto.domain.WinningCriteria;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,21 +16,12 @@ public class LottoService {
     private static final int START_NUMBER = 1;
     private static final int END_NUMBER = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;
-    private static final int THREE_MATCH = 3;
-    private static final int FOUR_MATCH = 4;
-    private static final int FIVE_MATCH = 5;
-    private static final int SIX_MATCH = 6;
-    private static final int FIRST_PLACE_PRIZE = 2000000000;
-    private static final int SECOND_PLACE_PRIZE = 30000000;
-    private static final int THIRD_PLACE_PRIZE = 1500000;
-    private static final int FOURTH_PLACE_PRIZE = 50000;
-    private static final int FIFTH_PLACE_PRIZE = 5000;
 
+    private WinningDetails winningDetails;
     private PurchaseLottos purchaseLottos;
     private Lotto winningLottoNumbers;
     private BonusNumber bonusNumber;
-    private Winner winners;
-    private float totalPrize = 0;
+
 
     public void repeatPurchase(int Quantity) {
 
@@ -59,110 +50,51 @@ public class LottoService {
         this.bonusNumber = new BonusNumber(bonusNumber, winningLottoNumbers.getLotto());
     }
 
-//    public void setBonusNumber(int bonusNumber) {
-//
-//        bonusNumberDuplicateCheck(bonusNumber);
-//
-//        this.bonusNumber = bonusNumber;
-//    }
+    public WinningDetails calculateWinningDetails() {
 
-//    private void bonusNumberDuplicateCheck(int bonusNumber) {
-//        if (winLotto.getLotto().contains(bonusNumber)) {
-//            throw new IllegalArgumentException(ErrorCode.DUPLICATE_NUMBER.getMessage());
-//        }
-//    }
+        winningDetails = new WinningDetails();
 
-//    public void winStatistics() {
-//
-//        winners = new Winner();
-//
-//        for (Lotto lotto : purchaseLotto) {
-//            int win = 0;
-//            boolean bonus = false;
-//            for (int number : lotto.getLotto()) {
-//                if (winLotto.getLotto().contains(number)) {
-//                    win++;
-//                    continue;
-//                }
-//                if (number == bonusNumber) {
-//                    bonus = true;
-//                }
-//            }
-//
-//            winFirstPlace(win);
-//            winSecondOrThirdPlace(win, bonus);
-//            winFourthPlace(win);
-//            winFifthPlace(win);
-//        }
-//
-//    }
-
-    private void winFirstPlace(int win) {
-        if (win == SIX_MATCH) {
-            winners.increase1stPlace();
+        for (Lotto lotto : purchaseLottos.getPurchaseLottos()) {
+            calculateWinningLotto(lotto);
         }
+
+        return winningDetails;
     }
 
-    private void winSecondOrThirdPlace(int win, boolean bonus) {
-        if (win == FIVE_MATCH) {
-            if (bonus) {
-                winners.increase2ndPlace();
-                return;
+    private void calculateWinningLotto(Lotto lotto) {
+
+        int winningNumberCount = calculateWinningNumberCount(lotto);
+        boolean bonusNumber = calculateBonusNumber(lotto);
+
+        calculateWinningCount(winningNumberCount, bonusNumber);
+    }
+
+    private int calculateWinningNumberCount(Lotto lotto) {
+
+        int winningNumberCount = 0;
+
+        for (int number : lotto.getLotto()) {
+            if(winningLottoNumbers.getLotto().contains(number)) {
+                winningNumberCount++;
             }
+        }
 
-            winners.increase3rdPlace();
+        return winningNumberCount;
+    }
+
+    private boolean calculateBonusNumber(Lotto lotto) {
+        return lotto.getLotto().contains(bonusNumber);
+    }
+
+    private void calculateWinningCount(int winningNumberCount, boolean bonusNumber) {
+
+        for(WinningCriteria winningCriteria : WinningCriteria.values()){
+
+            if(winningNumberCount != winningCriteria.getNumberMatch()) continue;
+            if(bonusNumber != winningCriteria.getBonusNumberMatch()) continue;
+
+            winningDetails.increaseCount(winningCriteria.getRank());
         }
     }
 
-    private void winFourthPlace(int win) {
-        if (win == FOUR_MATCH) {
-            winners.increase4thPlace();
-        }
-    }
-
-    private void winFifthPlace(int win) {
-        if (win == THREE_MATCH) {
-            winners.increase5thPlace();
-        }
-    }
-
-    public List<Integer> getWinStatistics() {
-        List<Integer> placeCounts = new ArrayList<>();
-        placeCounts.add(getFirstPlaceCount());
-        placeCounts.add(getSecondPlaceCount());
-        placeCounts.add(getThirdPlaceCount());
-        placeCounts.add(getFourthPlaceCount());
-        placeCounts.add(getFifthPlaceCount());
-
-        return placeCounts;
-    }
-
-    private int getFirstPlaceCount() {
-        totalPrize += winners.get1stPlace() * FIRST_PLACE_PRIZE;
-        return winners.get1stPlace();
-    }
-
-    private int getSecondPlaceCount() {
-        totalPrize += winners.get2ndPlace() * SECOND_PLACE_PRIZE;
-        return winners.get2ndPlace();
-    }
-
-    private int getThirdPlaceCount() {
-        totalPrize += winners.get3rdPlace() * THIRD_PLACE_PRIZE;
-        return winners.get3rdPlace();
-    }
-
-    private int getFourthPlaceCount() {
-        totalPrize += winners.get4thPlace() * FOURTH_PLACE_PRIZE;
-        return winners.get4thPlace();
-    }
-
-    private int getFifthPlaceCount() {
-        totalPrize += winners.get5thPlace() * FIFTH_PLACE_PRIZE;
-        return winners.get5thPlace();
-    }
-
-    public float getRevenue(int purchasePrice) {
-        return (totalPrize / purchasePrice) * 100;
-    }
 }

@@ -33,7 +33,7 @@ public class Lotto {
 
         List<Integer> compNumbers = new ArrayList<Integer>();
         compNumbers.addAll(numbers);
-        compNumbers.remove(bonusNum);
+        compNumbers.remove(Integer.valueOf(bonusNum));
 
         return NUM_OF_LOTTO_NUMBERS - compNumbers.size();
     }

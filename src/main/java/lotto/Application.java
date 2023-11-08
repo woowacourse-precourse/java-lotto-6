@@ -161,14 +161,15 @@ public class Application {
     }
 
     public static void printRate(int lottoCount, int[] wins) {
-        int payed = lottoCount * PRICE_OF_LOTTO;
+        double payed = lottoCount * PRICE_OF_LOTTO;
 
-        int totalRewards = 0;
+        double totalRewards = 0;
         for (int i = 0; i < NUM_OF_RANKS; i++) {
             totalRewards = totalRewards + (wins[i] * Rewards.rewards[i]);
         }
 
-        System.out.printf("총 수익률은 %2f입니다.\n", totalRewards / payed);
+        String result = String.format("총 수익률은 %.1f%%입니다.", (totalRewards / payed) * 100);
+        System.out.println(result);
     }
 
     public static void lottery(int lottoCount, Lotto[] lottos, Winner winner) {

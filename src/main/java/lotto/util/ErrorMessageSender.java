@@ -12,5 +12,4 @@ public class ErrorMessageSender {
             return Optional.of(e.getMessage()); // 에러 메시지를 담은 Optional 반환
         }
     }
-
 }

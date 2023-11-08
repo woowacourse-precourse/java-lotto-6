@@ -53,15 +53,13 @@ public class LottoService {
         OutputView.printHorizontalLine();
 
         for (Prize prize : Prize.values()) {
-            String formattedPrice = String.format("%,d", prize.getPrice());
-            System.out.printf(prize.getMessage(),formattedPrice,prize.getCount());
+            OutputView.printTotalPrizeResult(prize);
         }
     }
 
     public void calculateProfit() {
         int ticketCount = payment.getTicket();
         Profit profit = new Profit(ticketCount);
-        String formattedProfitRate = FormatUtils.DecimalFormatter(profit);
-        OutputView.printTotalProfit(formattedProfitRate);
+        OutputView.printTotalProfit(profit.getProfitRate());
     }
 }

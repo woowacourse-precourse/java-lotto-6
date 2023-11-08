@@ -1,11 +1,14 @@
 package lotto.model;
 
 import lotto.constant.ModelConstant;
+import lotto.utils.FormatUtils;
 
 public class Profit {
-    private final double profitRate;
+    private final String profitRate;
     public Profit(int ticketCount) {
-        this.profitRate =  Double.parseDouble(String.format("%.1f",calculateTotalProfit(ticketCount)));
+        double rate = calculateTotalProfit(ticketCount);
+
+        this.profitRate = FormatUtils.parseFormattedDoubleValue(rate);
     }
 
     public double calculateTotalProfit(int ticketCount) {
@@ -20,7 +23,7 @@ public class Profit {
         return profitSum / ticketPrice * ModelConstant.RATE_PERCENTAGE;
     }
 
-    public double getProfitRate() {
+    public String getProfitRate() {
         return profitRate;
     }
 }

@@ -1,5 +1,8 @@
 package lotto.view;
 
+import lotto.model.Prize;
+import lotto.utils.FormatUtils;
+
 import java.util.List;
 
 public class OutputView {
@@ -44,5 +47,10 @@ public class OutputView {
 
     public static void printHorizontalLine() {
         System.out.println(HORIZONTAL_LINE);
+    }
+
+    public static void printTotalPrizeResult(Prize prize) {
+        String formattedPrice = FormatUtils.formatPriceWithCommas(prize.getPrice());
+        System.out.printf(prize.getMessage(),formattedPrice,prize.getCount());
     }
 }

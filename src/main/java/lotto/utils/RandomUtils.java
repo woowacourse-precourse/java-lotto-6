@@ -1,13 +1,13 @@
 package lotto.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import static lotto.constant.UtilsConstant.*;
+import lotto.constant.UtilsConstant;
 
 import java.util.List;
 
 public class RandomUtils {
 
     public static List<Integer> makeRandomNumber() {
-        return Randoms.pickUniqueNumbersInRange(RANDOM_START_NUMBER,RANDOM_END_NUMBER,RANDOM_COUNT_NUMBER);
+        return Randoms.pickUniqueNumbersInRange(UtilsConstant.RANDOM_START_NUMBER,UtilsConstant.RANDOM_END_NUMBER,UtilsConstant.RANDOM_COUNT_NUMBER);
     }
 }

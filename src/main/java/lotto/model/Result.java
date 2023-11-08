@@ -31,10 +31,7 @@ public class Result {
     }
 
     private boolean checkBonusNumber(List<Integer> winningLotto, int bonus) {
-        if(winningLotto.contains(bonus)) {
-            return true;
-        }
-        return false;
+        return winningLotto.contains(bonus);
     }
 
     public List<Integer> getLottoMatch() {

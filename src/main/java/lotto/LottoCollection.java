@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static constants.LottoConstants.*;
+
 public class LottoCollection {
     public List<Lotto> lottoCollection;
     private final int numberOfLotto;
@@ -29,7 +31,7 @@ public class LottoCollection {
     }
 
     public void printLottoNumbers() {
-        System.out.println(numberOfLotto + "개를 구매했습니다.");
+        System.out.println(numberOfLotto + PURCHASE_MESSAGE);
         for (Lotto lotto : lottoCollection) {
             lotto.printLottoNumbers();
         }
@@ -63,18 +65,18 @@ public class LottoCollection {
     }
 
     public void printWinningStatistics() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(WINNING_STATISTICS_MESSAGE);
+        System.out.println(DASHES);
         for (int i = 5; i > 0; i--){
             LottoRank rank = getLottoRankByNumber(i);
             int count = rankingCount.getOrDefault(i, 0);
-            System.out.println(rank.getRankMessage() + " - " + count + "개");
+            System.out.println(rank.getRankMessage() + DASH + count + COUNT_MESSAGE);
         }
     }
 
     public void printProfitRate() {
         double profitRate = getProfitRate();
-        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
+        System.out.printf(TOTAL_PROFIT_RATE_MESSAGE, profitRate);
     }
 
     private double getProfitRate() {

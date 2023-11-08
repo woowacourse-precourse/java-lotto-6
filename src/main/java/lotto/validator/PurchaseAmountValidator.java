@@ -20,12 +20,16 @@ public class PurchaseAmountValidator extends Validator {
     }
 
     // 구매금액이 1000원 이상인지 확인하는 메서드
-    public static boolean isOverMinPurchaseAmount(Integer purchaseAmount) {
-        return purchaseAmount >= LottoNumConstant.LOTTO_AMOUNT_UNIT.getValue();
+    public static void isOverMinPurchaseAmount(Integer purchaseAmount) {
+        if(purchaseAmount < LottoNumConstant.LOTTO_AMOUNT_UNIT.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_ERROR.getMessage());
+        };
     }
 
     // 금액이 1000원 단위인지 확인하는 메서드 -> ClientInform에서 체크
-    public static boolean isThousandWonAmount(Integer purchaseAmount) {
-        return purchaseAmount % LottoNumConstant.LOTTO_AMOUNT_UNIT.getValue() == LottoNumConstant.ZERO.getValue();
+    public static void isThousandWonAmount(Integer purchaseAmount) {
+        if(purchaseAmount % LottoNumConstant.LOTTO_AMOUNT_UNIT.getValue() != LottoNumConstant.ZERO.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_UNIT_ERROR.getMessage());
+        }
     }
 }

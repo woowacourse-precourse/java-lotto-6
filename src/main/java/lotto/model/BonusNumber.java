@@ -1,9 +1,12 @@
 package lotto.model;
 
+import lotto.validator.BonusNumberValidator;
+
 public class BonusNumber {
     private final int bonusNumber;
 
     private BonusNumber(int bonusNumber) {
+        BonusNumberValidator.validateBonusNumberBound(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 

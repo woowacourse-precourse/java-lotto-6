@@ -8,12 +8,8 @@ public class PurchaseAmount {
     private final int purchaseAmount;
 
     private PurchaseAmount(int purchaseAmount) {
-        if(!PurchaseAmountValidator.isOverMinPurchaseAmount(purchaseAmount)) {
-            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_ERROR.getMessage());
-        }
-        if(!PurchaseAmountValidator.isThousandWonAmount(purchaseAmount)) {
-            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_UNIT_ERROR.getMessage());
-        }
+        PurchaseAmountValidator.isOverMinPurchaseAmount(purchaseAmount);
+        PurchaseAmountValidator.isThousandWonAmount(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
     }
 

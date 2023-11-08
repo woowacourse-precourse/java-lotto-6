@@ -14,7 +14,6 @@ public class BonusNumberValidator extends Validator {
     public void validate(String bonusNumber) {
         validateEmptyInput(bonusNumber);
         validateBonusNumber(bonusNumber);
-        validateBonusNumberBound(Integer.parseInt(bonusNumber));
     }
 
     private void validateBonusNumber(String bonusNumber) {
@@ -28,7 +27,7 @@ public class BonusNumberValidator extends Validator {
         return matcher.matches();
     }
 
-    private void validateBonusNumberBound(int bonusNumber) {
+    public static void validateBonusNumberBound(int bonusNumber) {
         if(bonusNumber < LottoNumConstant.MIN_LOTTO_NUMBER_BOUND.getValue() || bonusNumber > LottoNumConstant.MAX_LOTTO_NUMBER_BOUND.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_BOUND_ERROR.getMessage());
         }

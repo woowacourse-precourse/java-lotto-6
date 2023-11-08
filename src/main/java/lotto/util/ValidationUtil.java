@@ -8,6 +8,12 @@ import lotto.enums.ConstVariable;
 
 public class ValidationUtil {
 
+    public static void isValidWinNumbers(List<Integer> numbers) {
+        isValidNumber(numbers);
+        isValidCount(numbers);
+        hasDistinctNumbers(numbers);
+    }
+
     public static void isValidNumber(List<Integer> numbers) {
         Optional<Integer> result = numbers.stream()
                 .filter(number -> number < ConstVariable.MIN_NUMBER.getValue()

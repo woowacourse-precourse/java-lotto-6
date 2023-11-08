@@ -2,8 +2,8 @@ package lotto.view;
 
 import java.util.EnumMap;
 import java.util.List;
-import lotto.domain.Lotto;
-import lotto.domain.Rank;
+import lotto.model.domain.Lotto;
+import lotto.model.domain.Rank;
 
 public class OutputView {
 

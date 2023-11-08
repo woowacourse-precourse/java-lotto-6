@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model.domain;
 
 import static lotto.exception.ExceptionMessage.DUPLICATION_EXCEPTION;
 

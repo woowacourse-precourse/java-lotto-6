@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model.domain;
 
 public enum Rank {
     FIRST_RANK(6, 2000000000),

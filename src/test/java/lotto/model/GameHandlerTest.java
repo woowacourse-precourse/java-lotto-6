@@ -1,14 +1,18 @@
-package lotto.domain;
+package lotto.model;
 
-import static lotto.domain.Rank.FIFTH_RANK;
-import static lotto.domain.Rank.FIRST_RANK;
-import static lotto.domain.Rank.FOURTH_RANK;
-import static lotto.domain.Rank.SECOND_RANK;
-import static lotto.domain.Rank.THIRD_RANK;
+import static lotto.model.domain.Rank.FIFTH_RANK;
+import static lotto.model.domain.Rank.FIRST_RANK;
+import static lotto.model.domain.Rank.FOURTH_RANK;
+import static lotto.model.domain.Rank.SECOND_RANK;
+import static lotto.model.domain.Rank.THIRD_RANK;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
+import lotto.model.domain.Lotto;
+import lotto.model.domain.Rank;
+import lotto.model.domain.WinningTicket;
+import lotto.model.handler.GameHandler;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

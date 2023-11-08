@@ -2,10 +2,10 @@ package lotto.controller;
 
 import java.util.EnumMap;
 import java.util.List;
-import lotto.domain.Rank;
-import lotto.domain.GameHandler;
-import lotto.domain.Player;
-import lotto.domain.WinningTicket;
+import lotto.model.domain.Rank;
+import lotto.model.handler.GameHandler;
+import lotto.model.domain.Player;
+import lotto.model.domain.WinningTicket;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

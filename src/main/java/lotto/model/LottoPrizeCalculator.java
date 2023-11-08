@@ -73,7 +73,7 @@ public class LottoPrizeCalculator {
         return THIRD_PRIZE;
     }
 
-    private long multiplyNumbers(long prize, long count) {
+    private long multiplyNumbers(final long prize, final long count) {
         return prize * count;
     }
 }

@@ -18,7 +18,7 @@ public class Lotto {
         return numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    public void validate(List<Integer> numbers) {
         if (isOutSize(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_SIZE.getMessage());
         }
@@ -30,7 +30,6 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     private boolean isOutSize(List<Integer> numbers) {
         return numbers.size() != Constant.SIZE;
     }

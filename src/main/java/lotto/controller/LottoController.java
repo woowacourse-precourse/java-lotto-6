@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.service.LottoService;
@@ -21,10 +22,15 @@ public class LottoController {
     public void play() {
         outputView.printPurchaseAmount();
         int purchaseAmount = Integer.parseInt(inputView.readPurchaseAmount());
-        
+
         List<Lotto> lottos = lottoService.createLottos(purchaseAmount);
         int count = lottos.size();
         outputView.printLottoCount(count);
         lottos.forEach((lotto -> outputView.printLottoNumbers(lotto.getNumbers())));
+        outputView.printLotteryNumbers();
+        List<Integer> lotteryNumbers = Arrays.stream(inputView.readLottryNumbers().split(","))
+                .mapToInt(Integer::parseInt)
+                .boxed()
+                .toList();
     }
 }

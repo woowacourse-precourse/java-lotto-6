@@ -17,7 +17,7 @@ public class Validator {
         validateInputRange(input);
     }
 
-    public static void validateInputType(String input) {
+    private static void validateInputType(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -25,7 +25,7 @@ public class Validator {
         }
     }
 
-    public static void validateInputRange(String input) {
+    private static void validateInputRange(String input) {
         if (Integer.parseInt(input) < 0) {
             throw new IllegalArgumentException(MONEY_MUST_NOT_NEGATIVE);
         }

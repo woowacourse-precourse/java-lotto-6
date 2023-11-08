@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoTickets {
-    private final List<LottoNumbers> lottoTickets;
+    private final List<Lotto> lottoTickets;
 
-    public LottoTickets(List<LottoNumbers> lottoTickets) {
+    public LottoTickets(List<Lotto> lottoTickets) {
         this.lottoTickets = lottoTickets;
     }
 
     public List<LottoResult> resultOfLottoTickets(WinningNumbers winningNumbers){
         List<LottoResult> lottoResults = new ArrayList<>();
-        for (LottoNumbers lottoNumbers : this.lottoTickets) {
-            int matchCount = lottoNumbers.countMatchNumber(winningNumbers.getWinningNumbers());
+        for (Lotto lotto : this.lottoTickets) {
+            int matchCount = lotto.countMatchNumber(winningNumbers.getWinningNumbers());
             int bonusMatchCount = 0;
-            if(lottoNumbers.isContainNumber(winningNumbers.getBonusNumber())){
+            if(lotto.isContainNumber(winningNumbers.getBonusNumber())){
                 bonusMatchCount++;
             }
             lottoResults.add(new LottoResult(matchCount, bonusMatchCount));
@@ -23,7 +23,7 @@ public class LottoTickets {
         return lottoResults;
     }
 
-    public List<LottoNumbers> getLottoTickets() {
+    public List<Lotto> getLottoTickets() {
         return lottoTickets;
     }
 }

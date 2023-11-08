@@ -1,12 +1,10 @@
 package lotto.view;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 import lotto.global.util.StringConverter.IntegerListToStringConverter;
-import lotto.model.LottoNumbers;
+import lotto.model.Lotto;
 import lotto.model.LottoTickets;
 import lotto.model.WinningStatistic;
 import org.assertj.core.api.Assertions;
@@ -55,8 +53,8 @@ class OutputViewTest {
     @Test
     @DisplayName("구매한 로또 티켓 정보 출력")
     void printPurchaseLottoTicketsInfo() {
-        LottoTickets lottoTickets = new LottoTickets(Arrays.asList(new LottoNumbers(Arrays.asList(1, 2, 3, 4, 5, 6)),
-                new LottoNumbers(Arrays.asList(1, 7, 8, 9, 10, 11))));
+        LottoTickets lottoTickets = new LottoTickets(Arrays.asList(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
+                new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11))));
         outputView.printPurchaseLottoTicketsInfo(lottoTickets);
         Assertions.assertThat(getOutput()).contains("[1,2,3,4,5,6]");
     }

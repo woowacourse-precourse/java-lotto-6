@@ -4,20 +4,21 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.global.ErrorCode;
 import lotto.model.exception.LottoNumbersException;
 
-public class LottoNumbers {
+public class Lotto {
 
-    private final List<Integer> lottoNumbers;
+    private final List<Integer> numbers;
 
-    public LottoNumbers(List<Integer> lottoNumbers) {
+    public Lotto(List<Integer> lottoNumbers) {
         validate(lottoNumbers);
-        Collections.sort(lottoNumbers);
-        this.lottoNumbers = lottoNumbers;
+        List<Integer> lotto = lottoNumbers.stream().sorted().collect(Collectors.toList());
+        this.numbers = lotto;
     }
 
-    public int countMatchNumber(LottoNumbers winningNumbers) {
+    public int countMatchNumber(Lotto winningNumbers) {
         int matchCount = 0;
         for (int winningNumber : winningNumbers.getLottoNumbers()) {
             if(isContainNumber(winningNumber)){
@@ -28,7 +29,7 @@ public class LottoNumbers {
     }
 
     public boolean isContainNumber(int number) {
-        for (int lottoNumber : lottoNumbers) {
+        for (int lottoNumber : numbers) {
             if (lottoNumber == number) {
                 return true;
             }
@@ -63,6 +64,6 @@ public class LottoNumbers {
     }
 
     public List<Integer> getLottoNumbers() {
-        return lottoNumbers;
+        return numbers;
     }
 }

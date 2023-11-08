@@ -5,16 +5,16 @@ import lotto.global.constant.LottoNumber;
 import lotto.model.exception.LottoNumbersException;
 
 public class WinningNumbers {
-    private final LottoNumbers winningNumbers;
+    private final Lotto winningNumbers;
     private final int bonusNumber;
 
-    public WinningNumbers(LottoNumbers winningNumbers, int bonusNumber) {
+    public WinningNumbers(Lotto winningNumbers, int bonusNumber) {
         validateBonusNumber(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateBonusNumber(LottoNumbers winningNumbers, int bonusNumber){
+    private void validateBonusNumber(Lotto winningNumbers, int bonusNumber){
         checkBonusNumberWithinTheRange(bonusNumber);
         checkDuplicateBonusNumber(winningNumbers, bonusNumber);
 
@@ -26,13 +26,13 @@ public class WinningNumbers {
         }
     }
 
-    private void checkDuplicateBonusNumber(LottoNumbers winningNumbers, int bonusNumber) {
+    private void checkDuplicateBonusNumber(Lotto winningNumbers, int bonusNumber) {
         if (winningNumbers.isContainNumber(bonusNumber)) {
             throw new LottoNumbersException(ErrorCode.LOTTO_NUMBER_DUPLICATED);
         }
     }
 
-    public LottoNumbers getWinningNumbers() {
+    public Lotto getWinningNumbers() {
         return winningNumbers;
     }
 

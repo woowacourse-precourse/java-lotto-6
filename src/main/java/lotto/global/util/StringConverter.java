@@ -36,7 +36,7 @@ public class StringConverter {
         @Override
         public String convert(List<Integer> from) {
             List<String> strings = from.stream().map(integer -> String.valueOf(integer)).collect(Collectors.toList());
-            return String.join(",", strings);
+            return String.join(", ", strings);
         }
     }
 

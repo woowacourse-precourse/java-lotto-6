@@ -40,6 +40,16 @@ public class Validate {
         return lottoNumbers;
     }
 
+    public static void isDuplicateLotto(List<Integer> numbers){
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개 이상 생성될 수 없습니다.");
+        }
+        long distinctCount = numbers.stream().distinct().count();
+        if (distinctCount != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
+    }
+
     public static void isDuplicateBonus(LottoChecker checker, int bonus){
        Boolean isDuplicate = checker.isDuplicateBonus(bonus);
        if(isDuplicate){

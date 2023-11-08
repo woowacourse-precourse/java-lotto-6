@@ -2,7 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.configuration.ScoreBoard;
-import lotto.configuration.WinningLevel;
+import lotto.configuration.Rank;
 import lotto.util.Utils;
 
 import java.util.ArrayList;
@@ -61,26 +61,26 @@ public class LottoService {
         HashMap<String, Long> scoreBoard = generateResultScoreBoard();
 
         for (int i = 0; i < myLotto.size(); i++) {
-            WinningLevel winningLevel = rankLottoResult(countMatchingWinningNumbers(winningLotto, myLotto.get(i)), countMatchingBonusNumbers(winningLotto, bonusNumber));
-            long value = scoreBoard.get(winningLevel.getRank()) + winningLevel.getReward();
-            scoreBoard.put(winningLevel.getRank(), value);
+            Rank rank = rankLottoResult(countMatchingWinningNumbers(winningLotto, myLotto.get(i)), countMatchingBonusNumbers(winningLotto, bonusNumber));
+            long value = scoreBoard.get(rank.getRank()) + rank.getReward();
+            scoreBoard.put(rank.getRank(), value);
         }
 
         return scoreBoard;
 
     }
 
-    public WinningLevel rankLottoResult(int matchingWinningNumber, boolean matchingBonusNumber) {
+    public Rank rankLottoResult(int matchingWinningNumber, boolean matchingBonusNumber) {
         int correctCount = matchingWinningNumber;
         boolean correctBonusNumber = matchingBonusNumber;
 
-        WinningLevel winningLevel = WinningLevel.values()[correctCount];
+        Rank rank = Rank.values()[correctCount];
 
-        if (winningLevel == WinningLevel.THIRD && correctBonusNumber) {
-            return WinningLevel.SECOND;
+        if (rank == Rank.THIRD && correctBonusNumber) {
+            return Rank.SECOND;
         }
 
-        return winningLevel;
+        return rank;
     }
 
 }

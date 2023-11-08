@@ -1,7 +1,7 @@
 package lotto.service;
 
 import lotto.configuration.ScoreBoard;
-import lotto.configuration.WinningLevel;
+import lotto.configuration.Rank;
 import lotto.domain.Lotto;
 import lotto.util.Utils;
 import org.assertj.core.api.Assertions;
@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoServiceTest {
 
@@ -171,23 +169,23 @@ class LottoServiceTest {
         LottoService lottoService = new LottoService();
 
         //when
-        WinningLevel result1 = lottoService.rankLottoResult(matchingWinningNumber1, consistencyBonusNumber);
-        WinningLevel result2 = lottoService.rankLottoResult(matchingWinningNumber1, inconsistencyBonusNumber);
-        WinningLevel result3 = lottoService.rankLottoResult(matchingWinningNumber2, consistencyBonusNumber);
-        WinningLevel result4 = lottoService.rankLottoResult(matchingWinningNumber2, inconsistencyBonusNumber);
-        WinningLevel result5 = lottoService.rankLottoResult(matchingWinningNumber3, inconsistencyBonusNumber);
-        WinningLevel result6 = lottoService.rankLottoResult(matchingWinningNumber3, consistencyBonusNumber);
-        WinningLevel result7 = lottoService.rankLottoResult(matchingWinningNumber4, inconsistencyBonusNumber);
-        WinningLevel result8 = lottoService.rankLottoResult(matchingWinningNumber4, consistencyBonusNumber);
+        Rank result1 = lottoService.rankLottoResult(matchingWinningNumber1, consistencyBonusNumber);
+        Rank result2 = lottoService.rankLottoResult(matchingWinningNumber1, inconsistencyBonusNumber);
+        Rank result3 = lottoService.rankLottoResult(matchingWinningNumber2, consistencyBonusNumber);
+        Rank result4 = lottoService.rankLottoResult(matchingWinningNumber2, inconsistencyBonusNumber);
+        Rank result5 = lottoService.rankLottoResult(matchingWinningNumber3, inconsistencyBonusNumber);
+        Rank result6 = lottoService.rankLottoResult(matchingWinningNumber3, consistencyBonusNumber);
+        Rank result7 = lottoService.rankLottoResult(matchingWinningNumber4, inconsistencyBonusNumber);
+        Rank result8 = lottoService.rankLottoResult(matchingWinningNumber4, consistencyBonusNumber);
 
         //then
-        Assertions.assertThat(result1).isEqualTo(WinningLevel.FIRST);
-        Assertions.assertThat(result2).isEqualTo(WinningLevel.FIRST);
-        Assertions.assertThat(result3).isEqualTo(WinningLevel.SECOND);
-        Assertions.assertThat(result4).isEqualTo(WinningLevel.SECOND);
-        Assertions.assertThat(result5).isEqualTo(WinningLevel.FOURTH);
-        Assertions.assertThat(result6).isEqualTo(WinningLevel.FOURTH);
-        Assertions.assertThat(result7).isEqualTo(WinningLevel.FIFTH);
-        Assertions.assertThat(result7).isEqualTo(WinningLevel.FIFTH);
+        Assertions.assertThat(result1).isEqualTo(Rank.FIRST);
+        Assertions.assertThat(result2).isEqualTo(Rank.FIRST);
+        Assertions.assertThat(result3).isEqualTo(Rank.SECOND);
+        Assertions.assertThat(result4).isEqualTo(Rank.SECOND);
+        Assertions.assertThat(result5).isEqualTo(Rank.FOURTH);
+        Assertions.assertThat(result6).isEqualTo(Rank.FOURTH);
+        Assertions.assertThat(result7).isEqualTo(Rank.FIFTH);
+        Assertions.assertThat(result7).isEqualTo(Rank.FIFTH);
     }
 }

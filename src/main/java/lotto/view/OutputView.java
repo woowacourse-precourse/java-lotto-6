@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.configuration.WinningLevel;
+import lotto.configuration.Rank;
 
 import java.util.HashMap;
 import java.util.StringJoiner;
@@ -24,11 +24,11 @@ public class OutputView {
         System.out.println();
         System.out.println(STATISTICS);
         System.out.println(DASH.repeat(3));
-        System.out.println(WinningLevel.FIFTH.getResult() + " - " + scoreBoard.get("5th") / WinningLevel.FIFTH.getReward() + "개");
-        System.out.println(WinningLevel.FOURTH.getResult() + " - " + scoreBoard.get("4th") / WinningLevel.FOURTH.getReward() + "개");
-        System.out.println(WinningLevel.THIRD.getResult() + " - " + scoreBoard.get("3rd") / WinningLevel.THIRD.getReward() + "개");
-        System.out.println(WinningLevel.SECOND.getResult() + " - " + scoreBoard.get("2nd") / WinningLevel.SECOND.getReward() + "개");
-        System.out.println(WinningLevel.FIRST.getResult() + " - " + scoreBoard.get("1st") / WinningLevel.FIRST.getReward() + "개");
+        System.out.println(Rank.FIFTH.getResult() + " - " + scoreBoard.get("5th") / Rank.FIFTH.getReward() + "개");
+        System.out.println(Rank.FOURTH.getResult() + " - " + scoreBoard.get("4th") / Rank.FOURTH.getReward() + "개");
+        System.out.println(Rank.THIRD.getResult() + " - " + scoreBoard.get("3rd") / Rank.THIRD.getReward() + "개");
+        System.out.println(Rank.SECOND.getResult() + " - " + scoreBoard.get("2nd") / Rank.SECOND.getReward() + "개");
+        System.out.println(Rank.FIRST.getResult() + " - " + scoreBoard.get("1st") / Rank.FIRST.getReward() + "개");
     }
 
     public static void outputViewTotalReturn(String totalReturn) {

@@ -1,6 +1,6 @@
 package lotto.configuration;
 
-public enum WinningLevel {
+public enum Rank {
 
     EIGHTH(0, 0L, "0개 일치 (0원)", "8th"),
     SEVENTH(0, 0L, "0개 일치 (0원)", "7th"),
@@ -16,7 +16,7 @@ public enum WinningLevel {
     private final String result;
     private final String rank;
 
-    WinningLevel(int count, long reward, String result, String rank) {
+    Rank(int count, long reward, String result, String rank) {
         this.count = count;
         this.reward = reward;
         this.result = result;

@@ -17,6 +17,7 @@ import lotto.output.Output;
 import lotto.utils.IntegerParser;
 
 public class GameController {
+    private static final String COMMA = ",";
 
     public void play(final NumbersGeneratorStrategy numbersGeneratorStrategy) {
         Money money = getMoney();
@@ -53,7 +54,7 @@ public class GameController {
         Output.printLottoNumbersInputMessage();
         try {
             String readLine = Input.getLine();
-            List<Integer> lottoNumbers = Arrays.stream(readLine.split(","))
+            List<Integer> lottoNumbers = Arrays.stream(readLine.split(COMMA))
                     .map(IntegerParser::stringToInteger)
                     .toList();
             return new Lotto(lottoNumbers);

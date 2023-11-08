@@ -5,15 +5,14 @@ import java.util.*;
 public class LottoGame {
     private static final InputResolver inputResolver = new InputResolver();
     private static final LottoGenerator lottoGenerator = new LottoGenerator();
+    private static List<Lotto> lottoList = new ArrayList<>();
     private static LottoWinningNumber lottoWinningNumber;
     private static Map<LottoWinningSpec, Integer> winningResult = new HashMap<>();
     public static void play() {
-        lottoWinningNumber = new LottoWinningNumber(
-                lottoGenerator.buyLotto(inputResolver.inputLottoBuy()),
-                inputResolver.inputWinningNumber(),
-                inputResolver.inputBonusNumber());
-        checkLottoResult(lottoWinningNumber.getLottoList());
-        System.out.println(winningResult);
+        lottoList = lottoGenerator.buyLotto(inputResolver.inputLottoBuy());
+        List<Integer> winningNumber = inputResolver.inputWinningNumber();
+        lottoWinningNumber = new LottoWinningNumber(winningNumber, inputResolver.inputBonusNumber(winningNumber));
+        checkLottoResult(lottoList);
     }
 
     private static void checkLottoResult(List<Lotto> lottoList) {

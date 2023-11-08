@@ -18,34 +18,31 @@ public class InputValidator {
 
     public List<Integer> validateAndReturnWinningNumber(String numberInput) throws IllegalArgumentException {
         List<Integer> winningNumbers = new ArrayList<>(parseWinningNumber(numberInput));
-        if (checkDuplicateNumber(winningNumbers) && checkWinNumberSize(winningNumbers) && validateCorrectRangeWinNumbers(winningNumbers)) {
-            Collections.sort(winningNumbers);
-            return winningNumbers;
-        }
-        return null;
+        checkDuplicateNumber(winningNumbers);
+        checkWinNumberSize(winningNumbers);
+        validateCorrectRangeWinNumbers(winningNumbers);
+        Collections.sort(winningNumbers);
+        return winningNumbers;
     }
-    private boolean checkDuplicateNumber(List<Integer> winNumbers) {
+    private void checkDuplicateNumber(List<Integer> winNumbers) {
         if (winNumbers.size() != new HashSet<>(winNumbers).size()) {
             throw new IllegalArgumentException("DUPLICATE NUMBER EXIST!");
         }
-        return true;
     }
-    private boolean checkWinNumberSize(List<Integer> winNumbers) {
+    private void checkWinNumberSize(List<Integer> winNumbers) {
         if (winNumbers.size() != 6) {
             throw new IllegalArgumentException("OUT OF WINNING NUMBER SIZE!");
         }
-        return true;
     }
-    private boolean validateCorrectRangeWinNumbers(List<Integer> winNumbers) {
+    private void validateCorrectRangeWinNumbers(List<Integer> winNumbers) {
         for (Integer number: winNumbers) {
-            if (!isCorrectNumber(number)) {
-                throw new IllegalArgumentException("OUT OF RANGE NUMBER!");
-            }
+            validateCorrectNumber(number);
         }
-        return true;
     }
-    private boolean isCorrectNumber(int number) {
-        return number >= 1 && number <= 45;
+    private void validateCorrectNumber(int number) {
+        if (!(number >= 1 && number <= 45)) {
+            throw new IllegalArgumentException("OUT OF RANGE NUMBER!");
+        }
     }
 
     private List<Integer> parseWinningNumber(String numberInput) {
@@ -53,5 +50,18 @@ public class InputValidator {
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    public int validateAndReturnBonusNumber(String s, List<Integer> winningNumbers) throws IllegalArgumentException {
+        int bonusNumber = Integer.parseInt(s);
+        validateCorrectNumber(bonusNumber);
+        validateExistNumber(bonusNumber, winningNumbers);
+        return bonusNumber;
+    }
+
+    private void validateExistNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("ALREADY EXIST!");
+        }
     }
 }

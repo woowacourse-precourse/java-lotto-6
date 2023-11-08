@@ -29,4 +29,15 @@ public class InputResolver {
     }
 
 
+    public int inputBonusNumber(List<Integer> winningNumber) {
+        do {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                return inputValidator.validateAndReturnBonusNumber(Console.readLine(), winningNumber);
+            } catch (IllegalArgumentException e) {
+                System.err.println("[ERROR] " + e);
+            }
+        } while (true);
+
+    }
 }

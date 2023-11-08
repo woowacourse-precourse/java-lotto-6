@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.constant.RankingConstant.SECOND_AND_THIRD_RANKING_REFERENCE_ACCORDED_COUNT;
+
 import java.util.Collections;
 import java.util.List;
 import lotto.validation.LottoValidation;
@@ -22,7 +24,7 @@ public class Lotto {
     public Ranking getRanking(List<Integer> winningNumbers, int bonusNumber) {
         int accordedCount = findAccordedNumberCount(winningNumbers);
         boolean hasBonusNumber = false;
-        if (accordedCount == 5) {
+        if (accordedCount == SECOND_AND_THIRD_RANKING_REFERENCE_ACCORDED_COUNT) {
             hasBonusNumber = hasBonusNumber(bonusNumber);
         }
         return Ranking.getRanking(accordedCount, hasBonusNumber);

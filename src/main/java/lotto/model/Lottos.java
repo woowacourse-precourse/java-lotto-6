@@ -1,6 +1,9 @@
 package lotto.model;
 
+import static lotto.constant.LottoConstant.LAST_LOTTO_NUMBER;
+import static lotto.constant.LottoConstant.LOTTO_NUMBER_COUNT;
 import static lotto.constant.LottoConstant.LOTTO_PRICE;
+import static lotto.constant.LottoConstant.START_LOTTO_NUMBER;
 import static lotto.constant.LottoGameMessage.NUMBER_OF_LOTTO_MESSAGE;
 
 import java.util.Collections;
@@ -14,7 +17,8 @@ public class Lottos {
     public Lottos(int paymentAmount, RandomUtil randomUtil) {
         int numberOfLotto = computeNumberOfLotto(paymentAmount);
         lottos = IntStream.range(0, numberOfLotto)
-                .mapToObj(i -> new Lotto(randomUtil.createRandomNumbersInRange(1, 45, 6))).toList();
+                .mapToObj(i -> new Lotto(randomUtil.createRandomNumbersInRange(START_LOTTO_NUMBER, LAST_LOTTO_NUMBER
+                        , LOTTO_NUMBER_COUNT))).toList();
     }
 
     private int computeNumberOfLotto(int price) {

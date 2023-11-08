@@ -1,16 +1,31 @@
 package lotto.model;
 
+import static lotto.constant.RankingConstant.DONT_HAVE_BONUS_NUMBER;
+import static lotto.constant.RankingConstant.FIFTH_RANKING_REFERENCE_ACCORDED_COUNT;
+import static lotto.constant.RankingConstant.FIFTH_RANKING_WINNING_AMOUNT;
+import static lotto.constant.RankingConstant.FIRST_RANKING_REFERENCE_ACCORDED_COUNT;
+import static lotto.constant.RankingConstant.FIRST_RANKING_WINNING_AMOUNT;
+import static lotto.constant.RankingConstant.FOURTH_RANKING_REFERENCE_ACCORDED_COUNT;
+import static lotto.constant.RankingConstant.FOURTH_RANKING_WINNING_AMOUNT;
+import static lotto.constant.RankingConstant.HAS_BONUS_NUMBER;
+import static lotto.constant.RankingConstant.NO_RANKING_ACCORDED_COUNT;
+import static lotto.constant.RankingConstant.NO_RANKING_WINNING_AMOUNT;
+import static lotto.constant.RankingConstant.SECOND_AND_THIRD_RANKING_REFERENCE_ACCORDED_COUNT;
+import static lotto.constant.RankingConstant.SECOND_RANKING_WINNING_AMOUNT;
+import static lotto.constant.RankingConstant.THIRD_RANKING_WINNING_AMOUNT;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public enum Ranking {
-    NO_RANK(0, false, 0),
-    FIFTH_RANKING(3, false, 5_000),
-    FOURTH_RANKING(4, false, 50_000),
-    THIRD_RANKING(5, false, 1_500_000),
-    SECOND_RANKING(5, true, 30_000_000),
-    FIRST_RANKING(6, false, 2_000_000_000);
+    NO_RANK(NO_RANKING_ACCORDED_COUNT, DONT_HAVE_BONUS_NUMBER, NO_RANKING_WINNING_AMOUNT),
+    FIFTH_RANKING(FIFTH_RANKING_REFERENCE_ACCORDED_COUNT, DONT_HAVE_BONUS_NUMBER, FIFTH_RANKING_WINNING_AMOUNT),
+    FOURTH_RANKING(FOURTH_RANKING_REFERENCE_ACCORDED_COUNT, DONT_HAVE_BONUS_NUMBER, FOURTH_RANKING_WINNING_AMOUNT),
+    THIRD_RANKING(SECOND_AND_THIRD_RANKING_REFERENCE_ACCORDED_COUNT, DONT_HAVE_BONUS_NUMBER,
+            THIRD_RANKING_WINNING_AMOUNT),
+    SECOND_RANKING(SECOND_AND_THIRD_RANKING_REFERENCE_ACCORDED_COUNT, HAS_BONUS_NUMBER, SECOND_RANKING_WINNING_AMOUNT),
+    FIRST_RANKING(FIRST_RANKING_REFERENCE_ACCORDED_COUNT, DONT_HAVE_BONUS_NUMBER, FIRST_RANKING_WINNING_AMOUNT);
 
     private final int accordedCount;
     private final boolean hasBonusNumber;

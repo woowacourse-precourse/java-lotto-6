@@ -3,14 +3,13 @@ package lotto.validation;
 import static lotto.constant.ErrorMessage.DUPLICATION_EXCEPTION;
 import static lotto.constant.ErrorMessage.LOTTO_NUMBER_SIZE_EXCEPTION;
 import static lotto.constant.ErrorMessage.NULL_EXCEPTION;
+import static lotto.constant.LottoConstant.LOTTO_NUMBER_COUNT;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class LottoValidation {
-    private final int SIZE = 6;
-
     public void validateLottoNumber(List<Integer> numbers) {
         validateNull(numbers);
         validateSize(numbers);
@@ -24,14 +23,14 @@ public class LottoValidation {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != SIZE) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(LOTTO_NUMBER_SIZE_EXCEPTION.getMessage());
         }
     }
 
     private void validateDuplication(List<Integer> numbers) {
         Set<Integer> distinctNumbers = new HashSet<>(numbers);
-        if (distinctNumbers.size() != SIZE) {
+        if (distinctNumbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(DUPLICATION_EXCEPTION.getMessage());
         }
     }

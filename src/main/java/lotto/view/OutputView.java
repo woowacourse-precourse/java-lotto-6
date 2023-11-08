@@ -17,6 +17,8 @@ import lotto.model.Lotto;
 import lotto.model.Ranking;
 
 public class OutputView {
+    private static final String NUMBER_FORMAT = "###,###";
+
     public void requestPaymentAmount() {
         System.out.println(PAYMENT_AMOUNT_INPUT_MESSAGE.getMessage());
     }
@@ -52,7 +54,7 @@ public class OutputView {
     }
 
     private String commaFormatNumber(int winningAmount) {
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        DecimalFormat decimalFormat = new DecimalFormat(NUMBER_FORMAT);
         return decimalFormat.format(winningAmount);
     }
 

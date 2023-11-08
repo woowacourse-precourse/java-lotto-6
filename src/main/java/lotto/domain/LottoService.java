@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static lotto.domain.LottoUtils.getMatchCount;
 
@@ -22,6 +24,22 @@ public class LottoService {
         List<Integer> list = lotto.getNumbers();
         int matchCount = getMatchCount(winningNumbers, list);
         checkIfWinFirstPlace(matchCount, list, bonusNumber);
+    }
+
+    public Map<LottoRank, Integer> getWinningResults(List<Lotto> lottoBundle, WinningNumbers winningNumbers) {
+        // init
+        Map<LottoRank, Integer> winningResults = new HashMap<>();
+        for (LottoRank lottoRank : LottoRank.values()) {
+            winningResults.put(lottoRank, 0);
+        }
+
+        // getWinningResults
+        for (Lotto lotto : lottoBundle) {
+            LottoRank lottoRank = LottoRank.valueOf(lotto, winningNumbers);
+            winningResults.put(lottoRank, winningResults.get(lottoRank) + 1);
+        }
+
+        return winningResults;
     }
 
     public int calculateLottoCount(int purchaseAmount) {

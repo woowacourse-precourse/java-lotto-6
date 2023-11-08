@@ -30,10 +30,10 @@ public class LottoGame {
         return LottoNumbers;
     }
 
-    void purchaseLotto(int money) {
-        while (money > 0) {
+    public void purchaseLotto(Money money) {
+        while (money.canPurchaseLotto()) {
             lottos.add(new Lotto(makeLottoNumbers()));
-            money -= LOTTO_PRICE;
+            money.purchaseLotto();
         }
     }
 

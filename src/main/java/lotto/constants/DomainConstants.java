@@ -20,7 +20,9 @@ public enum DomainConstants {
     ONE_COUNT(1),
     COUNT_END(0),
 
-    PERCENT(100);
+    PERCENT(100),
+
+    RANK_COUNT_INIT(0);
 
     private final int value;
 

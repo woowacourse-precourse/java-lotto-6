@@ -41,17 +41,8 @@ public class LottoResultTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 7)),
                 new Lotto(List.of(1, 2, 3, 4, 5, 6))
         );
-        assertThat(lottoResult.calculateResult(lottos).lottoWinningResultDTOs())
-                .isEqualTo(
-                        List.of(
-                                new LottoWinningResultDTO(0, false),
-                                new LottoWinningResultDTO(3, false),
-                                new LottoWinningResultDTO(4, false),
-                                new LottoWinningResultDTO(5, false),
-                                new LottoWinningResultDTO(5, true),
-                                new LottoWinningResultDTO(6, false)
-                        )
-                );
+        assertThat(lottoResult.calculateResult(lottos).lottoWinningResultDTO())
+                .isEqualTo(new LottoWinningResultDTO(1,1,1,1,1));
     }
 
     @Test

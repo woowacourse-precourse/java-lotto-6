@@ -1,7 +1,5 @@
 package lotto.dto;
 
-import java.util.List;
-
-public record LottoResultDTO(List<LottoWinningResultDTO> lottoWinningResultDTOs,
+public record LottoResultDTO(LottoWinningResultDTO lottoWinningResultDTO,
                              LottoReturnsRateDTO lottoReturnsRateDTO) {
 }

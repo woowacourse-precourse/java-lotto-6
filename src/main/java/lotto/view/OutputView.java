@@ -2,9 +2,6 @@ package lotto.view;
 
 import lotto.dto.*;
 
-import java.util.List;
-
-import static lotto.constants.ViewConstants.*;
 import static lotto.view.ViewMessage.*;
 
 public class OutputView {
@@ -44,54 +41,33 @@ public class OutputView {
     public void printLottoWinningStatistics(final LottoResultDTO lottoResultDTO) {
         printNewLine();
         println(OUTPUT_LOTTO_WINNING_STATISTICS.getMessage());
-        printThreeNumberMatch(lottoResultDTO.lottoWinningResultDTOs());
-        printFourNumberMatch(lottoResultDTO.lottoWinningResultDTOs());
-        printFiveNumberMatch(lottoResultDTO.lottoWinningResultDTOs());
-        printFiveNumberAndBonusNumberMatch(lottoResultDTO.lottoWinningResultDTOs());
-        printSixNumberMatch(lottoResultDTO.lottoWinningResultDTOs());
+        printFifthRankCount(lottoResultDTO.lottoWinningResultDTO());
+        printFourthRankCount(lottoResultDTO.lottoWinningResultDTO());
+        printThirdRankCount(lottoResultDTO.lottoWinningResultDTO());
+        printSecondRankCount(lottoResultDTO.lottoWinningResultDTO());
+        printFirstRankCount(lottoResultDTO.lottoWinningResultDTO());
         printLottoReturns(lottoResultDTO.lottoReturnsRateDTO());
     }
 
-    private void printThreeNumberMatch(final List<LottoWinningResultDTO> lottoWinningResultDTOs) {
-        int count = (int) lottoWinningResultDTOs.stream()
-                .map(LottoWinningResultDTO::numberMatchCount)
-                .filter(numberMatchCount -> numberMatchCount == LOTTO_THREE_NUMBER_MATCH.getValue())
-                .count();
-        println(String.format(OUTPUT_LOTTO_THREE_NUMBER_MATCH.getMessage(), count));
+    private void printFifthRankCount(final LottoWinningResultDTO lottoWinningResultDTO) {
+        println(String.format(OUTPUT_LOTTO_FIFTH_RANK_COUNT.getMessage(), lottoWinningResultDTO.fifthRankCount()));
     }
 
-    private void printFourNumberMatch(final List<LottoWinningResultDTO> lottoWinningResultDTOs) {
-        int count = (int) lottoWinningResultDTOs.stream()
-                .map(LottoWinningResultDTO::numberMatchCount)
-                .filter(numberMatchCount -> numberMatchCount == LOTTO_FOUR_NUMBER_MATCH.getValue())
-                .count();
-        println(String.format(OUTPUT_LOTTO_FOUR_NUMBER_MATCH.getMessage(), count));
+    private void printFourthRankCount(final LottoWinningResultDTO lottoWinningResultDTO) {
+        println(String.format(OUTPUT_LOTTO_FOURTH_RANK_COUNT.getMessage(), lottoWinningResultDTO.fourthRankCount()));
     }
 
-    private void printFiveNumberMatch(final List<LottoWinningResultDTO> lottoWinningResultDTOs) {
-        int count = (int) lottoWinningResultDTOs.stream()
-                .filter(lottoWinningResultDTO ->
-                        lottoWinningResultDTO.numberMatchCount() == LOTTO_FIVE_NUMBER_MATCH.getValue()
-                                && !lottoWinningResultDTO.isBonusNumberMatch())
-                .count();
-        println(String.format(OUTPUT_LOTTO_FIVE_NUMBER_MATCH.getMessage(), count));
+    private void printThirdRankCount(final LottoWinningResultDTO lottoWinningResultDTO) {
+        println(String.format(OUTPUT_LOTTO_THIRD_RANK_COUNT.getMessage(), lottoWinningResultDTO.thirdRankCount()));
     }
 
-    private void printFiveNumberAndBonusNumberMatch(final List<LottoWinningResultDTO> lottoWinningResultDTOs) {
-        int count = (int) lottoWinningResultDTOs.stream()
-                .filter(lottoWinningResultDTO ->
-                        lottoWinningResultDTO.numberMatchCount() == LOTTO_FIVE_NUMBER_MATCH.getValue()
-                                && lottoWinningResultDTO.isBonusNumberMatch())
-                .count();
-        println(String.format(OUTPUT_LOTTO_FIVE_NUMBER_BONUS_NUMBER_MATCH.getMessage(), count));
+    private void printSecondRankCount(final LottoWinningResultDTO lottoWinningResultDTO) {
+        println(String.format(OUTPUT_LOTTO_SECOND_RANK_COUNT.getMessage(),
+                lottoWinningResultDTO.secondRankCount()));
     }
 
-    private void printSixNumberMatch(final List<LottoWinningResultDTO> lottoWinningResultDTOs) {
-        int count = (int) lottoWinningResultDTOs.stream()
-                .map(LottoWinningResultDTO::numberMatchCount)
-                .filter(numberMatchCount -> numberMatchCount == LOTTO_SIX_NUMBER_MATCH.getValue())
-                .count();
-        println(String.format(OUTPUT_LOTTO_SIX_NUMBER_MATCH.getMessage(), count));
+    private void printFirstRankCount(final LottoWinningResultDTO lottoWinningResultDTO) {
+        println(String.format(OUTPUT_LOTTO_FIRST_RANK_COUNT.getMessage(), lottoWinningResultDTO.firstRankCount()));
     }
 
     private void printLottoReturns(final LottoReturnsRateDTO lottoReturnsRateDTO) {

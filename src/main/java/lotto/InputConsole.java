@@ -35,4 +35,11 @@ public class InputConsole {
         return winningNumbers;
     }
 
+    public static int inputBonusNumber() {
+        String inputBonusNumber = Console.readLine();
+        String inputBonusNumberNoSpace = inputBonusNumber.replaceAll(" ", "");
+        validateInputPrice(inputBonusNumberNoSpace);
+        return Integer.parseInt(inputBonusNumber);
+    }
+
 }

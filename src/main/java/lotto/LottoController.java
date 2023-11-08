@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoController {
-    Validator validator = new Validator();
     LottoService lottoService = new LottoService();
 
     static final String PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";

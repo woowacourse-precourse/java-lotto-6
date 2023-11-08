@@ -7,24 +7,18 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoService {
+    Validator validator = new Validator();
+
     static final int START_NUMBER = 1;
     static final int END_NUMBER = 45;
     static final int COUNT_NUMBER = 6;
     static final String ERROR_MESSAGE = "[ERROR] ";
 
     int getInput() {
-        String input;
         int parsedInput;
 
-        while (true) {
-            try {
-                input = Console.readLine();
-                parsedInput = Integer.parseInt(input);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(ERROR_MESSAGE + "숫자를 입력해주세요.");
-            }
-        }
+        String input = Console.readLine();
+        parsedInput = validator.validateInput(input);
 
         return parsedInput;
     }
@@ -35,6 +29,8 @@ public class LottoService {
         String input = Console.readLine();
 
         List<String> splitedInput = Arrays.asList(input.split(","));
+
+//        validator.validateInputForNumbers(splitedInput, COUNT_NUMBER);
 
         for (int i = 0; i < splitedInput.size(); i++) {
             parsedInput.add(Integer.parseInt(splitedInput.get(i)));

@@ -15,4 +15,10 @@ public class ParchaseAmountInputValidator implements InputValidator{
             throw new IllegalArgumentException(ErrorMessageConstant.PARCHASE_AMOUNT_IS_NOT_NUMERIC.getMessage());
         }
     }
+
+    private static void validateDivisibleThousand(String checkValue) {
+        if(Integer.parseInt(checkValue) % 1000 != 0) {
+            throw new IllegalArgumentException(ErrorMessageConstant.PARCHASE_AMOUNT_IS_NOT_DIVISIBLE_BY_THOUSAND.getMessage());
+        }
+    }
 }

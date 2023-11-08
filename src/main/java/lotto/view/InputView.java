@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.util.buyingLottoException;
 import static lotto.util.buyingLottoException.*;
+import static lotto.util.PrintConstants.*;
 
 public class InputView {
 

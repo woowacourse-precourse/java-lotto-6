@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class LottoArrays {
-
     private final List<Lotto> lottoList;
 
     public LottoArrays(){

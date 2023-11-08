@@ -9,9 +9,9 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGameManager {
-    private InputView inputView;
-    private OutputView outputView;
-    private LottoStore lottoStore;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final LottoStore lottoStore;
 
     private Consumer consumer = new Consumer();
     private Winning winning = new Winning();

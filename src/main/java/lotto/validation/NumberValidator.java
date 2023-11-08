@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 import lotto.utils.NumberConstants;
 
 public class NumberValidator {
-    private static final String POSITIVE_DIGIT_REGEX = "^[1-9]+$";
+    private static final String POSITIVE_DIGIT_REGEX = "^[1-9]\\d*$";
 
     private NumberValidator() {
     }

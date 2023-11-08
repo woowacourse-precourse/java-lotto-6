@@ -10,17 +10,21 @@ import lotto.model.LottoResult;
 import lotto.model.Ranking;
 import lotto.model.Revenue;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoGameController {
 
     public void play() {
         LottoBundle lottoBundle = LottoGenerator.getLottoBundle();
 
+        System.out.println();
         Lotto winningLotto = InputView.getWinningLotto();
+
+        System.out.println();
         Integer bonusNumber = InputView.getBonusNumber(winningLotto);
 
         LottoResult result = calculateRanking(lottoBundle, winningLotto, bonusNumber);
-
+        OutputView.showResult(result);
     }
 
     private static LottoResult calculateRanking(LottoBundle lottoBundle, Lotto winningLotto,

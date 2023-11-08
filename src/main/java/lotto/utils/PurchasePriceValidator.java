@@ -4,7 +4,7 @@ public class PurchasePriceValidator {
     public static void validIsInt(String purchasePrice) {
         try {
             Integer.parseInt(purchasePrice);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구매금액은 숫자여야 합니다.");
         }
     }

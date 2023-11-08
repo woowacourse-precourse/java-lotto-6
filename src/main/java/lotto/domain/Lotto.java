@@ -13,7 +13,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateLottoNums();
+        validateLottoNums(numbers);
         this.numbers = numbers;
         ascendingNumbers();
     }
@@ -24,7 +24,7 @@ public class Lotto {
         }
     }
 
-    private void validateLottoNums() {
+    private void validateLottoNums(List<Integer> numbers) {
         validate_lottoNum(numbers);
     }
 

@@ -2,6 +2,7 @@ package lotto.constants;
 
 public enum Error {
 
+    EMPTY_ERROR("[ERROR] 입력이 비었습니다. 값을 입력해주세요."),
     NOT_NUMBER_ERROR("[ERROR] 양의 정수만 입력해주세요"),
     INVALID_AMOUNT_ERROR("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다."),
     ZERO_ERROR("[ERROR] 구입 금액은 0보다 큰 수여야 합니다"),

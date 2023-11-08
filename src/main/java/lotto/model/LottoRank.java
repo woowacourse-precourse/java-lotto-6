@@ -2,12 +2,12 @@ package lotto.model;
 import java.util.function.BiPredicate;
 import java.util.Arrays;
 public enum LottoRank {
-    NOLUCK("0"
+    NOLUCK("0원"
             , 0
             , 0
             , (matchLottoNumber, containBonusNumber)
             -> { return matchLottoNumber < 3; }),
-    FIFTH("5,000"
+    FIFTH("5,000원"
             , 5000
             , 3
             , (matchLottoNumber, containBonusNumber)

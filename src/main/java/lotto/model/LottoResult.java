@@ -12,7 +12,7 @@ public class LottoResult {
                 .forEach(lottoRank -> lottoResult.put(lottoRank, 0));
     }
 
-    private void addRank(LottoRank rank){
+    public void addRank(LottoRank rank){
         lottoResult.put(rank, lottoResult.get(rank)+1);
     }
     public void addLottos(LottoMaker lottos, LottoCompare compare){

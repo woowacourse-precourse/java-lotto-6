@@ -14,11 +14,12 @@ public class ViewValidation implements ILottoInputValidation, IMoneyValidation, 
     private final String MONEYSTRINGERROR = "[ERROR] 돈은 숫자여야 합니다.";
     private final String MONEYNULLERROR = "[ERROR] 돈을 투입해야합니다.";
     private final String MONEYUNITERROR = "[ERROR] 돈은 1000원 단위만 입력 가능합니다.";
+    private final String GAPERROR = "[ERROR] 공백이 입력 될 수 없습니다.";
 
     private final int LOTTOLENGHT = 6;
     private final int MONEYUNIT = 1000;
     private final int MAXRANGE = 45;
-    private final int MINRANGE = 0;
+    private final int MINRANGE = 1;
     private final int ZERO = 0;
     private final int NINE = 9;
 
@@ -47,9 +48,13 @@ public class ViewValidation implements ILottoInputValidation, IMoneyValidation, 
                 );
     }
 
-    private boolean isNotRange(String str) {
-        int test = Integer.parseInt(str);
-        return test < MINRANGE || test > MAXRANGE;
+    private boolean isNotRange(String str) throws IllegalArgumentException {
+        try {
+            int test = Integer.parseInt(str);
+            return test < MINRANGE || test > MAXRANGE;
+        } catch (Exception e){
+            throw new IllegalArgumentException(GAPERROR);
+        }
     }
 
     @Override

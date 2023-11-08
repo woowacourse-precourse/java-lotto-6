@@ -16,7 +16,7 @@ public class Output {
     static private final String WINNING = "당첨 번호를 입력해 주세요.";
     static private final String BONUS = "보너스 번호를 입력해 주세요.";
     static private final String END = "당첨 통계\n---";
-    static private final String LOTTORATIO = "총 수익률은 %.1f%% 입니다.";
+    static private final String LOTTORATIO = "총 수익률은 %.1f%%입니다.";
 
 
 

@@ -21,11 +21,11 @@ public class LottoCompare {
         this.winningNumbers = winningNumbers;
     }
 
-    boolean bonusCompare(Lotto lotto){
+    public boolean bonusCompare(Lotto lotto){
         return lotto.getNumbers().contains(getBonusNumber());
     }
 
-    int winningCompare(Lotto lotto){
+    public int winningCompare(Lotto lotto){
         return (int) winningNumbers.stream()
                 .filter(x -> lotto.getNumbers().contains(x))
                 .count();

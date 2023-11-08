@@ -7,11 +7,7 @@ import java.util.Arrays;
 
 public class Input {
     private static String stringInput() throws IllegalArgumentException{
-        try{
-            return Console.readLine();
-        } catch (Exception e){
-            throw new IllegalArgumentException("[Error] No line found");
-        }
+        return Console.readLine();
     }
     public static int moneyInput() throws IllegalArgumentException{
         String result;

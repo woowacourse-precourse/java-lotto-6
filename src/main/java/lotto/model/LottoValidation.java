@@ -11,7 +11,7 @@ public class LottoValidation implements ILottoVaildation{
     final String NUMBERERROR = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     final int LOTTOLENGHT = 6;
     final int MAXRANGE = 45;
-    final int MINRANGE = 0;
+    final int MINRANGE = 1;
 
     @Override
    public void lottoLengthError(List<Integer> numbers) throws IllegalArgumentException {

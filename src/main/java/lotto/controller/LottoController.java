@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
+import static lotto.constant.NumberConstant.TICKET_COST;
 
 
 public class LottoController {
@@ -32,7 +32,7 @@ public class LottoController {
     private final LottoTotalWinnings totalWinnings;
     private final List<Lotto> userLottos = new ArrayList<>();
     private int numberOfTicketsSold;
-    private static final int TICKET_COST = 1000;
+
 
     public LottoController() {
         this.purchase = new LottoPurchase();

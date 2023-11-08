@@ -4,6 +4,8 @@ package lotto.model.lottoResultChecker;
 import java.util.List;
 
 import static lotto.constant.ErrorMessages.*;
+import static lotto.constant.NumberConstant.MAX_NUMBER_RANGE;
+import static lotto.constant.NumberConstant.MIN_NUMBER_RANGE;
 
 public class LottoBonus {
     private final int bonusNumber;
@@ -30,7 +32,7 @@ public class LottoBonus {
     }
 
     private void validateBonusNumber(int number, List<Integer> winningNumbers) {
-        if (number < 1 || number > 45) {
+        if (number < MIN_NUMBER_RANGE || number > MAX_NUMBER_RANGE ) {
             throw new IllegalArgumentException(NUMBER_RANGE);
         }
         if (winningNumbers.contains(number)) {

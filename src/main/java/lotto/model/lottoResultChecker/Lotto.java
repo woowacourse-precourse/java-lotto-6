@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import static lotto.constant.ErrorMessages.*;
+import static lotto.constant.NumberConstant.GENERATED_NUMBERS_SIZE;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,7 +20,7 @@ public class Lotto {
         if (numbers == null || numbers.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_INPUT);
         }
-        if (numbers.size() != 6) {
+        if (numbers.size() != GENERATED_NUMBERS_SIZE) {
             throw new IllegalArgumentException(SIX_NUMBERS_REQUIRED + numbers.size());
         }
         if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {

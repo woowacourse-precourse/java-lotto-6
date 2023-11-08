@@ -15,18 +15,20 @@ public class LottoGameController {
     private final WinningNumberService winningNumberService;
     private final ResultService resultService;
     private LottoTicket lottoTicket;
-    private LottoWinningNumber lottoWinningNumber;
+    private final LottoWinningNumber lottoWinningNumber;
     private LottoResult lottoResult;
 
     public LottoGameController() {
         purchaseService = new PurchaseService();
         winningNumberService = new WinningNumberService();
         resultService = new ResultService();
+        lottoWinningNumber = winningNumberService.getLottoWinningNumber();
     }
 
     public void runLottoGame() {
         buyLottoTicket();
         setWinningNumbers();
+        setBonusNumbers();
         calculateResults();
         printResults();
     }
@@ -44,20 +46,22 @@ public class LottoGameController {
 
     private void setWinningNumbers() {
         OutputView.printRequestWinningNumber();
+
         errorHandler(() -> {
             String winningNumbers = InputView.readLine();
             winningNumberService.setWinningNumbers(winningNumbers);
             return null;
         });
+    }
 
+    private void setBonusNumbers() {
         OutputView.printRequestBonusNumber();
+
         errorHandler(() -> {
             String bonusNumber = InputView.readLine();
             winningNumberService.setBonusNumbers(bonusNumber);
             return null;
         });
-
-        lottoWinningNumber = winningNumberService.getLottoWinningNumber();
     }
 
     private void calculateResults() {

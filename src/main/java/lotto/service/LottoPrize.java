@@ -20,10 +20,6 @@ public enum LottoPrize {
         this.format = format;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
     public long getPrizeAmount() {
         return prizeAmount;
     }

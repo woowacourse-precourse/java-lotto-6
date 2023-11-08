@@ -14,7 +14,7 @@ public class LottoMachine {
     public static List<RankTable> matchLottoCalculate(ClientLottoData clientLottoData,
                                                       WinningLottoNumber winningLottoNumber) {
         List<RankTable> matchLottoCalculate = new ArrayList<>();
-        int bonusNumber = winningLottoNumber.bonusNumber;
+        int bonusNumber = winningLottoNumber.getBonusNumber();
 
         for (Lotto lotto : clientLottoData.getLottos()) {
             List<Integer> lottoNumber = lotto.getNumbers();
@@ -28,7 +28,7 @@ public class LottoMachine {
     private static int countMatchNumber(List<Integer> lottoNumber, WinningLottoNumber winningLottoNumber) {
         int matchCount = 0;
 
-        for (Integer winningNumber : winningLottoNumber.winningNumberWithBonusNumber) {
+        for (Integer winningNumber : winningLottoNumber.getWinningNumberWithBonusNumber()) {
             if (lottoNumber.contains(winningNumber)) {
                 ++matchCount;
             }

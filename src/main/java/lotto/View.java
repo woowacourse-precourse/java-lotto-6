@@ -32,7 +32,7 @@ public class View {
         try{ //int값인지 확인, int 범위 내 인지 확인
             Integer.parseInt(lottoPurchaseAmount);
         } catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] int로 정의 될 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자로만 구성되어 있어야 합니다.");
         }
         if(Integer.parseInt(lottoPurchaseAmount)<1){
             throw new IllegalArgumentException("[ERROR] 음수의 값은 들어올 수 없습니다.");
@@ -54,8 +54,8 @@ public class View {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-            lottoPurchaseNum = Integer.parseInt(lottoPurchaseAmount) / 1000;
         }
+        lottoPurchaseNum = Integer.parseInt(lottoPurchaseAmount) / 1000;
     }
 
     public void checkWinningNumber(String winningNumber){

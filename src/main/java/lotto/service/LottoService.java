@@ -25,4 +25,9 @@ public class LottoService {
 
     return myLotto;
   }
+
+  public WinLotto setWinningLottery(String winLottoValue, String bonusNumValue) {
+
+    return WinLotto.setWinLotto(winLottoValue, bonusNumValue);
+  }
 }

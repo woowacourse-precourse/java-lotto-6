@@ -23,5 +23,11 @@ public class LottoController {
     outputView.printEmptyLine();
     outputView.printPurchasedMessage(myLotto);
     outputView.printPurchasedMyLottoList();
+
+    winningNumber();
+  }
+
+  private void winningNumber() {
+    WinLotto winLotto = lottoService.setWinningLottery(inputView.readLotteryNumber(), inputView.readBonusNumber());
   }
 }

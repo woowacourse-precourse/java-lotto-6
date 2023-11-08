@@ -27,7 +27,7 @@ public enum ResultStatus {
         return value;
     }
 
-    public boolean getHasBonusBall() {
+    public boolean isHasBonusBall() {
         return hasBonusBall;
     }
 

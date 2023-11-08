@@ -4,12 +4,12 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.UserLotto;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserLottoGenerator {
 
+    // 로또 수량만큼 로또 발행
     public List<UserLotto> generateUserLotto(int lottoTicket) {
         List<UserLotto> userLottos = new ArrayList<>();
         for (int i = 0; i < lottoTicket; i++) {

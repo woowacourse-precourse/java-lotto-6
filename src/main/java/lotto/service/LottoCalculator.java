@@ -17,6 +17,7 @@ public class LottoCalculator {
     public LottoCalculator() {
         resultData = new ArrayList<>(Collections.nCopies(RESULT_DATA_SIZE, 0));
     }
+    // 당첨 등수별 로또 수 계산
     public List<Integer> calculateLottoWin(List<UserLotto> userLottos, List<Integer> winningNumber, int bonusNumber) {
         for (UserLotto userLotto : userLottos) {
             List<Integer> lottoNumber = userLotto.getNumbers();
@@ -40,6 +41,7 @@ public class LottoCalculator {
         }
     }
 
+    // 로또 번호를 당첨 번호와 비교해 몇 개 맞는지 확인
     public int checkContainsWinning(List<Integer> winningNumber, List<Integer> lottoNumber) {
         int winningCount = 0;
         for (int i = 0; i < LOTTO_SIZE; i++) {
@@ -50,6 +52,7 @@ public class LottoCalculator {
         return winningCount;
     }
 
+    // 로또 번호 안에 보너스 번호가 존재하는지 확인
     public int checkContainsBonus(int bonusNumber, List<Integer> lottoNumber) {
         int bonusCount = 0;
         if (lottoNumber.contains(bonusNumber)) {
@@ -58,6 +61,7 @@ public class LottoCalculator {
         return bonusCount;
     }
 
+    // 총 수익률 계산
     public double calculateRateOfReturn(int seedMoney, List<Integer> resultData) {
         int earnedMoney = 0;
         for (int i = 0; i < resultData.size(); i++) {;

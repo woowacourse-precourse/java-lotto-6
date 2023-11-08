@@ -54,4 +54,18 @@ public class GameController {
             GameView.printLottoNumbers(sortedUserLottoNumber);
         }
     }
+
+    public void inputBonusNumber() {
+        boolean validInput = false;
+        while (!validInput) {
+            try {
+                int number = Integer.parseInt(Console.readLine());
+                game.setBonusNumber(number);
+
+                validInput = true;
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력입니다. 다시 입력해주세요.");
+            }
+        }
+    }
 }

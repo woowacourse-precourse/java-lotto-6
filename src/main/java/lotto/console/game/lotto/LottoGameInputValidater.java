@@ -1,5 +1,8 @@
 package lotto.console.game.lotto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static lotto.console.game.lotto.constants.ExceptionMessages.*;
 import static lotto.console.game.lotto.constants.GameConstants.*;
 
@@ -25,6 +28,16 @@ public class LottoGameInputValidater {
         for (String numberString : numberStrings)
             validateNumber(numberString);
 
+        validateHasDuplicates(numberStrings, numbersInput);
+    }
+
+    private static void validateHasDuplicates(String[] array , String originString) throws IllegalArgumentException {
+        Set<String> set = new HashSet<>();
+        for (String element : array) {
+            if (!set.add(element)) {
+                throw new IllegalArgumentException(makeErrorMessage(INVALID_HAS_DUPLICATES, originString));
+            }
+        }
     }
 
     public static void validateNumber(String numberInput) throws IllegalArgumentException {

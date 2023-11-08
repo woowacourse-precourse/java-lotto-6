@@ -8,11 +8,11 @@ import static lotto.console.game.lotto.constants.GameConstants.*;
 import static lotto.console.game.lotto.constants.GameMessages.*;
 
 public class PrizeDetail {
-    int firstPrizeCount;
-    int secondPrizeCount;
-    int thirdPrizeCount;
-    int fourthPrizeCount;
-    int fifthPrizeCount;
+    private int firstPrizeCount;
+    private int secondPrizeCount;
+    private int thirdPrizeCount;
+    private int fourthPrizeCount;
+    private int fifthPrizeCount;
 
     public PrizeDetail() {
         this.firstPrizeCount = 0;
@@ -41,12 +41,27 @@ public class PrizeDetail {
 
     private void applyInPrizeDetail(PrizeMatchCount prizeMatchCount) {
         PrizeRank rank = prizeMatchCount.getPrizeRank();
-        if (rank == PrizeRank.FIRST) firstPrizeCount++;
-        if (rank == PrizeRank.SECOND) secondPrizeCount++;
-        if (rank == PrizeRank.THIRD) thirdPrizeCount++;
-        if (rank == PrizeRank.FOURTH) fourthPrizeCount++;
-        if (rank == PrizeRank.FIFTH) fifthPrizeCount++;
+        if (rank == PrizeRank.FIRST) addFirstPrizeCount();
+        if (rank == PrizeRank.SECOND) addSecondPrizeCount();
+        if (rank == PrizeRank.THIRD) addThirdPrizeCount();
+        if (rank == PrizeRank.FOURTH) addFourthPrizeCount();
+        if (rank == PrizeRank.FIFTH) addFifthPrizeCount();
     }
+
+    public void addFirstPrizeCount() {
+        firstPrizeCount++;
+    }
+    public void addSecondPrizeCount() {
+        secondPrizeCount++;
+    }
+    public void addThirdPrizeCount() {
+        thirdPrizeCount++;
+    }
+    public void addFourthPrizeCount() {
+        fourthPrizeCount++;
+    }
+    public void addFifthPrizeCount() { fifthPrizeCount++; }
+
 
     public String exportMessage() {
         return makeMessage();
@@ -76,6 +91,7 @@ public class PrizeDetail {
         return FIFTH_PRIZE_INFO + fifthPrizeCount + PRIZE_INFO_POSTFIX;
     }
 
+
     public int getPrizeMoney(){
         return calculatePrizeMoney();
     }
@@ -89,5 +105,11 @@ public class PrizeDetail {
                 + FIFTH_PRIZE_MONEY * fifthPrizeCount;
     }
 
+
+    public int getFirstPrizeCount() { return firstPrizeCount; }
+    public int getSecondPrizeCount() { return secondPrizeCount; }
+    public int getThirdPrizeCount() { return thirdPrizeCount; }
+    public int getFourthPrizeCount() { return fourthPrizeCount; }
+    public int getFifthPrizeCount() { return fifthPrizeCount; }
 
 }

@@ -83,4 +83,10 @@ public class Lotto {
                     .count();
     }
 
+    public boolean bonusCompare(Lotto lotto) {
+        return lotto.getNumbers()
+                    .stream()
+                    .anyMatch(number -> number == bonusNumber);
+    }
+
 }

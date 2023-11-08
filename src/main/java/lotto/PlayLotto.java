@@ -30,6 +30,7 @@ public class PlayLotto {
         getLottoNumber();
         getBonusNumber();
         getResult();
+        checkResult();
     }
 
     public void getMoney(){
@@ -138,4 +139,15 @@ public class PlayLotto {
             }
         }
     }
+
+    public void checkResult(){
+        for (int i = Rank.values().length - 1; i>=0; i--){
+            System.out.println(Rank.values()[i].message + result.get(Rank.values()[i]) + "개");
+        }
+    }
 }
+
+
+
+
+

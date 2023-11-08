@@ -2,10 +2,10 @@ package lotto.Dto;
 
 import java.util.List;
 
-public class MyLottosDto {
+public class BoughtLottosDto {
     private final List<List<Integer>> myLottosNumber;
 
-    public MyLottosDto(List<List<Integer>> myLottosNumber) {
+    public BoughtLottosDto(List<List<Integer>> myLottosNumber) {
         this.myLottosNumber = myLottosNumber;
     }
 

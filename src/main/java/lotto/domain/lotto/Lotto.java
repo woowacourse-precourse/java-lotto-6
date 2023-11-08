@@ -36,4 +36,19 @@ public class Lotto {
                 .map(Number::getNumber)
                 .toList();
     }
+
+    public int matchNumberCount(Lotto lotto) {
+        return lotto.matchNumberCount(this.numbers);
+    }
+
+    private int matchNumberCount(List<Number> numbers) {
+        return numbers.stream()
+                .filter(this.numbers::contains)
+                .toList()
+                .size();
+    }
+
+    public boolean contain(Number number) {
+        return numbers.contains(number);
+    }
 }

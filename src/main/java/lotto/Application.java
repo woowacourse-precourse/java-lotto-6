@@ -35,6 +35,19 @@ public class Application {
         }
     }
 
+    private static Lotto askWiningNumber() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        try {
+            return new Lotto(parseNumberList(camp.nextstep.edu.missionutils.Console.readLine()));
+        } catch (NullPointerException e) {
+            System.out.println("[ERROR] 당첨번호를 입력하셔야 합니다.");
+            throw e;
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 당첨번호들은 숫자형식이어야 합니다.");
+            throw e;
+        }
+    }
+
     // 입력값을 숫자리스트로 만드는 메서드
     private static List<Integer> parseNumberList(String input) {
         List<Integer> numberList = new ArrayList<>();

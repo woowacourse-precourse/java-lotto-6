@@ -82,4 +82,10 @@ public class Controller {
         int bonusNumber = changeStringToInt(input);
         lottoCompany.setBonusNumber(bonusNumber);
     }
+
+    private void printLotto() {
+        userLotto = user.getMyLotto();
+        OutputView.printPurchase(userLotto.size());
+        OutputView.printLotto(userLotto);
+    }
 }

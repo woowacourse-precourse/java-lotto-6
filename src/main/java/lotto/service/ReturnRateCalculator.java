@@ -12,13 +12,10 @@ public class ReturnRateCalculator {
     public static String getReturnRate(Map<String, Integer> winningStatistics, int customerPrice) {
 
         List<String> messages = OutputController.getMessages(winningStatistics,true);
-        List<RewardValue> rewardValues = getRewardValues();
         double returnRate = 0.0;
 
         for (int count = 0; count < messages.size(); count++) {
-            double rewardValue = getRewardValue(rewardValues, count);
-            int rewardCount = winningStatistics.get(messages.get(count));
-            returnRate += getProceed(rewardValue, rewardCount);
+            returnRate += getProceed(winningStatistics, count);
         }
         returnRate /= customerPrice;
 
@@ -33,7 +30,13 @@ public class ReturnRateCalculator {
         return Arrays.stream(RewardValue.values()).toList();
     }
 
-    private static double getProceed(double rewardValue, int rewardCount) {
+    private static double getProceed(Map<String, Integer> winningStatistics, int count) {
+        List<String> messages = OutputController.getMessages(winningStatistics,true);
+        List<RewardValue> rewardValues = getRewardValues();
+
+        double rewardValue = getRewardValue(rewardValues, count);
+        int rewardCount = winningStatistics.get(messages.get(count));
+
         return rewardCount * rewardValue;
     }
 }

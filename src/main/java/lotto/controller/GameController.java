@@ -1,8 +1,6 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
-import lotto.model.LottoGenerator;
-import lotto.model.WinningManager;
+import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -44,6 +42,8 @@ public class GameController {
         Integer bonusNumber = inputView.readBonusNumber();
         WinningManager winningManager = new WinningManager(mainNumbers, bonusNumber);
 
-        HashMap winningStats = winningManager.matchAll(lottoBundle);
+        WinningStats winningStats = winningManager.matchAll(lottoBundle);
+        outputView.printWinningStats(winningStats);
+        outputView.printEarningRate(winningStats, amount);
     }
 }

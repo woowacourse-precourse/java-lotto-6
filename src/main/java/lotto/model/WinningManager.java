@@ -7,23 +7,23 @@ public class WinningManager {
     private List<Integer> mainNumbers;
     private Integer bonusNumber;
 
-    private final HashMap<WinningRank, Integer> winningStats;
+    private HashMap<WinningRank, Integer> winningStats;
 
     public WinningManager(List<Integer> mainNumbers, Integer bonusNumber) {
         this.mainNumbers = mainNumbers;
         this.bonusNumber = bonusNumber;
-        this.winningStats = new HashMap<WinningRank, Integer>();
+        winningStats = new HashMap<WinningRank, Integer>();
     }
 
-    public HashMap matchAll(ArrayList<Lotto> lottoBundle) {
-        Stream<WinningRank> stream = lottoBundle.stream()
-                .map(lotto -> lotto.match(mainNumbers, bonusNumber));
+    public WinningStats matchAll(ArrayList<Lotto> lottoBundle) {
 
         for (WinningRank winningRank : WinningRank.values()) {
-            long count = stream.filter(r -> r.equals(winningRank)).count();
+            long count = lottoBundle.stream()
+                    .map(lotto -> lotto.match(mainNumbers, bonusNumber))
+                    .filter(r -> r.equals(winningRank)).count();
             winningStats.put(winningRank, (int) count);
         }
-        return winningStats;
+        return new WinningStats(winningStats);
     }
 
 

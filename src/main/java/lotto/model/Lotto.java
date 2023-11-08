@@ -37,6 +37,7 @@ public class Lotto {
                 .toList()
                 .size();
         boolean bonus = numbers.contains(bonusNumber);
-        return WinningRank.valueOf(matchedCount, bonus);
+        WinningRank of = WinningRank.of(matchedCount, bonus);
+        return of;
     }
 }

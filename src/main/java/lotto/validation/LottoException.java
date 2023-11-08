@@ -1,6 +1,7 @@
 package lotto.validation;
 
 public enum LottoException {
+    ERROR_MESSAGE("[ERROR] "),
     LETTER_ERROR_MESSAGE("숫자가 아닌 입력입니다."),
     EMPTY_INPUT_ERROR_MESSAGE("입력이 비어있습니다."),
     AMOUNT_ERROR_MESSAGE("구매 금액은 0보다 커야합니다."),
@@ -17,6 +18,6 @@ public enum LottoException {
     }
 
     public String getMessage() {
-        return errorMessage;
+        return ERROR_MESSAGE + errorMessage;
     }
 }

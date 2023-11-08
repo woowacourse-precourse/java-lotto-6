@@ -11,6 +11,7 @@ public class OutputView {
     }
 
     public void showTickets(final int count) {
+        print();
         print(count + "개를 구매했습니다.");
     }
 
@@ -19,32 +20,36 @@ public class OutputView {
     }
 
     public void askBonusNum() {
+        print();
         print("보너스 번호를 입력해주세요.");
     }
 
     public void showLottoList(final Lottos lottos) {
         List<Lotto> lottoList = lottos.getLottos();
-        System.out.println();
         lottoList.forEach(System.out::println);
+        print();
     }
 
-    public void showResults() {
-        print("당첨 통계\n---");
+    public void showResults(String str) {
+        print();
+        print("당첨 통계");
+        print("---");
+        print(str);
     }
 
     public void showYield(double yield) {
-        print("총 수익률은 %.1f%%입니다.", yield);
+        printYield(yield);
+    }
+
+    private void print() {
+        System.out.println();
     }
 
     private void print(String str) {
         System.out.println(str);
     }
 
-    private void print(String str, double yield) {
-        System.out.printf(str, yield);
-    }
-
-    private void print(int count, String str) {
-        System.out.println(count + str);
+    private void printYield(double yield) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", yield);
     }
 }

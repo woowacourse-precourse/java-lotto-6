@@ -2,7 +2,6 @@ package lotto.application;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
-import static lotto.enums.LottoConfig.LOTTO_COUNT;
 
 import java.util.List;
 import java.util.stream.IntStream;

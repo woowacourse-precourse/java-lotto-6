@@ -6,7 +6,6 @@ public class LottoResult {
     private int fiveMatchCount;
     private int fiveMatchWithBonusCount;
     private int sixMatchCount;
-    private int totalWinningMoney;
 
     public LottoResult() {
         this.threeMatchCount = 0;
@@ -14,7 +13,6 @@ public class LottoResult {
         this.fiveMatchCount = 0;
         this.fiveMatchWithBonusCount = 0;
         this.sixMatchCount = 0;
-        this.totalWinningMoney = 0;
     }
 
     public int getThreeMatchCount() {
@@ -37,25 +35,28 @@ public class LottoResult {
         return sixMatchCount;
     }
 
-    public int getTotalWinningMoney() {
-        return totalWinningMoney;
-    }
 
-    void addMatchingCount(int matchCount, boolean isBonusNumberMatching) {
+    public void addMatchingCount(int matchCount, boolean isBonusNumberMatching) {
         if (matchCount == 3) {
             threeMatchCount++;
-        }
-        else if (matchCount == 4) {
+        } else if (matchCount == 4) {
             fourMatchCount++;
-        }
-        else if (matchCount == 5 && !isBonusNumberMatching) {
+        } else if (matchCount == 5 && !isBonusNumberMatching) {
             fiveMatchCount++;
-        }
-        else if (matchCount == 5 && isBonusNumberMatching) {
+        } else if (matchCount == 5 && isBonusNumberMatching) {
             fiveMatchWithBonusCount++;
-        }
-        else if(matchCount == 6){
+        } else if (matchCount == 6) {
             sixMatchCount++;
         }
+    }
+
+    public double calculateProfitRate(double money) {
+        double totalProfit = threeMatchCount * 5000 + fourMatchCount * 50000
+                + fiveMatchCount * 1500000 + fiveMatchWithBonusCount * 30000000
+                + sixMatchCount * 2000000000;
+
+        double profitRate = (totalProfit / money) * 100.0;
+
+        return Math.round(profitRate * 100.0) / 100.0;
     }
 }

@@ -16,7 +16,5 @@ public interface OutputFormatter {
 
     String formatWinningInformation(WinningInformation winningInformation);
 
-    String formatProfitability(double profitability);
-
     String formatError(String errorMessage);
 }

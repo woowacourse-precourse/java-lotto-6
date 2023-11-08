@@ -68,8 +68,7 @@ public class ConsoleOutputFormatter implements OutputFormatter {
                 formatProfitability(winningInformation.getProfitability());
     }
 
-    @Override
-    public String formatProfitability(double profitability) {
+    private String formatProfitability(double profitability) {
         DecimalFormat amountFormat = new DecimalFormat(PROFITABILITY_PATTERN);
         String formattedProfitability = amountFormat.format(profitability);
         return String.format(PROFITABILITY_PROMPT, formattedProfitability);

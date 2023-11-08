@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 public class StringUtil {
 
-    public static Capital stringToMoney(String input) {
+    public static Capital stringToCapital(String input) {
         if (containsThousandSeparator(input)) {
             validateCommaAtPosition(input);
             input = removeComma(input);

@@ -31,7 +31,7 @@ public class Player {
     }
 
     private Map<LotteryRank, Integer> getBreakdown(List<LotteryRank> lotteryRanks) {
-        Map<LotteryRank, Integer> result = new HashMap<>();
+        Map<LotteryRank, Integer> result = new LinkedHashMap<>();
 
         LottoConstant.LOTTERY_RANKS
                 .forEach(lotteryRank -> {
@@ -50,7 +50,7 @@ public class Player {
 
         DecimalFormat df = new DecimalFormat("#.#");
 
-        return Double.parseDouble(df.format(netReturn / costOfInvestment));
+        return Double.parseDouble(df.format((netReturn / costOfInvestment) * 100));
     }
 
     private List<LotteryRank> calculateLotteryRanks(LottoMachine lottoMachine) {

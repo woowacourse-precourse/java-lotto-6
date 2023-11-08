@@ -6,15 +6,15 @@ import lotto.model.Capital;
 import lotto.utils.StringUtil;
 
 public class InputConsole {
-    public static Capital getPurchaseAmount() {
+    public static Capital getCapital() {
         System.out.println("구입금액을 입력해 주세요.");
 
         String input = Console.readLine();
 
         try {
-            return StringUtil.stringToMoney(input);
+            return StringUtil.stringToCapital(input);
         } catch (IllegalArgumentException exception) {
-            return getPurchaseAmount();
+            return getCapital();
         }
     }
 

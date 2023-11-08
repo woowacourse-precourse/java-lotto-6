@@ -47,7 +47,7 @@ class StringUtilTest {
     @ParameterizedTest
     @ValueSource(strings = {"", "  ", "abcde", "123abc456"})
     void convertNotAStringTest(String input) {
-        assertThatThrownBy(() -> StringUtil.stringToMoney(input))
+        assertThatThrownBy(() -> StringUtil.stringToCapital(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -55,7 +55,7 @@ class StringUtilTest {
     @ParameterizedTest
     @ValueSource(strings = {"4294967296", "4,294,967,296"})
     void convertOverInteger(String input) {
-        assertThatThrownBy(() -> StringUtil.stringToMoney(input))
+        assertThatThrownBy(() -> StringUtil.stringToCapital(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

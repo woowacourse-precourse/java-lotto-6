@@ -77,10 +77,10 @@ class LottoTest {
     @DisplayName("로또 번호의 범위(1~45)를 벗어나면 예외가 발생한다.")
     @Test
     void createLottoNumberOutOfRange(){
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+        assertThatThrownBy(() -> Converter.convertCommaStringToLotto("1,2,3,4,5,100"))
                 .isInstanceOf(IllegalArgumentException.class);
 
-        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
+        assertThatThrownBy(() -> Converter.convertCommaStringToLotto("0,2,3,4,5,6"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

@@ -4,6 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 
 import java.text.NumberFormat;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -17,10 +18,16 @@ public class OutputView {
 
     public void displayLottoTicket(OutputMessage message, int ticketCount, List<Lotto> lottoTicket) {
         System.out.println(ticketCount + message.getMessage());
-        System.out.println(lottoTicket);
+
+        for (Lotto lotto : lottoTicket) {
+            List<Integer> numbers = lotto.getNumbers();
+            System.out.println(numbers);
+        }
+
+        System.out.println();
     }
 
-    public void displayResult(OutputMessage message, Map<String, Integer> lottoResult, double profit) {
+    public void displayResult(OutputMessage message, Map<String, Integer> lottoResult, String profit) {
         System.out.println(message.getMessage());
         List<Map.Entry<String, Integer>> sortedResult = sortResult(lottoResult);
 
@@ -33,7 +40,7 @@ public class OutputView {
 
     private List<Map.Entry<String, Integer>> sortResult(Map<String, Integer> lottoResult) {
         List<Map.Entry<String, Integer>> sortedResult = lottoResult.entrySet().stream()
-                .sorted(Map.Entry.comparingByKey())
+                .sorted(Map.Entry.comparingByKey(Collections.reverseOrder()))
                 .collect(Collectors.toList());
         return sortedResult;
     }

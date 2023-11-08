@@ -32,7 +32,7 @@ public class GameController {
         int bonusNumber = setBonusNumber(winningNumbers);
         LottoResultAnalyze lottoResultAnalyze = new LottoResultAnalyze();
         Map<String, Integer> lottoResult = lottoResultAnalyze.calculateResult(lottoTicket, winningNumbers, bonusNumber);
-        double profit = calculateProfit(amount, lottoResult);
+        String profit = calculateProfit(amount, lottoResult);
         displayResult(lottoResult, profit);
     }
 
@@ -110,7 +110,7 @@ public class GameController {
         return errorMessage.getMessage() + " " + commonErrorMessage;
     }
 
-    private double calculateProfit(int amount, Map<String, Integer> lottoResult) {
+    private String calculateProfit(int amount, Map<String, Integer> lottoResult) {
         long totalPrize = 0;
         for (Map.Entry<String, Integer> entry : lottoResult.entrySet()) {
             String rankName = entry.getKey();
@@ -119,10 +119,10 @@ public class GameController {
             totalPrize += count * prize;
         }
         double profit = ((double) totalPrize / amount) * 100;
-        return profit;
+        return String.format("%,.1f", profit);
     }
 
-    private void displayResult(Map<String, Integer> lottoResult, double profit) {
+    private void displayResult(Map<String, Integer> lottoResult, String profit) {
         outputView.displayResult(OutputMessage.DISPLAY_LOTTO_RESULT, lottoResult, profit);
     }
 }

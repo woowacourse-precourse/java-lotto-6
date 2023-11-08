@@ -21,6 +21,10 @@ public class Lotto {
         return numbers.stream().distinct().count() != numbers.size();
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public int calculateMatchingCount(List<Integer> winningNumbers) {
         return (int) numbers.stream()
                 .filter(winningNumbers::contains)

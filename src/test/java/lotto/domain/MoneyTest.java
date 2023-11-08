@@ -32,6 +32,17 @@ class MoneyTest {
     }
 
     @Test
+    @DisplayName("금액이 음수이므로 예외가 발생한다.")
+    void validateNegativeNumber() throws Exception {
+        //given
+        String input = "-1000";
+        //when
+        //then
+        assertThatThrownBy(() -> new Money(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     @DisplayName("총 수익률을 계산하여 반환한다.")
     void calculateRevenue() throws Exception {
         //given

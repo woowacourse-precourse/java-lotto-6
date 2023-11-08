@@ -1,11 +1,29 @@
 package lotto.service;
 
+import lotto.model.Lotto;
+
 import java.util.List;
 
 public class LottoMatchChecker {
 
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
+
+
+    public int[] checkMatches(List<Lotto> lottoTickets) {
+        int[] matchCounts = new int[8];
+
+        for (Lotto ticket : lottoTickets) {
+            int matchCount = ticket.countMatchingNumbers(winningNumbers);
+            if (matchCount == 5 && ticket.contains(bonusNumber)) {
+                matchCounts[7]++;
+            } else {
+                matchCounts[matchCount]++;
+            }
+        }
+
+        return matchCounts;
+    }
 
     public LottoMatchChecker(List<Integer> winningNumbers, int bonusNumber) {
         this.winningNumbers = winningNumbers;

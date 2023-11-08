@@ -22,4 +22,11 @@ public class JackpotNumberExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨번호 입력 시 빈칸을 입력하면 예외가 발생한다.")
+    @Test
+    public void inputJackpotNumberBySpace() {
+        assertThatThrownBy(() -> InputValidator.checkJackpotNumberInput("1,2, ,4,5,6"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

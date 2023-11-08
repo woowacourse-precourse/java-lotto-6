@@ -24,14 +24,6 @@ public class Lotto {
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder("[");
-        for (int i = 0; i < numbers.size(); i++) {
-            result.append(numbers.get(i));
-            if (i < numbers.size() - 1) {
-                result.append(", ");
-            }
-        }
-        result.append("]");
-        return result.toString();
+        return "[" + String.join(", ", numbers.stream().map(String::valueOf).toArray(String[]::new)) + "]";
     }
 }

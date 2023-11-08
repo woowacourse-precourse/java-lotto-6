@@ -10,5 +10,6 @@ public class LottoController {
     public int returnAllPrize(){
         return LottoRank.getAllPrizeMoney();
     }
+
 }
 

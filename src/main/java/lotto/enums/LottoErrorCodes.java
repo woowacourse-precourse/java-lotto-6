@@ -9,7 +9,8 @@ public enum LottoErrorCodes {
     NUMBERS_ONLY_INPUT("[ERROR] 숫자만 입력할 수 있습니다."),
     NUMBER_RANGE_ERROR("[ERROR] 숫자는 %d에서 %d 사이어야 합니다.", LottoConstants.MINIMUM_NUMBER.getValue(), LottoConstants.MAXIMUM_NUMBER.getValue()),
     EXACT_NUMBER_REQUIRED("[ERROR] 정확히 " + LottoConstants.NUMBERS_PER_TICKET.getValue() + "개의 숫자를 입력해야 합니다."),
-    DUPLICATE_NUMBER_ERROR("[ERROR] 중복된 숫자가 있습니다.");
+    DUPLICATE_NUMBER_ERROR("[ERROR] 중복된 숫자가 있습니다."),
+    INTEGER_RANGE_EXCEEDED("[ERROR] -2,147,483,648에서 2,147,483,647 사이로 입력해주세요.");
 
     private final String message;
     private final int minimumNumber;

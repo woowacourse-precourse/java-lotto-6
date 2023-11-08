@@ -147,18 +147,6 @@
 * 메소드:
     * add
 
-#### DrawResultBuilder
-
-* 책임:
-    * DrawResult를 생성하는 빌더 패턴.
-* 필드:
-    * 당첨 번호
-    * 보너스 볼 번호
-* 메소드:
-    * setNumbers
-    * setBonusNumber
-    * build
-
 #### DrawResult
 
 * 책임:
@@ -195,16 +183,21 @@
 * 메소드:
     * generate
 
-#### LottoSystem
+#### LottoChecker
 
 * 책임:
-    * 티켓을 수량만큼 구매하고 저장한다.
-    * 당첨 번호를 저장한다.
     * 저장된 티켓의 당첨 여부를 확인하고 당첨 통계를 생성한다.
 * 메소드:
-    * buyTickets
-    * setDrawResult
-    * matchTickets
+    * checkOneTicket
+    * checkTickets
+
+#### LottoResult
+
+* 책임:
+    * 당첨 결과를 저장한다.
+* 필드:
+    * int matchNumbers - 일치하는 번호의 갯수
+    * boolean isBonusMatch - 보너스 번호와 일치하는지 여부
 
 ### 📁 Repository Layer
 

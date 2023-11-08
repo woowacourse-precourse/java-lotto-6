@@ -63,11 +63,7 @@ public class Validator {
         if (winningNumbers.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.MISSING_WINNING_NUMBERS.getMessage());
         }
-        if (winningNumbers.size() != LottoConfig.LOTTO_NUMBER_COUNT.getValue()) {
-            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_SIZE_ERROR
-                    .getFormattedMessage(LottoConfig.LOTTO_NUMBER_COUNT.getValue()));
-        }
-
+        validateNumbersSize(winningNumbers, LottoConfig.LOTTO_NUMBER_COUNT.getValue());
         validateUniqueNumbers(winningNumbers);
         validateNumbersInRange(winningNumbers);
     }
@@ -84,6 +80,12 @@ public class Validator {
 
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATION.getMessage());
+        }
+    }
+
+    public static void validateNumbersSize(List<Integer> numbers, int size) {
+        if (numbers.size() != size) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_SIZE_ERROR.getFormattedMessage(size));
         }
     }
 }

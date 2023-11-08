@@ -31,6 +31,10 @@ public record LottoSystemConstant() {
             Pattern(String message) {
                 this.message = message;
             }
+
+            public String getMessage() {
+                return message;
+            }
         }
 
         @Override
@@ -43,7 +47,7 @@ public record LottoSystemConstant() {
     public static final Policy<Integer> NUMBER_MAXIMUM_VALUE = new Policy<>(45);
     public static final Policy<Integer> LOTTO_NUMBER_LENGTH = new Policy<>(6);
     public static final Policy<String> LOTTO_NUMBER_SEPARATOR = new Policy<>(",");
-    public static final Policy<Integer> LOTTO_MONEY_MINIMUM_VALUE = new Policy<>(1000);
+    public static final Policy<Integer> LOTTO_PRICE = new Policy<>(1000);
     public static final Policy<Integer> LOTTO_MONEY_MAXIMUM_VALUE = new Policy<>(100_000);
 
 

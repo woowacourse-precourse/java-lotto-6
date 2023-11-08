@@ -1,7 +1,7 @@
 package lotto.view;
 
 import static lotto.engine.LottoSystemConstant.LOTTO_MONEY_MAXIMUM_VALUE;
-import static lotto.engine.LottoSystemConstant.LOTTO_MONEY_MINIMUM_VALUE;
+import static lotto.engine.LottoSystemConstant.LOTTO_PRICE;
 import static lotto.engine.LottoSystemConstant.LOTTO_NUMBER_LENGTH;
 import static lotto.engine.LottoSystemConstant.LOTTO_NUMBER_SEPARATOR;
 import static lotto.engine.LottoSystemConstant.TextMessage.ERROR_PREFIX;
@@ -97,9 +97,9 @@ public class LottoGameViewer {
         validator.verifyNullAndBlank(money);
         validator.verifyNumber(money);
         Integer verifiedNumber = lottoGameViewerMapper.toInt(money);
-        validator.verifyInRangeClosed(LOTTO_MONEY_MINIMUM_VALUE.value(), LOTTO_MONEY_MAXIMUM_VALUE.value(),
+        validator.verifyInRangeClosed(LOTTO_PRICE.value(), LOTTO_MONEY_MAXIMUM_VALUE.value(),
                 verifiedNumber);
-        validator.verifyDivisible(verifiedNumber, LOTTO_MONEY_MINIMUM_VALUE.value());
+        validator.verifyDivisible(verifiedNumber, LOTTO_PRICE.value());
     }
 
     private void validBonusNumber(String bonusNumber) {
@@ -107,7 +107,7 @@ public class LottoGameViewer {
         validator.verifyNumber(bonusNumber);
         Integer number = lottoGameViewerMapper.toInt(bonusNumber);
         validator.verifyInRangeClosed(
-                LOTTO_MONEY_MINIMUM_VALUE.value(),
+                LOTTO_PRICE.value(),
                 LOTTO_MONEY_MAXIMUM_VALUE.value(),
                 number);
     }
@@ -123,7 +123,7 @@ public class LottoGameViewer {
         numbers.forEach(validator::verifyNumber);
         numbers.stream().map(Integer::parseInt)
                 .forEach(number -> validator.verifyInRangeClosed(
-                        LOTTO_MONEY_MINIMUM_VALUE.value(),
+                        LOTTO_PRICE.value(),
                         LOTTO_MONEY_MAXIMUM_VALUE.value(),
                         number));
     }

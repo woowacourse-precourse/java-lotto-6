@@ -49,4 +49,15 @@ public class InputLottoException {
 		}
 	}
 	
+	public void validateBonusNumberRange(int bonusNumber) {
+		if(bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
+			throw new IllegalArgumentException(ERROR+LOTTO_NUMBERS_OUT_OF_RANGE);
+		}
+	}
+	public void validateDuplicatedBonusNumber(List<Integer> lottoNumbers, int bonusNumber) {
+		if(lottoNumbers.contains(bonusNumber)) {
+			throw new IllegalArgumentException(ERROR+DUPLICATED_BONUS_NUMBER);
+		}
+	}
+	
 }

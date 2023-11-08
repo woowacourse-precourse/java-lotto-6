@@ -9,18 +9,23 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-
     }
 
     public void printLotto() {
+        boolean[] used = new boolean[Value.RAINGE_MAX.get() + Value.ONE.get()];
+        for (Integer i : numbers) {
+            used[i] = true;
+        }
         System.out.print("[");
         boolean flag = false;
-        for (Integer i : numbers) {
-            if (flag) {
+        for (int i = Value.RAINGE_MIN.get(); i <= Value.RAINGE_MAX.get(); ++i) {
+            if (flag && used[i]) {
                 System.out.print(", ");
             }
-            System.out.print(i);
-            flag = true;
+            if (used[i]) {
+                System.out.print(i);
+                flag = true;
+            }
         }
         System.out.println("]");
     }

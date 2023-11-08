@@ -17,7 +17,7 @@ public class Money {
     }
 
     private void validateMultipleOf1000(int money) {
-        if (isMultipleOf1000(money)) {
+        if (!isMultipleOf1000(money)) {
             throw new IllegalArgumentException();
         }
     }
@@ -38,5 +38,9 @@ public class Money {
 
     public int getLottoCount() {
         return money / CURRENCY;
+    }
+
+    public int getMoney() {
+        return money;
     }
 }

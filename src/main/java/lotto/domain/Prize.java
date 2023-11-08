@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.util.Error;
 import lotto.util.Utils;
 
 import java.util.ArrayList;
@@ -7,12 +8,13 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+
+
 public class Prize {
-    int SECOND_CORRECT_COUNT = 5;
+    static final int SECOND_CORRECT_COUNT = 5;
     private final List<Integer> prizeNumber;
     private final int bonusNumber;
     private final LinkedHashMap<Rank, Integer> rankCounts = new LinkedHashMap<>();
-
 
     public Prize(String prizeNumber, int bonusNumber) {
         this.bonusNumber = bonusNumber;
@@ -21,12 +23,32 @@ public class Prize {
     }
 
     private List<Integer> makePrizeNumbers(String prizeNumber) {
-        List<String> numbers = List.of(prizeNumber.split(","));
+        validateSize(prizeNumber);
+        List<String> numbers = Utils.splitName(prizeNumber);
         List<Integer> prizeNumbers = new ArrayList<>();
+
         for (String number : numbers) {
-            prizeNumbers.add(Utils.changeStringToInt(number));
+            int changeStringtoNumber = Utils.changeStringToInt(number);
+            validateRange(changeStringtoNumber);
+            prizeNumbers.add(changeStringtoNumber);
         }
+
         return prizeNumbers;
+    }
+
+    private void validateSize(String prizeNumber) {
+        List<String> numbers = Utils.splitName(prizeNumber);
+        if (numbers.size() != Buyer.LOTTO_COUNT){
+            Error error = Error.NOT_LOTTO_COUNT;
+            Utils.backFunction(error);
+        }
+    }
+    private void validateRange(int number){
+        if (number < Buyer.MIN_LOTTO_NUMBER
+                || number > Buyer.MAX_LOTTO_NUMBER) {
+            Error error = Error.MIN_MAX_ERROR;
+            Utils.backFunction(error);
+        }
     }
 
     public HashMap<Rank, Integer> makePrizeRanks(Buyer buyer) {

@@ -39,5 +39,6 @@ class UserAccountTest {
         double expected = (double) Prize.FIFTH.getWinning() / inputMoney;
         System.out.println(earningRate);
         assertThat(earningRate).isEqualTo(100 * expected);
+        //test
     }
 }

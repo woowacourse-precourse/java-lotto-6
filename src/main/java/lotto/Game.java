@@ -6,6 +6,7 @@ import static lotto.constant.GameMessage.YOU_BOUGHT_N_LOTTOS;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Price;
@@ -36,7 +37,9 @@ public class Game {
     private static List<Lotto> makeLottos(long amount) {
         List<Lotto> lottos = new ArrayList<>();
         for (long i = 0; i < amount; i++) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
+            Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }
         return lottos;

@@ -14,11 +14,27 @@ public class Controller {
 	}
 
 	public void run() {
-		lottoAmountService.setLottoAmount();
-		lottoService.createLottos(lottoAmountService.getLottoAmount());
-		lottoService.printLottos(lottoAmountService.getLottoAmount());
+		createAndShowLotto(getLottoAmountByUser());
+		setUpWinningLotto();
+		showResult();
+	}
+
+	private int getLottoAmountByUser() {
+		lottoAmountService.setUpLottoAmount();
+		return lottoAmountService.getLottoAmount();
+	}
+
+	private void createAndShowLotto(int amount) {
+		lottoService.createLottos(amount);
+		lottoService.printLottos(amount);
+	}
+
+	private void setUpWinningLotto() {
 		lottoService.setUpWinningLotto();
+	}
+
+	private void showResult() {
 		OutputView.printResult(lottoService.calculateAndGetResult());
-		OutputView.printRateOfResult(lottoService.getRateOfReturn(lottoAmountService.getInputMoney()));
+		OutputView.printRateOfReturn(lottoService.getRateOfReturn(lottoAmountService.getInputMoney()));
 	}
 }

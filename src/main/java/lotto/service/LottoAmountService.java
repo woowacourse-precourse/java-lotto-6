@@ -9,7 +9,7 @@ public class LottoAmountService {
 	private InputMoney inputMoney;
 	private InputAmount inputAmount;
 
-	public void setLottoAmount() {
+	public void setUpLottoAmount() {
 		setUpInputAmount(getUserInputAmount());
 		System.out.println();
 	}
@@ -33,7 +33,7 @@ public class LottoAmountService {
 			inputAmount = new InputAmount(inputMoney.getInputMoney());
 		} catch(IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			setLottoAmount();
+			setUpLottoAmount();
 		}
 	}
 }

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.constant.LottoConstants;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
@@ -21,6 +22,7 @@ public class LottoController {
     private final RandomGenerator randomGenerator;
 
     private List<Lotto> lottos;
+    private int count;
 
     public void run() {
         createLottos();
@@ -39,7 +41,7 @@ public class LottoController {
 
     public void createLottos() {
         inputView.inputAmountView();
-        int count = input.inputAmountType();
+        this.count = input.inputAmountType();
         List<List<Integer>> randomNumbers = randomGenerator.getRandomNumbers(count);
         this.lottos = lottoUtil.lottoCreateCount(randomNumbers);
         outputView.outputLotto(lottos);
@@ -57,8 +59,7 @@ public class LottoController {
 
     public void compareLotto() {
         Map<Rank, Integer> rank = lottoUtil.compareLottoNumbers(lottos, WinningLotto.getInstance());
-        outputView.outputRank(rank);
+        float rateOfReturn = lottoUtil.rateOfReturn(count * LottoConstants.UNIT, rank);
+        outputView.outputRank(rank, rateOfReturn);
     }
-
-
 }

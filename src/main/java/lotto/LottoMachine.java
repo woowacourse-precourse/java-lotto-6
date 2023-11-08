@@ -9,28 +9,18 @@ public class LottoMachine {
 
     private final int purchaseMoney;
     private final List<Lotto> lottoTickets;
+    private final LottoPrizeProcessor prizeProcessor;
 
     public LottoMachine(int purchaseMoney) {
         validateCanBuy(purchaseMoney);
         this.purchaseMoney = purchaseMoney;
         this.lottoTickets = purchase(calculateLottoCount(purchaseMoney));
+        this.prizeProcessor = new LottoPrizeProcessor();
     }
 
     public LottoResult calculatePrize(WinningLotto winningLotto) {
-        List<LottoRank> ranks = new ArrayList<>();
-        for (Lotto lottoTicket : lottoTickets) {
-            Optional<LottoRank> lottoRank = winningLotto.calculateRank(lottoTicket);
-            lottoRank.ifPresent(ranks::add);
-        }
-
-        int earnMoney = 0;
-        Map<LottoRank, Integer> rankToCount = new EnumMap<>(LottoRank.class);
-        for (LottoRank rank : ranks) {
-            rankToCount.put(rank, rankToCount.getOrDefault(rank, 0) + 1);
-            earnMoney += rank.getWinningMoney();
-        }
-
-        return new LottoResult(purchaseMoney, earnMoney, rankToCount);
+        List<LottoRank> ranks = compareTo(winningLotto);
+        return prizeProcessor.calculatePrize(ranks, purchaseMoney);
     }
 
     public List<Lotto> getLottoTickets() {
@@ -43,6 +33,15 @@ public class LottoMachine {
             purchasedLotto.add(new Lotto());
         }
         return purchasedLotto;
+    }
+
+    private List<LottoRank> compareTo(WinningLotto winningLotto) {
+        List<LottoRank> ranks = new ArrayList<>();
+        for (Lotto lottoTicket : lottoTickets) {
+            Optional<LottoRank> lottoRank = winningLotto.calculateRank(lottoTicket);
+            lottoRank.ifPresent(ranks::add);
+        }
+        return ranks;
     }
 
     private void validateCanBuy(int money) {

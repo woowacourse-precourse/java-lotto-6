@@ -5,6 +5,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.LottoCondition.MAX_LOTTO_NUMBER;
+import static lotto.LottoCondition.MIN_LOTTO_NUMBER;
+
 public class Lotto {
 
     private static final int LOTTO_LENGTH = 6;
@@ -14,10 +17,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto() {
-        this(Randoms.pickUniqueNumbersInRange(
-                LottoCondition.MIN_LOTTO_NUMBER,
-                LottoCondition.MAX_LOTTO_NUMBER,
-                LOTTO_LENGTH));
+        this(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_LENGTH));
     }
 
     public Lotto(List<Integer> numbers) {

@@ -5,13 +5,13 @@ import static lotto.Constants.Constants.LOTTO_PRICE;
 import static lotto.Constants.Constants.MAX_RANDOM_NUMBER;
 import static lotto.Constants.Constants.MIN_RANDOM_NUMBER;
 import static lotto.Constants.Constants.ZERO;
-import static lotto.exception.ErrorCode.PURCHASE_AMOUNT_NOT_POSITIVE;
-import static lotto.exception.ErrorCode.PURCHASE_AMOUNT_NOT_PRICE_UNIT;
+import static lotto.error.ErrorCode.PURCHASE_AMOUNT_NOT_POSITIVE;
+import static lotto.error.ErrorCode.PURCHASE_AMOUNT_NOT_PRICE_UNIT;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.exception.PurchaseException;
+import lotto.error.exception.PurchaseException;
 
 public class LottoShop {
 
@@ -22,18 +22,18 @@ public class LottoShop {
         return generateLottos(purchasedCount);
     }
 
-    private static void validateLotto(final int purchaseAmount) {
+    private void validateLotto(final int purchaseAmount) {
         validatePurchaseAmountPositive(purchaseAmount);
         validatePurchaseAmountUnit(purchaseAmount);
     }
 
-    private static void validatePurchaseAmountPositive(final int purchaseAmount) {
+    private void validatePurchaseAmountPositive(final int purchaseAmount) {
         if (purchaseAmount <= ZERO) {
             throw new PurchaseException(PURCHASE_AMOUNT_NOT_POSITIVE);
         }
     }
 
-    private static void validatePurchaseAmountUnit(final int purchaseAmount) {
+    private void validatePurchaseAmountUnit(final int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE != ZERO) {
             throw new PurchaseException(PURCHASE_AMOUNT_NOT_PRICE_UNIT);
         }

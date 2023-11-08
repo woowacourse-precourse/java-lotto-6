@@ -8,9 +8,9 @@ import static lotto.view.OutputView.printLottoResult;
 import static lotto.view.OutputView.printLottos;
 
 import java.util.List;
-import lotto.exception.BonusNumberException;
-import lotto.exception.LottoException;
-import lotto.exception.PurchaseException;
+import lotto.error.exception.BonusNumberException;
+import lotto.error.exception.LottoException;
+import lotto.error.exception.PurchaseException;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.LottoShop;

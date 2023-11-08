@@ -1,15 +1,15 @@
 package lotto.controller;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static lotto.exception.ErrorCode.BLANK_INPUT;
-import static lotto.exception.ErrorCode.BONUS_NUMBER_DUPLICATE;
-import static lotto.exception.ErrorCode.BONUS_NUMBER_RANGE;
-import static lotto.exception.ErrorCode.LOTTO_NUMBER_DUPLICATE;
-import static lotto.exception.ErrorCode.LOTTO_NUMBER_RANGE;
-import static lotto.exception.ErrorCode.LOTTO_NUMBER_SIZE;
-import static lotto.exception.ErrorCode.NOT_INTEGER_INPUT;
-import static lotto.exception.ErrorCode.PURCHASE_AMOUNT_NOT_POSITIVE;
-import static lotto.exception.ErrorCode.PURCHASE_AMOUNT_NOT_PRICE_UNIT;
+import static lotto.error.ErrorCode.BLANK_INPUT;
+import static lotto.error.ErrorCode.BONUS_NUMBER_DUPLICATE;
+import static lotto.error.ErrorCode.BONUS_NUMBER_RANGE;
+import static lotto.error.ErrorCode.LOTTO_NUMBER_DUPLICATE;
+import static lotto.error.ErrorCode.LOTTO_NUMBER_RANGE;
+import static lotto.error.ErrorCode.LOTTO_NUMBER_SIZE;
+import static lotto.error.ErrorCode.NOT_INTEGER_INPUT;
+import static lotto.error.ErrorCode.PURCHASE_AMOUNT_NOT_POSITIVE;
+import static lotto.error.ErrorCode.PURCHASE_AMOUNT_NOT_PRICE_UNIT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;

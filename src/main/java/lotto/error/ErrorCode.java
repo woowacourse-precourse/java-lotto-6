@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.error;
 
 import static lotto.Constants.Constants.LOTTO_NUMBER_COUNT;
 import static lotto.Constants.Constants.LOTTO_PRICE;

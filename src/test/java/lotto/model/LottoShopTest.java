@@ -1,14 +1,15 @@
 package lotto.model;
 
 import static lotto.Constants.Constants.LOTTO_PRICE;
-import static lotto.exception.ErrorCode.PURCHASE_AMOUNT_NOT_POSITIVE;
-import static lotto.exception.ErrorCode.PURCHASE_AMOUNT_NOT_PRICE_UNIT;
+import static lotto.error.ErrorCode.PURCHASE_AMOUNT_NOT_POSITIVE;
+import static lotto.error.ErrorCode.PURCHASE_AMOUNT_NOT_PRICE_UNIT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoShopTest {
@@ -26,6 +27,7 @@ class LottoShopTest {
     }
 
     @DisplayName("지불한 돈이 양수가 아니라면 예외가 발생한다")
+    @ParameterizedTest
     @ValueSource(ints = {0, -1000})
     void purchaseAmountIsNotPositive(final int purchaseAmount) {
         assertThatThrownBy(() -> lottoShop.purchase(purchaseAmount))

@@ -2,8 +2,8 @@ package lotto.model;
 
 import static lotto.Constants.Constants.MAX_RANDOM_NUMBER;
 import static lotto.Constants.Constants.MIN_RANDOM_NUMBER;
-import static lotto.exception.ErrorCode.BONUS_NUMBER_DUPLICATE;
-import static lotto.exception.ErrorCode.BONUS_NUMBER_RANGE;
+import static lotto.error.ErrorCode.BONUS_NUMBER_DUPLICATE;
+import static lotto.error.ErrorCode.BONUS_NUMBER_RANGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;

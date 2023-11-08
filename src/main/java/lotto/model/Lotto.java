@@ -3,14 +3,12 @@ package lotto.model;
 import static lotto.Constants.Constants.LOTTO_NUMBER_COUNT;
 import static lotto.Constants.Constants.MAX_RANDOM_NUMBER;
 import static lotto.Constants.Constants.MIN_RANDOM_NUMBER;
-import static lotto.exception.ErrorCode.LOTTO_NUMBER_DUPLICATE;
-import static lotto.exception.ErrorCode.LOTTO_NUMBER_RANGE;
-import static lotto.exception.ErrorCode.LOTTO_NUMBER_SIZE;
+import static lotto.error.ErrorCode.LOTTO_NUMBER_DUPLICATE;
+import static lotto.error.ErrorCode.LOTTO_NUMBER_RANGE;
+import static lotto.error.ErrorCode.LOTTO_NUMBER_SIZE;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import lotto.exception.LottoException;
+import lotto.error.exception.LottoException;
 
 public class Lotto {
 
@@ -54,9 +52,7 @@ public class Lotto {
     }
 
     public String numbersToString() {
-        final List<Integer> modifiableNumbers = new ArrayList<>(numbers);
-        Collections.sort(modifiableNumbers);
-        return modifiableNumbers.toString();
+        return numbers.stream().sorted().toList().toString();
     }
 
     public int getMatchCount(final Lotto lotto) {

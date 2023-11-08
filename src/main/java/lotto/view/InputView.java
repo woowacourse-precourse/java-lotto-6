@@ -1,12 +1,12 @@
 package lotto.view;
 
-import static lotto.exception.ErrorCode.BLANK_INPUT;
-import static lotto.exception.ErrorCode.NOT_INTEGER_INPUT;
+import static lotto.error.ErrorCode.BLANK_INPUT;
+import static lotto.error.ErrorCode.NOT_INTEGER_INPUT;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import lotto.exception.InputException;
+import lotto.error.exception.InputException;
 
 public class InputView {
 
@@ -17,7 +17,7 @@ public class InputView {
     private static final String LOTTO_WINNING_NUMBER_DELIMITER = ",";
 
     public static int inputLottoPurchaseAmount() {
-        System.out.println(LOTTO_WINNING_NUMBER_MESSAGE);
+        System.out.println(LOTTO_PURCHASE_AMOUNT_MESSAGE);
         while (true) {
             try {
                 return getIntegerInput();

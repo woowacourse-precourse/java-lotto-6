@@ -44,12 +44,12 @@ public enum LottoRank {
         return lottoRank.matchCount == matchCount && lottoRank.hasBonus == hasBonus;
     }
 
-    public String getOutputString(int resultCount) {
-        return String.format(outputString, resultCount);
-    }
-
     public boolean isPositivePrize() {
         return prize > ZERO;
+    }
+
+    public String getOutputString(int resultCount) {
+        return String.format(outputString, resultCount);
     }
 
     public int getPrize() {

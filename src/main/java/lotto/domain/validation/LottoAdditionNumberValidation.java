@@ -5,8 +5,7 @@ import lotto.constants.ErrorMassageConstants;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
-import static lotto.constants.LottoNumberConstants.MAX_LOTTO_NUMBER;
-import static lotto.constants.LottoNumberConstants.MIN_LOTTO_NUMBER;
+import static lotto.constants.LottoNumberConstants.*;
 
 public class LottoAdditionNumberValidation {
     private static int additionNumber;
@@ -16,6 +15,7 @@ public class LottoAdditionNumberValidation {
         LottoAdditionNumberValidation.additionNumber = convertLottoAdditionNumber(additionNumber);
         additionNumberInRange();
         additionNumberDuplicateInWinningNumber();
+        additionNumberByOverSize();
         return lottoWinningNumbers;
     }
 
@@ -40,5 +40,11 @@ public class LottoAdditionNumberValidation {
             }
         }
         lottoWinningNumbers.add(additionNumber);
+    }
+
+    private void additionNumberByOverSize() {
+        if (lottoWinningNumbers.size() != LOTTO_WINNING_NUMBER_RANGE) {
+            throw new IllegalArgumentException(ErrorMassageConstants.ADDITION_NUMBER_SIZE_OVER_ERROR_MESSAGE.getMessage());
+        }
     }
 }

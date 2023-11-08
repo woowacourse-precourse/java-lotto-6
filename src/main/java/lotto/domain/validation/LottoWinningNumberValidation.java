@@ -17,6 +17,7 @@ public class LottoWinningNumberValidation {
         lottoWinningNumbers = convertLottoWinningNumber(winningNumber);
         duplicatedWinningNumber();
         allNumbersInRange();
+        winningNumberByOverSize();
         return lottoWinningNumbers;
     }
 
@@ -42,6 +43,12 @@ public class LottoWinningNumberValidation {
             if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
                 throw new IllegalArgumentException(ErrorMassageConstants.WINNING_NUMBERS_IN_RANGE_ERROR_MESSAGE.getMessage());
             }
+        }
+    }
+
+    private void winningNumberByOverSize() {
+        if(lottoWinningNumbers.size() != LOTTO_NUMBER_RANGE){
+            throw new IllegalArgumentException(ErrorMassageConstants.WINNING_NUMBER_SIZE_OVER_ERROR_MESSAGE.getMessage());
         }
     }
 }

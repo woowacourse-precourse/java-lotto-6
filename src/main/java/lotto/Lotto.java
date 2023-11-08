@@ -1,6 +1,10 @@
 package lotto;
 
+import lotto.constants.ErrorMassageConstants;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -12,12 +16,20 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        duplicateLotto(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_RANGE) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void duplicateLotto(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>(numbers);
+        if(set.size() != numbers.size()){
+            throw new IllegalArgumentException(ErrorMassageConstants.LOTTO_DUPLICATE_ERROR_MESSAGE.getMessage());
         }
     }
 

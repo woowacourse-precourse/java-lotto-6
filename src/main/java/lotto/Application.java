@@ -27,6 +27,7 @@ public class Application {
             System.out.println();
         }
         System.out.println("당첨 번호를 입력해 주세요.");
+        winningNumbersInput(winningNumbers);
 
     }
 
@@ -51,6 +52,19 @@ public class Application {
         System.out.print(lotto);
     }
 
+    public static void winningNumbersInput (List<Integer> winningNumbers) {
+        String userInput = Console.readLine();
+        String[] numbers = userInput.split(",");
+        try {
+            for (String name : numbers){
+                winningNumbers.add(Integer.parseInt(name.trim()));
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println("[ERROR] 당첨 번호 6개를 입력하여야 합니다.");
+        }
+        if(numbers.length>6)
+            throw new IllegalArgumentException("[ERROR] 당첨 번호 6개를 입력하여야 합니다.");
 
+    }
 
 }

@@ -16,6 +16,15 @@ import java.util.Map;
 public class LottoController {
     private LottoService lottoService;
     public static final int LOTTO_PRICE = 1000;
+    public static final Long FIFTH = 5000L;
+    public static final Long FORTH = 50000L;
+    public static final Long THIRD = 1500000L;
+    public static final Long SECOND = 30000000L;
+    public static final Long FIRST = 2000000000L;
+    public static final int ROUNDING = 2;
+    public static final int MINVALUE =1;
+    public static final int MAXVALUE =45;
+    public static final int COUNT =6;
 
     public void lottoStart(){
 
@@ -48,14 +57,15 @@ public class LottoController {
     public double getRate(int purchasePrice, Long profit){
         double rate = ((double) profit / purchasePrice) * 100;
         BigDecimal bd = new BigDecimal(rate);
-        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        bd = bd.setScale(ROUNDING, RoundingMode.HALF_UP);
 
         return bd.doubleValue();
     }
 
     private Long getProfit(Map<Place, Integer> numberOfWins) {
         Place[] places = Place.values();
-        Long[] winningPrice = {5000L,50000L,1500000L,30000000L,2000000000L};
+        Long[] winningPrice = {FIFTH,FORTH,THIRD,SECOND,FIRST};
+
         Long profit = 0L;
         for(int i=0; i< winningPrice.length; i++){
             profit += winningPrice[i] * numberOfWins.get(places[i]);
@@ -80,7 +90,7 @@ public class LottoController {
 
         for(int i=0; i<numberOfLotto; i++){
             List<Integer> lotto;
-            lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lotto = Randoms.pickUniqueNumbersInRange(MINVALUE, MAXVALUE, COUNT);
             lottos.add(lotto);
         }
 

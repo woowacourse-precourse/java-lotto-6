@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PlaceAndCorrectNumberMap {
+    public static final int CAN_SECOND = 5;
     private static Map<Double,Place> placeReturnMap = new HashMap<>(){{
        put(6D,Place.FIRST);
        put(5.5,Place.SECOND);
@@ -17,7 +18,7 @@ public class PlaceAndCorrectNumberMap {
 
     public static Place whichPlace(int correctNumber,boolean bonusOn){
         Double convertCorrectNumber = 0.0;
-        if(correctNumber == 5 && bonusOn){
+        if(correctNumber == CAN_SECOND && bonusOn){
             convertCorrectNumber = 0.5;
         }
         convertCorrectNumber += correctNumber;

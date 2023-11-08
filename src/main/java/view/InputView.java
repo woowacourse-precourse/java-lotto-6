@@ -11,6 +11,10 @@ public class InputView {
             "\n당첨 번호를 입력해 주세요.";
     public static final String BONUS_NUMBER_MESSAGE =
             "\n보너스 번호를 입력해 주세요.";
+    public static final int LOTTO_PRICE = 1000;
+    public static final int MINVALUE = 1;
+    public static final int MAXVALUE = 45;
+    public static final int LOTTO_SIZE = 6;
 
     public static int inputPurchasePrice(){
         System.out.println(PURCHASE_MESSAGE);
@@ -31,7 +35,7 @@ public class InputView {
     }
 
     private static void checkingPurchaseException(int purchasePrice) {
-        if(purchasePrice % 1000 != 0 ){
+        if(purchasePrice % LOTTO_PRICE != 0 ){
             throw new IllegalArgumentException();
         }
     }
@@ -70,21 +74,21 @@ public class InputView {
     }
 
     private static void checkingWinningNumberOverSizeException(List<Integer> winningNumber) {
-        if(winningNumber.size() != 6){
+        if(winningNumber.size() != LOTTO_SIZE){
             throw new IllegalArgumentException("OverSize");
         }
     }
 
     private static void checkingWinningNumberReplicatedException(List<Integer> winningNumber) {
         Set<Integer> convertSet = new HashSet<>(winningNumber);
-        if(convertSet.size() != 6){
+        if(convertSet.size() != LOTTO_SIZE){
             throw new IllegalArgumentException("DuplicateNumber");
         }
     }
 
     private static void checkingWinningNumberOverInputException(List<Integer> winningNumber) {
         for(Integer i : winningNumber){
-            if(i > 45 || i<1){
+            if(i > MAXVALUE || i<MINVALUE){
                 throw new IllegalArgumentException("OutOfRange");
             }
         }
@@ -126,7 +130,7 @@ public class InputView {
     }
 
     private static void checkingBonusNumberOverInputException(List<Integer> winningNumber, int BonusNumber) {
-        if(BonusNumber > 45 || BonusNumber < 1){
+        if(BonusNumber > MAXVALUE || BonusNumber < MINVALUE){
             throw new IllegalArgumentException("OutOfRange");
         }
     }

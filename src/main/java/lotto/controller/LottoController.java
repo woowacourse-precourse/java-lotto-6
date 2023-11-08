@@ -54,21 +54,16 @@ public class LottoController {
     }
 
     private void winningLottoSetting() {
-        Lotto winningNumberLotto = getWinningLottoAndCheck();
-        BonusNumber bonusNumber = getBonusNumberAndCheck(winningNumberLotto);
+        Lotto winningNumberLotto = getWinningLotto();
+        BonusNumber bonusNumber = getBonusNumber(winningNumberLotto);
         this.winningLotto = new WinningLotto(winningNumberLotto, bonusNumber);
     }
 
-    private Lotto getWinningLottoAndCheck() {
+    private Lotto getWinningLotto() {
         while (true) {
             try {
                 String inputWinningLotto = InputView.getWinningLottoFromInput();
-                InputValidator.validateBlank(inputWinningLotto);
-                return new Lotto(
-                        Arrays.stream(inputWinningLotto.split(",", -1))
-                                .map(InputValidator::validateLottoNumberAndConvertToNumeric)
-                                .toList()
-                );
+                return validateWinningLotto(inputWinningLotto);
             } catch (IllegalArgumentException e) {
                 OutputView.errorMessage(e.getMessage());
             } finally {
@@ -77,20 +72,33 @@ public class LottoController {
         }
     }
 
-    private BonusNumber getBonusNumberAndCheck(Lotto winningNumberLotto) {
+    private Lotto validateWinningLotto(String inputWinningLotto) {
+        InputValidator.validateBlank(inputWinningLotto);
+        return new Lotto(
+                Arrays.stream(inputWinningLotto.split(",", -1))
+                        .map(InputValidator::validateLottoNumberAndConvertToNumeric)
+                        .toList()
+        );
+    }
+
+    private BonusNumber getBonusNumber(Lotto winningNumberLotto) {
         while (true) {
             try {
                 String inputBonusNumber = InputView.getBonusNumberFromInput();
-                InputValidator.validateBonusNumber(inputBonusNumber);
-                BonusNumber bonusNumber = new BonusNumber(Integer.parseInt(inputBonusNumber.trim()));
-                bonusNumber.containsException(winningNumberLotto);
-                return bonusNumber;
+                return validateBonusNumber(inputBonusNumber, winningNumberLotto);
             } catch (IllegalArgumentException e) {
                 OutputView.errorMessage(e.getMessage());
             } finally {
                 System.out.println();
             }
         }
+    }
+
+    private BonusNumber validateBonusNumber(String inputBonusNumber, Lotto winningNumberLotto) {
+        InputValidator.validateBonusNumber(inputBonusNumber);
+        BonusNumber bonusNumber = new BonusNumber(Integer.parseInt(inputBonusNumber.trim()));
+        bonusNumber.containsException(winningNumberLotto);
+        return bonusNumber;
     }
 
     private void resultLotto() {

@@ -29,7 +29,7 @@ public class Lottos {
     }
 
     public void print() {
-        System.out.printf("%d개를 구매했습니다.\n", lottos.size());
+        System.out.printf("\n%d개를 구매했습니다.\n", lottos.size());
         for (Lotto lotto : lottos) {
             lotto.print();
         }
@@ -38,6 +38,11 @@ public class Lottos {
     public void print(Result result) {
         result.print();
         System.out.printf("총 수익률은 %.1f%%입니다.\n", calculateEarnings(result));
+    }
+
+    public void printResult(WinningLotto winningLotto) {
+        Result result = getResult(winningLotto);
+        print(result);
     }
 
     public Result getResult(WinningLotto winningLotto) {

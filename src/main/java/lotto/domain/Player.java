@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.validation.PlayerValidation;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,11 @@ public class Player {
 
     public Player(int purchaseAmount) {
         this.lottos = new ArrayList<>();
+        validate(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
+    }
+
+    private void validate(int purchaseAmount) {
+        PlayerValidation.validatePurchaseAmount(purchaseAmount);
     }
 }

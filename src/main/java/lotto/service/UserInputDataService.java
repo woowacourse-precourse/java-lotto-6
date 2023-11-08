@@ -25,4 +25,8 @@ public class UserInputDataService {
         outputView.responseBuyingQuantity(user);
         user.setLottos(getBuyingPrice(user));
     }
+
+    public void printLottoNumbers(User user) {
+        outputView.responseUserLottoNumber(user);
+    }
 }

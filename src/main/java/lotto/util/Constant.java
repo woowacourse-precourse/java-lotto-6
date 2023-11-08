@@ -9,5 +9,4 @@ public final class Constant {
     public static final double RATIO_NUMBER = 100;
     public static final int ZERO = 0;
     public static final int ONE = 1;
-
 }

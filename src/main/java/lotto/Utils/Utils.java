@@ -8,8 +8,8 @@ public class Utils {
         try {
             return Integer.parseInt(bonusNumbers);
         } catch (NumberFormatException e) {
-            System.err.println("입력된 문자열을 정수로 변환할 수 없습니다: " + bonusNumbers);
-            return 0;
+            System.err.println("입력된 문자를 정수로 변환할 수 없습니다: " + bonusNumbers);
+            throw new IllegalArgumentException();
         }
     }
     public List<Integer> StringToIntegerList(String UserInput) {

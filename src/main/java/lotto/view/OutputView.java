@@ -13,7 +13,7 @@ public class OutputView {
     private static final String LOTTO_PURCHASE_AMOUNT_PROMPT = "구입금액을 입력해 주세요.\n";
     private static final String LOTTO_COUNT_MESSAGE = "\n%d개를 구매했습니다.\n";
     private static final String WINNING_NUMBERS_PROMPT = "\n당첨 번호를 입력해 주세요.\n";
-    private static final String BONUS_NUMBER_PROMPT = "보너스 번호를 입력해 주세요.\n";
+    private static final String BONUS_NUMBER_PROMPT = "\n보너스 번호를 입력해 주세요.\n";
     private static final String WINNING_STATISTICS_HEADER = "\n당첨 통계\n";
     private static final String DIVIDER = "---\n";
     private static final String WINNING_STATISTICS_FORMAT = "%s개 일치 (%s원) - %d개\n";
@@ -68,7 +68,7 @@ public class OutputView {
             }
             if (prize == LottoPrize.SECOND) {
                 int count = response.getWinningCount().getOrDefault(prize, 0);
-                System.out.printf(WINNING_WITH_BONUS_STATISTIC_FORMAT, prize.matchCount() + 1,
+                System.out.printf(WINNING_WITH_BONUS_STATISTIC_FORMAT, prize.matchCount(),
                     formatPrizeMoney(
                         prize.prizeAmount()), count);
                 continue;

@@ -28,35 +28,29 @@ public class InputController {
             }
         }
     }
-    
+
     public WinningLotto askWinningLotto() {
-        Lotto winningNumbers = askWinningNumbers();
-        int bonusNumber = askBonusNumber();
-        return new WinningLotto(winningNumbers, bonusNumber);
+        while (true) {
+            try {
+                Lotto winningNumbers = askWinningNumbers();
+                int bonusNumber = askBonusNumber();
+                return new WinningLotto(winningNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public Lotto askWinningNumbers() {
-        while (true) {
-            try {
-                String winningNumbers = inputView.scanWinningNumbers();
-                WinningNumbersValidator.getInstance().validate(winningNumbers);
-                return createWinningNumbers(winningNumbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        String winningNumbers = inputView.scanWinningNumbers();
+        WinningNumbersValidator.getInstance().validate(winningNumbers);
+        return createWinningNumbers(winningNumbers);
     }
 
     public int askBonusNumber() {
-        while (true) {
-            try {
-                String bonusNumber = inputView.scanBonusNumber();
-                BonusNumberValidator.getInstance().validate(bonusNumber);
-                return createBonusNumber(bonusNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        String bonusNumber = inputView.scanBonusNumber();
+        BonusNumberValidator.getInstance().validate(bonusNumber);
+        return createBonusNumber(bonusNumber);
     }
 
     public int createBudget(String budget) {

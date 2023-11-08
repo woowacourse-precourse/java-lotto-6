@@ -4,6 +4,9 @@ import static lotto.config.ErrorMessage.INPUT_AMOUNT_CHARACTER_ERROR_MESSAGE;
 import static lotto.config.ErrorMessage.INPUT_AMOUNT_DIVISION_ERROR_MESSAGE;
 import static lotto.config.ErrorMessage.INPUT_AMOUNT_TOO_LARGE_ERROR_MESSAGE;
 import static lotto.config.ErrorMessage.TOO_LONG_INPUT_ERROR_MESSAGE;
+import static lotto.config.LottoConfig.LOTTO_AMOUNT;
+import static lotto.config.LottoConfig.MAX_INPUT_LENGTH;
+import static lotto.config.LottoConfig.MAX_LOTTO_COUNT;
 
 /**
  * 사용자가 입력한 구입 금액 입력값 검사
@@ -32,15 +35,15 @@ public class PurchaseAmountValidator extends Validator<String> {
     }
 
     private boolean isTooLongString(String input) {
-        return input.length() > 9;
+        return input.length() > MAX_INPUT_LENGTH.getValue();
     }
 
     private boolean isDivisibleByThousand(String input) {
-        return toInteger(input) % 1000 == 0;
+        return toInteger(input) % LOTTO_AMOUNT.getValue() == 0;
     }
 
     private boolean isTooLargeNumber(String input) {
-        return toInteger(input) / 1000 >= 10000;
+        return toInteger(input) / LOTTO_AMOUNT.getValue() >= MAX_LOTTO_COUNT.getValue();
     }
 
     private int toInteger(String input) {

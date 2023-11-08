@@ -13,13 +13,21 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자가 필요합니다.");
+        try {
+            validateSixNumbers(numbers);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            validate(numbers);
         }
     }
 
     // TODO: 추가 기능 구현
 
+    private void validateSixNumbers(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자가 필요합니다.");
+        }
+    }
 
     public List<Integer> getNumbers() {
         return numbers;

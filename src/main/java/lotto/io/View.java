@@ -87,4 +87,7 @@ public class View implements InputView, OutputView {
         return decimalFormat.format(money);
     }
 
+    public void printLottoEarningRate(double rate) {
+        System.out.printf((LOTTO_EARNING_RATE.getMessage()) + "%n", rate);
+    }
 }

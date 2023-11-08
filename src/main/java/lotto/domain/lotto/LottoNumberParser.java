@@ -1,4 +1,4 @@
-package lotto.domain.lotto.random;
+package lotto.domain.lotto;
 
 import lotto.domain.lotto.Lotto;
 

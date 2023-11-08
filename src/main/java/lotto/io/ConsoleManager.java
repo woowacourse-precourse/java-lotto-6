@@ -1,13 +1,14 @@
 package lotto.io;
 
 import lotto.domain.lotto.BonusNumber;
+import lotto.domain.lotto.EarningRate;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoCount;
 import lotto.domain.lotto.LottoStatistic;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.Price;
 import lotto.domain.lotto.WinningNumber;
-import lotto.domain.lotto.random.LottoNumberParser;
+import lotto.domain.lotto.LottoNumberParser;
 
 import static lotto.util.StringConverter.toInt;
 import static lotto.util.StringConverter.toLong;
@@ -74,5 +75,9 @@ public class ConsoleManager {
 
     public void printLottoStatistic(LottoStatistic lottoStatistic) {
         view.printLottoStatistic(lottoStatistic.getAnswer());
+    }
+
+    public void printLottoEarningRate(EarningRate earningRate) {
+        view.printLottoEarningRate(earningRate.getRate());
     }
 }

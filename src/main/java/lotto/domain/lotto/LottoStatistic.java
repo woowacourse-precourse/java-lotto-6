@@ -21,4 +21,10 @@ public class LottoStatistic {
         answer.put(result, answer.get(result) + 1);
     }
 
+    public Long getTotalMoney() {
+        return answer.entrySet().stream()
+                .mapToLong(m -> (long) m.getKey().getPrizeMoney() * m.getValue())
+                .sum();
+    }
+
 }

@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.lotto.EarningRate;
 import lotto.domain.lotto.LottoCount;
 import lotto.domain.lotto.LottoMachine;
 import lotto.domain.lotto.LottoStatistic;
@@ -7,7 +8,7 @@ import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.Price;
 import lotto.domain.lotto.WinningNumber;
 import lotto.domain.lotto.random.LottoNumberCreator;
-import lotto.domain.lotto.random.LottoNumberParser;
+import lotto.domain.lotto.LottoNumberParser;
 import lotto.io.ConsoleManager;
 import lotto.io.View;
 
@@ -34,6 +35,7 @@ public class LottoProgram {
 
         LottoStatistic lottoStatistic = lottoMachine.getLottoStatistic(lottos, winningNumber);
         consoleManager.printLottoStatistic(lottoStatistic);
-
+        EarningRate earningRate = lottoMachine.getEarningRate(lottoStatistic, price);
+        consoleManager.printLottoEarningRate(earningRate);
     }
 }

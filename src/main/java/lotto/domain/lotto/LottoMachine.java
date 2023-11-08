@@ -33,4 +33,8 @@ public class LottoMachine {
         return lottoStatistic;
     }
 
+    public EarningRate getEarningRate(LottoStatistic lottoStatistic, Price price) {
+        Long totalPrize = lottoStatistic.getTotalMoney();
+        return new EarningRate(totalPrize, price);
+    }
 }

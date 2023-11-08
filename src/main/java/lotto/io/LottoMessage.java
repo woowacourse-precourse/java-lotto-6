@@ -11,7 +11,8 @@ public enum LottoMessage {
     WINNER_PRICE_MESSAGE(" (%s원) "),
     TOTAL_COUNT_MESSAGE("- %d개\n"),
     DECIMAL_FORMAT("###,###,###,###"),
-    LOTTO_STATISTIC_MESSAGE("\n당첨 통계\n---\n");
+    LOTTO_STATISTIC_MESSAGE("\n당첨 통계\n---\n"),
+    LOTTO_EARNING_RATE("총 수익률은 %.1f%%입니다.");
 
     private final String message;
 

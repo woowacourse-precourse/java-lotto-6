@@ -1,14 +1,9 @@
 package view;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import domain.Place;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class OutputView {
     public static final String PURCHASE_MESSAGE =
@@ -30,35 +25,25 @@ public class OutputView {
     public static final String END_LINE_OF_RATE =
             "%입니다.";
 
-    public static int outputNumberOfLotto(int purchasePrice){
-        int numberOfLotto = purchasePrice/1000;
+
+    public static void outputNumberOfLotto(int numberOfLotto){
         System.out.println("\n"+numberOfLotto+PURCHASE_MESSAGE);
-        return numberOfLotto;
     }
-    public static List<List<Integer>> outputLottos(int numberOfLotto){
-        List<List<Integer>> lottos = new ArrayList<>(numberOfLotto);
 
-        for(int i=0; i<numberOfLotto; i++){
-            List<Integer> lotto;
-            lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottos.add(lotto);
+    public static void outputLottos(List<List<Integer>> lottos){
 
-            outputMessageLotto(lotto);
+        for(List<Integer> lotto : lottos){
+            List<String> lottoForOutput = lotto.stream()
+                    .map(Object::toString)
+                    .toList();
+
+            String message = String.format("[%s]",String.join(", ",  lottoForOutput));
+            System.out.println(message);
         }
-
-        return lottos;
     }
 
-    private static void outputMessageLotto(List<Integer> lotto) {
-        List<String> lottoForOutput = lotto.stream()
-                .map(Object::toString)
-                .toList();
 
-        String message = String.format("[%s]",String.join(", ",  lottoForOutput));
-        System.out.println(message);
-    }
-
-    public static Long outputStatics(Map<Place,Integer> numberOfWins){
+    public static void outputStatics(Map<Place,Integer> numberOfWins){
         System.out.println(STATISTICS_MESSAGE);
 
         Place[] places = Place.values();
@@ -67,27 +52,11 @@ public class OutputView {
             System.out.println(CORRECT_MESSAGE[i]+numberOfWins.get(places[i])+NUMBER_OF_COUNT);
         }
 
-        Long profit = getProfit(numberOfWins, places);
-
-        return profit;
     }
 
-    private static Long getProfit(Map<Place, Integer> numberOfWins, Place[] places) {
-        Long[] winningPrice = {5000L,50000L,1500000L,30000000L,2000000000L};
-        Long profit = 0L;
-        for(int i=0; i< winningPrice.length; i++){
-            profit += winningPrice[i] * numberOfWins.get(places[i]);
-        }
-        return profit;
-    }
 
-    public static void outputRate(int purchasePrice, Long profit){
-        double rate = ((double) profit / purchasePrice) * 100;
-        BigDecimal bd = new BigDecimal(rate);
-        bd = bd.setScale(2, RoundingMode.HALF_UP);
+    public static void outputRate(double rate){
 
-        double roundedRate = bd.doubleValue();
-
-        System.out.println(RATE_MESSAGE+ roundedRate +END_LINE_OF_RATE);
+        System.out.println(RATE_MESSAGE+ rate +END_LINE_OF_RATE);
     }
 }

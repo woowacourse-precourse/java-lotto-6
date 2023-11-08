@@ -21,7 +21,7 @@ public class Application {
         printLottos(lottos);
 
         Lotto winningLotto = inputWinningNumbers();
-        int bonusNumber = inputBonusNumber();
+        int bonusNumber = inputBonusNumber(winningLotto);
         System.out.println();
 
         Map<Rank, Integer> results = calculateResults(lottos, winningLotto, bonusNumber);
@@ -80,17 +80,14 @@ public class Application {
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-
-        if (winningNumbers.size() != 6 || new HashSet<>(winningNumbers).size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않는 6개의 숫자여야 합니다.");
-        }
         System.out.println();
         return new Lotto(winningNumbers);
     }
 
-    private static int inputBonusNumber() {
+    private static int inputBonusNumber(Lotto lotto) {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine().trim());
+        int bonusNumber = Integer.parseInt(Console.readLine().trim());
+        return bonusNumber;
     }
 
     private static Map<Rank, Integer> calculateResults(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {

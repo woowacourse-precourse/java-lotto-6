@@ -12,6 +12,8 @@ import lotto.domain.WinningPrize;
 
 public class LottoService {
 
+    private static final int ROUNDS_UP_RATE_OR_RETURN = 10;
+
     public LottoService() {
     }
 
@@ -65,7 +67,7 @@ public class LottoService {
     }
 
     private double roundSecondPoint(double amount) {
-        return (double) Math.round(amount * 10) / 10;
+        return (double) Math.round(amount * ROUNDS_UP_RATE_OR_RETURN) / ROUNDS_UP_RATE_OR_RETURN;
     }
 
     public int checkLotto(Lotto lotto, List<Integer> winningNumbers) {

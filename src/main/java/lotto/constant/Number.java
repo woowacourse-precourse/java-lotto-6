@@ -21,5 +21,4 @@ public enum Number {
     public int getNumber() {
         return number;
     }
-
 }

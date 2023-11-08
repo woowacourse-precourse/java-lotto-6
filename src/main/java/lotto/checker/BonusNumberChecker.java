@@ -6,13 +6,11 @@ import static lotto.constant.Number.LOTTO_MAX_NUM;
 import static lotto.constant.Number.LOTTO_MIN_NUM;
 
 import java.util.List;
-import lotto.constant.ExceptionMessage;
-import lotto.constant.Number;
 import lotto.view.OutputHandler;
 
 public class BonusNumberChecker {
 
-    private int bonusNumber;
+    private final int bonusNumber;
 
     public BonusNumberChecker(int bonusNumber) {
         this.bonusNumber = bonusNumber;

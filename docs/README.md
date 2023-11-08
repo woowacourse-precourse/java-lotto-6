@@ -70,7 +70,7 @@
 
 ## 전체 설계
 
-![Untitled](./images/design structure.png)
+![Untitled](./images/designStructure.png)
 
 **MVC 패턴** 기반
 
@@ -78,7 +78,7 @@
 
 ## Controller
 
-![Untitled](./images/controller package.png)
+![Untitled](./images/controllerPackage.png)
 
 ***Controller***의 기능을 클래스로 나누다보니,
 
@@ -88,7 +88,7 @@
 
 ## Model
 
-![Untitled](./images/model package.png)
+![Untitled](./images/modelPackage.png)
 
 데이터 관리와 비즈니스 로직은 아래와 같이 구분
 

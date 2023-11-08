@@ -92,7 +92,7 @@ public class InputHandler {
             throw new IllegalArgumentException(ErrorMessage.NOT_SIX_NUMBER_ERROR.getError());
         }
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < LottoEnum.LOTTO_SIZE.getValue(); i++) {
             numberValidate(splitedLottoNumbers.get(i));
             Validator.isDuplicate(splitedLottoNumbers, splitedLottoNumbers.get(i), i);
         }

@@ -1,6 +1,8 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constants.ErrorMessages;
+import lotto.domain.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,13 +13,15 @@ public class InputHandler {
         return convertNumber(amount);
     }
 
-    public static List<Integer> readInputTargetNumbers() {
+    // magicNumbers가 Lotto 번호로 유효한지 파악하기 위해 magicNumbers를 이용하여 더미 Lotto를 만듦.
+    public static List<Integer> readInputMagicNumbers() {
         String[] targetStrings = Console.readLine().split(",");
-        List<Integer> targetNumbers = new ArrayList<>();
+        List<Integer> magicNumbers = new ArrayList<>();
         for (String string : targetStrings) {
-            targetNumbers.add(convertNumber(string));
+            magicNumbers.add(convertNumber(string.trim()));
         }
-        return targetNumbers;
+        Lotto convert_to_Lotto_for_check_validation_it_is_unused = new Lotto(magicNumbers);
+        return magicNumbers;
     }
 
     private static int convertNumber(String inStream) {
@@ -26,11 +30,11 @@ public class InputHandler {
             if (convertedNum > 0) {
                 return convertedNum;
             }
-            else {
-                throw new IllegalArgumentException();
-            }
+            throw new IllegalArgumentException(ErrorMessages.ERR_INPUT_IS_NOT_NUM.getMessage());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessages.ERR_INPUT_IS_NOT_NUM.getMessage());
         }
     }
+
+
 }

@@ -1,12 +1,14 @@
 package lotto;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
 
     private static final String INVALID_LOTTO_LENGTH_MESSAGE = "[ERROR] 로또 번호의 개수는 6개를 입력해야 합니다.";
-
+    private static final String DUPLICATE_LOTTO_NUMBERS_MESSAGE = "[ERROR] 로또 번호는 중복된 수가 없어야 합니다.";
 
     private final List<Integer> numbers;
 
@@ -32,6 +34,6 @@ public class Lotto {
     private void validateNoDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>(numbers);
         if (numberSet.size() != numbers.size())
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBERS_MESSAGE);
     }
 }

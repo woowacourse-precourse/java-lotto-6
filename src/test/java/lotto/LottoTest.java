@@ -8,11 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static lotto.Lotto.*;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
-
-import camp.nextstep.edu.missionutils.test.NsTest;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -36,70 +33,64 @@ class LottoTest {
         assertEquals(3, countWinningNumberInLotto(List.of(1, 2, 3, 4, 5, 6), new Lotto(List.of(2, 4, 6, 8, 10, 12))));
     }
 
-    @DisplayName("로또 번호, 보너스 번호, 당첨 번호로 등수 판단하는 메서드 테스트")
+    @DisplayName("로또 번호, 보너스 번호, 당첨 번호로 등수 판단하는 메서드 테스트 - 미당첨")
     @Test
-    void testJudgingLottoRank() {
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
-
-        // Rank.NOT 테스트 (count < 3)
-        Lotto lottoRankNot = new Lotto(List.of(2, 4, 8, 9, 10, 12));
-        Rank resultRankNot = judgeLottoRank(winningNumbers, lottoRankNot, bonusNumber);
+    void testJudgingLottoRankNOT() {
+        Rank resultRankNot = judgeLottoRank(List.of(1, 2, 3, 4, 5, 6), new Lotto(List.of(2, 4, 8, 9, 10, 12)), 7);
         assertEquals(Rank.NOT, resultRankNot);
-
-        // Rank.FIFTH 테스트 (count == 3)
-        Lotto lottoRankFIFTH = new Lotto(List.of(1, 2, 3, 7, 8, 9));
-        Rank resultRankFIFTH = judgeLottoRank(winningNumbers, lottoRankFIFTH, bonusNumber);
+    }
+    @DisplayName("로또 번호, 보너스 번호, 당첨 번호로 등수 판단하는 메서드 테스트 - 5등")
+    @Test
+    void testJudgingLottoRankFIFTH() {
+        Rank resultRankFIFTH = judgeLottoRank(List.of(1, 2, 3, 4, 5, 6), new Lotto(List.of(1, 2, 3, 7, 8, 9)), 7);
         assertEquals(Rank.FIFTH, resultRankFIFTH);
+    }
 
-        // Rank.FOURTH 테스트 (count == 4)
-        Lotto lottoRankFOURTH = new Lotto(List.of(1, 2, 3, 4, 8, 9));
-        Rank resultRankFOURTH = judgeLottoRank(winningNumbers, lottoRankFOURTH, bonusNumber);
+    @DisplayName("로또 번호, 보너스 번호, 당첨 번호로 등수 판단하는 메서드 테스트 - 4등")
+    @Test
+    void testJudgingLottoRankFOURTH() {
+        Rank resultRankFOURTH = judgeLottoRank(List.of(1, 2, 3, 4, 5, 6), new Lotto(List.of(1, 2, 3, 4, 8, 9)), 7);
         assertEquals(Rank.FOURTH, resultRankFOURTH);
-
-        // Rank.THIRD 테스트 (count == 5, 보너스 번호가 없을 때)
-        Lotto lottoRankTHIRD = new Lotto(List.of(1,2,3,4,5,8));
-        Rank resultRankTHIRD = judgeLottoRank(winningNumbers, lottoRankTHIRD, bonusNumber);
+    }
+    @DisplayName("로또 번호, 보너스 번호, 당첨 번호로 등수 판단하는 메서드 테스트 - 3등")
+    @Test
+    void testJudgingLottoRankTHIRD() {
+        Rank resultRankTHIRD = judgeLottoRank(List.of(1, 2, 3, 4, 5, 6), new Lotto(List.of(1,2,3,4,5,8)), 7);
         assertEquals(Rank.THIRD, resultRankTHIRD);
-
-        // Rank.SECOND 테스트 (count == 5, 보너스 번호와 일치)
-        Lotto lottoRankSECOND = new Lotto(List.of(1,2,3,4,5,7));
-        Rank resultRankSECOND = judgeLottoRank(winningNumbers, lottoRankSECOND, 7);
+    }
+    @DisplayName("로또 번호, 보너스 번호, 당첨 번호로 등수 판단하는 메서드 테스트 - 2등")
+    @Test
+    void testJudgingLottoRankSECOND() {
+        Rank resultRankSECOND = judgeLottoRank(List.of(1, 2, 3, 4, 5, 6), new Lotto(List.of(1,2,3,4,5,7)), 7);
         assertEquals(Rank.SECOND, resultRankSECOND);
-
-        // Rank.FIRST 테스트 (count == 6)
-        Lotto lottoRankFIRST = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Rank resultRankFIRST = judgeLottoRank(winningNumbers, lottoRankFIRST, bonusNumber);
+    }
+    @DisplayName("로또 번호, 보너스 번호, 당첨 번호로 등수 판단하는 메서드 테스트 - 1등")
+    @Test
+    void testJudgingLottoRankFIRST() {
+        Rank resultRankFIRST = judgeLottoRank(List.of(1, 2, 3, 4, 5, 6), new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
         assertEquals(Rank.FIRST, resultRankFIRST);
     }
 
-    @DisplayName("한 정수가 당첨 번호 안에 있는지 판단하는 메서드 테스트")
+    @DisplayName("한 정수가 당첨 번호 안에 있는지 판단하는 메서드 테스트 - True")
     @Test
-    void testCheckingLottoNumberInWinningNumber() {
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-
-        // 포함되는 숫자 테스트
-        int numberTrue = 3;
-        assertTrue(checkLottoNumberInWinningNumber(winningNumbers, numberTrue));
-
-        // 포함되지 않는 숫자 테스트
-        int numberFalse = 7;
-        assertFalse(checkLottoNumberInWinningNumber(winningNumbers, numberFalse));
+    void testCheckingLottoNumberInWinningNumberTrue() {
+        assertTrue(checkLottoNumberInWinningNumber(List.of(1, 2, 3, 4, 5, 6), 3));
+    }
+    @DisplayName("한 정수가 당첨 번호 안에 있는지 판단하는 메서드 테스트 - False")
+    @Test
+    void testCheckingLottoNumberInWinningNumberFalse() {
+        assertFalse(checkLottoNumberInWinningNumber(List.of(1, 2, 3, 4, 5, 6), 7));
     }
 
-    @DisplayName("보너스 번호가 로또 번호 안에 있는지 판단하는 메서드 테스트")
+    @DisplayName("보너스 번호가 로또 번호 안에 있는지 판단하는 메서드 테스트 - True")
     @Test
-    void testIsBonusNumberInLotto() {
-        Lotto lotto = new Lotto(Arrays.asList(2, 4, 6, 8, 10, 12));
-
-        // 보너스 번호 포함하는 경우
-        int bonusNumberTrue = 6;
-        assertTrue(isBonusNumberInLotto(lotto, bonusNumberTrue));
-
-        // 보너스 번호 포함하지 않는 경우
-        int bonusNumberFalse = 7;
-        assertFalse(isBonusNumberInLotto(lotto, bonusNumberFalse));
+    void testIsBonusNumberInLottoTrue() {
+        assertTrue(isBonusNumberInLotto(new Lotto(List.of(2, 4, 6, 8, 10, 12)), 6));
     }
-
+    @DisplayName("보너스 번호가 로또 번호 안에 있는지 판단하는 메서드 테스트 - False")
+    @Test
+    void testIsBonusNumberInLottoFalse() {
+        assertFalse(isBonusNumberInLotto(new Lotto(List.of(2, 4, 6, 8, 10, 12)), 7));
+    }
 
 }

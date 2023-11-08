@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class utils {
+
+    static int PRINT_RESULT_COUNT = LottoRules.PRINT_RESULT_COUNT.getValue();
     public static Map<Integer, String> makeWinningAmount() {
         Map<Integer, String> winningAmount = new HashMap<>();
         winningAmount.put(3, " (5,000원)");
@@ -22,6 +24,14 @@ public class utils {
         winningAmountForCalculation.put(6, 30000000);
         winningAmountForCalculation.put(7, 2000000000);
         return winningAmountForCalculation;
+    }
+
+    public static Map<Integer, Integer> makeEmptyResult() {
+        Map<Integer, Integer> lottoResultCount = new HashMap<>();
+        for (int i = 0; i < PRINT_RESULT_COUNT; i++) {
+            lottoResultCount.put(i + 3, 0);
+        }
+        return lottoResultCount;
     }
 
 }

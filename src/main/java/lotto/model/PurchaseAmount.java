@@ -18,15 +18,19 @@ public class PurchaseAmount {
     public void generateLottoCount(){
         while(true){
             try{
-                int inputPrice = Integer.parseInt(askPurchaseAmount());
-                validatePurchaseAmount(inputPrice);
-                this.purchaseAmount = inputPrice;
-                this.purchaseCount = calculateLottoCount(inputPrice);
+                int inputAmount = Integer.parseInt(askPurchaseAmount());
+                validatePurchaseAmount(inputAmount);
+                savepurchaseAmount(inputAmount);
                 break;
             }catch(IllegalArgumentException e){
                 System.out.println(ERROR_MESSAGE_PURCHASE_AMOUNT);
             }
         }
+    }
+
+    private void savepurchaseAmount(int inputAmount){
+        this.purchaseAmount = inputAmount;
+        this.purchaseCount = calculateLottoCount(inputAmount);
     }
 
     private String askPurchaseAmount() {

@@ -5,11 +5,11 @@ import lotto.util.LottoRules;
 import lotto.view.OutputView;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoGame {
     int lottoCount;
     int purchaseAmount;
-    public Map<Integer, Integer> winningResult;
 
     private int START_NUMBER = LottoRules.START_NUMBER.getValue();
     private int END_NUMBER = LottoRules.END_NUMBER.getValue();
@@ -20,14 +20,6 @@ public class LottoGame {
     public LottoGame() {}
     public List<Lotto> getBunchOfLotto(){
         return this.BunchOfLotto;
-    }
-
-    public Map<Integer, Integer>  getWinningResult(){
-        return this.winningResult;
-    }
-
-    public void setWinningResult(Map<Integer, Integer> lottoResultCount){
-        this.winningResult = lottoResultCount;
     }
 
     public int getPurchaseAmount(){
@@ -55,8 +47,9 @@ public class LottoGame {
 
     private List<Integer> generateRandomNumbersInOrder() {
         List<Integer> RandomNumbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LOTTO_NUMBER_COUNT);
-//        RandomNumbers.sort(Comparator.comparingInt(null));
-//        Collections.sort(RandomNumbers);
+//        List<Integer> sortedRandomNumbers= RandomNumbers.stream()
+//                .sorted()
+//                .collect(Collectors.toList());
         return RandomNumbers;
     }
 

@@ -15,14 +15,12 @@ public class Controller {
     int winningBonusNumber;
     LottoGame lottoGame = new LottoGame();
     WinningNumbers winningNumbers = new WinningNumbers();
-    ConfirmationWinning confirmationWinning = new ConfirmationWinning(winningBonusNumber);
 
     public void lottoGame() {
         buyLottos();
         showHowManyLottosBuy();
         putWinningNumber();
         showWinningsResult();
-        showTotalRate();
     }
 
     public void buyLottos() {
@@ -58,15 +56,18 @@ public class Controller {
 
 
     public void showWinningsResult() {
-        List<Lotto> lottos = lottoGame.getBunchOfLotto();
-        Map<Integer, Integer> winningResult = confirmationWinning.checkWinnings(winnings,lottos);
-        lottoGame.setWinningResult(winningResult);
+        ConfirmationWinning confirmationWinning = new ConfirmationWinning(winningBonusNumber);
+        List<Lotto> BunchOfLotto = lottoGame.getBunchOfLotto();
+        confirmationWinning.checkWinnings(winnings,BunchOfLotto);
 
         OutputView.printLottoResultMessage();
-        confirmationWinning.showLottoGameResult(lottoGame.getWinningResult());
+        confirmationWinning.showLottoGameResult(confirmationWinning.getLottoResultCount());
+
+        showTotalRate(confirmationWinning);
+
     }
 
-    public void showTotalRate(){
+    public void showTotalRate(ConfirmationWinning confirmationWinning){
         int purchaseAmount = lottoGame.getPurchaseAmount();
         confirmationWinning.calculateRate(purchaseAmount);
     }

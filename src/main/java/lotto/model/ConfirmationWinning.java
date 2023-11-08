@@ -4,77 +4,67 @@ import lotto.util.LottoRules;
 import lotto.util.utils;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ConfirmationWinning {
     int bonusNumber;
-    Map<Integer, Integer> lottoResultCount;
-    int PRINT_RESULT_COUNT = LottoRules.PRINT_RESULT_COUNT.getValue();
+    int tempWinningCount;
+    boolean tempBounsNumberContains;
+    List<EachLottoResult> lottoResult = new ArrayList<>();
+    Map<Integer, Integer> lottoResultCount = new HashMap<>();
 
     public ConfirmationWinning(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
 
-    public Map<Integer, Integer> checkWinnings(List<Integer> winningNumbres, List<Lotto> lottos) {
-        for (Lotto eachLotto : lottos) {
-            calculateWinningCountAboutEachLotto(winningNumbres, eachLotto, bonusNumber);
-        }
-        this.lottoResultCount = countAllLottosResult(lottos);
-
-        return lottoResultCount;
+    public Map<Integer, Integer> getLottoResultCount(){
+        return this.lottoResultCount;
     }
 
-    public void calculateWinningCountAboutEachLotto(List<Integer> winningNumbres, Lotto eachLotto, int bonusNumber) {
-        List<Integer> lottoNumbers = eachLotto.getNumbers();
-//        System.out.println("eachLotto: " + lottoNumbers);
+    public void checkWinnings(List<Integer> winningNumbres, List<Lotto> lottos) {
+        for (Lotto eachLotto : lottos) {
+            calculateWinningCountAboutEachLotto(winningNumbres, eachLotto);
+        }
+        this.lottoResultCount = countAllLottosResult(lottoResult);
+    }
 
-        for (int winningNumbre : winningNumbres) {
-            for (int lottoNumber : lottoNumbers) {
-                countUpWinningCount(winningNumbre, lottoNumber, eachLotto);
+    public void calculateWinningCountAboutEachLotto(List<Integer> winningNumbres, Lotto eachLotto) {
+        List<Integer> lottoNumbers = eachLotto.getNumbers();
+        this.tempWinningCount = 0;
+        this.tempBounsNumberContains = false;
+
+        for (int lottoNumber : lottoNumbers) {
+            for (int winningNumber : winningNumbres) {
+                if (lottoNumber == winningNumber) {
+                    this.tempWinningCount += 1;
+                }
+
+                if (lottoNumber == bonusNumber) {
+                    this.tempBounsNumberContains = true;
+                }
             }
         }
-//        System.out.println("이 로또에서 당첨 번호 개수는: " + eachLotto.getWinningCount());
-    }
-
-    public void countUpWinningCount(int winningNumbre, int lottoNumber, Lotto eachLotto) {
-        if (winningNumbre == lottoNumber) {
-            eachLotto.winningCount++;
-            isBounusNumber(winningNumbre, eachLotto);
-        }
-    }
-
-    public void isBounusNumber(int winningNumbre, Lotto eachLotto) {
-        if (winningNumbre == bonusNumber) {
-            eachLotto.winningBounsNumber = true;
-        }
-    }
-
-    public Map<Integer, Integer> makeEmptyResult() {
-        Map<Integer, Integer> lottoResultCount = new HashMap<>();
-        for (int i = 0; i < PRINT_RESULT_COUNT; i++) {
-            lottoResultCount.put(i + 3, 0);
-        }
-        return lottoResultCount;
+        lottoResult.add(new EachLottoResult(tempWinningCount, tempBounsNumberContains));
     }
 
 
-    // 모든 로또의 당첨 개수 구해서 저장하기
-    public Map<Integer, Integer> countAllLottosResult(List<Lotto> BunchOfLotto) {
-        Map<Integer, Integer> lottoResultCount = makeEmptyResult();
+    public Map<Integer, Integer> countAllLottosResult(List<EachLottoResult> lottoResult) {
+        Map<Integer, Integer> lottoResultCount = utils.makeEmptyResult();
 
-        for (Lotto eachLotto : BunchOfLotto) {
-            if (eachLotto.getWinningCount() == 3) {
+        for (EachLottoResult eachLotto : lottoResult) {
+            if (eachLotto.winningCount == 3) {
                 lottoResultCount = countUpLottoResult(3, lottoResultCount);
 
-            } else if (eachLotto.getWinningCount() == 4) {
+            } else if (eachLotto.winningCount == 4) {
                 lottoResultCount = countUpLottoResult(4, lottoResultCount);
 
-            } else if (eachLotto.getWinningCount() == 5) {
+            } else if (eachLotto.winningCount == 5) {
                 lottoResultCount = countUpLottoResult(5, lottoResultCount);
 
-            } else if (eachLotto.getWinningCount() == 6) {
+            } else if (eachLotto.winningCount == 6) {
                 lottoResultCount = splitBonusNumberCase(eachLotto, lottoResultCount);
             }
         }
@@ -82,11 +72,11 @@ public class ConfirmationWinning {
     }
 
 
-    public Map<Integer, Integer> splitBonusNumberCase(Lotto eachLotto, Map<Integer, Integer> lottoResultCount) {
-        if (eachLotto.getWinningBounsNumber()) {
+    public Map<Integer, Integer> splitBonusNumberCase(EachLottoResult eachLotto, Map<Integer, Integer> lottoResultCount) {
+        if (eachLotto.bounsNumberContains) {
             countUpLottoResult(6, lottoResultCount);
 
-        } else if (!eachLotto.getWinningBounsNumber()) {
+        } else if (!eachLotto.bounsNumberContains) {
             countUpLottoResult(7, lottoResultCount);
         }
         return lottoResultCount;
@@ -115,7 +105,7 @@ public class ConfirmationWinning {
     public void calculateRate(int purchaseAmount) {
         double totalIncome = calculateTotalIncome(lottoResultCount);
         double temp = (totalIncome / purchaseAmount) * 100;
-        System.out.println("총 수익률은 " + temp + "% 입니다.");
+        System.out.println("총 수익률은 " + temp + "%입니다.");
     }
 
     public int calculateTotalIncome(Map<Integer, Integer> lottoResultCount) {

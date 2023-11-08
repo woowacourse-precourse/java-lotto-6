@@ -5,8 +5,6 @@ import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
-    int winningCount = 0;
-    boolean winningBounsNumber = false;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -15,14 +13,6 @@ public class Lotto {
 
     public List<Integer> getNumbers(){
         return this.numbers;
-    }
-
-    public int getWinningCount(){
-        return this.winningCount;
-    }
-
-    public boolean getWinningBounsNumber(){
-        return this.winningBounsNumber;
     }
 
     private void validate(List<Integer> numbers) {

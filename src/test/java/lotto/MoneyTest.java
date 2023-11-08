@@ -32,4 +32,27 @@ public class MoneyTest {
         assertThatThrownBy(() -> new Money(payMoney))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구입 금액이 비어있으면 예외가 발생한다.")
+    @Test
+    void countTicketByBlank() {
+        // given
+        int payMoney = 0;
+
+        // when & then
+        assertThatThrownBy(() -> new Money(payMoney))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구입 금액에 숫자 이외의 값이 입력되면 예외가 발생한다.")
+    @Test
+    void getMoneyByNotNumeric() {
+        // given
+        String input = "abcde";
+
+        // when & then
+        assertThatThrownBy(() -> new Money(Integer.parseInt(input)))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
 }

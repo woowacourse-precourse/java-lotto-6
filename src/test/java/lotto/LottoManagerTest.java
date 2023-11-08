@@ -68,6 +68,25 @@ public class LottoManagerTest extends NsTest {
         assertThat(WinningCondition.NOTHING).isEqualTo(expected3);
     }
 
+    @DisplayName("로또 결과를 통해 수익률을 계산한다.")
+    @Test
+    void calculateRoR() {
+        List<Lotto> tickets = List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(4, 5, 6, 10, 11, 7)),
+                new Lotto(List.of(13, 14, 15, 16, 17, 18))
+        );
+        Lotto lotto = new Lotto(List.of(4, 5, 6, 10, 11, 12));
+        int bonusNumber = 7;
+
+        LottoManager lottoManager = new LottoManager();
+        Map<WinningCondition, Integer> result = lottoManager.getResultTable(tickets, lotto, bonusNumber);
+
+        double expected = 1000166.7;
+        assertThat(lottoManager.calculateRoR(result, 3000))
+                .isEqualTo(expected);
+    }
+
     @Override
     public void runMain() {
     }

@@ -33,7 +33,7 @@ class LottosTest extends NsTest {
         );
     }
 
-    @DisplayName("로또의 개수를 알려준다.")
+    @DisplayName("Lottos가 가지고 있는 로또의 개수를 알려준다.")
     @Test
     void getLottoCount() {
         // given
@@ -45,7 +45,7 @@ class LottosTest extends NsTest {
         assertThat(lottos.getLottoCount()).isEqualTo(expectedResult);
     }
 
-    @DisplayName("당첨 결과를 만든다.")
+    @DisplayName("로또들의 당첨 결과를 만든다.")
     @Test
     void getLottosResult() {
         // given
@@ -73,6 +73,18 @@ class LottosTest extends NsTest {
         Map<Prize, Integer> lottosResult = lottos.getLottosResult(winnigMachine);
         // then
         assertThat(lottosResult).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("Lottos가 가지고 있는 로또들의 String을 반환한다.")
+    @Test
+    void getLottosString() {
+        // given
+        Lotto firstLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto secondLotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        Lottos lottos = new Lottos(List.of(firstLotto, secondLotto));
+        String expectedResult = "[1, 2, 3, 4, 5, 6]\n[1, 2, 3, 4, 5, 7]";
+        // when, then
+        assertThat(lottos.toString()).isEqualTo(expectedResult);
     }
 
     @Override

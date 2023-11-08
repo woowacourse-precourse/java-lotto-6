@@ -19,10 +19,6 @@ public class LottoMachine {
 
     private List<Lotto> lottos;
 
-    public LottoMachine(List<Lotto> lottos) {
-        this.lottos = lottos;
-    }
-
     public int readAmount() {
         System.out.println(PURCHASE_AMOUNT_GUIDE);
         String purchaseAmountText = readLine();

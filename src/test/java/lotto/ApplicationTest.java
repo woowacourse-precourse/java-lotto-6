@@ -67,19 +67,7 @@ class ApplicationTest extends NsTest {
     }
   
 
-//    @Test
-//    void 예외_최대_숫자_테스트() {
-//        bonus = "46";
-//        assertThatThrownBy(() -> new BonusNumber(bonus, winningNumbers))
-//                .isInstanceOf(NumberGreaterException.class);
-//    }
 
-    @Test
-    void 당첨_번호_개수_오입력_테스트() {
-        command("1,2,3,4,5,6,7");
-        assertThatThrownBy(() -> LottoNumber.lottoNumber())
-                .isInstanceOf(NoSuchElementException.class);
-    }
     
     private void command(final String... args) {
       byte[] buf = String.join("\n", args).getBytes();

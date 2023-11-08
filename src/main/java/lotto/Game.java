@@ -15,4 +15,9 @@ public class Game {
         printStatistics();
     }
 
+    void purchaseLotto(){
+        InputView inputView = new InputView();
+        purchasingPrice= inputView.inputLottoPrice();
+    }
+
 }

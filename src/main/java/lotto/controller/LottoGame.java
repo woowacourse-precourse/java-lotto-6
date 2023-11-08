@@ -22,7 +22,7 @@ public class LottoGame {
     public void gameStart() {
         Money money = generateMoney();
 
-        UserLotto userLotto = generatedUserLotto(money);
+        UserLotto userLotto = generateUserLotto(money);
         repeatPrintUserLottoNumber(userLotto);
 
         WinningLotto winningLotto = getWinningLotto();
@@ -36,7 +36,7 @@ public class LottoGame {
         return new Money(inputView.getMoney());
     }
 
-    private UserLotto generatedUserLotto(Money money) {
+    private UserLotto generateUserLotto(Money money) {
         int numberOfLottoTickets = money.getNumberOfLottoTickets();
         outputView.printTicket(numberOfLottoTickets);
         return new UserLotto(numberOfLottoTickets);

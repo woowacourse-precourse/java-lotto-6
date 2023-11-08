@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 public class UserLotto {
     private static final int MINIMUM_LOTTO_NUMBER = 1;
     private static final int MAXIMUM_LOTTO_NUMBER = 45;
+    private static final int ZERO = 0;
     private static final int LOTTO_SIZE = 6;
 
     private final List<Lotto> userLottoNumbers;
@@ -20,7 +21,7 @@ public class UserLotto {
     }
 
     private void setUserLottoNumbers(int numberOfTickets) {
-        userLottoNumbers.addAll(IntStream.range(0, numberOfTickets)
+        userLottoNumbers.addAll(IntStream.range(ZERO, numberOfTickets)
                 .mapToObj(i -> new Lotto(generatedNumbers()))
                 .collect(Collectors.toList()));
     }

@@ -24,9 +24,9 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public int getMatchLottoNumber(WinningLotto winningNumbers) {
+    public int getMatchLottoNumber(WinningLotto winningLotto) {
         return (int) numbers.stream()
-                .filter(winningNumbers::isContain)
+                .filter(winningLotto::isContain)
                 .count();
     }
 

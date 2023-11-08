@@ -9,11 +9,15 @@ public class InputView {
         String purchaseAmountString = Console.readLine();
     }
 
-    public void input winningNumbers() {
+    public void inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해주세요.");
 
         String winningNumbersString = Console.readLine();
     }
 
-    
+    public void inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해주세요.");
+
+        String bonusNumberString = Console.readLine();
+    }
 }

@@ -11,14 +11,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputViewBudgetTest {
-    private InputView inputView = new InputView();
+    private final InputView inputView = new InputView();
 
     void setUp(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
     }
 
-    @DisplayName("InputBudget이 정상적인 값이 입력되는 경우 그대로 입력되는지 확인")
+    @DisplayName("정상적인 값이 입력되는 경우 그대로 입력되는지 확인")
     @Test
     void testInputBudgetNumber() {
         String expectedBudget = "1231";
@@ -29,7 +29,7 @@ class InputViewBudgetTest {
                 .isEqualTo(expectedBudget);
     }
 
-    @DisplayName("InputBudget에서 숫자를 넣지 않았을 경우 예외출력 확인")
+    @DisplayName("숫자를 넣지 않았을 경우 예외출력 확인")
     @Test
     void testInputBudgetNotNumber(){
         String expectedBudget = "aaa";
@@ -40,7 +40,7 @@ class InputViewBudgetTest {
                 .hasMessage(BudgetInputErrorMessage.NOT_NUMBER.getMessage());
     }
 
-    @DisplayName("InputBudget에서 아무것도 입력하지 않았을 때 예외 출력")
+    @DisplayName("아무것도 입력하지 않았을 때 예외 출력")
     @Test
     void testInputBudgetEmpty() {
         String expectedBudget = "\n";
@@ -51,7 +51,7 @@ class InputViewBudgetTest {
                 .hasMessage(BudgetInputErrorMessage.NOT_NUMBER.getMessage());
     }
 
-    @DisplayName("InputBudget에 소수를 적었을 때 예외 출력")
+    @DisplayName("소수를 적었을 때 예외 출력")
     @Test
     void testInputBudgetDouble() {
         String expectedBudget = "10000.11";

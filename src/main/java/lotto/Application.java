@@ -140,4 +140,7 @@ class WinningCaculate {
         WinningResult.RankResult(rank_cnt);
         return prize;
     }
+    public static double EarningRate(int prize, int money) {
+        return (1.0 /((double) money / (double) prize)) * 100;
+    }
 }

@@ -7,7 +7,7 @@ public class RankStatistics {
 
     private final EnumMap<Rank, Integer> rankStatistics = new EnumMap<>(Rank.class);
 
-    RankStatistics(List<Rank> ranks) {
+    public RankStatistics(List<Rank> ranks) {
         for (Rank rank : ranks) {
             this.add(rank);
         }

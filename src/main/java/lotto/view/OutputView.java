@@ -12,6 +12,7 @@ public class OutputView {
     private static final String REQUEST_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String REQUEST_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final String WINNING_RESULT = "당첨 통계";
+    private static final String DASH_BAR = "---";
 
     private static final String EARNING_RATE_RESULT = "총 수익률은 ";
 
@@ -36,7 +37,7 @@ public class OutputView {
 
     public void displayResult() {
         System.out.println(WINNING_RESULT);
-        System.out.println("---");
+        System.out.println(DASH_BAR);
     }
 
     public void displayWinningLotto(List<Integer> ranks) {

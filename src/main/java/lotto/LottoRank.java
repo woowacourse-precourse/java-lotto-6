@@ -9,8 +9,7 @@ public enum LottoRank {
     SECOND_PLACE(5, true, 30000000, 4),
     THIRD_PLACE(5, false, 1500000, 3),
     FOURTH_PLACE(4, 50000, 2),
-    FIFTH_PLACE(3, 5000, 1),
-    NO_WINNING(0, 0, 0);
+    FIFTH_PLACE(3, 5000, 1);
 
     private int match;
     private Boolean bonusRequired;
@@ -32,6 +31,9 @@ public enum LottoRank {
     }
 
     public boolean getBonusRequired() {
+        if (bonusRequired == null) {
+            return false;
+        }
         return bonusRequired;
     }
 
@@ -40,11 +42,10 @@ public enum LottoRank {
     }
 
     public static LottoRank getWinningRank(int match, boolean bonus) {
-        // TODO: refactor complicated logical operation.
         return Arrays.stream(LottoRank.values())
                 .filter(w -> (w.match == match)
                         && (w.bonusRequired == null || w.bonusRequired == bonus))
-                .findAny().orElse(NO_WINNING);
+                .findAny().orElse(null);
     }
 
     public static int compare(LottoRank a, LottoRank b) {

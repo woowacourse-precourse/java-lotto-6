@@ -1,10 +1,12 @@
 package lotto;
 
+import controller.LottoController;
 import view.InputView;
 
 public class Application {
     public static void main(String[] args) {
 
-        InputView.inputBonusNumber();
+        LottoController ll = new LottoController();
+        ll.startGame();
     }
 }

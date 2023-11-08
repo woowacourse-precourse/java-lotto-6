@@ -14,7 +14,6 @@ public enum LottoMatchingTable {
 
     private final Predicate<MatchResult> matchCondition;
 
-
     LottoMatchingTable(int ballCount) {
         final var matchResult = new MatchResult(ballCount, false);
         this.matchCondition = matchResult::matchOnlyBallCount;
@@ -31,4 +30,5 @@ public enum LottoMatchingTable {
                 .findAny()
                 .orElse(null);
     }
+
 }

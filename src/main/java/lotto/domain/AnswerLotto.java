@@ -1,8 +1,10 @@
 package lotto.domain;
 
 import static lotto.domain.exception.DomainExceptionCode.ANSWER_LOTTO_AND_BONUS_NUMBER_DUPLICATE;
+import static lotto.domain.exception.DomainExceptionCode.BONUS_NUMBER_MUST_BE_REQUIRED;
 
 import java.util.List;
+import java.util.Objects;
 
 public class AnswerLotto {
 
@@ -30,13 +32,12 @@ public class AnswerLotto {
     }
 
     public MatchResult match(Lotto otherLotto) {
-        if (bonusNumber == null) {
-            throw new IllegalArgumentException("보너스 번호가 등록되어 있지 않습니다.");
-        }
+        BONUS_NUMBER_MUST_BE_REQUIRED.dynamicInvokeBy(() -> Objects.isNull(bonusNumber));
 
         return new MatchResult(
                 lotto.matchCount(otherLotto),
                 otherLotto.contains(bonusNumber.value())
         );
     }
+
 }

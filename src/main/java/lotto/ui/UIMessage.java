@@ -4,6 +4,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 public enum UIMessage {
+
     INSERT_PAYMENT_PRICE("구입금액을 입력해 주세요."),
 
     PAYMENT_PRICE_MUST_BE_INTEGER("구입금액은 정수만 가능합니다."),

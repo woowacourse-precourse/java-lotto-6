@@ -23,4 +23,5 @@ public record PurchasedLottoState(int quantity, List<List<Integer>> purchasedLot
                 .map(PurchasedLottoState::convertLottoNumberToFormat)
                 .collect(joining("\n"));
     }
+    
 }

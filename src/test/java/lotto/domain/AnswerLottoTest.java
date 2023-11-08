@@ -25,7 +25,6 @@ class AnswerLottoTest {
                         .match(new Lotto(numbers)));
     }
 
-
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6})
     void 당첨로또에_보너스번호와_일치하는_경우가_있으면_오류가_발생합니다(final int bonusNumber) {
@@ -112,4 +111,5 @@ class AnswerLottoTest {
         return answerLotto.match(new Lotto(numbers));
 
     }
+
 }

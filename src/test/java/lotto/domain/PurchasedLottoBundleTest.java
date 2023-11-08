@@ -43,7 +43,7 @@ class PurchasedLottoBundleTest {
                 new Lotto(List.of(1, 5, 10, 15, 20, 45)), // 2등
                 new Lotto(List.of(1, 5, 10, 15, 20, 25)) // 1등
         ));
-        
+
         final var winningResults = purchasedLottoBundle.checkWinningResults(
                 AnswerLotto.of(List.of(1, 5, 10, 15, 20, 25)).registerBonusNumber(45)
         );

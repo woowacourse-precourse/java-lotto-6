@@ -6,7 +6,6 @@ public interface Component {
 
     default ComponentRenderResult execute() {
         try {
-
             this.render();
             return ComponentRenderResult.createSuccess();
         } catch (IllegalArgumentException illegalArgumentException) {
@@ -28,6 +27,6 @@ public interface Component {
         public boolean isContinue() {
             return !isComplete;
         }
-
     }
+    
 }

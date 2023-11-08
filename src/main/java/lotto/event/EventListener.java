@@ -61,4 +61,5 @@ public record EventListener(LottoRepository lottoRepository) {
     public interface ParameterAndReturnEvent<T, R> {
         R execute(T input);
     }
+    
 }

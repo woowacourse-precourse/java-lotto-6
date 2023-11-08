@@ -11,7 +11,6 @@ public class LottoStore {
 
     private final LottoPublisher lottoPublisher;
 
-
     public LottoStore(LottoPublisher lottoPublisher) {
         this.lottoPublisher = lottoPublisher;
     }
@@ -36,4 +35,5 @@ public class LottoStore {
         LOTTO_PAYMENT_PRICE_REQUIRED.dynamicInvokeBy(() -> LOTTO_PRICE.isGreaterThan(paymentValue));
         LOTTO_PAYMENT_PRICE_REQUIRED.dynamicInvokeBy(() -> paymentValue % LOTTO_PRICE.getNumber() != 0);
     }
+    
 }

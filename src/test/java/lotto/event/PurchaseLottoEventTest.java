@@ -56,4 +56,5 @@ class PurchaseLottoEventTest {
             return lottoBundle.poll();
         }
     }
+    
 }

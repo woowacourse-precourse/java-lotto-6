@@ -7,6 +7,7 @@ import lotto.domain.Money;
 import lotto.domain.PurchasedLottoBundle;
 
 public class LottoRepository {
+    
     private LottoStore lottoStore;
     private PurchasedLottoBundle purchasedLottoBundle;
     private Money payment;
@@ -63,4 +64,5 @@ public class LottoRepository {
         requireNonNull(this.answerLotto);
         return this.answerLotto;
     }
+
 }

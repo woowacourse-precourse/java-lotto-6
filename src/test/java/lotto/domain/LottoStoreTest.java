@@ -26,7 +26,6 @@ class LottoStoreTest {
                 .withMessageContaining(DomainExceptionCode.LOTTO_PAYMENT_PRICE_REQUIRED.getMessage());
     }
 
-
     @ParameterizedTest
     @ValueSource(ints = {1, 10, 100, 1000, 10000})
     void 지정한_개수_만큼_로또를_만들어_냅니다(long quantity) {

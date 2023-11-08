@@ -22,5 +22,4 @@ class BonusNumberTest {
                 .withMessageContaining(DomainExceptionCode.BONUS_NUMBER_MUST_BE_BETWEEN_SIZE.getMessage());
     }
 
-
 }

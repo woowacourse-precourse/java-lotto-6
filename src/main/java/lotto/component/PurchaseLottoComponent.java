@@ -13,10 +13,10 @@ public record PurchaseLottoComponent(
 
     @Override
     public void render() {
-
         final var purchasedLottoState = eventListener.listenWithParameterAndResult(PurchaseLottoEvent::new)
                 .apply(inputView.readPaymentPrice());
 
         outputView.print(purchasedLottoState);
     }
+
 }

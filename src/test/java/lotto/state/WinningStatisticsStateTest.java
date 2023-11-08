@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class WinningStatisticsStateTest {
 
-
     @ParameterizedTest
     @CsvSource(textBlock = """
             62.5-62.5%

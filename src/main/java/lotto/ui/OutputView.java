@@ -4,6 +4,7 @@ import lotto.state.PurchasedLottoState;
 import lotto.state.WinningStatisticsState;
 
 public final class OutputView extends ConsoleWriter {
+
     public void print(PurchasedLottoState purchasedLottoState) {
         this.newLine();
         this.printf("%d개를 구매했습니다.\n", purchasedLottoState.quantity());
@@ -25,4 +26,5 @@ public final class OutputView extends ConsoleWriter {
         this.printf("[ERROR] %s", message);
         this.newLine();
     }
+
 }

@@ -36,11 +36,11 @@ public final class InputView extends ConsoleWriter {
                 .map(this::convertStringToInteger)
                 .map(PAYMENT_PRICE_MUST_BE_INTEGER::apply)
                 .toList();
-
     }
 
     public int readBonusNumber() {
         INSERT_BONUS_NUMBER.accept(this::newLineAndPrintln);
         return BONUS_NUMBER_MUST_BE_INTEGER.apply(convertStringToInteger(Console.readLine()));
     }
+
 }

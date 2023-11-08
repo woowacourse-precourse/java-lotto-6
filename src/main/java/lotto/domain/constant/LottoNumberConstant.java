@@ -1,6 +1,7 @@
 package lotto.domain.constant;
 
 public enum LottoNumberConstant {
+
     LOTTO_SIZE(6),
     LOTTO_NUMBER_MIN_SIZE(1),
     LOTTO_NUMBER_MAX_SIZE(45),
@@ -11,7 +12,6 @@ public enum LottoNumberConstant {
     LottoNumberConstant(int number) {
         this.number = number;
     }
-
 
     public int getNumber() {
         return number;
@@ -38,3 +38,4 @@ public enum LottoNumberConstant {
     }
 
 }
+

@@ -19,6 +19,6 @@ public record WinningStatisticsState(double profit, List<MessagePerCount> messag
     }
 
     public record MessagePerCount(String message, long count) {
-
     }
+
 }

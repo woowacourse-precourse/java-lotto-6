@@ -5,12 +5,13 @@ import lotto.repository.LottoRepository;
 
 public class MainWindow {
 
-
     public void open() {
-        new MainComponents(
+        final var mainComponents = new MainComponents(
                 new InputView(),
                 new OutputView(),
                 new EventListener(new LottoRepository())
-        ).renderAll();
+        );
+        mainComponents.renderAll();
     }
+
 }

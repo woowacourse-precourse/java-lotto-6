@@ -22,4 +22,5 @@ public sealed class ConsoleWriter permits InputView, OutputView {
     protected void newLine() {
         this.print(System.lineSeparator());
     }
+
 }

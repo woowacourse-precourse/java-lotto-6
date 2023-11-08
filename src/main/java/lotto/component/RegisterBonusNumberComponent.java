@@ -9,6 +9,6 @@ public record RegisterBonusNumberComponent(InputView inputView, EventListener ev
     public void render() {
         eventListener.listenWithParameter(RegisterBonusNumberEvent::new)
                 .accept(inputView.readBonusNumber());
-
     }
+
 }

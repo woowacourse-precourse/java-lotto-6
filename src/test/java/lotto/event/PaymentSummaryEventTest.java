@@ -20,6 +20,37 @@ import org.junit.jupiter.api.Test;
 class PaymentSummaryEventTest {
 
     @Test
+    @DisplayName("5000원을 지불하고 1,2,3,4,5등 모두 당첨되면 ")
+    void case3() {
+        final var repository = new LottoRepository();
+        final var paymentSummaryEvent = new PaymentSummaryEvent(repository);
+
+        repository.save(new Money(5000));
+        repository.save(new PurchasedLottoBundle(List.of(
+                new Lotto(List.of(1, 5, 10, 2, 3, 4)), //5등
+                new Lotto(List.of(1, 5, 10, 15, 2, 3)), //4등
+                new Lotto(List.of(1, 5, 10, 15, 20, 2)), // 3등
+                new Lotto(List.of(1, 5, 10, 15, 20, 45)), // 2등
+                new Lotto(List.of(1, 5, 10, 15, 20, 25)) // 1등
+        )));
+
+        repository.save(AnswerLotto.of(List.of(1, 5, 10, 15, 20, 25)).registerBonusNumber(45));
+
+        final var state = paymentSummaryEvent.execute();
+
+        assertAll(
+                () -> assertThat(state.getProfitResult()).isEqualTo("40,631,100.0%"),
+                () -> assertThat(state.toResult()).isEqualTo("""
+                        3개 일치 (5,000원) - 1개
+                        4개 일치 (50,000원) - 1개
+                        5개 일치 (1,500,000원) - 1개
+                        5개 일치, 보너스 볼 일치 (30,000,000원) - 1개
+                        6개 일치 (2,000,000,000원) - 1개
+                        """.trim())
+        );
+    }
+
+    @Test
     void _1등을_하면_1등에_맞는_수익률이_발생한다() {
         final var repository = new LottoRepository();
         final var paymentSummaryEvent = new PaymentSummaryEvent(repository);

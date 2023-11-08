@@ -12,6 +12,7 @@ import lotto.component.WinningStatisticsComponent;
 import lotto.event.EventListener;
 
 public class MainComponents {
+
     private final List<Component> components;
     private final OutputView outputView;
 
@@ -32,4 +33,5 @@ public class MainComponents {
                 .takeWhile(ComponentRenderResult::isContinue)
                 .forEach(renderResult -> outputView.printError(renderResult.errorMessage())));
     }
+
 }

@@ -11,5 +11,5 @@ public class GameMessage {
     public static final String OUT_RESULT_CORRECT_FIVE_MESSAGE = "5개 일치 (1,500,000원) - ";
     public static final String OUT_RESULT_CORRECT_BONUS_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     public static final String OUT_RESULT_CORRECT_SIX_MESSAGE = "6개 일치 (2,000,000,000원) - ";
-
+    public static final String OUT_RESULT_PERCENTAGE_MESSAGE = "총 수익률은 ";
 }

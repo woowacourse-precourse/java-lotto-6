@@ -10,8 +10,7 @@ public class MoneyCalculation {
             for(int i = 0; i < 5; i++){
                sumPrice += winnings[i] * resultLottos.get(i);
             }
-
+        System.out.println(sumPrice);
             return sumPrice;
-
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.Message.ResultMessage;
+import lotto.view.OutputResult;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
@@ -18,12 +18,12 @@ import lotto.Message.GameMessage;
 public class GameController {
 
     public void start() {
-
         Money count = insertMoney();
         List<Lotto> lottos = generateUserLotto(count);
         WinningLotto winningLotto = generateWinningLottto();
         Map<Integer, Integer> resultLottos = winningLotto.compareLottos(lottos);
-        printResult(resultLottos);
+        printResult(resultLottos, count);
+
     }
 
     private Money insertMoney(){
@@ -59,10 +59,13 @@ public class GameController {
                 .collect(Collectors.toList());
     }
 
-    private void printResult(Map<Integer, Integer> resultLottos) {
-        ResultMessage.printAllReultMessge(resultLottos);
+    private void printResult(Map<Integer, Integer> resultLottos, Money money) {
+        long profitPercentage = calculateResult(resultLottos, money);
+        OutputResult.printAllReultMessge(resultLottos, profitPercentage);
         }
 
-        private void
+    private long calculateResult(Map<Integer, Integer> resultLottos, Money money){
+        return money.calculateProfit(resultLottos);
+    }
 
 }

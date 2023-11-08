@@ -35,7 +35,7 @@ public class Money {
             return true;
         }
 
-        public float calculateProfit(Map<Integer, Integer> resultLottos){
+        public long calculateProfit(Map<Integer, Integer> resultLottos){
             long percentage = MoneyCalculation.calculateResult(resultLottos) / money;
             return percentage;
         }

@@ -5,7 +5,7 @@ import lotto.Utils;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Stream;
+import exception.Exception;
 
 public class Lotto {
 
@@ -40,7 +40,7 @@ public class Lotto {
 
     void validateWinningNumberLength(List<Integer> winningNumber) {
         if (winningNumber.size() != LOTTO_NUMBER_SIZE) {
-            throw new IllegalArgumentException();
+            Exception.raiseInvalidWinningNumberSizeException();
         }
     }
 
@@ -58,17 +58,17 @@ public class Lotto {
         try {
             for (int winningNumberIndex = 0; winningNumberIndex < winningNumber.length(); winningNumberIndex++) {
                 if (!(Character.isDigit(winningNumber.charAt(winningNumberIndex)) || winningNumber.charAt(winningNumberIndex) == ',')) {
-                    throw new IllegalArgumentException();
+                    Exception.raiseInvalidWinningNumberArgumentException();
                 }
             }
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException();
+            Exception.raiseInvalidWinningNumberRangeException();
         }
     }
     void validateWinningNumberRange(List<Integer> winningNumber) {
         for (Integer lottoNumber : winningNumber) {
             if (MIN_LOTTO_NUMBER > lottoNumber || MAX_LOTTO_NUMBER < lottoNumber) {
-                throw new IllegalArgumentException();
+                Exception.raiseInvalidWinningNumberRangeException();
             }
         }
     }
@@ -76,7 +76,7 @@ public class Lotto {
     void validateWinningNumberDuplication(List<Integer> winningNumber) {
         Set<Integer> comparativeGroup = new HashSet<>(winningNumber);
         if (comparativeGroup.size() != winningNumber.size()) {
-            throw new IllegalArgumentException();
+            Exception.raiseInvalidWinningNumberDuplicationException();
         }
     }
 

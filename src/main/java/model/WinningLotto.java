@@ -1,6 +1,8 @@
 package model;
 
 import java.util.List;
+import exception.Exception;
+import exception.ExceptionMessage;
 
 public class WinningLotto extends Lotto {
 
@@ -35,25 +37,25 @@ public class WinningLotto extends Lotto {
 
     void validateBonusNumberLength(String bonusNumber) {
         if (bonusNumber.length() > MAX_BONUS_NUMBER_LENGTH || bonusNumber.length() < MIN_BONUS_NUMBER_LENGTH) {
-            throw new IllegalArgumentException();
+            Exception.raiseInvalidInputException();
         }
     }
 
     void validateBonusNumberNumeric(String bonusNumberInput) {
         if (!Character.isDigit(bonusNumberInput.charAt(0))) {
-            throw new IllegalArgumentException();
+            Exception.raiseInvalidBonusNumberArgumentException();
         }
     }
 
     void validateBonusNumberDuplication(List<Integer> winningNumber, int bonusNumber) {
         if (winningNumber.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            Exception.raiseInvalidWinningNumberDuplicationException();
         }
     }
 
     void validateBonusNumberRange(int bonusNumber) {
         if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException();
+            Exception.raiseInvalidBonusNumberRangeMessage();
         }
     }
 

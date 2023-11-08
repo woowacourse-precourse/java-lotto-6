@@ -10,6 +10,10 @@ public class Exception {
         throw new IllegalArgumentException(ExceptionMessage.INVALID_MONEY_ARGUMENT_MESSAGE.getMessage());
     }
 
+    public static void raiseInvalidWinningNumberSizeException() {
+        throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_NUMBER_SIZE_MESSAGE.getMessage());
+    }
+
     public static void raiseMoneyNotDevidedByThousandException() {
         throw new IllegalArgumentException(ExceptionMessage.MONEY_NOT_BEING_DEVIDED_BY_THOUSAND_MESSAGE.getMessage());
     }

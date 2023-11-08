@@ -144,11 +144,11 @@ public class Application {
             return;
         }
         if (count == 4){
-            WinningResult.THREE_MATCH.incrementCount();
+            WinningResult.FOUR_MATCH.incrementCount();
             return;
         }
         if (count == 6){
-            WinningResult.THREE_MATCH.incrementCount();
+            WinningResult.SIX_MATCH.incrementCount();
             return;
         }
         if (count == 5 && !isContainBonus){

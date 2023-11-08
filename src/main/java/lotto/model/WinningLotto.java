@@ -30,6 +30,4 @@ public class WinningLotto {
     private boolean isEqualBonusNumber(Lotto lotto) {
         return lotto.getLotto().contains(bonusNumber);
     }
-
-
 }

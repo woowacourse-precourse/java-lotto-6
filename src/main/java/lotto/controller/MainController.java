@@ -24,7 +24,7 @@ public class MainController {
     public void start() {
         /* 로또 구매 금액을 입력받고, 구입한 로또를 출력한다. */
         final int amount = inputView.inputBuyAmount();
-        final UserLotto userLotto = new UserLotto(buyLotto(amount));
+        final UserLotto userLotto = new UserLotto(buyLotto(amount / Constants.LOTTO_PRICE));
         outputView.printUserLotto(userLotto.getUserLotto());
 
         /* 당첨 번호와 보너스 번호를 입력받고, 당첨 목록을 저장한다. */
@@ -34,14 +34,13 @@ public class MainController {
         final List<Integer> prizeCount = prizeStorage.getPrizeCount();
 
         /* 당첨 통계를 출력한다. */
-        double profitRate = calculateProfitRate(prizes, amount);
+        final double profitRate = calculateProfitRate(prizes, amount);
         outputView.printWinningStatistics(prizeCount, profitRate);
     }
 
-    private List<Lotto> buyLotto(int amount) {
-        int lottoCount = amount / Constants.LOTTO_PRICE;
+    private List<Lotto> buyLotto(int count) {
         final List<Lotto> lotto = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
+        for (int i = 0; i < count; i++) {
             lotto.add(getNewLotto());
         }
         return lotto;
@@ -53,7 +52,7 @@ public class MainController {
     }
 
     private double calculateProfitRate(List<Prize> prizes, int amount) {
-        double totalPrizesMoney =  prizes.stream()
+        double totalPrizesMoney = prizes.stream()
                 .mapToDouble(Prize::getPrizeMoney)
                 .sum();
         return (totalPrizesMoney / amount) * 100;

@@ -15,5 +15,4 @@ public class UserLotto {
                 .map(o -> new Lotto(o.getLotto()))
                 .collect(Collectors.toList());
     }
-
 }

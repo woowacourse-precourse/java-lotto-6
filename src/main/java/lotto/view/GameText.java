@@ -15,6 +15,7 @@ public enum GameText {
 	RATE_OF_RETURN("총 수익률은 "),
 	COUNT("개"),
 	SENTENCE_END("입니다.");
+
 	private final String text;
 
 	GameText(String str) {

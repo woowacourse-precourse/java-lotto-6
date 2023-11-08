@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 import lotto.dto.requset.Price;
 import lotto.dto.requset.WinningBonusNumber;
+import lotto.dto.response.WinningResult;
 import lotto.service.LottoService;
 import lotto.view.Exception;
 import lotto.view.ExceptionText;
@@ -64,7 +65,8 @@ public class LottoController implements Input {
 			checkForOverlap(winningBonusNumber.getWinningNumber(),
 				winningBonusNumber.getBonusNumber());
 			System.out.println(winningBonusNumber.getBonusNumber()+"성공");
-			lottoService.winningCalculation(winningBonusNumber);
+			WinningResult winningResult = lottoService.winningCalculation(winningBonusNumber);
+
 		} catch (IllegalArgumentException e) {
 			exceptionView.PriceException(e);
 			bonusNumber();

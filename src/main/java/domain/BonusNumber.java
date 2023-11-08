@@ -15,7 +15,7 @@ public class BonusNumber {
     }
 
     public void exceptionIfDuplicate(WinningNumbers winningNumbers) {
-        if (winningNumbers.contains(bonusNumber.lottoNumberValue())) {
+        if (winningNumbers.contains(bonusNumber)) {
             throw new DuplicateNumberException();
         }
     }

@@ -16,7 +16,7 @@ public enum PrizeMoney {
                 return prize;
             }
         }
-        throw new IllegalArgumentException("Invalid ordinal: " + ordinal);
+        throw new IllegalArgumentException("[ERROR]" + ordinal);
     }
 
     public int getPrizeMoneyValue() {

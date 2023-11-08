@@ -22,7 +22,7 @@ enum PrizeMessage {
                 return prize;
             }
         }
-        throw new IllegalArgumentException("Invalid ordinal: " + ordinal);
+        throw new IllegalArgumentException("[ERROR]" + ordinal);
     }
 
     public String getMessage() {

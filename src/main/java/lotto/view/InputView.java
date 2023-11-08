@@ -8,7 +8,6 @@ import camp.nextstep.edu.missionutils.Console;
 
 import static lotto.view.OutputView.printRequestMoney;
 import static lotto.view.OutputView.printWinningNumber;
-import static lotto.view.OutputView.printBlankLine;
 import static lotto.view.OutputView.printBonusNumber;
 
 import static lotto.view.ErrorMessage.INVALID_FORMAT_ERROR;
@@ -28,7 +27,7 @@ public class InputView {
     public static List<Integer> getWinningNumber() {
         printWinningNumber();
         String inputResult = Console.readLine();
-        printBlankLine();
+        System.out.println();
 
         validateBlank(inputResult);
 
@@ -38,7 +37,7 @@ public class InputView {
     public static Integer getBonusNumber() {
         printBonusNumber();
         String inputBonus = Console.readLine();
-        printBlankLine();
+        System.out.println();
 
         validateBlank(inputBonus);
 

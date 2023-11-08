@@ -20,9 +20,20 @@ public class Lotto {
     @Override
     public String toString() {
         StringBuilder string = new StringBuilder();
+
+        string.append("[");
+
         for(int i=0;i<6;i++){
-            string.append(numbers.get(i));
+            if(i == 5){
+                string.append(numbers.get(i));
+                continue;
+            }
+
+            string.append(numbers.get(i)+", ");
         }
+
+        string.append("]");
+
         return string.toString();
     }
 }

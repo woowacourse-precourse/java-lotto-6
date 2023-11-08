@@ -11,7 +11,6 @@ public class Statistics {
     private static int fourth = 0;
     private static int fifth = 0;
 
-
     public void temp(Lottos lottos, Lotto lotto, BonusNumber bonusNumber) {
         List<Lotto> allLottos = lottos.getAllLottos();
         for (Lotto temp : allLottos) {
@@ -48,6 +47,12 @@ public class Statistics {
         return (int) numbers1.stream()
                 .filter(numbers2::contains)
                 .count();
+    }
+
+    public int calculateprofits() {
+        int profits = 0;
+        profits += (first * 2000000000 + second * 30000000 + third * 1500000 + fourth * 50000 + fifth * 5000);
+        return profits;
     }
 
     @Override

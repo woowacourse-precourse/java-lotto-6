@@ -287,6 +287,7 @@
                 );
     }
   ```
+  ![](https://velog.velcdn.com/images/chch1213/post/a6c5f341-381a-41fe-98ba-88d8cb21a930/image.png)
 
 ### 💡 함수형 인터페이스
 

@@ -40,7 +40,7 @@ class LottoTest {
 
     @ParameterizedTest(name = "[{index}] 사이즈 예외 발생 : {0}")
     @MethodSource("generateSizeExceptionData")
-    void 로또_번호_리스트_사이즈_예외_발생(List<Integer> list) {
+    void 사이즈_예외_발생(List<Integer> list) {
         // when
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> new Lotto(list));
 
@@ -51,7 +51,7 @@ class LottoTest {
 
     @ParameterizedTest(name = "[{index}] 중복값 존재 예외 발생 : {0}")
     @MethodSource("generateDuplicateData")
-    void 로또_번호_리스트_중복값_존재_예외_발생(List<Integer> list) {
+    void 중복값_존재_예외_발생(List<Integer> list) {
         // when
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> new Lotto(list));
 
@@ -62,7 +62,7 @@ class LottoTest {
 
     @ParameterizedTest(name = "[{index}] 정상 생성 : {0}")
     @MethodSource("generateCorrectData")
-    void 로또_번호_리스트_정상_생성(List<Integer> list) {
+    void 정상_생성(List<Integer> list) {
         // when
         Lotto lotto = new Lotto(list);
 

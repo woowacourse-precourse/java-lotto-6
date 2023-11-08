@@ -1,7 +1,8 @@
 package lotto.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.Map;
@@ -25,9 +26,11 @@ public class LottoManagerTest {
     void checkLottoRanks() {
         Map<Rank,Integer> ranks = lottoManager.calculateLottosRanks(lottos);
 
-        assertThat(ranks.get(Rank.FIRST)).isEqualTo(1);
-        assertThat(ranks.get(Rank.SECOND)).isEqualTo(2);
-        assertThat(ranks.get(Rank.THIRD)).isEqualTo(1);
+        assertAll("Lotto Ranks",
+                () -> assertEquals(1, ranks.get(Rank.FIRST)),
+                () -> assertEquals(2, ranks.get(Rank.SECOND)),
+                () -> assertEquals(1, ranks.get(Rank.THIRD))
+        );
     }
 
     @DisplayName("보너스 숫자가 1과 45사이가 아니면 예외가 발생한다")

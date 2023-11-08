@@ -38,4 +38,23 @@ public class Lotto {
         }
         return lottoNumbers;
     }
+
+    public Integer compareAnswer(Lotto answer) {
+        return compareNumbers(numbers, answer.numbers);
+    }
+
+    private Integer compareNumbers(List<Integer> lotto, List<Integer> answer) {
+        Integer count = 0;
+
+        for (Integer number : answer) {
+            if (lotto.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public boolean compareBonus(Integer bonus) {
+        return numbers.contains(bonus);
+    }
 }

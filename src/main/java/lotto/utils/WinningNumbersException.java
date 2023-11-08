@@ -8,6 +8,13 @@ import java.util.Set;
 import static lotto.utils.ExceptionMessage.*;
 
 public class WinningNumbersException {
+    public void underLength(String input) {
+        String[] inputData = input.split(",");
+        if (inputData.length < 6) {
+            throw new IllegalArgumentException(UNDER_LENGTH.getMessage());
+        }
+    }
+
     public void exceedsLength(String input) {
         String[] inputData = input.split(",");
         if (inputData.length > 6) {

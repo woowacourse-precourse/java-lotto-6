@@ -8,15 +8,15 @@
 - [ ] 숫자가 6개인지 검사한다. -> Lotto#validate()
 - [x] 발행한 로또번호의 수량을 출력한다. -> Printer#showLotteryCount()
 - [x] 발행한 로또를 출력한다. -> Printer#showLotteryNumbers()
-- [x] 당첨 번호를 입력받는다.
+- [x] 당첨 번호를 입력받는다. -> WinningNumber#createWinningNumber()
   - [ ] 당첨 번호가 6개인지 확인한다. -> WinningNumber#validateCount()
   - [ ] 당첨 번호 6개가 중복되는지 검사한다. -> WinningNumber#isDuplicate()
 - [x] 보너스 번호를 입력받는다.
   - [ ] 당첨 번호와 보너스 번호가 중복되는지 검사한다. -> BonusNumber#compareWinningAndBonus()
 - [x] 사용자가 구매한 로또 번호의 결과를 구한다. -> Judge#calculateResult()
-  - [ ] 몇 개의 번호가 일치하는지 비교한다. -> Judge#compareWinningNumber()
-  - [ ] 보너스 번호와 일치하는지 비교한다. -> Judge#compareBonusNumber()
-- [ ] 당첨 내역을 출력한다. -> Printer#showResult()
+  - [x] 몇 개의 번호가 일치하는지 비교한다. -> Judge#compareWinningNumber()
+  - [x] 보너스 번호와 일치하는지 비교한다. -> Judge#compareBonusNumber()
+- [x] 당첨 내역을 출력한다. -> Printer#showResult()
 - [ ] 수익률을 출력한다. -> Printer#showProfit()
 
 <hr/>

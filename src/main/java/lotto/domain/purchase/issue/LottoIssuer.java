@@ -14,8 +14,7 @@ public final class LottoIssuer {
         Lotto lotto = null;
         boolean sucess = false;
         while (!sucess) {
-            List<Integer> radomNumbers = Randoms.pickUniqueNumbersInRange(START_RANGE.getRange(),
-                    END_RANGE.getRange(),
+            List<Integer> radomNumbers = createRandomNumbers(START_RANGE.getRange(), END_RANGE.getRange(),
                     LOTTO_SIZE.getSize());
             try {
                 lotto = new Lotto(radomNumbers);
@@ -24,5 +23,9 @@ public final class LottoIssuer {
             }
         }
         return lotto;
+    }
+
+    private static List<Integer> createRandomNumbers(int start, int end, int size) {
+        return Randoms.pickUniqueNumbersInRange(start, end, size);
     }
 }

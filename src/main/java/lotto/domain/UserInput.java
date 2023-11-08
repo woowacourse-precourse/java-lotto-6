@@ -10,13 +10,18 @@ public final class UserInput {
         String input = null;
         while (!sucess) {
             input = Console.readLine();
-            try {
-                validation.accept(input);
-                sucess = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+            sucess = isValidInput(validation, sucess, input);
         }
         return input;
+    }
+
+    private static boolean isValidInput(Consumer<String> validation, boolean sucess, String input) {
+        try {
+            validation.accept(input);
+            sucess = true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return sucess;
     }
 }

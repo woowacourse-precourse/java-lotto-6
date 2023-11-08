@@ -12,6 +12,7 @@ import static lotto.domain.Rank.SECOND;
 import static lotto.domain.Rank.THIRD;
 
 import java.text.DecimalFormat;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -42,6 +43,7 @@ public class OutputView {
 
     private void printLottoNumbers(Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
+        lottoNumbers.sort(Comparator.naturalOrder());
 
         System.out.print(LOTTO_NUMBERS_PREFIX_MESSAGE);
         for (int i = 0; i < lottoNumbers.size() - 1; i++) {

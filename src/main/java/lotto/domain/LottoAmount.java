@@ -16,8 +16,8 @@ public class LottoAmount {
         return amount;
     }
 
-    private void validate(int money) {
-        if (!Objects.equals(money % LOTTO_PRICE, 0)) {
+    private void validate(int amount) {
+        if (!Objects.equals(amount % LOTTO_PRICE, 0)) {
             throw new IllegalArgumentException(ONLY_DIVISIBLE_BY_THOUSAND.getMessage());
         }
     }

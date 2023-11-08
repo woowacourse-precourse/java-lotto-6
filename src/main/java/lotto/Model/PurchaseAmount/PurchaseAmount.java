@@ -6,7 +6,6 @@ public class PurchaseAmount {
     private final Integer Amount;
 
     public PurchaseAmount(Integer amount) {
-
         this.Amount = amount;
     }
 
@@ -27,6 +26,10 @@ public class PurchaseAmount {
         if( amount <= LOTTO_ONE_TICKET_PRICE.getValue() && amount % LOTTO_ONE_TICKET_PRICE.getValue() != 0 ) {
             throw new IllegalArgumentException("");
         }
+    }
+
+    public Integer GetPurchaseAmount(){
+        return this.Amount;
     }
 
 }

@@ -2,6 +2,7 @@ package lotto.validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.util.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -17,7 +18,7 @@ class InputValidatorTest {
         // then
         assertThatThrownBy(() -> InputValidator.verifyValidaNumberFormat(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("쉼표 구분하여 숫자만 입력해주세요.");
+                .hasMessage(ErrorMessage.INVALID_INPUT_FORMAT.get());
     }
 
     @DisplayName("사용자 입력 값이 공백, 길이가 0, null이면 예외 발생")
@@ -28,7 +29,7 @@ class InputValidatorTest {
         // then
         assertThatThrownBy(() -> InputValidator.verifyNonEmptyInput(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("입력 값이 비어있습니다.");
+                .hasMessage(ErrorMessage.EMPTY_INPUT.get());
     }
 
     @DisplayName("사용자 입력 값이 숫자가 아니면 예외 발생")
@@ -39,6 +40,6 @@ class InputValidatorTest {
         // then
         assertThatThrownBy(() -> InputValidator.verifyNumericString(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("보너스 번호는 하나의 숫자만 입력해주세요.");
+                .hasMessage(ErrorMessage.INVALID_BONUS_NUMBER_COUNT.get());
     }
 }

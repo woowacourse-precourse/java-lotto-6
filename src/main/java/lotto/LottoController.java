@@ -1,6 +1,7 @@
 package lotto;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class LottoController {
@@ -30,8 +31,8 @@ public class LottoController {
 
         for (int i = 0; i < lottoBundle.size(); i++) {
             Lotto lotto = lottoBundle.get(i);
-            List<Integer> lottoNumbers = lotto.getNumbers();
-            Collections.sort(lottoNumbers);
+            List<Integer> lottoNumbers = new ArrayList<>(lotto.getNumbers());
+            lottoNumbers.sort(Comparator.naturalOrder());
             System.out.println(lottoNumbers);
         }
     }

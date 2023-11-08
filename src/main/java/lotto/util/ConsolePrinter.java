@@ -5,6 +5,7 @@ import java.util.Objects;
 import lotto.constants.DomainMessages;
 import lotto.constants.ErrorMessages;
 import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 
 public class ConsolePrinter {
     private static void validateNull(Object... targets) {
@@ -52,5 +53,17 @@ public class ConsolePrinter {
         validateNull(message, numbers);
 
         System.out.print(message.getMessage(numbers));
+    }
+
+    public static void showLottos(Lottos lottos) {
+        validateNull(lottos);
+
+        for (Lotto lotto : lottos.getLottos()) {
+            showLottoNumbers(lotto);
+        }
+    }
+
+    public static void showNewLine() {
+        System.out.println();
     }
 }

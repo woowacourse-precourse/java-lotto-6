@@ -20,16 +20,9 @@ public class LottoMachine {
         IntStream.range(0, numOfLottos)
                 .forEach(i -> lottos.add(pickLotto()));
 
-        printPurchaseResult(lottos);
         return lottos;
     }
 
-    private void printPurchaseResult(List<Lotto> lottos) {
-        System.out.printf("%d개를 구매했습니다.%n", lottos.size());
-        lottos.stream()
-                .map(Lotto::getNumbers)
-                .forEach(System.out::println);
-    }
 
     private void checkRemain(int price) {
         if (0 != price % LOTTO_PRICE) {

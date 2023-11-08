@@ -11,7 +11,8 @@ public class Application {
         Buyer buyer = new Buyer(lottoMachine, lottoResultChecker);
 
         int price = getInput("구매금액을 입력해 주세요.", InputProcessor::parsePrice);
-        buyer.buyLotto(price);
+        List<Lotto> lottos = buyer.buyLotto(price);
+        LottoUI.printPurchaseResult(lottos);
 
         List<Integer> winningNumbers = getInput("당첨 번호를 입력해 주세요.", InputProcessor::getWinningNumbers);
         Integer bonusNumber = getInput("보너스 번호를 입력해 주세요.", InputProcessor::getBonusNumber);

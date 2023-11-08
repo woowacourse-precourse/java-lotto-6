@@ -15,10 +15,11 @@ public class Buyer {
         this.lottoResultChecker = lottoResultChecker;
     }
 
-    public void buyLotto(int price) {
+    public List<Lotto> buyLotto(int price) {
         checkPriceValidation(price);
         this.price = price;
         this.lottos = lottoMachine.inputPurchasePrice(this.price);
+        return this.lottos;
     }
 
     private void checkPriceValidation(int price) {

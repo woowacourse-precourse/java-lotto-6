@@ -45,9 +45,6 @@ public class LottoStatistics {
     }
 
     public String generateLottoStatisticsForm() {
-        // 역순 저장되어 있는 결과값 뒤집기
-        Collections.reverse(lottoResult);
-
         // MISS 제거
         lottoResult.remove(0);
 

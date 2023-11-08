@@ -14,7 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("로또 등수 리스트 테스트")
+@DisplayName("로또 결과 테스트")
 class LottoResultCalculatorServiceTest {
     private LottoResultCalculatorService lottoResultCalculatorService;
 

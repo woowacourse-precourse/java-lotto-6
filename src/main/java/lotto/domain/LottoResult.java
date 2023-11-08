@@ -12,8 +12,13 @@ public class LottoResult {
     private final HashMap<LottoRanking, Integer> results;
     private final PurchaseAmount purchaseAmount;
 
+    public LottoResult(HashMap<LottoRanking, Integer> results,PurchaseAmount purchaseAmount) {
+        this.results = results;
+        this.purchaseAmount = purchaseAmount;
+    }
 
-    public LottoResult(Lottos lottos, WinningNumber winningNumber, BonusNumber bonusNumber, PurchaseAmount purchaseAmount) {
+
+    public static LottoResult resultCalculation(Lottos lottos, WinningNumber winningNumber, BonusNumber bonusNumber, PurchaseAmount purchaseAmount) {
         HashMap<LottoRanking, Integer> results = new HashMap<>();
 
         for (Lotto lotto : lottos.getLottos()) {
@@ -21,8 +26,7 @@ public class LottoResult {
             results.put(ranking, results.getOrDefault(ranking, DEFAULT_VALUE) + ADD_COUNT);
         }
 
-        this.purchaseAmount = purchaseAmount;
-        this.results = results;
+        return new LottoResult(results,purchaseAmount);
     }
 
     public Integer getResult(LottoRanking key) {

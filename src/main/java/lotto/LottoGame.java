@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto;
 
 import static common.enumtype.ErrorCode.NOT_NUMBER_STRING;
 import static lotto.view.InputView.inputBonusNumber;
@@ -12,34 +12,29 @@ import static lotto.view.OutputView.printWinningStatistics;
 import common.enumtype.ResultType;
 import common.exception.InvalidArgumentException;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.domain.strategy.LottoNumberStrategy;
+import lotto.domain.LottoPurchaseAmount;
+import lotto.domain.LottoResult;
+import lotto.domain.Lottoes;
+import lotto.domain.WinningNumber;
+import lotto.domain.WinningNumbers;
 import lotto.domain.strategy.RandomNumberStrategy;
 import lotto.dto.LottoNumbers;
 
-public class Game {
+public class LottoGame {
 
-    private final LottoPurchaseAmount amount;
-    private final Lottoes lottoes;
-    private final WinningNumbers winningNumbers;
-    private final LottoResult lottoResult;
-
-    public Game(LottoNumberStrategy strategy) {
-        strategy = settingStrategy(strategy);
-        this.amount = createAmount();
-        this.lottoes = new Lottoes(strategy, amount.getLottoQuantity());
-        printLottoes();
-        this.winningNumbers = createNumbers();
-        this.lottoResult = createLottoResult();
-        printStatistics();
+    public void run() {
+        LottoPurchaseAmount lottoPurchaseAmount = createAmount();
+        Lottoes lottoes = createLottoes(lottoPurchaseAmount.getLottoCount());
+        WinningNumbers winningNumbers = createNumbers();
+        LottoResult lottoResult = createLottoResult(lottoes, winningNumbers);
+        printResult(lottoResult, lottoResult.getYieldRate(lottoPurchaseAmount.getAmount()));
     }
 
-    private LottoNumberStrategy settingStrategy(LottoNumberStrategy strategy) {
-        if(strategy == null) {
-            return new RandomNumberStrategy();
-        }
-        return strategy;
+    private Lottoes createLottoes(int count) {
+        Lottoes lottoes = new Lottoes(new RandomNumberStrategy(), count);
+        printLottoes(lottoes);
+        return lottoes;
     }
 
     private LottoPurchaseAmount createAmount() {
@@ -57,7 +52,7 @@ public class Game {
         return new LottoPurchaseAmount(amount);
     }
 
-    private void printLottoes() {
+    private void printLottoes(Lottoes lottoes) {
         List<LottoNumbers> lottoNumbers = lottoes.getAllLotto().stream()
                 .map(lotto -> new LottoNumbers(lotto.getLottoNumbers()))
                 .toList();
@@ -113,31 +108,24 @@ public class Game {
         return parseInt(input);
     }
 
-    private LottoResult createLottoResult() {
-        List<ResultType> resultTypes = calculateLottoResult();
+    private LottoResult createLottoResult(Lottoes lottoes, WinningNumbers winningNumbers) {
+        List<ResultType> resultTypes = calculateLottoResult(lottoes, winningNumbers);
         return new LottoResult(resultTypes);
     }
 
-    private List<ResultType> calculateLottoResult() {
+    private List<ResultType> calculateLottoResult(Lottoes lottoes, WinningNumbers winningNumbers) {
         return lottoes.getAllLotto().stream()
                 .map(lotto -> winningNumbers.matchingResult(lotto.getLottoNumbers()))
                 .collect(Collectors.toList());
     }
 
-    private void printStatistics() {
+    private void printResult(LottoResult lottoResult, double yieldRate) {
+        printLottoResult(lottoResult.getResult());
+        printStatistics(yieldRate);
+    }
+
+    private void printStatistics(double yieldRate) {
         printWinningStatistics();
-        printResult();
-        printYieldRate();
-    }
-
-    private void printResult() {
-        Map<ResultType, Integer> result = lottoResult.getResult();
-        printLottoResult(result);
-    }
-
-    private void printYieldRate() {
-        int lottoPurchaseAmount = amount.getLottoPurchaseAmount();
-        double yieldRate = lottoResult.getYieldRate(lottoPurchaseAmount);
         printTotalYieldRate(yieldRate);
     }
 

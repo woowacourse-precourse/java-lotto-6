@@ -2,6 +2,7 @@ package lotto;
 
 import static lotto.views.UserInput.readPurchasePrice;
 import static lotto.views.UserOutput.askPurchasePrice;
+import static lotto.views.UserOutput.printNumberOfLottoPurchases;
 
 import java.util.List;
 import lotto.domain.Lotto;
@@ -16,5 +17,6 @@ public class Application {
         Integer purchasePrice = readPurchasePrice();
 
         List<Lotto> lottos = lottoStore.purchaseLotto(purchasePrice);
+        printNumberOfLottoPurchases(lottos);
     }
 }

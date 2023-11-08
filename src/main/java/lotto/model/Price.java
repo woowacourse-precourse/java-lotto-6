@@ -1,19 +1,24 @@
 package lotto.model;
 
+import lotto.constant.response.Exception;
+
 public enum Price {
-    LOTTO(1000, "[ERROR] 구입 금액은 1,000원 단위로 이루어 져야 합니다.");
+    LOTTO(1000);
 
     private final int amount;
-    private final String exceptionMessage;
 
-    Price(int amount, String exceptionMessage) {
+    Price(int amount) {
         this.amount = amount;
-        this.exceptionMessage = exceptionMessage;
     }
 
-    public int calculate(int money){
+    public int getAmount() {
+        return amount;
+    }
+
+    public int divide(int money){
         if(money == 0 || money % amount != 0){
-            throw new IllegalArgumentException(exceptionMessage);
+            throw new IllegalArgumentException(Exception.ERROR_PREFIX.getMessage()
+                    + Exception.LOTTO_PRICE.getMessage());
         }
         return money / amount;
     }

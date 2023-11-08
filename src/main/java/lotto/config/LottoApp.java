@@ -38,9 +38,17 @@ public class LottoApp {
     }
 
     private void requestWinningNumber() {
-        InputView.printInputWinningNumber();
-        String winningNumber = Console.readLine();
+        while(true) {
+            try {
+                InputView.printInputWinningNumber();
+                String winningNumber = Console.readLine();
 
-        lottoController.createWinningNumber(winningNumber);
+                lottoController.createWinningNumber(winningNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 }

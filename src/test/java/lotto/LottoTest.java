@@ -76,7 +76,7 @@ class LottoTest {
 
         //then
 
-        assertThat(String.format("%.1f",lottoService.getProfitRate())).isEqualTo("1000166.7");
+        assertThat(String.format("%.1f", lottoService.getProfitRate())).isEqualTo("1000166.7");
     }
 
     @DisplayName("로또 번호와 당첨 번호를 비교하고 결과를 저장한다.")
@@ -146,6 +146,33 @@ class LottoTest {
 
             String output = outContent.toString();
             assertThat(output).contains("[1, 2, 3, 4, 5, 6]", "[2, 3, 4, 5, 6, 7]");
+        }
+
+        @DisplayName("당첨 통계를 정확하게 출력한다.")
+        @Test
+        void outputResultTest() {
+            //given
+            LottoRepository lottoRepository = new LottoRepository();
+            LottoService lottoService = new LottoService(lottoRepository);
+            //when
+            lottoRepository.saveLottos(List.of(1, 2, 3, 4, 5, 6)); // SIX_MATCH
+            lottoRepository.saveLottos(List.of(1, 2, 3, 4, 5, 8)); // FIVE_MATCH_BONUS
+            lottoRepository.saveLottos(List.of(1, 2, 3, 4, 5, 7)); // FIVE_MATCH_NO_BONUS
+            lottoRepository.saveLottos(List.of(1, 2, 3, 4, 8, 9));  // FOUR_MATCH
+            lottoRepository.saveLottos(List.of(1, 2, 3, 7, 8, 9)); // THREE_MATCH
+            lottoRepository.saveLottos(List.of(1, 2, 7, 8, 9, 10)); // NO_PRIZE
+
+            lottoRepository.saveGame(List.of(1, 2, 3, 4, 5, 6), 8);
+            lottoService.compareLottosWithWinningNumbers();
+            OutputView.outputResult(lottoService.getResult());
+
+            //then;
+            String output = outContent.toString();
+            assertThat(output).contains("3개 일치 (5,000원) - 1개"
+                    , "4개 일치 (50,000원) - 1개"
+                    , "5개 일치 (1,500,000원) - 1개"
+                    , "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개"
+                    , "6개 일치 (2,000,000,000원) - 1개");
         }
     }
 }

@@ -18,6 +18,7 @@
             - [x] 금액이 양수인지 검증한다.
             - [x] 1,000원으로 나누어떨어지는지 검증한다.
         - [x] 검증에 실패하면 "[ERROR] ~" 메시지와 함께 `IllegalArgumentException`을 던진다.
+          - [x] 그리고 다시 입력을 받는다.
 - [x] 로또 구입 결과를 반환한다. - OutputView$printPurchasedLottoes(lottoesDto)
   - [x] 로또 발행 수량을 계산해야 한다.(로또 한 장의 가격은 1,000원이다.) - LottoService$calculateLottoCount(int money)
       - [x] 몇 개를 구입했는지 안내 문구를 출력한다. - OutputView$printLottoCount(lottoesDto)
@@ -51,6 +52,7 @@
     - [x] 숫자가 총 6개가 맞는지 검증한다.
     - [x] 숫자가 중복되는 숫자가 없는지 검증한다.
     - [x] 검증에 실패하면 "[ERROR] ~" 메시지와 함께 `IllegalArgumentException`을 던진다.
+      - [x] 그리고 다시 입력을 받는다.
 - [x] 보너스 번호를 입력받는다.
     - [x] 입력받기 전 안내 문구를 출력한다.
       ```text
@@ -60,6 +62,7 @@
     - [x] 숫자가 1~45 사이의 숫자인지 검증한다.
     - [x] 당첨 번호 중 중복된 숫자가 없는지 검증한다.
     - [x] 검증에 실패하면 "[ERROR] ~" 메시지와 함께 `IllegalArgumentException`을 던진다.
+      - [x] 그리고 다시 입력을 받는다.
 - [x] 당첨 내역을 계산한다.
   ```text
   - 1등: 6개 번호 일치 / 2,000,000,000원
@@ -92,7 +95,7 @@
 # 객체 다이어그램
 ## LottoController
 1. 역할 : 뷰와 서비스 간에 필요한 데이터를 전달하는 중간자 역할
-2. 상태 : InputView, OutputView, LottoService
+2. 상태 : InputView, OutputView, LottoService, ValidatingLoopTemplate
 3. 행위
     - void run()
     - void purchaseLottoes()
@@ -105,13 +108,13 @@
 
 ## LottoService
 1. 역할 : 리포지토리에 필요한 데이터를 입력하거나 꺼내서 핵심 비즈니스 로직을 담당
-2. 상태 : LottoRepository
+2. 상태 : LottoRepository, paidMoney
 3. 행위
     - LottoesDto purchaseLottoes(MoneyDto moneyDto)
-    - int calculateLottoCount(int money)
-    - List<LottoDto> generateLottoes()
+      - int calculateLottoCount(int money)
+      - List<LottoDto> generateLottoes()
     - ResultDto generateResult(WinNumbersDto)
-        - LottoDto calculateWinResult()
+        - Map<Ranking, Integer> generateRankingCount(lottoDtoes, winNumbers, bonusNumber)
         - double calculateBenefitRate()
 
 ## LottoRepository
@@ -131,18 +134,18 @@
 
 ## LottoDto
 1. 역할 : LottoRepository에서 LottoService로 Lotto 관련 필요 데이터를 전달하는 모델
-2. 상태 : numbers, ~~correctNumbers, isBonusCorrect~~
+2. 상태 : numbers
 3. 행위 : 레코드
 
 ## MoneyDto
 1. 역할 : LottoController에서 LottoService로 돈 관련 데이터를 전달하는 모델
 2. 상태 : money
-3. 행위 : 레코드
+3. 행위 : 레코드, 검증
 
 ## LottoesDto
 1. 역할 : LottoDto들을 묶어서 하나의 DTO로 서비스에서 컨트롤러로 데이터를 전달하는 모델
 2. 상태 : List<LottoDto>
-3. 행위 : 레코드
+3. 행위 : 레코드, getLottoCount()
 
 ## WinNumbersDto
 1. 역할 : 당첨 번호와 보너스 번호를 컨트롤러에서 서비스로 전달하는 모델
@@ -159,5 +162,6 @@
 2. 상태 : FIRST, SECOND, THIRD, FOURTH, FIFTH
 3. 행위
    - getPrizeMoney()
+   - getMatchedCount()
    - getMessage()
    - boolean isThisRanking(int matchedNumberCount, boolean isBonusNumberMatched)

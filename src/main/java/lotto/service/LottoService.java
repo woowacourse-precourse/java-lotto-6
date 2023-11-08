@@ -36,8 +36,8 @@ public class LottoService {
     }
 
     public double calculateLottoYield() {
-        LottoYieldStatistics lottoYieldStatistics = new LottoYieldStatistics();
-        return lottoYieldStatistics.calculate(getPaidMoney(), getWinningResult());
+        LottoCalculator lottoCalculator = new LottoCalculator();
+        return lottoCalculator.calculate(getPaidMoney(), getWinningResult());
     }
 
     public List<String> getWinningResultMap() {

@@ -5,9 +5,9 @@ import java.util.Arrays;
 import java.util.Map;
 
 public enum WinningGrade {
-    DEFAULT(0,  0),
-    FIFTH( 3, 5_000),
-    FOURTH( 4, 50_000),
+    DEFAULT(0, 0),
+    FIFTH(3, 5_000),
+    FOURTH(4, 50_000),
     THIRD(5, 1_500_000),
     SECOND(5, 30_000_000),
     FIRST(6, 2_000_000_000);
@@ -42,30 +42,15 @@ public enum WinningGrade {
         return THIRD;
     }
 
-    public static int getWinningAmount(Map<WinningGrade, Integer> winningGradeMap) {
-        return winningGradeMap.entrySet()
-                .stream()
-                .mapToInt(WinningGrade::calculatePrizeMoney)
-                .sum();
-    }
-
-    private static int calculatePrizeMoney(Map.Entry<WinningGrade, Integer> grade) {
-        return getPrizeMoney(grade) * getWinningCount(grade);
-    }
-
-    private static Integer getWinningCount(Map.Entry<WinningGrade, Integer> grade) {
-        return grade.getValue();
-    }
-
-    private static int getPrizeMoney(Map.Entry<WinningGrade, Integer> grade) {
-        return grade.getKey().prizeMoney;
+    public int getPrizeMoney() {
+        return this.prizeMoney;
     }
 
     public boolean isSecondGrade() {
         return this == SECOND;
     }
 
-    public String getPrizeMoney() {
+    public String getPrizeMoneyBy1000Unit() {
         DecimalFormat thousandWonUit = new DecimalFormat("###,###");
         return thousandWonUit.format(this.prizeMoney);
     }

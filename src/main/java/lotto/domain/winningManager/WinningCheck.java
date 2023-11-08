@@ -36,19 +36,25 @@ public class WinningCheck {
     }
 
     private int determineRank(Integer sameNumberCount, Boolean containBonusNumber) {
-        switch (sameNumberCount) {
-            case 3:
-                return 5;
-            case 4:
-                return 4;
-            case 5:
-                if (containBonusNumber) {
-                    return 2;
-                }
-                return 3;
-            case 6:
-                return 1;
+        if (sameNumberCount == 3) {
+            return 5;
         }
+
+        if (sameNumberCount == 4) {
+            return 4;
+        }
+
+        if (sameNumberCount == 5) {
+            if (containBonusNumber) {
+                return 2;
+            }
+            return 3;
+        }
+
+        if (sameNumberCount == 6) {
+            return 1;
+        }
+
         return 0;
     }
 

@@ -12,7 +12,7 @@ public class WinningNumber {
 
     public void addNumber(int number) {
         if (winningNumber.contains(number)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Message.duplicateNumberError);
         }
         this.winningNumber.add(number);
     }

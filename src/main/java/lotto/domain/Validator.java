@@ -4,26 +4,17 @@ import java.util.*;
 
 public class Validator {
 
-    private static final String nonNumericInputErrorMessage = "[ERROR] 숫자를 입력해주세요.";
-    private static final String nonDivisibleUnitErrorMessage = "[ERROR] 1,000원 단위로 입력해주세요.";
-    private static final String moreAmountRequiredErrorMessage = "[ERROR] 1,000원 이상을 입력해주세요.";
-    private static final String incorrectCountErrorMessage = "[ERROR] 6개의 숫자를 입력해주세요.";
-    private static final String outOfRangeErrorMessage = "[ERROR] 1~45 범위의 숫자만 입력해주세요.";
-    private static final String duplicateNumberErrorMessage = "[ERROR] 중복되지 않는 숫자를 입력해주세요.";
-
-
-
     public static void validPurchaseAmount(String input) {
         validNumber(input);
 
         int purchaseAmount = Integer.parseInt(input);
 
         if (purchaseAmount % LottoConfiguration.UNIT != 0) {
-            throw new IllegalArgumentException(nonDivisibleUnitErrorMessage);
+            throw new IllegalArgumentException(Message.nonDivisibleUnitError);
         }
 
         if (purchaseAmount == 0) {
-            throw new IllegalArgumentException(moreAmountRequiredErrorMessage);
+            throw new IllegalArgumentException(Message.moreAmountRequiredError);
         }
     }
 
@@ -38,7 +29,7 @@ public class Validator {
             validOutOfRangeNumber(number);
 
             if (hashSet.contains(number)) {
-                throw new IllegalArgumentException(duplicateNumberErrorMessage);
+                throw new IllegalArgumentException(Message.duplicateNumberError);
             }
             hashSet.add(number);
         }
@@ -53,13 +44,13 @@ public class Validator {
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(nonNumericInputErrorMessage);
+            throw new IllegalArgumentException(Message.nonNumericInputError);
         }
     }
 
     private static void validWinningNumbersCount(String[] input) {
         if (input.length != LottoConfiguration.NUMBERS_SIZE) {
-            throw new IllegalArgumentException(incorrectCountErrorMessage);
+            throw new IllegalArgumentException(Message.incorrectCountError);
         }
     }
 
@@ -71,7 +62,7 @@ public class Validator {
 
     private static void validOutOfRangeNumber(int number) {
         if (number >= LottoConfiguration.NUMBER_RANGE_START && number <= LottoConfiguration.NUMBER_RANGE_END) {
-            throw new IllegalArgumentException(outOfRangeErrorMessage);
+            throw new IllegalArgumentException(Message.outOfRangeError);
         }
     }
 }

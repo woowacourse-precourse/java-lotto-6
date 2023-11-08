@@ -1,35 +1,28 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
-
-import java.util.List;
+import lotto.domain.Message;
 
 public class ConsoleView {
 
-    private static final String inputPurchaseAmountMessage = "구입금액을 입력해 주세요.";
-    private static final String purchaseConfirmationMessage = "개를 구매했습니다.";
-    private static final String inputWinningNumbersMessage = "당첨 번호를 입력해 주세요.";
-    private static final String inputBonusNumberMessage = "보너스 번호를 입력해 주세요.";
-    private static final String winningStatisticsMessage = "당첨 통계\n---";
-
     public static void printInputPurchaseAmountMessage() {
-        System.out.println(inputPurchaseAmountMessage);
+        System.out.println(Message.inputPurchaseAmount);
     }
 
     public static void printPurchaseConfirmationMessage(int n) {
-        System.out.println(n + purchaseConfirmationMessage);
+        System.out.println(n + Message.purchaseConfirmation);
     }
 
     public static void printInputWinningNumbersMessage() {
-        System.out.println(inputWinningNumbersMessage);
+        System.out.println(Message.inputWinningNumbers);
     }
 
     public static void printInputBonusNumberMessage() {
-        System.out.println(inputBonusNumberMessage);
+        System.out.println(Message.inputBonusNumber);
     }
 
     public static void printWinningStatistics() {
-        System.out.println(winningStatisticsMessage);
+        System.out.println(Message.winningStatistics);
     }
 
     public static void printLottos(Lotto[] lottos) {

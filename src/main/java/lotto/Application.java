@@ -1,10 +1,9 @@
 package lotto;
 
-import lotto.purchase.Purchase;
-import lotto.ticket.LottoTicket;
-import lotto.Bonus;
+import lotto.generator.Bonus;
+import lotto.generator.Purchase;
+import lotto.generator.LottoTicket;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {

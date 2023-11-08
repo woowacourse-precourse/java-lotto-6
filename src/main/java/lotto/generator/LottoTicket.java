@@ -1,4 +1,4 @@
-package lotto.ticket;
+package lotto.generator;
 
 import java.util.ArrayList;
 import java.util.Collection;

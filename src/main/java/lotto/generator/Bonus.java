@@ -1,4 +1,4 @@
-package lotto;
+package lotto.generator;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.handler.ExceptionHandler;

@@ -17,7 +17,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != 6 || numbers.size() != numbers.stream().distinct().count()) {
+            System.out.println("[ERROR] 1부터 45까지 중복되지 않은 6개의 숫자여야 합니다.");
             throw new IllegalArgumentException();
         }
     }

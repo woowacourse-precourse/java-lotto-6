@@ -3,9 +3,11 @@ package lotto.controller;
 import lotto.core.policy.PickNumberPolicy;
 import lotto.core.policy.WinningPolicy;
 import lotto.entity.*;
+import lotto.property.MethodProperty;
 import lotto.tool.OutputGenerateTool;
 
 import java.util.List;
+import java.util.Map;
 
 import static lotto.controller.InputController.inputPurchaseCost;
 import static lotto.property.LottoProperty.COST_UNIT_STANDARD;
@@ -47,7 +49,7 @@ public class MainController {
     }
 
     private void displayPublishedLottos(OutputGenerateTool outputGenerateTool) {
-        outputFormatting(outputGenerateTool.getLottosFormat());
+        outputFormatting(outputGenerateTool.getLottosFormat(MethodProperty.LOTTOS_FORMAT));
     }
 
     private void purchaseResult(List<Lotto> lottos) {
@@ -60,7 +62,21 @@ public class MainController {
                     winningPolicy.hitBonus(lottoNumbers, weekWinning.bonus())
             );
         }
+        writePurchaseResult(lottoManager.getResultEnumMap());
+    }
 
+    private void writePurchaseResult(Map<LottoResult, Integer> lottoResultMap) {
+        OutputGenerateTool outputGenerateTool = new OutputGenerateTool();
+        for (LottoResult lottoResult : lottoResultMap.keySet()) {
+            if (lottoResult.equals(LottoResult.NO_PRIZE)) continue;
+            outputGenerateTool.generateLottoResult(lottoResult, lottoResultMap.get(lottoResult));
+        }
+        displayLottoResult(outputGenerateTool);
+    }
+
+    private void displayLottoResult(OutputGenerateTool outputGenerateTool) {
+        outputFormatting(LOTTO_RESULT.toString());
+        outputFormatting(outputGenerateTool.getLottosFormat(MethodProperty.LOTTO_RESULT_FORMAT));
     }
 
     private WeekWinning publishWeekWinning() {

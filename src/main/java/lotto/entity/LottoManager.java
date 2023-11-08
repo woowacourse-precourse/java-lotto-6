@@ -32,7 +32,10 @@ public class LottoManager {
         return Stream.of(LottoResult.values())
                 .filter(result -> {
                     if (winningCount.equals(5) && hitBonus) return result == LottoResult.FIVE_MATCH_WITH_BONUS;
-                    if (hitBonus) return result.getCount().equals(winningCount + 1);
+                    if (hitBonus) {
+                        if (winningCount < 2) return result == LottoResult.NO_PRIZE;
+                        return result.getCount().equals(winningCount + 1);
+                    }
                     if (winningCount < 3) return result == LottoResult.NO_PRIZE;
                     return result.getCount().equals(winningCount);
                 })

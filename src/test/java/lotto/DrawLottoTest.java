@@ -103,7 +103,7 @@ class DrawLottoTest {
         assertEquals(1, Rank.SECOND.getCount());
         assertEquals(1, Rank.FIRST.getCount());
     }
-wk
+
     @DisplayName("수익률을 정상적으로 계산하는지 확인한다.")
     @Test
     void 수익률_정상_계산_확인() {

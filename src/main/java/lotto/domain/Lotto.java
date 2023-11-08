@@ -1,13 +1,10 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Validator;
 import lotto.constants.LottoConfig;
 import lotto.constants.StaticMessage;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -74,24 +71,24 @@ public class Lotto {
 
     public static void checkWinOrNot(User user) {
         long count = 0L;
-        for (Lotto lotto: user.lottos) {
+        for (Lotto lotto : user.lottos) {
             count = lotto.compare(lotto);
+            user.processCheckResult(String.valueOf(count), lotto.bonusCompare(lotto));
         }
-        user.saveCheckResult(count);
     }
 
     private static int getLottoCount(int payment) {
         return payment / LottoConfig.UNIT_PRICE.getValue();
     }
 
-    public long compare(Lotto lotto) {
+    private long compare(Lotto lotto) {
         return lotto.getNumbers()
                     .stream()
                     .filter(winningNumbers::contains)
                     .count();
     }
 
-    public boolean bonusCompare(Lotto lotto) {
+    private boolean bonusCompare(Lotto lotto) {
         return lotto.getNumbers()
                     .stream()
                     .anyMatch(number -> number == bonusNumber);

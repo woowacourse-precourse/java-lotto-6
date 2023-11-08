@@ -6,13 +6,13 @@ import java.util.List;
 
 public class UserIO {
 
-    public static Payment scanPayment() {
+    public static Amount scanPayment() {
         while (true) {
             System.out.println("구입금액을 입력해 주세요.");
             try {
-                return new Payment(Console.readLine());
+                return new Amount(Console.readLine());
             } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
+                printLottoErrorMessage(exception.getMessage());
             }
         }
     }
@@ -23,7 +23,7 @@ public class UserIO {
         }
         char lastChar = value.charAt(value.length() - 1);
         if (lastChar == ',') {
-            throw new IllegalArgumentException("[ERROR] 콤마(,)로 끝낼 수 없습니다.");
+            throw new IllegalArgumentException("콤마(,)로 끝낼 수 없습니다.");
         }
     }
 
@@ -33,7 +33,7 @@ public class UserIO {
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력가능 합니다.");
+            throw new IllegalArgumentException("숫자만 입력가능 합니다.");
         }
     }
 
@@ -45,7 +45,7 @@ public class UserIO {
                 validateLastComma(winningNumbers);
                 return new Lotto(convertToIntegerList(winningNumbers));
             } catch (IllegalArgumentException illegalArgumentException) {
-                System.out.println(illegalArgumentException.getMessage());
+                printLottoErrorMessage(illegalArgumentException.getMessage());
             }
         }
     }
@@ -54,7 +54,7 @@ public class UserIO {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
         }
     }
 
@@ -65,8 +65,12 @@ public class UserIO {
                 int number = convertToInteger(Console.readLine());
                 return new BonusNumber(winningsLotto, number);
             } catch (IllegalArgumentException illegalArgumentException) {
-                System.out.println(illegalArgumentException.getMessage());
+                printLottoErrorMessage(illegalArgumentException.getMessage());
             }
         }
+    }
+
+    public static void printLottoErrorMessage(String value) {
+        System.out.printf(ErrorMessage.ERROR_FORMAT + "\n", value);
     }
 }

@@ -27,13 +27,8 @@ public class Application {
             this.lottoPrice = lottoPrice;
         }
 
-        public double getPrice(){
-            return lottoPrice;
-        }
-
-        public int getIndex(){
-            return lottoIndex;
-        }
+        public double getPrice(){return lottoPrice;}
+        public int getIndex(){return lottoIndex;}
     }
 
     private static int getTickets() {
@@ -49,6 +44,16 @@ public class Application {
             System.out.printf("[ERROR] 구입 금액은 %d원 단위로 입력해주세요.\n",TICKET_PRICE);
         }
         return -1;
+    }
+
+    private static int getValidateTickets() {
+        System.out.println("구입금액을 입력해 주세요.");
+        int tickets;
+        do {
+            tickets = getTickets();
+        } while (tickets < 0);
+
+        return tickets;
     }
 
     private static boolean isLottoLength(String[] sNumbers) {
@@ -115,26 +120,16 @@ public class Application {
         String[] sNumbers = Console.readLine().split(",");
         List<Integer> numbers = new ArrayList<Integer>();
 
-        if (!isLottoLength(sNumbers)) {
-            return new ArrayList<Integer>();
-        }
+        if (!isLottoLength(sNumbers)) {return new ArrayList<Integer>();}
 
         for (String number : sNumbers) {
             number = number.replace(" ", "");
-            
-            if (!isLottoNumber(number)) {
-                return new ArrayList<Integer>();
-
-            }
+            if (!isLottoNumber(number)) {return new ArrayList<Integer>();}
             numbers.add(Integer.parseInt(number));
         }
 
-        if (isDuplicated(numbers)) {
-            return new ArrayList<Integer>();
-        }
-
+        if (isDuplicated(numbers)) {return new ArrayList<Integer>();}
         return numbers;
-
     }
 
     private static Integer inputPlayerBonusNumber(List<Integer> numbers) {
@@ -168,12 +163,7 @@ public class Application {
     }
 
     public static void main(String[] args) {
-
-        System.out.println("구입금액을 입력해 주세요.");
-        int tickets;
-        do {
-            tickets = getTickets();
-        } while (tickets < 0);
+        getValidateTickets();        
 
         List<Lotto> lottos = new ArrayList<Lotto>();
         System.out.printf("\n%d개를 구매했습니다.\n", tickets);

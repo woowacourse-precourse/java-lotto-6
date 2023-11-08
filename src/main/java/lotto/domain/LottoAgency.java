@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class LottoAgency {
     public Map<LottoRank, Integer> calculateLottoRank(List<Lotto> lottos, List<Integer> winningNumbers,
@@ -15,6 +16,19 @@ public class LottoAgency {
         }
 
         return winningResult;
+    }
+
+    public Long calculateTotalWinningAmount(Map<LottoRank, Integer> winningResult) {
+        long sum = 0L;
+
+        for (Entry<LottoRank, Integer> lottoRankIntegerEntry : winningResult.entrySet()) {
+            Integer winningAmount = lottoRankIntegerEntry.getKey().getWinningAmount();
+            Integer winningCount = lottoRankIntegerEntry.getValue();
+
+            sum += ((long) winningAmount * winningCount);
+        }
+
+        return sum;
     }
 
     private LottoRank compareLottoNumbers(Lotto lotto, List<Integer> winningNumbers, Integer bonusNumber) {

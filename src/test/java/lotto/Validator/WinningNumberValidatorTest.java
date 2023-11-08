@@ -2,6 +2,7 @@ package lotto.Validator;
 
 import static lotto.config.ErrorMessage.INPUT_WINNING_CHARACTER_ERROR_MESSAGE;
 import static lotto.config.ErrorMessage.INPUT_WINNING_NUMBER_SIZE_ERROR_MESSAGE;
+import static lotto.config.ErrorMessage.LOTTO_NUMBER_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -53,5 +54,18 @@ public class WinningNumberValidatorTest {
         assertThatThrownBy(() -> validator.valid(list))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(INPUT_WINNING_CHARACTER_ERROR_MESSAGE.getMessage());
+    }
+
+    @Test
+    void 정답_번호가_범위를_벗어난_경우를_확인한다() {
+        List<String> list = new ArrayList<>();
+
+        for (int i = 41; i <= 46; i++) {
+            list.add(String.valueOf(i));
+        }
+
+        assertThatThrownBy(() -> validator.valid(list))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(LOTTO_NUMBER_ERROR_MESSAGE.getMessage());
     }
 }

@@ -2,6 +2,7 @@ package lotto.Validator;
 
 import static lotto.config.ErrorMessage.INPUT_WINNING_CHARACTER_ERROR_MESSAGE;
 import static lotto.config.ErrorMessage.INPUT_WINNING_NUMBER_SIZE_ERROR_MESSAGE;
+import static lotto.config.ErrorMessage.LOTTO_NUMBER_ERROR_MESSAGE;
 import static lotto.config.LottoConfig.LOTTO_SIZE;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class WinningNumberValidator extends Validator<List<String>> {
     public List<String> valid(List<String> input) {
         checkCount(input);
         checkEachStringInteger(input);
+        checkEachNumberValid(input);
 
         return input;
     }
@@ -31,5 +33,19 @@ public class WinningNumberValidator extends Validator<List<String>> {
         if (!allNumbers) {
             throw new IllegalArgumentException(INPUT_WINNING_CHARACTER_ERROR_MESSAGE.getMessage());
         }
+    }
+
+    private void checkEachNumberValid(List<String> input) {
+        boolean allValidNumbers = input.stream()
+                .map(this::toInteger)
+                .allMatch(super::isLottoNumber);
+
+        if (!allValidNumbers) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_ERROR_MESSAGE.getMessage());
+        }
+    }
+
+    private int toInteger(String input) {
+        return Integer.parseInt(input);
     }
 }

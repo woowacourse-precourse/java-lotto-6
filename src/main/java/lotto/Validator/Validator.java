@@ -1,5 +1,8 @@
 package lotto.Validator;
 
+import static lotto.config.LottoConfig.LOTTO_MAX_VALUE;
+import static lotto.config.LottoConfig.LOTTO_MIN_VALUE;
+
 import java.util.regex.Pattern;
 
 /**
@@ -27,6 +30,6 @@ public abstract class Validator<T> {
      * @return 1~45 사이의 숫자면 true, 아니면 false
      */
     protected boolean isLottoNumber(int number) {
-        return 1 <= number && number <= 45;
+        return LOTTO_MIN_VALUE.getValue() <= number && number <= LOTTO_MAX_VALUE.getValue();
     }
 }

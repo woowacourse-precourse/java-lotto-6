@@ -1,5 +1,7 @@
 package lotto.model.domain;
 
+import java.util.List;
+
 public enum RankTable {
     THREE( 3, false, 5_000),
     FOUR(4, false, 50_000),
@@ -16,6 +18,28 @@ public enum RankTable {
         this.bonus = bonus;
         this.money = money;
     }
+
+    public static RankTable filterBonusNumber(List<Integer> lottoNumber, int bonusNumber, int matchCount) {
+        boolean bonus = lottoNumber.contains(bonusNumber);
+        if (matchCount == 5 && bonus) {
+            return BONUS;
+        }
+        if (matchCount >= 3 && !bonus) {
+            return addMatchRank(matchCount);
+        }
+        return null;
+    }
+
+    private static RankTable addMatchRank(int matchCount) {
+        RankTable matchVale = null;
+        for (RankTable value : RankTable.values()) {
+            if (value.getMatchNumber() == matchCount && !value.isBonus()) {
+                matchVale = value;
+            }
+        }
+        return matchVale;
+    }
+
 
     public int getMatchNumber() {
         return matchNumber;

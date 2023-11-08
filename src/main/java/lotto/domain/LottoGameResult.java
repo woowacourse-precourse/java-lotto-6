@@ -1,4 +1,4 @@
-package lotto.services;
+package lotto.domain;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -6,7 +6,8 @@ import java.util.EnumMap;
 import java.util.Map;
 import lotto.enums.LottoPrize;
 
-public class PrizeResultStringGenerator {
+public class LottoGameResult {
+    private static final String CURRENCY_PATTERN = "###,###.##";
     private static final String DEFAULT_RANK_PRINT_FORMAT = "%d개 일치 (%s원) - %d개";
     private static final String BONUS_RANK_PRINT_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
 
@@ -23,27 +24,26 @@ public class PrizeResultStringGenerator {
     }
 
     private static String formatPrizeResult(LottoPrize prize, int count) {
-        String resultFormat = selectResultSentence(prize);
+        String resultFormat = selectSentence(prize);
         return buildFormattedResult(prize, count, resultFormat);
     }
 
-    private static String selectResultSentence(LottoPrize prize) {
-        String resultFormat = DEFAULT_RANK_PRINT_FORMAT;
+    private static String selectSentence(LottoPrize prize) {
+        String resultSentence = DEFAULT_RANK_PRINT_FORMAT;
         if (prize.isBonus()) {
-            resultFormat = BONUS_RANK_PRINT_FORMAT;
+            resultSentence = BONUS_RANK_PRINT_FORMAT;
         }
-        return resultFormat;
+        return resultSentence;
     }
 
-    private static String buildFormattedResult(LottoPrize prize, int count, String resultFormat) {
+    private static String buildFormattedResult(LottoPrize prize, int count, String Sentence) {
         int matchCount = prize.getMatchCount();
         BigDecimal prizeAmount = BigDecimal.valueOf(prize.getPrizeAmount());
-
-        return String.format(resultFormat, matchCount, formatCurrency(prizeAmount), count);
+        return String.format(Sentence, matchCount, formatCurrency(prizeAmount), count);
     }
 
-    public static String formatCurrency(BigDecimal amount) {
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+    private static String formatCurrency(BigDecimal amount) {
+        DecimalFormat decimalFormat = new DecimalFormat(CURRENCY_PATTERN);
         return decimalFormat.format(amount);
     }
 }

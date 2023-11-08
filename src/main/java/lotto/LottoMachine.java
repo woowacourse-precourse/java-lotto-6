@@ -83,7 +83,7 @@ public class LottoMachine {
                 Validation.validateMultipleOfLottoPrice(number);
                 return number/LOTTO_PRICE;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                printExceptionMessage(e);
             }
         }
     }
@@ -95,7 +95,7 @@ public class LottoMachine {
                 List<Integer> numbers = getSplitNaturalNumberList(",");
                 return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                printExceptionMessage(e);
             }
         }
     }
@@ -108,7 +108,7 @@ public class LottoMachine {
                 Validation.validateDuplicate(lotto, number);
                 return number;
             } catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
+                printExceptionMessage(e);
             }
         }
     }

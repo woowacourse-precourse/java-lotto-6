@@ -19,6 +19,10 @@ public class Output {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
+    public static void printExceptionMessage(Exception e) {
+        System.out.println(e.getMessage());
+    }
+
     public static void printLottoCount(int lottoCount) {
         System.out.println(lottoCount + "개를 구매했습니다.");
     }

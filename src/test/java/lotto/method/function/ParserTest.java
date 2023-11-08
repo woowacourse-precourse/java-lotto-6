@@ -8,7 +8,6 @@ import java.util.List;
 
 
 public class ParserTest {
-
     @Test
     @DisplayName("입력 받은 String을 int로 변환한다.")
     void stringToInt() {

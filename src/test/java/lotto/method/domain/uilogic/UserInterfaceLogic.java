@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 
 public class UserInterfaceLogic {
-
     private UserInterfaceLogic() {}
 
     public static void setUserInput(String userInput) {

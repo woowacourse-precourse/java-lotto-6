@@ -9,7 +9,8 @@ public enum ErrorMessage {
     NOT_ALL_NUMERIC_EXCEPTION("[ERROR] 로또 번호는 숫자만 입력 가능합니다."),
     NOT_IN_RANGE_EXCEPTION("[ERROR] 로또 번호는 1부터 45까지의 숫자만 입력 가능합니다."),
     NOT_UNIQUE_EXCEPTION("[ERROR] 로또 번호는 중복될 수 없습니다."),
-    INVALID_SIZE_EXCEPTION("[ERROR] 로또 번호는 6개여야 합니다.");
+    INVALID_SIZE_EXCEPTION("[ERROR] 로또 번호는 6개여야 합니다."),
+    NOT_SORTED_EXCEPTION("[ERROR] 로또 번호는 오름차순으로 정렬되어야 합니다.");
 
 
     ErrorMessage(String message) {

@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 import static lotto.message.ErrorMessage.*;
 
@@ -25,6 +26,9 @@ public class Lotto {
         if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
             throw new IllegalArgumentException(NOT_IN_RANGE_EXCEPTION.getMessage());
         }
+        if (!isSorted(numbers)) {
+            throw new IllegalArgumentException(NOT_SORTED_EXCEPTION.getMessage());
+        }
     }
 
     // TODO: 추가 기능 구현
@@ -40,5 +44,10 @@ public class Lotto {
 
     public boolean calculateBonusNumber(UserLotto userLotto) {
         return numbers.contains(userLotto.getBonusNumber());
+    }
+
+    private boolean isSorted(List<Integer> numbers) {
+        return IntStream.range(1, numbers.size())
+                .allMatch(i -> numbers.get(i) >= numbers.get(i - 1));
     }
 }

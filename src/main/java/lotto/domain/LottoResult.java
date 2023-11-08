@@ -1,5 +1,6 @@
 package lotto.domain;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -21,5 +22,11 @@ public class LottoResult {
                 .sorted(Comparator.comparingLong(Rank::getPrize))
                 .forEach(rank -> formalizedResults.add(rank.getFormalizedRank() + result.get(rank) + "개"));
         return formalizedResults;
+    }
+
+    public long getTotalReturn() {
+        return Arrays.stream(Rank.values())
+                .mapToLong(rank -> rank.getPrize() * result.getOrDefault(rank, 0))
+                .sum();
     }
 }

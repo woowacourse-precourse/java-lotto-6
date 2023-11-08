@@ -107,16 +107,12 @@ class WinningLottoCalculatorTest {
 	@Test
 	public void calculateRateOfReturn() {
 		// given
-		double expected = 500.0;
+		double expected = 67718500.0;
 
 		PurchaseAmount purchaseAmount = new PurchaseAmount("3000");
 		WinningLotto winningLotto = getWinningLotto();
 
-		PurchaseLotto purchaseLotto = new PurchaseLotto();
-		purchaseLotto.getLottos().add(new Lotto("1,2,3,8,9,10"));
-		purchaseLotto.getLottos().add(new Lotto("1,2,3,8,9,10"));
-		purchaseLotto.getLottos().add(new Lotto("1,2,3,8,9,10"));
-
+		PurchaseLotto purchaseLotto = getPurchaseLotto();
 		WinningLottoCalculator winningLottoCalculator = new WinningLottoCalculator();
 		winningLottoCalculator.calculateLottoPrizeCount(purchaseLotto, winningLotto);
 

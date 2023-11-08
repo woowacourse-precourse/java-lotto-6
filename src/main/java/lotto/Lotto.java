@@ -12,9 +12,21 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개를 입력하십시오.");
         }
     }
 
-    // TODO: 추가 기능 구현
+    public int countMatchingNumbers(List<Integer> winningNumbers) {
+        int count = 0;
+        for (Integer number : numbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

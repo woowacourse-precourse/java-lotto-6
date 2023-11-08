@@ -1,7 +1,14 @@
 package lotto;
 
+import lotto.domain.IoLotto;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        IoLotto ioLotto = new IoLotto();
+
+        int money = ioLotto.inputMoney();
+        Lotto purchasedLotto = (Lotto) ioLotto.purchaseLotto(money);
+
+        ioLotto.checkResult(purchasedLotto, ioLotto.inputBonusNumber());
     }
 }

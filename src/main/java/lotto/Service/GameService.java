@@ -49,7 +49,6 @@ public class GameService {
     } // setGame() END
 
     public void resultGame() {
-        System.out.println("\n당첨 통계\n---");
         Map<Rank, Integer> matchingCounts = new HashMap<>();
         int totalPrize = 0;
 

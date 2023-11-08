@@ -27,6 +27,7 @@ public class LottoSalesman {
     }
 
     public static void rankTotal(Map<Rank, Integer> matchingCounts, int totalPrize, int money) {
+        OutputLottoUI.rankViewStart();
         for (Rank rank : Rank.values()) {
             if (rank != Rank.NO_MATCH) {
                 int count = matchingCounts.get(rank);

@@ -26,4 +26,8 @@ public class OutputLottoUI {
         }
     }
 
+    public static void rankViewStart(){
+        System.out.println("\n당첨 통계\n---");
+    }
+
 }

@@ -100,15 +100,11 @@ public class GameController {
     }
 
     public void requestWinningNumberInput() {
-
-        boolean validInput = false;
-
-        while (!validInput) {
+        while (true) {
             try {
                 GameView.printWinningNumberInputPhrase();
                 lotto = new Lotto(StringToInteger(splitInput(Console.readLine(), ",")));
-
-                validInput = true;
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

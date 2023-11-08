@@ -15,7 +15,7 @@ class InputValidationTest {
 
         // when
         // then
-        assertThatThrownBy(() -> inputValidation.validatePurchaseAmountString(nonNumericString))
+        assertThatThrownBy(() -> inputValidation.validatePurchaseAmount(nonNumericString))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -26,10 +26,20 @@ class InputValidationTest {
 
         // when
         // then
-        assertThatCode(() -> inputValidation.validatePurchaseAmountString(numericString))
+        assertThatCode(() -> inputValidation.validatePurchaseAmount(numericString))
                 .doesNotThrowAnyException();
     }
 
+    @Test
+    void 최대_구매금_값_입력시_익셉션_발생_테스트() {
+        // given
+        String nonNumericString = "1000000000";
+
+        // when
+        // then
+        assertThatThrownBy(() -> inputValidation.validatePurchaseAmount(nonNumericString))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @Test
     void 숫자_범위외에_값_익셉션_발생_테스트() {

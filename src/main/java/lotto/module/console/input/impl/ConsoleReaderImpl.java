@@ -28,8 +28,7 @@ public class ConsoleReaderImpl implements ConsoleReader {
     @Override
     public int readPurchaseAmount() {
         final String inputPurchaseAmount = readLine();
-        inputValidation.validatePurchaseAmountString(inputPurchaseAmount);
-
+        inputValidation.validatePurchaseAmount(inputPurchaseAmount);
         return Integer.parseInt(inputPurchaseAmount);
     }
 

@@ -1,15 +1,15 @@
 package lotto.util;
 
 import java.util.List;
+import lotto.constants.ErrorMessages;
 
 public class Converter {
-    private static final String NON_NUMERIC_INPUT_MESSAGE = "[ERROR] 숫자를 입력해주세요.";
 
     public static int stringToInt(String inputNumber) {
         try {
             return Integer.parseInt(inputNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NON_NUMERIC_INPUT_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessages.NON_NUMERIC_INPUT_MESSAGE);
         }
     }
 

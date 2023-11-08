@@ -1,9 +1,9 @@
 package lotto.model;
 
+import lotto.constants.ErrorMessages;
+import lotto.constants.LottoNumberLimits;
+
 public class PurchaseAmount {
-    private static final int LOTTO_PRICE = 1000;
-    private static final String INPUT_LEAST_PRICE_ERROR_MESSAGE = "[ERROR] 최소 1000원 이상의 돈을 입력해주세요.";
-    private static final String INPUT_MULTIPLE_OF_THOUSAND_MESSAGE = "[ERROR] 1000원 단위의 금액만 입력해주세요.";
     private final int purchaseAmount;
 
     public PurchaseAmount(int inputMoney) {
@@ -18,22 +18,22 @@ public class PurchaseAmount {
 
     private void checkMultipleOfThousand(int inputMoney) {
         if (isNotMultipleOfThousand(inputMoney)) {
-            throw new IllegalArgumentException(INPUT_MULTIPLE_OF_THOUSAND_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessages.INPUT_MULTIPLE_OF_THOUSAND_MESSAGE);
         }
     }
 
     private boolean isNotMultipleOfThousand(int inputMoney) {
-        return inputMoney % LOTTO_PRICE != 0;
+        return inputMoney % LottoNumberLimits.LOTTO_PRICE != 0;
     }
 
     private void checkLeastLottoPrice(int inputMoney) {
-        if (inputMoney < LOTTO_PRICE) {
-            throw new IllegalArgumentException(INPUT_LEAST_PRICE_ERROR_MESSAGE);
+        if (inputMoney < LottoNumberLimits.LOTTO_PRICE) {
+            throw new IllegalArgumentException(ErrorMessages.INPUT_LEAST_PRICE_ERROR_MESSAGE);
         }
     }
 
     public int getMaxLottoCountForBudget() {
-        return this.purchaseAmount / LOTTO_PRICE;
+        return this.purchaseAmount / LottoNumberLimits.LOTTO_PRICE;
     }
 
     public int getPurchaseAmount() {

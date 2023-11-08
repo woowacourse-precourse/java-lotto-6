@@ -3,11 +3,11 @@ package lotto.model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.constants.LottoNumberLimits;
 import lotto.enums.LottoStatus;
 import lotto.service.LottoResultDto;
 
 public class LottoResult {
-    private static final int LOTTO_PRICE = 1000;
     private static final int PERCENTAGE_FACTOR = 100;
 
     private final List<LottoStatus> lottoResult;
@@ -39,7 +39,7 @@ public class LottoResult {
             totalPrize += lottoStatus.getPrize();
         }
 
-        return (double) totalPrize / (lottoResult.size() * LOTTO_PRICE) * PERCENTAGE_FACTOR;
+        return (double) totalPrize / (lottoResult.size() * LottoNumberLimits.LOTTO_PRICE) * PERCENTAGE_FACTOR;
     }
 
 }

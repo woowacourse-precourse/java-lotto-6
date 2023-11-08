@@ -1,7 +1,8 @@
 package lotto.model;
 
+import lotto.constants.ErrorMessages;
+
 public class WinningNumbers {
-    private static final String BONUS_NUMBER_NOT_ALLOWED_MESSAGE = "[ERROR] 보너스 번호는 당첨 번호에 포함될 수 없습니다.";
     private final Lotto winningLotto;
     private final BonusNumber bonusNumber;
 
@@ -17,7 +18,7 @@ public class WinningNumbers {
 
     private void checkBonusNumberInWinningLotto(Lotto winningLotto, int bonusNumber) {
         if (winningLotto.contains(bonusNumber)) {
-            throw new IllegalArgumentException(BONUS_NUMBER_NOT_ALLOWED_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessages.BONUS_NUMBER_NOT_ALLOWED_MESSAGE);
         }
     }
 

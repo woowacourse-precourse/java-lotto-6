@@ -10,34 +10,29 @@ import static java.lang.Integer.parseInt;
 import static java.lang.Long.parseLong;
 import static lotto.domain.constant.StringConstant.*;
 import static lotto.utils.Validator.*;
+import static lotto.service.OutputService.printError;
 
 public class InputService {
     public static long readExpense() {
         try {
             String input = readLine();
-            validateNumberType(input);
+            validateExpense(input);
 
-            long expense = parseLong(input);
-            validateExpenseValue(expense);
-
-            return expense;
+            return parseLong(input);
         } catch (IllegalArgumentException e) {
+            printError(e);
             return readExpense();
         }
     }
 
 
     public static Lotto readWinningLotto() {
-        List<Integer> winningNumbers = new ArrayList<>();
         String[] input = trim(readLine().split(SPLIT_DELIMITER));
 
         try {
-            for (String num : input) {
-                validateNumberType(num);
-                winningNumbers.add(parseInt(num));
-            }
-            winningNumbers.sort(null);
-            return Lotto.create(winningNumbers);
+            validateLottoNumType(input);
+
+            return Lotto.create(parseAndSort(input));
         } catch (IllegalArgumentException e) {
             return readWinningLotto();
         }
@@ -52,17 +47,26 @@ public class InputService {
         return trimmed;
     }
 
+    private static List<Integer> parseAndSort(String[] input) {
+        List<Integer> winningLotto = new ArrayList<>();
+
+        for (String s : input)
+            winningLotto.add(parseInt(s));
+
+        winningLotto.sort(null);
+
+        System.out.println("winningLotto = " + winningLotto);
+
+        return winningLotto;
+    }
+
 
     public static int readBonusNum(Lotto winningLotto) {
         try {
             String input = readLine();
-            validateNumberType(input);
+            validateBonusNum(input, winningLotto);
 
-            int bonusNum = parseInt(input);
-            validateBonusNumInRange(bonusNum);
-            validateBonusNumDuplicate(bonusNum, winningLotto);
-
-            return bonusNum;
+            return parseInt(input);
         } catch (IllegalArgumentException e) {
             return readBonusNum(winningLotto);
         }

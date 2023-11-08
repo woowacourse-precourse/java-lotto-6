@@ -26,7 +26,6 @@ public class Lotto {
     public static Lotto create(List<Integer> numbers) {
         try {
             validateLotto(numbers);
-
             return new Lotto(numbers);
         } catch (IllegalArgumentException e) {
             throw e;

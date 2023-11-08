@@ -1,6 +1,7 @@
 package model;
 
 import common.Constant;
+import common.ErrorMessage;
 
 import java.util.List;
 
@@ -15,11 +16,11 @@ public class Bonus {
     }
 
     private void validateIsDuplicated(List<Integer> numbers, int bonus){
-        if(numbers.contains(bonus)) throw new IllegalArgumentException();
+        if(numbers.contains(bonus)) throw new IllegalArgumentException(ErrorMessage.BONUS_DUPLICATION);
     }
 
     private void validateScope(int bonus){
             if(bonus > Constant.LOTTO_MAX || bonus < Constant.LOTTO_MIN)
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_SCOPE);
     }
 }

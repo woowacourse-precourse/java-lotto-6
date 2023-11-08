@@ -1,6 +1,7 @@
 package model;
 
 import common.Constant;
+import common.ErrorMessage;
 
 public class Amount {
 
@@ -13,11 +14,11 @@ public class Amount {
     }
 
     private void validateIsThousand(int amount) {
-        if(amount % Constant.DIVIDE_UNIT != 0) throw new IllegalArgumentException();
+        if(amount % Constant.DIVIDE_UNIT != 0) throw new IllegalArgumentException(ErrorMessage.NOT_THOUSAND);
     }
 
     private void validateIsPositive(int amount){
-        if(amount <= 0) throw new IllegalArgumentException();
+        if(amount <= 0) throw new IllegalArgumentException(ErrorMessage.AMOUNT_SCOPE);
     }
 
     public int getAmount() {

@@ -15,7 +15,7 @@ public class Converter {
             return numbers.stream().map(s -> Integer.parseInt(s))
                     .collect(Collectors.toList());
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER);
         }
     }
 
@@ -23,7 +23,7 @@ public class Converter {
         try{
             return Integer.parseInt(input);
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER);
         }
     }
 }

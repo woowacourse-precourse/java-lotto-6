@@ -1,6 +1,7 @@
 package model;
 
 import common.Constant;
+import common.ErrorMessage;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,19 +20,19 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != Constant.LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE);
         }
     }
 
     private void validateDuplication(List<Integer> numbers) {
         List<Integer> districtNumbers = numbers.stream().distinct().collect(Collectors.toList());
-        if(districtNumbers.size() != numbers.size()) throw new IllegalArgumentException();
+        if(districtNumbers.size() != numbers.size()) throw new IllegalArgumentException(ErrorMessage.LOTTO_DUPLICATION);
     }
 
     private void validateScope(List<Integer> numbers){
         for(int n : numbers){
             if(n > Constant.LOTTO_MAX || n < Constant.LOTTO_MIN)
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_SCOPE);
         }
     }
 

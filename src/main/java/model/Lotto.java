@@ -20,7 +20,11 @@ public class Lotto {
         NumbersValidation.isOverLength(numbers);
         NumbersValidation.isUnderLength(numbers);
         NumbersValidation.duplicationNumbers(numbers);
-        numbers.stream().forEach(number-> NumberValidation.isOverMaxNumber(number));
-        numbers.stream().forEach(number-> NumberValidation.isUnderMinNumber(number));
+        numbers.stream().forEach(number->numberValidate(number));
+    }
+
+    public void numberValidate(int number){
+        NumberValidation.isUnderMinNumber(number);
+        NumberValidation.isOverMaxNumber(number);
     }
 }

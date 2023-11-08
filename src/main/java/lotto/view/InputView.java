@@ -8,7 +8,7 @@ public class InputView {
 
     private final UserBuyingException userBuyingException = new UserBuyingException();
 
-    public int inputBuyingPriceView(){
+    public int inputBuyingPriceView() {
         try {
             String buyPrice = Console.readLine();
             userBuyingException.validateBuyingException(buyPrice);
@@ -16,5 +16,9 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 입력은 숫자만 가능합니다");
         }
+    }
+    public String inputLottoNumbersView() {
+        String lottoNumbers = Console.readLine();
+        return lottoNumbers;
     }
 }

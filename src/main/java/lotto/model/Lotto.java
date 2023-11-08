@@ -2,8 +2,7 @@ package lotto.model;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import static lotto.constant.Constant.*;
-import static lotto.constant.ErrorMessage.INVALID_NUMBER_SIZE;
-import static lotto.constant.ErrorMessage.NUMBER_DUPLICATE;
+import static lotto.constant.ErrorMessage.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,6 +23,11 @@ public class Lotto {
         }
         else if (numbers.stream().distinct().count() != MAX_NUMBER_SIZE) {
             throw new IllegalArgumentException(NUMBER_DUPLICATE.getMessage());
+        }
+        else if (numbers.stream()
+                        .filter(n -> LOTTO_MIN_VALUE <= n && n <= LOTTO_MAX_VALUE)
+                        .count() != MAX_NUMBER_SIZE) {
+            throw new IllegalArgumentException(NUMBER_OUT_RANGE.getMessage());
         }
     }
 

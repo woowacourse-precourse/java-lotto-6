@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -23,5 +24,17 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호는 출력할때 정렬된 상태여야 한다.")
+    @Test
+    void lottoNumbersSorted() {
+        Lotto lotto = new Lotto(List.of(5, 4, 3, 2, 1, 6));
+        assertThat(lotto.getNumbers()).isSorted();
+    }
+
+    @DisplayName("로또 번호는 1에서 45사이여야 한다.")
+    @Test
+    void lottoNumbersOutRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(-1, 4, 100, 2, 47, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

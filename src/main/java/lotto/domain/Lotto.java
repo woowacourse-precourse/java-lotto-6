@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.option.Error.NOT_LOTTO_DUPLICATION;
 import static lotto.option.Error.NOT_SIX_LENGTH;
 import static lotto.option.Error.ONE_TO_FORTY_FIVE;
+import static lotto.option.GameOption.LOTTO_NUMBER_LENGTH;
 
 import java.util.List;
 import lotto.option.GameOption;
@@ -19,7 +20,7 @@ public record Lotto(List<Integer> numbers) {
     }
 
     private void validateLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_LENGTH.getNumber()) {
             throw new IllegalArgumentException(NOT_SIX_LENGTH.getMessage());
         }
     }

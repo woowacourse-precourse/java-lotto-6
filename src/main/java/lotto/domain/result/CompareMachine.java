@@ -15,6 +15,7 @@ import lotto.generator.LottoResultGenerator;
 import lotto.option.EqualStatus;
 
 public class CompareMachine {
+    private static final int PERCENTAGE = 100;
     private final Map<LottoResult, Integer> winStatus = new HashMap<>();
 
     public CompareMachine() {
@@ -49,7 +50,7 @@ public class CompareMachine {
                 + winStatus.get(new LottoResult(EqualStatus.FIVE_AND_BONUS_EQUAL)) * FIVE_AND_BONUS_MONEY.getNumber()
                 + winStatus.get(new LottoResult(EqualStatus.SIX_EQUAL)) * SIX_MONEY.getNumber();
         double moneyUse = LOTTO_PRICE.getNumber() * userLotto.size();
-        return (moneyGet / moneyUse) * 100;
+        return (moneyGet / moneyUse) * PERCENTAGE;
     }
 
     public Map<LottoResult, Integer> getWinStatus() {

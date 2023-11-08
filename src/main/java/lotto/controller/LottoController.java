@@ -29,7 +29,7 @@ public class LottoController {
     public void run() {
         String input = getUserInput();
         createLottos(input);
-        List<Integer> winningNumbers = getWinningNumbers();
+        getWinningNumbers();
         getExtraWinningNumber();
         calculateWinningStatistics();
     }

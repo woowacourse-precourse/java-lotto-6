@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.controller.service.LottoService;
 import lotto.controller.service.StatisticsService;
@@ -46,5 +47,6 @@ public class LottoProgram {
         WiningStatistics winingStatistics =
                 statisticsService.calculateWiningStatistics(winingNumbers, lottos);
         outputView.printWiningStatistics(winingStatistics);
+        Console.close();
     }
 }

@@ -26,6 +26,9 @@ public class Application {
 
         System.out.println("\n당첨 번호를 입력해 주세요.");
         winning.inputNumbers();
+
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        winning.inputBonusNumber();
     }
 
     private static void printBoughtLotto(List<Lotto> allLotto) {

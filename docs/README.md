@@ -18,10 +18,10 @@
   - 당첨 번호가 구매한 로또 번호 중에 있는지 확인한다. - Winning#getMatchedCount()
 
 
-- 보너스 번호를 입력한다.
-  - 정수형으로 입력 받는다.
-  - 보너스 번호 유효성 검사 할까? TODO
-  - 보너스 번호가 구매한 로또 번호 중에 있는지 확인한다.
+- 보너스 번호를 입력한다. - Winning#inputBonusNumber()
+  - 보너스 번호 유효성 검사 - Winning#isValidBonus()
+    - 보너스 번호가 1개가 아니면, [ERROR] 메시지를 출력하고 다시 입력 받는다. - Winning#validateBonus()
+  - 보너스 번호가 구매한 로또 번호 중에 있는지 확인한다. - Winning#isMatchedBonus()
 
 
 - 당첨 통계를 출력한다.

@@ -29,7 +29,7 @@ public class LottoGameManager {
         printLottos();
         enterWinningNumber();
         enterBonusNumber();
-        printTotalPrize();
+        printTotalPrizeAndRevenue();
     }
 
     private void enterPurchaseAmount() {
@@ -75,10 +75,12 @@ public class LottoGameManager {
         }
     }
 
-    private void printTotalPrize(){
+    private void printTotalPrizeAndRevenue(){
         Map<Prize, Integer> totalPrize = winning.calcTotalPrize(consumer.getLottos());
         outputView.printTotalPrize(totalPrize);
-    }
 
+        double revenueRate = winning.calcRevenueRate(totalPrize, consumer.getPurchaseAmount());
+        outputView.printRevenueRate(revenueRate);
+    }
 
 }

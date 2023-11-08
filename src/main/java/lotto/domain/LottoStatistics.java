@@ -37,8 +37,7 @@ public class LottoStatistics {
     }
 
     private void countRanks(List<Lotto> purchasedLottos, Lotto winningLotto, int lottoBonus) {
-        for (int i = 0; i < purchasedLottos.size(); i++) {
-            Lotto lotto = purchasedLottos.get(i);
+        for (Lotto lotto : purchasedLottos) {
             int winningInLotto = lotto.countMatchingWith(winningLotto);
             boolean bonusInLotto = lotto.contains(lottoBonus);
             LottoRank rank = LottoRank.getRank(winningInLotto, bonusInLotto);

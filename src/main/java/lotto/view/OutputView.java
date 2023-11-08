@@ -14,5 +14,8 @@ public class OutputView {
         public static void mentionInputBonusNumber() {
                 System.out.println("\n보너스 번호를 입력해 주세요.");
         }
+        public static void printWinmessage(String message,int winCount) {
+                System.out.println(message + winCount + "개");
+        }
 
 }

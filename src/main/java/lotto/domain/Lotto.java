@@ -29,6 +29,14 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+    public int countMatch(Lotto winnigNumbers){
+        return (int)numbers.stream()
+                .filter(winnigNumbers::isContainNumber)
+                .count();
+    }
+    public boolean isContainNumber (int number){
+        return numbers.contains(number);
+    }
     public String printNumbers(){
         String resultNumbers = numbers.stream()
                 .map(String::valueOf)

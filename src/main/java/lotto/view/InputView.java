@@ -14,6 +14,7 @@ public class InputView {
                         .collect(Collectors.toList());
         }
         public static int inputMoney() {
+                OutputView.mentionInputPrice();
                return Integer.parseInt(Console.readLine());
         }
         public static int inputBonusNumber() {

@@ -6,6 +6,8 @@ import lotto.message.ConsoleMessage;
 public class WinningNumber {
     private final Integer number;
     private final NumberType numberType;
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
 
     private WinningNumber(int number, NumberType numberType) {
         this.number = number;
@@ -18,12 +20,15 @@ public class WinningNumber {
     }
 
     private static void validNumberRange(Integer number) {
-        if (number < 0 || number > 45) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException(ConsoleMessage.LOTTO_NUMBER_RANGE_ERROR.getMessage());
         }
     }
 
     public Integer getWinningNum() {
         return this.number;
+    }
+    public NumberType getWinningType() {
+        return this.numberType;
     }
 }

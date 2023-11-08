@@ -76,8 +76,8 @@ class WinningDetailsTest {
 
     private <R> List<R> getProperties(
             final List<WinningSummary> summaries,
-            final Function<WinningSummary, R> expression) {
-
+            final Function<WinningSummary, R> expression
+    ) {
         return summaries.stream()
                 .map(expression)
                 .toList();

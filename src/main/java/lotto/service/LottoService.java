@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import lotto.common.enums.LottoRank;
 import lotto.common.utils.NumberUtil;
 import lotto.domain.Lotto;
 
@@ -25,6 +26,15 @@ public class LottoService {
     }
 
     return lottos;
+  }
+
+  public LottoRank winningCheck(List<Integer> userNumbers, List<Integer> winningNumbers, int bonusNumber) {
+    int matchCount = (int) userNumbers.stream()
+        .filter(winningNumbers::contains)
+        .count();
+
+    boolean matchBonus = userNumbers.contains(bonusNumber);
+    return LottoRank.valueOf(matchCount, matchBonus);
   }
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
+import lotto.domain.LottoStatistics;
 import lotto.service.LottoService;
 import lotto.view.OutputView;
 
@@ -19,6 +20,9 @@ public class Application {
 
         final List<Integer> winningNumbers = lottoController.getUserInputForWinningNumbers();
         final int bonusNumber = lottoController.getUserInputForBonusNumber(winningNumbers);
+
+        LottoStatistics statistics = new LottoStatistics(lottos, winningNumbers, bonusNumber);
+        OutputView.presentResults(statistics.getWinCategory(), statistics.getTotalRate());
 
     }
 }

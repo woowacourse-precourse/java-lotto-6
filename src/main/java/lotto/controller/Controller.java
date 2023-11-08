@@ -12,6 +12,7 @@ public class Controller {
         LottoTicket lottoTicket = buyTicket(purchaseAmount.getPurchaseCount());
         printPurchaseLottoResult(lottoTicket);
         WinningLotto winningLotto = new WinningLotto(getWinningLotto());
+        getBonusNumber(winningLotto);
     }
 
     private PurchaseAmount getPurchaseAmount() {
@@ -37,6 +38,15 @@ public class Controller {
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getWinningLotto();
+        }
+    }
+
+    private void getBonusNumber(WinningLotto winningLotto) {
+        try {
+            winningLotto.saveBonusNumber(LottoNumber.of(Parser.parseToInt(InputView.getBonusNumbersInput())));
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            getBonusNumber(winningLotto);
         }
     }
 }

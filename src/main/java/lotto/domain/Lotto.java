@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import lotto.constants.Message;
 import lotto.utils.NumberGenerator;
 
 public class Lotto {
@@ -25,20 +26,20 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        overSizeValidate(numbers);
-        duplicateNumberValidate(numbers);
+        checkNumberCount(numbers);
+        checkDuplicated(numbers);
     }
 
-    private static void duplicateNumberValidate(List<Integer> numbers) {
+    private static void checkDuplicated(List<Integer> numbers) {
         HashSet<Integer> set = new HashSet<>(numbers);
         if (set.size() < numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Message.LOTTO_DUPLICATED_NUMBER_EXCEPTION);
         }
     }
 
-    private static void overSizeValidate(List<Integer> numbers) {
+    private static void checkNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Message.LOTTO_SIZE_EXCEPTION);
         }
     }
 

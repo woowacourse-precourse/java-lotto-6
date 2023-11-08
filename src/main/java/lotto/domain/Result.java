@@ -23,14 +23,9 @@ public class Result {
         for (LottoCompareResult compareResult : compareResultList) {
             addResult(compareResult);
         }
-        long amount = result.entrySet().stream()
+        this.profitAmount = result.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().getWinningMoney() * entry.getValue())
                 .sum();
-        this.profitAmount = amount;
-    }
-
-    public Map<Rank, Integer> getResult() {
-        return result;
     }
 
     public int getCountOfMatch(Rank rank) {
@@ -38,13 +33,12 @@ public class Result {
         if (count == null) {
             return 0;
         }
-        return count.intValue();
+        return count;
     }
 
     public void calculateProfitRate(long inputAmount) {
         double profitRate = (double) profitAmount / inputAmount * 100;
-        double roundedProfitRate = Math.round(profitRate * 100) / 100.0;
-        this.profitRate = roundedProfitRate;
+        this.profitRate = Math.round(profitRate * 100) / 100.0;
     }
 
     public double getProfitRate() {

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
+import lotto.constants.Message;
 import lotto.dto.UserInputMoney;
 
 public class LottoMachine {
@@ -24,7 +25,7 @@ public class LottoMachine {
 
     private void checkMoney() {
         if (inputMoney == null || inputMoney.isLessThan(LOTTO_PRICE)) {
-            throw new IllegalStateException();
+            throw new IllegalStateException(Message.NO_MONEY_TO_BUY_LOTTO);
         }
     }
 
@@ -38,9 +39,9 @@ public class LottoMachine {
         try {
             inputAmount = Long.parseLong(inputMoney);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Message.INPUT_NOT_NUMBER_EXCEPTION);
         } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Message.INPUT_NULL_EXCEPTION);
         }
         return inputAmount;
     }

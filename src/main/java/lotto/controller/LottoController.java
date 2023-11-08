@@ -66,7 +66,11 @@ public class LottoController {
     }
 
     private void insertMoneyTo(LottoMachine lottoMachine) {
-        String inputMoney = inputReader.readInput(INPUT_MONEY);
-        lottoMachine.insertMoney(inputMoney);
+        try{
+            String inputMoney = inputReader.readInput(INPUT_MONEY);
+            lottoMachine.insertMoney(inputMoney);
+        } catch (RuntimeException e) {
+            insertMoneyTo(lottoMachine);
+        }
     }
 }

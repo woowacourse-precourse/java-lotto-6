@@ -2,6 +2,8 @@ package lotto.dto;
 
 import java.util.Collections;
 import java.util.List;
+import lotto.constants.Config;
+import lotto.constants.Message;
 
 public record WinningNumber(List<Integer> numbers) {
 
@@ -15,19 +17,19 @@ public record WinningNumber(List<Integer> numbers) {
 
     private void validateNull(List<Integer> numbers) {
         if (numbers == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Message.INPUT_NULL_EXCEPTION);
         }
     }
 
     private void validateNumbersCount(int size) {
-        if (size != 6) {
-            throw new IllegalArgumentException("");
+        if (size != Config.LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException(Message.WINNING_NUMBER_SIZE_EXCEPTION);
         }
     }
 
     private void validateNumbersRange(Integer number) {
-        if (number > 45 || number < 1) {
-            throw new IllegalArgumentException("");
+        if (number > Config.MAX_LOTTO_NUMBER || number < Config.MIN_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(Message.LOTTO_NUMBER_RANGE_EXCEPTION);
         }
     }
 

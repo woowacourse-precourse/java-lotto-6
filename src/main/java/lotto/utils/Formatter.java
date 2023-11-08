@@ -1,11 +1,11 @@
 package lotto.utils;
 
 import java.text.DecimalFormat;
+import lotto.constants.Config;
 
-public class Formatter {
+public final class Formatter {
     public static String moneyFormat(long amount) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###");
-        String formattedMoney = decimalFormat.format(amount);
-        return formattedMoney;
+        DecimalFormat decimalFormat = new DecimalFormat(Config.MONEY_FORMAT);
+        return decimalFormat.format(amount);
     }
 }

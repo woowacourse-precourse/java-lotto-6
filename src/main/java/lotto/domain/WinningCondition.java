@@ -1,11 +1,10 @@
 package lotto.domain;
 
-import static lotto.constants.Message.INPUT_BONUS_NUMBER;
-import static lotto.constants.Message.INPUT_WINNING_NUMBER;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import lotto.constants.Config;
+import lotto.constants.Message;
 import lotto.dto.BonusNumber;
 import lotto.dto.LottoCompareResult;
 import lotto.dto.WinningNumber;
@@ -33,10 +32,9 @@ public class WinningCondition {
     public void inputBonusNumbers(String readLine) {
         Integer parsingNumber = parseToInteger(readLine);
         if (isWinningNumberContains(parsingNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Message.DUPLICATED_BONUS_NUMBER);
         }
-        BonusNumber bonusNumber = new BonusNumber(parsingNumber);
-        this.bonusNumber = bonusNumber;
+        this.bonusNumber = new BonusNumber(parsingNumber);
     }
 
     private boolean isWinningNumberContains(Integer parsingNumber) {
@@ -48,9 +46,9 @@ public class WinningCondition {
         try {
             number = Integer.parseInt(readLine);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException(Message.INPUT_NOT_NUMBER_EXCEPTION);
         } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException(Message.INPUT_NULL_EXCEPTION);
         }
         return number;
     }
@@ -63,9 +61,8 @@ public class WinningCondition {
     }
 
     private List<Integer> parseToIntegerList(String readLine) {
-        List<String> parsedString = List.of(readLine.split(","));
-        List<Integer> parsingNumbers = getIntegerList(parsedString);
-        return parsingNumbers;
+        List<String> parsedString = List.of(readLine.split(Config.NUMBER_REGEX));
+        return getIntegerList(parsedString);
     }
 
     private List<Integer> getIntegerList(List<String> parsedString) {
@@ -74,9 +71,9 @@ public class WinningCondition {
             try {
                 parsingNumbers.add(Integer.parseInt(str));
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("");
+                throw new IllegalArgumentException(Message.INPUT_NOT_NUMBER_EXCEPTION);
             } catch (NoSuchElementException e) {
-                throw new IllegalArgumentException("");
+                throw new IllegalArgumentException(Message.INPUT_NULL_EXCEPTION);
             }
         }
         return parsingNumbers;

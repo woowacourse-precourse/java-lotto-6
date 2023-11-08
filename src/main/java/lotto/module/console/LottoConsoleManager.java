@@ -28,7 +28,7 @@ public class LottoConsoleManager {
     }
 
     public void printPurchasedLottoTickets(List<Lotto> purchasedLottoTickets) {
-        String message = consoleMessageComposer.makePurchasedLottoTicketMessage(purchasedLottoTickets);
+        String message = consoleMessageComposer.generatePurchasedLottoTicketMessage(purchasedLottoTickets);
 
         console.printPurchasedLottoTickets(message);
     }

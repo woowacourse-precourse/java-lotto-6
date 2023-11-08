@@ -23,7 +23,7 @@ public class ConsoleMessageComposer {
         return new ConsoleMessageComposer();
     }
 
-    public String makePurchasedLottoTicketMessage(List<Lotto> list) {
+    public String generatePurchasedLottoTicketMessage(List<Lotto> list) {
         StringBuilder message = new StringBuilder(System.lineSeparator())
                 .append(list.size())
                 .append(PURCHASED_LOTTO_COUNT_MESSAGE)

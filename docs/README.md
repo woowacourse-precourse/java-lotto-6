@@ -19,7 +19,7 @@
 
 - [x] 입력 기능
 - [x] 변환 기능
-    - [x] 예외 : 숫자로 변환하기 전, int 범위의 숫자인지 확인한다.
+    - [x] 예외 : 숫자로 변환하기 전, 'int 범위'의 '숫자'인지 확인한다.
 
 - [x] 로또 구입 금액을 저장 및 검증하는 기능
     - [x] 예외 : 1000원으로 나누어떨어지지 않는 경우
@@ -47,6 +47,7 @@
 - [x] 당첨 로또와 사용자의 로또들을 비교하는 기능
     - [x] 5개인 경우 보너스 유무를 알아야 한다.
 - [x] 비교 결과를 바탕으로 당첨 내역을 판단하는 기능
+- [x] 판단한 당첨 내역을 저장하는 기능
 
 - [x] 출력 기능
 - [x] 예외 메시지 저장 기능(enum)
@@ -65,19 +66,22 @@
 - [x] LottoTest
 - [x] LottoCountTest
 - [x] UserLottoTest
+- [x] BonusTest
 - [x] WinLottoTest
-- [x] LottoMachineTest
+- [x] CompareMachineTest
 - [x] LottoResultTest
+
+### generator
+
+- [x] LottoResultGeneratorTest
+- [x] RandomNumberGeneratorTest
 
 ### validator
 
-- [x] BonusValidatorTest
 - [x] LottoCountValidatorTest
-- [x] LottoValidatorTest
 - [x] WinLottoValidatorTest
 
 ### view
 
-- [x] InputTest
-- [x] MapperTest
+- [x] ConverterTest
 - [x] OutputTest

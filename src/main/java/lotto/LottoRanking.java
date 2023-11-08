@@ -7,29 +7,25 @@ public enum LottoRanking {
     FIRST(6, 2_000_000_000), SECOND(5, 30_000_000), THIRD(5, 1_500_000),
     FOURTH(4, 50_000), FIFTH(3, 5_000), UNRANKED(0, 0);
 
-    private final int correctNumber;
+    private final int hitCount;
     private final int winningAmount;
 
-    LottoRanking(int correctNumber, int winningAmount) {
-        this.correctNumber = correctNumber;
+    LottoRanking(int hitCount, int winningAmount) {
+        this.hitCount = hitCount;
         this.winningAmount = winningAmount;
     }
 
-    public int getWinningAmount() {
-        return winningAmount;
-    }
-
-    public static LottoRanking getRanking(int correctNumber, boolean isBonusBallHit) {
-        LottoRanking lottoRanking = getRanking(correctNumber);
+    public static LottoRanking getRanking(int hitCount, boolean isBonusBallHit) {
+        LottoRanking lottoRanking = getRanking(hitCount);
         if (isNotSecondOrThird(lottoRanking)) {
             return lottoRanking;
         }
         return getRanking(isBonusBallHit);
     }
 
-    private static LottoRanking getRanking(int correctNumber) {
+    private static LottoRanking getRanking(int hitCount) {
         return Arrays.stream(LottoRanking.values())
-            .filter(ranking -> ranking.correctNumber == correctNumber)
+            .filter(ranking -> ranking.hitCount == hitCount)
             .findAny()
             .orElse(UNRANKED);
     }

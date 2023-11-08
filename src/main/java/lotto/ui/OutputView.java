@@ -22,7 +22,7 @@ public class OutputView {
 
     public static void printLottoQuantity(int lottoQuantity) {
         System.out.print(NEW_LINE);
-        System.out.printf(String.format(LOTTO_QUANTITY_NOTIFY_MESSAGE, lottoQuantity));
+        System.out.println(String.format(LOTTO_QUANTITY_NOTIFY_MESSAGE, lottoQuantity));
     }
 
     public static void printLottos(List<Lotto> lottos) {
@@ -54,7 +54,7 @@ public class OutputView {
     }
 
     public static void printEarningRate(double earningRate) {
-        System.out.printf(String.format(EARNING_RATE_NOTIFY_MESSAGE, earningRate));
+        System.out.println(String.format(EARNING_RATE_NOTIFY_MESSAGE, earningRate));
     }
 
     public static void printErrorMessage(IllegalArgumentException e) {

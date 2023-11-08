@@ -51,6 +51,7 @@ public class Input {
         for(int i=0;i<6;i++){
             if(!visited[numbers.get(i)]){
                 visited[numbers.get(i)] = true;
+                continue;
             }
 
             throw new IllegalArgumentException(ERROR_MESSAGE+" 중복된 당첨 번호가 있습니다.");

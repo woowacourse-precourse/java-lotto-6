@@ -27,10 +27,20 @@ public class LottoService {
         System.out.println(lottoController.getLottoString());
     }
 
-    public void printinputLotto() {
-        String lottoNumbers = InputService.inputNumbers();
+    public void inputLottoNumbers() {
+        while(true) {
+            try {
+                String lottoNumbers = InputService.inputNumbers();
+                lottoController.setinputLottoNumber(lottoNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public void inputLottoBonusNumber() {
         String lottoBonusNumber = InputService.inputBonusNumber();
-        lottoController.setinputLottoNumber(lottoNumbers);
         lottoController.setBonusNumber(lottoBonusNumber);
     }
 
@@ -47,7 +57,8 @@ public class LottoService {
 
     public void printLottoService() {
         printRandomLotto();
-        printinputLotto();
+        inputLottoNumbers();
+        inputLottoBonusNumber();
         Map<ResultType, Long> resultTypes = lottoController.getAllOfResult();
         double returnRate = lottoController.getReturnRate(resultTypes);
         printTemplate(resultTypes, returnRate);

@@ -4,6 +4,7 @@ import lotto.domain.BonusLottoNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResultCalculation;
 import lotto.domain.RandomLottoNumber;
+import lotto.type.ErrorMessageType;
 import lotto.type.ResultType;
 
 import java.util.*;
@@ -43,11 +44,14 @@ public class LottoController {
         bonusLottoNumber = new BonusLottoNumber(bonusNumber);
     }
 
-    public void setinputLottoNumber(String numbers) {
+    public void setinputLottoNumber(String numbers) throws IllegalArgumentException {
         String[] splitedNumbers = numbers.split(",");
         List<Integer> intNumbers = new ArrayList<>();
         for(String str : splitedNumbers) {
             str.replace(" ", "");       // 각각의 공백 제거
+            if(str.matches("[0-9]+") == false) {
+                throw new IllegalArgumentException(ErrorMessageType.NOT_NUMBER.message());
+            }
             intNumbers.add(Integer.parseInt(str));
         }
         inputLottoNumber = new Lotto(intNumbers);

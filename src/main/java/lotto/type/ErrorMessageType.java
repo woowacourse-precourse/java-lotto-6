@@ -5,9 +5,11 @@ public enum ErrorMessageType {
     OUT_OF_LOTTO_NUMERICAL_RANGE("[ERROR] 1과 45 사이의 값만을 입력해야 합니다."),
     NOT_POSITIVE_NUMBER("[ERROR] 음수나 0이 아닌 양수를 입력해야 합니다."),
     NOT_NUMBER("[ERROR] 숫자만을 입력해야 합니다."),
-    DUPLICATE_NUMBER("[ERROR] 중복된 숫자를 입력하였습니다.");
+    DUPLICATE_NUMBER("[ERROR] 중복된 숫자를 입력하였습니다."),
+    NOT_SIZE_SIX("[ERROR] 로또 번호의 개수가 6개여야 합니다.");
 
     private String message;
+
     ErrorMessageType(String message) {
         this.message = message;
     }

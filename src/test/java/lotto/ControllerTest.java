@@ -58,6 +58,70 @@ class ControllerTest extends NsTest {
         );
     }
 
+    @Test
+    void 수익률은_소수점_둘째_자리에서_반올림하여_출력() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    runException("3000", "1,2,3,43,44,45", "42");
+                    assertThat(output()).contains(
+                            "총 수익률은 166.7%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(7,8,9,10,11,12),
+                List.of(7,8,9,10,11,12)
+        );
+    }
+
+    @Test
+    void 수익률은_소수점_첫째_자리까지_출력() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    runException("1000", "1,2,3,43,44,45", "42");
+                    assertThat(output()).contains(
+                            "총 수익률은 500.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6)
+        );
+    }
+
+    @Test
+    void 수익률은_정수부의_3자리마다_콤마로_구분해서_출력() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    runException("1000", "1,2,3,4,5,6", "42");
+                    assertThat(output()).contains(
+                            "총 수익률은 200,000,000.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6)
+        );
+    }
+    @Test
+    void int범위를_벗어나는_당첨금의_수익률_출력() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    runException("12000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "총 수익률은 183,333,333.3%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(7,8,9,10,11,12)
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

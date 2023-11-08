@@ -28,7 +28,7 @@ public class ExceptionHandler {
         return bonusNumber;
     }
 
-    public void validateNumberOrComma(String getWinningNumbers) {
+    private void validateNumberOrComma(String getWinningNumbers) {
         for (int i = 0; i < getWinningNumbers.length(); i++) {
             if (!Character.isDigit(getWinningNumbers.charAt(i))
                     && getWinningNumbers.charAt(i) != ',') {

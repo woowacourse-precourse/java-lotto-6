@@ -11,6 +11,7 @@ public class Winning {
         validateWinningNumbersDuplication(winningNumbers);
         validateWinningNumbersRange(winningNumbers);
         validateNumberRange(bonusNumber);
+        validateBonusNumberDuplication(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
@@ -31,5 +32,11 @@ public class Winning {
 
     private void validateNumberRange(int number) {
         new Exception().validateNumberRange(number);
+    }
+
+    private void validateBonusNumberDuplication(List<Integer> winningNumbers, int number) {
+        if (winningNumbers.contains(number)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호에 보너스 번호와 중복되는 번호가 없어야 합니다.");
+        }
     }
 }

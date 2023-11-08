@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class BillAcceptor {
 
     private static final String REQUEST_ACCEPT_BILL_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE = "[ERROR] 금액은 숫자여야 합니다. 다시 입력하세요.";
 
     public int acceptBill() {
         System.out.println(REQUEST_ACCEPT_BILL_MESSAGE);
@@ -12,7 +13,7 @@ public class BillAcceptor {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE);
         }
     }
 }

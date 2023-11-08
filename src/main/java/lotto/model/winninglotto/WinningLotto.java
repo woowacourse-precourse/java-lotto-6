@@ -1,12 +1,13 @@
 package lotto.model.winninglotto;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.model.Lotto;
 import lotto.model.LottoNumber;
 import lotto.model.LottoRanking;
 
 public class WinningLotto {
+
+    private static final String ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE = "[ERROR] 로또 번호에는 중복이 없어야 합니다. 다시 입력하세요.";
 
     private final Lotto winningLotto;
     private final LottoNumber bonusLottoNumber;
@@ -35,7 +36,7 @@ public class WinningLotto {
     private static void validateBonusNumberNotDuplicated(List<Integer> winningNumbers,
         int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE);
         }
     }
 

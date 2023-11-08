@@ -33,20 +33,20 @@ public class LottoTerminal {
         this.amountPaid = amountPaid;
     }
 
-    public void LottoIssuance() {
+    public List<List<Integer>> LottoIssuance() {
         while (amountPaid > 0) {
             HashSet<Integer> numbersToCheck = new HashSet<>();
 
             while (numbersToCheck.size() < NUMBERS_COUNT_PER_LOTTO) {
                 numbersToCheck.add(Randoms.pickNumberInRange(MIN_OF_LOTTO_NUMBER, MAX_OF_LOTTO_NUMBER));
             }
-
             List<Integer> numbersOfLotto = transformHashSetToList(numbersToCheck);
             Lotto lotto = new Lotto(numbersOfLotto);
             allLottoIssued.add(numbersOfLotto);
             countOfLottoIssued++;
             amountPaid -= LOTTO_PRICE;
         }
+        return allLottoIssued;
     }
 
     private List<Integer> transformHashSetToList(HashSet<Integer> hashSet) {

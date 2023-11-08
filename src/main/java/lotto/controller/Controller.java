@@ -2,11 +2,11 @@ package lotto.controller;
 
 import lotto.controller.dto.LottosResponse;
 import lotto.controller.dto.WinningStatisticsResponse;
+import lotto.model.LottoMoney;
 import lotto.model.LottoNumber;
 import lotto.model.LottoNumbersGenerator;
 import lotto.model.LottoPrizeCalculator;
 import lotto.model.Lottos;
-import lotto.model.Money;
 import lotto.model.WinningNumber;
 import lotto.model.WinningNumbers;
 import lotto.view.InputView;
@@ -23,13 +23,13 @@ public class Controller {
     }
 
     public void run() {
-        Money money = getMoney();
-        Lottos lottos = getLottos(money.calculateTicketCount());
+        LottoMoney lottoMoney = getMoney();
+        Lottos lottos = getLottos(lottoMoney.calculateTicketCount());
         showPurchasedLottos(lottos);
         WinningNumbers winningNumbers = getWinningNumbers();
         LottoPrizeCalculator lottoPrizeCalculator = getLottoPrizeCalculator(lottos, winningNumbers);
         showWinningStatistics(lottoPrizeCalculator);
-        showTotalProfit(lottoPrizeCalculator, money);
+        showTotalProfit(lottoPrizeCalculator, lottoMoney);
     }
 
     private void showPurchasedLottos(final Lottos lottos) {
@@ -37,11 +37,11 @@ public class Controller {
         outputView.printPurchasedLottos(lottosResponse.getLottos());
     }
 
-    private Money getMoney() {
+    private LottoMoney getMoney() {
         try {
             outputView.printMoneyRequestMessage();
             String money = inputView.readLine();
-            return Money.createWith(money);
+            return LottoMoney.createWith(money);
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception.getMessage());
             return getMoney();
@@ -96,9 +96,9 @@ public class Controller {
         outputView.printWinningStatistics(winningStatisticsResponse.getWinningStatistics());
     }
 
-    private void showTotalProfit(final LottoPrizeCalculator lottoPrizeCalculator, final Money money) {
+    private void showTotalProfit(final LottoPrizeCalculator lottoPrizeCalculator, final LottoMoney lottoMoney) {
         long totalPrize = lottoPrizeCalculator.calculateTotalPrize();
-        outputView.printTotalProfit(money.calculateProfit(totalPrize));
+        outputView.printTotalProfit(lottoMoney.calculateProfit(totalPrize));
 
     }
 }

@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 @DisplayNameGeneration(ReplaceUnderscores.class)
 @SuppressWarnings("NonAsciiCharacters")
-class MoneyTest {
+class LottoMoneyTest {
 
 
     @Test
@@ -22,7 +22,7 @@ class MoneyTest {
         String money = "일억";
 
         // when &then
-        assertThatThrownBy(() -> Money.createWith(money))
+        assertThatThrownBy(() -> LottoMoney.createWith(money))
                 .isInstanceOf(CanNotConvertToNumberException.class);
     }
 
@@ -30,7 +30,7 @@ class MoneyTest {
     @ParameterizedTest
     void 돈이_천원보다_작거나_천원으로_나누어지지_않으면_예외가_발생한다(String money) {
         // when & then
-        assertThatThrownBy(() -> Money.createWith(money))
+        assertThatThrownBy(() -> LottoMoney.createWith(money))
                 .isInstanceOf(InvalidMoneyException.class);
     }
 
@@ -38,7 +38,7 @@ class MoneyTest {
     void 구매한_로또의_수를_계산한다() {
         // given
         String lottoMoney = "10000";
-        Money money = Money.createWith(lottoMoney);
+        LottoMoney money = LottoMoney.createWith(lottoMoney);
 
         // when
         long count = money.calculateTicketCount();
@@ -52,7 +52,7 @@ class MoneyTest {
         //given
         long totalPrize = 20000;
         String lottoMoney = "10000";
-        Money money = Money.createWith(lottoMoney);
+        LottoMoney money = LottoMoney.createWith(lottoMoney);
 
         // when
         double totalProfit = money.calculateProfit(totalPrize);

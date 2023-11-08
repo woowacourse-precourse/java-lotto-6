@@ -4,25 +4,25 @@ import java.util.Objects;
 import lotto.exception.CanNotConvertToNumberException;
 import lotto.exception.InvalidMoneyException;
 
-public class Money {
+public class LottoMoney {
 
     private static final int LOTTO_PRICE = 1_000;
     private static final int PERCENTAGE = 100;
     private static final int ZERO = 0;
 
-    private final long lottoMoney;
+    private final long money;
 
-    private Money(final long lottoMoney) {
-        this.lottoMoney = lottoMoney;
+    private LottoMoney(final long money) {
+        this.money = money;
     }
 
-    public static Money createWith(final String money) {
+    public static LottoMoney createWith(final String money) {
         validateConvertibleToNumber(money);
         long convertedMoney = convertToNumber(money);
         validateOverThousand(convertedMoney);
         validateDivisibleByThousand(convertedMoney);
 
-        return new Money(convertedMoney);
+        return new LottoMoney(convertedMoney);
     }
 
     public static void validateConvertibleToNumber(final String money) {
@@ -61,13 +61,12 @@ public class Money {
         return money % LOTTO_PRICE == ZERO;
     }
 
-
     public long calculateTicketCount() {
-        return lottoMoney / LOTTO_PRICE;
+        return money / LOTTO_PRICE;
     }
 
-    public double calculateProfit(long totalProfit) {
-        return ((double) totalProfit / lottoMoney) * PERCENTAGE;
+    public double calculateProfit(long totalPrize) {
+        return ((double) totalPrize / money) * PERCENTAGE;
     }
 
     @Override
@@ -78,12 +77,12 @@ public class Money {
         if (object == null || getClass() != object.getClass()) {
             return false;
         }
-        Money money1 = (Money) object;
-        return lottoMoney == money1.lottoMoney;
+        LottoMoney lottoMoney1 = (LottoMoney) object;
+        return money == lottoMoney1.money;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lottoMoney);
+        return Objects.hash(money);
     }
 }

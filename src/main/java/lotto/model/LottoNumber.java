@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.Objects;
 import lotto.exception.CanNotConvertToNumberException;
 import lotto.exception.InvalidNumberException;
 
@@ -64,10 +63,5 @@ public class LottoNumber implements Number {
         }
         LottoNumber that = (LottoNumber) object;
         return number == that.number;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(number);
     }
 }

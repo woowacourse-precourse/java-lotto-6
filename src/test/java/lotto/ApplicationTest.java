@@ -47,9 +47,69 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 구매_금액_예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당점_번호_입력_예외_테스트() {
+        // 숫자 이외의 문자 입력
+        assertSimpleTest(() -> {
+            runException("1000", "1, ,2,3,4,k");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+        // 구분자 입력 예외
+        assertSimpleTest(() -> {
+            runException("1000", ",1,2,3,4,5,6,");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당점_번호_중복_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당점_번호_길이_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호_입력_예외_테스트() {
+        // 문자 입력 예외
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "k");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+        // 공백 입력 예외
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", " ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호_범위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "0");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

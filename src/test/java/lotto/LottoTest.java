@@ -92,4 +92,31 @@ class LottoTest {
 
         assertThat(result).isFalse();
     }
+
+    @Test
+    void 보너스일치를_고려한_최종결과_반환() {
+        List<Integer> matchResult = new ArrayList<>();
+        matchResult.add(0);
+        matchResult.add(0);
+        matchResult.add(0);
+        matchResult.add(0);
+        matchResult.add(0);
+        matchResult.add(0);
+        matchResult.add(0);
+        matchResult.add(0);
+
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        numbers.add(5);
+        numbers.add(6);
+
+        Game game = new Game();
+        game.setBonusNumber(3);
+        game.checkMatchResult(matchResult, 5,numbers);
+
+        assertThat(matchResult).contains(0,0,0,0,0,0,1);
+    }
 }

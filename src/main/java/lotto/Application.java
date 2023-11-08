@@ -17,9 +17,6 @@ package lotto;
 *
 *   [viewer]
 *   출력기 : 사용자가 가진 총 로또 개수를 출력한다.
-*
-*
-*
 * */
 
 import lotto.controller.LottoManager;

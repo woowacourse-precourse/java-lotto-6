@@ -11,12 +11,14 @@ public class LottoResultChecker {
     /* lottoResult는 당첨 등수 - 1를 의미.
     *  lottoResult[0]는 번호 6개 일치, 즉 1등 당첨 로또를 의미함
     * */
-    private static final List<Long> WINNING_PRIZES =
+    private final List<Long> WINNING_PRIZES =
             new ArrayList<>(List.of(2000000000L, 30000000L, 1500000L, 50000L, 5000L));
     private List<Integer> lottoResult;
     private long totalProfit;
 
     public LottoResultChecker(User user, List<Integer> winNumbers, int bonusNumber) {
+        String test;
+        initLottoResult();
         setLottoResult(user.getUserLottos(), winNumbers, bonusNumber);
         LottoWinStatusView.displayLottoPrize(lottoResult);
         calculateProfit();
@@ -25,12 +27,12 @@ public class LottoResultChecker {
     private void calculateProfit() {
         this.totalProfit = 0;
 
-        for (int i = 0; i < 6; ++i) {
-            this.totalProfit += this.lottoResult.get(i) * this.WINNING_PRIZES.get(i);
+        for (int i = 0; i < 5; ++i) {
+            this.totalProfit += (long) this.lottoResult.get(i) * this.WINNING_PRIZES.get(i);
         }
     }
-    private void setLottoResult(List<Lotto> lottos, List<Integer> winNumbers, int bonusNumber) {
-        for (Lotto lotto : lottos) {
+    private void setLottoResult(List<Lotto> userLotto, List<Integer> winNumbers, int bonusNumber) {
+        for (Lotto lotto : userLotto) {
             int matchingCount = countMatchingNumbers(lotto.getLottoNumbers(), winNumbers);
             increaseWin(matchingCount, isBonusMatched(lotto, bonusNumber));
         }
@@ -43,8 +45,11 @@ public class LottoResultChecker {
         } else if (matchingCount == 3 || matchingCount == 4) {
             lottoPrize += 1;
         }
-        int updatedValue = lottoResult.get(lottoPrize) + 1;
-        lottoResult.set(lottoPrize, updatedValue);
+        if (lottoPrize > 4) {
+            return ;
+        }
+        int updatedValue = this.lottoResult.get(lottoPrize) + 1;
+        this.lottoResult.set(lottoPrize, updatedValue);
     }
     private static boolean isBonusMatched(Lotto lotto, int bonusNumber) {
         return lotto.getLottoNumbers().contains(bonusNumber);

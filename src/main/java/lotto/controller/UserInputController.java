@@ -1,11 +1,10 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.view.MessageDisplay;
 import static lotto.controller.UserInputValidator.isValidBuyingPrice;
-import static lotto.controller.UserInputValidator.isValidWinNumbers;
 import static lotto.controller.UserInputValidator.isValidBonusNumbers;
+import static lotto.controller.UserInputValidator.isValidWinNumbers;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class UserInputController {
                 buyingPrice = isValidBuyingPrice(userInput);
                 exceptionThrown = false;
             } catch (IllegalArgumentException e) {
-                System.out.println("[Error]" + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
         return buyingPrice;
@@ -35,7 +34,7 @@ public class UserInputController {
                 winNumbers = isValidWinNumbers(userInput);
                 exceptionThrown = false;
             } catch (IllegalArgumentException e) {
-                System.out.print("[Error]" + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
         return winNumbers;
@@ -49,7 +48,7 @@ public class UserInputController {
                 bonusNumber = isValidBonusNumbers(userInput, winNumbers);
                 exceptionThrown = false;
             } catch (IllegalArgumentException e) {
-                System.out.print("[Error]" + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
         return bonusNumber;

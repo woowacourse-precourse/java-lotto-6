@@ -1,6 +1,5 @@
 package lotto.view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoWinStatusView {
@@ -15,9 +14,9 @@ public class LottoWinStatusView {
         System.out.println("6개 일치 (2,000,000,000원) - " + prize.get(0) + "개");
     }
     public static void displayTotalProfit(long totalPrice, int buyingPrice) {
-        double profit = ((double) (totalPrice - buyingPrice) / buyingPrice) * 100;
+        double profit = ((double) totalPrice / buyingPrice) * 100;
         profit = Math.round(profit * 100.0) / 100.0;
 
-        System.out.println("총 수익률은 " + profit + "%d입니다.");
+        System.out.println("총 수익률은 " + profit + "%입니다.");
     }
 }

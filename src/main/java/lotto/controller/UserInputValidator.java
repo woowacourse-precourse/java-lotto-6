@@ -52,12 +52,21 @@ public class UserInputValidator {
         List<Integer> numbers = new ArrayList<>();
         for (String input : inputNumbers) {
             try {
-                int number = Integer.parseInt(input);
-                numbers.add(number);
+                addNumbers(numbers, input);
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("로또 번호는 숫자여야 합니다.");
             }
         }
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("로또 번호는 여섯 개여야 합니다.");
+        }
         return numbers;
+    }
+    private static void addNumbers(List<Integer> numbers, String input) {
+        int number = Integer.parseInt(input);
+        if (numbers.contains(number)) {
+            throw new IllegalArgumentException("각 번호는 중복될 수 없습니다.");
+        }
+        numbers.add(number);
     }
 }

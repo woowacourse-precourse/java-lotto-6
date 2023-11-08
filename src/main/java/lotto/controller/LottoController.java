@@ -24,16 +24,20 @@ public class LottoController {
         return lottoPublishService.publish(purchaseAmount);
     }
 
+    public void createWinningNumber(String winningNumber) {
+        winningService.createWinningLotto(separateWinningNumber(winningNumber));
+    }
+
+    public void createBonusNumber(String bonusNumber) {
+        winningService.createBonusNumber(validateType(bonusNumber));
+    }
+
     private int validateType(String inputPurchaseAmount) {
         try {
             return Integer.parseInt(inputPurchaseAmount);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
         }
-    }
-
-    public void createWinningNumber(String winningNumber) {
-        winningService.createWinningLotto(separateWinningNumber(winningNumber));
     }
 
     private List<Integer> separateWinningNumber(String winningNumber) {

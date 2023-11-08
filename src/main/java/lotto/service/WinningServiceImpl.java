@@ -15,4 +15,9 @@ public class WinningServiceImpl implements WinningService {
     public void createWinningLotto(List<Integer> winningNumbers) {
         winningNumber.createWinningNumber(winningNumbers);
     }
+
+    @Override
+    public void createBonusNumber(int bonusNumber) {
+        winningNumber.creatBonusNumber(bonusNumber);
+    }
 }

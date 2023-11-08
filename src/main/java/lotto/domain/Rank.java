@@ -40,20 +40,21 @@ public enum Rank {
 
     public static Rank getRank(Lotto lotto, Lotto winningLotto, int bonusNum) {
         int matchCount = getMatchCount(lotto, winningLotto);
+        boolean bonus = validateBonus(lotto, bonusNum);
 
-        if(matchCount == 6) {
+        if(matchCount == FIRST.matchCount) {
             return FIRST;
         }
-        if(matchCount == 5 && validateBonus(lotto, bonusNum)) {
+        if(matchCount == SECOND.matchCount && bonus == SECOND.bonus) {
             return SECOND;
         }
-        if(matchCount == 5) {
+        if(matchCount == THIRD.matchCount) {
             return THIRD;
         }
-        if(matchCount == 4) {
+        if(matchCount == FOURTH.matchCount) {
             return FOURTH;
         }
-        if(matchCount == 3) {
+        if(matchCount == FIFTH.matchCount) {
             return FIFTH;
         }
         return EMPTY;

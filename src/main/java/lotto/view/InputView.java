@@ -10,15 +10,13 @@ public class InputView {
 
     private InputView(){}
 
-    public int inputMoney() {
+    public static String inputMoney() {
         System.out.println(ConsoleMessage.INPUT_MONEY.getMessage());
 
-        int purchaseMoney = Integer.parseInt(Console.readLine());
-
-        return purchaseMoney;
+        return Console.readLine();
     }
 
-    public List<Integer> inputNumbers() {
+    public static List<Integer> inputNumbers() {
         System.out.println(ConsoleMessage.INPUT_LOTTO_NUMBER.getMessage());
         String inputWinningNumbers = Console.readLine();
         String[] numberStrings = inputWinningNumbers.split(",");
@@ -33,7 +31,7 @@ public class InputView {
         return inputNumberList;
     }
 
-    public int inputBonusNumber() {
+    public static int inputBonusNumber() {
         System.out.println(ConsoleMessage.INPUT_BONUS_NUMBER.getMessage());
         return Integer.parseInt(Console.readLine());
     }

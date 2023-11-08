@@ -28,6 +28,8 @@ public class Application {
         calculateRes();
 
         printResult();
+
+        calculateRateOfReturn();
     }
 
     private static void printResult(){
@@ -153,5 +155,12 @@ public class Application {
         if (count == 5 && isContainBonus){
             WinningResult.BONUS_MATCH.incrementCount();
         }
+    }
+
+    private static void calculateRateOfReturn(){
+        long total = WinningResult.calculateTotalAmount();
+        double rateOfReturn = (double) total / amount * 100;  // 실수 나눗셈을 사용
+        rateOfReturn = Math.round(rateOfReturn * 10) / 10.0;
+        System.out.println("총 수익률은 "+rateOfReturn+"%입니다.");
     }
 }

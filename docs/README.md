@@ -83,5 +83,8 @@
 - 입력받은 금액으로 로또를 몇개 구매했는지 출력한다
 - 구매한 로또 번호는 오름차순으로 정렬하여 보여준다
 
+## 📑 프로젝트 디렉토리 Tree
+![lottoGameDirectories](lottoGameDirectories.png)
+
 ## 💡 어플리케이션 흐름 플로우차트로 정리해보기
-![lottoGameFlow](lottoGameFlow.png);
+![lottoGameFlow](lottoGameFlow.png)

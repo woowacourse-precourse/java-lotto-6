@@ -1,7 +1,5 @@
 package lotto.Domain;
 
-import static javax.management.remote.JMXConnectionNotification.FAILED;
-
 import lotto.View.OutputView;
 
 public enum WinningResult {

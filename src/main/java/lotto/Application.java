@@ -1,8 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.Controller.LottoGame;
-import lotto.View.ExceptionMessages;
 import lotto.Controller.LottoGame;
 
 public class Application {

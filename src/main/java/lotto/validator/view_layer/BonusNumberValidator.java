@@ -19,7 +19,7 @@ public class BonusNumberValidator implements InputValidator {
         int bonusNumber = Integer.parseInt(input);
         LottoValidator.validateRangeOfNumber(bonusNumber);
 
-        if(winningLotto.contains(bonusNumber)) {
+        if (winningLotto.contains(bonusNumber)) {
             throw new IllegalArgumentException(WINNING_LOTTO_CONTAIN_BONUS_NUMBER);
         }
     }

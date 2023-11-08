@@ -14,7 +14,7 @@ public class PurchaseMoneyValidator implements InputValidator {
     private void validateIsDivisibleByLottoPrice(String money) {
         int amount = Integer.parseInt(money);
 
-        if(amount % LOTTO_PRICE != 0 ) {
+        if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(NOT_DIVISIBLE_BY_LOTTO_PRICE);
         }
     }

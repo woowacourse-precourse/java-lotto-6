@@ -1,9 +1,9 @@
 package lotto.constant;
 
 import java.text.NumberFormat;
-
-import static lotto.constant.ConsoleMessage.LOTTO_RANK_FORMAT;
-import static lotto.constant.ConsoleMessage.LOTTO_SECOND_RANK_FORMAT;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum LottoRank {
     FIRST(6,  2_000_000_000),
@@ -44,13 +44,13 @@ public enum LottoRank {
         return rewardMoney;
     }
 
-    @Override
-    public String toString() {
-        String rewardMoney = NumberFormat.getInstance().format(getRewardMoney());
+    public String getRewardMoneyFormat() {
+        return NumberFormat.getInstance().format(rewardMoney);
+    }
 
-        if(this == LottoRank.SECOND) {
-            return String.format(LOTTO_SECOND_RANK_FORMAT, getSameCount(), rewardMoney);
-        }
-        return String.format(LOTTO_RANK_FORMAT, getSameCount(), rewardMoney);
+    public static List<LottoRank> getLottoRanksExceptNoLuck() {
+        return Arrays.stream(LottoRank.values())
+                .filter(rank -> rank != LottoRank.NO_LUCK)
+                .collect(Collectors.toList());
     }
 }

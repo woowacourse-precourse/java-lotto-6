@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.constant.LottoRank;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGameResult;
 
@@ -7,6 +8,8 @@ import java.util.List;
 
 import static lotto.constant.ConsoleMessage.LOTTO_PROFIT_RATE;
 import static lotto.constant.ConsoleMessage.LOTTO_PURCHASE_COMPLETED;
+import static lotto.constant.ConsoleMessage.LOTTO_RESULT_FORMAT;
+import static lotto.constant.ConsoleMessage.LOTTO_SECOND_RANK_RESULT_FORMAT;
 
 public class OutputView {
 
@@ -17,10 +20,27 @@ public class OutputView {
     }
 
     public void printLottoResult(LottoGameResult lottoGameResult) {
+        printLottoResultHeader();
+
+        List<LottoRank> lottoRanks = LottoRank.getLottoRanksExceptNoLuck();
+        for (LottoRank lottoRank : lottoRanks) {
+            if (lottoRank == LottoRank.SECOND) {
+                System.out.printf(LOTTO_SECOND_RANK_RESULT_FORMAT
+                        , lottoRank.getSameCount(), lottoRank.getRewardMoneyFormat(), lottoGameResult.getNumberOfRank(lottoRank));
+            }
+            System.out.printf(LOTTO_RESULT_FORMAT
+                    , lottoRank.getSameCount(), lottoRank.getRewardMoneyFormat(), lottoGameResult.getNumberOfRank(lottoRank));
+        }
+
+        printLottoProfitRate(lottoGameResult.calculateProfitRate());
+    }
+
+    private void printLottoResultHeader() {
         System.out.println("당첨 통계");
         System.out.println("---");
+    }
 
-        System.out.println(lottoGameResult);
-        System.out.printf((LOTTO_PROFIT_RATE), lottoGameResult.calculateProfitRate());
+    private void printLottoProfitRate(double profitRate) {
+        System.out.printf((LOTTO_PROFIT_RATE), profitRate);
     }
 }

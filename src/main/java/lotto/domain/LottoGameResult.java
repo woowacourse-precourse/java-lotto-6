@@ -4,11 +4,7 @@ import lotto.constant.LottoRank;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static lotto.constant.NumericConstant.PROFIT_RATE_SCALE;
@@ -50,21 +46,5 @@ public class LottoGameResult {
 
     public int getNumberOfRank(LottoRank lottoRank) {
         return lottoResult.get(lottoRank);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder result = new StringBuilder();
-
-        List<LottoRank> lottoRanks = new ArrayList<>(Arrays.asList(LottoRank.values()));
-        lottoRanks.remove(LottoRank.NO_LUCK);
-        Collections.reverse(lottoRanks);
-
-        for (LottoRank lottoRank : lottoRanks) {
-            result.append(lottoRank.toString());
-            result.append(" - ");
-            result.append(getNumberOfRank(lottoRank) + "개\n");
-        }
-        return result.toString();
     }
 }

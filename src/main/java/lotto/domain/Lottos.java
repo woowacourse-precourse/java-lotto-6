@@ -6,8 +6,6 @@ import java.util.StringJoiner;
 
 public class Lottos {
 
-	private static final String NEW_LINE = System.lineSeparator();
-
 	private final List<Lotto> lottos;
 
 	public Lottos(List<Lotto> lottos) {
@@ -15,7 +13,7 @@ public class Lottos {
 	}
 
 	public String getFormattedLottoNumbers() {
-		StringJoiner lottoNumbersJoiner = new StringJoiner(NEW_LINE);
+		StringJoiner lottoNumbersJoiner = new StringJoiner(System.lineSeparator());
 
 		for (Lotto lotto : lottos) {
 			lottoNumbersJoiner.add(lotto.printNumbers());

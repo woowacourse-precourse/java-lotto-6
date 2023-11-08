@@ -9,7 +9,7 @@ import lotto.util.validator.Validator;
 
 public class InputView {
 
-	private static final String DELIMITER = ",";
+	private static final String NUMBERS_DELIMITER = ",";
 
 	private final InputViewReader reader;
 
@@ -27,7 +27,7 @@ public class InputView {
 
 	public List<Integer> inputAnswerLottoNumbers() {
 		String inputValue = reader.readLine();
-		String[] inputValues = inputValue.split(DELIMITER);
+		String[] inputValues = inputValue.split(NUMBERS_DELIMITER);
 
 		validateAnswerLottoNumbers(inputValues);
 

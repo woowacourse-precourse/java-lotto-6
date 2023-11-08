@@ -19,8 +19,6 @@ import lotto.util.message.WinningStatisticsMessage;
 
 public class LottoService {
 
-	private final String NEW_LINE = System.lineSeparator();
-
 	private final LottosGenerator lottosGenerator;
 	private final LottoCalculator lottoCalculator;
 
@@ -48,7 +46,7 @@ public class LottoService {
 	}
 
 	public String getWinningStatisticsMessage(Lottos lottos, AnswerLotto answerLotto) {
-		StringJoiner strJoiner = new StringJoiner(NEW_LINE);
+		StringJoiner strJoiner = new StringJoiner(System.lineSeparator());
 		Set<Entry<LottoRank, Integer>> lottoRankCounter = countLottoRank(lottos, answerLotto).entrySet();
 
 		for (Map.Entry<LottoRank, Integer> entry : lottoRankCounter) {

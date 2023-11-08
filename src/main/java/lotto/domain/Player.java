@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.validation.LottoValidation;
-
 import java.util.ArrayList;
 
 public class Player {
@@ -9,7 +7,6 @@ public class Player {
     private final int amount;
 
     public Player(int amount) {
-        validate(amount);
         this.amount = amount;
     }
 
@@ -31,10 +28,5 @@ public class Player {
 
     public int getAmount() {
         return this.amount;
-    }
-
-    private void validate(int amount) {
-        LottoValidation.validateOverStandardUnit(amount);
-        LottoValidation.validateIsStandardUnit(amount);
     }
 }

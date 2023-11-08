@@ -21,15 +21,9 @@ public class LottoController {
     }
 
     private void prepareLotto() {
-        try {
-            player = new Player(getAmount());
-            OutputView.printAmount(player.convertToUnit());
-            OutputView.printLotteries(player);
-        }
-        catch (IllegalArgumentException e) {
-            System.out.println(e);
-            prepareLotto();
-        }
+        player = new Player(getAmount());
+        OutputView.printAmount(player.convertToUnit());
+        OutputView.printLotteries(player);
     }
 
     private void progressLotto() {
@@ -58,9 +52,9 @@ public class LottoController {
     private int getAmount() {
         try {
             InputView.inputAmount();
-            String input = Console.readLine();
-            LottoValidation.validateIsNumber(input);
-            return convertStringToInt(input);
+            int amount = convertStringToInt(getInputAndCheckIsNumber());
+            validateAmount(amount);
+            return amount;
         } catch (IllegalArgumentException e) {
             System.out.println(e);
             return getAmount();
@@ -84,15 +78,19 @@ public class LottoController {
     private int getBonusNumber() {
         try {
             InputView.inputBonusNumber();
-            String input = Console.readLine();
-            LottoValidation.validateIsNumberBonus(input);
-            int number = convertStringToInt(input);
-            LottoValidation.validateInRange(number);
+            int number = convertStringToInt(getInputAndCheckIsNumber());
+            validateBonusNumber(number);
             return number;
         } catch (IllegalArgumentException e) {
             System.out.println(e);
             return getBonusNumber();
         }
+    }
+
+    private String getInputAndCheckIsNumber() {
+        String input = Console.readLine();
+        validateIsNumber(input);
+        return input;
     }
 
     private void validateWinningNumber(List<Integer> winningNumber) {
@@ -101,6 +99,19 @@ public class LottoController {
         for (Integer num : winningNumber) {
             LottoValidation.validateInRange(num);
         }
+    }
+
+    private void validateAmount(int amount) {
+        LottoValidation.validateOverStandardUnit(amount);
+        LottoValidation.validateIsStandardUnit(amount);
+    }
+
+    private void validateIsNumber(String input) {
+        LottoValidation.validateIsNumber(input);
+    }
+
+    private void validateBonusNumber(int number) {
+        LottoValidation.validateInRange(number);
     }
 
     private int convertStringToInt(String input) {

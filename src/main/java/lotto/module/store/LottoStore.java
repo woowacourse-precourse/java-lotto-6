@@ -3,6 +3,7 @@ package lotto.module.store;
 import lotto.module.domain.PurchaseAmount;
 import lotto.module.lotto.Lotto;
 import lotto.module.lotto.LottoNumberGenerator;
+import lotto.module.lotto.UserLottoTickets;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,12 +25,14 @@ public class LottoStore {
         return new LottoStore(lottoNumberGenerator, lottoTicketQuantityCalculator);
     }
 
-    public List<Lotto> purchaseLotto(PurchaseAmount purchaseAmount) {
+    public UserLottoTickets purchaseLotto(PurchaseAmount purchaseAmount) {
         int purchaseQuantity = lottoTicketQuantityCalculator.computeLottoTicketCount(purchaseAmount);
 
-        return IntStream.range(0, purchaseQuantity)
+        List<Lotto> tickets = IntStream.range(0, purchaseQuantity)
                 .mapToObj(i -> lottoNumberGenerator.generateLottoNumber())
                 .collect(Collectors.toList());
+
+        return UserLottoTickets.newInstance(tickets);
     }
 
 }

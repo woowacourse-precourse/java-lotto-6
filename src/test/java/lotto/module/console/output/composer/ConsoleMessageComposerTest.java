@@ -2,6 +2,7 @@ package lotto.module.console.output.composer;
 
 import lotto.module.domain.LottoProfit;
 import lotto.module.lotto.Lotto;
+import lotto.module.lotto.UserLottoTickets;
 import lotto.module.result.LottoResult;
 import org.junit.jupiter.api.Test;
 
@@ -29,8 +30,11 @@ class ConsoleMessageComposerTest {
         list.add(lotto1);
         list.add(lotto2);
         list.add(lotto3);
+
+        UserLottoTickets userLottoTicket = UserLottoTickets.newInstance(list);
+
         // when
-        String message = consoleMessageComposer.generatePurchasedLottoTicketMessage(list);
+        String message = consoleMessageComposer.generatePurchasedLottoTicketMessage(userLottoTicket);
 
         // then
         assertThat(message)

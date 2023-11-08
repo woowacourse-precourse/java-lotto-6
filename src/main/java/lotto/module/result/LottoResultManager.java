@@ -3,10 +3,8 @@ package lotto.module.result;
 import lotto.module.domain.LottoProfit;
 import lotto.module.domain.PurchaseAmount;
 import lotto.module.domain.TotalPrize;
-import lotto.module.lotto.Lotto;
+import lotto.module.lotto.UserLottoTickets;
 import lotto.module.lotto.WinningLotto;
-
-import java.util.List;
 
 public class LottoResultManager {
     private final LottoProfitCalculator lottoProfitCalculator;
@@ -21,7 +19,7 @@ public class LottoResultManager {
         return new LottoResultManager(lottoProfitCalculator, lottoResultChecker);
     }
 
-    public LottoResult calculateResult(List<Lotto> userLottoTicket, WinningLotto winningLotto) {
+    public LottoResult calculateResult(UserLottoTickets userLottoTicket, WinningLotto winningLotto) {
         return lottoResultChecker.getResult(userLottoTicket, winningLotto);
     }
 

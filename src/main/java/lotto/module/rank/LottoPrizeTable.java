@@ -25,6 +25,10 @@ public enum LottoPrizeTable {
         return rank;
     }
 
+    public int getPrize() {
+        return rank.getPrize();
+    }
+
     public String getWinningRecordMessage() {
         return winningRecordMessage;
     }

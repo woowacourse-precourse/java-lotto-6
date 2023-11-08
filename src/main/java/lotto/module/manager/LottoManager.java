@@ -4,12 +4,11 @@ import lotto.module.console.LottoConsoleManager;
 import lotto.module.domain.LottoProfit;
 import lotto.module.domain.PurchaseAmount;
 import lotto.module.lotto.Lotto;
+import lotto.module.lotto.UserLottoTickets;
 import lotto.module.lotto.WinningLotto;
 import lotto.module.result.LottoResult;
 import lotto.module.result.LottoResultManager;
 import lotto.module.store.LottoStore;
-
-import java.util.List;
 
 public class LottoManager {
     private final LottoConsoleManager lottoConsoleManager;
@@ -28,7 +27,7 @@ public class LottoManager {
 
     public void run() {
         PurchaseAmount purchaseAmount = getPurchaseAmount();
-        List<Lotto> purchasedLottoTickets = purchaseLottoTickets(purchaseAmount);
+        UserLottoTickets purchasedLottoTickets = purchaseLottoTickets(purchaseAmount);
 
         Lotto lotto = generateNonBonusNumberWinningNumbers();
         WinningLotto winningLotto = generateWinningNumbers(lotto);
@@ -46,12 +45,12 @@ public class LottoManager {
         }
     }
 
-    private List<Lotto> purchaseLottoTickets(PurchaseAmount purchaseAmount) {
+    private UserLottoTickets purchaseLottoTickets(PurchaseAmount purchaseAmount) {
         while (true) {
             try {
-                List<Lotto> purchasedLottoTickets = lottoStore.purchaseLotto(purchaseAmount);
-                lottoConsoleManager.printPurchasedLottoTickets(purchasedLottoTickets);
-                return purchasedLottoTickets;
+                UserLottoTickets userLottoTicket = lottoStore.purchaseLotto(purchaseAmount);
+                lottoConsoleManager.printPurchasedLottoTickets(userLottoTicket);
+                return userLottoTicket;
             } catch (IllegalArgumentException e) {
                 lottoConsoleManager.printErrorMessage(e.getMessage());
             }
@@ -79,7 +78,7 @@ public class LottoManager {
         }
     }
 
-    private void announceResults(PurchaseAmount purchaseAmount, List<Lotto> purchasedLottoTickets, WinningLotto winningLottoNumbers) {
+    private void announceResults(PurchaseAmount purchaseAmount, UserLottoTickets purchasedLottoTickets, WinningLotto winningLottoNumbers) {
         LottoResult lottoResult = lottoResultManager.calculateResult(purchasedLottoTickets, winningLottoNumbers);
         LottoProfit lottoProfit = lottoResultManager.calculateProfit(purchaseAmount);
         lottoConsoleManager.printLottoWinningResult(lottoResult, lottoProfit);

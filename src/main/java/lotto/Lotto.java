@@ -8,7 +8,7 @@ public class Lotto {
     //접근 제어자 변경 불가능
     //필드(인스턴스 변수) 추가 불가능
 
-    //생성자로서, 랜덤으로 뽑힌 번호 6개 ArrayList를 인자로 받아들복
+    //생성자로서, 랜덤으로 뽑힌 번호 6개 ArrayList를 인자로 받아들이기
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
@@ -26,7 +26,6 @@ public class Lotto {
     public List<Integer> getLottoNumbers() {
         return numbers;
     }
-
 
 
 }

@@ -7,6 +7,7 @@ import net.bytebuddy.agent.builder.AgentBuilder;
 import java.sql.Ref;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,6 +46,7 @@ public class PlayLotto {
         List<Integer> game = new ArrayList<>();
         for (int i=0; i<6; i++){
             game.add(Randoms.pickNumberInRange(1, 45));
+            Collections.sort(game);
         }
         return new Lotto(game);
     }

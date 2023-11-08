@@ -7,6 +7,7 @@ public class Application {
         InputView inputView = new InputView();
         String purchaseAmount = inputView.readPurchaseAmount();
         Money money = new Money(purchaseAmount);
+        LottoTickets lottoTickets = new LottoTickets(money);
 
         String winnerNumber = inputView.readWinnerNumber();
         String BonusNumber = inputView.readBonusNumber();

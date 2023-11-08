@@ -34,4 +34,8 @@ public class Money {
     private boolean isZero(String amount) {
         return Integer.parseInt(amount) == 0;
     }
+
+    public int getPurchasingQuantity() {
+        return amount / UNIT;
+    }
 }

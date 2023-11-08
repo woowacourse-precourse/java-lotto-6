@@ -90,7 +90,7 @@ public class LottoService {
 
     private Rank getCorrectRank(CorrectResult correctResult) {
         for (Rank rank : Rank.values()) {
-            if (correctResult.compare(rank)) {
+            if (correctResult.isMatch(rank)) {
                 return rank;
             }
         }

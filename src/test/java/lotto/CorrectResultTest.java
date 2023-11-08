@@ -22,7 +22,7 @@ public class CorrectResultTest {
     @DisplayName("번호 일치 정보가 적절한 등수와 매칭되는지 검사한다")
     void compareRank(int sameCount, boolean existBonus, Rank rank) {
         CorrectResult correctResult = new CorrectResult(sameCount, existBonus);
-        assertThat(correctResult.compare(rank)).isTrue();
+        assertThat(correctResult.isMatch(rank)).isTrue();
     }
 
     static Stream<Arguments> generateData() {

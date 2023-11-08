@@ -1,16 +1,25 @@
 package lotto.dto;
 
 import lotto.utils.Rank;
+import lotto.view.LottoResultConstants;
 
 public record ResultResponse(Rank rank, int count) {
-    private static final String BASIC_RESULT_FORMAT = "%d개 일치 (%,d원) - %d개\n";
-    private static final String SECOND_RESULT_FORMAT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n";
 
     @Override
     public String toString() {
         if (rank == Rank.SECOND) {
-            return String.format(SECOND_RESULT_FORMAT, rank.getMatchCount(), rank.getPrize(), count);
+            return getFormatResult(LottoResultConstants.SECOND_RESULT_FORMAT);
         }
-        return String.format(BASIC_RESULT_FORMAT, rank.getMatchCount(), rank.getPrize(), count);
+
+        return getFormatResult(LottoResultConstants.BASIC_RESULT_FORMAT);
+    }
+
+    private String getFormatResult(LottoResultConstants lottoResultConstants) {
+        return String.format(
+            lottoResultConstants.getText(),
+            rank.getMatchCount(),
+            rank.getPrize(),
+            count
+        );
     }
 }

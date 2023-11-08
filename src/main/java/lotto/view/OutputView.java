@@ -32,7 +32,7 @@ public class OutputView {
     }
 
     public void printBenefitRate(double benefitRate) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", benefitRate);
+        System.out.printf(LottoResultConstants.BENEFIT_FORMAT.getText(), benefitRate);
     }
 
     public void printLottoResult(List<ResultResponse> resultResponses) {
@@ -42,7 +42,7 @@ public class OutputView {
     }
 
     public void printResultGuideMessage() {
-        System.out.println(GuideMessage.RESULT_GUIDE_MESSAGE);
-        System.out.println("---");
+        System.out.println(GuideMessage.RESULT_GUIDE_MESSAGE.getText());
+        System.out.println(GuideMessage.SPLIT_GUIDE_MESSAGE.getText());
     }
 }

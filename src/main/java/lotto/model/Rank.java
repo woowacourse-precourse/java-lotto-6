@@ -1,7 +1,6 @@
 package lotto.model;
 
 import java.util.Arrays;
-import java.util.List;
 
 public enum Rank {
 
@@ -38,15 +37,8 @@ public enum Rank {
     private static Rank findOther(final int matchingNumber) {
         return Arrays.stream(Rank.values())
                 .filter(rank -> isSameMatchingNumber(rank.matchingNumber, matchingNumber))
-                .filter(rank -> rank != SECOND)
                 .findAny()
                 .orElse(NONE);
-    }
-
-    public static List<Rank> getRanks() {
-        return Arrays.stream(Rank.values())
-                .filter(rank -> rank != NONE)
-                .toList();
     }
 
     public int getPrize() {

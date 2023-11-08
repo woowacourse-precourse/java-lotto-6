@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.Arrays;
 import lotto.model.LottoTicket;
 import lotto.model.Rank;
 import lotto.model.ResultDetails;
@@ -18,9 +19,9 @@ public class OutputView {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
     }
 
-    public void printNumberOfLotto(final int NumberOfLotto) {
+    public void printNumberOfLotto(final int numberOfLotto) {
         printEmptyLine();
-        System.out.printf(PURCHASE_MESSAGE, NumberOfLotto);
+        System.out.printf(PURCHASE_MESSAGE, numberOfLotto);
     }
 
     public void printLottoTicket(final LottoTicket lottoTicket) {
@@ -44,13 +45,15 @@ public class OutputView {
     }
 
     public void printWinningStatistics(final ResultDetails resultDetails) {
-        Rank.getRanks()
+        Arrays.stream(Rank.values())
+                .filter(rank -> rank != Rank.NONE)
                 .forEach(rank -> System.out.printf(rank.getMessage(), resultDetails.getWinnerCountByRank(rank)));
     }
 
     public void printExceptionMessage(final Exception exception) {
         printEmptyLine();
-        System.out.println(exception.getMessage());    }
+        System.out.println(exception.getMessage());
+    }
 
     public void printProfitRate(final double profitRate) {
         System.out.printf(PROFIT_RATE_MESSAGE, profitRate);

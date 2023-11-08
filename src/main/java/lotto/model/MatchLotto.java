@@ -6,14 +6,18 @@ import java.util.List;
 
 public class MatchLotto {
 
-    private final List<LottoRankings> matchResult = new ArrayList<>();
+    public static MatchLotto createMatchLotto() {
+        return new MatchLotto();
+    }
 
-    public void matchLotto(List<Integer> winningNumbers, int bonusNumber, List<Lotto> lottoPurchaseHistory) {
+    public List<LottoRankings> matchLotto(List<Integer> winningNumbers, int bonusNumber, List<Lotto> lottoPurchaseHistory) {
+        List<LottoRankings> matchResult = new ArrayList<>();
         for (Lotto lotto : lottoPurchaseHistory) {
             int match = matchWinningNumber(winningNumbers, lotto);
             boolean bonus = matchBonusNumber(lotto.getNumbers(), bonusNumber);
             matchResult.add(findRank(match, bonus));
         }
+        return matchResult;
     }
 
     private static LottoRankings findRank(int match, boolean bonus) {
@@ -35,9 +39,5 @@ public class MatchLotto {
             }
         }
         return match;
-    }
-
-    public List<LottoRankings> getMatchResult() {
-        return matchResult;
     }
 }

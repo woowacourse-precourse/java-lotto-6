@@ -33,9 +33,10 @@ public class DrawController {
         List<Integer> winningNumbers = inputWinningNumber().getNumbers();
         inputBonusNumber(winningNumbers);
 
-        matchLotto.matchLotto(winningNumbers, bonusNumber.getBonusNumber(), issueLotto.getLottoPurchaseHistory());
+        List<LottoRankings> matchResult = MatchLotto.createMatchLotto()
+                .matchLotto(winningNumbers, bonusNumber.getBonusNumber(), issueLotto.getLottoPurchaseHistory());
         HashMap<LottoRankings, Integer> lottoResult = LottoResult.createLottoResult()
-                .checkResult(matchLotto.getMatchResult());
+                .checkResult(matchResult);
         OutputView.printResultMessage(lottoResult);
 
         checkYield(lottoResult);

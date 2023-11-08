@@ -19,8 +19,8 @@ public class Money {
         return money / LOTTO_PER_PRICE;
     }
 
-    public double calculateReturnRate(Long winningAmount) {
-        return (double) winningAmount / money * NUMBER_HUNDRED;
+    public double calculateReturnRate(Long totalWinningAmount) {
+        return (totalWinningAmount / (double) money) * NUMBER_HUNDRED;
     }
 
     private void validate(int money) {

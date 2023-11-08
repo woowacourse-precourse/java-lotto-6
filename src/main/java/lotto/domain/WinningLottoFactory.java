@@ -11,6 +11,7 @@ public class WinningLottoFactory {
         List<LottoNumber> lottoNumbers = splitNumbers(lottoNumbersInput).stream()
                 .map(LottoNumber::new)
                 .toList();
+
         return new WinningLotto(lottoNumbers);
     }
 

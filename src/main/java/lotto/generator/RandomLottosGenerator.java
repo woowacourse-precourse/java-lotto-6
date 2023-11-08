@@ -27,6 +27,7 @@ public class RandomLottosGenerator implements LottosGenerator {
         List<LottoNumber> lottoNumbers = generateNumbers().stream()
                 .map(LottoNumber::new)
                 .toList();
+
         return new Lotto(lottoNumbers);
     }
 

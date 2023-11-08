@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Lotto {
     private static final String NUMBERS_SIZE_ERROR = "[ERROR] 로또 번호는 6개를 입력해야 합니다.";
+
     private static final int LOTTO_COUNT = 6;
 
     private final List<LottoNumber> numbers;
@@ -24,6 +25,8 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return this.numbers.stream().map(LottoNumber::getNumber).toList();
+        return this.numbers.stream()
+                .map(LottoNumber::getNumber)
+                .toList();
     }
 }

@@ -1,6 +1,5 @@
 package lotto.dto;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -13,10 +12,12 @@ public class PrizeCountResponse {
 
     {
         this.prizeCount = new LinkedHashMap<>();
+
         List<Prize> prizes = Stream.of(Prize.values())
                 .filter(prize -> !prize.equals(Prize.NONE))
                 .sorted(Comparator.reverseOrder())
                 .toList();
+
         prizes.forEach(prize -> prizeCount.put(prize, 0));
     }
 
@@ -25,6 +26,6 @@ public class PrizeCountResponse {
     }
 
     public Map<Prize, Integer> getPrizeCount() {
-        return Collections.unmodifiableMap(this.prizeCount);
+        return this.prizeCount;
     }
 }

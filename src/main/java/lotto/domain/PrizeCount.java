@@ -12,19 +12,23 @@ public class PrizeCount {
 
     {
         this.prizeCount = new LinkedHashMap<>();
+
         List<Prize> prizes = Stream.of(Prize.values())
                 .filter(prize -> !prize.equals(Prize.NONE))
                 .sorted(Comparator.reverseOrder())
                 .toList();
+
         prizes.forEach(prize -> prizeCount.put(prize, 0));
     }
 
     public PrizeCount(List<LottoMatchResponse> matchResponses) {
         for (LottoMatchResponse matchResponse : matchResponses) {
             Prize prize = Prize.valueOf(matchResponse);
+
             if (prize.equals(Prize.NONE)) {
                 continue;
             }
+
             prizeCount.put(prize, prizeCount.get(prize) + 1);
         }
     }

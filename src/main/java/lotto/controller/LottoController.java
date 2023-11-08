@@ -16,7 +16,9 @@ import lotto.view.OutputView;
 public class LottoController {
     public void run() {
         Money money = askMoney();
+
         Lottos playerLottos = generateLottos(money);
+
         printWinningResult(money, playerLottos);
     }
 

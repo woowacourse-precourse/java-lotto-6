@@ -16,9 +16,8 @@ public class NumberPicker {
         List<Integer> numberGroup = new ArrayList<>();
         while (numberGroup.size() != 6) {
             numberGroup = Randoms.pickUniqueNumbersInRange(START_RANGE, END_RANGE, COUNT);
-            numberGroup.stream().distinct().collect(Collectors.toList());
+            numberGroup = numberGroup.stream().distinct().sorted().collect(Collectors.toList());
         }
-        Collections.sort(numberGroup);
         return numberGroup;
     }
 }

@@ -48,9 +48,9 @@ public class Input {
                     lotteryList.add(Integer.parseInt(number));
                 }
 
-                if (lotteryList.size() != 6) {
-                    throw new IllegalArgumentException("로또 번호는 중복되지 않는 6자리여야 합니다.");
-                }
+//                if (lotteryList.size() != 6) {
+//                    throw new IllegalArgumentException("로또 번호는 중복되지 않는 6자리여야 합니다.");
+//                }
 
                 for (int number : lotteryList) {
                     if (number > 45 || number < 1) {
@@ -68,14 +68,14 @@ public class Input {
         return lotteryList;
     }
 
-    public static int inputBonusNum(List<Integer> lotteryNums) {
+    public static int inputBonusNum(Lotto lotteryNums) {
         int bonusInt = 0;
         boolean validInput = false;
         while (!validInput) {
             try {
                 bonusInt = Integer.parseInt(Console.readLine());
 
-                if (lotteryNums.contains(bonusInt)) {
+                if (lotteryNums.getNumbers().contains(bonusInt)) {
                     throw new IllegalArgumentException("보너스 번호는 로또 번호와 중복되지 않아야 합니다.");
                 }
 

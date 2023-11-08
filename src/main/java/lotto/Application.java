@@ -6,7 +6,7 @@ import java.util.List;
 public class Application {
     private static final int LOTTO_PRICE = 1000;
     private static final List<Lotto> lottoTicketsNums = new ArrayList<>();
-    private static List<Integer> lotteryNums = new ArrayList<>();
+    private static Lotto lotteryNums;
     public static double totalWinningAmount = 0;
 
     public static void main(String[] args) {
@@ -26,7 +26,7 @@ public class Application {
         }
 
         Output.getLotteryNumsMessage();
-        lotteryNums = Input.inputLotteryNums();
+        lotteryNums = new Lotto(Input.inputLotteryNums());
         Output.getBonusNumMessage();
         int bonusNum = Input.inputBonusNum(lotteryNums);
 

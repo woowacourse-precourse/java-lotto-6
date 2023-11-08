@@ -5,10 +5,10 @@ import java.util.List;
 import static lotto.Application.totalWinningAmount;
 
 public class Compare {
-    public static void readWinningReturnAmount(Lotto lottoTicket, List<Integer> lotteryNums, int bonusNum) {
+    public static void readWinningReturnAmount(Lotto lottoTicket, Lotto lotteryNums, int bonusNum) {
         int winningLotteryNumCnt = 0;
         int winningBonusNumCnt = 0;
-        for (Integer lotteryNumber : lotteryNums) {
+        for (Integer lotteryNumber : lotteryNums.getNumbers()) {
             if (lottoTicket.getNumbers().contains(lotteryNumber)) {
                 winningLotteryNumCnt++;
             }

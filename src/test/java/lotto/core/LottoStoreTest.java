@@ -94,15 +94,16 @@ class LottoStoreTest {
         return Stream.of(
                 Arguments.of("8100\n8000\n1,2,3,4,5,6\n7\n", ILLEGAL_AMOUNT_EXCEPTION_MESSAGE),
                 Arguments.of("800s0\n8000\n1,2,3,4,5,6\n7\n", ILLEGAL_NUMBER_TYPE_EXCEPTION_MESSAGE),
-                Arguments.of( "80000000000000\n8000\n1,2,3,4,5,6\n7\n", ILLEGAL_NUMBER_RANGE_EXCEPTION_MESSAGE),
-                Arguments.of( "8000\n1,2,3,4,5\n1,2,3,4,5,6\n7\n", ILLEGAL_LOTTO_SIZE_EXCEPTION_MESSAGE),
-                Arguments.of( "8000\n112345\n1,2,3,4,5,6\n7\n", ILLEGAL_LOTTO_SIZE_EXCEPTION_MESSAGE),
-                Arguments.of( "8000\n1,2,3,4,4,4\n1,2,3,4,5,6\n7\n", ILLEGAL_DUPLICATE_EXCEPTION_MESSAGE),
-                Arguments.of( "8000\n1,2,3,4,5,54\n1,2,3,4,5,6\n7\n", ILLEGAL_LOTTO_RANGE_EXCEPTION_MESSAGE),
-                Arguments.of( "8000\n11234511111111111111\n1,2,3,4,5,6\n7\n", ILLEGAL_NUMBER_RANGE_EXCEPTION_MESSAGE),
-                Arguments.of( "8000\n1,2,3,4,5,6\n99\n7\n", ILLEGAL_LOTTO_RANGE_EXCEPTION_MESSAGE),
-                Arguments.of( "8000\n1,2,3,4,5,6\n9999999999999999999999999\n7\n", ILLEGAL_NUMBER_RANGE_EXCEPTION_MESSAGE),
-                Arguments.of( "8000\n1,2,3,4,5,6\ns9\n7\n", ILLEGAL_NUMBER_TYPE_EXCEPTION_MESSAGE)
+                Arguments.of("80000000000000\n8000\n1,2,3,4,5,6\n7\n", ILLEGAL_NUMBER_RANGE_EXCEPTION_MESSAGE),
+                Arguments.of("8000\n1,2,3,4,5\n1,2,3,4,5,6\n7\n", ILLEGAL_LOTTO_SIZE_EXCEPTION_MESSAGE),
+                Arguments.of("8000\n112345\n1,2,3,4,5,6\n7\n", ILLEGAL_LOTTO_SIZE_EXCEPTION_MESSAGE),
+                Arguments.of("8000\n1,2,3,4,4,4\n1,2,3,4,5,6\n7\n", ILLEGAL_DUPLICATE_EXCEPTION_MESSAGE),
+                Arguments.of("8000\n1,2,3,4,5,54\n1,2,3,4,5,6\n7\n", ILLEGAL_LOTTO_RANGE_EXCEPTION_MESSAGE),
+                Arguments.of("8000\n11234511111111111111\n1,2,3,4,5,6\n7\n", ILLEGAL_NUMBER_RANGE_EXCEPTION_MESSAGE),
+                Arguments.of("8000\n1,2,3,4,5,6\n99\n7\n", ILLEGAL_LOTTO_RANGE_EXCEPTION_MESSAGE),
+                Arguments.of("8000\n1,2,3,4,5,6\n9999999999999999999999999\n7\n",
+                        ILLEGAL_NUMBER_RANGE_EXCEPTION_MESSAGE),
+                Arguments.of("8000\n1,2,3,4,5,6\ns9\n7\n", ILLEGAL_NUMBER_TYPE_EXCEPTION_MESSAGE)
         );
     }
 }

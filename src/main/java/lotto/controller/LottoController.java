@@ -2,10 +2,11 @@ package lotto.controller;
 
 import lotto.model.LottoPlayer;
 import lotto.model.LottoNumbers;
-import lotto.model.ValidationLotto;
+import lotto.model.WinningCriteria;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import java.util.HashMap;
 import java.util.List;
 
 public class LottoController {
@@ -15,8 +16,8 @@ public class LottoController {
     public void run() {
         LottoPlayer lottoPlayer = createLottoPlayer(getPurchase());
         createLottoList(lottoPlayer);
-        getPlayerNumbers();
-        displayResult();
+        WinningLotto winningLotto = getPlayerNumbers();
+        displayResult(lottoPlayer, winningLotto);
     }
 
     private int getPurchase() {
@@ -62,6 +63,21 @@ public class LottoController {
         return inputView.requestBonusNumber();
     }
 
-    private void displayResult() {
+    private void displayResult(LottoPlayer player, WinningLotto winningLotto) {
+        HashMap<WinningCriteria, Integer> result = computeLottosRank(player, winningLotto);
+        double rateOfReturn = player.computeRateOfReturn(computeIncome(result));
+        outputView.printLottoStatics(result, rateOfReturn);
+    }
+
+    private HashMap<WinningCriteria, Integer> computeLottosRank(LottoPlayer player, WinningLotto winningLotto) {
+        return new HashMap<>();
+    }
+
+    private WinningCriteria computeLottoRank(WinningLotto winningLotto, List<Integer> lottoNumber) {
+        return WinningCriteria.NONE;
+    }
+
+    private int computeIncome(HashMap<WinningCriteria, Integer> result) {
+        return 0;
     }
 }

@@ -20,11 +20,23 @@ public class LottoCount {
     private static int convertStringToInt(String amount) {
         isNULL(amount);
         isContainsBlank(amount);
-        return Integer.parseInt(amount);
+        return parseInt(amount);
+    }
+
+    private static int parseInt(String amount) {
+        try {
+            return Integer.parseInt(amount);
+        } catch (NumberFormatException ex) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_AMOUNT_IS_FORMAT.get());
+        }
     }
 
     public int getLottoCount() {
         return count;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 
     private void validateAmount(int amount) {
@@ -37,13 +49,13 @@ public class LottoCount {
     }
 
     private static void isNULL(String amount) {
-        if(amount.isEmpty()) {
+        if (amount.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_AMOUNT_NULL.get());
         }
     }
 
     private static void isContainsBlank(String amount) {
-        if(amount.contains(Constant.BLANK.getCharValue())) {
+        if (amount.contains(Constant.BLANK.getCharValue())) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_AMOUNT_CONTAINS_BLANK.get());
         }
     }

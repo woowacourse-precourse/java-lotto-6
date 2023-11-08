@@ -43,5 +43,12 @@ public class InputView {
             }
         }
     }
+
+    public int promptBonusNumber() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine().trim());
+        return bonusNumber;
+    }
 }
+
 

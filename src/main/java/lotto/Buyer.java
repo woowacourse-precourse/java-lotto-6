@@ -64,14 +64,6 @@ public class Buyer {
         }
     }
 
-    public List<Lotto> getLotto() {
-        return this.lottos;
-    }
-
-    public WinningLotto getDrawnNumbers() {
-        return this.winningLotto;
-    }
-
     public void aggregateLotto() {
         lottoResultChecker.checkLotto(this.lottos, this.winningLotto);
         lottoResultChecker.printTotalPrize();

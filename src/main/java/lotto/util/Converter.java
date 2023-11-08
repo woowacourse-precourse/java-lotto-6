@@ -12,6 +12,8 @@ public class Converter {
     private static final String SEPARATOR = ", ";
     private static final String LOTTO_DISPLAY_PREFIX = "[";
     private static final String LOTTO_DISPLAY_SUFFIX = "]";
+    private static final String PRIZE_FORMAT = "#,##0";
+    private static final String RETURN_OF_RATE_FORMAT = "#,##0.0";
 
     public static String convertLottoToDisplayFormat(List<Integer> numbers) {
         return LOTTO_DISPLAY_PREFIX + numbers.stream()
@@ -47,13 +49,13 @@ public class Converter {
     }
 
     public static String convertPrizeToDisplayFormat(long prize) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,##0");
+        DecimalFormat decimalFormat = new DecimalFormat(PRIZE_FORMAT);
         String convertedPrize = decimalFormat.format(prize);
         return convertedPrize;
     }
 
     public static String convertReturnRateToDisplayFormat(float rate) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+        DecimalFormat decimalFormat = new DecimalFormat(RETURN_OF_RATE_FORMAT);
         String convertedRate = decimalFormat.format(rate);
         return convertedRate;
     }

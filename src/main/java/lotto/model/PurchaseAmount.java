@@ -5,6 +5,9 @@ import static lotto.util.Constants.LOTTO_PRICE;
 import lotto.message.ExceptionMessage;
 
 public class PurchaseAmount {
+    private static final int ZERO = 0;
+    private static final int NO_REMAINDER = 0;
+
     private final int purchaseAmount;
 
     public PurchaseAmount(int inputAmount) {
@@ -18,13 +21,13 @@ public class PurchaseAmount {
     }
 
     private void validateNaturalNumber(int inputAmount) {
-        if (inputAmount <= 0) {
+        if (inputAmount <= ZERO) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_NATURAL_NUMBER.getMessage());
         }
     }
 
     private void validateDivisibleByPrice(int inputAmount) {
-        if (inputAmount % LOTTO_PRICE != 0) {
+        if (inputAmount % LOTTO_PRICE != NO_REMAINDER) {
             throw new IllegalArgumentException(ExceptionMessage.INDIVISIBLE_AMOUNT.getMessage());
         }
     }

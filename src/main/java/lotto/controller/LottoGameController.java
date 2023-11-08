@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import lotto.dto.request.BonusNumberDto;
@@ -34,28 +35,38 @@ public class LottoGameController {
     }
 
     public void run() {
-        InvestmentMoney investmentMoney = retryOnFail(this::createInvestmentMoney);
+        InvestmentMoney investmentMoney = getInvestmentMoneyFromUser();
 
-        LottoGroup lottoGroup = retryOnFail(this::createLottoGroup, investmentMoney);
+        LottoGroup lottoGroup = generateLottoGroup(investmentMoney);
         printLottoGroup(lottoGroup);
 
-        PrizeSummary prizeSummary = summarizePrizes(lottoGroup);
+        PrizeSummary prizeSummary = generatePrizeSummary(lottoGroup);
         printPrizeSummary(prizeSummary);
-        printTotalProfitRate(prizeSummary, investmentMoney);
+
+        TotalProfitRate totalProfitRate = generateTotalProfitRate(prizeSummary, investmentMoney);
+        printTotalProfitRate(totalProfitRate);
+    }
+
+    private InvestmentMoney getInvestmentMoneyFromUser() {
+        return retryOnException(this::createInvestmentMoney);
     }
 
     private InvestmentMoney createInvestmentMoney() {
-        InvestmentMoneyDto investmentMoneyDto = retryOnFail(inputView::readInvestmentMoney);
+        InvestmentMoneyDto investmentMoneyDto = retryOnException(inputView::readInvestmentMoney);
         int investmentMoney = investmentMoneyDto.getInvestmentMoney();
         return InvestmentMoney.from(investmentMoney);
     }
 
+    private LottoGroup generateLottoGroup(InvestmentMoney investmentMoney) {
+        return retryOnException(this::createLottoGroup, investmentMoney);
+    }
+
     private LottoGroup createLottoGroup(InvestmentMoney investmentMoney) {
-        PurchasableLottoCount lottoCount = retryOnFail(this::createLottoCount, investmentMoney);
+        PurchasableLottoCount lottoCount = retryOnException(this::calculatePurchasableLottoCount, investmentMoney);
         return LottoGroup.create(lottoCount, numberGenerator);
     }
 
-    private PurchasableLottoCount createLottoCount(InvestmentMoney investmentMoney) {
+    private PurchasableLottoCount calculatePurchasableLottoCount(InvestmentMoney investmentMoney) {
         return investmentMoney.calculatePurchasableLottoCount(LottoPrice.STANDARD_PRICE);
     }
 
@@ -64,30 +75,32 @@ public class LottoGameController {
         outputView.printLottoGroup(lottoGroupDto);
     }
 
-    private PrizeSummary summarizePrizes(LottoGroup lottoGroup) {
+    private PrizeSummary generatePrizeSummary(LottoGroup lottoGroup) {
         LottoMachine lottoMachine = createLottoMachine(lottoGroup);
         return lottoMachine.generatePrizeSummary();
     }
 
     private LottoMachine createLottoMachine(LottoGroup lottoGroup) {
-        Lotto winningLotto = retryOnFail(this::createWinningLotto);
-        WinningCombination winningCombination = retryOnFail(this::createWinningCombination, winningLotto);
+        Lotto winningLotto = retryOnException(this::createWinningLotto);
+        WinningCombination winningCombination = retryOnException(this::createWinningCombination, winningLotto);
         return LottoMachine.of(lottoGroup, winningCombination);
     }
 
     private Lotto createWinningLotto() {
-        WinningLottoNumbersDto winningLottoNumbersDto = retryOnFail(inputView::readWinningLottoNumbers);
-        return Lotto.from(winningLottoNumbersDto.getWinningLottoNumbers());
+        WinningLottoNumbersDto winningLottoNumbersDto = retryOnException(inputView::readWinningLottoNumbers);
+        List<Integer> winningLottoNumbers = winningLottoNumbersDto.getWinningLottoNumbers();
+        return Lotto.from(winningLottoNumbers);
     }
 
     private WinningCombination createWinningCombination(Lotto winningLotto) {
-        LottoNumber bonusNumber = retryOnFail(this::createBonusNumber);
+        LottoNumber bonusNumber = retryOnException(this::createBonusNumber);
         return WinningCombination.of(winningLotto, bonusNumber);
     }
 
     private LottoNumber createBonusNumber() {
-        BonusNumberDto bonusNumberDto = retryOnFail(inputView::readBonusNumber);
-        return LottoNumber.from(bonusNumberDto.getBonusNumber());
+        BonusNumberDto bonusNumberDto = retryOnException(inputView::readBonusNumber);
+        int bonusNumber = bonusNumberDto.getBonusNumber();
+        return LottoNumber.from(bonusNumber);
     }
 
     private void printPrizeSummary(PrizeSummary prizeSummary) {
@@ -95,27 +108,30 @@ public class LottoGameController {
         outputView.printPrizeSummary(prizeSummaryDto);
     }
 
-    private void printTotalProfitRate(PrizeSummary prizeSummary, InvestmentMoney investmentMoney) {
-        TotalProfitRate totalProfitRate = prizeSummary.calculateTotalProfitRate(investmentMoney);
+    private static TotalProfitRate generateTotalProfitRate(PrizeSummary prizeSummary, InvestmentMoney investmentMoney) {
+        return prizeSummary.calculateTotalProfitRate(investmentMoney);
+    }
+
+    private void printTotalProfitRate(TotalProfitRate totalProfitRate) {
         TotalProfitRateDto totalProfitRateDto = TotalProfitRateDto.from(totalProfitRate);
         outputView.printTotalProfitRate(totalProfitRateDto);
     }
 
-    private <T> T retryOnFail(Supplier<T> supplier) {
+    private <T> T retryOnException(Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
-            return retryOnFail(supplier);
+            return retryOnException(supplier);
         }
     }
 
-    private <T, R> R retryOnFail(Function<T, R> function, T input) {
+    private <T, R> R retryOnException(Function<T, R> function, T input) {
         try {
             return function.apply(input);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
-            return retryOnFail(function, input);
+            return retryOnException(function, input);
         }
     }
 }

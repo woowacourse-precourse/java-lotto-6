@@ -6,7 +6,7 @@ public class Profit {
     public double CalProfit(Integer Amount, List<Integer> result){
         double profit = 0.2f;
         double sum = 0;
-        for(int i=3; i<7; i++){
+        for(int i=3; i<=7; i++){
             switch (i){
                 case 3:
                     sum += result.get(i) * 5000;

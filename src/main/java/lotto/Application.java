@@ -25,8 +25,8 @@ public class Application {
 
         Map<LottoScore, Integer> scoreCountMap = new HashMap<>();
 
-        for (int i = 0; i < lottoNumbers.size(); i++) {
-            LottoScore score = lottoNumbers.get(i).calculate(winningNumbers.getWinningNumbers(), winningNumbers.getBonusNumber());
+        for (Lotto lottoNumber : lottoNumbers) {
+            LottoScore score = lottoNumber.calculate(winningNumbers.getWinningNumbers(), winningNumbers.getBonusNumber());
             scoreCountMap.put(score, scoreCountMap.getOrDefault(score, 0) + 1);
         }
         lottoValidator.printResult(scoreCountMap);

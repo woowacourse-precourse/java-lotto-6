@@ -31,7 +31,7 @@ public class InputManager {
         }
     }
 
-    private List<Integer> parseNumbers(String input) {
+    public List<Integer> parseNumbers(String input) {
         String[] splitInput = input.split(",");
         List<Integer> numbers = new ArrayList<>();
         for (String number : splitInput) {

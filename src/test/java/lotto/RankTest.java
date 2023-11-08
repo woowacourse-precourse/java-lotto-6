@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RankTest {
-    @DisplayName("valueOf()는 일치하는 번호의 개수와 보너스 번호 일치 여부에 따라 적절한 Rank를 반환한다.")
+    @DisplayName("일치하는 번호의 개수와 보너스 번호 일치 여부에 따라 적절한 Rank를 반환한다.")
     @Test
     void valueOfReturnsCorrectRank() {
         assertThat(Rank.valueOf(6, false)).isEqualTo(Rank.FIRST);

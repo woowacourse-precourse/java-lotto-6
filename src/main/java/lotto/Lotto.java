@@ -46,4 +46,12 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
+    protected int analysisLottoStatistic(List<Integer> compareLotto) {
+        int unionCount = compareLotto.size() + numbers.size();
+        compareLotto.addAll(numbers);
+        HashSet<Integer> unionLotto = new HashSet<>(compareLotto);
+
+        return unionCount - unionLotto.size();
+    }
 }

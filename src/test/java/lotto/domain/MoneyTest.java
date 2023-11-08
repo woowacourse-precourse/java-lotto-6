@@ -11,7 +11,7 @@ public class MoneyTest {
     void 금액_검증_부족() {
         assertThatThrownBy(() -> new Money(999))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 천보다 큰 금액을 입력해주세요.");
+                .hasMessageContaining("[ERROR] 1000보다 큰 금액을 입력해주세요.");
     }
 
     @Test

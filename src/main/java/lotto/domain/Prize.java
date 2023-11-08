@@ -1,11 +1,11 @@
 package lotto.domain;
 
 public enum Prize {
-	THREE(3, 5_000),
-	FOUR(4, 50_000),
-	FIVE(5, 1_500_000),
-	FIVEANDBONUS(5, 30_000_000),
-	SIX(6, 2_000_000_000);
+	FIFTH(3, 5_000),
+	FOURTH(4, 50_000),
+	THIRD(5, 1_500_000),
+	SECOND(5, 30_000_000),
+	FIRST(6, 2_000_000_000);
 
 	private final int matchAmount;
 	private final int prize;
@@ -16,12 +16,12 @@ public enum Prize {
 	}
 
 	public static int getMinMatchAmount() {
-		return THREE.matchAmount;
+		return FIFTH.matchAmount;
 	}
 
 	public static Prize createResult(int matchAmount, boolean bonus) {
 		if (matchBonus(matchAmount, bonus)) {
-			return FIVEANDBONUS;
+			return SECOND;
 		}
 
 		for (Prize prize : values()) {
@@ -41,6 +41,6 @@ public enum Prize {
 	}
 
 	private static boolean matchBonus(int matchAmount, boolean bonus) {
-		return matchAmount == FIVEANDBONUS.matchAmount && bonus;
+		return matchAmount == SECOND.matchAmount && bonus;
 	}
 }

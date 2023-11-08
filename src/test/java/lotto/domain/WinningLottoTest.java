@@ -18,7 +18,7 @@ public class WinningLottoTest {
 
 		Map map = winningLotto.calculateResult(List.of(lotto));
 
-		assertThat(map.containsKey(Prize.SIX)).isEqualTo(true);
+		assertThat(map.containsKey(Prize.FIRST)).isEqualTo(true);
 	}
 
 	@Test
@@ -30,7 +30,7 @@ public class WinningLottoTest {
 
 		Map map = winningLotto.calculateResult(List.of(lotto));
 
-		assertThat(map.containsKey(Prize.FIVEANDBONUS)).isEqualTo(true);
+		assertThat(map.containsKey(Prize.SECOND)).isEqualTo(true);
 	}
 
 	@Test

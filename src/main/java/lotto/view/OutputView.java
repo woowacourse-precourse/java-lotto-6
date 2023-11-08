@@ -37,7 +37,7 @@ public class OutputView {
 	}
 
 	private static boolean isAboutBonus(Prize prize) {
-		return prize.getPrize() == Prize.FIVEANDBONUS.getPrize();
+		return prize.getPrize() == Prize.SECOND.getPrize();
 	}
 
 	private static List<Integer> sortAscending(List<Integer> numbers) {

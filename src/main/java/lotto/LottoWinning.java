@@ -1,8 +1,10 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 public class LottoWinning {
 
@@ -45,15 +47,16 @@ public class LottoWinning {
     }
 
     // TODO: refactor names of variables
-    public List<LottoRank> assignRanks(List<Lotto> tickets) {
+    public Map<LottoRank, Integer> assignRanks(List<Lotto> tickets) {
+        Map<LottoRank, Integer> winningCounts = new EnumMap<>(LottoRank.class);
         List<LottoRank> winnings = new ArrayList<>();
         // TODO: refactor
         tickets.forEach(t -> {
             LottoRank wonRank = assignRank(t);
-            winnings.add(wonRank);
+            winningCounts.put(wonRank, winningCounts.getOrDefault(wonRank, 0) + 1);
         });
         // TODO: refactor ignore NoWinning
-        return winnings;
+        return winningCounts;
     }
 
     public LottoRank assignRank(Lotto ticket) {

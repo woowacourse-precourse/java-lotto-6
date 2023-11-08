@@ -27,14 +27,14 @@ public class PrintResult {
         StringBuilder results = new StringBuilder();
         for (Rankings.RankingData values:
              rankingData) {
-            results.append(values.getRankings() + resultsOfPrize[values.ordinal()] + " \n");
+            results.append(values.getRankings() + resultsOfPrize[values.ordinal()] + "개 \n");
         }
         return results.toString();
     }
     public String printProfitRate() {
         return "총 수익률은 " + resultOfProfitRate + "% 입니다.";
     }
-    void run() {
+    public void run() {
         System.out.println(printStartText());
         System.out.println(printResults());
         System.out.println(printProfitRate());

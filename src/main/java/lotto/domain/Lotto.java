@@ -17,6 +17,10 @@ public class Lotto {
         }
     }
 
+    public boolean isContainNumber(Integer number) {
+        return numbers.contains(number);
+    }
+
     @Override
     public String toString() {
         String string = numbers.stream()

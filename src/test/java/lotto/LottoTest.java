@@ -2,7 +2,6 @@ package lotto;
 
 import constants.ErrorMessage;
 import constants.NumberType;
-import java.util.ArrayList;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -56,20 +55,40 @@ class LottoTest {
         assertDoesNotThrow(() -> new Lotto(lottoNumbers));
     }
 
-//    @DisplayName("발행한 로또에 당첨 번호의 숫자가 포함되는지 확인하는 기능 테스트")
-//    @Test
-//    void bonusNumberInLottoTest() {
-//        //Given
-//        Lotto lotto = new Lotto(Stream.of(1, 2, 3, 4, 5, 6)
-//                .map(LottoNumber::of)
-//                .toList());
-//        BonusNumber bonusNumber = new BonusNumber(6, new AnswerLotto(List.of(7, 8, 9, 10, 11, 12)));
-//
-//        //When
-//        boolean expectedResult = true;
-//        boolean result = lotto.hasNumber(bonusNumber.getBonusNumber());
-//
-//        //When & Then
-//        assertThat(result).isEqualTo(expectedResult);
-//    }
+    @Test
+    @DisplayName("발행한 로또와 당첨 번호의 일치하는 숫자의 개수를 확인한다.")
+    void countMatchNumberTest() {
+        //Given
+        Lotto lotto = new Lotto(Stream.of(1, 2, 3, 4, 5, 6)
+                .map(LottoNumber::of)
+                .toList());
+        LottoNumber bonusNumber = LottoNumber.of(7);
+        AnswerLotto answerLotto = new AnswerLotto(new Lotto(Stream.of(1, 2, 3, 4, 5, 6)
+                .map(LottoNumber::of)
+                .toList()), bonusNumber);
+
+        //When
+        int expectedResult = 6;
+        int result = lotto.countMatchNumber(answerLotto.getAnswerLotto());
+
+        //When & Then
+        assertThat(result).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("발행한 로또에 당첨 번호의 숫자가 포함되는지 확인한다.")
+    @Test
+    void bonusNumberInLottoTest() {
+        //Given
+        Lotto lotto = new Lotto(Stream.of(1, 2, 3, 4, 5, 6)
+                .map(LottoNumber::of)
+                .toList());
+        LottoNumber bonusNumber = LottoNumber.of(6);
+
+        //When
+        boolean expectedResult = true;
+        boolean result = lotto.hasNumber(bonusNumber.getNumber());
+
+        //When & Then
+        assertThat(result).isEqualTo(expectedResult);
+    }
 }

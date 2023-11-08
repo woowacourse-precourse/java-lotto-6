@@ -15,4 +15,8 @@ public enum PrizeCategory {
         this.numberOfMatchingNumbers = numberOfMatchingNumbers;
         this.prizeMoney = prizeMoney;
     }
+
+    public String getMessage() {
+        return String.format("%s (%,d원) - ", numberOfMatchingNumbers, prizeMoney);
+    }
 }

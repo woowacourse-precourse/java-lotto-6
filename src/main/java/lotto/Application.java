@@ -16,13 +16,9 @@ public class Application {
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
 
-        List<Integer> counts = LottoController.makeLottoResult(winningNumbers, bonusNumber,
-                lottos);
-        ArrayList<Integer> rewards = new ArrayList<>(
-                List.of(5000, 50000, 1500000, 30000000, 2000000000));
-        double earningRate = LottoController.calculateEarningRate(purcahsedLottoAmount, rewards,
-                counts);
-        Output.printWinningStatistics(rewards, counts, earningRate);
+        List<Integer> counts = LottoController.makeLottoResult(winningNumbers, bonusNumber, lottos);
+        double earningRate = LottoController.calculateEarningRate(purcahsedLottoAmount, counts);
+        Output.printWinningStatistics(counts, earningRate);
     }
 
     private static int getBonusNumber(List<Integer> winningNumbers) {

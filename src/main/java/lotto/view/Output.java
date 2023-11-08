@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.LottoRank;
 import lotto.controller.Lotto;
 
 public class Output {
@@ -27,13 +28,18 @@ public class Output {
         System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
-    public static void printWinningStatistics(List<Integer> rewards, List<Integer> counts, double earningRate) {
+    public static void printWinningStatistics(List<Integer> counts, double earningRate) {
         System.out.println("\n당첨 통계\n---");
-        System.out.println("3개 일치 (" + formatCurrency(rewards.get(0)) + "원) - " + counts.get(0) + "개");
-        System.out.println("4개 일치 (" + formatCurrency(rewards.get(1)) + "원) - " + counts.get(1) + "개");
-        System.out.println("5개 일치 (" + formatCurrency(rewards.get(2)) + "원) - " + counts.get(2) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (" + formatCurrency(rewards.get(3)) + "원) - " + counts.get(3) + "개");
-        System.out.println("6개 일치 (" + formatCurrency(rewards.get(4)) + "원) - " + counts.get(4) + "개");
+        for (int i = 0; i < LottoRank.values().length; i++) {
+            LottoRank lottoRank = LottoRank.values()[i];
+            if (i == 3) {
+                System.out.println(lottoRank.getMatchCount() + "개 일치, 보너스 볼 일치 ("
+                        + formatCurrency(lottoRank.getReward()) + "원) - " + counts.get(i) + "개");
+                continue;
+            }
+            System.out.println(lottoRank.getMatchCount() + "개 일치 ("
+                    + formatCurrency(lottoRank.getReward()) + "원) - " + counts.get(i) + "개");
+        }
         System.out.println("총 수익률은 " + earningRate + "%입니다.");
     }
 

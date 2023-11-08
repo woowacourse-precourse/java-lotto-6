@@ -86,7 +86,7 @@ class OutputTest {
         List<Integer> counts = new ArrayList<>(List.of(1, 0, 0, 0, 0));
         double earningRate = 62.5;
         // when
-        Output.printWinningStatistics(rewards, counts, earningRate);
+        Output.printWinningStatistics(counts, earningRate);
         // then
         assertThat(outputMessage.toString()).isEqualTo("\n당첨 통계\n"
                 + "---\n"

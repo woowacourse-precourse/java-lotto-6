@@ -4,32 +4,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-enum LottoRank {
-    FIFTH(3, 5_000),
-    FIRST(6, 2_000_000_000),
-    SECOND(5, 1_500_000),
-    THIRD(5, 30_000_000),
-    FOURTH(4, 50_000);
-
-    private final int matchCount;
-    private final int reward;
-
-    LottoRank(int matchCount, int reward) {
-        this.matchCount = matchCount;
-        this.reward = reward;
-    }
-
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public int getReward() {
-        return reward;
-    }
-}
-
-
+import lotto.Application;
+import lotto.LottoRank;
 
 public class LottoController {
 
@@ -104,12 +80,12 @@ public class LottoController {
         return null;
     }
 
-    public static double calculateEarningRate(int purchaseAmount, List<Integer> rewards,
+    public static double calculateEarningRate(int purchaseAmount,
             List<Integer> counts) {
-        int iterTotalNumber = rewards.size();
+        int iterTotalNumber = counts.size();
         int totalEarning = 0;
         for (int i = 0; i < iterTotalNumber; i++) {
-            totalEarning += rewards.get(i) * counts.get(i);
+            totalEarning += LottoRank.values()[i].getReward() * counts.get(i);
         }
         return (double) Math.round((double) totalEarning * 1000 / purchaseAmount) / 10;
     }

@@ -58,7 +58,7 @@ class LottoControllerTest {
         rewards.add(2000000000);
         List<Integer> counts = new ArrayList<>(List.of(1, 0, 0, 0, 0));
         // when
-        double earningRate = LottoController.calculateEarningRate(purchaseAmount, rewards, counts);
+        double earningRate = LottoController.calculateEarningRate(purchaseAmount, counts);
         // then
         assertThat(earningRate).isEqualTo(62.5);
     }

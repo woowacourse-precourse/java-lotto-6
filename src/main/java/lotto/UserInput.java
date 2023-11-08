@@ -2,11 +2,11 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserInput {
-    public int insertMoney(String prompt){
+    public int insertMoney(String prompt) {
         while (true) {
             System.out.println(prompt);
             String userInput = Console.readLine();
@@ -21,7 +21,7 @@ public class UserInput {
     }
 
     public List<Integer> inputWinnerNumbers(String prompt) {
-        while(true) {
+        while (true) {
             System.out.println(prompt);
 
             String userInput = Console.readLine();
@@ -32,23 +32,25 @@ public class UserInput {
                     int num = Integer.parseInt(str.trim());
                     resultList.add(num);
                 }
+
                 new Lotto(resultList);
                 return resultList;
-            }catch (IllegalArgumentException e) {
+
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
     public int inputBonusNumber(String prompt) {
-        while(true) {
+        while (true) {
 
             System.out.println(prompt);
             String userInput = Console.readLine();
             try {
                 int bonusNumber = Integer.parseInt(userInput);
                 return bonusNumber;
-            }catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
 

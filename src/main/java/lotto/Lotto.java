@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.List;
 
-public class  Lotto {
+public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -17,10 +17,10 @@ public class  Lotto {
         }
     }
 
-    private void validateLottoNumber(List<Integer> numbers){
-        for(int i=0;i<6;i++){
-            if(numbers.get(i)>45 || numbers.get(i)<1){
-                throw  new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    private void validateLottoNumber(List<Integer> numbers) {
+        for (int i = 0; i < 6; i++) {
+            if (numbers.get(i) > 45 || numbers.get(i) < 1) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
     }

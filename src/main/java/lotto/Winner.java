@@ -27,12 +27,13 @@ enum WinningGrade {
         return description;
     }
 }
+
 public class Winner {
 
     private List<Integer> result = new ArrayList<>(Collections.nCopies(8, 0));
 
 
-    public void checkLottoNumbers(List<Integer> userLotto, List<Integer> winnerLotto,int bonus) {
+    public void checkLottoNumbers(List<Integer> userLotto, List<Integer> winnerLotto, int bonus) {
         int rightCount = 0;
         for (int number : userLotto) {
             if (winnerLotto.contains(number)) {
@@ -41,15 +42,15 @@ public class Winner {
         }
         boolean bonusMaching = userLotto.contains(bonus);
 
-        if(rightCount==5){
-            if(bonusMaching){
+        if (rightCount == 5) {
+            if (bonusMaching) {
                 result.set(WinningGrade.FIFTH_BONUS.getCount(), result.get(WinningGrade.FIFTH_BONUS.getCount()) + 1);
             }
-            if(!bonusMaching){
+            if (!bonusMaching) {
                 result.set(rightCount, result.get(rightCount) + 1);
             }
         }
-        if(rightCount!=5){
+        if (rightCount != 5) {
             result.set(rightCount, result.get(rightCount) + 1);
         }
 
@@ -59,7 +60,7 @@ public class Winner {
         return this.result;
     }
 
-    public void printLottoResult(List<Integer> result){
+    public void printLottoResult(List<Integer> result) {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");

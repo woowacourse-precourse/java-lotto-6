@@ -21,8 +21,8 @@ public class RandomNumberGenerator {
         return randomNumbers;
     }
 
-    public void printMyLottoNumber(){
-        for(int i=0;i<randomNumbers.size();i++){
+    public void printMyLottoNumber() {
+        for (int i = 0; i < randomNumbers.size(); i++) {
             System.out.println(randomNumbers.get(i));
         }
         System.out.println();

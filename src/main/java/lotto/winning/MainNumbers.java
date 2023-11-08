@@ -8,6 +8,10 @@ import lotto.Askable;
 import lotto.Settings;
 
 public class MainNumbers extends WinningNumber implements Askable<List<Integer>> {
+    private final Predicate<List<Integer>> isNoDuplicate = input ->
+            input.stream().distinct().count() == input.size();
+    private final Predicate<List<Integer>> isCorrectAmount = input -> input.size() == Settings.SIZE.getNumber();
+
     @Override
     public List<Integer> ask() {
         System.out.println(INPUT_WINNING_NUMBERS);
@@ -37,9 +41,4 @@ public class MainNumbers extends WinningNumber implements Askable<List<Integer>>
             throw new IllegalArgumentException(WINNING_NUMBER_SIZE_ERROR);
         }
     }
-
-    private final Predicate<List<Integer>> isNoDuplicate = input ->
-            input.stream().distinct().count() == input.size();
-
-    private final Predicate<List<Integer>> isCorrectAmount = input -> input.size() == Settings.SIZE.getNumber();
 }

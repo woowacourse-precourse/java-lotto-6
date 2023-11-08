@@ -31,7 +31,7 @@ class MainNumbersTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "1,2,3,4,5,99", "1,2,3,4,5,5", "1,2,3,4" })
+    @ValueSource(strings = {"1,2,3,4,5,99", "1,2,3,4,5,5", "1,2,3,4"})
     void inAccurateInputs(String mockInput) {
         System.setIn(new ByteArrayInputStream(mockInput.getBytes()));
 

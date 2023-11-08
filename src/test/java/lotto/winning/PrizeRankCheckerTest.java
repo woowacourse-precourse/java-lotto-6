@@ -26,6 +26,7 @@ class PrizeRankCheckerTest {
         System.setIn(System.in);
         Console.close();
     }
+
     @Test
     public void prizeRankCheckTest() {
         Generator mockGenerator = new Generator(new PurchaseAmount().ask());
@@ -35,7 +36,7 @@ class PrizeRankCheckerTest {
                 mockGenerator.issue(1, 6, 6);
 
         assertThat(prizeRankChecker
-                .computeMatchedNumberCounts(mockLottos, Arrays.asList(1,2,3,4,5,6)).get(0))
+                .computeMatchedNumberCounts(mockLottos, Arrays.asList(1, 2, 3, 4, 5, 6)).get(0))
                 .isEqualTo(6);
     }
 }

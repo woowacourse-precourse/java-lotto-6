@@ -21,7 +21,6 @@ import java.util.HashMap;
 import lotto.Showable;
 
 public class ResultBoard implements Showable<HashMap<Prize, HashMap<Tally, Integer>>, Double> {
-
     @Override
     public void show(HashMap<Prize, HashMap<Tally, Integer>> updatedPrizes, Double returnRatio) {
         System.out.println(formatResult(updatedPrizes, returnRatio));

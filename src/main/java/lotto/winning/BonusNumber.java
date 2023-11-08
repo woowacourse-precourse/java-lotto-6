@@ -8,6 +8,9 @@ import lotto.Askable;
 import lotto.Settings;
 
 public class BonusNumber extends WinningNumber implements Askable<Integer> {
+    private final Predicate<List<Integer>> isCorrectAmount =
+            input -> input.size() == Settings.BONUS_NUMBER_SIZE.getNumber();
+
     @Override
     public Integer ask() {
         System.out.println(INPUT_BONUS_NUMBER);
@@ -34,7 +37,4 @@ public class BonusNumber extends WinningNumber implements Askable<Integer> {
             throw new IllegalArgumentException(BONUS_NUMBER_SIZE_ERROR);
         }
     }
-
-    private final Predicate<List<Integer>> isCorrectAmount =
-            input -> input.size() == Settings.BONUS_NUMBER_SIZE.getNumber();
 }

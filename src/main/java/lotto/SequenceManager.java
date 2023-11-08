@@ -8,11 +8,11 @@ import lotto.purchasing.Printer;
 import lotto.purchasing.PurchaseAmount;
 import lotto.winning.Analyst;
 import lotto.winning.BonusNumber;
+import lotto.winning.MainNumbers;
 import lotto.winning.Prize;
 import lotto.winning.PrizeRankChecker;
 import lotto.winning.ResultBoard;
 import lotto.winning.Tally;
-import lotto.winning.MainNumbers;
 
 public class SequenceManager {
     private final PurchaseAmount purchaseAmount;

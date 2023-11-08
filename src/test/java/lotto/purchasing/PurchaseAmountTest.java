@@ -31,7 +31,7 @@ class PurchaseAmountTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "eight thousand", "8001" })
+    @ValueSource(strings = {"eight thousand", "8001"})
     void inAccurateInputs(String mockInput) {
         System.setIn(new ByteArrayInputStream(mockInput.getBytes()));
 
@@ -44,7 +44,7 @@ class PurchaseAmountTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "8,000", "8000" })
+    @ValueSource(strings = {"8,000", "8000"})
     void accurateInputs(String mockInput) {
         System.setIn(new ByteArrayInputStream(mockInput.getBytes()));
 

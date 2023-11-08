@@ -7,6 +7,15 @@ import lotto.Askable;
 import lotto.Number;
 
 public class PurchaseAmount extends Number<String> implements Askable<Integer> {
+    private final Predicate<String> isPositiveInteger = input -> {
+        try {
+            return Integer.parseInt(input) > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    };
+    private final Predicate<String> isThousandUnit = input -> Integer.parseInt(input) % 1000 == 0;
+
     @Override
     public Integer ask() {
         System.out.println(INPUT_PURCHASE_AMOUNT);
@@ -47,16 +56,6 @@ public class PurchaseAmount extends Number<String> implements Askable<Integer> {
             throw new IllegalArgumentException(NON_THOUSAND_UNIT_ERROR);
         }
     }
-
-    private final Predicate<String> isPositiveInteger = input -> {
-        try {
-            return Integer.parseInt(input) > 0;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    };
-
-    private final Predicate<String> isThousandUnit = input -> Integer.parseInt(input) % 1000 == 0;
 
     private String stripCommas(String input) {
         return input.replaceAll(",", "");

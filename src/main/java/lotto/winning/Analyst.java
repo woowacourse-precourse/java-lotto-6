@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Analyst {
-
     public double calculateReturnRatio(HashMap<Prize, HashMap<Tally, Integer>> updatedPrizes, int totalPurchase) {
         int totalPrize = updatedPrizes.values().stream().mapToInt(map -> map.get(AMOUNT)).sum();
 
@@ -55,16 +54,21 @@ public class Analyst {
     private Prize determinePrizeRank(int winningMatchCount, int bonusMatchCount) {
         Prize rank = null;
 
-        if (winningMatchCount == MAIN_MATCH_FOR_FIRST.getNumber())
+        if (winningMatchCount == MAIN_MATCH_FOR_FIRST.getNumber()) {
             rank = FIRST;
-        if (winningMatchCount == MAIN_MATCH_FOR_SECOND.getNumber() && bonusMatchCount > 0)
+        }
+        if (winningMatchCount == MAIN_MATCH_FOR_SECOND.getNumber() && bonusMatchCount > 0) {
             rank = SECOND;
-        if (winningMatchCount == MAIN_MATCH_FOR_THIRD.getNumber() && bonusMatchCount == 0)
+        }
+        if (winningMatchCount == MAIN_MATCH_FOR_THIRD.getNumber() && bonusMatchCount == 0) {
             rank = THIRD;
-        if (winningMatchCount == MAIN_MATCH_FOR_FOURTH.getNumber())
+        }
+        if (winningMatchCount == MAIN_MATCH_FOR_FOURTH.getNumber()) {
             rank = FOURTH;
-        if (winningMatchCount == MAIN_MATCH_FOR_FIFTH.getNumber())
+        }
+        if (winningMatchCount == MAIN_MATCH_FOR_FIFTH.getNumber()) {
             rank = FIFTH;
+        }
 
         return rank;
     }

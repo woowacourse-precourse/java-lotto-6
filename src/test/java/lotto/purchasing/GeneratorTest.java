@@ -31,6 +31,6 @@ class GeneratorTest {
         List<Integer> mockLotto =
                 generator.issue(1, 6, 6).get(0).getNumbers();
 
-        assertThat(mockLotto).isEqualTo(Arrays.asList(1,2,3,4,5,6));
+        assertThat(mockLotto).isEqualTo(Arrays.asList(1, 2, 3, 4, 5, 6));
     }
 }

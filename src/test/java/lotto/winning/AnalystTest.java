@@ -6,8 +6,8 @@ import static lotto.winning.Prize.FIRST;
 import static lotto.winning.Prize.FOURTH;
 import static lotto.winning.Prize.SECOND;
 import static lotto.winning.Prize.THIRD;
-import static lotto.winning.Tally.COUNT;
 import static lotto.winning.Tally.AMOUNT;
+import static lotto.winning.Tally.COUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;

@@ -30,7 +30,7 @@ class BonusNumberTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "99", "1,2" })
+    @ValueSource(strings = {"99", "1,2"})
     void inAccurateInputs(String mockInput) {
         System.setIn(new ByteArrayInputStream(mockInput.getBytes()));
 

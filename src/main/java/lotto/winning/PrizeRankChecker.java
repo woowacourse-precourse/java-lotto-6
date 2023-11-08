@@ -5,7 +5,6 @@ import java.util.List;
 import lotto.Lotto;
 
 public class PrizeRankChecker {
-
     public List<Integer> computeMatchedNumberCounts(List<Lotto> lottos, List<Integer> Numbers) {
         List<Integer> matchedNumberCounts = new ArrayList<>();
 

@@ -1,14 +1,13 @@
 package lotto.view;
 
-import lotto.util.Convert;
+import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.List;
-
-import static camp.nextstep.edu.missionutils.Console.readLine;
+import lotto.util.Convert;
 
 public class InputView {
 
-    public Integer readPurchaseAmount() {
+    public int readPurchaseAmount() {
         return Convert.stringToInteger(readLine());
     }
 
@@ -16,7 +15,7 @@ public class InputView {
         return Convert.stringToIntegerList(readLine());
     }
 
-    public Integer readBonusNumber() {
+    public int readBonusNumber() {
         return Convert.stringToInteger(readLine());
     }
 }

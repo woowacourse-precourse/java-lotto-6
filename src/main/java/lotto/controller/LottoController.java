@@ -52,7 +52,7 @@ public class LottoController {
         while (!isValid) {
             try {
                 outputView.printPurchaseAmountInputMessage();
-                Integer purchaseAmount = inputView.readPurchaseAmount();
+                int purchaseAmount = inputView.readPurchaseAmount();
                 lottoDto.setPurchaseAmount(purchaseAmount);
                 isValid = true;
             } catch (IllegalArgumentException e) {

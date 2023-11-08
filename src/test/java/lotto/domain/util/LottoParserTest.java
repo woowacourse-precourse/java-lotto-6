@@ -16,9 +16,9 @@ class LottoParserTest {
 
     @DisplayName("입력 금액 로또 개수 변환 성공 테스트")
     @ParameterizedTest
-    @CsvSource({"1000, 1", "8000, 8"})
+    @CsvSource({"1000, 1000", "8000, 8000"})
     void parseMoneyToLottoCountSuccessTest(String input, int expected) {
-        int count = LottoParser.parseMoneyToLottoCount(input);
+        int count = LottoParser.parseMoney(input);
         assertThat(count).isEqualTo(expected);
     }
 
@@ -26,7 +26,7 @@ class LottoParserTest {
     @ParameterizedTest
     @ValueSource(strings = { "0", "-1000" })
     void parseMoneyToLottoCountFailTest1(String input) {
-        assertThatThrownBy(()->parseMoneyToLottoCount(input))
+        assertThatThrownBy(()->parseMoney(input))
                 .hasMessageContaining(LOTTO_MONEY_INPUT_SMALL_ERROR.getMessage());
     }
 
@@ -34,7 +34,7 @@ class LottoParserTest {
     @ParameterizedTest
     @ValueSource(strings = { "4124", "81231" })
     void parseMoneyToLottoCountFailTest2(String input) {
-        assertThatThrownBy(()->parseMoneyToLottoCount(input))
+        assertThatThrownBy(()->parseMoney(input))
                 .hasMessageContaining(LOTTO_MONEY_INPUT_ERROR.getMessage());
     }
 

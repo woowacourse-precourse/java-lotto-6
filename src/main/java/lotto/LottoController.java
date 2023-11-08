@@ -35,21 +35,21 @@ public class LottoController {
         showResult(rankCount);
     }
 
-    private int receiveValidLottoCount() {
+    private int receiveValidMoney() {
         outputView.printInputMoneyMessage();
         try {
             String money = inputView.inputMoney();
-            return parseMoneyToLottoCount(money);
+            return parseMoney(money);
         } catch (InputException | LottoException e) {
             System.out.println(e.getMessage());
-            return receiveValidLottoCount();
+            return receiveValidMoney();
         }
     }
 
     private List<Lotto> generateLottos() {
         // 검증된 금액 입력 받기
-        int lottoCount = receiveValidLottoCount();
-        lottoGenerator = new LottoGenerator(lottoCount, numberGenerator);
+        int money = receiveValidMoney();
+        lottoGenerator = new LottoGenerator(money, numberGenerator);
         lottoGenerator.makeLottos();
         return lottoGenerator.getLottos();
     }

@@ -16,7 +16,7 @@ class LottoGeneratorTest {
     void setUp() {
         List<Integer> fixedNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         SetNumberGenerator setNumberGenerator = new SetNumberGenerator(fixedNumbers);
-        lottoGenerator = new LottoGenerator(3, setNumberGenerator);
+        lottoGenerator = new LottoGenerator(3000, setNumberGenerator);
     }
 
     @DisplayName("로또 생성 개수 테스트")

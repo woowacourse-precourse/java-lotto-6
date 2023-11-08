@@ -1,5 +1,6 @@
 package lotto.domain.util;
 
+import static lotto.domain.util.Constant.*;
 import static lotto.exception.ErrorMessage.*;
 
 import java.util.*;
@@ -9,17 +10,13 @@ import lotto.exception.LottoException;
 
 public final class LottoParser {
     private static final String LOTTO_NUMBER_REGEX = "^(\\d+,)+\\d+$";
-    private static final int LOTTO_PRICE = 1000;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int LOTTO_COUNT = 6;
 
     private LottoParser() {}
 
-    public static int parseMoneyToLottoCount(String moneyInput) {
+    public static int parseMoney(String moneyInput) {
         int parsedMoney = Integer.parseInt(moneyInput);
         validateMoney(parsedMoney);
-        return parsedMoney / LOTTO_PRICE;
+        return parsedMoney;
     }
 
     public static List<Integer> parseWinningNumbers(String winningNumbers) {

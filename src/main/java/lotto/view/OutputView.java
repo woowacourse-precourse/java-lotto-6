@@ -24,7 +24,7 @@ public class OutputView {
         }
     }
 
-    public void printBuyMessage(int lottosCount) {
+    private void printBuyMessage(int lottosCount) {
         System.out.printf(ViewMessage.BUY_MESSAGE.getMessage() + System.lineSeparator(), lottosCount);
     }
 

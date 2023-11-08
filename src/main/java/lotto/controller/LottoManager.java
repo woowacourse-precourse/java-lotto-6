@@ -14,6 +14,7 @@ public class LottoManager {
     private int lottoCount;
     private List<Lotto> lottoCollection;
 
+
     private LottoGenerator lottoGenerator;
 
     public LottoManager() {
@@ -23,6 +24,7 @@ public class LottoManager {
     public void startLottoService() {
         purchaseLotto(); //로또 구매하기
         generateLotto(); //로또 생성하기
+        setWinningAndBounsNumber(); //당첨 숫자 입력하기
     }
 
     private void purchaseLotto() {
@@ -53,5 +55,25 @@ public class LottoManager {
         for (Lotto lotto : lottoCollection) {
             OutputView.printLottoNumbers(lotto.getLottoNumbers());
         }
+    }
+
+    private void setWinningAndBounsNumber() {
+        String winningNumber;
+
+        winningNumber = setWinningNumber();
+    }
+
+    private String setWinningNumber() {
+        String winningNumber;
+
+        try {
+            winningNumber = InputView.readWinningNumber();
+            Validation.vaildateWinningNumbers(winningNumber);
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            ExceptionView.printExceptionMessage(e.getMessage());
+            winningNumber = setWinningNumber();
+        }
+
+        return winningNumber;
     }
 }

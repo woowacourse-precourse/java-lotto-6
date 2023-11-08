@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,8 @@ public class UserInteraction {
     private static String RATE_OF_RETURN_SUFFIX = "%입니다.";
 
     private static final NumberFormat numberFormat = NumberFormat.getNumberInstance();
+
+    private static final DecimalFormat formatter = new DecimalFormat("0.##");
 
     public static String promptBudget() {
         System.out.println(BUDGET_PROMPT);
@@ -51,7 +54,7 @@ public class UserInteraction {
         List<LottoRank> ranks = new ArrayList<>(winningCount.keySet());
         ranks.sort(LottoRank::compare);
         ranks.forEach(r -> {
-            formatWinningResult(r, winningCount.getOrDefault(r, 0));
+            System.out.println(formatWinningResult(r, winningCount.getOrDefault(r, 0)));
         });
     }
 
@@ -74,6 +77,12 @@ public class UserInteraction {
     }
 
     public static void printRateOfReturn(double rateOfReturn) {
-        System.out.println(RATE_OF_RETURN_PREFIX + String.format("%.2f", rateOfReturn) + RATE_OF_RETURN_SUFFIX);
+        System.out.println(RATE_OF_RETURN_PREFIX +
+                getPercentRepresentation(rateOfReturn) +
+                RATE_OF_RETURN_SUFFIX);
+    }
+
+    private static String getPercentRepresentation(double input) {
+        return formatter.format(input * 100);
     }
 }

@@ -14,13 +14,13 @@ import lotto.Lotto.Rank;
 
 public class LottoService {
     private final int LOTTO_PRICE = 1000;
-    public int checkLottoNumber(String purchasePrice) {
+    public int checkLottoAmount(String purchasePrice) {
         isPurchasePriceCorrectUnit(purchasePrice);
         return convertToInt(purchasePrice) / LOTTO_PRICE;
     }
 
-    public List<Lotto> generateLottos(int lottoPurchasePrice, List<Lotto> lottos) {
-        IntStream.range(0,lottoPurchasePrice)
+    public List<Lotto> generateLottos(int lottoAmount, List<Lotto> lottos) {
+        IntStream.range(0,lottoAmount)
                 .forEach(i -> lottos.add(generateLotto()));
         return lottos;
     }

@@ -41,4 +41,12 @@ class LottoTest {
         assertThat(lotto.getSortedNumbers()).isEqualTo((List.of(5, 6, 7, 8, 9, 10)));
     }
 
+    @DisplayName("로또는 다른 로또와 겹치는 숫자를 반환한다.")
+    @Test
+    void getHowManySameNumbers(){
+        Lotto lotto = new Lotto(List.of(5,6,7,8,9,10));
+        Lotto compare = new Lotto(List.of(5,6,7,11,12,13));
+        assertThat(lotto.getHowManySameNumbers(compare)).isEqualTo(3);
+    }
+
 }

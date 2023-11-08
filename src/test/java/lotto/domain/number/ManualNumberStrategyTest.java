@@ -42,4 +42,12 @@ public class ManualNumberStrategyTest {
 
         assertThrows(IllegalArgumentException.class, () -> new ManualNumberStrategy(invalidInput));
     }
+
+    @DisplayName("로또 입력 값에 음수가 있을 경우 예외가 발생한다.")
+    @Test
+    void testLottoNumberWithNegativeNumber() {
+        String invalidInput = "-1,-2,3,4,5,6";
+
+        assertThrows(IllegalArgumentException.class, () -> new ManualNumberStrategy(invalidInput));
+    }
 }

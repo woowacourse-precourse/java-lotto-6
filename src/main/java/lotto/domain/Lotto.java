@@ -17,7 +17,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLottoBallCount(numbers);
         validateNumberRange(numbers);
         validateDuplicateNumber(numbers);
 
@@ -25,7 +25,7 @@ public class Lotto {
     }
 
     public static Lotto of(List<Integer> numbers) {
-        validate(numbers);
+        validateLottoBallCount(numbers);
         validateNumberRange(numbers);
         validateDuplicateNumber(numbers);
 
@@ -36,8 +36,8 @@ public class Lotto {
         consumer.accept(numbers);
     }
 
-    public void contain(int number) {
-        if (numbers.contains(number)) {
+    public void contain(int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스번호와 당첨번호는 같을 수 없습니다.");
         }
     }
@@ -48,7 +48,7 @@ public class Lotto {
                 .count();
     }
 
-    public boolean contains(Integer lottoNumber) {
+    private boolean contains(Integer lottoNumber) {
         return numbers.contains(lottoNumber);
     }
 
@@ -56,7 +56,7 @@ public class Lotto {
         return bonusBall.contains(numbers);
     }
 
-    private static void validate(List<Integer> numbers) {
+    private static void validateLottoBallCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 유효한 갯수의 로또 번호가 필요합니다.");
         }

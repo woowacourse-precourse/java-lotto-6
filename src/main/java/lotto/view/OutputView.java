@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -44,6 +45,7 @@ public class OutputView {
     }
 
     private static void printReturnRate(WinningStatistics winningStatistics) {
-        println("총 수익률은 " + winningStatistics.getReturnRate() + "%입니다.");
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.#");
+        println("총 수익률은 " + decimalFormat.format(winningStatistics.getReturnRate())  + "%입니다.");
     }
 }

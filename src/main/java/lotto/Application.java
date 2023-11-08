@@ -12,7 +12,7 @@ public class Application {
 
         // Calculate results
         LottoResultCalculator resultCalculator = new LottoResultCalculator();
-        Map<Integer, Integer> results = resultCalculator.calculateResults(game.getLottos(), game.getWinningNumbers(), game.getBonusNumber());
+        Map<Prize, Integer> results = resultCalculator.calculateResults(game.getLottos(), game.getWinningNumbers(), game.getBonusNumber());
 
         // Print results
         LottoRateOfReturnCalculator.printResults(results);

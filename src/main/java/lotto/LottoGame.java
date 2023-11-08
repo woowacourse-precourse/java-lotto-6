@@ -1,9 +1,5 @@
 package lotto;
 
-import lotto.InputHandler;
-import lotto.Lotto;
-import lotto.RandomNumbersGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 

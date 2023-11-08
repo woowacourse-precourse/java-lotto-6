@@ -51,5 +51,10 @@ public class OutputView {
         System.out.println(FIVE_MATCHING_BONUS_NOTMATCHING + winningCount.getOrDefault(WinningLotto.FIFTH_WITH_BONUS, 0) + "개");
         System.out.println(SIX_MATCHING_NUMBER + winningCount.getOrDefault(WinningLotto.SIXTH, 0) + "개");
 	}
+	
+	public void printTheRateOfReturnOfLotto(String theRateOfReturnOfLotto) {
+		System.out.println(TOTAL_INCOME + theRateOfReturnOfLotto + PERCENTAGE);
+	}
+	
 }
 

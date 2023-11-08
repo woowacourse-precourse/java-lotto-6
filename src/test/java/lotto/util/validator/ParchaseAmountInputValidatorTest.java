@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class ParchaseAmountInputValidatorTest {
     private static final InputValidator parchaseAmountInputValidator = new ParchaseAmountInputValidator();
 
-    @DisplayName("보너스 번호가 숫자가 아닐 경우 예외가 발생한다.")
+    @DisplayName("구매 금액이 숫자가 아닐 경우 예외가 발생한다.")
     @Test
     void parchaseAmountIsNotNumeric() {
         //given
@@ -21,5 +21,16 @@ class ParchaseAmountInputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.PARCHASE_AMOUNT_IS_NOT_NUMERIC.getMessage());
     }
 
-    
+    @DisplayName("구매 금액이 1000으로 나누어 떨어지지 않을 경우 예외가 발생한다")
+    @Test
+    void parchaseAmountIsNotDivisibleByThousand() {
+        //given
+        String parchaseAmount = "1234";
+
+        //when,then
+        Assertions.assertThatThrownBy(() -> parchaseAmountInputValidator.validate(parchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.PARCHASE_AMOUNT_IS_NOT_DIVISIBLE_BY_THOUSAND.getMessage());
+    }
+
+
 }

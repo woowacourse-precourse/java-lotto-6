@@ -15,22 +15,27 @@ public class ResultView {
 
     public void displayWinningStatistics(List<PrizeRank> prizeRanks) {
         System.out.println("\n당첨 통계\n---");
-
         Map<PrizeRank, Integer> countByRank = initializePrizeRankMap();
 
         for (PrizeRank rank : prizeRanks) {
             countByRank.put(rank, countByRank.getOrDefault(rank, 0) + 1);
         }
 
-        // PrizeRank.values()는 Enum의 순서대로 반환하므로, 3등부터 1등 순으로 반복합니다.
-        PrizeRank[] ranks = PrizeRank.values();
-        Arrays.sort(ranks, Comparator.comparingInt(PrizeRank::getMatchingNumbers));
+        PrizeRank[] orderedRanks = {
+                PrizeRank.FIFTH,  // 3개 일치
+                PrizeRank.FOURTH, // 4개 일치
+                PrizeRank.THIRD,  // 5개 일치
+                PrizeRank.SECOND, // 5개 일치, 보너스 볼 일치
+                PrizeRank.FIRST   // 6개 일치
+        };
 
-        for (PrizeRank rank : ranks) {
-            if (rank != PrizeRank.NONE) {
-                String message = getMessageForRank(rank);
-                System.out.println(message + " - " + countByRank.get(rank) + "개");
+        for (PrizeRank rank : orderedRanks) {
+            String prizeMoneyFormatted = String.format("%,d", rank.getPrizeMoney());
+            String message = rank.getMatchingNumbers() + "개 일치 (" + prizeMoneyFormatted + "원)";
+            if (rank == PrizeRank.SECOND) {
+                message = "5개 일치, 보너스 볼 일치 (" + prizeMoneyFormatted + "원)";
             }
+            System.out.println(message + " - " + countByRank.get(rank) + "개");
         }
     }
 
@@ -40,13 +45,6 @@ public class ResultView {
             countByRank.put(rank, 0);
         }
         return countByRank;
-    }
-
-    private String getMessageForRank(PrizeRank rank) {
-        if (rank == PrizeRank.SECOND) {
-            return rank.getMatchingNumbers() + "개 일치, 보너스 볼 일치 (" + rank.getPrizeMoney() + "원)";
-        }
-        return rank.getMatchingNumbers() + "개 일치 (" + rank.getPrizeMoney() + "원)";
     }
 
     public void displayRateOfReturn(double rateOfReturn) {

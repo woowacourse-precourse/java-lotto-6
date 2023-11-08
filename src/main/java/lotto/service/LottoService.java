@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.model.PrizeRank;
 import lotto.model.WinningLotto;
+import lotto.util.LottoUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,16 +12,9 @@ public class LottoService {
 
     public List<Lotto> purchaseLottos(int purchaseLottos ) {
         int howManyLotto = purchaseLottos  / 1000;
-        return generateLottoPaper(howManyLotto);
+        return LottoUtils.generateLottoPaper(howManyLotto);
     }
-    private static List<Lotto> generateLottoPaper(int howManyLotto) {
-        List<Lotto> lottoPapers = new ArrayList<>();
-        for (int i = 0; i < howManyLotto; i++) {
-            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottoPapers.add(new Lotto(randomNumbers));
-        }
-        return lottoPapers;
-    }
+
 
     public WinningLotto generateWinningLotto(List<Integer> winNumbers, int bonusNumbers) {
         Lotto winningNumber = new Lotto(winNumbers);

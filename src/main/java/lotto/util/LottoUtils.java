@@ -1,5 +1,9 @@
 package lotto.util;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import lotto.model.Lotto;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,12 +29,12 @@ public class LottoUtils {
         return true;
     }
 
-    public static List<Integer> sortLottoNumbers(List<Integer> numbers) {
-        return numbers.stream()
-                .sorted()
-                .collect(Collectors.toList());
+    public static List<Lotto> generateLottoPaper(int howManyLotto) {
+        List<Lotto> lottoPapers = new ArrayList<>();
+        for (int i = 0; i < howManyLotto; i++) {
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottoPapers.add(new Lotto(randomNumbers));
+        }
+        return lottoPapers;
     }
-
-
-
 }

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.util.LottoUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +14,8 @@ public class InputView {
 
     public List<Integer> promptForWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String[] winNumberString = Console.readLine().trim().split(",");
-        List<Integer> winNumbers = new ArrayList<>();
-        for (String numberStr : winNumberString) {
-            winNumbers.add(Integer.parseInt(numberStr.trim()));
-        }
-        return winNumbers;
+        String input = Console.readLine().trim();
+        return LottoUtils.convertStringToLottoNumberList(input); // LottoUtils 메소드 사용
     }
 
     public int promptForBonusNumber() {

@@ -9,6 +9,7 @@ import lotto.model.domain.LottoTicket;
 import lotto.model.domain.MarginCalculator;
 import lotto.model.domain.WinningConfirm;
 import lotto.model.domain.WinningNumbers;
+import lotto.model.domain.constants.LottoGameConstants;
 import lotto.model.domain.constants.PrizeConstants;
 import lotto.view.GamePrinter;
 
@@ -41,7 +42,7 @@ public class LottoController {
         gamePrinter.printWinningStats();
         PrizeConstants[] prizeConstantsValues = PrizeConstants.values();
         Map<PrizeConstants, Integer> prizeConstantsIntegerMap = winningConfirm.getWinningCounts();
-        for (int i = 3; i < prizeConstantsValues.length; i++) {
+        for (int i = LottoGameConstants.START_PRIZE.getValue(); i < prizeConstantsValues.length; i++) {
             if (prizeConstantsValues[i] == PrizeConstants.FIVE_MATCH_WITH_BONUS) {
                 gamePrinter.printMatchBonusStats(
                         i,

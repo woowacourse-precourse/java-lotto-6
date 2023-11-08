@@ -14,13 +14,13 @@ public class Store {
 
     private void validate(int price) {
         if (isLowerThanMinimumPrice(price)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 최소 금액보다는 작은값을 입력하셨습니다.");
         }
-        if (isDivisibleByMinimumPrice(price)) {
-            throw new IllegalArgumentException();
+        if (isNotDivisibleByMinimumPrice(price)) {
+            throw new IllegalArgumentException("[ERROR] 최소 금액으로 나누어 떨어지는 값을 입력해주세요.");
         }
         if (isHigherThanMaxInput(price)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 최대 금액보다 큰 값을 입력하셨습니다.");
         }
     }
 
@@ -28,7 +28,7 @@ public class Store {
         return price < LOTTO_PRICE;
     }
 
-    private boolean isDivisibleByMinimumPrice(int price) {
+    private boolean isNotDivisibleByMinimumPrice(int price) {
         return price % LOTTO_PRICE != 0;
     }
 

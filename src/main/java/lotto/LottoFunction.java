@@ -37,5 +37,14 @@ public class LottoFunction {
         return output;
     }
 
+    List<Prize> getPrizes(List<Lotto> lottos, LuckyNumber luckyNumber) {
+        List<Prize> prizes = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            Prize prize = lotto.compare(luckyNumber);
+            prizes.add(prize);
+        }
+        return prizes;
+    }
+
 
 }

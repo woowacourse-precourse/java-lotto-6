@@ -1,8 +1,9 @@
 package lotto.domain;
 
-import static lotto.constant.GameRule.*;
+import static lotto.constant.GameRule.LOTTO_MIN_NUMBER;
+import static lotto.constant.GameRule.LOTTO_MAX_NUMBER;
+import static lotto.constant.GameRule.LOTTO_SIZE;
 
-import java.util.Collections;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;

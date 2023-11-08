@@ -1,7 +1,11 @@
 package lotto.validation;
 
-import static lotto.constant.GameRule.*;
-import static lotto.exception.ExceptionMessage.*;
+import static lotto.constant.GameRule.LOTTO_SIZE;
+import static lotto.constant.GameRule.LOTTO_MIN_NUMBER;
+import static lotto.constant.GameRule.LOTTO_MAX_NUMBER;
+import static lotto.exception.ExceptionMessage.LOTTO_DUPLICATED_ERROR;
+import static lotto.exception.ExceptionMessage.LOTTO_INVALID_SIZE;
+import static lotto.exception.ExceptionMessage.LOTTO_OUT_OF_RANGE_ERROR;
 
 import java.util.List;
 

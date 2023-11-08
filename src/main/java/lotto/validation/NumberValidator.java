@@ -1,6 +1,7 @@
 package lotto.validation;
 
-import static lotto.exception.ExceptionMessage.*;
+import static lotto.exception.ExceptionMessage.INVALID_NUMBER;
+import static lotto.exception.ExceptionMessage.POSITIVE_NUMBER_ERROR;
 
 public class NumberValidator {
 	public static void validateIntType(String input) {

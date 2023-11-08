@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.constant.GameRule.*;
-import static lotto.exception.ExceptionMessage.*;
+import static lotto.constant.GameRule.MONEY_UNIT;
+import static lotto.exception.ExceptionMessage.MONEY_UNIT_ERROR;
 
 import lotto.validation.NumberValidator;
 

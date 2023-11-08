@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.constant.GameRule.*;
+import static lotto.constant.GameRule.WINNING_INPUT_DELIMITER;
 
 import java.util.Arrays;
 import java.util.List;

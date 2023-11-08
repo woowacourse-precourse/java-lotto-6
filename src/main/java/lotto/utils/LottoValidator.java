@@ -13,14 +13,14 @@ public class LottoValidator {
     public static void validateOutOfRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (isOutOfRange(number)) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(MessageConstant.LOTTO_OUT_OF_RANGE);
             }
         }
     }
 
     public static void validateOutOfRange(int number) {
         if (isOutOfRange(number)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(MessageConstant.LOTTO_OUT_OF_RANGE);
         }
     }
 

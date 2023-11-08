@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.utils.LottoValidator;
+import lotto.utils.MessageConstant;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,13 +24,13 @@ public class Lotto {
 
     private void validateSizeOfNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(MessageConstant.LOTTO_SIZE);
         }
     }
 
     public void validateDuplication(List<Integer> numbers) {
         if (hasDuplication(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(MessageConstant.DUPLICATION);
         }
     }
 

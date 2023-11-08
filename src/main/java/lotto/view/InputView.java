@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.utils.MessageConstant;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -33,7 +34,7 @@ public class InputView {
         try {
             return Integer.parseInt(string.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(MessageConstant.INPUT_NUMBER);
         }
     }
 }

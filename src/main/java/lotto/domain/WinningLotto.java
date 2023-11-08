@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.utils.LottoValidator;
+import lotto.utils.MessageConstant;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class WinningLotto {
     private void validateDuplication(int bonus) {
         boolean hasDuplication = winningLotto.hasBonusNumber(bonus);
         if (hasDuplication) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(MessageConstant.DUPLICATION);
         }
     }
 

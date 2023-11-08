@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.utils.MessageConstant;
+
 public class Money {
     private static final int MIN_MONEY = 0;
     private static final int CURRENCY = 1000;
@@ -18,7 +20,7 @@ public class Money {
 
     private void validateMultipleOf1000(int money) {
         if (!isMultipleOf1000(money)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(MessageConstant.MONEY_OUT_OF_RANGE);
         }
     }
 
@@ -28,7 +30,7 @@ public class Money {
 
     private void validateOufOfRange(int money) {
         if (isOutOfRange(money)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(MessageConstant.MONEY_OUT_OF_RANGE);
         }
     }
 

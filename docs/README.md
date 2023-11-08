@@ -19,8 +19,7 @@
     - 입력 세트의 숫자 개수가 정확히 6개가 아니면 에러메세지를 보낸다. Lotto#validate
     - 당첨 번호의 각 숫자가 1~45 범위 밖에 있는지 확인한다. Lotto#loopCheckNumberRange
         - 한 숫자가 1~45 범위 밖에 있으면 에러메세지를 보낸다. Lotto#checkNumberRange
-    - 당첨 번호의 각 숫자가 중복되었는지 확인하다. Lotto#loopCheckSameNumber
-        - 한 숫자가 중복될 경우, 에러메세지를 보낸다. Lotto#checkSameNumber
+    - 당첨 번호의 각 숫자가 중복되었는지 확인하다. Lotto#checkSameNumber
 
 - 보너스 번호로 숫자 한개를 입력받되, 에러메세지가 뜨면 다시 입력받는다. LottoManger#insertBonusNumber
     - 숫자가 1~45 범위 밖이면 에러메세지를 보낸다. LottoManager#checkBonusNumberRange

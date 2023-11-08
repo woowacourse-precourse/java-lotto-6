@@ -11,6 +11,9 @@ public class LottoResult {
     private final BigDecimal totalPrize;
     private final BigDecimal profitPercent;
 
+    private final static int PROFIT_PERCENT_DIGITS_AFTER_DECIMAL_POINT = 5;
+    private final static BigDecimal FOR_PERCENT = BigDecimal.valueOf(100);
+
     public LottoResult(Map<LottoPrize, BigDecimal> lottoRank, BigDecimal purchaseAmount) {
         this.lottoRank = lottoRank;
         this.totalPrize = calculateTotalPrize(lottoRank);
@@ -36,7 +39,8 @@ public class LottoResult {
     }
 
     private static BigDecimal calculateProfitPercent(BigDecimal totalPrize, BigDecimal purchaseAmount) {
-        return totalPrize.multiply(BigDecimal.valueOf(100)).divide(purchaseAmount, 5, RoundingMode.DOWN);
+        return totalPrize.multiply(FOR_PERCENT)
+                .divide(purchaseAmount, PROFIT_PERCENT_DIGITS_AFTER_DECIMAL_POINT, RoundingMode.DOWN);
     }
 
 }

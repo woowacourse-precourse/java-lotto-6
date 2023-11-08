@@ -12,6 +12,9 @@ public class InputController {
         try {
             String inputPurchaseCost = InputTool.readLineByInputTool();
             return new Cost(inputPurchaseCost);
+        } catch (OutOfMemoryError e) {
+            OutputView.outputFormatting("너무 많음 금액을 입력하였습니다");
+            return inputPurchaseCost();
         } catch (IllegalArgumentException e) {
             OutputView.outputFormatting(e.getMessage().toString());
             return inputPurchaseCost();

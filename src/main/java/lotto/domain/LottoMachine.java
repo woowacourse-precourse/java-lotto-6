@@ -49,4 +49,13 @@ public class LottoMachine {
         String winningNumberText = readLine();
         return winningNumberText;
     }
+
+    public Lotto textToLotto(String winningNumberText) {
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String number : winningNumberText.split(",")) {
+            winningNumbers.add(Integer.parseInt(number));
+        }
+        Lotto winningLotto = new Lotto(winningNumbers);
+        return winningLotto;
+    }
 }

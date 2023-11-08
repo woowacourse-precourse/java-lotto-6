@@ -31,4 +31,16 @@ public class ValidatorTest {
     void verifyPurchaseAmountByIndivisibleToThousand() {
         assertThat(Validator.verifyPurchaseAmount("1234")).isFalse();
     }
+
+    @DisplayName("당첨 번호가 공백이라면 예외가 발생하고 false를 반환한다.")
+    @Test
+    void verifyWinNumberByEmptyOrBlank() {
+        assertThat(Validator.verifyWinNumber("")).isFalse();
+    }
+
+    @DisplayName("당첨 번호에 문자가 포함되어 있다면 예외가 발생하고 false를 반환한다.")
+    @Test
+    void verifyWinNumberByIncludeCharacter() {
+        assertThat(Validator.verifyWinNumber("a,1,2,3,4,5")).isFalse();
+    }
 }

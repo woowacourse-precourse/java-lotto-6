@@ -10,6 +10,13 @@ public class Lotto {
         lottoNumbers = LottoNumber.getLottoNumbers(numbers);
     }
 
+    public int getCorrectCount(Lotto anotherLotto) {
+        return (int) lottoNumbers.stream().filter(anotherLotto::contains).count();
+    }
+
+    public boolean contains(LottoNumber lottoNumber) {
+        return lottoNumbers.contains(lottoNumber);
+    }
 
     private void validate(List<Integer> numbers) {
         validateNumberCount(numbers);

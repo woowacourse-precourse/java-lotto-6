@@ -27,4 +27,8 @@ public class Bonus {
             throw new IllegalArgumentException(WRONG_RANGE_ERROR);
         }
     }
+
+    public int getNumber() {
+        return number;
+    }
 }

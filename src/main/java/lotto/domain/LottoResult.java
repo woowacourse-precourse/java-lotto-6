@@ -11,7 +11,7 @@ public record LottoResult(Map<LottoPrizes, Long> prizesAndWinCount) {
     public Money getTotalRevenue() {
         return Arrays.stream(LottoPrizes.values())
                 .map(this::getRevenue)
-                .reduce(Money.ZERO, Money::sum);
+                .reduce(Money.ZERO_MONEY, Money::sum);
     }
 
     private Money getRevenue(final LottoPrizes lottoPrizes) {

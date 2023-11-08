@@ -1,11 +1,10 @@
 package lotto.domain.money;
 
 import static lotto.domain.constant.DomainConstant.HUNDRED;
-
-import lotto.domain.constant.DomainConstant;
+import static lotto.domain.constant.DomainConstant.ZERO;
 
 public record Money(long amount) {
-    public static final Money ZERO = new Money(0);
+    public static final Money ZERO_MONEY = new Money(0);
 
     public Money add(final long money) {
         return new Money(amount + money);
@@ -24,7 +23,7 @@ public record Money(long amount) {
     }
 
     public boolean cantDividedBy(final Money other) {
-        return amount % other.amount() != DomainConstant.ZERO;
+        return amount % other.amount() != ZERO;
     }
 
     public double getPercentageOf(Money other) {

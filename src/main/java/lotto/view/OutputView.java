@@ -2,8 +2,8 @@ package lotto.view;
 
 import java.text.DecimalFormat;
 import java.util.List;
-import lotto.model.Policy;
-import lotto.model.Result;
+import lotto.domain.Policy;
+import lotto.domain.Result;
 
 public class OutputView {
     private static final String BUDGET_INPUT_DESC = "구입금액을 입력해 주세요.";

@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain;
 
 public class Budget {
     private static final int MINIMUN_BUDGET_UNIT = 1000;

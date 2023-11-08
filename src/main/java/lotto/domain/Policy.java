@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain;
 
 public enum Policy {
     FAIL(0, 0, "2개 이하 일치"),

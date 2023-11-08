@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain;
 
 public class LottoAnswer {
     private final Lotto winningNumbers;

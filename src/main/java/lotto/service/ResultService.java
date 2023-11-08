@@ -2,11 +2,11 @@ package lotto.service;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.LottoAnswer;
-import lotto.model.Policy;
-import lotto.model.Result;
-import lotto.model.User;
+import lotto.domain.Lotto;
+import lotto.domain.LottoAnswer;
+import lotto.domain.Policy;
+import lotto.domain.Result;
+import lotto.domain.User;
 
 public class ResultService {
     public Result addRankResult(User user, LottoAnswer lottoAnswer) {

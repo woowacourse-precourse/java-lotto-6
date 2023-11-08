@@ -24,9 +24,9 @@ public class LottoGameView {
     }
 
     private void validatePurchaseAmountInput(String input) {
-        InputValidator.validateIsNotBlank(input);
-        InputValidator.validateIsNumber(input);
-        InputValidator.validateIsMultipleOf(input, LOTTERY_PRICE);
+        Validator.validateIsNotBlank(input);
+        Validator.validateIsNumber(input);
+        Validator.validateIsMultipleOf(input, LOTTERY_PRICE);
     }
 
     public void inputWinningNumbers(WinningNumbers winningNumbers) {
@@ -46,9 +46,9 @@ public class LottoGameView {
     }
 
     private void validateWinningNumbersInput(String input) {
-        InputValidator.validateIsNotBlank(input);
+        Validator.validateIsNotBlank(input);
         String[] split = input.split(",");
-        InputValidator.validateIsNumber(split);
+        Validator.validateIsNumber(split);
     }
 
     public void inputBonusNumbers(WinningNumbers winningNumbers) {
@@ -66,8 +66,8 @@ public class LottoGameView {
     }
 
     private void validateBonusNumberInput(String input) {
-        InputValidator.validateIsNotBlank(input);
-        InputValidator.validateIsNumber(input);
+        Validator.validateIsNotBlank(input);
+        Validator.validateIsNumber(input);
     }
 
     public void printLotteryAmount(int amount) {

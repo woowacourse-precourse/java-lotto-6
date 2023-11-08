@@ -3,7 +3,8 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.LottoValidator.*;
+import static lotto.Constants.*;
+import static lotto.Validator.*;
 
 public class WinningNumbers {
 
@@ -20,11 +21,9 @@ public class WinningNumbers {
     }
 
     private void validateNumbers(List<Integer> numbers) {
-        validateLotteryLength(numbers);
-        for (Integer number : numbers) {
-            validateNumberInRange(number);
-        }
-        validateUniqueNumber(numbers);
+        validateListLength(numbers, LOTTERY_DIGIT_LENGTH);
+        validateNumberInRange(numbers, LOTTERY_MIN_NUMBER, LOTTERY_MAX_NUMBER);
+        validateIsElementUnique(numbers);
     }
 
     public int getBonus() {
@@ -37,9 +36,9 @@ public class WinningNumbers {
     }
 
     private void validateBonus(Integer bonus) {
-        validateNumberInRange(bonus);
+        validateNumberInRange(bonus, LOTTERY_MIN_NUMBER, LOTTERY_MAX_NUMBER);
         ArrayList<Integer> numbers = new ArrayList<>(this.numbers);
         numbers.add(bonus);
-        validateUniqueNumber(numbers);
+        validateIsElementUnique(numbers);
     }
 }

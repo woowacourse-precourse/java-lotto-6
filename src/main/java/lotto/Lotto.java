@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.LottoValidator.validateLotteryLength;
-import static lotto.LottoValidator.validateUniqueNumber;
+import static lotto.Constants.LOTTERY_DIGIT_LENGTH;
+import static lotto.Validator.validateIsElementUnique;
+import static lotto.Validator.validateListLength;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,8 +19,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        validateLotteryLength(numbers);
-        validateUniqueNumber(numbers);
+        validateListLength(numbers, LOTTERY_DIGIT_LENGTH);
+        validateIsElementUnique(numbers);
     }
 
     public Prize check(WinningNumbers winningNumbers) {

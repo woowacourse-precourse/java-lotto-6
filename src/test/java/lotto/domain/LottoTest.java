@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,11 +26,24 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    private Lotto lotto;
+    private static final int COUNT = 5;
+    private static final int BONUS = 6;
+
+    @BeforeEach
+    void setUp() {
+        lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    }
 
     @Test
     void 로또_번호_비교() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int compare = lotto.compare(List.of(1, 2, 3, 7, 8, 9));
-        assertThat(compare).isEqualTo(3);
+        int compare = lotto.compare(List.of(1, 2, 3, 4, 5, 45));
+        assertThat(compare).isEqualTo(COUNT);
+    }
+
+    @Test
+    void 로또_번호_비교_결과() {
+        Rank rank = lotto.compareResult(COUNT, BONUS);
+        assertThat(rank).isEqualTo(Rank.SECOND_PLACE);
     }
 }

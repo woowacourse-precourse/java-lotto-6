@@ -36,4 +36,17 @@ public enum Ranking {
         return null;
     }
 
+    public String getResultFormat() {
+        String formattedMoney = String.format("%,d", price);
+        StringBuilder stringBuilder = new StringBuilder(matchedCount + "개 일치");
+
+        if (this == Ranking.SECOND) {
+            stringBuilder.append(", 보너스 볼 일치");
+        }
+
+        stringBuilder
+                .append(" (").append(formattedMoney).append("원) ");
+
+        return stringBuilder.toString();
+    }
 }

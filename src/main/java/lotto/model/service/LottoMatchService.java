@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.service;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -7,6 +7,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import lotto.model.entity.Lotto;
 import lotto.model.entity.Ranking;
+import lotto.utils.Constants;
 
 public class LottoMatchService {
 
@@ -36,7 +37,7 @@ public class LottoMatchService {
     }
 
     private double computeRevenueRate(long amountSpent, long totalWinnings) {
-        double revenueRate = (double) totalWinnings / amountSpent * 100;
-        return Math.round(revenueRate * 100.0) / 100.0;
+        double revenueRate = (double) totalWinnings / amountSpent * Constants.PERCENT_MULTIPLIER;
+        return Math.round(revenueRate * Constants.ROUNDING_FACTOR) / Constants.ROUNDING_FACTOR;
     }
 }

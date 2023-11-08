@@ -9,12 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class WinningServiceImplTest {
-//    - [X] 중복된 숫자 입력 시 예외 발생 - 이미 Lotto의 validateDuplicate으로 구현함.
-//            - [X] 숫자 입력 중 공백이 있다면 예외 발생 - 이미 Lotto의 validate() 가 역할을 하고 있다.
-//            - 중간에 2,,4 와 같은 입력
-//      - 처음에 ,4,2 와 같은 입력
-//      - 마지막에 5, 와 같은 입력
-//    - [X] 문자 입력 시 예외 발생
+
     WinningServiceImpl winningService = new WinningServiceImpl();
 
     @Test
@@ -62,7 +57,6 @@ class WinningServiceImplTest {
 
         // When
         // Then
-
         assertThatThrownBy(() -> winningService.createWinningLotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }

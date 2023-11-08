@@ -60,4 +60,22 @@ class LottoControllerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
     }
+
+    //            - [X] 숫자 입력 중 공백이 있다면 예외 발생 - 이미 Lotto의 validate() 가 역할을 하고 있다.
+//            - 중간에 2,,4 와 같은 입력
+//      - 처음에 ,4,2 와 같은 입력
+//      - 마지막에 5, 와 같은 입력
+//    - [X] 문자 입력 시 예외 발생
+    @Test
+    @DisplayName("당첨 번호 입력 시 맨앞 공백 예외 발생")
+    void winningNumberFirstSpace() {
+        // Given
+        String winningNumbers = ",2,3,4,5,6";
+
+        // When
+        // Then
+        assertThatThrownBy(() -> lottoController.createWinningNumber(winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
+    }
 }

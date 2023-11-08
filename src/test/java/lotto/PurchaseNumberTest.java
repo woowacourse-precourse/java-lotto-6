@@ -38,7 +38,7 @@ public class PurchaseNumberTest {
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("구매 번호에 중복이 있으면 예외가 발생한다.")
+    @DisplayName("구입 번호에 중복이 있으면 예외가 발생한다.")
     @Test
     public void purchaseNumberDuplicated() {
         assertThatThrownBy(

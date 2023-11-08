@@ -1,5 +1,6 @@
 package domain;
 
+import dto.Bill;
 import exception.NotCorrectUnitAmountException;
 import exception.NotPositivePurchaseAmountException;
 import exception.OverMaxPurchaseAmountException;
@@ -8,12 +9,13 @@ public class LottoTicketsPurchasingMachine {
     private static final Amount MAX_PURCHASE_AMOUNT = new Amount(2_000_000_000);
     private static final Amount LOTTO_UNIT_AMOUNT = new Amount(1_000);
 
-    public int purchaseOfLottoTickets(int amount) {
+    public Bill purchaseOfLottoTickets(int amount) {
         Amount purchaseAmount = new Amount(amount);
         validateZeroAmount(purchaseAmount);
         validateMaxPurchaseAmount(purchaseAmount);
         validatePurchaseAmountWithUnitAmount(purchaseAmount);
-        return (int) purchaseAmount.calculateQuotientByUnitAmount(LOTTO_UNIT_AMOUNT);
+        int ticketSize = (int) purchaseAmount.calculateQuotientByUnitAmount(LOTTO_UNIT_AMOUNT);
+        return Bill.createBill(purchaseAmount, ticketSize);
     }
 
     private void validateZeroAmount(Amount purchaseAmount) {

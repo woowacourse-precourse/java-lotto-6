@@ -26,6 +26,7 @@ public class LottoController {
 
         List<Integer> winningResult = analyzeWinningResult(userLottos, answerLotto, bonusNumber);
         String profitRate = analyzeProfit(userPayment, winningResult);
+        printWinningResult(winningResult, profitRate);
     }
 
     private List<Integer> analyzeWinningResult(Lottos userLottos, Lotto answerLotto, BonusNumber bonusNumber) {
@@ -35,6 +36,12 @@ public class LottoController {
     private String analyzeProfit(Payment payment, List<Integer> winningResult) {
         int totalProfit = lottoService.calculateTotalWinningAmount(winningResult);
         return lottoService.calculateTotalProfitRate(payment.providePaymentStatus().get(0), totalProfit);
+    }
+
+    private void printWinningResult(List<Integer> winningResult, String profitRate) {
+        List<String> calculateEachWinningTimes= lottoService.calculateEachWinningTimes(winningResult);
+        outputView.printLottoWinningResult(calculateEachWinningTimes);
+        outputView.printTotalProfitRate(profitRate);
     }
 
     private void printBuyingResult(Payment userPayment, Lottos userLottos) {

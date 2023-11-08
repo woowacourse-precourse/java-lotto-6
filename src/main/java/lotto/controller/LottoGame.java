@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoMachine;
 import lotto.domain.Player;
 import lotto.domain.WinningLottoNumber;
 import lotto.exception.InputException;
@@ -19,6 +20,7 @@ public class LottoGame {
 
     public static void openStore() {
         beforeGame();
+        startGame();
     }
 
     private static void beforeGame() {
@@ -33,6 +35,46 @@ public class LottoGame {
         } catch (InputException exception) {
             OutputView.printErrorMessage(exception.getMessage());
             readPurchaseAmount();
+        }
+    }
+
+    private static void startGame() {
+        buyLotto();
+        makeWinLottoNumbers();
+    }
+
+    private static void buyLotto() {
+        int gameCount = player.getGameCount();
+
+        playerLottos = LottoMachine.purchaseLotto(gameCount);
+        OutputView.printPurchasedResult(playerLottos, gameCount);
+    }
+
+    private static void makeWinLottoNumbers() {
+        Lotto winLotto = readWinNumber();
+
+        winNumbers = makeWinLottoNumberWithBonus(winLotto);
+    }
+
+    private static WinningLottoNumber makeWinLottoNumberWithBonus(Lotto winNumbers) {
+        try {
+            OutputView.askBonusNumber();
+            int bonusNumber = ConvertInput.makeBonusNumberToInt(InputView.readInput());
+            return WinningLottoNumber.of(winNumbers, bonusNumber);
+        } catch (InputException exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+            return makeWinLottoNumberWithBonus(winNumbers);
+        }
+    }
+
+    private static Lotto readWinNumber() {
+        try {
+            OutputView.askLottoWinningNumber();
+            List<Integer> winLottoNumbers = ConvertInput.makeLottoNumberToList(InputView.readInput());
+            return new Lotto(winLottoNumbers);
+        } catch (InputException exception) {
+            OutputView.printErrorMessage(exception.getMessage());
+            return readWinNumber();
         }
     }
 }

@@ -1,13 +1,13 @@
 package lotto;
 
+import static lotto.Application.LOTTO_LENGTH;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-
 	private final List<Integer> lottoNumbers;
-	private final int LOTTO_LENGTH = 6;
 
 	public Lotto(List<Integer> numbers) {
 		validateSize(numbers);

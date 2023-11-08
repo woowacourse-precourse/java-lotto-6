@@ -1,5 +1,7 @@
 package lotto.service;
 
+import lotto.domain.lotto.Lottos;
+import lotto.domain.money.Money;
 import lotto.view.OutputView;
 
 public class OutputService {
@@ -11,6 +13,10 @@ public class OutputService {
 
     public void purchaseAmount() {
         outputView.purchaseAmount();
+    }
+
+    public void lottos(Money money, Lottos lottos) {
+        outputView.lottos(money.ticketCount(), lottos.printLottos());
     }
 
     public void handleException(IllegalArgumentException exception) {

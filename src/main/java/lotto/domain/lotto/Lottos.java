@@ -19,4 +19,13 @@ public class Lottos {
                 })
                 .toList();
     }
+
+    public String printLottos() {
+        StringBuilder sb = new StringBuilder();
+        lottos.forEach(lotto -> {
+            sb.append(lotto.print());
+            sb.append("\n");
+        });
+        return sb.toString();
+    }
 }

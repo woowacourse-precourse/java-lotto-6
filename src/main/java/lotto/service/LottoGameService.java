@@ -24,6 +24,8 @@ public class LottoGameService {
 
     public Lottos makeLottos(Money money) {
         int ticketCount = money.ticketCount();
-        return new Lottos(ticketCount);
+        Lottos lottos = new Lottos(ticketCount);
+        outputService.lottos(money, lottos);
+        return lottos;
     }
 }

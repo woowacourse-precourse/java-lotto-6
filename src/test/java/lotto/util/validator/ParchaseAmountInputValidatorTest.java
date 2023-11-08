@@ -32,5 +32,14 @@ class ParchaseAmountInputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.PARCHASE_AMOUNT_IS_NOT_DIVISIBLE_BY_THOUSAND.getMessage());
     }
 
+    @DisplayName("구매 금액이 음수일 경우 예외가 발생한다.")
+    @Test
+    void parchaseAmountIsNotPositive() {
+        //given
+        String parchaseAmount = "-1000";
 
+        //when,then
+        Assertions.assertThatThrownBy(() -> parchaseAmountInputValidator.validate(parchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.PARCHASE_AMOUNT_IS_NOT_POSITIVE_NUMBER.getMessage());
+    }
 }

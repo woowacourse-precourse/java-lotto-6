@@ -55,6 +55,8 @@ public class Application {
     public static void winningNumbersInput (List<Integer> winningNumbers) {
         String userInput = Console.readLine();
         String[] numbers = userInput.split(",");
+        if(numbers.length>6)
+            throw new IllegalArgumentException("[ERROR] 당첨 번호 6개를 입력하여야 합니다.");
         try {
             for (String name : numbers){
                 winningNumbers.add(Integer.parseInt(name.trim()));
@@ -62,8 +64,6 @@ public class Application {
         }catch (IllegalArgumentException e){
             System.out.println("[ERROR] 당첨 번호 6개를 입력하여야 합니다.");
         }
-        if(numbers.length>6)
-            throw new IllegalArgumentException("[ERROR] 당첨 번호 6개를 입력하여야 합니다.");
 
     }
 

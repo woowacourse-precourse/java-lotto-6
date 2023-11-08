@@ -10,8 +10,9 @@ public class LottoTickets {
 
     public LottoTickets(Money money) {
         int count = money.calculateCount();
-        while (count-- > 0) {
+        while (count > 0) {
             buyLottoTicket();
+            count--;
         }
     }
 
@@ -22,5 +23,11 @@ public class LottoTickets {
 
     public List<Lotto> getLottoTickets() {
         return Collections.unmodifiableList(lottoTickets);
+    }
+
+    public void compareLottos(WinningLotto winningLotto, LottoResults lottoResults) {
+        for (Lotto lotto : lottoTickets) {
+            lottoResults.addResult(winningLotto.matchCount(lotto), winningLotto.containsBonusNumber(lotto));
+        }
     }
 }

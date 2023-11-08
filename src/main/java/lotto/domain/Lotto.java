@@ -42,7 +42,7 @@ public class Lotto {
 
     private boolean isNotInRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < LottoNumbers.MIN_RANGE.getNumber() || number > LottoNumbers.MIN_RANGE.getNumber()) {
+            if (number < LottoNumbers.MIN_RANGE.getNumber() || number > LottoNumbers.MAX_RANGE.getNumber()) {
                 return true;
             }
         }

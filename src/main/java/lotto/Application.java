@@ -23,7 +23,7 @@ public class Application {
         LottoGame lottoGame = new LottoGame();
         lottoGame.play(winningLotto, lottoTickets);
 
-        outputView.printStatistics(lottoGame.getResult());
+        outputView.printStatistics(lottoGame.getResults());
         outputView.printProfitRate(lottoGame.calculateProfitRate(money.getAmount()));
     }
 }

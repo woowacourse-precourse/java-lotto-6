@@ -8,7 +8,6 @@ import static lotto.constant.message.ErrorMessage.HAS_REMAINDER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +25,7 @@ public class LottoMaker {
         }
     }
 
-    public List<Lotto> makeLottoTickets() {
+    public Lottos makeLottoTickets() {
         List<Lotto> lottoTickets = new ArrayList<>();
 
         for (int i = 0; i < sellCount; i++) {
@@ -36,6 +35,6 @@ public class LottoMaker {
                     .collect(Collectors.toList());
             lottoTickets.add(new Lotto(numbers));
         }
-        return Collections.unmodifiableList(lottoTickets);
+        return new Lottos(lottoTickets);
     }
 }

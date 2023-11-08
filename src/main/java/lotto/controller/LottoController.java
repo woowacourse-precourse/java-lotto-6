@@ -2,10 +2,10 @@ package lotto.controller;
 
 import static lotto.constant.message.OutputMessage.RESULT_MESSAGE;
 
-import lotto.domain.Customer;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCalculator;
 import lotto.domain.LottoMaker;
+import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,21 +21,21 @@ public class LottoController {
     }
 
     public void run() {
-        Customer customer = purchaseLotto();
+        Lottos lottos = purchaseLotto();
         Lotto winningNumbers = getWinningLotto();
         WinningNumbers winningLotto = generateWinningLotto(winningNumbers);
-        LottoCalculator calculator = new LottoCalculator(customer.checkWinningResult(winningLotto));
+        LottoCalculator calculator = new LottoCalculator(lottos.checkWinningResult(winningLotto));
         printPrizeResult(calculator);
     }
 
-    private Customer purchaseLotto() {
+    private Lottos purchaseLotto() {
         while (true) {
             try {
                 int money = inputView.requestMoney();
-                LottoMaker seller = new LottoMaker(money);
-                Customer customer = new Customer(seller.makeLottoTickets());
-                outputView.printLottoNumbers(customer.getLotteryTicket());
-                return customer;
+                LottoMaker lottoMaker = new LottoMaker(money);
+                Lottos lottos = lottoMaker.makeLottoTickets();
+                outputView.printLottoNumbers(lottos.getLotteryTicket());
+                return lottos;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

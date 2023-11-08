@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Map;
 import lotto.constant.Prize;
 
-public class Customer {
+public class Lottos {
     private final List<Lotto> lotteryTicket;
 
-    public Customer(List<Lotto> lottoTickets) {
+    public Lottos(List<Lotto> lottoTickets) {
         this.lotteryTicket = lottoTickets;
     }
-
+    
     public Map<Prize, Integer> checkWinningResult(WinningNumbers winningNumbers) {
         Map<Prize, Integer> result = initResult();
         lotteryTicket.stream()

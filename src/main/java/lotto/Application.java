@@ -17,7 +17,7 @@ public class Application {
         List<Lotto> lottos = buyLottos(numberOfLottos);
         printLottos(lottos);
 
-
+        List<Integer> winningNumbers = getWinningNumbers(console);
     }
 
     private static int getPurchaseAmount(Console console) {
@@ -54,5 +54,10 @@ public class Application {
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
+    }
+
+    private static List<Integer> getWinningNumbers(Console console) {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return parseNumbers(console.readLine());
     }
 }

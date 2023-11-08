@@ -29,6 +29,7 @@ public class Process {
         outputView.printWinningStatistics();
 
         executeStatistics(lottos, winningNums, bonus, cost);
+        inputView.closeConsole();
     }
 
 

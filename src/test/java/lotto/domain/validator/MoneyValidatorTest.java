@@ -2,6 +2,7 @@ package lotto.domain.validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.util.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -15,7 +16,8 @@ class MoneyValidatorTest {
         // when
         // then
         assertThatThrownBy(() -> MoneyValidator.verifyDivisibleBy(money))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_PURCHASE_MONEY.get());
     }
 
     @DisplayName("구입 금액이 1000원 미만인 경우 예외 발생")
@@ -25,7 +27,8 @@ class MoneyValidatorTest {
         // when
         // then
         assertThatThrownBy(() -> MoneyValidator.verifyMinAmount(money))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_PURCHASE_MONEY_AT_LEAST.get());
     }
 
     @DisplayName("구입 금액이 최대 금액인 100,000원을 초과하는 경우 예외 발생")
@@ -35,7 +38,8 @@ class MoneyValidatorTest {
         // when
         // then
         assertThatThrownBy(() -> MoneyValidator.verifyMaxAmount(money))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.EXCEEDS_MAX_AMOUNT.get());
     }
 
     @DisplayName("음수 금액을 입력한 경우 예외 발생")
@@ -43,6 +47,7 @@ class MoneyValidatorTest {
     @ValueSource(ints = {-500, -1_000, -20_000, -3_000_000})
     void should_Throw_Exception_When_Money_Is_Negative(int money) {
         assertThatThrownBy(() -> MoneyValidator.verifyPositiveMoney(money))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.NEGATIVE_AMOUNT.get());
     }
 }

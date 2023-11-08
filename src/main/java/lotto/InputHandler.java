@@ -38,14 +38,14 @@ public class InputHandler {
         return winningLotto;
     }
 
-    public int bonusNumber() {
+    public int bonusNumber(Lotto winningLotto) {
         int bonusNumber = 0;
         boolean validBonusNumber = false;
         OutputHandler.printLineBreakMessage("보너스 번호를 입력해 주세요.");
 
         while (!validBonusNumber) {
             try {
-                bonusNumber = lottoHandler.receiveBonusNumber(Console.readLine());
+                bonusNumber = lottoHandler.receiveBonusNumber(Console.readLine(), winningLotto);
                 validBonusNumber = true;
             } catch (IllegalArgumentException e) {
                 OutputHandler.printMessage(e.getMessage());

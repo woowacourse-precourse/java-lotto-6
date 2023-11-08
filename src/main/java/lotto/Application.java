@@ -11,7 +11,7 @@ public class Application {
         int numberOfLotto = inputHandler.lottoCountForPurchasePrice();
         List<Lotto> lottos = lottoHandler.issueLottoNumbers(numberOfLotto);
         Lotto winningLotto = inputHandler.winningLotto();
-        int bonusNumber = inputHandler.bonusNumber();
+        int bonusNumber = inputHandler.bonusNumber(winningLotto);
         Map<WinningKind, Integer> winningResult = lottoHandler.winningResult(lottos, winningLotto, bonusNumber);
         lottoHandler.rateOfReturnResult(numberOfLotto, winningResult);
     }

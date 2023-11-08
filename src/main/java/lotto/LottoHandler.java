@@ -67,9 +67,9 @@ public class LottoHandler {
         return new Lotto(winningLottoNumbers);
     }
 
-    public int receiveBonusNumber(String receivedBonusNumber) {
+    public int receiveBonusNumber(String receivedBonusNumber, Lotto winningLotto) {
         int bonusNumber = parseNumber(removeSpaces(receivedBonusNumber));
-        validBonusNumber(bonusNumber);
+        validBonusNumber(bonusNumber, winningLotto);
         return bonusNumber;
     }
 
@@ -81,12 +81,22 @@ public class LottoHandler {
         }
     }
 
-    private void validBonusNumber(int bonusNumber) {
+    private void validBonusNumber(int bonusNumber, Lotto winningLotto) {
+        validateRange(bonusNumber);
+        validateExistNumber(bonusNumber, winningLotto);
+    }
+
+    private void validateRange(int bonusNumber) {
         if (bonusNumber < LOTTO_START_NUMBER || bonusNumber > LOTTO_LAST_NUMBER) {
             throw new IllegalArgumentException(
                     "[ERROR] " + LOTTO_START_NUMBER + " 이상 " + LOTTO_LAST_NUMBER + " 이하의 숫자를 입력해 주세요."
             );
         }
+    }
+
+    private void validateExistNumber(int bonusNumber, Lotto winningLotto) {
+        if (winningLotto.getNumbers().contains(bonusNumber))
+            throw new IllegalArgumentException("[ERROR] 당첨 번호에 없는 보너스 번호를 입력해 주세요.");
     }
 
     private void winningResultInitialize(Map<WinningKind, Integer> winningResult) {

@@ -9,23 +9,12 @@ public class Winning {
         result = tickets.drawAllTickets(lotto, bonus);
     }
 
-    int getFirstNumber() {
-        return result.get(Ranking.FIRST);
+    public int getNumber(Ranking ranking) {
+        if (!result.containsKey(ranking)) return 0;
+        return result.get(ranking);
     }
 
-    int getSecondNumber() {
-        return result.get(Ranking.SECOND);
-    }
-
-    int getThirdNumber() {
-        return result.get(Ranking.THIRD);
-    }
-
-    int getFourthNumber() {
-        return result.get(Ranking.FOURTH);
-    }
-
-    int getFifthNumber() {
-        return result.get(Ranking.FIFTH);
+    public Map<Ranking, Integer> getWinningResult() {
+        return result;
     }
 }

@@ -46,11 +46,11 @@ public class Output {
 
     public static void printWinningResult(Winning winning) {
         System.out.println(RESULT_MESSAGE + '\n' + SEPARATOR_MESSAGE);
-        System.out.println(FIFTH_MESSAGE + winning.getFifthNumber() + UNIT_MESSAGE);
-        System.out.println(FOURTH_MESSAGE + winning.getFourthNumber() + UNIT_MESSAGE);
-        System.out.println(THIRD_MESSAGE + winning.getThirdNumber() + UNIT_MESSAGE);
-        System.out.println(SECOND_MESSAGE + winning.getSecondNumber() + UNIT_MESSAGE);
-        System.out.println(FIRST_MESSAGE + winning.getFirstNumber() + UNIT_MESSAGE);
+        System.out.println(FIFTH_MESSAGE + winning.getNumber(Ranking.FIFTH) + UNIT_MESSAGE);
+        System.out.println(FOURTH_MESSAGE + winning.getNumber(Ranking.FOURTH) + UNIT_MESSAGE);
+        System.out.println(THIRD_MESSAGE + winning.getNumber(Ranking.THIRD) + UNIT_MESSAGE);
+        System.out.println(SECOND_MESSAGE + winning.getNumber(Ranking.SECOND) + UNIT_MESSAGE);
+        System.out.println(FIRST_MESSAGE + winning.getNumber(Ranking.FIRST) + UNIT_MESSAGE);
     }
 
     public static void printRateOfProfit(Profit profit) {

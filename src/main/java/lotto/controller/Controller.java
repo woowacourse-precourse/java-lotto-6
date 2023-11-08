@@ -28,21 +28,29 @@ public class Controller {
     }
 
     private void beforeLottoGame() {
+        purchasePhase();
+        answerInputPhase();
+    }
+
+    private void purchasePhase() {
         money = inputView.moneyInput();
         int lottoNum = inputView.calculateLottoNum(money);
         lottoGame.createLotto(lottoNum);
+
         List<Lotto> lottoGames = lottoGame.getLottoGames();
         outputView.showLottoNum(lottoNum, lottoGames);
+    }
 
+    private void answerInputPhase() {
         Lotto answer = inputView.answerInput();
-        List<Integer> answers = answer.getLottoNumber();
 
-        int bonus = inputView.bonusInput();
+        List<Integer> answers = answer.getLottoNumber();
+        int bonus = inputView.bonusInput(answers);
         answerNumber = new Answer(answers, bonus);
-        prize.initPrize();
     }
 
     private void startLottoGame() {
+        prize.initPrize();
         prize.compareAnswerAndLotto(answerNumber, lottoGame);
         prize.calculateTotalPrizeMoney();
         prize.calculateProfit(money);
@@ -51,8 +59,13 @@ public class Controller {
     private void showGameResult() {
         Map<Rank, Integer> prizeResult = prize.getPrizeResult();
         Set<Rank> keySet = prizeResult.keySet();
-        outputView.resultStatistics();
         double profit = prize.getProfit();
+
+        outputView.resultStatistics();
+        showProfitResult(prizeResult, keySet, profit);
+    }
+
+    private void showProfitResult(Map<Rank, Integer> prizeResult, Set<Rank> keySet, double profit) {
         for (Rank key : keySet) {
             String lottoPrize = key.getConvertPrize();
             int count = key.getCount();
@@ -61,13 +74,10 @@ public class Controller {
             if (key == Rank.SECOND && count > 0) {
                 outputView.showBonusResult(count, lottoPrize, lottoNum);
             }
-
             if (count > 2) {
                 outputView.showLottoGameResult(count, lottoPrize, lottoNum);
             }
         }
         outputView.showProfitResult(profit);
     }
-
-
 }

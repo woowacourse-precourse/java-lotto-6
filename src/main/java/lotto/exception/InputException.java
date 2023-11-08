@@ -1,11 +1,11 @@
 package lotto.exception;
 
-public class Exception extends IllegalArgumentException {
-    private Exception(ErrorMessage errorMessage) {
+public class InputException extends IllegalArgumentException {
+    private InputException(ErrorMessage errorMessage) {
         super(errorMessage.getErrorMessage());
     }
 
-    public static Exception from(ErrorMessage errorMessage) {
-        return new Exception(errorMessage);
+    public static InputException from(ErrorMessage errorMessage) {
+        return new InputException(errorMessage);
     }
 }

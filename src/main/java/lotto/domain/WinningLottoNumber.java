@@ -10,7 +10,7 @@ import static lotto.domain.LottoRank.SECOND_RANK;
 import static lotto.domain.LottoRank.THIRD_RANK;
 
 import java.util.function.Predicate;
-import lotto.exception.Exception;
+import lotto.exception.InputException;
 
 public class WinningLottoNumber {
     private final Lotto winLottoNumber;
@@ -33,13 +33,13 @@ public class WinningLottoNumber {
 
     private void validateBonusNumberInRange(int bonusNumber) {
         if (!bonusNumberIsInRange(bonusNumber)) {
-            throw Exception.from(BONUS_NUMBER_IS_OUT_OF_RANGE);
+            throw InputException.from(BONUS_NUMBER_IS_OUT_OF_RANGE);
         }
     }
 
     private void validateBonusNumberInLotto(Lotto winLottoNumber, int bonusNumber) {
         if (winLottoNumber.containsBonusNumber(bonusNumber)) {
-            throw Exception.from(BONUS_NUMBER_IS_ALREADY_IN_LOTTO_NUMBERS);
+            throw InputException.from(BONUS_NUMBER_IS_ALREADY_IN_LOTTO_NUMBERS);
         }
     }
 

@@ -9,7 +9,7 @@ import static lotto.constraint.LottoConstraint.LOTTO_MAXIMUM_BOUND;
 
 import java.util.Collections;
 import java.util.List;
-import lotto.exception.Exception;
+import lotto.exception.InputException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -31,19 +31,19 @@ public class Lotto {
 
     private void validateLottoSize(List<Integer> numbers) {
         if (!isValidLottoSize(numbers)) {
-            throw Exception.from(LOTTO_SIZE_IS_NOT_VALID);
+            throw InputException.from(LOTTO_SIZE_IS_NOT_VALID);
         }
     }
 
     private void validateDuplicatedNumber(List<Integer> numbers) {
         if (hasDuplicatedNumber(numbers)) {
-            throw Exception.from(LOTTO_NUMBER_HAS_DUPLICATED_NUMBER);
+            throw InputException.from(LOTTO_NUMBER_HAS_DUPLICATED_NUMBER);
         }
     }
 
     private void validateNumberRange(List<Integer> numbers){
         if(!isInRange(numbers)){
-            throw Exception.from(LOTTO_NUMBER_HAS_OUT_OF_BOUND_NUMBER);
+            throw InputException.from(LOTTO_NUMBER_HAS_OUT_OF_BOUND_NUMBER);
         }
     }
 

@@ -28,4 +28,11 @@ public class NumberValidator {
             throw new IllegalArgumentException(ErrorMessage.IS_NOT_SIX_THINGS_MESSAGE.getErrorMessage());
         }
     }
+
+    public void isInRightNumberRange(String Lottonumber) {
+        int number = Integer.parseInt(Lottonumber);
+        if (number > Lotto.MAXIMUM_LOTTO_NUMBER.getLottoNumber() || number < Lotto.MINIMUM_LOTTO_NUMBER.getLottoNumber()) {
+            throw new IllegalArgumentException(ErrorMessage.IS_NOT_IN_RIGHT_RANGE.getErrorMessage());
+        }
+    }
 }

@@ -10,7 +10,8 @@ public enum ErrorMessage {
     IS_NOT_COMMA_SEPARATOR_MESSAGE("[ERROR] 쉼표로 구분되어 있지 않습니다."),
     IS_NOT_SIX_THINGS_MESSAGE("[ERROR] " + Lotto.NUMBER_OF_REQUIRED_LOTTO_NUMBER.getLottoNumber() + "개를 입력해야합니다."),
     IS_NOT_ONE_THING_MESSAGE("[ERROR] " + Lotto.NUMBER_OF_REQUIRED_BONUS_NUMBER.getLottoNumber() + "개를 입력해야합니다."),
-    HAS_DUPLICATE_NUMBER_MESSAGE("[ERROR] 중복값이 존재합니다.");
+    HAS_DUPLICATE_NUMBER_MESSAGE("[ERROR] 중복값이 존재합니다."),
+    IS_NOT_IN_RIGHT_RANGE("[ERROR] 1~45의 숫자만 가능합니다.");
 
     private final String errorMessage;
 

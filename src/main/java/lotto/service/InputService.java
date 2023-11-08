@@ -37,7 +37,7 @@ public class InputService {
                 String buyerLotto = Console.readLine().trim();
                 String[] buyerLottoNumbers = mainValidator.validateBuyerLotto(buyerLotto);
                 validInput = true;
-                System.out.println(Sign.LINE_BREAKER.getSign());
+                System.out.print(Sign.LINE_BREAKER.getSign());
 
                 return stringUtil.ConvertStringArrayToIntArray(buyerLottoNumbers);
 

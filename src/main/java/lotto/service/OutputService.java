@@ -16,6 +16,6 @@ public class OutputService {
         for (int i = 0; i < allLottos.size(); i++) {
             System.out.println(allLottos.get(i));
         }
-        System.out.println(Sign.LINE_BREAKER.getSign());
+        System.out.print(Sign.LINE_BREAKER.getSign());
     }
 }

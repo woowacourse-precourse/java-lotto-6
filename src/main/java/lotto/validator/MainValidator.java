@@ -22,6 +22,9 @@ public class MainValidator {
         String[] buyerLottoNumbers = stringValidator.isSeparateByComma(buyerLotto);
         stringValidator.isSixNumber(buyerLottoNumbers);
         stringValidator.isAllDigit(buyerLottoNumbers);
+        for (String number : buyerLottoNumbers) {
+            numberValidator.isInRightNumberRange(number);
+        }
         duplicateValidator.isNotDuplicate(buyerLottoNumbers);
 
         return buyerLottoNumbers;
@@ -30,6 +33,7 @@ public class MainValidator {
     public void validateBuyerBonusNumber(String buyerBonusNumber, int[] buyerLottoNumbers) {
         stringValidator.isNotNullValidate(buyerBonusNumber);
         numberValidator.isDigit(buyerBonusNumber);
+        numberValidator.isInRightNumberRange(buyerBonusNumber);
         duplicateValidator.isNotDuplicateWithBuyerLotto(buyerBonusNumber, buyerLottoNumbers);
     }
 }

@@ -29,7 +29,7 @@ class LottoWalletServiceTest extends NsTest {
         // given
         String numbers = "1,2,3,4,5,6";
         LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(numbers);
-        LottoBonusNumber lottoBonusNumber = new LottoBonusNumber("6");
+        LottoBonusNumber lottoBonusNumber = new LottoBonusNumber(lottoWinningNumbers, "7");
         Field winningField = getAccessibleField("winningNumbers");
         Field bonusField = getAccessibleField("bonusNumber");
 

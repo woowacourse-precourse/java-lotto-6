@@ -22,22 +22,18 @@ public class MainController {
     }
 
     public void start() {
-        try {
-            final int amount = inputView.inputBuyAmount();
-            final UserLotto userLotto = new UserLotto(buyLotto(amount));
-            outputView.printUserLotto(userLotto.getMyLotto());
+        final int amount = inputView.inputBuyAmount();
+        final UserLotto userLotto = new UserLotto(buyLotto(amount));
+        outputView.printUserLotto(userLotto.getMyLotto());
 
-            final WinningLotto winningLotto = new WinningLotto(
-                    inputView.inputWinningLotto(), inputView.inputBonusNumber());
-            final List<Prize> prizes = winningLotto.calculateTotalPrize(userLotto.getMyLotto());
-            PrizeStorage prizeStorage = new PrizeStorage(prizes);
-            List<Integer> prizeCount = prizeStorage.getPrizeCount();
+        final WinningLotto winningLotto = new WinningLotto(
+                inputView.inputWinningLotto(), inputView.inputBonusNumber());
+        final List<Prize> prizes = winningLotto.calculateTotalPrize(userLotto.getMyLotto());
+        PrizeStorage prizeStorage = new PrizeStorage(prizes);
+        List<Integer> prizeCount = prizeStorage.getPrizeCount();
 
-            double TotalReturn = (getTotalReturn(prizes) / amount) * 100;
-            outputView.printWinningStatistics(prizeCount, TotalReturn);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        double TotalReturn = (getTotalReturn(prizes) / amount) * 100;
+        outputView.printWinningStatistics(prizeCount, TotalReturn);
     }
 
     public List<Lotto> buyLotto(int amount) {

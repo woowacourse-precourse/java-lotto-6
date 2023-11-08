@@ -7,6 +7,10 @@ import lotto.view.OutputView;
 public class Application {
     public static void main(String[] args) {
         MainController mainController = new MainController(new InputView(), new OutputView());
-        mainController.start();
+        try {
+            mainController.start();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

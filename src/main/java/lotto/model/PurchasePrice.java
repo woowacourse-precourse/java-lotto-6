@@ -8,7 +8,7 @@ public class PurchasePrice {
         isNotDigits(priceFromUser);
         isUnder1000(priceFromUser);
         isNotDivisibleBy1000(priceFromUser);
-        this.PIECE_OF_LOTTO = Integer.parseInt(priceFromUser) / 1000;
+        this.PIECE_OF_LOTTO = (int) (Long.parseLong(priceFromUser) / 1000);
     }
     public int getCountPieceOfLotto(){
         return this.PIECE_OF_LOTTO;

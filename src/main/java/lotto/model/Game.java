@@ -23,12 +23,20 @@ public class Game {
         this.bonusNumber = bonusNumber;
     }
 
+    private void setResult(List<Integer> result){
+        this.result=result;
+    }
+
+    private List<Integer> getResult(){
+        return this.result;
+    }
+
     public int getAmount() {
         return this.amount;
     }
 
     public int getBonusNumber() {
-        return bonusNumber;
+        return this.bonusNumber;
     }
 
     public static int getOneForPrice() {
@@ -47,9 +55,9 @@ public class Game {
     }
 
     public List<Integer> getMatchResult(List<Integer> lottoNumber) {
-        this.result = initMatchResult();
+        this.setResult(initMatchResult());
         for (List<Integer> numbers : this.getUserLottoNumbers()) {
-            checkMatchResult(this.result, countMatchResult(numbers, lottoNumber), numbers);
+            checkMatchResult(this.getResult(), countMatchResult(numbers, lottoNumber), numbers);
         }
 
         return this.result;

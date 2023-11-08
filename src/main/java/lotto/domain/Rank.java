@@ -22,7 +22,7 @@ public enum Rank {
     public static Rank getRank(int countOfMatch, boolean hasBonusNumber) {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.countOfMatch == countOfMatch)
-                .filter(rank -> !rank.isBonusNumberRequired || hasBonusNumber)
+                .filter(rank -> rank.isBonusNumberRequired == hasBonusNumber)
                 .findFirst()
                 .orElse(null);
     }

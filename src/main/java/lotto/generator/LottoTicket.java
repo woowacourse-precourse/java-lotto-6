@@ -44,8 +44,9 @@ public class LottoTicket {
             try {
                 List<Integer> numbers = generateNumbers();
                 compareSize(numbers);
-                Collections.sort(numbers);
+//                Collections.sort(numbers);
                 ticketBundle.add(new ArrayList<>(numbers));
+                System.out.println(numbers);
                 return;
             } catch (IllegalArgumentException e) {
                 ExceptionHandler.handle(e);
@@ -55,14 +56,7 @@ public class LottoTicket {
 
 
     private static List<Integer> generateNumbers() {
-        List<Integer> numbers = new ArrayList<>();
-        for (int i = 0; i < LOTTO_NUMBER_SIZE; i++) {
-            int number;
-            do {
-                number = Randoms.pickNumberInRange(1, 45);
-            } while (numbers.contains(number));
-            numbers.add(number);
-        }
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return numbers;
     }
 }

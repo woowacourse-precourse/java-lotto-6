@@ -4,6 +4,7 @@ import lotto.generator.Bonus;
 import lotto.generator.Purchase;
 import lotto.generator.LottoTicket;
 import lotto.generator.WinningNumber;
+import lotto.generator.WinningStatistic;
 
 import java.util.List;
 
@@ -15,10 +16,12 @@ public class Application {
 
         List<List<Integer>> ticketBundle = LottoTicket.lottoTicket(count);
 
-        LottoTicket.printTickets(ticketBundle);
+        // LottoTicket.printTickets(ticketBundle);
 
         List<Integer> winningNumbers = WinningNumber.getWinningNumber();
 
         int bonusNumber = Bonus.getBonus();
+
+        WinningStatistic.printWinningStatistic(count, ticketBundle, winningNumbers, bonusNumber);
     }
 }

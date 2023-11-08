@@ -25,7 +25,6 @@ public class WinningNumber {
         while (true) {
             try {
                 ExceptionHandler.checkNull(rawWinningNumber);
-                ExceptionHandler.checkNumberFormat(rawWinningNumber);
                 checkWinningNumber(winningNumber);
 
                 return winningNumber;

@@ -1,7 +1,12 @@
 package lotto;
 
+import lotto.controller.LottoGameController;
+import lotto.util.GenerateRandomLottoNumbers;
+import lotto.util.RandomUtils;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoGameController lottoGameController = new LottoGameController();
+        lottoGameController.startGame();
     }
 }

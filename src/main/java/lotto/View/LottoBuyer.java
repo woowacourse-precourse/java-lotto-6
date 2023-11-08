@@ -6,6 +6,7 @@ public class LottoBuyer {
     public static Integer LOTTO_COUNT;
     public static final Integer LOTTO_PRICE = 1_000;
     private static final String LOTTO_PRICE_ERROR_MESSAGE = "입력한 금액은 로또 한 장 가격(1,000원)의 배수여야 합니다.";
+    private static final String LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다.";
     public static Integer inputMoney() {
         Integer money = Integer.valueOf(Console.readLine());
         validateLottoPrice(money);
@@ -23,5 +24,7 @@ public class LottoBuyer {
         return LOTTO_COUNT;
     }
 
-
+    public static void printLottoCount() {
+        System.out.println(String.format(LOTTO_COUNT_MESSAGE, LOTTO_COUNT));
+    }
 }

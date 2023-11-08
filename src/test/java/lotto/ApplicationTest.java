@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -46,6 +47,8 @@ class ApplicationTest extends NsTest {
         );
     }
 
+
+    @DisplayName("문자열이 포함된 구입가격을 입력하면 에러가 발생한다.")
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {

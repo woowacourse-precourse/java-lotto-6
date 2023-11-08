@@ -1,11 +1,9 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 import lotto.service.LottoService;
-import lotto.utils.Parser;
 import lotto.view.LottoView;
 
 import java.util.ArrayList;
@@ -17,12 +15,13 @@ public class LottoController {
     private InitLottoController initLottoController = new InitLottoController();
     private WinningNumberController winningNumberController = new WinningNumberController();
     private BonusNumberController bounusNumberController = new BonusNumberController();
+    private LottoService lottoService = new LottoService();
+    private PurchaseAmount purchaseAmount;
 
     private int ticketNumber;
-    private PurchaseAmount purchaseAmount;
     private List<Lotto> lottos  = new ArrayList<>();
     private int[] winResult;
-    private LottoService lottoService = new LottoService();
+
 
     public void startLotto(){
         purchaseLotto();

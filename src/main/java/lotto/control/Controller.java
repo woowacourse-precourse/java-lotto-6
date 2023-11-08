@@ -8,19 +8,20 @@ import java.util.*;
 
 public class Controller {
 
-    Input input;
-    Output output;
+    Input input = new Input();
+    Output output = new Output();
     Lotto winning;
     Bonus bonus;
-    List<Lotto> lottoes;
+    List<Lotto> lottoes = new ArrayList<>();
     int amount;
 
-    void start() {
+    public void start() {
         getLottoNumbers();
         getWinningNumbers();
 
         int[] winCount = new int[5];
         for (Lotto lotto : lottoes) {
+            if (getIndex(lotto) == -1) continue;
             winCount[getIndex(lotto)]++;
         }
         output.printWinnings(winCount);

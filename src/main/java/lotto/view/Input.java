@@ -5,17 +5,21 @@ import java.util.*;
 
 public class Input {
 
-    Output output;
+    Output output = new Output();
     public int inputAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         int amount = Integer.parseInt(Console.readLine());
-        validateAmount(amount);
+        //try {
+            validateAmount(amount);
+//        } catch (IllegalArgumentException e) {
+//            output.printError(e);
+//        }
         return amount;
     }
 
     private void validateAmount(int amount) {
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("1000원 단위로 입력해주세요");
+            throw new IllegalArgumentException("1000원 단위 정수를 입력해주세요");
         }
     }
 

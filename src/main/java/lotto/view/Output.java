@@ -13,6 +13,8 @@ public class Output {
     }
 
     public void printWinnings(int[] winCount) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
         for (WinningDetails wd : WinningDetails.values()) {
             System.out.print(wd);
             System.out.printf("- %d개\n", winCount[wd.ordinal()]);
@@ -20,11 +22,11 @@ public class Output {
     }
 
     public void printRevenue(double revenue) {
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", revenue);
+        System.out.printf("총 수익률은 %,.1f%%입니다.\n", revenue);
     }
 
     public void printError(IllegalArgumentException e) {
         System.out.print("[ERROR] ");
-        System.out.println(e);
+        System.out.println(e.getMessage());
     }
 }

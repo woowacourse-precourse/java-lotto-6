@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -13,13 +12,13 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            System.out.println("[ERROR] 로또 번호는 6개여야 합니다.");
-            throw new IllegalArgumentException();
+            // System.out.println("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
         
         if (hasDuplicate(numbers)) {
-            System.out.println("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
-            throw new IllegalArgumentException();
+            // System.out.println("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
         }
     }
     

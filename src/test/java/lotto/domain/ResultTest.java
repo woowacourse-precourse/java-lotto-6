@@ -31,4 +31,19 @@ public class ResultTest {
 
         assertEquals(expect, result.getLottoResult());
     }
+
+    @DisplayName("총 상금을 계산한다.")
+    @Test
+    void createTotalPrize() {
+        List<LottoRanking> lottoRank = new ArrayList<>();
+        lottoRank.add(LottoRanking.valueOf(4, false));
+        lottoRank.add(LottoRanking.valueOf(3, false));
+        lottoRank.add(LottoRanking.valueOf(5, true));
+        lottoRank.add(LottoRanking.valueOf(4, false));
+
+        Result result = new Result(lottoRank);
+        int expect = 30_105_000;
+
+        assertEquals(expect, result.calculateTotalPrize());
+    }
 }

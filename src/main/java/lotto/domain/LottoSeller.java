@@ -2,6 +2,7 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.Value;
+import java.math.BigDecimal;
 
 public class LottoSeller {
     private final int ZERO = Value.ZERO.get();
@@ -11,10 +12,10 @@ public class LottoSeller {
         return new LottoSeller();
     }
 
-    public LottoPaper sellLottos(int money) {
-        int count = money / THOUSAND;
+    public LottoPaper sellLottos(BigDecimal money) {
+        BigDecimal count = money.divide(BigDecimal.valueOf(THOUSAND));
         LottoPaper lottoPaper = LottoPaper.create();
-        for (int i = ZERO; i < count; i++) {
+        for (long i = ZERO; i < count.longValue(); i++) {
             lottoPaper.add(issueLotto());
         }
         return lottoPaper;

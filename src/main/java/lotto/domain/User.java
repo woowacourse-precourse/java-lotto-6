@@ -1,30 +1,32 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
+
 public class User {
-    private int budget;
-    private int payed;
+    private BigDecimal budget;
+    private BigDecimal payed;
     private LottoPaper lottoPaper;
 
-    private User(int budget) {
+    private User(BigDecimal budget) {
         this.budget = budget;
     }
 
-    public static User createByBudget(int budget) {
+    public static User createByBudget(BigDecimal budget) {
         return new User(budget);
     }
 
-    public void setBudget(int money) {
+    public void setBudget(BigDecimal money) {
         this.budget = money;
     }
 
     // 전체 예산을 지불
-    public int pay() {
+    public BigDecimal pay() {
         payed = budget;
-        budget = 0;
+        budget = BigDecimal.ZERO;
         return payed;
     }
 
-    public int getBudget() {
+    public BigDecimal getBudget() {
         return budget;
     }
 
@@ -36,7 +38,7 @@ public class User {
         this.lottoPaper = LottoPaper.copy(lottoPaper);
     }
 
-    public int getPayed() {
+    public BigDecimal getPayed() {
         return payed;
     }
 }

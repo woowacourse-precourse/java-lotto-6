@@ -13,10 +13,10 @@ import lotto.io.InputStream;
 import lotto.io.OutputStream;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class LottoController {
-    private final int ZERO = 0;
     private final InputView inputView;
     private final OutputView outputView;
     private final User user;
@@ -27,7 +27,7 @@ public class LottoController {
     public LottoController(InputStream inputStream, OutputStream outputStream) {
         this.inputView = new InputView(inputStream);
         this.outputView = new OutputView(outputStream);
-        this.user = User.createByBudget(ZERO);
+        this.user = User.createByBudget(BigDecimal.ZERO);
         this.seller = LottoSeller.create();
     }
 
@@ -35,7 +35,7 @@ public class LottoController {
         while (true) {
             try {
                 outputView.printMoneyInputMessage();
-                int money = inputView.inputMoney();
+                BigDecimal money = inputView.inputMoney();
                 user.setBudget(money);
                 break;
             } catch (IllegalArgumentException e) {
@@ -47,7 +47,7 @@ public class LottoController {
     }
 
     public LottoController buyLottos() {
-        int money = user.pay();
+        BigDecimal money = user.pay();
         LottoPaper lottoPaper = seller.sellLottos(money);
         user.setLottoPaper(lottoPaper);
         outputView.printBuyMessage(lottoPaper.size());

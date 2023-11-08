@@ -3,6 +3,8 @@ package lotto.domain;
 import lotto.constant.Mark;
 import lotto.constant.Value;
 import lotto.constant.WinType;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -51,19 +53,19 @@ public class WinCounter {
         return sb.toString();
     }
 
-    private static String convertMoneyFormat(int money) {
-        return String.format("%,d", money);
+    private static String convertMoneyFormat(BigDecimal money) {
+        DecimalFormat df = new DecimalFormat(Mark.MONEY_PATTERN.get());
+        return df.format(money);
     }
 
-    public String getRateOfReturn(int payedMoney) {
-        int sum = winCounts.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().getReward() * entry.getValue())
-                .sum();
-        return percentFormat((double) sum / payedMoney * 100);
-    }
+    public String getRateOfReturn(BigDecimal paidMoney) {
+        BigDecimal sum = winCounts.entrySet().stream()
+                .map(entry -> entry.getKey().getReward().multiply(BigDecimal.valueOf(entry.getValue())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-    private String percentFormat(double number) {
-        DecimalFormat df = new DecimalFormat("#.##");
-        return df.format(number) + Mark.PERCENT.get();
+        BigDecimal rate = sum.divide(paidMoney)
+                .multiply(BigDecimal.valueOf(Value.HUNDRED.get()))
+                .setScale(2, RoundingMode.HALF_UP);
+        return rate.stripTrailingZeros() + Mark.PERCENT.get();
     }
 }

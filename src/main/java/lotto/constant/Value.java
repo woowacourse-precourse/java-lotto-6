@@ -6,7 +6,8 @@ public enum Value {
     LOTTO_NUMBER_COUNT(6),
     THOUSAND(1000),
     ZERO(0),
-    ONE(1);
+    ONE(1),
+    HUNDRED(100);
 
     private final int number;
 

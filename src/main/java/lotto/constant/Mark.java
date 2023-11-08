@@ -10,7 +10,8 @@ public enum Mark {
     CLOSE_BRACKET(")"),
     WIN_COUNT_UNIT("개"),
     MONEY_UNIT("원"),
-    PERCENT("%");
+    PERCENT("%"),
+    MONEY_PATTERN("###,###");
 
     private final String format;
 

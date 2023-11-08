@@ -53,16 +53,20 @@ public class WinningLotto {
 
     private List<Integer> generateWinningNumbers(List<String> dividedByDelimiter) {
         List <Integer> winningNumbers = new LinkedList<>();
+        validate(dividedByDelimiter);
+        for (String string : dividedByDelimiter) {
+            winningNumbers.add(convertStringToInteger(string));
+        }
+        return winningNumbers;
+    }
 
+    private void validate(List<String> dividedByDelimiter) {
         for (String string : dividedByDelimiter) {
             hasBlank(string);
             isInteger(string);
             Integer integer = convertStringToInteger(string);
             isValidLottoNumber(integer);
-            winningNumbers.add(integer);
         }
-
-        return winningNumbers;
     }
 
     private void isBonusNumberInWinningNumbers(List<Integer> winningNumbers, BonusNumber bonusNumber) {

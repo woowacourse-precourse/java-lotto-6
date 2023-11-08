@@ -36,34 +36,26 @@ public class LottoResult {
     }
 
     public static HashMap statistics(int sameCount, Boolean bonusCheck) {
-        if (sameCount == PrizeMoney.FIFTH.getNumberOfSame()) {
-            int num = result.get(PrizeMoney.FIFTH.getNumberOfSame());
-            num++;
-            result.put(PrizeMoney.FIFTH.getNumberOfSame(), num);
+        if (sameCount == PrizeMoney.FIFTH.getNumberOfSame() || sameCount == PrizeMoney.FOURTH.getNumberOfSame()) {
+            statisticsPut(sameCount, 0);
         }
-        if (sameCount == PrizeMoney.FOURTH.getNumberOfSame()) {
-            int num = result.get(PrizeMoney.FOURTH.getNumberOfSame());
-            num++;
-            result.put(PrizeMoney.FOURTH.getNumberOfSame(), num);
+        if (sameCount == PrizeMoney.FIRST.getNumberOfSame()) {
+            statisticsPut(sameCount, 1);
         }
         if (sameCount == PrizeMoney.THIRD.getNumberOfSame()) {
             if (bonusCheck) {
-                int num = result.get(PrizeMoney.SECOND.getNumberOfSame() + 1);
-                num++;
-                result.put(PrizeMoney.SECOND.getNumberOfSame() + 1, num);
+                statisticsPut(sameCount, 1);
             }
             if (!bonusCheck) {
-                int num = result.get(PrizeMoney.THIRD.getNumberOfSame());
-                num++;
-                result.put(PrizeMoney.THIRD.getNumberOfSame(), num);
+                statisticsPut(sameCount, 0);
             }
         }
-        if (sameCount == PrizeMoney.FIRST.getNumberOfSame()) {
-            int num = result.get(PrizeMoney.FIRST.getNumberOfSame() + 1);
-            num++;
-            result.put(PrizeMoney.FIRST.getNumberOfSame() + 1, num);
-        }
         return result;
+    }
+
+    public static void statisticsPut(int sameCount, int keyPlus) {
+        int num = result.get(sameCount + keyPlus);
+        result.put(sameCount + keyPlus, ++num);
     }
 
     public static double calculateProfit(int purchase) {

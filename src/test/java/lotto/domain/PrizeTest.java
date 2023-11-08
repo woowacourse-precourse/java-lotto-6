@@ -7,16 +7,15 @@ import org.junit.jupiter.api.Test;
 
 public class PrizeTest {
 
-    int perfectMatch = 6, fiveMatch = 5, fourMatch = 4, threeMatch = 3, twoMatch = 2, oneMatch = 1, zeroMatch = 0;
-    boolean bonusMatched = true;
-    boolean bonusNotMatched = false;
+    private static final int perfectMatch = 6, fiveMatch = 5, fourMatch = 4, threeMatch = 3, twoMatch = 2, oneMatch = 1, zeroMatch = 0;
+    private static final boolean bonusMatched = true;
 
     @Test
     @DisplayName("당첨 번호 6개 성공했으면 보너스 번호 일치 여부와 상관없이 1등")
     void firstPrize() {
         assertThat(Prize.findPrize(perfectMatch, bonusMatched))
                 .isEqualTo(Prize.FIRST_PLACE);
-        assertThat(Prize.findPrize(perfectMatch, bonusNotMatched))
+        assertThat(Prize.findPrize(perfectMatch, !bonusMatched))
                 .isEqualTo(Prize.FIRST_PLACE);
     }
 

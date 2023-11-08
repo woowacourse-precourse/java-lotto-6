@@ -10,10 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 public class MoneyTest {
 
-    int zero = 0;
-    int negative = -10;
-    int indivisibleByUnit = 1001;
-    int validMoney = 10000;
+    private static final int zero = 0, negative = -10, indivisibleByUnit = 1001, validMoney = 10000;
 
     @DisplayName("구입 금액이 0이면 예외가 발생한다.")
     @Test

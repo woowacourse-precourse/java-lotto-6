@@ -11,9 +11,9 @@ import org.junit.jupiter.api.Test;
 
 public class LottoResultTest {
 
-    private final int numberOfLottos = 7;
-    private final int moneySpent = numberOfLottos * 1000;
-    private final WinnerLotto winnerLotto = new WinnerLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new BonusNumber(7));
+    private static final int numberOfLottos = 7;
+    private static final int moneySpent = numberOfLottos * 1000;
+    private static final WinnerLotto winnerLotto = new WinnerLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new BonusNumber(7));
 
     List<Lotto> lottos = Arrays.asList(
             new Lotto(List.of(1, 2, 3, 4, 5, 6)),

@@ -3,6 +3,7 @@ package lotto.enumContainer;
 import lotto.dataObjects.Money;
 
 public enum LottoResult {
+
 	THREE("3개 일치 (5,000원) - ", 5000, 3),
 	FOUR("4개 일치 (50,000원) - ", 50000, 4),
 	FIVE("5개 일치 (1,500,000원) - ", 1500000, 5),

@@ -4,7 +4,7 @@ import java.util.List;
 
 import lotto.enumContainer.LottoResult;
 
-//출력 기능 클래스
+
 public class PrintGeneratorImpl implements PrintGenerator{
 	@Override
 	public void printInputMent(String keyword) {

@@ -6,6 +6,7 @@ import lotto.enumContainer.ErrorOperation;
 import lotto.enumContainer.LottoResult;
 
 public class Lotto {
+
 	private final List<Integer> numbers;
 
 	public Lotto(List<Integer> numbers) {

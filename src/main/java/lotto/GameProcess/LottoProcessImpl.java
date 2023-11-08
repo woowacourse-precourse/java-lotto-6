@@ -13,7 +13,6 @@ import lotto.io.InputNumberImpl;
 import lotto.io.PrintGenerator;
 import lotto.io.PrintGeneratorImpl;
 
-//게임 흐름 진행 클래스
 public class LottoProcessImpl implements LottoProcess {
 
 	private final InputNumber inputNumber;
@@ -81,7 +80,8 @@ public class LottoProcessImpl implements LottoProcess {
 		List<List<Integer>> bundleOfLotto = new ArrayList<>();
 		int perchaceCount = money.calculateAmount();
 		for (int count = 0; count < perchaceCount; count++) {
-			List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(RelateToLotto.START.number(),
+			List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(
+				RelateToLotto.START.number(),
 				RelateToLotto.END.number(),
 				RelateToLotto.COUNT.number());
 			bundleOfLotto.add(lottoNumbers);

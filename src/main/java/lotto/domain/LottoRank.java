@@ -37,6 +37,10 @@ public enum LottoRank {
         return THIRD;
     }
 
+    public long multiplyPrize(int count) {
+        return (long) prize * count;
+    }
+
     public int prize() {
         return prize;
     }

@@ -38,7 +38,7 @@ public class LottoResult {
 
     private long calculateTotalPrize() {
         return result.keySet().stream()
-                .mapToLong(rank -> (long) result.get(rank) * rank.prize())
+                .mapToLong(rank -> rank.multiplyPrize(count(rank)))
                 .sum();
     }
 

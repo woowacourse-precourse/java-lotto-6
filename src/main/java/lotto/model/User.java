@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class User {
-    List<Lotto> lottoes;
+    private final List<Lotto> lottoes;
 
     public User () {
         lottoes = new ArrayList<>();
@@ -47,5 +47,9 @@ public class User {
             return ;
         int value = lottoesResult.get(ranking);
         lottoesResult.put(ranking, value + 1);
+    }
+
+    public List<Lotto> getLottoes() {
+        return lottoes;
     }
 }

@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -34,6 +35,21 @@ public class InputViewConvertorTest {
                     .hasMessage(InputExceptionMessages.NOT_A_NUMBER.getMessage());
         }
 
+    }
+
+    @DisplayName("문자열을 숫자들로 성공적으로 변환한다.")
+    @Test
+    void parseIntsFromNumbers() {
+        // given
+        String value = "1,2,3,4,5,6";
+        List<Integer> expectedNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        // when
+        List<Integer> numbers = InputViewConvertor.parseInts(value);
+
+        // when & then
+        Assertions.assertThat(numbers)
+                .isEqualTo(expectedNumbers);
     }
 
 }

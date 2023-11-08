@@ -1,7 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
 import java.util.List;
 
 public class ConsoleInputView implements InputView {
@@ -13,10 +12,7 @@ public class ConsoleInputView implements InputView {
 
     @Override
     public List<Integer> inputNumbers() {
-        String[] inputValues = input().split(InputViewConfig.NUMBERS_DELIMITER.getValue());
-        return Arrays.stream(inputValues)
-                .map(InputViewConvertor::parseInt)
-                .toList();
+        return InputViewConvertor.parseInts(input());
     }
 
     private String input() {

@@ -23,7 +23,7 @@ public class OutputView {
     public static void printInputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
-    public static void printWinStatistics() {
-        System.out.println("");
+    public static void printWinStatistics(String result) {
+        System.out.println(result);
     }
 }

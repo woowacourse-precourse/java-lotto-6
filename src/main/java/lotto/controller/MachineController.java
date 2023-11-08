@@ -18,12 +18,12 @@ public class MachineController {
         OutputView.displayProfit(lottoMachine.calcProfit(human.getMoney()));
     }
 
-    public Human initAmount() {
+    private Human initAmount() {
         int money = PurchaseView.lotto();
         return new Human(money);
     }
 
-    public WinningLotto initWinningLotto() {
+    private WinningLotto initWinningLotto() {
         List<Integer> lottos = WinningLottoView.publishLotto();
         int bonus = WinningLottoView.publishBonus(lottos);
         return new WinningLotto(lottos, bonus);

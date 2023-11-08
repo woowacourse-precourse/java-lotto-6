@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import java.util.List;
+import java.util.Set;
 import lotto.constant.ErrorMessages;
 
 public class LottoNumberValidator {
@@ -8,7 +9,17 @@ public class LottoNumberValidator {
         isNumeric(lottoNumberInput);
         isCountSix(lottoNumberInput);
         isInRange(lottoNumberInput);
+        isUnique(lottoNumberInput);
 
+    }
+
+    private static void isUnique(String lottoNumberInput) {
+        List<String> lottoNumbers = List.of(lottoNumberInput.split(","));
+        Set<String> uniqueLottoNumbers = Set.of(lottoNumberInput.split(","));
+        if (lottoNumbers.size() != uniqueLottoNumbers.size()) {
+            System.out.println(ErrorMessages.NOT_UNIQUE.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.NOT_UNIQUE.getMessage());
+        }
     }
 
     private static void isInRange(String lottoNumberInput) {

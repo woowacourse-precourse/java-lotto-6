@@ -35,4 +35,20 @@ public class LottoCalculateService {
         return decimalFormat.format((double) totalPrice / user.getBuyingPrice() * 100);
     }
 
+    public void countLottoWinning(User user, List<Integer> numbers, Lotto lotto) {
+        int countContainsOfLottoWithoutBonus = countUserNumbersContainsLotto(numbers, lotto.getNumbers());
+        if (isNumberMatchedNormal(countContainsOfLottoWithoutBonus)) {
+            winLotto(countContainsOfLottoWithoutBonus, user);
+            return;
+        }
+        if (isNumberMatchedFiveWithBonus(countContainsOfLottoWithoutBonus, numbers, lotto)) {
+            winLotto(Constants.BONUS_ENUM_LABEL, user);
+            return;
+        }
+        if (isNumberMatchedFive(countContainsOfLottoWithoutBonus, numbers, lotto)) {
+            winLotto(countContainsOfLottoWithoutBonus, user);
+            return;
+        }
+    }
+
 }

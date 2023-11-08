@@ -25,6 +25,6 @@ public class LottoGenerator {
         return numbers;
     }
     private static int pickNumber() {
-        return Randoms.pickNumberInRange(1, 46);
+        return Randoms.pickNumberInRange(1, 45);
     }
 }

@@ -6,9 +6,18 @@ import lotto.view.MessageDisplay;
 public class UserInputController {
 
     public static int getLottoBuyingPrice() {
+        boolean exceptionThrown = true;
+        int buyingPrice = 0;
         MessageDisplay.enterBuyingPrice();
-        int buyingPrice = Integer.parseInt(Console.readLine());
-        // 답이 유효한지 확인하는 부분 추후에 추가
+        while (exceptionThrown) {
+            String userInput = Console.readLine();
+            try {
+                buyingPrice = UserInputValidator.isValidBuyingPrice(userInput);
+                exceptionThrown = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[Error]" + e.getMessage());
+            }
+        }
         return buyingPrice;
     }
 }

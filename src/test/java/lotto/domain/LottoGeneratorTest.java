@@ -14,6 +14,7 @@ class LottoGeneratorTest {
         List<Integer> numbers = LottoGenerator.getLottoNumbers();
 
         for (int number : numbers) {
+            System.out.print(number + " ");
             assertTrue(number >= 1 && number <= 45);
         }
         for (int i = 0; i < numbers.size() - 1; ++i) {

@@ -21,11 +21,7 @@ public class ConsoleUI {
     private int attemptToGetValidPurchaseAmount() {
         try {
             String input = promptForPurchaseAmount();
-            validator.validateInteger(input);
-            int amount = Integer.parseInt(input);
-            validator.validatePositiveInteger(amount);
-            validator.validateAmountInThousands(amount);
-            return amount;
+            return validator.validatePurchaseAmountInput(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return -1;

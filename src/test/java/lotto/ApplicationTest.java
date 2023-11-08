@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.controller.InputController;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -53,6 +54,18 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @Test
+    void testSetRandomNumbers() {
+        int quantity = 5;
+        List<List<Integer>> result = InputController.setRandomNumbers(quantity);
+        assertThat(result).isNotNull();
+        assertThat(result).hasSize(quantity);
+        assertThat(result).allSatisfy(lottoNumbers -> assertThat(lottoNumbers).hasSize(6));
+    }
+
+
+
 
     @Override
     public void runMain() {

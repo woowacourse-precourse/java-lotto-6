@@ -14,7 +14,6 @@ public class InteractServiceTest extends NsTest {
 
     private final String PURCHASE_FEE = "8000";
     private final String LOTTO_NUM = "1,2,3,4,5,6";
-    private final String BONUS_NUM = "7";
 
     @DisplayName("로또 구입 금액에 숫자가 아닌 문자를 입력할 경우 예외가 발생한다.")
     @ParameterizedTest
@@ -115,6 +114,22 @@ public class InteractServiceTest extends NsTest {
                     input
             );
             assertThat(output()).contains(ErrorStatus.WINNING_NUM_DUB_AND_SIZE_ERROR.getMessage());
+        });
+    }
+
+    @DisplayName("보너스 번호에 숫자가 아닌 문자를 입력할 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {
+            " ", "\n", "test", "@@"
+    })
+    void bonusNumByString(String input) {
+        assertSimpleTest(() -> {
+            runException(
+                    PURCHASE_FEE,
+                    LOTTO_NUM,
+                    input
+            );
+            assertThat(output()).contains(ErrorStatus.PARSE_INT_ERROR.getMessage());
         });
     }
 

@@ -27,6 +27,7 @@ public class LottoController {
     public void play() {
 
         int lottoAmount = inputView.getPurchaseAmount();
+
         List<Lotto> userPurchasedLotto = lottoGenerateService.generateMultipleLotto(lottoAmount);
 
         outputView.printPurchasedLotto(userPurchasedLotto);
@@ -37,7 +38,9 @@ public class LottoController {
 
         Match matchResult = lottoCountService.countMatching(userPurchasedLotto, winningLottoNumbers, bonus);
 
-        outputView.printMatchResult(matchResult);
+        double profit = lottoCountService.countProfit(matchResult, lottoAmount);
+
+        System.out.println(profit);
 
     }
 

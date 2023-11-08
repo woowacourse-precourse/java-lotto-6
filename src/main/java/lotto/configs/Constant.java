@@ -24,4 +24,17 @@ public class Constant {
     public static final String ERROR_MESSAGE_INVALID_NUMBER = "정수만 입력할 수 있습니다.";
     public static final String ERROR_MESSAGE_INVALID_UNIT = "1,000원 단위로만 입력할 수 있습니다.";
     public static final String ERROR_MESSAGE_DUPLICATED_NUMBER = "중복된 숫자가 있습니다.";
+    public static final String VIEW_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
+    public static final String VIEW_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    public static final String VIEW_RATE_OF_AMOUNT = "총 수익률은 %f%입니다.";
+    public static final String VIEW_LOTTO_COUNT = "%d개를 구매했습니다.";
+    public static final String VIEW_STATISTIC =
+            "당첨 통계\n"
+            + "---\n"
+            + "3개 일치 (5,000원) - %d개\n"
+            + "4개 일치 (50,000원) - %d개\n"
+            + "5개 일치 (1,500,000원) - %d개\n"
+            + "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"
+            + "6개 일치 (2,000,000,000원) - %d개";
+
 }

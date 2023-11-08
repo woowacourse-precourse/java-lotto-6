@@ -15,4 +15,9 @@ public class OutputView {
             System.out.println(currentLotto.getNumbers());
         }
     }
+
+    public void printInputWinningLottoNumberMessage() {
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }

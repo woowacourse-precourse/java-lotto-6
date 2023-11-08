@@ -1,20 +1,49 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import lotto.model.Lotto;
 import lotto.model.UserLotto;
 
 public class InputView {
     public static Integer moneyInput() {
         System.out.println("구입금액을 입력해 주세요.");
-        String stmoney = Console.readLine();
-        return validmoney(stmoney);
+        String input = Console.readLine();
+        return validmoney(input);
     }
 
+    public static UserLotto lottosInput(int money) {
+        System.out.printf("\n%d개를 구매했습니다.%n", money);
+        return new UserLotto(money);
+    }
 
-//    public static Integer winNumInput() {
-//        String
-//        return num;
-//    }
+    public static Lotto winNumInput() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return tryParseWinNumInput();
+    }
+
+    private static Lotto tryParseWinNumInput() {
+        String input = Console.readLine();
+        try {
+            List<Integer> winNumbers = parseWinNumbers(input);
+            return new Lotto(winNumbers);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자만 입력 가능합니다.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return winNumInput(); // 재귀 호출
+    }
+
+    private static List<Integer> parseWinNumbers(String input) {
+        return Arrays.stream(input.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
+
 
     private static Integer validmoney(String stmoney) {
         try {
@@ -35,10 +64,4 @@ public class InputView {
         }
     }
 
-    public static UserLotto lottosInput(int money) {
-        System.out.printf("\n%d개를 구매했습니다.%n", money);
-        UserLotto userLotto = new UserLotto(money);
-
-        return userLotto;
-    }
 }

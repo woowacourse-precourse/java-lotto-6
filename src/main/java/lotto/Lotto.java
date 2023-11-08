@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,12 +11,13 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        sortNumbers(numbers);
-        this.numbers = numbers;
+        this.numbers = Collections.unmodifiableList(sortNumbers(numbers));
     }
 
-    private void sortNumbers(List<Integer> numbers) {
-        numbers.sort(Comparator.naturalOrder());
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        sortedNumbers.sort(Comparator.naturalOrder());
+        return sortedNumbers;
     }
 
     public void printLottoNumbers() {

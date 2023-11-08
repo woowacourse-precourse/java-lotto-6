@@ -41,6 +41,9 @@ public class InputController {
     public static int inputBonusNumber() throws NumberFormatException{
         Integer bonusNumber;
 
+        System.out.println();
+        System.out.println(InputMessage.INPUT_BONUS_NUMBER_MESSAGE);
+
         try {
             bonusNumber = Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {

@@ -4,7 +4,6 @@ public class LottoValues {
     public static final int LOTTO_PRICE = 1000;
     public static final int LOTTO_NUMBER_COUNT = 6;
     public static final int BONUS_NUMBER_COUNT = 1;
-    public static final int CHECK_BONUS_NUMBER_COUNT = 5;
     public static final int MIN_CHECK_NUMBER = 3;
     public static final int MAX_CHECK_NUMBER = 6;
     public static final int MIN_LOTTO_NUMBER = 1;

@@ -9,23 +9,23 @@ public enum Prize {
     FOURTH(50000),
     FIFTH(5000);
 
-    private final int prizeAmount;
+    private final double prizeAmount;
 
-    Prize(int prizeAmount) {
+    Prize(double prizeAmount) {
             this.prizeAmount = prizeAmount;
     }
 
-    public int getPrizeAmount() {
+    public double getPrizeAmount() {
             return prizeAmount;
     }
 
-    public String getFormattedPrizeAmount() {
-            DecimalFormat df = new DecimalFormat("#,###");
-            return df.format(prizeAmount);
-    }
 
-    public int multiplyAndAdd(int multiplier, int addition) {
-            return prizeAmount + (multiplier * addition);
+
+
+
+    public String getFormattedPrizeAmount(double rate) {
+        DecimalFormat df = new DecimalFormat("#,###");
+        return df.format(rate);
     }
 
 }

@@ -39,7 +39,7 @@ public enum LottoRank {
 
         int duplicatedCount = (int) winningLottoSet.stream().filter(lottoSet::contains).count();
         boolean isBonusCorrect = lottoSet.contains(winningLotto.getBonusNumber());
-        
+
         return findByNormalAndBonus(duplicatedCount, isBonusCorrect);
     }
 

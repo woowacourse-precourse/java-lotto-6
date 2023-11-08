@@ -15,8 +15,9 @@ public class DrawnNumbers {
 
     private DrawnNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
         validateWinningNumbers(winningNumbers);
-        validateBonusNumber(bonusNumber);
         this.winningNumbers = winningNumbers;
+
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -66,7 +67,7 @@ public class DrawnNumbers {
     }
 
     private boolean isInvalidRange(List<Integer> winningNumbers) {
-        return winningNumbers.stream()
+        return !winningNumbers.stream()
                 .allMatch(number ->
                         number >= MIN_LOTTO_NUMBER.getValue() && number <= MAX_LOTTO_NUMBER.getValue()
                 );

@@ -18,17 +18,17 @@ public class UserInputServiceImpl implements UserInputService {
     }
     @Override
     public void userInputLottoNum() {
-        System.out.println("로또 당첨 번호를 여섯개 입력해주세요. (쉼표로 구분합니다) ");
+        System.out.println("로또 당첨 번호를 여섯개 입력해주세요.(쉼표로 구분합니다)");
         String userInput= Console.readLine();
         String [] winningNums = userInput.split(",");
         for (String num : winningNums) {
             int intNum = Integer.parseInt(num);
-            if (isValidate(intNum)) {
+            if (!isValidate(intNum)) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
             winningNum.add(intNum);
         }
-        System.out.println("보너스 번호를 입력해주세요. ");
+        System.out.println("보너스 번호를 입력해주세요.");
         int plusNum = Integer.parseInt(Console.readLine());
         if(!isValidate(plusNum)){
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");

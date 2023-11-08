@@ -45,7 +45,6 @@ class LottoTest {
     void checkSortedArray() {
         Lotto lotto = new Lotto(Arrays.asList(45, 1, 24, 10, 3, 36));
         List<Integer> expectedResult = Arrays.asList(1, 3, 10, 24, 36, 45);
-        lotto.sort();
         Assertions.assertEquals(expectedResult, lotto.getNumbers());
     }
 }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -12,7 +13,13 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sort(numbers);
+    }
+
+    private ArrayList<Integer> sort(List<Integer> numbers) {
+        ArrayList<Integer> modifiableList = new ArrayList<>(numbers);
+        Collections.sort(modifiableList);
+        return modifiableList;
     }
 
     public List<Integer> getNumbers() {
@@ -55,9 +62,5 @@ public class Lotto {
         if (number < NUMBER_MIN.getValue() || number > NUMBER_MAX.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_NUMBER.getMessage());
         }
-    }
-
-    public void sort() {
-        Collections.sort(numbers);
     }
 }

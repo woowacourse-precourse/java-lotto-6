@@ -13,10 +13,13 @@ public class LotteryMachine {
         for(Lotto lotto : lottos) {
             int winningCount = lotto.matchWinningNumberCount(lottoWinnerNumbers);
             boolean bonusMatch = lotto.isMatchBonusNumber(lottoBonusNumber);
-            Rank rank = Rank.getRating(winningCount, bonusMatch);
-            ranks.merge(rank, 1, (k, v) -> ranks.get(rank) + 1);
+            mergeNewRank(ranks, Rank.getRating(winningCount, bonusMatch));
         }
 
         return new WinningResult(ranks);
+    }
+
+    private void mergeNewRank(Map<Rank, Integer> ranks, Rank rank) {
+        ranks.merge(rank, 1, (k, v) -> ranks.get(rank) + 1);
     }
 }

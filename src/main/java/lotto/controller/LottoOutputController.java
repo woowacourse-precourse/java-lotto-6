@@ -28,7 +28,7 @@ public class LottoOutputController {
         Map<LottoRank, Long> lottoRankCountMap =
                 printResult(lottoGameInfo.getLottos(), lottoResult);
 
-        printTotalProfitRate(lottoGameInfo.getAmount(), lottoRankCountMap);
+        printTotalProfitRate(lottoGameInfo.getCash(), lottoRankCountMap);
     }
 
 

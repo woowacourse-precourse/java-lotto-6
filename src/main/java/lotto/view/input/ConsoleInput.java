@@ -1,6 +1,7 @@
 package lotto.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.lotto.Cash;
 import lotto.domain.lotto.Lotto;
 
 public interface ConsoleInput extends InputView {
@@ -17,7 +18,7 @@ public interface ConsoleInput extends InputView {
         System.out.println();
     }
 
-    long requestLottoPurchaseAmount();
+    Cash requestLottoCash();
 
     Lotto requestWinningLotto();
 

@@ -1,5 +1,6 @@
 package lotto.view.input;
 
+import lotto.domain.lotto.Cash;
 import lotto.domain.lotto.Lotto;
 
 public class ProxyInputView implements ConsoleInput {
@@ -11,12 +12,12 @@ public class ProxyInputView implements ConsoleInput {
     }
 
     @Override
-    public long requestLottoPurchaseAmount() {
+    public Cash requestLottoCash() {
         try {
-            return lottoGameInputView.requestLottoPurchaseAmount();
+            return lottoGameInputView.requestLottoCash();
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
-            return lottoGameInputView.requestLottoPurchaseAmount();
+            return lottoGameInputView.requestLottoCash();
         }
     }
 

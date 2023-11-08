@@ -1,11 +1,11 @@
 package lotto.view.input.validator;
 
+import lotto.domain.lotto.Cash;
+
 import java.util.*;
 
 import static lotto.constants.LottoRule.STANDARD;
-import static lotto.message.ErrorMessage.INVALID_LOTTO_NUMBER_FORMAT;
-import static lotto.message.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
-import static lotto.message.ErrorMessage.BONUS_NUMBER_MATCH;
+import static lotto.message.ErrorMessage.*;
 
 public class LottoNumberInputValidator {
 
@@ -33,6 +33,16 @@ public class LottoNumberInputValidator {
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(BONUS_NUMBER_MATCH.getMessage());
         }
+    }
+
+    public long parseLong(String requestNumber) {
+        long number;
+        try {
+            number = Long.parseLong(requestNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_AMOUNT_FORMAT.getMessage());
+        }
+        return number;
     }
 
 }

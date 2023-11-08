@@ -1,41 +1,49 @@
 package lotto.view.input;
 
+import lotto.domain.lotto.Cash;
 import lotto.domain.lotto.Lotto;
 import lotto.util.LottoFactory;
-import lotto.view.input.validator.LottoGameInputValidator;
 import lotto.view.input.validator.LottoNumberInputValidator;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.constants.LottoRule.STANDARD;
+import static lotto.message.ErrorMessage.INVALID_LOTTO_AMOUNT;
 import static lotto.view.input.message.LottoBuyInputMessage.PURCHASE_AMOUNT_PROMPT_MESSAGE;
 import static lotto.view.input.message.LottoBuyInputMessage.WINNING_NUMBERS_PROMPT_MESSAGE;
 import static lotto.view.input.message.LottoBuyInputMessage.BONUS_NUMBER_PROMPT_MESSAGE;
 
 public class LottoGameInputView implements ConsoleInput {
 
-    private final LottoNumberInputValidator numberValidator;
-    private final LottoGameInputValidator gameInfoValidator;
+    private final LottoNumberInputValidator validator;
 
     public LottoGameInputView() {
-        this.numberValidator = new LottoNumberInputValidator();
-        this.gameInfoValidator = new LottoGameInputValidator();
+        this.validator = new LottoNumberInputValidator();
     }
 
     @Override
-    public long requestLottoPurchaseAmount() {
+    public Cash requestLottoCash() {
         printRequestLottoPurchaseAmount();
 
-        long amount = gameInfoValidator.parseLong(readLine());
-        validateAmount(amount);
-
+        long requestCash = validator.parseLong(readLine());
+        Cash cash = validateCashRequest(requestCash);
         newLine();
-        return amount;
+
+        return cash;
     }
 
-    private void validateAmount(long amount) {
-        gameInfoValidator.validatePositiveNumber(amount);
-        gameInfoValidator.validateLottoPurchase(amount);
+    private Cash validateCashRequest(long requestCash) {
+        Cash cash = new Cash(requestCash);
+        validateLottoPurchase(cash);
+
+        return cash;
+    }
+
+    private void validateLottoPurchase(Cash cash) {
+        if (cash.isPurchaseLottoPossible(STANDARD.getLottoPrice())) {
+            throw new IllegalArgumentException(INVALID_LOTTO_AMOUNT.getMessage());
+        }
     }
 
     private void printRequestLottoPurchaseAmount() {
@@ -58,7 +66,7 @@ public class LottoGameInputView implements ConsoleInput {
 
     private List<Integer> getNumbers() {
         return Arrays.stream(readLine().split(","))
-                .map(numberValidator::parseInt)
+                .map(validator::parseInt)
                 .toList();
     }
 
@@ -66,7 +74,7 @@ public class LottoGameInputView implements ConsoleInput {
     public int requestBonusLottoNumber(Lotto winningLotto) {
         printRequestBonusLottoNumber();
 
-        int bonusNumber = numberValidator.parseInt(readLine());
+        int bonusNumber = validator.parseInt(readLine());
         validateBonusLottoNumber(bonusNumber, winningLotto);
         newLine();
 
@@ -78,7 +86,7 @@ public class LottoGameInputView implements ConsoleInput {
     }
 
     private void validateBonusLottoNumber(int bonusNumber, Lotto winningLotto) {
-        numberValidator.validateLottoNumberRange(bonusNumber);
-        numberValidator.validateBonusNumberMatch(bonusNumber, winningLotto.getNumbers());
+        validator.validateLottoNumberRange(bonusNumber);
+        validator.validateBonusNumberMatch(bonusNumber, winningLotto.getNumbers());
     }
 }

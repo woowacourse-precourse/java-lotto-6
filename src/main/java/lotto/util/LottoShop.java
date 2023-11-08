@@ -1,5 +1,6 @@
 package lotto.util;
 
+import lotto.domain.lotto.Cash;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 
@@ -14,25 +15,21 @@ public class LottoShop {
     private LottoShop() {
     }
 
-    public static Lottos buyLottos(long amount) {
-        validateLottoPurchase(amount);
-        return new Lottos(createLottos(amount));
+    public static Lottos buyLottos(Cash cash) {
+        validateLottoPurchase(cash);
+        return new Lottos(createLottos(cash));
     }
 
-    private static List<Lotto> createLottos(long amount) {
+    private static List<Lotto> createLottos(Cash amount) {
         return Stream.generate(LottoFactory::createLotto)
-                .limit(amount / STANDARD.getLottoPrice())
+                .limit(amount.countPurchasableItems(STANDARD.getLottoPrice()))
                 .toList();
     }
 
-    private static void validateLottoPurchase(long amount) {
-        if (isPurchaseLottoPossible(amount)) {
+    private static void validateLottoPurchase(Cash amount) {
+        if (amount.isPurchaseLottoPossible(STANDARD.getLottoPrice())) {
             throw new IllegalStateException(INVALID_LOTTO_AMOUNT.getMessage());
         }
-    }
-
-    private static boolean isPurchaseLottoPossible(long amount) {
-        return amount % STANDARD.getLottoPrice() != 0;
     }
 
 }

@@ -1,6 +1,7 @@
 package lotto.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.lotto.Cash;
 import lotto.domain.lotto.Lotto;
 import lotto.message.ErrorMessage;
 import org.junit.jupiter.api.AfterEach;
@@ -47,7 +48,7 @@ public class LottoGameInputViewTest {
         String result = "구입할 Lotto 금액을 입력해 주세요.\n\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         // when
-        lottoGameInputView.requestLottoPurchaseAmount();
+        lottoGameInputView.requestLottoCash();
         // then
         assertThat(result).isEqualTo(output());
     }
@@ -59,9 +60,9 @@ public class LottoGameInputViewTest {
         String input = "98000";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         // when
-        long amount = lottoGameInputView.requestLottoPurchaseAmount();
+        Cash amount = lottoGameInputView.requestLottoCash();
         // then
-        assertThat(amount).isEqualTo(98000L);
+        assertThat(amount.getCash()).isEqualTo(98000L);
     }
 
     @Test
@@ -71,7 +72,7 @@ public class LottoGameInputViewTest {
         String input = "1200";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         // when // then
-        assertThatThrownBy(() -> lottoGameInputView.requestLottoPurchaseAmount())
+        assertThatThrownBy(() -> lottoGameInputView.requestLottoCash())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
     }
@@ -83,7 +84,7 @@ public class LottoGameInputViewTest {
         // given
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         // when // then
-        assertThatThrownBy(() -> lottoGameInputView.requestLottoPurchaseAmount())
+        assertThatThrownBy(() -> lottoGameInputView.requestLottoCash())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_AMOUNT_FORMAT.getMessage());
     }
@@ -95,7 +96,7 @@ public class LottoGameInputViewTest {
         // given
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         // when // then
-        assertThatThrownBy(() -> lottoGameInputView.requestLottoPurchaseAmount())
+        assertThatThrownBy(() -> lottoGameInputView.requestLottoCash())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.AMOUNT_LESS_THAN_ZERO.getMessage());
     }

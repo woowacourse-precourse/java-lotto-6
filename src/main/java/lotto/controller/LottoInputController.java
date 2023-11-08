@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.lotto.Cash;
 import lotto.dto.LottoGameInfo;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
@@ -16,7 +17,7 @@ public class LottoInputController {
     }
 
     public LottoGameInfo createLottoGame() {
-        long amount = inputView.requestLottoPurchaseAmount();
+        Cash amount = inputView.requestLottoCash();
         Lottos lottos = LottoShop.buyLottos(amount);
         return new LottoGameInfo(amount, lottos);
     }

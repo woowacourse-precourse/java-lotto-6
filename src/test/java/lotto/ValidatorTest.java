@@ -22,10 +22,20 @@ class ValidatorTest {
 
     @Test
     @DisplayName("부적절한 로또 구입 금액 입력시 예외 발생")
-    void validateAmount() {
+    void validateAmountTest() {
         stringTestCases = Arrays.asList(new String[]{"1500", "-1000", "1050", "1005"});
         for (String testCase : stringTestCases) {
             assertThatThrownBy(() -> Validator.validateAmount(testCase));
+        }
+    }
+
+    @Test
+    @DisplayName("부적절한 당첨 번호 입력시 예외 발생")
+    void validateWinNumbersTest() {
+        stringTestCases = Arrays.asList(new String[]{"1,2,", "1,2,3,4,5,6,", ",1,2,3,4,5,6",
+        "46,0,1,2,3,4", "1,2,3,4,5,6,7"});
+        for (String testCase : stringTestCases) {
+            assertThatThrownBy(() -> Validator.validateWinNumbers(testCase));
         }
     }
 

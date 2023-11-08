@@ -57,6 +57,6 @@ public class LottoResult {
 
         double profitRate = (totalProfit / money) * 100.0;
 
-        return Math.round(profitRate * 100.0) / 100.0;
+        return Math.round(profitRate * 10.0) / 10.0;
     }
 }

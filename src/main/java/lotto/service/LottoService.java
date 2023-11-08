@@ -4,9 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.RandomLottoGenerator;
 import lotto.domain.Rank;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -23,8 +21,14 @@ public class LottoService {
     public List<Lotto> buyLotto(int purchaseAmount) {
         int lottoCount = purchaseAmount / LOTTO_PRICE;
         return IntStream.range(0, lottoCount)
-                .mapToObj(i -> new Lotto(lottoGenerator.generate()))
+                .mapToObj(i -> sortLottoNumbers(new Lotto(lottoGenerator.generate())))
                 .collect(Collectors.toList());
+    }
+
+    private Lotto sortLottoNumbers(Lotto lotto) {
+        List<Integer> sortedNumbers = new ArrayList<>(lotto.getNumbers());
+        Collections.sort(sortedNumbers);
+        return new Lotto(sortedNumbers);
     }
 
     public Map<Rank, Long> calculateResults(Lotto winningLotto, List<Lotto> purchasedLottos, int bonusNumber) {

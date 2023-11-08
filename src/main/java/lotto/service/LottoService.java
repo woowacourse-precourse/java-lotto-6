@@ -15,20 +15,22 @@ import lotto.view.View;
 public class LottoService {
     private final BuyLottoRepository buyLottoRepo = new BuyLottoRepository();
     public BuyLottoRepository quickPick(int purchaseCount){
-
         while(purchaseCount>0){
             Lotto lotto = new Lotto(createRandomNumbers());
             buyLottoRepo.add(lotto);
-
-            extractNumbers(lotto.listToAscendingString());
             purchaseCount --;
         }
-        View.spaceSkipTwice();
         return buyLottoRepo;
     }
+    public List<String> extractAscendingNumbers() {
+        return buyLottoRepo.extractAscendingNumbers();
+    }
 
-    public void extractNumbers(String lottoNumber) {
-        View.buyLottos(lottoNumber);
+    public void printNumbers(List<String> buyLottosNumber) {
+        for (String lottoNumber : buyLottosNumber) {
+            View.buyLottos(lottoNumber);
+        }
+        View.spaceSkipTwice();
     }
 
     public List<Integer> createRandomNumbers() {

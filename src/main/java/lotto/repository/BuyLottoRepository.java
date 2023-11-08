@@ -19,4 +19,10 @@ public class BuyLottoRepository {
     public int size() {
         return lottos.size();
     }
+
+    public List<String> extractAscendingNumbers(){
+        return lottos.stream()
+                .map(Lotto::listToAscendingString)
+                .toList();
+    }
 }

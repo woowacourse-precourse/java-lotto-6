@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.PurchaseAmount;
 import lotto.repository.BuyLottoRepository;
 import lotto.repository.WinningLottoRepository;
@@ -21,6 +22,10 @@ public class LottoController {
 
         // 구입개수만큼 로또자동번호 사기
         BuyLottoRepository buyLottos = lottoService.quickPick(purchaseCount);
+        // 구매한 로또의 번호들을 오름차순으로 저장
+        List<String> buyLottosNumber = lottoService.extractAscendingNumbers();
+        // 저장한 번호들 출력
+        lottoService.printNumbers(buyLottosNumber);
         // 당첨번호(+보너스 번호) 입력
         WinningLottoRepository winningLotto = lottoService.createWinningLotto();
 

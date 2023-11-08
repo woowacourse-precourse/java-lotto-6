@@ -6,13 +6,11 @@ public class LottoBonus {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     protected final int bonus;
-    private final List<Integer> numbers;
 
     public LottoBonus (int bonus, List<Integer> numbers) {
         validateRange(bonus);
         validateDuplication(bonus, numbers);
         this.bonus = bonus;
-        this.numbers = numbers;
     }
 
     private void validateRange(int bonus) {

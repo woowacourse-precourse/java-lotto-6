@@ -1,8 +1,10 @@
 package lotto;
 
+import lotto.view.RunLotto;
+
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        RunLotto.runLotto();
+        RunLotto.getInstance().runLotto();
     }
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoTickets {
-    private  static List<Lotto> lottoTickets;
+    private   List<Lotto> lottoTickets;
 
     public LottoTickets() {
     }

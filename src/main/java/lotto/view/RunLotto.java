@@ -1,11 +1,17 @@
-package lotto;
-
-import lotto.view.UserInputView;
-import lotto.view.UserOutputView;
+package lotto.view;
 
 public class RunLotto {
 
-    public static void runLotto(){
+    public RunLotto() {
+    }
+    private static class RunLottoHolder{
+        private static final RunLotto runLotto = new RunLotto();
+    }
+    public static RunLotto getInstance(){
+        return RunLottoHolder.runLotto;
+    }
+
+    public  void runLotto(){
         UserOutputView.getInstance().outputPurchaseAmount();
         UserInputView.getInstance().inputPurchaseAmount();
 

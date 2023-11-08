@@ -17,9 +17,9 @@ public class MessageManager {
                              Integer fiveAndBonusMatchCount, Integer sixMatchCount) {
     }
 
-    public void printOneLottoTicketAnnounce(LottoTicket lottoTicket) {
+    public String OneLottoTicketMessage(LottoTicket lottoTicket) {
         List<Integer> lotto = lottoTicket.getNumbers();
-        System.out.println(lotto);
+        return (lotto.toString());
     }
 
     private static findCount getFindCount(ScratchedLottoTicketList scratchedLottoTicketList) {
@@ -32,31 +32,31 @@ public class MessageManager {
                 sixMatchCount);
     }
 
-    public String printOut(BigDecimal rateOfReturn) {
+    public String rateOfReturnMessage(BigDecimal rateOfReturn) {
         return ("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 
-    public void printWinningNumberAsk() {
-        ConsoleOutputManager.printOut("당첨 번호를 입력해 주세요.");
+    public String winningNumberAskMessage() {
+        return ("당첨 번호를 입력해 주세요.");
     }
 
-    public void printBonusNumberAsk() {
-        ConsoleOutputManager.printOut("보너스 번호를 입력해 주세요.");
+    public String bonusNumberAskMessage() {
+        return ("보너스 번호를 입력해 주세요.");
     }
 
-    public void printWinningChartAnnounce() {
-        ConsoleOutputManager.printOut("당첨 통계" + System.lineSeparator() + "---");
+    public String winningChartAnnounceMessage() {
+        return ("당첨 통계" + System.lineSeparator() + "---");
     }
 
-    public void printPurchaseAmountAsk() {
-        ConsoleOutputManager.printOut("구입 금액을 입력해 주세요.");
+    public String purchaseAmountAskMessage() {
+        return ("구입 금액을 입력해 주세요.");
     }
 
-    public void printQuantityAnnounce(Integer NumberOfPurchase) {
-        ConsoleOutputManager.printOut(NumberOfPurchase + "개를 구매했습니다.");
+    public String QuantityAnnounceMessage(Integer NumberOfPurchase) {
+        return (NumberOfPurchase + "개를 구매했습니다.");
     }
 
-    public String printWinningChart(ScratchedLottoTicketList scratchedLottoTicketList) {
+    public String winningChartMessage(ScratchedLottoTicketList scratchedLottoTicketList) {
         MessageManager.findCount findCount = getFindCount(scratchedLottoTicketList);
         return (THREE_MATCH.getDescription() + " - " + findCount.threeMatchCount() + "개") + System.lineSeparator()
                 + (FOUR_MATCH.getDescription() + " - " + findCount.fourMatchCount() + "개") + System.lineSeparator()
@@ -64,5 +64,12 @@ public class MessageManager {
                 + (FIVE_AND_BONUS_MATCH.getDescription() + " - " + findCount.fiveAndBonusMatchCount() + "개")
                 + System.lineSeparator()
                 + (SIX_MATCH.getDescription() + " - " + findCount.sixMatchCount() + "개");
+    }
+
+    public String winningChartAndRateOfReturnMessage(ScratchedLottoTicketList scratchedLottoTicketList,
+                                                     BigDecimal rateOfReturn) {
+        String winningChartMessage = this.winningChartMessage(scratchedLottoTicketList);
+        String rateOfReturnMessage = this.rateOfReturnMessage(rateOfReturn);
+        return winningChartMessage + System.lineSeparator() + rateOfReturnMessage;
     }
 }

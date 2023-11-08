@@ -34,7 +34,8 @@ public class LottoSystem {
     }
 
     public void printPurchaseAmountAsk() {
-        messageManager.printPurchaseAmountAsk();
+        String purchaseAmountAskMessage = messageManager.purchaseAmountAskMessage();
+        ConsoleOutputManager.printOut(purchaseAmountAskMessage);
     }
 
     public Integer chooseAmount(String input) {
@@ -42,19 +43,23 @@ public class LottoSystem {
     }
 
     public List<LottoTicket> saveLottoTickets(Integer amountToQuantity) {
-        messageManager.printQuantityAnnounce(amountToQuantity);
+        String printQuantityAnnounce = messageManager.QuantityAnnounceMessage(amountToQuantity);
+        ConsoleOutputManager.printOut(printQuantityAnnounce);
         List<LottoTicket> lottoTickets = new ArrayList<>();
         for (int i = 0; i < amountToQuantity; i++) {
             List<Integer> randomUniqueNumber = numberGenerator.createRandomUniqueNumber();
             LottoTicket lottoTicket = new LottoTicket(randomUniqueNumber);
-            messageManager.printOneLottoTicketAnnounce(lottoTicket);
+
+            String oneLottoTicketMessage = messageManager.OneLottoTicketMessage(lottoTicket);
+            ConsoleOutputManager.printOut(oneLottoTicketMessage);
             lottoTickets.add(lottoTicket);
         }
         return lottoTickets;
     }
 
     public void printWinningNumberAsk() {
-        messageManager.printWinningNumberAsk();
+        String winningNumberAskMessage = messageManager.winningNumberAskMessage();
+        ConsoleOutputManager.printOut(winningNumberAskMessage);
     }
 
     public WinningNumbers chooseWinningNumber(String input) {
@@ -62,7 +67,8 @@ public class LottoSystem {
     }
 
     public void printBonusNumberAsk() {
-        messageManager.printBonusNumberAsk();
+        String bonusNumberAskMessage = messageManager.bonusNumberAskMessage();
+        ConsoleOutputManager.printOut(bonusNumberAskMessage);
     }
 
     public BonusNumber chooseBonusNumber(String input) {
@@ -71,18 +77,15 @@ public class LottoSystem {
     }
 
     public String printWinningChart(Integer amountToQuantity, ScratchedLottoTicketList scratchedLottoTicketList) {
-
-        messageManager.printWinningChartAnnounce();
-        String chartContent = messageManager.printWinningChart(scratchedLottoTicketList);
+        String winningChartAnnounceMessage = messageManager.winningChartAnnounceMessage();
+        ConsoleOutputManager.printOut(winningChartAnnounceMessage);
 
         calculator.calculate(scratchedLottoTicketList, amountToQuantity);
         BigDecimal rateOfReturn = calculator.getRateOfReturn();
-        String rateOfReturnContent = messageManager.printOut(rateOfReturn);
-
-        String winningChart = chartContent + System.lineSeparator() + rateOfReturnContent;
-        ConsoleOutputManager.printOut(winningChart);
-        return winningChart;
+        String winningChartAndRateOfReturnMessage = messageManager.winningChartAndRateOfReturnMessage(
+                scratchedLottoTicketList,
+                rateOfReturn);
+        ConsoleOutputManager.printOut(winningChartAndRateOfReturnMessage);
+        return winningChartAndRateOfReturnMessage;
     }
-
-
 }

@@ -14,7 +14,7 @@ class LottoTicketTest {
     static Stream<List<Integer>> lottoTicketProvider() {
         return Stream.of(
                 Arrays.asList(1, 2, 3, 4, 5, 6, 7),
-                Arrays.asList(1),
+                List.of(1),
                 Arrays.asList(1, 2, 3, 4, 5, 5),
                 Arrays.asList(1, 2, 3, 4, 5, 55)
         );

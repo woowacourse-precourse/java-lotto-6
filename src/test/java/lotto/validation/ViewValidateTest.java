@@ -1,5 +1,6 @@
 package lotto.validation;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -8,7 +9,8 @@ class ViewValidateTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
-    void validateSpaceOrEmpty() {
+    @DisplayName("공백이나 빈 문자열 입력시 예외 발생")
+    void testValidateNotSpaceOrEmpty() {
         // given
         String spaceContent = " ";
         String nothingContent = "";
@@ -23,7 +25,8 @@ class ViewValidateTest {
     }
 
     @Test
-    void validateNull() {
+    @DisplayName("널 입력시 예외 발생")
+    void testValidateNotNull() {
         // given
         String nullContent = null;
         String content = "123";
@@ -35,7 +38,8 @@ class ViewValidateTest {
     }
 
     @Test
-    void validateString2Integer() {
+    @DisplayName("문자열을 int 정수로 바꿀수 없는 경우 예외 발생")
+    void testValidateAndConvertString2Int() {
         // given
         String notNumber = "1@3";
         String number = "123";

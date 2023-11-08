@@ -1,13 +1,14 @@
 package lotto.util;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static lotto.util.MathUtil.formatPercentage;
-import static org.junit.jupiter.api.Assertions.*;
 
 class MathUtilTest {
     @Test
+    @DisplayName("실수가 주어졌을 때, 소수점 둘째 자리에서 반올림하여 리턴")
     void testFormatPercentage() {
         // given
         double profit1 = 100.0;

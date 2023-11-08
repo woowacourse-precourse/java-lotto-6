@@ -13,10 +13,11 @@ public class LottoGame {
     // 로또 게임 진행 시작
     public void start() {
         int amount = getLottoAmount();
-        UserLottos userLottos = new UserLottos(amount);
+        userLottos = new UserLottos(amount);
         showLottos(userLottos);
         winLotto = new WinLotto(getWinNumbers());
         winLotto.setBonusNumber(getBonusNumber());
+        showResult();
     }
 
     // 구입금액 입력
@@ -74,5 +75,21 @@ public class LottoGame {
             userInterface.newLine();
             return Integer.parseInt(number);
         }
+    }
+
+    // 당첨 통계 출력
+    private void showResult() {
+        int winAmount = 0;
+        userInterface.showText("당첨 통계\n---");
+        List<Integer> winResult = winLotto.getWinCheck(userLottos);
+        LottoResult[] values = LottoResult.values();
+        for (int i = 0; i < 5; i++) {
+            userInterface.showText(values[i].getWinInfo() + " - " +
+                    winResult.get(i) + "개");
+            winAmount += winResult.get(i) * values[i].getReward();
+        }
+
+        userInterface.showText("총 수익률은 " +
+                Math.round((double)winAmount/(userLottos.getSize()*1000.0)*1000)/10.0 + "%입니다.");
     }
 }

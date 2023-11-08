@@ -16,6 +16,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(Message.Error.INVALID_WIN_NUMBER.getMessage());
         }
+        NumberOverlapCheck(numbers);
+    }
+
+    public void NumberOverlapCheck(List<Integer> numbers){
         HashSet<Integer> overlapCheck = new HashSet<>(numbers);
         if (numbers.size() != overlapCheck.size()){
             throw new IllegalArgumentException(Message.Error.OVERLAP_INPUT.getMessage());

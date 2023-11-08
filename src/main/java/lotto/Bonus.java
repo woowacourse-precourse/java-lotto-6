@@ -17,8 +17,14 @@ public class Bonus extends Input {
 
     public void save(String readLine, List<Integer> winningNumbers) {
         Integer number = validate(readLine);
-        isContained(winningNumbers);
+        isContained(number, winningNumbers);
         this.number = number;
+    }
+
+    private void isContained(Integer number, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(number)) {
+            throw new IllegalArgumentException(BONUS_DUPLICATION_ERROR);
+        }
     }
 
     protected Integer validate(String readLine) {
@@ -40,11 +46,5 @@ public class Bonus extends Input {
             throw new IllegalArgumentException(NUMBER_TYPE_ERROR);
         }
         return result;
-    }
-
-    private void isContained(List<Integer> winningNumbers) {
-        if (winningNumbers.contains(this.number)) {
-            throw new IllegalArgumentException(BONUS_DUPLICATION_ERROR);
-        }
     }
 }

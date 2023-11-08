@@ -22,4 +22,8 @@ public class CalculatorProfit {
         }
         return count;
     }
+
+    public double calculateTotalProfitRate(int totalPrize, long purchaseAmount) {
+        return ((double) totalPrize / purchaseAmount) * 100.0;
+    }
 }

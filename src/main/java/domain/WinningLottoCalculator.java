@@ -68,4 +68,13 @@ public class WinningLottoCalculator {
 		DecimalFormat decimalFormat = new DecimalFormat("#.#");
 		return Double.parseDouble(decimalFormat.format(rateOfReturn));
 	}
+
+	public String createWinningLottoMessage(LottoPrize lottoPrize) {
+		if (lottoPrize == LottoPrize.SECOND_PRIZE) {
+			return String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개", lottoPrize.getMatchCount(),
+					lottoPrize.getPrizeMoney(), lottoPrizes.get(lottoPrize));
+		}
+		return String.format("%d개 일치 (%,d원) - %d개", lottoPrize.getMatchCount(), lottoPrize.getPrizeMoney(),
+				lottoPrizes.get(lottoPrize));
+	}
 }

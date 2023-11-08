@@ -1,20 +1,20 @@
 package lotto.domain;
 
-import lotto.validator.PaymentValidator;
+import lotto.validator.PurchaseValidator;
 
-public class Payment {
+public class Purchase {
 
     private static final int LOTTO_PRICE = 1000;
 
     private final int amount;
 
-    public Payment(final String amount) {
+    public Purchase(final String amount) {
         validate(amount);
         this.amount = Integer.parseInt(amount);
     }
 
     private void validate(final String amount) {
-        PaymentValidator.validate(amount);
+        PurchaseValidator.validate(amount);
     }
 
     public int calculatePurchasedLottoCount() {

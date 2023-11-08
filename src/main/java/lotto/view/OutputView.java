@@ -9,7 +9,7 @@ import lotto.dto.LottoNumbersDto;
 
 public final class OutputView {
 
-    private static final String PAYMENT_GUIDE = "구입금액을 입력해 주세요.";
+    private static final String PURCHASE_GUIDE = "구입금액을 입력해 주세요.";
     private static final String PURCHASED_LOTTO_COUNT_GUIDE = "%d개를 구매했습니다.";
     private static final String WINNING_LOTTO_NUMBERS_GUIDE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_GUIDE = "보너스 번호를 입력해 주세요.";
@@ -22,8 +22,8 @@ public final class OutputView {
     private OutputView() {
     }
 
-    public static void printPaymentGuide() {
-        System.out.println(PAYMENT_GUIDE);
+    public static void printPurchaseGuide() {
+        System.out.println(PURCHASE_GUIDE);
     }
 
     public static void printErrorMessage(final String errorMessage) {

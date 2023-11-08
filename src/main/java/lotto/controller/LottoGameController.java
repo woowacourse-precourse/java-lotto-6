@@ -4,7 +4,7 @@ import java.util.EnumMap;
 
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.Payment;
+import lotto.domain.Purchase;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.domain.strategy.AutoIssuanceStrategy;
@@ -19,23 +19,23 @@ public class LottoGameController {
     }
 
     private void playLottoGame() {
-        Payment payment = getPayment();
-        Lottos lottos = issueLottosByAuto(payment.calculatePurchasedLottoCount());
-        printPurchaseHistory(payment, lottos);
+        Purchase purchase = getPurchaseAmount();
+        Lottos lottos = issueLottosByAuto(purchase.calculatePurchasedLottoCount());
+        printPurchaseHistory(purchase, lottos);
 
         WinningLotto winningLotto = issueWinningLottoByManual(getWinningLotto());
         EnumMap<Rank, Integer> rankResult = lottos.getRankResult(winningLotto);
-        double yield = payment.calculateYield(lottos.calculateTotalReward(rankResult));
+        double yield = purchase.calculateYield(lottos.calculateTotalReward(rankResult));
         printLottoGameResult(rankResult, yield);
     }
 
-    private Payment getPayment() {
-        OutputView.printPaymentGuide();
+    private Purchase getPurchaseAmount() {
+        OutputView.printPurchaseGuide();
         try {
-            return new Payment(InputView.readInput());
+            return new Purchase(InputView.readInput());
         } catch (IllegalArgumentException illegalArgumentException) {
             OutputView.printErrorMessage(illegalArgumentException.getMessage());
-            return getPayment();
+            return getPurchaseAmount();
         }
     }
 
@@ -43,8 +43,8 @@ public class LottoGameController {
         return new Lottos(totalCount, new AutoIssuanceStrategy());
     }
 
-    private void printPurchaseHistory(final Payment payment, final Lottos lottos) {
-        OutputView.printPurchasedLottoCount(payment.calculatePurchasedLottoCount());
+    private void printPurchaseHistory(final Purchase purchase, final Lottos lottos) {
+        OutputView.printPurchasedLottoCount(purchase.calculatePurchasedLottoCount());
         OutputView.printIssuedLottosNumbers(lottos.getLottoNumbersDto());
     }
 

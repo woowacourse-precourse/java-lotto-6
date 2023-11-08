@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class PaymentValidator {
+public final class PurchaseValidator {
 
     private static final int LOTTO_PRICE = 1000;
     private static final int MAX_AMOUNT = 2_000_000_000;
@@ -14,7 +14,7 @@ public final class PaymentValidator {
     private static final String UNIT_ERROR_MESSAGE = "[ERROR] 구입 금액은 1,000원 단위 입니다.";
     private static final String MAX_AMOUNT_ERROR_MESSAGE = "[ERROR] 최대 구입 금액은 2,000,000,000원 입니다.";
 
-    private PaymentValidator() {
+    private PurchaseValidator() {
     }
 
     public static void validate(final String amount) {

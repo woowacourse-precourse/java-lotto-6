@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreateLotto {
-    private CreateLotto createLotto;
     public List<Lotto> create(PurchaseAmount purchaseAmount) {
         int lottoCount = getLottoCount(purchaseAmount);
         List<Lotto> lottos = new ArrayList<>();

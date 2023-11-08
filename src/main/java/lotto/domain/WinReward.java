@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class WinReward {
-
+    private static final int INITIAL_COUNT = 0;
     private final Map<Rank, Integer> details;
 
     public WinReward() {
@@ -18,8 +18,8 @@ public class WinReward {
         details.merge(rank, 1, Integer::sum);
     }
 
-    public long getTotalReward() {
-        return details.entrySet().stream()
+    public int getTotalReward() {
+        return (int) details.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().getReward() * entry.getValue())
                 .sum();
     }
@@ -31,5 +31,8 @@ public class WinReward {
                 .sorted(Map.Entry.<Rank, Integer>comparingByKey().reversed())
                 .map(entry -> String.format("%s - %d개%n", entry.getKey(), entry.getValue()))
                 .collect(Collectors.joining());
+    }
+
+    public Rank match(Lotto lotto) {
     }
 }

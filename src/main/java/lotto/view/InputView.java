@@ -21,13 +21,13 @@ public class InputView {
             throw new IllegalArgumentException(ErrorMessage.CHECK_BLANK.getMessage());
         }
     }
-    public String[] inputWinningNum() {
+    public static String[] inputWinningNum() {
         System.out.println(WINNING_NUMBER_MESSAGE);
         String input = Console.readLine();
         checkBlank(input);
         return input.split(",");
     }
-    public String inputBonusNum() {
+    public static String inputBonusNum() {
         System.out.println(BONUS_NUMBER_MESSAGE);
         String input = Console.readLine();
         checkBlank(input);

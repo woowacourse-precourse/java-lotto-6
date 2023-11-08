@@ -5,7 +5,8 @@ public class Game {
     
     void play() {
         calculateNumberOfPurchase();
-        
+        Lottos lottos = new Lottos(purchaseAmount);
+        lottos.printLottos();
     }
     
     void calculateNumberOfPurchase() {

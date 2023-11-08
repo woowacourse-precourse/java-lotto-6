@@ -7,16 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class LottoSellerTest {
 
-    @DisplayName("셀러__로또_하나_정렬상태_테스트")
-    @Test
-    void issueOneLottoTest() {
-        LottoSeller seller = LottoSeller.create();
-        Lotto lotto = seller.issueLotto();
-
-        Assertions.assertThat(lotto.getNumbers()).isSorted();
-    }
-
-    @DisplayName("셀러__로또_판매_개수_테스트")
+    @DisplayName("[기능]LottoSeller_로또판매__돈받은만큼_발행")
     @Test
     void sellLottoTest() {
         int money = 6000;

@@ -75,7 +75,7 @@ public class LottoController {
             try {
                 outputView.printBonusNumberInputMessage();
                 int bonusNumber = inputView.inputBonusNumber();
-                this.matchCounter.setBonusNumber(bonusNumber);
+                matchCounter.setBonusNumber(bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.print(e.getMessage());

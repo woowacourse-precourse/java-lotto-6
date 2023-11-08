@@ -1,6 +1,6 @@
 package lotto.constant;
 
-public enum Format {
+public enum Mark {
     DELIMITER(","),
     EMPTY_REGEX(""),
     SPACE(" "),
@@ -14,7 +14,7 @@ public enum Format {
 
     private final String format;
 
-    Format(String format) {
+    Mark(String format) {
         this.format = format;
     }
 

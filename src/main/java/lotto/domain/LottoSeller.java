@@ -2,7 +2,6 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.Value;
-import java.util.ArrayList;
 
 public class LottoSeller {
     private final int ZERO = Value.ZERO.get();
@@ -21,10 +20,10 @@ public class LottoSeller {
         return lottoPaper;
     }
 
-    Lotto issueLotto() {
+    private Lotto issueLotto() {
         int start = Value.START_NUMBER.get();
         int end = Value.END_NUMBER.get();
         int count = Value.LOTTO_NUMBER_COUNT.get();
-        return new Lotto(new ArrayList<>(Randoms.pickUniqueNumbersInRange(start, end, count)));
+        return Lotto.from(Randoms.pickUniqueNumbersInRange(start, end, count));
     }
 }

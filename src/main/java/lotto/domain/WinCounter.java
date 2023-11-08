@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.constant.Format;
+import lotto.constant.Mark;
 import lotto.constant.Value;
 import lotto.constant.WinType;
 import java.text.DecimalFormat;
@@ -9,11 +9,12 @@ import java.util.Map;
 
 public class WinCounter {
     private final Map<WinType, Integer> winCounts;
+    private static final int ZERO = Value.ZERO.get();
 
     public WinCounter() {
         winCounts = new LinkedHashMap<>();
         for (WinType winType : WinType.values()) {
-            winCounts.put(winType, Value.ZERO.get());
+            winCounts.put(winType, ZERO);
         }
     }
 
@@ -28,29 +29,25 @@ public class WinCounter {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        int lineCount = winCounts.size();
-        for (Map.Entry<WinType, Integer> winEntry : winCounts.entrySet()) {
-            lineCount--;
-            WinType winType = winEntry.getKey();
-            sb.append(winType.getName())
-                    .append(Format.SPACE.get())
-                    .append(convertRewardFormat(winType))
-                    .append(Format.STATISTICS_JOIN_HYPHEN.get())
-                    .append(winEntry.getValue())
-                    .append(Format.WIN_COUNT_UNIT.get());
-            if (lineCount > 0) {
-                sb.append(Format.NEW_LINE.get());
-            }
+        winCounts.forEach((winType, winCount) -> sb.append(winType.getName())
+                .append(Mark.SPACE.get())
+                .append(convertRewardFormat(winType))
+                .append(Mark.STATISTICS_JOIN_HYPHEN.get())
+                .append(winCount)
+                .append(Mark.WIN_COUNT_UNIT.get())
+                .append(Mark.NEW_LINE.get()));
+        if (sb.length() > ZERO) {
+            sb.setLength(sb.length() - Mark.NEW_LINE.get().length());
         }
         return sb.toString();
     }
 
     private String convertRewardFormat(WinType winType) {
         StringBuilder sb = new StringBuilder();
-        sb.append(Format.OPEN_BRACKET.get())
+        sb.append(Mark.OPEN_BRACKET.get())
                 .append(convertMoneyFormat(winType.getReward()))
-                .append(Format.MONEY_UNIT.get())
-                .append(Format.CLOSE_BRACKET.get());
+                .append(Mark.MONEY_UNIT.get())
+                .append(Mark.CLOSE_BRACKET.get());
         return sb.toString();
     }
 
@@ -59,17 +56,14 @@ public class WinCounter {
     }
 
     public String getRateOfReturn(int payedMoney) {
-        int sum = 0;
-        for (Map.Entry<WinType, Integer> winCase : winCounts.entrySet()) {
-            int reward = winCase.getKey().getReward();
-            int count = winCase.getValue();
-            sum += reward * count;
-        }
+        int sum = winCounts.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getReward() * entry.getValue())
+                .sum();
         return percentFormat((double) sum / payedMoney * 100);
     }
 
     private String percentFormat(double number) {
         DecimalFormat df = new DecimalFormat("#.##");
-        return df.format(number) + Format.PERCENT.get();
+        return df.format(number) + Mark.PERCENT.get();
     }
 }

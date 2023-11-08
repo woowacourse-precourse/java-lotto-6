@@ -20,10 +20,10 @@ public class Lotto {
     }
     public void numberPrint(){
         System.out.println(numbers);
-    }
+    } //해당 객체에 저장된 리스트 출력
 
     public List<Integer> returnNumbers() {
         return numbers;
-    }
+    } //해당 객체에 저장된 리스트를 리턴
 
 }

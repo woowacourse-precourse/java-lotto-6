@@ -5,14 +5,14 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class Application {
     public static void main(String[] args) {
         // String howMuch = readLine();
-        int payment = 0;
-        payment = paymentInput(payment);
+        int payment = 0; //지불금액 저장할 변수
+        payment = paymentInput(payment); //변수에 저장
 
-        payment /= 1000;
-        Lotto[] lotto = new Lotto[payment];
+        payment /= 1000; //갯수로 나타내기위해 1000을 나눔
+        Lotto[] lotto = new Lotto[payment]; //갯수만큼의 로또객체 생성
 
         for (int i = 0; i < payment; i++) {
-            lotto[i] = new Lotto(creatRandomnumber());
+            lotto[i] = new Lotto(creatRandomnumber()); //각 개체에 난수를 넣어줌
         }
 
         System.out.println(payment + "개를 구매했습니다.");
@@ -25,33 +25,33 @@ public class Application {
         System.out.println("당첨 번호를 입력해 주세요.");
         while (emptynum == null) {
             String winningNumber = readLine();
-            emptynum = tokenSeparation((winningNumber));
+            emptynum = tokenSeparation((winningNumber));//당첨번호 저장
         }
-        Lotto winNumber = new Lotto(emptynum);
+        Lotto winNumber = new Lotto(emptynum); //당첨로또 객체생성
 
         int bonusNum = 0;
-        bonusNum = bonusnumInput(bonusNum, winNumber);
+        bonusNum = bonusnumInput(bonusNum, winNumber); //보너스넘버가 당첨번호에 중복으로 있는지 확인후 없으면 생성
 
-        int[] matching = new int[8];
+        int[] matching = new int[8];//매칭은 당첨번호중에 몇개가 일치하는지를 각 인덱스에 저장.
         for (int i = 0; i < payment; i++) {
             int willReturnIndex = howManySame(lotto[i].returnNumbers(), winNumber.returnNumbers());
-            if (willReturnIndex == 5 && lotto[i].returnNumbers().contains(bonusNum))
+            if (willReturnIndex == 5 && lotto[i].returnNumbers().contains(bonusNum)) //5개가 같다면 보너스넘버까지 확인
                 willReturnIndex++;
-            matching[willReturnIndex]++;
+            matching[willReturnIndex]++;//해당 인덱스의 숫자가 나올때마다 +1해줌
         }
 
-        finishPrint(matching, payment);
+        finishPrint(matching, payment); //최종출력
 
     }
 
-    static public int paymentInput(int payment){ //x
+    static public int paymentInput(int payment){
         System.out.println("구입금액을 입력해 주세요.");
         while (payment == 0)
             payment = paymentException(payment);
         return payment;
     }
 
-    static public int paymentException(int payment){ //x
+    static public int paymentException(int payment){
         try {
             payment = Integer.parseInt(readLine());
             if (payment % 1000 != 0 || payment <= 0) throw new IllegalArgumentException();
@@ -82,7 +82,7 @@ public class Application {
         }
     }
 
-    static public List<Integer> tokenSeparation(String s) {
+    static public List<Integer> tokenSeparation(String s) { //입력받은 문자열을 토큰 기준으로 분리
         int count = 0, emptynum=0;
         List<Integer> winnum = new ArrayList<>();
         StringTokenizer st = new StringTokenizer(s, ",");
@@ -97,7 +97,7 @@ public class Application {
         return winnum;
     }
 
-    static public boolean countNumException(int count){
+    static public boolean countNumException(int count){ //카운트갯수가 6개가 아니라면 예외처리
         try {
             if (count != 6) throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
@@ -107,10 +107,10 @@ public class Application {
         return true;
     }
 
-    static public int changeToInteger(String string) {
+    static public int changeToInteger(String s) { //입력받은 문자를 숫자로 바꿔줌
         int integer = 0;
         try {
-            integer = Integer.parseInt(string);
+            integer = Integer.parseInt(s);
             if(integer<1 || integer>45) throw new IllegalArgumentException();
         }catch (IllegalArgumentException e){
             System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
@@ -119,7 +119,7 @@ public class Application {
         return integer;
     }
 
-    public static int howManySame(List<Integer> myNum, List<Integer> winNumber) {
+    public static int howManySame(List<Integer> myNum, List<Integer> winNumber) { //당첨번호중에 몇개가 같은지 출력. 단, 6개 모두 같다면 5개+보너스1과 분류하기위해 7을 리턴
         int returnCount = 0;
         for (Integer element : myNum) {
             if (winNumber.contains(element)) {
@@ -130,7 +130,7 @@ public class Application {
         return returnCount;
     }
 
-    static public int bonusnumInput(int bonusNum, Lotto winNumber){
+    static public int bonusnumInput(int bonusNum, Lotto winNumber){ //보너스번호 입력
         System.out.println("보너스 번호를 입력해 주세요.");
         while(bonusNum == 0) {
             bonusNum = bonusnumException(bonusNum, winNumber);

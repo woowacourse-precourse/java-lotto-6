@@ -1,10 +1,10 @@
 package lotto.domain.lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.constant.errorMessage.amount.IllegalArgumentAmountException;
-import lotto.constant.errorMessage.amount.IllegalStateAmountException;
+import lotto.constant.errorMessage.input.IllegalArgumentAmountException;
 import lotto.constant.errorMessage.lotto.LottoExceptionStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -42,5 +42,13 @@ class LottoTest {
     void lottoNumbersDuplicatedExceptionTest(final List<Integer> numbers) {
         String message = LottoExceptionStatus.LOTTO_NUMBER_IS_DUPLICATED.getMessage();
         exceptionVerification(numbers, message);
+    }
+
+    @ParameterizedTest
+    @MethodSource(PROVIDER_PATH + "provideValuesForNumbersContainsTargetNumber")
+    @DisplayName("로또 번호는 타겟값을 가지고 있으면 참을 반환한다.")
+    void containsTrueTest(final List<Integer> numbers, final int targetNumber) {
+        final Lotto lotto = new Lotto(numbers);
+        assertThat(lotto.isContains(targetNumber)).isTrue();
     }
 }

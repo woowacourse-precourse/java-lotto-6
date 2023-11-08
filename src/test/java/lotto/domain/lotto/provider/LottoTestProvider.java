@@ -29,4 +29,12 @@ public class LottoTestProvider {
                 Arguments.of(List.of(5, 2, 23, 45, 2, 45))
         );
     }
+
+    public static Stream<Arguments> provideValuesForNumbersContainsTargetNumber() {
+        return Stream.of(
+                Arguments.of(List.of(12, 13, 20, 23, 24, 4), 20),
+                Arguments.of(List.of(1, 10, 15, 12, 2, 4), 10),
+                Arguments.of(List.of(5, 2, 23, 45, 6, 4), 5)
+        );
+    }
 }

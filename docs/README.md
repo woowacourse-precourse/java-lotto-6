@@ -42,7 +42,7 @@ Model
    - LottoDraw : 로또의 당첨을 확인하는 클래스
    - MyLottoNumber : 나의 로또 번호를 만드는 클래스
    - MyLottoNumbers : MyLottoNumber 에서 만든 로또 번호를 로또의 갯수만큼 저장하는 클래스
-
+   - WinningResult : 나의 로또번호와 당첨번호를 비교하여 당첨된 로또 갯수를 구하는 클래스
 View
    
    - InputView : 입력받는 부분의 View 를 관리하는 클래스

@@ -13,20 +13,23 @@ import lotto.view.OutputView;
 public class LottoGameController {
 
     public void run() {
+        // 로또 구입 금액 입력 및 출력
         LottoPlayer lottoPlayer = createLottoPlayer();
+        OutputView.outputNumberOfLottoTicks(lottoPlayer.getNumberOfLottoTickets());
 
-        int numberOfLottoTickets = lottoPlayer.getNumberOfLottoTickets();
-        OutputView.outputNumberOfLottoTicks(numberOfLottoTickets);
-
-        PlayerLottos playerLottos = generateLottoPlayerNumbers(numberOfLottoTickets);
+        // 참가자 로또 발행 및 출력
+        PlayerLottos playerLottos = generatePlayerLottos(lottoPlayer.getNumberOfLottoTickets());
         OutputView.outputLottoPlayerNumbers(playerLottos);
 
-        Lotto lotto = getLotto();
-
+        // 당첨 번호, 보너스 번호 입력
+        Lotto lotto = readLotto();
         WinningLotto winningLotto = createWinningLotto(lotto);
+
+        // 당첨 내역 출력
         Statistics statistics = calculateStatistics(playerLottos, winningLotto);
         OutputView.outputStatistics(statistics);
 
+        // 수익률 출력
         ProfitCalculator profitCalculator = calculateProfit(lottoPlayer.getPurchaseMoney(), statistics);
         OutputView.outputProfitRatio(profitCalculator);
     }
@@ -40,34 +43,34 @@ public class LottoGameController {
         }
     }
 
-    private PlayerLottos generateLottoPlayerNumbers(int numberOfLottoTickets) {
+    private PlayerLottos generatePlayerLottos(int numberOfLottoTickets) {
         return new PlayerLottos(numberOfLottoTickets);
     }
 
     private WinningLotto createWinningLotto(Lotto lotto) {
         try {
-            return new WinningLotto(lotto, getBonusNumber());
+            return new WinningLotto(lotto, readBonusNumber());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createWinningLotto(lotto);
         }
     }
 
-    private Lotto getLotto() {
+    private Lotto readLotto() {
         try {
             return new Lotto(InputView.inputWinningLottoNumber());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getLotto();
+            return readLotto();
         }
     }
 
-    private BonusNumber getBonusNumber() {
+    private BonusNumber readBonusNumber() {
         try {
             return new BonusNumber(InputView.inputBonusNumber());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getBonusNumber();
+            return readBonusNumber();
         }
     }
 

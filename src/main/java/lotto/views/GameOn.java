@@ -16,8 +16,9 @@ public class GameOn {
 
     public int moreCase(){
         System.out.println("보너스 번호를 입력해 주세요.");
-        int inputLine = scan.nextInt();
+        String inputLine = Console.readLine();
+        int input = Integer.parseInt(inputLine);
 
-        return inputLine;
+        return input;
     }
 }

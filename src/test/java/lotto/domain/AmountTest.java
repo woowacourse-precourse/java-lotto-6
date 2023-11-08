@@ -45,27 +45,20 @@ class AmountTest {
     @DisplayName("구입 금액이 1000원이면 1개를 발행한다.")
     @Test
     void createAmountBy1000() {
-        Amount amount = new Amount("1000");
-        assertThat(amount.getAmount()).isEqualTo(1000);
+        assertThat(new Amount("1000").getAmount()).isEqualTo(1000);
     }
 
     @DisplayName("구입 금액이 2000원이면 2개를 발행한다.")
     @Test
     void createAmountBy2000() {
-        Amount amount = new Amount("2000");
-        assertThat(amount.getAmount()).isEqualTo(2000);
+        assertThat(new Amount("2000").getAmount()).isEqualTo(2000);
     }
 
     @DisplayName("공백이 잘 제거되는지 확인한다.")
     @Test
     void createAmountBy1000withSpaces() {
-        Amount amountWithLeftSpace = new Amount("  1000");
-        assertThat(amountWithLeftSpace.getAmount()).isEqualTo(1000);
-
-        Amount amountWithRightSpace = new Amount("1000   ");
-        assertThat(amountWithRightSpace.getAmount()).isEqualTo(1000);
-
-        Amount amountWithSpaces = new Amount(" 1000  ");
-        assertThat(amountWithSpaces.getAmount()).isEqualTo(1000);
+        assertThat(new Amount("   1000").getAmount()).isEqualTo(1000);
+        assertThat(new Amount("1000   ").getAmount()).isEqualTo(1000);
+        assertThat(new Amount(" 1000  ").getAmount()).isEqualTo(1000);
     }
 }

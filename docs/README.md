@@ -13,3 +13,12 @@
 - [ ] 테스트코드 작성
 - [ ] 수익률 계산기 클래스 구현
   - [ ] 등수 리스트를 통해 수익률 계산
+
+## Enum
+- lotto
+  - FIRST
+  - SECOND
+  - THIRD
+  - FOURTH
+  - FIFTH
+  - LOSE

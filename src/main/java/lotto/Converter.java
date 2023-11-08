@@ -32,4 +32,12 @@ public class Converter {
 
         return numbers;
     }
+
+    public List<Integer> convertLottoNumbersInput(String numbers) {
+        List<String> splits = splitNumbers(numbers);
+        List<Integer> converts = convertTypes(splits);
+        List<Integer> sorts = sortToAscending(converts);
+
+        return converts;
+    }
 }

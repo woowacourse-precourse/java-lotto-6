@@ -27,7 +27,7 @@ public class Print {
 
     void analysis(int quantity, List<Prize> prizes) {
         List<Rank> ranks = new ArrayList<>();
-        System.out.println(winningAnalysis);
+        System.out.println("\n" + winningAnalysis);
         System.out.println(separatorLine);
         for (Prize prize : prizes) {
             ranks.add(prize.getRank());

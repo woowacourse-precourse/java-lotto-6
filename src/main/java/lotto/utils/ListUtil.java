@@ -1,5 +1,7 @@
 package lotto.utils;
 
+import lotto.constants.AppConstants;
+
 import java.util.List;
 
 public class ListUtil {
@@ -12,6 +14,7 @@ public class ListUtil {
     }
 
     public static boolean checkRange(List<Integer> numbers) {
-        return numbers.stream().allMatch(num -> num >= 0 && num <= 46);
+        return numbers.stream().allMatch(num -> num >= AppConstants.RANDOM_RANGE_MIN
+                && num <= AppConstants.RANDOM_RANGE_MAX);
     }
 }

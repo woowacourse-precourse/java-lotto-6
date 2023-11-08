@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import lotto.ui.UserView;
+import lotto.userinterface.UserView;
 import lotto.data.Lotto;
 import lotto.data.Rewards;
 
@@ -42,11 +42,11 @@ public class LottoModel {
         return winningNumsTable;
     }
 
-    public void computeLotto(List<Lotto> published, List<Integer> winnings, int bonusNum) {
+    public void computeLotto(List<Integer> winnings, int bonus) {
 
-        for (Lotto lotto : published) {
+        for (Lotto lotto : publishedLottos) {
             hasBonus = false;
-            winningNumsTable = compareLotto(winnings, lotto, bonusNum);
+            winningNumsTable = compareLotto(winnings, lotto, bonus);
             int result = sumOfWinningNumsTable();
             winningTable = makeWinningTable(result, hasBonus);
         }
@@ -57,6 +57,14 @@ public class LottoModel {
         double winningRate = (double) totalEarned / purchased * 100;
         double roundedRate = Math.round(winningRate * 10.0) / 10.0;
         return String.format("%.1f", roundedRate);
+    }
+
+    public int getTotalEarnedMoney() {
+        return totalEarnedMoney;
+    }
+
+    public HashMap<Rewards, Integer> getWinningTable() {
+        return winningTable;
     }
 
     public List<Integer> generateNewLotto() {
@@ -106,6 +114,7 @@ public class LottoModel {
         } catch (IllegalArgumentException e) {
             throw e;
         }
+        this.publishedLottos = publishedLottos;
         return publishedLottos;
     }
 
@@ -116,15 +125,6 @@ public class LottoModel {
                 .collect(Collectors.toList());
         String Ticket = String.format("[%s]", String.join(", ", sortedNums));
         return Ticket;
-    }
-
-    public void run() {
-        userView.purchase();
-        viewProcessor.winnings();
-        viewProcessor.bonusBall();
-        computeLotto(publishedLottos, viewProcessor.getWinningNums(), viewProcessor.getBonusNum());
-        userView.winnings(winningTable);
-        userView.rate(computeRate(totalEarnedMoney, viewProcessor.getCost()));
     }
 
     public int sumOfWinningNumsTable() {

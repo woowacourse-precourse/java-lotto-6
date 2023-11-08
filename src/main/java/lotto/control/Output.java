@@ -39,7 +39,6 @@ public class Output {
                 if (lottoTicket.get(i).getNumbers().contains(bonusNumber)) fiveMatchBonus++;
                 else fiveMatch++;
             } else if (count == 6) sixMatch++;
-            //System.out.println("current count is " + count + " is bonus checked " + lottoTicket.get(i).getNumbers().contains(bonusNumber));
         }
 
         System.out.println("당첨 통계");
@@ -53,9 +52,6 @@ public class Output {
         long profit = (threeMatch * 5000 + fourMatch * 50000 + fiveMatch * 1500000 + fiveMatchBonus * 30000000 + sixMatch * 2000000000);
         double profitRate = profit / (double)investment * 100;
         double roundedProfitRate = Math.round(profitRate*100.0)/100.0;
-        //System.out.println("총 수익금은 " + profit + "입니다.");
-        //System.out.println("총 수익률은 " + profitRate + "%입니다.");
-        //System.out.println("총 수익률은 " + roundedProfitRate + "%입니다.");
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", roundedProfitRate);
+        System.out.println("총 수익률은 " + roundedProfitRate + "%입니다.");
     }
 }

@@ -13,14 +13,15 @@ public class LottoRepository {
         return new LottoRepository(lottos);
     }
 
-    public List<Lotto> getLottos(){
+    public List<Lotto> getLottos() {
         return lottos;
     }
+
     public int getSize() {
         return lottos.size();
     }
 
-    public LottoPrize getWinningLotto(LottoWinningNumbers lottoWinningNumbers){
-        return new LottoPrize(lottoWinningNumbers,lottos);
+    public LottoPrize getWinningLotto(LottoWinningNumbers lottoWinningNumbers) {
+        return new LottoPrize(lottoWinningNumbers, lottos);
     }
 }

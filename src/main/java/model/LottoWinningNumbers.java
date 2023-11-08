@@ -24,9 +24,9 @@ public class LottoWinningNumbers {
     }
 
     public void validationBonusNumber(int bonusNumber) {
-          NumberValidation.isOverMaxNumber(bonusNumber);
-            NumberValidation.isUnderMinNumber(bonusNumber);
-            duplicationBonusNumber(bonusNumber);
+        NumberValidation.isOverMaxNumber(bonusNumber);
+        NumberValidation.isUnderMinNumber(bonusNumber);
+        duplicationBonusNumber(bonusNumber);
     }
 
     public void duplicationBonusNumber(int bonusNumber) {

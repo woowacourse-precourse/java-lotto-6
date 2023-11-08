@@ -16,14 +16,14 @@ public class Lotto {
         return numbers;
     }
 
-    public void validate(List<Integer> numbers){
+    public void validate(List<Integer> numbers) {
         NumbersValidation.isOverLength(numbers);
         NumbersValidation.isUnderLength(numbers);
         NumbersValidation.duplicationNumbers(numbers);
-        numbers.stream().forEach(number->numberValidate(number));
+        numbers.stream().forEach(number -> numberValidate(number));
     }
 
-    public void numberValidate(int number){
+    public void numberValidate(int number) {
         NumberValidation.isUnderMinNumber(number);
         NumberValidation.isOverMaxNumber(number);
     }

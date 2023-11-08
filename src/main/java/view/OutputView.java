@@ -38,7 +38,7 @@ public class OutputView {
             return;
         }
         if (prize.getBonus()) {
-            branchBonus(lottoPrize,prize);
+            branchBonus(lottoPrize, prize);
         }
         if (lottoPrize.isWinning(prize)) {
             printWinning(prize, lottoPrize.getWinningCount(prize));
@@ -53,26 +53,31 @@ public class OutputView {
     }
 
     public void printNotWinning(Prize prize) {
-        System.out.printf(InformationMessages.WINNING_RESULT, prize.getWinNumberCount(), addThousandSeparator(prize.getPrice()), 0);
+        System.out.printf(InformationMessages.WINNING_RESULT, prize.getWinNumberCount(),
+                addThousandSeparator(prize.getPrice()), 0);
     }
 
     public void printWinning(Prize prize, int count) {
-        System.out.printf(InformationMessages.WINNING_RESULT, prize.getWinNumberCount(), addThousandSeparator(prize.getPrice()), count);
+        System.out.printf(InformationMessages.WINNING_RESULT, prize.getWinNumberCount(),
+                addThousandSeparator(prize.getPrice()), count);
     }
 
-    public void branchBonus(LottoPrize lottoPrize, Prize prize){
-        if(lottoPrize.isWinning(prize)){
+    public void branchBonus(LottoPrize lottoPrize, Prize prize) {
+        if (lottoPrize.isWinning(prize)) {
             printWinningWithBonus(prize, lottoPrize.getWinningCount(prize));
             return;
         }
-        printWinningWithBonus(prize,0);
+        printWinningWithBonus(prize, 0);
     }
+
     public void printWinningWithBonus(Prize prize, int count) {
-        System.out.printf(InformationMessages.WINNING_RESULT_BONUS, prize.getWinNumberCount(), addThousandSeparator(prize.getPrice()), count);
+        System.out.printf(InformationMessages.WINNING_RESULT_BONUS, prize.getWinNumberCount(),
+                addThousandSeparator(prize.getPrice()), count);
     }
 
     public String LottoWithDelimiter(Lotto lotto) {
-        return lotto.getNumbers().stream().map(number -> String.valueOf(number)).collect(Collectors.joining(OutputSign.DELIMITER));
+        return lotto.getNumbers().stream().map(number -> String.valueOf(number))
+                .collect(Collectors.joining(OutputSign.DELIMITER));
     }
 }
 

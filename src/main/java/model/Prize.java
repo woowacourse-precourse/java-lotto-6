@@ -27,14 +27,15 @@ public enum Prize {
                 .orElse(Prize.NO);
     }
 
-    public int getPrice(){
+    public int getPrice() {
         return price;
     }
 
-    public int getWinNumberCount(){
+    public int getWinNumberCount() {
         return winNumberCount;
     }
-    public boolean getBonus(){
+
+    public boolean getBonus() {
         return bonus;
     }
 

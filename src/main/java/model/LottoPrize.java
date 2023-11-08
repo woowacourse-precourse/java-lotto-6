@@ -1,6 +1,5 @@
 package model;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class LottoPrize {
@@ -11,15 +10,15 @@ public class LottoPrize {
         judgePrize(winningNumbers, lottos);
     }
 
-    public int getReword(){
+    public int getReword() {
         return prizeRepository.calculateTotalReword();
     }
 
-    public boolean isWinning(Prize prize){
+    public boolean isWinning(Prize prize) {
         return prizeRepository.getPrizeRepository().containsKey(prize);
     }
 
-    public int getWinningCount(Prize prize){
+    public int getWinningCount(Prize prize) {
         return (int) prizeRepository.getPrizeRepository().get(prize);
     }
 

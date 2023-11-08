@@ -21,5 +21,14 @@ public class User {
 	public int getBuyingLottosPrice() {
 		return buyingLottoPrice;
 	}
+	public void setLottos(int buyingLottoPrice) {
+		this.lottos = GeneratingLottoNumberService.generatingLottoNumber(buyingLottoPrice);
+	}
 
+	public int getWinningPrice() {
+		return winningLottoPrice;
+	}
+	public void sumWinningPrice(int price) {
+		winningLottoPrice += price;
+	}
 }

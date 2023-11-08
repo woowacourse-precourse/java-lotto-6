@@ -3,7 +3,6 @@ package lotto.model.user;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import lotto.model.user.UserMoney;
 import org.junit.jupiter.api.Test;
 
 class UserMoneyTest {

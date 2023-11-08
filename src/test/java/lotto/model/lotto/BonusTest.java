@@ -2,7 +2,6 @@ package lotto.model.lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.model.lotto.Bonus;
 import org.junit.jupiter.api.Test;
 
 class BonusTest {

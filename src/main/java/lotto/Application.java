@@ -8,34 +8,36 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Application {
-
-    public static void alertError(String message) {
+    public static void error(String message) {
         System.out.println("[ERROR] " + message);
     }
 
     public static int convertInteger(String input) {
-        int toValidate;
-        try {
-            toValidate = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
+        return Integer.parseInt(input);
+    }
+
+    public static void validateBudget(int budget) {
+        boolean isNotMultipleOf1000 = budget % 1000 != 0;
+        if (isNotMultipleOf1000) {
             throw new IllegalArgumentException();
         }
-        return toValidate;
     }
 
     public static int inputBudget() {
-        System.out.println("구입금액을 입력해 주세요.");
-        int input = convertInteger(Console.readLine());
-        boolean isNotMultipleOf1000 = input % 1000 != 0;
-        if (isNotMultipleOf1000) {
-            alertError("로또 구입 금액은 1,000 단위의 숫자여야 합니다.");
-            throw new IllegalArgumentException();
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                int input = convertInteger(Console.readLine());
+                validateBudget(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                error("로또 구입 금액은 1,000 단위의 숫자여야 합니다.");
+            }
         }
-        return input;
     }
 
     public static List<Integer> getRandomLottoNumber() {
-        return Randoms.pickUniqueNumbersInRange(1,45,6);
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     public static Lotto getRandomLotto() {
@@ -53,23 +55,38 @@ public class Application {
     }
 
     public static Lotto inputWinningLotto() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String[] input = Console.readLine().split(",");
-        List<Integer> winningNumbers = Arrays.stream(input)
-                .map(Application::convertInteger)
-                .toList();
-        return new Lotto(winningNumbers);
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String[] input = Console.readLine().split(",");
+                List<Integer> winningNumbers = Arrays.stream(input)
+                        .map(Application::convertInteger)
+                        .toList();
+                return new Lotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                error("로또 번호는 쉼표로 구분된 1부터 45 사이의 숫자 6개여야 합니다.");
+            }
+        }
+    }
+
+    public static void validateBonusNumber(int bonusNumber) {
+        boolean isNotInLottoNumberRange = bonusNumber < 1 || 45 < bonusNumber;
+        if (isNotInLottoNumberRange) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public static int inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        Integer input = convertInteger(Console.readLine());
-        boolean isNotInLottoNumberRange = input < 1 || 45 < input;
-        if (isNotInLottoNumberRange) {
-            alertError("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            throw new IllegalArgumentException();
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                int input = convertInteger(Console.readLine());
+                validateBonusNumber(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                error("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
         }
-        return input;
     }
 
     public static long countResultByType(List<LottoResult> results, LottoResult type) {

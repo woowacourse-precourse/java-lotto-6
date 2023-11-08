@@ -45,7 +45,9 @@ public class ResultView {
 
     private void printReturnRate(LottoResult lottoResult, int purchaseAmount) {
         double returnRate = lottoResult.calculateReturnRate(purchaseAmount);
-        System.out.println("총 수익률은 " + returnRate + "%입니다.");
+
+        double roundedRate = Math.round(returnRate * 10) / 10.0;
+        System.out.println("총 수익률은 " + roundedRate + "%입니다.");
     }
 
 }

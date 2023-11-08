@@ -1,6 +1,6 @@
 package lotto;
 
-public enum Winner {
+public enum Rank {
     FIRST(6, 2000000000, "6개 일치 (2,000,000,000원) - "),
     SECOND(5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     THIRD(5, 1500000, "5개 일치 (1,500,000원) - "),
@@ -11,21 +11,21 @@ public enum Winner {
     private final int matchCnt;
     private final int money;
     private final String resultMessage;
-    Winner(int matchCnt, int money, String resultMessage){
+    Rank(int matchCnt, int money, String resultMessage){
         this.matchCnt = matchCnt;
         this.money = money;
         this.resultMessage = resultMessage;
     }
 
-    public int getMatchCnt() {
+    public int getMatchCnt(Rank rank) {
         return matchCnt;
     }
 
-    public int getMoney() {
+    public int getMoney(Rank rank) {
         return money;
     }
 
-    public String getResultMessage() {
+    public String getResultMessage(Rank rank) {
         return resultMessage;
     }
 }

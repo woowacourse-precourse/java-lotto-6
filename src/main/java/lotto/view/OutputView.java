@@ -9,6 +9,7 @@ public class OutputView {
 
     public static final String BUY_TICKETS_COUNT = "%d개를 구매했습니다.\n";
     public static final String BR = "\n";
+    public static final String OUTPUT_START_MESSAGE = "\n당첨 통계\n---\n";
     public static final String FIFTH = "3개 일치 (%,d원) - %d개\n";
     public static final String FOURTH = "4개 일치 (%,d원) - %d개\n";
     public static final String THIRD = "5개 일치 (%,d원) - %d개\n";
@@ -29,7 +30,7 @@ public class OutputView {
     }
 
     public void printResult(HashMap<Result, Integer> resultMap, double score) {
-        StringBuilder sb = new StringBuilder(BR);
+        StringBuilder sb = new StringBuilder(OUTPUT_START_MESSAGE);
         LinkedHashMap<Result, String> printResultKeyMap = getPrintResultKeySet();
 
         for (Result result : printResultKeyMap.keySet()) {

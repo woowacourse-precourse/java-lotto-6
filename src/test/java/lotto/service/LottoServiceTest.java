@@ -14,7 +14,7 @@ class LottoServiceTest {
 
     LottoService lottoService = new LottoService();
 
-    @DisplayName("로또 구입 금액이 숫자가 아닌 문자열로 이루어져 있을 때 예외 처리")
+    @DisplayName("입력한 로또 구입 금액이 숫자가 아닌 문자열로 이루어져 있을 때 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"a", "1000a", "500abc", "", "안녕"})
     void inputBuyLottoAmountNotNumber(String buyAmount) {
@@ -23,11 +23,47 @@ class LottoServiceTest {
                 .hasMessageContaining("[ERROR]");
     }
 
-    @DisplayName("로또 구입 금액이 1000원 단위로 나누어 떨어지지 않을 때 예외 처리")
+    @DisplayName("입력한 로또 구입 금액이 1000원 단위로 나누어 떨어지지 않을 때 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"0", "500", "900", "1500", "1", "999"})
     void inputBuyLottoAmountIndivisible(String buyAmount) {
         assertThatThrownBy(() -> lottoService.buyLottoAmountValidate(buyAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("입력한 당첨 번호에 숫자가 아닌 것 포함된 경우 예외 처리")
+    @Test
+    void inputUserLottoNumberNotNumber() {
+        String inputUserLottoNumber = "1,2,3,4,5,a";
+        assertThatThrownBy(() -> lottoService.userLottoNumbersValidate(inputUserLottoNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("입력한 당첨 번호의 숫자가 6개가 아닌 경우 예외 처리")
+    @Test
+    void inputUserLottoNumberInvalidateCount() {
+        String inputUserLottoNumber = "1,2,3,4,5";
+        assertThatThrownBy(() -> lottoService.userLottoNumbersValidate(inputUserLottoNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("입력한 당첨 번호에 숫자가 1~45 범위가 아닌 경우 예외 처리")
+    @Test
+    void inputUserLottoNumberInvalidateRange() {
+        String inputUserLottoNumber = "1,2,3,4,5,46";
+        assertThatThrownBy(() -> lottoService.userLottoNumbersValidate(inputUserLottoNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("입력한 당첨 번호가 서로 중복될 때 예외 처리")
+    @Test
+    void inputUserLottoNumberDuplicate() {
+        String inputUserLottoNumber = "1,1,3,4,5,6";
+        assertThatThrownBy(() -> lottoService.userLottoNumbersValidate(inputUserLottoNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }

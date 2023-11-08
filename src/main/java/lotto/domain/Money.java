@@ -4,11 +4,6 @@ import java.text.DecimalFormat;
 
 public class Money implements Comparable<Money> {
     public static final Money ZERO = new Money(0);
-
-    public Integer getAmount() {
-        return amount;
-    }
-
     private final Integer amount;
 
     public Money(Integer amount) {
@@ -26,7 +21,6 @@ public class Money implements Comparable<Money> {
     public Money multiply(Money amount) {
         return new Money(this.amount * amount.amount);
     }
-
 
     public boolean hasNotMoney() {
         return amount <= 0;

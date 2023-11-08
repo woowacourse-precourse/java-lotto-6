@@ -65,4 +65,14 @@ public class LottoService {
         int value = reward.get(key);
         return value + 1;
     }
+
+    public double calRateOfReturn(Amount amount){
+        double earn = 0;
+        for(Map.Entry<Reward, Integer> entry : reward.entrySet()){
+            int rewardAmount = entry.getKey().getReward();
+            int sameCount = entry.getValue();
+            earn += rewardAmount * sameCount;
+        }
+        return earn / amount.getAmount() * 100;
+    }
 }

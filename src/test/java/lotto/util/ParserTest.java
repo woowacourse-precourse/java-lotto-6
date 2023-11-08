@@ -3,25 +3,26 @@ package lotto.util;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParserTest {
     Parser parser = new Parser();
-//    @Test
-//    @DisplayName("입력한 금액에 단위표시가 있을 때 테스트")
-//    public void testParserInputWithComma(){
-//        String input = "1,000";
-//        int expected = 1000;
-//        int result = parser.lottoPrice(input);
-//        assertEquals(expected, result);
-//    }
+
 
     @Test
-    @DisplayName("정상적으로 입력했을 때 테스트")
+    @DisplayName("정수로 바꾸는 테스트")
     public void testParserValidInput() {
        String inputPrice = "1000";
-       int Price = parser.lottoPrice(inputPrice);
+       int Price = parser.convertInt(inputPrice);
        assertThat(Price).isEqualTo(1000);
     }
 
+    @Test
+    @DisplayName("입력값 리스트를 제대로 구분하는가에 대한 테스트")
+    public void testSplitCommaInput() {
+            assertEquals(List.of("1", "2", "3"), parser.splitComma("1,2,3"));
+    }
 }

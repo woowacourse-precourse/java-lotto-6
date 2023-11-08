@@ -1,5 +1,8 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,20 +16,34 @@ public class LottoController {
 
     void play(){
         int LottoNum = moneyInput();
-        buyLotto(LottoNum);
+        List<Lotto> LottoList = buyLotto(LottoNum);
         winningNumInput();
         bonusNumInput();
     }
 
-    private void buyLotto(int lottoNum) {
-        
+    private List<Lotto> buyLotto(int lottoNum) {
+        List<Lotto> LottoList = new ArrayList<>();
+        for(int i=0; i<lottoNum; i++){
+            List<Integer> list = makeRandomNum();
+            Lotto lotto = new Lotto(list);
+            LottoList.add(lotto);
+        }
+        for(int i=0; i<LottoList.size(); i++){
+            System.out.println(LottoList.get(i).numbers);
+        }
+        return LottoList;
+    }
+
+    private List<Integer> makeRandomNum() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return numbers;
     }
 
     private int moneyInput() {
         System.out.print("Money : ");
         int Money = Integer.parseInt(readLine());
-        int LottoNum = Money / 10;
-        System.out.println("Money = " + Money);
+        int LottoNum = Money / 1000;
+        System.out.println("LottoNum = " + LottoNum);
         return LottoNum;
     }
 

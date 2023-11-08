@@ -22,7 +22,7 @@ public class BonusNumberValidator {
             Integer.parseInt(bonusNumberInput);
         } catch (NumberFormatException e) {
             System.out.println(ErrorMessages.NOT_LOTTO_NUMBER.getMessage());
-            throw new NumberFormatException(ErrorMessages.NOT_BONUS.getMessage());
+            throw new NumberFormatException(ErrorMessages.NOT_NUMBER.getMessage());
         }
     }
 }

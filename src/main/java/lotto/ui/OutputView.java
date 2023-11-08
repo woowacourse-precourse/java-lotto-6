@@ -1,5 +1,7 @@
 package lotto.ui;
 
+import lotto.domain.WinningResult;
+
 public class OutputView {
     private static final String INPUT_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
@@ -27,7 +29,8 @@ public class OutputView {
     public void printBoughtLottoNumbers() {
     }
 
-    public void printStatistics() {
+    public void printStatistics(WinningResult winningResult) {
         System.out.println(STATISTICS_MESSAGE);
+        System.out.println(winningResult.getFormattedStatistics());
     }
 }

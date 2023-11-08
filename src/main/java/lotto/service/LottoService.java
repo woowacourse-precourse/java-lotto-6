@@ -14,11 +14,11 @@ public class LottoService {
         winningCount = new int[LottoPrize.values().length];
     }
 
-    public int[] calculateWinningsCounts(LottoTicket lottoTickets, WinningNumbers winningNumbers) {
+    public int[] calculateWinningsCounts(WinningNumbers winningNumbers, List<Lotto> lottoList) {
         List<Integer> winningList = winningNumbers.getWinningNumbers();
         int bonusNum = winningNumbers.getBonusNumber();
 
-        for (Lotto lotto : lottoTickets.getLottoList()) {
+        for (Lotto lotto : lottoList) {
             int count = lotto.countMatches(winningList);
             boolean hasBonusNum = lotto.contains(bonusNum);
             determineRank(count, hasBonusNum);

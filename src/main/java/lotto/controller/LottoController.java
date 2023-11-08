@@ -97,7 +97,8 @@ public class LottoController {
 
     private void printWinningStatistics(LottoTicket lottoTicket, WinningNumbers winningNumbers) {
         LottoService lottoService = new LottoService();
-        int[] counts = lottoService.calculateWinningsCounts(lottoTicket, winningNumbers);
+        List<Lotto> lottoList= lottoTicket.getLottoList();
+        int[] counts = lottoService.calculateWinningsCounts(winningNumbers, lottoList);
         OutputView.printWinningStatistics(counts);
         double profitRatio = lottoService.calculateProfitRatio(lottoTicket);
         OutputView.printProfitRatio(profitRatio);

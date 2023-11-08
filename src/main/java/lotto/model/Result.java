@@ -11,6 +11,14 @@ public class Result {
         this.hasBonus = hasBonus;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean isHasBonus() {
+        return hasBonus;
+    }
+
     public static Result of(int matchCount, boolean hasBonus) {
         return new Result(matchCount, hasBonus);
     }

@@ -46,7 +46,7 @@ public class Application {
         System.out.println("---");
         LottoResult lottoResult = new LottoResult();
         lottoResult.totalRanking(lottos, winningNumbers, bonus.getNumber());
-        lottoResult.calculateRateOfReturn(lottos, winningNumbers, bonus.getNumber(), lottoAmount.getMoney());
+        lottoResult.calculateRateOfReturn(lottos, winningNumbers, bonus.getNumber());
         System.out.println(lottoResult);
     }
 

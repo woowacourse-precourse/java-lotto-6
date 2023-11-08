@@ -1,8 +1,5 @@
 package lotto.view.output;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.List;
 import lotto.model.domain.Lotto;
@@ -21,6 +18,9 @@ public class OutputView {
     private static final String LOTTO_RESULT_FORMAT_NO_BONUS = "%d개 일치 (%s원) - %d개%n";
     private static final String LOTTO_RESULT_FORMAT_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%s원) - %d개%n";
     private static final String LOTTO_EARNING_RATE_FORMAT = "총 수익률은 %s%%입니다.";
+    private static final String DECIMAL_COMMA_FORMAT = "%,d";
+    private static final String DOUBLE_COMMA_ROUND_FORMAT = "%,.1f";
+
 
     public void printLottos(LottoWallet lottoWallet) {
         List<Lotto> lottos = lottoWallet.getLottos();
@@ -53,19 +53,18 @@ public class OutputView {
     }
 
     private void printRank(List<LottoRank> lottoRanks, LottoRank rank) {
-        NumberFormat numberFormatter = NumberFormat.getInstance();
 
         if (rank == LottoRank.SECOND_PLACE) {
             System.out.printf(LOTTO_RESULT_FORMAT_WITH_BONUS,
                     rank.getCorrectCount(),
-                    numberFormatter.format(rank.getReward()),
+                    String.format(DECIMAL_COMMA_FORMAT, rank.getReward()),
                     Collections.frequency(lottoRanks, rank));
             return;
         }
 
         System.out.printf(LOTTO_RESULT_FORMAT_NO_BONUS,
                 rank.getCorrectCount(),
-                numberFormatter.format(rank.getReward()),
+                String.format(DECIMAL_COMMA_FORMAT, rank.getReward()),
                 Collections.frequency(lottoRanks, rank));
     }
 
@@ -77,17 +76,7 @@ public class OutputView {
     private String formatEarningRate(int totalReward, int purchaseMoney) {
         double earningRate = (double) totalReward / purchaseMoney * 100;
 
-        String pattern = "#,###.0";
-
-        if ((int) earningRate == 0) {
-            pattern = "0.0";
-        }
-
-        DecimalFormat decimalFormatter = new DecimalFormat(pattern);
-        decimalFormatter.setRoundingMode(RoundingMode.HALF_UP);
-        decimalFormatter.setMaximumFractionDigits(1);
-
-        return decimalFormatter.format(earningRate);
+        return String.format(DOUBLE_COMMA_ROUND_FORMAT, earningRate);
     }
 
     public void printError(String message) {

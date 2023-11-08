@@ -126,12 +126,12 @@ class OutputViewTest {
     @DisplayName("수익률 출력 포맷 실수 반올림 O")
     public void earningRateFormatDecimalHalfUp_O() {
         LottoResult lottoResult = new LottoResult(List.of(), 14000000);
-        PurchaseMoney purchaseMoney = new PurchaseMoney(66000);
+        PurchaseMoney purchaseMoney = new PurchaseMoney(69000);
 
         outputView.printEarningRate(lottoResult, purchaseMoney);
 
         Assertions.assertThat(output())
-                .isEqualTo("총 수익률은 21,212.1%입니다.");
+                .isEqualTo("총 수익률은 20,289.9%입니다.");
     }
 
     @Test
@@ -145,5 +145,5 @@ class OutputViewTest {
         Assertions.assertThat(output())
                 .isEqualTo("총 수익률은 0.0%입니다.");
     }
-    
+
 }

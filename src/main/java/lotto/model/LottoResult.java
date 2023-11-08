@@ -4,12 +4,10 @@ import java.util.Map;
 
 public class LottoResult {
     private final MatchResult matchResult;
-    private final Reward reward;
     private final RateOfReturn rateOfReturn;
 
-    private LottoResult(MatchResult matchResult, Reward reward, RateOfReturn rateOfReturn) {
+    private LottoResult(MatchResult matchResult, RateOfReturn rateOfReturn) {
         this.matchResult = matchResult;
-        this.reward = reward;
         this.rateOfReturn = rateOfReturn;
     }
 
@@ -17,9 +15,9 @@ public class LottoResult {
             Lottos lottos, WinningNumbers winningNumbers, PurchaseAmount purchaseAmount) {
         MatchResult matchResult = MatchResult.calculateMatchResults(lottos, winningNumbers);
         Reward reward = Reward.win(matchResult);
-        RateOfReturn rateOfReturn = RateOfReturn.calculate(reward.getAmount(), purchaseAmount.getPurchaseAmount());
+        RateOfReturn rateOfReturn = RateOfReturn.calculate(reward.amount(), purchaseAmount.getPurchaseAmount());
 
-        return new LottoResult(matchResult, reward, rateOfReturn);
+        return new LottoResult(matchResult, rateOfReturn);
     }
 
     public Map<LottoRank, Integer> getMatchResult() {
@@ -28,5 +26,19 @@ public class LottoResult {
 
     public double getRateOfReturn() {
         return rateOfReturn.getRate();
+    }
+
+    private record Reward(int amount) {
+        private static Reward win(MatchResult matchResult) {
+            return new Reward(calculate(matchResult));
+        }
+
+        private static int calculate(MatchResult matchResult) {
+            return matchResult.getMatchResult()
+                    .entrySet()
+                    .stream()
+                    .mapToInt(entry -> entry.getKey().getReward() * entry.getValue())
+                    .sum();
+        }
     }
 }

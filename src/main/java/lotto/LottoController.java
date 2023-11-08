@@ -14,6 +14,10 @@ public class LottoController {
         this.inputJudgement = inputJudgement;
     }
 
+    /**
+     * 로또 구매 금액 입력
+     * @return 사용자가 입력한 로또 구매 금액
+     */
     public Integer inputPurchasePrice(){
         lottoView.showRequestMessageOfPrice();
         Optional<String> inputPurchaseMoney = lottoView.inputPurchaseMoney();
@@ -23,9 +27,13 @@ public class LottoController {
             return inputPurchasePrice();
         }
 
-        return inputJudgement.parseInteger(inputPurchaseMoney);
+        return inputJudgement.parseIntegerInputPurchaseMoneyOrBonusNumber(inputPurchaseMoney);
     }
 
+    /**
+     * 로또 구매
+     * @param inputPurchasePrice 로또 구매 금액
+     */
     public void buyLotto(Integer inputPurchasePrice) {
         purchaser = new Purchaser(inputPurchasePrice);
         List<Lotto> purchasedLotto = purchaser.buy();
@@ -33,6 +41,10 @@ public class LottoController {
         lottoView.showAlertMessageOfLottoNumber(purchasedLotto);
     }
 
+    /**
+     * 로또 당첨 번호 입력
+     * @return 로또 당첨 번호
+     */
     public List<Integer> inputWinningNumber() {
         lottoView.showRequestMessageOfWinningNumber();
         Optional<String> inputWinningNumber = lottoView.inputWinningNumber();
@@ -41,9 +53,14 @@ public class LottoController {
             return inputWinningNumber();
         }
 
-        return inputJudgement.parseIntegers(inputWinningNumber);
+        return inputJudgement.parseIntegerInputWinningNumbers(inputWinningNumber);
     }
 
+    /**
+     * 보너스 번호 입력
+     * @param winningNumbers 로또 당첨 번호
+     * @return 보너스 번호
+     */
     public Integer inputBonusNumber(List<Integer> winningNumbers) {
         lottoView.showRequestMessageOfBonusNumber();
         Optional<String> inputBonusNumber = lottoView.inputBonusNumber();
@@ -52,9 +69,14 @@ public class LottoController {
             return inputBonusNumber(winningNumbers);
         }
 
-        return inputJudgement.parseInteger(inputBonusNumber);
+        return inputJudgement.parseIntegerInputPurchaseMoneyOrBonusNumber(inputBonusNumber);
     }
 
+    /**
+     * 당첨 통계 출력
+     * @param winningNumbers 로또 당첨 번호
+     * @param bonusNumber 보너스 번호
+     */
     public void requestWinningStatistics(List<Integer> winningNumbers, Integer bonusNumber) {
         lottoView.showWinningStatisticsStartMessage();
         Map<WinningPrice, List<Lotto>> winningPrices = purchaser.checkWinningResult(winningNumbers, bonusNumber);

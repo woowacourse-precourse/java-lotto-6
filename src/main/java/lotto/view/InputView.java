@@ -34,15 +34,17 @@ public class InputView {
         return InputConverter.convertWinningLotto(lottoNumberInput);
     }
 
-    public static void getBonusNumber() {
+    public static Integer getBonusNumber(List<Integer> winningLotto) {
         System.out.println("보너스 번호를 입력해 주세요.");
 
         String bonusNumberInput = Console.readLine();
         try {
-            BonusNumberValidator.validate(bonusNumberInput);
+            BonusNumberValidator.validate(bonusNumberInput, winningLotto);
         } catch (IllegalArgumentException e) {
-            return getBonusNumber();
+            return getBonusNumber(winningLotto);
         }
+
+        return InputConverter.convertBonusNumber(bonusNumberInput);
     }
 
 

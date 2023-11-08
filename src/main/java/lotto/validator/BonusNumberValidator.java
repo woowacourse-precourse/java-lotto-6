@@ -1,16 +1,21 @@
 package lotto.validator;
 
+import java.util.List;
 import lotto.constant.ErrorMessages;
 
 public class BonusNumberValidator {
-    public static void validate(String bonusNumberInput) {
+    public static void validate(String bonusNumberInput, List<Integer> winningLotto) {
         isNumeric(bonusNumberInput);
         isInRange(bonusNumberInput);
-        isUnique(bonusNumberInput);
+        isUnique(bonusNumberInput, winningLotto);
 
     }
 
-    private static void isUnique(String bonusNumberInput) {
+    private static void isUnique(String bonusNumberInput, List<Integer> winningLotto) {
+        if (winningLotto.contains(Integer.parseInt(bonusNumberInput))) {
+            System.out.println(ErrorMessages.NOT_UNIQUE.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.NOT_UNIQUE.getMessage());
+        }
 
     }
 

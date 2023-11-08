@@ -15,8 +15,8 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    OutputView outputView = new OutputView();
-    InputView inputView = new InputView();
+    private static final OutputView OUTPUT_VIEW = OutputView.getInstance();
+    private static final InputView INPUT_VIEW = InputView.getInstance();
     private Payment payment;
     private LottoTickets lottoTickets;
     private LottoBuyer lottoBuyer;
@@ -33,8 +33,8 @@ public class LottoController {
         initPayment();
         lottoTickets = new LottoTickets(payment);
         lottoBuyer = new LottoBuyer(payment, lottoTickets);
-        outputView.printNumberOfPurchased(lottoTickets.getNumberOfLottoTickets());
-        outputView.printLottoTickets(lottoTickets.toString());
+        OUTPUT_VIEW.printNumberOfPurchased(lottoTickets.getNumberOfLottoTickets());
+        OUTPUT_VIEW.printLottoTickets(lottoTickets.toString());
         initWinningLotto();
         initBonus();
         winningLottoNumbers = new WinningLottoNumbers(winningLotto, bonus);
@@ -42,27 +42,27 @@ public class LottoController {
 
     private void initPayment() {
         try {
-            payment = new Payment(inputView.readPaymentInput());
+            payment = new Payment(INPUT_VIEW.readPaymentInput());
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+            OUTPUT_VIEW.printErrorMessage(e.getMessage());
             initPayment();
         }
     }
 
     private void initWinningLotto() {
         try {
-            winningLotto = new Lotto(inputView.readWinningNumber());
+            winningLotto = new Lotto(INPUT_VIEW.readWinningNumber());
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+            OUTPUT_VIEW.printErrorMessage(e.getMessage());
             initWinningLotto();
         }
     }
 
     private void initBonus() {
         try {
-            bonus = new Bonus(inputView.readBonusInput());
+            bonus = new Bonus(INPUT_VIEW.readBonusInput());
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
+            OUTPUT_VIEW.printErrorMessage(e.getMessage());
             initBonus();
         }
     }
@@ -75,12 +75,12 @@ public class LottoController {
                 .map(entry -> String.format(entry.getKey().getMessage(), entry.getValue()))
                 .toList();
 
-        outputView.printWinningResult(results);
+        OUTPUT_VIEW.printWinningResult(results);
         showRateOfRevenue(resultRanks);
     }
 
     private void showRateOfRevenue(List<LottoRank> resultRanks) {
-        outputView.printRateOfRevenue(lottoBuyer.getRateOfReturn(resultRanks));
+        OUTPUT_VIEW.printRateOfRevenue(lottoBuyer.getRateOfReturn(resultRanks));
     }
 
     private Map<LottoRank, Integer> getCountRanks(List<LottoRank> resultRanks) {

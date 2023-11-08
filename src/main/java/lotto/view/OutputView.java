@@ -10,6 +10,17 @@ import static lotto.ViewMessage.WINNING_RESULT_MESSAGE;
 import java.util.List;
 
 public class OutputView {
+
+    private static OutputView instance = new OutputView();
+
+    private OutputView() {
+
+    }
+
+    public static OutputView getInstance() {
+        return instance;
+    }
+
     public void paymentPrompt() {
         System.out.println(PAYMENT_PROMPT_MESSAGE.get());
     }

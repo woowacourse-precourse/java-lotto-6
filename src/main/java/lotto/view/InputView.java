@@ -8,9 +8,18 @@ import lotto.util.parser.WinningNumbersInputParser;
 
 public class InputView {
 
-    OutputView outputView = new OutputView();
+    private static InputView instance = new InputView();
+    OutputView outputView = OutputView.getInstance();
     InputParser bonusAndPaymentParser = new BonusAndPaymentInputParser();
     InputParser winningParser = new WinningNumbersInputParser();
+
+    private InputView() {
+
+    }
+
+    public static InputView getInstance() {
+        return instance;
+    }
 
     public int readPaymentInput() {
         outputView.paymentPrompt();

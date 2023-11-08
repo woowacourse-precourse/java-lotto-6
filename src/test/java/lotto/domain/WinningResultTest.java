@@ -2,7 +2,6 @@ package lotto.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import java.util.List;
@@ -21,7 +20,7 @@ class WinningResultTest {
         Lotto numbers = Lotto.validate(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
         winningNumber = WinningNumber.validate(numbers, bonusNumber);
-        winningResult = new WinningResult(lottoNumbers, winningNumber);
+        winningResult = new WinningResult(lottoNumbers);
     }
 
     @DisplayName("로또 당첨 결과를 반환한다.")

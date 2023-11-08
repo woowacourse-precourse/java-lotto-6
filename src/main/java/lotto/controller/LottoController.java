@@ -23,6 +23,12 @@ public class LottoController {
         Lotto answerLotto = setAnswerLotto();
         BonusNumber bonusNumber = setBonusNumber();
         printBuyingResult(userPayment, userLottos);
+
+        List<Integer> winningResult = analyzeWinningResult(userLottos, answerLotto, bonusNumber);
+    }
+
+    private List<Integer> analyzeWinningResult(Lottos userLottos, Lotto answerLotto, BonusNumber bonusNumber) {
+        return lottoService.calculateWinningResult(userLottos, answerLotto, bonusNumber);
     }
 
     private void printBuyingResult(Payment userPayment, Lottos userLottos) {

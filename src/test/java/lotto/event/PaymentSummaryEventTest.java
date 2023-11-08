@@ -21,7 +21,7 @@ class PaymentSummaryEventTest {
 
     @Test
     @DisplayName("5000원을 지불하고 1,2,3,4,5등 모두 당첨되면 ")
-    void case3() {
+    void _5000원을_지불하고_모두_당첨된다() {
         final var repository = new LottoRepository();
         final var paymentSummaryEvent = new PaymentSummaryEvent(repository);
 
@@ -78,7 +78,7 @@ class PaymentSummaryEventTest {
 
     @Test
     @DisplayName("8000원을 지불하고 5000원 당첨되면 62.5%의 수익률이 발생한다")
-    void testCase() {
+    void _8000원을_지불하고_5000원_당첨되는_경우() {
         final var repository = new LottoRepository();
         final var paymentSummaryEvent = new PaymentSummaryEvent(repository);
 

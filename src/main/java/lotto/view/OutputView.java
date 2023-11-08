@@ -7,7 +7,6 @@ import lotto.service.LottoDto;
 import lotto.service.LottoResultDto;
 
 public class OutputView {
-    public static final String WINNING_STATISTICS = "당첨 통계";
 
     public static void printError(String message) {
         System.out.println(message);
@@ -29,7 +28,7 @@ public class OutputView {
         Map<LottoStatus, Integer> lottoStatusCounts = lottoResultDto.lottoStatusCounts();
         printEmptyLine();
         StringBuilder lottoResultStringBuilder = new StringBuilder();
-        lottoResultStringBuilder.append(WINNING_STATISTICS).append("\n");
+        lottoResultStringBuilder.append("당첨 통계").append("\n");
         lottoResultStringBuilder.append("---").append("\n");
 
         for (LottoStatus status : LottoStatus.values()) {

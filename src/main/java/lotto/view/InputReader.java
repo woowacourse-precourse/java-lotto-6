@@ -9,12 +9,12 @@ import lotto.util.StringParser;
 import lotto.util.TypeConverter;
 
 public class InputReader {
-    public PurchaseAmount readPurchaseAmount() throws IllegalArgumentException {
+    public PurchaseAmount readPurchaseAmount() {
         Integer amount = TypeConverter.StringToInteger(Console.readLine());
         return PurchaseAmount.from(amount);
     }
 
-    public Lotto readLotto() throws IllegalArgumentException {
+    public Lotto readLotto() {
         List<String> strings = StringParser.parseToList(Console.readLine());
         List<LottoNumber> lottoNumbers = strings.stream()
                 .map(TypeConverter::StringToInteger)
@@ -23,7 +23,7 @@ public class InputReader {
         return Lotto.from(lottoNumbers);
     }
 
-    public LottoNumber readBonusNumber() throws IllegalArgumentException {
+    public LottoNumber readBonusNumber() {
         Integer bonusNumber = TypeConverter.StringToInteger(Console.readLine());
         return LottoNumber.from(bonusNumber);
     }

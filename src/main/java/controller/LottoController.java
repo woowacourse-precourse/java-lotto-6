@@ -1,16 +1,22 @@
 package controller;
 
-import model.LottoService;
-import model.WinningNumber;
+import domain.PrizeCalculate;
+import java.util.ArrayList;
+import domain.Judge;
+import domain.Lotto;
+import domain.LottoService;
+import domain.WinningNumber;
 import view.InputView;
 import view.OutputView;
 
 public class LottoController {
 
     LottoService lottoService = new LottoService();
+    Judge judge = new Judge();
     WinningNumber winningNumber;
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
+    PrizeCalculate prizeCalculate = new PrizeCalculate();
 
     public LottoController(){
         startLotto();
@@ -19,8 +25,6 @@ public class LottoController {
     }
 
     public void startLotto(){
-        // 컨트롤러에서 input, outputView로 요청하고
-        // model 로 넘겨주는 방식으로 리팩토링 할 것
         outputView.printRequirelottoCost();
         int lottoPaper = lottoService.buyLotto();
         outputView.printNewLine();
@@ -36,8 +40,13 @@ public class LottoController {
     }
 
     public void matchLotto(){
+        outputView.printWinningStat();
+        ArrayList<Lotto> myLotto = lottoService.getMyLottoNumber();
+        ArrayList<Integer> winningNumber = this.winningNumber.getWinningNumber();
+        int bonusNumber = this.winningNumber.getBonusNumber();
+        ArrayList<Integer> rank = judge.matchNumbers(myLotto, winningNumber, bonusNumber);
+        int prize = prizeCalculate.calculate(rank);
         outputView.printMatchResult();
-
     }
 
 }

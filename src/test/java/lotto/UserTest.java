@@ -1,6 +1,5 @@
 package lotto;
 
-import lotto.model.LottoType;
 import lotto.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

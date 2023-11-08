@@ -11,8 +11,19 @@ public interface LottoFinalConsts {
     int LOTTO_THIRD_RETURN = 1500000;
     int LOTTO_FOURTH_RETURN = 50000;
     int LOTTO_FIFTH_RETURN = 5000;
-    String LOTTO_ERROR_MESSAGE = "[ERROR]";
+    int VARIABLE_FORMAT = 0;
+    int LOTTO_RANDOM_RANGE_START = 1;
+    int LOTTO_RANDOM_RANGE_END = 45;
+    int LOTTO_RANDOM_COUNT = 6;
+    int LOTTO_PURCHASE_DIVIDABLE = 1000;
+    int LOTTO_RETURN_PERCENTAGE_COMPUTE = 100;
+    int LOTTO_RANK_IS_SECOND_OR_THIRD = 5;
+    int LOTTO_LOSE_LIMIT = 3;
+    int ADD_COUNT_ONE = 1;
+    String LOTTO_WINNING_SPLIT = ",";
+    String LOTTO_ERROR_MESSAGE = "[ERROR] ";
     String LOTTO_NOT_VALID_LOTTOPURCHASE = "구입 금액이 1000으로 나눠 떨어지지 않습니다.";
+    String LOTTO_HAS_DUPLICATED = "로또 번호에 중복이 존재합니다.";
     String INPUT_LOTTO_PURCHASE = "구입금액을 입력해 주세요.";
     String PRINT_LOTTO_PURCHASE_COUNT = "개를 구매했습니다.";
     String INPUT_WIN_LOTTO = "당첨 번호를 입력해 주세요.";
@@ -24,5 +35,8 @@ public interface LottoFinalConsts {
     String LOTTO_FOURTH_PRINT = "4개 일치 (50,000원) - %d개 \n";
     String LOTTO_FIFTH_PRINT = "3개 일치 (5,000원) - %d개 \n";
     String LOTTO_RETURN_RATE_PRINT = "총 수익률은 %s입니다.";
+    String LOTTO_RETURN_RATE_FORMAT = "%.1f";
+    String PERCENTAGE = "%";
+    String ERROR_MESSAGE_FORMAT = "%s%s \n";
 
 }

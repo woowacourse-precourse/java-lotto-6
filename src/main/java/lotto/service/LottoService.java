@@ -17,20 +17,20 @@ public class LottoService implements LottoFinalConsts {
     private LottoException lottoException = new LottoException();
 
     public int getLottoCount(String lottoPurchase) {
-        int lottoCount = 0;
+        int lottoCount = VARIABLE_FORMAT;
         if (lottoException.isValidLottoPurchase(lottoPurchase)) {
-            lottoCount = Integer.parseInt(lottoPurchase)/1000;
+            lottoCount = Integer.parseInt(lottoPurchase)/LOTTO_PURCHASE_DIVIDABLE;
         }
         return lottoCount;
     }
 
     public List<Integer> getLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_RANDOM_RANGE_START, LOTTO_RANDOM_RANGE_END, LOTTO_RANDOM_COUNT);
     }
 
     public List<Lotto> getLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i=0; i<lottoCount; i++) {
+        for (int i=VARIABLE_FORMAT; i<lottoCount; i++) {
             Lotto lotto = new Lotto(getLottoNumbers());
             lottos.add(lotto);
         }
@@ -40,7 +40,7 @@ public class LottoService implements LottoFinalConsts {
     public LottoMachine createLottoMachine(String lottoPurchase, int lottoCount) {
         List<Lotto> lottos = getLottos(lottoCount);
         HashMap<LottoRank, Integer> lottoRanks = new HashMap<>();
-        int lottoPurchased = 0;
+        int lottoPurchased = VARIABLE_FORMAT;
         if (lottoException.isValidLottoPurchase(lottoPurchase)) {
             lottoPurchased = Integer.parseInt(lottoPurchase);
         }
@@ -48,7 +48,7 @@ public class LottoService implements LottoFinalConsts {
     }
 
     public void saveWinningAndBonusNumbers(LottoMachine lottoMachine, String winningNumber, String bonusNumber){
-        String[] winning = winningNumber.split(",");
+        String[] winning = winningNumber.split(LOTTO_WINNING_SPLIT);
         for(String number:winning){
             lottoMachine.updateLottoWinningNumbers(Integer.parseInt(number));
         }
@@ -69,13 +69,13 @@ public class LottoService implements LottoFinalConsts {
     }
 
     public String getCorrectCount(List<Integer> lottoNumbers, List<Integer> winningNumbers, int bonusNumber){
-        int count = 0;
+        int count = VARIABLE_FORMAT;
         for (Integer winningNumber:winningNumbers){
             if (lottoNumbers.contains(winningNumber)){
-                count+=1;
+                count+=ADD_COUNT_ONE;
             }
         }
-        if (count==5){
+        if (count==LOTTO_RANK_IS_SECOND_OR_THIRD){
             if (lottoNumbers.contains(bonusNumber)){
                 return LOTTO_SECOND;
             }
@@ -87,7 +87,7 @@ public class LottoService implements LottoFinalConsts {
 
     public LottoRank getLottoRank(List<Integer> lottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
         String correct = getCorrectCount(lottoNumbers, winningNumbers, bonusNumber);
-        if (Integer.parseInt(correct)<3) {
+        if (Integer.parseInt(correct)<LOTTO_LOSE_LIMIT) {
             return null;
         }
 
@@ -95,7 +95,7 @@ public class LottoService implements LottoFinalConsts {
     }
 
     public int getLottoReturn(Iterator<LottoRank> keys, HashMap<LottoRank, Integer> lottoRanks){
-        int lottoReturn = 0;
+        int lottoReturn = VARIABLE_FORMAT;
         while (keys.hasNext()) {
             LottoRank lottoRank = keys.next();
             lottoReturn+=(lottoRank.getLottoReturn())*lottoRanks.get(lottoRank);
@@ -108,8 +108,8 @@ public class LottoService implements LottoFinalConsts {
         Iterator<LottoRank> keys = lottoRanks.keySet().iterator();
         int lottoReturn = getLottoReturn(keys, lottoRanks);
         int lottoPurchase = lottoMachine.getLottoPurchase();
-        double returnRate = (double)lottoReturn/lottoPurchase*100;
-        lottoMachine.returnLottoReturnRate(String.format("%.1f", returnRate)+"%");
+        double returnRate = (double)lottoReturn/lottoPurchase*LOTTO_RETURN_PERCENTAGE_COMPUTE;
+        lottoMachine.returnLottoReturnRate(String.format(LOTTO_RETURN_RATE_FORMAT, returnRate)+PERCENTAGE);
     }
 
 }

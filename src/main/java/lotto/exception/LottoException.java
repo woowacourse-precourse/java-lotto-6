@@ -9,8 +9,10 @@ public class LottoException implements LottoFinalConsts {
             Integer.parseInt(lottoPurchase);
             return true;
         } catch (NumberFormatException e){
-            System.out.printf("%s %s", LOTTO_ERROR_MESSAGE, LOTTO_NOT_VALID_LOTTOPURCHASE);
-            throw new IllegalArgumentException();
+            System.out.printf(ERROR_MESSAGE_FORMAT, LOTTO_ERROR_MESSAGE, LOTTO_NOT_VALID_LOTTOPURCHASE);
         }
+        return false;
     }
+
+
 }

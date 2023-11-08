@@ -1,10 +1,12 @@
 package lotto.domain;
 
+import lotto.common.LottoFinalConsts;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class LottoMachine {
+public class LottoMachine implements LottoFinalConsts {
 
     private int lottoPurchase;
     private int lottoCount;
@@ -37,9 +39,9 @@ public class LottoMachine {
 
     public void updateLottoRanks(LottoRank lottoRank){
         if (lottoRanks.containsKey(lottoRank)){
-            lottoRanks.put(lottoRank, lottoRanks.get(lottoRank)+1);
+            lottoRanks.put(lottoRank, lottoRanks.get(lottoRank)+ADD_COUNT_ONE);
         } else if (!lottoRanks.containsKey(lottoRank)){
-            lottoRanks.put(lottoRank, 1);
+            lottoRanks.put(lottoRank, ADD_COUNT_ONE);
         }
     }
 

@@ -30,4 +30,8 @@ public class OutputView {
     public static void printEarningsRate(double earningsRate) {
         System.out.println(String.format(EARNINGS_RATE_MESSAGE, earningsRate));
     }
+
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import model.Lotto;
 import model.LottoGame;
 import model.Money;
 import model.WinningLotto;
@@ -11,17 +12,46 @@ import java.util.Map;
 public class LottoGameController {
 
     public void playLotto() {
-        OutputView.printMoneyInputRequestMessage();
-        String cost = InputView.getMoneyForLottoPurchasing();
-        Money money = new Money(cost);
+
+        boolean isSuccess = false;
+        Money money = null;
+        String cost = null;
+        while (!isSuccess) {
+            try {
+                OutputView.printMoneyInputRequestMessage();
+                cost = InputView.getMoneyForLottoPurchasing();
+                money = new Money(cost);
+                isSuccess = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         LottoGame lottoGame = new LottoGame();
         lottoGame.purchaseLotto(money);
         OutputView.printPurchasingResultMessage(Integer.parseInt(cost) / 1000, lottoGame.getLottos());
-        OutputView.printWinningNumberInputRequestMessage();
-        String winningNumber = InputView.getWinningNumber();
-        OutputView.printBonusNumberInputRequestMessage();
-        String bonusNumber = InputView.getBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(winningNumber, bonusNumber);
+        isSuccess = false;
+        while (!isSuccess) {
+            try {
+                OutputView.printWinningNumberInputRequestMessage();
+                String winningNumber = InputView.getWinningNumber();
+                Lotto lotto =  new Lotto(winningNumber);
+                isSuccess = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        isSuccess = false;
+        while (!isSuccess) {
+            try {
+                OutputView.printBonusNumberInputRequestMessage();
+                String bonusNumber = InputView.getBonusNumber();
+                WinningLotto winningLotto = new WinningLotto(winningLotto.getNumbers(), bonusNumber);
+                isSuccess = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         Map<Integer, Integer> gameResult = lottoGame.countWinningLottoResult(winningLotto);
         OutputView.printWinningResultTitle();
         OutputView.printWinningResult(gameResult);

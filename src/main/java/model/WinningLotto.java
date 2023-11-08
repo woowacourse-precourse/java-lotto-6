@@ -14,8 +14,13 @@ public class WinningLotto extends Lotto {
 
     int bonusNumber;
 
-    public WinningLotto(String WinningNumbers, String bonusNumber) {
-        super(WinningNumbers);
+    public WinningLotto(String winningNumbers, String bonusNumber) {
+        super(winningNumbers);
+        this.bonusNumber = validateBonusNumber(bonusNumber);
+    }
+
+    public WinningLotto(List<Integer> winningNumbers, String bonusNumber) {
+        super(winningNumbers);
         this.bonusNumber = validateBonusNumber(bonusNumber);
     }
 

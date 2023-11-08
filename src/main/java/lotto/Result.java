@@ -1,16 +1,15 @@
 package lotto;
 
 import java.util.Arrays;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.EnumMap;
 
 public class Result {
 
-    private Map<Ranking, Integer> result;
+    private EnumMap<Ranking, Integer> result;
 
     public Result() {
-        this.result = Arrays.stream(Ranking.values())
-                .collect(Collectors.toMap(ranking -> ranking, value -> 0));
+        this.result = new EnumMap<>(Ranking.class);
+        Arrays.stream(Ranking.values()).forEach(ranking -> result.put(ranking, 0));
     }
 
     public void put(Ranking ranking) {

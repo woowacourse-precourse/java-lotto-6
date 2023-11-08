@@ -33,9 +33,9 @@
   - [x] 당첨 내역 출력 (일치한 번호의 갯수, 금액, 당첨 로또 갯수) ex) `3개 일치 (5,000원) - 1개` 
   - [x] 총 수익률 출력 ex) `총 수익률은 62.5%입니다.`
     - [x] 소수점 둘째 자리에서 반올림한다. 
-- [ ] 예외 출력 ex) `[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`
-  - [ ] IllegalArgumentException을 발생시킨다. (Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.)
-  - [ ] [ERROR] 로 시작하는 에러 메시지를 출력한 후, 그 부분부터 다시 입력받는다.    
+- [x] 예외 출력 ex) `[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`
+  - [x] IllegalArgumentException을 발생시킨다. (Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.)
+  - [x] [ERROR] 로 시작하는 에러 메시지를 출력한 후, 그 부분부터 다시 입력받는다.    
 </br>
 
 ## 2. 프로그래밍 요구 사항

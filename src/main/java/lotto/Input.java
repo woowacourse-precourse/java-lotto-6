@@ -5,20 +5,12 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.*;
 
 import static java.util.Arrays.stream;
-import static lotto.Error.*;
+import static lotto.Error.INPUT_ERROR;
 
 public class Input {
-    public String input() {
-        try {
-            return Console.readLine();
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(INPUT_ERROR.getErrMsg());
-        }
-    }
-
     public int inputPurchaseAmount() {
         try {
-            String purchaseAmount = input();
+            String purchaseAmount = Console.readLine();
             validatePurchaseAmount(purchaseAmount);
             return Integer.parseInt(purchaseAmount);
         } catch (IllegalArgumentException e) {
@@ -29,7 +21,7 @@ public class Input {
 
     public List<Integer> inputWinningNumbers() {
         try {
-            String inputString = input();
+            String inputString = Console.readLine();
             List<Integer> winningNumbers = new ArrayList<>(stream(inputString.split(","))
                     .map(Integer::valueOf)
                     .toList());
@@ -46,7 +38,7 @@ public class Input {
 
     public int inputBonusNumber() {
         try {
-            String bonusNumber = input();
+            String bonusNumber = Console.readLine();
             validateBonusNumber(bonusNumber);
             return Integer.parseInt(bonusNumber);
         } catch (IllegalArgumentException e) {
@@ -55,40 +47,46 @@ public class Input {
         }
     }
 
-    private void validateBonusNumber(String value) {
+    private void validateBonusNumber(String bonusNumber) {
         int temp;
         try {
-            temp = Integer.parseInt(value);
+            temp = Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_INTEGER_VALUE.getErrMsg());
+            throw new IllegalArgumentException();
         }
         if (temp < 1 || temp > 45) {
-            throw new IllegalArgumentException(INVALID_NUMBERS_VALUE.getErrMsg());
+            throw new IllegalArgumentException();
+        }
+        if (bonusNumber.isBlank()) {
+            throw new IllegalArgumentException();
         }
     }
 
     private void validatePurchaseAmount(String purchaseAmount) {
         int temp;
+        if (purchaseAmount.isBlank()) {
+            throw new IllegalArgumentException();
+        }
         try {
             temp = Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_INTEGER_VALUE.getErrMsg());
+            throw new IllegalArgumentException();
         }
         if ((temp % 1000) != 0) {
-            throw new IllegalArgumentException(UNDIVIDED_PURCHASE_AMOUNT.getErrMsg());
+            throw new IllegalArgumentException();
         }
     }
 
     private void validateWinningNumbersSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(INVALID_NUMBERS_SIZE.getErrMsg());
+            throw new IllegalArgumentException();
         }
     }
 
     private void validateWinningNumbersVal(List<Integer> numbers) {
         for (int i = 0; i < 6; i++) {
             if (numbers.get(i) < 1 || numbers.get(i) > 45) {
-                throw new IllegalArgumentException(INVALID_NUMBERS_VALUE.getErrMsg());
+                throw new IllegalArgumentException();
             }
         }
     }
@@ -97,7 +95,7 @@ public class Input {
         Set<Integer> temp = new HashSet<>();
         for (Integer number : numbers) {
             if (!temp.add(number)) {
-                throw new IllegalArgumentException(DUPLICATE_NUMBERS.getErrMsg());
+                throw new IllegalArgumentException();
             }
         }
     }

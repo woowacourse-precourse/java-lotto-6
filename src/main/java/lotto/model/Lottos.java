@@ -11,9 +11,9 @@ public class Lottos {
     int purchaseAmount;
     public Map<Integer, Integer> winningResult;
 
-    int lottoNumberCount = LottoRules.LOTTO_NUMBER_COUNT.getValue();
-    int startNumber = LottoRules.START_NUMBER.getValue();
-    int endNumber = LottoRules.END_NUMBER.getValue();
+    private int START_NUMBER = LottoRules.START_NUMBER.getValue();
+    private int END_NUMBER = LottoRules.END_NUMBER.getValue();
+    private int LOTTO_NUMBER_COUNT = LottoRules.LOTTO_NUMBER_COUNT.getValue();
     List<Lotto> lottos = new ArrayList<>();
 
 
@@ -54,31 +54,10 @@ public class Lottos {
     }
 
     private List<Integer> generateRandomNumbersInOrder() {
-        List<Integer> RandomNumbers = new ArrayList<>();
-
-        for (int i = 0; i < lottoNumberCount; i++) {
-            RandomNumbers.add(pickUniqueNumber(RandomNumbers));
-        }
-
-        Collections.sort(RandomNumbers);
+        List<Integer> RandomNumbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LOTTO_NUMBER_COUNT);
+//        RandomNumbers.sort(Comparator.comparingInt(null));
+//        Collections.sort(RandomNumbers);
         return RandomNumbers;
-    }
-
-    private int pickUniqueNumber(List<Integer> RandomNumbers) {
-        int number = Randoms.pickNumberInRange(startNumber, endNumber);
-        while (!isUnique(number, RandomNumbers)) {
-            number = Randoms.pickNumberInRange(startNumber, endNumber);
-        }
-        return number;
-    }
-
-    public boolean isUnique(int number, List<Integer> RandomNumbers) {
-        for (int randomNumber : RandomNumbers) {
-            if (randomNumber == number) {
-                return false;
-            }
-        }
-        return true;
     }
 
     public void showLottos(){

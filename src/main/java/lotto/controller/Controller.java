@@ -20,9 +20,9 @@ public class Controller {
     public void lottoGame() {
         buyLottos();
         showHowManyLottosBuy();
-//        putWinningNumber();
-//        showWinningsResult();
-//        showTotalRate();
+        putWinningNumber();
+        showWinningsResult();
+        showTotalRate();
     }
 
     public void buyLottos() {
@@ -58,6 +58,5 @@ public class Controller {
     public void showTotalRate(){
         int purchaseAmount = lottoGame.getPurchaseAmount();
         confirmationWinning.calculateRate(purchaseAmount);
-
     }
 }

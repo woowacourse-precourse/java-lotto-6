@@ -7,7 +7,8 @@ import lotto.util.LottoRules;
 public class PurchaseAmount {
 
     private String ERROR_MESSAGE_PURCHASE_AMOUNT = ErrorMessages.ERROR_MESSAGE_PURCHASE_AMOUNT.getMessage();
-    int pricePerLotto = LottoRules.PRICE_PER_LOTTO.getValue();
+
+    private int pricePerLotto = LottoRules.PRICE_PER_LOTTO.getValue();
     int purchaseAmount;
     int purchaseCount;
 

@@ -17,18 +17,18 @@ public class Profit {
         calProfitRate();
     }
 
-    public void calProfit(){
-        for (Rank r : Rank.values()){
+    public void calProfit() {
+        for (Rank r : Rank.values()) {
             profit += r.prize * result.get(r);
         }
         this.profit = profit;
     }
 
-    public void calProfitRate(){
+    public void calProfitRate() {
         profitRate = profit / money * 100;
     }
 
-    public void printProfitRate(){
+    public void printProfitRate() {
         System.out.println("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
     }
 }

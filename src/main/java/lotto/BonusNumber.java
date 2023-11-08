@@ -14,8 +14,8 @@ public class BonusNumber {
         this.lottoNumbers = lottoNumbers;
     }
 
-    public void validate(String number, List<Integer> lottoNumbers){
-        if (lottoNumbers.contains(Integer.parseInt(number))){
+    public void validate(String number, List<Integer> lottoNumbers) {
+        if (lottoNumbers.contains(Integer.parseInt(number))) {
             throw new IllegalArgumentException("[ERROR] 로또 번호와 중복입니다.");
         }
     }

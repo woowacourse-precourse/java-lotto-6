@@ -11,23 +11,23 @@ public class UserLotto {
         sortList(numbers);
     }
 
-    public void sortList(List<Integer> numbers){
-        for (int i=0; i<numbers.size(); i++){
-            for (int j=0; j<numbers.size()-1-i; j++){
+    public void sortList(List<Integer> numbers) {
+        for (int i = 0; i < numbers.size(); i++) {
+            for (int j = 0; j < numbers.size() - 1 - i; j++) {
                 check(numbers, j);
             }
         }
     }
 
-    public void check(List<Integer> numbers, int j){
+    public void check(List<Integer> numbers, int j) {
         int left = numbers.get(j);
-        int right = numbers.get(j+1);
+        int right = numbers.get(j + 1);
 
-        if (left > right){
+        if (left > right) {
             numbers.add(j, right);
-            numbers.remove(j+1);
-            numbers.add(j+1, left);
-            numbers.remove(j+2);
+            numbers.remove(j + 1);
+            numbers.add(j + 1, left);
+            numbers.remove(j + 2);
         }
     }
 }

@@ -35,7 +35,7 @@ class PlayLottoTest {
         assertThat(rank.hasBonusNumber).isEqualTo(hasBonusNumber);
     }
 
-    static Stream<Arguments> generateMatchedNumberData(){
+    static Stream<Arguments> generateMatchedNumberData() {
         return Stream.of(
                 Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), Arrays.asList(1, 2, 3, 4, 5, 6), 6),
                 Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 7), Arrays.asList(1, 2, 3, 4, 5, 6), 5),
@@ -47,7 +47,7 @@ class PlayLottoTest {
         );
     }
 
-    static Stream<Arguments> generateRankData(){
+    static Stream<Arguments> generateRankData() {
         return Stream.of(
                 Arguments.of(6, false, Rank.FIRST),
                 Arguments.of(5, true, Rank.SECOND),

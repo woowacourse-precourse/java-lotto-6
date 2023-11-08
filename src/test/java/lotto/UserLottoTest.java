@@ -3,7 +3,6 @@ package lotto;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
@@ -12,9 +11,9 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 class UserLottoTest {
 
     @Test
-    public void 로또_번호를_정렬한다(){
+    public void 로또_번호를_정렬한다() {
         List<Integer> numbers = new ArrayList<>();
-        for (int i=12; i>0; i-=2){
+        for (int i = 12; i > 0; i -= 2) {
             numbers.add(i);
         }
 

@@ -20,21 +20,21 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    private void validateDuplicatedNumber(List<Integer> numbers){
+    private void validateDuplicatedNumber(List<Integer> numbers) {
         List<Integer> tmp = new ArrayList<>();
-        for (int num : numbers){
-            if (!tmp.contains(num)){
+        for (int num : numbers) {
+            if (!tmp.contains(num)) {
                 tmp.add(num);
             }
         }
 
-        if (tmp.size() != 6){
+        if (tmp.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
         }
     }
 
     private void validateNumberRange(List<Integer> numbers) {
-        for (int num : numbers){
+        for (int num : numbers) {
             if (num < 1 || num > 45) {
                 throw new IllegalArgumentException("[ERROR] 1부터 45사이의 숫자가 아닙니다.");
             }

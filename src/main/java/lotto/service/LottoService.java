@@ -52,6 +52,6 @@ public class LottoService {
     }
 
     public void setWinningLotto() {
-        inputView.inputWinningNum();
+        lottoRepository.setWinningLotto(new Lotto(parser.parseWinningNum(inputView.inputWinningNum())));
     }
 }

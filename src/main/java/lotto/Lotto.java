@@ -1,7 +1,7 @@
 package lotto;
 
 import java.util.List;
-import java.util.Collections;
+import java.util.Comparator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -10,7 +10,6 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
 
-//        Collections.sort(this.numbers);
     }
 
     public void printLotto() {
@@ -52,15 +51,15 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != Value.LOTTO_NUMBER.get()) {
-            throw new IllegalArgumentException("[ERROR] 로또 숫자는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_SIX.get());
         }
         boolean[] used = new boolean[Value.RAINGE_MAX.get() + Value.ONE.get()];
         for (Integer i : numbers) {
             if (i < Value.RAINGE_MIN.get() || i > Value.RAINGE_MAX.get()) {
-                throw new IllegalArgumentException("[ERROR] 숫자는 1~45여야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.RAINGE_MESSAGE.get());
             }
             if (used[i]) {
-                throw new IllegalArgumentException("[ERROR] 숫자가 중복되면 안됩니다.");
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATED_IN.get());
             }
             used[i] = true;
         }

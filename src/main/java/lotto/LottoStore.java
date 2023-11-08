@@ -125,10 +125,10 @@ public class LottoStore {
         validateString(input);
         int number = Integer.parseInt(input);
         if (number < Value.RAINGE_MIN.get() || number > Value.RAINGE_MAX.get()) {
-            throw new IllegalArgumentException("[ERROR] 숫자는 1~45여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.RAINGE_MESSAGE.get());
         }
         if (winningNumber.isIncluded(number)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 숫자가 당첨 번호와 중복됩니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_WITH.get());
         }
     }
 
@@ -137,7 +137,7 @@ public class LottoStore {
         validateInput(splitInput);
         // 마지막이 쉼표로 끝나는 경우 split에서 사라지므로 해당 메서드에서 예외 처리
         if (input.charAt(input.length() - Value.ONE.get()) == ',') {
-            throw new IllegalArgumentException("[ERROR] 값이 비어있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.IS_BLANK.get());
         }
 
         List<Integer> numbers = new ArrayList<>();
@@ -149,7 +149,7 @@ public class LottoStore {
 
     private void validateInput(String[] input) {
         if (input.length == Value.IS_EMPTY.get()) {
-            throw new IllegalArgumentException("[ERROR] 입력된 값이 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.IS_BLANK.get());
         }
         for (String s : input) {
             validateString(s);
@@ -158,11 +158,11 @@ public class LottoStore {
 
     private void validateString(String s) {
         if (s.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 값이 비어있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.IS_BLANK.get());
         }
         for (int i = 0; i < s.length(); ++i) {
             if (s.charAt(i) < '0' || s.charAt(i) > '9') {
-                throw new IllegalArgumentException("[ERROR] 값에는 숫자만 입력해야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.get());
             }
         }
     }
@@ -178,14 +178,14 @@ public class LottoStore {
     private void validateMoney(String number) {
         for (int i = Value.ZERO.get(); i < number.length(); ++i) {
             if (number.charAt(i) < '0' || number.charAt(i) > '9') {
-                throw new IllegalArgumentException("[ERROR] 숫자로 된 금액을 입력해야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.get());
             }
         }
         if (Integer.parseInt(number) <= Value.ZERO.get()) {
-            throw new IllegalArgumentException("[ERROR] 금액은 양수를 입력해야 합니다");
+            throw new IllegalArgumentException(ErrorMessage.NOT_POSITIVE.get());
         }
         if (Integer.parseInt(number) % Value.LOTTO_PRICE.get() != Value.ZERO.get()) {
-            throw new IllegalArgumentException("[ERROR] 1,000원 단위로 금액을 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_DIVIDED.get());
         }
     }
 }

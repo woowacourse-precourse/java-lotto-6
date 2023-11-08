@@ -48,11 +48,10 @@ public class Application {
 
         System.out.println("당첨 통계");
         System.out.println("---");
-
         LottoResult lottoResult = new LottoResult();
-        lottoResult.setRanking(lottos, winningNumbers, bonusNumber);
+        lottoResult.totalRanking(lottos, winningNumbers, bonusNumber);
+        lottoResult.calculateRateOfReturn(lottos, winningNumbers, bonusNumber, money);
         System.out.println(lottoResult);
-
     }
 
     private static int bonusNumberValidate(String input, Lotto lotto) {

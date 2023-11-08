@@ -30,7 +30,7 @@ public class LottoController {
         String input = getUserInput();
         createLottos(input);
         List<Integer> winningNumbers = getWinningNumbers();
-        getExtraWinningNumber(winningNumbers);
+        getExtraWinningNumber();
         calculateWinningStatistics();
     }
 
@@ -107,18 +107,18 @@ public class LottoController {
         }
     }
 
-    public void getExtraWinningNumber(List<Integer> winningNumbers) {
-        String input = getExtraWinningNumberInput(winningNumbers);
+    public void getExtraWinningNumber() {
+        String input = getExtraWinningNumberInput();
         setExtraWinningNumberInBank(input);
     }
 
-    private String getExtraWinningNumberInput(List<Integer> winningNumbers) {
+    private String getExtraWinningNumberInput() {
         String input;
         while (true) {
             ConsoleOutput.printNewLine();
             ConsoleOutput.displayExtraWinningNumberPrompt();
             input = inputView.getExtraWinningNumber();
-            if (validateExtraWinningNumber(input, winningNumbers)) {
+            if (validateExtraWinningNumber(input)) {
                 break;
             }
         }
@@ -129,9 +129,9 @@ public class LottoController {
         bank.setExtraWinningNumber(Integer.parseInt(input));
     }
 
-    private boolean validateExtraWinningNumber(String input, List<Integer> winningNumbers) {
+    private boolean validateExtraWinningNumber(String input) {
         try {
-            InputValidator.validateExtraWinningNumber(input, winningNumbers);
+            InputValidator.validateExtraWinningNumber(input, bank.getWinningNumbers());
             return true;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

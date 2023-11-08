@@ -25,6 +25,10 @@ public class Bank {
         this.winningNumbers = winningNumbers;
     }
 
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
     public int countCorrect(Lotto lotto) {
         return (int) lotto.getNumbers().stream()
                 .filter(number -> winningNumbers.contains(number))

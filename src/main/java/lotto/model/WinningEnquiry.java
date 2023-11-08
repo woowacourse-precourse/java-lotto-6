@@ -17,7 +17,7 @@ public class WinningEnquiry {
             statics.add(0);
         }
     }
-거
+
     public List<Integer> getStatics() {
         return statics;
     }

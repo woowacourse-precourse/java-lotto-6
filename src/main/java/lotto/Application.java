@@ -38,6 +38,6 @@ public class Application {
         Yield yield = new Yield();
         long totalPrizeMoney = yield.sumPrizeMoney(winningByRank);
         double rateOfReturn = yield.calculate(totalPrizeMoney, money.getMoney());
-        output.printYeild(rateOfReturn);
+        output.printYield(rateOfReturn);
     }
 }

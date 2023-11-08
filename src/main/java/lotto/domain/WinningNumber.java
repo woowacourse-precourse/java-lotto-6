@@ -17,6 +17,4 @@ public class WinningNumber {
         Lotto lotto = new Lotto(numbers);
         return lotto.getNumbers();
     }
-
-
 }

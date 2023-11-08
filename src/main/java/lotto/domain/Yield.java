@@ -5,8 +5,10 @@ import java.util.Map;
 import lotto.constants.Prize;
 
 public class Yield {
+    private static final int MULTIPLIER = 100;
+
     public double calculate(long totalPrizeMoney, long payment) {
-        return ((double) totalPrizeMoney / payment) * 100;
+        return ((double) totalPrizeMoney / payment) * MULTIPLIER;
     }
 
     public long sumPrizeMoney(Map<Integer, Integer> winningByRank) {
@@ -23,11 +25,11 @@ public class Yield {
 
     private Map<Integer, Integer> createMoneyTable() {
         Map<Integer, Integer> moneyTable = new HashMap<>();
-        moneyTable.put(1, Prize.FIRST.getMoney());
-        moneyTable.put(2, Prize.SECOND.getMoney());
-        moneyTable.put(3, Prize.THIRD.getMoney());
-        moneyTable.put(4, Prize.FOURTH.getMoney());
-        moneyTable.put(5, Prize.FIFTH.getMoney());
+        moneyTable.put(Prize.FIRST.getRank(), Prize.FIRST.getMoney());
+        moneyTable.put(Prize.SECOND.getRank(), Prize.SECOND.getMoney());
+        moneyTable.put(Prize.THIRD.getRank(), Prize.THIRD.getMoney());
+        moneyTable.put(Prize.FOURTH.getRank(), Prize.FOURTH.getMoney());
+        moneyTable.put(Prize.FIFTH.getRank(), Prize.FIFTH.getMoney());
         return moneyTable;
     }
 }

@@ -6,21 +6,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import lotto.constants.Prize;
+import lotto.constants.messages.OutputText;
 import lotto.domain.Lotto;
 
 public class Output {
-    private final String PURCHASE_AMOUNT = "%s개를 구매했습니다.";
-    private final String FIFTH_WINNING = "3개 일치 (5,000원) - %s개";
-    private final String FOURTH_WINNING = "4개 일치 (50,000원) - %s개";
-    private final String THIRD_WINNING = "5개 일치 (1,500,000원) - %s개";
-    private final String SECOND_WINNING = "5개 일치, 보너스 볼 일치 (30,000,000원) - %s개";
-    private final String FIRST_WINNING = "6개 일치 (2,000,000,000원) - %s개";
-    private final String YEILD = "총 수익률은 %s%s입니다.";
-    private final String DECIMAL_PLACE = "0.0";
+    private final String YIELD_DECIMAL_PLACE = "0.0";
+    private final String YIELD_PERCENT_SIGN = "%";
 
     public void printLotto(long howManyLotto, List<Lotto> lottos) {
         System.out.println();
-        System.out.println(String.format(PURCHASE_AMOUNT, howManyLotto));
+        System.out.println(String.format(OutputText.PURCHASE_AMOUNT, howManyLotto));
         for (Lotto lotto : lottos) {
             List<Integer> sortedNumbers = sortNumbers(lotto.getNumbers());
             System.out.println(sortedNumbers);
@@ -35,19 +31,19 @@ public class Output {
 
     public void printWinning(Map<Integer, Integer> winningByRank) {
         System.out.println();
-        System.out.println("당첨 내역");
-        System.out.println("---");
-        System.out.println(String.format(FIFTH_WINNING, winningByRank.get(5)));
-        System.out.println(String.format(FOURTH_WINNING, winningByRank.get(4)));
-        System.out.println(String.format(THIRD_WINNING, winningByRank.get(3)));
-        System.out.println(String.format(SECOND_WINNING, winningByRank.get(2)));
-        System.out.println(String.format(FIRST_WINNING, winningByRank.get(1)));
+        System.out.println(OutputText.WINNING_MESSAGE);
+        System.out.println(OutputText.DIVIDING_LINE);
+        System.out.println(String.format(OutputText.FIFTH_WINNING, winningByRank.get(Prize.FIFTH.getRank())));
+        System.out.println(String.format(OutputText.FOURTH_WINNING, winningByRank.get(Prize.FOURTH.getRank())));
+        System.out.println(String.format(OutputText.THIRD_WINNING, winningByRank.get(Prize.THIRD.getRank())));
+        System.out.println(String.format(OutputText.SECOND_WINNING, winningByRank.get(Prize.SECOND.getRank())));
+        System.out.println(String.format(OutputText.FIRST_WINNING, winningByRank.get(Prize.FIRST.getRank())));
     }
 
-    public void printYeild(double yeild) {
-        DecimalFormat decimalPlace = new DecimalFormat(DECIMAL_PLACE);
+    public void printYield(double yield) {
+        DecimalFormat decimalPlace = new DecimalFormat(YIELD_DECIMAL_PLACE);
         decimalPlace.setRoundingMode(RoundingMode.HALF_UP);
-        String decimalPointYield = decimalPlace.format(yeild);
-        System.out.println(String.format(YEILD, decimalPointYield, "%"));
+        String decimalPointYield = decimalPlace.format(yield);
+        System.out.println(String.format(OutputText.YIELD, decimalPointYield, YIELD_PERCENT_SIGN));
     }
 }

@@ -81,12 +81,12 @@ class PrizeCheckerTest {
         assertThat(winningByRank.get(5)).isEqualTo(1); // 5등 당첨 수 = 1
     }
 
-    @DisplayName("로또 번호 3개가 당첨 번호와 3개와 일치하는 로또가 3장이면 5등 3장이다.")
+    @DisplayName("당첨 번호와 3개 일치하는 로또가 3장이면, 5등이 3개이다.")
     @Test
     void createThreeLottosRankingFifth() {
-        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9)); // 3개 일치 -> 5등
-        Lotto lotto2 = new Lotto(Arrays.asList(2, 3, 4, 7, 8, 9)); // 3개 일치 -> 5등
-        Lotto lotto3 = new Lotto(Arrays.asList(3, 4, 5, 7, 8, 9)); // 3개 일치 -> 5등
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9)); // 3개 일치(1, 2, 3) -> 5등
+        Lotto lotto2 = new Lotto(Arrays.asList(2, 3, 4, 7, 8, 9)); // 3개 일치(2, 3, 4) -> 5등
+        Lotto lotto3 = new Lotto(Arrays.asList(3, 4, 5, 7, 8, 9)); // 3개 일치(3, 4, 5) -> 5등
         List<Lotto> lottos = Arrays.asList(lotto1, lotto2, lotto3);
         Map<Integer, Integer> winningByRank = checker.recordWinningByRank(
                 lottos, Arrays.asList(1, 2, 3, 4, 5, 6), 7); // 발행 로또, 당첨 번호, 보너스 번호

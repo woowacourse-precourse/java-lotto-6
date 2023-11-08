@@ -8,21 +8,25 @@ import java.util.Map;
 import lotto.constants.Prize;
 
 public class PrizeChecker {
+    private static final int NO_COUNT = 0;
+    private static final int COUNT = 1;
+
     public Map<Integer, Integer> recordWinningByRank(
             List<Lotto> lottos, List<Integer> winningNumber, int bonusNumber) {
         Map<Integer, Integer> winningByRank = createWinningByRankMap();
         List<Integer> lottoRank = recordRank(lottos, winningNumber, bonusNumber);
         for (int rank : lottoRank) {
             if (winningByRank.containsKey(rank)) {
-                winningByRank.put(rank, winningByRank.get(rank) + 1);
+                winningByRank.put(rank, winningByRank.get(rank) + COUNT);
             }
         }
         return winningByRank;
     }
+
     private Map<Integer, Integer> createWinningByRankMap() {
         Map<Integer, Integer> winningByRank = new LinkedHashMap<>();
         for (int i = Prize.FIRST.getRank(); i <= Prize.FIFTH.getRank(); i++) {
-            winningByRank.put(i, 0);
+            winningByRank.put(i, NO_COUNT);
         }
         return winningByRank;
     }
@@ -32,10 +36,7 @@ public class PrizeChecker {
         Map<Integer, Integer> rankTable = createRankTable();
         for (Lotto lotto : lottos) {
             int countingResult = countSameNumbers(lotto.getNumbers(), winningNumber);
-            int rank = rankTable.getOrDefault(countingResult, 0);
-            if (countingResult == 5 && lotto.getNumbers().contains(bonusNumber)) {
-                rank = 2;
-            }
+            int rank = judgeRank(lotto, countingResult, rankTable, bonusNumber);
             lottoRank.add(rank);
         }
         return lottoRank;
@@ -43,21 +44,28 @@ public class PrizeChecker {
 
     private Map<Integer, Integer> createRankTable() {
         Map<Integer, Integer> rankTable = new HashMap<>();
-        rankTable.put(3, 5);
-        rankTable.put(4, 4);
-        rankTable.put(5, 3);
-        rankTable.put(6, 1);
+        rankTable.put(Prize.FIFTH.getMatchingBalls(), Prize.FIFTH.getRank());
+        rankTable.put(Prize.FOURTH.getMatchingBalls(), Prize.FOURTH.getRank());
+        rankTable.put(Prize.THIRD.getMatchingBalls(), Prize.THIRD.getRank());
+        rankTable.put(Prize.FIRST.getMatchingBalls(), Prize.FIRST.getRank());
         return rankTable;
     }
 
-    // 로또 번호와 당첨 번호 비교 -> 일치 개수 반환
     private int countSameNumbers(List<Integer> lottoNumber, List<Integer> winningNumber) {
-        int countingResult = 0;
+        int countingResult = NO_COUNT;
         for (int number : lottoNumber) {
             if (winningNumber.contains(number)) {
                 countingResult++;
             }
         }
         return countingResult;
+    }
+
+    private int judgeRank(Lotto lotto, int countingResult, Map<Integer, Integer> rankTable, int bonusNumber) {
+        int rank = rankTable.getOrDefault(countingResult, NO_COUNT);
+        if (countingResult == Prize.THIRD.getMatchingBalls() && lotto.getNumbers().contains(bonusNumber)) {
+            rank = Prize.SECOND.getRank();
+        }
+        return rank;
     }
 }

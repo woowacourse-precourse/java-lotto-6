@@ -2,6 +2,8 @@ package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.constants.messages.InputText;
+import lotto.converter.InputConverter;
 import lotto.domain.BonusNumber;
 import lotto.domain.Money;
 import lotto.domain.WinningNumber;
@@ -22,7 +24,7 @@ public class Input {
     }
 
     private long askToPay() {
-        System.out.println("구입 금액을 입력해주세요.");
+        System.out.println(InputText.ASK_PAYMENT);
         return converter.convertToMoney(Console.readLine());
     }
 
@@ -38,9 +40,9 @@ public class Input {
         return winningNumber;
     }
 
-    public List<Integer> askWinningNumber() {
+    private List<Integer> askWinningNumber() {
         System.out.println();
-        System.out.println("당첨 번호를 입력해주세요. (숫자 6개 입력)");
+        System.out.println(InputText.ASK_WINNIN_NUMBER);
         return converter.convertToWinningNumbers(Console.readLine());
     }
 
@@ -57,9 +59,9 @@ public class Input {
         return bonusNumber;
     }
 
-    public int askBonus() {
+    private int askBonus() {
         System.out.println();
-        System.out.println("보너스 번호를 입력해주세요.");
+        System.out.println(InputText.ASK_BONUS_NUMBER);
         return converter.convertToBonusNumber(Console.readLine());
     }
 }

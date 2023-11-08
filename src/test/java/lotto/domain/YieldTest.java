@@ -13,8 +13,8 @@ class YieldTest {
     @DisplayName("총 당첨금 5,000원 / 로또 구입 금액 8,000원 = 수익률 62.5%이다.")
     @Test
     void calculateTest() {
-        double lottoYeild = yield.calculate(5_000, 8_000);
-        assertThat(lottoYeild).isEqualTo(62.5);
+        double lottoYield = yield.calculate(5_000, 8_000);
+        assertThat(lottoYield).isEqualTo(62.5);
     }
 
     @DisplayName("총 당첨 금액은 각 등수의 (상금 * 당첨 개수)를 모두 더한 값이다.")

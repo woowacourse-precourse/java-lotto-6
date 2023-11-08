@@ -1,4 +1,4 @@
-package lotto.ui;
+package lotto.converter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -18,10 +18,17 @@ class InputConverterTest {
         assertThat(numberLong).isEqualTo(30_000_000_000L);
     }
 
+    @DisplayName("아무 값도 입력하지 않으면 예외가 발생한다.")
+    @Test
+    void createEmptyInput() {
+        assertThatThrownBy(() -> converter.convertToMoney(""))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("금액 입력값이 숫자가 아닐 경우 예외가 발생한다.")
     @Test
-    void createInputWithNonNumber_Money() {
-        assertThatThrownBy(() -> converter.convertToMoney("1st"))
+    void createInputWithNonNumber() {
+        assertThatThrownBy(() -> converter.convertToMoney("2thousands"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -37,6 +44,13 @@ class InputConverterTest {
     void convertToNumbersTest() {
         List<Integer> numbers = converter.convertToWinningNumbers("1,2,3,4,5,6");
         assertThat(numbers).isEqualTo(Arrays.asList(1, 2, 3, 4, 5, 6));
+    }
+
+    @DisplayName("당첨 번호 입력에서 쉼표 사이에 아무 값이 없으면 예외가 발생한다.")
+    @Test
+    void createEmptyInputBetweenComma() {
+        assertThatThrownBy(() -> converter.convertToWinningNumbers("1,,2,3,4,5"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨 번호 입력값에 쉼표를 제외하고 숫자가 아닌 문자가 있을 경우 예외가 발생한다.")
@@ -70,7 +84,7 @@ class InputConverterTest {
     @DisplayName("보너스 숫자 입력값에 공백이 있을 경우 예외가 발생한다.")
     @Test
     void createInputWithBlank_Bonus() {
-        assertThatThrownBy(() -> converter.convertToBonusNumber("1 000 0"))
+        assertThatThrownBy(() -> converter.convertToBonusNumber(" 43 "))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

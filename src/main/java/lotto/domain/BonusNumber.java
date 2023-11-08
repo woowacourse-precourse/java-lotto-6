@@ -1,7 +1,8 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.constants.Constants;
+import lotto.constants.messages.Error;
+import lotto.constants.LottoStatus;
 
 public class BonusNumber {
     private final int bonusNumber;
@@ -18,13 +19,13 @@ public class BonusNumber {
 
     private void isDifferentOne(List<Integer> winningNumber, int bonusNumber) {
         if (winningNumber.contains(bonusNumber)) {
-            throw new IllegalArgumentException(Constants.ERROR_MESSAGE);
+            throw new IllegalArgumentException(Error.DUPLICATE_NUMBERS);
         }
     }
 
     private void isInRange(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException(Constants.ERROR_MESSAGE);
+        if (bonusNumber < LottoStatus.MIN_VALUE || bonusNumber > LottoStatus.MAX_VALUE) {
+            throw new IllegalArgumentException(Error.OUT_OF_RANGE);
         }
     }
 }

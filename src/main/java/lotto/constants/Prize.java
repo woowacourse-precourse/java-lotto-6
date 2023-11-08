@@ -7,13 +7,13 @@ public enum Prize {
     FOURTH(4, 4, 50_000),
     FIFTH(5, 3, 5_000);
 
-    private final int rank; // 순위
-    private final int match; // 일치하는 숫자 개수
-    private final int money; // 상금 금액
+    private final int rank;
+    private final int matchingBalls;
+    private final int money;
 
-    Prize(int rank, int match, int money) {
+    Prize(int rank, int matchingBalls, int money) {
         this.rank = rank;
-        this.match = match;
+        this.matchingBalls = matchingBalls;
         this.money = money;
     }
 
@@ -21,8 +21,8 @@ public enum Prize {
         return rank;
     }
 
-    public int getMatch() {
-        return match;
+    public int getMatchingBalls() {
+        return matchingBalls;
     }
 
     public int getMoney() {

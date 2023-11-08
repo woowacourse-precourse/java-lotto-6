@@ -6,7 +6,7 @@ import java.util.List;
 public class Lotto {
     private final List<LottoNumber> lottoNumbers;
 
-    private Lotto(List<Integer> numbers) {
+    public Lotto(List<Integer> numbers) {
         validateLottoNumber(numbers);
         this.lottoNumbers = new ArrayList<>(convertToLottoNumbers(numbers));
     }
@@ -16,13 +16,26 @@ public class Lotto {
     }
 
     private static void validateLottoNumber(List<Integer> numbers) {
-        validateLottoNumbersLength(numbers);
+            validateLottoNumbersLength(numbers);
+            validateIsNumberDuplicate(numbers);
     }
 
     private static void validateLottoNumbersLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호의 총 길이는 6이어야 합니다.");
         }
+    }
+
+    private static void validateIsNumberDuplicate(List<Integer> numbers) {
+        if (isNumberDuplicated(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 각 로또 번호는 중복되지 않아야 합니다.");
+        }
+    }
+
+    private static boolean isNumberDuplicated(List<Integer> numbers) {
+        return numbers.stream()
+                .distinct()
+                .count() != numbers.size();
     }
 
     private static List<LottoNumber> convertToLottoNumbers(List<Integer> numbers) {

@@ -23,14 +23,14 @@ public class NumberValidator {
     }
 
     private static void validateNegative(Integer value, ErrorMessages error) {
-        if (value <= 0) {
+        if (value <= LottoValues.ZERO.getValue()) {
             throw new IllegalArgumentException(error.getMessage());
         }
     }
 
     private static void validateAmountUnit(Integer value, ErrorMessages error) {
         Integer amountUnit = LottoValues.AMOUNT_UNIT.getValue();
-        if ((value % amountUnit) != 0) {
+        if ((value % amountUnit) != LottoValues.ZERO.getValue()) {
             throw new IllegalArgumentException(error.getMessage(List.of(amountUnit)));
         }
     }

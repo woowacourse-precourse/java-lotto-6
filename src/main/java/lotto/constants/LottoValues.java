@@ -4,7 +4,9 @@ public enum LottoValues {
     RANGE_MIN(1),
     RANGE_MAX(45),
     NUMBERS_COUNT(6),
-    AMOUNT_UNIT(1000);
+    AMOUNT_UNIT(1000),
+    ZERO(0),
+    ONE(1);
 
     private Integer value;
 

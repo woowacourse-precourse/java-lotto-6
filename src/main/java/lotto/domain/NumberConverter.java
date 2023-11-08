@@ -14,4 +14,5 @@ public class NumberConverter {
                 .map(LottoNumber::new)
                 .collect(Collectors.toList());
     }
+
 }

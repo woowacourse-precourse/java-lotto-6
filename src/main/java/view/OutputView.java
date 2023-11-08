@@ -7,13 +7,14 @@ import java.util.Map;
 
 public class OutputView {
     private static final int LOSING_TICKET = 0;
+    private static final int LOTTO_PRICE = 1000;
 
     public static void printInputSpend() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
     public static void printPurchaseCount(int spend) {
-        System.out.printf("\n%d개를 구매했습니다.\n", spend / 1000);
+        System.out.printf("\n%d개를 구매했습니다.\n", spend / LOTTO_PRICE);
     }
 
     public static void printLottoNumbers(List<Lotto> lottoTickets) {

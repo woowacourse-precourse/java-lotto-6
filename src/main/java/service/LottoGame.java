@@ -19,6 +19,11 @@ public class LottoGame {
     private static final int COUNT_ONE = 1;
     private static final int COUNT_ZERO = 0;
     private static final int COUNT_PLUS_ONE = 1;
+    private static final int SAME_NUMBER_COUNT_THREE = 3;
+    private static final int SAME_NUMBER_COUNT_FOUR = 4;
+    private static final int SAME_NUMBER_COUNT_FIVE = 5;
+    private static final int SAME_NUMBER_COUNT_SIX = 6;
+    private static final int PERCENTAGE = 100;
 
     public List<Lotto> generateLottoTickets(int spend) {
         List<Lotto> lottoTickets = new ArrayList<>();
@@ -64,19 +69,19 @@ public class LottoGame {
 
     private void updateResult(int sameWinningNumberCount, boolean isSameBonusNumber,
                               Map<Ranking, Integer> lottoResult) {
-        if (sameWinningNumberCount == 3 && !isSameBonusNumber) {
+        if (sameWinningNumberCount == SAME_NUMBER_COUNT_THREE && !isSameBonusNumber) {
             lottoResult.put(Ranking.FIFTH, lottoResult.getOrDefault(Ranking.FIFTH, COUNT_ZERO) + COUNT_PLUS_ONE);
         }
-        if (sameWinningNumberCount == 4 && !isSameBonusNumber) {
+        if (sameWinningNumberCount == SAME_NUMBER_COUNT_FOUR && !isSameBonusNumber) {
             lottoResult.put(Ranking.FOURTH, lottoResult.getOrDefault(Ranking.FOURTH, COUNT_ZERO) + COUNT_PLUS_ONE);
         }
-        if (sameWinningNumberCount == 5 && !isSameBonusNumber) {
+        if (sameWinningNumberCount == SAME_NUMBER_COUNT_FIVE && !isSameBonusNumber) {
             lottoResult.put(Ranking.THIRD, lottoResult.getOrDefault(Ranking.THIRD, COUNT_ZERO) + COUNT_PLUS_ONE);
         }
-        if (sameWinningNumberCount == 5 && isSameBonusNumber) {
+        if (sameWinningNumberCount == SAME_NUMBER_COUNT_FIVE && isSameBonusNumber) {
             lottoResult.put(Ranking.SECOND, lottoResult.getOrDefault(Ranking.SECOND, COUNT_ZERO) + COUNT_PLUS_ONE);
         }
-        if (sameWinningNumberCount == 6 && !isSameBonusNumber) {
+        if (sameWinningNumberCount == SAME_NUMBER_COUNT_SIX && !isSameBonusNumber) {
             lottoResult.put(Ranking.FIRST, lottoResult.getOrDefault(Ranking.FIRST, COUNT_ZERO) + COUNT_PLUS_ONE);
         }
     }
@@ -88,7 +93,7 @@ public class LottoGame {
                                                               .getPrize() * entry.getValue())
                                      .sum();
 
-        double earningsRate = (double) (totalPrize * 100) / lottoMachine.getSpend();
+        double earningsRate = (double) (totalPrize * PERCENTAGE) / lottoMachine.getSpend();
         return earningsRate;
     }
 }

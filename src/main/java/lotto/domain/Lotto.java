@@ -13,9 +13,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        LottoException lottoException = new LottoException(numbers);
-        }
-
+        new LottoException(numbers);
+    }
 
     public List<Integer> getNumber() {
         return numbers;

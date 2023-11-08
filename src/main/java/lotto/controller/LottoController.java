@@ -1,6 +1,8 @@
 package lotto.controller;
 
-import lotto.domain.*;
+import lotto.domain.Lotto;
+import lotto.domain.LottoMoneyPrize;
+import lotto.domain.LottoPurchaseAmount;
 import lotto.util.CalculateRate;
 import lotto.util.MakeLotto;
 import lotto.util.MakeLottoCount;
@@ -10,13 +12,12 @@ import lotto.view.OutputViewLottoCount;
 import lotto.view.OutputViewResult;
 
 import java.util.List;
-import java.util.Map;
 
 public class LottoController {
     InputController inputController = new InputController();
     MakeLotto makeLotto = new MakeLotto();
 
-    public void Lotto(){
+    public void Lotto() {
         LottoPurchaseAmount lottoPurchaseAmount = setPurchaseAmount();
 
         int lottoCount = MakeLottoCount.getLottoCount(lottoPurchaseAmount.getCount());
@@ -29,10 +30,10 @@ public class LottoController {
 
         int bonusNumber = setBonusNum();
 
-        LottoMoneyPrize lottoMoneyPrize = new LottoMoneyPrize(lottos,winnerNum,bonusNumber);
-        double rate = CalculateRate.getRate(lottoPurchaseAmount.getCount(),lottoMoneyPrize.getTotalReward());
+        LottoMoneyPrize lottoMoneyPrize = new LottoMoneyPrize(lottos, winnerNum, bonusNumber);
+        double rate = CalculateRate.getRate(lottoPurchaseAmount.getCount(), lottoMoneyPrize.getTotalReward());
 
-        setLottoResult(lottoMoneyPrize,rate);
+        setLottoResult(lottoMoneyPrize, rate);
 
 
     }
@@ -40,9 +41,11 @@ public class LottoController {
     private LottoPurchaseAmount setPurchaseAmount() {
         return inputController.getPurchaseAmount();
     }
+
     private List<Integer> setWinnerNum() {
         return inputController.getWinnerNumber();
     }
+
     private int setBonusNum() {
         return inputController.getBonusNumber();
     }
@@ -53,8 +56,6 @@ public class LottoController {
         OutputViewResult.printResultLotto(lottoMoneyPrize.getLottoMoneyPrize());
         OutputViewResult.printResultRate(rate);
     }
-
-
 
 
 }

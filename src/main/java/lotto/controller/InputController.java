@@ -27,23 +27,23 @@ public class InputController {
         }
     }
 
-    public List<Integer> getWinnerNumber(){
-        try{
+    public List<Integer> getWinnerNumber() {
+        try {
             List<Integer> winnerNum = InputViewWinnerNumber.getWinnerNumber();
             winnerNumber = new WinnerNumber(winnerNum);
             return winnerNumber.getWinnerNumber();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return getWinnerNumber();
         }
     }
 
-    public int getBonusNumber(){
-        try{
+    public int getBonusNumber() {
+        try {
             String bonusNum = InputViewBonusNumber.getBonusNumber();
-            bonusNumber = new BonusNumber(bonusNum,winnerNumber.getWinnerNumber());
+            bonusNumber = new BonusNumber(bonusNum, winnerNumber.getWinnerNumber());
             return bonusNumber.getBonusNumber();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return getBonusNumber();
         }

@@ -1,4 +1,4 @@
-package lotto.validator.input;
+package lotto.view.input.validator;
 
 import lotto.exception.input.DuplicatedNumberException;
 import lotto.exception.input.EmptyInputException;
@@ -6,16 +6,15 @@ import lotto.exception.input.NumberFormatException;
 
 import java.util.List;
 
+import static lotto.view.input.parser.numberParser.parseInteger;
 import static lotto.view.message.ValidationErrorMessage.*;
 
 public class BonusNumberValidator {
 
-    public int validateAndParse(String userInput, List<Integer> winningNumbers) {
+    public void validateAndParse(String userInput, List<Integer> winningNumbers) {
         validateNotEmpty(userInput);
         validateIntegerFormat(userInput);
-        int number = parseInteger(userInput);
-        validateDuplicationWithWinningNumbers(number, winningNumbers);
-        return number;
+        validateDuplicationWithWinningNumbers(userInput, winningNumbers);
     }
 
     private void validateNotEmpty(String userInput) {
@@ -32,12 +31,8 @@ public class BonusNumberValidator {
         }
     }
 
-    private int parseInteger(String userInput) {
-        return Integer.parseInt(userInput);
-    }
-
-    private void validateDuplicationWithWinningNumbers(int validatedNumber, List<Integer> winningNumbers) {
-        if (winningNumbers.contains(validatedNumber)) {
+    private void validateDuplicationWithWinningNumbers(String userInput, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(parseInteger(userInput))) {
             throw new DuplicatedNumberException(INPUT_DUPLICATE_WITH_WINNING.getMessage());
         }
     }

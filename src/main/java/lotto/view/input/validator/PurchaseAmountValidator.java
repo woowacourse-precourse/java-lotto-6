@@ -1,15 +1,16 @@
-package lotto.validator.input;
+package lotto.view.input.validator;
 
 import lotto.exception.input.EmptyInputException;
 
+import static lotto.view.input.parser.numberParser.parseInteger;
 import static lotto.view.message.ValidationErrorMessage.INPUT_EMPTY;
 import static lotto.view.message.ValidationErrorMessage.INPUT_NOT_INTEGER;
 
 public class PurchaseAmountValidator {
 
-    public int validateAndParse(String userInput) {
+    public void validate(String userInput) {
         validateNotEmpty(userInput);
-        return validateAndParseInteger(userInput);
+        validateAndParseInteger(userInput);
     }
 
     private void validateNotEmpty(String userInput) {
@@ -18,9 +19,9 @@ public class PurchaseAmountValidator {
         }
     }
 
-    private int validateAndParseInteger(String userInput) {
+    private void validateAndParseInteger(String userInput) {
         try {
-            return Integer.parseInt(userInput);
+            parseInteger(userInput);
         } catch (NumberFormatException e) {
             throw new NumberFormatException(INPUT_NOT_INTEGER.getMessage());
         }

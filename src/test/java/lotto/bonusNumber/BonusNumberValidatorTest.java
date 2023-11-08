@@ -1,7 +1,7 @@
 package lotto.bonusNumber;
 
 import lotto.exception.input.DuplicatedNumberException;
-import lotto.validator.input.BonusNumberValidator;
+import lotto.view.input.validator.BonusNumberValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

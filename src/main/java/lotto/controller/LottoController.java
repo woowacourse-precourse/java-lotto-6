@@ -45,11 +45,11 @@ public class LottoController {
     }
 
     private WinningLotto getPlayerNumbers() {
-        WinningLotto validationLotto = new WinningLotto(
+        WinningLotto winningLotto = new WinningLotto(
                 getWinningNumbers(),
                 getBonusNumber()
         );
-        return validationLotto;
+        return winningLotto;
     }
 
     private List<Integer> getWinningNumbers() {

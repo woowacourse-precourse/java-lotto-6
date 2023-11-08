@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.Collections;
 import java.util.List;
+import lotto.model.WinningLotto;
 
 public class Lotto {
     private static final String INVALID_LOTTO_SIZE = "[ERROR] 로또는 6개의 숫자로 이루어져야 합니다.";
@@ -52,6 +53,12 @@ public class Lotto {
 
     private boolean isDuplicate(List<Integer> numbers) {
         return numbers.size() != numbers.stream().distinct().count();
+    }
+
+    public int countSameNumbers(WinningLotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto::isContain)
+                .count();
     }
 
     public boolean isContain(int number) {

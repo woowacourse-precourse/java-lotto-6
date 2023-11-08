@@ -17,7 +17,9 @@ public class LottoGame {
         this.prizeResults = new PrizeResults();
     }
     private List<Lotto> generateLottos(int numberOfLottos) {
-
+        return Collections.nCopies(numberOfLottos, 0).stream()
+                .map(n -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
+                .collect(Collectors.toList());
     }
     public void printLottos() {
 

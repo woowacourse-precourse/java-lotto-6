@@ -23,7 +23,7 @@ public class LottoGameUtil {
     private static final String OPEN_SQUARE_BRACKET = "[";
     private static final String CLOSE_SQUARE_BRACKET = "]";
     private static final String SEPARATOR = ",";
-    public static final List<LottoScore> LOTTO_SCORE_LIST = Stream.of(LottoScore.values())
+    public static final List<LottoScore> LOTTO_SCORES = Stream.of(LottoScore.values())
             .collect(Collectors.toList());
 
     private LottoGameUtil() {}
@@ -33,7 +33,7 @@ public class LottoGameUtil {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 나누어 떨어져야 합니다.");
         }
     }
-    
+
     public static int convertPurchaseAmount(String amount) {
         validPurchaseAmountFormat(amount);
         return Integer.parseInt(amount) / PURCHASE_AMOUNT_FORMAT;
@@ -65,7 +65,7 @@ public class LottoGameUtil {
     }
 
     public static LottoScore getResult(int count, boolean isContainsBonus) {
-        return LOTTO_SCORE_LIST.stream()
+        return LOTTO_SCORES.stream()
                 .filter(lottoScore -> lottoScore.compare(count, isContainsBonus))
                 .findFirst()
                 .orElse(LottoScore.NOTHING);

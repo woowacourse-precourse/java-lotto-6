@@ -48,6 +48,10 @@ public class Lotto {
         return numbers.contains(targetNumber);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public static long getPrice() {
         return LOTTO_PRICE;
     }

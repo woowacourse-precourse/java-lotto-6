@@ -6,8 +6,8 @@ import lotto.util.StringToIntegerConverter;
 import java.util.List;
 
 public class BonusNumber {
-    private int bonusNum;
-    private StringToIntegerConverter stringToIntegerConverter = new StringToIntegerConverter();
+    private final int bonusNum;
+    private final StringToIntegerConverter stringToIntegerConverter = new StringToIntegerConverter();
 
     public BonusNumber(String bonusNumber, List<Integer> winnerNum) {
         validate(bonusNumber, winnerNum);
@@ -15,11 +15,10 @@ public class BonusNumber {
     }
 
     private void validate(String bonusNumber, List<Integer> winnerNum) {
-        BonusNumberException bonusNumberException = new BonusNumberException(bonusNumber, winnerNum);
+        new BonusNumberException(bonusNumber, winnerNum);
     }
 
-    public int getBonusNumber(){
+    public int getBonusNumber() {
         return bonusNum;
     }
-
 }

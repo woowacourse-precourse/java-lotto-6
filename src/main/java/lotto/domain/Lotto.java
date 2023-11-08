@@ -5,6 +5,7 @@ import lotto.common.ErrorMessage;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;
@@ -15,6 +16,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        numbers = sorted(numbers);
         this.numbers = numbers;
     }
 
@@ -47,11 +49,22 @@ public class Lotto {
         }
     }
 
+    public List<Integer> sorted(List<Integer> numbers){
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
     public boolean isContain(int number){
         return numbers.contains(number);
     }
 
     public int getMatchLottoNumber(LottoWinningNumber lottoWinningNumber){
         return (int) numbers.stream().filter(lottoWinningNumber::isContain).count();
+    }
+
+    @Override
+    public String toString(){
+        return numbers.toString();
     }
 }

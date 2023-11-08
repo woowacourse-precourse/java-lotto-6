@@ -46,7 +46,7 @@ public class LottoWinningNumber {
         return bonusNumber;
     }
 
-    public static boolean isContain(int number){
-        return LottoWinningNumber.isContain(number);
+    public boolean isContain(int number){
+        return numbers.isContain(number);
     }
 }

@@ -28,9 +28,13 @@ public final class GameUtils {
         return new Lotto(numbers);
     }
 
-    public static String convertToMoney(int prize) {
+    public static String convertToMoney(long prize) {
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         return decimalFormat.format(prize) + "원";
+    }
+
+    public static double convertToPercentageFirstDecimalPlace(double decimal) {
+        return Math.round(decimal * 1000) / 10.0;
     }
 
     public static boolean isNotNumber(String input) {

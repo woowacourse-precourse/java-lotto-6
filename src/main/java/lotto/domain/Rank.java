@@ -11,9 +11,9 @@ public enum Rank {
     FIRST_PLACE(6, 2_000_000_000);
 
     private final int matchNumber;
-    private final int prize;
+    private final long prize;
 
-    Rank(int matchNumber, int prize) {
+    Rank(int matchNumber, long prize) {
         this.matchNumber = matchNumber;
         this.prize = prize;
     }
@@ -22,7 +22,7 @@ public enum Rank {
         return matchNumber;
     }
 
-    public int getPrize() {
+    public long getPrize() {
         return prize;
     }
 

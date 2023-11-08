@@ -21,6 +21,7 @@ public class GameController {
         inputWinningLotto();
         inputBonusNumber();
         outputWinningStatistics();
+        outputProfitRate();
     }
 
     public void purchaseLottos() {
@@ -62,6 +63,10 @@ public class GameController {
     public void outputWinningStatistics() {
         numberService.initRankStatistics();
         outputView.printRankStatistics(numberService.getRankStatisticsOutput());
+    }
+
+    public void outputProfitRate() {
+        outputView.printProfitRate(numberService.getProfitRate());
     }
 
     private boolean isInvalidPurchaseAmount(String input) {

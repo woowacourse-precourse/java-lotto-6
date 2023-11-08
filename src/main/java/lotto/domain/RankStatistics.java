@@ -27,7 +27,14 @@ public class RankStatistics {
         statistics.put(rank, statistics.get(rank) + 1);
     }
 
-    private String generateMessage(int matchNumber, int prize, int count) {
+    public long getTotalProfit() {
+        List<Rank> ranks = List.of(Rank.values());
+        return ranks.stream()
+                .mapToLong(rank -> rank.getPrize() * statistics.get(rank))
+                .sum();
+    }
+
+    private String generateMessage(int matchNumber, long prize, int count) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(matchNumber)
                 .append("개 일치");

@@ -30,6 +30,10 @@ public class NumberService {
         return rankStatistics.toString();
     }
 
+    public double getProfitRate() {
+        return (double) rankStatistics.getTotalProfit() / purchaseAmount.getAmount();
+    }
+
     public void initPurchaseAmount(String input) {
         this.purchaseAmount = new PurchaseAmount(input);
     }

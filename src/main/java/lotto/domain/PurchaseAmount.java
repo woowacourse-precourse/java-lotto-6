@@ -7,7 +7,7 @@ public class PurchaseAmount {
     public static final String PURCHASE_AMOUNT_NOT_NUMBER_EXCEPTION = "구입 금액은 숫자여야 합니다.";
     public static final String PURCHASE_AMOUNT_NOT_POSITIVE_EXCEPTION = "구입 금액은 양수여야 합니다.";
     public static final String PURCHASE_AMOUNT_NOT_DIVISIBLE_EXCEPTION = "구입 금액은 " + LOTTO_PRICE + "원으로 나누어 떨어져야 합니다.";
-    private final int amount;
+    private final long amount;
 
     public PurchaseAmount(String input) {
         validateNumber(input);
@@ -18,7 +18,11 @@ public class PurchaseAmount {
     }
 
     public int getPurchaseNumber() {
-        return amount / LOTTO_PRICE;
+        return (int) amount / LOTTO_PRICE;
+    }
+
+    public long getAmount() {
+        return amount;
     }
 
     private void validateNumber(String input) {

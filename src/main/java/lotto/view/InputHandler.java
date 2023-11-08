@@ -32,4 +32,13 @@ public class InputHandler {
 
         return winningNumbers;
     }
+
+    public static String getBonusNumberInputMessage() {
+        Printer.printBonusNumberChoiceMessage();
+        String bonusNumber = Console.readLine();
+
+        Printer.printLineBreak();
+
+        return bonusNumber;
+    }
 }

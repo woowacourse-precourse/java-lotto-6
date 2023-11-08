@@ -29,4 +29,8 @@ public class Printer {
     public static void printWinningNumberChoiceMessage() {
         System.out.println(WINNING_NUMBER_CHOICE);
     }
+
+    public static void printBonusNumberChoiceMessage() {
+        System.out.println(BONUS_NUMBER_CHOICE);
+    }
 }

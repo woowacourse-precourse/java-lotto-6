@@ -42,7 +42,7 @@ public enum PrizeType {
         return this.prize;
     }
 
-    public int getMatchCount() {
+    private int getMatchCount() {
         return this.matchCount;
     }
 

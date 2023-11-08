@@ -45,7 +45,7 @@ public class LottoGameController {
 
     private void printResult() {
         Map<WinningPrize, Integer> winningPrizes = lottoService.getWinningPrizes(lottos, winningNumbers, bonusNumber);
-        double returnOnLotto = lottoService.getReturnOnLotto(lottos, this.winningNumbers, this.bonusNumber);
+        double returnOnLotto = lottoService.getRateOfReturn(lottos, this.winningNumbers, this.bonusNumber);
         outputView.printResult(winningPrizes, returnOnLotto);
     }
 }

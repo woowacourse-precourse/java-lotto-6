@@ -24,7 +24,7 @@ public class LottoService {
                 .collect(Collectors.toList());
     }
 
-    public double getReturnOnLotto(
+    public double getRateOfReturn(
             List<Lotto> lottos,
             List<Integer> winningNumbers,
             int bonusNumber

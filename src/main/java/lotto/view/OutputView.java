@@ -5,6 +5,7 @@ import lotto.domain.Lottos;
 import lotto.domain.Rank;
 import lotto.dto.GameResult;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -60,13 +61,18 @@ public class OutputView {
 
     private static void printRankResult(final Rank rank, final int count) {
         if (rank == Rank.SECOND) {
-            System.out.println(rank.getCorrectCount() + LOTTOS_BONUS_NUMBER_MATCH_MESSAGE + rank.getMoney() + WON_SUFFIX_MESSAGE + count + COUNT_SUFFIX_MESSAGE);
+            System.out.println(rank.getCorrectCount() + LOTTOS_BONUS_NUMBER_MATCH_MESSAGE + formatMoney(rank.getMoney()) + WON_SUFFIX_MESSAGE + count + COUNT_SUFFIX_MESSAGE);
             return;
         }
-        System.out.println(rank.getCorrectCount() + COUNT_MATCH_SUFFIX_MESSAGE + rank.getMoney() + WON_SUFFIX_MESSAGE + count + COUNT_SUFFIX_MESSAGE);
+        System.out.println(rank.getCorrectCount() + COUNT_MATCH_SUFFIX_MESSAGE + formatMoney(rank.getMoney()) + WON_SUFFIX_MESSAGE + count + COUNT_SUFFIX_MESSAGE);
     }
 
     public static void printProfit(final double profit) {
         System.out.print(PREFIX_PROFIT + Double.parseDouble(String.format(DECIMAL_DIGITS, profit)) + SUFFIX_PROFIT);
+    }
+
+    private static String formatMoney(int money) {
+        DecimalFormat df = new DecimalFormat("#,###");
+        return df.format(money);
     }
 }

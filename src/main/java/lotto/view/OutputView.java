@@ -11,14 +11,14 @@ import java.util.List;
 
 public class OutputView {
 
-    private static OutputView instance = new OutputView();
+    private static final OutputView INSTANCE = new OutputView();
 
     private OutputView() {
 
     }
 
     public static OutputView getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     public void paymentPrompt() {
@@ -43,9 +43,7 @@ public class OutputView {
 
     public void printWinningResult(List<String> winningResult) {
         System.out.println(WINNING_RESULT_MESSAGE.get());
-        for (int i = 0; i < winningResult.size(); i++) {
-            System.out.println(winningResult.get(i));
-        }
+        winningResult.forEach(System.out::println);
     }
 
     public void printRateOfRevenue(double rateOfRevenue) {

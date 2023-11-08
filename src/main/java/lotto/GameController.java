@@ -23,4 +23,10 @@ public class GameController {
         OutputView.printTicketNumber(buyingLotto.getTicketNumber());
         return buyingLotto;
     }
+
+    private List<Lotto> receiveLottos(long ticketNumber) {
+        List<Lotto> lottos = new LottoGenerator(ticketNumber).getLottos();
+        OutputView.printLottoNumbers(lottos);
+        return lottos;
+    }
 }

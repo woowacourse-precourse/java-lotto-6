@@ -12,4 +12,9 @@
 > * 구입한 로또의 번호를 출력하는 기능 - PublishLottoUtil.showPublishedLotto()
 > * 당첨 번호와 비교하여 몇개의 숫자가 동일한 지 확인하는 기능 - ScoreUtil.checkSameNumberCnt()
 > * 당첨 결과를 집계하는 기능 -  ScoreUtil.updateScore()
-> * 
+> * 당첨 결과를 토대로 총 획득 상금을 계산하는 기능 - PrizeUtill.calculatePrizeMoney()
+> * 로또를 산 금액 대비 총 획등 상금을 비교하여 수익률 계산하는 기능 - PrizeUtil.calculateEarningRate()
+> * 잘못된 입력 값에 대해 예외를 발생시키는 기능 - ExceptionHandler
+> * 도메인 로직과 예외 기능에 대해 제대로 작동하는 지 단위 테스트 작성 - test > java > domain, validation
+> * 상수와 에러 메세지를 따로 관리 - constant > Constants, ErrorMessage
+> * View와 Domain을 분리하여 단위 테스트 작성을 용의하게 함.

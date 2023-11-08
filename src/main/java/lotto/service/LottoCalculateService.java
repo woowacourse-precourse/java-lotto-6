@@ -51,4 +51,19 @@ public class LottoCalculateService {
         }
     }
 
+    public void winLotto(int value, User user) {
+        inputCountOfWinning(Winning.FIND.valueOf(value));
+        user.addWinningPrice(Winning.FIND.valueOf(value).getPrice());
+    }
+
+    public int countUserNumbersContainsLotto(List<Integer> userNumbers, List<Integer> lottoNumbers) {
+        int count = 0;
+        for (int i = 0; i < Constants.BEFORE_BONUS_NUMBER_INDEX; i++) {
+            if (userNumbers.contains(lottoNumbers.get(i))) {
+                count++;
+            }
+        }
+        return count;
+    }
+
 }

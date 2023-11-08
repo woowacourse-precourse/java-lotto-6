@@ -42,4 +42,15 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    private void validateOverlap(List<Integer> numbers) {
+        Set<Integer> overlapCheck = new HashSet<>();
+        for (int i = 0; i < numbers.size(); i++) {
+            overlapCheck.add(numbers.get(i));
+        }
+
+        if (overlapCheck.size() != 6) {
+            ExceptionMessage.overlapException();
+            throw new IllegalArgumentException();
+        }
+    }
 }

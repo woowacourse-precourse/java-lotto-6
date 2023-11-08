@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -18,7 +19,6 @@ public class Lotto {
 
     public int compare(List<Integer> winningNumbers) {
         int count = 0;
-        System.out.println(numbers);
         for (Integer i : numbers) {
             if (winningNumbers.contains(i)) {
                 winningNumbers.remove(i);
@@ -45,5 +45,13 @@ public class Lotto {
             return Rank.FIFTH_PLACE;
         }
         return Rank.LAST_PLACE;
+    }
+
+    public static void lottoPrint(List<Lotto> lottoNumbers, int quantity) {
+        System.out.println(quantity + "개를 구매했습니다.");
+        for (Lotto lotto : lottoNumbers) {
+            Collections.sort(lotto.numbers);
+            System.out.println(lotto.numbers);
+        }
     }
 }

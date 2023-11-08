@@ -49,8 +49,6 @@ public class UserInput {
     }
 
 
-////////////////////////////////////////////////////////////////////////////////
-
     //당첨 번호 입력
     public List<Integer> getWinningNumbers() {
         String winningNumbersInput;
@@ -64,10 +62,9 @@ public class UserInput {
                 //Array보다는  Collections 사용! - 1주차 피드백
                 //변수 이름에 자료형&자료구조 사용하지 마! - 2주차 피드백
                 List<String> splittedWinningNumbersInput = Arrays.asList(winningNumbersInput.split(","));
-
                 validateWinningNumbers(splittedWinningNumbersInput);
 
-                hasDuplicates(splittedWinningNumbersInput);
+                validateDuplicates(splittedWinningNumbersInput);
 
                 //나중에 for-each 문 개별 함수화 리팩토링!
                 for (var number : splittedWinningNumbersInput) {
@@ -86,6 +83,12 @@ public class UserInput {
         return winningNumbers;
     }
 
+
+    public void sortWinningNumbers(List<Integer> winningNumbers) {
+        Collections.sort(winningNumbers);
+    }
+
+
     private void validateWinningNumbers(List<String> splittedWinningNumbersInput) {
         if (splittedWinningNumbersInput.size() != 6) {
             throw new IllegalArgumentException("당첨 번호 6개를 입력해 주세요");
@@ -95,7 +98,7 @@ public class UserInput {
     }
 
 
-    private void hasDuplicates(List<String> splittedWinningNumbersInput) {
+    private void validateDuplicates(List<String> splittedWinningNumbersInput) {
         Set<String> set = new HashSet<>();
 
         for (var number : splittedWinningNumbersInput) {
@@ -108,12 +111,6 @@ public class UserInput {
     }
 
 
-    public void sortWinningNumbers(List<Integer> winningNumbers) {
-        Collections.sort(winningNumbers);
-    }
-
-////////////////////////////////////////////////////////////////////////////////
-
     //보너스 번호 입력
     public int getBonusNumber(List<Integer> winningNumbers) {
         int bonusNumber;
@@ -125,7 +122,7 @@ public class UserInput {
 
                 validateBonusNumber(bonusNumber);
 
-                checkOverlapWithNumber(winningNumbers, bonusNumber);
+                checkOverlapWithWinningNumber(winningNumbers, bonusNumber);
 
                 break;
             } catch (NumberFormatException e) {
@@ -149,7 +146,7 @@ public class UserInput {
     }
 
 
-    private void checkOverlapWithNumber(List<Integer> winningNumbers, int bonusNumber) {
+    private void checkOverlapWithWinningNumber(List<Integer> winningNumbers, int bonusNumber) {
 
         for (var winningNumber : winningNumbers) {
             if (winningNumber == bonusNumber) {
@@ -159,6 +156,5 @@ public class UserInput {
 
         return;
     }
-
 
 }

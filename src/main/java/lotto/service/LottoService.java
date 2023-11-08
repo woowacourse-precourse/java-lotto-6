@@ -18,13 +18,14 @@ import lotto.dto.InputWinningNumbers;
 import lotto.dto.PurchasedLottoDTO;
 
 public class LottoService {
+    private static final int UNIT = 1000;
     public static PurchasedLotto inputMoneyAndIssueLotto(InputMoney inputMoney) {
         User user = new User(inputMoney.getMoney());
         return lottoGenerator(user.getAmount());
     }
 
     public static PurchasedLotto lottoGenerator(int purchaseAmount) {
-        int pickCount = purchaseAmount / 1000;
+        int pickCount = purchaseAmount / UNIT;
         List<Lotto> purchasedLotto = new ArrayList<>();
         for (int i = 0; i < pickCount; i++) {
             Lotto lotto = new Lotto(generatePurchasedOneLotto());

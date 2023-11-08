@@ -12,6 +12,13 @@ public class ValidateWinningNumber {
         String[] winningNumberStringArray = inputValue.split(",");
         isSixNumber(winningNumberStringArray);
 
+        for (String winningNumberString : winningNumberStringArray){
+            int positiveInteger = ValidateNumber.isPositiveInteger(winningNumberString);
+            isRange(positiveInteger);
+            ValidateNumber.isDuplicate(winningNumberList);
+            winningNumberList.add(positiveInteger);
+        }
+
         return winningNumberList;
     }
 

@@ -32,9 +32,8 @@ public class LottoController {
         MatchedNumber matchedNumber = new MatchedNumber(lotto, lottoNumber);
         List<LottoRank> lottoRanks = matchedNumber.getLottoRanks(lottos);
         int totalWinnings = money.calculateTotalWinnings(lottoRanks);
-        double returnOfRate = money.calculateReturnOfRate(money.getMoney(), totalWinnings);
-        LottoStatistics lottoStatistics = new LottoStatistics(lottoRanks);
-        lottoStatistics.printStatistics();
-        outputView.printRateOfReturn(returnOfRate);
+        new LottoStatistics(lottoRanks).printStatistics();
+
+        outputView.printRateOfReturn(money.calculateReturnOfRate(money.getMoney(), totalWinnings));
     }
 }

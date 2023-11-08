@@ -41,4 +41,8 @@ public class Money {
     public int calculateNumberOfLottoTickets() {
         return money / MINIMUM_AMOUNT;
     }
+
+    public int getMoney() {
+        return money;
+    }
 }

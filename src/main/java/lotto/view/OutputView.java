@@ -18,6 +18,9 @@ public class OutputView {
     private static final String COMMA_SEPARATOR = ",";
     private static final String WINNING_STATISTICS_INSTRUCTION = "당첨 통계";
     private static final String DIVIDING_LINE = "---";
+    private static final String PREFIX_PROFIT = "총 수익률은 ";
+    private static final String SUFFIX_PROFIT = "%입니다.";
+    private static final String DECIMAL_DIGITS = "%.2f";
 
     public static void printLottos(final Lottos lottos) {
         System.out.println(lottos.getTotalLottos().size() + LOTTOS_SIZE_SUFFIX_MESSAGE.getMessage());
@@ -56,5 +59,9 @@ public class OutputView {
             return;
         }
         System.out.println(rank.getCorrectCount() + COUNT_MATCH_SUFFIX_MESSAGE.getMessage() + rank.getMoney() + WON_SUFFIX_MESSAGE.getMessage() + count + COUNT_SUFFIX_MESSAGE.getMessage());
+    }
+
+    public static void printProfit(final double profit) {
+        System.out.print(PREFIX_PROFIT + Double.parseDouble(String.format(DECIMAL_DIGITS, profit)) + SUFFIX_PROFIT);
     }
 }

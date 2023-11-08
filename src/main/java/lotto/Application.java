@@ -20,5 +20,8 @@ public class Application {
 
         GameResult gameResult = lottoController.generateResult(winningNumbers, lottos);
         lottoController.printLottoWinningResult(gameResult);
+
+        double profit = moneyController.calculateProfit(gameResult, money);
+        moneyController.printProfit(profit);
     }
 }

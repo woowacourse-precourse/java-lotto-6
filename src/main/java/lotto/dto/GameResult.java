@@ -32,4 +32,11 @@ public class GameResult {
     public int getRankCount(Rank rank) {
         return result.get(rank);
     }
+
+    public int getReward() {
+        return result.keySet()
+                .stream()
+                .mapToInt(rank -> rank.getMoney() * result.get(rank))
+                .sum();
+    }
 }

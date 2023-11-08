@@ -21,7 +21,7 @@ public class Lotto {
     int[] counts = new int[8];
     float rateOfReturn;
 
-    public void run (){
+    public void run() {
         moneyInput();
         numberInput();
         bonusInput();
@@ -33,65 +33,96 @@ public class Lotto {
 
     private void bonusInput() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        bonusNum = Integer.parseInt(Console.readLine());
-        try {
-            if (bonusNum < 1 || bonusNum > 45) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+        String bonusNum = Console.readLine();
+        while (!checkValidate(bonusNum) || !checkNumInRange(bonusNum)) {
+            bonusNum = Console.readLine();
+        }
+        this.bonusNum = Integer.parseInt(bonusNum);
+    }
+
+    private void numberInput(/*String testnum*/) {
+        boolean check = false;
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String num = Console.readLine();
+        while (!checkNumberUnder7AndNonDuplicate(num)) {
+            num = Console.readLine();
         }
     }
 
-    public void moneyInput(/*int testNum*/){
+    private void moneyInput(/*int testNum*/) {
         System.out.println("구입금액을 입력해 주세요.");
-
-        try {
-            int money = Integer.parseInt(Console.readLine());
-            if(money%1000 != 0){
-                throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해 주세요");
-            }
-            this.chance = money/1000;
-        } catch (NumberFormatException e) {
-            //throw new NumberFormatException("[ERROR] 로또 번호는 숫자여야 합니다.");
-            System.out.println("[ERROR] 로또 번호는 숫자여야 합니다.");
+        String money = Console.readLine();
+        while (!checkValidate(money) || !check1000(money)) {
+            money = Console.readLine();
         }
+        int checkedmoney = Integer.parseInt(money);
+        this.chance = checkedmoney / 1000;
+
         System.out.printf("%d개를 구매했습니다.\n", chance);
         generateLotto(chance);
     }
 
-    public void numberInput(/*String testnum*/){
-        System.out.println("당첨 번호를 입력해 주세요.");
-        //String num = testnum;
-        String num = Console.readLine();
+    private Boolean checkNumberUnder7AndNonDuplicate(String num) {
+        List<Integer> checkNubmer = new ArrayList<>();
         for (String i : num.split(",")) {
-            try {
-                int number = Integer.parseInt(i);
-                if (number < 1 || number > 45) {
-                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-                }
-                numbers.add(number);
-            } catch (NumberFormatException e) {
-                    throw new NumberFormatException("[ERROR] 로또 번호는 숫자여야 합니다.");
-            }
+            if (checkValidate(i) == false) return false;
+            if (checkNumInRange(i) == false) return false;
+            checkNubmer.add(Integer.parseInt(i));
         }
-        validate();
+        if (checkNumberSize(checkNubmer) == false) return false;
+        if (checkDuplicate(checkNubmer) == false) return false;
+        numbers = checkNubmer;
+        return true;
     }
 
-    public void validate(/*List<Integer> testNumbers*/){
-        Set<Integer> uniqueNumbers = new HashSet<>();
-        for( int number : numbers){
-            if(!uniqueNumbers.add(number)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되면 안됩니다.");
+    private Boolean checkDuplicate(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>();
+        for (Integer i : numbers) {
+            if (!set.add(i)) {
+                System.out.println("[ERROR] 중복 번호가 있습니다. 다시 입력해주세요");
+                return false;
             }
         }
+        return true;
+    }
+
+    private Boolean checkNumberSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            System.out.println("[ERROR] 로또 번호는 6자리여야 합니다. 다시 입력해주세요");
+            return false;
         }
+        return true;
     }
 
-    public void generateLotto(int count) {
-        for(int i=0; i< count;i++) {
+    private Boolean check1000(String num) {
+        if (Integer.parseInt(num) % 1000 != 0) {
+            System.out.println("[ERROR] 급액은 1000단위여야 합니다. 다시 입력해주세요.");
+            return false;
+        }
+        return true;
+    }
+
+    private Boolean checkValidate(String num) {
+        try {
+            int number = Integer.parseInt(num);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 로또 또는 보너스 번호는 숫자여야 합니다. 다시 입력해주세요");
+            return false;
+        }
+        return true;
+    }
+
+    private Boolean checkNumInRange(String num) {
+        int number = Integer.parseInt(num);
+        if (number < 1 || number > 45) {
+            System.out.println("[ERROR] 로또 또는 보너스 번호는 1과 45 사이여야 합니다.다시 입력해주세요");
+            return false;
+        }
+        return true;
+    }
+
+    private void generateLotto(int count) {
+        for (int i = 0; i < count; i++) {
             List<Integer> generatenumberss = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             List<Integer> generatenumbers = new ArrayList<>(generatenumberss);
             generatenumbers.sort(null);
@@ -100,15 +131,15 @@ public class Lotto {
         }
     }
 
-    public void compareLotto(){
-        for(List<Integer> compareNumber : storedNumber){
-            int sameNumber =0;
-            for(int i:compareNumber){
-                if (numbers.contains(i)){
+    private void compareLotto() {
+        for (List<Integer> compareNumber : storedNumber) {
+            int sameNumber = 0;
+            for (int i : compareNumber) {
+                if (numbers.contains(i)) {
                     sameNumber++;
                 }
             }
-            if(sameNumber==5 && compareNumber.contains(bonusNum)){
+            if (sameNumber == 5 && compareNumber.contains(bonusNum)) {
                 counts[7]++;
                 return;
             }
@@ -116,7 +147,7 @@ public class Lotto {
         }
     }
 
-    public void numbersPrint(List<Integer> generateNumbers){
+    private void numbersPrint(List<Integer> generateNumbers) {
         System.out.print("[");
         for (int i = 0; i < generateNumbers.size(); i++) {
             int userNumber = generateNumbers.get(i);
@@ -128,29 +159,20 @@ public class Lotto {
 
         System.out.println("]");
     }
-                /*if (numbers.contains(userNumber)) {
-                sameNumber++;
-            }*/
 
-    /*if(sameNumber==5 && generateNumbers.contains(bonusNum)){
-            counts[7]++;
-            return;
-        }
-        counts[sameNumber]++;*/
-
-    public void printResult(){
+    private void printResult() {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.printf("3개 일치 (5,000원) - %d개\n",counts[3]);
-        System.out.printf("4개 일치 (50,000원) - %d개\n",counts[4]);
-        System.out.printf("5개 일치 (1,500,000원) - %d개\n",counts[5]);
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n",counts[7]);
-        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n",counts[6]);
+        System.out.printf("3개 일치 (5,000원) - %d개\n", counts[3]);
+        System.out.printf("4개 일치 (50,000원) - %d개\n", counts[4]);
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n", counts[5]);
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", counts[7]);
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", counts[6]);
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
     }
 
-    public void calculateRateofReturn(){
+    private void calculateRateofReturn() {
         rateOfReturn = (float) (FIRST_WINNING_PRICE * counts[6] + THIRD_WINNING_PRICE * counts[5] +
-                FOURTH_WINNING_PRICE * counts[4] + FIFTH_WINNING_PRICE * counts[3] + SECOND_WINNING_PRICE * counts[7]) / (chance*10);
+                FOURTH_WINNING_PRICE * counts[4] + FIFTH_WINNING_PRICE * counts[3] + SECOND_WINNING_PRICE * counts[7]) / (chance * 10);
     }
 }

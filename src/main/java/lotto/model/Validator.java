@@ -15,10 +15,10 @@ public class Validator {
         try {
             int number = Integer.parseInt(input);
             if (number < 1) {
-                throw new IllegalArgumentException("[ERROR] 입력값은 1 이상의 정수여야 합니다: " + input);
+                throw new IllegalArgumentException("[ERROR] 입력값은 1 이상의 정수여야 합니다.");
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 숫자로만 구성되어야 합니다: " + input, e);
+            throw new IllegalArgumentException("[ERROR] 입력값은 쉼표로 구분된 6개의 숫자여야 합니다.");
         }
     }
 

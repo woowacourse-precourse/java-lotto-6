@@ -24,7 +24,7 @@ public class LottoPlayer {
 
     public void purchaseLottos(int numberOfLottos) {
         this.purchasedLottos.addAll(LottoGame.generatePurchasedLotto(numberOfLottos));
-        this.totalSpendings += numberOfLottos * LottoConstants.LOTTO_PRICE.getPrice();// 가정: Lotto.PRICE는 로또의 가격
+        this.totalSpendings += numberOfLottos * LottoConstants.LOTTO_PRICE.getPrice();
     }
 
 
@@ -36,9 +36,18 @@ public class LottoPlayer {
         this.totalWinnings += winning;
     }
 
+    public long getTotalWinnings() {
+        return this.totalWinnings;
+    }
+
+    public int getTotalSpendings() {
+        return this.totalSpendings;
+    }
+
+
     public double getEarningRate() {
         if (totalSpendings == 0) {
-            throw new ArithmeticException("지출이 0이어서 수익률을 계산할 수 없습니다.");
+            throw new ArithmeticException("[ERROR] 지출이 0이어서 수익률을 계산할 수 없습니다.");
         }
         double earningRate = ((double) totalWinnings / totalSpendings) * 100; // 여기서 100을 곱함
         earningRate = Math.round(earningRate * 100) / 100.0; // 소수점 둘째 자리까지 반올림

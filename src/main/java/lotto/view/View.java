@@ -13,7 +13,7 @@ public class View {
     public enum ErrorMessage {
         INVALID_NUMBER("유효한 숫자를 입력해주세요."),
         NOT_POSITIVE("양의 정수를 입력해주세요"),
-        BELOW_MINIMUM_AMOUNT("로또 가격보다 큰 값을 입력해주세요"),
+        BELOW_MINIMUM_AMOUNT("로또 가격보다 큰 값을 입력해주세요."),
         INVALID_FORMAT("올바른 방식으로 입력해주세요"),
         INCORRECT_NUMBER_COUNT("6개의 수를 입력해주세요"),
         INVALID_RANGE("1~45 사이의 숫자만 입력해주세요."),
@@ -55,7 +55,7 @@ public class View {
                 Validator.validateWinningNumbers(input);
                 return LottoGame.convertInputToIntegerList(input);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage() + " 다시 입력해주세요.");
+                System.out.println(ERROR_PREFIX + e.getMessage() + " 다시 입력해주세요.");
             }
         }
     }

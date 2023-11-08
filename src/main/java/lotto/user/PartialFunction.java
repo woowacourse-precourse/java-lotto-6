@@ -22,6 +22,7 @@ public class PartialFunction {
     }
 
     public List<Integer> getWinningNumbers(String winningLotto) {
+        validation.checkNull(winningLotto);
         try {
             List<Integer> winnerNumbers = new ArrayList<>(
                     convertStringToIntegerList(winningLotto)
@@ -63,6 +64,10 @@ public class PartialFunction {
         String[] inputNumbers = input.split(",");
 
         for (String inputNumber : inputNumbers) {
+            inputNumber = inputNumber.trim();
+            if (inputNumber.equals(""))
+                continue;
+
             int number = convertStringToInteger(inputNumber);
             resultNumbers.add(number);
         }

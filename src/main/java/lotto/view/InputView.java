@@ -1,43 +1,53 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
-import lotto.constant.ErrorMessage;
+import lotto.validation.Validator;
 
 public class InputView {
 
     public int getPurchaseAmount() {
-        String input = Console.readLine();
-        int amount;
-        try {
-            amount = Integer.parseInt(input);
-        } catch (Exception exception) {
-            throw new NumberFormatException(ErrorMessage.NON_INTEGER.getMessage());
+        while (true) {
+            try {
+                String input = Console.readLine();
+                Validator.validateIsDigit(input);
+                int purchaseAmount = Integer.parseInt(input);
+                Validator.validatePurchaseAmount(purchaseAmount);
+                return purchaseAmount;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
         }
-        return amount;
     }
 
     public List<Integer> getWinningNumbers() {
-        try {
-            String input = Console.readLine();
-            Stream<String> streamInput = Arrays.stream(input.split(","));
-            Stream<Integer> numbers;
-            numbers = streamInput.map(Integer::parseInt);
-            return numbers.toList();
-        } catch (NumberFormatException exception) {
-            throw new NumberFormatException(ErrorMessage.NON_INTEGER.getMessage());
+        while (true) {
+            try {
+                String input = Console.readLine();
+                List<String> splitInput = List.of(input.split(","));
+                Validator.validateStringLotto(splitInput);
+                List<Integer> numbers = splitInput.stream().map(Integer::parseInt).toList();
+                Validator.validateLotto(numbers);
+                return numbers;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
         }
-//        catch ()
     }
 
-    public int getBonusNumber() {
-        try {
-            String input = Console.readLine();
-            return Integer.parseInt(input);
-        } catch (Exception e) {
-            throw new NumberFormatException(ErrorMessage.NON_INTEGER.getMessage());
+
+    public int getBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                String input = Console.readLine();
+                Validator.validateIsDigit(input);
+                int bonusNumber = Integer.parseInt(input);
+                Validator.validateNumberRange(bonusNumber);
+                Validator.validateBonusNumber(winningNumbers, bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
         }
     }
 }

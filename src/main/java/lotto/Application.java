@@ -25,7 +25,7 @@ public class Application {
         List<Integer> winningNumbers = inputView.getWinningNumbers();
 
         outputView.printEnterBonusNumber();
-        int bonusNumber = inputView.getBonusNumber();
+        int bonusNumber = inputView.getBonusNumber(winningNumbers);
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
         Game lottoGame = new Game(lottos, winningLotto);

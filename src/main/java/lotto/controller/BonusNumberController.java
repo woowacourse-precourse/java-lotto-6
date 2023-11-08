@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.model.BuyPriceValidator;
+import lotto.model.BonusNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,7 +13,7 @@ public class BonusNumberController {
             try {
                 outputView.printInsertBonusNumber();
                 bonusNumber = InputView.insertBonusNumber();
-                new BuyPriceValidator(bonusNumber);
+                new BonusNumberValidator(bonusNumber);
                 return InputView.convertToInt(bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

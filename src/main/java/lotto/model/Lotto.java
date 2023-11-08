@@ -14,8 +14,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        LottoValidation lottoValidation = new LottoValidation();
-        lottoValidation.validateLottoNumber(numbers);
+        LottoValidation.validateLottoNumber(numbers);
     }
 
     // TODO: 추가 기능 구현

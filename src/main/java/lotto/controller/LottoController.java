@@ -70,7 +70,13 @@ public class LottoController {
     }
 
     private HashMap<WinningCriteria, Integer> computeLottosRank(LottoPlayer player, WinningLotto winningLotto) {
-        return new HashMap<>();
+        HashMap<WinningCriteria, Integer> result = new HashMap<>();
+        int lottoCount = player.getLottoCount();
+        for (int i=0; i<lottoCount; i++) {
+            WinningCriteria rank = computeLottoRank(winningLotto, player.getLottoNumberByIndex(i));
+            result.put(rank, result.getOrDefault(rank, 0) + 1);
+        }
+        return result;
     }
 
     private WinningCriteria computeLottoRank(WinningLotto winningLotto, List<Integer> lottoNumber) {

@@ -16,7 +16,7 @@ public class InputConsole {
     private static void validateInputPrice(String inputPrice) {
         for (int i = 0; i < inputPrice.length(); i++) {
             if (inputPrice.charAt(i) < '0' || inputPrice.charAt(i) > '9') {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
             }
         }
     }

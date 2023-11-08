@@ -20,6 +20,43 @@ public class Input {
 
     public int startInput() {
         System.out.println("구입금액을 입력해 주세요.");
+        while(true) {
+            try {
+                String purchaseAmount = inputPurchaseAmount();
+                break;
+            } catch(IllegalArgumentException e) {
+                ;
+            }
+        }
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+        while(true) {
+            try {
+                String winningNum = inputWinningNum();
+                break;
+            } catch(IllegalArgumentException e) {
+                ;
+            }
+        }
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber;
+        while(true) {
+            try {
+                String bonusNum = inputBonusNum();
+                bonusNumber = Integer.parseInt(bonusNum);
+                break;
+            } catch(IllegalArgumentException e) {
+                ;
+            }
+        }
+        return bonusNumber;
+    }
+
+    private void printLottoTicket(Lotto lo) {
+        System.out.println(lo.getNumbers());
+    }
+    private String inputPurchaseAmount() throws IllegalArgumentException {
         String purchaseAmount = Console.readLine();
         if(PurcahseAmountValidator.validate(purchaseAmount));
         System.out.println();
@@ -33,8 +70,10 @@ public class Input {
             printLottoTicket(lottoTicket.get(i));
         }
         System.out.println();
+        return purchaseAmount;
+    }
 
-        System.out.println("당첨 번호를 입력해 주세요.");
+    private String inputWinningNum() throws IllegalArgumentException {
         String winningNum = Console.readLine();
         WinningNumberValidator.validate(winningNum);
         String[] splitWinningNumber = winningNum.split(",");
@@ -42,17 +81,12 @@ public class Input {
             winningNumber.add(Integer.parseInt(num));
         }
         System.out.println();
-
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusNum = Console.readLine();
-        BonusNumberValidator.validate(bonusNum);
-        int bonusNumber = Integer.parseInt(bonusNum);
-        System.out.println();
-
-        return bonusNumber;
+        return winningNum;
     }
 
-    private void printLottoTicket(Lotto lo) {
-        System.out.println(lo.getNumbers());
+    private String inputBonusNum() throws IllegalArgumentException {
+        String bonusNum = Console.readLine();
+        BonusNumberValidator.validate(bonusNum);
+        return bonusNum;
     }
 }

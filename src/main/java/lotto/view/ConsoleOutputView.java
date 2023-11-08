@@ -37,6 +37,8 @@ public class ConsoleOutputView {
     }
 
     public void outputLottoRateOfReturn(double lottoRateOfReturn) {
-        System.out.println("총 수익률은 " + lottoRateOfReturn + "%입니다.");
+        String formattedTotalRate = String.format("%.1f", lottoRateOfReturn);
+        String resultRate = formattedTotalRate.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+        System.out.println("총 수익률은 " + resultRate + "%입니다.");
     }
 }

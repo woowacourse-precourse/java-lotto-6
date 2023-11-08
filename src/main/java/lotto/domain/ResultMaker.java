@@ -44,14 +44,13 @@ public class ResultMaker {
      */
     public void updateResult() {
         List<Lotto> userLottos = bundle.getBundle();
-        double corrects = 0;
         for (Lotto lotto : userLottos) {
-            corrects = countingCorrects(lotto);
+            double corrects = countingCorrects(lotto);
             if (corrects < Rank.FIFTH_PLACE.getCorrects()) {
                 continue;
             }
             int oldCount = lottoResult.get(Rank.valueOfCorrects(corrects));
-            lottoResult.put(Rank.valueOfCorrects(corrects), ++oldCount);
+            lottoResult.put(Rank.valueOfCorrects(corrects), oldCount + 1);
         }
     }
 

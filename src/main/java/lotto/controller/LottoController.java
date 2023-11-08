@@ -3,11 +3,13 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.domain.BonusNumber;
+import lotto.domain.LotteryResult;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.UserMoney;
 import lotto.domain.WinningLottoNumbers;
 import lotto.dto.LottoNumbers;
+import lotto.dto.UserLottoGameResult;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -32,6 +34,8 @@ public class LottoController {
 
         WinningLottoNumbers winningLottoNumbers = initWinningLottoNumbers();
         BonusNumber bonusNumber = initBonusNumber(winningLottoNumbers);
+        LotteryResult lotteryResult = lottoService.generateLotteryResult(winningLottoNumbers, bonusNumber);
+        UserLottoGameResult userLottoGameResult = lottoService.generateUserLottoGameResult(lotteryResult, userLottos);
         endGame();
     }
 

@@ -8,10 +8,10 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class UserTest {
 
-    @DisplayName("사용자가 로또 구매시, 로또 개수와 로또 생성")
+    @DisplayName("사용자가 로또 구매시, 구매 가격에 따라 로또 개수 생성")
     @ParameterizedTest
     @CsvSource(value = {"1000,1", "2000,2"})
-    void purchaseLotto(String money, Integer lottoCount) {
+    void purchaseLottoCount(String money, Integer lottoCount) {
         // given
         User user = new User();
 
@@ -20,6 +20,20 @@ class UserTest {
 
         // then
         assertThat(user.lottoCount).isEqualTo(lottoCount);
+    }
+
+    @DisplayName("사용자가 로또 구매시, 구매 가격에 따라 로또 생성")
+    @ParameterizedTest
+    @CsvSource(value = {"1000,1", "2000,2"})
+    void purchaseLottos(String money, Integer lottoCount) {
+        // given
+        User user = new User();
+
+        // when
+        user.purchaseLotto(new Money(money));
+
+        // then
         assertThat(user.lottos).isNotEmpty();
+        assertThat(user.lottos.size()).isEqualTo(lottoCount);
     }
 }

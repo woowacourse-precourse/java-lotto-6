@@ -3,6 +3,8 @@ package lotto.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PlayerTest {
@@ -19,6 +21,15 @@ class PlayerTest {
         player.insertPurchaseAmount(purChaseAmountInput);
 
         assertEquals(purChaseAmountInput, player.getPurChaseAmount());
+    }
+
+    @Test
+    void 당첨_번호_입력() {
+        String winningNumbers = "1,2,3,4,5,6";
+        player.insertWinningNumbers(winningNumbers);
+
+        List<Integer> expectedWinningNumber = List.of(1,2,3,4,5,6);
+        assertEquals(expectedWinningNumber, player.getWinningNumbers());
     }
 
     @Test

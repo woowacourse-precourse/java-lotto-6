@@ -25,12 +25,9 @@ public class Bonus {
     }
 
     /**
-     *
      * String -> int Type Cast
-     *
-     * Bonus Class 생성자는 String, Int 2개로 받으며
-     * String 생성자 생성 시 Integer Type Cast 진행
-     * Type Cast 시 숫자가 아닌 경우 Exception 발생
+     * <p>
+     * Bonus Class 생성자는 String, Int 2개로 받으며 String 생성자 생성 시 Integer Type Cast 진행 Type Cast 시 숫자가 아닌 경우 Exception 발생
      *
      * @param bonusNumber
      * @return int type

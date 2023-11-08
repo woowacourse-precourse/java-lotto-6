@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.SortedMap;
 import java.util.TreeMap;
+
 import lotto.constant.OutputMessage;
 
 public class WinStatistics {

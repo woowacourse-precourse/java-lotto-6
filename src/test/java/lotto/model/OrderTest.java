@@ -1,11 +1,10 @@
 package lotto.model;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.internal.matchers.Or;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class OrderTest {
     private final String expectCost = "11000";
@@ -39,7 +38,8 @@ public class OrderTest {
 
         assertThatThrownBy(() -> new Order(cost))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE);;
+                .hasMessageContaining(ERROR_MESSAGE);
+        ;
     }
 
     @DisplayName("구매 금액을 1000원 나눈것과 로또 수량이 같아야 한다.")

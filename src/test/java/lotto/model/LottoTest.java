@@ -62,7 +62,7 @@ class LottoTest {
     void parseWinningNumbersFromComma() {
         SplitGenerator splitGenerator = new SplitGenerator("1,2,3,4,5,6");
         Lotto result = splitGenerator.getLotto();
-        Lotto expect = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto expect = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         assertThat(result).isEqualTo(expect);
     }
@@ -70,8 +70,8 @@ class LottoTest {
     @DisplayName("로또 번호는 오름차순으로 정렬되어야 한다.")
     @Test
     void createLottoByAscendingOrder() {
-        Lotto result = new Lotto(List.of(3,1,4,2,6,5));
-        Lotto expect = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto result = new Lotto(List.of(3, 1, 4, 2, 6, 5));
+        Lotto expect = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         assertThat(result.getLottoNumber()).isEqualTo(expect.getLottoNumber());
     }

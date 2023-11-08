@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-
 import java.util.stream.Collectors;
+
 import lotto.constant.Number;
 import lotto.constant.ValidatorMessage;
 
@@ -88,8 +88,12 @@ public class Lotto {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Lotto lotto = (Lotto) o;
         return Objects.equals(numbers, lotto.numbers);
     }

@@ -133,7 +133,7 @@ public class LottoController {
             Map<Prize, Integer> statistics = LottoUtil.calculatePrizeCounts(purchasedLottos.lottos(), winningLotto);
             double totalPrizeAmount = LottoUtil.calculateTotalPrizeAmount(statistics);
 
-            lottoOutputView.printStatistics();
+            lottoOutputView.printStatisticsHeader();
             displayPrizeCounts(statistics);
             double yield = LottoUtil.calculateProfitPercentage(totalPrizeAmount, purchaseAmount);
             lottoOutputView.printTotalYield(yield);

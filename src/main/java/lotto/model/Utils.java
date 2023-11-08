@@ -22,7 +22,7 @@ public final class Utils {
 
     public static List<Integer> convertStringToIntegerList(final String string) {
         return splitWinningNumbers(string).stream()
-                .map(inputNumber -> convertStringToInt(inputNumber))
+                .map(Utils::convertStringToInt)
                 .toList();
     }
 

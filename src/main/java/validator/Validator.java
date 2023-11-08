@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Set;
 
 public class Validator {
+    private final static int MIN_LOTTO =1;
+    private final static int MAXLOTTO=45;
+    private final static int UNIT=1000;
     public static void checkAnswerNumber(String[] split) throws IllegalArgumentException {
         int num;
         if (split.length != 6) throw new IllegalArgumentException();
@@ -16,7 +19,7 @@ public class Validator {
             } catch (Exception e) {
                 throw new IllegalArgumentException();
             }
-            if (num < 0 || num > 45) throw new IllegalArgumentException();
+            if (num < MIN_LOTTO || num > MAXLOTTO) throw new IllegalArgumentException();
         }
     }
 
@@ -32,7 +35,7 @@ public class Validator {
         } catch (Exception e) {
             throw new IllegalArgumentException();
         }
-        if (bonus < 0 || bonus > 45) {
+        if (bonus < MIN_LOTTO || bonus > MAXLOTTO) {
             throw new IllegalArgumentException();
         }
         List<Integer> answerList = answer.getNumbers();
@@ -48,7 +51,7 @@ public class Validator {
         } catch (Exception e) {
             throw new IllegalArgumentException();
         }
-        if (price % 1000 != 0) {
+        if (price % UNIT != 0) {
             throw new IllegalArgumentException();
         }
     }

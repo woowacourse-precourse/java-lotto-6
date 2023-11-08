@@ -54,3 +54,5 @@
 - 소비자의 수익률 출력
 - 에러 메시지 출력
 
+### AutomaticLottoNumbers
+- 자동 로또번호 생성

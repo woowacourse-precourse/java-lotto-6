@@ -7,6 +7,9 @@ import static lotto.constants.Message.INPUT_BONUS_NUMBERS;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
+    public InputView() {
+    }
+
     public static String readCost() {
         System.out.println(INPUT_COST.getMessage());
         return Console.readLine();

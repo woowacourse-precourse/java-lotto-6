@@ -3,7 +3,6 @@ package lotto.view;
 import lotto.domain.WinningNumber;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class InputBonusNumberView extends InputView {
     private static final String ERROR_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 중복되지 않은 숫자여야 합니다.";

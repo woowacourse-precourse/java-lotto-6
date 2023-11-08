@@ -26,23 +26,24 @@ public class Domain {
     }
 
     public Map<Rank,Integer> allRanking(List<Integer> winningNums,Integer bonus,List<Lotto> lottoes){
-        Map<Rank,Integer> rankingTable = createRankingTable();
+        Map<Rank,Integer> rankingTable = createEmptyRankingTable();
         for(Lotto lotto : lottoes){
             Rank rankingResult = ranking(winningNums,bonus,lotto);
             addRankingResult(rankingResult,rankingTable);
         }
         return rankingTable;
     }
-    public void addRankingResult(Rank rankingResult,Map<Rank,Integer> rankingTable){
-        rankingTable.merge(rankingResult,1,Integer::sum);
-    }
 
-    public Map<Rank,Integer> createRankingTable(){
+    public Map<Rank,Integer> createEmptyRankingTable(){
         Map<Rank,Integer> rankingTable = new LinkedHashMap<>();
         for(Rank rank:Rank.values()){
             rankingTable.put(rank,0);
         }
         return rankingTable;
+    }
+
+    public void addRankingResult(Rank rankingResult,Map<Rank,Integer> rankingTable){
+        rankingTable.merge(rankingResult,1,Integer::sum);
     }
 
     public long calculateProfit(Map<Rank,Integer> rankingResults){

@@ -28,6 +28,22 @@ class DomainTest {
     }
 
     @Test
+    void 비어있는_결과_테이블이_제대로_생성되는지(){
+        Map<Rank,Integer> rankingTable = domain.createEmptyRankingTable();
+
+        Assertions.assertThat(rankingTable.keySet()).contains(Rank.values());
+    }
+
+    @Test
+    void 결정된_순위가_결과_테이블에_제대로_반영되는지(){
+        Map<Rank,Integer> rankingTable = domain.createEmptyRankingTable();
+
+        domain.addRankingResult(Rank.FIRST_PLACE,rankingTable);
+
+        Assertions.assertThat(rankingTable.get(Rank.FIRST_PLACE)).isEqualTo(1);
+    }
+
+    @Test
     void 순위들을_적절하게_반환했는지_확인(){
         LottoMarketService lottoMarketService = new LottoMarketService();
         List<Lotto> lottoes = new ArrayList<>();

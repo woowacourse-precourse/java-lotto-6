@@ -12,9 +12,6 @@ public class Lotto {
 
     private Lotto(List<Integer> numbers) {
         validate(numbers);
-        for (Integer number : numbers) {
-            isValidLottoNumber(number);
-        }
         this.numbers = numbers;
     }
 
@@ -29,6 +26,9 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
+        for (Integer number : numbers) {
+            isValidLottoNumber(number);
+        }
     }
 
     private void validateSize(List<Integer> numbers) {

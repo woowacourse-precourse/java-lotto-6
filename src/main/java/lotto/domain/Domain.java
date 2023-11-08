@@ -37,7 +37,7 @@ public class Domain {
         rankingTable.merge(rankingResult,1,Integer::sum);
     }
 
-    private Map<Rank,Integer> createRankingTable(){
+    public Map<Rank,Integer> createRankingTable(){
         Map<Rank,Integer> rankingTable = new LinkedHashMap<>();
         for(Rank rank:Rank.values()){
             rankingTable.put(rank,0);

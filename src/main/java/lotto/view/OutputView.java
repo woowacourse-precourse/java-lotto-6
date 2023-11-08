@@ -11,15 +11,14 @@ import static lotto.util.message.ViewMessages.OUTPUT_LOTTO_RANK_COUNT;
 import static lotto.util.message.ViewMessages.OUTPUT_LOTTO_RANK_PRIZE;
 import static lotto.util.message.ViewMessages.OUTPUT_LOTTO_RANK_RESULT;
 import static lotto.util.message.ViewMessages.OUTPUT_RESULT_GUIDE;
+import static lotto.util.message.ViewMessages.OUTPUT_USER_MONEY_REVENUE_RATE;
 
 import java.util.Arrays;
-import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoRank;
-import lotto.model.LottoRankManager;
 import lotto.model.UserLotto;
 import lotto.model.UserMoney;
-import lotto.model.WinningNumbers;
+import lotto.model.UserLottoRank;
 
 public class OutputView {
     public void printUserMoneyInputGuide() {
@@ -50,18 +49,27 @@ public class OutputView {
         println(OUTPUT_HORIZONTAL_LINE);
     }
 
-    public void printLottoRanks(UserLotto userLotto, WinningNumbers winningNumbers) {
-        List<LottoRank> result = LottoRankManager.findLottoRanks(userLotto.getLottos(), winningNumbers);
+    public void printUserLottoRank(UserLottoRank userLottoRank) {
         Arrays.stream(LottoRank.values())
                 .filter(lottoRank -> lottoRank != LottoRank.NONE)
-                .forEach(lottoRank -> println(printLottoRank(lottoRank) + printLottoCount(result, lottoRank)));
+                .forEach(lottoRank -> printLottoRank(userLottoRank, lottoRank));
+    }
+
+    public void printRevenueRate(UserMoney userMoney, UserLottoRank userLottoRank) {
+        long revenue = userLottoRank.getRevenue();
+        float revenueRate = userMoney.getRevenueRate(revenue);
+        printf(OUTPUT_USER_MONEY_REVENUE_RATE, revenueRate);
     }
 
     private void printLottoNumbers(Lotto lotto) {
         printf(OUTPUT_LOTTO_NUMBERS + "\n", lotto.getNumbers().toArray());
     }
 
-    private String printLottoRank(LottoRank lottoRank) {
+    private void printLottoRank(UserLottoRank userLottoRank, LottoRank lottoRank) {
+        println(findLottoRank(lottoRank) + findUserLottoRankCount(userLottoRank, lottoRank));
+    }
+
+    private String findLottoRank(LottoRank lottoRank) {
         StringBuilder output = new StringBuilder();
         output.append(String.format(OUTPUT_LOTTO_RANK_COUNT, lottoRank.getCount()));
         if (lottoRank.getBonus()) {
@@ -71,12 +79,12 @@ public class OutputView {
         return output.toString();
     }
 
-    private String printLottoCount(List<LottoRank> result, LottoRank lottoRank) {
-        return String.format(OUTPUT_LOTTO_RANK_RESULT, countLottoResult(result, lottoRank));
+    private String findUserLottoRankCount(UserLottoRank userLottoRank, LottoRank lottoRank) {
+        return String.format(OUTPUT_LOTTO_RANK_RESULT, countUserLottoRank(userLottoRank, lottoRank));
     }
 
-    private int countLottoResult(List<LottoRank> result, LottoRank lottoRank) {
-        return (int) result.stream()
+    private int countUserLottoRank(UserLottoRank userLottoRank, LottoRank lottoRank) {
+        return (int) userLottoRank.getLottoRanks().stream()
                 .filter(rank -> rank.equals(lottoRank))
                 .count();
     }

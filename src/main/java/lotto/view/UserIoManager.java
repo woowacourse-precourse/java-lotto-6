@@ -3,8 +3,8 @@ package lotto.view;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.UserLotto;
+import lotto.model.UserLottoRank;
 import lotto.model.UserMoney;
-import lotto.model.WinningNumbers;
 
 public class UserIoManager {
     private final InputView inputView;
@@ -57,9 +57,10 @@ public class UserIoManager {
         outputView.printUserLotto(userLotto);
     }
 
-    public void printResult(UserLotto userLotto, WinningNumbers winningNumbers) {
+    public void printResult(UserMoney userMoney, UserLottoRank userLottoRank) {
         outputView.printResultGuide();
         outputView.printHorizontalLine();
-        outputView.printLottoRanks(userLotto, winningNumbers);
+        outputView.printUserLottoRank(userLottoRank);
+        outputView.printRevenueRate(userMoney, userLottoRank);
     }
 }

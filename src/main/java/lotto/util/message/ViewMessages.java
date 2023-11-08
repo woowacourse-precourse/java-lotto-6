@@ -12,4 +12,5 @@ public class ViewMessages {
     public static final String OUTPUT_LOTTO_RANK_BONUS = ", 보너스 볼 일치";
     public static final String OUTPUT_LOTTO_RANK_PRIZE = " (%,d원)";
     public static final String OUTPUT_LOTTO_RANK_RESULT = " - %d개";
+    public static final String OUTPUT_USER_MONEY_REVENUE_RATE = "총 수익률은 %.1f%%입니다.";
 }

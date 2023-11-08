@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.UserLotto;
+import lotto.model.UserLottoRank;
 import lotto.model.UserMoney;
 import lotto.model.WinningNumbers;
 import lotto.util.generator.NumberGenerator;
@@ -25,6 +26,7 @@ public class LottoController {
         Lotto lotto = userIoManager.readWinningNumbers();
         Bonus bonus = userIoManager.readBonusNumber();
         WinningNumbers winningNumbers = new WinningNumbers(lotto, bonus);
-        userIoManager.printResult(userLotto, winningNumbers);
+        UserLottoRank userLottoRank = new UserLottoRank(userLotto, winningNumbers);
+        userIoManager.printResult(userMoney, userLottoRank);
     }
 }

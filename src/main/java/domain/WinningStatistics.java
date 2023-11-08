@@ -1,35 +1,51 @@
 package domain;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.Lotto;
 
 public class WinningStatistics {
-
     private Ranking ranking;
     private float rateOfReturn;
     private int matchingCount;
-    private static HashMap<Ranking, Integer> totalRanking;
+    private static HashMap<Ranking, Integer> totalRanking = new HashMap<>();
 
-    public WinningStatistics(Lotto resultLotto, Lotto userLotto) { // Test 용 생성자
-        setMatchingCount(resultLotto, userLotto);
+    public WinningStatistics(Lotto resultNumbers,
+                             List<Lotto> lotties,
+                             int bonusNumber,
+                             int lottoPurchaseAmount) {
+        checkLotto(resultNumbers, lotties, bonusNumber);
+        setRateOfReturn(lottoPurchaseAmount);
     }
 
-    public WinningStatistics() {
+    public WinningStatistics(Lotto resultNumber, Lotto userNumber) { //Test
+        setMatchingCount(resultNumber, userNumber);
+    }
+
+    public WinningStatistics() { //Test
+
     }
 
     public int getMatchingCount() {
         return matchingCount;
     }
 
-    public WinningStatistics(Lotto resultNumbers, List<Lotto> lotties, int bonusNumber, int lottoPurchaseAmount) {
-        checkLotto(resultNumbers, lotties, bonusNumber);
-        setRateOfReturn(lottoPurchaseAmount);
-        result();
+    public Ranking getRanking() {
+        return ranking;
+    }
+
+    public float getRateOfReturn() {
+        return rateOfReturn;
+    }
+
+    public HashMap<Ranking, Integer> getTotalRanking() {
+        return totalRanking;
     }
 
     private void checkLotto(Lotto resultLotto, List<Lotto> lotties, int bonusNumber) {
-        setTotalRanking(ranking);
+        setTotalRanking();
         for (int i = 0; i < lotties.size(); i++) {
             setMatchingCount(resultLotto, lotties.get(i));
             ranking = ranking.value(matchingCount, checkBonusNumber(resultLotto, bonusNumber));
@@ -50,33 +66,19 @@ public class WinningStatistics {
                 .anyMatch(number -> number == bonusNumber);
     }
 
-    private static void setTotalRanking(Ranking ranking) {
-        totalRanking = new HashMap<>();
+    private static void setTotalRanking() {
         totalRanking.put(Ranking.FIRST, 0);
         totalRanking.put(Ranking.SECOND, 0);
         totalRanking.put(Ranking.THIRD, 0);
         totalRanking.put(Ranking.FOURTH, 0);
         totalRanking.put(Ranking.FIFTH, 0);
         totalRanking.put(Ranking.MISS, 0);
-
+        System.out.println(totalRanking);
     }
 
     private void saveTotalRanking(Ranking ranking) {
         int currentCount = totalRanking.get(ranking);
         totalRanking.put(ranking, currentCount + 1);
-    }
-
-    private void result() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        for (Ranking ranking : ranking.values()) {
-            if (ranking == Ranking.MISS) {
-                continue;
-            }
-            System.out.println(ranking.getWinningMessage() + totalRanking.get(ranking) + "개");
-        }
-        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
-
     }
 
     private void setRateOfReturn(int lottoPurchaseAmount) {
@@ -88,5 +90,22 @@ public class WinningStatistics {
             rateOfReturn += ranking.getWinningAmount() * totalRanking.get(ranking);
         }
         rateOfReturn = rateOfReturn / lottoPurchaseAmount * 100;
+    }
+
+    public Map<Ranking, Integer> calculateStatistics(Lotto resultLotto, List<Lotto> userLottos, int bonusNumber) {
+        Map<Ranking, Integer> statistics = new EnumMap<>(Ranking.class);
+
+        for (Ranking ranking : Ranking.values()) {
+            statistics.put(ranking, 0);
+        }
+
+        for (Lotto userLotto : userLottos) {
+            int matchingCount = this.getMatchingCount();
+            boolean isBonusMatch = checkBonusNumber(resultLotto, bonusNumber);
+            Ranking ranking = Ranking.value(matchingCount, isBonusMatch);
+            statistics.put(ranking, statistics.get(ranking) + 1);
+        }
+
+        return statistics;
     }
 }

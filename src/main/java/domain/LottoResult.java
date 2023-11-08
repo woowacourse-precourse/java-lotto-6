@@ -1,7 +1,5 @@
 package domain;
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
-
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
@@ -12,9 +10,9 @@ public class LottoResult {
 
     private int bonusNumber;
 
-    public LottoResult() { // 실제 사용하는  생성자
-        setLottoResultNumber(inputLotteryResultNumber());
-        setBonusNumber(inputBonusResultNumber());
+    public LottoResult(String[] lottoResultNumber, String bonusNumber) { // 실제 사용하는  생성자
+        setLottoResultNumber(lottoResultNumber);
+        setBonusNumber(bonusNumber);
     }
 
     public LottoResult(String[] userInputNumber) { // 테스트코드용 생성자
@@ -23,15 +21,6 @@ public class LottoResult {
 
     public LottoResult(String userInputNumber) { // 테스트코드용 생성자
         setBonusNumber(userInputNumber);
-    }
-
-
-    private String[] inputLotteryResultNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String inputLottoResultNumber = readLine();
-        String[] lottoResult = inputLottoResultNumber.split(",");
-        System.out.println();
-        return lottoResult;
     }
 
     public Lotto getLottoResultNumber() {
@@ -45,13 +34,6 @@ public class LottoResult {
             lottoResultNumber.add(number);
         }
         this.lottoResultNumber = new Lotto(lottoResultNumber);
-    }
-
-    private String inputBonusResultNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String inputBonusNumber = readLine();
-        System.out.println();
-        return inputBonusNumber;
     }
 
     public int getBonusNumber() {

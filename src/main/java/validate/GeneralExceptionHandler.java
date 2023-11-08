@@ -7,15 +7,6 @@ public class GeneralExceptionHandler {
     public static final String PURCHASE_AMOUNT_UNDER_ERROR_MESSAGE = "=[ERROR] 구매 금액이 1000원 미만입니다.";
     public static final String PURCHASE_AMOUNT_NOT_DIVIDE_ERROR_MESSAGE = "[ERROR] 구매금액이 천원 단위가 아닙니다.";
 
-    private int UserPurchaseAmount() {
-        try {
-
-        } catch (IllegalArgumentException e) {
-
-        }
-
-    }
-
     public static int validateNumberExceptionHandler(String inputStr) {
         validateEmpty(inputStr);
         return validateNumber(inputStr);

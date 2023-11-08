@@ -1,6 +1,8 @@
 package view;
 
 
+import domain.Ranking;
+import java.util.HashMap;
 import java.util.List;
 import lotto.Lotto;
 
@@ -20,6 +22,22 @@ public class OutputView {
             System.out.println(numbers);
         });
         System.out.println();
+    }
+
+    public static void result(Ranking ranking,
+                              HashMap<Ranking, Integer> totalRanking,
+                              float rateOfReturn) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (Ranking rank : ranking.values()) {
+            if (rank == Ranking.MISS) {
+                continue;
+            }
+            System.out.println(totalRanking);
+            System.out.println(rank.getWinningMessage() + totalRanking.get(ranking) + "개");
+        }
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
+
     }
 
 

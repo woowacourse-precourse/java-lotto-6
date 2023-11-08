@@ -80,12 +80,15 @@ public class LottoService {
         }
     }
 
-    public Double rateReturn(LottoScore lottoScore, int money){
+    public Double rateReturn(LottoScore lottoScore, int money) {
         int totalWinnings = (lottoScore.getCorrect3() * 5000) + (lottoScore.getCorrect4() * 50000)
                 + (lottoScore.getCorrect5() * 1500000) + (lottoScore.getCorrect5Bonus() * 30000000)
                 + (lottoScore.getCorrect6() * 2000000000);
 
-        return ((double) totalWinnings - money) / money;
+        double rate = ((double) totalWinnings - money) / money;
+
+        double percentReturn = 100.0 + rate * 100.0; // 원금을 100%로 가정하여 백분율로 변환
+        return (double) Math.round(percentReturn * 10) / 10; // 반올림하여 소수 첫째 자리까지 표시
     }
 
 }

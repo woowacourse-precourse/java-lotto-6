@@ -15,26 +15,31 @@ public class WinningLotto {
     private int validateAndParseBonusNumber(String bonusNumber) {
         try {
             int number = Integer.parseInt(bonusNumber);
-            if (bonusNumberWrongRange(bonusNumber)) {
-                throw new IllegalArgumentException(StringConstants.FIRST_ERROR_MESSAGE + StringConstants.BONUS_NUMBER_RANGE_EXCEPTION_MESSAGE);
-            }
-            if (bonusNumberDuplicateWinningNumbers(bonusNumber)) {
-                throw new IllegalArgumentException(StringConstants.FIRST_ERROR_MESSAGE + StringConstants.BONUS_NUMBER_WINNING_NUMBERS_DUPLICATE_EXCEPTION_MESSAGE);
-            }
+            validateBonusNumber(number);
             return number;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(StringConstants.FIRST_ERROR_MESSAGE + StringConstants.BONUS_NUMBER_NOT_DIGIT_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(StringConstants.FIRST_ERROR_MESSAGE
+                                                       + StringConstants.BONUS_NUMBER_NOT_DIGIT_EXCEPTION_MESSAGE);
         }
     }
 
-    public boolean bonusNumberWrongRange(String bonusNumber) {
-        int number = Integer.parseInt(bonusNumber);
+    private void validateBonusNumber(int number) {
+        if (bonusNumberWrongRange(number)) {
+            throw new IllegalArgumentException(StringConstants.FIRST_ERROR_MESSAGE
+                                                       + StringConstants.BONUS_NUMBER_RANGE_EXCEPTION_MESSAGE);
+        }
+        if (bonusNumberDuplicateWinningNumbers(number)) {
+            throw new IllegalArgumentException(StringConstants.FIRST_ERROR_MESSAGE
+                                                       + StringConstants.BONUS_NUMBER_WINNING_NUMBERS_DUPLICATE_EXCEPTION_MESSAGE);
+        }
+    }
+
+    public boolean bonusNumberWrongRange(int number) {
         return number < LottoConstants.NUMBER_MIN.getValue() || number > LottoConstants.NUMBER_MAX.getValue();
     }
 
-    public boolean bonusNumberDuplicateWinningNumbers( String bonusNumber) {
-        int bonusNumberInt = Integer.parseInt(bonusNumber);
-        return winningNumbers.contains(bonusNumberInt);
+    public boolean bonusNumberDuplicateWinningNumbers( int number) {
+        return winningNumbers.contains(number);
     }
 
     public int countMatchedNumbers(Lotto lotto) {

@@ -3,7 +3,6 @@ package lotto.domain;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
 
 public class Lotteries {
 

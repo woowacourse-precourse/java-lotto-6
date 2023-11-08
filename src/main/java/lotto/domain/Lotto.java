@@ -1,7 +1,6 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
-import lotto.domain.LottoNumber;
 
 public class Lotto {
     private static final int SIZE_SCALE = 6;

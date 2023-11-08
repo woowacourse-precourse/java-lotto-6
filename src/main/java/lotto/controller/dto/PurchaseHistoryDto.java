@@ -12,8 +12,10 @@ public class PurchaseHistoryDto {
         this.lottoNumbers = lottoNumbers;
     }
 
-    public static PurchaseHistoryDto toDto(int count, List<List<Integer>> lottoNumbers) {
-        return new PurchaseHistoryDto(count, lottoNumbers);
+    public static PurchaseHistoryDto toDto(MoneyLottosDto moneyLottosDto) {
+        int ea = moneyLottosDto.getLottos().getEA();
+        List<List<Integer>> history = moneyLottosDto.getLottos().getHistory();
+        return new PurchaseHistoryDto(ea, history);
     }
 
     public int getCount() {

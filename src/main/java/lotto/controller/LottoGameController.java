@@ -42,8 +42,7 @@ public class LottoGameController {
             outputView.printPurchaseInput();
             Money money = new Money(input());
             moneyLottosDto = lottoStore.sellLotto(money);
-            PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(
-                    moneyLottosDto.getLottos().getEA(), moneyLottosDto.getLottos().getHistory());
+            PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(moneyLottosDto);
             outputView.printPurchaseHistory(dto);
         } catch (IllegalArgumentException e) {
             errorView.printErrorMessage(e.getMessage());

@@ -9,6 +9,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class Application {
 
     public static final int NUM_OF_LOTTO_NUMBERS = 6;
+    public static final int MIN_LOTTO_NUMBER = 1;
+    public static final int MAX_LOTTO_NUMBER = 45;
 
     public static class Winner {
         List<Integer> winnigNums = new ArrayList<Integer>();
@@ -81,6 +83,48 @@ public class Application {
         return lottos;
     }
 
+    public static int isLottoNumValid(String inp) {
+        int num = strToNum(inp);
+
+        if ((num < MIN_LOTTO_NUMBER) || (MAX_LOTTO_NUMBER < num)) {
+            throw new IllegalArgumentException();
+        }
+
+        return num;
+    }
+
+    public static List<Integer> isWinnersValid(String inp) {
+        List<Integer> winNums = new ArrayList<Integer>();
+
+        if (!inp.contains(",")) {
+            throw new IllegalArgumentException();
+        }
+
+        String[] ArraysInp = inp.split(",");
+
+        if (ArraysInp.length != 6) {
+            throw new IllegalArgumentException();
+        }
+
+        for (int i = 0; i < ArraysInp.length; i++) {
+            winNums.add(isLottoNumValid(ArraysInp[i]));
+        }
+
+        return winNums;
+    }
+
+    public static Winner getWinner() {
+        Winner winner = new Winner();
+        
+        System.out.println("당첨 번호를 입력해 주세요.");
+        winner.winnigNums = isWinnersValid(camp.nextstep.edu.missionutils.Console.readLine());
+
+        System.out.printf("\n보너스 번호를 입력해 주세요.\n");
+        winner.bonusNum = isLottoNumValid(camp.nextstep.edu.missionutils.Console.readLine());
+
+        return winner;
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int lottoCount;
@@ -89,6 +133,7 @@ public class Application {
         
         lottoCount = buying();
         lottos = getLottos(lottoCount);
+        winner = getWinner();
 
     }
 }

@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.service.LottoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,5 +24,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 구입 금액이 1,000원 단위가 아니면 예외가 발생한다.")
+    @Test
+    void inputPurchasePriceByDifferentUnit() {
+        final LottoService lottoService = new LottoService();
+        final String purchasePrice = "1500";
+
+        assertThatThrownBy(() -> lottoService.checkLottoNumber(purchasePrice))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

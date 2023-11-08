@@ -14,9 +14,9 @@ final class MessageConstant {
     public final static String LOTTERIES_NUMBERS_DELIMITER = ", ";
 
     public final static String WINNING_STATISTICS_START = "\n당첨 통계\n---";
-    public final static String NEXT_LINE = "\n";
     public final static String WINNING_STATISTIC_INFORMATION_FORMAT = "%s (%s원) - %d개";
     public final static DecimalFormat PRIZE_FORMAT = new DecimalFormat("###,###,###");
+    public final static String NEXT_LINE = "\n";
 
     public final static String YIELD_MESSAGE_FORMAT = "총 수익률은 %s%%입니다.";
     public final static DecimalFormat YIELD_FORMAT = new DecimalFormat("#.#");

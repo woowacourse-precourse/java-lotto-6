@@ -44,7 +44,13 @@ public class Messenger {
         return WINNING_STATISTICS_START;
     }
 
-    public String getWinningStatisticInformationMessage(WinStateInformationDTO winStateInformationDTO) {
+    public String getWinningStatisticsInformationMessage(List<WinStateInformationDTO> winStateInformationDTOs) {
+        return winStateInformationDTOs.stream()
+                .map(this::getWinningStatisticInformationMessage)
+                .collect(Collectors.joining(NEXT_LINE));
+    }
+
+    private String getWinningStatisticInformationMessage(WinStateInformationDTO winStateInformationDTO) {
         return String.format(
                 WINNING_STATISTIC_INFORMATION_FORMAT,
                 winStateInformationDTO.description(),

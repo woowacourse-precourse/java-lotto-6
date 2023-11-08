@@ -95,10 +95,7 @@ public class LottoController {
         WinStatesCounter winStatesCounter = new WinStatesCounter(winningLottoNumbers, lotteries);
         List<WinStateInformationDTO> winStateInformationDTOs = winStatesCounter.getWinStateInformationDTOs();
         outputView.print(messenger.getWinningStatisticStartMessage());
-
-        winStateInformationDTOs.stream()
-                .map(messenger::getWinningStatisticInformationMessage)
-                .forEach(outputView::print);
+        outputView.print(messenger.getWinningStatisticsInformationMessage(winStateInformationDTOs));
 
         Prize prize = Prize.from(winStateInformationDTOs);
         double yield = prize.getYield(purchaseCash);

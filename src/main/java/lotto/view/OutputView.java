@@ -25,6 +25,7 @@ public class OutputView {
 
     public static void showBayLottoNumber(Lottos lottos) {
         lottos.getLottos().forEach(System.out::println);
+        System.out.print(NEW_LINE);
     }
 
 }

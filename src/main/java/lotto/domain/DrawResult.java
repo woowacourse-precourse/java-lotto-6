@@ -21,4 +21,14 @@ public class DrawResult {
             throw new IllegalArgumentException();
         }
     }
+
+    public int getMatchNumbers(Ticket ticket) {
+        return (int) ticket.getNumbers().stream()
+                .filter(lotto.getNumbers()::contains)
+                .count();
+    }
+
+    public boolean isBonusMatch(Ticket ticket) {
+        return ticket.getNumbers().contains(bonusNumber);
+    }
 }

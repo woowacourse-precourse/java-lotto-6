@@ -51,10 +51,10 @@ public class Game {
     private void checkLottos(){
         for(int i=0;i<this.count;i++){
             // 중복 여부 확인
-            checkLotto(this.buy.get(i).compareOther(this.answer));
+            checkLotto(this.buy.get(i).compareOther(this.answer), this.buy.get(i));
         }
     }
-    private void checkLotto(int check_count){
+    private void checkLotto(int check_count, Lotto here){
         if(check_count ==3){this.correct[0] = this.correct[0]+1; }
         if(check_count ==4){this.correct[1] = this.correct[1]+1; }
         if(check_count ==5){

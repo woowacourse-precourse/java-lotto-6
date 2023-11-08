@@ -14,6 +14,7 @@ public class Process {
 
     private List<Integer> lottoNumbers;
 
+
     //로또 개수 환산하기
     public int countLottos(int purchaseAmount) {
         int purchaseCount;
@@ -114,7 +115,6 @@ public class Process {
 
     //수익률 계산
     public float calculateRateOfReturn(int purchaseAmount) {
-
         float totalPrizeAmount = 0;
         float rateOfReturn;
 
@@ -126,55 +126,5 @@ public class Process {
 
         return rateOfReturn;
     }
-
-
-    //
-//    List<Integer> winRecordBoard = new ArrayList<>();
-//    Integer firstPlace = Integer.valueof(0);
-//    Integer secondPlace = Integer.valueof(0);
-//    Integer thirdPlace = Integer.valueof(0);
-//    Integer fourthPlace = Integer.valueof(0);
-//    Integer fifthPlace = Integer.valueof(0);
-//
-//    winRecordBoard.set(1, firstPlace);
-//    winRecordBoard.set(2, secondPlace);
-//    winRecordBoard.set(3, thirdPlace);
-//    winRecordBoard.set(4, fourthPlace);
-//    winRecordBoard.set(5, fifthPlace);
-//
-//    //
-//
-//    //각 로또 마다 compareLottos 리턴값 가지고!
-//    List<Object> result =
-//
-//    for(var element : result){
-//        int mainMatchNumber = element.get(0);
-//        boolean matchedBonusNumber = element.get(1);
-//
-//        if (mainMatchNumber == 3) {
-//            winRecordBoard.set(5, ++fifthPlace);
-//        }
-//        if (mainMatchNumber == 4) {
-//            winRecordBoard.set(4, ++fourthPlace);
-//        }
-//        if (mainMatchNumber == 5 && !matchedBonusNumber) {
-//            winRecordBoard.set(3, ++thirdPlace);
-//        }
-//
-//        if (mainMatchNumber == 5 && matchedBonusNumber) {
-//            winRecordBoard.set(2, ++secondPlace);
-//        }
-//
-//        if (mainMatchNumber == 6) {
-//            winRecordBoard.set(1, ++firstPlace);
-//        }
-//    }
-
-
-//    Lotto lotto = new Lotto(lottoNumbers);
-//    eachLottoNumber = lotto.getLottoNumbers();
-
-//    Lotto(lottoNumbers);
-
 
 }

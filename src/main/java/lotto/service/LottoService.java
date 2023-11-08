@@ -4,6 +4,7 @@ import static java.util.Collections.sort;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
@@ -28,13 +29,18 @@ public class LottoService {
         int pickCount = purchaseAmount / 1000;
         List<Lotto> purchasedLotto = new ArrayList<>();
         for (int i = 0; i < pickCount; i++) {
-            List<Integer> purchasedOneLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            sort(purchasedOneLotto);
-            Lotto lotto = new Lotto(purchasedOneLotto);
+            Lotto lotto = new Lotto(sortPurchasedOneLotto());
             purchasedLotto.add(lotto);
         }
         PurchasedLotto purchasedLottoNumbers = new PurchasedLotto(purchasedLotto);
         return purchasedLottoNumbers;
+    }
+
+    private static List<Integer> sortPurchasedOneLotto(){
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
+        List<Integer> sortPurchasedLotto = new ArrayList<>(lottoNumbers);
+        Collections.sort(sortPurchasedLotto);
+        return sortPurchasedLotto;
     }
 
     public static LottoResult compareLotto(WinningNumbers winningNumbers,

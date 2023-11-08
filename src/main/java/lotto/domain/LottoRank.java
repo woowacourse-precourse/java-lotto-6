@@ -34,7 +34,7 @@ public enum LottoRank {
         if (count == 4) {
             return FOURTH;
         }
-        if (count == 5) {
+        if (count == 3) {
             return FIFTH;
         }
         return NO_LUCK;

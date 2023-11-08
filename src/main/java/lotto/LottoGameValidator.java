@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,6 +17,12 @@ public class LottoGameValidator {
     public static void validateLotteNumber(List<Integer> numbers) {
         validateLottoSize(numbers);
         validateLottoDuplicate(numbers);
+    }
+
+    public static void validateWinningLottoNumber(String inputWinningLottoNumber) {
+        validateLottoNumberFormat(inputWinningLottoNumber);
+        validateLottoNumberRange(inputWinningLottoNumber);
+        validateDuplicateNumbers(inputWinningLottoNumber);
     }
 
     private static void validateNumericInput(String inputBuyAmount) {
@@ -42,10 +49,42 @@ public class LottoGameValidator {
         }
     }
 
+    private static void validateLottoNumberRange(String inputLottoNumber) {
+        List<Integer> lottoNumbers = Arrays
+                .stream(inputLottoNumber.split(","))
+                .map(Integer::parseInt)
+                .toList();
+
+        for (int number : lottoNumbers) {
+            if (number < Application.LOTTO_MIN_NUMBER || number > Application.LOTTO_MAX_NUMBER) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 " +
+                        Application.LOTTO_MIN_NUMBER + "부터 " +
+                        Application.LOTTO_MAX_NUMBER + " 사이의 숫자여야 합니다.");
+            }
+        }
+    }
+
+    private static void validateDuplicateNumbers(String inputLottoNumber) {
+        List<Integer> lottoNumbers = Arrays
+                .stream(inputLottoNumber.split(","))
+                .map(Integer::parseInt)
+                .toList();
+
+        Set<Integer> nonDuplicateNumbers = new HashSet<>(lottoNumbers);
+        if (nonDuplicateNumbers.size() != lottoNumbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 서로 중복되지 않는 수를 입력해야 합니다.");
+        }
+    }
 
     private static void validateLottoSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개만 가능합니다.");
+        }
+    }
+
+    private static void validateLottoNumberFormat(String inputLottoNumber) {
+        if (!inputLottoNumber.matches("^(\\d+,)*\\d+$")) {
+            throw new IllegalArgumentException("[ERROR] 콤마를 올바르게 찍어야 합니다");
         }
     }
 }

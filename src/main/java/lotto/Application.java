@@ -40,6 +40,8 @@ public class Application {
     }
 
     private static List<Integer> parseWinningNumbers(String input) {
+        LottoGameValidator.validateWinningLottoNumber(input);
+
         return Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());

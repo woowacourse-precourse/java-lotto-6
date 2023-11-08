@@ -86,8 +86,5 @@ public class ValidationUtilsTest {
         Assertions.assertThat(isValid2).isFalse();
         Assertions.assertThat(isValid3).isFalse();
         Assertions.assertThat(isValid4).isFalse();
-
-
     }
-
 }

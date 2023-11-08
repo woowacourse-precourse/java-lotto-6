@@ -4,10 +4,11 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.PlayerLotto;
+import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningInformation;
 import lotto.dto.PurchaseLottoDto;
 import lotto.dto.WinningStatisticsDto;
 import lotto.service.LottoGameService;
-import lotto.utils.validator.WinningInformationValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -25,18 +26,17 @@ public class LottoGameController {
     public void gameStart() {
         final int purchaseTotalCount = setPurchaseTotalCount();
         final PlayerLotto playerLotto = purchasePlayerLotto(purchaseTotalCount);
-        final Lotto winningNumbers = openWinningNumbers();
-        final LottoNumber bonusNumber = openBonusNumber(winningNumbers);
+        final WinningInformation winningInformation = openWinningInformation();
 
-        publishWinningStatistics(playerLotto, winningNumbers, bonusNumber);
+        publishWinningStatistics(playerLotto, winningInformation);
     }
 
     private int setPurchaseTotalCount() {
         while (true) {
             try {
-                int purchaseAmount = inputView.readPurchaseAmount();
+                PurchaseAmount purchaseAmount = new PurchaseAmount(inputView.readPurchaseAmount());
 
-                return purchaseAmount / 1000;
+                return purchaseAmount.getPurchaseLottoCount();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -49,7 +49,12 @@ public class LottoGameController {
         return new PlayerLotto(purchaseLotto);
     }
 
-    private Lotto openWinningNumbers() {
+    private WinningInformation openWinningInformation() {
+        Lotto winningNumbers = setWinningNumbers();
+        return setBonusNumber(winningNumbers);
+    }
+
+    private Lotto setWinningNumbers() {
         while (true) {
             try {
                 List<Integer> winningNumbers = inputView.readWinningNumbers();
@@ -61,23 +66,22 @@ public class LottoGameController {
         }
     }
 
-    private LottoNumber openBonusNumber(final Lotto winningNumbers) {
+    private WinningInformation setBonusNumber(final Lotto winningNumbers) {
         while (true) {
             try {
                 int bonusNumberInput = inputView.readBonusNumber();
                 LottoNumber bonusNumber = new LottoNumber(bonusNumberInput);
-                WinningInformationValidator.validate(winningNumbers, bonusNumber);
 
-                return bonusNumber;
+                return new WinningInformation(winningNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private void publishWinningStatistics(PlayerLotto playerLotto, Lotto winningNumbers, LottoNumber bonusNumber) {
+    private void publishWinningStatistics(PlayerLotto playerLotto, WinningInformation winningInformation) {
         WinningStatisticsDto winningStatisticsDto = lottoGameService.calculateWinningStatistics(playerLotto,
-                winningNumbers, bonusNumber);
+                winningInformation);
         outputView.printWinningStatistics(winningStatisticsDto);
     }
 }

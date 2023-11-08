@@ -11,6 +11,7 @@ public class LottoGame {
         System.out.println("구입 금액을 입력해주세요.");
         inputPurchaseAmount();
         printNumberOfPurchase();
+        printRandomLottoNumber();
 
     }
 
@@ -18,7 +19,7 @@ public class LottoGame {
         setPurchaseAmount(Integer.parseInt(readLine()));
     }
 
-    public void setPurchaseAmount(int purchaseAmount) {
+    private void setPurchaseAmount(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException("1000원 단위로만 입력이 가능합니다.");
         } else if (purchaseAmount % 10 == 0) {
@@ -27,13 +28,13 @@ public class LottoGame {
         }
     }
 
-    public void checkPurchaseAmount() {
+    private void checkPurchaseAmount() {
         if (this.purchaseAmount % 10 != 0) {
             throw new IllegalArgumentException("1000원 단위로만 입력이 가능합니다.");
         }
     }
 
-    public int getNumberOfPurchase() {
+    private int getNumberOfPurchase() {
         return this.numberOfPurchase;
     }
 

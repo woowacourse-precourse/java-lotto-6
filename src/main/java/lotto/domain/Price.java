@@ -15,6 +15,10 @@ public class Price {
         validate(input);
     }
 
+    public long getPrice() {
+        return price;
+    }
+
     public long getAmount() {
         return price / 1000;
     }

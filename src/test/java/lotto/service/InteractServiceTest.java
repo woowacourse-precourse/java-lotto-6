@@ -88,6 +88,21 @@ public class InteractServiceTest extends NsTest {
         });
     }
 
+    @DisplayName("당첨 번호에 중복이 있을 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "2,2,3,4,5,6", "1,2,3,4,5,5", "3,3,3,3,3,3"
+    })
+    void winningNumDub(String input) {
+        assertSimpleTest(() -> {
+            runException(
+                    PURCHASE_FEE,
+                    input
+            );
+            assertThat(output()).contains(ErrorStatus.WINNING_NUM_DUB_AND_SIZE_ERROR.getMessage());
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

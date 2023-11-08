@@ -18,11 +18,11 @@ class LottoRankTest {
         MatchResult matchResult = new MatchResult(matchingCount, isMatchBonus);
 
         // when
-        assertThat(lottoRank.getWinningCount()).isZero();
+        int preCount = lottoRank.getWinningCount();
 
         // then
         LottoRank.increaseWinningCountByMatchingCount(matchResult);
-        assertThat(lottoRank.getWinningCount()).isEqualTo(1);
+        assertThat(lottoRank.getWinningCount()).isEqualTo(preCount + 1);
     }
 
     private static Stream<Arguments> lottoRankProvider() {

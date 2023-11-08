@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import static lotto.domain.NumberType.ORIGINAL;
 
 import java.util.List;
 import lotto.domain.Lotto;
@@ -27,6 +26,9 @@ public class LottoGameController {
         LottoGenerator lottoGenerator =  LottoGenerator.of(lottoNumberGenerator, purchaseMoney);
         Lottos lottos = createLottos(purchaseMoney, lottoGenerator);
         List<WinningNumber> onlyWinningNumber = createWinningLotto();
+        WinningNumber bonusNumber = getBonusNumber();
+
+        WinningLotto winningLotto = WinningLotto.of(onlyWinningNumber, bonusNumber);
     }
 
 
@@ -45,12 +47,19 @@ public class LottoGameController {
 
     private List<WinningNumber> createWinningNumber(List<Integer> numbers) {
         return numbers.stream()
-                .map(number -> WinningNumber.of(number, ORIGINAL)).toList();
+                .map(number -> WinningNumber.of(number, NumberType.ORIGINAL)).toList();
     }
 
 
+    private static WinningNumber getBonusNumber() {
+        try{
+            return WinningNumber.of(InputView.getBonusNumber(), NumberType.BONUS);
+        } catch(IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
 
-
+            return getBonusNumber();
+        }
+    }
 
     private static PurchaseMoney getPurchaseMoney() {
         try {
@@ -69,7 +78,5 @@ public class LottoGameController {
         OutputView.printLottos(lottos);
         return lottos;
     }
-
-
 
 }

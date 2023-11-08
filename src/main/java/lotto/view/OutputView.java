@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -29,8 +30,10 @@ public class OutputView {
         System.out.println(PURCHASED_LOTTO_AMOUNT);
     }
     public static void printAllLottos(ArrayList<List<String>> allLottos){
+        List<Integer> sortedLotto;
         for(List<String> lotto : allLottos){
-            System.out.println(lotto);
+            sortedLotto = lotto.stream().map(Integer::parseInt).toList();
+            System.out.println(sortedLotto);
         }
     }
     public static void printTotalReturn(float totalPercentage){

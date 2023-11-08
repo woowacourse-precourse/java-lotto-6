@@ -14,11 +14,7 @@ public class GenerateLottoNumbers {
         generateAllLottos(numberOfLotto);
     }
     private List<String> generateEachLotto(){
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        numbers.sort(Comparator.naturalOrder());
-        List<String> lottoNumbers = numbers.stream().map(String::valueOf).toList();
-
-        return lottoNumbers;
+        return Randoms.pickUniqueNumbersInRange(1,45,6).stream().map(String::valueOf).toList();
     }
 
     private void generateAllLottos(int numberOfLotto){

@@ -23,6 +23,10 @@ public class LottoBuyer {
         return money;
     }
 
+    public static List<Lotto> getBoughtLottos(){
+        return boughtLottos;
+    }
+
     private static void validateLottoPrice(Integer money) {
         if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(String.format(LOTTO_PRICE_ERROR_MESSAGE,Lotto.ERROR_NOTICE));

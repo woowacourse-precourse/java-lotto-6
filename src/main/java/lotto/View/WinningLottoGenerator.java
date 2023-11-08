@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinningLottoGenerator {
-    public static List<Integer> winningNumbers;
+    private static List<Integer> winningNumbers;
     public static Integer bonusNumber;
     private static final String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요. (쉼표로 구분)";
     private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
@@ -18,6 +18,9 @@ public class WinningLottoGenerator {
         convertStringToInteger(numberStrings);
     }
 
+    public static List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
     private static List<Integer> convertStringToInteger(String[] numberStrings) {
         List<Integer> winningNumbers = new ArrayList<>();
         for (String numberString : numberStrings) {

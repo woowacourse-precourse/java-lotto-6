@@ -7,6 +7,7 @@ import View.InputView;
 import java.util.List;
 
 public class ModelHandler {
+    private final Domain DOMAIN = Domain.getInstance();
     private final Service SERVICE = Service.getInstance();
     private final InputView INPUT_VIEW = InputView.getInstance();
     private final ExceptionHandler EXCEPTION = new ExceptionHandler();
@@ -36,7 +37,10 @@ public class ModelHandler {
     }
 
     public void printMyLotto() {
-
+        DOMAIN.printMyLotto();
     }
 
+    public void printStatistics() {
+        DOMAIN.printStatistics();
+    }
 }

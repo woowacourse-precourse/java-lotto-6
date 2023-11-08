@@ -106,17 +106,17 @@ public class Domain {
         }
     }
 
-    public void printStatistics(List<Integer> winningCountList) {
-        if(winningCountList.size() != ViewString.values().length) {
+    public void printStatistics() {
+        if(duplicatedNumberCount.size() != ViewString.values().length) {
             throw new IllegalArgumentException();
         }
 
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        for(int i = 0; i < winningCountList.size(); i++) {
+        for(int i = 0; i < duplicatedNumberCount.size(); i++) {
             System.out.println(ViewString.values()[i] +
-                    Integer.toString(winningCountList.get(i)) + "개");
+                    Integer.toString(duplicatedNumberCount.get(i)) + "개");
         }
     }
 }

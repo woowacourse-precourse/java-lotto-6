@@ -13,21 +13,44 @@ import lotto.model.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+/**
+ * 전체적인 로또 게임 흐름을 관리하는 컨트롤러 클래스다.
+ * input을 받고, output을 출력하며 view와 Model/Service 사이를 통신한다.
+ */
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private LottoService lottoService;
 
+    /**
+     * {@code LottoConotroller} 인스턴스를 생성하는 private 생성자이다.
+     *
+     * @param inputView 유저의 input을 관리하기 위한 input view
+     * @param outputView 정보와 결과를 출력하는 output view
+     */
     private LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
         lottoService = new LottoService();
     }
 
+    /**
+     * {@code LottoController} 인스턴스를 생성하는 정적 팩토리 메소드다.
+     *
+     * @param inputView 유저의 input을 관리하기 위한 input view
+     * @param outputView 정보와 결과를 출력하는 output view
+     * @return {@code LottoController}의 새 인스턴스
+     */
     public static LottoController of(InputView inputView, OutputView outputView) {
         return new LottoController(inputView, outputView);
     }
 
+    /**
+     * 로또 구입 금액을 입력받고, 로또를 구입하고, 당첨 내역을 계산하는 전체적인 로또 게임 흐름을 지휘한다.
+     *
+     * @param lottoNumberGenerator 로또 번호 generator
+     * @param order 로또 번호의 정렬 기준을 정의하는 comparator
+     */
     public void runLottoStore(LottoNumberGenerator lottoNumberGenerator, Comparator<Integer> order) {
         payMoney(lottoNumberGenerator, order);
         drawNumber();
@@ -51,7 +74,7 @@ public class LottoController {
         List<Integer> winningNumbers = getWinningNumbers();
         Integer bonusNumber = getBonusNumber(winningNumbers);
 
-        lottoService.createWinningNumbers(winningNumbers, bonusNumber);
+        lottoService.createAnswerNumbers(winningNumbers, bonusNumber);
     }
 
     private void printWinning() {

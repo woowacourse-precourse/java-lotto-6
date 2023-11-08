@@ -7,6 +7,9 @@ import static lotto.util.LottoDetails.COUNT_OF_LOTTO_NUMBER;
 import static lotto.util.LottoDetails.MAXIMUM_OF_LOTTO_NUMBER;
 import static lotto.util.LottoDetails.MINIMUM_OF_LOTTO_NUMBER;
 
+/**
+ * 게임 내의 전반적인 예외 메시지를 저장한다.
+ */
 public enum ExceptionMessage {
     ERROR_PREFIX("[ERROR] "),
 
@@ -33,6 +36,11 @@ public enum ExceptionMessage {
         this.message = message;
     }
 
+    /**
+     * 에러 메시지의 접두사를 붙여 출력한다.
+     *
+     * @return 예외 메시지
+     */
     public String getMessage() {
         return ERROR_PREFIX + message;
     }

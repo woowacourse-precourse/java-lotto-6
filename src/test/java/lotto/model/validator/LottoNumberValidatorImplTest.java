@@ -35,21 +35,21 @@ class LottoNumberValidatorImplTest {
     @ParameterizedTest
     @MethodSource("generateGoodLottoNumber")
     @DisplayName("6개의 문자가 입력된다면 어떠한 Exception도 감지되지 않는다.")
-    void sixStringsTest(List<String> lottoNumbers) {
+    void sixStringsTest(List<String> winningNumbers) {
         // given
         // when & then
-        assertThatNoException().isThrownBy(() -> lottoNumberValidator.checkNumberOfLottoNumbers(lottoNumbers));
+        assertThatNoException().isThrownBy(() -> lottoNumberValidator.checkNumberOfWinningNumbers(winningNumbers));
     }
 
 
     @ParameterizedTest
     @MethodSource("generateNotSixLottoNumber")
     @DisplayName("6개의 문자가 입력되지 않을 경우 IllegalArgumentException을 반환한다.")
-    void notSixLottoNumberTest(List<String> lottoNumbers) {
+    void notSixLottoNumberTest(List<String> winningNumbers) {
         // given
         // when & then
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> lottoNumberValidator.checkNumberOfLottoNumbers(lottoNumbers))
+                .isThrownBy(() -> lottoNumberValidator.checkNumberOfWinningNumbers(winningNumbers))
                 .withMessage(INVALID_NUMBER_OF_LOTTO_NUMBER.getMessage());
     }
 
@@ -64,20 +64,20 @@ class LottoNumberValidatorImplTest {
     @ParameterizedTest
     @MethodSource("generateGoodLottoNumber")
     @DisplayName("공백이 없는 문자가 들어오는 경우 어떠한 Exception도 감지되지 않는다.")
-    void notBlankLottoNumberTest(List<String> lottoNumbers) {
+    void notBlankLottoNumberTest(List<String> winningNumbers) {
         // given
         // when & then
-        assertThatNoException().isThrownBy(() -> lottoNumberValidator.checkBlankOfLottoNumbers(lottoNumbers));
+        assertThatNoException().isThrownBy(() -> lottoNumberValidator.checkBlankOfWinningNumbers(winningNumbers));
     }
 
     @ParameterizedTest
     @MethodSource("generateBlankLottoNumber")
     @DisplayName("공백이 있는 문자가 들어오는 경우 IllegalArgumnetException을 반환한다.")
-    void blankLottoNumberTest(List<String> lottoNumbers) {
+    void blankLottoNumberTest(List<String> winningNumbers) {
         // given
         // when & then
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> lottoNumberValidator.checkBlankOfLottoNumbers(lottoNumbers))
+                .isThrownBy(() -> lottoNumberValidator.checkBlankOfWinningNumbers(winningNumbers))
                 .withMessage(BLANK_LOTTO_NUMBER.getMessage());
     }
 
@@ -99,20 +99,20 @@ class LottoNumberValidatorImplTest {
     @ParameterizedTest
     @MethodSource("convertedGoodLottoNumber")
     @DisplayName("1 ~ 45 내의 숫자라면 어떠한 Exception도 감지되지 않는다.")
-    void lottoNumberIsInRangeTest(List<Integer> lottoNumbers) {
+    void lottoNumberIsInRangeTest(List<Integer> winningNumbers) {
         // given
         // when & then
-        assertThatNoException().isThrownBy(() -> lottoNumberValidator.checkInRangeOfLottoNumbers(lottoNumbers));
+        assertThatNoException().isThrownBy(() -> lottoNumberValidator.checkInRangeOfWinningNumbers(winningNumbers));
     }
 
     @ParameterizedTest
     @MethodSource("convertedOutOfRangeLottoNumber")
     @DisplayName("1 미만의 숫자라면 IllegalArgumentException을 반환한다.")
-    void lottoNumberIsOutOfRangeTest(List<Integer> lottoNumbers, String expectedExceptionMessage) {
+    void lottoNumberIsOutOfRangeTest(List<Integer> winningNumbers, String expectedExceptionMessage) {
         // given
         // when & then
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> lottoNumberValidator.checkInRangeOfLottoNumbers(lottoNumbers))
+                .isThrownBy(() -> lottoNumberValidator.checkInRangeOfWinningNumbers(winningNumbers))
                 .withMessage(expectedExceptionMessage);
     }
 
@@ -127,20 +127,20 @@ class LottoNumberValidatorImplTest {
     @ParameterizedTest
     @MethodSource("convertedGoodLottoNumber")
     @DisplayName("중복되지 않은 입력이라면 어떠한 Exception도 감지되지 않는다.")
-    void notDuplicateLottoNumberTest(List<Integer> lottoNumbers) {
+    void notDuplicateLottoNumberTest(List<Integer> winningNumbers) {
         // given
         // when & then
-        assertThatNoException().isThrownBy(() -> lottoNumberValidator.checkDuplicateLottoNumbers(lottoNumbers));
+        assertThatNoException().isThrownBy(() -> lottoNumberValidator.checkDuplicateWinningNumbers(winningNumbers));
     }
 
     @ParameterizedTest
     @MethodSource("convertedDuplicateLottoNumber")
     @DisplayName("중복된 입력이라면 IllegalArgumentException을 반환한다.")
-    void duplicateLottoNumberTest(List<Integer> lottoNumbers) {
+    void duplicateLottoNumberTest(List<Integer> winningNumbers) {
         // given
         // when & then
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> lottoNumberValidator.checkDuplicateLottoNumbers(lottoNumbers))
+                .isThrownBy(() -> lottoNumberValidator.checkDuplicateWinningNumbers(winningNumbers))
                 .withMessage(DUPLICATE_LOTTO_NUMBER.getMessage());
     }
 

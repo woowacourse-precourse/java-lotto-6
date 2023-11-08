@@ -1,5 +1,8 @@
 package lotto.util;
 
+/**
+ * 로또 구입 개수, 가격에 관련된 Integer 정보가 저장된다.
+ */
 public enum AmountOfLotto {
     MINIMUM_PRICE(1),
     MAXIMUM_PRICE(Integer.MAX_VALUE),

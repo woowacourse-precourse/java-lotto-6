@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.utils.Validations;
+
 import java.util.List;
 
 import static lotto.utils.Constants.LOTTO_DRAW_NUMBER_COUNT;
@@ -13,6 +15,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        Validations.checkDuplicateWinningNumbers(numbers);
+
         if (numbers.size() != LOTTO_DRAW_NUMBER_COUNT) {
             throw new IllegalArgumentException();
         }

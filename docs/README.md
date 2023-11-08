@@ -15,26 +15,24 @@
 
 로또 번호 조합을 5개 생성하고 
 
-그 결과를 출력합니다. 
+로또 구매 결과를 출력합니다. 
 
 그 후에 당첨 번호가 발표되면
 
-사용자의 당첨 결과 및 수익률을 계산해서 보여주는 프로젝트 입니다.
+사용자가 구매한 로또의 당첨 결과 및 수익률을 계산해서 보여주는 프로젝트 입니다.
 ```
 
-![참고](https://velog.velcdn.com/images/rednada1486_/post/c5376df4-334e-44e1-b328-81011f2de109/image.gif)
+![참고](https://velog.velcdn.com/images/rednada1486_/post/7f629411-461e-4a28-b86e-8d340de42e51/image.gif)
 
 <br><br><br>
 
 # ✨ 프로젝트 구조
 
-(미숙하지만.. ^^)
-
 **<span style="color:red">MVC 패턴을 적용해서</span>**
 
 프로젝트를 만들어 보았습니다.
 
-![프로젝트 구조](https://velog.velcdn.com/images/rednada1486_/post/af376d1c-489e-48e3-874b-5ccadb3170cd/image.png)
+![프로젝트 구조](https://velog.velcdn.com/images/rednada1486_/post/7aec5854-19bd-4a18-bf7a-6b2cb35e2c82/image.png)
 
 <br>
 
@@ -45,7 +43,7 @@ domain
     ㄴ Ranking(enum) : 등수와 관련된 상수값을 모아놓은 enum 클래스
     
 service
-    ㄴ LottoService : 로또 판매와 관련된 비즈니스 로직을 담당 (로또 생성, 당첨 결과 계산 ,수익률 계산 등)
+    ㄴ LottoService : 로또 판매와 관련된 비즈니스 로직을 담당 (로또 번호 조합 생성, 당첨 결과 계산 ,수익률 계산 등)
 ```
 
 <br>
@@ -56,6 +54,8 @@ service
 view
     ㄴ InputView : 사용자에게 입력을 받는 화면을 구성하는 역할을 담당
     ㄴ OutputView : 사용자에게 보여줄 화면을 구성하는 역할을 담당
+    ㄴ ErrorMessage(eneum) : 예외 메시지들을 모아놓은 enum 클래스
+    ㄴ InputMessage(eneum) : 사용자 입력 화면에 표시되는 메시지들을 모아놓은 enum 클래스
 ```
 
 <br>
@@ -77,6 +77,7 @@ utils
      ㄴ CalculationUtils : 숫자 계산과 관련된 기능들을 모아놓음
 ```
 
+<br><br><br>
 
 # ✨ 기능 구현  목록
 
@@ -197,3 +198,26 @@ utils
         - 메서드의 길이가 15라인을 넘어가지 않도록 하기
     
     📌 단위 테스트 코드 작성
+
+
+
+<br><br><br>
+
+# 💊 고민
+
+머리 싸매고 고민했던 부분입니다 🤕
+
+    📌 MVC 패턴 관련 개선해야할 사항이 있으면 조언 부탁드립니다 ㅜ.ㅜ 
+        ㄴ 하면서도 이렇게 하는게 맞나?!.. 확신이 잘 안서네요.
+        ㄴ MVC 패턴 적용해서 프로젝트 진행하신분 comment에 깃허브 링크 부탁드립니다. 
+        ㄴ 공부하고 피드백 꼭 남기겠습니다. ^^
+    
+    📌 LottoService나 LottoController에 보면 
+        ㄴ 자주 사용되는 매개변수가 있는데 (answer, bonusNumber)
+        ㄴ 이렇게 자주 사용되는 변수들은 
+        ㄴ 지금처럼 계속 매개변수로 넘기는 것이 나을지, 
+        ㄴ 멤버변수로 설정해서 매개변수로는 안넘기는 것이 나을지 ➡ 테스트 코드 짤 때 복잡 ㅜ.ㅜ
+        ㄴ 의견 부탁드립니다 ^^ 
+
+    📌 클래스나 메서드 관련해서 
+        ㄴ 위치 이동이나 기능 분리 했으면 하는 부분이 있을까요?! ^^ 

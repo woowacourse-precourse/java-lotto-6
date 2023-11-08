@@ -10,11 +10,15 @@ import static lotto.views.UserOutput.printNumberOfLottoPurchases;
 import static lotto.views.UserOutput.printPurchaseLottoInfo;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.LottoAgency;
+import lotto.domain.LottoRank;
 import lotto.domain.LottoStore;
 
 public class Application {
     private static final LottoStore lottoStore = new LottoStore();
+    private static final LottoAgency lottoAgency = new LottoAgency();
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -30,6 +34,7 @@ public class Application {
 
         askBonusNumber();
         Integer bonusNumber = readBonusNumber(winningNumbers);
-
+        Map<LottoRank, Integer> winningResult = lottoAgency.calculateLottoRank(lottos, winningNumbers,
+                bonusNumber);
     }
 }

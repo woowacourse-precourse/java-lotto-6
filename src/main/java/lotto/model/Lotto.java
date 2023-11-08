@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
 
@@ -24,6 +25,11 @@ public class Lotto {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
         return new Lotto(numbers);
+    }
+
+    @Override
+    public String toString() {
+        return "[" + numbers.stream().map(Object::toString).collect(Collectors.joining(", ")) + "]";
     }
 
 }

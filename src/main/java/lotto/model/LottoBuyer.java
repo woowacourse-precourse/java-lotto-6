@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.dto.PurchaseResult;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,10 +31,11 @@ public class LottoBuyer {
         return cash / LOTTO_PRICE;
     }
 
-    public void purchase() {
+    public PurchaseResult purchase() {
         for (int i = 0; i < numbersToBuy; i++) {
             lottos.add(Lotto.create());
         }
+        return new PurchaseResult(numbersToBuy, lottos);
     }
 
 }

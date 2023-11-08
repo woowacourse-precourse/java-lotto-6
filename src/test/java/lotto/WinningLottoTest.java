@@ -80,4 +80,23 @@ public class WinningLottoTest {
 
         assertEquals(lottoPrivateBonusNumbers, Integer.valueOf(bonusNumber));
     }
+
+    @DisplayName("로또 번호를 입력으로 받아 당첨된 등수 반환하는 기능 테스트.")
+    @Test
+    void checkLottoWinningRank() {
+        WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,6", "7");
+        Lotto rank1 = new Lotto("1,2,3,4,5,6");
+        Lotto rank2 = new Lotto("1,2,3,4,5,7");
+        Lotto rank3 = new Lotto("1,2,3,4,5,8");
+        Lotto rank4 = new Lotto("1,2,3,4,7,8");
+        Lotto rank5 = new Lotto("1,2,3,9,12,13");
+        Lotto rank0 = new Lotto("1,2,15,13,12,17");
+
+        assertEquals(winningLotto.checkLottoRanking(rank1), 1);
+        assertEquals(winningLotto.checkLottoRanking(rank2), 2);
+        assertEquals(winningLotto.checkLottoRanking(rank3), 3);
+        assertEquals(winningLotto.checkLottoRanking(rank4), 4);
+        assertEquals(winningLotto.checkLottoRanking(rank5), 5);
+        assertEquals(winningLotto.checkLottoRanking(rank0), 0);
+    }
 }

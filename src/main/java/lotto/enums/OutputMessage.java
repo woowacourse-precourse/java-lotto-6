@@ -5,7 +5,7 @@ public enum OutputMessage {
     WINNING_NUMBER_PROMPT("\n당첨 번호를 입력해 주세요."),
     BONUS_NUMBER_PROMPT("\n보너스 번호를 입력해 주세요."),
     PURCHASE_NUMBER_OUTPUT("\n%d개를 구매했습니다.\n"),
-    WINNING_STATISTICS_OUTPUT("당첨 통계\n---\n");
+    WINNING_STATISTICS_OUTPUT("\n당첨 통계\n---");
 
     private final String message;
 

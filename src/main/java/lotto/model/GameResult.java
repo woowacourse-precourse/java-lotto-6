@@ -1,11 +1,11 @@
 package lotto.model;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class GameResult {
 
-    private static Map<WinnerPrize, Integer> gameResult = new HashMap<>();
+    private static Map<WinnerPrize, Integer> gameResult = new LinkedHashMap<>();
 
     public static void create() {
         WinnerPrize[] allWinnerPrize = WinnerPrize.getAllWinnerPrize();
@@ -15,6 +15,10 @@ public class GameResult {
     }
 
     public static void increaseWinnerPrizeCount(WinnerPrize winnerPrize) {
-        gameResult.replace(winnerPrize, gameResult.get(winnerPrize) + 1); // or put?
+        gameResult.replace(winnerPrize, gameResult.get(winnerPrize) + 1);
+    }
+
+    public static Map<WinnerPrize, Integer> getGameResult() {
+        return gameResult;
     }
 }

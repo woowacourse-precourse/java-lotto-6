@@ -25,6 +25,10 @@ public class Game {
         for (Lotto lotto : purchaseLotto) {
 
             float correctCount = LottoWinner.compareWinningLotto(lotto);
+
+            if (correctCount < 3) {
+                continue;
+            }
             if (correctCount == 5) {
                 correctCount += LottoWinner.compareBonusLotto(lotto);
             }
@@ -32,10 +36,15 @@ public class Game {
             WinnerPrize winnerPrize = WinnerPrize.findWinnerPrize(correctCount);
 
             GameResult.increaseWinnerPrizeCount(winnerPrize);
-
-            // 수익률 계산
-
         }
+
+        // 당첨 내역 출력
+        outputView.printWinningDetails();
+
+        // 수익률 계산
+
+        // 수익률 출력
+
     }
 
     private void init() {

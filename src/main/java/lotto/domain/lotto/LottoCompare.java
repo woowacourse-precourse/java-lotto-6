@@ -1,5 +1,6 @@
 package lotto.domain.lotto;
 
+import lotto.Lotto;
 import lotto.domain.winning.WinningGrade;
 import lotto.domain.winning.WinningNumbers;
 
@@ -22,8 +23,8 @@ public class LottoCompare {
                 .forEach(value -> winningMap.put(value, DEFAULT_COUNT));
     }
 
-    public void compareAllLottoToWinning(List<List<Integer>> lottos, WinningNumbers winningNumbers) {
-        lottos.forEach(lotto -> compareLottoToWinning(lotto, winningNumbers));
+    public void compareAllLottoToWinning(List<Lotto> lottos, WinningNumbers winningNumbers) {
+        lottos.forEach(lotto -> compareLottoToWinning(lotto.getSortedNumbers(), winningNumbers));
     }
 
     public Map<WinningGrade, Integer> getWinningResult() {

@@ -32,7 +32,7 @@ public class LottoService {
 
     public void compareAllLotto() {
         lottoCompare = new LottoCompare();
-        lottoCompare.compareAllLottoToWinning(findBoughtLottos(), winningNumbers);
+        lottoCompare.compareAllLottoToWinning(lottoBuyer.lottos(), winningNumbers);
     }
 
     public double calculateLottoYield() {

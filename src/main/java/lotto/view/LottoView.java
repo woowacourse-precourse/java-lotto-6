@@ -45,7 +45,7 @@ public class LottoView implements LottoFinalConsts {
 
     public void printLottoResult(HashMap<LottoRank, Integer> lottoRanks, LottoRank lottoRank){
         if (!lottoRanks.keySet().contains(lottoRank)){
-            System.out.printf(lottoRank.getLottoResultPrint(), 0);
+            System.out.printf(lottoRank.getLottoResultPrint(), VARIABLE_FORMAT);
         } else if (lottoRanks.keySet().contains(lottoRank)){
             System.out.printf(lottoRank.getLottoResultPrint(), lottoRanks.get(lottoRank));
         }

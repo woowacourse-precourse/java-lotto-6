@@ -62,7 +62,7 @@ public class LottoService {
         for (Result result : results) {
             int count = result.getCount();
             boolean isIncludeBonus = result.getIsIncludeBonus();
-            profit = calculateLottoProfit(profit, counts, count, isIncludeBonus);
+            profit += calculateLottoProfit(profit, counts, count, isIncludeBonus);
         }
         return profit;
     }

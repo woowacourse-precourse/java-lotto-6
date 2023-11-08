@@ -7,6 +7,7 @@ import java.util.List;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoRank;
 import lotto.model.dto.LottoResult;
+import lotto.model.dto.LottoWallet;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,8 +40,9 @@ class OutputViewTest {
     @DisplayName("로또 출력 형식 테스트")
     public void printLottoTest() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoWallet lottoWallet = new LottoWallet(List.of(lotto));
 
-        outputView.printLottos(List.of(lotto));
+        outputView.printLottos(lottoWallet);
 
         Assertions.assertThat(output())
                 .contains("1개를 구매했습니다.",

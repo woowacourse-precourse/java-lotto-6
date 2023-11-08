@@ -6,15 +6,17 @@ import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoRank;
 import lotto.model.dto.BonusNumber;
 import lotto.model.dto.LottoResult;
+import lotto.model.dto.LottoWallet;
 import lotto.model.dto.WinningNumbers;
 
 public class LottoChecker {
 
-    public LottoResult findWinningLottos(List<Lotto> lottos, WinningNumbers winningNumber, BonusNumber bonusNumber) {
+    public LottoResult findWinningLottos(LottoWallet lottoWallet, WinningNumbers winningNumber,
+                                         BonusNumber bonusNumber) {
         List<LottoRank> resultRanks = new ArrayList<>();
         int totalReward = 0;
 
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottoWallet.getLottos()) {
             LottoRank rank = checkLotto(lotto, winningNumber, bonusNumber);
             resultRanks.add(rank);
             totalReward += rank.getReward();

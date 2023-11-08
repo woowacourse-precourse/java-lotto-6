@@ -6,11 +6,12 @@ import java.util.Collections;
 import java.util.List;
 import lotto.configuration.LottoConstants;
 import lotto.model.domain.Lotto;
+import lotto.model.dto.LottoWallet;
 import lotto.model.dto.PurchaseMoney;
 
 public class LottoGenerator {
 
-    public List<Lotto> purchaseLotto(PurchaseMoney purchaseMoney) {
+    public LottoWallet purchaseLotto(PurchaseMoney purchaseMoney) {
         int lottoCount = purchaseMoney.getValue() / LottoConstants.LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();
 
@@ -18,7 +19,7 @@ public class LottoGenerator {
             lottos.add(generateLotto());
         }
 
-        return lottos;
+        return new LottoWallet(lottos);
     }
 
     private Lotto generateLotto() {

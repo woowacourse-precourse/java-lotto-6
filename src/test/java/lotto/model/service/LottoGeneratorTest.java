@@ -1,8 +1,7 @@
 package lotto.model.service;
 
-import java.util.List;
 import lotto.configuration.LottoConstants;
-import lotto.model.domain.Lotto;
+import lotto.model.dto.LottoWallet;
 import lotto.model.dto.PurchaseMoney;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -16,9 +15,9 @@ class LottoGeneratorTest {
         PurchaseMoney purchaseMoney = new PurchaseMoney(8000);
         LottoGenerator lottoGenerator = new LottoGenerator();
 
-        List<Lotto> lottos = lottoGenerator.purchaseLotto(purchaseMoney);
+        LottoWallet lottoWallet = lottoGenerator.purchaseLotto(purchaseMoney);
 
-        Assertions.assertThat(lottos.size())
+        Assertions.assertThat(lottoWallet.getLottos().size())
                 .isEqualTo(purchaseMoney.getValue() / LottoConstants.LOTTO_PRICE);
     }
 }

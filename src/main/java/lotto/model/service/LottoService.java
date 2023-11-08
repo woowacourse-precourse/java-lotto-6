@@ -1,9 +1,8 @@
 package lotto.model.service;
 
-import java.util.List;
-import lotto.model.domain.Lotto;
 import lotto.model.dto.BonusNumber;
 import lotto.model.dto.LottoResult;
+import lotto.model.dto.LottoWallet;
 import lotto.model.dto.PurchaseMoney;
 import lotto.model.dto.WinningNumbers;
 
@@ -17,12 +16,13 @@ public class LottoService {
         this.lottoChecker = lottoChecker;
     }
 
-    public List<Lotto> purchaseLotto(PurchaseMoney purchaseMoney) {
+    public LottoWallet purchaseLotto(PurchaseMoney purchaseMoney) {
         return lottoGenerator.purchaseLotto(purchaseMoney);
     }
 
-    public LottoResult findWinningLottos(List<Lotto> lottos, WinningNumbers winningNumber, BonusNumber bonusNumber) {
-        return lottoChecker.findWinningLottos(lottos, winningNumber, bonusNumber);
+    public LottoResult findWinningLottos(LottoWallet lottoWallet, WinningNumbers winningNumber,
+                                         BonusNumber bonusNumber) {
+        return lottoChecker.findWinningLottos(lottoWallet, winningNumber, bonusNumber);
     }
 
 }

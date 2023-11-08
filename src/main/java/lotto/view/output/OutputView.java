@@ -8,6 +8,7 @@ import java.util.List;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoRank;
 import lotto.model.dto.LottoResult;
+import lotto.model.dto.LottoWallet;
 
 public class OutputView {
 
@@ -20,7 +21,8 @@ public class OutputView {
     private static final String LOTTO_RESULT_FORMAT_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%s원) - %d개%n";
     private static final String LOTTO_EARNING_RATE_FORMAT = "총 수익률은 %s%%입니다.";
 
-    public void printLottos(List<Lotto> lottos) {
+    public void printLottos(LottoWallet lottoWallet) {
+        List<Lotto> lottos = lottoWallet.getLottos();
         System.out.printf(PRINT_LOTTO_NUMBER, lottos.size());
         lottos.forEach(this::printLottoNumber);
     }

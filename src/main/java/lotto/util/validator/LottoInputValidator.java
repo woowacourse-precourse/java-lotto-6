@@ -1,6 +1,7 @@
 package lotto.util.validator;
 
 import lotto.model.constant.LottoConstant;
+import lotto.util.ConvertUtil;
 import lotto.util.validator.constant.ErrorMessageConstant;
 
 import java.util.Arrays;
@@ -11,7 +12,11 @@ import static lotto.util.validator.constant.ErrorMessageConstant.*;
 public class LottoInputValidator implements InputValidator{
     @Override
     public void validate(String checkValue) {
-
+        String[] checkValues = ConvertUtil.convertInputToLottoNumbers(checkValue);
+        validateCount(checkValues);
+        validateConsistingNumber(checkValues);
+        validateNumberRange(checkValues);
+        validateDuplicate(checkValues);
     }
 
     private static void validateCount(String[] checkValues) {

@@ -20,7 +20,7 @@ public class LottoResultCalculation {
     }
 
     // 입력된 돈에 대한 예외 처리
-    public int inputMoneyException(String money) throws IllegalArgumentException {
+    private int inputMoneyException(String money) throws IllegalArgumentException {
         if (!Pattern.matches("^[1-9][0-9]*$", money)) {
             throw new IllegalArgumentException(ErrorMessageType.NOT_NUMBER.message());
         }

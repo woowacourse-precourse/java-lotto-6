@@ -13,7 +13,7 @@ public class BonusLottoNumber {
     }
     
     // 입력된 보너스 숫자에 대한 예외 처리
-    public int inputBonusException(String bonus) {
+    private int inputBonusException(String bonus) {
         if (!Pattern.matches("^[1-9][0-9]*$", bonus)) {
             throw new IllegalArgumentException(ErrorMessageType.NOT_NUMBER.message());
         }

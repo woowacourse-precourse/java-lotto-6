@@ -75,13 +75,13 @@ public class LottoController {
     }
 
     // 로또 간의 비교 후 결과 반환
-    public int getLottoResult(List<Integer> target, List<Integer> tryLotto) {
+    private int getLottoResult(List<Integer> target, List<Integer> tryLotto) {
         int result = lottoResultCalculation.checkResult(target, tryLotto);
         return result;
     }
 
     // 보너스 로또 비교 후 결과 반환
-    public boolean getBonusResult(List<Integer> target, int bouns) {
+    private boolean getBonusResult(List<Integer> target, int bouns) {
         boolean result = lottoResultCalculation.checkBonusNumber(target, bouns);
         return result;
     }
@@ -95,7 +95,7 @@ public class LottoController {
     }
 
     // 하나의 결과에 대한 최종 결과 반환
-    public ResultType getTotalResult(List<Integer> target, List<Integer> tryLotto, int bonus) {
+    private ResultType getTotalResult(List<Integer> target, List<Integer> tryLotto, int bonus) {
         int sameNumber = getLottoResult(target, tryLotto);
         boolean isBonus = getBonusResult(target, bonus);
         ResultType resultType = getRankResult(sameNumber, isBonus);
@@ -103,7 +103,7 @@ public class LottoController {
     }
 
     // 여러 개의 ResultType 분류
-    public Map<ResultType, Long> getResultTypeCount(List<ResultType> resultTypes) {
+    private Map<ResultType, Long> getResultTypeCount(List<ResultType> resultTypes) {
         return resultTypes.stream()
                 .collect(Collectors.groupingBy(e -> e, Collectors.counting()));
     }

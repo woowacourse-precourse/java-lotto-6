@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
@@ -31,12 +31,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("Rank를 계산 parameterized test")
+    @DisplayName("Rank 계산 parameterized test")
     @Nested
     class calculateRank {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        //todo: 보너스 번호 2등 계산 못하는 버그 수정
         @ParameterizedTest
         @MethodSource("provideNumbersAndRank")
         void calculateRankTest(List<Integer> winningNumbers,

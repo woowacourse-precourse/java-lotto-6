@@ -5,9 +5,9 @@ import static lotto.constant.OutputMessage.INPUT_PURCHASE_AMOUNT;
 import static lotto.constant.OutputMessage.INPUT_WINNING_NUMBER;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.text.DecimalFormat;
 import java.util.List;
 import lotto.constant.WinningRanking;
-import lotto.domain.Lotto;
 import lotto.dto.ResponseDto.LottoGameResultDto;
 
 public class View {
@@ -29,13 +29,18 @@ public class View {
         return Console.readLine();
     }
 
-    public void printMessagePurchase(int count){
+    public void printIssuedLotto(List<List<Integer>> lottos){
         breakLine();
-        println(count + "개를 구매했습니다.");
-
+        println(lottos.size() + "개를 구매했습니다.");
+        for (List<Integer> lotto : lottos) {
+            println(lotto.toString());
+        }
     }
 
     public void printWinningStatistics(LottoGameResultDto resultDto){
+        breakLine();
+        println("당첨 통계");
+        println("---");
         for (int ranking = 5; ranking >= 1; ranking--) {
             WinningRanking winningRanking = getWinningInfo(ranking);
             String output = getWinningInfoOutput(winningRanking)
@@ -51,13 +56,19 @@ public class View {
         sb.append(winningRanking.getMatchNumCnt())
             .append("개 일치 ")
             .append("(")
-            .append(winningRanking.getWinnings())
+            .append(numberFormatting(winningRanking.getWinnings()))
             .append(") - ");
         return sb.toString();
     }
 
+    private String numberFormatting(int num){
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        return decimalFormat.format(num);
+    }
+
     private void printRateOfReturn(double rateOfReturn) {
-        println("총 수익률은 " + rateOfReturn + "%입니다." );
+        String format = String.format("%.1f", Math.round(rateOfReturn * 10) / 10.0);
+        println("총 수익률은 " + format + "%입니다." );
     }
 
     private WinningRanking getWinningInfo(int ranking) {
@@ -69,11 +80,16 @@ public class View {
         return null;
     }
 
-    private void println(String input){
+    public void println(String input){
         System.out.println(input);
+    }
+
+    public void close(){
+        Console.close();
     }
 
     private void breakLine(){
         System.out.println();
     }
+
 }

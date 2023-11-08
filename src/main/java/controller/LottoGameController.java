@@ -13,6 +13,7 @@ import java.util.Map;
 
 public class LottoGameController {
 
+    private static final int LOTTO_PRICE = 1000;
     Money money;
     MoneyService moneyService = new MoneyService();
     LottoService lottoService = new LottoService();
@@ -22,7 +23,7 @@ public class LottoGameController {
     void purchaseLottos() {
         money = moneyService.requestValidLottoPurchaseAmount();
         lottoGame.purchaseLotto(money);
-        OutputView.printPurchasingResultMessage(money.getCost() / 1000, lottoGame.getLottos());
+        OutputView.printPurchasingResultMessage(money.getCost() / LOTTO_PRICE, lottoGame.getLottos());
     }
 
     void makeLottoResult() {

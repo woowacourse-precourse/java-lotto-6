@@ -24,11 +24,11 @@ public class LottoGameTest {
         Field lottos = LottoGame.class.getDeclaredField("lottos");
         lottos.setAccessible(true);
         lottos.set(lottoGame, List.of(
-                new Lotto("3,42,23,18,37,28"), // 1개
-                new Lotto("3,8,9,13,27,11"), // 5개+보너스볼 일치
-                new Lotto("3,6,8,5,13,26"), // 3개 일치
-                new Lotto("3,8,9,6,10,45"), // 3개 일치
-                new Lotto ("1,2,9,13,27,35"))); // 4개일치
+                new Lotto("3,42,23,18,37,28"),
+                new Lotto("3,8,9,13,27,11"),
+                new Lotto("3,6,8,5,13,26"),
+                new Lotto("3,8,9,6,10,45"),
+                new Lotto ("1,2,9,13,27,35")));
         WinningLotto winningLotto = new WinningLotto("3,8,9,13,27,35","11");
         Map<Integer, Integer> answer = Map.of(7,0,6,1,5,0,4,1,3,2);
         assertEquals(answer, lottoGame.countWinningLottoResult(winningLotto));

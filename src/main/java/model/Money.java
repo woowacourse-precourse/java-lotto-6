@@ -1,6 +1,7 @@
 package model;
 
 import exception.Exception;
+
 public class Money {
 
     private static final int MIN_MONEY_RANGE = 1000;

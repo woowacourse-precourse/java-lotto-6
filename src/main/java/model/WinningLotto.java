@@ -6,13 +6,13 @@ import exception.ExceptionMessage;
 
 public class WinningLotto extends Lotto {
 
-    private static final int MIN_BONUS_NUMBER_LENGTH = 1;
-    private static final int MAX_BONUS_NUMBER_LENGTH = 2;
-    private static final int FIRST_PRIZE = 7;
-    private static final int SECOND_PRIZE = 6;
-    private static final int THIRD_PRIZE = 5;
-    private static  final int FOURTH_PRIZE = 4;
-    private static final int FIFTH_PRIZE = 3;
+    protected static final int MIN_BONUS_NUMBER_LENGTH = 1;
+    protected static final int MAX_BONUS_NUMBER_LENGTH = 2;
+    public static final int FIRST_PRIZE = 7;
+    public static final int SECOND_PRIZE = 6;
+    public static final int THIRD_PRIZE = 5;
+    public static  final int FOURTH_PRIZE = 4;
+    public static final int FIFTH_PRIZE = 3;
 
     int bonusNumber;
 
@@ -70,19 +70,17 @@ public class WinningLotto extends Lotto {
                 duplicatedNumbersCount++;
             }
         }
-        if (duplicatedNumbersCount == 3)
-            return FIFTH_PRIZE;
-        if (duplicatedNumbersCount == 4)
-            return FOURTH_PRIZE;
-        if (duplicatedNumbersCount == 5) {
-            if (lotto.contains(bonusNumber)) {
-                return SECOND_PRIZE;
-            }
-            return THIRD_PRIZE;
+        return duplicatedNumbersCount;
+    }
+
+    int judgePrize(Lotto lotto) {
+        int duplicatedNumberCount = countContains(lotto);
+        if (duplicatedNumberCount == 5 && lotto.getNumbers().contains(bonusNumber)) {
+            return SECOND_PRIZE;
         }
-        if (duplicatedNumbersCount == 6) {
+        if (duplicatedNumberCount == 6) {
             return FIRST_PRIZE;
         }
-        return 0;
+        return duplicatedNumberCount;
     }
 }

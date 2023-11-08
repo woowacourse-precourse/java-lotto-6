@@ -1,11 +1,10 @@
 package view;
 
-import model.Lotto;
+import static model.WinningLotto.*;
 
-import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
+import model.Lotto;
 
 public class OutputView {
 
@@ -15,7 +14,12 @@ public class OutputView {
     static final String PURCHASING_RESULT_MESSAGE = "개를 구매했습니다.";
     static final String WINNING_NUMBER_INPUT_REQUEST_MESSAGE = "당첨 번호를 입력해 주세요.";
     static final String WINNING_RESULT_TITLE = "당첨 통계" + lineSeparator + "---";
-
+    static final String FIFTH_PRIZE_INFORMATION = "3개 일치 (5,000원) - ";
+    static final String FOURTH_PRIZE_INFORMATION = "4개 일치 (50,000원) - ";
+    static final String THIRD_PRIZE_INFORMATION = "5개 일치 (1,500,000원) - ";
+    static final String SECOND_PRIZE_INFORMATION = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
+    static final String FIRST_PRIZE_INFORMATION = "6개 일치 (2,000,000,000원) - ";
+    static final String UNIT = "개";
     public static void  printMoneyInputRequestMessage() {
         System.out.println(MONEY_INPUT_REQUEST_MESSAGE);
     }
@@ -40,11 +44,11 @@ public class OutputView {
     }
 
     public static void printWinningResult(Map<Integer, Integer> winningResult) {
-        System.out.println("3개 일치 (5,000원) - " + winningResult.get(3) +"개");
-        System.out.println("4개 일치 (50,000원) - " + winningResult.get(4) +"개");
-        System.out.println("5개 일치 (1,500,000원) - " + winningResult.get(5)+"개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningResult.get(6) +"개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + winningResult.get(7) +"개");
+        System.out.println(FIFTH_PRIZE_INFORMATION + winningResult.get(3) +FIFTH_PRIZE + UNIT);
+        System.out.println(FOURTH_PRIZE_INFORMATION + winningResult.get(4) +FOURTH_PRIZE + UNIT);
+        System.out.println(THIRD_PRIZE_INFORMATION + + winningResult.get(5)+THIRD_PRIZE + UNIT);
+        System.out.println(SECOND_PRIZE_INFORMATION + winningResult.get(SECOND_PRIZE) + UNIT);
+        System.out.println(FIRST_PRIZE_INFORMATION + winningResult.get(FIRST_PRIZE) + UNIT);
     }
 
     public static void printEarningRateResultMessage(String earningRate) {

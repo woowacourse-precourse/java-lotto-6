@@ -7,6 +7,7 @@ import static lotto.constant.OutputMessage.REQUEST_PURCHASE_PRICE_MESSAGE;
 import static lotto.constant.OutputMessage.REQUEST_WINNING_NUMBER_MESSAGE;
 import static lotto.constant.OutputMessage.WINNING_RESULT_FORMAT;
 import static lotto.constant.OutputMessage.WINNING_SECOND_FORMAT;
+import static lotto.constant.WinningConstant.SECOND_OR_THIRD_CONDITION;
 import static lotto.constant.WinningConstant.WINNING_MAX_COUNT;
 import static lotto.constant.WinningConstant.WINNING_MIN_COUNT;
 
@@ -17,6 +18,10 @@ import lotto.domain.LotteryResult;
 import lotto.domain.Lotto;
 import lotto.domain.Player;
 import lotto.domain.PurchasePrice;
+
+/*
+ *   출력을 담당
+ * */
 
 public class Output {
 
@@ -52,20 +57,19 @@ public class Output {
 
     public void winningResult(Map<LotteryResult, Integer> lotteryResults) {
         System.out.println(OutputMessage.DEFAULT_WINNING_RESULT_MESSAGE);
-        for (int count = WINNING_MIN_COUNT; count <= WINNING_MAX_COUNT; count++) {
-            String lotteryPrize = LotteryResult.values()[count].getConvertedPrize();
-            Integer lotteryCount = lotteryResults.get(LotteryResult.values()[count]);
-            System.out.println(String.format(WINNING_RESULT_FORMAT, count, lotteryPrize, lotteryCount));
-            secondWinningResult(count, lotteryResults);
+        for (int winningCount = WINNING_MIN_COUNT; winningCount <= WINNING_MAX_COUNT; winningCount++) {
+            String convertedPrize = LotteryResult.values()[winningCount].getConvertedPrize();
+            Integer lotteryCount = lotteryResults.get(LotteryResult.of(winningCount, false));
+            System.out.println(String.format(WINNING_RESULT_FORMAT, winningCount, convertedPrize, lotteryCount));
+            secondWinningResult(winningCount, lotteryResults);
         }
     }
 
     private void secondWinningResult(int winningCount, Map<LotteryResult, Integer> lotteryResults) {
-        if (winningCount == 5) {
+        if (winningCount == SECOND_OR_THIRD_CONDITION) {
             Integer lotteryCount = lotteryResults.get(LotteryResult.values()[winningCount]);
             System.out.println(String.format(WINNING_SECOND_FORMAT, lotteryCount));
         }
-
     }
 
     public void rateOfRevenue(double rateOfRevenue) {

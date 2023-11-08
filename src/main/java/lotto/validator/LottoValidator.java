@@ -2,7 +2,7 @@ package lotto.validator;
 
 import static lotto.constant.ErrorMessage.DUPLICATED_NUMBER_MESSAGE;
 import static lotto.constant.ErrorMessage.NUMBER_COUNT_DIFFERENT_MESSAGE;
-import static lotto.constant.ErrorMessage.OVER_VALUE_RANGE_MESSAGE;
+import static lotto.constant.ErrorMessage.OUT_VALUE_RANGE_MESSAGE;
 import static lotto.constant.LottoConstant.LOTTO_NUMBER_COUNT;
 import static lotto.constant.LottoConstant.MAX_LOTTO_NUMBER;
 import static lotto.constant.LottoConstant.MIN_LOTTO_NUMBER;
@@ -11,6 +11,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.view.Output;
+
+/*
+ *   로또에 대한 검증을 담당
+ * */
 
 public class LottoValidator {
     public static void numbersSizeDifferent(List<Integer> numbers) {
@@ -35,13 +39,13 @@ public class LottoValidator {
     }
 
     public static void numbersOverValueRange(List<Integer> numbers) {
-        numbers.forEach(LottoValidator::numberOverValueRange);
+        numbers.forEach(LottoValidator::numberOutValueRange);
     }
 
-    public static void numberOverValueRange(int number) {
+    public static void numberOutValueRange(int number) {
         if ((number > MAX_LOTTO_NUMBER) || (number < MIN_LOTTO_NUMBER)) {
-            Output.errorMessage(OVER_VALUE_RANGE_MESSAGE);
-            throw new IllegalArgumentException(OVER_VALUE_RANGE_MESSAGE);
+            Output.errorMessage(OUT_VALUE_RANGE_MESSAGE);
+            throw new IllegalArgumentException(OUT_VALUE_RANGE_MESSAGE);
         }
     }
 }

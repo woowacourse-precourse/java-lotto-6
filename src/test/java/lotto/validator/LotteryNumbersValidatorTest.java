@@ -21,7 +21,7 @@ public class LotteryNumbersValidatorTest {
         //when
         Throwable result = catchThrowable(
                 () -> {
-                    LotteryResultValidator.bonusNumberDuplicated(lotto, bonusNumber);
+                    LotteryNumbersValidator.bonusNumberDuplicated(lotto, bonusNumber);
                 });
         //then
         assertThat(result).isInstanceOf(IllegalArgumentException.class);

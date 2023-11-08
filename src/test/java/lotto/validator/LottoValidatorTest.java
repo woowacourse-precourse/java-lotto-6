@@ -41,7 +41,7 @@ public class LottoValidatorTest {
 
         //when
         Throwable result = catchThrowable(() -> {
-            lottoNumbers.forEach(LottoValidator::numberOverValueRange);
+            lottoNumbers.forEach(LottoValidator::numberOutValueRange);
 
         });
         //then

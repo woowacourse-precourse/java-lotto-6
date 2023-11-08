@@ -1,5 +1,8 @@
 package lotto.constant;
 
+/*
+ *   출력메시지를 담당
+ * */
 public class OutputMessage {
     public static final String REQUEST_PURCHASE_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
     public static final String PURCHASE_COUNT_DEFAULT_MESSAGE = "개를 구매했습니다.";

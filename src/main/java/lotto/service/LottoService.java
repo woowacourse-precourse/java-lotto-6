@@ -3,8 +3,6 @@ package lotto.service;
 import static lotto.constant.LottoConstant.LOTTO_NUMBER_COUNT;
 import static lotto.constant.LottoConstant.MAX_LOTTO_NUMBER;
 import static lotto.constant.LottoConstant.MIN_LOTTO_NUMBER;
-import static lotto.domain.LotteryResult.SECOND;
-import static lotto.domain.LotteryResult.THIRD;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -16,7 +14,7 @@ import lotto.domain.Player;
 import lotto.domain.PurchasePrice;
 
 /*
- *   로또 게임의 비즈니스 기능을 담당
+ *   로또 게임의 주된 기능을 담당
  * */
 
 public class LottoService {
@@ -50,10 +48,6 @@ public class LottoService {
         Lotto winningLotto = lotteryNumbers.getWinningLotto();
         int bonusNumber = lotteryNumbers.getBonusNumber();
         int sameCount = lotto.findSameCount(winningLotto);
-        LotteryResult result = LotteryResult.values()[sameCount];
-        if ((result.equals(THIRD)) && (lotto.contains(bonusNumber))) {
-            return SECOND;
-        }
-        return result;
+        return LotteryResult.of(sameCount, lotto.contains(bonusNumber));
     }
 }

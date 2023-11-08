@@ -1,11 +1,15 @@
 package lotto.domain;
 
-import lotto.validator.LotteryResultValidator;
+import lotto.validator.LotteryNumbersValidator;
 import lotto.validator.LottoValidator;
 
-public class LotteryNumbers {
-    private final Lotto winningLotto;
+/*
+ *   당첨 번호들(담첨 번호 + 보너스 번호)의 정보를 담당
+ * */
 
+public class LotteryNumbers {
+
+    private final Lotto winningLotto;
     private final int bonusNumber;
 
     private LotteryNumbers(Lotto winningLotto, int bonusNumber) {
@@ -19,8 +23,8 @@ public class LotteryNumbers {
     }
 
     private void validate(Lotto winningLotto, int bonusNumber) {
-        LottoValidator.numberOverValueRange(bonusNumber);
-        LotteryResultValidator.bonusNumberDuplicated(winningLotto, bonusNumber);
+        LottoValidator.numberOutValueRange(bonusNumber);
+        LotteryNumbersValidator.bonusNumberDuplicated(winningLotto, bonusNumber);
     }
 
     public Lotto getWinningLotto() {

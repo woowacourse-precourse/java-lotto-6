@@ -8,8 +8,12 @@ import static lotto.view.Input.SEPARATION_SIGN;
 import lotto.constant.LottoConstant;
 import lotto.view.Output;
 
+/*
+ *   입력값의 검증을 담당
+ * */
+
 public class InputValidator {
-    //상수들 역할에 따라 분리
+
     private static final int NECESSARY_COMMA_COUNT = LottoConstant.LOTTO_NUMBER_COUNT - 1;
 
     private static final String NUMBER_REGEX = "[0-9]+";
@@ -22,8 +26,6 @@ public class InputValidator {
         }
     }
 
-    //긍적의 조건문을 나타내기위한 함수 필요한가?
-    //util로 빼줘야하나
     private static boolean isNotMatchRegex(String input) {
         if (input.matches(InputValidator.NUMBER_REGEX)) {
             return false;
@@ -49,14 +51,4 @@ public class InputValidator {
             throw new IllegalArgumentException(COMMA_COUNT_DIFFERENT_MESSAGE);
         }
     }
-
-//    public static void dividedCountCorrect(String input, String separationSign) {
-//        int dividedCount = Arrays.stream(input.split(separationSign))
-//                .toList()
-//                .size();
-//        if (dividedCount != LottoConstant.LOTTO_NUMBER_COUNT) {
-//            throw new IllegalArgumentException(NOT_MATCH_COUNT_MESSAGE);
-//        }
-//    }
-
 }

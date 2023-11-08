@@ -5,6 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.validator.InputValidator;
 
+/*
+ *   입력을 담당
+ * */
+
 public class Input {
     public static final char SEPARATION_SIGN = ',';
 

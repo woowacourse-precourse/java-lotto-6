@@ -9,6 +9,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/*
+ *   게임 이용하는 사용자의 정보를 담당
+ * */
+
 public class Player {
     private final PurchasePrice purchasePrice;
     private final List<Lotto> lottos;
@@ -32,10 +36,9 @@ public class Player {
                 .forEach(lotteryResult -> lotteryResults.put(lotteryResult, INIT_WINNING_COUNT));
     }
 
-    public void addLotteryResult(List<LotteryResult> lotteryResults) {
-        lotteryResults.forEach((lotteryResult) -> {
-            this.lotteryResults.put(lotteryResult,
-                    this.lotteryResults.get(lotteryResult) + ONE_WINNING_COUNT);
+    public void addLotteryResult(List<LotteryResult> newResults) {
+        newResults.forEach((newResult) -> {
+            lotteryResults.put(newResult, lotteryResults.get(newResult) + ONE_WINNING_COUNT);
         });
     }
 
@@ -46,7 +49,6 @@ public class Player {
 
     private Long findAllWinningPrize() {
         return lotteryResults.keySet().stream()
-                .filter(LotteryResult::isWinning)
                 .mapToLong(result -> result.getPrize() * lotteryResults.get(result))
                 .sum();
     }

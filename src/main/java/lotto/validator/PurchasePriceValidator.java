@@ -5,6 +5,10 @@ import static lotto.constant.LottoConstant.LOTTO_PRICE;
 
 import lotto.view.Output;
 
+/*
+ *   구매금액에 대한 검증을 담당
+ * */
+
 public class PurchasePriceValidator {
     public static void indivisibleUnit(int price) {
         if (isIndivisibleUnit(price)) {
@@ -14,7 +18,6 @@ public class PurchasePriceValidator {
     }
 
     private static boolean isIndivisibleUnit(int price) {
-        //상수화를 시키는 것이 오히려 가독성을 떨어뜨리는 느낌?
         if ((price % LOTTO_PRICE == 0) && (price != 0)) {
             return false;
         }

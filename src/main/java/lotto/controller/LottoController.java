@@ -25,16 +25,20 @@ public class LottoController {
     public void run() {
         String inputPurchaseAmount = view.askPurchaseAmount();
         LottoPurchaseDto lottoPurchaseDto = service.buyLottery(inputPurchaseAmount);
+
         view.printPurchaseQuantity(lottoPurchaseDto);
         LottosDto lottosDto = service.generateLotto(lottoPurchaseDto.quantity());
         view.printLottoNumbers(lottosDto);
+
         String inputWinningNumber = view.askWinningNumber();
+
         String inputBonusNumber = view.askBonusNumber();
         WinningResultDto winningResultDto = service.generateWinningResult(
                 inputWinningNumber,
                 inputBonusNumber,
                 lottosDto
         );
+
         view.printMessage(Message.WINNING_STATS);
         view.printWinningCase(winningResultDto);
         ReturnRateDto returnRateDto = service.getReturnRate(lottoPurchaseDto, winningResultDto);

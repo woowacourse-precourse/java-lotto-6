@@ -1,5 +1,13 @@
 package lotto.view;
 
+import static lotto.model.Lotto.allLottoList;
+import static lotto.model.User.lottoBoughtNum;
+
+import lotto.model.LottoRank;
+
+import java.util.List;
+
+
 public class OutputView {
     public static void printLottoBuyPrice() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -7,11 +15,16 @@ public class OutputView {
 
     public static void printBoughtNum() {
         System.out.println();
-        System.out.println(lottoNum + "개를 구매했습니다.");
+        System.out.println(lottoBoughtNum + "개를 구매했습니다.");
     }
 
     public static void printLotto() {
-        allLottoList.forEach(System.out::println);
+        List<List<Integer>> allLottoList = allLottoList();
+
+        for (List<Integer> lotto : allLottoList) {
+            System.out.println(lotto);
+        }
+
     }
 
     public static void printUserNum() {

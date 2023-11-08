@@ -2,8 +2,8 @@ package lotto;
 
 import lotto.controller.GameController;
 
-//import camp.nextstep.edu.missionutils.Randoms;
-//import camp.nextstep.edu.missionutils.Console;
+//import camp.nextstep.edu.missionutils.Randoms; v
+//import camp.nextstep.edu.missionutils.Console; v
 //
 //import java.util.List;
 //import java.util.stream.Collectors;
@@ -18,9 +18,9 @@ import lotto.controller.GameController;
 //    public static void main(String[] args) {
 //        // TODO: 로또 구입 금액 입력 받기
 //        while (true) {
-//            try {
-//                System.out.println("구입금액을 입력해 주세요.");
-//                lottoBought = Integer.parseInt(Console.readLine());
+//            try { V
+//                System.out.println("구입금액을 입력해 주세요."); V
+//                lottoBought = Integer.parseInt(Console.readLine()); v
 //
 //                // 예외 처리
 //                int lottoBought1000 = lottoBought % 1000;
@@ -34,9 +34,9 @@ import lotto.controller.GameController;
 //        }
 //
 //        // TODO: 로또 번호 출력
-//        int lottoNum = lottoBought / 1000;
-//        System.out.println();
-//        System.out.println(lottoNum + "개를 구매했습니다.");
+//        int lottoNum = lottoBought / 1000; v
+//        System.out.println(); V
+//        System.out.println(lottoNum + "개를 구매했습니다."); V
 //
 //        // stream.Collectors 사용하기
 //        List<List<Integer>> allLottoList = IntStream.range(0, lottoNum)
@@ -46,14 +46,14 @@ import lotto.controller.GameController;
 //                        .collect(Collectors.toList()))
 //                .collect(Collectors.toList());
 //
-//        allLottoList.forEach(System.out::println);
+//        allLottoList.forEach(System.out::println); V
 //
 //        // TODO: 당첨 번호 입력 받기
 //        while (true) {
 //            try {
-//                System.out.println();
-//                System.out.println("당첨 번호를 입력해 주세요.");
-//                String userNum = Console.readLine();
+//                System.out.println(); V
+//                System.out.println("당첨 번호를 입력해 주세요."); V
+//                String userNum = Console.readLine(); v
 //
 //                String[] userNumListStr = userNum.split(",");
 //
@@ -82,9 +82,9 @@ import lotto.controller.GameController;
 //        // TODO: 보너스 번호 입력 받기
 //        while (true) {
 //            try {
-//                System.out.println();
-//                System.out.println("보너스 번호를 입력해 주세요.");
-//                String userBonusStr = Console.readLine();
+//                System.out.println(); V
+//                System.out.println("보너스 번호를 입력해 주세요."); V
+//                String userBonusStr = Console.readLine(); v
 //
 //                userBonusNum = Integer.parseInt(userBonusStr);
 //
@@ -139,19 +139,17 @@ import lotto.controller.GameController;
 //        }
 //
 //        // TODO: 당첨 통계 출력
-//        System.out.println();
-//        System.out.println("당첨 통계");
-//        System.out.println("---");
-//        System.out.println("3개 일치 (5,000원) - " + rank5th + "개");
-//        System.out.println("4개 일치 (50,000원) - " + rank4th + "개");
-//        System.out.println("5개 일치 (1,500,000원) - " + rank3rd + "개");
-//        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rank2nd + "개");
-//        System.out.println("6개 일치 (2,000,000,000원) - " + rank1st + "개");
+//        System.out.println(); v
+//        System.out.println("당첨 통계"); v
+//        System.out.println("---"); v
+//        System.out.println("3개 일치 (5,000원) - " + rank5th + "개"); v
+//        System.out.println("4개 일치 (50,000원) - " + rank4th + "개"); v
+//        System.out.println("5개 일치 (1,500,000원) - " + rank3rd + "개"); v
+//        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rank2nd + "개"); v
+//        System.out.println("6개 일치 (2,000,000,000원) - " + rank1st + "개"); v
 //
 //        // TODO: 수익률 계산
 //        double rateOfReturn = ((double) prize / lottoBought) * 100.0;
-//        System.out.println(prize);
-//        System.out.println(rateOfReturn);
 //
 //        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0%");
 //        String formattedRateOfReturn = decimalFormat.format(rateOfReturn / 100.0);

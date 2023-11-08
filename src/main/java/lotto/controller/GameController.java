@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
@@ -7,6 +8,8 @@ public class GameController {
         while (true) {
             try {
                 OutputView.printLottoBuyPrice();
+                InputView.inputLottoBought();
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
@@ -19,6 +22,8 @@ public class GameController {
         while (true) {
             try {
                 OutputView.printUserNum();
+                InputView.inputUserNum();
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
@@ -27,6 +32,8 @@ public class GameController {
         while (true) {
             try {
                 OutputView.printBonusNum();
+                InputView.inputUserBonusStr();
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }

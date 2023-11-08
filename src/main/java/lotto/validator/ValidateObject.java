@@ -7,6 +7,10 @@ public class ValidateObject {
     }
 
     public static void validateBonusNumber(Lotto winningLotto, int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException();
+        }
+
         if (winningLotto.contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }

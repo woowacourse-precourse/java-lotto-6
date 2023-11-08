@@ -5,16 +5,14 @@ import lotto.common.console.Output;
 import lotto.common.exception.ErrorType;
 import lotto.common.exception.LottoGameException;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static lotto.core.domain.Lotto.LOTTO_SIZE;
 
 public class DrawLottoMachine {
     private final Lotto winningLotto;
     private final int bonusNumber;
+    private int[] drawLottoResult = {0, 0, 0, 0, 0};
 
     public DrawLottoMachine() {
         this.winningLotto = new Lotto(readWinningLottoNumbers());
@@ -105,5 +103,54 @@ public class DrawLottoMachine {
         if (lottoNumbers.contains(bonusNumber)) {
             throw LottoGameException.withType(ErrorType.DUPLICATE_NUMBERS);
         }
+    }
+
+    public void draw(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            switch (getWinningResult(lotto)) {
+                case FIFTH_Place -> drawLottoResult[0]++;
+                case FORTH_PLACE -> drawLottoResult[1]++;
+                case THRID_PLACE -> drawLottoResult[2]++;
+                case SECOND_PLACE -> drawLottoResult[3]++;
+                case FIRST_PLACE -> drawLottoResult[4]++;
+            }
+        }
+
+       writeEntireDrawResult();
+    }
+
+    public void writeEntireDrawResult() {
+        Output.writeEntireLottoDrawResult();
+
+        Output.writeEachLottoDrawResult(WinningCondition.FIFTH_Place, drawLottoResult[0]);
+        Output.writeEachLottoDrawResult(WinningCondition.FORTH_PLACE, drawLottoResult[1]);
+        Output.writeEachLottoDrawResult(WinningCondition.THRID_PLACE, drawLottoResult[2]);
+        Output.writeEachLottoDrawResult(WinningCondition.SECOND_PLACE, drawLottoResult[3]);
+        Output.writeEachLottoDrawResult(WinningCondition.FIRST_PLACE, drawLottoResult[4]);
+    }
+
+    public void writeReturnRate(int purchaseAmount) {
+        int sum = WinningCondition.FIFTH_Place.getReward() * drawLottoResult[0] +
+        WinningCondition.FORTH_PLACE.getReward() * drawLottoResult[1] +
+        WinningCondition.THRID_PLACE.getReward() * drawLottoResult[2] +
+        WinningCondition.SECOND_PLACE.getReward() * drawLottoResult[3] +
+        WinningCondition.FIRST_PLACE.getReward() * drawLottoResult[4];
+
+        Output.writeReturnRate(sum/purchaseAmount);
+    }
+
+    private WinningCondition getWinningResult(Lotto lotto) {
+        int count = (int) lotto.getNumbers().stream().filter(this.winningLotto::isMatchingLottoNumber).count();
+        boolean isMatchBonusNumber = lotto.getNumbers().contains(bonusNumber);
+
+        if(isMatchBonusNumber) {
+            count++;
+        }
+
+        if(count < LOTTO_SIZE) {
+            isMatchBonusNumber = false;
+        }
+
+        return WinningCondition.getByMatchResult(count, isMatchBonusNumber);
     }
 }

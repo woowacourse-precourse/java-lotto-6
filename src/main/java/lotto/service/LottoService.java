@@ -13,7 +13,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.MainNumbers;
 import lotto.domain.Payment;
-import lotto.domain.Prize;
+import lotto.domain.Ranking;
 import lotto.domain.PrizeCounter;
 import lotto.domain.WinningNumbers;
 import lotto.dto.LottoTicket;
@@ -84,17 +84,16 @@ public class LottoService {
     private PrizeCounter countPrize() {
         PrizeCounter prizeCounter = new PrizeCounter();
         lottos.stream()
-                .map(this::findPrize)
+                .map(this::findRanking)
                 .filter(p -> p.rank() > 0)
                 .map(Enum::name)
                 .forEach(prizeCounter::addCount);
         return prizeCounter;
     }
 
-    private Prize findPrize(Lotto lotto) {
+    private Ranking findRanking(Lotto lotto) {
         int nMatchingMainNumber = (int) lotto.countMatchingMainNumbers(winningNumbers);
         boolean isBonusMatched = lotto.isBonusMatched(winningNumbers);
-        return Prize.findFrom(nMatchingMainNumber, isBonusMatched);
+        return Ranking.findFrom(nMatchingMainNumber, isBonusMatched);
     }
-
 }

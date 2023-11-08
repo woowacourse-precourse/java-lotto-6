@@ -11,7 +11,7 @@ public class PrizeCounter {
     private final Map<String, Integer> counter;
 
     public PrizeCounter() {
-        this.counter = Arrays.stream(Prize.values())
+        this.counter = Arrays.stream(Ranking.values())
                 .filter(p -> p.rank()>0)
                 .collect(Collectors.toMap(Enum::name, p -> INIT_ZERO));
     }

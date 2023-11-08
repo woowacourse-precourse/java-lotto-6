@@ -3,10 +3,10 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import lotto.constant.Message;
 import lotto.exception.ErrorMessagePrinter;
 import lotto.exception.LottoExceptionMessage;
+import lotto.util.Validator;
 
 public class InputView {
     private static final String SPLIT_DELIMITER = ",";
@@ -14,7 +14,7 @@ public class InputView {
     public int inputPrice() {
         Integer validPrice = null;
 
-        while (isNotValid(validPrice)) {
+        while (Validator.isNotValid(validPrice)) {
             printNewLine();
             System.out.println(Message.INPUT_PRICE.getMessage());
             String inputPrice = Console.readLine().trim();
@@ -26,7 +26,7 @@ public class InputView {
     public List<Integer> inputWinningNumbers() {
         List<Integer> validWinningNumbers = null;
 
-        while (isNotValid(validWinningNumbers)) {
+        while (Validator.isNotValid(validWinningNumbers)) {
             printNewLine();
             System.out.println(Message.INPUT_WINNING_NUMBERS.getMessage());
             String inputWinningNumbers = Console.readLine();
@@ -39,7 +39,7 @@ public class InputView {
     public int inputBonusNumber() {
         Integer validBonusNumber = null;
 
-        while (isNotValid(validBonusNumber)) {
+        while (Validator.isNotValid(validBonusNumber)) {
             printNewLine();
             System.out.println(Message.INPUT_BONUS_NUMBER.getMessage());
             String inputBonusNumber = Console.readLine().trim();
@@ -48,10 +48,6 @@ public class InputView {
 
         }
         return validBonusNumber;
-    }
-
-    private boolean isNotValid(Object object) {
-        return Objects.isNull(object);
     }
 
     private Integer parseValidPrice(String inputPrice) {

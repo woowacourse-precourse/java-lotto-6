@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import java.util.List;
-import java.util.Objects;
 import lotto.util.AutoGenerator;
+import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -32,7 +32,7 @@ public class LottoGame {
 
     private PurchasePrice inputPurchasePrice() {
         PurchasePrice purchasePrice = null;
-        while (!isValidPurchasePrice(purchasePrice)) {
+        while (Validator.isNotValid(purchasePrice)) {
             int price = inputView.inputPrice();
             purchasePrice = PurchasePrice.from(price);
         }
@@ -40,13 +40,10 @@ public class LottoGame {
         return purchasePrice;
     }
 
-    private boolean isValidPurchasePrice(PurchasePrice purchasePrice) {
-        return Objects.nonNull(purchasePrice);
-    }
 
     private WinningNumbers inputWinningNumbers() {
         WinningNumbers winningNumbers = null;
-        while (!isValidWinningNumbers(winningNumbers)) {
+        while (Validator.isNotValid(winningNumbers)) {
             List<Integer> inputWinningNumbers = inputView.inputWinningNumbers();
             winningNumbers = WinningNumbers.from(inputWinningNumbers);
         }
@@ -54,21 +51,13 @@ public class LottoGame {
         return winningNumbers;
     }
 
-    private boolean isValidWinningNumbers(WinningNumbers winningNumbers) {
-        return Objects.nonNull(winningNumbers);
-    }
-
     private BonusNumber inputBonusNumber(WinningNumbers winningNumbers) {
         BonusNumber bonusNumber = null;
-        while (!isValidBonusNumber(bonusNumber)) {
+        while (Validator.isNotValid(bonusNumber)) {
             int inputBonusNumber = inputView.inputBonusNumber();
             bonusNumber = BonusNumber.of(inputBonusNumber, winningNumbers);
         }
 
         return bonusNumber;
-    }
-
-    private boolean isValidBonusNumber(BonusNumber bonusNumber) {
-        return Objects.nonNull(bonusNumber);
     }
 }

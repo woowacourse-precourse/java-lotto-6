@@ -1,6 +1,6 @@
 package lotto.validator;
 
-public enum Error {
+public enum ErrorMessage {
 
     NOT_NUMERIC_INPUT("숫자만 입력할 수 있습니다."),
     INVALID_PAYMENT("지불 금액은 0원 이상, 1000원 단위만 가능합니다."),
@@ -13,7 +13,7 @@ public enum Error {
     private static final String PREFIX = "[ERROR] ";
     private final String message;
 
-    Error(String message) {
+    ErrorMessage(String message) {
         this.message = PREFIX + message;
     }
 

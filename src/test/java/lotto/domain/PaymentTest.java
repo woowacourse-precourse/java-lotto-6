@@ -3,7 +3,7 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.validator.Error;
+import lotto.validator.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +16,7 @@ class PaymentTest {
     void wrongPayAmount() {
         assertThatThrownBy(() -> new Payment(1234))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Error.INVALID_PAYMENT.message());
+                .hasMessage(ErrorMessage.INVALID_PAYMENT.message());
     }
 
     @DisplayName("금액에 따른 로또 발행 수 테스트")

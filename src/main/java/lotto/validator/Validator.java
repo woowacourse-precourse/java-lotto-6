@@ -13,14 +13,14 @@ public class Validator {
         if (input.matches(NUMBER_PATTERN.value())) {
             return;
         }
-        throw new IllegalArgumentException(Error.NOT_NUMERIC_INPUT.message());
+        throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC_INPUT.message());
     }
 
     public static void validateMainNumbersInput(String input) {
         if (input.matches(MAIN_NUMBER_PATTERN.value())) {
             return;
         }
-        throw new IllegalArgumentException(Error.INVALID_FORMAT_WINNING_NUMBERS.message());
+        throw new IllegalArgumentException(ErrorMessage.INVALID_FORMAT_WINNING_NUMBERS.message());
     }
 
     public static void validatePayment(int value) {
@@ -32,14 +32,14 @@ public class Validator {
         if (value > 0) {
             return;
         }
-        throw new IllegalArgumentException(Error.INVALID_PAYMENT.message());
+        throw new IllegalArgumentException(ErrorMessage.INVALID_PAYMENT.message());
     }
 
     private static void validatePaymentUnit(int value) {
         if (hasNoRemainder(value, LottoRule.LOTTO_PRICE.value())) {
             return;
         }
-        throw new IllegalArgumentException(Error.INVALID_PAYMENT.message());
+        throw new IllegalArgumentException(ErrorMessage.INVALID_PAYMENT.message());
     }
 
     private static boolean hasNoRemainder(int dividend, int divider) {
@@ -57,14 +57,14 @@ public class Validator {
         if (uniqueNumbers.size() == winningNumbers.size()) {
             return;
         }
-        throw new IllegalArgumentException(Error.DUPLICATED_MAIN_NUMBER.message());
+        throw new IllegalArgumentException(ErrorMessage.DUPLICATED_MAIN_NUMBER.message());
     }
 
     private static void validateMainNumbersInRange(List<Integer> winningNumbers) {
         if (winningNumbers.stream().allMatch(Validator::inRange)) {
             return;
         }
-        throw new IllegalArgumentException(Error.INVALID_RANGE_WINNING_NUMBER.message());
+        throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE_WINNING_NUMBER.message());
     }
 
     private static boolean inRange(int value) {
@@ -75,7 +75,7 @@ public class Validator {
         if (winningNumbers.size() == LottoRule.LOTTO_NUMBER_COUNT.value()) {
             return;
         }
-        throw new IllegalArgumentException(Error.INVALID_NUM_MAIN_NUMBER.message());
+        throw new IllegalArgumentException(ErrorMessage.INVALID_NUM_MAIN_NUMBER.message());
     }
 
     public static void validateBonusNumber(List<Integer> winningNumbers, int bonus) {
@@ -85,7 +85,7 @@ public class Validator {
 
     private static void validateBonusNotDuplicated(List<Integer> winningNumbers, int bonus) {
         if (winningNumbers.contains(bonus)) {
-            throw new IllegalArgumentException(Error.DUPLICATED_BONUS_NUMBER.message());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS_NUMBER.message());
         }
     }
 
@@ -93,7 +93,7 @@ public class Validator {
         if (inRange(bonus)) {
             return;
         }
-        throw new IllegalArgumentException(Error.INVALID_RANGE_WINNING_NUMBER.message());
+        throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE_WINNING_NUMBER.message());
     }
 
 }

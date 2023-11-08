@@ -28,14 +28,14 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != SIZE.getConfig()) {
-            throw new IllegalArgumentException(NUMBER_SIZE.getMessage());
+            throw new IllegalArgumentException(NUMBER_SIZE.getErrorMessage());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         for (int num : numbers) {
             if (num < RANDOM_START.getConfig() || num > RANDOM_END.getConfig()) {
-                throw new IllegalArgumentException(NUMBER_RANGE.getMessage());
+                throw new IllegalArgumentException(NUMBER_RANGE.getErrorMessage());
             }
         }
     }
@@ -44,7 +44,7 @@ public class Lotto {
         if (numbers.stream()
                 .distinct()
                 .count() != numbers.size()) {
-            throw new IllegalArgumentException(NUMBER_DUPLICATION.getMessage());
+            throw new IllegalArgumentException(NUMBER_DUPLICATION.getErrorMessage());
         }
     }
 

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.constant.Message;
 
 public class Lotto {
     private final List<Integer> lottoNumbers;
@@ -14,7 +15,7 @@ public class Lotto {
 
     private void validate(List<Integer> lottoNumbers) {
         if (lottoNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호의 개수가 6개가 아닙니다.");
+            throw new IllegalArgumentException(Message.ERROR_LOTTO_NUMBERS_NOT_SIX.toString());
         }
     }
 
@@ -22,14 +23,14 @@ public class Lotto {
         if (lottoNumbers.stream()
                 .distinct()
                 .count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+            throw new IllegalArgumentException(Message.ERROR_LOTTO_NUMBERS_DUPLICATED.toString());
         }
     }
 
     private void validateOutOfRange(List<Integer> lottoNumbers) {
         if (lottoNumbers.stream()
                 .anyMatch(lottoNumber -> lottoNumber < 1 || lottoNumber > 45)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이의 숫자만 가능합니다.");
+            throw new IllegalArgumentException(Message.ERROR_LOTTO_NUMBERS_OUT_OF_RANGE.toString());
         }
     }
     

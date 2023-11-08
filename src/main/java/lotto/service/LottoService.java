@@ -4,14 +4,15 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constant.Message;
 import lotto.domain.Lotto;
 
 public class LottoService {
-    public List<Lotto> purchaseLottoTickets(int money) {
-        validateMoney(money);
-        int numberOfLottoTickets = money / 1000;
+    public List<Lotto> purchaseLottoTickets(int purchaseAmount) {
+        validatePurchaseAmount(purchaseAmount);
+        int numberOfLottoTickets = purchaseAmount / 1000;
         List<Lotto> lottoTickets = new ArrayList<>();
-        for(int i = 0; i < numberOfLottoTickets; i++) {
+        for (int i = 0; i < numberOfLottoTickets; i++) {
             List<Integer> lottoNumbers = generateLottoNumbers();
             Lotto lottoTicket = new Lotto(lottoNumbers);
             lottoTickets.add(lottoTicket);
@@ -19,9 +20,15 @@ public class LottoService {
         return lottoTickets;
     }
 
-    private void validateMoney(int money) {
-        if(money < 1000 || money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위로 가능합니다.");
+    private void validatePurchaseAmount(int purchaseAmount) {
+        if (purchaseAmount < 1_000) {
+            throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_UNDER_MINIMUM.toString());
+        }
+        if (purchaseAmount > 100_000) {
+            throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_OVER_MAXIMUM.toString());
+        }
+        if (purchaseAmount % 1_000 != 0) {
+            throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_INVALID_UNIT.toString());
         }
     }
 

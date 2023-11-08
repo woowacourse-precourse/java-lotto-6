@@ -1,6 +1,8 @@
 package lotto;
 
 import lotto.domain.Amount;
+import lotto.domain.Checker;
+import lotto.domain.Result;
 import lotto.domain.WinningNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -68,5 +70,20 @@ class LottoTest {
         assertThatThrownBy(() -> new WinningNumber(List.of(1, 2, 3, 4, 5, 6)).setBonusNumber(55))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_NUMBER_ERROR_MESSAGE.getErrorMessage());
+    }
+
+    @Test
+    void 당첨_개수_확인_테스트() {
+        WinningNumber winningNumber1 = new WinningNumber(List.of(1, 2, 3, 4, 5, 6));
+        winningNumber1.setBonusNumber(7);
+        WinningNumber winningNumber2 = new WinningNumber(List.of(3, 11, 35, 43, 20, 21));
+        winningNumber2.setBonusNumber(2);
+        Checker case1 = new Checker(new Lotto(List.of(1, 2, 3, 4, 5, 6)), winningNumber1);
+        Checker case2 = new Checker(new Lotto(List.of(11, 23, 43, 2, 29, 21)), winningNumber2);
+
+        assertThat(6).isEqualTo(case1.getCount());
+        assertThat(false).isEqualTo(case1.isBonus());
+        assertThat(3).isEqualTo(case2.getCount());
+        assertThat(true).isEqualTo(case2.isBonus());
     }
 }

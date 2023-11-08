@@ -25,6 +25,9 @@ public class LottoUtil {
     }
 
     public static List<Integer> parseInputToList(String numbers) {
+        if (!numbers.contains(",")) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_DIVIDED_BY_COMMA.getMessage());
+        }
         return Arrays.stream(numbers.split(","))
                 .map(String::trim)
                 .map(LottoUtil::parseInputToNumber)

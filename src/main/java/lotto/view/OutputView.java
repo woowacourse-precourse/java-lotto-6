@@ -2,10 +2,11 @@ package lotto.view;
 
 import lotto.domain.Rank;
 
+import java.awt.*;
 import java.util.List;
 
 public class OutputView {
-    public void printLottoCount(int lottoCount) {
+    public void printLottoCount(long lottoCount) {
         System.out.println(lottoCount + "개를 구매했습니다.");
     }
 
@@ -19,8 +20,13 @@ public class OutputView {
     public void printLottosResult(Rank rank, int count){
         if(rank.equals(Rank.SECOND))
             printSecondResult(count);
-        printRemainResult(count);
+        printRemainResult(rank, count);
     }
+
+    public void printRateOfReturn(double rateOfReturn){
+        System.out.println("총 수익률은 " +rateOfReturn+ "%입니다.");
+    }
+
 
     private String makeLottoNumberMessage(List<Integer> lottoNumbers) {
         StringBuilder sb = new StringBuilder("[");
@@ -32,11 +38,11 @@ public class OutputView {
     }
 
     private void printSecondResult(int count) {
-        System.out.print("5개 일치, 보너스 볼 일치 (" + Rank.SECOND.getPrize()+ ") - " + count +"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (" + Rank.SECOND.getPrize()+ ") - " + count +"개");
     }
 
     private void printRemainResult(Rank rank, int count) {
-        System.out.print(rank.getRank() + "개 일치 " + rank.getPrize()+ ") - " + count +"개");
+        System.out.println(rank.getCollectCount() + "개 일치 " + rank.getPrize()+ ") - " + count +"개");
     }
 
 }

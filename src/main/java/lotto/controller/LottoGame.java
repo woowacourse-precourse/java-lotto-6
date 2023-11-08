@@ -208,7 +208,7 @@ public class LottoGame {
     // 들어온 돈이 1000원 단위인지 확인
     public boolean loopCheck(int amount){
         if(amount % 1000 != 0){
-            throw new IllegalArgumentException("[ERROR] 다시 입력해주세요");
+            throw new IllegalArgumentException(ErrorMessage.MONEY_ERROR);
         }
         return true;
     }
@@ -257,8 +257,8 @@ public class LottoGame {
         List<Integer> userInputNumbers = null;
         while(userInputNumbers == null){
             String numbers = inputNumbers();
-            String[] splitNumbers = userNumbers(numbers);
             try {
+                String[] splitNumbers = userNumbers(numbers);
                 userInputNumbers = userInputNumbers(splitNumbers);
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
@@ -277,6 +277,9 @@ public class LottoGame {
     // 로또 번호 배열로 변경
     public String[] userNumbers(String numbers){
         String[] userNumbers = numbers.split(",");
+        if(userNumbers.length != 6){
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_SIZE_ERROR);
+        }
         return userNumbers;
     }
 
@@ -289,11 +292,24 @@ public class LottoGame {
             }
             int number = Integer.parseInt(userNumbers[i]);
             if(number > 45 || number < 1){
-                throw new IllegalArgumentException("[ERROR] 숫자가 이상합니다.");
+                throw new IllegalArgumentException(ErrorMessage.FORMAT_ERROR);
+            }
+            if(NumberEquals(userNumbers, number) >= 2){
+                throw new IllegalArgumentException(ErrorMessage.NUMBER_EQUALS);
             }
             userInputNumbers.add(Integer.parseInt(userNumbers[i]));
         }
         return userInputNumbers;
+    }
+
+    public int NumberEquals(String[] userNumbers, int number){
+        int count = 0;
+        for(int i = 0; i < userNumbers.length; i++){
+            if(number == Integer.parseInt(userNumbers[i])){
+                count++;
+            }
+        }
+        return count;
     }
 
     // 보너스 번호 입력 받기
@@ -304,12 +320,27 @@ public class LottoGame {
     }
 
     // 보너스 번호 숫자로 변환
-    public int inputBonusNumber(String bonusNumber){
+    public int inputBonusNumber(String bonusNumber, List<Integer> numbers){
         if(!isNumber(bonusNumber)){
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER);
         }
         int inputBonusNumber = Integer.parseInt(bonusNumber);
+        if(inputBonusNumber > 45 || inputBonusNumber < 1){
+            throw new IllegalArgumentException(ErrorMessage.FORMAT_ERROR);
+        }
+        if(!bonusNumberEquals(numbers, inputBonusNumber)){
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_EQUALS);
+        }
         return inputBonusNumber;
+    }
+
+    public boolean bonusNumberEquals(List<Integer> numbers, int number){
+        for(int i = 0; i < numbers.size(); i++){
+            if(number == numbers.get(i)){
+                return false;
+            }
+        }
+        return true;
     }
 
     public void setBonusNumber(User user){
@@ -317,7 +348,7 @@ public class LottoGame {
         while(bonusNumber == 0){
             String inputBonusNumber = inputBonus();
             try {
-                bonusNumber = inputBonusNumber(inputBonusNumber);
+                bonusNumber = inputBonusNumber(inputBonusNumber, user.getUserInputNumbers());
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }

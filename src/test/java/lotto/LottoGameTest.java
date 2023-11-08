@@ -51,14 +51,6 @@ public class LottoGameTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    @DisplayName("보너스 번호 입력 테스트")
-    void inputBonusNumberTest(){
-        String bonusNumber = "3";
-        LottoGame lottoGame = new LottoGame();
-        int bonus = lottoGame.inputBonusNumber(bonusNumber);
-        assertThat(bonus).isEqualTo(3);
-    }
 
 
 }

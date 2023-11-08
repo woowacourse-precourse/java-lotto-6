@@ -1,11 +1,11 @@
 ### ✔️ 구현할 기능 목록
 
-- [ ] 사용자로부터 구입 금액을 입력 받는다.
-  - [ ] 숫자가 아닌 경우:  `IllegalArgumentException([ERROR] 숫자를 입력해주세요.)`
-  - [ ] 1,000원으로 나누어 떨어지지 않는 경우:  `IllegalArgumentException([ERROR] 1,000원 단위로 입력해주세요.)`
-  - [ ] 0원인 경우:  `IllegalArgumentException([ERROR] 1,000원 이상을 입력해주세요.)`
-  - [ ] 예외가 발생한 경우 예외를 발생하고, 구입 금액을 다시 입력 받는다.
-- [ ] n개의 로또를 발행한다.
+- [x] 사용자로부터 구입 금액을 입력 받는다.
+  - [x] 숫자가 아닌 경우:  `IllegalArgumentException([ERROR] 숫자를 입력해주세요.)`
+  - [x] 1,000원으로 나누어 떨어지지 않는 경우:  `IllegalArgumentException([ERROR] 1,000원 단위로 입력해주세요.)`
+  - [x] 0원인 경우:  `IllegalArgumentException([ERROR] 1,000원 이상을 입력해주세요.)`
+  - [x] 예외가 발생한 경우 예외를 발생하고, 구입 금액을 다시 입력 받는다.
+- [x] n개의 로또를 발행한다.
 - [ ] 사용자로부터 당첨 번호를 입력 받는다. 당첨 번호는 쉼표(,)로 구분한다.
   - [ ] 6개로 나누어지지 않는 경우:  `IllegalArgumentException([ERROR] 6개의 숫자를 입력해주세요.)`
   - [ ] 숫자가 아닌 값이 포함되는 경우:  `IllegalArgumentException([ERROR] 숫자를 입력해주세요.)`

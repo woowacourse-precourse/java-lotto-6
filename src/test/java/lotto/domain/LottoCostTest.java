@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoCostTest {
-    @DisplayName("구입금액이 지정한 1000의 배수가 예외가 발생한다.")
+    @DisplayName("구입금액이 지정한 1000의 배수가 아닐 경우 예외가 발생한다.")
     @Test
     void costNotMultipleOfUnit() {
         assertThatThrownBy(() -> new LottoCost(1375))

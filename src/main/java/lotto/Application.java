@@ -12,9 +12,14 @@ public class Application {
     static Validator validator = Validator.getInstance();
     static Committee committee = Committee.getInstance();
 
+    static final int MONEY_UNIT=1000;
+    static final int NUM_OF_LOTTONUM=6;
+    static final int START_NUM=1;
+    static final int END_NUM=45;
+
     public static void main(String[] args) {
         int price = setPrice();
-        int count = price / 1000;
+        int count = price / MONEY_UNIT;
         List<Integer>[] issueNumbers = setIssueNumbers(count);
         outputView.printIssueNumbers(issueNumbers, count);
         Lotto lotto = setWinningNumbers();
@@ -43,14 +48,12 @@ public class Application {
 
     private static Lotto setWinningNumbers() {
         boolean askAgain = true;
-        List<Integer> winningNumbers = new ArrayList<>();
         Lotto lotto = null;
         while (askAgain) {
             askAgain = false;
             String winningNumbersInput = inputView.inputWinningNumbers();
             try {
-                winningNumbers = validator.validateWinningNumbers(winningNumbersInput);
-                lotto = new Lotto(winningNumbers);
+                lotto = new Lotto(validator.validateWinningNumbers(winningNumbersInput));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 askAgain = true;
@@ -62,7 +65,7 @@ public class Application {
     private static List<Integer>[] setIssueNumbers(int count) {
         List<Integer> issueNumbers[] = new ArrayList[count];
         for (int i = 0; i < count; i++) {
-            List<Integer> list = new ArrayList(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> list = new ArrayList(Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, NUM_OF_LOTTONUM));
             Collections.sort(list);
             issueNumbers[i] = list;
         }

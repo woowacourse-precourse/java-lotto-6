@@ -5,6 +5,8 @@ import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import lotto.domain.Lotto;
+
 public class InputView {
 
     private static String testInput; // 테스트용 입력값
@@ -56,27 +58,21 @@ public class InputView {
         String[] inputNumbers = input.split(",");
 
         for (String inputNumber : inputNumbers) {
-            Integer winningNumber = parseSingleWinningNumber(inputNumber);
-            checkDuplicateAndAdd(winningNumbers, winningNumber);
+            Integer parsedNumber = parseIntegerOrThrowError(inputNumber);
+            winningNumbers.add(parsedNumber);
         }
+
+        new Lotto(winningNumbers);
 
         return winningNumbers;
     }
 
-    private static Integer parseSingleWinningNumber(String inputNumber) {
+    private static Integer parseIntegerOrThrowError(String inputNumber) {
         try {
             return Integer.parseInt(inputNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자 형식이 아닌 값이 포함되어 있습니다.");
         }
-    }
-
-    private static void checkDuplicateAndAdd(List<Integer> winningNumbers, Integer number) {
-        if (winningNumbers.contains(number)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
-        }
-
-        winningNumbers.add(number);
     }
 
     public static void setInputForTesting(String input) {

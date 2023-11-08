@@ -68,10 +68,8 @@ public class CorrectLotto {
 
     // 보너스 번호가 당첨 번호와 중복되는지 확인
     private void checkNumberDuplicate(int number){
-        for(Integer correct_number : correct_lotto.getNumbers()){
-            if(correct_number == number){
-                throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-            }
+        if(correct_lotto.getNumbers().contains(number)){
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 

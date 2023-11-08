@@ -58,6 +58,18 @@ class LottoServiceTest {
         assertTrue(result);
     }
 
+    @DisplayName("당첨 결과 확인")
+    @Test
+    void getPrizeMoney() {
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.plusCnt(3, false);
+        lottoResult.plusCnt(4, false);
+        lottoResult.plusCnt(5, true);
+        int total = lottoService.getPrizeMoney(lottoResult);
+
+        assertEquals(total, 30055000);
+    }
+
     @Test
     void printLottos() {
         List<Lotto> lottos = new ArrayList<>();

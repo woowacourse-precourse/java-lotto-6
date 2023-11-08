@@ -12,7 +12,7 @@ public enum WinningLottoViewMessage {
             보너스 번호를 입력해 주세요."""),
     ANNOUNCE_WINNING_STATISTICS("""
                         
-            당첨통계
+            당첨 통계
             ---"""),
     PRE_CALCULATION_PROFIT("총 수익률은 "),
     POST_CALCULATION_PROFIT("%입니다."),

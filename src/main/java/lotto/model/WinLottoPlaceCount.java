@@ -9,20 +9,20 @@ public class WinLottoPlaceCount {
 
     List<Integer> winLottoPlaceCount;
 
-    public WinLottoPlaceCount(){
-        winLottoPlaceCount=new ArrayList<>();
-        for(int i=0;i<6;i++){
+    public WinLottoPlaceCount() {
+        winLottoPlaceCount = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
             winLottoPlaceCount.add(0);
         }
     }
 
-    public List<Integer> getWinLottoPlaceCount(){
+    public List<Integer> getWinLottoPlaceCount() {
         return this.winLottoPlaceCount;
     }
 
-    public void plusWinLottoPlaceCount(Place place){
-        int placeCount=winLottoPlaceCount.get(place.getValue())+1;
-        winLottoPlaceCount.set(place.getValue(),placeCount);
+    public void plusWinLottoPlaceCount(Place place) {
+        int placeCount = winLottoPlaceCount.get(place.getValue()) + 1;
+        winLottoPlaceCount.set(place.getValue(), placeCount);
     }
 
 }

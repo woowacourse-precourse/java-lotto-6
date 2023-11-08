@@ -1,18 +1,13 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.message.InputMessage;
-
 public interface InputView {
 
-    public String inputMoney();
+   String inputMoney();
 
-    public String inputWinNumbers();
+    String inputWinNumbers();
 
-    public String inputBonusNumber();
+    String inputBonusNumber();
 
-    public void inputTest();
-
-    public void close();
+    void close();
 
 }

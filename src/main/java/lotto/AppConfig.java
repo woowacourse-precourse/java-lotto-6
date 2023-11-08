@@ -8,26 +8,34 @@ import lotto.view.OutputViewImpl;
 
 public class AppConfig {
 
-    public CountWinLotto countWinLotto(){
+    public CountWinLotto countWinLotto() {
         return new CountWinLottoImpl();
-    };
-    public GetBuyNumber getBuyNumber(){
+    }
+
+    ;
+
+    public GetBuyNumber getBuyNumber() {
         return new GetBuyNumberImpl(inputView());
     }
-    public GetMyLottos getMyLottos(){
+
+    public GetMyLottos getMyLottos() {
         return new GetMyLottosImpl();
     }
-    public GetWinLotto getWinLotto(){
+
+    public GetWinLotto getWinLotto() {
         return new GetWinLottoImpl(inputView());
     }
-    public OutputView outputView(){
+
+    public OutputView outputView() {
         return new OutputViewImpl();
     }
-    public InputView inputView(){
+
+    public InputView inputView() {
         return new InputViewImpl();
     }
-    public PlayLotto playLotto(){
-        return new PlayLottoImpl(countWinLotto(),getBuyNumber(),getMyLottos(),getWinLotto(),outputView());
+
+    public PlayLotto playLotto() {
+        return new PlayLottoImpl(countWinLotto(), getBuyNumber(), getMyLottos(), getWinLotto(), outputView());
     }
 
 }

@@ -2,6 +2,6 @@ package lotto.controller;
 
 public interface PlayLotto {
 
-    public void playLotto();
+    void playLotto();
 
 }

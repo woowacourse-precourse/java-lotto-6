@@ -4,7 +4,7 @@ import lotto.model.GameMoney;
 
 public interface GetBuyNumber {
 
-    public GameMoney getBuyNumber();
+    GameMoney getBuyNumber();
 
-    public GameMoney getValid(String money);
+    GameMoney getValid(String money);
 }

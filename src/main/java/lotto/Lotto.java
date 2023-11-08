@@ -21,24 +21,24 @@ public class Lotto {
         }
         Set<Integer> uniqueNumbers = new HashSet<>();
         uniqueNumbers.addAll(numbers);
-        if (numbers.size()!= uniqueNumbers.size()){
+        if (numbers.size() != uniqueNumbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_DUPLICATE.toString());
         }
-        for(Integer num : numbers){
-            if(num<1 | num>45){
+        for (Integer num : numbers) {
+            if (num < 1 | num > 45) {
                 throw new IllegalArgumentException(ErrorMessage.ERROR_OUT_RANGE.toString());
             }
         }
     }
 
     // TODO: 추가 기능 구현
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return this.numbers;
     }
 
-    public Lotto copy(){
-        List<Integer> newNumbers=new ArrayList<>();
-        for(Integer num:numbers){
+    public Lotto copy() {
+        List<Integer> newNumbers = new ArrayList<>();
+        for (Integer num : numbers) {
             newNumbers.add(num);
         }
         return new Lotto(newNumbers);

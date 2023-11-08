@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface CountWinLotto {
 
-    public double getRateMoney(WinLottoPlaceCount winLottoPlaceCount, GameMoney gameMoney);
+    double getRateMoney(WinLottoPlaceCount winLottoPlaceCount, GameMoney gameMoney);
 
-    public WinLottoPlaceCount lottoPlaceCount(WinLotto winLotto, List<Lotto> myLottos);
+    WinLottoPlaceCount lottoPlaceCount(WinLotto winLotto, List<Lotto> myLottos);
 
 
 }

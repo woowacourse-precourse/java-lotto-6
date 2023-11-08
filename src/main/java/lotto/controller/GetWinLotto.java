@@ -1,23 +1,20 @@
 package lotto.controller;
 
 import lotto.Lotto;
-import lotto.message.ErrorMessage;
 import lotto.model.WinLotto;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public interface GetWinLotto {
 
-    public WinLotto getWinLotto();
+    WinLotto getWinLotto();
 
 
-    public Lotto getWinNumber();
+    Lotto getWinNumber();
 
-    public Integer getBonusNumber(Lotto winNumber);
+    Integer getBonusNumber(Lotto winNumber);
 
-    public Lotto validWinNumber(String winNumbers);
+    Lotto validWinNumber(String winNumbers);
 
-    public int validBonusNumber(String bonusNumber,Lotto winLotto);
+    int validBonusNumber(String bonusNumber,Lotto winLotto);
 
 }

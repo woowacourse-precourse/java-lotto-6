@@ -19,6 +19,7 @@ public class OutputView {
     }
 
     public static void printAmountNotice(int amount) {
+        spaceOneLine();
         System.out.println(amount + AMOUNT_NOTICE);
     }
 
@@ -37,5 +38,9 @@ public class OutputView {
         DecimalFormat formatter = new DecimalFormat("###,###.#");
         String format = formatter.format(rateOfReturn);
         System.out.println(RETURN_NOTICE_PREFIX + format + RETURN_NOTICE_SUFFIX);
+    }
+
+    public static void spaceOneLine() {
+        System.out.println();
     }
 }

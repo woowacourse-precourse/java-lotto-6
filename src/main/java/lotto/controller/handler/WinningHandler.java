@@ -24,6 +24,7 @@ public class WinningHandler {
     public void processWinningOngoing(String message) {
         String input;
         do {
+            OutputView.spaceOneLine();
             OutputView.printMessage(message);
             input = InputView.input();
         } while (hasExceptionWinningOngoing(input));
@@ -39,6 +40,7 @@ public class WinningHandler {
     public void processWinningComplete(String message, LottoService service) {
         String input;
         do {
+            OutputView.spaceOneLine();
             OutputView.printMessage(message);
             input = InputView.input();
         } while (hasExceptionWinningComplete(input, service));

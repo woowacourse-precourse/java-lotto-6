@@ -40,6 +40,7 @@ public class LottoController {
     }
 
     public void provideWinningDetails() {
+        OutputView.spaceOneLine();
         OutputView.printMessage(WINNING_DETAILS_NOTICE);
 
         service.rank();

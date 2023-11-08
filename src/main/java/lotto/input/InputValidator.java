@@ -14,6 +14,7 @@ public class InputValidator {
         for (String number : winningNumbers) {
             isNotEmpty(number);
             isNumber(number);
+            isValidRange(number);
         }
     }
 

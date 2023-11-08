@@ -17,7 +17,26 @@ public class InputView {
 
     }
 
+    public static List<Integer> inputWinningNumbers(){
+        try {
+            return separateWinningNumber(Console.readLine())
+                    .stream()
+                    .map(winningNumber -> validateInteger(winningNumber))
+                    .collect(Collectors.toList());
+
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputWinningNumbers();
+        }
+    }
     
+
+    public static List<String> separateWinningNumber(String winningNumbers){
+        return Stream
+                .of(winningNumbers.split(","))
+                .map(String::trim)
+                .collect(Collectors.toList());
+    }
     public static String preprocessValidateIntegerAmount(String playerPurchaseAmount){
         return playerPurchaseAmount.trim().replace(",","");
     }

@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoBuyer;
+import lotto.domain.LottoSeller;
 import lotto.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,6 +39,20 @@ class LottoTest {
     @Test
     void enterValueIsNotNumber() {
         assertThatThrownBy(() -> new LottoBuyer("우하하"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨번호가 쉼표 구분 6글자가 아니면 예외가 발생한다.")
+    @Test
+    void lottoNumberOverLength() {
+        assertThatThrownBy(() -> new LottoSeller("1,2,3,4,5,6,7", "9"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨번호가 중복되면 예외가 발생한다.")
+    @Test
+    void lottoNumberOverlap() {
+        assertThatThrownBy(() -> new LottoSeller("1,2,3,3,4,5", "9"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -18,7 +18,9 @@ public class LottoController {
         // 구입금액 입력
         PurchaseAmount purchaseAmount = Input.purchaseAmount();
         // 금액만큼 구입개수 계산
-        int purchaseCount = calculatePurchaseCount(purchaseAmount);
+        int purchaseCount = purchaseAmount.calculateCount();
+        // 구입개수 출력
+        View.purchaseCount(purchaseCount);
 
         // 구입개수만큼 로또자동번호 사기
         BuyLottoRepository buyLottos = lottoService.quickPick(purchaseCount);
@@ -38,11 +40,5 @@ public class LottoController {
         double rateOfReturn = resultService.calculateRateOfReturn(purchaseCount);
         // 수익률 출력
         resultService.printRateOfReturn(rateOfReturn);
-    }
-
-    private int calculatePurchaseCount(PurchaseAmount purchaseAmount) {
-        int purchaseCount = purchaseAmount.calculateCount();
-        View.purchaseCount(purchaseCount);
-        return purchaseCount;
     }
 }

@@ -1,11 +1,11 @@
 package lotto.lottoResults.domain;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.lottoResults.domain.NumberStringParser.parseToInteger;
-import static lotto.lottoResults.domain.NumberStringParser.parseToIntegers;
-import static lotto.lottoResults.domain.NumberValidator.validate;
-import static lotto.lottoResults.domain.NumberValidator.validateNumberRange;
-import static lotto.lottoResults.domain.NumberValidator.validateUniqueWithBonus;
+import static lotto.component.parser.NumberStringParser.parseToInteger;
+import static lotto.component.parser.NumberStringParser.parseToIntegers;
+import static lotto.component.validation.NumberValidator.validate;
+import static lotto.component.validation.NumberValidator.validateNumberRange;
+import static lotto.component.validation.NumberValidator.validateUniqueWithBonus;
 
 import java.util.ArrayList;
 import java.util.List;

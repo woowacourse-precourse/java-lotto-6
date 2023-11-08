@@ -77,25 +77,26 @@ public class Game {
 
     private void printWinning(ResultCase resultCase) {
         int matchLotto = countMatchLotto(resultCase);
-        result.changeResult(resultCase, matchLotto);
-        System.out.println(resultCase.getInform() + matchLotto + UNIT);
+        result.change(resultCase, matchLotto);
+        result.print();
+
     }
 
     private int countMatchLotto(ResultCase resultCase) {
         int matchLotto = 0;
         for (Lotto lotto : lottos) {
-            int equalNumber = lotto.countEqualNumber(winning.getNumbers());
+            int equal = lotto.countEqual(winning.getNumbers());
             if (resultCase == FIVE_AND_BONUS_CORRECTNESS) {
-                equalNumber = addBonusNumber(lotto, equalNumber);
+                equal = addBonus(lotto, equal);
             }
-            if (equalNumber == resultCase.getCorrectness()) {
+            if (equal == resultCase.getCorrectness()) {
                 matchLotto++;
             }
         }
         return matchLotto;
     }
 
-    private int addBonusNumber(Lotto lotto, int equalNumber) {
+    private int addBonus(Lotto lotto, int equalNumber) {
         if (lotto.contain(bonus.getNumber())) {
             equalNumber++;
         }

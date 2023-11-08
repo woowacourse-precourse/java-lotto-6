@@ -31,7 +31,7 @@ public class Lotto {
         }
     }
 
-    public int countEqualNumber(List<Integer> numbers) {
+    public int countEqual(List<Integer> numbers) {
         List<Integer> originalNumbers = new ArrayList<>(this.numbers);
         originalNumbers.retainAll(numbers);
         return originalNumbers.size();

@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.Constants.UNIT;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,12 +12,16 @@ public class Result {
         result = new HashMap<>();
     }
 
-    public void changeResult(ResultCase resultCase, int matchLotto) {
+    public void change(ResultCase resultCase, int matchLotto) {
         if (result.containsKey(resultCase)) {
             result.put(resultCase, result.get(resultCase) + matchLotto);
             return;
         }
         result.put(resultCase, matchLotto);
+    }
+
+    public void print() {
+        System.out.println(resultCase.getInform() + matchLotto + UNIT);
     }
 
     public double getCalculateRateOfReturn(int buyingPrice) {

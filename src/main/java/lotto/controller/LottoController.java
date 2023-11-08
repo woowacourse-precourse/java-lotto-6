@@ -4,6 +4,7 @@ import lotto.model.Lotto;
 import lotto.model.Rank;
 import lotto.util.GetLottoNumber;
 import lotto.util.Calculator;
+import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -38,7 +39,17 @@ public class LottoController {
 
     private void getPurchasePrice() {
         OutputView.printGetPurchasePriceMessage();
-        purchasePrice = InputView.inputPurchasePrice();
+        try {
+            String input = InputView.inputPurchasePrice();
+
+            Validator.isNumericInput(input);
+            purchasePrice = Integer.parseInt(input);
+            Validator.purchasePrice(purchasePrice);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            getPurchasePrice();
+        }
     }
 
     public void getNumberOfLottoTickets() {
@@ -48,7 +59,7 @@ public class LottoController {
 
     public void getUserTicket() {
         for(int i = 0; i < numberOfLottoTickets ; i++) {
-            List<Integer> lottoNumber = GetLottoNumber.getLottoNumber();
+            List<Integer> lottoNumber = GetLottoNumber.userTicketNumbers();
             OutputView.printLottoNumber(lottoNumber);
             userTickets.add(new Lotto(lottoNumber));
         }
@@ -56,12 +67,18 @@ public class LottoController {
 
     public void getWinningLottoNumberFromUser() {
         OutputView.printWinNumberMessage();
-        winningTicket = GetLottoNumber.getWinLottoNumber();
+        try {
+            winningTicket = GetLottoNumber.winningTicketNumbers();
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            getWinningLottoNumberFromUser();
+        }
     }
 
     public void getBonusNumberFromUser() {
         OutputView.printBonusNumberMessage();
-        bonusNumber = GetLottoNumber.getBonusNumber();
+        bonusNumber = GetLottoNumber.bonusNumber();
     }
 
     public void determineEachLottoRanks() {

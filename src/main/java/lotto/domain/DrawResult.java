@@ -14,22 +14,28 @@ public enum DrawResult {
     private static final List<DrawResult> drawResults = List.of(FIRST, THIRD, FOURTH, FIFTH, NONE);
     private final int matchingCount;
     private final int prizeAmount;
-    private final boolean containBonusNumber;
 
     DrawResult(int matchingNumberCount, int prizeAmount, boolean containBonusNumber) {
         this.matchingCount = matchingNumberCount;
         this.prizeAmount = prizeAmount;
-        this.containBonusNumber = containBonusNumber;
     }
 
     public static DrawResult getResult(int matchingCount, boolean containBonusNumber) {
-        if (matchingCount == SECOND.matchingCount && containBonusNumber) {
+        if (drawResultIsSecond(matchingCount, containBonusNumber)) {
             return SECOND;
         }
-        Optional<DrawResult> drawingResult = drawResults.stream()
+        Optional<DrawResult> result = findResult(matchingCount);
+        return result.orElse(NONE);
+    }
+
+    private static Optional<DrawResult> findResult(int matchingCount) {
+        return drawResults.stream()
                 .filter(result -> result.matchingCount == matchingCount)
                 .findFirst();
-        return drawingResult.orElse(NONE);
+    }
+
+    private static boolean drawResultIsSecond(int matchingCount, boolean containBonusNumber) {
+        return matchingCount == SECOND.matchingCount && containBonusNumber;
     }
 
     public int getPrizeAmount() {

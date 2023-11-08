@@ -4,7 +4,8 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.generator.LottoMaker;
+import lotto.util.LottoMaker;
+import lotto.view.Output;
 
 public class Lottos {
 
@@ -13,6 +14,7 @@ public class Lottos {
             while(count.checkCount()) {
                 Lotto lotto = new Lotto(LottoMaker.generateNumber());
                 lottos.add(lotto);
+                Output.consoleLine(lotto.toString());
                 count.minusCount();
             }
             return lottos;

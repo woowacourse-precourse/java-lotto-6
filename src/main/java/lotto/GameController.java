@@ -5,7 +5,6 @@ import java.util.List;
 
 
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
@@ -21,19 +20,24 @@ public class GameController {
         Money count = insertMoney();
         List<Lotto> lottos = generateUserLotto(count);
         WinningLotto winningLotto = generateWinningLottto();
-
+        List<Integer> correctNumber = winningLotto.compareLottos(lottos);
+        printResult();
     }
+
+
 
     private Money insertMoney(){
         System.out.println(GameMessage.OUT_REQUEST_MONEY_MESSAGE);
         Money count = new Money(Integer.parseInt(Input.consoleLine()));
         count.checkmoney();
+        System.out.println();
         return count;
     }
 
     private List<Lotto> generateUserLotto(Money count){
-        System.out.println();
+        count.printCount();
         List<Lotto> lottos =  Lottos.generateLotto(count);
+        System.out.println();
         return lottos;
     }
 
@@ -43,15 +47,24 @@ public class GameController {
 
         Output.consoleLine(GameMessage.OUT_REQUEST_BONUS_NUMBER_MESSAGE);
         int bonusNumbers = Integer.parseInt(Input.consoleLine());
-                WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumbers);
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumbers);
 
-                return winningLotto;
+        return winningLotto;
     }
 
     private List<Integer> splitNumber(String str){
-
+        System.out.println();
         return Arrays.stream(str.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    private void printResult() {
+        System.out.println(GameMessage.OUT_RESULT_LOTTO_START_MESSAGE);
+        System.out.println(GameMessage.OUT_RESULT_CORRECT_THREE_MESSAGE);
+        System.out.println(GameMessage.OUT_RESULT_CORRECT_FOUR_MESSAGE);
+        System.out.println(GameMessage.OUT_RESULT_CORRECT_FIVE_MESSAGE);
+        System.out.println(GameMessage.OUT_REQUEST_BONUS_NUMBER_MESSAGE);
+        System.out.println(GameMessage.OUT_RESULT_CORRECT_SIX_MESSAGE);
     }
 }

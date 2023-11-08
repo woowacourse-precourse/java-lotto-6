@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.Message.GameMessage;
+
 public class Money {
 
         int money;
@@ -16,9 +18,14 @@ public class Money {
                 this.count = money % 1000;
             }
         }
+        public void printCount(){
+            System.out.printf(count + GameMessage.OUT_QUNTITY_LOTTO_MESSAGE);
+        }
+
         public void minusCount(){
             --count;
         }
+
         public boolean checkCount(){
             if(count == 0){
                 return false;

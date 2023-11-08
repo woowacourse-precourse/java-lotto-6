@@ -28,7 +28,7 @@ public class WinningLotto extends Lotto implements Subject {
         observers.add(o);
     }
 
-    @Override
+    @Override // 이후 확장성을 위해 구현
     public void removeObserver(Observer o) {
         observers.remove(o);
     }

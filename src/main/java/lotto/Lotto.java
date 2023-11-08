@@ -17,17 +17,17 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        checkLottoSize(numbers);
-        checkLottoNumberRange(numbers);
+        checkSize(numbers);
+        checkNumberRange(numbers);
     }
 
-    private static void checkLottoSize(List<Integer> numbers) {
+    private static void checkSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(INVALID_LOTTO_SIZE);
         }
     }
 
-    private void checkLottoNumberRange(List<Integer> numbers) {
+    private void checkNumberRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(number -> number < START_RANGE || number > END_RANGE)) {
             throw new IllegalArgumentException(INVALID_LOTTO_RANGE);
         }

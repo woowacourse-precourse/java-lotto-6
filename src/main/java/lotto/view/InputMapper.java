@@ -2,7 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import lotto.dto.PurchaseAmountRequest;
-import lotto.dto.WinningNumbersRequest;
+import lotto.dto.WinningNumberRequest;
 import lotto.validator.InputValidator;
 
 public class InputMapper {
@@ -14,9 +14,9 @@ public class InputMapper {
         return new PurchaseAmountRequest(Integer.valueOf(input));
     }
 
-    public WinningNumbersRequest inputToWinningNumbersRequest(String input) {
+    public WinningNumberRequest inputToWinningNumberRequest(String input) {
         InputValidator.validateCommaSeparatedIntegers(input);
-        return new WinningNumbersRequest(
+        return new WinningNumberRequest(
             List.of(input.split(WINNING_NUMBER_DELIMITER))
                 .stream()
                 .map(Integer::valueOf)

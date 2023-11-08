@@ -1,12 +1,20 @@
-package lotto.utils;
+package lotto.util;
 
 import static lotto.message.ErrorMessage.*;
 
 public class Validator {
     private static final int MONEY_UNIT = 1000;
 
-    private static void checkDivisibleByMoneyUnit(int money) {
-        if (money % MONEY_UNIT != 0) {
+    public static void validateLottoPurchaseAmount(String money) {
+        checkDivisibleByMoneyUnit(money);
+        checkExistOfValue(money);
+        checkNumericInput(money);
+        checkNegativeNumber(money);
+    }
+
+    private static void checkDivisibleByMoneyUnit(String inputValue) {
+        int inputNum = Integer.parseInt(inputValue);
+        if (inputNum % MONEY_UNIT != 0) {
             throw new IllegalArgumentException(MONEY_UNIT_ERROR.getMessage());
         }
     }
@@ -26,8 +34,9 @@ public class Validator {
         }
     }
 
-    private static void checkNegativeNumber(int number) {
-        if (number < 0) {
+    private static void checkNegativeNumber(String inputValue) {
+        int inputNum = Integer.parseInt(inputValue);
+        if (inputNum < 0) {
             throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR.getMessage());
         }
     }

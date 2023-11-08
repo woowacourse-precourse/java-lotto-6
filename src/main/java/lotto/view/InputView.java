@@ -1,13 +1,16 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.Money;
 import lotto.message.InputMessage;
+import lotto.util.Validator;
 
 public class InputView {
-    public String getLottoPurchaseAmount() {
+    public int getLottoPurchaseAmount() {
         System.out.println(InputMessage.INPUT_PURCHASE_AMOUNT.getMessage());
-
-        return Console.readLine();
+        String input = Console.readLine();
+        Validator.validateLottoPurchaseAmount(input);
+        return Integer.parseInt(input);
     }
 
     public String getWinningNumbers() {

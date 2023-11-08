@@ -1,13 +1,12 @@
 package lotto.controller;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.ArrayList;
 import lotto.model.BonusNumber;
 import lotto.model.Budget;
 import lotto.model.Lotto;
 import lotto.model.LottoAnswer;
-import lotto.model.Policy;
 import lotto.model.Result;
 import lotto.model.User;
 import lotto.service.LottoService;

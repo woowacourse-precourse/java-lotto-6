@@ -3,10 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.List;
+import java.util.*;
 
 
 public class Player{
@@ -41,8 +38,8 @@ public class Player{
         lotto = new List[this.numberOfTickets];
 
         for(int i=0; i< lotto.length; i++){
-            lotto[i] = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Judgment.lottoSort(lotto[i]);
+            lotto[i] = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Collections.sort(lotto[i]);
         }
     }
 

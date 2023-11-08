@@ -59,8 +59,12 @@ public class Judgment{
 
     public List<Integer> splitNumbers(String input){
         String[] splitComma = input.split(",");
-        int[] intArray = Arrays.stream(splitComma).mapToInt(Integer::parseInt).toArray();
-        List<Integer> numbers = Arrays.stream(intArray).boxed().collect(Collectors.toList());
+
+        List<Integer> numbers = new ArrayList<>();
+        numbers = Arrays.stream(splitComma)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
         Set<Integer> numbersSet = new HashSet<>(numbers);
 
         if(numbersSet.size()!= numbers.size()){ // 입력된 로또 번호에 중복값이 있는지 확인
@@ -101,10 +105,6 @@ public class Judgment{
 
 
         return numberOfTickets;
-    }
-
-    public static void lottoSort(List<Integer> ticket) {
-        Collections.sort(ticket);
     }
 
     public int getBonus() {

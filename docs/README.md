@@ -43,12 +43,50 @@
 ---
 #### 필드
 
-- `private List<Integer> `
-
+- `private List<Integer> numbers`
+  - 오름차순으로 정렬된 6자리의 로또 번호
 #### 메소드
+
+- `public Lotto()`
+  - 하나의 로또를 발급한다.
+
+- `public Lotto(List<Integer> numbers)`
+  - 입력받은 번호들 당첨 로또로 생성한다.
+- `private void validate(List<Integer> numbers)`
+  - `Procedure.DRAW_WINNING_NUMBERS.checkPossibleError()`를 활용해 발생할 수 있는 에러를 체크한다.
+
+- `private void sortNumbersAscending()`
+  - 숫자들을 정렬한다.
 
 ---
 
+### `class` LottoBuyer
+로또를 구매해 게임을 진행하는 사람
+
+---
+#### 필드
+
+- `private List<Lotto> purchasedLottoes`
+  - 구매한 로또
+- `private Lotto winningNumbers`
+  - 입력받은 당첨 번호
+- `private int bonusNumber`
+  - 입력받은 보너스 번호
+- `private int money`
+  - 구매한 금액
+- `private int prizes`
+  - 당첨 금액
+
+#### 메소드
+
+- `public LottoBuyer(List<Lotto> purchasedLottoes, Lotto winningNumbers, int bonusNumber, int money)`
+  - 구매한 로또, 당첨번호, 보너스 번호, 구매 금액으로 로또 구매자를 생성한다.
+
+- `public int compareLottoesWithWinningNumber()`
+  - 몇 개가 맞았는지 확인하는 메소드
+- `public boolean compareLottoesWithBonusNumber()`
+  - 보너스 번호랑 일치하는게 있는지 확인하는 메소드
+---
 ### `enum` ErrorType
 
 나올 수 있는 에러 상태와 검증 로직을 가지는 상수 

@@ -10,6 +10,8 @@ import java.util.List;
 
 public class LottoController {
 
+    private static final int LOTTO_UNIT_PRICE = 1000;
+
     private final InputView inputView;
     private final OutputView outputView;
     private final LotteryMachine lotteryMachine;
@@ -21,9 +23,7 @@ public class LottoController {
     }
 
     public void run() {
-        Money purchaseMoney = getMoney();
-
-        int lottoQuantity = getLottoQuantity(purchaseMoney);
+        int lottoQuantity = getLottoQuantity();
 
         List<Lotto> lottos = generateRandomLottos(lottoQuantity);
 
@@ -33,7 +33,7 @@ public class LottoController {
 
         WinningResult winningResult = lotteryMachine.judge(lottos, lottoWinnerNumbers, lottoBonusNumber);
 
-        outputView.writeResult(winningResult, new Yield(purchaseMoney, winningResult.getRewardMoney()));
+        outputView.writeResult(winningResult, new Yield(new Money(LOTTO_UNIT_PRICE * lottoQuantity), winningResult.getRewardMoney()));
     }
 
     private List<Lotto> generateRandomLottos(int lottoQuantity) {
@@ -54,15 +54,16 @@ public class LottoController {
         }
     }
 
-    private int getLottoQuantity(Money purchaseMoney) {
+    private int getLottoQuantity() {
         try{
-            int availableForPurchase = purchaseMoney.quantityAvailableForPurchase(1000);
+            Money purchaseMoney = getMoney();
+            int availableForPurchase = purchaseMoney.quantityAvailableForPurchase(LOTTO_UNIT_PRICE);
             outputView.writeBlank();
             return availableForPurchase;
         } catch (IllegalArgumentException e) {
             outputView.writeWithErrorMessage(e.getMessage());
             outputView.writeBlank();
-            return getLottoQuantity(purchaseMoney);
+            return getLottoQuantity();
         }
     }
 

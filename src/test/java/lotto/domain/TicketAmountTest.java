@@ -60,15 +60,18 @@ public class TicketAmountTest {
     @Test
     void createRateOfReturn() {
         List<LottoRanking> lottoRank = new ArrayList<>();
-        lottoRank.add(LottoRanking.valueOf(4, false));
-        lottoRank.add(LottoRanking.valueOf(5, true));
+        lottoRank.add(LottoRanking.FOURTH);
+        lottoRank.add(LottoRanking.SECOND);
 
         String input = "8000";
         TicketAmount ticketAmount = new TicketAmount(input);
         Result lottoResult = new Result(lottoRank);
-        int totalPrize = 30_050_000;
 
-        double rateOfReturn = (double) totalPrize / Integer.parseInt(input) * 100;
-        assertEquals(rateOfReturn, ticketAmount.calculateRateOfReturn(lottoResult));
+        double expectedRateOfReturn = (double) lottoResult.calculateTotalPrize()
+                / Integer.parseInt(input) * 100;
+
+        assertEquals(expectedRateOfReturn,
+                ticketAmount.calculateRateOfReturn(lottoResult));
     }
+
 }

@@ -20,11 +20,11 @@ public class Purchase {
     private void getPurchaseCount(){
         Scanner scanner = new Scanner(System.in);
         try {
-            System.out.print(ServiceMessage.getMessageByCode(101));
+            System.out.println(ServiceMessage.getMessageByCode(101));
             this.money = scanner.nextLine();
             isValidInput = isValidate(money);
         } catch (IllegalArgumentException e) {
-            System.out.print(e);
+            System.out.print(e.getMessage());
         }
     }
     private boolean isValidate(final String money) {

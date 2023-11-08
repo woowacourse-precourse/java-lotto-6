@@ -48,15 +48,16 @@ public class Game {
         this.bonus = Integer.parseInt(Console.readLine());
     }
 
-    private void checkLotto(){
+    private void checkLottos(){
         for(int i=0;i<this.count;i++){
             // 중복 여부 확인
+            System.out.println(buy.get(i).compareOther(answer));
         }
     }
 
     private double result(){
         double res_result=0;
-        checkLotto();
+        checkLottos();
         res_result = (correct[0]*5000)+(correct[1]*50000)+(correct[2]*1500000)+(correct[3]*30000000)+(correct[4]*2000000000);
         return res_result;
     }
@@ -66,5 +67,6 @@ public class Game {
         generate();
         userWinning();
         userBonus();
+        result();
     }
 }

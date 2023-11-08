@@ -16,14 +16,15 @@ public class LottoGame {
     private final Map<LottoResult, Integer> resultCounts = new EnumMap<>(LottoResult.class);
     private LottoWinning winning = new LottoWinning();
 
-
     public void start() {
         UserInput input = new UserInput();
         int count = input.purchase();
-        guessNumbers(count,generateLottoNumbers(count),input.luckyNumber(),input.bonusNumber());
+        Map<LottoResult,Integer> map = guessNumbers(generateLottoNumbers(count),input.luckyNumber(),input.bonusNumber());
+        winning.winningLottos(map); // 당첨 통계 출력
+        int earningMoney = winning.money(resultCounts); // 총 당첨금
+        winning.calcualteEarningRate(count*1000, earningMoney);
     }
 
-    // 1000으로 나누어 지는지 확인
     public boolean isNotDivisibleBy1000(int amount) {
         if (amount % 1000 != 0) {
             System.out.println(ERROR + " 1000으로 나누어 떨어지는 금액을 입력하세요.");
@@ -66,33 +67,41 @@ public class LottoGame {
         }
     }
 
-    // 로또 번호 맞추기
-    public void guessNumbers(int purchase, List<Lotto> randoms, List<Lotto> lucky, int bonus) {
+    public Map<LottoResult, Integer> guessNumbers(List<Lotto> randoms, List<Lotto> lucky, int bonus) {
+        initializeResultCounts(resultCounts);
+        countMatchingNumbers(resultCounts, randoms, lucky, bonus);
+
+        return resultCounts;
+    }
+
+    private void initializeResultCounts(Map<LottoResult, Integer> resultCounts) {
         for (LottoResult result : LottoResult.values()) {
             resultCounts.put(result, 0);
         }
+    }
+
+    private void countMatchingNumbers(Map<LottoResult, Integer> resultCounts, List<Lotto> randoms, List<Lotto> lucky, int bonus) {
         for (Lotto random : randoms) {
-            int count = 0;
-            for (int i = 0; i < 6; i++) {
-                int number = random.getNumber(i);
-                if (isNumberInLuckyList(number, lucky) || number == bonus) {
-                    count++;
-                }
-            }
+            int count = countMatchingNumbersInLotto(random, lucky, bonus);
             if (count >= 3 && count <= 6) {
-                LottoResult result = LottoResult.values()[count - 3]; // 해당되는 value 가져오기
+                LottoResult result = LottoResult.values()[count - 3];
                 resultCounts.put(result, resultCounts.get(result) + 1);
             }
         }
-
-        winning.winningLottos(resultCounts); // 당첨 통계
-        int earningMoney = winning.money(resultCounts); // 총 당첨금
-        System.out.println(earningMoney);
-        int totalRate = winning.calcualteEarningRate(purchase*1000, earningMoney);
-        System.out.printf("총 수익률은 %.2f%% 입니다.%n",(float)totalRate);
     }
 
-    public boolean isNumberInLuckyList(int number, List<Lotto> lucky) {
+    private int countMatchingNumbersInLotto(Lotto random, List<Lotto> lucky, int bonus) {
+        int count = 0;
+        for (int i = 0; i < 6; i++) {
+            int number = random.getNumber(i);
+            if (isNumberInLuckyLotto(number, lucky) || number == bonus) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public boolean isNumberInLuckyLotto(int number, List<Lotto> lucky) {
         for (Lotto lotto : lucky) {
             for (int i = 0; i < 6; i++) {
                 if (lotto.getNumber(i) == number) {

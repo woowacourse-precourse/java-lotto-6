@@ -27,7 +27,9 @@ public class LottoWinning {
     }
 
     // 수익률 계산
-    public int calcualteEarningRate(int amount, int prizeMoney){
-        return ((prizeMoney - amount)/amount) * 100;
+    public double calcualteEarningRate(int amount, int prizeMoney){
+        double earningRate =  ((prizeMoney - amount)/amount) * 100;
+        System.out.printf("총 수익률은 %.2f%% 입니다.%n",earningRate);
+        return earningRate;
     }
 }

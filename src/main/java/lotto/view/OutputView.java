@@ -62,8 +62,8 @@ public class OutputView {
         return count + "개";
     }
 
-    public static void income(double statistic) {
-        System.out.print(PREFIX_RATE_RETURN + statistic + SUFFIX_RATE_RETURN);
+    public static void income(String income) {
+        System.out.print(PREFIX_RATE_RETURN + income + SUFFIX_RATE_RETURN);
     }
 
     public static void nextLine() {

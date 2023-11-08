@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.constant.ErrorMessage.INPUT_NUMBER_INCLUDE_STRING_WARNING;
+import static lotto.constant.ErrorMessage.SPENT_AMOUNT_RANGE_WARNING;
 
 public class Money {
     private final int spendAmount;
@@ -25,6 +26,10 @@ public class Money {
     }
 
     private void validateRangeOfSpendAmount(String spendAmount) {
+        int spent = Integer.parseInt(spendAmount);
+        if(spent < 1000 || spent > 100000) {
+            throw new IllegalArgumentException(SPENT_AMOUNT_RANGE_WARNING);
+        }
     }
 
     private void validateDividedByThousand(String spendAmount) {

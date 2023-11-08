@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class BonusTest {
+
     Winning winning = new Winning("1,2,3,4,5,6");
 
     @DisplayName("입력한 번호가 숫자가 아니면 예외가 발생한다.")

@@ -38,7 +38,8 @@ public class Results {
                 + "3개 일치 (" + numbersToString(Rank.FIFTH.getPrize()) + "원) - " + resultCount.get(Rank.FIFTH) + "개\n"
                 + "4개 일치 (" + numbersToString(Rank.FOURTH.getPrize()) + "원) - " + resultCount.get(Rank.FOURTH) + "개\n"
                 + "5개 일치 (" + numbersToString(Rank.THIRD.getPrize()) + "원) - " + resultCount.get(Rank.THIRD) + "개\n"
-                + "5개 일치, 보너스 볼 일치 (" + numbersToString(Rank.SECOND.getPrize()) + "원) - " + resultCount.get(Rank.SECOND) + "개\n"
+                + "5개 일치, 보너스 볼 일치 (" + numbersToString(Rank.SECOND.getPrize()) + "원) - "
+                + resultCount.get(Rank.SECOND) + "개\n"
                 + "6개 일치 (" + numbersToString(Rank.FIRST.getPrize()) + "원) - " + resultCount.get(Rank.FIRST) + "개";
     }
 

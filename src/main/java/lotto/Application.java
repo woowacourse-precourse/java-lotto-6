@@ -9,6 +9,7 @@ import lotto.domain.Winning;
 import lotto.view.View;
 
 public class Application {
+
     public static void main(String[] args) {
         Tickets tickets = getValidTickets();
 
@@ -25,7 +26,7 @@ public class Application {
     }
 
     private static Tickets getValidTickets() {
-        while(true) {
+        while (true) {
             try {
                 return new Tickets(View.readPayment());
             } catch (IllegalArgumentException e) {
@@ -35,7 +36,7 @@ public class Application {
     }
 
     private static Winning getValidWinning() {
-        while(true) {
+        while (true) {
             try {
                 return new Winning(View.readWinningNumbers());
             } catch (IllegalArgumentException e) {
@@ -45,7 +46,7 @@ public class Application {
     }
 
     private static Bonus getValidBonus(Winning winning) {
-        while(true) {
+        while (true) {
             try {
                 return new Bonus(winning, View.readBonusNumber());
             } catch (IllegalArgumentException e) {

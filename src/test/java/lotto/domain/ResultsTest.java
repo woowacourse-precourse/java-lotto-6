@@ -12,7 +12,7 @@ public class ResultsTest {
             new Lotto(List.of(1, 2, 3, 4, 5, 6)),
             new Lotto(List.of(2, 3, 4, 5, 6, 7)),
             new Lotto(List.of(5, 6, 7, 8, 9, 10)),
-            new Lotto(List.of(11,12,13,14,15,16))
+            new Lotto(List.of(11, 12, 13, 14, 15, 16))
     );
     Winning winning = new Winning("1,2,3,4,5,6");
     Bonus bonus = new Bonus(winning, "7");

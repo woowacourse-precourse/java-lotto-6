@@ -1,8 +1,10 @@
 package lotto.dto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.AutoLottos;
+import lotto.domain.Lotto;
 
 public class AutoLottoDto {
     private final List<List<Integer>> lottos;
@@ -13,7 +15,11 @@ public class AutoLottoDto {
 
 
     public static AutoLottoDto fromEnity(final AutoLottos autoLottos) {
-        List<List<Integer>> lottos = autoLottos.getLottos().stream().map(lotto -> lotto.getLotto()).toList();
+        List<List<Integer>> lottos = new ArrayList<>();
+        for (Lotto lotto : autoLottos.getLottos()) {
+            List<Integer> sortedLotto = lotto.getLotto().stream().sorted().toList();
+            lottos.add(sortedLotto);
+        }
         return new AutoLottoDto(lottos);
     }
 

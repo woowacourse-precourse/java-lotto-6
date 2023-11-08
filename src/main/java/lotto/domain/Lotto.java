@@ -4,7 +4,8 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-
+    private static final int LOTTO_NUMBER_COUNT = 6;
+    
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
@@ -16,5 +17,4 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
 }

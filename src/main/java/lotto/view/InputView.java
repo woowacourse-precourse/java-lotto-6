@@ -1,11 +1,11 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.Set;
 import java.util.stream.Stream;
-import lotto.Lotto;
 
 public class InputView {
     public int inputPrice() {
@@ -36,15 +36,14 @@ public class InputView {
         }
     }
 
-    public Lotto inputWinNumbers() {
-        int[] winNumber;
+    public List<Integer> inputWinNumbers() {
         String input = Console.readLine().replace(" ", "");
 
         while (!validateWinNumbers(input)) {
             input = Console.readLine().replace(" ", "");
         }
-        winNumber = Stream.of(input.split(",")).mapToInt(Integer::parseInt).toArray();
-        return new Lotto(IntStream.of(winNumber).boxed().collect(Collectors.toList()));
+
+        return Stream.of(input.split(",")).mapToInt(Integer::parseInt).boxed().toList();
     }
 
     private boolean validateWinNumbers(String input) {
@@ -86,13 +85,15 @@ public class InputView {
     }
 
     private void checkDuplicateNumber(String[] inputs) throws IllegalArgumentException {
-        List<Integer> number = Stream.of(inputs).mapToInt(Integer::parseInt).boxed().toList();
-        if (number.size() != number.stream().distinct().toList().size()) {
+        Set<String> set = new HashSet<>(Arrays.asList(inputs));
+        if (set.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
 
     private void checkSixNumbers(String[] inputs) throws IllegalArgumentException {
-        Lotto lotto = new Lotto(Stream.of(inputs).mapToInt(Integer::parseInt).boxed().toList());
+        if (inputs.length != 6) {
+            throw new IllegalArgumentException();
+        }
     }
 }

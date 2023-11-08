@@ -29,8 +29,6 @@ public class LottoController {
 
     public void getWinNumber() {
         outputView.displayWinNumberQuestion();
-        Lotto winNumber = inputView.inputWinNumbers();
-
-        System.out.println(winNumber.toString());
+        List<Integer> winNumber = inputView.inputWinNumbers();
     }
 }

@@ -46,16 +46,10 @@ public class LottoGameController {
         int bonusWinningNumber = inputBonusWinningNumber(lottoWinningNumbers);
         WinningNumbers winningNumbers = createWinningNumbers(lottoWinningNumbers, bonusWinningNumber);
 
-        // 1. 결과 판단
-
-        lottoMachine.winningResult(puchaseLottos, winningNumbers);
-
-        lottoMachine.print();
-        //2. 결과 출력
-        printWinningStatistics();
-
+        printLottoResultStatistics(puchaseLottos, winningNumbers);
 
     }
+
 
     private PurchaseCost inputLottoPurchaseCost() {
 
@@ -146,8 +140,9 @@ public class LottoGameController {
         return bonusWinningNumber;
     }
 
-    private void printWinningStatistics() {
+    private void printLottoResultStatistics(List<Lotto> puchaseLottos, WinningNumbers winningNumbers) {
         output.printMessage(WINNING_STATISTICS);
+        lottoMachine.showWinningResult(puchaseLottos, winningNumbers);
     }
 
 }

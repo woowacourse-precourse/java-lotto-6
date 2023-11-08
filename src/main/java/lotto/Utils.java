@@ -15,10 +15,6 @@ public class Utils {
         return purchasePrice;
     }
 
-    public static List<Integer> makeLottoNumber() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
-    }
-
     public static List<Integer> convertStringToIntegers(String numbers) {
         String[] numberStrings = numbers.split(",");
         List<Integer> integerList = new ArrayList<>();
@@ -28,4 +24,7 @@ public class Utils {
         return integerList;
     }
 
+    public static List<Integer> makeLottoNumber() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
 }

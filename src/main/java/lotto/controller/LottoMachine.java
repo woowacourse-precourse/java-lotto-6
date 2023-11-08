@@ -43,6 +43,7 @@ public class LottoMachine {
 
         judgment.judge(lottoTicket);
         judgment.showResult(outputView);
+        judgment.showRateOfReturn(lottoReceipt.getAmount(), outputView);
     }
 
     public void start() {

@@ -24,8 +24,11 @@ public enum Rank {
     public static Rank findRank(int totalCount, int bonusCount) {
         Rank rank = getInstance(totalCount);
 
-        if(totalCount == 6 && bonusCount == 1) {
-            return SECOND_PLACE;
+        if(totalCount == 6){
+            if (bonusCount == 1){
+                return SECOND_PLACE;
+            }
+            return FIRST_PLACE;
         }
 
         return rank;

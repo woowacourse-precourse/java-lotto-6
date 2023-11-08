@@ -6,8 +6,11 @@ import lotto.domain.WinningNumber;
 import lotto.model.LottoTicket;
 import lotto.view.OutputView;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 public class Judgment {
     private HashMap<Rank, Integer> winningStatistics;
@@ -45,5 +48,29 @@ public class Judgment {
 
     public void showResult(OutputView outputView) {
         outputView.showWinningStatistics(winningStatistics);
+    }
+
+    private BigDecimal calcProfit() {
+        Set<Rank> keySet = winningStatistics.keySet();
+        BigDecimal profit = new BigDecimal("0");
+
+        for (Rank rank : keySet) {
+            BigDecimal money = new BigDecimal(rank.getMoney());
+            BigDecimal lottoCount = new BigDecimal(winningStatistics.get(rank));
+
+            profit = profit.add(money.multiply(lottoCount));
+        }
+
+        return profit;
+    }
+
+    public void showRateOfReturn(int purchaseAmount, OutputView outputView) {
+        BigDecimal profit = calcProfit();
+        BigDecimal rate = profit.divide(new BigDecimal(purchaseAmount))
+                .setScale(1, RoundingMode.HALF_UP);
+
+        System.out.println("수익금: " + profit);
+        System.out.println("결과: " + rate);
+        outputView.showRateOfReturn(rate.toString());
     }
 }

@@ -12,6 +12,7 @@ public class OutputView {
     private static final String WINNING_STATISTICS = "당첨 통계";
     private static final String DIVISION_LINE = "---";
     private static final String WINNING_STATISTICS_FORMAT = "%s (%s원) - %d개";
+    private static final String RATE_OF_RETURN_FORMAT = "총 수익률은 %s%%입니다.";
 
     public void showLottoCount(int count) {
         System.out.println(count + LOTTO_COUNT);
@@ -47,5 +48,10 @@ public class OutputView {
                 System.out.println(formatStatistics(rank, lottoCount));
             }
         }
+    }
+
+    public void showRateOfReturn(String rate) {
+        String result = String.format(RATE_OF_RETURN_FORMAT, rate);
+        System.out.println(result);
     }
 }

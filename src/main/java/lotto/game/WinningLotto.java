@@ -7,8 +7,8 @@ public class WinningLotto {
     private final Lotto winningLotto;
     private final int bonusNumber;
 
-    public WinningLotto(Lotto WinningLotto, int bonusNumber) {
-        this.winningLotto = WinningLotto;
+    public WinningLotto(Lotto winningLotto, int bonusNumber) {
+        this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
 

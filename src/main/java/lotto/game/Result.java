@@ -30,4 +30,8 @@ public enum Result {
         }
         return MISS;
     }
+
+    public int getWinningMoney() {
+        return winningMoney;
+    }
 }

@@ -2,6 +2,7 @@ package lotto.game;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,7 @@ import lotto.Lotto;
 
 public class LottoGame {
 
-    private static final int PRICE = 1000;
+    public static final int PRICE = 1000;
     private final int inputNumber;
 
     public LottoGame(int inputNumber) {
@@ -34,8 +35,8 @@ public class LottoGame {
         return lottoList;
     }
 
-    public WinningLotto createdWinningLotto(List<Integer> winningLottoNumbers, int bonusNumber) {
-        return new WinningLotto(new Lotto(winningLottoNumbers), bonusNumber);
+    public WinningLotto createdWinningLotto(List<Integer> winningNumber, int bonusNumber) {
+        return new WinningLotto(new Lotto(winningNumber), bonusNumber);
     }
 
     public Map<Result, Integer> getResultCount(List<Lotto> lottoList, WinningLotto winningLotto) {

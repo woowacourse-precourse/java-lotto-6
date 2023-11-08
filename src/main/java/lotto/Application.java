@@ -32,11 +32,12 @@ public class Application {
     }
 
     private static int readPaid() {
-
         while(true) {
             try {
                 int paid = InputUI.inputPaid();
-                if(paid % LOTTO_PRICE != 0) throw new IllegalArgumentException("[ERROR] 구입금액은 " + LOTTO_PRICE + "의 배수여야 합니다.");
+                if(paid % LOTTO_PRICE != 0) {
+                    throw new IllegalArgumentException("[ERROR] 구입금액은 " + LOTTO_PRICE + "의 배수여야 합니다.");
+                }
                 System.out.println();
                 return paid;
             }
@@ -51,7 +52,7 @@ public class Application {
 
     private static int setBought(int paid) {
         int bought = paid / LOTTO_PRICE;
-        System.out.println(bought + "개를 구매했습니다.");
+        OutputUI.outputBought(bought);
         return bought;
     }
 
@@ -135,22 +136,17 @@ public class Application {
     }
 
     private static void printResult() {
-        System.out.println("\n당첨 통계\n---");
+        OutputUI.outputResultTitle();
 
         for (int i = RANKING - 1; i >= 0; i--)  {
             Rank rank = ranks[i];
-            System.out.print(rank.getWins() + "개 일치");
-            if (i == Rank.SECOND.ordinal()){
-                System.out.print(", 보너스 볼 일치");
-            }
-            System.out.print(" (" + String.format("%,d", rank.getPrize()) + "원) - ");
-            System.out.println(lottoWinsCount[rank.ordinal()] + "개");
+            OutputUI.outputResult(rank, lottoWinsCount);
         }
     }
 
     private static void printProfit(int paid, long earned) {
         double profit = (double)earned / paid * 100.0;
-        System.out.println("총 수익률은 " + String.format("%.1f", profit) + "%입니다.");
+        OutputUI.outputProfit(profit);
     }
 }
 

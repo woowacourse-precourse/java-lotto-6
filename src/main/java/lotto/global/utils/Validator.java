@@ -45,7 +45,7 @@ public class Validator {
             validateFormat(number);
             validateRange(number);
         }
-        validateDuplication(numbers);
+        validateDuplication(numbers.stream().map(s -> Integer.parseInt(s)).collect(Collectors.toSet()));
         return true;
     }
 
@@ -64,11 +64,18 @@ public class Validator {
         return true;
     }
 
-    private static boolean validateDuplication(List<String> input) {
-        Set<String> numbers = input.stream().collect(Collectors.toSet());
+    private static boolean validateDuplication(Set<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(LOTTO_SIZE_ERROR_MESSAGE);
         }
+        return true;
+    }
+
+    public static boolean validateBonusNumber(List<Integer> winningNumbers, String bonusNumber) {
+        validateFormat(bonusNumber);
+        validateRange(bonusNumber);
+        winningNumbers.add(Integer.parseInt(bonusNumber));
+        validateDuplication(winningNumbers.stream().collect(Collectors.toSet()));
         return true;
     }
 }

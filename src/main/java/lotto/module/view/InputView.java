@@ -29,4 +29,9 @@ public class InputView {
         numbers.addAll(List.of(arr));
         return numbers;
     }
+
+    public static String readBonusNumber() {
+        String input = readLine();
+        return input;
+    }
 }

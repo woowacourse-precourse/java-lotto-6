@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.view.LottoErrorMessage.INVALID_NEGATIVE_PAYMENT;
+import static lotto.view.LottoExceptionErrorMessage.*;
 
 public class Payment {
 

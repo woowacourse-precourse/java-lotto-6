@@ -37,7 +37,7 @@ public class LottoWriteParser {
                             String.format(WINNING_NUMBER_MATCH_FORMAT.getMessage(), lottoRanking.getCorrectNumberCount())
                     );
                     if (lottoRanking.equals(LottoRanking.SECOND)) {
-                        stringBuilder.append(BONUS_NUMBER_MATCH_FORMAT);
+                        stringBuilder.append(BONUS_NUMBER_MATCH_FORMAT.getMessage());
                     }
                     stringBuilder.append(String.format(
                             RESULT_FORMAT.getMessage(),

@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.view.LottoErrorMessage.*;
+import static lotto.view.LottoExceptionErrorMessage.*;
 
 public class Lotto {
 

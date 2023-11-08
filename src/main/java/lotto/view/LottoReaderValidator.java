@@ -14,19 +14,19 @@ public class LottoReaderValidator {
 
     public static void validateWinningNumbers(String winningNumbers) {
         if (!(winningNumbers.matches(WINNING_NUMBERS))) {
-            throw new IllegalArgumentException(LottoErrorMessage.INVALID_LOTTO_NUMBER_FORMAT.getMessage());
+            throw new IllegalArgumentException(LottoInputErrorMessage.INVALID_LOTTO_NUMBER_FORMAT.getMessage());
         }
     }
 
     public static void validateMoney(String inputMoney) {
         if (!(inputMoney.matches(PAYMENT))) {
-            throw new IllegalArgumentException(LottoErrorMessage.INVALID_PAYMENT.getMessage());
+            throw new IllegalArgumentException(LottoInputErrorMessage.INVALID_PAYMENT.getMessage());
         }
     }
 
     public static void validateBonusNumber(String inputBonusNumber) {
         if (!(inputBonusNumber.matches(BONUS_NUMBER))) {
-            throw new IllegalArgumentException(LottoErrorMessage.INVALID_LOTTO_NUMBER_FORMAT.getMessage());
+            throw new IllegalArgumentException(LottoInputErrorMessage.INVALID_LOTTO_NUMBER_FORMAT.getMessage());
         }
     }
 
@@ -34,7 +34,7 @@ public class LottoReaderValidator {
             List<Integer> winningNumbers, int bonusNumber
     ) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(LottoErrorMessage.BONUS_NUMBER_NOT_IN_WINNING_NUMBERS.getMessage());
+            throw new IllegalArgumentException(LottoInputErrorMessage.BONUS_NUMBER_NOT_IN_WINNING_NUMBERS.getMessage());
         }
     }
 }

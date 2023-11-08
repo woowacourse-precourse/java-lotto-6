@@ -1,4 +1,4 @@
-package configuration;
+package lotto.configuration;
 
 import io.output.ConsoleWriter;
 import lotto.controller.LottoController;

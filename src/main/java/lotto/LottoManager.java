@@ -98,6 +98,6 @@ public class LottoManager {
             totalAmount += condition.getPrize() * result.getOrDefault(condition, 0);
         }
         double RoR = ((double) totalAmount / purchasedAmount) * 100;
-        return RoR;
+        return Math.round(RoR * 10) / 10.0;
     }
 }

@@ -1,6 +1,9 @@
 package lotto;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Application {
     public static final double ONE_LOTTO_PRICE = 1000;
 
@@ -30,5 +33,21 @@ public class Application {
             System.out.println("[ERROR] 구매금액은 숫자형식이어야 합니다.");
             throw e;
         }
+    }
+
+    // 입력값을 숫자리스트로 만드는 메서드
+    private static List<Integer> parseNumberList(String input) {
+        List<Integer> numberList = new ArrayList<>();
+
+        String[] numberStrings = input.split(",");
+        for (String numStr : numberStrings) {
+            try {
+                int number = Integer.parseInt(numStr);
+                numberList.add(number);
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 올바른 숫자 형식이 아닙니다: " + numStr);
+            }
+        }
+        return numberList;
     }
 }

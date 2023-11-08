@@ -31,4 +31,24 @@ class RankTest {
         );
     }
 
+    @DisplayName("생성된 로또 결과지의 랭크 개수는 6개이다.")
+    @Test
+    void createRankRepositorySize() {
+        Map<Rank, Integer> rankRepository = Rank.createRankRepository();
+
+        Assertions.assertThat(rankRepository).hasSize(6);
+    }
+
+    @DisplayName("생성된 로또 결과지의 초기 값들의 합은 0이다.")
+    @Test
+    void createRankRepositoryValue() {
+        Map<Rank, Integer> rankRepository = Rank.createRankRepository();
+
+        int sum = rankRepository.values()
+                .stream()
+                .mapToInt(Integer::intValue)
+                .sum();
+
+        Assertions.assertThat(sum).isEqualTo(0);
+    }
 }

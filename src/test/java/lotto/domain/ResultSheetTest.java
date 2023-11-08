@@ -32,6 +32,14 @@ class ResultSheetTest {
         Assertions.assertThat(countByRank).isEqualTo(1);
     }
 
+    @DisplayName("총 당첨 개수를 일치하게 추가한다.")
+    @Test
+    void getTotalCount() {
+        int totalCount = resultSheet.getTotalCount();
+
+        Assertions.assertThat(totalCount).isEqualTo(163);
+    }
+
     @DisplayName("수익률을 일치하게 반환한다.")
     @Test
     void getTotalProfit() {

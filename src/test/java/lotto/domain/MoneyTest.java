@@ -47,6 +47,8 @@ public class MoneyTest {
                 .hasMessage(ExceptionMessage.NOT_ENOUGH_MONEY);
     }
 
+
+    @DisplayName("돈이 충분하면 로또를 구매할 수 있다.")
     @Test
     void canPurchaseLottoSuccessTest() {
         Money money = new Money(LottoOption.LOTTO_PRICE);
@@ -54,6 +56,7 @@ public class MoneyTest {
         Assertions.assertThat(money.canPurchaseLotto()).isTrue();
     }
 
+    @DisplayName("돈이 부족하면 로또를 구매할 수 없다.")
     @Test
     void canPurchaseLottoFailTest() {
         Money money = new Money(LottoOption.LOTTO_PRICE);

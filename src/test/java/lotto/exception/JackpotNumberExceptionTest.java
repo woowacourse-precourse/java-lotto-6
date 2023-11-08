@@ -57,4 +57,11 @@ public class JackpotNumberExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨번호 입력 시 중복된 숫자를 입력하면 예외가 발생한다.")
+    @Test
+    public void inputJackpotNumberByDuplicateNumber() {
+        assertThatThrownBy(() -> InputValidator.checkJackpotNumberInput("1,1,2,3,4,5"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

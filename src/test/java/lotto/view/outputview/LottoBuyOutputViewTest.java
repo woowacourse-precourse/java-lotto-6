@@ -1,7 +1,7 @@
 package lotto.view.outputview;
 
+import lotto.domain.BuyLotto;
 import lotto.domain.Lotto;
-import lotto.domain.PurchasedLotto;
 import lotto.dto.BuyLottoDTO;
 import lotto.dto.DTO;
 import lotto.view.ParameterConfig;
@@ -54,20 +54,20 @@ class LottoBuyOutputViewTest {
     @ParameterizedTest
     @MethodSource("setBuyParam")
     @DisplayName("구입한 로또가 정상적으로 오름차순으로 나와야한다.")
-    void 구입_로또_출력_테스트(PurchasedLotto purchasedLotto) {
+    void 구입_로또_출력_테스트(BuyLotto buyLotto) {
         Map<String, DTO.Output> model = new HashMap<>();
-        BuyLottoDTO.Output dto = new BuyLottoDTO.Output(purchasedLotto);
+        BuyLottoDTO.Output dto = new BuyLottoDTO.Output(buyLotto);
         model.put(ParameterConfig.BUY_PRICE, dto);
         //when
         outputView.view(model);
         //then
-        String result = getExpectedResult(purchasedLotto);
+        String result = getExpectedResult(buyLotto);
         assertThat(outputMessage.toString()).contains(result);
     }
 
-    private String getExpectedResult(PurchasedLotto purchasedLotto) {
+    private String getExpectedResult(BuyLotto buyLotto) {
         StringBuilder sb = new StringBuilder();
-        for (Lotto lotto : purchasedLotto.lotto()) {
+        for (Lotto lotto : buyLotto.lotto()) {
             List<Integer> list = lotto.getNumbers()
                     .stream().sorted(Comparator.naturalOrder())
                     .toList();
@@ -79,7 +79,7 @@ class LottoBuyOutputViewTest {
 
     static Stream<Arguments> setBuyParam() {
         return Stream.of(
-                Arguments.of(new PurchasedLotto(List.of(
+                Arguments.of(new BuyLotto(List.of(
                         new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         new Lotto(List.of(10, 3, 4, 27, 21, 1)),
                         new Lotto(List.of(4, 3, 1, 27, 7, 10)),

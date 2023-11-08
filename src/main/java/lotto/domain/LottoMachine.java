@@ -13,7 +13,7 @@ public final class LottoMachine {
         this.lottoCreateModel = lottoCreateModel;
     }
 
-    public PurchasedLotto generateForPrice(long price) {
+    public BuyLotto generateForPrice(long price) {
         validate(price);
 
         int amount = (int) (price / PRICE_PER_LOTTO);
@@ -27,13 +27,13 @@ public final class LottoMachine {
         }
     }
 
-    private PurchasedLotto generateLotto(int amount) {
+    private BuyLotto generateLotto(int amount) {
         List<Lotto> lotto = new ArrayList<>();
 
         for (int i = 0; i < amount; i++) {
             Lotto generate = lottoCreateModel.generate();
             lotto.add(generate);
         }
-        return new PurchasedLotto(lotto);
+        return new BuyLotto(lotto);
     }
 }

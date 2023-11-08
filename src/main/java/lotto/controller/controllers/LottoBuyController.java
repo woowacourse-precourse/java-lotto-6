@@ -33,8 +33,8 @@ public final class LottoBuyController implements Controller {
     }
 
     private void viewBuyLottoNumbers(Map<String, ? super DTO.Output> outputs, Long price) {
-        BuyLottoDTO.Output purchasedLottoDTO = service.getPurchasedLottoDTO(price);
-        outputs.put(ParameterConfig.BUY_PRICE, purchasedLottoDTO);
+        BuyLottoDTO.Output buyLottoDto = service.getBuyLottoDto(price);
+        outputs.put(ParameterConfig.BUY_PRICE, buyLottoDto);
         outputView.view(outputs);
     }
 

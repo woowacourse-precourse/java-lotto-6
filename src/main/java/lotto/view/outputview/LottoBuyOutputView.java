@@ -1,7 +1,7 @@
 package lotto.view.outputview;
 
+import lotto.domain.BuyLotto;
 import lotto.domain.Lotto;
-import lotto.domain.PurchasedLotto;
 import lotto.dto.BuyLottoDTO;
 import lotto.dto.DTO;
 import lotto.view.OutputView;
@@ -17,13 +17,13 @@ public final class LottoBuyOutputView implements OutputView {
     public void view(Map<String, ? super DTO.Output> model) {
         if (model.containsKey(BUY_PRICE) && model.get(BUY_PRICE) != null) {
             BuyLottoDTO.Output buyLottoDto = (BuyLottoDTO.Output) model.get(BUY_PRICE);
-            viewAllBuyLotto(buyLottoDto.getPurchasedLotto());
+            viewAllBuyLotto(buyLottoDto.getBuyLotto());
             return;
         }
         viewBuyPriceText();
     }
 
-    private void viewAllBuyLotto(PurchasedLotto buyLotto) {
+    private void viewAllBuyLotto(BuyLotto buyLotto) {
         System.out.println(buyLotto.lotto().size() + "개를 구매했습니다.");
         for (Lotto lotto : buyLotto.lotto()) {
             System.out.println(sortByAscendingOrder(lotto));

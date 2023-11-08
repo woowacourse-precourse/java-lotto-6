@@ -37,6 +37,6 @@ public final class LottoResultController implements Controller {
         WinningLottoDTO winningLottoDto = (WinningLottoDTO) inputs.get(ParameterConfig.WINNING_LOTTO);
 
         WinningLotto winningLotto = new WinningLotto(winningLottoDto.getLotto(), winningLottoDto.getBonus());
-        service = new LottoResultService(winningLotto, buyLottoDto.getPurchasedLotto());
+        service = new LottoResultService(winningLotto, buyLottoDto.getBuyLotto());
     }
 }

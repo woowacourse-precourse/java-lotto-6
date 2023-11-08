@@ -5,8 +5,8 @@ import java.util.List;
 
 import static lotto.Error.Domain.EMPTY_LOTTO;
 
-public record PurchasedLotto(List<Lotto> lotto) {
-    public PurchasedLotto {
+public record BuyLotto(List<Lotto> lotto) {
+    public BuyLotto {
         validate(lotto);
     }
 

@@ -31,17 +31,17 @@ class LottoMachineTest {
         //given
         int price = 4000;
         //when
-        PurchasedLotto lottoGroup = lottoMachine.generateForPrice(price);
+        BuyLotto lottoGroup = lottoMachine.generateForPrice(price);
         //then
         assertThat(lottoGroup.lotto()).hasSize(4);
     }
 
     @Test
-    @DisplayName("generate하면 PurchasedLotto 클래스를 반환해야한다.")
-    void 생성시_PurchasedLotto_반환() {
+    @DisplayName("generate하면 BuyLotto 클래스를 반환해야한다.")
+    void 생성시_BuyLotto_반환() {
         //given
         int price = 4000;
         //when, then
-        assertThat(lottoMachine.generateForPrice(price)).isInstanceOf(PurchasedLotto.class);
+        assertThat(lottoMachine.generateForPrice(price)).isInstanceOf(BuyLotto.class);
     }
 }

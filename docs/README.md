@@ -14,7 +14,7 @@
     - `Lotto`의 패키지 변경은 가능
 
 
-- [x] PurchasedLotto : 구입한 로또들을 모아두는 일급 컬렉션
+- [x] BuyLotto : 구입한 로또들을 모아두는 일급 컬렉션
     - [x] `List<Lotto>`를 필드로 가진다.
     - [x] `Lotto`가 비어있다면 예외를 발생시킨다.
         - [x] List<Lotto>를 반환활때 unmodified 만든다.
@@ -52,7 +52,7 @@
     - [x] makeLotto(int totalPrice) : 총 가격만큼 로또 생성
         - [x] 로또를 개수만큼 생성한다.
         - [x] 구입 금액이 1000 단위로 나누어떨어지지 않으면 예외 발생
-        - [x] PurchasedLotto을 반환하도록 한다.
+        - [x] BuyLotto을 반환하도록 한다.
 
 - [x] LottoResult : 로또 당첨 결과를 가지는 클래스
     - [x] 총 당첨금액을 계산하는 함수를 가진다.
@@ -69,12 +69,12 @@
     - [x] LottoMachine을 생성자 주입 받는다.
     - [x] 구입 금액을 생성자로 가져야 한다.
     - [x] 구입 금액만큼 로또를 생성한다.
-    - [x] PurchasedLottoDTO.Output을 반환하는 메서드를 가져야한다.
+    - [x] BuyLottoDTO.Output을 반환하는 메서드를 가져야한다.
 
 
 - [x] LottoResultService : 로또 당첨 결과를 생성하는 서비스
     - [x] WinningNumber를 가진다.
-    - [x] PurchasedLotto를 가진다.
+    - [x] BuyLotto를 가진다.
     - [x] LottoResultDto를 생성하는 메서드를 가진다.
 
 ## DTO
@@ -88,10 +88,10 @@
         - [x] 출력 뷰에서 필요한 정보들은 모두 DTO.Output을 상속
     - DTO 클래스를 만든 이유: DTO 클래스를 인식하기 위해
 
-- [x] PurchasedLottoDTO : PurchasedLotto 대해 필요한 정보
-    - [x] Input : 입력에 필요한 PurchasedLotto 정보
+- [x] BuyLottoDTO : BuyLotto 대해 필요한 정보
+    - [x] Input : 입력에 필요한 BuyLotto 정보
         - [x] 총 구입 금액
-    - [x] Output : 출력에 필요한 PurchasedLotto 정보
+    - [x] Output : 출력에 필요한 BuyLotto 정보
         - [x] 각 로또들이 생성한 6자리 숫자(오름차순)
 
 

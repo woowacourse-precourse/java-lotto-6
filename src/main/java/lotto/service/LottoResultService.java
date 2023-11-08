@@ -10,17 +10,17 @@ import java.util.TreeMap;
 
 public final class LottoResultService {
     private final WinningLotto winningLotto;
-    private final PurchasedLotto purchasedLotto;
+    private final BuyLotto buyLotto;
 
-    public LottoResultService(WinningLotto winningLotto, PurchasedLotto purchasedLotto) {
+    public LottoResultService(WinningLotto winningLotto, BuyLotto buyLotto) {
         this.winningLotto = winningLotto;
-        this.purchasedLotto = purchasedLotto;
+        this.buyLotto = buyLotto;
     }
 
     public LottoResultDTO createLottoResultDto() {
         Map<LottoRankInfo, Integer> result = new EnumMap<>(LottoRankInfo.class);
 
-        for (Lotto lotto : purchasedLotto.lotto()) {
+        for (Lotto lotto : buyLotto.lotto()) {
             matchLottoRanks(result, lotto);
         }
         return convertDto(result);

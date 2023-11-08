@@ -1,6 +1,6 @@
 package lotto.dto;
 
-import lotto.domain.PurchasedLotto;
+import lotto.domain.BuyLotto;
 
 public final class BuyLottoDTO {
     private BuyLottoDTO() {
@@ -20,14 +20,14 @@ public final class BuyLottoDTO {
     }
 
     public static class Output extends DTO.Output {
-        private final PurchasedLotto purchasedLotto;
+        private final BuyLotto buyLotto;
 
-        public Output(PurchasedLotto purchasedLotto) {
-            this.purchasedLotto = purchasedLotto;
+        public Output(BuyLotto buyLotto) {
+            this.buyLotto = buyLotto;
         }
 
-        public PurchasedLotto getPurchasedLotto() {
-            return purchasedLotto;
+        public BuyLotto getBuyLotto() {
+            return buyLotto;
         }
     }
 }

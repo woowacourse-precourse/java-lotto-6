@@ -1,5 +1,6 @@
 package domain;
 
+import dto.WinningMatchResult;
 import exception.DuplicateTierConditionException;
 import exception.ImpossibleStateException;
 import java.util.Arrays;
@@ -50,7 +51,9 @@ public enum LottoWinningTier {
         tierCalculator.put(tierMatchCount, tier);
     }
 
-    public static Optional<LottoWinningTier> calculateTier(int matchCount, boolean matchBonus) {
+    public static Optional<LottoWinningTier> calculateTier(WinningMatchResult winningMatchResult) {
+        int matchCount = winningMatchResult.getMatchCount();
+        boolean matchBonus = winningMatchResult.isMatchBonus();
         validateMatchCondition(matchCount, matchBonus);
 
         return calculateBonusTier(matchCount, matchBonus)

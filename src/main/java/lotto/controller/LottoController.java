@@ -34,4 +34,9 @@ public class LottoController {
             }
         }
     }
+
+    public void showResult() {
+        OutputView.printWinningResult(lottoService.createWinningResults());
+        OutputView.printRateOfReturn(lottoService.createRateOfReturn());
+    }
 }

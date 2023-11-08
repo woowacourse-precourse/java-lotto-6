@@ -17,7 +17,6 @@ public class WinningResultCalculator {
             put(LottoData.FIFTH_PRIZE, 0);
             put(LottoData.BLANK, 0);
         }};
-
         totalPrizeMoney = 0;
     }
 

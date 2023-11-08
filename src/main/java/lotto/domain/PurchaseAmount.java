@@ -7,12 +7,9 @@ public class PurchaseAmount {
     private static final String NULL_SPACE = "";
     private final int amount;
     private final int numberOfLottoPurchased;
-
     private static final String PURCHASE_AMOUNT_IS_NOT_NUMBER = "[ERROR] 금액을 투입해 주셔야 합니다.";
     private static final String PURCHASE_AMOUNT_IS_NOT_EXCEED_ZERO = "[ERROR] 0을 초과한 금액을 투입해 주셔야 합니다.";
     private static final String PURCHASE_AMOUNT_IS_NOT_THOUSAND_UNITS = "[ERROR] 입력 금액은 1,000원 단위여야 합니다.";
-
-
 
     public PurchaseAmount(String amount) {
         amount = removeComma(amount);
@@ -28,7 +25,6 @@ public class PurchaseAmount {
     public int getNumberOfLottoPurchased() {
         return numberOfLottoPurchased;
     }
-
 
     private boolean isStringEmpty(String amount){
         return amount == null || amount.isBlank();
@@ -58,7 +54,6 @@ public class PurchaseAmount {
         } else if (!isDivideThousand(amount)) {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_IS_NOT_THOUSAND_UNITS);
         }
-
     }
 
     private int convertStringToInt(String amount){
@@ -68,6 +63,4 @@ public class PurchaseAmount {
     private int calculateNumberOfLottoByAmount(int amount){
         return amount/LOTTO_PRICE;
     }
-
-
 }

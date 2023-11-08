@@ -17,7 +17,6 @@ public enum LottoData {
     private int matchNumber;
     private int prize;
 
-
     LottoData(int matchNumber, int prize) {
         this.matchNumber = matchNumber;
         this.prize = prize;
@@ -44,7 +43,6 @@ public enum LottoData {
                 .filter(rankData -> rankData.isRankData(rankData, matchNumber, matchBonus))
                 .findAny().orElse(BLANK);
     }
-
 
     private boolean isFirstPrize(LottoData rankData) {
         return rankData == FIRST_PRIZE;
@@ -83,7 +81,6 @@ public enum LottoData {
     private boolean isMatchNumber(int rankMatchNumbers, int matchNumbers) {
         return rankMatchNumbers == matchNumbers;
     }
-
 
     public String getStaticsMessage(int count) {
         if (isSecondPrize(matchNumber, prize)) {

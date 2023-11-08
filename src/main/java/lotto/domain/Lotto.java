@@ -57,8 +57,6 @@ public class Lotto {
         validate(convetStringToIntegerList(splitComma(numbers)));
     }
     
-    
-    
     //입력값이 비어있는지 확인
     private boolean isStringEmpty(String numbers){
         return numbers == null || numbers.isBlank();

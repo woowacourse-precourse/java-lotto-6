@@ -6,7 +6,6 @@ import java.util.List;
 public class PurchaseLotto {
     private final List<Lotto> purchaseLottos;
 
-
     public PurchaseLotto(int countOfPurchase) {
         this.purchaseLottos = generateLottoNumbersPurchase(countOfPurchase);
     }

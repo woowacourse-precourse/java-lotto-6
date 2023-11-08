@@ -10,7 +10,6 @@ public class LottoMachine {
     private  static  final int LOTTO_NUMBER_SIZE = 6;//로또에 사용되는 번호 개수
     private final List<Integer> randomNumbers;
 
-
     //1~45 사이의 랜덤한 로또 번호 6개 생성
     private List<Integer> generateRandomNumber(){
         return Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER,LOTTO_END_NUMBER,LOTTO_NUMBER_SIZE);
@@ -28,6 +27,4 @@ public class LottoMachine {
     public List<Integer> getRandomNumbers(){
         return randomNumbers;
     }
-
-
 }

@@ -24,6 +24,9 @@ public class LottoView {
     private static final String COUNT_PRIZE_FORMAT = "%s (%s원) - %d개";
     private static final String TOTAL_PROFIT_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
+    private LottoView() {
+    }
+
     public static String readPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_PROMPT);
         String input = Console.readLine();

@@ -41,4 +41,21 @@ public class Utils {
         return orderedList;
     }
 
+    // 같은 숫자가 있는지 탐색
+    public static int binarySearch(List<Integer> list, int number) {
+        // 이진 탐색 결과가 null이 아니라면
+        if (Collections.binarySearch(list, number) > 0) {
+            return LottoInfoNumbers.ONE;
+        }
+        return LottoInfoNumbers.ZERO;
+    }
+
+    public static int countMatchNumbers(List<Integer> winningNumbers, List<Integer> userNumbers) {
+        int count = 0;
+        for (Integer userNumber : userNumbers) {
+            count += binarySearch(winningNumbers, userNumber);
+        }
+        return count;
+    }
+
 }

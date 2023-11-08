@@ -3,6 +3,7 @@ package domain;
 import static domain.LottoInfoNumbers.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class LottoManager {
@@ -20,4 +21,9 @@ public class LottoManager {
         List<Integer> lottoNumbers = new ArrayList<>(randoms);
         return new Lotto(lottoNumbers);
     }
+
+    public void checkUserLotto(User user, LottoValidation lottoValidation) {
+
+    }
+
 }

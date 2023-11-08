@@ -12,6 +12,7 @@ public class User {
     public User(int purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
+        initLottoResult();
     }
 
     public ArrayList<Lotto> getPurchasedLotto() {
@@ -41,6 +42,14 @@ public class User {
     public double getLotteryReturns() {
         double lotteryReturns = (getTotalPrize() / (double) purchaseAmount) * 100;
         return Math.round(lotteryReturns * 10) / 10.0;
+    }
+
+    private void initLottoResult() {
+        lottoResult.put(Rank.FIRST, 0);
+        lottoResult.put(Rank.SECOND, 0);
+        lottoResult.put(Rank.THIRD, 0);
+        lottoResult.put(Rank.FOURTH, 0);
+        lottoResult.put(Rank.FIFTH, 0);
     }
 
     private void validatePurchaseAmount(int purchaseAmount) {

@@ -35,7 +35,7 @@ public class Lotto {
 
     private void validateNumberRangeException(List<Integer> numbers) throws IllegalArgumentException {
         long result = numbers.stream()
-                .filter(num -> num <= 0 || num >= 46)
+                .filter(num -> num < 1 || num > 45)
                 .count();
         if (result != 0) {
             throw new IllegalArgumentException(ErrorMessageType.OUT_OF_LOTTO_NUMERICAL_RANGE.message());

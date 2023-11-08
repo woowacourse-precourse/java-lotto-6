@@ -81,6 +81,15 @@ public class Prize {
         System.out.println("---");
 
         for(int rank=1; rank < 6;rank++){
+            if(rank == 4){
+                System.out.println((rank+1)+"개 일치, 보너스 볼 일치 ("+matchMoney(rank)+"원) - "+winningCount[rank]+"개");
+                continue;
+            }
+
+            if(rank==5){
+                System.out.println((rank+1)+"개 일치 ("+matchMoney(rank)+"원) - "+winningCount[rank]+"개");
+                continue;
+            }
             System.out.println((rank+2)+"개 일치 ("+matchMoney(rank)+"원) - "+winningCount[rank]+"개");
         }
 

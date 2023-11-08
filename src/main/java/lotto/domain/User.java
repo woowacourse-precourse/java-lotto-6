@@ -77,4 +77,8 @@ public class User {
     public Map<LottoPrize, Integer> getLottoResult() {
         return lottoResult;
     }
+
+    public Double getProfitability() {
+        return profitability;
+    }
 }

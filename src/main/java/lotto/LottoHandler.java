@@ -38,13 +38,7 @@ public class LottoHandler {
     }
 
     public int calculateLottoTicketCount(String receivedPurchasePrice) {
-        int purchasePrice;
-        try {
-            purchasePrice = Integer.parseInt(removeSpaces(receivedPurchasePrice));
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
-        }
-
+        int purchasePrice = parseNumber(removeSpaces(receivedPurchasePrice));
         if (purchasePrice % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] " + formatPrice(LOTTO_PRICE) + "원 단위로만 입력해 주세요.");
         }
@@ -64,26 +58,27 @@ public class LottoHandler {
     public Lotto receiveWinningLotto(String receivedWinningLotto) {
         List<Integer> winningNumbers = new ArrayList<>();
         String[] separatedWinningLotto = receivedWinningLotto.split(",");
-        try {
-            for (String winningLotto : separatedWinningLotto) {
-                winningNumbers.add(Integer.parseInt(removeSpaces(winningLotto)));
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
+
+        for (String winningLotto : separatedWinningLotto) {
+            winningNumbers.add(parseNumber(removeSpaces(winningLotto)));
         }
+
         List<Integer> winningLottoNumbers = sort(winningNumbers);
         return new Lotto(winningLottoNumbers);
     }
 
     public int receiveBonusNumber(String receivedBonusNumber) {
-        int bonusNumber = 0;
+        int bonusNumber = parseNumber(removeSpaces(receivedBonusNumber));
+        validBonusNumber(bonusNumber);
+        return bonusNumber;
+    }
+
+    private int parseNumber(String input) {
         try {
-            bonusNumber = Integer.parseInt(removeSpaces(receivedBonusNumber));
+            return Integer.parseInt(removeSpaces(input));
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
         }
-        validBonusNumber(bonusNumber);
-        return bonusNumber;
     }
 
     private void validBonusNumber(int bonusNumber) {

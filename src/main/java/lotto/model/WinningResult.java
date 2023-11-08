@@ -17,6 +17,15 @@ public class WinningResult {
         this.lotto = lotto;
     }
 
+    private static Ranking getRankingForRank(int rank) {
+        for (Ranking ranking : Ranking.values()) {
+            if (ranking.getRank() == rank) {
+                return ranking;
+            }
+        }
+        return Ranking.NONE;
+    }
+
     private static int determineWinningRank(Lotto lotto, LottoTicket lottoTicket, WinningNumbers winningNumbers) {
         int count = getMatchingCount(lotto, lottoTicket);
         if (isSecondRank(lottoTicket, winningNumbers.getBonusNumber(), count)) {

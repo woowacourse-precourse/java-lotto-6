@@ -1,22 +1,36 @@
 package lotto.model.dto;
 
+import java.util.Arrays;
+import java.util.List;
 import lotto.model.MarginRate;
 import lotto.model.WinningResult;
+import lotto.model.enums.LottoPlace;
 
 public class LottoResult {
-    private final WinningResult winningResult;
-    private final MarginRate marginRate;
+    private final List<WinningResultDto> winningResultDtos;
+    private final MarginRateDto marginRateDto;
 
     public LottoResult(WinningResult winningResult, MarginRate marginRate) {
-        this.winningResult = winningResult;
-        this.marginRate = marginRate;
+        this.winningResultDtos = generateWinningResultDtos(winningResult);
+        this.marginRateDto = new MarginRateDto(marginRate);
     }
 
-    public WinningResult getWinningResult() {
-        return this.winningResult;
+    public List<WinningResultDto> getWinningResultDtos() {
+        return winningResultDtos;
     }
 
-    public MarginRate getMarginRate() {
-        return this.marginRate;
+    public MarginRateDto getMarginRateDto() {
+        return marginRateDto;
+    }
+
+    private List<WinningResultDto> generateWinningResultDtos(WinningResult winningResult) {
+        return Arrays.stream(LottoPlace.values())
+                .map(lottoPlace -> mapWinningResultDto(winningResult, lottoPlace))
+                .toList();
+    }
+
+    private WinningResultDto mapWinningResultDto(WinningResult winningResult, LottoPlace lottoPlace) {
+        Integer countLottos = winningResult.getCount(lottoPlace);
+        return new WinningResultDto(lottoPlace, countLottos);
     }
 }

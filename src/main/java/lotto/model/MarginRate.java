@@ -5,20 +5,31 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 
 public class MarginRate {
-    private final double marginRate;
+    private final BigDecimal marginRateData;
 
     public MarginRate(Money purchasingMoney, Money totalRevenue) {
-        this.marginRate = calculateMarginRate(purchasingMoney, totalRevenue);
+        this.marginRateData = calculateMarginRate(purchasingMoney, totalRevenue);
     }
 
-    public double getMarginRate() {
-        return marginRate;
+    public MarginRate(BigDecimal marginRateData) {
+        this.marginRateData = marginRateData;
     }
 
-    private double calculateMarginRate(Money purchasingMoney, Money totalRevenue) {
+    public BigDecimal getMarginRateData() {
+        return marginRateData;
+    }
+
+    private BigDecimal calculateMarginRate(Money purchasingMoney, Money totalRevenue) {
         return totalRevenue.divideBy(purchasingMoney)
                 .multiply(new BigDecimal(100))
-                .round(new MathContext(3, RoundingMode.HALF_UP))
-                .doubleValue();
+                .setScale(1,RoundingMode.HALF_UP);
+    }
+
+    public BigDecimal seperateWholePart() {
+        return this.marginRateData.setScale(0, RoundingMode.DOWN);
+    }
+
+    public BigDecimal seperatefractionalPart() {
+        return this.marginRateData.subtract(seperateWholePart()).movePointRight(1);
     }
 }

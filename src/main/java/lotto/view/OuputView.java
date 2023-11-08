@@ -2,15 +2,11 @@ package lotto.view;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.List;
-import lotto.model.LottoPlace;
-import lotto.model.LottoStatus;
-import lotto.model.MarginRate;
-import lotto.model.Money;
-import lotto.model.WinningResult;
 import lotto.model.dto.LottoPaper;
 import lotto.model.dto.LottoResult;
+import lotto.model.dto.MarginRateDto;
+import lotto.model.dto.WinningResultDto;
 
 public class OuputView {
     private static final String COMMA = ",";
@@ -59,36 +55,30 @@ public class OuputView {
     public void printLottoResult(LottoResult lottoResult) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        printWinningResult(lottoResult.getWinningResult());
-        printMarginRate(lottoResult.getMarginRate());
+        printWinningResult(lottoResult.getWinningResultDtos());
+        printMarginRate(lottoResult.getMarginRateDto());
     }
 
-    private void printWinningResult(WinningResult winnigResult) {
-        Arrays.stream(LottoPlace.values())
-                .forEach(lottoPlace -> {
-                    Integer count = winnigResult.getCount(lottoPlace);
-                    printWinningResultDetail(lottoPlace, count);
-                });
+    private void printWinningResult(List<WinningResultDto> winningResultDto) {
+        winningResultDto.forEach(this::printWinningResultDetail);
     }
 
-    private void printWinningResultDetail(LottoPlace lottoPlace, Integer count) {
-        LottoStatus lottoStatus = lottoPlace.getLottoStatus();
-        Money prize = lottoPlace.getPrizeAmount();
+    private void printWinningResultDetail(WinningResultDto winningResultDto) {
+        int correctNumberCount = winningResultDto.getCountCorrect();
+        boolean isBonusNumberCorrect = winningResultDto.isBonusBallCorrect();
+        BigDecimal prizeAmount = winningResultDto.getAmount();
+        int countLottos = winningResultDto.getCountLottos();
 
-        String detail = lottoStatus.getCorrectNumber()
-                + "개 일치"
-                + ifBonusRequired(lottoStatus.isBonusNumberCorrect())
-                + " ("
-                + formatDecimal(prize.getAmount())
-                + "원)"
-                + " - "
-                + count
-                + "개";
+        String winningResultDetail = String.format("%d개 일치%s (%s원) - %d개,"
+                , correctNumberCount
+                , ifBonusCorrect(isBonusNumberCorrect)
+                , formatDecimal(prizeAmount)
+                , countLottos);
 
-        System.out.println(detail);
+        System.out.println(winningResultDetail);
     }
 
-    private String ifBonusRequired(boolean isBonusNumberCorrect) {
+    private String ifBonusCorrect(boolean isBonusNumberCorrect) {
         if (isBonusNumberCorrect) {
             return ", 보너스 볼 일치";
         }
@@ -100,8 +90,12 @@ public class OuputView {
         return decimalFormat.format(amount);
     }
 
-    private void printMarginRate(MarginRate marginRate) {
-        System.out.println("총 수익률은 " + marginRate.getMarginRate() + "%입니다.");
+    private void printMarginRate(MarginRateDto marginRateDto) {
+        System.out.println("총 수익률은 "
+                + formatDecimal(marginRateDto.getWholePart())
+                + "."
+                + marginRateDto.getFractionalPart().toPlainString()
+                + "%입니다.");
     }
 
     private void printEmptyLine() {

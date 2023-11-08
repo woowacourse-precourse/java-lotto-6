@@ -2,6 +2,8 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -13,8 +15,8 @@ class MarginRateTest {
     void createMarginRate(String purchasingMoney, String totalRevenue, String expected) {
         MarginRate marginRate = new MarginRate(new Money(purchasingMoney), new Money(totalRevenue));
 
-        double result = marginRate.getMarginRate();
-        double expectedResult = Double.parseDouble(expected);
+        BigDecimal result = marginRate.getMarginRateData();
+        BigDecimal expectedResult = new BigDecimal(expected);
 
         assertThat(result).isEqualTo(expectedResult);
     }

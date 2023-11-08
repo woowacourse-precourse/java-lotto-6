@@ -29,13 +29,13 @@ public class WinningLotto {
         Set<Integer> nonDuplicateNumbers = new HashSet<>(winningLotto);
         nonDuplicateNumbers.add(bonusNumber);
         if (nonDuplicateNumbers.size() != REQUIRED_LOTTO_SIZE) {
-            throw new IllegalArgumentException(ExceptionMessage.DuplicateError);
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_ERROR);
         }
     }
 
     private void validateBonusRange(int bonusNumber) {
         if (bonusNumber < MIN_RANGE || bonusNumber > MAX_RANGE) {
-            throw new IllegalArgumentException(ExceptionMessage.RangeError);
+            throw new IllegalArgumentException(ExceptionMessage.RANGE_ERROR);
         }
     }
 

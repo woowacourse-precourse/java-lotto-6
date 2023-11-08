@@ -27,13 +27,13 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(ExceptionMessage.SizeError);
+            throw new IllegalArgumentException(ExceptionMessage.SIZE_ERROR);
         }
     }
     private void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < MIN_RANGE || number > MAX_RANGE) {
-                throw new IllegalArgumentException(ExceptionMessage.RangeError);
+                throw new IllegalArgumentException(ExceptionMessage.RANGE_ERROR);
             }
         }
     }
@@ -42,7 +42,7 @@ public class Lotto {
         HashSet<Integer> hashSet = new HashSet<>();
         for(int number : numbers) {
             if(!hashSet.add(number)) {
-                throw new IllegalArgumentException(ExceptionMessage.DuplicateError);
+                throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_ERROR);
             }
         }
     }

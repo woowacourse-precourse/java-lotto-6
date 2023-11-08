@@ -20,13 +20,13 @@ public class Money {
 
     private void validateZero(int inputMoney) {
         if (inputMoney == ZERO) {
-            throw new IllegalArgumentException(ExceptionMessage.ZeroMoneyError);
+            throw new IllegalArgumentException(ExceptionMessage.ZERO_MONEY_ERROR);
         }
     }
 
     private void validateThousand(int inputMoney) {
         if (inputMoney % THOUSAND != ZERO) {
-            throw new IllegalArgumentException(ExceptionMessage.DivideMoneyError);
+            throw new IllegalArgumentException(ExceptionMessage.DIVIDE_MONEY_ERROR);
         }
     }
 

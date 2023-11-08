@@ -7,6 +7,8 @@ import java.util.Map;
 public class LottoReceipt {
     public List<Lotto> lottoTickets;
     public Map<Rank, Integer> winningStatistics = new HashMap<>();
+    public double profitRate;
+
 
     public void setProfitRate(double profitRate) {
         this.profitRate = profitRate;
@@ -15,8 +17,6 @@ public class LottoReceipt {
     public double getProfitRate() {
         return profitRate;
     }
-
-    public double profitRate;
 
     public LottoReceipt(List<Lotto> lottoTickets) {
         this.lottoTickets = lottoTickets;

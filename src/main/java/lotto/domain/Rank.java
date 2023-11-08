@@ -15,7 +15,8 @@ public enum Rank {
     private final long prizeMoney;
     public final BiFunction<Integer, Boolean, Boolean> rankSelection;
 
-    Rank(int matchingCount, boolean matchBonusNumber, long prizeMoney, BiFunction<Integer, Boolean, Boolean> rankSelection) {
+    Rank(int matchingCount, boolean matchBonusNumber, long prizeMoney,
+         BiFunction<Integer, Boolean, Boolean> rankSelection) {
         this.matchingCount = matchingCount;
         this.matchBonusNumber = matchBonusNumber;
         this.prizeMoney = prizeMoney;
@@ -25,7 +26,9 @@ public enum Rank {
     public static Rank from(int matchingCount, boolean matchBonusNumber) {
         return switch (matchingCount) {
             case 6 -> Rank.FIRST;
-            case 5 -> { yield matchBonusNumber ? Rank.SECOND : Rank.THIRD;}
+            case 5 -> {
+                yield matchBonusNumber ? Rank.SECOND : Rank.THIRD;
+            }
             case 4 -> Rank.FOURTH;
             case 3 -> Rank.FIFTH;
             default -> Rank.NONE;

@@ -13,6 +13,7 @@ import lotto.service.Output;
 public class Application {
     private static final int LOTTO_PRICE = 1000;
     public static final String MESSAGE_ERROR = "[ERROR]";
+
     public static void main(String[] args) {
         // 사용자 로또 발행
         int amount = validateAmount(Input.getPurchaseAmount());
@@ -42,7 +43,7 @@ public class Application {
 
     public static void validateDivisible(int amount) {
         if (amount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(MESSAGE_ERROR+"1000원 단위로 입력해주세요.");
+            throw new IllegalArgumentException(MESSAGE_ERROR + "1000원 단위로 입력해주세요.");
         }
     }
 
@@ -50,8 +51,8 @@ public class Application {
         List<Lotto> lottoTickets = new ArrayList<>();
         int value = amount / LOTTO_PRICE;
         for (int i = 0; i < value; i++) {
-             Lotto lotto = new Lotto(generateRandomNumber());
-             lottoTickets.add(lotto);
+            Lotto lotto = new Lotto(generateRandomNumber());
+            lottoTickets.add(lotto);
         }
         return lottoTickets;
     }

@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +28,7 @@ public class LottoPrizeCalculator {
         double roundedRate = Math.round(rate * 10.0) / 10.0;
         lottoReceipt.setProfitRate(roundedRate);
     }
+
     public static Rank checkRank(int matchCount, boolean matchBonusNumber) {
         return Rank.from(matchCount, matchBonusNumber);
     }

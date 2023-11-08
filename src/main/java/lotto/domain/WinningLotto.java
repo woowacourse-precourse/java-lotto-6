@@ -21,7 +21,6 @@ public class WinningLotto {
     private void validateBonusNumber() {
         validateNumberRange();
         validateNoDuplicates();
-        //validateNumericValues();
     }
 
     private void validateNoDuplicates() {
@@ -29,12 +28,9 @@ public class WinningLotto {
             throw new IllegalArgumentException();
         }
     }
-    private void validateNumericValues() {
-        // 여기에서 한번에 예외 체크할지 Input 클래스에서 나눠서 할지
-    }
 
     private void validateNumberRange() {
-        if(!isInRange(bonus)) {
+        if (!isInRange(bonus)) {
             throw new IllegalArgumentException();
         }
     }

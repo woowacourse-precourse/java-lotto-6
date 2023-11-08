@@ -22,7 +22,6 @@ public class Output {
         System.out.println();
         System.out.printf((MESSAGE_NUMBER_OF_LOTTO_PURCHASED) + "%n", lottoTickets.size());
         setNaturalOrder(lottoTickets);
-//        lottoTickets.forEach(System.out::println);
     }
 
     public static void setNaturalOrder(List<Lotto> lottoTickets) {

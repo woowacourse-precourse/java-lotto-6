@@ -4,15 +4,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Money {
-    public static int revenue = 0;
-    public static List<Integer> scores = Arrays.asList(0, 0, 0, 0, 0);
+    public List<Integer> scores = Arrays.asList(0, 0, 0, 0, 0, 0);
 
     public enum Score {
-        FIFTH(5000),
-        FOURTH(50000),
-        THIRD(1500000),
+        FIRST(2000000000),
         SECOND(30000000),
-        FIRST(2000000000);
+        THIRD(1500000),
+        FOURTH(50000),
+        FIFTH(5000);
 
         private final int reward;
 
@@ -33,7 +32,7 @@ public class Money {
         scores.set(score, scores.get(score) + 1);
     }
 
-    public int addAllReward(List<Integer> scores) {
+    public int addAllReward() {
         int result = 0;
 
         for (int i = 0; i < 5; i++) {
@@ -44,7 +43,9 @@ public class Money {
     }
 
     public double calculateRevenue(int price, int allReward) {
-        double revenue = (allReward / price) * 100;
+        double price2 = price;
+        double allReward2 = allReward;
+        double revenue = (allReward2 / price2) * 100;
         double result = Math.round(revenue);
 
         return result;

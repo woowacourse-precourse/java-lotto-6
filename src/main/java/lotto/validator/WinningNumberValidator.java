@@ -1,11 +1,16 @@
 package lotto.validator;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
 public class WinningNumberValidator {
     public static boolean validate(String winningNum) {
         String[] numbers = winningNum.split(",");
         if(isValidFormat(numbers));
         if(isNumbers(numbers));
         if(isValidNumbers(numbers));
+        if(!hasDuplicatedNumbers(numbers));
         return true;
     }
 
@@ -33,5 +38,16 @@ public class WinningNumberValidator {
             }
         }
         return true;
+    }
+
+    private static boolean hasDuplicatedNumbers(String[] numbers) {
+        HashSet<String> num = new HashSet<>();
+        for(String number : numbers) {
+            num.add(number);
+        }
+        if(num.size()!=6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복이 없어야 합니다.");
+        }
+        return false;
     }
 }

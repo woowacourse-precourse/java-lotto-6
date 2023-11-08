@@ -5,8 +5,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.common.Announcement;
-import lotto.common.Constraint;
+import lotto.common.ConstraintNumber;
 import lotto.common.ErrorMessage;
+import lotto.common.ExceptionHandler;
+import lotto.common.LottoNumberValidator;
 
 public class LottoManager {
 
@@ -18,8 +20,9 @@ public class LottoManager {
 
     public void purchaseLottos() {
         int amount = getAmount();
-        for (int i = 0; i < amount / Constraint.PURCHASE_AMOUNT_UNIT.getValue(); i++) {
-            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, Constraint.LOTTO_MAX_SIZE.getValue());
+        for (int i = 0; i < amount / ConstraintNumber.PURCHASE_AMOUNT_UNIT.getValue(); i++) {
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45,
+                ConstraintNumber.LOTTO_MAX_SIZE.getValue());
             this.lottos.add(new Lotto(randomNumbers));
         }
         Announcement.PURCHASE_LOTTOS.speak(lottos.size());
@@ -29,10 +32,8 @@ public class LottoManager {
         Announcement.INPUT_AMOUNT.speak();
         while (true) {
             try {
-                String input = Console.readLine();
-                validateNumericInput(input);
-                int amount = Integer.parseInt(input);
-                validateInputAmountUnit(amount);
+                int amount = parseInputToNumber(Console.readLine());
+                validateAmountUnit(amount, ConstraintNumber.PURCHASE_AMOUNT_UNIT.getValue());
                 return amount;
             } catch (IllegalArgumentException e) {
                 ErrorMessage.printExceptionMessage(e);
@@ -40,17 +41,14 @@ public class LottoManager {
         }
     }
 
-    private void validateNumericInput(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (Exception e) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_AMOUNT_NOT_NUMERIC.getMessage());
-        }
+    private int parseInputToNumber(String input) throws IllegalArgumentException {
+        LottoNumberValidator.validateNumeric(input);
+        return Integer.parseInt(input);
     }
 
-    private void validateInputAmountUnit(int input) {
-        if (input % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_AMOUNT_INVALID_UNIT.getMessage());
+    private void validateAmountUnit(int amount, int unit) throws IllegalArgumentException {
+        if (amount % unit != 0) {
+            ExceptionHandler.throwIllegalArgumentException(ErrorMessage.INPUT_AMOUNT_INVALID_UNIT);
         }
     }
 }

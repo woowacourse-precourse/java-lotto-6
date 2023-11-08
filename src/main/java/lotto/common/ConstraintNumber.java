@@ -1,6 +1,6 @@
 package lotto.common;
 
-public enum Constraint {
+public enum ConstraintNumber {
 
     LOTTO_MAX_SIZE(6),
     LOTTO_MIN_NUMBER(1),
@@ -10,7 +10,7 @@ public enum Constraint {
 
     private final int value;
 
-    Constraint(int value) {
+    ConstraintNumber(int value) {
         this.value = value;
     }
 

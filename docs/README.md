@@ -83,6 +83,8 @@
 
 **test** *ApplicationTest*
 - [❌] 시스템이 잘 동작하는 지에 대한 Test
+
+
 ## The Rule of Commit Messages
 
 > [title]\: [brief description] <br>

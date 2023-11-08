@@ -26,8 +26,13 @@ public class LottoResult {
         for (Set<Integer> numbers : purchasedNumbers) {
             int matches = (int) winningNumbers.stream().filter(numbers::contains).count();
             boolean bonusMatch = numbers.contains(bonusNumber) && matches == LottoRank.SECOND.getMatchCount();
-            LottoRank rank = LottoRank.valueOf(matches, bonusMatch);
-            matchCounts.put(rank, matchCounts.get(rank) + 1);
+
+            try {
+                LottoRank rank = LottoRank.valueOf(matches, bonusMatch);
+                matchCounts.put(rank, matchCounts.get(rank) + 1);
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("[ERROR] 일치하는 로또 순위가 없습니다. 프로그램 오료");
+            }
         }
     }
     public Map<LottoRank, Integer> getMatchCounts() {

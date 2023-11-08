@@ -11,14 +11,14 @@ public class WinningNumberTest {
     @Test
     void createWinningNumberByOverSize() {
         assertThatThrownBy(() -> WinningNumber.create("1,2,3,4,5,6,7"))
-                .isInstanceOf(LottoGameException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("정답 번호에 중복된 숫자가 있으면 예외 발생.")
     @Test
     void createWinningNumberByDuplicatedNumber() {
         assertThatThrownBy(() -> WinningNumber.create("1,1,3,4,5,6"))
-                .isInstanceOf(LottoGameException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("null값 입력시 예외 발생")

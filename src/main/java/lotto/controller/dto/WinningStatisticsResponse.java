@@ -13,7 +13,6 @@ public class WinningStatisticsResponse {
     private final Map<String, Long> winningStatistics;
 
     private WinningStatisticsResponse(final Map<String, Long> winningStatistics) {
-
         this.winningStatistics = winningStatistics;
     }
 

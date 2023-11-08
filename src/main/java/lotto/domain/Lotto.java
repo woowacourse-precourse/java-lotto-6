@@ -31,10 +31,7 @@ public class Lotto {
     }
 
     public boolean contains(LottoNumber lottoNumber) {
-        return numbers.stream()
-            .map(LottoNumber::getLottoNumber)
-            .collect(Collectors.toList())
-            .contains(lottoNumber.getLottoNumber());
+        return numbers.contains(lottoNumber);
     }
 
     private void validate(List<Integer> numbers) {

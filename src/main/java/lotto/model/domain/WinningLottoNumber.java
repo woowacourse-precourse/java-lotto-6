@@ -11,14 +11,13 @@ public class WinningLottoNumber {
         return winningNumberWithBonusNumber;
     }
 
-    public List<RankTable> matchLottoCalculate(List<Lotto> lottos) {
-        List<RankTable> matchLottoCalculate = new ArrayList<>();
+    public List<Integer> matchLottoCalculate(List<Lotto> lottos) {
+        List<Integer> matchLottoCalculate = new ArrayList<>();
 
         for (Lotto lotto : lottos) {
             List<Integer> lottoNumber = lotto.getNumbers();
             int matchCount = countMatchNumber(lottoNumber);
-            RankTable rankTable = RankTable.filterBonusNumber(lottoNumber, bonusNumber, matchCount);
-            matchLottoCalculate.add(rankTable);
+            matchLottoCalculate.add(matchCount);
         }
         return matchLottoCalculate;
     }
@@ -33,7 +32,6 @@ public class WinningLottoNumber {
         }
         return matchCount;
     }
-
 
     public void setWinningNumberWithBonusNumber(List<Integer> winningNumberWithBonusNumber) {
         this.winningNumberWithBonusNumber = winningNumberWithBonusNumber;

@@ -44,6 +44,8 @@ public class Lotto {
             if (lottoTicket.getNumbers().contains(number))
                 matchCount++;
         }
+        if (matchCount == 6) // 1등일 경우 matchCount=7,
+            matchCount++;
         return matchCount;
     }
     public boolean compareBonusNumber(LottoTicket lottoTicket, int bonusNumber) {

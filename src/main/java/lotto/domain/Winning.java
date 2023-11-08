@@ -25,6 +25,7 @@ public class Winning extends LottoRule {
             int matchCount = getMatchNumberCount(lotto);
             boolean isMatchBonus = isContainBonusNumber(lotto);
             Prize prize = getPrize(matchCount, isMatchBonus);
+            
             addPrizeCount(totalPrize, prize);
         }
         return totalPrize;

@@ -18,4 +18,6 @@ public interface LottoService {
 
     double calculateYield(int price);
 
+    void clearAll();
+
 }

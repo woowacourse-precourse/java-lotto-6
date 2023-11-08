@@ -14,4 +14,6 @@ public interface LottoRepository {
     int findMatchCount(Match match);
 
     void update(Lotto lotto, Match match);
+
+    void clear();
 }

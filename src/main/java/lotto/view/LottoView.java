@@ -29,13 +29,13 @@ public class LottoView {
     public void showWinStats(Match match, int count) {
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
 
-        System.out.print(match.getNumOfMatches() + "개 일치 ");
+        System.out.print(match.getNumOfMatches() + "개 일치");
 
         if (match == Match.SECOND) {
-            System.out.print(", 보너스 볼 일치 ");
+            System.out.print(", 보너스 볼 일치");
         }
 
-        System.out.print("(" + decimalFormat.format(match.getPrice()) + "원)");
+        System.out.print(" (" + decimalFormat.format(match.getPrice()) + "원)");
         System.out.println(" - " + count + "개");
     }
 

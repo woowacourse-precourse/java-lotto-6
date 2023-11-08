@@ -9,18 +9,25 @@ import lotto.service.LottoServiceImpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+
 import lotto.view.LottoView;
 
 public class LottoController {
 
-    LottoService lottoService = new LottoServiceImpl();
-    LottoView lottoView = new LottoView();
+    private final LottoService lottoService;
+    private final LottoView lottoView;
 
     private final int LOTTO_PRICE = 1000;
     private int price;
 
+    public LottoController(LottoService lottoService, LottoView lottoView) {
+        this.lottoService = lottoService;
+        this.lottoView = lottoView;
+    }
+
     public void run() {
         this.price = 0;
+        lottoService.clearAll();
 
         inputBuyPrice();
         outputBoughtLotto();
@@ -48,10 +55,6 @@ public class LottoController {
         try {
             Lotto winLotto = new Lotto(inputWinLottoNumber());
             int bonusNum = inputBonusNum();
-
-            if (winLotto.isContainNum(bonusNum)) {
-                throw new IllegalArgumentException("[ERROR] 보너스 숫자는 당첨 번호와 중복되지 않게 입력해주세요.");
-            }
 
             lottoService.setAnswer(winLotto, bonusNum);
         } catch (IllegalArgumentException illegalArgumentException) {

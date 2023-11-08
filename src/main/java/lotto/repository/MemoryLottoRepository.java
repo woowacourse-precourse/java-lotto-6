@@ -40,4 +40,10 @@ public class MemoryLottoRepository implements LottoRepository {
     public void update(Lotto lotto, Match match) {
         lottoStore.put(lotto, match);
     }
+
+
+    @Override
+    public void clear() {
+        lottoStore.clear();
+    }
 }

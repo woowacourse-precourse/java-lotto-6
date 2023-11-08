@@ -12,13 +12,17 @@ import java.util.List;
 
 public class LottoServiceImpl implements LottoService {
 
-    private LottoRepository lottoRepository = new MemoryLottoRepository();
+    private final LottoRepository lottoRepository;
     private WinLottoService winLottoService;
+
+    public LottoServiceImpl(LottoRepository lottoRepository) {
+        this.lottoRepository = lottoRepository;
+    }
 
     @Override
     public void buyLotto(int price) {
         for (int i = 0; i < price; i++) {
-            List<Integer> lottoNum = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> lottoNum = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             lottoNum.sort(Comparator.naturalOrder());
             lottoRepository.save(lottoNum);
         }
@@ -61,12 +65,17 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public double calculateYield(int price) {
-        int total = 0;
+        double total = 0;
         for (Match match : Match.values()) {
             int count = lottoRepository.findMatchCount(match);
-            total = count * match.getPrice();
+            total += count * match.getPrice();
         }
 
-        return (total / (double) price);
+        return (total / (double) price) * 100;
+    }
+
+    @Override
+    public void clearAll() {
+        lottoRepository.clear();
     }
 }

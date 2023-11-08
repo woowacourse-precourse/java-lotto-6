@@ -8,9 +8,9 @@ public enum Match {
     FIRST(6, 2000000000);
 
     private int numOfMatches;
-    private int price;
+    private double price;
 
-    Match(int numOfMatches, int price) {
+    Match(int numOfMatches, double price) {
         this.numOfMatches = numOfMatches;
         this.price = price;
     }
@@ -19,7 +19,7 @@ public enum Match {
         return numOfMatches;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 }

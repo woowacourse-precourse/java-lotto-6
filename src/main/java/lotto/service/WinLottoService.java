@@ -10,6 +10,7 @@ public class WinLottoService {
     private final int bonusNum;
 
     public WinLottoService(Lotto winLotto, int bonusNum) {
+        validate(winLotto, bonusNum);
         this.winLotto = winLotto;
         this.bonusNum = bonusNum;
     }
@@ -43,7 +44,13 @@ public class WinLottoService {
                 return match;
             }
         }
-        
+
         return null;
+    }
+
+    void validate(Lotto winLotto, int bonusNum) {
+        if (winLotto.isContainNum(bonusNum)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 숫자는 당첨 번호와 중복되지 않게 입력해주세요.");
+        }
     }
 }

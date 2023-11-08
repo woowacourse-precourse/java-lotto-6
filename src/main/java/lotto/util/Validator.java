@@ -1,44 +1,32 @@
 package lotto.util;
 
-import lotto.view.InputView;
-
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import static lotto.model.ErrorMessage.*;
 
 public class Validator {
     private static final int LOTTO_PRICE = 1000;
-    private static final int LOTTO_NUM = 6;
-    private static final int BONUS_NUMBER_NUM = 1;
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
+
+    /**
+     * 보너스 번호일 때는 쉼표도 있으면 안 되고 숫자만 있어야 하고
+     * 당첨 번호일 때는 쉼표는 있어도 되는데 !!!!
+     */
+    public static void isNumericInput(String input) {
+        if (input.matches("[0-9]+") != true) {
+            throw new IllegalArgumentException(CONTAIN_SYMBOL_ERROR.toString());
+        }
+    }
+
+    public static void isNumberInRange(String input) {
+        int number = Integer.parseInt(input);
+        if ((number >= MIN_NUMBER && number <= MAX_NUMBER) != true) {
+            throw new IllegalArgumentException(NUMBER_RANGE_ERROR.toString());
+        }
+    }
 
     public static void purchasePrice(int purchasePrice) {
         if (purchasePrice % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(PURCHASE_PRICE_UNIT_ERROR.toString());
         }
     }
-
-//    public static void winNumberNum(List<Integer> winNumber) {
-//        if (winNumber.size() != LOTTO_NUM) {
-//            throw new IllegalArgumentException();
-//        }
-//    }
-
-    public static void winNumberDuplication(List<Integer> winNumber) {
-        Set<Integer> setWinNumber = winNumber.stream().collect(Collectors.toSet());
-        if (winNumber.size() != setWinNumber.size()) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public static void bonusNumberNum(int bonusNumber) {
-        if (bonusNumber != BONUS_NUMBER_NUM) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-//    public static void checkPositiveOrNegative(int num) {
-//        if (num < 0) {
-//            throw new IllegalArgumentException();
-//        }
-//    }
 }

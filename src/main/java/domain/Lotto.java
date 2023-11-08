@@ -53,12 +53,16 @@ public class Lotto {
     }
 
     private int getCorrectNumbers(List<Integer> winningNumbers, int correctNumbers) {
-        for(int i=0; i<numbers.size(); i++){
-            if(winningNumbers.get(i).equals(numbers.get(i))){
-                correctNumbers++;
-            }
-        }
-        return correctNumbers;
+//        for(int i=0; i<numbers.size(); i++){
+//            if(winningNumbers.get(i).equals(numbers.get(i))){
+//                correctNumbers++;
+//            }
+//        }
+//        return correctNumbers;
+
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
     }
 
     public boolean isBonusValidate(List<Integer> winningLotto, int bonusNumber){

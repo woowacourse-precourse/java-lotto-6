@@ -10,23 +10,23 @@ public class ValidateUtil {
         try {
             return Integer.parseInt(stringNumber.strip());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
         }
     }
 
     public static List<Integer> stringToArrayList(String inputNumbers) {
-        List<Integer> numbers = Arrays.stream(inputNumbers.split(",")).map(ValidateUtil::toNumeric)
-                .collect(Collectors.toList());
-        return numbers;
+        try {
+            return Arrays.stream(inputNumbers.split(",")).map(ValidateUtil::toNumeric)
+                    .collect(Collectors.toList());
+
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 포함 되어있습니다.");
+        }
     }
 
     public static void isInRange(int number, int startRange, int endRange) {
         if (number < startRange || number > endRange) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(String.format("[ERROR] %d 이상 %d 이하의 값을 입력 하세요", startRange, endRange));
         }
-    }
-
-    public static boolean isContain(int number, List<Integer> numbers) {
-        return numbers.contains(number);
     }
 }

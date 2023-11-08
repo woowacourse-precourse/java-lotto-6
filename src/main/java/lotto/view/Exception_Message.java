@@ -3,12 +3,14 @@ package lotto.view;
 public class Exception_Message {
 
     private static final int lotto_purchase_unit = 1000;
+    private static final int min_number = 1;
+    private static final int max_number = 45;
 
     private static final String exception_check_input_equals_integer_MESSAGE = "[ERROR] 정수인 숫자만 입력해주십시오.";
     private static final String exception_check_input_equals_positive_number_MESSAGE = "[ERROR] 0보다 큰 숫자만 입력해야합니다.";
     private static final String exception_check_input_equals_satisfy_unit_MESSAGE = "[ERROR] " + lotto_purchase_unit + "원으로 나누어 떨어지는 금액만 입력해야합니다.";
     private static final String exception_check_sizes_equals_numbers_size_MESSAGE = "[ERROR] 6개의 숫자를 입력해야합니다.";
-    private static final String exception_check_range_equals_certain_ranges_MESSAGE = "[ERROR] 0~45 사이의 숫자만 입력할 수 있습니다.";
+    private static final String exception_check_range_equals_certain_ranges_MESSAGE = "[ERROR] " + min_number + "~" + max_number + "사이의 숫자만 입력할 수 있습니다.";
     private static final String exception_check_lotto_numbers_overlap_MESSAGE = "[ERROR] 중복된 숫자는 사용 불가합니다.";
     private static final String exception_check_bonus_number_overlap_MESSAGE = "[ERROR] 보너스 번호는 앞의 6개의 숫자와 중복되지 않은 번호만 가능합니다.";
 

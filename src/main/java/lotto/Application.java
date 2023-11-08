@@ -81,7 +81,9 @@ public class Application {
     }
 
     public static List<Integer> RandomLottoNumber() {
-        List<Integer> randomNumber = Randoms.pickUniqueNumbersInRange(LottoSetting.LOTTOMIN.value, LottoSetting.LOTTOMAX.value, LottoSetting.LOTTOLENGTH.value);
+        List<Integer> randomNumber = Randoms.pickUniqueNumbersInRange(LottoSetting.LOTTOMIN.value,
+                                                                      LottoSetting.LOTTOMAX.value, 
+                                                                      LottoSetting.LOTTOLENGTH.value);
         Collections.sort(randomNumber);
         return randomNumber;
     }

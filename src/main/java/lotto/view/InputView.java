@@ -9,7 +9,9 @@ public class InputView {
 
     public static int readPurchaseAmount() {
         OutputView.printLottoPurchaseAmountPrompt();
-        return Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        ValidationUtils.validateIsNumeric(input);
+        return Integer.parseInt(input);
     }
 
     public static List<Integer> readWinningNumbers() {
@@ -23,7 +25,9 @@ public class InputView {
 
     public static int readBonusNumber() {
         OutputView.printBonusNumberPrompt();
-        return Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        ValidationUtils.validateIsNumeric(input);
+        return Integer.parseInt(input);
     }
 
     private static void validateWinningNumbers(String input) {

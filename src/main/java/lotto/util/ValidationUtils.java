@@ -7,4 +7,12 @@ public class ValidationUtils {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void validateIsNumeric(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("숫자가 아닙니다.");
+        }
+    }
 }

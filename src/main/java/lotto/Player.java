@@ -21,14 +21,20 @@ public class Player{
         while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
-                int amount = Integer.parseInt(Console.readLine());
-
+                int amount = isInteger(Console.readLine());
                 this.numberOfTickets = Judgment.divisibleByThousand(amount);
                 this.amount = amount;
                 break;
             } catch (IllegalArgumentException e) {
             }
         }
+    }
+    public int isInteger(String number){
+        if(!number.chars().allMatch( Character::isDigit)){
+            System.out.println("[ERROR] 입력된 값이 숫자가 아닙니다. ");
+            throw new IllegalArgumentException();
+        }
+        return Integer.parseInt(number);
     }
 
     public void buyLotto(){

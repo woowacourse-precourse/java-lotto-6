@@ -42,9 +42,16 @@ class PlayTest {
     @Test
     void profitCalculation() {
         Play play = new Play();
-        assertEquals(0, play.profitCalculation(List.of(0,0,0,0,0,1)));
-        assertEquals(500.0, play.profitCalculation(List.of(0,0,0,0,1,0)));
+        assertEquals(0, play.profitCalculation(List.of(0, 0, 0, 0, 0, 1)));
+        assertEquals(500.0, play.profitCalculation(List.of(0, 0, 0, 0, 1, 0)));
+        assertEquals(62.5, play.profitCalculation(List.of(0, 0, 0, 0, 1, 7)));
+        assertEquals(125.0, play.profitCalculation(List.of(0, 0, 0, 0, 2, 6)));
     }
 
+    @Test
+    void printResult() {
+        Play play = new Play();
+        play.printResult(List.of(0, 0, 0, 0, 1, 7));
+    }
 
 }

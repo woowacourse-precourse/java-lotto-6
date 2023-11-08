@@ -21,7 +21,7 @@ public class LottoStore {
 
     private void buyTicket(int money) {
         this.ticket = money / 1000;
-        SystemMessage.LOTTO_PURCHASE.printMessage(ticket);
+        System.out.printf(SystemMessage.LOTTO_PURCHASE.getMessage(), ticket);
     }
 
     public List<Lotto> buyLotto(int money) {
@@ -32,4 +32,5 @@ public class LottoStore {
         }
         return purchasedLotto;
     }
+
 }

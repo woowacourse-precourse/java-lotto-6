@@ -22,6 +22,8 @@ public class LottoGame {
     }
 
     private Money inputUserMoney() {
+        while (true) {
+            try {
                 String purchaseAmount = Input.purchaseAmount();
 
                 InputValidator.validateDigits(purchaseAmount);
@@ -29,9 +31,15 @@ public class LottoGame {
                 InputValidator.validateMinimumMoney(money);
 
                 return new Money(money);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private Lotteries buyLotteriesWithMoney(Money money) {
+        while (true) {
+            try {
                 int lottoCount = money.calculateLottoCount();
                 Output.printCountOfLotteries(lottoCount);
 
@@ -40,7 +48,15 @@ public class LottoGame {
                 Output.printAllLotteries(lotteries);
 
                 return lotteries;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     private WinNumbers inputWinNumbers() {
+        while (true) {
+            try {
                 List<Integer> winningNumbers = inputWinningNumbers();
                 InputValidator.validateDuplicateWinningNumbers(winningNumbers);
 
@@ -48,9 +64,15 @@ public class LottoGame {
                 InputValidator.validateDuplicateBonusNumber(winningNumbers, bonusNumber);
 
                 return new WinNumbers(winningNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static List<Integer> inputWinningNumbers() {
+        while (true) {
+            try {
                 String inputWinningNumbers = Input.getWinningNumbers();
                 List<Integer> winningNumbers = Converter.splitFromString(inputWinningNumbers);
 
@@ -58,9 +80,15 @@ public class LottoGame {
                 InputValidator.validateWinningNumbersRange(winningNumbers);
 
                 return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static int inputBonusNumber() {
+        while (true) {
+            try {
                 String inputBonusNumber = Input.getBonusNumber();
                 InputValidator.validateDigits(inputBonusNumber);
 
@@ -68,5 +96,9 @@ public class LottoGame {
                 InputValidator.validateBonusNumberRange(bonusNumber);
 
                 return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

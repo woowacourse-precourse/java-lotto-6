@@ -2,12 +2,15 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -44,15 +47,79 @@ class ApplicationTest extends NsTest {
                 List.of(2, 13, 22, 32, 38, 45),
                 List.of(1, 3, 5, 14, 22, 45)
         );
+
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("5000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "5개를 구매했습니다.",
+                            "[1, 2, 3, 41, 42, 43]",
+                            "[3, 5, 11, 16, 32, 38]",
+                            "[7, 11, 16, 35, 36, 44]",
+                            "[1, 8, 11, 31, 41, 42]",
+                            "[13, 14, 16, 38, 42, 45]",
+                            "3개 일치 (5,000원) - 1개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 100.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38),
+                List.of(7, 11, 16, 35, 36, 44),
+                List.of(1, 8, 11, 31, 41, 42),
+                List.of(13, 14, 16, 38, 42, 45)
+        );
+
+//        assertRandomUniqueNumbersInRangeTest(
+//                () -> {
+//                    run("1000", "1,2,3,4,5,6", "7");
+//                    assertThat(output()).contains(
+//                            "1개를 구매했습니다.",
+//                            "[1, 2, 3, 4, 5, 6]",
+//                            "3개 일치 (5,000원) - 0개",
+//                            "4개 일치 (50,000원) - 0개",
+//                            "5개 일치 (1,500,000원) - 0개",
+//                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+//                            "6개 일치 (2,000,000,000원) - 1개",
+//                            "총 수익률은 200000000.0%입니다."
+//                    );
+//                },
+//                List.of(1, 2, 3, 4, 5, 6)
+//        );
     }
 
-    @Test
-    void 예외_테스트() {
+
+
+    @ParameterizedTest
+    @CsvSource({"1000j", "10001", "-1000", "&*@!("})
+    void 예외_테스트_돈입력(String str) {
         assertSimpleTest(() -> {
-            runException("1000j");
+            runException(str);
             assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains("구입금액을 입력해 주세요.");
         });
     }
+
+    @ParameterizedTest
+    @CsvSource({"1","1,2,3,4,5","-1,2,3,4,5,6","1,2,3,4,5,46","%,^,ㄱ,ㄴ,ㄷ,ㄹ"})
+    void 예외_테스트_당첨번호입력(String str) {
+        assertSimpleTest(() -> {
+            runException("10000");
+            runException(str);
+            assertThat(output()).contains("당첨 번호를 입력해 주세요.");
+        });
+    }
+//    @ParameterizedTest
+//    @CsvSource({"1","-1","46","%$"})
+//    void 예외_테스트_보너스번호입력(String str) {
+//        assertSimpleTest(() -> {
+//            run("8000", "1,2,3,4,5,6", str);
+//            assertThat(output()).contains(ERROR_MESSAGE);
+//        });
+//    }
 
     @Override
     public void runMain() {

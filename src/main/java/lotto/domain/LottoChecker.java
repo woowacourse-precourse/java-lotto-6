@@ -11,4 +11,20 @@ public class LottoChecker {
         this.bonusNumber = bonusNumber;
     }
 
+    public Ranking checkOneLotto(Lotto lotto) {
+        List<Integer> lottoNumbers = lotto.getNumbers();
+
+        int matchingCount = 0;
+        for (Integer number : lottoNumbers) {
+            matchingCount += isMatchingNumber(number);
+        }
+    }
+
+    private int isMatchingNumber(int number) {
+        if (winningNumbers.contains(number) || number == bonusNumber) {
+            return 1;
+        }
+        return 0;
+    }
+
 }

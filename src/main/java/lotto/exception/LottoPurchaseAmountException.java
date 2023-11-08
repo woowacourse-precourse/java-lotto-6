@@ -7,8 +7,8 @@ public class LottoPurchaseAmountException {
     private static final String IS_BLANK_MESSAGE = " 구매 금액을 공백으로 입력하셨습니다.";
 
     public LottoPurchaseAmountException(String input) {
-        isDivideThousand(input);
         isNumber(input);
+        isDivideThousand(input);
         isBlank(input);
     }
 

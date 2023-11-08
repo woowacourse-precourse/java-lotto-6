@@ -8,7 +8,7 @@ import lotto.util.generator.NumberGenerator;
 public class UserLotto {
     private List<Lotto> lottos;
 
-    public UserLotto(int amount, NumberGenerator numberGenerator) {
+    public UserLotto(long amount, NumberGenerator numberGenerator) {
         lottos = new ArrayList<>();
         while (lottos.size() < amount) {
             lottos.add(new Lotto(numberGenerator));

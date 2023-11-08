@@ -5,7 +5,7 @@ import static lotto.util.message.ErrorMessages.USER_MONEY_UNIT_EXCEPTION;
 public class UserMoney {
     private static final int LOTTO_PRICE = 1000;
 
-    int amount;
+    long amount;
 
     public UserMoney(int amount) {
         validate(amount);
@@ -18,7 +18,7 @@ public class UserMoney {
         }
     }
 
-    public int getLottoAmount() {
+    public long getLottoAmount() {
         return amount / LOTTO_PRICE;
     }
 

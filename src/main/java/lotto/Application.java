@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoReceipt;
+import lotto.domain.WinningLotto;
 import lotto.service.Input;
 import lotto.service.Output;
 
@@ -18,6 +19,9 @@ public class Application {
         List<Lotto> lottoTickets = generateLottoTicket(amount);
         LottoReceipt lottoReceipt = new LottoReceipt(lottoTickets);
         Output.printLottoReceipt(lottoReceipt);
+
+        Lotto lotto = new Lotto(Input.getWinningNumber());
+        WinningLotto winningLotto = new WinningLotto(lotto, Input.getBonusNumber());
     }
 
     public static int validateAmount(String amount) {

@@ -83,4 +83,18 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 각 자릿수는 1 ~ 45 사이의 숫자여야 합니다.");
     }
+    
+    @DisplayName("로또 번호와 같은 숫자의 개수를 구한다.")
+    @Test
+    void countMatchingNumber() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto otherLotto = new Lotto(List.of(1, 2, 3, 4, 7, 8));
+        
+        // when
+        int matchingNumberCount = lotto.countMatchingNumber(otherLotto);
+        
+        // then
+        assertThat(matchingNumberCount).isEqualTo(4);
+    }
 }

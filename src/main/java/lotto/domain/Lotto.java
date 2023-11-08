@@ -25,6 +25,12 @@ public class Lotto {
         return numbers;
     }
     
+    public int countMatchingNumber(Lotto otherLotto) {
+        return (int) numbers.stream()
+                .filter(otherLotto::contains)
+                .count();
+    }
+    
     public boolean contains(int otherNumber) {
         return numbers.contains(otherNumber);
     }

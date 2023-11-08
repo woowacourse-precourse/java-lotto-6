@@ -19,7 +19,7 @@ public class LottoController {
     private LottoService lottoService;
     private WinningInfo winningInfo;
 
-    public LottoController(){
+    public LottoController() {
         inputView = new InputView();
         outputView = new OutputView();
     }
@@ -30,7 +30,7 @@ public class LottoController {
         start();
     }
 
-    public void start(){
+    public void start() {
         int buyCount = readAndCalculateLottoCount();
         outputView.displayPurchaseCount(buyCount);
         Lottos lottos = new Lottos(buyCount);

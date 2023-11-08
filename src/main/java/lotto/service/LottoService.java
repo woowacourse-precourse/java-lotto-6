@@ -13,7 +13,8 @@ public class LottoService {
     public LottoService(WinningInfo winningInfo) {
         this.winningInfo = winningInfo;
     }
-    public LottoService(){
+
+    public LottoService() {
 
     }
 

@@ -5,7 +5,6 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.service.LottoService;
 import lotto.util.RandomNumbers;
-import lotto.view.InputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -45,6 +44,7 @@ public class TddTest {
             assertThat(number).isBetween(1, 45);
         }
     }
+
     @Test
     public void 로또_번호는_6자리() {
         List<Integer> numbers = RandomNumbers.generateRandomNumbers();
@@ -61,13 +61,14 @@ public class TddTest {
     }
 
     @Test
-    public void 당첨번호는_반점_기준으로_6자리_입력(){
+    public void 당첨번호는_반점_기준으로_6자리_입력() {
         List<Integer> expectedWinningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         List<Integer> WinningNumbers = parseNumbers("1,2,3,4,5,6");
         assertThat(WinningNumbers).isEqualTo(expectedWinningNumbers);
     }
+
     @Test
-    public void 로또_번호가_같은게_있으면_예외처리(){
+    public void 로또_번호가_같은게_있으면_예외처리() {
         List<Lotto> lottoList = new ArrayList<>();
         lottoList.add(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)));
         lottoList.add(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)));
@@ -78,7 +79,7 @@ public class TddTest {
     }
 
     @Test
-    public void HashMap값_확인(){
+    public void HashMap값_확인() {
         List<Lotto> lottoList = new ArrayList<>();
         lottoList.add(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)));
         lottoList.add(new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12)));
@@ -86,7 +87,7 @@ public class TddTest {
 
         Lottos lottos = new Lottos(lottoList);
 
-        Map<Long,Long> testMap = lottos.checkWinningNumbers(Arrays.asList(1, 2, 3, 4, 5, 8), 9);
+        Map<Long, Long> testMap = lottos.checkWinningNumbers(Arrays.asList(1, 2, 3, 4, 5, 8), 9);
         for (Map.Entry<Long, Long> entry : testMap.entrySet()) {
             Long key = entry.getKey();
             Long value = entry.getValue();
@@ -95,7 +96,7 @@ public class TddTest {
     }
 
     @Test
-    public void 로또_번호는_오름차순_정렬(){
+    public void 로또_번호는_오름차순_정렬() {
         Lotto lotto = new Lotto(Arrays.asList(5, 20, 1, 42, 3, 59));
 
         assertThat(lotto.getNumbers()).isEqualTo(Arrays.asList(1, 3, 5, 20, 42, 59));
@@ -108,7 +109,7 @@ public class TddTest {
     }
 
     @Test
-    public void 수익률_계산(){
+    public void 수익률_계산() {
         Map<Long, Long> winningResults = new HashMap<>();
         winningResults.put(3L, 1L); // 3개 일치 상금 5,000원
         winningResults.put(4L, 1L); // 4개 일치 상금 50,000원

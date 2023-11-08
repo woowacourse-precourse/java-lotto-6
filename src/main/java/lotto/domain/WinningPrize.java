@@ -2,9 +2,6 @@ package lotto.domain;
 
 import java.util.*;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public enum WinningPrize {
     FIFTH(3, "5,000"),
     FOURTH(4, "50,000"),

@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.domain.Lotto;
 import lotto.util.RandomNumbers;
 
 import java.util.*;
@@ -8,7 +7,7 @@ import java.util.*;
 public class Lottos {
     private List<Lotto> lottos = new ArrayList<>();
 
-    public Lottos(List<Lotto> lottos){
+    public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
         hasDuplicates();
     }
@@ -18,21 +17,23 @@ public class Lottos {
         hasDuplicates();
     }
 
-    public Lottos(){
+    public Lottos() {
 
     }
+
     public void createLotto(int count) {
         for (int i = 0; i < count; i++) {
             Lotto lotto = new Lotto(RandomNumbers.generateRandomNumbers());
             lottos.add(lotto);
         }
     }
-    public Map<Long, Long> checkWinningNumbers(List<Integer> numbers, int bonusNumber){
+
+    public Map<Long, Long> checkWinningNumbers(List<Integer> numbers, int bonusNumber) {
         WinningNumbers winningNumbers = new WinningNumbers(numbers, bonusNumber);
         return winningNumbers.isMatching(lottos);
     }
 
-    public List<Lotto> getLottos(){
+    public List<Lotto> getLottos() {
         return this.lottos;
     }
 

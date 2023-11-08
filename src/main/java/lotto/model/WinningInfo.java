@@ -1,8 +1,6 @@
 package lotto.model;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class WinningInfo {
     private LinkedHashMap<Long, Long> winnings;

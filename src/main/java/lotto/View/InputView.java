@@ -18,6 +18,10 @@ public class InputView
         try
         {
             int cost = Integer.parseInt(Console.readLine());
+            if(cost < 0)
+            {
+                throw new InvalidInputException("[ERROR] 금액은 양수여야합니다.");
+            }
             if (cost % LottoConstant.TICKET_PRICE == 0)
             {
                 return cost;

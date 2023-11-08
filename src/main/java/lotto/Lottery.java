@@ -33,7 +33,9 @@ public class Lottery {
     private List<Lotto> pickLotto(int numberOfLotto)
     {
         return IntStream.range(0, numberOfLotto)
-                        .mapToObj(i -> Randoms.pickUniqueNumbersInRange(1, 45, 6))
+                        .mapToObj(i ->
+                                Randoms.pickUniqueNumbersInRange(LottoConstant.MINIMUM_NUMBER,
+                                        LottoConstant.MAXIMUM_NUMBER, LottoConstant.LOTTO_NUMBER_LENGTH))
                             .map(lotto -> lotto.stream()
                             .sorted()
                             .collect(Collectors.toList()))

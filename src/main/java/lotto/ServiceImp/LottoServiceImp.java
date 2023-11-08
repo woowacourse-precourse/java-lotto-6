@@ -1,5 +1,6 @@
 package lotto.ServiceImp;
 
+import lotto.Constant.LottoConstant;
 import lotto.Constant.RecordConstant;
 import lotto.Exception.OutOfRankingException;
 import lotto.Lottery;
@@ -88,7 +89,7 @@ public class LottoServiceImp implements LottoService {
             acc += ranking.getReward() * resultRecord.get(ranking.getIndex());
         }
 
-        double divResult = (double) acc / (this.lottery.getNumberOfLotto() * 1000);
+        double divResult = (double) acc / (this.lottery.getNumberOfLotto() * LottoConstant.TICKET_PRICE);
         double result = (double) Math.round(divResult * 1000) / 10;
         return result;
     }

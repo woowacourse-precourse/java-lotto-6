@@ -83,4 +83,9 @@ public class ConsoleOutputView implements OutputView {
 
         return "";
     }
+
+    @Override
+    public void printExceptionMessage(String exceptionMessage) {
+        System.out.println(exceptionMessage);
+    }
 }

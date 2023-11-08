@@ -4,9 +4,9 @@ import static lotto.constants.Message.PURCHASED_LOTTO_AMOUNT;
 import static lotto.constants.Message.WINNING_RATE;
 import static lotto.constants.Message.WINNING_RESULT;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 import lotto.model.WinningResult;
@@ -15,11 +15,13 @@ public class OutputView {
     public void printPlayerLottoNumbers(List<Lotto> lottos) {
         System.out.printf(PURCHASED_LOTTO_AMOUNT, lottos.size());
         lottos.forEach(lotto -> {
-            List<Integer> numbers = lotto.getNumbers();
-            Collections.sort(numbers);
+            List<Integer> numbers = lotto.getNumbers().stream()
+                    .sorted()
+                    .collect(Collectors.toList());
             System.out.println(numbers);
         });
     }
+
 
     public void printWinningResult(WinningResult winningResult) {
         System.out.println(WINNING_RESULT);

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.util.LottoValues;
@@ -31,7 +32,7 @@ class PlayerTest {
 
     @Test
     @DisplayName("로또의 정답 개수를 설정할 수 있어야 한다.")
-    void setLottoCorrectCount() {
+    void setLottoCorrectCountTest() {
         setLotto(3,1);
 
         List<CorrectCount> correctLottoCounts = player.getCorrectLottoCounts();
@@ -40,6 +41,17 @@ class PlayerTest {
             assertThat(correctLottoCount.getCorrectNumberCount()).isEqualTo(3);
             assertThat(correctLottoCount.getCorrectBonusNumberCount()).isEqualTo(1);
         }
+    }
+
+    @Test
+    @DisplayName("정답 개수를 변경할 때, 요청한 로또가 없는 경우 예외가 발생해야 한다.")
+    void throwIllegalStateExceptionWhenChangeCorrectCount() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(numbers);
+        CorrectCount correctCount = new CorrectCount(3, 1);
+
+        assertThatThrownBy(() -> player.setLottoCorrectCount(lotto, correctCount))
+                .isInstanceOf(IllegalStateException.class);
     }
 
     @ParameterizedTest

@@ -18,8 +18,8 @@ public enum Rank {
         this.message = message;
     }
 
-    public static Rank valueOf(int matchCount, boolean matchBonus) {
-        if (matchCount == 5 && matchBonus) {
+    public static Rank valueOf(int matchCount, boolean isMatchBonus) {
+        if (matchCount == 5 && isMatchBonus) {
             return SECOND;
         }
         if (matchCount == 5) {

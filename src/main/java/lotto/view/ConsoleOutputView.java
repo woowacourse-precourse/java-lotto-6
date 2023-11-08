@@ -19,7 +19,7 @@ public class ConsoleOutputView implements OutputView {
     private static final String ALERT_STATISTICS = "당첨 통계\n---";
     private static final String MATCH_COUNT = "%d개 일치";
     private static final String REQUIRE_MATCH_BONUS = ", 보너스 볼 일치";
-    private static final String PRIZE_AMOUNT = " (%s원)";
+    private static final String PRIZE_AMOUNT = " (%,d원)";
     private static final String WINNING_COUNT = " - %d개";
     private static final String PERCENT_OF_TOTAL_WINNING_AMOUNT = "총 수익률은 %,.1f%%입니다.";
 
@@ -71,7 +71,7 @@ public class ConsoleOutputView implements OutputView {
         stringJoiner.add(new StringBuilder()
                 .append(String.format(MATCH_COUNT, tier.getMatchCount()))
                 .append(createBonusText(tier.isRequireMatchBonus()))
-                .append(String.format(PRIZE_AMOUNT, prizeAmount.getDecimalFormatAmount()))
+                .append(String.format(PRIZE_AMOUNT, prizeAmount.getAmount()))
                 .append(String.format(WINNING_COUNT, count))
         );
     }

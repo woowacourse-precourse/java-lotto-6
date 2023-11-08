@@ -50,7 +50,7 @@ public class Amount {
         return limitAmount.amount < this.amount;
     }
 
-    public String getDecimalFormatAmount() {
-        return decimalFormat.format(this.amount);
+    public long getAmount() {
+        return this.amount;
     }
 }

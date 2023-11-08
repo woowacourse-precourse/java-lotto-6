@@ -51,4 +51,11 @@ public class LottoController {
             UserView.outputErrorLog(e.getMessage());
         }
     }
+
+    private void createWallet() {
+        lottoWallet = null;
+        while (lottoWallet == null) {
+            initWallet();
+        }
+    }
 }

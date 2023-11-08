@@ -15,7 +15,7 @@ public class Output {
 
         for (int i = 0; i < count; i++) {
             List<Integer> randomList = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(randomList);
+//            Collections.sort(randomList);
             Lotto lotto = new Lotto(randomList);
             lotto.printNumber(randomList);
             list.add(lotto);
@@ -26,41 +26,57 @@ public class Output {
     }
 
     public static List<Integer> checkList(List<Lotto> lottoList, List<Integer> winNumbers, int addNum) {
+        // 횟수 count 위한 List 생성 및 초기화
+        List<Integer> prizeCount = new ArrayList<>();
+        for(int i = 0; i < 8; i++){
+            prizeCount.add(0);
+        }
+
         for (int i = 0; i < lottoList.size(); i++){
             Lotto lotto = lottoList.get(i);
 
             int winNum = 0;
+            int bonusNum = 0;
 
             for(int j = 0; j < lotto.getNumbers().size(); j++){
                 if(winNumbers.contains(lotto.getNumbers().get(j))){
                     winNum++;
                 }
             }
-            System.out.println(winNum);
-            System.out.println();
+
+            if(lotto.getNumbers().contains(addNum)){
+                bonusNum++;
+            }
+
+            if(winNum == 5 && bonusNum == 1){
+                prizeCount.set(7, prizeCount.get(7) + 1);
+                continue;
+            }
+
+            prizeCount.set(winNum, prizeCount.get(winNum) + 1);
         }
-        return null;
+
+        System.out.println(prizeCount);
+
+        return prizeCount;
     }
 
     // 당첨 내역 출력 :
-    public static List<Lotto> prizeList(int count) {
-        System.out.print("3개 일치 (5,000원) - ");
-        System.out.print("4개 일치 (50,000원) - ");
-        System.out.print("5개 일치 (1,500,000원) - ");
-        System.out.print("5개 일치, 보너스 볼 일치 (30,000,000원) - ");
-        System.out.print("6개 일치 (2,000,000,000원) - ");
+    public static double prizeRate(List<Integer> prizeCount, int purchaseMoney) {
+        System.out.println("3개 일치 (5,000원) - " + prizeCount.get(3) + "개");
+        System.out.println("4개 일치 (50,000원) - " + prizeCount.get(4) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + prizeCount.get(5) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + prizeCount.get(7) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + prizeCount.get(6) + "개");
 
-        List<Lotto> list = new ArrayList<>();
+        long sum = 5000*prizeCount.get(3) + 50000*prizeCount.get(4) + 1500000*prizeCount.get(5) + 30000000*prizeCount.get(7) + 2000000000*prizeCount.get(6);
 
-        for (int i = 0; i < count; i++) {
-            List<Integer> randomList = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(randomList);
-            Lotto lotto = new Lotto(randomList);
-            lotto.printNumber(randomList);
-            list.add(lotto);
-        }
+        double profitRate = (double)sum / purchaseMoney * 100.0;
 
-        System.out.println();
-        return list;
+        System.out.print("총 수익률은 " );
+        System.out.print(Math.round(profitRate*10)/10.0);
+        System.out.println("%입니다.");
+
+        return profitRate;
     }
 }

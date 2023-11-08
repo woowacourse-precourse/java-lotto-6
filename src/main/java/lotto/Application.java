@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
@@ -15,7 +16,8 @@ public class Application {
         List<Lotto> lottoNumbers = Output.createLottoNumbers(count);
         List<Integer> winNumbers = winNumber();
         int addNum = addNum();
-        Output.checkList(lottoNumbers, winNumbers, addNum);
+        List<Integer> prizeCount = Output.checkList(lottoNumbers, winNumbers, addNum);
+        Output.prizeRate(prizeCount, purchaseMoney);
 
 
         System.out.println(purchaseMoney);
@@ -23,20 +25,24 @@ public class Application {
         System.out.println(winNumbers);
         System.out.println(addNum);
 
-//        for (int i = 0; i < lottoNumbers.size(); i++){
-//            Lotto lotto = lottoNumbers.get(i);
-//
-//            for(int j = 0; j < lotto.getNumbers().size(); j++){
-//                System.out.print(lotto.getNumbers().get(j) + " ");
-//            }
-//            System.out.println();
-//        }
     }
 
     // 로또 구입 금액 입력
     private static int purchaseMoney(){
-        System.out.println("구입금액을 입력해 주세요.");
-        int input = Integer.parseInt(readLine());
+        int input = 0;
+        boolean validInput = false;
+
+        while(!validInput){
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                input = Integer.parseInt(readLine());
+                validInput = true;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         count = input / 1000;
 
         System.out.println();

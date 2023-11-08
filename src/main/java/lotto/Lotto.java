@@ -1,9 +1,8 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -42,6 +41,8 @@ public class Lotto {
         for (int i = 0; i < num.length; i++) {
             num[i] = numbers.get(i);
         }
+
+        Arrays.sort(num);
         System.out.println(Arrays.toString(num));
     }
 }

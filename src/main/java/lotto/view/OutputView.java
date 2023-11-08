@@ -20,4 +20,8 @@ public class OutputView {
     public void printLottoNumber(List<Integer> lottoNumbers) {
         System.out.println(lottoNumbers);
     }
+
+    public void printLottoCount(int lottoCount) {
+        System.out.println(String.format(OutputMessageConstants.PURCHASE_COUNT_OUTPUT_MESSAGE.getMessage(), lottoCount));
+    }
 }

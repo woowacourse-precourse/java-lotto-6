@@ -29,7 +29,7 @@ public class Lotto {
     public List<Integer> allCompare(List<List<Integer>> allLottoNumbers, int bonusNumber) {
         List<Integer> result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0));
         for (List<Integer> lottoNumbers : allLottoNumbers) {
-            Rank rank = compareResult(compare(lottoNumbers), bonusNumber);
+            Rank rank = compareResult(lottoNumbers, bonusNumber);
             result.set(rank.ordinal(), result.get(rank.ordinal()) + 1);
         }
         return result;
@@ -45,9 +45,10 @@ public class Lotto {
         return count;
     }
 
-    public Rank compareResult(int count, int bonusNumber) {
+    public Rank compareResult(List<Integer> lottoNumbers, int bonusNumber) {
         boolean bonus = false;
-        if (count == 5 && numbers.contains(bonusNumber)) {
+        int count = compare(lottoNumbers);
+        if (count == Rank.SECOND_PLACE.getRequiredCount() && lottoNumbers.contains(bonusNumber)) {
             bonus = true;
         }
         return getByCountAndBonus(count, bonus);

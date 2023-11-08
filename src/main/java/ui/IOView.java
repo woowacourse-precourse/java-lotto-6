@@ -1,9 +1,10 @@
 package ui;
 
-import dto.WinningNumberDTO;
 import java.util.List;
 import lotto.LottoPrizeBag;
 import lotto.LottoTickets;
+import lotto.LottoWinningNumber;
+import lotto.LottoWinningNumber.Builder;
 
 public class IOView {
     private IOView() {
@@ -22,14 +23,16 @@ public class IOView {
 
     }
 
-    public static WinningNumberDTO getWinningNumbers() {
+    public static LottoWinningNumber getWinningNumbers() {
+        Builder builder = LottoWinningNumber.builder();
+
         OutputView.printForInputCommonNumber();
-        List<Integer> commonNumbers = InputView.getCommonNumbers();
+        InputView.getCommonNumbers(builder);
 
         OutputView.printForInputBonusNumber();
-        int bonusNumber = InputView.getBonusNumber(commonNumbers);
+        InputView.getBonusNumber(builder);
 
-        return new WinningNumberDTO(commonNumbers, bonusNumber);
+        return builder.build();
     }
 
     public static void printPrizes(LottoPrizeBag prizeBag) {

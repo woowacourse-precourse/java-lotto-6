@@ -5,7 +5,6 @@ import static lotto.LottoConfig.END_NUM;
 import static lotto.LottoConfig.START_NUM;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import dto.WinningNumberDTO;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -38,10 +37,10 @@ public class LottoTickets {
         return lines;
     }
 
-    public LottoPrizeBag matchPrize(WinningNumberDTO winningNumbers) {
+    public LottoPrizeBag matchPrize(LottoWinningNumber winningNumber) {
         List<LottoPrize> lottoPrizes = new ArrayList<>();
         for (Lotto ticket : tickets) {
-            LottoPrize prize = ticket.match(winningNumbers.getCommonNumbers(), winningNumbers.getBonusNumber());
+            LottoPrize prize = ticket.match(winningNumber.getCommonNumbers(), winningNumber.getBonusNumber());
             lottoPrizes.add(prize);
         }
         return new LottoPrizeBag(lottoPrizes);

@@ -4,8 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.stream.Stream;
-import ui.validator.BonusNumberValidator;
-import ui.validator.CommonNumberValidator;
+import lotto.LottoWinningNumber.Builder;
 import ui.validator.MoneyValidator;
 
 class InputView {
@@ -24,25 +23,23 @@ class InputView {
         });
     }
 
-    public static List<Integer> getCommonNumbers() {
+    public static Builder getCommonNumbers(Builder builder) {
         return repeat(() -> {
             String input = Console.readLine();
             String[] inputNumbers = input.split(",");
 
-            List<Integer> integers = Stream.of(inputNumbers).map(Integer::parseInt).toList();
+            List<Integer> numbers = Stream.of(inputNumbers).map(Integer::parseInt).toList();
 
-            CommonNumberValidator.verify(integers);
-
-            return integers;
+            return builder.commonNumbers(numbers);
         });
     }
 
-    public static int getBonusNumber(List<Integer> commonNumbers) {
+    public static Builder getBonusNumber(Builder builder) {
         return repeat(() -> {
             String input = Console.readLine();
             int number = Integer.parseInt(input);
-            BonusNumberValidator.verify(commonNumbers, number);
-            return number;
+
+            return builder.bonusNumber(number);
 
         });
     }

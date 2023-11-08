@@ -42,4 +42,15 @@ class LottoInputValidatorTest {
         Assertions.assertThatThrownBy(() -> lottoInputValidator.validate(values))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.LOTTO_NUMBER_IS_NOT_NUMERIC.getMessage());
     }
+
+    @DisplayName("당첨 번호들이 45보다 큰 경우 예외가 발생한다.")
+    @Test
+    void inputWinningNUmbersOverByRange() {
+        //given
+        String values = "1,2,3,4,5,67";
+
+        //when,then
+        Assertions.assertThatThrownBy(() -> lottoInputValidator.validate(values))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.LOTTO_NUMBER_RANGE_ERROR_MESSAGE.getMessage());
+    }
 }

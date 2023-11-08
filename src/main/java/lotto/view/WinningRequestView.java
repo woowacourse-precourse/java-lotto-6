@@ -5,8 +5,8 @@ import static lotto.view.ui.Output.printlnMessage;
 import static lotto.view.ui.Output.printlnMessageWithNewLine;
 
 import java.util.Arrays;
-import java.util.List;
 import lotto.domain.Number;
+import lotto.domain.WinningNumbers;
 import lotto.global.exception.ErrorMessage;
 import lotto.global.exception.LottoException;
 
@@ -14,7 +14,7 @@ public class WinningRequestView {
     private static final String WINNING_NUMBERS_REQUEST_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String SEPARATOR = ",";
 
-    public static List<Number> request() {
+    public static WinningNumbers request() {
         printlnMessageWithNewLine(WINNING_NUMBERS_REQUEST_MESSAGE);
         try {
             String winningNumbers = Validator.validate(enterMessage());
@@ -25,12 +25,12 @@ public class WinningRequestView {
         }
     }
 
-    private static List<Number> parseWinningNumbers(final String winningNumbers) {
+    private static WinningNumbers parseWinningNumbers(final String winningNumbers) {
         try {
-            return Arrays.stream(split(winningNumbers))
+            return WinningNumbers.from(Arrays.stream(split(winningNumbers))
                     .map(Integer::parseInt)
                     .map(Number::valueOf)
-                    .toList();
+                    .toList());
         } catch (NumberFormatException e) {
             throw LottoException.from(ErrorMessage.NOT_NUMBER_ERROR);
         }

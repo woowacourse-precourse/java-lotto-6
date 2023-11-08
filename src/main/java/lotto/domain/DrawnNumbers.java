@@ -9,18 +9,16 @@ import lotto.global.exception.LottoException;
  * 당첨 번호와 보너스 번호를 저장하는 클래스
  */
 public class DrawnNumbers {
-    private final List<Number> winningNumbers;
+    private final WinningNumbers winningNumbers;
     private final Number bonusNumber;
 
-    private DrawnNumbers(final List<Number> winningNumbers, final Number bonusNumber) {
-        Validators.validateWinningNumbers(winningNumbers);
+    private DrawnNumbers(final WinningNumbers winningNumbers, final Number bonusNumber) {
+        Validator.validateBonusNumber(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
-
-        Validators.validateBonusNumber(winningNumbers, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    public static DrawnNumbers from(final List<Number> winningNumbers, final Number bonusNumber) {
+    public static DrawnNumbers from(final WinningNumbers winningNumbers, final Number bonusNumber) {
         return new DrawnNumbers(winningNumbers, bonusNumber);
     }
 
@@ -32,62 +30,32 @@ public class DrawnNumbers {
      */
     public LottoResultDto compare(final Lotto lotto) {
         List<Number> numbers = lotto.getNumbers();
-        int winningCount = countWinningNumbers(numbers);
+
+        int winningCount = winningNumbers.countMatchedNumbers(numbers);
         boolean hasBonusNumber = numbers.contains(bonusNumber);
+
         return LottoResultDto.of(winningCount, hasBonusNumber);
     }
 
-    private int countWinningNumbers(final List<Number> numbers) {
-        return (int) numbers.stream()
-                .filter(winningNumbers::contains)
-                .count();
-    }
-
-    private static class Validators {
-        /**
-         * 당첨 번호의 유효성을 검증하는 메서드
-         *
-         * @param winningNumbers 당첨 번호
-         */
-        private static void validateWinningNumbers(final List<Number> winningNumbers) {
-            validateDuplication(winningNumbers);
-        }
-
-        private static void validateDuplication(final List<Number> winningNumbers) {
-            if (isDuplicated(winningNumbers)) {
-                throw LottoException.from(ErrorMessage.DUPLICATED_NUMBER_ERROR);
-            }
-        }
-
-        private static boolean isDuplicated(final List<Number> winningNumbers) {
-            int uniqueSize = getUniqueSize(winningNumbers);
-            return uniqueSize != winningNumbers.size();
-        }
-
-        private static int getUniqueSize(final List<Number> winningNumbers) {
-            return (int) winningNumbers.stream()
-                    .distinct()
-                    .count();
-        }
-
+    private static class Validator {
         /**
          * 보너스 번호의 유효성을 검증하는 메서드
          *
          * @param bonusNumber 보너스 번호
          */
-        private static void validateBonusNumber(final List<Number> winningNumbers,
+        private static void validateBonusNumber(final WinningNumbers winningNumbers,
                                                 final Number bonusNumber) {
             validateDuplication(winningNumbers, bonusNumber);
         }
 
-        private static void validateDuplication(final List<Number> winningNumbers,
+        private static void validateDuplication(final WinningNumbers winningNumbers,
                                                 final Number bonusNumber) {
             if (isDuplicatedWithWinningNumbers(winningNumbers, bonusNumber)) {
                 throw LottoException.from(ErrorMessage.DUPLICATED_NUMBER_ERROR);
             }
         }
 
-        private static boolean isDuplicatedWithWinningNumbers(final List<Number> winningNumbers,
+        private static boolean isDuplicatedWithWinningNumbers(final WinningNumbers winningNumbers,
                                                               final Number bonusNumber) {
             return winningNumbers.contains(bonusNumber);
         }

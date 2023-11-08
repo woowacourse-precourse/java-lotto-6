@@ -2,7 +2,7 @@ package lotto.util.converter;
 
 import static lotto.util.message.ErrorMessages.NUMBER_FORMAT_EXCEPTION;
 
-public class NumericConverter {
+public final class NumericConverter {
     private NumericConverter() {
     }
 

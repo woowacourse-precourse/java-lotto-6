@@ -3,7 +3,7 @@ package lotto.util.converter;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class MultipleNumericConverter {
+public final class MultipleNumericConverter {
     private static final String DELIMITER = ",";
 
     private MultipleNumericConverter() {

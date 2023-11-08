@@ -15,17 +15,17 @@ public class OutputView {
     public static final String OUTPUT_WINNING_MONEY_FORMAT_WITH_BONUS_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     public static final String OUTPUT_PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
-    public void printLottoCount(int lottoCount) {
+    public static void printLottoCount(int lottoCount) {
         System.out.println(String.format(OUTPUT_LOTTO_COUNT_MESSAGE, lottoCount));
     }
 
-    public void printWinningLottos(List<Lotto> winningLottos) {
+    public static void printWinningLottos(List<Lotto> winningLottos) {
         for(Lotto lotto : winningLottos) {
             System.out.println(lotto);
         }
     }
 
-    public void printWinningStatistics(Map<Rank, Integer> rankCountMap) {
+    public static void printWinningStatistics(Map<Rank, Integer> rankCountMap) {
         System.out.println(OUTPUT_WINNING_STATISTICS_MESSAGE);
         System.out.println(OUTPUT_WINNING_STATISTICS_DIVIDER);
 
@@ -43,7 +43,7 @@ public class OutputView {
         }
     }
 
-    public void printProfitRate(double profitRate) {
+    public static void printProfitRate(double profitRate) {
         System.out.println(String.format(OUTPUT_PROFIT_RATE_MESSAGE, profitRate));
     }
 }

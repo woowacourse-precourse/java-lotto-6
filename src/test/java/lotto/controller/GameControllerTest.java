@@ -41,10 +41,8 @@ class GameControllerTest {
     @BeforeEach
     void setUp() {
         System.setOut(new PrintStream(outContent));
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
         gameService = new GameService();
-        gameController = new GameController(inputView, outputView, gameService);
+        gameController = new GameController(gameService);
     }
 
     @AfterEach

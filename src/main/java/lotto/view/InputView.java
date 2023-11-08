@@ -8,17 +8,17 @@ public class InputView {
     private static final String INPUT_LOTTO_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public String requestInputLottoMoney() {
+    public static String requestInputLottoMoney() {
         System.out.println(INPUT_LOTTO_MONEY_MESSAGE);
         return Console.readLine();
     }
 
-    public String requestInputLottoNumbers() {
+    public static String requestInputLottoNumbers() {
         System.out.println(INPUT_LOTTO_NUMBERS_MESSAGE);
         return Console.readLine();
     }
 
-    public String requestInputBonusNumber() {
+    public static String requestInputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
         return Console.readLine();
     }

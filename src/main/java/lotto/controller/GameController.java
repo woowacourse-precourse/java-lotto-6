@@ -13,13 +13,9 @@ import java.util.List;
 import java.util.Map;
 
 public class GameController {
-    private InputView inputView;
-    private OutputView outputView;
     private GameService gameService;
 
-    public GameController(InputView inputView, OutputView outputView, GameService gameService) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public GameController(GameService gameService) {
         this.gameService = gameService;
     }
 
@@ -27,7 +23,7 @@ public class GameController {
         int lottoMoney;
 
         while(true){
-            String rawInput = inputView.requestInputLottoMoney();
+            String rawInput = InputView.requestInputLottoMoney();
             try {
                 lottoMoney = convertRawInputLottoMoneyToInt(rawInput);
                 break;
@@ -37,8 +33,8 @@ public class GameController {
         }
 
         gameService.initGame(lottoMoney);
-        outputView.printLottoCount(gameService.getLottoCount());
-        outputView.printWinningLottos(gameService.getWinningLottos());
+        OutputView.printLottoCount(gameService.getLottoCount());
+        OutputView.printWinningLottos(gameService.getWinningLottos());
     }
 
     public void playGame() {
@@ -46,7 +42,7 @@ public class GameController {
         int bonusNumber;
 
         while(true){
-            String rawInputLottoNumbers = inputView.requestInputLottoNumbers();
+            String rawInputLottoNumbers = InputView.requestInputLottoNumbers();
             try {
                 playerLotto = convertRawInputLottoNumbersToLotto(rawInputLottoNumbers);
                 break;
@@ -57,7 +53,7 @@ public class GameController {
         gameService.setPlayerLotto(playerLotto);
 
         while(true){
-            String rawInputBonusNumber = inputView.requestInputBonusNumber();
+            String rawInputBonusNumber = InputView.requestInputBonusNumber();
             try {
                 bonusNumber = convertRawInputBonusNumberToInt(rawInputBonusNumber, playerLotto);
                 break;
@@ -72,10 +68,10 @@ public class GameController {
 
     public void endGame() {
         Map<Rank, Integer> rankCountMap = gameService.getRankCountMap();
-        outputView.printWinningStatistics(rankCountMap);
+        OutputView.printWinningStatistics(rankCountMap);
 
         double profitRate = gameService.calculateProfitRate();
-        outputView.printProfitRate(profitRate);
+        OutputView.printProfitRate(profitRate);
     }
 
     private int convertRawInputLottoMoneyToInt(String rawInput) {

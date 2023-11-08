@@ -40,19 +40,11 @@ public class Input {
         }
 
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber;
-        while(true) {
-            try {
-                String bonusNum = inputBonusNum();
-                bonusNumber = Integer.parseInt(bonusNum);
-                break;
-            } catch(IllegalArgumentException e) {
-                ;
-            }
-        }
+        String bonusNum = inputBonusNum();
+        int bonusNumber = Integer.parseInt(bonusNum);
         return bonusNumber;
     }
-    
+
     private String inputPurchaseAmount() throws IllegalArgumentException {
         String purchaseAmount = Console.readLine();
         if(PurcahseAmountValidator.validate(purchaseAmount));
@@ -77,10 +69,18 @@ public class Input {
         return winningNum;
     }
 
-    private String inputBonusNum() throws IllegalArgumentException {
-        String bonusNum = Console.readLine();
-        BonusNumberValidator.validate(bonusNum);
-        System.out.println();
+    private String inputBonusNum() {
+        String bonusNum;
+        while(true) {
+            try {
+                bonusNum = Console.readLine();
+                BonusNumberValidator.validate(bonusNum);
+                System.out.println();
+                break;
+            } catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return bonusNum;
     }
 }

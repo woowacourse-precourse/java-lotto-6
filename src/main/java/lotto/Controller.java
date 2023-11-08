@@ -12,7 +12,9 @@ public class Controller {
     }
 
     private void setGame() {
-        gameService.setGame();;
+        gameService.setMoney();
+        gameService.setAnswer();
+        gameService.setBonusNumber();;
     }
 
     private void resultGame() {

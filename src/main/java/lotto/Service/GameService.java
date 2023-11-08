@@ -20,7 +20,7 @@ public class GameService {
     List<Integer> answerNumbers;
     Referee referee;
 
-    public void setGame() {
+    public void setMoney() {
         while (true) {
             OutputLottoUI.inputMoneyView();
             money = InputLottoUI.inputMoneyPrint();
@@ -34,7 +34,8 @@ public class GameService {
                 OutputLottoUI.moneyViewReInput();
             }
         }
-
+    }
+    public void setAnswer() {
         while (true) {
             OutputLottoUI.answerLottoView();
             try {
@@ -46,7 +47,9 @@ public class GameService {
             }
 
         }
+    }
 
+    public void setBonusNumber() {
         while (true) {
             OutputLottoUI.answerBonusNumberView();
             try {
@@ -63,10 +66,7 @@ public class GameService {
     public void resultGame() {
         Map<Rank, Integer> matchingCounts = new HashMap<>();
         int totalPrize = 0;
-
-        for (Rank rank : Rank.values()) {
-            matchingCounts.put(rank, 0);
-        }
+        for (Rank rank : Rank.values()) { matchingCounts.put(rank, 0);}
 
         for (List<Integer> playerLotto : lottos) {
             int matchingNumbers = referee.compare(playerLotto);
@@ -77,7 +77,6 @@ public class GameService {
                 matchingCounts.put(rank, matchingCounts.get(rank) + 1);
             }
         }
-
         LottoSalesman.rankTotal(matchingCounts, totalPrize, money);
     }
 

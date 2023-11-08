@@ -16,8 +16,10 @@ class ControllerTest {
     }
 
     @Test
-    private void setGame() {
-        gameService.setGame();;
+    public void setGame() {
+        gameService.setMoney();;
+        gameService.setAnswer();;
+        gameService.setBonusNumber();;
     }
 
     @Test

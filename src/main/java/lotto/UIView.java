@@ -26,6 +26,10 @@ public class UIView {
             throw new IllegalArgumentException();
         }
 
+        if(parsedPurchaseMoney % Lotto.PRICE != 0) {
+            throw new IllegalArgumentException();
+        }
+
         return parsedPurchaseMoney;
     }
 
@@ -60,8 +64,8 @@ public class UIView {
     }
 
     // OUTPUT
-    public static void showSelectedNumbers(List<Integer>[] selectedNumbers) {
-        System.out.println(selectedNumbers.length + "개를 구매했습니다.");
+    public static void showSelectedNumbers(List<List<Integer>> selectedNumbers) {
+        System.out.println(selectedNumbers.size() + "개를 구매했습니다.");
         for(List<Integer> numbers : selectedNumbers) {
             System.out.println(numbers.toString());
         }

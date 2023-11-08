@@ -22,11 +22,11 @@ public class UserLottoTicketGenerator implements LottoNumberGenerator {
     }
 
     @Override
-    public UserLottoTicket generateLottoNumber() {
+    public Lotto generateLottoNumber() {
         final List<Integer> RANDOM_NUMBER = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, SIZE));
         Collections.sort(RANDOM_NUMBER);
 
-        return UserLottoTicket.newInstance(RANDOM_NUMBER);
+        return new Lotto(RANDOM_NUMBER);
     }
 
 }

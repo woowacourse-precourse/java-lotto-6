@@ -13,7 +13,10 @@ public class LottoMachine {
   
   private final int lottoCount;
   
-  //  사용자로부터 입력받은 구매 금액을 검증, 구매 가능한 로또의 갯수 계산.
+  /*
+   * LottoMachine 객체를 생성하는 생성자.
+   * 구매 금액을 받아서 유효한지 검증하고 구매 가능한 로또 개수를 계산한다.
+   */
   public LottoMachine(int purchaseAmount) {
     validatePurchaseAmount(purchaseAmount);
     this.lottoCount = purchaseAmount / LOTTO_PRICE;

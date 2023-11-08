@@ -16,6 +16,10 @@ public class Money {
         return amount;
     }
 
+    public int getCount() {
+        return amount / LOTTO_PRICE;
+    }
+
     private void validate(int amount) {
         validateMoneyMinimum(amount);
         validateMoneyUnit(amount);

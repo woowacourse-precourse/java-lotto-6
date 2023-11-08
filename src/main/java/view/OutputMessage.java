@@ -42,19 +42,24 @@ public class OutputMessage {
 
     public static void printResultOutputMessage(HashMap resultMap) {
         System.out.println(PriceType.FIFTH.getCount() + CONNECT + TextType.MATCH_NUMBER_RESULT.getText()
-                + SPACE + PriceType.FIFTH.getPrice() + DASH + resultMap.getOrDefault(PriceType.FIFTH.getPrice(), 0)
+                + SPACE + PriceType.FIFTH.getText() + DASH + resultMap.getOrDefault(PriceType.FIFTH.getCount(), 0)
                 + TextType.COUNT_UNIT.getText());
         System.out.println(PriceType.FOURTH.getCount() + CONNECT + TextType.MATCH_NUMBER_RESULT.getText()
-                + SPACE + PriceType.FOURTH.getPrice() + DASH + resultMap.getOrDefault(PriceType.FOURTH.getPrice(), 0)
+                + SPACE + PriceType.FOURTH.getText() + DASH + resultMap.getOrDefault(PriceType.FOURTH.getCount(), 0)
                 + TextType.COUNT_UNIT.getText());
         System.out.println(PriceType.THIRD.getCount() + CONNECT + TextType.MATCH_NUMBER_RESULT.getText()
-                + SPACE + PriceType.THIRD.getPrice() + DASH + resultMap.getOrDefault(PriceType.THIRD.getPrice(), 0)
+                + SPACE + PriceType.THIRD.getText() + DASH + resultMap.getOrDefault(PriceType.THIRD.getCount(), 0)
                 + TextType.COUNT_UNIT.getText());
-        System.out.println(PriceType.THIRD.getCount() + CONNECT + TextType.MATCH_NUMBER_RESULT.getText() + COMMA + SPACE
-                + PriceType.BONUS.getPrice() + SPACE + PriceType.SECOND.getPrice() + DASH + resultMap.getOrDefault(PriceType.SECOND.getPrice(), 0)
-                + TextType.COUNT_UNIT.getText());
+        printBonusResult(resultMap);
         System.out.println(PriceType.FIRST.getCount() + CONNECT + TextType.MATCH_NUMBER_RESULT.getText()
-                + SPACE + PriceType.FIRST.getPrice() + DASH + resultMap.getOrDefault(PriceType.FIRST.getPrice(), 0)
+                + SPACE + PriceType.FIRST.getText() + DASH + resultMap.getOrDefault(PriceType.FIRST.getCount(), 0)
+                + TextType.COUNT_UNIT.getText());
+    }
+
+    private static void printBonusResult(HashMap resultMap) {
+        System.out.println(PriceType.THIRD.getCount() + CONNECT + TextType.MATCH_NUMBER_RESULT.getText() + COMMA + SPACE
+                + PriceType.BONUS.getText() + SPACE + PriceType.SECOND.getText() + DASH
+                + resultMap.getOrDefault(PriceType.SECOND.getCount(), 0)
                 + TextType.COUNT_UNIT.getText());
     }
 

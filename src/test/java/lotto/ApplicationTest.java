@@ -9,6 +9,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     @Test
@@ -57,15 +58,47 @@ class ApplicationTest extends NsTest {
     void 로또_입력_공백_예외_테스트(){
         assertSimpleTest(() -> {
             runException("1000", "1,2,3,4, 5,6");
-            assertThat(output().matches(ErrorCode.IS_NOT_NUMBERIC_AND_COMMA.getMessage()));
+            assertThat(output()).contains(ErrorCode.IS_NOT_NUMBERIC_AND_COMMA.getMessage());
         });
     }
 
     @Test
     void 로또_입력_문자_예외_테스트(){
         assertSimpleTest(() -> {
-            runException("1000", "1,2,3,4,a5,6");
-            assertThat(output().matches(ErrorCode.IS_NOT_NUMBERIC_AND_COMMA.getMessage()));
+            runException("1000", "1,2,3,4,a,6");
+            assertThat(output()).contains(ErrorCode.IS_NOT_NUMBERIC_AND_COMMA.getMessage());
+        });
+    }
+
+    @Test
+    void 유효하지_않은_보너스_번호_테스트() {
+        assertSimpleTest(() -> {
+            run("1000", "1,2,3,4,5,6", "6" ,"&", "7");
+            assertThat(output()).contains(ErrorCode.INVALID_BONUS.getMessage());
+        });
+    }
+
+    @Test
+    void 유효하지_않은_로또_갯수_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5");
+            assertThat(output()).contains(ErrorCode.INVALID_LOTTO_COUNT.getMessage());
+        });
+    }
+
+    @Test
+    void 구매금액_입력되지_않은_상태에서_실행() {
+        assertSimpleTest(() -> {
+            runException("", "");
+            assertThat(output()).contains(ErrorCode.INPUT_IS_NULL.getMessage());
+        });
+    }
+
+    @Test
+    void 로또번호_입력되지_않은_상태에서_실행() {
+        assertSimpleTest(() -> {
+            runException("1000", "", "");
+            assertThat(output()).contains(ErrorCode.INPUT_IS_NULL.getMessage());
         });
     }
 

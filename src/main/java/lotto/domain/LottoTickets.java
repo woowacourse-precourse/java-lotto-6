@@ -18,9 +18,7 @@ public class LottoTickets {
         lottoTickets = putBuyLottoTickets(purchaseAmount);
     }
 
-    public static int getBuyLottoTicketsNum(){
-        return lottoTickets.size();
-    }
+
 
     public static List<Lotto> getBuyLottoTickets(){
         return lottoTickets;

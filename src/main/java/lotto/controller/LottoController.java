@@ -13,7 +13,7 @@ public class LottoController {
     }
 
     public static int getBuyLottoTicketsNum(){
-        return LottoTickets.getBuyLottoTicketsNum();
+        return LottoTickets.getBuyLottoTickets().size();
     }
 
     public static List<Lotto> getBuyLottoTickets(){

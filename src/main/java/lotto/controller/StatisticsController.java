@@ -14,11 +14,17 @@ public class StatisticsController {
         outputView.printStatisticsStart();
         outputView.printStatisticsStartLine();
         EnumMap<Rank, Integer> statistic = rankStatistics.getRankStatistics();
-        Arrays.stream(Rank.values()).forEach(e -> printAllStatisticContent(e, statistic.get(e)));
+        Arrays.stream(Rank.values())
+                .filter(this::isRank)
+                .forEach(rank -> printAllStatisticContent(rank, statistic.getOrDefault(rank, 0)));
     }
 
-    private void printAllStatisticContent(Rank rank, int hitCount){
-        if(rank == Rank.SECOND){
+    private boolean isRank(Rank rank) {
+        return rank != Rank.NO_RANK;
+    }
+
+    private void printAllStatisticContent(Rank rank, int hitCount) {
+        if (rank == Rank.SECOND) {
             printStatisticsContentWithBonus(rank, hitCount);
             return;
         }

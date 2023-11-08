@@ -15,8 +15,7 @@ public class InputUtil {
         return Integer.parseInt(input);
     }
 
-    public static List<Integer> parseNums(String input) {
-        List<String> splitInput = splitInput(input);
+    public static List<Integer> parseNums(List<String> splitInput) {
         return splitInput.stream()
                     .map(InputUtil::parseInt)
                     .toList();

@@ -23,9 +23,7 @@ public class InputValidator {
         }
     }
 
-    public static void validateIsNumbers(String input) {
-        List<String> strings = Arrays.stream(input.split(",")).toList();
-
+    public static void validateIsNumbers(List<String> strings) {
         for (String string : strings) {
             validateIsNumber(string);
         }

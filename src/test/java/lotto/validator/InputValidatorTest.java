@@ -24,5 +24,10 @@ class InputValidatorTest {
         assertDoesNotThrow(() -> InputValidator.validateIsNumber("-456"));
     }
 
+    @Test
+    @DisplayName("입력 중에 숫자가 아닌 값이 하나라도 있으면 예외를 발생시킨다.")
+    void testInvalidNumbers(){
+        assertThrows(IllegalArgumentException.class, () -> InputValidator.validateIsNumber(""));
 
+    }
 }

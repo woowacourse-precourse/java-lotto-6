@@ -3,10 +3,8 @@ package lotto.handler;
 import static lotto.message.SystemMessage.INPUT_PURCHASE_PRICE;
 import static lotto.message.SystemMessage.OUTPUT_BONUS_NUMBER;
 import static lotto.message.SystemMessage.OUTPUT_WINNING_NUMBERS;
-import static lotto.util.OutputUtil.formatNumsToString;
 import static lotto.view.InputView.read;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.util.InputUtil;
 import lotto.validator.InputValidator;
@@ -39,9 +37,10 @@ public class InputHandler {
             try{
                 String input = inputWinningNums();
 
-                InputValidator.validateIsNumbers(input);
+                List<String> splitInput = InputUtil.splitInput(input);
+                InputValidator.validateIsNumbers(splitInput);
 
-                List<Integer> winningNums = InputUtil.parseNums(input);
+                List<Integer> winningNums = InputUtil.parseNums(splitInput);
 
                 // 이건 input이 아니라.. 다른 검증 클래스에서 하는게 좋을지도
                 // 예를 들어 로또검증 클래스나.. 이런데서 하는게 좋을듯.

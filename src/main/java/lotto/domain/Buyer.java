@@ -2,6 +2,8 @@ package lotto.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.exception.ErrorMessage;
+import lotto.exception.LottoException;
 
 public class Buyer {
     private Lotto lotto;
@@ -21,7 +23,7 @@ public class Buyer {
 
     private void validateExistence(int bonus) {
         if (isExistedValue(bonus)) {
-            throw new IllegalArgumentException("당첨 번호로 입력한 숫자는 다시 입력할 수 없습니다.");
+            throw new LottoException(ErrorMessage.IS_EXISTED_VALUE);
         }
     }
 

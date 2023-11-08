@@ -1,9 +1,12 @@
 package lotto.validator;
 
+import lotto.exception.ErrorMessage;
+import lotto.exception.LottoException;
+
 public class PriceValidator {
-    private static final Integer PRICE_UNIT = 1000;
-    private static final Integer PRICE_STANDARD = 1000;
-    private static final Integer REMAIN_ZERO = 0;
+    private static final int PRICE_UNIT = 1000;
+    private static final int PRICE_LIMIT = 1000;
+    private static final int REMAIN_ZERO = 0;
 
     public static Integer validatePrice(int userInput) {
         validateAmount(userInput);
@@ -14,7 +17,7 @@ public class PriceValidator {
 
     private static void validateUnit(int userInput) {
         if (isNotRequiredUnit(userInput)) {
-            throw new IllegalArgumentException(PRICE_UNIT + "원 단위 이외의 금액은 입력할 수 없습니다.");
+            throw new LottoException(ErrorMessage.NON_REQUIRED_UNIT);
         }
     }
 
@@ -23,12 +26,12 @@ public class PriceValidator {
     }
 
     private static void validateAmount(int userInput) {
-        if (isLowerThanStandard(userInput)) {
-            throw new IllegalArgumentException(PRICE_STANDARD + "원 미만의 금액은 입력할 수 없습니다.");
+        if (isLowerThanLimit(userInput)) {
+            throw new LottoException(ErrorMessage.UNDER_LIMIT);
         }
     }
 
-    private static boolean isLowerThanStandard(int userInput) {
-        return userInput < PRICE_STANDARD;
+    private static boolean isLowerThanLimit(int userInput) {
+        return userInput < PRICE_LIMIT;
     }
 }

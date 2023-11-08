@@ -1,5 +1,7 @@
 package lotto.util;
 
+import lotto.exception.ErrorMessage;
+import lotto.exception.LottoException;
 import lotto.validator.PriceValidator;
 
 public class ConvertingUtil {
@@ -9,7 +11,7 @@ public class ConvertingUtil {
         PriceValidator.validatePrice(
                 convertToInteger(userInput)
         );
-        
+
         return convertToInteger(userInput) / TICKET_PRICE;
     }
 
@@ -17,7 +19,7 @@ public class ConvertingUtil {
         try {
             return Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자 이외의 값은 입력할 수 없습니다.");
+            throw new LottoException(ErrorMessage.NON_NUMERIC_VALUE);
         }
     }
 }

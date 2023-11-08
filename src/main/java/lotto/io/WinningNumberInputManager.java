@@ -6,8 +6,6 @@ import java.util.List;
 public class WinningNumberInputManager extends InputManager<List<Integer>> {
     private static WinningNumberInputManager INSTANCE;
 
-    private List<Integer> result;
-
     private WinningNumberInputManager() {
     }
 
@@ -22,8 +20,7 @@ public class WinningNumberInputManager extends InputManager<List<Integer>> {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String inputLine = consoleAdapter.readLine();
-                result = validation(inputLine);
-                return result;
+                return validation(inputLine);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

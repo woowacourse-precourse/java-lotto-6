@@ -25,8 +25,4 @@ public class Store {
         return new Lotto(numbers);
     }
 
-    private static boolean isDuplicateNumber(List<Integer> numbers, final int number) {
-        return numbers.contains(number);
-    }
-
 }

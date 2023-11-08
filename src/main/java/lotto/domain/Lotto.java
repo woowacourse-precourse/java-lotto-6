@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.List;
 import lotto.exception.LottoSizeException;
+import lotto.exception.SameNumberInLottoException;
 
 public class Lotto {
     private final int YES = 1;
@@ -15,8 +16,15 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateSameNumbers(numbers);
         if (numbers.size() != 6) {
             throw new LottoSizeException();
+        }
+    }
+
+    public void validateSameNumbers(List<Integer> win) {
+        if(win.size() != win.stream().distinct().count()){
+            throw new SameNumberInLottoException();
         }
     }
 

@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.domain.Lotto;
 import lotto.domain.ResultRepository;
 
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -14,8 +15,8 @@ public class OutputView {
 
     public void printLotto(Lotto lotto) {
         String numbers = lotto.getNumbers().stream()
-                .map(Object::toString)
                 .sorted()
+                .map(Object::toString)
                 .collect(Collectors.joining(", "));
         System.out.println("[" + numbers + "]");
     }

@@ -1,9 +1,9 @@
 package lotto.domain;
 
-import static lotto.domain.util.LottoParser.validateLottoNumbersList;
+import static lotto.domain.validation.Validator.validateLottoNumbersList;
 
-import java.util.*;
-import lotto.exception.LottoException;
+import java.util.Collections;
+import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;

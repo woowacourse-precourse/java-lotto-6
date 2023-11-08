@@ -12,8 +12,10 @@ public class InputView {
         System.out.println("구입금액을 입력해 주세요.");
         try {
             money = Integer.parseInt(readLine().trim());
-        } catch (NumberFormatException error) {
-            System.out.println("[ERROR] 올바른 형식의 입력값이 아닙니다. 다시 입력해 주십시오.");
+            isCorrectMoney(money);
+        } catch (IllegalArgumentException error) {
+            System.out.println("[ERROR] 구입금액은 1,000원 단위로 입력해주세요.");
+            moneyInput();
         }
         return money;
     }
@@ -36,8 +38,9 @@ public class InputView {
             String[] answer = readLine().split(",");
             StringToInt(answer, convertAnswer);
             lotto = new Lotto(convertAnswer);
-        } catch (NumberFormatException error) {
-            System.out.println("[ERROR] 올바른 형식의 입력값이 아닙니다. 다시 입력해 주십시오.");
+        } catch (IllegalArgumentException error) {
+            System.out.println("[ERROR] 당첨번호는 6자리여야 하며 중복되지 않아야 합니다.");
+            answerInput();
         }
         return lotto;
     }

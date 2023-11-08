@@ -15,16 +15,19 @@ public class LottoService {
     private static final int lottoStartNumber = 1;
     private static final int lottoStopNumber = 45;
     private static final int lottoLength = 6;
+    private static final int purchaseOneTicketValue = 1000;
+    private static final int zero = 0;
+    private static final int plusRanking = 1;
 
     private int buyLottoTicket(int money) {
-        exceptions.isInvalidPurchaseMoneyAmount(money, 1000);
-        int lottoTicket = money / 1000;
+        exceptions.isInvalidPurchaseMoneyAmount(money, purchaseOneTicketValue);
+        int lottoTicket = money / purchaseOneTicketValue;
         return lottoTicket;
     }
 
     public void buyLottoByTicket(Customer customer) {
         int ticket = buyLottoTicket(customer.getPurchaseMoney());
-        for (int i = ticket; i > 0; i--) {
+        for (int i = ticket; i > zero; i--) {
             buyOneLotto(customer);
         }
     }
@@ -62,7 +65,7 @@ public class LottoService {
         HashMap<Ranking,Integer> result = customer.getLottoResult();
         for(Lotto lotto : customer.getPurchaseLotteries()) {
             Ranking ranking = lottoRanking(winningNumber,lotto);
-            result.put(ranking,result.getOrDefault(ranking,0) + 1);
+            result.put(ranking, result.getOrDefault(ranking, zero) + plusRanking);
         }
     }
 
@@ -85,7 +88,7 @@ public class LottoService {
     }
 
     private int checkSameNumber(List<Integer> list1, List<Integer> list2) {
-        int count = 0;
+        int count = zero;
         for (int number : list2) {
             if (list1.contains(number)) {
                 count++;

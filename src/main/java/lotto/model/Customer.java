@@ -5,6 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Customer {
+    private static final int initLottoRanking = 0;
+    private static final double percent = 100.0;
+    private static final int intTen = 10;
+    private static final double doubleTen = 10.0;
+    private static final int zero = 0;
     private int purchaseMoney;
     private ArrayList<Lotto> purchaseLotteries = new ArrayList<>();
     private HashMap<Ranking,Integer> lottoResult = new HashMap<>();
@@ -31,24 +36,24 @@ public class Customer {
     }
 
     private void initLottoResult(){
-        lottoResult.put(Ranking.ZERO, 0);
-        lottoResult.put(Ranking.ONE, 0);
-        lottoResult.put(Ranking.TWO, 0);
-        lottoResult.put(Ranking.THREE, 0);
-        lottoResult.put(Ranking.FOUR, 0);
-        lottoResult.put(Ranking.FIVE, 0);
-        lottoResult.put(Ranking.FIVE_BONUS, 0);
-        lottoResult.put(Ranking.SIXTH, 0);
+        lottoResult.put(Ranking.ZERO, initLottoRanking);
+        lottoResult.put(Ranking.ONE, initLottoRanking);
+        lottoResult.put(Ranking.TWO, initLottoRanking);
+        lottoResult.put(Ranking.THREE, initLottoRanking);
+        lottoResult.put(Ranking.FOUR, initLottoRanking);
+        lottoResult.put(Ranking.FIVE, initLottoRanking);
+        lottoResult.put(Ranking.FIVE_BONUS, initLottoRanking);
+        lottoResult.put(Ranking.SIXTH, initLottoRanking);
     }
 
     public double getYield(){
-        double yield = (getResultSum() / (double) purchaseMoney) * 100.0;
-        double roundedYield = Math.round(yield * 10) / 10.0;
+        double yield = (getResultSum() / (double) purchaseMoney) * percent;
+        double roundedYield = Math.round(yield * intTen) / doubleTen;
         return roundedYield;
     }
 
     public int getResultSum() {
-        int sum = 0;
+        int sum = zero;
         for(Ranking ranking : lottoResult.keySet()) {
             sum += ranking.getReward() * lottoResult.get(ranking);
         }

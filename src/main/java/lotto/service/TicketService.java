@@ -13,6 +13,7 @@ import lotto.domain.Ticket;
 import lotto.domain.WinningTicket;
 import lotto.repository.MemoryTicketRepository;
 import lotto.util.AutomaticGenerator;
+import lotto.util.rule.GameRule;
 
 public class TicketService {
 
@@ -57,47 +58,50 @@ public class TicketService {
     public int[] prizeCount() {
         int[] prizeCount = new int[RANK_SIZE.getValue()];
         List<Ticket> tickets = memoryTicketRepository.findAll();
+        List<Integer> winningNumbers = memoryTicketRepository.findNumbers().getLotto().getNumbers();
+        Integer bonusNumber = memoryTicketRepository.findBonusNumber().getBonusNumber();
+
         for (Ticket ticket : tickets) {
-            int matchCount = matchNumbers(ticket);
-            boolean hasBonus = hasBonus(ticket);
-            if (hasBonus) {
-                matchCount++;
-            }
-            if (matchCount == 6) {
-                if (hasBonus) {
-                    prizeCount[1]++; // 2등
-                } else {
-                    prizeCount[0]++; // 1등
-                }
-            }
-            if (matchCount == 5) {
-                prizeCount[2]++; // 3등
-            }
-            if (matchCount == 4) {
-                prizeCount[3]++; // 4등
-            }
-            if (matchCount == 3) {
-                prizeCount[4]++; // 5등
+            int matchCount = matchNumbers(ticket, winningNumbers);
+            boolean hasBonus = hasBonus(ticket, bonusNumber);
+            int prizeRank = calculatePrizeRank(matchCount, hasBonus);
+
+            if (prizeRank >= 0) {
+                prizeCount[prizeRank]++;
             }
         }
+
         return prizeCount;
     }
 
-    private int matchNumbers(Ticket ticket) {
-        List<Integer> winningTicket = memoryTicketRepository.findNumbers().getLotto().getNumbers();
+    private int matchNumbers(Ticket ticket, List<Integer> winningNumbers) {
+        List<Integer> ticketNumbers = ticket.getLotto().getNumbers();
         int matchCount = 0;
-        for (Integer number : ticket.getLotto().getNumbers()) {
-            if (winningTicket.contains(number)) {
+        for (Integer number : ticketNumbers) {
+            if (winningNumbers.contains(number)) {
                 matchCount++;
             }
         }
         return matchCount;
     }
 
-    private boolean hasBonus(Ticket ticket) {
-        Integer bonusNumber = memoryTicketRepository.findBonusNumber().getBonusNumber();
+    private boolean hasBonus(Ticket ticket, Integer bonusNumber) {
         List<Integer> ticketNumbers = ticket.getLotto().getNumbers();
         return ticketNumbers.contains(bonusNumber);
     }
 
+    private int calculatePrizeRank(int matchCount, boolean hasBonus) {
+        if (matchCount == 6) {
+            return 0; // 1등
+        } else if (matchCount == 5 && hasBonus) {
+            return 1; // 2등
+        } else if (matchCount == 5|| (matchCount == 4 && hasBonus)) {
+            return 2; // 3등
+        } else if (matchCount == 4 || (matchCount == 3 && hasBonus)) {
+            return 3; // 4등
+        } else if (matchCount == 3 || (matchCount == 2 && hasBonus)) {
+            return 4; // 5등
+        }
+        return -1; // 어떤 상금에도 해당하지 않음
+    }
 }

@@ -55,7 +55,7 @@ public class LottoController {
         return LottoNumber.of(bonusNumber);
     }
 
-    private static <T> T repeat(Supplier<T> supplier) {
+    private static <T> T repeat(final Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {

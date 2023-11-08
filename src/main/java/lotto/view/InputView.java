@@ -32,7 +32,7 @@ public class InputView {
         return parseInt(input);
     }
 
-    private int parseInt(String input) {
+    private int parseInt(final String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

@@ -15,12 +15,12 @@ public enum Rank {
     private final LottoResult lottoResult;
     private final int reward;
 
-    Rank(LottoResult lottoResult, int reward) {
+    Rank(final LottoResult lottoResult, final int reward) {
         this.lottoResult = lottoResult;
         this.reward = reward;
     }
 
-    public static Rank of(LottoResult lottoResult) {
+    public static Rank of(final LottoResult lottoResult) {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.lottoResult.equals(lottoResult))
                 .findFirst()

@@ -27,7 +27,7 @@ public class OutputView {
         System.out.println(stringBuilder);
     }
 
-    private void appendPurchasedLotto(Lotto purchasedLotto, StringBuilder stringBuilder) {
+    private void appendPurchasedLotto(final Lotto purchasedLotto, final StringBuilder stringBuilder) {
         stringBuilder.append(purchasedLotto.numbers());
         stringBuilder.append(NEWLINE);
     }

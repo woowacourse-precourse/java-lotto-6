@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.EnumMap;
 
-public class EarnedCalculator {
+public class EarningCalculator {
     public double getEarningRate(EnumMap<LottoRank, Integer> lottoMap, int purchaseAmount) {
         int earnings = calculateTotalEarnings(lottoMap);
         return calculateEarningRate(earnings, purchaseAmount);

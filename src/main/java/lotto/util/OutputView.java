@@ -1,6 +1,6 @@
 package lotto.util;
 
-import lotto.domain.EarnedCalculator;
+import lotto.domain.EarningCalculator;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.message.OutPutMessage;
@@ -38,7 +38,7 @@ public class OutputView {
     }
 
     public void printLottoEarningRate(int purchaseAmount, EnumMap<LottoRank, Integer> lottoResultMap) {
-        double earningRate = new EarnedCalculator().getEarningRate(lottoResultMap, purchaseAmount);
+        double earningRate = new EarningCalculator().getEarningRate(lottoResultMap, purchaseAmount);
         System.out.println(OutPutMessage.OUTPUT_TOTAL.format(earningRate));
     }
 

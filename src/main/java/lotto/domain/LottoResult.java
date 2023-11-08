@@ -2,11 +2,19 @@ package lotto.domain;
 
 public class LottoResult {
 
-    private int matchingNumbers;
-    private boolean matchBonusNumber;
+    private int matchingCount;
+    private boolean hasBonusNumber;
 
-    public LottoResult(int matchingNumbers, boolean matchBonusNumber) {
-        this.matchingNumbers = matchingNumbers;
-        this.matchBonusNumber = matchBonusNumber;
+    public LottoResult(int matchingCount, boolean hasBonusNumber) {
+        this.matchingCount = matchingCount;
+        this.hasBonusNumber = hasBonusNumber;
+    }
+
+    public int getMatchingCount() {
+        return matchingCount;
+    }
+
+    public boolean isHasBonusNumber() {
+        return hasBonusNumber;
     }
 }

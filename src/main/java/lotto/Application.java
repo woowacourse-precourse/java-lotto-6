@@ -1,5 +1,6 @@
 package lotto;
 
+import user.User;
 import util.InputUtil;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class Application {
         int purchaseAmount = getInputToPurchaseAmount();
 
         List<Integer> resultNumbers = getInputToResultNumbers();
+        int bonusNumber = getInputToBonusNumber(resultNumbers);
     }
 
     private static int getInputToPurchaseAmount() {
@@ -36,6 +38,31 @@ public class Application {
     private static int validateAndGetPurchaseAmount(String input) {
         validateNumericInput(input);
         return Integer.parseInt(input);
+    }
+
+    private static int getInputToBonusNumber(List<Integer> resultNumbers) {
+        int bonusNumber = 0;
+        boolean validInput = false;
+
+        while (!validInput) {
+            try {
+                String input = InputUtil.getUserInput("보너스 번호를 입력해 주세요.\n");
+                bonusNumber = validateAndGetBonusNumber(resultNumbers, input);
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNumber;
+    }
+
+    public static int validateAndGetBonusNumber(List<Integer> resultNumbers, String input) {
+        validateNumericInput(input);
+        validateNonZeroInput(input);
+        int number = Integer.parseInt(input);
+        validateNoDuplicateNumbers(resultNumbers, number);
+        validateLottoNumberRange(number);
+        return number;
     }
 
     private static List<Integer> getInputToResultNumbers() {

@@ -35,9 +35,9 @@ public class WinningNumbers {
         }
     }
 
-    public boolean contains(int number) {
+    public boolean contains(LottoNumber number) {
         return winningNumbers.stream()
-                .anyMatch(winningNumber -> winningNumber.lottoNumberValue() == number);
+                .anyMatch(winningNumber -> winningNumber.equals(number));
     }
 
 

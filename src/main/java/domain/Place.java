@@ -1,5 +1,5 @@
 package domain;
 
 public enum Place {
-    FIRST,SECOND,THIRD,FORTH,FIFTH,NONE
+    FIFTH,FORTH,THIRD,SECOND,FIRST,NONE
 }

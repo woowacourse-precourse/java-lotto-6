@@ -7,6 +7,7 @@ import lotto.util.NumberConverter;
 public class BonusNumber {
     private static final int LOTTERY_MIN_NUM = 1;
     private static final int LOTTERY_MAX_NUM = 45;
+    private static final String BLANK = " ";
     private final Lotto lotto;
     private final NumberConverter numberConverter;
     private int bonusNumber;
@@ -17,8 +18,20 @@ public class BonusNumber {
     }
 
     public void validateNumber(String bonusNumber) {
-        int number = numberConverter.convert(bonusNumber);
+        String trimedNumber = ensureNotBlank(trim(bonusNumber));
+        int number = numberConverter.convert(trimedNumber);
         this.bonusNumber = checkForDuplicates(checkRangeValidity(number));
+    }
+
+    private String trim(String bonusNumber) {
+        return bonusNumber.trim();
+    }
+
+    private String ensureNotBlank(String bonusNumber) {
+        if (bonusNumber.contains(BLANK)) {
+            throw new IllegalArgumentException(ExceptionMessage.PLEASE_NOT_INPUT_BETWEEN_NUMBER_BLANK.getMessage());
+        }
+        return bonusNumber;
     }
 
     private int checkRangeValidity(int bonusNumber) {

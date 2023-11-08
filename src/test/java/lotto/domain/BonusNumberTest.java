@@ -16,6 +16,7 @@ class BonusNumberTest {
     private static final String DUPLICATE_BONUS = "1";
     private static final String NON_NUMERIC_BONUS = "a";
     private static final String OUT_OF_INT_RANGE_BONUS = "3000000000";
+    private static final String INTERNAL_SPACES_NUMBER = "1 2";
     private static final int EXPECTED_BONUS_NUMBER = 7;
 
     private Lotto lotto;
@@ -68,6 +69,14 @@ class BonusNumberTest {
         assertThatThrownBy(() -> bonusNumber.validateNumber(OUT_OF_INT_RANGE_BONUS))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.INVALID_AMOUNT_MESSAGE.getMessage());
+    }
+
+    @Test
+    @DisplayName("보너스 번호 숫자 사이에 공백이 있을 때 예외 발생")
+    void validateNoBlank() {
+        assertThatThrownBy(() -> bonusNumber.validateNumber(INTERNAL_SPACES_NUMBER))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.PLEASE_NOT_INPUT_BETWEEN_NUMBER_BLANK.getMessage());
     }
 
 }

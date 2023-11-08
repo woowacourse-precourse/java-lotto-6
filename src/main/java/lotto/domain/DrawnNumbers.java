@@ -13,10 +13,10 @@ import lotto.global.exception.LottoException;
  * 당첨 번호와 보너스 번호를 저장하는 클래스
  */
 public class DrawnNumbers {
-    private final List<Integer> winningNumbers;
-    private final Integer bonusNumber;
+    private final List<Number> winningNumbers;
+    private final Number bonusNumber;
 
-    private DrawnNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
+    private DrawnNumbers(List<Number> winningNumbers, Number bonusNumber) {
         Validators.validateWinningNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
 
@@ -35,13 +35,13 @@ public class DrawnNumbers {
      * @return 매칭되는 당첨 번호 개수와 보너스 번호의 포함 여부
      */
     public LottoResultDto compare(Lotto lotto) {
-        List<Integer> numbers = lotto.getNumbers();
+        List<Number> numbers = lotto.getNumbers();
         int winningCount = countWinningNumbers(numbers);
         boolean hasBonusNumber = numbers.contains(bonusNumber);
         return LottoResultDto.of(winningCount, hasBonusNumber);
     }
 
-    private int countWinningNumbers(List<Integer> numbers) {
+    private int countWinningNumbers(List<Number> numbers) {
         return (int) numbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
@@ -53,36 +53,22 @@ public class DrawnNumbers {
          *
          * @param winningNumbers 당첨 번호
          */
-        private static void validateWinningNumbers(List<Integer> winningNumbers) {
-            validateInvalidRange(winningNumbers);
+        private static void validateWinningNumbers(List<Number> winningNumbers) {
             validateDuplication(winningNumbers);
         }
 
-        private static void validateInvalidRange(List<Integer> winningNumbers) {
-            if (isInvalidRange(winningNumbers)) {
-                throw LottoException.from(ErrorMessage.INVALID_RANGE_ERROR);
-            }
-        }
-
-        private static boolean isInvalidRange(List<Integer> winningNumbers) {
-            return !winningNumbers.stream()
-                    .allMatch(number ->
-                            number >= MIN_LOTTO_NUMBER.getValue() && number <= MAX_LOTTO_NUMBER.getValue()
-                    );
-        }
-
-        private static void validateDuplication(List<Integer> winningNumbers) {
+        private static void validateDuplication(List<Number> winningNumbers) {
             if (isDuplicated(winningNumbers)) {
                 throw LottoException.from(ErrorMessage.DUPLICATED_NUMBER_ERROR);
             }
         }
 
-        private static boolean isDuplicated(List<Integer> winningNumbers) {
+        private static boolean isDuplicated(List<Number> winningNumbers) {
             int uniqueSize = getUniqueSize(winningNumbers);
             return uniqueSize != winningNumbers.size();
         }
 
-        private static int getUniqueSize(List<Integer> winningNumbers) {
+        private static int getUniqueSize(List<Number> winningNumbers) {
             return (int) winningNumbers.stream()
                     .distinct()
                     .count();
@@ -93,28 +79,17 @@ public class DrawnNumbers {
          *
          * @param bonusNumber 보너스 번호
          */
-        private static void validateBonusNumber(List<Integer> winningNumbers, Integer bonusNumber) {
-            validateInvalidRange(bonusNumber);
+        private static void validateBonusNumber(List<Number> winningNumbers, Number bonusNumber) {
             validateDuplication(winningNumbers, bonusNumber);
         }
 
-        private static void validateInvalidRange(Integer bonusNumber) {
-            if (isInvalidRange(bonusNumber)) {
-                throw LottoException.from(ErrorMessage.INVALID_RANGE_ERROR);
-            }
-        }
-
-        private static boolean isInvalidRange(Integer bonusNumber) {
-            return bonusNumber < MIN_LOTTO_NUMBER.getValue() || bonusNumber > MAX_LOTTO_NUMBER.getValue();
-        }
-
-        private static void validateDuplication(List<Integer> winningNumbers, Integer bonusNumber) {
+        private static void validateDuplication(List<Number> winningNumbers, Number bonusNumber) {
             if (isDuplicatedWithWinningNumbers(winningNumbers, bonusNumber)) {
                 throw LottoException.from(ErrorMessage.DUPLICATED_NUMBER_ERROR);
             }
         }
 
-        private static boolean isDuplicatedWithWinningNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
+        private static boolean isDuplicatedWithWinningNumbers(List<Number> winningNumbers, Number bonusNumber) {
             return winningNumbers.contains(bonusNumber);
         }
     }

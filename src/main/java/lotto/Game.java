@@ -22,4 +22,9 @@ public class Game {
             //로또 생성
         }
     }
+
+    public void DoIt(){
+        start();
+        generate();
+    }
 }

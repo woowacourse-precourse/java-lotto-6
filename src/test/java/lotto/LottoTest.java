@@ -108,7 +108,7 @@ class LottoTest {
     @Test
     void findRankSECOND() {
         //when
-        Lotto buyLotto = new Lotto(List.of(1, 26, 4, 5, 6, 7));
+        Lotto buyLotto = new Lotto(List.of(1, 26, 4, 5, 16, 7));
         int correctNumber = winningLotto.matching(buyLotto);
         //then
         assertThat(buyLotto.findRank(correctNumber,bonusNumer)).isEqualTo(2);

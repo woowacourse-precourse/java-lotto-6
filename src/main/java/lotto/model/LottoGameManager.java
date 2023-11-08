@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.rule.LottoGameRule;
 import lotto.rule.UserRule;
+import lotto.util.validator.InputValidator;
 import lotto.util.validator.LottoCostValidator;
 import lotto.util.validator.LottoNumbersValidator;
 
@@ -38,6 +39,7 @@ public class LottoGameManager {
     private List<Integer> parsingWinningNumbers(String userInputWinningNumbers) {
         List<Integer> parsedWinningNumbers = new ArrayList<>();
         for (String lottoNumber : splitWinningNumbers(userInputWinningNumbers)) {
+            InputValidator.validateNumeric(lottoNumber);
             int parsedNumber = Integer.parseInt(lottoNumber.trim());
             LottoNumbersValidator.validateLottoNumberRange(parsedNumber);
             parsedWinningNumbers.add(parsedNumber);

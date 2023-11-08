@@ -110,6 +110,14 @@ public class ErrorTest extends NsTest {
             assertThat(output()).contains(ExceptionMessage.NumberRangeError.getErrorMessage());
         });
     }
+    @Test
+    @DisplayName("보너스 금액 입력시 숫자중 0보다 작은 숫자가 있을때")
+    public void inputBonusNumberSmallRangeError(){
+        assertSimpleTest(() -> {
+            runException("3000","1,2,3,4,5,6", "0");
+            assertThat(output()).contains(ExceptionMessage.NumberRangeError.getErrorMessage());
+        });
+    }
 
 
 

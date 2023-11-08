@@ -1,9 +1,12 @@
 package lotto.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 
 public class LottoRepository {
+
+    private final List<Lotto> lottos = new ArrayList<>();
 
     private static final LottoRepository instance = new LottoRepository();
 
@@ -15,8 +18,11 @@ public class LottoRepository {
         return instance;
     }
 
-    public Lotto createLotto(List<Integer> numbers) {
-        Lotto lotto = new Lotto(numbers);
-        return lotto;
+    public void save(Lotto lotto) {
+        lottos.add(lotto);
+    }
+
+    public List<Lotto> findAll() {
+        return lottos;
     }
 }

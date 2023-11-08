@@ -24,16 +24,8 @@ public class LottoInput {
     }
 
     public WinningLotto winningLottoInput(){
-        System.out.println(WINNING_LOTTO_MESSAGE);
-        List<Integer> lottoNumbers = parseByComma(Console.readLine()).stream()
-                .mapToInt(NumberHandler::parseLottoNumber)
-                .boxed().toList();
-        InputValidator.lottoLengthCheck(lottoNumbers);
-        System.out.println();
-
-        System.out.println(BONUS_NUMBER_MESSAGE);
-        int bonusNumber = NumberHandler.parseLottoNumber(Console.readLine());
-        System.out.println();
+        List<Integer> lottoNumbers = getInputWiningLotto();
+        int bonusNumber = getInputBonusNumber();
         return new WinningLotto(lottoNumbers, bonusNumber);
     }
 
@@ -52,5 +44,23 @@ public class LottoInput {
             throw new RuntimeException(ErrorMessage.INTERNAL_SERVER_ERROR.getMessage());
         }
         return true;
+    }
+
+    private List<Integer> getInputWiningLotto(){
+        System.out.println(WINNING_LOTTO_MESSAGE);
+        List<Integer> lottoNumbers = parseByComma(Console.readLine()).stream()
+                .mapToInt(NumberHandler::parseLottoNumber)
+                .boxed().toList();
+        InputValidator.lottoLengthCheck(lottoNumbers);
+        InputValidator.lottoNumbersDuplicatedCheck(lottoNumbers);
+        System.out.println();
+        return lottoNumbers;
+    }
+
+    private int getInputBonusNumber(){
+        System.out.println(BONUS_NUMBER_MESSAGE);
+        int bonusNumber = NumberHandler.parseLottoNumber(Console.readLine());
+        System.out.println();
+        return bonusNumber;
     }
 }

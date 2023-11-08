@@ -40,6 +40,8 @@ public class InputView {
                 System.out.print("당첨 번호를 입력해 주세요: ");
                 String[] inputWinningNumbers = Console.readLine().split(",");
                 return checkWinningNumbersValidity(inputWinningNumbers);
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해주세요." );
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

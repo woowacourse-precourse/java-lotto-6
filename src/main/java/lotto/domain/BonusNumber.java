@@ -13,10 +13,10 @@ public class BonusNumber implements LottoConstants {
 
     private void validate(int number, Lotto winningNumber) {
         if (winningNumber.contains(number)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_OF_WINNING_NUMBERS.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_OF_WINNING_NUMBERS.toString());
         }
         if ((number < MIN_NUMBER) || (number > MAX_NUMBER)) {
-            throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE.getMessage(MIN_NUMBER, MAX_NUMBER));
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE.toString());
         }
     }
 }

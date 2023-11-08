@@ -10,7 +10,7 @@ public class Parser {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.toString());
         }
     }
 

@@ -25,17 +25,17 @@ public class Lotto implements LottoConstants {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE.getMessage(LOTTO_SIZE));
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE.toString());
         }
         if (Set.copyOf(numbers).size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE.toString());
         }
         numbers.forEach(number -> validateRange(number));
     }
 
     private void validateRange(int number) {
         if ((number < MIN_NUMBER) || (number > MAX_NUMBER)) {
-            throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE.getMessage(MIN_NUMBER, MAX_NUMBER));
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE.toString());
         }
     }
 }

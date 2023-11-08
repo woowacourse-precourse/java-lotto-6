@@ -7,11 +7,6 @@ public enum Rank {
     THIRD(5, 1500000, "5개 일치 "), FOURTH(4, 50000, "4개 일치 "),
     FIFTH(3, 5000, "3개 일치 "), LOSE(2, 0);
 
-    private static final int MAXIMUM = 6;
-    private static final int FIVE = 5;
-    private static final int FOUR = 4;
-    private static final int MINIMUM = 3;
-
     private int sameCount;
     private int prize;
     private String message;
@@ -28,23 +23,23 @@ public enum Rank {
     }
 
     public static Rank getRank(int sameCount, boolean sameBonusNumber) {
-        if (sameCount == MAXIMUM) {
+        if (sameCount == FIRST.sameCount) {
             return FIRST;
         }
 
-        if (sameCount == FIVE && sameBonusNumber) {
+        if (sameCount == SECOND.sameCount && sameBonusNumber) {
             return SECOND;
         }
 
-        if (sameCount == FIVE) {
+        if (sameCount == THIRD.sameCount) {
             return THIRD;
         }
 
-        if (sameCount == FOUR) {
+        if (sameCount == FOURTH.sameCount) {
             return FOURTH;
         }
 
-        if (sameCount == MINIMUM) {
+        if (sameCount == FIFTH.sameCount) {
             return FIFTH;
         }
 

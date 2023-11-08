@@ -2,12 +2,9 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.util.consts.ErrorMessage;
+import lotto.util.consts.IntValueConst;
 
 import java.util.List;
-
-import static lotto.util.consts.IntValueConst.START_INCLUSIVE_LOTTO_NUMBER;
-import static lotto.util.consts.IntValueConst.END_INCLUSIVE_LOTTO_NUMBER;
-import static lotto.util.consts.IntValueConst.LOTTO_FIXED_CIPHER;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -37,7 +34,7 @@ public class Lotto {
     }
 
     private void validateNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_FIXED_CIPHER.getValue()) {
+        if (numbers.size() != IntValueConst.LOTTO_FIXED_CIPHER.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.UNCORRECT_LOTTO_NUMBER_SIZE.getMessage());
         }
     }
@@ -53,17 +50,17 @@ public class Lotto {
     }
 
     private void validateEachNumberInRange(Integer n) {
-        if (n < START_INCLUSIVE_LOTTO_NUMBER.getValue() ||
-                n > END_INCLUSIVE_LOTTO_NUMBER.getValue()) {
+        if (n < IntValueConst.START_INCLUSIVE_LOTTO_NUMBER.getValue() ||
+                n > IntValueConst.END_INCLUSIVE_LOTTO_NUMBER.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
     private List<Integer> generateNumbers() {
         return Randoms.pickUniqueNumbersInRange(
-                        START_INCLUSIVE_LOTTO_NUMBER.getValue(),
-                        END_INCLUSIVE_LOTTO_NUMBER.getValue(),
-                        LOTTO_FIXED_CIPHER.getValue())
+                        IntValueConst.START_INCLUSIVE_LOTTO_NUMBER.getValue(),
+                        IntValueConst.END_INCLUSIVE_LOTTO_NUMBER.getValue(),
+                        IntValueConst.LOTTO_FIXED_CIPHER.getValue())
                 .stream()
                 .sorted()
                 .toList();

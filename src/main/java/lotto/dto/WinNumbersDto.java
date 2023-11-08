@@ -1,13 +1,10 @@
 package lotto.dto;
 
 import lotto.domain.Lotto;
+import lotto.util.consts.ErrorMessage;
+import lotto.util.consts.IntValueConst;
 
 import java.util.List;
-
-import static lotto.util.consts.IntValueConst.END_INCLUSIVE_LOTTO_NUMBER;
-import static lotto.util.consts.IntValueConst.START_INCLUSIVE_LOTTO_NUMBER;
-import static lotto.util.consts.ErrorMessage.DUPLICATED_BONUS_NUMBER;
-import static lotto.util.consts.ErrorMessage.OUT_OF_BONUS_NUMBER_RANGE;
 
 public record WinNumbersDto(List<Integer> winNumbers, int bonusNumber) {
 
@@ -22,15 +19,15 @@ public record WinNumbersDto(List<Integer> winNumbers, int bonusNumber) {
     }
 
     private void validateBonusNumberInRange(int bonusNumber) {
-        if (bonusNumber < START_INCLUSIVE_LOTTO_NUMBER.getValue() ||
-                bonusNumber > END_INCLUSIVE_LOTTO_NUMBER.getValue()) {
-            throw new IllegalArgumentException(OUT_OF_BONUS_NUMBER_RANGE.getMessage());
+        if (bonusNumber < IntValueConst.START_INCLUSIVE_LOTTO_NUMBER.getValue() ||
+                bonusNumber > IntValueConst.END_INCLUSIVE_LOTTO_NUMBER.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_BONUS_NUMBER_RANGE.getMessage());
         }
     }
 
     private void validateDuplicatedBonusNumber(List<Integer> winNumbers, int bonusNumber) {
         if (winNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(DUPLICATED_BONUS_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS_NUMBER.getMessage());
         }
     }
 }

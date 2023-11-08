@@ -4,6 +4,7 @@ import static lotto.configuration.OutputConfiguration.INSERT_BONUS_NUMBER;
 import static lotto.configuration.OutputConfiguration.INSERT_MONEY;
 import static lotto.configuration.OutputConfiguration.INSERT_WIN_NUMBER;
 import static lotto.configuration.OutputConfiguration.PURCHASED_LOTTO;
+import static lotto.configuration.OutputConfiguration.WIN_STATISTICS;
 
 public class OutPutView {
 
@@ -35,7 +36,7 @@ public class OutPutView {
     }
 
     public static void printMatchResult(String matchResult) {
-        print("\n당첨 통계\n" + "---\n" + matchResult);
+        print(WIN_STATISTICS + matchResult);
     }
     public static void printReturnRate(double returnRate){
         System.out.printf("총 수익률은 %.1f%%입니다.",returnRate);

@@ -48,13 +48,7 @@ public class Customer {
             if (ranking == Ranking.NONE) {
                 continue;
             }
-            stringBuilder.append(ranking.getMatchedCount()).append("개 일치");
-            if (ranking == Ranking.SECOND) {
-                stringBuilder.append(", 보너스 볼 일치");
-            }
-            stringBuilder.append(" (").append(ranking.getWinnings())
-                    .append("원) - ").append(rankingCounts.get(ranking)).append("개\n");
-
+            stringBuilder.append(ranking.getWinningString()).append(rankingCounts.get(ranking)).append("개\n");
         }
         return stringBuilder.toString();
     }
@@ -67,8 +61,7 @@ public class Customer {
             Integer count = entry.getValue();
             returnMoney += ranking.getWinningsByInt() * count;
         }
-        double returnRate = (1L-((seedMoney - returnMoney) / seedMoney)) * 100;
-        return returnRate;
+        return (1L - ((seedMoney - returnMoney) / seedMoney)) * 100;
     }
 
 }

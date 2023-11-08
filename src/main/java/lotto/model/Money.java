@@ -5,8 +5,6 @@ import static lotto.ErrorMessage.NOT_NUMBER_FORMAT;
 import static lotto.ErrorMessage.ZERO_NUMBER;
 import static lotto.configuration.LottoConfiguration.LOTTO_PRICE;
 
-import lotto.configuration.CustomIllegalArgumentException;
-import lotto.view.InputView;
 import lotto.view.OutPutView;
 
 public class Money {

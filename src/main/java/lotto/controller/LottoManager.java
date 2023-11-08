@@ -23,6 +23,7 @@ public class LottoManager {
 
         OutPutView.printLottoCount(customer.getLottoCount());
         OutPutView.printLottos(customer.getLottosString());
+
         WinLotto winLotto = issueWinLotto();
 
         customer.matchLotto(winLotto);
@@ -44,9 +45,9 @@ public class LottoManager {
         WinNumbers winNumbers = receiveWinNumbers();
         BonusNumber bonusNumber = null;
         WinLotto winLotto = null;
-        while(winLotto==null){
+        while (winLotto == null) {
             bonusNumber = receiveBonusNumber();
-            winLotto = WinLotto.issueWinLotto(winNumbers,bonusNumber);
+            winLotto = WinLotto.issueWinLotto(winNumbers, bonusNumber);
         }
         return winLotto;
     }

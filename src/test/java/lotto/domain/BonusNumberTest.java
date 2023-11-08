@@ -26,4 +26,14 @@ public class BonusNumberTest {
         assertThatThrownBy(() -> new BonusNumber(winningNumber, input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 번호가 당첨 번호안에 있으면 예외가 발생한다.")
+    @Test
+    void createBonusNumberByInWinningNumber() {
+        WinningNumber winningNumber = new WinningNumber(WINNING_NUMBER);
+        String input = "5";
+
+        assertThatThrownBy(() -> new BonusNumber(winningNumber, input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

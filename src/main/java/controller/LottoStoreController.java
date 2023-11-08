@@ -23,9 +23,9 @@ public class LottoStoreController {
 			initWinningLotto();
 			showWinningLotto();
 		} catch (NumberFormatException exception) {
-			System.out.println("[ERROR] message");
+			System.out.println(exception.getMessage());
 		} catch (IllegalArgumentException exception) {
-			System.out.println("[ERROR] message");
+			System.out.println(exception.getMessage());
 		}
 	}
 

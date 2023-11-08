@@ -125,3 +125,31 @@
 - [x] : 로또 구매 금액 출력
 - [x] : 로또 당첨 내역 출력
 - [x] : 수익률 출력
+
+---
+## ExceptionMessage
+### 로또 구매 입력 
+1. 1000단위가 아닌 경우 - IllegalArgumentException
+   - 오류 메시지 : [ERROR] 입력 단위는 1000단위 입니다
+2. 0을 입력한 경우 - IllegalArgumentException
+   - 오류 메시지 : [ERROR] 0을 초과한 금액을 입력을 입력해 주세요
+3. 숫자가 아닌 경우 - NumberFormatException
+   - 오류 메시지 : [ERROR] 금액을 숫자로만 다시 입력해 주세요
+
+### 로또 당첨 번호 입력 
+1. 1~45 사이가 아닌 경우 - IllegalArgumentException
+   - 오류 메시지 : [ERROR] 1~45 사이의 숫자를 입력해 주세요
+2. 입력 값이 없가나 6개가 아닌 경우 - IllegalArgumentException
+   - 오류 메시지 : [ERROR] 로또번호는 6개를 쉼표로 구분해서 입력해 주세요
+3. 중복되는 경우 - IllegalArgumentException
+   - 오류 메시지 : [ERROR] 서로 다른 숫자를 입력해 주세요
+4. 숫자가 아닌 경우 - NumberFormatException
+   - 오류 메시지 : [ERROR] 숫자만 입력해 주세요 
+
+### 보너스 번호 입력
+1. 1~45 사이가 아닌 경우 - IllegalArgumentException
+   - 오류 메시지 : [ERROR] 1~45 사이의 숫자로 입력해 주세요
+2. 당첨 번호와 중복되는 경우 - IllegalArgumentException
+   - 오류 메시지 : [ERROR] 당첨 번호에 없는 번호를 입력해 주세요
+3. 숫자가 아닌 경우 - NumberFormatException
+   - 오류 메시지 : [ERROR] 숫자만 입력해 주세요 

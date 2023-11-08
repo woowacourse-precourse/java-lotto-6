@@ -21,13 +21,13 @@ public class BonusNumber {
 
 	private void validateIsDigit(String bonusNumber) {
 		if (!isDigit(bonusNumber)) {
-			throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자를 입력해주세요");
+			ExceptionMessage.NUMBERS_ONLY.throwException();
 		}
 	}
 
 	private void validateIsBetweenLottoRange(int bonusNumber) {
 		if (!(1 <= bonusNumber && bonusNumber <= 45)) {
-			throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자를 입력해주세요");
+			ExceptionMessage.BONUS_OUT_OF_RANGE.throwException();
 		}
 	}
 
@@ -38,7 +38,7 @@ public class BonusNumber {
 
 	private void validateWinningLottoNumberDuplicate(int bonusNumber, Lotto lotto) {
 		if (!isWinningLottoNumberDuplicate(bonusNumber, lotto)) {
-			throw new IllegalArgumentException("[ERROR] 당첨 번호에 없는 번호를 입력해주세요");
+			ExceptionMessage.BONUS_NUMBER_DUPLICATE.throwException();
 		}
 	}
 

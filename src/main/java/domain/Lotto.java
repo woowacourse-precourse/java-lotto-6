@@ -36,7 +36,7 @@ public class Lotto {
 
 	private void validateIsSixLength(List<String> numbers) {
 		if (!isSixLength(numbers)) {
-			throw new IllegalArgumentException("[ERROR] 로또 번호는 쉼표로 구분해서 6개를 입력하세요");
+			ExceptionMessage.LOTTO_WRONG_FORMAT.throwException();
 		}
 	}
 
@@ -46,7 +46,8 @@ public class Lotto {
 
 	private void validateIsDigit(List<String> numbers) {
 		if (!isDigit(numbers)) {
-			throw new NumberFormatException("[ERROR] 숫자만 입력하세요");
+			// NumberFormat
+			ExceptionMessage.NUMBERS_ONLY.throwException();
 		}
 	}
 
@@ -65,19 +66,19 @@ public class Lotto {
 
 	private void validate(List<Integer> numbers) {
 		if (numbers.size() != 6) {
-			throw new IllegalArgumentException("[ERROR] 로또번호는 6개를 쉼표로 구분해서 입력해주세요");
+			ExceptionMessage.LOTTO_WRONG_FORMAT.throwException();
 		}
 	}
 
 	private void validateDuplicateNumber(List<Integer> numbers) {
 		if (numbers.size() != numbers.stream().distinct().count()) {
-			throw new IllegalArgumentException("[ERROR] 서로 다른 숫자를 입력하세요");
+			ExceptionMessage.LOTTO_NUMBER_DUPLICATE.throwException();
 		}
 	}
 
 	private void validateIsBetweenLottoRange(List<Integer> numbers) {
 		if (!isBetweenLottoRange(numbers)) {
-			throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자로 입력하세요");
+			ExceptionMessage.LOTTO_OUT_OF_RANGE.throwException();
 		}
 	}
 

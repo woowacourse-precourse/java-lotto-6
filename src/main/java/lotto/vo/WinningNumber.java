@@ -25,13 +25,18 @@ public class WinningNumber {
         }
     }
 
-    private void checkStringException(String[] numbers) {
+    private void checkInputForm(String[] numbers){
         if (numbers[0].equals(PARTITION.getMessage())) {
             throw new IllegalArgumentException(NOT_CORRECT_FORM.getMessage());
         }
         if (numbers[numbers.length - 1].equals(PARTITION.getMessage())) {
             throw new IllegalArgumentException(NOT_CORRECT_FORM.getMessage());
         }
+    }
+
+    private void checkStringException(String[] numbers) {
+        checkInputForm(numbers);
+
         if (numbers.length != TOTAL_LOTTO_NUMBER.getValue()) {
             throw new IllegalArgumentException(NOT_LOTTO_TOTAL_NUMBER.getMessage());
         }

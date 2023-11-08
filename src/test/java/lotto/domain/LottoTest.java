@@ -50,13 +50,10 @@ class LottoTest {
     @DisplayName("로또 번호는 오름차순으로 정렬되어 저장되어야 한다.")
     @Test
     void createLottoByUnorderedNumbers() {
-        //given
         List<Integer> case1 = List.of(9, 1, 41, 15, 38, 24);
 
-        //when
         Lotto result1 = new Lotto(case1);
 
-        //then
         assertThat(result1.getNumbers()).isEqualTo(List.of(1, 9, 15, 24, 38, 41));
     }
 }

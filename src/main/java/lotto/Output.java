@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,7 +34,7 @@ public class Output {
     }
 
     private static List<Integer> sortTicketNumbers(Ticket ticket) {
-        List<Integer> numbers = ticket.getNumbers();
+        List<Integer> numbers = new ArrayList<>(ticket.getNumbers());
         Collections.sort(numbers);
         return numbers;
     }

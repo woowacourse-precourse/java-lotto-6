@@ -22,7 +22,6 @@ public class Profit {
             return;
         }
         winningResult.compute(winningDetails, (key, value) -> value + 1);
-
     }
 
     public void setTotalProfit() {

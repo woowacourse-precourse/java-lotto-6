@@ -1,72 +1,128 @@
 package lotto.model;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Prize {
-    private final Map<Integer, Integer> prizeResult = new HashMap<Integer, Integer>();
+    private final Map<Rank, Integer> prize = new EnumMap<>(Rank.class);
 
-    public void compareAnswerAndLotto(List<Integer> answer, LottoGame lotto) {
+    private long totalMoney;
+
+    private double profit;
+
+    public void initPrize() {
+        for (Rank rank : Rank.values()) {
+            prize.put(rank, 0);
+        }
+    }
+
+    public void compareAnswerAndLotto(Answer answer, LottoGame lotto) {
         List<Lotto> lottoGames = lotto.getLottoGames();
+        List<Integer> answerNum = answer.getAnswerNumber();
+        int bonusNum = answer.getBonusNumber();
         int sameNumCount;
+        boolean isBonus;
 
         for (int i = 0; i < lotto.getLottoNumber(); i++) {
             Lotto targetLotto = lottoGames.get(i);
-            sameNumCount = numberOfSameNumber(answer, targetLotto);
-            saveResult(sameNumCount);
+            List<Integer> lottoNum = targetLotto.getLottoNumber();
+            sameNumCount = numberOfSameNumber(answerNum, lottoNum);
+            isBonus = isBonus(lottoNum, bonusNum);
+            saveResult(sameNumCount, isBonus);
         }
     }
 
-    private int numberOfSameNumber(List<Integer> answer, Lotto lotto) {
-        List<Integer> lottoNum = lotto.getLottoNumber();
+    private int numberOfSameNumber(List<Integer> answer, List<Integer> lotto) {
+
         int count = 0;
 
-        for (int i = 0; i < lottoNum.size(); i++) {
-            if (lottoNum.contains(answer.get(i))) {
+        for (int i = 0; i < lotto.size(); i++) {
+            if (lotto.contains(answer.get(i))) {
                 count++;
             }
         }
-
         return count;
     }
 
-    private void saveResult(int sameNumCount) {
-        if (prizeResult.get(sameNumCount) == null) {
-            prizeResult.put(sameNumCount, 1);
-            return;
+    private boolean isBonus(List<Integer> lottoNum, int bonus) {
+        for (int i = 0; i < lottoNum.size(); i++) {
+            if (lottoNum.contains(bonus)) {
+                return true;
+            }
         }
-        prizeResult.put(sameNumCount, prizeResult.get(sameNumCount) + 1);
+        return false;
     }
 
-    public Map<Integer, Integer> getPrizeResult() {
-        return this.prizeResult;
+    private void saveResult(int sameNumCount, boolean isBonus) {
+        Rank rank = judgeRank(sameNumCount, isBonus);
+        prize.put(rank, prize.get(rank) + 1);
     }
 
-    public void getPrizeMoney() {
-        Iterator<Integer> keys = prizeResult.keySet().iterator();
-        int prizeMoney = 0;
-        while (keys.hasNext()) {
-            int key = keys.next();
-            prizeMoney += calculatePrizeMoney(key, prizeResult.get(key));
-        }
-
+    public Map<Rank, Integer> getPrizeResult() {
+        return this.prize;
     }
 
-    private int calculatePrizeMoney(int key, int value) {
-        if (key == 3) {
-            return value * 5_000;
+    public void calculateTotalPrizeMoney() {
+        Set<Rank> keySet = prize.keySet();
+        for (Rank key : keySet) {
+            long lottoPrize = key.getPrize();
+            int lottoNum = prize.get(key);
+
+            totalMoney += calculatePrizeMoney(lottoNum, lottoPrize);
         }
-        if (key == 4) {
-            return value * 50_000;
+    }
+
+    public void calculateProfit(int money) {
+        profit = totalMoney * 100 / (double) money;
+    }
+
+    public double getProfit() {
+        return this.profit;
+    }
+
+    public long getTotalPrizeMoney() {
+        return this.totalMoney;
+    }
+
+    private long calculatePrizeMoney(int lottoNum, long lottoPrize) {
+        return lottoNum * lottoPrize;
+    }
+
+    private Rank judgeRank(int sameNumCount, boolean isBonus) {
+        if (sameNumCount < 3) {
+            return noMoneyResult(sameNumCount);
         }
-        if (key == 5) {
-            return value * 1_500_000;
+        if (sameNumCount == 5 && isBonus) {
+            return Rank.SECOND;
         }
-        if (key == 6) {
-            return value * 30_000_000;
+        return MoneyResult(sameNumCount);
+    }
+
+    private Rank noMoneyResult(int count) {
+        if (count == 0) {
+            return Rank.NO_RANK_ZERO;
         }
-        return 0;
+        if (count == 1) {
+            return Rank.NO_RANK_ONE;
+        }
+        return Rank.NO_RANK_TWO;
+    }
+
+    private Rank MoneyResult(int count) {
+        if (count == 3) {
+            return Rank.FIFTH;
+        }
+        if (count == 4) {
+            return Rank.FOURTH;
+        }
+        if (count == 5) {
+            return Rank.THIRD;
+        }
+        return Rank.FIRST;
     }
 }
+

@@ -20,7 +20,7 @@ public class PurchaseAmountValidator extends Validator {
 
     private static void validateAmountRange(String input) {
         if (input.length() >= INPUT_AMOUNT_LENGTH_LIMIT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_AMOUNT_LENGTH.getMessage());
         }
     }
 

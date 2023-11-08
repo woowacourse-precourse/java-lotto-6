@@ -14,6 +14,7 @@ public class BonusNumber extends LottoNumber{
     }
 
     public void checkDuplicationFromWinNumbers(Integer bonusNumber, List<Integer> winNumbers) {
+
         if(winNumbers.contains(bonusNumber)) {
             throw new IllegalStateException(DUPLICATION_ERROR_MESSAGE);
         }

@@ -23,7 +23,7 @@ public class Application {
         return money;
     }
 
-    private List<Lotto> generateLottes(int trial){
+    private static List<Lotto> generateLottes(int trial){
         List<Lotto> Lottos = new ArrayList<>();
 
         for(int i=0; i< trial; i++){
@@ -38,15 +38,28 @@ public class Application {
         }
         return Lottos;
     }
+
+    private  static void printLottes(List<Lotto> lottos,int ticket){
+        System.out.println(ticket+ "개를 구매했습니다.");
+        for(int i=0; i< ticket;i++)
+            lottos.get(i).printLotto();
+    }
+
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int money;
         int ticket;
         int bouncenumber;
-        List<Lotto> Lottes;
-
+        List<Lotto> lottes;
+        List<Integer> winningnumber;
         money = moneyValidate();
         ticket = money /1000;
+        lottes = generateLottes(ticket);
+
+        printLottes(lottes,ticket);
+
+        winningnumber = getWinningnumber();
 
         bouncenumber = Integer.valueOf(Console.readLine());
 

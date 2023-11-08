@@ -5,6 +5,7 @@ import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
+import lotto.model.LottoPurchaseMoney;
 
 public class InputView {
 
@@ -19,11 +20,12 @@ public class InputView {
         this.validator = validator;
     }
 
-    public int askPurchaseAmount() {
+    public LottoPurchaseMoney askPurchaseMoney() {
         System.out.printf(ASK_PURCHASE_AMOUNT);
-        String purchaseAmount = readLine();
-        validator.validateInteger(purchaseAmount);
-        return Integer.parseInt(purchaseAmount);
+        String purchaseMoney = readLine();
+        validator.validateInteger(purchaseMoney);
+        int amount = Integer.parseInt(purchaseMoney);
+        return LottoPurchaseMoney.from(amount);
     }
 
     public Lotto askWinningNumbers() {

@@ -33,4 +33,14 @@ public class LottoController {
         printResult();
     }
 
+
+    private void purchaseLottos() {
+        int cash = lottoWallet.getPaid();
+        List<Lotto> lottos = lottoMachine.purchaseLottos(cash);
+        lottoWallet.setLottos(lottos);
+
+        UserView.outputBuyLotto(lottos);
+    }
+
+
 }

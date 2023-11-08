@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import static lotto.domain.Lotto.*;
 import static lotto.domain.WinningRank.*;
+
+import lotto.common.ErrorType;
 
 public class LottoResult {
 
@@ -9,6 +12,7 @@ public class LottoResult {
 	private final WinningRank winningRank;
 
 	public LottoResult(int matchCount, boolean matchBonusNumber) {
+		validate(matchCount, matchBonusNumber);
 		this.matchCount = matchCount;
 		this.matchBonusNumber = matchBonusNumber;
 		this.winningRank = rank(matchCount, matchBonusNumber);
@@ -40,4 +44,11 @@ public class LottoResult {
 
 		return WinningRank.FAIL;
 	}
+
+	private void validate(int matchCount, boolean matchBonusNumber) {
+		if (matchCount < 0 || matchCount > MAX_LOTTO_SIZE || (matchCount==MAX_LOTTO_SIZE && matchBonusNumber)) {
+			throw new IllegalArgumentException(ErrorType.INVALID_RESULT_ERROR.getErrorMessage());
+		}
+	}
+
 }

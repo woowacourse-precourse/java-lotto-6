@@ -45,6 +45,10 @@ public class IO { //여긴 무조건 정적호출로 해보자
         }
     }
 
+    public static void printRate(double rate){
+        System.out.println("총 수익률은 " + rate + "%입니다.");
+    }
+
     public static void PrintBuyLotto(LottoChecker lottoChecker){
         System.out.println(lottoChecker.toString());
     }

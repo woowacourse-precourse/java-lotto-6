@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.List;
 import lotto.constants.LottoConstants;
 
 public class Bonus {
@@ -28,8 +29,8 @@ public class Bonus {
         return LottoConstants.MIN_NUMBER.getConstants() <= bonus && bonus <= LottoConstants.MAX_NUMBER.getConstants();
     }
 
-    public static boolean isSameNumber(final Lotto given, final Bonus bonus) {
-        return given.getLotto().stream().anyMatch(n -> n == bonus.getBonus());
+    public static boolean isSameNumber(final List<Integer> given, final Bonus bonus) {
+        return given.stream().anyMatch(n -> n == bonus.getBonus());
     }
 
     public int getBonus() {

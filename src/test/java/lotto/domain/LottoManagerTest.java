@@ -9,10 +9,9 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class LottoManagerTest {
 
-
     @ParameterizedTest
     @CsvSource(value = {"8, 8", "4, 4", "1, 1", "10000, 10000"})
-    void LottoManager는_구입개수를_받아_로또를_구매한다(int count, int result) {
+    void buyAutoLottos는_구입개수를_받아_로또를_구매한다(int count, int result) {
         //given
         LottoManager manager = LottoManager.from(new LottoGenerator());
         //when
@@ -22,17 +21,29 @@ class LottoManagerTest {
     }
 
     @Test
-    void totalCountOfMatchNumber는_등수별_당첨개수를_센다() {
+    void judgeRankByLotto는_로또의_당첨등수를_판단한다() {
         // given
         LottoManager manager = LottoManager.from(new LottoGenerator());
-        List<MatchNumber> matchs = List.of(MatchNumber.NOTHING, MatchNumber.FIFTH, MatchNumber.FIRST);
+        manager.createWinning(WinningLotto.createWinningLottos(List.of(1, 2, 3, 4, 5, 6)), Bonus.from(10));
         // when
-        List<Integer> result = manager.totalCountOfMatchNumber(matchs);
+        List<LottoRank> ranks = manager.judgeRankByLotto();
         // then
-        assertThat(result.get(MatchNumber.FIFTH.getListIndex())).isEqualTo(1);
-        assertThat(result.get(MatchNumber.FOURTH.getListIndex())).isEqualTo(0);
-        assertThat(result.get(MatchNumber.THIRD.getListIndex())).isEqualTo(0);
-        assertThat(result.get(MatchNumber.SECOND.getListIndex())).isEqualTo(0);
-        assertThat(result.get(MatchNumber.FIRST.getListIndex())).isEqualTo(1);
+        assertThat(ranks.size()).isEqualTo(manager.getAutoLottos().getLottos().size());
     }
+
+    @Test
+    void totalCountPerRank는_등수별_당첨개수를_센다() {
+        // given
+        LottoManager manager = LottoManager.from(new LottoGenerator());
+        List<LottoRank> matchs = List.of(LottoRank.NOTHING, LottoRank.FIFTH, LottoRank.FIRST);
+        // when
+        List<Integer> result = manager.totalCountPerRank(matchs);
+        // then
+        assertThat(result.get(LottoRank.FIFTH.getListIndex())).isEqualTo(1);
+        assertThat(result.get(LottoRank.FOURTH.getListIndex())).isEqualTo(0);
+        assertThat(result.get(LottoRank.THIRD.getListIndex())).isEqualTo(0);
+        assertThat(result.get(LottoRank.SECOND.getListIndex())).isEqualTo(0);
+        assertThat(result.get(LottoRank.FIRST.getListIndex())).isEqualTo(1);
+    }
+
 }

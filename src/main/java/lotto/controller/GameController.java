@@ -3,7 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Bonus;
 import lotto.domain.LottoManager;
-import lotto.domain.MatchNumber;
+import lotto.domain.LottoRank;
 import lotto.domain.Money;
 import lotto.domain.WinningLotto;
 import lotto.dto.AutoLottoDto;
@@ -42,8 +42,8 @@ public class GameController {
 
     private void showResult() {
         OutputView.printEmpty();
-        List<MatchNumber> resultLottoToMatch = lottoManager.judgeMatchNumberByLotto();
-        List<Integer> countPerMatchNumber = lottoManager.totalCountOfMatchNumber(resultLottoToMatch);
+        List<LottoRank> resultLottoToMatch = lottoManager.judgeRankByLotto();
+        List<Integer> countPerMatchNumber = lottoManager.totalCountPerRank(resultLottoToMatch);
         OutputView.printResultCount(countPerMatchNumber);
         double rateOfReturn = LottoCaclulator.calculateRateOfReturn(countPerMatchNumber, money.getMoney());
         OutputView.printRateOfResult(rateOfReturn);

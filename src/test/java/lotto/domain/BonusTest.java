@@ -33,7 +33,7 @@ class BonusTest {
         Bonus bonus = Bonus.from(bonusNumber);
         Lotto lotto = Lotto.from(List.of(1, 3, 4, 5, 6, 7));
         // when
-        boolean result = Bonus.isSameNumber(lotto, bonus);
+        boolean result = Bonus.isSameNumber(lotto.getLotto(), bonus);
         // then
         assertThat(result).isEqualTo(isMatch);
     }

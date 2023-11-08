@@ -82,9 +82,8 @@ public class User {
             int number = numbers.get(i);
             if (uniqueNumbers.contains(number)) {
                 throw new IllegalArgumentException(ErrorMessages.INVALID_DUPLICATION.getMessage());
-            } else {
-                uniqueNumbers.add(number);
             }
+            uniqueNumbers.add(number);
         }
     }
 

@@ -50,15 +50,15 @@ public class OutputView {
 
     public void result(Map<Integer, Integer> result) {
         WinnerPrice[] winnerPrices = WinnerPrice.values();
-        for (int i = winnerPrices.length-2; i >=0; i--) {
+        for (int i = winnerPrices.length - 2; i >= 0; i--) {
             WinnerPrice winnerPrice = winnerPrices[i];
             int index = winnerPrice.getEqualCount();
             String price = winnerPrice.getPrintPrice();
             if (result.get(index) == null) {
-                System.out.println(price + 0 +"개");
+                System.out.println(price + 0 + "개");
                 continue;
             }
-            System.out.println(price + result.get(index)+"개");
+            System.out.println(price + result.get(index) + "개");
         }
     }
 

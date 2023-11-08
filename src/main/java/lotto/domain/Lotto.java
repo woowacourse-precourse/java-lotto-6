@@ -27,9 +27,8 @@ public class Lotto {
             int number = numbers.get(i);
             if (uniqueNumbers.contains(number)) {
                 throw new IllegalArgumentException("중복된 값 발견: " + number);
-            } else {
-                uniqueNumbers.add(number);
             }
+            uniqueNumbers.add(number);
         }
     }
 

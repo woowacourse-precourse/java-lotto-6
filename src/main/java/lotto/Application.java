@@ -36,7 +36,7 @@ public class Application {
 
         int bonusNumber=InputView.getBonusNumber();
         EnumMap<Rank, Integer> rankCounts=new EnumMap<>(Rank.class);
-        List<Rank> ranks = new ArrayList<>();
+        int totalPrizeMoney=0;
         for(Lotto lottoTicket: lottoTickets){
             int countForMatchingWinningNumbers=0;
             int countForMatchingBonusNumbers=0;
@@ -51,11 +51,14 @@ public class Application {
             }
 
             Rank rank=Rank.calculateRank(countForMatchingWinningNumbers, countForMatchingBonusNumbers);
-            ranks.add(rank);
+            if(rank!=Rank.NOTHING){
+                totalPrizeMoney+=rank.getPrizeMoney();
+            }
             rankCounts.put(rank, rankCounts.getOrDefault(rank, 0)+1);
         }
 
         OutputView.printResults(rankCounts);
+        OutputView.printEarningPercent(totalPrizeMoney, purchaseAmount);
 
     }
 }

@@ -35,4 +35,7 @@ public class OutputView {
         }
     }
 
+    public static void printEarningPercent(int totalPrizeMoney, int purchaseAmount) {
+        System.out.println("총 수익률은 "+totalPrizeMoney/purchaseAmount*100+"% 입니다.");
+    }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class LottoService {
 
-    public int inputAmount(){
+    public int inputAmountAndGetLottoCount(){
         boolean validate = true;
         ValidateAmountResponseDto validateAmountResponseDto = new ValidateAmountResponseDto();
         while (validate) {

@@ -3,10 +3,10 @@
 ## Model
 ### Lotto
 - [x] 로또 번호의 전체 상태를 관리한다.
-- [ ] 유효한 로또 번호 리스트인지 확인한다.
-    - [ ] 로또 번호는 6개여야 한다.
-    - [ ] 로또 번호는 중복되면 안된다.
-    - [ ] 로또 번호는 1부터 45까지 숫자여야 한다.
+- [x] 유효한 로또 번호 리스트인지 확인한다.
+    - [x] 로또 번호는 6개여야 한다.
+    - [x] 로또 번호는 중복되면 안된다.
+    - [x] 로또 번호는 1부터 45까지 숫자여야 한다.
 
 ### WinningNumber
 - [ ] 당첨 번호와 보너스 번호의 전체 상태를 관리한다.
@@ -95,9 +95,9 @@
 - [ ] INVALID_WINNING_NUMBER_COUNT: 당첨 번호의 개수는 6개
 - [ ] NULL_OR_EMPTY_WINNING_NUMBERS: 당첨 번호는 null이나 공백이 들어갈 수 없음
 
-- [ ] INVALID_LOTTO_NUMBER_RANGE: 로또 번호는 1부터 45 사이의 숫자
-- [ ] DUPLICATE_LOTTO_NUMBERS: 로또 번호는 중복될 수 없음
-- [ ] INVALID_LOTTO_NUMBER_COUNT: 로또 번호의 개수는 6개
+- [x] INVALID_LOTTO_NUMBER_RANGE: 로또 번호는 1부터 45 사이의 숫자
+- [x] DUPLICATE_LOTTO_NUMBERS: 로또 번호는 중복될 수 없음
+- [x] INVALID_LOTTO_NUMBER_COUNT: 로또 번호의 개수는 6개
 
 - [ ] ILLEGAL_STATE_ERROR: ILLEGAL_STATE_ERROR 발생
 

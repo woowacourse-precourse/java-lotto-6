@@ -10,12 +10,16 @@ import static lotto.view.constants.MessageType.WINNING_RESULT_INFORMATION;
 import static lotto.view.constants.MessageType.WINNING_RESULT_NOTICE;
 import static lotto.view.constants.MessageType.WINNING_RESULT_WITH_BONUS_INFORMATION;
 import static lotto.view.constants.SymbolType.INPUT_SEPARATOR;
-import static lotto.view.constants.SymbolType.NEWLINE;
 import static lotto.view.constants.SymbolType.OUTPUT_SEPARATOR;
 import static lotto.view.constants.SymbolType.POSTFIX;
 import static lotto.view.constants.SymbolType.PREFIX;
+import static lotto.view.ui.Input.enterMessage;
+import static lotto.view.ui.Output.printlnFormat;
+import static lotto.view.ui.Output.printlnFormatWithNewLine;
+import static lotto.view.ui.Output.printlnMessage;
+import static lotto.view.ui.Output.printlnMessageWithNewLine;
+import static lotto.view.ui.Output.printlnResult;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -93,46 +97,8 @@ public final class View {
                 .toArray(String[]::new);
     }
 
-    /* Output View */
-    private static void printlnResult(String result) {
-        System.out.println(result);
-    }
-
-    private static void printlnMessage(MessageType messageType) {
-        System.out.println(messageType.getMessage());
-    }
-
-    private static void printlnMessageWithNewLine(MessageType messageType) {
-        System.out.print(NEWLINE.getSymbol());
-        printlnMessage(messageType);
-    }
-
-    private static void printlnFormat(MessageType message, Object... args) {
-        System.out.println(String.format(message.getMessage(), args));
-    }
-
-    private static void printlnFormatWithNewLine(MessageType message, Object... args) {
-        System.out.print(NEWLINE.getSymbol());
-        printlnFormat(message, args);
-    }
-
-    /* Input View */
-    private static String enterMessage() {
-        return Validator.validate(Console.readLine());
-    }
 
     private static class Validator {
-        private static String validate(String message) {
-            if (isBlank(message)) {
-                throw LottoException.from(ErrorMessage.BLANK_INPUT_ERROR);
-            }
-            return message;
-        }
-
-        private static boolean isBlank(String message) {
-            return message.isBlank();
-        }
-
         private static String validateCost(String cost) {
             validateNumber(cost);
             validateUnit(cost);

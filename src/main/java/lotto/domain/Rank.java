@@ -21,19 +21,17 @@ public enum Rank {
     }
 
     public static Rank determineByMatchingCount(Integer criterion, boolean requireBonus) {
+        if(criterion.equals(SECOND.criterion) && requireBonus == SECOND.requireBonus) {
+            return SECOND;
+        }
         return Arrays.stream(Rank.values())
             .filter(rank -> rank.equalsCriterion(criterion))
-            .filter(rank -> rank.checkBonusRequiring(requireBonus))
             .findAny()
             .orElse(UNRANKED);
     }
 
     private boolean equalsCriterion(Integer criterion) {
         return this.criterion.equals(criterion);
-    }
-
-    private boolean checkBonusRequiring(boolean requireBonus) {
-        return this.requireBonus == requireBonus;
     }
 
     public Integer getCriterion() {

@@ -13,7 +13,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        LottoVaildationInterface.lottoValidation(new LottoValidation(),numbers);
+        ILottoVaildation.lottoValidation(new LottoValidation(),numbers);
     }
 
     public List<Integer> getNumbers() {
@@ -25,5 +25,8 @@ public class Lotto {
                 .sorted()
                 .collect(Collectors.toList());
     }
-
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

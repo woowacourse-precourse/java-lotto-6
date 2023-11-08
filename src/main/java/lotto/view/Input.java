@@ -34,7 +34,7 @@ public class Input {
     public static int bonusInput() throws IllegalArgumentException{
         String result;
         result = stringInput();
-        lottoInputValidate(result);
+        bonusValidate(result);
         return Integer.parseInt(result);
     }
 

@@ -222,3 +222,25 @@ viewvalidation
 추후 컨트롤러 추가, 단위 테스트 코드 작성, 추상화,
 예외 추가, type chage에 대한 책임을 가지는 추가 클래스
 생성이 필요.
+
+----
+9회차
+
+수정사항
+1. 총 수익을 표시하는 기능 추가
+- model에 Ratio 추가
+- Output에 수익률 출력 추가
+- 인터페이스 이름 변경
+- Controller 작성
+
+Ratio(수익률 계산)
+- money와, LottoResult를 바탕으로 수익률 산출
+  Output
+- 수익률 산출 추가.
+
+Controller run 함수 기능 분담하는 리팩토리 필요
+단위 테스트 작성 필요
+추상화 필요
+예외 사항 추가
+----
+

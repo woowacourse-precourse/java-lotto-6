@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
 
-public class LottoValidation implements LottoVaildationInterface{
+public class LottoValidation implements ILottoVaildation{
     final String DUPLICATIONERROR = "[ERROR] 로또 번호는 중복될 수 없습니다.";
     final String LENGTHERROR = "[ERROR] 로또 번호의 크기는 6개여야 합니다.";
     final String NUMBERERROR = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import lotto.model.LottoMaker;
 import lotto.model.LottoRank;
 import lotto.model.LottoResult;
+import lotto.model.Ratio;
 
 public class Output {
 
@@ -14,33 +15,42 @@ public class Output {
     static private final String MONEY = "구입금액을 입력해 주세요.";
     static private final String WINNING = "당첨 번호를 입력해 주세요.";
     static private final String BONUS = "보너스 번호를 입력해 주세요.";
+    static private final String END = "당첨 통계\n---";
+    static private final String LOTTORATIO = "총 수익률은 %.1f%% 입니다.";
 
-    static void printMoney(){
+
+
+    public static void printMoney(){
         System.out.println(MONEY);
     }
 
-    static void printWinning(){
+    public static void printWinning(){
         System.out.println(WINNING);
     }
 
-    static void printBonus(){
+    public static void printBonus(){
         System.out.println(BONUS);
     }
+    public static void printEnd(){
+        System.out.println(END);
+    }
 
-
-    static void printBuylotto(int money){
+    public static void printBuylotto(int money){
         int count = money / MONEYUNIT;
         System.out.printf(BUYLOTTO + "\n", count);
     }
 
 
-    static void printlottos(LottoMaker lottos){
+    public static void printRatio(Ratio ratio){
+        System.out.printf(LOTTORATIO + "\n", ratio.getRatio());
+    }
+    public static void printlottos(LottoMaker lottos){
         lottos.getLottos().stream()
                 .forEach(System.out::println);
         System.out.println();
     }
 
-    static void printResults(LottoResult lottoResult){
+    public static void printResults(LottoResult lottoResult){
         Arrays.stream(LottoRank.values())
                 .filter(lotto -> lotto != LottoRank.NOLUCK)
                 .forEach(lotto -> System.out.println(printResult(lotto,lottoResult)));

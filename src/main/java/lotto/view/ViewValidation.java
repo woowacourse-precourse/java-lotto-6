@@ -20,7 +20,7 @@ public class ViewValidation implements ILottoInputValidation, IMoneyValidation, 
     private final int MAXRANGE = 45;
     private final int MINRANGE = 0;
     private final int ZERO = 0;
-    private final int NINE = 0;
+    private final int NINE = 9;
 
 
     @Override
@@ -48,14 +48,8 @@ public class ViewValidation implements ILottoInputValidation, IMoneyValidation, 
     }
 
     private boolean isNotRange(String str) {
-        int test;
-        for (int i = 0 ; i< str.length();i++) {
-            test = str.charAt(i) - '0';
-            if (test < MINRANGE || test > MAXRANGE) {
-                return true;
-            }
-        }
-        return false;
+        int test = Integer.parseInt(str);
+        return test < MINRANGE || test > MAXRANGE;
     }
 
     @Override
@@ -66,12 +60,33 @@ public class ViewValidation implements ILottoInputValidation, IMoneyValidation, 
         }
 
     }
+
+    @Override
+    public void bonusStringError(String str) throws IllegalArgumentException{
+        int test;
+        for (int i = 0 ; i< str.length();i++) {
+            test = str.charAt(i) - '0';
+            if (test < ZERO || test > NINE) {
+                throw new IllegalArgumentException(NUMBERERROR);
+            }
+        }
+    }
+
+    @Override
+    public void bonusNumberError(String str) throws IllegalArgumentException{
+        if (isNotRange(str)){
+            throw  new IllegalArgumentException(NUMBERERROR);
+        }
+    }
+
+
     @Override
     public void moneyNullError(String str) throws IllegalArgumentException{
         if (str.isEmpty()) {
             throw new IllegalArgumentException(MONEYNULLERROR);
         }
     }
+
     @Override
     public void moneyStringError(String str) throws IllegalArgumentException{
         int test;

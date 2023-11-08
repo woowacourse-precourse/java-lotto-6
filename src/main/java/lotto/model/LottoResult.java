@@ -12,14 +12,13 @@ public class LottoResult {
                 .forEach(lottoRank -> lottoResult.put(lottoRank, 0));
     }
 
-    public void addRank(LottoRank rank){
+    private void addRank(LottoRank rank){
         lottoResult.put(rank, lottoResult.get(rank)+1);
     }
     public void addLottos(LottoMaker lottos, LottoCompare compare){
         lottos.getLottos().stream()
                 .map((lotto) -> { return LottoRank.getRank(compare.winningCompare(lotto),compare.bonusCompare(lotto));})
                 .forEach(this::addRank);
-
     }
     public Integer getRankCount(LottoRank rank){
         return lottoResult.get(rank);

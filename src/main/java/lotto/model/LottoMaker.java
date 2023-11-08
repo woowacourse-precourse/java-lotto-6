@@ -5,16 +5,17 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoMaker {
 
-    private static final Integer MIN_RANGE = 1;
-    private static final Integer MAX_RANGE = 45;
-    private static final Integer COUNT_NUMBER = 6;
+    private final Integer MIN_RANGE = 1;
+    private final Integer MAX_RANGE = 45;
+    private final Integer COUNT_NUMBER = 6;
 
-    private List<Lotto> lottos = new ArrayList<>();
+    private final List<Lotto> lottos = new ArrayList<>();
     private final int money;
     private final int MONEYUNIT = 1000;
 
-    LottoMaker(int money){
+    public LottoMaker(int money){
         this.money = money;
+        addLotto();
     }
 
     private List<Integer> makeLottoNumber(){
@@ -28,7 +29,7 @@ public class LottoMaker {
     private int makeCount(){
         return money / MONEYUNIT;
     }
-    void addLotto(int money){
+    private void addLotto(){
         for(int i= 0 ; i< makeCount() ; i++) {
             lottos.add(new Lotto(makeLottoNumber()));
         }

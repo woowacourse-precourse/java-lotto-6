@@ -22,6 +22,10 @@ public class LottoNumber {
         return number == that.number;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(number);

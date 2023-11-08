@@ -13,7 +13,7 @@ public class LottoService {
     public void startService(User buyer) {
         this.user = buyer;
         sellLotto(buyer);
-        generateWinningLotto();
+        generateWinningData();
         List<Lotto> purchasedLotto = user.getPurchasedLotto();
         for (Lotto lotto : purchasedLotto) {
             System.out.println(lotto);
@@ -27,11 +27,47 @@ public class LottoService {
         buyer.enterDraw(inputUtil.inputMoney());
     }
 
-    private void generateWinningLotto() {
-        List<Integer> winningNumbers = inputUtil.inputWinningNumbers();
-        this.winningLotto = new Lotto(winningNumbers);
-        this.bonusNumber = new LottoNumber(inputUtil.inputBonusNumber());
+    private void generateWinningData() {
+        generateWinningLotto();
+        generateBonusNumber(winningLotto.getLottoNumbers());
     }
+
+    private void generateWinningLotto() {
+        boolean isValidLotto = false;
+        while (!isValidLotto) {
+            List<Integer> winningNumbers = inputUtil.inputWinningNumbers();
+            isValidLotto = isValidLottoNumber(winningNumbers);
+        }
+    }
+
+    private boolean isValidLottoNumber(List<Integer> winningNumbers) {
+        try {
+            winningLotto = new Lotto(winningNumbers);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    private void generateBonusNumber(List<LottoNumber> lottoNumbers) {
+        boolean isValidBonusNumber = false;
+        while (!isValidBonusNumber) {
+            int bonusNumber = inputUtil.inputBonusNumber(lottoNumbers);
+            isValidBonusNumber = isValidBonusNumber(bonusNumber);
+        }
+    }
+
+    private boolean isValidBonusNumber(int bonusNumberInput) {
+        try {
+            bonusNumber = new LottoNumber(bonusNumberInput);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
 
     public void drawLotto() {
         Judge judge = new Judge(winningLotto, bonusNumber, user);

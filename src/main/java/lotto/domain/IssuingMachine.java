@@ -18,7 +18,6 @@ public class IssuingMachine {
     }
 
     public int calculateCount() {
-        validateMoney();
         return money / LOTTO_PRICE;
     }
 
@@ -39,9 +38,5 @@ public class IssuingMachine {
     public List<Lotto> issueLotto() {
         operate();
         return lottos;
-    }
-
-    public void validateMoney() {
-
     }
 }

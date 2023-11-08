@@ -23,6 +23,7 @@ public class MyLottoNumbers {
     public void setBonusNumber(String bonusInput) {
         try {
             this.bonusNumber = validateRange(Integer.parseInt(bonusInput));
+            validateUniqueBonus(bonusNumber);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
@@ -76,5 +77,11 @@ public class MyLottoNumbers {
             }
         }
         return numbers;
+    }
+    
+    private void validateUniqueBonus(int bonus) {
+        if (myNumbers.contains(bonus)) {
+            throw new IllegalArgumentException("[ERROR] 입력하신 보너스 숫자가 이미 존재합니다");
+        }
     }
 }

@@ -1,7 +1,7 @@
-package lotto.model;
+package lotto.model.purchase;
 
 import lotto.common.constants.LottoRule;
-import lotto.common.exception.LottoErrorMessage;
+import lotto.common.exception.ErrorMessage;
 
 public class LottoPurchaseAmount {
     private final int amount;
@@ -18,18 +18,37 @@ public class LottoPurchaseAmount {
 
     private void validatePurchaseAmountUnit(int amount) {
         if (amount % LottoRule.LOTTO_PURCHASE_AMOUNT_UNIT.value != 0) {
-            throw new IllegalArgumentException(LottoErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT.getValue(amount));
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT.getValue(amount));
         }
     }
 
     private void validatePurchaseAmountRange(int amount) {
         if (amount < LottoRule.LOTTO_PURCHASE_AMOUNT_MIN.value
                 || LottoRule.LOTTO_PURCHASE_AMOUNT_MAX.value < amount) {
-            throw new IllegalArgumentException(LottoErrorMessage.INVALID_PURCHASE_AMOUNT_RANGE.getValue(amount));
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_RANGE.getValue(amount));
         }
     }
 
     public int getValue() {
+        return amount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        LottoPurchaseAmount that = (LottoPurchaseAmount) o;
+
+        return amount == that.amount;
+    }
+
+    @Override
+    public int hashCode() {
         return amount;
     }
 
@@ -40,7 +59,7 @@ public class LottoPurchaseAmount {
                 '}';
     }
 
-    public int calculateTotalLottos() {
+    public int calculatePurchaseLottoCount() {
         return amount / LottoRule.LOTTO_PURCHASE_AMOUNT_UNIT.value;
     }
 }

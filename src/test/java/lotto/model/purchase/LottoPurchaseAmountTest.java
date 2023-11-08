@@ -1,8 +1,8 @@
-package lotto.model;
+package lotto.model.purchase;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.common.exception.LottoErrorMessage;
+import lotto.common.exception.ErrorMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ class LottoPurchaseAmountTest {
         //given
         LottoPurchaseAmount lottoPurchaseAmount = LottoPurchaseAmount.from(amount);
         //when
-        int totalLottos = lottoPurchaseAmount.calculateTotalLottos();
+        int totalLottos = lottoPurchaseAmount.calculatePurchaseLottoCount();
 
         //then
         assertThat(totalLottos).isEqualTo(expected);
@@ -47,7 +47,7 @@ class LottoPurchaseAmountTest {
             //when then
             Assertions.assertThatThrownBy(() -> LottoPurchaseAmount.from(amount))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(LottoErrorMessage.INVALID_PURCHASE_AMOUNT_RANGE.getValue());
+                    .hasMessageContaining(ErrorMessage.INVALID_PURCHASE_AMOUNT_RANGE.getValue());
         }
 
         @Test
@@ -57,7 +57,7 @@ class LottoPurchaseAmountTest {
             //when then
             Assertions.assertThatThrownBy(() -> LottoPurchaseAmount.from(amount))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(LottoErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT.getValue());
+                    .hasMessageContaining(ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT.getValue());
         }
     }
 }

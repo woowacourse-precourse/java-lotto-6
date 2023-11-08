@@ -3,9 +3,9 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.controller.dto.input.LottoPurchaseAmountDto;
-import lotto.controller.dto.output.PurchasedLottosDto;
-import lotto.model.Lotto;
-import lotto.model.LottoPurchaseAmount;
+import lotto.model.lotto.Lotto;
+import lotto.model.purchase.LottoPurchase;
+import lotto.model.purchase.LottoPurchaseAmount;
 import lotto.service.generator.LottoNumberGenerator;
 
 public class LottoPurchaseService {
@@ -16,14 +16,11 @@ public class LottoPurchaseService {
         this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
-    public PurchasedLottosDto purchase(LottoPurchaseAmountDto lottoPurchaseAmountDto) {
-        int lottoCount = calculateLottoCount(lottoPurchaseAmountDto);
-        return new PurchasedLottosDto(createLottos(lottoCount));
-    }
-
-    private int calculateLottoCount(LottoPurchaseAmountDto lottoPurchaseAmountDto) {
+    public LottoPurchase purchase(LottoPurchaseAmountDto lottoPurchaseAmountDto) {
         LottoPurchaseAmount lottoPurchaseAmount = LottoPurchaseAmount.from(lottoPurchaseAmountDto.toInt());
-        return lottoPurchaseAmount.calculateTotalLottos();
+        int lottoCount = lottoPurchaseAmount.calculatePurchaseLottoCount();
+        List<Lotto> lottos = createLottos(lottoCount);
+        return new LottoPurchase(lottoPurchaseAmount, lottos);
     }
 
     private List<Lotto> createLottos(int size) {

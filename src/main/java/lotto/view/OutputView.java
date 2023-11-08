@@ -27,6 +27,13 @@ public class OutputView {
     private static final int THIRD_RANK = 3;
     private static final int FOUR_RANK = 4;
     private static final int FIFTH_RANK = 5;
+    private static final String WINNING_PER_CORRECT_MESSAGE = "개 일치";
+    private static final String WINNING_COMMA_BONUS_CORRECT_MESSAGE = ", 보너스 볼 일치";
+    private static final String SPACE_BAR_ENTER_RIGHT_BRACHET_MESSAGE = " (";
+    private static final String RANK_PRICE_PER_WON_MESSAGE = "%,d원";
+    private static final String CLOSE_BRACKET_MESSAGE = ") - ";
+    private static final String PER_COUNT_MESSAGE = "개";
+    private static final int ZERO_POSITION = 0;
 
     public static void printError(String errorMessage) {
         System.out.println(errorMessage);
@@ -53,14 +60,14 @@ public class OutputView {
     }
 
     public static void toWinningMessage(WinningResponseDto winningResponseDto) {
-        System.out.print(winningResponseDto.getTier().get(0) + "개 일치");
+        System.out.print(winningResponseDto.getTier().get(ZERO_POSITION) + WINNING_PER_CORRECT_MESSAGE);
         if (winningResponseDto.getIsBonus()) {
-            System.out.print(", 보너스 볼 일치");
+            System.out.print(WINNING_COMMA_BONUS_CORRECT_MESSAGE);
         }
-        System.out.print(" (");
-        System.out.printf("%,d원", winningResponseDto.getRankPrice());
-        System.out.print(") - ");
-        System.out.print(winningResponseDto.getCorrectCount() + "개");
+        System.out.print(SPACE_BAR_ENTER_RIGHT_BRACHET_MESSAGE);
+        System.out.printf(RANK_PRICE_PER_WON_MESSAGE, winningResponseDto.getRankPrice());
+        System.out.print(CLOSE_BRACKET_MESSAGE);
+        System.out.print(winningResponseDto.getCorrectCount() + PER_COUNT_MESSAGE);
         printEnter();
     }
 

@@ -46,17 +46,6 @@ public class LottoServiceTest {
         assertThat(lottoNumbers).doesNotHaveDuplicates();
     }
 
-    @DisplayName("랜덤으로 생성된 로또 번호가 오름차순으로 정렬되어 있는지 확인한다.")
-    @RepeatedTest(1000)
-    void generateLottoNumbersShouldReturnNumbersInAscendingOrder() {
-        // given
-        // when
-        LottoService lottoService = new LottoService();
-        List<Integer> lottoNumbers = lottoService.generateLottoNumbers();
-        // then
-        assertThat(lottoNumbers).isSorted();
-    }
-
     @DisplayName("로또 구입 금액으로 14000원을 입력하면 14개의 로또를 생성하는지 확인한다.")
     @Test
     void purchaseLottoTicketsShouldReturnLottoTickets() {

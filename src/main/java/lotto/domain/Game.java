@@ -13,7 +13,7 @@ public class Game {
     private List<Lotto> userLottos;
     private Lotto winnerNumber;
     private BonusNumber bonusNumber;
-    private Generator generator;
+    private final Generator generator;
 
     public Game(Generator generator) {
         this.generator = generator;

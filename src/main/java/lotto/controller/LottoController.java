@@ -42,10 +42,26 @@ public class LottoController {
         printResult(amount, lottoResult);
     }
 
+    public MoneyManagement initAmount() {
+        try {
+            outputView.askAmount();
+            String purchaseAmount = inputView.read();
+            return MoneyManagement.from(purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return initAmount();
+        }
+    }
+
     public Lottos getBuyLottos(final MoneyManagement amount) {
         Lottos buyLottos = buyLotto(amount);
         outputView.showLottoList(buyLottos);
         return buyLottos;
+    }
+
+    public Lottos buyLotto(final MoneyManagement amount) {
+        int quantity = amount.getQuantity();
+        return Lottos.from(quantity);
     }
 
     public double getYield(final MoneyManagement amount, final LottoResult lottoResult) {
@@ -63,21 +79,15 @@ public class LottoController {
         outputView.showTickets(quantity);
     }
 
-    public MoneyManagement initAmount() {
-        outputView.askAmount();
-        String purchaseAmount = inputView.read();
-        return MoneyManagement.from(purchaseAmount);
-    }
-
-    public Lottos buyLotto(final MoneyManagement amount) {
-        int quantity = amount.getQuantity();
-        return Lottos.from(quantity);
-    }
-
     public Lotto askWinningNumbers() {
-        outputView.askWinningNum();
-        String inputWinningNumber = inputView.read();
-        return createWinningNumberList(inputWinningNumber);
+        try {
+            outputView.askWinningNum();
+            String inputWinningNumber = inputView.read();
+            return createWinningNumberList(inputWinningNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return askWinningNumbers();
+        }
     }
 
     public Lotto createWinningNumberList(final String inputList) {
@@ -88,9 +98,15 @@ public class LottoController {
     }
 
     public Number askWinningBonusNumber() {
-        outputView.askBonusNum();
-        String inputBonusNumber = inputView.read();
-        return createWinningBonusNumber(inputBonusNumber);
+        try {
+            outputView.askBonusNum();
+            String inputBonusNumber = inputView.read();
+            return createWinningBonusNumber(inputBonusNumber);
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return askWinningBonusNumber();
+        }
     }
 
     public Number createWinningBonusNumber(final String userInput) {

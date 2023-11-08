@@ -1,4 +1,4 @@
-package view;
+package lotto.view;
 
 import lotto.entity.Lotto;
 import lotto.entity.Rank;

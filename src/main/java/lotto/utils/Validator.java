@@ -61,6 +61,14 @@ public class Validator {
         }
     }
 
+    public static void isDuplicate(List<Integer> numbers, int bonusNumber) {
+        for (Integer number : numbers) {
+            if (bonusNumber == number) {
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER_ERROR.getError());
+            }
+        }
+    }
+
     public static void isOneToFortyFive(int input) {
         if (input < LottoEnum.LOTTO_MIN_NUMBER.getValue() || input > LottoEnum.LOTTO_MAX_NUMBER.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.NOT_ONE_TO_FORTYFIVE_ERROR.getError());

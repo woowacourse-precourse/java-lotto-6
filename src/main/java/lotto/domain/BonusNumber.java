@@ -29,17 +29,6 @@ public class BonusNumber {
         }
     }
 
-    private boolean isUnique(String inputBonusNumber, Lotto winningNumbers) {
-        List<Integer> numbers = winningNumbers.getNumbers();
-        int bonusNumber = stringToIntConverter(inputBonusNumber);
-        for (Integer number : numbers) {
-            if (number == bonusNumber) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     private boolean isDigit(String bonusNumber) {
         try {
             stringToIntConverter(bonusNumber.trim());
@@ -52,6 +41,12 @@ public class BonusNumber {
     private boolean isInRange(String inputBonusNumber) {
         int bonusNumber = stringToIntConverter(inputBonusNumber);
         return bonusNumber >= LOTTO_NUMBER_RANGE_MIN && bonusNumber <= LOTTO_NUMBER_RANGE_MAX;
+    }
+
+    private boolean isUnique(String inputBonusNumber, Lotto winningNumbers) {
+        List<Integer> numbers = winningNumbers.getNumbers();
+        int bonusNumber = stringToIntConverter(inputBonusNumber);
+        return !numbers.contains(bonusNumber);
     }
 
     private int stringToIntConverter(String bonusNumber) {

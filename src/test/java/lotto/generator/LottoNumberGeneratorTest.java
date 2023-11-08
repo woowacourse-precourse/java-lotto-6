@@ -14,17 +14,17 @@ import lotto.domain.Lotto;
 public class LottoNumberGeneratorTest {
 
 	@DisplayName("생성된 번호들의 범위와 사이즈를 확인한다.")
-    @Test
-    void checkGeneratedNumbersSizeAndRange() {
-		
+	@Test
+	void checkGeneratedNumbersSizeAndRange() {
+
 		LottoNumberGenerator generator = new LottoNumberGenerator();
 		List<Integer> numbers = generator.generate();
 
-        assertNotNull(numbers);
-        assertEquals(Lotto.LOTTO_SIZE, numbers.size());
-        
-        for (int number : numbers) {
-            assertTrue(number >= Lotto.MIN_NUMBER && number <= Lotto.MAX_NUMBER);
-        }
+		assertNotNull(numbers);
+		assertEquals(Lotto.LOTTO_SIZE, numbers.size());
+
+		for (int number : numbers) {
+			assertTrue(number >= Lotto.MIN_NUMBER && number <= Lotto.MAX_NUMBER);
+		}
 	}
 }

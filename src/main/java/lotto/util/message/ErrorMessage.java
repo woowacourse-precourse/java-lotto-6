@@ -18,12 +18,12 @@ public enum ErrorMessage implements MessageFormatter{
 	ErrorMessage(String message) {
 		this.message = message;
 	}
-	
+
 	@Override
 	public String getMessage() {
 		return PREFIX.message + message;
 	}
-	
+
 	@Override
 	public String getFormattedMessage(Object... params) {
 		return String.format(getMessage(), params);

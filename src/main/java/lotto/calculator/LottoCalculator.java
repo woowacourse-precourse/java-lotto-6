@@ -16,7 +16,6 @@ public final class LottoCalculator implements Calculator<Integer, EnumMap<LottoR
 			int number = entry.getValue();
 
 			priceSum += lottoRank.getPrice() * number;
-
 		}
 
 		return priceSum;

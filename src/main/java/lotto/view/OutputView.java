@@ -7,11 +7,12 @@ import lotto.util.message.WinningStatisticsMessage;
 public class OutputView {
 
 	private static final String NEWLINE = "\n";
-	
+
 	private final OutputViewPrinter printer;
-	
+
 	public OutputView() {
-		this.printer = new OutputViewPrinter();;
+		this.printer = new OutputViewPrinter();
+		;
 	}
 
 	public void printInputMoneyMessage() {
@@ -45,7 +46,7 @@ public class OutputView {
 	public void printTotalReturn(double totalReturn) {
 		printer.printLine(WinningStatisticsMessage.TOTAL_RETURN.getFormattedMessage(totalReturn));
 	}
-	
+
 	public void printErrorMessage(Exception exception) {
 		printer.printLine(exception.getMessage());
 	}

@@ -30,7 +30,7 @@ public class LottoServiceTest {
 	void setup() {
 		lottoService = new LottoService();
 		money = 4000;
-		answerLottoNumbers =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
+		answerLottoNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 		answerLotto = new AnswerLotto(answerLottoNumbers, new BonusNumber(answerLottoNumbers, 7));
 	}
 
@@ -46,7 +46,7 @@ public class LottoServiceTest {
 	static Stream<Arguments> createCheckLottoPriceSumMethodParameter() {
 		Lottos lottos = new Lottos(List.of(new Lotto(List.of(1, 2, 3, 11, 12, 13)),
 				new Lotto(List.of(1, 2, 3, 4, 12, 13)), new Lotto(List.of(8, 9, 10, 11, 12, 13))));
-		
+
 		return Stream.of(Arguments.of(lottos, 55000));
 	}
 

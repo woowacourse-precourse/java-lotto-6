@@ -100,20 +100,25 @@ public class LottoGame {
     private void printResult() {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 " + Rank.FIFTH.getReward() + " - " + Rank.FIFTH.getCount() + "개");
-        System.out.println("4개 일치 " + Rank.FOURTH.getReward() + " - " + Rank.FOURTH.getCount() + "개");
-        System.out.println("5개 일치 " + Rank.THIRD.getReward() + " - " + Rank.THIRD.getCount() + "개");
-        System.out.println("5개 일치 " + Rank.SECOND.getReward() + " - " + Rank.SECOND.getCount() + "개");
-        System.out.println("6개 일치 " + Rank.FIRST.getReward() + " - " + Rank.FIRST.getCount() + "개");
+        System.out.println("3개 일치 (" + Rank.FIFTH.getReward() + ") - " + Rank.FIFTH.getCount() + "개");
+        System.out.println("4개 일치 (" + Rank.FOURTH.getReward() + ") - " + Rank.FOURTH.getCount() + "개");
+        System.out.println("5개 일치 (" + Rank.THIRD.getReward() + ") - " + Rank.THIRD.getCount() + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (" + Rank.SECOND.getReward() + ") - " + Rank.SECOND.getCount() + "개");
+        System.out.println("6개 일치 (" + Rank.FIRST.getReward() + ") - " + Rank.FIRST.getCount() + "개");
         System.out.println("총 수익률은 " + getRateOfReturn() + "% 입니다.");
 
     }
 
-    private Integer getNumberOfWinningLotto() {
-        return 0;
+    private String getRateOfReturn() {
+        String result = String.format("%.1f", (double) ((calculateTotalGain() / purchaseAmount) * 100));
+        return result;
     }
 
-    private Float getRateOfReturn() {
-        return 0.0F;
+    private double calculateTotalGain() {
+        double totalGain = 0;
+        totalGain =
+                (Rank.FIFTH.getCount() * 5000) + (Rank.FOURTH.getCount() * 50000) + (Rank.THIRD.getCount() * 1500000)
+                        + (Rank.SECOND.getCount() * 30000000) + (Rank.FIRST.getCount() * 2000000000);
+        return totalGain;
     }
 }

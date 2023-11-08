@@ -3,10 +3,9 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBall;
-import lotto.domain.LottoTicket;
 import lotto.domain.Player;
 import lotto.util.LottoAgency;
-import lotto.util.LottoDrawingMachine;
+import lotto.domain.LottoDrawingMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

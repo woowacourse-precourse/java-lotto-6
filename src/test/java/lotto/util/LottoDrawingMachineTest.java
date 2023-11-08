@@ -1,12 +1,11 @@
 package lotto.util;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBall;
-import lotto.domain.PlayerBuyPrice;
+import lotto.domain.LottoDrawingMachine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,11 +1,9 @@
-package lotto.util;
+package lotto.domain;
 
 import static lotto.message.ErrorMessages.INVALID_DUPLICATION_LOTTO_BALL_AND_BONUS_BALL;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.domain.Lotto;
-import lotto.domain.LottoBall;
 
 public class LottoDrawingMachine {
 

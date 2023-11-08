@@ -63,14 +63,7 @@ public class LottoResult {
     }
 
     private void updateTotalWinningAmount(final int numberMatchCount, final boolean isBonusNumberMatch) {
-        if (isNotWinning(numberMatchCount)) {
-            return;
-        }
         totalWinningAmount += LottoWinningAmount.of(numberMatchCount, isBonusNumberMatch).getValue();
-    }
-
-    private boolean isNotWinning(final int numberMatchCount) {
-        return numberMatchCount < LOTTO_MIN_WINNING_NUMBER_MATCH_COUNT.getValue();
     }
 
     private LottoReturnsRateDTO calculateReturnsRate(final int lottoCount) {

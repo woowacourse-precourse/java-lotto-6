@@ -8,6 +8,7 @@ import lotto.model.LottoStore;
 import lotto.model.Lottos;
 import lotto.model.Money;
 import lotto.model.WinningNumberChecker;
+import lotto.utils.Rank;
 import lotto.utils.StringParser;
 import lotto.view.BonusNumberInputView;
 import lotto.view.InputView;
@@ -19,7 +20,7 @@ public class Controller {
     private InputView inputView;
     private Lottos lottos = new Lottos();
     private Money money;
-    private Map<String, Integer> result;
+    private Map<Rank, Integer> result;
 
     public void start() {
         processBuyingLotto();
@@ -47,7 +48,7 @@ public class Controller {
         OutputView.printLottoProfit(lottoProfit.getResult());
     }
 
-    private Map<String, Integer> getWinningResult(List<Integer> winning, BonusNumber bonus) {
+    private Map<Rank, Integer> getWinningResult(List<Integer> winning, BonusNumber bonus) {
         WinningNumberChecker winningNumberChecker =
                 new WinningNumberChecker(winning, bonus.getBonus(), lottos);
         winningNumberChecker.checkWinningRankResult();

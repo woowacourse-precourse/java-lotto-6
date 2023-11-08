@@ -1,13 +1,14 @@
 package lotto.model;
 
 import java.util.Map;
+import lotto.utils.Rank;
 
 public class LottoProfit {
-    private final Map<String, Integer> lottoResult;
+    private final Map<Rank, Integer> lottoResult;
     private final Money money;
     private Double result;
 
-    public LottoProfit(Map<String, Integer> lottoResult, Money money) {
+    public LottoProfit(Map<Rank, Integer> lottoResult, Money money) {
         this.lottoResult = lottoResult;
         this.money = money;
     }
@@ -23,11 +24,11 @@ public class LottoProfit {
 
     private int calculateSum() {
         int sum = 0;
-        sum += lottoResult.get("1st") * 2000000000;
-        sum += lottoResult.get("2nd") * 30000000;
-        sum += lottoResult.get("3rd") * 1500000;
-        sum += lottoResult.get("4th") * 50000;
-        sum += lottoResult.get("5th") * 5000;
+        sum += lottoResult.get(Rank.FIRST) * 2000000000;
+        sum += lottoResult.get(Rank.SECOND) * 30000000;
+        sum += lottoResult.get(Rank.THIRD) * 1500000;
+        sum += lottoResult.get(Rank.FOURTH) * 50000;
+        sum += lottoResult.get(Rank.FIFTH) * 5000;
         return sum;
     }
 }

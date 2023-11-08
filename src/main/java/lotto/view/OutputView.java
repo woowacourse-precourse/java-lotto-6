@@ -1,17 +1,29 @@
 package lotto.view;
 
 import java.util.Map;
+import lotto.utils.InformationMessage;
 import lotto.utils.ProcessMessage;
+import lotto.utils.Rank;
 
 public class OutputView {
-    public static void printWinningResult(Map<String, Integer> result) {
+    public static void printWinningResult(Map<Rank, Integer> result) {
         System.out.printf(ProcessMessage.WINNING_RESULT.getMessage());
         System.out.printf(ProcessMessage.DIVISION_MARK.getMessage());
-        System.out.printf("%d개 일치 (%s원) - %d개%n", 3, "5,000", result.get("5th"));
-        System.out.printf("%d개 일치 (%s원) - %d개%n", 4, "50,000", result.get("4th"));
-        System.out.printf("%d개 일치 (%s원) - %d개%n", 5, "1,500,000", result.get("3rd"));
-        System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개%n", 5, "30,000,000", result.get("2nd"));
-        System.out.printf("%d개 일치 (%s원) - %d개%n", 6, "2,000,000,000", result.get("1st"));
+        printRankInformation(result, Rank.FIFTH);
+        printRankInformation(result, Rank.FOURTH);
+        printRankInformation(result, Rank.THIRD);
+        printRankInformationWithBonus(result, Rank.SECOND);
+        printRankInformation(result, Rank.FIRST);
+    }
+
+    public static void printRankInformation(Map<Rank, Integer> result, Rank rank) {
+        System.out.printf(InformationMessage.MATCH_NUMBER.getMessage(), rank.getMatchNumberCount(),
+                rank.getWinningMoney(), result.get(rank));
+    }
+
+    public static void printRankInformationWithBonus(Map<Rank, Integer> result, Rank rank) {
+        System.out.printf(InformationMessage.MATCH_NUMBER_BONUS.getMessage(), rank.getMatchNumberCount(),
+                rank.getWinningMoney(), result.get(rank));
     }
 
     public static void printGetMoneyMessage() {
@@ -31,10 +43,10 @@ public class OutputView {
     }
 
     public static void printLottoCount(int money) {
-        System.out.printf("%n%d개를 구매했습니다.%n", money);
+        System.out.printf(InformationMessage.BUY.getMessage(), money);
     }
 
     public static void printLottoProfit(double profit) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", profit);
+        System.out.printf(InformationMessage.PROFIT.getMessage(), profit);
     }
 }

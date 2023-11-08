@@ -4,13 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import lotto.utils.Rank;
 import lotto.utils.StringParser;
 
 public class WinningNumberChecker {
     private final List<Integer> winningNumber;
     private final int bonus;
     private final Lottos lottos;
-    private Map<String, Integer> map = new HashMap<>();
+    private Map<Rank, Integer> map = new HashMap<>();
 
     public WinningNumberChecker(List<Integer> winningNumber, int bonus, Lottos lottos) {
         this.winningNumber = winningNumber;
@@ -19,7 +20,7 @@ public class WinningNumberChecker {
         setMap();
     }
 
-    public Map<String, Integer> getWinningRankResult() {
+    public Map<Rank, Integer> getWinningRankResult() {
         return map;
     }
 
@@ -32,29 +33,29 @@ public class WinningNumberChecker {
 
     private void checkWinningRank(Lotto lotto) {
         int rank = checkWinningNumbers(lotto);
-        if (rank == 6) {
-            map.compute("1st", (k, v) -> v + 1);
+        if (rank == Rank.FIRST.getMatchNumberCount()) {
+            map.compute(Rank.FIRST, (k, v) -> v + 1);
         }
-        if (rank == 5 && isBonusCheck(lotto)) {
-            map.compute("2nd", (k, v) -> v + 1);
+        if (rank == Rank.SECOND.getMatchNumberCount() && isBonusCheck(lotto)) {
+            map.compute(Rank.SECOND, (k, v) -> v + 1);
         }
-        if (rank == 5 && !isBonusCheck(lotto)) {
-            map.compute("3rd", (k, v) -> v + 1);
+        if (rank == Rank.THIRD.getMatchNumberCount() && !isBonusCheck(lotto)) {
+            map.compute(Rank.THIRD, (k, v) -> v + 1);
         }
-        if (rank == 4) {
-            map.compute("4th", (k, v) -> v + 1);
+        if (rank == Rank.FOURTH.getMatchNumberCount()) {
+            map.compute(Rank.FOURTH, (k, v) -> v + 1);
         }
-        if (rank == 3) {
-            map.compute("5th", (k, v) -> v + 1);
+        if (rank == Rank.FIFTH.getMatchNumberCount()) {
+            map.compute(Rank.FIFTH, (k, v) -> v + 1);
         }
     }
 
     private void setMap() {
-        map.put("1st", 0);
-        map.put("2nd", 0);
-        map.put("3rd", 0);
-        map.put("4th", 0);
-        map.put("5th", 0);
+        map.put(Rank.FIRST, 0);
+        map.put(Rank.SECOND, 0);
+        map.put(Rank.THIRD, 0);
+        map.put(Rank.FOURTH, 0);
+        map.put(Rank.FIFTH, 0);
     }
 
     private boolean isBonusCheck(Lotto lotto) {

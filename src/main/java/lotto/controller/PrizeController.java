@@ -9,19 +9,19 @@ import lotto.view.output.OutputWriter;
 
 import java.util.List;
 
-import static lotto.view.constants.PrintMessage.REQUEST_JACKPOT_BONUS_NUMBER;
-import static lotto.view.constants.PrintMessage.REQUEST_JACKPOT_NUMBER;
+import static lotto.view.constants.PrintMessage.REQUEST_BONUS_NUMBER;
+import static lotto.view.constants.PrintMessage.REQUEST_PRIZE_NUMBER;
 
 public class PrizeController {
     private PrizeController() {
     }
 
-    public static Prize requestJackpotNumbers() {
-        OutputWriter.printMessage(REQUEST_JACKPOT_NUMBER);
-        Lotto prizeNumbers = readJackpotNumbers();
+    public static Prize requestPrizeNumbers() {
+        OutputWriter.printMessage(REQUEST_PRIZE_NUMBER);
+        Lotto prizeNumbers = readPrizeNumbers();
 
         OutputWriter.printNewLine();
-        OutputWriter.printMessage(REQUEST_JACKPOT_BONUS_NUMBER);
+        OutputWriter.printMessage(REQUEST_BONUS_NUMBER);
         return requestBonusNumber(prizeNumbers);
     }
 
@@ -36,15 +36,15 @@ public class PrizeController {
         }
     }
 
-    private static Lotto readJackpotNumbers() {
+    private static Lotto readPrizeNumbers() {
         try {
-            final String jackpotNumbers = InputReader.readLine();
-            List<Integer> numbers = Parser.splitByDelimiter(jackpotNumbers);
+            final String prizeNumbers = InputReader.readLine();
+            List<Integer> numbers = Parser.splitByDelimiter(prizeNumbers);
 
             return new Lotto(numbers);
         } catch (LottoException exception) {
             OutputWriter.println(exception.getMessage());
-            return readJackpotNumbers();
+            return readPrizeNumbers();
         }
     }
 }

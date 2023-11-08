@@ -11,10 +11,18 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateSize(numbers);
-        validateDuplicate(numbers);
-        validateNumbersInRange(numbers);
+        validate(numbers);
         this.numbers = numbers;
+    }
+
+    private void validate(List<Integer> numbers){
+        try {
+            validateSize(numbers);
+            validateDuplicate(numbers);
+            validateNumbersInRange(numbers);
+        } catch (IllegalArgumentException e) {
+            throw e;
+        }
     }
 
     private void validateSize(List<Integer> numbers) {

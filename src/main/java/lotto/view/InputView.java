@@ -15,16 +15,31 @@ public class InputView {
 
     public Integer getLottoPurchasePrice(){
         System.out.println(INPUT_LOTTO_PURCHASE_PRICE);
-        return inputParser.parseInt(Console.readLine());
+        try{
+            return inputParser.parseInt(Console.readLine());
+        }
+        catch (IllegalArgumentException e) {
+            throw e;
+        }
     }
 
     public List<Integer> getWinningLottoNumbers() {
         System.out.println(INPUT_WINNING_LOTTO_NUMBERS);
-        return inputParser.parsingNumbers(Console.readLine());
+        try{
+            return inputParser.parsingNumbers(Console.readLine());
+        }
+        catch (IllegalArgumentException e) {
+            throw e;
+        }
     }
 
     public Integer getWinningBonusNumber() {
         System.out.println(INPUT_WINNING_BONUS_NUMBER);
-        return inputParser.parseInt(Console.readLine());
+        try{
+            return inputParser.parseInt(Console.readLine());
+        }
+        catch (IllegalArgumentException e) {
+            throw e;
+        }
     }
 }

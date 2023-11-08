@@ -19,9 +19,14 @@ public class LottoController {
     }
 
     public void runLotto() {
-        PurchasedLottos purchasedLottos = buyLottos();
-        WinningLotto winningLotto = drawLotto();
-        CheckLotto(purchasedLottos,winningLotto);
+        try {
+            PurchasedLottos purchasedLottos = buyLottos();
+            WinningLotto winningLotto = drawLotto();
+            CheckLotto(purchasedLottos,winningLotto);
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private PurchasedLottos buyLottos() {

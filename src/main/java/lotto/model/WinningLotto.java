@@ -11,9 +11,18 @@ public class WinningLotto {
 
     public WinningLotto(Lotto lotto,Integer bonusNumber) {
         this.lotto = lotto;
-        validateBonusNumberDuplicateInNumbers(bonusNumber);
-        validateNumbersInRange(bonusNumber);
+        validate(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validate(Integer bonusNumber){
+        try {
+            validateBonusNumberDuplicateInNumbers(bonusNumber);
+            validateNumbersInRange(bonusNumber);
+        }
+        catch (IllegalArgumentException e) {
+            throw e;
+        }
     }
 
     private void validateBonusNumberDuplicateInNumbers(Integer bonusNumber) {

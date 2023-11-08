@@ -13,9 +13,9 @@ public class LottoCalculator {
     private static int finalPrize;
     private static List<Integer> finalMatchNumbers = new ArrayList<>(List.of(0, 0, 0, 0, 0, 0));
 
-    public static int calculatePrize(List<Integer> userNumbers, List<Integer> winningNumbers, int bonusNumber) {
-        int matchedNumbers = countMatchedNumbers(userNumbers, winningNumbers);
-        boolean hasBonusNumber = userNumbers.contains(bonusNumber);
+    public static int calculatePrize(List<Integer> userLottoNumbers, List<Integer> winningLottoNumber, int bonusNumber) {
+        int matchedNumbers = countMatchedNumbers(userLottoNumbers, winningLottoNumber);
+        boolean hasBonusNumber = userLottoNumbers.contains(bonusNumber);
 
         if (matchedNumbers == 6) {
             finalPrize += FIRST_PRIZE_AMOUNT;
@@ -45,8 +45,8 @@ public class LottoCalculator {
         return 0;
     }
 
-    private static int countMatchedNumbers(List<Integer> userNumbers, List<Integer> winningNumbers) {
-        return (int) userNumbers.stream().filter(winningNumbers::contains).count();
+    private static int countMatchedNumbers(List<Integer> userLottoNumbers, List<Integer> winningLottoNumber) {
+        return (int) userLottoNumbers.stream().filter(winningLottoNumber::contains).count();
     }
 
     public static List<Integer> getFinalMatchNumbers() {

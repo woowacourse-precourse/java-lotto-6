@@ -3,8 +3,13 @@ package lotto.service;
 import java.util.List;
 
 public class Validator {
+
+    private static final int LOTTO_PRICE = 1000;
+    private static final int ZERO = 0;
     private static final int LOTTO_GAME_START_NUMBER = 1;
     private static final int LOTTO_GAME_END_NUMBER = 45;
+    private static final String IS_BETWEEN_LOTTO_RANGE_EXCEPTION_MESSAGE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String  IS_NOT_DUPPLICATE_NUMBER_EXCEPTION_MESSAGE = "[ERROR] 보너스 번호는 중복되지 않는 숫자여야 합니다.";
 
     public static void validateAmount(String amount) {
         if (!isNumbers(amount)) {
@@ -20,15 +25,15 @@ public class Validator {
     }
 
     private static boolean isValidateAmount(String amount) {
-        return Integer.parseInt(amount) > 0 || Integer.parseInt(amount) % 1000 == 0;
+        return Integer.parseInt(amount) > ZERO || Integer.parseInt(amount) % LOTTO_PRICE == ZERO;
     }
 
     public static void validateBonusNumber(List<Integer> winnerNumbers, int bonusNumber) {
         if (!isNotDuplicateNumber(winnerNumbers, bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호와 중복되면 안됩니다.");
+            throw new IllegalArgumentException(IS_NOT_DUPPLICATE_NUMBER_EXCEPTION_MESSAGE);
         }
         if (!isBetweenLottoRange(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(IS_BETWEEN_LOTTO_RANGE_EXCEPTION_MESSAGE);
         }
     }
 

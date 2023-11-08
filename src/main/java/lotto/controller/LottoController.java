@@ -53,7 +53,6 @@ public class LottoController {
 		List<Integer> winningNumber = lotto.getLottoNumbers();
 
 		int ball = InputView.inputBonusNumber();
-		lotto.validateBonusNumber(winningNumber, ball);
 		winningResult = new WinningResult(new Lotto(winningNumber), ball);
 
 		return winningResult;

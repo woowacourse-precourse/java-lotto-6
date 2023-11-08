@@ -14,7 +14,7 @@ public class ConsoleOutputAdapter implements OutputPort {
         System.out.println(String.format(OUTPUT_PURCHASE_AMOUNT, lottos.size()));
 
         for (Lotto lotto : lottos) {
-            System.out.println(String.format("[%d]", lotto.getNumbers().stream()
+            System.out.println(String.format("[%s]", lotto.getNumbers().stream()
                     .map(Object::toString)
                     .collect(Collectors.joining(", "))));
         }

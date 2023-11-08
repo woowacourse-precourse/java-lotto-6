@@ -16,7 +16,6 @@ import static lotto.constant.NumericConstant.PROFIT_RATE_SCALE;
 
 public class LottoGameResult {
     private Map<LottoRank, Integer> lottoResult = new HashMap<>();
-    private long reward;
 
     public LottoGameResult() {
         for (LottoRank lottoRank : LottoRank.values()) {
@@ -25,12 +24,20 @@ public class LottoGameResult {
     }
     public void add(LottoRank lottoRank) {
         lottoResult.put(lottoRank, lottoResult.get(lottoRank) + 1);
-        reward += lottoRank.getRewardMoney();
+    }
+
+    public long getTotalReward() {
+        long sum = 0;
+        for (LottoRank rank : lottoResult.keySet()) {
+            sum += rank.getRewardMoney() * lottoResult.get(rank);
+        }
+
+        return sum;
     }
 
     public double calculateProfitRate(int investAmount) {
         BigDecimal invest = new BigDecimal(investAmount);
-        BigDecimal rewardMoney = new BigDecimal(reward);
+        BigDecimal rewardMoney = new BigDecimal(getTotalReward());
 
         return rewardMoney.multiply(new BigDecimal(100))
                 .divide(invest, PROFIT_RATE_SCALE, RoundingMode.HALF_UP)

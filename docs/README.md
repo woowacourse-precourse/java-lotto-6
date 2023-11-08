@@ -63,7 +63,7 @@
 > ### 등수별 메시지, 당첨 금액, 당첨 개수로 구성
 
 ## LottoResult
-> ### Map<LottoRank, Value>로 구성
+> ### Map\<LottoRank, Value\>로 구성
 > ### 등수별 담첨 현황 출력
 
 ## Lottos
@@ -90,6 +90,6 @@
 
 ## InputValidator
 > ### 입력 값이 숫자인지 확인하는 메서드
-> ### String을 ','로 구분하여 List<String>으로 나누는 메서드
-> ### List<String>을 List<Integer>로 바꾸는 메서드
+> ### String을 ','로 구분하여 List\<String\>으로 나누는 메서드
+> ### List\<String\>을 List\<Integer\>로 바꾸는 메서드
 > ### 숫자가 문자열로 감싸져있는 문자를 숫자로 바꾸는 메서드

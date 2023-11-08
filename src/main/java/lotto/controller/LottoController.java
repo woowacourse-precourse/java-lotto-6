@@ -26,11 +26,6 @@ public class LottoController {
         this.inputValidator = inputValidator;
     }
 
-    public static LottoResult getResult(final Lottos buyLottos,
-                                        final WinningLotto winningLotto) {
-        return LottoResult.determineWinnings(buyLottos, winningLotto);
-    }
-
     public void start() {
         MoneyManagement amount = initAmount();
         showAmount(amount);
@@ -53,6 +48,11 @@ public class LottoController {
         }
     }
 
+    public void showAmount(final MoneyManagement amount) {
+        int quantity = amount.getQuantity();
+        outputView.showTickets(quantity);
+    }
+
     public Lottos getBuyLottos(final MoneyManagement amount) {
         Lottos buyLottos = buyLotto(amount);
         outputView.showLottoList(buyLottos);
@@ -64,19 +64,16 @@ public class LottoController {
         return Lottos.from(quantity);
     }
 
-    public double getYield(final MoneyManagement amount, final LottoResult lottoResult) {
-        long profits = getTotal(lottoResult);
-        int balance = amount.getBalance();
-        return MoneyManagement.calculateYield(balance, profits);
-    }
-
-    public long getTotal(final LottoResult lottoResult) {
-        return MoneyManagement.totalAmount(lottoResult);
-    }
-
-    public void showAmount(final MoneyManagement amount) {
-        int quantity = amount.getQuantity();
-        outputView.showTickets(quantity);
+    public WinningLotto initWinningLotto() {
+        Lotto lotto = askWinningNumbers();
+        while (true) {
+            try {
+                Number bonusNumber = askWinningBonusNumber();
+                return new WinningLotto(lotto, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e);
+            }
+        }
     }
 
     public Lotto askWinningNumbers() {
@@ -113,16 +110,14 @@ public class LottoController {
         return Number.from(userNumber);
     }
 
-    public WinningLotto initWinningLotto() {
-        Lotto lotto = askWinningNumbers();
-        while (true) {
-            try {
-                Number bonusNumber = askWinningBonusNumber();
-                return new WinningLotto(lotto, bonusNumber);
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e);
-            }
-        }
+    public LottoResult getResult(final Lottos buyLottos,
+                                 final WinningLotto winningLotto) {
+        return LottoResult.determineWinnings(buyLottos, winningLotto);
+    }
+
+    public void printResult(final MoneyManagement amount, final LottoResult lottoResult) {
+        printCurrent(lottoResult);
+        printYield(amount, lottoResult);
     }
 
     public void printCurrent(final LottoResult lottoResult) {
@@ -135,8 +130,13 @@ public class LottoController {
         outputView.showYield(yield);
     }
 
-    public void printResult(final MoneyManagement amount, final LottoResult lottoResult) {
-        printCurrent(lottoResult);
-        printYield(amount, lottoResult);
+    public double getYield(final MoneyManagement amount, final LottoResult lottoResult) {
+        long profits = getTotal(lottoResult);
+        int balance = amount.getBalance();
+        return MoneyManagement.calculateYield(balance, profits);
+    }
+
+    public long getTotal(final LottoResult lottoResult) {
+        return MoneyManagement.totalAmount(lottoResult);
     }
 }

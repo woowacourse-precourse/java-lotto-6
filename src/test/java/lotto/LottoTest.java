@@ -10,35 +10,35 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
-    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
-    @Test
-    void createLottoByOverSize() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void createLottoByDuplicatedNumber() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-    @DisplayName("로또 번호는 6개보다 클 수 없다")
-    @Test
-    void createLottoBiggerThan6() {
+    void 로또_개수_6개_넘을시_예외발생() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
             .isInstanceOf(IllegalArgumentException.class);
     }
-    @DisplayName("로또 번호는 6개보다 작을 수 없다")
+
     @Test
-    void createLottoSmallerThan6() {
+    void 로또_중복된숫자_있으면_예외() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또는_6보다_클수없다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또는_6보다_작을수없다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
             .isInstanceOf(IllegalArgumentException.class);
     }
-    @DisplayName("로또 번호는 특정 형식으로 출력된다")
+
     @Test
-    void printLotto() {
+    void 올바르게_로또_출력() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
+
 }

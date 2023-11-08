@@ -20,21 +20,18 @@ public class LottoTicketTest {
     }
 
     @Test
-    @DisplayName("내가 생성한 만큼만 생성되어야 한다")
-    void lottoTicketHasCorrectNumberOfEntries() {
+    void 생성한_숫자만큼만_생성되어야한다() {
         Assertions.assertEquals(numberOfTickets, lottoTicket.getLottoEntries().size());
     }
 
     @Test
-    @DisplayName("중복이 있으면 안된다")
-    void lottoTicketContainsUniqueEntries() {
+    void 중복_없어야한다() {
         Set<Lotto> uniqueEntries = new HashSet<>(lottoTicket.getLottoEntries());
         Assertions.assertEquals(numberOfTickets, uniqueEntries.size());
     }
 
     @Test
-    @DisplayName("LottoTicket는 적절하게 toString을 수행해야 한다")
-    void toStringReturnsCorrectlyFormattedString() {
+    void toString_정상동작() {
         String stringRepresentation = lottoTicket.toString();
         Assertions.assertNotNull(stringRepresentation);
     }

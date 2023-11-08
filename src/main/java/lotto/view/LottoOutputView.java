@@ -1,11 +1,8 @@
 package lotto.view;
 
-import java.util.List;
 import java.util.Map;
-import lotto.model.Lotto;
 import lotto.model.LottoTicket;
 import lotto.model.Prize;
-import lotto.model.WinningNumbers;
 
 public class LottoOutputView {
 
@@ -46,7 +43,7 @@ public class LottoOutputView {
         return roundToTwoDecimalPlaces(yield);
     }
 
-    private double roundToTwoDecimalPlaces(double value) {
+    public double roundToTwoDecimalPlaces(double value) {
         return (Math.round(value * 100.0) / 100.0);
     }
 }

@@ -13,8 +13,7 @@ import org.junit.jupiter.api.Test;
 public class WinningNumbersTest {
 
     @Test
-    @DisplayName("당첨 번호와 로또 번호를 비교하여 정확한 당첨 결과를 반환해야 한다")
-    void testCalculatePrizes() {
+    void 당첨과_로또를_비교하여_정확한_결과를_반환해야_한다() {
         // given: 당첨 번호와 구매한 로또 번호가 주어집니다.
         WinningNumbers winningNumbers = getWinningNumbers();
 
@@ -35,8 +34,7 @@ public class WinningNumbersTest {
     }
 
     @Test
-    @DisplayName("보너스 번호가 일치하지 않으면 2등 대신 3등으로 처리해야 한다")
-    void testCalculatePrizesWithBonusNumber() {
+    void 보너스_번호_불일치시_3등() {
         // given
         Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
@@ -56,8 +54,7 @@ public class WinningNumbersTest {
     }
 
     @Test
-    @DisplayName("로또 티켓이 아무것도 매치되지 않을 경우 NONE에 대한 카운트가 올바르게 처리되어야 한다")
-    void testNoMatch() {
+    void none처리() {
         Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
         WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);

@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -45,6 +46,11 @@ public class OutputView {
     }
 
     public static void printRateOfReturn(double rateOfReturn) {
-        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+        System.out.println("총 수익률은 " + convertThousandsFormat(rateOfReturn) + "%입니다.");
+    }
+
+    private static String convertThousandsFormat(double number) {
+        DecimalFormat thousandsFormat = new DecimalFormat("#,###.0");
+        return thousandsFormat.format(number);
     }
 }

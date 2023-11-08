@@ -47,8 +47,8 @@ public class LottoController {
 	private Money createMoneyProgress() {
 		while (true) {
 			try {
-				int inputValue = inputView.inputMoney();
-				Money money = moneyService.createMoney(inputValue);
+				int inputedMoney = inputView.inputMoney();
+				Money money = moneyService.createMoney(inputedMoney);
 				return money;
 			} catch (IllegalArgumentException e) {
 				outputView.printErrorMessage(e);

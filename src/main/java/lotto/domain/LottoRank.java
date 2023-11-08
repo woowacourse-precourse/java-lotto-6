@@ -13,13 +13,13 @@ public enum LottoRank {
 	SECOND(30000000, 5, true, (matchedNumCount, isBonusNumber) -> matchedNumCount == 5 && isBonusNumber == true),
 	FIRST(2000000000, 6, false, (matchedNumCount, isBonusNumber) -> matchedNumCount == 6);
 
-	private final int price;
+	private final int lottoPrice;
 	private final int matchedNumCount;
 	private final boolean isBonusNumber;
 	private final BiPredicate<Integer, Boolean> matchingCondition;
 
-	LottoRank(int price, int matchedNumCount, boolean isBonusNumber, BiPredicate<Integer, Boolean> matchingCondition) {
-		this.price = price;
+	LottoRank(int lottoPrice, int matchedNumCount, boolean isBonusNumber, BiPredicate<Integer, Boolean> matchingCondition) {
+		this.lottoPrice = lottoPrice;
 		this.matchedNumCount = matchedNumCount;
 		this.isBonusNumber = isBonusNumber;
 		this.matchingCondition = matchingCondition;
@@ -70,8 +70,8 @@ public enum LottoRank {
 		return lottRankCounter;
 	}
 
-	public int getPrice() {
-		return price;
+	public int getLottoPrice() {
+		return lottoPrice;
 	}
 
 	public int getMatchedNumCount() {

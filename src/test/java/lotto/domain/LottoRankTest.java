@@ -16,7 +16,7 @@ public class LottoRankTest {
 	@MethodSource("createCheckLottoPriceMethodParameter")
 	@ParameterizedTest
 	void checkLottoPrice(AnswerLotto answer, Lotto lotto, int rankPrice) {
-		int lottoPrice = LottoRank.getMatchedLottoRank(answer, lotto).getPrice();
+		int lottoPrice = LottoRank.getMatchedLottoRank(answer, lotto).getLottoPrice();
 
 		assertEquals(lottoPrice, rankPrice);
 	}
@@ -26,12 +26,12 @@ public class LottoRankTest {
 		AnswerLotto answerLotto = new AnswerLotto(answerLottoNumbers, new BonusNumber(answerLottoNumbers, 7));
 
 		return Stream.of(
-				Arguments.of(answerLotto, new Lotto(List.of(8, 9, 10, 11, 12, 13)), LottoRank.NOTHING.getPrice()),
-				Arguments.of(answerLotto, new Lotto(List.of(1, 2, 9, 10, 11, 12)), LottoRank.NOTHING.getPrice()),
-				Arguments.of(answerLotto, new Lotto(List.of(1, 2, 3, 10, 11, 12)), LottoRank.FIFTH.getPrice()),
-				Arguments.of(answerLotto, new Lotto(List.of(1, 2, 3, 4, 11, 12)), LottoRank.FOURTH.getPrice()),
-				Arguments.of(answerLotto, new Lotto(List.of(1, 2, 3, 4, 5, 12)), LottoRank.THIRD.getPrice()),
-				Arguments.of(answerLotto, new Lotto(List.of(1, 2, 3, 4, 5, 7)), LottoRank.SECOND.getPrice()),
-				Arguments.of(answerLotto, new Lotto(List.of(1, 2, 3, 4, 5, 6)), LottoRank.FIRST.getPrice()));
+				Arguments.of(answerLotto, new Lotto(List.of(8, 9, 10, 11, 12, 13)), LottoRank.NOTHING.getLottoPrice()),
+				Arguments.of(answerLotto, new Lotto(List.of(1, 2, 9, 10, 11, 12)), LottoRank.NOTHING.getLottoPrice()),
+				Arguments.of(answerLotto, new Lotto(List.of(1, 2, 3, 10, 11, 12)), LottoRank.FIFTH.getLottoPrice()),
+				Arguments.of(answerLotto, new Lotto(List.of(1, 2, 3, 4, 11, 12)), LottoRank.FOURTH.getLottoPrice()),
+				Arguments.of(answerLotto, new Lotto(List.of(1, 2, 3, 4, 5, 12)), LottoRank.THIRD.getLottoPrice()),
+				Arguments.of(answerLotto, new Lotto(List.of(1, 2, 3, 4, 5, 7)), LottoRank.SECOND.getLottoPrice()),
+				Arguments.of(answerLotto, new Lotto(List.of(1, 2, 3, 4, 5, 6)), LottoRank.FIRST.getLottoPrice()));
 	}
 }

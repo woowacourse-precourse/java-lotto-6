@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Amount;
 import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
 import lotto.validation.NumberValidator;
 import lotto.validation.WinningNumberValidator;
@@ -77,5 +78,10 @@ public class View {
         if (winningNumbers.isAlreadyExistNumber(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 번호에 중복된 수가 존재할 수 없습니다.");
         }
+    }
+
+    public void printCreatedLottos(Amount amount, Lottos lottos) {
+        outputView.printLottoCount(amount.getLottoCount());
+        outputView.printLottos(lottos);
     }
 }

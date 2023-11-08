@@ -1,26 +1,21 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 import lotto.model.Lotto;
+import lotto.util.Constants;
+import lotto.util.ErrorMessage;
+import lotto.util.Util;
 
 public class InputView {
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
-    private static final int LOTTO_SIZE = 6;
-    private static final int THOUSAND = 1000;
-    private static final String SPACE = " ";
-    private static final String NO_SPACE = "";
-    private static final String COMMA = ",";
-    private static final String NEW_LINE = "\n";
-    private static final String INVALID_LOTTO_SIZE = "[ERROR] 6자리의 숫자를 입력해 주세요.";
-    private static final String INVALID_INT_RANGE = "[ERROR] 너무 큰 금액입니다.";
-    private static final String INVALID_DIVISIBLE = "[ERROR] 1000원 단위의 입력이 아닙니다.";
-    private static final String INVALID_LOTTO_RANGE = "[ERROR] 로또 번호는 1~45 사이의 숫자입니다.";
+    private static final String NEW_LINE = System.lineSeparator();
+    private static final String INPUT_BUY_AMOUNT = "구입금액을 입력해 주세요.";
+    private static final String INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
     public int inputBuyAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(INPUT_BUY_AMOUNT);
         String amount = Console.readLine();
         validateIntRange(amount);
         validateDivisibleByThousand(amount);
@@ -28,52 +23,49 @@ public class InputView {
     }
 
     public Lotto inputWinningLotto() {
-        System.out.println(NEW_LINE + "당첨 번호를 입력해 주세요.");
-        String[] winningNumber = Console.readLine().replaceAll(SPACE, NO_SPACE).split(COMMA);
+        System.out.println(NEW_LINE + INPUT_WINNING_NUMBER);
+        List<String> winningNumber = Util.splitByComma(Util.removeSpace(Console.readLine()));
         validateWinningNumber(winningNumber);
-        return new Lotto(
-                Arrays.stream(winningNumber)
-                        .map(Integer::parseInt)
-                        .collect(Collectors.toList())
+        return new Lotto(winningNumber.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList())
         );
     }
 
     public int inputBonusNumber() {
-        System.out.println(NEW_LINE + "보너스 번호를 입력해 주세요.");
+        System.out.println(NEW_LINE + INPUT_BONUS_NUMBER);
         String number = Console.readLine();
         validateIntRange(number);
         validateLottoRange(number);
         return Integer.parseInt(number);
     }
 
-    private void validateWinningNumber(String[] numbers) {
-        if (numbers.length != LOTTO_SIZE) {
-            throw new IllegalArgumentException(INVALID_LOTTO_SIZE);
+    private void validateWinningNumber(List<String> numbers) {
+        if (numbers.size() != Constants.LOTTO_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_SIZE.getMessage());
         }
-        for (String number : numbers) {
-            validateLottoRange(number);
-        }
+        numbers.forEach(this::validateLottoRange);
     }
 
-    private void validateIntRange(String amount) throws IllegalArgumentException {
+    private void validateIntRange(String input) throws IllegalArgumentException {
         try {
-            Integer.parseInt(amount);
+            Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_INT_RANGE);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INT_RANGE.getMessage());
         }
     }
 
-    private void validateDivisibleByThousand(String amount) {
-        int number = Integer.parseInt(amount);
-        if (number % THOUSAND != 0) {
-            throw new IllegalArgumentException(INVALID_DIVISIBLE);
+    private void validateDivisibleByThousand(String input) {
+        int amount = Integer.parseInt(input);
+        if (amount % Constants.LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_DIVISIBLE.getMessage());
         }
     }
 
     private void validateLottoRange(String input) {
         int number = Integer.parseInt(input);
-        if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException(INVALID_LOTTO_RANGE);
+        if (number < Constants.MIN_RANGE || number > Constants.MAX_RANGE) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_RANGE.getMessage());
         }
     }
 }

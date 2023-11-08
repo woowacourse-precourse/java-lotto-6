@@ -18,7 +18,7 @@ public class PrizeStats {
     private TreeMap<PrizeGrade, Integer> getEmptyDist() {
         TreeMap<PrizeGrade, Integer> zeroDist = new TreeMap<>();
         for (PrizeGrade prizeGrade : PrizeGrade.values()) {
-            zeroDist.put(prizeGrade, ZERO);
+            zeroDist.put(prizeGrade, NumberConstants.ZERO);
         }
         return zeroDist;
     }
@@ -34,6 +34,6 @@ public class PrizeStats {
     }
 
     private void addFrequency(PrizeGrade prizeGrade) {
-        gradeDist.put(prizeGrade, gradeDist.get(prizeGrade) + 1);
+        gradeDist.put(prizeGrade, gradeDist.get(prizeGrade) + NumberConstants.ONE);
     }
 }

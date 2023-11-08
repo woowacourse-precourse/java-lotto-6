@@ -20,20 +20,20 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
-        validateRange(numbers, MIN_NUMBER, MAX_NUMBER);
+        validateRange(numbers, NumberConstants.MIN_NUMBER, NumberConstants.MAX_NUMBER);
         validateDuplicates(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != NumberConstants.LOTTO_SIZE) {
+            throw new IllegalArgumentException(Error.NOT_LOTTO_SIZE.getMessage());
         }
     }
 
     private void validateRange(List<Integer> numbers, int minNumber, int maxNumber) {
         if (!numbers.stream()
                 .allMatch(number -> number >= minNumber && number <= maxNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.NOT_IN_RANGE.getMessage());
         }
     }
 
@@ -41,7 +41,7 @@ public class Lotto {
         Set<Integer> set = new HashSet<>();
         if (numbers.stream()
                 .anyMatch(number -> set.contains(number))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.CONTAINS_DUPLICATE.getMessage());
         }
     }
 

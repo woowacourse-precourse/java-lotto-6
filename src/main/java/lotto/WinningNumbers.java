@@ -10,8 +10,8 @@ public class WinningNumbers {
 
     public WinningNumbers(String inputWinningLotto, String inputBonus) {
         validateInputLotto(inputWinningLotto);
-        validateInputBonus(inputBonus);
         this.winningLotto = new Lotto(inputToNumbers(inputWinningLotto));
+        validateInputBonus(inputBonus);
         this.bonusNumber = inputToNumber(inputBonus);
     }
 
@@ -24,38 +24,38 @@ public class WinningNumbers {
     }
 
     private void validateInputLotto(String inputLotto) {
-        if (inputLotto.isEmpty() || inputLotto.equals(LINE_SEPARATION)) {
-            throw new IllegalArgumentException();
+        if (inputLotto.isEmpty() || inputLotto.equals(StringConstants.LINE_SEPARATION)) {
+            throw new IllegalArgumentException(Error.EMPTY_INPUT.getMessage());
         }
-        if (inputLotto.contains(BLANK)) {
-            throw new IllegalArgumentException();
+        if (inputLotto.contains(StringConstants.BLANK)) {
+            throw new IllegalArgumentException(Error.CONTAINS_BLANK.getMessage());
         }
-        if (!Pattern.matches("^[0-9,]+$", inputLotto)) {
-            throw new IllegalArgumentException();
+        if (!Pattern.matches(StringConstants.REG_NUMBER_COMMA_STRING, inputLotto)) {
+            throw new IllegalArgumentException(Error.CONTAINS_NOT_NUMBER_COMMA.getMessage());
         }
-        if (inputLotto.contains(COMMA + COMMA)) {
-            throw new IllegalArgumentException();
+        if (inputLotto.contains(StringConstants.COMMA + StringConstants.COMMA)) {
+            throw new IllegalArgumentException(Error.CONTAINS_CONTINUAL_COMMA.getMessage());
         }
-        if (Pattern.matches("^(,.*|.*,|,)$", inputLotto)) {
-            throw new IllegalArgumentException();
+        if (Pattern.matches(StringConstants.REG_COMMA_EDGE_STRING, inputLotto)) {
+            throw new IllegalArgumentException(Error.WITH_COMMA_EDGE.getMessage());
         }
     }
 
     private void validateInputBonus(String inputBonus) {
-        if (inputBonus.isEmpty() || inputBonus.equals(LINE_SEPARATION)) {
+        if (inputBonus.isEmpty() || inputBonus.equals(StringConstants.LINE_SEPARATION)) {
             throw new IllegalArgumentException();
         }
-        if (inputBonus.contains(BLANK)) {
+        if (inputBonus.contains(StringConstants.BLANK)) {
             throw new IllegalArgumentException();
         }
-        if (!Pattern.matches("^[0-9]+$", inputBonus)) {
+        if (!Pattern.matches(StringConstants.REG_NUMBER_STRING, inputBonus)) {
             throw new IllegalArgumentException();
         }
     }
 
     private List<Integer> inputToNumbers(String inputLotto) {
         List<Integer> numbers = new ArrayList<>();
-        for (String splittedInput : inputLotto.split(COMMA)) {
+        for (String splittedInput : inputLotto.split(StringConstants.COMMA)) {
             numbers.add(Integer.parseInt(splittedInput));
         }
         return numbers;
@@ -63,23 +63,23 @@ public class WinningNumbers {
 
     private int inputToNumber(String inputBonus) {
         int number = Integer.parseInt(inputBonus);
-        validateRange(number, MIN_NUMBER, MAX_NUMBER);
+        validateRange(number, NumberConstants.MIN_NUMBER, NumberConstants.MAX_NUMBER);
         validateDuplicates(number);
         return number;
     }
 
     private void validateRange(int number, int minNumber, int maxNumber) {
         if (number < minNumber) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.TOO_SMALL.getMessage());
         }
         if (number > maxNumber) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.TOO_LARGE.getMessage());
         }
     }
 
     private void validateDuplicates(int number) {
         if (winningLotto.getNumbers().contains(number)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.CONTAINS_DUPLICATE.getMessage());
         }
     }
 }

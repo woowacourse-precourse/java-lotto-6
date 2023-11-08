@@ -31,11 +31,11 @@ public class OutputView {
     }
 
     private static String withCommaFormat(int number) {
-        DecimalFormat commaFormat = new DecimalFormat(COMMA_FORMAT);
+        DecimalFormat commaFormat = new DecimalFormat(StringConstants.COMMA_FORMAT);
         return commaFormat.format(number);
     }
 
     public static void printProfitRate(double profitRate) {
-        System.out.printf(PROFIT_RATE_MESSAGE, profitRate * ONE_HUNDRED);
+        System.out.printf(PROFIT_RATE_MESSAGE, profitRate * NumberConstants.HUNDRED);
     }
 }

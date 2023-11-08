@@ -1,12 +1,12 @@
 package lotto;
 
 public enum PrizeGrade {
-    FIRST(6, 2000000000, EMPTY),
-    SECOND(5, 30000000, EMPTY),
+    FIRST(6, 2000000000, StringConstants.EMPTY),
+    SECOND(5, 30000000, StringConstants.EMPTY),
     THIRD(5, 1500000, ", 보너스 볼 일치"),
-    FOURTH(4, 50000, EMPTY),
-    FIFTH(3, 5000, EMPTY),
-    NO_PRIZE(0, 0, EMPTY);
+    FOURTH(4, 50000, StringConstants.EMPTY),
+    FIFTH(3, 5000, StringConstants.EMPTY),
+    NO_PRIZE(0, 0, StringConstants.EMPTY);
 
     private final int matchCount;
     private final int prizeMoney;

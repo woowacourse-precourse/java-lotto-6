@@ -9,7 +9,7 @@ public class BuyingLotto {
     public BuyingLotto(String InputBuyingPrice) {
         validateInputPrice(InputBuyingPrice);
         this.buyingPrice = inputToNumber(InputBuyingPrice);
-        this.ticketNumber = calculateTicketNumber(LOTTO_PRICE);
+        this.ticketNumber = calculateTicketNumber(NumberConstants.LOTTO_PRICE);
     }
 
     public long getBuyingPrice() {
@@ -22,7 +22,7 @@ public class BuyingLotto {
     private long inputToNumber(String inputPrice) {
         long buyingPrice = Long.parseLong(inputPrice);
         validatePlusSign(buyingPrice);
-        validateDivision(buyingPrice, LOTTO_PRICE);
+        validateDivision(buyingPrice, NumberConstants.LOTTO_PRICE);
         return buyingPrice;
     }
 
@@ -31,26 +31,26 @@ public class BuyingLotto {
     }
 
     private void validateInputPrice(String inputPrice) {
-        if (inputPrice.isEmpty() || inputPrice.equals(LINE_SEPARATION)) {
-            throw new IllegalArgumentException();
+        if (inputPrice.isEmpty()) {
+            throw new IllegalArgumentException(Error.EMPTY_INPUT.getMessage());
         }
-        if (inputPrice.contains(BLANK)) {
-            throw new IllegalArgumentException();
+        if (inputPrice.contains(StringConstants.BLANK)) {
+            throw new IllegalArgumentException(Error.CONTAINS_BLANK.getMessage());
         }
-        if (!Pattern.matches("^[0-9]+$", inputPrice)) {
-            throw new IllegalArgumentException();
+        if (!Pattern.matches(StringConstants.REG_NUMBER_STRING, inputPrice)) {
+            throw new IllegalArgumentException(Error.CONTAINS_NOT_NUMBER.getMessage());
         }
     }
 
     private void validatePlusSign(long number) {
-        if (number <= ZERO) {
-            throw new IllegalArgumentException();
+        if (number <= NumberConstants.ZERO) {
+            throw new IllegalArgumentException(Error.NOT_PLUS_SIGN.getMessage());
         }
     }
 
     private void validateDivision(long number, long unitNumber) {
-        if (number % unitNumber != ZERO) {
-            throw new IllegalArgumentException();
+        if (number % unitNumber != NumberConstants.ZERO) {
+            throw new IllegalArgumentException(Error.NOT_PLUS_SIGN.getMessage());
         }
     }
 }

@@ -14,6 +14,7 @@ public class LottoService {
     public void setupBuyLotto() {
         BuyPrice buyPrice = setupBuyPrice();
         lottos = setupLottos(buyPrice);
+        showBoughtLottoNumbers(lottos);
     }
 
     private BuyPrice setupBuyPrice() {
@@ -28,5 +29,10 @@ public class LottoService {
 
     private Lottos setupLottos(BuyPrice buyPrice) {
         return new Lottos(buyPrice);
+    }
+
+    private void showBoughtLottoNumbers(Lottos lottos) {
+        output.printMessage(lottos.getBuyMessage());
+        output.printMessage(lottos.getLottoMessages());
     }
 }

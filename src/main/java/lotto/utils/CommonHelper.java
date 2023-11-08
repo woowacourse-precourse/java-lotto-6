@@ -24,4 +24,9 @@ public class CommonHelper {
     public static List<Integer> numGenerator() {
         return Randoms.pickUniqueNumbersInRange(LottoEnum.LOTTO_MIN_NUMBER.getValue(), LottoEnum.LOTTO_MAX_NUMBER.getValue(), LottoEnum.LOTTO_SIZE.getValue());
     }
+
+    public static List<String> splitComma(String input) {
+        List<String> splited = List.of(input.split(","));
+        return splited;
+    }
 }

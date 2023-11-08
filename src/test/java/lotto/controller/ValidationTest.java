@@ -63,4 +63,12 @@ public class ValidationTest {
         assertThatThrownBy(() -> validation.winNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void winNumberInput_outOfRange() {
+        List<String> input = new ArrayList<>(Arrays.asList("1", "2", "57", "4", "5", "6"));
+
+        assertThatThrownBy(() -> validation.winNumber(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

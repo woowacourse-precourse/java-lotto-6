@@ -1,6 +1,6 @@
 package lotto.service;
 
-import static lotto.exception.ErrorMessage.NOT_NUMERIC_LOTTO_NUMBER;
+import static lotto.exception.constants.ErrorMessage.NOT_NUMERIC_LOTTO_NUMBER;
 
 import java.util.ArrayList;
 import java.util.Arrays;

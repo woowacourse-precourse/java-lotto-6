@@ -1,8 +1,8 @@
 package lotto.validator;
 
 import static lotto.domain.constants.LottoConfig.LOTTO_UNIT_PRICE;
-import static lotto.exception.ErrorMessage.INVALID_PURCHASE_AMOUNT;
-import static lotto.exception.ErrorMessage.NOT_NUMERIC_PURCHASE_AMOUNT;
+import static lotto.exception.constants.ErrorMessage.INVALID_PURCHASE_AMOUNT;
+import static lotto.exception.constants.ErrorMessage.NOT_NUMERIC_PURCHASE_AMOUNT;
 
 import lotto.exception.LottoException;
 

@@ -3,9 +3,9 @@ package lotto.domain;
 import static lotto.domain.constants.LottoConfig.LOTTO_NUMBER_MAX;
 import static lotto.domain.constants.LottoConfig.LOTTO_NUMBER_MIN;
 import static lotto.domain.constants.LottoConfig.LOTTO_SIZE;
-import static lotto.exception.ErrorMessage.DUPLICATE_LOTTO_NUMBERS;
-import static lotto.exception.ErrorMessage.INVALID_LOTTO_FORMAT;
-import static lotto.exception.ErrorMessage.OUT_OF_RANGE_LOTTO_NUMBERS;
+import static lotto.exception.constants.ErrorMessage.DUPLICATE_LOTTO_NUMBERS;
+import static lotto.exception.constants.ErrorMessage.INVALID_LOTTO_FORMAT;
+import static lotto.exception.constants.ErrorMessage.OUT_OF_RANGE_LOTTO_NUMBERS;
 
 import java.util.List;
 import lotto.exception.LottoException;
@@ -31,9 +31,9 @@ public class Lotto {
     }
 
     private void validateNumbersRange(final List<Integer> numbers) {
-        if (!numbers.stream()
-                .allMatch
-                        (num -> num > LOTTO_NUMBER_MIN.getValue() && num < LOTTO_NUMBER_MAX.getValue())) {
+        if (numbers.stream()
+                .anyMatch(num ->
+                        num < LOTTO_NUMBER_MIN.getValue() || num > LOTTO_NUMBER_MAX.getValue())) {
             throw LottoException.of(OUT_OF_RANGE_LOTTO_NUMBERS);
         }
     }

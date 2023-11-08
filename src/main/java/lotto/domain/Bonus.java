@@ -2,9 +2,9 @@ package lotto.domain;
 
 import static lotto.domain.constants.LottoConfig.LOTTO_NUMBER_MAX;
 import static lotto.domain.constants.LottoConfig.LOTTO_NUMBER_MIN;
-import static lotto.exception.ErrorMessage.BONUS_LOTTO_DUPLICATE;
-import static lotto.exception.ErrorMessage.NOT_NUMERIC_BONUS_NUMBER;
-import static lotto.exception.ErrorMessage.OUT_OF_RANGE_BONUS_NUMBER;
+import static lotto.exception.constants.ErrorMessage.BONUS_LOTTO_DUPLICATE;
+import static lotto.exception.constants.ErrorMessage.NOT_NUMERIC_BONUS_NUMBER;
+import static lotto.exception.constants.ErrorMessage.OUT_OF_RANGE_BONUS_NUMBER;
 
 import lotto.exception.LottoException;
 

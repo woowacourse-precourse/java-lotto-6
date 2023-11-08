@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static lotto.exception.ErrorMessage.DUPLICATE_LOTTO_NUMBERS;
-import static lotto.exception.ErrorMessage.INVALID_LOTTO_FORMAT;
-import static lotto.exception.ErrorMessage.OUT_OF_RANGE_LOTTO_NUMBERS;
+import static lotto.exception.constants.ErrorMessage.DUPLICATE_LOTTO_NUMBERS;
+import static lotto.exception.constants.ErrorMessage.INVALID_LOTTO_FORMAT;
+import static lotto.exception.constants.ErrorMessage.OUT_OF_RANGE_LOTTO_NUMBERS;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {

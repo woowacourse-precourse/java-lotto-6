@@ -25,10 +25,11 @@ public class LottoCal {
 
     public void count(List<Integer> lotto, List<Integer> userLotto, int userBonus) {
 
-        boolean bonusCheck = userLotto.contains(userBonus);
+        boolean bonusCheck = lotto.contains(userBonus);
         lotto.retainAll(userLotto);
         int count = lotto.size();
         if (count == SECOND_REQUIRE && bonusCheck) {
+
             count = SECOND_REQUIRE_SUCCESS;
         }
         addPrizeCount(count);

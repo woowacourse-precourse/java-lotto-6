@@ -52,7 +52,7 @@ public class LottoController {
     private int getAmount() {
         try {
             InputView.inputAmount();
-            int amount = Util.convertStringToInt(getInputAndCheckIsNumber());
+            int amount = Util.convertStringToInt(Util.getInputAndCheckIsNumber());
             Util.validateAmount(amount);
             return amount;
         } catch (IllegalArgumentException e) {
@@ -78,18 +78,12 @@ public class LottoController {
     private int getBonusNumber() {
         try {
             InputView.inputBonusNumber();
-            int number = Util.convertStringToInt(getInputAndCheckIsNumber());
+            int number = Util.convertStringToInt(Util.getInputAndCheckIsNumber());
             Util.validateBonusNumber(number);
             return number;
         } catch (IllegalArgumentException e) {
             System.out.println(e);
             return getBonusNumber();
         }
-    }
-
-    private String getInputAndCheckIsNumber() {
-        String input = Console.readLine();
-        Util.validateIsNumber(input);
-        return input;
     }
 }

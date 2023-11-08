@@ -1,5 +1,6 @@
 package lotto.util;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.validation.LottoValidation;
 
 import java.util.ArrayList;
@@ -16,6 +17,12 @@ public class Util {
             result.add(Integer.parseInt(num));
         }
         return result;
+    }
+
+    public static final String getInputAndCheckIsNumber() {
+        String input = Console.readLine();
+        validateIsNumber(input);
+        return input;
     }
 
     public static final void validateWinningNumber(List<Integer> winningNumber) {

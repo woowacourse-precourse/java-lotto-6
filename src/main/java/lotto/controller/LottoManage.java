@@ -40,6 +40,7 @@ public class LottoManage {
     public int getBonusNumber(List<Integer> numbers) {
         try {
             int bonus = Input.setBonusNumber();
+            bonusNumber.isCorrectRange(bonus);
             bonusNumber.isSameNumber(numbers, bonus);
             return bonus;
         } catch (IllegalArgumentException e) {

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.utils.NumberGenerator;
-import lotto.utils.RandomLottoNumbersGenerator;
 
 public class PurchasedLottos {
     private static final int START_INDEX = 0;
@@ -30,6 +29,12 @@ public class PurchasedLottos {
     public List<Rank> matchLottos(WinningLotto winningLotto) {
         return purchasedLottos.stream()
                 .map(purchasedLotto -> winningLotto.matchLotto(purchasedLotto))
+                .collect(Collectors.toList());
+    }
+
+    public List<List<String>> getCurrentPurchasedLottosList() {
+        return purchasedLottos.stream()
+                .map(lotto -> lotto.getLottoNumberStrings())
                 .collect(Collectors.toList());
     }
 }

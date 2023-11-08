@@ -41,5 +41,11 @@ public class Lotto {
         return numbers.contains(bonusBall);
     }
 
+    public List<String> getLottoNumberStrings() {
+        return numbers.stream()
+                .map(number -> number.toString())
+                .collect(Collectors.toList());
+    }
+
     // TODO: 추가 기능 구현
 }

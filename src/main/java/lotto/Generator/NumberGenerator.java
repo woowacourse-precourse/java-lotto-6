@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Generator;
 
 import camp.nextstep.edu.missionutils.Randoms;
 

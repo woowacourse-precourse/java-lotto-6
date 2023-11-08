@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Validate;
 
 public class ErrorValidate {
     private static final int MINIMUM_PUCHASE_MONEY = 1000;

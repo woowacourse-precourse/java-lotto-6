@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Validate;
 
 public enum ErrorMessage {
     ERROR_IS_NUMBER("[ERROR]숫자만 입력가능합니다."),

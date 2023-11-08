@@ -1,6 +1,8 @@
-package lotto;
+package lotto.Input;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Validate.ErrorMessage;
+import lotto.Validate.ErrorValidate;
 
 import java.util.ArrayList;
 import java.util.List;

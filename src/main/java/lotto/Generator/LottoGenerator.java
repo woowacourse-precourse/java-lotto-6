@@ -1,4 +1,7 @@
-package lotto;
+package lotto.Generator;
+
+import lotto.Input.PlayerInput;
+import lotto.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;

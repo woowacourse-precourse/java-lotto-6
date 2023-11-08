@@ -11,6 +11,7 @@ public class WinningLotto {
     public WinningLotto(Lotto lotto,Integer bonusNumber) {
         this.lotto = lotto;
         validateBonusNumberDuplicateInNumbers(bonusNumber);
+        validateNumbersInRange(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -20,10 +21,10 @@ public class WinningLotto {
                 throw new IllegalArgumentException();
             }
         }
-    }private void validateDuplicate(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (numbers.size() != uniqueNumbers.size()) {
-            throw new IllegalArgumentException();
+    }
+    private void validateNumbersInRange(Integer bonusNumber) {
+        if(bonusNumber < 1 || bonusNumber >45){
+        throw new IllegalArgumentException();
         }
     }
 
@@ -33,5 +34,9 @@ public class WinningLotto {
 
     public List<Integer> getNumbers() {
         return lotto.getNumbers();
+    }
+
+    public Lotto getLotto() {
+        return lotto;
     }
 }

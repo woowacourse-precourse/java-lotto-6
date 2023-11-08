@@ -27,4 +27,10 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
+    public int getMatchingCount(WinningLotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto::isContain)
+                .count();
+    }
 }

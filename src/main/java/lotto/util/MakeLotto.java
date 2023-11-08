@@ -12,11 +12,10 @@ public class MakeLotto {
         while(lottos.size() < lottoCount){
             lottos.add(generateLotto());
         }
-
         return lottos;
     }
 
-    private Lotto generateLotto(){
+    private static Lotto generateLotto(){
         MakeRandomNumber makeRandomNumber = new MakeRandomNumber();
         return new Lotto(makeRandomNumber.getRandomNumber());
     }

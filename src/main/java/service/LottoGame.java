@@ -22,9 +22,7 @@ public class LottoGame {
         int ticketQuantity = ticketPurchaseAmount / TICKET_PRICE;
         List<Lotto> tickets = getTickets(ticketQuantity);
 
-        printGeneratedLottoNumbers(ticketQuantity, tickets);
-        getWinningNumbers();
-        getBonusNumber();
+        printGeneratedNumbers(ticketQuantity, tickets);
     }
 
     private static void getBonusNumber() {
@@ -50,7 +48,7 @@ public class LottoGame {
         System.out.println();
     }
 
-    private static void printGeneratedLottoNumbers(int ticketQuantity, List<Lotto> tickets) {
+    private void printGeneratedNumbers(int ticketQuantity, List<Lotto> tickets) {
         System.out.println(ticketQuantity + "개를 구매했습니다.");
 
         for (Lotto ticket : tickets) {

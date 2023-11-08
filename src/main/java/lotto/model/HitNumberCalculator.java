@@ -2,7 +2,7 @@ package lotto.model;
 
 import java.util.List;
 
-public class ResultCalculator {
+public class HitNumberCalculator {
 
     public int hitNumberCounter(List<Integer> purchasedLottoNumbers,
             List<Integer> winningLottoNumbers) {

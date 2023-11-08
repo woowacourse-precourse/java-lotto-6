@@ -2,6 +2,8 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Lotto;
+import lotto.constants.Prize;
 import lotto.util.RandomGenerator;
 
 public class Lottos {
@@ -28,6 +30,15 @@ public class Lottos {
             totalLottoStrings=totalLottoStrings+LottoString+"\n";
         }
         return totalLottoStrings;
+    }
+
+    public int[] getLottoResults(List<Integer> winningNumber, int bonusNumber){
+        int[] lottoResult = new int[Prize.values().length];
+        for (int i = 0; i<amount; i++){
+            Prize prize = lottos.get(i).getLottoResult(winningNumber, bonusNumber);
+            lottoResult[prize.getIdx()]++;
+        }
+        return lottoResult;
     }
 
 }

@@ -17,6 +17,9 @@ public class LottoController {
         winningNumber = Input.getWinningNumber();
         bonusNumber = Input.getBonusNumber(winningNumber);
 
+        int[] lottoResult = lottos.getLottoResults(winningNumber, bonusNumber);
+        Output.ShowResult(lottoResult);
+        Output.ShowProfit(lottoResult, money);
     }
 
     private void getInputs(){
@@ -28,7 +31,5 @@ public class LottoController {
         Output.ShowLottos(lottos);
         return lottos;
     }
-    private void confirmLottos(){
 
-    }
 }

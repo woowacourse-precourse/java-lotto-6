@@ -36,5 +36,10 @@ public final class Message {
 
     public static final String INTEREST_RATE_MESSAGE = "총 수익률은 %s입니다.\n";
 
+    public static final String FIFTH_PRIZE = "3개 일치 ";
+    public static final String FOURTH_PRIZE = "4개 일치 ";
+    public static final String THIRD_PRIZE = "5개 일치 ";
+    public static final String SECOND_PRIZE = "5개 일치, 보너스 볼 일치 ";
+    public static final String FIRST_PRIZE = "6개 일치 ";
 
 }

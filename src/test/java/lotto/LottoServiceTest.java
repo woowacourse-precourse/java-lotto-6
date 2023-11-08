@@ -48,5 +48,5 @@ public class LottoServiceTest {
         lottoService.setBonusNumber("7");
         assertThat(lottoService.getNumberMatches().get(Prizes.First)).isEqualTo(1);
     }
-    
+
 }

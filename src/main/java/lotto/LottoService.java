@@ -10,7 +10,6 @@ import static lotto.Constant.*;
 
 public class LottoService {
 
-
     public List<Lotto> generateLottos(int purchaseAmount) {
         int lottoNum = purchaseAmount / LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();

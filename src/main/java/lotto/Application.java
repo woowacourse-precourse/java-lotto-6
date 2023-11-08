@@ -6,6 +6,7 @@ public class Application {
         LottoView lottoView = new LottoView();
         LottoService lottoService = new LottoService();
         LottoController lottoController = new LottoController(lottoView, lottoService);
+
         lottoController.start();
     }
 }

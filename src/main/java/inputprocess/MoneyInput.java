@@ -37,7 +37,7 @@ public class MoneyInput {
         while(true){
             try {
                 MoneyInput.money = changeInt();
-              break;
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 정수를 입력해주세요.");
             }

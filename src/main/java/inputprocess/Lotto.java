@@ -24,10 +24,9 @@ public class Lotto {
     private  List<Integer> ChangeToInteger(String numberString){
         String[] changeToNumber = numberString.split(",");
         List<String> changeToNumber2 = Arrays.stream(changeToNumber).collect(Collectors.toList());
-        List<Integer> LottoNumber = changeToNumber2.stream()
+        return changeToNumber2.stream()
                                              .map(s -> Integer.parseInt(s))
                                              .collect(Collectors.toList());
-        return LottoNumber;
     }
 
     private String[] CheckNumber(String numberString) {

@@ -19,6 +19,10 @@ public class Game {
         return this.winningLotto;
     }
 
+    public int getMoney() {
+        return this.money;
+    }
+
     public void setWinningLotto(List<Integer> numbers) {
         this.winningLotto = new Lotto(numbers);
     }
@@ -43,7 +47,7 @@ public class Game {
                 this.setWinningLotto(numbers);
                 break;
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                OutputService.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -57,7 +61,7 @@ public class Game {
                 this.setBonusNumber(bonusNumber);
                 break;
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                OutputService.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -72,7 +76,7 @@ public class Game {
                 this.setMoney(money);
                 break;
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                OutputService.printErrorMessage(e.getMessage());
             }
         }
 

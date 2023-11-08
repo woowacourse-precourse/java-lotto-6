@@ -1,5 +1,7 @@
 package lotto.domain.number;
 
+import lotto.ErrorMessage;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,13 +23,13 @@ public class LottoNumbers {
 
     private void validateIsEmpty(List<LottoNumber> lottoNumbers) {
         if (lottoNumbers.isEmpty()) {
-            throw new IllegalArgumentException("비어있을 수 없음.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_IS_EMPTY.message());
         }
     }
 
     private void validateSize(List<LottoNumber> lottoNumbers) {
         if (lottoNumbers.size() != 6) {
-            throw new IllegalArgumentException("당첨번호는 6개 여야 함.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_ENOUGH.message());
         }
     }
 
@@ -35,7 +37,7 @@ public class LottoNumbers {
         Set<LottoNumber> duplicateCheck = new HashSet<>();
         lottoNumbers.forEach(number -> {
             if (!duplicateCheck.add(number)) {
-                throw new IllegalArgumentException("당첨번호는 중복될 수 없음.");
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_IS_DUPLICATED.message());
             }
         });
     }

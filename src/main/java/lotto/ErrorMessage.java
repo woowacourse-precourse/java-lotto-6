@@ -12,7 +12,10 @@ public enum ErrorMessage {
     AMOUNT_OUT_OF_BOUND("적당히 구매하는 것이 좋습니다. "),
     LOTTOS_IS_EMPTY("로또 번호는 비어있을 수 없음. "),
     NUMBER_NOT_IN_RANGE("당첨 번호는 " + NIN_NUMBER + "~" + MAX_NUMBER + " 사이어야 함. "),
-    INPUT_NUMBER("숫자를 입력해주세요. ");
+    INPUT_NUMBER("숫자를 입력해주세요. "),
+    LOTTO_NUMBER_NOT_ENOUGH("당첨번호는 6개 여야 함."),
+    LOTTO_NUMBER_IS_EMPTY("당첨번호는 비어있을 수 없음."),
+    LOTTO_NUMBER_IS_DUPLICATED("당첨번호는 중복될 수 없음.");
 
     private static final String PREFIX = "[ERROR]";
     private static final String SUFFIX = "\n";

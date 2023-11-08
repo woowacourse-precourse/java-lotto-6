@@ -71,7 +71,14 @@ public class LottoService {
         double totalProfitRate = calculateTotalProfitRate(lottoResultResponseDto);
         return LottoResultAndProfitResponseDto.of(lottoResultResponseDto,totalProfitRate);
     }
-    public void PrintResult(LottoResultAndProfitResponseDto lottoResultAndProfitResponseDto){}
+    public void PrintResult(LottoResultAndProfitResponseDto lottoResultAndProfitResponseDto){
+        System.out.println("3개 일치 (5,000원) - "+lottoResultAndProfitResponseDto.getLottoResultResponseDto().getThreeMatchingPrizeCount()+"개");
+        System.out.println("4개 일치 (50,000원) - "+lottoResultAndProfitResponseDto.getLottoResultResponseDto().getFourMatchingPrizeCount()+"개");
+        System.out.println("5개 일치 (1,500,000원) - "+lottoResultAndProfitResponseDto.getLottoResultResponseDto().getFiveMatchingPrizeCount()+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+lottoResultAndProfitResponseDto.getLottoResultResponseDto().getFiveMatchingWithBonusBallPrizeCount()+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - "+lottoResultAndProfitResponseDto.getLottoResultResponseDto().getSixMatchingPrizeCount()+"개");
+        System.out.println("총 수익률은 "+lottoResultAndProfitResponseDto.getTotalProfitRate()+"%입니다.");
+    }
     private double calculateTotalProfitRate(LottoResultResponseDto lottoResultResponseDto) {
         int totalPurchasedLottos = lottoResultResponseDto.getThreeMatchingPrizeCount() + lottoResultResponseDto.getFourMatchingPrizeCount() + lottoResultResponseDto.getFiveMatchingPrizeCount() +
                 lottoResultResponseDto.getFiveMatchingWithBonusBallPrizeCount() + lottoResultResponseDto.getSixMatchingPrizeCount();

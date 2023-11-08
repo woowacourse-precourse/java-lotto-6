@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class SplitGeneratorTest {
-
     @DisplayName("당첨 번호 입력 시 쉼표로 구분하지 않을 경우 예외가 발생한다.")
     @Test
     void inputWinNumbersIsNonContainsComma() {

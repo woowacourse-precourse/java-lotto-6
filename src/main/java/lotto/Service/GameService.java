@@ -48,9 +48,10 @@ public class GameService {
         }
 
         while (true) {
+            OutputLottoUI.answerBonusNumberView();
             try {
-                OutputLottoUI.answerBonusNumberView();
                 bonusNumber = LottoSalesman.bonusValidate(bonusNumber);
+                Lotto.bonusdupulicationCheck(answerNumbers, bonusNumber);
                 referee = new Referee(answerNumbers, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {

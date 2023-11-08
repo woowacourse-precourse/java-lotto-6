@@ -14,6 +14,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public static void bonusdupulicationCheck(List<Integer> answerNumbers, int bonusNumber) {
+        if (answerNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+
     public static void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();

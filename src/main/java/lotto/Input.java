@@ -22,11 +22,7 @@ public class Input {
         System.out.println("구입금액을 입력해 주세요.");
         String purchaseAmount = inputPurchaseAmount();
 
-        int numOfTicket = Integer.parseInt(purchaseAmount)/1000;
-        System.out.println(numOfTicket+"개를 구매했습니다.");
-        LottoGenerator.generate(lottoTicket, numOfTicket);
-        LottoGenerator.printLottoTicket(lottoTicket);
-        System.out.println();
+        genLottos(purchaseAmount);
 
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNum = inputWinningNum();
@@ -50,6 +46,14 @@ public class Input {
             }
         }
         return purchaseAmount;
+    }
+
+    private void genLottos(String purchaseAmount) {
+        int numOfTicket = Integer.parseInt(purchaseAmount)/1000;
+        System.out.println(numOfTicket+"개를 구매했습니다.");
+        LottoGenerator.generate(lottoTicket, numOfTicket);
+        LottoGenerator.printLottoTicket(lottoTicket);
+        System.out.println();
     }
 
     private String inputWinningNum() {

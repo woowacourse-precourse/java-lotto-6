@@ -2,7 +2,7 @@ package lotto.controller;
 
 import static lotto.domain.LottoNumbers.setRandomLottoNumbers;
 
-import java.util.List;
+import lotto.Lotto;
 import lotto.domain.PlayerLottoAmount;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,7 +21,9 @@ public class LottoController {
 
     public void start() {
         int ticketCount = inputPlayerAmount();
-        List<Integer> list = InputView.inputLottoNumber();
+
+        Lotto lotto = new Lotto(InputView.inputLottoNumber());
+
         int bonusNum = InputView.inputBonusNumber();
 
         OutputView.printPurchaseCount(ticketCount);

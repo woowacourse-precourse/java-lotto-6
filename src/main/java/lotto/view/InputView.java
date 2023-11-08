@@ -40,4 +40,8 @@ public class InputView {
     public static String thosandSeparator(int prizeMoney) {
         return String.valueOf(prizeMoney).replaceAll(REGEX_THOSAND_SEPARATOR, COMMA);
     }
+
+    public static String profitThosandSeparator(String lottoProfit) {
+        return lottoProfit.replaceAll(REGEX_THOSAND_SEPARATOR, COMMA);
+    }
 }

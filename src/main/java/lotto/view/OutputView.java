@@ -16,6 +16,7 @@ import static lotto.util.OutputViewMessage.SECOND_PRINT_MESSAGE;
 import static lotto.util.OutputViewMessage.THIRD_PRINT_MESSAGE;
 import static lotto.util.OutputViewMessage.TOTAL_PROFIT_RATE;
 import static lotto.util.OutputViewMessage.WINNING_STATISTICS;
+import static lotto.view.InputView.profitThosandSeparator;
 import static lotto.view.InputView.thosandSeparator;
 
 import java.util.List;
@@ -55,7 +56,7 @@ public class OutputView {
     }
 
     public static void printLottoProfit(String lottoProfit) {
-        System.out.printf(TOTAL_PROFIT_RATE, lottoProfit);
+        System.out.printf(TOTAL_PROFIT_RATE, profitThosandSeparator(lottoProfit));
     }
 
     public static void printEmptyLine() {

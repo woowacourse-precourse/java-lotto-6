@@ -135,7 +135,9 @@ public class Controller {
     }
 
     private List<String> splitWinningNumbers(String inputWinningNumbers) {
-        return Arrays.asList(inputWinningNumbers.split(","));
+        return Arrays.stream(inputWinningNumbers.split(","))
+                .map(String::trim)                                  // 분할 후 각 문자 공백 제거
+                .collect(Collectors.toList());
     }
 
     private void checkInputWinningNumbersValidation(String inputWinningNumbers, List<String> isSplitWinningNumbers) {
@@ -147,7 +149,7 @@ public class Controller {
     private List<Integer> convertedWinningNumbers(List<String> isSplitWinningNumbers) {
         List<Integer> winningNumbers = new ArrayList<>();
         for (String number : isSplitWinningNumbers) {
-            winningNumbers.add(Integer.parseInt(number.trim()));  // 구분자 뒤 공백 제거
+            winningNumbers.add(Integer.parseInt(number));
         }
         return winningNumbers;
     }

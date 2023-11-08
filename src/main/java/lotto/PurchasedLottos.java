@@ -23,4 +23,8 @@ public class PurchasedLottos {
         }
         return stringBuilder.toString();
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

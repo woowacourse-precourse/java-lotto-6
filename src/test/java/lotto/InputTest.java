@@ -180,4 +180,13 @@ public class InputTest {
         assertThatThrownBy(() -> input.winningNumbersInput("1,1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    @DisplayName("당첨 번호와 중복된 보너스 번호의 입력")
+    @Test
+    void duplicatedBonusNumberInput() {
+        Input input = new Input();
+
+        input.winningNumbersInput("1,2,3,4,5,6");
+        assertThatThrownBy(() -> input.bonusNumberInput("1"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

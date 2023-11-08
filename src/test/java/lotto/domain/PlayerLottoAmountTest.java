@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class PlayerLottoAmountTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"0", "1100", "-1"})
+    @ValueSource(ints = {"0", "1100", "-1"})
     @DisplayName("올바르지 않은 금액")
     void incorrect_amount(String inputAmount) {
         assertThatThrownBy(() -> new PlayerLottoAmount(inputAmount))

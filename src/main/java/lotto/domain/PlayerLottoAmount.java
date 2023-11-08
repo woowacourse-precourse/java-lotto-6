@@ -4,7 +4,7 @@ public class PlayerLottoAmount {
     private static final int LOTTO_MIN_AMOUNT = 1000;
     private static final String NOT_NUMBER_ERROR = "[ERROR] 금액은 숫자만 가능합니다.";
     private static final String NOT_NATURAL_NUMBER_ERROR = "[ERROR] 금액은 0원보다 커야합니다.";
-    private static final String NOT_DIVISIBLE_NUMBER_ERROR = "[ERROR] 금액은 " +LOTTO_MIN_AMOUNT + "단위이어야 합니다.";
+    private static final String NOT_DIVISIBLE_NUMBER_ERROR = "[ERROR] 금액은 " +LOTTO_MIN_AMOUNT + "단위여야 합니다.";
     private final int amount;
 
     public PlayerLottoAmount(String amount) {
@@ -19,12 +19,13 @@ public class PlayerLottoAmount {
     }
 
     private void validateAmount(int amount) {
+        validateNumber(amount);
         validateNatural(amount);
         validateDivisible(amount);
     }
 
     // 자료형이 숫자 인지 확인 메소드
-    private static int validateNumber(String amount) throws IllegalArgumentException{
+    private static int validateNumber(String amount) throws IllegalArgumentException {
         try {
             return Integer.parseInt(amount);
         } catch(NumberFormatException e){

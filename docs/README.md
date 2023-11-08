@@ -122,7 +122,7 @@
 ### 기능 테스트
 - [o] LottoNumberGeneratorTest
 - [o] LottoTicketCalculatorTest
-- [ ] LottoTicketCreatorTest
+- [o] LottoTicketCreatorTest
 - [ ] LottoMatchingDataTest
 - [ ] LottoRankCheckerTest
 - [ ] LottoReturnsCalculatorTest

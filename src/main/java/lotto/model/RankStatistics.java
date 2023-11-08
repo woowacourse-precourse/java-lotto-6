@@ -23,7 +23,7 @@ public class RankStatistics {
     }
 
     public double getProfitRate(int userPayment) {
-        return this.getTotalPrize() / (double) userPayment;
+        return (this.getTotalPrize() / (double) userPayment)*100;
     }
 
     private int getTotalPrize() {

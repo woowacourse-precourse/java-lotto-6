@@ -82,6 +82,7 @@ public class LottoController {
                 .map(Integer::parseInt)
                 .sorted().toList();
     }
+
     private void checkMyLottos() {
         List<Lotto> lottos = lottoWallet.getLottos();
         List<LottoResult> lottoResults = lottos.stream()
@@ -90,4 +91,8 @@ public class LottoController {
         lottoWallet.setLottoResults(lottoResults);
     }
 
+    private void printResult() {
+        UserView.printResults(lottoWallet.getLottoResults());
+        UserView.outputProfitRate(lottoWallet.calculateProfitRate());
+    }
 }

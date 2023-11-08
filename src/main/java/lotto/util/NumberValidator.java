@@ -1,5 +1,6 @@
 package lotto.util;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.constants.ErrorMessages;
 import lotto.constants.LottoValues;
@@ -41,8 +42,8 @@ public class NumberValidator {
     public static void verifyLottoNumbers(List<Integer> numbers) {
         validateNull(numbers, ErrorMessages.LOTTO_NUMBERS_NOT_NULL);
         validateNumbersCount(numbers, ErrorMessages.LOTTO_NUMBERS_COUNT);
-        validateNumbersDuplicate(numbers, ErrorMessages.LOTTO_NUMBERS_DUPLICATE);
-        validateNumbersRange(numbers, ErrorMessages.LOTTO_NUMBERS_RANGE);
+        validateNumbersDuplicate(numbers, ErrorMessages.LOTTO_NUMBERS_DUPLICATE, LottoValues.NUMBERS_COUNT.getValue());
+        validateNumbersRange(numbers, ErrorMessages.LOTTO_NUMBERS_RANGE, LottoValues.NUMBERS_COUNT.getValue());
     }
 
     private static void validateNumbersCount(List<Integer> lotto, ErrorMessages error) {
@@ -52,21 +53,19 @@ public class NumberValidator {
         }
     }
 
-    private static void validateNumbersDuplicate(List<Integer> lotto, ErrorMessages error) {
-        Integer lottoCount = LottoValues.NUMBERS_COUNT.getValue();
-        if (lotto.stream().distinct().count() != lottoCount) {
+    private static void validateNumbersDuplicate(List<Integer> lotto, ErrorMessages error, Integer numbersCount) {
+        if (lotto.stream().distinct().count() != numbersCount) {
             throw new IllegalArgumentException(error.getMessage());
         }
     }
 
-    private static void validateNumbersRange(List<Integer> lotto, ErrorMessages error) {
-        Integer lottoCount = LottoValues.NUMBERS_COUNT.getValue();
+    private static void validateNumbersRange(List<Integer> lotto, ErrorMessages error, Integer numbersCount) {
         Integer MIN_NUMBER = LottoValues.RANGE_MIN.getValue();
         Integer MAX_NUMBER = LottoValues.RANGE_MAX.getValue();
         if (lotto.stream()
                 .filter(e -> e >= MIN_NUMBER)
                 .filter(e -> e <= MAX_NUMBER)
-                .count() != lottoCount
+                .count() != numbersCount
         ) {
             throw new IllegalArgumentException(
                     error.getMessage(List.of(MIN_NUMBER, MAX_NUMBER))
@@ -77,7 +76,20 @@ public class NumberValidator {
     public static void verifyWinningNumbers(List<Integer> numbers) {
         validateNull(numbers, ErrorMessages.WINNING_NUMBERS_NOT_NULL);
         validateNumbersCount(numbers, ErrorMessages.WINNING_NUMBERS_COUNT);
-        validateNumbersDuplicate(numbers, ErrorMessages.WINNING_NUMBERS_DUPLICATE);
-        validateNumbersRange(numbers, ErrorMessages.WINNING_NUMBERS_RANGE);
+        validateNumbersDuplicate(numbers, ErrorMessages.WINNING_NUMBERS_DUPLICATE,
+                LottoValues.NUMBERS_COUNT.getValue());
+        validateNumbersRange(numbers, ErrorMessages.WINNING_NUMBERS_RANGE, LottoValues.NUMBERS_COUNT.getValue());
+    }
+
+    public static void verifyBonusNumber(List<Integer> winningNumbers, Integer bonusNumber) {
+        validateNull(bonusNumber, ErrorMessages.BONUS_NUMBER_NOT_NULL);
+
+        List<Integer> newWinningNumbers = new ArrayList<>(winningNumbers);
+        newWinningNumbers.add(bonusNumber);
+        Integer winningWithBonusNumbersCount = LottoValues.NUMBERS_COUNT.getPlusValue(1);
+
+        validateNumbersDuplicate(newWinningNumbers, ErrorMessages.BONUS_NUMBER__DUPLICATE,
+                winningWithBonusNumbersCount);
+        validateNumbersRange(newWinningNumbers, ErrorMessages.BONUS_NUMBER_RANGE, winningWithBonusNumbersCount);
     }
 }

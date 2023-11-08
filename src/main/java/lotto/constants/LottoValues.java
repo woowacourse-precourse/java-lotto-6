@@ -15,4 +15,8 @@ public enum LottoValues {
     public Integer getValue() {
         return value;
     }
+
+    public Integer getPlusValue(Integer plusValue) {
+        return value + plusValue;
+    }
 }

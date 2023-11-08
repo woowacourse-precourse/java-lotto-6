@@ -10,10 +10,14 @@ public class Money {
         this.spendAmount = Integer.parseInt(spendAmount);
     }
 
+    public int getSpendAmount() {
+        return spendAmount;
+    }
+
     private void validate(String spendAmount) {
         validateIsDigit(spendAmount);
-        validateDividedByThousand(spendAmount);
         validateRangeOfSpendAmount(spendAmount);
+        validateDividedByThousand(spendAmount);
     }
 
     private void validateIsDigit(String spendAmount) {

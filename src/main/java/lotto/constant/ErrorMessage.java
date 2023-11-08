@@ -21,4 +21,6 @@ public abstract class ErrorMessage {
             = ERROR_HEADER + "중복된 숫자가 존재합니다.";
     public static final String WINNING_LOTTO_CONTAIN_BONUS_NUMBER
             = ERROR_HEADER + "보너스 번호는 당첨 로또와 겹칠 수 없습니다.";
+    public static final String ENTER_PROPER_SAME_COUNT
+            = ERROR_HEADER + "sameCount의 값을 올바르게 입력해주세요";
 }

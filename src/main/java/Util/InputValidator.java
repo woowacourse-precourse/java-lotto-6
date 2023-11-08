@@ -1,11 +1,25 @@
 package Util;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class InputValidator {
     static final int LOTTO_PRICE = 1000;
 
     private int convertToInt(String userInput) {
         try {
+            userInput = userInput.replaceAll(" ", "");
             return Integer.parseInt(userInput);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 입력되었습니다.");
+        }
+    }
+
+    private List<Integer> convertToIntegerList(String userInput) {
+        try {
+            userInput = userInput.replaceAll(" ", "");
+            return Arrays.stream(userInput.split(",")).map(Integer::parseInt).collect(Collectors.toList());
         } catch (Exception e) {
             throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 입력되었습니다.");
         }

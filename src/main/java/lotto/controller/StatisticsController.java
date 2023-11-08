@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import lotto.model.Lottos;
 import lotto.model.Rank;
@@ -10,7 +11,7 @@ public class StatisticsController {
     private final Lottos lottos;
     private final WinningNumber winningNumber;
 
-    private Map<Rank, Integer> rankTable = new HashMap<>();
+    private Map<Rank, Integer> rankTable = new LinkedHashMap<>();
 
     public StatisticsController(Lottos lottos, WinningNumber winningNumber) {
         this.lottos = lottos;
@@ -18,7 +19,7 @@ public class StatisticsController {
     }
 
     public void process(){
-
+        initStatistics();
     }
 
     public void initStatistics() {

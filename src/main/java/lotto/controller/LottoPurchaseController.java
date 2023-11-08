@@ -2,13 +2,11 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.LottoShop;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
 
 public class LottoPurchaseController {
-    private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final LottoShop lottoShop = new LottoShop();
 

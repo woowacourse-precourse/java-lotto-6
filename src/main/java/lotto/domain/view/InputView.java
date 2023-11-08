@@ -19,7 +19,14 @@ public class InputView {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
 
+        isCommaValidate(input);
         return convertToIntegerList(input);
+    }
+
+    void isCommaValidate(String input){
+        if(!isCommaSeparatedNumbers(input)){
+            ExceptionMessage.INPUT_NOT_SEPARATED_COMMA.throwException();
+        }
     }
 
     int convertToInt(String input){
@@ -41,4 +48,11 @@ public class InputView {
         return numbers;
     }
 
+    private boolean isCommaSeparatedNumbers(String input) {
+        String pattern = "^(\\d+,)*\\d+$";
+
+        Pattern regex = Pattern.compile(pattern);
+        Matcher matcher = regex.matcher(input);
+        return matcher.matches();
+    }
 }

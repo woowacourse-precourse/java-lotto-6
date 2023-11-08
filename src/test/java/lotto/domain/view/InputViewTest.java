@@ -48,4 +48,11 @@ class InputViewTest {
         assertThat(numbers).hasSameElementsAs(List.of(1,2,3,4,5,6));
     }
 
+    @DisplayName("입력 받은 값이 콤마로 구분된 숫자가 아니라면 예외가 발생한다.")
+    @Test
+    void enterWinningByNotSeparatedComma() {
+        assertThatThrownBy(() -> inputView.isCommaValidate("1-2-3"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호를 콤마로 구분하여 입력해주세요.");
+    }
 }

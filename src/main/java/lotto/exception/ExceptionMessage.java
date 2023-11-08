@@ -12,7 +12,8 @@ public enum ExceptionMessage {
     PURCHASE_AMOUNT_NOT_DIVIDED("구매 금액은 " + LottoPrice.THOUSAND_WON.getPrice() + "원 단위로 입력해주세요."),
     LOTTOS_COUNT_MISMATCH_COUNT("로또의 개수가 구매한 개수와 일치하지 않습니다."),
 
-    INPUT_NOT_NUMBER("숫자만 입력하실 수 있습니다.");
+    INPUT_NOT_NUMBER("숫자만 입력하실 수 있습니다."),
+    INPUT_NOT_SEPARATED_COMMA("당첨 번호를 콤마로 구분하여 입력해주세요.");
 
     private static final String prefix = "[ERROR] ";
     private final String message;

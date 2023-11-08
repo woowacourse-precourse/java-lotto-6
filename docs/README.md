@@ -33,6 +33,34 @@
 - 입력 받은 값이 숫자인지 확인.
 - 입력받은 숫자가 21억을 넘는 경우.
 
+* * * 
+# 📁 패키지 구조와 클래스의 기능 정리
+```
+# 패키지
+- controller
+   - LottoGame (입출력을 주관하고 게임 전반의 흐름을 진행한다.)
+- domain
+   - Lotto (로또를 검증하고 당첨 번호와 로또 번호를 비교한다.)
+   - LottoMachine (입력한 금액 만큼의 로또를 발행한다.)
+   - LottoResult (구매한 로또들의 결과를 보관하고, 당첨결과와 수익률을 알려준다.)
+   - Money (입력받은 금액을 검증한다.)
+   - Ranking (로또 당첨 결과를 저장하고, 로또의 당첨 결과를 알려준다.)
+   - WinLotto (당첨 번호와 보너스 번호를 검증한다.)
+- numbermaker
+   - NumberMaker (숫자 생성기능 표준화 인터페이스)
+   - RandomNumberMaker (임의의 숫자를 생성한다.)
+   - ExpectedNumberMaker (입력받은 숫자들을 반환한다.)
+- UI
+   - message
+      - OutputMessage (출력문 저장)
+   - utilObject
+      - Number (전달받은 값이 숫자인지 검증한다.-입력값 검증용 객체)
+   - InputView (입력값을 받고 가공한다. Number를 이용해 숫자인지 확인한다.)
+   - OutputView (전달받은 결과를 출력한다.)
+```
+![3주차 다이어그램.png](..%2F..%2F3%EC%A3%BC%EC%B0%A8%20%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8.png)
+
+
 * * *
 - # 중요!!!!!!!!!!!!!!!!!
 - 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, 

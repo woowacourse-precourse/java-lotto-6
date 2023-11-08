@@ -39,14 +39,22 @@ public class Lottos {
         lottos.add(lotto);
     }
 
-    public void countWinningNumber(Lotto winningLotto) {
+    public void countWinningNumber(WinningLotto winningLotto) {
         for (Lotto lotto : lottos) {
             int count = compare(lotto, winningLotto);
+            checkContainBonusNumber(lotto, winningLotto);
             calculateWinning(count);
         }
     }
 
-    private int compare(Lotto lotto, Lotto winningLotto) {
+    private void checkContainBonusNumber(Lotto lotto, WinningLotto winningLotto) {
+        int bonusNumber = winningLotto.getBonusNumber();
+        if (lotto.containsNumber(bonusNumber)) {
+            bonusWins = true;
+        }
+    }
+
+    private int compare(Lotto lotto, WinningLotto winningLotto) {
         int count = 0;
 
         for (int i = 0; i < lotto.size(); i++) {
@@ -59,6 +67,9 @@ public class Lottos {
     }
 
     private void calculateWinning(int count) {
+        if (count < 3) {
+            return;
+        }
         if(checkFifthPlaceCondition(count)){
             return;
         }
@@ -80,7 +91,7 @@ public class Lottos {
     private boolean checkThirdAndSecondPlaceCondition(int count) {
         if (count == 5) {
             if (checkSecondPlaceCondition(count)) {
-                fiveAndBonusWins++;
+                bonusWins = false;
                 return true;
             }
             fiveWins++;

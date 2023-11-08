@@ -33,4 +33,8 @@ public class WinningLotto {
                 .boxed()
                 .toList();
     }
+
+    public int getNumber(int index) {
+        return winningLotto.getNumber(index);
+    }
 }

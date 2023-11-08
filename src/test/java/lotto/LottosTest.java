@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.WinningLotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ public class LottosTest {
         lottos.addLotto(new Lotto(List.of(8, 2, 3, 4, 10, 26)));
         lottos.addLotto(new Lotto(List.of(31, 32, 33, 34, 35, 36)));
 
-        lottos.countWinningNumber(new Lotto(List.of(11, 2, 3, 4, 15, 16)));
+        lottos.countWinningNumber(new WinningLotto("11,2,3,4,15,16"));
         int threeWins = lottos.getThreeWins();
 
         Assertions.assertThat(threeWins).isEqualTo(2);

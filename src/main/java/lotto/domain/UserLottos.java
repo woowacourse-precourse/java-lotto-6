@@ -62,4 +62,8 @@ public class UserLottos {
                 + FOURTH_PLACE_PRIZE*getFourWins()
                 + FIFTH_PLACE_PRIZE*getThreeWins();
     }
+
+    public void countWinningNumber(WinningLotto winningLotto) {
+        lottos.countWinningNumber(winningLotto);
+    }
 }

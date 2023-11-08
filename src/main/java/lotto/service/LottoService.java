@@ -51,4 +51,8 @@ public class LottoService {
     public int getSixWins() {
         return userLottos.getSixWins();
     }
+
+    public void countWinningNumber() {
+        userLottos.countWinningNumber(winningLotto);
+    }
 }

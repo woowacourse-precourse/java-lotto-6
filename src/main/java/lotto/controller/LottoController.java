@@ -17,9 +17,14 @@ public class LottoController {
         outputNewLine();
 
         createWinningLotto();
+        countWinningNumber();
 
         outputWinningStatistics();
         outputRateOfReturn();
+    }
+
+    private void countWinningNumber() {
+        lottoService.countWinningNumber();
     }
 
     private void outputRateOfReturn() {

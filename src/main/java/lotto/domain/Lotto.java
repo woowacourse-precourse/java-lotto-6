@@ -3,11 +3,10 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.List;
 
-import lotto.type.LottoResult;
+import lotto.utils.Constants;
 
 public class Lotto {
 	private final List<Integer> numbers;
-	private LottoResult result = LottoResult.CLOSE;
 
 	public Lotto(List<Integer> numbers) {
 		validate(numbers);
@@ -24,45 +23,13 @@ public class Lotto {
 				throw new IllegalArgumentException();
 			}
 		}
+
+		if (Collections.max(numbers) > Constants.LOTTO_MAX_NUMBER || Collections.min(numbers) < Constants.LOTTO_MIN_NUMBER) {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	public String toString() {
 		return numbers.toString();
-	}
-
-	public void setResult(List<Integer> winningNumbers, Integer bonus) {
-		int count = 0;
-
-		for (Integer number : numbers) {
-			if (winningNumbers.contains(number)) {
-				count++;
-			}
-		}
-
-		if (count == 6) {
-			result = LottoResult.SIX;
-		}
-
-		if (count == 5) {
-			if (numbers.contains(bonus)) {
-				result = LottoResult.FIVE_BONUS;
-				return;
-			}
-			result = LottoResult.FIVE;
-		}
-
-		if (count == 4) {
-			result = LottoResult.FOUR;
-			return;
-		}
-
-		if (count == 3) {
-			result = LottoResult.THREE;
-			return;
-		}
-	}
-
-	public LottoResult getResult() {
-		return this.result;
 	}
 }

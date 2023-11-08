@@ -24,6 +24,7 @@ public class LottoGameController {
     public void startGame() {
         final Player player = lottoGameService.createPlayer();
         outputView.printLottoInfo(player.getLottos());
+        outputView.printLineOfSpace();
         WinningNumbers winningNumbers = lottoGameService.createWinningNumber();
         WinningDetail winningDetail = new WinningDetail(player.getLottos(), winningNumbers);
         outputView.printWinningDetail(winningDetail.getWinningCount());

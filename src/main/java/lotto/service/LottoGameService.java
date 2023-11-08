@@ -21,14 +21,17 @@ public class LottoGameService {
     public Player createPlayer() {
         outputView.requestPaymentAmount();
         int paymentAmount = inputView.purchaseCost();
+        outputView.printLineOfSpace();
         return new Player(paymentAmount, randomUtil);
     }
 
     public WinningNumbers createWinningNumber() {
         outputView.requestWinningNumber();
         List<Integer> winningNumbers = inputView.winningNumber();
+        outputView.printLineOfSpace();
         outputView.requestBonusNumber();
         int bonusNumber = inputView.bonusNumber(winningNumbers);
+        outputView.printLineOfSpace();
 
         return new WinningNumbers(winningNumbers, bonusNumber);
     }

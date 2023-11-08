@@ -2,9 +2,9 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.InputValidation;
+import lotto.domain.InputValidation;
+import lotto.domain.RandomNumber;
 import lotto.model.Lotto;
-import lotto.model.RandomNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

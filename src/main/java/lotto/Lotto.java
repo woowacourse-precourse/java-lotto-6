@@ -8,6 +8,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        notValid(numbers);
         duplicateException(numbers);
         this.numbers = numbers;
     }
@@ -18,6 +19,11 @@ public class Lotto {
         }
     }
 
+    public void notValid(List<Integer>numbers){
+        for(int number:numbers){
+            if(number<1||number>45) throw new IllegalArgumentException();
+        }
+    }
     public void duplicateException(List<Integer> numbers) {
         List<Integer> numberCount = new ArrayList<>(46);
         for (int number = 0; number <= 45; number++) numberCount.add(0);

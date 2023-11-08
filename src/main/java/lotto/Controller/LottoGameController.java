@@ -5,8 +5,8 @@ import lotto.Model.BonusNumber;
 import lotto.Model.CalculateProfits;
 import lotto.Model.Lotto;
 import lotto.Model.LottoMatch;
+import lotto.Model.LottoPrize;
 import lotto.Model.RandomLottos;
-import lotto.Model.Result;
 import lotto.Model.TicketsAmount;
 import lotto.View.OuputView;
 
@@ -30,13 +30,21 @@ public class LottoGameController {
         lotto = new Lotto(InputController.inputWinningNumbers());
         List<Integer> winningNumbers = lotto.getNumbers();// 당첨패
         bonusNumber = new BonusNumber(InputController.inputBonusNumber(), winningNumbers);
-
     }
 
     private void start(List<List<Integer>> randomLottos) {
         List<Integer> countWinnings = LottoMatch.countMatchingNumbers(randomLottos,
                 lotto.getNumbers(), bonusNumber.getBonus());
-        Result.resultOfGame(countWinnings);
+        resultOfGame(countWinnings);
         CalculateProfits.calculate(countWinnings, ticketsAmount.getTicketsPrice());
+    }
+    private void resultOfGame(List<Integer> countWinnings) {
+        OuputView.printResultStr();
+        for (LottoPrize prize : LottoPrize.values()) {
+            if (prize != LottoPrize.FAIL) {
+                int prizeCount = countWinnings.get(prize.ordinal());
+                OuputView.printResultOfGame(prize.getDescription(), prizeCount);
+            }
+        }
     }
 }

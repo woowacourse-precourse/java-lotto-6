@@ -44,9 +44,9 @@ public class BonusNumber {
     private boolean isDuplicate(int bonus, List<Integer> winningNumbers) {
         for (int number : winningNumbers) {
             if (number == bonus) {
-                return true; // 중복 숫자 발견
+                return true;
             }
         }
-        return false; // 중복 숫자 없음
+        return false;
     }
 }

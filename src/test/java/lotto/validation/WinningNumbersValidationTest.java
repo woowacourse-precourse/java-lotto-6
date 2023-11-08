@@ -78,6 +78,6 @@ class WinningNumbersValidationTest {
     @Test
     void generateWinningNumbersList() {
         List<Integer> result = winningNumbersValidation.validateWinnerNumbers(("1,2,3,4,5,6"));
-        assertThat(result).isEqualTo(Arrays.asList(1,2,3,4,5,6));
+        assertThat(result).isEqualTo(Arrays.asList(1, 2, 3, 4, 5, 6));
     }
 }

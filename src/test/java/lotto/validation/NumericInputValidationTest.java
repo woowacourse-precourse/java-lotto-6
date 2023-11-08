@@ -12,10 +12,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NumericInputValidationTest {
     private NumericInputValidation numericInputValidation;
+
     @BeforeEach
     void setUp() {
         numericInputValidation = new NumericInputValidation();
     }
+
     @DisplayName("아무 입력을 하지않는 경우 에러가 발생한다.")
     @ParameterizedTest
     @NullSource

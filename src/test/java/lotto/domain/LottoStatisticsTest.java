@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LottoStatisticsTest {
     private LottoStatistics lottoStatistics;
-    
+
     @BeforeEach
     void setUp() {
         lottoStatistics = new LottoStatistics();
@@ -22,8 +22,8 @@ class LottoStatisticsTest {
     @DisplayName("로또 번호와 당첨 번호를 비교해 몇개의 숫자가 동일한지 계산한다.")
     @Test
     void countMatchingWinningNumbers() {
-        Lotto lotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
-        Lotto winner = new Lotto(Arrays.asList(1,2,3,4,5,7));
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto winner = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7));
         int result = lottoStatistics.compareLottoNumbersWithWinnerNumbers(lotto, winner);
 
         assertThat(result).isEqualTo(5);
@@ -32,7 +32,7 @@ class LottoStatisticsTest {
     @DisplayName("로또 번호와 보너스 넘버를 비교해 보너스 번호가 있는지 확인한다.")
     @Test
     void checkMatchingBonusNumber() {
-        Lotto lotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 6;
         String result = lottoStatistics.compareLottoNumbersWithBonusNumber(lotto, bonusNumber);
         String answer = "Bonus";
@@ -43,7 +43,7 @@ class LottoStatisticsTest {
     @DisplayName("로또 번호와 보너스 넘버를 비교해 보너스 번호가 없는지 확인한다.")
     @Test
     void checkMatchingNoBonusNumber() {
-        Lotto lotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
         String result = lottoStatistics.compareLottoNumbersWithBonusNumber(lotto, bonusNumber);
         String answer = "NoBonus";

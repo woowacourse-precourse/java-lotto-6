@@ -30,21 +30,32 @@ public class OutputView {
 
     public void printLottoNumbers(ArrayList<Lotto> lottoBundle) {
         lottoBundle.forEach(lotto -> println(lotto.toString()));
+        println("");
     }
 
     public void notifyInputAmount() {
         println("구입금액을 입력해 주세요.");
     }
 
+    public void notifyInputWinningNumbers() {
+        println("당첨 번호를 입력해 주세요.");
+    }
+
+    public void notifyInputBonusNumber() {
+        println("보너스 번호를 입력해 주세요.");
+    }
+
     public void printWinningStats(WinningStats winningStats) {
+        println("당첨 통계");
+        println("---");
         winningStats.winningMessages().forEach(this::println);
     }
 
     public void printEarningRate(WinningStats winningStats, int amount) {
-        float earningRate = (float) winningStats.winningPrize() / amount * 100;
+        double earningRate = (double) winningStats.winningPrize() / amount * 100;
         StringBuilder sb = new StringBuilder();
         sb.append("총 수익률은 ");
-        sb.append(String.format("%.3f", earningRate));
+        sb.append(String.format("%.1f", earningRate));
         sb.append("%입니다.");
         println(sb.toString());
     }

@@ -8,7 +8,7 @@ public class WinningStats {
 
     private final HashMap<WinningRank, Integer> winningStats;
 
-    private int prizeSum;
+    private long prizeSum;
 
     public WinningStats(HashMap<WinningRank, Integer> winningStats) {
         this.winningStats = winningStats;
@@ -31,11 +31,11 @@ public class WinningStats {
             sb.append("개");
             winningMessage.add(sb.toString());
 
-            prizeSum += rank.count * rank.prize;
+            prizeSum += winningStats.get(rank) * rank.prize;
         }
         return winningMessage;
     }
-    public int winningPrize() {
+    public long winningPrize() {
         return prizeSum;
     }
 }

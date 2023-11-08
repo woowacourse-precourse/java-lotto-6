@@ -14,7 +14,7 @@ public enum WinningRank {
 
     public String prizeCommaSeperated;
 
-    public int prize;
+    public long prize;
 
     WinningRank() {}
 
@@ -27,7 +27,6 @@ public enum WinningRank {
 
     public static WinningRank of(int count, boolean bonus) {
         if (count == 3) {
-            System.out.println(WinningRank.MATCH3.prizeCommaSeperated);
             return WinningRank.MATCH3;
         }
         if (count == 4)

@@ -38,10 +38,13 @@ public class GameController {
         outputView.printLottoCount(lottoBundle.size());
         outputView.printLottoNumbers(lottoBundle);
 
+        outputView.notifyInputWinningNumbers();
         List<Integer> mainNumbers = inputView.readMainNumbers();
+        outputView.notifyInputBonusNumber();
         Integer bonusNumber = inputView.readBonusNumber();
-        WinningManager winningManager = new WinningManager(mainNumbers, bonusNumber);
 
+
+        WinningManager winningManager = new WinningManager(mainNumbers, bonusNumber);
         WinningStats winningStats = winningManager.matchAll(lottoBundle);
         outputView.printWinningStats(winningStats);
         outputView.printEarningRate(winningStats, amount);

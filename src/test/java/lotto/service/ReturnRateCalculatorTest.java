@@ -17,8 +17,7 @@ class ReturnRateCalculatorTest {
 
     @BeforeEach
     void beforeEach() {
-        Player.deleteInstance();
-        player = Player.getInstance();
+        player = new Player(new CorrectLottoCalculator());
     }
 
     @Test

@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
-import lotto.config.GameConfig;
 import lotto.domain.CorrectCount;
 import lotto.domain.Lotto;
 import lotto.domain.Player;
@@ -20,9 +19,8 @@ class PlayerServiceTest {
 
     @BeforeEach
     void beforeEach() {
-        Player.deleteInstance();
-        player = Player.getInstance();
-        playerService = GameConfig.getPlayerService();
+        player = new Player(new CorrectLottoCalculator());
+        playerService = new PlayerService(player,new LottoGenerator(),new WinningLottoCalculator());
     }
 
     @Test

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.service.CorrectLottoCalculator;
 import lotto.util.LottoValues;
 import lotto.util.RankingMessage;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,8 +18,7 @@ class PlayerTest {
 
     @BeforeEach
     void beforeEach() {
-        Player.deleteInstance();
-        player = Player.getInstance();
+        player = new Player(new CorrectLottoCalculator());
     }
     @Test
     @DisplayName("플레이어에 로또가 저장되어야 한다.")

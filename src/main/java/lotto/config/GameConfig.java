@@ -13,20 +13,21 @@ import lotto.service.WinningNumberGenerator;
 
 public class GameConfig {
 
+    private static Player player;
+
     public static GameController getGameController() {
         return new GameController(getPlayer(), getPlayerService(), getWinningNumberGenerator(), getOutputController(), getLottoCountGenerator());
     }
 
-    public static CorrectLottoCalculator getCorrectLottoCalculator() {
-        return new CorrectLottoCalculator();
-    }
-
-    public static PlayerService getPlayerService() {
+    private static PlayerService getPlayerService() {
         return new PlayerService(getPlayer(), getLottoGenerator(), getWinningLottoCalculator());
     }
 
     private static Player getPlayer() {
-        return Player.getInstance();
+        if (player == null) {
+            player = new Player(new CorrectLottoCalculator());
+        }
+        return player;
     }
 
     private static WinningNumberGenerator getWinningNumberGenerator(){

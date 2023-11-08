@@ -8,8 +8,9 @@ import lotto.domain.WinningLotto;
 import lotto.util.TypeConverter;
 
 public class InputView {
-    private static final String PURCHASE_AMOUNT_INPUT = "구입금액을 입력해 주세요.\n";
-    private static final String WINNING_NUMBER_INPUT = "당첨 번호를 입력해 주세요.\n";
+    private static final String PURCHASE_AMOUNT_INPUT = "구입금액을 입력해 주세요.";
+    private static final String WINNING_NUMBER_INPUT = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_INPUT = "보너스 번호를 입력해 주세요.";
     private final TypeConverter typeConverter;
 
     public InputView(TypeConverter typeConverter) {
@@ -17,19 +18,26 @@ public class InputView {
     }
 
     public Customer getCustomer() {
-        System.out.print(PURCHASE_AMOUNT_INPUT);
+        System.out.println(PURCHASE_AMOUNT_INPUT);
         String input = Console.readLine();
         return typeConverter.convertStringToCustomer(input);
     }
 
     public WinningLotto getWinningLotto() {
         Lotto lotto = inputLotto();
-        return null;
+        int bonusNumber = inputBonusNumber(lotto);
+        return new WinningLotto(lotto, bonusNumber);
     }
 
     private Lotto inputLotto() {
-        System.out.print(WINNING_NUMBER_INPUT);
+        System.out.println(WINNING_NUMBER_INPUT);
         String input = Console.readLine();
         return typeConverter.convertStringToLotto(input);
+    }
+
+    private int inputBonusNumber(Lotto lotto) {
+        System.out.println(BONUS_NUMBER_INPUT);
+        String input = Console.readLine();
+        return typeConverter.convertStringToNumber(lotto, input);
     }
 }

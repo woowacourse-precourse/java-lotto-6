@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.Customer;
 import lotto.domain.PurchasedLotto;
+import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -22,5 +23,7 @@ public class LottoController {
         PurchasedLotto purchased
                 = lottoService.createLotto(customer.getLottoCount());
         outputView.printPurchasedLotto(purchased);
+        WinningLotto winningLotto = inputView.getWinningLotto();
+
     }
 }

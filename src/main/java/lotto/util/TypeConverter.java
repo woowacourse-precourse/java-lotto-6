@@ -21,7 +21,14 @@ public class TypeConverter {
     public Lotto convertStringToLotto(String input) {
         String[] split = input.split(SPLIT_UNIT);
         validateSize(split.length);
-        return makeLotto(split);
+        return createLotto(split);
+    }
+
+    public int convertStringToNumber(Lotto lotto, String input) {
+        int bonusNumber = toInt(input);
+        validateNumberRange(bonusNumber);
+        lotto.validateDuplicate(bonusNumber);
+        return bonusNumber;
     }
 
     private int toInt(String input) {
@@ -48,7 +55,7 @@ public class TypeConverter {
         }
     }
 
-    private Lotto makeLotto(String[] input) {
+    private Lotto createLotto(String[] input) {
         List<Integer> numbers = new ArrayList<>();
         for (String str : input) {
             int number =  toInt(str);

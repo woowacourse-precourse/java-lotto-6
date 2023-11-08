@@ -23,7 +23,7 @@ public class InputConverter {
     public static int convertDigit(String inputNum) throws IllegalArgumentException{
         try {
             return Integer.parseInt(inputNum);
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             errorMessage = ErrorMessage.notDigit.getErrorMessage();
             throw new IllegalArgumentException(errorMessage);
         }

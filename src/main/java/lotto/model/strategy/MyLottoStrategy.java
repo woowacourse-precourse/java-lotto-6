@@ -1,16 +1,11 @@
 package lotto.model.strategy;
 
-import java.util.Arrays;
-import java.util.Deque;
-import java.util.EnumMap;
-import java.util.List;
-import lotto.model.Budget;
 import lotto.model.lotto.BonusNumber;
 import lotto.model.lotto.Lotto;
+import lotto.model.lotto.LottoRank;
 import lotto.model.lotto.LottoTicket;
 import lotto.model.lotto.RankCount;
 import lotto.model.lotto.WinningLotto;
-import lotto.model.lotto.LottoRank;
 
 public class MyLottoStrategy implements LottoStrategy {
     @Override

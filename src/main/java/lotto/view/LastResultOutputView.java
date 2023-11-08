@@ -16,7 +16,7 @@ public class LastResultOutputView {
         System.out.println("4개 일치 (50,000원) - "+result.getFourth()+"개");
         System.out.println("5개 일치 (1,500,000원) - "+result.getThird()+"개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+result.getSecond()+"개");
-        System.out.println("6개 일치 (2,000,000,000원) - "+result.getFifth()+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - "+result.getFirst()+"개");
         System.out.println("총 수익률은 "+calculateReturnRate(result,inputCost)+"%입니다.");
     }
 

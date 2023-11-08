@@ -31,4 +31,11 @@ class LottoTest {
                 .hasMessage("[ERROR] 로또 번호는 6자리여야 합니다.");
     }
 
+    @DisplayName("로또 번호가 1부터 45사이의 숫자가 아니라면 예외가 발생한다.")
+    @Test
+    void createLottoByInvalidNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다.");
+    }
 }

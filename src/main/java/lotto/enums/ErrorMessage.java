@@ -6,7 +6,7 @@ import static lotto.enums.LottoConfig.LOTTO_PRICE;
 import static lotto.enums.LottoConfig.MAX_LOTTO_NUMBER;
 import static lotto.enums.LottoConfig.MIN_LOTTO_NUMBER;
 
-public enum ErrorMassage {
+public enum ErrorMessage {
     OUT_OF_RANGE_LOTTO_NUMBER(String.format("로또 번호는 %d부터 %d 사이의 숫자여야 합니다.",
             MIN_LOTTO_NUMBER.getValue(), MAX_LOTTO_NUMBER.getValue())),
     INVALID_LOTTO_COUNT(String.format("로또 번호는 %d개여야 합니다.", LOTTO_COUNT.getValue())),
@@ -23,7 +23,7 @@ public enum ErrorMassage {
     private static final String ERROR = "[ERROR] ";
     private final String massage;
 
-    ErrorMassage(final String massage) {
+    ErrorMessage(final String massage) {
         this.massage = massage;
     }
 

@@ -1,7 +1,7 @@
 package lotto.validator;
 
-import static lotto.enums.ErrorMassage.CONTAIN_SPACE;
-import static lotto.enums.ErrorMassage.IS_BLANK;
+import static lotto.enums.ErrorMessage.CONTAIN_SPACE;
+import static lotto.enums.ErrorMessage.IS_BLANK;
 
 public class InputValidator {
     private static final String SPACE = " ";

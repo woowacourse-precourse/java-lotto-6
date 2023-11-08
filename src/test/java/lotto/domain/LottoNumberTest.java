@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.enums.ErrorMassage.OUT_OF_RANGE_LOTTO_NUMBER;
+import static lotto.enums.ErrorMessage.OUT_OF_RANGE_LOTTO_NUMBER;
 import static lotto.enums.LottoConfig.MAX_LOTTO_NUMBER;
 import static lotto.enums.LottoConfig.MIN_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

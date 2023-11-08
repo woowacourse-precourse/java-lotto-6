@@ -2,14 +2,14 @@ package lotto.controller;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static lotto.enums.ErrorMassage.DUPLICATE_BONUS_NUMBER;
-import static lotto.enums.ErrorMassage.DUPLICATE_LOTTO_NUMBER;
-import static lotto.enums.ErrorMassage.INVALID_AMOUNT_UNIT;
-import static lotto.enums.ErrorMassage.INVALID_LOTTO_COUNT;
-import static lotto.enums.ErrorMassage.INVALID_NUMBER;
-import static lotto.enums.ErrorMassage.NOT_ENOUGH_AMOUNT;
-import static lotto.enums.ErrorMassage.NOT_SEPARATE_BY_DELIMITER;
-import static lotto.enums.ErrorMassage.OUT_OF_RANGE_LOTTO_NUMBER;
+import static lotto.enums.ErrorMessage.DUPLICATE_BONUS_NUMBER;
+import static lotto.enums.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.enums.ErrorMessage.INVALID_AMOUNT_UNIT;
+import static lotto.enums.ErrorMessage.INVALID_LOTTO_COUNT;
+import static lotto.enums.ErrorMessage.INVALID_NUMBER;
+import static lotto.enums.ErrorMessage.NOT_ENOUGH_AMOUNT;
+import static lotto.enums.ErrorMessage.NOT_SEPARATE_BY_DELIMITER;
+import static lotto.enums.ErrorMessage.OUT_OF_RANGE_LOTTO_NUMBER;
 import static lotto.enums.PrintMessage.REQUEST_BONUS_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 

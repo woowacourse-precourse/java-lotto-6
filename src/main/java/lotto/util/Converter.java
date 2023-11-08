@@ -1,8 +1,8 @@
 package lotto.util;
 
 import static lotto.enums.Delimiter.COMMA;
-import static lotto.enums.ErrorMassage.INVALID_NUMBER;
-import static lotto.enums.ErrorMassage.NOT_SEPARATE_BY_DELIMITER;
+import static lotto.enums.ErrorMessage.INVALID_NUMBER;
+import static lotto.enums.ErrorMessage.NOT_SEPARATE_BY_DELIMITER;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;

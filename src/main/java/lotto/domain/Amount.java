@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.enums.ErrorMassage.INVALID_AMOUNT_UNIT;
-import static lotto.enums.ErrorMassage.NOT_ENOUGH_AMOUNT;
+import static lotto.enums.ErrorMessage.INVALID_AMOUNT_UNIT;
+import static lotto.enums.ErrorMessage.NOT_ENOUGH_AMOUNT;
 import static lotto.enums.LottoConfig.LOTTO_PRICE;
 
 public record Amount(int amount) {

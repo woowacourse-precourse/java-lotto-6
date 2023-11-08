@@ -1,6 +1,6 @@
 package lotto.dto;
 
-import static lotto.enums.ErrorMassage.DUPLICATE_BONUS_NUMBER;
+import static lotto.enums.ErrorMessage.DUPLICATE_BONUS_NUMBER;
 import static lotto.fixture.LottoFixture.lottoFixture;
 import static lotto.fixture.LottoFixture.lottoNumberFixture;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

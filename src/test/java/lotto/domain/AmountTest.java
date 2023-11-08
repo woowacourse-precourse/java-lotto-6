@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.enums.ErrorMassage.INVALID_AMOUNT_UNIT;
-import static lotto.enums.ErrorMassage.NOT_ENOUGH_AMOUNT;
+import static lotto.enums.ErrorMessage.INVALID_AMOUNT_UNIT;
+import static lotto.enums.ErrorMessage.NOT_ENOUGH_AMOUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

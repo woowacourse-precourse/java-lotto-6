@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.enums.ErrorMassage.DUPLICATE_LOTTO_NUMBER;
-import static lotto.enums.ErrorMassage.INVALID_LOTTO_COUNT;
+import static lotto.enums.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.enums.ErrorMessage.INVALID_LOTTO_COUNT;
 import static lotto.fixture.LottoFixture.lottoFixture;
 import static lotto.fixture.LottoFixture.lottoNumberFixture;
 import static lotto.fixture.LottoFixture.lottoNumberFixtures;

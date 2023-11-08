@@ -1,11 +1,14 @@
 package lotto.controller;
 
+import static lotto.view.ExceptionMessages.IS_NOT_MATCHED;
+
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.model.Lotto;
 import lotto.model.LottoPaper;
+import lotto.model.WinningLottoNumbers;
 import lotto.view.GamePrint;
 
 public class Game {
@@ -23,6 +26,13 @@ public class Game {
 
         List<Lotto> lottos = pickRandomLottos(buyLottoNumber);
         GamePrint.lottoNumbers(lottos);
+
+        GamePrint.winnerNumbersMessage();
+        List<Integer> winningNumbers = inputWinningNumbers();
+
+        GamePrint.bonusNumberMessage();
+        int bonusNumber = inputBonusNumber();
+
     }
 
     private int buyLotto(String totalAmountPrice) {
@@ -35,5 +45,23 @@ public class Game {
                 .mapToObj(lottos -> new Lotto(
                         Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_COUNT)))
                 .toList();
+    }
+
+    private List<Integer> inputWinningNumbers() {
+        String inputNumber = Console.readLine();
+        return new WinningLottoNumbers(inputNumber).getList();
+    }
+
+    private int inputBonusNumber() {
+        String input = Console.readLine();
+        validate(input);
+        return Integer.parseInt(input);
+    }
+
+    private void validate(String input) {
+        String regex = "^[1-9]|[1-3][0-9]|4[0-5]$";
+        if (!input.matches(regex)) {
+            throw new IllegalArgumentException(IS_NOT_MATCHED.getMessage());
+        }
     }
 }

@@ -25,8 +25,7 @@ public class Play {
         jackpotNumber.append(",");
         jackpotNumber.append(Console.readLine());
         List<Integer> jackpotInts = checkJackpotNumber(jackpotNumber.toString());
-
-
+        printResult(alignRanking(compareAll(jackpotInts, lottoCard.numbers)));
     }
 
     public int giveNumberOfTicket(String boughtAmount) {
@@ -35,10 +34,16 @@ public class Play {
     }
 
     public Integer checkBoughtAmount(String boughtAmount) {
-        checkInt(boughtAmount);
-        checkPositive(boughtAmount);
-        checkThousands(boughtAmount);
-        return giveNumberOfTicket(boughtAmount);
+        int result = 0;
+        try {
+            checkInt(boughtAmount);
+            checkPositive(boughtAmount);
+            checkThousands(boughtAmount);
+            result = giveNumberOfTicket(boughtAmount);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return result;
     }
 
     public List<Integer> checkJackpotNumber(String jackpotString) {

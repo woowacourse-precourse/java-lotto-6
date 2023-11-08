@@ -1,7 +1,11 @@
 package lotto.io;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Collections;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 public class ErrorHandler {
     public static void checkInt(String boughtAmount) {

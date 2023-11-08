@@ -1,11 +1,11 @@
 package lotto;
 
-import static lotto.ErrorMessages.INVALID_BONUS_RANGE;
-import static lotto.ErrorMessages.INVALID_PURCHASE_AMOUNT_FORMAT;
+import static lotto.ErrorMessages.*;
 
 public class Validator {
     private static final int START_RANGE = 1;
     private static final int END_RANGE = 45;
+    private static final int LOTTO_PRICE = 1000;
 
     public static int checkIsInteger(String input) {
         try {
@@ -17,11 +17,18 @@ public class Validator {
 
     public static void validatePurchaseAmount(int amount) {
         checkIsPositive(amount);
+        checkDividedOneThousand(amount);
     }
 
     private static void checkIsPositive(int amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_FORMAT);
+        }
+    }
+
+    private static void checkDividedOneThousand(int amount) {
+        if (amount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_UNIT);
         }
     }
 

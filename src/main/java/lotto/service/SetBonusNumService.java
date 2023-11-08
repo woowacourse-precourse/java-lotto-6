@@ -8,7 +8,7 @@ public class SetBonusNumService {
     BonusNumber bonusNumber;
 
     public SetBonusNumService(WinningNumber winningNumber) {
-        SetBonusNumController controller = new SetBonusNumController(winningNumber, this);
+        new SetBonusNumController(winningNumber, this);
     }
 
     public BonusNumber generateBonusNum(String number, WinningNumber winningNumber) {

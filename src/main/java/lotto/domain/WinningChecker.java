@@ -22,7 +22,6 @@ public class WinningChecker {
             if (place == SECOND_PLACE || place == THIRD_PLACE) place = b.selectPlace(lotto);
             if (place != null) winningResult.win(place);
         }
-
-        WinningController controller = new WinningController(winningResult, money);
+        new WinningController(winningResult, money);
     }
 }

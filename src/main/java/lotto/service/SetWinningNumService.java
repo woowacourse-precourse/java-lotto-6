@@ -7,7 +7,7 @@ public class SetWinningNumService {
     WinningNumber winningNumber;
 
     public SetWinningNumService() {
-        SetWinningNumController controller = new SetWinningNumController(this);
+        new SetWinningNumController(this);
     }
 
     public WinningNumber generateWinningNumber(String number) {

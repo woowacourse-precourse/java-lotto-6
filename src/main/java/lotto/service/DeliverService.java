@@ -11,7 +11,7 @@ public class DeliverService {
     List<Lotto> lottoPackage;
 
     public DeliverService(int lottoNumber) {
-        DeliverController controller = new DeliverController(lottoNumber, this);
+        new DeliverController(lottoNumber, this);
     }
 
     public List<Lotto> generateLotto(int num) {

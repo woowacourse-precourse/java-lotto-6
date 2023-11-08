@@ -10,7 +10,7 @@ public class OrderService {
     int money;
 
     public OrderService() {
-        OrderController controller = new OrderController(this);
+        new OrderController(this);
     }
 
     public int generateLottoNumber(String input) {

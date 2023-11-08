@@ -15,9 +15,7 @@ public class LottoFactory {
         List<Lotto> createdLottos = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
-            List<Integer> numbers
-                    = lottoNumbersGenerator.generate();
-
+            List<Integer> numbers = lottoNumbersGenerator.generate();
             createdLottos.add(new Lotto(numbers));
         }
 

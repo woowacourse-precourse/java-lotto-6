@@ -27,11 +27,9 @@ class LottoServiceTest {
     }
 
     @Test
-    @DisplayName("로또 게임의 결과가 올바르게 반환되는지 테스트")
+    @DisplayName("로또 게임의 결과가 올바르게 반환되는지 테스트1 : 로또구입 갯수 확인")
     void getResultOfLottos() {
         LottoService lottoService = new LottoService(new LottoFactory(new DefualtLottoNumbersGenerator()));
-        int money = 10_000;
-
         lottoService.buyLotto(10_000); //로또 10장 구입
 
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));

@@ -20,7 +20,7 @@ public class RateTest {
 
     @DisplayName("로또 1장을 구입했을 때 1등일 경우")
     @Test
-    void calculateRateWithValidData() {
+    void calculateRateWithFirstRank() {
         // given
         Money money = new Money(1000); // 1,000원으로 로또 1장 구입
         lottos = new Lottos(Arrays.asList(

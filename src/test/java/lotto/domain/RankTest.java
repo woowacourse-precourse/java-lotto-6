@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.domain.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -41,7 +40,7 @@ public class RankTest {
 
     @DisplayName("당첨 번호 2개, 보너스 번호 1개가 맞을 경우 등수에 포함되지 않는다.")
     @Test
-    void calculateRankWithNoMatchingNumbers() {
+    void calculateRankWithBonusNumber() {
         // given
         int countWinning = 2;
         boolean matchBonusNum = true;
@@ -57,7 +56,7 @@ public class RankTest {
 
     @DisplayName("당첨 번호 1개만 맞을 경우 등수에 포함되지 않는다.")
     @Test
-    void calculateRankWithInvalidMatchingNumbers() {
+    void calculateRankWithOnlyWinningNumber() {
         // given
         int countWinning = 1;
         boolean matchBonusNum = false;

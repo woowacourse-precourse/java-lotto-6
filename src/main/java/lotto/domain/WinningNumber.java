@@ -11,7 +11,7 @@ public class WinningNumber {
     private static final int LOTTO_SIZE = 6;
     private static final Pattern PATTERN = Pattern.compile("\\d+");
     private final Lotto winningNumber;
-    private final Integer bonusNumber;
+    private final int bonusNumber;
 
     public WinningNumber(List<Integer> winningNumber, Integer bonusNumber) {
         validateWinningNumbers(winningNumber);

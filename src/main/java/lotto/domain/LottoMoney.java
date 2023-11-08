@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.List;
+import java.util.stream.IntStream;
+
 public class LottoMoney {
 
     private static final String NOT_NUMBER_ERROR_MESSAGE = "[ERROR] 숫자를 입력해 주세요.";
@@ -42,5 +46,11 @@ public class LottoMoney {
 
     public int getLottoCount() {
         return money / LOTTO_PRICE;
+    }
+
+    public List<Lotto> buyLottos() {
+        return IntStream.range(0, getLottoCount())
+            .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
+            .toList();
     }
 }

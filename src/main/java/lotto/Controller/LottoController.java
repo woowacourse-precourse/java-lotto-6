@@ -57,5 +57,4 @@ public class LottoController {
         double profitability = rewardChecker.calculateProfitability(rewardChecker.getTotalRewardAmount(), money);
         outputView.printRankResult(rankCount, profitability);
     }
-
 }

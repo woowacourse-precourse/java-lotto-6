@@ -14,7 +14,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.utils.LottoConstantValue;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -56,7 +55,7 @@ public class Lotto {
         }
     }
 
-    public boolean doesHaveLottoNumber(int number) {
+    public boolean hasNumber(int number) {
         return numbers.contains(number);
     }
 

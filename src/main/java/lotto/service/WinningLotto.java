@@ -1,14 +1,13 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
-import lotto.domain.wrapper.BonusNumber;
 import lotto.utils.Prize;
 
 public class PrizeChecker {
     private final Lotto winningLotto;
-    private final BonusNumber bonusNumber;
+    private final int bonusNumber;
 
-    public PrizeChecker(Lotto winningLotto, BonusNumber bonusNumber) {
+    public PrizeChecker(Lotto winningLotto, int bonusNumber) {
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }

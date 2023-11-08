@@ -36,7 +36,8 @@ public class LottoController {
     private void initPurchaseAmount() {
         while (true) {
             try {
-                int inputPurchaseAmount = LottoUtil.parseInputToNumber(InputView.readPurchaseAmount());
+                OutputView.requestPurchaseAmount();
+                int inputPurchaseAmount = LottoUtil.parseInputToNumber(InputView.readLine());
                 purchaseAmount = new PurchaseAmount(inputPurchaseAmount);
                 break;
             } catch (IllegalArgumentException e) {
@@ -57,7 +58,8 @@ public class LottoController {
     private void initWinnerNumber() {
         while (true) {
             try {
-                List<Integer> numbers = LottoUtil.parseInputToList(InputView.readLottoNumbers());
+                OutputView.requestWinnerNumber();
+                List<Integer> numbers = LottoUtil.parseInputToList(InputView.readLine());
                 winnerLotto = new Lotto(numbers);
                 break;
             } catch (IllegalArgumentException e) {
@@ -69,7 +71,8 @@ public class LottoController {
     private void initBonusNumber() {
         while (true) {
             try {
-                int inputBonusNumber = LottoUtil.parseInputToNumber(InputView.readBonusNumber());
+                OutputView.requestBonusNumber();
+                int inputBonusNumber = LottoUtil.parseInputToNumber(InputView.readLine());
                 bonusNumber = new BonusNumber(winnerLotto, inputBonusNumber);
                 break;
             } catch (IllegalArgumentException e) {

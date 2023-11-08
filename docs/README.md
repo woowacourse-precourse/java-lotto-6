@@ -102,6 +102,7 @@
 >  - `inputBonusNumber`
 >- Calculator
 >  - `countCorrectLuckyNumbers`
+>  - `countRanking`
 >  - `printResult`
 >  - `rateOfReturn`
 >- Purchase

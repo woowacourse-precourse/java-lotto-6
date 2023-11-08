@@ -24,9 +24,11 @@ public class Application {
 
         int bonusNumber = numbers.inputBonusNumber();
 
-        List<Integer> counts = calculator.countCorrectLuckyNumbers(lottoNumbers, luckyNumbers, bonusNumber);
+        List<Integer> countOfMatch = calculator.countCorrectLuckyNumbers(lottoNumbers, luckyNumbers, bonusNumber);
 
-        calculator.printResult(counts);
+        calculator.countRanking(countOfMatch);
+
+        calculator.printResult();
 
         calculator.rateOfReturn();
     }

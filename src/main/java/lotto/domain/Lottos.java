@@ -36,11 +36,11 @@ public class Lottos {
                 .collect(Collectors.joining("\n"));
     }
 
-    @Override
-    public String toString() {
-        return "Lottos{" +
-                "lottos=" + lottos +
-                ", buyPrice=" + buyPrice +
-                '}';
+    public WinningResult getWinningResult(WinningNumbers winningNumbers) {
+        WinningResult winningResult = new WinningResult();
+        for (Lotto lotto : lottos) {
+            winningResult.addWinning(lotto.compare(winningNumbers));
+        }
+        return winningResult;
     }
 }

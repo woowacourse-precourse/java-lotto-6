@@ -22,4 +22,20 @@ public class Lotto {
                 .map(String::valueOf)
                 .toList();
     }
+
+    public Rank compare(WinningNumbers winningNumbers) {
+        int matchWinningNumberCount = getMatchCount(winningNumbers.getNumbers());
+        boolean matchBonusNumber = isMatchBonusNumber(winningNumbers.getBonusNumber());
+        return Rank.of(matchWinningNumberCount, matchBonusNumber);
+    }
+
+    private int getMatchCount(List<Integer> winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    private boolean isMatchBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

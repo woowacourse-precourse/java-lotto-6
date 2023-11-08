@@ -4,6 +4,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.LottoNumbers;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
+import lotto.domain.WinningResult;
 import lotto.utils.constant.BuyPrice;
 import lotto.utils.view.Input;
 import lotto.utils.view.Messages;
@@ -68,5 +69,11 @@ public class LottoService {
             output.printErrorMessage(e.getMessage());
             return setupBonusNumber(lottoNumbers);
         }
+    }
+
+    public void showWinningResult() {
+        WinningResult winningResult = lottos.getWinningResult(winningNumbers);
+        output.printMessage(Messages.WINNING_RESULT_PREFIX_MESSAGE.getMessage());
+        output.printMessage(winningResult.getResultMessage());
     }
 }

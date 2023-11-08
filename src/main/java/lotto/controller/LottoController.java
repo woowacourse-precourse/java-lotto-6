@@ -12,6 +12,7 @@ public class LottoController {
     public void run() {
         setupBuyLotto();
         setupWinningNumbers();
+        showWinningResult();
     }
 
     private void setupBuyLotto() {
@@ -20,5 +21,9 @@ public class LottoController {
 
     private void setupWinningNumbers() {
         service.setupWinningNumbers();
+    }
+
+    private void showWinningResult() {
+        service.showWinningResult();
     }
 }

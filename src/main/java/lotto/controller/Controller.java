@@ -8,8 +8,10 @@ import lotto.view.inputMessage;
 import lotto.view.outputMessage;
 
 import java.util.HashMap;
+import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.domain.Prize.makePrizeNumbers;
 import static lotto.util.Utils.changeStringToInt;
 
 public class Controller {
@@ -18,7 +20,7 @@ public class Controller {
 
     public void playGame() {
         buyLotto();
-        HashMap<Rank,Integer> ranks = pickPrize();
+        HashMap<Rank, Integer> ranks = pickPrize();
         getEarningRate(ranks);
     }
 
@@ -29,14 +31,15 @@ public class Controller {
     }
 
     public HashMap<Rank, Integer> pickPrize() {
-        Prize prize = new Prize(getPrizeNumber(), getBonusNumber());
+        List<Integer> prizeNumbers = makePrizeNumbers(getPrizeNumber());
+        Prize prize = new Prize(prizeNumbers, getBonusNumber());
         HashMap<Rank, Integer> ranks = prize.makePrizeRanks(buyer);
         outputMessage.rankMessage(ranks);
         return ranks;
     }
 
-    public void getEarningRate(HashMap<Rank,Integer> ranks){
-        double earningRate =  buyer.calculationEarningRate(ranks);
+    public void getEarningRate(HashMap<Rank, Integer> ranks) {
+        double earningRate = buyer.calculationEarningRate(ranks);
         outputMessage.earningRateMessage(earningRate);
     }
 

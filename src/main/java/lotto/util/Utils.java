@@ -10,11 +10,11 @@ import java.util.List;
 import static lotto.view.outputMessage.printMessage;
 
 public class Utils {
-    public static List<String> splitName(String input){
+    public static List<String> splitName(String input) {
         return List.of(input.split(","));
     }
 
-    public static int changeStringToInt(String input){
+    public static int changeStringToInt(String input) {
         return changeNumber(input);
     }
 
@@ -30,12 +30,11 @@ public class Utils {
         return number;
     }
 
-    public static void backFunction(Error error){
+    public static void backFunction(Error error) {
         try {
             throw new IllegalArgumentException();
         } catch (IllegalArgumentException ex) {
             printMessage(error.getMsg());
-
             Controller controller = new Controller();
             controller.playGame();
         }

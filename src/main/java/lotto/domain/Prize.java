@@ -8,42 +8,38 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-
-
 public class Prize {
     static final int SECOND_CORRECT_COUNT = 5;
     private final List<Integer> prizeNumber;
     private final int bonusNumber;
     private final LinkedHashMap<Rank, Integer> rankCounts = new LinkedHashMap<>();
 
-    public Prize(String prizeNumber, int bonusNumber) {
+    public Prize(List<Integer> prizeNumber, int bonusNumber) {
         this.bonusNumber = bonusNumber;
-        this.prizeNumber = makePrizeNumbers(prizeNumber);
+        this.prizeNumber = prizeNumber;
         initRanks();
     }
 
-    private List<Integer> makePrizeNumbers(String prizeNumber) {
-        validateSize(prizeNumber);
+    public static List<Integer> makePrizeNumbers(String prizeNumber) {
         List<String> numbers = Utils.splitName(prizeNumber);
         List<Integer> prizeNumbers = new ArrayList<>();
-
+        validateSize(numbers.size());
         for (String number : numbers) {
-            int changeStringtoNumber = Utils.changeStringToInt(number);
-            validateRange(changeStringtoNumber);
-            prizeNumbers.add(changeStringtoNumber);
+            int changeStringToNumber = Utils.changeStringToInt(number);
+            validateRange(changeStringToNumber);
+            prizeNumbers.add(changeStringToNumber);
         }
-
         return prizeNumbers;
     }
 
-    private void validateSize(String prizeNumber) {
-        List<String> numbers = Utils.splitName(prizeNumber);
-        if (numbers.size() != Buyer.LOTTO_COUNT){
+    private static void validateSize(int numbersSize) {
+        if (numbersSize != Buyer.LOTTO_COUNT) {
             Error error = Error.NOT_LOTTO_COUNT;
             Utils.backFunction(error);
         }
     }
-    private void validateRange(int number){
+
+    private static void validateRange(int number) {
         if (number < Buyer.MIN_LOTTO_NUMBER
                 || number > Buyer.MAX_LOTTO_NUMBER) {
             Error error = Error.MIN_MAX_ERROR;

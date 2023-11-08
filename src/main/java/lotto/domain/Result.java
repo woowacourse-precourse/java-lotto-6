@@ -93,6 +93,10 @@ public class Result {
     }
 
     private static double calculateProfitRate(int totalPrize) {
+        int purchaseAmount = PurchaseAmount.getPurchaseAmount();
+        if (purchaseAmount == 0 || totalPrize == 0) {
+            return 0.0;
+        }
         return ((double) totalPrize / (double) getPurchaseAmount()) * 100;
     }
 }

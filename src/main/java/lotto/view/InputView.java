@@ -17,7 +17,9 @@ public class InputView {
                 validateLottoPurchase(input);
                 break;
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(ERROR_PROMPT + "금액으로 숫자를 입력해주세요.");
+                System.out.println(ERROR_PROMPT + "금액으로 숫자를 입력해주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(ERROR_PROMPT + "1000원 단위로 입력해주세요.");
             }
         }
         return input;
@@ -25,7 +27,7 @@ public class InputView {
 
     private void validateLottoPurchase(int input) {
         if (input % 1000 != 0) {
-            throw new IllegalArgumentException(ERROR_PROMPT + "1000원 단위로 입력해주세요.");
+            throw new IllegalArgumentException();
         }
     }
 
@@ -37,7 +39,9 @@ public class InputView {
                 validateLottoNumber(input);
                 break;
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(ERROR_PROMPT + "금액으로 숫자를 입력해주세요.");
+                System.out.println(ERROR_PROMPT + "보너스 번호로 숫자를 입력해주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(ERROR_PROMPT + "로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
         return input;
@@ -45,7 +49,7 @@ public class InputView {
 
     private void validateLottoNumber(int input) {
         if (input < 1 || 45 < input) {
-            throw new IllegalArgumentException(ERROR_PROMPT + "로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException();
         }
     }
 
@@ -60,7 +64,7 @@ public class InputView {
                 validateLottoNumbers(winningNumbers);
                 break;
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(ERROR_PROMPT + "로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                System.out.println(ERROR_PROMPT + "로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
         return winningNumbers;

@@ -11,15 +11,9 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    private final InputView inputView;
-    private final OutputView outputView;
-    private final RandomNumbersGenerator randomNumbersGenerator;
-
-    public LottoController() {
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
-        this.randomNumbersGenerator = new RandomNumbersGenerator();
-    }
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final RandomNumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
 
     public void playLotto() {
         long purchaseAmount = inputView.getPurchaseAmount();

@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottosTest {
     @DisplayName("당첨 번호와 로또 번호의 맞은 개수가 일치하는지 테스트한다.")

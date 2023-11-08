@@ -29,4 +29,24 @@ public class Rank {
     public void addFifthPlace() {
         fifthPlace += RankConstants.MATCHING_INCRESE_COUNT.getNumber();
     }
+
+    public int getFirstPlace() {
+        return firstPlace;
+    }
+
+    public int getSecondPlace() {
+        return secondPlace;
+    }
+
+    public int getThirdPlace() {
+        return thirdPlace;
+    }
+
+    public int getFourthPlace() {
+        return fourthPlace;
+    }
+
+    public int getFifthPlace() {
+        return fifthPlace;
+    }
 }

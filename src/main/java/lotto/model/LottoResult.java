@@ -39,4 +39,8 @@ public class LottoResult {
         }
         rank.addThirdPlace();
     }
+
+    public Rank getRank() {
+        return rank;
+    }
 }

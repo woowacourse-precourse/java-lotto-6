@@ -5,21 +5,10 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.*;
 
 public class UserInput {
-    public static boolean repeatPurchase = true;
-    public static boolean repeatWinningNumber = true;
-
-    public static boolean repeatBonusNumber = true;
-
-    //구매 금액 입력
-//    public int getPurchaseAmount() {
-//        int purchaseAmount = Integer.parseInt(Console.readLine());
-//
-//        return purchaseAmount;
-//    }
-
 
     public int getPurchaseAmount() {
         int purchaseAmount;
+
         while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
@@ -39,19 +28,18 @@ public class UserInput {
     }
 
 
-    //후에 검증기능과, purchaseCount 리턴하는 기능 별도의 함수로 분리 리팩토링 예정!
     private void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException("1000원 단위로 입력해 주세요.");
         }
 
-        return;
     }
 
 
     //당첨 번호 입력
     public List<Integer> getWinningNumbers() {
         String winningNumbersInput;
+        List<String> splittedWinningNumbersInput;
         List<Integer> winningNumbers = new ArrayList<>();
 
         while (true) {
@@ -61,7 +49,7 @@ public class UserInput {
 
                 //Array보다는  Collections 사용! - 1주차 피드백
                 //변수 이름에 자료형&자료구조 사용하지 마! - 2주차 피드백
-                List<String> splittedWinningNumbersInput = Arrays.asList(winningNumbersInput.split(","));
+                splittedWinningNumbersInput = splitNumbers(winningNumbersInput);
                 validateWinningNumbers(splittedWinningNumbersInput);
 
                 validateDuplicates(splittedWinningNumbersInput);
@@ -81,6 +69,14 @@ public class UserInput {
         }
 
         return winningNumbers;
+    }
+
+    private List<String> splitNumbers(String winningNumbersInput){
+        List<String> splittedWinningNumbersInput;
+
+        splittedWinningNumbersInput = Arrays.asList(winningNumbersInput.split(","));
+
+        return splittedWinningNumbersInput;
     }
 
 

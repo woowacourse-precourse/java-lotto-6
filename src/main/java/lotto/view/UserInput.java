@@ -10,21 +10,18 @@ public class UserInput {
     public int money() {
         OutputView.printInputMoney();
         String input = Console.readLine();
-        int money = typeChanger.from(input);
-        return money;
+        return typeChanger.from(input);
     }
 
     public List<Integer> lottoNumber() {
         OutputView.printInputWinNumber();
         String input = Console.readLine();
-        List<Integer> lottoNumbers = from(input);
-        return lottoNumbers;
+        return from(input);
     }
 
     private List<Integer> from(String input) {
         List<String> numbers = typeChanger.stringToListWithComma(input);
-        List<Integer> lottoNumbers = typeChanger.from(numbers);
-        return lottoNumbers;
+        return typeChanger.from(numbers);
     }
 
     public int bonusBall() {

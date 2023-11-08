@@ -68,7 +68,6 @@ public class OutputView {
             return;
         }
         printWinningWithBonus(prize,0);
-        return;
     }
     public void printWinningWithBonus(Prize prize, int count) {
         System.out.printf(InformationMessages.WINNING_RESULT_BONUS, prize.getWinNumberCount(), addComma(prize.getPrice()), count);

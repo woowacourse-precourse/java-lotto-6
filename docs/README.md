@@ -20,6 +20,7 @@
   - [x] 로또 번호 (validateLottoNumbers)
     - [x] 쉼표(,)로 구분된 6개의 수
     - [x] 각 수는 1부터 45의 수
+    - [ ] 중복되지 않는 6개의 수
   - [x] 보너스 번호 (validateBonusNumber)
     - [x] 1부터 45의 수 범위의 수여야 함
 

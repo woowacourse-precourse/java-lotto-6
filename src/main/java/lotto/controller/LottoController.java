@@ -5,6 +5,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoRank;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,6 +15,23 @@ import java.util.Map;
 public class LottoController {
 
     private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+
+    public void play() {
+        try {
+            int purchaseAmount = inputView.promptPurchaseAmount();
+            List<Lotto> lottos = generateLottos(purchaseAmount / 1000);
+            outputView.displayLottos(lottos.size(),lottos);
+
+            WinningLotto winningLotto = getWinningLotto();
+
+            Map<LottoRank, Integer> results = determineResults(lottos, winningLotto);
+            outputView.displayResults(results);
+            outputView.displayProfitRate(results, purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            outputView.displayError(e.getMessage());
+        }
+    }
 
     private List<Lotto> generateLottos(int numberOfLottos) {
         List<Lotto> lottos = new ArrayList<>();

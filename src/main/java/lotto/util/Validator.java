@@ -1,0 +1,136 @@
+package lotto.util;
+
+import lotto.configure.InputConfiguration;
+import lotto.configure.DomainConfiguration;
+import lotto.configure.ErrorMessages;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+/**
+ * 값을 검증하는 클래스.
+ * 값이 올바르지 않을 경우 예외를 발생시킨다.
+ */
+public class Validator {
+
+    /**
+     * 주어진 문자열이 정수를 나타내는지 검증한다.
+     * " 123"과 같이 공백을 포함하는 경우에도 예외를 발생시킨다.
+     * @param toValidate 정수인지 검증할 문자열
+     * @throws IllegalArgumentException toValidate가 정수를 나타내는 문자열이 아닐 경우 발생한다.
+     */
+    public static void validateStringToBeInteger(String toValidate) throws IllegalArgumentException {
+        try {
+            Integer.parseInt(toValidate);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessages.NOT_AN_INTEGER.get());
+        }
+    }
+
+    /**
+     * 주어진 숫자가 0 이상의 숫자인지 검증한다.
+     * numToValidate >= 0인 경우 예외를 발생시킨다.
+     * @param numToValidate 검증할 정수.
+     * @throws IllegalArgumentException numToValidate >= 0인 경우 발생한다.
+     */
+    public static void validateSign(int numToValidate) throws IllegalArgumentException {
+        if (numToValidate < 0) {
+            throw new IllegalArgumentException(ErrorMessages.PURCHASE_NUMBER_IS_NEGATIVE.get());
+        }
+    }
+
+    /**
+     * 주어진 숫자가 DomainConfiguration에 정의된 PRICE_OF_LOTTO의 배수인지 검증한다.
+     * 다시 말해, numToValidate % DomainConfiguration.PRICE_OF_LOTTO == 0인지 검증한다.
+     * @param numToValidate 검증할 정수.
+     * @throws IllegalArgumentException numToValidate가 PRICE_OF_LOTTO의 배수가 아닐 경우 발생한다.
+     */
+    public static void validateDivisibility(int numToValidate) throws IllegalArgumentException {
+        if (!isMultipleOfPriceOfLotto(numToValidate)) {
+            throw new IllegalArgumentException(ErrorMessages.PURCHASE_NUMBER_IS_NOT_MULTIPLE_OF_1000.get());
+        }
+    }
+
+    private static boolean isMultipleOfPriceOfLotto(int num) {
+        return num % DomainConfiguration.PRICE_OF_LOTTO == 0;
+    }
+
+    /**
+     * 당첨 번호의 사용자 입력이 오직 정수와 InputConfiugraion에 정의된 demlimiter로만 이루어졌는지 검증한다.
+     * @param winningNumbersInput 검증할 사용자 입력 문자열.
+     * @throws IllegalArgumentException winningNumbersInput이 공백이나 미리 지정된 delimiter나 정수가 아닌 문자를 포함할
+     *                                  경우 발생한다.
+     */
+    public static void validateStringToBeMultipleIntegers(String winningNumbersInput)
+            throws IllegalArgumentException {
+        Arrays.asList(winningNumbersInput.split(InputConfiguration.DELIMITER_TO_PARSE_INPUT_OF_WINNING_NUMBER))
+                .forEach(Validator::validateStringToBeInteger);
+    }
+
+    /**
+     * 당첨 번호의 개수가 DomainConfiguration에 정의된 LENGTH_OF_LOTTO와 일치하는지 검증한다.
+     * winningNumbers의 사이즈가 정확히 LENGTH_OF_LOTTO가 아닐 경우 예외가 발생한다.
+     * @param winningNumbers 당첨 번호가 담긴 리스트.
+     * @throws IllegalArgumentException winningNumbers.size() != DomainConfiguration.LENGTH_OF_LOTTO일 경우 발생한다.
+     */
+    public static void validateNumOfWinningNumbers(List<Integer> winningNumbers) throws IllegalArgumentException {
+        if (winningNumbers.size() != DomainConfiguration.LENGTH_OF_LOTTO) {
+            throw new IllegalArgumentException(ErrorMessages.WINNING_NUMBERS_ARE_NOT_PROPER.get());
+        }
+    }
+
+    /**
+     * 당첨 번호에 중복이 없는지 검증한다.
+     * @param winningNumbers 당첨 번호가 담긴 리스트.
+     * @throws IllegalArgumentException 중복된 번호가 있을 경우 발생한다.
+     */
+    public static void validateDuplicate(List<Integer> winningNumbers)
+            throws IllegalArgumentException {
+        int numOfElements = winningNumbers.size();
+        Set<Integer> notAllowDuplicate = new HashSet<>(winningNumbers);
+        if (numOfElements > notAllowDuplicate.size()) {
+            throw new IllegalArgumentException(ErrorMessages.WINNING_NUMBERS_HAS_DUPLICATE.get());
+        }
+    }
+
+    /**
+     * 개별 당첨 번호가 적절한 범위에 포함되는지 검증한다.
+     * 당첨 번호의 최댓값과 최솟값은 각각 lotto.configure.LottoConfigure 클래스에 정의된 두 상수,
+     * LOTTO_NUMBER_MAX, LOTTO_NUMBER_MIN이다.
+     * @param winningNumbers 당첨 번호가 담긴 리스트.
+     * @throws IllegalArgumentException 단 하나의 번호라도 로또 번호 범위에 포함되지 않을 경우 발생한다.
+     */
+    public static void validateRangeOfWinningNumbers(List<Integer> winningNumbers)
+            throws IllegalArgumentException {
+        winningNumbers.forEach((n) ->
+                checkIfRangeOfNumberIsProper(n, ErrorMessages.WINNING_NUMBERS_NOT_IN_PROPER_RANGE.get()));
+    }
+
+    /**
+     * 보너스 번호가 적절한 범위에 포함되는지 검증한다.
+     * 보너스 번호의 최댓값과 최솟값은 각각 lotto.configure.LottoConfigure 클래스에 정의된 두 상수,
+     * LOTTO_NUMBER_MAX, LOTTO_NUMBER_MIN이다.
+     * @param bonusNumber 검증할 보너스 번호.
+     * @throws IllegalArgumentException 보너스 번호가 로또 번호 범위에 포함되지 않을 경우 발생한다.
+     */
+    public static void validateRangeOfBonusNumber(Integer bonusNumber) throws IllegalArgumentException {
+        checkIfRangeOfNumberIsProper(bonusNumber, ErrorMessages.BONUS_NUMBER_NOT_IN_PROPER_RANGE.get());
+    }
+
+    private static void checkIfRangeOfNumberIsProper(Integer winningNumber, String errorMessage)
+            throws IllegalArgumentException {
+        if (isNumberOverRange(winningNumber) || isNumberBelowRange(winningNumber)) {
+            throw new IllegalArgumentException(errorMessage);
+        }
+    }
+
+    private static boolean isNumberOverRange(Integer winningNumber) {
+        return winningNumber > DomainConfiguration.LOTTO_NUMBER_MAX;
+    }
+
+    private static boolean isNumberBelowRange(Integer winningNumber) {
+        return winningNumber < DomainConfiguration.LOTTO_NUMBER_MIN;
+    }
+}

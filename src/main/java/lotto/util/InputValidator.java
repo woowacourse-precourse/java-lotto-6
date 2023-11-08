@@ -15,11 +15,9 @@ public class InputValidator {
             }
         } catch (NumberFormatException e) {
             OutputView.printInputNotNumberErrorMessage();
-//            System.out.println(Message.INPUT_NOT_NUMBER_MESSAGE);
             return false;
         } catch (IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
-//            System.out.println(e.getMessage());
             return false;
         }
         return true;
@@ -31,7 +29,6 @@ public class InputValidator {
                 Integer.parseInt(sNum);
             } catch (NumberFormatException e) {
                 OutputView.printInputNumRangeErrorMessage();
-//                System.out.println(Message.INPUT_NUM_RANGE_ERROR_MESSAGE);
                 return false;
             }
         }

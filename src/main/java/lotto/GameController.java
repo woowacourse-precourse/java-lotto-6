@@ -17,4 +17,10 @@ public class GameController {
             System.out.println(e.getMessage());
         }
     }
+
+    private BuyingLotto doBuyingLotto() {
+        BuyingLotto buyingLotto = new BuyingLotto(InputView.BUYING_PRICE.scan());
+        OutputView.printTicketNumber(buyingLotto.getTicketNumber());
+        return buyingLotto;
+    }
 }

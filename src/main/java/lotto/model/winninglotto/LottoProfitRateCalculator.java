@@ -12,7 +12,7 @@ public class LottoProfitRateCalculator {
             .mapToInt(LottoProfitRateCalculator::calculateRankingAmount)
             .sum();
 
-        return (double) totalAmount / purchaseAmount;
+        return (double) totalAmount / purchaseAmount * 100;
     }
 
     private static Integer calculateRankingAmount(Entry<LottoRanking, Integer> entry) {

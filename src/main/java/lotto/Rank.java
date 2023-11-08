@@ -38,4 +38,9 @@ public class Rank{
 
         }
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.lottoRank);
+    }
 }

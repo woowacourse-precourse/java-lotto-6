@@ -163,4 +163,25 @@ public class InputValidatorTest {
         assertThat(result1).isInstanceOf(IllegalArgumentException.class);
         assertThat(result2).doesNotThrowAnyException();
     }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복되었는지 검사")
+    @Test
+    void 보너스_번호_중복_테스트() {
+        // given
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int case1 = 1;
+        int case2 = 7;
+
+        // when
+        Throwable result1 = catchThrowable(() -> {
+            InputValidator.validateBonusNumberUniqueness(winningNumbers, case1);
+        });
+        Throwable result2 = catchThrowable(() -> {
+            InputValidator.validateBonusNumberUniqueness(winningNumbers, case2);
+        });
+
+        // then
+        assertThat(result1).isInstanceOf(IllegalArgumentException.class);
+        assertThat(result2).doesNotThrowAnyException();
+    }
 }

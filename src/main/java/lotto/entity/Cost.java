@@ -21,7 +21,7 @@ public class Cost {
     private void validate(String inputPurchaseCost) {
         verifyFormatForInputValue(COST, inputPurchaseCost);
         if (inputPurchaseCost.length() > 10) {
-            throw new IllegalArgumentException("너무 많음 금액을 입력하였습니다");
+            throw new IllegalArgumentException("[ERROR] 너무 많음 금액을 입력하였습니다");
         }
     }
 

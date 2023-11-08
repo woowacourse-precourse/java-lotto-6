@@ -7,6 +7,7 @@ import lotto.utils.FormatUtils;
 import java.util.regex.Pattern;
 
 public class PaymentValidator {
+
     private static final Pattern MONEY_REGEX = Pattern.compile(ValidatorConstant.MONEY_REGEX);
 
     public static void validate(String input) {
@@ -25,4 +26,5 @@ public class PaymentValidator {
             throw new IllegalArgumentException(ErrorConstant.ERROR_PAYMENT_PURCHASE_UNIT);
         }
     }
+
 }

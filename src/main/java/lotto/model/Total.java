@@ -11,4 +11,5 @@ public class Total {
     private void calculateTotalPrize(List<Prize> totalPrize) {
         totalPrize.forEach(prize -> prize.increaseCount(prize));
     }
+
 }

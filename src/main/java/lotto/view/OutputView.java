@@ -53,4 +53,5 @@ public class OutputView {
         String formattedPrice = FormatUtils.formatPriceWithCommas(prize.getPrice());
         System.out.printf(prize.getMessage(),formattedPrice,prize.getCount());
     }
+    
 }

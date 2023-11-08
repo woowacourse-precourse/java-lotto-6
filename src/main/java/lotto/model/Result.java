@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Result {
+
     List<Integer> lottoMatch = new ArrayList<>();
     List<Boolean> hasBonusMatch = new ArrayList<>();
 
@@ -20,6 +21,7 @@ public class Result {
         for (int lottoNumber: userLottoNumber) {
             match += checkLottoNumberMatch(winningLotto, lottoNumber).getValue();
         }
+
         return match;
     }
 
@@ -28,6 +30,7 @@ public class Result {
         if (winningLotto.contains(lottoNumber)) {
             return LottoMatchResult.MATCHED;
         }
+
         return LottoMatchResult.NOT_MATCHED;
     }
 
@@ -42,4 +45,5 @@ public class Result {
     public List<Boolean> getHasBonusMatch() {
         return hasBonusMatch;
     }
+
 }

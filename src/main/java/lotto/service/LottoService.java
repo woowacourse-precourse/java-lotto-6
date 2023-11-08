@@ -5,7 +5,6 @@ import lotto.utils.FormatUtils;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LottoService {
@@ -62,4 +61,5 @@ public class LottoService {
         Profit profit = new Profit(ticketCount);
         OutputView.printTotalProfit(profit.getProfitRate());
     }
+
 }

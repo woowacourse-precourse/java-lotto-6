@@ -14,4 +14,5 @@ public enum LottoMatchResult {
     public int getValue() {
         return value;
     }
+
 }

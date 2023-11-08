@@ -4,7 +4,9 @@ import lotto.constant.ModelConstant;
 import lotto.utils.FormatUtils;
 
 public class Profit {
+
     private final String profitRate;
+
     public Profit(int ticketCount) {
         double rate = calculateTotalProfit(ticketCount);
 
@@ -26,4 +28,5 @@ public class Profit {
     public String getProfitRate() {
         return profitRate;
     }
+
 }

@@ -4,7 +4,9 @@ import lotto.constant.ModelConstant;
 import lotto.validator.PaymentValidator;
 
 public class Payment {
+
     private final int ticket;
+
     public Payment(String input) {
         PaymentValidator.validate(input);
         int price = Integer.parseInt(input);

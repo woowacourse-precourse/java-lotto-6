@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class User {
+
     private List<List<Integer>> lottoCount = new ArrayList<>();
 
     public User(int ticketCount) {

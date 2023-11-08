@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class BonusValidator {
+
     private static final Pattern BONUS_REGEX = Pattern.compile(ValidatorConstant.MONEY_REGEX);
 
     public static void validate(Lotto lotto, String inputBonusNumber) {
@@ -35,4 +36,5 @@ public class BonusValidator {
             throw new IllegalArgumentException(ErrorConstant.ERROR_BONUS_NUMBER_RANGE);
         }
     }
+
 }

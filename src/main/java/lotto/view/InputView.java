@@ -12,4 +12,5 @@ public class InputView {
     private static String removeSpace(String input) {
         return input.replaceAll(MessageConstant.SPACE_REGEX, MessageConstant.SPACE_REPLACEMENT);
     }
+
 }

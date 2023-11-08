@@ -44,4 +44,5 @@ public class PrizeResult {
     public List<Prize> getRanking() {
         return ranking;
     }
+
 }

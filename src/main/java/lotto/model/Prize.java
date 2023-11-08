@@ -3,6 +3,7 @@ package lotto.model;
 import lotto.constant.MessageConstant;
 
 public enum Prize {
+
     FIFTH(3, 5_000, MessageConstant.MESSAGE_FIFTH,0),
     FOURTH(4, 50_000, MessageConstant.MESSAGE_FOURTH,0),
     THIRD(5, 1_500_000, MessageConstant.MESSAGE_THIRD,0),

@@ -12,8 +12,9 @@ public class Output {
     public static final String BONUS_NUMBER_NOTICE = "보너스 번호를 입력해 주세요.";
     public static final String STATISTICS_NOTICE = "당첨 통계";
     public static final String BR_LINE = "---";
-    public static final String RESULT_SECOND_MESSAGE = "%d개 일치, 보너스 볼 일치(%s) - %d개\n";
+    public static final String RESULT_SECOND_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s) - %d개\n";
     public static final String RESULT_OTHER_MESSAGE = "%d개 일치 (%s) - %d개\n";
+    public static final String RETURN_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.\n";
 
     public static void printAmountMessage() {
         System.out.println(PURCHASE_AMOUNT_NOTICE);
@@ -47,16 +48,19 @@ public class Output {
     }
 
     private static void printResult(Rank rank, HashMap<Rank, Integer> result) {
+        if (rank == Rank.NONE) {
+            return;
+        }
+
         if (rank == Rank.SECOND) {
             System.out.printf(RESULT_SECOND_MESSAGE, rank.getWinningMatchCount(), rank.getPrizeOutput(),
                               result.get(rank));
             return;
         }
         System.out.printf(RESULT_OTHER_MESSAGE, rank.getWinningMatchCount(), rank.getPrizeOutput(), result.get(rank));
-        ;
     }
 
     public static void printReturnRate(double returnRate) {
-        System.out.printf("총 수익률은 ");
+        System.out.printf(RETURN_RATE_MESSAGE, returnRate);
     }
 }

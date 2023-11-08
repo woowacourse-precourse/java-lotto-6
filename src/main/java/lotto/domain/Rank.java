@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum Rank {
+    NONE(0, 0, 0, "0원"),
     FIFTH(5000, 3, 0, "5,000원"),
     FOURTH(50000, 4, 0, "50,000원"),
     THIRD(1500000, 5, 0, "1,500,000원"),

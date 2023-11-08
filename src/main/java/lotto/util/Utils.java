@@ -2,7 +2,6 @@ package lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.validation.Validation;
@@ -29,8 +28,7 @@ public class Utils {
     public static List<Integer> createSortedLottoNumbers() {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(NUMBER_START_INCLUSIVE, NUMBER_END_INCLUSIVE,
                                                                       NUMBER_PICK_COUNT);
-        lottoNumbers.sort(Comparator.naturalOrder());
-        return lottoNumbers;
+        return lottoNumbers.stream().sorted().collect(Collectors.toList());
     }
 
     public static int countSameInteger(List<Integer> list1, List<Integer> list2) {

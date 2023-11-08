@@ -14,6 +14,9 @@ public class Service {
     private static final int BONUS_VACANT_COUNT = 0;
     private static final int INITIAL_COUNT = 0;
     private static final int INCREASE_COUNT = 1;
+    private static final int INITIAL_TOTAL_PRIZE = 0;
+    private static final int ROUND_CONSTANT_INT = 10;
+    private static final double ROUND_CONSTANT_DOUBLE = 10.0;
 
     public void purchaseLottos(Buyer buyer) {
         int lottoCount = buyer.getAmount() / MINIMUM_AMOUNT;
@@ -39,8 +42,6 @@ public class Service {
             Rank rank = compareLotto(lotto, game);
             result.put(rank, result.getOrDefault(rank, INITIAL_COUNT) + INCREASE_COUNT);
         }
-
-        calculateReturnRate(buyer);
     }
 
     public Rank compareLotto(Lotto lotto, Game game) {
@@ -58,7 +59,20 @@ public class Service {
         return bonusCount;
     }
 
-    private void calculateReturnRate(Buyer buyer) {
-        
+    public void calculateReturnRate(Buyer buyer) {
+        // 수익률 = 총 당첨금액 / 구입금액 * 100
+        double returnRate = (calculateTotalPrize(buyer.getResult()) / (double) buyer.getAmount()) * 100;
+        double roundRate = Math.round(returnRate * ROUND_CONSTANT_INT) / ROUND_CONSTANT_DOUBLE;
+        buyer.setReturnRate(roundRate);
+    }
+
+    private int calculateTotalPrize(HashMap<Rank, Integer> result) {
+        int totalPrize = INITIAL_TOTAL_PRIZE;
+        for (Rank rank : result.keySet()) {
+            if (rank != null) {
+                totalPrize += rank.getPrize() * result.get(rank);
+            }
+        }
+        return totalPrize;
     }
 }

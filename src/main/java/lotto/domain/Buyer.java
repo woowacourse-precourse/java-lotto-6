@@ -37,6 +37,10 @@ public class Buyer {
         return this.returnRate;
     }
 
+    public void setReturnRate(double returnRate) {
+        this.returnRate = returnRate;
+    }
+
     private void validateAmount(int amount) {
         Validation.validateDigit(amount);
     }

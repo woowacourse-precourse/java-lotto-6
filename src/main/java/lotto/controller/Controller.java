@@ -61,6 +61,7 @@ public class Controller {
 
     private void endGame() {
         service.checkLottoStats(buyer, game);
+        service.calculateReturnRate(buyer);
         Output.printStatisticsMessage();
         Output.printResults(buyer.getResult());
         Output.printReturnRate(buyer.getReturnRate());

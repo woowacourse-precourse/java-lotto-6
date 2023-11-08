@@ -11,23 +11,35 @@ public class LottoController {
 
     private static final int START_INDEX = 0;
 
-    private List<Lotto> lottoList = new LinkedList<>();
+    private List<Lotto> lottoList;
 
     public LottoController() {
-        initGame();
+
     }
 
     public void initGame() {
+        lottoList = new LinkedList<>();
+        makeLottoList();
+    }
+
+    public void startGame() {
+        while (true) {
+            try {
+                initGame();
+                break;
+            } catch (IllegalArgumentException errorMessage) {
+                System.out.println(errorMessage.getMessage());
+            }
+        }
+    }
+
+    public void makeLottoList() {
         Integer purchasePrice = InputView.inputPurchasePrice();
         Integer totalPurchaseQuantity = purchasePrice / 1000;
         OutputView.outputTotalPurchaseQuantity(totalPurchaseQuantity);
-        makeLottoList(totalPurchaseQuantity);
-        OutputView.outputLottoList(lottoList);
-    }
-
-    public void makeLottoList(Integer totalPurchaseQuantity) {
         for (int i=START_INDEX;i<totalPurchaseQuantity;i++) {
             lottoList.add(new Lotto(LottoNumber.makeLottoNumbers()));
         }
+        OutputView.outputLottoList(lottoList);
     }
 }

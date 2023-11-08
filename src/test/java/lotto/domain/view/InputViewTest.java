@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.in;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,4 +36,16 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 숫자만 입력하실 수 있습니다.");
     }
+
+    @DisplayName("입력 받은 값이 콤마로 구분된 숫자라면 숫자 리스트를 반환한다.")
+    @Test
+    void getIntegerListByComma() {
+        //Given
+        String input = "1,2,3,4,5,6";
+        //When
+        List<Integer> numbers = inputView.convertToIntegerList(input);
+        //Then
+        assertThat(numbers).hasSameElementsAs(List.of(1,2,3,4,5,6));
+    }
+
 }

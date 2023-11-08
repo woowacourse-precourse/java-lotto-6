@@ -30,6 +30,15 @@ public class LottoControllerTest   {
         Assertions.assertThat(LottoTickets.getBuyLottoTickets().size()).isEqualTo(8);
     }
 
+    @DisplayName("로또 목록 갯수 테스트")
+    @Test
+    void getBuyLottoTicketsNum(){
+        long purchaseAmount = 8000;
+        LottoController.buyLottoTickets(purchaseAmount);
+
+        Assertions.assertThat(LottoController.getBuyLottoTicketsNum()).isEqualTo(8);
+    }
+
     @DisplayName("로또목록 확인 테스트")
     @Test
     void getBuyLottoTickets() {

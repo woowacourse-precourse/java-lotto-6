@@ -16,12 +16,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
-
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException();
         }
-
         for (int number : numbers) {
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException();
@@ -32,5 +30,4 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
 }

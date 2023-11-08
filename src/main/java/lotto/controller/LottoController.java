@@ -52,7 +52,4 @@ public class LottoController {
             lottos.add(new Lotto(nums));
         }
     }
-
-
-
 }

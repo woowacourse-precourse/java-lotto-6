@@ -36,7 +36,7 @@ public class LottoPrizeNumberValidator {
         return true;
     }
 
-    public boolean validPrizeNumOtherString(String prizeNum) {
+    private boolean validPrizeNumOtherString(String prizeNum) {
         lottoNums.clear();
 
         try {
@@ -52,7 +52,7 @@ public class LottoPrizeNumberValidator {
         return true;
     }
 
-    public boolean validLottoNumLess1Over45(ArrayList<Integer> nums) {
+    private boolean validLottoNumLess1Over45(ArrayList<Integer> nums) {
         try {
             if(!nums.stream().allMatch(num -> (num >= minValue && num <= maxValue))) {
                 throw new IllegalArgumentException();
@@ -66,7 +66,7 @@ public class LottoPrizeNumberValidator {
         return true;
     }
 
-    public boolean validOverLottoSize(ArrayList<Integer> nums) {
+    private boolean validOverLottoSize(ArrayList<Integer> nums) {
         try {
             if(nums.size() != lottoSize) {
                 throw new IllegalArgumentException();
@@ -80,7 +80,7 @@ public class LottoPrizeNumberValidator {
         return true;
     }
 
-    public boolean validLottoNumOverLap(ArrayList<Integer> nums) {
+    private boolean validLottoNumOverLap(ArrayList<Integer> nums) {
         try {
             if(nums.size() != nums.stream().distinct().count()) {
                 throw new IllegalArgumentException();

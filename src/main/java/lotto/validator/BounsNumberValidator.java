@@ -31,7 +31,7 @@ public class BounsNumberValidator {
         return true;
     }
 
-    public boolean validOtherString(String buyAmount) {
+    private boolean validOtherString(String buyAmount) {
         try {
             bonusNum = Integer.parseInt(buyAmount);
         }
@@ -43,7 +43,7 @@ public class BounsNumberValidator {
         return true;
     }
 
-    public boolean validNumLess1Over45(int num) {
+    private boolean validNumLess1Over45(int num) {
         try {
             if(num < minValue || num > maxValue) {
                 throw new IllegalArgumentException();
@@ -57,7 +57,7 @@ public class BounsNumberValidator {
         return true;
     }
 
-    public boolean validLottoNumOverLap(List<Integer> nums) {
+    private boolean validLottoNumOverLap(List<Integer> nums) {
         nums.add(bonusNum);
 
         try {

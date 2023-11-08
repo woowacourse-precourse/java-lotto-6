@@ -28,7 +28,7 @@ public class AmountValidator {
         return true;
     }
 
-    public boolean validAmountOtherString(String buyAmount) {
+    private boolean validAmountOtherString(String buyAmount) {
         try {
             resultAmount = Integer.parseInt(buyAmount);
         }
@@ -40,7 +40,7 @@ public class AmountValidator {
         return true;
     }
 
-    public boolean validAmountLess1000(int num) {
+    private boolean validAmountLess1000(int num) {
         try {
             if(num < lottoPrice) {
                 throw new IllegalArgumentException();
@@ -54,7 +54,7 @@ public class AmountValidator {
         return true;
     }
 
-    public boolean validAmountUndivided1000(int num) {
+    private boolean validAmountUndivided1000(int num) {
         try {
             if(num % lottoPrice != 0) {
                 throw new IllegalArgumentException();

@@ -31,7 +31,6 @@ class LottoTest {
     @DisplayName("로또 매칭을 통해 순위를 올바르게 리턴하는지 검증한다")
     @Test
     void matchingLotto() {
-
         Lotto winningLotto = new Lotto(List.of(22,23,24,25,26,27));
         int bonusNumber = 10;
 

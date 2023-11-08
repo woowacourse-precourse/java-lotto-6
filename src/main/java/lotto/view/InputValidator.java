@@ -10,8 +10,12 @@ import java.util.regex.Pattern;
 public class InputValidator {
 
     public static ResponseStatus purchasePriceCheck(int lottoPurchasePrice){
-        if(lottoPurchasePrice < LottoConstant.LOTTO_PRICE || lottoPurchasePrice % LottoConstant.LOTTO_PRICE != 0){
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_PURCHASE_PRICE.getMessage());
+        try{
+            if(lottoPurchasePrice < LottoConstant.LOTTO_PRICE || lottoPurchasePrice % LottoConstant.LOTTO_PRICE != 0){
+                throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_PURCHASE_PRICE.getMessage());
+            }
+        }catch(IllegalArgumentException e ){
+            e.printStackTrace();
         }
         return ResponseStatus.OK;
     }

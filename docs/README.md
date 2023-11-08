@@ -4,10 +4,6 @@
 프로그램은 사용자의 예상 번호와 실제 당첨 번호를 비교하여 당첨 여부를 결정하고, 구매한 로또의 수익률을 계산합니다. 
 유효하지 않은 입력에 대해서는 오류 메시지를 출력하여 사용자가 올바르게 입력할 수 있도록 안내합니다.
 
-
-<img width="850" alt="image" src="https://github.com/2021110806/java-lotto-6/assets/104808812/3155e05f-ea66-4cbc-a521-622eb14c2ba0">
-
-
 ## 📁 PACKAGES & FUNCTIONS 🔧
 ### 📌 Model
 #### Lotto class
@@ -23,23 +19,25 @@
     - 사용자가 입력한 금액에 따라 로또를 생성한다. ✅
     - 각 금액 별 당첨 된 로또의 개수를 센다. ✅
     - 수익률을 계산한다. ✅
+### LottoUtils class
+    - 로또 숫자의 범위가 1 이상 45 이하의 범위를 벗어나지 않는지 확인한다. ✅
+    - 로또의 크기가 6이 넘지 않는지 확인한다. ✅
 ### 📌 Controller
 #### LottoGameController
-    - LottoGame을 실행한다.
-#### LottoController
-    - Lotto class와 LottoGame class를 매개한다.
-#### UserController
-    - User class와 LottoGame class를 매개한다.
+    - LottoGame을 실행한다. ✅
+#### MoneyService
+    - Lotto 관련 class와 Controller를 매개한다. ✅
+#### LottoService
+    - Money class와 COntroller를 매개한다. ✅
 ### 📌 VIEW
 #### InputView
-    - 로또 구입 금액을 입력 받는다. ✅
-    - 당첨 번호를 입력 받는다. ✅
-    - 보너스 번호를 입력 받는다. ✅
+    - 사용자로부터 입력을 받는다. ✅
 #### OutputView
     - 구입 금액 입력 안내 메시지를 출력한다. ✅
     - 구매 안내 메시지를 출력한다. ✅
     - 당첨 번호 입력 안내 메시지를 출력한다. ✅
     - 당첨 결과 타이틀을 출력한다. ✅
+    - 당첨 내용을 출력한다. ✅
     - 당첨 통계를 출력한다. ✅
 ### 📌 EXCEPTION
 #### ExceptionMessage

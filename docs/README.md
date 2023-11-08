@@ -44,6 +44,7 @@ check new branch
 - generate()
     - input : null / return : void
     - 로또 개수(count)만큼 로또 생성 후 buy List에 add
+    - 해당 로또 번호 출력
 - random()
   - input : null / return : List<Integer>
   - Lotto class에 보낼 6개의 랜덤 값

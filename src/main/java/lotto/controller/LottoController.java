@@ -15,6 +15,7 @@ public class LottoController {
 
         WinnerStatistics winnerStatistic = getWinnerStatistic(issuedLottos, winningLotto, bonusLottoNumber);
         OutputView.announceWinningStatistics(winnerStatistic);
+        OutputView.printObject(EarningRate.of(purchaseBudget, winnerStatistic));
     }
 
     private WinnerStatistics getWinnerStatistic(Lottos issuedLottos, Lotto winningLotto, LottoNumber bonusLottoNumber) {

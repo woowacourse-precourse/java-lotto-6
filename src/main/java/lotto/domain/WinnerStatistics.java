@@ -57,5 +57,9 @@ public class WinnerStatistics {
         return String.format(STATISTICS_RANK_INFO_OUTPUT_FORMAT_INCLUDE_BONUS_BALL.getMessage(),
                 lottoRank.getCorrectCount(), lottoRank.getFormattedPrizeMoney(), rankCounts.getRankCount(lottoRank));
     }
+
+    public long getTotalPrizeAmount() {
+        return totalPrizeAmount.getTotalPrizeAmount();
+    }
 }
 

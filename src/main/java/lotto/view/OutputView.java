@@ -1,10 +1,7 @@
 package lotto.view;
 
 import lotto.constants.OutputMessage;
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
-import lotto.domain.PurchaseQuantity;
-import lotto.domain.WinnerStatistics;
+import lotto.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +45,7 @@ public class OutputView {
     }
 
     public static void printObject(Object object) {
-        System.out.print(String.format(object.toString()));
+        System.out.print(object.toString());
     }
 
     public static void lineBreak() {

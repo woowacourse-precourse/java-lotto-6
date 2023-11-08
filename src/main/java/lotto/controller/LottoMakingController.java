@@ -63,7 +63,6 @@ public class LottoMakingController {
         return lottos;
     }
 
-    //========================================================================================
     public Lotto createWinningNumbers() {
         while (true) {
             try {

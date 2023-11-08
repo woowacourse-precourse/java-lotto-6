@@ -56,7 +56,7 @@ public class StatisticsController {
         player.addFiveMatch();
     }
 
-    private double calculateRate() {
+    public double calculateRate() {
         int totalMoney = 0;
         totalMoney += player.getThreeMatch() * PrizeMoney.THREE_MATCH_PRIZE_MONEY.getPrize();;
         totalMoney += player.getFourMatch() * PrizeMoney.FOUR_MATCH_PRIZE_MONEY.getPrize();

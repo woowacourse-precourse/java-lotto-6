@@ -12,6 +12,10 @@ public class OutputView {
         System.out.println(numbers);
     }
 
+    public void printDivideLine() {
+        System.out.println(PrintMessage.DIVIDE_LINE.getMessage());
+    }
+
     public void printResult(String result, int count) {
         System.out.printf(result + "\n", count);
     }

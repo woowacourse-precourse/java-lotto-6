@@ -73,6 +73,7 @@ public class GameController {
 
     private void printResult() {
         Map<Rank, Integer> ranks = game.compare();
+        outputView.printDivideLine();
         for (Rank rank : Rank.values()) {
             if (rank != Rank.NOTHING) {
                 outputView.printResult(rank.getResult(), ranks.get(rank));

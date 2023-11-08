@@ -10,12 +10,12 @@ public class InputView {
     }
 
     public String requestWinningNumber() {
-        System.out.println(PrintMessage.WINNING_NUMBER_REQUEST.getMessage());
+        System.out.println("\n" + PrintMessage.WINNING_NUMBER_REQUEST.getMessage());
         return Console.readLine().replace(" ", "");
     }
 
     public String requestBonusNumber() {
-        System.out.println(PrintMessage.BONUS_NUMBER_REQUEST.getMessage());
+        System.out.println("\n" + PrintMessage.BONUS_NUMBER_REQUEST.getMessage());
         return Console.readLine().trim();
     }
 }

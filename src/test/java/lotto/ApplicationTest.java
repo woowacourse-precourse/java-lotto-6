@@ -11,8 +11,4 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest {
 
-    @Test
-    void 기능_테스트() {
-
-    }
 }

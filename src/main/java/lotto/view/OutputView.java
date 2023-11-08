@@ -53,7 +53,7 @@ public class OutputView {
     }
 
     private static void printWinningResults(AnalyzerWinningStatistics analyzerWinningStatistics) {
-        System.out.println(OutputFormatter.formatAnalyzerWinningResults(analyzerWinningStatistics));
+        System.out.print(OutputFormatter.formatAnalyzerWinningResults(analyzerWinningStatistics));
     }
 
     private static void printWinningYield(AnalyzerWinningStatistics analyzerWinningStatistics) {

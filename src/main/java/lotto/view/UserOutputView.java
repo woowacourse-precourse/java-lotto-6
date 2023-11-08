@@ -12,41 +12,53 @@ import java.util.List;
 
 public class UserOutputView {
 
-    public static  void outputPurchaseAmount(){
+    public UserOutputView() {
+    }
+
+    private static class UserOutputViewHolder{
+        private static final UserOutputView userOutputView = new UserOutputView();
+    }
+
+    public static UserOutputView getInstance(){
+        return UserOutputViewHolder.userOutputView;
+    }
+
+
+    public void outputPurchaseAmount(){
         System.out.println("구입금액을 입력해 주세요");
 
     }
 
-    public static void getBuyLottoTicketsNum(){
+    public void getBuyLottoTicketsNum(){
         System.out.println();
         System.out.println(LottoController.getInstance().getBuyLottoTicketsNum() + "개를 구매했습니다.");
     }
 
-    public static void getBuyLottoTickets(){
+    public void getBuyLottoTickets(){
         for(Lotto lotto : LottoController.getInstance().getBuyLottoTickets()){
             System.out.println(getLottoNums(lotto));
         }
 
     }
 
-    public static void outputWinningNums(){
+    public void outputWinningNums(){
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    public static void outputBonusNum(){
+    public void outputBonusNum(){
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public static void winningStatistics(){
+    public void winningStatistics(){
         System.out.println();
         System.out.println("당첨 통계");
         LottoCompareController.getInstance().lottoTicketsCompareNum();
         System.out.println("---");
     }
 
-    public static  void winningStatisticsResult(){
+    public void winningStatisticsResult(){
         System.out.println("3개 일치 (5,000원) - " + WinningLotto.getTreeSameNumLotto() + "개");
         System.out.println("4개 일치 (50,000원) - " + WinningLotto.getFourSameNumLotto() + "개");
         System.out.println("5개 일치 (1,500,000원) - " + WinningLotto.getFiveSameNumLotto() + "개");
@@ -54,7 +66,7 @@ public class UserOutputView {
         System.out.println("6개 일치 (2,000,000,000원) - " + WinningLotto.getSixSameNumLotto() + "개");
     }
 
-    public static void winningLottoRateResult(){
+    public void winningLottoRateResult(){
         System.out.println("총 수익률은 " + LottoCompareController.getInstance().winningLottoRate()+"%입니다.");
     }
 

@@ -6,21 +6,21 @@ import lotto.view.UserOutputView;
 public class RunLotto {
 
     public static void runLotto(){
-        UserOutputView.outputPurchaseAmount();
-        UserInputView.inputPurchaseAmount();
+        UserOutputView.getInstance().outputPurchaseAmount();
+        UserInputView.getInstance().inputPurchaseAmount();
 
-        UserOutputView.getBuyLottoTicketsNum();
-        UserOutputView.getBuyLottoTickets();
+        UserOutputView.getInstance().getBuyLottoTicketsNum();
+        UserOutputView.getInstance().getBuyLottoTickets();
 
-        UserOutputView.outputWinningNums();
-        UserInputView.inputWinningNums();
+        UserOutputView.getInstance().outputWinningNums();
+        UserInputView.getInstance().inputWinningNums();
 
-        UserOutputView.outputBonusNum();
-        UserInputView.inputBonusNum();
+        UserOutputView.getInstance().outputBonusNum();
+        UserInputView.getInstance().inputBonusNum();
 
-        UserOutputView.winningStatistics();
-        UserOutputView.winningStatisticsResult();
-        UserOutputView.winningLottoRateResult();
+        UserOutputView.getInstance().winningStatistics();
+        UserOutputView.getInstance().winningStatisticsResult();
+        UserOutputView.getInstance().winningLottoRateResult();
 
 
 

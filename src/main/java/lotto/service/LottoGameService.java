@@ -17,7 +17,8 @@ public class LottoGameService {
     public Money purchaseAmount() {
         try {
             outputService.purchaseAmount();
-            return inputService.inputMoney();
+            int money = inputService.inputMoney();
+            return new Money(money);
         } catch (IllegalArgumentException exception) {
             outputService.handleException(exception);
             return purchaseAmount();

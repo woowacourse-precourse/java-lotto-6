@@ -12,9 +12,8 @@ public class InputService {
         this.inputView = inputView;
     }
 
-    public Money inputMoney() {
-        int number = inputView.inputNumber();
-        return new Money(number);
+    public int inputMoney() {
+        return inputView.inputNumber();
     }
 
     public List<Integer> inputWinningNumbers() {

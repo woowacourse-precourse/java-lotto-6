@@ -1,43 +1,52 @@
 package lotto.domain;
 
 import lotto.util.ExceptionMessage;
-import lotto.util.enumerator.LottoNumberRange;
 
 public class PurchaseAmount {
-    private static final int LOTTO_UNIT = 1000;
+    private final long amount;
 
-    private final int amount;
-
-    public PurchaseAmount(int amount) {
+    public PurchaseAmount(long amount) {
         validate(amount);
         this.amount = amount;
     }
 
-    private void validate(int amount) throws IllegalArgumentException {
+    private void validate(long amount) throws IllegalArgumentException {
         validatePurchaseLottoRange(amount);
         validatePurchaseLottoUnit(amount);
     }
 
-    private void validatePurchaseLottoRange(int amount) {
-        if (amount < LottoNumberRange.MIN_LOTTO_NUMBER.getValue()) {
+    private void validatePurchaseLottoRange(long amount) {
+        if (amount < Purchase.MIN_PURCHASE_LOTTO.amount) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_PURCHASE_MIN_RANGE.getMessage());
         }
-        if (amount > LottoNumberRange.MAX_LOTTO_NUMBER.getValue()) {
+        if (amount > Purchase.MAX_PURCHASE_LOTTO.amount) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_PURCHASE_MAX_RANGE.getMessage());
         }
     }
 
-    private void validatePurchaseLottoUnit(int amount) {
-        if (amount % LOTTO_UNIT != 0) {
+    private void validatePurchaseLottoUnit(long amount) {
+        if (amount % Purchase.LOTTO_UNIT.amount != 0) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_PURCHASE_UNIT.getMessage());
         }
     }
 
-    public int calculateLottoCount() {
-        return this.amount / LOTTO_UNIT;
+    public long calculateLottoCount() {
+        return this.amount / Purchase.LOTTO_UNIT.amount;
     }
 
-    public int getAmount() {
+    public long getAmount() {
         return amount;
+    }
+
+    private enum Purchase {
+        LOTTO_UNIT(1000L),
+        MIN_PURCHASE_LOTTO(1000L),
+        MAX_PURCHASE_LOTTO(9223372036854000L);
+
+        private final long amount;
+
+        Purchase(long amount) {
+            this.amount = amount;
+        }
     }
 }

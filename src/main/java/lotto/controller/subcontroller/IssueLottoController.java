@@ -23,7 +23,7 @@ public class IssueLottoController implements Controllable {
         PurchaseAmount purchaseAmount = inputPurchaseAmount();
         PurchaseAmountRepository.add(purchaseAmount);
 
-        int count = purchaseAmount.calculateLottoCount();
+        double count = purchaseAmount.calculateLottoCount();
         issueLotto(count);
 
         outputView.outputLottoNumbers(LottoRepository.lotties());
@@ -39,7 +39,7 @@ public class IssueLottoController implements Controllable {
         }
     }
 
-    private void issueLotto(int amount) {
+    private void issueLotto(double amount) {
         for (int i = 0; i < amount; i++) {
             Lotto lotto = new Lotto(createLottoNumbers());
             LottoRepository.add(lotto);

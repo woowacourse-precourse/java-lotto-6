@@ -2,9 +2,11 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.BonusNumber;
+import lotto.domain.IssuedLottos;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseQuantity;
 import lotto.exception.ExceptionStatus;
+import lotto.view.Printer;
 import lotto.view.UserInput;
 
 public class Store {
@@ -32,8 +34,9 @@ public class Store {
         amount = purchaseQuantity.getAmount();
         long lottoQuantity = purchaseQuantity.getLottoPurchases();
 
-//        purchaseQuantity
-
+        IssuedLottos issuedLottos = new IssuedLottos(lottoQuantity);
+        lottos = issuedLottos.getIssuedLottos();
+        printPurchasedLottos(lottos, lottoQuantity);
     }
 
     private void lotteryDraws() {
@@ -47,6 +50,11 @@ public class Store {
 
     private BonusNumber setBonusNumbers(Lotto winningNumbers) {
         return new BonusNumber(UserInput.inputbonusNumber(), winningNumbers);
+    }
+
+    private void printPurchasedLottos(List<Lotto> lottos, long lottoQuantity) {
+        Printer.printPurchasedLottoQuantity(lottoQuantity);
+        Printer.printLottoNumbers(lottos);
     }
 
 }

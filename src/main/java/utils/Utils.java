@@ -10,6 +10,7 @@ public class Utils {
         InputValidator.validateWinningNumbersIsNumeric(input);
         return Arrays.stream(input)
                      .map(Integer::parseInt)
+                     .sorted()
                      .toList();
     }
 

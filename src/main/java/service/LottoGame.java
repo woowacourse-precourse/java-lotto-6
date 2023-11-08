@@ -2,6 +2,7 @@ package service;
 
 import domain.Lotto;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import utils.Utils;
 
@@ -26,6 +27,7 @@ public class LottoGame {
     private Lotto generateLottoNumbers() {
         List<Integer> lottoNumbers = new ArrayList<>(
                 Utils.generateRandomUniqueNumbers(LOTTO_MIN_VALUE, LOTTO_MAX_VALUE, LOTTO_NUMBER_COUNT));
+        Collections.sort(lottoNumbers);
         return new Lotto(lottoNumbers);
     }
 }

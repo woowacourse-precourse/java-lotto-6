@@ -1,5 +1,183 @@
 # 미션 - 로또
 
+## 🧑‍🎨 계층 구조와 구현한 클래스
+
+![img.png](layerandclass.png)
+
+### Controller
+
+#### `LottoGameController`
+
+- **로또 게임 관리자 역할**
+- 게임을 순서에 맞게 시작하는 기능 `public`
+- 로또 구입 개수를 세팅하는 기능 `private`, `Exception Handling`
+    - 잘못된 값을 입력할 경우 [ERROR] 로 시작하는 에러 메시지 출력과 함께 입력을 다시 받는다.
+- 당첨 번호를 세팅하는 기능 `private`, `Exception Handling`
+    - 잘못된 값을 입력할 경우 [ERROR] 로 시작하는 에러 메시지 출력과 함께 입력을 다시 받는다.
+- 보너스 번호를 세팅하는 기능 `private`, `Exception Handling`
+    - 잘못된 값을 입력할 경우 [ERROR] 로 시작하는 에러 메시지 출력과 함께 입력을 다시 받는다.
+- [x] 사용자 로또를 구매하는 기능 `private`
+- [x] 당첨 정보(당첨 번호, 보너스 번호) 를 공개하는 기능 `private`
+- [x] 당첨 통계를 출간하는 기능 `private`
+
+### Service
+
+#### `LottoGameService`
+
+- **로또 게임 로직에 맞게 도메인, 서비스 계층의 객체에게 요청하고 결과를 반환하는 기능**
+- 개수만큼 로또를 생성하여 반환하는 기능
+- 사용자 최종 성적을 요청하여 당첨 통계를 반환하는 기능
+
+#### `YieldCalculator`
+
+- **수익률 계산기 역할**
+- 수익률을 계산하는 기능 `public`
+    - 수익률은 소수점 둘째 자리에서 반올림
+
+#### `SixUniqueNumberGenerator`
+
+- **숫자 리스트를 생성하는 역할**
+- 1 ~ 45 범위의 서로 다른 6개의 숫자 리스트를 생성하는 기능
+
+### Domain
+
+#### `PurchaseAmount`
+
+- **구매 금액 역할**
+- 구매한 로또 개수를 반환하는 기능 `public`
+- 구매 금액 1000원 단위를 검증하는 기능 `private`
+    - 검증이 실패하면 `IllegalArgument` 예외를 던진다
+
+#### `LottoNumber`
+
+- **로또 숫자 역할**
+- 숫자 범위 1 ~ 45 를 검증하는 기능 `private`
+    - 검증이 실패하면 `IllegalArgument` 예외를 던진다
+
+#### `Lotto`
+
+- **로또 역할**
+- 다른 로또와 같이 포함하고 있는 로또 번호의 개수를 계산하는 기능 `public`
+- 로또 번호를 포함하는지 확인하는 기능 `public`
+- 로또 번호를 정렬하여 로또를 생성하는 기능 `private`
+- 숫자 개수 6개를 검증하는 기능 `private`
+- 숫자 중복 여부를 검증하는 기능 `private`
+    - 검증이 실패하면 `IllegalArgument` 예외를 던진다
+
+#### `PlayerLotto`
+
+- **사용자가 구매한 로또 역할**
+- 당첨 정보(`WinningInformation`)을 기반으로 최종 성적을 계산하는 기능 `public`
+
+#### `WinningInformation`
+
+- **당첨 정보 (당첨 번호, 보너스 번호) 역할**
+- 당첨 번호를 반환하는 기능 `public`
+- 보너스 번호를 반환하는 기능 `public`
+
+#### `FinalGrade`
+
+- **사용자 최종 성적 역할**
+- 총 당첨 상금을 얻어오는 기능 `public`
+- 총 로또 구입 금액을 얻어오는 기능 `public`
+- 당첨된 등수별 횟수를 얻어오는 기능 `public`
+- 당첨된 등수별 횟수를 갱신하는 기능 `private`
+
+#### `Rank` **Enum**
+
+- **등수 관련 상수를 관리하는 역할**
+- 당첨 번호 매칭 개수와 보너스 번호 매칭 여부를 기반으로 등수를 계산하는 기능
+
+### View
+
+#### `OutputView`
+
+- **결과 화면 역할**
+- 발행한 로또 수량 및 번호 화면 출력 기능 `public`
+- 당첨 통계 화면 출력 기능 `public`
+- 발행한 로또 번호를 출력 화면 폼으로 변환하는 기능 `private`
+- 수익률을 금액 쉼표(,) 폼으로 변환하는 기능 `private`
+    - (ex. 100.0%, 1,000.0%, 1,000,000.0%)
+
+#### `InputView`
+
+- **입력 화면 역할**
+- 로또 구입 금액 입력 기능 `public`
+- 당첨 번호 입력 기능 `public`
+- 보너스 번호 입력 기능 `public`
+
+#### `PurchaseAmountValidator`
+
+- **구매 금액 입력을 검증하는 역할**
+- 공백 입력을 검증하는 기능 `private`
+- 입력 가능 최대 길이를 검증하는 기능 `private`
+- 숫자가 아닌 입력을 검증하는 기능 `private`
+- 검증이 실패하면 `IllegalArgument` 예외를 던진다
+
+##
+
+#### `WinningNumberInputValidator`
+
+- **당첨 번호 입력을 검증하는 역할**
+- 공백 입력을 검증하는 기능 `private`
+- 입력 가능 최대 길이를 검증하는 기능 `private`
+- 첫 문자에 콤마 입력을 검증하는 기능 `private`
+- 마지막 문자에 콤마 입력을 검증하는 기능 `private`
+- 콤마로 구분된 문자가 숫자임을 검증 검증하는 기능 `private`
+- 검증이 실패하면 `IllegalArgument` 예외를 던진다
+
+##
+
+#### `BonusNumberInputValidator`
+
+- **보너스 번호 입력을 검증하는 역할**
+- 공백 입력을 검증하는 기능 `private`
+- 입력 가능 최대 길이를 검증하는 기능 `private`
+- 숫자가 아닌 입력을 검증하는 기능 `private`
+- 검증이 실패하면 `IllegalArgument` 예외를 던진다
+
+### DTO
+
+#### `LottoDto`
+
+- **1개 로또에 대한 6개의 번호를 담고 있는 DTO**
+- DTO로 매핑하는 기능 `private`
+
+#### `PurchaseLottoDto`
+
+- **사용자가 구매한 로또를 담고 있는 DTO**
+- 개수를 반환하는 기능 `public`
+- DTO로 매핑하는 기능 `private`
+
+#### `WinningStatisticsDto`
+
+- **당첨 통계를 담고 있는 DTO**
+- 각 등수의 횟수를 반환하는 기능 `public`
+- 수익률을 반환하는 기능 `public`
+- DTO로 매핑하는 기능 `private`
+
+### Configuration
+
+#### `ApplicationConfiguration`
+
+- **게임 로직 환경 설정을 담당하는 역할**
+- 클래스별 의존 관계를 DI 하는 기능
+
+## 🧑‍🎨 게임 프로세스
+
+![img.png](gameprocess.png)
+
+## 🧑‍🎨 예외 처리 시퀀스 다이어그램
+
+![exceptionhandlingsequence.png](docs%2Fexceptionhandlingsequence.png)
+
+- `LottoGameController`에서 예외를 핸들링한다.
+- 세부적으로는 컨트롤러의 각 기능인 `구입금액 세팅`, `당첨번호 세팅`, `보너스 번호 세팅`에서 예외를 잡는다.
+- `IllegalArgument Exception` 인 경우 그 입력을 다시 받는다.
+- Exception 발생에 대한 테스트는 **무한 루프 내에서 요청 중인 View, Domain 계층에 대해 예외 테스트하여 확인한다.**
+
+---
+
 ## 🔍 진행 방식
 
 - 미션은 **기능 요구 사항, 프로그래밍 요구 사항, 과제 진행 요구 사항** 세 가지로 구성되어 있다.
@@ -176,7 +354,7 @@ BUILD SUCCESSFUL in 0s
     - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
 - Java Enum을 적용한다.
 - 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
-    - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다. 
+    - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
     - 단위 테스트 작성이 익숙하지 않다면 `test/java/lotto/LottoTest`를 참고하여 학습한 후 테스트를 구현한다.
 
 ### 라이브러리
@@ -189,7 +367,7 @@ BUILD SUCCESSFUL in 0s
 #### 사용 예시
 
 ```java
-List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+List<Integer> numbers=Randoms.pickUniqueNumbersInRange(1,45,6);
 ```
 
 ### Lotto 클래스

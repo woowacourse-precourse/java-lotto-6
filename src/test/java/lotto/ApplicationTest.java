@@ -213,6 +213,102 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트_당첨번호_문자() {
+        assertSimpleTest(() -> {
+            runException("5000", "1/3/5-14+223445");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨번호_쉼표개수() {
+        assertSimpleTest(() -> {
+            runException("5000", "12,34,1,2,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨번호_빈칸() {
+        assertSimpleTest(() -> {
+            runException("5000", "12,,34,1,2,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨번호_맨앞빈칸() {
+        assertSimpleTest(() -> {
+            runException("5000", ",12,34,1,2,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨번호_맨뒤빈칸() {
+        assertSimpleTest(() -> {
+            runException("5000", "12,34,1,2,5,");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨번호_범위() {
+        assertSimpleTest(() -> {
+            runException("5000", "12,34,1,2,5,431531");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨번호_0() {
+        assertSimpleTest(() -> {
+            runException("5000", "12,34,1,2,5,0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨번호_중복() {
+        assertSimpleTest(() -> {
+            runException("5000", "12,34,1,2,5,12");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스번호_문자() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,3,4,6,5,7", "gh");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스번호_범위작게() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,3,4,6,5,7", "0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스번호_범위크게() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,3,4,6,5,7", "46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스번호_증복() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,3,4,6,5,7", "1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

@@ -20,6 +20,11 @@ public class OutputView {
         });
     }
 
+    public void askLottoNumbers(){
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
     public int getQuantity(User user) {
         return user.getBuyingPrice() / Constants.LOTTO_PRICE;
     }

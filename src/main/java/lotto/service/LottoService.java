@@ -53,4 +53,11 @@ public class LottoService {
         }
         return totalPrize;
     }
+
+    public double calculateRateOfReturn(int purchaseAmount, double totalPrize) {
+        if (purchaseAmount % 1000 != 0) {
+            throw new IllegalArgumentException("구입은 1000 단위로 구입할수 있습니다.");
+        }
+        return totalPrize / purchaseAmount * 100;
+    }
 }

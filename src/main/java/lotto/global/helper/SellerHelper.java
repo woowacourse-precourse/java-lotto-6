@@ -22,6 +22,11 @@ public class SellerHelper {
         return lottos;
     }
 
+    public static Double calculateYieldRate(Integer totalPrize, Integer purchaseAmount) {
+        Double yieldRate = totalPrize.doubleValue() / purchaseAmount * 100;
+        return Util.round(yieldRate, LottoCondition.ROUNDING);
+    }
+
     public static Result compareAndRecord(List<Lotto> lottos, Lotto win, Integer bonusNumber) {
         Result result = new Result();
         lottos.forEach(lotto -> {

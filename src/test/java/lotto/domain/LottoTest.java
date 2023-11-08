@@ -1,5 +1,7 @@
-package lotto;
+package lotto.domain;
 
+import lotto.domain.Lotto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,5 +25,15 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test
+    void 로또_번호를_알_수_있다() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        // when
+        String actual = lotto.getLottoMessage();
+
+        // then
+        Assertions.assertThat(actual).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
 }

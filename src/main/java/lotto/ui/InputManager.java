@@ -15,10 +15,7 @@ public class InputManager {
         while (true) {
             System.out.println("\n구입금액을 입력해 주세요.");
             try {
-                int amount = validatedNumber(readLine());
-                LottoGenerator.from(amount);
-
-                return amount;
+                return validatedNumber(readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -29,10 +26,7 @@ public class InputManager {
         while (true) {
             System.out.println("\n당첨 번호를 입력해 주세요.");
             try {
-                List<Integer> numbers = validatedNumbers(readLine());
-                new Lotto(numbers);
-
-                return numbers;
+                return validatedNumbers(readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -43,10 +37,7 @@ public class InputManager {
         while (true) {
             System.out.println("\n보너스 번호를 입력해 주세요.");
             try {
-                int bonus = validatedNumber(readLine());
-                WinningLotto.of(winningNumbers, bonus);
-
-                return bonus;
+                return validatedNumber(readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

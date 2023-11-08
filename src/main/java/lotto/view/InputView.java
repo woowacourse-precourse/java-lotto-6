@@ -7,7 +7,23 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public static long inputNumberOfLottos() {
+    private static String testInput; // 테스트용 입력값
+
+    public static String inputLine() {
+        if (testInput != null) {
+            String inputData = testInput;
+            testInput = null; // 테스트용 입력값을 사용한 후 초기화
+            return inputData;
+        }
+
+        try {
+            return Console.readLine();
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 잘못 된 값을 입력하였습니다.");
+        }
+    }
+
+    public static long inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         try {
             String input = inputLine();
@@ -25,16 +41,6 @@ public class InputView {
         } catch (Exception e) {
             throw new IllegalArgumentException(e);
         }
-    }
-
-    public static String inputLine() {
-        String inputData;
-        try {
-            inputData = Console.readLine();
-        } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 잘못 된 값을 입력하였습니다.");
-        }
-        return inputData;
     }
 
     private static long parseLongOrThrowError(String input) {
@@ -71,5 +77,9 @@ public class InputView {
         }
 
         winningNumbers.add(number);
+    }
+
+    public static void setInputForTesting(String input) {
+        testInput = input;
     }
 }

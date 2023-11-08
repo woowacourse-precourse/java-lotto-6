@@ -22,6 +22,9 @@ public class Validator {
         return input.contains(" ");
     }
 
+    public static boolean isCommaSeparated(String input) {
+        return input.split(",").length == 6;
+    }
 
     public static boolean isNumeric(String str) {
         return str.chars().allMatch(Character::isDigit);

@@ -52,7 +52,7 @@ public class LottoController {
             try {
                 String inputBonusNumber = inputView.inputBonusNumber();
                 Integer bonusNumber = NumberParser.parse(inputBonusNumber);
-                LottoNumberValidator.validate(bonusNumber);
+                LottoNumberValidator.validateNumber(bonusNumber);
                 winningNumbers.validateDuplicateNumber(bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {

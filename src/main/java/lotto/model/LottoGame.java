@@ -24,16 +24,16 @@ public class LottoGame {
         checkLottoWinningRank(winningNumbers, bonusNumber);
         printRank();
 
-        incomeRate(purchaseAmount);
+        calculateIncomeRate(purchaseAmount);
     }
 
-    private void incomeRate(Integer purchaseAmount) {
-        Double sum = (double) (rankMap.get(Rank.FIRST_PLACE) * 2000000000 + rankMap.get(Rank.SECOND_PLACE) * 30000000 + rankMap.get(Rank.THIRD_PLACE) * 1500000 + rankMap.get(Rank.FOURTH_PLACE) * 50000 + rankMap.get(Rank.FIFTH_PLACE) * 5000);
-        Double per = ((sum - purchaseAmount) / purchaseAmount) * 100.;
-        per = 100 + per;
-        per = Math.round(per * 10) / 10.;
+    private void calculateIncomeRate(Integer purchaseAmount) {
+        Double incomeAmount = (double) (rankMap.get(Rank.FIRST_PLACE) * 2000000000 + rankMap.get(Rank.SECOND_PLACE) * 30000000 + rankMap.get(Rank.THIRD_PLACE) * 1500000 + rankMap.get(Rank.FOURTH_PLACE) * 50000 + rankMap.get(Rank.FIFTH_PLACE) * 5000);
+        Double incomeRate = ((incomeAmount - purchaseAmount) / purchaseAmount) * 100.;
+        incomeRate = 100 + incomeRate;
+        incomeRate = Math.round(incomeRate * 10) / 10.;
 
-        System.out.println("총 수익률은 " + per + "%입니다.");
+        System.out.println("총 수익률은 " + incomeRate + "%입니다.");
     }
 
     private void checkLottoWinningRank(List<Integer> winningNumbers, Integer bonusNumber) {

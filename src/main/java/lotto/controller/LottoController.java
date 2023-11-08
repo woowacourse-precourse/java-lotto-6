@@ -10,6 +10,7 @@ import lotto.domain.WinningLotto;
 import lotto.domain.WinningResult;
 import lotto.service.LottoService;
 import lotto.service.LottoServiceImpl;
+import lotto.view.OutputView;
 
 public class LottoController {
     private Lottos lottos;
@@ -59,5 +60,7 @@ public class LottoController {
 
     private void calculateLotto() {
         WinningResult winningResult = lottoService.calculateWinning(lottos, winningLotto);
+        double rateOfReturn = lottoService.calculateRateOfReturn(winningResult, lottos.getPayment());
+        OutputView.printWinningStatic(winningResult, rateOfReturn);
     }
 }

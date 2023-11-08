@@ -1,11 +1,12 @@
 package lotto.enums;
 
 public enum ViewMessageType {
-    INPUT_PAYMENT("구입금액을 입력해 주세요."),
-    INPUT_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
-    INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
-    OUTPUT_LOTTO_COUNT("%d개를 구매했습니다."),
-    OUTPUT_LOTTO_NUMBERS("[%s]"),
+    INPUT_PAYMENT("구입금액을 입력해 주세요.\n"),
+    INPUT_WINNING_NUMBERS("당첨 번호를 입력해 주세요.\n"),
+    INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요.\n"),
+    INPUT_SEPARATOR(","),
+    OUTPUT_LOTTO_COUNT("%d개를 구매했습니다.\n"),
+    OUTPUT_LOTTO_NUMBERS("[%s]\n"),
     OUTPUT_WINNING_STATISTIC("당첨 통계\n"
             + "---\n"
             + "3개 일치 (5,000원) - %d개\n"

@@ -1,17 +1,25 @@
-package lotto;
-
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
+package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class LottoTest {
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
+import lotto.Application;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+class LottoTest extends NsTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호의 개수가 6개보다 적으면 예외가 발생한다.")
+    @Test
+    void createLottoByUnderSize() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -23,5 +31,9 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Override
+    public void runMain() {
+        Application.main(new String[]{});
+    }
+
 }

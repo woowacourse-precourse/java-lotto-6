@@ -1,0 +1,43 @@
+- feat(output): 수익률 계산 결과 출력 기능 추가
+- feat(calculate): 소수점 둘째 자리에서 반올림
+- refactor(calculate): 계산 로직 오류 수정
+- feat(calculate): 수익률 계산 기능 추가
+- docs(README): 수정사항 반영
+- test(bonus): 보너스 번호 검증 테스트 추가
+- feat(output): 당첨 여부를 통해 당첨 내역 출력
+- feat(bonus): 보너스 번호에서 누락된 검증 로직 추가
+- test(enum): 적절한 등수를 카운트 했는지 검증
+- feat(enum): enum 값의 개수 계산 기능 추가
+- docs(README): 보너스 번호 입력을 별도로 분리
+- feat(bonus): 보너스 번호 중복 검출 로직 추가
+- refactor(utils): 검증 관련 로직 분리
+- feat(check): 로또 당첨 여부 판단
+- docs(README): 변경사항 반영
+- feat(enum): 로또 상금 등수를 나타내는 Enum 추가
+- test(numbers): WinningNumbers 관련 테스트 작성
+- refactor(lotto): lotto 객체 생성 방법 추가
+- feat(winningnumbers): 당첨 번호 입력 기능 추가
+- refactor(amount): 로직 추가에 따른 자료형 변경
+- feat(input): 구매 금액이 숫자인지 검증
+- feat(output): 발행된 로또 번호 수량 및 번호 출력
+- feat(lotto): 생성된 로또 번호 정렬
+- test(lotto): 적절한 개수의 로또가 생성되는지 확인
+- feat(lotto): 랜덤한 로또 획득 기능 추가
+- test(count): LottoCount 클래스 테스트 추가
+- feat(count): 로또의 개수를 가지는 도메인 생성
+- feat(input): 구매금액이 잘못된 경우 재입력을 받음
+- refactor(lotto): 클래스 이름 및 위치 수정
+- test(amount): 구매금액 관련 테스트 코드 추가
+- refactor(amount): 예외 메시지에 예외 정보 추가
+- refactor(amount): 매직 넘버 상수로 변경
+- refactor(amount): 구매금액 관련 로직 분리
+- feat(validate): 입력이 1000이상의 수 인지 검증
+- feat(lotto): 자동 로또 생성 기능 추가
+- feat(input): 발행 로또 개수 획득기능 추가
+- test(input): 구매금액 예외처리 테스트 추가
+- docs(README): 일부 표현 수정
+- feat(validate): 입력 금액이 1000의 배수인지 검증
+- feat(input): 구입 금액을 입력받는 기능 추가
+- docs(README): 예외 처리 기능 분리
+- docs(README): 구현 기능 목록 추가
+- feat: setup precourse lotto project

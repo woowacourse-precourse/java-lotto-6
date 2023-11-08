@@ -23,10 +23,9 @@ public class Lotto {
     }
 
     public int calculateWinNumber(LottoNumber lottoNumber) {
-        int winCount = (int) numbers.stream()
+        return (int) numbers.stream()
                 .map(lottoNumber::calculateScore)
                 .filter(result -> result)
                 .count();
-        return winCount;
     }
 }

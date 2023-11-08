@@ -26,8 +26,10 @@ public class LottoController {
         RandomLottos randomLottos = getRandomLottos(lottoAmountofMoney);
         Lotto answerLotto = controlAnswerLotto();
         BonusNumber bonusNumber = controlBonusNumber();
+
         LottoChecker lottoChecker = new LottoChecker(randomLottos, answerLotto, bonusNumber);
         HashMap<String, Integer> winningStatics = getWinningStatics(lottoChecker);
+
         WinningReward winningRewardChecker = new WinningReward();
         Double winningReward = getWinningReward(winningStatics, lottoAmountofMoney.getLottoAmountofMoney(),
                 winningRewardChecker);
@@ -39,7 +41,7 @@ public class LottoController {
                 LottoAmountofMoney lottoAmountofMoney = new LottoAmountofMoney(getLottoAmountofMoney());
                 return lottoAmountofMoney;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                displayOutput.outputExceptionMessage(e);
             }
         }
     }
@@ -49,7 +51,7 @@ public class LottoController {
                 Lotto answerLotto = new Lotto(getAnswerLottoNumber());
                 return answerLotto;
             }catch(IllegalArgumentException e){
-                System.out.println(e.getMessage());
+                displayOutput.outputExceptionMessage(e);
             }
         }
     }
@@ -59,7 +61,7 @@ public class LottoController {
                 BonusNumber bonusNumber = new BonusNumber(getBonusNumber());
                 return bonusNumber;
             }catch(IllegalArgumentException e){
-                System.out.println(e.getMessage());
+                displayOutput.outputExceptionMessage(e);
             }
         }
     }

@@ -24,4 +24,8 @@ public class LottoController {
         return lottoService.lottoScore(results, lottos, bonusNumber);
     }
 
+    public Double rateReturn(LottoScore lottoScore, int money){
+        return lottoService.rateReturn(lottoScore,money);
+    }
+
 }

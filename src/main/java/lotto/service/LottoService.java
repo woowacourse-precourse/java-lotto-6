@@ -76,4 +76,12 @@ public class LottoService {
         }
     }
 
+    public Double rateReturn(LottoScore lottoScore, int money){
+        int totalWinnings = (lottoScore.getCorrect3() * 5000) + (lottoScore.getCorrect4() * 50000)
+                + (lottoScore.getCorrect5() * 1500000) + (lottoScore.getCorrect5Bonus() * 30000000)
+                + (lottoScore.getCorrect6() * 2000000000);
+
+        return ((double) totalWinnings - money) / money;
+    }
+
 }

@@ -30,6 +30,7 @@ public class View {
         System.out.println("---");
         LottoScore lottoScore = lottoController.lottoScore(results, lottoGenerate, bonus);
         scoreView(lottoScore);
+        rateReturnView(lottoScore, money);
 
     }
 
@@ -48,6 +49,11 @@ public class View {
         System.out.println("5개 일치 (1,500,000원): " + lottoScore.getCorrect5() + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원): " + lottoScore.getCorrect5Bonus() + "개");
         System.out.println("6개 일치 (2,000,000,000원): " + lottoScore.getCorrect6() + "개");
+    }
+
+    public void rateReturnView(LottoScore lottoScore,int money){
+        double percent = lottoController.rateReturn(lottoScore,money);
+        System.out.println( "총 수익률은 "+percent+"%입니다.");
     }
 
 }

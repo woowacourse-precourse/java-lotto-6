@@ -4,6 +4,7 @@ import static lotto.io.ErrorHandler.*;
 
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,8 @@ public class Play {
         System.out.println("보너스 번호를 입력해 주세요.");
         jackpotNumber.append(",");
         jackpotNumber.append(Console.readLine());
-        checkJackpotNumber(jackpotNumber.toString());
+        List<Integer> jackpotInts = checkJackpotNumber(jackpotNumber.toString());
+
     }
 
     public int giveNumberOfTicket(String boughtAmount) {
@@ -36,7 +38,7 @@ public class Play {
         return giveNumberOfTicket(boughtAmount);
     }
 
-    public void checkJackpotNumber(String jackpotString) {
+    public List<Integer> checkJackpotNumber(String jackpotString) {
         List<String> jackpotStrings = List.of(jackpotString.replaceAll("\\s+", "").split(","));
         checkSize(jackpotStrings);
         for (String number : jackpotStrings) {
@@ -48,5 +50,34 @@ public class Play {
                 .collect(Collectors.toList());
         validateRange(jackpotInts);
         validateRepeat(jackpotInts);
+        return jackpotInts;
+    }
+
+
+    public List<Integer> compare(List<Integer> jackpotInts, List<Integer> nums) {
+        int matched = 0;
+        int bonusMatched = 0;
+        for (Integer num : nums.subList(0, nums.size() - 1)) {
+            if (jackpotInts.subList(0, jackpotInts.size() - 1).contains(num)) {
+                matched++;
+            }
+        }
+        if (jackpotInts.get(6).equals(nums.get(6))) {
+            bonusMatched++;
+        }
+        int finalMatched = matched;
+        int finalBonusMatched = bonusMatched;
+        List<Integer> matchedResults = new ArrayList<>() {
+            {
+                add(finalMatched);
+                add(finalBonusMatched);
+            }
+        };
+        return matchedResults;
+    }
+
+    // 여기서 enum  써야 할 듯
+    public void givePrize() {
+
     }
 }

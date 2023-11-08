@@ -5,9 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import lotto.WinningDetails;
-import lotto.Calculate;
-
 public class Printing {
     private final List<Lotto> lottos;
     private final static String END = "당첨 통계\n---";

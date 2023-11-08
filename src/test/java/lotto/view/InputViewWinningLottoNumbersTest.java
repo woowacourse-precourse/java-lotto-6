@@ -19,10 +19,10 @@ class InputViewWinningLottoNumbersTest {
         System.setIn(in);
     }
 
-    @DisplayName("InputWinningNumbers이 정상적인 값이 입력되는 경우 그대로 입력되는지 확인")
+    @DisplayName("정상적인 값 입력")
     @Test
     void testInputWinningNumbersNumber() {
-        String expectedWinningNumbers = "1,2,3,4";
+        String expectedWinningNumbers = "1,2,3,4,5,7";
         setUp(expectedWinningNumbers);
 
         String testResult = inputView.InputWinningNumbers();
@@ -30,7 +30,7 @@ class InputViewWinningLottoNumbersTest {
                 .isEqualTo(expectedWinningNumbers);
     }
 
-    @DisplayName("InputWinningNumbers에서 숫자를 넣지 않았을 경우 예외출력 확인")
+    @DisplayName("숫자를 넣지 않았을 때")
     @Test
     void testInputWinningNumbersNotNumber(){
         String expectedWinningNumbers = "1,2,3,aaa";
@@ -41,7 +41,7 @@ class InputViewWinningLottoNumbersTest {
                 .hasMessage(WinningCombinationInputErrorMessage.INCORRECT_FORMET_WINNING_NUMBERS.getMessage());
     }
 
-    @DisplayName("InputWinningNumbers에서 아무것도 입력하지 않았을 때 예외 출력")
+    @DisplayName("아무것도 입력하지 않았을 때")
     @Test
     void testInputWinningNumbersEmpty() {
         String expectedWinningNumbers = "\n";
@@ -52,11 +52,55 @@ class InputViewWinningLottoNumbersTest {
                 .hasMessage(WinningCombinationInputErrorMessage.INCORRECT_FORMET_WINNING_NUMBERS.getMessage());
     }
 
-    @DisplayName("InputWinningNumbers에 소수를 적었을 때 예외 출력")
+    @DisplayName("소수를 적었을 때")
     @Test
     void testInputWinningNumbersDouble() {
         String expectedWinningNumbers = "10000.11";
-        setUp("1000.11");
+        setUp(expectedWinningNumbers);
+
+        assertThatThrownBy(inputView::InputWinningNumbers)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(WinningCombinationInputErrorMessage.INCORRECT_FORMET_WINNING_NUMBERS.getMessage());
+    }
+
+    @DisplayName("콤마 입력 형식이 잘못되었을 때")
+    @Test
+    void wrongSyntexInputWinningNumbers1() {
+        String expectedWinningNumbers = ",1,2,3,4,5,6";
+        setUp(expectedWinningNumbers);
+
+        assertThatThrownBy(inputView::InputWinningNumbers)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(WinningCombinationInputErrorMessage.INCORRECT_FORMET_WINNING_NUMBERS.getMessage());
+    }
+
+    @DisplayName("콤마 입력 형식이 잘못되었을 때")
+    @Test
+    void wrongSyntexInputWinningNumbers2() {
+        String expectedWinningNumbers = "1,2,3,4,5,6,";
+        setUp(expectedWinningNumbers);
+
+        assertThatThrownBy(inputView::InputWinningNumbers)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(WinningCombinationInputErrorMessage.INCORRECT_FORMET_WINNING_NUMBERS.getMessage());
+    }
+
+    @DisplayName("콤마 입력 형식이 잘못되었을 때")
+    @Test
+    void wrongSyntexInputWinningNumbers3() {
+        String expectedWinningNumbers = "1,2,3,,4,5,6,";
+        setUp(expectedWinningNumbers);
+
+        assertThatThrownBy(inputView::InputWinningNumbers)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(WinningCombinationInputErrorMessage.INCORRECT_FORMET_WINNING_NUMBERS.getMessage());
+    }
+
+    @DisplayName("콤마 입력 형식이 잘못되었을 때")
+    @Test
+    void wrongSyntexInputWinningNumbers4() {
+        String expectedWinningNumbers = "1,2,3,,,,,,,4,5,6,";
+        setUp(expectedWinningNumbers);
 
         assertThatThrownBy(inputView::InputWinningNumbers)
                 .isInstanceOf(IllegalArgumentException.class)

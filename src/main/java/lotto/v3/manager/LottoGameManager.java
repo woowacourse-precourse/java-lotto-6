@@ -1,4 +1,4 @@
-package lotto.v3.managers;
+package lotto.v3.manager;
 
 public class LottoGameManager {
 

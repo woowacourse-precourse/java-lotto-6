@@ -40,7 +40,7 @@ public enum Prize {
         return findPrizeForRegularMatch(match);
     }
 
-    public static Prize findPrizeForRegularMatch(int match) {
+    private static Prize findPrizeForRegularMatch(int match) {
         for (Prize prize : Prize.values()) {
             if (isMatchCountEqual(prize, match)) {
                 return prize;
@@ -49,11 +49,11 @@ public enum Prize {
         return NONE;
     }
 
-    public static boolean isMatchCountEqual(Prize prize, int matches) {
+    private static boolean isMatchCountEqual(Prize prize, int matches) {
         return prize.matches == matches;
     }
 
-    public static Prize BonusOrNot(boolean hasBonus) {
+    private static Prize BonusOrNot(boolean hasBonus) {
         if (hasBonus) {
             return FIVE_BONUS_MATCH;
         }

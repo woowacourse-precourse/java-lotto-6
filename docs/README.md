@@ -51,3 +51,6 @@
     * [x] : 당첨 통계 멘트를 출력한다.
     * [x] : 당첨된 로또 갯수를 출력한다.
     * [x] : 총 수익률을 반환한다.
+
+* `LottoController`
+    * [x] : LottoService 와 model 그리고 view 의 협력을 관리한다.

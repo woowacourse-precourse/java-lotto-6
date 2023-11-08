@@ -11,9 +11,9 @@ public class LottoBundleDto {
     private LottoBundleDto() {
     }
 
-    public static LottoBundleDto valueOf(LottoBundle lottoBundle) {
+    public static LottoBundleDto valueOf(List<List<Integer>> lottoBundle) {
         LottoBundleDto lottoBundleDto = new LottoBundleDto();
-        lottoBundleDto.lotteries = lottoBundle.getLotteries().stream().map(Lotto::getNumbers).toList();
+        lottoBundleDto.lotteries = lottoBundle;
         return lottoBundleDto;
     }
 

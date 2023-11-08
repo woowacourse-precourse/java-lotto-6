@@ -26,7 +26,8 @@ public class InputValidator {
 
     public static boolean isNumber(String input) {
         if (input.contains(LOTTO_NUMBER_DELIMITER)) {
-            input = input.replace(LOTTO_NUMBER_DELIMITER, "");
+            input = input.replaceAll("\\s*,\\s*", "");
+            System.out.println(input);
         }
         for (char c : input.toCharArray()) {
             if (!Character.isDigit(c)) {
@@ -51,6 +52,9 @@ public class InputValidator {
         }
         List<String> numbers = List.of(input.split(LOTTO_NUMBER_DELIMITER));
         for (String number : numbers) {
+            if(number == ""){
+                throw new IllegalArgumentException(ERROR_MESSAGE + NOT_ENTER_VALUE_BETWEEN_DELIMITER);
+            }
             if (Integer.parseInt(number) < LOTTO_MIN_NUMBER || Integer.parseInt(number) > LOTTO_MAX_NUMBER) {
                 throw new IllegalArgumentException(ERROR_MESSAGE + NOT_A_VALID_RANGE_NUMBER_ERROR);
             }

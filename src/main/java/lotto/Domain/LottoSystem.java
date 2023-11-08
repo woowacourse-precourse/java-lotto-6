@@ -19,7 +19,9 @@ public class LottoSystem {
 
     public void storeLottoWinningNumber(String lottoWinningNumber){
         lottoWinningNumber = lottoWinningNumber.replaceAll("\\s*,\\s*", ",");
+        System.out.println(lottoWinningNumber);
         if (isValidRangeNumber(lottoWinningNumber)) {
+            isValidRangeNumber(lottoWinningNumber);
             checkCommaDelimiter(lottoWinningNumber);
             checkSixNumber(lottoWinningNumber);
             checkDistinctNumbers(lottoWinningNumber);

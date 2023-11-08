@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.views.UserInput.readPurchasePrice;
+import static lotto.views.UserInput.readWinningNumber;
 import static lotto.views.UserOutput.askPurchasePrice;
 import static lotto.views.UserOutput.askWinningNumber;
 import static lotto.views.UserOutput.printNumberOfLottoPurchases;
@@ -23,5 +24,6 @@ public class Application {
         printPurchaseLottoInfo(lottos);
 
         askWinningNumber();
+        List<Integer> winningNumbers = readWinningNumber();
     }
 }

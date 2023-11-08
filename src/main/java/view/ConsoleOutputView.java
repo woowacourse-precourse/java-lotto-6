@@ -10,6 +10,7 @@ public class ConsoleOutputView implements OutputView {
     private static final String REQUEST_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String PRINT_LOTTO_TICKETS_SIZE = "개를 구매했습니다.";
     private static final String PRINT_LOTTO_NUMBERS = "[%s]%n";
+    private static final String REQUEST_LOTTO_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
 
     @Override
     public void requestPurchaseAmount() {
@@ -30,5 +31,10 @@ public class ConsoleOutputView implements OutputView {
                 .map(Object::toString)
                 .collect(Collectors.joining(", "));
         System.out.printf(PRINT_LOTTO_NUMBERS, numbersJoinComma);
+    }
+
+    @Override
+    public void requestLottoWinningNumbers() {
+        System.out.println(REQUEST_LOTTO_WINNING_NUMBERS);
     }
 }

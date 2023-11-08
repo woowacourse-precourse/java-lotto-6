@@ -8,7 +8,7 @@ import lotto.model.LottoSeller;
 import lotto.model.Lottos;
 import lotto.model.Money;
 import lotto.model.PurchasingMoney;
-import lotto.model.WinnigLotto;
+import lotto.model.WinningLotto;
 import lotto.model.WinningNumbers;
 import lotto.model.dto.LottoPaper;
 import lotto.model.dto.LottoResult;
@@ -35,19 +35,19 @@ public class LottoController {
 
         ouputView.printPublishedLottos(lottoPapers);
 
-        final WinnigLotto winnigLotto = pickWinningLotto();
-        final LottoResult lottoResult = lottoBuyer.createLottoResult(winnigLotto);
+        final WinningLotto winningLotto = pickWinningLotto();
+        final LottoResult lottoResult = lottoBuyer.createLottoResult(winningLotto);
 
         ouputView.printLottoResult(lottoResult);
     }
 
-    private WinnigLotto pickWinningLotto() {
+    private WinningLotto pickWinningLotto() {
         final WinningNumbers winningNumbers = inputNumbers();
-        final Integer bonusNubmer = inputBonusNubmer(winningNumbers);
-        return new WinnigLotto(winningNumbers, bonusNubmer);
+        final Integer bonusNumber = inputBonusNumber(winningNumbers);
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    private Integer inputBonusNubmer(WinningNumbers winningNumbers) {
+    private Integer inputBonusNumber(WinningNumbers winningNumbers) {
         while (true) {
             try {
                 String inputBonusNumber = inputView.inputBonusNumber();

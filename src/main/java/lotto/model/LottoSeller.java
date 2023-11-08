@@ -5,7 +5,7 @@ public class LottoSeller {
     private final LottosGenerator lottosGenerator = new LottosGenerator();
 
     public Lottos sell(Money purchasingMoney) {
-        int countLottos = lottoSellingPolicy.calcuateLottoCount(purchasingMoney);
+        int countLottos = lottoSellingPolicy.calculateLottoCount(purchasingMoney);
         return lottosGenerator.generate(countLottos);
     }
 }

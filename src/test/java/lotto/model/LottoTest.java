@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -31,9 +30,9 @@ class LottoTest {
         Lotto lotto = new Lotto(numbers);
         WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers(List.of(1, 3, 7, 8, 9, 11));
         Integer bonusNumber = 18;
-        WinnigLotto winnigLotto = new WinnigLotto(winningNumbers, bonusNumber);
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
-        Optional<LottoPlace> lottoPlace = lotto.calculateLottoPlace(winnigLotto);
+        Optional<LottoPlace> lottoPlace = lotto.calculateLottoPlace(winningLotto);
 
         assertThat(lottoPlace).containsSame(LottoPlace.valueOf(expected));
     }

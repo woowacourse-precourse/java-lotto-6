@@ -18,13 +18,6 @@ public class Money {
         this.amount = amount;
     }
 
-    private void validate(String amount) {
-        CommonValidator.validateEmptyString(amount);
-        if (!amount.matches(MONEY_REGEX)) {
-            throw new IllegalArgumentException("잘못된 금액입니다.");
-        }
-    }
-
     public static Money getZeroMoney() {
         return new Money(BigDecimal.ZERO);
     }
@@ -32,6 +25,13 @@ public class Money {
     public static Money sum(Money money1, Money money2) {
         BigDecimal sum = money1.amount.add(money2.amount);
         return new Money(sum);
+    }
+
+    private void validate(String amount) {
+        CommonValidator.validateEmptyString(amount);
+        if (!amount.matches(MONEY_REGEX)) {
+            throw new IllegalArgumentException("잘못된 금액입니다.");
+        }
     }
 
     public BigDecimal getAmount() {

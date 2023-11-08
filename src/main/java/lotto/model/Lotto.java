@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.List;
 import java.util.Optional;
-import lotto.constant.LottoConstant;
 import lotto.utils.LottoNumberValidator;
 
 public class Lotto {
@@ -24,11 +23,11 @@ public class Lotto {
                 .toList();
     }
 
-    public Optional<LottoPlace> calculateLottoPlace(WinnigLotto winnigLotto) {
+    public Optional<LottoPlace> calculateLottoPlace(WinningLotto winningLotto) {
         LottoStatus judgeStatus = LottoStatus.createEmptyStatus();
 
         for (Integer number : numbers) {
-            NumberStatus numberStatus = winnigLotto.judgeNumber(number);
+            NumberStatus numberStatus = winningLotto.judgeNumber(number);
             judgeStatus.update(numberStatus);
         }
         return LottoPlace.judgeLottoPlace(judgeStatus);

@@ -21,12 +21,12 @@ public class WinningResult {
         return this.lottoPlaces
                 .keySet()
                 .stream()
-                .map(this::calcuateRevenue)
+                .map(this::calculateRevenue)
                 .reduce(Money::sum)
                 .orElse(Money.getZeroMoney());
     }
 
-    private Money calcuateRevenue(LottoPlace lottoPlace) {
+    private Money calculateRevenue(LottoPlace lottoPlace) {
         Integer count = getCount(lottoPlace);
         Money prizeAmount = lottoPlace.getPrizeAmount();
         return prizeAmount.multiply(count);

@@ -34,12 +34,12 @@ public class OuputView {
 
     private void printLottoNumbers(List<LottoPaper> lottoPapers) {
         for (LottoPaper lottoPaper : lottoPapers) {
-            System.out.println(foramtLottoNumbers(lottoPaper));
+            System.out.println(formatLottoNumbers(lottoPaper));
         }
         printEmptyLine();
     }
 
-    private String foramtLottoNumbers(LottoPaper lottoPaper) {
+    private String formatLottoNumbers(LottoPaper lottoPaper) {
         return "[" + concatNumbers(lottoPaper) + "]";
     }
 
@@ -59,7 +59,7 @@ public class OuputView {
     public void printLottoResult(LottoResult lottoResult) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        printWinningResult(lottoResult.getWinngResult());
+        printWinningResult(lottoResult.getWinningResult());
         printMarginRate(lottoResult.getMarginRate());
     }
 
@@ -77,7 +77,7 @@ public class OuputView {
 
         String detail = lottoStatus.getCorrectNumber()
                 + "개 일치"
-                + ifBounusRequired(lottoStatus.isBonusNumberCorrect())
+                + ifBonusRequired(lottoStatus.isBonusNumberCorrect())
                 + " ("
                 + formatDecimal(prize.getAmount())
                 + "원)"
@@ -88,7 +88,7 @@ public class OuputView {
         System.out.println(detail);
     }
 
-    private String ifBounusRequired(boolean isBonusNumberCorrect) {
+    private String ifBonusRequired(boolean isBonusNumberCorrect) {
         if (isBonusNumberCorrect) {
             return ", 보너스 볼 일치";
         }

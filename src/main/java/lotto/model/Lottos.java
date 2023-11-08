@@ -18,10 +18,10 @@ public class Lottos {
                 .toList();
     }
 
-    public WinningResult createWinningResult(WinnigLotto winnigLotto) {
+    public WinningResult createWinningResult(WinningLotto winningLotto) {
         WinningResult winningResult = new WinningResult();
         for (Lotto lotto : lottos) {
-            lotto.calculateLottoPlace(winnigLotto)
+            lotto.calculateLottoPlace(winningLotto)
                     .ifPresent(winningResult::plusLottoPlace);
         }
         return winningResult;

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class LottosGenerator {
-    private final RandomNumberGeneratePolicy radomNumbersGeneratePolicy = new RandomNumberGeneratePolicy();
+    private final RandomNumberGeneratePolicy randomNumbersGeneratePolicy = new RandomNumberGeneratePolicy();
 
     public Lottos generate(int lottoCount) {
         List<Lotto> generatedLottos = IntStream.range(0, lottoCount)
@@ -14,7 +14,7 @@ public class LottosGenerator {
     }
 
     private Lotto makeLotto() {
-        List<Integer> generateedRandomNumbers = radomNumbersGeneratePolicy.generate();
-        return new Lotto(generateedRandomNumbers);
+        List<Integer> generatedRandomNumbers = randomNumbersGeneratePolicy.generate();
+        return new Lotto(generatedRandomNumbers);
     }
 }

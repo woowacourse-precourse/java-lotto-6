@@ -14,7 +14,7 @@ class LottoSellingPolicyTest {
     @CsvSource(value = {"1000,1", "10000,10", "15000,15"})
     void calcuateLottoCount(String money, int expectCountLotto) {
         Money inputMoney = new Money(money);
-        int countLotto = lottoSellingPolicy.calcuateLottoCount(inputMoney);
+        int countLotto = lottoSellingPolicy.calculateLottoCount(inputMoney);
 
         assertThat(countLotto).isEqualTo(expectCountLotto);
     }

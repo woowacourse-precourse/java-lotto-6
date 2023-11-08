@@ -10,15 +10,12 @@ public class Application {
 
             Lottos lottos = buyLottos(price);
 
-            List<Integer> winningNumbers = getWinningNumbers();
-            int bonusNumber = getBonusNumber();
-            WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+            WinningLotto winningLotto = drawWinnerLotto();
 
             OutputConsole.printResult(lottos, winningLotto);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     public static int getPrice() {
@@ -40,6 +37,12 @@ public class Application {
         Lottos lottos = new Lottos(price);
         OutputConsole.print(lottos);
         return lottos;
+    }
+
+    public static WinningLotto drawWinnerLotto() {
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber();
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 
 }

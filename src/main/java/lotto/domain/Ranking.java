@@ -12,7 +12,7 @@ public enum Ranking {
     private final int matchedCount;
     private final int price;
 
-    Ranking(int idx, int matchedCount,int price) {
+    Ranking(int idx, int matchedCount, int price) {
         this.idx = idx;
         this.matchedCount = matchedCount;
         this.price = price;

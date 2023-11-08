@@ -1,15 +1,13 @@
 package lotto.domain;
 
-import lotto.domain.Lotto;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.List;
 import lotto.util.GenerateLottoNumbersSuccessTest;
 import lotto.util.RandomUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -36,6 +34,6 @@ class LottoTest {
         Lotto lottoNumbers = new Lotto(randomUtils);
 
         //then
-        assertThat(lottoNumbers.getNumbers()).isEqualTo(List.of(1,3,5,7,9,11));
+        assertThat(lottoNumbers.getNumbers()).isEqualTo(List.of(1, 3, 5, 7, 9, 11));
     }
 }

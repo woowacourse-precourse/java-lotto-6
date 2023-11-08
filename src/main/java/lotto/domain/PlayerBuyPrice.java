@@ -25,7 +25,7 @@ public record PlayerBuyPrice(String amount) {
 
     private void validateCharacterFromAmount(String input) {
         for (int idx = 0; idx < input.length(); idx++) {
-            if (!Character.isDigit(input.charAt(idx))){
+            if (!Character.isDigit(input.charAt(idx))) {
                 throw new IllegalArgumentException(INVALID_AMOUNT_FORMAT.getMessage());
             }
         }
@@ -33,14 +33,14 @@ public record PlayerBuyPrice(String amount) {
 
     private void validateRangeFromAmount(String input) {
         int buyAmount = Integer.parseInt(input);
-        if (buyAmount < MIN_AMOUNT || buyAmount > MAX_AMOUNT){
+        if (buyAmount < MIN_AMOUNT || buyAmount > MAX_AMOUNT) {
             throw new IllegalArgumentException(INVALID_AMOUNT_RANGE.getMessage());
         }
     }
 
     private void validateUnitFromAmount(String input) {
         int buyAmount = Integer.parseInt(input);
-        if (buyAmount % 1_000 != 0){
+        if (buyAmount % 1_000 != 0) {
             throw new IllegalArgumentException(INVALID_AMOUNT_UNIT.getMessage());
         }
     }

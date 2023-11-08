@@ -3,10 +3,10 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBall;
+import lotto.domain.LottoDrawingMachine;
 import lotto.domain.Player;
 import lotto.service.LottoCalculateService;
 import lotto.util.LottoAgency;
-import lotto.domain.LottoDrawingMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -46,18 +46,18 @@ public class LottoGameController {
     private Lotto createLotto() {
         List<String> lottoBallList = InputView.inputWiningLottoNumbers();
 
-        try{
+        try {
             return LottoDrawingMachine.LottoDrawingMachine(lottoBallList);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             OutputView.printException(e);
             return createLotto();
         }
     }
 
-    private LottoBall createBonusBall(){
-        try{
+    private LottoBall createBonusBall() {
+        try {
             return new LottoBall(InputView.inputWiningBonusLottoNumber());
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             OutputView.printException(e);
             return createBonusBall();
         }

@@ -21,7 +21,7 @@ public class Player {
         return Integer.parseInt(playerBuyPrice.amount());
     }
 
-    public int getPlayerTicketQuantity(){
+    public int getPlayerTicketQuantity() {
         return Integer.parseInt(playerBuyPrice.amount()) / AMOUNT_UNIT;
     }
 

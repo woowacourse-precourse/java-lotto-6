@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -24,7 +23,7 @@ class LottoBallTest {
 
     @DisplayName("validateCharacterFromLottoBall() : 로또 볼에 문자가 들어가는 경우")
     @ParameterizedTest
-    @ValueSource(strings = {" ","q1","1e3"})
+    @ValueSource(strings = {" ", "q1", "1e3"})
     void validateCharacterFromLottoBall_Fail(String amount) throws Exception {
         //given
         String exceptionMessage = "[ERROR] 로또 공에는 숫자만 입력 가능합니다.";
@@ -37,7 +36,7 @@ class LottoBallTest {
 
     @DisplayName("validateRangeFromLottoBall() : 로또 볼이 1미만 45이상의 수인 경우")
     @ParameterizedTest
-    @ValueSource(strings = {"0","46"})
+    @ValueSource(strings = {"0", "46"})
     void validateRangeFromAmount_Fail(String amount) throws Exception {
         //given
         String exceptionMessage = "[ERROR] 로또 공은 1~45 사이의 숫자만 입력해주세요.";

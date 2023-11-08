@@ -1,20 +1,16 @@
 package lotto.service;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBall;
 import lotto.domain.LottoDrawingMachine;
 import lotto.domain.Player;
-import lotto.service.LottoCalculateService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoCalculateServiceTest {
 
@@ -50,7 +46,7 @@ class LottoCalculateServiceTest {
 
     @DisplayName("isNumberMatchedNormal() : 보너스 볼 검증이 필요없는 매칭 테스트")
     @ParameterizedTest
-    @CsvSource({"3,true","4,true","6,true","2,false"})
+    @CsvSource({"3,true", "4,true", "6,true", "2,false"})
     void isNumberMatchedNormal_test(int countContainsOfLotto, boolean result) {
         //given // when
         boolean expectedResult = lottoCalculateService.isNumberMatchedNormal(countContainsOfLotto);
@@ -71,7 +67,8 @@ class LottoCalculateServiceTest {
         LottoDrawingMachine lottoDrawingMachine = new LottoDrawingMachine(winningBalls, lottoBall);
 
         // when
-        boolean expectedResult = lottoCalculateService.isNumberMatchedFiveWithBonus(countContainsOfLotto, playerNumbers, lottoDrawingMachine);
+        boolean expectedResult = lottoCalculateService.isNumberMatchedFiveWithBonus(countContainsOfLotto, playerNumbers,
+                lottoDrawingMachine);
 
         // then
         assertThat(expectedResult).isEqualTo(result);
@@ -86,7 +83,6 @@ class LottoCalculateServiceTest {
         Lotto winningBalls = new Lotto(List.of(1, 2, 3, 4, 5, 8));
         LottoBall lottoBall = new LottoBall("10");
         LottoDrawingMachine lottoDrawingMachine = new LottoDrawingMachine(winningBalls, lottoBall);
-
 
         // when
         boolean result = lottoCalculateService.isNumberMatchedFive(countContainsOfLotto, numbers, lottoDrawingMachine);

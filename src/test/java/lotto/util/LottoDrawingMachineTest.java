@@ -13,7 +13,7 @@ class LottoDrawingMachineTest {
 
     @DisplayName("validateDuplicationNumbers() : 당첨 번호와 중복으로 사용될 수 없다.")
     @Test
-    void validateDuplicationNumbers_Fail() throws Exception{
+    void validateDuplicationNumbers_Fail() throws Exception {
         //given
         String exceptionMessage = "[ERROR] 보너스 번호는 당첨 번호와 중복으로 사용할 수 없습니다.";
         Lotto lottoNumber = new Lotto(List.of(1, 2, 3, 4, 5, 6));

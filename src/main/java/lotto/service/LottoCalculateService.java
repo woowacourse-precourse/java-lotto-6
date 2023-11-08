@@ -1,4 +1,5 @@
 package lotto.service;
+
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +29,7 @@ public class LottoCalculateService {
                 .forEach(userLotto -> countLottoWinning(player, userLotto.getNumbers(), lotto));
     }
 
-    private void countLottoWinning(Player player, List<Integer> numbers,  LottoDrawingMachine lotto) {
+    private void countLottoWinning(Player player, List<Integer> numbers, LottoDrawingMachine lotto) {
         int countContainsOfLottoWithoutBonus = countPlayerNumbersContainLotto(numbers, lotto.getLotto().getNumbers());
         if (isNumberMatchedNormal(countContainsOfLottoWithoutBonus)) {
             winLotto(countContainsOfLottoWithoutBonus, player);
@@ -72,8 +73,10 @@ public class LottoCalculateService {
         return false;
     }
 
-    public boolean isNumberMatchedFiveWithBonus(int countContainsOfLotto, List<Integer> numbers, LottoDrawingMachine lotto) {
-        if (countContainsOfLotto == Ranking.THIRD.getMatchedCount() && numbers.contains(lotto.getLottoBonusBall().toInt())) {
+    public boolean isNumberMatchedFiveWithBonus(int countContainsOfLotto, List<Integer> numbers,
+                                                LottoDrawingMachine lotto) {
+        if (countContainsOfLotto == Ranking.THIRD.getMatchedCount() && numbers.contains(
+                lotto.getLottoBonusBall().toInt())) {
 
             return true;
         }
@@ -81,7 +84,8 @@ public class LottoCalculateService {
     }
 
     public boolean isNumberMatchedFive(int countContainsOfLotto, List<Integer> numbers, LottoDrawingMachine lotto) {
-        if (countContainsOfLotto == Ranking.THIRD.getMatchedCount() && !numbers.contains(lotto.getLottoBonusBall().toInt())) {
+        if (countContainsOfLotto == Ranking.THIRD.getMatchedCount() && !numbers.contains(
+                lotto.getLottoBonusBall().toInt())) {
             return true;
         }
         return false;

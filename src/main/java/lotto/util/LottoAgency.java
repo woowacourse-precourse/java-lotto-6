@@ -9,7 +9,7 @@ public class LottoAgency {
 
     private static final RandomUtils randomUtils = new GenerateRandomLottoNumbers();
 
-    public static LottoTicket createAutoTicket(int quantity){
+    public static LottoTicket createAutoTicket(int quantity) {
         return new LottoTicket(
                 IntStream.range(0, quantity)
                         .mapToObj(i -> new Lotto(randomUtils))

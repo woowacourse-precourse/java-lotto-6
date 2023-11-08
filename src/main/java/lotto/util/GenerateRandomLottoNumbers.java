@@ -13,8 +13,8 @@ public class GenerateRandomLottoNumbers implements RandomUtils {
     @Override
     public List<Integer> generateRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(MIN_RANDOM_LOTTO_NUMBER,
-                MAX_RANDOM_LOTTO_NUMBER,
-                LOTTO_NUMBER_COUNT).stream()
+                        MAX_RANDOM_LOTTO_NUMBER,
+                        LOTTO_NUMBER_COUNT).stream()
                 .sorted()
                 .collect(Collectors.toList());
     }

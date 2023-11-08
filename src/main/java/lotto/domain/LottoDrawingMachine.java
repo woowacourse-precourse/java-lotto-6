@@ -30,7 +30,7 @@ public class LottoDrawingMachine {
                 .collect(Collectors.toList()));
     }
 
-    private static LottoBall makeBall(final String lottoBall){
+    private static LottoBall makeBall(final String lottoBall) {
         return new LottoBall(lottoBall);
     }
 

@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.message.ErrorMessage;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -47,11 +49,55 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    @DisplayName("티캣 구매 금액에는 문자가 포함 될 수 없다.")
+    void 예외_테스트1() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ErrorMessage.CHAR_STRING.getMessage());
         });
+    }
+
+    @Test
+    @DisplayName("티캣 구매 금액은 티캣금액과 나눠떨어져야 한다.")
+    void 예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("7500");
+            assertThat(output()).contains(ErrorMessage.INVALID_TICKET_AMOUNT.getMessage());
+        });
+    }
+
+    @Test
+    @DisplayName("로또 winningNumber에 문자가 포함되면 안된다.")
+    void 예외_테스트3() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000", "1,2,3,4,5,a", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(ErrorMessage.CHAR_STRING.getMessage());
+                },
+                List.of(1, 2, 3, 4, 5, 45)
+        );
+    }
+
+    @Test
+    @DisplayName("로또 bonusNumber에 문자가 포함되면 안된다.")
+    void 예외_테스트4() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000", "1,2,3,4,5,6", "a", "7");
+                    assertThat(output()).contains(ErrorMessage.CHAR_STRING.getMessage());
+                },
+                List.of(1, 2, 3, 4, 5, 45)
+        );
+    }
+
+    @Test
+    @DisplayName("로또 bonusNumber는 winningNumber와 중복되면 안된다.")
+    void 예외_테스트5() {
+        assertSimpleTest(() -> {
+            run("1000", "1,2,3,4,5,45", "45", "10");
+            assertThat(output()).contains(ErrorMessage.DUPLICATE_WITH_LOTTO.getMessage());
+        });
+        List.of(1, 2, 3, 4, 5, 45);
     }
 
     @Override

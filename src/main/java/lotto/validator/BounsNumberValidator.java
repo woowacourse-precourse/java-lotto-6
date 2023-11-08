@@ -3,6 +3,7 @@ package lotto.validator;
 import lotto.constants.ErrorMessage;
 import lotto.constants.LottoConstant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BounsNumberValidator {
@@ -58,19 +59,18 @@ public class BounsNumberValidator {
     }
 
     private boolean validLottoNumOverLap(List<Integer> nums) {
-        nums.add(bonusNum);
-
+        List<Integer> newNums = new ArrayList<>();
+        newNums.addAll(nums);
+        newNums.add(bonusNum);
         try {
-            if(nums.size() != nums.stream().distinct().count()) {
+            if(newNums.size() != newNums.stream().distinct().count()) {
                 throw new IllegalArgumentException();
             }
         }
         catch (IllegalArgumentException e) {
             errorMessage = ErrorMessage.ERROR_BONUS_NUM_OVERLAP;
-            nums.remove(nums.size()-1);
             return false;
         }
-        nums.remove(nums.size()-1);
         return true;
     }
 

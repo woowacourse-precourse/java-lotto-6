@@ -31,4 +31,7 @@ public class LottoGameResult {
         return LottoRankEnum.NOTHING;
     }
 
+    public List<LottoRankEnum> getLottoRanks() {
+        return lottoRanks;
+    }
 }

@@ -13,6 +13,7 @@ public enum OutputMessageEnum {
     OUTPUT_FIVE_SAME_MESSAGE("5개 일치 (%s원) - %d개"),
     OUTPUT_FIVE_AND_BONUS_SAME_MESSAGE("5개 일치, 보너스 볼 일치 (%s원) - %d개"),
     OUTPUT_SIX_SAME_MESSAGE("6개 일치 (%s원) - %d개"),
+    OUTPUT_NOTHING_SAME_MESSAGE(""),
     OUTPUT_RESULT_END_MESSAGE("총 수익률은 %.1f%%입니다."),
     OUTPUT_LINE("---");
 
@@ -27,6 +28,10 @@ public enum OutputMessageEnum {
     }
 
     public String getMessage(int value) {
+        return String.format(this.message, value);
+    }
+
+    public String getMessage(double value) {
         return String.format(this.message, value);
     }
 

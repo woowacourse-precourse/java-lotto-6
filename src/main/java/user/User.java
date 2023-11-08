@@ -20,4 +20,8 @@ public class User {
         lottos.printLottoNumbers();
     }
 
+    public void matching(LottoResult result) {
+        lottos.matchLottoNumbers(result);
+    }
+
 }

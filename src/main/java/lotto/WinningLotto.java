@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto;
 
 import lotto.Lotto;
 import lotto.model.enums.LottoSpec;

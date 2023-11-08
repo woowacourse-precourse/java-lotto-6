@@ -10,7 +10,7 @@ public class LottoRankResult {
 
     public LottoRankResult() {
         this.rankCount = new ArrayList<>();
-        for (int i = 0; i <= PrizeInfo.values().length; i++) {
+        for (int i = 0; i <= PrizeInfo.PRIZE_5.getRank(); i++) {
             rankCount.add(0);
         }
     }

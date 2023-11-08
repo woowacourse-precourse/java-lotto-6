@@ -1,12 +1,15 @@
 package lotto.model.enums;
 
 public enum PrizeInfo {
-    PRIZE_1(1, 2000000000, 6),
+    NO_PRIZE(0, 0, 0),
+    PRIZE_1(1, 2000000000, 6, false),
     PRIZE_2(2, 30000000, 5, true),
     PRIZE_3(3, 1500000, 5, false),
-    PRIZE_4(4, 50000, 4),
-    PRIZE_5(5, 5000, 3),
-    NO_PRIZE(0, 0, 0);
+    PRIZE_4(4, 50000, 4, false),
+    PRIZE_5(5, 5000, 3, false),
+    PRIZE_3_TRUE(3, 1500000, 5, true),
+    PRIZE_4_TRUE(4, 50000, 4, true),
+    PRIZE_5_TRUE(5, 5000, 3, true);
 
     private final int rank;
     private final long prize;

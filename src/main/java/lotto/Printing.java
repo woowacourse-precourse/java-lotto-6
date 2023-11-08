@@ -12,7 +12,7 @@ public class Printing {
     private final List<Lotto> lottos;
     private final static String END = "당첨 통계\n---";
     private final static String RESULT_MESSAGE = "%d개 일치 (%s원) - %d개";
-    private final static String RESULT_MESSAGE_OTHER = "%d개 일치. 보너스 볼 일치 (%s원) - %d개";
+    private final static String RESULT_MESSAGE_OTHER = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private final static String RATE_OF_RETURN = "총 수익률은 %.1f%%입니다.";
 
     public Printing(List<Lotto> lottos) {
@@ -25,11 +25,11 @@ public class Printing {
         }
     }
 
-    public void printResult(LinkedHashMap<WinningDetails, Integer> rank, int money) {
+    public void printResult(Map<WinningDetails, Integer> rank, int money) {
         System.out.println(END);
         for (WinningDetails win : rank.keySet()) {
             int key = rank.get(win);
-
+            if (win == WinningDetails.MISS) continue;
             System.out.println(getString(win, key));
         }
     }

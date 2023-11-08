@@ -36,6 +36,7 @@ public class Calculate {
     }
 
     public void countAll() {
+        initMap();
         for (int i = 0; i < lottos.size(); i++) {
             int cnt = count(lottos.get(i).getLotto());
             WinningDetails rank = WinningDetails.getRank(cnt, containBonus(lottos.get(i).getLotto()));

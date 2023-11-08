@@ -1,8 +1,8 @@
-package lotto.domain.controller;
+package lotto.controller;
 
 import lotto.domain.*;
-import lotto.domain.numbermaker.NumberMaker;
-import lotto.domain.numbermaker.RandomNumberMaker;
+import lotto.numbermaker.NumberMaker;
+import lotto.numbermaker.RandomNumberMaker;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
 

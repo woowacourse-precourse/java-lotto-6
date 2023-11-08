@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.domain.numbermaker.NumberMaker;
+import lotto.numbermaker.NumberMaker;
 
 import java.util.ArrayList;
 import java.util.List;

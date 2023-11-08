@@ -41,18 +41,18 @@ public class InputView {
         }
     }
 
-    public static Integer getBonusNumber(Lotto lotto) {
+    public static Integer getBonusNumberByUser(Lotto lotto) {
         try{
             String userInput = Console.readLine();
             Integer.parseInt(userInput);
-            int bonusNumber = getBonusNumber(userInput);
+            int bonusNumber = getBonusNumberByUser(userInput);
             if (lotto.containsBonusNumber(bonusNumber)){
                 throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATED);
             }
             return bonusNumber;
         } catch (IllegalArgumentException e){
             OutputView.printError(e.getMessage());
-            return getBonusNumber(lotto);
+            return getBonusNumberByUser(lotto);
         }
     }
 
@@ -66,7 +66,7 @@ public class InputView {
         return new Lotto(lottoNumberList);
     }
 
-    private static int getBonusNumber(String userInput) {
+    private static int getBonusNumberByUser(String userInput) {
         int bonusNumber = Integer.parseInt(userInput);
         if (bonusNumber > MAX_NUMBER || bonusNumber < MIN_NUMBER) {
             throw new IllegalArgumentException(INVALID_BOUND);

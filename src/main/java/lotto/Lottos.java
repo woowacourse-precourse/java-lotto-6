@@ -2,31 +2,41 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class Lottos {
-    private final List<Lotto> lottoList;
-    public Lottos(List<Lotto> lottoList) {
-        this.lottoList = lottoList;
+    private final List<Lotto> lottos;
+    private static final int MAX_NUMBER = 45;
+    private static final int MIN_NUMBER = 1;
+    private static final int SIZE = 6;
+    public Lottos(List<Lotto> lottos) {
+        this.lottos = lottos;
     }
-    public void calculateWinning(StandardLotto standardLotto){
-        this.lottoList.forEach(lotto -> WinningCalculator.addCount(standardLotto.matchPrize(lotto)));
+
+    public void calculateWinning(StandardLotto standardLotto) {
+        this.lottos.forEach(lotto -> WinningCalculator.addCount(standardLotto.matchPrize(lotto)));
     }
+
     private Lottos(int lottoCount) {
-        this.lottoList = IntStream.range(0, lottoCount)
-                .mapToObj(i -> Randoms.pickUniqueNumbersInRange(1, 45, 6))
-                .map(this::getLotto)
+        this.lottos = IntStream.range(0, lottoCount)
+                .mapToObj(i -> getLotto())
                 .toList();
     }
 
-    public static Lottos ofRandom(int lottoCount){
+    private static Lotto getLotto() {
+        List<Integer> integers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, SIZE));
+        integers.sort(Comparator.naturalOrder());
+        return new Lotto(integers);
+    }
+
+    public static Lottos ofRandom(int lottoCount) {
         return new Lottos(lottoCount);
     }
 
-    private Lotto getLotto(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return new Lotto(numbers);
+    public List<Lotto> getLottos() {
+        return new ArrayList<>(lottos);
     }
 }

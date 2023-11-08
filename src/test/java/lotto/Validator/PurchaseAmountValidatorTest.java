@@ -1,6 +1,7 @@
 package lotto.Validator;
 
 import static lotto.config.ErrorMessage.INPUT_AMOUNT_CHARACTER_ERROR_MESSAGE;
+import static lotto.config.ErrorMessage.INPUT_AMOUNT_DIVISION_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,5 +22,13 @@ public class PurchaseAmountValidatorTest {
         assertThatThrownBy(() -> validator.valid(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(INPUT_AMOUNT_CHARACTER_ERROR_MESSAGE.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1200", "1300", "1234", "00012"})
+    void 숫자_1000으로_나누어지지_않는_입력값에_예외를_발생한다(String input) {
+        assertThatThrownBy(() -> validator.valid(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(INPUT_AMOUNT_DIVISION_ERROR_MESSAGE.getMessage());
     }
 }

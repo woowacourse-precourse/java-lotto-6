@@ -1,11 +1,11 @@
 package lotto;
 
 public class Purchase {
-    private static final String NOT_NUMBER_ERROR = "구입할 금액을 숫자로 입력해 주세요.";
-    private static final String NOT_DIVISIBLE_ERROR = "1,000원 단위의 금액을 입력해 주세요.";
-    private static final String ZERO_ERROR = "최소 1,000원 이상의 금액을 입력해 주세요.";
+    private static final String NOT_NUMBER_ERROR = "[ERROR] 구입할 금액을 숫자로 입력해 주세요.";
+    private static final String NOT_DIVISIBLE_ERROR = "[ERROR] 1,000원 단위의 금액을 입력해 주세요.";
+    private static final String ZERO_ERROR = "[ERROR] 최소 1,000원 이상의 금액을 입력해 주세요.";
 
-    private int amount;
+    private final int amount;
 
     Purchase(String money) {
         validate(money);

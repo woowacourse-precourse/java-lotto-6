@@ -43,19 +43,6 @@ public class LottoMachine {
         printProfit(formatter, profit);
     }
 
-    public int setLottoCount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        while (true) {
-            try {
-                int number = getNaturalNumber();
-                Validation.validateMultipleOfLottoPrice(number);
-                return number/LOTTO_PRICE;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
     public List<List<Integer>> getAllLotto(int count) {
         List<List<Integer>> ret = new ArrayList<>();
         for (int i = 0; i < count; i++) {
@@ -91,8 +78,21 @@ public class LottoMachine {
         return ret/totalPrice;
     }
 
+    private int setLottoCount() {
+        printRequestPurchaseAmount();
+        while (true) {
+            try {
+                int number = getNaturalNumber();
+                Validation.validateMultipleOfLottoPrice(number);
+                return number/LOTTO_PRICE;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     private Lotto setWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        printRequestWinningNumbers();
         while (true) {
             try {
                 List<Integer> numbers = getSplitNaturalNumberList(",");
@@ -104,7 +104,7 @@ public class LottoMachine {
     }
 
     private int setBonusNumber(Lotto lotto) {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        printRequestBonusNumber();
         while (true) {
             try {
                 int number = getNaturalNumber();

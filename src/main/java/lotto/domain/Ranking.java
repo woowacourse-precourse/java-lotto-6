@@ -30,4 +30,11 @@ public enum Ranking {
                 .orElse(NONE);
     }
 
+    public long calculatePrizeSum(long rankingCount) {
+        return this.prize * rankingCount;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
 }

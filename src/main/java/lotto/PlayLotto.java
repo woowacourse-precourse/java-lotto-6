@@ -46,9 +46,18 @@ public class PlayLotto {
         List<Integer> game = new ArrayList<>();
         for (int i=0; i<6; i++){
             game.add(Randoms.pickNumberInRange(1, 45));
+            validateDuplicated(game);
             Collections.sort(game);
         }
         return new Lotto(game);
+    }
+
+    private void validateDuplicated(List<Integer> game) {
+        long size = game.stream().distinct().count();
+
+        if (size != 6){
+            throw new IllegalArgumentException();
+        }
     }
 
     public void printLottoNumbers() {

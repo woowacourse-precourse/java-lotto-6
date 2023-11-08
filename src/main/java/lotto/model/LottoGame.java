@@ -31,7 +31,7 @@ public class LottoGame implements Game {
             }
         }
 
-        returnOnInvestment = Math.round(((double) profit / lottoPurchaseAmount) * 10) / 10.0D;
+        returnOnInvestment = Math.round(((double) profit / (lottoPurchaseAmount * lottoPirce)) * 100 * 10) / 10.0D;
     }
 
     @Override
@@ -101,22 +101,15 @@ public class LottoGame implements Game {
         return returnOnInvestment;
     }
 
-    public void setLottoPurchaseAmount(String lottoPurchaseAmount) {
-        this.lottoPurchaseAmount = validateLottoPurchaseAmount(lottoPurchaseAmount);
+    public void setLottoPurchaseAmount(int lottoPurchaseAmount) {
+        this.lottoPurchaseAmount = lottoPurchaseAmount;
     }
 
-    public void setWinningLotto(String winningNumbers) {
-        this.winningLotto = validateWinningNumbers(winningNumbers);
+    public void setWinningLotto(List<Integer> winningNumbers) {
+        this.winningLotto = new Lotto(winningNumbers);
     }
 
-    public void setBonusNumber(String bonusNumber) {
-        int bonus;
-        bonus = validateNumber(bonusNumber);
-
-        if (winningLotto.getNumbersList().contains(bonus)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 겹쳐선 안됩니다.");
-        }
-
-        this.bonusNumber = bonus;
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
 }

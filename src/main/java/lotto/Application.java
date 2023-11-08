@@ -1,10 +1,10 @@
 package lotto;
 
-import lotto.adapter.view.LottoGameView;
+import lotto.controller.LottoGameController;
 
 public class Application {
     public static void main(String[] args) {
-        LottoGameView lottoGameView = LottoFactory.createLottoGameView();
-        lottoGameView.playGame();
+        LottoGameController lottoGameController = LottoFactory.createLottoGameView();
+        lottoGameController.playGame();
     }
 }

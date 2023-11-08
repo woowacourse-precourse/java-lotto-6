@@ -9,14 +9,15 @@ import lotto.excpetion.SizeException;
 
 import java.util.List;
 
+import static lotto.utils.NumberConstant.PRICE_UNIT;
+
 public class LottoValidator {
-    public static void lottoValidate(Lotto lotto) {
-        validate(lotto);
-        isInRange(lotto);
-        isDuplicated(lotto);
+    public static void lottoValidate(List<Integer> numbers) {
+        validate(numbers);
+        isInRange(numbers);
+        isDuplicated(numbers);
     }
-    private static void isInRange(Lotto lotto) {
-        List<Integer> numbers = lotto.getNumbers();
+    private static void isInRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < 1 || number > 45)
                 throw new NotInRageException();
@@ -29,25 +30,24 @@ public class LottoValidator {
             throw new NotInRageException();
     }
 
-    private static void validate(Lotto lotto) {
-        List<Integer> numbers = lotto.getNumbers();
+    private static void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new SizeException();
         }
     }
 
-    public static void bonusNumberValidate(Lotto lotto, BonusNumber bonusNumber) {
-        isInRange(bonusNumber);
-        bonusNumberDuplicated(lotto, bonusNumber);
-    }
-
-    private static void isDuplicated(Lotto lotto) {
-        List<Integer> numbers = lotto.getNumbers();
+    private static void isDuplicated(List<Integer> numbers) {
         List<Integer> distinctNumbers =
                 numbers.stream()
                         .distinct().toList();
         if (distinctNumbers.size() != numbers.size())
             throw new DuplicatedException();
+    }
+
+
+    public static void bonusNumberValidate(Lotto lotto, BonusNumber bonusNumber) {
+        isInRange(bonusNumber);
+        bonusNumberDuplicated(lotto, bonusNumber);
     }
 
     private static void bonusNumberDuplicated(Lotto lotto, BonusNumber bonusNumber) {
@@ -57,7 +57,7 @@ public class LottoValidator {
     }
 
     public static void isDivedWithThousand(int price) {
-        if (!(price % 1000 == 0)) {
+        if (!((price % PRICE_UNIT.getValue()) == 0)) {
             throw new DivedException();
         }
     }

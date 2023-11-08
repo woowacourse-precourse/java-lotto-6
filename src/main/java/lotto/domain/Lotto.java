@@ -65,11 +65,7 @@ public class Lotto {
     }
 
     public boolean isOverlapping(int bonusNumber) {
-        return this.numbers.stream().anyMatch(number -> isSame(bonusNumber, number));
-    }
-
-    private boolean isSame(int bonusNumber, Integer number) {
-        return bonusNumber == number;
+        return this.numbers.contains(bonusNumber);
     }
 
     public int compare(Lotto winnerLotto) {
@@ -91,10 +87,6 @@ public class Lotto {
 
     private int countOfMatch(List<Integer> totalLottoNumbers, Set<Integer> uniqueLottoNumbers) {
         return totalLottoNumbers.size() - uniqueLottoNumbers.size();
-    }
-
-    public boolean hasBonus(int bonusNumber) {
-        return this.numbers.contains(bonusNumber);
     }
 
     public List<Integer> getNumbers() {

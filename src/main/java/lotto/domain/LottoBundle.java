@@ -60,7 +60,7 @@ public class LottoBundle {
 
     private Rank findRank(Lotto winnerLotto, Bonus bonus, Lotto lotto) {
         int countOfMatch = lotto.compare(winnerLotto);
-        boolean containsBonus = lotto.hasBonus(bonus.getBonusNumber());
+        boolean containsBonus = lotto.isOverlapping(bonus.getBonusNumber());
         return Rank.valueOf(countOfMatch, containsBonus);
     }
 

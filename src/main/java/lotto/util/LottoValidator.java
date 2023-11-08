@@ -53,7 +53,7 @@ public class LottoValidator {
 
     private void isDuplicateBonusNumber(List<LottoNumber> lottoNumbers, int bonusNumberInput) {
         boolean isContainBonusNumberInput = lottoNumbers.stream()
-                .anyMatch(lottoNumber -> lottoNumber.getNumber() == bonusNumberInput);
+                .anyMatch(lottoNumber -> lottoNumber.number() == bonusNumberInput);
         if (isContainBonusNumberInput) {
             exceptionHandler.validatorStatusMap.get(DUPLICATE_BONUS_NUMBER_INPUT)
                     .accept(DUPLICATE_BONUS_NUMBER_INPUT);

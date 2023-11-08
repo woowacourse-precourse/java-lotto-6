@@ -1,6 +1,5 @@
 package lotto.model;
 
-import lotto.config.LottoConstants;
 import lotto.config.LottoPrice;
 import lotto.view.Messages;
 

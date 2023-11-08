@@ -1,4 +1,4 @@
-package lotto.config;
+package lotto.model;
 
 public enum Rank {
     FIRST("6개 일치", 6, "2,000,000,000", 2_000_000_000),

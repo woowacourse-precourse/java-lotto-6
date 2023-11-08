@@ -1,16 +1,20 @@
 package lotto.controller;
 
 
+import static lotto.domain.LottoConfig.*;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.view.InputHandler;
+import lotto.domain.LottoConfig;
 import lotto.domain.model.Lotto;
 import lotto.domain.generator.LottoGenerator;
 import lotto.domain.caclulator.LottoResultCalculator;
 import lotto.domain.dto.LottoResults;
 import lotto.domain.model.Lottos;
 import lotto.domain.model.Money;
+import lotto.util.InputFormatter;
+import lotto.util.InputValidator;
 import lotto.view.PrintMessages;
 import lotto.domain.caclulator.RevenueCalculator;
 import lotto.domain.model.WinningNumbers;
@@ -21,32 +25,36 @@ import lotto.view.Output;
 public class LottoController {
 
     private final Output output;
+
+    private final Input input;
     private final LottoGenerator lottoGenerator;
-
-    private final InputHandler inputHandler;
-
 
 
     public LottoController(NumberGenerationStrategy numberGenerationStrategy, Input input,
             Output output) {
         this.output = output;
+        this.input = input;
         this.lottoGenerator = new LottoGenerator(numberGenerationStrategy);
-        this.inputHandler = new InputHandler(input, output);
     }
 
     public void run() {
         Money money = inputPurchaseAmount();
         Lottos purchasedLottos = purchaseLottos(money);
         WinningNumbers winningNumbers = requestWinningNumbers();
-        displayResults(purchasedLottos, winningNumbers,money);
+        displayResults(purchasedLottos, winningNumbers, money);
     }
 
     private Money inputPurchaseAmount() {
-        int amount = inputHandler.requestNumberInput(
-                PrintMessages.INPUT_PURCHASE_AMOUNT.getMessage());
-        return new Money(amount);
+        output.displayInputRequest(PrintMessages.INPUT_PURCHASE_AMOUNT.getMessage());
+        while (true) {
+            try {
+                int amount = input.inputNumber();
+                return new Money(amount);
+            } catch (IllegalArgumentException e) {
+                output.printError(e.getMessage());
+            }
+        }
     }
-
 
     private Lottos purchaseLottos(Money money) {
         int lottoCount = money.calculateLottoCount();
@@ -57,45 +65,59 @@ public class LottoController {
     }
 
     private List<Lotto> generateLottos(int count) {
-        return IntStream.range(0, count)
+        return IntStream.range(ZERO.getValue(), count)
                 .mapToObj(i -> lottoGenerator.generateLotto())
                 .collect(Collectors.toList());
     }
 
     private WinningNumbers requestWinningNumbers() {
-        String winNumbers = inputWiningNumbers();
-        int bonusNumber = inputBonusNumbers();
-        return WinningNumbers.of(winNumbers, bonusNumber);
+        output.displayInputRequest(PrintMessages.INPUT_WINNING_NUMBERS.getMessage());
+        Lotto winNumbers = inputWinningNumbers();
+        return createWinningNumbers(winNumbers);
     }
 
-    private String inputWiningNumbers() {
-        return inputHandler.requestStringInput(
-                PrintMessages.INPUT_WINNING_NUMBERS.getMessage());
+    private Lotto inputWinningNumbers() {
+        while (true) {
+            try {
+                String winNumber = input.inputString();
+                InputValidator.validateWinningNumbers(winNumber);
+                List<Integer> formatWinNumber = InputFormatter.formatWinningNumber(winNumber);
+                return new Lotto(formatWinNumber);
+            } catch (IllegalArgumentException e) {
+                output.printError(e.getMessage());
+            }
+        }
     }
 
-    private int inputBonusNumbers() {
-        return inputHandler.requestNumberInput(
-                PrintMessages.INPUT_BONUS_NUMBER.getMessage());
+    private WinningNumbers createWinningNumbers(Lotto winNumbers) {
+        output.displayInputRequest(PrintMessages.INPUT_BONUS_NUMBER.getMessage());
+        while (true) {
+            try {
+                int bonusNumber = input.inputNumber();
+                return new WinningNumbers(winNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                output.printError(e.getMessage());
+            }
+        }
     }
 
-
-    private void displayResults(Lottos lottos, WinningNumbers winningNumbers,Money money) {
+    private void displayResults(Lottos lottos, WinningNumbers winningNumbers, Money money) {
         LottoResults results = calculateLottoResults(lottos, winningNumbers);
-        printLottoResults(results,money);
+        printLottoResults(results, money);
     }
 
     private LottoResults calculateLottoResults(Lottos lottos, WinningNumbers winningNumbers) {
         return LottoResultCalculator.calculateResults(lottos, winningNumbers);
     }
 
-    private void printLottoResults(LottoResults results,Money money) {
+    private void printLottoResults(LottoResults results, Money money) {
         output.displayInputRequest(PrintMessages.WINNING_STATISTICS.getMessage());
         output.displayInputRequest(PrintMessages.SEPARATOR.getMessage());
         output.printWinningStatistics(results);
-        output.printTotalEarningsRate(calculateTotalEarningsRate(results,money));
+        output.printTotalEarningsRate(calculateTotalEarningsRate(results, money));
     }
 
-    private double calculateTotalEarningsRate(LottoResults results,Money money) {
+    private double calculateTotalEarningsRate(LottoResults results, Money money) {
         return RevenueCalculator.calculateRevenueRate(
                 results.calculateTotalEarnings(), money);
     }

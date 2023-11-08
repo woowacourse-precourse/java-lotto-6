@@ -2,6 +2,8 @@ package Ranking;
 
 import static org.mockito.ArgumentMatchers.intThat;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -35,16 +37,35 @@ public class RankPrize {
 
 	}
 	
+	public void PrintResult() {
+		System.out.println("당첨 결과");
+	}
 	
+	public void PrintLine() {
+		System.out.println("---");
+	}
+
 	public void winningStatisticsOp() {
-		for(Prize prize :  Prize.values()) {
-			int count = prizeCounts.get(prize);
-			
-			if(count > 0) {
-				System.out.println(prize.getMatchCount() + "개 일치 (" + prize.getprizeAmout()+ "원) -" + count + "개");
-			}
-			System.out.println("총 수익률은 " + profitPercentage + "% 입니다.");
-		}
+	    PrintResult();
+	    PrintLine();
+
+	    int totalPrizeAmount = calculateToTalPrizeAmout();
+
+	    DecimalFormat df = new DecimalFormat("#,###");
+
+	    for (Prize prize : Prize.values()) {
+	        int count = prizeCounts.get(prize);
+	        String prizeDescription = prize.getMatchCount() + "개 일치 (" + df.format(prize.getprizeAmout()) + "원)";
+	        String resultLine = String.format("%s - %d개", prizeDescription, count);
+	        System.out.println(resultLine);
+	    }
+
+	    if (profitPercentage >= 0) {
+	        DecimalFormat percentageDf = new DecimalFormat("#.0");
+	        System.out.println("총 수익률은 " + percentageDf.format(profitPercentage) + "% 입니다.");
+	    } else {
+	        System.out.println("총 수익률은 0.0% 입니다.");
+	    }
 	}
 
 	public Map<Prize, Integer> calculateMatchCounts() {

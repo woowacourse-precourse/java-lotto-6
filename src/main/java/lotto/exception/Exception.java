@@ -12,35 +12,31 @@ public class Exception {
         numbers = new ArrayList<>();
     }
 
-    public int checkInt(String totalAmount) {
+    public int checkInt(String totalAmount, String message) {
         int amount = 0;
         try {
             amount = Integer.parseInt(totalAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(e);
+            throwIllegalArgument(message);
         } finally {
             return amount;
         }
     }
 
-    public boolean checkAmount(int totalAmount, boolean correctAmount) {
+    public boolean checkAmount(int totalAmount, boolean correctAmount, String message) {
         if (totalAmount % Constants.LOTTOPRICE != 0) {
-            try {
-                System.out.println("[ERROR] 금액은 1000 단위 숫자로 입력해주세요.");
-                throw new IllegalArgumentException();
-            } finally {
-                return correctAmount;
-            }
+            throwIllegalArgument(message);
+            return correctAmount;
         }
         correctAmount = true;
         return correctAmount;
     }
 
     public List<Integer> checkNumbers(String lottoNumbers) {
+        String message = "[ERROR] 1부터 45까지 중복되지 않은 6개의 숫자를 공백없이 쉼표로 구분하여 입력해주세요.";
         for (String str : lottoNumbers.split(",")) {
-            int number = checkInt(str);
+            int number = checkInt(str, message);
             if (number < 1 || number > 45 || numbers.contains(number)) {
-                String message = "[ERROR] 1부터 45까지 중복되지 않은 6개의 숫자를 공백없이 쉼표로 구분하여 입력해주세요.";
                 System.out.println(throwIllegalArgument(message));
                 return numbers;
             }
@@ -58,9 +54,9 @@ public class Exception {
     }
 
     public int checkBonus(List<Integer> winningNumber, String bonus) {
-        int bonusNumber = checkInt(bonus);
+        String message = "[ERROR] 당첨 번호와 중복되지 않는 1부터 45 사이의 숫자 1개를 입력해주세요.";
+        int bonusNumber = checkInt(bonus, message);
         if (winningNumber.contains(bonusNumber) || bonusNumber < 1 || bonusNumber > 45) {
-            String message = "[ERROR] 당첨 번호와 중복되지 않는 1부터 45 사이의 숫자 1개를 입력해주세요.";
             System.out.println(throwIllegalArgument(message));
             return 0;
         }
@@ -70,6 +66,8 @@ public class Exception {
     public String throwIllegalArgument(String message) {
         try {
             throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
         } finally {
             return message;
         }

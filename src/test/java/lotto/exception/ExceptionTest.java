@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class ExceptionTest {
     private Exception exception;
@@ -65,20 +64,27 @@ class ExceptionTest {
     @Test
     void 중복_있는_숫자_6개() {
         List<Integer> result = exception.checkNumbers("1,2,3,4,4,5");
-        assertThat(result).isEqualTo(List.of(1,2,3,4));
+        assertThat(result).isEqualTo(List.of(1, 2, 3, 4));
     }
 
     @DisplayName("중복 없는 숫자일 경우 그대로 반환한다.")
     @Test
     void 중복_없는_보너스_숫자_1개() {
-        int result = exception.checkBonus(List.of(2,3,4,5,6),"1");
+        int result = exception.checkBonus(List.of(2, 3, 4, 5, 6), "1");
         assertThat(result).isEqualTo(1);
     }
 
     @DisplayName("중복 확인되면 0을 반환한다.")
     @Test
     void 중복_있는_보너스_숫자_1개() {
-        int result = exception.checkBonus(List.of(1,2,3,4,5),"1");
+        int result = exception.checkBonus(List.of(1, 2, 3, 4, 5), "1");
         assertThat(result).isEqualTo(0);
+    }
+
+    @DisplayName("ㅁㅁㅁ")
+    @Test
+    void ㅁㅁㅁ() {
+        assertThatCode(() -> exception.throwIllegalArgument("123"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

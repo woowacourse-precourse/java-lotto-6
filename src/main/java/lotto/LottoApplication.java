@@ -8,7 +8,7 @@ import lotto.request.AskRequest;
 import lotto.request.MultiAskRequest;
 import lotto.request.NonAskRequest;
 import lotto.request.Request;
-import lotto.view.ErrorView;
+import lotto.request.RequestExecutor;
 
 public class LottoApplication {
     private static final List<Request> requests = Arrays.asList(
@@ -19,19 +19,6 @@ public class LottoApplication {
                 new NonAskRequest(new FrontController(), Command.OUTPUT_WINNING_RESULT)
             );
     public static void run() {
-        int index = 0;
-        while (index < requests.size()) {
-            boolean isOk = true;
-            try {
-                requests.get(index).process();
-            }catch (IllegalArgumentException error) {
-                isOk = false;
-                new ErrorView(error.getMessage()).render();
-            }
-
-            if(isOk) {
-                index++;
-            }
-        }
+        new RequestExecutor(requests).execute();
     }
 }

@@ -63,8 +63,10 @@ public class LottoException {
 
     private static void validateBonusNumberDuplicate(String number) {
         Integer bonusNumber = Integer.parseInt(number);
-        if (User.getWinningNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_3);
+        for (Integer winningNumber : User.getWinningNumbers()) {
+            if (winningNumber == bonusNumber) {
+                throw new IllegalArgumentException(ERROR_MESSAGE_3);
+            }
         }
     }
 }

@@ -2,7 +2,7 @@ package view;
 
 import java.util.List;
 import lotto.Lotto;
-import lotto.WinnerRank;
+import lotto.Rank;
 import repository.RankRepository;
 
 public class OutputView {
@@ -31,26 +31,26 @@ public class OutputView {
 
     private static void outputFifthPlaceCount() {
         System.out.println(String.format(OutputMessages.FIFTH_PLACE.getMessage(),
-                RankRepository.getWinningStatistics(WinnerRank.FIFTH_PLACE.getRank())));
+                RankRepository.getWinningStatistics(Rank.FIFTH_PLACE.getRank())));
     }
 
     private static void outputFourthPlaceCount() {
         System.out.println(String.format(OutputMessages.FOURTH_PLACE.getMessage(),
-                RankRepository.getWinningStatistics(WinnerRank.FOURTH_PLACE.getRank())));
+                RankRepository.getWinningStatistics(Rank.FOURTH_PLACE.getRank())));
     }
 
     private static void outputThirdPlaceCount() {
         System.out.println(String.format(OutputMessages.THIRD_PLACE.getMessage(),
-                RankRepository.getWinningStatistics(WinnerRank.THIRD_PLACE.getRank())));
+                RankRepository.getWinningStatistics(Rank.THIRD_PLACE.getRank())));
     }
 
     private static void outputSecondPlaceCount() {
         System.out.println(String.format(OutputMessages.SECOND_PLACE.getMessage(),
-                RankRepository.getWinningStatistics(WinnerRank.SECOND_PLACE.getRank())));
+                RankRepository.getWinningStatistics(Rank.SECOND_PLACE.getRank())));
     }
 
     private static void outputFirstPlaceCount() {
         System.out.println(String.format(OutputMessages.FIRST_PLACE.getMessage(),
-                RankRepository.getWinningStatistics(WinnerRank.FIRST_PLACE.getRank())));
+                RankRepository.getWinningStatistics(Rank.FIRST_PLACE.getRank())));
     }
 }

@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.HashMap;
 import java.util.List;
 import lotto.domain.BonusNumber;
+import lotto.domain.InputStatus;
 import lotto.domain.IssuedLottos;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseQuantity;
@@ -18,45 +19,57 @@ public class Store {
     private static List<Lotto> lottos;
     private static Lotto winningNumbers;
     private static BonusNumber bonusNumber;
+    private static InputStatus status = InputStatus.INPUT_AMOUNT;
 
     public void start() {
-        boolean isFinish = false;
-        while (!isFinish) {
-            try {
-                purchaseLotto();
-                lotteryDraws();
-                displayStatics();
-                isFinish = true;
-            } catch (NumberFormatException exception) {
-                System.out.println(ExceptionStatus.INPUT_COMMON_NOT_A_NUMBER);
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
+        while (!status.equals(InputStatus.INPUT_END)) {
+            switch (status) {
+                case INPUT_AMOUNT -> purchaseLotto();
+                case INPUT_WINNING -> setWinningNumber();
+                case INPUT_BONUS -> setBonusNumbers(winningNumbers);
             }
         }
-
+        displayStatics();
     }
 
     private void purchaseLotto() {
-        PurchaseQuantity purchaseQuantity = new PurchaseQuantity(UserInput.inputAmount());
-        amount = purchaseQuantity.getAmount();
-        long lottoQuantity = purchaseQuantity.getLottoPurchases();
+        try {
+            PurchaseQuantity purchaseQuantity = new PurchaseQuantity(UserInput.inputAmount());
 
-        IssuedLottos issuedLottos = new IssuedLottos(lottoQuantity);
-        lottos = issuedLottos.getIssuedLottos();
-        printPurchasedLottos(lottos, lottoQuantity);
+            amount = purchaseQuantity.getAmount();
+            long lottoQuantity = purchaseQuantity.getLottoPurchases();
+
+            IssuedLottos issuedLottos = new IssuedLottos(lottoQuantity);
+            lottos = issuedLottos.getIssuedLottos();
+
+            printPurchasedLottos(lottos, lottoQuantity);
+
+            status = InputStatus.INPUT_WINNING;
+        } catch (NumberFormatException e) {
+            System.out.println(ExceptionStatus.INPUT_COMMON_NOT_A_NUMBER);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
     }
 
-    private void lotteryDraws() {
-        winningNumbers = setWinningNumber();
-        bonusNumber = setBonusNumbers(winningNumbers);
+    private void setWinningNumber() {
+        try {
+            Lotto lotto = new Lotto(UserInput.inputWinningNumber());
+            winningNumbers = lotto;
+            status = InputStatus.INPUT_BONUS;
+        } catch (IllegalArgumentException e) {
+            status = InputStatus.INPUT_WINNING;
+        }
     }
 
-    private Lotto setWinningNumber() {
-        return new Lotto(UserInput.inputWinningNumber());
-    }
-
-    private BonusNumber setBonusNumbers(Lotto winningNumbers) {
-        return new BonusNumber(UserInput.inputbonusNumber(), winningNumbers);
+    private void setBonusNumbers(Lotto winningNumbers) {
+        try {
+            BonusNumber inputBonusNumber = new BonusNumber(UserInput.inputbonusNumber(), winningNumbers);
+            status = InputStatus.INPUT_END;
+            bonusNumber = inputBonusNumber;
+        } catch (IllegalArgumentException e) {
+            status = InputStatus.INPUT_BONUS;
+        }
     }
 
     private void printPurchasedLottos(List<Lotto> lottos, long lottoQuantity) {

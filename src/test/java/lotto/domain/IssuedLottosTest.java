@@ -30,8 +30,7 @@ class IssuedLottosTest {
         for (int index = 0; index < size; index++) {
             List<Integer> lotto = lottos.get(index).getNumbers();
 
-            assertEquals(quantity, lotto.size());
-            assertEquals(quantity, lotto.size());
+            assertEquals(quantity, lottos.size());
             assertThat(lotto.stream().distinct().count() == lotto.size()).isTrue();
             assertThat(lotto.stream().allMatch(number -> number >= LottoPolicy.LOTTO_START_NUMBER
                     && number <= LottoPolicy.LOTTO_END_NUMBER)).isTrue();

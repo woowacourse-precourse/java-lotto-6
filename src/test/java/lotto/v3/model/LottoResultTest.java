@@ -40,7 +40,7 @@ class LottoResultTest {
         // given
         List<Set<Integer>> purchasedNumbers = List.of(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 7;  
+        int bonusNumber = 7;
 
         // when
         LottoResult lottoResult = new LottoResult(purchasedNumbers, winningNumbers, bonusNumber);

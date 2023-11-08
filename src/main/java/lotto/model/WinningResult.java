@@ -2,11 +2,7 @@ package lotto.model;
 
 import java.util.List;
 import java.util.ArrayList;
-import lotto.model.MyLottoNumber;
-import lotto.model.MyLottoNumbers;
-import lotto.model.LottoDraw;
 
-import static lotto.util.MagicNumbers.LOTTO_COUNT;
 public class WinningResult {
 
     List<Integer> results = new ArrayList<>();
@@ -48,7 +44,6 @@ public class WinningResult {
             if(result == 15) totalRevenue += 30000000;
             if(result == 6) totalRevenue += 2000000000;
         }
-        System.out.println(totalRevenue);
         return totalRevenue;
     }
 

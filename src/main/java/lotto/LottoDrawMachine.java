@@ -18,10 +18,8 @@ public class LottoDrawMachine {
     }
 
     public void drawNumberManual() {
-        // winningNumber 입력 받기
         this.winningNumbers = getWinningNumbersFromInput();
-        System.out.println(this.winningNumbers);
-        // bonusNumber 입력받기
+        this.bonusNumber = getBonusNumberFromInput();
     }
 
     public List<Integer> getWinningNumbers() {
@@ -54,6 +52,12 @@ public class LottoDrawMachine {
             }
         }
     }
+
+    private int getBonusNumberFromInput() {
+        Announcement.INPUT_BONUS_NUMBER.speak();
+        return 1;
+    }
+
 
     private void validateNumericOfInputStrings(String[] inputStrings) {
         try {

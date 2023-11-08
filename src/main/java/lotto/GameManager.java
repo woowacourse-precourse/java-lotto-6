@@ -73,8 +73,7 @@ public class GameManager {
     public String calculateProfitPercentage(WinningStatistics winningStatistics, int purchaseAmount) {
         int totalWinningAmount = calculateTotalWinningAmount(winningStatistics);
         double profit = ((double) totalWinningAmount / purchaseAmount) * PERCENTAGE;
-        BigDecimal bigDecimal = new BigDecimal(profit).setScale(1, BigDecimal.ROUND_HALF_UP);
-
+        BigDecimal bigDecimal = BigDecimal.valueOf((long) profit, 1);
         return bigDecimal.toString();
     }
 

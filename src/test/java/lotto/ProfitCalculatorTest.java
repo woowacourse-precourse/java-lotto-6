@@ -9,6 +9,14 @@ import org.junit.jupiter.api.Test;
 class ProfitCalculatorTest {
 
     @Test
+    void 수익률_계산하기() {
+        int purchaseAmount = 8000;
+        int totalPrize = 5000;
+
+        assertThat(Application.calculateProfitRate(purchaseAmount, totalPrize)).isEqualTo(62.5);
+    }
+
+    @Test
     void 총상금_계산하기() {
         Map<LottoRank, Integer> winningResult = Map.of(
                 LottoRank.NO_WIN, 3,

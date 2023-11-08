@@ -51,5 +51,6 @@ public class OutputView {
 
         System.out.println(PROFIT_MESSAGE.formatted(profit));
 
+
     }
 }

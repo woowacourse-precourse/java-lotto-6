@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.function.Supplier;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Match;
@@ -23,27 +24,68 @@ public class LottoController {
         lottoCountService = new LottoCountService();
     }
 
-
     public void play() {
+        try {
+            int lottoAmount = getInput(() -> inputView.getPurchaseAmount());
 
-        int lottoAmount = inputView.getPurchaseAmount();
+//            int lottoAmount = getPurchaseInput();
 
-        List<Lotto> userPurchasedLotto = lottoGenerateService.generateMultipleLotto(lottoAmount);
+            List<Lotto> userPurchasedLotto = lottoGenerateService.generateMultipleLotto(lottoAmount);
 
-        outputView.printPurchasedLotto(userPurchasedLotto);
+            outputView.printPurchasedLotto(userPurchasedLotto);
 
-        WinningLottoNumbers winningLottoNumbers = inputView.getWinningLottoNumbers();
+//            WinningLottoNumbers winningLottoNumbers = getWinningLottoNumbersInput();
 
-        Bonus bonus = inputView.getBonusLottoNumber(winningLottoNumbers);
+            WinningLottoNumbers winningLottoNumbers = getInput(()-> inputView.getWinningLottoNumbers());
 
-        Match matchResult = lottoCountService.countMatching(userPurchasedLotto, winningLottoNumbers, bonus);
 
-        outputView.printMatchResult(matchResult);
+            Bonus bonus = inputView.getBonusLottoNumber(winningLottoNumbers);
 
-        double profit = lottoCountService.countProfit(matchResult, lottoAmount);
+            Match matchResult = lottoCountService.countMatching(userPurchasedLotto, winningLottoNumbers, bonus);
 
-        outputView.printProfit(profit);
+            outputView.printMatchResult(matchResult);
+
+            double profit = lottoCountService.countProfit(matchResult, lottoAmount);
+
+            outputView.printProfit(profit);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private int getPurchaseInput(){
+
+        do {
+            try {
+                int lottoAmount = inputView.getPurchaseAmount();
+                return lottoAmount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }while (true);
+    }
+
+    private WinningLottoNumbers getWinningLottoNumbersInput(){
+        do {
+            try {
+                WinningLottoNumbers winningLottoNumbers = inputView.getWinningLottoNumbers();
+                return winningLottoNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }while (true);
 
     }
-    
+
+    private <T> T getInput(Supplier<T> inputSupplier){
+        do {
+            try {
+                return inputSupplier.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }while (true);
+    }
+
 }

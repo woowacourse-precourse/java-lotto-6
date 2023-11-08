@@ -55,6 +55,8 @@ public class InputView {
         validateLottoNumber(input);
         validateDuplicateNumberWhenBonus(input, winningLottoNumbers);
 
+        Console.close();
+
         return new Bonus(Integer.parseInt(input));
 
     }
@@ -99,7 +101,7 @@ public class InputView {
 
     private void validateNumberInRange(String lottoNumber) {
         if (0 > Integer.parseInt(lottoNumber) || Integer.parseInt(lottoNumber) > 45) {
-            throw new IllegalArgumentException("[ERROR] 번호가 범위 밖입니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 

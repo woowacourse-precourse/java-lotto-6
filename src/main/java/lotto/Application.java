@@ -12,7 +12,7 @@ public class Application {
         List<Lotto> lottos = lottoProcess.buyLotto(lottoQuantity);
         Lotto winningNumbers = runWinningNumbersStep();
         WinningLotto winningLotto = runWinningLottoStep(winningNumbers);
-        LottoResult lottoResult = lottoProcess.run(lottos, winningLotto);
+        LottoResult lottoResult = lottoProcess.setUpLottoResult(lottos, winningLotto);
         double earningRate = lottoResult.calculateEarningRate(purchaseMoney.getAmount());
 
         OutputView.printLottoQuantity(lottoQuantity);
@@ -49,13 +49,13 @@ public class Application {
         return new Lotto(Converter.convertWinningNumber(winningNumbers));
     }
 
-    private static WinningLotto runWinningLottoStep(Lotto winningNumber) {
+    private static WinningLotto runWinningLottoStep(Lotto winningNumbers) {
         try {
-            return setUpWinningLotto(winningNumber);
+            return setUpWinningLotto(winningNumbers);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
         }
-        return runWinningLottoStep(winningNumber);
+        return runWinningLottoStep(winningNumbers);
     }
 
     private static WinningLotto setUpWinningLotto(Lotto winningNumbers) {

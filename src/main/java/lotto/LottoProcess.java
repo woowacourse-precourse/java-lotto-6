@@ -2,11 +2,9 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.ui.InputView;
-import lotto.ui.OutputView;
 
 public class LottoProcess {
-    public LottoResult run(List<Lotto> lottos, WinningLotto winningLotto) {
+    public LottoResult setUpLottoResult(List<Lotto> lottos, WinningLotto winningLotto) {
         List<Integer> counted = new ArrayList<>();
         List<Boolean> checked = new ArrayList<>();
 

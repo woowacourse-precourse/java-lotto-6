@@ -85,7 +85,6 @@ public class LottoGame {
         }
     }
 
-
     private void lottoResult(List<Lotto> lottoList, CompareResult winningLotto, int amount) {
         Map<WinningResult, Integer> result = setResult();
         WinningResult winningResult;
@@ -95,24 +94,8 @@ public class LottoGame {
             winningResult = winningLotto.compareNumbers(lottoList.get(i));
             result.put(winningResult, result.get(winningResult) + 1);
         }
-        printResult(result);
-        printEarningRate(result, amount);
-    }
-
-    private void printResult(Map<WinningResult, Integer> result) {
-        for (int i = 0; i <= WinningResult.values().length - 1; i++) {
-            WinningResult.values()[i].printMessage(result.get(WinningResult.values()[i]));
-        }
-    }
-
-    private void printEarningRate(Map<WinningResult, Integer> result, int lottoAmount) {
-        double profitRate = 0;
-        for (WinningResult winningResult : result.keySet()) {
-            profitRate =
-                    profitRate + ((double) (winningResult.getTotalPrizeAmount()) / (lottoAmount * 1000) * (result.get(
-                            winningResult)) * (100));
-        }
-        OutputView.printProfitRate(profitRate);
+        OutputView.printResult(result);
+        OutputView.printEarningRate(result, amount);
     }
 
     private Map<WinningResult, Integer> setResult() {

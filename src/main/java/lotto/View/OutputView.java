@@ -1,7 +1,9 @@
 package lotto.View;
 
 import java.util.List;
+import java.util.Map;
 import lotto.Model.Lotto;
+import lotto.Model.WinningResult;
 
 public class OutputView {
 
@@ -24,6 +26,7 @@ public class OutputView {
             System.out.println(lottoNumbers);
         }
     }
+
     public static void printSuccessResult() {
         System.out.println(WINNING_RESULT_MESSAGE);
         System.out.println(LINE_MESSAGE);
@@ -31,6 +34,22 @@ public class OutputView {
 
     public static void printSuccessMessage(String message, int numberOfMatch) {
         System.out.println(message + numberOfMatch + UNIT_MESSAGE);
+    }
+
+    public static void printResult(Map<WinningResult, Integer> result) {
+        for (WinningResult winningResult : result.keySet()) {
+            winningResult.printMessage(result.get(winningResult));
+        }
+    }
+
+    public static void printEarningRate(Map<WinningResult, Integer> result, int lottoAmount) {
+        double profitRate = 0;
+        for (WinningResult winningResult : result.keySet()) {
+            profitRate =
+                    profitRate + ((double) (winningResult.getTotalPrizeAmount()) / (lottoAmount * 1000) * (result.get(
+                            winningResult)) * (100));
+        }
+        printProfitRate(profitRate);
     }
 
     public static void printProfitRate(double profitRate) {

@@ -11,7 +11,7 @@ import lotto.exception.LottoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class WinningLottoTest {
+public class CreateLottoTest {
 
     @Test
     @DisplayName("원소 중 겹치는 값이 있을 때 InsideListDuplicatedException 발생")

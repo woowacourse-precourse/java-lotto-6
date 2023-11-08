@@ -1,7 +1,10 @@
 package lotto;
 
 import lotto.data.Lotto;
+import lotto.data.LottoResult;
+import lotto.data.WinningNumber;
 import lotto.provider.LottoProvider;
+import lotto.provider.PrizeProvider;
 import lotto.provider.WinningNumberProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -55,5 +58,31 @@ class LottoTest {
         //then
         assertThat(winningNumber)
                 .isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+    }
+
+    @DisplayName("당첨금 결과를 확인한다.")
+    @Test
+    void 당첨_결과_확인() {
+        //given
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 16));
+        Lotto lotto4 = new Lotto(List.of(1, 2, 3, 4, 15, 16));
+        Lotto lotto5 = new Lotto(List.of(1, 2, 3, 14, 15, 16));
+        Lotto lotto6 = new Lotto(List.of(1, 2, 13, 14, 15, 16));
+        List<Lotto> lottos = List.of(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6);
+        WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6), 7);
+        PrizeProvider prizeProvider = new PrizeProvider();
+
+        //when
+        LottoResult lottoResult = prizeProvider.getLottoResult(lottos, winningNumber);
+        List<Integer> winningResult = lottoResult.getWinningResult();
+        int totalPrize = lottoResult.getTotalPrize();
+
+        //then
+        assertThat(winningResult)
+                .isEqualTo(List.of(1, 1, 1, 1, 1, 1));
+        assertThat(totalPrize)
+                .isEqualTo(2031555000);
     }
 }

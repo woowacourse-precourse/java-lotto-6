@@ -18,6 +18,16 @@ public class Lotto {
         }
     }
 
+    public int matchCount(Lotto other) {
+        int count = 0;
+        for (Integer otherNumber : other.getNumbers()) {
+            if (contains(otherNumber)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public boolean contains(Integer number) {
         return numbers.contains(number);
     }

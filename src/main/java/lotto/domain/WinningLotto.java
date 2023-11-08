@@ -20,4 +20,12 @@ public class WinningLotto {
             throw new IllegalArgumentException("[Error] 보너스 번호는 로또 번호와 중복 불가 입니다.");
         }
     }
+
+    public Lotto getLotto() {
+        return lotto;
+    }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
 }

@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoGame;
 import lotto.domain.LottoTickets;
 import lotto.domain.Money;
 import lotto.domain.WinningLotto;
@@ -23,5 +24,7 @@ public class Application {
         Integer BonusNumber = inputView.readBonusNumber();
 
         WinningLotto winningLotto = new WinningLotto(winnerLotto, BonusNumber);
+        LottoGame lottoGame = new LottoGame();
+        lottoGame.play(winningLotto, lottoTickets);
     }
 }

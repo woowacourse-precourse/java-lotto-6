@@ -1,5 +1,6 @@
 package lotto.service;
 
+import static lotto.enums.WinningRankType.FIFTH_PLACE;
 import static lotto.enums.WinningRankType.FIRST_PLACE;
 import static lotto.enums.WinningRankType.FOURTH_PLACE;
 import static lotto.enums.WinningRankType.NO_RANK;
@@ -18,6 +19,26 @@ import org.junit.jupiter.api.Test;
 
 class LottoServiceImplTest {
     LottoService lottoService = LottoServiceImpl.getInstance();
+
+    private WinningLotto setupWinningLotto() {
+        WinningLotto winningLotto = new WinningLotto();
+        winningLotto.setWinningLotto(new Lotto(List.of(1,2,3,4,5,6)));
+        winningLotto.setBonusNumber(7);
+        return winningLotto;
+    }
+
+    Lottos setupLottos() {
+        Lottos lottos = new Lottos(4000);
+        lottos.addLotto(new Lotto(List.of(8, 21, 23, 41, 42, 43)));
+        lottos.addLotto(new Lotto(List.of(3, 5, 11, 16, 32, 38)));
+        lottos.addLotto(new Lotto(List.of(7, 11, 16, 35, 36, 44)));
+        lottos.addLotto(new Lotto(List.of(1, 8, 11, 31, 41, 42)));
+        lottos.addLotto(new Lotto(List.of(13, 14, 16, 38, 42, 45)));
+        lottos.addLotto(new Lotto(List.of(7, 11, 30, 40, 42, 43)));
+        lottos.addLotto(new Lotto(List.of(2, 13, 22, 32, 38, 45)));
+        lottos.addLotto(new Lotto(List.of(1, 3, 5, 14, 22, 45)));
+        return lottos;
+    }
 
     @DisplayName("구입 금액만큼 로또 구매하기")
     @Test
@@ -54,25 +75,15 @@ class LottoServiceImplTest {
     @Test
     void testCalculateWinning() {
         WinningResult winningResult = lottoService.calculateWinning(setupLottos(), setupWinningLotto());
-        assertThat(winningResult.getResult().get(FIRST_PLACE)).isEqualTo(1);
-        assertThat(winningResult.getResult().get(SECOND_PLACE)).isEqualTo(1);
-        assertThat(winningResult.getResult().get(THIRD_PLACE)).isEqualTo(1);
-        assertThat(winningResult.getResult().get(NO_RANK)).isEqualTo(1);
+        assertThat(winningResult.getResult().get(FIFTH_PLACE)).isEqualTo(1);
+        assertThat(winningResult.getResult().get(NO_RANK)).isEqualTo(7);
     }
 
-    private WinningLotto setupWinningLotto() {
-        WinningLotto winningLotto = new WinningLotto();
-        winningLotto.setWinningLotto(new Lotto(List.of(3,4,5,6,10,20)));
-        winningLotto.setBonusNumber(40);
-        return winningLotto;
-    }
-
-    Lottos setupLottos() {
-        Lottos lottos = new Lottos(4000);
-        lottos.addLotto(new Lotto(List.of(1,20,3,4,5,6)));
-        lottos.addLotto(new Lotto(List.of(10,20,3,40,5,6)));
-        lottos.addLotto(new Lotto(List.of(10,20,6,5,4,3)));
-        lottos.addLotto(new Lotto(List.of(1,2,3,40,16,22)));
-        return lottos;
+    @DisplayName("수익률 계산하기")
+    @Test
+    void testCalculateRateOfReturn() {
+        WinningResult winningResult = lottoService.calculateWinning(setupLottos(), setupWinningLotto());
+        assertThat(String.format("%.1f", lottoService.calculateRateOfReturn(winningResult, 8000)))
+                .isEqualTo("62.5");
     }
 }

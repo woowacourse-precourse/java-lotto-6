@@ -21,7 +21,10 @@ public class LottoMachine {
                 throw new IllegalArgumentException();
             }
             this.count = Integer.parseInt(input)/1000;
-        } catch (IllegalArgumentException e){
+        } catch (NumberFormatException e2){
+            System.out.println(("[Error] 숫자를 입력해줘야 합니다."));
+            getMoney();
+        } catch(IllegalArgumentException e){
             System.out.println(("[Error] 1000원 단위로 나누어 떨어져야 합니다."));
             getMoney();
         }
@@ -42,19 +45,5 @@ public class LottoMachine {
         }
     }
 
-    public void getWin(){
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        for(String i : input.split(",")){
-            try{
-                if(Integer.parseInt(i) > 45 || Integer.parseInt(i) < 1){
-                    throw new IllegalArgumentException();
-                }
-                win.add(Integer.parseInt(i));
-            }catch (IllegalArgumentException e){
-                System.out.println("[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-                getWin();
-            }
-        }
-    }
+    
 }

@@ -16,7 +16,7 @@ public class Profit {
 
     // 로또 게임을 수행하면서 얻은 수익률을 반환
     protected double getProfit() {
-        return prize.getMoney() / cost.getValue() * PERCENTAGE_DIV;
+        return prize.getPrize() / cost.getValue() * PERCENTAGE_DIV;
     }
 
     // 로또 구매량을 반환

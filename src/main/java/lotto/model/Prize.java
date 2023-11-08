@@ -13,7 +13,7 @@ public class Prize {
         this.money += money;
     }
 
-    protected double getMoney() {
+    protected double getPrize() {
         return this.money;
     }
 }

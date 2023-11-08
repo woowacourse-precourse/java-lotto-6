@@ -1,11 +1,9 @@
 package lotto.service;
 
-import lotto.domain.BonusNumber;
-import lotto.domain.LottoCount;
-import lotto.domain.Lottos;
-import lotto.domain.WinningNumbers;
+import lotto.domain.*;
 import lotto.utility.TypeConverter;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -91,5 +89,37 @@ class LottoGameServiceTest {
 
         // then
         assertThat(parsedBonusNumber.getBonusNumber()).isEqualTo(bonusNumber);
+    }
+
+    @DisplayName("로또 번호와 일치하는 개수에 따라 당첨 횟수를 계산하고, 당첨 횟수를 담은 객체를 반환한다.")
+    @Test
+    void countMatchingNumbers() {
+        // given
+        Lottos lottos = new Lottos();
+        addLottoToLottos(lottos);
+        WinningNumbers winningNumbers = WinningNumbers.of(List.of(1, 4, 5, 17, 37, 45));
+        BonusNumber bonusNumber = new BonusNumber(3);
+
+        // when
+        Winnings winnings = lottoGameService.countMatchingNumbers(lottos, winningNumbers, bonusNumber);
+
+        // then
+        assertThat(winnings.getWinningCount().getCount(3)).isEqualTo(2);
+        assertThat(winnings.getWinningCount().getCount(4)).isEqualTo(1);
+        assertThat(winnings.getWinningCount().getCount(5)).isEqualTo(1);
+        assertThat(winnings.getWinningCount().getCount(7)).isEqualTo(2);
+        assertThat(winnings.getWinningCount().getCount(6)).isEqualTo(3);
+    }
+
+    private void addLottoToLottos(Lottos lottos) {
+        lottos.add(new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6))));
+        lottos.add(new Lotto(new ArrayList<>(List.of(4, 12, 17, 32, 37, 45))));
+        lottos.add(new Lotto(new ArrayList<>(List.of(1, 4, 5, 17, 37, 45))));
+        lottos.add(new Lotto(new ArrayList<>(List.of(1, 7, 19, 28, 37, 45))));
+        lottos.add(new Lotto(new ArrayList<>(List.of(1, 3, 5, 17, 37, 45))));
+        lottos.add(new Lotto(new ArrayList<>(List.of(1, 4, 5, 17, 37, 45))));
+        lottos.add(new Lotto(new ArrayList<>(List.of(1, 5, 10, 17, 37, 45))));
+        lottos.add(new Lotto(new ArrayList<>(List.of(3, 4, 5, 17, 37, 45))));
+        lottos.add(new Lotto(new ArrayList<>(List.of(1, 4, 5, 17, 37, 45))));
     }
 }

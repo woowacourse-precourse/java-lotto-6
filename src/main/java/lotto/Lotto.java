@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,7 +11,6 @@ public class Lotto {
         validate(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -41,6 +41,9 @@ public class Lotto {
     }
     @Override
     public String toString() {
-        return numbers.toString();
+        List<Integer> sorted = new ArrayList<>(numbers);
+        Collections.sort(sorted);
+
+        return sorted.toString();
     }
 }

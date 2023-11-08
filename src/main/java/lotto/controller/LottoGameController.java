@@ -79,7 +79,12 @@ public class LottoGameController {
     }
 
     private void lottoWinningResultModelAndView(){
-        List<LottoRank> lottoRanks = lottoGameService.lottoWinningResult(lotto, winningNumber, bonusNumber);
+        LottoResultModel lottoResultModel = createLottoResultModel(lotto,winningNumber,bonusNumber);
+        outputView.lottoResultDisplay(lottoResultModel);
+    }
+
+    private LottoResultModel createLottoResultModel(List<Lotto> lotto , List<Integer> winningNumber, int bonusNumber){
+        List<LottoRank> lottoRanks = lottoGameService.lottoWinningResult(lotto,winningNumber,bonusNumber);
         BigDecimal totalReturnRate = lottoGameService.totalReturnRateCalculation(lottoRanks);
         int threeMatch = 0;
         int fourMatch = 0;
@@ -94,13 +99,10 @@ public class LottoGameController {
             if(lottoRank.getRank()==4) fourMatch++;
             if(lottoRank.getRank()==5) threeMatch++;
         }
-        LottoResultModel lottoResultModel = new LottoResultModel(totalReturnRate.toString(),String.valueOf(threeMatch),String.valueOf(fourMatch),String.valueOf(fiveMatch),String.valueOf(fiveBonusMatch),String.valueOf(sixMatch));
-        outputView.lottoResultDisplay(lottoResultModel);
+        return new LottoResultModel(totalReturnRate.toString(),String.valueOf(threeMatch),String.valueOf(fourMatch),String.valueOf(fiveMatch),String.valueOf(fiveBonusMatch),String.valueOf(sixMatch));
     }
 
     private LottoNumberModel createLottoNumberModel(List<Lotto> lotto){
-        LottoNumberModel lottoNumberModel = new LottoNumberModel(lotto);
-        return lottoNumberModel;
+        return new LottoNumberModel(lotto);
     }
-
 }

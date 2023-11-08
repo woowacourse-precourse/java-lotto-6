@@ -1,5 +1,8 @@
 package lotto.view;
 
 public interface InputView {
-    String getUserInput();
+    String getPurchaseMoneyInput();
+    String getWinningNumbersInput();
+    String getBonusNumberInput();
+    void close();
 }

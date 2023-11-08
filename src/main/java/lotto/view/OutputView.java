@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.constant.InfoMessage;
 import lotto.constant.MagicNumber;
 import lotto.constant.StatisticsMessage;
 import lotto.domain.Lotto;
@@ -17,7 +18,8 @@ public class OutputView {
     public void printPurchasedLotteries(List<Lotto> lotteries) {
         List<Integer> lottoTemp;
         outputMessage = new StringBuilder();
-        outputMessage.append("\n").append(lotteries.size()).append("개를 구매했습니다.\n");
+        outputMessage.append("\n").append(lotteries.size())
+                .append(InfoMessage.ANNOUNCE_LOTTERIES_COUNT.getMessage()).append("\n");
 
         for (Lotto lotto : lotteries) {
             lottoTemp = new ArrayList<>(lotto.getNumbers());
@@ -39,7 +41,8 @@ public class OutputView {
     }
 
     public void printProfitPercentage(double profitPercentage) {
-        System.out.println("총 수익률은 " + String.format("%.1f", profitPercentage) + "%입니다.");
+        System.out.println(InfoMessage.ANNOUNCE_TOTAL_PROFIT_START.getMessage()
+                + String.format("%.1f", profitPercentage) + InfoMessage.ANNOUNCE_TOTAL_PROFIT_END.getMessage());
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {

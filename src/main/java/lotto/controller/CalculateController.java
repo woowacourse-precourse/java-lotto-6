@@ -42,6 +42,8 @@ public class CalculateController {
         }
         return rankings;
     }
-
+    public void calculateResults() {
+        results[Rankings.RankingData.returnRank(whatOfRanking()).getValues()]++;
+    }
 
 }

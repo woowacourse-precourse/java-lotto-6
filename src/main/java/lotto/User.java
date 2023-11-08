@@ -42,10 +42,6 @@ public class User {
         HashMap<Rank, Integer> rankAggregation = new HashMap<>();
 
         for (Rank rank : ranks) {
-            if (rank.equals(Rank.NO_PRIZE)) {
-                continue;
-            }
-
             rankAggregation.put(rank, rankAggregation.getOrDefault(rank, 0) + 1);
         }
 

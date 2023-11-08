@@ -34,4 +34,18 @@ class PrizeTypeTest {
         assertThat(prizeType.getPrize())
                 .isEqualTo(expectedPrize);
     }
+
+    @ParameterizedTest
+    @CsvSource(
+            value = {
+                    "MATCH3:3:false", "MATCH4:4:false", "MATCH5:5:false",
+                    "MATCH5_WITH_BONUS:5:true", "MATCH6:6:false", "NOT_APPLICABLE:0:false"
+            },
+            delimiter = ':'
+    )
+    @DisplayName("당첨번호 일치 개수, 보너스번호와 일치여부에 따른 prizeType 결정")
+    void getPrizeType(PrizeType expectedPrizeType, int matchCount, boolean isBonusMatch) {
+        assertThat(PrizeType.valueOfMatchCount(matchCount, isBonusMatch))
+                .isEqualTo(expectedPrizeType);
+    }
 }

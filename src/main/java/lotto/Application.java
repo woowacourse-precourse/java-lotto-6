@@ -60,4 +60,12 @@ class WinnigNum {
         String winningnum = Console.readLine(); // 문자열로 입력 받기
         return winningnum;
     }
+
+    public static int ExceptMoney(String money){
+        try {
+            return Integer.parseInt(money);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+        }
+    }
 }

@@ -13,9 +13,9 @@ import static lotto.exception.InputViewExceptionMessage.FOUND_SPECIAL_SIGN;
 import static lotto.exception.InputViewExceptionMessage.NOT_POSITIVE_NUMBER;
 import static lotto.exception.InputViewExceptionMessage.NOT_NUMBER;
 import static lotto.exception.InputViewExceptionMessage.NO_LINE_FOUND;
-import static lotto.exception.WinnerExceptionMessage.WRONG_WINNER_LOTTO_LENGTH;
-import static lotto.exception.WinnerExceptionMessage.WRONG_BONUS_NUMBER_RANGE;
-import static lotto.exception.WinnerExceptionMessage.DUPLICATED_WINNER_NUMBER;
+import static lotto.exception.WinnerLottoExceptionMessage.WRONG_WINNER_LOTTO_LENGTH;
+import static lotto.exception.WinnerLottoExceptionMessage.WRONG_BONUS_NUMBER_RANGE;
+import static lotto.exception.WinnerLottoExceptionMessage.DUPLICATED_WINNER_NUMBER;
 import static lotto.util.CharacterUnits.COMMA;
 import static lotto.util.PatternUnits.PATTERN_FOR_FINDING_SPECIAL_SIGN;
 

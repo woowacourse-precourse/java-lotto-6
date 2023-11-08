@@ -29,7 +29,7 @@ public enum LottoPrize {
         return description;
     }
 
-    public LottoPrize rank(int matchingCount, boolean hasBonus) {
+    public static LottoPrize rank(int matchingCount, boolean hasBonus) {
         if (matchingCount == FIRST.matchingNumber) {
             return FIRST;
         }
@@ -45,7 +45,7 @@ public enum LottoPrize {
         return null;
     }
 
-    private LottoPrize rankBonus(boolean hasBonus) {
+    private static LottoPrize rankBonus(boolean hasBonus) {
         if (hasBonus) {
             return SECOND;
         }

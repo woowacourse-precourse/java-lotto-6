@@ -17,12 +17,13 @@ public class LottoGame {
     private static WinningLotto winningLotto;
     private static List<Lotto> lottos;
     private static LottoResult lottoResult;
-    private static LottoPrize prize;
 
     public static void run() {
+        lottoResult = new LottoResult();
         handlePurchase();
         handleWinningLotto();
         handleBonusNumber();
+        handleLotto();
         handleResult();
     }
 
@@ -32,10 +33,10 @@ public class LottoGame {
         while (isPurchasing) {
             try {
                 money = new Money(InputDevice.receiveNumber());
+                isPurchasing = false;
             } catch (IllegalArgumentException e) {
                 OutputView.displayError(e);
             }
-            isPurchasing = false;
         }
         lottos = LottoTicket.generate(money.countNumberOfLotto());
         OutputView.displayPurchasedLotto(money.countNumberOfLotto(), lottos);
@@ -48,10 +49,10 @@ public class LottoGame {
             try {
                 Lotto lotto = new Lotto(InputDevice.receiveNumbers());
                 winningLotto = new WinningLotto(lotto);
+                isCreating = false;
             } catch (IllegalArgumentException e) {
                 OutputView.displayError(e);
             }
-            isCreating = false;
         }
     }
 
@@ -61,10 +62,10 @@ public class LottoGame {
         while (isSetting) {
             try {
                 winningLotto.setBounusNumber(InputDevice.receiveNumber());
+                isSetting = false;
             } catch (IllegalArgumentException e) {
                 OutputView.displayError(e);
             }
-            isSetting = false;
         }
     }
 
@@ -75,7 +76,7 @@ public class LottoGame {
             count = lotto.countContainNumbers(winningLotto.getWinningNumber());
             hasBonus = lotto.checkContainNumber(winningLotto.getBounusNumber());
             if (count >= 3) {
-                lottoResult.save(prize.rank(count, hasBonus));
+                lottoResult.save(LottoPrize.rank(count, hasBonus));
             }
         }
     }

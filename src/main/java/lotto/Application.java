@@ -5,6 +5,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import java.util.List;
 
 public class Application {
+	public static final int LOTTO_LENGTH = 6;
 
 	public static void main(String[] args) {
 		ValidateInput validate = new ValidateInput();

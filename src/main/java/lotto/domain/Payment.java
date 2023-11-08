@@ -4,12 +4,12 @@ import static java.math.RoundingMode.HALF_UP;
 import static lotto.domain.constants.NumberConstant.LOTTO_PRICE_UNIT;
 import static lotto.domain.constants.NumberConstant.PERCENTAGE_100;
 import static lotto.domain.constants.NumberConstant.SCALE_SIZE;
-import static lotto.domain.constants.NumberConstant.ZERO;
 import static lotto.domain.enums.ExceptionMessage.MINIMUM_PAYMENT_ERROR;
 import static lotto.domain.enums.ExceptionMessage.PURCHASE_AMOUNT_ERROR;
 import static lotto.utils.Converter.convertToInt;
 
 import java.math.BigDecimal;
+import lotto.domain.constants.NumberConstant;
 import lotto.exception.LottoGameException;
 
 public class Payment {
@@ -31,7 +31,7 @@ public class Payment {
     }
     
     public BigDecimal calculateProfitability(final long totalPrice) {
-        if (totalPrice == ZERO) {
+        if (totalPrice == NumberConstant.ZERO) {
             return BigDecimal.ZERO;
         }
         
@@ -61,7 +61,7 @@ public class Payment {
     }
     
     private boolean notValidateCurrencyDivision(final int amount) {
-        return amount % LOTTO_PRICE_UNIT != ZERO;
+        return amount % LOTTO_PRICE_UNIT != NumberConstant.ZERO;
     }
     
     private void validateRange(final int amount) {

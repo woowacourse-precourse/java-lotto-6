@@ -1,8 +1,6 @@
 package lotto.domain.lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.ErrorMessage;
-import lotto.domain.LottoAmount;
 import lotto.domain.random.RandomNumberRangePicker;
 import lotto.domain.result.Result;
 import lotto.dto.LottoDto;

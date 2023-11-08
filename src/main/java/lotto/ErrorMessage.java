@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.domain.LottoAmount;
+import lotto.domain.lotto.LottoAmount;
 
 import static lotto.domain.number.LottoNumber.MAX_NUMBER;
 import static lotto.domain.number.LottoNumber.NIN_NUMBER;

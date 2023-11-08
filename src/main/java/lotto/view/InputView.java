@@ -2,7 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.ErrorMessage;
-import lotto.domain.LottoAmount;
+import lotto.domain.lotto.LottoAmount;
 import lotto.domain.number.LottoNumber;
 import lotto.domain.number.LottoNumbers;
 import lotto.domain.lotto.WinningLotto;

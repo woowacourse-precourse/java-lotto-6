@@ -24,8 +24,8 @@ public class Calculator {
         return winningStatistics;
     }
 
-    public Double calculateWinningRate(Map<Rank, Integer> winningResult, int money) {
-        return sumTotalPrize(winningResult) / (double) money * PERCENTAGE;
+    public Double calculateWinningRate(Map<Rank, Integer> winningStatistics, int money) {
+        return sumTotalPrize(winningStatistics) / (double) money * PERCENTAGE;
     }
 
     private Long sumTotalPrize(Map<Rank, Integer> winningResult) {

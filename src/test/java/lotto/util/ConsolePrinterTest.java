@@ -174,7 +174,7 @@ class ConsolePrinterTest extends TestDefault {
     @EnumSource(mode = INCLUDE, names = {
             "LOTTO_PURCHASE_AMOUNT_UNIT",
             "LOTTO_NUMBERS_COUNT",
-            "LOTTO_NUMBErS_RANGE",
+            "LOTTO_NUMBERS_RANGE",
             "WINNING_NUMBERS_COUNT",
             "WINNING_NUMBERS_RANGE",
             "BONUS_NUMBER_RANGE",

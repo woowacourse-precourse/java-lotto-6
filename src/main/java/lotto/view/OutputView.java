@@ -38,9 +38,13 @@ public class OutputView {
     public static void printEnterBonusNumber() {
         System.out.println(ENTER_BONUS_MESSAGE);
     }
-    public static void printWinningResult(WinningResult winningResult) {
+
+    public static void printWinningResultHeader() {
         System.out.println(WINNING_STATS);
         System.out.println(HYPHEN);
+    }
+
+    public static void printWinningResult(WinningResult winningResult) {
         NumberFormat numberFormat = NumberFormat.getInstance();
         Map<LottoRanking, Integer> results = winningResult.getWinningResult();
         for (LottoRanking ranking : LottoRanking.values()) {

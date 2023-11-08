@@ -33,32 +33,13 @@ public enum Prizes {
     private static final int FIFTH_match = 3;
 
     public static Prizes return_prize(int count_match_numbers, boolean check_match_bonus_number){
-        if (count_match_numbers < FIFTH_match) {
-            return MISS;
-        }
-
-        if (count_match_numbers == FIFTH_match) {
-            return FIFTH;
-        }
-
-        if (count_match_numbers == FOURTH_match) {
-            return FOURTH;
-        }
-
-        if (count_match_numbers == THIRD_match && !check_match_bonus_number) {
-            return THIRD;
-        }
-
-        if (count_match_numbers == THIRD_match && check_match_bonus_number) {
-            return SECOND;
-        }
-
-        if (count_match_numbers == FIRST_match) {
-            return FIRST;
-        }
-
+        if (count_match_numbers < FIFTH_match) {return MISS;}
+        if (count_match_numbers == FIFTH_match) {return FIFTH;}
+        if (count_match_numbers == FOURTH_match) {return FOURTH;}
+        if (count_match_numbers == THIRD_match && !check_match_bonus_number) {return THIRD;}
+        if (count_match_numbers == THIRD_match && check_match_bonus_number) {return SECOND;}
+        if (count_match_numbers == FIRST_match) {return FIRST;}
         throw new IllegalArgumentException(ERROR_MESSAGE_single);
-
     }
 
     public int get_count_match_numbers() {

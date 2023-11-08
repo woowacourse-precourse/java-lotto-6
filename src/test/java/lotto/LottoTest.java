@@ -24,5 +24,12 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호 중복 예외 처리 확인")
+    @Test
+    void createBonusNumberByDuplicated() {
+        assertThatThrownBy(() -> Lotto.validate_bonus_number(List.of(10, 20, 30, 40, 1, 5), 30))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     // 아래에 추가 테스트 작성 가능
 }

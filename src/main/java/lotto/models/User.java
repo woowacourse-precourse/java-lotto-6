@@ -37,4 +37,8 @@ public class User {
         lotteries.add(machine.newLottery());
         this.money -= Constant.LOTTO_PRICE;
     }
+
+    public List<Lotto> getLotteries(){
+        return lotteries;
+    }
 }

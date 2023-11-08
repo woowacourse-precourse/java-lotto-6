@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.List;
 
 public class WinningLotto {
-    private final List<Integer> numbers;
+    private final List<Integer> numbers; // 로또 당첨번호
     private final int bonusNum;
 
     public WinningLotto(List<Integer> numbers, int bonusNum) {

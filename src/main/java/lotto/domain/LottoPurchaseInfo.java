@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoPurchaseInfo {
-    int purchaseAmount;
-    int purchaseLottoCount;
-    private final List<Lotto> lottos;
+    int purchaseAmount; // 구입한 금액
+    int purchaseLottoCount; // 구입한 로또 갯수
+    private final List<Lotto> lottos; // 구입한 모든 로또
 
     public LottoPurchaseInfo(int purchaseAmount) {
         this.purchaseAmount = purchaseAmount;

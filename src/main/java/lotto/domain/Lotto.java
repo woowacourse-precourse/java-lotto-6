@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class Lotto {
     private static String OPEN_DELIMITER = "[";
     private static String CLOSE_DELIMITER = "]";
-    private static String BLANK_DELIMITER = " ";
+    private static String BLANK_DELIMITER = ", ";
 
     private final List<Integer> numbers;
 

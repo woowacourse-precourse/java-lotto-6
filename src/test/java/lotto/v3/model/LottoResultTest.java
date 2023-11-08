@@ -40,7 +40,7 @@ class LottoResultTest {
         // given
         List<Set<Integer>> purchasedNumbers = List.of(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 7;  // Not relevant for FIRST rank
+        int bonusNumber = 7;  
 
         // when
         LottoResult lottoResult = new LottoResult(purchasedNumbers, winningNumbers, bonusNumber);
@@ -56,7 +56,7 @@ class LottoResultTest {
         // given
         List<Set<Integer>> purchasedNumbers = List.of(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 7)));
         Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 7;  // Relevant for SECOND rank
+        int bonusNumber = 7;
 
         // when
         LottoResult lottoResult = new LottoResult(purchasedNumbers, winningNumbers, bonusNumber);
@@ -72,7 +72,7 @@ class LottoResultTest {
         // given
         List<Set<Integer>> purchasedNumbers = List.of(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 8)));
         Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 7;  // Not relevant for THIRD rank
+        int bonusNumber = 7;
 
         // when
         LottoResult lottoResult = new LottoResult(purchasedNumbers, winningNumbers, bonusNumber);
@@ -88,7 +88,7 @@ class LottoResultTest {
         // given
         List<Set<Integer>> purchasedNumbers = List.of(new HashSet<>(Arrays.asList(1, 2, 3, 4, 7, 8)));
         Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 9;  // Not relevant for FOURTH rank
+        int bonusNumber = 9;
 
         // when
         LottoResult lottoResult = new LottoResult(purchasedNumbers, winningNumbers, bonusNumber);
@@ -104,7 +104,7 @@ class LottoResultTest {
         // given
         List<Set<Integer>> purchasedNumbers = List.of(new HashSet<>(Arrays.asList(1, 2, 3, 7, 8, 9)));
         Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 10;  // Not relevant for FIFTH rank
+        int bonusNumber = 10;
 
         // when
         LottoResult lottoResult = new LottoResult(purchasedNumbers, winningNumbers, bonusNumber);

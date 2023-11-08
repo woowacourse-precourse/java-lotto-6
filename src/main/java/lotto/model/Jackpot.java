@@ -8,6 +8,7 @@ public class Jackpot {
     public static final String ERROR_MESSAGE_NOT_SIX_NUMBERS = "[ERROR] 당첨 번호는 6개로 이루어져야 합니다.";
     public static final String ERROR_MESSAGE_DUPLICATE_NUMBERS = "[ERROR] 당첨번호에 중복된 숫자가 들어갈 수 없습니다.";
     public static final String ERROR_MESSAGE_NOT_CONTAINS_BONUS_NUMBER = "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.";
+    public static final String ERROR_MESSAGE_NUMBER_IN_RANGE = "[ERROR] 당첨 번호/보너스 번호는 1 ~ 45 사이의 숫자여야 합니다.";
 
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
@@ -16,13 +17,23 @@ public class Jackpot {
         String[] splitWinningNumbers = getSplitWinningNumbers(inputWinningNumbers);
 
         List<Integer> winningNumbers = new ArrayList<>();
-        validateDuplicateNumbers(splitWinningNumbers);
-        addWinningNumber(splitWinningNumbers, winningNumbers);
+        validateWinningNumbers(splitWinningNumbers, winningNumbers);
         this.winningNumbers = winningNumbers;
 
+        validateBonusNumber(inputBonusNumber, splitWinningNumbers);
+        this.bonusNumber = Integer.parseInt(inputBonusNumber);
+    }
+
+    private static void validateBonusNumber(String inputBonusNumber, String[] splitWinningNumbers) {
         validateNumeric(inputBonusNumber);
         validateDuplicateBonusNumber(splitWinningNumbers, inputBonusNumber);
-        this.bonusNumber = Integer.parseInt(inputBonusNumber);
+        checkNumberInRange(Integer.parseInt(inputBonusNumber));
+    }
+
+    private static void validateWinningNumbers(String[] splitWinningNumbers, List<Integer> winningNumbers) {
+        validateDuplicateNumbers(splitWinningNumbers);
+        addWinningNumber(splitWinningNumbers, winningNumbers);
+        validateNumberInRange(winningNumbers);
     }
 
     private static String[] getSplitWinningNumbers(String inputWinningNumbers) {
@@ -63,6 +74,18 @@ public class Jackpot {
             if (winningNumber.equals(bonusNumber)) {
                 throw new IllegalArgumentException(ERROR_MESSAGE_NOT_CONTAINS_BONUS_NUMBER);
             }
+        }
+    }
+
+    private static void validateNumberInRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            checkNumberInRange(number);
+        }
+    }
+
+    private static void checkNumberInRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_NUMBER_IN_RANGE);
         }
     }
 

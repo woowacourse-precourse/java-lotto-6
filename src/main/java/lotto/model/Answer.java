@@ -4,11 +4,11 @@ import java.util.List;
 
 public class Answer {
     private final List<Integer> answerNumber;
-    private final int bonuseNumber;
+    private final int bonusNumber;
 
     public Answer(List<Integer> answer, int bonus) {
         this.answerNumber = answer;
-        this.bonuseNumber = bonus;
+        this.bonusNumber = bonus;
     }
 
     public List<Integer> getAnswerNumber() {
@@ -16,7 +16,7 @@ public class Answer {
     }
 
     public int getBonusNumber() {
-        return this.bonuseNumber;
+        return this.bonusNumber;
     }
 
 }

@@ -21,13 +21,7 @@ public class InputView {
     }
 
     public int calculateLottoNum(int money) {
-        int lottoNum = 0;
-        try {
-            lottoNum = money / 1000;
-        } catch (NumberFormatException error) {
-            System.out.println("[ERROR] 올바른 형식의 입력값이 아닙니다. 다시 입력해 주십시오.");
-        }
-        return lottoNum;
+        return money / 1000;
     }
 
     public Lotto answerInput() {
@@ -51,7 +45,6 @@ public class InputView {
         }
     }
 
-    public int bonusInput() {
     private void isCorrectMoney(int money) {
         if (money % 1000 != 0) {
             throw new IllegalArgumentException();

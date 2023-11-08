@@ -37,7 +37,6 @@ public class Prize {
     }
 
     private int numberOfSameNumber(List<Integer> answer, List<Integer> lotto) {
-
         int count = 0;
 
         for (int i = 0; i < lotto.size(); i++) {
@@ -84,10 +83,6 @@ public class Prize {
         return this.profit;
     }
 
-    public long getTotalPrizeMoney() {
-        return this.totalMoney;
-    }
-
     private long calculatePrizeMoney(int lottoNum, long lottoPrize) {
         return lottoNum * lottoPrize;
     }
@@ -99,7 +94,7 @@ public class Prize {
         if (sameNumCount == 5 && isBonus) {
             return Rank.SECOND;
         }
-        return MoneyResult(sameNumCount);
+        return moneyResult(sameNumCount);
     }
 
     private Rank noMoneyResult(int count) {
@@ -112,7 +107,7 @@ public class Prize {
         return Rank.NO_RANK_TWO;
     }
 
-    private Rank MoneyResult(int count) {
+    private Rank moneyResult(int count) {
         if (count == 3) {
             return Rank.FIFTH;
         }

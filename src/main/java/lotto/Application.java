@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoMachine;
 import lotto.game.LottoGame;
 import lotto.provider.LottoInputProvider;
 import lotto.provider.LottoOutputProvider;
@@ -18,6 +19,5 @@ public class Application {
 		LottoGame lottoGame = new LottoGame(lottoInputProvider, lottoOutputProvider, lottoService);
 
 		lottoGame.start();
-
 	}
 }

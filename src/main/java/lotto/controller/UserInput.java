@@ -7,6 +7,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.exception.LottoException;
 import lotto.model.User;
 
 public class UserInput {
@@ -26,6 +27,7 @@ public class UserInput {
         List<Integer> winningNumbers = Arrays.stream(userInput.split(COMMA))
                                                 .map(Integer::parseInt)
                                                 .collect(Collectors.toList());
+        LottoException.validateLottoAll(winningNumbers);
         User.setWinningNumbers(winningNumbers);
     }
 

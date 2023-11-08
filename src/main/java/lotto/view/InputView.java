@@ -15,9 +15,9 @@ public class InputView {
         return winningNumber;
     }
 
-    public int insertBonusNumber() {
+    public static String insertBonusNumber() {
         String bonusNumber = Console.readLine();
-        return convertToInt(bonusNumber);
+        return bonusNumber;
     }
 
     public static int convertToInt(String buyPrice) {

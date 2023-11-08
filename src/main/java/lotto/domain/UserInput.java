@@ -23,15 +23,13 @@ public class UserInput {
     }
 
     public int money() {
-        System.out.println("구입 금액을 입력해 주세요.");
-        while (true) {
-            try {
-                String input = Console.readLine();
-                validateMoney(input);
-                return Integer.parseInt(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            String input = Console.readLine();
+            validateMoney(input);
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return money();
         }
     }
 
@@ -48,34 +46,29 @@ public class UserInput {
     }
 
     public Lotto winningNumbers() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        while (true) {
-            try {
-                String input = Console.readLine();
-                String[] temp = input.split(",");
-                List<Integer> numbers = new ArrayList<>();
-                for (String item : temp) {
-                    validateNumber(item);
-                    numbers.add(Integer.parseInt(item));
-                }
-                return new Lotto(numbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+        try {
+            String input = Console.readLine();
+            String[] temp = input.split(",");
+            List<Integer> numbers = new ArrayList<>();
+            for (String item : temp) {
+                validateNumber(item);
+                numbers.add(Integer.parseInt(item));
             }
+            return new Lotto(numbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return winningNumbers();
         }
     }
 
     public int bonusNumber() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        while (true) {
-            try {
-                String input = Console.readLine();
-                validateNumber(input);
-                return Integer.parseInt(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            String input = Console.readLine();
+            validateNumber(input);
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return bonusNumber();
         }
     }
-
 }

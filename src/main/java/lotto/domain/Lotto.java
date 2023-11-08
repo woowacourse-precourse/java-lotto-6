@@ -24,23 +24,19 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
-    public List<Integer> allCompare(List<Lotto> allLottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
+    public List<Integer> allCompare(List<List<Integer>> allLottoNumbers, int bonusNumber) {
         List<Integer> result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0));
-        for (Lotto lottoNumbers : allLottoNumbers) {
-            Rank rank = compareResult(lottoNumbers.compare(winningNumbers), bonusNumber);
+        for (List<Integer> lottoNumbers : allLottoNumbers) {
+            Rank rank = compareResult(compare(lottoNumbers), bonusNumber);
             result.set(rank.ordinal(), result.get(rank.ordinal()) + 1);
         }
         return result;
     }
 
-    public int compare(List<Integer> winningNumbers) {
+    public int compare(List<Integer> lottoNumbers) {
         int count = 0;
         for (Integer i : numbers) {
-            if (winningNumbers.contains(i)) {
+            if (lottoNumbers.contains(i)) {
                 count++;
             }
         }
@@ -66,10 +62,10 @@ public class Lotto {
         return Rank.LAST_PLACE;
     }
 
-    public static void lottoPrint(List<Lotto> lottoNumbers, int quantity) {
+    public static void lottoPrint(List<List<Integer>> lottoNumbers, int quantity) {
         System.out.println("\n" + quantity + "개를 구매했습니다.");
-        for (Lotto lotto : lottoNumbers) {
-            System.out.println(lotto.numbers);
+        for (List<Integer> lotto : lottoNumbers) {
+            System.out.println(lotto);
         }
     }
 

@@ -6,10 +6,14 @@ import java.util.Collections;
 import java.util.List;
 
 public class RandomGenerate {
-    public List<Integer> createNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        List<Integer> orderNumbers = new ArrayList<>(numbers);
-        Collections.sort(orderNumbers);
-        return orderNumbers;
+    public List<List<Integer>> createNumbers(int quantity) {
+        List<List<Integer>> allLottoNumbers = new ArrayList<>();
+        for (int i = 0; i < quantity; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> orderNumbers = new ArrayList<>(numbers);
+            Collections.sort(orderNumbers);
+            allLottoNumbers.add(orderNumbers);
+        }
+        return allLottoNumbers;
     }
 }

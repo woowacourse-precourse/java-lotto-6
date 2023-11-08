@@ -114,5 +114,47 @@ public class LottoService {
         prizeLotto.setBonusNumber(bonusNum);
     }
 
+    /**
+     * 당첨 내역
+     */
+    public void predictWinning(){
+        countWinning();
+
+        lottoPrint.winningStaticsPrint(winning, winningRate);
+    }
+    // 당첨 금액 및 개수 Count
+    public void countWinning(){
+        winning = setWinning();
+        for(Lotto l : consumer.getPurchasedLotto()){
+            int primaryCnt = 0;
+            int bonusCnt = 0;
+            for(Integer i : l.getNumbers()){
+                if(prizeLotto.getPrimaryNumbers().getNumbers().contains(i)) primaryCnt++;
+                if(prizeLotto.getBonusNumber() == i) bonusCnt++;
+            }
+            countWinningOne(primaryCnt, bonusCnt);
+        }
+    }
+
+    // 한 개 당첨 금액 및 개수 Count
+    public void countWinningOne(int primaryCnt, int bonusCnt){
+        if(primaryCnt == 3) winning.put(5000, winning.get(5000)+1);
+        else if(primaryCnt == 4) winning.put(50000, winning.get(50000)+1);
+        else if(primaryCnt == 5 && bonusCnt == 1) winning.put(30000000, winning.get(30000000)+1);
+        else if(primaryCnt == 5) winning.put(1500000, winning.get(1500000)+1);
+        else if(primaryCnt == 6) winning.put(2000000000, winning.get(2000000000)+1);
+    }
+
+    // 당첨 금액 및 개수 Init
+    private Map<Integer, Integer> setWinning(){
+        Map<Integer, Integer> winning = new HashMap<>();
+        winning.put(5000, 0);
+        winning.put(50000, 0);
+        winning.put(1500000, 0);
+        winning.put(30000000, 0);
+        winning.put(2000000000, 0);
+        return winning;
+    }
+
 
 }

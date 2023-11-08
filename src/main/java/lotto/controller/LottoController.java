@@ -24,5 +24,8 @@ public class LottoController {
 
         List<Lotto> lottoTickets = lottoService.getLottoTickets();
         lottoUI.printLottoTickets(lottoTickets);
+
+        int[] winningNumbers = lottoUI.winningNumbers();
+        int bonusNumber = lottoUI.bonusNumber();
     }
 }

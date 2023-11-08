@@ -2,14 +2,16 @@ package lotto.domain;
 
 import lotto.validator.BonusValidator;
 
+import java.util.List;
+
 public class BonusLotto {
 
-    private final int bonusNumber;
-    public BonusLotto(int bonusNumber) {
+    private final String bonusNumber;
+    public BonusLotto(String bonusNumber) {
         BonusValidator.validate(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
     public int getBonusNumber() {
-        return bonusNumber;
+        return Integer.parseInt(bonusNumber);
     }
 }

@@ -26,8 +26,16 @@ public class LottoController {
 
     private void getLottoMoney() {
         OutputView.printPurchaseAmount();
-        int purchaseAmount = InputView.readPurchaseAmount();
-        amount = new Amount(purchaseAmount);
+        while(true) {
+            try {
+                int purchaseAmount = InputView.readPurchaseAmount();
+                amount = new Amount(purchaseAmount);
+                break;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     private void printLottoList() {
@@ -43,14 +51,27 @@ public class LottoController {
 
     private void winningLotto() {
         OutputView.printWinningNumbers();
-        List<Integer> winningNumbers = InputView.readWinningNumbers();
-        winningLotto = new WinningLotto(winningNumbers);
+        while (true) {
+            try {
+                List<Integer> winningNumbers = InputView.readWinningNumbers();
+                winningLotto = new WinningLotto(winningNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
-
     private void bonusLotto() {
         OutputView.printBonusNumber();
-        int bonusNumber = InputView.readBonusNumber();
-        bonusLotto = new BonusLotto(bonusNumber);
+        while (true) {
+            try {
+                String bonusNumber = InputView.readBonusNumber();
+                bonusLotto = new BonusLotto(bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void statisticLotto() {

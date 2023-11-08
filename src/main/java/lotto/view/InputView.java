@@ -19,9 +19,9 @@ public class InputView {
         return convertInputToList(input);
     }
 
-    public static int readBonusNumber() {
+    public static String readBonusNumber() {
         String input = Console.readLine();
-        return Integer.parseInt(input);
+        return input;
     }
 
     private static List<Integer> convertInputToList(String input) {

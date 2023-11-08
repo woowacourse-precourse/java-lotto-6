@@ -64,8 +64,7 @@ public class OutputView {
     }
 
     public static void printProfitResult(double result) {
-        double roundedResult = Math.round(result * 10.0) / 10.0;
-        System.out.printf(CALCULATE_RESULT ,  roundedResult);
+        System.out.println("총 수익률은 " + String.format("%.1f", result) + "%입니다.");
     }
 
     private static boolean checkFail(Rank rank){

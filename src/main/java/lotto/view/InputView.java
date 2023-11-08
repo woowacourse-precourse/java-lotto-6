@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.Validator.*;
+import static lotto.validator.InputValidator.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;

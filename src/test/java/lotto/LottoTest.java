@@ -1,9 +1,7 @@
 package lotto;
 
-import java.util.ArrayList;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRecord;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

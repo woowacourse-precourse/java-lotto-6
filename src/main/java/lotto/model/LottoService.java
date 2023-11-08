@@ -71,7 +71,8 @@ public class LottoService {
 
     public void drawLotto() {
         Judge judge = new Judge(winningLotto, bonusNumber, user);
-        LottoResult draw = judge.draw();
-        System.out.println(draw);
+        LottoResult drawResult = judge.draw();
+        System.out.println(drawResult);
+        System.out.println(judge.calculateReturnRate(drawResult, user.getMoney()));
     }
 }

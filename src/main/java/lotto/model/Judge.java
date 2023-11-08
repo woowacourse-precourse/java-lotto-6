@@ -49,4 +49,10 @@ public class Judge {
             lottoResultCount.incrementFifth();
         }
     }
+
+    public double calculateReturnRate(LottoResult drawResult, int spentMoney) {
+        long winningAmount = drawResult.totalPrize();
+        double returnRate = (double) winningAmount / spentMoney * 100;
+        return Math.round(returnRate * 10.0) / 10.0;
+    }
 }

@@ -96,6 +96,7 @@ public class LottoService {
                     earningRate + ((double) (rank.getWinningAmount()) / totalMoney * (result.get(
                             rank)) * (HUNDRED_VALUE));
         }
+        lottoGame.setProfitRate(earningRate);
         return earningRate;
     }
 }

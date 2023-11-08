@@ -6,7 +6,7 @@ public class LottoGame {
 
     private List<List<Integer>> purchaseLottoNumbers;
     private int lottoCount;
-    private float profitRate;
+    private double profitRate;
 
     public List<List<Integer>> getPurchaseLottoNumbers() {
         return purchaseLottoNumbers;
@@ -24,11 +24,11 @@ public class LottoGame {
         this.lottoCount = lottoCount;
     }
 
-    public float getProfitRate() {
+    public double getProfitRate() {
         return profitRate;
     }
 
-    public void setProfitRate(float profitRate) {
+    public void setProfitRate(double profitRate) {
         this.profitRate = profitRate;
     }
 }

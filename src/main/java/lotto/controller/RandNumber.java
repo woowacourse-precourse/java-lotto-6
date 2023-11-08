@@ -8,34 +8,30 @@ import java.util.List;
 import java.util.Set;
 
 public class RandNumber {
-//    public static List<Integer> randomLottoNumber(){
-//        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45,6);
-//        return numbers;
-//    }
+    private static final int start = 1;
+    private static final int end = 45;
+    private static final int count = 6;
 
-    public static List<Integer> makeLottoNumber() {
+    public static List<Integer> makeRandNumber() {
+        return Randoms.pickUniqueNumbersInRange(start, end, count);
+    }
+
+    public static List<Integer> makeUniqueNumber() {
         List<Integer> numbers = new ArrayList<>();
-        Set<Integer> uniqueNumbers = new HashSet<>();
-
-        while (uniqueNumbers.size() < 6) {
-            int randomNumber = generateRandomNumber();
-            if (isUniqueNumber(uniqueNumbers, randomNumber)) {
-                addUniqueNumber(numbers, uniqueNumbers, randomNumber);
+        while(true) {
+            numbers = makeRandNumber();
+            if (checkRandDuplicate(numbers)) {
+                break;
             }
         }
         return numbers;
     }
 
-    private static int generateRandomNumber() {
-        return Randoms.pickNumberInRange(1,45);
-    }
-
-    private static boolean isUniqueNumber(Set<Integer> uniqueNumbers, int number){
-        return !uniqueNumbers.contains(number);
-    }
-
-    private static void addUniqueNumber(List<Integer> numbers, Set<Integer> uniqueNumbers, int number){
-        uniqueNumbers.add(number);
-        numbers.add(number);
+    public static boolean checkRandDuplicate(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            return false;
+        }
+        return true;
     }
 }

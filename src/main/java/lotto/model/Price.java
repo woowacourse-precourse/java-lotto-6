@@ -1,7 +1,7 @@
 package lotto.model;
 
 public class Price {
-    private int price;
+    private final int price;
 
     public Price(int price) {
         this.price = price;

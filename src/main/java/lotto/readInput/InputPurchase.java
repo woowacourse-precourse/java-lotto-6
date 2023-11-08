@@ -5,7 +5,7 @@ import lotto.validation.ErrorValidation;
 
 public class InputPurchase {
 	public static int purchaseAmount() {
-		
+
 		String input = Console.readLine();
 		try {
 			ErrorValidation.validatePurchaseAmount(input);

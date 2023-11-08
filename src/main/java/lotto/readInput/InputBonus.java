@@ -7,7 +7,6 @@ import lotto.validation.ErrorValidation;
 
 public class InputBonus {
 	public static int bonusNumber(List<Integer> winningNumbers) {
-		
 		String input = Console.readLine();
 		try {
 			ErrorValidation.validateBonusNumber(input, winningNumbers);

@@ -27,8 +27,11 @@ public class LottoTickets {
     }
 
     public LottoResults calculateResult(WinningNumber winningNumber, BonusNumber bonusNumber){
-        int firstPlace, secondPlace, thirdPlace, forthPlace, fifthPlace;
-        firstPlace = secondPlace = thirdPlace = forthPlace = fifthPlace = 0;
+        int firstPlace = 0;
+        int secondPlace = 0;
+        int thirdPlace = 0;
+        int forthPlace = 0;
+        int fifthPlace = 0;
 
         for (Lotto ticket : tickets) {
             int hit = ticket.countSameNumber(winningNumber);

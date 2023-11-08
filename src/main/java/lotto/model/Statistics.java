@@ -39,10 +39,9 @@ public class Statistics {
             .sum();
     }
 
-    public float evaluateTotalProfit() {
+    public void evaluateTotalProfit() {
         Map<MatchResult, Integer> counts = calculateMatchCounts();
         float totalWinnings = calculateTotalWinnings(counts);
-//        return getProfitRate(totalWinnings);
 
         // 결과 출력
         System.out.println("당첨 통계\n---");
@@ -66,7 +65,6 @@ public class Statistics {
         // 총 수익률 계산 및 출력
         float profitRate = getProfitRate(totalWinnings);
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
-        return profitRate;
     }
 
     private String formatPrize(Integer prize) {
@@ -74,7 +72,6 @@ public class Statistics {
     }
 
     private float getProfitRate(float totalWinnings) {
-        // 수익률 계산: (총 당첨금 / 투자한 총 금액) * 100
         float profitRate = (totalWinnings / totalAmount) * 100;
         return profitRate;
     }

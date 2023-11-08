@@ -13,7 +13,7 @@ class InputValidatorTest {
     public void validMoney() {
         int money = 8000;
 
-        Assertions.assertThatThrownBy(() -> inputValidator.validateMoney(money))
+        Assertions.assertThatCode(() -> inputValidator.validateMoney(money))
                 .doesNotThrowAnyException();
     }
 
@@ -40,7 +40,7 @@ class InputValidatorTest {
     public void validWinningNumber() {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
 
-        Assertions.assertThatThrownBy(() -> inputValidator.validateDrawNumbers(winningNumbers))
+        Assertions.assertThatCode(() -> inputValidator.validateDrawNumbers(winningNumbers))
                 .doesNotThrowAnyException();
     }
 

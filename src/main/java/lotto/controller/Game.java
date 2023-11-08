@@ -11,6 +11,7 @@ public class Game {
 
     private int lottoCount; // 구입한 로또 장 수
     private List<Lotto> lottoList = new ArrayList<>(); // 구입한 로또 리스트
+    private Lotto winningLotto; // 당첨 번호
 
     public Game() {}
 
@@ -37,6 +38,19 @@ public class Game {
 
     public void printLottoList(List<Lotto> lottoList){
         OutputLotto.printLottoList(lottoList);
+    }
+
+    public void setWinningLotto(){
+
+        try{
+            String inputStringValue = InputView.inputWinningNumber();
+            this.winningLotto =  new Lotto(ValidateWinningNumber.validateWinningNumber(inputStringValue));
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            setWinningLotto();
+        }
+
     }
 
 }

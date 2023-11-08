@@ -18,6 +18,7 @@ public class LottoChecker {
         for (Integer number : lottoNumbers) {
             matchingCount += isMatchingNumber(number);
         }
+        boolean isContainBonus = isBonusMatch(lottoNumbers);
     }
 
     private int isMatchingNumber(int number) {
@@ -27,4 +28,12 @@ public class LottoChecker {
         return 0;
     }
 
+    private boolean isBonusMatch(List<Integer> numbers) {
+        for (Integer i : numbers) {
+            if (i == bonusNumber) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

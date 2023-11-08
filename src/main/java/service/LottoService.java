@@ -1,11 +1,18 @@
 package service;
 
+import exception.Exception;
 import model.Lotto;
 import model.WinningLotto;
 import view.InputView;
 import view.OutputView;
 
 public class LottoService {
+
+    void check_null(Lotto lotto) {
+        if (lotto == null) {
+            Exception.raiseInvalidInputException();
+        }
+    }
 
     public Lotto getValidateWinningNumber() {
         boolean isSuccess = false;
@@ -15,6 +22,7 @@ public class LottoService {
                 OutputView.printWinningNumberInputRequestMessage();
                 String winningNumber = InputView.getWinningNumber();
                 lotto = new Lotto(winningNumber);
+                check_null(lotto);
                 isSuccess = true;
             } catch (IllegalArgumentException winningNumberInputError) {
                 OutputView.printErrorMessage(winningNumberInputError);
@@ -31,6 +39,7 @@ public class LottoService {
                 OutputView.printBonusNumberInputRequestMessage();
                 String bonusNumber = InputView.getBonusNumber();
                 winningLotto = new WinningLotto(lotto.getNumbers(), bonusNumber);
+                check_null(winningLotto);
                 isSuccess = true;
             } catch (IllegalArgumentException bonusNumberInputError) {
                 OutputView.printErrorMessage(bonusNumberInputError);

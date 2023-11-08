@@ -1,6 +1,5 @@
 package controller;
 
-import exception.Exception;
 import lotto.Utils;
 import model.Lotto;
 import model.LottoGame;
@@ -11,9 +10,10 @@ import service.MoneyService;
 import view.OutputView;
 import java.util.Map;
 
+import static model.LottoUtils.LOTTO_PRICE;
+
 public class LottoGameController {
 
-    private static final int LOTTO_PRICE = 1000;
     Money money;
     MoneyService moneyService = new MoneyService();
     LottoService lottoService = new LottoService();
@@ -38,16 +38,8 @@ public class LottoGameController {
     }
 
     public void playLotto() {
-        try {
-            purchaseLottos();
-        } catch (NullPointerException nullPointerException) {
-            Exception.raiseInvalidInputException();
-        }
-        try {
-            makeLottoResult();
-        } catch (NullPointerException nullPointerException) {
-            Exception.raiseInvalidInputException();
-    }
+        purchaseLottos();
+        makeLottoResult();
         reportLottoResult();
-}
+    }
 }

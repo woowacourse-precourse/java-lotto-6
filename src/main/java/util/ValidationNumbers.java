@@ -21,6 +21,15 @@ public class ValidationNumbers {
         validateDuplicateNumber(numbers);
     }
 
+    public static void validateDuplicateNumber(List<Integer> numberList) {
+        Integer filteredNumberListCount = (int) numberList.stream()
+                .distinct()
+                .count();
+        if (filteredNumberListCount != LottoPrinciples.LIMIT_NUMBER.getNumber()) {
+            throw new IllegalArgumentException(ValidationNumbersMessages.DUPLICATE_NUMBER.getMessage());
+        }
+    }
+
     private static void validateNumber(String numbers) {
         List<String> numbersList = List.of(numbers.split(COMMA, REMOVE_LAST_SPACE_NUMBER));
         try {

@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 import java.util.stream.Stream;
+import util.ValidationNumbers;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,6 +16,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        ValidationNumbers.validateDuplicateNumber(numbers);
     }
 
     public void printLottoNumbers() {
@@ -67,7 +69,7 @@ public class Lotto {
     }
 
     private int calcFifthPlaceNumber(Integer sameCount, Integer rank) {
-        if (sameCount == LottoPrinciples.FIFTH_MATCHES.getNumber()) {
+        if (sameCount == LottoPrinciples.THIRD_MATCHES.getNumber()) {
             return Rank.FIFTH_PLACE.getRank();
         }
         return rank;

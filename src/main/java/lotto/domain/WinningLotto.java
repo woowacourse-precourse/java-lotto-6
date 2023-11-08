@@ -2,6 +2,8 @@ package lotto.domain;
 
 import lotto.enums.ErrorMessages;
 import lotto.enums.LottoNumbers;
+import lotto.exception.DuplicatedNumberException;
+import lotto.exception.OutOfRangeException;
 
 public class WinningLotto {
     private final Lotto lotto;
@@ -16,11 +18,11 @@ public class WinningLotto {
     private void validate(Integer bonusNumber) {
         if (isNotInRange(bonusNumber)) {
             System.out.println(ErrorMessages.IN_RANGE.getDeclaringClass());
-            throw new IllegalArgumentException(ErrorMessages.IN_RANGE.getErrorMessage());
+            throw new OutOfRangeException(ErrorMessages.IN_RANGE.getErrorMessage());
         }
         if (lotto.contains(bonusNumber)) {
             System.out.println(ErrorMessages.NOT_DUPLICATE.getErrorMessage());
-            throw new IllegalArgumentException(ErrorMessages.NOT_DUPLICATE.getErrorMessage());
+            throw new DuplicatedNumberException(ErrorMessages.NOT_DUPLICATE.getErrorMessage());
         }
     }
 

@@ -26,7 +26,7 @@ public class NumberGenerator {
     private static void validate(String input) {
         if (input == null) {
             System.out.println(ErrorMessages.NOT_EMPTY.getErrorMessage());
-            throw new IllegalArgumentException(ErrorMessages.NOT_EMPTY.getErrorMessage());
+            throw new NullPointerException(ErrorMessages.NOT_EMPTY.getErrorMessage());
         }
         if (!Pattern.matches("^[0-9]*$", input)) {
             System.out.println(ErrorMessages.ONLY_NUMBER.getErrorMessage());

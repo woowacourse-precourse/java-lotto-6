@@ -20,6 +20,6 @@ class NumberGeneratorTest {
     @DisplayName("입력값이 없으면 예외가 발생한다.")
     @Test
     void inputNothing() {
-        assertThatThrownBy(() -> NumberGenerator.formatNumber(null)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> NumberGenerator.formatNumber(null)).isInstanceOf(NullPointerException.class);
     }
 }

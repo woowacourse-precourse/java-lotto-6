@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.enums.ErrorMessages;
+import lotto.exception.MoneyFormatException;
 
 public class Money {
     private static final int UNIT = 1_000;
@@ -14,11 +15,11 @@ public class Money {
     private void validate(Integer amount) {
         if (isUnderAtLeast(amount)) {
             System.out.println(ErrorMessages.PURCHASE_LEAST.getErrorMessage());
-            throw new IllegalArgumentException(ErrorMessages.PURCHASE_LEAST.getErrorMessage());
+            throw new MoneyFormatException(ErrorMessages.PURCHASE_LEAST.getErrorMessage());
         }
         if (isCorrectUnit(amount)) {
             System.out.println(ErrorMessages.PURCHASE_UNIT.getErrorMessage());
-            throw new IllegalArgumentException(ErrorMessages.PURCHASE_UNIT.getErrorMessage());
+            throw new MoneyFormatException(ErrorMessages.PURCHASE_UNIT.getErrorMessage());
         }
     }
 

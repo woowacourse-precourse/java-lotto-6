@@ -6,6 +6,10 @@ import java.util.HashSet;
 import java.util.List;
 import lotto.enums.ErrorMessages;
 import lotto.enums.LottoNumbers;
+import lotto.exception.DuplicatedNumberException;
+import lotto.exception.LottoFormatException;
+import lotto.exception.OutOfRangeException;
+
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,16 +23,16 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (isRightNumbers(numbers)) {
-            System.out.println(ErrorMessages.RIGHT_NUMBERS.getErrorMessage());
-            throw new IllegalArgumentException(ErrorMessages.RIGHT_NUMBERS.getErrorMessage());
+            System.out.println(ErrorMessages.LOTTO_FORMAT.getErrorMessage());
+            throw new LottoFormatException(ErrorMessages.LOTTO_FORMAT.getErrorMessage());
         }
         if (isDuplicated(numbers)) {
             System.out.println(ErrorMessages.NOT_DUPLICATE.getErrorMessage());
-            throw new IllegalArgumentException(ErrorMessages.NOT_DUPLICATE.getErrorMessage());
+            throw new DuplicatedNumberException(ErrorMessages.NOT_DUPLICATE.getErrorMessage());
         }
         if (isNotInRange(numbers)) {
             System.out.println(ErrorMessages.IN_RANGE.getErrorMessage());
-            throw new IllegalArgumentException(ErrorMessages.IN_RANGE.getErrorMessage());
+            throw new OutOfRangeException(ErrorMessages.IN_RANGE.getErrorMessage());
         }
     }
 

@@ -3,6 +3,8 @@ package lotto.domain;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.util.List;
+import lotto.exception.DuplicatedNumberException;
+import lotto.exception.OutOfRangeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -29,7 +31,7 @@ class WinningLottoTest {
     @ParameterizedTest
     void createWinningLottoNotInRange(String input) {
         assertThatThrownBy(() -> new WinningLotto(lotto, Integer.parseInt(input))).isInstanceOf(
-                IllegalArgumentException.class);
+                OutOfRangeException.class);
     }
 
     @DisplayName("로또 번호와 보너스 번호가 중복되면 예외가 발생한다.")
@@ -37,6 +39,6 @@ class WinningLottoTest {
     @ParameterizedTest
     void createWinningLottoByDuplicatedNumber(String input) {
         assertThatThrownBy(() -> new WinningLotto(lotto, Integer.parseInt(input))).isInstanceOf(
-                IllegalArgumentException.class);
+                DuplicatedNumberException.class);
     }
 }

@@ -12,6 +12,17 @@ import lotto.utils.RandomNumberGenerator;
 
 public class ComponentFactory {
 
+    private static ComponentFactory instance;
+
+    private ComponentFactory() {}
+
+    public static ComponentFactory getInstance() {
+        if (instance == null) {
+            instance = new ComponentFactory();
+        }
+        return instance;
+    }
+
     public LottoController lottoController() {
         return new LottoController(outputView(), inputManager(), lottoService());
     }
@@ -48,3 +59,4 @@ public class ComponentFactory {
         return new RandomNumberGenerator();
     }
 }
+

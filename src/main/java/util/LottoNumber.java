@@ -13,11 +13,8 @@ public class LottoNumber {
                 LottoPrinciples.MAX_NUMBER.getNumber(),
                 LottoPrinciples.LIMIT_NUMBER.getNumber()
         );
-        sortedLottoNumbers(lottoNumberList);
-        return lottoNumberList;
-    }
-
-    private static void sortedLottoNumbers(List<Integer> lottoNumbers) {
-        Collections.sort(lottoNumbers);
+        return lottoNumberList.stream()
+                .sorted()
+                .toList();
     }
 }

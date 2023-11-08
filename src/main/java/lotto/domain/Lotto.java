@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -48,6 +49,13 @@ public class Lotto {
     public void inputBonusNumber(int bonusNumber) {
         validate(bonusNumber);
         this.numbers.add(bonusNumber);
+    }
+
+    public static List<Integer> parseIntLottoNumber(String[] inputLottoNumbers, List<Integer> lottoNumbers) {
+        for (String inputLottoNumber : inputLottoNumbers) {
+            lottoNumbers.add(Integer.parseInt(inputLottoNumber));
+        }
+        return lottoNumbers;
     }
 
     public List<Integer> getNumbers() {

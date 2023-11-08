@@ -56,7 +56,7 @@ public class LottoFunction {
     }
 
     String getEarningRate(int quantity, List<Prize> prizes) {
-        float result = (float) sumPrizes(prizes) / (quantity * 1000);
+        float result = (float) sumPrizes(prizes) / (quantity * 1000) * 100;
         return String.format(Print.totalReturnRate, result);
     }
 

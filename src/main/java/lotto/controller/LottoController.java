@@ -43,35 +43,6 @@ public class LottoController {
         OutputView.printEarningsRate(earningsRate.getEarningsRate(purchaseMoney, resultCounts));
     }
 
-    private void setBonusNumber() {
-        while (true) {
-            try {
-                bonusNumber = InputView.inputBonusNumber();
-                new BonusNumber(winningLotto.generateNumber(), bonusNumber);
-                break;
-            } catch (IllegalArgumentException ignored) {
-            }
-        }
-    }
-
-    private void setWinningNumbers() {
-        while (true) {
-            try {
-                String inputWinningNumber = InputView.inputWinningNumbers();
-                winningLotto = new ManualNumberStrategy(inputWinningNumber);
-                break;
-            } catch (IllegalArgumentException ignored) {
-            }
-        }
-    }
-
-    private void printTickets() {
-        OutputView.printTicketCount(lottoTicketAmount);
-        for (Lotto lottoTicket : lottoTickets) {
-            OutputView.printTicketList(lottoTicket.getNumbers());
-        }
-    }
-
     private void purchaseLotto() {
         while (true) {
             try {
@@ -89,6 +60,35 @@ public class LottoController {
         lottoTickets = IntStream.range(0, lottoTicketAmount)
                 .mapToObj(i -> randomNumberStrategy.generateNumber())
                 .collect(Collectors.toList());
+    }
+
+    private void printTickets() {
+        OutputView.printTicketCount(lottoTicketAmount);
+        for (Lotto lottoTicket : lottoTickets) {
+            OutputView.printTicketList(lottoTicket.getNumbers());
+        }
+    }
+
+    private void setWinningNumbers() {
+        while (true) {
+            try {
+                String inputWinningNumber = InputView.inputWinningNumbers();
+                winningLotto = new ManualNumberStrategy(inputWinningNumber);
+                break;
+            } catch (IllegalArgumentException ignored) {
+            }
+        }
+    }
+
+    private void setBonusNumber() {
+        while (true) {
+            try {
+                bonusNumber = InputView.inputBonusNumber();
+                new BonusNumber(winningLotto.generateNumber(), bonusNumber);
+                break;
+            } catch (IllegalArgumentException ignored) {
+            }
+        }
     }
 
     private void printResult(Map<LottoResult, Integer> resultCounts) {

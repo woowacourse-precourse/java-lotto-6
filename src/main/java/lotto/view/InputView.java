@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.LottoNumber;
+import lotto.domain.Money;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,7 +12,7 @@ import static lotto.controller.LottoController.winningLotto;
 
 public class InputView {
     public static int inputMoney() {
-        return Integer.parseInt(Console.readLine());
+        return validateInteger(Console.readLine());
     }
 
     public static List<Integer> inputWinningNumbers() {
@@ -34,5 +35,16 @@ public class InputView {
             inputBonusNumber();
         }
         return bonusNumber;
+    }
+
+    public static int validateInteger(String input) {
+        while (true) {
+            try {
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 정수를 입력해주세요.");
+                input = Console.readLine();
+            }
+        }
     }
 }

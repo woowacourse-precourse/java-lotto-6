@@ -9,7 +9,10 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateSixNumbers(numbers);
+        validateLottoRange(numbers);
+        validateLottoDuplicated(numbers);
+//        validate(numbers);
         this.numbers = numbers;
     }
 

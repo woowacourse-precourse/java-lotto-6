@@ -23,6 +23,11 @@ public class Profit {
     }
 
     private double calculateRateOfProfit(long quantity, int ticketQuantity) {
-        return (double) quantity / (double) ticketQuantity;
+        double rate = (double) quantity / (double) ticketQuantity;
+        return Math.round(rate * 10) / 10;
+    }
+
+    public double getRate() {
+        return rate;
     }
 }

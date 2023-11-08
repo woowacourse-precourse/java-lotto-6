@@ -5,19 +5,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Output {
-    private static final String PRINT_QUANTITY_MESSAGE = "개를 구매했습니다.";
-    private static final String PRINT_RESULT_MESSAGE = "당첨 통계";
-    private static final String PRINT_SEPARATOR = "---";
-    private static final String PRINT_FIRST = "6개 일치 (2,000,000,000원) - ";
-    private static final String PRINT_SECOND = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
-    private static final String PRINT_THIRD = "5개 일치 (1,500,000원) - ";
-    private static final String PRINT_FOURTH = "4개 일치 (50,000원) - ";
-    private static final String PRINT_FIFTH = "3개 일치 (5,000원) - ";
-    private static final String PRINT_UNIT = "개";
+    private static final String QUANTITY_MESSAGE = "개를 구매했습니다.";
+    private static final String RESULT_MESSAGE = "당첨 통계";
+    private static final String SEPARATOR_MESSAGE = "---";
+    private static final String FIRST_MESSAGE = "6개 일치 (2,000,000,000원) - ";
+    private static final String SECOND_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
+    private static final String THIRD_MESSAGE = "5개 일치 (1,500,000원) - ";
+    private static final String FOURTH_MESSAGE = "4개 일치 (50,000원) - ";
+    private static final String FIFTH_MESSAGE = "3개 일치 (5,000원) - ";
+    private static final String UNIT_MESSAGE = "개";
+    private static final String RATE_START_MESSAGE = "총 수익률은 ";
+    private static final String RATE_END_MESSAGE = "%입니다.";
 
 
     public static void printTicketQuantity(int ticketQuantity) {
-        System.out.println(ticketQuantity + PRINT_QUANTITY_MESSAGE);
+        System.out.println(ticketQuantity + QUANTITY_MESSAGE);
     }
 
     public static void printTickets(Tickets tickets) {
@@ -43,11 +45,16 @@ public class Output {
     }
 
     public static void printWinningResult(Winning winning) {
-        System.out.println(PRINT_RESULT_MESSAGE + '\n' + PRINT_SEPARATOR);
-        System.out.println(PRINT_FIFTH + winning.getFifthNumber() + PRINT_UNIT);
-        System.out.println(PRINT_FOURTH + winning.getFourthNumber() + PRINT_UNIT);
-        System.out.println(PRINT_THIRD + winning.getThirdNumber() + PRINT_UNIT);
-        System.out.println(PRINT_SECOND + winning.getSecondNumber() + PRINT_UNIT);
-        System.out.println(PRINT_FIRST + winning.getFirstNumber() + PRINT_UNIT);
+        System.out.println(RESULT_MESSAGE + '\n' + SEPARATOR_MESSAGE);
+        System.out.println(FIFTH_MESSAGE + winning.getFifthNumber() + UNIT_MESSAGE);
+        System.out.println(FOURTH_MESSAGE + winning.getFourthNumber() + UNIT_MESSAGE);
+        System.out.println(THIRD_MESSAGE + winning.getThirdNumber() + UNIT_MESSAGE);
+        System.out.println(SECOND_MESSAGE + winning.getSecondNumber() + UNIT_MESSAGE);
+        System.out.println(FIRST_MESSAGE + winning.getFirstNumber() + UNIT_MESSAGE);
+    }
+
+    public static void printRateOfProfit(Profit profit) {
+        String rate = String.format("%.nf", 1);
+        System.out.println(RATE_START_MESSAGE + rate + RATE_END_MESSAGE);
     }
 }

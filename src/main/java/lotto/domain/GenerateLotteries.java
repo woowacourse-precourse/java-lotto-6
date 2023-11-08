@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.MagicNumber;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class GenerateLotteries {
@@ -21,7 +20,8 @@ public class GenerateLotteries {
     }
 
     private Lotto generateRandomNumbers() {
-        Lotto numbers = new Lotto(Randoms.pickUniqueNumbersInRange(MagicNumber.MIN_NUMBER.getNumber(), MagicNumber.MAX_NUMBER.getNumber(), MagicNumber.LOTTO_COUNT.getNumber()));
+        Lotto numbers = new Lotto(Randoms.pickUniqueNumbersInRange(MagicNumber.MIN_NUMBER.getNumber(),
+                MagicNumber.MAX_NUMBER.getNumber(), MagicNumber.LOTTO_COUNT.getNumber()));
         return numbers;
     }
 }

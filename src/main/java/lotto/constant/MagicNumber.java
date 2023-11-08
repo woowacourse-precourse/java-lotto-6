@@ -7,7 +7,6 @@ public enum MagicNumber {
     RANK_COUNT(5),
     PRICE_UNIT(1000);
 
-
     private int number;
 
     MagicNumber(int number) {

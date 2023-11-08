@@ -1,7 +1,6 @@
 package lotto.domain;
 
 public class SingleNumberInputVO {
-
     private int number;
 
     public SingleNumberInputVO(String number) {

@@ -103,7 +103,7 @@ public class InputView {
 
     private void validateLottoNumbers(String inputLottoNumbers) {
         List<String> lottoNumbers = List.of(inputLottoNumbers.split(INPUT_LOTTO_NUMBER_SPLITTER));
-        if (lottoNumbers.size() != 6) {
+        if (lottoNumbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(INVALID_INPUT_LOTTO_NUMBERS_COUNT);
         }
 

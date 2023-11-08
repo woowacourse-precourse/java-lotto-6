@@ -14,10 +14,10 @@ public class Lottos {
         Result result = new Result();
 
         lottos.forEach(lotto -> {
-                int matchCount = lotto.getMatchCount(winningLotto.getLotto());
-                boolean containBonusNumber = lotto.isContainNumber(winningLotto.getBonusNumber());
-                result.increaseRankCount(matchCount, containBonusNumber);
-            });
+            int matchCount = lotto.getMatchCount(winningLotto.getLotto());
+            boolean containBonusNumber = lotto.isContainNumber(winningLotto.getBonusNumber());
+            result.increaseRankCount(matchCount, containBonusNumber);
+        });
 
         return result;
     }

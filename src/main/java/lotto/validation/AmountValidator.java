@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 public class AmountValidator {
 
     private static final String DIGIT_REGEX = "^[0-9]+$";
+
     private AmountValidator() {
     }
 

@@ -27,7 +27,8 @@ public class Application {
                 break;
             }
             else if (!isValidPurchaseAmount(purchaseAmount)){
-                System.out.println("[ERROR] 구입 금액이 유효하지 않습니다." );
+                System.out.println("[ERROR] 로또 구입 금액은 1,000원 단위로 입력하고 0보다 커야 합니다.");
+                continue;
             }
         }
         return purchaseAmount;
@@ -36,14 +37,18 @@ public class Application {
     private static int readPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
-        return Integer.parseInt(input);
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자를 입력해주세요.");
+            return readPurchaseAmount();
+        }
     }
     
     private static boolean isValidPurchaseAmount(int purchaseAmount) {
         if (purchaseAmount % 1000 == 0 && purchaseAmount > 0) {
             return true;
         } else if (!(purchaseAmount % 1000 == 0 && purchaseAmount > 0)) {
-            System.out.println("[ERROR] 로또 구입 금액은 1,000원 단위로 입력하고 0보다 커야 합니다.");
             return false;
         }
         return false;
@@ -60,7 +65,7 @@ public class Application {
     }
 
     private static Lotto generateWinningLotto() {
-        System.out.println("[ERROR] 당첨 번호를 입력해 주세요.");
+        System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> numbers = readWinningNumbers();
         return new Lotto(numbers);
     }
@@ -71,13 +76,20 @@ public class Application {
         String[] numberStrings = input.split(",");
     
         if (numberStrings.length != 6) {
-            System.out.println("[ERROR] 6개의 당첨 번호를 입력해야 합니다.");
-            return numbers;
+            System.out.println("[ERROR] 6개의 당첨 번호를 입력해야 합니다.\n");
+            generateWinningLotto();
         }
+        
         for (String numberStr : numberStrings) {
-            if (isValidWinningNumberFormat(numberStr, numbers)) {
+            boolean checkNum = isValidWinningNumberFormat(numberStr, numbers);
+            if (checkNum) {
                 int winningNumber = Integer.parseInt(numberStr.trim());
                 numbers.add(winningNumber);
+            }
+            else if (!checkNum){
+                System.out.println("[ERROR] 당첨 번호는 1부터 45 사이어야 하고 중복되지 않아야 합니다.\n");
+                generateWinningLotto();
+                break;
             }
         }
         return numbers;
@@ -89,12 +101,10 @@ public class Application {
             if (winningNumber >= 1 && winningNumber <= 45 && !numbers.contains(winningNumber)) {
                 return true;
             } else if (!(winningNumber >= 1 && winningNumber <= 45 && !numbers.contains(winningNumber))) {
-                System.out.println("[ERROR] 당첨 번호는 1부터 45 사이어야 하고 중복되지 않아야 합니다.");
                 return false;
             }
             return false;
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 올바른 숫자 형식이 아닙니다.");
             return false;
         }
     }
@@ -110,6 +120,7 @@ public class Application {
             
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 올바른 숫자 형식이 아닙니다.");
+            getBonusNumber();
         }
         return bonusNumber;
     }

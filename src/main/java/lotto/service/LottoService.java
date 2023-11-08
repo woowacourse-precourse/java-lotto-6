@@ -83,12 +83,6 @@ public class LottoService {
         }
     }
 
-    private void validateLottoNumbersSize(List<String> userLottoNumbers) {
-        if (userLottoNumbers.size() != VALID_LOTTO_SIZE) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_MESSAGE + INVALID_LOTTO_SIZE_MESSAGE);
-        }
-    }
-
     public void userBonusNumberValidate(String inputUserLottoNumbers, String inputUserBonusNumber) {
         validateIsInteger(inputUserBonusNumber);
         validateRangeNumber(inputUserBonusNumber);
@@ -122,6 +116,12 @@ public class LottoService {
             Integer.parseInt(number);
         } catch (NumberFormatException ex) {
             throw new IllegalArgumentException(COMMON_ERROR_MESSAGE + ONLY_NUMBER_MESSAGE);
+        }
+    }
+
+    private void validateLottoNumbersSize(List<String> userLottoNumbers) {
+        if (userLottoNumbers.size() != VALID_LOTTO_SIZE) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_MESSAGE + INVALID_LOTTO_SIZE_MESSAGE);
         }
     }
 

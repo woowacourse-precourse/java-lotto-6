@@ -28,6 +28,9 @@ public class Lotto {
                 .count();
         return distinctcount < numbers.size();
     }
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
 
     public String toString() {
         return numbers.toString();

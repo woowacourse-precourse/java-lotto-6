@@ -6,35 +6,19 @@ import camp.nextstep.edu.missionutils.Console;
 public class GameInput {
 
 
-    public static Integer insertMoney(){
+    public static Integer insertMoney() throws IllegalArgumentException{
         String money = Console.readLine();
-        try{
-            return Converter.convertStringToMoney(money);
-        }
-        catch (IllegalArgumentException illegalArgumentException){
-            System.out.println(illegalArgumentException.getMessage());
-            return null;
-        }
+        return Converter.convertStringToMoney(money);
     }
 
     public static Lotto insertWinnigNumbers() throws IllegalArgumentException{
         String commaWinnigNumbers = Console.readLine();
-        try {
-            return Converter.convertCommaStringToLotto(commaWinnigNumbers);
-        } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
-            return null;
-        }
+        return Converter.convertCommaStringToLotto(commaWinnigNumbers);
     }
 
-    public static Integer insertBonusNumber(){
+    public static Integer insertBonusNumber() throws IllegalArgumentException{
         String number = Console.readLine();
-        try {
-            return Converter.convertStringToLottoNumber(number);
-        } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
-            return null;
-        }
+        return Converter.convertStringToLottoNumber(number);
     }
 
 }

@@ -23,8 +23,13 @@ public class LottoGame {
     private Integer setMoney() {
         Integer money = null;
         while (money == null) {
-            GuideMessage.ofInputMoney();
-            money = GameInput.insertMoney();
+            try {
+                GuideMessage.ofInputMoney();
+                money = GameInput.insertMoney();
+            } catch (IllegalArgumentException illegalArgumentException) {
+                System.out.println(illegalArgumentException.getMessage());
+                money = null;
+            }
         }
         return money;
     }
@@ -37,16 +42,32 @@ public class LottoGame {
     }
 
     private Lotto setWinningNumber() {
-        GuideMessage.ofInputWinningNumber();
-        Lotto winnigNumbers = GameInput.insertWinnigNumbers();
-        return winnigNumbers;
+        Lotto winningNumbers = null;
+        while(winningNumbers == null){
+            try {
+                GuideMessage.ofInputWinningNumber();
+                winningNumbers = GameInput.insertWinnigNumbers();
+            } catch (IllegalArgumentException illegalArgumentException) {
+                System.out.println(illegalArgumentException.getMessage());
+                winningNumbers = null;
+            }
+        }
+        return winningNumbers;
     }
 
     private Integer setBonusNumber(Lotto winnigNumbers) {
-        GuideMessage.ofInputBounsNumber();
-        Integer bonusNumber = GameInput.insertBonusNumber();
-        LottoValidator.checkWinnerAndBonusDuplicatedNumber(winnigNumbers,bonusNumber);
+        Integer bonusNumber = null;
+        while (bonusNumber == null) {
+            try {
+                GuideMessage.ofInputBounsNumber();
+                bonusNumber = GameInput.insertBonusNumber();
+                LottoValidator.checkWinnerAndBonusDuplicatedNumber(winnigNumbers, bonusNumber);
+            } catch (IllegalArgumentException illegalArgumentException) {
+                System.out.println(illegalArgumentException.getMessage());
+                bonusNumber = null;
+            }
 
+        }
         return bonusNumber;
     }
 
@@ -55,6 +76,5 @@ public class LottoGame {
                 LottoResultWinners.findWinnerOfLotto(lottos, winnigNumbers, bonusNumber);
         return lottoResultWinners;
     }
-
 
 }

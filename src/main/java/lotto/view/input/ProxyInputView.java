@@ -17,7 +17,7 @@ public class ProxyInputView implements ConsoleInput {
             return lottoGameInputView.requestLottoCash();
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
-            return lottoGameInputView.requestLottoCash();
+            return requestLottoCash();
         }
     }
 
@@ -27,7 +27,7 @@ public class ProxyInputView implements ConsoleInput {
             return lottoGameInputView.requestWinningLotto();
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
-            return lottoGameInputView.requestWinningLotto();
+            return requestWinningLotto();
         }
     }
 
@@ -37,7 +37,7 @@ public class ProxyInputView implements ConsoleInput {
             return lottoGameInputView.requestBonusLottoNumber(winningLotto);
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
-            return lottoGameInputView.requestBonusLottoNumber(winningLotto);
+            return requestBonusLottoNumber(winningLotto);
         }
     }
 }

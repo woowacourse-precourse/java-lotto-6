@@ -44,15 +44,8 @@ public class LottoResultPolicy implements ResultPolicy {
     }
 
     private void validateBonusNumber(int bonusNumbers) {
-        validateNegativeNum(bonusNumbers);
         validateNumberRange(bonusNumbers);
         validateDuplicateNumber(bonusNumbers);
-    }
-
-    private void validateNegativeNum(int bonusNumber) throws IllegalArgumentException {
-        if (bonusNumber < 0) {
-            throw new IllegalArgumentException(NEGATIVE_NUM_ERROR.getMessage());
-        }
     }
 
     private void validateNumberRange(int bonusNumber) throws IllegalArgumentException {

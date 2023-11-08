@@ -40,8 +40,15 @@ public enum Prize {
                 .orElse(LOST);
     }
 
-    public static List<Prize> valuesByRank() {
+    private static List<Prize> valuesByRank() {
         return Arrays.stream(values())
+                .sorted(Comparator.comparingInt(prize -> -prize.rank))
+                .toList();
+    }
+
+    public static List<Prize> prizeByRank() {
+        return Arrays.stream(values())
+                .filter(prize -> prize != Prize.LOST)
                 .sorted(Comparator.comparingInt(prize -> -prize.rank))
                 .toList();
     }

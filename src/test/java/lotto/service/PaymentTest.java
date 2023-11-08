@@ -1,6 +1,6 @@
 package lotto.service;
 
-import static lotto.config.LottoPrice.LOTTO_PRICE;
+import static lotto.config.LottoConfig.LOTTO_PRICE;
 
 import lotto.config.AppConfig;
 import org.assertj.core.api.Assertions;
@@ -19,7 +19,7 @@ class PaymentTest {
     void 로또구매테스트() {
         //given
         int money = 10000;
-        int lottoPrice = LOTTO_PRICE.getPrice();
+        int lottoPrice = LOTTO_PRICE.getNum();
         //when
         int testResult = payment.pay(money, lottoPrice);
         //then

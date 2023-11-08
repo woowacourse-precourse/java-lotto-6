@@ -17,8 +17,8 @@ public class LottoNumberGenerator {
         return randomNumbers;
     }
 
-    private static List<Integer> sortRandomNumber(List<Integer> number) {
-        List<Integer> sortedNumbers = new ArrayList<>(number);
+    private static List<Integer> sortRandomNumber(List<Integer> randomNumbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(randomNumbers);
         Collections.sort(sortedNumbers);
         return sortedNumbers;
     }

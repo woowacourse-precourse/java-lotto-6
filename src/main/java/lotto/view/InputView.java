@@ -11,62 +11,62 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
-    private static String[] inputValues;
+    private static String[] winningNumbers;
 
     public static Integer inputPurchaseAmount() {
-        String inputValue = null;
+        String purchaseAmount = null;
         Boolean flag = false;
 
         while(!flag) {
             System.out.println(MessageConstants.PURCHASE_AMOUNT_GUIDE);
-            inputValue = Console.readLine();
+            purchaseAmount = Console.readLine();
             try {
-                PurchaseAmountValidator.validateType(inputValue);
-                PurchaseAmountValidator.validateUnit(inputValue);
+                PurchaseAmountValidator.validateType(purchaseAmount);
+                PurchaseAmountValidator.validateUnit(purchaseAmount);
                 flag = true;
             } catch (IllegalArgumentException e) {}
         }
-        return Integer.parseInt(inputValue);
+        return Integer.parseInt(purchaseAmount);
     }
 
     public static List<Integer> inputWinningNumbers() {
-        inputValues = null;
+        winningNumbers = null;
         Boolean flag = false;
 
         while (!flag) {
             System.out.println(MessageConstants.WINNING_NUMBERS_GUIDE);
-            inputValues = Console.readLine().split(",");
+            winningNumbers = Console.readLine().split(",");
             try {
-                WinningNumbersValidator.validateLength(inputValues);
-                WinningNumbersValidator.validateType(inputValues);
-                WinningNumbersValidator.validateRange(inputValues);
-                WinningNumbersValidator.validateDuplicate(inputValues);
+                WinningNumbersValidator.validateLength(winningNumbers);
+                WinningNumbersValidator.validateType(winningNumbers);
+                WinningNumbersValidator.validateRange(winningNumbers);
+                WinningNumbersValidator.validateDuplicate(winningNumbers);
                 flag = true;
             } catch (IllegalArgumentException e) {}
         }
 
-        return parseStringToInteger(inputValues);
+        return parseStringToInteger(winningNumbers);
     }
 
-    private static List<Integer> parseStringToInteger(String[] inputValues) {
-        List<Integer> inputIntValues = Arrays.stream(inputValues).map(v -> Integer.parseInt(v)).collect(Collectors.toList());
-        return inputIntValues;
+    private static List<Integer> parseStringToInteger(String[] winningNumbers) {
+        List<Integer> winningIntNumbers = Arrays.stream(winningNumbers).map(v -> Integer.parseInt(v)).collect(Collectors.toList());
+        return winningIntNumbers;
     }
 
     public static Integer inputBonusNumber() {
-        String inputValue = null;
+        String bonusNumber = null;
         Boolean flag = false;
 
         while (!flag) {
             System.out.println(MessageConstants.BONUS_NUMBER_GUIDE);
-            inputValue = Console.readLine();
+            bonusNumber = Console.readLine();
             try {
-                BonusNumberValidator.validateType(inputValue);
-                BonusNumberValidator.validateRange(inputValue);
-                BonusNumberValidator.validateDuplicate(inputValue, inputValues);
+                BonusNumberValidator.validateType(bonusNumber);
+                BonusNumberValidator.validateRange(bonusNumber);
+                BonusNumberValidator.validateDuplicate(bonusNumber, winningNumbers);
                 flag = true;
             } catch (IllegalArgumentException e) {}
         }
-        return Integer.parseInt(inputValue);
+        return Integer.parseInt(bonusNumber);
     }
 }

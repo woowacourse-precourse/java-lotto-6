@@ -16,7 +16,7 @@ public class StatisticsService {
         final MatchingResults matchingResults = lotteries.generateMatchingResults(winningLotto);
         final List<WinningGrade> winningGrades = matchingResults.receiveWinningGrades();
         final LottoRanks lottoRanks = LottoRanks.from(winningGrades);
-        final RankingResult rankingResult = lottoRanks.generateLottoRanksResult();
+        final RankingResult rankingResult = lottoRanks.receiveRankingResult();
 
         printResultsSummary(rankingResult);
 

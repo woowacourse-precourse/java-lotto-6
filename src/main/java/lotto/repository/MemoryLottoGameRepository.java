@@ -7,7 +7,7 @@ import lotto.domain.LottoGame;
 public class MemoryLottoGameRepository extends MemoryRepository<LottoGame> {
 
     @Override
-    public LottoGame save(IndexModel object) {
+    public Long save(IndexModel object) {
         return null;
     }
 }

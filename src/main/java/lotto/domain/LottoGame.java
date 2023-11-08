@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import java.util.List;
+
 public class LottoGame extends IndexModel {
+
     private final ThousandUnitMoney purchaseAmount;
     private final Lottos automaticLottos;
     private final Lotto winningNumbers;
@@ -22,6 +25,10 @@ public class LottoGame extends IndexModel {
 
         return new LottoGame(purchaseAmount, automaticLottos, winningNumbers,
                 bonusNumber, winningResult);
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public int getPurchaseAmount() {

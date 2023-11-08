@@ -24,10 +24,10 @@ public abstract class MemoryRepository<T extends IndexModel> implements Reposito
     }
 
     @Override
-    public T save(IndexModel object) {
+    public Long save(IndexModel object) {
         store.put(++sequence, (T) object);
         object.setId(sequence);
-        return (T) object;
+        return sequence;
     }
 
     @Override

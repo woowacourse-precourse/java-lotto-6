@@ -1,5 +1,6 @@
 package lotto;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
@@ -14,5 +15,10 @@ public class Util {
                 return numString.stream()
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
+        }
+
+        public static String getFormattedPrizeAmount(double rate) {
+                DecimalFormat df = new DecimalFormat("#,###");
+                return df.format(rate).replace(",", "");
         }
 }

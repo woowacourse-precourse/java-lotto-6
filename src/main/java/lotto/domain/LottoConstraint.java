@@ -8,4 +8,6 @@ public class LottoConstraint {
 
     public static final Integer MIN_PRICE = 1000;
 
+    public static final Double PERCENT =100.0;
+
 }

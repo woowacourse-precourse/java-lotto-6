@@ -41,11 +41,7 @@ public class Statistics {
 
     public float evaluateTotalProfit() {
         Map<MatchResult, Integer> counts = calculateMatchCounts();
-
-        for (Map.Entry<MatchResult, Integer> entry : counts.entrySet()) {
-            System.out.println(entry.getKey().toString() + entry.getValue());
-        }
-
+        
         float totalEarningPrize = calculateTotalEaringPrize(counts);
         float totalProfit = getProfitRate(totalEarningPrize);
         return totalProfit;

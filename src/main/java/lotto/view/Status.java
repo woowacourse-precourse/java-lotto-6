@@ -1,9 +1,9 @@
 package lotto.view;
 
 public enum Status {
-    GOT_NOTHING(false),
-    GOT_ERROR(false),
-    GOT_MESSAGE(true);
+    GOT_NOTHING(true),
+    GOT_ERROR(true),
+    GOT_MESSAGE(false);
 
     private final boolean status;
 

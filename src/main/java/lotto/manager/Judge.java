@@ -29,7 +29,6 @@ public class Judge {
 
     public void judge(Lotto lotto) {
         int matchCount = winningLotto.numberMatches(lotto.getNumbers());
-        System.out.println(matchCount);
         boolean isBonusMatch = winningLotto.isBonusMatches(lotto.getNumbers());
         boolean isFinishedFlag = false;
 

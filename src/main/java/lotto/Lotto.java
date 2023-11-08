@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -11,8 +10,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getNumbersByAsc(){
-        Collections.sort(this.numbers);
+    public List<Integer> getNumbers(){
         return this.numbers;
     }
 

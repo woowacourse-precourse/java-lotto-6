@@ -19,7 +19,7 @@ public class WinningLotto {
     }
 
     private void validateDuplication(Lotto lotto, int bonusNumber) {
-        if(lotto.getNumbersByAsc().contains(bonusNumber)){
+        if(lotto.getNumbers().contains(bonusNumber)){
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또번호와 중복이 없어야 합니다.");
 
         }

@@ -1,11 +1,13 @@
-package lotto.domain.view.input;
+package lotto.view.input;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.domain.view.dto.LottoBonusNumberDto;
-import lotto.domain.view.dto.PurchasePriceDto;
+import lotto.view.input.dto.LottoBonusNumberDto;
+import lotto.view.input.dto.LottoNumbersDto;
+import lotto.view.input.dto.PurchasePriceDto;
+import lotto.utils.Converter;
 
 public class LottoInputView {
 

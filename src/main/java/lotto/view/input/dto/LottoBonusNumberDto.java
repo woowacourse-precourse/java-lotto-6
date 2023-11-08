@@ -1,4 +1,4 @@
-package lotto.domain.view.dto;
+package lotto.view.input.dto;
 
 public record LottoBonusNumberDto(
         int bonusNumber

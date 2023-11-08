@@ -1,8 +1,8 @@
-package lotto.domain.view.input;
+package lotto.utils;
 
-class Converter {
+public class Converter {
 
-    static long toLong(String input) {
+    public static long toLong(String input) {
         try {
             return Long.parseLong(input);
 
@@ -11,7 +11,7 @@ class Converter {
         }
     }
 
-    static int toInt(String input) {
+    public static int toInt(String input) {
         try {
             return Integer.parseInt(input);
 

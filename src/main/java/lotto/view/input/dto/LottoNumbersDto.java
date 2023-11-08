@@ -1,4 +1,4 @@
-package lotto.domain.view.input;
+package lotto.view.input.dto;
 
 import java.util.List;
 

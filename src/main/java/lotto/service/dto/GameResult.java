@@ -1,4 +1,4 @@
-package lotto.domain.service.dto;
+package lotto.service.dto;
 
 import java.util.Map;
 import lotto.domain.entity.Rank;

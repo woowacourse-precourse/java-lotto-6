@@ -1,10 +1,10 @@
 package lotto;
 
-import lotto.domain.controller.LottoController;
+import lotto.controller.LottoController;
 import lotto.domain.entity.LottoGenerator;
-import lotto.domain.service.LottoService;
-import lotto.domain.view.input.LottoInputView;
-import lotto.domain.view.output.LottoOutputView;
+import lotto.service.LottoService;
+import lotto.view.input.LottoInputView;
+import lotto.view.output.LottoOutputView;
 
 public class AppConfig {
 

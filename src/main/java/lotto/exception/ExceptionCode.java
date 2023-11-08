@@ -1,4 +1,4 @@
-package lotto.domain.exception;
+package lotto.exception;
 
 public enum ExceptionCode {
     NO_ATTRIBUTE("MODEL-001", "값이 존재하지 않습니다."),

@@ -1,14 +1,15 @@
-package lotto.domain.view.output;
+package lotto.view.output;
 
 import java.util.List;
 import java.util.Map;
-import lotto.domain.controller.dto.LottoDto;
-import lotto.domain.controller.dto.LottoDtos;
+import lotto.controller.dto.LottoDto;
+import lotto.controller.dto.LottoDtos;
 import lotto.domain.entity.Rank;
-import lotto.domain.service.dto.GameResult;
+import lotto.service.dto.GameResult;
 
 public class LottoOutputView {
 
+    // TODO: 2023-11-08 하위 클래스로 분리 
     private final String FORMAT_LOTTO_AMOUNT = "개를 구매했습니다.";
     private final String NOTICE_BONUS_NUMBER = "보너스 번호를 입력해주세요";
     private final String NOTICE_NUMBERS = "당첨번호를 입력해주세요";

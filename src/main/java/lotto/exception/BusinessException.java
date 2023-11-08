@@ -1,4 +1,4 @@
-package lotto.domain.exception;
+package lotto.exception;
 
 
 public class BusinessException extends RuntimeException {

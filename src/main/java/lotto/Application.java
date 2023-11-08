@@ -52,8 +52,8 @@ public class Application {
 
     public static void winLottoNum(List<Integer> numbers) {
         try {
-            winNum = numbers;
             new Lotto(numbers);
+            winNum = numbers;
         } catch (IllegalArgumentException e) {
             outputView.errorMessage(e.getMessage());
             winNum = convertNum(inputView.winNum());

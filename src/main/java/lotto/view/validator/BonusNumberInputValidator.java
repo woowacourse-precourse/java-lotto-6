@@ -1,18 +1,14 @@
-package lotto.utils.validator;
+package lotto.view.validator;
 
 import lotto.utils.message.WinningInformationExceptionMessage;
 
-public class BonusNumberValidator {
-
+public class BonusNumberInputValidator {
     private static final int MAX_LENGTH = 2;
-    private static final int MIN_BONUS_NUMBER = 1;
-    private static final int MAX_BONUS_NUMBER = 45;
 
     public static void validate(String target) {
         validateBlank(target);
         validateMaxLength(target);
         validateNumeric(target);
-        validateRange(target);
     }
 
     private static void validateBlank(String target) {
@@ -33,14 +29,6 @@ public class BonusNumberValidator {
             Integer.parseInt(target);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(WinningInformationExceptionMessage.NOT_NUMERIC.getError(), e);
-        }
-    }
-
-    private static void validateRange(String target) {
-        int bonusNumber = Integer.parseInt(target);
-
-        if (bonusNumber < MIN_BONUS_NUMBER || bonusNumber > MAX_BONUS_NUMBER) {
-            throw new IllegalArgumentException(WinningInformationExceptionMessage.OUT_OF_RANGE.getError());
         }
     }
 }

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.domain.exception.LottoError;
 import lotto.domain.exception.LottoException;
+import lotto.global.constant.ConstValue;
 
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +24,7 @@ public class Lotto {
     // TODO: 추가 기능 구현
     /** 숫자의 갯수를 검사한다. */
     private void checkSize(List<Integer> lottoNumbers) {
-        if (lottoNumbers.size() != 6) {
+        if (lottoNumbers.size() != ConstValue.LOTTO_NUMBER_QUANTITY) {
             throw new LottoException(LottoError.UNAVAILABLE_NUMBER_QUANTITY);
         }
     }
@@ -31,7 +32,7 @@ public class Lotto {
     /** 숫자들의 범위가 유효한지 검사한다. */
     private void checkRange(List<Integer> lottoNumbers) {
         for (Integer number : lottoNumbers) {
-            if (number < 1 || number > 45) {
+            if (number < ConstValue.LOTTO_NUMBER_LOWER_LIMIT || number > ConstValue.LOTTO_NUMBER_UPPER_LIMIT) {
                 throw new LottoException(LottoError.UNAVAILABLE_NUMBER_RANGE);
             }
         }

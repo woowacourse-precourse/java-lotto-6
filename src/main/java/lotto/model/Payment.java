@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.view.ExceptionMessage.DIVISION_ERROR;
+import static lotto.view.ExceptionMessage.MIN_VALUE_ERROR;
+
 import camp.nextstep.edu.missionutils.Console;
 import lotto.view.ExceptionMessage;
 
@@ -8,19 +11,7 @@ public class Payment {
 
 
   public void Payment(int payment) {
-    validatePayment(payment);
     this.payment = payment;
-  }
-
-  private void validatePayment(int payment) {
-    if (payment < 1000) {
-      ExceptionMessage.minException();
-      throw new IllegalArgumentException();
-    }
-    if ((payment % 1000) != 0) {
-      ExceptionMessage.divisionException();
-      throw new IllegalArgumentException();
-    }
   }
 
   public int ticketNumber(int payment){

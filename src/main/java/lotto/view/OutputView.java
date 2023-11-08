@@ -12,6 +12,9 @@ public class OutputView {
   public static final String RESULT_3 = "5개 일치 (1,500,000원) - ";
   public static final String RESULT_2 = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
   public static final String RESULT_1 = "6개 일치 (2,000,000,000원) - ";
+  public static final String RESULT_RATE_START = "총 수익률은 ";
+  public static final String RESULT_RATE_END = "%입니다.";
+
 
 
   public static void printTicketNumber(int ticket){
@@ -31,6 +34,10 @@ public class OutputView {
     System.out.println(RESULT_3 + results[2] + "개");
     System.out.println(RESULT_2 + results[1] + "개");
     System.out.println(RESULT_1 + results[0] + "개");
+  }
+
+  public static void printRate(double rate){
+    System.out.println(RESULT_RATE_START + (Math.round(rate*100)/100.0) + RESULT_RATE_END);
   }
 
 }

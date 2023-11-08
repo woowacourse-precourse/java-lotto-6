@@ -1,5 +1,9 @@
 package lotto.model;
 
+import static lotto.view.ExceptionMessage.LENGTH_6_ERROR;
+import static lotto.view.ExceptionMessage.WINNING_DUPLICATE_ERROR;
+import static lotto.view.ExceptionMessage.WINNING_RANGE_ERROR;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,19 +20,16 @@ public class WinningNumber {
 
   private void validateWinning(List<Integer> winningNum) {
     if (winningNum.size() != 6) {
-      ExceptionMessage.length6Exception();
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException(LENGTH_6_ERROR);
     }
     Set<Integer> uniqueNumbers = new HashSet<>(winningNum);
     if (uniqueNumbers.size() != 6) {
-      ExceptionMessage.duplicateException();
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException(WINNING_DUPLICATE_ERROR);
     }
 
     for (Integer number : winningNum) {
       if (number < 1 || number > 45) {
-        ExceptionMessage.rangeException();
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(WINNING_RANGE_ERROR);
       }
     }
   }

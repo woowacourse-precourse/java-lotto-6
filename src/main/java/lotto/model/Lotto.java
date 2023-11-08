@@ -27,6 +27,4 @@ public class Lotto {
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ", "[", "]\n"));
     }
-
-    // TODO: 추가 기능 구현
 }

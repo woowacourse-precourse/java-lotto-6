@@ -23,13 +23,13 @@ public class LottoWinResult {
         this.threeWinCount += 1;
     }
     public void addFourWinCount(){
-        this.threeWinCount += 1;
+        this.fourWinCount += 1;
     }
     public void addFiveWinCount(){
-        this.threeWinCount += 1;
+        this.fiveWinCount += 1;
     }
     public void addSixWinCount() {
-        this.threeWinCount += 1;
+        this.sixWinCount += 1;
     }
 
 }

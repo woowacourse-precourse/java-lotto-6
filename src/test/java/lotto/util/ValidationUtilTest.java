@@ -19,7 +19,6 @@ public class ValidationUtilTest {
     public void validateBuyInvalidNumber(){
         assertThrows(IllegalArgumentException.class, () -> validationUtil.validateBuy("100a"));
     }
-
     @Test
     public void validateBuyNotDivideAmount(){
         assertThrows(IllegalArgumentException.class, () -> validationUtil.validateBuy("1005"));

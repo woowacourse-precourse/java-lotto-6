@@ -1,4 +1,6 @@
-package lotto;
+package lotto.model;
+
+import lotto.util.ValidateNumber;
 
 import java.util.List;
 
@@ -6,6 +8,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        ValidateNumber.isDuplicate(numbers);
         validate(numbers);
         this.numbers = numbers;
     }

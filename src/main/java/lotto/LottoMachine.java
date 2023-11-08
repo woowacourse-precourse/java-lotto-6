@@ -13,6 +13,21 @@ public class LottoMachine {
 
     static final int BOUNUS_CHECK_MATCH_COUNT = 5;
 
+    private final Lotto winningLotto;
+    private final int bonusNum;
+
+    InputValidation iv = new InputValidation();
+
+    public LottoMachine() {
+        this.winningLotto = enterWinningLottoNums();
+        this.bonusNum = enterBonusNum();
+    }
+
+    public LottoMachine(Lotto winningLotto, int bonusNum) {
+        this.winningLotto = winningLotto;
+        this.bonusNum = bonusNum;
+    }
+
     public Lotto enterWinningLottoNums() {
         Lotto winningLotto;
 
@@ -28,15 +43,15 @@ public class LottoMachine {
         return winningLotto;
     }
 
-    public int enterBonusNum(Lotto winningLotto) {
+    public int enterBonusNum() {
         int bonusNum;
         while (true) {
             try {
                 printBonusNumEnterGuideStatement();
                 String input = Console.readLine();
-                bonusNum = toInt(input);
-                isWithinRange(bonusNum);
-                isDuplicate(winningLotto, bonusNum);
+                bonusNum = iv.toInt(input);
+                iv.isWithinRange(bonusNum);
+                iv.isBonusDuplicateOfLotto(winningLotto, bonusNum);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -45,10 +60,25 @@ public class LottoMachine {
         return bonusNum;
     }
 
-    void isWithinRange(int num) {
-        if (!(num >= lottoRangeFirstNum && num <= lottoRangeLastNum)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호의 범위는 1~45입니다.");
+    Map<Rank, Integer> draw(List<Lotto> lottos) {
+        Map<Rank, Integer> drawResult = initDrawResult();
+        for (Lotto lotto : lottos) {
+            int matchCount = calculateMatchCount(lotto);
+            boolean bonus = hasBonus(lotto, matchCount);
+            Rank rank = Rank.getRank(matchCount, bonus);
+            drawResult.put(rank, drawResult.get(rank) + 1);
         }
+        return drawResult;
+    }
+
+    boolean hasBonus(Lotto lotto, int matchCount) {
+        return matchCount == BOUNUS_CHECK_MATCH_COUNT && lotto.getNumbers().contains(bonusNum);
+    }
+
+    int calculateMatchCount(Lotto lotto) {
+        List<Integer> totalNumber = new ArrayList<>(lotto.getNumbers());
+        totalNumber.addAll(winningLotto.getNumbers());
+        return totalNumber.size() - Set.copyOf(totalNumber).size();
     }
 
     Map<Rank, Integer> initDrawResult() {
@@ -83,46 +113,5 @@ public class LottoMachine {
 
     private void printBonusNumEnterGuideStatement() {
         System.out.println("보너스 번호를 입력해 주세요.");
-    }
-
-    public List<Lotto> issueLottos(int num) {
-
-        List<Lotto> lottos = new ArrayList<>();
-
-        for (int i = 0; i < num / 1000; i++) {
-            List<Integer> pickedNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottos.add(new Lotto(pickedNumbers));
-        }
-
-        return lottos;
-    }
-
-    Map<Rank, Integer> draw(Lotto winning, int bonusNum, List<Lotto> lottos) {
-        Map<Rank, Integer> drawResult = initDrawResult();
-        for (Lotto lotto : lottos) {
-            int matchCount = calculateMatchCount(winning, lotto);
-            boolean bonus = hasBonus(lotto, matchCount, bonusNum);
-            Rank rank = Rank.getRank(matchCount, bonus);
-            drawResult.put(rank, drawResult.get(rank) + 1);
-        }
-        return drawResult;
-    }
-
-    boolean hasBonus(Lotto lotto, int matchCount, int bonusNum) {
-        return matchCount == BOUNUS_CHECK_MATCH_COUNT && lotto.getNumbers().contains(bonusNum);
-    }
-
-    int calculateMatchCount(Lotto winning, Lotto lotto) {
-        List<Integer> totalNumber = new ArrayList<>(lotto.getNumbers());
-        totalNumber.addAll(winning.getNumbers());
-        return totalNumber.size() - Set.copyOf(totalNumber).size();
-    }
-
-    Map<Rank, Integer> initDrawResult() {
-        Map<Rank, Integer> drawResult = new HashMap<>();
-        for (Rank rank : Rank.values()) {
-            drawResult.put(rank, 0);
-        }
-        return drawResult;
     }
 }

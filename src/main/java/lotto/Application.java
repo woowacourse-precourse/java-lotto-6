@@ -9,5 +9,6 @@ public class Application {
         Store store = new Store();
         store.getTargetNumbers();
         store.getBonusNumber();
+        user.calculate(store.giveTargetNumbers(),store.giveBonusNumber());
     }
 }

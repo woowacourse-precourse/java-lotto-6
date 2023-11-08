@@ -52,7 +52,9 @@ public class User {
     public void calculate(List<Integer> targetNumbers, int bonusNumber) {
         for (int i = 0; i < lottoCount; i++) {
             int rate = lottos.get(i).calcMatch(targetNumbers,bonusNumber);
-            ratings.add(rate-1,ratings.get(rate-1)+1);
+            if(rate != 6){
+                ratings.add(rate-1,ratings.get(rate-1)+1);
+            }
         }
         calcPrize();
         printMatch();

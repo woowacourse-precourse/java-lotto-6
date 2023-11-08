@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.constant.ErrorMessage.DUPLICATED_LOTTO;
 import static lotto.constant.ErrorMessage.INCORRECT_NUMBER_OF_LOTTO;

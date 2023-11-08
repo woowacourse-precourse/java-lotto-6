@@ -6,11 +6,11 @@ import static lotto.constant.OutputMessage.LOTTO_RESULT_FORMAT;
 import static lotto.constant.OutputMessage.NUMBER_OF_LOTTO;
 import static lotto.constant.OutputMessage.RATE_OF_RETURN_FORMAT;
 
-import lotto.Lotto;
-import lotto.LottoNumber;
-import lotto.Lottos;
-import lotto.Ranking;
-import lotto.Result;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
+import lotto.domain.Lottos;
+import lotto.domain.Ranking;
+import lotto.domain.Result;
 import java.util.List;
 import java.util.stream.Collectors;
 

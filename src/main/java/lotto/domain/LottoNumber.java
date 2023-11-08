@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.constant.ErrorMessage.LOTTO_NUMBER_OVER_RANGE;
 

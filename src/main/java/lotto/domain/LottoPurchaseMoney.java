@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.constant.ErrorMessage.INCORRECT_MONEY_UNIT;
 import static lotto.constant.ErrorMessage.NOT_ENOUGH_MONEY;

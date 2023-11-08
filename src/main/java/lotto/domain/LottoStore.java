@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoStore {
-    private List<Lotto> lottoTickets;
+    private final List<Lotto> lottoTickets;
+
+    public LottoStore(List<Lotto> lottoTickets) {
+        this.lottoTickets = lottoTickets;
+    }
 
     public LottoStore(Money money) {
         this.lottoTickets = purchaseLottoTickets(money);
@@ -17,7 +21,6 @@ public class LottoStore {
         for (int i = 0; i < buyableAmounts; i++) {
             purchasedTickets.add(numberGenerator.generateLotto());
         }
-        money.setAmount(money.getAmount() - buyableAmounts * Lotto.PRICE);
         return purchasedTickets;
     }
 

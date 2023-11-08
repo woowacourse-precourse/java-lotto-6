@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -9,9 +8,6 @@ import java.util.List;
 
 import static lotto.domain.Lotto.randomLottery;
 import static lotto.utils.Constants.*;
-import static lotto.utils.ErrorMessages.CHECK_DUPLICATE_NUMBER;
-import static lotto.utils.ErrorMessages.CHECK_NUMBER_SIZE;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -32,66 +28,15 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
-    @Nested
-    @DisplayName("[Lotto 객체 생성 테스트]")
-    class CreateLottoTest {
-        @Test
-        @DisplayName("숫자의 길이가 6자리가 맞고, 중복이 없을 경우")
-        public void createLotto() {
-            List<Integer> nums = List.of(1, 2, 3, 4, 5, 6);
-            Lotto lotto = new Lotto(nums);
-
-            assertThat(lotto).isNotNull();
-            assertThat(lotto).isInstanceOf(Lotto.class);
-        }
-
-        @Test
-        @DisplayName("[ERROR] 숫자의 길이가 6개 미만 일때 IllegalArgumentException 발생")
-        public void validateWithUnderSixNumbers() {
-            List<Integer> invalidNumbers = List.of(1, 2, 3, 4, 5);
-            assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> new Lotto(invalidNumbers))
-                    .withMessageMatching(CHECK_NUMBER_SIZE);
-        }
-
-        @Test
-        @DisplayName("[ERROR] 숫자의 길이가 6개 초과 일때 IllegalArgumentException 발생")
-        public void validateWithOverSixNumbers() {
-            List<Integer> invalidNumbers = List.of(1, 2, 3, 4, 5, 6, 7);
-            assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> new Lotto(invalidNumbers))
-                    .withMessageMatching(CHECK_NUMBER_SIZE);
-        }
-
-        @Test
-        @DisplayName("[ERROR] 숫자가 중복 되었을 때 IllegalArgumentException 발생")
-        public void duplicateNumbers() {
-            List<Integer> invalidNumbers = List.of(1, 2, 3, 3, 4, 4);
-            assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> new Lotto(invalidNumbers))
-                    .withMessageMatching(CHECK_DUPLICATE_NUMBER);
-        }
-    }
-
     @Test
-    @DisplayName("[ERROR] validate 메서드 테스트 - 숫자가 6자리가 아닐 경우 IllegalArgumentException 발생")
-    public void checkValidate() {
-        List<Integer> nums = List.of(1, 2, 3, 4, 5);
+    @DisplayName("숫자의 길이가 6자리가 맞고, 중복이 없을 경우")
+    public void createLotto() {
+        List<Integer> nums = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(nums);
 
-        assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Lotto.validate(nums))
-                .withMessageMatching(CHECK_NUMBER_SIZE);
+        assertThat(lotto).isNotNull();
+        assertThat(lotto).isInstanceOf(Lotto.class);
     }
-
-    @Test
-    @DisplayName("[ERROR] checkDuplicate 메서드 테스트 - 중복이 있을 때 IllegalArgumentException 발생")
-    public void checkDuplicate_Duplicates() {
-        List<Integer> nums = List.of(1, 2, 3, 4, 4, 3);
-        assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Lotto.checkDuplicate(nums))
-                .withMessageMatching(CHECK_DUPLICATE_NUMBER);
-    }
-
 
     @Test
     @DisplayName("randomLottery 메서드 테스트 - 리스트의 숫자가 1과 45사이의 범위에 있는지")

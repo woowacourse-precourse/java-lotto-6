@@ -38,7 +38,9 @@ public class Lotto {
 
     public static void checkDuplicate(List<Integer> lotto) {
         Set<Integer> validLotto = new HashSet<>(lotto);
-        if (validLotto.size() != lotto.size()) throw new IllegalArgumentException(CHECK_DUPLICATE_NUMBER);
+        if (validLotto.size() != lotto.size()) {
+            throw new IllegalArgumentException(CHECK_DUPLICATE_NUMBER);
+        }
     }
 
     public static List<Lotto> getLotto(int cnt) {

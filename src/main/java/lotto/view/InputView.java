@@ -35,35 +35,38 @@ public class InputView {
     public List<Integer> getWinningNumbers() {
         System.out.println(LottoGameMessage.INPUT_WINNING_NUMBER.message());
 
-        return inputWinningNumbers();
+        try {
+            return inputWinningNumbers();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinningNumbers();
+        }
     }
 
     public LottoNumber getBonusNumber(final Lotto lotto) {
         System.out.println(LottoGameMessage.INPUT_BONUS_NUMBER.message());
         try {
-            String bonusNumber = receiver.readLine();
-            LottoNumber bonusLottoNumber = new LottoNumber(convertToInt(bonusNumber));
-            Validator.validateDuplicate(lotto, bonusLottoNumber);
-            return bonusLottoNumber;
-
+            return inputBonusNumber(lotto);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getBonusNumber(lotto);
+            return inputBonusNumber(lotto);
         }
 
     }
 
+    private LottoNumber inputBonusNumber(Lotto lotto) {
+        String bonusNumber = receiver.readLine();
+        LottoNumber bonusLottoNumber = new LottoNumber(convertToInt(bonusNumber));
+        Validator.validateDuplicate(lotto, bonusLottoNumber);
+        return bonusLottoNumber;
+    }
+
     private List<Integer> inputWinningNumbers() {
-        try {
-            String winningNumbers = receiver.readLine();
-            List<String> parsedString = getParsedString(winningNumbers);
-            List<Integer> numbers = convertToInts(parsedString);
-            validate(numbers);
-            return numbers;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return inputWinningNumbers();
-        }
+        String winningNumbers = receiver.readLine();
+        List<String> parsedString = getParsedString(winningNumbers);
+        List<Integer> numbers = convertToInts(parsedString);
+        validate(numbers);
+        return numbers;
     }
 
     private List<Integer> convertToInts(final List<String> parsedString) {

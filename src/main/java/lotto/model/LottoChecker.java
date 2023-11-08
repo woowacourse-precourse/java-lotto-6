@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class LottoChecker {
     private List<Lotto> lottos;
@@ -32,12 +33,10 @@ public class LottoChecker {
 
     private double getTotalProfit() {
         MatchStatus[] values = MatchStatus.values();
-        double totalProfit = 0;
-        for (int i = 0; i < values.length; i++) {
-            if (sameNumberCount[i] > 0) {
-                totalProfit += values[i].getPrice() * sameNumberCount[i];
-            }
-        }
-        return totalProfit;
+
+        return IntStream.range(0, values.length)
+                .filter(i -> sameNumberCount[i] > 0)
+                .mapToDouble(i -> values[i].getPrice() * sameNumberCount[i])
+                .sum();
     }
 }

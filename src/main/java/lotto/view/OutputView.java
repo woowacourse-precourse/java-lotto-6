@@ -5,6 +5,7 @@ import lotto.constant.OutputConstants;
 import lotto.model.Lotto;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class OutputView {
     public static void printLottos(List<Lotto> lottos) {
@@ -23,10 +24,9 @@ public class OutputView {
     public static void printCountResult(int[] result) {
         MatchStatus[] values = MatchStatus.values();
 
-        for (int i = 0; i < values.length; i++) {
-            System.out.println(String.format(OutputConstants.RESULT_MESSAGE_FORMAT
-                    , values[i].getName(), result[i]));
-        }
+        IntStream.range(0, values.length)
+                .forEach(i -> System.out.println(String.format(OutputConstants.RESULT_MESSAGE_FORMAT,
+                        values[i].getName(), result[i])));
     }
 
     public static void printTotalPricePercentage(String pricePercentage) {

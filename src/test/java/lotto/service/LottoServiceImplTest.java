@@ -1,9 +1,12 @@
 package lotto.service;
 
-import static org.assertj.core.api.Assertions.as;
+import static lotto.enums.WinningRankType.FOURTH_PLACE;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.BeforeEach;
+import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,4 +33,17 @@ class LottoServiceImplTest {
         assertThat(lottoService.drawBonusNumber("45"))
                 .isEqualTo(45);
     }
+
+    @DisplayName("당첨 순위 매칭하기")
+    @Test
+    void testMatchRankType() {
+        Lotto lotto = new Lotto(List.of(11,22,33,44,15,26));
+        WinningLotto winningLotto = new WinningLotto();
+        winningLotto.setWinningLotto(new Lotto(List.of(11,22,33,44,35,36)));
+        winningLotto.setBonusNumber(15);
+
+        assertThat(lottoService.matchRankType(lotto, winningLotto))
+                .isEqualTo(FOURTH_PLACE);
+    }
+
 }

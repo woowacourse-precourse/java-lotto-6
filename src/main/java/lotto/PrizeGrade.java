@@ -2,8 +2,8 @@ package lotto;
 
 public enum PrizeGrade {
     FIRST(6, 2000000000, StringConstants.EMPTY),
-    SECOND(5, 30000000, StringConstants.EMPTY),
-    THIRD(5, 1500000, ", 보너스 볼 일치"),
+    SECOND(5, 30000000, ", 보너스 볼 일치"),
+    THIRD(5, 1500000, StringConstants.EMPTY),
     FOURTH(4, 50000, StringConstants.EMPTY),
     FIFTH(3, 5000, StringConstants.EMPTY),
     NO_PRIZE(0, 0, StringConstants.EMPTY);

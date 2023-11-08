@@ -8,11 +8,11 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 
 public enum Rank {
-    FIFTH(3, 5_000, false, "3개 일치 (5,000원) - %d개"),
-    FOURTH(4, 50_000, false, "4개 일치 (50,000원) - %d개"),
-    THIRD(5, 15_000_000, false, "5개 일치 (1,500,000원) - %d개"),
-    SECOND(5, 30_000_000, true, "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
-    FIRST(6, 2_000_000_000, false, "6개 일치 (2,000,000,000원) - %d개"),
+    FIFTH(3, 5_000, false, "%d개 일치 (%s원) - %d개"),
+    FOURTH(4, 50_000, false, "%d개 일치 (%s원) - %d개"),
+    THIRD(5, 1_500_000, false, "%d개 일치 (%s원) - %d개"),
+    SECOND(5, 30_000_000, true, "%d개 일치, 보너스 볼 일치 (%s원) - %d개"),
+    FIRST(6, 2_000_000_000, false, "%d개 일치 (%s원) - %d개"),
     MISS(0, 0, false, "낙첨");
 
     private final int matchCount;
@@ -63,3 +63,4 @@ public enum Rank {
                 .orElse(MISS);
     }
 }
+//"5개 일치 (1,500,000원) - 0개

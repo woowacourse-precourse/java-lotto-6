@@ -4,11 +4,14 @@ import static lotto.Constant.DELIMITER;
 import static lotto.Constant.MINIMUM_LOTTO_NUMBER;
 import static lotto.Constant.MINIMUM_LOTTO_PRICE_UNIT;
 import static lotto.Constant.WHITESPACE_REGEX;
-import static lotto.ErrorMessage.CONTAINS_WHITESPACE;
-import static lotto.ErrorMessage.ENDS_WITH_DELIMITER;
-import static lotto.ErrorMessage.INVALID_NUMBER_FORMAT;
-import static lotto.ErrorMessage.INVALID_PURCHASE_AMOUNT;
-import static lotto.ErrorMessage.NEGATIVE_NUMBER;
+import static lotto.Message.CONTAINS_WHITESPACE;
+import static lotto.Message.ENDS_WITH_DELIMITER;
+import static lotto.Message.INPUT_BONUS_NUMBER;
+import static lotto.Message.INPUT_PURCHASE_AMOUNT;
+import static lotto.Message.INPUT_WINNING_LOTTO;
+import static lotto.Message.INVALID_NUMBER_FORMAT;
+import static lotto.Message.INVALID_PURCHASE_AMOUNT;
+import static lotto.Message.NEGATIVE_NUMBER;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
@@ -19,13 +22,12 @@ import lotto.Lotto;
 import lotto.WinningNumbers;
 
 public class InputView {
-
     private static final Integer ZERO_REMAINDER = 0;
 
     public int askPurchaseAmount() {
         while (true) {
             try {
-                System.out.println("구입금액을 입력해 주세요.");
+                System.out.println(INPUT_PURCHASE_AMOUNT);
                 String purchaseAmount = Console.readLine();
                 validatePurchaseAmount(purchaseAmount);
                 return Integer.parseInt(purchaseAmount);
@@ -57,7 +59,7 @@ public class InputView {
     public Lotto askWinningLotto() {
         while (true) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요.");
+                System.out.println(INPUT_WINNING_LOTTO);
                 String numbers = Console.readLine();
                 validateNumbers(numbers);
                 return new Lotto(Stream.of(numbers.split(DELIMITER))
@@ -70,7 +72,7 @@ public class InputView {
     }
 
     private int askBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(INPUT_BONUS_NUMBER);
         String bonusNumber = Console.readLine();
         validateNumber(bonusNumber);
         return Integer.parseInt(bonusNumber);

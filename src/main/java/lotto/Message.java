@@ -5,7 +5,18 @@ import static lotto.Constant.MAXIMUM_LOTTO_NUMBER;
 import static lotto.Constant.MINIMUM_LOTTO_NUMBER;
 import static lotto.Constant.MINIMUM_LOTTO_PRICE_UNIT;
 
-public class ErrorMessage {
+public class Message {
+    /* guide messages */
+    public static final String INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
+    public static final String INPUT_WINNING_LOTTO = "\n당첨 번호를 입력해 주세요.";
+    public static final String INPUT_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.";
+
+    /* result messages */
+    public static final String PURCHASED_LOTTO_AMOUNT = "\n%d개를 구매했습니다.\n";
+    public static final String WINNING_RESULT = "\n당첨 통계\n---";
+    public static final String WINNING_RATE = "총 수익률은 %.1f%%입니다.";
+
+    /* error messages */
     public static final String CONTAINS_WHITESPACE = errorMessage("공백은 입력할 수 없습니다.");
     public static final String INVALID_NUMBER_FORMAT = errorMessage("숫자만 입력 가능합니다.");
     public static final String NEGATIVE_NUMBER = errorMessage("음수는 입력할 수 없습니다.");

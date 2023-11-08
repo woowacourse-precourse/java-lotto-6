@@ -1,5 +1,9 @@
 package View;
 
+import static lotto.Message.PURCHASED_LOTTO_AMOUNT;
+import static lotto.Message.WINNING_RATE;
+import static lotto.Message.WINNING_RESULT;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +13,7 @@ import lotto.WinningResult;
 
 public class OutputView {
     public void printPlayerLottoNumbers(List<Lotto> lottos) {
-        System.out.println(lottos.size() + "개를 구매했습니다.");
+        System.out.printf(PURCHASED_LOTTO_AMOUNT, lottos.size());
         lottos.forEach(lotto -> {
             List<Integer> numbers = lotto.getNumbers();
             Collections.sort(numbers);
@@ -18,8 +22,7 @@ public class OutputView {
     }
 
     public void printWinningResult(WinningResult winningResult) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(WINNING_RESULT);
         print(winningResult.winningStatistics());
         print(winningResult.winningRate());
     }
@@ -36,6 +39,6 @@ public class OutputView {
     }
 
     private void print(Double winningRate) {
-        System.out.println(String.format("총 수익률은 %.1f%%입니다.", winningRate));
+        System.out.printf(WINNING_RATE, winningRate);
     }
 }

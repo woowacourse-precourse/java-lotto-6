@@ -29,6 +29,7 @@ class LottoTest {
     private Lotto lotto;
     private static final int COUNT = 5;
     private static final int BONUS = 6;
+    private static final int MONEY = 3000;
 
     @BeforeEach
     void setUp() {
@@ -52,5 +53,11 @@ class LottoTest {
         List<Integer> result = lotto.allCompare(List.of(List.of(1, 2, 3, 4, 5, 45), List.of(1, 2, 3, 4, 5, 6)),
                 BONUS);
         assertThat(result).isEqualTo(List.of(1, 1, 0, 0, 0, 0));
+    }
+
+    @Test
+    void 수익률_계산() {
+        String profit = Lotto.profitCalc(List.of(0, 0, 1, 0, 0, 0), MONEY);
+        assertThat(profit).isEqualTo("50000.0");
     }
 }

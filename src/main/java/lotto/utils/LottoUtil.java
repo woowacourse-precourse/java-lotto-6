@@ -20,6 +20,8 @@ public class LottoUtil {
         Collections.sort(lottoNumbers);
         return lottoNumbers;
     }
-
-
+    public static int bonusNumberParser(String bonusNumber) {
+        lottoException.validInputBonusNumber(bonusNumber);
+        return Integer.parseInt(bonusNumber);
+    }
 }

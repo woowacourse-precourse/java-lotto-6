@@ -1,12 +1,11 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
 import lotto.domain.LottoPurchaseMoney;
 import lotto.domain.Lottos;
 import lotto.domain.Ranking;
 import lotto.domain.Result;
-import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import java.util.List;
@@ -19,18 +18,17 @@ public class LottoController {
         Lottos userLottos = new Lottos(numberOfLottos);
         OutputView.printLottos(userLottos);
         Lotto winningNumbers = getWinningNumbers();
-        WinningLotto winningLotto = getWinningLotto(winningNumbers);
-        Result result = getResult(userLottos, winningLotto);
+        BonusNumber bonusNumber = getBonusNumber(winningNumbers);
+        Result result = getResult(userLottos, winningNumbers, bonusNumber);
         OutputView.printResult(result);
     }
 
-    private Result getResult(Lottos userLottos, WinningLotto winningLotto) {
+    private Result getResult(Lottos userLottos, Lotto winningNumbers, BonusNumber bonusNumber) {
         Result result = new Result();
         userLottos.getLottos().forEach(
                 lotto -> {
-                    int countMatchNumbers = winningLotto.countMatchNumbers(lotto);
-                    boolean hasBonusNumber = winningLotto.hasBonusNumber(lotto);
-                    Ranking ranking = Ranking.getRanking(countMatchNumbers, hasBonusNumber);
+                    Ranking ranking = Ranking.getRanking(
+                            winningNumbers.countMatchNumbers(lotto), bonusNumber.isIn(lotto));
                     result.put(ranking);
                 }
         );
@@ -47,13 +45,12 @@ public class LottoController {
         }
     }
 
-    private WinningLotto getWinningLotto(Lotto winningNumbers) {
+    private BonusNumber getBonusNumber(Lotto winningNumbers) {
         try {
-            LottoNumber bonusNumber = new LottoNumber(InputView.readBonusNumber());
-            return new WinningLotto(winningNumbers, bonusNumber);
+            return new BonusNumber(InputView.readBonusNumber(), winningNumbers);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return getWinningLotto(winningNumbers);
+            return getBonusNumber(winningNumbers);
         }
     }
 

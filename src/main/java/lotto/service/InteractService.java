@@ -1,6 +1,7 @@
 package lotto.service;
 
 import static lotto.domain.ExceptionModule.checkBonusNumDub;
+import static lotto.domain.ExceptionModule.checkLottoCount;
 import static lotto.domain.ExceptionModule.checkNegative;
 import static lotto.domain.ExceptionModule.checkNumBoundary;
 import static lotto.domain.ExceptionModule.checkParseIntException;
@@ -10,6 +11,8 @@ import static lotto.domain.ExceptionModule.checkWinningNumDubAndSize;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Generator;
+import lotto.domain.Lotto;
 
 public class InteractService {
 

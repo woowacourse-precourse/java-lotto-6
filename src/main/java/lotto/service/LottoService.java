@@ -18,21 +18,11 @@ public class LottoService {
     public static void run() {
         Integer tryNum = InteractService.purchasePhase();
 
-        //로또 생성
-        int lottoCount = tryNum / LOTTO_PRICE;
-        System.out.println();
-        System.out.println(lottoCount + "개를 구매했습니다.");
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
-            List<Integer> randomNum = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            randomNum.sort(Comparator.naturalOrder());
-            lottos.add(new Lotto(randomNum));
-            System.out.println(randomNum);
-        }
-        ExceptionModule.checkLottoCount(lottos.size(), lottoCount);
-        //당첨 번호 입력 받기
+
+        List<Lotto> generateLotto = InteractService.lottoGeneratePhase(tryNum);
+
         List<Integer> winningNum = InteractService.winningNumPhase();
-        //보너스 번호 입력 받기
+
         Integer bonusNum = InteractService.bonusNumPhase(winningNum);
 
         //로또 결과 생성

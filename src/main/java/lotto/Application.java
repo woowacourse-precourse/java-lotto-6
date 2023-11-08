@@ -9,6 +9,11 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class Application {
 
     public static final int NUM_OF_LOTTO_NUMBERS = 6;
+    public static final int NUM_OF_RANKS = 5;
+    public enum Ranks {
+        FIRST, SECOND, THIRD, FOURTH, FIFTH
+    }
+
     public static final int MIN_LOTTO_NUMBER = 1;
     public static final int MAX_LOTTO_NUMBER = 45;
 
@@ -125,14 +130,31 @@ public class Application {
         return winner;
     }
 
+    public static int[] calWins(int[] wins, int winCount, int bonusCount) {
+        if (winCount == 6) {
+            wins[Ranks.FIRST.ordinal()]++;
+        } 
+        if ((winCount == 5) && (bonusCount == 1)) {
+            wins[Ranks.SECOND.ordinal()]++;
+            return wins;
+        }
+        if (winCount == 5) {
+            wins[Ranks.THIRD.ordinal()]++;
+        }
+        if (winCount == 4) {
+            wins[Ranks.FOURTH.ordinal()]++;
+        } 
+        if (winCount == 3) {
+            wins[Ranks.FIFTH.ordinal()]++;
+        } 
+        return wins;
+    }
+
     public static void lottery(int lottoCount, Lotto[] lottos, Winner winner) {
-        int winCount;
-        int bonusCount;
-        List<Integer> wins = new ArrayList<Integer>(NUM_OF_LOTTO_NUMBERS + 1);
+        int[] wins = {0, 0, 0, 0, 0};
 
         for (int i = 0; i < lottoCount; i++) {
-            winCount = lottos[i].lottery(winner.winNums);
-            bonusCount = lottos[i].lottery(winner.bonusNum);
+            wins = calWins(wins, lottos[i].lottery(winner.winNums), lottos[i].lottery(winner.bonusNum));
         }
 
         System.out.printf("\n당첨 통계\n---\n");

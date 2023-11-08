@@ -33,7 +33,6 @@ enum WinningDetails {
                 .filter(rank -> rank.matchingPrize.test(matchCount, containBonusNumber))
                 .findAny()
                 .orElse(MISS);
-
     }
 }
 

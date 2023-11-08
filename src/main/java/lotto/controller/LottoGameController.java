@@ -8,6 +8,7 @@ import lotto.Domain.Money;
 import lotto.Domain.Rank;
 import lotto.LottoNumGenerator.NormalLottoGenerator;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoGameController {
     private InputView inputView;

@@ -1,16 +1,22 @@
 package lotto.domain.win;
 
-import lotto.validator.BonusValidator;
+import static lotto.Option.ErrorMessage.ONE_TO_FORTY_FIVE;
 
-public class Bonus {
-    private final int bonusNumber;
+import lotto.Option.GameOption;
 
-    public Bonus(int bonusNumber) {
-        BonusValidator.check(bonusNumber);
-        this.bonusNumber = bonusNumber;
+public record Bonus(int bonusNumber) {
+    public Bonus {
+        validate(bonusNumber);
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
+    private void validate(int bonusNumber) {
+        validateRange(bonusNumber);
+    }
+
+    private void validateRange(int bonusNumber) {
+        if (bonusNumber < GameOption.LOTTO_MIN_NUMBER.getNumber()
+                || bonusNumber > GameOption.LOTTO_MAX_NUMBER.getNumber()) {
+            throw new IllegalArgumentException(ONE_TO_FORTY_FIVE.getErrorMessage());
+        }
     }
 }

@@ -1,4 +1,4 @@
-package domain.lotto;
+package domain;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.catchThrowable;

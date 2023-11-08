@@ -28,4 +28,11 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_VALUES_EXIST.getMessage());
         }
     }
+
+    public static void validateValueBound(List<Integer> numbers) {
+        numbers.stream().sorted();
+        if(numbers.get(0) <= 0 || numbers.get(5) > 45) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_VALUE_OUT_OF_BOUNDS.getMessage());
+        }
+    }
 }

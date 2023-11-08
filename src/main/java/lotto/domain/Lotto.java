@@ -19,5 +19,6 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         Validator.validateLottoSize(numbers);
         Validator.validateUniqueValues(numbers);
+        Validator.validateValueBound(numbers);
     }
 }

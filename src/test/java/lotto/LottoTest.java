@@ -25,7 +25,15 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("수익성을 계산하는 코드가 맞는지 검토한다. ")
+    @DisplayName("로또 번호가 1부터 45까지의 수가 아닐 경우 예외처리가 동작하도록 한다.")
+    @Test
+    void createLottoByOutOfBoundsNumbers() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
+    @DisplayName("수익성을 계산하는 코드가 맞는지 검토한다.")
     @Test
     void calculateProfitability() {
         int purchasedLottosSize = 8;

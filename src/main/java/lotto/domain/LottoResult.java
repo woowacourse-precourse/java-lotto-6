@@ -3,11 +3,11 @@ package lotto.domain;
 import java.util.List;
 
 public class LottoResult {
-    int first = 0;
-    int second = 0;
-    int third = 0;
-    int fourth = 0;
-    int fifth = 0;
+    public int first = 0;
+    public int second = 0;
+    public int third = 0;
+    public int fourth = 0;
+    public int fifth = 0;
 
     public void compareLottoTicket(List<Integer> lottoNumbers, List<Integer> ticketNumbers) {
         int lottoMatch = compareLottoNumber(lottoNumbers, ticketNumbers);
@@ -56,6 +56,7 @@ public class LottoResult {
     public double getProfitMargin(int money) {
         double prize = getPrize();
         double profitMargin = Math.round(((prize / money) * 100) * 10 / 10.0);
+
         return profitMargin;
     }
 

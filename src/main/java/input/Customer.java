@@ -4,8 +4,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
+import value.ErrorMessage;
 import value.LottoDefaultValue;
 import value.LottoDefaultMessage;
+import errorException.ErrorException;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -15,10 +17,12 @@ public class Customer {
     public Customer() {
         this.lottos = new ArrayList<Lotto>();
     }
-    
+
     public int getDrawCount() {
         System.out.println(LottoDefaultMessage.TOTAL_SPENDING_AMOUNT_MONEY.getString());
-        int money = ConvertInput.numInput(readLine());
+        int money = 0;
+        String input = readLine();
+        money = ConvertInput.numInput(input);
         return money / LottoDefaultValue.LOTTO_PRICE.getNumber();
     }
 

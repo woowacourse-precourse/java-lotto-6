@@ -7,7 +7,7 @@ public class TakeInput {
         InitLotto initLotto = new InitLotto();
 
         initLotto.setAmount(AmountOfPurchase.takeInput());
-        GenerateLottos.generateLottos(initLotto.getAmount());
+        initLotto.setLottos(GenerateLottos.generateLottos(initLotto.getAmount()));
         initLotto.setWinningNumbers(WinningNumbers.takeInput());
         initLotto.setBonusNumber(BonusNumber.takeInput(initLotto.getWinningNumbers()));
 

@@ -11,10 +11,13 @@ import lotto.domain.Lotto;
 public class LottoService {
     public List<Lotto> purchaseLottoTickets(int purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
-        int numberOfLottoTickets = purchaseAmount / Constant.LOTTO_PRICE.getValue();
+
         List<Lotto> lottoTickets = new ArrayList<>();
+        int numberOfLottoTickets = purchaseAmount / Constant.LOTTO_PRICE.getValue();
         for (int i = 0; i < numberOfLottoTickets; i++) {
             List<Integer> lottoNumbers = generateLottoNumbers();
+            lottoNumbers.sort(Comparator.naturalOrder());
+
             Lotto lottoTicket = new Lotto(lottoNumbers);
             lottoTickets.add(lottoTicket);
         }
@@ -38,7 +41,6 @@ public class LottoService {
                 Constant.MINIMUM_LOTTO_NUMBER.getValue(),
                 Constant.MAXIMUM_LOTTO_NUMBER.getValue(),
                 Constant.SIZE_OF_LOTTO_NUMBERS.getValue());
-        lottoNumbers.sort(Comparator.naturalOrder());
-        return lottoNumbers;
+        return new ArrayList<>(lottoNumbers);
     }
 }

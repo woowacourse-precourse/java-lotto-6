@@ -222,7 +222,10 @@ class LottoTest {
     @DisplayName("수익률을 구한다.")
     @Test
     void findEarningRate(){
-
+        Integer money = 3000;LottoResultWinners lottoResultWinners = new LottoResultWinners();
+        lottoResultWinners.add(new LottoResult(Rank.THREE_MATCH.getNumberOfMatch(),Rank.THREE_MATCH.getBonus()));
+        TotalPrizeMoney totalPrizeMoney = TotalPrizeMoney.findTotalPrizeMoney(lottoResultWinners);
+        assertThat(totalPrizeMoney.getEarningRate(money)).isEqualTo(166.7);
     }
 
     @DisplayName("rank가 5개 매치 및 보너스에 해당되는지 확인한다.")

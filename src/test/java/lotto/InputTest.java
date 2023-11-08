@@ -22,31 +22,37 @@ class InputTest {
         assertThat(result).size().isEqualTo(6);
     }
 
+    @Test
     void validateWinNumsInput_잘못된_입력타입_예외() {
         assertThatThrownBy(() -> Input.validateWinNumsInput("abc"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
     void validateWinNumsInput_6개_초과_입력_예외() {
         assertThatThrownBy(() -> Input.validateWinNumsInput("1,2,3,4,5,6,7"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
     void validateWinNumsInput_6개_미만_입력_예외() {
         assertThatThrownBy(() -> Input.validateWinNumsInput("1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
     void validateWinNumsInput_45초과_입력_예외() {
         assertThatThrownBy(() -> Input.validateWinNumsInput("1,2,3,4,46,45"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
     void validateWinNumsInput_1미만_입력_예외() {
         assertThatThrownBy(() -> Input.validateWinNumsInput("1,2,3,0,4,45"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
     void validateWinNumsInput_중복_입력_예외() {
         assertThatThrownBy(() -> Input.validateWinNumsInput("1,2,3,4,5,5"))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -60,16 +66,19 @@ class InputTest {
         assertThat(result).isEqualTo(answer);
     }
 
+    @Test
     void validateBonusNumInput_잘못된_입력타입_예외() {
         assertThatThrownBy(() -> Input.validateBonusNumInput("abc"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
     void validateBonusNumInput_1미만_입력_예외() {
         assertThatThrownBy(() -> Input.validateBonusNumInput("0"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
     void validateBonusNumInput_45초과_입력_예외() {
         assertThatThrownBy(() -> Input.validateBonusNumInput("46"))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -83,11 +92,13 @@ class InputTest {
         assertThat(result).isEqualTo(answer);
     }
 
+    @Test
     void validatePriceInput_잘못된_입력타입_예외() {
         assertThatThrownBy(() -> Input.validatePriceInput("abc"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
     void validatePriceInput_1000으로_나누어_떨어지지_않는_입력_예외() {
         assertThatThrownBy(() -> Input.validatePriceInput("1500"))
                 .isInstanceOf(IllegalArgumentException.class);

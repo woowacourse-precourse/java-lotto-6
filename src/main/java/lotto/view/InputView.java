@@ -29,7 +29,7 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("올바른 숫자를 입력하세요.");
+            throw new IllegalArgumentException("올바른 숫자를 입력하세요.(숫자는 하나만 입력할 수 있습니다.)");
         }
     }
 }

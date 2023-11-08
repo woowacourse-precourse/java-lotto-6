@@ -18,12 +18,18 @@ public class Lotto {
 
     public LottoRank getRank(WinningNumber winningNumbers) {
         int sameNumberCount = countCommonNumbers(numbers, winningNumbers.getNumbers());
-        int bonusNumberCount = 0;
+        int bonusNumberCount = countCommonBonusNumber(numbers, winningNumbers.getBonusNum());
 
-        if (numbers.contains(winningNumbers.getBonusNum())) {
-            bonusNumberCount++;
-        }
         return findLottoRank(sameNumberCount, bonusNumberCount);
+    }
+
+    private int countCommonBonusNumber(List<Integer> numbers, Integer bonusNumber) {
+        int count = 0;
+
+        if (numbers.contains(bonusNumber)) {
+            count++;
+        }
+        return count;
     }
 
     private int countCommonNumbers(List<Integer> numbers, List<Integer> winningNumbers) {

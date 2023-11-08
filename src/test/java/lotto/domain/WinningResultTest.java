@@ -21,7 +21,7 @@ public class WinningResultTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"SIXTH,3", "FIFTH,0", "FOURTH,0", "THIRD,1", "SECOND,1", "FIRST,1"})
+    @CsvSource({"LOSE,3", "FIFTH,0", "FOURTH,0", "THIRD,1", "SECOND,1", "FIRST,1"})
     void countNumberOfWinning_메서드로_등수별_당첨_갯수를_확인(String prize, int expected) {
         List<Lotto> lottoTickets = new ArrayList<>();
         lottoTickets.add(new Lotto(List.of(12, 13, 14, 15, 16, 17)));

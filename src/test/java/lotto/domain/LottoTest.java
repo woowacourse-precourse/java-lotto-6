@@ -29,7 +29,7 @@ class LottoTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"5,6,7,8,9,10,11,SIXTH", "4,5,6,7,8,9,11,FIFTH", "3,4,5,6,7,8,11,FOURTH",
+    @CsvSource({"5,6,7,8,9,10,11,LOSE", "4,5,6,7,8,9,11,FIFTH", "3,4,5,6,7,8,11,FOURTH",
             "2,3,4,5,6,7,11,THIRD", "2,3,4,5,6,7,1,SECOND", "1,2,3,4,5,6,11,FIRST"})
     void compareTo_메서드로_로또_번호와_당첨_번호를_비교하여_당첨_등수를_반환(int number1, int number2, int number3, int number4,
                                                      int number5, int number6, int bonusNumber, String expected) {

@@ -66,7 +66,6 @@ public class Application {
 
     public static int validateAndGetBonusNumber(List<Integer> resultNumbers, String input) {
         validateNumericInput(input);
-        validateNonZeroInput(input);
         int number = Integer.parseInt(input);
         validateNoDuplicateNumbers(resultNumbers, number);
         validateLottoNumberRange(number);
@@ -94,8 +93,6 @@ public class Application {
         String[] numbers = input.split(",");
         for (String number : numbers) {
             validateNumericInput(number);
-            validateNonZeroInput(number);
-
             int lottoNumber = Integer.parseInt(number.trim());
             validateLottoNumberRange(lottoNumber);
             list.add(lottoNumber);

@@ -33,7 +33,7 @@ class ResultTest {
 
     @ParameterizedTest
     @MethodSource("provideEachRankingLotto")
-    @DisplayName("수익률에 맞는 올바른 이익률을 출력해야 한다.")
+    @DisplayName("결과에 맞는 올바른 이익률을 출력해야 한다.")
     void getProfitRate(Lotto matchedLotto, LottoRanking ranking) {
         // given
         List<Lotto> playerLotto = new ArrayList<>();

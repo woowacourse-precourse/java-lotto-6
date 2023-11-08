@@ -4,11 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class MoneyTest {
     private static final String IS_THOUSAND_UNIT_VALIDATOR_ERROR_MESSAGE = "[ERROR] 입력 금액은 1,000원 단위여야 합니다.";

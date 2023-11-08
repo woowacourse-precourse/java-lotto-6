@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import lotto.Grade;
+import lotto.result.Grade;
 import lotto.Lotto;
 
 import static lotto.util.Constant.DEFAULT_VALUE;

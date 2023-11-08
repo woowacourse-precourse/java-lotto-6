@@ -1,7 +1,6 @@
 package lotto.result;
 
 import java.util.Map;
-import lotto.Grade;
 import lotto.util.message.OutputMessage;
 
 import static lotto.util.Constant.DEFAULT_VALUE;

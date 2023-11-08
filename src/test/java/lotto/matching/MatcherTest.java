@@ -3,7 +3,7 @@ package lotto.matching;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import lotto.Grade;
+import lotto.result.Grade;
 import lotto.Lotto;
 import lotto.result.Result;
 import org.assertj.core.api.Assertions;

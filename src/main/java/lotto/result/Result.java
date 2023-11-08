@@ -3,7 +3,6 @@ package lotto.result;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import lotto.Grade;
 
 import static lotto.util.Constant.DEFAULT_VALUE;
 

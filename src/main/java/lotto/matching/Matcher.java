@@ -1,7 +1,7 @@
 package lotto.matching;
 
 import java.util.List;
-import lotto.Grade;
+import lotto.result.Grade;
 import lotto.Lotto;
 import lotto.result.Result;
 

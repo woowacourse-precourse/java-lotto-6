@@ -2,7 +2,6 @@ package lotto.result;
 
 import java.util.HashMap;
 import java.util.Map;
-import lotto.Grade;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.result;
 
 import static lotto.util.Constant.DEFAULT_VALUE;
 import static lotto.util.Constant.MATCHED_FIVE_NUMBER;

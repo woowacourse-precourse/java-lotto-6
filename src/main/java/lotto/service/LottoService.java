@@ -42,7 +42,13 @@ public class LottoService {
     }
 
     public List<Lotto> generateRandomLottoNums(int availableTicketsCount) {
-
+        List<Lotto> lottoList = new ArrayList<>();
+        for(int i = 0; i < availableTicketsCount; i++) {
+            List<Integer> integers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lotto = new Lotto(integers);
+            lottoList.add(lotto);
+        }
+        return lottoList;
     }
 
     public int compareMyNumberWithWinningNumber(List<Lotto> myLottoNumbers, List<Integer> winningNumber) {

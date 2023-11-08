@@ -13,18 +13,4 @@ public class OutputUtil {
     public static String formatSystemMessageWithNumber(SystemMessage systemMessage, int num) {
         return String.format(systemMessage.getMessage(), num);
     }
-
-    public static String formatNumsToString(List<Integer> nums){
-        if (nums == null || nums.isEmpty()) {
-            throw new UserInputException();
-        }
-
-        return nums.stream()
-                .sorted()
-                .map(String::valueOf)
-                .collect(Collectors.joining(","));
-    }
-
-
-
 }

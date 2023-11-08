@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import lotto.globar.LottoResultInfo;
 
 public class GameResult {
@@ -31,7 +30,7 @@ public class GameResult {
             allPrize += lottoResult.lottoResultInfo.getPrize();
         }
 
-        double rateOfReturn = Math.round((allPrize / lottoPurchasePrice * 1000.0)/ 10.0;
+        double rateOfReturn = Math.round((allPrize / lottoPurchasePrice * 1000.0))/ 10.0;
         return new GameResult(finalResult, rateOfReturn);
     }
 

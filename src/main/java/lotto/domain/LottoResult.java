@@ -11,7 +11,7 @@ public class LottoResult {
     private LottoResult() {
     }
 
-    private LottoResult(LottoResultInfo lottoResultInfo) {
+    public LottoResult(LottoResultInfo lottoResultInfo) {
         this.lottoResultInfo = lottoResultInfo;
     }
 
@@ -20,7 +20,7 @@ public class LottoResult {
         List<Integer> winnerNums = lottoWinningCombination.getWinnerNums();
         int bonusNum = lottoWinningCombination.getBonusNum();
 
-        int matchingNumbersCount = matchLottoWithWinnerNums(lottoNumbers, winnerNums);
+        int matchingNumbersCount = countMatchingLottoWithWinnerNums(lottoNumbers, winnerNums);
 
         if (matchingNumbersCount == 6) {
             return new LottoResult(SIX_MATCH);
@@ -41,14 +41,18 @@ public class LottoResult {
     }
 
 
-    private static boolean bonusNumMatched(List<Integer> lottoNumbers, int bonusNum) {
+    public static boolean bonusNumMatched(List<Integer> lottoNumbers, int bonusNum) {
         return lottoNumbers.contains(bonusNum);
     }
 
-    private static int matchLottoWithWinnerNums(List<Integer> lottoNumbers, List<Integer> winnerNums) {
+    public static int countMatchingLottoWithWinnerNums(List<Integer> lottoNumbers, List<Integer> winnerNums) {
         return (int) lottoNumbers
                 .stream()
                 .filter(winnerNums::contains)
                 .count();
+    }
+
+    public LottoResultInfo getLottoResultInfo() {
+        return lottoResultInfo;
     }
 }

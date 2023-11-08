@@ -33,7 +33,7 @@ public class LottoUtil {
     }
 
     /**
-     * Description: 당점 번호와 구입한 로또들을 비교하여 각 Prize별 당첨 횟수를 계산해 Map으로 반환한다.
+     * Description: 당첨 번호와 구입한 로또들을 비교하여 각 Prize별 당첨 횟수를 계산해 Map으로 반환한다.
      */
     public static Map<Prize, Integer> calculatePrizeCounts(List<Lotto> purchasedLottos, WinningLotto winningLotto) {
         Map<Prize, Integer> prizeCounts = new LinkedHashMap<>();

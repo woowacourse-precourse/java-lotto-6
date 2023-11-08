@@ -9,24 +9,28 @@ import lotto.util.StringUtil;
 
 public class WinningNumbersValidator {
     private static final Pattern COMMA_PATTERN = Pattern.compile(",");
+    private static final String INPUT_PATTERN = "^[0-9,]+$";
     private static final int EXPECTED_COMMA_COUNT = 5;
 
     public static List<Integer> validateWinningNumbers(String input) {
-        String[] numbers = input.split(",");
-        if (numbers.length != 6 || countCommas(input) != EXPECTED_COMMA_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해 주세요.");
-        }
+        validateInputFormat(input);
+        validateCommaCount(input);
 
-        List<Integer> winningNumbers = StringUtil.convertToIntegerList(input, ",");
+        List<Integer> winningNumbers = StringUtil.splitAndParse(input, ",");
         validateNumberRange(winningNumbers);
         validateDuplicateNumbers(winningNumbers);
 
         return winningNumbers;
     }
 
+    public static void validateCommaCount(String input) {
+        if (countCommas(input) != EXPECTED_COMMA_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해 주세요.");
+        }
+    }
+
     public static void validateInputFormat(String input) {
-        String regex = "^[0-9,]+$";
-        if (!input.matches(regex)) {
+        if (!input.matches(INPUT_PATTERN)) {
             throw new IllegalArgumentException("[ERROR] 숫자와 쉼표(,)만 입력해 주세요.");
         }
     }

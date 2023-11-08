@@ -1,4 +1,4 @@
-package lotto.View;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -22,6 +22,7 @@ public class InputViewImpl implements InputView {
 
   @Override
   public String readBonusNumber() {
+    System.out.println();
     System.out.println(BONUS_NUMBER_PROMPT);
     return Console.readLine();
   }

@@ -2,8 +2,8 @@ package lotto.controller.dto.input;
 
 import java.util.List;
 import lotto.controller.exception.InvalidBuilderFieldsException;
-import lotto.domain.lotto.validator.LottoValidator;
 import lotto.controller.parser.StrictInputParser;
+import lotto.domain.lotto.validator.LottoValidator;
 
 /**
  * 로또 추첨을 위한 입력 데이터,
@@ -151,7 +151,7 @@ public final class DrawLottosInput {
         /**
          * lottoNumbers 필드가 초기화 되었는지 확인
          */
-        public void ensureLottoNumbersInitialized() {
+        private void ensureLottoNumbersInitialized() {
             if (lottoNumbers == null) {
                 throw new InvalidBuilderFieldsException();
             }

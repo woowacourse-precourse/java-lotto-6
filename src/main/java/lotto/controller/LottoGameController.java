@@ -20,7 +20,7 @@ public class LottoGameController {
         final List<Lotto> lottoTickets = publishLotto(money);
         OutputView.printLottoTickets(lottoTickets);
 
-        final LottoGame lottoGame = new LottoGame(createWinningNumber(), lottoTickets);
+        final LottoGame lottoGame = new LottoGame(readWinningNumber(), lottoTickets);
         final WinningDetails winningDetails = lottoGame.play();
         OutputView.printWinningDetails(winningDetails);
 
@@ -29,7 +29,11 @@ public class LottoGameController {
     }
 
     private Money readPurchaseAmount() {
-        return InputView.readWithRetry(() -> Money.of(InputView.readPurChaseAmount()));
+        return InputView.readWithRetry(this::createPurchaseAmount);
+    }
+
+    private Money createPurchaseAmount() {
+        return Money.of(InputView.readPurChaseAmount());
     }
 
     private List<Lotto> publishLotto(final Money money) {
@@ -45,11 +49,14 @@ public class LottoGameController {
         return new RandomLottoGenerator();
     }
 
+    private WinningNumber readWinningNumber() {
+        return InputView.readWithRetry(this::createWinningNumber);
+    }
+
     private WinningNumber createWinningNumber() {
-        return InputView.readWithRetry(
-                () -> new WinningNumber(
-                        InputView.readWinningNumbers(),
-                        InputView.readBonusNumber()
-                ));
+        return new WinningNumber(
+                InputView.readWinningNumbers(),
+                InputView.readBonusNumber()
+        );
     }
 }

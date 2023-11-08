@@ -19,7 +19,7 @@ public class LottoController {
     public LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.lottoService = new LottoService();
+        this.lottoService = LottoService.getInstance();
     }
 
     public static LottoController getInstance() {

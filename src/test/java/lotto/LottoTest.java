@@ -1,10 +1,13 @@
 package lotto;
 
+import lotto.model.Lotto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -23,5 +26,27 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test
+    void 로또구매_금액_0원_Null_값_예외처리() {
+        assertThatThrownBy(() ->
+                Assertions.assertThat("").isInstanceOf(IllegalArgumentException.class));
+    }
+
+    @Test
+    void 로또구매_금액_1000원_단위_예외처리() {
+        assertThatThrownBy(() ->
+                assertThat(1100).isInstanceOf(IllegalArgumentException.class));
+    }
+
+    @Test
+    void 로또번호_입력_6개미만_예외처리() {
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또번호_입력_1부터_45_사이입력이외_예외처리() {
+        assertThatThrownBy(() -> new Lotto(List.of(1,46,0,4,5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -3,6 +3,7 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -63,7 +64,21 @@ class WinningNumberTest {
         assertThat(winningNumbers).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
+    @DisplayName("로또와 당첨 번호, 보너스 번호를 비교해 일치하는 개수를 반환한다.")
     @Test
     void compareToLotto() {
+        //given
+        List<Lotto> lottos = new ArrayList<>();
+        List<Integer> winningNumbers = List.of(3, 4, 5, 6, 7, 8);
+        int bonusNumber = 1;
+
+        //when
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        List<MatchNumber> matchNumbers = WinningNumber.compareToLotto(lottos, winningNumbers, bonusNumber);
+        MatchNumber matchNumber = matchNumbers.get(0);
+
+        //then
+        assertThat(matchNumber.winningNumber).isEqualTo(4L);
+        assertThat(matchNumber.bonusNumber).isEqualTo(1L);
     }
 }

@@ -19,22 +19,36 @@ public class InputView {
     public static List<Integer> readWinningNumbers() {
         OutputView.printWinningNumbersPrompt();
         String input = Console.readLine();
-        validateWinningNumbers(input);
+        validateNumbersInput(input);
         List<Integer> winningNumbers = Arrays.stream(input.split(DELIMITER))
             .map(Integer::parseInt)
             .toList();
-        ValidationUtils.validateNumbersSize(winningNumbers);
+        validateWinningNumbers(winningNumbers);
         return winningNumbers;
     }
 
     public static int readBonusNumber() {
         OutputView.printBonusNumberPrompt();
         String input = Console.readLine();
-        ValidationUtils.validateIsNumeric(input);
+        validateBonusNumber(input);
         return Integer.parseInt(input);
     }
 
-    private static void validateWinningNumbers(String input) {
+    private static void validateBonusNumber(String input) {
+        ValidationUtils.validateNotNull(input);
+        ValidationUtils.validateIsNumeric(input);
+        ValidationUtils.validateNumberInRange(Integer.parseInt(input), LOTTO_START_INCLUSIVE,
+            LOTTO_END_INCLUSIVE);
+    }
+
+    private static void validateWinningNumbers(List<Integer> winningNumbers) {
+        ValidationUtils.validateNumbersSize(winningNumbers);
+        ValidationUtils.validateNoDuplicatedNumberInList(winningNumbers);
+        ValidationUtils.validateNumbersInRange(winningNumbers, LOTTO_START_INCLUSIVE,
+            LOTTO_END_INCLUSIVE);
+    }
+
+    private static void validateNumbersInput(String input) {
         ValidationUtils.validateNotNull(input);
         validateNotStartOrEndWithComma(input);
         validateNoConsecutiveCommas(input);

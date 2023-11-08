@@ -1,6 +1,6 @@
 package lotto.domain.lotto;
 
-import static lotto.util.ConstantUtils.LOTTO_SIZE_CRITERION;
+import static lotto.util.ConstantUtils.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,14 +41,8 @@ public class Lotto {
 
     protected void validate(List<Integer> numbers) {
         ValidationUtils.validateNumbersSize(numbers);
-        validateNoDuplicatedLottoNumbers(numbers);
-    }
-
-    private void validateNoDuplicatedLottoNumbers(List<Integer> numbers) {
-        Set<Integer> set = new HashSet<>(numbers);
-        if (set.size() != LOTTO_SIZE_CRITERION) {
-            throw new IllegalArgumentException("로또에 중복 되는 숫자가 있습니다.");
-        }
+        ValidationUtils.validateNoDuplicatedNumberInList(numbers);
+        ValidationUtils.validateNumbersInRange(numbers, LOTTO_START_INCLUSIVE, LOTTO_END_INCLUSIVE);
     }
 
     @Override

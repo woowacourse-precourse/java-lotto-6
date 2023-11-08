@@ -12,13 +12,17 @@ import java.util.List;
 public class ApplicationManager {
     public void start() {
         InputHandler inputHandler = new InputHandler();
+        OutputHandler outputHandler = new OutputHandler();
         int cost = CommonHelper.strToInt(inputHandler.inputCost());
         int ticketCnt = CommonHelper.divide(cost, LottoEnum.LOTTO_PRICE.getValue());
         LottoManager lottoManager = new LottoManager(ticketCnt);
         List<Lotto> lottos = lottoManager.createLotto(ticketCnt);
-        OutputHandler outputHandler = new OutputHandler();
+        outputHandler.printTicketCnt(ticketCnt);
         outputHandler.printLottos();
         List<Integer> userLottoNumbers = inputHandler.inputWinningNumbers();
-        int bonusNumber = CommonHelper.strToInt(inputHandler.inputBonusNumber());
+        int bonusNumber = CommonHelper.strToInt(inputHandler.inputBonusNumber(userLottoNumbers));
+        List<Integer> result = lottoManager.sameNumberForWin(userLottoNumbers, lottos, bonusNumber);
+        outputHandler.printResult(result);
+        System.out.println(outputHandler.printRoi(lottoManager.earningsRate(result, cost)));
     }
 }

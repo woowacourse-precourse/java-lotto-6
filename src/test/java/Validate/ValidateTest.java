@@ -1,6 +1,6 @@
 package Validate;
 
-import lotto.Validate;
+import lotto.Util.Validate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.NoSuchElementException;

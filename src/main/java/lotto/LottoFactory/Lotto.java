@@ -1,7 +1,7 @@
     package lotto.LottoFactory;
 
     import camp.nextstep.edu.missionutils.Randoms;
-    import lotto.Validate;
+    import lotto.Util.Validate;
     import java.util.List;
 
     public class Lotto {

@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.LottoFactory.Lotto;
+import lotto.Util.Validate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;

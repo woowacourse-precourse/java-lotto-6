@@ -12,6 +12,10 @@ public class Lotto {
         Collections.sort(this.numbers);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers == null || numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 정확히 6개여야 합니다.");

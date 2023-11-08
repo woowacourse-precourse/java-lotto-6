@@ -1,5 +1,6 @@
 package lotto.domain.user;
 
+import lotto.constant.MyConstant;
 import lotto.utill.Utii;
 
 public class RateResult {
@@ -20,7 +21,7 @@ public class RateResult {
         StringBuilder rateResult = new StringBuilder();
         Double rate = calculateRate(useMoney, totalWinMoney);
 
-        rateResult.append("총 수익률은 " + rate + "%입니다.");
+        rateResult.append(MyConstant.MSG_RATE_RESULT(rate));
 
         return rateResult;
     }

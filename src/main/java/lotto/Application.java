@@ -172,6 +172,39 @@ public class Application {
         return -1;
     }
 
+    private static Integer getValidatePlayerBonusNumber(List<Integer> playerNumbers){
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        Integer playerBonusNumber;
+        do {
+            playerBonusNumber = inputPlayerBonusNumber(playerNumbers);
+        } while (playerBonusNumber < 0);
+
+        return playerBonusNumber;
+    }
+
+    private static int[] getResult(List<Lotto> lottos, List<Integer> playerNumbers, Integer playerBonusNumber) {
+        int[] lottoResult = { 0, 0, 0, 0, 0 };
+        for (Lotto l : lottos) {
+            int count = l.run(playerNumbers);
+            int index = count - 3;
+
+            if (index < 0) {
+                continue;
+            }
+
+            if (index < 2) {lottoResult[index] ++;}
+
+            if (index == 2) {
+                lottoResult[index + l.runBonus(playerBonusNumber)]++;
+            }
+
+            if (index == 3) {
+                lottoResult[index + 1]++;
+            }
+        }
+        return lottoResult;
+    }
+
     private static void printResult(int[] result, int tickets) {
         double revenue = 0;
         double price = tickets * TICKET_PRICE;
@@ -194,36 +227,12 @@ public class Application {
         int tickets = getValidateTickets();        
         List<Lotto> lottos = getValidateLottos(tickets);
         List<Integer> playerNumbers = getValidatePlayerNumbers();
-        
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        Integer playerBonusNumber;
-        do {
-            playerBonusNumber = inputPlayerBonusNumber(playerNumbers);
-        } while (playerBonusNumber < 0);
-
-        int[] result = { 0, 0, 0, 0, 0 };
-        for (Lotto l : lottos) {
-            int count = l.run(playerNumbers);
-            int index = count - 3;
-
-            if (index < 0) {
-                continue;
-            }
-
-            if (index < 2) {result[index] ++;}
-
-            if (index == 2) {
-                result[index + l.runBonus(playerBonusNumber)]++;
-            }
-
-            if (index == 3) {
-                result[index + 1]++;
-            }
-        }
+        Integer playerBonusNumber = getValidatePlayerBonusNumber(playerNumbers);
+        int[] lottoResult = getResult(lottos, playerNumbers, playerBonusNumber);
 
         System.out.println("\n당첨 통계");
         System.out.println("---");
-        printResult(result, tickets);
+        printResult(lottoResult, tickets);
 
     }
 }

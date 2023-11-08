@@ -31,7 +31,7 @@ public class Lotto {
 
     private void validateRange(int start, int end, List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 && number > 45) {
+            if (number < 1 || number > 45) {
                 throw new IllegalArgumentException("[ERROR] 범위가 벗어나는 값이 있으면 안됩니다(1<=값<=45). 다시 입력해주세요.");
             }
         }

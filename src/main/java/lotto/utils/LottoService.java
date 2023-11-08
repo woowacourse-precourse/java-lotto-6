@@ -39,7 +39,6 @@ public class LottoService {
     }
 
     public int countPurchasedLotto(int lottoPurchasePrice){
-        InputValidator.purchasePriceCheck(lottoPurchasePrice);
         return lottoPurchasePrice / LottoConstant.LOTTO_PRICE;
     }
 

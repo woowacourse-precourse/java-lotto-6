@@ -2,6 +2,7 @@ package controller;
 
 import static validator.MoneyValidator.moneyValidate;
 import static view.View.moneyMessagePrint;
+import static view.View.winningNumbersMessagePrint;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -18,6 +19,10 @@ public class InputController {
                 System.out.println(e.getMessage());
             }
         }
+    }
 
+    public static void getWinningNumbersInput() {
+        winningNumbersMessagePrint();
+        String winningNumbers = Console.readLine();
     }
 }

@@ -23,21 +23,30 @@ public class LottoController {
     }
 
     public void play() {
-        PurchaseAmount purchaseAmount = buyLotto();
+        PurchaseAmount purchaseAmount = pay();
+        List<Lotto> issuedLotto = issueLotto(purchaseAmount);
         WinningLotto winningLotto = getWinningLotto();
-        WinningResult winningResult = getLottoResult(winningLotto);
+        WinningResult winningResult = getWinningResult(issuedLotto, winningLotto);
         getProfitRate(purchaseAmount, winningResult);
     }
 
-    private PurchaseAmount buyLotto() {
+    private PurchaseAmount pay() {
         try {
-            PurchaseAmount paidMoney = PurchaseAmount.from(inputView.printAskPurchase());
-            List<Lotto> lottoTickets = lottoService.buyMultipleLotto(paidMoney);
-            outputView.printLottoTickets(lottoTickets);
-            return paidMoney;
+            return PurchaseAmount.from(inputView.printAskPurchase());
         } catch (IllegalArgumentException e) {
             outputView.printErrorCode(e.getMessage());
-            return buyLotto();
+            return pay();
+        }
+    }
+
+    private List<Lotto> issueLotto(PurchaseAmount purchaseAmount) {
+        try {
+            List<Lotto> issuedTickets = lottoService.issueMultipleLotto(purchaseAmount);
+            outputView.printLottoTickets(issuedTickets);
+            return issuedTickets;
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorCode(e.getMessage());
+            return issueLotto(purchaseAmount);
         }
     }
 
@@ -52,8 +61,8 @@ public class LottoController {
         }
     }
 
-    private WinningResult getLottoResult(WinningLotto winningLotto) {
-        WinningResult winningResult = lottoService.getLottoResult(winningLotto);
+    private WinningResult getWinningResult(List<Lotto> issuedLotto, WinningLotto winningLotto) {
+        WinningResult winningResult = lottoService.getWinningResult(issuedLotto, winningLotto);
         outputView.printWinningResult(winningResult);
         return winningResult;
     }

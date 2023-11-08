@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import lotto.validator.Validator;
+import lotto.validator.InputValidator;
 
 public class Lotto {
     private final List<LottoNumber> numbers;
@@ -26,9 +26,11 @@ public class Lotto {
         this.numbers = sortByAscent(numbers);
     }
 
+
+    //TODO: splitToList인데 검증하는 역할까지 하고 있음
     private List<Integer> splitToList(String number) {
         List<String> splitNumbers = List.of(number.split(SEPARATOR_REGEX.getMessage()));
-        splitNumbers.forEach(Validator::validateIsInteger);
+        splitNumbers.forEach(InputValidator::validateIsInteger);
 
         return splitNumbers.stream()
                 .map((num -> Integer.parseInt(num.trim())))

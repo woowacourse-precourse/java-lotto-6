@@ -10,7 +10,7 @@ public class WinningLotto {
     private final LottoNumber bonus;
 
     private WinningLotto(Lotto winning, LottoNumber bonus) {
-        validateNotDuplicated(winning, bonus);
+        validate(winning, bonus);
         this.winning = winning;
         this.bonus = bonus;
     }
@@ -19,7 +19,7 @@ public class WinningLotto {
         return new WinningLotto(winning, bonus);
     }
 
-    private void validateNotDuplicated(Lotto winning, LottoNumber bonus) {
+    private void validate(Lotto winning, LottoNumber bonus) {
         if (winning.hasCertainNumber(bonus)) {
             throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER.getMessage());
         }

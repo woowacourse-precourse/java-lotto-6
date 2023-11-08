@@ -11,51 +11,47 @@ import lotto.dto.WinningLotto;
 import lotto.dto.WinningResult;
 
 public class LottoService {
-    private final NumberGenerator generator;
-    //    private PurchaseAmount purchaseAmount;
-    private List<Lotto> purchasedTickets;
+    private final Generator generator;
 
-    public LottoService(NumberGenerator generator) {
+    public LottoService(Generator generator) {
         this.generator = generator;
-        purchasedTickets = new ArrayList<>();
     }
 
-    public List<Lotto> buyMultipleLotto(PurchaseAmount paidMoney) {
-        List<Lotto> lottoTickets = new ArrayList<>();
+    public List<Lotto> issueMultipleLotto(PurchaseAmount purchaseAmount) {
+        List<Lotto> issuedLotto = new ArrayList<>();
 
-        IntStream.range(0, paidMoney.getQuantity())
-                .forEach(idx -> lottoTickets.add(buySingleLotto()));
+        IntStream.range(0, purchaseAmount.getQuantity())
+                .forEach(idx -> issuedLotto.add(issueSingleLotto()));
 
-        this.purchasedTickets = lottoTickets;
-        return Collections.unmodifiableList(lottoTickets);
+        return Collections.unmodifiableList(issuedLotto);
     }
 
-    private Lotto buySingleLotto() {
-        return new Lotto(generator.generateLotto());
+    private Lotto issueSingleLotto() {
+        return new Lotto(generator.generate());
     }
 
     public WinningLotto getWinningLotto(Lotto lotto, LottoNumber lottoNumber) {
         return WinningLotto.of(lotto, lottoNumber);
     }
 
-    public WinningResult getLottoResult(WinningLotto winningLotto) {
+    public WinningResult getWinningResult(List<Lotto> issuedLotto, WinningLotto winningLotto) {
         WinningResult winningResult = new WinningResult();
 
-        purchasedTickets.forEach(purchasedTicket -> {
-            int matchedCount = calculateMatched(purchasedTicket, winningLotto);
-            boolean isBonus = isBonus(purchasedTicket, winningLotto);
-            winningResult.updateResult(matchedCount, isBonus);
+        issuedLotto.forEach(issued -> {
+            int winningCount = calculateWinning(issued, winningLotto);
+            boolean isBonus = isBonus(issued, winningLotto);
+            winningResult.updateResult(winningCount, isBonus);
         });
         return winningResult;
     }
 
-    private int calculateMatched(Lotto purchasedTicket, WinningLotto winningLotto) {
-        return purchasedTicket.countDuplicatedNumber(winningLotto.getWinning());
+    private int calculateWinning(Lotto issuedLotto, WinningLotto winningLotto) {
+        return issuedLotto.countDuplicatedNumber(winningLotto.getWinning());
     }
 
-    private boolean isBonus(Lotto purchasedTicket, WinningLotto winningLotto) {
+    private boolean isBonus(Lotto issuedLotto, WinningLotto winningLotto) {
         LottoNumber bonusNumber = winningLotto.getBonus();
-        return purchasedTicket.hasCertainNumber(bonusNumber);
+        return issuedLotto.hasCertainNumber(bonusNumber);
     }
 
     public double calculateProfit(PurchaseAmount purchaseAmount, WinningResult winningResult) {

@@ -5,13 +5,13 @@ import static lotto.constants.LottoRule.MAX_LOTTO_NUM;
 import static lotto.constants.LottoRule.MIN_LOTTO_NUM;
 
 import java.util.Objects;
-import lotto.validator.Validator;
+import lotto.validator.InputValidator;
 
 public class LottoNumber {
     private int number;
 
     private LottoNumber(String input) {
-        validateLottoNumber(input);
+        validate(input);
         this.number = Integer.parseInt(input);
     }
 
@@ -19,8 +19,8 @@ public class LottoNumber {
         return new LottoNumber(input);
     }
 
-    private void validateLottoNumber(String input) {
-        Validator.validateIsInteger(input);
+    private void validate(String input) {
+        InputValidator.validateIsInteger(input);
         validateNumberRange(input);
     }
 

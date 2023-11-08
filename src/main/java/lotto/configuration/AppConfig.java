@@ -1,9 +1,9 @@
 package lotto.configuration;
 
 import lotto.controller.LottoController;
+import lotto.service.Generator;
+import lotto.service.LottoGenerator;
 import lotto.service.LottoService;
-import lotto.service.NumberGenerator;
-import lotto.service.RandomNumberGenerator;
 import lotto.view.ConsoleInputDevice;
 import lotto.view.ConsoleOutputDevice;
 import lotto.view.InputDevice;
@@ -15,7 +15,7 @@ public class AppConfig {
     private static AppConfig appConfig;
     private LottoController lottoController;
     private LottoService lottoService;
-    private NumberGenerator numberGenerator;
+    private Generator generator;
     private InputView inputView;
     private InputDevice inputDevice;
     private OutputView outputView;
@@ -37,19 +37,19 @@ public class AppConfig {
 
     public LottoService lottoService() {
         if (lottoService == null) {
-            lottoService = new LottoService(numberGenerator());
+            lottoService = new LottoService(lottoGenerator());
         }
         return lottoService;
     }
 
-    public NumberGenerator numberGenerator() {
-        if (numberGenerator == null) {
-            numberGenerator = new RandomNumberGenerator();
+    public Generator lottoGenerator() {
+        if (generator == null) {
+            generator = new LottoGenerator();
         }
-        return numberGenerator;
+        return generator;
     }
 
-    public InputDevice readable() {
+    public InputDevice inputDevice() {
         if (inputDevice == null) {
             inputDevice = new ConsoleInputDevice();
         }
@@ -58,12 +58,12 @@ public class AppConfig {
 
     public InputView inputView() {
         if (inputView == null) {
-            inputView = new InputView(readable());
+            inputView = new InputView(inputDevice());
         }
         return inputView;
     }
 
-    public OutputDevice writable() {
+    public OutputDevice outputDevice() {
         if (outputDevice == null) {
             outputDevice = new ConsoleOutputDevice();
         }
@@ -72,7 +72,7 @@ public class AppConfig {
 
     public OutputView outputView() {
         if (outputView == null) {
-            outputView = new OutputView(writable());
+            outputView = new OutputView(outputDevice());
         }
         return outputView;
     }

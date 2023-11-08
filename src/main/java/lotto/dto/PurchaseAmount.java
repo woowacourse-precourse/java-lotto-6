@@ -6,14 +6,14 @@ import static lotto.constants.LottoRule.MAX_PRICE;
 import static lotto.constants.LottoRule.MIN_PRICE;
 import static lotto.constants.LottoRule.UNIT_PRICE;
 
-import lotto.validator.Validator;
+import lotto.validator.InputValidator;
 
 public class PurchaseAmount {
     private int paidMoney;
     private int quantity;
 
     private PurchaseAmount(String input) {
-        validatePurchaseAmount(input);
+        validate(input);
         this.paidMoney = convertToInt(input);
         this.quantity = getUnitAmount(input);
     }
@@ -22,12 +22,8 @@ public class PurchaseAmount {
         return new PurchaseAmount(input);
     }
 
-    private int getUnitAmount(String input) {
-        return convertToInt(input) / UNIT_PRICE.getValue();
-    }
-
-    private void validatePurchaseAmount(String input) {
-        Validator.validateIsInteger(input);
+    private void validate(String input) {
+        InputValidator.validateIsInteger(input);
         int paidMoney = convertToInt(input);
         validateDividedBy(paidMoney);
         validateRange(paidMoney);
@@ -47,6 +43,10 @@ public class PurchaseAmount {
         if (paidMoney > MAX_PRICE.getValue() || paidMoney <= MIN_PRICE.getValue()) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
         }
+    }
+
+    private int getUnitAmount(String input) {
+        return convertToInt(input) / UNIT_PRICE.getValue();
     }
 
     public int getPaidMoney() {

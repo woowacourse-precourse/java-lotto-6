@@ -2,7 +2,7 @@ package lotto.validator;
 
 import static lotto.constants.ErrorCode.NOT_INTEGER;
 
-public class Validator {
+public class InputValidator {
 
     public static void validateIsInteger(String input) {
         try {

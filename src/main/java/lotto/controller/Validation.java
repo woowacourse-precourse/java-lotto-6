@@ -1,7 +1,10 @@
 package lotto.controller;
 
+import static lotto.message.ExceptionMessage.*;
+
 import java.util.List;
 import lotto.Util;
+import lotto.message.ExceptionMessage;
 
 public class Validation {
 
@@ -9,7 +12,7 @@ public class Validation {
         try {
             Integer.parseInt(input);
         } catch(NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
+            throw new IllegalArgumentException(ONLY_NUMBER.getMessage());
         }
     }
 
@@ -19,32 +22,32 @@ public class Validation {
                 Integer.parseInt(num);
             }
         } catch(NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
+            throw new IllegalArgumentException(ONLY_NUMBER.getMessage());
         }
     }
 
     public void lottoNumberCount(List<Integer> numbers) {
         if(numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_SIZE.getMessage());
         }
     }
 
     public void duplicateNumber(List<Integer> numbers) {
         if(numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복된 숫자가 없어야 합니다.");
+            throw new IllegalArgumentException(DUPLICATE.getMessage());
         }
     }
 
     public void rangeOfLottoNumber(int num) {
        if (num < 1 || num > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이여야 합니다.");
+                throw new IllegalArgumentException(OUT_OF_RANGE.getMessage());
         }
     }
 
     public void rangeOfLottoNumber(List<Integer> numbers) {
         for(int num : numbers) {
             if (num < 1 || num > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이여야 합니다.");
+                throw new IllegalArgumentException(OUT_OF_RANGE.getMessage());
             }
         }
     }
@@ -52,7 +55,7 @@ public class Validation {
     public void purchaseAmount(String input) {
         isNumber(input);
         if(Integer.parseInt(input) % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000의 배수여야 합니다.");
+            throw new IllegalArgumentException(PURCHASE_AMOUNT.getMessage());
         }
     }
 
@@ -69,7 +72,7 @@ public class Validation {
         int number = Integer.parseInt(input);
         rangeOfLottoNumber(number);
         if(winNumber.contains(number)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호에 없는 번호여야 합니다.");
+            throw new IllegalArgumentException(BONUS_NUMBER.getMessage());
         }
     }
 }

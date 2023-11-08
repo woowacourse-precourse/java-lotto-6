@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstant.SECOND_RANK_NUMBER;
+
 import java.util.Arrays;
 
 public enum Rank {
@@ -10,7 +12,6 @@ public enum Rank {
     FOURTH(4, 50_000),
     FIFTH(3, 5_000),
     NOTHING(0, 0);
-
     private final int countOfMatch;
     private final long lotteryWinnings;
 
@@ -29,7 +30,7 @@ public enum Rank {
     }
 
     private static boolean isSecond(int countOfMatch, boolean containsBonus) {
-        return countOfMatch == 5 && containsBonus;
+        return countOfMatch == SECOND_RANK_NUMBER && containsBonus;
     }
 
     private static Rank checkRank(int countOfMatch) {

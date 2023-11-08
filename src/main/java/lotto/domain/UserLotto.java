@@ -19,8 +19,9 @@ public class UserLotto {
 		this.lottoCount = this.price / 1000;
 		for (int i = 0; i < lottoCount; i++) {
 			List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-			Collections.sort(numbers);
-			Lotto lotto = new Lotto(numbers);
+			List<Integer> sortedNumbers = new ArrayList<>(numbers); // 테스트 불변 오류로 새 리스트 생성
+			Collections.sort(sortedNumbers);
+			Lotto lotto = new Lotto(sortedNumbers);
 			this.allLotto.add(lotto);
 		}
 	}

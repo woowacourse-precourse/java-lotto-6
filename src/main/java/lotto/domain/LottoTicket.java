@@ -13,7 +13,7 @@ public class LottoTicket {
         lottoGames = new ArrayList<>();
     }
 
-    public void addLottoGame(Lotto lotto) {
+    public void addLotto(Lotto lotto) {
         lottoGames.add(lotto);
     }
 

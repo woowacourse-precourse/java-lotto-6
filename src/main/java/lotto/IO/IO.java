@@ -1,19 +1,14 @@
 package lotto.IO;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Util.Validate;
-
-import java.util.List;
 
 public class IO { //여긴 무조건 정적호출로 해보자
 
     public static String InputCash(){
         System.out.println("구입금액을 입력해주세요");
-        String cash = Console.readLine();
-        Validate.checkInteger(cash);
-        return cash;
+        return Console.readLine();
     }
-    
+
     public static void PrintCount(int count){
         System.out.println(count+"개를 구매했습니다.");
     }

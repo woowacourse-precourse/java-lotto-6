@@ -1,5 +1,7 @@
 package lotto.util;
 
+import lotto.view.InputView;
+
 public class NumberUtils {
 
     private NumberUtils() {
@@ -7,10 +9,15 @@ public class NumberUtils {
     }
 
     public static int checkNumber(String input) {
+        int inputNumber = 0;
+
         try {
-            return Integer.parseInt(input);
-        } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
+            inputNumber = Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 숫자만 입력 가능합니다. 다시 입력해주세요.");
+            InputView.getInputNumber();
         }
+
+        return inputNumber;
     }
 }

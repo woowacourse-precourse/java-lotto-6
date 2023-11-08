@@ -18,14 +18,13 @@ import lotto.view.OutputView;
 
 public class LottoGame {
     public void start() {
-
         Money money = runMoneySavingProcess();
         printCountOfLotto(money.toString());
 
         LottoTicket lottoTicket = new LottoTicket(new LottoTicketMaker().make(money.calculatePurchasedLotto()));
         printLottoTicket(lottoTicket.makeLottoToString());
 
-        WiningLotto win = saveWiningData(runWiningNumberSavingProcess(), receiveBonusNumber());
+        WiningLotto win = saveWiningData(runWiningNumberSavingProcess());
         printLottoWinResult(lottoTicket, win, money.calculatePurchasedLotto());
     }
 
@@ -42,7 +41,6 @@ public class LottoGame {
         OutputView.printPayRequest();
         String money = InputView.read();
         InputValidator.validateNumber(money);
-
         return Integer.parseInt(money);
     }
 
@@ -60,7 +58,7 @@ public class LottoGame {
         try {
             return new Lotto(receiveWinningNumber());
         } catch (IllegalArgumentException exception) {
-            OutputView.println(exception.getMessage());
+            OutputView.print(exception.getMessage());
             return runWiningNumberSavingProcess();
         }
     }
@@ -69,48 +67,47 @@ public class LottoGame {
         OutputView.printWinNumberRequest();
         String input = InputView.read();
         InputValidator.validateWinNumberRequirement(input);
-
         return convertNumber(input);
     }
 
-    private List<Integer> convertNumber(String input) {  //util
+    private List<Integer> convertNumber(String input) {
         return Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
     private int receiveBonusNumber() {
-        OutputView.printBonusRequest();
-        String input = InputView.read();
-        InputValidator.validateNumber(input);
-
-        return Integer.parseInt(input);
+        try {
+            OutputView.printBonusRequest();
+            String input = InputView.read();
+            InputValidator.validateNumber(input);
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException exception) {
+            OutputView.print(exception.getMessage());
+            return receiveBonusNumber();
+        }
     }
 
-    private WiningLotto saveWiningData(Lotto winNumber, int bonus) {
+    private WiningLotto saveWiningData(Lotto winNumber) {
         try {
-            return new WiningLotto(winNumber, bonus);
-        } catch (IllegalArgumentException exception) {
-            OutputView.println(exception.getMessage());
             return new WiningLotto(winNumber, receiveBonusNumber());
+        } catch (IllegalArgumentException exception) {
+            OutputView.print(exception.getMessage());
+            return saveWiningData(winNumber);
         }
     }
 
     private void printLottoWinResult(LottoTicket lottoTicket, WiningLotto win, int lottoCount) {
         StatisticsCalculator rateCalculator = new StatisticsCalculator();
-
         OutputView.printNoticeWiningResult();
         OutputView.printStatisticResult(rateCalculator.getRate(makeWiningResult(lottoTicket, win), lottoCount));
     }
 
     private HashMap<Integer, Integer> makeWiningResult(LottoTicket lottoTicket, WiningLotto win) {
         HashMap<Integer, Integer> winResult = new LottoCalculator().calculate(lottoTicket, win);
-
         for (LottoResultInform resultExplaine : LottoResultInform.values()) {
             OutputView.printWiningResult(winResult.get(resultExplaine.getCount()), resultExplaine.getWon());
         }
         return winResult;
     }
-
-
 }

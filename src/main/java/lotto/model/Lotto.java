@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.utils.Constant.COUNT_OF_LOTTO;
+import static lotto.utils.Constant.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,6 +21,9 @@ public class Lotto {
         if (isDuplicateNumbers(numbers)) {
             throw new IllegalArgumentException();
         }
+        if (!isValidNumber(numbers)) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public List<Integer> getNumbers() {
@@ -32,4 +35,10 @@ public class Lotto {
         return numbers.stream().anyMatch(n -> !uniqueNumbers.add(n));
     }
 
+    private boolean isValidNumber(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < SD_RANDOM_NUMBER_MIN || number > SD_RANDOM_NUMBER_MAX) return false;
+        }
+        return true;
+    }
 }

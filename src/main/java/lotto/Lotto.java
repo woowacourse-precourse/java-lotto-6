@@ -5,9 +5,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import Enum.Rank;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private Rank rank;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -40,4 +42,34 @@ public class Lotto {
                 .collect(Collectors.joining(", " ,"[","]"));
         System.out.println(result);
     }
+
+    public List<Integer> getNumbers(){
+        return numbers;
+    }
+
+    private boolean checkBonus(int bonus){
+        if(numbers.contains(bonus)){
+            return true;
+        }
+        return false;
+    }
+    public Rank checkRank(int count,int bonus){
+        if(count==3){
+            return Rank.FIFTH;
+        }
+        if(count==4){
+            return Rank.FOURTH;
+        }
+        if(count==5){
+            if(checkBonus(bonus)){
+                return Rank.THIRD;
+            }
+            return Rank.SECOND;
+        }
+        if(count==6){
+            return Rank.FIRST;
+        }
+        return Rank.SIXTH;
+    }
+
 }

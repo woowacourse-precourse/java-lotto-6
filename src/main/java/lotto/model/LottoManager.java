@@ -8,7 +8,7 @@ public class LottoManager {
     private LottoResult lottoResult;
 
 
-    public void createLottos(int numberOfLottos, LottoGenerator lottoGenerator) {
+    public void createPurchaseLottos(int numberOfLottos, LottoGenerator lottoGenerator) {
         purchasedLottos = PurchasedLottos.of(numberOfLottos, lottoGenerator);
     }
 

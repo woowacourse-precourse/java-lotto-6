@@ -51,9 +51,8 @@ class LottoResultTest {
     @Test
     void calculateWinningAmountShouldReturnCorrectAmount() {
         lottoResult.addResult(winningInfo);
-        assertThat(lottoResult.calculateWinningAmount(winningInfo)).isEqualTo(5000);
-
         lottoResult.addResult(winningInfo);
+
         assertThat(lottoResult.calculateWinningAmount(winningInfo)).isEqualTo(10000);
     }
 

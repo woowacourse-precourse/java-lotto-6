@@ -28,11 +28,11 @@ public class WinningLotto {
         return bonusNumber < LottoNumbers.MIN_RANGE.getNumber() || bonusNumber > LottoNumbers.MAX_RANGE.getNumber();
     }
 
-    public Lotto getLotto() {
-        return lotto;
+    public Integer matchCount(Lotto other) {
+        return lotto.matchCount(other);
     }
 
-    public Integer getBonusNumber() {
-        return bonusNumber;
+    public boolean containsBonusNumber(Lotto other) {
+        return other.contains(bonusNumber);
     }
 }

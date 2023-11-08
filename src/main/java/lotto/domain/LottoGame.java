@@ -16,11 +16,8 @@ public class LottoGame {
     }
 
     public void play(WinningLotto winningLotto, LottoTickets lottoTickets) {
-        Lotto winning = winningLotto.getLotto();
-        int bonusNumber = winningLotto.getBonusNumber();
-
         for (Lotto lotto : lottoTickets.getLottoTickets()) {
-            addResult(winning.matchCount(lotto), lotto.contains(bonusNumber));
+            addResult(winningLotto.matchCount(lotto), winningLotto.containsBonusNumber(lotto));
         }
     }
 

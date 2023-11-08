@@ -14,8 +14,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getLottoNumbers(){
-        return numbers;
+    public String getLottoString(){
+        String LottoStr = numbers.toString().replaceAll("[^0-9\\[\\] ]","");
+        LottoStr = LottoStr.replace(" ", ", ");
+        return LottoStr;
     }
 
     private void validate(List<Integer> numbers) {

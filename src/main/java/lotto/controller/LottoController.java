@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Lottos;
 import lotto.view.Input;
+import lotto.view.Output;
 
 public class LottoController {
     private int money;
@@ -10,18 +11,24 @@ public class LottoController {
     private int bonusNumber;
 
     public void run(){
-        getInputs();
+        money=Input.getMoney();
         Lottos lottos = buyLottos();
+
+        winningNumber = Input.getWinningNumber();
+        bonusNumber = Input.getBonusNumber(winningNumber);
 
     }
 
     private void getInputs(){
-        money=Input.getMoney();
-        winningNumber = Input.getWinningNumber();
-        bonusNumber = Input.getBonusNumber(winningNumber);
+
     }
     private Lottos buyLottos(){
         int lottoAmount = (int) (money/1000);
-        return new Lottos(lottoAmount);
+        Lottos lottos = new Lottos(lottoAmount);
+        Output.ShowLottos(lottos);
+        return lottos;
+    }
+    private void confirmLottos(){
+
     }
 }

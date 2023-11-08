@@ -13,11 +13,14 @@ public class UserLottoTest {
     UserLotto userLotto;
     String buyPrice;
     String userLottoNumber;
+    String userBonusLotto;
     @BeforeEach
     public void userLottoTest(){
 
         //given
-
+        buyPrice = "1000";
+        userLottoNumber="1,2,3,4,5,6";
+        userBonusLotto="22";
 
     }
     @Test
@@ -25,11 +28,10 @@ public class UserLottoTest {
     public void lottoPriceTest() {
         //given
         buyPrice = "1300";
-        userLottoNumber = "1,2,3,4,5,6";
         //when,then
-        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber))
+        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber,userBonusLotto))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .hasMessageContaining("[ERROR] 금액은 1000원 단위로 입력해주세요");
 
     }
     @ParameterizedTest
@@ -37,23 +39,21 @@ public class UserLottoTest {
     @ValueSource(strings = {"1,2,3,4,5","1,2,3,4,5,6,7"})
     public void lottoLengthTest(String userLottoNumber){
         //given
-        buyPrice = "1000";
         //when,then
-        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber))
+        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber,userBonusLotto))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .hasMessageContaining("[ERROR] 로또 번호는 6개만 입력 해주세요");
 
     }
     @ParameterizedTest
     @DisplayName("로또 번호 범위 확인 테스트")
-    @ValueSource(strings = {"1,2,3,4,0","1,2,3,4,5,6,45"})
+    @ValueSource(strings = {"1,2,3,4,5,0","1,2,3,4,5,46"})
     public void lottoRangeTest(String userLottoNumber){
         //given
-        buyPrice = "1000";
         //when,then
-        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber))
+        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber,userBonusLotto))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .hasMessageContaining("[ERROR] 1~45 범위의 숫자만을 입력하세요");
 
     }
 
@@ -61,11 +61,9 @@ public class UserLottoTest {
     @DisplayName("로또 번호 ,분리 테스트")
     public void lottoSplitTest(){
         //given
-        buyPrice = "1000";
-        userLottoNumber = "1,2,3,4,5,6,";
 
         //when
-        userLotto = new UserLotto(buyPrice,userLottoNumber);
+        userLotto = new UserLotto(buyPrice,userLottoNumber,userBonusLotto);
         // then
         Assertions.assertThat(userLotto.getUserLotto()).isEqualTo(Arrays.asList(1,2,3,4,5,6));
     }
@@ -73,13 +71,57 @@ public class UserLottoTest {
     @DisplayName("로또 번호 중복입력 오류확인 테스트")
     public void lottoDuplicateTest(){
         //given
-        buyPrice = "1000";
         userLottoNumber = "1,2,3,4,5,5,";
 
         //when,then
-        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber))
+        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber,userBonusLotto))
                 .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호를 중복해서 입력하지마세요");
+
+    }
+    @Test
+    @DisplayName("로또 번호 글자 입력 테스트")
+    public void lottoTypeTest(){
+        //given
+        userLottoNumber = "1,2,3,4,5,a,";
+
+        //when,then
+        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber,userBonusLotto))
+                .isInstanceOf(NumberFormatException.class)
                 .hasMessageContaining("[ERROR]");
+
+    }
+    @Test
+    @DisplayName("보너스 로또 번호 글자 입력 테스트")
+    public void bonusLottoTypeTest(){
+        //given
+        userBonusLotto = "a";
+        //when,then
+        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber,userBonusLotto))
+                .isInstanceOf(NumberFormatException.class)
+                .hasMessageContaining("[ERROR]숫자만을 입력해주세요");
+
+    }
+    @Test
+    @DisplayName("보너스 로또 번호 중복확인 테스트")
+    public void bonusLottoDuplicateTest(){
+        //given
+        userBonusLotto = "1";
+        //when,then
+        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber,userBonusLotto))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호를 중복해서 입력하지마세요");
+
+    }
+    @Test
+    @DisplayName("보너스 로또 번호 중복확인 테스트")
+    public void bonusLottoRangeTest(){
+        //given
+        userBonusLotto = "46";
+        //when,then
+        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber,userBonusLotto))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 1~45 범위의 숫자만을 입력하세요");
 
     }
 

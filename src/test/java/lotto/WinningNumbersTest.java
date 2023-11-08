@@ -24,4 +24,10 @@ public class WinningNumbersTest {
         Assertions.assertThat(WinningNumbers.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
+    @Test
+    @DisplayName("당첨 번호가 1 ~ 45 사이의 숫자가 아니면 예외처리한다.")
+    void validateRangeOfWinningNumbers() {
+        assertThatThrownBy(() -> new Lotto(List.of(10, 55, 42, 33, 22, 11)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

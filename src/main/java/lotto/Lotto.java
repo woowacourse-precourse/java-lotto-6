@@ -40,6 +40,7 @@ public class Lotto {
 
     private void validateEachNumberNotDuplicate(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
+
         if (set.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(CHECK_EACH_NUMBER_NOT_DUPLICATE_REQUEST_MESSAGE);
         }

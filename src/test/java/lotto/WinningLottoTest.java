@@ -15,7 +15,7 @@ class WinningLottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("보너스 번호가 범위미만이면 예외가 발생한다.")
+    @DisplayName("보너스 번호가 범위 미만이면 예외가 발생한다.")
     @Test
     void createWinningLottoByUnderRangeBonusNumber() {
         assertThatThrownBy(() -> new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)), -3))

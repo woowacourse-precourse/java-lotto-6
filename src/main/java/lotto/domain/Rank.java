@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 
@@ -23,4 +24,10 @@ public enum Rank {
         this.matchResult = matchResult;
     }
 
+    public static Rank rankResult(final int matchCount, final boolean bonus){
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank.matchResult.test(matchCount, bonus))
+                .findAny()
+                .orElse(NONE);
+    }
 }

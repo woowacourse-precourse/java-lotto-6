@@ -8,5 +8,6 @@ public class Application {
         LM.getMoney();
         LM.makeLotto();
         LM.printLotto();
+        LM.getWin();
     }
 }

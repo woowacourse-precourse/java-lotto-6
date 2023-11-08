@@ -16,19 +16,11 @@ import lotto.model.strategy.LottoStrategy;
 import lotto.model.strategy.MyLottoStrategy;
 import lotto.validator.InputValidator;
 import lotto.view.InputView;
-import lotto.view.outputView.LottoOutputView;
-import lotto.view.outputView.LottoResultOutputView;
+import lotto.view.outputView.OutputView;
 
 public class LottoController {
-    private final InputView inputView;
-    private final LottoOutputView lottoOutputView;
-    private final LottoResultOutputView lottoResultOutputView;
+    public LottoController() {
 
-    public LottoController(InputView inputView, LottoOutputView lottoOutputView,
-                           LottoResultOutputView lottoResultOutputView) {
-        this.inputView = inputView;
-        this.lottoOutputView = lottoOutputView;
-        this.lottoResultOutputView = lottoResultOutputView;
     }
 
     public void run() {
@@ -36,43 +28,39 @@ public class LottoController {
         LottoMachine lottoMachine = new RandomLottoMachine();
         LottoTicket lottoTicket = new LottoTicket(budget, lottoMachine);
 
-        lottoOutputView.printLottoTicketCount(lottoTicket.getLottoTicketSize());
-        lottoOutputView.printLottos(lottoTicket);
+        OutputView.printLottoTicketCount(lottoTicket.getLottoTicketSize());
+        OutputView.printLottos(lottoTicket);
 
         WinningLotto winningLotto = getWinningLotto();
+
         BonusNumber bonusNumber = getBonusNumber(winningLotto);
 
         LottoStrategy lottoStrategy = new MyLottoStrategy();
         RankCount rankCount = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
         Revenue revenue = new Revenue(rankCount, budget);
 
-        lottoResultOutputView.printLottoResult(rankCount);
-        lottoResultOutputView.printRevenue(revenue);
+        OutputView.printLottoResult(rankCount);
+        OutputView.printRevenue(revenue);
     }
 
 
     public Budget getBudget() {
         try {
-            String inputPrice = inputView.inputBudget();
-            InputValidator.validateInputPrice(inputPrice);
+            String inputPrice = InputView.inputBudget();
+            InputValidator.validateInputBudget(inputPrice);
             return new Budget(Integer.parseInt(inputPrice));
-        } catch (NotIntegerException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getBudget(); // Recursive call for retry
-        } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
-            return getBudget(); // Recursive call for retry
+            return getBudget();
         }
-
     }
 
     public WinningLotto getWinningLotto() {
-
         try {
-            String inputWinningNumber = inputView.inputWinningNumbers();
+            String inputWinningNumber = InputView.inputWinningNumbers();
             List<Integer> numbers = parseListFromNumbers(inputWinningNumber);
             return new WinningLotto(numbers);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getWinningLotto();
         }
@@ -82,10 +70,10 @@ public class LottoController {
     private BonusNumber getBonusNumber(WinningLotto winningLotto) {
 
         try {
-            String inputBonusNumber = inputView.inputBonusNumber();
+            String inputBonusNumber = InputView.inputBonusNumber();
             InputValidator.validateBonusNumber(inputBonusNumber);
             return new BonusNumber(Integer.parseInt(inputBonusNumber), winningLotto);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getBonusNumber(winningLotto);
         }

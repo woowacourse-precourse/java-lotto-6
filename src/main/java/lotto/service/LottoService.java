@@ -15,6 +15,7 @@ import lotto.data.Lotto;
 import lotto.data.UserLotto;
 import lotto.io.input.LottoInput;
 import lotto.io.input.MoneyInput;
+import lotto.io.output.LottoOutput;
 import lotto.meta.Result;
 
 public class LottoService {
@@ -45,31 +46,28 @@ public class LottoService {
     }
 
     private void getSpendMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
+        LottoOutput.printInputMoney();
         spendMoney = MoneyInput.getMoney();
         lottoCnt = spendMoney / 1000;
+        LottoOutput.printNewLine();
     }
 
     private void getUserLottos(int cnt) {
-        System.out.println("\n" + cnt + "개를 구매했습니다.");
+        LottoOutput.printConfirmMoney(cnt);
         while (cnt-- > 0) {
             userLottos.add(new UserLotto(LottoInput.getRandomLotto()));
         }
-
-        userLottos.forEach(userLotto -> {
-            System.out.println(userLotto.toString());
-        });
-        System.out.println();
+        LottoOutput.printUserLottos(userLottos);
     }
 
     private void getLottoNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        LottoOutput.printInputLottoNumber();
         lotto = new Lotto(LottoInput.getLottoNumbers());
-        System.out.println();
+        LottoOutput.printNewLine();
     }
 
     private void getBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        LottoOutput.printInputBonusNumber();
         bonusNumber = LottoInput.getBonusLottoNumber(lotto.getNumbers());
     }
 
@@ -80,11 +78,11 @@ public class LottoService {
                 userLotto.compareBonus(bonusNumber);
             }
         });
+        LottoOutput.printNewLine();
     }
 
     private void getResult() {
-        System.out.println("\n당첨 통계");
-        System.out.println("---");
+        LottoOutput.printGetResult();
         double sum = 0.0;
         for (UserLotto userLotto : userLottos) {
             Result result = Result.getResult(userLotto.getCorrectCnt(), userLotto.getBonusCnt());
@@ -96,11 +94,7 @@ public class LottoService {
 
             resultCounts.put(result, resultCounts.get(result) + 1);
         }
-
-        for (Map.Entry<Result, Integer> entry : resultCounts.entrySet()) {
-            System.out.println(entry.getKey().getText() + " - " + entry.getValue() + "개");
-        }
-
-        System.out.println("총 수익은 " + sum * 100.0 / (double) spendMoney + "% 입니다.");
+        LottoOutput.printResultCounting(resultCounts);
+        LottoOutput.printTotalProfit(sum, spendMoney);
     }
 }

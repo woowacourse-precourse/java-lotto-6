@@ -9,9 +9,10 @@ import static lotto.exception.ErrorType.InputMoneyOverflowException;
 import lotto.exception.LottoException;
 
 public class MoneyManagement {
+    private static final int ZERO = 0;
     private static final int PERCENT = 100;
     private static final int LOTTO_AMOUNT = 1000;
-    private static final int ZERO = 0;
+    private static final double PERCENT_MULTIPLIER = 100.0;
     private static final String NUMERIC_PATTERN = "\\d+";
     private final int balance;
 
@@ -32,8 +33,12 @@ public class MoneyManagement {
     }
 
     public static double calculateYield(final int purchaseAmount, final long totalAmount) {
-        double value = (double) totalAmount / (double) purchaseAmount * PERCENT;
-        return Math.round(value);
+        return preciseValue(purchaseAmount, totalAmount);
+    }
+
+    private static double preciseValue(double purchaseAmount, double totalAmount) {
+        double value = totalAmount / purchaseAmount * PERCENT;
+        return Math.round(value * PERCENT_MULTIPLIER) / PERCENT_MULTIPLIER;
     }
 
     private void validate(final String userInput) {

@@ -8,9 +8,19 @@ public class LottoController {
 
     public void run() {
         setLottoCount();
+        setUserLotto();
+        getUserLotto();
     }
 
-    public void setLottoCount(){
+    public void setLottoCount() {
         lottoService.setLottoCount();
+    }
+
+    public void setUserLotto() {
+        lottoService.setUserLotto();
+    }
+
+    public void getUserLotto() {
+        lottoService.getUserLotto();
     }
 }

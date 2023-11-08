@@ -41,6 +41,7 @@ public class Application {
     }
     private static int String_to_Int(String str){      // Input을 String으로 받아서 Int로 반환
         try{
+            str = str.trim();                          // 좌우 공백 삭제
             return Integer.parseInt(str);
         }catch (NumberFormatException e){
             System.out.print("[ERROR] 입력 값은 정수여야 합니다.\n\n");
@@ -88,6 +89,7 @@ public class Application {
         try {                                           // 일단 숫자가 아닌 경우만 예외처리
             List<Integer> winning_nums = new ArrayList<>();
             for (String numStr : inputs) {
+                numStr = numStr.trim();                 // 좌우 공백 삭제
                 winning_nums.add(Integer.parseInt(numStr));
             }
             return winning_nums;

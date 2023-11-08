@@ -22,8 +22,8 @@ public class InputView {
                     throw new IllegalArgumentException("[ERROR] 입력된 비용은 1000으로 나누어 떨어지지 않습니다.");
                 }
                 return costValue;
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 올바른 숫자 형식이 아닙니다. 다시 입력하세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] ");
             }
         }
     }

@@ -27,11 +27,11 @@ public class OutputView {
     }
 
     public void printDrawResult(List<Integer> results){
-        int[] match = new int[7];
+        int[] match = new int[8];
         System.out.println((DRAW_STATISTIC.printMessage()));
         for (int result : results) {
             if(result%10 == 5){
-                result = 0;
+                result = 7;
             }
             match[result]++;
         }
@@ -39,7 +39,7 @@ public class OutputView {
             System.out.printf(THREE_MATCHES.printMessage(), match[3]);
             System.out.printf(FOUR_MATCHES.printMessage(), match[4]);
             System.out.printf(FIVE_MATCHES.printMessage(), match[5]);
-            System.out.printf(FIVE_AND_BONUS_MATCHES.printMessage(), match[0]);
+            System.out.printf(FIVE_AND_BONUS_MATCHES.printMessage(), match[7]);
             System.out.printf(SIX_MATCHES.printMessage(), match[6]);
 
     }

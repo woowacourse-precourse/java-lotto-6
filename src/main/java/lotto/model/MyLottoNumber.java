@@ -30,10 +30,22 @@ public class MyLottoNumber {
     }
 
     private List<Integer> sortedRandomNumber(List<Integer> MyNumbers){
-        Collections.sort(MyNumbers);
+        if(!isSortedNumber(MyNumbers))
+            Collections.sort(MyNumbers);
         return MyNumbers;
     }
 
+    private boolean isSortedNumber(List<Integer> MyNumbers) {
+        int past = 0;
+        for(int mynumber : MyNumbers){
+            if(past < mynumber){
+                past = mynumber;
+                continue;
+            }
+            return false;
+        }
+        return true;
+    }
 
 
     //Override 필수

@@ -3,6 +3,7 @@ package lotto.model.domain;
 import static lotto.exception.ExceptionMessage.DUPLICATION_EXCEPTION;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -42,6 +43,7 @@ public class Lotto {
     public static Lotto issue() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE,
             NUMBER_COUNT);
+        Collections.sort(numbers);
         return new Lotto(numbers);
     }
 

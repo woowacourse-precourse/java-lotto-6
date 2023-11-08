@@ -49,6 +49,6 @@ public class Lotto {
     }
 
     private boolean hasDistinctNumbers(List<Integer> numbers) {
-        return numbers.stream().distinct().count() == 6;
+        return numbers.stream().distinct().count() == LOTTO_NUMBERS_SIZE;
     }
 }

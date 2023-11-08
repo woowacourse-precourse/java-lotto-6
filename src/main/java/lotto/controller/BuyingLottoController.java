@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Buyer;
+import lotto.domain.LotteryGenerator;
 import lotto.service.BuyingLottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -8,6 +9,7 @@ import lotto.view.OutputView;
 public class BuyingLottoController {
 
     private Buyer buyer;
+    private final LotteryGenerator lotteryGenerator = new LotteryGenerator();
     private final int STOP_FLAG = -1;
     private BuyingLottoService buyingLottoService = new BuyingLottoService();
 
@@ -19,7 +21,7 @@ public class BuyingLottoController {
         }while(money==STOP_FLAG);
 
         buyer = new Buyer(money);
-        buyer.buyLotto();
+        buyer.buyLotto(lotteryGenerator);
 
         OutputView.outputLottoAmountMessage(buyer.getLottoAmount());
         for(int i=0; i< buyer.getLottoAmount(); i++){

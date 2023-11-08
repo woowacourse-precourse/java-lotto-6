@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.MethodSourceTest;
+import lotto.service.LottoService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

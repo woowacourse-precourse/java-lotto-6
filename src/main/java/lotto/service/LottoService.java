@@ -1,5 +1,9 @@
-package lotto.domain;
+package lotto.service;
 
+import lotto.domain.Buyer;
+import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
+import lotto.domain.WinningType;
 import lotto.dto.LottoNumbers;
 import lotto.dto.PurchasedLotto;
 import lotto.dto.WinningResult;

@@ -71,6 +71,13 @@ public class LottoMachine implements Machine<LottoTicket, LottoRank> {
         this.bonusBall = new LottoBall(source);
     }
 
+    @Override
+    public void reset() {
+        this.lottoBalls = null;
+        this.balls = null;
+        this.bonusBall = null;
+    }
+
     private void isDuplicateBalls(Integer source) {
         for (LottoBall ball : balls) {
             if (ball.match(source)) {

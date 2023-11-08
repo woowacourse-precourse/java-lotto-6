@@ -7,14 +7,18 @@ import lotto.View.InputView;
 import lotto.View.OutputView;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoNumbers;
+import lotto.service.LottoService;
 
 public class LottoController {
-    public LottoController(){
-    }
 
+    private static LottoService lottoService;
     private static List<Integer> lotto = new ArrayList<>();
     private static List<Lotto> lottoList;
     private static WinningLotto winningLotto;
+
+    public LottoController() {
+        lottoService = new LottoService();
+    }
 
     public void run() {
         boolean validAmountEntered = false;
@@ -35,6 +39,8 @@ public class LottoController {
 
         lottoList = getLottoList(lottoCount);
         makeWinningNumber();
+
+        winningTotal(lottoList, winningLotto);
     }
 
     private static List<Lotto> getLottoList(int lottoCount) {
@@ -61,8 +67,13 @@ public class LottoController {
         int bonusNumber = InputView.getBonusNumberFromUser();
         lotto.validateWinningResult(winningNumber, bonusNumber);
         winningLotto = new WinningLotto(new Lotto(winningNumber), bonusNumber);
+
         return winningLotto;
     }
 
-
+    // 당첨 통계
+    private void winningTotal(List<Lotto> lottoList, WinningLotto winningLotto) {
+        OutputView.printResult();
+        lottoService.getWinningTotal(lottoList, winningLotto);
+    }
 }

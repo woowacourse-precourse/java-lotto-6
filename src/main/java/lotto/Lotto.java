@@ -57,4 +57,15 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
+    public int countMatch(Lotto winningLotto) {
+        return (int) numbers.stream().
+                filter(winningLotto::containNumber).
+                count();
+    }
+
+    public boolean containNumber(int number) {
+
+        return numbers.contains(number);
+    }
 }

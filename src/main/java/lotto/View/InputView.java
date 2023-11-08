@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.exception.ExceptionMessage;
-import lotto.service.validator.Validator;
+import lotto.util.validator.Validator;
 
 public class InputView {
     private static Validator validator = new Validator();
@@ -20,6 +20,7 @@ public class InputView {
     }
 
     public static Integer getAmountFromUser() {
+        System.out.println();
         System.out.println(MONEY_INPUT_MESSAGE);
         try {
             return Integer.valueOf(Console.readLine());
@@ -48,11 +49,13 @@ public class InputView {
     }
 
     public static List<Integer> getWinningNumbersFromUser() {
+        System.out.println();
         System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
         return getWinningNumbers(Console.readLine());
     }
 
     public static Integer getBonusNumberFromUser() {
+        System.out.println();
         System.out.println(BONUS_NUMBERS_INPUT_MESSAGE);
         return Integer.valueOf(Console.readLine());
     }

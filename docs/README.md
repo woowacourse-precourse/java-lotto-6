@@ -1,7 +1,55 @@
 # 미션 - 로또
 
-로또 게임을 구현 한다.
+1 ~ 45까지 중복 되지 않는 6개의 숫자를 입력 받아 로또 게임을 진행 한다.
 
+당첨 번호 : 중복 되지 않는 숫자 6개, 보너스 번호 1개
+
+- 1등: 6개 번호 일치 / 2,000,000,000원
+- 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
+- 3등: 5개 번호 일치 / 1,500,000원
+- 4등: 4개 번호 일치 / 50,000원
+- 5등: 3개 번호 일치 / 5,000원
+## 패키지 구조
+
+```
+📦lotto
+ ┣ 📂controller
+ ┃ ┗ 📜LottoController.java
+ ┣ 📂domain
+ ┃ ┣ 📂constant
+ ┃ ┃ ┗ 📜LottoConstant.java
+ ┃ ┣ 📂number
+ ┃ ┃ ┣ 📜NumberGenerator.java
+ ┃ ┃ ┗ 📜RandomNumberGenerator.java
+ ┃ ┣ 📜BonusNumber.java
+ ┃ ┣ 📜Lotto.java
+ ┃ ┣ 📜LottoBundle.java
+ ┃ ┣ 📜LottoFactory.java
+ ┃ ┣ 📜LottoOrder.java
+ ┃ ┣ 📜LottoResult.java
+ ┃ ┣ 📜Money.java
+ ┃ ┣ 📜Rank.java
+ ┃ ┗ 📜WinningNumber.java
+ ┣ 📂exception
+ ┃ ┣ 📂lotto
+ ┃ ┃ ┣ 📜BonusDuplicateException.java
+ ┃ ┃ ┣ 📜LottoDuplicateException.java
+ ┃ ┃ ┣ 📜LottoFormatException.java
+ ┃ ┃ ┣ 📜LottoRangeException.java
+ ┃ ┃ ┗ 📜LottoSizeException.java
+ ┃ ┣ 📂money
+ ┃ ┃ ┣ 📜MinimumMoneyException.java
+ ┃ ┃ ┣ 📜MoneyOutOfRangeException.java
+ ┃ ┃ ┗ 📜MoneyUnitException.java
+ ┃ ┗ 📜NonNumberException.java
+ ┣ 📂util
+ ┃ ┗ 📜Convertor.java
+ ┣ 📂view
+ ┃ ┣ 📜InputView.java
+ ┃ ┗ 📜OutputView.java
+ ┗ 📜Application.java
+
+```
 ## 🚀 기능 목록
 
 ### 로또 구매 금액 입력

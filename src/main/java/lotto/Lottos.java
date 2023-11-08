@@ -27,8 +27,8 @@ public class Lottos {
 
         for (Lotto lotto : lottos) {
             int rank = CountWinningRanks(lotto.countMatchWithWinningLotto(winningLotto));
-            if (rank == 2 && lotto.contains(bonusNumber)) {
-                rank = 3;
+            if (rank == 3 && lotto.contains(bonusNumber)) {
+                rank = 2;
             }
             rankCounts.put(rank, rankCounts.get(rank) + 1);
         }
@@ -40,7 +40,7 @@ public class Lottos {
             return 1;
         }
         if (matchesCount == 5) {
-            return 2;
+            return 3;
         }
         if (matchesCount == 4) {
             return 4;

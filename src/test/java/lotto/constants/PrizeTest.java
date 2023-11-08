@@ -44,7 +44,7 @@ class PrizeTest {
     @DisplayName("당첨되지 않았을 때, null 반환")
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 7})
-    void rankFifth(int matchingCount) {
+    void rankByNotWinning(int matchingCount) {
         assertThat(Prize.rank(matchingCount, true)).isNull();
         assertThat(Prize.rank(matchingCount, false)).isNull();
     }

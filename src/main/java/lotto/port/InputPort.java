@@ -3,7 +3,7 @@ package lotto.port;
 import java.util.List;
 
 public interface InputPort {
-     Integer readPurchaseAmount();
+     Integer readBudget();
     List<Integer> readDrawNumbers();
     Integer readBonusNumber();
 }

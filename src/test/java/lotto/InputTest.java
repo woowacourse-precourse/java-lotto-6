@@ -17,7 +17,7 @@ public class InputTest {
     public void 구입금액을_입력받는_테스트() {
         System.setIn(new ByteArrayInputStream("10000\n".getBytes()));
 
-        Integer purchaseAmount = userInput.readPurchaseAmount();
+        Integer purchaseAmount = userInput.readBudget();
 
         assertEquals(10000, purchaseAmount);
     }

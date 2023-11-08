@@ -17,13 +17,14 @@ public enum SystemMessage {
         this.print = print;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
     public void printMessage() {
         print.accept(message);
     }
 
-    public void printMessage(int ticket) {
-        print.accept(String.format(message, ticket));
-    }
 
 }
 

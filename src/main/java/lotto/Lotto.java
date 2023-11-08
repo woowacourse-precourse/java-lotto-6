@@ -6,13 +6,18 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
     private static final String NOT_NUMBER_SIZE = "[ERROR] 당첨 번호는 6개만 입력 가능합니다.";
     private static final String NOT_NUMBER_OVERLAP = "[ERROR] 중복된 숫자를 입력했습니다.";
+    private static final String NOT_NUMBER_RANGE = "[ERROR] 숫자는 " + MIN_NUMBER + "부터" + MAX_NUMBER + " 사이의 숫자여야 합니다."
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateOverlap(numbers);
+        validateRange(numbers);
+
         Collections.sort(numbers);
         this.numbers = numbers;
     }
@@ -40,6 +45,14 @@ public class Lotto {
 
         if (overlapCheck.size() != 6) {
             throw new IllegalArgumentException(NOT_NUMBER_OVERLAP);
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < MIN_NUMBER || number > MAX_NUMBER) {
+                throw new IllegalArgumentException(NOT_NUMBER_RANGE);
+            }
         }
     }
 

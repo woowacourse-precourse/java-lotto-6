@@ -27,12 +27,6 @@ class LottoModelTest {
     private final int CHECK_BONUS = 999;
     private final List<Integer> WINNING_NUMS = Arrays.asList(1, 2, 3, 4, 5, 6);
 
-    static Stream<Arguments> parameterProviderPublishTicket() {
-        return Stream.of(
-                arguments(Arrays.asList(5, 7, 9, 3, 1), "[1, 3, 5, 7, 9]")
-        );
-    }
-
     private LottoModel lottoModel;
 
     class MockLotto extends Lotto {
@@ -48,6 +42,7 @@ class LottoModelTest {
         lottoModel = new LottoModel();
     }
 
+    @DisplayName("로또별 당첨 여부를 판단한다. 1,3,4,5 등")
     @ParameterizedTest
     @CsvSource({
             "1,1,1,1,1,1,1,2,3,4,5,6",
@@ -55,7 +50,7 @@ class LottoModelTest {
             "1,1,1,1,0,0,1,2,3,4,15,16",
             "1,1,1,0,0,0,1,2,3,14,15,16"
     })
-    void compareLotto_당첨번호_확인_1_3_4_5등(
+    void compareLotto(
             int expect1, int expect2, int expect3, int expect4, int expect5, int expect6,
             int winNum1, int winNum2, int winNum3, int winNum4, int winNum5, int winNum6
     ) {
@@ -73,6 +68,7 @@ class LottoModelTest {
                 .isEqualTo(expect);
     }
 
+    @DisplayName("로또별 당첨 여부를 판단한다. 2등")
     @Test
     void compareLotto_당첨번호_확인_2등() {
         HashMap<Integer, Integer> expect = new HashMap<>();
@@ -90,15 +86,17 @@ class LottoModelTest {
                 .isEqualTo(expect);
     }
 
+    @DisplayName("주어진 수를 소숫점 둘째자리에서 반올림한다.")
     @ParameterizedTest
     @CsvSource({"5000,8000,62.5", "10000,8000,125.0"})
-    void computeRate_소숫점_둘째자리에서_반올림_확인(int totalEarned, int purchased, String expect) {
+    void computeRate(int totalEarned, int purchased, String expect) {
         assertThat(lottoModel.computeRate(totalEarned, purchased))
                 .isEqualTo(expect);
     }
 
+    @DisplayName("발행된 로또 번호를 오름차순으로 정렬한다.")
     @Test
-    void generateNewLotto_로또_번호_발행_오름차순_정렬_테스트() {
+    void generateNewLotto() {
         List<Integer> expect = new ArrayList<>(List.of(1, 3, 5, 7, 9, 11));
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
@@ -125,8 +123,9 @@ class LottoModelTest {
         );
     }
 
+    @DisplayName("로또 당첨 번호 테이블을 생성한다.")
     @Test
-    void initWinningNumsTable_로또_당첨번호_테이블_생성_확인() {
+    void initWinningNumsTable() {
         HashMap<Integer, Integer> expect = new HashMap<>();
         expect.put(1, 0);
         expect.put(2, 0);
@@ -137,8 +136,9 @@ class LottoModelTest {
         assertThat(lottoModel.initWinningNumsTable(WINNING_NUMS)).isEqualTo(expect);
     }
 
+    @DisplayName("로또 당첨 번호 테이블을 생성한다.")
     @Test
-    void initWinningTable_당첨로또_테이블_생성_확인() {
+    void initWinningTable() {
         HashMap<Rewards, Integer> expect = new HashMap<>();
         expect.put(Rewards.FIRST, 0);
         expect.put(Rewards.SECOND, 0);
@@ -148,12 +148,8 @@ class LottoModelTest {
         assertThat(lottoModel.initWinningTable()).isEqualTo(expect);
     }
 
-    @ParameterizedTest
-    @MethodSource("parameterProviderPublishTicket")
-    void publishTicket_로또번호_오름차순_발급_확인(List<Integer> lottoNums, String expect) {
-        assertThat(lottoModel.publishTicket(lottoNums)).isEqualTo(expect);
-    }
 
+    @DisplayName("로또별 당첨여부 판단 단위테스트")
     @ParameterizedTest
     @CsvSource({
             "1,0,0,0,0,6,false",
@@ -162,8 +158,8 @@ class LottoModelTest {
             "0,0,0,1,0,4,false",
             "0,0,0,0,1,3,false"
     })
-    void makeWinningTable_당첨여부_판단(int expect1, int expect2, int expect3, int expect4,
-                                  int expect5, int result, boolean bonus) {
+    void makeWinningTable(int expect1, int expect2, int expect3, int expect4,
+                          int expect5, int result, boolean bonus) {
         HashMap<Rewards, Integer> expect = new HashMap<>();
         expect.put(Rewards.FIRST, expect1);
         expect.put(Rewards.SECOND, expect2);

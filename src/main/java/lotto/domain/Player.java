@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.validation.PlayerValidation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Player {
@@ -26,4 +27,9 @@ public class Player {
     public LottoResult calculateResult(List<Integer> winningNumbers, int bonusNumber) {
         return new LottoResult(lottos, winningNumbers, bonusNumber);
     }
+
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
+    }
+
 }

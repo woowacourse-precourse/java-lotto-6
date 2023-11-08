@@ -35,4 +35,8 @@ public enum Rank {
     public int getMatchCount() {
         return matchCount;
     }
+
+    public Boolean getMatchBonus() {
+        return isMatchBonus;
+    }
 }

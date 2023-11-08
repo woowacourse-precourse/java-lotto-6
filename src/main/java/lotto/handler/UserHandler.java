@@ -82,15 +82,21 @@ public class UserHandler {
     }
 
     public static int getAndValidateBonusNumber(List<String> winningNumbers) {
-        ResultView.printNewLine();
-        System.out.println("보너스 번호를 입력해주세요.");
-        String BonusNumberInput = Console.readLine();
-        int bonusNumber = Integer.parseInt(BonusNumberInput);
+        while (true) {
+            try {
+                ResultView.printNewLine();
+                System.out.println("보너스 번호를 입력해주세요.");
+                String BonusNumberInput = Console.readLine();
+                int bonusNumber = Integer.parseInt(BonusNumberInput);
 
-        checkvalidateBonusNumber(bonusNumber);
-        checkDuplicateWithWinningNumbers(bonusNumber, winningNumbers);
+                checkvalidateBonusNumber(bonusNumber);
+                checkDuplicateWithWinningNumbers(bonusNumber, winningNumbers);
 
-        return bonusNumber;
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static List<String> validateWinningNumberInput(String winningNumberInput) {

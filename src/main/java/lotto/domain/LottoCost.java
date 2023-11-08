@@ -6,7 +6,13 @@ public class LottoCost {
     private final int lottoCost;
 
     public LottoCost(int lottoCost) {
+        validateRemainder(lottoCost);
         this.lottoCost = lottoCost;
     }
 
+    private void validateRemainder(int lottoCost) {
+        if (lottoCost % LOTTO_PRICE != ZERO) {
+            throw new IllegalArgumentException("1000원 단위로 입력해주세요.");
+        }
+    }
 }

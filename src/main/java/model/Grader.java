@@ -19,14 +19,15 @@ public class Grader {
       winningDetails.add(0);
     }
     for(Lotto lotto : lottos) {
-      Integer rank = compareNumber(lotto, winningLotto);
+      Map<String, Integer> compareResult = compareNumber(lotto, winningLotto);
+      Integer rank = checkRank(compareResult.get("sameNumberCount"), compareResult.get("sameBonusNumber"));
       winningDetails.set(rank, winningDetails.get(rank) + 1);
     }
     return winningDetails;
   }
 
   // 로또 번호와 당첨 번호를 비교한다.
-  public Integer compareNumber(Lotto lotto, WinningLotto winningLotto) {
+  public Map<String, Integer> compareNumber(Lotto lotto, WinningLotto winningLotto) {
     int sameNumberCount = 0, sameBonusNumber = 0;
     for(int i = 0; i < 6; i++) {
       for(int j = 0; j < 6; j++) {
@@ -38,7 +39,10 @@ public class Grader {
         }
       }
     }
-    return checkRank(sameNumberCount, sameBonusNumber);
+    Map<String, Integer> compareResult = new HashMap<>();
+    compareResult.put("sameNumberCount", sameNumberCount);
+    compareResult.put("sameBonusNumber", sameBonusNumber);
+    return compareResult;
   }
 
   // 일치한 번호 갯수와 보너스 번호 일치 여부를 받아 등수를 책정한다.

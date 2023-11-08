@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.in;
-import static org.junit.jupiter.api.Assertions.*;
 
 class GraderTest {
 
@@ -60,48 +58,66 @@ class GraderTest {
   @Test
   void compareNumberOne() {
     Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));  // 1등
-    Integer rank1 = grader.compareNumber(lotto1, winningLotto);
-    assertThat(rank1).isEqualTo(1);
+    Map<String, Integer> compareResult = grader.compareNumber(lotto1, winningLotto);
+    Integer sameNumberCount = compareResult.get("sameNumberCount");
+    Integer sameBonusNumber = compareResult.get("sameBonusNumber");
+    assertThat(sameNumberCount).isEqualTo(6);
+    assertThat(sameBonusNumber).isEqualTo(0);
   }
 
   @DisplayName("로또와 당첨 번호와 보너스 번호를 비교하여 등수를 구한다 - 2등")
   @Test
   void compareNumberTwo() {
     Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 45)); // 2등
-    Integer rank2 = grader.compareNumber(lotto2, winningLotto);
-    assertThat(rank2).isEqualTo(2);
+    Map<String, Integer> compareResult = grader.compareNumber(lotto2, winningLotto);
+    Integer sameNumberCount = compareResult.get("sameNumberCount");
+    Integer sameBonusNumber = compareResult.get("sameBonusNumber");
+    assertThat(sameNumberCount).isEqualTo(5);
+    assertThat(sameBonusNumber).isEqualTo(1);
   }
 
   @DisplayName("로또와 당첨 번호와 보너스 번호를 비교하여 등수를 구한다 - 3등")
   @Test
   void compareNumberThree() {
     Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 7));  // 3등
-    Integer rank3 = grader.compareNumber(lotto3, winningLotto);
-    assertThat(rank3).isEqualTo(3);
+    Map<String, Integer> compareResult = grader.compareNumber(lotto3, winningLotto);
+    Integer sameNumberCount = compareResult.get("sameNumberCount");
+    Integer sameBonusNumber = compareResult.get("sameBonusNumber");
+    assertThat(sameNumberCount).isEqualTo(5);
+    assertThat(sameBonusNumber).isEqualTo(0);
   }
 
   @DisplayName("로또와 당첨 번호와 보너스 번호를 비교하여 등수를 구한다 - 4등")
   @Test
   void compareNumberFour() {
     Lotto lotto4 = new Lotto(List.of(1, 2, 3, 4, 8, 7));  // 4등
-    Integer rank4 = grader.compareNumber(lotto4, winningLotto);
-    assertThat(rank4).isEqualTo(4);
+    Map<String, Integer> compareResult = grader.compareNumber(lotto4, winningLotto);
+    Integer sameNumberCount = compareResult.get("sameNumberCount");
+    Integer sameBonusNumber = compareResult.get("sameBonusNumber");
+    assertThat(sameNumberCount).isEqualTo(4);
+    assertThat(sameBonusNumber).isEqualTo(0);
   }
 
   @DisplayName("로또와 당첨 번호와 보너스 번호를 비교하여 등수를 구한다 - 5등")
   @Test
   void compareNumberFive() {
     Lotto lotto5 = new Lotto(List.of(1, 2, 3, 9, 8, 7));  // 5등
-    Integer rank5 = grader.compareNumber(lotto5, winningLotto);
-    assertThat(rank5).isEqualTo(5);
+    Map<String, Integer> compareResult = grader.compareNumber(lotto5, winningLotto);
+    Integer sameNumberCount = compareResult.get("sameNumberCount");
+    Integer sameBonusNumber = compareResult.get("sameBonusNumber");
+    assertThat(sameNumberCount).isEqualTo(3);
+    assertThat(sameBonusNumber).isEqualTo(0);
   }
 
   @DisplayName("로또와 당첨 번호와 보너스 번호를 비교하여 등수를 구한다 - 5등")
   @Test
   void compareNumberNothing() {
     Lotto lottoNothing = new Lotto(List.of(1, 2, 10, 9, 8, 7));  // 5등
-    Integer rankNothing = grader.compareNumber(lottoNothing, winningLotto);
-    assertThat(rankNothing).isEqualTo(0);
+    Map<String, Integer> compareResult = grader.compareNumber(lottoNothing, winningLotto);
+    Integer sameNumberCount = compareResult.get("sameNumberCount");
+    Integer sameBonusNumber = compareResult.get("sameBonusNumber");
+    assertThat(sameNumberCount).isEqualTo(2);
+    assertThat(sameBonusNumber).isEqualTo(0);
   }
 
   @DisplayName("일치한 번호 갯수와 보너스 번호 일치 여부를 받아 등수를 책정한다. - 1등")

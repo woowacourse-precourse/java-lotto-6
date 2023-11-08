@@ -46,20 +46,6 @@ public class Lotto {
         }
     }
 
-    public int countMatchingNumbers(Lotto targetLotto) {
-        int count = 0;
-        for (int number : numbers) {
-            if (targetLotto.contains(number)) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    public boolean contains(int number) {
-        return numbers.contains(number);
-    }
-
     public Rank determineRank(Lotto targetLotto, int bonusNumber) {
         int matchingCount = countMatchingNumbers(targetLotto);
         Rank rankWithoutBonus = determineRankWithoutBonus(matchingCount);
@@ -67,6 +53,16 @@ public class Lotto {
             return Rank.MATCH_5_BONUS;
         }
         return rankWithoutBonus;
+    }
+
+    private int countMatchingNumbers(Lotto targetLotto) {
+        int count = 0;
+        for (int number : numbers) {
+            if (targetLotto.contains(number)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     private Rank determineRankWithoutBonus(int matchingCount) {
@@ -83,6 +79,10 @@ public class Lotto {
             return Rank.MATCH_6;
         }
         return null;
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
     @Override

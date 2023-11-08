@@ -48,19 +48,19 @@ class LottoTest {
     @DisplayName("로또값을 비교해서 알맞은 랭크로 변환한다")
     @Test
     void determineRankTest() {
-        Lotto winningLottoMatch3 = new Lotto(List.of(1,2,3,7,8,9));
-        Lotto winningLottoMatch4 = new Lotto(List.of(1,2,3,4,8,9));
-        Lotto winningLottoMatch5 = new Lotto(List.of(1,2,3,4,5,9));
-        Lotto winningLottoMatch5AndBonus = new Lotto(List.of(1,2,3,4,5,9));
-        Lotto winningLottoMatch6 = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto winningLottoMatch3 = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+        Lotto winningLottoMatch4 = new Lotto(List.of(1, 2, 3, 4, 8, 9));
+        Lotto winningLottoMatch5 = new Lotto(List.of(1, 2, 3, 4, 5, 9));
+        Lotto winningLottoMatch5AndBonus = new Lotto(List.of(1, 2, 3, 4, 5, 9));
+        Lotto winningLottoMatch6 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumberNotMatch = 10;
         int bonusNumberMatch = 6;
 
-        Rank rankMatch3 = lotto.determineRank(winningLottoMatch3,bonusNumberNotMatch);
-        Rank rankMatch4 = lotto.determineRank(winningLottoMatch4,bonusNumberNotMatch);
-        Rank rankMatch5 = lotto.determineRank(winningLottoMatch5,bonusNumberNotMatch);
-        Rank rankMatch5AndBonus = lotto.determineRank(winningLottoMatch5AndBonus,bonusNumberMatch);
-        Rank rankMatch6 = lotto.determineRank(winningLottoMatch6,bonusNumberNotMatch);
+        Rank rankMatch3 = lotto.determineRank(winningLottoMatch3, bonusNumberNotMatch);
+        Rank rankMatch4 = lotto.determineRank(winningLottoMatch4, bonusNumberNotMatch);
+        Rank rankMatch5 = lotto.determineRank(winningLottoMatch5, bonusNumberNotMatch);
+        Rank rankMatch5AndBonus = lotto.determineRank(winningLottoMatch5AndBonus, bonusNumberMatch);
+        Rank rankMatch6 = lotto.determineRank(winningLottoMatch6, bonusNumberNotMatch);
 
         assertEquals(Rank.MATCH_3, rankMatch3);
         assertEquals(Rank.MATCH_4, rankMatch4);

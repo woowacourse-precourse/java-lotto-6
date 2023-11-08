@@ -1,6 +1,7 @@
 package lotto.domain.lotto.validator;
 
-import static lotto.domain.lotto.Lotto.NUMBERS_COUNT;
+
+import static lotto.domain.lotto.LottoTicket.NUMBERS_COUNT;
 
 import java.util.List;
 import lotto.domain.lotto.exception.DuplicateBonusNumberException;

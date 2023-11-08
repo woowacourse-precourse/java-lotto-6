@@ -1,8 +1,8 @@
 package lotto.service.mapper;
 
-import lotto.controller.dto.input.BuyLottosInput;
 import lotto.domain.money.Money;
 import lotto.domain.money.Wallet;
+import lotto.controller.dto.input.BuyLottosInput;
 
 /**
  * Dto와 Domain 간의 매핑을 담당

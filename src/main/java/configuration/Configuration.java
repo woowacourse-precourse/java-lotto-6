@@ -1,12 +1,12 @@
-package lotto.configuration;
+package configuration;
 
 import io.output.ConsoleWriter;
-import lotto.controller.LottoController;
+import lotto.service.LottoService;
 import lotto.domain.lotto.LottoGenerator;
 import lotto.domain.lotto.LottoStore;
 import lotto.domain.lotto.RandomLottoGenerator;
 import lotto.domain.lotto.repository.LottoRepository;
-import lotto.service.LottoService;
+import lotto.controller.LottoController;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

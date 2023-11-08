@@ -1,6 +1,6 @@
 package lotto.view.component.output;
 
-import lotto.controller.dto.output.LottosBuyingOutput;
+import lotto.controller.dto.output.BuyLottosOutput;
 import lotto.view.component.Component;
 import lotto.view.component.Composable;
 
@@ -22,7 +22,7 @@ public final class BoughtLottosCountComponent implements Component, Composable {
      */
     private final int lottosCount;
 
-    public BoughtLottosCountComponent(final LottosBuyingOutput data) {
+    public BoughtLottosCountComponent(final BuyLottosOutput data) {
         this.lottosCount = data.count();
     }
 

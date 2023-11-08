@@ -1,11 +1,11 @@
 package lotto.service.mapper;
 
 import java.util.List;
+import lotto.controller.dto.output.BuyLottosOutput;
+import lotto.controller.dto.output.DrawLottosOutput;
 import lotto.controller.dto.output.LottoOutput;
-import lotto.controller.dto.output.LottosBuyingOutput;
-import lotto.controller.dto.output.LottosDrawingOutput;
+import lotto.domain.lotto.DrawLottosData;
 import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.LottoDrawingData;
 import lotto.domain.lotto.LottoPrize;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.boxed.LottoNumber;
@@ -26,14 +26,14 @@ public final class LottoToDtoMapper {
     /**
      * Lottos(Domain) -> LottosBuyingResult(Dto) 변환
      */
-    public static LottosBuyingOutput from(final Lottos lottos) {
+    public static BuyLottosOutput from(final Lottos lottos) {
         final LottosOpened lottosOpened = lottos.toOpened();
         final List<LottoOutput> lottoDtos = lottosOpened.getLottos()
                 .stream()
                 .map(LottoToDtoMapper::from)
                 .toList();
 
-        return new LottosBuyingOutput(lottoDtos, lottosOpened.size());
+        return new BuyLottosOutput(lottoDtos, lottosOpened.size());
     }
 
     /**
@@ -51,8 +51,8 @@ public final class LottoToDtoMapper {
     /**
      * LottosDrawData -> LottosDrawingResult
      */
-    public static LottosDrawingOutput from(final LottoDrawingData data) {
-        return new LottosDrawingOutput(
+    public static DrawLottosOutput from(final DrawLottosData data) {
+        return new DrawLottosOutput(
                 data.get(LottoPrize.FIRST),
                 data.get(LottoPrize.SECOND),
                 data.get(LottoPrize.THIRD),

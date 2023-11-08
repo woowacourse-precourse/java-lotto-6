@@ -1,6 +1,9 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoCondition;
 import lotto.model.Lottos;
@@ -20,11 +23,11 @@ public class LottoService {
     }
 
     private Lotto generateLotto() {
-        return new Lotto(
-            Randoms.pickUniqueNumbersInRange(
-                MIN_NUMBER,
-                MAX_NUMBER,
-                COUNT)
-        );
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
+                                                    MIN_NUMBER,
+                                                    MAX_NUMBER,
+                                                    COUNT));
+        Collections.sort(numbers);
+        return new Lotto(numbers);
     }
 }

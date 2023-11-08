@@ -16,5 +16,20 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public int checkLottoWinning(List<Integer> chosenNums) {
+        int winningNumber = 0;
+
+        for (int i = 0; i < chosenNums.size(); i++) {
+            if (chosenNums.get(i) == numbers.get(i)) {
+                winningNumber++;
+            }
+        }
+
+        return winningNumber;
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

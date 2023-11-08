@@ -12,6 +12,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public LottoResultDto matchWithWinningNumbersAndBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         int matchedAmount = getMatchedAmount(winningNumbers);
         int bonusMatchedAmount = getBonusMatchedAmount(bonusNumber);

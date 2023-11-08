@@ -15,7 +15,7 @@ class LottoMoneyPrizeTest {
     private List<Lotto> lottos;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         lottos = Arrays.asList(
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), // 1등
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)), // 2
@@ -46,6 +46,20 @@ class LottoMoneyPrizeTest {
         assertEquals(1, result.get(LottoMoney.FIFTH));
         assertEquals(1, result.get(LottoMoney.ZERO));
 
+    }
+
+    @Test
+    @DisplayName("전체 금액을 잘 반환 하는지 테스트")
+    void checkTotalReward() {
+        //given
+        int bonusNum = 7;
+        List<Integer> randomWin = Arrays.asList(1, 2, 3, 4, 5, 6);
+        LottoMoneyPrize lottoMoneyPrize = new LottoMoneyPrize(lottos, randomWin, bonusNum);
+
+        //when
+        int total = lottoMoneyPrize.getTotalReward();
+        //then
+        assertEquals(total, 2033005000);
     }
 
 }

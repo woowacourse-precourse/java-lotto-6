@@ -18,6 +18,7 @@ public class Application {
         printLottos(lottos);
 
         List<Integer> winningNumbers = getWinningNumbers(console);
+        int bonusNumber = getBonusNumber(console);
     }
 
     private static int getPurchaseAmount(Console console) {
@@ -68,5 +69,10 @@ public class Application {
             numbers.add(Integer.parseInt(number));
         }
         return numbers;
+    }
+
+    private static int getBonusNumber(Console console) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Integer.parseInt(console.readLine());
     }
 }

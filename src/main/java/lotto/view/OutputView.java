@@ -1,10 +1,9 @@
 package lotto.view;
 
-import lotto.domain.WinningGrade;
 import lotto.message.ProcessMessage;
+import lotto.message.ResultMessage;
 
 import java.util.List;
-import java.util.Map;
 
 public class OutputView {
     public void printInputMoneyToBuyLottoMessage() {
@@ -37,10 +36,8 @@ public class OutputView {
         System.out.println(ResultMessage.DIVIDED_LINE);
     }
 
-    public void printWinningResult(Map<WinningGrade, Integer> winningResult) {
-        winningResult.entrySet().stream()
-                .filter(result -> result.getKey() != WinningGrade.DEFAULT)
-                .forEach(result -> System.out.println(result.getKey().toString() + result.getValue()));
+    public void printWinningResult(List<String> winningResult) {
+        winningResult.forEach(System.out::println);
     }
 
     public void printTotalYield(double totalYield) {

@@ -8,6 +8,7 @@ import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -49,8 +50,8 @@ public class LottoController {
         outputView.printTotalYield(getCalculatedLottoYield());
     }
 
-    private Map<WinningGrade, Integer> getWinningResult() {
-        return lottoService.getWinningResult();
+    private List<String> getWinningResult() {
+        return lottoService.getWinningResultMap();
     }
 
     private double getCalculatedLottoYield() {

@@ -35,7 +35,13 @@ public class LottoService {
         return lottoYieldStatistics.calculate(getPaidMoney(), getWinningResult());
     }
 
-    public Map<WinningGrade, Integer> getWinningResult() {
+    public List<String> getWinningResultMap() {
+        Map<WinningGrade, Integer> winningResult = lottoCompare.getWinningResult();
+        WinningResultMapper mapper = new WinningResultMapper();
+        return mapper.drawWinningResultMap(winningResult);
+    }
+
+    private Map<WinningGrade, Integer> getWinningResult() {
         return lottoCompare.getWinningResult();
     }
 

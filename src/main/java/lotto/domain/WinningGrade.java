@@ -64,7 +64,16 @@ public enum WinningGrade {
         return matchCount + "개 일치 (" + convertToCommaPattern(prizeMoney) + "원) - ";
     }
 
-    private String convertToCommaPattern(int prizeMoney) {
-        return new DecimalFormat("###,###").format(prizeMoney);
+    public boolean isSecondGrade() {
+        return this == SECOND;
+    }
+
+    public String getPrizeMoney() {
+        DecimalFormat thousandWonUit = new DecimalFormat("###,###");
+        return thousandWonUit.format(this.prizeMoney);
+    }
+
+    public int getMatchCount() {
+        return this.matchCount;
     }
 }

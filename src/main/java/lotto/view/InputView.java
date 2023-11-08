@@ -11,7 +11,7 @@ public class InputView {
 		return Console.readLine();
 	}
 
-	public static List<Integer> inputLottoNumber() {
+	public static List<Integer> inputLottoPrizeNumber() {
 		System.out.println("당첨 번호를 입력해 주세요.");
 		String[] stringLottoNumberList = Console.readLine()
 				.split(",");

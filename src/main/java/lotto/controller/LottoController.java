@@ -2,7 +2,6 @@ package lotto.controller;
 
 import java.util.EnumMap;
 import java.util.List;
-import javax.swing.ImageIcon;
 import lotto.domain.LottoCost;
 import lotto.domain.LottoGenerator;
 import lotto.domain.LottoPrize;

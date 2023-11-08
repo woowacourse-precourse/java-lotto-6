@@ -14,7 +14,6 @@ public class LottoGame {
     private int bonusNumber;
 
     public void start() {
-        System.out.println("구입 금액을 입력해주세요.");
         inputPurchaseAmount();
         printNumberOfPurchase();
         setRandomLottoNumber(this.numberOfPurchase);
@@ -26,15 +25,26 @@ public class LottoGame {
     }
 
     private void inputPurchaseAmount() {
-        setPurchaseAmount(Integer.parseInt(readLine()));
+        try {
+            System.out.println("구입금액을 입력해주세요.");
+            setPurchaseAmount(Integer.parseInt(readLine()));
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 숫자만 입력해주세요.");
+            inputPurchaseAmount();
+        }
     }
 
     private void setPurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("1000원 단위로만 입력이 가능합니다.");
-        } else if (purchaseAmount % 10 == 0) {
-            this.purchaseAmount = purchaseAmount;
-            this.numberOfPurchase = purchaseAmount / 1000;
+        try {
+            if (purchaseAmount % 1000 != 0) {
+                throw new IllegalArgumentException();
+            } else if (purchaseAmount % 10 == 0) {
+                this.purchaseAmount = purchaseAmount;
+                this.numberOfPurchase = purchaseAmount / 1000;
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 1000원 단위로만 입력이 가능합니다.");
+            inputPurchaseAmount();
         }
     }
 
@@ -95,8 +105,8 @@ public class LottoGame {
     }
 
     private void printResult() {
-//        System.out.println("당첨 통계");
-//        System.out.println("---");
+        System.out.println("당첨 통계");
+        System.out.println("---");
         System.out.println("3개 일치 (" + Rank.FIFTH.getReward() + ") - " + Rank.FIFTH.getCount() + "개");
         System.out.println("4개 일치 (" + Rank.FOURTH.getReward() + ") - " + Rank.FOURTH.getCount() + "개");
         System.out.println("5개 일치 (" + Rank.THIRD.getReward() + ") - " + Rank.THIRD.getCount() + "개");

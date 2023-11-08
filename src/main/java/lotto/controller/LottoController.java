@@ -1,8 +1,10 @@
 package lotto.controller;
 
 import java.util.ArrayList;
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -23,6 +25,7 @@ public class LottoController {
         PurchaseAmount purchaseAmount = getPurchaseAmount();
         ArrayList<Lotto> lottos = generateLottoAndPrint(purchaseAmount);
         WinningLotto winningLotto = getWinningLotto();
+        Map<Rank, Integer> winningRankCount = getStatisticsMapAndPrint(lottos, winningLotto);
     }
 
     private PurchaseAmount getPurchaseAmount() {
@@ -52,4 +55,14 @@ public class LottoController {
             return getWinningLotto();
         }
     }
+
+    private Map<Rank, Integer> getStatisticsMapAndPrint(ArrayList<Lotto> lottos, WinningLotto winningLotto) {
+        Map<Rank, Integer> winningRankCount = lottoService.generateLottoStatistics(
+                winningLotto, lottos);
+
+        outputView.printStatisticsMessage();
+        outputView.printLottoStatistics(winningRankCount);
+        return winningRankCount;
+    }
+
 }

@@ -1,17 +1,13 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.model.Rank;
-import lotto.util.Calculator;
-import lotto.util.GetLottoNumber;
-import lotto.util.Validator;
-import lotto.view.InputView;
+import lotto.service.Calculator;
+import lotto.service.GetLottoNumber;
+import lotto.service.RankingService;
 import lotto.view.OutputView;
 
 import java.util.*;
-
-import static lotto.model.Rank.*;
 
 public class LottoController {
 
@@ -25,8 +21,8 @@ public class LottoController {
 
     public void startLotto() {
 
-        getPurchasePrice();
-        getNumberOfLottoTickets();
+        getPurchasePriceFromUser();
+        calculateNumberOfLottoTickets();
         getUserTicket();
 
         System.out.println();
@@ -38,14 +34,14 @@ public class LottoController {
 
     }
 
-    private void getPurchasePrice() {
+    private void getPurchasePriceFromUser() {
         OutputView.printGetPurchasePriceMessage();
         purchasePrice = GetLottoNumber.purchasePrice();
 
     }
 
-    public void getNumberOfLottoTickets() {
-        numberOfLottoTickets = Calculator.getNumberOfLottoTickets(purchasePrice);
+    public void calculateNumberOfLottoTickets() {
+        numberOfLottoTickets = Calculator.numberOfLottoTickets(purchasePrice);
         OutputView.printLottoNumMessage(numberOfLottoTickets);
     }
 
@@ -79,9 +75,9 @@ public class LottoController {
             List<Integer> winningNumbers = winningTicket.getNumbers();
 
             int matchingNumberCount = countMatchingNumbers(userNumbers, winningNumbers);
-            Rank rank = getRank(userTickets, matchingNumberCount);
+            Rank rank = RankingService.getRank(userTickets, matchingNumberCount, bonusNumber);
 
-            calculateWinnersByRank(rank, rankBoard);
+            RankingService.calculateWinnersByRank(rank, rankBoard);
         }
     }
 
@@ -97,49 +93,8 @@ public class LottoController {
         return matchedNumbers;
     }
 
-    public void calculateWinnersByRank(Rank rank, int[] rankBoard) {
-        switch (rank) {
-            case FIRST:
-                rankBoard[1] += 1;
-                break;
-            case SECOND:
-                rankBoard[2] += 2;
-                break;
-            case THIRD:
-                rankBoard[3] += 1;
-                break;
-            case FOURTH:
-                rankBoard[4] += 1;
-                break;
-            case FIFTH:
-                rankBoard[5] += 1;
-                break;
-        }
-    }
-
-    private Rank getRank(List<Lotto> userNumbers, int matchCount) {
-        if (matchCount == 5 && userNumbers.contains(bonusNumber)) {
-            return SECOND;
-        }
-
-        switch (matchCount) {
-            case 6:
-                return FIRST;
-            case 5:
-                return THIRD;
-            case 4:
-                return FOURTH;
-            case 3:
-                return FIFTH;
-            case 2, 1, 0:
-                return LOOSE;
-        }
-
-        return LOOSE;
-    }
-
     public void getResult() {
-        float rateOfProfit = Calculator.getRateOfProfit(purchasePrice, rankBoard);
+        float rateOfProfit = Calculator.rateOfProfit(purchasePrice, rankBoard);
 
         OutputView.printPrizeResult(rankBoard);
         OutputView.printRateOfProfit(rateOfProfit);

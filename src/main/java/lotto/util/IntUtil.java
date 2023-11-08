@@ -23,7 +23,7 @@ public class IntUtil {
         return numbers.split(",");
     }
 
-    public static long calculateProfit(long profit, int money) {
-        return (profit / money) * 100;
+    public static double calculateProfit(long profit, int money) {
+        return ((double) profit / (double) money) * 100;
     }
 }

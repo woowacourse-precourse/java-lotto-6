@@ -63,7 +63,7 @@ public class OutputView {
     }
 
     public static void showProfitRate(int money, long profit) {
-        long rate = IntUtil.calculateProfit(profit, money);
+        double rate = IntUtil.calculateProfit(profit, money);
         String formatRate = OutputUtil.makeEasyToRead(rate);
         System.out.printf("총 수익률은 %s%%입니다.%n", formatRate);
     }

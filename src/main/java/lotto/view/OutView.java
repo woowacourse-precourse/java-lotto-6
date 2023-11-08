@@ -1,14 +1,6 @@
 package lotto.view;
 
 import static lotto.constants.LottoConstants.DIVIDER;
-import static lotto.constants.LottoConstants.END;
-import static lotto.constants.LottoConstants.FORMMATER_COUNT_BONUS;
-import static lotto.constants.LottoConstants.FORMMATER_COUNT_SEVEN;
-import static lotto.constants.LottoConstants.FORMMATER_COUNT_SIX;
-import static lotto.constants.LottoConstants.RATE_PERCENT;
-import static lotto.constants.LottoConstants.START;
-import static lotto.utils.LottoUtils.getPriceForIntegerParser;
-import static lotto.utils.LottoUtils.rateFormat;
 
 import java.util.List;
 import java.util.Map;
@@ -16,12 +8,6 @@ import lotto.constants.LottoCount;
 import lotto.constants.LottoMsg;
 
 public class OutView {
-
-    private static final int WHILE_START_COUNT = 0;
-    private static final int MAP_CONTAINS_COUNT = 0;
-    private static final int TOTAL_RATE_MSG_CHECK_COUNT = 0;
-    private static String PRICE = "0";
-    private static final String BLANK = "";
 
     public void randomLottoOutView(List<Integer> lottoNumbers) {
         System.out.println(lottoNumbers);
@@ -36,63 +22,55 @@ public class OutView {
         System.out.println(String.format(LottoMsg.LOTTO_COMMON_MSG.getMsg(), winningOrBonus));
     }
 
-    public void totalRateMsg(int lottoBuyerPrice) {
-        if (PRICE.equals(String.valueOf(lottoBuyerPrice))) {
-            System.out.println(String.format(LottoMsg.LOTTO_LATE.getMsg(), PRICE + RATE_PERCENT));
-        }
-        if (!PRICE.equals(String.valueOf(lottoBuyerPrice))) {
-            rateFormat((double) getPriceForIntegerParser(PRICE) / (double) lottoBuyerPrice);
-        }
-    }
-
-
-    public void winnersMsg(Map<Integer, Integer> finalLottoWinner, int lottoBuyerPrice) {
+    public void winnersMsg(List<Map<Integer, Integer>> finalLottoWinner, int lottoBuyerPrice) {
         System.out.println(LottoMsg.LOTTO_RESULT.getMsg());
         System.out.println(DIVIDER);
-        winnerFormat(finalLottoWinner);
-        totalRateMsg(lottoBuyerPrice);
+        lottoWinnerMsg(finalLottoWinner, lottoBuyerPrice);
     }
 
-    private void winnerFormat(Map<Integer, Integer> map) {
-        int cnt = WHILE_START_COUNT;
-        String result = BLANK;
-        while (START <= END) {
-            cnt += mapContainsCount(map);
-            resultMsg(cnt);
-            START++;
-            cnt = 0;
+    private void lottoWinnerMsg(List<Map<Integer, Integer>> lottoWinner, int lottoBuyerPrice) {
+        for (Map<Integer, Integer> winner : lottoWinner) {
+            countMatchesAndIncrementLottoCount(winner);
+        }
+        showAllLotto();
+        showLateMsg(lottoBuyerPrice);
+    }
+
+    public void showAllLotto() {
+        for (LottoCount lotto : LottoCount.values()) {
+            System.out.println(
+                    String.format(LottoMsg.LOTTO_MATCH_FORMAT.getMsg(), lotto.getPriceMsg(), lotto.getMatChesCount()));
         }
     }
 
-    public void resultMsg(int cnt) {
-        String resultMsg = String.format(matchRetry(START), bonusCount(START), LottoCount.matchingPrice(START), cnt);
-        System.out.println(resultMsg);
+    private void showLateMsg(int lottoBuyerPrice) {
+        int getAllSumMultiple = 0;
+        for (LottoCount lottoCount : LottoCount.values()) {
+            getAllSumMultiple += lottoCount.getMultiple();
+        }
+        String showMsg = String.format(LottoMsg.LOTTO_LATE.getMsg(),
+                ((double) getAllSumMultiple / (double) lottoBuyerPrice) * 100);
+        System.out.println(showMsg);
     }
 
-    private int bonusCount(int start) {
-        if (start == FORMMATER_COUNT_SIX) {
-            return FORMMATER_COUNT_BONUS;
+    private void countMatchesAndIncrementLottoCount(Map<Integer, Integer> winner) {
+        for (Map.Entry<Integer, Integer> winnerMatches : winner.entrySet()) {
+            int lottoMatchesCount = winnerMatches.getKey();
+            int lottoBonus = winnerMatches.getValue();
+            getLottoCountByCount(lottoMatchesCount, lottoBonus);
         }
-        if (start == FORMMATER_COUNT_SEVEN) {
-            return FORMMATER_COUNT_SIX;
-        }
-        return start;
     }
 
-    private String matchRetry(int start) {
-        String retryFormat = LottoMsg.LOTTO_MATCH_FORMAT.getMsg();
-        if (start == FORMMATER_COUNT_SIX) {
-            retryFormat = LottoMsg.LOTTO_MATCH_FORMAT_BONUS.getMsg();
+    private void getLottoCountByCount(int lottoMatchesCount, int bonus) {
+        for (LottoCount lottoCount : LottoCount.values()) {
+            lottoCountIncrement(lottoCount, lottoMatchesCount, bonus);
+            lottoCount.calculateTotalPrizeAmount();
         }
-        return retryFormat;
     }
 
-    private int mapContainsCount(Map<Integer, Integer> map) {
-        int count = MAP_CONTAINS_COUNT;
-        if (map.containsKey(START)) {
-            PRICE = LottoCount.matchingPrice(START);
-            count++;
+    private void lottoCountIncrement(LottoCount lottoCount, int lottoMatchesCount, int bonus) {
+        if (lottoCount.getCount() == lottoMatchesCount) {
+            lottoCount.incrementMatchesCount();
         }
-        return count;
     }
 }

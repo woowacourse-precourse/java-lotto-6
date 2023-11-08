@@ -2,11 +2,14 @@ package lotto;
 
 import java.util.List;
 
+import static lotto.io.ErrorHandler.validateRepeat;
+
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateRepeat(numbers);
         this.numbers = numbers;
     }
 
@@ -17,4 +20,5 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
 }

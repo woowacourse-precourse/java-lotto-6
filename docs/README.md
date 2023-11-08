@@ -1,0 +1,41 @@
+# Lotto
+
+- ## Steps
+    - "구입금액을 입력해 주세요."
+        - [x] take in boughtAmount using given api (checkBoughtAmount)
+            - [x] each lotto card is 1000 won
+                - [x] if boughtAmount cannot be divided by 1000 throw exception
+                - [x] throw exception if negative
+                - [x] throw exception if non-integer
+                - [x] unit tests
+        - [x] make lotto card (MakeLottoCard)
+            - unique 7 numbers (includes bonus number within same list)
+                - one bonus number
+                - make_random_number()
+                    - 1~45****
+    - [x] jackpot number + bonus number
+        - "당첨 번호를 입력해 주세요." (JackPotNumber)
+            - correct 6 numbers
+                - throw exception if not within 1~45
+                - throw exception if there are duplicates
+                - split by ',' and remove all spaces
+        - "보너스 번호를 입력해 주세요."
+            - bonus number
+                - throw exception if not within 1~45
+                - throw exception if non-integer
+
+    - [x] Profit Percentage
+        - round to the second place
+        - profit = total_jackpot / boughtAmount * 100
+    - [x] Jackpot Stats
+        - (ex)
+            - 3개 일치 (5,000원) - 1개
+            - 4개 일치 (50,000원) - 0개
+            - 5개 일치 (1,500,000원) - 0개
+            - 5개 일치, 보너스 넘버 일치 (30,000,000원) - 0개
+            - 6개 일치 (2,000,000,000원) - 0개
+            - 총 수익률은 62.5%입니다.
+    - [ ] Refactor
+        - [x] Output
+        - [x] use ENUM
+  

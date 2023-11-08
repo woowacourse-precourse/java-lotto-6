@@ -60,4 +60,23 @@ public class GameController {
         System.out.println();
         return winNumber;
     }
+
+    public String inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
+
+    public int pickBonusNumber(ArrayList<Integer> winNumber) {
+        int bonusNumber;
+
+        while (true) {
+            String rawBonusNumber = inputBonusNumber();
+            bonusNumber = gameService.validBonusNumber(rawBonusNumber, winNumber);
+            if (bonusNumber != ERROR) {
+                break;
+            }
+        }
+        System.out.println();
+        return bonusNumber;
+    }
 }

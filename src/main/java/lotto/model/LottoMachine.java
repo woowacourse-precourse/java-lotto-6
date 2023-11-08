@@ -14,6 +14,7 @@ public class LottoMachine {
         List<Lotto> lottos = new ArrayList<>();
         for (int count = 0; count < lottoCount; count++) {
             List<Integer> randomNumber = RandomUtil.createLottoNumber(MIN_VALUE, MAX_VALUE, UNIQUE_NUMBERS);
+            randomNumber.sort(Integer::compareTo);
             lottos.add(new Lotto(randomNumber));
         }
         return lottos;

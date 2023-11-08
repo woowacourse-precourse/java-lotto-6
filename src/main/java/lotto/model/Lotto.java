@@ -30,7 +30,6 @@ public class Lotto {
 
     @Override
     public String toString() {
-        numbers.sort(Integer::compareTo);
         return numbers.toString();
     }
 }

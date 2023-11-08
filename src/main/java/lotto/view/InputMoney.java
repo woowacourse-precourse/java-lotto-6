@@ -4,8 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputMoney {
     private static final String INPUT_MONEY = "구입금액을 입력해 주세요.";
-    private static final String TYPE_ERROR = "숫자만 입력 가능합니다.";
-    private static final String MONEY_UNIT_ERROR = "숫자만 입력 가능합니다.";
+    private static final String TYPE_ERROR = "[ERROR] 숫자만 입력 가능합니다.";
+    private static final String MONEY_UNIT_ERROR = "[ERROR] 1000단위 숫자만 가능합니다";
+    private static final String MIN_MONEY = "[ERROR] 최소 구입금액은 1000입니다";
 
     public static int input() {
         System.out.println(INPUT_MONEY);
@@ -25,6 +26,8 @@ public class InputMoney {
         if (money % 1000 != 0) {
             throw new IllegalArgumentException(MONEY_UNIT_ERROR);
         }
+        if (money <= 0)
+            throw new IllegalArgumentException(MIN_MONEY);
         return money;
     }
 }

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Lotto {
-    private static final String DUPLICATE_NUMBER = "중복되는 숫자가 있습니다.";
+    private static final String DUPLICATE_NUMBER = "[ERROR] 중복되는 숫자가 있습니다.";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

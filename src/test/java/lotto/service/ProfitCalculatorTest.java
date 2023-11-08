@@ -1,5 +1,6 @@
-package lotto.controller;
+package lotto.service;
 
+import lotto.service.ProfitCalculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

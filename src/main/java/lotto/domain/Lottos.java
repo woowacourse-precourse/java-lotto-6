@@ -31,16 +31,8 @@ public class Lottos {
         return this.total;
     }
 
-    private void addCount(LottoResult lottoResult) {
-        lottoResultWithCount.put(lottoResult, lottoResultWithCount.getOrDefault(lottoResult, 0) + 1);
-    }
-
     public double calculateTotalRate() {
         return Math.round(((double) this.total / player.getAmount()) * 10000) / 100.0;
-    }
-
-    public Map<LottoResult, Integer> getLottoResultWithCount() {
-        return this.lottoResultWithCount;
     }
 
     public int calculateMatchNumbers(int index) {
@@ -54,7 +46,15 @@ public class Lottos {
         return count;
     }
 
+    public Map<LottoResult, Integer> getLottoResultWithCount() {
+        return this.lottoResultWithCount;
+    }
+
     private boolean isBonusNumberIncluded(int index) {
         return player.getLotteries().get(index).getNumbers().contains(bonusNumber);
+    }
+
+    private void addCount(LottoResult lottoResult) {
+        lottoResultWithCount.put(lottoResult, lottoResultWithCount.getOrDefault(lottoResult, 0) + 1);
     }
 }

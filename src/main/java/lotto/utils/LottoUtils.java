@@ -21,8 +21,19 @@ public class LottoUtils {
                 return (price / LOTTO_DIVISION);
             } catch (UserInputException e) {
                 System.out.println(ErrorMsg.ERROR_LOTTO_PRICE_DIVISON.getMsg());
+            } catch (NumberFormatException e) {
+                System.out.println(ErrorMsg.ERROR_LOTTO_NUMBER_NOT_DIVISION_1000.getMsg());
+                price = rePromptForPrice();
             }
-            price = Integer.parseInt(Console.readLine());
+        }
+    }
+
+    private static int rePromptForPrice() {
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException ex) {
+            System.out.println(ErrorMsg.ERROR_LOTTO_NUMBER_NOT_DIVISION_1000.getMsg());
+            return rePromptForPrice();
         }
     }
 

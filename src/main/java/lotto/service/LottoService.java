@@ -41,6 +41,7 @@ public class LottoService {
 
     public List<Map<Integer, Integer>> findWinners(List<Integer> lottoWinnerNumbers, int lottoBonusNumber,
             List<LottoDto> generateLottoNumbersDto) {
+        System.out.println();
         List<Map<Integer, Integer>> lottoMatchCount = new ArrayList<>();
         for (LottoDto lottoDto : generateLottoNumbersDto) {
             Map<Integer, Integer> matchCount = lottoDto.matchCount(lottoWinnerNumbers, lottoBonusNumber);

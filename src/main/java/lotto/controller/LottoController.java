@@ -31,18 +31,14 @@ public class LottoController {
         int priceLotto = inputView.parseInputFromUserInteger();
         int divisionLottoPrice = divisionLottoPrice(priceLotto);
         List<LottoDto> generateLottoNumbers = createLottoGenerate(divisionLottoPrice);
-        outView.lottoCommonNumberView(WINNING);
-        List<Integer> lottoWinnerNumbers = lottoService.createWinningNumbers(inputView.commonInput());
-        outView.lottoCommonNumberView(BONUS);
-        int bonusNumber = lottoService.createBonusNumber(lottoWinnerNumbers, inputView.commonInput());
-        System.out.println();
-        List<Map<Integer, Integer>> lottoFindWinner = lottoService.findWinners(lottoWinnerNumbers, bonusNumber,
+        List<Integer> lottoWinnerNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(lottoWinnerNumbers);
+        List<Map<Integer, Integer>> lottoFindWinner = findWinners(lottoWinnerNumbers, bonusNumber,
                 generateLottoNumbers);
         outView.winnersMsg(lottoFindWinner, priceLotto);
     }
 
-
-    public List<LottoDto> createLottoGenerate(int divisionLottoPrice) {
+    private List<LottoDto> createLottoGenerate(int divisionLottoPrice) {
         List<LottoDto> lottoDtos = new ArrayList<>();
         System.out.println();
         outView.lottoPriceView(divisionLottoPrice);
@@ -54,5 +50,20 @@ public class LottoController {
             outView.randomLottoOutView(lotto.getLotto());
         }
         return lottoDtos;
+    }
+
+    private List<Integer> getWinningNumbers() {
+        outView.lottoCommonNumberView(WINNING);
+        return lottoService.createWinningNumbers(inputView.commonInput());
+    }
+
+    private int getBonusNumber(List<Integer> lottoWinnerNumbers) {
+        outView.lottoCommonNumberView(BONUS);
+        return lottoService.createBonusNumber(lottoWinnerNumbers, inputView.commonInput());
+    }
+
+    private List<Map<Integer, Integer>> findWinners(List<Integer> lottoWinnerNumbers, int bonusNumber,
+            List<LottoDto> generateLottoNumbers) {
+        return lottoService.findWinners(lottoWinnerNumbers, bonusNumber, generateLottoNumbers);
     }
 }

@@ -13,7 +13,7 @@ public class Validator {
 
     public static void validateCheckPrice(int price) {
         if (price % LOTTO_DIVISION != LOTTO_NOT_DIVISION) {
-            throw new UserInputException(ErrorMsg.ERROR_LOTTO_PRICE_DIVISON.getMsg());
+            throw new NumberFormatException(ErrorMsg.ERROR_LOTTO_PRICE_DIVISON.getMsg());
         }
     }
 

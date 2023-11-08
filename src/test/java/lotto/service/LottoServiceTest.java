@@ -18,7 +18,7 @@ public class LottoServiceTest {
 
     @Test
     @DisplayName("구입 금액만큼 로또가 생성되는지 검사한다.")
-    public void 로또_구매() throws Exception {
+    public void 로또_구매_테스트() throws Exception {
         //given
         User user = new User(10000);
 
@@ -33,7 +33,7 @@ public class LottoServiceTest {
 
     @Test
     @DisplayName("생성된 로또가 출력되는지 검사한다.")
-    public void 로또_출력() throws Exception {
+    public void 로또_출력_테스트() throws Exception {
         //given
         PurchasedLotto purchasedLotto = lottoGenerator(3000);
 

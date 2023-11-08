@@ -15,7 +15,7 @@ public enum RevenuePrice {
         this.index = index;
     }
 
-    public int getPriceByIndex(int index) {
+    public static int getPriceByIndex(int index) {
         for (RevenuePrice revenuePrice : RevenuePrice.values()) {
             if (revenuePrice.index == index) {
                 return revenuePrice.price;

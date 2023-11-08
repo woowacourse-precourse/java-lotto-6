@@ -12,8 +12,6 @@ public class LottoLogic implements Logic {
     private final View view;
     private final LottoController controller;
     private boolean running = true;
-    private List<Integer> winningNumber;
-    private int bonusNumber;
 
     public LottoLogic(InputController inputController, LottoController lottoController) {
         this.inputController = inputController;
@@ -31,18 +29,16 @@ public class LottoLogic implements Logic {
     @Override
     public void run() {
         int payment = inputController.getPurchaseAmount();
-        controller.generateLotto(payment);
 
+        controller.generateLotto(payment);
         view.printAllLottery(controller.getLotteries());
 
-        winningNumber = inputController.getWinningNumbers();
-        bonusNumber = inputController.getBonusNumber(winningNumber);
+        List winningNumbers = inputController.getWinningNumbers();
+        int bonusNumber = inputController.getBonusNumber(winningNumbers);
 
-        List ranks = controller.getTotalRanking(winningNumber, bonusNumber);
-
+        List ranks = controller.getTotalRanking(winningNumbers, bonusNumber);
         view.printScoreDetails(ranks);
         view.printTotalReturn(((float) getTotalRewards(ranks) / (float) payment) * 100);
-
     }
 
     private int getTotalRewards(List<Ranking> rankings) {

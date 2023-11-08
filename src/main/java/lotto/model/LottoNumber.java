@@ -1,8 +1,10 @@
 package lotto.model;
 
 import lotto.constant.ExceptionMessage;
+import lotto.constant.LottoConstant;
 
 public class LottoNumber {
+
     private final Integer number;
 
     public LottoNumber(Integer number) {
@@ -12,7 +14,7 @@ public class LottoNumber {
 
 
     private void validateRange(Integer number) {
-        if (number < 1 || number > 45) {
+        if (number < LottoConstant.LOTTO_NUMBER_START_RANGE || number > LottoConstant.LOTTO_NUMBER_END_RANGE) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_RANGE_EXCEPTION_MESSAGE);
         }
     }

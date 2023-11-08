@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.constant.ExceptionMessage;
+
 import java.util.List;
 
 public class PrizeNumbers {
@@ -17,7 +19,7 @@ public class PrizeNumbers {
 
     public void validateDuplication(Integer bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호와 중복되지 않아야 한다.");
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_BONUST_NUMBER_EXCEPTION_MESSAGE);
         }
     }
 

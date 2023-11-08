@@ -5,9 +5,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.ExceptionMessage;
+import lotto.constant.LottoConstant;
 
 
 public class Lotto {
+
     private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -22,7 +24,7 @@ public class Lotto {
 
 
     public Lotto() {
-        List<Integer> randomLottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        List<Integer> randomLottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LottoConstant.LOTTO_NUMBER_START_RANGE, LottoConstant.LOTTO_NUMBER_END_RANGE, LottoConstant.LOTTO_NUMBER_SIZE));
         sortAsc(randomLottoNumbers);
         this.numbers = randomLottoNumbers
                 .stream()
@@ -31,8 +33,8 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_COUNT_EXCEPTION_MESSAGE);
+        if (numbers.size() != LottoConstant.LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_SIZE_EXCEPTION_MESSAGE);
         }
     }
 
@@ -63,7 +65,7 @@ public class Lotto {
 
     @Override
     public String toString() {
-        String singleLotto = String.join(", ", numbers.stream().map(LottoNumber::toString).collect(Collectors.toList()));
+        String singleLotto = String.join(LottoConstant.LOTTO_NUMBER_PRINT_SEPARATOR, numbers.stream().map(LottoNumber::toString).collect(Collectors.toList()));
         return String.format("[%s]", singleLotto);
     }
 

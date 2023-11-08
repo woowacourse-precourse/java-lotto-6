@@ -2,9 +2,9 @@ package lotto.controller;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.Lotto;
 import lotto.LottoGameService;
+import lotto.model.LottoResult;
 import lotto.validator.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -47,7 +47,12 @@ public class LottoGameController {
 
         Integer bonusNumber = Integer.parseInt(bonusNumberInput);
 
-        /// TODO Compare or MakeResult
+        /// 결과 계산 및 출력
+        LottoResult lottoResult = lottoGameService.calculateTotalResult(lottos, winningNumbers,
+            bonusNumber);
+        Double rateOfReturn = lottoGameService.calculateReturnRate(lottoResult.getTotalMoney(),
+            budget);
+        OutputView.printTotalResult(lottoResult, rateOfReturn);
     }
 
 }

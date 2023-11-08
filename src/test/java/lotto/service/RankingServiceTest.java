@@ -35,7 +35,6 @@ class RankingServiceTest {
         lottoService.initLottos(lottos);
         rankingService.initMainNumbers(List.of(1, 2, 3, 4, 5, 6));
         rankingService.initBonusNumber(7);
-        rankingService.initWinningNumbers();
         lottoService.play();
 
         Map<String, Integer> counter = rankingService.getRankingResult().prizeCount();
@@ -59,7 +58,6 @@ class RankingServiceTest {
         lottoService.initLottos(lottos);
         rankingService.initMainNumbers(List.of(1, 2, 3, 4, 5, 6));
         rankingService.initBonusNumber(7);
-        rankingService.initWinningNumbers();
         lottoService.play();
 
         double revenue = rankingService.getRankingResult().revenue();

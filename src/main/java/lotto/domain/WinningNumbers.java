@@ -1,13 +1,19 @@
 package lotto.domain;
 
-public class WinningNumbers {
-    private final MainNumbers mainNumbers;
-    private final BonusNumber bonusNumber;
+import java.util.List;
 
-    public WinningNumbers(MainNumbers mainNumbers, BonusNumber bonusNumber) {
-        this.mainNumbers = mainNumbers;
-        this.bonusNumber = bonusNumber;
+public class WinningNumbers {
+    private MainNumbers mainNumbers;
+    private BonusNumber bonusNumber;
+
+    public void setMainNumbers(List<Integer> mainNumbers) {
+        this.mainNumbers = new MainNumbers(mainNumbers);
     }
+
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = new BonusNumber(mainNumbers.toList(), bonusNumber);
+    }
+
 
     public boolean isMainNumber(int number) {
         return mainNumbers.isMainNumber(number);

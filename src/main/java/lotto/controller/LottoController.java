@@ -39,7 +39,6 @@ public class LottoController {
     private void readWinningNumbers() {
         readMainNumbers();
         readBonusNumber();
-        rankingService.initWinningNumbers();
     }
 
     private void readMainNumbers() {

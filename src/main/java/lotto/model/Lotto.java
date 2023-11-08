@@ -1,6 +1,11 @@
 package lotto.model;
 
+import static lotto.model.constant.LottoMessageConstant.END_BRACKET;
+import static lotto.model.constant.LottoMessageConstant.NUMBER_DELIMITER;
+import static lotto.model.constant.LottoMessageConstant.START_BRACKET;
+
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.util.LottoValidator;
 
 /**
@@ -26,10 +31,9 @@ public class Lotto {
 
     @Override
     public String toString() {
-        String str = "";
-        for (LottoNumber number : numbers) {
-            str += number + " ";
-        }
-        return str;
+        return numbers.stream()
+                .map(LottoNumber::toString)
+                .collect(Collectors.joining(
+                        NUMBER_DELIMITER.getConstant(), START_BRACKET.getConstant(), END_BRACKET.getConstant()));
     }
 }

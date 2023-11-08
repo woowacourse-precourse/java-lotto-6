@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.util.message.SystemMessage;
 
 public class LottoStore {
 
@@ -19,6 +20,7 @@ public class LottoStore {
 
     private void buyTicket(int money) {
         this.ticket = money / 1000;
+        SystemMessage.LOTTO_PURCHASE.printMessage(ticket);
     }
 
     public List<Lotto> buyLotto(int money) {

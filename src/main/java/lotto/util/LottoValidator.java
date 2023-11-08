@@ -1,9 +1,9 @@
 package lotto.util;
 
-import static lotto.util.constant.ValidatorStatus.INVALID_BONUS_NUMBER_INPUT;
+import static lotto.util.constant.ValidatorStatus.DUPLICATE_WINNING_NUMBER;
+import static lotto.util.constant.ValidatorStatus.DUPLICATE_BONUS_NUMBER_INPUT;
 import static lotto.util.constant.ValidatorStatus.INVALID_NUMBER_RANGE;
 import static lotto.util.constant.ValidatorStatus.INVALID_WINNING_NUMBER_COUNT;
-import static lotto.util.constant.ValidatorStatus.INVALID_WINNING_NUMBER_FORMAT;
 
 import java.util.HashSet;
 import java.util.List;
@@ -35,8 +35,8 @@ public class LottoValidator {
     private void isDuplicateLottoNumber(List<Integer> lottoNumberInput) {
         Set<Integer> formatCheck = new HashSet<>(lottoNumberInput);
         if (lottoNumberInput.size() != formatCheck.size()) {
-            exceptionHandler.validatorStatusMap.get(INVALID_WINNING_NUMBER_FORMAT)
-                    .accept(INVALID_WINNING_NUMBER_FORMAT);
+            exceptionHandler.validatorStatusMap.get(DUPLICATE_WINNING_NUMBER)
+                    .accept(DUPLICATE_WINNING_NUMBER);
         }
     }
 
@@ -55,8 +55,8 @@ public class LottoValidator {
         boolean isContainBonusNumberInput = lottoNumbers.stream()
                 .anyMatch(lottoNumber -> lottoNumber.getNumber() == bonusNumberInput);
         if (isContainBonusNumberInput) {
-            exceptionHandler.validatorStatusMap.get(INVALID_BONUS_NUMBER_INPUT)
-                    .accept(INVALID_BONUS_NUMBER_INPUT);
+            exceptionHandler.validatorStatusMap.get(DUPLICATE_BONUS_NUMBER_INPUT)
+                    .accept(DUPLICATE_BONUS_NUMBER_INPUT);
         }
     }
 

@@ -20,8 +20,8 @@ public class InputUtil {
 
     //로또 금액 입력 메소드
     public int inputMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
         String moneyInput = "";
+        System.out.println("구입금액을 입력해 주세요.");
         do {
             moneyInput = Console.readLine();
         } while (!validateMoneyInput(moneyInput));
@@ -33,14 +33,12 @@ public class InputUtil {
             inputValidator.validateMoney(moneyInput);
             return true;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
             return false;
         }
     }
 
     //로또 당첨번호 입력 메소드
     public List<Integer> inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumbersInput = "";
         do {
             winningNumbersInput = Console.readLine();
@@ -53,14 +51,12 @@ public class InputUtil {
             inputValidator.validateRawLottoNumbers(winningNumberInput);
             return true;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
             return false;
         }
     }
 
     //로또 보너스 당첨번호 입력 메소드
     public int inputBonusNumber(List<LottoNumber> lottoNumbers) {
-        System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumberInput = "";
         do {
             bonusNumberInput = Console.readLine();
@@ -74,7 +70,6 @@ public class InputUtil {
             lottoValidator.validateLottoBonusNumber(lottoNumbers, Integer.parseInt(bonusNumberInput));
             return true;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
             return false;
         }
     }

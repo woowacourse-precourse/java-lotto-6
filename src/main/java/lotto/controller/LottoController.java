@@ -1,14 +1,16 @@
 package lotto.controller;
 
-import lotto.domain.LotteryMachine;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.LottoPurchase;
+import lotto.domain.LottoResult;
 import lotto.domain.Number;
+import lotto.domain.Ranking;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -16,10 +18,12 @@ public class LottoController {
     
     private final InputView inputView;
     private final OutputView outputView;
+    private final LottoResult lottoResult;
     
     public LottoController() {
         inputView = new InputView();
         outputView = new OutputView();
+        lottoResult = new LottoResult();
     }
     
     public void start() {
@@ -34,8 +38,13 @@ public class LottoController {
         
         Number number = getNumbers();
         
-        LotteryMachine.drawLotto(lottoTickets, number);
-        outputView.printWinningstatistics();
+        lottoResult.calculateWinningResult(lottoTickets, number);
+        
+        Map<Ranking, Integer> winningResult = lottoResult.getWinningResult();
+        outputView.printWinningstatistics(winningResult);
+        
+        double profitRate = lottoResult.getProfitRate(lottoPurchase);
+        outputView.printProfitRate(profitRate);
     }
     
     private LottoPurchase inputAmount() {

@@ -12,6 +12,7 @@ public class OutputView {
     private static final String PURCHASE_TICKET_COUNT_MESSAGE = "개를 구매했습니다.";
     private static final String WINNING_STASTISTICS_MESSAGE = "당첨 통계";
     private static final String LINE = "---";
+    private static final String PERCENTAGE = "%";
     
     public void printErrorMessage(Exception e) {
         System.out.println(e.getMessage());
@@ -44,6 +45,11 @@ public class OutputView {
         return winningResult.entrySet().stream()
                 .map(entry -> String.format("%s - %d개", entry.getKey().getMessage(), entry.getValue()))
                 .collect(Collectors.joining("\n"));
+    }
+    
+    public void printProfitRate(double profitRate) {
+        String sentence = String.format("총 수익률은 %.1f%s입니다.", profitRate, PERCENTAGE);
+        System.out.println(sentence);
     }
     
     public void printNewLine() {

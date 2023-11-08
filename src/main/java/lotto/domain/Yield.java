@@ -11,4 +11,13 @@ public class Yield {
         this.totalInvestment = totalInvestment;
     }
 
+    public long getTotalWinningPrice() {
+        long totalWinningPrice = 0;
+        for(Grade grade: grades) {
+            totalWinningPrice += grade.getPrizeMoney();
+        }
+        return totalWinningPrice;
+    }
+
+
 }

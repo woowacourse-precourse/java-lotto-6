@@ -24,7 +24,7 @@ public enum Error {
     }
 
     public static Error printError(Error error) {
-        if (error == NO_PROBLEM)
+        if (error == INIT_STATE)
         {
             System.out.println(INPUT_ERROR.getMessage());
             return INPUT_ERROR;

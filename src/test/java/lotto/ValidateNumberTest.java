@@ -3,6 +3,7 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.domain.validator.ValidateNumber;
 import org.junit.jupiter.api.Test;
 
 public class ValidateNumberTest {

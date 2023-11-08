@@ -4,6 +4,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.TypeChanger;
+import lotto.domain.validator.ValidateNumber;
+import lotto.domain.validator.ValidateUserNumber;
 import org.junit.jupiter.api.Test;
 
 public class ValidateUserNumberTest {

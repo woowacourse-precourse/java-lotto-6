@@ -1,7 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.domain.validator.ValidateNumber;
 
 public class TypeChanger {
     private static TypeChanger typeChanger;

@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain.validator;
+
+import lotto.domain.Lotto;
 
 public class ValidateBonusBall {
 

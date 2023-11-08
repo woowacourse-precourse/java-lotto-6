@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain;
+
+import lotto.domain.validator.ValidateBonusBall;
 
 public class BonusBall {
     private final Integer bonusBall;

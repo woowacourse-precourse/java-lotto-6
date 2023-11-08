@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain;
+
+import lotto.domain.validator.ValidateMoney;
 
 public class Money {
     private final Integer money;

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain.validator;
 
 public class ValidateNumber {
     public static void isNumber(String number) {

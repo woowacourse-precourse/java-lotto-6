@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.domain.TypeChanger;
 
 public class UserInput {
     private static final TypeChanger typeChanger = TypeChanger.getTypeChanger();

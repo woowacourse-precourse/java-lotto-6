@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain.validator;
 
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 

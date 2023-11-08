@@ -1,15 +1,15 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.BonusBall;
-import lotto.BuyLotto;
-import lotto.Lotto;
-import lotto.LottoNumbers;
-import lotto.Money;
+import lotto.domain.BonusBall;
+import lotto.domain.BuyLotto;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumbers;
+import lotto.domain.Money;
 import lotto.OutputView;
-import lotto.Score;
+import lotto.domain.Score;
 import lotto.UserInput;
-import lotto.WinStatistics;
+import lotto.domain.WinStatistics;
 
 public class LottoController {
 

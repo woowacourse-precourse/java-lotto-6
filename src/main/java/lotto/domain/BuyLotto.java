@@ -1,9 +1,8 @@
-package lotto;
+package lotto.domain;
 
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.GenerateLottoNumber;
 
 public class BuyLotto {
     private static List<LottoNumber> lottoNumbers;

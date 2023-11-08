@@ -13,8 +13,7 @@ public class LottoGame {
     private final LottoInputParser lottoInputParser;
     private final LottoComparator lottoComparator;
 
-    public LottoGame(UserInput input,
-            UserOutput output,
+    public LottoGame(UserInput input, UserOutput output,
             LottoMachine lottoMachine,
             LottoInputParser lottoInputParser,
             LottoComparator lottoComparator) {
@@ -33,6 +32,9 @@ public class LottoGame {
         WinningLotto winningLotto = createWinningLotto();
 
         List<LottoResult> lottoResults = compareLottos(winningLotto, lottos);
+
+        LottoStatistics lottoStatistics = createLottoStatistics(lottoResults);
+        output.print(lottoStatistics.toString());
     }
 
     public UserOutput getOutput() {
@@ -77,5 +79,9 @@ public class LottoGame {
             lottoResults.add(lottoComparator.compare(winningLotto, lotto));
         }
         return lottoResults;
+    }
+
+    private LottoStatistics createLottoStatistics(List<LottoResult> lottoResults) {
+        return new LottoStatistics(lottoResults);
     }
 }

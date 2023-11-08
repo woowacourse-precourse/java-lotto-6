@@ -35,12 +35,13 @@ class RankTest {
         Assertions.assertThat(2_000_000_000).isEqualTo(Rank.FIRST.getPrize());
     }
 
+    @DisplayName("당첨 순위의 메시를을 가져온다.")
     @Test
     void getMessage() {
+        Assertions.assertThat("3개 일치 (%s원) - %d개").isEqualTo(Rank.FIFTH.getMessage());
+        Assertions.assertThat("4개 일치 (%s원) - %d개").isEqualTo(Rank.FOURTH.getMessage());
+        Assertions.assertThat("5개 일치 (%s원) - %d개").isEqualTo(Rank.THIRD.getMessage());
+        Assertions.assertThat("5개 일치, 보너스 볼 일치 (%s원) - %d개").isEqualTo(Rank.SECOND.getMessage());
+        Assertions.assertThat("6개 일치 (%s원) - %d개").isEqualTo(Rank.FIRST.getMessage());
     }
-
-    @Test
-    void values() {
-    }
-
 }

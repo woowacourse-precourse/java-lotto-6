@@ -1,8 +1,8 @@
 package lotto.view;
 
+import lotto.config.OutputMessage;
 import lotto.config.LottoPrize;
 import lotto.domain.Lotto;
-import lotto.util.Util;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.Map;
 public class OutputView {
 
     public static void printLottoCount(int lottoCount) {
-        System.out.printf("%n%d개를 구매했습니다.%n", lottoCount);
+        System.out.printf(OutputMessage.OUTPUT_LOTTO_COUNT.getMessage(), lottoCount);
     }
 
     public static void printLottos(List<Lotto> lottos) {
@@ -20,15 +20,7 @@ public class OutputView {
 
     public static void printLottoResult(Map<LottoPrize, Integer> lottoResult) {
         System.out.printf(
-                """
-                        %n당첨 통계
-                        ---
-                        3개 일치 (5,000원) - %d개
-                        4개 일치 (50,000원) - %d개
-                        5개 일치 (1,500,000원) - %d개
-                        5개 일치, 보너스 볼 일치 (30,000,000원) - %d개
-                        6개 일치 (2,000,000,000원) - %d개
-                        """,
+                OutputMessage.OUTPUT_LOTTOS_NUMBER.getMessage(),
                 lottoResult.get(LottoPrize.MATCH_3),
                 lottoResult.get(LottoPrize.MATCH_4),
                 lottoResult.get(LottoPrize.MATCH_5),
@@ -38,6 +30,6 @@ public class OutputView {
     }
 
     public static void printLottoProfit(double profit) {
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", profit);
+        System.out.printf(OutputMessage.OUTPUT_LOTTO_PROFIT.getMessage(), profit);
     }
 }

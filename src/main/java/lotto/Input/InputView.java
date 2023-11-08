@@ -14,7 +14,7 @@ public class InputView {
                 int purchaseAmount = Integer.parseInt(Console.readLine());
                 return purchaseAmount;
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 구매 금액은 정수만 입력해 주세요.",e);
+                System.out.println("[ERROR] 로또 금액은 정수만 입력하세요.");
             }
         }
     }

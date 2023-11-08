@@ -23,11 +23,7 @@ public class Application {
             OutputView.printLottoTicketNumbers(lottoTicket);
         }
 
-        List<Integer> winningNumbers=new ArrayList<>();
-        String[] winningNumbersInput=InputView.getWinningNumbers().split(",");
-        for(String winningNumber:winningNumbersInput){
-            winningNumbers.add(Integer.parseInt(winningNumber));
-        }
+        List<Integer> winningNumbers = LottoNumbersMaker.generateWinningNumbers(InputView.getWinningNumbers());
 
         int bonusNumber=InputView.getBonusNumber();
         EnumMap<Rank, Integer> rankCounts=new EnumMap<>(Rank.class);

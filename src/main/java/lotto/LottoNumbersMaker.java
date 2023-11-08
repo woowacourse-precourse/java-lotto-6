@@ -13,4 +13,13 @@ public class LottoNumbersMaker {
         Collections.shuffle(numbers);
         return numbers.subList(0, 6);
     }
+
+    public static List<Integer> generateWinningNumbers(String input) {
+        String[] winningNumbersInput = input.split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String winningNumber : winningNumbersInput) {
+            winningNumbers.add(Integer.parseInt(winningNumber));
+        }
+        return winningNumbers;
+    }
 }

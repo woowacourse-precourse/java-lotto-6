@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lotto.exception.DivideMoneyException;
-import lotto.exception.NegativeMoneyException;
+import lotto.exception.RangeMoneyException;
 
 public class Money {
     private static final int DIVIDE_STANDARD = 1000;
@@ -21,8 +21,8 @@ public class Money {
     }
 
     private void validateNegative(int money) {
-        if (money < MIN_MONEY) {
-            throw new NegativeMoneyException();
+        if (money <= MIN_MONEY) {
+            throw new RangeMoneyException();
         }
     }
 

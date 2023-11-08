@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class MoneyTest {
     @Test
@@ -14,10 +16,11 @@ class MoneyTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    @DisplayName("로또 구입 금액에 음수를 넣으면 예외가 발생한다.")
-    void negativeMoney() {
-        assertThatThrownBy(() -> new Money(-1000))
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1000})
+    @DisplayName("로또 구입 금액에 0이하의 값이 들어오면 예외가 발생한다.")
+    void negativeMoney(int value) {
+        assertThatThrownBy(() -> new Money(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.model.BuyingMoney;
-import lotto.model.CorrectNum;
-import lotto.model.Lotto;
-import lotto.model.LottoList;
+import lotto.model.*;
 import lotto.view.View;
 
 import java.util.List;
@@ -12,6 +9,7 @@ public class LottoController {
     View view = new View();
     LottoList lottoList;
     CorrectNum correctNum;
+    BonusNum bonusNum;
 
     public void start(){
         String s = view.inputBuyingMoney();
@@ -39,7 +37,13 @@ public class LottoController {
     }
 
     public void middle2(){
-
+        String s = view.inputBonusNum();
+        try {
+            bonusNum = new BonusNum(s);
+        }catch (IllegalArgumentException e){
+            view.outputExceptionMessage();
+            middle2();
+        }
     }
 
 

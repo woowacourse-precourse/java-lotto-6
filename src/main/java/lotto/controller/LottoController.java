@@ -25,7 +25,7 @@ public class LottoController {
     }
 
     public void run() {
-        final PurchaseOrder purchaseOrder = repeat(this::purchaseOrder);
+        final PurchaseOrder purchaseOrder = repeat(this::createPurchaseOrder);
         final LottoTickets lottoTickets = lottoService.purchase(purchaseOrder);
         outputView.printPurchasedLottos(lottoTickets.purchasedLottos());
 
@@ -34,23 +34,23 @@ public class LottoController {
         outputView.printWinningResult(winningResult);
     }
 
-    private PurchaseOrder purchaseOrder() {
+    private PurchaseOrder createPurchaseOrder() {
         final int amount = inputView.readPurchaseAmount();
         return new PurchaseOrder(amount);
     }
 
     private WinningTicket createWinningTicket() {
-        final Lotto winningLotto = repeat(this::winningLotto);
-        final LottoNumber bonusNumber = repeat(this::bonusNumber);
+        final Lotto winningLotto = repeat(this::askWinningLotto);
+        final LottoNumber bonusNumber = repeat(this::askBonusNumber);
         return new WinningTicket(winningLotto, bonusNumber);
     }
 
-    private Lotto winningLotto() {
+    private Lotto askWinningLotto() {
         final List<Integer> numbers = inputView.readWinningNumbers();
         return new Lotto(numbers);
     }
 
-    private LottoNumber bonusNumber() {
+    private LottoNumber askBonusNumber() {
         final int bonusNumber = inputView.readBonusNumber();
         return LottoNumber.of(bonusNumber);
     }

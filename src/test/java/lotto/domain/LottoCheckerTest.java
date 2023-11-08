@@ -3,6 +3,8 @@ package lotto.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 import java.util.Map;
@@ -20,9 +22,17 @@ class LottoCheckerTest {
         lottoChecker = new LottoChecker(winningLotto, bonus);
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvSource(value = {
+            "ONE, 1",
+            "TWO, 1",
+            "THREE, 1",
+            "FOUR, 0",
+            "FIVE, 0",
+            "NONE, 0"
+    })
     @DisplayName("로또의 당첨 결과를 확인한다.")
-    void checkWinningResult() {
+    void checkWinningResult(Rank rank, int count) {
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
         Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 9));
@@ -30,9 +40,7 @@ class LottoCheckerTest {
 
         Map<Rank, Integer> winningResult = lottoChecker.checkWinningResult(lottoTickets);
 
-        assertThat(winningResult).containsEntry(Rank.ONE, 1);
-        assertThat(winningResult).containsEntry(Rank.TWO, 1);
-        assertThat(winningResult).containsEntry(Rank.THREE, 1);
+        assertThat(winningResult).containsEntry(rank, count);
     }
 
     @Test

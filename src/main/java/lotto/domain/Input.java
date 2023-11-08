@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Input {
 
-    public Long InputPrice() {
+    public static Long InputPrice() {
 
         String initial_input = Console.readLine();
 
@@ -25,7 +25,7 @@ public class Input {
         return result;
     }
 
-    public List<Integer> InputWinnerNumber() {
+    public static List<Integer> InputWinnerNumber() {
         List<Integer> winner_number = new ArrayList<>();
 
         String input;
@@ -43,7 +43,7 @@ public class Input {
         return winner_number;
     }
 
-    public int InputBonusNumber(List<Integer> winner_number) {
+    public static int InputBonusNumber(List<Integer> winner_number) {
         String input = Console.readLine();
 
         while (Exception.CheckValidateInput(input) == 0) {

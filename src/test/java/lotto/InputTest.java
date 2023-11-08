@@ -172,12 +172,12 @@ public class InputTest {
         assertThatThrownBy(() -> input.winningNumbersInput("1,1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    @DisplayName("보너스 번호와 당첨 번호가 중복된 숫자 문자열의 입력")
+    @DisplayName("당첨 번호 입력시 중복된 숫자 문자열의 입력")
     @Test
-    void duplicatedBonusNumberInput() {
+    void duplicatedWinningNumberInput() {
         Input input = new Input();
 
-        assertThatThrownBy(() -> input.bonusNumberInput("1,1,2,3,4,5"))
+        assertThatThrownBy(() -> input.winningNumbersInput("1,1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

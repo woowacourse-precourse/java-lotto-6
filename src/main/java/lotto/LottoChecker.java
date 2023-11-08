@@ -45,4 +45,21 @@ public class LottoChecker {
         return scores;
     }
 
+    private Integer getSinglePrize(Integer score) {
+        for (int i = 0; i < LottoEnum.prizeScores.size(); ++i) {
+            if (Objects.equals(score, LottoEnum.prizeScores.get(i))) {
+                return LottoEnum.prize.get(i);
+            }
+        }
+        return LottoEnum.PRIZE_LAST_MONEY.getValue();
+    }
+
+    public List<Integer> getTotalPrizes(List<Lotto> targets) {
+        List<Integer> prizes = new ArrayList<>();
+        List<Integer> scores = getTotalScores(targets);
+        for (Integer score : scores) {
+            prizes.add(getSinglePrize(score));
+        }
+        return prizes;
+    }
 }

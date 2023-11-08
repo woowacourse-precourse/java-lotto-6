@@ -1,22 +1,15 @@
 package lotto.model;
 
 public class BonusNumber {
-    private static final String SPECIAL_REGEX = "[!@#$%^&*()_+=\\[\\]{};':,\"\\\\|.<>/?-]";
     private static final String NUMERIC_REGEX = "^[0-9]+$";
 
     private final String BONUS_NUMBER;
-    private final int PURCHASE_PRICE;
     public BonusNumber(String bonusNumber){
 
         isNotDigits(bonusNumber);
         isWrongNumberRange(bonusNumber);
-        this.PURCHASE_PRICE = Integer.parseInt(bonusNumber);
         this.BONUS_NUMBER = bonusNumber;
 
-    }
-
-    public int getPurchasePrice(){
-        return PURCHASE_PRICE;
     }
     public String getBonusNumber(){
         return this.BONUS_NUMBER;

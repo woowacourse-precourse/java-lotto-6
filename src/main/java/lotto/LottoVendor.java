@@ -15,6 +15,9 @@ public class LottoVendor {
     }
 
     public List<Lotto> purchaseAll(int money) throws IllegalArgumentException {
+        if (money <= 0) {
+            throw new IllegalArgumentException("[ERROR] 지불하는 액수는 양수이어야 합니다.");
+        }
 
         List<Lotto> purchased = new ArrayList<>();
         for (int i = 0; i < money / price; ++i) {

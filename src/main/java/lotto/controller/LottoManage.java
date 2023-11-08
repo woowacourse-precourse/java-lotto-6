@@ -25,6 +25,7 @@ public class LottoManage {
 
         lottoBought = makeLottoBoughtNumbers(number);
         lottoMatchResult = bonusJudgement();
+
         gameResult(lottoBought, lottoMatchResult, number);
     }
 
@@ -32,6 +33,7 @@ public class LottoManage {
         List<Integer> winnerNumbers = getWinnerNumbers();
         int bonus = getBonusNumber(winnerNumbers);
         lottoMatchResult = new LottoMatchResult(new Lotto(winnerNumbers), bonus);
+
         return lottoMatchResult;
     }
 
@@ -78,6 +80,7 @@ public class LottoManage {
 
     private static Lotto createNumbers() {
         CreateLottoNumbers createLottoNumbers = new CreateLottoNumbers();
+
         List<Integer> lotto;
         lotto = createLottoNumbers.createRandomNumbers();
         System.out.println(lotto);
@@ -88,13 +91,13 @@ public class LottoManage {
         Map<WinnerJudge, Integer> result = setResult();
         WinnerJudge winnerJudge;
         Output.ResultMessage();
+
         for (Lotto lotto : lottoList) {
             winnerJudge = lottoMatchResult.match(lotto);
             result.put(winnerJudge, result.get(winnerJudge) + 1);
         }
         printResult(result);
         printProfit(result, number);
-
     }
 
     private Map<WinnerJudge, Integer> setResult() {

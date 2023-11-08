@@ -5,6 +5,7 @@ import static lotto.view.constants.ViewMessage.GET_BONUS_NUMBER;
 import static lotto.view.constants.ViewMessage.GET_WINNING_NUMBER;
 
 import lotto.domain.Bonus;
+import lotto.domain.Buyer;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.NumberChecker;
@@ -17,8 +18,8 @@ public class LottoController {
     private final LottoService lottoService = new LottoService();
     private final NumberCheckerService numberCheckerService = new NumberCheckerService();
 
-    public Lottos createLottoTicket() {
-        return lottoService.generateLottoTicket();
+    public Lottos createLottoTicket(Buyer buyer) {
+        return lottoService.generateLottoTicket(buyer);
     }
 
     public NumberChecker createNumberChecker() {

@@ -15,13 +15,13 @@ public class MainController {
 
     public static void run() {
         Buyer buyer = buyerController.createBuyer();
-        Lottos lottoTicket = lottoController.createLottoTicket();
+        Lottos lottoTicket = lottoController.createLottoTicket(buyer);
 
-        OutputView.printMessage(lottoTicket);
+        OutputView.printMessage(lottoTicket, buyer);
 
         NumberChecker numberChecker = lottoController.createNumberChecker();
 
-        LottoStatistics lottoResult = numberChecker.getLottoResult(lottoTicket);
+        LottoStatistics lottoResult = numberChecker.getLottoResult(lottoTicket, buyer);
 
         OutputView.printMessage(lottoResult.generateLottoStatisticsForm());
 

@@ -69,7 +69,7 @@ public class LottoGenerate {
         return lottoResult;
     }
 
-    public static Double calculateLottoRate(int lottoTickets, List<Integer> lottoResult) {
+    public static String calculateLottoRate(int lottoTickets, List<Integer> lottoResult) {
         int money = lottoTickets * 1000;
         int earning = (lottoResult.get(0) * PrizeMoneyUtil.PRIZE_MONEY_3MATCH.getMoney()) +
                 (lottoResult.get(1) * PrizeMoneyUtil.PRIZE_MONEY_4MATCH.getMoney()) +
@@ -78,6 +78,7 @@ public class LottoGenerate {
                 (lottoResult.get(4) * PrizeMoneyUtil.PRIZE_MONEY_6MATCH.getMoney());
         double rate = (double) earning / money;
         rate = Math.round(rate * 1000.0) / 10.0;
-        return rate;
+        String rateFormat = String.format("%.1f", rate);
+        return rateFormat;
     }
 }

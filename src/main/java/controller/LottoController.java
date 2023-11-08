@@ -28,9 +28,8 @@ public class LottoController {
         List<Integer> lottoWinningNumbers = getWinningNumbersInput();
         int lottoBonusNumber = getBonusNumberInput(lottoWinningNumbers);
         List<Integer> lottoResult = generateLottoResult(lottoTickets, lottoWinningNumbers, lottoBonusNumber);
-        System.out.println(lottoResult);
         lottoResultMessagePrint(lottoResult);
-        double rate = calculateLottoRate(lottoTickets.size(), lottoResult);
+        String rate = calculateLottoRate(lottoTickets.size(), lottoResult);
         lottoRateMessagePrint(rate);
     }
 }

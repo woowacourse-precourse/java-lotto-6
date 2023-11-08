@@ -40,7 +40,7 @@ public class View {
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", lottoResult.get(4));
     }
 
-    public static void lottoRateMessagePrint(double rate) {
+    public static void lottoRateMessagePrint(String rate) {
         System.out.println("총 수익률은 " + rate + "%입니다.");
     }
 }

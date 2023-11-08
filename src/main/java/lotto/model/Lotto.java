@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.MatchStatus;
 import lotto.validator.LottoValidator;
 
 import java.util.Collections;
@@ -36,19 +37,19 @@ public class Lotto {
     }
 
     private void saveCount(int num, int[] count, boolean bonus) {
-        if (num == 3) {
+        if (num == MatchStatus.THREE.getNumber()) {
             count[0]++;
         }
-        if (num == 4) {
+        if (num == MatchStatus.FOUR.getNumber()) {
             count[1]++;
         }
-        if (num == 5 && !bonus) {
+        if (num == MatchStatus.FIVE.getNumber() && !bonus) {
             count[2]++;
         }
-        if (num == 5 && bonus) {
+        if (num == MatchStatus.FIVEANDBONUS.getNumber() && bonus) {
             count[3]++;
         }
-        if (num == 6) {
+        if (num == MatchStatus.SIX.getNumber()) {
             count[4]++;
         }
     }

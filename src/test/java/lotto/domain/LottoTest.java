@@ -25,7 +25,7 @@ class LottoTest {
 
     @DisplayName("1에서 45사이의 숫자가 나오지 않으면 예외 발생")
     @Test
-    void outBoundRangeLottoNumber(){
+    void outBoundRangeLottoNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 50)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");

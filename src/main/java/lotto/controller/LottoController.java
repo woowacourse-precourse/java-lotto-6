@@ -16,22 +16,22 @@ public class LottoController {
     private static int PRICE_OF_LOTTO = 1000;
     private final LottoView lottoView = new LottoView();
 
-    public void run(){
+    public void run() {
         LottoPrice lottoPrice = inputLottoPrice();
         Lottos lottos = drawLottoNumbers(lottoPrice);
         MatchNumber matchNumber = inputMatchNumber();
         BonusNumber bonusNumber = inputBonusNumber(matchNumber);
 
-        List<Integer> totalMatchNumbers = getTotalMatchNumbers(matchNumber,bonusNumber);
+        List<Integer> totalMatchNumbers = getTotalMatchNumbers(matchNumber, bonusNumber);
         LottoManager lottoManager = matchResult(lottos, totalMatchNumbers);
         printMatchStatistics(lottoManager, lottoPrice);
     }
 
-    public LottoPrice inputLottoPrice(){
+    public LottoPrice inputLottoPrice() {
         LottoPrice lottoPrice = null;
         boolean inputValid = false;
 
-        while(!inputValid) {
+        while (!inputValid) {
             try {
                 lottoView.startMessage();
                 lottoPrice = new LottoPrice(userInput());
@@ -43,11 +43,11 @@ public class LottoController {
         return lottoPrice;
     }
 
-    public MatchNumber inputMatchNumber(){
+    public MatchNumber inputMatchNumber() {
         MatchNumber matchNumber = null;
         boolean inputValid = false;
 
-        while(!inputValid) {
+        while (!inputValid) {
             try {
                 lottoView.inputMatchNumberMessage();
                 matchNumber = new MatchNumber(userInput());
@@ -59,11 +59,11 @@ public class LottoController {
         return matchNumber;
     }
 
-    public BonusNumber inputBonusNumber(MatchNumber matchNumber){
+    public BonusNumber inputBonusNumber(MatchNumber matchNumber) {
         BonusNumber bonusNumber = null;
         boolean inputValid = false;
 
-        while(!inputValid) {
+        while (!inputValid) {
             try {
                 lottoView.inputBonusNumberMessage();
                 bonusNumber = new BonusNumber(userInput(), matchNumber);
@@ -75,7 +75,7 @@ public class LottoController {
         return bonusNumber;
     }
 
-    public void printMatchStatistics(LottoManager lottoManager, LottoPrice lottoPrice){
+    public void printMatchStatistics(LottoManager lottoManager, LottoPrice lottoPrice) {
         lottoView.matchResultMessage();
         Map<MatchRanking, Integer> rankingCount = lottoManager.getLottoResult();
         lottoView.matchStatisticsMessage(rankingCount);
@@ -84,17 +84,17 @@ public class LottoController {
         lottoView.totalReturnMessage(returnMoney.getReturnMoney());
     }
 
-    public List<Integer> getTotalMatchNumbers(MatchNumber matchNumber, BonusNumber bonusNumber){
+    public List<Integer> getTotalMatchNumbers(MatchNumber matchNumber, BonusNumber bonusNumber) {
         List<Integer> totalMatchNumbers = matchNumber.getMatchNumbers();
         totalMatchNumbers.add(bonusNumber.getBonusNumber());
         return totalMatchNumbers;
     }
 
-    public LottoManager matchResult(Lottos lottos, List<Integer> totalMatchNumbers){
+    public LottoManager matchResult(Lottos lottos, List<Integer> totalMatchNumbers) {
         return new LottoManager(lottos, totalMatchNumbers);
     }
 
-    public Lottos drawLottoNumbers(LottoPrice lottoPrice){
+    public Lottos drawLottoNumbers(LottoPrice lottoPrice) {
         int numberOfLotto = countLotto(lottoPrice);
         lottoView.buyMessage(numberOfLotto);
         Lottos lottos = new Lottos(numberOfLotto);
@@ -103,8 +103,8 @@ public class LottoController {
         return lottos;
     }
 
-    public int countLotto(LottoPrice lottoPrice){
-        return lottoPrice.getLottoPrice()/PRICE_OF_LOTTO;
+    public int countLotto(LottoPrice lottoPrice) {
+        return lottoPrice.getLottoPrice() / PRICE_OF_LOTTO;
     }
 
     private String userInput(){

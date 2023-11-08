@@ -11,7 +11,7 @@ public class BonusNumber {
     private static int START_NUMBER = 1;
     private static int LAST_NUMBER = 45;
 
-    public BonusNumber(String userInput, MatchNumber matchNumber){
+    public BonusNumber(String userInput, MatchNumber matchNumber) {
         int bonusNumber = checkForDataType(userInput);
         checkLottoNumberInBound(bonusNumber);
         checkForDuplicates(bonusNumber,matchNumber);
@@ -23,15 +23,15 @@ public class BonusNumber {
         return bonusNumber;
     }
 
-    private Integer checkForDataType(String userInput){
-        try{
+    private Integer checkForDataType(String userInput) {
+        try {
             return Integer.parseInt(userInput);
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(DATA_TYPE_ERROR.getMessage());
         }
     }
 
-    private void checkForDuplicates(Integer bonusNumber, MatchNumber matchNumber){
+    private void checkForDuplicates(Integer bonusNumber, MatchNumber matchNumber) {
         List<Integer> numbers = matchNumber.getMatchNumbers();
 
         for (Integer number : numbers) {
@@ -41,7 +41,7 @@ public class BonusNumber {
         }
     }
 
-    private void checkLottoNumberInBound(Integer number){
+    private void checkLottoNumberInBound(Integer number) {
         if (number < START_NUMBER || number > LAST_NUMBER) {
             throw new IllegalArgumentException(OUT_BOUND_ERROR.getMessage());
         }

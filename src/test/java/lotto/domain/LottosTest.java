@@ -10,11 +10,11 @@ import org.junit.jupiter.api.Test;
 public class LottosTest {
     @DisplayName("로또 구입 갯수만큼 생성되었는지 테스트")
     @Test
-    void createLottosTest(){
+    void createLottosTest() {
         List<Integer> expectedNumbers1 = List.of(8, 21, 23, 41, 42, 43);
         List<Integer> expectedNumbers2 = List.of(3, 5, 11, 16, 32, 38);
         assertRandomUniqueNumbersInRangeTest(
-                ()->{
+                () -> {
                     Lottos lottos = new Lottos(2);
                     Lotto lotto1 = lottos.getLottos().get(0);
                     Lotto lotto2 = lottos.getLottos().get(1);
@@ -28,10 +28,10 @@ public class LottosTest {
 
     @DisplayName("createLotto 테스트")
     @Test
-    public void createLottoTest(){
+    public void createLottoTest() {
         List<Integer> expectedNumbers = List.of(8, 21, 23, 41, 42, 43);
         assertRandomUniqueNumbersInRangeTest(
-                ()->{
+                () -> {
                     Lottos lottos = new Lottos(1);
                     List<Integer> lotto = lottos.createLotto();
                     assertThat(lotto).isEqualTo(expectedNumbers);
@@ -39,6 +39,4 @@ public class LottosTest {
                 List.of(8, 21, 23, 41, 42, 43)
         );
     }
-
-
 }

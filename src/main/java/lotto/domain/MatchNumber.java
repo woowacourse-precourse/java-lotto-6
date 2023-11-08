@@ -18,7 +18,7 @@ public class MatchNumber {
     private static int LAST_NUMBER = 45;
     private static String COMMA_DELIMITER = ",";
 
-    public MatchNumber(String userInput){
+    public MatchNumber(String userInput) {
         this.matchNumbers = validate(userInput);
     }
 
@@ -36,25 +36,25 @@ public class MatchNumber {
         return matchNumbers;
     }
 
-    private void checkForInputSize(List<String> inputNumbers){
-        if(inputNumbers.size()!=6){
+    private void checkForInputSize(List<String> inputNumbers) {
+        if (inputNumbers.size()!=6) {
             throw new IllegalArgumentException(LOTTO_SIZE_ERROR.getMessage());
         }
     }
 
-    private List<Integer> checkForDataType(List<String> inputNumbers){
+    private List<Integer> checkForDataType(List<String> inputNumbers) {
         List<Integer> matchNumbers = new ArrayList<>();
-        try{
-            for(String inputNumber : inputNumbers){
+        try {
+            for (String inputNumber : inputNumbers) {
                 matchNumbers.add(Integer.parseInt(inputNumber.trim()));
             }
             return matchNumbers;
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(DATA_TYPE_ERROR.getMessage());
         }
     }
 
-    private void checkForDuplicates(List<Integer> numbers){
+    private void checkForDuplicates(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>();
 
         for (Integer number : numbers) {
@@ -64,7 +64,7 @@ public class MatchNumber {
         }
     }
 
-    private void checkLottoNumberInBound(List<Integer> numbers){
+    private void checkLottoNumberInBound(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < START_NUMBER || number > LAST_NUMBER) {
                 throw new IllegalArgumentException(OUT_BOUND_ERROR.getMessage());

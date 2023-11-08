@@ -28,8 +28,4 @@ public class ReturnMoneyTest {
             assertThat(returnMoney.getReturnMoney()).isEqualTo(62.5);
         });
     }
-
-
-
-
 }

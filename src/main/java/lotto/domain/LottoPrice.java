@@ -10,8 +10,9 @@ public class LottoPrice {
     private static Long MAXIMUM_PRICE = 10000000L;
     private static int PRICE_PER_LOTTO = 1000;
     private static int BUY_NOTHING = 0;
+    private static int REMAINDER_ZERO = 0;
 
-    public LottoPrice(String inputLottoPrice){
+    public LottoPrice(String inputLottoPrice) {
         Long dataTypeValidatePrice = dataTypeValidate(inputLottoPrice);
         buyNothingValidate(dataTypeValidatePrice);
         buyLimitValidate(dataTypeValidatePrice);
@@ -21,32 +22,32 @@ public class LottoPrice {
         this.lottoPrice = buyLimitValidatePrice;
     }
 
-    public int getLottoPrice(){
+    public int getLottoPrice() {
         return lottoPrice;
     }
 
-    private Long dataTypeValidate(String inputLottoPrice){
-        try{
+    private Long dataTypeValidate(String inputLottoPrice) {
+        try {
             return Long.parseLong(inputLottoPrice);
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(DATA_TYPE_ERROR.getMessage());
         }
     }
 
-    private void buyNothingValidate(Long dataTypeValidatePrice){
-        if(dataTypeValidatePrice==BUY_NOTHING){
+    private void buyNothingValidate(Long dataTypeValidatePrice) {
+        if (dataTypeValidatePrice == BUY_NOTHING) {
             throw new IllegalArgumentException(BUY_NOTHING_ERROR.getMessage());
         }
     }
 
-    private void buyLimitValidate(Long dataTypeValidatePrice){
-        if(dataTypeValidatePrice > MAXIMUM_PRICE){
+    private void buyLimitValidate(Long dataTypeValidatePrice) {
+        if (dataTypeValidatePrice > MAXIMUM_PRICE) {
             throw new IllegalArgumentException(EXCESSIVE_NUMBER_ERROR.getMessage());
         }
     }
 
-    private void divisionByThousand(Integer buyLimitValidatePrice){
-        if(buyLimitValidatePrice%PRICE_PER_LOTTO!=0){
+    private void divisionByThousand(Integer buyLimitValidatePrice) {
+        if (buyLimitValidatePrice%PRICE_PER_LOTTO!=REMAINDER_ZERO) {
             throw new IllegalArgumentException(DIFFERENT_UNIT_ERROR.getMessage());
         }
     }

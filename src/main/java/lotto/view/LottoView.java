@@ -20,34 +20,34 @@ public class LottoView {
             + "6개 일치 (2,000,000,000원) - %d개";
     public static final String TOTAL_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
-    public void startMessage(){
+    public void startMessage() {
         System.out.println(START_MESSAGE);
     }
-    public void buyMessage(Integer numberOfBuys){
-        System.out.printf(NUMBER_OF_BUYS_MESSAGE,numberOfBuys);
+    public void buyMessage(Integer numberOfBuys) {
+        System.out.printf(NUMBER_OF_BUYS_MESSAGE, numberOfBuys);
     }
-    public void lottosMessage(Lottos lottos){
+    public void lottosMessage(Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
             eachLottoMessage(lotto.getNumbers());
         }
     }
-    public void eachLottoMessage(List<Integer> numbers){
-        String lottoMessage = String.join(COMMA_DELIMITER,numbers.stream()
+    public void eachLottoMessage(List<Integer> numbers) {
+        String lottoMessage = String.join(COMMA_DELIMITER, numbers.stream()
                 .map(number -> String.format("%d", number))
                 .toArray(String[]::new));
         System.out.println(String.format(EACH_LOTTO,lottoMessage));
     }
-    public void inputMatchNumberMessage(){
+    public void inputMatchNumberMessage() {
         System.out.println(INPUT_MATCH_NUMBER_MESSAGE);
     }
-    public void inputBonusNumberMessage(){
+    public void inputBonusNumberMessage() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
     }
-    public void matchResultMessage(){
+    public void matchResultMessage() {
         System.out.println(MATCH_RESULT_MESSAGE);
     }
 
-    public void matchStatisticsMessage(Map<MatchRanking, Integer> rankingCount){
+    public void matchStatisticsMessage(Map<MatchRanking, Integer> rankingCount) {
         int fifth = rankingCount.get(MatchRanking.FIFTH_PLACE);
         int fourth = rankingCount.get(MatchRanking.FOURTH_PLACE);
         int third = rankingCount.get(MatchRanking.THIRD_PLACE);
@@ -56,11 +56,11 @@ public class LottoView {
 
         System.out.println(String.format(MATCH_STATISTICS_MESSAGE, fifth,fourth,third,second,first));
     }
-    public void totalReturnMessage(Double findReturn){
+    public void totalReturnMessage(Double findReturn) {
         System.out.println(String.format(TOTAL_RETURN_MESSAGE,findReturn));
     }
 
-    public void printErrorMessage(String errorMessage){
+    public void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
     }
 }

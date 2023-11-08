@@ -25,11 +25,11 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return numbers;
     }
 
-    private void checkForDuplicates(List<Integer> numbers){
+    private void checkForDuplicates(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>();
 
         for (Integer number : numbers) {
@@ -39,7 +39,7 @@ public class Lotto {
         }
     }
 
-    private void checkLottoNumberInBound(List<Integer> oneLotto){
+    private void checkLottoNumberInBound(List<Integer> oneLotto) {
         for (int oneLottoNumber : oneLotto) {
             if (oneLottoNumber < START_NUMBER || oneLottoNumber > LAST_NUMBER) {
                 throw new IllegalArgumentException(OUT_BOUND_ERROR.getMessage());

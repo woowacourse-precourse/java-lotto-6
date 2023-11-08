@@ -53,7 +53,7 @@ public class LottoManagerTest {
     @Test
     void matchResultTest() {
         assertRandomUniqueNumbersInRangeTest(
-                ()->{
+                () -> {
                     Lottos lottos = new Lottos(2);
                     lottoManager.matchResult(lottos, totalMatchNumbers);
                     Map<MatchRanking, Integer> lottoResult = lottoManager.getLottoResult();
@@ -69,10 +69,10 @@ public class LottoManagerTest {
 
     @DisplayName("createLotto 테스트")
     @Test
-    public void createLottoTest(){
+    public void createLottoTest() {
         List<Integer> expectedNumbers = List.of(8, 21, 23, 41, 42, 43);
         assertRandomUniqueNumbersInRangeTest(
-                ()->{
+                () -> {
                     List<Integer> lotto = lottos.createLotto();
                     assertThat(lotto).isEqualTo(expectedNumbers);
                 },

@@ -11,7 +11,7 @@ public enum errorMessage {
 
     private String message;
 
-    errorMessage(String rank){
+    errorMessage(String rank) {
         this.message = rank;
     }
 

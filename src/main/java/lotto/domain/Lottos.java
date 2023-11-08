@@ -11,17 +11,17 @@ public class Lottos {
     private static int LAST_NUMBER = 45;
     private static int LOTTO_SIZE = 6;
 
-    public Lottos(int numberOfLotto){
+    public Lottos(int numberOfLotto) {
         lottos = new ArrayList<>();
         createLottos(numberOfLotto);
     }
 
-    public List<Lotto> getLottos(){
+    public List<Lotto> getLottos() {
         return lottos;
     }
 
-    private void createLottos(Integer numberOfLotto){
-        for(int i=0;i<numberOfLotto;i++){
+    private void createLottos(Integer numberOfLotto) {
+        for (int i = 0; i < numberOfLotto; i++) {
             List<Integer> oneLotto = createLotto();
             oneLotto = oneLotto.stream()
                     .sorted()
@@ -30,7 +30,7 @@ public class Lottos {
         }
     }
 
-    public List<Integer> createLotto(){
+    public List<Integer> createLotto() {
         return Randoms.pickUniqueNumbersInRange(START_NUMBER, LAST_NUMBER, LOTTO_SIZE);
     }
 }

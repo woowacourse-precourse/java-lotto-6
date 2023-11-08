@@ -13,14 +13,13 @@ import java.util.stream.IntStream;
 import lotto.model.Lotto;
 import lotto.model.Prize;
 import lotto.model.WinningLotto;
-import lotto.model.number.LottoNumbers;
 import lotto.util.parser.LottoParser;
 
 public class LottoUtil {
     public static List<Lotto> generateLottos(int lottoCount) {
         List<Lotto> generatedLottos = new ArrayList<>();
         IntStream.range(0, lottoCount).forEach(i -> {
-            LottoNumbers numbers = LottoParser.parseIntListToLottoNumbers(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             generatedLottos.add(new Lotto(numbers));
         });
         return generatedLottos;

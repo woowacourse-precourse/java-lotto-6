@@ -12,8 +12,6 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Prize;
 import lotto.model.WinningLotto;
-import lotto.model.number.LottoNumber;
-import lotto.model.number.LottoNumbers;
 import lotto.util.LottoUtil;
 import lotto.util.Validator;
 import lotto.util.parser.LottoParser;
@@ -52,7 +50,7 @@ public class LottoController {
             int amount = parseStringToInt(Console.readLine());
             Validator.validatePurchaseAmount(amount);
             return amount;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             ExceptionPrinter.printExceptionMessage(e);
             return getPurchaseAmount();
         }
@@ -83,7 +81,7 @@ public class LottoController {
     private void printPurchasedLottos() {
         try {
             purchasedLottos.lottos().forEach(lotto -> {
-                lottoOutputView.printLotto(LottoParser.parseLottoNumberListToString(lotto.getSortedLottoNumbers()));
+                lottoOutputView.printLotto(lotto.getSortedLottoNumbers().toString());
             });
         } catch (Exception e) {
             ExceptionPrinter.printExceptionMessage(e);
@@ -95,21 +93,21 @@ public class LottoController {
      * Description: 당첨 번호와 보너스 번호를 입력받아 WinningLotto를 반환한다.
      */
     private WinningLotto getWinningLotto() {
-        LottoNumbers winningNumbers = getWinningNumbers();
-        LottoNumber bonusNumber = getBonusNumber();
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber();
         return new WinningLotto(new Lotto(winningNumbers), bonusNumber);
     }
 
     /**
      * Description: 당첨 번호를 입력받아 반환한다.
      */
-    private LottoNumbers getWinningNumbers() {
+    private List<Integer> getWinningNumbers() {
         lottoInputView.printInputWinningLotto();
         try {
             String winningNumber = Console.readLine();
             List<Integer> numbers = LottoParser.parseStringArrToIntList(winningNumber.split(COMMA));
-            Validator.validateLottoNumbers(LottoParser.parseIntListToLottoNumberList(numbers));
-            return LottoParser.parseIntListToLottoNumbers(numbers);
+            Validator.validateLottoNumbers(numbers);
+            return numbers;
         } catch (Exception e) {
             ExceptionPrinter.printExceptionMessage(e);
             return getWinningNumbers();
@@ -118,14 +116,11 @@ public class LottoController {
 
     /**
      * Description: 보너스 번호를 입력받아 반환한다.
-     *
-     * @return
      */
-    private LottoNumber getBonusNumber() {
+    private int getBonusNumber() {
         lottoInputView.printInputBonusNumber();
         try {
-            int bonusNumber = parseStringToInt(Console.readLine());
-            return LottoNumber.of(bonusNumber);
+            return parseStringToInt(Console.readLine());
         } catch (Exception e) {
             ExceptionPrinter.printExceptionMessage(e);
             return getBonusNumber();

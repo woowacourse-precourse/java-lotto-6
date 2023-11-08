@@ -1,19 +1,23 @@
 package lotto.model;
 
-import lotto.model.number.LottoNumbers;
+import java.util.List;
+import lotto.util.Validator;
 
 public class Lotto {
-    private final LottoNumbers numbers;
+    private final List<Integer> numbers;
 
-    public Lotto(LottoNumbers numbers) {
+    public Lotto(List<Integer> numbers) {
+        Validator.validateLottoNumbers(numbers);
         this.numbers = numbers;
     }
 
-    public LottoNumbers getLottoNumbers() {
+    public List<Integer> getLottoNumbers() {
         return numbers;
     }
 
-    public LottoNumbers getSortedLottoNumbers() {
-        return new LottoNumbers(numbers.getSortedNumbers());
+    public List<Integer> getSortedLottoNumbers() {
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 }

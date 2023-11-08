@@ -1,5 +1,7 @@
 package lotto.util;
 
+import static lotto.Constants.LOTTO_NUMBER_MAX;
+import static lotto.Constants.LOTTO_NUMBER_MIN;
 import static lotto.Constants.MAX_LOTTO_SIZE;
 import static lotto.Constants.MAX_PRIZE_SIZE;
 import static lotto.Constants.MIN_PRIZE_SIZE;
@@ -9,7 +11,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lotto.exception.ExceptionMessages;
-import lotto.model.number.LottoNumber;
 
 public class Validator {
     public static void validatePurchaseAmount(int amount) {
@@ -28,14 +29,14 @@ public class Validator {
      * @return void
      * @throws IllegalArgumentException
      */
-    public static void validateLottoNumbers(List<LottoNumber> numbers) {
+    public static void validateLottoNumbers(List<Integer> numbers) {
         if (isLotteryNumberSizeValid(numbers)) {
             throw new IllegalArgumentException(ExceptionMessages.INVALID_LOTTO_SIZE_MESSAGE);
         }
         if (isLottoNumberDuplicate(numbers)) {
             throw new IllegalArgumentException(ExceptionMessages.DUPLICATE_LOTTO_MESSAGE);
         }
-        numbers.forEach(number -> validateLottoNumber(number.getNumber()));
+        numbers.forEach(Validator::validateLottoNumber);
     }
 
     /**
@@ -46,7 +47,7 @@ public class Validator {
      * @throws IllegalArgumentException
      */
     public static void validateLottoNumber(int number) {
-        if (number < LottoNumber.ONE.getNumber() || number > LottoNumber.FORTY_FIVE.getNumber()) {
+        if (number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX) {
             throw new IllegalArgumentException(ExceptionMessages.OUT_OF_RANGE_LOTTO_NUMBER_MESSAGE);
         }
     }
@@ -69,7 +70,7 @@ public class Validator {
      * @param numbers
      * @return boolean
      */
-    private static boolean isLotteryNumberSizeValid(List<LottoNumber> numbers) {
+    private static boolean isLotteryNumberSizeValid(List<Integer> numbers) {
         return numbers.size() != MAX_LOTTO_SIZE;
     }
 
@@ -79,7 +80,7 @@ public class Validator {
      * @param numbers
      * @return boolean
      */
-    private static boolean isLottoNumberDuplicate(List<LottoNumber> numbers) {
+    private static boolean isLottoNumberDuplicate(List<Integer> numbers) {
         return numbers.stream().distinct().count() != numbers.size();
     }
 }

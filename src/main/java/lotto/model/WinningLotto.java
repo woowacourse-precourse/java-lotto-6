@@ -1,12 +1,13 @@
 package lotto.model;
 
-import lotto.model.number.LottoNumber;
+import java.util.List;
 
-public class WinningLotto extends Lotto {
-    private final LottoNumber bonusNumber;
+public class WinningLotto {
+    private final List<Integer> numbers;
+    private final int bonusNumber;
 
-    public WinningLotto(Lotto lotto, LottoNumber bonusNumber) {
-        super(lotto.getLottoNumbers());
+    public WinningLotto(Lotto lotto, int bonusNumber) {
+        this.numbers = lotto.getLottoNumbers();
         this.bonusNumber = bonusNumber;
     }
 
@@ -17,7 +18,7 @@ public class WinningLotto extends Lotto {
      * @return 일치 번호 개수
      */
     public int getMatchCount(Lotto lotto) {
-        return (int) lotto.getLottoNumbers().getNumbers().stream()
+        return (int) lotto.getLottoNumbers().stream()
                 .filter(this::isContain)
                 .count();
     }
@@ -28,9 +29,8 @@ public class WinningLotto extends Lotto {
      * @param lottoNumber
      * @return 당첨 번호 안에 속하는지 여부
      */
-    private boolean isContain(LottoNumber lottoNumber) {
-        return getLottoNumbers().getNumbers().stream()
-                .anyMatch(lottoNumber::equals);
+    private boolean isContain(int lottoNumber) {
+        return numbers.contains(lottoNumber);
     }
 
     /**
@@ -40,7 +40,8 @@ public class WinningLotto extends Lotto {
      * @return 보너스 번호가 있는지 여부
      */
     public boolean isMatchBonusNumber(Lotto lotto) {
-        return lotto.getLottoNumbers().getNumbers().stream()
-                .anyMatch(bonusNumber::equals);
+        return lotto.getLottoNumbers().contains(bonusNumber);
     }
+
+
 }

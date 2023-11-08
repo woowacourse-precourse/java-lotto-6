@@ -29,9 +29,8 @@ public class TestDefault {
         return outputCaptor.toString();
     }
 
-    protected void setInputs(String... inputs) {
-        for (String input : inputs) {
-            System.setIn(new ByteArrayInputStream(input.getBytes()));
-        }
+    protected void setInputs(final String... inputs) {
+        final byte[] buf = String.join(NEW_LINE, inputs).getBytes();
+        System.setIn(new ByteArrayInputStream(buf));
     }
 }

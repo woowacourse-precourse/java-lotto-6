@@ -1,5 +1,6 @@
 package lotto.Domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Domain.*;
 import java.util.*;
 
@@ -32,6 +33,24 @@ public class LottoGameDecisionMachine {
             tickets.add(lotto);
         }
     }
+    public void generateTickets_(int purchaseAmount) {
+        int numTickets = purchaseAmount / 1000;
+        for (int i = 0; i < numTickets; i++) {
+            //List<Integer> numbers = new ArrayList<>();
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            /*while (numbers.size() < 6) {
+
+                int number = Randoms.pickNumberInRange(1, 45) ;
+                if (!numbers.contains(number)) {
+                    numbers.add(number);
+                }
+            }*/
+            //System.out.println(numbers);
+            //Collections.sort(numbers);
+            Lotto lotto = new Lotto(numbers);
+            tickets.add(lotto);
+        }
+    }
 
     public void setWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         this.winningNumbers = winningNumbers;
@@ -49,26 +68,19 @@ public class LottoGameDecisionMachine {
             if (numMatching == 6) {
                 result.put(6, result.getOrDefault(6, 0) + 1);
                 Prize.FIRST_PLACE.plusCount(1);
-                //System.out.println(result.get(6));
             }
             if (numMatching == 5 && ticket.getNumbers().contains(bonusNumber)) {
                 Prize.SECOND_PLACE.plusCount(1);
-                //result.put(7, result.getOrDefault(7, 0) + 1);
             }
             if (numMatching == 5  && !(ticket.getNumbers().contains(bonusNumber))) {
                 Prize.THIRD_PLACE.plusCount(1);
-                //result.put(5, result.getOrDefault(5, 0) + 1);
             }
             if (numMatching == 4) {
-                //result.put(4, result.getOrDefault(4, 0) + 1);
                 Prize.FOURTH_PLACE.plusCount(1);
             }
             if (numMatching == 3) {
-                //result.put(3, result.getOrDefault(3, 0) + 1);
                 Prize.FIFTH_PLACE.plusCount(1);
-            } //else {
-                //result.put(numMatching, result.getOrDefault(numMatching, 0) + 1);
-            //}
+            }
         }
         return result;
     }

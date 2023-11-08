@@ -1,6 +1,7 @@
 package lotto.Controller;
 
 import lotto.Domain.LottoGameDecisionMachine;
+import lotto.Domain.Prize;
 import lotto.View.LottoGameView;
 
 import java.util.*;
@@ -25,7 +26,7 @@ public class LottoGameController {
         int purchaseAmount = getPurchaseAmountFromUser();
         int numTickets = purchaseAmount / 1000;
 
-        machine.generateTickets(purchaseAmount);
+        machine.generateTickets_(purchaseAmount);
 
         // 발행한 로또 번호 출력
         view.displayNumberOfTickets(machine.getTickets().size());
@@ -50,14 +51,15 @@ public class LottoGameController {
     private int getPurchaseAmountFromUser() {
         int purchaseAmount;
         do {
-            System.out.print("구입금액을 입력해 주세요: ");
+            System.out.println("구입금액을 입력해 주세요: ");
+
             purchaseAmount =Integer.parseInt(readLine());
         } while (purchaseAmount % 1000 != 0);
         return purchaseAmount;
     }
 
     private List<Integer> getWinningNumbersFromUser() {
-        System.out.print("당첨 번호를 입력해 주세요 (1~45 사이 숫자, 쉼표로 구분): ");
+        System.out.println("당첨 번호를 입력해 주세요 (1~45 사이 숫자, 쉼표로 구분): ");
         String input = readLine();
         return Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
@@ -73,7 +75,12 @@ public class LottoGameController {
         int totalPrize = results.entrySet().stream()
                 .mapToInt(entry -> entry.getKey() * entry.getValue())
                 .sum();
-        return (double) totalPrize / purchaseAmount * 100;
+        int totalPrize_ = Prize.FIFTH_PLACE.getPrizeMoney() * Prize.FIFTH_PLACE.getCount() +
+                Prize.FOURTH_PLACE.getPrizeMoney() * Prize.FOURTH_PLACE.getCount() +
+                Prize.THIRD_PLACE.getPrizeMoney() * Prize.THIRD_PLACE.getCount() +
+                Prize.SECOND_PLACE.getPrizeMoney() * Prize.SECOND_PLACE.getCount() +
+                Prize.FIRST_PLACE.getPrizeMoney() * Prize.FIRST_PLACE.getCount();
+        return (double) totalPrize_ / purchaseAmount * 100 ;
     }
 
 }

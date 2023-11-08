@@ -11,10 +11,6 @@ public class LottoAmount {
         this.amount = amountNum;
     }
 
-    public int calculateLottoCount() {
-        return amount / LOTTO_MIN_AMOUNT;
-    }
-
     private static int validateNumber(String inputAmount) throws IllegalArgumentException {
         try {
             return Integer.parseInt(inputAmount);

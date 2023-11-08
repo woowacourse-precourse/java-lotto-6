@@ -67,7 +67,9 @@ public class Lotto {
     }
 
     public String getPurchaseLotto() {
+
         String purchaseLotto = numbers.stream()
+                .sorted()
                 .map(Object::toString)
                 .collect(Collectors.joining(", "));
         return OPEN_BRACKET + purchaseLotto + CLOSE_BRACKET;

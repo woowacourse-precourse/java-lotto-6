@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Set;
 
 public class Application {
+    public static void main(String[] args) {
+
+    }
 //    public static void main(String[] args) {
 //        LottoPurchaseView purchaseView = new LottoPurchaseView();
 //        LottoPurchaseController purchaseController = new LottoPurchaseController(purchaseView);

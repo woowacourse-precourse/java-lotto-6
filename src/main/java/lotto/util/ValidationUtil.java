@@ -44,4 +44,11 @@ public class ValidationUtil {
             throw new IllegalArgumentException();
         }
     }
+
+    private static void makeNumbers(List<Integer> numbers, String str) {
+        if (str.isEmpty() || str.matches("[0-9]*")) {
+            throw new IllegalArgumentException();
+        }
+        numbers.add(Integer.parseInt(str));
+    }
 }

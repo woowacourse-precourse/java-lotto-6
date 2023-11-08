@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class LottoTicket {
+    private static final String ERROR_MESSAGE_FOR_NULL_OR_EMPTY_LIST = "Lotto 목록이 비었습니다";
     List<Lotto> lottos;
 
     private LottoTicket(List<Lotto> lottos) {
@@ -27,13 +28,13 @@ public class LottoTicket {
 
     private static void validateNull(List<Lotto> lottos) {
         if (Objects.isNull(lottos)) {
-            throw new IllegalArgumentException("[ERROR] 로또 목록이 비었습니다");
+            throw new IllegalArgumentException(ERROR_MESSAGE_FOR_NULL_OR_EMPTY_LIST);
         }
     }
 
     private static void validateEmpty(List<Lotto> lottos) {
         if (lottos.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 로또 목록이 비었습니다");
+            throw new IllegalArgumentException(ERROR_MESSAGE_FOR_NULL_OR_EMPTY_LIST);
         }
     }
 }

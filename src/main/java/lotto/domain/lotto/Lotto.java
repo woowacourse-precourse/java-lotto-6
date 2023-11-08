@@ -3,8 +3,11 @@ package lotto.domain.lotto;
 import java.util.List;
 
 public class Lotto {
-    private final List<LottoNumber> lottoNumbers;
+    private static final String ERROR_MESSAGE_FOR_INVALID_SIZE_OF_LOTTO_NUMBERS = "[ERROR] 숫자는 6개여야 합니다 : ";
+    private static final String ERROR_MESSAGE_FOR_DUPLICATE_LOTTO_NUMBERS ="[ERROR] 숫자는 중복될 수 없습니다";
     private final int LOTTO_SIZE = 6;
+    private final List<LottoNumber> lottoNumbers;
+
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -26,14 +29,14 @@ public class Lotto {
 
     private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 숫자는 6개여야 합니다 : " + numbers.size() + "개");
+            throw new IllegalArgumentException(ERROR_MESSAGE_FOR_INVALID_SIZE_OF_LOTTO_NUMBERS + numbers.size() + "개");
         }
     }
 
     private void validateDuplicateNumber(List<Integer> numbers) {
         int distinctCount = calculateDistinctCount(numbers);
         if (distinctCount != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 숫자는 중복될 수 없습니다");
+            throw new IllegalArgumentException(ERROR_MESSAGE_FOR_DUPLICATE_LOTTO_NUMBERS);
         }
     }
 

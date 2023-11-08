@@ -5,16 +5,18 @@ import java.util.Map;
 import lotto.constant.LottoResultStatus;
 
 public class LottoResult {
+    private static final int INIT_COUNT = 0;
+    private static final double PERCENT = 100.0;
     private Map<LottoResultStatus, Integer> result;
 
     private LottoResult() {
         result = new HashMap<>() {{
-            put(LottoResultStatus.NOTHING, 0);
-            put(LottoResultStatus.THREE, 0);
-            put(LottoResultStatus.FOUR, 0);
-            put(LottoResultStatus.FIVE, 0);
-            put(LottoResultStatus.FIVE_BONUS, 0);
-            put(LottoResultStatus.SIX, 0);
+            put(LottoResultStatus.NOTHING, INIT_COUNT);
+            put(LottoResultStatus.THREE, INIT_COUNT);
+            put(LottoResultStatus.FOUR, INIT_COUNT);
+            put(LottoResultStatus.FIVE, INIT_COUNT);
+            put(LottoResultStatus.FIVE_BONUS, INIT_COUNT);
+            put(LottoResultStatus.SIX, INIT_COUNT);
         }};
     }
 
@@ -42,7 +44,7 @@ public class LottoResult {
 
     private double calculateRateOfReturn(PurchasePrice purchasePrice) {
         int price = purchasePrice.getPrice();
-        return 100.0 * calculateEarnPrice() / price;
+        return PERCENT * calculateEarnPrice() / price;
     }
 
     private long calculateEarnPrice() {

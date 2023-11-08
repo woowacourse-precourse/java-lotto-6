@@ -8,6 +8,7 @@ import lotto.exception.LottoExceptionMessage;
 public class BonusNumber {
     private static final int START_INCLUSIVE = 1;
     private static final int END_INCLUSIVE = 45;
+    private static final int EXPECTED_TOTAL_COUNT = 7;
 
     private final int bonusNumber;
 
@@ -41,7 +42,7 @@ public class BonusNumber {
         List<Integer> winning = winningNumbers.getWinningNumbers();
         HashSet<Integer> set = new HashSet<>(winning);
         set.add(bonusNumber);
-        if (set.size() != 7) {
+        if (set.size() != EXPECTED_TOTAL_COUNT) {
             throw new IllegalArgumentException(LottoExceptionMessage.BONUS_NUMBER_MUST_NOT_DUPLICATE.getMessage());
         }
     }

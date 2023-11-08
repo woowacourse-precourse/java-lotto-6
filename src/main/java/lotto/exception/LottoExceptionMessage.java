@@ -12,7 +12,7 @@ public enum LottoExceptionMessage {
     BONUS_NUMBER_MUST_BETWEEN_START_AND_END_INCLUSIVE("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다."),
     BONUS_NUMBER_MUST_NOT_DUPLICATE("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
 
-    private String message;
+    private final String message;
 
     LottoExceptionMessage(String message) {
         this.message = message;

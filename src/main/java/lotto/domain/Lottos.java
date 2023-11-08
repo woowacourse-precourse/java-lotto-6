@@ -9,7 +9,7 @@ public class Lottos {
     private final List<Lotto> lottos = new ArrayList<>();
 
     private Lottos(int count, LottoNumbersGenerator generator) {
-        for (int i = 0; i < count; i++) {
+        for (int iteration = 0; iteration < count; iteration++) {
             addLotto(generator);
         }
     }

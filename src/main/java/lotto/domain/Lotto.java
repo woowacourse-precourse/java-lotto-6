@@ -7,6 +7,7 @@ import java.util.List;
 import lotto.exception.LottoExceptionMessage;
 
 public class Lotto {
+    private static final int EXPECTED_COUNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -26,14 +27,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != EXPECTED_COUNT) {
             throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_NUMBERS_MUST_BE_SIX_DIGITS.getMessage());
         }
     }
 
     private void isDuplicate(List<Integer> numbers) {
         HashSet<Integer> set = new HashSet<>(numbers);
-        if (set.size() != 6) {
+        if (set.size() != EXPECTED_COUNT) {
             throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_NUMBERS_MUST_BE_SIX_DIGITS.getMessage());
         }
     }

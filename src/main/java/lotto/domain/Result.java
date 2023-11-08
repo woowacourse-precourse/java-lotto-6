@@ -63,7 +63,7 @@ public class Result {
 
     private void calculateProfitMargin() {
         double payment = purchasedLottos.size() * 1000;
-        profitMargin =  profit * 100 / payment;
+        profitMargin =  Math.round((profit - payment) * 100 / payment);
     }
 
     public List<Integer> getMatchCount() {

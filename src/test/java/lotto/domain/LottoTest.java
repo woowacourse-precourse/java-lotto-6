@@ -24,19 +24,14 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("숫자 합계 계산을 통해 Lotto 객체가 제대로 생성이 되었는지 테스트 한다.")
+    @DisplayName("Lotto 에 저장된 로또 번호를 비교하여 Lotto 객체 생성을 검증하는 테스트")
     @Test
-    void testCreateLotto() {
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+    void testLottoCreation() {
+        List<Integer> numbers = List.of(11, 12, 13, 14, 15, 16);
         Lotto lotto = Lotto.create(numbers);
 
-        int lottoSum = lotto.getNumbers().stream()
-                .mapToInt(Integer::intValue)
-                .sum();
-        int numberSum = numbers.stream()
-                .mapToInt(Integer::intValue)
-                .sum();
+        List<Integer> lottoNumbers = lotto.getNumbers();
 
-        assertThat(lottoSum).isEqualTo(numberSum);
+        assertThat(lottoNumbers).containsExactly(11, 12, 13, 14, 15, 16);
     }
 }

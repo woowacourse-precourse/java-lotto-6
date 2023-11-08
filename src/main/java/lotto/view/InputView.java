@@ -7,6 +7,7 @@ import java.util.List;
 public class InputView {
 
     public static int readPurchaseAmount() {
+        OutputView.printLottoPurchaseAmountPrompt();
         return Integer.parseInt(Console.readLine());
     }
 

@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.dto.LottoNumberDTO;
 import lotto.dto.ProfitRateDTO;
 import lotto.dto.StatisticDTO;
-import lotto.vo.Grade;
+import lotto.constant.Grade;
 
 public class Printer {
     private static Printer printer;

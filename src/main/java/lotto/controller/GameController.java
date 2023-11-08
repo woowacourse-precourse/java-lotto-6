@@ -12,7 +12,7 @@ import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.model.Pocket;
-import lotto.vo.CommonUnits;
+import lotto.constant.CommonUnits;
 
 public class GameController {
     private Pocket pocket;

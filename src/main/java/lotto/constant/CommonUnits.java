@@ -1,4 +1,4 @@
-package lotto.vo;
+package lotto.constant;
 
 public class CommonUnits {
     public static final int MONEY_UNIT = 1000;

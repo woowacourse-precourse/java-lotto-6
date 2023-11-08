@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.vo.CommonUnits.MONEY_UNIT;
+import static lotto.constant.CommonUnits.MONEY_UNIT;
 
 public class Money {
     private final int money;

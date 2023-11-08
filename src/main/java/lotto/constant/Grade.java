@@ -1,4 +1,4 @@
-package lotto.vo;
+package lotto.constant;
 
 public enum Grade {
 

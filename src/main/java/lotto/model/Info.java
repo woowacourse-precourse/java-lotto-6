@@ -1,7 +1,7 @@
 package lotto.model;
 
-import lotto.vo.CommonUnits;
-import lotto.vo.Grade;
+import lotto.constant.CommonUnits;
+import lotto.constant.Grade;
 
 public class Info {
     private int[] statistic;

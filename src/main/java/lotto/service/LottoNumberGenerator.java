@@ -3,7 +3,7 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.dto.LottoNumberDTO;
 
-import static lotto.vo.CommonUnits.*;
+import static lotto.constant.CommonUnits.*;
 
 public class LottoNumberGenerator {
     private static LottoNumberGenerator lottoNumberGenerator;

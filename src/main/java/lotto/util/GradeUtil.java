@@ -1,6 +1,6 @@
 package lotto.util;
 
-import lotto.vo.Grade;
+import lotto.constant.Grade;
 
 public class GradeUtil {
     public static Grade gradeMapper(int corrects, boolean bonus) {

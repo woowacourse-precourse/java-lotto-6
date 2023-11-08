@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constant.ErrorMessage;
 import lotto.constant.LottoInformation;
 import java.util.Collections;
 import java.util.HashSet;
@@ -24,14 +25,14 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LottoInformation.LOTTO_NUMBER_TOTAL_SIZE.getNumber()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.IS_NOT_LOTTO_SIZE_MESSAGE.getMessage());
         }
     }
 
     private void duplicateValidation(List<Integer> numbers) {
         Set<Integer> removeDuplicationNumber = new HashSet<>(numbers);
         if(removeDuplicationNumber.size() != LottoInformation.LOTTO_NUMBER_TOTAL_SIZE.getNumber()){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.IS_DUPLICATION_LOTTO_NUMBER_MESSAGE.getMessage());
         }
     }
 

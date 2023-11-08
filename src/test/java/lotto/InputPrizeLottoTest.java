@@ -78,7 +78,7 @@ public class InputPrizeLottoTest extends NsTest {
     @Test
     void 예외_테스트_보너스_번호_숫자_외_입력() {
         assertSimpleTest(() -> {
-            runException("1000", "1,2,3,4,5,5", "O");
+            runException("1000", "1,2,3,4,5,6", "ONE");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
@@ -86,7 +86,7 @@ public class InputPrizeLottoTest extends NsTest {
     @Test
     void 예외_테스트_보너스_번호_범위_작은수() {
         assertSimpleTest(() -> {
-            runException("1000", "1,2,3,4,5,5", "-1");
+            runException("1000", "1,2,3,4,5,6", "-1");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
@@ -94,7 +94,15 @@ public class InputPrizeLottoTest extends NsTest {
     @Test
     void 예외_테스트_보너스_번호_범위_큰수() {
         assertSimpleTest(() -> {
-            runException("1000", "1,2,3,4,5,5", "46");
+            runException("1000", "1,2,3,4,5,6", "46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스_중복() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "6");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

@@ -41,6 +41,12 @@ class LottoStatisticsTest {
         }
     }
 
-
+    @Test
+    @DisplayName("올바르게 소수점 둘쨰 자리에서 반올림을 하는지 테스트")
+    void test_calculate_profit() {
+        LinkedHashMap<Rank, Integer> map = allocateHashMap();
+        double expectedProfit = lottoStatistics.calculateProfit(8000);
+        assertEquals(expectedProfit , 62.5);
+    }
 
 }

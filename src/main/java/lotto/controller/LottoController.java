@@ -40,7 +40,8 @@ public class LottoController {
         Money money = inputPurchaseAmount();
         Lottos purchasedLottos = purchaseLottos(money);
         WinningNumbers winningNumbers = requestWinningNumbers();
-        displayResults(purchasedLottos, winningNumbers, money);
+        LottoResults results = calculateLottoResults(purchasedLottos, winningNumbers);
+        displayResults(results, money);
     }
 
     private Money inputPurchaseAmount() {
@@ -100,13 +101,12 @@ public class LottoController {
         }
     }
 
-    private void displayResults(Lottos lottos, WinningNumbers winningNumbers, Money money) {
-        LottoResults results = calculateLottoResults(lottos, winningNumbers);
-        printLottoResults(results, money);
-    }
-
     private LottoResults calculateLottoResults(Lottos lottos, WinningNumbers winningNumbers) {
         return LottoResultCalculator.calculateResults(lottos, winningNumbers);
+    }
+
+    private void displayResults(LottoResults results, Money money) {
+        printLottoResults(results, money);
     }
 
     private void printLottoResults(LottoResults results, Money money) {

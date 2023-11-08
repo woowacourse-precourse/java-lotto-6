@@ -38,6 +38,7 @@ public class PlayLottoGame {
     }
     private void printLottoResult(LottoArrays lottoArrays, NumberInfo numberInfo){
 
+        processorHelper.judgeAndPrintLottoResult(lottoArrays, numberInfo);
     }
 
 }

@@ -11,4 +11,12 @@ public class NumberInfo {
         this.winningNumbersList = winningNumbersList;
         this.bonusNumber = bonusNumber;
     }
+
+    public BonusNumber getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public WinningNumber getWinningNumbersList() {
+        return winningNumbersList;
+    }
 }

@@ -21,6 +21,9 @@ public class Lotto {
     private List<Integer> getSortedNumbers(List<Integer> numbers) {
         return numbers.stream().sorted().toList();
     }
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
     @Override
     public String toString() {
         return numbers.toString();

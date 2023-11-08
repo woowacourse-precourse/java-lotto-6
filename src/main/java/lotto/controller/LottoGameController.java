@@ -1,10 +1,10 @@
 package lotto.controller;
 
 import lotto.LottoNumberGenerator.NormalLottoGenerator;
-import lotto.model.Game.Game;
-import lotto.model.Lotto.Lotto;
-import lotto.model.Result.Rank;
-import lotto.model.Money.Money;
+import lotto.model.Game;
+import lotto.model.Lotto;
+import lotto.model.Rank;
+import lotto.model.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

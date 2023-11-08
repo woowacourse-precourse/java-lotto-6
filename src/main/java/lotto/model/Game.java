@@ -1,10 +1,6 @@
-package lotto.model.Game;
+package lotto.model;
 
 import lotto.LottoNumberGenerator.LottoGenerator;
-import lotto.model.Lotto.BonusNumber;
-import lotto.model.Lotto.Lotto;
-import lotto.model.Lotto.WinningLotto;
-import lotto.model.Result.Rank;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package lotto.model.Money;
+package lotto.model;
 
 import static lotto.validator.ErrorMessage.ErrorMessage.NOT_DIVIDED_THOUSAND_EXCEPTION_MESSAGE;
 

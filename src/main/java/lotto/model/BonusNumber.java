@@ -1,4 +1,4 @@
-package lotto.model.Lotto;
+package lotto.model;
 
 public class BonusNumber {
     private int bonusNumber;

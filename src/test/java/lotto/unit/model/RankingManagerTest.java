@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoBucket;
 import lotto.model.LottoCreator;
@@ -20,6 +21,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.MockedStatic;
 
 class RankingManagerTest {
+    private static final int LOTTO_AMOUNT_OF_LOTTO_BUCKET = 1;
     private static MockedStatic<LottoCreator> lottoCreator;
 
     @BeforeAll
@@ -42,9 +44,12 @@ class RankingManagerTest {
         when(LottoCreator.createRandomLotto()).thenReturn(publishedLotto);
         RankingManager rankingManager = createLottoRanking(new LottoBucket(1),
                 new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12)));
+        int totalWinningSum = 0;
 
-        assertThat(rankingManager.getWinningDetails().values().stream().mapToInt(Integer::intValue).sum())
-                .isEqualTo(0);
+        Map<LottoWinningRule, Integer> winningDetails = rankingManager.getWinningDetails();
+
+        assertThat(winningDetails.values().stream().mapToInt(Integer::intValue).sum())
+                .isEqualTo(totalWinningSum);
     }
 
     @Test
@@ -53,9 +58,12 @@ class RankingManagerTest {
         when(LottoCreator.createRandomLotto()).thenReturn(publishedLotto);
         RankingManager rankingManager = createLottoRanking(new LottoBucket(1),
                 new Lotto(Arrays.asList(2, 3, 4, 5, 6, 12)));
+        int totalWinningSum = 1;
 
-        assertThat(rankingManager.getWinningDetails().values().stream().mapToInt(Integer::intValue).sum())
-                .isEqualTo(1);
+        Map<LottoWinningRule, Integer> winningDetails = rankingManager.getWinningDetails();
+
+        assertThat(winningDetails.values().stream().mapToInt(Integer::intValue).sum())
+                .isEqualTo(totalWinningSum);
     }
 
     @ParameterizedTest
@@ -72,9 +80,13 @@ class RankingManagerTest {
         List<Integer> numbers = Arrays.stream(inputWinningNumbers.split(UserRule.WINING_NUMBERS_SEPARATOR.getValue()))
                 .map(Integer::parseInt)
                 .toList();
-        RankingManager rankingManager = new RankingManager(new LottoBucket(1), new Lotto(numbers), bonusNumber);
+        RankingManager rankingManager = new RankingManager(new LottoBucket(LOTTO_AMOUNT_OF_LOTTO_BUCKET),
+                new Lotto(numbers), bonusNumber);
+        int addWinningCount = 1;
 
-        assertThat(rankingManager.getWinningDetails().get(rank)).isEqualTo(1);
+        Map<LottoWinningRule, Integer> winningDetails = rankingManager.getWinningDetails();
+
+        assertThat(winningDetails.get(rank)).isEqualTo(addWinningCount);
     }
 
     @ParameterizedTest
@@ -89,7 +101,8 @@ class RankingManagerTest {
         List<Integer> numbers = Arrays.stream(inputWinningNumbers.split(UserRule.WINING_NUMBERS_SEPARATOR.getValue()))
                 .map(Integer::parseInt)
                 .toList();
-        RankingManager rankingManager = new RankingManager(new LottoBucket(1), new Lotto(numbers), bonusNumber);
+        RankingManager rankingManager = new RankingManager(new LottoBucket(LOTTO_AMOUNT_OF_LOTTO_BUCKET),
+                new Lotto(numbers), bonusNumber);
 
         assertThat(rankingManager.calculateEarningsRate()).isEqualTo(earningsRate);
     }

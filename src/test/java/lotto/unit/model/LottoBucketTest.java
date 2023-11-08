@@ -18,6 +18,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.MockedStatic;
 
 class LottoBucketTest {
+    private static final int LOTTO_AMOUNT_OF_LOTTO_BUCKET = 1;
+    private static final int LOTTO_INDEX_OF_LOTTO_BUCKET = 0;
     private static MockedStatic<LottoCreator> lottoCreator;
 
     @BeforeAll
@@ -50,17 +52,17 @@ class LottoBucketTest {
     void 로또_바구니에서_꺼낸_로또는_자동생성된_로또다() {
         Lotto mockLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         given(LottoCreator.createRandomLotto()).willReturn(mockLotto);
-        LottoBucket lottoBucket = new LottoBucket(1);
+        LottoBucket lottoBucket = new LottoBucket(LOTTO_AMOUNT_OF_LOTTO_BUCKET);
 
-        assertThat(lottoBucket.getLotto(0)).isEqualTo(mockLotto);
+        assertThat(lottoBucket.getLotto(LOTTO_INDEX_OF_LOTTO_BUCKET)).isEqualTo(mockLotto);
     }
 
     @Test
     void 로또_바구니는_가지고있는_로또의_번호를_보여준다() {
         Lotto mockLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         given(LottoCreator.createRandomLotto()).willReturn(mockLotto);
-        LottoBucket lottoBucket = new LottoBucket(1);
+        LottoBucket lottoBucket = new LottoBucket(LOTTO_AMOUNT_OF_LOTTO_BUCKET);
 
-        assertThat(lottoBucket.getPublishedLotto().get(0)).isEqualTo(mockLotto.showNumbers());
+        assertThat(lottoBucket.getPublishedLotto().get(LOTTO_INDEX_OF_LOTTO_BUCKET)).isEqualTo(mockLotto.showNumbers());
     }
 }

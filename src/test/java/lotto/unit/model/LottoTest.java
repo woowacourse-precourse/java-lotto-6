@@ -46,8 +46,9 @@ class LottoTest {
     @Test
     void 오름차순으로_정렬된_로또_번호들을_보여준다() {
         Lotto lotto = new Lotto(Arrays.asList(6, 5, 4, 3, 2, 1));
+        String ascendingNumbers = "[1, 2, 3, 4, 5, 6]";
 
-        assertThat(lotto.showNumbers()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+        assertThat(lotto.showNumbers()).isEqualTo(ascendingNumbers);
     }
 
     @Test

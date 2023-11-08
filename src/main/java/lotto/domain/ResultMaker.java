@@ -46,7 +46,7 @@ public class ResultMaker {
         List<Lotto> userLottos = bundle.getBundle();
         double corrects = 0;
         for (Lotto lotto : userLottos) {
-            corrects = counting(lotto);
+            corrects = countingCorrects(lotto);
             if (corrects < Rank.FIFTH_PLACE.getCorrects()) {
                 continue;
             }
@@ -61,7 +61,7 @@ public class ResultMaker {
      * @param lotto 로또 묶음 속의 로또
      * @return 일치 갯수(보너스는 0.5)
      */
-    private double counting(Lotto lotto) {
+    private double countingCorrects(Lotto lotto) {
         List<Integer> answerLottos = selectedLottos.getSelectedNumbers();
         int bonus = selectedLottos.getBonus();
         double corrects = lotto.compareWithSelected(answerLottos);

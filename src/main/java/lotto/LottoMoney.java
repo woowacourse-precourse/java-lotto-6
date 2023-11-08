@@ -6,13 +6,21 @@ public class LottoMoney {
     private static final int LOTTO_MONEY_UNIT = 1000;
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-    private static void purchaseLotto() {
+    protected final int money;
+
+    public LottoMoney() {
+        this.money = purchaseLotto();
+    }
+
+    private static int purchaseLotto() {
         try {
             System.out.println("구매금액을 입력해 주세요.");
             int lottoMoney = inputLottoMoney();
             validateLottoMoney(lottoMoney);
+
+            return lottoMoney;
         } catch (IllegalArgumentException e) {
-            purchaseLotto();
+            return purchaseLotto();
         }
     }
 
@@ -31,9 +39,5 @@ public class LottoMoney {
             System.out.println(ERROR_MESSAGE + " 구매금액은 1000원 단위여야 합니다.");
             throw new IllegalArgumentException();
         }
-    }
-
-    public static void main(String[] args) {
-        purchaseLotto();
     }
 }

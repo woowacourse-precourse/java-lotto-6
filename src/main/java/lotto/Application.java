@@ -42,6 +42,9 @@ public class Application {
     }
 
     public static void main(String[] args) {
+        LottoMoney lottoMoney = new LottoMoney();
+        System.out.println(lottoMoney.money);
+
         Lotto winningNumbers = setLottoWinningNumbers();
         System.out.println(winningNumbers.numbers);
     }

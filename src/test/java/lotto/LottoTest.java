@@ -36,6 +36,7 @@ class LottoTest {
     @Test
     void createComparisonScore(){
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        System.out.println(lotto);
         assertThat(lotto.getComparisonScore(
                 new Lotto(List.of(1, 2, 3, 4, 5, 8)), 6))
                 .isEqualTo(ComparisonScore.FIVE_BONUS);

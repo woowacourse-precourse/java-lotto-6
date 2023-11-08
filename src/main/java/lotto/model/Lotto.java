@@ -17,10 +17,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LottoConfig.LOTTO_NUMBER_COUNT.getValue()) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_SIZE_ERROR
-                    .getFormattedMessage(LottoConfig.LOTTO_NUMBER_COUNT.getValue()));
-        }
+        Validator.validateNumbersSize(numbers, LottoConfig.LOTTO_NUMBER_COUNT.getValue());
         Validator.validateNumbersInRange(numbers);
         Validator.validateUniqueNumbers(numbers);
     }

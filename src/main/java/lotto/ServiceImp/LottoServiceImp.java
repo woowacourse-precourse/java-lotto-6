@@ -39,7 +39,8 @@ public class LottoServiceImp implements LottoService {
         {
             try
             {
-                resultRecord.add(getResultRecordOfEachLotto(lo, winningLotteryNumber, bonusNumber), 1);
+                int idx = getResultRecordOfEachLotto(lo, winningLotteryNumber, bonusNumber);
+                resultRecord.set(idx, resultRecord.get(idx) + 1);
             }
             catch (OutOfRankingException e)
             {

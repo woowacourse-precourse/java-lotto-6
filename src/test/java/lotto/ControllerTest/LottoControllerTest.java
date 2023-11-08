@@ -2,6 +2,8 @@ package lotto.ControllerTest;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.Application;
+import org.junit.jupiter.api.Test;
+
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import java.util.List;
 
@@ -9,13 +11,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoControllerTest extends NsTest
 {
+    @Test
     public void getBigInputTest() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("50000", "17,24,29,35,36,44", "13");
                     assertThat(output()).contains(
                             "50개를 구매했습니다.",
-                            "[2, 13, 27, 33, 35, 37]",
+                            "[17, 24, 29, 33, 35, 37]",
                             "[5, 11, 18, 24, 31, 40]",
                             "[3, 9, 15, 22, 26, 44]",
                             "[8, 16, 19, 27, 34, 41]",
@@ -65,21 +68,15 @@ public class LottoControllerTest extends NsTest
                             "[2, 9, 18, 21, 30, 41]",
                             "[5, 10, 19, 23, 32, 45]",
                             "[1, 6, 13, 22, 29, 40]",
-                            "[3, 12, 15, 24, 31, 42]",
-                            "[7, 11, 16, 25, 33, 44]",
-                            "[2, 8, 14, 20, 27, 35]",
-                            "[9, 17, 21, 28, 36, 43]",
-                            "[4, 10, 18, 26, 32, 39]",
-                            "[1, 5, 12, 19, 24, 34]",
-                            "3개 일치 (5,000원) - 10개",
-                            "4개 일치 (50,000원) - 2개",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 1개",
                             "5개 일치 (1,500,000원) - 0개",
                             "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
                             "6개 일치 (2,000,000,000원) - 0개",
-                            "총 수익률은 200.0%입니다."
+                            "총 수익률은 100.0%입니다."
                     );
                 },
-                List.of(2, 13, 27, 33, 35, 37),
+                List.of(17, 24, 29, 33, 35, 37),
                 List.of(5, 11, 18, 24, 31, 40),
                 List.of(3, 9, 15, 22, 26, 44),
                 List.of(8, 16, 19, 27, 34, 41),
@@ -138,6 +135,7 @@ public class LottoControllerTest extends NsTest
         );
     }
 
+    @Test
     public void getPrecisionTest() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
@@ -151,12 +149,12 @@ public class LottoControllerTest extends NsTest
                             "[2, 14, 20, 26, 33, 42]",
                             "[10, 18, 25, 34, 40, 43]",
                             "[1, 9, 17, 27, 35, 44]",
-                            "3개 일치 (5,000원) - 1개",
+                            "3개 일치 (5,000원) - 2개",
                             "4개 일치 (50,000원) - 0개",
                             "5개 일치 (1,500,000원) - 0개",
                             "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
                             "6개 일치 (2,000,000,000원) - 0개",
-                            "총 수익률은 0.7%입니다."
+                            "총 수익률은 142.9%입니다."
                     );
                 },
                 List.of(3, 16, 21, 28, 32, 41),
@@ -169,6 +167,7 @@ public class LottoControllerTest extends NsTest
         );
     }
 
+    @Test
     public void getRepeatInputTest() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
@@ -182,12 +181,12 @@ public class LottoControllerTest extends NsTest
                             "[2, 14, 20, 26, 33, 42]",
                             "[10, 18, 25, 34, 40, 43]",
                             "[1, 9, 17, 27, 35, 44]",
-                            "3개 일치 (5,000원) - 1개",
+                            "3개 일치 (5,000원) - 2개",
                             "4개 일치 (50,000원) - 0개",
                             "5개 일치 (1,500,000원) - 0개",
                             "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
                             "6개 일치 (2,000,000,000원) - 0개",
-                            "총 수익률은 71.4%입니다."
+                            "총 수익률은 142.9%입니다."
                     );
                 },
                 List.of(3, 16, 21, 28, 32, 41),

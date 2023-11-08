@@ -7,9 +7,7 @@ import static lotto.constants.ExceptionMessages.INPUT_EMPTY;
 import static lotto.constants.ExceptionMessages.INVALID_NUMBER;
 import static lotto.constants.ExceptionMessages.INVALID_RANGE;
 import static lotto.constants.ExceptionMessages.INVALID_TOTAL_NUMBER;
-import static org.junit.jupiter.api.Assertions.*;
 
-import lotto.constants.ExceptionMessages;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,5 @@
 package lotto.model;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
 import lotto.model.dto.WinningNumDTO;
 import org.assertj.core.api.Assertions;
@@ -11,13 +9,15 @@ import org.junit.jupiter.api.Test;
 
 class LottosTest {
     Lottos lottos;
+
     @BeforeEach
     void beforeEach() {
         lottos = new Lottos(List.of(
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                new Lotto(List.of(7,8,9,10,11,12)),
-                new Lotto(List.of(13,14,15,16,17,18))));
+                new Lotto(List.of(7, 8, 9, 10, 11, 12)),
+                new Lotto(List.of(13, 14, 15, 16, 17, 18))));
     }
+
     @DisplayName("발행된 로또가 3개일 떄 로또의 수")
     @Test
     void getNumberOfLottoTest() {

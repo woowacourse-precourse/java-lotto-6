@@ -3,7 +3,6 @@ package lotto.model;
 import static lotto.constants.LottoConstants.PRICE_OF_LOTTO;
 
 import java.util.List;
-import lotto.constants.LottoConstants;
 import lotto.converter.MessageConverter;
 
 public class Result {
@@ -12,7 +11,7 @@ public class Result {
 
     public Result(List<Ranking> rankings) {
         this.rankings = rankings;
-        this.totalProfit = calculateTotalProfit(rankings.size()* PRICE_OF_LOTTO);
+        this.totalProfit = calculateTotalProfit(rankings.size() * PRICE_OF_LOTTO);
     }
 
     private double calculateTotalProfit(int payment) {

@@ -4,6 +4,7 @@ import static lotto.constants.ExceptionMessages.CATCH_ERROR;
 import static lotto.constants.ExceptionMessages.INPUT_EMPTY;
 import static lotto.constants.ExceptionMessages.INVALID_NUMBER;
 import static lotto.constants.ExceptionMessages.INVALID_PAYMENT;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

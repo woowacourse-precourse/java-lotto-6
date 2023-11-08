@@ -1,7 +1,5 @@
 package lotto.model.dto;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -9,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class PayDTOTest {
     PayDTO payDTO;
+
     @BeforeEach
     void beforeEach() {
         payDTO = PayDTO.from("2000");

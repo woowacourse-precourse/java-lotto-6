@@ -2,7 +2,6 @@ package lotto.converter;
 
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.model.Lottos;
 import lotto.model.Ranking;
 
 public class MessageConverter {
@@ -12,6 +11,7 @@ public class MessageConverter {
     private static final String NEXT_LINE = "\n";
 
     private static final String UNIT = "개\n";
+
     public static String writePurchasedLottos(List<Lotto> lottos) {
         StringBuilder sb = new StringBuilder();
         lottos.forEach(lotto -> sb.append(lotto.writePurchasedLotto()).append(NEXT_LINE));

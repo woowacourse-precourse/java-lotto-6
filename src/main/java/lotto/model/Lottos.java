@@ -1,10 +1,7 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 import lotto.converter.MessageConverter;
 import lotto.model.dto.WinningNumDTO;
 
@@ -14,6 +11,7 @@ public class Lottos {
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
+
     public String writePurchasedLottos() {
         return MessageConverter.writePurchasedLottos(lottos);
     }

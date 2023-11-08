@@ -3,7 +3,6 @@ package lotto.model;
 import static lotto.constants.LottoConstants.NUMBER_OF_LOTTO_NUMBERS;
 
 import java.util.List;
-import lotto.constants.LottoConstants;
 import lotto.converter.MessageConverter;
 import lotto.model.dto.WinningNumDTO;
 

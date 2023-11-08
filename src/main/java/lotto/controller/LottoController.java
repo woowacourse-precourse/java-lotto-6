@@ -24,14 +24,17 @@ public class LottoController {
         List<Lotto> newLottos = buyLottos();
         this.lottos = new Lottos(newLottos);
     }
+
     private static List<Lotto> buyLottos() {
         PayDTO payDTO = InputView.readPayment();
         List<Lotto> new_lottos = new ArrayList<>();
         IntStream.range(0, payDTO.getNumberOfLotto()).forEach(i -> new_lottos.add(createLotto()));
         return new_lottos;
     }
+
     private static Lotto createLotto() {
-        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO_NUMBERS));
+        List<Integer> numbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO_NUMBERS));
         Collections.sort(numbers);
         return new Lotto(numbers);
     }

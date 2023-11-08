@@ -87,4 +87,10 @@ public class LottoGame {
                     prizeScoreToCountPrizes.get(prizeScores.get(i)));
         }
     }
+
+    public void printProfitRate(List<Integer> totalPrizes) {
+        int sum = totalPrizes.stream().reduce(0, Integer::sum);
+        double profitRate = (double) sum / money * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", (double) Math.round(profitRate * 10) / 10);
+    }
 }

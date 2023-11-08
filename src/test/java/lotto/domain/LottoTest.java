@@ -41,10 +41,16 @@ class LottoTest {
         lottos.add(new Lotto(List.of(1, 2, 3, 8, 9, 10)));
         lottos.add(new Lotto(List.of(1, 2, 13, 14, 15, 16)));
         //given
-        List<String> results = new ArrayList<String>();
+        List<RankingStatus> results = new ArrayList<RankingStatus>();
         lottos.stream()
                 .forEach(lotto->results.add(lotto.decideResult(game.answer, game.bonusNumber)));
         //then
-        assertThat(results).contains("1등","2등","3등","4등","5등","꽝");
+        assertThat(results).contains(RankingStatus.FIRST_RANK,
+                RankingStatus.SECOND_RANK,
+                RankingStatus.THIRD_RANK,
+                RankingStatus.FORTH_RANK,
+                RankingStatus.FIFTH_RANK,
+                RankingStatus.BOOM);
     }
+
 }

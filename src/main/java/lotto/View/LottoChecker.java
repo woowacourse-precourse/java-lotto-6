@@ -2,6 +2,7 @@ package lotto.View;
 
 import lotto.Model.Lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoChecker {
@@ -24,15 +25,18 @@ public class LottoChecker {
     }
 
     public static void checkWinning() {
-        Integer count = 0;
+        List<Integer> counts = new ArrayList<>();
         for (Lotto boughtLotto : boughtLottos) {
+            Integer count = 0;
             List<Integer> boughtNumbers = boughtLotto.getNumbers();
             for (Integer winningNumber : winningNumbers) {
                 if (boughtNumbers.contains(winningNumber)) {
                     count++;
                 }
             }
+            counts.add(count);
             System.out.println(String.format("당첨 개수: %d", count));
         }
+        System.out.println(counts);
     }
 }

@@ -1,20 +1,32 @@
 package lotto.domain;
 
-import lotto.dto.LottoReturnsRateDTO;
 import lotto.dto.LottoWinningResultDTO;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
+import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LottoResultTest {
 
-    @Test
-    void 당첨_로또_번호와_보너스_번호가_중복되면_예외가_발생한다() {
-        assertThatThrownBy(() -> LottoResult.create(new Lotto(List.of(1, 2, 3, 4, 5, 6)), BonusNumber.create(1)))
-                .isInstanceOf(IllegalArgumentException.class);
+    @ParameterizedTest
+    @MethodSource("generateData")
+    void LottoResultTest_객체_생성(List<Integer> inputNumbers, int inputNumber) {
+        assertThat(LottoResult.create(new Lotto(inputNumbers), BonusNumber.create(inputNumber)));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
+    void 당첨_로또_번호와_보너스_번호가_중복되면_예외가_발생한다(int input) {
+        assertThatThrownBy(() -> LottoResult.create(new Lotto(List.of(1, 2, 3, 4, 5, 6)), BonusNumber.create(input)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호와 당첨 번호는 중복될 수 없습니다.");
     }
 
     @Test
@@ -28,16 +40,17 @@ public class LottoResultTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 7)),
                 new Lotto(List.of(1, 2, 3, 4, 5, 6))
         );
-        assertEquals(lottoResult.calculateResult(lottos).lottoWinningResultDTOs(),
-                List.of(
-                        new LottoWinningResultDTO(0, false),
-                        new LottoWinningResultDTO(3, false),
-                        new LottoWinningResultDTO(4, false),
-                        new LottoWinningResultDTO(5, false),
-                        new LottoWinningResultDTO(5, true),
-                        new LottoWinningResultDTO(6, false)
-                )
-        );
+        assertThat(lottoResult.calculateResult(lottos).lottoWinningResultDTOs())
+                .isEqualTo(
+                        List.of(
+                                new LottoWinningResultDTO(0, false),
+                                new LottoWinningResultDTO(3, false),
+                                new LottoWinningResultDTO(4, false),
+                                new LottoWinningResultDTO(5, false),
+                                new LottoWinningResultDTO(5, true),
+                                new LottoWinningResultDTO(6, false)
+                        )
+                );
     }
 
     @Test
@@ -51,8 +64,16 @@ public class LottoResultTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 7)),
                 new Lotto(List.of(1, 2, 3, 4, 5, 6))
         );
-        assertEquals(lottoResult.calculateResult(lottos).lottoReturnsRateDTO(),
-                new LottoReturnsRateDTO(3.385925E7)
+        assertThat(lottoResult.calculateResult(lottos).lottoReturnsRateDTO().lottoReturnsRate())
+                .isEqualTo(3.385925E7);
+    }
+
+    static Stream<Arguments> generateData() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 7),
+                Arguments.of(List.of(11, 12, 13, 14, 15, 16), 17),
+                Arguments.of(List.of(21, 22, 23, 24, 25, 26), 27),
+                Arguments.of(List.of(31, 32, 33, 34, 35, 36), 28)
         );
     }
 }

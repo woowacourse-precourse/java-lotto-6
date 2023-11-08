@@ -14,11 +14,11 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate();
+        validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate() {
+    private void validate(List<Integer> numbers) {
         validateEmpty(numbers);
         validateSize(numbers);
         validDuplicates(numbers);
@@ -26,9 +26,9 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     private static void validateEmpty(List<Integer> numbers) {
-        if (numbers.size() == 0) {
+        if (numbers.isEmpty()) {
             throw new IllegalArgumentException(
-                    String.format("%s 아무 것도 입력되지 않았습니다."));
+                    String.format("%s 아무 것도 입력되지 않았습니다.", START_MESSAGE));
         }
     }
 

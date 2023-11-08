@@ -45,6 +45,15 @@ class BonusNumberValidationTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호와 당첨 번호가 중복되는 숫자가 있으면 에러가 발생한다.")
+    @Test
+    void getDuplicatedNumber() {
+        Lotto lotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
+        int bonusNumber = 6;
+        assertThatThrownBy(() -> bonusNumberValidation.validateDuplicateBonusNumber(lotto, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("보너스 번호를 입력하면 숫자로 반환한다.")
     @Test
     void generateBonusNumber() {

@@ -20,12 +20,13 @@ public class LottoApp {
     public void run() {
         requestPublishLotto();
         requestWinningNumber();
+        requestBonusNumber();
 
         Console.close();
     }
 
     private void requestPublishLotto() {
-        while(true) {
+        while (true) {
             try {
                 InputView.printInputBuyAmountRequest();
                 LottoCollector lottoCollector = lottoController.publishLotto(Console.readLine());
@@ -38,7 +39,7 @@ public class LottoApp {
     }
 
     private void requestWinningNumber() {
-        while(true) {
+        while (true) {
             try {
                 InputView.printInputWinningNumber();
                 String winningNumber = Console.readLine();
@@ -49,6 +50,19 @@ public class LottoApp {
                 System.out.println(e.getMessage());
             }
         }
+    }
 
+    private void requestBonusNumber() {
+        while (true) {
+            try {
+                InputView.printInputBonusNumber();
+                String bonusNumber = Console.readLine();
+
+                lottoController.createBonusNumber(bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

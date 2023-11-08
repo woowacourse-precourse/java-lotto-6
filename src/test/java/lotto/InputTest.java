@@ -103,4 +103,17 @@ public class InputTest {
 
         assertThat(expect).isEqualTo(Input.getBonusNumber());
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"46"})
+    public void testInvalidBonusNumber(String wrongBonusNumber) {
+        //given
+        setUp(wrongBonusNumber);
+
+        // then
+        assertThatThrownBy(() -> {
+            Input.getBonusNumber();
+        })
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

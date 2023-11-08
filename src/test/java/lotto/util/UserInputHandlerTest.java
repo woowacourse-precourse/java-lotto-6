@@ -56,4 +56,27 @@ class UserInputHandlerTest extends TestDefault {
 
         assertThat(UserInputHandler.getWinningNumbers()).isEqualTo(expected);
     }
+
+    @DisplayName("보너스 번호를 정상적으로 입력 했을때 예외가 발생하지 않는다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2"})
+    void testBonusNumberInputSuccess(String userInput) {
+        Integer expected = Integer.parseInt(userInput);
+        setInputs(userInput);
+
+        Integer bonusNumber = UserInputHandler.getBonusNumber();
+
+        assertThat(bonusNumber).isEqualTo(expected);
+    }
+
+    @DisplayName("보너스 번호를 숫자 말고 다른걸 입력 했을때 예외 출력후 다시 입력이 가능하다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"\n", "test", "!@"})
+    void testBonusNumberInputNumericException(String userInput) {
+        String nextInput = "1";
+
+        setInputs(userInput, nextInput);
+
+        assertThat(UserInputHandler.getBonusNumber()).isEqualTo(Integer.parseInt(nextInput));
+    }
 }

@@ -1,13 +1,14 @@
 package lotto.util;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import lotto.domain.UserLotto;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.UserLotto;
-import lotto.util.GenerateLottoNumbers;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 class GenerateLottoNumbersTest {
     private static GenerateLottoNumbers generateLottoNumbers = new GenerateLottoNumbers();

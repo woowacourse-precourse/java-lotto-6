@@ -25,20 +25,30 @@ public class LottoGame {
     }
 
     private void createLottos() {
-        inputCost = inputManager.inputLottoCost();
+        try {
+            inputCost = inputManager.inputInt("구입금액을 입력해 주세요.");
 
-        lottos = new Lottos(inputCost);
-        lottos.createLottos();
+            lottos = new Lottos(inputCost);
+            lottos.createLottos();
 
-        outputManager.printLottos(lottos);
+            outputManager.printLottos(lottos);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            createLottos();
+        }
     }
 
     private void createWinningNumbers() {
-        List<Integer> winningNumbers = inputManager.inputWinningNumbers();
-        int bonusNumber = inputManager.inputBonusNumber(winningNumbers);
+        try {
+            List<Integer> winningNumbers = inputManager.inputMultipleInt("\n당첨 번호를 입력해 주세요.");
+            int bonusNumber = inputManager.inputInt("\n보너스 번호를 입력해 주세요.");
 
-        LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(new Lotto(winningNumbers), bonusNumber);
-        matchCounts = lottoWinningNumbers.correctNumberCheckerForMultipleLottos(lottos);
+            LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(new Lotto(winningNumbers), bonusNumber);
+            matchCounts = lottoWinningNumbers.correctNumberCheckerForMultipleLottos(lottos);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            createWinningNumbers();
+        }
     }
 
     private void createResult() {

@@ -25,7 +25,6 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-
         if (numbers.isEmpty()) {
             throw LottoException.of(EMPTY);
         }

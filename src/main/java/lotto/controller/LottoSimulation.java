@@ -54,7 +54,7 @@ public class LottoSimulation {
             try {
                 return new WinningNumber(stringToNumberList(inputView.readWinningNumber()));
             } catch (IllegalArgumentException e) {
-                checkErrorMessage(e);
+                outputView.printMessage(checkErrorMessage(e));
             }
         }
     }
@@ -84,15 +84,13 @@ public class LottoSimulation {
                 .toList();
     }
 
-    private void checkErrorMessage(IllegalArgumentException e) {
+    private String checkErrorMessage(IllegalArgumentException e) {
         if (e.getMessage().equals(LOTTO_LENGTH_ERROR_MESSAGE.getErrorMessage())) {
-            outputView.printMessage(String.format(LOTTO_LENGTH_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString()));
+            return String.format(LOTTO_LENGTH_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString());
         }
         if (e.getMessage().equals(LOTTO_NUMBER_ERROR_MESSAGE.getErrorMessage())) {
-            outputView.printMessage(String.format(LOTTO_NUMBER_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString()));
+            return String.format(LOTTO_NUMBER_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString());
         }
-        if (e.getMessage().equals(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE.getErrorMessage())) {
-            outputView.printMessage(String.format(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString()));
-        }
+        return String.format(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString());
     }
 }

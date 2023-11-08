@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static java.util.Comparator.naturalOrder;
@@ -15,15 +16,18 @@ public class User {
     final static int LOTTO_END_NUMBER = 45;
     final static int LOTTO_PICK_NUMBER = 6;
     public int inputMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
         String moneyStr = Console.readLine();
-        System.out.println();
-        return verifyMoney(moneyStr);
+        try{
+            return verifyMoney(moneyStr);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputMoney();
+        }
+
     }
 
     public static int verifyMoney(String moneyStr) {
         int money;
-
         try {
             money = Integer.parseInt(moneyStr);
         } catch (NumberFormatException e) {
@@ -34,12 +38,15 @@ public class User {
             throw new IllegalArgumentException("[ERROR] 1000원을 단위로 입력해주세요");
         }
 
+        if (money < 0) {
+            throw new IllegalArgumentException("[ERROR] 0원 이상의 돈을 입력해주세요");
+        }
+
         return money;
     }
 
     public static int verifyIntValue(String moneyStr) {
         int money;
-
         try {
             money = Integer.parseInt(moneyStr);
         } catch (NumberFormatException e) {
@@ -56,8 +63,9 @@ public class User {
         List<List<Integer>> lottoNumberTotal = new ArrayList<>();
         for (int i = 0; i < lottoNum; i++) {
             List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_PICK_NUMBER);
-            lottoNumber.sort(naturalOrder());
-            lottoNumberTotal.add(lottoNumber);
+            List<Integer> lottoNumberOrder = new ArrayList<>(lottoNumber);
+            Collections.sort(lottoNumberOrder);
+            lottoNumberTotal.add(lottoNumberOrder);
         }
         printLottoNumbers(lottoNumberTotal);
         System.out.println();
@@ -70,26 +78,31 @@ public class User {
         }
     }
 
-    public List<Integer> inputAnswer() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+    public Lotto inputAnswer() {
         List<Integer> answerNum = new ArrayList<>();
         String answerStr = Console.readLine();
         String[] answer = answerStr.split(",");
-        System.out.println();
 
-        for (String numStr : answer) {
-            answerNum.add(verifyIntValue(numStr));
+        try{
+            for (String numStr : answer) {
+                answerNum.add(verifyIntValue(numStr));
+            }
+            return new Lotto(answerNum);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputAnswer();
         }
-
-        return answerNum;
     }
 
-    public int inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusStr = Console.readLine();
-        System.out.println();
 
-        return verifyIntValue(bonusStr);
+    public int inputBonusNumber() {
+        String bonusStr = Console.readLine();
+        try{
+            return verifyIntValue(bonusStr);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputBonusNumber();
+        }
     }
 
 }

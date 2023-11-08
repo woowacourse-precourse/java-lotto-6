@@ -17,19 +17,33 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 숫자 6개를 입력해주세요.");
+        }
+
+        if (compareSameValue(numbers)){
+            throw new IllegalArgumentException("[ERROR] 중복되는 숫자없이 입력해주세요.");
         }
     }
 
     // TODO: 추가 기능 구현
 
+    public boolean compareSameValue(List<Integer> answerNum){
+        for(int i=0; i<answerNum.size(); i++){
+            for(int j= i+1; j< answerNum.size(); j++){
+                if (answerNum.get(i).equals(answerNum.get(j))){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public void calLottoResult(List<List<Integer>> lottoNumbers, int bonus, int money) {
         System.out.println("당첨 통계");
         System.out.println("---");
         ArrayList<Integer> lottoResult = matchNumbers(lottoNumbers, bonus);
         printResult(lottoResult);
-        String profit = String.format("%.2f", calTotalProfit(lottoResult).doubleValue() / money);
+        String profit = String.format("%.1f", calTotalProfit(lottoResult).doubleValue() / money * 100);
         System.out.println("총 수익률은 " + profit + "%입니다.");
     }
 

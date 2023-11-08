@@ -43,9 +43,9 @@ public class Lotto {
     }
 
     /**
-     * Description : 1-45 범위 숫자가 맞는지 확인
+     * Description : LottoNumbers 로또숫자들 반환
      *
-     * @Method : validateNumberRange()
+     * @Method : getLottoNumbers()
      * @return : List<Integer>
      */
     public List<Integer> getLottoNumbers() {

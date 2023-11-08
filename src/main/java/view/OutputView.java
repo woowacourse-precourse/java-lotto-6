@@ -36,7 +36,6 @@ public class OutputView {
      * @Method : printLottoNums()
      */
     public void printLottoNums(List<Integer> LottoNums){
-        Collections.sort(LottoNums);
         System.out.println(LottoNums);
     }
     /**

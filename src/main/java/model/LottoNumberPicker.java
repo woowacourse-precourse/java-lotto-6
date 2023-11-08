@@ -7,6 +7,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import utility.Utility;
 
@@ -19,6 +21,35 @@ public class LottoNumberPicker {
      * @return : List<Integer>
      */
     public List<Integer> lottoNumberPick(){
-        return Utility.campPickUniqueNumbersInRange();
+        List<Integer> sortedLottoNumbers = lottoNumberSort(Utility.campPickUniqueNumbersInRange());
+        return sortedLottoNumbers;
+    }
+
+    /**
+     * Description : 숫자리스트 정렬 (버블 정렬)
+     *
+     * @Method : campPickUniqueNumbersInRange()
+     * @return : List<Integer>
+     */
+    public List<Integer> lottoNumberSort(List<Integer> lottoNumbers) {
+        for (int i = 0; i < lottoNumbers.size(); i++) {
+            for (int j = 0; j < lottoNumbers.size() - i - 1; j++) {
+                if (lottoNumbers.get(j) > lottoNumbers.get(j + 1)) {
+                    swap(lottoNumbers, j, j + 1);
+                }
+            }
+        }
+        return lottoNumbers;
+    }
+    /**
+     * Description : 버블 정렬용 swap 연산
+     *
+     * @Method : campPickUniqueNumbersInRange()
+     * @return : List<Integer>
+     */
+    public void swap(List<Integer> lottoNumbers, int source, int target) {
+        int temp = lottoNumbers.get(source);
+        lottoNumbers.set(source, lottoNumbers.get(target));
+        lottoNumbers.set(target, temp);
     }
 }

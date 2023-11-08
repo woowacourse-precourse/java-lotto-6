@@ -11,6 +11,8 @@ public class OutputView {
     private static final String BUY_COUNT = "개를 구매했습니다.";
     private static final String WINNING_RESULT ="당첨 통계";
     private static final String LINE ="---";
+    private static final String REVENUE_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.\n";
+
 
     public static void printLottoCount(int count){
         System.out.println(count + BUY_COUNT);
@@ -41,7 +43,7 @@ public class OutputView {
     }
 
     public static void printRevenueRate(double revenueRate) {
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", revenueRate);
+        System.out.printf(REVENUE_RATE_MESSAGE, revenueRate);
     }
 
 

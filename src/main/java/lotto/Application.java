@@ -6,6 +6,7 @@ import lotto.rank.domain.Ranks;
 import lotto.rank.service.RankService;
 import lotto.rank.domain.RankStatistics;
 import lotto.userLotto.service.LottoService;
+import lotto.util.LottoConstant;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.winningLotto.domain.LottoBonusNumber;
@@ -49,7 +50,7 @@ public class Application {
         // 결과 기록
         RankStatistics rankStatistics = rankService.createRankStatistics();
         rankStatistics.recordLottoRanks(ranks.getRanks());
-        double revenueRate = rankStatistics.calculateLottoRevenueRate(lottoCount * 1000);
+        double revenueRate = rankStatistics.calculateLottoRevenueRate(lottoCount * LottoConstant.LOTTO_PRICE);
 
         //결과 출력
         OutputView.printResultRankStatistics(rankStatistics.getRankCount());

@@ -18,9 +18,6 @@ public class LottoNumber {
         sort(lottoNumbers);
         this.lottoNumbers = lottoNumbers;
     }
-    public List<Positive> getLottoNumbers(){
-        return lottoNumbers;
-    }
 
     public boolean contains(LottoBonusNumber lottoBonusNumber){
         for(Positive lottoNumbers : lottoNumbers){
@@ -32,15 +29,21 @@ public class LottoNumber {
     }
     public int match(Lotto userLotto){
         int matchCount =0;
-        for(int i =0; i<6; i++){
-            for(int j = 0; j<6;j++){
-                if(lottoNumbers.get(j).getNumber()==userLotto.getLotto().get(i)){
-                    matchCount++;
-                }
+        for(int i =0; i<LottoConstant.LOTTO_SIZE; i++){
+            matchCount = getMatchCount(userLotto, matchCount, i);
+        }
+        return matchCount;
+    }
+
+    private int getMatchCount(Lotto userLotto, int matchCount, int i) {
+        for(int j = 0; j<LottoConstant.LOTTO_SIZE;j++){
+            if(lottoNumbers.get(j).getNumber()== userLotto.getLotto().get(i)){
+                matchCount++;
             }
         }
         return matchCount;
     }
+
     private void validateBlank(List<Positive> lottoNumbers) {
         if (lottoNumbers == null || lottoNumbers.isEmpty()) {
             throw new IllegalArgumentException();

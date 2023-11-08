@@ -18,10 +18,6 @@ public class RankCount {
         rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
     }
 
-    public int getCount(Rank rank) {
-        return rankCount.getOrDefault(rank, 0);
-    }
-
     public Map<Rank, Integer> getUnmodifiableRankCount() {
         return Collections.unmodifiableMap(rankCount);
     }

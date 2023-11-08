@@ -1,5 +1,7 @@
 package lotto.rank.domain;
 
+import lotto.util.LottoConstant;
+
 public enum Rank {
     NONE(0, 0, "꽝"),
     FIFTH(3, 5_000, "3개 일치"),
@@ -18,9 +20,6 @@ public enum Rank {
         this.message = message;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
 
     public int getWinningMoney() {
         return winningMoney;
@@ -31,11 +30,21 @@ public enum Rank {
     }
 
     public static Rank valueOf(int matchCount, boolean matchBonus) {
-        if (matchCount == 6) return FIRST;
-        if (matchCount == 5 && matchBonus) return SECOND;
-        if (matchCount == 5) return THIRD;
-        if (matchCount == 4) return FOURTH;
-        if (matchCount == 3) return FIFTH;
+        if (matchCount == LottoConstant.NUMBER_SIX) {
+            return FIRST;
+        }
+        if (matchCount == LottoConstant.NUMBER_FIVE && matchBonus) {
+            return SECOND;
+        }
+        if (matchCount == LottoConstant.NUMBER_FIVE) {
+            return THIRD;
+        }
+        if (matchCount == LottoConstant.NUMBER_FOUR) {
+            return FOURTH;
+        }
+        if (matchCount == LottoConstant.NUMBER_THREE) {
+            return FIFTH;
+        }
         return NONE;
     }
 }

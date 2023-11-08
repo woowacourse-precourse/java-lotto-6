@@ -42,4 +42,9 @@ public class ConsoleWriterImpl implements ConsoleWriter {
         System.out.println(lottoResultMessage);
     }
 
+    @Override
+    public void printErrorMessage(final String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
 }

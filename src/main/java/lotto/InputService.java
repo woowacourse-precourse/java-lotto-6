@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class InputService {
     static private final String requestMoney ="구입금액을 입력해 주세요.";
@@ -25,7 +26,7 @@ public class InputService {
         tempWinningNumbers.stream()
                 .forEach(ValidateService::validateNumber);
         List<Integer> winningNumbers = tempWinningNumbers.stream()
-                .map(Integer::parseInt).toList();
+                .map(Integer::parseInt).collect(Collectors.toList());
         ValidateService.validateNumbersInRange(winningNumbers);
         ValidateService.validateAuthorizedLength(winningNumbers);
         ValidateService.validateDuplicatedNums(winningNumbers);

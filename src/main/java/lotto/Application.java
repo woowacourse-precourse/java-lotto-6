@@ -11,5 +11,6 @@ public class Application {
         LottoService lottoService = new LottoService();
         LottoController lottoController = new LottoController(lottoService, inputView, outputView);
         lottoController.printLotto();
+        lottoController.getWinNumber();
     }
 }

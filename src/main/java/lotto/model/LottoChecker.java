@@ -37,7 +37,7 @@ public class LottoChecker {
         double totalProfit = 0;
         for (int i = 0; i < values.length; i++) {
             if (sameNumberCount[i] > 0) {
-                totalProfit += values[i].getPrice();
+                totalProfit += values[i].getPrice() * sameNumberCount[i];
             }
         }
         return totalProfit;

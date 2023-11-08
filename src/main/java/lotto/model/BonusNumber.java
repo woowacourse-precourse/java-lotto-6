@@ -3,6 +3,9 @@ package lotto.model;
 import java.util.List;
 
 public class BonusNumber {
+    public static final int LOTTO_NUMBER_MIN = 1;
+    public static final int LOTTO_NUMBER_MAX = 45;
+
     private static int bonusNumber;
 
     public BonusNumber(int bonusNumber) {
@@ -40,6 +43,6 @@ public class BonusNumber {
     }
 
     private static boolean checkInputBounds(int bonusNumber) {
-        return 1 <= bonusNumber && bonusNumber <= 45;
+        return LOTTO_NUMBER_MIN <= bonusNumber && bonusNumber <= LOTTO_NUMBER_MAX;
     }
 }

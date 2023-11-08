@@ -6,6 +6,10 @@ import lotto.model.MatchingCounts;
 import lotto.model.Purchase;
 
 public class Calculator {
+    private static final int MINIMUM_COUNT_FOR_PRIZE = 3;
+    private static final int REQUIRED_COUNT_FOR_BONUS = 5;
+    private static final int NUMBER_OF_PRIZES = 5;
+
     public Calculator() {
     }
 
@@ -20,11 +24,11 @@ public class Calculator {
     }
 
     private boolean hasReachedCount5(int count) {
-        return count == 5;
+        return count == REQUIRED_COUNT_FOR_BONUS;
     }
 
     private void handleMatchingCounts(int count, boolean isCount5) {
-        if (count >= 3 && !isCount5) {
+        if (count >= MINIMUM_COUNT_FOR_PRIZE && !isCount5) {
             MatchingCounts.displayWinningInfo(count, 0);
         }
     }
@@ -80,7 +84,7 @@ public class Calculator {
     private static int calculateLineLottoTotal(Prize[] prizes, MatchingCounts matchingCounts) {
         int lineLottoTotal = 0;
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < NUMBER_OF_PRIZES; i++) {
             lineLottoTotal += prizes[i].getPrizeAmount() * matchingCounts.getMatchingCount().get(i);
         }
 

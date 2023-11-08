@@ -8,11 +8,15 @@ import java.util.stream.Collectors;
 import lotto.model.Lotto;
 
 public class GeneratorLotto {
+    public static final int LOTTO_NUMBER_MIN = 1;
+    public static final int LOTTO_NUMBER_MAX = 45;
+    public static final int LOTTO_NUMBER_COUNT = 6;
+
     public GeneratorLotto() {
     }
 
     public static List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT);
     }
 
     public static List<Lotto> generateLottoTickets(int purchaseCount) {

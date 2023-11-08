@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Set;
 
 public class ValidatorForModel {
+    public static final int LOTTO_NUMBER_MIN = 1;
+    public static final int LOTTO_NUMBER_MAX = 45;
+    public static final int LOTTO_NUMBER_COUNT = 6;
+
     public ValidatorForModel() {
     }
 
@@ -27,12 +31,12 @@ public class ValidatorForModel {
     }
 
     private boolean checkInputSizeIs6(List<Integer> numbers) {
-        return numbers.size() == 6;
+        return numbers.size() == LOTTO_NUMBER_COUNT;
     }
 
     private boolean checkInputBounds(List<Integer> numbers) {
         for (int number : numbers) {
-            if (!(1 <= number && number <= 45)) {
+            if (!(LOTTO_NUMBER_MIN <= number && number <= LOTTO_NUMBER_MAX)) {
                 return false;
             }
         }

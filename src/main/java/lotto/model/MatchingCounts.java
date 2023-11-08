@@ -4,10 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MatchingCounts {
-    private static final List<Integer> matchingCounts = new ArrayList<>(5);
+    private static final int MINIMUM_COUNT_FOR_PRIZE = 3;
+    private static final int REQUIRED_COUNT_FOR_BONUS = 5;
+    private static final int NUMBER_OF_PRIZES = 5;
+    public static final int LOTTO_FIRST_PRIZE_COUNT = 6;
+
+    private static final List<Integer> matchingCounts = new ArrayList<>(NUMBER_OF_PRIZES);
 
     public MatchingCounts() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < NUMBER_OF_PRIZES; i++) {
             matchingCounts.add(0);
         }
     }
@@ -22,7 +27,7 @@ public class MatchingCounts {
             return getIndexBetween3And5(count, bonus);
         }
 
-        if (count == 6) {
+        if (count == LOTTO_FIRST_PRIZE_COUNT) {
             return 4;
         }
 
@@ -30,11 +35,11 @@ public class MatchingCounts {
     }
 
     private static boolean isBetween3And5(int count) {
-        return count >= 3 && count <= 5;
+        return count >= MINIMUM_COUNT_FOR_PRIZE && count <= REQUIRED_COUNT_FOR_BONUS;
     }
 
     private static int getIndexBetween3And5(int count, int bonus) {
-        if (count == 5 && bonus == 1) {
+        if (count == REQUIRED_COUNT_FOR_BONUS && bonus == 1) {
             return 3;
         }
         return count - 3;

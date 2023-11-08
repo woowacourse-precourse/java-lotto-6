@@ -19,7 +19,6 @@ public class ConsoleInputView implements InputView {
     @Override
     public List<Integer> readNumbers() {
         String input = Console.readLine();
-
         try {
             return Arrays.stream(input.split(","))
                     .map(String::trim)

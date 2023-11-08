@@ -94,4 +94,14 @@ public class LottoServiceImpl implements LottoService {
                 rankingCounts.getOrDefault(rankingType, 0) + 1
         );
     }
+
+    @Override
+    public double calculateRateOfReturn(WinningResult winningResult, int payment) {
+        double totalPrize = 0L;
+        for (WinningRankType rankType : winningResult.getResult().keySet()) {
+            int count = winningResult.getResult().get(rankType);
+            totalPrize += rankType.calculateWinnings(count);
+        }
+        return (totalPrize / payment) * 100;
+    }
 }

@@ -10,4 +10,5 @@ public interface LottoService {
     Lotto drawWinningNumbers(String numbers);
     int drawBonusNumber(String number);
     WinningResult calculateWinning(Lottos lottos, WinningLotto winningLotto);
+    double calculateRateOfReturn(WinningResult winningResult, int payment);
 }

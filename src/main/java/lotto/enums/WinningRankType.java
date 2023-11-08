@@ -33,4 +33,8 @@ public enum WinningRankType {
                 &&
                 (ranking.bonusCondition <= bonusCount);
     }
+
+    public int calculateWinnings(int count) {
+        return prizeExpression.apply(count);
+    }
 }

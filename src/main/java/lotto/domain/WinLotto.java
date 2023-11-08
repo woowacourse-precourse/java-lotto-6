@@ -18,13 +18,13 @@ public class WinLotto extends Lotto {
 
     private void validateNumber(List<Integer> numbers, Integer bonus) {
         if (numbers.contains(bonus)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 당첨 번호가 보너스 번호와 중복되어서는 안됩니다.");
         }
     }
 
     private void validateBonusRange(Integer bonus) {
         if (!isInNumberRange(bonus)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45까지 입력 가능합니다.");
         }
     }
 

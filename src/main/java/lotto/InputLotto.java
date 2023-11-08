@@ -36,7 +36,7 @@ public class InputLotto {
         try{
             num = Integer.parseInt(str);
         }catch(NumberFormatException e){
-            System.out.println("[Error] 올바른 정보를 입력해주세요");
+            System.out.println("[ERROR] 올바른 정보를 입력해주세요");
         }
         return num;
     }

@@ -56,4 +56,14 @@ public class Lotto {
     public void printLottoNumbers() {
         System.out.println(this.numbers);
     }
+
+    public int countMatchingNumbers(WinningNumbers winningNumbers) {
+        return (int) this.numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    public boolean containsBonusNumber(BonusNumber bonusNumber) {
+        return this.numbers.stream().anyMatch(bonusNumber::equalsTo);
+    }
 }

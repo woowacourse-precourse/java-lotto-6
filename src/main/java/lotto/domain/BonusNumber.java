@@ -32,7 +32,7 @@ public class BonusNumber {
         }
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
+    public boolean equalsTo(int number) {
+        return this.bonusNumber == number;
     }
 }

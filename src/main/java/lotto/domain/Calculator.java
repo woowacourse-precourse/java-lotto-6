@@ -33,13 +33,11 @@ public class Calculator {
     }
 
     private int calculateCountOfMatch(Lotto lotto, WinningNumbers winningNumbers) {
-        return (int) lotto.getNumbers().stream()
-                .filter(winningNumbers::contains)
-                .count();
+        return lotto.countMatchingNumbers(winningNumbers);
     }
 
     private boolean checkMatchBonus(Lotto lotto, BonusNumber bonusNumber) {
-        return lotto.getNumbers().contains(bonusNumber.getBonusNumber());
+        return lotto.containsBonusNumber(bonusNumber);
     }
 
     private void updateRankCount(Lotto lotto, int countOfMatch, boolean matchBonus) {

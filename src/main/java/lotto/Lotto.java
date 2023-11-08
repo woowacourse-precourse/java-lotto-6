@@ -30,7 +30,6 @@ public class Lotto {
         validate(num);
         validateNumber(num);
         validateDuplicateNumber(num);
-        sortDesc(num);
         this.numbers = num;
     }
 
@@ -75,5 +74,10 @@ public class Lotto {
 
     public List<Integer> getNumbers(){
         return numbers;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[%d, %d, %d, %d, %d, %d]",numbers.get(0),numbers.get(1),numbers.get(2),numbers.get(3),numbers.get(4),numbers.get(5));
     }
 }

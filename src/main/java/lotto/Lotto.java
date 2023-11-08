@@ -6,6 +6,8 @@ import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private static final int LOTTO_COUNT = 6;
+    private static final int BONUS_INDEX = 6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -13,7 +15,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_COUNT) {
             throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
 
@@ -28,7 +30,7 @@ public class Lotto {
     }
 
     public Rank compareWithWinningNumbers(List<Integer> winningLotto) {
-        int winningBonusNumber = winningLotto.get(6);
+        int winningBonusNumber = winningLotto.get(BONUS_INDEX);
 
         int correctCount = getCorrectCount(winningLotto);
         int bonusCount = getBonusCount(winningBonusNumber);

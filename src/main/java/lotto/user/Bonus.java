@@ -7,8 +7,12 @@ import java.util.List;
 
 public class Bonus {
     private static final Validation validation = new Validation();
+    private static final int LOTTO_RANGE_MIN = 1;
+    private static final int LOTTO_RANGE_MAX = 45;
 
-    public int getBonusNumber(String bonusLotto, List<Integer> winningNumbers) {
+    public int getBonusNumber(
+            String bonusLotto, List<Integer> winningNumbers
+    ) {
         validation.checkNull(bonusLotto);
         try {
             int bonusNumber = convertStringToInteger(bonusLotto);
@@ -19,8 +23,12 @@ public class Bonus {
         }
     }
 
-    private void validateNumber(int bonusNumber, List<Integer> winningNumbers) {
-        validation.checkRange(bonusNumber, 1, 45);
+    private void validateNumber(
+            int bonusNumber, List<Integer> winningNumbers
+    ) {
+        validation.checkRange(
+                bonusNumber, LOTTO_RANGE_MIN, LOTTO_RANGE_MAX
+        );
         List<Integer> totalWinningLotto = new ArrayList<>(winningNumbers);
         totalWinningLotto.add(bonusNumber);
         validation.checkDuplication(totalWinningLotto);

@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.Set;
 
 public class Validation {
+    private final static int BASE_UNIT = 1000;
 
     public void checkUnit(int number) {
-        if (number == 0 || number % 1000 != 0) {
+        if (number == 0 || number % BASE_UNIT != 0) {
             throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해야 합니다.");
         }
     }

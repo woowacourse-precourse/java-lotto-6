@@ -8,8 +8,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class Publish {
+    private final static int BASE_UNIT = 1000;
+    private static final int LOTTO_COUNT = 6;
+    private static final int LOTTO_RANGE_MIN = 1;
+    private static final int LOTTO_RANGE_MAX = 45;
+
     public int getLottoCount(int money) {
-        return money / 1000;
+        return money / BASE_UNIT;
     }
 
     public List<Lotto> getIssuedLottos(int lottoCount) {
@@ -26,7 +31,9 @@ public class Publish {
     }
 
     private List<Integer> getRandomNumber() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(
+                LOTTO_RANGE_MIN, LOTTO_RANGE_MAX, LOTTO_COUNT
+        );
     }
 
     public void printIssuedLottoCountAndNumbers(List<Lotto> issuedLottos) {

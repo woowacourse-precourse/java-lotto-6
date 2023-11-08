@@ -17,7 +17,9 @@ public class Statistics {
         this.rankStatistics = rankStatistics;
     }
 
-    public HashMap<Rank, Integer> calculateRanking(List<Integer> winningLotto, List<Lotto> issuedLottos) {
+    public HashMap<Rank, Integer> calculateRanking(
+            List<Integer> winningLotto, List<Lotto> issuedLottos
+    ) {
         initRankStatistics();
         for (Lotto lotto : issuedLottos) {
             Rank rank = lotto.compareWithWinningNumbers(winningLotto);

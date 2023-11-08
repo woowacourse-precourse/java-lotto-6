@@ -2,7 +2,8 @@ package lotto.domain;
 
 import java.util.List;
 
-import static lotto.domain.DomainConstants.*;
+import static lotto.domain.constants.DomainConstants.*;
+import static lotto.domain.constants.ErrorMessageConstants.*;
 
 public class Lotto {
 

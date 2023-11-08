@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.domain.DomainConstants.PERCENTAGE;
+import static lotto.domain.constants.DomainConstants.PERCENTAGE;
 
 public class Profit {
 

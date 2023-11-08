@@ -12,9 +12,10 @@ public class PurchaseLottosTest {
 
     @DisplayName("구입된 로또가 없는 경우")
     @Test
-    void validatorSize() {{
+    void validatorSize() {
         assertThatThrownBy(() -> new PurchaseLottos(List.of()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorCode.NOT_FOUND_PURCHASE_LOTTO.getMessage());
     }
+
 }

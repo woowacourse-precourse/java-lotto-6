@@ -99,5 +99,12 @@ public class Validator {
         return inputInArray;
     }
 
+    public int validateBonusNumber(String input) throws IllegalArgumentException {
+        validateInteger(input);
+        int bonusNumber = Integer.parseInt(input);
+        validateLottoNumberRange(bonusNumber);
+        return bonusNumber;
+    }
+
 
 }

@@ -46,7 +46,7 @@
       - WinningResult 인스턴스를 생성한다.
       - determineRanking(): 로또 일치 여부를 계산하여 당첨 등수를 반환한다.
       - addRanking(): 계산 결과를 반영한다.
-      - [ ] 당첨 통계 콘솔과 하이픈(---)을 출력하도록 명령한다.
+      - printWinningResultHeader(): 당첨 통계 콘솔과 하이픈(---)을 출력하도록 명령한다.
       - printWinningResult(): 당첨 결과를 출력한다.
     - calculateEarningRate(): 수익률을 계산하도록 명령한다.
       - EarningRate(수익률) 인스턴스를 생성한다.

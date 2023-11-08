@@ -1,9 +1,8 @@
 package lotto.controller;
 
 
-import lotto.View.ErrorMessageView;
-import lotto.View.InputView;
-import lotto.View.OutputView;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 import lotto.model.*;
 
 public class LottoController {
@@ -14,7 +13,6 @@ public class LottoController {
         WinningNumber winningNum = inputWinningNumber();
         BonusNumber bonusNum = inputBonusNumber(winningNum);
         WinningResult winningResult = calculateWinningResult(lottoNum, winningNum, bonusNum);
-        OutputView.printWinningResult(winningResult);
         calculateEarningRate(winningResult, amount);
     }
 
@@ -23,13 +21,12 @@ public class LottoController {
             String LottoAmount = InputView.inputLottoAmount();
             return new LottoAmount(LottoAmount);
         } catch (IllegalArgumentException e) {
-            ErrorMessageView.printErrorWrongAmount();
+            OutputView.printErrorMessage(e.getMessage());
             return inputAmount();
         }
     }
 
     private LottoTickets buyLotto(LottoAmount amount) {
-        amount.getLottoCount();
         LottoTickets lottoTickets = new LottoTickets(amount.getLottoCount());
         OutputView.printLottoCount(amount.getLottoCount());
         OutputView.printLottoTickets(lottoTickets);
@@ -41,7 +38,7 @@ public class LottoController {
             String winningNum = InputView.inputWinningLottoNumbers();
             return new WinningNumber(winningNum);
         } catch (IllegalArgumentException e) {
-            ErrorMessageView.printErrorWrongNumberRange();
+            OutputView.printErrorMessage(e.getMessage());
             return inputWinningNumber();
         }
     }
@@ -53,7 +50,7 @@ public class LottoController {
             validateDuplicatedNumber(winningNum, bonusNumber);
             return bonusNumber;
         } catch (IllegalArgumentException e) {
-            ErrorMessageView.printErrorWrongNumberRange();
+            OutputView.printErrorMessage(e.getMessage());
             return inputBonusNumber(winningNum);
         }
     }
@@ -72,6 +69,8 @@ public class LottoController {
             LottoRanking ranking = LottoRanking.determineRanking(matchCount, hasBonus);
             winningResult.addRanking(ranking);
         }
+        OutputView.printWinningResultHeader();
+        OutputView.printWinningResult(winningResult);
         return winningResult;
     }
 

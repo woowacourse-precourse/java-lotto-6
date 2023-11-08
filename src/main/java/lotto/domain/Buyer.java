@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,12 +17,11 @@ public class Buyer {
         cost = validateCost(costString);
         count = countLotto(cost);
     }
-
     public void buyLotto(Lotto lotto) {
         purchasedLotteries.add(lotto);
     }
 
-    public ArrayList<Lotto> getPurchasedLotteries(){
+    public List<Lotto> getPurchasedLotteries(){
         return purchasedLotteries;
     }
     public int getCount(){

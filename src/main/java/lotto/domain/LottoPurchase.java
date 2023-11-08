@@ -44,7 +44,8 @@ public class LottoPurchase {
         int purchaseAmount = Integer.parseInt(inputUtil.getUserInput());
         validationUtil.validatePurchase(purchaseAmount);
 
-        return purchaseAmount;
+       String purchaseAmount= inputUtil.getUserInput();
+       return validationUtil.validatePurchase(purchaseAmount);
     }
 
     private int getPurchaseCount(int purchaseAmount) {

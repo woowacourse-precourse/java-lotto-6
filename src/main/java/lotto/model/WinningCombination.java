@@ -1,6 +1,6 @@
 package lotto.model;
 
-public class WinningCombination {
+public final class WinningCombination {
     private static final String BONUS_NUMBER_DUPLICATION_EXCEPTION = "보너스 번호는 당첨 번호와 중복될 수 없습니다.";
 
     private final Lotto winningLotto;

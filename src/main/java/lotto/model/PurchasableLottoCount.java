@@ -21,7 +21,7 @@ public final class PurchasableLottoCount {
         }
     }
 
-    private static boolean isOutOfRange(int count) {
+    private boolean isOutOfRange(int count) {
         return count < MIN_COUNT || count > MAX_COUNT;
     }
 

@@ -2,9 +2,10 @@ package lotto.model;
 
 import java.util.Objects;
 
-public class TotalProfitRate {
+public final class TotalProfitRate {
     private static final String TOTAL_PROFIT_RATE_EXCEPTION_FORMAT = "총 수익률은 %f 이상이어야 합니다.";
-    private final static double ZERO = 0.0;
+    private static final double ZERO = 0.0;
+
     private final double profitRate;
 
     private TotalProfitRate(double profitRate) {

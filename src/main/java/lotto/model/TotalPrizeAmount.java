@@ -7,6 +7,7 @@ import java.util.Objects;
 public final class TotalPrizeAmount {
     private static final String TOTAL_PRIZES_AMOUNT_EXCEPTION_FORMAT = "총 당첨금은 %d원 이상이어야 합니다.";
     private static final int MIN_TOTAL_PRIZES_AMOUNT = 0;
+
     private final long prizesAmount;
 
     private TotalPrizeAmount(long prizesAmount) {

@@ -35,7 +35,7 @@ public class OutputView {
         printer.printExceptionMessage(exceptionMessageFormatted);
     }
 
-    private static String formatExceptionMessage(String exceptionMessage) {
+    private String formatExceptionMessage(String exceptionMessage) {
         return String.format(EXCEPTION_FORMAT, exceptionMessage);
     }
 
@@ -50,7 +50,7 @@ public class OutputView {
         printer.printLine(lottoGroupSizeMessage);
     }
 
-    private static String formatSizeMessage(int lottoGroupSize) {
+    private String formatSizeMessage(int lottoGroupSize) {
         return String.format(LOTTO_GROUP_SIZE_FORMAT, lottoGroupSize);
     }
 
@@ -63,7 +63,7 @@ public class OutputView {
         printer.printLine(sortedLottoNumbersMessage);
     }
 
-    private static String formatLottoNumbers(LottoDto lottoDto) {
+    private String formatLottoNumbers(LottoDto lottoDto) {
         List<Integer> numbers = lottoDto.getSortedNumbers();
         return numbers.toString();
     }
@@ -88,7 +88,7 @@ public class OutputView {
         printer.printLine(prizeMessage);
     }
 
-    private static String formatPrizeMessage(LottoPrize lottoPrize, Long numberOfPrizesMatched) {
+    private String formatPrizeMessage(LottoPrize lottoPrize, Long numberOfPrizesMatched) {
         int requiredMatchingNumbers = lottoPrize.getRequiredMatchingNumbers();
         String prizeMoneyFormatted = formatPrizeMoney(lottoPrize);
         String prizeMessage = formatNormalPrizeMessage(requiredMatchingNumbers, prizeMoneyFormatted,
@@ -101,19 +101,19 @@ public class OutputView {
         return prizeMessage;
     }
 
-    private static String formatPrizeMoney(LottoPrize lottoPrize) {
+    private String formatPrizeMoney(LottoPrize lottoPrize) {
         int prizeMoney = lottoPrize.getPrizeMoney();
         return String.format(PRIZE_MONEY_FORMAT, prizeMoney);
     }
 
-    private static String formatNormalPrizeMessage(int requiredMatchingNumbers, String prizeMoneyFormatted,
-                                                   long numberOfPrizesMatched) {
+    private String formatNormalPrizeMessage(int requiredMatchingNumbers, String prizeMoneyFormatted,
+                                            long numberOfPrizesMatched) {
         return String.format(NORMAL_PRIZE_MESSAGE_FORMAT, requiredMatchingNumbers, prizeMoneyFormatted,
                 numberOfPrizesMatched);
     }
 
-    private static String formatSecondPrizeMessage(int matchCount, String prizeMoneyFormatted,
-                                                   long numberOfPrizesMatched) {
+    private String formatSecondPrizeMessage(int matchCount, String prizeMoneyFormatted,
+                                            long numberOfPrizesMatched) {
         return String.format(SECOND_PRIZE_MESSAGE_FORMAT, matchCount, prizeMoneyFormatted, numberOfPrizesMatched);
     }
 
@@ -124,11 +124,11 @@ public class OutputView {
         printer.printLine(totalProfitRateMessage);
     }
 
-    private static String formatTotalProfitRate(double rawTotalProfitRate) {
+    private String formatTotalProfitRate(double rawTotalProfitRate) {
         return String.format(TOTAL_PROFIT_RATE_FORMAT, rawTotalProfitRate);
     }
 
-    private static String formatTotalProfitRateMessage(String totalProfitRateFormatted) {
+    private String formatTotalProfitRateMessage(String totalProfitRateFormatted) {
         return String.format(TOTAL_PROFIT_RATE_MESSAGE_FORMAT, totalProfitRateFormatted);
     }
 }

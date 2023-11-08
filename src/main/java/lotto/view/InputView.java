@@ -85,5 +85,4 @@ public class InputView {
         BlankValidator.validate(rawBonusNumber);
         DigitsOnlyValidator.validate(rawBonusNumber);
     }
-
 }

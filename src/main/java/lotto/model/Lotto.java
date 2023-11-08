@@ -37,7 +37,7 @@ public final class Lotto {
         return countDistinctNumbers(numbers) != LOTTO_SIZE;
     }
 
-    private static long countDistinctNumbers(List<Integer> numbers) {
+    private long countDistinctNumbers(List<Integer> numbers) {
         return numbers.stream()
                 .distinct()
                 .count();

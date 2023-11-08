@@ -42,8 +42,4 @@ public enum LottoPrice {
     private boolean isDivisible(int investMoney) {
         return investMoney % price == ZERO;
     }
-
-    public int getPrice() {
-        return price;
-    }
 }

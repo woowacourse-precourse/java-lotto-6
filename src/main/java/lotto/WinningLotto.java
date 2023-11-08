@@ -12,7 +12,7 @@ public class WinningLotto {
         this.bonusLottoNumber = bonusLottoNumber;
     }
 
-    public WinningLotto getWinningLottoNumbers(List<Integer> winningNumbers, int bonusNumber) {
+    public WinningLotto createWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
         Lotto winningLotto = Lotto.issueChooseNumbersLotto(winningNumbers);
         LottoNumber bonusLottoNumber = new LottoNumber(bonusNumber);
 

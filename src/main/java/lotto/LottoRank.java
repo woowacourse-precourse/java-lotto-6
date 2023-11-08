@@ -21,6 +21,6 @@ public enum LottoRank {
     }
 
     public String getResult(int numOfResult) {
-        return "%s (%,d) - %d개".formatted(winningNumber, winningPrice, numOfResult);
+        return "%s (%,d원) - %d개".formatted(winningNumber, winningPrice, numOfResult);
     }
 }

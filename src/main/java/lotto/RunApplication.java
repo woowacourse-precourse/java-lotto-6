@@ -2,8 +2,12 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 import java.util.stream.IntStream;
+
+import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class RunApplication {
 
@@ -30,6 +34,7 @@ public class RunApplication {
     }
 
     private void getResult(int costOfLotto, List<Integer> ranks) {
+        System.out.println("당첨 통계");
         System.out.println("---");
         double profit = 0.0;
         for (int i = 0; i < NUMBER_OF_RANKS; i++) {
@@ -54,14 +59,17 @@ public class RunApplication {
                 profit += LottoRank.one.getWinningPrice() * ranks.get(i);
             }
         }
-        System.out.printf("총 수익률은 %f%입니다.", profit / costOfLotto);
+        BigDecimal profitDecimal = new BigDecimal(profit / costOfLotto * 100).setScale(1, RoundingMode.HALF_UP);
+        System.out.printf("총 수익률은 %s%%입니다.", profitDecimal);
     }
 
     private List<Integer> getRanks(int numberOfLotto, List<Integer> lottoNumbers, int bonus, List<List<Integer>> myLottoNumbers) {
         List<Integer> ranks = new ArrayList<>(IntStream.range(0, NUMBER_OF_RANKS).boxed().map(num -> 0).toList());
         for (int i = 0; i < numberOfLotto; i++) {
-            int rank = getRank(lottoNumbers, bonus, myLottoNumbers, i);
-            ranks.set(rank, ranks.get(rank) + 1);
+            Integer indexOfRank = getIndexOfRank(lottoNumbers, bonus, myLottoNumbers, i);
+            if (indexOfRank != null) {
+                ranks.set(indexOfRank, ranks.get(indexOfRank) + 1);
+            }
         }
         return ranks;
     }
@@ -79,7 +87,7 @@ public class RunApplication {
         return myLottoNumbers;
     }
 
-    private int getRank(List<Integer> lottoNumbers, int bonus, List<List<Integer>> myLottoNumbers, int i) {
+    private Integer getIndexOfRank(List<Integer> lottoNumbers, int bonus, List<List<Integer>> myLottoNumbers, int i) {
         List<Integer> numbers = myLottoNumbers.get(i);
         long count = numbers.stream()
                 .filter(lottoNumbers::contains)
@@ -90,7 +98,8 @@ public class RunApplication {
             return 2;
         }
         if (count == 4) return 1;
-        return 0;
+        if (count == 3) return 0;
+        return null;
     }
 
     private int getCostOfLotto() {
@@ -111,15 +120,15 @@ public class RunApplication {
     private int getCostOfLottoWithChainedException() throws IllegalArgumentException {
         try {
             System.out.println("구입금액을 입력해 주세요.");
-            int cost = scanner.nextInt();
+            int cost = Integer.parseInt(readLine());
             if (cost % 1000 != 0) {
                 System.out.println(ExceptionMessage.로또_구입_비용_천원단위가아닌경우);
                 throw new IllegalArgumentException();
             }
             return cost;
-        } catch (InputMismatchException ime) {
+        } catch (NumberFormatException nfe) {
             System.out.println(ExceptionMessage.로또_구입비용_숫자가아닐때);
-            throw new IllegalArgumentException(ime);
+            throw new IllegalArgumentException(nfe);
         }
     }
 
@@ -131,20 +140,20 @@ public class RunApplication {
         Lotto lotto = null;
         try {
             System.out.println("당첨 번호를 입력해 주세요.");
-            List<String> numbers = Arrays.asList(scanner.next().split(","));
+            List<String> numbers = Arrays.asList(readLine().split(","));
             lotto = new Lotto(numbers.stream().map(Integer::parseInt).sorted().toList());
-            if (isNumberIn1And45(lotto)) {
+            if (isNotNumberIn1And45(lotto)) {
+                System.out.println(ExceptionMessage.당첨번호_1_45_사이가아닌경우);
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(ExceptionMessage.당첨번호_1_45_사이가아닌경우);
             getLottoNumbers();
         }
-
+        System.out.println();
         return lotto.getNumbers();
     }
 
-    private static boolean isNumberIn1And45(Lotto lotto) {
+    private static boolean isNotNumberIn1And45(Lotto lotto) {
         return lotto.getNumbers().stream().anyMatch(number -> number < 1 || 45 < number);
     }
 
@@ -160,17 +169,17 @@ public class RunApplication {
         }  catch (IllegalArgumentException iae) {
             return getBonus(lotto);
         }
-
+        System.out.println();
         return bonus;
     }
 
     private int getBonusWithChainedException() throws IllegalArgumentException {
         try {
             System.out.println("보너스 번호를 입력해 주세요.");
-            return scanner.nextInt();
-        } catch (InputMismatchException ime) {
+            return Integer.parseInt(readLine());
+        } catch (NumberFormatException nfe) {
             System.out.println(ExceptionMessage.보너스번호가_숫자가아닐때);
-            throw new IllegalArgumentException(ime);
+            throw new IllegalArgumentException(nfe);
         }
     }
 

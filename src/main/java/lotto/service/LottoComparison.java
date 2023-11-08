@@ -2,6 +2,7 @@ package lotto.service;
 
 import static lotto.domain.Ranking.SECOND;
 import static lotto.domain.Ranking.NONE;
+import static lotto.domain.Ranking.THIRD;
 
 import java.util.List;
 import lotto.domain.Ranking;
@@ -25,6 +26,9 @@ public class LottoComparison {
         for (Ranking ranking : Ranking.values()) {
             if (matchCount == 5 && isBonus) {
                 return SECOND;
+            }
+            if (matchCount == 5 && !isBonus){
+                return THIRD;
             }
             if(ranking.getMatchNumber() == matchCount){
                 return ranking;

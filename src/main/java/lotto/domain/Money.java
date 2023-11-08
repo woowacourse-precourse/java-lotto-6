@@ -12,9 +12,6 @@ public class Money {
         this.money = money;
     }
 
-    public Money() {
-
-    }
 
     public int getMoney() {
         return this.money;

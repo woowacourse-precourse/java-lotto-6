@@ -18,7 +18,7 @@ public class WinningMachine {
         return rankResult;
     }
 
-    public void calcurateRankCountResult(List<Lotto> lottos){
+    public void calcurateRankResult(List<Lotto> lottos){
         initRankResult();
         for(Lotto lotto : lottos){
             Rank rank = getWinningRank(lotto);

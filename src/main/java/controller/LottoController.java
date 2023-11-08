@@ -105,7 +105,7 @@ public class LottoController {
 
     private void startDetermineWinningLottos(){
         winningMachine = new WinningMachine(winningNumber, bonusNumber);
-        winningMachine.calcurateRankCountResult(lottos.getLottos());
+        winningMachine.calcurateRankResult(lottos.getLottos());
 
         // 당첨 여부 출력
         printWinningLottos(winningMachine.getRankResult());

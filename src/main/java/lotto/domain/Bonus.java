@@ -16,4 +16,8 @@ public class Bonus {
         new BonusValidator(number);
         this.number = number;
     }
+
+    public Integer getNumber() {
+        return number;
+    }
 }

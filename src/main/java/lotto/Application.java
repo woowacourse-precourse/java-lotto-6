@@ -8,5 +8,7 @@ public class Application {
         game.renderLotto();
         game.renderWinningLotto();
         game.renderBonus();
+        game.matchLotto();
     }
 }
+

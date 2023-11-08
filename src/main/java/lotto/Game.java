@@ -88,6 +88,10 @@ public class Game {
         return numbers;
     }
 
+    public void matchLotto() {
+        lottoManager.calculateMatch(winningLotto, bonus);
+    }
+
     private String[] splitNumber(String input) {
         return input.split(SPLIT_CHARACTER);
     }

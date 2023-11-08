@@ -14,4 +14,8 @@ public class GameMoney {
         return gameCount;
     }
 
+    public int getMoney(){
+        return money;
+    }
+
 }

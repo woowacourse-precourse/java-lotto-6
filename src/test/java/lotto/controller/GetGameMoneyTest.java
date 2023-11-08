@@ -1,13 +1,15 @@
 package lotto.controller;
 
-import lotto.ErrorMessage;
+import lotto.AppConfig;
+import lotto.message.ErrorMessage;
 import lotto.model.GameMoney;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class GetGameMoneyTest {
 
-    GetBuyNumber getBuyNumber=new GetBuyNumber();
+    AppConfig appConfig = new AppConfig();
+    GetBuyNumber getBuyNumber =appConfig.getBuyNumber();
 
 
     @Test
@@ -20,31 +22,31 @@ public class GetGameMoneyTest {
 
     @Test
     void 음수_입력(){
-        Assertions.assertThatThrownBy(()->getBuyNumber.getValid("-1000"))
+        Assertions.assertThatThrownBy(()-> getBuyNumber.getValid("-1000"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ERROR_NOT_NATURAL_NUM.toString());
     }
 
     @Test
     void 영_입력(){
-        Assertions.assertThatThrownBy(()->getBuyNumber.getValid("0"))
+        Assertions.assertThatThrownBy(()-> getBuyNumber.getValid("0"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ERROR_NOT_NATURAL_NUM.toString());
     }
 
     @Test
     void 정수가_아닌_입력(){
-        Assertions.assertThatThrownBy(()->getBuyNumber.getValid("테스트"))
+        Assertions.assertThatThrownBy(()-> getBuyNumber.getValid("테스트"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ERROR_NOT_NUMBER.toString());
-        Assertions.assertThatThrownBy(()->getBuyNumber.getValid("1000.0"))
+        Assertions.assertThatThrownBy(()-> getBuyNumber.getValid("1000.0"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ERROR_NOT_NUMBER.toString());
     }
 
     @Test
     void 천원_단위가_아닌_입력(){
-        Assertions.assertThatThrownBy(()->getBuyNumber.getValid("1500"))
+        Assertions.assertThatThrownBy(()-> getBuyNumber.getValid("1500"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ERROR_NOT_THOUSANDS_UNIT.toString());
     }

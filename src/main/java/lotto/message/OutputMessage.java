@@ -1,4 +1,4 @@
-package lotto;
+package lotto.message;
 
 public enum OutputMessage {
 

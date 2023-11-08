@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.message.Place;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,12 +11,9 @@ public class WinLottoPlaceCount {
 
     public WinLottoPlaceCount(){
         winLottoPlaceCount=new ArrayList<>();
-        winLottoPlaceCount.add(Place.NO_PLACE.getValue(), 0);
-        winLottoPlaceCount.add(Place.FIRST_PLACE.getValue(),0);
-        winLottoPlaceCount.add(Place.SECOND_PLACE.getValue(), 0);
-        winLottoPlaceCount.add(Place.THIRD_PLACE.getValue(),0);
-        winLottoPlaceCount.add(Place.FOURTH_PLACE.getValue(),0);
-        winLottoPlaceCount.add(Place.FIFTH_PLACE.getValue(), 0);
+        for(int i=0;i<6;i++){
+            winLottoPlaceCount.add(0);
+        }
     }
 
     public List<Integer> getWinLottoPlaceCount(){

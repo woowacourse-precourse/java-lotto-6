@@ -1,9 +1,11 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.AppConfig;
 import lotto.Lotto;
 import lotto.model.GameMoney;
 import lotto.view.OutputView;
+import lotto.view.OutputViewImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -17,10 +19,11 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mockStatic;
 
-public class GetMyLottosTest {
+public class GetMyLottosImplTest {
 
-    GetMyLottos getMyLottos=new GetMyLottos();
-    OutputView outputView= new OutputView();
+    AppConfig appConfig = new AppConfig();
+    GetMyLottos getMyLottos = appConfig.getMyLottos();
+    OutputView outputView= appConfig.outputView();
 
     @Mock
     private Randoms randoms;

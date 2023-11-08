@@ -1,11 +1,11 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.AppConfig;
 import lotto.Lotto;
 import lotto.model.GameMoney;
 import lotto.model.WinLotto;
 import lotto.model.WinLottoPlaceCount;
-import lotto.view.OutputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,21 +20,22 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mockStatic;
 
-public class CountWinLottoTest {
+public class CountWinLottoImplTest {
 
 
-    GetMyLottos getMyLottos=new GetMyLottos();
-    GetWinLotto getWinLotto=new GetWinLotto();
-    CountWinLotto countWinLotto=new CountWinLotto();
+    AppConfig appConfig = new AppConfig();
+    GetMyLottos getMyLottos = appConfig.getMyLottos();
+    GetWinLotto getWinLotto = appConfig.getWinLotto();
+    CountWinLotto countWinLotto =appConfig.countWinLotto();
 
     List<Lotto> lottos = new ArrayList<>();
+    GameMoney gameMoney = new GameMoney(8000);
 
     @Mock
     private Randoms randoms;
 
     @BeforeEach
     void setMyLotto(){
-        GameMoney gameMoney = new GameMoney(8000);
 
         assertTimeoutPreemptively(Duration.ofSeconds(10L), () -> {
             try (final MockedStatic<Randoms> mock = mockStatic(Randoms.class)) {
@@ -55,10 +56,28 @@ public class CountWinLottoTest {
     }
 
     @Test
-    void 이긴_게임_횟수_출력(){
-        WinLotto winLotto = getWinLotto.validWinLotto("8,11,21,23,41,42","43");
+    void 이긴_게임_횟수(){
+        Lotto winNumber = getWinLotto.validWinNumber("8,11,21,23,41,42");
+        int bonusNum= getWinLotto.validBonusNumber("43",winNumber);
+        WinLotto winLotto = new WinLotto(winNumber,bonusNum);
+        //WinLotto winLotto = getWinLotto.validWinLotto("8,11,21,23,41,42","43");
         WinLottoPlaceCount winLottoPlaceCount = countWinLotto.lottoPlaceCount(winLotto,lottos);
-        Assertions.assertThat(winLottoPlaceCount.getWinLottoPlaceCount()).containsExactly(2,1,1,1,2,1);
+        Assertions.assertThat(winLottoPlaceCount.getWinLottoPlaceCount()).containsExactly(2,1,2,1,1,1);
     }
+
+    @Test
+    void 수익률_계산(){
+        Lotto winNumber = getWinLotto.validWinNumber("8,11,21,23,41,42");
+        int bonusNum= getWinLotto.validBonusNumber("43",winNumber);
+        WinLotto winLotto = new WinLotto(winNumber,bonusNum);
+        //WinLotto winLotto = getWinLotto.validWinLotto("8,11,21,23,41,42","43");
+        WinLottoPlaceCount winLottoPlaceCount = countWinLotto.lottoPlaceCount(winLotto,lottos);
+        double rate = countWinLotto.getRateMoney(winLottoPlaceCount,gameMoney);
+
+        Assertions.assertThat(rate).isEqualTo(25395062.5);
+        String formattedNumber = String.format("%.1f", rate);
+        System.out.println("formattedNumber = " + formattedNumber);
+    }
+
 
 }

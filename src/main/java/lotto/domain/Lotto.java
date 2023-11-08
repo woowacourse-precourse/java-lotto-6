@@ -22,6 +22,12 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public int getMatchCount(Lotto otherLotto) {
+        return (int) numbers.stream()
+            .filter(otherLotto.numbers::contains)
+            .count();
+    }
+
     @Override
     public String toString() {
         String lottoPrintFormat = numbers.stream()

@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Amount {
 
+    InputValidation iv = new InputValidation();
+
     public Amount() {
     }
 
@@ -29,9 +31,7 @@ public class Amount {
     }
 
     int validateAmount(String input) {
-        isPositiveNum(input);
-        int amount = stringToInt(input);
-        return isDividedUp(amount);
+        return isDividedUp(iv.toInt(input));
     }
 
     int isDividedUp(int amount) {
@@ -39,16 +39,5 @@ public class Amount {
             throw new IllegalArgumentException("[ERROR] 로또 1장의 가격은 1,000원입니다. 금액 값은 1,000원 단위로 입력해주세요.");
         }
         return amount;
-    }
-
-    void isPositiveNum(String input) {
-        String regex = "^([1-9]+[0-9]*)$";
-        if (!input.matches(regex)) {
-            throw new IllegalArgumentException("[ERROR] 금액 값은 0보다 큰 숫자여야 합니다.");
-        }
-    }
-
-    int stringToInt(String str) {
-        return Integer.parseInt(str);
     }
 }

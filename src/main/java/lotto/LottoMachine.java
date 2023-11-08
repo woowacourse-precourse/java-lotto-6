@@ -1,7 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,10 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static lotto.Lotto.lottoRangeFirstNum;
-import static lotto.Lotto.lottoRangeLastNum;
 
-public class Draw {
+public class LottoMachine {
 
     static final int BOUNUS_CHECK_MATCH_COUNT = 5;
 
@@ -54,10 +51,12 @@ public class Draw {
         }
     }
 
-    void isDuplicate(Lotto lotto, int bonusNumber) {
-        if (lotto.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 입력한 로또 번호와 중복될 수 없습니다.");
+    Map<Rank, Integer> initDrawResult() {
+        Map<Rank, Integer> drawResult = new HashMap<>();
+        for (Rank rank : Rank.values()) {
+            drawResult.put(rank, 0);
         }
+        return drawResult;
     }
 
     public List<Integer> getWinningLottoNumsList() {
@@ -72,22 +71,10 @@ public class Draw {
         List<Integer> nums = new ArrayList<>();
 
         for (String str : strings) {
-            nums.add(toInt(str));
+            nums.add(iv.toInt(str));
         }
 
         return nums;
-    }
-
-    int toInt(String str) {
-        isPositiveNum(str);
-        return Integer.parseInt(str);
-    }
-
-    void isPositiveNum(String str) {
-        String regex = "^([1-9]+[0-9]+)$";
-        if (!str.matches(regex)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 0보다 큰 숫자여야 합니다.");
-        }
     }
 
     private void printWinningLottoNumsEnterGuideStatement() {

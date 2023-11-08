@@ -25,4 +25,9 @@ public class WinningLotto {
         }
     }
 
+    public Rank match(Lotto userLotto){
+        int matchNumberCnt = this.lotto.getMatchNumberCnt(userLotto);
+        return Rank.findRank(matchNumberCnt,userLotto.hasNumber(this.bonusNumber));
+    }
+
 }

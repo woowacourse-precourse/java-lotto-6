@@ -16,6 +16,16 @@ public class Lotto {
         return this.numbers;
     }
 
+    public int getMatchNumberCnt(Lotto otherLotto){
+        return (int) this.numbers.stream()
+                .filter(otherLotto.numbers::contains)
+                .count();
+    }
+
+    public boolean hasNumber(int num){
+        return numbers.contains(num);
+    }
+
     private void validate(List<Integer> numbers) {
         validateNumberSize(numbers);
         validateDuplication(numbers);

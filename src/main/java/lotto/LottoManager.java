@@ -64,7 +64,8 @@ public class LottoManager {
     }
 
     private void calculateReturnRate() {
-        this.returnRate = Math.round(returnPrice * MAKING_PERCENTAGE_NUMBER / purchasePrice);
+        double v = (double) returnPrice * MAKING_PERCENTAGE_NUMBER / (double) purchasePrice;
+        this.returnRate = Math.round(v*MAKING_PERCENTAGE_NUMBER)/MAKING_PERCENTAGE_NUMBER;
     }
 
     private void calculateResult(List<Lotto> lottos) {

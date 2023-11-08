@@ -29,7 +29,15 @@ public class InputView {
             return inputWinningNumbers();
         }
     }
-    
+
+    public static Integer inputBonusNumber(){
+        try{
+            return validateInteger(Console.readLine().trim());
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputBonusNumber();
+        }
+    }
 
     public static List<String> separateWinningNumber(String winningNumbers){
         return Stream

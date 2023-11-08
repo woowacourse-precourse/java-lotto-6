@@ -1,6 +1,8 @@
 package controller;
 
+import static controller.InputController.getBonusNumberInput;
 import static controller.InputController.getMoneyInput;
+import static controller.InputController.getWinningNumbersInput;
 import static model.LottoGenerate.generateLottoTickets;
 import static model.LottoGenerate.lottoTicketsCount;
 import static view.View.lottoTicketsCountPrint;
@@ -15,5 +17,10 @@ public class LottoController {
         lottoTicketsCountPrint(lottoTicketsCount);
         List<Lotto> lottoTickets = generateLottoTickets(lottoTicketsCount);
         lottoTicketsPrint(lottoTickets);
+    }
+
+    public static void lottoMachine() {
+        List<Integer> lottoWinningNumbers = getWinningNumbersInput();
+        int lottoBonusNumber = getBonusNumberInput(lottoWinningNumbers);
     }
 }

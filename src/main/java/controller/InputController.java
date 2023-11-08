@@ -1,7 +1,9 @@
 package controller;
 
+import static validator.BonusNumberValidator.bonusNumberValidate;
 import static validator.MoneyValidator.moneyValidate;
 import static validator.WinningNumbersValidator.winningNumbersValidate;
+import static view.View.bonusNumbersMessagePrint;
 import static view.View.moneyMessagePrint;
 import static view.View.winningNumbersMessagePrint;
 
@@ -30,6 +32,19 @@ public class InputController {
                 String winningNumbers = Console.readLine();
                 List<Integer> lottoWinningNumbers = winningNumbersValidate(winningNumbers);
                 return lottoWinningNumbers;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static int getBonusNumberInput(List<Integer> lottoWinningNumbers) {
+        bonusNumbersMessagePrint();
+        while (true) {
+            try {
+                String BonusNumber = Console.readLine();
+                int lottoBonusNumber = bonusNumberValidate(BonusNumber, lottoWinningNumbers);
+                return lottoBonusNumber;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }

@@ -3,7 +3,7 @@ package validator;
 import java.util.List;
 
 public class BonusNumberValidator {
-    public static void bonusNumberValidate(String bonusNumber, List<Integer> lottoWinningNumbers) {
+    public static int bonusNumberValidate(String bonusNumber, List<Integer> lottoWinningNumbers) {
         bonusNumberNotNull(bonusNumber);
         bonusNumberRange(bonusNumber);
         int lottoBonusNumber;
@@ -13,7 +13,7 @@ public class BonusNumberValidator {
             throw new IllegalArgumentException("[ERROR] 1부터 45까지의 수를 입력해주세요.");
         }
         bonusNumberUnique(lottoBonusNumber, lottoWinningNumbers);
-
+        return lottoBonusNumber;
 
     }
 

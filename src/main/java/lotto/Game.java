@@ -58,7 +58,7 @@ public class Game {
         Collections.sort(copyNumbers);
         String result = copyNumbers.stream()
                 .map(Object::toString)
-                .collect(Collectors.joining(LOTTO_NUMBER_DELIMITER, LOTTO_NUMBER_START, LOTTO_NUMBER_END));
+                .collect(Collectors.joining(LOTTO_PRINT_DELIMITER, LOTTO_PRINT_START, LOTTO_PRINT_END));
         System.out.println(result);
     }
 

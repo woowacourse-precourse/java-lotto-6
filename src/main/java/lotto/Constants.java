@@ -10,41 +10,6 @@ public class Constants {
     public static final String RATE_OF_RETURN = "총 수익률은 ";
     public static final String PERCENT_IS = "%입니다.";
 
-    public static final String EMPTY = "";
-    public static final String GAP = "\\s";
-    public static final String REST = ",";
-
-
-    public static Integer ZERO = 0;
-    public static Integer MIN_NUMBER = 1;
-    public static Integer MAX_NUMBER = 45;
-    public static Integer NUMBER_COUNT = 6;
-    public static Integer ROUND = 2;
-    public static Integer BUYING_PRICE_UNIT = 1000;
-    public static Integer MIN_BUYING_PRICE = 1000;
-    public static Integer MAX_BUYING_PRICE = 100000;
-
-    public static Integer FIRST_REWARD = 2000000000;
-    public static Integer SECOND_REWARD = 30000000;
-    public static Integer THIRD_REWARD = 1500000;
-    public static Integer FOURTH_REWARD = 50000;
-    public static Integer FIFTH_REWARD = 5000;
-
-    public static Integer FIRST_CORRECTNESS = 6;
-    public static Integer SECOND_CORRECTNESS = 6;
-    public static Integer THIRD_CORRECTNESS = 5;
-    public static Integer FOURTH_CORRECTNESS = 4;
-    public static Integer FIFTH_CORRECTNESS = 3;
-
-    public static Integer PERCENT = 100;
-    public static Integer BASE = 10;
-
-    public static String LOTTO_NUMBER_DELIMITER = ", ";
-    public static String LOTTO_NUMBER_START = "[";
-    public static String LOTTO_NUMBER_END = "]";
-
-    public static String NOT_WINNING_TYPE = "^[0-9,]+$";
-
     public static final String NUMBER_TYPE_ERROR = "[ERROR] 번호는 숫자만 입력되어야 합니다.";
     public static final String NUMBER_BOUNDARY_ERROR = "[ERROR] 번호는 1~45 범위 내에 해당해야 합니다.";
     public static final String BONUS_DUPLICATION_ERROR = "[ERROR] 보너스 번호는 당첨 번호와 중복되어서는 안 됩니다.";
@@ -61,4 +26,35 @@ public class Constants {
     public static final String FIVE_CORRECTNESS_CASE = "5개 일치 (1,500,000원) - ";
     public static final String FOUR_CORRECTNESS_CASE = "4개 일치 (50,000원) - ";
     public static final String THREE_CORRECTNESS_CASE = "3개 일치 (5,000원) - ";
+
+    public static final Integer FIRST_REWARD = 2000000000;
+    public static final Integer SECOND_REWARD = 30000000;
+    public static final Integer THIRD_REWARD = 1500000;
+    public static final Integer FOURTH_REWARD = 50000;
+    public static final Integer FIFTH_REWARD = 5000;
+
+    public static final Integer FIRST_CORRECTNESS = 6;
+    public static final Integer SECOND_CORRECTNESS = 6;
+    public static final Integer THIRD_CORRECTNESS = 5;
+    public static final Integer FOURTH_CORRECTNESS = 4;
+    public static final Integer FIFTH_CORRECTNESS = 3;
+
+    public static final String LOTTO_PRINT_DELIMITER = ", ";
+    public static final String LOTTO_PRINT_START = "[";
+    public static final String LOTTO_PRINT_END = "]";
+    public static final String NOT_WINNING_TYPE = "^[0-9,]+$";
+    public static final String EMPTY = "";
+    public static final String GAP = "\\s";
+    public static final String REST = ",";
+
+    public static final Integer ZERO = 0;
+    public static final Integer BUYING_PRICE_UNIT = 1000;
+    public static final Integer MIN_BUYING_PRICE = 1000;
+    public static final Integer MAX_BUYING_PRICE = 100000;
+    public static final Integer MIN_NUMBER = 1;
+    public static final Integer MAX_NUMBER = 45;
+    public static final Integer NUMBER_COUNT = 6;
+    public static final Integer ROUND = 2;
+    public static final Integer BASE = 10;
+    public static final Integer PERCENT = 100;
 }

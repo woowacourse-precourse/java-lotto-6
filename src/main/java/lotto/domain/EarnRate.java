@@ -16,6 +16,9 @@ public class EarnRate {
     }
 
     public int getTotalEarning(HashMap<String, Integer> checkMatchCount) {
+        if (checkMatchCount == null) {
+            throw new NullPointerException();
+        }
         checkMatchCount.forEach((key, value) -> {
             totalEarning += PrizeEnum.valueOf(key).getAmount() * value;
         });
@@ -23,6 +26,9 @@ public class EarnRate {
     }
 
     public double getEarnRate(){
+        if (inputAmount == 0) {
+            throw new ArithmeticException("");
+        }
         return (double) totalEarning / (double) inputAmount;
     }
 }

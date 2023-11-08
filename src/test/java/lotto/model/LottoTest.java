@@ -14,8 +14,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoTest {
 
+    @DisplayName("당첨 번호와 비교해 같은 숫자들의 개수를 반환한다")
     @Test
-    void 당첨_번호와_비교해_같은_숫자들의_개수를_반환한다() {
+    void compareLottoForMatchCount() {
         final Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         final Lotto targetLotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
 

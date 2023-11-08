@@ -1,10 +1,41 @@
 package lotto.model;
 
+import static lotto.Constants.Constants.MAX_RANDOM_NUMBER;
+import static lotto.Constants.Constants.MIN_RANDOM_NUMBER;
+import static lotto.exception.ErrorCode.BONUS_NUMBER_DUPLICATE;
+import static lotto.exception.ErrorCode.BONUS_NUMBER_RANGE;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import java.util.List;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoCheckerTest {
+
+    @DisplayName("보너스 번호가 1에서 45가 아니라면 예외를 던진다.")
+    @ParameterizedTest
+    @ValueSource(ints = {MIN_RANDOM_NUMBER - 1, MAX_RANDOM_NUMBER + 1})
+    void bonusNumberOutOfRange(final int bonus) {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        assertThatThrownBy(() -> new LottoChecker(winningNumbers, bonus))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(BONUS_NUMBER_RANGE.getMessage());
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중번된다면 예외를 던진다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
+    void bonusNumberDuplicateWithWinningLotto(final int bonus) {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        assertThatThrownBy(() -> new LottoChecker(winningNumbers, bonus))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(BONUS_NUMBER_DUPLICATE.getMessage());
+    }
 
     @Test
     void 로또들의_당첨순위들을_계산한다() {

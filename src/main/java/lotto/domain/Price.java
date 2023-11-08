@@ -12,10 +12,6 @@ public class Price {
         this.price = purchaseAmount;
     }
 
-    private int changeToPrice(int purchaseAmount){
-        return purchaseAmount / A_TICKET_PRICE;
-    }
-
     private void validateZERO(int purchaseAmount){
         if(purchaseAmount == ZERO){
             throw new IllegalArgumentException("[ERROR] 금액이 0원입니다.");
@@ -29,6 +25,6 @@ public class Price {
     }
 
     public int getPrice(){
-        return price;
+        return price / A_TICKET_PRICE;
     }
 }

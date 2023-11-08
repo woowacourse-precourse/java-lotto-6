@@ -33,4 +33,9 @@ public class OutputView {
         System.out.println("---");
         System.out.println(statistics);
     }
+
+    public static void printProfitMessage(double profit) {
+        System.out.printf(GameMessage.RESULT_MESSAGE.getMessage(), profit);
+        System.out.println();
+    }
 }

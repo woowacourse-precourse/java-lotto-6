@@ -40,5 +40,8 @@ public class LottoGameController {
     private void printResult(int pay, Prize prize) {
         String result = prize.getStatisticMessage();
         OutputView.printStatisticsMessage(result);
+
+        double profit = prize.getProfit(pay);
+        OutputView.printProfitMessage(profit);
     }
 }

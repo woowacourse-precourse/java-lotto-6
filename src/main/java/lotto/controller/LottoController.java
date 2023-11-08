@@ -2,6 +2,8 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.model.WinningInfo;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.Message;
 import lotto.view.OutputView;
@@ -9,15 +11,20 @@ import lotto.view.OutputView;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final LottoService lottoService;
+    private final WinningInfo winningInfo;
 
     public LottoController(){
         inputView = new InputView();
         outputView = new OutputView();
+        winningInfo = new WinningInfo();
+        lottoService = new LottoService(winningInfo);
     }
 
     public void start(){
@@ -25,9 +32,15 @@ public class LottoController {
         outputView.displayPurchaseCount(buyCount);
         Lottos lottos = new Lottos(buyCount);
         printInfo(lottos.getLottos());
-        lottos.checkWinningNumbers(parseNumbers(inputView.readWinningNumbers()), inputView.readBonusNumber());
+        Map<Long, Long> winningResults = lottos.checkWinningNumbers(parseNumbers(inputView.readWinningNumbers()), inputView.readBonusNumber());
         Message.displayStatistics();
+
+        lottoService.WinningResults(winningResults);
+
+        outputView.displayWinningResults(winningInfo.getWinnings());
     }
+
+
 
     private void printInfo(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {

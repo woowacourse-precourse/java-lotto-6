@@ -1,8 +1,10 @@
 package lotto.domain;
 
-import static lotto.domain.LottoConstants.LOTTO_NUMBER_RANGE_END;
-import static lotto.domain.LottoConstants.LOTTO_NUMBER_RANGE_START;
-import static lotto.view.ErrorConstants.OUT_OF_RANGE_NUMBER_ERROR_MESSAGE;
+import static lotto.constants.ErrorConstants.OUT_OF_RANGE_NUMBER_ERROR_MESSAGE;
+import static lotto.constants.LottoConstants.LOTTO_NUMBER_RANGE_END;
+import static lotto.constants.LottoConstants.LOTTO_NUMBER_RANGE_START;
+
+import java.util.Objects;
 
 public class LottoNumber implements Comparable<LottoNumber> {
     private final int number;
@@ -32,6 +34,23 @@ public class LottoNumber implements Comparable<LottoNumber> {
     @Override
     public int compareTo(LottoNumber other) {
         return Integer.compare(this.number, other.number);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LottoNumber that = (LottoNumber) o;
+        return number == that.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 
     public int getNumber() {

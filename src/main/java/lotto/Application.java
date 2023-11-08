@@ -2,11 +2,10 @@ package lotto;
 
 public class Application {
     public static void main(String[] args) {
-        LottoMoney lottoMoney = new LottoMoney();
-        System.out.println(lottoMoney.money);
+        LottoTimes lottoTimes = new LottoTimes();
+
+        Purchace purchace = new Purchace(lottoTimes.times);
 
         WinLotto winLotto = new WinLotto();
-        System.out.println(winLotto.lotto.numbers);
-        System.out.println(winLotto.bonus.bonus);
     }
 }

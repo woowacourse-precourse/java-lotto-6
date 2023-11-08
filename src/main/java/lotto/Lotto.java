@@ -46,4 +46,8 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
+    protected void printLotto() {
+        System.out.println(numbers.toString());
+    }
 }

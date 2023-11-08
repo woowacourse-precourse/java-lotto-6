@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import static lotto.model.User.userNumListInt;
+
+import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -24,7 +27,7 @@ public class GameController {
             try {
                 OutputView.printUserNum();
                 InputView.inputUserNum();
-                User.userNumListInt();
+                userNumListInt();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
@@ -35,12 +38,13 @@ public class GameController {
             try {
                 OutputView.printBonusNum();
                 InputView.inputUserBonusStr();
-                User.userBonusNum();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
+
+        Lotto.rank();
 
         OutputView.printStats();
 

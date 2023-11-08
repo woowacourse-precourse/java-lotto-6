@@ -10,21 +10,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import java.util.List;
-
 public class Lotto {
     public static int rank5th, rank4th, rank3rd, rank2nd, rank1st, prize;
-    public static List<List<Integer>> allLottoList = new ArrayList<>(); // 빈 리스트로 초기화
+    public static List<List<Integer>> allLottoList = new ArrayList<>();
 
-    static List<Integer> userNumListInt;
+    private final List<Integer> numbers;
 
-    public Lotto(List<Integer> userNumListInt) {
-        validate(userNumListInt);
-        this.userNumListInt = userNumListInt;
+    public Lotto(List<Integer> numbers) {
+        validate(numbers);
+        this.numbers = numbers;
     }
 
-    private void validate(List<Integer> userNumListInt) {
-        if (userNumListInt.size() != 6) {
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
@@ -41,12 +39,14 @@ public class Lotto {
     }
 
     public static void rank() {
-        for (int i = 0; i < lottoBoughtNum; i++) {
+        Lotto Lotto = new Lotto(userNumListInt);
+
+        for (int i = 0; i < User.lottoBoughtNum(); i++) {
             int lottoCount = 0;
             int lottoBonusCount = 0;
 
             for (int j = 0; j < 6; j++) {
-                if (allLottoList.get(i).contains(userNumListInt.get(j))) {
+                if (allLottoList.get(i).contains(Lotto.numbers.get(j))) {
                     lottoCount++;
                 }
                 if (allLottoList.get(i).contains(userBonusNum)) {

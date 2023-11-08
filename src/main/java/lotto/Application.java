@@ -12,22 +12,42 @@ public class Application {
 
     private static final int LOTTO_PRICE = 1000;
 
+    ;
+
     static Lotto lotto;
     static List<Lotto> lottoList = new ArrayList<>();
 
     public static void main(String[] args) {
-        int totalPayment;
-        WinningNumber winningNumber = null;
-        int bonusNum = 0;
         // TODO: 프로그램 구현
-        while (true){
-            try{
-               totalPayment = InputGuide.inputPrice(); // 사용자 구입금액 입력
-                break;
+        int totalPayment= setTotalPayment(); //로또 구입 금액 입력
+        setLottoList(totalPayment);//로또 리스트 생성
+        printLottoList(lottoList); //로또번호 출력
+        WinningNumber winningNumber = setWinningNum(); //당첨  번호 생성
+        int bonusNum = setBonusNum();// 보너스 번 호 생성
+        RateOfReturn ROR = new RateOfReturn(compareWin(winningNumber, bonusNum),totalPayment);
+    }
+
+    private static int setBonusNum() {
+        while(true){
+            try{ // 사용자 보너스 번호 입력
+                return InputGuide.inputBonusNum();
+            } catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static WinningNumber setWinningNum() {
+        while(true){
+            try{//당첨번호 입력
+                return new WinningNumber(InputGuide.inputWinningNum());
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private static void setLottoList(int totalPayment) {
         while(true){
             try{
                 makeLottoList(totalPayment); // 로또번호 생성
@@ -36,32 +56,16 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+    }
 
-
-        printLottoList(lottoList); //로또번호 출력
-
-        while(true){
-            try{//당첨번호 입력
-                winningNumber = new WinningNumber(InputGuide.inputWinningNum());
-                break;
+    private static int setTotalPayment() {
+        while (true){
+            try{
+                return InputGuide.inputPrice();
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }
-
-
-
-        while(true){
-            try{ // 사용자 보너스 번호 입력
-                bonusNum = InputGuide.inputBonusNum();
-                break;
-            } catch(IllegalArgumentException e){
-                System.out.println(e.getMessage());
-            }
-        }
-
-            RateOfReturn ROR = new RateOfReturn(compareWin(winningNumber, bonusNum),totalPayment);
-
     }
 
     private static int[][] compareWin(WinningNumber winningNumber, int bonusNum) {

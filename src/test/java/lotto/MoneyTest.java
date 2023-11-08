@@ -34,7 +34,7 @@ public class MoneyTest {
 
         // when
         final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> new Money(invalidMoney));
+                () -> Money.createMoney(invalidMoney));
 
         // then
         assertThat(exception.getMessage()).isEqualTo(INDIVISIBLE_NUMBER.getMessage());
@@ -48,7 +48,7 @@ public class MoneyTest {
 
         // when
         final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> new Money(invalidMoney));
+                () -> Money.createMoney(invalidMoney));
 
         // then
         assertThat(exception.getMessage()).isEqualTo(ZERO_NUMBER.getMessage());
@@ -62,7 +62,7 @@ public class MoneyTest {
 
         // when
         final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> new Money(invalidMoney));
+                () -> Money.createMoney(invalidMoney));
 
         // then
         assertThat(exception.getMessage()).isEqualTo(NOT_NUMBER_FORMAT.getMessage());

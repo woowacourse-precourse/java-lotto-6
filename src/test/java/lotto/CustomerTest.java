@@ -14,7 +14,7 @@ public class CustomerTest {
     void buyLotto() {
         // given
         Customer customer = new Customer();
-        Money money = new Money("3000");
+        Money money = Money.createMoney("3000");
         // when
 
         // then

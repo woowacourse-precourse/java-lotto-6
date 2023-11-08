@@ -30,8 +30,12 @@ public class LottoManager {
 
 
     private Money receiveMoney() {
-        OutPutView.printBuyTicket();
-        return new Money(InputView.readLine());
+        Money money=null;
+        do{
+            OutPutView.printBuyTicket();
+            money = Money.createMoney(InputView.readLine());
+        }while(money==null);
+        return money;
     }
 
     private WinLotto issueWinLotto() {

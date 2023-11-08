@@ -16,7 +16,7 @@ public class LottoGeneratorTest {
     @Test
     void issueLottoTickets(){
         // given
-        Money money = new Money("3000");
+        Money money = Money.createMoney("3000");
         // when
         List<Lotto> lottos = LottoGenerator.issueLottoTickets(money);
         // then

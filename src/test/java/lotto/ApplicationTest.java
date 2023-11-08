@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -53,7 +54,22 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+    @DisplayName("1000단위가 아닌 숫자 테스트")
+    @Test
+    void 개인_테스트(){
+        assertSimpleTest(() -> {
+            runException("2500");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
 
+    @Test
+    void 개인_테스트2(){
+        assertSimpleTest(() -> {
+            runException("2000", "2,3,4,5,6,7", "a", "9");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
     @Override
     public void runMain() {
         Application.main(new String[]{});

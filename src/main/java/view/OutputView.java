@@ -3,6 +3,8 @@ package view;
 import camp.nextstep.edu.missionutils.Randoms;
 import domain.Place;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +66,7 @@ public class OutputView {
         for(int i=0; i<CORRECT_MESSAGE.length; i++){
             System.out.println(CORRECT_MESSAGE[i]+numberOfWins.get(places[i])+NUMBER_OF_COUNT);
         }
+
         Long profit = getProfit(numberOfWins, places);
 
         return profit;
@@ -73,12 +76,18 @@ public class OutputView {
         Long[] winningPrice = {5000L,50000L,1500000L,30000000L,2000000000L};
         Long profit = 0L;
         for(int i=0; i< winningPrice.length; i++){
-            profit+= winningPrice[i] * numberOfWins.get(places[i]);
+            profit += winningPrice[i] * numberOfWins.get(places[i]);
         }
         return profit;
     }
 
     public static void outputRate(int purchasePrice, Long profit){
-        System.out.println(RATE_MESSAGE+ profit/purchasePrice +END_LINE_OF_RATE);
+        double rate = ((double) profit / purchasePrice) * 100;
+        BigDecimal bd = new BigDecimal(rate);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+
+        double roundedRate = bd.doubleValue();
+
+        System.out.println(RATE_MESSAGE+ roundedRate +END_LINE_OF_RATE);
     }
 }

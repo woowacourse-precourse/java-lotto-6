@@ -8,18 +8,15 @@ import lotto.domain.DrawnNumbers;
 import lotto.domain.Lottos;
 import lotto.domain.WinningResult;
 import lotto.dto.DrawnNumbersDto;
+import lotto.view.CostRequestView;
 import lotto.view.View;
 
 public class LottoController {
     public void run() {
-        int cost = buyLotto();
+        int cost = CostRequestView.request();
         Lottos lottos = issue(getCountFrom(cost));
         DrawnNumbers drawnNumbers = draw();
         conclude(lottos, drawnNumbers, cost);
-    }
-
-    private int buyLotto() {
-        return Integer.parseInt(View.requestCost());
     }
 
     private Lottos issue(int count) {

@@ -18,6 +18,10 @@ public final class Output {
         printlnFormat(message, args);
     }
 
+    public static void printlnMessage(String message) {
+        System.out.println(message);
+    }
+
     public static void printlnMessage(MessageType messageType) {
         System.out.println(messageType.getMessage());
     }

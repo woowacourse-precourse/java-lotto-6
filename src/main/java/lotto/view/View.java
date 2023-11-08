@@ -2,7 +2,6 @@ package lotto.view;
 
 import static lotto.global.constants.NumberType.COST_UNIT;
 import static lotto.view.constants.MessageType.BONUS_NUMBER_REQUEST_MESSAGE;
-import static lotto.view.constants.MessageType.COST_REQUEST_MESSAGE;
 import static lotto.view.constants.MessageType.EARNINGS_RATE_MESSAGE;
 import static lotto.view.constants.MessageType.LOTTO_COUNT_MESSAGE;
 import static lotto.view.constants.MessageType.WINNING_NUMBERS_REQUEST_MESSAGE;
@@ -16,7 +15,6 @@ import static lotto.view.constants.SymbolType.PREFIX;
 import static lotto.view.ui.Input.enterMessage;
 import static lotto.view.ui.Output.printlnFormat;
 import static lotto.view.ui.Output.printlnFormatWithNewLine;
-import static lotto.view.ui.Output.printlnMessage;
 import static lotto.view.ui.Output.printlnMessageWithNewLine;
 import static lotto.view.ui.Output.printlnResult;
 
@@ -31,10 +29,7 @@ import lotto.global.exception.LottoException;
 import lotto.view.constants.MessageType;
 
 public final class View {
-    public static String requestCost() {
-        printlnMessage(COST_REQUEST_MESSAGE);
-        return Validator.validateCost(enterMessage());
-    }
+
 
     public static void printLottos(Lottos lottos) {
         printLottosCount(lottos.getSize());
@@ -99,32 +94,6 @@ public final class View {
 
 
     private static class Validator {
-        private static String validateCost(String cost) {
-            validateNumber(cost);
-            validateUnit(cost);
-            return cost;
-        }
-
-        private static void validateNumber(String message) {
-            if (isNotNumber(message)) {
-                throw LottoException.from(ErrorMessage.NOT_NUMBER_ERROR);
-            }
-        }
-
-        private static boolean isNotNumber(String message) {
-            return !message.matches("\\d+");
-        }
-
-        private static void validateUnit(String cost) {
-            if (isNotDivisible(cost)) {
-                throw LottoException.from(ErrorMessage.INVALID_UNIT_ERROR);
-            }
-        }
-
-        private static boolean isNotDivisible(String cost) {
-            return Integer.parseInt(cost) % COST_UNIT.getValue() != 0;
-        }
-
         private static String validateWinningNumbers(String message) {
             validateInvalidSeparators(message);
             return message;

@@ -9,6 +9,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LottoTest {
@@ -29,7 +30,7 @@ class LottoTest {
 
     @DisplayName("로또 번호가 1과 45 사이 숫자가 아닐 때")
     @Test
-    void createLottoByNoTNumber() {
+    void createLottoByWrongRangeNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, -1, 47)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -45,7 +46,11 @@ class LottoTest {
                 () -> assertTrue(lotto.isContain(3)),
                 () -> assertTrue(lotto.isContain(4)),
                 () -> assertTrue(lotto.isContain(5)),
-                () -> assertTrue(lotto.isContain(6))
+                () -> assertTrue(lotto.isContain(6)),
+
+                () -> assertFalse(lotto.isContain(7)),
+                () -> assertFalse(lotto.isContain(8)),
+                () -> assertFalse(lotto.isContain(9))
         );
     }
 

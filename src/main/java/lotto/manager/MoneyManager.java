@@ -20,11 +20,6 @@ public class MoneyManager {
         return prizeMoney.getProfitRateInfo(userBudget.getBudget());
     }
 
-    public String getResultString() {
-        StringBuilder sb = new StringBuilder();
-        return sb.toString();
-    }
-
     private void calculate(Map<LottoWinningConstant, Integer> statistic) {
         prizeMoney.totalPrizeMoney.calculateTotalPrize(statistic);
     }

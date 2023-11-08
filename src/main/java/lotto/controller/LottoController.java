@@ -29,12 +29,12 @@ public class LottoController {
     }
 
     public static List<Lotto> setLottoNumber(int amount) {
-        List<Lotto> list = new ArrayList<>();
+        List<Lotto> lottoNumber = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             Lotto lotto = new Lotto(lottoNumber());
-            list.add(lotto);
+            lottoNumber.add(lotto);
         }
-        return list;
+        return lottoNumber;
     }
 
     public static List<Integer> lottoNumbers() {

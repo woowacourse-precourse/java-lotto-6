@@ -1,4 +1,9 @@
-package lotto.domain;
+package lotto.validator;
+
+import static lotto.constants.Message.BONUS_NUMBER_ERROR;
+import static lotto.constants.Message.BONUS_DUPLICATED_ERROR;
+
+import lotto.constants.Constants;
 
 import java.util.List;
 
@@ -20,19 +25,19 @@ public class BonusNumberValidator {
         try {
             this.bonusNumber = Integer.parseInt(number);
         } catch (IllegalArgumentException illegalArgumentException) {
-            throw new IllegalArgumentException("숫자여야 합니다.");
+            throw new IllegalArgumentException(BONUS_NUMBER_ERROR.getErrorMessage());
         }
     }
 
     private void isCorrectNumber() {
         if (bonusNumber < Constants.MIN_NUMBER || bonusNumber > Constants.MAX_NUMBER) {
-            throw new IllegalArgumentException("1과 45 사이의 숫자여야합니다.");
+            throw new IllegalArgumentException(BONUS_NUMBER_ERROR.getErrorMessage());
         }
     }
 
     private void isDuplicated() {
         if (prizeNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("중복된 숫자는 입력이 불가능합니다.");
+            throw new IllegalArgumentException(BONUS_DUPLICATED_ERROR.getErrorMessage());
         }
     }
 }

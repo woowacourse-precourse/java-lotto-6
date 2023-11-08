@@ -3,6 +3,7 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.util.message.Error.VALID_INPUT;
+import static lotto.util.message.Input.*;
 
 public class InputLotto {
     static final int MOD_NUM = 1000;
@@ -11,6 +12,7 @@ public class InputLotto {
     public static int purchaseMoney() {
         while (true) {
             try {
+                System.out.println(INPUT_PURCHASE_MONEY);
                 return readMoney();
             } catch (NumberFormatException e) {
                 System.out.println(VALID_INPUT);
@@ -23,6 +25,7 @@ public class InputLotto {
     public static int[] answerNumber() {
         while (true) {
             try {
+                System.out.println(INPUT_ANSWER_NUMBER);
                 return readAnswer();
             } catch (NumberFormatException e) {
                 System.out.println(VALID_INPUT);
@@ -35,6 +38,7 @@ public class InputLotto {
     public static int bonusNumber() {
         while (true) {
             try {
+                System.out.println(INPUT_BONUS_NUMBER);
                 return readBonus();
             } catch (NumberFormatException e) {
                 System.out.println(VALID_INPUT);

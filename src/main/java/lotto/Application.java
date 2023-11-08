@@ -1,19 +1,18 @@
 package lotto;
 
-public class Application {
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Main {
     public static void main(String[] args) {
-        // 구입 금액 입력 및 로또 발행
-        int purchaseAmount = 0; // 구입 금액 입력 로직 추가
-        int manualLottoCount = 0; // 수동으로 구매할 로또 개수 입력 로직 추가
-        LottoMachine lottoMachine = new LottoMachine(purchaseAmount, manualLottoCount);
+        int purchaseAmount = InputView.inputPurchaseAmount();
+        List<Lotto> lottos = LottoStore.buyLottos(purchaseAmount);
 
-        // 당첨 번호 및 보너스 번호 입력
-        String winningNumbersInput = ""; // 당첨 번호 입력 로직 추가
-        int bonusNumber = 0; // 보너스 번호 입력 로직 추가
-        WinningLotto winningLotto = WinningLotto.of(winningNumbersInput, bonusNumber);
+        List<Integer> winningNumbers = InputView.inputWinningNumbers();
+        int bonusNumber = InputView.inputBonusNumber();
 
-        // 로또 결과 출력
-        LottoResult lottoResult = lottoMachine.calculateResult(winningLotto);
-        ResultView.printResult(lottoMachine, lottoResult);
+        Result result = LottoResult.calculateResult(lottos, winningNumbers, bonusNumber);
+        OutputView.printLottos(lottos);
+        OutputView.printResult(result);
     }
 }

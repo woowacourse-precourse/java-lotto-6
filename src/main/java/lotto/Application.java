@@ -74,5 +74,11 @@ class WinnigNum {
         }
         return num_lst;
     }
+    public static String InputBonus(){
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusnum = Console.readLine();
+        return bonusnum;
+    }
 
 }

@@ -12,11 +12,15 @@ public class LottoGame {
         return 0;
     }
 
-    public void printResult(List<Integer> ranks) {
+    public void printResult(List<Rank> ranks) {
 
     }
 
-    public void printEarningRate(List<Integer> ranks) {
+    public void printEarningRate(List<Rank> ranks) {
 
+    }
+
+    public double getEarningRate(List<Rank> ranks, int price) {
+        return 0;
     }
 }

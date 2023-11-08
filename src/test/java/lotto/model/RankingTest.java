@@ -3,6 +3,7 @@ package lotto.model;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
@@ -21,6 +22,12 @@ public class RankingTest {
     @Test
     void isSecond_메서드는_자신이_SECOND_인지를_판별한다() {
         assertThat(Ranking.SECOND.isSecond()).isTrue();
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"NONE, 0", "FIFTH, 5_000", "FOURTH, 50_000", "THIRD, 1_500_000", "SECOND, 30_000_000", "FIRST, 2_000_000_000",})
+    void getReward_메서드는_자신의_상금을_반환한다(Ranking ranking, long reward) {
+        assertThat(ranking.getReward()).isEqualTo(reward);
     }
 
     //매칭 갯수, 보너스 일치여부, 등수 를 제공한다.

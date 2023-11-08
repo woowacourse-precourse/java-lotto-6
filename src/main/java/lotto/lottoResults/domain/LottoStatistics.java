@@ -3,6 +3,7 @@ package lotto.lottoResults.domain;
 import static lotto.component.rank.Rank.getReward;
 import static lotto.component.rank.Statistics.getStatistics;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,10 @@ public class LottoStatistics {
     }
 
     public void printReturnRate(Integer spendMoney) {
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", calculateReturnRate(spendMoney));
+        DecimalFormat decFormat = new DecimalFormat("###,###.#");
+
+        String str = decFormat.format(calculateReturnRate(spendMoney));
+        System.out.println("총 수익률은 " + str + "%입니다.");
     }
 
     private Integer convertRank(Integer matchedCount, Integer bonusMatched) {

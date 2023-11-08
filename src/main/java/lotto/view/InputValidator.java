@@ -7,6 +7,7 @@ public class InputValidator {
 
     private static final String DELIMITER = ",";
     private static final String NUMERIC_PATTERN = "\\d+";
+    private static final String ERROR_HEAD = "[ERROR] ";
 
     public List<String> toStringList(final String userInput) {
         return Arrays.stream(userInput.split(DELIMITER))
@@ -23,7 +24,7 @@ public class InputValidator {
     public void validateDigit(final List<String> list) {
         boolean isDigit = list.stream().allMatch(s -> s.matches(NUMERIC_PATTERN));
         if (!isDigit) {
-            throw new IllegalArgumentException("로또 번호는 1~45 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ERROR_HEAD + "로또 번호는 1~45 숫자만 입력 가능합니다.");
         }
     }
 
@@ -31,7 +32,7 @@ public class InputValidator {
         try {
             return Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자만 입력 가능합니다! ");
+            throw new IllegalArgumentException(ERROR_HEAD + "숫자만 입력 가능합니다! ");
         }
     }
 }

@@ -6,6 +6,7 @@ public class MoneyManagement {
     private static final int LOTTO_AMOUNT = 1000;
     private static final int ZERO = 0;
     private static final String NUMERIC_PATTERN = "\\d+";
+    private static final String ERROR_HEAD = "[ERROR] ";
 
     private MoneyManagement(final String userInput) {
         validate(userInput);
@@ -25,7 +26,7 @@ public class MoneyManagement {
 
     private void validNumber(final String userInput) {
         if (!userInput.matches(NUMERIC_PATTERN)) {
-            throw new IllegalArgumentException("금액은 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ERROR_HEAD + "금액은 숫자만 입력 가능합니다.");
         }
     }
 
@@ -33,19 +34,19 @@ public class MoneyManagement {
         try {
             return Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("입력한 금액이 유효한 숫자 범위를 벗어났습니다.");
+            throw new IllegalArgumentException(ERROR_HEAD + "입력한 금액이 유효한 숫자 범위를 벗어났습니다.");
         }
     }
 
     private void validRange(final int userAmount) {
         if (userAmount < LOTTO_AMOUNT) {
-            throw new IllegalArgumentException("로또 최소 구입 가능 금액은 1000원입니다.");
+            throw new IllegalArgumentException(ERROR_HEAD + "로또 최소 구입 가능 금액은 1000원입니다.");
         }
     }
 
     private void validLottoAmount(final int userAmount) {
         if (userAmount % LOTTO_AMOUNT != ZERO) {
-            throw new IllegalArgumentException("로또 금액은 1000원 단위입니다.");
+            throw new IllegalArgumentException(ERROR_HEAD + "로또 금액은 1000원 단위입니다.");
         }
     }
 

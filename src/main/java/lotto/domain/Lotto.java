@@ -11,6 +11,7 @@ public class Lotto {
     private static final String LIST_PREFIX = "[";
     private static final String LIST_SUFFIX = "]";
     private static final int START_NUM = 1;
+    private static final String ERROR_HEAD = "[ERROR] ";
     private final List<Number> numbers;
 
     public Lotto(final List<Integer> numbers) {
@@ -24,7 +25,7 @@ public class Lotto {
 
     private void validateSize(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_HEAD + "로또 숫자는 6개입니다!");
         }
     }
 
@@ -64,14 +65,14 @@ public class Lotto {
     private static void validRange(final List<Integer> list) {
         boolean overRange = list.stream().anyMatch(num -> num > LOTTO_MAX_NUM);
         if (overRange) {
-            throw new IllegalArgumentException("로또 번호의 범위는 45입니다!");
+            throw new IllegalArgumentException(ERROR_HEAD + "로또 번호의 범위는 45입니다!");
         }
     }
 
     private static void validDuplicated(final List<Integer> list) {
         long uniqueCount = list.stream().distinct().count();
         if (uniqueCount < list.size()) {
-            throw new IllegalArgumentException("중복된 숫자가 있습니다!");
+            throw new IllegalArgumentException(ERROR_HEAD + "중복된 숫자가 있습니다!");
         }
     }
 

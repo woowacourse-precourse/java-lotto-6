@@ -2,6 +2,7 @@ package lotto.Lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Input.Input;
+import lotto.Print.Print;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ public class LottoGame {
         //로또 개수 구하기
         int lottoBuyCount = Input.getLottoBuyCount();
         List<Lotto> paidLottos = LottoGame.getPaidLottoNumbers(lottoBuyCount);
+        Print.printPaidLottoResult(paidLottos,lottoBuyCount);
     }
 
     //구입한 로또 리스트 구하기

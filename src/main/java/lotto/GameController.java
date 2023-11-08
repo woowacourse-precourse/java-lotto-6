@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 
 public class GameController {
     private static final int ERROR = -1;
@@ -9,7 +10,9 @@ public class GameController {
     public void start() {
         int ticketCount = cashToTicket();
         buyTicket(ticketCount);
-        int winNumber = pickWinNumber();
+        ArrayList<Integer> winNumber = pickWinNumber();
+        int bonusNumber = pickBonusNumber(winNumber);
+
     }
 
     public int cashToTicket() {
@@ -44,13 +47,13 @@ public class GameController {
         return Console.readLine();
     }
 
-    public int pickWinNumber() {
-        int winNumber;
+    public ArrayList<Integer> pickWinNumber() {
+        ArrayList<Integer> winNumber;
 
         while (true) {
             String rawWinNumber = inputWinNumber();
             winNumber = gameService.validWinNumber(rawWinNumber);
-            if (winNumber != ERROR) {
+            if (winNumber != null) {
                 break;
             }
         }

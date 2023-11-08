@@ -1,7 +1,5 @@
 package lotto.Controller;
 
-import java.util.Collections;
-import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import lotto.enums.LottoRank;
@@ -14,8 +12,8 @@ import lotto.view.OutputView;
 
 public class LottoController implements Controller {
 
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
     private LottoPurchaseManager lottoPurchaseManager;
     private LottoResultManager lottoResultManager;
     private LottoResultPolicy lottoResultPolicy = new LottoResultPolicy();

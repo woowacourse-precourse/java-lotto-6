@@ -1,7 +1,6 @@
 package lotto.model;
 
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.enums.LottoRank;

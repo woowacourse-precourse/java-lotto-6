@@ -2,7 +2,6 @@ package lotto.view;
 
 import static lotto.enums.OutputMessage.*;
 
-import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import lotto.enums.ErrorMessage;

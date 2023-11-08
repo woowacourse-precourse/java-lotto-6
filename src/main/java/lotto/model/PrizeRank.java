@@ -6,12 +6,12 @@ public enum PrizeRank {
     THIRD(5, 1_500_000),
     FOURTH(4, 50_000),
     FIFTH(3, 5_000),
-    NONE(0,0);
+    NONE(0, 0);
 
     private final int matchingNumbers;
     private final int prizeMoney;
 
-    PrizeRank(int matchingNumbers, int prizeMoney){
+    PrizeRank(int matchingNumbers, int prizeMoney) {
         this.matchingNumbers = matchingNumbers;
         this.prizeMoney = prizeMoney;
     }

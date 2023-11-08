@@ -133,18 +133,22 @@ public class Lotto {
 
     private void compareLotto() {
         for (List<Integer> compareNumber : storedNumber) {
-            int sameNumber = 0;
-            for (int i : compareNumber) {
-                if (numbers.contains(i)) {
-                    sameNumber++;
-                }
-            }
-            if (sameNumber == 5 && compareNumber.contains(bonusNum)) {
-                counts[7]++;
-                return;
-            }
-            counts[sameNumber]++;
+            checkcompare(compareNumber);
         }
+    }
+
+    private void checkcompare(List<Integer>compareNumber){
+        int sameNumber = 0;
+        for (int i : compareNumber) {
+            if (numbers.contains(i)) {
+                sameNumber++;
+            }
+        }
+        if (sameNumber == 5 && compareNumber.contains(bonusNum)) {
+            counts[7]++;
+            return;
+        }
+        counts[sameNumber]++;
     }
 
     private void numbersPrint(List<Integer> generateNumbers) {

@@ -34,4 +34,10 @@ public class OutputView {
 		System.out.println(INPUT_NUMBER_OF_LOTTO);
 	}
 	
+	public void printAskingBonusNumber() {
+		System.out.println();
+		System.out.println(INPUT_BONUS_NUMBER_OF_LOTTO);
+	}
+	
 }
+

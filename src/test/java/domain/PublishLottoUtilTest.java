@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import dto.Lotto;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import org.junit.jupiter.api.Assertions;
@@ -51,7 +52,13 @@ class PublishLottoUtilTest extends IOTest {
     }
 
     @Test
+    @DisplayName("발행된 로토의 숫자들이 제대로 출력되는지 확인하는 테스트")
     void showPublishedLotto() {
-
+        List<Lotto> lottos = new ArrayList<>();
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(7, 8, 9, 10, 11, 12));
+        lottos.add(lotto1);
+        lottos.add(lotto2);
+        publishLottoUtil.showPublishedLotto(lottos);
     }
 }

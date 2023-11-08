@@ -12,7 +12,8 @@ public class Lottoresult {
         }
         return count;
     }
-public void lottoprint(int count, int bouns) {
+
+public int lottoprint(int count, int bouns) {
     int count3 = 0;
     int count4 = 0;
     int count5 = 0;
@@ -30,6 +31,7 @@ public void lottoprint(int count, int bouns) {
         case 5:
             if (bounsnum == 1) {
                 count5Bonus++;
+                break;
             }
             count5++;
             break;
@@ -42,8 +44,18 @@ public void lottoprint(int count, int bouns) {
     System.out.println("5개 일치 (1,500,000원) - " + count5 + "개");
     System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + count5Bonus + "개");
     System.out.println("6개 일치 (2,000,000,000원) - " + count6 + "개");
+    return countnumber(count3,count4,count5,count5Bonus, count6);
 }
-    private int processLottoNumbers(List<Integer> lottoNumbers, int[] winnumber) {
+    public int countnumber(int count3,int count4,int count5,int count5Bonus,int count6){
+        count3=count3*5000;
+        count4=count4*50000;
+        count5=count5*1500000;
+        count5Bonus=count5Bonus*30000000;
+        count6=count6*2000000000;
+        int sum = count3+count4+count5+count5Bonus+count6;
+        return sum;
+    }
+    public int processLottoNumbers(List<Integer> lottoNumbers, int[] winnumber) {
         int count=0;
         for (int j = 0; j < lottoNumbers.size(); j++) {
             for (int k = 0; k < winnumber.length; k++) {
@@ -60,7 +72,7 @@ public void lottoprint(int count, int bouns) {
         for (int i = 0; i < lottos.size(); i++) {
             Lotto lotto = lottos.get(i);
             List<Integer> lottoNumbers = lotto.getNumbers();
-            if (lottoNumbers.get(i)==bouns){
+            if (lottoNumbers.contains(bouns)){
                 bounscount++;
             }
         }

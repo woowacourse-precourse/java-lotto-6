@@ -1,5 +1,6 @@
 package lotto.engine;
 
+import static lotto.engine.LottoSystemConstant.LOTTO_MAXIMUM_NUMBER_OF_WINNINGS;
 import static lotto.engine.LottoSystemConstant.LOTTO_MINIMUM_NUMBER_OF_WINNINGS;
 import static lotto.engine.LottoSystemConstant.LOTTO_PRICE;
 
@@ -48,7 +49,7 @@ public final class LottoGame {
                 winningResult.winningCriteria().get(4),
                 winningResult.winningCriteria().get(5),
                 winningResult.specailMatchCount(),
-                winningResult.winningCriteria().get(LOTTO_MINIMUM_NUMBER_OF_WINNINGS.value()),
+                winningResult.winningCriteria().get(LOTTO_MAXIMUM_NUMBER_OF_WINNINGS.value()),
                 winningResult.profit()
         );
     }

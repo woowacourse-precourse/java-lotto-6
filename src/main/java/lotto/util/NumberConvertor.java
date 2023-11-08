@@ -3,33 +3,28 @@ package lotto.util;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.model.Lotto;
-import lotto.model.LottoNumber;
 
-public class LottoNumberConvertor {
+public class NumberConvertor {
 
     private static final String DELIMITER = ",";
 
-    public static Lotto convertToLotto(String lottoNumberInput) {
+    public static List<Integer> convertToNumbers(String lottoNumberInput) {
         try {
-            List<Integer> lottoNumbers = getLottoNumbers(lottoNumberInput.split(DELIMITER));
-
-            return Lotto.issueChooseNumbersLotto(lottoNumbers);
+            return getNumbers(lottoNumberInput.split(DELIMITER));
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자로만 구성 되어야 합니다. 다시 입력해주세요");
         }
     }
 
-    public static LottoNumber convertToBonusNumber(String bonusNumberInput) {
+    public static Integer convertToNumber(String bonusNumberInput) {
         try {
-            int bonusNumber = Integer.parseInt(bonusNumberInput);
-            return new LottoNumber(bonusNumber);
+            return Integer.parseInt(bonusNumberInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 한 개의 숫자여야 합니다. 다시 입력해주세요");
         }
     }
 
-    private static List<Integer> getLottoNumbers(String[] split) {
+    private static List<Integer> getNumbers(String[] split) {
         return Arrays.stream(split)
             .map(String::trim)
             .map(Integer::parseInt)

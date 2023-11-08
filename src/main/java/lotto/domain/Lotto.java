@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.message.LottoErrorMessage.INVALID_DUPLICATE;
+import static lotto.message.LottoErrorMessage.INVALID_SIZE;
+
 import java.util.HashSet;
 import java.util.List;
 public class Lotto {
@@ -29,13 +32,13 @@ public class Lotto {
     private void validateDuplicate(List<Integer> numbers) {
         int numbersCount = new HashSet<>(numbers).size();
         if (numbersCount != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_DUPLICATE);
         }
     }
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_SIZE);
         }
     }
 

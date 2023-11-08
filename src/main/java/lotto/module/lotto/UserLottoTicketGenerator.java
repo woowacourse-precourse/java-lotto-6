@@ -1,7 +1,8 @@
-package lotto.module.domain.lotto;
+package lotto.module.lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class UserLottoTicketGenerator implements LottoNumberGenerator {
 
     @Override
     public UserLottoTicket generateLottoNumber() {
-        final List<Integer> RANDOM_NUMBER = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, SIZE);
+        final List<Integer> RANDOM_NUMBER = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, SIZE));
         Collections.sort(RANDOM_NUMBER);
 
         return UserLottoTicket.newInstance(RANDOM_NUMBER);

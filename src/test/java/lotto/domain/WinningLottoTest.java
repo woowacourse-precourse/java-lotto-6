@@ -2,7 +2,7 @@ package lotto.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import lotto.NumberGenerator;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -13,7 +13,7 @@ class WinningLottoTest {
 
     @BeforeEach
     void init() {
-        lotto = new Lotto(NumberGenerator.formatNumbers("1,2,3,4,5,6"));
+        lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     }
 
     @CsvSource({"-1", "0", "46", "1000"})

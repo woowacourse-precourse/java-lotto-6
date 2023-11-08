@@ -22,7 +22,13 @@ public class LottoRound {
         generateWinningNumbers();
 
         OutputView.printBonusNumberInputMessage();
-        
+        generateBonusNumber();
+
+        calculatePrize();
+
+        OutputView.printLottoResult(lottoBatchResult.getValue());
+        OutputView.printLottoProfitRate(lottoBatchResult.calculateLottoProfitRate(lottoCount*1000));
+
     }
 
     public Integer generateLottoCount() {
@@ -49,5 +55,15 @@ public class LottoRound {
 
     }
 
+    public void generateBonusNumber() {
+        try {
+            prizeNumbers.setBonusNumber(InputView.inputBonusNumber());
 
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            generateBonusNumber();
+        }
+
+    }
+    
 }

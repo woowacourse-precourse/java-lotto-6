@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.List;
 
 public class Lotto {
@@ -17,4 +19,5 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
 }

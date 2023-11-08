@@ -28,12 +28,15 @@ public class LottoService {
 
     private static final String BONUS_DUPLICATE_MESSAGE = BONUS_NUMBER_MESSAGE + "당첨 번호와 중복 될 수 없습니다.";
 
+    private static final String USER_LOTTO_NUMBERS_KEY = "userLottoNumbers";
+    private static final String USER_BONUS_NUMBER_KEY = "userBonusNumber";
+
     public Map<String, String> setUserLottoNumbersAndBonusNumber(
             String inputUserLottoNumbers, String inputUserBonusNumber
     ) {
         Map<String, String> userLottoNumbersAndBonusNumber = new HashMap<>();
-        userLottoNumbersAndBonusNumber.put("userLottoNumbers", inputUserLottoNumbers);
-        userLottoNumbersAndBonusNumber.put("userBonusNumber", inputUserBonusNumber);
+        userLottoNumbersAndBonusNumber.put(USER_LOTTO_NUMBERS_KEY, inputUserLottoNumbers);
+        userLottoNumbersAndBonusNumber.put(USER_BONUS_NUMBER_KEY, inputUserBonusNumber);
 
         return userLottoNumbersAndBonusNumber;
     }
@@ -44,7 +47,7 @@ public class LottoService {
         Map<LottoRank, Integer> lottoWinningResult = getLottoWinningResultInit();
 
         List<String> userLottoNumbers = Arrays.stream(
-                userLottoNumbersAndBonusNumber.get("userLottoNumbers").split(",")
+                userLottoNumbersAndBonusNumber.get(USER_LOTTO_NUMBERS_KEY).split(",")
         ).toList();
 
         for (List<Integer> lottoTicket : lottoTickets) {
@@ -124,7 +127,7 @@ public class LottoService {
 
     private boolean isMatchBonusNumber(List<Integer> lottoTicket, Map<String, String> userLottoNumbersAndBonusNumber) {
         return lottoTicket.contains(
-                Integer.parseInt(userLottoNumbersAndBonusNumber.get("userBonusNumber"))
+                Integer.parseInt(userLottoNumbersAndBonusNumber.get(USER_BONUS_NUMBER_KEY))
         );
     }
 

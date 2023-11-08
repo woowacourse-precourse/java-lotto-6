@@ -1,4 +1,4 @@
-# 로또 (ver 1.2.4)
+# 로또 (ver 1.2.5)
 
 ## 문서 Versioning 규칙
 
@@ -37,9 +37,10 @@
       - 구매한 로또의 갯수와 로또 번호를 출력하도록 명령한다.
     - inputWinningNumber(): 당첨 번호를 입력하도록 명령한다.
       - InputView의 inputWinningLottoNumbers()를 호출하고, 입력을 받아 WinningNumber(당첨 번호) 인스턴스를 생성한다.
-      - IllegalArgumentException이 발생할 경우, 에러 메시지를 출력하고, 다시 입력(inputAmount())받도록 명령한다.
+      - IllegalArgumentException이 발생할 경우, 에러 메시지를 출력하고, 다시 입력(inputWinningNumber())받도록 명령한다.
     - inputBonusNumber(): 보너스 번호를 입력하도록 명령하고, 
       - validateDuplicatedNumber(): 당첨 번호와 보너스 번호가 중복되는지 검증한다.
+      - IllegalArgumentException이 발생할 경우, 에러 메시지를 출력하고, 다시 입력(inputBonusNumber())받도록 명령한다.
       - 유효성 검증에 성공하면 BonusNumber(보너스 번호) 인스턴스를 생성한다.
     - calculateWinningResult(): 로또 일치 여부를 계산하고 WinningResult(당첨 결과)를 반환한다.
       - WinningResult 인스턴스를 생성한다.
@@ -96,3 +97,4 @@
   - [ ] 당첨 통계 콘솔과 하이픈(---)을 출력한다.
   - printWinningResult(): 당첨 통계를 출력한다.
   - printEarningRate(): 수익률을 출력한다.
+  - [ ] 예외 메시지(String)을 인자로 받아, 에러 메시지를 출력한다.

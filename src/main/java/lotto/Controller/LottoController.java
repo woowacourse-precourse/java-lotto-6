@@ -11,7 +11,7 @@ import java.util.Map;
 import lotto.Domain.Customer;
 import lotto.Domain.LottoStore;
 import lotto.Domain.LottoSystem;
-import lotto.Lotto;
+import lotto.Domain.Lotto;
 import lotto.View.InputView;
 
 public class LottoController {

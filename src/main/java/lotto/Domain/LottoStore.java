@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
 import lotto.Util.WinningStatistics;
 
 public class LottoStore {

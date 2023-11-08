@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Domain;
 
 import static lotto.Util.InputValidator.checkDistinctNumbers;
 import static lotto.Util.ValidatorMessage.ERROR_MESSAGE;

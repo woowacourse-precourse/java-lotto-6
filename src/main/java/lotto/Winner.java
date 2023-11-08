@@ -6,8 +6,8 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Winner {
-	final List<Integer> numbers;
-	final int bonusNumber;
+	private final List<Integer> numbers;
+	private final int bonusNumber;
 
 	public Winner() {
 		this.numbers = readNumbers();
@@ -81,8 +81,4 @@ public class Winner {
 		return numbers;
 	}
 
-	public int getBonusNumber() {
-		return bonusNumber;
-	}
 }
-

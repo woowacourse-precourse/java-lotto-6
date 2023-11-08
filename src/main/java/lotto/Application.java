@@ -11,10 +11,8 @@ public class Application {
         int money = input.getMoney();
         int numberOfLotto = input.getNumberOfLotto();
 
-        LottoMachine lottoMachine = new LottoMachine();
-
-        List<Lotto> lottos = lottoMachine.print(numberOfLotto);
-        lottoMachine.showLottos();
+        LottoMachine lottoMachine = new LottoMachine(numberOfLotto);
+        List<Lotto> lottos = lottoMachine.getLottos();
 
         WinningNumber winningNumberInput = new WinningNumber();
         List<Integer> winningNumbers = winningNumberInput.getWinningNumber();

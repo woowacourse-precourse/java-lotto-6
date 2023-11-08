@@ -3,7 +3,7 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private List<Integer> numbers;
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     public Lotto(List<Integer> numbers) {

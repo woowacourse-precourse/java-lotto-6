@@ -15,7 +15,7 @@ public class Input {
         return this.numberOfLotto;
     }
     public void setNumberOfLotto(){
-        int numberOfLotto = calculate(money);
+        this.numberOfLotto = calculate(money);
         System.out.println(numberOfLotto+"개를 구매했습니다.");
     }
     public void setMoney(){

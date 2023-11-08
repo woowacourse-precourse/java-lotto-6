@@ -81,7 +81,7 @@ public class Prize {
         System.out.println("---");
 
         for(int rank=1; rank < 6;rank++){
-            System.out.println((rank+2)+"개 일치 ("+matchMoney(rank)+"원) - "+winningCount[rank]+" 개");
+            System.out.println((rank+2)+"개 일치 ("+matchMoney(rank)+"원) - "+winningCount[rank]+"개");
         }
 
         System.out.println("총 수익률은 " + this.totalReturn +"%입니다.");

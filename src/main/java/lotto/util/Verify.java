@@ -31,4 +31,18 @@ public class Verify {
         }
         return inputList;
     }
+
+    public static Integer verifyBonusNumber(String input) throws IllegalArgumentException{
+        input = input.replace(" ","");
+        Integer number;
+        try{
+            number = Integer.parseInt(String.valueOf(input));
+        }
+        catch (NumberFormatException e){
+            throw new IllegalArgumentException();
+        }
+        if(number<0 || number>46)
+            throw new IllegalArgumentException();
+        return number;
+    }
 }

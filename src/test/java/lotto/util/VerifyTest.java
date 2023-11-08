@@ -1,6 +1,7 @@
 package lotto.util;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.util.Verify.verifyBonusNumber;
 import static lotto.util.Verify.verifyWinningNumbersStringToList;
 import static lotto.util.Verify.verifyAmount;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -72,6 +73,27 @@ public class VerifyTest extends NsTest {
     @Test
     void inputVerifyToStringArray_숫자가아닌값이들어올경우() {
         assertThatThrownBy(() -> verifyWinningNumbersStringToList("1,2,r,4,sssss, 6"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void verifyBonusNumber_0부터45까지잘들어온_정상() {
+        assertSimpleTest(
+                ()-> {
+                    assertThat(verifyBonusNumber("44"))
+                            .isEqualTo(44);
+                }
+        );
+    }
+    @Test
+    void verifyBonusNumber_쉼표정확히6개_범위숫자아닌경우() {
+        assertThatThrownBy(() -> verifyBonusNumber("100"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void verifyBonusNumber_숫자가아닌값이들어올경우() {
+        assertThatThrownBy(() -> verifyBonusNumber("10s"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

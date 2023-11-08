@@ -15,6 +15,19 @@ class LottoControllerTest {
     private final LottoController lottoController = new LottoController();
 
     @Test
+    public void 개별_결과_정렬_확인() throws Exception{
+        //given
+        //when
+        List<Integer> lottoNumbers = lottoController.getLottoNumbers();
+        //then
+        assertThat(lottoNumbers.get(0) < lottoNumbers.get(1)).isTrue();
+        assertThat(lottoNumbers.get(1) < lottoNumbers.get(2)).isTrue();
+        assertThat(lottoNumbers.get(2) < lottoNumbers.get(3)).isTrue();
+        assertThat(lottoNumbers.get(3) < lottoNumbers.get(4)).isTrue();
+        assertThat(lottoNumbers.get(4) < lottoNumbers.get(5)).isTrue();
+    }
+
+    @Test
     public void 개별_결과_확인(){
         //given
         Lotto winning = new Lotto(Arrays.asList(11, 12, 13, 14, 15, 16));

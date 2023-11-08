@@ -2,7 +2,6 @@ package lotto;
 
 import static lotto.Service.*;
 import static lotto.Lotto.*;
-import static lotto.Lottery.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.stream.Collectors;
 public class Application {
     public static void main(String[] args) {
         //1. 로또 구입 금액 입력 받기
-        int howMuch = 0;
+        int howMuch = 0; //구입한 금액
         int numberOfLotteries = 0; //로또 개수
         while(true) {
             try{
@@ -65,6 +64,15 @@ public class Application {
             result.putIfAbsent(rank, 0L);
         }
 
+        //6. 수익률 계산
+        float sumOfWinnings = 0f;
+        for (Rank rank : Rank.values()) {
+            float numberOfRank = result.get(rank);
+            float winnings = rank.getWinnings();
+            sumOfWinnings += numberOfRank * winnings;
+        }
+        float rateOfReturn = (float) (sumOfWinnings/howMuch)*100;
+
 
         //6. 출력
         System.out.println(numberOfLotteries + "개를 구매했습니다.");
@@ -80,6 +88,6 @@ public class Application {
         System.out.println("5개 일치 (1,500,000원) - " + result.get(Rank.THIRD) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.get(Rank.SECOND) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + result.get(Rank.FIRST) + "개");
-
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
     }
 }

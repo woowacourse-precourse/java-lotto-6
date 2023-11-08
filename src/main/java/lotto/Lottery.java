@@ -17,10 +17,9 @@ public class Lottery {
         this.rank = rank;
     }
 
-    // 로또 당첨 번호 생성하고 정렬
+    // 로또 당첨 번호 생성
     private static List<Integer> makeWinningNumbers() {
         List<Integer> winningNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(winningNumbers);
         return winningNumbers;
     }
 
@@ -79,4 +78,9 @@ enum Rank {
     Rank(int winnings) {
         this.winnings = winnings;
     }
+
+    public int getWinnings() {
+        return winnings;
+    }
+
 }

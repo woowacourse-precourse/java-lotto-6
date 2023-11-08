@@ -12,6 +12,7 @@
 - [x] 생성된 로또의 결과 계산 (CalculateWinning.calculateResult)
 - [x] 결과를 종합하여 당첨 통계 생성 (CalculateWinning.generateStatistic)
 - [x] 당첨 통계를 통해 수익률 계산 (LottoStatistic.produceStatistic)
+- [x] 당첨 통계, 수익률을 출력 (ResultView.printLottoStatistic)
 - [x] 입력을 검증 (InputValidator)
   - [x] 구입 금액 (validateOrderPrice)
     - [x] 숫자로 이루어져야 함

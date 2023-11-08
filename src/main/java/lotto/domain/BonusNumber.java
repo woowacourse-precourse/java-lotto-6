@@ -40,9 +40,10 @@ public class BonusNumber {
         }
     }
 
-    private void compareWinningAndBonus() {
-        // 당첨번호와 보너스번호 중복체크함
-        // 중복되면 예외던짐
+    private void compareWinningAndBonus(List<Integer> winningNumbers, int bonusNumberInput) {
+        if (winningNumbers.contains(bonusNumberInput)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되지 않는 숫자를 입력해주세요.");
+        }
     }
 
     public int getBONUS_NUMBER() {

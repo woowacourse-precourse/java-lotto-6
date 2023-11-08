@@ -24,7 +24,7 @@ public class WinningLotto {
     private void validateDuplicate(List<Integer> winningLotto, Integer number) {
         Set<Integer> NotDuplicateNumbers = new HashSet<>(winningLotto);
         NotDuplicateNumbers.add(number);
-        if(NotDuplicateNumbers.size() != Rule.MAX_LENGTH) {
+        if(NotDuplicateNumbers.size() != Rule.MAX_LENGTH + Rule.BONUSNUM_LENGTH) {
             throw new IllegalArgumentException(Rule.LOTTO_NUM_SIZE_ERROR);
         }
     }

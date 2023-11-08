@@ -1,7 +1,7 @@
 package controller;
 
 import static validator.MoneyValidator.moneyValidate;
-import static view.inputView.moneyMessagePrint;
+import static view.View.moneyMessagePrint;
 
 import camp.nextstep.edu.missionutils.Console;
 

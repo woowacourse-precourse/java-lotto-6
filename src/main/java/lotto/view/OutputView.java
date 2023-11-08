@@ -21,5 +21,8 @@ public class OutputView {
         public static void printWinmessage(String message,int winCount) {
                 System.out.println(message + winCount + "개");
         }
+        public static void printProfit(double profit) {
+                System.out.printf("총 수익률은 %.1f%%입니다.\n",profit);
+        }
 
 }

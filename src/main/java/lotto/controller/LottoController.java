@@ -28,7 +28,7 @@ public class LottoController {
                 bonusNumber = InputView.inputBonusNumber();
 
                 calculateLotto = new CalculateLotto(winLotto,bonusNumber);
-                resultLottos(lottos,calculateLotto);
+                resultLottos(lottos,calculateLotto,payMoney);
         }
         private int buyingLotto() {
                 payMoney = InputView.inputMoney();
@@ -49,7 +49,7 @@ public class LottoController {
                 System.out.println(lottoNumbers);
                 return new Lotto(lottoNumbers);
         }
-        private void resultLottos(List<Lotto> lottos, CalculateLotto calculateLotto){
+        private void resultLottos(List<Lotto> lottos, CalculateLotto calculateLotto,int payMoney){
                 Map<WinLotto,Integer> result = setResult();
                 WinLotto winLotto;
 
@@ -58,6 +58,7 @@ public class LottoController {
                         result.put(winLotto, result.get(winLotto) + 1);
                 }
                 printResult(result);
+                printProfit(result,payMoney);
         }
         private Map<WinLotto,Integer> setResult(){
                 Map<WinLotto,Integer> result = new LinkedHashMap<>();
@@ -72,6 +73,15 @@ public class LottoController {
                        WinLotto.values()[i].printMessage(result.get(WinLotto.values()[i]));
                }
         }
-        // lottoPrice.getLottoCount()에 따라 lottos를 생성하는 메서드
+        private void printProfit(Map<WinLotto, Integer> result, int payMoney){
+                double profit = 0;
+
+                for( WinLotto winLotto: result.keySet()){
+                        profit = profit + ((double)(winLotto.getPrize()))/ payMoney * result.get(winLotto)*100;
+                }
+                OutputView.printProfit(profit);
+        }
+
+
 
 }

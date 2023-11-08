@@ -97,6 +97,7 @@ public class View {
             .map(entry -> new ResultResponse(entry.getKey(), entry.getValue()))
             .collect(Collectors.toList());
 
+        outputView.printResultGuideMessage();
         outputView.printLottoResult(resultResponses);
         outputView.printBenefitRate(result.calculateBenefitRate(amount));
     }

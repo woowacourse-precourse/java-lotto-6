@@ -40,4 +40,9 @@ public class OutputView {
             System.out.print(resultResponse.toString());
         }
     }
+
+    public void printResultGuideMessage() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
 }

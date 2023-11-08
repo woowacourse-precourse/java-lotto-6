@@ -1,17 +1,12 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.Application;
-import lotto.dto.AllLotteriesNumbersInfoDTO;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyInt;
 
 class LottoRankTest extends NsTest {
 

@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import lotto.Model.LottoEarningCalculator;
 import lotto.Model.LottoPrizeCalculator;
 import lotto.Model.LottoPurchaseCalculator;
@@ -98,12 +99,25 @@ public class LottoController {
         prizeCalculator.calculateStatistics(purchasedTickets);
 
         Map<Integer, Integer> prizeCountMap = prizeCalculator.getPrizeCountMap();
-        lottoOutput.printPrizeStatistics(prizeCountMap);
+        List<String> statisticsLines = prepareStatisticsLines(prizeCountMap);
+
+        lottoOutput.printPrizeStatistics(statisticsLines);
 
         long totalPrizeMoney = prizeCalculator.getTotalPrizeMoney();
         BigDecimal earningsRate = LottoEarningCalculator.calculateEarningsRate(totalPrizeMoney, numberOfTickets, lottoPrice);
 
         lottoOutput.printEarningsRate(earningsRate.doubleValue());
+    }
+
+    private List<String> prepareStatisticsLines(Map<Integer, Integer> prizeCountMap) {
+        List<String> statisticsLines = new ArrayList<>();
+        new TreeMap<>(prizeCountMap).forEach((prize, count) -> {
+            String prizeDescription = LottoPrizeCalculator.getPrizeDescription(prize);
+            if (prizeDescription != null) {
+                statisticsLines.add(prizeDescription + " - " + count + "개");
+            }
+        });
+        return statisticsLines;
     }
 }
 

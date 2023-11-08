@@ -22,6 +22,11 @@ public class WinningNumberInputView implements LottoInputViewable, Supplier<Stri
 
     @Override
     public void validate(final String input) {
+        validateFormat(input);
+        validateEachNumber(input);
+    }
+
+    private void validateFormat(final String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(NOT_EXIST_INPUT_ERROR.getErrorMessage());
         }
@@ -34,7 +39,6 @@ public class WinningNumberInputView implements LottoInputViewable, Supplier<Stri
         if (hasDuplicateNumber(input)) {
             throw new IllegalArgumentException(DUPLICATED_WINNING_NUMBER.getErrorMessage());
         }
-        validateEachNumber(input);
     }
 
     private boolean isInvalidNumbersFormat(final String winningNumber) {

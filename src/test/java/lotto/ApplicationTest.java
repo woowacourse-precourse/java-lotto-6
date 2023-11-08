@@ -85,12 +85,12 @@ class ApplicationTest extends NsTest {
     @Test
     void 정상_테스트_구입금액에_맞는_로또_개수() {
         assertSimpleTest(() -> {
-            run("10000");
+            run("10000", "1,2,3,4,5,6", "7");
             assertThat(output()).contains("10개를 구매했습니다.");
         });
 
         assertSimpleTest(() -> {
-            run("8000");
+            run("8000", "1,2,3,4,5,6", "7");
             assertThat(output()).contains("8개를 구매했습니다.");
         });
     }
@@ -145,7 +145,7 @@ class ApplicationTest extends NsTest {
     @Test
     void inputWinningNumbers() {
         assertSimpleTest(() -> {
-            run("8000", "1,2,3,4,5,6");
+            run("8000", "1,2,3,4,5,6", "7");
             assertThat(output()).contains("보너스 번호를 입력해 주세요.");
         });
     }

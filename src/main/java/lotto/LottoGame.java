@@ -74,8 +74,8 @@ public class LottoGame {
     }
 
     private String getRevenueRate(int purchasePrice) {
-        int totalRevenue = 5000 * fifthCount + 50000 * fourthCount + 1500000 * thirdCount + 30000000 * secondCount + 2000000000 * fifthCount;
-        double revenueRate = (double) totalRevenue / purchasePrice;
+        int totalRevenue = 5000 * fifthCount + 50000 * fourthCount + 1500000 * thirdCount + 30000000 * secondCount + 2000000000 * firstCount;
+        double revenueRate = (double) totalRevenue / purchasePrice * 100;
         return formatRevenueRate(revenueRate);
     }
 

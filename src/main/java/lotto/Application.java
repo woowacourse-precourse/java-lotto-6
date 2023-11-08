@@ -1,7 +1,49 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import view.InputView;
+import view.OutputView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Money money = new Money(InputView.inputMoney());
+
+        List<Lotto> lottoList = createdLottos(money);
+        OutputView.printLottos(lottoList);
+        WinningLotto winningLotto = createdWinningLotto();
+
+        Map<Result, Integer> resultCount = getResultCount(lottoList, winningLotto);
+
+        OutputView.printResult(money, resultCount);
+    }
+
+    private static WinningLotto createdWinningLotto() {
+        List<Integer> winningLottoNumbers = InputView.inputWinningLotto();
+        int bonusNumber = InputView.inputBonusNumber();
+        return new WinningLotto(new Lotto(winningLottoNumbers), bonusNumber);
+    }
+
+    private static Map<Result, Integer> getResultCount(List<Lotto> lottoList, WinningLotto winningLotto) {
+        Map<Result, Integer> resultCount = new HashMap<>();
+        for (Lotto lotto : lottoList) {
+            int matchCount = winningLotto.matchCount(lotto);
+            boolean isBonus = winningLotto.isBonus(lotto);
+            Result result = Result.valueOf(matchCount, isBonus);
+            resultCount.put(result, resultCount.getOrDefault(result, 0) + 1);
+        }
+        return resultCount;
+    }
+
+    private static List<Lotto> createdLottos(Money money) {
+        int ticketCount = money.geBuyTicket();
+        List<Lotto> lottoList = new ArrayList<>();
+        for (int i = 0; i < ticketCount; i++) {
+            lottoList.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
+        return lottoList;
     }
 }

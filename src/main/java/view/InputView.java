@@ -12,6 +12,8 @@ public class InputView {
             return Integer.parseInt(Console.readLine());
         } catch (Exception e) {
             throw new IllegalArgumentException("[ERROR] 금액은 숫자로 입력해주세요.");
+        } finally {
+            System.out.println();
         }
     }
 }

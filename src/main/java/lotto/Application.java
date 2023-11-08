@@ -3,12 +3,14 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 import view.InputView;
+import view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
         Money money = new Money(InputView.inputMoney());
 
         List<Lotto> lottoList = createdLottos(money);
+        OutputView.printLottos(lottoList);
 
     }
 

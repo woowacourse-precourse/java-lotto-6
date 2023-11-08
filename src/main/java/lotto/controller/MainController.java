@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Customer;
 import lotto.domain.LottoPurchaseAmount;
+import lotto.domain.LottoResult;
 import lotto.domain.RandomLottoFactory;
 import lotto.domain.WinningLotto;
 import lotto.view.input.InputView;
@@ -13,6 +14,7 @@ public class MainController {
         Customer customer = Customer.of(lottoPurchaseAmount, new RandomLottoFactory());
 
         WinningLotto winningLotto = readWinningLotto();
+        LottoResult lottoResult = winningLotto.result(customer);
     }
 
     private static LottoPurchaseAmount readLottoPurchaseAmount() {

@@ -14,8 +14,23 @@ public class WinningLotto {
     }
 
     private void validateBonusNumberDuplicated() {
-        if (lotto.contains(bonusNumber)) {
+        if (bonusNumberMatches(lotto)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다.");
         }
+    }
+
+    public LottoResult result(Customer customer) {
+        List<LottoRank> lottoRanks = customer.purchasedLottos().stream()
+                .map(this::rank)
+                .toList();
+        return new LottoResult(lottoRanks);
+    }
+
+    private LottoRank rank(Lotto customerLotto) {
+        return LottoRank.find(lotto.matchCount(customerLotto), bonusNumberMatches(customerLotto));
+    }
+
+    private boolean bonusNumberMatches(Lotto lotto) {
+        return lotto.contains(bonusNumber);
     }
 }

@@ -48,4 +48,26 @@ class WinningLottoTest {
         assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("Customer가 구매한 로또와 당첨 로또, 보너스 번호를 비교해 당첨 결과를 생성한다.")
+    @Test
+    void result() {
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+        Customer customer = new Customer(List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 8)),
+                new Lotto(List.of(1, 2, 3, 11, 12, 13)),
+                new Lotto(List.of(11, 12, 13, 4, 5, 6)),
+                new Lotto(List.of(11, 12, 13, 14, 15, 16))
+        ));
+        LottoResult lottoResult = winningLotto.result(customer);
+
+        assertThat(lottoResult.count(LottoRank.FIRST)).isEqualTo(1);
+        assertThat(lottoResult.count(LottoRank.SECOND)).isEqualTo(1);
+        assertThat(lottoResult.count(LottoRank.THIRD)).isEqualTo(1);
+        assertThat(lottoResult.count(LottoRank.FOURTH)).isEqualTo(0);
+        assertThat(lottoResult.count(LottoRank.FIFTH)).isEqualTo(2);
+        assertThat(lottoResult.count(LottoRank.NONE)).isEqualTo(1);
+    }
 }

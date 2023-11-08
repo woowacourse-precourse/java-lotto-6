@@ -34,7 +34,20 @@ public class Lotto {
                 .toList();
     }
 
+    public int matchCount(Lotto other) {
+        return (int) other.numbers.stream()
+                .filter(this::contains)
+                .count();
+    }
+
     public boolean contains(LottoNumber number) {
         return numbers.contains(number);
+    }
+
+    @Override
+    public String toString() {
+        return "Lotto{" +
+                "numbers=" + numbers +
+                '}';
     }
 }

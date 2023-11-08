@@ -48,4 +48,14 @@ public class Lotto {
                 .sorted()
                 .toList();
     }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public int getMatchCount(WinningNumberLotto winningNumberLotto){
+        return (int) numbers.stream()
+                .filter(winningNumberLotto::isContain)
+                .count();
+    }
 }

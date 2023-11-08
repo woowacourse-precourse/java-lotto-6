@@ -45,4 +45,9 @@ public class WinningNumberLotto {
     public Lotto getWinningNumbers(){
         return winningNumbers;
     }
+
+    public boolean isContain(int number) {
+        return winningNumbers.contains(number);
+    }
+
 }

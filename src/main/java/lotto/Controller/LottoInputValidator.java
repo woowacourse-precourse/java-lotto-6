@@ -1,9 +1,14 @@
 package lotto.Controller;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class LottoInputValidator {
 
     public void validateBudget(String budgetStr) throws Exception {
         Long budget;
+
         try {
             budget = Long.parseLong(budgetStr);
         } catch (Exception e) {
@@ -13,4 +18,28 @@ public class LottoInputValidator {
             throw new IllegalArgumentException("[ERROR] 예산은 0보다 크고 1000으로 나누어 떨어져야 합니다.\n");
         }
     }
+
+    public List<Integer> validateNormalNumbersIsInteger(String normalNumbersStr) throws Exception {
+        List<Integer> normalNumbers;
+        try {
+            normalNumbers = Arrays.stream(normalNumbersStr.split(","))
+                    .map(String::trim) // 부분 문자열의 앞뒤 공백 제거
+                    .map(Integer::parseInt) // 문자열을 정수로 변환
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 당첨번호는 숫자여야합니다.");
+        }
+        return normalNumbers;
+    }
+
+    public int validateBonusNumberIsInteger(String bonusNumberStr) throws Exception {
+        int bonusNumber;
+        try {
+            bonusNumber = Integer.valueOf(bonusNumberStr);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 당첨번호는 숫자여야합니다.");
+        }
+        return bonusNumber;
+    }
+    
 }

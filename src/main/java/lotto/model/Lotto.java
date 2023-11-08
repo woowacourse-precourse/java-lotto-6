@@ -1,7 +1,12 @@
 package lotto.model;
 
+import static lotto.util.Message.ErrorMessage.DUPLICATION_EXCEPTION;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import lotto.util.Constant;
+import lotto.util.Message.LottoMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,12 +17,11 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        Set<Integer> nonDuplicationLotto = Set.copyOf(numbers);
+        if (nonDuplicationLotto.size() != Constant.LOTTO_LENGTH) {
+            throw new IllegalArgumentException(DUPLICATION_EXCEPTION.getMessage());
         }
     }
-
-    // TODO: 추가 기능 구현
 
     public String winningStatus(ArrayList<Integer> winningNumber, int bonusNumber) {
         int count = 0;
@@ -25,6 +29,7 @@ public class Lotto {
         for (int number : numbers) {
             if (winningNumber.contains(number)) {
                 count++;
+                continue;
             }
             if (number == bonusNumber) {
                 bonus = true;
@@ -33,22 +38,31 @@ public class Lotto {
         return getRank(count, bonus);
     }
 
-    private String getRank(int count, boolean bonus) {
-        if (count == 6) {
-            return "1등";
+    private String getRank(int count, boolean bonus) { //TODO: refactor
+        if (count == LottoMessage.FIRST.getCount()) {
+            return LottoMessage.FIRST.getRank();
         }
-        if (count == 5 && bonus) {
-            return "2등";
+        if (count == LottoMessage.SECOND.getCount()) {
+            return checkSecondThirdByBonusNumber(bonus);
         }
-        if (count == 5 && !bonus) {
-            return "3등";
+        if (count == LottoMessage.FOURTH.getCount()) {
+            return LottoMessage.FOURTH.getRank();
         }
-        if (count == 4) {
-            return "4등";
+        if (count == LottoMessage.FIFTH.getCount()) {
+            return LottoMessage.FOURTH.getRank();
         }
-        if (count == 3) {
-            return "5등";
-        }
-        return "꽝";
+        return "";
     }
+
+    public String getLottoValue() {
+        return numbers.toString();
+    }
+
+    public String checkSecondThirdByBonusNumber(boolean bonus) {
+        if (bonus) {
+            return LottoMessage.SECOND.getRank();
+        }
+        return LottoMessage.THIRD.getRank();
+    }
+
 }

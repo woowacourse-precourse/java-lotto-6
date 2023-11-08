@@ -50,7 +50,7 @@ public class LottoCompany {
 		if (bonusNumber < 1 || bonusNumber > 45) {
 			throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER);
 		}
-		if (answerLotto.getNumbers().contains(bonusNumber)) {
+		if (answerLotto.containNumbers(bonusNumber)) {
 			throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER);
 		}
 	}

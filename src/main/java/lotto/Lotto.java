@@ -59,17 +59,16 @@ public class Lotto {
 	}
 
 	public LottoResult match(Lotto answerLotto, Integer bonusNumber) {
-		Long matchCount = answerLotto
-				.getNumbers()
+		Long matchCount = numbers
 				.stream()
-				.filter(numbers::contains)
+				.filter(answerLotto::containNumbers)
 				.count();
 		Boolean hasBonusNumber = numbers.contains(bonusNumber);
 		return LottoResult.of(matchCount.intValue(), hasBonusNumber);
 	}
 
-	public List<Integer> getNumbers() {
-		return numbers;
+	public Boolean containNumbers(Integer number) {
+		return numbers.contains(number);
 	}
 
 	public void printNumbers() {

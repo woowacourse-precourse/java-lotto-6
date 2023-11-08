@@ -10,7 +10,7 @@ public class CorrectLotto {
     private int bonus;
 
     public void printInputNumbersMessage(){
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
     }
 
     private int countComma(String input_numbers){
@@ -64,7 +64,7 @@ public class CorrectLotto {
     }
 
     public void printInputBonusMessage(){
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
     // 보너스 번호가 [1, 45] 구간에 있는지 확인

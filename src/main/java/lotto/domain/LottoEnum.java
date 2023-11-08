@@ -6,8 +6,7 @@ public enum LottoEnum {
     THIRD(5, false, 1500000),
     FOURTH(4, false, 50000),
     FIFTH(3, false, 5000),
-    NOTHING(-1, false, 0),
-    TBD(-2, false, 0);
+    NOTHING(-1, false, 0);
 
     private final int count;
     private final boolean isBonus;

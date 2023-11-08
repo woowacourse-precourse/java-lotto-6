@@ -41,12 +41,16 @@ public class Lotto {
             if (winNumbers.contains(num))
                 count++;
         }
-        boolean isBonus = winNumbers.contains(bonusNumber);
+        boolean isBonus = numbers.contains(bonusNumber);
         LottoEnum ranking = LottoEnum.valueOf(count, isBonus);
         return ranking;
     }
 
     public String toString() {
         return numbers.toString();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

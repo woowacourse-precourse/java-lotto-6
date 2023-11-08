@@ -23,9 +23,9 @@ public class InputView {
         return numbers;
     }
 
-    public static String inputBonusNumber() {
+    public static int inputBonusNumber() {
         OutputView.printAskBonusNumberMessage();
-        return Console.readLine();
+        return Integer.parseInt(Console.readLine());
     }
 
     private void validateMoney(int amount) {

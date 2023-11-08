@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.view.InputView;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class Lotto {
             validateSixNumbers(numbers);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
-            validate(numbers);
+            InputView.inputWinningNumbers();
         }
     }
 

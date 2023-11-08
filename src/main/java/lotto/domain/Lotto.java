@@ -8,7 +8,6 @@ public class Lotto {
     public static final int LOTTO_SIZE = 6;
     public static final String OUT_OF_LOTTO_NUMBERS_SIZE = "[ERROR] 로또 번호는 6개입니다.";
     public static final String LOTTO_NUMBER_DUPLICATE = "[ERROR] 로또 입력 값은 중복을 허용하지 않습니다.";
-    public static final String BONUS_NUMBER_DUPLICATE = "[ERROR] 입력된 보너스 번호와 중복된 번호가 있습니다.";
 
     private final List<LottoNumber> lottoNumbers;
 
@@ -45,11 +44,4 @@ public class Lotto {
     public String toString() {
         return lottoNumbers.toString();
     }
-
-    public void validationDuplicate(LottoNumber bonusLottoNumber) {
-        if (lottoNumbers.contains(bonusLottoNumber)) {
-            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE);
-        }
-    }
-
 }

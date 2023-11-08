@@ -1,22 +1,27 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import camp.nextstep.edu.missionutils.Console;
 
 import static lotto.OutputView.printRequestMoney;
 import static lotto.OutputView.printWinningNumber;
 import static lotto.OutputView.printBlankLine;
 import static lotto.OutputView.printBonusNumber;
 
+import static lotto.ErrorMessage.INVALID_FORMAT_ERROR;
+import static lotto.ErrorMessage.EMPTY_INPUT_ERROR;
+
 public class InputView {
-    private static List<Integer> winningLotto;
+    private static List<Integer> winningLotto = new ArrayList<>();
 
     public static int inputRequestMoney() {
         printRequestMoney();
         String inputMoney = Console.readLine();
         validateBlank(inputMoney);
+
         return validateMoney(inputMoney);
     }
 
@@ -26,6 +31,7 @@ public class InputView {
         printBlankLine();
 
         validateBlank(inputResult);
+
         return validateResult(inputResult);
     }
 
@@ -35,6 +41,7 @@ public class InputView {
         printBlankLine();
 
         validateBlank(inputBonus);
+
         return validateNumeric(inputBonus);
     }
 
@@ -44,28 +51,33 @@ public class InputView {
 
     private static void validateBlank(String inputMoney) {
         if (inputMoney.isBlank()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(EMPTY_INPUT_ERROR);
         }
     }
 
     private static int validateNumeric(String inputNumber) {
-        int number;
+        int number = 0;
+
         try {
             number = Integer.parseInt(inputNumber);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException();
+            System.out.println(INVALID_FORMAT_ERROR);
+            inputRequestMoney();
         }
+
         return number;
     }
 
+
     private static List<Integer> validateResult(String inputWinningNumber) {
         List<String> winningNumbers = Arrays.asList(inputWinningNumber.split(","));
+
         for (String number : winningNumbers) {
             try {
                 Integer winningNumber = Integer.parseInt(number);
                 winningLotto.add(winningNumber);
             } catch (NumberFormatException e) {
-                throw new NumberFormatException();
+                throw new NumberFormatException(INVALID_FORMAT_ERROR);
             }
         }
 

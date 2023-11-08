@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.ErrorMessage.ZERO_MONEY_ERROR;
+import static lotto.ErrorMessage.MONEY_REMAINDER_ERROR;
 
 public class Money {
     private static final int LOTTO_MIN_MONEY = 1000;
@@ -24,13 +26,13 @@ public class Money {
 
     private void validatePositive(int amount) {
         if (amount <= ZERO_NUMBER) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ZERO_MONEY_ERROR);
         }
     }
 
     private void validateRemainder(int amount) {
         if (amount % LOTTO_MIN_MONEY != ZERO_NUMBER) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(MONEY_REMAINDER_ERROR);
         }
     }
 }

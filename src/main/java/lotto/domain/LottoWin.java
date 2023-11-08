@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.ErrorMessage.DUPLICATE_NUMBER_ERROR;
+import static lotto.ErrorMessage.INVALID_RANGE_ERROR;
+
 public class LottoWin {
     private static final Integer WINNING_LOTTO_SIZE = 7;
     private static final Integer MIN_RANGE = 1;
@@ -31,13 +34,17 @@ public class LottoWin {
         Set<Integer> nonDuplicateNumber = new HashSet<>(lottoWin);
         nonDuplicateNumber.add(number);
         if (nonDuplicateNumber.size() != WINNING_LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR);
         }
     }
 
     private void validateRange(Integer number) {
         if (!(MIN_RANGE <= number && number <= MAX_RANGE)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_RANGE_ERROR);
         }
+    }
+
+    public boolean isContain(int number) {
+        return lottoWin.isContain(number);
     }
 }

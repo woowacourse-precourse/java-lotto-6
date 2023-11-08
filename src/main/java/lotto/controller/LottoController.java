@@ -1,15 +1,16 @@
-package lotto;
+package lotto.controller;
 
-import lotto.InputView;
+import lotto.view.InputView;
+import lotto.domain.*;
 
 import java.util.List;
 
-import static lotto.OutputView.printTicketCount;
-import static lotto.OutputView.printLottoList;
-import static lotto.OutputView.printBlankLine;
+import static lotto.view.OutputView.printTicketCount;
+import static lotto.view.OutputView.printLottoList;
+import static lotto.view.OutputView.printBlankLine;
+import static lotto.view.OutputView.printStatistics;
 
 public class LottoController {
-
     public void start() {
         Money money = inputLottoMoney();
         int ticketCount = money.getTicketCount();
@@ -21,6 +22,11 @@ public class LottoController {
         printBlankLine();
 
         LottoWin lottoWin = getWinningLotto();
+        Prize prize = new Prize();
+        calculateResult(prize, lottoWin, lottos);
+
+        ProfitRate profitRate = getRate(money, prize);
+        printStatistics(prize, profitRate);
     }
 
     private Money inputLottoMoney() {
@@ -38,6 +44,14 @@ public class LottoController {
         Integer bonusNumber = InputView.getBonusNumber();
 
         return new LottoWin(winningNumbers, bonusNumber);
+    }
+
+    private void calculateResult(Prize prize, LottoWin lottoWin, Lottos lottos) {
+        prize.calculatePrize(lottoWin, lottos);
+    }
+
+    private ProfitRate getRate(Money money, Prize prize) {
+        return new ProfitRate(money, prize);
     }
 }
 

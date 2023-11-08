@@ -1,9 +1,9 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class GenerateLotto {
     private static final Integer LOTTO_SIZE = 6;

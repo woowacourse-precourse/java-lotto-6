@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.Player;
 import lotto.validation.LottoValidation;
@@ -43,7 +42,7 @@ public class LottoController {
         lottos.classifyLottoGrade();
         double totalRate = lottos.calculateTotalRate();
         OutputView.printResult();
-        LottoResult.calculateGradeWithCount(lottos.getLottoResultWithCount());
+        OutputView.printResultList(lottos.getLottoResultWithCount());
         OutputView.printTotalRate(totalRate);
     }
 

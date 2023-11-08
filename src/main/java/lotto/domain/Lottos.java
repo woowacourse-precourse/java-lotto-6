@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 public class Lottos {
     private final List<Integer> winningNumber;
     private final int bonusNumber;
-    private Player player;
+    private final Player player;
     private LottoResult lottoResult = LottoResult.NONE;
-    private Map<LottoResult, Integer> lottoResultWithCount = new HashMap<>();
+    private final Map<LottoResult, Integer> lottoResultWithCount = new HashMap<>();
     private int total = 0;
 
     public Lottos(List<Integer> winningNumber, int bonusNumber, Player player) {
@@ -38,8 +38,6 @@ public class Lottos {
     }
 
     public double calculateTotalRate() {
-//        System.out.println(this.total);
-//        System.out.println(player.getAmount());
         return Math.round(((double) this.total / player.getAmount()) * 10000) / 100.0;
     }
 

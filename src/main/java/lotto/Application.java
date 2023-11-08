@@ -3,23 +3,30 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
+    private static final String error = "[ERROR]";
+    private static int purchaseNum;
     public static void main(String[] args) {
-        System.out.println("구입금액을 입력해 주세요.");
-        String amount = Console.readLine();
-        int purchaseNum = InputAmount.calculate(Integer.parseInt(amount));
+        try {
+            System.out.println("구입금액을 입력해 주세요.");
+            String amount = Console.readLine();
+            purchaseNum = InputAmount.calculate(Integer.parseInt(amount));
 
-        System.out.println(purchaseNum + "개를 구매했습니다.");
-        Lotto.publish(purchaseNum);
+            System.out.println(purchaseNum + "개를 구매했습니다.");
+            Lotto.publish(purchaseNum);
 
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String winningNum = Console.readLine();
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String winningNum = Console.readLine();
 
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String bonus = Console.readLine();
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String bonus = Console.readLine();
 
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        Lotto.compare(InputWinningNum.input(winningNum, bonus));
-        System.out.println("총 수익률은 " + Lotto.revenue(Integer.parseInt(amount)) + "%입니다.");
+            System.out.println("당첨 통계");
+            System.out.println("---");
+            Lotto.compare(InputWinningNum.input(winningNum, bonus));
+            System.out.printf("총 수익률은 %.1f", Lotto.revenue(Integer.parseInt(amount)));
+            System.out.print("%입니다.");
+        } catch (NumberFormatException e) {
+            System.out.println(error + " 숫자를 입력해주세요.");
+        }
     }
 }

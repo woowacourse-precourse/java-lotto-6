@@ -23,6 +23,8 @@ public class PlayLotto {
     int matchedNumberCnt;
     Map<Rank, Integer> result = new HashMap<>();
     boolean hasBonusNumber;
+    double profit;
+    double profitRate;
 
     public void play(){
         getMoney();
@@ -31,6 +33,7 @@ public class PlayLotto {
         getBonusNumber();
         getResult();
         checkResult();
+        getProfitRate();
     }
 
     public void getMoney(){
@@ -105,6 +108,7 @@ public class PlayLotto {
     }
 
     public void getResult(){
+        System.out.println("당첨 통계\n---");
         initResult();
         for (List<Integer> userLottoNumber : userLottoNumbers){
             hasBonusNumber = false;
@@ -145,9 +149,17 @@ public class PlayLotto {
             System.out.println(Rank.values()[i].message + result.get(Rank.values()[i]) + "개");
         }
     }
+
+    public void getProfitRate(){
+        profit = getProfit();
+        profitRate = profit / Integer.parseInt(money.amount) * 100;
+        System.out.println("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
+    }
+
+    public double getProfit(){
+        for (Rank r : Rank.values()){
+            profit += r.prize * result.get(r);
+        }
+        return profit;
+    }
 }
-
-
-
-
-

@@ -8,11 +8,11 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 public class PrizeHandlerImpl implements PrizeHandler {
-    private PrizeHandler nextPrizeHandler;
     private final int matchingNumbers;
     private final PrizeAmount prizeAmount;
     private final boolean isBonus;
     private final Count count;
+    private PrizeHandler nextPrizeHandler;
 
 
     private PrizeHandlerImpl(int matchingNumbers, PrizeAmount prizeAmount, Count count, boolean isBonus) {

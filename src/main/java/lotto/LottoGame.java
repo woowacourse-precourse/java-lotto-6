@@ -9,6 +9,7 @@ import static lotto.message.Message.WINNING_NUMBER_REQUEST;
 import static lotto.message.Message.WINNING_STATISTICS_RESULT;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.validator.InputValidator;
@@ -26,7 +27,7 @@ public class LottoGame {
         printLottoTicket(lottoTicket.makeLottoToString());
 
         WiningLotto win = saveWiningData(runWiningNumberSavingProcess(), receiveBonusNumber());
-
+        printLottoWinResult(lottoTicket, win);
 
     }
 
@@ -82,11 +83,9 @@ public class LottoGame {
     }
 
     private List<Integer> convertNumber(String input) {
-        List<Integer> winingNumbers = Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-
-        return winingNumbers;
     }
 
     private int receiveBonusNumber() {
@@ -108,7 +107,7 @@ public class LottoGame {
         }
     }
 
-    private void printLottoWinResult() {
+    private void printLottoWinResult(LottoTicket lottoTicket, WiningLotto win) {
         OutputView.print(LINE_BREAK.getMessage());
         OutputView.print(WINNING_STATISTICS_RESULT.getMessage());
         OutputView.print(LINE_BREAK.getMessage());
@@ -116,6 +115,9 @@ public class LottoGame {
             OutputView.print(DIVIDING_LINE.getMessage());
         }
         OutputView.print(LINE_BREAK.getMessage());
+        HashMap<String, Integer> result = new LottoCalculator().calculate(lottoTicket, win);
+
+
     }
 
 

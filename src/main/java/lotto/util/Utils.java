@@ -1,7 +1,7 @@
 package lotto.util;
 
 import java.text.DecimalFormat;
-import lotto.exception.NonNumberException;
+import lotto.exception.argument.NonNumberException;
 
 public class Utils {
     public static final int conversionInt(String number) {

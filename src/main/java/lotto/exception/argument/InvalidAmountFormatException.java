@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.exception.argument;
 
 /**
  * 숫자가 아닌 경우 발생하는 예외

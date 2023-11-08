@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.exception.argument;
 
 public class NonNumberException extends BaseIllegalArgumentException {
 

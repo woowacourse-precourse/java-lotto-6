@@ -1,7 +1,7 @@
 package lotto.model;
 
-import lotto.exception.NonPositiveAmountException;
-import lotto.exception.InvalidAmountFormatException;
+import lotto.exception.argument.NonPositiveAmountException;
+import lotto.exception.argument.InvalidAmountFormatException;
 
 public class Money {
 

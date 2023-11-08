@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.exception.argument;
 
 /**
  * 로또 숫자가 총 6개가 아닐 경우의 예외

@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.exception.argument;
 
 /**
  * 에러 양식에 맞추어 출력하도록 한다.

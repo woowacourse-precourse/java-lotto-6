@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import lotto.dto.LottosCalculateResult;
-import lotto.exception.NonVariableException;
+import lotto.exception.state.NonVariableException;
 import lotto.model.Lotto;
 import lotto.model.LottoBonusNumber;
 import lotto.model.LottoRank;

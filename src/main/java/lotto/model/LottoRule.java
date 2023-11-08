@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.exception.LottoNumericRangeException;
+import lotto.exception.argument.LottoNumericRangeException;
 
 public class LottoRule {
     public static final int MINIMUM_NUMBER = 1;

@@ -4,7 +4,7 @@ import static lotto.model.LottoRule.validateRange;
 import static lotto.util.Utils.conversionInt;
 
 import java.util.List;
-import lotto.exception.LottoNumberDuplicateException;
+import lotto.exception.argument.LottoNumberDuplicateException;
 
 public class LottoBonusNumber {
     /**

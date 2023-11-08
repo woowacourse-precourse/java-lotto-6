@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.exception.argument;
 
 /**
  * 로또 번호가 1~45 범위의 값이 아닐 경우에 대한 예외

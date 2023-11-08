@@ -7,7 +7,7 @@ import static lotto.model.LottoRule.MINIMUM_NUMBER;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.exception.LottoPriceUnitException;
+import lotto.exception.argument.LottoPriceUnitException;
 import lotto.model.Lotto;
 import lotto.model.LottoWallet;
 import lotto.model.Money;

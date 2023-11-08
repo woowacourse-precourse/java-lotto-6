@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.exception.argument;
 
 /**
  * 입력한 값이 0 이하일 경우 발생하는 예외

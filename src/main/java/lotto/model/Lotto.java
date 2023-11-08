@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.exception.LottoNumberDuplicateException;
-import lotto.exception.LottoNumberSizeException;
+import lotto.exception.argument.LottoNumberDuplicateException;
+import lotto.exception.argument.LottoNumberSizeException;
 
 public class Lotto {
 

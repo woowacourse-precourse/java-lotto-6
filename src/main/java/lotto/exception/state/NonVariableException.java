@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.exception.state;
 
 public class NonVariableException extends BaseIllegalStateException {
     private static final String MESSAGE = "필요한 정보가 비어있습니다.\n빈 변수:%s";

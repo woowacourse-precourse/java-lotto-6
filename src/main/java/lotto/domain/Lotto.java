@@ -1,6 +1,11 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import static lotto.constant.ExceptionMessage.REQUIRE_SIX_NUMBERS;
+import static lotto.constant.ExceptionMessage.REQUIRE_UNIQUE_NUMBERS;
+import static lotto.constant.Number.LOTTO_MAX_NUM;
+import static lotto.constant.Number.LOTTO_MIN_NUM;
+import static lotto.constant.Number.LOTTO_NUM_COUNT;
+
 import java.util.Comparator;
 import java.util.List;
 import lotto.constant.Number;

@@ -1,4 +1,9 @@
-package lotto;
+package lotto.service;
+
+import static lotto.constant.ExceptionMessage.REQUIRE_NONEMPTY_INPUT;
+import static lotto.constant.ExceptionMessage.REQUIRE_POSITIVE_INTEGER;
+import static lotto.constant.ExceptionMessage.REQUIRE_POSITIVE_LONG;
+import static lotto.constant.ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,10 +22,10 @@ public class Converter {
             return Long.parseLong(paymentPrice);
         } catch (NullPointerException e) {
             OutputHandler.requireNonemptyInput();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_NONEMPTY_INPUT.getMessage());
+            throw new IllegalArgumentException(REQUIRE_NONEMPTY_INPUT.getMessage());
         } catch (NumberFormatException e) {
             OutputHandler.requirePositiveLong();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_POSITIVE_LONG.getMessage());
+            throw new IllegalArgumentException(REQUIRE_POSITIVE_LONG.getMessage());
         }
     }
 
@@ -37,10 +42,10 @@ public class Converter {
             return winningNumbers;
         } catch (NullPointerException e) {
             OutputHandler.requireNonemptyInput();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_NONEMPTY_INPUT.getMessage());
+            throw new IllegalArgumentException(REQUIRE_NONEMPTY_INPUT.getMessage());
         } catch (NumberFormatException e) {
             OutputHandler.requireRightRangeNumber();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER.getMessage());
+            throw new IllegalArgumentException(REQUIRE_RIGHT_RANGE_NUMBER.getMessage());
         }
     }
 
@@ -53,10 +58,10 @@ public class Converter {
             return Integer.parseInt(numberInput);
         } catch (NullPointerException e) {
             OutputHandler.requireNonemptyInput();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_NONEMPTY_INPUT.getMessage());
+            throw new IllegalArgumentException(REQUIRE_NONEMPTY_INPUT.getMessage());
         } catch (NumberFormatException e) {
             OutputHandler.requirePositiveInteger();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_POSITIVE_INTEGER.getMessage());
+            throw new IllegalArgumentException(REQUIRE_POSITIVE_INTEGER.getMessage());
         }
     }
 }

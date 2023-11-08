@@ -1,8 +1,11 @@
 package lotto.checker;
 
+import static lotto.constant.ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER;
+import static lotto.constant.ExceptionMessage.REQUIRE_SIX_NUMBERS;
+import static lotto.constant.ExceptionMessage.REQUIRE_UNIQUE_NUMBERS;
+
 import java.util.HashSet;
 import java.util.List;
-import lotto.constant.ExceptionMessage;
 import lotto.constant.Number;
 import lotto.view.OutputHandler;
 
@@ -18,7 +21,7 @@ public class WinningNumbersChecker {
     public void rightSize() throws IllegalArgumentException {
         if (winningNumbers.size() != Number.LOTTO_NUM_COUNT.getNumber()) {
             OutputHandler.requireSixNumbers();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_SIX_NUMBERS.getMessage());
+            throw new IllegalArgumentException(REQUIRE_SIX_NUMBERS.getMessage());
         }
     }
 
@@ -33,14 +36,14 @@ public class WinningNumbersChecker {
         if (winningNumber < Number.LOTTO_MIN_NUM.getNumber()
                 || winningNumber > Number.LOTTO_MAX_NUM.getNumber()) {
             OutputHandler.requireRightRangeNumber();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER.getMessage());
+            throw new IllegalArgumentException(REQUIRE_RIGHT_RANGE_NUMBER.getMessage());
         }
     }
 
     private void isUnique(int winningNumber) throws IllegalArgumentException {
         if (uniqueWinningNumbers.contains(winningNumber)) {
             OutputHandler.requireUniqueNumbers();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_UNIQUE_NUMBERS.getMessage());
+            throw new IllegalArgumentException(REQUIRE_UNIQUE_NUMBERS.getMessage());
         }
         uniqueWinningNumbers.add(winningNumber);
     }

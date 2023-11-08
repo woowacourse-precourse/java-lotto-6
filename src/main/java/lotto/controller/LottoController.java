@@ -1,5 +1,12 @@
 package lotto.controller;
 
+import static lotto.constant.Number.LOTTO_PRICE;
+import static lotto.constant.Number.RANK1_PRIZE;
+import static lotto.constant.Number.RANK2_PRIZE;
+import static lotto.constant.Number.RANK3_PRIZE;
+import static lotto.constant.Number.RANK4_PRIZE;
+import static lotto.constant.Number.RANK5_PRIZE;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -62,7 +69,7 @@ public class LottoController {
         PaymentPriceChecker paymentPriceChecker = new PaymentPriceChecker(paymentPrice);
         paymentPriceChecker.positive();
         paymentPriceChecker.multipleOfPrice();
-        return paymentPrice / Number.LOTTO_PRICE.getNumber();
+        return paymentPrice / LOTTO_PRICE.getNumber();
     }
 
     List<Lotto> issueLottos(long ticketCount) {
@@ -132,11 +139,11 @@ public class LottoController {
     }
 
     long getWinningPrize(Statistic statistic) {
-        return statistic.getRank(1) * (long) Number.RANK1_PRIZE.getNumber()
-                + statistic.getRank(2) * (long) Number.RANK2_PRIZE.getNumber()
-                + statistic.getRank(3) * (long) Number.RANK3_PRIZE.getNumber()
-                + statistic.getRank(4) * (long) Number.RANK4_PRIZE.getNumber()
-                + statistic.getRank(5) * (long) Number.RANK5_PRIZE.getNumber();
+        return statistic.getRank(1) * (long) RANK1_PRIZE.getNumber()
+                + statistic.getRank(2) * (long) RANK2_PRIZE.getNumber()
+                + statistic.getRank(3) * (long) RANK3_PRIZE.getNumber()
+                + statistic.getRank(4) * (long) RANK4_PRIZE.getNumber()
+                + statistic.getRank(5) * (long) RANK5_PRIZE.getNumber();
     }
 }
 

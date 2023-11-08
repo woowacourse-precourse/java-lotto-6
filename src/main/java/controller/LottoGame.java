@@ -33,7 +33,7 @@ public class LottoGame {
         List<Integer> winningNumbers = inputView.enterWinningNumber();
         int bonusNumber = inputView.enterBonusNumber(winningNumbers);
 
-        Map<Integer, Integer> lottoScore = scoreUtil.updateScore(lottoCnt, lottos, bonusNumber, winningNumbers);
+        Map<Integer, Integer> lottoScore = scoreUtil.updateScore(lottos, bonusNumber, winningNumbers);
         outputView.showScore(lottoScore, ScoreUtil.hasFiveAndbonusNumber);
         outputView.showEarningRate(
                 prizeUtil.calculateEarningRate(lottoCnt, lottoScore, ScoreUtil.hasFiveAndbonusNumber));

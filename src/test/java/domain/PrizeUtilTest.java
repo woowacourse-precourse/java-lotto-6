@@ -5,14 +5,14 @@ import view.InputView;
 
 class PrizeUtilTest {
 
-    private final InputView inputView;
+    private final PrizeUtil prizeUtil;
 
     public PrizeUtilTest() {
-        this.inputView = new InputView();
+        this.prizeUtil = new PrizeUtil();
     }
 
     @Test
     void calculateEarningRate() {
-
+//        prizeUtil.calculateEarningRate()
     }
 }

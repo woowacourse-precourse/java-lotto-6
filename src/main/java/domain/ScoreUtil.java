@@ -32,10 +32,10 @@ public class ScoreUtil {
         return sameNumberCnt;
     }
 
-    public Map<Integer, Integer> updateScore(int lottoCnt, List<Lotto> lottos, int bonusNumber,
+    public Map<Integer, Integer> updateScore(List<Lotto> lottos, int bonusNumber,
                                              List<Integer> winningNumbers) {
         Map<Integer, Integer> lottoScore = initLottoScore();
-        for (int i = 0; i < lottoCnt; i++) {
+        for (int i = 0; i < lottos.size(); i++) {
             Lotto lotto = lottos.get(i);
             List<Integer> lottoNumbers = lotto.getLottoNumbers();
 

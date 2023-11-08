@@ -2,14 +2,14 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class LottoFunction {
 
     Integer getQuantity(String input) {
         Validator.isInteger(input);
-        Integer amount = Integer.parseInt(input);
+        int amount = Integer.parseInt(input);
+        Validator.isNotZero(amount);
         Validator.isMultipleOfThousand(amount);
         return (amount / 1000);
     }

@@ -4,31 +4,31 @@ public enum WinningCriteria {
     FIRST_PLACE {
         @Override
         public int apply(int count) {
-            return count * 2_000_000_000;
+            return count;
         }
     },
     SECOND_PLACE {
         @Override
         public int apply(int count) {
-            return count * 30_000_000;
+            return count;
         }
     },
     THIRD_PLACE {
         @Override
         public int apply(int count) {
-            return count * 1_500_000;
+            return count;
         }
     },
     FOURTH_PLACE {
         @Override
         public int apply(int count) {
-            return count * 50_000;
+            return count;
         }
     },
     FIFTH_PLACE {
         @Override
         public int apply(int count) {
-            return count * 5_000;
+            return count;
         }
     };
 

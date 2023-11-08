@@ -1,6 +1,7 @@
 package lotto.utils.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.BonusNumber;
 import lotto.domain.LottoNumbers;
 import lotto.utils.constant.BuyPrice;
 
@@ -11,5 +12,9 @@ public class Input {
 
     public LottoNumbers setupLottoNumbers() {
         return new LottoNumbers(Console.readLine());
+    }
+
+    public BonusNumber setupBonusNumber() {
+        return new BonusNumber(Console.readLine());
     }
 }

@@ -14,12 +14,13 @@ public class LottoNumbers {
     private static final String NUMBER_DELIMITER = ",";
     private static final String INVALID_NUMBER_FORMAT_MESSAGE = "숫자 형식이 아닙니다.";
     public static final String INVALID_NUMBERS_DUPLICATE_MESSAGE = "로또 번호는 중복될 수 없습니다.";
+    public static final String INVALID_DUPLICATE_MESSAGE = "보너스 번호는 당첨 번호와 중복될 수 없습니다.";
 
     private final List<Integer> LottoNumbers;
 
     public LottoNumbers(String lottoNumbersText) {
         validate(lottoNumbersText);
-        LottoNumbers = Arrays.stream(lottoNumbersText.split(","))
+        LottoNumbers = Arrays.stream(lottoNumbersText.split(NUMBER_DELIMITER))
                 .map(Integer::parseInt)
                 .toList();
     }
@@ -68,6 +69,16 @@ public class LottoNumbers {
         if (count != LOTTO_COUNT) {
             throw new IllegalArgumentException(INVALID_NUMBERS_DUPLICATE_MESSAGE);
         }
+    }
+
+    public void checkBonusNumber(BonusNumber bonusNumber) {
+        if (LottoNumbers.contains(bonusNumber.getBonusNumber())) {
+            throw new IllegalArgumentException(INVALID_DUPLICATE_MESSAGE);
+        }
+    }
+
+    public List<Integer> getLottoNumbers() {
+        return LottoNumbers;
     }
 
     @Override

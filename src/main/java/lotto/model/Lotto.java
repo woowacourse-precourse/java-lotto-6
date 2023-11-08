@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import lotto.util.Constant;
-import lotto.util.Message.LottoMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -24,7 +23,7 @@ public class Lotto {
     }
 
     public String winningStatus(ArrayList<Integer> winningNumber, int bonusNumber) {
-        int count = Constant.ZERO;
+        int count = 0;
         boolean bonus = false;
         for (int number : numbers) {
             if (winningNumber.contains(number)) {
@@ -39,30 +38,30 @@ public class Lotto {
     }
 
     private String getRank(int count, boolean bonus) {
-        if (count == LottoMessage.FIRST.getCount()) {
-            return LottoMessage.FIRST.getRank();
+        if (count == 6) {
+            return "1등";
         }
-        if (count == LottoMessage.SECOND.getCount()) {
-            return checkSecondThirdByBonusNumber(bonus);
+        if (count == 5) {
+            return validateSecondThird(bonus);
         }
-        if (count == LottoMessage.FOURTH.getCount()) {
-            return LottoMessage.FOURTH.getRank();
+        if (count == 4) {
+            return "4등";
         }
-        if (count == LottoMessage.FIFTH.getCount()) {
-            return LottoMessage.FOURTH.getRank();
+        if (count == 3) {
+            return "5등";
         }
-        return "";
+        return "꽝";
     }
 
     public String getLottoValue() {
         return numbers.toString();
     }
 
-    public String checkSecondThirdByBonusNumber(boolean bonus) {
+    public String validateSecondThird(boolean bonus) {
         if (bonus) {
-            return LottoMessage.SECOND.getRank();
+            return "2등";
         }
-        return LottoMessage.THIRD.getRank();
+        return "3등";
     }
 
 }

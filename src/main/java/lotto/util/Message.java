@@ -34,22 +34,20 @@ public class Message {
     }
 
     public enum LottoMessage {
-        FIRST("1등", "6개 일치 (2,000,000,000원) - %d개\n", 2000000000, 6),
-        SECOND("2등", "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", 30000000, 5),
-        THIRD("3등", "5개 일치 (1,500,000원) - %d개\n", 1500000, 5),
-        FOURTH("4등", "4개 일치 (50,000원) - %d개\n", 50000, 4),
-        FIFTH("5등", "3개 일치 (5,000원) - %d개\n", 5000, 3);
+        FIRST("1등", "6개 일치 (2,000,000,000원) - %d개\n", 2000000000),
+        SECOND("2등", "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", 30000000),
+        THIRD("3등", "5개 일치 (1,500,000원) - %d개\n", 1500000),
+        FOURTH("4등", "4개 일치 (50,000원) - %d개\n", 50000),
+        FIFTH("5등", "3개 일치 (5,000원) - %d개\n", 5000);
 
         private final String rank;
         private final String message;
         private final int prize;
-        private final int count;
 
-        LottoMessage(String rank, String message, int prize, int count) {
+        LottoMessage(String rank, String message, int prize) {
             this.rank = rank;
             this.message = message;
             this.prize = prize;
-            this.count = count;
         }
 
         public String getRank() {
@@ -67,9 +65,6 @@ public class Message {
             return 0;
         }
 
-        public int getCount() {
-            return count;
-        }
-
     }
+
 }

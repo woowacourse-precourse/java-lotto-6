@@ -30,4 +30,8 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

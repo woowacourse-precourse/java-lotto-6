@@ -39,4 +39,12 @@ public class Winning {
             throw new IllegalArgumentException("[ERROR] 당첨 번호에 보너스 번호와 중복되는 번호가 없어야 합니다.");
         }
     }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

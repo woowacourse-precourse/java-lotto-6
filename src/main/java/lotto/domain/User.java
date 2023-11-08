@@ -2,6 +2,7 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import lotto.enums.ExceptionMessages;
@@ -13,11 +14,13 @@ public class User {
     private final static Integer AMOUNT_UNIT = 1000;
     private Integer lottoTicketCount;
     private List<Lotto> lottos;
+    private List<Integer> result;
 
     public User(String amount) {
         validateAmount(amount);
         this.lottoTicketCount = Integer.valueOf(amount) / AMOUNT_UNIT;
         this.lottos = this.generateRandomLottos();
+        this.result = new ArrayList<>(Collections.nCopies(6, 0));
     }
 
     private void validateAmount(String amount) {
@@ -37,11 +40,24 @@ public class User {
         }
         return lottos;
     }
+
+    public void saveLottoRankResult(Lotto winningLotto, Integer bonusNumber) {
+        this.lottos.stream().forEach(lotto -> {
+            int rank;
+            rank = lotto.getLottoRank(winningLotto, bonusNumber);
+            this.result.set(rank, this.result.get(rank) + 1);
+        });
+    }
+
     public Integer getLottoTicketCount() {
         return lottoTicketCount;
     }
 
     public List<Lotto> getLottos() {
         return lottos;
+    }
+
+    public List<Integer> getResult() {
+        return result;
     }
 }

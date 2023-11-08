@@ -2,7 +2,8 @@ package lotto.domain.lotto.validator;
 
 import java.util.Collections;
 import java.util.List;
-import lotto.constant.errorMessage.amount.IllegalStateAmountException;
+import lotto.constant.Constant;
+import lotto.constant.errorMessage.amount.IllegalArgumentAmountException;
 import lotto.constant.errorMessage.lotto.LottoExceptionStatus;
 
 public class LottoValidator {
@@ -14,16 +15,44 @@ public class LottoValidator {
     }
 
     public static void validateNumbers(final List<Integer> numbers) {
-        LOTTO_VALIDATOR.validateNumberIsDuplicated(numbers);
+        LOTTO_VALIDATOR.validateNumbersOutOfSize(numbers);
+        LOTTO_VALIDATOR.validateNumbersOutOfRange(numbers);
+        LOTTO_VALIDATOR.validateNumbersDuplicated(numbers);
     }
 
-    private void validateNumberIsDuplicated(final List<Integer> numbers) {
-        if (checkNumberIsDuplicated(numbers)) {
-            throw new IllegalStateAmountException(LottoExceptionStatus.LOTTO_NUMBER_IS_DUPLICATED);
+    private void validateNumbersOutOfSize(final List<Integer> numbers) {
+        if (checkNumbersOutOfSize(numbers)) {
+            throw new IllegalArgumentAmountException(LottoExceptionStatus.LOTTO_NUMBER_IS_OUT_OF_SIZE);
         }
     }
 
-    private boolean checkNumberIsDuplicated(final List<Integer> numbers) {
+    private boolean checkNumbersOutOfSize(List<Integer> numbers) {
+        return numbers.size() != Constant.ALLOWED_LOTTO_SIZE;
+    }
+
+    private void validateNumbersOutOfRange(final List<Integer> numbers) {
+        if (checkNumbersOutOfRange(numbers)) {
+            throw new IllegalArgumentAmountException(LottoExceptionStatus.LOTTO_NUMBER_IS_OUT_OF_RANGE);
+        }
+    }
+
+    private boolean checkNumbersOutOfRange(List<Integer> numbers) {
+        return numbers.stream()
+                .anyMatch(this::isOutOfRange);
+    }
+
+    private boolean isOutOfRange(final int number) {
+        return number < Constant.ALLOWED_MINIMUM_LOTTO_NUMBER
+                || Constant.ALLOWED_MAXIMUM_LOTTO_NUMBER < number;
+    }
+
+    private void validateNumbersDuplicated(final List<Integer> numbers) {
+        if (checkNumbersDuplicated(numbers)) {
+            throw new IllegalArgumentAmountException(LottoExceptionStatus.LOTTO_NUMBER_IS_DUPLICATED);
+        }
+    }
+
+    private boolean checkNumbersDuplicated(final List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(number -> isDuplicated(numbers, number));
     }

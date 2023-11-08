@@ -21,6 +21,22 @@ class LottoTest {
     }
 
     @ParameterizedTest
+    @MethodSource(PROVIDER_PATH + "provideValuesForNumbersOutOfSizeException")
+    @DisplayName("로또 번호는 6개의 숫자로 구성되어야 한다.")
+    void lottoOutOfSizeExceptionTest(final List<Integer> numbers) {
+        String message = LottoExceptionStatus.LOTTO_NUMBER_IS_OUT_OF_SIZE.getMessage();
+        exceptionVerification(numbers, message);
+    }
+
+    @ParameterizedTest
+    @MethodSource(PROVIDER_PATH + "provideValuesForNumbersOutOfRangeException")
+    @DisplayName("로또 번호는 1부터 45 사이의 숫자로 구성되어야 한다.")
+    void lottoOutOfRangeExceptionTest(final List<Integer> numbers) {
+        String message = LottoExceptionStatus.LOTTO_NUMBER_IS_OUT_OF_RANGE.getMessage();
+        exceptionVerification(numbers, message);
+    }
+
+    @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideValuesForNumbersDuplicatedException")
     @DisplayName("로또 번호는 중복 값이 존재할 수 없다.")
     void lottoNumbersDuplicatedExceptionTest(final List<Integer> numbers) {

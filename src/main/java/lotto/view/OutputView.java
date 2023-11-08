@@ -1,13 +1,11 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.List;
 
 public class OutputView {
 
     public static void printGetPurchasePriceInput() {
-        System.out.println("구매금액을 입력해 주세요.");
+        System.out.println("구입금액을 입력해 주세요.");
     }
 
     public static void printGetWinningNumberInput() {

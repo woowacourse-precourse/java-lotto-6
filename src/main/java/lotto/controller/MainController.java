@@ -58,12 +58,6 @@ public class MainController {
         return board;
     }
 
-    private void preventNullPointMap(Map<Ranking, Integer> result) {
-        Arrays.stream(Ranking.values())
-                .filter((rank) -> !result.containsKey(rank))
-                .forEach((rank) -> result.put(rank, 0));
-    }
-
     public void setReturnOfRate(ConsumerDto consumerDto) {
         Map<Ranking, Integer> resultBoard = consumerDto.getResultBoard();
         PurchaseAmount purchaseAmount = consumerDto.getPurchaseAmount();

@@ -13,19 +13,25 @@ import lotto.view.OutView;
 
 public class OutputController {
 
+    OutView outView;
+
+    public OutputController() {
+        this.outView = new OutView();
+    }
+
     public void orderPrintTicketQuantity(ConsumerDto consumerDto) {
         PurchaseAmount purchaseAmount = consumerDto.getPurchaseAmount();
         int ticketQuantity = purchaseAmount.getTicketQuantity();
-        OutView.printTicketQuantity(ticketQuantity);
+        outView.printTicketQuantity(ticketQuantity);
     }
 
     public void orderPrintConsumerLottos(ConsumerDto consumerDto) {
-        OutView.printWinningStaticInfoMessage();
+        outView.printWinningStaticInfoMessage();
         ArrayList<Lotto> consumerLottos = consumerDto.getConsumerLottos();
         for (Lotto consumerLotto : consumerLottos) {
             List<String> numbers = Converter.lottoToString(consumerLotto);
             String outputConsumerNumbers = String.join(", ", numbers);
-            OutView.printConsumerLottos(outputConsumerNumbers);
+            outView.printConsumerLottos(outputConsumerNumbers);
         }
     }
 
@@ -35,15 +41,16 @@ public class OutputController {
         for (Map.Entry<Ranking, Integer> eachRank : resultBoard.entrySet()) {
             printWithoutNone(eachRank);
         }
-        OutView.printRateOfReturn(returnOfRate);
+        outView.printRateOfReturn(returnOfRate);
     }
 
-    private static void printWithoutNone(Entry<Ranking, Integer> eachRank) {
+    private void printWithoutNone(Entry<Ranking, Integer> eachRank) {
         if (eachRank.getKey() != Ranking.None) {
             Ranking ranking = eachRank.getKey();
             int numbersOfWinning = eachRank.getValue();
-            OutView.printRanking(ranking.getMessage(), numbersOfWinning);
+            outView.printRanking(ranking.getMessage(), numbersOfWinning);
         }
+
     }
 
 }

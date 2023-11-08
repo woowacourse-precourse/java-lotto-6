@@ -13,9 +13,11 @@ import lotto.view.InputView;
 public class InputController {
 
     InputValidator inputValidator;
+    InputView inputView;
 
     public InputController() {
         this.inputValidator = new InputValidator();
+        this.inputView = new InputView();
     }
 
     public void settingPurchaseAmount(ConsumerDto consumerDto) {
@@ -31,8 +33,10 @@ public class InputController {
     private PurchaseAmount tryGetPurchaseAmount() {
         PurchaseAmount purchaseAmount = null;
         try {
-            String inputPurchaseAmount = InputView.getPurchaseAmount();
+            String inputPurchaseAmount = inputView.getPurchaseAmount();
+            inputPurchaseAmount = Converter.deleteSpace(inputPurchaseAmount);
             inputValidator.validatePurchaseAmount(inputPurchaseAmount);
+
             int amount = Converter.stringToInt(inputPurchaseAmount);
             purchaseAmount = new PurchaseAmount(amount);
         } catch (IllegalArgumentException exception) {
@@ -60,9 +64,10 @@ public class InputController {
 
     private Lotto tryGetMainNumbers(Lotto mainNumbers) {
         try {
-            String inputWinningNumbers = InputView.getWinningNumbers();
+            String inputWinningNumbers = inputView.getWinningNumbers();
             inputWinningNumbers = Converter.deleteSpace(inputWinningNumbers);
             inputValidator.validateMainNumbers(inputWinningNumbers);
+
             mainNumbers = Converter.stringToLotto(inputWinningNumbers);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
@@ -81,7 +86,7 @@ public class InputController {
     private BonusNumber tryGetBonusNumber(Lotto mainNumbers) {
         BonusNumber bonusNumber = null;
         try {
-            String inputValue = InputView.getBonusNumber();
+            String inputValue = inputView.getBonusNumber();
             inputValue = Converter.deleteSpace(inputValue);
             inputValidator.validateBonusNumber(inputValue);
 

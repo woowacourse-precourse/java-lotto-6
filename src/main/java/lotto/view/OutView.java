@@ -6,26 +6,24 @@ public class OutView {
     private static final String CONTOUR = "---";
     private static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
-
-    public static void printTicketQuantity(int ticketQuantity) {
+    public void printTicketQuantity(int ticketQuantity) {
         System.out.println("\n" + ticketQuantity + "개를 구매했습니다.");
     }
 
-    public static void printConsumerLottos(String numbers) {
+    public void printConsumerLottos(String numbers) {
         System.out.println("[" + numbers + "]");
     }
 
-    public static void printWinningStaticInfoMessage() {
+    public void printWinningStaticInfoMessage() {
         System.out.println("\n" + WINNING_STATIC_MESSAGE);
         System.out.println(CONTOUR);
     }
 
-    public static void printRanking(String message, int numbersOfWinning) {
+    public void printRanking(String message, int numbersOfWinning) {
         System.out.println(message + numbersOfWinning + "개");
-
     }
 
-    public static void printRateOfReturn(float rateOfReturn) {
+    public void printRateOfReturn(float rateOfReturn) {
         System.out.printf(RATE_OF_RETURN_MESSAGE, rateOfReturn);
     }
 

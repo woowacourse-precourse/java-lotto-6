@@ -8,30 +8,30 @@ public class InputView {
     private static final String INPUT_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public static String getPurchaseAmount() {
+    public String getPurchaseAmount() {
         printPurchaseMessage();
         return Console.readLine();
     }
 
-    private static void printPurchaseMessage() {
+    private void printPurchaseMessage() {
         System.out.println(PURCHASE_MESSAGE);
     }
 
-    public static String getWinningNumbers() {
+    public String getWinningNumbers() {
         printInputWinningNumbers();
         return Console.readLine();
     }
 
-    private static void printInputWinningNumbers() {
+    private void printInputWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
     }
 
-    public static String getBonusNumber() {
+    public String getBonusNumber() {
         printInputBonusNumber();
         return Console.readLine();
     }
 
-    private static void printInputBonusNumber() {
+    private void printInputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
     }
 

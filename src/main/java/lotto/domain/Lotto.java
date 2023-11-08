@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import lotto.exception.CustomException;
+import lotto.exception.constant.ErrorCode;
+import lotto.utils.Constant;
+
 import java.util.List;
 
 public class Lotto {
@@ -20,5 +24,9 @@ public class Lotto {
         return numbers.stream()
                 .mapToInt(Integer::intValue)
                 .toArray();
+    }
+
+    public boolean contain(int bonusNum) {
+        return numbers.contains(bonusNum);
     }
 }

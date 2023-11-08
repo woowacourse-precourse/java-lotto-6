@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.controller.validator.BonusNumberValidator;
 import lotto.domain.*;
 import lotto.io.Input;
 import lotto.io.Output;
@@ -25,7 +24,7 @@ public class LottoController {
 
         List<Lotto> myLottos = buyLottos(lottoQuantity);
         WinningNumbers winningNumbers = generateWinningNumbers();
-        BonusNumber bonusNumber = new BonusNumber(generateBonusNumber(winningNumbers));
+        BonusNumber bonusNumber = generateBonusNumber();
         Console.close();
 
         WinningLottoCounts winningLottoCounts = new WinningLottoCounts(myLottos, winningNumbers, bonusNumber);
@@ -60,23 +59,14 @@ public class LottoController {
         }
     }
 
-    private int generateBonusNumber(WinningNumbers winningNumbers) {
+    private BonusNumber generateBonusNumber() {
         System.out.println();
         try {
             output.printInputBonusNumberMessage();
-            return getBonusNumber(winningNumbers);
+            return new BonusNumber(input.getBonusNumber());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return generateBonusNumber(winningNumbers);
+            return generateBonusNumber();
         }
-    }
-
-    private int getBonusNumber(WinningNumbers winningNumbers) {
-        String userInput = input.getBonusNumber();
-        BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
-        bonusNumberValidator.validateBonusNumber(userInput);
-        int bonusNumber = Integer.parseInt(userInput);
-        winningNumbers.validateDuplication(bonusNumber);
-        return bonusNumber;
     }
 }

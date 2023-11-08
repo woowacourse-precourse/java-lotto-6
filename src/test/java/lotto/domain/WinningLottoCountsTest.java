@@ -23,7 +23,7 @@ class WinningLottoCountsTest {
                 , new Lotto(List.of(1, 2, 3, 10, 11, 12))   //5등
                 , new Lotto(List.of(1, 2, 10, 11, 12, 13)));//none
         WinningNumbers winningNumbers = new WinningNumbers(List.of("1", "2", "3", "4", "5", "6"));
-        BonusNumber bonusNumber = new BonusNumber(7);
+        BonusNumber bonusNumber = new BonusNumber("7");
 
         winningLottoCounts = new WinningLottoCounts(myLottos, winningNumbers, bonusNumber);
     }

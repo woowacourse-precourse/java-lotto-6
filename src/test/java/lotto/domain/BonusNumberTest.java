@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.controller.validator.BonusNumberValidator;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,18 +13,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BonusNumberTest {
 
-    BonusNumberValidator bonusNumberValidator;
-
-    @BeforeEach
-    void setUp() {
-        bonusNumberValidator = new BonusNumberValidator();
-    }
-
     @Test
     @DisplayName("보너스 넘버가 리스트 안에 포함되면 true 포함되지 않으면 false를 반환한다.")
     void containBonusNumberTest() {
         //given
-        BonusNumber bonusNumber = new BonusNumber(6);
+        BonusNumber bonusNumber = new BonusNumber("6");
         List<Integer> lottoNumbersTrue = List.of(1, 2, 3, 4, 5, 6);
         List<Integer> lottoNumbersFalse = List.of(11, 12, 13, 14, 15, 16);
 
@@ -48,7 +39,7 @@ class BonusNumberTest {
         //when
 
         //then
-        assertThatThrownBy(() -> bonusNumberValidator.validateBonusNumber(userInput))
+        assertThatThrownBy(() -> new BonusNumber(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -61,7 +52,7 @@ class BonusNumberTest {
         //when
 
         //then
-        assertThatThrownBy(() -> bonusNumberValidator.validateBonusNumber(userInput))
+        assertThatThrownBy(() -> new BonusNumber(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

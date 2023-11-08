@@ -19,7 +19,7 @@ class ProfitTest {
                 , new Lotto(List.of(7, 8, 9, 10, 11, 12))
                 , new Lotto(List.of(7, 8, 9, 10, 11, 12)));
         WinningNumbers winningNumbers = new WinningNumbers(List.of("1", "2", "3", "40", "41", "42"));
-        BonusNumber bonusNumber = new BonusNumber(45);
+        BonusNumber bonusNumber = new BonusNumber("45");
 
         WinningLottoCounts winningLottoCounts = new WinningLottoCounts(myLottos, winningNumbers, bonusNumber);
         Profit profit = new Profit(winningLottoCounts, new Money("8000"));

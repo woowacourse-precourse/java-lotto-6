@@ -2,7 +2,9 @@ package lotto.model;
 
 import static lotto.constant.RankingConstant.SECOND_AND_THIRD_RANKING_REFERENCE_ACCORDED_COUNT;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import lotto.validation.LottoValidation;
 
 public class Lotto {
@@ -10,7 +12,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>();
+        this.numbers.addAll(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -18,7 +21,7 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public Ranking getRanking(List<Integer> winningNumbers, int bonusNumber) {
+    public Ranking getRanking(Set<Integer> winningNumbers, int bonusNumber) {
         int accordedCount = findAccordedNumberCount(winningNumbers);
         boolean hasBonusNumber = false;
         if (accordedCount == SECOND_AND_THIRD_RANKING_REFERENCE_ACCORDED_COUNT) {
@@ -27,7 +30,7 @@ public class Lotto {
         return Ranking.getRanking(accordedCount, hasBonusNumber);
     }
 
-    private int findAccordedNumberCount(List<Integer> winningNumbers) {
+    private int findAccordedNumberCount(Set<Integer> winningNumbers) {
         return Math.toIntExact(numbers.stream().filter(winningNumbers::contains).count());
     }
 
@@ -37,6 +40,6 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString();
+        return numbers.stream().sorted().toList().toString();
     }
 }

@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.domain.DrawingHost;
+import lotto.domain.LottoChecker;
 import lotto.repository.LottoRepository;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -11,6 +14,8 @@ public class Controller {
     public void run() {
         getBudget();
         getLottos();
+        getResult();
+    }
 
     private void getBudget() {
         LottoRepository.setBudget(InputView.inputBudget());
@@ -21,5 +26,11 @@ public class Controller {
         OutputView.printLottos();
     }
 
+    private void getResult() {
+        List<Integer> winningNumbers = InputView.inputWinningNumbers();
+        int bonusNumber = InputView.inputBonusNumber(winningNumbers);
+        LottoChecker lottoChecker = new LottoChecker(winningNumbers, bonusNumber);
+        DrawingHost drawingHost = new DrawingHost(lottoChecker);
+        drawingHost.produceResults();
     }
 }

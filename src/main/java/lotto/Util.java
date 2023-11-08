@@ -18,7 +18,8 @@ public class Util {
     }
 
     void sortRandomNumber(List<Integer> notSortedNumbers){
-        Collections.sort(notSortedNumbers);
+        List<Integer> modifiableList = new ArrayList<>(notSortedNumbers);
+        Collections.sort(modifiableList);
     }
 
     List<List<Integer>> makeLottoNumbersCollection(int count){

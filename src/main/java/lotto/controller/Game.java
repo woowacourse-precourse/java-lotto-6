@@ -34,17 +34,17 @@ public class Game {
     }
 
     private Cash getCash() {
-        return new Cash(getPurchaseAmount());
-    }
-
-    private int getPurchaseAmount() {
         while (true) {
             try {
-                return InputView.getPurchaseAmount();
+                return new Cash(getPurchaseAmount());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private int getPurchaseAmount() {
+        return InputView.getPurchaseAmount();
     }
 
     private Lottos getLottos(Cash cash) {
@@ -54,7 +54,13 @@ public class Game {
     }
 
     private WinningNumbers getWinningNumbers() {
-        return new WinningNumbers(getWinningLotto(), getBonusNumber());
+        while (true) {
+            try {
+                return new WinningNumbers(getWinningLotto(), getBonusNumber());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private Lotto getWinningLotto() {
@@ -62,13 +68,7 @@ public class Game {
     }
 
     private List<Integer> getNumbers() {
-        while (true) {
-            try {
-                return InputView.getWinningNumbers();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return InputView.getWinningNumbers();
     }
 
     private BonusNumber getBonusNumber() {
@@ -76,13 +76,7 @@ public class Game {
     }
 
     private int getNumber() {
-        while (true) {
-            try {
-                return InputView.getBonusNumber();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return InputView.getBonusNumber();
     }
 
     private Ranks getRanks(Lottos lottos, WinningNumbers winningNumbers) {

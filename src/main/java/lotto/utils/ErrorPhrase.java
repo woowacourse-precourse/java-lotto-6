@@ -18,4 +18,6 @@ public class ErrorPhrase {
 
     public static final String ERROR_PHRASE_LOTTO_NUMBER_IS_NOT_DIGIT = "로또 번호는 숫자만 가능합니다.";
 
+    public static final String ERROR_PHRASE_BONUS_LOTTO_NUMBER_IS_DUPLICATED = "보너스 번호는 로또 번호와 중복된 값을 가질 수 없습니다.";
+
 }

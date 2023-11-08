@@ -13,6 +13,7 @@ import static lotto.controller.InputController.*;
 import static lotto.controller.InputValidatorController.*;
 import static lotto.domain.LottoSystem.calculateRateOfReturn;
 import static lotto.view.OutputView.*;
+import static lotto.view.OutputView.printEmptyLine;
 
 public class LottoSystemController {
 
@@ -37,6 +38,8 @@ public class LottoSystemController {
     }
 
     private static int enterLottoBonusNumber() {
+        printEmptyLine();
+
         String lottoBonusNumber = inputLottoBonusNumber();
         inputLottoBonusNumberValidate(lottoBonusNumber);
 
@@ -44,6 +47,8 @@ public class LottoSystemController {
     }
 
     private static Lotto enterLottoNumber() {
+        printEmptyLine();
+
         String lottoNumbers = inputLottoNumber();
         inputLottoNumberValidate(lottoNumbers);
 

@@ -3,6 +3,9 @@ package controller;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import lotto.constant.ErrorMessage;
 import lotto.model.LottoDatas;
 import lotto.service.LottoService;
@@ -16,12 +19,15 @@ public class GameControllerTest {
     private LottoService lottoService;
     private LottoDatas lottoDatas;
 
+    List<Integer> exWinningNumbers;
+
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @BeforeEach
     void init() {
         lottoDatas = new LottoDatas();
         lottoService = new LottoService(lottoDatas);
+        exWinningNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
     }
 
     @DisplayName("1000으로 나누어 떨어지지 않는 수 입력시 오류 발생")
@@ -98,6 +104,38 @@ public class GameControllerTest {
     @ValueSource(strings = {"1,2,3,4,5,46", "0,3,6,4,5,7", "0,2,45,6,46,8"})
     void 당첨번호_예외테스트5(String winningNumber) {
         assertThatThrownBy(() -> lottoService.convertToIntegerList(winningNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ENTER_OUT_OF_LANGE.getMessage());
+    }
+
+    @DisplayName("보너스번호 예외처리 "
+            + "1.숫자인 수가 입력됐는지 확인")
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "#", " ", "한글"})
+    void 보너스번호_예외처리1(String bonusNumber) {
+        assertThatThrownBy(() -> lottoService.checkBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ENTER_NOT_INTEGER_NUMBER.getMessage());
+    }
+
+    @DisplayName("보너스번호 예외처리 "
+            + "2.중복된 숫자가 입력됐는지 확인")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2", "3", "4", "5", "6"})
+    void 보너스번호_예외처리2(String bonusNumber) {
+        lottoDatas.inputWinningNumber(exWinningNumbers);
+        assertThatThrownBy(() -> lottoService.checkBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ENTER_DUPLICATE_BONUS_NUMBER.getMessage());
+    }
+
+    @DisplayName("보너스번호 예외처리 "
+            + "1부터 45이외의 숫자가 입력됐는지 확인")
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "46", "47"})
+    void 보너스번호_예외처리3(String bonusNumber) {
+        lottoDatas.inputWinningNumber(exWinningNumbers);
+        assertThatThrownBy(() -> lottoService.checkBonusNumber(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ENTER_OUT_OF_LANGE.getMessage());
     }

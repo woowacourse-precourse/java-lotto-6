@@ -7,7 +7,7 @@ public enum LottoRank {
     FIRST_PLACE(6, 2000000000),
     SECOND_PLACE(5, true, 300000000),
     THIRD_PLACE(5, false, 1500000),
-    FORTH_PLACE(4, 50000),
+    FOURTH_PLACE(4, 50000),
     FIFTH_PLACE(3, 5000),
     NO_WINNING(0, 0);
 

@@ -29,7 +29,7 @@ public class LottoAnswer extends Lotto {
      * 로또를 정답과 비교해 결과를 반환한다.
      *
      * @param lotto 정답과 비교할 로또 객체
-     * @return {@link LottoCompareResult} - 로또와 정답의 비교 결과
+     * @return {@link lotto.model.domain.result.compare.LottoAnswerCompareResult} - 로또와 정답의 비교 결과
      */
     @Override
     public LottoAnswerCompareResult compareLotto(Lotto lotto) {

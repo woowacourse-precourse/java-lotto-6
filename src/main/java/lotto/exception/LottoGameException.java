@@ -2,6 +2,9 @@ package lotto.exception;
 
 import lotto.constance.GameConst;
 
+/**
+ * Lotto 어플리케이션에서 발생할 수 있는 예외 상황들을 관리합니다.
+ */
 public enum LottoGameException {
 
     WRONG_LOTTO_SIZE(String.format("로또 숫자의 개수는 %d 개여야 합니다.",
@@ -29,8 +32,9 @@ public enum LottoGameException {
     }
 
     /**
-     * @return 자신의 exceptionMessage를 예외 메시지로 사용하는 IllegalArgumentException을 리턴 합니다. <br> !주의 - 예외를 발생 시키는 것이 아닌, 예외를
-     * 리턴하는 것이므로 해당 리턴값을 `throw` 해 주어야 합니다.
+     * @return 자신의 exceptionMessage를 예외 메시지로 사용하는 IllegalArgumentException을 리턴 합니다.
+     * <p>!주의 <br>
+     * 예외를 발생 시키는 것이 아닌, 예외를 리턴하는 것이므로 해당 리턴값을 `throw` 해 주어야 합니다.</p>
      */
     public IllegalArgumentException makeException() {
         return new IllegalArgumentException(this.exceptionMessage);

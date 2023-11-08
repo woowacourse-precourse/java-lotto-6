@@ -70,7 +70,7 @@ public class Lotto {
      * <p>로또 객체의 비교는 로또 객체들이 가지고 있는 숫자 리스트를 통해 진행된다.</p>
      *
      * @param lotto 자신과 비교할 로또 객체
-     * @return {@link lotto.model.domain.result.LottoCompareResult} - 전달된 Lotto 객체와 자신의 로또 숫자를 비교한 결과를 반환한다.
+     * @return {@link lotto.model.domain.result.compare.LottoCompareResult} - 전달된 Lotto 객체와 자신의 로또 숫자를 비교한 결과를 반환한다.
      */
     public LottoCompareResult compareLotto(Lotto lotto) {
         int collectNumber = countCollectNumber(lotto);

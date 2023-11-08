@@ -6,6 +6,13 @@ import lotto.constance.GameConst;
 import lotto.exception.LottoGameException;
 import lotto.model.domain.lotto.Lotto;
 
+/**
+ * 주어진 List 값을 사용해 {@link Lotto}를 생성합니다.
+ * <p>
+ * LottoGenerator 생성시 List 형식의 숫자 리스트를 받습니다. 숫자 리스트를 순서대로 사용하여 로또를 생성합니다. 숫자 리스트를 전부 사용했다면 마지막에 사용한 숫자 리스트를 반복하여
+ * 재사용합니다.
+ * </p>
+ */
 public class SequenceListLottoGenerator extends LottoGenerator<Lotto> {
     private final List<List<Integer>> numbersSequence;
 

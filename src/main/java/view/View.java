@@ -1,5 +1,7 @@
 package view;
 
+import dto.LottoTickets;
+
 public class View {
     private final InputView inputView;
     private final OutputView outputView;
@@ -12,5 +14,9 @@ public class View {
     public int requirePurchaseAmount() {
         outputView.requestPurchaseAmount();
         return inputView.enterPurchaseAmount();
+    }
+
+    public void showLottoTickets(LottoTickets lottoTickets) {
+        outputView.printLottoTickets(lottoTickets);
     }
 }

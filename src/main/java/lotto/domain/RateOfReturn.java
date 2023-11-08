@@ -8,7 +8,7 @@ import static lotto.output.Constants.RateOfReturnConstants.TOTAL_RATE_OF_RETURN_
 public class RateOfReturn {
     private static final List<Integer> RANK_VALUE = List.of(5000, 5000, 1500000, 30000000, 2000000000);
 
-    public static double calculateRateOfReturn(int ticket,List<Integer> winnings) {
+    public static double calculateRateOfReturn(int ticket, List<Integer> winnings) {
         int investment = ticketToMoney(ticket);
         int profit = addTotalResult(winnings);
         return rateOfReturn(investment, profit);

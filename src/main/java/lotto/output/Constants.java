@@ -22,7 +22,7 @@ public class Constants {
 
     public class NumbersValidatorConstants {
         public static final String FORMAT_ERROR_MESSAGE = "[ERROR] 숫자를 입력해주세요.";
-        public static final String RANGE_ERROR_MESSAGE = "[ERROR] 1과 45 사이의 숫자를 입력해주세요";
+        public static final String RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
         public static final String DUPLICATE_ERROR_MESSAGE = "[ERROR] 중복된 숫자가 존재합니다. 다시 입력해주세요.";
 
     }

@@ -48,7 +48,7 @@ public class WinningNumbersTest extends WinningNumbers {
     }
 
     private void validateInput(String[] inputNumbers) {
-        Set<Integer>winningNumbers = new HashSet<>();
+        Set<Integer> winningNumbers = new HashSet<>();
         WinningNumbers.validateInput(inputNumbers, winningNumbers);
     }
 }

@@ -4,11 +4,13 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.Exception.LottoException;
 import lotto.validation.InputValidator;
 import lotto.validation.MoneyInputValidator;
+import lotto.validation.WinningNumberInputValidator;
 
 public class InputView {
 
     InputValidator inputValidator = new InputValidator();
     MoneyInputValidator moneyInputValidator = new MoneyInputValidator();
+    WinningNumberInputValidator winningNumberInputValidator = new WinningNumberInputValidator();
     LottoException lottoException = new LottoException();
 
     public String inputMoney() {
@@ -41,7 +43,24 @@ public class InputView {
     }
 
     public String inputWinningNumber() {
-        return null;
+        String winningNumber = "";
+        while (true) {
+            winningNumber = Console.readLine();
+            try {
+                checkWinningNumber(winningNumber);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+                continue;
+            }
+        }
+        return winningNumber;
+    }
+
+    public void checkWinningNumber(String winningNumber) throws IllegalArgumentException {
+        if (!winningNumberInputValidator.isCommaFive(winningNumber)) {
+            lottoException.setNotSixLottoNumber();
+        }
     }
 
     public String inputBonusNumber() {

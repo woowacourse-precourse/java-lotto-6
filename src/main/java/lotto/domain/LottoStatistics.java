@@ -2,12 +2,13 @@ package lotto.domain;
 
 
 import static lotto.domain.constants.LottoConfig.LOTTO_UNIT_PRICE;
-import static lotto.domain.constants.LottoStatisticsConstants.getStatisticsPrefix;
+import static lotto.domain.constants.LottoStatisticsConstants.DOTTED_LINE;
+import static lotto.domain.constants.LottoStatisticsConstants.INLINE;
+import static lotto.domain.constants.LottoStatisticsConstants.STATISTICS_NOTICE;
 import static lotto.domain.constants.LottoStatisticsContent.SECOND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.constants.LottoStatisticsContent;
@@ -25,11 +26,11 @@ public class LottoStatistics {
         for (Lotto lotto : lottoTicket.getLottoTicket()) {
             boolean bonusMatch = false;
             long count = getLottoMatchCount(winningNumber, lotto);
-            if (count == SECOND.getHitCount() && lotto.getNumbers().contains(bonusNumber)){
+            if (count == SECOND.getHitCount() && lotto.getNumbers().contains(bonusNumber)) {
                 bonusMatch = true;
             }
             LottoStatisticsContent.matchHitCount(count, bonusMatch).increasePrizeCount();
-            totalPrize += LottoStatisticsContent.matchHitCount(count,bonusMatch).getPrize();
+            totalPrize += LottoStatisticsContent.matchHitCount(count, bonusMatch).getPrize();
         }
         lottoResult.addAll(Arrays.asList(LottoStatisticsContent.values()));
     }
@@ -40,7 +41,8 @@ public class LottoStatistics {
                 .count();
     }
 
-    public static LottoStatistics from(final Lottos lottoTicket, final Lotto winningLotto, final Bonus bonus, final Buyer buyer) {
+    public static LottoStatistics from(final Lottos lottoTicket, final Lotto winningLotto, final Bonus bonus,
+                                       final Buyer buyer) {
         return new LottoStatistics((lottoTicket), winningLotto, bonus, buyer);
     }
 
@@ -58,12 +60,16 @@ public class LottoStatistics {
         );
     }
 
+    private String getStatisticsPrefix() {
+        return STATISTICS_NOTICE.getValue() + INLINE.getValue() + DOTTED_LINE.getValue() + INLINE.getValue();
+    }
+
     private String generateStatistics() {
         return lottoResult.stream()
                 .map(e -> String.format(
                         "%s%d개", e.getMessage(), e.getPrizeCount())
                 )
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(INLINE.getValue()));
     }
 
     private String generateProfitRate() {

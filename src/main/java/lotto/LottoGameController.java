@@ -37,7 +37,7 @@ public class LottoGameController {
         while (true) {
             try {
                 LottoTicket lottoTicket = ticketVendingMachine.buyTicket(amount);
-                outputView.ticketResult(lottoTicket.getCount(), lottoTicket.getLottoTickets());
+                lottoTicket.printLottoTickets(outputView);
                 return lottoTicket;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

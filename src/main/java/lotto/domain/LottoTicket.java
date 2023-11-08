@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,9 @@ public class LottoTicket {
         this.lottoTickets = lottoTickets;
     }
 
+    public void printLottoTickets(OutputView outputView) {
+        outputView.ticketResult(this.numberOfLotto, this.lottoTickets);
+    }
 
     public List<Lotto> issueTickets(int count) {
         List<Lotto> lottoTickets = new ArrayList<>();

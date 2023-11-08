@@ -102,6 +102,14 @@ public class ErrorTest extends NsTest {
             assertThat(output()).contains(ExceptionMessage.duplicationError.getErrorMessage());
         });
     }
+    @Test
+    @DisplayName("당첨 금액 입력 숫자중 45보다 큰 숫자가 있을때")
+    public void inputBonusNumberBigRangeError(){
+        assertSimpleTest(() -> {
+            runException("3000","1,2,3,4,5,6", "46");
+            assertThat(output()).contains(ExceptionMessage.NumberRangeError.getErrorMessage());
+        });
+    }
 
 
 

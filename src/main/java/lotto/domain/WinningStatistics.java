@@ -10,7 +10,6 @@ public enum WinningStatistics {
     THIRD(List.of(5L), false, 3, 1500000),
     FOUR(List.of(4L), false, 4, 50000),
     FIFTH(List.of(3L), false, 5, 5000),
-    RETIER(List.of(0L, 1L, 2L), false, 6, 0),
     NONE(List.of(), false, 0, 0);
 
     private List<Long> tier;

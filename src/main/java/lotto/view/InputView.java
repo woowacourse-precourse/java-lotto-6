@@ -31,10 +31,15 @@ public class InputView {
     }
 
     public static WinningLotto inputWinningLotto() {
-        LottoNumbers numbers = inputWinningNumbers();
-        LottoNumber bonus = inputBonusNumber();
+        try {
+            LottoNumbers numbers = inputWinningNumbers();
+            LottoNumber bonus = inputBonusNumber();
 
-        return new WinningLotto(numbers, bonus);
+            return new WinningLotto(numbers, bonus);
+        } catch (IllegalArgumentException exception) {
+            OutputView.print(exception.getMessage());
+            return inputWinningLotto();
+        }
     }
 
     private static LottoNumbers inputWinningNumbers() {

@@ -29,6 +29,10 @@ public class Lotto {
         return numbers.contains(bonusNumber);
     }
 
+    public int hasWinningNumber(Lotto winningLotto) {
+        return (int) this.numbers.stream().filter(winningLotto.numbers::contains).count();
+    }
+
     private void validateDuplicate(List<Integer> numbers) throws IllegalArgumentException {
         Set<Integer> duplicatedNumbers = new HashSet<>(numbers);
         if (duplicatedNumbers.size() < numbers.size()) {

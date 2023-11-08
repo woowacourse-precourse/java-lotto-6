@@ -87,6 +87,9 @@ public class UserHandler {
                 ResultView.printNewLine();
                 System.out.println("보너스 번호를 입력해주세요.");
                 String BonusNumberInput = Console.readLine();
+
+                checkValidBonusNumberInput(BonusNumberInput);
+
                 int bonusNumber = Integer.parseInt(BonusNumberInput);
 
                 checkvalidateBonusNumber(bonusNumber);
@@ -162,6 +165,18 @@ public class UserHandler {
             if (Integer.parseInt(winningNumber) == bonusNumber) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
             }
+        }
+    }
+
+    private static void checkValidBonusNumberInput(String bonusNumberInput) {
+        if (bonusNumberInput == null || bonusNumberInput.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 다시 입력하세요.");
+        }
+
+        try {
+            Integer.parseInt(bonusNumberInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요.");
         }
     }
 }

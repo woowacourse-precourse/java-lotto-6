@@ -25,7 +25,10 @@ public class Lotto {
     }
 
     public Lotto() {
-        this.numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBERS_LENGTH);
+        List<Integer> randomNumbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBERS_LENGTH));
+        Collections.sort(randomNumbers);
+        this.numbers = randomNumbers;
     }
 
     private void validate(List<Integer> numbers) {

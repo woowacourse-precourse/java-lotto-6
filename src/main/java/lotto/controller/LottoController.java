@@ -12,7 +12,7 @@ import java.util.List;
 
 public class LottoController {
 
-    List<String> reward = Arrays.asList("0", "0", "0", "5,000", "50,000", "1,500,000", "30,000,000", "2,000,000,000");
+    public List<String> reward = Arrays.asList("0", "0", "0", "5,000", "50,000", "1,500,000", "30,000,000", "2,000,000,000");
 
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
@@ -78,7 +78,7 @@ public class LottoController {
      * returnRate = 수익률
      * ex) returnRate = 550.0%
      */
-    private void winningStats(List<Lotto> lottos, List<Integer> winningNum, Integer bonusNum) {
+    public void winningStats(List<Lotto> lottos, List<Integer> winningNum, Integer bonusNum) {
         outputView.printWinningStatistics();
 
         List<Integer> matchCountFrequency = statisticsService.winningStats(lottos, winningNum, bonusNum);

@@ -11,11 +11,13 @@ public class LottoController {
     private BuyAmount buyAmount;
     private WinNumbers winNumbers;
     private BonusNumber bonusNumber;
+    private WinResult winResult;
 
     public LottoController() {
         buyLotto();
         showLotto();
         inputLottoNumber();
+        aggregateWinResult();
     }
 
     private void buyLotto() {
@@ -50,6 +52,18 @@ public class LottoController {
         String bonusNumberInput = Input.user();
         this.bonusNumber = new BonusNumber(bonusNumberInput);
     }
+
+    private void aggregateWinResult() {
+        winResult = new WinResult();
+        for(Lotto lotto : this.lottos.getLottos()) {
+            Rankings ranking = Rating.ranking(
+                    lotto.getLotto(), winNumbers.getWinNumbers(), bonusNumber.getBonusNumber());
+            winResult.setWinResult(ranking);
+        }
+
+    }
+
+
 
 
 }

@@ -2,6 +2,8 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,7 +14,11 @@ public class GenerateLottoNumbers {
         generateAllLottos(numberOfLotto);
     }
     private List<String> generateEachLotto(){
-        return Randoms.pickUniqueNumbersInRange(1,45,6).stream().map(String::valueOf).toList();
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        numbers.sort(Comparator.naturalOrder());
+        List<String> lottoNumbers = numbers.stream().map(String::valueOf).toList();
+
+        return lottoNumbers;
     }
 
     private void generateAllLottos(int numberOfLotto){

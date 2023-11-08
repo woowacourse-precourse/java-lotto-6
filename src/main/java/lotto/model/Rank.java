@@ -1,30 +1,32 @@
 package lotto.model;
 
+import lotto.model.constant.RankConstants;
+
 public class Rank {
-    private int firstPlace = 0;
-    private int secondPlace = 0;
-    private int thirdPlace = 0;
-    private int fourthPlace = 0;
-    private int fifthPlace = 0;
+    private int firstPlace = RankConstants.RANK_INITIAL_VALUE.getNumber();
+    private int secondPlace = RankConstants.RANK_INITIAL_VALUE.getNumber();
+    private int thirdPlace = RankConstants.RANK_INITIAL_VALUE.getNumber();
+    private int fourthPlace = RankConstants.RANK_INITIAL_VALUE.getNumber();
+    private int fifthPlace = RankConstants.RANK_INITIAL_VALUE.getNumber();
     private int totalWinningAmount = 0;
 
     public void addFirstPlace() {
-        firstPlace += 1;
+        firstPlace += RankConstants.MATCHING_INCRESE_COUNT.getNumber();
     }
 
     public void addSecondPlace() {
-        secondPlace += 1;
+        secondPlace += RankConstants.MATCHING_INCRESE_COUNT.getNumber();
     }
 
     public void addThirdPlace() {
-        thirdPlace += 1;
+        thirdPlace += RankConstants.MATCHING_INCRESE_COUNT.getNumber();
     }
 
     public void addFourthPlace() {
-        fourthPlace += 1;
+        fourthPlace += RankConstants.MATCHING_INCRESE_COUNT.getNumber();
     }
 
     public void addFifthPlace() {
-        fifthPlace += 1;
+        fifthPlace += RankConstants.MATCHING_INCRESE_COUNT.getNumber();
     }
 }

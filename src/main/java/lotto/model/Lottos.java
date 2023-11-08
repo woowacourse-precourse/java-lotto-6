@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.model.constant.RankConstants;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +21,9 @@ public class Lottos {
     }
 
     private static int matchingWinningNumbers(List<Integer> purchaseLottoNumbers, List<Integer> winningNumbers) {
-        int count = 0;
+        int count = RankConstants.RANK_INITIAL_VALUE.getNumber();
         for(int number : purchaseLottoNumbers) {
-            if(winningNumbers.contains(number)) count += 1;
+            if(winningNumbers.contains(number)) count += RankConstants.MATCHING_INCRESE_COUNT.getNumber();
         }
         return count;
     }

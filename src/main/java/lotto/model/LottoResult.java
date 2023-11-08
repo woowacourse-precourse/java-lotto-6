@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.model.constant.RankConstants;
+
 import java.util.List;
 
 public class LottoResult {
@@ -18,13 +20,13 @@ public class LottoResult {
         List<Integer> matchingCounts = lottos.calcurateLottoCounts(winningNumber);
         for(int i = 0; i < matchingCounts.size(); i++) {
             int matchingCount = matchingCounts.get(i);
-            if(matchingCount == 3) {
+            if(matchingCount == RankConstants.RANK_FIFTH.getNumber()) {
                 rank.addFifthPlace();
-            } else if (matchingCount == 4) {
+            } else if (matchingCount == RankConstants.RANK_FOURTH.getNumber()) {
                 rank.addFourthPlace();
-            } else if (matchingCount == 5) {
+            } else if (matchingCount == RankConstants.RANK_SECOND.getNumber()) {
                 calcurateSecondPlace(i);
-            } else if (matchingCount == 6) {
+            } else if (matchingCount == RankConstants.RANK_FIRST.getNumber()) {
                 rank.addFirstPlace();
             }
         }

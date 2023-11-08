@@ -6,6 +6,8 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class LottoController {
@@ -13,7 +15,7 @@ public class LottoController {
     private Amount amount;
     private WinningLotto winningLotto;
     private BonusLotto bonusLotto;
-    private Lottos lottoContainer = new Lottos(new ArrayList<>());
+    private LottoService lottoContainer = new LottoService(new ArrayList<>());
     public void run() {
         getLottoMoney();
         printLottoList();
@@ -52,11 +54,14 @@ public class LottoController {
     }
 
     private void statisticLotto() {
+        LinkedHashMap<Rank, Integer> rankHashMap = new LinkedHashMap<>();
         OutputView.printStatistics();
+        LottoResult result = new LottoResult(new LinkedHashMap<>());
         List<Lotto> savedLotto = lottoContainer.getLottos();
         for (Lotto lotto : savedLotto) {
-            lottoContainer.countMatchingNumbers(lotto, winningLotto.getWinningNumbers());
-            lottoContainer.countMatchingBonusNumber(lotto, bonusLotto.getBonusNumber());
+            rankHashMap = result.getRankResult(lotto, winningLotto.getWinningNumbers(), bonusLotto.getBonusNumber());
         }
+        OutputView.printRankResult(rankHashMap);
+
     }
 }

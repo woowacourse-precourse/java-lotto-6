@@ -1,5 +1,8 @@
 package lotto.view;
 
+import lotto.domain.Rank;
+
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,6 +50,19 @@ public class OutputView {
         blankSpace();
         System.out.println(DRAW_RESULT);
         System.out.println(BRACKETS);
+    }
+
+    public static void printRankResult(LinkedHashMap<Rank, Integer> map) {
+        for(Rank rank : Rank.values()) {
+            if (checkFail(rank)) {
+                continue;
+            }
+            System.out.printf(rank.getDrawResult() + System.lineSeparator(), map.getOrDefault(rank, 0));
+        }
+    }
+
+    private static boolean checkFail(Rank rank){
+        return rank == Rank.FAIL;
     }
 
     private static void blankSpace() {

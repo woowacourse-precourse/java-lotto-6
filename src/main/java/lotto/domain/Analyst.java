@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.LottoRank.*;
+
 public class Analyst {
     private final int lottoSize;
     private int totalIncome;
@@ -10,30 +12,31 @@ public class Analyst {
     }
 
     public void addLottoResult(int winningCount, boolean bonusCount) {
-        int prize = 0;
-        if (winningCount == 3) {
-            prize = LottoRank.RANK5.getPrize();
-            LottoRank.RANK5.increaseCount();
-        } else if (winningCount == 4) {
-            if (!bonusCount) {
-                prize = LottoRank.RANK4.getPrize();
-                LottoRank.RANK4.increaseCount();
-            } else if (bonusCount) {
-                prize = LottoRank.RANK3.getPrize();
-                LottoRank.RANK3.increaseCount();
-            }
-        } else if (winningCount == 5) {
-            prize = LottoRank.RANK2.getPrize();
-            LottoRank.RANK2.increaseCount();
-        } else if (winningCount == 6) {
-            prize = LottoRank.RANK1.getPrize();
-            LottoRank.RANK1.increaseCount();
-        }
+        LottoRank rk = findRank(winningCount, bonusCount);
+        int prize = rk.getPrize();
+        rk.increaseCount();
         totalIncome += prize;
     }
 
     public double revenueLotto() {
-        double result = ((double)totalIncome / (double)(lottoSize * LottoRole.LOTTO_PRICE.getNumber())) * 100;
+        double result = ((double) totalIncome / (double) (lottoSize * LottoRole.LOTTO_PRICE.getNumber())) * 100;
         return result;
+    }
+
+    private LottoRank findRank(int winningCount, boolean bonusCount) {
+        if (winningCount == 3) {
+            return RANK5;
+        } else if (winningCount == 4) {
+            if (!bonusCount) {
+                return RANK4;
+            } else if (bonusCount) {
+                return RANK3;
+            }
+        } else if (winningCount == 5) {
+            return RANK2;
+        } else if (winningCount == 6) {
+            return RANK1;
+        }
+        return RANK6;
     }
 }

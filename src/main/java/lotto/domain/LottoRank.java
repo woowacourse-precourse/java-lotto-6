@@ -5,7 +5,8 @@ public enum LottoRank {
     RANK2(30000000),
     RANK3(1500000),
     RANK4(50000),
-    RANK5(5000);
+    RANK5(5000),
+    RANK6(0);
 
     private final int prize;
     private int count;

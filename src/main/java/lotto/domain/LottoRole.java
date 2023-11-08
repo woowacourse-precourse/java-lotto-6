@@ -8,8 +8,9 @@ public enum LottoRole {
     LOTTO_PRICE(1000);
 
     private final int number;
+
     LottoRole(int number) {
-        this.number=number;
+        this.number = number;
     }
 
     public int getNumber() {

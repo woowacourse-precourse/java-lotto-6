@@ -1,7 +1,10 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.List;
+
+import static lotto.view.ErrorMessageContainer.DUPLICATE_LOTTO_NUMBER;
 
 public class TicketMaster {
     Lotto winningNum;
@@ -44,7 +47,7 @@ public class TicketMaster {
 
     private void validateBonusNum(int num) {
         if (winningNum.getNumbers().contains(num)) {
-            throw new IllegalArgumentException("보너스 번호가 당첨번호와 중복됩니다.");
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 }

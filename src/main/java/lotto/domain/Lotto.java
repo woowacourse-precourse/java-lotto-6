@@ -3,6 +3,8 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.view.ErrorMessageContainer.DUPLICATE_LOTTO_NUMBER;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -14,7 +16,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LottoRole.LOTTO_SIZE.getNumber()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 

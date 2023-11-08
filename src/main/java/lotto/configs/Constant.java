@@ -37,4 +37,6 @@ public class Constant {
             + "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"
             + "6개 일치 (2,000,000,000원) - %d개";
 
+    public static final String COMMA = ",";
+    public static final String ERROR_MESSAGE_NOT_ENOUGH = "개수가 충분하지 않습니다.";
 }

@@ -22,14 +22,10 @@ public class LottoController {
     }
 
     public void run() {
-        try {
-            PurchaseAmount purchaseAmount = receivePurchaseAmount();
-            Lottos lottos = purchaseLottos(purchaseAmount);
-            WinningLotto winningLotto = receiveWinningLotto();
-            computeStatistics(lottos, winningLotto, purchaseAmount);
-        } catch (Exception e) {
-            OutputView.printError(e.getMessage());
-        }
+        PurchaseAmount purchaseAmount = receivePurchaseAmount();
+        Lottos lottos = purchaseLottos(purchaseAmount);
+        WinningLotto winningLotto = receiveWinningLotto();
+        computeStatistics(lottos, winningLotto, purchaseAmount);
     }
 
     private PurchaseAmount receivePurchaseAmount() {

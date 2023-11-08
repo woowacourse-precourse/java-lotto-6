@@ -28,11 +28,11 @@ public class TotalPrize {
         return prizes.get(rank);
     }
 
-    public long getTotalPrizeAmount() {
+    public long sumTotalPrizeAmount() {
         return prizes.keySet()
                 .stream()
-                .filter(rank -> prizes.get(rank)>0)
-                .mapToLong(rank -> prizes.get(rank))
+                .filter(rank -> getPrizeCount(rank) > 0)
+                .mapToLong(rank -> getPrizeCount(rank) * rank.prize())
                 .sum();
     }
 }

@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.UserLotto;
+import lotto.service.LottoCalculator;
 import lotto.service.UserLottoGenerator;
 import lotto.validation.LottoValidation;
 import lotto.view.InputView;
@@ -16,11 +17,15 @@ public class Application {
         InputView inputView = new InputView();
         LottoValidation lottoValidation = new LottoValidation();
         UserLottoGenerator userLottoGenerator = new UserLottoGenerator();
+        LottoCalculator lottoCalculator = new LottoCalculator();
 
         int purchaseAmount = ioPurchaseAmount(outputView, inputView, lottoValidation);
         List<UserLotto> userLottos = outputPurchasedUserLotto(purchaseAmount, outputView, userLottoGenerator);
         List<Integer> winningNumber = ioWinningNumber(outputView, inputView, lottoValidation);
         int bonusNumber = ioBonusNumber(outputView, inputView, lottoValidation, winningNumber);
+
+        List<Integer> resultData = lottoCalculator.calculateLottoWin(userLottos, winningNumber, bonusNumber);
+        outputView.printWinningStatisticsMessage(resultData);
     }
 
     private static int ioBonusNumber(OutputView outputView, InputView inputView, LottoValidation lottoValidation, List<Integer> winningNumber) {

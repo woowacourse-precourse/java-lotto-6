@@ -1,7 +1,7 @@
 package Util;
 
 public class Convert {
-    public Integer convertStringToInteger(String str, String errorMsg){
+    public static Integer convertStringToInteger(String str, String errorMsg){
         try{
             return Integer.parseInt(str);
         }

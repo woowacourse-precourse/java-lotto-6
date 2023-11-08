@@ -80,6 +80,22 @@ public class InteractServiceTest extends NsTest {
         });
     }
 
+    @DisplayName("로또 구입 금액이 1000으로 나누어 떨어지지 않을 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(
+            strings = {
+                    "500", "1200", "9999"
+            }
+    )
+    void purchaseNotDivideByThousand(String input) {
+        assertSimpleTest(() -> {
+            runException(
+                    input
+            );
+            assertThat(output()).contains(ErrorStatus.NOT_DIVISION_THOUSAND_ERROR.getMessage());
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

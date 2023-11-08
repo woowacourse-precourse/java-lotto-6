@@ -7,23 +7,43 @@ import java.util.Set;
 
 public class Validation {
 
+    private static final String INPUT_TYPE_ERROR_MSG
+            = "[ERROR] 숫자를 입력해주세요.";
+    private static final String INPUT_UNIT_ERROR_MSG
+            = "[ERROR] 로또 구입 금액은 1,000원 단위로 입력해주세요.";
+    private static final String INPUT_RANGE_ERROR_MSG
+            = "[ERROR] 당첨 번호는 1 이상 45 이하의 정수로 입력해주세요.";
+    private static final String INPUT_WINNER_NUMBER_DUPLICATED_ERROR_MSG
+            = "[ERROR] 당첨 번호 중 중복되는 번호가 있습니다.";
+    private static final String INPUT_WINNER_NUMBER_SIZE_ERROR_MSG
+            = "[ERROR] 총 6개의 당첨 번호를 입력해주세요.";
+    private static final String INPUT_WINNER_BONUS_DUPLICATED_ERROR_MSG
+            = "[ERROR] 당첨 번호 중 보너스 번호와 중복되는 번호가 존재합니다.";
+
+    private static final int MIN_VALUE = 1;
+    private static final int MAX_VALUE = 45;
+    private static final int SIZE = 6;
+    private static final int UNIT = 1000;
+    private static final int ZERO = 0;
+    private static final String SEPERATOR = ",";
+
     private static int parseInteger(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(INPUT_TYPE_ERROR_MSG);
         }
     }
 
     private static void validateUnit(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위로 입력해주세요.");
+        if (purchaseAmount % UNIT != ZERO) {
+            throw new IllegalArgumentException(INPUT_UNIT_ERROR_MSG);
         }
     }
 
     private static void validateRange(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1 이상 45 이하의 정수로 입력해주세요.");
+        if (number < MIN_VALUE || number > MAX_VALUE) {
+            throw new IllegalArgumentException(INPUT_RANGE_ERROR_MSG);
         }
     }
 
@@ -31,17 +51,17 @@ public class Validation {
         Set<Integer> sample = new HashSet<>(numbers);
 
         if (sample.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호 중 중복되는 번호가 있습니다.");
+            throw new IllegalArgumentException(INPUT_WINNER_NUMBER_DUPLICATED_ERROR_MSG);
         }
 
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 총 6개의 당첨 번호를 입력해주세요.");
+        if (numbers.size() != SIZE) {
+            throw new IllegalArgumentException(INPUT_WINNER_NUMBER_SIZE_ERROR_MSG);
         }
     }
 
     private static void validateDuplicatedBonusNumber(List<Integer> winnerNumbers, int bonusNumber) {
         if (winnerNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호 중 보너스 번호와 중복되는 번호가 존재합니다.");
+            throw new IllegalArgumentException(INPUT_WINNER_BONUS_DUPLICATED_ERROR_MSG);
         }
     }
 
@@ -52,7 +72,7 @@ public class Validation {
     }
 
     public static List<Integer> validateWinnerNumbers(String input) {
-        String[] numbers = input.split(",");
+        String[] numbers = input.split(SEPERATOR);
         List<Integer> winnerNumbers = new ArrayList<>();
 
         for (String elem : numbers) {

@@ -15,7 +15,7 @@ public class LottoService {
     }
 
     public int[] calculateWinningsCounts(LottoTicket lottoTickets, WinningNumbers winningNumbers) {
-        List<Integer> winningList = winningNumbers.getWinningNumber();
+        List<Integer> winningList = winningNumbers.getWinningNumbers();
         int bonusNum = winningNumbers.getBonusNumber();
 
         for (Lotto lotto : lottoTickets.getLottoList()) {
@@ -31,7 +31,6 @@ public class LottoService {
             updatePrizeQuantity(LottoPrize.SECOND, count);
             return;
         }
-
         for (LottoPrize prize : LottoPrize.values()) {
             updatePrizeQuantity(prize, count);
         }
@@ -43,6 +42,7 @@ public class LottoService {
             winningCount[index]++;
         }
     }
+
     public double calculateProfitRatio(LottoTicket lottoTicket) {
         // 사용자의 지불 금액과 총 당첨 금액을 바탕으로 수익률을 계산합니다.
         int purchaseAmount = lottoTicket.getPurchaseAmount();
@@ -57,6 +57,4 @@ public class LottoService {
         }
         return result;
     }
-
-
 }

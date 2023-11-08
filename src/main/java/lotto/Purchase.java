@@ -2,10 +2,11 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import camp.nextstep.edu.missionutils.Console;
+
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Purchase {
+    private Input ipt = new Input();
     private int cost;
     private int amount;
     private ArrayList<List<Integer>> tickets = new ArrayList<>();
@@ -27,8 +28,7 @@ public class Purchase {
     private void totalCost() {
         while (true) {
             try {
-                System.out.println("구입금액을 입력해 주세요.");
-                String input = Console.readLine();
+                String input = ipt.costInput();
                 checkCost(input);
                 return;
             } catch (NumberFormatException e) {

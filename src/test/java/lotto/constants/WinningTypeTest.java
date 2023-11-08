@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EnumSource;
 
 class WinningTypeTest {
-    @ParameterizedTest
+    @ParameterizedTest(name = "당첨된 숫자의 수: {0}, 보너스 여부: {1}, 반환되어야 하는 WinningType: {2}")
     @DisplayName("당첨(중복)된 숫자에 따라 알맞은 WinningType을 반환한다.")
     @CsvSource({"3, false, THREE",
             "4, false, FOUR",
@@ -27,7 +27,7 @@ class WinningTypeTest {
         assertThat(result).isEqualTo(winningType);
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "WinningType: {0}")
     @DisplayName("WinningType의 Type이 NONE이 아닌 경우, NEW_LINE을 포함하여 반환한다.")
     @EnumSource(value = WinningType.class, names = {"THREE", "FOUR", "FIVE", "FIVE_BONUS", "SIX"})
     public void should_returnDifferentResult_By_winningType(WinningType winningType) {

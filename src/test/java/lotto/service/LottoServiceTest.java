@@ -11,33 +11,38 @@ import lotto.dto.WinningLotto;
 import lotto.dto.WinningResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class LottoServiceTest {
-    private LottoService lottoService = new LottoService(new LottoGenerator());
+    private LottoService lottoService;
 
-    @Test
-    @DisplayName("구매 개수를 전달했을 때, 해당 개수만큼의 로또 티켓을 반환한다.")
-    public void should_returnLottoTickets_when_passAmount() {
-        //given
-        String money = "2000";
-
-        //when
-        List<Lotto> lottos = lottoService.issueMultipleLotto(PurchaseAmount.from("2000"));
+    @ParameterizedTest(name = "{0}원 지불 시, 1000으로 나눈 값인 {1}개 구매")
+    @DisplayName("지불한 돈에 따라 로또 티켓을 반환한다.")
+    @CsvSource({
+            "'1000', 1",
+            "'2000', 2",
+            "'3000', 3"
+    })
+    public void should_returnLottoTickets_when_passAmount(String input, int amount) {
+        //given & when
+        lottoService = new LottoService(new LottoGenerator());
+        List<Lotto> issuedLotto = lottoService.issueMultipleLotto(PurchaseAmount.from(input));
 
         //then
-        assertThat(lottos.size()).isEqualTo(2);
+        assertThat(issuedLotto.size()).isEqualTo(amount);
     }
 
     @Test
     @DisplayName("로또 당첨 결과 확인")
-    public void checkWinningResult() {
+    public void should_returnTotalPrize_when_compareWinning() {
         //given
         lottoService = new LottoService(new TestGenerator(List.of(1, 2, 3, 4, 5, 6)));
-        List<Lotto> lottos = lottoService.issueMultipleLotto(PurchaseAmount.from("1000"));
+        List<Lotto> issuedLotto = lottoService.issueMultipleLotto(PurchaseAmount.from("1000"));
         WinningLotto winningLotto = lottoService.getWinningLotto(getWinning("1,2,3,6,7,8"), getBonus("10"));
 
         //when
-        WinningResult lottoResult = lottoService.getWinningResult(lottos, winningLotto);
+        WinningResult lottoResult = lottoService.getWinningResult(issuedLotto, winningLotto);
 
         //then
         assertThat(lottoResult.getTotalPrize()).isEqualTo(WinningType.FOUR.calculateProfit(1));

@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.LongToDoubleFunction;
 
 public class User {
     private int numberOfLotto;
@@ -17,7 +18,7 @@ public class User {
     private final static String BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private final static String DIVIDE_ERROR = "[ERROR] 구입 금액을 1,000원 단위로 입력해주세요.";
     private final static String NOT_NUMBER = "[ERROR] 숫자를 입력해주세요.";
-    private final static String WINNING_ERROR = "[ERROR] 중복된 숫자가 입력되었거나, 6개의 숫자가 입력되지 않았습니다.";
+    private final static String LOTTO_ERROR = "[ERROR] 잘못된 입력입니다. 다시 입력해주세요.";
 
     public void enterAmount() {
         System.out.println(START);
@@ -45,11 +46,27 @@ public class User {
     }
 
     public void enterBonusNumber() {
-
+        while (true) {
+            try {
+                bonusNumber = Integer.parseInt(Console.readLine());
+                validateLottoNumber();
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println(NOT_NUMBER);
+            } catch (IllegalArgumentException e) {
+                System.out.println(LOTTO_ERROR);
+            }
+        }
     }
 
     private void validateNumber() {
         if (money % 1000 != 0) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateLottoNumber() {
+        if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException();
         }
     }
@@ -62,7 +79,7 @@ public class User {
             } catch (NumberFormatException e) {
                 System.out.println(NOT_NUMBER);
             } catch (IllegalArgumentException e) {
-                System.out.println(WINNING_ERROR);
+                System.out.println(LOTTO_ERROR);
             }
         }
     }

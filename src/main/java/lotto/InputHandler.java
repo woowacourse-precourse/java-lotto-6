@@ -9,42 +9,42 @@ public class InputHandler {
     public static Integer getUserInputAmount() throws IllegalArgumentException{
 
         String input = Console.readLine();
-        int number;
+        int amount;
         try {
-            number = Integer.parseInt(input);
+            amount = Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("올바른 숫자 형식이 아닙니다.");
         }
-        return number;
+        return amount;
     }
 
     public static List<Integer> getUserInputlotto() throws IllegalArgumentException{
 
         String input = Console.readLine();
 
-        String[] inputData = input.split(",");
-        List<Integer> inputList = new ArrayList<>();
+        String[] inputs = input.split(",");
+        List<Integer> lottoNums = new ArrayList<>();
 
-        for (String data : inputData) {
+        for (String element : inputs) {
             try {
-                int number = Integer.parseInt(data.trim());
-                inputList.add(number);
+                int lotto = Integer.parseInt(element.trim());
+                lottoNums.add(lotto);
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("올바른 숫자 형식이 아닙니다.");
             }
         }
-        return inputList;
+        return lottoNums;
     }
 
     public static Integer getUserInputBonus() throws IllegalArgumentException{
 
         String input = Console.readLine();
-        int number;
+        int bonus;
         try {
-            number = Integer.parseInt(input);
+            bonus = Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("올바른 숫자 형식이 아닙니다.");
         }
-        return number;
+        return bonus;
     }
 }

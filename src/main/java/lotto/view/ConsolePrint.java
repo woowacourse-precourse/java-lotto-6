@@ -7,7 +7,7 @@ import static lotto.constant.Magic.PRINT_BUYNUMBER;
 import static lotto.constant.Rank.SAME_NUMBER_3;
 import static lotto.constant.Rank.SAME_NUMBER_4;
 import static lotto.constant.Rank.SAME_NUMBER_5_BONUSE_O;
-import static lotto.constant.Rank.SAME_NUMBER_5_BONUX_X;
+import static lotto.constant.Rank.SAME_NUMBER_5_BONUSE_X;
 import static lotto.constant.Rank.SAME_NUMBER_6;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -52,7 +52,7 @@ public class ConsolePrint {
     }
 
     public static void printBonusX(int num) {
-        System.out.println(String.format("%s - %d개", SAME_NUMBER_5_BONUX_X.getMessageBonusX(), num));
+        System.out.println(String.format("%s - %d개", SAME_NUMBER_5_BONUSE_X.getMessageBonusX(), num));
     }
 
     public static void printBonusO(int num) {
@@ -62,6 +62,10 @@ public class ConsolePrint {
     public static void print6Same(int num) {
         System.out.println(String.format("%s - %d개", SAME_NUMBER_6.getMessage(), num));
 
+    }
+
+    public static void printRevenue(float revenue) {
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", revenue));
     }
 
 }

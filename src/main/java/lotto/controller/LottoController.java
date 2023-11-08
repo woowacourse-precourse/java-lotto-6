@@ -1,5 +1,11 @@
 package lotto.controller;
 
+import static lotto.constant.Rank.SAME_NUMBER_3;
+import static lotto.constant.Rank.SAME_NUMBER_4;
+import static lotto.constant.Rank.SAME_NUMBER_5_BONUSE_O;
+import static lotto.constant.Rank.SAME_NUMBER_5_BONUSE_X;
+import static lotto.constant.Rank.SAME_NUMBER_6;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,39 +31,31 @@ public class LottoController {
         winningNumber = new Lotto(
                 ConsolePrint.readWinningNum().split(","));
         bonus = new BonusNumber(ConsolePrint.readBonusNum());
+        List<Integer> sames = compareNumbers();
+        makeRank(sames);
+        printRevenue((float) sumRevenues(sames));
 
-        makeRank(compareNumbers());
     }
 
     public List<Integer> compareNumbers() {
-//        return lottosList.getLottosList().stream()
-//                .mapToInt(lotto -> countSameNumbers(lotto.getNumbers(), winningNumber.getNumbers()))
-//                .boxed()
-//                .collect(Collectors.toList());
         List<Integer> countList = new ArrayList<>();
+        List<Lotto> lottos = lottosList.getLottosList();
 
-        IntStream.range(0, lottosList.getLottosList().size())
+        IntStream.range(0, lottos.size())
                 .filter(index -> {
-                    int count = countSameNumbers(lottosList.getLottosList().get(index).getNumbers(),
-                            winningNumber.getNumbers());
-//                    System.out.println(count);
-//                    if (count == 5) {
-//                        processCountIs5(index, lottosList);
-//                    }
+                    int count = countSameNumbers(lottos.get(index).getNumbers(), winningNumber.getNumbers());
                     countList.add(count); // 모든 count를 리스트에 추가
                     return count == 5;
                 })
                 .forEach(index -> {
-                    System.out.println("index:" + index);
                     processCountIs5(index, lottosList);
                 });
-
-        System.out.println(countList);
         return countList;
     }
 
     public int processCountIs5(int index, LottosList lottoBox) {
         Lotto lotto = lottoBox.getLottosList().get(index);
+
         if (lotto.getNumbers().contains(bonus.getNumber())) {
             lottoBox.checkBonus(index);
         }
@@ -68,6 +66,7 @@ public class LottoController {
         int result = (int) lottoNumbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
+
         System.out.println(result);
         return result;
     }
@@ -82,17 +81,48 @@ public class LottoController {
 
     public void makeRank(List<Integer> sames) {
         System.out.println(sames);
+        ConsolePrint.printStatics();
         ConsolePrint.print3Same(Collections.frequency(sames, 3));
         ConsolePrint.print4Same(Collections.frequency(sames, 4));
+
         int result = Collections.frequency(sames, 5);
         int bonusSame = Collections.frequency(lottosList.getBonusCheck(), true);
+
         ConsolePrint.printBonusX(result - bonusSame);
         ConsolePrint.printBonusO(bonusSame);
-        ConsolePrint.print3Same(Collections.frequency(sames, 3));
+        ConsolePrint.print6Same(Collections.frequency(sames, 6));
     }
 
-    public void compareBonus(List<Integer> sames, int index) {
-
+    void printRevenue(float result) {
+        ConsolePrint.printRevenue(result);
     }
 
+    public double sumRevenues(List<Integer> sames) {
+        List<Integer> revenues = new ArrayList<>();
+        revenues.add(Collections.frequency(sames, 3) * SAME_NUMBER_3.getPrice());
+        revenues.add(Collections.frequency(sames, 4) * SAME_NUMBER_4.getPrice());
+
+        int result = Collections.frequency(sames, 5);
+        int bonusSame = Collections.frequency(lottosList.getBonusCheck(), true);
+
+        revenues.add((result - bonusSame) * SAME_NUMBER_5_BONUSE_X.getPrice());
+        revenues.add(bonusSame * SAME_NUMBER_5_BONUSE_O.getPrice());
+        revenues.add(Collections.frequency(sames, 6) * SAME_NUMBER_6.getPrice());
+
+        return calculateRevenue(revenues);
+    }
+
+    public double calculateRevenue(List<Integer> revenues) {
+        int sum = 0;
+        int num = lottosList.getLottosList().size();
+
+        for (int price : revenues) {
+            sum += price;
+        }
+
+        double result = (double) sum / (num * 1000) * 100;
+        result = Math.round(result * 10.0) / 10.0; // 소수점 둘째 자리에서 반올림
+
+        return result;
+    }
 }

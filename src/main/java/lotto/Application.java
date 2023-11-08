@@ -37,20 +37,34 @@ public class Application {
         matchCount.put("5개 일치, 보너스 볼 일치(30,000,000원)", 0);
         matchCount.put("6개 일치 (2,000,000,000원)", 0);
         
+        Map<String, Integer> prizeMoney = new HashMap<>();
+        prizeMoney.put("3개 일치 (5,000원)", 5000);
+        prizeMoney.put("4개 일치 (50,000원)", 50000);
+        prizeMoney.put("5개 일치 (1,500,000원)", 1500000);
+        prizeMoney.put("5개 일치, 보너스 볼 일치(30,000,000원)", 30000000);
+        prizeMoney.put("6개 일치 (2,000,000,000원)", 2000000000);
+        
+        int totalPrizeMoney = 0;
+        
         for (Lotto lotto : lottos) {
             int count = lotto.countMatchedNumbers(winningLotto.getLotto());
             if (count == 6) {
                 matchCount.put("6개 일치 (2,000,000,000원)", matchCount.get("6개 일치 (2,000,000,000원)") + 1);
+                totalPrizeMoney += prizeMoney.get("6개 일치 (2,000,000,000원)");
             } else if (count == 5) {
                 if (winningLotto.isSecondRank(lotto)) {
                     matchCount.put("5개 일치, 보너스 볼 일치(30,000,000원)", matchCount.get("5개 일치, 보너스 볼 일치(30,000,000원)") + 1);
+                    totalPrizeMoney += prizeMoney.get("5개 일치, 보너스 볼 일치(30,000,000원)");
                 } else {
                     matchCount.put("5개 일치 (1,500,000원)", matchCount.get("5개 일치 (1,500,000원)") + 1);
+                    totalPrizeMoney += prizeMoney.get("5개 일치 (1,500,000원)");
                 }
             } else if (count == 4) {
                 matchCount.put("4개 일치 (50,000원)", matchCount.get("4개 일치 (50,000원)") + 1);
+                totalPrizeMoney += prizeMoney.get("4개 일치 (50,000원)");
             } else if (count == 3) {
                 matchCount.put("3개 일치 (5,000원)", matchCount.get("3개 일치 (5,000원)") + 1);
+                totalPrizeMoney += prizeMoney.get("3개 일치 (5,000원)");
             }
         }
         
@@ -61,5 +75,8 @@ public class Application {
         System.out.println("5개 일치 (1,500,000원)- " + matchCount.get("5개 일치 (1,500,000원)") + "개");
         System.out.println("5개 일치, 보너스 볼 일치(30,000,000원)- " + matchCount.get("5개 일치, 보너스 볼 일치(30,000,000원)") + "개");
         System.out.println("6개 일치 (2,000,000,000원)- " + matchCount.get("6개 일치 (2,000,000,000원)") + "개");
+        
+        double earningRate = (double) totalPrizeMoney / purchaseAmount * 100;
+        System.out.printf("총 수익률은 %.2f입니다.\n", earningRate);
     }
 }

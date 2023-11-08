@@ -19,7 +19,6 @@ public class Lotto {
         validateLottoDuplicate(numbers);
         validateLottoNumberOverMax(numbers);
         this.lottoNumbers = numbers;
-        lottoNumbersSorted();
     }
 
     public List<Integer> getLotto() {
@@ -42,13 +41,6 @@ public class Lotto {
     public boolean isBonusMatch(int bonusNumber) {
         return lottoNumbers.contains(bonusNumber);
     }
-
-    private void lottoNumbersSorted() {
-        this.lottoNumbers.stream()
-                .sorted()
-                .toList();
-    }
-
 
     private void validateLottoSizeCheck(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE_MAX_LENGTH) {

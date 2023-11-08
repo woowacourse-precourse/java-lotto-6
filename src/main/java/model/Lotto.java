@@ -1,6 +1,7 @@
 package model;
 
 import common.Constant;
+import dto.Result;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,5 +39,14 @@ public class Lotto {
         final StringBuilder sb = new StringBuilder();
         sb.append(numbers);
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

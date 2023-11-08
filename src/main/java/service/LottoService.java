@@ -3,16 +3,20 @@ package service;
 import common.Constant;
 import common.LottoNumberGenerator;
 import dto.Purchase;
+import dto.Result;
 import model.Amount;
+import model.Bonus;
 import model.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoService {
 
     private static int count = 0;
     private static List<Lotto> lottos = new ArrayList<>();
+    private static List<Result> results = new ArrayList<>();
     private static LottoService instance = new LottoService();
     private LottoService(){}
 
@@ -33,4 +37,17 @@ public class LottoService {
         return amount / Constant.DIVIDE_UNIT;
     }
 
+    public void pick(Lotto lotto, Bonus bonus) {
+        for(Lotto l : lottos){
+            List<Integer> duplication = new ArrayList<>();
+            duplication = l.getNumbers().stream().filter(s -> lotto.getNumbers().contains(s))
+                    .collect(Collectors.toList());
+            int sameCount = duplication.size();
+
+            boolean isSameBonus = false;
+            if(l.getNumbers().contains(bonus)) isSameBonus = true;
+
+            results.add(new Result(sameCount, isSameBonus));
+        }
+    }
 }

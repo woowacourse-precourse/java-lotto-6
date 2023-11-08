@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Output {
@@ -15,8 +14,8 @@ public class Output {
         System.out.println("당첨 통계");
         System.out.println("___");
         Rank[] ranks = Rank.values();
-        for (int i = 0; i < 5; i++) {
-            System.out.println(rank.getResultMessage(ranks[i]) + countRankArray[i] + "개");
-        }
+
+        for (int i = 0; i < 5; i++)
+            System.out.println(Rank.getResultMessage(ranks[i]) + countRankArray[i] + "개");
     }
 }

@@ -1,19 +1,17 @@
 package lotto.util;
 
-import com.sun.jdi.InvalidTypeException;
 import lotto.enumeration.ExceptionType;
-import lotto.enumeration.NoticeType;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 
 public class Validator {
     public static boolean validateAmount(String input) {
-        if(validateAmountType(input) &&
+        return validateAmountType(input) &&
                 validateAmountRange(Integer.parseInt(input)) &&
-                validateAmountMultiple(Integer.parseInt(input))) {
-            return true;
-        }
-        return false;
+                validateAmountMultiple(Integer.parseInt(input));
     }
     public static boolean validateAmountType(String input) {
         try {
@@ -49,6 +47,59 @@ public class Validator {
         }
     }
 
-    // 쉼표로 시작하거나 끝나는 경우
+    public static boolean validateLotto(String input) {
+        List<Integer> nums;
+        try {
+            validateLottoComma(input);
+            nums = validateLottoFormat(input);
+            validateLottoLength(nums);
+        } catch (IllegalArgumentException e) {
+            System.out.println(ExceptionType.INVALID_LOTTO_FORMAT.getMessage());
+            return false;
+        }
 
+        try {
+            validateDuplicateNums(nums);
+            validateNumsRange(nums);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public static void validateLottoLength(List<Integer> nums) {
+        if(nums.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateLottoComma(String input) {
+        if(input.startsWith(",") || input.endsWith(",")) {
+            throw new NumberFormatException();
+        }
+    }
+
+    public static List<Integer> validateLottoFormat(String input) throws NumberFormatException{
+        String[] inputArray = input.split(",");
+        List<Integer> nums = new ArrayList<>();
+        for(String str : inputArray) {
+            nums.add(Integer.parseInt(str.replaceAll("\\s", "")));
+        }
+        return nums;
+    }
+
+    public static void validateDuplicateNums(List<Integer> nums) {
+        if(nums.stream().distinct().count() < 6) {
+            throw new IllegalArgumentException(ExceptionType.DUPLICATE_LOTTO_NUMS.getMessage());
+        }
+    }
+
+    public static void validateNumsRange(List<Integer> nums) {
+        for(int num : nums) {
+            if(num < 1 || num > 45) {
+                throw new IllegalArgumentException(ExceptionType.EXCEED_LOTTO_RANGE.getMessage());
+            }
+        }
+    }
 }

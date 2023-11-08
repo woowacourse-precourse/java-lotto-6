@@ -21,8 +21,14 @@ public class WinningLottoController {
 
     public Lotto getLottoInput() {
         System.out.println(NoticeType.WINNING_LOTTO_INPUT.getMessage());
-        String lottoInput = Console.readLine();
-        return ticketsService.stringToLotto(lottoInput);
+
+        while(true) {
+            String lottoInput = Console.readLine();
+            if(Validator.validateLotto(lottoInput)) {
+                System.out.println();
+                return ticketsService.stringToLotto(lottoInput);
+            }
+        }
     }
 
     public int getAmountInput() {

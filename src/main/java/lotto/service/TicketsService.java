@@ -5,6 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Result;
 import lotto.domain.WinningLotto;
 import lotto.enumeration.WinningType;
+import lotto.util.Validator;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -32,8 +33,10 @@ public class TicketsService {
     public Lotto stringToLotto(String input) {
         String[] inputArray = input.split(",");
         List<Integer> lottoNums = new ArrayList<>();
-        for (String str : Arrays.asList(inputArray)) {
-            lottoNums.add(Integer.parseInt(str));
+
+        for(String str : inputArray) {
+            String num = str.replaceAll("\\s", "");
+            lottoNums.add(Integer.parseInt(num));
         }
 
         return new Lotto(lottoNums);

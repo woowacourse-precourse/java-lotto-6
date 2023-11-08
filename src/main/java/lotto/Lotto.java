@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class Lotto {
 
@@ -13,7 +15,7 @@ public class Lotto {
     private static final int FOURTH_WINNING_PRICE = 50000;
     private static final int FIFTH_WINNING_PRICE = 5000;
     List<Integer> numbers = new ArrayList<>();
-    List<Integer> lottoNumbers = new ArrayList<>();
+    List<List<Integer>> storedNumber = new ArrayList<>();
     int chance;
     int bonusNum;
     int[] counts = new int[8];
@@ -23,6 +25,7 @@ public class Lotto {
         moneyInput();
         numberInput();
         bonusInput();
+        compareLotto();
         calculateRateofReturn();
         printResult();
         //Lotto lotto = new Lotto(numbers);
@@ -35,14 +38,13 @@ public class Lotto {
             if (bonusNum < 1 || bonusNum > 45) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
-            numbers.add(bonusNum);
         } catch (NumberFormatException e) {
             throw new NumberFormatException("[ERROR] 보너스 번호는 숫자여야 합니다.");
         }
     }
 
     public void moneyInput(/*int testNum*/){
-        System.out.println("구입금액을 입력해 주세요.?");
+        System.out.println("구입금액을 입력해 주세요.");
         int money = Integer.parseInt(Console.readLine());
         try {
             if(money%1000 != 0){
@@ -52,6 +54,7 @@ public class Lotto {
         } catch (NumberFormatException e) {
             throw new NumberFormatException("[ERROR] 로또 번호는 숫자여야 합니다.");
         }
+        System.out.printf("%d개를 구매했습니다.\n", chance);
         generateLotto(chance);
     }
 
@@ -87,33 +90,50 @@ public class Lotto {
 
     public void generateLotto(int count) {
         for(int i=0; i< count;i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            numbers.sort(null);
-            compareNumbersandPrint(numbers);
+            List<Integer> generatenumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            generatenumbers.sort(null);
+            storedNumber.add(generatenumbers);
+            numbersPrint(generatenumbers);
         }
-
     }
 
-    public void compareNumbersandPrint(List<Integer> generateNumbers){
-        int sameNumber=0;
+    public void compareLotto(){
+        for(List<Integer> compareNumber : storedNumber){
+            int sameNumber =0;
+            for(int i:compareNumber){
+                if (numbers.contains(i)){
+                    sameNumber++;
+                }
+            }
+            if(sameNumber==5 && compareNumber.contains(bonusNum)){
+                counts[7]++;
+                return;
+            }
+            counts[sameNumber]++;
+        }
+    }
+
+    public void numbersPrint(List<Integer> generateNumbers){
         System.out.print("[");
         for (int i = 0; i < generateNumbers.size(); i++) {
             int userNumber = generateNumbers.get(i);
-            if (numbers.contains(userNumber)) {
-                sameNumber++;
-            }
             System.out.print(userNumber);
             if (i < generateNumbers.size() - 1) {
                 System.out.print(", ");
             }
         }
+
         System.out.println("]");
-        if(sameNumber==5 && generateNumbers.contains(bonusNum)){
+    }
+                /*if (numbers.contains(userNumber)) {
+                sameNumber++;
+            }*/
+
+    /*if(sameNumber==5 && generateNumbers.contains(bonusNum)){
             counts[7]++;
             return;
         }
-        counts[sameNumber]++;
-    }
+        counts[sameNumber]++;*/
 
     public void printResult(){
         System.out.printf("3개 일치 (5,000원) - %d개\n",counts[3]);

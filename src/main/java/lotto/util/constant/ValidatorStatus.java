@@ -1,0 +1,13 @@
+package lotto.util.constant;
+
+public enum ValidatorStatus {
+
+    NON_DIGIT,
+    NOT_DIVIDABLE,
+    INVALID_WINNING_NUMBER_FORMAT,
+    INVALID_WINNING_NUMBER_COUNT,
+    INVALID_NUMBER_RANGE,
+    DUPLICATE_WINNING_NUMBER,
+    DUPLICATE_BONUS_NUMBER_INPUT
+
+}

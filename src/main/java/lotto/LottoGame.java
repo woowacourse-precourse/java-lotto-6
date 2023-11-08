@@ -17,20 +17,22 @@ public class LottoGame {
     }
 
     private static void checkLottoResult(List<Lotto> lottoList) {
+        setInitLottoResult();
         for (Lotto lotto: lottoList) {
             Optional<LottoWinningSpec> optionalWinNumber = checkWinningNumber(lotto);
             if (optionalWinNumber.isPresent()) {
                 LottoWinningSpec winningSpec = optionalWinNumber.get();
-                setInitLottoResult(winningSpec);
                 int winCount = winningResult.get(winningSpec);
                 winningResult.put(winningSpec, ++winCount);
             }
         }
     }
 
-    private static void setInitLottoResult(LottoWinningSpec winningSpec) {
-        if (Optional.ofNullable(winningResult.get(winningSpec)).isEmpty()) {
-            winningResult.put(winningSpec, 0);
+    private static void setInitLottoResult() {
+        for (LottoWinningSpec prize: LottoWinningSpec.values()) {
+            if (Optional.ofNullable(winningResult.get(prize)).isEmpty()) {
+                winningResult.put(prize, 0);
+            }
         }
     }
 

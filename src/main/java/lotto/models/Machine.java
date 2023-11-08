@@ -12,9 +12,8 @@ public class Machine{
         this.lotto = null;
         this.bonus = 0;
     }
-    public void setNumbers(Lotto lotto, int bonus){
+    public void setNumbers(Lotto lotto){
         this.lotto = lotto;
-        this.bonus = bonus;
     }
     public Lotto newLottery(){
         return new Lotto(
@@ -26,4 +25,11 @@ public class Machine{
         );
     }
 
+    public void setBonus(int bonus) {
+        this.bonus = bonus;
+    }
+
+    public Lotto getLotto() {
+        return lotto;
+    }
 }

@@ -20,14 +20,17 @@ public class MachineTest {
     @DisplayName("로또를 생성할 때 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void numbersHasDuplicated(){
-        assertThatThrownBy(()-> machine.setNumbers(new Lotto(List.of(1,3,5,7,9,9)), 10))
+        assertThatThrownBy(()-> machine.setNumbers(new Lotto(List.of(1,3,5,7,9,9))))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("보너스가 당첨 번호에 포함되면 예외가 발생한다.")
     @Test
     void bonusIsDuplicated() {
-        assertThatThrownBy(()-> machine.setNumbers(new Lotto(List.of(1,3,5,7,9,11)), 1))
+        assertThatThrownBy(()-> {
+            machine.setNumbers(new Lotto(List.of(1, 3, 5, 7, 9, 11)));
+            machine.setBonus(1);
+        })
             .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -5,6 +5,7 @@ import lotto.util.InputErrorMessage;
 import lotto.view.Input;
 import lotto.view.Output;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,9 +13,9 @@ import java.util.Set;
 public class InputValidator {
 
     public void checkIsInputNumber(String inputValue) {
-        try{
+        try {
             Integer.parseInt(inputValue);
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(InputErrorMessage.NOT_A_NUMBER.getMessage());
 
             Input input = new Input();
@@ -24,17 +25,16 @@ public class InputValidator {
         }
 
     }
+
     public void ensureCommaDelimiter(String input) {
-        if (input.contains(",") == false) {
+        if (!input.contains(",")) {
             throw new IllegalArgumentException(InputErrorMessage.COMMA_DELIMITER.getMessage());
         }
     }
 
     public void checkDuplicated(String[] numbers) {
         Set<String> selectedNumbers = new HashSet<>();
-        for (String number : numbers) {
-            selectedNumbers.add(number);
-        }
+        Collections.addAll(selectedNumbers, numbers);
         if (selectedNumbers.size() != 6) {
             throw new IllegalArgumentException(InputErrorMessage.DUPLICATE_NUMBERS.getMessage());
         }

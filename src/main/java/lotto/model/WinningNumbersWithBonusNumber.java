@@ -6,7 +6,7 @@ import java.util.List;
 
 public class WinningNumbersWithBonusNumber {
 
-    private List<Integer> winningNumbersWithBonusNumber = new ArrayList<>();
+    private final List<Integer> winningNumbersWithBonusNumber = new ArrayList<>();
 
     public WinningNumbersWithBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         saveWinningNumbersAndBonusNumber(winningNumbers, bonusNumber);

@@ -7,9 +7,9 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class NumberOfLottoTicketsTest {
     @ParameterizedTest
-    @CsvSource(value = {"5000,5","10000,10","12000,12","3000,3","55000,55"})
+    @CsvSource(value = {"5000,5", "10000,10", "12000,12", "3000,3", "55000,55"})
     void publishLotto(int money, int expected) {
-        int result = money/1000;
+        int result = money / 1000;
         assertThat(result).isEqualTo(expected);
     }
 

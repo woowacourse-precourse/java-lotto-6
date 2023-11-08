@@ -1,11 +1,13 @@
 package lotto.model;
 
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class WinningRecords {
 
-    private int[] lotteryResults = new int[7];
+    private final int[] lotteryResults = new int[7];
     private int matchFiveWithBonus = 0;
     private final int bonusNumber;
     private final List<Integer> winningNumbersWithBonusNumber;
@@ -30,7 +32,7 @@ public class WinningRecords {
 
             if (countMatch == 5 && lotto.contains(bonusNumber)) {
                 matchFiveWithBonus++;
-            } else if (countMatch>0) {
+            } else if (countMatch > 0) {
                 lotteryResults[countMatch] += 1;
             }
         }

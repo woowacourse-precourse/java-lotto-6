@@ -28,11 +28,11 @@ public class Controller {
     public void lottoGame() {
         // 금액 입력
         int insertedMoney = input.insertMoney();
-        // 발행할 로또 수
+
         int countLottoTickets = new NumberOfLottoTickets(insertedMoney).getCountLottoTickets();
-        // 발행된 전체 로또
         List<List<Integer>> lottoTickets = getLottoTicketsTickets(countLottoTickets);
         output.printLottoTickets(lottoTickets);
+
         // 당첨 번호 입력받기
         List<Integer> winningNumbers = new Lotto(input.inputWinningNumbers()).getWinnerNumbers();
         // 보너스 당첨 번호
@@ -41,7 +41,7 @@ public class Controller {
         List<Integer> winningNumbersWithBonusNumber = new WinningNumbersWithBonusNumber(winningNumbers, bonusNumber)
                 .getWinningNumbersWithBonusNumber();
 
-        // 당첨 결과 통계 산출
+        /** 당첨 결과 통계 산출 */
         WinningRecords winningRecords = new WinningRecords(lottoTickets, bonusNumber, winningNumbersWithBonusNumber);
         // 갯수(=인덱스)별 당첨 결과
         int[] lotteryResults = winningRecords.getLotteryResults();
@@ -61,7 +61,7 @@ public class Controller {
         return (lotteryResults[3] * 5000) + (lotteryResults[4] * 50000) + (lotteryResults[5] * 1500000) + (lotteryResults[6] * 2000000000);
     }
 
-        private double calculateRateOfReturn(int winningPrize, int numberOfLottoTickets) {
+    private double calculateRateOfReturn(int winningPrize, int numberOfLottoTickets) {
         return (double) winningPrize / (numberOfLottoTickets * 1000) * 100;
     }
 

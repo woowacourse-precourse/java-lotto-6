@@ -10,22 +10,7 @@ public class Analyzer {
     public int check(List<Integer> winningNumbers, List<Integer> ticketNumbers, int bonusNumber) {
         int matchedCount = countMatchingNumbers(winningNumbers, ticketNumbers);
         boolean bonusNumberMatched = ticketNumbers.contains(bonusNumber);
-        if (matchedCount == 6) {
-            return 1;
-        }
-        if (matchedCount == 5 && bonusNumberMatched) {
-            return 2;
-        }
-        if (matchedCount == 5) {
-            return 3;
-        }
-        if (matchedCount == 4) {
-            return 4;
-        }
-        if (matchedCount == 3) {
-            return 5;
-        }
-        return 0;
+        return checkRanking(matchedCount, bonusNumberMatched);
     }
 
     public Map<Integer, Integer> fillTicketResults(int ticket, List<Integer> winningNumbers,
@@ -48,6 +33,25 @@ public class Analyzer {
         }
         yieldRate = (double) totalPrize / purchaseAmount * 100;
         return Math.round(yieldRate * 100.0) / 100.0;
+    }
+
+    private int checkRanking(int matchedCount, boolean bonusNumberMatched) {
+        if (matchedCount == 6) {
+            return 1;
+        }
+        if (matchedCount == 5 && bonusNumberMatched) {
+            return 2;
+        }
+        if (matchedCount == 5) {
+            return 3;
+        }
+        if (matchedCount == 4) {
+            return 4;
+        }
+        if (matchedCount == 3) {
+            return 5;
+        }
+        return 0;
     }
 
     private int countMatchingNumbers(List<Integer> winningNumbers, List<Integer> ticketNumbers) {

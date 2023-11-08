@@ -7,11 +7,17 @@ import java.util.*;
 
 public class UserHandler {
     public static int getAmountFromUser() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String userInput = Console.readLine();
-        ResultView.printNewLine();
+        while(true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String userInput = Console.readLine();
+                ResultView.printNewLine();
 
-        return validateUserInput(userInput);
+                return validateUserInput(userInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static int validateUserInput(String userInput) {

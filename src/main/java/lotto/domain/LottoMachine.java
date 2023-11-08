@@ -71,6 +71,7 @@ public class LottoMachine {
         System.out.println(BONUS_NUMBER_INPUT_GUIDE);
         String bonusNumberText = readLine();
         int bonusNumber = Integer.parseInt(bonusNumberText);
+        validateBonusNumber(bonusNumber);
         return bonusNumber;
     }
 

@@ -5,13 +5,14 @@ import camp.nextstep.edu.missionutils.Console;
 import static java.lang.Integer.parseInt;
 
 enum ERROR_MESSAGE {
-    WRONG_FORMAT("[ERROR] 1~45의 자연수를 입력해야합니다. 다시 입력하세요"),
-    WRONG_COUNTS("[ERROR] 6개의 자연수를 입력해야합니다. 다시 입력하세요");
-    private ERROR_MESSAGE() {
-
+    WRONG_PRICE("[ERROR] 1000자리 단위의 자연수를 입력해야합니다. 다시 입력하세요"),
+    WRONG_FORMAT("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    private final String label;
+    ERROR_MESSAGE(String label){
+        this.label =label;
     }
-
-    private ERROR_MESSAGE(String s) {
+    public String label(){
+        return label;
     }
 }
 
@@ -21,12 +22,12 @@ public class BatInput {
 
     public static int getPrice() {
         try {
-            System.out.println("구입금액을 입력해 주세요.");
+            System.out.println(REQUEST_MESSAGE.REQUEST_PRICE.label());
             price = parseInt(Console.readLine());
             checkDigits();
         } catch (NumberFormatException e) {
             e.printStackTrace();
-            System.out.println(ERROR_MESSAGE.WRONG_FORMAT);
+            System.out.println(ERROR_MESSAGE.WRONG_PRICE.label());
             getPrice();
         }
         return price;
@@ -39,7 +40,7 @@ public class BatInput {
             }
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
-            System.out.println(ERROR_MESSAGE.WRONG_FORMAT);
+            System.out.println(ERROR_MESSAGE.WRONG_PRICE.label());
             getPrice();
         }
         return 0;

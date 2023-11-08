@@ -31,7 +31,7 @@ public class LottoController {
     }
 
     public void generateWinningNumbers() {
-        OutputView.printAskWinningNumbersMessage();
+        Lotto winningLotto = new Lotto(InputView.inputWinningNumbers());
     }
 
     public void generateBonusNumber() {

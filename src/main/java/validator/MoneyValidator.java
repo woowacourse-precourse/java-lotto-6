@@ -8,7 +8,7 @@ public class MoneyValidator {
         try {
             moneyNumber = Integer.parseInt(money);
         } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 양의 정수를 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 구매 한도를 벗어났습니다.");
         }
         moneyNotZero(moneyNumber);
         moneyDivideBy1000(moneyNumber);

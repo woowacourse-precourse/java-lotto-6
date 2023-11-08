@@ -13,11 +13,14 @@ public class Application {
         System.out.println(OutputView.INPUT_COST.getMessage());
         lottoGame.getRightCost();
 
-        System.out.println("\n" + lottoManager.getNumberOfLottos() + OutputView.NUMBER_OF_LOTTOS.getMessage());
+        System.out.println("\n" + lottoManager.printOutNumberOfLottos());
         Lottos lottos = new Lottos(lottoGame.addLottos());
         System.out.println(lottos);
 
         System.out.println(OutputView.INPUT_LUCKY_NUMBER.getMessage());
         lottoGame.getRightLuckyNumbers();
+
+        System.out.println(OutputView.INPUT_BONUS_NUMBER.getMessage());
+        lottoGame.getRightBonusNumber();
     }
 }

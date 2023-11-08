@@ -14,6 +14,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_LUCKY_NUMBER_COUNT.getMessage());
@@ -30,7 +34,7 @@ public class Lotto {
 
     private void validateRangeOfNumbers(List<Integer> numbers) {
         if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
-            throw new IllegalArgumentException(ErrorMessage.WRONG_LUCKY_NUMBER_RANGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.WRONG_NUMBER_RANGE.getMessage());
         }
     }
 

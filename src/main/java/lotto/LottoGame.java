@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoManager;
+import lotto.errors.ErrorMessage;
 
 public class LottoGame {
 
@@ -46,9 +47,7 @@ public class LottoGame {
     public void getRightLuckyNumbers() {
         do {
             getLuckyNumbers();
-            System.out.println("wrong" + luckyNumbers);
         } while (luckyNumbers==null);
-        System.out.println("right" + luckyNumbers);
     }
 
     private void getLuckyNumbers() {
@@ -56,6 +55,32 @@ public class LottoGame {
             luckyNumbers = new Lotto(lottoManager.setLuckyNumbers(Console.readLine()));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    public void getRightBonusNumber() {
+        boolean success;
+        do {
+            success = getBonusNumber();
+        } while(success == false);
+    }
+
+    private boolean getBonusNumber() {
+        try {
+            lottoManager.setBonusNumber(Console.readLine());
+            checkDuplicatedBonusNumber(lottoManager.getBonusNumber(), luckyNumbers.getNumbers());
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    private void checkDuplicatedBonusNumber(int bonusNumber, List<Integer> luckyNumbers) {
+        if (luckyNumbers.stream()
+                .anyMatch(number -> number == bonusNumber)) {
+            lottoManager.setBonusNumber(null);
+            throw new IllegalArgumentException(ErrorMessage.WRONG_BONUS_NUMBER.getMessage());
         }
     }
 }

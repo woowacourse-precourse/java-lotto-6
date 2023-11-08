@@ -11,6 +11,8 @@ public class LottoManager {
 
     private int numberOfLottos;
 
+    private Integer bonusNumber;
+
     private LottoManager() {}
 
     public static LottoManager getInstance() {
@@ -22,6 +24,10 @@ public class LottoManager {
 
     public int getNumberOfLottos() {
         return numberOfLottos;
+    }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
     }
 
     public void setNumberOfLottos(String cost) {
@@ -65,4 +71,16 @@ public class LottoManager {
         return this.numberOfLottos + OutputView.NUMBER_OF_LOTTOS.getMessage();
     }
 
+    public int setBonusNumber(String input) {
+        int bonusNumber = parseInt(input);
+        validateRangeOfNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
+        return this.bonusNumber;
+    }
+
+    private void validateRangeOfNumber(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_NUMBER_RANGE.getMessage());
+        }
+    }
 }

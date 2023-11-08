@@ -15,6 +15,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public Integer getNumber(int idx){
+        return numbers.get(idx);
+    }
+
     private void validateLengthLotto(List<Integer> numbers) {
         if (numbers.size() != Lotto_LENGTH) {
             throw new IllegalArgumentException(ERROR_STRING+

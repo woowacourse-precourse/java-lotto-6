@@ -2,11 +2,9 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import static lotto.domain.WinningResult.getWinningMoney;
 import static lotto.utils.LottoSystemUtils.*;
 
 public class LottoSystem {
@@ -26,15 +24,9 @@ public class LottoSystem {
         return purchaseLottos.size();
     }
 
-    public static float calculateRateOfReturn(List<WinningResult> results) {
-        long winningMoney = getWinningMoney(results);
-        return Math.round((float) winningMoney / purchaseMoney * 1000) / 10f;
-    }
-
-    private static long getWinningMoney(List<WinningResult> results) {
-        return results.stream()
-                .mapToInt(WinningResult::getWinningMoney)
-                .sum();
+    public static float calculateRateOfReturn(Map<WinningResult, Integer> result) {
+        long winningMoney = calculateWinningMoney(result);
+        return (float) winningMoney / purchaseMoney * 100;
     }
 
     public Map<WinningResult, Integer> compareWinningLotto(WinningLotto winningLotto) {
@@ -46,6 +38,13 @@ public class LottoSystem {
         }
 
         return result;
+    }
+
+    private static long calculateWinningMoney(Map<WinningResult, Integer> result) {
+        return result.entrySet()
+                .stream()
+                .mapToLong(entry -> getWinningMoney(entry.getKey()))
+                .sum();
     }
 
     private List<Lotto> createLottos() {

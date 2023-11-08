@@ -5,9 +5,8 @@ import lotto.domain.LottoSystem;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningResult;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static lotto.controller.InputController.*;
 import static lotto.controller.InputValidatorController.*;
@@ -22,19 +21,27 @@ public class LottoSystemController {
         printBuyLotto(lottoSystem.getPurchaseLottoCount(), lottoSystem.getPurchaseLottos());
 
         WinningLotto winningLotto = enterLotto();
-        printWinningStatus(calculateWinningStatus(lottoSystem, winningLotto));
+
+        Map<WinningResult, Integer> result = lottoSystem.compareWinningLotto(winningLotto);
+        printWinningResult(result, calculateRateOfReturn(result));
     }
 
-    private static List<WinningResult> calculateWinningStatus(LottoSystem lottoSystem, WinningLotto winningLotto) {
-        return lottoSystem.compareWinningLotto(winningLotto);
-    }
-
-    private static void printWinningStatus(List<WinningResult> result) {
-        printLottoStatistics(calculateRateOfReturn(result));
+    private static void printWinningResult(Map<WinningResult, Integer> result, float calculateRateOfReturn) {
+        printEmptyLine();
+        printLottoStatistics(result, calculateRateOfReturn);
     }
 
     private static WinningLotto enterLotto() {
         return new WinningLotto(enterLottoNumber(), enterLottoBonusNumber());
+    }
+
+    private static Lotto enterLottoNumber() {
+        printEmptyLine();
+
+        String lottoNumbers = inputLottoNumber();
+        inputLottoNumberValidate(lottoNumbers);
+
+        return parseToLotto(lottoNumbers);
     }
 
     private static int enterLottoBonusNumber() {
@@ -46,24 +53,8 @@ public class LottoSystemController {
         return Integer.parseInt(lottoBonusNumber);
     }
 
-    private static Lotto enterLottoNumber() {
-        printEmptyLine();
-
-        String lottoNumbers = inputLottoNumber();
-        inputLottoNumberValidate(lottoNumbers);
-
-        return parseStringToList(lottoNumbers);
-    }
-
-    private static Lotto parseStringToList(String lottoNumbers) {
-        List<Integer> lottos = new ArrayList<>();
-
-        String[] lottoNumber = lottoNumbers.split(",");
-        for (int i = 0; i < lottoNumber.length; i++) {
-            lottos.add(Integer.parseInt(lottoNumber[i]));
-        }
-
-        return new Lotto(lottos);
+    private static Lotto parseToLotto(String lottoNumbers) {
+        return new Lotto(Arrays.stream(lottoNumbers.split(",")).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList()));
     }
 
     private static LottoSystem buyLotto() {

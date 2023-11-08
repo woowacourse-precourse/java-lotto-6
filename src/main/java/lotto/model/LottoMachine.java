@@ -1,37 +1,22 @@
-package lotto.util;
+package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.model.ClientLottoData;
-import lotto.model.Lotto;
-import lotto.model.RankTable;
-import lotto.model.WinningLottoNumber;
+import lotto.model.domain.ClientLottoData;
+import lotto.model.domain.Lotto;
+import lotto.model.domain.RankTable;
+import lotto.model.domain.WinningLottoNumber;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class LottoMachine {
-    public static int setLottoTicketNumber(int money) {
-        return money / 1000;
-    }
-
-    public static List<Lotto> setLottoTicket(int ticketCount) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < ticketCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(new ArrayList<>(numbers));
-            Lotto lotto = new Lotto(numbers);
-            lottos.add(lotto);
-        }
-        return lottos;
-    }
-
     public static List<RankTable> matchLottoCalculate(ClientLottoData clientLottoData,
                                                       WinningLottoNumber winningLottoNumber) {
         List<RankTable> matchLottoCalculate = new ArrayList<>();
         int bonusNumber = winningLottoNumber.bonusNumber;
 
-        for (Lotto lotto : clientLottoData.lottos) {
+        for (Lotto lotto : clientLottoData.getLottos()) {
             List<Integer> lottoNumber = lotto.getNumbers();
 
             int matchCount = countMatchNumber(lottoNumber, winningLottoNumber);
@@ -75,9 +60,9 @@ public class LottoMachine {
     }
 
     public static double setIncome(ClientLottoData clientLottoData) {
-        int inputPrice = clientLottoData.price;
+        int inputPrice = clientLottoData.getPrice();
         double outputPrice = 0;
-        List<RankTable> matchLottoCalculate = clientLottoData.matchLottoCalculate;
+        List<RankTable> matchLottoCalculate = clientLottoData.getMatchLottoCalculate();
         for (RankTable rankTable : matchLottoCalculate) {
             outputPrice += rankTable.getMoney();
         }

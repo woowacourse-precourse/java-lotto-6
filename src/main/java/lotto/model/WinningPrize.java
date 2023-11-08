@@ -6,6 +6,10 @@ import lotto.common.Ranking;
 public class WinningPrize {
 
     public static double getProfit(Map<Ranking, Integer> result, int amount) {
+        return calculateProfit(result, amount) * 100;
+    }
+
+    private static double calculateProfit(Map<Ranking, Integer> result, int amount) {
         double totalPrize = calculateTotalPrize(result);
         return totalPrize / (double) amount;
     }

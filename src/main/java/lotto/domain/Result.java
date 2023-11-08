@@ -10,7 +10,7 @@ public class Result {
     List<Lotto> purchasedLottos;
     List<Integer> matchCount;
     double profit;
-    double profitMargin;
+    double profitability;
 
     public Result(Lotto lotto, int bonusNumber, List<Lotto> purchasedLottos) {
         this.winningLotto = lotto.getNumbers();
@@ -63,14 +63,14 @@ public class Result {
 
     private void calculateProfitMargin() {
         double payment = purchasedLottos.size() * 1000;
-        profitMargin =  Math.round((profit - payment) * 100 / payment);
+        profitability =  profit * 100 / payment;
     }
 
     public List<Integer> getMatchCount() {
         return matchCount;
     }
 
-    public Double getProfitMargin() {
-        return profitMargin;
+    public Double getProfitability() {
+        return profitability;
     }
 }

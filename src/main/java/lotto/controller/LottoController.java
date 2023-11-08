@@ -54,7 +54,7 @@ public class LottoController {
 
         Result result = new Result(lotto, bonusNumber, purchasedLottos);
         List<Integer> matches = result.getMatchCount();
-        Double profitMargin = result.getProfitMargin();
+        Double profitMargin = result.getProfitability();
 
         OutputView.printResultTitle();
         OutputView.printMathCount(matches);

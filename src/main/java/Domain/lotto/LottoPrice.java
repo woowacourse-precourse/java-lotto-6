@@ -1,4 +1,4 @@
-package lotto;
+package Domain.lotto;
 
 public enum LottoPrice {
     nomal(1000);

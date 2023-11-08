@@ -3,7 +3,7 @@ package Controller;
 import Util.*;
 import View.InputView;
 import View.WinningNumberInputErrorText;
-import WinningNumber.WinningNumber;
+import Domain.WinningNumber.WinningNumber;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;

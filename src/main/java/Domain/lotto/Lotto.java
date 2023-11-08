@@ -1,4 +1,4 @@
-package lotto;
+package Domain.lotto;
 
 import Util.CheckInteger;
 import Util.CheckList;

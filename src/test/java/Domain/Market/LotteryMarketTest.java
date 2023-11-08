@@ -1,11 +1,10 @@
-package Market;
+package Domain.Market;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
+import Domain.lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;

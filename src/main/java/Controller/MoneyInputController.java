@@ -7,7 +7,7 @@ import Util.Convert;
 import View.MoneyInputErrorText;
 import View.InputView;
 import camp.nextstep.edu.missionutils.Console;
-import lotto.LottoPrice;
+import Domain.lotto.LottoPrice;
 
 public class MoneyInputController {
     InputView view;

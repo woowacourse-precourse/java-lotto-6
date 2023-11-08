@@ -1,14 +1,15 @@
-package Board;
+package Domain.Board;
 
 import Util.CheckInteger;
 import View.MoneyInputErrorText;
-import View.WinningNumberInputErrorText;
-import lotto.LottoOutcome;
-import lotto.LottoPrice;
+import Domain.lotto.LottoOutcome;
+import Domain.lotto.LottoPrice;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/*
+    당첨 내역을 저장하는 class
+ */
 public class Board {
     private Map<LottoOutcome, Integer> winningRecord;
     private int money;

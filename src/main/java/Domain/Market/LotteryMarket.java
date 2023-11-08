@@ -1,8 +1,8 @@
-package Market;
+package Domain.Market;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
-import lotto.LottoPrice;
+import Domain.lotto.Lotto;
+import Domain.lotto.LottoPrice;
 
 import java.util.ArrayList;
 import java.util.List;

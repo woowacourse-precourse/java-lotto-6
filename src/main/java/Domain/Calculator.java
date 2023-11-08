@@ -1,8 +1,8 @@
-package Util;
+package Domain;
 
-import lotto.LottoOutcome;
-import WinningNumber.WinningNumber;
-import lotto.Lotto;
+import Domain.lotto.LottoOutcome;
+import Domain.WinningNumber.WinningNumber;
+import Domain.lotto.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;

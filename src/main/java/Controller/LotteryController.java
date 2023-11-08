@@ -2,7 +2,7 @@ package Controller;
 
 import Util.CheckNull;
 import View.LottoView;
-import lotto.Lotto;
+import Domain.lotto.Lotto;
 
 import java.util.List;
 

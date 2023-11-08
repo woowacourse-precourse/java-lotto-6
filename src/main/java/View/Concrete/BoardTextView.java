@@ -1,7 +1,7 @@
 package View.Concrete;
 
-import Board.Board;
-import lotto.LottoOutcome;
+import Domain.Board.Board;
+import Domain.lotto.LottoOutcome;
 import View.BoardView;
 
 import java.util.Comparator;

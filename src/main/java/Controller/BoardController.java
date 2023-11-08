@@ -1,11 +1,11 @@
 package Controller;
 
-import Board.Board;
-import Util.Calculator;
+import Domain.Board.Board;
+import Domain.Calculator;
 import Util.CheckNull;
 import View.BoardView;
-import WinningNumber.WinningNumber;
-import lotto.Lotto;
+import Domain.WinningNumber.WinningNumber;
+import Domain.lotto.Lotto;
 import java.util.List;
 
 public class BoardController {

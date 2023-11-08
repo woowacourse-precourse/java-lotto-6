@@ -1,4 +1,4 @@
-package WinningNumber;
+package Domain.WinningNumber;
 
 import java.util.List;
 

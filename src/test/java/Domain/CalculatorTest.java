@@ -1,21 +1,17 @@
-package Util;
+package Domain;
 
-import View.WinningNumberInputErrorText;
-import WinningNumber.WinningNumber;
+import Domain.Calculator;
+import Domain.WinningNumber.WinningNumber;
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
-import lotto.LottoOutcome;
+import Domain.lotto.Lotto;
+import Domain.lotto.LottoOutcome;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import java.util.Arrays;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.in;
 
 public class CalculatorTest {
     public Lotto getOutComeLotto(WinningNumber winningNumber, List<Integer> remains, Integer bonus, LottoOutcome outcome){

@@ -1,7 +1,7 @@
 package View.Concrete;
 
 import View.LottoView;
-import lotto.Lotto;
+import Domain.lotto.Lotto;
 
 import java.util.ArrayList;
 import java.util.Comparator;

@@ -1,12 +1,12 @@
 package Controller;
 
-import Board.Board;
-import Market.LotteryMarket;
+import Domain.Board.Board;
+import Domain.Market.LotteryMarket;
 import View.BoardView;
 import View.InputView;
 import View.LottoView;
-import WinningNumber.WinningNumber;
-import lotto.Lotto;
+import Domain.WinningNumber.WinningNumber;
+import Domain.lotto.Lotto;
 
 import java.util.List;
 

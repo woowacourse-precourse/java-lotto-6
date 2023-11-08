@@ -30,21 +30,21 @@ public class LottoController {
     private Lottos purchasedLottos;
 
     public void run() {
-        int purchaseAmount = getPurchaseAmount();
+        int purchaseAmount = inputPurchaseAmount();
         int lottoCount = purchaseAmount / LOTTO_PRICE;
 
         printLottoCount(lottoCount);
         generateLottos(lottoCount);
         printPurchasedLottos();
 
-        WinningLotto winningLotto = getWinningLotto();
+        WinningLotto winningLotto = inputWinningLotto();
         displayWinningStatistics(winningLotto, purchaseAmount);
     }
 
     /**
      * Description: 구입 금액을 입력받아 반환한다.
      */
-    private int getPurchaseAmount() {
+    private int inputPurchaseAmount() {
         purchaseInputView.printInputMoney();
         try {
             int amount = parseStringToInt(Console.readLine());
@@ -52,7 +52,7 @@ public class LottoController {
             return amount;
         } catch (IllegalArgumentException e) {
             ExceptionPrinter.printExceptionMessage(e);
-            return getPurchaseAmount();
+            return inputPurchaseAmount();
         }
     }
 
@@ -92,16 +92,16 @@ public class LottoController {
     /**
      * Description: 당첨 번호와 보너스 번호를 입력받아 WinningLotto를 반환한다.
      */
-    private WinningLotto getWinningLotto() {
-        List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber();
+    private WinningLotto inputWinningLotto() {
+        List<Integer> winningNumbers = inputWinningNumbers();
+        int bonusNumber = inputBonusNumber();
         return new WinningLotto(new Lotto(winningNumbers), bonusNumber);
     }
 
     /**
      * Description: 당첨 번호를 입력받아 반환한다.
      */
-    private List<Integer> getWinningNumbers() {
+    private List<Integer> inputWinningNumbers() {
         lottoInputView.printInputWinningLotto();
         try {
             String winningNumber = Console.readLine();
@@ -110,20 +110,20 @@ public class LottoController {
             return numbers;
         } catch (Exception e) {
             ExceptionPrinter.printExceptionMessage(e);
-            return getWinningNumbers();
+            return inputWinningNumbers();
         }
     }
 
     /**
      * Description: 보너스 번호를 입력받아 반환한다.
      */
-    private int getBonusNumber() {
+    private int inputBonusNumber() {
         lottoInputView.printInputBonusNumber();
         try {
             return parseStringToInt(Console.readLine());
         } catch (Exception e) {
             ExceptionPrinter.printExceptionMessage(e);
-            return getBonusNumber();
+            return inputBonusNumber();
         }
     }
 

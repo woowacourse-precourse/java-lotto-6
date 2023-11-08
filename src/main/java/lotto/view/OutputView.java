@@ -16,8 +16,10 @@ public class OutputView {
     private static final String RATE_OF_RETURN_FORMAT = "총 수익률은 %.1f%%입니다.";
 
     public static void printLottoTickets(List<Lotto> lottoTickets) {
+        System.out.println();
         System.out.println(lottoTickets.size() + "개를 구매했습니다.");
         lottoTickets.forEach(OutputView::printLotto);
+        System.out.println();
     }
 
     private static void printLotto(Lotto lotto) {

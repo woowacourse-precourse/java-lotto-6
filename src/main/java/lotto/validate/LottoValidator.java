@@ -57,7 +57,7 @@ public class LottoValidator {
     }
 
     public static void isDivedWithThousand(int price) {
-        if (!((price % PRICE_UNIT.getValue()) == 0)) {
+        if (!((price % PRICE_UNIT.getValue()) == 0) || price <= 0) {
             throw new DivedException();
         }
     }

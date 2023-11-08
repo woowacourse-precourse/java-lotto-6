@@ -15,12 +15,6 @@ public class StatisticsServiceImpl implements StatisticsService {
     private Result result = new Result();
     private static StatisticsService instance;
 
-    private StatisticsServiceImpl(List<Lotto> myLottos, Lotto winningNumbers, BonusNumber bonusNumber) {
-        this.myLottos = myLottos;
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
-    }
-
     public static StatisticsService getInstance(List<Lotto> myLottos, Lotto winningNumbers, BonusNumber bonusNumber) {
         if (instance == null) {
             instance = new StatisticsServiceImpl(myLottos, winningNumbers, bonusNumber);
@@ -28,6 +22,11 @@ public class StatisticsServiceImpl implements StatisticsService {
         return instance;
     }
 
+    private StatisticsServiceImpl(List<Lotto> myLottos, Lotto winningNumbers, BonusNumber bonusNumber) {
+        this.myLottos = myLottos;
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
+    }
     @Override
     public Result calculateResult() {
         for (Lotto myLotto : myLottos) {

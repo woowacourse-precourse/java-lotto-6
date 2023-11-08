@@ -16,13 +16,13 @@ public class LottoController {
     private final WinningLottoFactory winningLottoFactory = WinningLottoFactoryImpl.getInstance();
     private final LottoGeneratorService lottoGeneratorService = LottoGeneratorServiceImpl.getInstance();
 
-    private LottoController() {}
     private static class  LottoControllerHelper {
         private static final LottoController LOTTO_CONTROLLER = new LottoController();
     }
     public static LottoController getInstance() {
         return LottoControllerHelper.LOTTO_CONTROLLER;
     }
+    private LottoController() {}
 
     public void start() {
         List<Lotto> lottos = getMyLottos();

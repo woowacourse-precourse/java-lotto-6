@@ -10,13 +10,13 @@ import static lotto.utils.NumberParser.toInteger;
 import static lotto.utils.NumberParser.toList;
 
 public class WinningLottoFactoryImpl implements WinningLottoFactory {
-    private WinningLottoFactoryImpl() {}
     private static class WinningLottoFactoryHelper {
         private final static WinningLottoFactory WINNING_LOTTO_FACTORY = new WinningLottoFactoryImpl();
     }
     public static WinningLottoFactory getInstance() {
         return WinningLottoFactoryHelper.WINNING_LOTTO_FACTORY;
     }
+    private WinningLottoFactoryImpl() {}
 
     @Override
     public Lotto winningLotto(String inputNumber){

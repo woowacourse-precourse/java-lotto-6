@@ -1,6 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,11 +26,12 @@ public class LottoGame {
         Lotto userLotto = Lotto.create(numbers);
 
         //request bonus number
-        System.out.println("보너스 번호를 입력해 주세요.");
-        Integer userBonus = Integer.parseInt(Console.readLine());
+        String userBonus = InputView.requestBonus();
+
+        Integer bonus = ConvertingUtil.convertToInteger(userBonus);
 
         //compare lotto and bonusNumber
-        Buyer buyer = Buyer.create(userLotto, userBonus);
+        Buyer buyer = Buyer.create(userLotto, bonus);
 
         Result result = randomLottos.calcuateResult(buyer);
     }

@@ -7,7 +7,7 @@ public class ConvertingUtil {
         return convertToInteger(userInput) / TICKET_PRICE;
     }
 
-    private static int convertToInteger(String userInput) {
+    public static int convertToInteger(String userInput) {
         try {
             return Integer.parseInt(userInput);
         } catch (NumberFormatException e) {

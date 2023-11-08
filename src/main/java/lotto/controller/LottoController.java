@@ -32,8 +32,6 @@ public class LottoController {
     }
 
     public void playLottoGame() {
-        String input;
-
         int money = inputMoney();
         int count = money / Condition.THOUSAND;
         List<Lotto> purchasedLotto = lottoService.generateLotto(count);
@@ -45,20 +43,15 @@ public class LottoController {
         int bonusNumber = drawBonusNumber();
 
         LottoBuyer lottoBuyer = lottoService.createLottoBuyer(purchasedLotto, winLotto, bonusNumber, money);
-
         List<Integer> rank = lottoBuyer.retrieveAllResult();
-
-        long interests = lottoService.calculateInterests(rank);
-
-        double interestRate = lottoBuyer.calculateInterestRate(interests);
-        String res = lottoService.PrizeInfoToString(rank);
-        outputView.printTotalResult(res, interestRate);
+        String totalResult = lottoService.resultToString(lottoBuyer, rank);
+        outputView.printTotalResult(totalResult);
     }
 
     public int drawBonusNumber() {
         while (true){
             String input = inputView.drawBonusString();
-            List<Integer> numbers = refineNumbers(Procedure.DRAW_WINNING_NUMBERS, input);
+            List<Integer> numbers = refineNumbers(Procedure.DRAW_BONUS_NUMBER, input);
             if (numbers != null) {
                 return numbers.get(0);
             }

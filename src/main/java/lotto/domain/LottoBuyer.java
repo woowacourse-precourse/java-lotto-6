@@ -35,7 +35,7 @@ public class LottoBuyer {
     }
 
     public Double calculateInterestRate(long interests){
-        return (interests / (double) money) * 100;
+        return (interests / (double) money);
     }
 
 

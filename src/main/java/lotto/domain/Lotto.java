@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -11,14 +12,15 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto() {
-        this.numbers = Randoms.pickUniqueNumbersInRange(Condition.MIN_DRAW_NUMBER, Condition.MAX_DRAW_NUMBER,
+        List<Integer> picked = Randoms.pickUniqueNumbersInRange(Condition.MIN_DRAW_NUMBER, Condition.MAX_DRAW_NUMBER,
                 Condition.SIX_WINNING_NUMBERS);
+        this.numbers = new ArrayList<>(picked);
         sortNumbersAscending();
     }
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
         sortNumbersAscending();
     }
 

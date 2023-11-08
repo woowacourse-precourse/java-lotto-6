@@ -12,13 +12,7 @@ public class OutputView {
         System.out.println(allLotto);
     }
 
-    public void printTotalResult(String message, double interestRate){
-        DecimalFormat decimalFormat = new DecimalFormat("#,###.0%");
-        System.out.println(message);
-        if(interestRate == 0) {
-            System.out.println("0%");
-            return;
-        }
-        System.out.println(decimalFormat.format(interestRate));
+    public void printTotalResult(String totalResult){
+        System.out.println(totalResult);
     }
 }

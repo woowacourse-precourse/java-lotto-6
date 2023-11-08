@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,6 +42,17 @@ public class LottoService {
                 .filter(idx ->prizes.get(idx) != 0)
                 .mapToLong(Prize::getPrizeAmount)
                 .sum();
+    }
+
+    public String resultToString(LottoBuyer lottoBuyer, List<Integer> userRanks){
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0%");
+        long interests = calculateInterests(userRanks);
+        double interestRate = lottoBuyer.calculateInterestRate(interests);
+        String res = PrizeInfoToString(userRanks);
+        if(interestRate == 0){
+            return res + "\n" + "0%";
+        }
+        return res  + String.format(Message.INTEREST_RATE_MESSAGE, decimalFormat.format(interestRate));
     }
 
 

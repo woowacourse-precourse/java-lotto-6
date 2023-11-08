@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.ArrayList;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -73,5 +74,22 @@ class ApplicationTest extends NsTest {
 
         Lotto lotto = new Lotto(numbers);
         assertThat(lotto.sort()).isEqualTo(List.of(1,3,9,13,22,32));
+    }
+
+    @Test
+    void sameNumberCountTest() {
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(3);
+        numbers.add(1);
+        numbers.add(32);
+        numbers.add(22);
+        numbers.add(9);
+        numbers.add(13);
+
+        Lotto lotto = new Lotto(numbers);
+
+        WinningLotto win = new WinningLotto(List.of(1,2,3,4,5,6));
+
+        assertThat(lotto.sameNumberCount(win)).isEqualTo(2);
     }
 }

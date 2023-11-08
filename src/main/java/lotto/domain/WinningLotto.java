@@ -3,11 +3,7 @@ package lotto.domain;
 import lotto.utils.LottoValidator;
 import lotto.utils.MessageConstant;
 
-import java.util.List;
-
-public class WinningLotto {
-    private final Lotto winningLotto;
-    private final int bonus;
+public record WinningLotto(Lotto winningLotto, int bonus) {
 
     public WinningLotto(Lotto winningLotto, int bonus) {
         this.winningLotto = winningLotto;
@@ -25,13 +21,5 @@ public class WinningLotto {
         if (hasDuplication) {
             throw new IllegalArgumentException(MessageConstant.DUPLICATION);
         }
-    }
-
-    public Lotto getWinningLotto() {
-        return winningLotto;
-    }
-
-    public int getBonus() {
-        return bonus;
     }
 }

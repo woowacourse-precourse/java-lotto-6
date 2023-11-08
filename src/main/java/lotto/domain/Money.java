@@ -2,15 +2,12 @@ package lotto.domain;
 
 import lotto.utils.MessageConstant;
 
-public class Money {
+public record Money(int purchaseMoney) {
     private static final int MIN_MONEY = 0;
     private static final int CURRENCY = 1000;
 
-    private final int money;
-
-    public Money(int money) {
-        validate(money);
-        this.money = money;
+    public Money {
+        validate(purchaseMoney);
     }
 
     private void validate(int money) {
@@ -39,10 +36,6 @@ public class Money {
     }
 
     public int getLottoCount() {
-        return money / CURRENCY;
-    }
-
-    public int getMoney() {
-        return money;
+        return purchaseMoney / CURRENCY;
     }
 }

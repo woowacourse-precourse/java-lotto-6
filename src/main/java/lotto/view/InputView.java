@@ -4,11 +4,13 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.utils.MessageConstant;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
+
+    public InputView() {
+    }
 
     public List<Integer> inputNumbers(String inputMessage) {
         System.out.println();

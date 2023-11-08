@@ -45,10 +45,6 @@ public class Lottos {
         return false;
     }
 
-    public int size() {
-        return lottos.size();
-    }
-
     public List<Lotto> getLottos() {
         return Collections.unmodifiableList(lottos);
     }

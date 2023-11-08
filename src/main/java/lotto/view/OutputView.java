@@ -1,11 +1,8 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
-import lotto.domain.Lottos;
-import lotto.domain.Result;
 import lotto.utils.MessageConstant;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 public class OutputView {

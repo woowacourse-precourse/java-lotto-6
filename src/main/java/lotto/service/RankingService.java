@@ -6,7 +6,6 @@ import lotto.view.OutputView;
 import java.util.Map;
 
 public class RankingService {
-
     private final WinningLotto winningLotto;
     private final Lottos lottos;
     private final Money money;

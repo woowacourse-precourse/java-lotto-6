@@ -9,7 +9,7 @@ public class OutputView {
 
     public static void printBuyingTicketQuantity(Player player){
         System.out.println();
-        System.out.println(getTicketQuantity(player) + TICKET_BUY_RESULT_FORMAT);
+        System.out.println(player.getPlayerTicketQuantity() + TICKET_BUY_RESULT_FORMAT);
     }
 
     private static int getTicketQuantity(Player player) {

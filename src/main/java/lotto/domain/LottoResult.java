@@ -48,4 +48,16 @@ public class LottoResult {
         }
         profitRate = (double) totalPrize / (numberOfLottos * Lotto.PRICE);
     }
+
+    public Map<Rank, Integer> getWinnings() {
+        return new HashMap<>(winnings);
+    }
+
+    public long getTotalPrize() {
+        return totalPrize;
+    }
+
+    public double getProfitRate() {
+        return profitRate;
+    }
 }

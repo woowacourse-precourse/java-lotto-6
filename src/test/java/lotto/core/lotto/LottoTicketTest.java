@@ -28,13 +28,13 @@ class LottoTicketTest {
     }
 
 
-
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new LottoTicket(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @DisplayName("로또 번호의 개수가 6개 미만이라면 예외가 발생한다.")
     @Test
     void createLottoByLowerSize() {

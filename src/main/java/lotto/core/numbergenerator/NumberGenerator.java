@@ -9,8 +9,8 @@ import lotto.core.enums.AmountEnum;
 import lotto.core.exception.IllegalAmountException;
 import lotto.core.exception.IllegalLottoRangeException;
 import lotto.core.exception.IllegalNullTypeException;
-import lotto.core.exception.IllegalNumberTypeException;
 import lotto.core.exception.IllegalNumberRangeException;
+import lotto.core.exception.IllegalNumberTypeException;
 import lotto.core.lotto.LottoTicket;
 import lotto.core.lotto.WinningNumbers;
 
@@ -26,7 +26,7 @@ public class NumberGenerator {
 
 
     public List<Integer> createRandomUniqueNumber() {
-      return randomNumberGenerator.createRandomUniqueNumber();
+        return randomNumberGenerator.createRandomUniqueNumber();
     }
 
     public WinningNumbers createWinningNumbersFromConsole(String unprocessedNumbers) {

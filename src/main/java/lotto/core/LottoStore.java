@@ -9,8 +9,8 @@ import lotto.core.iomanangers.ConsoleOutputManager;
 import lotto.core.iomanangers.MessageManager;
 import lotto.core.lotto.BonusNumber;
 import lotto.core.lotto.LottoTicket;
-import lotto.core.lotto.ScratchedLottoTicketList;
 import lotto.core.lotto.LottoTicketScratcher;
+import lotto.core.lotto.ScratchedLottoTicketList;
 import lotto.core.lotto.WinningNumbers;
 import lotto.core.numbergenerator.NumberGenerator;
 import lotto.core.numbergenerator.RandomNumberGenerator;
@@ -22,25 +22,26 @@ public class LottoStore {
         this.lottoSystem = lottoSystem;
     }
 
-    public static LottoStore createStore (){
+    public static LottoStore createStore() {
         MessageManager messageManager = new MessageManager();
         LottoTicketScratcher lottoTicketScratcher = new LottoTicketScratcher();
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         NumberGenerator numberGenerator = new NumberGenerator(randomNumberGenerator);
         Calculator calculator = new Calculator();
-        LottoSystem lottoSystem = new LottoSystem(calculator,lottoTicketScratcher,numberGenerator, messageManager);
+        LottoSystem lottoSystem = new LottoSystem(calculator, lottoTicketScratcher, numberGenerator, messageManager);
         return new LottoStore(lottoSystem);
     }
 
 
-    public static LottoStore createStoreForTest(LottoTicketScratcher lottoTicketScratcher, Calculator calculator, NumberGenerator numberGenerator,
+    public static LottoStore createStoreForTest(LottoTicketScratcher lottoTicketScratcher, Calculator calculator,
+                                                NumberGenerator numberGenerator,
                                                 MessageManager messageManager) {
         LottoSystem customLottoSystem = new LottoSystem(calculator, lottoTicketScratcher, numberGenerator,
                 messageManager);
         return new LottoStore(customLottoSystem);
     }
 
-    public void start(){
+    public void start() {
         this.process();
     }
 
@@ -64,11 +65,11 @@ public class LottoStore {
         }
     }
 
-    private String readLine(){
+    private String readLine() {
         return Console.readLine();
     }
 
-    private void close(){
+    private void close() {
         Console.close();
     }
 

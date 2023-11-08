@@ -1,8 +1,8 @@
 package lotto.core.numbergenerator;
 
 import static lotto.core.enums.AmountEnum.MIN_VALUE;
-import static lotto.core.enums.LottoNumberEnum.*;
 import static lotto.core.enums.LottoNumberEnum.END_VALUE;
+import static lotto.core.enums.LottoNumberEnum.SIZE;
 import static lotto.core.enums.LottoNumberEnum.START_VALUE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -11,8 +11,8 @@ import java.util.List;
 import lotto.core.exception.IllegalAmountException;
 import lotto.core.exception.IllegalLottoRangeException;
 import lotto.core.exception.IllegalNullTypeException;
-import lotto.core.exception.IllegalNumberTypeException;
 import lotto.core.exception.IllegalNumberRangeException;
+import lotto.core.exception.IllegalNumberTypeException;
 import lotto.core.lotto.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,6 +44,7 @@ class NumberGeneratorTest {
                 .filter(number -> number < START_VALUE.getValue() || number > END_VALUE.getValue()).toList();
         assertThat(exceptionNumbers).isEmpty();
     }
+
     @DisplayName("문자열을 로또형식에 맞게 숫자리스트로 변환하고,검증을 위해 LottoTicket 으로 감산 후 WinningNumbers 로 감싼다.")
     @Test
     void createWinningNumbersFromConsole() {
@@ -55,29 +56,29 @@ class NumberGeneratorTest {
     @DisplayName("입력된 쉼표(,)로 구분된 숫자가 아니면 예외가 발생한다.")
     @Test
     void createWinningNumbersFromConsoleExceptionForType() {
-        assertThatThrownBy(()->numberGenerator.createWinningNumbersFromConsole(LOTTO_NUMBER_CONTAIN_TEXT))
+        assertThatThrownBy(() -> numberGenerator.createWinningNumbersFromConsole(LOTTO_NUMBER_CONTAIN_TEXT))
                 .isInstanceOf(IllegalNumberTypeException.class);
-        assertThatThrownBy(()->numberGenerator.createWinningNumbersFromConsole(LOTTO_NUMBER_CONTAIN_SPACE))
+        assertThatThrownBy(() -> numberGenerator.createWinningNumbersFromConsole(LOTTO_NUMBER_CONTAIN_SPACE))
                 .isInstanceOf(IllegalNumberTypeException.class);
-        assertThatThrownBy(()->numberGenerator.createWinningNumbersFromConsole(LOTTO_NUMBER_CONTAIN_SPECIAL_TEXT))
+        assertThatThrownBy(() -> numberGenerator.createWinningNumbersFromConsole(LOTTO_NUMBER_CONTAIN_SPECIAL_TEXT))
                 .isInstanceOf(IllegalNumberTypeException.class);
 
-        assertThatThrownBy(()->numberGenerator.createWinningNumbersFromConsole(null))
+        assertThatThrownBy(() -> numberGenerator.createWinningNumbersFromConsole(null))
                 .isInstanceOf(IllegalNullTypeException.class);
     }
 
     @DisplayName("Integer 보다 값이 크다면 예외가 발생한다.")
     @Test
-    //TODO:필
     void createWinningNumbersFromConsoleExceptionForRange() {
-        assertThatThrownBy(()->numberGenerator.createWinningNumbersFromConsole(OVER_VALUE))
+        assertThatThrownBy(() -> numberGenerator.createWinningNumbersFromConsole(OVER_VALUE))
                 .isInstanceOf(IllegalNumberRangeException.class);
     }
+
     @DisplayName("최소금액이 1000인 금액을 수량으로 환산한다.")
     @Test
     void createAmountToQuantity() {
         Integer amountToQuantity = numberGenerator.createAmountToQuantity(NORMAL_AMOUNT);
-        assertThat(amountToQuantity).isEqualTo(Integer.parseInt(NORMAL_AMOUNT)/ MIN_VALUE.getAmount());
+        assertThat(amountToQuantity).isEqualTo(Integer.parseInt(NORMAL_AMOUNT) / MIN_VALUE.getAmount());
     }
 
     @DisplayName("단위 금액이 1000원 이하라면 예외가 발생한다.")
@@ -85,23 +86,24 @@ class NumberGeneratorTest {
     void createAmountToQuantityExceptionForMinimumAmount() {
         assertThatThrownBy(() -> numberGenerator.createAmountToQuantity(UNDER_MIN_VALUE))
                 .isInstanceOf(IllegalAmountException.class);
-        assertThatThrownBy(()->numberGenerator.createAmountToQuantity(MIXED_VALUE))
+        assertThatThrownBy(() -> numberGenerator.createAmountToQuantity(MIXED_VALUE))
                 .isInstanceOf(IllegalAmountException.class);
     }
 
     @DisplayName("입력된 문자열이 숫자가 아니면 예외가 발생한다.")
     @Test
     void createAmountToQuantityExceptionForType() {
-        assertThatThrownBy(()->numberGenerator.createAmountToQuantity(NUMBERS_CONTAIN_TEXT))
+        assertThatThrownBy(() -> numberGenerator.createAmountToQuantity(NUMBERS_CONTAIN_TEXT))
                 .isInstanceOf(IllegalNumberTypeException.class);
-        assertThatThrownBy(()->numberGenerator.createAmountToQuantity(NUMBERS_CONTAIN_SPACE))
+        assertThatThrownBy(() -> numberGenerator.createAmountToQuantity(NUMBERS_CONTAIN_SPACE))
                 .isInstanceOf(IllegalNumberTypeException.class);
-        assertThatThrownBy(()->numberGenerator.createAmountToQuantity(NUMBERS_CONTAIN_SPECIAL_TEXT))
+        assertThatThrownBy(() -> numberGenerator.createAmountToQuantity(NUMBERS_CONTAIN_SPECIAL_TEXT))
                 .isInstanceOf(IllegalNumberTypeException.class);
 
-        assertThatThrownBy(()->numberGenerator.createAmountToQuantity(null))
+        assertThatThrownBy(() -> numberGenerator.createAmountToQuantity(null))
                 .isInstanceOf(IllegalNullTypeException.class);
     }
+
     @DisplayName("보너스 번호를 반환한다")
     @Test
     void createBonusNumberFromConsole() {
@@ -112,21 +114,21 @@ class NumberGeneratorTest {
     @DisplayName("1-45 사이의 번호가 아니면 예외가 발생한다.")
     @Test
     void createBonusNumberFromConsoleOverValueException() {
-        assertThatThrownBy(()->numberGenerator.createBonusNumberFromConsole(BONUS_NUMBER_OVER))
+        assertThatThrownBy(() -> numberGenerator.createBonusNumberFromConsole(BONUS_NUMBER_OVER))
                 .isInstanceOf(IllegalLottoRangeException.class);
     }
 
     @DisplayName("문자, 공백, 특수문자, null 포함시 예외가 발생한다.")
     @Test
     void createBonusNumberFromConsoleException() {
-        assertThatThrownBy(()->numberGenerator.createBonusNumberFromConsole(NUMBERS_CONTAIN_TEXT))
+        assertThatThrownBy(() -> numberGenerator.createBonusNumberFromConsole(NUMBERS_CONTAIN_TEXT))
                 .isInstanceOf(IllegalNumberTypeException.class);
-        assertThatThrownBy(()->numberGenerator.createBonusNumberFromConsole(NUMBERS_CONTAIN_SPACE))
+        assertThatThrownBy(() -> numberGenerator.createBonusNumberFromConsole(NUMBERS_CONTAIN_SPACE))
                 .isInstanceOf(IllegalNumberTypeException.class);
-        assertThatThrownBy(()->numberGenerator.createBonusNumberFromConsole(NUMBERS_CONTAIN_SPECIAL_TEXT))
+        assertThatThrownBy(() -> numberGenerator.createBonusNumberFromConsole(NUMBERS_CONTAIN_SPECIAL_TEXT))
                 .isInstanceOf(IllegalNumberTypeException.class);
 
-        assertThatThrownBy(()->numberGenerator.createBonusNumberFromConsole(null))
+        assertThatThrownBy(() -> numberGenerator.createBonusNumberFromConsole(null))
                 .isInstanceOf(IllegalNullTypeException.class);
     }
 }

@@ -176,7 +176,7 @@ BUILD SUCCESSFUL in 0s
     - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
 - Java Enum을 적용한다.
 - 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
-    - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다. 
+    - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
     - 단위 테스트 작성이 익숙하지 않다면 `test/java/lottoTicket/LottoTest`를 참고하여 학습한 후 테스트를 구현한다.
 
 ### 라이브러리

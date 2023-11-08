@@ -1,6 +1,10 @@
 package lotto.core.lotto;
 
-import static lotto.core.enums.WinningChartEnum.*;
+import static lotto.core.enums.WinningChartEnum.FIVE_AND_BONUS_MATCH;
+import static lotto.core.enums.WinningChartEnum.FIVE_MATCH;
+import static lotto.core.enums.WinningChartEnum.FOUR_MATCH;
+import static lotto.core.enums.WinningChartEnum.SIX_MATCH;
+import static lotto.core.enums.WinningChartEnum.THREE_MATCH;
 
 import java.util.ArrayList;
 import java.util.List;

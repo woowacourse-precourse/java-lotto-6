@@ -13,12 +13,12 @@ public class Calculator {
     private Integer totalMoney;
     private BigDecimal rateOfReturn;
 
-    public void calculate(ScratchedLottoTicketList scratchedLottoTicketList, Integer investmentMoney){
+    public void calculate(ScratchedLottoTicketList scratchedLottoTicketList, Integer investmentMoney) {
         this.calculateTotalMoney(scratchedLottoTicketList);
         this.calculateRateOfReturn(investmentMoney);
     }
 
-    private void calculateTotalMoney(ScratchedLottoTicketList scratchedLottoTicketList){
+    private void calculateTotalMoney(ScratchedLottoTicketList scratchedLottoTicketList) {
         List<WinningChartEnum> prizes = scratchedLottoTicketList.getScratchedLottoTickets().stream()
                 .map(ScratchedLottoTicket::getWinningChartEnum).toList();
         List<Integer> prizeMoney = prizes.stream().map(WinningChartEnum::getPrize).toList();
@@ -26,11 +26,11 @@ public class Calculator {
         totalMoney = prizeMoney.stream().mapToInt(Integer::intValue).sum();
     }
 
-    private void calculateRateOfReturn(Integer amountQuantity){
+    private void calculateRateOfReturn(Integer amountQuantity) {
         int investmentMoney = amountQuantity * MIN_VALUE.getAmount();
         BigDecimal findInvestmentMoney = new BigDecimal(investmentMoney);
         BigDecimal findTotalMoney = new BigDecimal(this.totalMoney);
-        BigDecimal profitRate = findTotalMoney.divide(findInvestmentMoney,3,RoundingMode.HALF_UP);
+        BigDecimal profitRate = findTotalMoney.divide(findInvestmentMoney, 3, RoundingMode.HALF_UP);
         this.rateOfReturn = profitRate.multiply(BigDecimal.valueOf(100)).setScale(1, RoundingMode.HALF_UP);
     }
 

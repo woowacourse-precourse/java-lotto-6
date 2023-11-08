@@ -11,7 +11,7 @@ public enum LottoNumberEnum {
         this.value = value;
     }
 
-    public Integer getValue(){
+    public Integer getValue() {
         return this.value;
     }
 }

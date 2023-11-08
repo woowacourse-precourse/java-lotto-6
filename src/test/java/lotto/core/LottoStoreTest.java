@@ -26,7 +26,8 @@ class LottoStoreTest {
     private final static Calculator calculator = new Calculator();
     private final static LottoTicketScratcher lottoTicketScratcher = new LottoTicketScratcher();
     private final static NumberGenerator mockNumberGenerator = new NumberGenerator(mockRandomNumberGenerator);
-    private final static LottoStore storeForTest = LottoStore.createStoreForTest(lottoTicketScratcher, calculator, mockNumberGenerator,
+    private final static LottoStore storeForTest = LottoStore.createStoreForTest(lottoTicketScratcher, calculator,
+            mockNumberGenerator,
             CONSOLE_OUTPUT_MANAGER);
     private final static String ILLEGAL_AMOUNT_EXCEPTION_MESSAGE = "[ERROR] 최소단위는 1,000원이며 2,147,483,000원 까지 입력 가능합니다.";
     private final static String ILLEGAL_NUMBER_TYPE_EXCEPTION_MESSAGE = "[ERROR] 반드시 숫자만 입력하셔야 합니다.";
@@ -43,7 +44,7 @@ class LottoStoreTest {
     }
 
     @BeforeEach
-    public void setMock(){
+    public void setMock() {
         Mockito.when(mockRandomNumberGenerator.createRandomUniqueNumber())
                 .thenReturn(List.of(1, 2, 3, 4, 11, 23)).thenReturn(List.of(11, 22, 33, 44, 32, 36))
                 .thenReturn(List.of(11, 22, 33, 44, 32, 36)).thenReturn(List.of(11, 22, 33, 44, 32, 36))

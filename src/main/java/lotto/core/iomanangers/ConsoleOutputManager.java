@@ -2,7 +2,7 @@ package lotto.core.iomanangers;
 
 import lotto.core.exception.LottoApplicationException;
 
-public class ConsoleOutputManager{
+public class ConsoleOutputManager {
 
     public static void printOut(String input) {
         System.out.println(input);

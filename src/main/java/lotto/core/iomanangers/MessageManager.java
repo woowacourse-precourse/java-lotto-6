@@ -8,7 +8,6 @@ import static lotto.core.enums.WinningChartEnum.THREE_MATCH;
 
 import java.math.BigDecimal;
 import java.util.List;
-import lotto.core.exception.LottoApplicationException;
 import lotto.core.lotto.LottoTicket;
 import lotto.core.lotto.ScratchedLottoTicketList;
 
@@ -48,6 +47,7 @@ public class MessageManager {
     public void printWinningChartAnnounce() {
         ConsoleOutputManager.printOut("당첨 통계" + System.lineSeparator() + "---");
     }
+
     public void printPurchaseAmountAsk() {
         ConsoleOutputManager.printOut("구입 금액을 입력해 주세요.");
     }
@@ -55,6 +55,7 @@ public class MessageManager {
     public void printQuantityAnnounce(Integer NumberOfPurchase) {
         ConsoleOutputManager.printOut(NumberOfPurchase + "개를 구매했습니다.");
     }
+
     public String printWinningChart(ScratchedLottoTicketList scratchedLottoTicketList) {
         MessageManager.findCount findCount = getFindCount(scratchedLottoTicketList);
         return (THREE_MATCH.getDescription() + " - " + findCount.threeMatchCount() + "개") + System.lineSeparator()

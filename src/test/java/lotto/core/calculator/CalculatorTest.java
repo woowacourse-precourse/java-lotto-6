@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.core.lotto.BonusNumber;
 import lotto.core.lotto.LottoTicket;
-import lotto.core.lotto.ScratchedLottoTicketList;
 import lotto.core.lotto.LottoTicketScratcher;
+import lotto.core.lotto.ScratchedLottoTicketList;
 import lotto.core.lotto.WinningNumbers;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -37,7 +37,7 @@ class CalculatorTest {
                 winBonusNumber, lottoTickets);
 
         //when
-        calculator.calculate(scratchedLottoTicketList,lottoTickets.size());
+        calculator.calculate(scratchedLottoTicketList, lottoTickets.size());
 
         //then
         BigDecimal rateOfReturn = calculator.getRateOfReturn();

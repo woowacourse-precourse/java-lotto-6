@@ -8,7 +8,7 @@ public enum WinningChartEnum {
     FIVE_MATCH(1_500_000, 5, false, "5개 일치 (1,500,000원)"),
     FOUR_MATCH(50_000, 4, false, "4개 일치 (50,000원)"),
     THREE_MATCH(5_000, 3, false, "3개 일치 (5,000원)"),
-    NO_MATCH(0,0,false,"미당첨");
+    NO_MATCH(0, 0, false, "미당첨");
 
     private final Integer prize;
     private final Integer matchCount;

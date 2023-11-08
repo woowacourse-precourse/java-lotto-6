@@ -2,7 +2,7 @@ package lotto.model;
 
 import java.util.Arrays;
 
-public enum RankingResult {
+public enum Ranking {
     FIRST(2000_000_000, 6, false),
     SECOND(30_000_000, 5, true),
     THIRD(1_500_000, 5, false),
@@ -14,20 +14,20 @@ public enum RankingResult {
     private final int count;
     private final boolean hasBonusNumber;
 
-    RankingResult(int prize, int count, boolean hasBonusNumber) {
+    Ranking(int prize, int count, boolean hasBonusNumber) {
         this.prize = prize;
         this.count = count;
         this.hasBonusNumber = hasBonusNumber;
     }
 
-    public static RankingResult checkRanking(int matchCounts, boolean hasBonusNumber) {
-        return Arrays.stream(RankingResult.values())
+    public static Ranking checkRanking(int matchCounts, boolean hasBonusNumber) {
+        return Arrays.stream(Ranking.values())
                 .filter(ranking -> checkCountAndBonusNumber(ranking, matchCounts, hasBonusNumber))
                 .findAny()
                 .orElse(NONE);
     }
 
-    private static boolean checkCountAndBonusNumber(RankingResult ranking, int matchCounts, boolean hasBonusNumber) {
+    private static boolean checkCountAndBonusNumber(Ranking ranking, int matchCounts, boolean hasBonusNumber) {
         if (ranking.count != matchCounts) {
             return false;
         }

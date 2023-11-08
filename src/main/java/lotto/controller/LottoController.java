@@ -19,6 +19,8 @@ public class LottoController {
     public void run() {
         Money money = inputMoney();
         List<Lotto> lottos = purchaseLottos(money.getCount());
+
+        
     }
 
     private Money inputMoney() {
@@ -33,7 +35,7 @@ public class LottoController {
 
     private List<Lotto> purchaseLottos(int count) {
         List<Lotto> lottos = generateLottos(count);
-
+        printLottos(lottos);
         return lottos;
     }
 
@@ -48,5 +50,9 @@ public class LottoController {
 
     private List<Integer> generateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_AMOUNT);
+    }
+
+    private void printLottos(List<Lotto> lottos) {
+        outputView.printLottos(lottos);
     }
 }

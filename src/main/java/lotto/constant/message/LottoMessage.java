@@ -1,15 +1,10 @@
 package lotto.constant.message;
 
-public enum LottoMessage {
-    INPUT_MONEY("구입금액을 입력해 주세요.");
+public class LottoMessage {
+    public static String INPUT_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
+    public static String LOTTO_PURCHASE_FIXMESSAGE = "개를 구매했습니다.";
+    public static final String LOTTO_NUMBERS_PREFIX_MESSAGE = "[";
+    public static final String LOTTO_NUMBERS_SUFFIX_MESSAGE = "]\n";
+    public static final String SEPARATION = ", ";
 
-    LottoMessage(String text) {
-        this.text = text;
-    }
-
-    private final String text;
-
-    public String getText() {
-        return text;
-    }
 }

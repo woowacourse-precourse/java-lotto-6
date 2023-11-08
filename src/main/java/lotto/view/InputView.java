@@ -1,7 +1,8 @@
 package lotto.view;
 
+import static lotto.constant.message.LottoMessage.INPUT_MONEY_MESSAGE;
+
 import camp.nextstep.edu.missionutils.Console;
-import lotto.constant.message.LottoMessage;
 
 public class InputView {
     private final OutputView outputView;
@@ -11,7 +12,7 @@ public class InputView {
     }
 
     public int readLottoPurchaseMoney() {
-        outputView.printMessage(LottoMessage.INPUT_MONEY);
+        outputView.printMessage(INPUT_MONEY_MESSAGE);
         String money = Console.readLine();
 
         return Integer.parseInt(money);

@@ -15,4 +15,10 @@ public class LottoVendorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("전달된 금액이 상품 가격의 배수가 아니라면 예외가 발생한다.")
+    @Test
+    void purchaseMadeExchange() {
+        assertThatThrownBy(() -> new LottoVendor(LOTTO_PRICE).purchaseAll(LOTTO_PRICE + 1))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

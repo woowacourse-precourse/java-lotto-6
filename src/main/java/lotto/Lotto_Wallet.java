@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.text.DecimalFormat;
 
 public class Lotto_Wallet {
     private List<Lotto> Lottos = new ArrayList<>();
@@ -80,20 +81,23 @@ public class Lotto_Wallet {
 
 
     // 당첨 결과 개수 프린트
-    // Result_Print에 getWinning_count 사용
+    // Result_Print
     public void Result_Print() {
         System.out.print("\n당첨 통계\n---\n");
-        System.out.print("3개 일치 (5,000원) - " + winning_count.get(Prize.Fifth.name()) + "개\n");
-        System.out.print("4개 일치 (50,000원) - " + winning_count.get(Prize.Fourth.name()) + "개\n");
-        System.out.print("5개 일치 (1,500,000원) - " + winning_count.get(Prize.Third.name()) + "개\n");
-        System.out.print("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winning_count.get(Prize.Second.name()) + "개\n");
-        System.out.print("6개 일치 (2,000,000,000원) - " + winning_count.get(Prize.First.name()) + "개\n");
-    }
+        for (Prize prize : Prize.values()) {
+            // 등수 이름, 등수 횟수, 등수 액수
+            String name = prize.name();
+            if (name.equals("None")) continue;
+            int cnt = winning_count.get(name);
+            int price_amount = prize.getPrize();
 
-    public HashMap<String, Integer> getWinning_count() {
-        return winning_count;
-    }
+            DecimalFormat decimalFormat = new DecimalFormat("#,###");
+            String formattedNumber = decimalFormat.format(price_amount);
 
+            String total = prize.getMessage() + " (" + formattedNumber + "원) - " + cnt + "개\n";
+            System.out.print(total);
+        }
+    }
 
     // 수익률 출력
     // print_Return에 RateOfReturn 사용

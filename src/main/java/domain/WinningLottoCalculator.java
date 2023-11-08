@@ -8,14 +8,16 @@ public class WinningLottoCalculator {
 	private Long totalPrizeMoney;
 
 	public WinningLottoCalculator() {
-		this.lottoPrizes = new HashMap<>() {{
-			put(LottoPrize.FIRST_PRIZE, 0);
-			put(LottoPrize.SECOND_PRIZE, 0);
-			put(LottoPrize.THIRD_PRIZE, 0);
-			put(LottoPrize.FOURTH_PRIZE, 0);
-			put(LottoPrize.FIFTH_PRIZE, 0);
-			put(LottoPrize.BLANK, 0);
-		}};
+		this.lottoPrizes = new HashMap<>() {
+			{
+				put(LottoPrize.FIRST_PRIZE, 0);
+				put(LottoPrize.SECOND_PRIZE, 0);
+				put(LottoPrize.THIRD_PRIZE, 0);
+				put(LottoPrize.FOURTH_PRIZE, 0);
+				put(LottoPrize.FIFTH_PRIZE, 0);
+				put(LottoPrize.BLANK, 0);
+			}
+		};
 
 		this.totalPrizeMoney = 0L;
 	}

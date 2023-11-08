@@ -36,7 +36,7 @@ public class LotteryService {
         outputSets.printProgressMessage(Progress.PURCHASE);
         this.totalPurchasePayment = inputSets.userInputPayment();
 
-        if(!validator.isPaymentDivided(totalPurchasePayment)){
+        if(validator.isPaymentDivided(totalPurchasePayment)){
             throw new IllegalArgumentException();
         }
         this.totalLottoAmount = totalPurchasePayment / 1000;
@@ -105,7 +105,6 @@ public class LotteryService {
     }
 
     public void checkTotalPrizeInfo(){
-//        System.out.printf("%s %d개\n", Progress.FIFTH.getMessage(), this.prize.getTotalRankInfo().get(4));
         System.out.println(Progress.FIFTH.getMessage() + Integer.toString(this.prize.getTotalRankInfo().get(4)) +"개");
         System.out.println(Progress.FOURTH.getMessage() + Integer.toString(this.prize.getTotalRankInfo().get(3)) +"개");
         System.out.println(Progress.THIRD.getMessage() + Integer.toString(this.prize.getTotalRankInfo().get(2)) +"개");

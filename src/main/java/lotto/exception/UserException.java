@@ -1,7 +1,7 @@
 package lotto.exception;
 
 
-import static lotto.utility.Constants.ERROR_MESSAGE_1;
+import static lotto.utility.Constants.ERROR_MESSAGE_2;
 
 public class UserException {
     private UserException() {}
@@ -10,7 +10,7 @@ public class UserException {
         try {
             Integer tempAmount = Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_1);
+            throw new IllegalArgumentException(ERROR_MESSAGE_2);
         }
     }
 }

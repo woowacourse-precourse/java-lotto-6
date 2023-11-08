@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Buyer;
 import lotto.domain.LottoStatistics;
 import lotto.domain.Lottos;
@@ -25,5 +26,6 @@ public class MainController {
 
         OutputView.printMessage(lottoResult.generateLottoStatisticsForm());
 
+        Console.close();
     }
 }

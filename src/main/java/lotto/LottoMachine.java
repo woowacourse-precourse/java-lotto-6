@@ -15,8 +15,8 @@ public class LottoMachine {
 		List<Lotto> lottos = new ArrayList<>();
 		while (isExistBalance(money)) {
 			money -= LOTTO_PRICE;
-			Lotto of = Lotto.of(generateNumbers());
-			lottos.add(of);
+			lottos.add(
+					Lotto.of(generateNumbers()));
 		}
 		return Lottos.of(lottos);
 	}

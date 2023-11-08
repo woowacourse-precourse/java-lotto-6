@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import lotto.util.InteractModule;
+import lotto.util.ResultModule;
 
 public class Generator {
 

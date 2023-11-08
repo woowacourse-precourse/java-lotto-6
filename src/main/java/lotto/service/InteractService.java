@@ -1,7 +1,7 @@
 package lotto.service;
 
-import static lotto.domain.ExceptionModule.*;
-import static lotto.domain.InteractModule.*;
+import static lotto.util.ExceptionModule.*;
+import static lotto.util.InteractModule.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;

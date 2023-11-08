@@ -1,7 +1,8 @@
-package lotto.domain;
+package lotto.util;
 
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.Lotto;
 
 public class ResultModule {
     private static final Integer FIRST_PLACE = 5;

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-    int ranking;
+    rank ranking;
     int same = 0;
     int bonus = 0;
 
@@ -39,23 +39,23 @@ public class Lotto {
         }
     }
 
-    int rankLotto(int same, int bonus){ //로또 등수 매기기
+    rank rankLotto(int same, int bonus){ //로또 등수 매기기
         if(same == 3){
-            return 5;
+            return rank.FIRST;
         }
         if(same == 4){
-            return 4;
+            return rank.FOURTH;
         }
         if(same == 5 && bonus != 1){
-            return 3;
+            return rank.THIRD;
         }
         if(same == 5 && bonus == 1){
-            return 2;
+            return rank.SECOND;
         }
         if(same == 6){
-            return 1;
+            return rank.FIFTH;
         }
-        return 0;
+        return rank.OUT;
     }
 
     void checkLotto(int[] prizeWin){ // 로또 비교

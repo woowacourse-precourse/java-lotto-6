@@ -152,4 +152,15 @@ public class test {
 
         assertThat(testGame.winStat[1]).isEqualTo(1);
     }
+
+    @Test
+    void 당첨금_확인(){
+        for(int i = 0; i < testGame.winStat.length; i++) {
+            testGame.winStat[i] = 1;
+        }
+
+        testGame.calc();
+
+        assertThat(testGame.prizeWinMoney).isEqualTo(2031555000);
+    }
 }

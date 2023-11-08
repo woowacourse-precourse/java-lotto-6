@@ -3,7 +3,6 @@ package lotto;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import net.bytebuddy.pool.TypePool.Resolution.Illegal;
 
 public class Game {
     static final int LOTTO_PRICE = 1000;
@@ -14,6 +13,7 @@ public class Game {
     Lotto publishedLotto[];
     int prizeWinNum[] = new int[LIMIT_LOTTO_NUMBER + 1];
     int winStat[] = new int[LOWEST_RANK + 1];
+    int prizeWinMoney = 0;
 
     int inputCredit() { //로또 구매 금액 입력
         int credit;
@@ -112,15 +112,40 @@ public class Game {
         }
     }
 
-    void statistics(Lotto published){ //로또 순위 확인
+    void statistics(Lotto published){ //각각의 로또 순위 확인
         published.checkLotto(prizeWinNum);
 
-        winStat[published.ranking]++;
+        winStat[published.ranking.ordinal()]++;
     }
 
-    void stareStat(){ // 로또 순위 통계 저장
+    void stareStat(){ //모든 로또 순위 통계 저장
         for(int i = 0; i < publishedLotto.length; i++) {
             statistics(publishedLotto[i]);
+        }
+    }
+
+    int rankMoney(int i){ //순위별 금액
+        if(i == 1){
+            return 2000000000;
+        }
+        if(i == 2){
+            return 30000000;
+        }
+        if(i == 3){
+            return 1500000;
+        }
+        if(i == 4){
+            return 50000;
+        }
+        if(i == 5){
+            return 5000;
+        }
+        return 0;
+    }
+
+    void calc(){ //당첨금 계산
+        for(int i = 0; i<winStat.length; i++){
+            prizeWinMoney += rankMoney(i) * winStat[i];
         }
     }
 }

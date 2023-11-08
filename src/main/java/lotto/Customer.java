@@ -8,6 +8,7 @@ public class Customer {
     private final static Integer MIN_MONEY = 1000;
     private final static Integer ZERO = 0;
     private final static String ERROR_1000_LESS_THAN = "1000원 단위로 입력해주세요.";
+    private final static String ERROR_NOT_NUMBER = "숫자를 입력해주세요.";
     private final Integer buyPrice;
     private  Map<Integer, List<Integer>> lottoNumbers = new LinkedHashMap<>();
     private Integer winPrice = 0;
@@ -40,7 +41,7 @@ public class Customer {
         try {
             Integer.parseInt(buyPrice);
         }catch (NumberFormatException e) {
-            throw new NumberFormatException();
+            throw new NumberFormatException(ERROR_NOT_NUMBER);
         }
     }
     public void winPrice(Map<Integer, Integer> result) {

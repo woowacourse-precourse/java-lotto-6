@@ -34,10 +34,10 @@ public class GameTest {
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1, 2, 3, 5, 6, 7)));
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Method method = game.getClass().getDeclaredMethod("assignEachRank", Lotto.class, int.class, List.class);
+        Method method = game.getClass().getDeclaredMethod("assignEachRank", Lotto.class, Bonus.class, List.class);
         method.setAccessible(true);
 
-        Map<Rank, Integer> ranks = (Map<Rank, Integer>) method.invoke(game, winningNumbers, 7, lottos);
+        Map<Rank, Integer> ranks = (Map<Rank, Integer>) method.invoke(game, winningNumbers, new Bonus(7, winningNumbers), lottos);
 
         assertThat(ranks.get(Rank.second)).isEqualTo(1);
     }
@@ -48,10 +48,10 @@ public class GameTest {
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Method method = game.getClass().getDeclaredMethod("assignEachRank", Lotto.class, int.class, List.class);
+        Method method = game.getClass().getDeclaredMethod("assignEachRank", Lotto.class, Bonus.class, List.class);
         method.setAccessible(true);
 
-        Map<Rank, Integer> ranks = (Map<Rank, Integer>) method.invoke(game, winningNumbers, 7, lottos);
+        Map<Rank, Integer> ranks = (Map<Rank, Integer>) method.invoke(game, winningNumbers, new Bonus(7, winningNumbers), lottos);
 
         assertThat(ranks.get(Rank.first)).isEqualTo(1);
     }
@@ -62,10 +62,10 @@ public class GameTest {
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 8)));
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Method method = game.getClass().getDeclaredMethod("assignEachRank", Lotto.class, int.class, List.class);
+        Method method = game.getClass().getDeclaredMethod("assignEachRank", Lotto.class, Bonus.class, List.class);
         method.setAccessible(true);
 
-        Map<Rank, Integer> ranks = (Map<Rank, Integer>) method.invoke(game, winningNumbers, 7, lottos);
+        Map<Rank, Integer> ranks = (Map<Rank, Integer>) method.invoke(game, winningNumbers, new Bonus(7, winningNumbers), lottos);
 
         assertThat(ranks.get(Rank.third)).isEqualTo(1);
     }
@@ -76,10 +76,10 @@ public class GameTest {
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 10, 11)));
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Method method = game.getClass().getDeclaredMethod("assignEachRank", Lotto.class, int.class, List.class);
+        Method method = game.getClass().getDeclaredMethod("assignEachRank", Lotto.class, Bonus.class, List.class);
         method.setAccessible(true);
 
-        Map<Rank, Integer> ranks = (Map<Rank, Integer>) method.invoke(game, winningNumbers, 7, lottos);
+        Map<Rank, Integer> ranks = (Map<Rank, Integer>) method.invoke(game, winningNumbers, new Bonus(7, winningNumbers), lottos);
 
         assertThat(ranks.get(Rank.fourth)).isEqualTo(1);
     }
@@ -90,10 +90,10 @@ public class GameTest {
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1, 2, 3, 14, 15, 16)));
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Method method = game.getClass().getDeclaredMethod("assignEachRank", Lotto.class, int.class, List.class);
+        Method method = game.getClass().getDeclaredMethod("assignEachRank", Lotto.class, Bonus.class, List.class);
         method.setAccessible(true);
 
-        Map<Rank, Integer> ranks = (Map<Rank, Integer>) method.invoke(game, winningNumbers, 7, lottos);
+        Map<Rank, Integer> ranks = (Map<Rank, Integer>) method.invoke(game, winningNumbers, new Bonus(7, winningNumbers), lottos);
 
         assertThat(ranks.get(Rank.fifth)).isEqualTo(1);
     }

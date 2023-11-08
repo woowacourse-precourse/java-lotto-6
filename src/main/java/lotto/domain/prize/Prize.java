@@ -1,8 +1,8 @@
 package lotto.domain.prize;
 
 import java.util.List;
-import lotto.domain.cash.Cash;
-import lotto.dto.WinStateInformationDTO;
+import lotto.domain.purchasingMoney.PurchasingMoney;
+import lotto.dto.WinningStatisticDTO;
 
 public class Prize {
 
@@ -12,14 +12,14 @@ public class Prize {
         this.amount = amount;
     }
 
-    public static Prize from(List<WinStateInformationDTO> winStateInformationDTOs) {
-        long entirePrizeCashAmount = winStateInformationDTOs.stream()
-                .mapToLong(WinStateInformationDTO::getPrizeCashAmount)
+    public static Prize from(List<WinningStatisticDTO> winningStatisticDTOs) {
+        long entirePrizeCashAmount = winningStatisticDTOs.stream()
+                .mapToLong(WinningStatisticDTO::getPrizeCashAmount)
                 .sum();
         return new Prize(entirePrizeCashAmount);
     }
 
-    public double getYield(Cash cash) {
+    public double getYield(PurchasingMoney cash) {
         return (double) this.amount * 100 / cash.amount();
     }
 

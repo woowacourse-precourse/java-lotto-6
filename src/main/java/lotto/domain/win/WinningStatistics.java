@@ -8,13 +8,13 @@ import java.util.Optional;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.WinningLottoNumbers;
 import lotto.dto.LottoNumberMatchDTO;
-import lotto.dto.WinStateInformationDTO;
+import lotto.dto.WinningStatisticDTO;
 
-public class WinStatesCounter {
+public class WinningStatistics {
 
     Map<WinState, Integer> countPerWinStates = new EnumMap<>(WinState.class);
 
-    public WinStatesCounter(WinningLottoNumbers winningLottoNumbers, List<Lotto> lotteries) {
+    public WinningStatistics(WinningLottoNumbers winningLottoNumbers, List<Lotto> lotteries) {
         List<LottoNumberMatchDTO> lottoNumberMatchDTOs = getWinStates(winningLottoNumbers, lotteries);
         lottoNumberMatchDTOs.stream()
                 .map(WinState::from)
@@ -31,12 +31,12 @@ public class WinStatesCounter {
         if (winState.isEmpty()) {
             return;
         }
-        int currentCount = countPerWinStates.getOrDefault(winState, 0);
+        int currentCount = countPerWinStates.getOrDefault(winState.get(), 0);
         int addedCount = currentCount + 1;
         countPerWinStates.put(winState.get(), addedCount);
     }
 
-    public List<WinStateInformationDTO> getWinStateInformationDTOs() {
+    public List<WinningStatisticDTO> getWinningStatisticsDTOs() {
         return Arrays.stream(WinState.values())
                 .map(winState -> {
                     int winningCount = countPerWinStates.getOrDefault(winState, 0);

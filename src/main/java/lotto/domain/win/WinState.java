@@ -3,7 +3,7 @@ package lotto.domain.win;
 import java.util.Arrays;
 import java.util.Optional;
 import lotto.dto.LottoNumberMatchDTO;
-import lotto.dto.WinStateInformationDTO;
+import lotto.dto.WinningStatisticDTO;
 
 public enum WinState {
 
@@ -34,8 +34,8 @@ public enum WinState {
                 .findFirst();
     }
 
-    public WinStateInformationDTO getWinStateInformation(int winningCount) {
-        return new WinStateInformationDTO(description, prize, winningCount);
+    public WinningStatisticDTO getWinStateInformation(int winningCount) {
+        return new WinningStatisticDTO(description, prize, winningCount);
     }
 
     private boolean equals(int includedNumbersCount, TriBoolean isIncludedBonusNumber) {

@@ -1,10 +1,13 @@
 package lotto.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.LottoPrize;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.TotalWinningResult;
 import lotto.util.StringToListConverter;
 import lotto.util.WinningNumbersValidator;
 import lotto.view.InputView;
@@ -27,6 +30,25 @@ public class LottoGameController {
         purchaseLotto();
         winningNumbers = setWinningNumbers();
         bonusNumber = setBonusNumber(winningNumbers);
+        calculateWinningResult();
+    }
+
+    private void calculateWinningResult() {
+        TotalWinningResult totalWinningResult = new TotalWinningResult();
+        totalWinningResult.calculateToTalRanks(lottos, winningNumbers, bonusNumber);
+
+        showPrizeResult(totalWinningResult);
+        showRateOfReturn(totalWinningResult);
+    }
+
+    private void showPrizeResult(TotalWinningResult totalWinningResult) {
+        HashMap<LottoPrize, Integer> prizeResult = totalWinningResult.getPrizeResult();
+        outputView.printPrizeResult(prizeResult);
+    }
+
+    private void showRateOfReturn(TotalWinningResult totalWinningResult) {
+        String rateOfReturn = totalWinningResult.calculateRateOfReturn(amount);
+        outputView.printRateOfReturn(rateOfReturn);
     }
 
     private BonusNumber setBonusNumber(Lotto winningNumbers) {

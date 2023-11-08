@@ -13,6 +13,10 @@ public class BonusNumber {
         this.bonusNumber = stringToIntConverter(bonusNumber);
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validate(String bonusNumber, Lotto winningNumbers) {
         if(!isDigit(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_NOT_DIGIT.getMessage());

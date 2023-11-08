@@ -6,9 +6,9 @@ import lotto.model.Lotto;
 import lotto.model.LottoNumber;
 import lotto.model.LottoTicket;
 
-public class LottoTicketStringBuilder {
+class LottoTicketStringBuilder {
 
-    public static String build(LottoTicket lottoTicket) {
+    static String build(LottoTicket lottoTicket) {
         return lottoTicket.getLottoTicket()
             .stream()
             .map(Lotto::getLottoNumbers)

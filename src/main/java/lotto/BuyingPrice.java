@@ -18,6 +18,7 @@ public class BuyingPrice extends InputNumber {
     }
 
     public void printCount() {
+        System.out.println();
         System.out.println(getBuyingCount() + BUYING_COUNT);
     }
 

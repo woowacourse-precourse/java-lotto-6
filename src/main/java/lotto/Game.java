@@ -5,6 +5,7 @@ import static lotto.ResultCase.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,19 +28,26 @@ public class Game {
     }
 
     public void run() {
+        printInformBuyingPrice();
         saveBuyingPrice();
         printBuyingCount();
         giveLotto();
         printLotto();
+        printInformWinningNumber();
         saveWinningNumber();
+        printInformBonusNumber();
         saveBonusNumber();
         countWinning();
         printWinning();
         printRateOfReturn();
     }
 
+    private void printInformBuyingPrice() {
+        System.out.println(BUYING_PRICE);
+    }
+
     private void saveBuyingPrice() {
-        saveValue(BUYING_PRICE, buyingPrice);
+        saveValue(buyingPrice);
     }
 
     private void printBuyingCount() {
@@ -64,12 +72,20 @@ public class Game {
         }
     }
 
+    private void printInformWinningNumber() {
+        inform(WINNING_NUMBER);
+    }
+
     private void saveWinningNumber() {
-        saveValue(WINNING_NUMBER, winning);
+        saveValue(winning);
+    }
+
+    private void printInformBonusNumber() {
+        inform(BONUS_NUMBER);
     }
 
     private void saveBonusNumber() {
-        saveValue(BONUS_NUMBER, bonus);
+        saveValue(bonus);
     }
 
     private void countWinning() {
@@ -100,23 +116,28 @@ public class Game {
     }
 
     private void printWinning() {
+        System.out.println();
         System.out.println(WINNING_STATISTICS);
         result.print();
     }
 
     private void printRateOfReturn() {
-        System.out.println(RATE_OF_RETURN + calculateRateOfReturn() + PERCENT_IS);
+        System.out.print(RATE_OF_RETURN + calculateRateOfReturn() + PERCENT_IS);
     }
 
     private Double calculateRateOfReturn() {
         return result.getCalculateRateOfReturn(buyingPrice.getPrice());
     }
 
-    private void saveValue(String informComment, Input input) {
+    private void inform(String comment) {
+        System.out.println();
+        System.out.println(comment);
+    }
+
+    private void saveValue(Input input) {
         Boolean isNotEnded = true;
         while (isNotEnded) {
             try {
-                System.out.println(informComment);
                 String readLine = Console.readLine();
                 input.save(readLine);
                 isNotEnded = false;

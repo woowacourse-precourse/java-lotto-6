@@ -18,12 +18,18 @@ public class InputView {
     }
 
     public static List<Integer> inputLottoNumbers() {
-
-        System.out.println(INPUT_LOTTO_NUMBER_MESSAGE);
-
-        return Arrays.stream(Console.readLine().split(","))
-                .map(Integer::parseInt)
-                .toList();
+        while (true) {
+            System.out.println(INPUT_LOTTO_NUMBER_MESSAGE);
+            String input = Console.readLine();
+            try {
+                List<Integer> numbers = Arrays.stream(input.split(","))
+                        .map(Integer::parseInt)
+                        .toList();
+                return numbers;
+            } catch (NumberFormatException e) {
+                ExceptionMessages.lottoNumberTypeError();
+            }
+        }
     }
 
     public static String inputBonusNumber() {

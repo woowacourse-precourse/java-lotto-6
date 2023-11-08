@@ -76,5 +76,20 @@ class LottoTest {
         assertThat(result).isTrue();
     }
 
+    @Test
+    void 보너스번호가_당첨번호중에_없을때() {
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        numbers.add(5);
 
+        Game game = new Game();
+        game.setBonusNumber(6);
+
+        boolean result = game.checkBonusNumber(numbers);
+
+        assertThat(result).isFalse();
+    }
 }

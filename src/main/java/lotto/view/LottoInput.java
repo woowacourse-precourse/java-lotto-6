@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.WinningLotto;
 import lotto.global.ResponseStatus;
+import lotto.global.error.ErrorMessage;
 import lotto.utils.NumberHandler;
 
 import java.util.Arrays;
@@ -41,5 +42,15 @@ public class LottoInput {
         InputValidator.lottoNumbersEmptyCheck(parsedInput);
         parsedInput.forEach(InputValidator::isInputValid);
         return parsedInput;
+    }
+
+    private boolean handleInputValid(ResponseStatus responseStatus){
+        if(ResponseStatus.BAD == responseStatus) {
+            return false;
+        }
+        if(ResponseStatus.ERROR == responseStatus){
+            throw new RuntimeException(ErrorMessage.INTERNAL_SERVER_ERROR.getMessage());
+        }
+        return true;
     }
 }

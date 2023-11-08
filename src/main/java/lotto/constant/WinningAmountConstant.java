@@ -1,5 +1,8 @@
 package lotto.constant;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum WinningAmountConstant {
     FIRST(2000000000, 6),
     SECOND(30000000, 5),
@@ -15,7 +18,7 @@ public enum WinningAmountConstant {
         this.count = count;
     }
 
-    public static WinningAmountConstant getByCount(int count, boolean hasBonusNumber) {
+    public static WinningAmountConstant getValueByCount(int count, boolean hasBonusNumber) {
         if (hasBonusNumber && (count == WinningAmountConstant.SECOND.count)) {
             return WinningAmountConstant.SECOND;
         }
@@ -26,7 +29,7 @@ public enum WinningAmountConstant {
             }
         }
 
-        return null;
+        throw new IllegalArgumentException();
     }
 
     public int getValue() {
@@ -35,5 +38,18 @@ public enum WinningAmountConstant {
 
     public int getCount() {
         return this.count;
+    }
+
+    public static Map<WinningAmountConstant, Integer> initWinningResult() {
+        HashMap<WinningAmountConstant, Integer> result = new HashMap<>();
+
+        WinningAmountConstant[] values = WinningAmountConstant.values();
+
+        for (WinningAmountConstant value : values) {
+            result.put(value, 0);
+
+        }
+
+        return result;
     }
 }

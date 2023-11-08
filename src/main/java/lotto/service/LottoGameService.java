@@ -1,7 +1,7 @@
 package lotto.service;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.constant.WinningAmountConstant;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -12,6 +12,10 @@ public class LottoGameService {
 
     }
 
+    public String generateWinningResult(WinningResult result, String rateOfReturn) {
+        StringBuilder builder = new StringBuilder();
+        return null;
+    }
     public String calculateRateOfReturn(int purchaseAmount, int totalWinningAmount) {
         Double amount = Double.valueOf(purchaseAmount);
         double rateOfReturn = totalWinningAmount / amount * 100;
@@ -24,7 +28,7 @@ public class LottoGameService {
     public WinningResult calculateWinningResult(
             List<Lotto> lotties, List<Integer> winningNumbers, BonusNumber bonusNumber) {
 
-        HashMap<WinningAmountConstant, Integer> result = new HashMap<>();
+        Map<WinningAmountConstant, Integer> result = WinningAmountConstant.initWinningResult();
 
         for (Lotto lotto : lotties) {
             List<Integer> lottoValues = lotto.getLotto();
@@ -33,18 +37,20 @@ public class LottoGameService {
             int count = countDuplicatedNumbers(lottoValues, winningNumbers);
 
             if (hasBonusNumber) {
-                count++;
-            }
-
-            WinningAmountConstant byCount = WinningAmountConstant.getByCount(count, hasBonusNumber);
-
-            if (byCount != null) {
-                if (result.get(byCount) == null) {
-                    result.put(byCount, 1);
-                    continue;
+                if (count != 6) {
+                    count++;
                 }
-                result.put(byCount, result.get(byCount) + 1);
             }
+
+            WinningAmountConstant value = null;
+            try {
+                value = WinningAmountConstant.getValueByCount(count, hasBonusNumber);
+            } catch (IllegalArgumentException e) {
+                continue;
+            }
+
+            System.out.println(value);
+            result.put(value, result.get(value) + 1);
         }
 
         return new WinningResult(result);

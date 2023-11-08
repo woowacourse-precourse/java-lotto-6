@@ -90,10 +90,11 @@ public class LottoGameController {
     }
 
     private void inputWinningLottoNumbers(Game game) {
+        outputView.printEmptyLine();
         while (true) {
             try {
-                outputView.printEmptyLine();
                 game.createWinningLotto(inputView.inputWinningLottoNumbers());
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             } catch (IllegalStateException e) {
@@ -104,6 +105,15 @@ public class LottoGameController {
 
     private void inputUserBonusNumber(Game game) {
         outputView.printEmptyLine();
-        game.createBonusNumber(inputView.inputBonusNumber(game.getWinningLotto().getWinningLottoNumbers()));
+        while (true) {
+            try {
+                game.createBonusNumber(inputView.inputBonusNumber());
+                break;
+            } catch (IllegalStateException e) {
+                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

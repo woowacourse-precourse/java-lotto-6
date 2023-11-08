@@ -21,6 +21,7 @@ public class Game {
     }
 
     public void createBonusNumber(String bonusNumber) {
+        InputValidator.validateIsWinningLottoNumberContains(bonusNumber, winningLotto.getWinningLottoNumbers());
         this.bonusNumber = BonusNumber.create(bonusNumber);
     }
 
@@ -39,7 +40,7 @@ public class Game {
         return winningLottoNumbers;
     }
 
-    private static void validateWinningLottoNumber(String winningLottoNumber) {
+    private void validateWinningLottoNumber(String winningLottoNumber) {
         InputValidator.validateInputIsNumber(winningLottoNumber);
         InputValidator.validateLottoNumberIsNotInRightRange(winningLottoNumber);
     }

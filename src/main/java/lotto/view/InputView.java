@@ -14,13 +14,8 @@ public class InputView {
     public String inputMoneyAmount() {
         System.out.println(INPUT_MONEY_AMOUNT_MESSAGE);
         String userInputMoney = Console.readLine();
-        validateUserInputMoney(userInputMoney);
+        validate(userInputMoney);
         return userInputMoney;
-    }
-
-    private void validateUserInputMoney(String money) {
-        InputValidator.validateInputIsEmpty(money);
-        InputValidator.validateInputIsNumber(money);
     }
 
     public String inputWinningLottoNumbers() {
@@ -30,25 +25,15 @@ public class InputView {
         return winningLottoNumbers;
     }
 
-    public String inputBonusNumber(List<Integer> winningLotto) {
-        while (true) {
-            try {
-                System.out.println(INPUT_BONUS_LOTTO_NUMBER_MESSAGE);
-                String bonusLottoNumber = Console.readLine();
-                validateUserInputBonusLottoNumber(bonusLottoNumber, winningLotto);
-                return bonusLottoNumber;
-            } catch (IllegalStateException e) {
-                System.out.println(e.getMessage());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public String inputBonusNumber() {
+        System.out.println(INPUT_BONUS_LOTTO_NUMBER_MESSAGE);
+        String bonusNumber = Console.readLine();
+        validate(bonusNumber);
+        return bonusNumber;
     }
 
-    private void validateUserInputBonusLottoNumber(String bonusLottoNumber, List<Integer> winningLotto) {
-        InputValidator.validateInputIsEmpty(bonusLottoNumber);
-        InputValidator.validateInputIsNumber(bonusLottoNumber);
-        InputValidator.validateLottoNumberIsNotInRightRange(bonusLottoNumber);
-        InputValidator.validateIsWinningLottoNumberContains(bonusLottoNumber, winningLotto);
+    private void validate(String input) {
+        InputValidator.validateInputIsEmpty(input);
+        InputValidator.validateInputIsNumber(input);
     }
 }

@@ -20,5 +20,18 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return this.numbers;
     }
+
+    public void printNumbers() {
+        numbers.sort(Integer::compareTo);
+        System.out.print("[");
+        int size = numbers.size();
+        for (int i = 0 ; i < size ; i++) {
+            System.out.print(numbers.get(i));
+            if (i != size - 1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.println("]");
+    }
     // TODO: 추가 기능 구현
 }

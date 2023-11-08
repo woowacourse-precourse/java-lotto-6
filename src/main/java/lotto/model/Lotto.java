@@ -27,13 +27,13 @@ public class Lotto {
         if (isDuplicated(numbers)) {
             throw new IllegalArgumentException(CATCH_ERROR + DUPLICATED_NUMBER);
         }
-        if (isWithinRange(numbers)) {
+        if (isNotWithinRange(numbers)) {
             throw new IllegalArgumentException(CATCH_ERROR + INVALID_RANGE);
         }
     }
 
-    private boolean isWithinRange(List<Integer> numbers) {
-        return numbers.stream().allMatch(num -> num >= MIN_LOTTO_NUMBER && num <= MAX_LOTTO_NUMBER);
+    private boolean isNotWithinRange(List<Integer> numbers) {
+        return !numbers.stream().allMatch(num -> num >= MIN_LOTTO_NUMBER && num <= MAX_LOTTO_NUMBER);
     }
 
     private boolean isDuplicated(List<Integer> numbers) {

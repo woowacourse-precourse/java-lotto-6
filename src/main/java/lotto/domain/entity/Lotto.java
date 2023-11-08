@@ -47,13 +47,6 @@ public class Lotto {
                 numbers, MIN_NUMBER_RANGE.getValue(), MAX_NUMBER_RANGE.getValue());
     }
 
-    @Override
-    public String toString() {
-        return numbers.stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining(", ", "[", "]"));
-    }
-
     public List<Integer> getNumbers() {
         return numbers;
     }

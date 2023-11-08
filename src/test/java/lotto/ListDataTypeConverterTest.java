@@ -31,6 +31,6 @@ class ListDataTypeConverterTest {
         //when && then
         assertThatThrownBy(() -> ListDataTypeConverter.stringToInteger(strings)).isInstanceOf(
                 NumberFormatException.class)
-            .hasMessage("숫자를 입력해주세요.");
+            .hasMessage("변환 하려는 문자열이 숫자로만 이루어져 있지 않습니다.");
     }
 }

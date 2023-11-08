@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.ArrayList;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,6 +22,7 @@ public class LottoController {
     public void start() {
         PurchaseAmount purchaseAmount = getPurchaseAmount();
         ArrayList<Lotto> lottos = generateLottoAndPrint(purchaseAmount);
+        WinningLotto winningLotto = getWinningLotto();
     }
 
     private PurchaseAmount getPurchaseAmount() {
@@ -38,5 +40,16 @@ public class LottoController {
 
         outputView.printPurchaseLottoNumbers(lottos);
         return lottos;
+    }
+
+    private WinningLotto getWinningLotto() {
+        try {
+            ArrayList<Integer> winningNumbers = inputView.inputWinningNumbers();
+            int bonusNumber = inputView.inputBonusNumber();
+            return new WinningLotto(winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            return getWinningLotto();
+        }
     }
 }

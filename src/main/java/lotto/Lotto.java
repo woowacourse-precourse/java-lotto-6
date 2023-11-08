@@ -31,10 +31,12 @@ public class Lotto {
                 computerIndex ++;
                 playerIndex ++;
             }
-            else if (computerNumber > playerNumber) {
+            
+            if (computerNumber > playerNumber) {
                 playerIndex ++;
             }
-            else {
+            
+            if (computerNumber < playerNumber) {
                 computerIndex ++;
             }
         }
@@ -42,12 +44,12 @@ public class Lotto {
         return count;
     }
 
-    public boolean runBonus(Integer bonus){
+    public int runBonus(Integer bonus){
         for (Integer number : this.numbers) {
             if (bonus == number) {
-                return true;
+                return 1;
             }
         }
-        return false;
+        return 0;
     }
 }

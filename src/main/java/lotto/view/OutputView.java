@@ -10,7 +10,6 @@ import java.util.Comparator;
 import java.util.Map;
 
 public class OutputView {
-
     private static final int NEVER_COUNTED = 0;
 
     public void beforeInputMoney() {

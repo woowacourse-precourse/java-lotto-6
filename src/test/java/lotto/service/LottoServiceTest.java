@@ -66,9 +66,8 @@ class LottoServiceTest {
                     purchaseLottoGivenCount(2);
                     WinNumbersDto winNumbersDto = new WinNumbersDto(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
                     ResultDto resultDto = lottoService.generateResult(winNumbersDto);
-                    assertThat(resultDto.benefitRate())
-                            .isEqualTo(101500000.0);
-                    },
+                    assertThat(resultDto.benefitRate()).isEqualTo(101500000.0);
+                },
                 List.of(1, 2, 3, 4, 5, 6),
                 List.of(1, 2, 3, 4, 5, 7));
     }
@@ -79,8 +78,7 @@ class LottoServiceTest {
                     purchaseLottoGivenCount(3);
                     WinNumbersDto winNumbersDto = new WinNumbersDto(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
                     ResultDto resultDto = lottoService.generateResult(winNumbersDto);
-                    assertThat(resultDto.benefitRate())
-                            .isEqualTo(1833.3);
+                    assertThat(resultDto.benefitRate()).isEqualTo(1833.3);
                 },
                 List.of(1, 2, 3, 8, 9, 10),
                 List.of(1, 2, 3, 4, 11, 12),

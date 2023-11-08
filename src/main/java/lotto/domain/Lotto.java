@@ -49,11 +49,13 @@ public class Lotto {
     }
 
     private void validateNumbersInRange(List<Integer> numbers) {
-        numbers.forEach(n -> {
-            if (n < START_INCLUSIVE_LOTTO_NUMBER || n > END_INCLUSIVE_LOTTO_NUMBER) {
-                throw new IllegalArgumentException(ErrorMessage.OUT_OF_LOTTO_NUMBER_RANGE.getMessage());
-            }
-        });
+        numbers.forEach(this::validateEachNumberInRange);
+    }
+
+    private void validateEachNumberInRange(Integer n) {
+        if (n < START_INCLUSIVE_LOTTO_NUMBER || n > END_INCLUSIVE_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_LOTTO_NUMBER_RANGE.getMessage());
+        }
     }
 
     private List<Integer> generateNumbers() {

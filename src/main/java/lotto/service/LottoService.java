@@ -58,12 +58,16 @@ public class LottoService {
                                                        List<Integer> winNumbers, int bonusNumber) {
         Map<Ranking, Integer> rankingCount = new HashMap<>();
         for (LottoDto lottoDto : lottoDtoes) {
-            List<Integer> lottoNumbers = lottoDto.numbers();
-            int matchedNumberCount = countMatchedNumbers(winNumbers, lottoNumbers);
-            boolean isBonusNumberMatched = judgeBonusNumberMatched(bonusNumber, lottoNumbers);
-            calculateRankingCount(rankingCount, matchedNumberCount, isBonusNumberMatched);
+            calculateEachLottoDto(winNumbers, bonusNumber, rankingCount, lottoDto);
         }
         return rankingCount;
+    }
+
+    private void calculateEachLottoDto(List<Integer> winNumbers, int bonusNumber, Map<Ranking, Integer> rankingCount, LottoDto lottoDto) {
+        List<Integer> lottoNumbers = lottoDto.numbers();
+        int matchedNumberCount = countMatchedNumbers(winNumbers, lottoNumbers);
+        boolean isBonusNumberMatched = judgeBonusNumberMatched(bonusNumber, lottoNumbers);
+        calculateRankingCount(rankingCount, matchedNumberCount, isBonusNumberMatched);
     }
 
     private int countMatchedNumbers(List<Integer> winNumbers, List<Integer> lottoNumbers) {

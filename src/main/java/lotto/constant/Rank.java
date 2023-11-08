@@ -11,29 +11,29 @@ public enum Rank {
     NO_PLACE("", 0, 0);
 
     private String standard;
-    private int winingCount;
+    private int totalCount;
     private int money;
 
-    private static Rank getInstance(int winingCount) {
+    private static Rank getInstance(int totalCount) {
         return Arrays.stream(Rank.values())
-                .filter(rank -> rank.winingCount == winingCount)
+                .filter(rank -> rank.totalCount == totalCount)
                 .findAny()
                 .orElse(NO_PLACE);
     }
 
-    public static Rank findRank(int winingCount, int bonusCount) {
-        Rank rank = getInstance(winingCount);
+    public static Rank findRank(int totalCount, int bonusCount) {
+        Rank rank = getInstance(totalCount);
 
-        if(winingCount == 6 && bonusCount == 1) {
+        if(totalCount == 6 && bonusCount == 1) {
             return SECOND_PLACE;
         }
 
         return rank;
     }
 
-    Rank(String standard, int winingCount, int money) {
+    Rank(String standard, int totalCount, int money) {
         this.standard = standard;
-        this.winingCount = winingCount;
+        this.totalCount = totalCount;
         this.money = money;
     }
 

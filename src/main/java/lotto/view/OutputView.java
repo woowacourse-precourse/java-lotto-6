@@ -31,13 +31,15 @@ public class OutputView {
                 count);
     }
 
-    public void showWinningStatistics(HashMap<String, Integer> winningStatistics) {
+    public void showWinningStatistics(HashMap<Rank, Integer> winningStatistics) {
         System.out.println(WINNING_STATISTICS);
         System.out.println(DIVISION_LINE);
 
         for (Rank rank: Rank.values()) {
-            String rankTag = String.valueOf(rank);
-            System.out.println(formatStatistics(rank, winningStatistics.get(rankTag)));
+            if (!rank.equals(Rank.NO_PLACE)){
+                int lottoCount = winningStatistics.get(rank);
+                System.out.println(formatStatistics(rank, lottoCount));
+            }
         }
     }
 }

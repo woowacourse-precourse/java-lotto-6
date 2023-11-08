@@ -1,7 +1,6 @@
 package lotto.controller.machine;
 
 import lotto.constant.Rank;
-import lotto.constant.WinningStandard;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumber;
 import lotto.model.LottoTicket;
@@ -11,38 +10,34 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Judgment {
-    private HashMap<String, Integer> winningStatistics;
+    private HashMap<Rank, Integer> winningStatistics;
 
     public Judgment() {
         winningStatistics = new HashMap<>();
     }
 
     private void initilizeWinningStatistics() {
-        for (Rank rank: Rank.values()){
-            winningStatistics.put(String.valueOf(rank), 0);
+        for (Rank rank : Rank.values()) {
+            winningStatistics.put(rank, 0);
         }
     }
 
-    private String findRank(Lotto lotto, WinningNumber winningNumber){
-        int matchCount = winningNumber.calcMatchCount(lotto);
-        int bonussCount = winningNumber.calcBonussMatchCount(lotto);
-        System.out.println(lotto.toString());
-        System.out.println(matchCount + "/" + bonussCount);
+    private Rank findRank(Lotto lotto, WinningNumber winningNumber) {
+        int bonusCount = winningNumber.calcBonussMatchCount(lotto);
+        int totalCount = winningNumber.calcMatchCount(lotto) + bonusCount;
 
-        return String.valueOf(WinningStandard.getMatchType(matchCount, bonussCount));
+        return Rank.findRank(totalCount, bonusCount);
     }
 
     public void judge(LottoTicket lottoTicket) {
         List<Lotto> lottos = lottoTicket.getLottos();
         WinningNumber winningNumber = lottoTicket.getWinningNumber();
-        int lottoCount;
 
         initilizeWinningStatistics();
 
-        for (Lotto lotto: lottos) {
-            String rank = findRank(lotto, winningNumber);
-            System.out.println(rank);
-            lottoCount = winningStatistics.get(rank) + 1;
+        for (Lotto lotto : lottos) {
+            Rank rank = findRank(lotto, winningNumber);
+            int lottoCount = winningStatistics.get(rank) + 1;
 
             winningStatistics.put(rank, lottoCount);
         }

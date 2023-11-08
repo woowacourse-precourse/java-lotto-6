@@ -1,14 +1,13 @@
 package lotto.domain;
 
-import lotto.enums.ExceptionMessage;
+import lotto.utils.LottoValidator;
 
 public class LottoPurchase {
     private static final int LOTTO_PRICE = 1000;
     private final int money;
 
-    public LottoPurchase(int money) {
-        validate(money);
-        this.money = money;
+    public LottoPurchase(String moneyInput) {
+        this.money = validate(moneyInput);
     }
 
     public int getMoney() {
@@ -19,10 +18,11 @@ public class LottoPurchase {
         return money / LOTTO_PRICE;
     }
 
-    private void validate(int money) {
-        if (money % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(ExceptionMessage.AMOUNT_UNIT_ERROR.message);
-        }
+    private int validate(String moneyInput) {
+        LottoValidator lottoValidator = new LottoValidator();
+        int money = lottoValidator.validateNonNumeric(moneyInput);
+        lottoValidator.validatePurchaseAmount(money);
+        return money;
     }
 
 }

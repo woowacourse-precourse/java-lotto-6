@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 import lotto.enums.ExceptionMessage;
 
-public class InputValidator {
+public class LottoValidator {
 
     private static final int MONEY_UNIT = 1000;
     private static final int MIN_NUMBER = 1;
@@ -42,7 +42,7 @@ public class InputValidator {
         }
     }
 
-    public void validateWinningNumbersCount(List<Integer> numbers) {
+    public void validateNumbersCount(List<Integer> numbers) {
         if (numbers.size() != WINNING_NUMBERS_COUNT) {
             String error = String.format(ExceptionMessage.NUMBER_COUNT_ERROR.message, WINNING_NUMBERS_COUNT);
             throw new IllegalArgumentException(error);

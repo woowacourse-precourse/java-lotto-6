@@ -2,12 +2,13 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import lotto.enums.ExceptionMessage;
+import lotto.utils.LottoValidator;
 
 public class Lotto {
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
+    private static final int NUMBERS_COUNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -16,19 +17,11 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            String error = String.format(ExceptionMessage.NUMBER_COUNT_ERROR.message, 6);
-            throw new IllegalArgumentException(error);
-        }
-        if (validateDuplicateNumbers(numbers)) {
-            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_DUPLICATE_ERROR.message);
-        }
-    }
+        LottoValidator lottoValidator = new LottoValidator();
 
-    private boolean validateDuplicateNumbers(List<Integer> numbers) {
-        Set<Integer> dupNumbers = new HashSet<>(numbers);
-        return numbers.size() != dupNumbers.size();
-
+        lottoValidator.validateDuplicateNumbers(numbers);
+        lottoValidator.validateNumbersCount(numbers);
+        lottoValidator.validateNumberRange(numbers);
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {
@@ -38,6 +31,6 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return Collections.unmodifiableList(numbers);
     }
 }

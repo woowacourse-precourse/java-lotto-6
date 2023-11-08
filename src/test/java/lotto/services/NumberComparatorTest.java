@@ -35,7 +35,7 @@ public class NumberComparatorTest {
     @DisplayName("보너스 번호 일치 여부 확인")
     @Test
     void testBonusNumberMatched() {
-        Lotto purchasedLotto = new Lotto(List.of(10, 20, 30, 40, 50, 7));
+        Lotto purchasedLotto = new Lotto(List.of(10, 20, 30, 40, 45, 7));
         assertTrue(comparator.isBonusNumberMatched(purchasedLotto, winningLotto.getBonusNumber()));
     }
 

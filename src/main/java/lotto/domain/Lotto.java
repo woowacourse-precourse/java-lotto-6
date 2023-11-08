@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class Lotto {
 
-    private static final int LOTTO_NUMBER_COUNT = 6;
+    public static final int LOTTO_NUMBER_COUNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -29,12 +29,12 @@ public class Lotto {
 
     private void checkDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> removeDuplicateNumbers = new HashSet<>(numbers);
-        if (removeDuplicateNumbers.size() != 6) {
+        if (removeDuplicateNumbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또에서 중복되는 번호가 있습니다");
         }
     }
 
-    public List<Integer> ascendingSort(List<Integer> numbers) {
+    private List<Integer> ascendingSort(List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
                 .collect(Collectors.toList());

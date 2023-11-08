@@ -2,8 +2,10 @@ package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.exception.DuplicatedLottoException;
+import lotto.exception.LottoSizeException;
 import lotto.exception.RangeLottoException;
 
 public class Lotto {
@@ -20,12 +22,19 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateSize(numbers);
         validateDuplicated(numbers);
         validateRange(numbers);
     }
 
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
+            throw new LottoSizeException();
+        }
+    }
+
     private void validateDuplicated(List<Integer> numbers) {
-        HashSet<Integer> lottoNumbers = new HashSet<>(numbers);
+        Set<Integer> lottoNumbers = new HashSet<>(numbers);
 
         if (lottoNumbers.size() != LOTTO_NUMBER_SIZE) {
             throw new DuplicatedLottoException();

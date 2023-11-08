@@ -16,7 +16,8 @@ public class Validator {
         if (purchaseAmount < LottoNumConstant.LOTTO_AMOUNT_PURCHASE.getNumber()
             || purchaseAmount % LottoNumConstant.LOTTO_AMOUNT_PURCHASE.getNumber() != LottoNumConstant.ZERO.getNumber()
         ) {
-            throw new IllegalArgumentException(ExceptionMessage.PURCHASE_AMOUNT_SHOULD_BE_MULTIPLE_OF_THOUSAND.getMessage());
+            throw new IllegalArgumentException(
+                ExceptionMessage.PURCHASE_AMOUNT_SHOULD_BE_MULTIPLE_OF_THOUSAND.getMessage());
         }
         return purchaseAmount;
     }

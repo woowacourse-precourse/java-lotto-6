@@ -8,12 +8,12 @@ import java.util.Map;
 
 public class OutputView {
 
-    private static final String OUTPUT_LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다.";
-    private static final String OUTPUT_WINNING_STATISTICS_MESSAGE = "당첨 통계";
-    private static final String OUTPUT_WINNING_STATISTICS_DIVIDER = "---------";
-    private static final String OUTPUT_WINNING_MONEY_FORMAT = "%d개 일치 (%s원) - %d개";
-    private static final String OUTPUT_WINNING_MONEY_FORMAT_WITH_BONUS_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
-    private static final String OUTPUT_PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    public static final String OUTPUT_LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다.";
+    public static final String OUTPUT_WINNING_STATISTICS_MESSAGE = "당첨 통계";
+    public static final String OUTPUT_WINNING_STATISTICS_DIVIDER = "---------";
+    public static final String OUTPUT_WINNING_MONEY_FORMAT = "%d개 일치 (%s원) - %d개";
+    public static final String OUTPUT_WINNING_MONEY_FORMAT_WITH_BONUS_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
+    public static final String OUTPUT_PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public void printLottoCount(int lottoCount) {
         System.out.println(String.format(OUTPUT_LOTTO_COUNT_MESSAGE, lottoCount));

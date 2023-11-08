@@ -2,13 +2,13 @@
 
 ## 기능
 - [x] 구입 금액 입력 (OrderView.askOrderPrice)
-- [ ] 개수만큼 로또 생성
+- [x] 개수만큼 로또 생성 (LottoGenerator.generateWinningLotto)
 - [x] 랜덤으로 만들어진 로또 보여줌 (OrderView.printOrderLottos)
   - [x] 로또를 출력할 때, 형식을 잡아줌 (Lotto.toString)
 - [x] 당첨 번호 입력 (LottoView.askLottoNumbers)
 - [x] 보너스 번호 입력 (LottoView.askBonusNumber)
 - [x] 로또의 당첨 번호, 즉 정답을 저장 (WinningLotto)
-  - [ ] 입력된 당첨 번호와 보너스 번호로 winning lotto 생성
+  - [x] 입력된 당첨 번호와 보너스 번호로 winning lotto 생성 (LottoGenerator.generateRandomLotto)
 - [x] 생성된 로또의 결과 계산 (CalculateWinning.calculateResult)
 - [x] 결과를 종합하여 당첨 통계 생성 (CalculateWinning.generateStatistic)
 - [x] 당첨 통계를 통해 수익률 계산 (LottoStatistic.produceStatistic)

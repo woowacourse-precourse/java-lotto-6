@@ -16,6 +16,10 @@ public class Price {
         this.amount = amount;
     }
 
+    public long getAmount() {
+        return amount;
+    }
+
     private void validateRange(long amount) {
         if (amount < MIN_AMOUNT || amount > MAX_AMOUNT) {
             throw new IllegalArgumentException(PRICE_OUT_OF_RANGE.getMessage());

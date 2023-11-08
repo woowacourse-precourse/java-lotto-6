@@ -4,31 +4,31 @@ import java.util.Map;
 
 public class ProfitRate {
 
-    private final int payAmount;
+    private final int purchaseAmount;
     private int totalProfit = 0;
-    private double profitRate;
+    private final double profitRate;
 
-    public ProfitRate(Map<WinningStrategy, Integer> lottoResult, int payAmount) {
-        calculateProfit(lottoResult);
-        this.payAmount = payAmount;
+    public ProfitRate(Map<WinningCriteria, Integer> lottoResult, int purchaseAmount) {
+        this.totalProfit = calculateProfit(lottoResult);
+        this.purchaseAmount = purchaseAmount;
+        this.profitRate = calculateProfitRate();
+
     }
 
-    private void calculateProfit(Map<WinningStrategy, Integer> matchResult) {
+    private int calculateProfit(Map<WinningCriteria, Integer> matchResult) {
         matchResult.forEach((key, value) -> {
             while (value > 0) {
-                totalProfit = WinningStrategy.valueOf(key.name()).calculate(totalProfit);
+                totalProfit = WinningCriteria.valueOf(key.name()).calculate(totalProfit);
                 value--;
             }
         });
+        return totalProfit;
     }
 
-    public double calculateProfitRate(int totalProfit, int payAmount) {
-        return roundToTwoDecimalPlaces((double) (totalProfit / payAmount) * 100);
+    private double calculateProfitRate() {
+        return (double) this.totalProfit / (double) this.purchaseAmount * 100;
     }
 
-    private double roundToTwoDecimalPlaces(double number) {
-        return Math.round(number * 100.0) / 100.0;
-    }
 
     public double getProfitRate() {
         return profitRate;

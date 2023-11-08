@@ -17,6 +17,9 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new LottoGameException(ExceptionEnum.NOT_ENOUGH_NUMBER_EXCEPTION);
         }
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new LottoGameException(ExceptionEnum.CONTAIN_DUPLICATE_NUMBER_EXCEPTION);
+        }
     }
 
     public List<Integer> getNumbers() {

@@ -44,7 +44,7 @@ public class Application {
                 bonusNumber = Integer.parseInt(inputBonusNumber);
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-                continue; // Continue to the next iteration of the loop
+                continue;
             }
             passedBonus = Validators.validateBonusNumber(bonusNumber, winningNumbers);
             if (!passedBonus) {

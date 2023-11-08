@@ -3,13 +3,16 @@ package lotto;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
 import lotto.domain.Validators;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -82,5 +85,14 @@ class LottoTest {
     void bonusNotInteger() {
         assertThatThrownBy(() -> Validators.validateStringIsIntegerConvertable("$^%3"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호와 당첨 번호를 올바르게 비교하는 지 확인한다.")
+    @Test
+    void checkCompareLottoAndWinningNumbers() {
+        List<Integer> lottoNumbers = List.of(1,2,3,4,5,6);
+        List<Integer> winningNumbers = List.of(1,2,3,10,11,12);
+        int count = Prize.compare(lottoNumbers,winningNumbers);
+        assertThat(Integer.toString(count)).isEqualTo("3");
     }
 }

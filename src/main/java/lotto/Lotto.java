@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -15,6 +18,13 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+    public String toString(){
+        return numbers.toString();
+    }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+
 }

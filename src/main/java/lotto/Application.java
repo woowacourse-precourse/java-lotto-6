@@ -1,6 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -15,6 +20,14 @@ public class Application {
             }
         }
         System.out.println(purchaseAmount + "개를 구매했습니다.");
+        List<Lotto> lottoList = new ArrayList<>();
+        for (int i = 0; i<purchaseAmount; i++) {
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(randomNumbers);
+            Lotto lotto = new Lotto(randomNumbers);
+            lottoList.add(lotto);
+            System.out.println(randomNumbers);
+        }
     }
 
     private static boolean isValidInput(String input) {
@@ -29,6 +42,7 @@ public class Application {
             System.err.println("[ERROR] 구입금액은 숫자로 입력해주세요.");
             return false;
         }
-
     }
+
+
 }

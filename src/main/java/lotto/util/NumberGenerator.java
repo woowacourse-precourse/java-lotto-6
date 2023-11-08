@@ -3,5 +3,6 @@ package lotto.util;
 import java.util.List;
 
 public interface NumberGenerator {
-    List<Integer> generateNumbers();
+
+	List<Integer> generateNumbers();
 }

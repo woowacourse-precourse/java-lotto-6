@@ -5,17 +5,13 @@ import lotto.domain.Lottos;
 import lotto.domain.WinnerLotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoResult;
-
 import lotto.dto.RequestCash;
 import lotto.dto.RequestLottos;
 import lotto.dto.RequestWinnerLotto;
 import lotto.dto.RequestLottoResult;
-
 import lotto.util.NumberGenerator;
-
 import lotto.view.InputView;
 import lotto.view.OutputView;
-
 import java.util.List;
 
 public class GameController {
@@ -41,7 +37,7 @@ public class GameController {
             compareLottosWithWinnerLotto(lottos, winnerLotto, cash);
         } catch (Exception e) {
             outputView.printErrorMessage(e);
-        }  finally {
+        } finally {
             inputView.close();
         }
     }
@@ -51,13 +47,11 @@ public class GameController {
         try {
             RequestCash requestCash = inputView.requestCash();
             return Cash.create(requestCash.depositAmount(),
-                               requestCash.spendAmount());
-        }
-        catch (IllegalArgumentException e) {
+                requestCash.spendAmount());
+        } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return depositCash();
-        }
-        catch (IllegalStateException e) {
+        } catch (IllegalStateException e) {
             throw e;
         }
     }
@@ -74,8 +68,10 @@ public class GameController {
         try {
             List<Integer> winnerNumbers = getWinnerNumbers();
             Integer bonusNumber = getBonusNumber();
-            RequestWinnerLotto requestWinnerLotto = RequestWinnerLotto.of(winnerNumbers, bonusNumber);
-            return WinnerLotto.create(requestWinnerLotto.winnerNumbers(), requestWinnerLotto.bonusNumber());
+            RequestWinnerLotto requestWinnerLotto = RequestWinnerLotto.of(winnerNumbers,
+                bonusNumber);
+            return WinnerLotto.create(requestWinnerLotto.winnerNumbers(),
+                requestWinnerLotto.bonusNumber());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return getWinnerLotto();
@@ -83,7 +79,6 @@ public class GameController {
             throw e;
         }
     }
-
 
 
     private List<Integer> getWinnerNumbers() {
@@ -109,7 +104,6 @@ public class GameController {
             throw e;
         }
     }
-
 
 
     private void compareLottosWithWinnerLotto(Lottos lottos, WinnerLotto winnerLotto, Cash cash) {

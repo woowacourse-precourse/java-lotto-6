@@ -1,6 +1,5 @@
 package lotto.constant;
 
-
 public enum LottoResultConstant {
 
     NO_BENEFIT(0.0),

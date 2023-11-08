@@ -1,21 +1,21 @@
 package lotto.util;
 
 public enum CharacterUnits {
-    COMMA(","),
-    SPACE(" "),
-    LEFT_BRACKET("["),
-    RIGHT_BRACKET("]"),
-    SEPARATOR(","),
-    ENTER("\n");
+	COMMA(","),
+	SPACE(" "),
+	LEFT_BRACKET("["),
+	RIGHT_BRACKET("]"),
+	SEPARATOR(","),
+	ENTER("\n");
 
 
-    private final String unit;
+	private final String unit;
 
-    CharacterUnits(final String unit) {
-        this.unit = unit;
-    }
+	CharacterUnits(final String unit) {
+		this.unit = unit;
+	}
 
-    public String getUnit() {
-        return unit;
-    }
+	public String getUnit() {
+		return unit;
+	}
 }

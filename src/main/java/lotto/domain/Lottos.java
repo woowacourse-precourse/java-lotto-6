@@ -3,41 +3,41 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import lotto.dto.RequestLottoResult;
 
 
 public class Lottos {
 
-    private final List<Lotto> lottos;
-    private final Integer count;
+	private final List<Lotto> lottos;
+	private final Integer count;
 
-    private Lottos(final List<Lotto> lottoDummy) {
-        this.lottos = lottoDummy;
-        this.count = lottos.size();
-    }
-
-
-    public static Lottos create(final List<Lotto> lottoDummy) {
-        return new Lottos(lottoDummy);
-    }
+	private Lottos(final List<Lotto> lottoDummy) {
+		this.lottos = lottoDummy;
+		this.count = lottos.size();
+	}
 
 
-    public RequestLottoResult compareWithWinnerLotto(final WinnerLotto winnerLotto) {
-        List<Prize> results = lottos.stream()
-                .map(lotto -> lotto.compareWithWinnerLotto(winnerLotto.getWinnerNumbers(), winnerLotto.getBonusNumber()))
-                .collect(Collectors.toList());
-        return RequestLottoResult.of(results);
-    }
+	public static Lottos create(final List<Lotto> lottoDummy) {
+		return new Lottos(lottoDummy);
+	}
 
 
-    public List<Lotto> getLottos() {
-        return Collections.unmodifiableList(lottos);
-    }
+	public RequestLottoResult compareWithWinnerLotto(final WinnerLotto winnerLotto) {
+		List<Prize> results = lottos.stream()
+			.map(lotto -> lotto.compareWithWinnerLotto(winnerLotto.getWinnerNumbers(),
+				winnerLotto.getBonusNumber()))
+			.collect(Collectors.toList());
+		return RequestLottoResult.of(results);
+	}
 
-    public Integer getCount() {
-        return count;
-    }
+
+	public List<Lotto> getLottos() {
+		return Collections.unmodifiableList(lottos);
+	}
+
+	public Integer getCount() {
+		return count;
+	}
 
 
 }

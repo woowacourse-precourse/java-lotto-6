@@ -4,17 +4,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoResultCalculatorTest {
-    private LottoResultCalculator calculator;
-
-    @BeforeEach
-    void setUp() {
-        calculator = new LottoResultCalculator();
-    }
 
     @DisplayName("리스트를 비교하여 일치하는 값의 개수를 반환한다.")
     @Test

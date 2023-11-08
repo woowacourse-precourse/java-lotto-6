@@ -21,10 +21,11 @@ public class Validator {
     public static void validWinningNumbers(String input) {
         String[] splitInput = input.split(",");
         validWinningNumbersCount(splitInput);
-        validAllNumbersInteger(splitInput);
 
         Set<Integer> hashSet = new HashSet<>();
         for (int i = 0; i < splitInput.length; i++) {
+            validNumber(splitInput[i]);
+
             int number = Integer.parseInt(splitInput[i]);
             validOutOfRangeNumber(number);
 
@@ -54,14 +55,8 @@ public class Validator {
         }
     }
 
-    private static void validAllNumbersInteger(String[] input) {
-        for (int i = 0; i < input.length; i++) {
-            validNumber(input[i]);
-        }
-    }
-
     private static void validOutOfRangeNumber(int number) {
-        if (number >= LottoConfiguration.NUMBER_RANGE_START && number <= LottoConfiguration.NUMBER_RANGE_END) {
+        if (!(number >= LottoConfiguration.NUMBER_RANGE_START && number <= LottoConfiguration.NUMBER_RANGE_END)) {
             throw new IllegalArgumentException(Message.outOfRangeError);
         }
     }

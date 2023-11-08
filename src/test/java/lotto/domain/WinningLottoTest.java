@@ -6,6 +6,7 @@ import java.util.List;
 
 import static lotto.constant.ErrorMessage.DUPLICATED_BONUS;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class WinningLottoTest {
 
@@ -17,5 +18,16 @@ class WinningLottoTest {
         assertThatThrownBy(() -> new WinningLotto(lottoNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(DUPLICATED_BONUS);
+    }
+
+    @DisplayName("당첨 번호와 내 로또 번호가 얼마나 일치하는 지 셀 수 있다.")
+    @Test
+    void countCorrectNumber() {
+        Lotto lottoNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoNumber bonusNumber = new LottoNumber(7);
+        WinningLotto winningLotto = new WinningLotto(lottoNumbers, bonusNumber);
+        Lotto userLotto = new Lotto(List.of(1, 2, 3, 10, 11, 12));
+        int countMatchNumbers = winningLotto.countMatchNumbers(userLotto);
+        assertThat(countMatchNumbers).isEqualTo(3);
     }
 }

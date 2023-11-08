@@ -38,23 +38,39 @@ public class LottoService {
         return new Purchase(lottos, count);
     }
 
+    public EnumMap<Reward, Integer> pick(Lotto lotto, Bonus bonus) {
+        for(Lotto l : lottos){
+            int sameCount = getSameSize(l);
+            boolean isSameBonus = checkBonus(lotto, bonus);
+            setReward(sameCount, isSameBonus);
+        }
+        return reward;
+    }
+
+    public double calRateOfReturn(Amount amount){
+        double earn = 0;
+        for(Map.Entry<Reward, Integer> entry : reward.entrySet()){
+            int rewardAmount = entry.getKey().getReward();
+            int sameCount = entry.getValue();
+            earn += rewardAmount * sameCount;
+        }
+        return earn / amount.getAmount() * 100;
+    }
+
     private int divideAmount(int amount){
         return amount / Constant.DIVIDE_UNIT;
     }
 
-    public EnumMap<Reward, Integer> pick(Lotto lotto, Bonus bonus) {
-        for(Lotto l : lottos){
-            List<Integer> duplication = new ArrayList<>();
-            duplication = l.getNumbers().stream().filter(s -> lotto.getNumbers().contains(s))
-                    .collect(Collectors.toList());
-            int sameCount = duplication.size();
+    private int getSameSize(Lotto lotto){
+        List<Integer> duplication = new ArrayList<>();
+        duplication = lotto.getNumbers().stream().filter(s -> lotto.getNumbers().contains(s))
+                .collect(Collectors.toList());
+        return duplication.size();
+    }
 
-            boolean isSameBonus = false;
-            if(l.getNumbers().contains(bonus.getBonus())) isSameBonus = true;
-
-            setReward(sameCount, isSameBonus);
-        }
-        return reward;
+    private boolean checkBonus(Lotto lotto, Bonus bonus){
+        if(lotto.getNumbers().contains(bonus.getBonus())) return true;
+        return false;
     }
 
     private void setReward(int sameCount, boolean isSameBouns){
@@ -68,15 +84,5 @@ public class LottoService {
             reward.put(Reward.FOURTH, reward.get(Reward.FOURTH) + 1);
         else if (sameCount == Reward.FIFTH.getSameCount())
             reward.put(Reward.FIFTH, reward.get(Reward.FIFTH) + 1);
-    }
-
-    public double calRateOfReturn(Amount amount){
-        double earn = 0;
-        for(Map.Entry<Reward, Integer> entry : reward.entrySet()){
-            int rewardAmount = entry.getKey().getReward();
-            int sameCount = entry.getValue();
-            earn += rewardAmount * sameCount;
-        }
-        return earn / amount.getAmount() * 100;
     }
 }

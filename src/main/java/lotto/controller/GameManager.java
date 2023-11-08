@@ -19,7 +19,6 @@ public class GameManager {
 
     public void run() {
         Amount amount = inputPurchaseAmountUntilNoError();
-        printLottoCountByAmount(amount);
         Lottos lottos = publishLottosByAmountAndPrintLottos(amount);
         Lotto winningLotto = inputView.inputWinningNumbers();
         Bonus bonus = inputView.inputBonusNumber();
@@ -40,14 +39,16 @@ public class GameManager {
         }
     }
 
-    private void printLottoCountByAmount(Amount amount) {
-        outputView.printPublishedLottoCount(lottoPublisher.getLottoCountByAmount(amount));
-    }
-
     private Lottos publishLottosByAmountAndPrintLottos(Amount amount){
+        outputView.printLineBreak();
+        printLottoCountByAmount(amount);
         Lottos lottos = lottoPublisher.publishLottosByAmount(amount);
         outputView.printPublishedLottos(lottos);
         return lottos;
+    }
+
+    private void printLottoCountByAmount(Amount amount) {
+        outputView.printPublishedLottoCount(lottoPublisher.getLottoCountByAmount(amount));
     }
 
 }

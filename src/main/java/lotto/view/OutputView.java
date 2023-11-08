@@ -49,4 +49,8 @@ public class OutputView {
         System.out.println(e.getMessage());
     }
 
+    public void printLineBreak(){
+        System.out.println();
+    }
+
 }

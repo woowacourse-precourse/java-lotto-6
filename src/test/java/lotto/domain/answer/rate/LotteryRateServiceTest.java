@@ -6,6 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LotteryRateServiceTest {
+    private final LotteryRateService lotteryRateService = new LotteryRateService();
+
     @Test
     @DisplayName("총 수익률을 구한다")
     void 총수익률계산() {
@@ -14,7 +16,7 @@ class LotteryRateServiceTest {
         Long winningPrice = 24000L;
 
         // WHEN
-        Double returnOnInvestment = LotteryRateService.getReturnOnInvestment(cash, winningPrice);
+        Double returnOnInvestment = lotteryRateService.getReturnOnInvestment(cash, winningPrice);
 
         // THEN
         assertEquals(returnOnInvestment, 2.42d);

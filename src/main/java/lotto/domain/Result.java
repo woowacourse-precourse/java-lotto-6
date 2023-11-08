@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Result {
@@ -14,12 +15,9 @@ public class Result {
     }
 
     public int[] checkWinning() {
-        int[] result = new int[6];
+        int[] result = new int[ResultType.values().length];
         for (Lotto lotto : purchasedLotto) {
-            int matchCount = countMatchNumber(lotto);
-            boolean hasBonusBall = lotto.getNumbers().contains(bonusBall);
-
-            ResultType resultType = ResultType.getResultType(matchCount, hasBonusBall);
+            ResultType resultType = ResultType.getResultType(lotto, winningNumber, bonusBall);
             result[resultType.ordinal()]++;
         }
         return result;
@@ -51,14 +49,15 @@ public class Result {
             this.hasBonusBall = hasBonusBall;
         }
 
-        public static ResultType getResultType(int matchCount, boolean hasBonusBall) {
-            for (ResultType resultType : values()) {
-                if (resultType.matchCount == matchCount && resultType.hasBonusBall == hasBonusBall) {
-                    return resultType;
-                }
-            }
-            return NONE;
+        public static ResultType getResultType(Lotto lotto, List<Integer> winningNumber, int bonusBall) {
+
+                long matchCount = lotto.getNumbers().stream().filter(winningNumber::contains).count();
+                boolean hasBounuBall = lotto.getNumbers().contains(bonusBall);
+
+            return Arrays.stream(values())
+                    .filter(type -> type.matchCount == matchCount && type.hasBonusBall == hasBounuBall)
+                    .findFirst()
+                    .orElse(NONE);
         }
     }
-
 }

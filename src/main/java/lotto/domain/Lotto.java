@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.exception.DuplicatedNumber;
+import lotto.exception.NotRangeException;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,7 +31,7 @@ public class Lotto {
         Set<Integer> numberSet = new HashSet<>();
         for(int n : numbers){
            if(numberSet.contains(n)){
-               throw new IllegalArgumentException();
+               throw new DuplicatedNumber();
            }
             numberSet.add(n);
         }
@@ -37,7 +40,7 @@ public class Lotto {
     private void containRange(List<Integer> numbers){
         for(int n : numbers){
             if(n < 1 || n > 45){
-                throw new IllegalArgumentException();
+                throw new NotRangeException();
             }
         }
     }

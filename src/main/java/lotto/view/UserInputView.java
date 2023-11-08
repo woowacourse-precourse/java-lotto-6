@@ -1,7 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,13 +25,13 @@ public class UserInputView {
     private static final String LOTTO_BONUS_NUMBER_DUPLICATE = "[ERROR] 로또 번호와 중복되는 번호를 고를 수 없습니다.";
 
     private int convertedLine;
+
     private final UserOutputView userOutputView = new UserOutputView();
 
     /**
      * 보너스 번호를 입력받을 때 사용할 WinnerLottoNumbers
      */
     private List<Integer> bonusNumbersValidate = new ArrayList<>();
-
 
     public int userMoneyInput() {
         System.out.println(BUY_MONEY_INFO);
@@ -128,7 +127,7 @@ public class UserInputView {
             convertedLine = Integer.parseInt(validateLine);
             thousandValidate(convertedLine);
             purchaseMoneyValidate(convertedLine);
-            userOutputView.boughtLottoEachPrint(convertedLine/THOUSAND);
+            userOutputView.boughtLottoEachPrint(convertedLine / THOUSAND);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             userMoneyInput();

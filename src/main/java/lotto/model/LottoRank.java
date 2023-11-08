@@ -1,7 +1,5 @@
 package lotto.model;
 
-import java.util.List;
-
 public enum LottoRank {
     FIFTH(5000),
     FOURTH(50000),
@@ -12,19 +10,19 @@ public enum LottoRank {
 
     private final int winnings;
 
-    LottoRank(int winnings){
+    LottoRank(int winnings) {
         this.winnings = winnings;
     }
 
-    public boolean isWin(){
+    public boolean isWin() {
         return this != LottoRank.NO;
     }
 
-    public int myWinnings(){
+    public int myWinnings() {
         return winnings;
     }
 
-    public int lottoRankMapper(LottoRank lottoRank){
+    public int lottoRankMapper(LottoRank lottoRank) {
         return winnings;
     }
 

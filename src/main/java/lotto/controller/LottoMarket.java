@@ -4,7 +4,6 @@ import lotto.model.Lotto;
 import lotto.model.LottoProvider;
 import lotto.model.LottoRank;
 import lotto.model.WinningLotto;
-
 import java.util.List;
 import java.util.Map;
 
@@ -12,15 +11,15 @@ public class LottoMarket {
 
     private final LottoProvider lottoProvider;
 
-    public LottoMarket(){
+    public LottoMarket() {
         this.lottoProvider = new LottoProvider();
     }
 
-    public List<Lotto> buyLotto(int useMoney){
-        return lottoProvider.lottoGenerate(useMoney/1000);
+    public List<Lotto> buyLotto(int useMoney) {
+        return lottoProvider.lottoGenerate(useMoney / 1000);
     }
 
-    public WinningLotto winNumberLottoGenerate(List<Integer> numbers, int bonusNumber){
+    public WinningLotto winNumberLottoGenerate(List<Integer> numbers, int bonusNumber) {
         return lottoProvider.winLottoGenerate(numbers, bonusNumber);
     }
 
@@ -28,7 +27,7 @@ public class LottoMarket {
         return lottoProvider.winningsPayments(winnings);
     }
 
-    public Map<String, Integer> getMyHistory(List<LottoRank> lottoRanks){
+    public Map<String, Integer> getMyHistory(List<LottoRank> lottoRanks) {
         return lottoProvider.lottoHistory(lottoRanks);
     }
 }

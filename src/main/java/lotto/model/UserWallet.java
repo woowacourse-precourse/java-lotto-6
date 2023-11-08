@@ -5,19 +5,19 @@ public class UserWallet {
     private int myMoney;
     private int usedMoney;
 
-    private UserWallet(int money){
+    private UserWallet(int money) {
         myMoney = money;
     }
 
-    public int buyLotto(){
+    public int buyLotto() {
         return useMoney(myMoney);
     }
 
-    public static UserWallet createWallet(int money){
+    public static UserWallet createWallet(int money) {
         return new UserWallet(money);
     }
 
-    private int useMoney(int usedMoney){
+    private int useMoney(int usedMoney) {
         this.usedMoney = usedMoney;
         myMoney -= usedMoney;
         return usedMoney;
@@ -27,7 +27,7 @@ public class UserWallet {
         saveMoney(receiveMoney);
     }
 
-    private void saveMoney(int receiveMoney){
+    private void saveMoney(int receiveMoney) {
         myMoney += receiveMoney;
     }
 
@@ -35,7 +35,7 @@ public class UserWallet {
         return usedMoney;
     }
 
-    public int getMoney(){
+    public int getMoney() {
         return myMoney;
     }
 }

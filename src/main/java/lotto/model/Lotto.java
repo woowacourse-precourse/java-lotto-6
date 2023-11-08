@@ -1,7 +1,5 @@
 package lotto.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Lotto {
@@ -47,7 +45,7 @@ public class Lotto {
         }
     }
 
-    public LottoRank getMyRank(WinningLotto winningLotto){
+    public LottoRank getMyRank(WinningLotto winningLotto) {
         int numbersEqualCount = numbersEqualCount(winningLotto);
 
         LottoRank rank = LottoRank.valueOf(rankFind(winningLotto, numbersEqualCount));
@@ -57,17 +55,17 @@ public class Lotto {
     }
 
     private String rankFind(WinningLotto winningLotto, int numbersEqualCount) {
-        if(numbersEqualCount == FIFTH_EQUAL_NUMBER){
+        if (numbersEqualCount == FIFTH_EQUAL_NUMBER) {
             return FIFTH;
         }
-        if(numbersEqualCount == FOURTH_EQUAL_NUMBER){
+        if (numbersEqualCount == FOURTH_EQUAL_NUMBER) {
             return FOURTH;
         }
-        if(numbersEqualCount == THIRD_EQUAL_NUMBER){
+        if (numbersEqualCount == THIRD_EQUAL_NUMBER) {
             return THIRD;
         }
-        if(numbersEqualCount == NUMBERS_ALL_EQUAL){
-            if(isBonusWin(winningLotto)){
+        if (numbersEqualCount == NUMBERS_ALL_EQUAL) {
+            if (isBonusWin(winningLotto)) {
                 return SECOND;
             }
             return FIRST;
@@ -77,25 +75,25 @@ public class Lotto {
 
     private int numbersEqualCount(WinningLotto winningLotto) {
         return (int) numbers.stream()
-               .filter(winningLotto::contains)
-               .count();
+                .filter(winningLotto::contains)
+                .count();
     }
 
-    private boolean isBonusWin(WinningLotto winningLotto){
+    private boolean isBonusWin(WinningLotto winningLotto) {
         return !(numbers.stream()
                 .filter(winningLotto::isBonusNumber)
                 .findFirst()
                 .orElse(NOT_CONTAINS_BONUS_NUMBER) == NOT_CONTAINS_BONUS_NUMBER);
     }
 
-    public String formatString(){
+    public String formatString() {
         StringBuilder formatLine = new StringBuilder();
         formatLine.append(FORMAT_HEAD);
-        for(int number : numbers){
+        for (int number : numbers) {
             formatLine.append(number)
                     .append(FORMAT_SEPARATOR);
         }
-        formatLine.setLength(formatLine.length()-FORMAT_END_LINE);
+        formatLine.setLength(formatLine.length() - FORMAT_END_LINE);
         formatLine.append(FORMAT_TAIL);
         return formatLine.toString();
     }

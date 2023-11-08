@@ -2,7 +2,6 @@ package lotto.view;
 
 import lotto.model.Lotto;
 import lotto.model.LottoRank;
-
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;

@@ -18,7 +18,7 @@ public class User {
     private List<Lotto> myLottoNumbers = new ArrayList<>();
     private List<LottoRank> winningsMoney = new ArrayList<>();
 
-    public User(){
+    public User() {
         userInputView = new UserInputView();
         userOutputView = new UserOutputView();
         userWallet = UserWallet.createWallet(userInputView.userMoneyInput());
@@ -31,11 +31,11 @@ public class User {
         );
     }
 
-    public int useMoney(){
+    public int useMoney() {
         return userWallet.buyLotto();
     }
 
-    public void buyLotto(){
+    public void buyLotto() {
         List<LottoRank> winnings = winLottoCheck();
         userWallet.receiveWinningsMoney(
                 lottoMarket.winningsReceive(winnings)
@@ -45,25 +45,13 @@ public class User {
                 userWallet.getMoney(),
                 lottoMarket.getMyHistory(winningsMoney)
         );
-        check();
     }
 
-    public List<LottoRank> winLottoCheck(){
+    public List<LottoRank> winLottoCheck() {
         myLottoNumbers.forEach(
                 lotto -> winningsMoney.add(lotto.getMyRank(winningNumber))
         );
 
         return winningsMoney;
     }
-
-    public void check(){
-
-    }
-
-
-
-
-
-
-
 }

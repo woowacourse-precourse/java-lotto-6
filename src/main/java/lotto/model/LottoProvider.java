@@ -37,7 +37,6 @@ public class LottoProvider {
                                 lottoHistory.get(rankName) + PLUS_COUNT
                         )
                 );
-
         return lottoHistory;
     }
 

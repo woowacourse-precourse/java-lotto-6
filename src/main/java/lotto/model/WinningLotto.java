@@ -2,7 +2,7 @@ package lotto.model;
 
 import java.util.List;
 
-public class WinningLotto extends Lotto{
+public class WinningLotto extends Lotto {
 
     private final int bonusNumber;
 
@@ -11,26 +11,25 @@ public class WinningLotto extends Lotto{
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningLotto of(List<Integer> numbers, int bonusNumber){
+    public static WinningLotto of(List<Integer> numbers, int bonusNumber) {
         return new WinningLotto(numbers, bonusNumber);
     }
 
     @Override
     public boolean contains(int num) {
-        if (super.contains(num)){
+        if (super.contains(num)) {
             return true;
         }
 
-        if(isBonusNumber(num)){
+        if (isBonusNumber(num)) {
             return true;
         }
 
         return false;
     }
 
-    public boolean isBonusNumber(int isBonusNumber){
+    public boolean isBonusNumber(int isBonusNumber) {
         return bonusNumber == isBonusNumber;
     }
-
 
 }

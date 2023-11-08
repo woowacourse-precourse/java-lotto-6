@@ -3,6 +3,7 @@ package lotto.view;
 import static lotto.util.Constant.COMMA;
 import static lotto.util.Constant.REGEX_NOSPACE;
 import static lotto.util.Constant.REGEX_SPACE;
+import static lotto.util.Constant.REGEX_THOSAND_SEPARATOR;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
@@ -28,5 +29,9 @@ public class InputView {
 
     public static String stringWithoutSpace(String input) {
         return input.replaceAll(REGEX_SPACE, REGEX_NOSPACE);
+    }
+
+    public static String thosandSeparator(int prizeMoney) {
+        return String.valueOf(prizeMoney).replaceAll(REGEX_THOSAND_SEPARATOR, COMMA);
     }
 }

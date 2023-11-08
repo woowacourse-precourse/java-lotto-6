@@ -11,4 +11,5 @@ public class Constant {
     public static final String COMMA = ",";
     public static final String REGEX_SPACE = "\\s";
     public static final String REGEX_NOSPACE = "";
+    public static final String REGEX_THOSAND_SEPARATOR = "\\B(?=(\\d{3})+(?!\\d))";
 }

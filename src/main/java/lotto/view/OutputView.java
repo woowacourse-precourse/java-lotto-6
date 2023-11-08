@@ -16,6 +16,7 @@ import static lotto.util.OutputViewMessage.SECOND_PRINT_MESSAGE;
 import static lotto.util.OutputViewMessage.THIRD_PRINT_MESSAGE;
 import static lotto.util.OutputViewMessage.TOTAL_PROFIT_RATE;
 import static lotto.util.OutputViewMessage.WINNING_STATISTICS;
+import static lotto.view.InputView.thosandSeparator;
 
 import java.util.List;
 
@@ -46,11 +47,11 @@ public class OutputView {
     }
 
     public static void printLottoStatistics() {
-        System.out.printf(FIFTH_PRINT_MESSAGE, FIFTH.getPrizeMoney(), FIFTH.getCount());
-        System.out.printf(FORTH_PRINT_MESSAGE, FORTH.getPrizeMoney(), FORTH.getCount());
-        System.out.printf(THIRD_PRINT_MESSAGE, THIRD.getPrizeMoney(), THIRD.getCount());
-        System.out.printf(SECOND_PRINT_MESSAGE, SECOND.getPrizeMoney(), SECOND.getCount());
-        System.out.printf(FIRST_PRINT_MESSAGE, FIRST.getPrizeMoney(), FIRST.getCount());
+        System.out.printf(FIFTH_PRINT_MESSAGE, thosandSeparator(FIFTH.getPrizeMoney()), FIFTH.getCount());
+        System.out.printf(FORTH_PRINT_MESSAGE, thosandSeparator(FORTH.getPrizeMoney()), FORTH.getCount());
+        System.out.printf(THIRD_PRINT_MESSAGE, thosandSeparator(THIRD.getPrizeMoney()), THIRD.getCount());
+        System.out.printf(SECOND_PRINT_MESSAGE, thosandSeparator(SECOND.getPrizeMoney()), SECOND.getCount());
+        System.out.printf(FIRST_PRINT_MESSAGE, thosandSeparator(FIRST.getPrizeMoney()), FIRST.getCount());
     }
 
     public static void printLottoProfit(String lottoProfit) {

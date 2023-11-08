@@ -5,6 +5,7 @@ import lotto.domain.PrizeMoney;
 import lotto.message.Message;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
     private static void print(String message) {
@@ -22,7 +23,10 @@ public class OutputView {
     public static void printPurchasedLottos(List<Lotto> purchasedLottosResult) {
         for (Lotto lotto: purchasedLottosResult) {
             List<Integer> lottoNumbers = lotto.getNumbers();
-            List<String> modifiedLottoNumbers = lottoNumbers.stream().map(number -> number.toString()).toList();
+            List<String> modifiedLottoNumbers = lottoNumbers.stream()
+                    .sorted()
+                    .map(number -> number.toString())
+                    .toList();
             String.join(", ",modifiedLottoNumbers);
             print(modifiedLottoNumbers+"");
         }

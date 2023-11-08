@@ -28,7 +28,7 @@ public class OutputView {
     }
 
     public void printLottoCount(int lottoCount) {
-        System.out.printf("%d개를 구매했습니다.\n", lottoCount);
+        System.out.printf("\n%d개를 구매했습니다.\n", lottoCount);
     }
 
     public void printBenefitRate(double benefitRate) {
@@ -42,7 +42,7 @@ public class OutputView {
     }
 
     public void printResultGuideMessage() {
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
     }
 }

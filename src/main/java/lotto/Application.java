@@ -42,5 +42,27 @@ public class Application {
             }
         } while (true);
         return purchaseAmount;
+    }
+
+    private static List<Lotto> generateLottos(int numberOfLottos) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < numberOfLottos; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, LOTTO_NUMBERS);
+            lottos.add(new Lotto(numbers));
+        }
+        return lottos;
+    }
+
+    private static Lotto getWinningLotto() {
+        System.out.print("지난 주 당첨 번호를 입력해주세요: ");
+        String[] winningNumbers = Console.readLine().split(", ");
+        List<Integer> numbers = new ArrayList<>();
+        for (String number : winningNumbers) {
+            numbers.add(Integer.parseInt(number));
+        }
+        return new Lotto(numbers);
+    }
+
+
 
 }

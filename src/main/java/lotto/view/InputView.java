@@ -2,7 +2,7 @@ package lotto.view;
 
 public class InputView {
     public static void printByeGuideMessage(){
-        System.out.println(GuideMessage.BONUS_GUIDE_MESSAGE.getMessage());
+        System.out.println(GuideMessage.BUY_GUIDE_MESSAGE.getMessage());
     }
 
     public static void printNumberGuideMessage(){

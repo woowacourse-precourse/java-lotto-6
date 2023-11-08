@@ -32,7 +32,7 @@ public class WinningLotto extends Lotto {
         return super.match(lottoNumbers);
     }
 
-    public boolean containBonusNumber(List<Integer> lottoNumbers) {
+    public boolean containsBonusNumber(List<Integer> lottoNumbers) {
         return lottoNumbers.contains(bonusNumber);
     }
 }

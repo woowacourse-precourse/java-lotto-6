@@ -48,7 +48,7 @@ public class Lotto {
     }
 
     public final boolean hasBonusNumber(WinningLotto winningNumber) {
-        return winningNumber.containBonusNumber(this.lottoNumbers);
+        return winningNumber.containsBonusNumber(this.lottoNumbers);
     }
 
     @Override

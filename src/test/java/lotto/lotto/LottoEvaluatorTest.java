@@ -1,5 +1,6 @@
 package lotto.lotto;
 
+import static lotto.global.Constant.LOTTO_NO_WIN_RANK;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -66,6 +67,6 @@ class LottoEvaluatorTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         Integer bonusNumber = 7;
         Integer rank = lottoEvaluator.evaluateLottoRank(lotto, winningNumbers, bonusNumber);
-        assertThat(rank).isEqualTo(0);
+        assertThat(rank).isEqualTo(LOTTO_NO_WIN_RANK.getNumber());
     }
 }

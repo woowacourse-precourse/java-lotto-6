@@ -1,6 +1,9 @@
 package lotto.ui;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.global.Constant.LOTTO_BEST_RANK;
+import static lotto.global.Constant.LOTTO_PRICE;
+import static lotto.global.Constant.LOTTO_WORST_RANK;
 import static lotto.ui.ConsoleMessage.PRINT_LOTTOS;
 import static lotto.ui.ConsoleMessage.PRINT_RATE_OF_PRIZE_FORMAT;
 import static lotto.ui.ConsoleMessage.PRINT_RESULT_FORMAT;
@@ -102,7 +105,7 @@ public class ConsoleUI {
     private void printLottoResults(List<LottoResult> lottoResults) {
         System.out.println(PRINT_RESULT_HEADER.getMessage());
 
-        for (int rank = 5; rank >= 1; rank--) {
+        for (int rank = LOTTO_WORST_RANK.getNumber(); rank >= LOTTO_BEST_RANK.getNumber(); rank--) {
             Long countOfRank = getCountOfRank(lottoResults, rank);
             System.out.println(formatLottoResult(rank, countOfRank));
         }
@@ -128,7 +131,7 @@ public class ConsoleUI {
     }
 
     private double calculateRateOfPrize(List<LottoResult> lottoResults) {
-        int purchaseAmount = lottoResults.size() * 1000;
+        int purchaseAmount = lottoResults.size() * LOTTO_PRICE.getNumber();
         long totalPrize = lottoResults.stream().mapToLong(LottoResult::getPrize).sum();
 
         double rateOfPrize = ((double) totalPrize / purchaseAmount) * 100;

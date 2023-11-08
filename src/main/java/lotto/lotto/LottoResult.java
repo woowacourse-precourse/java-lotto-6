@@ -1,7 +1,13 @@
 package lotto.lotto;
 
+import static lotto.error.message.InvalidStateErrorMessage.LOTTO_RESULT_STATE_ERROR;
+import static lotto.error.message.InvalidStateErrorMessage.UNKNOWN_ERROR_MESSAGE;
+import static lotto.global.Constant.LOTTO_BEST_RANK;
+import static lotto.global.Constant.LOTTO_WORST_RANK;
+
 import java.util.HashMap;
 import java.util.Map;
+import lotto.error.exception.InvalidStateException;
 
 public class LottoResult {
     private static final Map<Integer, Long> PRIZE_MAP = new HashMap<>();
@@ -21,15 +27,16 @@ public class LottoResult {
         MATCH_NUMBERS_COUNT_MAP.put(0, 0);
     }
 
-    private final int rank;
-    private final long prize;
-    private final int matchNumbersCount;
+    private final Integer rank;
+    private final Long prize;
+    private final Integer matchNumbersCount;
 
     public LottoResult(int rank) {
-        validate(rank);
         this.rank = rank;
+        validateRank();
         this.prize = PRIZE_MAP.get(rank);
         this.matchNumbersCount = MATCH_NUMBERS_COUNT_MAP.get(rank);
+        validateResultMap();
     }
 
     public int getRank() {
@@ -44,9 +51,15 @@ public class LottoResult {
         return matchNumbersCount;
     }
 
-    private void validate(int rank) {
-        if (rank < 0 || rank > 5) {
-            throw new IllegalStateException();
+    private void validateRank() {
+        if (this.rank < LOTTO_BEST_RANK.getNumber() - 1 || this.rank > LOTTO_WORST_RANK.getNumber()) {
+            throw new InvalidStateException(UNKNOWN_ERROR_MESSAGE.getMessage());
+        }
+    }
+
+    private void validateResultMap() {
+        if (this.prize == null || this.matchNumbersCount == null) {
+            throw new InvalidStateException(LOTTO_RESULT_STATE_ERROR.getMessage());
         }
     }
 }

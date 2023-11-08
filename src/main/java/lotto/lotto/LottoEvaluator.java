@@ -1,5 +1,9 @@
 package lotto.lotto;
 
+import static lotto.global.Constant.LOTTO_BEST_RANK;
+import static lotto.global.Constant.LOTTO_NUMBERS_COUNT;
+import static lotto.global.Constant.LOTTO_WORST_RANK;
+
 import java.util.List;
 import lotto.util.IntegerUtil;
 
@@ -25,22 +29,22 @@ public class LottoEvaluator {
     }
 
     private int determineRank(int winningCount, boolean isBonusNumberCorrect) {
-        if (winningCount == 6) {
-            return 1;
+        if (winningCount == LOTTO_NUMBERS_COUNT.getNumber()) {
+            return LOTTO_BEST_RANK.getNumber();
         }
-        if (winningCount == 5) {
+        if (winningCount == LOTTO_NUMBERS_COUNT.getNumber() - 1) {
             if (isBonusNumberCorrect) {
-                return 2;
+                return LOTTO_BEST_RANK.getNumber() + 1;
             }
-            return 3;
+            return LOTTO_BEST_RANK.getNumber() + 2;
         }
-        return 8 - winningCount;
+        return LOTTO_NUMBERS_COUNT.getNumber() - winningCount + 2;
     }
 
     private int setValidRank(int rank) {
-        if (IntegerUtil.checkNumberInRange(rank, 1, 5)) {
+        if (IntegerUtil.checkNumberInRange(rank, LOTTO_BEST_RANK.getNumber(), LOTTO_WORST_RANK.getNumber())) {
             return rank;
         }
-        return 0;
+        return LOTTO_BEST_RANK.getNumber() - 1;
     }
 }

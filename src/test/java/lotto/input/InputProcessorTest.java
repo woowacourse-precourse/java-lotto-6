@@ -3,9 +3,9 @@ package lotto.input;
 import static lotto.error.message.InvalidInputErrorMessage.BONUS_NUMBER_IN_WINNING_NUMBER;
 import static lotto.error.message.InvalidInputErrorMessage.NOT_A_NUMBER;
 import static lotto.error.message.InvalidInputErrorMessage.OUT_OF_RANGE;
-import static lotto.error.message.InvalidInputErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND;
-import static lotto.error.message.InvalidInputErrorMessage.PURCHASE_AMOUNT_UNDER_THOUSAND;
-import static lotto.error.message.InvalidInputErrorMessage.WINNING_NUMBERS_COUNT_NOT_SIX;
+import static lotto.error.message.InvalidInputErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_LOTTO_PRICE;
+import static lotto.error.message.InvalidInputErrorMessage.PURCHASE_AMOUNT_UNDER_LOTTO_PRICE;
+import static lotto.error.message.InvalidInputErrorMessage.WINNING_NUMBERS_COUNT_NOT_MATCH;
 import static lotto.error.message.InvalidInputErrorMessage.WINNING_NUMBERS_DUPLICATE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -34,7 +34,7 @@ class InputProcessorTest {
         assertThatThrownBy(() -> inputProcessor.processPurchaseAmount(input))
                 .isInstanceOf(InvalidInputException.class)
                 .extracting("message")
-                .isEqualTo(PURCHASE_AMOUNT_UNDER_THOUSAND.getMessage());
+                .isEqualTo(PURCHASE_AMOUNT_UNDER_LOTTO_PRICE.getMessage());
     }
 
     @DisplayName("구입금액이 1000의 배수가 아니면 예외가 발생한다.")
@@ -44,7 +44,7 @@ class InputProcessorTest {
         assertThatThrownBy(() -> inputProcessor.processPurchaseAmount(input))
                 .isInstanceOf(InvalidInputException.class)
                 .extracting("message")
-                .isEqualTo(PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND.getMessage());
+                .isEqualTo(PURCHASE_AMOUNT_NOT_MULTIPLE_OF_LOTTO_PRICE.getMessage());
     }
 
     @DisplayName("숫자가 아닌 당첨번호가 하면 예외가 발생한다.")
@@ -74,7 +74,7 @@ class InputProcessorTest {
         assertThatThrownBy(() -> inputProcessor.processWinningNumbers(input))
                 .isInstanceOf(InvalidInputException.class)
                 .extracting("message")
-                .isEqualTo(WINNING_NUMBERS_COUNT_NOT_SIX.getMessage());
+                .isEqualTo(WINNING_NUMBERS_COUNT_NOT_MATCH.getMessage());
     }
 
     @DisplayName("입력한 당첨번호에 중복이 존재하면 예외가 발생한다.")

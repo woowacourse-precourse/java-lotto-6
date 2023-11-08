@@ -1,8 +1,11 @@
 package lotto.lotto;
 
-import static lotto.error.message.InvalidStateErrorMessage.LOTTO_NUMBERS_COUNT_NOT_SIX;
+import static lotto.error.message.InvalidStateErrorMessage.LOTTO_NUMBERS_COUNT_NOT_MATCH;
 import static lotto.error.message.InvalidStateErrorMessage.LOTTO_NUMBERS_DUPLICATE;
 import static lotto.error.message.InvalidStateErrorMessage.LOTTO_NUMBERS_OUT_OF_RANGE;
+import static lotto.global.Constant.LOTTO_MAX_NUMBER;
+import static lotto.global.Constant.LOTTO_MIN_NUMBER;
+import static lotto.global.Constant.LOTTO_NUMBERS_COUNT;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
@@ -19,7 +22,8 @@ public class Lotto {
     }
 
     public static Lotto create() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER.getNumber(),
+                LOTTO_MAX_NUMBER.getNumber(), LOTTO_NUMBERS_COUNT.getNumber());
         return new Lotto(lottoNumbers);
     }
 
@@ -34,21 +38,21 @@ public class Lotto {
     }
 
     private void checkNumbersCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new InvalidStateException(LOTTO_NUMBERS_COUNT_NOT_SIX.getMessage(), numbers);
+        if (numbers.size() != LOTTO_NUMBERS_COUNT.getNumber()) {
+            throw new InvalidStateException(LOTTO_NUMBERS_COUNT_NOT_MATCH.getMessage());
         }
     }
 
     private void checkDuplicateNumbers(List<Integer> numbers) {
-        if (new HashSet<>(numbers).size() != 6) {
-            throw new InvalidStateException(LOTTO_NUMBERS_DUPLICATE.getMessage(), numbers);
+        if (new HashSet<>(numbers).size() != LOTTO_NUMBERS_COUNT.getNumber()) {
+            throw new InvalidStateException(LOTTO_NUMBERS_DUPLICATE.getMessage());
         }
     }
 
     private void checkNumbersRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (!IntegerUtil.checkNumberInRange(number, 1, 45)) {
-                throw new InvalidStateException(LOTTO_NUMBERS_OUT_OF_RANGE.getMessage(), numbers);
+            if (!IntegerUtil.checkNumberInRange(number, LOTTO_MIN_NUMBER.getNumber(), LOTTO_MAX_NUMBER.getNumber())) {
+                throw new InvalidStateException(LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
             }
         }
     }

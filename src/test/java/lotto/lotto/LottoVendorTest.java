@@ -1,7 +1,7 @@
 package lotto.lotto;
 
-import static lotto.error.message.InvalidStateErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND;
-import static lotto.error.message.InvalidStateErrorMessage.PURCHASE_AMOUNT_UNDER_THOUSAND;
+import static lotto.error.message.InvalidStateErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_LOTTO_PRICE;
+import static lotto.error.message.InvalidStateErrorMessage.PURCHASE_AMOUNT_UNDER_LOTTO_PRICE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -19,7 +19,7 @@ class LottoVendorTest {
         assertThatThrownBy(() -> lottoVendor.generateLottos(500))
                 .isInstanceOf(InvalidStateException.class)
                 .extracting("message")
-                .isEqualTo(PURCHASE_AMOUNT_UNDER_THOUSAND.getMessage());
+                .isEqualTo(PURCHASE_AMOUNT_UNDER_LOTTO_PRICE.getMessage());
     }
 
     @DisplayName("구입 금액이 1000의 배수가 아닐 경우 예외가 발생한다.")
@@ -28,7 +28,7 @@ class LottoVendorTest {
         assertThatThrownBy(() -> lottoVendor.generateLottos(11111))
                 .isInstanceOf(InvalidStateException.class)
                 .extracting("message")
-                .isEqualTo(PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND.getMessage());
+                .isEqualTo(PURCHASE_AMOUNT_NOT_MULTIPLE_OF_LOTTO_PRICE.getMessage());
     }
 
     @DisplayName("구입 금액만큼 로또가 생성된다.")

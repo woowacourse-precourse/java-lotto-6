@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import java.util.stream.Stream;
+import lotto.domain.strategy.LottoNumberGenerator;
+import lotto.domain.strategy.RandomLottoNumberGenerator;
 import lotto.vo.TotalAmount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -24,7 +26,9 @@ class LottoProfitTest {
     @DisplayName("총 수익률 계산 테스트")
     void testCalculateProfitRate(LottoRank lottoRank, int count, double expectedProfitRate) {
         // Given
-        LottoPurchase lottoPurchase = LottoPurchase.from(TotalAmount.from(100000)); // 구입 금액
+        LottoNumberGenerator lottoNumberGenerator = new RandomLottoNumberGenerator();
+        LottoPurchase lottoPurchase = LottoPurchase.from(TotalAmount.from(100000), lottoNumberGenerator);
+
         RankResult rankResult = RankResult.create();
         if (lottoRank != null) {
             for (int i = 0; i < count; i++) {

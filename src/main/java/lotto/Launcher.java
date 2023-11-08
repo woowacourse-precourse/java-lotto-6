@@ -8,6 +8,8 @@ import lotto.controller.WinningController;
 import lotto.domain.LottoPurchase;
 import lotto.domain.LottoTickets;
 import lotto.domain.RankResult;
+import lotto.domain.strategy.LottoNumberGenerator;
+import lotto.domain.strategy.RandomLottoNumberGenerator;
 
 public class Launcher {
     public static void run() {
@@ -25,7 +27,8 @@ public class Launcher {
     }
 
     private static PurchaseController createPurchaseController() {
-        return new PurchaseController();
+        LottoNumberGenerator generator = new RandomLottoNumberGenerator();
+        return PurchaseController.from(generator);
     }
 
     private static LottoPurchase processPurchase(PurchaseController purchaseController) {

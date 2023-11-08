@@ -11,9 +11,11 @@ public class WinningNumber {
     public WinningNumber(List<Integer> winningNumbers) {
         this.winningNumbers = winningNumbers;
     }
-    
+
 
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
     }
+
+
 }

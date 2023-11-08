@@ -1,8 +1,6 @@
 package lotto.exception;
 
-import static lotto.utility.Constants.ERROR_MESSAGE_1;
 import static lotto.utility.Constants.ERROR_MESSAGE_2;
-
 import static lotto.utility.Constants.ERROR_MESSAGE_3;
 import static lotto.utility.Constants.LOTTO_LENGTH;
 import static lotto.utility.Constants.MAX_LOTTO_NUMBER;

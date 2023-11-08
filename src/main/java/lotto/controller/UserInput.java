@@ -1,8 +1,6 @@
 package lotto.controller;
 
 import static lotto.utility.Constants.COMMA;
-import static lotto.utility.Constants.ERROR_MESSAGE_1;
-import static lotto.utility.Constants.ERROR_MESSAGE_2;
 import static lotto.utility.Constants.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Console;

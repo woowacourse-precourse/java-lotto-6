@@ -15,7 +15,6 @@ public class Tickets {
         return new Tickets(numberOfTickets);
     }
 
-
     public static Tickets buyTickets(int purchaseAmount) {
         validateTickets(purchaseAmount);
         int numberOfTickets = purchaseAmount / LOTTO_PRICE;

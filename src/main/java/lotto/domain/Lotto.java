@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.global.Constants.INITIAL_INDEX;
+import static lotto.global.Constants.LOTTO_NUMBER_MAX;
+import static lotto.global.Constants.LOTTO_NUMBER_MIN;
+import static lotto.global.Constants.LOTTO_NUMBER_SIZE;
 import static lotto.global.Validator.validateLotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -21,7 +25,8 @@ public class Lotto {
     }
 
     public static Lotto generateRandomLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX,
+                LOTTO_NUMBER_SIZE)
             .stream()
             .sorted()
             .toList();
@@ -29,7 +34,7 @@ public class Lotto {
     }
 
     public static List<Lotto> buyLottos(Tickets tickets) {
-        return IntStream.range(0, tickets.getNumberOfTickets())
+        return IntStream.range(INITIAL_INDEX, tickets.getNumberOfTickets())
             .mapToObj(i -> Lotto.generateRandomLottoNumbers())
             .toList();
     }
@@ -38,7 +43,6 @@ public class Lotto {
         List<Lotto> lottos = buyLottos(tickets);
         return new LottosDto(lottos);
     }
-
 
     public String toString() {
         return numbers.toString();

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.global.Constants.PERCENTAGE;
+
 import java.util.Arrays;
 import java.util.List;
 import lotto.dto.ResultsDto;
@@ -63,7 +65,7 @@ public enum Result {
     public static double getProfitRate(Result[] results, int userMoney) {
         return (double) Arrays.stream(results)
             .mapToInt(result -> result.getWinningMoney() * result.getStatus())
-            .sum() / userMoney * 100;
+            .sum() / userMoney * PERCENTAGE;
     }
 
     public int getStatus() {

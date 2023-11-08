@@ -24,9 +24,10 @@ public class LottoGameController {
         Lotto winningLottoNumber = setWinningNumber();
         int bonusNumber = getBonusNumber(winningLottoNumber);
 
-        ResultsDto resultsDto = Result.getAllLottoResult(lottosDto.lottos(), winningLottoNumber,
-            bonusNumber);
+        ResultsDto resultsDto =
+            Result.getAllLottoResult(lottosDto.lottos(), winningLottoNumber, bonusNumber);
         OutputView.printWinningStatistics(resultsDto);
+
         double profitRate = Result.getProfitRate(resultsDto.results(), tickets.getUserMoney());
         OutputView.printProfitRate(profitRate);
     }
@@ -52,8 +53,8 @@ public class LottoGameController {
 
     private int getBonusNumber(Lotto winningLottoNumber) {
         String bonusNumber = InputView.BonusNumber();
+        int bonusNumberInt = parseStringToUnsignedInt(bonusNumber);
         try {
-            int bonusNumberInt = parseStringToUnsignedInt(bonusNumber);
             validateBonusNumber(winningLottoNumber, bonusNumberInt);
             return bonusNumberInt;
         } catch (IllegalArgumentException e) {

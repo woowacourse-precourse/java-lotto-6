@@ -9,7 +9,7 @@ public class GameView {
         print(OutputMessage.INPUT_BUDGET.getMessage());
     }
 
-    public void printLottosSize(int lottosSize) {
+    public void printLottosSize(String lottosSize) {
         print(String.format(OutputMessage.OUTPUT_LOTTOS_SIZE.getMessage(), lottosSize));
     }
 

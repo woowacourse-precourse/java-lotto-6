@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.utils.LottoPlace;
-import lotto.utils.LottoResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,11 +42,11 @@ public class Lottos {
         return lottos.size();
     }
 
-    public WinningScores calWinningScores(WinningManager winningManager) {
+    public WinningScores calWinningScores(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         WinningScores winningScores = new WinningScores();
 
         for (Lotto lotto : lottos) {
-            LottoPlace lottoPlace = lotto.calLottoResult(winningManager);
+            LottoPlace lottoPlace = lotto.calLottoResult(winningNumbers, bonusNumber);
             winningScores.increaseScore(lottoPlace);
         }
 

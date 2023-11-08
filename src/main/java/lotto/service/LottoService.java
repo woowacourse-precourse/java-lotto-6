@@ -1,8 +1,8 @@
 package lotto.service;
 
 import lotto.domain.Budget;
+import lotto.domain.LottoSize;
 import lotto.domain.Lottos;
-import lotto.domain.WinningScores;
 
 public class LottoService {
 
@@ -10,17 +10,11 @@ public class LottoService {
         return Lottos.createLottos(budget);
     }
 
-    public int getLottosSize(Lottos lottos){
-        return lottos.getLottosSize();
+    public LottoSize getLottosSize(Lottos lottos){
+        return new LottoSize(lottos.getLottosSize());
     }
 
-    public String getLottosNumbers(Lottos lottos){
+    public String getLottosNumbers(Lottos lottos) {
         return lottos.getLottosNumbers();
-    }
-
-    public double getReturnOfLottos(WinningScores winningScores, Budget budget){
-        long lottosSum = winningScores.getWinningProfit();
-
-        return budget.getProfit(lottosSum);
     }
 }

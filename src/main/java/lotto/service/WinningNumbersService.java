@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.WinningNumbers;
 import lotto.utils.ErrorMessage;
 
+import java.awt.print.Pageable;
+
 public class WinningNumbersService extends CreateService {
 
     private final String SEPERATOR = ",";
@@ -18,18 +20,22 @@ public class WinningNumbersService extends CreateService {
     @Override
     public Object createObject(Object... inputs) {
         String inputWinningNumbers = Console.readLine();
+        validateInputNumbersSize(inputWinningNumbers);
+
         String[] splitWinningNumbers = splitInputWinningNumbers(inputWinningNumbers);
 
         return WinningNumbers.createWinningNumbers(splitWinningNumbers);
     }
 
     private String[] splitInputWinningNumbers(String inputWinningNumbers) {
-        validateInputNumbersSize(inputWinningNumbers);
-
         return inputWinningNumbers.split(SEPERATOR);
     }
 
     private void validateInputNumbersSize(String inputWinningNumbers) {
+        if (inputWinningNumbers.length() == 0) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_EMPTY.getErrorMessage());
+        }
+
         if (inputWinningNumbers.length() > MAX_WINNING_NUMBERS) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_IS_TOO_LONG.getErrorMessage());
         }

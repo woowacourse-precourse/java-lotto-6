@@ -12,6 +12,14 @@ public class BudgetService extends CreateService {
         return (Budget) budget;
     }
 
+    @Override
+    public Object createObject(Object... inputs) {
+        String inputBudget = Console.readLine();
+        budgetIntegerValidation(inputBudget);
+
+        return new Budget(Integer.parseInt(inputBudget));
+    }
+
     private void budgetIntegerValidation(String inputBudget) {
         if (inputBudget.length() == 0) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_IS_EMPTY.getErrorMessage());
@@ -22,13 +30,5 @@ public class BudgetService extends CreateService {
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ErrorMessage.NON_INTEGER_VALUE.getErrorMessage());
         }
-    }
-
-    @Override
-    public Object createObject(Object... inputs) {
-        String inputBudget = Console.readLine();
-        budgetIntegerValidation(inputBudget);
-
-        return new Budget(Integer.parseInt(inputBudget));
     }
 }

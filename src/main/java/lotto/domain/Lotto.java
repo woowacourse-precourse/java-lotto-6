@@ -42,28 +42,35 @@ public class Lotto {
         return numbers.toString();
     }
 
-    public LottoPlace calLottoResult(WinningManager winningManager) {
+    public LottoPlace calLottoResult(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
 
-        LottoResult correctResult = countCorrectNumbers(winningManager.getWinningNumbers());
+        LottoResult correctResult = countCorrectNumbers(winningNumbers);
 
         if (correctResult != LottoResult.FIVE) {
             return correctResult.getLottoPlace();
         }
 
-        return calLottoPlaceWithBonusNumber(winningManager.getBonusNumber());
+        return calLottoPlaceWithBonusNumber(bonusNumber);
     }
 
-    private LottoPlace calLottoPlaceWithBonusNumber(WinningNumber bonusNumber) {
+    private LottoPlace calLottoPlaceWithBonusNumber(BonusNumber bonusNumber) {
         for (int number : numbers) {
-            if (bonusNumber.isNumberExist(number)) {
+            if (bonusNumber.isBonusNumber(number)) {
                 return LottoPlace.SECOND;
             }
         }
 
+        //todo: 수정 필요 -> THIRD
         return LottoPlace.SECOND;
     }
 
     private LottoResult countCorrectNumbers(WinningNumbers winningNumbers) {
+        int count = countCorrectLottoNumber(winningNumbers);
+
+        return getLottoCompareResult(count);
+    }
+
+    private int countCorrectLottoNumber(WinningNumbers winningNumbers) {
         int count = 0;
 
         for (int number : numbers) {
@@ -72,17 +79,20 @@ public class Lotto {
             }
         }
 
-        LottoResult correctCount = LottoResult.NONE;
+        return count;
+    }
+
+    private LottoResult getLottoCompareResult(final int correctCount) {
+        LottoResult lottoResult = LottoResult.NONE;
 
         for (LottoResult result : LottoResult.values()) {
-            if (result.getMinCorrectCount() > count) {
+            if (result.getMinCorrectCount() > correctCount) {
                 break;
             }
-
-            correctCount = result;
+            lottoResult = result;
         }
 
-        return correctCount;
+        return lottoResult;
     }
 
     private static void uniqueValidate(List<Integer> pickedNumbers) {

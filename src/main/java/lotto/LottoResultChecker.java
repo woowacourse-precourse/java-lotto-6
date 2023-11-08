@@ -72,7 +72,8 @@ public class LottoResultChecker {
 
     public double calculateReturnRatio() {
         // 계산한 수익률을 소수점 둘째 자리에서 반올림하여 리턴
-        return Math.round((reward / (Application.ONE_LOTTO_PRICE * userLottoNumbers.length)) * 100.0) / 100.0;
+        double result = (reward / (Application.ONE_LOTTO_PRICE * userLottoNumbers.length)) * 100.0;
+        return Math.round(result * 100.0) / 100.0;
     }
 
 }

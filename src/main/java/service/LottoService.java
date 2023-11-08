@@ -41,17 +41,26 @@ public class LottoService {
         HashMap<Integer, Integer> moneyMap = new HashMap<>();
         setMoneyMap(moneyMap);
         for (Lotto lotto : lottos.getLottoList()) {
-            int matchCount  = lotto.match(player.getWinningLotto().getLottoNumbers());
-            resultMap.put(matchCount, resultMap.getOrDefault(matchCount, 0) + 1);
-            player.earn(moneyMap.getOrDefault(matchCount, 0));
+            int matchCount = calculateLottoNumber(resultMap, moneyMap, lotto);
             if (matchCount == 5 && isBonusNumberMatch(lotto)) {
-                resultMap.put(matchCount, resultMap.getOrDefault(matchCount, 0) - 1);
-                resultMap.put(BONUS_MATCH_NUMBER, resultMap.getOrDefault(matchCount, 0) + 1);
-                player.minus(moneyMap.get(matchCount));
-                player.earn(moneyMap.get(BONUS_MATCH_NUMBER));
+                calculateBonusNumber(resultMap, moneyMap, matchCount);
             }
         }
         return resultMap;
+    }
+
+    private void calculateBonusNumber(HashMap<Integer, Integer> resultMap, HashMap<Integer, Integer> moneyMap, int matchCount) {
+        resultMap.put(matchCount, resultMap.getOrDefault(matchCount, 0) - 1);
+        resultMap.put(BONUS_MATCH_NUMBER, resultMap.getOrDefault(matchCount, 0) + 1);
+        player.minus(moneyMap.get(matchCount));
+        player.earn(moneyMap.get(BONUS_MATCH_NUMBER));
+    }
+
+    private int calculateLottoNumber(HashMap<Integer, Integer> resultMap, HashMap<Integer, Integer> moneyMap, Lotto lotto) {
+        int matchCount = lotto.match(player.getWinningLotto().getLottoNumbers());
+        resultMap.put(matchCount, resultMap.getOrDefault(matchCount, 0) + 1);
+        player.earn(moneyMap.getOrDefault(matchCount, 0));
+        return matchCount;
     }
 
     private static void setMoneyMap(HashMap<Integer, Integer> moneyMap) {

@@ -29,14 +29,15 @@ class UserAccountTest {
     @DisplayName("투자수익률 (ROE) 계산")
     void getEarningRate() {
         //given
-        int inputMoney = 1000;
+        int inputMoney = 100000;
         UserAccount userAccount = new UserAccount(inputMoney);
         //when
-        WinningCalculator.addCount(Prize.FIRST);
+        WinningCalculator.addCount(Prize.FIFTH);
         long totalWinning = WinningCalculator.getTotalWinning();
         //then
         double earningRate = userAccount.getEarningRate(totalWinning);
-        double expected = (double) Prize.FIRST.getWinning() / inputMoney;
-        assertThat(earningRate).isEqualTo(expected);
+        double expected = (double) Prize.FIFTH.getWinning() / inputMoney;
+        System.out.println(earningRate);
+        assertThat(earningRate).isEqualTo(100 * expected);
     }
 }

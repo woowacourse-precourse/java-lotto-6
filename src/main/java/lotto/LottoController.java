@@ -22,7 +22,7 @@ public class LottoController {
         OutputView.printInputLottoNumber();
         Lotto userLotto = InputView.getLottoInput();
         OutputView.printInputBonusNumber();
-        Integer bonusNumber = InputView.getBonusNumber(userLotto);
+        Integer bonusNumber = InputView.getBonusNumberByUser(userLotto);
 
         StandardLotto standardLotto = new StandardLotto(userLotto, bonusNumber);
         randomLottos.calculateWinning(standardLotto);

@@ -14,7 +14,7 @@
 
 ## 과제를 하면서 고민한 것들 
 - [상수 정리](https://uhanuu.tistory.com/entry/%EB%A7%A4%EC%A7%81%EB%84%98%EB%B2%84-%EB%A6%AC%ED%84%B0%EB%9F%B4-%EC%96%B4%EB%94%94%EA%B9%8C%EC%A7%80-%EC%83%81%EC%88%98-%EC%B2%98%EB%A6%AC%ED%95%B4%EC%95%BC-%EB%8F%BC)
-  - : 매직넘버, 리터럴 어디까지 상수 처리해야 되는지 고민했다.
+  - : 매직넘버, 리터럴 어디까지 상수 처리해야 되는지 고민했습니다.
 - Input, Output View의 Interface 사용을 고민했습니다.
   ```
   코드 리뷰를 하면서 File입출력을 고민하시고 interface를 도입하신분들이 많았습니다.

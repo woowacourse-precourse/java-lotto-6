@@ -3,8 +3,6 @@ package lotto.util;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.lotto.Lotto;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static lotto.constants.LottoRule.STANDARD;

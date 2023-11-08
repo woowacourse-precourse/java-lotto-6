@@ -25,4 +25,10 @@ class UserInputTest {
         assertThatThrownBy(() -> userInput.validateMoney("900"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 구입_금액_음수_입력() {
+        assertThatThrownBy(() -> userInput.validateMoney("-1000"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

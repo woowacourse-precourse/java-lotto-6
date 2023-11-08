@@ -2,14 +2,15 @@ package lotto.model;
 
 import lotto.constant.LottoResult;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import static lotto.constant.Constant.MAX_NUMBER_SIZE;
+import static lotto.constant.Constant.NUMBER_DELIMITER;
 import static lotto.constant.ErrorMessage.*;
 import static lotto.constant.LottoResult.*;
-import static lotto.util.Util.convertStringToInt;
-import static lotto.util.Util.convertStringToIntegerList;
+import static lotto.util.Util.*;
 
 public class WinningLotto {
     private final List<Integer> numbers;
@@ -19,13 +20,6 @@ public class WinningLotto {
         Validator.validate(numbersStr, bonusNumberStr);
         this.numbers = convertStringToIntegerList(numbersStr);
         this.bonusNumber = convertStringToInt(bonusNumberStr);
-    }
-
-    public WinningLotto(List<Integer> numbers, int bonusNumber) {
-        this.numbers = numbers;
-        this.bonusNumber = bonusNumber;
-
-        Collections.sort(this.numbers);
     }
 
     public LottoResult getLottoResult(Lotto lotto) {
@@ -53,6 +47,7 @@ public class WinningLotto {
     public static class Validator {
         public static void validate(String numbers, String bonusNumber) {
             checkConvertStringToInt(bonusNumber);
+            checkConvertStringToInt(convertStringToSplitArray(numbers));
             checkValidNumberSize(numbers);
             checkNumberDuplicate(numbers);
             checkBonusDuplicate(numbers, bonusNumber);
@@ -66,6 +61,15 @@ public class WinningLotto {
             }
         }
 
+        public static void checkConvertStringToInt(String[] input) {
+            try {
+                Arrays.stream(input).mapToInt(Integer::parseInt);
+            } catch (NumberFormatException e) {
+                throw new NumberFormatException(NOT_INT.getMessage());
+            }
+        }
+
+
         public static void checkValidNumberSize(String numberStr) {
             List<Integer> numbers = convertStringToIntegerList(numberStr);
             if (numbers.size() != MAX_NUMBER_SIZE) {
@@ -75,7 +79,7 @@ public class WinningLotto {
 
         public static void checkNumberDuplicate(String numberStr) {
             List<Integer> numbers = convertStringToIntegerList(numberStr);
-            if (numbers.stream().distinct().count() != 6) {
+            if (numbers.stream().distinct().count() != MAX_NUMBER_SIZE) {
                 throw new IllegalArgumentException(NUMBER_DUPLICATE.getMessage());
             }
         }

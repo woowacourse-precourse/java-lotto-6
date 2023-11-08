@@ -95,8 +95,26 @@ class LottoTest {
         });
     }
 
-    @Test
-    void d() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    @DisplayName("로또 번호가 일치하는 개수를 반환한다.")
+    @ParameterizedTest
+    @MethodSource("getMatchCountProvider")
+    void getMatchCountTest(Lotto lotto, int expected) {
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        int actual = lotto.getMatchCount(winningLotto);
+
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> getMatchCountProvider() {
+        return Stream.of(
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)), 5),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 8, 9)), 4),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 10, 11, 12)), 3),
+                Arguments.of(new Lotto(List.of(1, 2, 13, 14, 15, 16)), 2),
+                Arguments.of(new Lotto(List.of(1, 17, 18, 19, 20, 21)), 1),
+                Arguments.of(new Lotto(List.of(22, 23, 24, 25, 26, 27)), 0)
+        );
     }
 }

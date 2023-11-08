@@ -1,9 +1,8 @@
 /**
- * @Package_name   : model
- * @Class_name     : LottoTicketSeller
+ * @Package_name : model
+ * @Class_name : LottoTicketSeller
  * <p>
- * Create Date : 2023-11-07
- * Create User : 정은채
+ * Create Date : 2023-11-07 Create User : 정은채
  */
 package model;
 
@@ -11,8 +10,8 @@ public class LottoTicketSeller {
     private int paidMoney;
     private final int lottoPrice = 1000;
 
-    public LottoTicketSeller(){}
-    public LottoTicketSeller(int paidMoney){
+
+    public LottoTicketSeller(int paidMoney) {
         this.paidMoney = paidMoney;
     }
 
@@ -22,8 +21,8 @@ public class LottoTicketSeller {
      * @Method : receiveLottotickets()
      * @return : int
      */
-    public int receiveLottotickets(){
-        int lottoTicketNum = paidMoney/lottoPrice;
+    public int receiveLottotickets() {
+        int lottoTicketNum = paidMoney / lottoPrice;
         return lottoTicketNum;
     }
 

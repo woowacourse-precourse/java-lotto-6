@@ -1,9 +1,8 @@
 /**
- * @Package_name   : model
- * @Class_name     : LottoWinResultsHolder
+ * @Package_name : model
+ * @Class_name : LottoWinResultsHolder
  * <p>
- * Create Date : 2023-11-07
- * Create User : 정은채
+ * Create Date : 2023-11-07 Create User : 정은채
  */
 package model;
 
@@ -14,12 +13,12 @@ import model.enums.LottoWinResults;
 public class LottoWinResultsHolder {
     private Map<String, Integer> winResults = new HashMap<>();
 
-    public LottoWinResultsHolder(){
-        winResults.put(LottoWinResults.LOTTO_3SAME.getMessage() ,0);
-        winResults.put(LottoWinResults.LOTTO_4SAME.getMessage() ,0);
-        winResults.put(LottoWinResults.LOTTO_5SAME.getMessage() ,0);
-        winResults.put(LottoWinResults.LOTTO_5SAME_BONUS.getMessage() ,0);
-        winResults.put(LottoWinResults.LOTTO_6SAME.getMessage() ,0);
+    public LottoWinResultsHolder() {
+        winResults.put(LottoWinResults.LOTTO_3SAME.getMessage(), 0);
+        winResults.put(LottoWinResults.LOTTO_4SAME.getMessage(), 0);
+        winResults.put(LottoWinResults.LOTTO_5SAME.getMessage(), 0);
+        winResults.put(LottoWinResults.LOTTO_5SAME_BONUS.getMessage(), 0);
+        winResults.put(LottoWinResults.LOTTO_6SAME.getMessage(), 0);
     }
 
     /**
@@ -27,9 +26,9 @@ public class LottoWinResultsHolder {
      *
      * @Method : lottoWinResultsAdd()
      */
-    public void lottoWinResultsAdd(String winResult){
-        if (winResult != LottoWinResults.LOTTO_NOTHING.getMessage()){
-            winResults.put(winResult, winResults.get(winResult) + 1 );
+    public void lottoWinResultsAdd(String winResult) {
+        if (winResult != LottoWinResults.LOTTO_NOTHING.getMessage()) {
+            winResults.put(winResult, winResults.get(winResult) + 1);
         }
     }
 
@@ -38,7 +37,7 @@ public class LottoWinResultsHolder {
      *
      * @Method : getWinResults()
      */
-    public Map<String, Integer> getWinResults(){
+    public Map<String, Integer> getWinResults() {
         return winResults;
     }
 

@@ -1,9 +1,8 @@
 /**
- * @Package_name   : model.enums
- * @Enum_name     : LottoResults
+ * @Package_name : model.enums
+ * @Enum_name : LottoResults
  * <p>
- * Create Date : 2023-11-07
- * Create User : 정은채
+ * Create Date : 2023-11-07 Create User : 정은채
  */
 package model.enums;
 
@@ -17,7 +16,7 @@ public enum LottoWinResults {
 
     private final String lottoResult;
 
-    LottoWinResults(String lottoResult){
+    LottoWinResults(String lottoResult) {
         this.lottoResult = lottoResult;
     }
 
@@ -27,7 +26,7 @@ public enum LottoWinResults {
      * @Method : getMessage()
      * @return : String
      */
-    public String getMessage(){
+    public String getMessage() {
         return this.lottoResult;
     }
 }

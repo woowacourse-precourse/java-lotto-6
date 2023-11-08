@@ -1,9 +1,8 @@
 /**
- * @Package_name   : view
- * @Class_name     : InputView
+ * @Package_name : view
+ * @Class_name : InputView
  * <p>
- * Create Date : 2023-11-07
- * Create User : 정은채
+ * Create Date : 2023-11-07 Create User : 정은채
  */
 package view;
 
@@ -17,7 +16,7 @@ public class InputView {
      * @Method : inputLottoBuy()
      * @return : Integer
      */
-    public Integer inputLottoBuy(){
+    public Integer inputLottoBuy() {
         Integer money = Integer.parseInt(Utility.campReadline());
         return money;
     }
@@ -28,7 +27,7 @@ public class InputView {
      * @Method : inputLottoNum()
      * @return : ArrayList<Integer>
      */
-    public ArrayList<Integer> inputLottoNum(){
+    public ArrayList<Integer> inputLottoNum() {
         String inputLottoNum = Utility.campReadline();
         String[] LottoNums = inputLottoNum.split(",");
         ArrayList<Integer> LottoNumbers = new ArrayList<>();
@@ -44,7 +43,7 @@ public class InputView {
      * @Method : inputBonusNum()
      * @return : Integer
      */
-    public Integer inputBonusNum(){
+    public Integer inputBonusNum() {
         Integer BonusNum = Integer.parseInt(Utility.campReadline());
         return BonusNum;
     }

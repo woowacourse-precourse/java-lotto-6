@@ -1,9 +1,8 @@
 /**
- * @Package_name   : model
- * @Class_name     : Application
+ * @Package_name : lotto
+ * @Class_name : Application
  * <p>
- * Create Date : 2023-11-08
- * Create User : 정은채
+ * Create Date : 2023-11-08 Create User : 정은채
  */
 package lotto;
 

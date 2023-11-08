@@ -1,15 +1,13 @@
 /**
- * @Package_name   : model
- * @Class_name     : LottoController
+ * @Package_name : controller
+ * @Class_name : LottoController
  * <p>
- * Create Date : 2023-11-07
- * Create User : 정은채
+ * Create Date : 2023-11-07 Create User : 정은채
  */
 package controller;
 
 import java.util.ArrayList;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import model.Lotto;
@@ -28,7 +26,7 @@ public class LottoController {
      *
      * @Method : controlLotto()
      */
-    public void controlLotto(){
+    public void controlLotto() {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
@@ -42,8 +40,8 @@ public class LottoController {
 
         LottoNumberPicker lottoNumberPicker = new LottoNumberPicker();
         LottoNumberSetHolder lottoNumberSetHolder = new LottoNumberSetHolder();
-        while(lottoTicketNum-- > 0){
-            List<Integer> LottoNums  = lottoNumberPicker.lottoNumberPick();
+        while (lottoTicketNum-- > 0) {
+            List<Integer> LottoNums = lottoNumberPicker.lottoNumberPick();
             Lotto lotto = new Lotto(LottoNums);
             lottoNumberSetHolder.lottoNumberSetAdd(lotto);
             outputView.printLottoNums(LottoNums);
@@ -59,7 +57,7 @@ public class LottoController {
 
         ArrayList<Lotto> LottoNumberSet = lottoNumberSetHolder.getLottoNumberSet();
         LottoWinResultsHolder lottoWinResultsHolder = new LottoWinResultsHolder();
-        for (Lotto lotto : LottoNumberSet){
+        for (Lotto lotto : LottoNumberSet) {
             String LottoWinResult = lottoNumberComparater.comparaterLottoResult(lotto.getLottoNumbers());
             lottoWinResultsHolder.lottoWinResultsAdd(LottoWinResult);
         }
@@ -68,7 +66,7 @@ public class LottoController {
         Map<String, Integer> winResults = lottoWinResultsHolder.getWinResults();
         outputView.printWinStatistic(winResults);
 
-        LottoResultJudger lottoResultJudger = new LottoResultJudger(winResults,money);
+        LottoResultJudger lottoResultJudger = new LottoResultJudger(winResults, money);
         double profit = lottoResultJudger.getProfit();
         outputView.printTotalProfit(profit);
 

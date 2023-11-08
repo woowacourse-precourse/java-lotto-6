@@ -1,11 +1,11 @@
 /**
- * @Package_name   : utility
- * @Class_name     : Utility
+ * @Package_name : utility
+ * @Class_name : Utility
  * <p>
- * Create Date : 2023-11-07
- * Create User : 정은채
+ * Create Date : 2023-11-07 Create User : 정은채
  */
 package utility;
+
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;

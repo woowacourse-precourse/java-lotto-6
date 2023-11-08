@@ -1,9 +1,8 @@
 /**
- * @Package_name   : model.enums
- * @Enum_name     : LottoSystem
+ * @Package_name : model.enums
+ * @Enum_name : LottoSystem
  * <p>
- * Create Date : 2023-11-07
- * Create User : 정은채
+ * Create Date : 2023-11-07 Create User : 정은채
  */
 package model.enums;
 
@@ -13,6 +12,7 @@ public enum LottoSystem {
     LOTTO_MIN_RANGE(1);
 
     private final int value;
+
     LottoSystem(int value) {
         this.value = value;
     }

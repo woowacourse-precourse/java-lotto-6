@@ -1,9 +1,8 @@
 /**
- * @Package_name   : model
- * @Class_name     : Lotto
+ * @Package_name : model
+ * @Class_name : Lotto
  * <p>
- * Create Date : 2023-11-07
- * Create User : 정은채
+ * Create Date : 2023-11-07 Create User : 정은채
  */
 package model;
 
@@ -29,6 +28,7 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
     /**
      * Description : 1-45 범위 숫자가 맞는지 확인
      *

@@ -1,9 +1,8 @@
 /**
- * @Package_name   : view
- * @Enum_name     : OutputMessage
+ * @Package_name : view
+ * @Enum_name : OutputMessage
  * <p>
- * Create Date : 2023-11-07
- * Create User : 정은채
+ * Create Date : 2023-11-07 Create User : 정은채
  */
 package view;
 
@@ -28,7 +27,7 @@ public enum OutputMessage {
 
     private final String message;
 
-    OutputMessage(String message){
+    OutputMessage(String message) {
         this.message = message;
     }
 
@@ -38,7 +37,7 @@ public enum OutputMessage {
      * @Method : getMessage()
      * @return : String
      */
-    public String getMessage(){
+    public String getMessage() {
         return this.message;
     }
 

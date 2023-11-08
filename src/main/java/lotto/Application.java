@@ -73,6 +73,7 @@ public class Application {
     }
 
     public static int getWinningMoney(String winningText) {
+        //enum 이용해서 당첨 내역 출력
         int winningMoney = 0;
         Ranking[] ranks = Ranking.values();
         for (Ranking rank : ranks) {

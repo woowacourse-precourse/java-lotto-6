@@ -22,7 +22,7 @@ public class OutputView {
         lottoResults.forEach(result -> System.out.println(result.toString()));
     }
 
-    public static void printLottoStatistics(double gainStatistic) {
-        System.out.println("총 수익률은 " + Utils.changeDoubleFormat(gainStatistic) + "%입니다.");
+    public static void printRateOfReturn(double rateOfReturn) {
+        System.out.println("총 수익률은 " + Utils.changeDoubleFormat(rateOfReturn) + "%입니다.");
     }
 }

@@ -58,7 +58,7 @@ public class GameController {
     }
 
     private void printLottoStatistics() {
-        OutputView.printLottoStatistics(statistics);
+        OutputView.printRateOfReturn(statistics);
     }
 
 }

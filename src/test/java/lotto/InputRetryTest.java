@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("잘못된 값 입력시 재입력 테스트")
 public class InputRetryTest extends NsTest {
-
     @DisplayName("구매 금액을 잘못 입력하면 재입력 받는다.")
     @Test
     void 구매_금액_예외_처리() {

@@ -15,7 +15,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 public class CalculateRankTest {
     public static final List<Integer> ANSWER_NUMBERS = List.of(1, 2, 3, 4, 5, 6);
     public static final BonusNumber ANSWER_BONUS_NUMBER = new BonusNumber(7);
-    private final WinningLotto answerLotto = new WinningLotto(new Lotto(ANSWER_NUMBERS),  ANSWER_BONUS_NUMBER);
+    private final WinningLotto answerLotto = new WinningLotto(new Lotto(ANSWER_NUMBERS), ANSWER_BONUS_NUMBER);
 
     @DisplayName("로또 번호와 당첨 번호를 비교하여 1~5 등수를 계산한다.")
     @ParameterizedTest
@@ -43,7 +43,6 @@ public class CalculateRankTest {
     void calculateNoRankTest(Lotto trialLotto, Rank targetRank) {
         Assertions.assertThat(answerLotto.calculateLottoRank(trialLotto))
                 .isEqualTo(targetRank);
-
     }
 
     static Stream<Arguments> calculateNoRankProvider() {

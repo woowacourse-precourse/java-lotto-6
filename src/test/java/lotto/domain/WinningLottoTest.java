@@ -38,7 +38,6 @@ public class WinningLottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-
     @DisplayName("로또 숫자와 보너스 숫자가 겹치는 경우 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("duplicateNumberProvider")

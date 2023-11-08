@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.NullSource;
 
 @DisplayName("로또 객체에 대한 테스트")
 class LottoTest {
@@ -21,6 +22,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @NullSource
     @DisplayName("로또 번호의 개수가 6개 미만이면 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("lowerSizeProvider")
@@ -45,6 +47,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @NullSource
     @DisplayName("허용 숫자 범위를 벗어난 숫자가 있으면 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("outOfRangeProvider")

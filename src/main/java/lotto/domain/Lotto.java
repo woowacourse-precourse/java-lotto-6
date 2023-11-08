@@ -7,9 +7,9 @@ import lotto.message.ExceptionMessage;
 
 public record Lotto(List<Integer> numbers) {
     public Lotto(List<Integer> numbers) {
+        validate(numbers);
         List<Integer> orderedNumbers = new ArrayList<>(numbers);
         orderedNumbers.sort(Integer::compareTo);
-        validate(orderedNumbers);
         this.numbers = orderedNumbers;
     }
 
@@ -23,9 +23,16 @@ public record Lotto(List<Integer> numbers) {
     }
 
     private void validate(List<Integer> numbers) {
+        validateNull(numbers);
         validateSize(numbers);
         validateDuplicates(numbers);
         validateInRange(numbers);
+    }
+
+    private void validateNull(List<Integer> numbers) {
+        if (numbers == null) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_NULL);
+        }
     }
 
     private void validateSize(List<Integer> numbers) {

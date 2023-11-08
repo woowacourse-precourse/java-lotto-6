@@ -1,7 +1,6 @@
 package lotto.Controller;
 
 import lotto.Service.LottoService;
-import lotto.Utils.Utils;
 import lotto.Validator.Validator;
 import lotto.View.InputView;
 import lotto.View.OutputView;
@@ -16,7 +15,6 @@ public class LottoController {
     private final OutputView outputView = new OutputView();
     private final LottoService lottoService = new LottoService();
     private final Lottos lottos = new Lottos();
-    private final Utils utils = new Utils();
     private final Validator validator = new Validator();
     private List<Integer> winningNumbers = new ArrayList<>();
     private List<Integer> matchedNumber;
@@ -60,7 +58,7 @@ public class LottoController {
             try {
                 outputView.printBeforeGetWinningNumber();
                 String UserInputWinningNumbers = inputView.getWinningLottoNumbers();
-                winningNumbers = utils.StringToIntegerList(UserInputWinningNumbers);
+                winningNumbers = StringToIntegerList(UserInputWinningNumbers);
                 validator.validateLottoNumber(winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
@@ -73,7 +71,7 @@ public class LottoController {
             try {
                 outputView.printGetBonusNumber();
                 String UserInputBonusNumber=inputView.getBonusNumbers();
-                bonusBall = utils.StringToInteger(UserInputBonusNumber);
+                bonusBall = StringToInteger(UserInputBonusNumber);
                 validator.validateBonusNumber(bonusBall);
                 break;
             } catch (IllegalArgumentException e) {
@@ -92,5 +90,24 @@ public class LottoController {
         outputView.printWinningCounts(user.getAllRanks());//당첨자 수를 표시한다.
         float profitPercentage = user.getProfitPercentage(money);
         outputView.printprofitPercentage(profitPercentage);//수익률을 표시한다.
+    }
+    private int StringToInteger(String bonusNumbers) {
+        try {
+            return Integer.parseInt(bonusNumbers);
+        } catch (NumberFormatException e) {
+            System.err.println("입력된 문자를 정수로 변환할 수 없습니다: " + bonusNumbers);
+            throw new IllegalArgumentException();
+        }
+    }
+    private List<Integer> StringToIntegerList(String UserInput) {
+        List<Integer> winningNumbers = new ArrayList<>();
+        String[] userInput = UserInput.split(",");
+        for (String number : userInput) {
+            String trimmedNumber = number.trim();
+            if (!trimmedNumber.isEmpty()) {
+                winningNumbers.add(Integer.parseInt(trimmedNumber));
+            }
+        }
+        return winningNumbers;
     }
 }

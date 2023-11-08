@@ -21,24 +21,24 @@ public class LottoDrawer {
         lottoController.inputLotto(lottoNumber, bonusNumber);
     }
 
-    private List<Integer> lottoNumber(){
+    private List<Integer> lottoNumber() {
         ConvertToList lottoConvertor = null;
 
         try {
             lottoConvertor = ConvertToList.from(readLine());
-        }catch (InputException ie) {
+        } catch (InputException ie) {
             lottoNumber();
         }
 
         return lottoConvertor.getValue();
     }
 
-    private int bonusNumber(){
+    private int bonusNumber() {
         ConvertToInt bonusConvertor = null;
 
         try {
             bonusConvertor = ConvertToInt.from(readLine());
-        }catch (InputException ie) {
+        } catch (InputException ie) {
             bonusNumber();
         }
 

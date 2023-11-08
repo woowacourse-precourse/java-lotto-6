@@ -16,10 +16,10 @@ public class TicketsTest {
 
     @Test
     @DisplayName("로또 당첨 번호와 구매 로또가 일치하는지 확인합니다.")
-    void matchNumber(){
+    void matchNumber() {
         // given
-        Lotto lotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
-        LottoSet lottoSet = new LottoSet(lotto,7);
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        LottoSet lottoSet = new LottoSet(lotto, 7);
 
         Ticket ticket = new Ticket(5000);
         Tickets tickets = new Tickets(ticket);

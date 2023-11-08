@@ -21,26 +21,31 @@ public class Tickets {
 
     public void generate() {
         IntStream.range(0, ticket.ticketCount())
-                .mapToObj(i -> {
-                    List<Integer> disorderTicket = RandomNumber.gernerate();
-                    List<Integer> orderedTicket = ticket.ascendingNumber(disorderTicket);
-                    OutputMessage.printf(MessageType.INPUT_BUYER_FORMAT, orderedTicket);
-                    return orderedTicket;
-                })
+                .mapToObj(i -> orderedTicket())
                 .forEach(tickets::add);
+    }
+
+    private List<Integer> orderedTicket() {
+        List<Integer> disorderTicket = RandomNumber.gernerate();
+        List<Integer> orderedTicket = ticket.ascendingNumber(disorderTicket);
+        OutputMessage.printf(MessageType.INPUT_BUYER_FORMAT, orderedTicket);
+
+        return orderedTicket;
     }
 
     public List<Integer> matchNumber(LottoSet lottoSet) {
         return this.tickets.stream()
-                .map(ticket -> {
-                    int lottoCount = lottoSet.sameLottoNumber(ticket);
-                    int bonusCount = lottoSet.sameBonusNumber(ticket);
-                    return matchAllCount(lottoCount, bonusCount);
-                })
+                .map(ticket -> matchAllCount(lottoSet, ticket))
                 .collect(Collectors.toList());
     }
 
-    private int matchAllCount(int lottoCount, int bonusCount) {
+    private int matchAllCount(LottoSet lottoSet, List<Integer> ticket) {
+        int lottoCount = lottoSet.sameLottoNumber(ticket);
+        int bonusCount = lottoSet.sameBonusNumber(ticket);
+        return calculateCount(lottoCount, bonusCount);
+    }
+
+    private int calculateCount(int lottoCount, int bonusCount) {
         int sumCount = lottoCount + bonusCount;
 
         if (sumCount == MATCH_ALL_SIX_COUNT && lottoCount == 6) {

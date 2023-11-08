@@ -24,7 +24,7 @@ public class LottoSet {
             throw new InputException(ExceptionType.ERROR_LOTTO_RANGE);
         }
 
-        if(isDuplicate(lottoNumbers, bonusNumber)){
+        if (isDuplicate(lottoNumbers, bonusNumber)) {
             throw new InputException(ExceptionType.ERROR_LOTTO_DUPLICATE);
         }
     }
@@ -51,7 +51,7 @@ public class LottoSet {
                 .count();
     }
 
-    public int sameBonusNumber(List<Integer> ticket){
+    public int sameBonusNumber(List<Integer> ticket) {
         int bonusCount = 0;
 
         if (ticket.contains(this.bonusNumber)) {

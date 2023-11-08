@@ -6,17 +6,17 @@ import lotto.config.exception.InputException;
 public class ConvertToInt {
     private final int value;
 
-    public static ConvertToInt from(String value){
+    public static ConvertToInt from(String value) {
         return new ConvertToInt(value);
     }
 
-    private ConvertToInt(String value){
+    private ConvertToInt(String value) {
         validateInput(value);
         this.value = Integer.parseInt(value);
     }
 
     private void validateInput(String value) {
-        if(isOnlyNumber(value)){
+        if (isOnlyNumber(value)) {
             throw new InputException(ExceptionType.ERROR_CONVERT_TO_INT_ONLY_NUMBER);
         }
     }
@@ -25,7 +25,7 @@ public class ConvertToInt {
         return !value.matches("[0-9]+");
     }
 
-    public int getValue(){
+    public int getValue() {
         return this.value;
     }
 }

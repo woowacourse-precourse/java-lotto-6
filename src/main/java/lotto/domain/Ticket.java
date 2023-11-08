@@ -14,6 +14,7 @@ public class Ticket {
     public Ticket(int money) {
         validate(money);
         this.money = money;
+
         OutputMessage.printf(MessageType.INPUT_BUYER_FORMAT, this.money);
         OutputMessage.printf(MessageType.INPUT_BUY_END, ticketCount());
     }
@@ -28,7 +29,7 @@ public class Ticket {
         return wallet % LottoConstant.PRICE_PER_TICKET > 0;
     }
 
-    public int ticketCount(){
+    public int ticketCount() {
         return this.money / LottoConstant.PRICE_PER_TICKET;
     }
 

@@ -11,7 +11,7 @@ public class StringTest {
     // 요구사항1
     @Test
     @DisplayName("쉼표(,)로 잘 분리되는지 확인합니다.")
-    void checkSplitData(){
+    void checkSplitData() {
         // given
         String number = "1,2";
 
@@ -19,12 +19,12 @@ public class StringTest {
         String[] numbers = number.split(",");
 
         // then
-        assertThat(numbers).contains("1","2");
+        assertThat(numbers).contains("1", "2");
     }
 
     @Test
     @DisplayName("'1'을 split 했을 때 1만을 포함하는 배열이 반환되는지 확인합니다.")
-    void checkSplitOneArray(){
+    void checkSplitOneArray() {
         // given
         String number = "1";
 
@@ -38,12 +38,12 @@ public class StringTest {
     // 요구사항 2
     @Test
     @DisplayName("'(1,2)' 값이 주어졌을 때 '1,2'가 반환되는지 확인합니다.")
-    void checkSubstringData(){
+    void checkSubstringData() {
         // given
         String roundBracketsNumber = "(1,2)";
 
         // when
-        String number = roundBracketsNumber.substring(1,4);
+        String number = roundBracketsNumber.substring(1, 4);
 
         // then
         assertThat(number).isEqualTo("1,2");
@@ -52,7 +52,7 @@ public class StringTest {
     // 요구사항 3
     @Test
     @DisplayName("'abc'값에서 특정 위치의 문자를 확인한다.")
-    void checkZeroIndexInput(){
+    void checkZeroIndexInput() {
         // given
         String input = "abc";
 
@@ -65,7 +65,7 @@ public class StringTest {
 
     @Test
     @DisplayName("'abc'값에서 특정 위치의 문자를 벗어나면 예외를 발생시킨다.")
-    void checkThreeIndexInputException(){
+    void checkThreeIndexInputException() {
         // given
         String input = "abc";
 

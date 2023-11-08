@@ -11,7 +11,7 @@ public class LottoProcess {
         return new LottoProcess(lottoBuyer, lottoDrawer);
     }
 
-    public LottoProcess(LottoBuyer lottoBuyer, LottoDrawer lottoDrawer){
+    public LottoProcess(LottoBuyer lottoBuyer, LottoDrawer lottoDrawer) {
         this.lottoBuyer = lottoBuyer;
         this.lottoDrawer = lottoDrawer;
 

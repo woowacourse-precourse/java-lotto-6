@@ -12,11 +12,11 @@ public class AppConfig {
     private static LottoDrawer lottoDrawer;
     private static LottoModel lottoModel;
 
-    public static AppConfig init(){
+    public static AppConfig init() {
         return new AppConfig();
     }
 
-    private AppConfig(){
+    private AppConfig() {
         setLottoModel();
         setController(lottoModel);
         setLottoBuyer();

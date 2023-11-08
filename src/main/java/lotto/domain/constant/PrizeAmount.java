@@ -23,16 +23,16 @@ public class PrizeAmount {
         this.amount = amount;
     }
 
-    public PrizeAmount(){
+    public PrizeAmount() {
         gernerate();
     }
 
-    private void gernerate(){
-        prizeAmounts.put(MATCH_ALL_THREE_COUNT, new PrizeAmount(3,0,5000));
-        prizeAmounts.put(MATCH_ALL_FOUR_COUNT, new PrizeAmount(4,0,50000));
-        prizeAmounts.put(MATCH_ALL_FIVE_COUNT, new PrizeAmount(5,0,1500000));
-        prizeAmounts.put(MATCH_ALL_SIX_COUNT, new PrizeAmount(5,1,30000000));
-        prizeAmounts.put(MATCH_ALL_SEVEN_COUNT, new PrizeAmount(6,0,2000000000));
+    private void gernerate() {
+        prizeAmounts.put(MATCH_ALL_THREE_COUNT, new PrizeAmount(3, 0, 5000));
+        prizeAmounts.put(MATCH_ALL_FOUR_COUNT, new PrizeAmount(4, 0, 50000));
+        prizeAmounts.put(MATCH_ALL_FIVE_COUNT, new PrizeAmount(5, 0, 1500000));
+        prizeAmounts.put(MATCH_ALL_SIX_COUNT, new PrizeAmount(5, 1, 30000000));
+        prizeAmounts.put(MATCH_ALL_SEVEN_COUNT, new PrizeAmount(6, 0, 2000000000));
     }
 
     public static Map<Integer, PrizeAmount> getPrizeAmounts() {

@@ -16,8 +16,7 @@ public enum MessageType {
     MATCH_5_COUNT("5개 일치 (1,500,000원) - %d개\n"),
     MATCH_6_COUNT("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n"),
     MATCH_7_COUNT("6개 일치 (2,000,000,000원) - %d개\n"),
-    OUTPUT_RETURNS("총 수익률은 %s입니다.")
-    ;
+    OUTPUT_RETURNS("총 수익률은 %s입니다.");
 
     private final String value;
 

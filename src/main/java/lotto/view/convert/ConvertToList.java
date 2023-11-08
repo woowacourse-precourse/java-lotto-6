@@ -25,7 +25,7 @@ public class ConvertToList {
     }
 
     private void validateInput(String[] values) {
-        if(isWhiteSpace(values)){
+        if (isWhiteSpace(values)) {
             throw new InputException(ExceptionType.ERROR_CONVERT_TO_LIST_WHITESPACE);
         }
     }

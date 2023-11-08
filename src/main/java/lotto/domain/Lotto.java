@@ -52,7 +52,7 @@ public class Lotto {
         return LottoConstant.LOTTO_START_NUMBER > number;
     }
 
-    public List<Integer> get(){
+    public List<Integer> get() {
         return this.lottoNumbers;
     }
 }

@@ -23,7 +23,7 @@ class LottoTest {
 
     @DisplayName("로또 번호 범위에 일치하지 않는 숫자가 있으면 예외가 발생한다.")
     @Test
-    void createOverRange(){
+    void createOverRange() {
         assertThatThrownBy(() -> new Lotto(List.of(46, 0, -1)))
                 .isInstanceOf(IllegalArgumentException.class);
     }

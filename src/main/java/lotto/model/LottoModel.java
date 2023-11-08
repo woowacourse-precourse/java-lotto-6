@@ -1,6 +1,5 @@
 package lotto.model;
 
-import lotto.domain.Lotto;
 import lotto.domain.LottoSet;
 import lotto.domain.Tickets;
 import lotto.domain.WinRecord;

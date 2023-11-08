@@ -22,10 +22,7 @@ public class WinRecord {
         IntStream.range(3, 8)
                 .forEach(match -> {
                     long count = matchCount(winRecord, match);
-
-                    if (count >= 0) {
-                        createMessage(match, count);
-                    }
+                    createMessage(match, count);
                 });
     }
 
@@ -40,7 +37,7 @@ public class WinRecord {
         OutputMessage.printf(messageType, count);
     }
 
-    public List<Integer> get(){
+    public List<Integer> get() {
         return this.winRecord;
     }
 }

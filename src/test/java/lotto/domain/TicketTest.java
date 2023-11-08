@@ -18,7 +18,7 @@ public class TicketTest {
 
     @Test
     @DisplayName("랜덤 숫자가 만들어지는 것을 확인한다.")
-    void randomNumbers(){
+    void randomNumbers() {
         // given
         Ticket ticket = new Ticket(5000);
 
@@ -31,7 +31,7 @@ public class TicketTest {
 
     @Test
     @DisplayName("랜덤 숫자를 오름차순으로 정리한다.")
-    void ascendingNumber(){
+    void ascendingNumber() {
         // given
         Ticket ticket = new Ticket(5000);
 
@@ -44,9 +44,9 @@ public class TicketTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {14500,13600,15210})
+    @ValueSource(ints = {14500, 13600, 15210})
     @DisplayName("로또 구매시 잔금이 남아 구매를 할 수 없다.")
-    void createRemain(int wallet){
+    void createRemain(int wallet) {
         assertThatThrownBy(() -> new Ticket(wallet))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -54,7 +54,7 @@ public class TicketTest {
     @ParameterizedTest
     @CsvSource(value = {"14000,14", "15000,15", "16000,16"}, delimiter = ',')
     @DisplayName("로또 구입을 얼만큼 할 수 있는지 확인한다.")
-    void createCount(int wallet, int count){
+    void createCount(int wallet, int count) {
         // given
         Ticket ticket = new Ticket(wallet);
 

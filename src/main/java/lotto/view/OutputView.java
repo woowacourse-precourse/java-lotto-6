@@ -13,20 +13,8 @@ public class OutputView {
 
 
     private static final String OUTPUT_ISSUE_ABLE_COUNT_MESSAGE = "%d개를 구매했습니다.\n";
-    private static final String COUNT_UNIT = "개";
     private static final String OUTPUT_RATE_OF_REVENUE_MESSAGE = "총 수익률은 %,.1f%%입니다.";
     private static final String OUTPUT_WINNING_STATICS_MESSAGE = "\n당첨 통계\n---";
-    private static final int DEFAULT_VALUE = 0;
-    private static final String WINNING_STATICS_FIFTH = "3개 일치 (5,000원) - ";
-    private static final String WINNING_STATICS_FOUR = "4개 일치 (50,000원) - ";
-    private static final String WINNING_STATICS_THIRD = "5개 일치 (1,500,000원) - ";
-    private static final String WINNING_STATICS_SECOND = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
-    private static final String WINNING_STATICS_FIRST = "6개 일치 (2,000,000,000원) - ";
-    private static final int FIRST_RANK = 1;
-    private static final int SECOND_RANK = 2;
-    private static final int THIRD_RANK = 3;
-    private static final int FOUR_RANK = 4;
-    private static final int FIFTH_RANK = 5;
     private static final String WINNING_PER_CORRECT_MESSAGE = "개 일치";
     private static final String WINNING_COMMA_BONUS_CORRECT_MESSAGE = ", 보너스 볼 일치";
     private static final String SPACE_BAR_ENTER_RIGHT_BRACHET_MESSAGE = " (";

@@ -15,10 +15,10 @@ public class LottoRankTest {
 	@DisplayName("일치한 로또 번호 수와 보너스 번호 유뮤에 따른 로또 상금을 확인한다.")
 	@MethodSource("createCheckLottoPriceMethodParameter")
 	@ParameterizedTest
-	void checkLottoPrice(AnswerLotto answer, Lotto lotto, int rankPrice) {
+	void checkLottoPrice(AnswerLotto answer, Lotto lotto, int expect) {
 		int lottoPrice = LottoRank.getMatchedLottoRank(answer, lotto).getLottoPrice();
 
-		assertEquals(lottoPrice, rankPrice);
+		assertEquals(lottoPrice, expect);
 	}
 
 	static Stream<Arguments> createCheckLottoPriceMethodParameter() {

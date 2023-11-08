@@ -8,19 +8,19 @@ public class Validator {
 		throw new AssertionError();
 	}
 
-	public static void validateSpecificFormat(Pattern pattern, String inputValue, String message) {
-		if (!pattern.matcher(inputValue).matches()) {
+	public static void validateSpecificFormat(Pattern pattern, String confirmationTarget, String message) {
+		if (!pattern.matcher(confirmationTarget).matches()) {
 			throw new IllegalArgumentException(message);
 		}
 	}
 
-	public static void validateIsEmpty(String inputValue, String message) {
-		if (isEmpty(inputValue)) {
+	public static void validateIsEmpty(String confirmationTarget, String message) {
+		if (isEmpty(confirmationTarget)) {
 			throw new IllegalArgumentException(message);
 		}
 	}
 
-	private static boolean isEmpty(String str) {
-		return str == null || str.isBlank();
+	private static boolean isEmpty(String confirmationTarget) {
+		return confirmationTarget == null || confirmationTarget.isBlank();
 	}
 }

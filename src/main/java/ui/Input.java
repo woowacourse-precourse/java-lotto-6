@@ -17,7 +17,7 @@ public class Input {
     }
 
     public List<Integer> getWinningNumbers() {
-        System.out.println(winningNumbersMessage);
+        System.out.println("\n"+winningNumbersMessage);
         return Arrays.stream(Console.readLine().split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
@@ -25,7 +25,7 @@ public class Input {
     }
 
     public int getBonusNumber() {
-        System.out.println(bonusNumberMessage);
+        System.out.println("\n"+bonusNumberMessage);
         return Integer.parseInt(Console.readLine().trim());
     }
 }

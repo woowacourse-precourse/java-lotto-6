@@ -15,6 +15,11 @@ public class InputView {
         return convertToInt(input);
     }
 
+    public int enterBonusNumber(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        return convertToInt(input);
+    }
     public List<Integer> enterWinningNumber(){
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();

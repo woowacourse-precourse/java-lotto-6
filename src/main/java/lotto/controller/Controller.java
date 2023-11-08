@@ -17,6 +17,15 @@ public class Controller {
         this.lottoCompany = lottoCompany;
     }
 
+    public void run() {
+        inputMoney();
+        printLotto();
+        inputPrizeNumbers();
+        inputBonusNumber();
+        matchLottoByCompany();
+        printRateOfReturn();
+    }
+
     private void inputMoney() {
         flag = false;
         while (!flag) {
@@ -100,5 +109,15 @@ public class Controller {
         if (rank != INT_NULL) {
             user.winningTheLotto(rank);
         }
+    }
+
+    private void printRateOfReturn() {
+        OutputView.printPrizeStatistics(user.getPrizeCount());
+        OutputView.printRateOfReturn(user.getRateOfReturn());
+    }
+
+    private int changeStringToInt(String input) {
+        NumberValidate.validateChangeNumber(input);
+        return StringUtil.convertStringToInt(input);
     }
 }

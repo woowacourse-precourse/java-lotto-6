@@ -45,7 +45,7 @@
 
 ### Class Diagram
 
-추가될 예정입니다.
+<img src="diagram/ClassDiagram.png">
 
 # 프로젝트 구조
 
@@ -94,9 +94,6 @@
 - ResponseMessage
     - 사용자에게 응답하는 메세지를 관리하는 기능
 ### util
-- LottoConverter
-  - 사용자의 입력을 로또로 변환해 주는 기능
-  - 사용자의 입력을 보너스 번호로 변환해 주는 기능
 - InputValidator
   - 사용자의 입력이 입력 규칙에 맞는지 검증하는 기능
 - LottoValidator

@@ -40,8 +40,9 @@ public class LottoController {
         }
     }
 
-    public void setBounsNumber(int bonus) {
-        bonusLottoNumber = new BonusLottoNumber(bonus);
+    public void setBonusNumber(String bonus) {
+        int bonusNumber = Integer.parseInt(bonus);
+        bonusLottoNumber = new BonusLottoNumber(bonusNumber);
     }
 
     public void setinputLottoNumber(String numbers) {

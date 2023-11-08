@@ -10,7 +10,7 @@ import static lotto.exception.ErrorMessage.LOTTO_NUMBERS_INPUT_LENGTH_INVALID;
 public class Lotto {
     private final List<LottoNumber> lottoNumbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<Integer> numbers) {
         validateLottoNumber(numbers);
         this.lottoNumbers = new ArrayList<>(convertToLottoNumbers(numbers));
     }

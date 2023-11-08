@@ -46,7 +46,6 @@ public class LottoController {
 
     private GameResult getGameResult(final User user) {
         LottoNumbersDto lottoNumbersDto = getLottoNumbers();
-
         LottoBonusNumberDto lottoBonusNumber = getLottoBonusNumber();
 
         return lottoService.calculateResult(

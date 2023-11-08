@@ -6,7 +6,6 @@ import lotto.exception.Exceptions;
 import lotto.view.Prompt;
 
 public class LottoInputView extends InputView {
-    private List<Integer> lottoNumbers;
 
     @Override
     protected void Validation(String inputMessage) {
@@ -16,6 +15,7 @@ public class LottoInputView extends InputView {
         }
 
         lottoNumbers = lotto.stream().map(Integer::parseInt).toList();
+        Exceptions.checkLottoRange(lottoNumbers);
     }
 
     public List<Integer> getLottoNumbers() {

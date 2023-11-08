@@ -1,12 +1,14 @@
 package lotto.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.view.OutputView;
 import lotto.view.Prompt;
 import lotto.view.Status;
 
 public abstract class InputView {
     protected Status status;
+    protected static List<Integer> lottoNumbers;
 
     protected void getInput(Prompt message) {
         status = Status.GOT_NOTHING;

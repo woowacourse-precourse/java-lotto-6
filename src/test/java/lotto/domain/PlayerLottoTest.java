@@ -42,7 +42,6 @@ class PlayerLottoTest {
             // when
             FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningInformation);
             EnumMap<Rank, Integer> eachRankCounts = finalGrade.getEachRankCounts();
-            System.out.println(eachRankCounts);
             // then
             assertEachRankCounts(eachRankCounts, 0, 1, 0, 1, 1, 2);
         }

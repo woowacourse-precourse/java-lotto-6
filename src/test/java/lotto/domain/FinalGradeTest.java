@@ -36,7 +36,6 @@ class FinalGradeTest {
                     Rank.FIRST, Rank.FIRST, Rank.FIRST, Rank.FIRST);
             FinalGrade finalGrade = new FinalGrade(ranks);
             BigDecimal expectedTotalPrice = new BigDecimal(20_000_000_000L);
-            System.out.println(expectedTotalPrice);
             // when
             BigDecimal totalPrice = finalGrade.getPlayerTotalPrize();
             // then

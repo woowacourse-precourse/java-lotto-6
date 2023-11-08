@@ -34,8 +34,8 @@ public class Lotto {
     }
 
     private void validateOutOfRange(List<Integer> numbers) {
-        for(int number : numbers) {
-            if(number < 1 || number > 45) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
                 throw new IllegalArgumentException();
             }
         }
@@ -43,6 +43,9 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString();
+        return numbers.stream()
+                .sorted(Integer::compareTo)
+                .toList()
+                .toString();
     }
 }

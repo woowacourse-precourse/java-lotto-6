@@ -28,17 +28,17 @@ public class LottoViewController {
     }
 
     long receivePurchaseAmount() {
-        PurchaseAmountInputView purchaseAmountInputView = new PurchaseAmountInputView();
+        final PurchaseAmountInputView purchaseAmountInputView = new PurchaseAmountInputView();
         return retryInputOnException(AMOUNT, purchaseAmountInputView);
     }
 
     String receiveWinningNumber() {
-        WinningNumberInputView winningNumberInputView = new WinningNumberInputView();
+        final WinningNumberInputView winningNumberInputView = new WinningNumberInputView();
         return retryInputOnException(WINNING_NUMBER, winningNumberInputView);
     }
 
     int receiveBonusNumber(final String winningNumber) {
-        BonusNumberInputView bonusNumberInputView = new BonusNumberInputView(winningNumber);
+        final BonusNumberInputView bonusNumberInputView = new BonusNumberInputView(winningNumber);
         return retryInputOnException(BONUS_NUMBER, bonusNumberInputView);
     }
 

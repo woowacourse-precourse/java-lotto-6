@@ -22,7 +22,7 @@ public record Money(long amount) {
         return amount % other.amount() != ZERO;
     }
 
-    public double getPercentageOf(Money other) {
+    public double getPercentageOf(final Money other) {
         return ((double) amount / other.amount()) * HUNDRED;
     }
 }

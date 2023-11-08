@@ -15,7 +15,7 @@ public enum LottoPrizes {
     SIX_NUMBER_MATCHED(new Money(2_000_000_000L));
     private final Money winningAmount;
 
-    LottoPrizes(Money winningAmount) {
+    LottoPrizes(final Money winningAmount) {
         this.winningAmount = winningAmount;
     }
 
@@ -24,7 +24,7 @@ public enum LottoPrizes {
     }
 
     public static Map<LottoPrizes, Long> getPrizesCountMap() {
-        Map<LottoPrizes, Long> prizesCountsMap = new EnumMap<>(LottoPrizes.class);
+        final Map<LottoPrizes, Long> prizesCountsMap = new EnumMap<>(LottoPrizes.class);
         Arrays.stream(LottoPrizes.values())
                 .forEach(prize -> prizesCountsMap.put(prize, ZERO));
 

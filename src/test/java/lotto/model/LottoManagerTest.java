@@ -36,7 +36,8 @@ public class LottoManagerTest {
     @Test
     void 정답_로또_보관_테스트() {
         LottoManager lottoManager = new LottoManager(new Token(1000));
-        Lotto answerLotto = new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+        AnswerLotto answerLotto = new AnswerLotto(List.of(1, 2, 3, 4, 5, 6));
+        answerLotto.registerBonusNo(7);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertAll(
                 () -> assertTrue(lottoManager.registerAnswerLotto(answerLotto)),

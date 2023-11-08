@@ -37,7 +37,7 @@ class LottoTest {
 
     @Test
     void 로또_번호_정렬() {
-        Lotto lotto = new Lotto(List.of(4,5,3,6,2,1));
+        Lotto lotto = new Lotto(List.of(4, 5, 3, 6, 2, 1));
         assertEquals(lotto.toString(), "[1, 2, 3, 4, 5, 6]");
     }
 
@@ -47,7 +47,8 @@ class LottoTest {
 
         @BeforeAll
         static void beforeAll() {
-            answerLotto = new AnswerLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+            answerLotto = new AnswerLotto(List.of(1, 2, 3, 4, 5, 6));
+            answerLotto.registerBonusNo(7);
         }
 
         @Test

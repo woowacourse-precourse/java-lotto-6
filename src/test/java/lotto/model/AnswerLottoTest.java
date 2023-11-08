@@ -20,7 +20,7 @@ public class AnswerLottoTest {
     @Test
     void 당첨_번호_여부_테스트() {
         Lotto lotto = new Lotto(numbers);
-        Lotto answerLotto = new AnswerLotto(numbers, 7);
+        Lotto answerLotto = new AnswerLotto(numbers);
         assertAll(
                 () -> assertFalse(lotto.isAnswerLotto()),
                 () -> assertTrue(answerLotto.isAnswerLotto())
@@ -29,10 +29,11 @@ public class AnswerLottoTest {
 
     @Test
     void 보너스_번호_테스트() {
+        AnswerLotto answerLotto = new AnswerLotto(numbers);
         assertAll(
-                () -> assertThatThrownBy(() -> new AnswerLotto(numbers, 0))
+                () -> assertThatThrownBy(() -> answerLotto.registerBonusNo(0))
                         .isInstanceOf(IllegalArgumentException.class),
-                () -> assertThatThrownBy(() -> new AnswerLotto(numbers, 1))
+                () -> assertThatThrownBy(() -> answerLotto.registerBonusNo(1))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }

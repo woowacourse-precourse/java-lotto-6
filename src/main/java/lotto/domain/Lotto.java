@@ -12,7 +12,8 @@ public class Lotto {
     public static List<Lotto> createLottos(long count) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            List<Integer> numbers = NumberGenerator.generateNumbers();
+            List<Integer> numbers;
+            numbers = NumberGenerator.generateSortedNumbers();
             lottos.add(new Lotto(numbers));
         }
         return Collections.unmodifiableList(lottos);
@@ -20,7 +21,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
 

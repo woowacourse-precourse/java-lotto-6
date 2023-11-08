@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.type.ErrorMessageType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,8 @@ class LottoResultCalculationTest {
     void InputMoneyException() {
         assertThatThrownBy(() -> {
             lottoResultCalculation.caculateLottoTicket("16500");})
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessageType.NOT_DIVIDE_THOUSAND.message());
     }
 
     @DisplayName("로또 결과에 대한 정상 테스트")

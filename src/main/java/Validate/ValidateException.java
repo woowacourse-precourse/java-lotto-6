@@ -46,7 +46,7 @@ public class ValidateException {
         int length = strLine.length();
 
         if (strLine.charAt(length - 1) == COMMA_CHAR || strLine.charAt(0) == COMMA_CHAR) {
-            throw new NumberFormatException("[ERROR] 숫자 입력의 처음 또는 끝이 ',' 입니다.");
+            throw new NumberFormatException(ValidateConstant.ERROR_COMMA_START_END());
         }
     }
 

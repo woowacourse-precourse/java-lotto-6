@@ -10,6 +10,7 @@ public class GenerateLottoNumber {
     private static final int MAX_NUMBER = 45;
     private static final int COUNT = 6;
     private static List<Integer> lottoNumber;
+
     public static List<Integer> generate() {
         lottoNumber = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, COUNT);
         List<Integer> sortedNumbers = new ArrayList<>(lottoNumber);

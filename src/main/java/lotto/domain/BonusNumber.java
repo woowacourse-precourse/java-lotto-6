@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.exception.ErrorCode;
+
 public class BonusNumber {
     private final int number;
 
@@ -20,19 +22,19 @@ public class BonusNumber {
 
     private void isNullBonusNumber(String number) {
         if (number.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호를 입력해 주세요.\n");
+            throw new IllegalArgumentException(ErrorCode.MISSING_BONUS_NUMBER.getMessage());
         }
     }
 
     private void isValidBonusNumber(String number) {
         if (number.matches(".*[^0-9].*")) {
-            throw new IllegalArgumentException("[ERROR] 보너스 넘버는 숫자만 입력할 수 있습니다.\n");
+            throw new IllegalArgumentException(ErrorCode.INVALID_BONUS_NUMBER_FORMAT.getMessage());
         }
     }
 
     private void isBonusNumberInRange(String number) {
         if (Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 넘버는 1~45 사이의 숫자만 입력할 수 있습니다.\n");
+            throw new IllegalArgumentException(ErrorCode.INVALID_BONUS_NUMBER_RANGE.getMessage());
         }
     }
 }

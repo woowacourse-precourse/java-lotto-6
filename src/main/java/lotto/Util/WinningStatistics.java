@@ -32,6 +32,6 @@ public enum WinningStatistics {
     }
 
     public double calculateReward(Map<String, Integer> lottoWinningStatistics) {
-        return  (double)lottoWinningStatistics.get(this.winningType) * this.reward;
+        return (double) lottoWinningStatistics.get(this.winningType) * this.reward;
     }
 }

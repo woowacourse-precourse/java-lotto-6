@@ -19,7 +19,7 @@ public class LottoController {
     private LottoStore lottoStore;
     private LottoSystem lottoSystem;
 
-    public void run(){
+    public void run() {
         customer = new Customer();
         lottoStore = new LottoStore();
         lottoTicketOrder();
@@ -34,27 +34,28 @@ public class LottoController {
     }
 
     private Map<String, Integer> handleLottoWinngingStatistics() {
-        Map<String, Integer> lottoWinningStatistics = lottoSystem.compareLottoNumbers(customer.getPurchasedLottoNumbers());
+        // 당첨 번호 비교하기
+        Map<String, Integer> lottoWinningStatistics = lottoSystem.compareLottoNumbers(
+                customer.getPurchasedLottoNumbers());
         // 비교 결과 출력하기
         printLottoWinningStatistics(lottoWinningStatistics);
         return lottoWinningStatistics;
     }
 
-    private void handleLottoRateOfReturn(Map<String, Integer> lottoWinningStatistics){
+    private void handleLottoRateOfReturn(Map<String, Integer> lottoWinningStatistics) {
         // 수익률 계산하기
         double totalLottoReward = lottoStore.caculateTotalLottoReward(lottoWinningStatistics);
-        System.out.println("total : " + totalLottoReward);
         double rateOfReturn = customer.calculateRateOfReturn(totalLottoReward);
-        System.out.println("rate : " + rateOfReturn);
         // 수익률 출력하기
         printRateOfReturn(rateOfReturn);
     }
 
-    private void lottoTicketOrder(){
+    private void lottoTicketOrder() {
+        // 복권 주문하기
         try {
             String lottoPurchaseAmount = InputView.inputLottoPurchaseAmount();
             List<Lotto> purchasedLottos = customer.buyLotto(lottoStore, lottoPurchaseAmount);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             lottoTicketOrder();
         }
@@ -62,18 +63,21 @@ public class LottoController {
         printPurchasedLottos(customer.getPurchasedLottoNumbers());
     }
 
-    private void initLottoWinningNumber(){
+    private void initLottoWinningNumber() {
+        // 당첨 번호 입력
         try {
             lottoSystem.storeLottoWinningNumber(inputLottoWinningNumber());
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             initLottoWinningNumber();
         }
     }
-    private void initLottoBonusNumber(){
+
+    private void initLottoBonusNumber() {
+        // 보너스 번호 입력
         try {
             lottoSystem.storeLottoBonusNumber(inputLottoBonusNumber());
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             initLottoBonusNumber();
         }

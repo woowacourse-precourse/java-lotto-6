@@ -17,9 +17,8 @@ public class LottoSystem {
     private List<Integer> lottoWinningNumbers;
     private int lottoBonusNumber;
 
-    public void storeLottoWinningNumber(String lottoWinningNumber){
+    public void storeLottoWinningNumber(String lottoWinningNumber) {
         lottoWinningNumber = lottoWinningNumber.replaceAll("\\s*,\\s*", ",");
-        System.out.println(lottoWinningNumber);
         if (isValidRangeNumber(lottoWinningNumber)) {
             isValidRangeNumber(lottoWinningNumber);
             checkCommaDelimiter(lottoWinningNumber);
@@ -30,7 +29,7 @@ public class LottoSystem {
         Collections.sort(this.lottoWinningNumbers);
     }
 
-    public void storeLottoBonusNumber(String lottoBonusNumber){
+    public void storeLottoBonusNumber(String lottoBonusNumber) {
         lottoBonusNumber.trim();
         if (isValidRangeNumber(lottoBonusNumber)) {
             checkDistinctBetweenWinningAndBonusNumber(lottoWinningNumbers, lottoBonusNumber);
@@ -40,15 +39,12 @@ public class LottoSystem {
 
     public Map<String, Integer> compareLottoNumbers(List<String> purchasedLottos) {
         List<Integer> matchingNumbersCounts = new ArrayList<>();
-
         for (String purchasedTicket : purchasedLottos) {
             List<Integer> ticketNumbers = convertStringToIntegerList(purchasedTicket);
             int countMatchingNumber = 0;
             boolean bonusNumberflag = false;
-
             for (int ticketNumber : ticketNumbers) {
-                countMatchingNumber = checkContainWinningNumber(this.lottoWinningNumbers, ticketNumber,
-                        countMatchingNumber);
+                countMatchingNumber = checkContainWinningNumber(this.lottoWinningNumbers, ticketNumber, countMatchingNumber);
                 bonusNumberflag = checkContainBonusNumber(this.lottoBonusNumber, ticketNumber);
             }
             countMatchingNumber = checkBonusNumber(countMatchingNumber, bonusNumberflag);

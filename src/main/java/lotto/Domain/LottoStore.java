@@ -22,8 +22,7 @@ public class LottoStore {
     }
 
     List<Integer> generateSortedRandomNumber() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER,
-                LOTTO_MAX_DIGIT);
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_MAX_DIGIT);
         List<Integer> sortedRandomNumbers = new ArrayList<>(randomNumbers);
         Collections.sort(sortedRandomNumbers);
         return sortedRandomNumbers;
@@ -39,8 +38,7 @@ public class LottoStore {
         return totalReward;
     }
 
-    private boolean isExistingWinningType(Map<String, Integer> lottoWinningStatistics,
-                                          WinningStatistics winningInformation) {
+    private boolean isExistingWinningType(Map<String, Integer> lottoWinningStatistics, WinningStatistics winningInformation) {
         String winningType = winningInformation.getWinningType();
         return lottoWinningStatistics.get(winningType) != null;
     }

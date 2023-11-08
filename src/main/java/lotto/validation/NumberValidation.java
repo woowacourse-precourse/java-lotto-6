@@ -47,7 +47,7 @@ public class NumberValidation {
     }
 
     public static void isACorrectNumber(String inputValue){
-        if(!inputValue.isEmpty() || !inputValue.isBlank()){
+        if(inputValue.isEmpty() || inputValue.isBlank()){
             handleCustomException(new NotAllNumber());
         }
     }

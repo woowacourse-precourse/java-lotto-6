@@ -45,5 +45,22 @@ public class LottoServiceTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("사용자의 구입금액이 Integer 최댓값을 넘는 경우 예외가 발생한다.")
+    @Test
+    void createPurchaseByOverInteger() {
+        //given
+        String lottoNum = "1,2,4,13,24,35";
+        String bonusNum = "2";
+        LottoService lottoService = new LottoService();
+
+        //when
+        lottoService.setPurchaseNum(lottoNum);
+        lottoService.setBonusNum(bonusNum);
+
+        //then
+        assertThatThrownBy(lottoService::setBonusNumber)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }

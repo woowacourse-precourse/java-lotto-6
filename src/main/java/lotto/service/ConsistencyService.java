@@ -8,7 +8,6 @@ public class ConsistencyService {
     private static int bonusConsistency = 0;
     private static int rateMoney;
     private static int capital;
-    private static long rateOfReturn;
     private static List<Integer> moneyList = new ArrayList<>(Arrays.asList(5000, 50000, 1500000, 30000000, 2000000000));
     private static UserLotto userLotto;
     public ConsistencyService(int capital, UserLotto userLotto){

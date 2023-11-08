@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.sql.Array;
 import java.util.*;
 
 public class LottoView {
@@ -38,8 +39,9 @@ public class LottoView {
     static void initLottoList(int price){
         int lottonum = price / 1000;
         for(int i=0;i<lottonum;i++){
-            List<Integer> pickedlotto = Randoms.pickUniqueNumbersInRange(1,45,6);
-            Collections.sort(pickedlotto);
+            List<Integer> pickedlotto = new ArrayList<>(
+                    Randoms.pickUniqueNumbersInRange(1,45,6));
+            pickedlotto.sort(Comparator.naturalOrder());
             lottoList.add(pickedlotto);
         }
         System.out.println(lottonum+"개를 구매했습니다.");

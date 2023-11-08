@@ -49,5 +49,14 @@ public class LottoRankTest {
         Assertions.assertFalse(lottoRank.isContainBonusRank());
     }
 
+    @ParameterizedTest
+    @EnumSource(value = LottoRank.class, names = {"FIFTH", "FOURTH", "THIRD", "SECOND", "FIRST"})
+    void isNotNothing_메소드는_당첨되지_않은_등수이면_true를_반환한다(LottoRank lottoRank) {
+        Assertions.assertTrue(lottoRank.isNotNothing());
+    }
 
+    @Test
+    void isNotNothing_메소드는_당첨된_등수이면_false를_반환한다() {
+        Assertions.assertFalse(LottoRank.NOTHING.isNotNothing());
+    }
 }

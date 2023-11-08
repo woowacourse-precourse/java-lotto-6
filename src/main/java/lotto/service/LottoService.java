@@ -45,4 +45,8 @@ public class LottoService {
                 .count();
     }
 
+    private boolean checkBonusMatch(LottoTicket ticket, WinningLotto winningLotto) {
+        return ticket.getNumbers().contains(winningLotto.getBonusNumber());
+    }
+
 }

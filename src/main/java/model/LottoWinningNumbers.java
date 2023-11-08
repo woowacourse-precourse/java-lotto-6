@@ -6,17 +6,17 @@ import utils.Converter;
 import utils.NumberValidation;
 
 public class LottoWinningNumbers {
-    private Lotto winningNumbers;
+    private Lotto winningLotto;
     private int bonusNumber;
 
-    public LottoWinningNumbers(List<Integer> winningNumbers, String bonusNumber) {
-        this.winningNumbers = new Lotto(winningNumbers);
+    public LottoWinningNumbers(Lotto winningLotto, String bonusNumber) {
+        this.winningLotto = winningLotto;
         validationBonusNumber(Converter.stringToInt(bonusNumber));
         this.bonusNumber = Converter.stringToInt(bonusNumber);
     }
 
     public List<Integer> getWinningNumbers() {
-        return winningNumbers.getNumbers();
+        return winningLotto.getNumbers();
     }
 
     public int getBonusNumber() {
@@ -30,7 +30,7 @@ public class LottoWinningNumbers {
     }
 
     public void duplicationBonusNumber(int bonusNumber) {
-        if (winningNumbers.getNumbers().contains(bonusNumber)) {
+        if (winningLotto.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessages.DUPLICATION_BONUS_AND_WINNING);
         }
     }

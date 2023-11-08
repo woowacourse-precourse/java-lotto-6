@@ -9,7 +9,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LottoPrizeTest {
     List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(9, 8, 7, 6, 5, 4)));
-    LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(List.of(2,3,4,5,6,7), "1");
+    LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(new Lotto(List.of(2,3,4,5,6,7)), "1");
 
     @DisplayName("하나의 당첨번호와 로또 번호가 일치하는 개수 테스트")
     @Test

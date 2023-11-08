@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 import message.InputSign;
+import model.Lotto;
 import model.LottoWinningNumbers;
 import service.LottoService;
 import utils.Converter;
@@ -13,7 +14,7 @@ public class LottoController {
     OutputView outputView = new OutputView();
     LottoService lottoService = new LottoService();
     LottoWinningNumbers lottoWinningNumbers;
-    List<Integer> winNumbers;
+    Lotto winningLotto;
 
     public void run() {
         inputPurchaseCount();
@@ -44,7 +45,7 @@ public class LottoController {
         while (true) {
             try {
                 String bonusNumber = inputView.inputBonusNumber();
-                lottoWinningNumbers = new LottoWinningNumbers(winNumbers, bonusNumber);
+                lottoWinningNumbers = new LottoWinningNumbers(winningLotto, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -57,7 +58,7 @@ public class LottoController {
             try {
                 String winningNumber = inputView.inputWinningNumber();
                 String[] winningNumbers = Converter.splitByDelimiter(winningNumber, InputSign.DELIMITER);
-                winNumbers = Converter.stringArrayToList(winningNumbers);
+                winningLotto = new Lotto(Converter.stringArrayToList(winningNumbers));
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

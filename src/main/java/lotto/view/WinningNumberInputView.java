@@ -41,15 +41,6 @@ public class WinningNumberInputView implements LottoInputViewable, Supplier<Stri
         }
     }
 
-    private void validateEachNumber(final String winningNumber) {
-        final List<String> numbers = Arrays.asList(winningNumber.split(COMMA));
-        try {
-            numbers.forEach(this::validateLottoNumber);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage());
-        }
-    }
-
     private boolean isInvalidNumbersFormat(final String winningNumber) {
         return !winningNumber.matches(WINNING_NUMBER_FORMAT_REGEX);
     }
@@ -62,5 +53,14 @@ public class WinningNumberInputView implements LottoInputViewable, Supplier<Stri
         List<String> numbers = Arrays.asList(winningNumber.split(COMMA));
         Set<String> nonDuplicateNumbers = new HashSet<>(numbers);
         return nonDuplicateNumbers.size() != numbers.size();
+    }
+
+    private void validateEachNumber(final String winningNumber) {
+        final List<String> numbers = Arrays.asList(winningNumber.split(COMMA));
+        try {
+            numbers.forEach(this::validateLottoNumber);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 }

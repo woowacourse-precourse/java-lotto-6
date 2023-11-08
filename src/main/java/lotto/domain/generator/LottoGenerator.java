@@ -1,10 +1,10 @@
 package lotto.domain.generator;
 
 import static lotto.domain.constant.DomainConstant.COMMA;
+import static lotto.domain.constant.DomainConstant.LOTTO_PRICE;
 import static lotto.domain.constant.DomainConstant.MAX_RANGE;
 import static lotto.domain.constant.DomainConstant.MIN_RANGE;
 import static lotto.domain.constant.DomainConstant.NUMBERS_FORMAT_REGEX;
-import static lotto.domain.constant.DomainConstant.LOTTO_PRICE;
 import static lotto.domain.constant.DomainConstant.SIX;
 import static lotto.domain.constant.DomainConstant.ZERO;
 import static lotto.domain.generator.LottoGenerator.LottoGeneratorErrorMessage.DUPLICATED_BONUS_NUMBER;

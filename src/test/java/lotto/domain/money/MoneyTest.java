@@ -38,7 +38,7 @@ class MoneyTest {
 
     @DisplayName("숫자의 대소비교 결과가 정확한지 확인합니다.")
     @ParameterizedTest
-    @CsvSource(value = {"99_999_999/false","100_000_001/true"}, delimiter = '/')
+    @CsvSource(value = {"99_999_999/false", "100_000_001/true"}, delimiter = '/')
     void isLessThan(long amount, boolean expectedResult) {
         assertThat(money.isLessThan(new Money(amount))).isEqualTo(expectedResult);
     }

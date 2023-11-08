@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoOutputView {
-
     public void printErrorMessage(final String message) {
         System.out.println(message);
         printNewLine();

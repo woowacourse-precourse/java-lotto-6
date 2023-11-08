@@ -26,7 +26,6 @@ public class Lotto {
     }
 
     private void validateNumbers(List<Integer> numbers) {
-
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (int number : numbers) {
             numbersCheck(uniqueNumbers, number);

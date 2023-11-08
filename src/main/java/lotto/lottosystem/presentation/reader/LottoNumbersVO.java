@@ -1,6 +1,6 @@
 package lotto.lottosystem.presentation.reader;
 
-import java.util.List;
+import lotto.lottosystem.bussiness.Lotto;
 
-public record LottoNumbersVO(List<Integer> numbers, int bonusNumber) {
+public record LottoNumbersVO(Lotto numbers, int bonusNumber) {
 }

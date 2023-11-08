@@ -1,6 +1,7 @@
 package lotto.lottosystem.bussiness;
 
 import lotto.lottosystem.presentation.printer.TicketsVO;
+import lotto.lottosystem.presentation.reader.LottoNumbersVO;
 import lotto.lottosystem.presentation.reader.MoneyVO;
 
 import java.util.ArrayList;
@@ -10,15 +11,14 @@ public class LottoService {
 
     private static final int ONE_LOTTO_EXPENCE = 1000;
     private final LottoGenerator lottoGenerator;
-    private final Lotto answerLotto;
+    private Lotto answerLotto;
+    private int bonusNumber;
+    private List<Lotto> userTickets;
 
-    public LottoService(LottoGenerator lottoGenerator) {
+    public LottoService(LottoGenerator lottoGenerator, LottoNumbersVO lottoNumbersVO) {
         this.lottoGenerator = lottoGenerator;
-        this.answerLotto = makeAnswerLotto();
-    }
-
-    private Lotto makeAnswerLotto() {
-        return new Lotto(lottoGenerator.generateLotto());
+        this.answerLotto = lottoNumbersVO.numbers();
+        this.bonusNumber = lottoNumbersVO.bonusNumber();
     }
 
     public TicketsVO issueTickets(MoneyVO moneyVO) {
@@ -29,6 +29,7 @@ public class LottoService {
         for(int i = 0; i < count; i++) {
             tickets.add(new Lotto(lottoGenerator.generateLotto()));
         }
+        this.userTickets = tickets;
         return new TicketsVO(tickets);
     }
 

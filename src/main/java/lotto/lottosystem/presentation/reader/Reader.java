@@ -1,5 +1,7 @@
 package lotto.lottosystem.presentation.reader;
 
+import lotto.lottosystem.bussiness.Lotto;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class Reader {
 
     public LottoNumbersVO readLottoNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> lottoNumbers = readNumbers();
+        Lotto lottoNumbers = readNumbers();
         System.out.println();
         System.out.println("보너스 번호를 입력 해주세요.");
         int bonusNumber = readNumber();
@@ -30,10 +32,10 @@ public class Reader {
         return new LottoNumbersVO(lottoNumbers, bonusNumber);
     }
 
-    private List<Integer> readNumbers() {
+    private Lotto readNumbers() {
         String numbers = lottoConsole.readLine();
         if (validateNumbers(numbers)) {
-            return parseNumbers(numbers);
+            return new Lotto(parseNumbers(numbers));
         }
         throw new IllegalArgumentException("당첨 번호는 공백을 제외한 숫자와 숫자 사이의 콤마만 입력 가능합니다.");
     }

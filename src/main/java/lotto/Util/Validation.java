@@ -39,6 +39,12 @@ public class Validation {
         }
     }
 
+    private static void isDuplicatedBonusNumber(List<Integer> winnerNumbers, int bonusNumber) {
+        if (winnerNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호 중 보너스 번호와 중복되는 번호가 존재합니다.");
+        }
+    }
+
     public static int validatePurchaseAmount(String input) {
         int purchaseAmount = parseInteger(input);
         isValidUnit(purchaseAmount);
@@ -59,7 +65,10 @@ public class Validation {
         return winnerNumbers;
     }
 
-    public static int validateBonusNumber(String input) {
-
+    public static int validateBonusNumber(List<Integer> winnerNumbers, String input) {
+        int bonusNumber = parseInteger(input);
+        isValidRange(bonusNumber);
+        isDuplicatedBonusNumber(winnerNumbers, bonusNumber);
+        return bonusNumber;
     }
 }

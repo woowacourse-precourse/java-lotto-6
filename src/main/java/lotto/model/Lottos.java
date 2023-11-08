@@ -8,24 +8,23 @@ import java.util.List;
 
 public class Lottos {
     private List<Lotto> lottos = new ArrayList<Lotto>();
+    private int countOfLotto;
 
-    public List<Lotto> createLottos(int lottoCount) {
-        for (int i = 0; i < lottoCount; i++) {
+    public Lottos(int inputCost) {
+        LottoCount lottoCount = new LottoCount();
+        countOfLotto = lottoCount.inputLottoCost(inputCost);
+    }
+
+    public List<Lotto> createLottos() {
+        for (int i = 0; i < countOfLotto; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }
-        printLottos();
         return lottos;
     }
 
     public List<Lotto> getLottos() {
         return lottos;
-    }
-
-    private void printLottos() {
-        for (int i = 0; i < lottos.size(); i++) {
-            System.out.println(lottos.get(i).getNumbers().toString());
-        }
     }
 }

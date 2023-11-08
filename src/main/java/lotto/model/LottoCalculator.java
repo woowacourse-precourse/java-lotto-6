@@ -31,7 +31,6 @@ public class LottoCalculator {
 
     public List<Integer> calculateRank() {
         for (int i = 0; i < matchCounts.size(); i++) {
-            System.out.println(correctCount.get(matchCounts.get((i))));
             if (correctCount.get(matchCounts.get((i))) != null) {
                 int rank = correctCount.get(matchCounts.get((i))) - 1;
                 ranks.set(rank, ranks.get(rank) + 1);

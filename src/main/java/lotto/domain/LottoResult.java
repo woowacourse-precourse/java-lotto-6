@@ -10,7 +10,7 @@ import lotto.common.enums.LottoRank;
 import lotto.common.utils.NumberUtil;
 import lotto.service.LottoService;
 
-public class LottoStatistics {
+public class LottoResult {
     private List<Lotto> userLottos;
     private List<Integer> winningNumbers;
     private int bonusNumber;
@@ -19,7 +19,7 @@ public class LottoStatistics {
     private final Map<LottoRank, Long> winningResult;
     private final double totalRate;
 
-    public LottoStatistics(List<Lotto> userLottos, List<Integer> winningNumbers,
+    public LottoResult(List<Lotto> userLottos, List<Integer> winningNumbers,
             int bonusNumber) {
         this.lottoService = LottoService.getInstance();
         this.userLottos = Collections.unmodifiableList(userLottos);

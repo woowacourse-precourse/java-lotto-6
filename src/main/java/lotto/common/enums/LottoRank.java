@@ -34,13 +34,11 @@ public enum LottoRank {
         if (matchCount == 5 && matchBonus) {
             return SECOND;
         }
-
         for (LottoRank rank : values()) {
             if (rank.getMatchCount() == matchCount && !rank.getIsBonusNumber()) {
                 return rank;
             }
         }
-
         return NONE;
     }
 }

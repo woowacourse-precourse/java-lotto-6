@@ -23,6 +23,7 @@ public class WinningNumbersRequest {
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) { //그냥 엔터한 경우 null로 return되는데 이경우도 처리됨.
+            System.out.println(ILLEGAL_NUMBER.getMessage());
             throw new IllegalArgumentException(ILLEGAL_NUMBER.getMessage());
         }
     }

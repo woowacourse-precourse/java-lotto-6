@@ -26,15 +26,29 @@ public class LottoController {
 
     public void start() {
         createLottos();
-        this.winningLotto = new WinningLotto(getNumbers(), getBonusNumber());
+        makewinninglotto();
         Draw(winningLotto);
     }
 
+    private void makewinninglotto() {
+        try{
+            this.winningLotto = new WinningLotto(getNumbers(), getBonusNumber());
+        } catch (IllegalArgumentException e){
+            makewinninglotto();
+        }
+
+    }
+
     private void createLottos() {
-        MoneyRequest moneyRequest = new MoneyRequest(InputView.readMoney());
+        MoneyRequest moneyRequest = getMoney();
         int count = moneyRequest.getMoney()/1000;
         this.lottos = new Lottos(count);
         OutputView.printLottosIssuance(new LottosIssuanceResponse(count,this.lottos));
+    }
+
+    public MoneyRequest getMoney() {
+        MoneyRequest moneyRequest = new MoneyRequest(InputView.readMoney());
+        return moneyRequest;
     }
 
     private List<LottoNumber> getNumbers() {
@@ -59,6 +73,8 @@ public class LottoController {
         }
         MatchResultResponse matchResultResponse = new MatchResultResponse(rankCount);
         RateOfReturnResponse rateOfReturnResponse = new RateOfReturnResponse(this.lottos, rankCount);
+        OutputView.printMatchResult(matchResultResponse);
+        OutputView.printRateOfReturn(rateOfReturnResponse);
     }
 
     public Map<Rank, Integer> initializeRankCount() {

@@ -24,6 +24,7 @@ public class LottoNumber {
 
     private void validateLottoNumberLength(int lottoNumber) {
         if((lottoNumber < 1) || ( lottoNumber > 46)) {
+            System.out.println(OUT_OF_LOTTO_NUMBER_LENGTH.getMessage());
             throw new IllegalArgumentException(OUT_OF_LOTTO_NUMBER_LENGTH.getMessage());
         }
     }

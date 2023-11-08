@@ -14,7 +14,7 @@ public class LottosIssuanceResponse {
     @Override
     public String toString() {
 
-        return count + "개를 구매했습니다\n"
+        return "\n"+ this.count + "개를 구매했습니다.\n"
                 + lottos.toString();
     }
 }

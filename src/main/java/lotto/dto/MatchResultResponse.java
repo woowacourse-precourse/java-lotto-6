@@ -15,7 +15,7 @@ public class MatchResultResponse {
 
     @Override
     public String toString() {
-        return "당첨 통계\n---\n"
+        return "\n당첨 통계\n---\n"
                 + "3개 일치 (5,000원) - " + rankCount.get(Rank.FIFTH) + "개\n"
                 + "4개 일치 (50,000원) - " + rankCount.get(Rank.FOURTH) + "개\n"
                 + "5개 일치 (1,500,000원) - " + rankCount.get(Rank.FOURTH) + "개\n"

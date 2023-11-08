@@ -17,6 +17,7 @@ public class WinningLotto extends Lotto {
 
     private void validateDuplicateBonusNumber(LottoNumber bonusNumber) {
         if (hasNumber(bonusNumber)) {
+            System.out.println(OVERLAP_BONUS_NUMBER.getMessage());
             throw new IllegalArgumentException(OVERLAP_BONUS_NUMBER.getMessage());
         }
     }

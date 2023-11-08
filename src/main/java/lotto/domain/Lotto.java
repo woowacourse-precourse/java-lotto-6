@@ -35,19 +35,20 @@ public class Lotto { //Lotto = numbers
 
     public static List<Integer> createLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        List<Integer> collect = numbers.stream().sorted().collect(Collectors.toList());
-        return collect;
+        return numbers.stream().sorted().collect(Collectors.toList());
     }
 
     private void validateNonDuplicatedNumbers(final List<LottoNumber> numbers) {
         List<LottoNumber> nonDuplicatedNumbers = numbers.stream().distinct().toList();
         if (nonDuplicatedNumbers.size() != numbers.size()) {
+            System.out.println(DUPLICATE_LOTTO_NUMBER.getMessage());
             throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 
     private void validateLottoSize(final List<LottoNumber> numbers) {
         if (numbers.size() != 6) {
+            System.out.println(INVAILD_LOTTO_SIZE.getMessage());
             throw new IllegalArgumentException(INVAILD_LOTTO_SIZE.getMessage());
         }
     }

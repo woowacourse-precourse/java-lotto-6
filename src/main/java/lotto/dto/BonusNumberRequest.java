@@ -17,11 +17,15 @@ public class BonusNumberRequest {
     }
 
     private static int stringToInt(String input) {
+        int result = 0;
         try{
-            return Integer.parseInt(input);
+            result = Integer.parseInt(input);
         } catch (NumberFormatException e) { //그냥 엔터한 경우 null로 return되는데 이경우도 처리됨.
-            throw new IllegalArgumentException(ILLEGAL_NUMBER.getMessage());
+            System.out.println(ILLEGAL_NUMBER.getMessage());
+            stringToInt(input);
+            //throw new IllegalArgumentException(ILLEGAL_NUMBER.getMessage());
         }
+        return result;
     }
 
     public LottoNumber getBonusNumber() {

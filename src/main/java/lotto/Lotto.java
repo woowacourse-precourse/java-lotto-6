@@ -26,6 +26,15 @@ public class Lotto {
         System.out.println("]");
     }
 
+    public boolean isIncluded(int number) {
+        for (int i : this.numbers) {
+            if (i == number) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != Value.LOTTO_NUMBER.get()) {
             throw new IllegalArgumentException("[ERROR] 로또 숫자는 6개여야 합니다.");

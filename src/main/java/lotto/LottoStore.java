@@ -50,12 +50,37 @@ public class LottoStore {
         }
     }
 
+    public void getBonusNumber() {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해주세요.");
+                String input = Console.readLine();
+                validateBonusNumber(input);
+                this.bonusNumber = Integer.parseInt(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void validateBonusNumber(String input) {
+        validateString(input);
+        int number = Integer.parseInt(input);
+        if (number < Value.RAINGE_MIN.get() || number > Value.RAINGE_MAX.get()) {
+            throw new IllegalArgumentException("[ERROR] 숫자는 1~45여야 합니다.");
+        }
+        if (winningNumber.isIncluded(number)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 숫자가 당첨 번호와 중복됩니다.");
+        }
+    }
+
     private List<Integer> parseString(String input) {
         String[] splitInput = input.split(",");
         validateInput(splitInput);
         // 마지막이 쉼표로 끝나는 경우 split에서 사라지므로 해당 메서드에서 예외 처리
         if (input.charAt(input.length() - Value.ONE.get()) == ',') {
-            throw new IllegalArgumentException("[ERROR] 쉼표로 구분된 값이 비어있습니다.");
+            throw new IllegalArgumentException("[ERROR] 값이 비어있습니다.");
         }
 
         List<Integer> numbers = new ArrayList<>();
@@ -70,17 +95,17 @@ public class LottoStore {
             throw new IllegalArgumentException("[ERROR] 입력된 값이 없습니다.");
         }
         for (String s : input) {
-            if (s.isEmpty()) {
-                throw new IllegalArgumentException("[ERROR] 쉼표로 구분된 값이 비어있습니다.");
-            }
             validateString(s);
         }
     }
 
     private void validateString(String s) {
+        if (s.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 값이 비어있습니다.");
+        }
         for (int i = 0; i < s.length(); ++i) {
             if (s.charAt(i) < '0' || s.charAt(i) > '9') {
-                throw new IllegalArgumentException("[ERROR] 쉼표로 구분된 값에는 숫자만 입력해야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 값에는 숫자만 입력해야 합니다.");
             }
         }
     }

@@ -5,6 +5,7 @@ import static lotto.model.LottoRanking.FIRST;
 import static lotto.model.LottoRanking.FORTH;
 import static lotto.model.LottoRanking.SECOND;
 import static lotto.model.LottoRanking.THIRD;
+import static lotto.util.Constant.CHECK_BONUS_NUMBER;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class LottoResult {
 
     public static int checkBonusNumber(List<Integer> lottoNumbers, int match, int bonusNumber) {
         if (match == SECOND.getMatchCount() && lottoNumbers.contains(bonusNumber)) {
-            return match * 7;
+            return match * CHECK_BONUS_NUMBER;
         }
         return match;
     }

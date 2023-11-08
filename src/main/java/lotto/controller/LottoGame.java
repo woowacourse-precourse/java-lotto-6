@@ -38,16 +38,16 @@ public class LottoGame {
         }
     }
 
-    public LottoTickets purchaseLottoTickets(int numberOfTicket) {
+    public LottoTickets purchaseLottoTickets(int ticketNumber) {
         try {
             List<LottoTicket> lottoTickets = new ArrayList<>();
-            for (int count = 0; count < numberOfTicket; count++) {
+            for (int count = 0; count < ticketNumber; count++) {
                 lottoTickets.add(generateLottoTicket());
             }
             return new LottoTickets(lottoTickets);
         } catch (IllegalArgumentException e) {
             printErrorMessage(e.getMessage());
-            return purchaseLottoTickets(numberOfTicket);
+            return purchaseLottoTickets(ticketNumber);
         }
     }
 

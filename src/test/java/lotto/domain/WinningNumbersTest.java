@@ -28,7 +28,7 @@ class WinningNumbersTest {
 
     @ParameterizedTest
     @CsvSource(value = {"1,2,3,4,5,6:6", "1,2,3,4,4,5:6"}, delimiterString = ":")
-    public void 당첨_번호와_보너스_번호에서_중복되는_숫자가_있으면_예외를_발생시킨다(String winningNumbers, Integer bonusNumber) {
+    public void 당첨_번호와_보너스_번호를_모두_포함하여_중복되는_숫자가_있으면_예외를_발생시킨다(String winningNumbers, Integer bonusNumber) {
         // given
         List<Integer> numbers = convertInput(winningNumbers);
 

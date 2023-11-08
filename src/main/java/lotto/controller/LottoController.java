@@ -23,7 +23,7 @@ public class LottoController {
         return lottos;
     }
 
-    public void printLottos(final Lottos lottos){
+    public void printLottos(final Lottos lottos) {
         String lottosNumbers = lottoService.getLottosNumbers(lottos);
 
         gameView.printLottosNumbers(lottosNumbers);

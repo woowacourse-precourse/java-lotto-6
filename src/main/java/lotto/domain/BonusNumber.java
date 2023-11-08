@@ -5,7 +5,7 @@ import lotto.utils.ErrorMessage;
 public class BonusNumber {
     private final WinningNumber bonusNumber;
 
-    public BonusNumber(final WinningNumber bonusNumber) {
+    private BonusNumber(final WinningNumber bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
 

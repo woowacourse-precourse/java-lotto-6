@@ -28,7 +28,7 @@ public class BudgetService extends CreateService {
         try {
             Integer.parseInt(inputBudget);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ErrorMessage.NON_INTEGER_VALUE.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.BUDGET_IS_NON_INTEGER_VALUE.getErrorMessage());
         }
     }
 }

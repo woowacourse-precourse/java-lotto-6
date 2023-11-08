@@ -8,12 +8,12 @@ public class BudgetController {
     private final BudgetService budgetService;
     private final GameView gameView;
 
-    public BudgetController(){
+    public BudgetController() {
         budgetService = new BudgetService();
         gameView = new GameView();
     }
 
-    public Budget createBudget(){
+    public Budget createBudget() {
         gameView.printInputBudgetMessage();
 
         Budget budget = budgetService.createBudget();

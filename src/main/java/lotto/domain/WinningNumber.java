@@ -9,6 +9,7 @@ public class WinningNumber {
     private final int winningNumber;
 
     public WinningNumber(final int winningNumber) {
+        sizeValidate(winningNumber);
         this.winningNumber = winningNumber;
     }
 
@@ -16,8 +17,6 @@ public class WinningNumber {
         validateAtStringLevel(number);
 
         int convertedIntegerNumber = Integer.parseInt(number);
-        sizeValidate(convertedIntegerNumber);
-
         return new WinningNumber(convertedIntegerNumber);
     }
 
@@ -33,11 +32,11 @@ public class WinningNumber {
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ErrorMessage.NON_INTEGER_VALUE.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_IS_NON_INTEGER_VALUE.getErrorMessage());
         }
     }
 
-    private static void sizeValidate(final int number) {
+    private void sizeValidate(final int number) {
         if (number < MIN_VALUE || number > MAX_VALUE) {
             throw new IllegalArgumentException(ErrorMessage.NON_WINNING_NUMBER.getErrorMessage());
         }

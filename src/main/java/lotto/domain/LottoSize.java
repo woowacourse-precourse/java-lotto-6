@@ -1,6 +1,5 @@
 package lotto.domain;
 
-//todo: 필요한가?
 public class LottoSize {
     private final int lottoSize;
 

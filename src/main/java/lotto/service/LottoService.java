@@ -15,6 +15,6 @@ public class LottoService {
     }
 
     public String getLottosNumbers(final Lottos lottos) {
-        return lottos.getLottosNumbers();
+        return lottos.toString();
     }
 }

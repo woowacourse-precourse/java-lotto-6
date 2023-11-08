@@ -45,7 +45,7 @@ public class WinningController {
         return winningScores;
     }
 
-    public void printProfit(final WinningScores winningScores, final Budget budget){
+    public void printProfit(final WinningScores winningScores, final Budget budget) {
         double profit = winningService.getReturnOfLottos(winningScores, budget);
 
         gameView.printROI(profit);

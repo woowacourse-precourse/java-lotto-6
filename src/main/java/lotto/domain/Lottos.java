@@ -28,8 +28,8 @@ public class Lottos {
         return new Lottos(initialLottos);
     }
 
-    //todo: naming
-    public String getLottosNumbers() {
+    @Override
+    public String toString() {
         StringJoiner sj = new StringJoiner("\n");
 
         for (Lotto lotto : lottos) {

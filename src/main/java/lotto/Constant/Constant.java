@@ -41,4 +41,5 @@ public class Constant {
     public static final int LOTTO_MAX_NUMBER = 45;
     public static final int LOTTO_LENGTH = 6;
     public static final int LOTTO_MIN_MATCH_COUNT = 5;
+    public static final int LOTTO_DIVIDE_NUMBER = 100;
 }

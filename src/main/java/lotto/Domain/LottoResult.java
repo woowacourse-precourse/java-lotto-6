@@ -26,7 +26,7 @@ public class LottoResult {
     }
 
     public double getRate(long money) {
-        return ((double) sumPrice() / money) * 100;
+        return ((double) sumPrice() / money) * Constant.LOTTO_DIVIDE_NUMBER;
     }
 
     public long sumPrice() {

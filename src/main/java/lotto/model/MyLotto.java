@@ -5,7 +5,9 @@ import java.util.List;
 
 public class MyLotto {
 
-  private static final String INVALID_PURCHASE_AMOUNT_MESSAGE = "[ERROR] 구입금액은 문자 없이 1000 단위로 입력해야 합니다.";
+  private static final String REGEX_ALPHABET_PATTERN = ".*[a-zA-Z].*";
+  private static final String INVALID_PURCHASE_AMOUNT_MESSAGE = "[ERROR] 구입금액은 1000 단위로 입력해야 합니다.";
+  private static final String AMOUNT_NUMBER_WITH_LETTER_MESSAGE = "[ERROR] 구입금액에 문자가 포함되어선 안됩니다.";
 
   private static final List<Lotto> myLotto = new ArrayList<>();
   private final int lottoTickets;
@@ -37,16 +39,14 @@ public class MyLotto {
 
   private int parseAndValidateIntInThousands(String amount) {
 
-    try {
-      int checkAmount = Integer.parseInt(amount);
+    if (amount.matches(REGEX_ALPHABET_PATTERN))
+      throw new IllegalArgumentException(AMOUNT_NUMBER_WITH_LETTER_MESSAGE);
 
-      if (checkAmount < 1000 || (checkAmount % 1000) != 0)
-        throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_MESSAGE);
+    int checkAmount = Integer.parseInt(amount);
 
-      return checkAmount;
-
-    } catch (Exception e) {
+    if (checkAmount < 1000 || (checkAmount % 1000) != 0)
       throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_MESSAGE);
-    }
+
+    return checkAmount;
   }
 }

@@ -16,4 +16,14 @@ public class ValidateWinningNumberTest {
 
     }
 
+    @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createWinningNumberByDuplicatedNumber() {
+
+        Assertions.assertThatThrownBy(() -> ValidateWinningNumber.validateWinningNumber("1, 2, 3, 4, 5, 5"))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
+    
+
 }

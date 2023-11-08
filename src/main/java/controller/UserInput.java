@@ -1,9 +1,9 @@
 package controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import model.ErrorMessage;
+import static model.ErrorMessage.*;
 import model.Lotto;
-import model.LottoInit;
+import static model.LottoInit.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +19,7 @@ public class UserInput {
                 price = Integer.parseInt(Console.readLine());
                 return price;
             } catch (IllegalArgumentException e) {
-                System.out.println(ErrorMessage.WRONG_ORDER_TYPE.getMessage());
+                System.out.println(WRONG_ORDER_TYPE.getMessage());
             }
         }
     }
@@ -46,8 +46,8 @@ public class UserInput {
     }
 
     private static void validateNumber(int number) {
-        if (number < LottoInit.LOTTO_MINIMUM.getInitial() || number > LottoInit.LOTTO_MAXIMUM.getInitial()) {
-            throw new IllegalArgumentException(ErrorMessage.WRONG_RANGE_NUMBER.getMessage());
+        if (number < LOTTO_MINIMUM.getInitial() || number > LOTTO_MAXIMUM.getInitial()) {
+            throw new IllegalArgumentException(WRONG_RANGE_NUMBER.getMessage());
         }
     }
 }

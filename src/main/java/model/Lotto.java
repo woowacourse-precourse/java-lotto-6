@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static model.ErrorMessage.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -31,14 +33,14 @@ public class Lotto {
 
     public static void validate(List<Integer> numbers) {
         if (numbers.size() != LottoInit.LOTTO_SIZE.getInitial()) {
-            throw new IllegalArgumentException(ErrorMessage.WRONG_ORDER_COUNT.getMessage());
+            throw new IllegalArgumentException(WRONG_ORDER_COUNT.getMessage());
         }
     }
 
     public static void duplicateCheck(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
         if (set.size() != numbers.size()) {
-            throw new IllegalArgumentException(ErrorMessage.REDUNDANT_NUMBER.getMessage());
+            throw new IllegalArgumentException(REDUNDANT_NUMBER.getMessage());
         }
     }
 

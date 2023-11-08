@@ -1,5 +1,6 @@
 package model;
 
+import static model.ErrorMessage.*;
 public class Purchase {
     private final int MODULAR_NUMBER = 0;
     private final int LOTTO_PRICE = 1000;
@@ -15,7 +16,7 @@ public class Purchase {
 
     private void priceCheck(int price) {
         if (price % LOTTO_PRICE != MODULAR_NUMBER) {
-            throw new IllegalArgumentException(ErrorMessage.WRONG_ORDER_PRICE.getMessage());
+            throw new IllegalArgumentException(WRONG_ORDER_PRICE.getMessage());
         }
     }
 

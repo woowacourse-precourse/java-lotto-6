@@ -2,6 +2,8 @@ package lotto.domain.validation.validator;
 
 import java.util.List;
 
+import static lotto.domain.constants.LottoConstraint.*;
+
 public class Validator {
 
     public boolean isInputInteger(String input){
@@ -20,14 +22,14 @@ public class Validator {
     }
 
     public void isPurchaseAmountDividedUp(String input) {
-        if (Integer.parseInt(input) % 1000 != 0) {
+        if (Integer.parseInt(input) % LOTTO_PRICE.getValue() != 0) {
             throw new IllegalArgumentException();
         }
     }
 
     public void checkBonusNumberInRange(String input) {
         int bonusNumber = Integer.parseInt(input);
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < NUMBER_RANGE_MINIMUM.getValue() || bonusNumber > NUMBER_RANGE_MAXIMUM.getValue()) {
             throw new IllegalArgumentException();
         }
     }

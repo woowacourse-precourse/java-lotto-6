@@ -20,7 +20,7 @@ public class LottoNumberGenerator {
         return Randoms.pickUniqueNumbersInRange(
                 NUMBER_RANGE_MINIMUM.getValue(),
                 NUMBER_RANGE_MAXIMUM.getValue(),
-                6
+                NUMBER_COUNT.getValue()
         );
     }
 }

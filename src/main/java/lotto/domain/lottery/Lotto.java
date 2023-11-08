@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.domain.constants.LottoConstraint.NUMBER_RANGE_MAXIMUM;
+import static lotto.domain.constants.LottoConstraint.NUMBER_RANGE_MINIMUM;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -31,7 +34,7 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < NUMBER_RANGE_MINIMUM.getValue() || number > NUMBER_RANGE_MAXIMUM.getValue()) {
                 throw new IllegalArgumentException();
             }
         }

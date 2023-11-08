@@ -1,6 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.controller.NumberValidator;
+import lotto.model.Lotto;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,9 +11,11 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+    NumberValidator numberValidator = new NumberValidator();
 
     @Test
     void 기능_테스트() {
@@ -52,6 +57,43 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+    @DisplayName("로또 당첨 번호의 개수가 6개가 안되면 예외가 발생한다.")
+    @Test
+    void createLottoByDownSize() {
+        assertThatThrownBy(() -> numberValidator.prizeNumValidate(List.of(1,2,3,4,5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 당첨 번호의 개수가 6개가 넘으면 예외가 발생한다.")
+    @Test
+    void createLottoByOverSize() {
+        assertThatThrownBy(() -> numberValidator.prizeNumValidate(List.of(1,2,3,4,5,6,7)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 당첨 번호가 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void createLottoNotNum() {
+
+        assertThatThrownBy(() -> numberValidator.prizeLottoNumValidator("1,2,3,4,5,s"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 당첨 번호에 숫자가 공백이 들어오면 예외가 발생한다.")
+    @Test
+    void createLottoEmptyNum() {
+
+        assertThatThrownBy(() -> numberValidator.prizeLottoNumValidator("1,2,3,4,,5"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 당첨 번호에 숫자가 중복값이 들어오면 예외가 발생한다.")
+    @Test
+    void createLottoAlreadyNum() {
+
+        assertThatThrownBy(() -> numberValidator.prizeLottoNumValidator("1,2,3,4,4,5"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Override

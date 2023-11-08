@@ -20,34 +20,37 @@ public class LottoController {
     Lotto lotto;
     PrizeLotto prizeLotto;
 
-    public void proceedLotto(){
+    public void proceedLotto() {
         createUserLottoNum();
-        outputView.printNumberOfBuyLotto(userLotto.getBuyMoney()/1000);
+        outputView.printNumberOfBuyLotto(userLotto.getBuyMoney() / 1000);
         outputView.printLottoNums(userLotto.getUsersLotto());
 
         prizeLotto = createPrizeNum();
 
-        prizeController.comparePrizeNumToLottoNum(prizeLotto,userLotto);
+        prizeController.comparePrizeNumToLottoNum(prizeLotto, userLotto);
         prizeController.createLottoRankStore();
         prizeController.calculateLottoPrize();
-        System.out.println("상금: "+prizeController.winnerLotto.getPrizeSumMoney());
-        System.out.println("수익률:"+prizeController.rateOfReturn(userLotto.getBuyMoney()));
+        System.out.println("상금: " + prizeController.winnerLotto.getPrizeSumMoney());
+        System.out.println("수익률:" + prizeController.rateOfReturn(userLotto.getBuyMoney()));
 
-        outputView.printWinnerStatistcs(prizeController.winnerLotto.getLottoPrizeCount(),prizeController.rateOfReturn(userLotto.getBuyMoney()));
+        outputView.printWinnerStatistcs(prizeController.winnerLotto.getLottoPrizeCount(), prizeController.rateOfReturn(userLotto.getBuyMoney()));
 
 
     }
-    public PrizeLotto createPrizeNum(){
+
+    public PrizeLotto createPrizeNum() {
         List<Integer> lo;
         int bonus;
-        lo = lottoNumCheck();
+        lo = lottoNumCheck
+                ();
         bonus = lottoBonusNumCheck(lo);
-        return new PrizeLotto(lo,bonus);
+        return new PrizeLotto(lo, bonus);
 
     }
-    public List<Integer> lottoNumCheck(){
+
+    public List<Integer> lottoNumCheck() {
         List<Integer> lo;
-        while(true) {
+        while (true) {
             try {
                 lo = numberValidator.prizeLottoNumValidator(inputView.enterPrizeLottoNum());
                 break;
@@ -58,11 +61,11 @@ public class LottoController {
         return lo;
     }
 
-    public int lottoBonusNumCheck(List<Integer> lo){
+    public int lottoBonusNumCheck(List<Integer> lo) {
         int bonus;
-        while(true) {
+        while (true) {
             try {
-                bonus = numberValidator.lottoBonusNumValidator(inputView.enterBonusNum(),lo);
+                bonus = numberValidator.lottoBonusNumValidator(inputView.enterBonusNum(), lo);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -71,12 +74,12 @@ public class LottoController {
         return bonus;
     }
 
-    public void createUserLottoNum(){
-        while(true) {
+    public void createUserLottoNum() {
+        while (true) {
             try {
                 int buyLottoNum = numberValidator.buyLottoMoneyValidator(inputView.enterBuyLottoAmount());
                 List<Lotto> lotto = generateLottoNum(buyLottoNum);
-                userLotto.setBuyMoney(1000*buyLottoNum);
+                userLotto.setBuyMoney(1000 * buyLottoNum);
                 userLotto.setUsersLotto(lotto);
                 break;
             } catch (IllegalArgumentException e) {
@@ -85,9 +88,9 @@ public class LottoController {
         }
     }
 
-    public List<Lotto> generateLottoNum(int num){
+    public List<Lotto> generateLottoNum(int num) {
         List<Lotto> lotto = new ArrayList<Lotto>(num);
-        for(int i = 0 ; i<num ; i++){
+        for (int i = 0; i < num; i++) {
             Lotto lotto1 = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             lotto.add(lotto1);
         }

@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class WinnerLotto {
     private int[] lottoPrizeCount = new int[8];
 
-    private HashMap<PrizeMoney,Integer> lottoRankStore = new HashMap<>();
+    private HashMap<PrizeMoney, Integer> lottoRankStore = new HashMap<>();
 
     private int PrizeSumMoney;
 

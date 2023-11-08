@@ -18,7 +18,7 @@ public class Lotto {
         }
         Set<Integer> numSet = new HashSet<>(numbers);
 
-        if(numSet.size() != numbers.size()){
+        if (numSet.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 생성된 로또 번호 중 중복 된 수가 있습니다.");
         }
     }

@@ -22,18 +22,6 @@ public class LottoController {
     private Lotto winnerLotto;
     private int bonusNumber;
 
-    private void setBonusNumber(int bonusNumber) {
-        this.bonusNumber = bonusNumber;
-    }
-
-    private void setWinnerLotto(Lotto winnerLotto) {
-        this.winnerLotto = winnerLotto;
-    }
-
-    private int calcAvailableAmount(int availableMoney) {
-        return availableMoney / LOTTO_PRICE_PER_GAME;
-    }
-
     private void purchaseLotto() {
         OutputView.printAvailableMoneyMsg();
 
@@ -62,22 +50,6 @@ public class LottoController {
 
         int bonusNumber = InputView.getBonusNumber(numbers);
         setBonusNumber(bonusNumber);
-    }
-
-    private int[] compareWinnerAndPurchased(Lotto lotto) {
-        int normalHitCount = 0;
-        int bonusHitCount = 0;
-
-        for (Integer number : lotto.getNumbers()) {
-            if (this.winnerLotto.getNumbers().contains(number)) {
-                normalHitCount += HIT_TICK;
-            }
-            if (this.bonusNumber == number) {
-                bonusHitCount += HIT_TICK;
-            }
-        }
-
-        return new int[]{normalHitCount, bonusHitCount};
     }
 
     private Map<String, Integer> setDefaultResult(Map<String, Integer> results) {
@@ -139,6 +111,34 @@ public class LottoController {
         OutputView.printAllResultsMsg(allLottoResults);
         OutputView.printProfitRateMsg(
                 calcProfitRate(allLottoResults));
+    }
+
+    public int calcAvailableAmount(int availableMoney) {
+        return availableMoney / LOTTO_PRICE_PER_GAME;
+    }
+
+    public int[] compareWinnerAndPurchased(Lotto lotto) {
+        int normalHitCount = 0;
+        int bonusHitCount = 0;
+
+        for (Integer number : lotto.getNumbers()) {
+            if (this.winnerLotto.getNumbers().contains(number)) {
+                normalHitCount += HIT_TICK;
+            }
+            if (this.bonusNumber == number) {
+                bonusHitCount += HIT_TICK;
+            }
+        }
+
+        return new int[]{normalHitCount, bonusHitCount};
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
+    }
+
+    public void setWinnerLotto(Lotto winnerLotto) {
+        this.winnerLotto = winnerLotto;
     }
 
     public void run() {

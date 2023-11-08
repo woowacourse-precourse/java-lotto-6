@@ -31,6 +31,7 @@ public class LottoGame {
         this.lottos = lottoController.lottoIndexGenerate(money);
 
         this.winningNumber = winningNumberController.setWinningNumber();
+
         float profit = calculateProfit(money);
         userOutput.outputResult(randIndex);
         System.out.println("총 수익률은 "+profit+"%입니다.");

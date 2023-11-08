@@ -1,9 +1,7 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.model.WinningNumber;
 import lotto.view.UserInput;
-import lotto.view.UserOutput;
 
 public class WinningNumberController {
     private final UserInput userInput;
@@ -18,10 +16,19 @@ public class WinningNumberController {
             this.winningNumber = new WinningNumber(userInput.inputWinnerNumber());
         }
         catch (IllegalArgumentException e){
-            System.out.println("[ERROR]:중복된 수를 입력하지 마세요");
+            System.out.println("[ERROR]:올바른 입력값을 입력하세요");
             setWinningNumber();
         }
-        winningNumber.setBonusNumber(userInput.inputBonusNumber());
+        setBonusNumber();
         return winningNumber;
+    }
+    public void setBonusNumber(){
+        try {
+            this.winningNumber.setBonusNumber(userInput.inputBonusNumber());
+        }
+        catch (IllegalArgumentException e){
+            System.out.println("[ERROR]: 올바른 입력값을 입력하세요");
+            setBonusNumber();
+        }
     }
 }

@@ -4,11 +4,11 @@
     - [x] 길이가 6개인지 확인 - Lotto#validateSize()
     - [x] 중복된 숫자가 없는지 확인 - Lotto#validateDuplicate()
     - [x] 다른 LottoNumber과 겹치는 수 확인 - Lotto#getMachCount()
-- [ ] 로또티켓(로또번호 + 보너스 번호)를 관리하는 객체 구현 - (i)LottoTicket
-    - [ ] 다른 LottoTicket과 대조 결과 획득 - LottoTicket#checkWinning() 
-    - [ ] 보너스 번호가 없는 로또 티켓 객체 - NormalLottoTicket (i)LottoTicket
-    - [ ] 보너스 번호가 있는 로또 티켓 객체 - BonusLottoTicket (i)LottoTicket
-    - [ ] 로또 티켓 팩토리 구현 - LottoTicketFactory
+- [x] 로또티켓(로또번호 + 보너스 번호)를 관리하는 객체 구현 - (i)LottoTicket
+    - [x] 다른 LottoTicket과 대조 결과 획득 - LottoTicket#checkWinning() 
+    - [x] 보너스 번호가 없는 로또 티켓 객체 - NormalLottoTicket (i)LottoTicket
+    - [x] 보너스 번호가 있는 로또 티켓 객체 - BonusLottoTicket (i)LottoTicket
+    - [x] 로또 티켓 팩토리 구현 - LottoTicketFactory
 - [x] 로또 결과를 관리하는 Enum 객체 구현 - WinningResult
     - [x] 로또 결과를 획득 - WinningResult#getLottoResult
 - [ ] 사용자를 관리하는 객체 구현 - (i)User

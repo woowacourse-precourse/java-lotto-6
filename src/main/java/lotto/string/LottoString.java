@@ -6,7 +6,7 @@ public class LottoString {
         return "구입금액을 입력해 주세요.";
     }
 
-    public static String purchaseLotto(int n) {
+    public static String purchaseLotto(long n) {
         return n + "개를 구매했습니다.";
     }
 

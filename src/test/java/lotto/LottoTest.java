@@ -231,7 +231,7 @@ class LottoTest {
     @DisplayName("rank가 5개 매치 및 보너스에 해당되는지 확인한다.")
     @Test
     void checkFiveMatchBonus(){
-
+        assertThat(Rank.isFiveMatchBonusRank(Rank.FIVE_MATCH_BONUS)).isEqualTo(true);
     }
 
 }

@@ -40,4 +40,10 @@ public class Validation {
             validateInRange(min, max, i);
         });
     }
+
+    public static void validateLottoNumbersCount(List<Integer> lotto) {
+        if (lotto.size() != LottoInfo.NUMBERS_PER_LOTTO.getNumber()) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_EQUAL_LOTTO_LENGTH.getMessage());
+        }
+    }
 }

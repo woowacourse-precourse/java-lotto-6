@@ -2,7 +2,6 @@ package lotto.view;
 
 import lotto.model.BonusNumber;
 import lotto.CalculateLotto;
-import lotto.InputViewHandler;
 import lotto.model.Money;
 
 public class InputView {

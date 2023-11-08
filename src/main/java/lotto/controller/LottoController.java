@@ -6,6 +6,7 @@ import lotto.dto.MoneyDto;
 import lotto.dto.ResultDto;
 import lotto.dto.WinNumbersDto;
 import lotto.service.LottoService;
+import lotto.util.validator.ValidatingLoopTemplate;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,6 +16,7 @@ public class LottoController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final LottoService lottoService = new LottoService();
+    private final ValidatingLoopTemplate validatingLoopTemplate = new ValidatingLoopTemplate();
 
     public void run() {
         purchaseLottoes();
@@ -24,16 +26,11 @@ public class LottoController {
     }
 
     private void purchaseLottoes() {
-        while (true) {
-            try {
-                MoneyDto moneyDto = getMoneyFromClient();
-                createLottoes(moneyDto);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                continue;
-            }
-            break;
-        }
+        validatingLoopTemplate.execute(() -> {
+            MoneyDto moneyDto = getMoneyFromClient();
+            createLottoes(moneyDto);
+            return null;
+        });
     }
 
     private MoneyDto getMoneyFromClient() {
@@ -48,34 +45,20 @@ public class LottoController {
 
     private WinNumbersDto createWinNumbers() {
         List<Integer> winNumbers = getWinNumbers();
-        WinNumbersDto winNumbersDto;
-        while (true) {
-            try {
-                int bonusNumber = getBonusNumber();
-                winNumbersDto = new WinNumbersDto(winNumbers, bonusNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                continue;
-            }
-            break;
-        }
-        return winNumbersDto;
+        return validatingLoopTemplate.execute(() -> {
+            int bonusNumber = getBonusNumber();
+            return new WinNumbersDto(winNumbers, bonusNumber);
+        });
     }
 
     private List<Integer> getWinNumbers() {
-        List<Integer> winNumbers;
-        while (true) {
-            try {
-                outputView.beforeInputWinNumbers();
-                winNumbers = inputView.inputNumbers();
-                new Lotto(winNumbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                continue;
-            }
-            break;
-        }
-        return winNumbers;
+        return validatingLoopTemplate.execute(() -> {
+            List<Integer> winNumbers;
+            outputView.beforeInputWinNumbers();
+            winNumbers = inputView.inputNumbers();
+            new Lotto(winNumbers);
+            return winNumbers;
+        });
     }
 
     private int getBonusNumber() {

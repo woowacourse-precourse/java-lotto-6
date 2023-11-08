@@ -5,6 +5,21 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
+enum PrizeRank {
+    FIRST(2000000000),
+    SECOND(30000000),
+    THIRD(1500000),
+    FOURTH(50000),
+    FIFTH(5000);
+
+    private final int prizeAmount;
+
+    PrizeRank(int prizeAmount){
+        this.prizeAmount = prizeAmount;
+    }
+    public int getPrizeAmount(){ return prizeAmount; }
+}
+
 public class Application {
     public static void main(String[] args) {
         MyLotto.LottoPaper(Money.InputMoney());

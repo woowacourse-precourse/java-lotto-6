@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputValidatorTest {
@@ -24,6 +25,14 @@ class InputValidatorTest {
     void inputNotNumberEx(String inputValue) {
         assertThatThrownBy(() -> inputValidator.validateDigit(inputValue))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2", "3", "45"})
+    @DisplayName("사용자 입력 값이 숫자일 경우 그대로 반환한다.")
+    void inputNumber(String inputValue) {
+        String result = inputValidator.validateDigit(inputValue);
+        assertThat(result).isEqualTo(inputValue);
     }
 
     @ParameterizedTest

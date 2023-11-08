@@ -32,7 +32,7 @@ public class NumberInputValidator implements InputValidator {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE_OUT_OF_RANGE);
         }
     }
 }

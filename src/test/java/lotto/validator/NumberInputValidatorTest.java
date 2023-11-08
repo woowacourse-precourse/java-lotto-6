@@ -37,6 +37,16 @@ class NumberInputValidatorTest {
     }
 
     @ParameterizedTest
+    @DisplayName("보너스번호: 입력이 너무 커서 parseInt 가 안되는 경우")
+    @ValueSource(strings = {"1000000000000"})
+    void whenInputIsTooLarge(String input) {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> validator.validate(input)
+        );
+    }
+
+    @ParameterizedTest
     @DisplayName("보너스번호: 입력이 올바른 경우")
     @ValueSource(strings = {"5"})
     void whenInputIsValid(String input) {

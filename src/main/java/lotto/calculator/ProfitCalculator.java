@@ -7,7 +7,7 @@ import static lotto.constants.ConstantValues.*;
 public class ProfitCalculator {
 
     public static double caculateProfit(int prize, int cost) {
-        return Math.round((double) prize / cost * 100) / 100.0;
+        return Math.round((double) prize / cost * 10000) / 100.0;
     }
 
     public static int caculatePrize(HashMap<String, Integer> score) {

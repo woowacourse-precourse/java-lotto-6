@@ -44,7 +44,7 @@ public class OutputView {
         System.out.println(WIN_MESSAGE_3.getMessage() + finalScore.getOrDefault("3등", 0) + "개");
         System.out.println(WIN_MESSAGE_2.getMessage() + finalScore.getOrDefault("2등", 0) + "개");
         System.out.println(WIN_MESSAGE_1.getMessage() + finalScore.getOrDefault("1등", 0) + "개");
-        System.out.println(PROFIT_MESSAGE.getMessage() + yield + "%");
+        System.out.println(PROFIT_MESSAGE.getMessage() + yield + "%입니다.");
     }
 
 }

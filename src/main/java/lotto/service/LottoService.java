@@ -1,7 +1,5 @@
 package lotto.service;
 
-import static java.util.Collections.sort;
-
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,10 +8,10 @@ import java.util.Map;
 import lotto.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
-import lotto.domain.WinningBonusNumber;
-import lotto.domain.WinningNumbers;
 import lotto.domain.PurchasedLotto;
 import lotto.domain.User;
+import lotto.domain.WinningBonusNumber;
+import lotto.domain.WinningNumbers;
 import lotto.domain.dto.InputBonus;
 import lotto.domain.dto.InputMoney;
 import lotto.domain.dto.InputWinningNumbers;
@@ -29,15 +27,14 @@ public class LottoService {
         int pickCount = purchaseAmount / 1000;
         List<Lotto> purchasedLotto = new ArrayList<>();
         for (int i = 0; i < pickCount; i++) {
-            Lotto lotto = new Lotto(sortPurchasedOneLotto());
+            Lotto lotto = new Lotto(generatePurchasedOneLotto());
             purchasedLotto.add(lotto);
         }
-        PurchasedLotto purchasedLottoNumbers = new PurchasedLotto(purchasedLotto);
-        return purchasedLottoNumbers;
+        return new PurchasedLotto(purchasedLotto);
     }
 
-    private static List<Integer> sortPurchasedOneLotto(){
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
+    private static List<Integer> generatePurchasedOneLotto() {
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         List<Integer> sortPurchasedLotto = new ArrayList<>(lottoNumbers);
         Collections.sort(sortPurchasedLotto);
         return sortPurchasedLotto;
@@ -63,11 +60,6 @@ public class LottoService {
 
 
     public static PurchasedLottoDTO purchasedLottoToDTO(PurchasedLotto purchasedLottoNumbers) {
-        int purchasedLottoCount = purchasedLottoNumbers.getPurchasedLotto().size();
-        List<Lotto> purchasedLotto = new ArrayList<>();
-        for (int i = 0; i < purchasedLottoCount; i++) {
-            purchasedLotto.add(purchasedLottoNumbers.getPurchasedLotto().get(i));
-        }
-        return new PurchasedLottoDTO(purchasedLotto);
+        return new PurchasedLottoDTO(purchasedLottoNumbers.getPurchasedLotto());
     }
 }

@@ -23,26 +23,38 @@ public class ResultService {
         List<Lotto> purchasedLotto = purchasedLottoNumbers.getPurchasedLotto();
         Map<LottoRank, Integer> lottoResult = new HashMap<>();
         for (Lotto lotto : purchasedLotto) {
-            List<Integer> purchasedNumbers = lotto.getNumbers();
-            LottoRank lottoRank = compareLottoWinning(purchasedNumbers);
+            LottoRank lottoRank = compareLottoWinning(lotto);
             lottoResult.put(lottoRank, lottoResult.getOrDefault(lottoRank, 0) + 1);
         }
         return lottoResult;
     }
 
-    private LottoRank compareLottoWinning(List<Integer> purchasedNumbers) {
-        List<Integer> winningNumbers = this.winningNumbers.getWinningNumbers();
-        int count = 0;
+    private LottoRank compareLottoWinning(Lotto lotto) {
+        List<Integer> purchasedNumbers = lotto.getNumbers();
         boolean bonusIsExists = false;
+        int count = countMatchingNumbers(purchasedNumbers);
+        if(count == 5)
+            bonusIsExists = existsMatchingBonusNumber(purchasedNumbers);
+        return LottoRank.of(count, bonusIsExists);
+    }
+
+    private int countMatchingNumbers(List<Integer> purchasedNumbers) {
+        int count = 0;
         for (int number : purchasedNumbers) {
-            if (winningNumbers.contains(number)) {
+            if (winningNumbers.getWinningNumbers().contains(number)) {
                 count++;
             }
+        }
+        return count;
+    }
+
+    private boolean existsMatchingBonusNumber(List<Integer> purchasedNumbers) {
+        for (int number : purchasedNumbers) {
             if (number == winningBonusNumber.getWinningBonusNumber()) {
-                bonusIsExists = true;
+                return true;
             }
         }
-        return LottoRank.of(count, bonusIsExists);
+        return false;
     }
 
 }

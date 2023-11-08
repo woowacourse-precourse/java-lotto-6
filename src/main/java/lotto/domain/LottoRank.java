@@ -29,7 +29,7 @@ public enum LottoRank {
             return FIRST;
         }
         if (count == 5) {
-            return secondOrThird(bonusIsExists);
+            return determineSecondOrThird(bonusIsExists);
         }
         if (count == 4) {
             return FOURTH;
@@ -40,7 +40,7 @@ public enum LottoRank {
         return NO_LUCK;
     }
 
-    public static LottoRank secondOrThird(boolean bonusIsExists) {
+    public static LottoRank determineSecondOrThird(boolean bonusIsExists) {
         if (bonusIsExists) {
             return SECOND;
         }

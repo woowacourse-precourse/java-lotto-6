@@ -23,7 +23,6 @@ public class OutputView {
     }
 
     public static void printLottoResult(LottoResultDTO lottoResultDTO) {
-        System.out.println();
         System.out.println(RESULT_MESSAGE.getMessage());
         System.out.println(SEPARATOR.getMessage());
         LottoRank[] ranks = LottoRank.values();

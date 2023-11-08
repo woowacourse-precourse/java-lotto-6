@@ -16,13 +16,11 @@ public class InputView {
     }
 
     public static InputWinningNumbers inputWinningNumbers() {
-        System.out.println();
         System.out.println(INPUT_WINNING_NUMBERS.getMessage());
         return new InputWinningNumbers(Console.readLine());
     }
 
     public static InputBonus inputBonusNumber() {
-        System.out.println();
         System.out.println(INPUT_BONUS_NUMBER.getMessage());
         return new InputBonus(Console.readLine());
     }

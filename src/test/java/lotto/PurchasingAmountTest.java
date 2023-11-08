@@ -1,6 +1,5 @@
 package lotto;
 
-import lotto.model.Lotto;
 import lotto.model.LottoPurchasingAmount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,6 +13,11 @@ public class PurchasingAmountTest {
     @DisplayName("구입 금액이 숫자가 아니면 예외가 발생한다")
     @Test
     void createLottoPurchasingAmountByString() {
+        //given "test"
+
+        //when new LottoPurchasingAmount
+
+        //then
         assertThatThrownBy(() -> new LottoPurchasingAmount("Test"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -22,6 +26,11 @@ public class PurchasingAmountTest {
     @ParameterizedTest
     @ValueSource(strings = {"-1000", "100", "999"})
     void createLottoPurchasingAmountWithLowPrice(String lowPrice) {
+        //given lowPrice
+
+        //when new LottoPurchasingAmount
+
+        //then
         assertThatThrownBy(() -> new LottoPurchasingAmount(lowPrice))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -30,6 +39,11 @@ public class PurchasingAmountTest {
     @ParameterizedTest
     @ValueSource(strings = {"10001, 9999, 9500"})
     void createLottoPurchasingAmountByInvalidPrice(String invalidPrice) {
+        //given invalidPrice
+
+        //when new LottoPurchasingAmount
+
+        //then
         assertThatThrownBy(() -> new LottoPurchasingAmount(invalidPrice))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -37,6 +51,11 @@ public class PurchasingAmountTest {
     @DisplayName("정상적인 구입 금액 입력 테스트")
     @Test
     void createLottoPurchasingAmountTest() {
+        //given "1000"
+
+        //when new LottoPurchasingAmount
+
+        //then
         LottoPurchasingAmount lottoPurchasingAmount = new LottoPurchasingAmount("1000");
         assertThat(lottoPurchasingAmount.getMoney()).isEqualTo(1000);
     }

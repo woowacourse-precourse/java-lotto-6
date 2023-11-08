@@ -16,7 +16,12 @@ public class WinningNumbersTest {
     @DisplayName("당첨 숫자의 개수가 6이 아니면 예외가 발생한다.")
     @Test
     void createWinningNumbersByOverSize() {
-        assertThatThrownBy(() -> inputController.validateLength("1,2,3,4,5"))
+        //given OverSizeNumbers
+
+        //when validateLength
+
+        //then
+        assertThatThrownBy(() -> inputController.validateLength("1,2,3,4,5,6,7"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -24,6 +29,11 @@ public class WinningNumbersTest {
     @ParameterizedTest
     @ValueSource(ints = {0, -1, 46})
     void createWinningNumbersByInvalidRange(int invalidRangeNumber) {
+        //given invalidRangeNumber
+
+        //when validateNumberRange
+
+        //then
         assertThatThrownBy(() -> inputController.validateNumberRange(invalidRangeNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -32,6 +42,11 @@ public class WinningNumbersTest {
     @ParameterizedTest
     @ValueSource(ints = {1,10,20,30,40,45})
     void createWinningNumbersByDuplicatedNumbers(int duplicatedNumber) {
+        //given duplicatedNumber
+
+        //when validateNumberDuplication
+
+        //then
         assertThatThrownBy(() -> inputController.validateNumberDuplication(duplicatedNumber, List.of(1,10,20,30,40,45)))
                 .isInstanceOf(IllegalArgumentException.class);
     }

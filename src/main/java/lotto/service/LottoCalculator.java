@@ -42,7 +42,6 @@ public class LottoCalculator {
             finalMatchNumbers.set(4, finalMatchNumbers.get(4) + 1);
             return finalPrize;
         }
-
         return 0;
     }
 

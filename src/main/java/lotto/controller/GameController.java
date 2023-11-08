@@ -32,8 +32,15 @@ public class GameController {
     }
 
     private void getAmount() {
-        amount = InputView.AMOUNT.getInput();
-        Validator.validateAmount(amount);
+        while (true) {
+            try {
+                amount = InputView.AMOUNT.getInput();
+                Validator.validateAmount(amount);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
         AmountCalculator amountCalculator = new AmountCalculator(Integer.parseInt(amount));
         numberOfLottoPurchased = amountCalculator.getNumberOfLottoPurchased();
     }
@@ -53,16 +60,31 @@ public class GameController {
     }
 
     private void getWinnerNumber() {
-        String winnerNumber = InputView.LOTTO_NUMBER.getInput();
-        String[] winnerNumberItems = winnerNumber.split(",");
-        winnerLottoNumbers = Arrays.stream(winnerNumberItems).map(Integer::parseInt).collect(Collectors.toList());
-        winnerLottoNumber = new Lotto(winnerLottoNumbers);
+        while (true) {
+            try {
+                String winnerNumber = InputView.LOTTO_NUMBER.getInput();
+                String[] winnerNumberItems = winnerNumber.split(",");
+                winnerLottoNumbers = Arrays.stream(winnerNumberItems).map(Integer::parseInt).collect(Collectors.toList());
+                winnerLottoNumber = new Lotto(winnerLottoNumbers);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
         System.out.println();
     }
 
     private void getBonusNumber() {
-        String bonusNumberItem = InputView.BONUMS_NUMBER.getInput();
-        bonusNumber = Integer.parseInt(bonusNumberItem);
+        while (true) {
+            try {
+                String bonusNumberItem = InputView.BONUMS_NUMBER.getInput();
+                bonusNumber = Integer.parseInt(bonusNumberItem);
+                Validator.validateBonusNumber(winnerLottoNumbers, bonusNumber);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
         System.out.println();
     }
 

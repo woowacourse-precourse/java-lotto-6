@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import lotto.data.Lotto;
 import lotto.domain.LottoResult;
-import lotto.message.LottoPrize;
+import lotto.data.LottoPrize;
 
 public enum LottoPurchaseOutput {
     ASK_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),

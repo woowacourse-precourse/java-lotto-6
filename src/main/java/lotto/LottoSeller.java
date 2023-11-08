@@ -9,7 +9,7 @@ import lotto.data.WinningCombination;
 import lotto.domain.LottoResult;
 import lotto.io.LottoPurchaseInput;
 import lotto.io.LottoPurchaseOutput;
-import lotto.message.LottoPrize;
+import lotto.data.LottoPrize;
 import lotto.utils.LottoUtil;
 import lotto.utils.Util;
 

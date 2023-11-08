@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.Map;
-import lotto.message.LottoPrize;
+import lotto.data.LottoPrize;
 
 public class LottoResult {
     private final Map<LottoPrize, BigDecimal> lottoRank;

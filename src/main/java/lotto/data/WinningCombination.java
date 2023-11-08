@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.message.ErrorMessage;
-import lotto.message.LottoPrize;
 
 public class WinningCombination extends Lotto {
     private final int bonusNumber;

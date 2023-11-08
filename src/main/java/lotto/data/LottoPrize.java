@@ -1,4 +1,4 @@
-package lotto.message;
+package lotto.data;
 
 import java.math.BigDecimal;
 

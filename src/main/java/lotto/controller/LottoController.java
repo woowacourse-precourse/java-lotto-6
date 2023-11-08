@@ -22,9 +22,8 @@ public class LottoController {
         try {
             PurchasedLottos purchasedLottos = buyLottos();
             WinningLotto winningLotto = drawLotto();
-            CheckLotto(purchasedLottos,winningLotto);
-        }
-        catch (IllegalArgumentException e){
+            checkLotto(purchasedLottos, winningLotto);
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -43,7 +42,7 @@ public class LottoController {
         return new WinningLotto(lotto, bonusNumber);
     }
 
-    private void CheckLotto(PurchasedLottos purchasedLottos, WinningLotto winningLotto){
+    private void checkLotto(PurchasedLottos purchasedLottos, WinningLotto winningLotto) {
         purchasedLottos.calculateRewardsInPurchasedLotto(winningLotto);
         outputView.printWinningStatistics(purchasedLottos.generateRewardString());
         outputView.printEarningRate(purchasedLottos.calculateAverageWinnings(winningLotto));

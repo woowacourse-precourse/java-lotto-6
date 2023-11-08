@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class InputView {
+
     private final InputParser inputParser;
     private static final String INPUT_LOTTO_PURCHASE_PRICE = "구입금액을 입력해 주세요.";
     private static final String INPUT_WINNING_LOTTO_NUMBERS = "당첨 번호를 입력해 주세요.";
@@ -13,32 +14,29 @@ public class InputView {
         this.inputParser = new InputParser();
     }
 
-    public Integer getLottoPurchasePrice(){
+    public Integer getLottoPurchasePrice() {
         System.out.println(INPUT_LOTTO_PURCHASE_PRICE);
-        try{
+        try {
             return inputParser.parseInt(Console.readLine());
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             throw e;
         }
     }
 
     public List<Integer> getWinningLottoNumbers() {
         System.out.println(INPUT_WINNING_LOTTO_NUMBERS);
-        try{
+        try {
             return inputParser.parsingNumbers(Console.readLine());
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             throw e;
         }
     }
 
     public Integer getWinningBonusNumber() {
         System.out.println(INPUT_WINNING_BONUS_NUMBER);
-        try{
+        try {
             return inputParser.parseInt(Console.readLine());
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             throw e;
         }
     }

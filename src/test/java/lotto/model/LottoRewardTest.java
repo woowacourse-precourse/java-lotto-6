@@ -1,8 +1,11 @@
 package lotto.model;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 public class LottoRewardTest {
+
     @Test
     public void testGetReward() {
         assertEquals(LottoReward.FIRST_PLACE, LottoReward.getReward(6, false));

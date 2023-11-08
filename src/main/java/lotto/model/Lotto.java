@@ -8,6 +8,7 @@ import lotto.exception.InvalidSizeOfLottoException;
 import lotto.exception.NumberNotInRangeException;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,7 +16,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers){
+    private void validate(List<Integer> numbers) {
         try {
             validateSize(numbers);
             validateDuplicate(numbers);
@@ -30,12 +31,14 @@ public class Lotto {
             throw new InvalidSizeOfLottoException();
         }
     }
+
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (numbers.size() != uniqueNumbers.size()) {
             throw new DuplicateLottoNumberException();
         }
     }
+
     private void validateNumbersInRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < 1 || number > 45) {

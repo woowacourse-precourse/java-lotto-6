@@ -32,6 +32,7 @@ public class InputParserTest {
         List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6);
         assertEquals(expected, result);
     }
+
     @Test
     public void testInvalidParsingNumbersEndWithComma() {
         InputParser parser = new InputParser();

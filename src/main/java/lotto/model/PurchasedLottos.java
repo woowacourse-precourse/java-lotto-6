@@ -57,6 +57,7 @@ public class PurchasedLottos {
         double averageWinnings = (double) totalWinnings / purchase.getPrice() * 100.0;
         return Math.round(averageWinnings * 10.0) / 10.0;
     }
+
     public String generateRewardString() {
         StringBuilder rewardStringBuilder = new StringBuilder();
 

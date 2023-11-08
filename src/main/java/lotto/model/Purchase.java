@@ -11,12 +11,11 @@ public class Purchase {
     public Purchase(Integer price) {
         try {
             validateIsMultipleOf1000(price);
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             throw e;
         }
         this.price = price;
-        this.ticketCount = price/1000;
+        this.ticketCount = price / 1000;
     }
 
     private void validateIsMultipleOf1000(Integer value) {

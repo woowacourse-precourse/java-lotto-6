@@ -8,6 +8,7 @@ import lotto.exception.EndWithCommaException;
 import lotto.exception.NotNumberInputException;
 
 public class InputParser {
+
     public int parseInt(String input) {
         try {
             return Integer.parseInt(input);
@@ -25,7 +26,6 @@ public class InputParser {
                 .map(this::parseInt)
                 .collect(toList());
     }
-
 
 
 }

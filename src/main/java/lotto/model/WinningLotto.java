@@ -6,21 +6,21 @@ import lotto.exception.DuplicateNumberInBonusNumberException;
 import lotto.exception.NumberNotInRangeException;
 
 public class WinningLotto {
+
     private final Lotto lotto;
     private final Integer bonusNumber;
 
-    public WinningLotto(Lotto lotto,Integer bonusNumber) {
+    public WinningLotto(Lotto lotto, Integer bonusNumber) {
         this.lotto = lotto;
         validate(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(Integer bonusNumber){
+    private void validate(Integer bonusNumber) {
         try {
             validateBonusNumberDuplicateInNumbers(bonusNumber);
             validateNumbersInRange(bonusNumber);
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             throw e;
         }
     }
@@ -32,9 +32,10 @@ public class WinningLotto {
             }
         }
     }
+
     private void validateNumbersInRange(Integer bonusNumber) {
-        if(bonusNumber < 1 || bonusNumber >45){
-        throw new NumberNotInRangeException();
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new NumberNotInRangeException();
         }
     }
 

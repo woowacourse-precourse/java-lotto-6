@@ -12,7 +12,7 @@ public class LottoGenerator {
 
     public static List<Integer> makeRandomNumbersInLotto() {
         return Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER,
-                NUMBER_OF_LOTTO_NUMBER_IN_GAME)
+                        NUMBER_OF_LOTTO_NUMBER_IN_GAME)
                 .stream()
                 .sorted()
                 .collect(Collectors.toList());

@@ -1,5 +1,7 @@
 package lotto.enums;
 
+import java.util.Objects;
+
 public enum ResultStatus {
     NONE0(0, false),
     NONE1(0, false),
@@ -24,5 +26,39 @@ public enum ResultStatus {
 
     public boolean getHasBonusBall() {
         return hasBonusBall;
+    }
+
+    private static class ResultFlag {
+        int count;
+        boolean hasBonusBall;
+
+        ResultFlag(int count) {
+            this.count = count;
+        }
+
+        ResultFlag(int count, boolean hasBonusBall) {
+            this.count = count;
+            this.hasBonusBall = hasBonusBall;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            ResultFlag that = (ResultFlag) o;
+            if (that.count == 5) {
+                return count == that.count && hasBonusBall == that.hasBonusBall;
+            }
+            return count == that.count;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(count);
+        }
     }
 }

@@ -18,8 +18,17 @@ public class InputViewImpl implements InputView {
         String input;
         do {
             input = Console.readLine();
-        } while (validation.isValidWinningNumbers(input));
+        } while (!isValidWinningNumbers(input));
         return convertToNumbers(input);
+    }
+
+    private boolean isValidWinningNumbers(String input) {
+        try {
+            return validation.isValidWinningNumbers(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     private List<Integer> convertToNumbers(String input) {
@@ -36,8 +45,17 @@ public class InputViewImpl implements InputView {
         String input;
         do {
             input = Console.readLine();
-        } while (validation.isValidBonusNumber(input, winningNumbers));
+        } while (!isValidBonusNumber(input, winningNumbers));
         return Integer.parseInt(input);
+    }
+
+    private boolean isValidBonusNumber(String input, List<Integer> winningNumbers) {
+        try {
+            return validation.isValidBonusNumber(input, winningNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override
@@ -45,7 +63,16 @@ public class InputViewImpl implements InputView {
         String input;
         do {
             input = Console.readLine();
-        } while (validation.isValidMoney(input));
+        } while (!isValidMoney(input));
         return Integer.parseInt(input);
+    }
+
+    private boolean isValidMoney(String input) {
+        try {
+            return validation.isValidMoney(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 }

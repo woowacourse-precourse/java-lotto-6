@@ -31,15 +31,17 @@ public enum Ranking {
     }
 
     public static Ranking getRank(int matchCount, boolean matchBonus) {
-        if (matchCount == 5 && matchBonus) {
+        if (matchCount == 6) {
+            return FIRST;
+        } else if (matchCount == 5 && matchBonus) {
             return SECOND;
-        }
-        if (matchCount == 5) {
+        } else if (matchCount == 5) {
             return THIRD;
-        }
-        for (Ranking ranking : Ranking.values()) {
-            if (ranking.matchCount == matchCount) {
-                return ranking;
+        } else {
+            for (Ranking ranking : Ranking.values()) {
+                if (ranking.getMatchCount() == matchCount && ranking != SECOND && ranking != THIRD) {
+                    return ranking;
+                }
             }
         }
         return NONE;

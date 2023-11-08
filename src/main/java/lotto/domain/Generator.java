@@ -41,19 +41,19 @@ public class Generator {
 
     private static int dubRemovedListSize(List<Integer> lotto, List<Integer> winningNum, boolean isBonus) {
         lotto.addAll(winningNum);
-        int correctNum = lotto.stream().distinct().toList().size();
+        int dupRemovedNum = lotto.stream().distinct().toList().size();
 
-        return checkCorrectNum(correctNum, isBonus);
+        return checkWinningNum(dupRemovedNum, isBonus);
     }
 
-    private static int checkCorrectNum(int correctNum, boolean isBonus) {
-        int result = correctNum;
+    private static int checkWinningNum(int dubRemovedNum, boolean isBonus) {
+        int result = dubRemovedNum;
 
-        if (correctNum == 6) {
+        if (dubRemovedNum == 6) {
             result = 5;
         }
 
-        if (correctNum == 7 && isBonus) {
+        if (dubRemovedNum == 7 && isBonus) {
             result = 6;
         }
 

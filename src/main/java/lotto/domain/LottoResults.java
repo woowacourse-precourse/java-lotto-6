@@ -29,7 +29,7 @@ public class LottoResults {
 
     public double getRevenueRate(Money money) {
         Money revenue = Money.from(this);
-        return (double) revenue.getMoney() / money.getMoney();
+        return (double) revenue.getMoney() / money.getMoney() * 100;
     }
 
     public int getRankCount(Rank rank) {

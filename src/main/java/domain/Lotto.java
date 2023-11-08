@@ -7,6 +7,9 @@ import exception.IllegalArgumentExceptionMessage;
 import exception.NumberFormatExceptionMessage;
 
 public class Lotto {
+	private static final int LOTTO_SIZE = 6;
+	private static final int MIN_LOTTO_NUMBER = 1;
+	private static final int MAX_LOTTO_NUMBER = 45;
 	private final List<Integer> numbers;
 
 	public Lotto(List<Integer> numbers) {
@@ -24,6 +27,20 @@ public class Lotto {
 		this.numbers = validatedAndParsedNumbers;
 	}
 
+	public List<Integer> getNumbers() {
+		return numbers;
+	}
+
+	public String removeSpacesBetweenNumbersAndCommas(String numbers) {
+		return numbers.replace(" ", "");
+	}
+
+	public String getLottoNumbersAsString() {
+		return this.numbers.stream()
+				.map(String::valueOf)
+				.collect(Collectors.joining(", "));
+	}
+
 	private void validateListStringParameter(List<String> parsedNumbers) {
 		validateIsDigit(parsedNumbers);
 		validateIsSixLength(parsedNumbers);
@@ -32,10 +49,6 @@ public class Lotto {
 	private void validateListIntegerParameter(List<Integer> validatedAndParsedNumbers) {
 		validateIsBetweenLottoRange(validatedAndParsedNumbers);
 		validateDuplicateNumber(validatedAndParsedNumbers);
-	}
-
-	public List<Integer> getNumbers() {
-		return numbers;
 	}
 
 	private List<Integer> convertStringListToIntegerList(List<String> numbers) {
@@ -51,7 +64,7 @@ public class Lotto {
 	}
 
 	private boolean isSixLength(List<String> numbers) {
-		return numbers.size() == 6;
+		return numbers.size() == LOTTO_SIZE;
 	}
 
 	private void validateIsDigit(List<String> numbers) {
@@ -69,12 +82,8 @@ public class Lotto {
 		return List.of(numbers.split(","));
 	}
 
-	public String removeSpacesBetweenNumbersAndCommas(String numbers) {
-		return numbers.replace(" ", "");
-	}
-
 	private void validate(List<Integer> numbers) {
-		if (numbers.size() != 6) {
+		if (numbers.size() != LOTTO_SIZE) {
 			IllegalArgumentExceptionMessage.LOTTO_WRONG_FORMAT.throwException();
 		}
 	}
@@ -93,12 +102,6 @@ public class Lotto {
 
 	private boolean isBetweenLottoRange(List<Integer> numbers) {
 		return numbers.stream()
-				.allMatch(number -> 1 <= number && number <= 45);
-	}
-
-	public String getLottoNumbersAsString() {
-		return this.numbers.stream()
-				.map(String::valueOf)
-				.collect(Collectors.joining(", "));
+				.allMatch(number -> MIN_LOTTO_NUMBER <= number && number <= MAX_LOTTO_NUMBER);
 	}
 }

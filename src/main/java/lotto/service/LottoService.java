@@ -32,9 +32,21 @@ public class LottoService implements LottoFinalConsts {
         List<Lotto> lottos = new ArrayList<>();
         for (int i=VARIABLE_FORMAT; i<lottoCount; i++) {
             Lotto lotto = new Lotto(getLottoNumbers());
-            lottos.add(lotto);
+            try {
+                isLottosAlreadyExist(lottos, lotto);
+                lottos.add(lotto);
+            } catch (IllegalArgumentException e) {
+                getLottos(lottoCount);
+            }
         }
         return lottos;
+    }
+
+    public boolean isLottosAlreadyExist(List<Lotto> lottos, Lotto lotto){
+        if (lottos.contains(lotto)){
+            throw new IllegalArgumentException(LOTTO_ERROR_MESSAGE+LOTTO_ALREADY_EXIST);
+        }
+        return false;
     }
 
     public LottoMachine createLottoMachine(String lottoPurchase, int lottoCount) {

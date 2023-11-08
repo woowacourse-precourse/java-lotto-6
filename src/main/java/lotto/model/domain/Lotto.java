@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.domain;
 
 import static lotto.model.constant.LottoMessageConstant.END_BRACKET;
 import static lotto.model.constant.LottoMessageConstant.NUMBER_DELIMITER;

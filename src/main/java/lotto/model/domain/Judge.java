@@ -1,6 +1,7 @@
-package lotto.model;
+package lotto.model.domain;
 
 import java.util.List;
+import lotto.model.LottoResultCount;
 
 public class Judge {
 

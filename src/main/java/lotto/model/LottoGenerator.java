@@ -2,6 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import lotto.model.domain.Lotto;
 
 public class LottoGenerator {
 

@@ -8,7 +8,7 @@ import static lotto.util.constant.ValidatorStatus.INVALID_WINNING_NUMBER_COUNT;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.model.LottoNumber;
+import lotto.model.domain.LottoNumber;
 import lotto.util.exception.ExceptionHandler;
 
 public class LottoValidator {

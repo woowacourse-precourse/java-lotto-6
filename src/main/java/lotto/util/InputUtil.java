@@ -3,7 +3,7 @@ package lotto.util;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import lotto.model.LottoNumber;
+import lotto.model.domain.LottoNumber;
 
 public class InputUtil {
 

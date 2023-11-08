@@ -48,7 +48,6 @@ public class InputValidatorTest {
         Integer userInputCorrect = 12;
         Integer userInputWrong = 46;
         Integer userInputWrong2 = -3;
-        Integer divided = 1000;
         Integer minRange = 1;
         Integer maxRange = 45;
 

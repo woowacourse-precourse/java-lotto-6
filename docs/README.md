@@ -64,14 +64,14 @@ K개 구매 :
 
 ### 🎮 controller
 - LottoController : 사용자가 로또를 구매하게 하는 클래스 (singleton)
-- ReceiptController : 사용자에게 결과를 보여주는 클래스 (singleton)
+- RankingController : 사용자에게 결과를 보여주는 클래스 (singleton)
 
 ### 🔑 service
 - LottoService : 로또를 실제로 생성하는 클래스 (singleton)
-- ReceiptService : 결과를 생성하는 클래스 (singleton)
+- RankingService : 결과를 생성하는 클래스 (singleton)
 ### 🗄️ repository
 - LottoRepository : 생성한 로또를 저장하는 클래스 (singleton)
-- ReceiptRepository : 생성한 결과를 저장하는 클래스 (singleton)
+- RankingRepository : 생성한 결과를 저장하는 클래스 (singleton)
 
 ### 🛠️ util
 - NumberConverter : 출력형식에 맞게 String 으로 바꿔주는 클래스

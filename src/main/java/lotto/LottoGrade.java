@@ -32,7 +32,4 @@ public enum LottoGrade {
     private final String price;
     private final int correct;
 
-    public static void Rank() {
-
-    }
 }

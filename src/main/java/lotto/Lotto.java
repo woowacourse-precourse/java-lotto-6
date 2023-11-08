@@ -52,5 +52,5 @@ public class Lotto {
         }
         return 0;
     }
-    // TODO: 추가 기능 구현
+
 }

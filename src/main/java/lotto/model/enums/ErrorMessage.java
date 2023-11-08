@@ -1,13 +1,12 @@
 package lotto.model.enums;
 
 public enum ErrorMessage {
-    ERROR_HEAD_MESSAGE("[ERROR]"),
     NUMBERS_SIZE_ERROR_MESSAGE("[ERROR] 로또 번호는 6개의 숫자여야 합니다."),
     NUMBERS_DUPLICATION_ERROR_MESSAGE("[ERROR] 로또 번호는 중복되지 않는 6개의 숫자여야 합니다."),
     NUMBERS_RANGE_ERROR_MESSAGE("[ERROR] 로또 번호는 1과 45사이의 숫자여야 합니다."),
     PRICE_ERROR_MESSAGE("[ERROR] 로또 구입 금액은 1000원 단위의 양수여야 합니다."),
-    LOTTO_PRICE_TYPE_ERROR_MESSAGE("[ERROR] 구입 금액은 숫자여야 합니다."),
-    LOTTO_PRICE_NEGATIVE_ERROR_MESSAGE("[ERROR] 구입 금액은 양수여야 합니다."),
+    PRICE_TYPE_ERROR_MESSAGE("[ERROR] 구입 금액은 숫자여야 합니다."),
+    PRICE_NEGATIVE_ERROR_MESSAGE("[ERROR] 구입 금액은 양수여야 합니다."),
     BONUS_NUMBER_TYPE_ERROR_MESSAGE("[ERROR] 보너스 번호는 숫자여야 합니다."),
     BONUS_NUMBER_NEGATIVE_ERROR_MESSAGE("[ERROR] 보너스 번호는 양수여야 합니다."),
     BONUS_NUMBER_RANGE_ERROR_MESSAGE("[ERROR] 보너스 번호는 1과 45사이의 숫자여야 합니다."),

@@ -6,11 +6,11 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.model.enums.ErrorMessage;
 import lotto.model.enums.Prize;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static lotto.model.enums.ErrorMessage.ERROR_HEAD_MESSAGE;
 
 class WinningLottoTest {
     private WinningLotto winningLottoTest;
@@ -21,14 +21,14 @@ class WinningLottoTest {
         assertThat(prize).isEqualTo(expectedPrize);
     }
 
-    private void bonusNumberExceptionTest(String userBonusNumber) {
+    private void bonusNumberExceptionTest(String userBonusNumber, ErrorMessage errorMessage) {
         List<Integer> winningLotto = new ArrayList<>();
         for (int i = 1; i < 7; i++) {
             winningLotto.add(i);
         }
         assertThatThrownBy(() -> winningLottoTest.isValidBonusNumber(userBonusNumber, winningLotto))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_HEAD_MESSAGE.getErrorMessage());
+                .hasMessageContaining(errorMessage.getErrorMessage());
     }
 
     @BeforeEach
@@ -101,24 +101,24 @@ class WinningLottoTest {
     @Test
     @DisplayName("보너스 번호 중복 입력인 경우 예외 확인")
     void 보너스_번호_중복_입력_예외_확인() {
-        bonusNumberExceptionTest("6");
+        bonusNumberExceptionTest("6", ErrorMessage.BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE);
     }
 
     @Test
     @DisplayName("보너스 번호 음수인 경우 예외 확인")
     void 보너스_번호_음수_입력_예외_확인() {
-        bonusNumberExceptionTest("-6");
+        bonusNumberExceptionTest("-6", ErrorMessage.BONUS_NUMBER_NEGATIVE_ERROR_MESSAGE);
     }
 
     @Test
     @DisplayName("보너스 번호 1~45 사이의 수가 아닌 경우 예외 확인")
     void 보너스_번호_범위밖_입력_예외_확인() {
-        bonusNumberExceptionTest("46");
+        bonusNumberExceptionTest("46", ErrorMessage.BONUS_NUMBER_RANGE_ERROR_MESSAGE);
     }
 
     @Test
     @DisplayName("보너스 번호 숫자가 아닌 경우 예외 확인")
     void 보너스_번호_문자_입력_예외_확인() {
-        bonusNumberExceptionTest("abc");
+        bonusNumberExceptionTest("abc", ErrorMessage.BONUS_NUMBER_TYPE_ERROR_MESSAGE);
     }
 }

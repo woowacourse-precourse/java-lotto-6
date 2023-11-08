@@ -14,25 +14,25 @@ public class Money {
         this.money = money;
     }
 
-    private void validate(int input) {
+    public static void validate(int input) {
         validateRemainder(input);
         validateRange(input);
         validateNumeric(String.valueOf(input));
     }
 
-    private void validateRemainder(int input) {
+    private static void validateRemainder(int input) {
         if (input % THOUSAND != ZERO) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void validateRange(int input) {
+    private static void validateRange(int input) {
         if (input < MIN_VALUE) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void validateNumeric(String input) {
+    private static void validateNumeric(String input) {
         if (!PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException();
         }

@@ -1,9 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.util.validator.BonusNumberValidator;
-import lotto.util.validator.PurchaseValidator;
-import lotto.util.validator.WinningNumberValidator;
+import lotto.domain.validator.BonusNumberValidator;
+import lotto.domain.validator.PurchaseValidator;
+import lotto.domain.validator.WinningNumberValidator;
 
 import java.util.List;
 

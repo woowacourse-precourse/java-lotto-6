@@ -1,4 +1,4 @@
-package lotto.util.validator;
+package lotto.domain.validator;
 
 import lotto.exception.ErrorCode;
 import org.junit.jupiter.api.DisplayName;

@@ -68,23 +68,23 @@ public class Prize {
 
     static void calculateProfit() {
         if (finalResult[0] >= 1) {
-            totalProfit = totalProfit + (finalResult[0] * 2_000_000_000);
+            totalProfit = totalProfit + (finalResult[0] * Money.FIRST.getPrize());
         }
 
         if (finalResult[1] >= 1) {
-            totalProfit = totalProfit + (finalResult[1] * 30_000_000);
+            totalProfit = totalProfit + (finalResult[1] * Money.SECOND.getPrize());
         }
 
         if (finalResult[2] >= 1) {
-            totalProfit = totalProfit + (finalResult[2] * 1_500_000);
+            totalProfit = totalProfit + (finalResult[2] * Money.THIRD.getPrize());
         }
 
         if (finalResult[3] >= 1) {
-            totalProfit = totalProfit + (finalResult[3] * 50_000);
+            totalProfit = totalProfit + (finalResult[3] * Money.FOURTH.getPrize());
         }
 
         if (finalResult[4] >= 1) {
-            totalProfit = totalProfit + (finalResult[4] * 5_000);
+            totalProfit = totalProfit + (finalResult[4] * Money.FIFTH.getPrize());
         }
     }
 

@@ -20,7 +20,7 @@ public class Result {
         ranks.set(rank, ranks.get(rank) + 1);
     }
 
-    public void addIncome(int income){
+    public void addIncome(int income) {
         this.income += income;
     }
 
@@ -28,7 +28,7 @@ public class Result {
         return ranks;
     }
 
-    public double getIncome(){
+    public double getIncome() {
         return income;
     }
 }

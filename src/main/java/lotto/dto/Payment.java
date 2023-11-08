@@ -1,30 +1,20 @@
 package lotto.dto;
 
+import lotto.exception.LottoGameException;
 import lotto.utils.Parser;
+
+import static lotto.validator.LottoValidator.*;
 
 public class Payment {
     private int payment;
 
-    private Payment(String inputValue) {
-        try {
-            validateNullValue(inputValue);
-            validateNoRemainderValue(this.payment);
-            this.payment = Parser.parseStringToInt(inputValue);
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+    private Payment(String inputValue) throws LottoGameException {
+        validateNullValue(inputValue);
+        validateNoRemainderValue(this.payment);
+        this.payment = Parser.parseStringToInt(inputValue);
     }
 
-    void validateNullValue(String value) {
-        if (value.isBlank()) throw new IllegalArgumentException("[ERROR] 금액을 정확히 입력해 주세요.");
-    }
-
-    void validateNoRemainderValue(int value) {
-        if (value % 1000 != 0) throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해 주세요.");
-    }
-
-    public static Payment create(String inputValue) {
+    public static Payment create(String inputValue) throws LottoGameException {
         return new Payment(inputValue);
     }
 

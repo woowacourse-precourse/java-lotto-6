@@ -57,12 +57,12 @@ public class Calculator {
         return 0;
     }
 
-    private int calculateReword(int rank){
-        if(rank == FIRST.getNumber()) return FIRST_REWORD.getNumber();
-        if(rank == SECOND.getNumber()) return SECOND_REWORD.getNumber();
-        if(rank == THIRD.getNumber()) return THIRD_REWORD.getNumber();
-        if(rank == FOURTH.getNumber()) return FOURTH_REWORD.getNumber();
-        if(rank == FIFTH.getNumber()) return FIFTH_REWORD.getNumber();
+    private int calculateReword(int rank) {
+        if (rank == FIRST.getNumber()) return FIRST_REWORD.getNumber();
+        if (rank == SECOND.getNumber()) return SECOND_REWORD.getNumber();
+        if (rank == THIRD.getNumber()) return THIRD_REWORD.getNumber();
+        if (rank == FOURTH.getNumber()) return FOURTH_REWORD.getNumber();
+        if (rank == FIFTH.getNumber()) return FIFTH_REWORD.getNumber();
         return 0;
     }
 

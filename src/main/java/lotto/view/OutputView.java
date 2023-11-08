@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.domain.Result;
 
 import java.util.List;
+
 import static lotto.view.ViewMessage.*;
 
 public class OutputView {

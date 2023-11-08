@@ -4,6 +4,7 @@ import lotto.exception.LottoGameException;
 
 import static lotto.utils.UtilNumber.LOTTO_COST;
 import static lotto.exception.ErrorMessage.NOT_INTEGER_ERROR_MESSAGE;
+
 public class Parser {
 
     public static int parseStringToInt(String stringValue) throws LottoGameException {

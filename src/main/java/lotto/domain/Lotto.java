@@ -7,7 +7,6 @@ import static lotto.exception.ErrorMessage.DUPLICATE_LOTTO_NUMBERS;
 import static lotto.exception.ErrorMessage.INVALID_LOTTO_FORMAT;
 import static lotto.exception.ErrorMessage.OUT_OF_RANGE_LOTTO_NUMBERS;
 
-import java.util.Collections;
 import java.util.List;
 import lotto.exception.LottoException;
 
@@ -16,8 +15,14 @@ public class Lotto {
 
     public Lotto(final List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
+        sortNumbers(numbers);
         this.numbers = numbers;
+    }
+
+    private void sortNumbers(List<Integer> numbers) {
+        numbers.stream()
+                .sorted()
+                .toList();
     }
 
     private void validate(final List<Integer> numbers) {

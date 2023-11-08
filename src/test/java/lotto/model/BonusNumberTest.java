@@ -27,4 +27,12 @@ public class BonusNumberTest {
                 .hasMessage("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
+    @Test
+    @DisplayName("보너스 번호가 1보다 작은 숫자가 들어오면 예외 발생")
+    public void testBonusNumberByBelowRange() {
+        String bonus = "0";
+        assertThatThrownBy(() -> new BonusNumber(bonus))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
 }

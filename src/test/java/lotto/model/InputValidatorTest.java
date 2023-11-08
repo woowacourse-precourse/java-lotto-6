@@ -1,12 +1,12 @@
 package lotto.model;
 
 import static lotto.model.enums.ErrorMessage.NOT_CORRECT_INPUT_MESSAGE;
-import static lotto.model.enums.ErrorMessage.NOT_INTEGER_INPUT_MESSAGE;
-import static lotto.model.enums.ErrorMessage.OUT_OF_RANGE_NUMBER_MESSAGE;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.model.exceptions.NotIntegerException;
+import lotto.model.exceptions.OutOfRangeNumberException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -49,8 +49,7 @@ public class InputValidatorTest {
     @DisplayName("정수가 아닐 시 예외 발생")
     void notIntegerNumberInput(String input) {
         assertThatThrownBy(() -> inputValidator.validateInput(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NOT_INTEGER_INPUT_MESSAGE.getMessage());
+                .isInstanceOf(NotIntegerException.class);
     }
 
     @ParameterizedTest
@@ -58,7 +57,6 @@ public class InputValidatorTest {
     @DisplayName("범위 밖의 숫자 예외 발생")
     void outOfRangeNumberInput(String input) {
         assertThatThrownBy(() -> inputValidator.validateInput(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(OUT_OF_RANGE_NUMBER_MESSAGE.getMessage());
+                .isInstanceOf(OutOfRangeNumberException.class);
     }
 }

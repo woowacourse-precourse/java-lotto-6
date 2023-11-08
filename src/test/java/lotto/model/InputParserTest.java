@@ -12,23 +12,21 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class InputParserTest {
-    InputParser inputParser = new InputParser();
-
     @ParameterizedTest
     @ValueSource(strings = {"1, 2, 3, 4, 5, 6", "1,2,3,4,5,6", "1, 2,3, 4,  5,      6"})
     @DisplayName("예외 발생 X")
     void checkCorrectParsing(String input) {
-        assertThatCode(() -> inputParser.parseInput(input))
+        assertThatCode(() -> InputParser.parseInput(input))
                 .doesNotThrowAnyException();
 
-        assertThat(inputParser.parseInput(input)).isEqualTo(List.of("1", "2", "3", "4", "5", "6"));
+        assertThat(InputParser.parseInput(input)).isEqualTo(List.of("1", "2", "3", "4", "5", "6"));
     }
 
     @ParameterizedTest(name = "{index}: {0}")
     @MethodSource("invalidParameter")
     @DisplayName("파싱 예외 X")
     void checkNoException(String input) {
-        assertThatCode(() -> inputParser.parseInput(input))
+        assertThatCode(() -> InputParser.parseInput(input))
                 .doesNotThrowAnyException();
     }
 

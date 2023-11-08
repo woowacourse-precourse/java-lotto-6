@@ -1,6 +1,5 @@
 package lotto.model;
 
-import static lotto.model.enums.ErrorMessage.DUPLICATED_NUMBER_MESSAGE;
 import static lotto.model.enums.Rank.FIFTH;
 import static lotto.model.enums.Rank.FIRST;
 import static lotto.model.enums.Rank.FOURTH;
@@ -13,6 +12,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.model.enums.Rank;
+import lotto.model.exceptions.DuplicatedNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -25,8 +25,7 @@ class WinLottoTest {
     @DisplayName("우승 번호와 중복된 숫자 입력 예외 발생")
     void duplicateNumberInput(int input) {
         assertThatThrownBy(() -> new WinLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(DUPLICATED_NUMBER_MESSAGE.getMessage());
+                .isInstanceOf(DuplicatedNumberException.class);
     }
 
     @ParameterizedTest(name = "{index}: {0}")

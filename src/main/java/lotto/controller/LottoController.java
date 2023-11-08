@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
 import java.util.List;
 import lotto.service.LottoService;
+import lotto.util.Validator;
 import lotto.view.PrintView;
 
 
@@ -26,7 +27,6 @@ public class LottoController {
         initWinningNumbersData();
         initBonusNumberData();
     }
-
 
 
     public void initUserData() {
@@ -70,23 +70,26 @@ public class LottoController {
 
     public void initBonusNumberData() {
         boolean checkException = true;
+        int bonusNumber = 0;
 
         while (checkException) {
             PrintView.inputBonusNumberView();
             String inputBonusNumber = Console.readLine();
             try {
-                lottoService.initBonusNumber(inputBonusNumber);
+                bonusNumber = Validator.validateSingleNumber(inputBonusNumber);
                 checkException =false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
 
+        lottoService.initBonusNumber(bonusNumber);
     }
 
     public void processingRank() {
         int[] winningCount = lottoService.calculateLottoRanks();
         BigDecimal result = lottoService.rateOfReturn();
+
         PrintView.printWinningResult(winningCount, result);
     }
 

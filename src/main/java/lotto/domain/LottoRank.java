@@ -6,6 +6,8 @@ public class LottoRank {
 
     private static final double HUNDRED_POINT_ZERO = 100.0;
     private static final String FORMAT_ONE_DECIMAL = "%.1f";
+    private static final String FORMAT_COMMA = "%,d";
+    private static final String REGEX_DOT = "\\.";
     private int first;
     private int second;
     private int third;
@@ -41,7 +43,15 @@ public class LottoRank {
 
     private String roundToSecondDecimalPlace() {
         double roundedValue = Math.round(totalEarningRate * HUNDRED_POINT_ZERO) / HUNDRED_POINT_ZERO;
-        return String.format(FORMAT_ONE_DECIMAL, roundedValue);
+        String[] parts = insertComma(roundedValue);
+        return String.join(".", parts);
+    }
+
+    private static String[] insertComma(double roundedValue) {
+        String formattedValue = String.format(FORMAT_ONE_DECIMAL, roundedValue);
+        String[] parts = formattedValue.split(REGEX_DOT);
+        parts[0] = String.format(FORMAT_COMMA, Long.parseLong(parts[0]));
+        return parts;
     }
 
     private void calculateEarningRate(int amount) {

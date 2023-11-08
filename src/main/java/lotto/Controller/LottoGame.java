@@ -55,15 +55,6 @@ public class LottoGame {
         }
     }
 
-    private static int inputBonusNumber() {
-        try {
-            bonusNumber = new BonusNumber(InputView.inputBonusNumber());
-            return bonusNumber.conveyBonusNumber();
-        } catch (IllegalArgumentException e) {
-            return inputBonusNumber();
-        }
-    }
-
     private static List<Lotto> makeLottoList(int purchaseAmount) {
         lottoList = new ArrayList<>();
 
@@ -81,11 +72,19 @@ public class LottoGame {
     }
 
     public CompareResult validateBonusNumber() {
-        List<Integer> compareNumber = inputLottoNumbers();
-        compareResult = new CompareResult(new Lotto(compareNumber), inputBonusNumber());
+        try{
+            List<Integer> compareNumber = inputLottoNumbers();
+            bonusNumber = new BonusNumber(InputView.inputBonusNumber());
+            Lotto.validateBonusNumberDuplicate(compareNumber, bonusNumber.getBonusNumber());
+            compareResult = new CompareResult(new Lotto(compareNumber), bonusNumber.getBonusNumber());
 
-        return compareResult;
+            return compareResult;
+        }
+        catch(IllegalArgumentException e) {
+            return validateBonusNumber();
+        }
     }
+
 
     private void lottoResult(List<Lotto> lottoList, CompareResult winningLotto, int amount) {
         Map<WinningResult, Integer> result = setResult();
@@ -112,7 +111,6 @@ public class LottoGame {
             profitRate =
                     profitRate + ((double) (winningResult.getTotalPrizeAmount()) / (lottoAmount * 1000) * (result.get(
                             winningResult)) * (100));
-
         }
         OutputView.printProfitRate(profitRate);
     }

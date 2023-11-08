@@ -54,6 +54,7 @@ check new branch
 - userBonus()
   - input : null / return : void
   - 보너스 번호 받아 bonus에 Integer 타입으로 저장
+  - 특정 범위 내 값이 확인
 - checkLottos()
   - input : null / return : void
   - 로또 개수 만큼 for문 진행

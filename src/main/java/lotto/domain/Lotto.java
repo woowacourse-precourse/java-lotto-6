@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lotto.constant.ErrorMessage;
-import lotto.constant.LottoInformation;
+import lotto.constant.LottoGameConfig;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -15,7 +15,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        duplicateValidation(numbers);
+        validationDuplicateNumbers(numbers);
         sortNumbers(numbers);
         this.numbers = numbers;
     }
@@ -23,26 +23,25 @@ public class Lotto {
     public Lotto(String input){
         this.numbers = WinningNumbers(input);
     }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != LottoInformation.LOTTO_NUMBER_TOTAL_SIZE.getNumber()) {
-            throw new IllegalArgumentException(ErrorMessage.IS_NOT_LOTTO_SIZE_MESSAGE.getMessage());
-        }
-    }
-
-    private void duplicateValidation(List<Integer> numbers) {
-        Set<Integer> removeDuplicationNumber = new HashSet<>(numbers);
-        if(removeDuplicationNumber.size() != LottoInformation.LOTTO_NUMBER_TOTAL_SIZE.getNumber()){
-            throw new IllegalArgumentException(ErrorMessage.IS_DUPLICATION_LOTTO_NUMBER_MESSAGE.getMessage());
-        }
-    }
-
     public Lotto getPuschaseLotto() {
         return this;
     }
 
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != LottoGameConfig.LOTTO_NUMBER_COUNT.getNumber()) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_ERROR.getMessage());
+        }
+    }
+
+    private void validationDuplicateNumbers(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != LottoGameConfig.LOTTO_NUMBER_COUNT.getNumber()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER_ERROR.getMessage());
+        }
+    }
+
     public List<Integer> getLottoNumbers(){
-        return numbers;
+        return new ArrayList<>(numbers);
     }
 
     private void sortNumbers(List<Integer> numbers) {
@@ -51,23 +50,20 @@ public class Lotto {
 
     private List<Integer> WinningNumbers(String input) {
         String[] splitNumbers = input.replace(" ","").split(",");
-        List<Integer> lottoNumbers = changeIntegerNumber(splitNumbers);
+        List<Integer> lottoNumbers = convertToIntegerList(splitNumbers);
         sortNumbers(lottoNumbers);
         return lottoNumbers;
     }
 
-    private List<Integer> changeIntegerNumber(String[] splitNumbers) {
+    private List<Integer> convertToIntegerList(String[] splitNumbers) {
         List<Integer> lottoNumbers = new ArrayList<>();
-        for(int attempt = 0; attempt < splitNumbers.length; attempt++){
-            lottoNumbers.add(Integer.parseInt(splitNumbers[attempt]));
+        for(int i = 0; i < splitNumbers.length; i++){
+            lottoNumbers.add(Integer.parseInt(splitNumbers[i]));
         }
         return lottoNumbers;
     }
 
-    public boolean checkUserAndLottoNumbers(List<Integer> userLotto, int lottoNumber){
-        if(userLotto.contains(lottoNumber)){
-            return true;
-        }
-        return false;
+    public boolean checkUserAndLottoNumbers(List<Integer> userLotto, int lottoNumber) {
+        return userLotto.contains(lottoNumber);
     }
 }

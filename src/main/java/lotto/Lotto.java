@@ -14,6 +14,10 @@ public class Lotto {
         if (numbers.size() != LottoEnum.SIZE.getValue()) {
             throw new IllegalArgumentException("[ERROR] 1개의 로또를 발행할 때 6개의 숫자를 전달해야 합니다.");
         }
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] 1개의 로또를 발행할 때 중복되지 않는 숫자를 전달해야 합니다.");
+        }
+
     }
 
     // TODO: 추가 기능 구현

@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Purchase {
     String purchaseMoney;
@@ -22,7 +23,7 @@ public class Purchase {
         List[] allTickets = new List[ticketNumber];
         for (int i = 0; i < ticketNumber; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            numbers.sort(Comparator.naturalOrder());
+            numbers = numbers.stream().sorted().collect(Collectors.toList());
             allTickets[i] = numbers;
             System.out.println(numbers);
         }

@@ -5,6 +5,8 @@ import static lotto.Constants.TurnOuts.TURN_OUT_RATE;
 import static lotto.Message.OutputPrompt.HOW_MANY_LOTTERY_ARE_BOUGHT;
 import static lotto.Message.OutputPrompt.LOTTO_GAME_RESULT_NOTICE;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import lotto.Constants.MatchTypes;
@@ -16,7 +18,7 @@ public class OutputView {
         Integer numOfLottery = lotteryBudget / BUDGET_UNIT.getPrice();
         System.out.println(String.format(HOW_MANY_LOTTERY_ARE_BOUGHT.getMessage(), numOfLottery));
     }
-    
+
 
     public void printGameResult(List<Lotto> lottoGroup, Map<MatchTypes, Integer> gameResult, Double turnOutRate) {
         printRegisteredLottery(lottoGroup);
@@ -27,7 +29,9 @@ public class OutputView {
 
     public void printRegisteredLottery(List<Lotto> lottoGroup) {
         for (Lotto lotto : lottoGroup) {
-            System.out.println(lotto.getLottoNumbers().toString());
+            List<Integer> sortedLottoNumbers = new ArrayList<>(lotto.getLottoNumbers());
+            sortedLottoNumbers.sort(Comparator.naturalOrder());
+            System.out.println(sortedLottoNumbers);
         }
     }
 

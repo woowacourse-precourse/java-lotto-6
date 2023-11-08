@@ -13,11 +13,4 @@ public class LottoNumbersGenerator {
     public static List<Integer> generate() {
         return Randoms.pickUniqueNumbersInRange(RANDOM_MIN_VALUE, RANDOM_MAX_VALUE, LOTTO_NUMBER_COUNT);
     }
-
-    public static List<Integer> ascendingGenerate() {
-        List<Integer> generateNumbers = generate();
-        Collections.sort(generateNumbers);
-
-        return generateNumbers;
-    }
 }

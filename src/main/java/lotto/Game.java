@@ -78,4 +78,7 @@ public class Game {
 
     }
 
+    private int convertMoneyToLotto() {
+        return this.money / 1000;
+    }
 }

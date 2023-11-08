@@ -1,7 +1,8 @@
-package lotto.service;
+package lotto.generator;
 
 import lotto.entity.PrizePrint;
 import lotto.entity.WinMessage;
+import lotto.service.FindNumInListService;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class CalculateTotalProfit {
         int totalProfit = 0;
         int o = 3;
         for (WinMessage.WinType winType : WinMessage.WinType.values()) {
-            int count = NumCountInList.countOccurrences(winCounts, o);
+            int count = FindNumInListService.countOccurrences(winCounts, o);
             int prize = PrizePrint.CalculatorPrize.calculatePrize(o);
             totalProfit += prize * count;
             o++;

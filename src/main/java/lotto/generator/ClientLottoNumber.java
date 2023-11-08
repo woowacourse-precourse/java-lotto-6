@@ -1,7 +1,7 @@
 package lotto.generator;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.service.BubbleSort;
+import lotto.service.BubbleSortService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class ClientLottoNumber {
 
         for (int i = 0; i < t; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            BubbleSort.bubbleSort(numbers);
+            BubbleSortService.bubbleSort(numbers);
             System.out.println(numbers);
             LottoNumberList.add(numbers);
         }

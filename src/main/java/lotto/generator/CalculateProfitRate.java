@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.generator;
 
 public class CalculateProfitRate {
     public static float calculateProfitRate(int totalProfit, int t) {

@@ -1,10 +1,10 @@
 package lotto;
 
 import lotto.generator.ClientLottoNumber;
-import lotto.service.CalculateProfitRate;
-import lotto.service.CalculateTotalProfit;
-import lotto.service.CalculateWinCounts;
-import lotto.service.PrintWinCounts;
+import lotto.generator.CalculateProfitRate;
+import lotto.generator.CalculateTotalProfit;
+import lotto.generator.CalculateWinCounts;
+import lotto.view.PrintWinCounts;
 import lotto.view.PrintProfitRate;
 import lotto.view.PrintView;
 

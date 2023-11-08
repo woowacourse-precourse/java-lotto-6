@@ -1,6 +1,6 @@
 package lotto.entity;
 
-import lotto.service.HasDuplicate;
+import lotto.service.HasDuplicateService;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class Lotto {
             throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
 
-        if (HasDuplicate.hasDuplicates(numbers)) {
+        if (HasDuplicateService.hasDuplicates(numbers)) {
             throw new IllegalArgumentException("로또 번호에 중복된 값이 있습니다.");
         }
 

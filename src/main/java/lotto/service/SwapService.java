@@ -2,7 +2,7 @@ package lotto.service;
 
 import java.util.List;
 
-public class Swap {
+public class SwapService {
 
     public static void swap(List<Integer> list, int j) {
         if (list.get(j) > list.get(j + 1)) {

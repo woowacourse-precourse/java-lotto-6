@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.util.constant.Constant.PER_THOUSAND;
+import static lotto.util.constant.ViewConstant.*;
 import static lotto.util.validate.InputValidate.*;
 
 public class InputView {
@@ -13,14 +15,14 @@ public class InputView {
     public int inputPurchaseAmount() {
         while (true) {
             try {
-                System.out.println("구입금액을 입력해 주세요.");
+                System.out.println(INPUT_PURCHASE_AMOUNT);
                 String input = readLine();
 
                 int parseIntInputValue = validateInputFormat(input);
                 validateThousandUnitInputFormat(parseIntInputValue);
                 validateNumberRangeInputFormat(parseIntInputValue);
 
-                return Integer.parseInt(input) / 1000;
+                return Integer.parseInt(input) / PER_THOUSAND;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -30,7 +32,7 @@ public class InputView {
     public List<Integer> inputWinningNumbers() {
         while (true) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요.");
+                System.out.println(INPUT_WINNING_NUMBERS);
                 String input = readLine();
 
                 List<Integer> winningNumbers = Arrays.stream(input.split(","))
@@ -51,7 +53,7 @@ public class InputView {
     public int inputBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
-                System.out.println("보너스 번호를 입력해 주세요.");
+                System.out.println(INPUT_BONUS_NUMBER);
                 String input = readLine();
 
                 int bonusNumber = validateInputFormat(input);

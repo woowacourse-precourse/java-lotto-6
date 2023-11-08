@@ -11,6 +11,7 @@ import java.util.List;
 import static lotto.configuration.GameConfiguration.INPUT_SEPARATOR;
 import static lotto.configuration.GameConfiguration.LOTTO_NUMBER_SIZE;
 import static lotto.exception.errorcode.InputErrorCode.INPUT_NOT_NUMERIC;
+import static lotto.exception.errorcode.InputErrorCode.INPUT_SPLIT_SIZE;
 
 public class ConsoleInputView implements InputView {
     @Override
@@ -22,6 +23,7 @@ public class ConsoleInputView implements InputView {
     @Override
     public WinningNumberRequest requestWinningNumber() {
         final String winningNumber = Console.readLine();
+        validateSplitSize(winningNumber);
         validateSplitEachNumeric(winningNumber);
         return new WinningNumberRequest(getWinningNumber(winningNumber));
     }
@@ -45,6 +47,13 @@ public class ConsoleInputView implements InputView {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new InputException(INPUT_NOT_NUMERIC);
+        }
+    }
+
+    private void validateSplitSize(final String input) {
+        final long splitSize = Arrays.stream(input.split(INPUT_SEPARATOR)).count();
+        if (splitSize != LOTTO_NUMBER_SIZE) {
+            throw new InputException(INPUT_SPLIT_SIZE);
         }
     }
 

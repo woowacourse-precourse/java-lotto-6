@@ -27,12 +27,12 @@ class ApplicationTest extends NsTest {
         winnerNums = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
         bonusNum = 7;
         lottos = List.of(
-                new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6))), // SIX
-                new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 7))), // FIVE_BONUS
-                new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 8))), // FIVE
-                new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 9, 8))), // FOUR
-                new Lotto(new ArrayList<>(List.of(1, 2, 3, 9, 10, 8))), // THREE
-                new Lotto(new ArrayList<>(List.of(1, 2, 9, 10, 11, 8))) // LOSE
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)), // SIX
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)), // FIVE_BONUS
+                new Lotto(List.of(1, 2, 3, 4, 5, 8)), // FIVE
+                new Lotto(List.of(1, 2, 3, 4, 9, 8)), // FOUR
+                new Lotto(List.of(1, 2, 3, 9, 10, 8)), // THREE
+                new Lotto(List.of(1, 2, 9, 10, 11, 8)) // LOSE
         );
     }
 

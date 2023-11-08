@@ -67,8 +67,7 @@ class LottoTest {
     @DisplayName("생성된 로또 번호는 오름차순으로 정렬되어야 한다.")
     @Test
     void checkLottoNumsAscending() {
-        List<Integer> numbers = new ArrayList<>(List.of(3, 45, 7, 8, 9, 1));
-        Lotto lotto = new Lotto(numbers);
+        Lotto lotto = new Lotto(List.of(3, 45, 7, 8, 9, 1));
         List<Integer> lottoNumbers = lotto.getNumbers();
         List<Integer> expected = List.of(1, 3, 7, 8, 9, 45);
 

@@ -51,10 +51,10 @@ public class Lotto {
     }
 
 
-    public int calculateCountOfNumberEqualToWinningNumber(final Lotto other) {
+    public int calculateCountOfNumberEqualToWinningNumber(final Lotto target) {
         return (int) this.numbers
                 .stream()
-                .filter(other::contain)
+                .filter(target::contain)
                 .count();
     }
 

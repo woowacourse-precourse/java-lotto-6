@@ -17,7 +17,6 @@ public class LottoService {
     private static final int LOTTO_PRICE = 1000;
 
     public List<Lotto> purchaseLottoTickets(int purchaseAmount) {
-        validatePurchaseAmount(purchaseAmount);
         int numberOfTickets = purchaseAmount / LOTTO_PRICE;
 
         List<Lotto> tickets = new ArrayList<>();
@@ -44,12 +43,6 @@ public class LottoService {
         DecimalFormat df = new DecimalFormat("0.0");
 
         return df.format(profitRate) + "%";
-    }
-
-    private void validatePurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount <= 0 || purchaseAmount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
-        }
     }
 
     public List<Integer> generateLottoNumbers() {

@@ -23,5 +23,4 @@ public class LottoController {
         outputView.displayResults(results);
         outputView.displayProfitRate(lottoService.calculateProfitRate(results, lottoTickets.size()));
     }
-
 }

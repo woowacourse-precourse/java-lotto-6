@@ -8,7 +8,7 @@ public class BonusLottoNumber {
     private int bonusNum;
 
     public BonusLottoNumber(String bonus) {
-        int bonusNum = inputBonusException(bonus);
+        this.bonusNum = inputBonusException(bonus);
     }
 
     public int inputBonusException(String bonus) {
@@ -22,6 +22,6 @@ public class BonusLottoNumber {
         return bonusNum;
     }
     public int getBounsNum() {
-        return bonusNum;
+        return this.bonusNum;
     }
 }

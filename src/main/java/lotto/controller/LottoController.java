@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.domain.WinningNumber;
 import lotto.domain.calculator.CalculatorMatching;
 import lotto.domain.calculator.CalculatorProfit;
@@ -59,5 +61,17 @@ public class LottoController {
                 outputView.printErrorCode(e.getMessage());
             }
         }
+    }
+
+    private void calculateLottoResult(List<Lotto> tickets, WinningNumber winningNumber, int bonusNumber, long purchaseAmount) {
+        List<Rank> ranks = calculatorMatching.calculateRanks(tickets, winningNumber, bonusNumber);
+        outputView.printWinningResults(ranks);
+        calculateLottoProfit(ranks, purchaseAmount);
+    }
+
+    private void calculateLottoProfit(List<Rank> ranks, long purchaseAmount) {
+        int totalPrize = calculatorProfit.calculateTotalPrize(ranks);
+        double totalProfitRate = calculatorProfit.calculateTotalProfitRate(totalPrize, purchaseAmount);
+        outputView.printTotalProfit(totalProfitRate);
     }
 }

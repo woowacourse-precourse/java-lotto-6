@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.data.Lotto;
 import lotto.provider.LottoProvider;
+import lotto.provider.WinningNumberProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -39,5 +40,20 @@ class LottoTest {
         //then
         assertThat(lottos.size())
                 .isEqualTo(6);
+    }
+
+    @DisplayName("컴마로 구분된 당첨번호를 정수 리스트 형태로 반환한다.")
+    @Test
+    void 당첨번호_정수_배열_형태로_반환() {
+        //given
+        String winningNumberInput = "1,2,3,4,5,6";
+        WinningNumberProvider winningNumberProvider = new WinningNumberProvider();
+
+        //when
+        List<Integer> winningNumber = winningNumberProvider.getWinningNumber(winningNumberInput);
+
+        //then
+        assertThat(winningNumber)
+                .isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
 }

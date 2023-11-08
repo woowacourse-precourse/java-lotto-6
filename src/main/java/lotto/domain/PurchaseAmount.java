@@ -18,23 +18,23 @@ public class PurchaseAmount {
     }
 
     private void validateTotalPrice(int totalPrice) {
-        validateMultiplesOfThousand(totalPrice);
         validateMinimumPrice(totalPrice);
+        validateMultiplesOfThousand(totalPrice);
     }
 
     private int convertStrtoInt(String userInput) {
         return Integer.parseInt(userInput);
     }
 
-    private void validateMultiplesOfThousand(int totalPrice) {
-        if (totalPrice % NumberConstant.LOTTO_PRICE.getNumber() != 0) {
-            throw new IllegalArgumentException(ExceptionConstant.PURCHASE_REMAINDER.getMessage());
-        }
-    }
-
     private void validateMinimumPrice(int totalPrice) {
         if (totalPrice < NumberConstant.LOTTO_PRICE.getNumber()) {
             throw new IllegalArgumentException(ExceptionConstant.PURCHASE_MIN_NUMBER.getMessage());
+        }
+    }
+
+    private void validateMultiplesOfThousand(int totalPrice) {
+        if (totalPrice % NumberConstant.LOTTO_PRICE.getNumber() != 0) {
+            throw new IllegalArgumentException(ExceptionConstant.PURCHASE_REMAINDER.getMessage());
         }
     }
 

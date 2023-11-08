@@ -53,7 +53,7 @@ class InputValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1, 2, 3, 4, 5"})
+    @ValueSource(strings = {"1,2,3,4,5"})
     void 입력값이_정수면_정상작동(String userInput) {
         assertThatCode(() -> inputValidator.validateUserInput(userInput.replaceAll(",", "")))
                 .doesNotThrowAnyException();

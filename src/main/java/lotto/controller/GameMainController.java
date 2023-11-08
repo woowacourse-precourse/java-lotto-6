@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
 import lotto.service.GameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -18,12 +17,14 @@ public class GameMainController {
     }
 
     public void run() {
-            startGame();
+            setLotteries();
+            setWinningNumber();
+            setWinningLotto();
             playGame();
             stopGame();
     }
 
-    private void startGame() {
+    private void setLotteries() {
         try {
             String purchaseAmount = inputView.inputPurchaseAmount();
             gameService.createPurchaseAmount(purchaseAmount);
@@ -32,20 +33,32 @@ public class GameMainController {
             outputView.printLottoNumbers(gameService.printLottoNumbers());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            startGame();
+            setLotteries();
+        }
+    }
+
+    private void setWinningNumber() {
+        try {
+            String winningNumber = inputView.inputWinningNumber();
+            gameService.createWinningNumbers(winningNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            setWinningNumber();
+        }
+    }
+
+    private void setWinningLotto() {
+        try {
+            String bonusNumber = inputView.inputBonusNumber();
+            gameService.createWinningLotto(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            setWinningLotto();
         }
     }
 
     private void playGame() {
-        try {
-            String winningNumber = inputView.inputWinningNumber();
-            String bonusNumber = inputView.inputBonusNumber();
-            gameService.createWinningLotto(winningNumber, bonusNumber);
-            gameService.createLottoResult();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            playGame();
-        }
+        gameService.createLottoResult();
     }
 
     private void stopGame() {

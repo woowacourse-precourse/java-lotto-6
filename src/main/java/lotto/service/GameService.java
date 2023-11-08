@@ -17,8 +17,9 @@ public class GameService {
     private final String DIVISION_STANDARD = ",";
 
     private PurchaseAmount purchaseAmount;
-    private WinningLotto winningLotto;
     private Lotteries lotteries;
+    private Lotto winningNumbers;
+    private WinningLotto winningLotto;
     private LottoResult lottoResult;
     private final NumberGenerator numberGenerator;
 
@@ -30,15 +31,18 @@ public class GameService {
         purchaseAmount = PurchaseAmount.from(userInput);
     }
 
-    public void createWinningLotto(String winningNumber, String userBonusNumber) {
-        Lotto lotto = new Lotto(convertStrToList(winningNumber));
-        BonusNumber bonusNumber = BonusNumber.of(userBonusNumber, lotto);
-        winningLotto = WinningLotto.of(lotto, bonusNumber);
-    }
-
     public void createLotteries() {
         int purchaseCount = purchaseAmount.calculateAmountOfLotteries();
         lotteries = Lotteries.of(purchaseCount, numberGenerator);
+    }
+
+    public void createWinningNumbers(String winningNumber) {
+        winningNumbers = new Lotto(convertStrToList(winningNumber));
+    }
+
+    public void createWinningLotto(String userBonusNumber) {
+        BonusNumber bonusNumber = BonusNumber.of(userBonusNumber, winningNumbers);
+        winningLotto = WinningLotto.of(winningNumbers, bonusNumber);
     }
 
     public void createLottoResult() {

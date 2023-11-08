@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import lotto.service.GeneratingLottoNumberService;
 
 public class User {
 	private int buyingLottoPrice;
@@ -14,4 +15,11 @@ public class User {
 		this.winningLottoPrice=0;
 		lottos = new ArrayList<>();
 	}
+	public List<UserLottos> getLottos(){
+		return lottos;
+	}
+	public int getBuyingLottosPrice() {
+		return buyingLottoPrice;
+	}
+
 }

@@ -6,6 +6,8 @@ import lotto.view.InputView;
 
 import java.util.List;
 
+import static lotto.model.ErrorConstants.*;
+
 public class InputValidator {
 
     public LottoManager validateWinningNumbers(InputView inputView) {
@@ -17,9 +19,9 @@ public class InputValidator {
                 result = new LottoManager(winningNumbersFromUser);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 정수로 변환이 불가능합니다. 다시 입력해주세요.");
+                System.out.println(NUMBER_FORMAT_EXCEPTION_ERROR);
             } catch (IllegalStateException | IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage() + " 다시 입력해주세요.");
+                System.out.println(String.format(ERROR_MESSAGE,e.getMessage()));
             }
         }
         return result;
@@ -33,9 +35,9 @@ public class InputValidator {
                 validateLottoPurchaseAmount(purchaseAmount);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 정수로 변환이 불가능합니다. 다시 입력해주세요.");
+                System.out.println(NUMBER_FORMAT_EXCEPTION_ERROR);
             } catch (IllegalStateException | IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage() + " 다시 입력해주세요.");
+                System.out.println(String.format(ERROR_MESSAGE,e.getMessage()));
             }
         }
         return purchaseAmount;
@@ -43,7 +45,7 @@ public class InputValidator {
 
     public void validateLottoPurchaseAmount(int purchaseAmount) {
         if (purchaseAmount % LottoConstants.LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(String.format("로또 구입 금액은 %d원 단위로 입력 받아야합니다.", LottoConstants.LOTTO_PRICE));
+            throw new IllegalArgumentException(String.format(LOTTO_MONEY_INPUT_ERROR, LottoConstants.LOTTO_PRICE));
         }
     }
 
@@ -54,9 +56,9 @@ public class InputValidator {
                 addBonusNumberToWinningNumbers(winningNumbers, bonusNumber);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 정수로 변환이 불가능합니다. 다시 입력해주세요.");
+                System.out.println(NUMBER_FORMAT_EXCEPTION_ERROR);
             } catch (IllegalStateException | IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage() + " 다시 입력해주세요.");
+                System.out.println(String.format(ERROR_MESSAGE,e.getMessage()));
             }
         }
     }

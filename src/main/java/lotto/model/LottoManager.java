@@ -2,6 +2,9 @@ package lotto.model;
 
 import java.util.*;
 
+import static lotto.model.ErrorConstants.*;
+import static lotto.model.LottoConstants.*;
+
 public class LottoManager {
     private final List<Integer> winningNumbers;
     private int bonusNumber;
@@ -14,37 +17,37 @@ public class LottoManager {
     }
 
     private void validateWinningNumbers(List<Integer> numbers) {
-        if (numbers.size() != LottoConstants.LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException(String.format("당첨 번호는 %d개여야 합니다.",LottoConstants.LOTTO_NUMBER_COUNT));
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(String.format(WINNING_NUMBER_ERROR, LOTTO_NUMBER_COUNT));
         }
     }
 
     private void validateWinningNumbersRange(List<Integer> numbers) {
-        boolean isOutOfRange = numbers.stream().anyMatch(number -> number < LottoConstants.LOTTO_START_NUMBER || number > LottoConstants.LOTTO_END_NUMBER);
+        boolean isOutOfRange = numbers.stream().anyMatch(number -> number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER);
         if (isOutOfRange) {
-            throw new IllegalArgumentException(String.format("로또 번호는 %d에서 %d 사이여야 합니다.",LottoConstants.LOTTO_START_NUMBER, LottoConstants.LOTTO_END_NUMBER));
+            throw new IllegalArgumentException(String.format(LOTTO_NUMBER_RANGE_ERROR, LOTTO_START_NUMBER, LOTTO_END_NUMBER));
         }
     }
 
     private void validateNoDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() != LottoConstants.LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("당첨 번호에 중복된 숫자가 있습니다.");
+        if (uniqueNumbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(WINNING_NUMBER_DUPLICATE_ERROR);
         }
     }
 
     private void validateNoDuplicateBonusNumber(int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("보너스 번호에 당첨 번호와 중복된 숫자가 있습니다.");
+            throw new IllegalArgumentException(BONUS_NUMBER_AND_WINNING_NUMBER_ERROR);
         }
         this.bonusNumber = bonusNumber;
     }
 
     private static void validateBonusNumberRange(int bonusNumber) {
-        boolean isOutOfRange = bonusNumber < LottoConstants.LOTTO_START_NUMBER || bonusNumber > LottoConstants.LOTTO_END_NUMBER;
+        boolean isOutOfRange = bonusNumber < LOTTO_START_NUMBER || bonusNumber > LOTTO_END_NUMBER;
         if (isOutOfRange) {
-            throw new IllegalArgumentException(String.format("보너스 번호는 %d에서 %d 사이여야 합니다.",
-                    LottoConstants.LOTTO_START_NUMBER, LottoConstants.LOTTO_END_NUMBER));
+            throw new IllegalArgumentException(String.format(BONUS_NUMBER_RANGE_ERROR,
+                    LOTTO_START_NUMBER, LOTTO_END_NUMBER));
         }
     }
 

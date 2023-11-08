@@ -55,8 +55,9 @@ public class Result {
 
     private void calculateProfit() {
         PrizeMoney[] prizeMonies = PrizeMoney.values();
+        profit = 0;
         for (int i = 0; i < 5; i++) {
-            profit += matchCount.get(i) * prizeMonies[i].ordinal();
+            profit += matchCount.get(i) * prizeMonies[i].getPrizeValue();
         }
     }
 

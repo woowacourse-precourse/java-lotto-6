@@ -1,7 +1,7 @@
 package lotto;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -11,13 +11,13 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
-    private static int getTickets(){
+    private static int getTickets() {
         try {
             Integer N = Integer.parseInt(Console.readLine().replace(" ", ""));
             if (N % 1000 != 0) {
                 throw new IllegalStateException();
             }
-            return N/1000;
+            return N / 1000;
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 숫자를 입력해주세요.");
         } catch (IllegalStateException e) {
@@ -27,12 +27,12 @@ public class Application {
     }
 
     private static boolean isLottoLength(String[] sNumbers) {
-        try{
+        try {
             if (sNumbers.length != 6) {
                 throw new IllegalArgumentException();
             }
             return true;
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 로또 번호 6개를 입력해주세요.");
             return false;
         }
@@ -43,9 +43,10 @@ public class Application {
             Integer number = Integer.parseInt(sNumber);
             if (number >= 1 && number <= 45) {
                 return true;
-            } else {
-                throw new IllegalArgumentException();
             }
+
+            throw new IllegalArgumentException();
+
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 숫자를 입력해주세요.");
             return false;
@@ -68,7 +69,7 @@ public class Application {
         }
     }
 
-    private static boolean isDuplicated(List<Integer> numbers, Integer number){
+    private static boolean isDuplicated(List<Integer> numbers, Integer number) {
         try {
             Set<Integer> setNumbers = new HashSet<>(numbers);
             setNumbers.add(number);
@@ -82,10 +83,10 @@ public class Application {
             System.out.println("[ERROR] 번호가 중복되지 않도록 입력해주세요.");
             return true;
         }
-           
+
     }
 
-    private static List<Integer> inputPlayerNumbers(){
+    private static List<Integer> inputPlayerNumbers() {
         String[] sNumbers = Console.readLine().split(",");
         List<Integer> numbers = new ArrayList<Integer>();
 
@@ -95,11 +96,12 @@ public class Application {
 
         for (String number : sNumbers) {
             number = number.replace(" ", "");
-            if (isLottoNumber(number)) {
-                numbers.add(Integer.parseInt(number));
-            } else {
+            
+            if (!isLottoNumber(number)) {
                 return new ArrayList<Integer>();
+
             }
+            numbers.add(Integer.parseInt(number));
         }
 
         if (isDuplicated(numbers)) {
@@ -110,7 +112,7 @@ public class Application {
 
     }
 
-    private static Integer inputPlayerBonusNumber(List<Integer> numbers){
+    private static Integer inputPlayerBonusNumber(List<Integer> numbers) {
         String sNumber = Console.readLine().replace(" ", "");
 
         if (isLottoNumber(sNumber)) {
@@ -118,14 +120,15 @@ public class Application {
             if (!isDuplicated(numbers, number))
                 return number;
         }
-        
+
         return -1;
     }
 
     private static void printResult(int[] result, int tickets) {
         double revenue = 0;
-        double price = tickets*1000;
-        revenue = 5000 * result[0] + 50000 * result[1] + 1500000 * result[2] + 30000000 * result[3] + 2000000000 * result[4];
+        double price = tickets * 1000;
+        revenue = 5000 * result[0] + 50000 * result[1] + 1500000 * result[2] + 30000000 * result[3]
+                + 2000000000 * result[4];
 
         System.out.printf("3개 일치 (5,000원) - %d개\n", result[0]);
         System.out.printf("4개 일치 (50,000원) - %d개\n", result[1]);
@@ -136,20 +139,21 @@ public class Application {
         System.out.printf("총 수익률은 %.1f", (revenue / price) * 100);
         System.out.println("%입니다.");
     }
+
     public static void main(String[] args) {
-        
-        // int count = lotto.run(players);
 
         System.out.println("구입금액을 입력해 주세요.");
         int tickets;
         do {
             tickets = getTickets();
-        } while(tickets < 0);
+        } while (tickets < 0);
 
         List<Lotto> lottos = new ArrayList<Lotto>();
         System.out.printf("\n%d개를 구매했습니다.\n", tickets);
-        for (int i = 0; i < tickets; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        while (lottos.size() < tickets) {
+            List<Integer> tempNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+
+            List<Integer> numbers = new ArrayList<>(tempNumbers);
             Collections.sort(numbers);
             System.out.println(numbers.toString());
 
@@ -159,38 +163,38 @@ public class Application {
 
         System.out.println("\n당첨 번호를 입력해 주세요.");
         List<Integer> playerNumbers;
-        do{
+        do {
             playerNumbers = inputPlayerNumbers();
-        } while(playerNumbers.isEmpty());
+        } while (playerNumbers.isEmpty());
         Collections.sort(playerNumbers);
-        
+
         System.out.println("\n보너스 번호를 입력해 주세요.");
         Integer playerBonusNumber;
         do {
             playerBonusNumber = inputPlayerBonusNumber(playerNumbers);
-        } while(playerBonusNumber < 0);
+        } while (playerBonusNumber < 0);
 
-        int[] result = {0, 0, 0, 0, 0};
+        int[] result = { 0, 0, 0, 0, 0 };
         for (Lotto l : lottos) {
             int count = l.run(playerNumbers);
-            
+
             count -= 3;
             if (count < 0) {
                 continue;
             }
 
             if (count == 2) {
-                result[count + l.runBonus(playerBonusNumber)] ++;
+                result[count + l.runBonus(playerBonusNumber)]++;
+            } 
+            if (count == 3) {
+                result[count + 1]++;
             }
-            else if (count == 3) {
-                result[count + 1] ++;
-            }
-            else {
-                result[count] ++;
+            if (count < 2) {
+                result[count]++;
             }
         }
 
-        System.out.println("\n당첨 통계");        
+        System.out.println("\n당첨 통계");
         System.out.println("---");
         printResult(result, tickets);
 

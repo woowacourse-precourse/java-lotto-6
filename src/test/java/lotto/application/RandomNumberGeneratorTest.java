@@ -13,24 +13,18 @@ public class RandomNumberGeneratorTest {
     private final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
     @Test
-    void 개수만큼_랜덤_숫자를_생성하여_반환한다() {
-        // given
-        final int count = LOTTO_COUNT.getValue();
-
+    void 로또_개수만큼_랜덤_숫자를_생성하여_반환한다() {
         // when
-        List<Integer> numbers = numberGenerator.generateNumbers(count);
+        List<Integer> numbers = numberGenerator.generateNumbers();
 
         // then
-        assertThat(numbers).hasSize(count);
+        assertThat(numbers).hasSize(LOTTO_COUNT.getValue());
     }
 
     @RepeatedTest(30)
     void 수십번_반복해도_중복되지_않는_숫자_리스트를_반환한다() {
-        // given
-        final int count = LOTTO_COUNT.getValue();
-
         // when
-        List<Integer> numbers = numberGenerator.generateNumbers(count);
+        List<Integer> numbers = numberGenerator.generateNumbers();
 
         // then
         assertThat(numbers).doesNotHaveDuplicates();
@@ -38,11 +32,8 @@ public class RandomNumberGeneratorTest {
 
     @Test
     void 랜덤으로_생성된_숫자는_로또_숫자_범위를_가진다() {
-        // given
-        final int count = LOTTO_COUNT.getValue();
-
         // when
-        List<Integer> numbers = numberGenerator.generateNumbers(count);
+        List<Integer> numbers = numberGenerator.generateNumbers();
 
         // then
         assertThat(numbers).allMatch(

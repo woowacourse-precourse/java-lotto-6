@@ -19,7 +19,7 @@ public class LottoMachine {
 
     public LottoTicket createLottoTicketByAuto(final int quantity) {
         return IntStream.range(0, quantity)
-                .mapToObj(i -> numberGenerator.generateNumbers(LOTTO_COUNT.getValue()))
+                .mapToObj(i -> numberGenerator.generateNumbers())
                 .map(this::createLotto)
                 .collect(collectingAndThen(toList(), LottoTicket::new));
     }

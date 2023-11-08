@@ -8,5 +8,7 @@ public class ErrorMessage {
     public static final String AMOUNT_MULTIPLE_ERROR_MESSAGE = ERROR + "로또는 " + LOTTO_PRICE + "원의 배수로만 구매 가능합니다.";
     public static final String LOTTO_SIZE_ERROR_MESSAGE = ERROR + "로또는 6개의 숫자로 이루어져야 합니다.";
     public static final String LOTTO_DUPLICATION_ERROR_MESSAGE = ERROR + "로또는 6개의 중복되지 않은 숫자로 이루어져야 합니다.";
+    public static final String LOTTO_RANGE_ERROR_MESSAGE = ERROR + "로또는 1에서 45 사이의 값을 가져야합니다.";
+
 
 }

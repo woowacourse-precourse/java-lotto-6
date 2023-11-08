@@ -1,5 +1,7 @@
 package lotto.module.domain;
 
+import static lotto.global.constant.ErrorMessage.LOTTO_DUPLICATION_ERROR_MESSAGE;
+import static lotto.global.constant.ErrorMessage.LOTTO_SIZE_ERROR_MESSAGE;
 import static lotto.global.constant.Game.LOTTO_SIZE;
 
 import java.util.Collections;
@@ -19,14 +21,14 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException(LOTTO_SIZE_ERROR_MESSAGE);
         }
     }
 
     private void validateDuplication(List<Integer> input) {
         Set<Integer> numbers = input.stream().collect(Collectors.toSet());
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException(LOTTO_DUPLICATION_ERROR_MESSAGE);
         }
     }
 }

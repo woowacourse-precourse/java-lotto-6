@@ -21,7 +21,7 @@ public class LottoService {
         lottos = new Lottos(generateLotto(quantity));
     }
 
-    public List<Lotto> generateLotto(int quantity) {
+    private List<Lotto> generateLotto(int quantity) {
         List<Lotto> result = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
             Lotto lotto = new Lotto(LottoNumbersGenerator.generateLottoNumbers());
@@ -29,5 +29,6 @@ public class LottoService {
         }
         return result;
     }
+
 
 }

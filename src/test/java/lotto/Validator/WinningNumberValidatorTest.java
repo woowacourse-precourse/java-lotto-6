@@ -2,6 +2,7 @@ package lotto.Validator;
 
 import static lotto.config.ErrorMessage.INPUT_WINNING_CHARACTER_ERROR_MESSAGE;
 import static lotto.config.ErrorMessage.INPUT_WINNING_NUMBER_SIZE_ERROR_MESSAGE;
+import static lotto.config.ErrorMessage.LOTTO_NUMBER_DUPLICATION_ERROR_MESSAGE;
 import static lotto.config.ErrorMessage.LOTTO_NUMBER_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -67,5 +68,19 @@ public class WinningNumberValidatorTest {
         assertThatThrownBy(() -> validator.valid(list))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_NUMBER_ERROR_MESSAGE.getMessage());
+    }
+
+    @Test
+    void 중복된_번호가_있는_경우를_확인한다() {
+        List<String> list = new ArrayList<>();
+
+        for (int i = 1; i <= 5; i++) {
+            list.add(String.valueOf(i));
+        }
+        list.add("1");
+
+        assertThatThrownBy(() -> validator.valid(list))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(LOTTO_NUMBER_DUPLICATION_ERROR_MESSAGE.getMessage());
     }
 }

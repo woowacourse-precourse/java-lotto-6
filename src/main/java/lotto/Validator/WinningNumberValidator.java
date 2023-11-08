@@ -2,6 +2,7 @@ package lotto.Validator;
 
 import static lotto.config.ErrorMessage.INPUT_WINNING_CHARACTER_ERROR_MESSAGE;
 import static lotto.config.ErrorMessage.INPUT_WINNING_NUMBER_SIZE_ERROR_MESSAGE;
+import static lotto.config.ErrorMessage.LOTTO_NUMBER_DUPLICATION_ERROR_MESSAGE;
 import static lotto.config.ErrorMessage.LOTTO_NUMBER_ERROR_MESSAGE;
 import static lotto.config.LottoConfig.LOTTO_SIZE;
 
@@ -17,6 +18,7 @@ public class WinningNumberValidator extends Validator<List<String>> {
         checkCount(input);
         checkEachStringInteger(input);
         checkEachNumberValid(input);
+        checkDuplicates(input);
 
         return input;
     }
@@ -42,6 +44,14 @@ public class WinningNumberValidator extends Validator<List<String>> {
 
         if (!allValidNumbers) {
             throw new IllegalArgumentException(LOTTO_NUMBER_ERROR_MESSAGE.getMessage());
+        }
+    }
+
+    private void checkDuplicates(List<String> input) {
+        long distinctCount = input.stream().distinct().count();
+
+        if (distinctCount < input.size()) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATION_ERROR_MESSAGE.getMessage());
         }
     }
 

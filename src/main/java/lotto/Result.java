@@ -23,4 +23,8 @@ public class Result {
         });
     }
 
+    public int getCount(Score score) {
+        return result.get(score);
+    }
+
 }

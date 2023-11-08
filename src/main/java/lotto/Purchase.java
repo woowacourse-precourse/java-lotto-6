@@ -34,7 +34,7 @@ public class Purchase {
         for (int i = 0; i < purchaseMoney.length(); i++) {
             char ch = purchaseMoney.charAt(i);
             if (ch < 48 || ch > 57) {
-                throw new IllegalArgumentException("[ERROR]");
+                throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
             }
         }
     }

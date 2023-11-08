@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -24,11 +25,14 @@ public class LottoResultChecker {
         for (Lotto userLottoNumber: userLottoNumbers){
             reward += calculateReward(countMatchNumbers(userLottoNumber));
         }
-        returnRatio = calculateReturnRation() + ""; // 수익률을 계산 후 문자열로 변환
+        returnRatio = calculateReturnRatio() + ""; // 수익률을 계산 후 문자열로 변환
     }
 
     public double countMatchNumbers(Lotto lotto) {
-        List<Integer> matchNumbers = winningNumbers.stream()
+        List<Integer> winningNumbersWithBonusNumber = new ArrayList<>(winningNumbers); // 당첨번호와 보너스 번호를 합친 리스트
+        winningNumbersWithBonusNumber.add(bonusNumber);
+        // 일치하는 개수 찾기
+        List<Integer> matchNumbers = winningNumbersWithBonusNumber.stream()
                 .filter(old -> lotto.getNumbers().stream()
                         .anyMatch(Predicate.isEqual(old)))
                 .toList();
@@ -66,7 +70,7 @@ public class LottoResultChecker {
         return Rank.NONE.getReward(); // 매치되는 숫자 개수가 0인 경우
     }
 
-    public double calculateReturnRation() {
+    public double calculateReturnRatio() {
         // 계산한 수익률을 소수점 둘째 자리에서 반올림하여 리턴
         return Math.round((reward / (Application.ONE_LOTTO_PRICE * userLottoNumbers.length)) * 100.0) / 100.0;
     }

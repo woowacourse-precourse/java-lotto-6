@@ -27,27 +27,15 @@ public class GameController {
         displayResult();
     }
 
-    private void retryUntilValidInput(Runnable userInputTask) {
-        boolean validInput = false;
-        while (!validInput) {
-            try {
-                userInputTask.run();
-                validInput = true;
-            } catch (IllegalArgumentException e) {
-                view.displayException(e.getMessage());
-            } catch (Exception e) {
-//                view.displayException("예상치 못한 오류: " + e.getMessage());
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
     private void purchaseLottoTickets() {
-        retryUntilValidInput(() -> {
+        try {
             String input = view.getPurchaseAmount();
             int purchaseAmount = PurchaseAmountConverter.convert(input);
             game.purchaseLottoTickets(purchaseAmount);
-        });
+        } catch (IllegalArgumentException e) {
+            view.displayException(e.getMessage());
+            purchaseLottoTickets();
+        }
     }
 
     private void displayIssuedLottoTickets() {
@@ -59,19 +47,25 @@ public class GameController {
     }
 
     private void inputWinningNumbers() {
-        retryUntilValidInput(() -> {
+        try {
             String input = view.getWinningNumbers();
             List<Integer> winningNumbers = WinningNumberConverter.convert(input);
             game.setWinningNumbers(winningNumbers);
-        });
+        } catch (IllegalArgumentException e) {
+            view.displayException(e.getMessage());
+            inputWinningNumbers();
+        }
     }
 
     private void inputBonusNumber() {
-        retryUntilValidInput(() -> {
+        try {
             String input = view.getBonusNumber();
             int bonusNumber = BonusNumberConverter.convertAndValidate(input);
             game.setBonusNumber(bonusNumber);
-        });
+        } catch (IllegalArgumentException e) {
+            view.displayException(e.getMessage());
+            inputBonusNumber();
+        }
     }
 
     private void displayResult() {

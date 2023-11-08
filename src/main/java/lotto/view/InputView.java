@@ -7,7 +7,7 @@ import lotto.validation.InputValidation;
 
 public class InputView {
 
-    InputValidation inputValidation;
+    private final InputValidation inputValidation;
 
     public InputView(InputValidation inputValidation) {
         this.inputValidation = inputValidation;

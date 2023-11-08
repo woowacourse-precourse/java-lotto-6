@@ -39,6 +39,10 @@ class InputViewTest {
     private InputStream createInputStream() {
         // 왜 순서가 반대로 들어가는 것인지..?
         List<InputStream> inputStreams = Arrays.asList(
+                createUserInput("7\n"), //6
+                createUserInput("asd\n"), //7
+                createUserInput("1,2,3,4,5,6\n"), //4
+                createUserInput("1,a,3,4,5,6\n"), //5
                 createUserInput("8888\n"),
                 createUserInput("8880\n"),
                 createUserInput("8800\n"), //3
@@ -83,6 +87,47 @@ class InputViewTest {
             assertThatThrownBy(() -> inputView.inputPurchaseAmount())
                     .isInstanceOf(InputException.class);
             assertThatThrownBy(() -> inputView.inputPurchaseAmount())
+                    .isInstanceOf(InputException.class);
+        }
+    }
+
+    @Nested
+    @DisplayName("당첨 번호 입력")
+    class InputWinningNumbersTest{
+        @Test
+        @Order(4)
+        @DisplayName("성공")
+        void inputWinningNumbers_success(){
+            List<Integer> winningNumbers = inputView.inputWinningNumbers();
+            List<Integer> compareWinningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+            assertThat(winningNumbers).isEqualTo(compareWinningNumbers);
+        }
+
+        @Test
+        @Order(5)
+        @DisplayName("문자 입력 시 실패")
+        void inputCharWinningNumbers_fail(){
+            assertThatThrownBy(() -> inputView.inputWinningNumbers())
+                    .isInstanceOf(InputException.class);
+        }
+    }
+
+    @Nested
+    @DisplayName("보너스 번호 입력")
+    class InputBonusNumberTest{
+        @Test
+        @Order(6)
+        @DisplayName("성공")
+        void inputBonusNumber_success(){
+            int bonusNumber = inputView.inputBonusNumber();
+            assertThat(bonusNumber).isEqualTo(7);
+        }
+
+        @Test
+        @Order(6)
+        @DisplayName("문자 입력 시 실패")
+        void inputCharBonusNumber_fail(){
+            assertThatThrownBy(() -> inputView.inputBonusNumber())
                     .isInstanceOf(InputException.class);
         }
     }

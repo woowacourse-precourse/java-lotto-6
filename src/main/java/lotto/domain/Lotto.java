@@ -25,7 +25,7 @@ public class Lotto {
     }
 
     public int countMatching(Lotto lotto) {
-        return (int) numbers.stream().filter(n -> lotto.hasNumber(n)).count();
+        return (int) numbers.stream().filter(lotto::hasNumber).count();
     }
 
     private void validate(List<Integer> numbers) {

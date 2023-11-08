@@ -18,7 +18,7 @@ public class LottoBuyer {
 
     private double getTotalRevenue(List<LottoRank> lottoRanks) {
         return lottoRanks.stream()
-                .mapToDouble(rank -> rank.getPrize())
+                .mapToDouble(LottoRank::getPrize)
                 .sum();
     }
 

@@ -41,4 +41,20 @@ public enum Prize {
     public int getPrizeMoney() {
         return prizeMoney;
     }
+
+    public static List<Prize> getPrizes() {
+        return PRIZES;
+    }
+
+    private String formatPrizeMoney(int prizeMoney) {
+        return String.format("%,d", prizeMoney);
+    }
+
+    @Override
+    public String toString() {
+        if (matchCount == 5 && prizeMoney != 1500000) {
+            return String.format("%d개 일치, 보너스 볼 일치 (%s원)", matchCount, formatPrizeMoney(prizeMoney));
+        }
+        return String.format("%d개 일치 (%s원)", matchCount, formatPrizeMoney(prizeMoney));
+    }
 }

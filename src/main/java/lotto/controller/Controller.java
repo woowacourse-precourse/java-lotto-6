@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -104,7 +103,4 @@ public class Controller {
                 .toList();
     }
 
-    private String readInput() {
-        return Console.readLine();
-    }
 }

@@ -15,13 +15,13 @@ public class PlayerWalletTest {
 
     }
 
-    @DisplayName("PlayerMoney 에서 초기화한 만큼의 돈을 consumeMoneyToLottoTicket() 으로 사용하면 usedMoney 로 사용한 금액을 받을 수 있다.")
+    @DisplayName("PlayerMoney 에서 초기화한 만큼의 돈을 consumeMoneyToLottoTicket() 으로 사용하면 holdingMoney 는 0이된다.")
     @Test
     void playerMoneyTest_1() {
         //when
         playerWallet.consumeMoneyToLottoTicket(10000);
         //then
-        assertThat(playerWallet.getUsedMoney()).isEqualTo(10000);
+        assertThat(playerWallet.getHoldingMoney()).isEqualTo(0);
     }
 
     @DisplayName("PlayerMoney 에서 holdingMoney 를 getHoldingMoney() 를 통해 받을 수 있다.")

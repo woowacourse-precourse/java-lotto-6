@@ -34,27 +34,27 @@ public class LottoTicketTest {
     @Test
     void lottoTicketTest_1() {
         // when
-        lottoTicket = lottoTicket.issueLottoTicket(playerWallet);
+        lottoTicket = playerWallet.issueLottoTicket();
         // Then
-        assertThat(lottoTicket.getLottoTicket()).isEqualTo(10);
+        assertThat(lottoTicket).isEqualTo(new LottoTicket(10));
     }
 
     @DisplayName("lottoTicket 10장을 Lotto 로 바꿔 LottoBundle 에 넣으면, 티켓은 0장이 된다.")
     @Test
     void lottoTicketTest_2() {
         // given
-        lottoTicket = lottoTicket.issueLottoTicket(playerWallet);
+        lottoTicket = playerWallet.issueLottoTicket();
         // when
         lottoTicket = lottoTicket.changeAllTicketToLotto(() -> boughtLotto, lottoBundle);
         // then
-        assertThat(lottoTicket.getLottoTicket()).isEqualTo(0);
+        assertThat(lottoTicket).isEqualTo(new LottoTicket(0));
     }
 
     @DisplayName("로또 구매후 lottoBundle 를 lottoData 로 변환하면, lottoData 에는 로또 10개가 있으며 구매한 로또를 포함한다.")
     @Test
     void lottoTicketTest_3() {
         // given
-        lottoTicket = lottoTicket.issueLottoTicket(playerWallet);
+        lottoTicket = playerWallet.issueLottoTicket();
         // when
         lottoTicket = lottoTicket.changeAllTicketToLotto(() -> boughtLotto, lottoBundle);
         List<Lotto> lottoData = lottoBundle.makeLottoBundleDto().getLottoBundleData();

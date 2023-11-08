@@ -30,7 +30,7 @@ class LottoProfitCalculatorTest {
         return Stream.of(
            Arguments.of(List.of(LottoRank.FIFTH_PLACE), 7000, new BigDecimal(71.4).setScale(1, RoundingMode.FLOOR)),
             Arguments.of(List.of(LottoRank.FIFTH_PLACE), 1000, new BigDecimal(500)),
-            Arguments.of(List.of(LottoRank.FIFTH_PLACE), 8000, new BigDecimal(62.5) .setScale(1, RoundingMode.FLOOR)),
+            Arguments.of(List.of(LottoRank.FIFTH_PLACE), 8000, new BigDecimal(62.5).setScale(1, RoundingMode.FLOOR)),
             Arguments.of(List.of(LottoRank.FOURTH_PLACE), 5000, new BigDecimal(1000)),
             Arguments.of(List.of(LottoRank.FIRST_PLACE), 50000, new BigDecimal(4000000))
         );

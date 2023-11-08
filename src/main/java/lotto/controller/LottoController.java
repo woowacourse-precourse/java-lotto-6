@@ -1,12 +1,10 @@
 package lotto.controller;
 
 import lotto.service.LottoService;
-import lotto.service.dto.LottoResultDto;
 import lotto.service.dto.PurchaseResultDto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.List;
 
 public class LottoController {
     private final LottoService lottoService;
@@ -37,6 +35,19 @@ public class LottoController {
             try {
                 String input = inputView.readWinningNumbers();
                 lottoService.putWinningNumbers(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+
+    public void putBonusNumber() {
+        while (true) {
+            try {
+                String input = inputView.readBonusNUmber();
+                lottoService.putBonusNumber(input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

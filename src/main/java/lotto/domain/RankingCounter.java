@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class PrizeCounter {
+public class RankingCounter {
     private final static int INIT_ZERO = 0;
     private final Map<String, Integer> counter;
 
-    public PrizeCounter() {
+    public RankingCounter() {
         this.counter = Arrays.stream(Ranking.values())
                 .filter(Ranking::inRanking)
                 .collect(Collectors.toMap(Enum::name, r -> INIT_ZERO));

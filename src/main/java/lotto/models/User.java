@@ -29,10 +29,12 @@ public class User {
         return (double) prizes.values().stream().mapToInt(Integer::intValue).sum() / money;
     }
 
-    public void buyLotteries(Machine machine){
-        int numberOfLotteries = money / Constant.LOTTO_PRICE;
-        for(int i = 0; i < numberOfLotteries; i++){
-            lotteries.add(machine.newLottery());
-        }
+    public boolean hasMoney(){
+        return this.money >= Constant.LOTTO_PRICE;
+    }
+
+    public void buyLottery(Machine machine){
+        lotteries.add(machine.newLottery());
+        this.money -= Constant.LOTTO_PRICE;
     }
 }

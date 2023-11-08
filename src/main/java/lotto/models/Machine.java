@@ -29,7 +29,7 @@ public class Machine{
 
     private void validate(){
         if(lotto.hasNumber(bonus)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(utils.createErrorMessage(Constant.ERROR_MESSAGE_DUPLICATED_NUMBER));
         }
     }
 

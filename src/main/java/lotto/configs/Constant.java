@@ -23,4 +23,5 @@ public class Constant {
     public static final String VIEW_PURCHASE = "구입금액을 입력해 주세요.";
     public static final String ERROR_MESSAGE_INVALID_NUMBER = "정수만 입력할 수 있습니다.";
     public static final String ERROR_MESSAGE_INVALID_UNIT = "1,000원 단위로만 입력할 수 있습니다.";
+    public static final String ERROR_MESSAGE_DUPLICATED_NUMBER = "중복된 숫자가 있습니다.";
 }

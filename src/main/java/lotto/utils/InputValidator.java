@@ -3,6 +3,7 @@ package lotto.utils;
 import lotto.constants.ExceptionMessages;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class InputValidator {
@@ -17,11 +18,11 @@ public class InputValidator {
             ExceptionMessages.EMPTY_INPUT.throwException();
         }
         String preprocessedInput = removeSpacing(userInput);
-        isNonNumeric(preprocessedInput);
         return preprocessedInput;
     }
 
     public int convertInputToPaymentAmount(String preprocessedInput) {
+        isNonNumeric(preprocessedInput);
         return castStringToInt(preprocessedInput);
     }
 
@@ -30,6 +31,7 @@ public class InputValidator {
     }
 
     public Integer convertInputToBonusNumber(String preprocessedInput) {
+        isNonNumeric(preprocessedInput);
         return castingStringToInteger(preprocessedInput);
     }
 
@@ -41,9 +43,13 @@ public class InputValidator {
         if (isNotEnoughSeparators(preprocessedInput)) {
             ExceptionMessages.WRONG_SEPARATOR_NUMBERS.throwException();
         }
-        List<Integer> convertedInput =
-        Stream.of(preprocessedInput.split(String.valueOf(LOTTO_NUMBER_SEPARATOR)))
-                .mapToInt(Integer::parseInt)
+        List<String> separatedInput = Stream.of(preprocessedInput.split(String.valueOf(LOTTO_NUMBER_SEPARATOR)))
+                .collect(Collectors.toList());
+        for (String s : separatedInput) {
+            isNonNumeric(s);
+        }
+        List<Integer> convertedInput = separatedInput.stream()
+                .mapToInt(Integer::valueOf)
                 .boxed().toList();
         return convertedInput;
     }

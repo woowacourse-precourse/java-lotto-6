@@ -3,11 +3,11 @@ package domain;
 import java.util.List;
 import validator.InputValidator;
 
-public class WinningNumbers {
+public class Buyer {
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
-    public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+    public Buyer(List<Integer> winningNumbers, int bonusNumber) {
         validateWinningNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
         validateBonusNumber(winningNumbers, bonusNumber);

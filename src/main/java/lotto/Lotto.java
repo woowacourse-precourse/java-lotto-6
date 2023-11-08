@@ -30,6 +30,13 @@ public class Lotto {
         }
     }
 
+    public int getCalculateResult(WinningNumber winningNumber) {
+        return (int) numbers.stream().filter(winningNumber::isContain).count();
+    }
+
+    public boolean isBonusNumberIn(WinningNumber winningNumber) {
+        return numbers.stream().anyMatch(winningNumber::isBonusContain);
+    }
     @Override
     public String toString() {
         return numbers.toString();

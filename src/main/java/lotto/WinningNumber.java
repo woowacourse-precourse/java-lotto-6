@@ -3,7 +3,7 @@ package lotto;
 import java.util.List;
 
 public class WinningNumber {
-   private final List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public WinningNumber(List<Integer> numbers) {
         validate(numbers);
@@ -46,5 +46,13 @@ public class WinningNumber {
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
         }
+    }
+
+    public boolean isContain(Integer number) {
+        return numbers.contains(number);
+    }
+
+    public boolean isBonusContain(Integer number) {
+        return numbers.get(LottoConfig.BONUS_POSITION.getValue()).equals(number);
     }
 }

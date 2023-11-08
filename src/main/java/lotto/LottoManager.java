@@ -14,7 +14,6 @@ public class LottoManager {
     private final int maxLottoNumber = 45;
 
     public void launch() {
-
         int purchaseAmount = inputPurchaseAmount();
         List<Lotto> lottos = purchaseLottos(purchaseAmount);
         printLottos(lottos);

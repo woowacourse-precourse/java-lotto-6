@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.dto.input.WinningCombinationDto;
+import lotto.util.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,11 +36,11 @@ class WinningCombinationBuilderTest {
         // then
         assertThatThrownBy(builder1::build)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("당첨번호 또는 보너스 번호가 설정되지 않았습니다.");
+                .hasMessage(ErrorMessage.NOT_SET_ALL_FIELDS_NUMBERS.get());
 
         assertThatThrownBy(builder2::build)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("당첨번호 또는 보너스 번호가 설정되지 않았습니다.");
+                .hasMessage(ErrorMessage.NOT_SET_ALL_FIELDS_NUMBERS.get());
     }
 
     @DisplayName("보너스 번호가 당첨번호와 중복된 경우 예외 발생")
@@ -52,6 +53,6 @@ class WinningCombinationBuilderTest {
                 .withBonusNumber("6")
                 .build())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("보너스 번호가 당첨 번호와 중복될 수 없습니다.");
+                .hasMessageContaining(ErrorMessage.DUPLICATE_WINNING_NUMBERS_AND_BONUS_NUMBER.get());
     }
 }

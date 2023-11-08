@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.constant.Constant;
 import lotto.constant.Message;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
@@ -15,25 +16,23 @@ public class LottoServiceTest {
     @RepeatedTest(1000)
     void generateLottoNumbersShouldReturnSizeSix() {
         // given
-        final int LOTTO_NUMBERS_SIZE = 6;
         // when
         LottoService lottoService = new LottoService();
         List<Integer> lottoNumbers = lottoService.generateLottoNumbers();
         // then
-        assertThat(lottoNumbers.size()).isEqualTo(LOTTO_NUMBERS_SIZE);
+        assertThat(lottoNumbers.size()).isEqualTo(Constant.SIZE_OF_LOTTO_NUMBERS.getValue());
     }
 
     @DisplayName("랜덤으로 생성된 로또 번호가 1부터 45 사이의 숫자인지 확인한다.")
     @RepeatedTest(1000)
     void generateLottoNumbersShouldReturnNumbersInRange() {
         // given
-        final int MINIMUM_LOTTO_NUMBER = 1;
-        final int MAXIMUM_LOTTO_NUMBER = 45;
         // when
         LottoService lottoService = new LottoService();
         List<Integer> lottoNumbers = lottoService.generateLottoNumbers();
         // then
-        assertThat(lottoNumbers).allMatch(number -> number >= MINIMUM_LOTTO_NUMBER && number <= MAXIMUM_LOTTO_NUMBER);
+        assertThat(lottoNumbers).allMatch(number -> number >= Constant.MINIMUM_LOTTO_NUMBER.getValue()
+                && number <= Constant.MAXIMUM_LOTTO_NUMBER.getValue());
     }
 
     @DisplayName("랜덤으로 생성된 로또 번호가 중복되지 않는지 확인한다.")
@@ -52,7 +51,7 @@ public class LottoServiceTest {
     void purchaseLottoTicketsShouldReturnLottoTickets() {
         // given
         final int PURCHASE_AMOUNT = 14000;
-        final int EXPECTED_LOTTO_TICKETS_SIZE = 14;
+        final int EXPECTED_LOTTO_TICKETS_SIZE = PURCHASE_AMOUNT / Constant.LOTTO_PRICE.getValue();
         // when
         LottoService lottoService = new LottoService();
         List<Lotto> lottos = lottoService.purchaseLottoTickets(PURCHASE_AMOUNT);

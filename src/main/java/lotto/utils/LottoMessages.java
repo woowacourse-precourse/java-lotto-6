@@ -6,7 +6,8 @@ public enum LottoMessages {
     PRICE_ZERO("[ERROR] 금액은 0이 될 수 없습니다."),
     PRICE_DIVIDE_BY_LOTTO_PRICE("[ERROR] 로또 금액으로 나누어져야 합니다."),
     OUT_OF_LOTTO_NUMBER_BOUND("[ERROR] 1 이상 45 이하의 숫자를 입력해야 합니다."),
-    DUPLICATE_NUMBER("[ERROR] 중복된 숫자는 입력할 수 없습니다.")
+    DUPLICATE_NUMBER("[ERROR] 중복된 숫자는 입력할 수 없습니다."),
+    DIVIDE_BY_ZERO("[ERROR] 0으로 나눌 수 없습니다.")
 
     ;
 

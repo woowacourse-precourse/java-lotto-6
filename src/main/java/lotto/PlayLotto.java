@@ -3,12 +3,12 @@ package lotto;
 import java.util.List;
 
 public class PlayLotto {
-    private View view = new View();
-    private LottoNumscompare lottoNumscompare = new LottoNumscompare();
+    private final View view = new View();
+    private final LottoNumscompare lottoNumscompare = new LottoNumscompare();
     private UserlottoNums userlottoNums;
     private int lottoPurchaseNum;
     private List<Integer> winningNumbers;
-    private int bounsNumber;
+    private int bonusNumber;
     private double profitSummary;
 
     public PlayLotto(){
@@ -26,12 +26,12 @@ public class PlayLotto {
             view.userLottoNumbersOutput(userlottoNums.getlottoNum(i));
         }
         winningNumbers = view.winningNumberInput();
-        bounsNumber = view.bonusNumberInput();
+        bonusNumber = view.bonusNumberInput();
     }
 
     private void lottoCompare(){
         for(int i = 0; i < lottoPurchaseNum; i++){
-            lottoNumscompare.winningRanksUpdate(userlottoNums.getlottoNum(i), lottoNumscompare.compareLotto(userlottoNums.getlottoNum(i), winningNumbers), bounsNumber);
+            lottoNumscompare.winningRanksUpdate(userlottoNums.getlottoNum(i), lottoNumscompare.compareLotto(userlottoNums.getlottoNum(i), winningNumbers), bonusNumber);
         }
         profitSummary = lottoNumscompare.calculateProfitSummary(lottoPurchaseNum);
     }

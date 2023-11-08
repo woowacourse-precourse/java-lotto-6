@@ -1,6 +1,5 @@
 package lotto;
 
-import static lotto.ErrorMessages.INVALID_BONUS_RANGE;
 import static lotto.Validator.*;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -9,8 +8,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputReader {
-    private static final int START_RANGE = 1;
-    private static final int END_RANGE = 45;
     public static int inputPurchaseAmount() {
         return checkIsInteger(Console.readLine());
     }
@@ -33,11 +30,5 @@ public class InputReader {
         validateBonus(bonus);
 
         return bonus;
-    }
-
-    private static void validateBonus(int bonus) {
-        if (bonus < START_RANGE || bonus > END_RANGE) {
-            throw new IllegalArgumentException(INVALID_BONUS_RANGE);
-        }
     }
 }

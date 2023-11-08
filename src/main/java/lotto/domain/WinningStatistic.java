@@ -18,6 +18,10 @@ public class WinningStatistic {
         statistic.put(rank, statistic.get(rank) + 1);
     }
 
+    public int getCountByRank(Rank rank) {
+        return statistic.getOrDefault(rank, 0);
+    }
+
     public double calculateYield(int totalAmount) {
         int totalPrize = statistic.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())

@@ -3,9 +3,11 @@ package lotto.view;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class PromptTest extends NsTest {
+    @DisplayName("prompt enum 결과값 정상 출력 확인")
     @Test
     void checkPromptReturnValue() {
         init();

@@ -5,6 +5,7 @@ import lotto.Constants;
 import lotto.domain.UserLotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GenerateLottoNumbers {
@@ -25,5 +26,11 @@ public class GenerateLottoNumbers {
             lottos.add(new UserLotto(sortedList(lottoNumbers)));
         }
         return lottos;
+    }
+
+    public static List<Integer> sortedList(List<Integer> unsortedList) {
+        List<Integer> sortedList = new ArrayList<>(unsortedList);
+        Collections.sort(sortedList);
+        return sortedList;
     }
 }

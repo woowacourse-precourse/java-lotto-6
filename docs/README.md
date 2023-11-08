@@ -19,8 +19,7 @@
       - 구입 금액이 int 범위 이상인 경우
       - 구입 금액이 1,000 미만인 경우 
 2. 장 수 계산
-   - `구입 금액 / 1,000`
-
+   - `구입 금액 / 1,00
 ### 당첨 번호 선정
 1. 당첨 번호 입력 받기 : `,` 를 구분자로 
    - 예외처리 상황
@@ -55,12 +54,16 @@
   - 로또 구입
   - 로또 발행
 - `Lotto` : 발행된 로또 한 장 관리
+- `PlayerLotto` : 발행된 로또 일급컬렉션
 - `WinningNumber` : 당첨 번호 관리
   - 당첨 번호 선정 
-  - 당첨 번호 비교 
+  - 번호 비교 
 - `WinningStatistics` : 당첨 통계 관리
+  - 당첨 통계 계산
   - 수익률 계산
 - `PromptHandler` : input/output 관리
 - `LottoMessage` : 로또 메시지 enum 
 - `LottoConfig` : 로또 상수 enum
 - `ErrorMessage` : 에러 메시지 enum 
+- `Statistics` : 통계 관련 enum 
+  - 결과값과 보너스 여부를 넣어 최종값 반환

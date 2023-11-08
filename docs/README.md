@@ -3,7 +3,8 @@
 **규칙 참고**
 
 * 하나의 함수는 하나의 기능, 변수 이름에 자료형X, 값을 하드코딩X, 컨벤션 지키기
-* 15라인 이내 함수, else 사용금지, Java Enum 적용, 도메인 로직에 단위 테스트 구현
+* **15라인 이내 함수, else 사용금지, Java Enum 적용, 도메인 로직에 단위 테스트 구현**
+  * Enum 어디에 적용 해야할지 모르겠네ㅜㅜ
 
 <br><br>
 
@@ -11,29 +12,40 @@
 
 ### 1. 입력 기능
 
-* [ ] 로또 구입 금액을 입력 - InputLotto#purchaseMoney()
-  * [ ] 사용자가 잘못된 값을 입력하면 예외 발생 - IllegalArgumentException
-* [ ] 당첨 번호를 입력 - InputLotto#answerNumber()
-  * [ ] 사용자가 잘못된 값을 입력하면 예외 발생 - IllegalArgumentException
-* [ ] 보너스 번호를 입력 - InputLotto#BonusNumber()
-  * [ ] 사용자가 잘못된 값을 입력하면 예외 발생 - IllegalArgumentException
+* [x] 로또 구입 금액을 입력 - InputLotto#purchaseMoney(), readMoney()
+  * [x] 사용자가 잘못된 값을 입력하면 예외 발생 - IllegalArgumentException
+* [x] 당첨 번호를 입력 - InputLotto#answerNumber(), readAnswer()
+  * [x] 사용자가 잘못된 값을 입력하면 예외 발생 - IllegalArgumentException
+  * [x] 숫자 범위 예외 처리용 함수 - InputLotto#exceptNumberRange()
+* [x] 보너스 번호를 입력 - InputLotto#bonusNumber(), readBonus()
+  * [x] 사용자가 잘못된 값을 입력하면 예외 발생 - IllegalArgumentException
+  * [x] 숫자 범위 예외 처리용 함수 - InputLotto#exceptNumberRange()
 
 <br>
 
 ### 2. 로또 기능
 
-* [ ] 1개의 로또 발행 - LottoGenerator#createLotto()
-* [ ] 사용자 로또 번호와 당첨 번호 비교 - Referee#compareToLotto()
+* [x] 1개의 로또 발행 - LottoGenerator#createLotto()
+  * [x] X개의 로또 기록 - LottoGenerator#createLottos()
+* [x] 사용자 로또 번호와 당첨 번호 비교 - Referee#compareToLottos(), compareToLotto()
+  * [x] 수익률 계산 - Referee#calculateIncome()
+* [x] 기존 로또 클래스에 getter 추가 - Lotto#getNumbers()
 
 <br>
 
 ### 3. 출력 기능
 
-* [ ] 로또 수량 출력 - OutputLotto#counts()
-* [ ] 로또 번호 출력(오름차순) - OutputLotto#numbers()
-* [ ] 당첨 내역 출력 - OutputLotto#winningHistory()
-* [ ] 수익률 출력 - OutputLotto#incomeRate()
-* [ ] IllegalArgumentException 발생에 메시지 출력 - InputLotto#
+* [x] 로또 수량 출력 - OutputLotto#counts()
+* [x] 로또 번호 출력(오름차순) - OutputLotto#numbers()
+* [x] 당첨 내역 출력 - OutputLotto#winningHistory()
+* [x] 수익률 출력 - OutputLotto#incomeRate()
+
+<br>
+
+### 4. 추가 예외 처리
+
+* [x] 숫자 범위 예외 처리용 함수 - InputLotto#exceptNumberRange()
+* [x] 로또 숫자 중복 검증 함수 - Lotto#validateDuplication()
 
 <br><br>
 

@@ -9,4 +9,16 @@ public class InputView {
 
         return Console.readLine();
     }
+
+    public String getWinningNumbers() {
+        System.out.println(InputMessage.INPUT_WINNING_NUMBERS.getMessage());
+
+        return Console.readLine();
+    }
+
+    public String getBonusNumber() {
+        System.out.println(InputMessage.INPUT_BONUS_NUMBER.getMessage());
+
+        return Console.readLine();
+    }
 }

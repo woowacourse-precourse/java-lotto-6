@@ -5,7 +5,7 @@ public enum WinningMatchCase {
     MATCH_4_NUMBER(4),
     MATCH_5_NUMBER(5),
     MATCH_5A_NUMBER(7),
-    MATCH_6_NUMBER(6) ;
+    MATCH_6_NUMBER(6);
 
     private final int count;
 

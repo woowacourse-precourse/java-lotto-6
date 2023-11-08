@@ -68,15 +68,15 @@ public class LottoResultRendererTest {
     @Test
     void testReturnRateDoubleWinner() {
         List<List<Integer>> userNumbers = new ArrayList<>(List.of(
-            List.of(1, 2, 3, 4, 5, 6),
-            List.of(7, 8, 9, 10, 11, 12),
-            List.of(7, 8, 9, 10, 11, 12),
-            List.of(7, 8, 9, 10, 11, 12),
-            List.of(7, 8, 9, 10, 11, 12),
-            List.of(7, 8, 9, 10, 11, 12),
-            List.of(7, 8, 9, 10, 11, 12),
-            List.of(7, 8, 9, 10, 11, 12),
-            List.of(7, 8, 9, 10, 11, 12)
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(7, 8, 9, 10, 11, 12),
+                List.of(7, 8, 9, 10, 11, 12),
+                List.of(7, 8, 9, 10, 11, 12),
+                List.of(7, 8, 9, 10, 11, 12),
+                List.of(7, 8, 9, 10, 11, 12),
+                List.of(7, 8, 9, 10, 11, 12),
+                List.of(7, 8, 9, 10, 11, 12),
+                List.of(7, 8, 9, 10, 11, 12)
         ));
 
         List<Integer> winnerNumbers = List.of(1, 2, 3, 21, 22, 23);

@@ -15,17 +15,18 @@ import static lotto.UserInputHandler.requestPurchaseAmount;
 import java.util.List;
 
 public class Application {
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         requestPurchaseAmount();
         int purchaseAmount = getLottoPurchaseAmount();
         int purchaseQuantity = purchaseAmount / 1000;
 
-        System.out.println(purchaseQuantity+"개를 구매했습니다.");
+        System.out.println(purchaseQuantity + "개를 구매했습니다.");
 
         List<List<Integer>> numbers = printPurchaseQuantity(purchaseQuantity);
 
-        for(int i = 0 ; i < purchaseQuantity ; i++){
+        for (int i = 0; i < purchaseQuantity; i++) {
             System.out.println(numbers.get(i));
         }
 

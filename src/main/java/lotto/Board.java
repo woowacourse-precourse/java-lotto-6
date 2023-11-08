@@ -90,7 +90,7 @@ public class Board {
             increaseStatics(index);
         }
         if (index == ALL_CORRECT) {
-            throw new IllegalStateException("transAnotherPoint : 번호 일치 파라미터 문제");
+            throw new IllegalStateException("[ERROR] 번호 일치 파라미터 문제");
         }
     }
 

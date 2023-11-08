@@ -1,6 +1,14 @@
 package lotto.controller;
 
-import lotto.model.*;
+import lotto.model.NumberOfLottoTickets;
+import lotto.model.WinningRecords;
+import lotto.model.Lotto;
+import lotto.model.BonusWinningNumber;
+import lotto.model.WinningNumbersWithBonusNumber;
+import lotto.model.RateOfReturn;
+import lotto.model.LottoTicket;
+import lotto.model.LottoTickets;
+
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -19,15 +27,13 @@ public class Controller {
     }
 
     public void lottoGame() {
+        // 금액 입력
         int insertedMoney = input.insertMoney();
-
-        NumberOfLottoTickets numberOfLottoTickets = new NumberOfLottoTickets(insertedMoney);
-        int countLottoTickets = numberOfLottoTickets.getCountLottoTickets();
-
+        // 발행할 로또 수
+        int countLottoTickets = new NumberOfLottoTickets(insertedMoney).getCountLottoTickets();
         // 발행된 전체 로또
         List<List<Integer>> lottoTickets = getLottoTicketsTickets(countLottoTickets);
         output.printLottoTickets(lottoTickets);
-
         // 당첨 번호 입력받기
         List<Integer> winningNumbers = new Lotto(input.inputWinningNumbers()).getWinnerNumbers();
         // 보너스 당첨 번호
@@ -36,11 +42,12 @@ public class Controller {
         List<Integer> winningNumbersWithBonusNumber = new WinningNumbersWithBonusNumber(winningNumbers, bonusNumber)
                 .getWinningNumbersWithBonusNumber();
 
-        // 당첨 통계 산출
+        // 당첨 결과 통계 산출
         WinningRecords winningRecords = new WinningRecords(lottoTickets, bonusNumber, winningNumbersWithBonusNumber);
+        // 갯수(=인덱스)별 당첨 결과
         int[] lotteryResults = winningRecords.getLotteryResults();
+        // 5개와 보너스 맞춘 경우
         int matchFiveWithBonus = winningRecords.getMatchFiveWithBonus();
-
         output.printWinningStatistics(lotteryResults, matchFiveWithBonus);
 
         // 수익률 계산 및 출력

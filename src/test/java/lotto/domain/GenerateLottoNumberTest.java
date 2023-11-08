@@ -1,11 +1,10 @@
-package lotto;
+package lotto.domain;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
-import lotto.domain.GenerateLottoNumber;
 import org.junit.jupiter.api.Test;
 
 public class GenerateLottoNumberTest extends NsTest {

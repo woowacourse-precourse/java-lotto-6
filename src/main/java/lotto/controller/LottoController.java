@@ -2,6 +2,8 @@ package lotto.controller;
 
 import lotto.model.LottoPlayer;
 import lotto.model.LottoNumbers;
+import lotto.model.ValidationLotto;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import java.util.List;
@@ -42,7 +44,22 @@ public class LottoController {
         lottoPlayer.lottoGeneration(lottoNumbers);
     }
 
-    private void getPlayerNumbers() {
+    private WinningLotto getPlayerNumbers() {
+        WinningLotto validationLotto = new WinningLotto(
+                getWinningNumbers(),
+                getBonusNumber()
+        );
+        return validationLotto;
+    }
+
+    private List<Integer> getWinningNumbers() {
+        outputView.printWinningNumbersInputMessage();
+        return inputView.requestWinningNumbers();
+    }
+
+    private int getBonusNumber() {
+        outputView.printBonusNumberInputMessage();
+        return inputView.requestBonusNumber();
     }
 
     private void displayResult() {

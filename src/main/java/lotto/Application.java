@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 public class Application {
+    public static final int LOTTO_TICKET_PRICE = 1000;
+
     public static void main(String[] args) {
         int purchaseAmount = UserInput.getPurchaseAmount();
 
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < purchaseAmount / 1000; i++) {
+        for (int i = 0; i < purchaseAmount / LOTTO_TICKET_PRICE; i++) {
             lottos.add(Lotto.generate());
         }
 

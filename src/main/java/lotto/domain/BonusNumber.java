@@ -29,7 +29,12 @@ public class BonusNumber {
         return bonusNumber;
     }
 
-    //메서드
+    private void validateRange(int bonusNumberInput) {
+        if (bonusNumberInput < 0 || 45 < bonusNumberInput) {
+            throw new IllegalArgumentException("[ERROR] 1~45 범위의 숫자를 입력해주세요.");
+        }
+    }
+
     private void compareWinningAndBonus() {
         // 당첨번호와 보너스번호 중복체크함
         // 중복되면 예외던짐

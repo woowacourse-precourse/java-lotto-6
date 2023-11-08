@@ -69,4 +69,13 @@ public class InputLottoException {
         }
 	}
 	
+    public void validateInputBonusNumber(String lottoNumber) {
+        for (int i = 0; i < lottoNumber.length(); i++) {
+            char c = lottoNumber.charAt(i);
+            if (!Character.isDigit(c)) {
+                throw new IllegalArgumentException(ERROR + INPUT_BONUS_CONTAINS_OTHER_THAN_NUMBERS_ERROR);
+            }
+        }
+    }
+	
 }

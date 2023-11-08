@@ -15,10 +15,17 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LottoConstant.LOTTO_SIZE.getConstant()) {
+        int maxValue = LottoConstant.LOTTO_MAX_VALUE.getConstant();
+        int minValue = LottoConstant.LOTTO_MIN_VALUE.getConstant();
+        int lottoSize = LottoConstant.LOTTO_SIZE.getConstant();
+
+        if (numbers.size() != lottoSize) {
             throw new IllegalArgumentException();
         }
         if(numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException();
+        }
+        if(!numbers.stream().allMatch(num -> (num >= minValue && num <= maxValue))) {
             throw new IllegalArgumentException();
         }
     }

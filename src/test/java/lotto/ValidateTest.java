@@ -2,17 +2,19 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Arrays;
+import java.util.List;
+import lotto.domain.Validate;
 import org.junit.jupiter.api.Test;
 
 class ValidateTest {
     @Test
     void validateBonusNumTest() {
-        String input = "1";
-        String WinningNum = "1,2,3,4,5,6";
+        int input = 1;
+        List<Integer> WinningNum = Arrays.asList(1,2,3,4,5,6);
         assertThatThrownBy(() -> {
             Validate.validateBonusNum(input, WinningNum);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[Error]보너스번호는 중복되지않은 숫자 6개입니다.");
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
 }

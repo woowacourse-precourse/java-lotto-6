@@ -39,17 +39,19 @@ public class LottoController {
         }
     }
 
-    public void setBonusNumber(String bonus) {
-        int bonusNumber = Integer.parseInt(bonus);
-        bonusLottoNumber = new BonusLottoNumber(bonusNumber);
+    public void setBonusNumber(String bonus) throws IllegalArgumentException {
+        bonusLottoNumber = new BonusLottoNumber(bonus);
+        if(inputLottoNumber.getNumbers().contains(bonusLottoNumber.getBounsNum())) {
+            throw new IllegalArgumentException(ErrorMessageType.NOT_DIVIDE_THOUSAND.message());
+        }
     }
 
     public void setinputLottoNumber(String numbers) throws IllegalArgumentException {
         String[] splitedNumbers = numbers.split(",");
         List<Integer> intNumbers = new ArrayList<>();
-        for(String str : splitedNumbers) {
+        for (String str : splitedNumbers) {
             str.replace(" ", "");       // 각각의 공백 제거
-            if(str.matches("[0-9]+") == false) {
+            if (str.matches("[0-9]+") == false) {
                 throw new IllegalArgumentException(ErrorMessageType.NOT_NUMBER.message());
             }
             intNumbers.add(Integer.parseInt(str));
@@ -99,7 +101,7 @@ public class LottoController {
         List<ResultType> resultTypes = new ArrayList<>();
         List<Integer> tryLotto = inputLottoNumber.getNumbers();
         int bonus = bonusLottoNumber.getBounsNum();
-        for(Lotto lotto : randomLottos) {
+        for (Lotto lotto : randomLottos) {
             ResultType resultType = getTotalResult(lotto.getNumbers(), tryLotto, bonus);
             resultTypes.add(resultType);
         }
@@ -111,7 +113,7 @@ public class LottoController {
     public double getReturnRate(Map<ResultType, Long> resultTypeLongMap) {
         int totalWinningMoney = 0;
         Iterator<Map.Entry<ResultType, Long>> iterator = resultTypeLongMap.entrySet().iterator();
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             Map.Entry<ResultType, Long> entry = iterator.next();
             totalWinningMoney += entry.getKey().reward() * entry.getValue();
         }

@@ -40,8 +40,15 @@ public class LottoService {
     }
 
     public void inputLottoBonusNumber() {
-        String lottoBonusNumber = InputService.inputBonusNumber();
-        lottoController.setBonusNumber(lottoBonusNumber);
+        while(true) {
+            try {
+                String lottoBonusNumber = InputService.inputBonusNumber();
+                lottoController.setBonusNumber(lottoBonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void printTemplate(Map<ResultType, Long> resultTypes, double returnRate) {

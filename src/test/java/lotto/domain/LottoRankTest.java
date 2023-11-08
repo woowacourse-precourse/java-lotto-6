@@ -32,5 +32,11 @@ public class LottoRankTest {
         );
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"3:15000", "5:25000", "100:500000"}, delimiter = ':')
+    void calculatePrizeAmount_메소드는_해당_등수의_수량이_주어지면_상금을_반환한다(int count, int expect) {
+        Assertions.assertEquals(LottoRank.FIFTH.calculatePrizeAmount(count), expect);
+    }
+
 
 }

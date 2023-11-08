@@ -16,99 +16,100 @@ public class LottoGameController {
     }
 
     public void run() {
-        // 구매 금액 입력
-        PurchaseAmount purchaseAmount = initPurchaseAmount();
-        int purchaseMoney = purchaseAmount.getPurchaseMoney();
-        int ticketNumber = purchaseAmount.getTicketNumber();
-        outputView.printBlankLine();
-        outputView.printTicketNumber(ticketNumber);
+        PurchaseAmount purchaseAmount = inputPurchaseAmount();
 
-        // 로또 매니저 생성
-        LottoManager lottoManager = initLottoManager();
-        lottoManager.generateLottos(ticketNumber);
-        List<Lotto> lottos = lottoManager.getLottos();
+        LottoManager lottoManager = initLottoManager(purchaseAmount);
 
-        // 발행 로또 출력
-        outputView.printLottos(lottos);
+        generateLotto(lottoManager);
+        printLotto(lottoManager);
 
-        // 당첨 금액 입력, 검증, 객체 생성
-        WinningLotto winningLotto = initWinningLotto();
+        WinningLotto winningLotto = inputWinningLotto();
 
-        // 로또 등수 계산
-        LottoRankManager rankManager = initRankManager(winningLotto);
-        rankManager.compareLottos(lottos);
-        List<Integer> rankResult = rankManager.getRankResult();
+        LottoResultManager resultManager = initRankManager(winningLotto);
 
-        // 총 당첨금 계산
-        LottoPrizeManager prizeManager = initPrizeManager();
-        prizeManager.calculateTotalPrize(rankResult);
-        long totalPrize = prizeManager.getTotalPrize();
-        double rateOfReturn = prizeManager.getRateOfReturn(purchaseMoney);
-
-        // 당첨 통계 출력
-        outputView.printLottoResult(rankResult, rateOfReturn);
+        generateResult(resultManager, lottoManager);
+        printResult(resultManager, purchaseAmount);
     }
 
-    private PurchaseAmount initPurchaseAmount() {
-        while (true) {
-            try {
-                outputView.printInputPurchaseMoney();
-                return new PurchaseAmount(inputView.readPurchaseMoney());
-            } catch (IllegalArgumentException e) {
-                // 예외 메시지 출력
-            }
+    private PurchaseAmount inputPurchaseAmount() {
+        try {
+            outputView.printInputPurchaseMoney();
+            return new PurchaseAmount(inputView.readPurchaseMoney());
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return inputPurchaseAmount();
         }
     }
 
-    private WinningLotto initWinningLotto() {
-        while (true) {
-            try {
-                List<Integer> winningNumbers = inputWinningNumbers();
-                outputView.printBlankLine();
-                int bonus = inputWinningBonus();
-                outputView.printBlankLine();
-                return new WinningLotto(winningNumbers, bonus);
-            } catch (IllegalArgumentException e) {
-                // output exception
-            }
+    private WinningLotto inputWinningLotto() {
+        try {
+            List<Integer> winningNumbers = inputWinningNumbers();
+            outputView.printBlankLine();
+            int bonus = inputWinningBonus();
+            outputView.printBlankLine();
+            return new WinningLotto(winningNumbers, bonus);
+        } catch (IllegalStateException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return inputWinningLotto();
         }
     }
 
     private List<Integer> inputWinningNumbers() {
-        while (true) {
-            try {
-                outputView.printInputWinningNumbers();
-                return inputView.readWinningNumbers();
-            } catch (IllegalArgumentException e) {
-                // output exception
-            }
+        try {
+            outputView.printInputWinningNumbers();
+            return inputView.readWinningNumbers();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return inputWinningNumbers();
         }
     }
 
     private int inputWinningBonus() {
-        while (true) {
-            try {
-                outputView.printInputBonusNumber();
-                return inputView.readBonusNumber();
-            } catch (IllegalArgumentException e) {
-                // output exception
-            }
+        try {
+            outputView.printInputBonusNumber();
+            return inputView.readBonusNumber();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return inputWinningBonus();
         }
     }
 
-    private LottoManager initLottoManager() {
+    private LottoManager initLottoManager(PurchaseAmount purchaseAmount) {
         LottoGenerator generator = new LottoGenerator();
-        return new LottoManager(generator);
+        int ticketNumber = purchaseAmount.getTicketNumber();
+        return new LottoManager(generator, ticketNumber);
     }
 
-    private LottoRankManager initRankManager(WinningLotto winningLotto) {
+    private LottoResultManager initRankManager(WinningLotto winningLotto) {
         LottoRankResult rankResult = new LottoRankResult();
-        return new LottoRankManager(winningLotto, rankResult);
-    }
-
-    private LottoPrizeManager initPrizeManager() {
         LottoPrizeResult prizeResult = new LottoPrizeResult();
-        return new LottoPrizeManager(prizeResult);
+        return new LottoResultManager(winningLotto, rankResult, prizeResult);
     }
 
+    private void generateLotto(LottoManager lottoManager) {
+        lottoManager.generateLottos();
+    }
+
+    private void generateResult(LottoResultManager rankManager, LottoManager lottoManager) {
+        List<Lotto> lottos = lottoManager.getLottos();
+        rankManager.generateResult(lottos);
+    }
+
+    private void printLotto(LottoManager lottoManager) {
+        int ticketNumber = lottoManager.getTicketNumber();
+        outputView.printBlankLine();
+        outputView.printTicketNumber(ticketNumber);
+
+        List<Lotto> lottos = lottoManager.getLottos();
+        outputView.printLottos(lottos);
+    }
+
+    private void printResult(LottoResultManager rankManager, PurchaseAmount purchaseAmount) {
+        LottoRankResult rankResult = rankManager.getRankResult();
+        outputView.printLottoResult(rankResult);
+
+        int purchaseMoney = purchaseAmount.getPurchaseMoney();
+        double rateOfReturn = rankManager.getRateOfReturn(purchaseMoney);
+        outputView.printRateOfReturn(rateOfReturn);
+    }
 }

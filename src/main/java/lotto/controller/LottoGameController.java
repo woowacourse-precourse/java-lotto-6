@@ -14,11 +14,20 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGameController {
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
-    private final BuyCashService buyCashService = new BuyCashService();
-    private final LottoService lottoService = new LottoService();
-    private final ResultService resultService = new ResultService();
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final BuyCashService buyCashService;
+    private final LottoService lottoService;
+    private final ResultService resultService;
+
+    public LottoGameController(InputView inputView, OutputView outputView, BuyCashService buyCashService,
+                               LottoService lottoService, ResultService resultService) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.buyCashService = buyCashService;
+        this.lottoService = lottoService;
+        this.resultService = resultService;
+    }
 
     public BuyCash inputBuyCash() {
         BuyCash buycash;

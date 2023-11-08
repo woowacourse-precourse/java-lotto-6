@@ -10,30 +10,30 @@ import lotto.domain.WinningLotto;
 
 public class LottoGame {
 
-    private final LottoGameController controller;
+    private final LottoGameController lottoGameController;
 
-    public LottoGame() {
-        controller = new LottoGameController();
+    public LottoGame(LottoGameController lottoGameController) {
+        this.lottoGameController = lottoGameController;
     }
 
     public void start() {
-        BuyCash buyCash = controller.inputBuyCash();
-        Lottos lottos = controller.purchaseLotto(buyCash);
-        controller.printBuyLottosInformation(lottos);
+        BuyCash buyCash = lottoGameController.inputBuyCash();
+        Lottos lottos = lottoGameController.purchaseLotto(buyCash);
+        lottoGameController.printBuyLottosInformation(lottos);
 
         WinningLotto winningLotto = inputWinningLotto();
 
-        Result result = controller.getResult(lottos, winningLotto);
-        controller.printWinningResult(result, buyCash);
+        Result result = lottoGameController.getResult(lottos, winningLotto);
+        lottoGameController.printWinningResult(result, buyCash);
     }
 
     private WinningLotto inputWinningLotto() {
         WinningLotto winningLotto;
-        Lotto winningNumbers = controller.inputWinningLotto();
+        Lotto winningNumbers = lottoGameController.inputWinningLotto();
 
         while (true) {
             try {
-                LottoNumber bonusNumber = controller.inputBonusNumber();
+                LottoNumber bonusNumber = lottoGameController.inputBonusNumber();
                 winningLotto = new WinningLotto(winningNumbers, bonusNumber);
                 break;
             } catch (IllegalArgumentException exception) {

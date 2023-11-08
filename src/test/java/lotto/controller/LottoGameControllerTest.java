@@ -16,6 +16,7 @@ import lotto.domain.Lottos;
 import lotto.domain.Rank;
 import lotto.domain.Result;
 import lotto.domain.WinningLotto;
+import lotto.util.AppConfig;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,8 @@ public class LottoGameControllerTest extends NsTest {
 
     @BeforeAll
     static void 초기_설정() {
-        controller = new LottoGameController();
+        AppConfig appConfig = AppConfig.getInstance();
+        controller = appConfig.lottoGameController();
     }
 
     @DisplayName("로또구매 금액에 따른 수량 및 번호 반환(buy_unit=1000)")

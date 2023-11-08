@@ -12,7 +12,7 @@ public class ProfitCalculatorTest {
 
     @DisplayName("계산된 수익률을 소수점 둘째 자리에서 반올림하여 표기한다.")
     @ParameterizedTest
-    @CsvSource(value = {"5000,8,62.5", "10000,1,1000.0", "15000,9,166.7"})
+    @CsvSource(value = {"5000:8:62.5", "10000:1:1,000.0", "15000:9:166.7"}, delimiter = ':')
     void calculateProfit(int priceSum, int lottoCount, String expected) {
         String profit = ProfitCalculator.calculate(priceSum, lottoCount);
 

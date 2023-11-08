@@ -62,7 +62,7 @@ public class LottoController {
             try {
                 List<Integer> numbers = view.inputNumbers(INPUT_WINNER_NUMBERS);
                 view.printMessage(CRLF);
-                WinnerNumbers.validateNumbers(numbers);
+                Lotto.validate(numbers);
 
                 int bonusNumber = inputBonusNumber(numbers);
                 winnerNumbers = new WinnerNumbers(numbers, bonusNumber);

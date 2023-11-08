@@ -8,6 +8,7 @@ import java.util.Map;
 
 import static lotto.configuration.GameConfiguration.DECIMAL_REGEX;
 import static lotto.configuration.GameConfiguration.DECIMAL_SEPARATOR;
+import static lotto.configuration.GameConfiguration.REQUIRED_BONUS_NUMBER_RANK;
 
 public class ConsoleOutputView implements OutputView {
     @Override
@@ -64,7 +65,7 @@ public class ConsoleOutputView implements OutputView {
 
     private String createResultFormat(final int rank) {
         final StringBuilder sb = new StringBuilder(MATCH_COUNT_FORMAT);
-        if (rank == 2) {
+        if (rank == REQUIRED_BONUS_NUMBER_RANK) {
             sb.append(MATCH_BONUS_BALL_MESSAGE);
         }
 

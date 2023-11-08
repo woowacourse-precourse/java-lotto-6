@@ -7,8 +7,11 @@ public class InputViewHandler {
     public Money inputMoney(){
         Money money = new Money();
         try{
-            money = new Money(Integer.parseInt(Console.readLine()));
+            String input = Console.readLine();
+            money = new Money(Integer.parseInt(input));
+            return money;
         }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
             inputMoney();
         }
         return money;
@@ -18,7 +21,9 @@ public class InputViewHandler {
         CalculateLotto lotto = new CalculateLotto();
         try{
             lotto = new CalculateLotto(Console.readLine());
+            return lotto;
         }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
             inputAnswerLotto();
         }
         return lotto;
@@ -28,7 +33,9 @@ public class InputViewHandler {
         BonusNumber bonusNumber = new BonusNumber();
         try{
             bonusNumber = new BonusNumber(Console.readLine());
+            return bonusNumber;
         }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
             inputBonusNumber();
         }
         return bonusNumber;

@@ -32,19 +32,19 @@ public enum RottoResult {
         return index;
     }
 
-    public int getAmout(int num) {
+    private static int getAmout(int num) {
         return Arrays.stream(RottoResult.values())
                 .filter(rottoResult -> rottoResult.getMatchingNumber() == num)
                 .findFirst().get().getAmout();
     }
 
-    public int getIndex(int num) {
+    public static int getIndex(int num) {
         return Arrays.stream(RottoResult.values())
                 .filter(rottoResult -> rottoResult.getMatchingNumber() == num)
                 .findFirst().get().getIndex();
     }
 
-    public int calculateAmout(List<Integer> numbers) {
+    public static int calculateAmout(List<Integer> numbers) {
         int sum = 0;
         for (Integer num : numbers) {
             sum += getAmout(num);

@@ -15,7 +15,7 @@ public class CalculateLotto {
         answerNumbsers = new Lotto(numbers).getNumbers();
     }
 
-    public int isCheckedLottoAnswer(Lotto lotto){
+    public int isCheckedLottoAnswer(Lotto lotto,int bonusNumber){
         int size = 0;
 
         for (Integer num : lotto.getNumbers()){
@@ -23,11 +23,14 @@ public class CalculateLotto {
                 size++;
             }
         }
+        if(size == 4){
+            isCheckedBonusNumber(bonusNumber,lotto);
+        }
         return size;
     }
 
-    public boolean isCheckedBonusNumber(int bonusNumber){
-        if(answerNumbsers.contains(bonusNumber)){
+    public boolean isCheckedBonusNumber(int bonusNumber,Lotto lotto){
+        if(lotto.getNumbers().contains(bonusNumber)){
             return true;
         }
         return false;

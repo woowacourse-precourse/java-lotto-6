@@ -19,6 +19,9 @@ public class Lotto {
         if (numbers.size() != LottoConstant.LOTTO_SIZE.getConstant()) {
             throw new IllegalArgumentException();
         }
+        if(numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public int getComparePrizeNumSameSize(ArrayList<Integer> prizeNum, int bonusNum) {

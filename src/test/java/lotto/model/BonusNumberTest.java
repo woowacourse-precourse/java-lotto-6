@@ -13,8 +13,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class BonusNumberTest {
-    @Test
     @DisplayName("올바른 문자열 입력 값으로 BonusNumber를 생성한다.")
+    @Test
     void createBonusNumberFromValidInput() {
         String validInput = "12";
         BonusNumber bonusNumber = BonusNumber.from(validInput);
@@ -22,8 +22,8 @@ public class BonusNumberTest {
         assertThat(bonusNumber.getBonusNumber()).isEqualTo(12);
     }
 
-    @Test
     @DisplayName("입력 값이 숫자가 아니면 IllegalArgumentException을 던진다.")
+    @Test
     void throwExceptionWhenInputIsNotANumber() {
         String invalidInput = "abc";
 

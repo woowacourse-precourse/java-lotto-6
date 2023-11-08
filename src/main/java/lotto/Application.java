@@ -1,4 +1,5 @@
 package lotto;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -10,5 +11,8 @@ public class Application {
         lottoManagement.initWinningLottoNumbers();
         int bonusNumber=lottoManagement.getBonusNumber();
         System.out.print(bonusNumber);
+        lottoManagement.buyLottos();
+        List<Lotto> lottos=lottoManagement.getLottos();
+        System.out.print(lottos);
     }
 }

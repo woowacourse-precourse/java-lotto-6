@@ -1,13 +1,18 @@
 package lotto;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class LottoManagement {
+    final static int pricePerPiece=1000;
     private int verifiedMoney;
     private int bonusNumber;
     List<Integer> winningLottoNumbers;
+    private final List<Lotto> lottos;
 
-    LottoManagement(){}
+    LottoManagement(){
+        lottos=new ArrayList<>();
+    }
 
     void initMoney(){
         InputMoneyHandler inputMoneyHandler = new InputMoneyHandler();
@@ -23,6 +28,19 @@ public class LottoManagement {
         bonusNumber=numbersHandler.convertedBounsNumber();
     }
 
+    public void buyLottos(){
+        int lottoCount=verifiedMoney/pricePerPiece;
+        for (int i=0;i<lottoCount;i++){
+            Lotto lotto=new Lotto(LottoGenerator.getLottoNumbers());
+            System.out.print(lotto.lottoScore(winningLottoNumbers,bonusNumber));
+            lottos.add(lotto);
+        }
+    }
+
+
+    public List<Lotto> getLottos(){
+        return lottos;
+    }
     public int getMoney(){
         return verifiedMoney;
     }

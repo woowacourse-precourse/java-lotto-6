@@ -39,7 +39,7 @@ public enum Rank {
     }
 
     public int getMatchCount() {
-        return prizeMoney;
+        return matchCount;
     }
 
     public String getPrizeMoneyString() {

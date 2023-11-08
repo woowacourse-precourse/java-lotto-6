@@ -13,15 +13,16 @@ public class LottoChecker {
     private final Lotto winningLotto;
     private final int bonus;
 
-    public LottoChecker(List<Integer> winningNumbers, int bonus) {
-        this.winningLotto = new Lotto(winningNumbers);
-        validateBonusNumber(bonus);
+    public LottoChecker(final List<Integer> winningNumbers, final int bonus) {
+        final Lotto winningLotto = new Lotto(winningNumbers);
+        validateBonusNumber(winningLotto, bonus);
+        this.winningLotto = winningLotto;
         this.bonus = bonus;
     }
 
-    private void validateBonusNumber(final int bonus) {
+    private void validateBonusNumber(final Lotto winningLotto, final int bonus) {
         validateBonusNumberRange(bonus);
-        validateBonusNumberDuplicate(bonus);
+        validateBonusNumberDuplicate(winningLotto, bonus);
     }
 
     private void validateBonusNumberRange(final int number) {
@@ -30,19 +31,15 @@ public class LottoChecker {
         }
     }
 
-    private void validateBonusNumberDuplicate(final int number) {
+    private void validateBonusNumberDuplicate(final Lotto winningLotto, final int number) {
         if (winningLotto.contains(number)) {
             throw new BonusNumberException(BONUS_NUMBER_DUPLICATE);
         }
     }
 
     public LottoResult checkLottos(final List<Lotto> lottos) {
-        final LottoResult result = new LottoResult();
-        for (final Lotto lotto : lottos) {
-            final LottoRank lottoRank = getLottoRank(lotto);
-            result.increaseRankCount(lottoRank);
-        }
-        return result;
+        List<LottoRank> ranks = lottos.stream().map(this::getLottoRank).toList();
+        return new LottoResult(ranks);
     }
 
     private LottoRank getLottoRank(final Lotto lotto) {

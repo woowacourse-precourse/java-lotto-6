@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.model.LottoRank.FIVE_MATCH_WITH_BONUS;
+import static lotto.model.LottoRank.SIX_MATCH;
 import static lotto.view.OutputView.printEarningRate;
 import static lotto.view.OutputView.printLottoResult;
 import static lotto.view.OutputView.printLottos;
@@ -11,7 +13,6 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.model.LottoRank;
 import lotto.model.LottoResult;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,10 +57,8 @@ class OutputViewTest {
 
     @Test
     void 티켓_당첨_결과가_정상적으로_출력된다() {
-        final LottoResult lottoResult = new LottoResult();
-        lottoResult.increaseRankCount(LottoRank.SIX_MATCH);
-        lottoResult.increaseRankCount(LottoRank.FIVE_MATCH_WITH_BONUS);
-        lottoResult.increaseRankCount(LottoRank.FIVE_MATCH_WITH_BONUS);
+        final LottoResult lottoResult = new LottoResult(
+            List.of(SIX_MATCH, FIVE_MATCH_WITH_BONUS, FIVE_MATCH_WITH_BONUS));
 
         printLottoResult(lottoResult);
 

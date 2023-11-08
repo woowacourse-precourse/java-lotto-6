@@ -3,6 +3,7 @@ package lotto.model;
 import static lotto.Constants.Constants.LOTTO_PRICE;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
@@ -13,17 +14,19 @@ public class LottoResult {
 
     private final Map<LottoRank, Integer> result;
 
-    public LottoResult() {
-        this.result = createLottoResultMap();
+    public LottoResult(List<LottoRank> ranks) {
+        this.result = createLottoResultMap(ranks);
     }
 
-    private static Map<LottoRank, Integer> createLottoResultMap() {
+    private Map<LottoRank, Integer> createLottoResultMap(List<LottoRank> ranks) {
         return Arrays.stream(LottoRank.values())
-            .collect(Collectors.toMap(rank -> rank, rank -> 0));
+            .collect(Collectors.toMap(rank -> rank, rank -> countRank(ranks, rank)));
     }
 
-    public void increaseRankCount(final LottoRank rank) {
-        result.replace(rank, result.get(rank) + 1);
+    private Integer countRank(List<LottoRank> ranks, LottoRank target) {
+        return (int) ranks.stream()
+            .filter(rank -> rank == target)
+            .count();
     }
 
     public String toOutputString() {

@@ -6,6 +6,7 @@ import lotto.dto.ValidateAmountDto;
 import lotto.dto.ValidateAmountResponseDto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -32,8 +33,17 @@ public class LottoService {
             validateLottoNum(numbers,numberStr);
         }
     }
-    public void getUserLottoNum(){
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    public void getUserLottoNum(int lottoCount){
+        List<List<Integer>> lottoNumbers = new ArrayList<>();
+        for (int i = 0; i < lottoCount; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
+            lottoNumbers.add(numbers);
+        }
+        System.out.println(lottoCount + "개를 구매했습니다.");
+        for (List<Integer> numbers : lottoNumbers) {
+            System.out.println(numbers);
+        }
     }
     private List<Integer> validateLottoNum(List<Integer> numbers, String numberStr){
         try {

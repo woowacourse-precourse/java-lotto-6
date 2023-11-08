@@ -44,10 +44,19 @@ public class InputView {
         }
     }
 
-    public int promptBonusNumber() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine().trim());
-        return bonusNumber;
+    public int promptBonusNumber(Lotto winningLotto) {
+        while (true) {
+            try {
+                System.out.println("\n보너스 번호를 입력해 주세요.");
+                int bonusNumber = Integer.parseInt(Console.readLine().trim());
+                InputValidation.validateBonusNumber(bonusNumber, winningLotto.getNumbers());
+                return bonusNumber;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자만 입력 가능합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
 

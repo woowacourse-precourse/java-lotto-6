@@ -42,9 +42,8 @@ public class Utils {
     }
 
     // 같은 숫자가 있는지 탐색
-    public static int binarySearch(List<Integer> list, int number) {
-        // 이진 탐색 결과가 null이 아니라면
-        if (Collections.binarySearch(list, number) > 0) {
+    public static int countSameNumber(List<Integer> list, int number) {
+        if (list.contains(number)) {
             return LottoInfoNumbers.ONE;
         }
         return LottoInfoNumbers.ZERO;
@@ -52,9 +51,9 @@ public class Utils {
 
     // 같은 숫자가 있는지 탐색
     public static int countMatchNumbers(List<Integer> winningNumbers, List<Integer> userNumbers) {
-        int count = 0;
+        int count = LottoInfoNumbers.ZERO;
         for (Integer userNumber : userNumbers) {
-            count += binarySearch(winningNumbers, userNumber);
+            count += countSameNumber(winningNumbers, userNumber);
         }
         return count;
     }

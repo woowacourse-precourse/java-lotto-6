@@ -41,8 +41,7 @@ public class LottoController {
 
         PrizeResult prizeResult = new PrizeResult();
         prizeResult.calcPrizeResult(winningLotto, lottos);
-
-        outputView.printStatistics(prizeResult);
+        outputView.printStatistics(prizeResult, service.getYield(prizeResult, lottoAmount.getAmount()));
     }
 
     private int inputLottoAmount() {

@@ -7,10 +7,10 @@ import lotto.model.PrizeResult;
 
 public class OutputView {
     public static final String PURCHASE_MSG = "개를 구매했습니다.";
-    private static final String OUTPUT_TOP_MESSAGE = "\n" + "당첨 통계" + "\n" + "---";
+    private static final String OUTPUT_TOP_MESSAGE = "\n당첨 통계" + "\n" + "---";
     private static final String OUTPUT_RESULT_MESSAGE = "%d개 일치 (%s원) - %d개";
     private static final String OUTPUT_SECOND_RESULT_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
-
+    private static final String OUTPUT_RATE_OF_RETURN = "총 수익률은 %.1f%%입니다.\n";
 
     public void printLottoTicketCount(int TicketCount) {
         System.out.println("\n" + TicketCount + PURCHASE_MSG);
@@ -26,12 +26,12 @@ public class OutputView {
     }
 
 
-    public void printStatistics(PrizeResult prizeResult) {
+    public void printStatistics(PrizeResult prizeResult, double yield) {
         System.out.println(OUTPUT_TOP_MESSAGE);
         Arrays.stream(Prize.values())
                 .filter(prize -> !prize.equals(Prize.EMPTY))
                 .forEach(prize -> System.out.println(getPrintResultPrize(prize, prizeResult)));
-
+        System.out.printf((OUTPUT_RATE_OF_RETURN), yield);
     }
 
     private String getPrintResultPrize(Prize prize, PrizeResult prizeResult) {

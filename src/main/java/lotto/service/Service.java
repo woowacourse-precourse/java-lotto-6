@@ -7,6 +7,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.Prize;
+import lotto.model.PrizeResult;
 
 public class Service {
     private static final int ZERO = 0;
@@ -30,6 +32,22 @@ public class Service {
     public List<Integer> splitStringToIntegerList(String winningNumbers) {
         List<String> splitNumbers = validateStringForSplit(winningNumbers);
         return validateWinnerNumbers(splitNumbers);
+    }
+
+    public double getYield(PrizeResult prizeResult, int amount) {
+        System.out.println(getAllMoney(prizeResult));
+        System.out.println(amount);
+        return ((double) getAllMoney(prizeResult) / amount) * 100;
+    }
+
+    private long getAllMoney(PrizeResult prizeResult) {
+        int result = 0;
+
+        for (Prize prize : Prize.values()) {
+            result += prizeResult.getPrizeCount(prize) * prize.getMoney();
+        }
+
+        return result;
     }
 
 

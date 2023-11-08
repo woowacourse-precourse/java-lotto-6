@@ -16,6 +16,9 @@ public class LottoAmount {
         this.amount = number;
     }
 
+    public int getAmount() {
+        return amount;
+    }
 
     public int getlottoTicketCount() {
         return (amount / THOUSAND);

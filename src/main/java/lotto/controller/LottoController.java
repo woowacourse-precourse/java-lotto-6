@@ -44,12 +44,12 @@ public class LottoController {
         outputView.printWinningResult(getWinningResult());
     }
 
-    private void calculateYield() {
-        outputView.printTotalYield(getCalculatedLottoYield());
-    }
-
     private List<String> getWinningResult() {
         return lottoService.getWinningResultMap();
+    }
+
+    private void calculateYield() {
+        outputView.printTotalYield(getCalculatedLottoYield());
     }
 
     private double getCalculatedLottoYield() {

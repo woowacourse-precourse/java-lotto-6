@@ -40,17 +40,17 @@ public class LottoService {
         return lottoCalculator.calculate(getPaidMoney(), getWinningResult());
     }
 
-    public List<String> getWinningResultMap() {
-        Map<WinningGrade, Integer> winningResult = lottoCompare.getWinningResult();
-        WinningResultMapper mapper = new WinningResultMapper();
-        return mapper.drawWinningResultMap(winningResult);
+    private Money getPaidMoney() {
+        return lottoBuyer.paidMoney();
     }
 
     private Map<WinningGrade, Integer> getWinningResult() {
         return lottoCompare.getWinningResult();
     }
 
-    private Money getPaidMoney() {
-        return lottoBuyer.paidMoney();
+    public List<String> getWinningResultMap() {
+        Map<WinningGrade, Integer> winningResult = lottoCompare.getWinningResult();
+        WinningResultMapper mapper = new WinningResultMapper();
+        return mapper.drawWinningResultMap(winningResult);
     }
 }

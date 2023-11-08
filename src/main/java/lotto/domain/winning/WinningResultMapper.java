@@ -22,17 +22,17 @@ public class WinningResultMapper {
         return formatFrameWithWinningData(frame, grade);
     }
 
-    private String formatFrameWithWinningData(String frame, Map.Entry<WinningGrade, Integer> value) {
-        WinningGrade grade = value.getKey();
-        int winningCount = value.getValue();
-        return String.format(frame, grade.getMatchCount(), grade.getPrizeMoneyBy1000Unit(), winningCount);
-    }
-
     private String selectGradeResultMap(WinningGrade grade) {
         if (grade.isSecondGrade()) {
             return getSecondWinningResultMap();
         }
         return getOthersWinningResultMap();
+    }
+
+    private String formatFrameWithWinningData(String frame, Map.Entry<WinningGrade, Integer> value) {
+        WinningGrade grade = value.getKey();
+        int winningCount = value.getValue();
+        return String.format(frame, grade.getMatchCount(), grade.getPrizeMoneyBy1000Unit(), winningCount);
     }
 
     private String getOthersWinningResultMap() {

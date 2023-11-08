@@ -25,12 +25,10 @@ public class WinningNumbers {
         validateRange(numbers);
     }
 
-    private void validateRange(List<Integer> numbers) {
-        if (numbers.stream()
-                .anyMatch(number -> number > NumberUsedLotto.MAX_LANGE.getNumber()
-                        || number < NumberUsedLotto.MIN_RANGE.getNumber())) {
-            String message = ExceptionMessage.IS_OVER_RANGE_WINNING.toString();
-            throw new OverRangeWinningNumbersException(message);
+    private void validateLength(List<Integer> numbers) {
+        if (numbers.size() != NumberUsedLotto.NUMBERS_SIZE.getNumber()) {
+            String message = ExceptionMessage.IS_NOT_6_LENGTH_OF_WINNING.toString();
+            throw new InvalidNumbersLengthException(message);
         }
     }
 
@@ -41,10 +39,12 @@ public class WinningNumbers {
         }
     }
 
-    private void validateLength(List<Integer> numbers) {
-        if (numbers.size() != NumberUsedLotto.NUMBERS_SIZE.getNumber()) {
-            String message = ExceptionMessage.IS_NOT_6_LENGTH_OF_WINNING.toString();
-            throw new InvalidNumbersLengthException(message);
+    private void validateRange(List<Integer> numbers) {
+        if (numbers.stream()
+                .anyMatch(number -> number > NumberUsedLotto.MAX_LANGE.getNumber()
+                        || number < NumberUsedLotto.MIN_RANGE.getNumber())) {
+            String message = ExceptionMessage.IS_OVER_RANGE_WINNING.toString();
+            throw new OverRangeWinningNumbersException(message);
         }
     }
 

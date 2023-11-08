@@ -27,13 +27,6 @@ public enum WinningGrade {
         return findOthers(matchCount);
     }
 
-    private static WinningGrade findOthers(int matchCount) {
-        return Arrays.stream(WinningGrade.values())
-                .filter(value -> value.matchCount == matchCount)
-                .findFirst()
-                .orElse(DEFAULT);
-    }
-
     private static WinningGrade findSecondOrThirdGrade(boolean bonusIncluded) {
         if (bonusIncluded) {
             return SECOND;
@@ -41,17 +34,24 @@ public enum WinningGrade {
         return THIRD;
     }
 
-    public int getPrizeMoney() {
-        return this.prizeMoney;
+    private static WinningGrade findOthers(int matchCount) {
+        return Arrays.stream(WinningGrade.values())
+                .filter(value -> value.matchCount == matchCount)
+                .findFirst()
+                .orElse(DEFAULT);
+    }
+
+    public String getPrizeMoneyBy1000Unit() {
+        DecimalFormat thousandWonUit = new DecimalFormat("###,###");
+        return thousandWonUit.format(this.prizeMoney);
     }
 
     public boolean isSecondGrade() {
         return this == SECOND;
     }
 
-    public String getPrizeMoneyBy1000Unit() {
-        DecimalFormat thousandWonUit = new DecimalFormat("###,###");
-        return thousandWonUit.format(this.prizeMoney);
+    public int getPrizeMoney() {
+        return this.prizeMoney;
     }
 
     public int getMatchCount() {

@@ -27,10 +27,6 @@ public class LottoCompare {
         lottos.forEach(lotto -> compareLottoToWinning(lotto.getSortedNumbers(), winningNumbers));
     }
 
-    public Map<WinningGrade, Integer> getWinningResult() {
-        return new EnumMap<>(winningMap);
-    }
-
     private void compareLottoToWinning(List<Integer> lotto, WinningNumbers winningNumbers) {
         int matchCount = getMatchCount(lotto, winningNumbers);
         boolean bonusIncluded = hasBonusNumber(lotto, winningNumbers);
@@ -54,4 +50,9 @@ public class LottoCompare {
     private int getMatchCount(List<Integer> lotto, WinningNumbers winningNumbers) {
         return (int) lotto.stream().filter(winningNumbers::contains).count();
     }
+
+    public Map<WinningGrade, Integer> getWinningResult() {
+        return new EnumMap<>(winningMap);
+    }
+
 }

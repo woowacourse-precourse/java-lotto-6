@@ -21,6 +21,15 @@ class ValidatorTest {
     }
 
     @Test
+    @DisplayName("부적절한 로또 구입 금액 입력시 예외 발생")
+    void validateAmount() {
+        stringTestCases = Arrays.asList(new String[]{"1500", "-1000", "1050", "1005"});
+        for (String testCase : stringTestCases) {
+            assertThatThrownBy(() -> Validator.validateAmount(testCase));
+        }
+    }
+
+    @Test
     @DisplayName("입력값이 공백이거나 null일 시 예외 발생")
     void checkBlankOrNULLTest() {
         stringTestCases = Arrays.asList(new String[]{"", null});
@@ -41,7 +50,7 @@ class ValidatorTest {
     @Test
     @DisplayName("양의 정수가 아닐 경우 예외 발생")
     void checkNANTest() {
-        stringTestCases = Arrays.asList(new String[]{"a", "asdf", "120a", "!230"});
+        stringTestCases = Arrays.asList(new String[]{"a", "asdf", "120a", "!230", "-200"});
         for (String testCase : stringTestCases) {
             assertThatThrownBy(() -> Validator.checkNAN(testCase));
         }

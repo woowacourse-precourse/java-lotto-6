@@ -30,7 +30,7 @@ public enum Rank {
     }
 
     public Integer toPriceInt(){
-        return money.getMoney();
+        return money.toInt();
     }
 
     public static Optional<Rank> findRank(Integer similarity, Boolean hasBonus) {

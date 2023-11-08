@@ -22,7 +22,7 @@ public class Money {
         return new Money(money + operand.money);
     }
 
-    public Integer getMoney() {
+    public Integer toInt() {
         return money;
     }
 

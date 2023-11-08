@@ -5,20 +5,21 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoMachine {
+
+    private int lottoPurchase;
     private int lottoCount;
     private List<Lotto> lottos;
     private List<Integer> lottoWinningNumbers;
     private int lottoBonusNumber;
     private HashMap<LottoRank, Integer> lottoRanks;
-    private int lottoReturn;
-    private int lottoReturnRate;
+    private String lottoReturnRate;
 
-    public LottoMachine(int lottoCount, List<Lotto> lottos, HashMap<LottoRank, Integer> lottoRanks) {
+    public LottoMachine(int lottoPurchase, int lottoCount, List<Lotto> lottos, HashMap<LottoRank, Integer> lottoRanks) {
+        this.lottoPurchase = lottoPurchase;
         this.lottoCount = lottoCount;
         this.lottos = lottos;
         this.lottoRanks = lottoRanks;
-        this.lottoReturn = 0;
-        this.lottoReturnRate = 0;
+        this.lottoReturnRate = "";
     }
 
     public List<Lotto> getLottos(){
@@ -47,6 +48,18 @@ public class LottoMachine {
 
     public int getLottoBonusNumber(){
         return this.lottoBonusNumber;
+    }
+
+    public HashMap<LottoRank, Integer> getLottoRanks(){
+        return this.lottoRanks;
+    }
+
+    public void returnLottoReturnRate(String lottoReturnRate){
+        this.lottoReturnRate = lottoReturnRate;
+    }
+
+    public int getLottoPurchase(){
+        return this.lottoPurchase;
     }
 
 }

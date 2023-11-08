@@ -9,6 +9,7 @@ import lotto.exception.LottoException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class LottoService implements LottoFinalConsts {
@@ -36,10 +37,14 @@ public class LottoService implements LottoFinalConsts {
         return lottos;
     }
 
-    public LottoMachine createLottoMachine(int lottoCount) {
+    public LottoMachine createLottoMachine(String lottoPurchase, int lottoCount) {
         List<Lotto> lottos = getLottos(lottoCount);
         HashMap<LottoRank, Integer> lottoRanks = new HashMap<>();
-        return new LottoMachine(lottoCount, lottos, lottoRanks);
+        int lottoPurchased = 0;
+        if (lottoException.isValidLottoPurchase(lottoPurchase)) {
+            lottoPurchased = Integer.parseInt(lottoPurchase);
+        }
+        return new LottoMachine(lottoPurchased, lottoCount, lottos, lottoRanks);
     }
 
     public void saveWinningAndBonusNumbers(LottoMachine lottoMachine, String winningNumber, String bonusNumber){
@@ -87,6 +92,24 @@ public class LottoService implements LottoFinalConsts {
         }
 
         return LottoRank.findByRank(correct);
+    }
+
+    public int getLottoReturn(Iterator<LottoRank> keys, HashMap<LottoRank, Integer> lottoRanks){
+        int lottoReturn = 0;
+        while (keys.hasNext()) {
+            LottoRank lottoRank = keys.next();
+            lottoReturn+=(lottoRank.getLottoReturn())*lottoRanks.get(lottoRank);
+        }
+        return lottoReturn;
+    }
+
+    public void computeLottoReturnRate(LottoMachine lottoMachine){
+        HashMap<LottoRank, Integer> lottoRanks = lottoMachine.getLottoRanks();
+        Iterator<LottoRank> keys = lottoRanks.keySet().iterator();
+        int lottoReturn = getLottoReturn(keys, lottoRanks);
+        int lottoPurchase = lottoMachine.getLottoPurchase();
+        double returnRate = (double)lottoReturn/lottoPurchase*100;
+        lottoMachine.returnLottoReturnRate(String.format("%2.f", returnRate));
     }
 
 }

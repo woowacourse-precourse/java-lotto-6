@@ -24,9 +24,13 @@ public enum LottoRank implements LottoFinalConsts{
 
     public static LottoRank findByRank(String rank){
         return Arrays.stream(LottoRank.values())
-                .filter(lottoRank -> lottoRank.equals(rank))
+                .filter(lottoRank -> lottoRank.sameCount.equals(rank))
                 .findAny()
                 .orElse(null);
+    }
+
+    public int getLottoReturn(){
+        return lottoReturn;
     }
 
 }

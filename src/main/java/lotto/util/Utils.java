@@ -21,4 +21,8 @@ public final class Utils {
 
         return decFormat.format(target);
     }
+
+    public static double calculateRateOfReturn(double earned, double spend) {
+        return earned * 100 / spend;
+    }
 }

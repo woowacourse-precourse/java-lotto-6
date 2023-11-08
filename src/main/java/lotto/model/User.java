@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.util.Utils;
 
 public class User {
     private final Map<Lotto, LottoResult> lottos;
@@ -36,7 +37,7 @@ public class User {
 
     public double calculateStatistics() {
         double earnedMoney = sumEarnedMoney();
-        return calculateRateOfReturn(earnedMoney, spendMoney.getMoney());
+        return Utils.calculateRateOfReturn(earnedMoney, spendMoney.getMoney());
     }
 
     private double sumEarnedMoney() {
@@ -44,9 +45,5 @@ public class User {
                 .filter(LottoResult::isNotDefault)
                 .mapToDouble(LottoResult::getPrize)
                 .sum();
-    }
-
-    private double calculateRateOfReturn(double earned, double spend) {
-        return earned * 100 / spend;
     }
 }

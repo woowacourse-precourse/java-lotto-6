@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PurchasedLotto {
+    private static final String DUPLICATE_LOTTO_MESSAGE = "[ERROR] 똑같은 로또가 존재합니다";
     private final List<Lotto> purchasedLotto;
 
     public PurchasedLotto(int numberOfPurchase) {
@@ -20,10 +21,18 @@ public class PurchasedLotto {
         for (int i = 0; i < number; i++) {
             lottos.add(generateValidatedLotto());
         }
+        validDuplicate(lottos,number);
         return lottos;
     }
 
+    private void validDuplicate(List<Lotto> lottos,int number) {
+        Boolean distinct = lottos.stream().distinct().count() != lottos.size();
+        if (distinct) {
+            generateLottoNumbers(number);
+        }
+    }
+
     private Lotto generateValidatedLotto() {
-        return new Lotto(new LottoMachine().getRandomNumbers());
+        return new Lotto(new LottoMachine().getNumbers());
     }
 }

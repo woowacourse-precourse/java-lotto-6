@@ -12,10 +12,12 @@ public class RandomNumber {
     private static int MAX_NUMBER = 45;
     private static int SELECT_NUMBER = 6;
 
-    private RandomNumber(){}
+    private RandomNumber() {
+    }
 
-    public static Lotto getRandomNumber(){
-        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, SELECT_NUMBER));
+    public static Lotto getRandomNumber() {
+        List<Integer> numbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, SELECT_NUMBER));
         sort(numbers);
         return new Lotto(numbers);
     }

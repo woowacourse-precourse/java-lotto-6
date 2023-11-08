@@ -9,7 +9,7 @@ public class Result {
     private final Map<Rank, Integer> rankCount = new EnumMap<>(Rank.class);
 
     public Result(Lottos lottos, WinningLotto winningLotto) {
-        for(Lotto lotto : lottos.get()){
+        for (Lotto lotto : lottos.get()) {
             Rank rank = getMatchCounts(lotto, winningLotto);
             rankCount.put(rank, 1);
         }

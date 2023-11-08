@@ -11,7 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
-    private InputView(){}
+    private InputView() {
+    }
 
     private static String getInput() {
         return Console.readLine();
@@ -21,7 +22,7 @@ public class InputView {
         System.out.println(INPUT_AMOUNT.getProgressMessage());
         String amount = getInput();
 
-        if(validateNotNumber(amount)){
+        if (validateNotNumber(amount)) {
             return inputLottoPurchaseAmount();
         }
         return Integer.parseInt(amount);
@@ -31,7 +32,7 @@ public class InputView {
         System.out.println(INPUT_BONUS_NUMBER.getProgressMessage());
         String bonus = getInput();
 
-        if(validateNotNumber(bonus)){
+        if (validateNotNumber(bonus)) {
             return inputBonusNumber();
         }
         return Integer.parseInt(bonus);
@@ -42,7 +43,7 @@ public class InputView {
         List<String> input = Arrays.stream(getInput().split(","))
                 .toList();
 
-        if(validateNotLotto(input)){
+        if (validateNotLotto(input)) {
             return inputWinningLottoNumber();
         }
 
@@ -52,17 +53,17 @@ public class InputView {
         return winningLotto;
     }
 
-    private static boolean validateNotNumber(String input){
+    private static boolean validateNotNumber(String input) {
         try {
             Integer.parseInt(input);
-        }catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(ONLY_CAN_NUMBER.getErrorMessage());
             return true;
         }
         return false;
     }
 
-    private static boolean validateNotLotto(List<String> winningLotto){
+    private static boolean validateNotLotto(List<String> winningLotto) {
         try {
             winningLotto.forEach(Integer::parseInt);
         } catch (IllegalArgumentException e) {

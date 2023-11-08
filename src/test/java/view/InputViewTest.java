@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
-public class InputViewTest extends NsTest{
+public class InputViewTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @DisplayName("입력값이 숫자가 아니면 예외가 발생한다.")

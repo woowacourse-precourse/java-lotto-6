@@ -31,7 +31,7 @@ public class AmountTest extends NsTest {
 
     @DisplayName("로또 수익률 계산")
     @Test
-    void calculateProfitRateTest(){
+    void calculateProfitRateTest() {
         Amount amount = new Amount(8000);
         double profitRate = amount.calculateProfitRate(5000);
 

@@ -19,30 +19,30 @@ public class Lotto {
     }
 
     private List<Integer> validate(List<Integer> numbers) {
-        if(!validateSize(numbers) || !validateDuplicate(numbers) || !validateRange(numbers)){
+        if (!validateSize(numbers) || !validateDuplicate(numbers) || !validateRange(numbers)) {
             return validate(inputWinningLottoNumber());
         }
         return numbers;
     }
 
-    private boolean validateSize(List<Integer> numbers){
+    private boolean validateSize(List<Integer> numbers) {
         try {
             if (numbers.size() != LOTTO_SIZE) {
                 throw new IllegalArgumentException();
             }
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(LOTTO_COUNT_LIMIT.getErrorMessage());
             return false;
         }
         return true;
     }
 
-    private boolean validateDuplicate(List<Integer> numbers){
+    private boolean validateDuplicate(List<Integer> numbers) {
         try {
             if (numbers.size() != numbers.stream().distinct().count()) {
                 throw new IllegalArgumentException();
             }
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(CANT_DUPLICATE_NUMBER.getErrorMessage());
             return false;
         }
@@ -51,7 +51,7 @@ public class Lotto {
 
     private boolean validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if(!validateRangeByNumber(number)){
+            if (!validateRangeByNumber(number)) {
                 return false;
             }
         }
@@ -63,7 +63,7 @@ public class Lotto {
             if (!lotto.matcher(Integer.toString(number)).matches()) {
                 throw new IllegalArgumentException();
             }
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(LOTTO_NUMBER_RANGE.getErrorMessage());
             return false;
         }

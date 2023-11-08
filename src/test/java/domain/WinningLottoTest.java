@@ -8,8 +8,9 @@ import org.junit.jupiter.api.Test;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class WinningLottoTest extends NsTest{
+class WinningLottoTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {

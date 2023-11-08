@@ -12,7 +12,8 @@ public class ResultView {
     private static final String BONUS_NUMBER = ", 보너스 볼 일치 ";
     private static final String PROFIT_RATE = "총 수익률은 %.1f%%입니다.";
 
-    private ResultView(){}
+    private ResultView() {
+    }
 
     public static void printResult(Result result) {
         DecimalFormat decFormat = new DecimalFormat("###,###");

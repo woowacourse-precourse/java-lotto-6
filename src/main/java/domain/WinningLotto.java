@@ -18,18 +18,18 @@ public class WinningLotto {
     }
 
     private int validate(Lotto lotto, int bonusNumber) {
-        if(!validateDuplicate(lotto, bonusNumber) || !validateRange(bonusNumber)){
+        if (!validateDuplicate(lotto, bonusNumber) || !validateRange(bonusNumber)) {
             return validate(lotto, inputBonusNumber());
         }
         return bonusNumber;
     }
 
-    private boolean validateDuplicate(Lotto lotto, int bonusNumber){
+    private boolean validateDuplicate(Lotto lotto, int bonusNumber) {
         try {
             if (lotto.contains(bonusNumber)) {
                 throw new IllegalArgumentException();
             }
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(CANT_DUPLICATE_NUMBER.getErrorMessage());
             return false;
         }
@@ -41,7 +41,7 @@ public class WinningLotto {
             if (!lottoPattern.matcher(Integer.toString(bonusNumber)).matches()) {
                 throw new IllegalArgumentException();
             }
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(LOTTO_NUMBER_RANGE.getErrorMessage());
             return false;
         }

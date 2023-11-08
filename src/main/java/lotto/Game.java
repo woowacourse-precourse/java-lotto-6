@@ -90,6 +90,7 @@ public class Game {
         while (true){
             try {
                 bonusNumber = inputUser.inputBonusNumber();
+                inputUser.validateDistinctWinningAndBonusNumbers(winningNumbers, bonusNumber);
                 break;
             }catch (IllegalArgumentException e){
                 outputUser.outputExceptionMessage(e.getMessage());

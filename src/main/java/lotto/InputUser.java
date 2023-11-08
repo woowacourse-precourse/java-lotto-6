@@ -78,4 +78,10 @@ public class InputUser {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자를 입력해야 합니다.");
         }
     }
+
+    protected void validateDistinctWinningAndBonusNumbers(List<Integer> winningNumbers, Integer inputBonusNumber){
+        if (winningNumbers.contains(inputBonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
+        }
+    }
 }

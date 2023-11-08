@@ -25,7 +25,7 @@ public class LayerTest {
 
     @Nested
     @DisplayName("구매 금액 입력 했을 때")
-    class PurchaseAmountTest {
+    class PurchaseAmountLayerTest {
         @ParameterizedTest
         @ValueSource(strings = {"", " ", "  ", "   ", "     ", "\n", "\t", "\r"})
         @DisplayName("[Exception] 공백 입력 시 view에서 예외가 발생한다.")
@@ -108,7 +108,7 @@ public class LayerTest {
 
     @Nested
     @DisplayName("당첨 번호를 입력했을 때")
-    class WinningNumberTest {
+    class WinningNumberLayerTest {
 
         @ParameterizedTest
         @ValueSource(strings = {"", " ", "  ", "   ", "     ", "\n", "\t", "\r"})
@@ -203,7 +203,7 @@ public class LayerTest {
 
     @Nested
     @DisplayName("보너스 번호를 입력했을 때")
-    class BonusNumberTest {
+    class BonusNumberLayerTest {
 
         @ParameterizedTest
         @ValueSource(strings = {"", " ", "  ", "   ", "     ", "\n", "\t", "\r"})

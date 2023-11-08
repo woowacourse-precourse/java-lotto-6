@@ -1,4 +1,4 @@
-package lotto;
+package lotto.prize;
 
 public enum Rank {
     NONE(0, 0, "꽝"),

@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.interactor.Buyer;
 import lotto.interactor.LottoMachine;
+import lotto.prize.*;
 
 import java.util.List;
 

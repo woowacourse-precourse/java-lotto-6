@@ -22,7 +22,7 @@ public class LottoPrizeBag {
     public double getRateOfReturn() {
         double prizeSum = lottoPrizes.stream().mapToInt(LottoPrize::getCashPrize).sum();
         int priceSum = lottoPrizes.size() * LottoConfig.PRICE;
-        return prizeSum / priceSum;
+        return (prizeSum / priceSum) * 100;
     }
 
 }

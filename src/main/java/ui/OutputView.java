@@ -45,6 +45,6 @@ class OutputView {
     }
 
     public static void printRateOfReturn(LottoPrizeBag lottoPrizeBag) {
-        System.out.printf("총 수익률은 %.1f%%", lottoPrizeBag.getRateOfReturn());
+        System.out.printf("총 수익률은 %.1f%%입니다.", lottoPrizeBag.getRateOfReturn());
     }
 }

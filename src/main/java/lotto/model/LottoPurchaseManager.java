@@ -1,5 +1,9 @@
 package lotto.model;
 
+import static lotto.enums.ErrorMessage.ACCOUNT_UNIT_ERROR;
+import static lotto.enums.ErrorMessage.LESS_NUM_ERROR;
+import static lotto.enums.ErrorMessage.NEGATIVE_NUM_ERROR;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,15 +12,18 @@ import lotto.util.LottoNumberGenerator;
 
 public class LottoPurchaseManager {
 
-    private final int count;
+    private final int purchaseAmount;
+    private final int PurchaseCount;
     private List<Lotto> lottos = new ArrayList<Lotto>();
 
     public LottoPurchaseManager(int purchaseAmount) {
-        this.count = purchaseAmount / 1000;
+        validate(purchaseAmount);
+        this.purchaseAmount = purchaseAmount;
+        this.PurchaseCount = purchaseAmount / 1000;
     }
 
     public void generateLottos() {
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < PurchaseCount; i++) {
             lottos.add(new Lotto(LottoNumberGenerator.generateNumbers()));
         }
     }
@@ -26,7 +33,30 @@ public class LottoPurchaseManager {
     }
 
     public int getCount() {
-        return count;
+        return PurchaseCount;
     }
 
+    public void validate(int purchaseAmount) throws IllegalArgumentException {
+        validateNegativeNum(purchaseAmount);
+        validateLessAccount(purchaseAmount);
+        validateAmountUnit(purchaseAmount);
+    }
+
+    public void validateNegativeNum(int purchaseAmount) throws IllegalArgumentException{
+        if(purchaseAmount < 0) {
+            throw new IllegalArgumentException(NEGATIVE_NUM_ERROR.getMessage());
+        }
+    }
+
+    public void validateLessAccount(int purchaseAmount) throws IllegalArgumentException{
+        if(purchaseAmount < 1000) {
+            throw new IllegalArgumentException(LESS_NUM_ERROR.getMessage());
+        }
+    }
+
+    public void validateAmountUnit(int purchaseAmount) throws IllegalArgumentException{
+        if(purchaseAmount%1000!=0) {
+            throw new IllegalArgumentException(ACCOUNT_UNIT_ERROR.getMessage());
+        }
+    }
 }

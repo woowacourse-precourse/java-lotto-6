@@ -85,15 +85,15 @@
 
 
 ## 5. 기능 목록 정리
->- [ ] 구매 금액 입력받기 Lotto #inputPurchaseAmount
->- [ ] 로또번호 생성 Numbers #createLottoNumbers
->- [ ] 당첨번호 입력 Numbers #inputLuckyNumbers
->- [ ] 보너스번호 입력 Numbers #inputBonusNumber
->- [ ] 갯수 찾기 Calculator #countCorrectLuckyNumbers
->- [ ] 로또 결과 출력 Calculator #printResult
->- [ ] 수익률 계산 Calculator #rateOfReturn
->- [ ] 유효성 검사 (`IllegalArgumentException`를 발생 / `[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`) Lotto #validate
->- [ ] Lotto 작동 Lotto #run
+>- [x] 구매 금액 입력받기 Lotto #inputPurchaseAmount
+>- [x] 로또번호 생성 Numbers #createLottoNumbers
+>- [x] 당첨번호 입력 Numbers #inputLuckyNumbers
+>- [x] 보너스번호 입력 Numbers #inputBonusNumber
+>- [x] 갯수 찾기 Calculator #countCorrectLuckyNumbers
+>- [x] 로또 결과 출력 Calculator #printResult
+>- [x] 수익률 계산 Calculator #rateOfReturn
+>- [x] 유효성 검사 (`IllegalArgumentException`를 발생 / `[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`) Lotto #validate
+>- [x] Lotto 작동 Lotto #run
 
 ## 6. 기능에 따른 클래스 구조
 >- Numbers

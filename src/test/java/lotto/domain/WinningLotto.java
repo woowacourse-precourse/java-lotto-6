@@ -26,9 +26,7 @@ public class WinningLotto {
         }
 
         for(int i = 0; i < numbers.size(); i++){
-            if (numbers.contains(numbers.get(i))){
-                throw new IllegalArgumentException(ErrorMessage.LOTTON_NUMBER_DUPLICATION.toString());
-            }else if (1 > numbers.get(i) && numbers.get(i) > 45){
+             if (1 > numbers.get(i) && numbers.get(i) > 45){
                 throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.toString());
             }else if (number == numbers.get(i)){
                 throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATION.toString());

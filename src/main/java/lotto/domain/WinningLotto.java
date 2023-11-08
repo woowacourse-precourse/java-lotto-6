@@ -27,9 +27,11 @@ public class WinningLotto {
         }
 
         for(int i = 0; i < numbers.size(); i++){
-            if (numbers.contains(numbers.get(i))){
-                throw new IllegalArgumentException(ErrorMessage.LOTTON_NUMBER_DUPLICATION.toString());
-            }else if (1 > numbers.get(i) && numbers.get(i) > 45){
+            for(int j = 0; j < numbers.size(); j++) {
+                checkDuplicatedError(i);
+            }
+
+            if (1 > numbers.get(i) && numbers.get(i) > 45){
                 throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.toString());
             }else if (number == numbers.get(i)){
                 throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATION.toString());
@@ -37,6 +39,17 @@ public class WinningLotto {
         }
     }
 
+
+    public void checkDuplicatedError(int firstfor) {
+        for(int j = 0; j < numbers.size(); j++) {
+            if(firstfor == j){
+                break;
+            }
+            if (this.numbers.get(firstfor)==this.numbers.get(j)){
+                throw new IllegalArgumentException(ErrorMessage.LOTTON_NUMBER_DUPLICATION.toString());
+            }
+        }
+    }
     public Map<Integer, Integer> compareLottos(List<Lotto> lottos) {
         List<Integer> resultNumber = new ArrayList<>();
         for (Lotto lotto : lottos) {

@@ -4,6 +4,8 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.exception.Exception.INVALID_BONUS_NUMBER_INPUT_TYPE;
 import static lotto.exception.Exception.INVALID_WINNING_NUMBERS_INPUT_TYPE;
 import static lotto.exception.Exception.ONLY_NUMERIC_INPUT_FOR_MONEY;
+import static lotto.validator.BonusNumberValidator.validate;
+import static lotto.validator.LottoValidator.validate;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,8 +23,9 @@ public class InputView {
 
     public static List<Integer> inputWinningNumbers() {
         String input = readLine();
-        String[] numbers = splitWinningNumbers(removeSpace(input));
-        return convertToIntegers(numbers);
+        List<Integer> numbers = convertToIntegers(input);
+        validate(numbers);
+        return numbers;
     }
 
     private static String removeSpace(String input) {
@@ -33,7 +36,8 @@ public class InputView {
         return input.split(WINNING_NUMBERS_DELIMITER);
     }
 
-    private static List<Integer> convertToIntegers(String[] numbers) {
+    private static List<Integer> convertToIntegers(String input) {
+        String[] numbers = splitWinningNumbers(removeSpace(input));
         try {
             return Arrays.stream(numbers)
                     .map(Integer::parseInt)
@@ -43,9 +47,11 @@ public class InputView {
         }
     }
 
-    public static int inputBonusNumber() {
+    public static int inputBonusNumber(List<Integer> winningNumbers) {
         try {
-            return Integer.parseInt(readLine());
+            int bonusNumber = Integer.parseInt(readLine());
+            validate(bonusNumber, winningNumbers);
+            return bonusNumber;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_BONUS_NUMBER_INPUT_TYPE.getMessage());
         }

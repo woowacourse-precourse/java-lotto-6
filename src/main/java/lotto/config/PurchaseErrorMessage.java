@@ -6,6 +6,8 @@ import static lotto.config.LottoConfig.PURCHASE_DIVISIBLE_AMOUNT;
 public enum PurchaseErrorMessage {
     PURCHASE_BLANK_ERROR_MESSAGE("[ERROR] 로또 구입 금액이 없거나 공백만 입력했습니다."),
     PURCHASE_NUMERIC_ERROR_MESSAGE("[ERROR] 로또 구입 금액은 자연수만 입력해야 합니다."),
+    PURCHASE_PARSE_INT_RANGE_ERROR_MESSAGE(String.format("[ERROR] 입력 범위를 초과하였습니다. %s원 이하로만 입력해주세요.",
+            PURCHASE_AMOUNT_MAX.getValue())),
     PURCHASE_STARTS_ZERO_ERROR_MESSAGE("[ERROR] 첫 문자가 0이 아니어야 합니다."),
     PURCHASE_DIVISIBLE_ERROR_MESSAGE(String.format("[ERROR] 로또 구입 금액은 %s원 단위로 입력해야 합니다.",
             PURCHASE_DIVISIBLE_AMOUNT.getValue())),

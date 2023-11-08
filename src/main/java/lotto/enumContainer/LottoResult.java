@@ -29,4 +29,9 @@ public enum LottoResult {
 		return resultLabel + matchCount + "개";
 	}
 
+	public void init() {
+		this.matchCount = 0;
+	}
+
+
 }

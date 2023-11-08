@@ -33,6 +33,7 @@ public class LottoProcessImpl implements LottoProcess {
 		inputPrice();
 
 		List<List<Integer>> IssuedLotto = generateLotto();
+		PrintGenerator.printPurchaseNumbers(IssuedLotto);
 
 		PrintGenerator.printInputMent("당첨 번호를");
 		inputWinningNumbers();
@@ -85,7 +86,6 @@ public class LottoProcessImpl implements LottoProcess {
 				RelateToLotto.COUNT.number());
 			bundleOfLotto.add(lottoNumbers);
 		}
-		PrintGenerator.printPurchaseNumbers(bundleOfLotto);
 		return bundleOfLotto;
 	}
 }

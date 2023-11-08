@@ -59,7 +59,7 @@ public class Lotto {
 		return (int) lotto.stream().filter(numbers::contains).count();
 	}
 
-	private void reflectResult(int matchNumbersCount, boolean isBonus, Money money) {
+	private void  reflectResult(int matchNumbersCount, boolean isBonus, Money money) {
 		if (matchNumbersCount == LottoResult.FIVE.number && isBonus) {
 			LottoResult.FIVE_BONUS.reflectResult(money);
 			return;

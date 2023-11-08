@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -9,6 +11,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateUnique(numbers);
+        validateSorted(numbers);
         this.numbers = numbers;
     }
 
@@ -30,6 +33,15 @@ public class Lotto {
         }
     }
 
+    private void validateSorted(List<Integer> numbers){
+        for (int i = 0; i < numbers.size() - 1; i++)
+        {
+            if (numbers.get(i) > numbers.get(i+1)) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
     public int countMatch(List<Integer> winningNumber){
         int result = 0;
         for (int number : numbers){
@@ -43,5 +55,4 @@ public class Lotto {
     public boolean containBonusNUmber(int bonusNumber){
         return numbers.contains(bonusNumber);
     }
-
 }

@@ -31,6 +31,19 @@ public class Lotto {
         return new HashSet<>(numbers).size() != LOTTO_SIZE.getValue();
     }
 
+    public MatchingResult match(Lotto winningLotto, LottoNumber bonusNumber) {
+        int count = match(winningLotto);
+        boolean isBonusCorrect = winningLotto.contains(bonusNumber);
+
+        return new MatchingResult(count, isBonusCorrect);
+    }
+
+    public int match(Lotto winningLotto) {
+        return (int) this.numbers.stream()
+                .filter((number) -> winningLotto.contains(number))
+                .count();
+    }
+
     public boolean contains(LottoNumber lottoNumber) {
         return numbers.contains(lottoNumber);
     }

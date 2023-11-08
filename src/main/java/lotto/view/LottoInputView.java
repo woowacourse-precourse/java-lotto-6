@@ -20,11 +20,22 @@ public class LottoInputView {
         while (true) {
             System.out.println(LOTTO_PURCHASE_AMOUNT.getMessage());
             try {
-                return Long.parseLong(Console.readLine());
+                String userInput = Console.readLine();
+                return checkLottoPurchaseAmountValid(userInput);
             } catch (NumberFormatException e) {
                 System.out.println(INPUT_NUMBER_IS_INVALID.getMessage());
             }
         }
+    }
+
+    private Long checkLottoPurchaseAmountValid(String userInput) {
+        long purchaseAmount = Long.parseLong(userInput);
+
+        if (purchaseAmount % 1000 == 0) {
+            return purchaseAmount;
+        }
+
+        throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_COMPACT.getMessage());
     }
 
 

@@ -22,10 +22,10 @@ class LottoInputViewTest {
         MockedStatic<Console> randomsMockedStatic = mockStatic(Console.class);
         LottoInputView lottoInputView = new LottoInputView();
 
-        when(Console.readLine()).thenReturn("8");
+        when(Console.readLine()).thenReturn("8000");
         Long lottoPurchaseAmountInput = lottoInputView.getLottoPurchaseAmountInput();
 
-        assertThat(lottoPurchaseAmountInput).isEqualTo(8L);
+        assertThat(lottoPurchaseAmountInput).isEqualTo(8000L);
         randomsMockedStatic.close();
     }
 

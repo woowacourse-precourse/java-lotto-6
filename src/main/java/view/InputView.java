@@ -1,5 +1,7 @@
 package view;
 
+import static org.mockito.ArgumentMatchers.matches;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import message.ErrorMessages;
@@ -53,9 +55,7 @@ public class InputView {
     }
 
     public void notNumber(String input) {
-        try {
-            Converter.stringToInt(input);
-        } catch (NumberFormatException e) {
+        if(!input.matches("\\d+")){
             throw new IllegalArgumentException(ErrorMessages.INPUT_INVALID_TYPE);
         }
     }

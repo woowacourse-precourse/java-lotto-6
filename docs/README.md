@@ -21,6 +21,7 @@
 * 비교 기능은 따로 클래스로 빼서 할 수 있다.
 #### Prize,PrizeResult
 * 상금 결과를 담당하는 Enum, Enum 결과를 활용해 정보 전달
+* BiPredicate (두 개의 입력 매개변수를 받아 논리적인 조건을 검사) 를 사용해서 순위를 정한다.
 #### Rate
 * 수익률을 담당하는 클래스
 #### view
@@ -29,8 +30,8 @@
 ### 2번째 구현 목표
 1. Money 검증을 위해 Money 클래스 생성 후 적용 
 2. 각각의 예외처리 -> [ERROR] 적용
-3. 상금 결과를 담당하는 Prize와 PrizeResult 그리고 출력을 담당하는 OutputView 연결을 좀 더 깔끔하고 가독성있게 구현하기
-4. Outputview 의  printPrizeResult() 분리하기
+3. 상금 결과를 담당하는 Prize 와 PrizeResult 그리고 출력을 담당하는 OutputView 연결을 좀 더 깔끔하고 가독성있게 구현하기
+4. OutputView 의  printPrizeResult() 분리하기
 5. 1번째 구현에서는 기능 구현을 위해 하드 코딩을 신경쓰지 않았다. 하드 코딩 없애기
 
 ### 2번째 구현

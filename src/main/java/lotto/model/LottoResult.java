@@ -31,7 +31,8 @@ public class LottoResult {
     }
 
     public static void initialize() {
-        for (int i = PrizeMoney.FIFTH.getNumberOfSame(); i < NUMBER_OF_WINNING_CASE + PrizeMoney.FIFTH.getNumberOfSame(); i++) {
+        for (int i = PrizeMoney.FIFTH.getNumberOfSame(); i < NUMBER_OF_WINNING_CASE
+                + PrizeMoney.FIFTH.getNumberOfSame(); i++) {
             result.put(i, 0);
         }
     }
@@ -67,7 +68,8 @@ public class LottoResult {
     public static double calculateProfit(int purchase) {
         double allMoney = 0;
         for (PrizeMoney p : PrizeMoney.values()) {
-            allMoney += p.calculateFare(result.get(PrizeMoney.FIRST.getNumberOfSame() + 1 - p.ordinal()));
+            allMoney += p.calculateFare(result.get(PrizeMoney.FIRST.getNumberOfSame()
+                    + CORRECTION_VALUE_OF_KEY - p.ordinal()));
         }
         return allMoney / (purchase * 10);
     }

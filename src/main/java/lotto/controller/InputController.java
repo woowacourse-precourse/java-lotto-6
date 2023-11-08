@@ -44,4 +44,20 @@ public class InputController {
 
         return winNumber;
     }
+
+    public int bonusNumber(List<Integer> winNumber) {
+        inputView.bonusNumber();
+        String input = Console.readLine();
+
+        try {
+            validation.bonusNumber(input, winNumber);
+        } catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            bonusNumber(winNumber);
+        }
+
+        int bonusNumber = Integer.parseInt(input);
+
+        return bonusNumber;
+    }
 }

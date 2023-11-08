@@ -71,4 +71,13 @@ public class ValidationTest {
         assertThatThrownBy(() -> validation.winNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void bonusNumber_winNumberDuplicate() {
+        String input = "1";
+        List<Integer> winNumber = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+
+        assertThatThrownBy(() -> validation.bonusNumber(input, winNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

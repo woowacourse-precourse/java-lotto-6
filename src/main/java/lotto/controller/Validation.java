@@ -35,6 +35,12 @@ public class Validation {
         }
     }
 
+    public void rangeOfLottoNumber(int num) {
+       if (num < 1 || num > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이여야 합니다.");
+        }
+    }
+
     public void rangeOfLottoNumber(List<Integer> numbers) {
         for(int num : numbers) {
             if (num < 1 || num > 45) {
@@ -56,5 +62,14 @@ public class Validation {
         lottoNumberCount(winNumber);
         duplicateNumber(winNumber);
         rangeOfLottoNumber(winNumber);
+    }
+
+    public void bonusNumber(String input, List<Integer> winNumber) {
+        isNumber(input);
+        int number = Integer.parseInt(input);
+        rangeOfLottoNumber(number);
+        if(winNumber.contains(number)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호에 없는 번호여야 합니다.");
+        }
     }
 }

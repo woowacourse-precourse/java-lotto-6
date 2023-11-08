@@ -11,6 +11,7 @@ public class Lotto {
     private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
+        sortAsc(numbers);
         this.numbers = numbers
                 .stream().
                 map(number -> new LottoNumber(number))
@@ -20,12 +21,23 @@ public class Lotto {
 
     public Lotto() {
         List<Integer> randomLottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-
+        sortAsc(randomLottoNumbers);
         this.numbers = randomLottoNumbers
                 .stream()
                 .map(number -> new LottoNumber(number))
                 .collect(Collectors.toList());
     }
+
+    
+
+    private void sortAsc(List<Integer> numbers) {
+        Collections.sort(numbers);
+    }
+
+    public List<LottoNumber> getNumbers() {
+        return numbers;
+    }
+
 
     @Override
     public boolean equals(Object o) {

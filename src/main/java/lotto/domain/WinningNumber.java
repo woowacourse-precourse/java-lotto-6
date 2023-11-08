@@ -13,6 +13,8 @@ public class WinningNumber {
     private static  int bonusNum;
 
 
+
+
     public static  void putWinningNums(String winningNums) throws IllegalArgumentException{
         String[] winningNum = winningNums.split(",");
         List<Integer> winningNumbers = new ArrayList<>();

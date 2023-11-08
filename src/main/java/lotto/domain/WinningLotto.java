@@ -2,11 +2,11 @@ package lotto.domain;
 
 public class WinningLotto {
 
-    private static int treeSameNumLotto = 0;
-    private static int fourSameNumLotto = 0;
-    private static int fiveSameNumLotto = 0;
-    private static int fiveAndBonusSameNumLotto = 0;
-    private static int sixSameNumLotto = 0;
+    private  int treeSameNumLotto = 0;
+    private  int fourSameNumLotto = 0;
+    private  int fiveSameNumLotto = 0;
+    private  int fiveAndBonusSameNumLotto = 0;
+    private  int sixSameNumLotto = 0;
 
     public WinningLotto() {
     }

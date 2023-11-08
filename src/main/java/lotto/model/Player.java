@@ -16,6 +16,14 @@ public class Player {
         this.bonusNumber = bonusNumber;
     }
 
+    public int getPayment() {
+        return payment;
+    }
+
+    public void setPayment(int payment) {
+        this.payment = payment;
+    }
+
     public Lotto getLotto() {
         return lotto;
     }

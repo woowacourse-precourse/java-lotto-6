@@ -4,12 +4,13 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class LottoResult {
-    private final Map<Rank, Integer> rankCount;
+    private final Map<Rank, Integer> ranksCount;
 
     public LottoResult() {
-        rankCount = new EnumMap<>(Rank.class);
+        ranksCount = new EnumMap<>(Rank.class);
         for (Rank rank : Rank.values()) {
-            rankCount.put(rank, 0);
+            ranksCount.put(rank, 0);
         }
     }
+
 }

@@ -107,4 +107,12 @@
 - LottoWinningCountPolicy (로또 당첨 개수 정책)
   - 등수에서 당첨 번호와 일치하는 개수가 몇개인지를 결정하는 정책
 
-  
+
+### Refactor
+- 정책 분리해 내기
+- [ ] 로또 가격 정책 
+- [ ] 로또 당첨 금액 정책
+
+- [ ] 전체적으로 clean code로 refactoring
+
+- [ ] view 구조 리펙토링 및 중복 코드 분리 하기

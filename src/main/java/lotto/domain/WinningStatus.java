@@ -7,6 +7,10 @@ public class WinningStatus {
     private Map<PrizeType, Integer> prizeTypeWithCount;
 
     public WinningStatus() {
+        init();
+    }
+
+    private void init() {
         this.prizeTypeWithCount = new HashMap<>();
 
         for (PrizeType prizeType : PrizeType.values()) {
@@ -15,21 +19,19 @@ public class WinningStatus {
     }
 
     public void add(PrizeType prizeType) {
-        if (prizeType != PrizeType.NOT_APPLICABLE) {
-            prizeTypeWithCount.put(prizeType, prizeTypeWithCount.get(prizeType) + 1);
-        }
+        prizeTypeWithCount.put(prizeType, prizeTypeWithCount.get(prizeType) + 1);
     }
 
-    public double getSum() {
-        double returnMoney = 0;
+    public double getPrizeMoney() {
+        double prizeMoney = 0;
         for (PrizeType prizeType : prizeTypeWithCount.keySet()) {
-            returnMoney += getSum(prizeType);
+            prizeMoney += getPrizeMoney(prizeType);
         }
 
-        return returnMoney;
+        return prizeMoney;
     }
 
-    public double getSum(PrizeType prizeType) {
+    public double getPrizeMoney(PrizeType prizeType) {
         return (double) prizeTypeWithCount.get(prizeType) * prizeType.getPrize();
     }
 

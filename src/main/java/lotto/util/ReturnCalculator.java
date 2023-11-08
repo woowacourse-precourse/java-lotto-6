@@ -4,7 +4,7 @@ import lotto.domain.WinningStatus;
 
 public class ReturnCalculator {
     public static double calculate(WinningStatus winningStatus, int lottoCount) {
-        double returnMoney = winningStatus.getSum();
+        double returnMoney = winningStatus.getPrizeMoney();
         int lottoPrice = lottoCount * 1000;
         double rateOfReturn = (returnMoney / lottoPrice) * 100;
 

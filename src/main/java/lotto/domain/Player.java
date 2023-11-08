@@ -1,8 +1,6 @@
 package lotto.domain;
 
-
 import lotto.dto.response.LottosInfoDto;
-
 
 public class Player {
     private final int money;

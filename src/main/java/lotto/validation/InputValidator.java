@@ -4,7 +4,6 @@ package lotto.validation;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.IntStream;
 import lotto.domain.ConstantValue;
 import lotto.util.ExceptionHandler;
 

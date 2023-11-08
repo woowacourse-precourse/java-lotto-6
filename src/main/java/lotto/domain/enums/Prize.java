@@ -19,11 +19,6 @@ public enum Prize {
         this.prizeMoney = prizeMoney;
         this.message = message;
     }
-
-    public int getMatchCount() {
-        return matchCount;
-    }
-
     public int getPrizeMoney() {
         return prizeMoney;
     }

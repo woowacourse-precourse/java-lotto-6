@@ -189,7 +189,9 @@ BUILD SUCCESSFUL in 0s
 #### 사용 예시
 
 ```java
-List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+/*
+List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);*/
+
 ```
 
 ### Lotto 클래스
@@ -227,3 +229,35 @@ public class Lotto {
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
     - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+---
+
+## **기능 목록**
+
+로또게임
+
+1.구입 금액을 입력 받는다.
+-"구입 금액을 입력해 주세요." 메세지 노출
+-로또 1장의 가격은 천원
+
+2.구입 금액에 해당하는 로또 번호를 발행한다.
+-n개를 구매 했습니다. 메세지 노출
+-로또 번호의 숫자 범위 1~45까지 중 중복되지 않는 6개의 숫자 뽑기
+
+3.당첨 번호를 입력 받는다.
+
+4.보너스 번호를 입력 받는다.
+
+5.사용자가 구매한 로또번호와 당첨번호를 비교한다.
+
+6.추첨결과를 보여준다.
+-"당첨통계" 메세지 노출
+-당첨은 1등부터 5등까지 결과 노출
+-총 수익률 n% 노출(소수점 둘째 자리에서 반올림)
+
+7.예외처리
+-예외 상황 시 에러문구 출력 에러문구는"[ERROR]"로 시작
+-사용자가 값을 잘못 입력할 경우
+-로또 구입 금액이 1000원으로 나누어 떨어지지 않는 경우
+
+ 

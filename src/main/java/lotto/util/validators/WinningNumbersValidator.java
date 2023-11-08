@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.util.Parser;
 import lotto.util.exception.input.DuplicationNumberException;
-import lotto.util.exception.input.NumberFormatCustomException;
+import lotto.util.exception.input.NumberParsingException;
 import lotto.util.exception.input.NumberGreaterException;
 import lotto.util.exception.input.NumbersNegativeException;
 import lotto.util.exception.input.NumbersNullException;
@@ -40,7 +40,7 @@ public class WinningNumbersValidator {
         try {
             return Integer.valueOf(str);
         } catch (NumberFormatException e) {
-            throw new NumberFormatCustomException();
+            throw new NumberParsingException();
         }
     }
 

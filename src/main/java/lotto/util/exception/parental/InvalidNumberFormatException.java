@@ -4,8 +4,8 @@ import static lotto.util.Constants.ERROR;
 
 import lotto.util.enums.ErrorMessage;
 
-public abstract class InputValidationException extends IllegalArgumentException{
-    protected InputValidationException(ErrorMessage errorMessage) {
+public class InvalidNumberFormatException extends NumberFormatException{
+    protected InvalidNumberFormatException(ErrorMessage errorMessage) {
         super(ERROR + errorMessage.getMessage());
     }
 }

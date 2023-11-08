@@ -1,5 +1,7 @@
 package model;
 
+import static model.LottoUtils.LOTTO_PRICE;
+
 import exception.Exception;
 
 public class Money {
@@ -7,7 +9,6 @@ public class Money {
     private static final int MIN_MONEY_RANGE = 1000;
     private static final int MAX_MONEY_RANGE = 1000000000;
     private static final int MONEY_MAX_LENGTH = 10;
-    private static final int LOTTO_PRICE = 1000;
 
     private final int cost;
     private int money;

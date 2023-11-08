@@ -10,6 +10,7 @@ public class LottoUtils {
     public static final int THIRD_PRIZE = 5;
     public static  final int FOURTH_PRIZE = 4;
     public static final int FIFTH_PRIZE = 3;
+    public static final int LOTTO_PRICE = 1000;
 
     protected static boolean isOutOfLottoRange(int number) {
         return (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER);

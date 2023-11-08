@@ -34,7 +34,7 @@ public class LottoController {
         HashMap<Integer, List<Integer>> compareLottoNumResult =
                 matchCountChecker.compareLottoToNumber(lottoNumbers, winningNumber, bonusNumber);
 
-        printResult(matchCountChecker.checkRewardByLotto(compareLottoNumResult), lottoCost.getCost());
+        printResult(matchCountChecker.countLottoByPrize(compareLottoNumResult), lottoCost.getCost());
     }
 
 

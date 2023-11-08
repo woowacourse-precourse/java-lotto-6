@@ -8,7 +8,7 @@ import lotto.domain.Lotto;
 import lotto.domain.WinningNumber;
 
 public class MatchCountChecker {
-    public HashMap<String, Integer> checkRewardByLotto(HashMap<Integer, List<Integer>> checkMatchCountResult) {
+    public HashMap<String, Integer> countLottoByPrize(HashMap<Integer, List<Integer>> checkMatchCountResult) {
         HashMap<String, Integer> countByPrize = new HashMap<>();
 
         countByPrize.put(LottoConfig.FIRST_PRIZE_REWARD,

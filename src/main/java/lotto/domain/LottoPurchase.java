@@ -21,9 +21,9 @@ public class LottoPurchase {
         return LottoPurchaseCnt;
     }
 
-    public LottoPurchase(int LottoPurchaseCnt){
-        validate(LottoPurchaseCnt);
-        this.LottoPurchaseCnt = LottoPurchaseCnt;
+    public LottoPurchase(int LottoPurchase){
+        validate(LottoPurchase);
+        this.LottoPurchaseCnt = LottoPurchase / 1000;
         this.randomNumbers = generateRandomNumbers();
     }
 

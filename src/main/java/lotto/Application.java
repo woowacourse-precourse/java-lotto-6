@@ -56,14 +56,16 @@ public class Application {
     static List<Integer> winningNumbers = new ArrayList<>();
     static int totalPrizeAmount = 0;
     public static void main(String[] args) {
-        System.out.println("구입금액을 입력해주세요:");
+        System.out.println("구입금액을 입력해주세요.");
         generateLottoTickets(readPurchase());
         showLottoTickets();
         System.out.println("당첨번호를 입력해 주세요.");
         generateWinningNumbers(readWinningNumbers());
-        System.out.println("보너스 번호를 입력해주세요.");
+        System.out.println("보너스 번호를 입력해 주세요.");
         Integer bonusNumber=getBonusNumber(readBonusNumber());
         compareLottoWithWinning(bonusNumber);
+        System.out.println("당첨 통계");
+        System.out.println("---");
         showPrizeCount();
         calculateProfitRate();
     }
@@ -195,11 +197,13 @@ public class Application {
             lottoTickets.add(generateLotto());
         }
     }
+
     public static Lotto generateLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         numbers.sort(null);
         return new Lotto(numbers);
     }
+
     public static void showLottoTickets() {
         Integer numberOfLottoTickets = lottoTickets.size();
         System.out.println(String.format("%d개를 구매했습니다.",numberOfLottoTickets));
@@ -242,10 +246,10 @@ public class Application {
     }
 
     public static void showPrizeCount() {
-        System.out.println(Prize.THREE_MATCH.getMatchCount());
-        System.out.println(Prize.FOUR_MATCH.getMatchCount());
-        System.out.println(Prize.FIVE_MATCH.getMatchCount());
-        System.out.println(Prize.FIVE_MATCH_WITH_BONUS.getMatchCount());
-        System.out.println(Prize.SIX_MATCH.getMatchCount());
+        System.out.println("3개 일치 (5,000원) - "+Prize.THREE_MATCH.getMatchCount()+"개");
+        System.out.println("4개 일치 (50,000원) - "+Prize.FOUR_MATCH.getMatchCount()+"개");
+        System.out.println("5개 일치 (1,500,000원) - "+Prize.FIVE_MATCH.getMatchCount()+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+Prize.FIVE_MATCH_WITH_BONUS.getMatchCount()+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - "+Prize.SIX_MATCH.getMatchCount()+"개");
     }
 }

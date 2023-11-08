@@ -25,13 +25,11 @@ public class LottoController {
     }
 
     private LottoCount setLottoCount() {
-        while (true) {
-            try {
-                return LottoCount.from(Input.money());
-            } catch (IllegalArgumentException e) {
-                Output.message(e.getMessage());
-                
-            }
+        try {
+            return LottoCount.from(Input.money());
+        } catch (IllegalArgumentException e) {
+            Output.message(e.getMessage());
+            return setLottoCount();
         }
     }
 
@@ -43,12 +41,11 @@ public class LottoController {
     }
 
     private Lotto setLotto() {
-        while (true) {
-            try {
-                return new Lotto(Input.winLottoNumbers());
-            } catch (IllegalArgumentException e) {
-                Output.message(e.getMessage());
-            }
+        try {
+            return new Lotto(Input.winLottoNumbers());
+        } catch (IllegalArgumentException e) {
+            Output.message(e.getMessage());
+            return setLotto();
         }
     }
 

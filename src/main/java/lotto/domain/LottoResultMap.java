@@ -3,6 +3,7 @@ package lotto.domain;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Objects;
 
 public class LottoResultMap {
     private static final int lottoPrice = 1000;
@@ -13,6 +14,19 @@ public class LottoResultMap {
         this.lottoResultMap = lottoResultMap;
         Arrays.stream(LottoResult.values())
                 .forEach(result -> lottoResultMap.put(result, lottoResultMap.getOrDefault(result, 0)));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LottoResultMap that = (LottoResultMap) o;
+        return Objects.equals(lottoResultMap, that.lottoResultMap);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lottoResultMap);
     }
 
     @Override

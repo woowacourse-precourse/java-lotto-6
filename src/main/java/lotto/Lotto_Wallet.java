@@ -37,7 +37,7 @@ public class Lotto_Wallet {
 
     // 1개의 로또 확인 : 내로또, 당첨로또, 보너스 번호를 입력 받아 -> Prize 등수 반환
     // Check_One_Lotto에 bonus_check, numbers_check, find_Rank 쓰임
-    public Prize Check_One_Lotto(Lotto lotto, Lotto winning, Integer bonus) {
+    private Prize Check_One_Lotto(Lotto lotto, Lotto winning, Integer bonus) {
         List<Integer> my_nums = lotto.getNumbers();
         List<Integer> winning_nums = winning.getNumbers();
 

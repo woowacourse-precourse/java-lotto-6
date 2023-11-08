@@ -2,32 +2,63 @@ package lotto.controller;
 
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.service.LottoGeneratorService;
-import lotto.service.LottoGeneratorServiceImpl;
-import lotto.service.WinningLottoFactory;
-import lotto.service.WinningLottoFactoryImpl;
-import lotto.utils.NumberParser;
+import lotto.domain.Result;
+import lotto.service.*;
+import lotto.validate.LottoValidator;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.List;
 
 public class LottoController {
     InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
     WinningLottoFactory winningLottoFactory = new WinningLottoFactoryImpl();
     LottoGeneratorService lottoGeneratorService = new LottoGeneratorServiceImpl();
+
     public void start() {
-        String inputPrice = inputView.inputPrice();
-        int price = NumberParser.toInteger(inputPrice);
-        List<Lotto> lottos = lottoGeneratorService.myLottos(price);
-        for (Lotto lotto : lottos) {
-            List<Integer> numbers = lotto.getNumbers();
-            System.out.println(numbers);
+        List<Lotto> lottos = getMyLottos();
+        outputView.printLottos(lottos);
+        Lotto lotto = getWinningLotto();
+        BonusNumber bonusNumber = getBonusNumber(lotto);
+        StatisticsService statisticsService = new StatisticsServiceImpl(lottos, lotto, bonusNumber);
+        Result result = statisticsService.calculateResult();
+        double revenueRate = statisticsService.calculateRevenueRate(lottos, result);
+        outputView.result(result);
+        outputView.revenueRate(revenueRate);
+    }
+
+    private List<Lotto> getMyLottos() {
+        try {
+            String inputPrice = inputView.inputPrice();
+            List<Lotto> lottos = lottoGeneratorService.myLottos(inputPrice);
+            return lottos;
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+            return getMyLottos();
         }
-        String winningNumbers = inputView.inputWinningNumbers();
-        Lotto lotto = winningLottoFactory.winningLotto(winningNumbers);
-        System.out.println(lotto.getNumbers());
-        String inputBonusNumber = inputView.inputBonusNumber();
-        BonusNumber bonusNumber = winningLottoFactory.bonusNumber(inputBonusNumber);
-        System.out.println(bonusNumber.getBonusNumber());
+    }
+
+    private Lotto getWinningLotto() {
+        try {
+            String winningNumbers = inputView.inputWinningNumbers();
+            Lotto lotto = winningLottoFactory.winningLotto(winningNumbers);
+            return lotto;
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+            return getWinningLotto();
+        }
+    }
+
+    private BonusNumber getBonusNumber(Lotto lotto) {
+        try {
+            String inputBonusNumber = inputView.inputBonusNumber();
+            BonusNumber bonusNumber = winningLottoFactory.bonusNumber(inputBonusNumber);
+            LottoValidator.bonusNumberValidate(lotto, bonusNumber);
+            return bonusNumber;
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+            return getBonusNumber(lotto);
+        }
     }
 }

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,5 +57,27 @@ class LottoPrizeTest {
         lottoPrize.countCommonNumber(lotto, lottoWinningNumbers);
 
         assertThat(lottoPrize.getFifthRankCount()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("입력한 당첨 번호와 보너스 번호를 저장되어 있는 로또 번호와 비교했을때 등수 개수가 업데이트 되는지 테스트")
+    void testCountPrizeRank() {
+        int bonusNumber = 16;
+        List<Integer> winningNumbers = List.of(1, 2, 3, 7, 11, 12);
+        LottoWinningNumbers lottoWinningNumbers = LottoWinningNumbers.create(winningNumbers, bonusNumber);
+        Lottos lottos = new Lottos();
+
+        lottos.save(Lotto.create(List.of(1, 2, 3, 7, 11, 12)));
+        lottos.save(Lotto.create(List.of(1,2,3,7,11,16)));
+        lottos.save(Lotto.create(List.of(1,2,3,7,11,26)));
+        lottoPrize.countPrizeRank(lottos, lottoWinningNumbers);
+
+        assertAll(
+                () -> assertThat(lottoPrize.getFirstRankCount()).isEqualTo(1),
+                () -> assertThat(lottoPrize.getSecondRankCount()).isEqualTo(1),
+                () -> assertThat(lottoPrize.getThirdRankCount()).isEqualTo(1),
+                () -> assertThat(lottoPrize.getFourthRankCount()).isEqualTo(0),
+                () -> assertThat(lottoPrize.getFifthRankCount()).isEqualTo(0)
+        );
     }
 }

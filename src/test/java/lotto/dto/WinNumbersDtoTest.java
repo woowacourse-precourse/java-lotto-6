@@ -29,56 +29,68 @@ class WinNumbersDtoTest {
 
     @Test
     void winNumbersDto의_당첨번호도_로또번호_자릿수만큼의_숫자를_입력하지않으면_IllegalArgumentException_발생() {
-        assertThatThrownBy(() -> new WinNumbersDto(Arrays.asList(1, 2, 3, 4, 5, 6, 7), 8))
+        List<Integer> tooManyWinNumbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
+        int bonusNumber = 8;
+        assertThatThrownBy(() -> new WinNumbersDto(tooManyWinNumbers, bonusNumber))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new WinNumbersDto(Arrays.asList(1, 2, 3, 4, 5, 6, 7), 8))
+        assertThatThrownBy(() -> new WinNumbersDto(tooManyWinNumbers, bonusNumber))
                 .hasMessageContaining(ERROR_CODE);
 
-        assertThatThrownBy(() -> new WinNumbersDto(Arrays.asList(1, 2, 3), 8))
+        List<Integer> tooLittleWinNumbers = Arrays.asList(1, 2, 3);
+        assertThatThrownBy(() -> new WinNumbersDto(tooLittleWinNumbers, bonusNumber))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new WinNumbersDto(Arrays.asList(1, 2, 3), 8))
+        assertThatThrownBy(() -> new WinNumbersDto(tooLittleWinNumbers, bonusNumber))
                 .hasMessageContaining(ERROR_CODE);
     }
 
     @Test
     void winNumbersDto의_당첨번호도_로또번호와_같이_중복된_숫자를_허용하지_않는다() {
-        assertThatThrownBy(() -> new WinNumbersDto(Arrays.asList(1, 1, 2, 3, 4, 5), 7))
+        List<Integer> duplicatedWinNumbers = Arrays.asList(1, 1, 2, 3, 4, 5);
+        assertThatThrownBy(() -> new WinNumbersDto(duplicatedWinNumbers, 7))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new WinNumbersDto(Arrays.asList(1, 1, 2, 3, 4, 5), 7))
+        assertThatThrownBy(() -> new WinNumbersDto(duplicatedWinNumbers, 7))
                 .hasMessageContaining(ERROR_CODE);
     }
 
     @Test
     void winNumbersDto의_당첨번호도_정해진_범위_외의_숫자를_입력하면_IllegalArgumentException_발생() {
-        assertThatThrownBy(() -> new WinNumbersDto(Arrays.asList(START_INCLUSIVE_LOTTO_NUMBER - 1, 2, 3, 4, 5, 6), 7))
+        List<Integer> tooSmallNumberContain = List.of(START_INCLUSIVE_LOTTO_NUMBER - 1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        assertThatThrownBy(() -> new WinNumbersDto(tooSmallNumberContain, bonusNumber))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new WinNumbersDto(Arrays.asList(START_INCLUSIVE_LOTTO_NUMBER - 1, 2, 3, 4, 5, 6), 7))
+        assertThatThrownBy(() -> new WinNumbersDto(tooSmallNumberContain, bonusNumber))
                 .hasMessageContaining(ERROR_CODE);
 
-        assertThatThrownBy(() -> new WinNumbersDto(Arrays.asList(1, 2, 3, 4, 5, END_INCLUSIVE_LOTTO_NUMBER + 1), 7))
+        List<Integer> tooBigNumberContain = List.of(1, 2, 3, 4, 5, END_INCLUSIVE_LOTTO_NUMBER + 1);
+        assertThatThrownBy(() -> new WinNumbersDto(tooBigNumberContain, bonusNumber))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new WinNumbersDto(Arrays.asList(1, 2, 3, 4, 5, END_INCLUSIVE_LOTTO_NUMBER + 1), 7))
+        assertThatThrownBy(() -> new WinNumbersDto(tooBigNumberContain, bonusNumber))
                 .hasMessageContaining(ERROR_CODE);
     }
 
     @Test
     void bonusNumber도_정해진_범위_외의_숫자를_입력하면_IllegalArgumentException_발생() {
-        assertThatThrownBy(() -> new WinNumbersDto(Arrays.asList(1, 2, 3, 4, 5, 6), START_INCLUSIVE_LOTTO_NUMBER - 1))
+        List<Integer> winNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int tooSmallBonusNumber = START_INCLUSIVE_LOTTO_NUMBER - 1;
+        assertThatThrownBy(() -> new WinNumbersDto(winNumbers, tooSmallBonusNumber))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new WinNumbersDto(Arrays.asList(1, 2, 3, 4, 5, 6), START_INCLUSIVE_LOTTO_NUMBER - 1))
+        assertThatThrownBy(() -> new WinNumbersDto(winNumbers, tooSmallBonusNumber))
                 .hasMessageContaining(ERROR_CODE);
 
-        assertThatThrownBy(() -> new WinNumbersDto(Arrays.asList(1, 2, 3, 4, 5, 6), END_INCLUSIVE_LOTTO_NUMBER + 1))
+        int tooBigBonusNumber = END_INCLUSIVE_LOTTO_NUMBER + 1;
+        assertThatThrownBy(() -> new WinNumbersDto(winNumbers, tooBigBonusNumber))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new WinNumbersDto(Arrays.asList(1, 2, 3, 4, 5, 6), END_INCLUSIVE_LOTTO_NUMBER + 1))
+        assertThatThrownBy(() -> new WinNumbersDto(winNumbers, tooBigBonusNumber))
                 .hasMessageContaining(ERROR_CODE);
     }
 
     @Test
     void bonusNumber도_당첨번호와_중복되면_IllegalArgumentException_발생() {
-        assertThatThrownBy(() -> new WinNumbersDto(Arrays.asList(1, 2, 3, 4, 5, 6), 1))
+        List<Integer> winNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int duplicatedBonusNumber = 1;
+        assertThatThrownBy(() -> new WinNumbersDto(winNumbers, duplicatedBonusNumber))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new WinNumbersDto(Arrays.asList(1, 2, 3, 4, 5, 6), 1))
+        assertThatThrownBy(() -> new WinNumbersDto(winNumbers, duplicatedBonusNumber))
                 .hasMessageContaining(ERROR_CODE);
     }
 }

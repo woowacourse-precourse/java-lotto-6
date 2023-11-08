@@ -14,8 +14,8 @@ class LottoResultTest {
     void testAllNumbersMatch() {
         // Given
         List<List<Integer>> purchasedNumbers = Arrays.asList(
-                Arrays.asList(1, 2, 3, 4, 5, 6), // 전부 일치
-                Arrays.asList(7, 8, 9, 10, 11, 12) // 일치하지 않음
+                Arrays.asList(1, 2, 3, 4, 5, 6),
+                Arrays.asList(7, 8, 9, 10, 11, 12)
         );
         Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 45;
@@ -37,8 +37,8 @@ class LottoResultTest {
     void testPartialMatch() {
         // Given
         List<List<Integer>> purchasedNumbers = Arrays.asList(
-                Arrays.asList(1, 2, 3, 4, 5, 45), // 5개 일치 + 보너스 번호 일치
-                Arrays.asList(1, 2, 3, 7, 8, 9)    // 3개 일치
+                Arrays.asList(1, 2, 3, 4, 5, 45),
+                Arrays.asList(1, 2, 3, 7, 8, 9)
         );
         Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 45;
@@ -49,10 +49,34 @@ class LottoResultTest {
 
         // Then
         assertThat(matchCounts.get(LottoRank.FIRST)).isEqualTo(0);
-        assertThat(matchCounts.get(LottoRank.SECOND)).isEqualTo(1); // 보너스 번호를 포함한 5개 일치
+        assertThat(matchCounts.get(LottoRank.SECOND)).isEqualTo(1);
         assertThat(matchCounts.get(LottoRank.THIRD)).isEqualTo(0);
         assertThat(matchCounts.get(LottoRank.FOURTH)).isEqualTo(0);
-        assertThat(matchCounts.get(LottoRank.FIFTH)).isEqualTo(1); // 3개 일치
+        assertThat(matchCounts.get(LottoRank.FIFTH)).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("당첨 번호와 일치하는 번호가 없는 경우 결과 계산")
+    void testNoMatch() {
+        // Given
+        List<List<Integer>> purchasedNumbers = Arrays.asList(
+                Arrays.asList(7, 8, 9, 10, 11, 12),
+                Arrays.asList(13, 14, 15, 16, 17, 18)
+        );
+        Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 45;
+
+        // When
+        LottoResult result = new LottoResult(purchasedNumbers, winningNumbers, bonusNumber);
+        Map<LottoRank, Integer> matchCounts = result.getMatchCounts();
+
+        // Then
+        assertThat(matchCounts.getOrDefault(LottoRank.FIRST, 0)).isEqualTo(0);
+        assertThat(matchCounts.getOrDefault(LottoRank.SECOND, 0)).isEqualTo(0);
+        assertThat(matchCounts.getOrDefault(LottoRank.THIRD, 0)).isEqualTo(0);
+        assertThat(matchCounts.getOrDefault(LottoRank.FOURTH, 0)).isEqualTo(0);
+        assertThat(matchCounts.getOrDefault(LottoRank.FIFTH, 0)).isEqualTo(0);
+    }
+
 
 }

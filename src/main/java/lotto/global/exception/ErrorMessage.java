@@ -12,7 +12,7 @@ public enum ErrorMessage {
     DUPLICATED_NUMBER_ERROR("중복되지 않은 숫자를 입력해주세요."),
     INVALID_LOTTO_SIZE_ERROR(String.format("%d개의 로또 번호를 입력해주세요.", LOTTO_SIZE.getValue()));
 
-    private static final String PREFIX = "[ERROR]";
+    private static final String PREFIX = "[ERROR] ";
     private final String message;
 
     ErrorMessage(String message) {

@@ -6,9 +6,21 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
 
-    private int lottoPurchase;
-    private List<Integer> lotto;
-    private int bonusNumber;
+    private final int lottoPurchase;
+    private final List<Integer> lotto;
+    private final int bonusNumber;
+    public int getLottoPurchase() {
+        return lottoPurchase;
+    }
+
+    public List<Integer> getLotto() {
+        return lotto;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
 
     public InputView() {
         this.lottoPurchase = inputLottoPurchase();

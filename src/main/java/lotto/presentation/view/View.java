@@ -1,5 +1,8 @@
 package lotto.presentation.view;
 
+import javax.swing.plaf.synth.SynthLookAndFeel;
+import lotto.util.Rank;
+
 public class View {
     // 나중에 리터럴은 다 상수로 바꾸기
     public void promptForPurchaseAmount() {
@@ -22,5 +25,18 @@ public class View {
 
     public void promptForBonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
+    }
+
+    public void promptForWinningStatistics() {
+        System.out.println("\n당첨 통계\n---");
+    }
+
+    public void printWinningStatistics(Rank rank, int rankCount) {
+        System.out.println(rank.toString() + " - " + rankCount + "개");
+    }
+
+    public void printReturnRate(double returnRate) {
+        String formattedReturnRate = String.format("%.1f%%", returnRate);
+        System.out.println("총 수익률은 " + formattedReturnRate + "입니다.");
     }
 }

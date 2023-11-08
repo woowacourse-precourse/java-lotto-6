@@ -75,4 +75,10 @@ public class Lotto {
     public void sortNumbers(List<Integer> numbers) {
         Collections.sort(numbers);
     }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+    @Override
+    public String toString() {return numbers.toString();}
 }

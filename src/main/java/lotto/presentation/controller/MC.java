@@ -9,6 +9,7 @@ import lotto.model.LottoWinningNumbers;
 import lotto.presentation.view.View;
 import lotto.repository.LottoTicketRepository;
 import lotto.service.Referee;
+import lotto.util.Rank;
 
 public class MC {
     private View view;
@@ -24,11 +25,24 @@ public class MC {
     public void run() {
         lottoPurchaseLogic();
         LottoWinningNumbers lottoWinningNumbers = lottoWinningNumbersGenerationLogic();
+        List<Rank> ranks = referee.calculateRanks(lottoWinningNumbers);
+        displayWinningStatistics(ranks);
+        Console.close();
+    }
+
+    private void displayWinningStatistics(List<Rank> ranks) {
+        view.promptForWinningStatistics();
+        for (Rank rank : Rank.values()) {
+            view.printWinningStatistics(rank, Rank.countRank(ranks, rank));
+        }
+        double returnRate = referee.calculateReturnRate(ranks);
+        view.printReturnRate(returnRate);
     }
 
     private String readAndRemoveSpace() {
         return Console.readLine().replaceAll(" ", "");
     }
+
 
     private void lottoPurchaseLogic() {
         int purchaseAmount = readAndValidateAmount();
@@ -62,6 +76,7 @@ public class MC {
             view.printPurchaseLottoTicket(ticket.toString());
         }
     }
+
 
     private LottoWinningNumbers lottoWinningNumbersGenerationLogic() {
         while (true) {
@@ -116,6 +131,7 @@ public class MC {
         isNotBlankValue(inputBonusNumber);
         isNotIntegerValue(inputBonusNumber);
     }
+
 
     // 에러 메세지 리터럴이니까 변경하기
     public void isNotBlankValue(final String inputValue) {

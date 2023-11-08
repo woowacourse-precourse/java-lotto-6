@@ -66,8 +66,20 @@ public class Application {
         }
         return LottoRank.valueOf(matchCount, bonusMatch);
     }
+    private static void printStatistics(Map<LottoRank, Integer> prizeCount, long totalPrize, int buyMoney) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank.getPrizeMoney() > 0) { // NONE 타입은 출력하지 않습니다.
+                System.out.printf("%d개 일치 (%s원)- %d개%n",
+                        rank.getMatchCount(),
+                        String.format("%,d", rank.getPrizeMoney()),
+                        prizeCount.get(rank));
+            }
+        }
 
-    private static void printStatistics(Map<LottoRank, Integer> prizeCount, long totalPrize, int buyMoney){
-
+        double profitRate = ((double) totalPrize / buyMoney) * 100;
+        System.out.printf("총 수익률은 %.2f%%입니다.%n", profitRate);
     }
+
 }

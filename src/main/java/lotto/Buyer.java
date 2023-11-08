@@ -8,12 +8,24 @@ public class Buyer {
     private int bonus;
 
     private Buyer(Lotto lotto, int bonus) {
+        validateExistence(bonus);
+
         this.lotto = lotto;
         this.bonus = bonus;
     }
 
     public static Buyer create(Lotto lotto, int bonus) {
         return new Buyer(lotto, bonus);
+    }
+
+    private void validateExistence(int bonus) {
+        if (isExistedValue(bonus)) {
+            throw new IllegalArgumentException("당첨 번호로 입력한 숫자는 다시 입력할 수 없습니다.");
+        }
+    }
+
+    private boolean isExistedValue(int bonus) {
+        return lotto.contain(bonus);
     }
 
     public Rank calculateComparingResult(Lotto numbers) {

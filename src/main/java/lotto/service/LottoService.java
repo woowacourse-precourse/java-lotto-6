@@ -44,15 +44,22 @@ public class LottoService implements LottoFinalConsts {
         if (lottoException.isValidLottoPurchase(lottoPurchase)) {
             lottoPurchased = Integer.parseInt(lottoPurchase);
         }
-        return new LottoMachine(lottoPurchased, lottoCount, lottos, lottoRanks);
+        return new LottoMachine(lottoPurchased, lottos, lottoRanks);
     }
 
     public void saveWinningAndBonusNumbers(LottoMachine lottoMachine, String winningNumber, String bonusNumber){
         String[] winning = winningNumber.split(LOTTO_WINNING_SPLIT);
+        validateWinningSize(winning);
         for(String number:winning){
             lottoMachine.updateLottoWinningNumbers(Integer.parseInt(number));
         }
         lottoMachine.updateLottoBonusNumber(Integer.parseInt(bonusNumber));
+    }
+
+    public void validateWinningSize(String[] winning){
+        if (winning.length!=LOTTO_RANDOM_COUNT){
+            throw new ArrayIndexOutOfBoundsException(LOTTO_ERROR_MESSAGE+LOTTO_RANGE_OUT_OF_BOUNDS);
+        }
     }
 
     public void saveRankCount(LottoMachine lottoMachine){

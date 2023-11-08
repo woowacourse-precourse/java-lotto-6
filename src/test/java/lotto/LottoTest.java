@@ -1,8 +1,10 @@
 package lotto;
 
-import lotto.controller.LottoController;
+import lotto.service.LottoService;
+import lotto.model.Lotto;
+import lotto.model.PurchaseAmount;
+import lotto.model.Winning;
 import lotto.validate.Check;
-import lotto.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -91,7 +93,7 @@ class LottoTest {
         List<Lotto> lotto = List.of(new Lotto(List.of(1, 23, 29, 31, 38, 45)));
         int bonusNumber = 22;
 
-        Winning winning = LottoController.getWinning(lotto, winningNumber, bonusNumber);
+        Winning winning = LottoService.getWinning(lotto, winningNumber, bonusNumber);
         winning.lottoResult();
         long l = winning.calculateProfit();
 
@@ -106,7 +108,7 @@ class LottoTest {
         List<Lotto> lotto = List.of(new Lotto(List.of(1, 23, 29, 31, 38, 22)));
         int bonusNumber = 22;
 
-        Winning winning = LottoController.getWinning(lotto, winningNumber, bonusNumber);
+        Winning winning = LottoService.getWinning(lotto, winningNumber, bonusNumber);
         winning.lottoResult();
         long l = winning.calculateProfit();
 
@@ -121,7 +123,7 @@ class LottoTest {
         List<Lotto> lotto = List.of(new Lotto(List.of(1, 23, 29, 31, 38, 39)));
         int bonusNumber = 22;
 
-        Winning winning = LottoController.getWinning(lotto, winningNumber, bonusNumber);
+        Winning winning = LottoService.getWinning(lotto, winningNumber, bonusNumber);
         winning.lottoResult();
         long l = winning.calculateProfit();
 
@@ -136,7 +138,7 @@ class LottoTest {
         List<Lotto> lotto = List.of(new Lotto(List.of(1, 23, 29, 31, 37, 39)));
         int bonusNumber = 22;
 
-        Winning winning = LottoController.getWinning(lotto, winningNumber, bonusNumber);
+        Winning winning = LottoService.getWinning(lotto, winningNumber, bonusNumber);
         winning.lottoResult();
         long l = winning.calculateProfit();
 
@@ -151,7 +153,7 @@ class LottoTest {
         List<Lotto> lotto = List.of(new Lotto(List.of(1, 23, 29, 32, 37, 39)));
         int bonusNumber = 22;
 
-        Winning winning = LottoController.getWinning(lotto, winningNumber, bonusNumber);
+        Winning winning = LottoService.getWinning(lotto, winningNumber, bonusNumber);
         winning.lottoResult();
         long l = winning.calculateProfit();
 
@@ -166,7 +168,7 @@ class LottoTest {
         List<Lotto> lotto = List.of(new Lotto(List.of(1, 24, 29, 32, 37, 39)));
         int bonusNumber = 22;
 
-        Winning winning = LottoController.getWinning(lotto, winningNumber, bonusNumber);
+        Winning winning = LottoService.getWinning(lotto, winningNumber, bonusNumber);
         winning.lottoResult();
         long l = winning.calculateProfit();
 

@@ -1,12 +1,12 @@
 package lotto.controller;
 
-import lotto.Lotto;
-import lotto.Winning;
+import lotto.model.Lotto;
+import lotto.model.Winning;
 
 import java.util.List;
 
-import static lotto.controller.LottoController.*;
-import static lotto.controller.LottoController.getWinning;
+import static lotto.service.LottoService.*;
+import static lotto.service.LottoService.getWinning;
 import static lotto.view.OutView.outputLottoNumber;
 
 public class GameController {

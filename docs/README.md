@@ -226,3 +226,32 @@ public class Lotto {
 - -----------
 
 ## 디렉토리 구조
+
++---main
+|   \---java
+|       \---lotto
+|           |   Application.java
+|           |
+|           +---Controller
+|           |       LottoGame.java
+|           |
+|           +---Model
+|           |       BonusNumber.java
+|           |       CompareResult.java
+|           |       Lotto.java
+|           |       LottoGenerator.java
+|           |       LottoPurchaseAmount.java
+|           |       WinningResult.java
+|           |
+|           \---View
+|                   ExceptionMessages.java
+|                   InputView.java
+|                   OutputView.java
+|
+\---test
+\---java
+\---lotto
+ApplicationTest.java
+BonusNumberTest.java
+LottoTest.java
+PurchaseAmountTest.java

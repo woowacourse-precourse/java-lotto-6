@@ -24,12 +24,34 @@ public class LottoController {
     }
 
     public WinningLotto createWinningLotto() {
-        outputView.printInputWinningNumbersSentence();
-        List<Integer> winningNumbers = inputView.inputLottoNumbers();
+        List<Integer> winningNumbers = inputWinningNumbers();
+        outputView.printNewLine();
 
-        outputView.printInputBonusNumberSentence();
-        Integer bonusNumber = inputView.inputNumber();
+        Integer bonusNumber = inputBonusNumber();
+        outputView.printNewLine();
         return lottoFactory.createWinningLotto(winningNumbers, bonusNumber);
+    }
+
+    private List<Integer> inputWinningNumbers() {
+        try {
+            outputView.printInputWinningNumbersSentence();
+            List<Integer> winningNumbers = inputView.inputLottoNumbers();
+            return winningNumbers;
+        } catch (IllegalArgumentException e) {
+            outputView.print(e.getMessage());
+            return inputWinningNumbers();
+        }
+    }
+
+    private Integer inputBonusNumber() {
+        try {
+            outputView.printInputBonusNumberSentence();
+            Integer bonusNumber = inputView.inputNumber();
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            outputView.print(e.getMessage());
+            return inputBonusNumber();
+        }
     }
 
     public void getLottosResult(Lottos lottos, WinningLotto winningLotto) {

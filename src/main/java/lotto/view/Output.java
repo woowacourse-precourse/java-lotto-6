@@ -22,7 +22,10 @@ public class Output {
         System.out.println(String.format("5개 일치 (1,500,000원) - %d개", lotteryResults[5]));
         System.out.println(String.format("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", matchFiveWithBonus));
         System.out.println(String.format("6개 일치 (2,000,000,000원) - %d개", lotteryResults[6]));
+    }
 
+    public void printRateOfReturn(double rateOfReturn) {
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", rateOfReturn));
     }
 
 }

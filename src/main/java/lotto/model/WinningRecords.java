@@ -1,40 +1,36 @@
 package lotto.model;
 
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class WinningRecords {
 
-    private final int[] lotteryResults;
+    private int[] lotteryResults = new int[7];
     private int matchFiveWithBonus = 0;
-
-    private List<List<Integer>> lottoTickets;
-    private int bonusNumber;
-    private List<Integer> winningNumbersWithBonusNumber;
+    private final int bonusNumber;
+    private final List<Integer> winningNumbersWithBonusNumber;
 
 
     public WinningRecords(List<List<Integer>> lottoTickets,
                           int bonusNumber,
-                          List<Integer> winningNumbersWithBonusNumber,
-                          int[] lotteryResults) {
-        this.winningNumbersWithBonusNumber = winningNumbersWithBonusNumber;
-        this.lottoTickets = lottoTickets;
-        this.bonusNumber = bonusNumber;
-        this.lotteryResults = lotteryResults;
+                          List<Integer> winningNumbersWithBonusNumber) {
 
-        calculateWinningRecords();
+        this.winningNumbersWithBonusNumber = winningNumbersWithBonusNumber;
+        this.bonusNumber = bonusNumber;
+
+        calculateWinningRecords(lottoTickets);
     }
 
-    private void calculateWinningRecords() {
-        Set<Integer> matchResults = new HashSet<>(winningNumbersWithBonusNumber);
+    private void calculateWinningRecords(List<List<Integer>> lottoTickets) {
         for (List<Integer> lotto : lottoTickets) {
+            Set<Integer> matchResults = new HashSet<>(winningNumbersWithBonusNumber);
             matchResults.addAll(lotto);
+
             int countMatch = 13 - matchResults.size();
+
             if (countMatch == 5 && lotto.contains(bonusNumber)) {
                 matchFiveWithBonus++;
-            } else if (countMatch > 0) {
+            } else if (countMatch>0) {
                 lotteryResults[countMatch] += 1;
             }
         }

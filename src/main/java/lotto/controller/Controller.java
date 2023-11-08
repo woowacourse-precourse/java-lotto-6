@@ -29,31 +29,38 @@ public class Controller {
         output.printLottoTickets(lottoTickets);
 
         // 당첨 번호 입력받기
-        List<Integer> winningNumbers = getWinningNumbers();
+        List<Integer> winningNumbers = new Lotto(input.inputWinningNumbers()).getWinnerNumbers();
         // 보너스 당첨 번호
-        int bonusNumber = getBonusNumber();
+        int bonusNumber = new BonusWinningNumber(input.inputBonusNumber()).getBonusNumber();
         // 당첨 번호 + 보너스 번호
         List<Integer> winningNumbersWithBonusNumber = new WinningNumbersWithBonusNumber(winningNumbers, bonusNumber)
                 .getWinningNumbersWithBonusNumber();
 
-        int[] lotteryResults = new int[winningNumbers.size() + 1];
-
+        // 당첨 통계
         WinningRecords winningRecords = new WinningRecords(lottoTickets, bonusNumber,
-                winningNumbersWithBonusNumber, lotteryResults);
+                winningNumbersWithBonusNumber);
 
-        lotteryResults = winningRecords.getLotteryResults();
+        int[] lotteryResults = winningRecords.getLotteryResults();
         int matchFiveWithBonus = winningRecords.getMatchFiveWithBonus();
 
         output.printWinningStatistics(lotteryResults, matchFiveWithBonus);
+
+        int winningPrize = calculateWinningPrize(lotteryResults);
+        double rateOfReturn = calculateRateOfReturn(winningPrize, countLottoTickets);
+        RateOfReturn yieldRateOfReturn = new RateOfReturn(winningPrize, rateOfReturn);
+
+        output.printRateOfReturn(rateOfReturn);
+
     }
 
-    private List<Integer> getWinningNumbers() {
-        return new WinningNumbers(input.inputWinningNumbers()).getWinnerNumbers();
+    private int calculateWinningPrize(int[] lotteryResults) {
+        return (lotteryResults[3] * 5000) + (lotteryResults[4] * 50000) + (lotteryResults[5] * 1500000) + (lotteryResults[6] * 2000000000);
     }
 
-    private int getBonusNumber() {
-        return new BonusWinningNumber(input.inputBonusNumber()).getBonusNumber();
+        private double calculateRateOfReturn(int winningPrize, int numberOfLottoTickets) {
+        return (double) winningPrize / (numberOfLottoTickets * 1000) * 100;
     }
+
 
     private List<List<Integer>> getLottoTicketsTickets(int countLottoTickets) {
         List<List<Integer>> lottoTickets = new ArrayList<>();

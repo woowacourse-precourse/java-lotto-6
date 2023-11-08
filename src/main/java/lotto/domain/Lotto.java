@@ -1,8 +1,11 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.exception.ExceptionMsg;
+import lotto.verifier.LottoNumberVerifier;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -12,13 +15,26 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
         sortNumbers();
+        verifyDuplicated();
+    }
+
+    public void verifyDuplicated(){
+        HashSet<Integer> set = new HashSet();
+        try{
+            for (Integer integer: numbers) {
+                set.add(integer);
+            }
+        }catch (Exception e){
+            throw new IllegalArgumentException(ExceptionMsg.DUPLICATE_LOTTO_NUM.getMessage());
+        }
+
     }
 
 
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMsg.NOT_SIX_INPUT_NUMBERS.getMessage());
         }
     }
     // 입력한 로또 번호와 생성된 로또 번호 사이에 몇개의 숫자가 맞는지 반환

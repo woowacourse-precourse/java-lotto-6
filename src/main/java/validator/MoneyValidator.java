@@ -5,6 +5,8 @@ public class MoneyValidator {
         moneyNotNull(money);
         moneyIsNumber(money);
         int moneyNumber = Integer.parseInt(money);
+        moneyNotZero(moneyNumber);
+        moneyDivideBy1000(moneyNumber);
     }
 
     private static void moneyNotNull(String money) {
@@ -22,6 +24,12 @@ public class MoneyValidator {
     private static void moneyNotZero(int moneyNumber) {
         if (moneyNumber == 0) {
             throw new IllegalArgumentException("[ERROR] 양의 정수를 입력해주세요.");
+        }
+    }
+
+    private static void moneyDivideBy1000(int moneyNumber) {
+        if (moneyNumber % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위입니다.");
         }
     }
 }

@@ -7,7 +7,6 @@ public enum Rank {
     THIRD(5, 1_500_000),// 3등
     FOURTH(4, 50_000),// 4등
     FIFTH(3, 5_000), // 5등
-
     MISS(0, 0);
 
     private int countOfMatch; // 일치 수

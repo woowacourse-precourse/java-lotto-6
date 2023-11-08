@@ -10,24 +10,26 @@ import lotto.Model.ProfitRate.ProfitRate;
 import static lotto.Common.LottoValue.*;
 
 public class OutputView {
-    private static final String LOTTO_BUY_COUNT = "%2d 개를 구매했습니다.";
+    private static final String LOTTO_BUY_COUNT = "%d개를 구매했습니다.";
     private static final String WINNING_PROFIT = "당첨 통계";
-
     private static final String WINNING_LOTTO_PRINT = "%d개 일치 (%,d원) - %d개%n";
     private static final String WINNING_LOTTO_PRINT_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n";
+    private static final String COMMA = ",";
+    private static final String RIGHTBRACKET = "[";
+    private static final String LEFTBRACKET = "]";
 
 
     public void lottoSetPrint(LottoSet lottoSet) {
         List<Lotto> lottoList = lottoSet.getLottoSet();
-        System.out.println();
-        System.out.printf((LOTTO_BUY_COUNT) + "%n", lottoList.size());
+        System.out.print(" ");
+        System.out.printf(LOTTO_BUY_COUNT,lottoList.size());
+
         for (Lotto lotto : lottoList) {
-            System.out.print("[");
+            System.out.printf(RIGHTBRACKET);
             List<Integer> numbers = lotto.getNumbers();
             lottoNumberPrint(numbers);
-            System.out.println("]");
+            System.out.printf(LEFTBRACKET);
         }
-        System.out.println();
     }
 
     private void lottoNumberPrint(List<Integer> numbers) {
@@ -35,9 +37,9 @@ public class OutputView {
         int size = numbers.size();
 
         for (int i = 0; i < size; i++) {
-            System.out.print(numbers.get(i));
+            System.out.printf("%d", numbers.get(i));
             if (i < size - 1) {
-                System.out.print(",");
+                System.out.printf(COMMA);
             }
         }
     }

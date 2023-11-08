@@ -1,6 +1,7 @@
 package lotto.Model.PurchaseAmount;
 
 import static lotto.Common.LottoValue.*;
+import static lotto.Common.ErrorMessage.*;
 
 public class PurchaseAmount {
     private final Integer Amount;
@@ -19,14 +20,14 @@ public class PurchaseAmount {
 
     private void validateInteger( Integer amount ) {
         if( amount <= 0) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_IS_POSITIVE_INTEGER.getMessage());
         }
 
     }
 
     private void validateThousandUnit( Integer amount) {
         if( amount < LOTTO_ONE_TICKET_PRICE.getValue() || amount % LOTTO_ONE_TICKET_PRICE.getValue() != 0 ) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_MULTIPLE_THOUSAND.getMessage());
         }
     }
 

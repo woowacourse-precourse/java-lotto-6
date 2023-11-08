@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import lotto.common.Announcement;
 import lotto.common.Constraint;
 import lotto.common.ErrorMessage;
@@ -46,6 +47,7 @@ public class LottoDrawMachine {
                     Constraint.LOTTO_MIN_NUMBER.getValue(),
                     Constraint.LOTTO_MAX_NUMBER.getValue()
                 );
+                validateDuplicated(winningNumbers);
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
                 ErrorMessage.printExceptionMessage(e);
@@ -76,4 +78,11 @@ public class LottoDrawMachine {
             }
         }
     }
+
+    private void validateDuplicated(List<Integer> numbers) {
+        if (Set.copyOf(numbers).size() != numbers.size()) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATED.getMessage());
+        }
+    }
+
 }

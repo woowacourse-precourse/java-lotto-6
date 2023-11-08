@@ -92,19 +92,13 @@
 - 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
-- BonusNumberContainLottoException
-    - [x] 보너스 번호가 로또 번호에 포함될 경우 예외가 발생한다.
-- LottoNumberDuplicateException
-    - [x] 당첨 로또가 중복되어 입력될 경우 예외가 발생한다.
-- LottoNumberRangeException
-    - [x] 당첨 로또의 범위가 1~45 가 아닐 경우 예외가 발생한다.
-- LottoNumberSizeException
-    - [x] 당첨 로또의 크기가 6이 아닐 경우 예외가 발생한다.
-- NotDivisionCommaException
-    - [x] 당첨 번호를 쉼표로 구분하지 않을 경우 예외가 발생한다.
-- NotNumericException
-    - [x] 숫자를 입력하지 않을 경우 예외가 발생한다.
-- NotThousandUnitException
-    - [x] 로또 구입 금액을 1000단위로 입력하지 않을 경우 예외가 발생한다.
-- NumberNullException
-    - [x] 숫자 값에 Null 저장했을 시 예외가 발생한다.
+| 예외 목록                            | 설명                                 |
+|----------------------------------|------------------------------------|
+| NotDivisionCommaException        | 쉼표(,)를 구분하여 입력하지 않으면 예외가 발생한다.     |
+| NotNumericException              | 숫자로 입력하지 않으면 예외가 발생한다.             |
+| BonusNumberContainLottoException | 보너스 번호가 당첨 번호에 포함 되어 있으면 예외가 발생한다. |
+| LottoNumberDuplicateException    | 당첨 번호가 중복되게 입력하면 예외가 발생한다.         |
+| LottoNumberRangeException        | 당첨 번호를 로또 범위를 벗어나면 예외가 발생한다.       |
+| LottoNumbersSizeException        | 당첨 번호가 6자리가 아니면 예외가 발생한다.          |
+| NotThousandUnitException         | 로또 구매 가격이 1,000단위가 아니라면 예외가 발생한다.  |
+| NumberNullException              | 숫자값이 null로 저장되어 있다면 예외가 발생한다.      |

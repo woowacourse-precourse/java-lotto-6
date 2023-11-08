@@ -1,7 +1,6 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.ui.UserView;
+import lotto.userinterface.UserView;
 import lotto.data.Lotto;
 import lotto.data.Rewards;
 
@@ -14,10 +13,11 @@ public class ViewProcessor {
 
     private static final LottoModel lottomodel = new LottoModel();
     private static final UserView userView = new UserView();
+    private static List<Integer> winningNums = new ArrayList<>();
 
     private int bonusNum;
     private int cost;
-    private List<Integer> winningNums;
+    private HashMap<Rewards, Integer> winningTable;
 
     enum MagicNums {
 
@@ -63,7 +63,7 @@ public class ViewProcessor {
     public boolean bonusBall(String tempBonus) {
         try {
             checkValidBonusNum(tempBonus);
-            lottomodel.computeBonus(bonusNum);
+            lottomodel.computeLotto(winningNums,bonusNum);
             return States.STATE_SUCESS.getState();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -73,7 +73,6 @@ public class ViewProcessor {
 
 
     public void totalResult(HashMap<Rewards, Integer> winningTable, String computedRate) {
-
         userView.totalResult(winningTable, computedRate);
     }
 
@@ -106,7 +105,6 @@ public class ViewProcessor {
 
     public void checkValidBonusNum(String tempBonus) {
         try {
-            checkIsNull(tempBonus);
             int bonusNum = Integer.parseInt(tempBonus);
             checkRange(bonusNum);
             checkExist(winningNums,bonusNum);
@@ -156,7 +154,6 @@ public class ViewProcessor {
     }
 
     public void makeWinningNums(List<String> parsedWinnings) {
-        winningNums = new ArrayList<>();
         try {
             for (String element : parsedWinnings) {
                 int winning = Integer.parseInt(element);
@@ -217,7 +214,6 @@ public class ViewProcessor {
         try {
             List<String> parsedWinnings = parsingWinnings(inputWinnings);
             makeWinningNums(parsedWinnings);
-            lottomodel.computeLotto(winningNums, bonusNum);
             return States.STATE_SUCESS.getState();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

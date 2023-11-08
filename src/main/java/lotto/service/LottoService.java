@@ -15,8 +15,8 @@ public class LottoService {
         int money = InputService.inputMoney();
         int ticket = lottoController.getLottoTicket(money);
         lottoController.setRandomLottoNumber(ticket);
+        System.out.println(ticket + "개를 구매했습니다.");
         System.out.println(lottoController.getLottoString());
-        System.out.println();
     }
 
     public void printinputLotto() {
@@ -34,7 +34,7 @@ public class LottoService {
         System.out.println("5개 일치 (1,500,000원) - " + resultTypes.getOrDefault(ResultType.FIFTH, (long) 0) +"개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + resultTypes.getOrDefault(ResultType.FIFTH_BONUS, (long) 0) +"개");
         System.out.println("6개 일치 (2,000,000,000원) - " + resultTypes.getOrDefault(ResultType.ALL, (long) 0) +"개");
-        System.out.println("총 수익률은 " + returnRate + "%입니다");
+        System.out.println("총 수익률은 " + returnRate + "%입니다.");
     }
 
     public void printLottoService() {

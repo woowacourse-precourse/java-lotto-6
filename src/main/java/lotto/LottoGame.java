@@ -98,7 +98,6 @@ public class LottoGame {
 
     public boolean checkFourthPrize(int count) {
 
-
         if (count == 4) {
             prizeCount[4]++;
             totalProfit+=50000;

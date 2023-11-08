@@ -11,7 +11,7 @@ public class Input {
         String input="";
         do{
             input=Console.readLine();
-        }while(!ErrorCheck.wonCheck(input));
+        }while(!ErrorCheck.checkWon(input));
         return Integer.parseInt(input);
     }
 
@@ -25,7 +25,7 @@ public class Input {
             for (String part : parts) {
                 ret.add(Integer.parseInt(part.trim()));
             }
-        }while(!ErrorCheck.userLottoCheck(ret) || !ErrorCheck.isDuplicated(ret));
+        }while(!ErrorCheck.userLottoCheck(ret));
         return ret;
     }
 

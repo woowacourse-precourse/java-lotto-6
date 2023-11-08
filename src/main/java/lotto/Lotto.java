@@ -1,9 +1,6 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -29,6 +26,7 @@ public class Lotto {
 
     @Override
     public String toString() {
+        numbers.sort(Comparator.naturalOrder());
         return numbers.toString();
     }
 

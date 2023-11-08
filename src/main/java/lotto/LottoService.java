@@ -91,9 +91,7 @@ public class LottoService {
         boolean isRunning = true;
         while (isRunning) {
             try {
-                System.out.println();
-                System.out.println("당첨 번호를 입력해 주세요.");
-                String[] winningNumberStr = Console.readLine().split(",");
+                String[] winningNumberStr = winNumInput();
                 winningNumberInt = Arrays.stream(winningNumberStr).mapToInt(Integer::parseInt).toArray();
                 int i = winningNumberInt[5];
                 isRunning = false;
@@ -106,6 +104,13 @@ public class LottoService {
             }
         }
         return winningNumberInt;
+    }
+
+    private String[] winNumInput() {
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String[] winningNumberStr = Console.readLine().split(",");
+        return winningNumberStr;
     }
 
     public int bonusNumberInput() {

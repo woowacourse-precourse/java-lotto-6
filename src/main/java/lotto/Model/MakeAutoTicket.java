@@ -1,8 +1,6 @@
 package lotto.Model;
 
-import java.util.Collections;
 import java.util.List;
-
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class MakeAutoTicket {
@@ -10,7 +8,6 @@ public class MakeAutoTicket {
 
     public MakeAutoTicket(){
         numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
     }
 
     public List<Integer> getnumbers(){

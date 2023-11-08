@@ -8,6 +8,12 @@ public class StringToInt {
     }
 
     public int getInteger(){
-        return valueToReturn;
+        try{
+            return valueToReturn;
+
+
+        }catch(NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR]");
+        }
     }
 }

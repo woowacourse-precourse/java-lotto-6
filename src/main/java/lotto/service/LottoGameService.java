@@ -7,9 +7,9 @@ import java.util.EnumMap;
 import java.util.List;
 import lotto.domain.FinalGrade;
 import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
 import lotto.domain.PlayerLotto;
 import lotto.domain.Rank;
+import lotto.domain.WinningInformation;
 import lotto.dto.WinningStatisticsDto;
 import lotto.service.numbergenerator.NumberGenerator;
 
@@ -30,9 +30,9 @@ public class LottoGameService {
         return Collections.unmodifiableList(lottos);
     }
 
-    public WinningStatisticsDto calculateWinningStatistics(final PlayerLotto playerLotto, final Lotto winningNumber,
-                                                           final LottoNumber bonusNumber) {
-        FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningNumber, bonusNumber);
+    public WinningStatisticsDto calculateWinningStatistics(final PlayerLotto playerLotto,
+                                                           final WinningInformation winningInformation) {
+        FinalGrade finalGrade = playerLotto.calculateFinalGrade(winningInformation);
         EnumMap<Rank, Integer> eachRankCounts = finalGrade.getEachRankCounts();
         BigDecimal yieldRate = yieldCalculator.calculate(finalGrade);
 

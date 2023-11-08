@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class InputService {
@@ -42,5 +44,15 @@ public class InputService {
         ValidateService.validateNumberInRange(bonus);
         ValidateService.validateDuplicatedNums(bonus,winningNumbers);
         return bonus;
+    }
+
+    public <T> T iterWhenException(Supplier<T> userInput){
+        T input = null;
+        try{
+            input = userInput.get();
+        }catch (IllegalArgumentException illegalArgumentException){
+            return iterWhenException(userInput);
+        }
+        return input;
     }
 }

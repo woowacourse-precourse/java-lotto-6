@@ -20,22 +20,9 @@ public class WinningNumberInputValidator {
         return (1 <= oneLottoNumber && oneLottoNumber <= 45);
     }
 
-    public boolean isLottoNumberNotDuplication(Lotto lotto) {
-        for (int i = 0; i < lotto.size(); i++) {
-            int oneNumber = lotto.get(i);
-            if (lotto.contains(oneNumber)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public boolean isWinningLottoNotDuplication(WinningNumber winningNumber) {
         Lotto winningLotto = winningNumber.getWinningNumber();
         int bonusNumber = winningNumber.getBonusNumber();
-        if (!isLottoNumberNotDuplication(winningLotto)) {
-            return false;
-        }
 
         if (winningLotto.contains(bonusNumber)) {
             return false;

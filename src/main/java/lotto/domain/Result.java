@@ -42,10 +42,10 @@ public class Result {
         public static ResultType getResultType(Lotto lotto, List<Integer> winningNumber, int bonusBall) {
 
                 long matchCount = lotto.getNumbers().stream().filter(winningNumber::contains).count();
-                boolean hasBounuBall = lotto.getNumbers().contains(bonusBall);
+                boolean hasBounsBall = lotto.getNumbers().contains(bonusBall);
 
             return Arrays.stream(values())
-                    .filter(type -> type.matchCount == matchCount && type.hasBonusBall == hasBounuBall)
+                    .filter(type -> type.matchCount == matchCount && type.hasBonusBall == hasBounsBall)
                     .findFirst()
                     .orElse(NONE);
         }

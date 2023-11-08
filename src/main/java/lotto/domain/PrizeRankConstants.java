@@ -14,7 +14,7 @@ public enum PrizeRankConstants {
         return (!isBonusMatched && numberOfMatched == 5);
     }),
     RANK_2ND(30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원)", (numberOfMatched, isBonusMatched) -> {
-        return (isBonusMatched && numberOfMatched == 5);
+        return (isBonusMatched && numberOfMatched == 6);
     }),
     RANK_1ST(2_000_000_000, "6개 일치 (2,000,000,000원)", (numberOfMatched, isBonusMatched) -> {
         return (numberOfMatched == 6);

@@ -2,6 +2,11 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.exception.NotCommaSeparatedIntegerException;
+import lotto.domain.exception.NotDigitException;
+import lotto.domain.exception.NotValidBonusNumberSizeException;
+import lotto.domain.exception.NotValidLottoNumberException;
+import lotto.domain.exception.NotValidWinningNumberSizeException;
 
 public class LottoNumberConverter {
 

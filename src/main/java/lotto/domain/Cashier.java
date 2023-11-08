@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.domain.exception.NotDigitException;
+import lotto.domain.exception.NotDivisibleByThousandException;
+
 public class Cashier {
     private final long purchaseAmount;
 

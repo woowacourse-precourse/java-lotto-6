@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.exception;
 
 public class NotDigitException extends IllegalArgumentException {
     public NotDigitException() {

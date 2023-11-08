@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Lotto;
+import lotto.util.LottoConverter;
 import lotto.util.Validator;
 
 public class InputView {
@@ -11,7 +13,9 @@ public class InputView {
         return money;
     }
 
-    public static String inputWinningLottoNumbers() {
-        return Console.readLine();
+    public static Lotto inputWinningLottoNumbers() {
+        String winningLottoNumbers = Console.readLine();
+        Validator.validateInputPattern(winningLottoNumbers);
+        return LottoConverter.convertStringToLotto(winningLottoNumbers);
     }
 }

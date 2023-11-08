@@ -16,10 +16,8 @@ public class LottoPurchaseInputView {
                 int lottoPurchasePrice = lottoPurchaseValidator.validPurchaseAmount(lottoPurchaseAmount);
                 return lottoPurchasePrice;
             } catch (IllegalArgumentException e) {
-                // 에러 메시지 출력
                 System.out.println(e.getMessage());
 
-                // 다시 입력 받음
                 System.out.println(PURCHASE_AMOUNT_PROMPT);
                 lottoPurchaseAmount = Console.readLine();
             }

@@ -16,7 +16,6 @@ public class LottoBonusNumberInputView {
                 int bonusNumberValue = bonusNumberGeneratorValidator.vaildBonusNumber(bonusNumber);
                 return bonusNumberValue;
             } catch (IllegalArgumentException e) {
-                // 에러 메시지 출력
                 System.out.println(e.getMessage());
             }
         }

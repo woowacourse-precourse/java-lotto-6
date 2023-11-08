@@ -8,6 +8,7 @@ import java.util.List;
  * Lotto들을 저장하고 관리하는 domain
  */
 public class Lottos {
+
     private final List<Lotto> lottos = new ArrayList<Lotto>();
 
     /**
@@ -29,5 +30,9 @@ public class Lottos {
         lottos.stream().forEach(lotto -> {
             lotto.printLotto();
         });
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 }

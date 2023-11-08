@@ -10,7 +10,7 @@ public enum Rank {
     MISS(0, 0);
 
     private int countOfMatch; // 일치 수
-    private int gettingMoney; // 획든하는 돈
+    private int gettingMoney; // 획득하는 돈
 
     Rank(int countOfMatch, int gettingMoney) {
         this.countOfMatch = countOfMatch;

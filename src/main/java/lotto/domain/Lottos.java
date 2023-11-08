@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.global.constants.NumberType.LOTTO_SIZE;
+import static lotto.global.constants.NumberType.MAX_LOTTO_NUMBER;
 import static lotto.global.constants.NumberType.MIN_LOTTO_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -35,7 +36,7 @@ public class Lottos {
         for (int i = 0; i < count; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
                     MIN_LOTTO_NUMBER.getValue(),
-                    MIN_LOTTO_NUMBER.getValue(),
+                    MAX_LOTTO_NUMBER.getValue(),
                     LOTTO_SIZE.getValue());
             lottos.add(Lotto.from(numbers));
         }

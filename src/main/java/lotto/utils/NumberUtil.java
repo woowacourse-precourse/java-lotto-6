@@ -6,9 +6,8 @@ public class NumberUtil {
 
     private static final String DELIMITER = ",";
 
-    public static int toLottoCount(final String purchaseAmount, final int lottoPrice) {
-        int amount = Integer.parseInt(purchaseAmount);
-        return amount / lottoPrice;
+    public static int toLottoCount(int purchaseAmount, final int lottoPrice) {
+        return purchaseAmount / lottoPrice;
     }
 
     public static List<Integer> toListInteger(String inputNumbers) {

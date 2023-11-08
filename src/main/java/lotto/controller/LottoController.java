@@ -7,7 +7,6 @@ import lotto.model.LottoMachine;
 import lotto.model.Lottos;
 import lotto.model.WinningNumbers;
 import lotto.utils.NumberUtil;
-import lotto.validate.ValidateInput;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,7 +15,7 @@ public class LottoController {
     private static final int LOTTO_PRICE = 1000;
 
     public void init() {
-        String purchaseAmount = fetchPurchaseAmount();
+        int purchaseAmount = fetchPurchaseAmount();
         int lottoCount = NumberUtil.toLottoCount(purchaseAmount, LOTTO_PRICE);
 
         OutputView.printLottoCount(lottoCount);
@@ -29,16 +28,14 @@ public class LottoController {
 
     }
 
-    private String fetchPurchaseAmount() {
+    private int fetchPurchaseAmount() {
         OutputView.printBuyAnnounce();
-        String purchaseAmount = InputView.input();
         try {
-            ValidateInput.validatePurchaseAmount(purchaseAmount);
+            return InputView.inputPurchaseAmount();
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return fetchPurchaseAmount();
         }
-        return purchaseAmount;
     }
 
     private WinningNumbers fetchWinningNumbers() {

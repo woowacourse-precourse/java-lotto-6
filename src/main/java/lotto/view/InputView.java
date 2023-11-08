@@ -7,6 +7,12 @@ import lotto.validate.ValidateInput;
 
 public class InputView {
 
+    public static int inputPurchaseAmount() {
+        String purchaseAmount = input();
+        ValidateInput.validatePurchaseAmount(purchaseAmount);
+        return Integer.parseInt(purchaseAmount);
+    }
+
     public static List<Integer> inputWinningNumber() {
         String inputNumber = input();
         ValidateInput.validateWinningNumber(inputNumber);

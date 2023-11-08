@@ -68,6 +68,14 @@ public class LottoResultWinners {
     }
 
     public Integer getNumberOfAllWinner() {
-        return lottoResultWinner.size();
+        Integer sum = 0;
+        Integer rankCount = 0;
+        for (Rank rank : Rank.values()) {
+            rankCount = getNumberOfRankWinner(rank);
+            if(rankCount >= 1){
+                sum += rankCount;
+            }
+        }
+        return sum;
     }
 }

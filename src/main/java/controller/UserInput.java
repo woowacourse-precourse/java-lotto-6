@@ -14,12 +14,14 @@ public class UserInput {
 
     public static int purchasePrice(){
         int price;
-        try {
-            price = Integer.parseInt(Console.readLine());
-        }catch (Exception e){
-            throw new IllegalArgumentException("[ERROR] 숫자만 가능합니다.");
+        while (true){
+            try {
+                price = Integer.parseInt(Console.readLine());
+                return price;
+            }catch (IllegalArgumentException e){
+                System.out.println("[ERROR] 숫자만 가능합니다.");
+            }
         }
-        return price;
     }
 
     public static List<Integer> prizeNumber(){

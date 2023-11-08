@@ -5,15 +5,29 @@ import java.util.List;
 public class Lotto {
 
     private static final int LOTTOSIZE = 6;
-    private static final int MIN_LOTTONUMBER = 1;
-    private static final int MAX_LOTTONUMBER = 45;
+    static final int MIN_LOTTONUMBER = 1;
+    static final int MAX_LOTTONUMBER = 45;
     private final List<Integer> numbers;
+
+    private int bonusNumber = 0;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getLottoNumbers() {
+        return numbers;
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 
     private void validate(List<Integer> numbers) {

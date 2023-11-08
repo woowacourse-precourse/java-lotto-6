@@ -36,5 +36,12 @@ public class Exception {
         return true;
     }
     // 중복이 없는지
+    boolean checkDuplication(int number,Lotto lotto){
+        if(lotto.contain(number)){
+            System.out.println("[ERROR] 중복된 숫자가 입력되었습니다.");
+            return true;
+        }
+        return false;
+    }
     // 보너스와 숫자간 중복이 없는지
 }

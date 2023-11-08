@@ -20,4 +20,10 @@ public class InputView {
         return winningLottoNumbers;
     }
 
+    public int inputBonusNumber(Lotto winningLottoNumbers) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = lottoService.inputBonusNumber(winningLottoNumbers);
+        System.out.println();
+        return bonusNumber;
+    }
 }

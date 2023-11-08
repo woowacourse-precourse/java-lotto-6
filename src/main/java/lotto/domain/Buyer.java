@@ -8,7 +8,7 @@ import lotto.view.OutputView;
 public class Buyer {
     private final List<Lotto> lottos;
 
-    public Buyer(final int prise) {
+    public Buyer(final Long prise) {
         this.lottos = generateLottos(LottoUtils.getLottoAmount(prise));
         OutputView.buyAmount(lottos.size());
     }

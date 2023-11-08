@@ -1,13 +1,11 @@
 package lotto.controller;
 
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import lotto.domain.Buyer;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
-import lotto.utils.LottoUtils;
 import lotto.view.OutputView;
 
 public class LottoGame {

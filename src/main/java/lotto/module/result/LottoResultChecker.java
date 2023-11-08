@@ -25,7 +25,7 @@ public class LottoResultChecker {
         lottoResult = LottoResult.newInstance();
 
         for (Lotto lotto : userLottoTicket) {
-            int matchCount = winningLotto.numbersContains(lotto);
+            int matchCount = winningLotto.getIncludedNumbersCount(lotto);
             check(matchCount, lotto, winningLotto);
         }
 

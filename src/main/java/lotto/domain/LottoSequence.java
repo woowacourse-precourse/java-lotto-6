@@ -17,4 +17,8 @@ public class LottoSequence {
     public Lotto get(int index) {
         return lottoSequence.get(index);
     }
+
+    public void printAllLotto() {
+        lottoSequence.forEach(Lotto::printLottoInfo);
+    }
 }

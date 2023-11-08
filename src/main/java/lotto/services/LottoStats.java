@@ -37,14 +37,6 @@ public class LottoStats {
         earningRate = (totalProfit / amount) * 100;
     }
 
-    public double getEarningRate() {
-        return earningRate;
-    }
-
-    public Map<String, Integer> getStatsMap() {
-        return statsMap;
-    }
-
     private void lottoTypeInMatchNumber(List<Integer> lottoNumbers, long matchNumber, int bonusNumber) {
         if (matchNumber == LottoType.ONE_HALF_MILLION.getPrizeOrdinal()) {
             matchBonusNumber(lottoNumbers, bonusNumber);
@@ -111,5 +103,13 @@ public class LottoStats {
     private double multiplyFiveThousand() {
         String prizeCost = LottoType.FIVE_THOUSAND.getPrizeCost();
         return (statsMap.get(prizeCost) * Double.parseDouble(prizeCost));
+    }
+
+    public double getEarningRate() {
+        return earningRate;
+    }
+
+    public Map<String, Integer> getStatsMap() {
+        return statsMap;
     }
 }

@@ -42,9 +42,10 @@ public class Lotto {
             throw new IllegalArgumentException(ERROR_MESSAGE.getValue() + LOTTONUMBERSIZEEXCEED.getValue());
         }
     }
-    private void validateRangeOverValue(List<Integer> numbers){
-        for(Integer lottoValue : numbers){
-            if(lottoValue > LOTTONUMBEREND.getIntValue() || lottoValue < LOTTONUMBERSTART.getIntValue()){
+
+    private void validateRangeOverValue(List<Integer> numbers) {
+        for (Integer lottoValue : numbers) {
+            if (lottoValue > LOTTONUMBEREND.getIntValue() || lottoValue < LOTTONUMBERSTART.getIntValue()) {
                 throw new IllegalArgumentException(ERROR_MESSAGE.getValue() + LOTTONUMBERRANGEOVER.getValue());
             }
         }

@@ -27,7 +27,7 @@ public class LottoChecker {
         this.answerLotto = answerLotto.getLotto();
         this.bounsNumber = bonusNumber.getBonusNumber();
         this.winningStatics = new HashMap<>();
-        Arrays.stream(Rank.values()).forEach( rank -> {
+        Arrays.stream(Rank.values()).forEach(rank -> {
             winningStatics.put(rank.getValue(), 0);
         });
     }
@@ -45,16 +45,21 @@ public class LottoChecker {
     }
 
     private String getLottoRank(List<Integer> lotto, boolean bonusNumberCheck) {
-        if(lotto.size() == FIRSTRANKMATCHING.getIntValue())
+        if (lotto.size() == FIRSTRANKMATCHING.getIntValue()) {
             return FIRSTRANK.getValue();
-        if(lotto.size() == SECONDRANKMATCHING.getIntValue() && bonusNumberCheck)
+        }
+        if (lotto.size() == SECONDRANKMATCHING.getIntValue() && bonusNumberCheck) {
             return SECONDRANK.getValue();
-        if(lotto.size() == SECONDRANKMATCHING.getIntValue())
+        }
+        if (lotto.size() == SECONDRANKMATCHING.getIntValue()) {
             return THIRDRANK.getValue();
-        if(lotto.size() == FOURTHRANKMATCHING.getIntValue())
+        }
+        if (lotto.size() == FOURTHRANKMATCHING.getIntValue()) {
             return FOURTHRANK.getValue();
-        if(lotto.size() == FIFTHRANKMATCHING.getIntValue())
+        }
+        if (lotto.size() == FIFTHRANKMATCHING.getIntValue()) {
             return FIFTHRANK.getValue();
+        }
         return NOMATCHING.getValue();
     }
 

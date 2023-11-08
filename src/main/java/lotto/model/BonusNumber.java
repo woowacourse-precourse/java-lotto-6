@@ -17,17 +17,20 @@ public class BonusNumber {
     public Integer getBonusNumber() {
         return bonusNumber;
     }
-    private void validate(Integer bonusNumber, Lotto answerLotto){
+
+    private void validate(Integer bonusNumber, Lotto answerLotto) {
         validateBonusNumberRange(bonusNumber);
         validateBonusNumberDuplicated(bonusNumber, answerLotto);
     }
-    private void validateBonusNumberRange(Integer bonusNumber){
-        if(bonusNumber > LOTTONUMBEREND.getIntValue() || bonusNumber < LOTTONUMBERSTART.getIntValue()){
+
+    private void validateBonusNumberRange(Integer bonusNumber) {
+        if (bonusNumber > LOTTONUMBEREND.getIntValue() || bonusNumber < LOTTONUMBERSTART.getIntValue()) {
             throw new IllegalArgumentException(ERROR_MESSAGE.getValue() + LOTTONUMBERRANGEOVER.getValue());
         }
     }
-    private void validateBonusNumberDuplicated(Integer bonusNumber, Lotto answerLotto){
-        if(answerLotto.getLotto().contains(bonusNumber)){
+
+    private void validateBonusNumberDuplicated(Integer bonusNumber, Lotto answerLotto) {
+        if (answerLotto.getLotto().contains(bonusNumber)) {
             throw new IllegalArgumentException(ERROR_MESSAGE.getValue() + LOTTODUPLICATEDNUMBER.getValue());
         }
     }

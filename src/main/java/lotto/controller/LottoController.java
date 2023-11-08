@@ -45,22 +45,24 @@ public class LottoController {
             }
         }
     }
-    private Lotto controlAnswerLotto(){
-        while(EXCEPTIONLOOPCHECKER){
-            try{
+
+    private Lotto controlAnswerLotto() {
+        while (EXCEPTIONLOOPCHECKER) {
+            try {
                 Lotto answerLotto = new Lotto(getAnswerLottoNumber());
                 return answerLotto;
-            }catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 displayOutput.outputExceptionMessage(e);
             }
         }
     }
-    private BonusNumber controlBonusNumber(Lotto answerLotto){
-        while (EXCEPTIONLOOPCHECKER){
-            try{
+
+    private BonusNumber controlBonusNumber(Lotto answerLotto) {
+        while (EXCEPTIONLOOPCHECKER) {
+            try {
                 BonusNumber bonusNumber = new BonusNumber(getBonusNumber(), answerLotto);
                 return bonusNumber;
-            }catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 displayOutput.outputExceptionMessage(e);
             }
         }

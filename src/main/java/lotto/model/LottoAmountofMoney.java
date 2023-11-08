@@ -28,25 +28,29 @@ public class LottoAmountofMoney {
         validateLottoMoneyDivideBy(lottoAmountofMoney);
         validateLottoMoneyIsNotZero(lottoAmountofMoney);
     }
-    private void validateLottoMoneyIsNumber(String lottoAmountofMoney){
+
+    private void validateLottoMoneyIsNumber(String lottoAmountofMoney) {
         if (!Pattern.matches(REGEX_DIGIT.getValue(), lottoAmountofMoney)) {
             throw new IllegalArgumentException(ERROR_MESSAGE.getValue() + INPUTCONTAINNOTNUMBER.getValue());
         }
     }
-    private void validateLottoMoneyIsPositive(String lottoAmountofMoney){
-        if(Integer.parseInt(lottoAmountofMoney) < 0){
+
+    private void validateLottoMoneyIsPositive(String lottoAmountofMoney) {
+        if (Integer.parseInt(lottoAmountofMoney) < 0) {
             throw new IllegalArgumentException(ERROR_MESSAGE.getValue() + INPUTVALUEPOSITIVE);
         }
     }
-    private void validateLottoMoneyDivideBy(String lottoAmountofMoney){
+
+    private void validateLottoMoneyDivideBy(String lottoAmountofMoney) {
         int money = Integer.parseInt(lottoAmountofMoney);
-        if(money % LOTTOPRICE.getIntValue() != 0){
+        if (money % LOTTOPRICE.getIntValue() != 0) {
             throw new IllegalArgumentException(ERROR_MESSAGE.getValue() + NOTDIVISIONBYLOTTOPRICE.getValue());
         }
     }
-    private void validateLottoMoneyIsNotZero(String lottoAmountofMoney){
+
+    private void validateLottoMoneyIsNotZero(String lottoAmountofMoney) {
         int money = Integer.parseInt(lottoAmountofMoney);
-        if(money == 0){
+        if (money == 0) {
             throw new IllegalArgumentException(ERROR_MESSAGE.getValue() + MONEYISZERO.getValue());
         }
     }

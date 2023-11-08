@@ -14,8 +14,7 @@ public enum Numbers {
     FIRSTRANKMATCHING(6L),
     SECONDRANKMATCHING(5L),
     FOURTHRANKMATCHING(4L),
-    FIFTHRANKMATCHING(3L)
-    ;
+    FIFTHRANKMATCHING(3L);
 
     private final Long value;
 
@@ -28,6 +27,6 @@ public enum Numbers {
     }
 
     public Integer getIntValue() {
-        return (Integer) value.intValue();
+        return value.intValue();
     }
 }

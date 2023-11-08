@@ -60,7 +60,8 @@ public class DisplayOutput {
         System.out.printf(OUTPUTWINNINGREWARDRATE.getValue(), String.format(DOUBLEFORMAT.getValue(), winningReward),
                 '%');
     }
-    public void outputExceptionMessage(IllegalArgumentException e){
+
+    public void outputExceptionMessage(IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }
 }

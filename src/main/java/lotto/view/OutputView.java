@@ -60,4 +60,8 @@ public class OutputView {
     private static void printRateOfReturn(double rateOfReturn) {
         System.out.printf(RATE_OF_RETURN_FORMAT, rateOfReturn);
     }
+
+    public static void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
+    }
 }

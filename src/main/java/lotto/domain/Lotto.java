@@ -33,7 +33,7 @@ public class Lotto {
         return numbers.size() != numbersDeduplication.size();
     }
 
-    public Lotto create() {
+    public static Lotto create() {
         return new Lotto(
             Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER,
                     LOTTO_NUMBER_SIZE));

@@ -39,6 +39,7 @@ public class Output {
     }
     public void lottoFormatOutput(List<Integer> lotto){
         String result = lotto.stream()
+                .sorted()
                 .map(Object::toString)
                 .collect(Collectors.joining(", "));
         System.out.println("["+result+"]");

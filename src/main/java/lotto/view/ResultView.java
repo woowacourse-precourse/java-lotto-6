@@ -16,26 +16,36 @@ public class ResultView {
     }
 
     public void printResult(LottoResult lottoResult, int purchaseAmount) {
+        printWinningStatistics(lottoResult);
+        printReturnRate(lottoResult, purchaseAmount);
+    }
+
+    private void printWinningStatistics(LottoResult lottoResult) {
         System.out.println("당첨 통계");
         System.out.println("---");
 
         Map<Rank, Integer> result = lottoResult.getResult();
-
         List<Rank> ranks = Arrays.asList(Rank.values());
         ranks.sort(Collections.reverseOrder());
 
         for (Rank rank : ranks) {
             if (rank == Rank.MISS) continue;
-            int count = result.getOrDefault(rank, 0);
-            String message = rank.getMatchCount() + "개 일치";
-            if (rank == Rank.SECOND) {
-                message += ", 보너스 볼 일치";
-            }
-            message += " (" + String.format("%,d원", rank.getPrize()) + ") - " + count + "개";
-            System.out.println(message);
+            printSingleRankResult(rank, result.getOrDefault(rank, 0));
         }
+    }
 
+    private void printSingleRankResult(Rank rank, int count) {
+        String message = rank.getMatchCount() + "개 일치";
+        if (rank == Rank.SECOND) {
+            message += ", 보너스 볼 일치";
+        }
+        message += " (" + String.format("%,d원", rank.getPrize()) + ") - " + count + "개";
+        System.out.println(message);
+    }
+
+    private void printReturnRate(LottoResult lottoResult, int purchaseAmount) {
         double returnRate = lottoResult.calculateReturnRate(purchaseAmount);
         System.out.println("총 수익률은 " + returnRate + "%입니다.");
     }
+
 }

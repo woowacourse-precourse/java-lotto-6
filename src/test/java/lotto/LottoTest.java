@@ -23,7 +23,7 @@ class LottoTest {
         .isInstanceOf(IllegalArgumentException.class);
   }
   
-//  두 개의 Lotto 객체를 생성, 두 로또의 번호가 일치하는 갯수가 올바르게 반환되는지 확인하는 테스트
+  //  두 개의 Lotto 객체를 생성, 두 로또의 번호가 일치하는 갯수가 올바르게 반환되는지 확인하는 테스트
   @DisplayName("두 로또의 일치하는 번호의 개수를 반환한다.")
   @Test
   void countMatchedNumbers() {
@@ -33,4 +33,12 @@ class LottoTest {
     assertThat(count).isEqualTo(3);
   }
   
+  //  로또가 특정 번호를 포함하고 있는지 확인하는 테스트
+  @DisplayName("로또가 특정 번호를 포함하고 있는지 확인한다.")
+  @Test
+  void contains() {
+    Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    boolean contains = lotto.contains(1);
+    assertThat(contains).isTrue();
+  }
 }

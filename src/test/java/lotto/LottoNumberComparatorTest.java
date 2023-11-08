@@ -15,12 +15,28 @@ class LottoNumberComparatorTest {
 
         //given
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        LottoNumberComparator lottoNumberComparator = new LottoNumberComparator(winningNumbers);
+        int bonusNumber = 7;
+        LottoNumberComparator lottoNumberComparator = new LottoNumberComparator(winningNumbers, bonusNumber);
 
         //when
         int count =lottoNumberComparator.calculateMatchingNumbers(List.of(1, 2, 3, 4, 5, 6));
         //then
         Assertions.assertThat(count).isEqualTo(6);
+
+    }
+
+    @Test
+    void calculateMatchingNumberWithBonusNumber() {
+
+        //given
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        LottoNumberComparator lottoNumberComparator = new LottoNumberComparator(winningNumbers, bonusNumber);
+        //when
+        int count = lottoNumberComparator.calculateMatchingNumberWithBonusNumber(List.of(1, 2, 3, 4, 5, 6));
+        //then
+        Assertions.assertThat(count).isEqualTo(0);
+
 
     }
 }

@@ -44,7 +44,7 @@ public class LottoGame {
     }
 
     private Map<Integer, Integer> responseCaculateWinners(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        WinnersCalculator winnersCalculator = new WinnersCalculator(winningNumbers);
+        WinnersCalculator winnersCalculator = new WinnersCalculator(winningNumbers, bonusNumber);
         Map<Integer, Integer> winners = winnersCalculator.calculateWinners(lottos);
         output.responseCalculateWinners(winners, 55.6);
         return winners;

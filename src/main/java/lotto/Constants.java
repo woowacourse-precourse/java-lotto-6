@@ -17,7 +17,6 @@ public class Constants {
     public static final String MONEY_WHEN_SIX_MATCHED = "(2,000,000,000원)";
 
 
-
-
+    public static final int BONUS_BALL = 100;
 
 }

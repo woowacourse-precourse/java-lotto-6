@@ -1,19 +1,19 @@
 package lotto;
 
-import java.util.ArrayList;
+import static lotto.Constants.BONUS_BALL;
+
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class WinnersCalculator {
 
 
     private final LottoNumberComparator lottoNumberComparator;
 
-    public WinnersCalculator(List<Integer> winningNumbers) {
-        this.lottoNumberComparator = new LottoNumberComparator(winningNumbers);
+
+    public WinnersCalculator(List<Integer> winningNumbers, int bonusNumber) {
+        this.lottoNumberComparator = new LottoNumberComparator(winningNumbers, bonusNumber);
     }
 
     public Map<Integer, Integer> calculateWinners(List<Lotto> lottos) {
@@ -21,25 +21,25 @@ public class WinnersCalculator {
         winners.put(3, 0);
         winners.put(4, 0);
         winners.put(5, 0);
+        winners.put(5 + BONUS_BALL, 0);
         winners.put(6, 0);
+        winners = getCountWinners(lottos, winners);
+        return winners;
+    }
+
+    private Map<Integer, Integer> getCountWinners(List<Lotto> lottos, Map<Integer, Integer> winners) {
         for (Lotto lotto : lottos) {
             int count = lottoNumberComparator.calculateMatchingNumbers(lotto.getLottoNumbers());
-            if (count == 3) {
-                winners.put(3, winners.get(3) + 1);
+            int countBonus = lottoNumberComparator.calculateMatchingNumberWithBonusNumber(lotto.getLottoNumbers());
+            if (count == 5 && countBonus == 1) {
+                count = 5 + BONUS_BALL;
             }
-            if (count == 4) {
-                winners.put(4, winners.get(4) + 1);
-            }
-            if (count == 5) {
-                winners.put(5, winners.get(5) + 1);
-            }
-            if (count == 6) {
-                winners.put(6, winners.get(6) + 1);
+            if (winners.containsKey(count)) {
+                winners.put(count, winners.get(count) + 1);
             }
         }
         return winners;
     }
-
 
 
 }

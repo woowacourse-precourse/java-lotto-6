@@ -11,10 +11,6 @@ public class PurchaseAmount {
         this.lottoCount = amount / PurchaseAmountConstants.PURCHASE_AMOUNT_UNIT.getNumber();
     }
 
-    public int getAmount() {
-        return amount;
-    }
-
     public int getLottoCount() {
         return lottoCount;
     }

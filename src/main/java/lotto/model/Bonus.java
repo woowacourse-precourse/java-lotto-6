@@ -11,7 +11,7 @@ public class Bonus {
     private final int number;
 
 
-    public Bonus(String number, List<Integer> winningLotto) {
+    public Bonus(String number, Lotto winningLotto) {
         validate(number, winningLotto);
         this.number = Integer.parseInt(number);
     }
@@ -20,7 +20,7 @@ public class Bonus {
         return this.number;
     }
 
-    private void validate(String number, List<Integer> winningLotto) {
+    private void validate(String number, Lotto winningLotto) {
         int bonusNumber;
 
         try {

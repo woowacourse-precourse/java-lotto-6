@@ -29,4 +29,8 @@ public class OutputView {
         System.out.println(String.format(Messages.TOTAL_PROFIT_MESSAGE_FORMAT, profit));
     }
 
+    public static void print(String message) {
+        System.out.println(message);
+    }
+
 }

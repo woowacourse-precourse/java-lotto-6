@@ -19,12 +19,12 @@ class LottoCheckerTest {
         @Test
         void call_checkTicket_will_return_WinResult() {
                 //given
-                ConsoleReader resultInputreader = new FakeInputReader("1,2,3,4,5,6");
-                ConsoleReader magicInputReader = new FakeInputReader("9");
+                ConsoleReader winningNumberConsoleReader = new FakeInputReader("1,2,3,4,5,6");
+                ConsoleReader magicNumberConsoleReader = new FakeInputReader("9");
 
                 Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
                 Ticket ticket = new LottoTicket(List.of(lotto, lotto));
-                Checker checker = new LottoChecker(resultInputreader, magicInputReader);
+                Checker checker = new LottoChecker(winningNumberConsoleReader, magicNumberConsoleReader);
                 BigDecimal expectedRateOfReturn = new BigDecimal("200000000.0000");
 
                 //when

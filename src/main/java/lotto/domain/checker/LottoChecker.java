@@ -11,7 +11,7 @@ import lotto.util.reader.ConsoleReader;
  */
 public class LottoChecker implements Checker {
         private final ConsoleReader winningNumberConsoleReader;
-        private final ConsoleReader magicNumberInputReader;
+        private final ConsoleReader magicNumberConsoleReader;
 
         private Lotto answer;
         private int magicNumber;
@@ -26,7 +26,7 @@ public class LottoChecker implements Checker {
          */
         public LottoChecker(ConsoleReader resultInputReader, ConsoleReader magicNumberInputReader) {
                 this.winningNumberConsoleReader = resultInputReader;
-                this.magicNumberInputReader = magicNumberInputReader;
+                this.magicNumberConsoleReader = magicNumberInputReader;
 
                 initLottoAnswer();
                 initMagicNumber();
@@ -39,7 +39,7 @@ public class LottoChecker implements Checker {
 
         private void initMagicNumber() {
                 do {
-                        magicNumber = Integer.parseInt(magicNumberInputReader.readLine());
+                        magicNumber = Integer.parseInt(magicNumberConsoleReader.readLine());
                 } while (answer.hasNumber(magicNumber));
         }
 

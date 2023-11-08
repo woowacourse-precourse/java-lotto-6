@@ -2,7 +2,7 @@ package lotto.validator;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 
 public class InputValidator {
 

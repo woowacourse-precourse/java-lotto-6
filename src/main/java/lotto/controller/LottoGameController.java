@@ -2,8 +2,8 @@ package lotto.controller;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.Lotto;
-import lotto.LottoGameService;
+import lotto.model.Lotto;
+import lotto.service.LottoGameService;
 import lotto.model.LottoResult;
 import lotto.validator.InputValidator;
 import lotto.view.InputView;

@@ -1,12 +1,11 @@
-package lotto;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import lotto.constant.Prize;
+import lotto.model.Lotto;
 import lotto.model.LottoResult;
 
 public class LottoGameService {
@@ -38,7 +37,7 @@ public class LottoGameService {
         return totalResult;
     }
 
-    LottoResult makeResult(Lotto lotto, List<Integer> winningNumbers, Integer bonusNumber) {
+    public LottoResult makeResult(Lotto lotto, List<Integer> winningNumbers, Integer bonusNumber) {
 
         List<Integer> lottoNumbers = lotto.getNumbers();
         Integer matchCount = lottoNumbers.stream()

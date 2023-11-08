@@ -6,6 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Converter {
+    private Converter() {
+    }
+
     public static int stringToInt(String number) {
         try {
             return Integer.parseInt(number);

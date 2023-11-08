@@ -12,6 +12,8 @@
   - [v] 로또 번호의 숫자 범위(1~45)를 벗어나면 IllegalArgumentException 예외를 발생시킨다.
   - [v] 입력한 당첨 번호 중 숫자가 아닌 것이 있으면 IllegalArgumentException 예외를 발생시킨다.
   - [v] 쉼표 앞뒤로 공백은 제거한다.
+  - [] 입력한 숫자가 6개보다 크면 IllegalArgumentException 예외를 발생시킨다.
+  - [] 입력한 숫자가 6개보다 작으면 IllegalArgumentException 예외를 발생시킨다.
     </br></br>
 - [] 보너스 번호 1개를 입력받는다.
   - [] 입력한 당첨 번호 중에 동일한 값이 있으면 IllegalArgumentException 예외를 발생시킨다.

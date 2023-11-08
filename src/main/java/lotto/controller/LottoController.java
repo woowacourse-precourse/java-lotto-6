@@ -1,4 +1,5 @@
 package lotto.controller;
+import lotto.entity.Lotto;
 import lotto.service.LottoService;
 import lotto.view.Prompt;
 import java.util.ArrayList;
@@ -13,12 +14,11 @@ public class LottoController {
     public void play() {
 
         Integer money = getMoneyFromUser();
+        List<Lotto> boughtLotto = lottoService.buyLotto(money);
+
+        Prompt.forShowLottoList(boughtLotto);
 
         List<Integer> lottoNumbers = getLottoNumbersFromUser();
-
-
-
-        lottoService.buyLotto(money, lottoNumbers);
 
     }
 

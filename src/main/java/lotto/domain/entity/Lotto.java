@@ -8,7 +8,6 @@ import static lotto.configuration.StringConstants.SEPERATE_STANDARD;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.util.IntegerListUtil;
 import lotto.util.StringUtil;
 import lotto.validation.IntegerListValidator;
@@ -22,7 +21,7 @@ public class Lotto {
     }
 
     public static Lotto create(String input) {
-        input=StringUtil.deleteAllSpaces(input);
+        input = StringUtil.deleteAllSpaces(input);
         List<Integer> numbers = IntegerListUtil.parseListseperatedBy(
                 input, SEPERATE_STANDARD.getValue());
         return new Lotto(numbers);

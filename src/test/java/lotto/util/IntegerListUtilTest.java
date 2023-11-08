@@ -4,7 +4,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.util.List;
-import lotto.validation.IntegerListValidator;
 import org.junit.jupiter.api.Test;
 
 public class IntegerListUtilTest {

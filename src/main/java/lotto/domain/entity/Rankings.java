@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Rankings {
 
-    private final Map<Ranking, Integer> rankings = new EnumMap<>(Ranking.class);;
+    private final Map<Ranking, Integer> rankings = new EnumMap<>(Ranking.class);
 
     private Rankings() {
         init();
@@ -21,7 +21,7 @@ public class Rankings {
         return new Rankings();
     }
 
-    public List<Integer> getRankings() {
+    public Map<Ranking, Integer> getRankings() {
         return rankings;
     }
 }

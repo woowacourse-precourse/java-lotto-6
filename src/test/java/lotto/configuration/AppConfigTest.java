@@ -2,11 +2,6 @@ package lotto.configuration;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import lotto.controller.LottoGameController;
-import lotto.repository.Repository;
-import lotto.service.LottoGameService;
-import lotto.view.InputView;
-import lotto.view.OutputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -12,38 +12,6 @@ import lotto.view.OutputView;
 
 public class AppConfig implements Config {
 
-    private static class LazyHolder { //final instance로 동시성 문제 해결
-        private static final AppConfig INSTANCE = new AppConfig();
-        private static final LottoGameController lottoGameController = createLottoGameController();
-        private static final InputView inputView = createInputView();
-        private static final OutputView outputView = createOutputView();
-        private static final LottoGameService lottoGameService = createLottoGameService();
-        private static final Repository lottoGameRepository = createLottoGameRepository();
-
-        private static LottoGameController createLottoGameController() {
-            return new LottoGameController(
-                    inputView,
-                    outputView,
-                    lottoGameService);
-        }
-
-        private static InputView createInputView() {
-            return new ConsoleInputView();
-        }
-
-        private static OutputView createOutputView() {
-            return new ConsoleOutputView();
-        }
-
-        private static LottoGameService createLottoGameService() {
-            return new LottoGameServiceImpl(lottoGameRepository);
-        }
-
-        private static Repository createLottoGameRepository() {
-            return new MemoryLottoGameRepository();
-        }
-    }
-
     public static AppConfig getInstance() {
         return LazyHolder.INSTANCE;
     }
@@ -71,5 +39,37 @@ public class AppConfig implements Config {
     @Override
     public Repository lottoGameRepository() {
         return LazyHolder.lottoGameRepository;
+    }
+
+    private static class LazyHolder { //final instance로 동시성 문제 해결
+        private static final AppConfig INSTANCE = new AppConfig();
+        private static final InputView inputView = createInputView();
+        private static final OutputView outputView = createOutputView();
+        private static final Repository lottoGameRepository = createLottoGameRepository();
+        private static final LottoGameService lottoGameService = createLottoGameService();
+        private static final LottoGameController lottoGameController = createLottoGameController();
+
+        private static LottoGameController createLottoGameController() {
+            return new LottoGameController(
+                    inputView,
+                    outputView,
+                    lottoGameService);
+        }
+
+        private static InputView createInputView() {
+            return new ConsoleInputView();
+        }
+
+        private static OutputView createOutputView() {
+            return new ConsoleOutputView();
+        }
+
+        private static LottoGameService createLottoGameService() {
+            return new LottoGameServiceImpl(lottoGameRepository);
+        }
+
+        private static Repository createLottoGameRepository() {
+            return new MemoryLottoGameRepository();
+        }
     }
 }

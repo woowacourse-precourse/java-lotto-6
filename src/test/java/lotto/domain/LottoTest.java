@@ -14,7 +14,7 @@ public class LottoTest {
     @Test
     public void 정수리스트_입력받아_정상_로또생성() {
         // Given
-        List<Integer> numbers = List.of(1,2,3,4,5,6);
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
 
         // When
         Lotto lotto = new Lotto(numbers);
@@ -28,7 +28,7 @@ public class LottoTest {
     @Test
     public void 문자를_콤마를_기준으로_분리하여_정상_로또생성() {
         // Given
-        List<Integer> numbers = List.of(1,2,3,4,5,6);
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         String unrefinedNumbers = "1,2,3,4,5,6";
 
         // When
@@ -42,7 +42,7 @@ public class LottoTest {
     @Test
     public void 문자로_로또생성시_불필요한_콤마제거() {
         // Given
-        List<Integer> numbers = List.of(1,2,3,4,5,6);
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         String unrefinedNumbers = ",1,2,3,,,4,5,,6,,";
 
         // When
@@ -56,7 +56,7 @@ public class LottoTest {
     @Test
     public void 문자로_로또생성시_불필요한_공백제거() {
         // Given
-        List<Integer> numbers = List.of(1,2,3,4,5,6);
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         String unrefinedNumbers = " 1, 2, 3  , 4, 5, 6 ";
 
         // When

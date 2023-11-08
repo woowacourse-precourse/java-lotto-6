@@ -1,6 +1,5 @@
 package lotto.domain.dto;
 
-import java.util.List;
 import java.util.Map;
 import lotto.domain.entity.Ranking;
 

@@ -2,9 +2,9 @@ package lotto.validation;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import org.junit.jupiter.api.Test;
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 public class IntegerListValidatorTest {
 

@@ -1,8 +1,8 @@
 package lotto.view;
 
-import static lotto.configuration.InputMessages.BONUS_NUMBER_MESSAGE;
-import static lotto.configuration.InputMessages.PURCHASE_AMOUNT_MESSAGE;
-import static lotto.configuration.InputMessages.WINNING_LOTTO_MESSAGE;
+import static lotto.messages.InputMessages.BONUS_NUMBER_MESSAGE;
+import static lotto.messages.InputMessages.PURCHASE_AMOUNT_MESSAGE;
+import static lotto.messages.InputMessages.WINNING_LOTTO_MESSAGE;
 
 import lotto.util.InputUtil;
 import lotto.util.OutputUtil;

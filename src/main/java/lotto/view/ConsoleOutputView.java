@@ -8,12 +8,11 @@ import static lotto.messages.OutputMessages.WINNING_STATISTICS_MESSAGE;
 
 import java.util.Arrays;
 import java.util.List;
-
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.domain.dto.PurchaseDto;
 import lotto.domain.dto.WinningResultDto;
 import lotto.domain.entity.Ranking;
-import lotto.domain.dto.PurchaseDto;
 import lotto.util.DoubleUtil;
 import lotto.util.OutputUtil;
 import lotto.util.StringUtil;
@@ -59,7 +58,7 @@ public class ConsoleOutputView implements OutputView {
     private String buildRateOfReturnMessage(double rateOfReturn) {
         return RATE_OF_RETURN_MESSAGE_HEAD.getMessage()
                 + DoubleUtil.formatByThousandSeparatorAndRoundUntilFirstDecimalWithPercent(
-                        rateOfReturn)
+                rateOfReturn)
                 + RATE_OF_RETURN_MESSAGE_TAIL.getMessage();
     }
 }

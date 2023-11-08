@@ -27,6 +27,15 @@ public enum Ranking { //3등이면서 동시에 4등인 경우는 없다. 등수
         this.prizeAmount = prizeAmount;
     }
 
+    public static Ranking calcWinningMoney(int matchCount, boolean isMatchingBonus) {
+        return Arrays.stream(Ranking.values())
+                .filter(prize
+                        -> prize.isSameMatchCount(matchCount)
+                        && !prize.isUsingBonusNumberAndNotMathed(isMatchingBonus))
+                .findAny()
+                .orElse(No);
+    }
+
     public int getMatchCount() {
         return matchCount;
     }
@@ -37,15 +46,6 @@ public enum Ranking { //3등이면서 동시에 4등인 경우는 없다. 등수
 
     public int getPrizeAmount() {
         return prizeAmount;
-    }
-
-    public static Ranking calcWinningMoney(int matchCount, boolean isMatchingBonus) {
-        return Arrays.stream(Ranking.values())
-                .filter(prize
-                        -> prize.isSameMatchCount(matchCount)
-                        && !prize.isUsingBonusNumberAndNotMathed(isMatchingBonus))
-                .findAny()
-                .orElse(No);
     }
 
     private boolean isSameMatchCount(int matchCount) {

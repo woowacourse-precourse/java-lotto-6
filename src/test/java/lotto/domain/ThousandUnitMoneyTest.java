@@ -127,6 +127,7 @@ public class ThousandUnitMoneyTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("정수 범위를 벗어난 값은 더할 수 없습니다.");
     }
+
     @Test
     public void 금액_나누기는_int몫_반환() {
         // Given

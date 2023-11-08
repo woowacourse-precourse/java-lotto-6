@@ -11,7 +11,7 @@ public class ThousandUnitMoney {
     private final int amount;
 
     private ThousandUnitMoney(int amount) {
-        IntegerValidator.validateMultipleOf(amount,COST_OF_LOTTO.getValue());
+        IntegerValidator.validateMultipleOf(amount, COST_OF_LOTTO.getValue());
         this.amount = amount;
     }
 

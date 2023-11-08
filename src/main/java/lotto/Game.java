@@ -93,6 +93,9 @@ public class Game {
     }
 
     private static void validateLottoNumbers(String inputNumbers) {
+        if(inputNumbers.isEmpty()){
+            throw new IllegalArgumentException();
+        }
         if (inputNumbers.charAt(inputNumbers.length() - 1) == ',') {
             throw new IllegalArgumentException();
         }
@@ -120,7 +123,11 @@ public class Game {
 
     private static int inputBonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        String inputBonusNumber = Console.readLine();
+        if(inputBonusNumber.isEmpty()){
+            throw new IllegalArgumentException();
+        }
+        return Integer.parseInt(inputBonusNumber);
     }
 
     private void validateBonusNumber(int bonusNumber) {

@@ -36,7 +36,7 @@ public class LottoController {
                 int payment = inputView.inputPayment();
                 System.out.println();
                 return payment;
-            }catch (Exception e){
+            }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
                 System.out.println();
             }
@@ -50,7 +50,7 @@ public class LottoController {
                 outputView.outputBuy(lottos);
                 System.out.println();
                 return lottos;
-            }catch (Exception e){
+            }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
                 System.out.println();
             }
@@ -64,7 +64,7 @@ public class LottoController {
                 lottos.setGoal(inputView.inputNumbers());
                 System.out.println();
                 break;
-            }catch (Exception e){
+            }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
                 System.out.println();
             }
@@ -77,7 +77,7 @@ public class LottoController {
                 lottos.setBonus(inputView.inputNumber());
                 System.out.println();
                 break;
-            }catch (Exception e){
+            }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
                 System.out.println();
             }

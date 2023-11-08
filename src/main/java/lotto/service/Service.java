@@ -44,7 +44,7 @@ public class Service {
         }
     }
 
-    public Rank compareLotto(Lotto lotto, Game game) {
+    private Rank compareLotto(Lotto lotto, Game game) {
         int winningCount = Utils.countSameInteger(lotto.getNumbers(), game.getWinningNumbers());
         int bonusCount = compareBonusNumber(lotto.getNumbers(), game.getBonusNumber());
         return Rank.valueOfWinningBonusCount(List.of(winningCount, bonusCount));

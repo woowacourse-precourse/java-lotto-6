@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 import lotto.Enum.Winning;
+import lotto.domain.ExceptionModule;
 import lotto.domain.Lotto;
 
 public class LottoService {
@@ -31,32 +31,10 @@ public class LottoService {
             lottos.add(new Lotto(randomNum));
             System.out.println(randomNum);
         }
-        if (lottos.size() != lottoCount) {
-            throw new IllegalStateException();
-        }
+        ExceptionModule.checkLottoCount(lottos.size(), lottoCount);
         //당첨 번호 입력 받기
-        List<Integer> winningNum;
-        while (true) {
-            winningNum = new ArrayList<>();
-            System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> winningNum = InteractService.winningNumPhase();
 
-            //TODO 메세지 출력 부분을 IllegalArgumentException 발생 후 처리로 변경
-            for (String s : Console.readLine().split(",")) {
-                try {
-                    //TODO 숫자 범위 1~45 체크
-                    winningNum.add(Integer.parseInt(s));
-                } catch (NumberFormatException e) {
-                    System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-                }
-            }
-            if (new HashSet<>(winningNum).size() != 6) {
-                System.out.println("[ERROR] 로또 번호는 중복 되지 않는 숫자 6개여야 합니다.");
-            }
-            if (winningNum.size() == 6) {
-                break;
-            }
-            System.out.println("[ERROR] 로또 번호는 숫자 6개여야 합니다.");
-        }
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNum;
         while (true) {

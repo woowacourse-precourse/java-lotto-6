@@ -84,4 +84,10 @@ public class Validation {
         }
     }
 
+    public static void checkExistBonus(int number, Lotto lotto) {
+        if (lotto.getNumbers().contains(number)) {
+            throw new IllegalArgumentException(ErrorMessage.EXIST_BONUS.getMessage());
+        }
+    }
+
 }

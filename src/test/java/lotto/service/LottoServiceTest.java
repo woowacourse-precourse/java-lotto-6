@@ -108,7 +108,6 @@ class LottoServiceTest {
     @DisplayName("구입금액이 8,000 일때 5등이 하나이면 총 수익률은 62.5% 이다.")
     @Test
     void getReturnOnLotto() {
-        int lottoPurchaseAmount = 8000;
         int bonusNumber = 7;
         List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
         LottoService lottoService = new LottoService();

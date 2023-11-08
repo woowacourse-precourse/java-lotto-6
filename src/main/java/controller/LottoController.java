@@ -5,6 +5,7 @@ import java.util.List;
 
 import lotto.Lotto;
 import lotto.LottoMoney;
+import lotto.LottoWinner;
 import lotto.LuckeyLotto;
 import view.OutputView;
 
@@ -19,7 +20,7 @@ public class LottoController {
     LuckeyLotto luckeyLotto;
     LottoMoney lottoMoney;
     Lotto lotto;
-
+    LottoWinner lottoWinner = new LottoWinner();
     OutputView outputView = new OutputView();
     int lottoWinnerCount;
     int[] lottoWinners = new int[REWARD_SIZE];
@@ -54,9 +55,11 @@ public class LottoController {
 
     private void increaseLottoWinnerCount(List<Integer> lottoNumbers, int lottoWinnerCount) {
         if (lottoWinnerCount == LOTTO_BONUS_NUMBER_INDEX && lottoNumbers.contains(luckeyLotto.getLuckeyBonusNumber())) {
-            lottoWinners[lottoWinnerCount - 2]++;
+            lottoWinner.updateWinnerAndPrize(2);
+        } else if (lottoWinnerCount == 6) {
+            lottoWinner.updateWinnerAndPrize(1);
         } else if (lottoWinnerCount > MINIMUM_LOTTO_NUMBER) {
-            lottoWinners[lottoWinnerCount - 3]++;
+            lottoWinner.updateWinnerAndPrize(8 - lottoWinnerCount);
         }
     }
 

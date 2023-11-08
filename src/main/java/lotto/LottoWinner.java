@@ -54,4 +54,11 @@ public class LottoWinner {
             return null;
         }
     }
+
+    public void updateWinnerAndPrize(int rank) {
+        LottoResult result = LottoResult.getLottoResultByRank(rank);
+        if (result != null) {
+            result.setWinnerAndPrize();
+        }
+    }
 }

@@ -62,7 +62,7 @@
 - message: 등수별 출력 메시지 저장
 
 - updateWinnerAndPrize()
-  - [ ] 로또 당첨자 수와 당첨 금액 증가
+  - [x] 로또 당첨자 수와 당첨 금액 증가
 - printLottoResult()
   - [ ] 로또 통계 결과 출력
 - getPrizeMoney()

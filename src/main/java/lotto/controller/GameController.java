@@ -18,7 +18,7 @@ public class GameController {
         WinningNumber winningNumber = InputView.inputLottoWinningNumbers();
         BonusNumber bonusNumber = InputView.inputLottoBonusNumbers();
 
-        LottoResult lottoResult =  LottoResult.resultCalculation(lottos,winningNumber,bonusNumber,purchaseAmount);
+        LottoResult lottoResult = LottoResult.resultCalculation(lottos, winningNumber, bonusNumber, purchaseAmount);
         OutputView.showLottoResult(lottoResult);
     }
 }

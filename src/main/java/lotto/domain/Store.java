@@ -12,21 +12,16 @@ public class Store {
         int amount = budget / LottoTicket.PRICE_OF_LOTTO_TICKET;
         List<LottoTicket> tickets = new ArrayList<>();
 
-        while (tickets.size() != amount) {
+        while (tickets.size() < amount) {
             tickets.add(new LottoTicket(createLotto()));
         }
+
         return new LottoTickets(tickets);
     }
 
     public Lotto createLotto() {
-        List<Integer> numbers = new ArrayList<>();
-
-        while (numbers.size() != Lotto.VALID_SIZE_OF_NUMBERS) {
-            int number = Randoms.pickNumberInRange(Lotto.LOWER_BOUND_OF_NUMBER, Lotto.UPPER_BOUND_OF_NUMBER);
-            if (!isDuplicateNumber(numbers, number)) {
-                numbers.add(number);
-            }
-        }
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Lotto.LOWER_BOUND_OF_NUMBER,
+                Lotto.UPPER_BOUND_OF_NUMBER, Lotto.VALID_SIZE_OF_NUMBERS);
         return new Lotto(numbers);
     }
 

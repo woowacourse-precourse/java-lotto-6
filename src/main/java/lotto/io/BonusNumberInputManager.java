@@ -1,7 +1,5 @@
 package lotto.io;
 
-import java.util.NoSuchElementException;
-
 public class BonusNumberInputManager extends InputManager<Integer> {
     private static BonusNumberInputManager INSTANCE;
 
@@ -17,22 +15,24 @@ public class BonusNumberInputManager extends InputManager<Integer> {
     public Integer input() {
         while (true) {
             try {
+                System.out.println("보너스 번호를 입력해 주세요.");
                 String inputLine = consoleAdapter.readLine();
                 return validation(inputLine);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
-            } catch (NoSuchElementException e) {
-                throw new IllegalArgumentException("[ERROR] 입력이 존재하지 않습니다.");
-            } catch (IndexOutOfBoundsException e) {
-                throw new IllegalArgumentException("[ERROR] 1~45 범위 내의 값을 입력해주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                return input();
             }
         }
     }
 
     @Override
-    public Integer validation(String input) throws IndexOutOfBoundsException {
-        int bonusNumber = Integer.parseInt(input);
-        validateNumberRange(bonusNumber);
-        return bonusNumber;
+    public Integer validation(String input)  {
+        try {
+            int bonusNumber = Integer.parseInt(input);
+            validateNumberRange(bonusNumber);
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(e);
+        }
     }
 }

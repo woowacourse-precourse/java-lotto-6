@@ -2,6 +2,10 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static java.lang.Integer.parseInt;
 
 public class InputView {
@@ -17,4 +21,12 @@ public class InputView {
             throw new IllegalArgumentException(VALIDATE_NUMBER_MESSAGE);
         }
     }
+
+    public static List<String> inputWinningNumbers() {
+        String numberInput = Console.readLine();
+        System.out.println(numberInput);
+        String[] numbers = numberInput.split(",");
+        return List.of(numbers);
+    }
+
 }

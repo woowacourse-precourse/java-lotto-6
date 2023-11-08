@@ -41,9 +41,7 @@ public class ConsoleOutputView implements OutputView {
     public void printWinningStatistics(final Map<String, Long> winningStatistics) {
         printNewLine();
 
-        winningStatistics.forEach((description, count) -> {
-            System.out.println(description + count + "개");
-        });
+        winningStatistics.forEach((description, count) -> System.out.println(description + count + "개"));
     }
 
     @Override

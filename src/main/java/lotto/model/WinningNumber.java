@@ -34,13 +34,13 @@ public class WinningNumber {
     }
 
     private static void validateConvertibleToNumber(final List<String> numbers) {
+
         numbers.stream()
                 .filter(number -> !isNumeric(number))
                 .findFirst()
                 .ifPresent(number -> {
                     throw new CanNotConvertToNumberException(numbers.toString());
                 });
-
     }
 
     private static boolean isNumeric(final String number) {

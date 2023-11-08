@@ -16,6 +16,7 @@ public class BonusNumberInput {
         return Console.readLine();
     }
 
+
     private void printBonusNumberRequestMessage() {
         System.out.println(BONUS_NUMBER_REQUEST_MESSAGE);
     }

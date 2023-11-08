@@ -19,13 +19,13 @@ public class LottoMoney {
     public static LottoMoney createWith(final String money) {
         validateConvertibleToNumber(money);
         long convertedMoney = convertToNumber(money);
-        validateOverThousand(convertedMoney);
+        validateOverLottoPrice(convertedMoney);
         validateDivisibleByThousand(convertedMoney);
 
         return new LottoMoney(convertedMoney);
     }
 
-    public static void validateConvertibleToNumber(final String money) {
+    private static void validateConvertibleToNumber(final String money) {
         if (!isNumeric(money)) {
             throw new CanNotConvertToNumberException(money);
         }
@@ -41,13 +41,13 @@ public class LottoMoney {
         return Long.parseLong(money);
     }
 
-    private static void validateOverThousand(final long money) {
-        if (!isOverThousand(money)) {
+    private static void validateOverLottoPrice(final long money) {
+        if (!isOverLottoPrice(money)) {
             throw new InvalidMoneyException(money);
         }
     }
 
-    private static boolean isOverThousand(final long money) {
+    private static boolean isOverLottoPrice(final long money) {
         return money >= LOTTO_PRICE;
     }
 

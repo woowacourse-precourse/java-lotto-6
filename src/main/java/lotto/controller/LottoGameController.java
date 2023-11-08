@@ -24,6 +24,10 @@ public class LottoGameController {
         Money money = inputUserMoneyAmount();
         int amountOfLotto = money.amountOfLotto();
         Game game = new Game(amountOfLotto);
+        playLottoGame(money, amountOfLotto, game);
+    }
+
+    private void playLottoGame(Money money, int amountOfLotto, Game game) {
         printLottoAmount(amountOfLotto);
         generateLottoNumber(game);
         printLottoNumber(game);

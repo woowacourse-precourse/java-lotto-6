@@ -29,17 +29,6 @@ public class Game {
         this.winningLotto = new WinningLotto(inputWinningLotto);
     }
 
-
-    private void validateWinningLottoNumber(String winningLottoNumber) {
-        InputValidator.validateInputIsNumber(winningLottoNumber);
-        InputValidator.validateLottoNumberIsNotInRightRange(winningLottoNumber);
-    }
-
-    private void validateWinningLottoNumbers(List<Integer> winningLotto) {
-        InputValidator.validateAmountOfWinningLottoNumber(winningLotto);
-        InputValidator.validateDuplicatedWinningLottoNumber(winningLotto);
-    }
-
     public void generateLottoNumber(LottoGenerator lottoGenerator) {
         for (int i = 0; i < amountOfLotto; i++) {
             List<Integer> modifiable = new ArrayList<>(lottoGenerator.pickLottoNumber());
@@ -60,14 +49,6 @@ public class Game {
         return lottoNumbers;
     }
 
-    public BonusNumber getBonusNumber() {
-        return bonusNumber;
-    }
-
-    public WinningLotto getWinningLotto() {
-        return winningLotto;
-    }
-
     public int getTotalPrice() {
         return totalPrice;
     }
@@ -75,13 +56,7 @@ public class Game {
     public List<Integer> compareLotto() {
         List<Integer> list = new ArrayList<>();
         for (Lotto lotto : lottoNumbers) {
-            int num = 0;
-            for (int winningLottoNum : winningLotto.getWinningLottoNumbers()) {
-                if (lotto.getNumbers().contains(winningLottoNum)) {
-                    num++;
-                }
-            }
-            list.add(num);
+            list.add(lotto.isContainWinningLottoNumber(winningLotto.getWinningLottoNumbers()));
         }
         return list;
     }

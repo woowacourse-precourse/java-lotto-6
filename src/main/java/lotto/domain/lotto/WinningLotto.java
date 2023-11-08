@@ -2,12 +2,13 @@ package lotto.domain.lotto;
 
 import java.util.List;
 
-public class WinningLotto extends Lotto {
+public class WinningLotto {
 
+    private final List<Integer> winningNumbers;
     private final BonusNumber bonusNumber;
 
     private WinningLotto(List<Integer> winningNumbers, BonusNumber bonusNumber) {
-        super(winningNumbers);
+        this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
         validate(winningNumbers, bonusNumber);
     }
@@ -17,7 +18,7 @@ public class WinningLotto extends Lotto {
     }
 
     public LottoPrize matches(Lotto lotto) {
-        int matchCount = lotto.getMatchCount(this.numbers);
+        int matchCount = lotto.getMatchCount(winningNumbers);
         boolean isBonusMatched = lotto.isBonusMatched(bonusNumber);
         return LottoPrize.findLottoPrize(matchCount, isBonusMatched);
     }

@@ -4,14 +4,12 @@ import static lotto.util.ConstantUtils.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.util.ValidationUtils;
 
 public class Lotto {
 
-    protected final List<Integer> numbers;
+    private final List<Integer> numbers;
 
     protected Lotto(List<Integer> numbers) {
         validate(numbers);

@@ -9,7 +9,10 @@ public class CompareLottoValue {
     public static final int SECOND_OR_THIRD = 5;
     static int resultScore = 0;
     static int resultMoney = 0;
-    public static void compareValueStart(List<Integer> winningBalls, List<List<Integer>> lottoRepo, Integer bonusBall){
+    public static void compareValueStart(List<Integer> winningBalls,
+                                         List<List<Integer>> lottoRepo,
+                                         Integer bonusBall,
+                                         Integer amount){
         System.out.println(lottoRepo);
         System.out.println(winningBalls);
         // 당첨볼을 정수리스트로 변환
@@ -19,6 +22,7 @@ public class CompareLottoValue {
         }
         // 함수 추가: 로또의 갯수만큼 전달 시(위의 반복문 수행완료시) 총 수익률 계산하고 로또결과와 수익률 출력하는 함수 호출
         lottoPrize();
+        getRateOfTurn(amount);
     }
 
 
@@ -93,6 +97,13 @@ public class CompareLottoValue {
 
     public static int getResultMoney(){
         return resultMoney;
+    }
+
+    public static double getRateOfTurn(Integer amount){
+        double turn = (double)resultMoney / (double)amount ;
+        System.out.println(turn);
+        double rateOfTurn =  (double) Math.round(turn * 10000) / 100;
+        return rateOfTurn; // 수익률 계산 공식 : 상금 / 사용한 금액
     }
 
 }

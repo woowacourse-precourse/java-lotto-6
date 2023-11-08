@@ -126,7 +126,7 @@ class LottoTest {
 
         List<Integer> winningBalls = List.of(1,2,3,4,5,6);
         int bonusBall = 7;
-        compareValueStart(winningBalls, lottoBalls, bonusBall);
+        compareValueStart(winningBalls, lottoBalls, bonusBall,5000);
 
         Assertions.assertThat(Integer.toString(CompareLottoValue.getResultMoney())).isEqualTo("2031555000");
 

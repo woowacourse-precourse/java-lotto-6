@@ -18,10 +18,8 @@ public class LottoNumber {
                 LottoConstant.DIGITS.getValue()
         );
     }
-    public void createWinningNumber(String input){
-        this.lottoNumbers =  Arrays.stream(input.split(SEPERATOR))
-                .map(Integer::parseInt)
-                .toList();
+    public void createWinningNumber(List<Integer> input){
+        this.lottoNumbers.addAll(input);
     }
     public List<Integer> getLottoNumbers(){
         return this.lottoNumbers;

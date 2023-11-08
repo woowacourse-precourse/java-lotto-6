@@ -184,6 +184,7 @@ public class Application {
         }
         int totalTickets = userLottoTickets.size();
         double profitRate = (prize / (totalTickets * 1000.0)) * 100;
+        profitRate = Math.round(profitRate * 100.0) / 100.0; 
         System.out.println("총 수익률은 " + profitRate + "%입니다.");
     }
 

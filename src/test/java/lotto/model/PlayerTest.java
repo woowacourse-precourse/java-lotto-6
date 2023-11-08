@@ -34,7 +34,8 @@ class PlayerTest {
         Player player = new Player(Integer.parseInt(PAYMENT_AMOUNT.getValue()), randomUtil);
 
         double profitRate = player.calculateProfitRate(
-                new WinningNumbers(WINNING_NUMBERS, Integer.parseInt(BONUS_NUMBER)));
+                new WinningNumbers(WINNING_NUMBERS.stream().mapToInt(Integer::valueOf).toArray(),
+                        Integer.parseInt(BONUS_NUMBER)));
         assertThat(String.format("%.1f", profitRate)).isEqualTo(String.format("%.1f", TOTAL_PROFIT_RATE));
     }
 }

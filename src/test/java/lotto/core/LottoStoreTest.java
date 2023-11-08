@@ -7,6 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.List;
+import java.util.stream.Stream;
 import lotto.core.calculator.Calculator;
 import lotto.core.iomanangers.MessageManager;
 import lotto.core.lotto.LottoTicketScratcher;
@@ -16,6 +17,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mockito;
 
 class LottoStoreTest {
@@ -71,11 +75,11 @@ class LottoStoreTest {
         assertThat(output).contains("총 수익률은 625.0%입니다.");
     }
 
-    @DisplayName("예외상황 1-1 : 금액 입력시 1000원 단위로 입력하지 아니하면 예외메시지를 출력한다.")
-    @Test
-    void exceptionSituation1_1() {
+    @ParameterizedTest
+    @MethodSource("provideInputForExceptionTesting")
+    @DisplayName("다양한 입력에 대한 예외 메시지 출력을 테스트한다.")
+    void testInputExceptionMessages(String input, String expectedExceptionMessage) {
         //given
-        final String input = "8100\n8000\n1,2,3,4,5,6\n7\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         //when
@@ -83,172 +87,22 @@ class LottoStoreTest {
         String output = outContent.toString();
 
         //then
-        assertThat(output).contains(ILLEGAL_AMOUNT_EXCEPTION_MESSAGE);
+        assertThat(output).contains(expectedExceptionMessage);
     }
 
-    @DisplayName("예외상황 1-2 : 금액 입력시 숫자가 아니면 예외메시지를 출력한다.")
-    @Test
-    void exceptionSituation1_2() {
-        //given
-        final String input = "800s0\n8000\n1,2,3,4,5,6\n7\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        //when
-        storeForTest.start();
-
-        //then
-        String output = outContent.toString();
-        assertThat(output).contains(ILLEGAL_NUMBER_TYPE_EXCEPTION_MESSAGE);
+    static Stream<Arguments> provideInputForExceptionTesting() {
+        return Stream.of(
+                Arguments.of("8100\n8000\n1,2,3,4,5,6\n7\n", ILLEGAL_AMOUNT_EXCEPTION_MESSAGE),
+                Arguments.of("800s0\n8000\n1,2,3,4,5,6\n7\n", ILLEGAL_NUMBER_TYPE_EXCEPTION_MESSAGE),
+                Arguments.of( "80000000000000\n8000\n1,2,3,4,5,6\n7\n", ILLEGAL_NUMBER_RANGE_EXCEPTION_MESSAGE),
+                Arguments.of( "8000\n1,2,3,4,5\n1,2,3,4,5,6\n7\n", ILLEGAL_LOTTO_SIZE_EXCEPTION_MESSAGE),
+                Arguments.of( "8000\n112345\n1,2,3,4,5,6\n7\n", ILLEGAL_LOTTO_SIZE_EXCEPTION_MESSAGE),
+                Arguments.of( "8000\n1,2,3,4,4,4\n1,2,3,4,5,6\n7\n", ILLEGAL_DUPLICATE_EXCEPTION_MESSAGE),
+                Arguments.of( "8000\n1,2,3,4,5,54\n1,2,3,4,5,6\n7\n", ILLEGAL_LOTTO_RANGE_EXCEPTION_MESSAGE),
+                Arguments.of( "8000\n11234511111111111111\n1,2,3,4,5,6\n7\n", ILLEGAL_NUMBER_RANGE_EXCEPTION_MESSAGE),
+                Arguments.of( "8000\n1,2,3,4,5,6\n99\n7\n", ILLEGAL_LOTTO_RANGE_EXCEPTION_MESSAGE),
+                Arguments.of( "8000\n1,2,3,4,5,6\n9999999999999999999999999\n7\n", ILLEGAL_NUMBER_RANGE_EXCEPTION_MESSAGE),
+                Arguments.of( "8000\n1,2,3,4,5,6\ns9\n7\n", ILLEGAL_NUMBER_TYPE_EXCEPTION_MESSAGE)
+        );
     }
-
-    @DisplayName("예외상황 1-3 : 금액 입력시 숫자의 범위가 Integer 범위를 넘어서면 예외메시지를 출력한다.")
-    @Test
-    void exceptionSituation1_3() {
-        //given
-        final String input = "80000000000000\n8000\n1,2,3,4,5,6\n7\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        //when
-        storeForTest.start();
-
-        //then
-        String output = outContent.toString();
-        assertThat(output).contains(ILLEGAL_NUMBER_RANGE_EXCEPTION_MESSAGE);
-    }
-
-    @DisplayName("예외상황 2-1 : 당첨 번호 입력 시 6자리의 수가 아니면 예외메시지를 출력한다.")
-    @Test
-    void exceptionSituation2_1() {
-        //given
-        final String input = "8000\n1,2,3,4,5\n1,2,3,4,5,6\n7\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        //when
-        storeForTest.start();
-
-        //then
-        String output = outContent.toString();
-        assertThat(output).contains(ILLEGAL_LOTTO_SIZE_EXCEPTION_MESSAGE);
-    }
-
-    @DisplayName("예외상황 2-2 : 당첨 번호 입력 시 숫자가 아니면 예외메시지를 출력한다.")
-    @Test
-    void exceptionSituation2_2() {
-        //given
-        final String input = "8000\n1,2,3,4,s\n1,2,3,4,5,6\n7\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        //when
-        storeForTest.start();
-
-        //then
-        String output = outContent.toString();
-        assertThat(output).contains(ILLEGAL_NUMBER_TYPE_EXCEPTION_MESSAGE);
-    }
-
-    @DisplayName("예외상황 2-3 : 당첨 번호 입력 시 쉼표(,) 가 없으면 예외메시지를 출력한다.")
-    @Test
-    void exceptionSituation2_3() {
-        //given
-        final String input = "8000\n112345\n1,2,3,4,5,6\n7\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        //when
-        storeForTest.start();
-
-        //then
-        String output = outContent.toString();
-        assertThat(output).contains(ILLEGAL_LOTTO_SIZE_EXCEPTION_MESSAGE);
-    }
-
-    @DisplayName("예외상황 2-4 : 당첨 번호 입력 시 중복되는 번호가 있으면 예외메시지를 출력한다.")
-    @Test
-    void exceptionSituation2_4() {
-        //given
-        final String input = "8000\n1,2,3,4,4,4\n1,2,3,4,5,6\n7\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        //when
-        storeForTest.start();
-
-        //then
-        String output = outContent.toString();
-        assertThat(output).contains(ILLEGAL_DUPLICATE_EXCEPTION_MESSAGE);
-    }
-
-    @DisplayName("예외상황 2-5 : 당첨 번호 입력 시 1~45 를 넘어가는 번호가 있으면 예외메시지를 출력한다.")
-    @Test
-    void exceptionSituation2_5() {
-        //given
-        final String input = "8000\n1,2,3,4,5,54\n1,2,3,4,5,6\n7\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        //when
-        storeForTest.start();
-
-        //then
-        String output = outContent.toString();
-        assertThat(output).contains(ILLEGAL_LOTTO_RANGE_EXCEPTION_MESSAGE);
-    }
-
-    @DisplayName("예외상황 2-6 : 당첨 번호 입력 시 Integer 범위를 넘어가는 번호가 있으면 예외메시지를 출력한다.")
-    @Test
-    void exceptionSituation2_6() {
-        //given
-        final String input = "8000\n11234511111111111111\n1,2,3,4,5,6\n7\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        //when
-        storeForTest.start();
-
-        //then
-        String output = outContent.toString();
-        assertThat(output).contains(ILLEGAL_NUMBER_RANGE_EXCEPTION_MESSAGE);
-    }
-
-    @DisplayName("예외상황 3-1 : 보너스 번호 입력 시 1~45 를 넘어가면 예외메시지를 출력한다.")
-    @Test
-    void exceptionSituation3_1() {
-        //given
-        final String input = "8000\n1,2,3,4,5,6\n99\n7\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        //when
-        storeForTest.start();
-
-        //then
-        String output = outContent.toString();
-        assertThat(output).contains(ILLEGAL_LOTTO_RANGE_EXCEPTION_MESSAGE);
-    }
-
-    @DisplayName("예외상황 3-2 : 보너스 번호 입력 시 Integer 범위를 넘어가면 예외메시지를 출력한다.")
-    @Test
-    void exceptionSituation3_2() {
-        //given
-        final String input = "8000\n1,2,3,4,5,6\n9999999999999999999999999\n7\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        //when
-        storeForTest.start();
-
-        //then
-        String output = outContent.toString();
-        assertThat(output).contains(ILLEGAL_NUMBER_RANGE_EXCEPTION_MESSAGE);
-    }
-
-    @DisplayName("예외상황 3-3 : 보너스 번호 입력 시 숫자가 아니면 예외메시지를 출력한다.")
-    @Test
-    void exceptionSituation3_3() {
-        //given
-        final String input = "8000\n1,2,3,4,5,6\ns9\n7\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        //when
-        storeForTest.start();
-
-        //then
-        String output = outContent.toString();
-        assertThat(output).contains(ILLEGAL_NUMBER_TYPE_EXCEPTION_MESSAGE);
-    }
-
 }

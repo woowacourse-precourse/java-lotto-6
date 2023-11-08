@@ -30,7 +30,7 @@ public class LottoController {
         announceRateOfReturn(lottoPayAmount, returnAmount);
     }
 
-    public static int inputLottoPayAmount() {
+    public int inputLottoPayAmount() {
         String lottoPayAmount;
         while (true) {
             try {
@@ -51,7 +51,7 @@ public class LottoController {
         OutputView.printLottos(lottos);
     }
 
-    public static List<Integer> inputJackpotNumberInput() {
+    public List<Integer> inputJackpotNumberInput() {
         String jackpotNumberInput;
         while (true) {
             try {
@@ -66,7 +66,7 @@ public class LottoController {
         return converteToList(jackpotNumberInput);
     }
 
-    private static List<Integer> converteToList(String jackpotNumberInput) {
+    private List<Integer> converteToList(String jackpotNumberInput) {
         List<Integer> jackpotNumbers = new ArrayList<>();
         for (String number : jackpotNumberInput.split(",")) {
             jackpotNumbers.add(Integer.parseInt(number));
@@ -74,7 +74,7 @@ public class LottoController {
         return jackpotNumbers;
     }
 
-    public static int inputBonusNumberInput(List<Integer> jackpotNumbers) {
+    public int inputBonusNumberInput(List<Integer> jackpotNumbers) {
         String bonusNumberInput;
         while (true) {
             try {

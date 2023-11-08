@@ -5,18 +5,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import lotto.MockNumberGenerator;
-import lotto.domain.result.LottoMachine;
+import lotto.domain.result.CompareMachine;
 import lotto.domain.user.LottoCount;
 import lotto.domain.user.UserLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class OutputTest extends NsTest {
+class OutputTest extends NsTest {
     @DisplayName("userLotto정보를 올바르게 출력하는지 확인한다.")
     @Test
     void checkUserLottoOutput() {
         //given
-        LottoCount lottoCount = new LottoCount(2000);
+        LottoCount lottoCount = LottoCount.from(2000);
         UserLotto userLotto = new UserLotto(lottoCount);
         userLotto.create(new MockNumberGenerator(List.of(1, 3, 5, 7, 9, 11)));
 
@@ -31,9 +31,9 @@ public class OutputTest extends NsTest {
     @Test
     void checkLottoResultOutput() {
         //given
-        LottoMachine lottoMachine = new LottoMachine();
+        CompareMachine compareMachine = new CompareMachine();
         //when
-        Output.lottoResult(lottoMachine);
+        Output.lottoResult(compareMachine);
 
         //then
         assertThat(output()).contains("0개", "3개 일치 (5,000원) - ",

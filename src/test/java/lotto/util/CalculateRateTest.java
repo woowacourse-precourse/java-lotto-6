@@ -10,20 +10,20 @@ class CalculateRateTest {
     private CalculateRate calculateRate;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         calculateRate = new CalculateRate();
     }
 
     @Test
     @DisplayName("수익률을 계산해서 잘 반환 하는지 테스트")
-    void calculateRate(){
+    void calculateRate() {
         //given
         int purchaseAmount = 8000;
         int money = 5000;
         //when
-        Double result = calculateRate.getRate(purchaseAmount, money);
+        Double result = CalculateRate.getRate(purchaseAmount, money);
         //then
-        assertEquals(result,62.5);
+        assertEquals(result, 62.5);
     }
 
 

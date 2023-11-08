@@ -4,7 +4,6 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class CalculateRate {
-
     public static Double getRate(int purchaseAmount, int money) {
         double result = (double) money / purchaseAmount * 100;
         String rate = formatNumberWithComma(result);

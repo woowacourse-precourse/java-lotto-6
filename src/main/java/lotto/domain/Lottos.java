@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -34,7 +35,8 @@ public class Lottos {
 
     private Map<Rank, Integer> initializeResult() {
         Map<Rank, Integer> result = Arrays.stream(Rank.values())
-                .collect(Collectors.toMap(rank -> rank, rank -> 0));
+                .collect(Collectors.toMap(rank -> rank, rank -> 0,
+                        (existed, replacing) -> existed, LinkedHashMap::new));
 
         return result;
     }

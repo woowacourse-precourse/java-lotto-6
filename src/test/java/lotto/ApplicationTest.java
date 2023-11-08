@@ -1,13 +1,13 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -50,6 +50,52 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
+    @DisplayName("당첨번호 중복시 에러문구 출력")
+    @Test
+    void 예외_테스트1() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨번호 1~45 사이 숫자 이나면 에러문구 출력")
+    @Test
+    void 예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,!,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호 당첨번호와 중복시 에러문구 출력")
+    @Test
+    void 예외_테스트3() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호 1~45사이 숫자 아니면 에러문구 출력")
+    @Test
+    void 예외_테스트4() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "67");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스번호 1~45사이 숫자 아닌 문자면 에러문구 출력")
+    @Test
+    void 예외_테스트5() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "!");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

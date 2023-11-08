@@ -1,16 +1,6 @@
 package lotto.constant;
 
-public enum ConstantNumber {
-    PROPER_LOTTO_LENGTH(6),
-    THOUSAND(1000);
-
-    private final int number;
-
-    private ConstantNumber(int number) {
-        this.number = number;
-    }
-
-    public int getNumber() {
-        return number;
-    }
+public final class ConstantNumber {
+    public static final int PROPER_LOTTO_LENGTH = 6;
+    public static final int THOUSAND = 1000;
 }

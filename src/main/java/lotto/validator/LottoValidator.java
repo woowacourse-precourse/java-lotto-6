@@ -13,7 +13,7 @@ public class LottoValidator extends Validator {
     }
 
     public static void containsSixNumbers(int listSize) {
-        if (listSize != ConstantNumber.PROPER_LOTTO_LENGTH.getNumber()) {
+        if (listSize != ConstantNumber.PROPER_LOTTO_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
@@ -24,7 +24,7 @@ public class LottoValidator extends Validator {
 
     public static void haveDuplicateNumber(List<Integer> list) {
         Set<Integer> set = new HashSet<>(list);
-        if (set.size() != ConstantNumber.PROPER_LOTTO_LENGTH.getNumber()) {
+        if (set.size() != ConstantNumber.PROPER_LOTTO_LENGTH) {
             throw new IllegalArgumentException();
         }
     }

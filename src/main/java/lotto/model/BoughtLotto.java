@@ -12,7 +12,7 @@ public class BoughtLotto {
     private final List<Lotto> lottos = new ArrayList<>();
 
     public BoughtLotto(int price) {
-        this.boughtNumber = price / ConstantNumber.THOUSAND.getNumber();
+        this.boughtNumber = price / ConstantNumber.THOUSAND;
         for (int i = 0; i < boughtNumber; i++) {
             lottos.add(createLotto());
         }
@@ -27,6 +27,6 @@ public class BoughtLotto {
     }
 
     private static Lotto createLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(MIN, MAX, ConstantNumber.PROPER_LOTTO_LENGTH.getNumber()));
+        return new Lotto(Randoms.pickUniqueNumbersInRange(MIN, MAX, ConstantNumber.PROPER_LOTTO_LENGTH));
     }
 }

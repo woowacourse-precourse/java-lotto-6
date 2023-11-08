@@ -13,15 +13,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class LottoCheckerTest {
+class WinningLottoTest {
 
     @DisplayName("보너스 번호가 1에서 45가 아니라면 예외를 던진다.")
     @ParameterizedTest
     @ValueSource(ints = {MIN_RANDOM_NUMBER - 1, MAX_RANDOM_NUMBER + 1})
     void bonusNumberOutOfRange(final int bonus) {
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        final Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertThatThrownBy(() -> new LottoChecker(winningNumbers, bonus))
+        assertThatThrownBy(() -> new WinningLotto(winningLotto, bonus))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(BONUS_NUMBER_RANGE.getMessage());
     }
@@ -30,9 +30,9 @@ class LottoCheckerTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6})
     void bonusNumberDuplicateWithWinningLotto(final int bonus) {
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        final Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertThatThrownBy(() -> new LottoChecker(winningNumbers, bonus))
+        assertThatThrownBy(() -> new WinningLotto(winningLotto, bonus))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(BONUS_NUMBER_DUPLICATE.getMessage());
     }
@@ -43,7 +43,8 @@ class LottoCheckerTest {
             new Lotto(List.of(1, 2, 3, 4, 5, 11)),
             new Lotto(List.of(1, 2, 3, 7, 11, 12))
         );
-        final LottoChecker lottoChecker = new LottoChecker(List.of(1, 2, 3, 4, 5, 6), 7);
+        final Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        final WinningLotto lottoChecker = new WinningLotto(winningLotto, 7);
 
         final LottoResult lottoResult = lottoChecker.checkLottos(lottos);
 

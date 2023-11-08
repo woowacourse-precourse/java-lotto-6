@@ -12,9 +12,9 @@ import lotto.exception.BonusNumberException;
 import lotto.exception.LottoException;
 import lotto.exception.PurchaseException;
 import lotto.model.Lotto;
-import lotto.model.LottoChecker;
 import lotto.model.LottoResult;
 import lotto.model.LottoShop;
+import lotto.model.WinningLotto;
 
 public class LottoGameController {
 
@@ -43,22 +43,28 @@ public class LottoGameController {
     }
 
     private LottoResult getLottoResult(List<Lotto> lottos) {
-        final LottoChecker lottoChecker = getLottoChecker();
-        return lottoChecker.checkLottos(lottos);
+        final WinningLotto winningLotto = getWinningLotto();
+        return winningLotto.checkLottos(lottos);
     }
 
-    private LottoChecker getLottoChecker() {
-        List<Integer> winningNumbers = inputLottoWinningNumbers();
+    private WinningLotto getWinningLotto() {
+        final Lotto winningNumbersLotto = getWinningNumbersLotto();
         int bonusNumber = inputLottoBonusNumber();
-
         while (true) {
             try {
-                return new LottoChecker(winningNumbers, bonusNumber);
-            } catch (LottoException e) {
-                winningNumbers = inputLottoWinningNumbers();
-                System.out.println(e.getMessage());
+                return new WinningLotto(winningNumbersLotto, bonusNumber);
             } catch (BonusNumberException e) {
+                System.out.println(e.getMessage());
                 bonusNumber = inputLottoBonusNumber();
+            }
+        }
+    }
+
+    private static Lotto getWinningNumbersLotto() {
+        while (true) {
+            try {
+                return new Lotto(inputLottoWinningNumbers());
+            } catch (LottoException e) {
                 System.out.println(e.getMessage());
             }
         }

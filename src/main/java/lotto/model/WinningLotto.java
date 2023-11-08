@@ -8,15 +8,14 @@ import static lotto.exception.ErrorCode.BONUS_NUMBER_RANGE;
 import java.util.List;
 import lotto.exception.BonusNumberException;
 
-public class LottoChecker {
+public class WinningLotto {
 
-    private final Lotto winningLotto;
+    private final Lotto winningNumbersLotto;
     private final int bonus;
 
-    public LottoChecker(final List<Integer> winningNumbers, final int bonus) {
-        final Lotto winningLotto = new Lotto(winningNumbers);
-        validateBonusNumber(winningLotto, bonus);
-        this.winningLotto = winningLotto;
+    public WinningLotto(final Lotto winningNumbersLotto, final int bonus) {
+        validateBonusNumber(winningNumbersLotto, bonus);
+        this.winningNumbersLotto = winningNumbersLotto;
         this.bonus = bonus;
     }
 
@@ -43,7 +42,7 @@ public class LottoChecker {
     }
 
     private LottoRank getLottoRank(final Lotto lotto) {
-        final int matchCount = winningLotto.getMatchCount(lotto);
+        final int matchCount = winningNumbersLotto.getMatchCount(lotto);
         if (matchCount == 5) {
             return LottoRank.valueFrom(matchCount, hasBonusNumber(lotto));
         }

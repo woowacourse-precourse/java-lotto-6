@@ -88,7 +88,6 @@ public class LottoMachine {
         int rank = 1;
         for (WinningRanking winningRanking : WinningRanking.values()){
             totalAmount += (winningRanking.getWinnings() * winningRankCnt[rank]);
-            System.out.println("totla : "+totalAmount);
             rank += 1;
         }
         int investMoney = LOTTO_PRICE * lottos.size();

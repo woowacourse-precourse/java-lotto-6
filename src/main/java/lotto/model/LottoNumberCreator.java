@@ -20,6 +20,7 @@ public class LottoNumberCreator {
     }
 
     public static List<Lotto> myLottoNumbersFrom(int each) {
+        lottos.clear();
         while (each-- > GENERATE_END) {
             new LottoNumberCreator();
         }

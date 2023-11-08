@@ -38,7 +38,8 @@ class UserTest {
     @Test
     @DisplayName("로또_구매_갯수_테스트")
     void buyLotto() {
-        List<Lotto> myLottoNumbers = LottoNumberCreator.myLottoNumbersFrom(BUY_LOTTO_EACH);
+
+        List<Lotto> myLottoNumbers = LottoNumberCreator.myLottoNumbersFrom(2);
         Assertions.assertEquals( myLottoNumbers.size(), 2);
     }
 }

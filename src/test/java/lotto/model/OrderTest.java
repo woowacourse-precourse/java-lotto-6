@@ -13,7 +13,7 @@ public class OrderTest {
 
     @DisplayName("입력한 구매 금액이 1000원 단위여야 한다.")
     @Test
-    public void createOrderByMultipleOfThousand() {
+    void createOrderByMultipleOfThousand() {
         String cost = "4500";
 
         assertThatThrownBy(() -> new Order(cost))
@@ -23,7 +23,7 @@ public class OrderTest {
 
     @DisplayName("입력한 금액이 숫자여야 한다.")
     @Test
-    public void createOrderByNumeric() {
+    void createOrderByNumeric() {
         String cost = "400zero";
 
         assertThatThrownBy(() -> new Order(cost))
@@ -33,7 +33,7 @@ public class OrderTest {
 
     @DisplayName("입력한 금액은 0보다 큰 정수여야 한다.")
     @Test
-    public void createOrderByPositive() {
+    void createOrderByPositive() {
         String cost = "0";
 
         assertThatThrownBy(() -> new Order(cost))
@@ -43,7 +43,7 @@ public class OrderTest {
 
     @DisplayName("구매 금액을 1000원 나눈것과 로또 수량이 같아야 한다.")
     @Test
-    public void createOrderByCostEqualAmount() {
+    void createOrderByCostEqualAmount() {
         Order order = new Order(expectCost);
         int result = order.getBuyCount();
 

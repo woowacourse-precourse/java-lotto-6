@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Model;
 
 public enum Rank {
     FIFTH("3개 일치", 5000, 0),
@@ -10,25 +10,26 @@ public enum Rank {
     final private String message;
     final private int price;
     private int cnt;
-    Rank(String message, int price, int cnt){
+
+    Rank(String message, int price, int cnt) {
         this.message = message;
         this.price = price;
         this.cnt = cnt;
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return message;
     }
 
-    public int getPrice(){
+    public int getPrice() {
         return price;
     }
 
-    public int getCnt(){
+    public int getCnt() {
         return cnt;
     }
 
-    public void setCnt(){
+    public void setCnt() {
         this.cnt += 1;
     }
 }

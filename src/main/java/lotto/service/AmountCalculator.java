@@ -6,7 +6,6 @@ public class AmountCalculator {
     private final int amount;
     private final int numberOfLottoPurchased;
 
-
     public AmountCalculator(int amount) {
         validate(amount);
         this.amount = amount;

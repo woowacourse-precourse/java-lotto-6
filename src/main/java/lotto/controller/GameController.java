@@ -7,7 +7,6 @@ import lotto.service.LottoMachine;
 import lotto.service.RateOfReturnCalculator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

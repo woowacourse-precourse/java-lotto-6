@@ -1,6 +1,6 @@
 package lotto.domain.message;
 
-public enum InputViewMessage {
+public enum InputMessage {
 
     INPUT_MONEY_NOTICE("구입금액을 입력해 주세요."),
     INPUT_WINNING_NUMBER_NOTICE("당첨 번호를 입력해 주세요."),
@@ -9,7 +9,7 @@ public enum InputViewMessage {
 
     private final String value;
 
-    InputViewMessage(final String value) {
+    InputMessage(final String value) {
         this.value = value;
     }
 

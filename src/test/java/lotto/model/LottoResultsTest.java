@@ -137,5 +137,25 @@ class LottoResultsTest {
             assertThat(lottoResults).isEqualTo(lottoResults);
             assertThat(lottoResults.hashCode()).isEqualTo(lottoResults.hashCode());
         }
+
+        @Test
+        @DisplayName("null과 비교 - equals")
+        void testEqualsAgainstNull() {
+            Map<Rank, Long> results = new EnumMap<>(Rank.class);
+            results.put(Rank.FIRST, 1L);
+            LottoResults lottoResults = LottoResults.from(results);
+
+            assertThat(lottoResults.equals(null)).isFalse();
+        }
+
+        @Test
+        @DisplayName("다른 클래스 객체와 비교 - equals")
+        void testEqualsAgainstDifferentClassObject() {
+            Map<Rank, Long> results = new EnumMap<>(Rank.class);
+            results.put(Rank.FIRST, 1L);
+            LottoResults lottoResults = LottoResults.from(results);
+
+            assertThat(lottoResults.equals(new Object())).isFalse();
+        }
     }
 }

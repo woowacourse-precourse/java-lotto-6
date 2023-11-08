@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,16 +11,29 @@ public class Exception {
         System.out.println();
     }
 
-    public static void priceValidate(String input) {
-        int price;
-        try {
-            price = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력하셔야 합니다.");
+    public static void priceValidate(int price) {
+        if(price == 0) {
+            throw new IllegalArgumentException("로또를 최소 1장 구입하셔야 합니다.");
         }
 
         if (price % 1000 != 0) {
             throw new IllegalArgumentException("로또 1장의 가격은 1,000원입니다.");
+        }
+    }
+
+    public static void numberTypeValidate(String input) {
+        int number;
+        try {
+            if(input.contains(",")) {
+                String[] numbers = input.split(",");
+                for(String str : numbers) {
+                    int strToNumber = Integer.parseInt(str);
+                }
+            } else {
+                number = Integer.parseInt(input);
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자를 입력하셔야 합니다.");
         }
     }
 
@@ -41,14 +55,7 @@ public class Exception {
         }
     }
 
-    public static void bonusNumberValidate(String input, List<Integer> winningNumbers) {
-        int bonusNumber;
-        try {
-            bonusNumber = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("1개의 숫자를 입력하셔야 합니다.");
-        }
-
+    public static void bonusNumberValidate(int bonusNumber, List<Integer> winningNumbers) {
         if(bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }

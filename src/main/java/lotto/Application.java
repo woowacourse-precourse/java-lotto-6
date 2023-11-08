@@ -38,7 +38,8 @@ public class Application {
         String input = Console.readLine();
 
         try {
-            Exception.priceValidate(input);
+            Exception.numberTypeValidate(input);
+            Exception.priceValidate(Integer.parseInt(input));
             price = Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             Exception.printException(e.getMessage());
@@ -64,13 +65,15 @@ public class Application {
 
     public static void inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        winningNumbers = Arrays.stream(input.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-
         try {
+            String input = Console.readLine();
+            Exception.numberTypeValidate(input);
+
+            winningNumbers = Arrays.stream(input.split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+
             Lotto lotto = new Lotto(winningNumbers);
         } catch (IllegalArgumentException e) {
             Exception.printException(e.getMessage());
@@ -83,7 +86,8 @@ public class Application {
         String input = Console.readLine();
 
         try {
-            Exception.bonusNumberValidate(input, winningNumbers);
+            Exception.numberTypeValidate(input);
+            Exception.bonusNumberValidate(Integer.parseInt(input), winningNumbers);
         } catch (IllegalArgumentException e) {
             Exception.printException(e.getMessage());
             inputBonusNumber();

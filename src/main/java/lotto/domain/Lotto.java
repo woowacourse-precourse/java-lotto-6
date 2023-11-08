@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constant.LottoConstant;
 import lotto.exception.ModelExceptionConstant;
 
 public class Lotto {
@@ -25,7 +26,7 @@ public class Lotto {
     }
 
     private void validateLottoSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoConstant.LOTTO_NUMBER_COUNT.value()) {
             throw new IllegalArgumentException();
         }
     }

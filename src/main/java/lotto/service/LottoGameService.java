@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.StringJoiner;
+import lotto.constant.LottoConstant;
 import lotto.constant.WinningAmountConstant;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -60,7 +61,7 @@ public class LottoGameService {
     private int getCompareLottoCount(Lotto lotto, List<Integer> winningNumbers, boolean hasBonusNumber) {
         int count = lotto.countDuplicatedNumbers(winningNumbers);
 
-        if (hasBonusNumber && count < 6) {
+        if (hasBonusNumber && count < LottoConstant.LOTTO_NUMBER_COUNT.value()) {
             count++;
         }
 

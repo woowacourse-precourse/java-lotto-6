@@ -20,8 +20,4 @@ public class UserSaveController implements Controller {
         return new BasicView();
     }
 
-    private void validate(String input) {
-
-    }
-
 }

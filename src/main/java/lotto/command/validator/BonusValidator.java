@@ -1,7 +1,5 @@
 package lotto.command.validator;
 
-import java.util.List;
-
 public class BonusValidator implements Validator {
     @Override
     public void validate(String input) {

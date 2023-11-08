@@ -3,7 +3,6 @@ package lotto.controller.user;
 import java.util.List;
 import lotto.controller.Controller;
 import lotto.service.UserService;
-import lotto.view.BasicView;
 import lotto.view.LottoBuyCountView;
 import lotto.view.View;
 

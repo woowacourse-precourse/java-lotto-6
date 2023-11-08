@@ -16,9 +16,6 @@ public enum Command {
     private String message;
     private Validator validator;
     Command() {};
-    Command(String message) {
-        this.message = message;
-    }
     Command(String message, Validator validator) {
         this.message = message;
         this.validator = validator;

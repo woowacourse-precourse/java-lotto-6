@@ -41,8 +41,7 @@ public class LottoController {
     public PrizeLotto createPrizeNum() {
         List<Integer> lo;
         int bonus;
-        lo = lottoNumCheck
-                ();
+        lo = lottoNumCheck();
         bonus = lottoBonusNumCheck(lo);
         return new PrizeLotto(lo, bonus);
 

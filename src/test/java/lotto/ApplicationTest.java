@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.controller.LottoController;
 import lotto.controller.NumberValidator;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
@@ -16,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
     NumberValidator numberValidator = new NumberValidator();
+    LottoController lottoController = new LottoController();
 
     @Test
     void 기능_테스트() {
@@ -58,17 +60,18 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
     @DisplayName("로또 당첨 번호의 개수가 6개가 안되면 예외가 발생한다.")
     @Test
     void createLottoByDownSize() {
-        assertThatThrownBy(() -> numberValidator.prizeNumValidate(List.of(1,2,3,4,5)))
+        assertThatThrownBy(() -> numberValidator.prizeNumValidate(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 당첨 번호의 개수가 6개가 넘으면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
-        assertThatThrownBy(() -> numberValidator.prizeNumValidate(List.of(1,2,3,4,5,6,7)))
+        assertThatThrownBy(() -> numberValidator.prizeNumValidate(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -95,6 +98,30 @@ class ApplicationTest extends NsTest {
         assertThatThrownBy(() -> numberValidator.prizeLottoNumValidator("1,2,3,4,4,5"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 당첨 번호와 보너스 번호 숫자가 중복값이 들어오면 예외가 발생한다.")
+    @Test
+    void createPrizeNumAndBonusNum() {
+
+        assertThatThrownBy(() -> numberValidator.lottoBonusNumValidator("7",List.of(1,2,3,4,5,7)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호 숫자가 빈 값이 들어오면 예외가 발생한다.")
+    @Test
+    void createBonusEmptyNum() {
+
+        assertThatThrownBy(() -> numberValidator.lottoBonusNumValidator("",List.of(1,2,3,4,5,7)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("보너스 번호 숫자가 아닌 값이 들어오면 예외가 발생한다.")
+    @Test
+    void createBonusNotNum() {
+
+        assertThatThrownBy(() -> numberValidator.lottoBonusNumValidator("s",List.of(1,2,3,4,5,7)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
     @Override
     public void runMain() {

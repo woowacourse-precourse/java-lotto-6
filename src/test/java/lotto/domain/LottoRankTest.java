@@ -38,5 +38,16 @@ public class LottoRankTest {
         Assertions.assertEquals(LottoRank.FIFTH.calculatePrizeAmount(count), expect);
     }
 
+    @Test
+    void isContainBonusRank_메소드는_보너스볼이_포함된_등수이면_true를_반환한다() {
+        Assertions.assertTrue(LottoRank.SECOND.isContainBonusRank());
+    }
+
+    @ParameterizedTest
+    @EnumSource(value = LottoRank.class, names = {"NOTHING", "FIFTH", "FOURTH", "THIRD","FIRST"})
+    void isContainBonusRank_메소드는_보너스볼이_포함되지_않은_등수이면_false를_반환한다(LottoRank lottoRank) {
+        Assertions.assertFalse(lottoRank.isContainBonusRank());
+    }
+
 
 }

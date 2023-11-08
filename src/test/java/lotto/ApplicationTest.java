@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -47,10 +48,56 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    @DisplayName("유효하지 않은 로또 금액 입력 1")
+    void 예외_테스트1() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ERROR_MESSAGE, "구입 금액을 입력해 주세요.");
+        });
+    }
+
+    @Test
+    @DisplayName("유효하지 않은 로또 금액 입력 2")
+    void 예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("1400");
+            assertThat(output()).contains(ERROR_MESSAGE, "구입 금액을 입력해 주세요.");
+        });
+    }
+
+    @Test
+    @DisplayName("유효하지 않은 로또 금액 입력 3")
+    void 예외_테스트3() {
+        assertSimpleTest(() -> {
+            runException("-4000");
+            assertThat(output()).contains(ERROR_MESSAGE, "구입 금액을 입력해 주세요.");
+        });
+    }
+
+    @Test
+    @DisplayName("유효하지 않은 로또 당첨 번호 입력")
+    void 예외_테스트4() {
+        assertSimpleTest(() -> {
+            runException("8000", "abc,def,gfg,ddd");
+            assertThat(output()).contains(ERROR_MESSAGE, "로또 당첨 번호를 정확하게 입력해주세요.");
+        });
+    }
+
+    @Test
+    @DisplayName("유효하지 않은 보너스 번호 입력 : 중복")
+    void 예외_테스트5() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "1");
+            assertThat(output()).contains(ERROR_MESSAGE, "보너스 번호는 1부터 45 사이의 당첨 번호와 중복되지 않은 숫자여야 합니다.");
+        });
+    }
+
+    @Test
+    @DisplayName("유효하지 않은 보너스 번호 입력 : 비유효 값")
+    void 예외_테스트6() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "-1");
+            assertThat(output()).contains(ERROR_MESSAGE, "보너스 번호는 1부터 45 사이의 당첨 번호와 중복되지 않은 숫자여야 합니다.");
         });
     }
 

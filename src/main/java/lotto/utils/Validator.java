@@ -92,7 +92,7 @@ public class Validator {
 
     public static void checkBonusNumberForm(String input) throws IllegalArgumentException {
         if (!input.matches("^([1-9]|[1-3][0-9]|4[0-5])$")) {
-            throw new IllegalArgumentException(INVALID_OUT_OF_RANGE);
+            throw new IllegalArgumentException(NOT_INPUT_FORM);
         }
     }
 

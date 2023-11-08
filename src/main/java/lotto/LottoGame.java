@@ -5,9 +5,12 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchaser;
+import lotto.domain.Lottos;
+import lotto.domain.Statistics;
 import lotto.errors.ErrorMessage;
 
 public class LottoGame {
@@ -15,6 +18,8 @@ public class LottoGame {
     LottoPurchaser lottoPurchaser = LottoPurchaser.getInstance();
     BonusNumber bonusNumber = new BonusNumber();
     Lotto luckyNumbers = null;
+    Lottos lottos = null;
+    Statistics statistics = new Statistics();
 
     public void getRightCost() {
         do {
@@ -28,6 +33,11 @@ public class LottoGame {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public Lottos createLottos() {
+        lottos = new Lottos(addLottos());
+        return lottos;
     }
 
     // TODO 3항연산자 사용 X
@@ -47,16 +57,20 @@ public class LottoGame {
     }
 
     public void getRightLuckyNumbers() {
+        boolean success = false;
         do {
-            getLuckyNumbers();
-        } while (luckyNumbers==null);
+            success = getLuckyNumbers();
+        } while (success == false);
     }
 
-    private void getLuckyNumbers() {
+    private boolean getLuckyNumbers() {
         try {
-            luckyNumbers = luckyNumbers.createNewLotto(Console.readLine());
+            luckyNumbers = new Lotto(Console.readLine());
+            return true;
         } catch (IllegalArgumentException e) {
+
             System.out.println(e.getMessage());
+            return false;
         }
     }
 
@@ -80,13 +94,17 @@ public class LottoGame {
 
     private void checkDuplicatedBonusNumber(BonusNumber bonusNumber, List<Integer> luckyNumbers) {
         if (luckyNumbers.stream()
-                .anyMatch(number -> number == bonusNumber.getBonusNumber())) {
+                .anyMatch(number -> Objects.equals(number, bonusNumber.getBonusNumber()))) {
             bonusNumber.setBonusNumber(null);
             throw new IllegalArgumentException(ErrorMessage.WRONG_BONUS_NUMBER.getMessage());
         }
     }
 
     public void calculateStatistics() {
+        statistics.temp(lottos, luckyNumbers, bonusNumber);
+    }
 
+    public void print() {
+        System.out.println(statistics);
     }
 }

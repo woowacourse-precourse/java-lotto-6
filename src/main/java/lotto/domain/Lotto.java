@@ -6,9 +6,17 @@ import java.util.stream.Collectors;
 
 public class Lotto extends Validator{
 
-    private final List<Integer> numbers;
+    private List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        validate(numbers);
+        validateDuplicatedNumber(numbers);
+        validateRangeOfNumbers(numbers);
+        this.numbers = numbers;
+    }
+
+    public Lotto(String luckyNumber) {
+        List<Integer> numbers = splitLuckyNumber(luckyNumber);
         validate(numbers);
         validateDuplicatedNumber(numbers);
         validateRangeOfNumbers(numbers);
@@ -19,10 +27,10 @@ public class Lotto extends Validator{
         return numbers;
     }
 
-    public Lotto createNewLotto(String luckyNumber) {
-        return new Lotto(Arrays.stream(luckyNumber.trim().split("\\s*,\\s*"))
+    private List<Integer> splitLuckyNumber(String luckyNumber) {
+        return Arrays.stream(luckyNumber.trim().split("\\s*,\\s*"))
                 .map(this::parseInt)
-                .toList());
+                .toList();
     }
 
     @Override

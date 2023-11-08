@@ -10,6 +10,10 @@ public class Lottos {
         this.allLottos = allLottos;
     }
 
+    public List<Lotto> getAllLottos() {
+        return allLottos;
+    }
+
     @Override
     public String toString() {
         return allLottos.stream()

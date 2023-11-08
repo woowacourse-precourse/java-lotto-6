@@ -27,4 +27,8 @@ public class TotalPrizeMoney {
         return Double.valueOf(Math.round(earningRate * 10)) / 10;
     }
 
+    public Integer getTotalPrizeMoney(){
+        return totalPrizeMoney;
+    }
+
 }

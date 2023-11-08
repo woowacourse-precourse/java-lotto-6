@@ -211,7 +211,12 @@ class LottoTest {
     @DisplayName("당첨된 로또들의 상금을 종합한다.")
     @Test
     void sumPrizeMoney(){
+        LottoResultWinners lottoResultWinners = new LottoResultWinners();
+        lottoResultWinners.add(new LottoResult(Rank.FIVE_MATCH_BONUS.getNumberOfMatch(),Rank.FIVE_MATCH_BONUS.getBonus()));
+        lottoResultWinners.add(new LottoResult(Rank.THREE_MATCH.getNumberOfMatch(),Rank.THREE_MATCH.getBonus()));
 
+        TotalPrizeMoney totalPrizeMoney = TotalPrizeMoney.findTotalPrizeMoney(lottoResultWinners);
+        assertThat(totalPrizeMoney.getTotalPrizeMoney()).isEqualTo(30005000);
     }
 
     @DisplayName("수익률을 구한다.")

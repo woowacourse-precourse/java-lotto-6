@@ -1,5 +1,12 @@
 package lotto.app.collaboration;
 
+import static lotto.app.collaboration.enums.LottoMessage.COUNT_OF_NUMBERS;
+import static lotto.app.collaboration.enums.LottoMessage.EXCEPTION_DUPLICATED;
+import static lotto.app.collaboration.enums.LottoMessage.EXCEPTION_NOT_SIX;
+import static lotto.app.collaboration.enums.LottoMessage.EXCEPTION_OUT_OF_RANGE;
+import static lotto.app.collaboration.enums.LottoMessage.MAX_NUMBER_RANGE;
+import static lotto.app.collaboration.enums.LottoMessage.MIN_NUMBER_RANGE;
+
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.app.game.io.Randoms;
@@ -20,20 +27,21 @@ public class Lotto {
     }
 
     private void occurExceptionIfOutOfRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> number < 1 || 45 < number)) {
-            throw new IllegalArgumentException("로또 번호는 1부터 45까지의 숫자 중에서 선택할 수 있습니다");
+        if (numbers.stream().anyMatch(number ->
+                number < MIN_NUMBER_RANGE || MAX_NUMBER_RANGE < number)) {
+            throw new IllegalArgumentException(EXCEPTION_OUT_OF_RANGE.get());
         }
     }
 
     private void occurExceptionIfNotSix(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+        if (numbers.size() != COUNT_OF_NUMBERS) {
+            throw new IllegalArgumentException(EXCEPTION_NOT_SIX.get());
         }
     }
 
     private void occurExceptionIfDuplicated(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("로또 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(EXCEPTION_DUPLICATED.get());
         }
     }
 

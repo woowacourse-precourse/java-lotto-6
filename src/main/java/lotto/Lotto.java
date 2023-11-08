@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,7 +12,28 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateNumbersSizeIs6(numbers);
+        validateNumbersRangeFrom1To45(numbers);
+        validateNumbersNotDuplicate(numbers);
+    }
+
+    private void validateNumbersSizeIs6(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateNumbersRangeFrom1To45(List<Integer> numbers) {
+        for (int number: numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    private void validateNumbersNotDuplicate(List<Integer> numbers) {
+        Set<Integer> winningNumberSet = Set.copyOf(numbers);
+        if (winningNumberSet.size() != 6) {
             throw new IllegalArgumentException();
         }
     }

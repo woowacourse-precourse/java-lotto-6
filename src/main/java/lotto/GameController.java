@@ -34,4 +34,10 @@ public class GameController {
         WinningNumbers winningNumbers = new WinningNumbers(InputView.WINNING_NUMBERS.scan(), InputView.BONUS_NUMBER.scan());
         return winningNumbers;
     }
+
+    private PrizeStats receivePrizeStats(List<Lotto> lottos, WinningNumbers winningNumbers) {
+        PrizeStats prizeStats = new PrizeStats(lottos, winningNumbers);
+        OutputView.printPrizeStats(prizeStats.getGradeDist());
+        return prizeStats;
+    }
 }

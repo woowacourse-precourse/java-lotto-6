@@ -10,7 +10,6 @@ public class GameManageController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private Lottos lottos;
 
     public GameManageController() {
         inputView = new InputView();
@@ -22,6 +21,9 @@ public class GameManageController {
         Lottos lottos = getLottos(purchaseAmount);
         Lotto lotto = getInputNumbers();
         BonusNumber bonusNumber = getInputBonusNumber();
+
+        getWinningStatistics(lottos, lotto);
+        getWinningRate(lottos, lotto, bonusNumber);
     }
 
     private Money getPurchaseMoney() {
@@ -63,5 +65,15 @@ public class GameManageController {
             outputView.errorMessage();
             return getInputBonusNumber();
         }
+    }
+
+    private void getWinningStatistics(Lottos lottos, Lotto lotto) {
+        List<Integer> result = WinningResult.calculateWinningCount(lottos, lotto);
+        outputView.noticeWinningStatisticsMessage(result);
+    }
+
+    private void getWinningRate(Lottos lottos, Lotto lotto, BonusNumber bonusNumber) {
+        double statistics = WinningResult.calculateWinningRate(lottos, lotto, bonusNumber);
+        outputView.noticeWinningRateMessage(statistics);
     }
 }

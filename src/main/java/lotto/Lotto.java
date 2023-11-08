@@ -24,7 +24,7 @@ public class Lotto extends InputNumbers {
         return this.numbers;
     }
 
-    public int countEqual(List<Integer> numbers) {
+    public int count(List<Integer> numbers) {
         List<Integer> originalNumbers = new ArrayList<>(this.numbers);
         originalNumbers.retainAll(numbers);
         return originalNumbers.size();

@@ -32,8 +32,8 @@ public class Result {
 
     public double getCalculateRateOfReturn(int buyingPrice) {
         double rateOfReturn = ((double) getWinningPrice() / buyingPrice) * PERCENT;
-        double refinedRateOfReturn = Math.round(rateOfReturn * Math.pow(BASE, ROUND)) / Math.pow(BASE, ROUND);
-        return refinedRateOfReturn;
+        double result = (double) Math.round(rateOfReturn * Math.pow(BASE, ROUND)) / Math.pow(BASE, ROUND);
+        return result;
     }
 
     private int getWinningPrice() {

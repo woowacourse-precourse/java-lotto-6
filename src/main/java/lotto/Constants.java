@@ -34,7 +34,7 @@ public class Constants {
     public static final Integer FIFTH_REWARD = 5000;
 
     public static final Integer FIRST_CORRECTNESS = 6;
-    public static final Integer SECOND_CORRECTNESS = 6;
+    public static final Integer SECOND_CORRECTNESS = 5;
     public static final Integer THIRD_CORRECTNESS = 5;
     public static final Integer FOURTH_CORRECTNESS = 4;
     public static final Integer FIFTH_CORRECTNESS = 3;

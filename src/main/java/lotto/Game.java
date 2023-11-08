@@ -5,7 +5,6 @@ import static lotto.ResultCase.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -96,24 +95,32 @@ public class Game {
     }
 
     private Integer count(ResultCase resultCase) {
-        int matchNumbers = ZERO;
+        Integer matchLotto = ZERO;
         for (Lotto lotto : lottos) {
-            int equal = lotto.countEqual(winning.getNumbers());
-            if (resultCase == FIVE_AND_BONUS_CORRECTNESS) {
-                equal = countBonus(lotto, equal);
+            int equalNumbers = lotto.count(winning.getNumbers());
+            if (resultCase == FIVE_AND_BONUS_CORRECTNESS && equalNumbers == resultCase.getCorrectness()) {
+                matchLotto = addBonus(lotto, matchLotto);
+                continue;
             }
-            if (equal == resultCase.getCorrectness()) {
-                matchNumbers++;
+            if (resultCase != FIVE_AND_BONUS_CORRECTNESS && equalNumbers == resultCase.getCorrectness()) {
+                matchLotto++;
             }
         }
-        return matchNumbers;
+        return matchLotto;
     }
 
-    private Integer countBonus(Lotto lotto, Integer equalNumber) {
-        if (lotto.contain(bonus.getNumber())) {
-            equalNumber++;
+    private Integer addBonus(Lotto lotto, Integer matchLotto) {
+        if(guessBonus(lotto)) {
+            matchLotto++;
         }
-        return equalNumber;
+        return matchLotto;
+    }
+
+    private Boolean guessBonus(Lotto lotto) {
+        if (lotto.contain(bonus.getNumber())) {
+            return true;
+        }
+        return false;
     }
 
     private void printWinning() {

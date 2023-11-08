@@ -1,10 +1,5 @@
 package lotto.model;
 
-import static lotto.model.LottoRanking.FIFTH;
-import static lotto.model.LottoRanking.FIRST;
-import static lotto.model.LottoRanking.FORTH;
-import static lotto.model.LottoRanking.SECOND;
-import static lotto.model.LottoRanking.THIRD;
 import static lotto.util.Constant.CHECK_BONUS_NUMBER;
 import static lotto.util.Constant.SECOND_GET_MATCH_COUNT;
 
@@ -30,20 +25,10 @@ public class LottoResult {
     }
 
     public static void addCount(int match) {
-        if (match == FIRST.getMatchCount()) {
-            LottoRanking.addCount(FIRST);
-        }
-        if (match == SECOND.getMatchCount()) {
-            LottoRanking.addCount(SECOND);
-        }
-        if (match == THIRD.getMatchCount()) {
-            LottoRanking.addCount(THIRD);
-        }
-        if (match == FORTH.getMatchCount()) {
-            LottoRanking.addCount(FORTH);
-        }
-        if (match == FIFTH.getMatchCount()) {
-            LottoRanking.addCount(FIFTH);
+        for (LottoRanking ranking : LottoRanking.values()) {
+            if (match == ranking.getMatchCount()) {
+                LottoRanking.addCount(ranking);
+            }
         }
     }
 

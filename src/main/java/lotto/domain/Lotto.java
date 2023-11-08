@@ -10,7 +10,6 @@ public class Lotto {
         validate(numbers);
         validateRange(numbers);
         validateUnique(numbers);
-
         this.numbers = numbers;
     }
 
@@ -52,10 +51,16 @@ public class Lotto {
     public void validateBonusNumber(int bonusNumber) {
         ValidateUtil.isInRange(bonusNumber, Constant.LOTTO_MINIMUM_NUMBER.getValue(),
                 Constant.LOTTO_MAXIMUM_NUMBER.getValue());
-        if (ValidateUtil.isContain(bonusNumber, numbers)) {
-            throw new IllegalArgumentException();
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호에 이미 포함되어 있습니다.");
         }
-
     }
+
+    public LottoRecord winCheck(Lotto winLotto, int bonusNumber) {
+        int matchCount = (int) numbers.stream().filter(winLotto.getLottoNumbers()::contains).count();
+        boolean isBonusMatched = numbers.contains(bonusNumber);
+        return new LottoRecord(matchCount, isBonusMatched);
+    }
+
 
 }

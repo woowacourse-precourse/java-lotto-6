@@ -207,6 +207,18 @@ public class Program {
     }
 
     public void calculateRateOfReturn() {
+        BigInteger sum = calculateSumOfRewards();
+        BigDecimal sumTemp = new BigDecimal(sum);
+
+        BigInteger purchaseAmountTemp = BigInteger.valueOf(purchaseAmount);
+
+        BigDecimal rateOfReturnTemp = sumTemp.multiply(new BigDecimal("100"))
+                .divide(new BigDecimal(purchaseAmountTemp), 2, RoundingMode.HALF_UP);
+
+        rateOfReturn = rateOfReturnTemp.setScale(1, RoundingMode.HALF_UP);
+    }
+
+    private BigInteger calculateSumOfRewards() {
         BigInteger rewardOf5th = BigInteger.valueOf(
                 (long) statistics.get(matchesCount5thPlace) * (long) Lotto5thPlaceReward);
         BigInteger rewardOf4th = BigInteger.valueOf(
@@ -218,14 +230,6 @@ public class Program {
         BigInteger rewardOf1st = BigInteger.valueOf(
                 (long) statistics.get(matchesCount1stPlace) * (long) Lotto1stPlaceReward);
 
-        BigInteger sum = rewardOf1st.add(rewardOf2nd).add(rewardOf3rd).add(rewardOf4th).add(rewardOf5th);
-        BigDecimal sumTemp = new BigDecimal(sum);
-
-        BigInteger purchaseAmountTemp = BigInteger.valueOf(purchaseAmount);
-
-        BigDecimal rateOfReturnTemp = sumTemp.multiply(new BigDecimal("100"))
-                .divide(new BigDecimal(purchaseAmountTemp), 2, RoundingMode.HALF_UP);
-
-        rateOfReturn = rateOfReturnTemp.setScale(1, RoundingMode.HALF_UP);
+        return rewardOf1st.add(rewardOf2nd).add(rewardOf3rd).add(rewardOf4th).add(rewardOf5th);
     }
 }

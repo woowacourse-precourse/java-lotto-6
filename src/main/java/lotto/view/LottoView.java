@@ -5,6 +5,7 @@ import java.util.function.Function;
 import lotto.constant.LottoMessage;
 import lotto.dto.LottoInfoResponse;
 import lotto.dto.PurchaseAmountRequest;
+import lotto.dto.WinningNumbersRequest;
 
 public class LottoView {
 
@@ -27,9 +28,10 @@ public class LottoView {
         write(outputMaker.makeLottosNumbersOutput(lottoInfoResponse.lottoNumbers()));
     }
 
-    public void readWinningNumber() {
+    public WinningNumbersRequest readWinningNumber() {
         write(LottoMessage.getEmpty());
         write(LottoMessage.getWinningNumberInputMessage());
+        return readUntilValidInput(inputMapper::inputToWinningNumbersRequest);
     }
 
     private void write(String output) {

@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.dto.PurchaseAmountRequest;
+import lotto.dto.WinningNumbersRequest;
 import lotto.model.Lottos;
 import lotto.service.LottoMakeService;
 import lotto.view.LottoView;
@@ -19,6 +20,6 @@ public class LottoController {
         PurchaseAmountRequest purchaseAmountRequest = view.readPurchaseAmount();
         Lottos lottos = lottoMakeService.makeRandomLottos(purchaseAmountRequest);
         view.writeLottosInfo(lottos.getLottoInfoResponse());
-        view.readWinningNumber();
+        WinningNumbersRequest winningNumbersRequest = view.readWinningNumber();
     }
 }

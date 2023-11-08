@@ -10,7 +10,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LottoTest extends NsTest {
+class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생.")
     @Test
     void createLottoByOverSize() {
@@ -60,20 +60,15 @@ class LottoTest extends NsTest {
         Lotto winningNumbersFiveMatches = new Lotto(List.of(1, 2, 3, 4, 5, 7));
         BonusNumber bonusNumberMatch = new BonusNumber("6");
         BonusNumber bonusNumberNotMatch = new BonusNumber("9");
-
         // when
         Ranking rankingFirst = targetTicket.checkRanking(winningNumbersFiveMatches, bonusNumberMatch);
         Ranking rankingSecond = targetTicket.checkRanking(winningNumbersFiveMatches, bonusNumberNotMatch);
         Ranking rankingThird = targetTicket.checkRanking(winningNumbersFourMatches, bonusNumberMatch);
         Ranking rankingFourth = targetTicket.checkRanking(winningNumbersFourMatches, bonusNumberNotMatch);
-
         // then
         assertThat(rankingFirst == Ranking.FIRST).isTrue();
         assertThat(rankingSecond == Ranking.SECOND).isTrue();
         assertThat(rankingThird == Ranking.THIRD).isTrue();
         assertThat(rankingFourth == Ranking.FOURTH).isTrue();
     }
-
-    @Override
-    protected void runMain() {Application.main(new String[]{});}
 }

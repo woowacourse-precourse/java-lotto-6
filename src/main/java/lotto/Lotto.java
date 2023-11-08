@@ -1,10 +1,8 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -69,7 +67,9 @@ public class Lotto {
     }
 
     private void sortDesc(List<Integer> numbers){
-        numbers.sort(Comparator.naturalOrder());
+        numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public List<Integer> getNumbers(){

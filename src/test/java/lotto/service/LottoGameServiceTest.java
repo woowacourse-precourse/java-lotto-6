@@ -179,14 +179,17 @@ class LottoGameServiceTest {
         assertThat(collectNumberCount).isEqualTo(6);
     }
 
-    @DisplayName("구매한 로또 번호와 보너스 번호 포함")
+    @DisplayName("구매한 로또 번호와 보너스 번호 포함 여부")
     @Test
     void collectBonusNumber() {
         List<Integer> purchaseLotto = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 1;
+        int bonusNumber1 = 1;
+        int bonusNumber2 = 7;
 
-        assertThat(lottoGameService.isContainBonusNumber(purchaseLotto, bonusNumber))
+        assertThat(lottoGameService.isContainBonusNumber(purchaseLotto, bonusNumber1))
                 .isEqualTo(true);
+        assertThat(lottoGameService.isContainBonusNumber(purchaseLotto, bonusNumber2))
+                .isEqualTo(false);
     }
 
     @DisplayName("당첨 번호와 5개 일치, 보너스 번호 미포함일 경우 3등")

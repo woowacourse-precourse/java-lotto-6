@@ -4,6 +4,7 @@ import lotto.Lotto;
 import lotto.model.Model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ConsoleOutput {
     public static void buyInfoMessage() {
@@ -14,8 +15,10 @@ public class ConsoleOutput {
         System.out.println(number + InfoMessage.HOW_MUCH.getMessage());
     }
 
-    public static void showLottos(List<Lotto>Lottos) {
-
+    public static void showLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lottos);
+        }
     }
 
     public static void winningNumberInfoMessage() {

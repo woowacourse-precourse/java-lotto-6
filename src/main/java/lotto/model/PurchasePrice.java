@@ -4,30 +4,25 @@ public class PurchasePrice {
     private static final int ONE_LOTTO_PRICE = 1000;
     private int price;
 
-    public PurchasePrice(String price) {
-        try {
+    public PurchasePrice(String price) throws IllegalArgumentException {
             validateNumber(price);
             validateCondition(price);
             this.price = Integer.parseInt(price);
-        } catch (IllegalArgumentException e) {
-            throw e;
-        }
     }
 
-    private void validateNumber(String price) {
+    private void validateNumber(String price) throws NumberFormatException {
         int amount;
         try {
             amount = Integer.parseInt(price);
         } catch (NumberFormatException e) {
-            System.out.print("[ERROR] 숫자만 입력 가능합니다.");
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_ONLY_NUMBER.getMessage());
         }
     }
 
-    private void validateCondition(String price) {
+    private void validateCondition(String price) throws IllegalArgumentException {
         int amount = Integer.parseInt(price);
         if (amount % ONE_LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 입력은 1000원 단위로만 가능합니다");
+            throw new IllegalArgumentException(ErrorMessage.CANT_DIVIDE_1000.getMessage());
         }
     }
 

@@ -13,19 +13,19 @@ public class MyLottoNumbers {
     private List<Integer> myNumbers;
     private int bonusNumber;
 
-    public MyLottoNumbers(String input) {
+    public MyLottoNumbers(String input) throws IllegalArgumentException {
         List<Integer> beForeCheck;
         beForeCheck = validateNumber(validateSplit(input));
         validateSize(beForeCheck);
         myNumbers = validateUnique(beForeCheck);
     }
 
-    public void setBonusNumber(String bonusInput) {
+    public void setBonusNumber(String bonusInput) throws IllegalArgumentException {
         try {
             this.bonusNumber = validateRange(Integer.parseInt(bonusInput));
             validateUniqueBonus(bonusNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_ONLY_NUMBER.getMessage());
         }
     }
 
@@ -37,15 +37,15 @@ public class MyLottoNumbers {
         return bonusNumber;
     }
 
-    private List<String> validateSplit(String input) {
+    private List<String> validateSplit(String input) throws IllegalArgumentException {
         try {
             return Arrays.asList(input.split(","));
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 형식의 입력입니다.");
+            throw new IllegalArgumentException(ErrorMessage.INCORRECT_FORMAT.getMessage());
         }
     }
 
-    private List<Integer> validateNumber(List<String> splitInput) {
+    private List<Integer> validateNumber(List<String> splitInput) throws IllegalArgumentException{
         try {
             List<Integer> splitInputNumbers = new ArrayList<>();
             for (String number : splitInput) {
@@ -53,35 +53,35 @@ public class MyLottoNumbers {
             }
             return splitInputNumbers;
             } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자들만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_ONLY_NUMBER.getMessage());
         }
     }
 
-    private int validateRange(int number) {
+    private int validateRange(int number) throws IllegalArgumentException {
         if (number < MIN_IN_RANGE || number > MAX_IN_RANGE) {
-            throw new IllegalArgumentException("[ERROR] 1~45의 숫자들만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INCORRECT_RANGE.getMessage());
         }
         return number;
     }
 
-    private void validateSize(List<Integer> numbers) {
+    private void validateSize(List<Integer> numbers) throws IllegalArgumentException {
         if (numbers.size() != EXACT_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자로 구성되어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INCORRECT_SIZE.getMessage());
         }
     }
 
-    private List<Integer> validateUnique(List<Integer> numbers) {
+    private List<Integer> validateUnique(List<Integer> numbers) throws IllegalArgumentException {
         for (int n : numbers) {
             if (Collections.frequency(numbers,n)!=UNIQUE_NUMBER){
-                throw new IllegalArgumentException("[ERROR] 중복된 숫자가 존재합니다.");
+                throw new IllegalArgumentException(ErrorMessage.OVERLAP_NUMBER.getMessage());
             }
         }
         return numbers;
     }
     
-    private void validateUniqueBonus(int bonus) {
+    private void validateUniqueBonus(int bonus) throws IllegalArgumentException {
         if (myNumbers.contains(bonus)) {
-            throw new IllegalArgumentException("[ERROR] 입력하신 보너스 숫자가 이미 존재합니다");
+            throw new IllegalArgumentException(ErrorMessage.OVERLAP_NUMBER.getMessage());
         }
     }
 }

@@ -20,9 +20,13 @@ public class LottoController {
     public void start() {
         try {
             setPurchasePrice();
+
             makeSeveralLottos();
+
             makeMyLottoNumbers();
+
             compareLottos();
+
             OutputView.printEarningsRate(matchResult, purchasePrice);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -33,7 +37,8 @@ public class LottoController {
         try {
             purchasePrice = new PurchasePrice(InputView.inputPrice());
         } catch (IllegalArgumentException e) {
-            throw e;
+            System.out.println(e.getMessage());
+            setPurchasePrice();
         }
     }
 
@@ -50,10 +55,13 @@ public class LottoController {
     }
 
     private void makeMyLottoNumbers() {
-        myLottoNumbers = new MyLottoNumbers(InputView.inputMyLottoNumbers());
-        myLottoNumbers.setBonusNumber(InputView.inputBonusNumber());
-        //System.out.println(myLottoNumbers.getMyNumbers());
-        //System.out.println(myLottoNumbers.getBonusNumber());
+        try {
+            myLottoNumbers = new MyLottoNumbers(InputView.inputMyLottoNumbers());
+            myLottoNumbers.setBonusNumber(InputView.inputBonusNumber());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            makeMyLottoNumbers();
+        }
     }
 
     private void compareLottos() {

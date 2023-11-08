@@ -20,7 +20,7 @@ public class UniqueRandomNumbers {
     private List<Integer> validateUnique(List<Integer> numbers) {
         for (int n : numbers) {
             if (Collections.frequency(numbers,n)!=UNIQUE_NUMBER){
-                throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 존재합니다.");
+                throw new IllegalArgumentException(ErrorMessage.OVERLAP_NUMBER.getMessage());
             }
         }
         return numbers;

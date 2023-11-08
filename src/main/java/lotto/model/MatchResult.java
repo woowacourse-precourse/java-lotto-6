@@ -11,6 +11,7 @@ public class MatchResult {
         matchCountByRank = new int[] {0,0,0,0,0};
     }
 
+    // 매치된 숫자의 개수와 보너스 숫자를 통해 1~5등 값을 변경
     public void setMatchCountByRank(int count, int bonus) {
         if (count==MAX_MATCH) {
             count++;

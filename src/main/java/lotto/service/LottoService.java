@@ -10,19 +10,19 @@ import java.util.stream.Collectors;
 
 public class LottoService {
 
-    public List<Rank> findWinningResult(List<Lotto> lottos, AnswerLotto answerLotto){
+    public List<Rank> findWinningResult(List<Lotto> lottos, AnswerLotto answerLotto) {
         return lottos.stream()
                 .map(lotto -> lotto.calculateLottoWinnings(answerLotto))
                 .collect(Collectors.toList());
     }
 
-    public double findRateOfReturn(List<Rank> ranks){
+    public double findRateOfReturn(List<Rank> ranks) {
         int purchasePrice = ranks.size() * LottoConstant.LOTTO_TICKET_PRICE;
         double totalWinningPrice = ranks.stream()
                 .mapToDouble(rank -> rank.getWinningPrice())
                 .sum();
 
         double rate = totalWinningPrice / purchasePrice * 100;
-        return Math.round(rate * 100)/ 100.0;
+        return Math.round(rate * 100) / 100.0;
     }
 }

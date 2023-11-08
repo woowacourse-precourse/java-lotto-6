@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.constant.LottoConstant;
 import lotto.dto.AnswerLotto;
 
 import java.util.HashSet;
@@ -26,21 +25,21 @@ public class Lotto {
         }
     }
 
-    private void validateDuplicateNumbers(List<Integer> numbers){
+    private void validateDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
-        if(nonDuplicateNumbers.size() != LOTTO_NUMBERS_SIZE){
+        if (nonDuplicateNumbers.size() != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException("로또 번호들은 중복 될 수 없습니다.");
         }
 
     }
 
-    public Rank calculateLottoWinnings(AnswerLotto answerLotto){
+    public Rank calculateLottoWinnings(AnswerLotto answerLotto) {
         List<Integer> answerNumbers = answerLotto.getAnswerNumbers();
         int bonusNumber = answerLotto.getBonusNumber();
         int matchedNumber = 0;
 
-        for(int i=0; i<LOTTO_NUMBERS_SIZE; i++){
-            for(int j=0; j<LOTTO_NUMBERS_SIZE; j++){
+        for (int i = 0; i < LOTTO_NUMBERS_SIZE; i++) {
+            for (int j = 0; j < LOTTO_NUMBERS_SIZE; j++) {
                 matchedNumber = getMatchedNumber(matchedNumber, numbers.get(i), answerNumbers.get(j));
             }
         }
@@ -48,7 +47,7 @@ public class Lotto {
     }
 
     private boolean hasBonusNumber(int bonusNumber, int matchedNumber) {
-        if(matchedNumber == REQUIRED_MATCHING_NUMBERS_FOR_BONUS){
+        if (matchedNumber == REQUIRED_MATCHING_NUMBERS_FOR_BONUS) {
             return numbers.stream()
                     .anyMatch(number -> number == bonusNumber);
         }
@@ -56,7 +55,7 @@ public class Lotto {
     }
 
     private int getMatchedNumber(int matchedNumber, Integer number, Integer answerNumber) {
-        if(number == answerNumber){
+        if (number == answerNumber) {
             matchedNumber++;
         }
         return matchedNumber;

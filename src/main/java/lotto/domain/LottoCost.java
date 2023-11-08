@@ -10,6 +10,7 @@ public class LottoCost {
 
     public LottoCost(int lottoCost) {
         validateRemainder(lottoCost);
+        validateZero(lottoCost);
         this.lottoCost = lottoCost;
     }
 

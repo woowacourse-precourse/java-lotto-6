@@ -8,16 +8,33 @@ public class Input {
 
   public static int getPurchaseAmount() {
     System.out.println("입금액을 입력해 주세요:");
-    // Todo : DTO 로 생성해서 만들어도 괜찮을듯. + magic number 제거
-    int ticket = Integer.parseInt(Console.readLine()) / 1000;
-    return ticket;
+    int purchaseAmount = readAndValidatePurchaseAmount();
+    return purchaseAmount;
+  }
+
+  private static int readAndValidatePurchaseAmount() {
+    while (true) {
+      try {
+        int amount = Integer.parseInt(Console.readLine()) / 1000;
+        validatePurchaseAmount(amount);
+        return amount;
+      } catch (IllegalArgumentException e) {
+        System.out.println("[ERROR] " + e.getMessage() + " 다시 입력해주세요.");
+      } catch (IllegalStateException e) {
+        System.out.println("[ERROR] 올바른 숫자를 입력해주세요.");
+      }
+    }
+  }
+
+  private static void validatePurchaseAmount(int amount) {
+    if (amount <= 0) {
+      throw new IllegalArgumentException("입금액은 1,000원 이상이어야 합니다.");
+    }
   }
 
   public static List<Integer> getWinningNumbers() {
     System.out.println("당첨 번호를 입력해 주세요 (쉼표로 구분하여 입력):");
     String input = Console.readLine();
-
-    // 쉼표를 기준으로 입력된 값을 분리하여 List에 추가
     String[] numberStrings = input.split(",");
     List<Integer> numbers = new ArrayList<>();
     for (String numberString : numberStrings) {

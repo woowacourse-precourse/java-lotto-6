@@ -30,11 +30,11 @@ public class LottoService {
     private final Map<Rank, Integer> winningDetails = new LinkedHashMap<>();
 
     {
-        winningDetails.put(FIRST, 0);
-        winningDetails.put(SECOND, 0);
-        winningDetails.put(THIRD, 0);
-        winningDetails.put(FORTH, 0);
         winningDetails.put(FIFTH, 0);
+        winningDetails.put(FORTH, 0);
+        winningDetails.put(THIRD, 0);
+        winningDetails.put(SECOND, 0);
+        winningDetails.put(FIRST, 0);
     }
 
     public void buyLotteries(int price) {

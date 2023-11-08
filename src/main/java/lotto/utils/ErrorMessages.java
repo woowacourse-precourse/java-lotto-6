@@ -12,11 +12,13 @@ public enum ErrorMessages {
     ALREADY_HAVE("보너스 번호가 이미 당첨 번호에 포함되어 있습니다."),
     INVALID_LOTTO_LENGTH("로또 번호 갯수가 맞지 않습니다.")
     ;
+
     private final String message;
 
     ErrorMessages(String message){
         this.message = message;
     }
+
     @Override
     public String toString() {
         return this.message;

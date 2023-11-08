@@ -36,10 +36,9 @@ public class LottoService {
         }
         return myLotto;
     }
+
     public void aggregateLotto(List<Lotto> myLotto, Lotto winningLotto, int bonusNumber){
         for(Lotto lotto: myLotto){
-//            Lotto finalPickedLotto = winningLotto;
-
             int matchedNumbers = (int) lotto.getLotto().stream()
                     .filter(winningLotto.getLotto()::contains)
                     .count();
@@ -49,14 +48,17 @@ public class LottoService {
             rankGroup.ifPresent(RankGroup::increaseResult);
         }
     }
+
     public Lotto pickWinningLotto(String numbersBeforeValidated){
         winningLotto.createWinningLotto(numbersBeforeValidated);
         return winningLotto.getWinningLotto();
     }
+
     public int pickBonusNumber(String bonusNumberBeforeValidated){
         winningLotto.createBonusNumber(bonusNumberBeforeValidated);
         return winningLotto.getBonusNumber();
     }
+
     public BigDecimal countProfitRate(final int trial){
         BigDecimal total = new BigDecimal(RankGroup.getTotalReward());
         BigDecimal baseLottoPrice = new BigDecimal(BASE_LOTTO_PRICE);

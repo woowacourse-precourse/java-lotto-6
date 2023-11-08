@@ -17,10 +17,12 @@ public class InputView {
         printer.print(Messages.REQUEST_MONEY.toString());
         return reader.getInput();
     }
+
     public String readWinningNumbers(){
         printer.print(Messages.REQUEST_WINNING_NUMBER.toString());
         return reader.getInput();
     }
+
     public String readBonusNumber(){
         printer.print(Messages.REQUEST_BONUS_NUMBER.toString());
         return reader.getInput();

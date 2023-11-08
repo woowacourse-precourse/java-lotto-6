@@ -21,9 +21,11 @@ public class LottoController {
 
     public void process(){
         final int trial = insertMoney();
+
         List<Lotto> myLotto = buyLottos(trial);
         Lotto winningLotto = pickLottoNumbers();
         int bonusNumber = pickBonusNumber();
+
         lottoService.aggregateLotto(myLotto, winningLotto, bonusNumber);
         showFinalResult(trial);
     }
@@ -37,6 +39,7 @@ public class LottoController {
             }
         }
     }
+
     private int handleMoneyInput() {
         String moneyBeforeValidated = inputView.readMoney();
         return LottoPurchaseManager.createLottoPurchaseManager(moneyBeforeValidated).getTrial();

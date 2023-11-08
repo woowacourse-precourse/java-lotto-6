@@ -13,10 +13,12 @@ public class LottoPurchaseManager {
         int money = Integer.parseInt(moneyAfterValidated);
         this.trial = money / BASE_LOTTO_PRICE;
     }
+
     public static LottoPurchaseManager createLottoPurchaseManager(String moneyBeforeValidated){
         validateMoney(moneyBeforeValidated);
         return new LottoPurchaseManager(moneyBeforeValidated);
     }
+
     public int getTrial(){
         return this.trial;
     }
@@ -42,9 +44,11 @@ public class LottoPurchaseManager {
     private static boolean isShortOfMoney(int parsedMoney){
         return parsedMoney <= 0;
     }
+
     private static boolean exceedsMaxTrial(int parsedMoney){
         return parsedMoney > MAX_LOTTO_COUNT * BASE_LOTTO_PRICE;
     }
+
     private static boolean isNotInBaseUnit(int parsedMoney){
         return parsedMoney % BASE_LOTTO_PRICE > 0;
     }

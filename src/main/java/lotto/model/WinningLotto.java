@@ -12,6 +12,7 @@ public class WinningLotto {
     private static WinningLotto instance;
     private Lotto winningLotto;
     private int bonusNumber;
+
     public static WinningLotto getInstance() {
         if (instance == null) {
             instance = new WinningLotto();
@@ -25,16 +26,20 @@ public class WinningLotto {
         validateWinningNumber(winningNumbersBeforeValidated);
         winningLotto = new Lotto(winningNumbersBeforeValidated.stream().map(Integer::parseInt).toList());
     }
+
     public void createBonusNumber(String bonusNumberBeforeValidated){
         validateBonusNumber(bonusNumberBeforeValidated.trim());
         bonusNumber = Integer.parseInt(bonusNumberBeforeValidated);
     }
+
     public Lotto getWinningLotto(){
         return winningLotto;
     }
+
     public int getBonusNumber(){
         return bonusNumber;
     }
+
     private void validateWinningNumber(List<String> winningNumbersBeforeValidated){
         for(String number : winningNumbersBeforeValidated){
             if(containsLetter(number)){
@@ -45,6 +50,7 @@ public class WinningLotto {
             }
         }
     }
+
     private void validateBonusNumber(String bonusNumber){
         if(containsLetter(bonusNumber)){
             throw new IllegalArgumentException(ErrorMessages.NOT_INTEGER.toString());
@@ -56,6 +62,7 @@ public class WinningLotto {
             throw new IllegalStateException(ErrorMessages.ALREADY_HAVE.toString());
         }
     }
+
     private boolean containsLetter(String pickedNum){
         try {
             Integer.parseInt(pickedNum);
@@ -68,9 +75,11 @@ public class WinningLotto {
     private boolean containsUnderMinNum(String pickedNum){
         return Integer.parseInt(pickedNum) < MIN_LOTTO_NUM;
     }
+
     private boolean containsUpperMaxNum(String pickedNum){
         return Integer.parseInt(pickedNum) > MAX_LOTTO_NUM;
     }
+
     private boolean hasAlreadyPicked(String bonusNumber){
         return winningLotto.getLotto().contains(Integer.parseInt(bonusNumber));
     }

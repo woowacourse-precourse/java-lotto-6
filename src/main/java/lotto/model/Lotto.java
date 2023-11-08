@@ -20,12 +20,15 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessages.DUPLICATE.toString());
         }
     }
+
     private boolean containsDuplicateNumber(List<Integer> numbers){
         return new HashSet<>(numbers).size() != numbers.size();
     }
+
     public List<Integer> getLotto(){
         return numbers;
     }
+
     @Override
     public String toString(){
         return numbers.toString();

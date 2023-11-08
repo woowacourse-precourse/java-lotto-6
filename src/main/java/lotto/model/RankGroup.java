@@ -11,11 +11,11 @@ public enum RankGroup {
     FIFTH(false, 3, 0, 5000, RankTemplate.FIFTH)
     ;
     private boolean haveBonusNumber;
-
     private int lottoNumberCount;
     private int result;
     private int reward;
     private RankTemplate template;
+
     RankGroup(boolean haveBonusNumber, int lottoNumberCount, int result, int reward, RankTemplate template){
         this.haveBonusNumber = haveBonusNumber;
         this.lottoNumberCount = lottoNumberCount;
@@ -41,12 +41,15 @@ public enum RankGroup {
         }
         return total;
     }
+
     public String getTemplate(){
         return template.getTemplate();
     }
+
     public int getReward(){
         return reward;
     }
+
     public int getResult(){
         return result;
     }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.constant.ErrorMessage.NO_DUPLICATION_ALLOWED;
 import static lotto.constant.ErrorMessage.ONLY_NUMBERS_COMMA_ALLOWED;
 import static lotto.constant.ErrorMessage.WRONG_NORMAL_NUMBER_COUNT;
 import static lotto.constant.ErrorMessage.WRONG_NUMBER_RANGE;
@@ -22,6 +23,12 @@ public class Lotto {
         this.numbers = validateNumeric(input);
         validateCount();
         validateNumbers();
+        validateDuplication();
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 
     private List<Integer> validateNumeric(String input) {
@@ -48,8 +55,11 @@ public class Lotto {
         }
     }
 
-    @Override
-    public String toString() {
-        return numbers.toString();
+    private void validateDuplication() {
+        for (int i = 0; i < numbers.size(); i++) {
+            if (i != numbers.indexOf(numbers.get(i))) {
+                throw new IllegalArgumentException(NO_DUPLICATION_ALLOWED.getMessage());
+            }
+        }
     }
 }

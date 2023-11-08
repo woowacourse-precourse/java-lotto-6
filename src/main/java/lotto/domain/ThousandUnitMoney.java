@@ -40,4 +40,8 @@ public class ThousandUnitMoney {
     public String toString() {
         return StringUtil.formatByThousandSeparator(amount);
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }

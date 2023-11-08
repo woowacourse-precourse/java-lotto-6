@@ -53,4 +53,8 @@ public class Lotto {
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ", "[", "]"));
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

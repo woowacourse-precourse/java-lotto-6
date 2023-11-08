@@ -23,4 +23,12 @@ public class LottoGame extends IndexModel {
         return new LottoGame(purchaseAmount, automaticLottos, winningNumbers,
                 bonusNumber, winningResult);
     }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount.getAmount();
+    }
+
+    public List<List<Integer>> getPurchaseLottos() {
+        return automaticLottos.getLottos();
+    }
 }

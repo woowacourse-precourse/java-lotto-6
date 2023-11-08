@@ -33,4 +33,10 @@ public class Lottos {
                 .map(Lotto::toString)
                 .collect(Collectors.joining("\n"));
     }
+
+    public List<List<Integer>> getLottos() {
+        return lottos.stream()
+                .map(Lotto::getNumbers)
+                .collect(Collectors.toList());
+    }
 }

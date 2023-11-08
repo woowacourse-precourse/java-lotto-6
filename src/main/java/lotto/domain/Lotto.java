@@ -1,6 +1,9 @@
 package lotto.domain;
 
-import java.util.DuplicateFormatFlagsException;
+import lotto.exception.DuplicateLottoNumberException;
+import lotto.exception.InvalidRangeLottoNumberException;
+import lotto.exception.InvalidSizeLottoNumberException;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -54,7 +57,7 @@ public class Lotto {
     }
 
     public boolean isContain(int number) {
-        return number.contains(number);
+        return numbers.contains(number);
     }
 
     public int getMatchLottoNumber(WinningLotto winningLotto) {

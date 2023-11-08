@@ -58,7 +58,7 @@ public class StatisticsGenerator {
                 inputStatisticsIndex= 1; //matchesFour
                 break;
             case 5:
-                if(isMatchBonusNumber(lotto,winningCombination.getBonusNumeber())){
+                if(isMatchBonusNumber(lotto,winningCombination.getBonusNumber())){
                     inputStatisticsIndex= 3; //matchesFiveAndBonus
                     break;
                 }

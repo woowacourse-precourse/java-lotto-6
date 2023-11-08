@@ -5,7 +5,6 @@ import lotto.option.EqualStatus;
 
 public class LottoResultGenerator {
     private LottoResultGenerator() {
-
     }
 
     public static LottoResult setEqualStatus(int equalCount, int bonusCount) {

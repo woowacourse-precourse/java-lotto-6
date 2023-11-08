@@ -10,7 +10,6 @@ import lotto.model.Rank;
 
 public class LottoService {
 
-
     public Lotties buyLotties(int money) {
         return new Lotties(generateLotties(money));
     }

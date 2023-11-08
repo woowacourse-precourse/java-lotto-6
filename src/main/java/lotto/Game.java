@@ -22,7 +22,7 @@ public class Game {
         List<Lotto> lottos = makeLottos(price.getAmount());
         printLottos(lottos);
         Lotto winLotto = inputWinningNumbers();
-        Bonus bonusNumber = inputBonusNumber();
+        Bonus bonusNumber = inputBonusNumber(winLotto);
     }
 
     private static Price inputBuyPrice() {
@@ -69,12 +69,12 @@ public class Game {
         }
     }
 
-    private static Bonus inputBonusNumber() {
+    private static Bonus inputBonusNumber(Lotto winLotto) {
         while (true) {
             System.out.println(INPUT_BONUS_NUMBERS.getMessage());
             try {
                 String input = Console.readLine();
-                return new Bonus(input);
+                return new Bonus(input, winLotto);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

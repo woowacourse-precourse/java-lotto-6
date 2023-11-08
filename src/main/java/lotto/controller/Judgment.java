@@ -17,10 +17,8 @@ public class Judgment {
     }
 
     public boolean correctBonus(List<Integer> computer, Integer bonusnumber){
-        for(int i : computer){
-            if (i == bonusnumber){
-                return true;
-            }
+        if(computer.contains(bonusnumber)){
+            return true;
         }
         return false;
     }

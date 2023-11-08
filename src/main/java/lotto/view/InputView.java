@@ -17,7 +17,7 @@ public class InputView {
 
     public static List<Integer> getWinningLottoNumbers() {
         String input = readLine();
-        List<String> numbers = Arrays.asList(input.split(","));
+        List<String> numbers = Arrays.asList(input.split("\\s*,\\s*"));
         List<Integer> winningNumbers = new ArrayList<>();
         for (String number: numbers) {
             Validator.validateIsInt(number);

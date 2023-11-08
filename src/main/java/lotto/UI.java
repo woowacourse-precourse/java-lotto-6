@@ -6,15 +6,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.constant.Grade;
 import lotto.constant.InputErrorMessage;
-import lotto.domain.Calculator;
 import lotto.domain.Lotto;
-import lotto.domain.LottoDrawResult;
 
 public class UI {
     public static Integer inputMoney() {
@@ -97,35 +94,11 @@ public class UI {
         return bonus;
     }
 
-    public static void printWinningStats(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
+    public static void printWinningStats(Map<Grade, Integer> winningFrequency, Double returnRate) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        Map<Grade, Integer> winningFrequency = obtainWinningFrequency(lottos, lottoDrawResult);
         printWinningFrequency(winningFrequency);
-        printReturnRate(lottos, lottoDrawResult);
-    }
-
-    private static Map<Grade, Integer> obtainWinningFrequency(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
-        Map<Grade, Integer> winningFrequency = new HashMap<>();
-        initializeWinningFrequency(winningFrequency);
-
-        for (Lotto lotto : lottos) {
-            Grade grade = Calculator.checkWinning(lotto, lottoDrawResult);
-            if (grade == Grade.NONE) {
-                continue;
-            }
-            Integer frequency = winningFrequency.get(grade);
-            winningFrequency.put(grade, frequency + 1);
-        }
-        return winningFrequency;
-    }
-
-    private static void initializeWinningFrequency(Map<Grade, Integer> winningFrequency) {
-        winningFrequency.put(Grade.FIRST, 0);
-        winningFrequency.put(Grade.SECOND, 0);
-        winningFrequency.put(Grade.THIRD, 0);
-        winningFrequency.put(Grade.FOURTH, 0);
-        winningFrequency.put(Grade.FIFTH, 0);
+        printReturnRate(returnRate);
     }
 
     private static void printWinningFrequency(Map<Grade, Integer> winningFrequency) {
@@ -141,8 +114,7 @@ public class UI {
         System.out.println("6개 일치 (2,000,000,000원) - " + frequency + "개");
     }
 
-    private static void printReturnRate(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
-        Double returnRate = Calculator.returnRate(lottos, lottoDrawResult);
+    private static void printReturnRate(Double returnRate) {
         String returnRateByRound = String.format("%.1f", returnRate);
         System.out.print("총 수익률은 " + returnRateByRound + "%입니다.");
     }

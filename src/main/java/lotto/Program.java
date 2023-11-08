@@ -1,8 +1,12 @@
 package lotto;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import lotto.constant.Grade;
 import lotto.constant.LottoErrorMessage;
 import lotto.domain.BroadCastingStation;
+import lotto.domain.Calculator;
 import lotto.domain.Lotto;
 import lotto.domain.LottoDrawResult;
 import lotto.domain.Store;
@@ -66,7 +70,32 @@ public class Program {
             return;
         }
         LottoDrawResult drawResult = BroadCastingStation.drawLotto(winning, bonus);
-        UI.printWinningStats(consumerLottos, drawResult);
+        Map<Grade, Integer> winningFrequency = obtainWinningFrequency(consumerLottos, drawResult);
+        Double returnRate = Calculator.returnRate(consumerLottos, drawResult);
+        UI.printWinningStats(winningFrequency, returnRate);
+    }
+
+    private Map<Grade, Integer> obtainWinningFrequency(List<Lotto> lottos, LottoDrawResult lottoDrawResult) {
+        Map<Grade, Integer> winningFrequency = new HashMap<>();
+        initializeWinningFrequency(winningFrequency);
+
+        for (Lotto lotto : lottos) {
+            Grade grade = Calculator.checkWinning(lotto, lottoDrawResult);
+            if (grade == Grade.NONE) {
+                continue;
+            }
+            Integer frequency = winningFrequency.get(grade);
+            winningFrequency.put(grade, frequency + 1);
+        }
+        return winningFrequency;
+    }
+
+    private void initializeWinningFrequency(Map<Grade, Integer> winningFrequency) {
+        winningFrequency.put(Grade.FIRST, 0);
+        winningFrequency.put(Grade.SECOND, 0);
+        winningFrequency.put(Grade.THIRD, 0);
+        winningFrequency.put(Grade.FOURTH, 0);
+        winningFrequency.put(Grade.FIFTH, 0);
     }
 
     private void validateShowState() {

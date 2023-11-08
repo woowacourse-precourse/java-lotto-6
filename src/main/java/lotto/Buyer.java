@@ -3,7 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +25,8 @@ public class Buyer {
             return money;
         }
         System.out.println("[ERROR] 천원단위로 입력해주세요.");
-        throw new IllegalArgumentException("[ERROR] 천원단위로 입력해주세요.");
+//        throw new IllegalArgumentException("[ERROR] 천원단위로 입력해주세요.");
+        return 0;
     }
 
     public List<Integer> getLottoNumber() {

@@ -9,7 +9,7 @@ public class validator {
         if (strNum == null) {
             return false;
         }
-        return strNum.matches("-?\\d+(\\.\\d+)?");
+        return strNum.matches("^\\d+$");
     }
     public static boolean validatePurchaseAmount(int money) {
         return money % 1000 == 0;

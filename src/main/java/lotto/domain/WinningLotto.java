@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import static lotto.constants.Error.DUPLICATION_BONUS_ERROR;
-import static lotto.constants.Error.INVALID_AMOUNT_ERROR;
+import static lotto.constants.Error.RANGE_ERROR;
 import static lotto.constants.Value.MAX_LOTTO_NUMBER;
 import static lotto.constants.Value.MIN_LOTTO_NUMBER;
 
@@ -29,9 +29,13 @@ public class WinningLotto {
         return bounusNumber;
     }
 
+    public List<Integer> getWinningNumber() {
+        return winningNumber;
+    }
+
     private void validateRange(int number) {
         if (number < MIN_LOTTO_NUMBER.get() || number > MAX_LOTTO_NUMBER.get()) {
-            throw new IllegalArgumentException(INVALID_AMOUNT_ERROR.getMessage());
+            throw new IllegalArgumentException(RANGE_ERROR.getMessage());
         }
     }
 

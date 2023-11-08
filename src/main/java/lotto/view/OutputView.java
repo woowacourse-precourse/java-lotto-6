@@ -7,9 +7,10 @@ import lotto.domain.enums.Prize;
 public class OutputView {
     private static final String WINNING_STATISTICS_FORMAT = "%s %d개";
     private static final String EARNING_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String TICKET_BUYING_MESSAGE = "개를 구매했습니다.";
 
-    public void displayticket(int ticket) {
-        System.out.println(ticket + "개를 구매했습니다.");
+    public void displayTicket(int ticket) {
+        System.out.println(ticket + TICKET_BUYING_MESSAGE);
     }
 
     public void displayLottosNumber(List<List<Integer>> lottosNumber) {

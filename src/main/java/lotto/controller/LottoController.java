@@ -42,5 +42,13 @@ public class LottoController {
         UserView.outputBuyLotto(lottos);
     }
 
-
+    private void initWallet() {
+        try{
+            String inputPaidAmount = UserView.inputPaidAmount();
+            int paidAmount = Validation.validateAndParsePaidAmount(inputPaidAmount);
+            lottoWallet = new LottoWallet(paidAmount);
+        } catch (IllegalArgumentException e) {
+            UserView.outputErrorLog(e.getMessage());
+        }
+    }
 }

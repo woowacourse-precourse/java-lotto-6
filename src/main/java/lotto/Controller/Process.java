@@ -83,8 +83,7 @@ public class Process {
 
     private List<Lotto> generateLottos(int count, Generator generator){
         List<Lotto> lottos = new ArrayList<>();
-        while (count > 0){
-            count--;
+        for (int i = 0; i<count; i++){
             List<Integer> generateNums = generator.generate6Nums();
             Lotto lotto = new Lotto(generateNums);
             outputView.printGeneratedNums(listToString(generateNums));

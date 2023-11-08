@@ -13,6 +13,7 @@ public class InputLotto {
     public String getUserInput() {
         System.out.println(MESSAGE_INPUT_LOTTO);
         input = Console.readLine();
+        validate(input);
         return input;
     }
 

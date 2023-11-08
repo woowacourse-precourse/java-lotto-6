@@ -1,8 +1,6 @@
 package lotto.domain;
 
 import lotto.domain.validator.MoneyValidator;
-import lotto.input.InputLotto;
-import lotto.input.InputMoney;
 
 public class Money {
     private final Integer amount;

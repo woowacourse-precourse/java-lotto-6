@@ -13,6 +13,7 @@ public class InputBonus {
     public String getUserInput() {
         System.out.println(MESSAGE_INPUT_BONUS);
         input = Console.readLine();
+        validate(input);
         return input;
     }
 

@@ -40,6 +40,7 @@ public class Controller {
 
     private void winningNumberShow() {
         winningNumber = new WinningNumber(getWinningNumber(),getBonusNumber());
+        OutputMessage.winningMessage();
     }
 
     private List<Integer> getWinningNumber() {

@@ -1,11 +1,11 @@
 package lotto.domain;
 
-record Money(Long value) {
+public record Money(Long value) {
     private static final Long MIN_RANGE = 1_000L;
     private static final Long MAX_RANGE = 100_000_000_000L;
     private static final Long UNIT = 1_000L;
 
-    Money {
+    public Money {
         validateRange(value);
         validateUnit(value);
     }

@@ -22,8 +22,9 @@ class PlayerTest {
     void generateLottos() {
         Money money = new Money(1000L);
 
-        List<Lotto> actual = player.generateLottos(money);
+        player.generateLottos(money);
 
+        List<Lotto> actual = player.getLottos();
         List<Integer> pickedNumbers = numberGenerator.pickUniqueNumbersInRange(1, 45, 6);
         List<Integer> sortedNumbers = pickedNumbers.stream().sorted().toList();
         assertThat(actual).hasSize(1);

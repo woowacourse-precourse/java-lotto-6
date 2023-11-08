@@ -10,7 +10,11 @@ public class WinningResult {
     private static final int PERCENT = 100;
     private static final String JOIN_DELIM = "\n";
     private static final String PROFIT_FORMAT = "총 수익률은 %.1f%%입니다.";
-    private final Map<Rank, Integer> values = new EnumMap<>(Rank.class);
+    private final Map<Rank, Integer> values;
+
+    public WinningResult() {
+        this.values = new EnumMap<>(Rank.class);
+    }
 
     public void addRank(Rank rank) {
         values.put(rank, values.getOrDefault(rank, 0) + 1);

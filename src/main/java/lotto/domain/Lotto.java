@@ -6,11 +6,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-record Lotto(List<Integer> numbers) {
+public record Lotto(List<Integer> numbers) {
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 45;
 
-    Lotto {
+    public Lotto {
         validate(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
@@ -53,5 +53,10 @@ record Lotto(List<Integer> numbers) {
 
     public List<Integer> numbers() {
         return Collections.unmodifiableList(numbers);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

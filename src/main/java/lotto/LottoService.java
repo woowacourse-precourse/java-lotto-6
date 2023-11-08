@@ -17,8 +17,8 @@ public class LottoService {
         int money = inputView.inputPurchaseAmount();
         int lottoCount = lottoShop.buyLotto(money);
         List<Lotto> lottoTickets = getLottoTickets(lottoCount);
-        List<Integer> winningNumbers = inputView.inputWinningNumbers();
-        int bonusNumber = inputView.inputBonusNumber(winningNumbers);
+        int[] prizeGradeCounts = countWinningLotto(lottoTickets);
+        outputView.printWinningState(prizeGradeCounts);
     }
 
     public List<Lotto> getLottoTickets(int count) {
@@ -27,10 +27,51 @@ public class LottoService {
             // 로또 생성
             lottoSets.add(lottoShop.generateLottoTicket());
         }
-        outputView.outputLottoTickets(lottoSets);
+        outputView.printLottoTickets(lottoSets);
         return lottoSets;
     }
 
+    public int[] countWinningLotto(List<Lotto> lottoTickets) {
+        List<Integer> winningNumbers = inputView.inputWinningNumbers();
+        int bonusNumber = inputView.inputBonusNumber(winningNumbers);
 
+        int[] prizeGradeCounts = new int[6];
+        for (Lotto lotto : lottoTickets) {
+            int matchedNumbersCount = countDuplicateNumber(lotto, winningNumbers);
+            boolean isBonusNumberMatched = isBonusNumberMatched(lotto, bonusNumber);
+            int prizeGrade = determinePrizeGrade(matchedNumbersCount, isBonusNumberMatched);
+            prizeGradeCounts[prizeGrade]++;
+        }
+        return prizeGradeCounts;
+    }
+
+    private static int countDuplicateNumber(Lotto lotto, List<Integer> winningNumbers) {
+        List<Integer> numbers =  lotto.getNumbers();
+        numbers.retainAll(winningNumbers);
+        return numbers.size();
+    }
+
+    public static int determinePrizeGrade(int matchedNumbersCount, boolean isBonusNumberMatched) {
+        if (matchedNumbersCount == 6) {
+            return 1;
+        }
+        if (matchedNumbersCount == 5 && isBonusNumberMatched) {
+            return 2;
+        }
+        if (matchedNumbersCount == 5) {
+            return 3;
+        }
+        if (matchedNumbersCount == 4) {
+            return 4;
+        }
+        if (matchedNumbersCount == 3) {
+            return 5;
+        }
+        return 0;
+    }
+
+    public static boolean isBonusNumberMatched(Lotto lotto, int bonusNumber) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
 }
 

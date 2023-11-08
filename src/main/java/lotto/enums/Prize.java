@@ -1,4 +1,4 @@
-package lotto;
+package lotto.enums;
 
 public enum Prize {
     FIRST(2_000_000_000),

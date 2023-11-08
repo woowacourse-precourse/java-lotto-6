@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
-import static lotto.Prize.*;
+import static lotto.enums.Prize.*;
 
 public class Output {
     public void outputPurchaseAmount() {

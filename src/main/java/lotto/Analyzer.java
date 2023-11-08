@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static lotto.Prize.*;
+import static lotto.enums.Prize.*;
 
 public class Analyzer {
     public int check(List<Integer> winningNumbers, List<Integer> ticketNumbers, int bonusNumber) {

@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.*;
 
 import static java.util.Arrays.stream;
-import static lotto.Error.INPUT_ERROR;
+import static lotto.enums.Error.INPUT_ERROR;
 
 public class Input {
     public int inputPurchaseAmount() {

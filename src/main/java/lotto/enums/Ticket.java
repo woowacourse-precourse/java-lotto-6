@@ -1,4 +1,4 @@
-package lotto;
+package lotto.enums;
 
 public enum Ticket {
     TICKET_PRICE(1_000);

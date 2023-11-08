@@ -1,14 +1,14 @@
 package lotto.view;
 
-import static lotto.exception.ErrorMessage.*;
-
 import camp.nextstep.edu.missionutils.Console;
 import java.util.regex.Pattern;
 import lotto.exception.InputException;
 
 public final class InputUtil {
+    private static final String INTEGER_REGEX = "\\d+";
 
-    private InputUtil() {}
+    private InputUtil() {
+    }
 
     public static String readString() {
         String input = Console.readLine();
@@ -23,13 +23,18 @@ public final class InputUtil {
     }
 
     private static void validateString(String input) {
-        if (input == null || input.isBlank()) {
+        if (isInvalidString(input)) {
             throw new InputException();
         }
     }
 
+    private static boolean isInvalidString(String input) {
+        return input == null || input.isBlank();
+    }
+
+
     private static void validateInteger(String input) {
-        if (!Pattern.matches("\\d+", input)) {
+        if (!Pattern.matches(INTEGER_REGEX, input)) {
             throw new InputException();
         }
     }

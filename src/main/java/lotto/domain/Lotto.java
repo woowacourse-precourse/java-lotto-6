@@ -24,6 +24,20 @@ public class Lotto {
         }
     }
 
+    public String decideResult(List<Integer> answer,int bonusNumber){
+        long count = numbers.stream()
+                .filter(num->answer.contains(num))
+                .count();
+
+        boolean includeBonus = numbers.contains(bonusNumber);
+
+        if(count == 6){return "1등";}
+        if(count == 5 & includeBonus){return "2등";}
+        if(count == 5){return "3등";}
+        if(count == 4){return "4등";}
+        if(count == 3){return "5등";}
+        return "꽝";
+    }
 
 
 }

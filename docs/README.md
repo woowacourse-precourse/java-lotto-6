@@ -34,7 +34,7 @@ check new branch
 - 수익률 함수
 
 ## (Class) Game
-- money(int,구입 금액), count(int, 로또 개수), buy(List<Lotto>,로또 번호), answer(List<Integer>, 당첨 번호+보너스 번호)
+- money(int,구입 금액), count(int, 로또 개수), buy(List<Lotto>,로또 번호), answer(List<Integer>, 당첨 번호+보너스 번호), correct(int, 결과 갯수 저장)
 - DoIt()
   - 해당 method 실행시 전체 게임 실행
   - Application에서 해당 class 불러오면 전체 실행 될 수 있도록 public 으로 생성
@@ -54,6 +54,9 @@ check new branch
 - userBonus()
   - input : null / return : void
   - 보너스 번호 받아 bonus에 Integer 타입으로 저장
+- checkLotto()
+  - input : null / return : void
+  - 로또 개수 만큼 for문 진행하여 맞춘 개수에 따라 correct 값 증가
   
 ## (Class) Lotto
 - numbers(List<Integer>, 로또 번호)

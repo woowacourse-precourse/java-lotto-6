@@ -12,4 +12,10 @@ class LottoAmountofMoneyTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void createLottoMoneyByNotPositiveValue(){
+        assertThatThrownBy(()-> new LottoAmountofMoney("-1000"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

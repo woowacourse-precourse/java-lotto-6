@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.constant.ErrorMessage.DUPLICATED_LOTTO;
 import static lotto.constant.ErrorMessage.INCORRECT_NUMBER_OF_LOTTO;
 
 import java.util.ArrayList;
@@ -17,7 +18,14 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validateNumberOfLotto(numbers);
+        validateLottoDuplicated(numbers);
         this.numbers = numbers.stream().map(LottoNumber::new).toList();
+    }
+
+    private void validateLottoDuplicated(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
+            throw new IllegalArgumentException(DUPLICATED_LOTTO);
+        }
     }
 
     private void validateNumberOfLotto(List<Integer> numbers) {

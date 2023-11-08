@@ -47,6 +47,17 @@ public class LottoGame {
         LottoGameConsole.printPurchaseLottos(lottos);
     }
 
+    public void result() {
+        LottoAnalyzer lottoAnalyzer = new LottoAnalyzer(target, bonusNumber, cost);
+
+        lottoAnalyzer.analyze(lottos);
+        System.out.println(lottoAnalyzer.report());
+    }
+
+    public void close() {
+        LottoGameConsole.close();
+    }
+
     private void readCost() {
         try {
             cost = LottoGameConsole.readCost();

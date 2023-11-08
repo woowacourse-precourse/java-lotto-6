@@ -19,26 +19,38 @@ public final class LottoGameConsole {
     }
 
     public static int readCost() {
+        System.out.println("구입금액을 입력해 주세요.");
+
         String input = Console.readLine();
         int cost = Integer.parseInt(input);
 
         validateCost(cost);
 
+        System.out.println();
+
         return cost;
     }
 
     public static Lotto readTargetLotto() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+
         String input = Console.readLine();
         List<Integer> numbers = convertToIntegerList(input);
+
+        System.out.println();
 
         return new Lotto(numbers);
     }
 
     public static int readBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+
         String input = Console.readLine();
         int bonusNumber = Integer.parseInt(input);
 
         validateBonusNumber(bonusNumber);
+
+        System.out.println();
 
         return bonusNumber;
     }
@@ -49,6 +61,8 @@ public final class LottoGameConsole {
         System.out.println(formatterMessage.formatted(lottos.size()));
 
         lottos.forEach(System.out::println);
+
+        System.out.println();
     }
 
     private static void validateCost(int cost) {
@@ -67,5 +81,9 @@ public final class LottoGameConsole {
         if (bonusNumber < LottoGameNumber.MINIMUM || bonusNumber > LottoGameNumber.MAXIMUM) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public static void close() {
+        Console.close();
     }
 }

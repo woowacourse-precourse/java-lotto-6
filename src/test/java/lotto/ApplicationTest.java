@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -46,12 +48,170 @@ class ApplicationTest extends NsTest {
         );
     }
 
-    @Test
-    void 예외_테스트() {
-        assertSimpleTest(() -> {
-            runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
+    @Nested
+    class invalidPurchaseAmountTest {
+
+        @DisplayName("숫자가 아닌 값이 포함된 구매 금액에 대한 예외 테스트")
+        @Test
+        void 예외_테스트() {
+            assertSimpleTest(() -> {
+                runException("1000j");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("1000원 단위가 아닌 구매 금액에 대한 예외 테스트")
+        @Test
+        void invalidPurchaseAmountTest1() {
+            assertSimpleTest(() -> {
+                runException("5005");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("공백이 포함된 구매 금액에 대한 예외 테스트")
+        @Test
+        void invalidPurchaseAmountTest2() {
+            assertSimpleTest(() -> {
+                runException(" ");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("잘못된 입력에 대한 재입력 테스트")
+        @Test
+        void invalidPurchaseAmountTest3() {
+            assertRandomUniqueNumbersInRangeTest(() -> {
+                        run("4500", "2000", "1,2,3,4,5,6", "7");
+                        assertThat(output()).contains(ERROR_MESSAGE,
+                                "6개 일치 (2,000,000,000원) - 1개",
+                                "총 수익률은 100000000.0%입니다.");
+                    },
+                    List.of(1, 2, 3, 4, 5, 6),
+                    List.of(3, 5, 11, 16, 32, 38)
+            );
+        }
+
+        @DisplayName("음수 구매 금액에 대한 예외 테스트")
+        @Test
+        void invalidPurchaseAmountTest4() {
+            assertSimpleTest(() -> {
+                runException("-2500");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+    }
+
+    @Nested
+    class invalidWinningNumberTest {
+
+        @DisplayName("공백이 포함된 당첨 금액에 대한 예외 테스트")
+        @Test
+        void invalidWinningNumbersTest1() {
+            assertSimpleTest(() -> {
+                runException("2000", "1,2,3 ,4,5,6");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("범위를 벗어난 숫자가 포함된 당첨 금액에 대한 예외 테스트")
+        @Test
+        void invalidWinningNumbersTest2() {
+            assertSimpleTest(() -> {
+                runException("2000", "1,2,3,4,5,61");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("6개의 숫자가 아닌 당첨 금액에 대한 예외 테스트")
+        @Test
+        void invalidWinningNumbersTest3() {
+            assertSimpleTest(() -> {
+                runException("2000", "1,2,3,4,5");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName(",로 구분되지 않은 당첨 금액에 대한 예외 테스트")
+        @Test
+        void invalidWinningNumbersTest4() {
+            assertSimpleTest(() -> {
+                runException("2000", "1,2,3,4,5.6");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("잘못된 입력에 대한 재입력 테스트")
+        @Test
+        void invalidWinningNumbersTest5() {
+            assertRandomUniqueNumbersInRangeTest(() -> {
+                        run("2000", "1,2,3,4,5.6", "1,2,3,4,5,6", "7");
+                        assertThat(output()).contains(ERROR_MESSAGE,
+                                "6개 일치 (2,000,000,000원) - 1개",
+                                "총 수익률은 100000000.0%입니다.");
+                    },
+                    List.of(1, 2, 3, 4, 5, 6),
+                    List.of(3, 5, 11, 16, 32, 38)
+            );
+        }
+
+        @DisplayName("숫자 아닌 값이 포함된 당첨 금액에 대한 예외 테스트")
+        @Test
+        void invalidWinningNumbersTest6() {
+            assertSimpleTest(() -> {
+                runException("2000", "1,a,3,4,5,6");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("음수가 포함된 당첨 금액에 대한 예외 테스트")
+        @Test
+        void invalidWinningNumbersTest7() {
+            assertSimpleTest(() -> {
+                runException("2000", "-1,2,3,4,5,6");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+    }
+
+    @Nested
+    class invalidBonusNumberTest {
+
+        @DisplayName("숫자가 아닌 보너스 숫자에 대한 예외 테스트")
+        @Test
+        void invalidBonusNumberTest1() {
+            assertSimpleTest(() -> {
+                runException("2000", "1,2,3,4,5,6", "7a");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("범위를 벗어난 보너스 숫자에 대한 예외 테스트")
+        @Test
+        void invalidBonusNumberTest2() {
+            assertSimpleTest(() -> {
+                runException("2000", "1,2,3,4,5,6", "56");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("당첨 번호와 중복되는 보너스 숫자에 대한 예외 테스트")
+        @Test
+        void invalidBonusNumberTest3() {
+            assertSimpleTest(() -> {
+                runException("2000", "1,2,3,4,5,6", "5");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("음수 보너스 숫자에 대한 예외 테스트")
+        @Test
+        void invalidBonusNumberTest4() {
+            assertSimpleTest(() -> {
+                runException("2000", "1,2,3,4,5,6", "-5");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
     }
 
     @Override

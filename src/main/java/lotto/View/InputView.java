@@ -1,10 +1,7 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
-import java.util.List;
 import lotto.constant.GameMessage;
-import lotto.validation.Validator;
 
 public class InputView {
     public static String getAmount() {
@@ -16,7 +13,7 @@ public class InputView {
     }
 
     public static String getWinningNumber() {
-        System.out.println(GameMessage.INPUT_WINNING_NUMBER.getMessage());
+        System.out.println("\n" + GameMessage.INPUT_WINNING_NUMBER.getMessage());
 
         String input = Console.readLine();
 

@@ -13,8 +13,8 @@ public class LottoCollection {
 
     private final Map<Integer, Integer> rankingCount = new HashMap<>();
 
-    public LottoCollection(int numberOfLotto) {
-        this.numberOfLotto = numberOfLotto;
+    public LottoCollection(int purchaseAmount) {
+        this.numberOfLotto = purchaseAmount / 1000;
         this.lottoCollection = new ArrayList<>();
         generateLottoNumbers(numberOfLotto);
     }

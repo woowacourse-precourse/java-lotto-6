@@ -58,6 +58,31 @@ public class ConsoleUI {
         return Console.readLine();
     }
 
+    public int getBonusNumber(List<Integer> winningLottoNumbers) {
+        int bonusNumber;
+        do {
+            bonusNumber = attemptToGetValidBonusNumber(winningLottoNumbers);
+        } while (bonusNumber == -1);
+        return bonusNumber;
+    }
+
+    private int attemptToGetValidBonusNumber(List<Integer> winningLottoNumbers) {
+        try {
+            String input = promptForBonusNumber();
+            int bonusNumber =validator.validateBonusNumber(input);
+            validator.compareWithLottoNumbers(winningLottoNumbers,bonusNumber);
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return -1;
+        }
+    }
+
+    private String promptForBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
+
 
 
 

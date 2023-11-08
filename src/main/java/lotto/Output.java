@@ -2,7 +2,7 @@ package lotto;
 public class Output {
     public enum Statement {
         BUY_AMOUNT("구입금액을 입력해 주세요."),
-        BUY_COUNT("%d개를 구매했습니다."),
+        BUY_COUNT("%d개를 구매했습니다. %n"),
         LOTTO_WIN_NUMBER("당첨 번호를 입력해 주세요."),
         LOTTO_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
         WIN_STATISTICS("당첨 통계"),
@@ -13,7 +13,7 @@ public class Output {
         Statement(String statement) {this.statement = statement;}
     }
 
-    private static final void printStatement(String statement) {
+    public static final void printStatement(String statement) {
         System.out.println(statement);
     }
 

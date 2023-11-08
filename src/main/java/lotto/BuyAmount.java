@@ -2,6 +2,8 @@ package lotto;
 
 public class BuyAmount {
     private final static Integer UNIT = 1000;
+    private final static String IMPOSSIBLE_TO_CONVERT_TO_INTEGER_ERROR_MESSAGE = "[ERROR] 입력하신 값은 정수로 변환할 수 없습니다.";
+    private final static String UNIT_ERROR_MESSAGE = "[ERROR] 금액이 1,000원으로 나누어 떨어지지 않습니다";
     private final Integer buyAmount;
 
     public BuyAmount(String buyAmount) {
@@ -14,13 +16,13 @@ public class BuyAmount {
         try {
             Integer.parseInt(buyAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력하신 값은 정수로 변환할 수 없습니다.");
+            throw new IllegalArgumentException(IMPOSSIBLE_TO_CONVERT_TO_INTEGER_ERROR_MESSAGE);
         }
     }
 
     private void validateUnit(Integer buyAmount) {
         if (buyAmount % UNIT != 0) {
-            throw new IllegalArgumentException("[ERROR] 금액이 1,000원으로 나누어 떨어지지 않습니다");
+            throw new IllegalArgumentException(UNIT_ERROR_MESSAGE);
         }
     }
 
@@ -29,6 +31,6 @@ public class BuyAmount {
     }
 
     public Integer getBuyCount() {
-        return this.buyAmount / 1000;
+        return this.buyAmount / UNIT;
     }
 }

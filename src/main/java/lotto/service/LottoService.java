@@ -16,6 +16,7 @@ public class LottoService {
     private final PaymentInputManager paymentInputManager;
     private final BonusNumberInputManager bonusNumberInputManager;
     private Integer bonusNumber;
+    private Integer lottoCount;
     private final Set<Rank> rankBoard = new HashSet<>();
     private static LottoService INSTANCE;
 
@@ -35,8 +36,9 @@ public class LottoService {
      * 구매한 로또들 반환
      */
     public List<Lotto> buyLottos() {
-        Integer input = paymentInputManager.input();
-        LottoShop lottoShop = new LottoShop(input);
+        lottoCount = paymentInputManager.input();
+        LottoShop lottoShop = new LottoShop(lottoCount);
+        lottoShop.displayLottos();
         return lottoShop.getLottos();
     }
 
@@ -44,11 +46,21 @@ public class LottoService {
      * 당첨번호 반환
      */
     public Lotto chooseWinningLottos() {
-        List<Integer> winningNumbers = winningNumberInputManager.input();
-        // TODO: 2023-11-08 오전 1:38 출력
-        bonusNumber = bonusNumberInputManager.input();
-        // TODO: 2023-11-08 오전 1:38 출력
+        List<Integer> winningNumbers = null;
+        boolean willCheckBonusNumber;
+        do try {
+            winningNumbers = winningNumberInputManager.input();
+            bonusNumber = bonusNumberInputManager.input();
+            if (!validateBonusNumber(winningNumbers)) throw new IllegalArgumentException("[ERROR] 적절하지 않은 보너스 번호입니다.");
+            willCheckBonusNumber = false;
+        } catch (IllegalArgumentException e) {
+            willCheckBonusNumber = true;
+        } while (willCheckBonusNumber);
         return new Lotto(winningNumbers);
+    }
+
+    private boolean validateBonusNumber(List<Integer> winningNumbers) {
+        return !winningNumbers.contains(bonusNumber);
     }
 
     public void executeLotto() {
@@ -59,9 +71,37 @@ public class LottoService {
     }
 
     private void decideRank(Lotto boughtLotto, Lotto winningLotto) {
-        Integer matchingCount = boughtLotto.countMatchingNumber(winningLotto,bonusNumber);
+        Integer matchingCount = boughtLotto.countMatchingNumber(winningLotto, bonusNumber);
         Boolean isMatch = boughtLotto.checkMatchingNumber(bonusNumber);
         rankBoard.add(Rank.of(isMatch, matchingCount));
     }
-    // TODO: 2023-11-08 오전 1:37 결과 출력
+
+    public void displayResult(){
+        System.out.println("당첨 통계\n" + "---");
+        displayRankCount();
+        displayEarningRate();
+    }
+
+    private void displayEarningRate() {
+        int total=0;
+        for (Rank rank: Rank.values())
+            total+=countRankOf(rank)*rank.getPrizeMoney();
+        System.out.println("총 수익률은 "+getEarningRate(total)+"%입니다.");
+    }
+
+    private double getEarningRate(double total) {
+        return (double) Math.round(total / (lottoCount * 1000) * 1000) / 10;
+    }
+
+    private void displayRankCount() {
+        System.out.println("3개 일치 (5,000원) - "+countRankOf(Rank.FIFTH)+"개");
+        System.out.println("4개 일치 (50,000원) - "+countRankOf(Rank.FOURTH)+"개");
+        System.out.println("5개 일치 (1,500,000원) - "+countRankOf(Rank.THIRD)+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+countRankOf(Rank.SECOND)+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - "+countRankOf(Rank.FIRST)+"개");
+    }
+
+    private int countRankOf(Rank rank){
+        return (int)rankBoard.stream().filter(r->r.equals(rank)).count();
+    }
 }

@@ -18,24 +18,18 @@ public class LottoResult {
     private Integer fourth = 0;
     private Integer fifth = 0;
 
-    public void addFirst() {
-        first++;
-    }
-
-    public void addSecond() {
-        second++;
-    }
-
-    public void addThird() {
-        third++;
-    }
-
-    public void addFourth() {
-        fourth++;
-    }
-
-    public void addFifth() {
-        fifth++;
+    public void update(Integer matchCount, boolean bonusMatch) {
+        if (matchCount == 6) {
+            first++;
+        } else if (matchCount == 5 && bonusMatch) {
+            second++;
+        } else if (matchCount == 5) {
+            third++;
+        } else if (matchCount == 4) {
+            fourth++;
+        } else if (matchCount == 3) {
+            fifth++;
+        }
     }
 
     public long getTotalPrize() {

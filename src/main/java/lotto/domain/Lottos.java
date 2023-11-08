@@ -49,27 +49,22 @@ public class Lottos {
     public LottoResult checkResult(WinningNumber winningNumber) {
         LottoResult result = new LottoResult();
 
-        // todo: 리팩토링
         for (Lotto lotto : lottos) {
-            int count = 0;
-            for (Integer number : winningNumber.winningNumbers()) {
-                if (lotto.isContainNumber(number)) {
-                    count++;
-                }
-            }
-            if (count == 6) {
-                result.addFirst();
-            } else if (count == 5 && lotto.isContainNumber(winningNumber.bonusNumber())) {
-                result.addSecond();
-            } else if (count == 5) {
-                result.addThird();
-            } else if (count == 4) {
-                result.addFourth();
-            } else if (count == 3) {
-                result.addFifth();
-            }
+            int count = countMatchWinningNumber(lotto, winningNumber);
+            boolean bonusMatch = lotto.isContainNumber(winningNumber.bonusNumber());
+            result.update(count, bonusMatch);
         }
 
         return result;
+    }
+
+    private Integer countMatchWinningNumber(Lotto lotto, WinningNumber winningNumber) {
+        int count = 0;
+        for (Integer number : winningNumber.winningNumbers()) {
+            if (lotto.isContainNumber(number)) {
+                count++;
+            }
+        }
+        return count;
     }
 }

@@ -3,7 +3,7 @@ package lotto.view;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.Result;
+import lotto.dto.ResultResponse;
 
 public class OutputView {
 
@@ -35,5 +35,11 @@ public class OutputView {
 
     public void printBenefitRate(double benefitRate) {
         System.out.printf("총 수익률은 %.1f%%입니다.", benefitRate);
+    }
+
+    public void printLottoResult(List<ResultResponse> resultResponses) {
+        for (ResultResponse resultResponse : resultResponses) {
+            System.out.print(resultResponse.toString());
+        }
     }
 }

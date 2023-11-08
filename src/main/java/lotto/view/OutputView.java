@@ -17,7 +17,9 @@ public class OutputView {
 
     public void printLottos(final Lottos lottos) {
         System.out.printf(PURCHASE_RESULT, lottos.size());
-        lottos.stream().forEach(System.out::println);
+        lottos.stream()
+                .map(lotto -> lotto.stream().sorted().toList())
+                .forEach(System.out::println);
     }
 
     public void printStatistic(final LottoStatistic statistic) {

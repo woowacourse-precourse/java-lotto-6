@@ -6,11 +6,8 @@ import static lotto.model.LottoPurchaseMoney.INVALID_PURCHASE_AMOUNT;
 import static lotto.model.LottoStatistic.RATE;
 import static lotto.model.LottoWinningNumbers.INVALID_BONUS_NUMBER;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.stream.Stream;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.exception.InputCallback;
 import lotto.exception.InputExceptionTemplate;
 import lotto.model.Lotto;
@@ -37,7 +34,7 @@ public class LottoService {
     public Lottos buyLottos(final LottoPurchaseMoney amount) {
         int lottoCount = amount.toInt() / LOTTO_PRICE;
         return Lottos.from(
-                Stream.generate(() -> new Lotto(createSortedRandomNumbers()))
+                Stream.generate(Lotto::createRandomNumberLotto)
                 .limit(lottoCount)
                 .toList()
         );
@@ -65,12 +62,6 @@ public class LottoService {
         LottoPrizeCount prizeCount = countLottoPrizes(lottos, lottoWinningNumbers);
         double earningRate = computeEarningRate(lottoPurchaseMoney, prizeCount);
         return LottoStatistic.of(prizeCount, earningRate);
-    }
-
-    private List<Integer> createSortedRandomNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
-        return numbers;
     }
 
     private LottoPrizeCount countLottoPrizes(final Lottos lottos, final LottoWinningNumbers lottoWinningNumbers) {

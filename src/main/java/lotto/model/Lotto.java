@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -23,6 +22,10 @@ public class Lotto {
     public Lotto(final List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto createRandomNumberLotto() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
     private void validate(final List<Integer> numbers) {

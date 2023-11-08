@@ -52,7 +52,7 @@ public class LottoTotalPrice {
     }
 
     private void validateInteger(String inputPrice) {
-        if (isStringEmpty(inputPrice) || isStringDigit(inputPrice)) {
+        if (isStringEmpty(inputPrice) || !isStringDigit(inputPrice)) {
             throw new IllegalArgumentException(NOT_NUMBER_MESSAGE);
         }
     }

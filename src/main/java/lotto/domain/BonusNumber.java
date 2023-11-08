@@ -9,11 +9,11 @@ public class BonusNumber {
     private static final String COMMA = ",";
     private static final String SPACE = " ";
     private final int bonusNumber;
-    public BonusNumber(String bonusNumber, WinningNumber lottoNumbers) {
+    public BonusNumber(String bonusNumber, Lotto lottoNumbers) {
         validate(bonusNumber, lottoNumbers);
         this.bonusNumber = convertStringToInt(bonusNumber);
     }
-    private void validate(String bonusNumber, WinningNumber lottoNumbers) {
+    private void validate(String bonusNumber, Lotto lottoNumbers) {
         validateSeperateChar(bonusNumber);
         validateLengthAndRange(bonusNumber);
         validateDuplicate(bonusNumber, lottoNumbers);
@@ -25,7 +25,7 @@ public class BonusNumber {
         }
     }
 
-    private void validateDuplicate(String bonusNumber, WinningNumber lottoNumbers) {
+    private void validateDuplicate(String bonusNumber, Lotto lottoNumbers) {
         if (isNumberInLotto(convertStringToInt(bonusNumber), lottoNumbers)) {
             throw new IllegalArgumentException(BONUS_DUPLICATE_VALUE);
         }
@@ -60,7 +60,7 @@ public class BonusNumber {
         return Integer.parseInt(number);
     }
 
-    private boolean isNumberInLotto(int number, WinningNumber lottoNumbers) {
+    private boolean isNumberInLotto(int number, Lotto lottoNumbers) {
         return lottoNumbers.getLotto().contains(number);
     }
 

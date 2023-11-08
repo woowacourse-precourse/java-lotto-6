@@ -22,11 +22,11 @@ public class Constants {
     public static final String WINNING_NUMBERS_MESSAGE = "\n당첨 번호를 입력해 주세요.";
     public static final String BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
     public static final String WINNING_STATISTICS_MESSAGE = "\n당첨 통계\n---";
-    public static final String THREE_MATCHES_MESSAGE = Numbers.THREE + "개 일치 (5,000원) - ";
-    public static final String FOUR_MATCHES_MESSAGE = Numbers.FOUR + "개 일치 (50,000원) - ";
-    public static final String FIVE_MATCHES_MESSAGE = Numbers.FIVE + "개 일치 (1,500,000원) - ";
-    public static final String FIVE_MATCHES_WITH_BONUS_MESSAGE = Numbers.FIVE + "개 일치, 보너스 볼 일치 (30,000,000원) - ";
-    public static final String SIX_MATCHES_MESSAGE = Numbers.SIX + "개개 일치 (2,000,000,000원) - ";
+    public static final String THREE_MATCHES_MESSAGE = Numbers.THREE.getValue() + "개 일치 (5,000원) - ";
+    public static final String FOUR_MATCHES_MESSAGE = Numbers.FOUR.getValue() + "개 일치 (50,000원) - ";
+    public static final String FIVE_MATCHES_MESSAGE = Numbers.FIVE.getValue() + "개 일치 (1,500,000원) - ";
+    public static final String FIVE_MATCHES_WITH_BONUS_MESSAGE = Numbers.FIVE.getValue() + "개 일치, 보너스 볼 일치 (30,000,000원) - ";
+    public static final String SIX_MATCHES_MESSAGE = Numbers.SIX.getValue() + "개 일치 (2,000,000,000원) - ";
     public static final String ERROR_MESSAGE = "[ERROR] ";
     public static final String NUMBER_RANGE_ERROR = ERROR_MESSAGE + "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
 }

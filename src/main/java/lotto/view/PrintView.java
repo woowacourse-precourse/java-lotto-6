@@ -14,7 +14,9 @@ public class PrintView {
 
     public void printNumberOfLottos(int purchaseMoney) {
         int lottoNumber = purchaseMoney / 1000;
+        newLine();
         System.out.printf("%d개를 구매했습니다", lottoNumber);
+        newLine();
     }
 
     public void printLottoNumbers(Lottos lottos) {

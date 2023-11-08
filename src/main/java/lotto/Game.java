@@ -1,29 +1,21 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.List;
-import lotto.Validator.LottoValidator;
+import lotto.Validator.InputValidator;
+
 
 public class Game {
 
-    private Lotto문 winningLotto;
+    private Lotto winningLotto;
 
     public void askWinningNumbers() {
-        List<Integer> numbers = new ArrayList<>();
-
         while (true) {
-            System.out.println("당첨 번호를 입력해주세요");
-            String input = Console.readLine();
-
             try {
-                validate(input);
-                String[] inputs = input.split(",");
+                String input = InputService.askUserWinningGame();
+                InputValidator.validateBlankString(input);
+                String[] inputs = InputValidator.seperateStrings(input);
+                List<Integer> numbers = InputValidator.getListOfIntegerByStrings(inputs);
 
-                for (String number :
-                        inputs) {
-                    numbers.add(Integer.parseInt(number));
-                }
                 this.setWinningLotto(numbers);
                 break;
             } catch (Exception e) {
@@ -38,11 +30,5 @@ public class Game {
 
     public Lotto getWinningLotto() {
         return this.winningLotto;
-    }
-
-    private void validate(String input) {
-        if (input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 다시 입력해주세요.");
-        }
     }
 }

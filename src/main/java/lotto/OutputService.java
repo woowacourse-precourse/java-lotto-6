@@ -4,10 +4,12 @@ import java.util.List;
 import lotto.Lotto;
 
 public class OutputService {
-
     private static final String LOTTO_OPENING_BRACKET = "[";
     private static final String LOTTO_CLOSING_BRACKET = "]";
 
+    public static void askStatmement(String askStatement){
+        System.out.println(askStatement);
+    }
     private static String getSingleLottoNumber(List<Integer> numbers, int idx) {
         String ret = "";
 

@@ -26,6 +26,9 @@ public class Input {
         int money = Integer.parseInt(input);
         validate.validatePositiveNumber(money);
 
+        // 로또 가격으로 나누어 떨어지는 지 검증
+        validate.validateDivideNumber(money, LottoConstants.PRICE_FOR_ONE_LOTTO);
+
         return money;
     }
 

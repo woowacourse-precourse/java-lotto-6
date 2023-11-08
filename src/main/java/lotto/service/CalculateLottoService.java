@@ -29,8 +29,23 @@ public class CalculateLottoService {
 	public void calculatingLottoWinning(User user, Lotto lotto) {
 	    List<UserLottos> userLottos = user.getLottos();
 	    for (UserLottos userLotto : userLottos) {
-	        countLottoWinning(user, userLotto.getLottoNumbers(), lotto);
+	        countingLottoWinning(user, userLotto.getLottoNumbers(), lotto);
 	    }
+	}
+	public void countingLottoWinning(User user, List<Integer> lottoNumbers, Lotto lotto) {
+		int countLottosWithoutBonus = countLottoNumbersExcludingBonusNumber(lottoNumbers, lotto.getLottoNumbers());
+		if(isLottoNumberMatchedExcludingNumberFive(countLottosWithoutBonus)) {
+			winningLotto(countLottosWithoutBonus, user);
+			return;
+		}
+		if(isLottoNumberMatchedFiveWithBonusNumber(countLottosWithoutBonus, lottoNumbers, lotto)) {
+			winningLotto(BONUS_ENUM_LABEL, user);
+			return;
+		}
+		if(isLottoNumberMatchedFive(countLottosWithoutBonus, lottoNumbers, lotto)) {
+			winningLotto(countLottosWithoutBonus, user);
+			return;
+		}
 	}
 
 }

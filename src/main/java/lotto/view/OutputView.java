@@ -8,7 +8,6 @@ import static lotto.util.NumberConverter.*;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.model.Receipt;
 
 public class OutputView {
     private static class SingletonOutputView {
@@ -48,15 +47,7 @@ public class OutputView {
         System.out.println(RECEIPT_TITLE.get());
     }
 
-    public void printReceiptDetail(Receipt receipt) {
-        printRankingResult(FIFTH.get(), receipt.getNumberOfFifth());
-        printRankingResult(FOURTH.get(), receipt.getNumberOfFourth());
-        printRankingResult(THIRD.get(), receipt.getNumberOfThird());
-        printRankingResult(SECOND.get(), receipt.getNumberOfSecond());
-        printRankingResult(FIRST.get(), receipt.getNumberOfFirst());
-    }
-
-    private void printRankingResult(Integer ranking, Integer numberOfRanking) {
+    public void printRankingResult(Integer ranking, Integer numberOfRanking) {
         if (ranking == SECOND.get()) {
             System.out.printf(WINNING_MESSAGE_FORMAT_SECOND.get(),
                     getPoint(ranking), intToString(getReward(ranking)) + WON.get(), numberOfRanking);

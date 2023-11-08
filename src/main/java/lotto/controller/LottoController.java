@@ -72,7 +72,7 @@ public class LottoController {
     }
 
     private <T> T readUntilSuccess(Supplier<T> supplier) {
-        while(true) {
+        while (true) {
             try {
                 return supplier.get();
             } catch (IllegalArgumentException exception) {

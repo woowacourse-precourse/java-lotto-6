@@ -20,5 +20,4 @@ public class LottoMarket {
                 .mapToObj(count -> new Lotto(numbersGenerator.generate()))
                 .toList();
     }
-
 }

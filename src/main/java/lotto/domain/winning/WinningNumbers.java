@@ -35,7 +35,7 @@ public class WinningNumbers {
     }
 
     private void validateDuplicated(List<Integer> numbers) {
-        if(numbers.size() != numbers.stream().distinct().count()){
+        if (numbers.size() != numbers.stream().distinct().count()) {
             String message = ExceptionMessage.IS_DUPLICATED.toString();
             throw new DuplicatedNumberException(message);
         }

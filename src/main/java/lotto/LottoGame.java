@@ -1,11 +1,12 @@
 package lotto;
 
+import static lotto.constant.Constants.LOTTO_PRICE;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import lotto.IO.Input;
 import lotto.IO.Output;
-import lotto.constant.Constants;
 
 public class LottoGame {
     private Output output = new Output();
@@ -22,12 +23,12 @@ public class LottoGame {
             responseCalculateWinners(lottos, numbers, bonusNumber, moneyInput);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            
+
         }
     }
 
     private List<Lotto> buyLotto(int moneyInput) {
-        int count = moneyInput / Constants.LOTTO_PRICE;
+        int count = moneyInput / LOTTO_PRICE;
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         for (int i = 0; i < count; i++) {
             List<Integer> numbers = randomNumberGenerator.GenerateLottoNumbers();

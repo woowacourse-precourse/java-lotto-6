@@ -1,4 +1,4 @@
-package lotto.constance;
+package lotto.constants;
 
 public enum PrizeEnum {
     FIFTH(5_000, "3개 일치 (%s원) - %d개","FIFTH"),

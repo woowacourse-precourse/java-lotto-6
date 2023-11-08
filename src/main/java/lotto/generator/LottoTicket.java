@@ -1,12 +1,11 @@
-package lotto.ticket;
+package lotto.generator;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
-
-import static lotto.handler.ExceptionHandler.handle;
+import lotto.handler.ExceptionHandler;
 
 public class LottoTicket {
     private static final int LOTTO_NUMBER_SIZE = 6;
@@ -49,7 +48,7 @@ public class LottoTicket {
                 ticketBundle.add(new ArrayList<>(numbers));
                 return;
             } catch (IllegalArgumentException e) {
-                handle(e);
+                ExceptionHandler.handle(e);
             }
         }
     }

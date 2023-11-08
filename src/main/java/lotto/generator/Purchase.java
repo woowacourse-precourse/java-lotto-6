@@ -1,4 +1,4 @@
-package lotto.purchase;
+package lotto.generator;
 
 import camp.nextstep.edu.missionutils.Console;
 

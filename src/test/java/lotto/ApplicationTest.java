@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
@@ -53,6 +54,7 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
 
     @Override
     public void runMain() {

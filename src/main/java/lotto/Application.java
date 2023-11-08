@@ -21,17 +21,25 @@ public class Application {
 
         // 결과 출력
         printLottos(lottos);
-        printWinningStatistics(lottos, winningNumbers, bonusNumber);
+        printWinningStatistics(lottos, winningNumbers, bonusNumber, purchaseAmount);
     }
 
     private static int getPurchaseAmount() {
-        // 구매 금액 입력 받기
-        System.out.println("구입금액을 입력해 주세요.");
-        int purchaseAmount = Integer.parseInt(Console.readLine().trim());
-        if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+        while (true) {
+            System.out.println("구입금액을 입력해 주세요.");
+            String input = Console.readLine().trim();
+            try {
+                int purchaseAmount = Integer.parseInt(input);
+                if (purchaseAmount % 1000 != 0) {
+                    System.out.println("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+                    continue; // 잘못된 입력이면 반복문을 계속 실행합니다.
+                }
+                return purchaseAmount;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 구입 금액은 숫자여야 합니다.");
+                // 숫자가 아닌 입력을 받았을 경우 다시 입력을 요청합니다.
+            }
         }
-        return purchaseAmount;
     }
 
     private static List<Lotto> purchaseLottos(int numberOfLottos) {
@@ -81,88 +89,78 @@ public class Application {
         }
     }
 
-    private static void printWinningStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        // 당첨 통계를 저장할 배열 초기화
+    private static void printWinningStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber, int purchaseAmount) {
         int[] winCounts = new int[6];
+        int totalPrize = 0;
 
-        // 각 로또별로 당첨 번호 매칭 검사
         for (Lotto lotto : lottos) {
             int matchCount = 0;
             boolean bonusMatch = false;
             for (int number : lotto.getNumbers()) {
                 if (winningNumbers.contains(number)) {
                     matchCount++;
-                } else if (number == bonusNumber) {
-                    bonusMatch = true;
                 }
             }
-            // 당첨 결과 업데이트
+            if (lotto.getNumbers().contains(bonusNumber) && matchCount == 5) {
+                bonusMatch = true;
+            }
             updateWinCounts(winCounts, matchCount, bonusMatch);
         }
 
-        // 당첨 결과 출력
-        int totalPrize = 0;
         System.out.println("당첨 통계");
         System.out.println("---");
-        for (int i = 0; i < winCounts.length; i++) {
-            totalPrize += winCounts[i] * getPrizeMoney(i);
-            System.out.println(getMatchMessage(i) + " - " + winCounts[i] + "개");
+        for (int i = winCounts.length - 1; i >= 0; i--) {
+            if (winCounts[i] > 0) {
+                System.out.println(getMatchMessage(i) + " - " + winCounts[i] + "개");
+                totalPrize += winCounts[i] * getPrizeMoney(i);
+            }
         }
 
-        // 수익률 계산 및 출력
-        double profitRate = calculateProfitRate(totalPrize, lottos.size() * 1000);
+        // 총 수익률 계산 시 구입 금액이 0인 경우를 방지
+        double profitRate = purchaseAmount > 0 ? (double) totalPrize / purchaseAmount * 100 : 0;
         System.out.printf("총 수익률은 %.2f%%입니다.\n", profitRate);
     }
-
     private static void updateWinCounts(int[] winCounts, int matchCount, boolean bonusMatch) {
         // 매칭된 번호의 수에 따라 당첨 카운트를 업데이트
-        switch (matchCount) {
-            case 3:
-                winCounts[5]++;
-                break;
-            case 4:
-                winCounts[4]++;
-                break;
-            case 5:
-                if (bonusMatch) {
-                    winCounts[1]++;
-                } else {
-                    winCounts[2]++;
-                }
-                break;
-            case 6:
-                winCounts[0]++;
-                break;
+        if (matchCount < 3) {
+            return;
+        }
+        if (matchCount == 5 && bonusMatch) {
+            winCounts[1]++; // 2등
+        } else if (matchCount == 5) {
+            winCounts[2]++; // 3등
+        } else {
+            winCounts[matchCount]++; // 나머지 등수
         }
     }
 
-    private static int getPrizeMoney(int matchCount) {
+    private static int getPrizeMoney(int matchIndex) {
         // 매칭된 번호의 수에 따라 상금을 반환
-        switch (matchCount) {
+        switch (matchIndex) {
             case 0: return 2000000000; // 1등
             case 1: return 30000000;   // 2등
             case 2: return 1500000;    // 3등
-            case 4: return 50000;      // 4등
-            case 5: return 5000;       // 5등
+            case 3: return 50000;      // 4등
+            case 4: return 5000;       // 5등
             default: return 0;
         }
     }
 
-    private static String getMatchMessage(int matchCount) {
+    private static String getMatchMessage(int matchIndex) {
         // 매칭된 번호의 수에 따라 출력 메시지를 반환
-        switch (matchCount) {
+        switch (matchIndex) {
             case 0: return "6개 일치 (2,000,000,000원)";
-            case 1: return "5개 일치, 보너스 볼 일치 (30,000,000원)";
-            case 2: return "5개 일치 (1,500,000원)";
-            case 4: return "4개 일치 (50,000원)";
-            case 5: return "3개 일치 (5,000원)";
+            case 1: return "5개 번호 + 보너스 볼 일치 (30,000,000원)";
+            case 2: return "5개 번호 일치 (1,500,000원)";
+            case 3: return "4개 일치 (50,000원)";
+            case 4: return "3개 일치 (5,000원)";
             default: return "";
         }
     }
 
     private static double calculateProfitRate(int totalPrize, int purchaseAmount) {
         // 수익률을 계산
-        return (totalPrize - purchaseAmount) / (double) purchaseAmount * 100;
+        return (double) (totalPrize - purchaseAmount) / purchaseAmount * 100;
     }
 
 }

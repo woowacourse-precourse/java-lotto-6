@@ -10,6 +10,7 @@ import lotto.Model.LottoPurchaseAmount;
 import lotto.Model.Lotto;
 import lotto.Model.LottoGenerator;
 import lotto.Model.WinningResult;
+import lotto.View.ExceptionMessages;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 
@@ -22,6 +23,7 @@ public class LottoGame {
     private static BonusNumber bonusNumber;
     private static Lotto lotto;
     private static List<Lotto> lottoList;
+    private List<Integer> compareNumber;
     private static CompareResult compareResult;
 
     public void LottoGameRun() {
@@ -32,7 +34,9 @@ public class LottoGame {
         OutputView.printLottoAmount(lottoPurchaseCount);
         OutputView.printPurchasedLottoList(lottoList);
 
-        compareResult = validateBonusNumber();
+        compareNumber = inputLottoNumbers();
+
+        compareResult = validateBonusNumber(compareNumber);
 
         lottoResult(lottoList, compareResult, lottoPurchaseCount);
     }
@@ -71,17 +75,14 @@ public class LottoGame {
         return new Lotto(lottoNumbers);
     }
 
-    public CompareResult validateBonusNumber() {
-        try{
-            List<Integer> compareNumber = inputLottoNumbers();
+    public CompareResult validateBonusNumber(List<Integer> compareNumber) {
+        try {
             bonusNumber = new BonusNumber(InputView.inputBonusNumber());
             Lotto.validateBonusNumberDuplicate(compareNumber, bonusNumber.getBonusNumber());
             compareResult = new CompareResult(new Lotto(compareNumber), bonusNumber.getBonusNumber());
-
             return compareResult;
-        }
-        catch(IllegalArgumentException e) {
-            return validateBonusNumber();
+        } catch (IllegalArgumentException e) {
+            return validateBonusNumber(compareNumber);
         }
     }
 

@@ -12,10 +12,9 @@ public class WinningNumbersRequest {
         this.winningNumbers = winningNumbers;
     }
 
-    public static WinningNumbersRequest of(String input) {
+    public WinningNumbersRequest (String input) {
         List<Integer> integerList = stringToInt(List.of(input.split(",")));
-        Lotto winningNumbers = Lotto.of(integerList);
-        return new WinningNumbersRequest(winningNumbers);
+        this.winningNumbers = new Lotto(integerList);
     }
 
     private static List<Integer> stringToInt(List<String>  input) {

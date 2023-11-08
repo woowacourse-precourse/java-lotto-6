@@ -8,14 +8,10 @@ import net.bytebuddy.pool.TypePool.Resolution.Illegal;
 public class MoneyRequest {
     private final int money;
 
-    private MoneyRequest(int money) {
-        validateDevidable(money);
-        this.money = money;
-    }
-
-    public static MoneyRequest of(String input) {
+    public MoneyRequest (String input) {
         int money = stringToInt(input);
-        return new MoneyRequest(money);
+        validateNotDevidedMoney(money);
+        this.money = money;
     }
 
     private static int stringToInt(String input) {
@@ -26,8 +22,8 @@ public class MoneyRequest {
         }
     }
 
-    private static void validateDevidable(int money) {
-        if((money<=0) || (money % 1000) != 0) {
+    private static void validateNotDevidedMoney(int money) {
+        if((money <= 0) || (money % 1000 != 0)){
             throw new IllegalArgumentException(NOT_DEVIDED_MONEY.getMessage());
         }
     }

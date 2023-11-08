@@ -5,15 +5,15 @@ import static lotto.exception.ExceptionMessage.ILLEGAL_NUMBER;
 import lotto.domain.LottoNumber;
 
 public class BonusNumberRequest {
-    private final LottoNumber bonusNumber;
+    private LottoNumber bonusNumber;
 
     private BonusNumberRequest(int bonusNumber) {
         this.bonusNumber = new LottoNumber(bonusNumber);
     }
 
-    public static BonusNumberRequest of(String input) {
+    public BonusNumberRequest (String input) {
         int bonusNumber = stringToInt(input);
-        return new BonusNumberRequest(bonusNumber);
+        this.bonusNumber = new LottoNumber(bonusNumber);
     }
 
     private static int stringToInt(String input) {

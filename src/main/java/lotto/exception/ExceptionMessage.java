@@ -12,6 +12,8 @@ public enum ExceptionMessage {
 
     //Lottos
     EMPTY_LOTTOS("로또들이 발행되지 않았다"),
+    //WinningLotto
+    OVERLAP_BONUS_NUMBER("발행된 보너스숫자가 기존 추첨 로또 번호와 겹친다."),
 
     //Money
     ILLEGAL_NUMBER("입력은 0 이상의 정수이어야 한다."),

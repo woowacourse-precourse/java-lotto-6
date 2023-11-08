@@ -1,12 +1,12 @@
 package lotto.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constant.LottoConstant;
 import lotto.constant.LottoNumberRange;
 
 import java.util.List;
 
 public class LottoGenerator {
-    private static final int MAX_SIZE = 6;
 
     private static int generateRandomNumber() {
         return Randoms.pickNumberInRange(
@@ -19,7 +19,7 @@ public class LottoGenerator {
         return Randoms.pickUniqueNumbersInRange(
                 LottoNumberRange.MIN.getValue(),
                 LottoNumberRange.MAX.getValue(),
-                MAX_SIZE
+                LottoConstant.LOTTO_SIZE
         );
     }
 

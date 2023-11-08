@@ -3,7 +3,6 @@ package lotto.constant;
 import lotto.model.LotteryResult;
 
 import java.util.AbstractMap;
-import java.util.Comparator;
 import java.util.Map;
 
 public enum LotteryRank {

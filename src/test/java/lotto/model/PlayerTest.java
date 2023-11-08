@@ -1,14 +1,11 @@
 package lotto.model;
 
-import lotto.constant.ConsoleMessage;
 import lotto.constant.LotteryRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.text.DecimalFormat;
 import java.util.AbstractMap;
 import java.util.List;
 import java.util.Map;

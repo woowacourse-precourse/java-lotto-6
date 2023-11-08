@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoMachineTest {
-    @DisplayName("당첨 등수를 계산하는 테스트")
+    @DisplayName("당첨 등수를 확인하는 테스트")
     @ParameterizedTest
     @MethodSource("generateLotto")
     void calculateLotteryRankTest(Lotto winningLotto, int bonusNumber, Lotto playerLotto, LotteryRank playerLotteryRank, boolean expected) {

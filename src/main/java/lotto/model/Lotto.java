@@ -8,7 +8,6 @@ import lotto.utils.LottoGenerator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Stream;
 
 public class Lotto {
     private final List<Integer> numbers;

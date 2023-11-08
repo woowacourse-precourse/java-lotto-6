@@ -3,7 +3,6 @@ package lotto.model;
 import lotto.constant.LotteryRank;
 import lotto.constant.LottoConstant;
 
-import java.text.DecimalFormat;
 import java.util.*;
 
 public class Player {

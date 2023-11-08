@@ -6,7 +6,6 @@ import lotto.model.Lotto;
 import lotto.model.Player;
 import lotto.model.WinningDetails;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 public class OutputConsole {

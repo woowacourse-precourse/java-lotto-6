@@ -8,8 +8,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.text.DecimalFormat;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.extractProperty;
-import static org.junit.jupiter.api.Assertions.*;
 
 class OutputConsoleTest {
     @DisplayName("둘째 자리에서 반올림 테스트")

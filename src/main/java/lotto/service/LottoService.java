@@ -5,6 +5,9 @@ import lotto.model.Lotto;
 import java.util.HashMap;
 import java.util.List;
 
+import static lotto.constant.LottoConstant.LOTTO_WIN_SECOND;
+import static lotto.constant.LottoConstant.LOTTO_WIN_THIRD;
+
 public class LottoService {
 
     public HashMap<Integer, Integer> calculateWinningResult(List<List<Integer>> randomSixNumbers, Lotto lotto, int bonusNumber) {
@@ -15,8 +18,8 @@ public class LottoService {
             if (!hasBonus) {
                 winningResult.put(matchingCount, winningResult.getOrDefault(matchingCount, 0) + 1);
             }
-            if (hasBonus && matchingCount == 5) {
-                winningResult.put(matchingCount + 2, winningResult.getOrDefault(matchingCount + 2, 0) + 1);
+            if (hasBonus && matchingCount == LOTTO_WIN_THIRD) {
+                winningResult.put(matchingCount + 2, winningResult.getOrDefault(LOTTO_WIN_SECOND, 0) + 1);
             }
         }
         return winningResult;

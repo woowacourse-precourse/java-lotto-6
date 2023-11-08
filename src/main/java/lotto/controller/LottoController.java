@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.constant.LottoConstant;
 import lotto.constant.LottoCount;
 import lotto.model.Lotto;
 import lotto.model.RandomSixNumber;
@@ -64,7 +65,7 @@ public class LottoController {
     }
 
     private void generatePurchaseAmountRandomSixNumber(int purchaseAmount) {
-        int amount = purchaseAmount / 1000;
+        int amount = purchaseAmount / LottoConstant.LOTTO_PURCHASE_UNIT;
         RandomSixNumber randomSixNumber = new RandomSixNumber();
         for (int round = 1; round <= amount; round++) {
             List<Integer> sixNumber = randomSixNumber.generate();

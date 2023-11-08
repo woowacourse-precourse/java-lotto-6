@@ -6,6 +6,8 @@ import lotto.constant.ErrorMessage;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lotto.constant.LottoConstant.*;
+
 public class User {
     //    사용자는 구입 금액과 당첨 번호, 보너스 번호를 각각 입력해야 한다.
     public int inputPurchaseAmount() {
@@ -41,7 +43,7 @@ public class User {
         }
     }
     private void validateBonusNumber(List<Integer> lottoNumber, int bonusNumber){
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < LOTTO_MIN_NUMBER || bonusNumber > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_RANGE.getMessage());
         }
         if(lottoNumber.contains(bonusNumber)){
@@ -50,10 +52,10 @@ public class User {
 
     }
     private void validatePurchaseAmount(int money) {
-        if (money < 1000 || money > 100000) {// 1000원 미만, 100000원 초과의 값 입력시의 예외 처리
+        if (money < LOTTO_MIN_PURCHASE_AMOUNT || money > LOTTO_MAX_PURCHASE_AMOUNT) {// 1000원 미만, 100000원 초과의 값 입력시의 예외 처리
             throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_NUMBER.getMessage());
         }
-        if (money % 1000 != 0) {// 1000원 단위의 값 외의 값 입력시의 예외 처리
+        if (money % LOTTO_PURCHASE_UNIT != 0) {// 1000원 단위의 값 외의 값 입력시의 예외 처리
             throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_UNIT.getMessage());
         }
     }

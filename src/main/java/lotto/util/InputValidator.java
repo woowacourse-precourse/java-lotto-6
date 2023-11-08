@@ -6,10 +6,6 @@ public class InputValidator {
     private static final String NUMBER_REGEX = "[0-9]+";
 
     private void validateIsUnder20Billion(String input) {
-        if (input.length() > 10) {
-            throw new IllegalArgumentException(UNDER_20_BILLION_REQUIRED);
-        }
-
         try {
             int number = Integer.parseInt(input);
             if (number > 2000000000) {
@@ -21,18 +17,10 @@ public class InputValidator {
     }
 
     public void validateIsNumber(String input) {
-        if (isNumber(input) == false) {
+        if (input.matches(NUMBER_REGEX) == false) {
             throw new IllegalArgumentException(NOT_A_NUMBER_MESSAGE);
         }
 
         validateIsUnder20Billion(input);
-    }
-
-    private boolean isNumber(String inputPrice) {
-        if (inputPrice.matches(NUMBER_REGEX)) {
-            return true;
-        }
-
-        return false;
     }
 }

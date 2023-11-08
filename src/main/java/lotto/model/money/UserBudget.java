@@ -7,22 +7,20 @@ import static lotto.utils.constant.LottoConstant.LOTTO_MONEY_MIN;
 import static lotto.utils.constant.LottoConstant.LOTTO_MONEY_UNIT;
 
 public class UserBudget {
-    private int budget;
-    private final LottoCount lottoCount;
+    private Money budget;
 
     private UserBudget(int budget) {
         checkBudgetInRange(budget);
         checkBudgetUnit(budget);
-        this.budget = budget;
-        this.lottoCount = new LottoCount(calculateLottoCount(budget));
+        this.budget = Money.of(budget);
     }
 
     public static UserBudget of(int budget) {
         return new UserBudget(budget);
     }
 
-    private int calculateLottoCount(int budget) {
-        return budget / LOTTO_MONEY_UNIT.getValue();
+    public Money getBudget() {
+        return this.budget;
     }
 
     private void checkBudgetInRange(int budget) {

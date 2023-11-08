@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Buyer;
-import lotto.domain.LottoSystem;
+import lotto.domain.LottoService;
 import lotto.domain.WinningLotto;
 import lotto.dto.WinningResult;
 import lotto.dto.PurchasedLotto;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class LottoController {
 
-    private final LottoSystem lottoSystem = new LottoSystem(new Buyer(), new WinningLotto());
+    private final LottoService lottoService = new LottoService(new Buyer(), new WinningLotto());
 
     public void start() {
         buyLotto();
@@ -24,9 +24,9 @@ public class LottoController {
     private void buyLotto() {
         repeatExecutionOnFailure(() -> {
             int purchaseAmount = InputView.enterLottoPurchaseAmount();
-            lottoSystem.buyLotto(purchaseAmount);
+            lottoService.buyLotto(purchaseAmount);
 
-            PurchasedLotto purchasedLotto = lottoSystem.getPurchasedLotto();
+            PurchasedLotto purchasedLotto = lottoService.getPurchasedLotto();
             OutputView.printPurchasedLotto(purchasedLotto);
         });
     }
@@ -34,14 +34,14 @@ public class LottoController {
     private void generateWinningLotto() {
         repeatExecutionOnFailure(() -> {
             List<Integer> winningLottoNumbers = InputView.enterWinningLottoNumbers();
-            lottoSystem.generateWinningLotto(winningLottoNumbers);
+            lottoService.generateWinningLotto(winningLottoNumbers);
         });
     }
 
     private void inputBonusNumber() {
         repeatExecutionOnFailure(() -> {
             int bonusNumber = InputView.enterBonusNumber();
-            lottoSystem.inputBonusNumber(bonusNumber);
+            lottoService.inputBonusNumber(bonusNumber);
         });
     }
 
@@ -57,7 +57,7 @@ public class LottoController {
     }
 
     private void printWinningStatistics() {
-        WinningResult winningResult = lottoSystem.getWinningResult();
+        WinningResult winningResult = lottoService.getWinningResult();
         OutputView.printWinningResult(winningResult);
     }
 }

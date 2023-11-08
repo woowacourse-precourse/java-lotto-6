@@ -16,12 +16,12 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-public class LottoSystem {
+public class LottoService {
 
     private final Buyer buyer;
     private final WinningLotto winningLotto;
 
-    public LottoSystem(Buyer buyer, WinningLotto winningLotto) {
+    public LottoService(Buyer buyer, WinningLotto winningLotto) {
         this.buyer = buyer;
         this.winningLotto = winningLotto;
     }

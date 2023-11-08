@@ -11,17 +11,17 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LottoSystemTest extends MethodSourceTest {
+class LottoServiceTest extends MethodSourceTest {
 
     Buyer buyer;
     WinningLotto winningLotto;
-    LottoSystem lottoSystem;
+    LottoService lottoService;
 
     @BeforeEach
     void setUp() {
         buyer = new Buyer();
         winningLotto = new WinningLotto();
-        lottoSystem = new LottoSystem(buyer, winningLotto);
+        lottoService = new LottoService(buyer, winningLotto);
     }
 
     @DisplayName("사용자가 입력한 구매 금액에 맞는 개수만큼 로또를 발행한다.")
@@ -29,7 +29,7 @@ class LottoSystemTest extends MethodSourceTest {
     @ValueSource(ints = {1_000, 5_000, 10_000, 100_000})
     void buyLottos(int purchaseAmount) {
         // given & when
-        lottoSystem.buyLotto(purchaseAmount);
+        lottoService.buyLotto(purchaseAmount);
         List<Lotto> lottos = buyer.getLottos();
 
         // then
@@ -42,7 +42,7 @@ class LottoSystemTest extends MethodSourceTest {
     void generateWinningLotto() {
         // given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        lottoSystem.generateWinningLotto(numbers);
+        lottoService.generateWinningLotto(numbers);
 
         // when
         List<Integer> winningLottoNumbers = winningLotto.getNumbers();
@@ -57,8 +57,8 @@ class LottoSystemTest extends MethodSourceTest {
     void inputBonusNumber() {
         // given
         int number = 10;
-        lottoSystem.generateWinningLotto(List.of(1, 2, 3, 4, 5, 6));
-        lottoSystem.inputBonusNumber(number);
+        lottoService.generateWinningLotto(List.of(1, 2, 3, 4, 5, 6));
+        lottoService.inputBonusNumber(number);
 
         // when
         int bonusNumber = winningLotto.getBonusNumber();

@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import camp.nextstep.edu.missionutils.Console;
 public class InputView {
         public static List<Integer> inputLottoNumbers() {
+                OutputView.mentionInputWinningNumber();
                 String answerNumbers = Console.readLine();
                 String [] splitNumbers = answerNumbers.split(",");
                 return Stream.of(splitNumbers)
@@ -18,6 +19,7 @@ public class InputView {
                return Integer.parseInt(Console.readLine());
         }
         public static int inputBonusNumber() {
+                OutputView.mentionInputBonusNumber();
                 return Integer.parseInt(Console.readLine());
         }
 }

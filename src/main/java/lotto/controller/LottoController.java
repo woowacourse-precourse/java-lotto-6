@@ -20,18 +20,19 @@ public class LottoController {
                 buyingLotto();
         }
         private void buyingLotto() {
-                OutputView.mentionInputPrice();
                 payMoney = InputView.inputMoney();
                 LottoPrice lottoPrice = new LottoPrice(payMoney);
                 int count = lottoPrice.getLottoCount();
-                makeLottos(count);
-                OutputView.mentionInputWinningNumber();
-                lottoNumbers = InputView.inputLottoNumbers();
-                Lotto lotto = new Lotto(lottoNumbers);
+                OutputView.printLottoCount(count);
 
-                OutputView.mentionInputBonusNumber();
+                makeLottos(count);
+
+                lottoNumbers = InputView.inputLottoNumbers();
+                Lotto winLotto = new Lotto(lottoNumbers);
+
                 bonusNumber = InputView.inputBonusNumber();
-                calculateLotto = new CalculateLotto(lotto,bonusNumber);
+
+                calculateLotto = new CalculateLotto(winLotto,bonusNumber);
                 resultLottos(lottos,calculateLotto);
         }
         private static List<Lotto> makeLottos(int count){
@@ -65,6 +66,7 @@ public class LottoController {
                 return result;
         }
         private void printResult(Map<WinLotto, Integer> result){
+                OutputView.printResultMessage();
                for(int i = WinLotto.values().length -1; i >=0; i--){
                        WinLotto.values()[i].printMessage(result.get(WinLotto.values()[i]));
                }

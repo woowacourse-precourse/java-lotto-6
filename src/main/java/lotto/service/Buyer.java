@@ -1,6 +1,6 @@
 package lotto.service;
 
-import static lotto.view.IO.showLottoTickets;
+import static lotto.view.View.showLottoTickets;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;

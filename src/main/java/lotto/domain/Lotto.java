@@ -1,7 +1,9 @@
 package lotto.domain;
 
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class Lotto {
@@ -28,8 +30,13 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    private void validate(List<Integer> numbers){
+        validateNumberAndCount(numbers);
+        checkDuplicate(numbers);
+    }
 
-    private void validate(List<Integer> numbers) {
+
+    private void validateNumberAndCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 6개 입력하세요.");
         }
@@ -37,12 +44,22 @@ public class Lotto {
         for (int value : numbers) {
             validateInRange(value);
         }
+
     }
 
     private void validateInRange(final int value) {
         if (value < LOTTO_NUMBER_START || value > LOTTO_NUMBER_END) {
             throw new IllegalArgumentException("[ERROR] 숫자 범위가 벗어났습니다.");
         }
+    }
+
+    private void checkDuplicate(List<Integer> numbers){
+        Set<Integer> numberSet = new HashSet<>(numbers);
+
+        if(numberSet.size() <6){
+            throw new IllegalArgumentException("[ERROR] 중복값 입력하셨습니다.");
+        }
+
     }
 
 

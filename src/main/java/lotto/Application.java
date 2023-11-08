@@ -1,10 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.Lotto;
-import lotto.domain.Statistics;
-import lotto.domain.WinningLotto;
-import lotto.domain.GuessLottoTickets;
+import lotto.domain.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -37,13 +34,8 @@ public class Application {
 
     private static WinningLotto getWinningLotto() {
         Lotto winningLotto = generateWinningLotto();
-        while (true) {
-            try {
-                return new WinningLotto(winningLotto);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        Bonus bonus = generateBonus();
+        return new WinningLotto(winningLotto, bonus);
     }
 
     private static void getLottery() {
@@ -59,7 +51,7 @@ public class Application {
 
     private static void setLottery() {
         System.out.println(REQUEST_PURCHASE_AMOUNT);
-        int price = getPrice();
+        int price = getNumber();
 
         if (price % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 천원 단위로 입력해주세요.");
@@ -74,11 +66,15 @@ public class Application {
         }
     }
 
-    private static int getPrice() {
-        try {
-            return Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException("[ERROR] 숫자를 입력하세요.");
+    private static Bonus generateBonus() {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                int number = getNumber();
+                return new Bonus(number);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -95,13 +91,21 @@ public class Application {
         }
     }
 
+    private static int getNumber() {
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("[ERROR] 숫자를 입력하세요.");
+        }
+    }
+
     private static List<Integer> toNumbers(String[] splittedNumbers) {
         try {
             return Arrays.stream(splittedNumbers)
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new NullPointerException("[ERROR] 숫자만 입력하세요.");
+            throw new NumberFormatException("[ERROR] 숫자만 입력하세요.");
         }
     }
 }

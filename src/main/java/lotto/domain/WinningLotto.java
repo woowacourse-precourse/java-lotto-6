@@ -8,9 +8,9 @@ public class WinningLotto {
     private final Lotto lotto;
     private final Bonus bonus;
 
-    public WinningLotto(Lotto lotto) {
+    public WinningLotto(Lotto lotto, Bonus bonus) {
         this.lotto = lotto;
-        this.bonus = generateBonusNumber();
+        this.bonus = bonus;
     }
 
     public List<Integer> countContainsNumber(GuessLottoTickets guessLottoTickets) {
@@ -33,9 +33,5 @@ public class WinningLotto {
             }
         }
         return isContain;
-    }
-
-    private Bonus generateBonusNumber() {
-        return new Bonus();
     }
 }

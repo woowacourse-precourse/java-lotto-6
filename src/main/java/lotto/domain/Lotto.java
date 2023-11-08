@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,6 +17,15 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public List<Integer> allCompare(List<Lotto> allLottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
+        List<Integer> result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0));
+        for (Lotto lottoNumbers : allLottoNumbers) {
+            Rank rank = compareResult(lottoNumbers.compare(winningNumbers), bonusNumber);
+            result.set(rank.ordinal(), result.get(rank.ordinal()) + 1);
+        }
+        return result;
     }
 
     public int compare(List<Integer> winningNumbers) {
@@ -53,5 +64,14 @@ public class Lotto {
             Collections.sort(lotto.numbers);
             System.out.println(lotto.numbers);
         }
+    }
+
+    public static void prizePrint(List<Integer> result) {
+        System.out.println("당첨 통계\n---");
+        System.out.println("3개 일치 (5,000원) - " + result.get(4) + "개");
+        System.out.println("4개 일치 (50,000원) - " + result.get(3) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + result.get(2) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.get(1) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + result.get(0) + "개");
     }
 }

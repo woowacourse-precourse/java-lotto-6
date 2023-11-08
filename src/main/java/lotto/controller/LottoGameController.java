@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.LottoRank;
+import lotto.constants.LottoRankConstants;
 import lotto.domain.LottoRanks;
 import lotto.service.ReturnService;
 import lotto.view.InputView;
@@ -43,10 +43,26 @@ public class LottoGameController {
         return InputView.inputPurchaseAmount();
     }
 
+    private Lotto getWinningLotto() {
+        return new Lotto(InputView.inputWinningNumbers());
+    }
+
     private List<Lotto> purchaseLotto(int payment) {
         int countOfPurchasable = purchaseService.getCountOfPurchasable(payment);
         OutputView.printPurchaseCountResult(countOfPurchasable);
         return purchaseService.purchaseLottoForCount(countOfPurchasable);
+    }
+    
+    private LottoRanks getRanks(WinningLotto winningLotto, List<Lotto> purchasedLottos) {
+        return lottoDrawService.evaluateRanks(winningLotto, purchasedLottos);
+    }
+
+    private int getWinningAmount() {
+        return lottoDrawService.getWinningAmount();
+    }
+
+    private String getReturn(int payment, int winningAmount) {
+        return returnService.evaluateLottoReturn(payment, winningAmount);
     }
 
     private void displayPurchasedLottos(List<Lotto> purchasedLottos) {
@@ -60,25 +76,9 @@ public class LottoGameController {
     }
 
     private void displayWinningResult(LottoRanks lottoRanks) {
-        for (LottoRank rank : LottoRank.values()) {
+        for (LottoRankConstants rank : LottoRankConstants.values()) {
             OutputView.printWinningLottoResult(rank, lottoRanks.getRankCount(rank));
         }
-    }
-
-    private Lotto getWinningLotto() {
-        return new Lotto(InputView.inputWinningNumbers());
-    }
-
-    private LottoRanks getRanks(WinningLotto winningLotto, List<Lotto> purchasedLottos) {
-        return lottoDrawService.evaluateRanks(winningLotto, purchasedLottos);
-    }
-
-    private int getWinningAmount() {
-        return lottoDrawService.getWinningAmount();
-    }
-
-    private String getReturn(int payment, int winningAmount) {
-        return returnService.evaluateLottoReturn(payment, winningAmount);
     }
 
 }

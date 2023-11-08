@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constants.LottoRankConstants;
+
 public class Comparator {
     WinningLotto winningLotto;
 
@@ -7,11 +9,11 @@ public class Comparator {
         this.winningLotto = winningLotto;
     }
 
-    public LottoRank compareWithWinningLotto(Lotto purchasedLotto) {
+    public LottoRankConstants compareWithWinningLotto(Lotto purchasedLotto) {
         int hitCountOfLottoNumbers = getHitCountOfLottoNumbers(purchasedLotto);
         boolean hasBonusNumber = isHasBonusNumber(purchasedLotto);
 
-        return LottoRank.valueOf(hitCountOfLottoNumbers, hasBonusNumber);
+        return LottoRankConstants.valueOf(hitCountOfLottoNumbers, hasBonusNumber);
     }
 
     private boolean isHasBonusNumber(Lotto purchasedLotto) {

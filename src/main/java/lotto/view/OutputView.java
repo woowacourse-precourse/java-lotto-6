@@ -1,8 +1,7 @@
 package lotto.view;
 
-import lotto.domain.LottoRank;
+import lotto.constants.LottoRankConstants;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,8 +21,8 @@ public class OutputView {
         printMessage("[" + lottoResult + "]");
     }
 
-    public static void printWinningLottoResult(final LottoRank rank, final int count) {
-        if (!rank.equals(LottoRank.NONE)) {
+    public static void printWinningLottoResult(final LottoRankConstants rank, final int count) {
+        if (!rank.equals(LottoRankConstants.NONE)) {
             printMessage(rank.getMessage() + count + COUNT_UNIT);
         }
     }

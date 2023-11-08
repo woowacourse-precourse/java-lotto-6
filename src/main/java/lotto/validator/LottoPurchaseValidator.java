@@ -1,18 +1,20 @@
 package lotto.validator;
 
-import java.util.List;
+import lotto.constants.ValidationConstants;
 
 public class LottoPurchaseValidator {
+    private static final int PURCHASE_UNIT = 1000; // Assuming that the purchase must be in units of 1000
+
     private LottoPurchaseValidator() {
     }
 
-    public static void validatePurchase(final int number) {
-        validatAmountForThousand(number);
+    public static void validatePurchase(final int amount) {
+        validateAmountForThousand(amount);
     }
 
-    private static void validatAmountForThousand(int number) {
-        if (number%1000 != 0)
-            throw new IllegalArgumentException("금액이 천원 단위가 아닙니다.");
-
+    private static void validateAmountForThousand(int amount) {
+        if (amount % PURCHASE_UNIT != 0) {
+            throw new IllegalArgumentException(ValidationConstants.ERROR_INVALID_PURCHASE_AMOUNT.getMessage());
+        }
     }
 }

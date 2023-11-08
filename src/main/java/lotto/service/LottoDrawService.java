@@ -2,7 +2,7 @@ package lotto.service;
 
 import lotto.domain.Comparator;
 import lotto.domain.Lotto;
-import lotto.domain.LottoRank;
+import lotto.constants.LottoRankConstants;
 import lotto.domain.LottoRanks;
 import lotto.domain.WinningLotto;
 
@@ -14,7 +14,7 @@ public class LottoDrawService {
     public LottoRanks evaluateRanks(WinningLotto winningLotto, List<Lotto> purchasedLottos) {
         Comparator comparator = new Comparator(winningLotto);
         for (Lotto purchasedLotto : purchasedLottos) {
-            LottoRank rank = comparator.compareWithWinningLotto(purchasedLotto);
+            LottoRankConstants rank = comparator.compareWithWinningLotto(purchasedLotto);
             storeRank(rank);
         }
         return lottoRanks;
@@ -22,13 +22,13 @@ public class LottoDrawService {
 
     public int getWinningAmount() {
         int totalAmount = 0;
-        for (LottoRank rank : LottoRank.values()) {
+        for (LottoRankConstants rank : LottoRankConstants.values()) {
             totalAmount += lottoRanks.getRankCount(rank) * rank.getPrizeAmount();
         }
         return totalAmount;
     }
 
-    private void storeRank(LottoRank lottoRank) {
+    private void storeRank(LottoRankConstants lottoRank) {
         this.lottoRanks = lottoRanks.recordRank(lottoRank);
     }
 }

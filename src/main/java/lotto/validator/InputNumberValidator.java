@@ -1,6 +1,10 @@
 package lotto.validator;
 
+import lotto.constants.ValidationConstants;
+
 public class InputNumberValidator {
+    private static final int MIN_POSITIVE_NUMBER = 0;
+
     private InputNumberValidator() {
     }
 
@@ -9,18 +13,17 @@ public class InputNumberValidator {
         validatePositiveInteger(number);
     }
 
-    private static int validateNumber(String payment) {
+    private static int validateNumber(String input) {
         try {
-            return Integer.parseInt(payment);
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자가 아닌 값이 입력되었습니다.");
+            throw new IllegalArgumentException(ValidationConstants.ERROR_NOT_A_NUMBER.getMessage());
         }
-
     }
 
     private static void validatePositiveInteger(int number) {
-        if (number < 0) {
-            throw new IllegalArgumentException("음수가 입력되었습니다.");
+        if (number < MIN_POSITIVE_NUMBER) {
+            throw new IllegalArgumentException(ValidationConstants.ERROR_NEGATIVE_NUMBER.getMessage());
         }
     }
 }

@@ -25,8 +25,9 @@ public class Application {
         Lotto userNum = readUserNum();
         int bonusNum = readBonusNum(userNum);
 
-        long earned = 0;
-        setResult(lottoNum, userNum, bonusNum, earned);
+        setResult(lottoNum, userNum, bonusNum);
+        long earned = getEarned();
+
         printResult();
         printProfit(paid, earned);
     }
@@ -60,7 +61,6 @@ public class Application {
         Lotto[] lottoNum = new Lotto[bought];
         for(int i = 0; i < bought; i++) {
             lottoNum[i] = new Lotto(Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_COUNT));
-            Collections.sort(lottoNum[i].getNumbers());
         }
         return lottoNum;
     }
@@ -69,6 +69,7 @@ public class Application {
         for(Lotto l : lottoNum) {
             System.out.println(l.getNumbers().toString());
         }
+        System.out.println();
     }
 
     private static Lotto readUserNum() {
@@ -101,7 +102,7 @@ public class Application {
         }
     }
 
-    private static void setResult(Lotto[] lottoNum, Lotto userNum, int bonusNum, long earned) {
+    private static void setResult(Lotto[] lottoNum, Lotto userNum, int bonusNum) {
         for(Lotto l : lottoNum) {
             int winsCount = 0;
             boolean bonusCount = false;
@@ -110,12 +111,11 @@ public class Application {
                 if(l.getNumbers().contains(n)) {
                     winsCount++;
                 }
-
                 bonusCount = l.getNumbers().contains(bonusNum);
             }
 
             Rank rank = getRank(winsCount, bonusCount);
-            addResult(rank, earned);
+            addResult(rank);
         }
     }
 
@@ -128,11 +128,21 @@ public class Application {
         return null;
     }
 
-    private static void addResult(Rank rank, long earned) {
+    private static void addResult(Rank rank) {
         if(rank != null) {
             lottoWinsCount[rank.ordinal()]++;
-            earned += rank.getPrize();
+            //return earned + rank.getPrize();
         }
+    }
+
+    private static long getEarned() {
+        long earned = 0;
+
+        for(Rank rank : Rank.values()) {
+            earned += (long) rank.getPrize() * lottoWinsCount[rank.ordinal()];
+        }
+
+        return earned;
     }
 
     private static void printResult() {

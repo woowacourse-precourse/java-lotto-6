@@ -6,8 +6,8 @@ public class OutputUI {
     }
 
     public static void outputResultTitle() {
-        System.out.println("당첨 통계");
         System.out.println();
+        System.out.println("당첨 통계");
         System.out.println("---");
     }
 

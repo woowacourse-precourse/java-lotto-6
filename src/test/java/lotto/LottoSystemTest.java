@@ -154,5 +154,13 @@ public class LottoSystemTest {
         assertThat(lottoSystem.lottoEqualBonusNumber(5, lotto, 7))
                 .isEqualTo(2);
     }
+
+    @Test
+    void 당첨된_로또의_총_상금(){
+        LottoSystem lottoSystem = new LottoSystem();
+        int[] winLotto = {1,1,1,0,0};
+        assertThat(lottoSystem.winningTotalMoney(winLotto))
+                .isEqualTo(1555000);
+    }
 }
 

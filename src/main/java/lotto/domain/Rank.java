@@ -40,7 +40,15 @@ public enum Rank {
     }
 
     public String showMessage(int count) {
-        return String.format("%d개 일치 (%s) - %d개", this.matchCount, getReward(), count);
+        StringBuilder stringBuilder = new StringBuilder()
+                .append(this.matchCount).append("개 일치");
+
+        if (this == Rank.SECOND) {
+            stringBuilder.append(", 보너스 볼 일치");
+        }
+
+        return stringBuilder.append(" (").append(getReward()).append(")")
+                .append(" - ").append(count).append("개").toString();
     }
 
     private static boolean isNotWinning(int matchCount) {

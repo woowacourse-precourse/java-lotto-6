@@ -66,46 +66,10 @@ public class Lotto {
                 .count();
     }
 
-    // TODO: 접근제한자 private 변경 불가 X.
-    private void validateCount(List<Integer> numbers) {
-        if (!isMatchedCount(numbers)) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private boolean isMatchedCount(List<Integer> numbers) {
-        return numbers.size() == LOTTO_NUMBERS_COUNT;
-    }
-
-    private void validateNumberRange(List<Integer> numbers) {
-        if (!isInNumberRange(numbers)) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private boolean isInNumberRange(List<Integer> numbers) {
-        return numbers.stream()
-                .allMatch(number ->
-                        (number >= MINIMUM_LOTTO_RANGE && number <= MAXIMUM_LOTTO_RANGE));
-    }
-
-    private void validateHasDuplicate(List<Integer> numbers) {
-        if (hasDuplicates(numbers)) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private boolean hasDuplicates(List<Integer> numbers){
-        return numbers.size() != Set.copyOf(numbers).size();
-    }
-
-    private void sortAscending(List<Integer> numbers) {
-        Collections.sort(numbers);
-    }
-
-    // todo: OUTPUT에서 사용. 다른 방법 찾아보기.
     public List<Integer> getNumbers() {
-        return new ArrayList<>(numbers);
+        final List<Integer> results = new ArrayList<Integer>(numbers);
+        Collections.sort(results);
+        return Collections.unmodifiableList(results);
     }
 
 }

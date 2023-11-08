@@ -40,6 +40,16 @@ class ValidatorTest {
     }
 
     @Test
+    @DisplayName("부적절한 보너스 번호 입력시 예외 발생")
+    void validateBonusNumberTest() {
+        numberTestCases = Arrays.asList(new Integer[] {1,2,3,4,5,6});
+        stringTestCases = Arrays.asList(new String[]{"1", "-2", " ", "a"});
+        for (String testCase : stringTestCases) {
+            assertThatThrownBy(() -> Validator.validateWinNumbers(testCase));
+        }
+    }
+
+    @Test
     @DisplayName("입력값이 공백이거나 null일 시 예외 발생")
     void checkBlankOrNULLTest() {
         stringTestCases = Arrays.asList(new String[]{"", null});

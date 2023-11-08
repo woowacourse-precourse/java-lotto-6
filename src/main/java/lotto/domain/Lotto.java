@@ -2,10 +2,7 @@ package lotto.domain;
 
 import lotto.utils.system.LottoException;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static lotto.utils.phrase.ErrorPhrase.*;
 import static lotto.utils.system.LottoSystemUtils.*;
@@ -34,8 +31,9 @@ public class Lotto {
     }
 
     private List<Integer> sortedNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
+        List<Integer> tmp = new ArrayList<>(numbers);
+        Collections.sort(tmp);
+        return tmp;
     }
 
     private void validate(List<Integer> numbers) {

@@ -19,8 +19,9 @@ public class LottoDraw {
     public void configureNumbers() {
         for (int i = 0; i < this.lottoTicketsNumber; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            numbers.sort(Comparator.naturalOrder());
-            this.lottos.add(new Lotto(numbers));
+            List<Integer> mutableNumbers = new ArrayList<>(numbers);
+            mutableNumbers.sort(Comparator.naturalOrder());
+            this.lottos.add(new Lotto(mutableNumbers));
         }
     }
 

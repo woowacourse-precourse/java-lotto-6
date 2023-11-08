@@ -1,12 +1,16 @@
 package lotto;
 
+import static java.lang.Integer.parseInt;
+
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Input {
 
     public static int getAmount() {
         String input = Console.readLine();
-        int amount = Integer.parseInt(input);
+        int amount = parseInt(input);
 
         if (!validAmount(amount)) {
             throw new IllegalArgumentException();
@@ -14,13 +18,30 @@ public class Input {
         return amount;
     }
 
-    public static String getLottoNumbers() {
-        String lottoNumbers = Console.readLine();
-        // 입력된 값이 숫자,숫자,숫자,숫자,숫자,숫자인 경우에만 유효
-        // 입력된 값의 숫자들이 1~45 범위이면 유효
-        // 유효가 아닌 경우 예외처리
-        if (lottoNumbers.s)
+    public static List<Integer> getLottoNumbers() {
+        String input = Console.readLine();
+
+        if (!isValidLottoFormat(input)) {
+            throw new IllegalArgumentException();
+        }
+
+        String[] numbers = input.split(",");
+        List<Integer> lottoNumbers = new ArrayList<>();
+        for (int i = 0; i < numbers.length; i++) {
+            int lottoNumber = parseInt(numbers[i]);
+            lottoNumbers.add(lottoNumber);
+        }
+
+        for (int lottoNumber:lottoNumbers) {
+            if (lottoNumber < 1 || lottoNumber > 45) {
+                throw new IllegalArgumentException();
+            }
+        }
         return lottoNumbers;
+    }
+
+    private static boolean isValidLottoFormat(String input) {
+        return input.matches("\\d{1,2}(,\\d{1,2}){5}$");
     }
 
     private static boolean validAmount(int amount) {

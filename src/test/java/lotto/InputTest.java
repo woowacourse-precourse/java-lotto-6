@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.*;
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,20 +51,36 @@ public class InputTest {
     @DisplayName("당첨 번호 입력 테스트")
     public void inputLottoNumberRight(){
         //given
-        String expect = "1,2,3,4,5,6";
-        InputStream inputStream = setConsole(expect);
+        String input = "1,2,3,4,5,6";
+        InputStream inputStream = setConsole(input);
         System.setIn(inputStream);
 
         //when
-        String actual = Input.getLottoNumbers();
+        List<Integer> expect = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> actual = Input.getLottoNumbers();
 
         //then
         assertThat(expect).isEqualTo(actual);
     }
 
     @Test
-    @DisplayName("당첨 번호 입력 유효 테스트")
-    public void testGetLottoNumbersValid() {
+    @DisplayName("당첨 번호 입력 형식 유효 테스트")
+    public void testValidLottoFormat() {
+        //given
+        String expect = "123456";
+        InputStream inputStream = setConsole(expect);
+        System.setIn(inputStream);
+
+        // then
+        assertThatThrownBy(() -> {
+            Input.getLottoNumbers();
+        })
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("당첨 번호 입력 범위 유효 테스트")
+    public void testLottoRangeValid() {
         //given
         String expect = "1,2,3,4,5,6";
         InputStream inputStream = setConsole(expect);

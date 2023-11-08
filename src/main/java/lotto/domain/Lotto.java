@@ -28,7 +28,7 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for(Integer element:numbers){
             if(!uniqueNumbers.add(element)){
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.\n");
             }
         }
     }

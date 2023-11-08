@@ -140,14 +140,10 @@ public class Purchaser {
     public Double calculateEarningsRate() {
         lotto.forEach(((winningPrice, lottos) -> {
             Long price = WinningPrice.getPrice(winningPrice) * lottos.size();
-            addSumEarnings(price);
+            this.earnings += price;
         }));
 
         Double earningsRate = (double) earnings / this.price * 100.0;
         return Math.round(earningsRate * 10) / 10.0;
-    }
-
-    private void addSumEarnings(Long price) {
-        this.earnings += price;
     }
 }

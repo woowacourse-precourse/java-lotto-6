@@ -13,7 +13,7 @@ public class Computer {
     final String ASK_PRICE = "구입금액을 입력해 주세요.";
 
     final String BUY_LOTTO_MESSAGE = "개를 구매했습니다.";
-    final String ONLY_NUMBER_ERROR_MESSAGE = "[ERROR] 구입 금액은 숫자만 가능합니다.";
+    final String ONLY_NUMBER_ERROR_MESSAGE = "[ERROR] 숫자만 입력 가능합니다.";
     final String AMOUNT_OF_MONEY_MUST_DIVIDED_THOUSAND = "[ERROR] 금액은 1000원 단위로 나누어 떨어져야 합니다.";
     final String ASK_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     final String ASK_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
@@ -71,9 +71,9 @@ public class Computer {
         }
     }
 
-    String getWinningNumber(){
+    Lotto getWinningNumber(){
         System.out.println(ASK_WINNING_NUMBER);
-        return Console.readLine();
+        return validateWinningNumber(Console.readLine());
     }
 
     Lotto validateWinningNumber(String input){
@@ -81,5 +81,29 @@ public class Computer {
                 Collectors.toList());
         Lotto winLotto = new Lotto(numbers);
         return winLotto;
+    }
+
+    int getBonusNumber(){
+        System.out.println(ASK_BONUS_NUMBER);
+
+        try{
+            return Integer.parseInt(Console.readLine());
+        } catch (IllegalArgumentException e){
+            System.out.println(ONLY_NUMBER_ERROR_MESSAGE);
+        }
+
+        return 0;
+    }
+
+    void validateBonusNumber(int bonusNumber, Lotto lotto){
+        final String RANGE_EXCEPTION_MESSAGE = "[ERROR] 보너스 번호는 1~45 사이의 숫자여야합니다.";
+        final String UNIQUE_NUMBER_EXCEPTION_MESSAGE = "[ERROR] 보너스 번호는 로또 번호와 중복되지않아야합니다.";
+
+        if(bonusNumber > MAX_NUMBER || bonusNumber < MIN_NUMBER){
+            throw new IllegalArgumentException(RANGE_EXCEPTION_MESSAGE);
+        }
+        if(lotto.isNumbersContainBonusNumber(bonusNumber)){
+            throw new IllegalArgumentException(UNIQUE_NUMBER_EXCEPTION_MESSAGE);
+        }
     }
 }

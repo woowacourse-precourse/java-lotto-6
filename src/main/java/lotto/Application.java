@@ -19,8 +19,11 @@ public class Application {
         lottos = computer.buyLotto(money);
         computer.printLottos(lottos);
 
-        input = computer.getWinningNumber();
-        Lotto winLotto = computer.validateWinningNumber(input);
-        System.out.println(winLotto.toString());
+        System.out.println("");
+
+        Lotto winLotto = computer.getWinningNumber();
+        int bonusNumber = computer.getBonusNumber();
+        computer.validateBonusNumber(bonusNumber, winLotto);
+
     }
 }

@@ -13,6 +13,7 @@ public class Generator {
     private final int LOTTERY_COST = 1000;
 
     //인스턴스 변수
+    private static int money;
     private int numberOfLottery;
     private List<Integer> numbers;
     private List<Lotto> Lottos = new ArrayList<>();
@@ -24,7 +25,7 @@ public class Generator {
         System.out.println("구입금액을 입력해 주세요.");
         while(true) {
             try {
-                int money = isCorrectFormat();
+                money = isCorrectFormat();
                 numberOfLottery = isDivisible(money);
                 break;
             } catch (IllegalArgumentException e) {
@@ -64,5 +65,9 @@ public class Generator {
     private List<Integer> generateRandomNumbers() {
         List<Integer> randomNumbers = pickUniqueNumbersInRange(1, 45, 6);
         return randomNumbers;
+    }
+
+    int getMoney() {
+        return money;
     }
 }

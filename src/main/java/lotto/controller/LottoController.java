@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.BonusNumber;
@@ -14,6 +14,8 @@ import lotto.view.LottoView;
 
 public class LottoController {
     private static int PRICE_OF_LOTTO = 1000;
+    private static String SECOND_DECIMAL_PLACE = "#.##";
+    private static double PERCENTAGE = 100.0;
 
     private final LottoView lottoView = new LottoView();
     private Lottos lottos;
@@ -32,14 +34,28 @@ public class LottoController {
         BonusNumber bonusNumber = new BonusNumber(userInput(), matchNumber);
 
         LottoManager lottoManager = matchResult(matchNumber, bonusNumber);
-        printMatchStatistics(lottoManager);
-
+        printMatchStatistics(lottoManager, lottoPrice);
     }
-    public void printMatchStatistics(LottoManager lottoManager){
+    public void printMatchStatistics(LottoManager lottoManager, LottoPrice lottoPrice){
         lottoView.matchResultMessage();
         Map<MatchRanking, Integer> rankingCount = lottoManager.getLottoResult();
         lottoView.matchStatisticsMessage(rankingCount);
 
+        double returnMoney = findReturnMoney(rankingCount, lottoPrice);
+        lottoView.totalReturnMessage(returnMoney);
+    }
+
+    public Double findReturnMoney(Map<MatchRanking, Integer> rankingCount, LottoPrice lottoPrice){
+        int getTotalMoney = 0;
+        int purchaseAmount = lottoPrice.getLottoPrice();
+
+        for(MatchRanking key : rankingCount.keySet()){
+            getTotalMoney += key.getMoney() * rankingCount.get(key);
+        }
+
+        DecimalFormat decimalFormat = new DecimalFormat(SECOND_DECIMAL_PLACE);
+        double returnMoney = getTotalMoney/(double)purchaseAmount * PERCENTAGE;
+        return Double.parseDouble(decimalFormat.format(returnMoney));
     }
 
     public LottoManager matchResult(MatchNumber matchNumber, BonusNumber bonusNumber){

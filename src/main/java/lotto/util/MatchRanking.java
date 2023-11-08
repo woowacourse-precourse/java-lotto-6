@@ -16,6 +16,11 @@ public enum MatchRanking {
         this.money = money;
     }
 
+    public String getRank(){
+        return rank;
+    }
 
-
+    public Integer getMoney() {
+        return money;
+    }
 }

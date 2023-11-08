@@ -18,7 +18,7 @@ public class LottoView {
             + "4개 일치 (50,000원) - %d개\n" + "5개 일치 (1,500,000원) - %d개"
             + "5개 일치, 보내스 볼 일치 (30,000,000원) - %d개"
             + "6개 일치 (2,000,000,000원) - %d개";
-    public static final String TOTAL_RETURN_MESSAGE = "총 수익률은 %s입니다.";
+    public static final String TOTAL_RETURN_MESSAGE = "총 수익률은 %f입니다.";
 
     public void startMessage(){
         System.out.println(START_MESSAGE);
@@ -56,7 +56,7 @@ public class LottoView {
 
         System.out.println(String.format(MATCH_STATISTICS_MESSAGE, fifth,fourth,third,second,first));
     }
-    public void totalReturnMessage(){
-        System.out.println(TOTAL_RETURN_MESSAGE);
+    public void totalReturnMessage(Double findReturn){
+        System.out.println(String.format(TOTAL_RETURN_MESSAGE,findReturn));
     }
 }

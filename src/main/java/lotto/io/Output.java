@@ -5,7 +5,6 @@ import lotto.domain.LottoPrize;
 import lotto.domain.LottoStore;
 import lotto.domain.WinningStatistics;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -46,10 +45,13 @@ public class Output {
         Map<LottoPrize, Integer> result = winningStatistics.getMatchingResult();
         List<LottoPrize> lottoPrizes = LottoPrize.getReverseLottoPrize();
         for (LottoPrize prize : lottoPrizes) {
-            int count = result.get(prize);
+            int count = result.getOrDefault(prize,0);
             long prizeAmount = prize.getPrize();
             int matchingNumbers = prize.getMatchingNumbers();
             String message = getMatchingResultMessage(prize);
+            if (message.equals(MATCHING_RESULT_WITH_BONUS_MSG)) {
+                matchingNumbers --;
+            }
             System.out.printf(message, matchingNumbers, prizeAmount, count);
         }
     }

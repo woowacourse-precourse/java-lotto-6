@@ -7,11 +7,13 @@ public class WinningStatistics {
     private final Map<LottoPrize, Integer> result;
     private final LottoStore lottoStore;
     private final LottoAnswer lottoAnswer;
+    private final Money money;
 
-    public WinningStatistics(LottoStore lottoStore, LottoAnswer lottoAnswer) {
+    public WinningStatistics(LottoStore lottoStore, LottoAnswer lottoAnswer, Money money) {
         this.result = new HashMap<>();
         this.lottoStore = lottoStore;
         this.lottoAnswer = lottoAnswer;
+        this.money = money;
         aggregateResult();
     }
 
@@ -34,7 +36,7 @@ public class WinningStatistics {
         return result;
     }
 
-    public double getReturnRate(Money money) {
+    public double getReturnRate() {
         long totalPrize = getTotalPrize();
         int moneyAmount = money.getAmount();
 
@@ -50,5 +52,9 @@ public class WinningStatistics {
             totalPrize += prize.getPrize() * count;
         }
         return totalPrize;
+    }
+
+    public Money getMoney() {
+        return money;
     }
 }

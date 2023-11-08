@@ -1,11 +1,18 @@
 package lotto.domain;
 
+import java.util.List;
+
 public class Player {
     private static final int AMOUNT_UNIT = 1_000;
     private PlayerBuyPrice playerBuyPrice;
+    private LottoTicket lottoTicket;
 
     public Player(final String amount) {
         this.playerBuyPrice = new PlayerBuyPrice(amount);
+    }
+
+    public void setLottoTicket(final LottoTicket lottoTicket) {
+        this.lottoTicket = lottoTicket;
     }
 
     public int getPlayerBuyPrice() {
@@ -14,5 +21,9 @@ public class Player {
 
     public int getPlayerTicketQuantity(){
         return Integer.parseInt(playerBuyPrice.amount()) / AMOUNT_UNIT;
+    }
+
+    public List<Lotto> getLottoTicket() {
+        return lottoTicket.lottoTicket();
     }
 }

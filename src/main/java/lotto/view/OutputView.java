@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.domain.Lotto;
 import lotto.domain.Player;
 
 public class OutputView {
@@ -12,8 +13,10 @@ public class OutputView {
         System.out.println(player.getPlayerTicketQuantity() + TICKET_BUY_RESULT_FORMAT);
     }
 
-    private static int getTicketQuantity(Player player) {
-        return player.getPlayerBuyPrice() / AMOUNT_UNIT;
+    public static void printPlayerLottoTicketInfo(Player player){
+        player.getLottoTicket().stream()
+                .map(Lotto::getNumbers)
+                .forEach(System.out::println);
     }
 
     public static void printException(Exception exception){

@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoChecker;
+import lotto.model.LottoPocket;
 import lotto.model.LottoShop;
 import lotto.view.View;
 
@@ -20,10 +21,12 @@ public class LottoController {
         int money = view.getMoney();
         List<Lotto> lottos = lottoShop.buy(money);
         view.printLottosInfo(lottos);
+        LottoPocket lottoPocket = new LottoPocket(lottos);
 
         Lotto winningLotto = setWinningLotto();
         int bonusNumber = setBonusNumber(winningLotto);
-        
+
+        LottoChecker lottoChecker = new LottoChecker(winningLotto, bonusNumber);
     }
 
     private Lotto setWinningLotto() {

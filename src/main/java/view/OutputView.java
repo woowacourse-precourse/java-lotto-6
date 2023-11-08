@@ -41,7 +41,7 @@ public class OutputView {
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", lottoResult.getOrDefault(Ranking.FIRST, LOSING_TICKET));
     }
 
-    public static void printEarningsRate(long earningsRate) {
+    public static void printEarningsRate(double earningsRate) {
         System.out.printf("총 수익률은 %.1f%%입니다.", earningsRate);
     }
 }

@@ -81,14 +81,14 @@ public class LottoGame {
         }
     }
 
-    public long calculateEarningsRate(Map<Ranking, Integer> lottoResult, LottoMachine lottoMachine) {
+    public double calculateEarningsRate(Map<Ranking, Integer> lottoResult, LottoMachine lottoMachine) {
         long totalPrize = lottoResult.entrySet()
                                      .stream()
                                      .mapToLong(entry -> entry.getKey()
                                                               .getPrize() * entry.getValue())
                                      .sum();
 
-        long earningsRate = (totalPrize * 100) / lottoMachine.getSpend();
+        double earningsRate = (double) (totalPrize * 100) / lottoMachine.getSpend();
         return earningsRate;
     }
 }

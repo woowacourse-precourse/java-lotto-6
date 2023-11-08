@@ -66,7 +66,7 @@ public class Controller {
     }
 
     private void showLottoGameResult() {
-        long earningsRate = lottoGame.calculateEarningsRate(lottoResult, lottoMachine);
+        double earningsRate = lottoGame.calculateEarningsRate(lottoResult, lottoMachine);
         OutputView.printLottoResult(lottoResult);
         OutputView.printEarningsRate(earningsRate);
     }

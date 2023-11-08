@@ -3,7 +3,6 @@ package lotto.domain.user;
 import lotto.utill.Utii;
 
 public class RateResult {
-    // TODO: 11/6/23 상수 정리
     private static final Integer ZERO_MONEY = 0;
     private static final Double ZERO_RATE = 0.0;
 
@@ -21,7 +20,6 @@ public class RateResult {
         StringBuilder rateResult = new StringBuilder();
         Double rate = calculateRate(useMoney, totalWinMoney);
 
-        // TODO: 11/6/23 상수 정리
         rateResult.append("총 수익률은 " + rate + "%입니다.");
 
         return rateResult;

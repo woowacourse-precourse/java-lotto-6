@@ -5,9 +5,28 @@ import lotto.domain.WinningNumbers;
 import lotto.utils.ErrorMessage;
 
 public class WinningNumbersService extends CreateService {
-
+    private volatile static WinningNumbersService INSTANCE;
     private final String SEPERATOR = ",";
     private final int MAX_WINNING_NUMBERS = 17;
+
+    private WinningNumbersService() {
+    }
+
+    public static WinningNumbersService getInstance() {
+        if (INSTANCE == null) {
+            synchronized (WinningNumbersService.class) {
+                createInstance();
+            }
+        }
+
+        return INSTANCE;
+    }
+
+    private static void createInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new WinningNumbersService();
+        }
+    }
 
     public WinningNumbers createWinningNumbers() {
         Object winningNumbers = this.create();

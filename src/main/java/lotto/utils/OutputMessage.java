@@ -1,7 +1,6 @@
 package lotto.utils;
 
 public enum OutputMessage {
-
     INPUT_BUDGET("구입금액을 입력해 주세요.\n"),
     OUTPUT_LOTTOS_SIZE("\n%s개를 구매했습니다.\n"),
     INPUT_WINNING_NUMBERS("당첨 번호를 입력해 주세요.\n"),

@@ -7,14 +7,31 @@ import lotto.domain.WinningNumbers;
 import lotto.domain.WinningScores;
 
 public class FrontController {
+    private volatile static FrontController INSTANCE;
     private final BudgetController budgetController;
     private final LottoController lottoController;
     private final WinningController winningController;
 
     public FrontController() {
-        budgetController = new BudgetController();
-        lottoController = new LottoController();
-        winningController = new WinningController();
+        budgetController = BudgetController.getInstance();
+        lottoController = LottoController.getInstance();
+        winningController = WinningController.getInstance();
+    }
+
+    public static FrontController getInstance() {
+        if (INSTANCE == null) {
+            synchronized (FrontController.class) {
+                createInstance();
+            }
+        }
+
+        return INSTANCE;
+    }
+
+    private static void createInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new FrontController();
+        }
     }
 
     public void gameStart() {
@@ -26,6 +43,6 @@ public class FrontController {
         BonusNumber bonusNumber = winningController.createBonusNumber(winningNumbers);
 
         WinningScores winningScores = winningController.compileStatistic(lottos, winningNumbers, bonusNumber);
-        winningController.printProfit(winningScores, budget);
+        winningController.printProfitRatio(winningScores, budget);
     }
 }

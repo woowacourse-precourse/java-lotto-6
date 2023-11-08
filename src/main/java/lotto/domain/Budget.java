@@ -25,7 +25,7 @@ public class Budget {
         }
     }
 
-    public double getProfit(final long rewardSum) {
+    public double calProfitRatio(final long rewardSum) {
         return (rewardSum / (double) budget) * 100;
     }
 }

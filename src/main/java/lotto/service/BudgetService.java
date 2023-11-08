@@ -5,6 +5,27 @@ import lotto.domain.Budget;
 import lotto.utils.ErrorMessage;
 
 public class BudgetService extends CreateService {
+    private volatile static BudgetService INSTANCE;
+
+    private BudgetService() {
+    }
+
+    public static BudgetService getInstance() {
+        if (INSTANCE == null) {
+            synchronized (BudgetService.class) {
+                createInstance();
+            }
+        }
+
+        return INSTANCE;
+    }
+
+    private static void createInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new BudgetService();
+        }
+    }
+
 
     public Budget createBudget() {
         Object budget = this.create();

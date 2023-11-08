@@ -5,7 +5,6 @@ import lotto.utils.ErrorMessage;
 import java.util.HashSet;
 import java.util.Set;
 
-
 public class WinningNumbers {
 
     private static final int SIZE = 6;

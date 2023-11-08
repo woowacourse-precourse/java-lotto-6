@@ -33,7 +33,7 @@ public class BudgetTest {
     @Test
     void 이익률_테스트() {
         Budget budget = new Budget(8000);
-        org.assertj.core.api.Assertions.assertThat(budget.getProfit(5000))
+        org.assertj.core.api.Assertions.assertThat(budget.calProfitRatio(5000))
                 .isEqualTo(62.5);
     }
 }

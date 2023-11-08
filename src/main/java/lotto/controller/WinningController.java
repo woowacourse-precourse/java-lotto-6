@@ -11,16 +11,33 @@ import lotto.service.WinningService;
 import lotto.view.GameView;
 
 public class WinningController {
+    private volatile static WinningController INSTANCE;
     private final WinningNumbersService winningNumbersService;
     private final BonusNumberService bonusNumberService;
     private final WinningService winningService;
     private final GameView gameView;
 
-    public WinningController() {
-        winningNumbersService = new WinningNumbersService();
-        bonusNumberService = new BonusNumberService();
-        winningService = new WinningService();
-        gameView = new GameView();
+    private WinningController() {
+        winningNumbersService = WinningNumbersService.getInstance();
+        bonusNumberService = BonusNumberService.getInstance();
+        winningService = WinningService.getInstance();
+        gameView = GameView.getInstance();
+    }
+
+    public static WinningController getInstance() {
+        if (INSTANCE == null) {
+            synchronized (WinningController.class) {
+                createInstance();
+            }
+        }
+
+        return INSTANCE;
+    }
+
+    private static void createInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new WinningController();
+        }
     }
 
     public WinningNumbers createWinningNumbers() {
@@ -32,8 +49,8 @@ public class WinningController {
 
     public BonusNumber createBonusNumber(final WinningNumbers winningNumbers) {
         gameView.printInputBonusNumberMessage();
-
         BonusNumber bonusNumber = bonusNumberService.createBonusNumber(winningNumbers);
+
         return bonusNumber;
     }
 
@@ -45,10 +62,9 @@ public class WinningController {
         return winningScores;
     }
 
-    public void printProfit(final WinningScores winningScores, final Budget budget) {
-        double profit = winningService.getReturnOfLottos(winningScores, budget);
-
-        gameView.printROI(profit);
+    public void printProfitRatio(final WinningScores winningScores, final Budget budget) {
+        double profitRatio = winningService.calProfitRatio(winningScores, budget);
+        gameView.printProfitRatio(profitRatio);
     }
 
 }

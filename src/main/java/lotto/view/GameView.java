@@ -3,6 +3,26 @@ package lotto.view;
 import lotto.utils.OutputMessage;
 
 public class GameView {
+    private volatile static GameView INSTANCE;
+
+    private GameView() {
+    }
+
+    public static GameView getInstance() {
+        if (INSTANCE == null) {
+            synchronized (GameView.class) {
+                createInstance();
+            }
+        }
+
+        return INSTANCE;
+    }
+
+    private static void createInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new GameView();
+        }
+    }
 
     public void printInputBudgetMessage() {
         print(OutputMessage.INPUT_BUDGET.getMessage());
@@ -32,7 +52,7 @@ public class GameView {
         print(winningScores);
     }
 
-    public void printROI(final double roi) {
+    public void printProfitRatio(final double roi) {
         print(String.format(OutputMessage.OUTPUT_ROI.getMessage(), roi));
     }
 

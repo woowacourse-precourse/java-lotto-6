@@ -7,12 +7,29 @@ import lotto.service.LottoService;
 import lotto.view.GameView;
 
 public class LottoController {
+    private volatile static LottoController INSTANCE;
     private final LottoService lottoService;
     private final GameView gameView;
 
-    public LottoController() {
-        lottoService = new LottoService();
-        gameView = new GameView();
+    private LottoController() {
+        lottoService = LottoService.getInstance();
+        gameView = GameView.getInstance();
+    }
+
+    public static LottoController getInstance() {
+        if (INSTANCE == null) {
+            synchronized (LottoController.class) {
+                createInstance();
+            }
+        }
+
+        return INSTANCE;
+    }
+
+    private static void createInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new LottoController();
+        }
     }
 
     public Lottos createLottos(final Budget budget) {

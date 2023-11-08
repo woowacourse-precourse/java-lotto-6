@@ -49,7 +49,7 @@ public class WinningScoresTest {
         winningScores.increaseScore(LottoPlace.FIRST);
         winningScores.increaseScore(LottoPlace.FOURTH);
 
-        Assertions.assertThat(winningScores.getWinningProfit())
+        Assertions.assertThat(winningScores.calProfitSum())
                 .isEqualTo(2000050000);
     }
 
@@ -59,7 +59,7 @@ public class WinningScoresTest {
 
         winningScores.increaseScore(LottoPlace.SECOND);
 
-        Assertions.assertThat(winningScores.getWinningProfit())
+        Assertions.assertThat(winningScores.calProfitSum())
                 .isEqualTo(3000000);
     }
 }

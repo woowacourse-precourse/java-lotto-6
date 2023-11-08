@@ -38,11 +38,11 @@ public class WinningScores {
         return sb.toString();
     }
 
-    public long getWinningProfit(){
-        long sum=0;
+    public long calProfitSum() {
+        long sum = 0;
 
-        for (LottoPlace lottoPlace : LottoPlace.values()){
-            sum+=lottoPlace.getReward()*scores.get(lottoPlace);
+        for (LottoPlace lottoPlace : LottoPlace.values()) {
+            sum += lottoPlace.getReward() * scores.get(lottoPlace);
         }
 
         return sum;

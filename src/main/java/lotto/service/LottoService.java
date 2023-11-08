@@ -5,12 +5,32 @@ import lotto.domain.LottoSize;
 import lotto.domain.Lottos;
 
 public class LottoService {
+    private volatile static LottoService INSTANCE;
 
-    public Lottos createLottos(final Budget budget){
+    private LottoService() {
+    }
+
+    public static LottoService getInstance() {
+        if (INSTANCE == null) {
+            synchronized (LottoService.class) {
+                createInstance();
+            }
+        }
+
+        return INSTANCE;
+    }
+
+    private static void createInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new LottoService();
+        }
+    }
+
+    public Lottos createLottos(final Budget budget) {
         return Lottos.createLottos(budget);
     }
 
-    public LottoSize getLottosSize(final Lottos lottos){
+    public LottoSize getLottosSize(final Lottos lottos) {
         return new LottoSize(lottos.getLottosSize());
     }
 

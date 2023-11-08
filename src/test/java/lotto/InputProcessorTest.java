@@ -43,15 +43,6 @@ class InputProcessorTest {
                 .hasMessage(CustomErrorMessage.NUMBER_FORMAT);
     }
 
-    @DisplayName("실패: 유효하지 않은 금액에 대해 에러 처리 가능")
-    @Test
-    void test5() {
-        int input = -1000;
-        assertThatCode(() -> InputProcessor.checkPriceValidation(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(CustomErrorMessage.PRICE_VALID);
-    }
-
     @DisplayName("실패: 잘못된 양식에 대한 에러 처리 가능")
     @Test
     void test6() {

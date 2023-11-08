@@ -12,12 +12,6 @@ public class InputProcessor {
         }
     }
 
-    public static void checkPriceValidation(int price) {
-        if (price < 0) {
-            throw new IllegalArgumentException(CustomErrorMessage.PRICE_VALID);
-        }
-    }
-
     public static List<Integer> getWinningNumbers(String input) {
         try {
             return Arrays.stream(input.split(","))

@@ -29,5 +29,12 @@ class LottoTest {
         assertEquals(illegalArgumentException.getMessage(), ErrorMessage.LOTTO_MUST_HAVE_NOT_DUPLICATED_NUMBER.getMessage());
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호가 1-45 범위를 초과하면 예외가 발생한다.")
+    @Test
+    void 올바르지_못한_로또_범위() {
+        IllegalArgumentException illegalArgumentException=assertThrows(CustomException.class, () -> {
+            new Lotto(List.of(1, 2, 3, 4, 5, 55));
+        });
+        assertEquals(illegalArgumentException.getMessage(), ErrorMessage.LOTTO_MUST_HAVE_BETWEEN_1_AND_45.getMessage());
+    }
 }

@@ -12,12 +12,13 @@ public class Game {
     Lottos lottos;
     LotteryNumbers lotteryNumbers;
     int[] rankCounts = new int[6];
+    double rateOfReturn;
     
     void play() {
         calculateNumberOfPurchase();
         showPurchasedLottos();
         setLotteryNumbers();
-        calculateRateOfReturn();
+        showWinningStatistics();
     }
     
     void calculateNumberOfPurchase() {
@@ -125,12 +126,18 @@ public class Game {
         }
     }
     
-    void calculateRateOfReturn() {
+    void showWinningStatistics() {
+        OutputView.outputStartWinningStatistics();
+        calculateMatchedCount();
+        OutputView.outputWinnintStatistics(rankCounts);
+        calculateRateOfReturn();
+    }
+    
+    void calculateMatchedCount() {
         for (Lotto lotto : lottos.lottos) {
             int matchedCount = lotto.matchedCount(lotteryNumbers.winningNumbers);
             calculateRankCounts(matchedCount, lotto);
         }
-        
     }
     
     void calculateRankCounts(int matchedCount, Lotto lotto) {
@@ -159,5 +166,9 @@ public class Game {
         }
         rankCounts[3]++;
         return;
+    }
+    
+    void calculateRateOfReturn() {
+        
     }
 }

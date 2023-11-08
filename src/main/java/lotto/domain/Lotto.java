@@ -38,7 +38,7 @@ public class Lotto {
         return new MatchingResult(count, isBonusCorrect);
     }
 
-    public int match(Lotto winningLotto) {
+    protected int match(Lotto winningLotto) {
         return (int) this.numbers.stream()
                 .filter((number) -> winningLotto.contains(number))
                 .count();

@@ -1,11 +1,13 @@
 package lotto.domain;
 
+import static lotto.constants.Constants.Integers.INTEGER_ZERO;
+
 public class TotalPrizeAmount {
 
     private long totalPrizeAmount;
 
     public TotalPrizeAmount() {
-        this.totalPrizeAmount = 0;
+        this.totalPrizeAmount = INTEGER_ZERO.getValue();
     }
 
     public TotalPrizeAmount(long totalPrizeAmount) {

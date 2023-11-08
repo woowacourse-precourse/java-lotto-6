@@ -21,7 +21,6 @@ public class WinnerStatistics {
         this.totalPrizeAmount = totalPrizeAmount;
     }
 
-    // todo 필드 불변성에 대해 생각해보기 -> new 생성하려면 getter로 값을 꺼내야함
     public WinnerStatistics collect(MatchingResults matchingResults) {
         matchingResults.getLottoRanks()
                 .stream()

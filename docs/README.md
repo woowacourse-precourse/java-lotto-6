@@ -500,6 +500,7 @@ public class FinalResults {
 - 최종 결과도 Grade를 Key로, 해당 Grade의 갯수를 Value로 만들면서 예쁜 일급 컬렉션도 구현할 수 있었어요!
 - 다만, 이 부분에서 View가 도메인 계층의 Enum을 의존하는 것이 아닌가? 하는 고민을 품고 있어요..!
 
+- Exception도 Enum에서 수행할 수 있다는 레퍼런스를 얻었고, 차후 활용할 기회가 있다면 활용해보고 싶어요!
 ---
 
 

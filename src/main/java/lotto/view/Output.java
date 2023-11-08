@@ -1,7 +1,5 @@
 package lotto.view;
 
-import lotto.model.LottoTicket;
-
 import java.util.List;
 
 public class Output {

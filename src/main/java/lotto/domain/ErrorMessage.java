@@ -25,10 +25,6 @@ public enum ErrorMessage {
     }
 
     public String getMaxValueMessage(String maxValue) {
-        if (this != PURCHASE_AMOUNT_MAXVALUE_EXCEPTION) {
-            return getMessage();
-        }
-
         return this.message.replace("MAX_VALUE", maxValue);
     }
 }

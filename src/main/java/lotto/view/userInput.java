@@ -1,8 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class userInput {
 
@@ -11,9 +13,17 @@ public class userInput {
         return Integer.parseInt(CashIn);
     }
 
-    public static List<String> getIntegerList(){
-        String winningNumberInput = Console.readLine().strip();
-        return Arrays.asList(winningNumberInput.split(","));
+    public static List<Integer> getIntegerList(){
+        String input = Console.readLine().strip();
+
+            List<String> tokens = Arrays.stream(input.split(","))
+                    .map(String::strip)
+                    .toList();
+
+            return tokens.stream()
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+
     }
 
 }

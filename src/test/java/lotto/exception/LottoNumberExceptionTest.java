@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,23 +36,30 @@ class LottoNumberExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("리스트의 크기가 6이 아니면 예외가 발생 한다.")
+    void checkSixInputs() {
+        assertThatThrownBy(() -> lottoNumberException.checkSixInputs(List.of("1", "1", "1")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,6,7", "1,2,3", "a,b,3,4,e,f"})
-    @DisplayName("6개의 숫자를 입력 하지 않으면 예외가 발생 한다.")
-    void checkSixInputs(String input) {
+    @ValueSource(strings = {"a", "-123", "abc123"})
+    @DisplayName("정수가 아니면 예외가 발생 한다.")
+    void checkInteger(String input) {
         assertThatThrownBy(() -> lottoNumberException.checkLottoNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void checkInteger() {
-    }
-
-    @Test
+    @DisplayName(" 예외가 발생 한다.")
     void checkSixNumbers() {
+        assertThatThrownBy(() -> lottoNumberException.checkSixNumbers(List.of("1", "a", "3", "b", "5", "c")))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void checkDuplicate() {
+
     }
 }

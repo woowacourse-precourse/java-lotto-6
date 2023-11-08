@@ -37,7 +37,7 @@
   - [x] 4개 번호 일치하면 4등
   - [x] 3개 번호 일치하면 5등
 
-- [ ] 수익률 계산하기 - Judgement#calculateReturnRate()
+- [x] 총 수익 계산하기 - Judgement#resultAmount()
 
 # Exception
 - [x] 예외 처리
@@ -56,5 +56,5 @@
 - [x] 당첨 내역 출력하기 - PrintGames#finalResults()
   - [x] 등수에 따른 금액과 당첨 개수 출력 - PrintGames#resultMessage()
 
-- [ ] 수익률 출력하기 - PrintGames#returnRate()
-  - [ ] 소수점 둘째 자리에서 반올림하여 출력
+- [x] 수익률 출력하기 - PrintGames#returnRate()
+  - [x] 소수점 둘째 자리에서 반올림하여 출력

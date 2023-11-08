@@ -28,7 +28,7 @@ public class Judgement {
         for (Lotto lotto : lottoGames) {
             correctCount(lotto.getNumbers());
         }
-        printGames.finalResults(result);
+        printGames.finalResults(result, resultAmount());
     }
 
     public void correctCount(List<Integer> lotto) {
@@ -46,5 +46,15 @@ public class Judgement {
                 result.put(prize.name(), result.get(prize.name()) + 1);
             }
         }
+    }
+
+    public int resultAmount() {
+        int total = 0;
+        for (Prize prize : Prize.values()) {
+            if (result.get(prize.name()) > 0) {
+                total += prize.getAmount();
+            }
+        }
+        return total;
     }
 }

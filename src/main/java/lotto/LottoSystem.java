@@ -26,7 +26,7 @@ public class LottoSystem {
         lottoUI.buyLottoNumbersPrint(buyLottoNumbers);
 
         lottoUI.userPrint(LottoUI.PrintMessage.INPUT_WIN_NUMBER.getMessage());
-        Lotto winningNumber = new Lotto(getWinningNumbers(lottoUI.userInput()));
+        Lotto winningNumber = getWinningNumbers(lottoUI.userInput());
 
         lottoUI.userPrint(LottoUI.PrintMessage.INPUT_BONUS_NUMBER.getMessage());
         int bonusNumber = getBonusNumber(lottoUI.userInput());
@@ -63,12 +63,9 @@ public class LottoSystem {
         return buyLottoNumbers;
     }
 
-    public List<Integer> getWinningNumbers(String winNumbers){
+    public Lotto getWinningNumbers(String winNumbers){
         List<Integer> winningNumbers = new ArrayList<>();
         String[] getWinNumber = winNumbers.split(",");
-        if(getWinNumber.length != 6){
-            throw new IllegalArgumentException(Message.Error.INVALID_WIN_NUMBER.getMessage());
-        }
         for (String number : getWinNumber){
             try{
                 Integer winNumber = Integer.parseInt(number);
@@ -77,7 +74,7 @@ public class LottoSystem {
                 throw new IllegalArgumentException(Message.Error.INVALID_INPUT.getMessage());
             }
         }
-        return winningNumbers;
+        return new Lotto(winningNumbers);
     }
 
     public int getBonusNumber(String bonusNumber){

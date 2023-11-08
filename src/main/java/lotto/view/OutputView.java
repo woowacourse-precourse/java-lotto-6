@@ -37,9 +37,11 @@ public class OutputView {
 
     public void responseWinningStatisticsBody(final LottoWinningRakingCountMapDto rankingCountMapDto) {
         List<Integer> rankingCountList = new ArrayList<>();
-        for (LottoWinningRanking ranking : rankingCountMapDto.getWinningRankingCountMap().keySet()) {
-            Integer count = rankingCountMapDto.getWinningRankingCountMap().getOrDefault(ranking, 0);
-            rankingCountList.add(count);
+        for (LottoWinningRanking ranking : LottoWinningRanking.values()) {
+            if (ranking != LottoWinningRanking.NONE) {
+                Integer count = rankingCountMapDto.getWinningRankingCountMap().getOrDefault(ranking, 0);
+                rankingCountList.add(count);
+            }
         }
 
         display(OutputMessage.RESPONSE_WINNING_STATISTICS_BODY, rankingCountList.toArray());

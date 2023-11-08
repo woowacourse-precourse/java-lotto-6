@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 enum PrizeRank {
@@ -124,5 +125,19 @@ class WinningCaculate {
             return 6;
         }
         return mat_num;
+    }
+    public static int Rank(List<Integer> match_cnt){
+        Collections.reverse(match_cnt);
+        int[] rank_cnt = {0,0,0,0,0};
+        int prize = 0;
+        PrizeRank[] ran = PrizeRank.values();
+        for (int i = 0; i <= 4; i++) {
+            if (match_cnt.get(i) != 0) {
+                rank_cnt[i] += match_cnt.get(i);
+                prize += ran[i].getPrizeAmount() * match_cnt.get(i);
+            }
+        }
+        WinningResult.RankResult(rank_cnt);
+        return prize;
     }
 }

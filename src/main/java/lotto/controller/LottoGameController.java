@@ -6,8 +6,10 @@ import lotto.view.OutputView;
 
 public class LottoGameController {
 
+
     public void startGame() {
-        inputAmount();
+        Player player = inputAmount();
+        OutputView.printBuyingTicketQuantity(player);
     }
 
     private static Player inputAmount() {

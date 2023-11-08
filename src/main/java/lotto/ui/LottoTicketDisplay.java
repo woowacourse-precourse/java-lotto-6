@@ -1,5 +1,6 @@
 package lotto.ui;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import lotto.domain.LottoTicket;
@@ -18,9 +19,9 @@ public class LottoTicketDisplay {
     }
 
     private LottoTicket sortLottoTicketNumber(LottoTicket lottoTicket) {
-        lottoTicket.lottoNumber.sort(Comparator.naturalOrder());
-
-        return lottoTicket;
+        List<Integer> sortedNumbers = new ArrayList<>(lottoTicket.lottoNumber);
+        sortedNumbers.sort(Comparator.naturalOrder());
+        return new LottoTicket(sortedNumbers);
     }
 
     public void showTicketCount(LottoTicketGenerator lottoTicketGenerator) {

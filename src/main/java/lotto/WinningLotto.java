@@ -5,18 +5,17 @@ import java.util.List;
 import java.util.Set;
 
 public class WinningLotto {
-    private final List<Integer> numbers;
+    private final Lotto lotto;
     private final Integer bonusNumber;
 
-    public WinningLotto(List<Integer> numbers, Integer bonusNumber) {
-        validateDuplicate(numbers);
-        this.numbers = numbers;
+    public WinningLotto(Lotto lotto,Integer bonusNumber) {
+        this.lotto = lotto;
         validateBonusNumberDuplicateInNumbers(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
     private void validateBonusNumberDuplicateInNumbers(Integer bonusNumber) {
-        for (Integer number : numbers) {
+        for (Integer number : lotto.getNumbers()) {
             if (number.equals(bonusNumber)) {
                 throw new IllegalArgumentException();
             }
@@ -33,6 +32,6 @@ public class WinningLotto {
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return lotto.getNumbers();
     }
 }

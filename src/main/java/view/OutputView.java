@@ -22,6 +22,7 @@ public class OutputView {
     }
 
     public static void showResult(EnumMap<Reward, Integer> reward){
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
 

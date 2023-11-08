@@ -1,21 +1,23 @@
 package lotto.model;
 
+import lotto.constant.ModelConstant;
+
 public class Profit {
     private final double profitRate;
-    public Profit(int ticketPrice) {
-        this.profitRate =  Double.parseDouble(String.format("%.1f",calculateTotalProfit(ticketPrice)));
+    public Profit(int ticketCount) {
+        this.profitRate =  Double.parseDouble(String.format("%.1f",calculateTotalProfit(ticketCount)));
     }
 
-    public double calculateTotalProfit(int ticketPrice) {
+    public double calculateTotalProfit(int ticketCount) {
         double profitSum = 0;
         for(Prize prize : Prize.values()) {
             profitSum  += prize.getPrice() * prize.getCount();
         }
-        return calculateProfitRate(ticketPrice*1000,profitSum);
+        return calculateProfitRate(ticketCount * ModelConstant.TICKET_PRICE, profitSum);
     }
 
     private double calculateProfitRate(int ticketPrice, double profitSum) {
-        return profitSum / ticketPrice * 100.0;
+        return profitSum / ticketPrice * ModelConstant.RATE_PERCENTAGE;
     }
 
     public double getProfitRate() {

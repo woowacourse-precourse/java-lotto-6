@@ -1,8 +1,7 @@
 package lotto.model;
 
+import lotto.constant.ModelConstant;
 import lotto.validator.PaymentValidator;
-
-import java.util.regex.Pattern;
 
 public class Payment {
     private final int ticket;
@@ -13,7 +12,7 @@ public class Payment {
     }
 
     public int calculateTicketsCount(int price) {
-        return price/1000;
+        return price / ModelConstant.TICKET_PRICE;
     }
 
    public int getTicket() {

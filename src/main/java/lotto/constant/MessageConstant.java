@@ -1,6 +1,6 @@
-package lotto.utils.constant;
+package lotto.constant;
 
-public class Message {
+public class MessageConstant {
 
     public static final String MESSAGE_FIRST = "6개 일치 (%s원) - %d개\n";
     public static final String MESSAGE_SECOND = "5개 일치, 보너스 볼 일치 (%s원) - %d개\n";

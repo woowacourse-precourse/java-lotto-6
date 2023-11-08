@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.constant.ModelConstant;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,15 +24,15 @@ public class PrizeResult {
         int matchingNumbers = lottoMatch.get(index);
         boolean hasBonus = hasBonusMatch.get(index);
 
-        if(matchingNumbers == 6) {
+        if(matchingNumbers == ModelConstant.SIX_MATCHING_NUMBER) {
             return Prize.FIRST;
-        } else if(matchingNumbers == 5 && hasBonus) {
+        } else if(matchingNumbers == ModelConstant.FIVE_MATCHING_NUMBER && hasBonus) {
             return Prize.SECOND;
-        } else if (matchingNumbers == 5) {
+        } else if (matchingNumbers == ModelConstant.FIVE_MATCHING_NUMBER) {
             return Prize.THIRD;
-        } else if (matchingNumbers == 4) {
+        } else if (matchingNumbers == ModelConstant.FOUR_MATCHING_NUMBER) {
             return Prize.FOURTH;
-        } else if (matchingNumbers == 3) {
+        } else if (matchingNumbers == ModelConstant.THREE_MATCHING_NUMBER) {
             return Prize.FIFTH;
         }
         return Prize.NONE;

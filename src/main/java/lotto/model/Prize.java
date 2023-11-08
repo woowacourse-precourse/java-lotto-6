@@ -1,13 +1,13 @@
 package lotto.model;
 
-import lotto.utils.constant.Message;
+import lotto.constant.MessageConstant;
 
 public enum Prize {
-    FIFTH(3, 5_000, Message.MESSAGE_FIFTH,0),
-    FOURTH(4, 50_000, Message.MESSAGE_FOURTH,0),
-    THIRD(5, 1_500_000, Message.MESSAGE_THIRD,0),
-    SECOND(5, 30_000_000, Message.MESSAGE_SECOND, 0, true),
-    FIRST(6, 2_000_000_000, Message.MESSAGE_FIRST, 0),
+    FIFTH(3, 5_000, MessageConstant.MESSAGE_FIFTH,0),
+    FOURTH(4, 50_000, MessageConstant.MESSAGE_FOURTH,0),
+    THIRD(5, 1_500_000, MessageConstant.MESSAGE_THIRD,0),
+    SECOND(5, 30_000_000, MessageConstant.MESSAGE_SECOND, 0, true),
+    FIRST(6, 2_000_000_000, MessageConstant.MESSAGE_FIRST, 0),
     NONE(0, 0,"",0);
 
     private int match;
@@ -32,10 +32,6 @@ public enum Prize {
         prize.count++;
     }
 
-    public int getMatch() {
-        return match;
-    }
-
     public int getPrice() {
         return price;
     }
@@ -48,7 +44,4 @@ public enum Prize {
         return count;
     }
 
-    public boolean isHasBonus() {
-        return hasBonus;
-    }
 }

@@ -1,6 +1,6 @@
-package lotto.utils.constant;
+package lotto.constant;
 
-public class Error {
+public class ErrorConstant {
     public static final String ERROR_BONUS_NUMBER_NOT_INTEGER = "[ERROR] 보너스 번호는 정수만 입력 가능합니다.";
     public static final String ERROR_BONUS_NUMBER_DUPLICATE = "[ERROR] 로또 번호와 중복된 숫자는 입력할 수 없습니다.";
     public static final String ERROR_BONUS_NUMBER_RANGE = "[ERROR] 보너스 번호는 1 ~ 45 사이만 입력 가능합니다.";

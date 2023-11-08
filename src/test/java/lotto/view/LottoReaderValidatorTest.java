@@ -41,4 +41,21 @@ class LottoReaderValidatorTest {
         assertThatThrownBy(() -> LottoReaderValidator.validateMoney(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스번호 범위 유효성 검사가 성공합니다.")
+    @ValueSource(strings = {"1", "45"})
+    @ParameterizedTest
+    void validateBonusNumberSuccessTest(String winningNumbers) {
+
+        LottoReaderValidator.validateBonusNumber(winningNumbers);
+    }
+
+    @DisplayName("보너스번호 범위 유효성 검사가 실패합니다.")
+    @ValueSource(strings = {"0", "46"})
+    @ParameterizedTest
+    void validateBonusNumberFailTest(String winningNumbers) {
+
+        assertThatThrownBy(() -> LottoReaderValidator.validateBonusNumber(winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

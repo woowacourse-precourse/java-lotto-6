@@ -5,17 +5,19 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         Input input = new Input();
-        int money = input.getMoney();
+        input.setMoney();
+        input.setNumberOfLotto();
 
+        int money = input.getMoney();
         int numberOfLotto = input.getNumberOfLotto();
-        System.out.println(numberOfLotto+"개를 구매했습니다.");
 
         LottoMachine lottoMachine = new LottoMachine();
 
         List<Lotto> lottos = lottoMachine.print(numberOfLotto);
         lottoMachine.showLottos();
 
-        List<Integer> winningNumbers = input.getWinningNumber();
+        WinningNumber winningNumberInput = new WinningNumber();
+        List<Integer> winningNumbers = winningNumberInput.getWinningNumber();
 
         int bonusNumber = input.getBonusNumber();
 

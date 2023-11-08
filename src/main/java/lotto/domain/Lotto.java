@@ -39,4 +39,8 @@ public class Lotto {
     private int calculateDistinctCount(List<Integer> numbers) {
         return (int) numbers.stream().distinct().count();
     }
+
+    public List<LottoNumber> getLottoNumbers() {
+        return lottoNumbers;
+    }
 }

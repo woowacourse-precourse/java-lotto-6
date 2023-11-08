@@ -42,6 +42,10 @@ class LottoProfitRateCalculatorTest {
                                 LottoGrade.MISS, 7
                         ),
                         "62.5"
+                ),
+                Arguments.of(
+                        Map.of(LottoGrade.FIRST, 3),
+                        "200000000.0"
                 )
         );
     }

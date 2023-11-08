@@ -10,7 +10,7 @@ public class LottoProfitRateCalculator {
             return new LottoProfitRate(0);
         }
 
-        int totalWinningMoney = getTotalWinningMoney(statistics);
+        long totalWinningMoney = getTotalWinningMoney(statistics);
         int lottoBoughtPrice = getLottoBoughtPrice(statistics);
 
         return new LottoProfitRate(
@@ -28,10 +28,10 @@ public class LottoProfitRateCalculator {
                 .sum() == 0;
     }
 
-    private int getTotalWinningMoney(Map<LottoGrade, Integer> statistics) {
+    private long getTotalWinningMoney(Map<LottoGrade, Integer> statistics) {
         return statistics.keySet()
                 .stream()
-                .mapToInt(lottoGrade -> lottoGrade.getWinningMoney() * statistics.get(lottoGrade))
+                .mapToLong(lottoGrade -> (long) lottoGrade.getWinningMoney() * statistics.get(lottoGrade))
                 .sum();
     }
 
@@ -42,7 +42,7 @@ public class LottoProfitRateCalculator {
                 .sum();
     }
 
-    private double getProfitRate(int totalWinningMoney, int lottoBoughtPrice) {
+    private double getProfitRate(long totalWinningMoney, int lottoBoughtPrice) {
         return (double) totalWinningMoney / lottoBoughtPrice * PERCENT;
     }
 }

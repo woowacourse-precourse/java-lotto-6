@@ -28,16 +28,16 @@ public class OutputView {
     }
 
     private static void printLottoRank(Map<String, Integer> lottoMatchingResult) {
-        for(Map.Entry<String, Integer> entry : lottoMatchingResult.entrySet()) {
-            if(entry.getKey().equals(AppConstants.lottoMatchingConstants.MATCHING_3.grade)) {
+        for (Map.Entry<String, Integer> entry : lottoMatchingResult.entrySet()) {
+            if (entry.getKey().equals(AppConstants.lottoMatchingConstants.MATCHING_3.grade)) {
                 System.out.printf("3개 일치 (5,000원) - %d개%n", entry.getValue());
-            } else if(entry.getKey().equals(AppConstants.lottoMatchingConstants.MATCHING_4.grade)) {
+            } else if (entry.getKey().equals(AppConstants.lottoMatchingConstants.MATCHING_4.grade)) {
                 System.out.printf("4개 일치 (50,000원) - %d개%n", entry.getValue());
-            } else if(entry.getKey().equals(AppConstants.lottoMatchingConstants.MATCHING_5.grade)) {
+            } else if (entry.getKey().equals(AppConstants.lottoMatchingConstants.MATCHING_5.grade)) {
                 System.out.printf("5개 일치 (1,500,000원) - %d개%n", entry.getValue());
-            } else if(entry.getKey().equals(AppConstants.lottoMatchingConstants.MATCHING_5_AND_BONUS.grade)) {
+            } else if (entry.getKey().equals(AppConstants.lottoMatchingConstants.MATCHING_5_AND_BONUS.grade)) {
                 System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", entry.getValue());
-            } else if(entry.getKey().equals(AppConstants.lottoMatchingConstants.MATCHING_6.grade)) {
+            } else if (entry.getKey().equals(AppConstants.lottoMatchingConstants.MATCHING_6.grade)) {
                 System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", entry.getValue());
             }
         }

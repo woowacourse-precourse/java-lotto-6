@@ -7,7 +7,7 @@ import java.util.*;
 import static lotto.model.AppConstants.lottoMatchingConstants.*;
 
 public class MatchingNumber {
-    private Map<String ,Integer> lottoRankList;
+    private final Map<String, Integer> lottoRankList;
     private final List<LottoTicketEntity> lottoTickets;
     private final List<Integer> winningNumber;
     private final int bonusNumber;
@@ -17,8 +17,10 @@ public class MatchingNumber {
         this.lottoTickets = lottoTickets;
         this.bonusNumber = bonusNumber;
         this.winningNumber = winningNumber;
+
         getMatchingNumber();
     }
+
     public void getMatchingNumber() {
         for (LottoTicketEntity lottoTicket : lottoTickets) {
             int matchCount = countMatchingNumbers(lottoTicket.getLottoNumbers());
@@ -47,19 +49,19 @@ public class MatchingNumber {
     private void updateRank(int matchCount, int bonusMatchCount) {
         String rank = null;
 
-        if(matchCount == 6) {
+        if (matchCount == 6) {
             rank = MATCHING_6.grade;
-        } else if(matchCount == 5 && bonusMatchCount == 1) {
+        } else if (matchCount == 5 && bonusMatchCount == 1) {
             rank = MATCHING_5_AND_BONUS.grade;
-        } else if(matchCount == 5) {
+        } else if (matchCount == 5) {
             rank = MATCHING_5.grade;
-        } else if(matchCount == 4) {
+        } else if (matchCount == 4) {
             rank = MATCHING_4.grade;
-        } else if(matchCount == 3) {
+        } else if (matchCount == 3) {
             rank = MATCHING_3.grade;
         }
 
-        if(rank != null) {
+        if (rank != null) {
             lottoRankList.put(rank, lottoRankList.get(rank) + 1);
         }
     }
@@ -74,6 +76,7 @@ public class MatchingNumber {
 
         return ranks;
     }
+
     public Map<String, Integer> getLottoRankList() {
         return lottoRankList;
     }

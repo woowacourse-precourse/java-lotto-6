@@ -19,14 +19,12 @@ public class LottoGame {
 
     public void run() {
         int inputPrice = inputView.inputPrice();
-
         buyLottoTicket(inputPrice);
         setWinningLotto();
         setBonusLotto();
 
-        Map<String, Integer> lottoMatchingResult =  LottoMatching();
+        Map<String, Integer> lottoMatchingResult = LottoMatching();
         int totalPrice = PrizeCalculator.calculate(lottoMatchingResult);
-
         float profitPercent = calculateProfitRate(totalPrice, inputPrice);
 
         OutputView.printLottoMatchingResult(lottoMatchingResult, profitPercent);
@@ -39,10 +37,11 @@ public class LottoGame {
     }
 
     private void setBonusLotto() {
-        while(true) {
+        while (true) {
             try {
                 int bonusNumber = inputView.inputBonusNumber();
                 lotto.isContainNumber(bonusNumber); //당첨번호와 보너스번호가 중복되는지 확인
+
                 bonusLotto = new BonusLotto(bonusNumber);
                 break;
             } catch (Exception e) {
@@ -54,6 +53,7 @@ public class LottoGame {
     private void buyLottoTicket(int inputPrice) { //금액만큼 로또 구입 후 출력
         int lottoTicketCount = inputPrice / LOTTO_TICKET_PRICE.getValue();
         OutputView.printTicketCount(lottoTicketCount);
+
         lottoTicketGenerate = new LottoTicketGenerate(lottoTicketCount);
         lottoTicketGenerate.sortLottoTicketEntities();
 
@@ -61,7 +61,7 @@ public class LottoGame {
     }
 
     private void setWinningLotto() {
-        while(true) {
+        while (true) {
             try {
                 String inputWinningNumbers = inputView.inputWinningNumbers();
                 List<Integer> winningNumbers = splitList(inputWinningNumbers);

@@ -8,6 +8,7 @@ public class InputValidatorRegistry {
             throw new IllegalArgumentException(INPUT_MUST_NOT_CONTAINS_SPACE.message);
         }
     }
+
     protected static void validateInputContainsOnlyNumericAndComma(final String userInput) {
         if (!userInput.matches("^[0-9,]*$")) {
             throw new IllegalArgumentException(INPUT_MUST_BE_NUMERIC.message);
@@ -27,6 +28,7 @@ public class InputValidatorRegistry {
             throw new IllegalArgumentException(INPUT_MUST_BE_FALSENESS.message);
         }
     }
+
     protected static void validate1000s(final String userInput) {
         if (Integer.parseInt(userInput) % 1000 != 0) {
             throw new IllegalArgumentException(INPUT_MUST_BE_1000s.message);

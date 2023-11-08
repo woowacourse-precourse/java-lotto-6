@@ -7,7 +7,8 @@ import java.util.Map;
 public class PrizeCalculator {
     public static int calculate(Map<String, Integer> lottoMatchingResult) {
         int totalPrize = 0;
-        for(Map.Entry<String, Integer> entry : lottoMatchingResult.entrySet()) {
+
+        for (Map.Entry<String, Integer> entry : lottoMatchingResult.entrySet()) {
             String rankKey = entry.getKey();
             Integer value = entry.getValue();
             totalPrize += calculatePrize(rankKey, value);
@@ -18,8 +19,9 @@ public class PrizeCalculator {
 
     private static int calculatePrize(String key, int value) {
         int prize = 0;
-        for(AppConstants.lottoMatchingConstants constants : AppConstants.lottoMatchingConstants.values()) {
-            if(constants.grade.equals(key)) {
+
+        for (AppConstants.lottoMatchingConstants constants : AppConstants.lottoMatchingConstants.values()) {
+            if (constants.grade.equals(key)) {
                 prize = constants.prizeAmount * value;
             }
         }

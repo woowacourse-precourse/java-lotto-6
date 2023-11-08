@@ -36,22 +36,18 @@ public interface AppConstants {
     }
 
     enum lottoMatchingConstants {
-        MATCHING_3("5등",5_000),
-        MATCHING_4("4등",50_000),
-        MATCHING_5("3등",1_500_000),
-        MATCHING_5_AND_BONUS("2등",30_000_000),
-        MATCHING_6("1등",2_000_000_000);
+        MATCHING_3("5등", 5_000),
+        MATCHING_4("4등", 50_000),
+        MATCHING_5("3등", 1_500_000),
+        MATCHING_5_AND_BONUS("2등", 30_000_000),
+        MATCHING_6("1등", 2_000_000_000);
 
         public final String grade;
         public final int prizeAmount;
 
-        lottoMatchingConstants(final String grade,final int prizeAmount) {
+        lottoMatchingConstants(final String grade, final int prizeAmount) {
             this.grade = grade;
             this.prizeAmount = prizeAmount;
-        }
-
-        public int getValue() {
-            return prizeAmount;
         }
     }
 

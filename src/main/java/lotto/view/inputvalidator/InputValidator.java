@@ -16,7 +16,7 @@ public class InputValidator {
         validate1000s(userInput);
     }
 
-    public void bonusNumberInputValidate (final String userInput) {
+    public void bonusNumberInputValidate(final String userInput) {
         validateNumeric(userInput);
         validateEmptyCheck(userInput);
     }

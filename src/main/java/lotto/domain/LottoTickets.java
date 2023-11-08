@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.enums.ErrorMessages;
 import lotto.enums.Rank;
+import lotto.enums.SystemErrorMessages;
 import lotto.utils.LottoNumbersGenerator;
 
 import java.util.EnumMap;
@@ -38,6 +39,9 @@ public class LottoTickets {
     }
 
     public Map<Rank, Integer> calculateWinningResult(WinningLotto winningLotto) {
+        if(winningLotto == null) {
+            throw new IllegalStateException("[ERROR] winningLotto가 null인 상태 이므로 계산이 불가능 합니다.");
+        }
         Map<Rank, Integer> winningResult = new EnumMap<>(Rank.class);
         for (Lotto lotto : lottoTickets) {
             Rank rank = winningLotto.match(lotto);

@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -32,4 +33,14 @@ public class Game {
         result = Ranking.getWinningResult(lottos, winningNumbers, bonusNumber);
     }
 
+    public Double calculateProfit(HashMap<Ranking, Integer> result){
+        Double sum =0.0;
+        for (Map.Entry<Ranking, Integer> entry : result.entrySet()) {
+            Ranking ranking = entry.getKey();
+            Integer count = entry.getValue();
+            sum += ranking.getReward() * count;
+        }
+        System.out.println(sum);
+        return Math.round (((sum / this.amount.getMoney()) * 100) * 10.0) / 10.0;
+    }
 }

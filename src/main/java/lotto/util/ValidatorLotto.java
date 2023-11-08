@@ -1,4 +1,6 @@
-package lotto.domain;
+package lotto.util;
+
+import lotto.domain.EnumLotto;
 
 import java.util.List;
 import java.util.Set;
@@ -6,7 +8,6 @@ import java.util.HashSet;
 
 public class ValidatorLotto {
     public static void validateWinningNumber(List<Integer> winningNumbers, int bonusNumber) {
-        validateLottoNumbers(winningNumbers);
         validateNumberRange(bonusNumber);
         validateUniqueBonusNumber(winningNumbers, bonusNumber);
     }
@@ -43,7 +44,7 @@ public class ValidatorLotto {
     }
 
     private static void validateUniqueBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
-        if(winningNumbers.contains(bonusNumber)){
+        if(winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }

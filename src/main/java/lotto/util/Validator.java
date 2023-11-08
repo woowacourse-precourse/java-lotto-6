@@ -1,6 +1,6 @@
 package lotto.util;
 
-import lotto.service.EnumGame;
+import lotto.domain.EnumLotto;
 
 import java.util.List;
 
@@ -10,12 +10,13 @@ public class Validator {
     }
 
     public static void validateRemainderNumber(String input) {
-        validateInputNumber(input);
+        validateNumberFormat(input);
         validateRemainderNotZero(input);
     }
 
-    public static void validateInputNumber(String input) {
+    public static void validateBonusNumber(String input) {
         validateNumberFormat(input);
+        validateSpaceNumber(input);
     }
 
     private static void validateNumbersFormat(List<String> splitStrings) {
@@ -42,7 +43,7 @@ public class Validator {
     private static void validateRemainderNotZero(String input) {
         int buyMoney = Integer.parseInt(input);
 
-        if(buyMoney % EnumGame.LOTTO_PRICE.getMoney() != 0) {
+        if(buyMoney % EnumLotto.LOTTO_PRICE.getNumber() != 0) {
             throw new IllegalArgumentException("[ERROR] 구매 금액은 1,000원 단위만 가능합니다.");
         }
     }

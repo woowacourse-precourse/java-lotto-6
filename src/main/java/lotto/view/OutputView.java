@@ -21,11 +21,9 @@ public class OutputView {
 
     public void printResult(Map<Statistic, Integer> winningLotto) {
         System.out.println("\n당첨 통계\n" + "---");
-        System.out.println("3개 일치 (5,000원) - " + winningLotto.get(Statistic.MATCH_THREE) + "개");
-        System.out.println("4개 일치 (50,000원) - " + winningLotto.get(Statistic.MATCH_FOUR) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + winningLotto.get(Statistic.MATCH_FIVE) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningLotto.get(Statistic.MATCH_FIVE_WITH_BONUS) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + winningLotto.get(Statistic.MATCH_SIX) + "개");
+        for (Statistic s : Statistic.values()) {
+            System.out.println(s.getMessage() + winningLotto.get(s) + "개");
+        }
     }
 
     public void printTotal(double percent) {

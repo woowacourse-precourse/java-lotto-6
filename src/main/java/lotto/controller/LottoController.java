@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
-import lotto.domain.result.LottoMachine;
+import lotto.domain.result.CompareMachine;
 import lotto.domain.user.LottoCount;
 import lotto.domain.user.UserLotto;
 import lotto.domain.win.Bonus;
@@ -27,7 +27,7 @@ public class LottoController {
     private LottoCount setLottoCount() {
         while (true) {
             try {
-                return new LottoCount(Input.money());
+                return LottoCount.from(Input.money());
             } catch (IllegalArgumentException e) {
                 Output.message(e.getMessage());
             }
@@ -68,10 +68,10 @@ public class LottoController {
     }
 
     private void compareLotto(UserLotto userLotto, WinLotto winLotto) {
-        LottoMachine lottoMachine = new LottoMachine();
-        lottoMachine.compare(userLotto, winLotto);
+        CompareMachine compareMachine = new CompareMachine();
+        compareMachine.compare(userLotto, winLotto);
 
-        Output.lottoResult(lottoMachine);
-        Output.rateOfReturn(lottoMachine.calculateRate(userLotto));
+        Output.lottoResult(compareMachine);
+        Output.rateOfReturn(compareMachine.calculateRate(userLotto));
     }
 }

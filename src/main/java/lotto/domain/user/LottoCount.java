@@ -1,22 +1,26 @@
 package lotto.domain.user;
 
-import static lotto.Option.GameOption.LOTTO_PRICE;
+import static lotto.option.GameOption.LOTTO_PRICE;
 
 import lotto.validator.LottoCountValidator;
 
 public class LottoCount {
-    int lottoCount;
+    int count;
 
-    public LottoCount(int money) {
+    private LottoCount(int count) {
+        this.count = count;
+    }
+
+    public static LottoCount from(int money) {
         LottoCountValidator.check(money);
-        lottoCount = money / LOTTO_PRICE.getNumber();
+        return new LottoCount(money / LOTTO_PRICE.getNumber());
     }
 
     public boolean isContinue() {
-        return lottoCount != 0;
+        return count != 0;
     }
 
     public void minusCount() {
-        lottoCount--;
+        count--;
     }
 }

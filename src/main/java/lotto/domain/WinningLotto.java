@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constants.ErrorMessage.BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE;
+
 import java.util.List;
 
 public class WinningLotto extends Lotto{
@@ -23,7 +25,7 @@ public class WinningLotto extends Lotto{
 
     private void validateDuplicateBonusNumber(int bonusNumber) {
         if (super.hasNumber(bonusNumber)) {
-            throw new IllegalArgumentException("당첨 번호와 보너스 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE);
         }
     }
 }

@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.model.Lotto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,5 +25,9 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test
+    void 로또구매_금액_0원_Null_값_예외처리() {
+        assertThatThrownBy(() ->
+                Assertions.assertThat("").isInstanceOf(IllegalArgumentException.class));
+    }
 }

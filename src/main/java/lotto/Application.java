@@ -1,7 +1,15 @@
 package lotto;
 
+import static lotto.utils.Console.close;
+
+import lotto.controller.LottoGameController;
+
 public class Application {
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoGameController lottoGameController = new LottoGameController();
+        lottoGameController.start();
+
+        close();
     }
 }

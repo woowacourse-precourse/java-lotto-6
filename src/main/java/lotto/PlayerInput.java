@@ -7,8 +7,9 @@ import java.util.List;
 
 public class PlayerInput {
     private static final int Lotto_PRICE = 1000;
+
     //금액 입력받기
-    public int inputMoney() {
+    public String inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
         try {
@@ -16,14 +17,12 @@ public class PlayerInput {
             ErrorValidate.isMinimumInputMoney(Integer.parseInt(input));
         } catch (NumberFormatException e) {
             System.out.println(ErrorMessage.ERROR_IS_NUMBER.getErrorMessage());
-            inputMoney();
+            input = inputMoney();
         } catch (IllegalArgumentException e) {
             System.out.println(ErrorMessage.ERROR_MINIMUM_INPUT_MONEY.getErrorMessage());
-            inputMoney();
+            input = inputMoney();
         }
-        int money = Integer.parseInt(input);
-        System.out.println("\n" + (money / Lotto_PRICE) + "개를 구매했습니다.");
-        return money;
+        return input;
     }
 
     public List<Integer> inputLottoNumber() {
@@ -35,7 +34,7 @@ public class PlayerInput {
                 ErrorValidate.inputNumberLimit(Integer.parseInt(number));
             } catch (IllegalArgumentException e) {
                 System.out.println(ErrorMessage.ERROR_NUMBER_RANGE.getErrorMessage());
-                inputLottoNumber();
+                return inputLottoNumber();
             }
             winNumber.add(Integer.parseInt(number));
         }

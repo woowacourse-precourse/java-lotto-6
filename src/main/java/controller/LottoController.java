@@ -55,9 +55,9 @@ public class LottoController {
 
     private AnswerLotto generateAnswerLotto() {
         OutputView.printAnswerLottoNumberInputMessage();
-        List<LottoNumber> lottoNumbers = Parser.stringToLottoNumbers(InputView.inputAnswerLotto());
+        Lotto lotto = new Lotto(Parser.stringToLottoNumbers(InputView.inputAnswerLotto()));
         LottoNumber bonusNumber = createBonusNumber();
-        return new AnswerLotto(lottoNumbers, bonusNumber);
+        return new AnswerLotto(lotto, bonusNumber);
     }
 
     private LottoNumber createBonusNumber() {

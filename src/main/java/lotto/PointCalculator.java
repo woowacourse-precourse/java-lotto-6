@@ -9,7 +9,7 @@ public class PointCalculator {
     }
 
     private int calculateGeneralPoint(Lotto lotto, AnswerLotto answerLotto) {
-        return answerLotto.countMatchNumber(lotto);
+        return lotto.countMatchNumber(answerLotto.getAnswerLotto());
     }
 
     private double calculateBonusPoint(Lotto lotto, LottoNumber bonusNumber) {

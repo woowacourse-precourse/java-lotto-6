@@ -50,5 +50,10 @@ public class LottoController {
 
     private static void setBonusNumber() {
         OutputView.promptForBonusNumber();
+        bonusNumber = InputView.getBonusNumber();
+    }
+
+    public static List<Integer> getAnswerlottoNumbers() {
+        return answerlottoNumbers;
     }
 }

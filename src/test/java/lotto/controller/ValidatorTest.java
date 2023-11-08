@@ -3,6 +3,7 @@ package lotto.controller;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import lotto.view.OutputView;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -75,6 +76,47 @@ class ValidatorTest {
         String expectedErrorMessage = "[ERROR] 중복된 숫자가 존재합니다.";
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             Validator.isValidAnswerLottoNumbers(playerInput);
+        });
+
+        String actualErrorMessage = exception.getMessage();
+        assertEquals(expectedErrorMessage, actualErrorMessage);
+    }
+
+    @Test
+    void 보너스번호_검증테스트_숫자_아닌_경우() {
+        List<Integer> answerLottoNumbers = List.of(1, 3, 5, 14, 22, 45);
+        String playerInput = "ssss";
+        String expectedErrorMessage = "[ERROR] 숫자가 아닙니다.";
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            Validator.isValidBonusNumber(answerLottoNumbers, playerInput);
+        });
+
+        String actualErrorMessage = exception.getMessage();
+        assertEquals(expectedErrorMessage, actualErrorMessage);
+    }
+    @Test
+    void 보너스번호_검증테스트_범위_초과한_경우() {
+        List<Integer> answerLottoNumbers = List.of(1, 3, 5, 14, 22, 45);
+        String playerInput = "150";
+        String expectedErrorMessage = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            Validator.isValidBonusNumber(answerLottoNumbers, playerInput);
+        });
+
+        String actualErrorMessage = exception.getMessage();
+        assertEquals(expectedErrorMessage, actualErrorMessage);
+    }
+
+    @Test
+    void 보너스번호_검증테스트_중복된_경우() {
+        List<Integer> answerLottoNumbers = List.of(1, 3, 5, 14, 22, 45);
+        String playerInput = "45";
+        String expectedErrorMessage = "[ERROR] 중복된 숫자가 존재합니다.";
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            Validator.isValidBonusNumber(answerLottoNumbers, playerInput);
         });
 
         String actualErrorMessage = exception.getMessage();

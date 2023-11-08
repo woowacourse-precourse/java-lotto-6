@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.domain.Lotto;
 
 public class Validator {
 
@@ -63,6 +64,24 @@ public class Validator {
             }
 
             if(!isDisticnt(numbers)) {
+                Exception.isNotDistinct();
+            }
+
+        } catch (NumberFormatException e) {
+            Exception.isNotNumber();
+        }
+
+        return true;
+    }
+
+    public static boolean isValidBonusNumber(List<Integer> answerLottoNumber, String playerInput) {
+        try {
+            int bonusNumber = Integer.parseInt(playerInput);
+            if (bonusNumber < MIN_VALUE || bonusNumber > MAX_VALUE) {
+                Exception.isOutOfRange();
+            }
+
+            if (answerLottoNumber.contains(bonusNumber)) {
                 Exception.isNotDistinct();
             }
 

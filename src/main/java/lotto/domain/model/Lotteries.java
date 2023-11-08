@@ -17,10 +17,6 @@ public class Lotteries {
         return this.lotteries.add(lotto);
     }
 
-    public List<Lotto> getLotteries() {
-        return lotteries;
-    }
-
     public void showLotteries() {
         for (Lotto lotto : lotteries) {
             lotto.showNumbers();

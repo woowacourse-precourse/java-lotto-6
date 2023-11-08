@@ -19,14 +19,17 @@ public class Validator {
             int buyAmount = Integer.parseInt(playerInput);
             if (buyAmount < MIN_VALUE) {
                 Exception.isNotPlusInt();
+                return false;
             }
 
             if (buyAmount % UNIT != 0) {
                 Exception.isNotThousandUnit();
+                return false;
             }
 
         } catch (NumberFormatException e) {
             Exception.isNotNumber();
+            return false;
         }
 
         return true;

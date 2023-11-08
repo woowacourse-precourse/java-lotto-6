@@ -7,26 +7,34 @@ public class Exception {
     private static final String preface = "[ERROR] ";
 
     public static void isNotNumber() {
-        throw new IllegalArgumentException(preface + Message.ERROR_IS_NOT_NUMBER.label());
+        handleException(Message.ERROR_IS_NOT_NUMBER);
     }
 
     public static void isNotPlusInt() {
-        throw new IllegalArgumentException(preface + Message.ERROR_IS_NOT_PLUS_INT.label());
+        handleException(Message.ERROR_IS_NOT_PLUS_INT);
     }
 
     public static void isNotThousandUnit() {
-        throw new IllegalArgumentException(preface + Message.ERROR_IS_NOT_THOUSAND_UNIT.label());
+        handleException(Message.ERROR_IS_NOT_THOUSAND_UNIT);
     }
 
     public static void isNotSixByComma() {
-        throw new IllegalArgumentException(preface + Message.ERROR_IS_NOT_SIX_BY_COMMMA.label());
+        handleException(Message.ERROR_IS_NOT_SIX_BY_COMMMA);
     }
 
     public static void isOutOfRange() {
-        throw new IllegalArgumentException(preface + Message.ERROR_IS_OUT_OF_RANGE.label());
+        handleException(Message.ERROR_IS_OUT_OF_RANGE);
     }
 
     public static void isNotDistinct() {
-        throw new IllegalArgumentException(preface + Message.ERROR_IS_NOT_DISTICNT.label());
+        handleException(Message.ERROR_IS_NOT_DISTICNT);
+    }
+
+    private static void handleException(Message message) {
+        try {
+            throw new IllegalArgumentException(preface + message.label());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

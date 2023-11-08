@@ -11,13 +11,15 @@ import java.util.List;
 
 public class InputView {
     public static int getBuyAmount() {
-        String playerInput = readLine();
+        String playerInput = "";
 
-        if (Validator.isBuyAmountValid(playerInput)) {
-            return Integer.parseInt(playerInput);
+        while (true) {
+            playerInput = readLine();
+            if (Validator.isBuyAmountValid(playerInput)) {
+                break;
+            }
         }
-
-        return -1;
+        return Integer.parseInt(playerInput);
     }
 
     public static List<Integer> getAnswerLottoNumbers() {

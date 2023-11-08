@@ -10,7 +10,11 @@ public class LottoRank {
     private final List<Integer> rank;
 
     public LottoRank(AllLotteriesNumbersInfoDTO allLotteriesNumbers) {
-        this.rank = calculateLottoResult(allLotteriesNumbers);
+        List<Lotto> generateLotteries = allLotteriesNumbers.getGenerateLotteries().getLotteries();
+        List<Integer> lotto = allLotteriesNumbers.getLotto().getNumbers();
+        int bonusLotto = allLotteriesNumbers.getBonusLotto().getBonusLotto();
+
+        this.rank = calculateLottoResult(generateLotteries, lotto, bonusLotto);
     }
 
     public List<Integer> getRank() {
@@ -28,15 +32,8 @@ public class LottoRank {
         return (double) profitSum / purchasePrice.getPurchasePrice() * 100;
     }
 
-    private List<Integer> calculateLottoResult(AllLotteriesNumbersInfoDTO allLotteriesNumbers) {
-        List<Integer> lotto = allLotteriesNumbers.getLotto().getNumbers();
-        int bonusLotto = allLotteriesNumbers.getBonusLotto().getBonusLotto();
-        List<Lotto> generateLotteries = allLotteriesNumbers.getGenerateLotteries().getLotteries();
-
-        List<Integer> rankCount = new ArrayList<>();
-        for (int i = 0; i < MagicNumber.RANK_COUNT.getNumber(); i++) {
-            rankCount.add(0);
-        }
+    private List<Integer> calculateLottoResult(List<Lotto> generateLotteries, List<Integer> lotto, int bonusLotto) {
+        List<Integer> rankCount = rankCountSetUp();
 
         for (Lotto generateLotto : generateLotteries) {
             int winCount = countDuplicates(lotto, generateLotto.getNumbers());
@@ -46,6 +43,15 @@ public class LottoRank {
             if (index >= 0) {
                 rankCount.set(index, rankCount.get(index) + 1);
             }
+        }
+
+        return rankCount;
+    }
+
+    private List<Integer> rankCountSetUp() {
+        List<Integer> rankCount = new ArrayList<>();
+        for (int i = 0; i < MagicNumber.RANK_COUNT.getNumber(); i++) {
+            rankCount.add(0);
         }
 
         return rankCount;

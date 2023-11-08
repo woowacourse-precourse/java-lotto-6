@@ -134,6 +134,4 @@ class LottoServiceTest {
         assertThat(String.valueOf(result)).isEqualTo("3200.0");
 
     }
-
-
 }

@@ -56,7 +56,7 @@ public class Validation {
     }
 
     public static void checkLength(List<String> input) {
-        if( input.size() > 6 ) {
+        if( input.size() != 6) {
             OutputView.printInputException(OVER_COUNT);
             throw new IllegalArgumentException();
         }

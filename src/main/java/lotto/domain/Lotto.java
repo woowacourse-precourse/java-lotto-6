@@ -1,8 +1,12 @@
-package lotto;
+package lotto.domain;
+
+import static lotto.consts.LottoConst.LOTTO_SIZE;
+import static lotto.valid.WinNumberValid.validLottoNums;
 
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -11,10 +15,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
+        validLottoNums(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

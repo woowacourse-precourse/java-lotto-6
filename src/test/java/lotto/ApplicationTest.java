@@ -11,6 +11,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.contentOf;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 class ApplicationTest extends NsTest {
@@ -87,6 +88,15 @@ class ApplicationTest extends NsTest {
         assertThatCode(()->{
             Lotto lotto = LottoGenerator.generate();
         }).doesNotThrowAnyException();
+    }
+
+    @Test
+    void 로또_판매시_지정한_개수만큼_로또가_생성되는지_테스트(){
+        LottoService lottoService = new LottoService();
+        int cnt = 123;
+
+        List<Lotto> lottos = lottoService.generateLottos(cnt);
+        assertThat(lottos.size()).isEqualTo(cnt);
     }
 
     @Override

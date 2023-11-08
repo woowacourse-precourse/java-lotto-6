@@ -80,7 +80,7 @@ public class LottoService {
         IOService.printResult(user);
     }
 
-    private List<Lotto> generateLottos(int cnt) {
+    public List<Lotto> generateLottos(int cnt) {
         List<Lotto> lottos = new ArrayList<>(cnt);
 
         for (int i = 0; i < cnt; ++i) {

@@ -17,11 +17,22 @@ public class LottoController {
     }
 
     public void play() {
-        Lottos lottos = new Lottos(inputView.requirePurchas());
+        Lottos lottos = new Lottos();
+        try {
+            lottos.setLottos(inputView.requirePurchas());
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            lottos.setLottos(inputView.requirePurchas());
+        }
         outputView.anounceLottos(lottos);
 
-        Winning winning = new Winning(Convertor.winningToList(inputView.requireWinning()));
-        winning.setBonusNum(Integer.parseInt(inputView.requireBonus()));
+        Winning winning = new Winning();
+        try {
+            winning.setWinning(Convertor.winningToList(inputView.requireWinning()));
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            winning.setWinning(Convertor.winningToList(inputView.requireWinning()));
+        }
 
         Map<String, Integer> result = lottos.calculateResult(winning);
         outputView.announceResult(result);

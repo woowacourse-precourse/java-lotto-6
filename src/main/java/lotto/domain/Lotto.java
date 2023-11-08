@@ -19,7 +19,6 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
-        Collections.sort(numbers);
     }
 
     public int[] convertArray() {

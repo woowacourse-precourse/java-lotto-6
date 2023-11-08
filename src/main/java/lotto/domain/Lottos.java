@@ -1,19 +1,21 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-
-import lotto.exception.CustomException;
 import lotto.exception.constant.ErrorCode;
 import lotto.utils.Constant;
-import lotto.utils.Convertor;
-
 import java.util.*;
 
 public class Lottos {
     private List<Lotto> lottos;
     private int lottoCnt;
-    public Lottos(String purchase) {
-        validateCnt(purchase);
+    public Lottos() {
+    }
+    public void setLottos(String purchase) {
+        try {
+            validateCnt(purchase);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
         this.lottoCnt = convertLottoCnt(purchase);
         this.lottos = drawLottos();
     }
@@ -36,13 +38,14 @@ public class Lottos {
 
     private void validateCnt(String purchase) {
         try {
-            int purchaseAmount = Integer.parseInt(purchase);
-        } catch (NumberFormatException e) {
-            throw new CustomException(ErrorCode.INVALID_NUMBER_REGEX);
-        }
-
-        if ((Integer.parseInt(purchase) % 1000) != 0) {
-            throw new CustomException(ErrorCode.INVALID_LOTTO_PURCHASE);
+            if (!purchase.matches(Constant.numberRegex)) {
+                throw new IllegalArgumentException(ErrorCode.INVALID_NUMBER_REGEX.getMessage());
+            }
+            if ((Integer.parseInt(purchase) % 1000) != 0) {
+                throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_PURCHASE.getMessage());
+            }
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
 
@@ -50,10 +53,14 @@ public class Lottos {
         return lottoCnt;
     }
 
-    public void anounceLottos() {
+    public List<String> anounceLottos() {
+        List<String> lottoResult = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            System.out.println(Arrays.toString(lotto.convertArray()));
+            int[] lottoNum = lotto.convertArray();
+            Arrays.sort(lottoNum);
+            lottoResult.add(Arrays.toString(lottoNum));
         }
+        return lottoResult;
     }
 
 
@@ -93,6 +100,6 @@ public class Lottos {
             int count = entry.getValue();
             reward += (long) (Constant.prize.get(lottoStatus)) * count;
         }
-        return reward / (float) (lottoCnt * 1000);
+        return reward / (float) (lottoCnt * 10);
     }
 }

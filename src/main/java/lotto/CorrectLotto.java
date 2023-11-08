@@ -9,6 +9,13 @@ public class CorrectLotto {
     private Lotto correct_lotto;
     private int bonus;
 
+    public Lotto getCorrect_lotto() {
+        return correct_lotto;
+    }
+    public int getBonus() {
+        return bonus;
+    }
+
     public void printInputNumbersMessage(){
         System.out.println("\n당첨 번호를 입력해 주세요.");
     }

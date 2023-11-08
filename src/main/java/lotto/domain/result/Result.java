@@ -10,11 +10,19 @@ public class Result {
     private WinningNumber winningNumber;
 
     private List<Grade> grades;
-    private float earningRate;
+    private String earningRate;
 
     public Result(Customer customer, WinningNumber winningNumber) {
         this.customer = customer;
         this.winningNumber = winningNumber;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public WinningNumber getWinningNumber() {
+        return winningNumber;
     }
 
     public List<Grade> getGrades() {
@@ -25,11 +33,11 @@ public class Result {
         this.grades = grades;
     }
 
-    public float getEarningRate() {
+    public String getEarningRate() {
         return earningRate;
     }
 
-    public void setEarningRate(float earningRate) {
+    public void setEarningRate(String earningRate) {
         this.earningRate = earningRate;
     }
 }

@@ -33,6 +33,11 @@ public class WinningComputer {
         return Winning.FIVE;
     }
 
+    public static ReturnRate computeReturnRate(PurchaseAmount purchaseAmount, Winnings winnings) {
+        int totalReturn = computeTotalReturn(winnings);
+        return new ReturnRate(totalReturn / purchaseAmount.getPurchaseAmount());
+    }
+
     private static void matchTwoNumbers
             (List<Integer> lottoNumbers, WinningNumbers winningNumbers, int index) {
         for (int j = currentIndex; j < COUNT; j++) {
@@ -58,5 +63,18 @@ public class WinningComputer {
         }
 
         return false;
+    }
+
+    private static int computeTotalReturn(Winnings winnings) {
+        int totalReturn = 0;
+
+        for (int i = 3; i <= 7; i++) {
+            WinningCount winningCount = winnings.getWinningCount();
+            Winning winning = FormatConverter.toWinningFromIntValue(i);
+
+            totalReturn += winningCount.getCount(i) * winning.getWinningReward();
+        }
+
+        return totalReturn;
     }
 }

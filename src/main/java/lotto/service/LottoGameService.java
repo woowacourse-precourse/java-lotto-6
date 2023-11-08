@@ -14,4 +14,6 @@ public interface LottoGameService {
     BonusNumber parseBonusNumber(String bonusNumberInput);
 
     Winnings countMatchingNumbers(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber);
+
+    ReturnRate getReturnRate(PurchaseAmount purchaseAmount, Winnings winnings);
 }

@@ -30,5 +30,8 @@ public class LottoGameController {
 
         Winnings winnings = lottoGameService.countMatchingNumbers(lottos, winningNumbers, bonusNumber);
 
+        ReturnRate returnRate = lottoGameService.getReturnRate(purchaseAmount, winnings);
+
+        PrintHandler.printEndingPartOfLottoGame(winnings);
     }
 }

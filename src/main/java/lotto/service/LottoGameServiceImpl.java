@@ -60,6 +60,13 @@ public class LottoGameServiceImpl implements LottoGameService {
         return winnings;
     }
 
+    @Override
+    public ReturnRate getReturnRate(PurchaseAmount purchaseAmount, Winnings winnings) {
+        ReturnRate returnRate = WinningComputer.computeReturnRate(purchaseAmount, winnings);
+
+        return returnRate;
+    }
+
     private Lotto generateLotto() {
         List<Integer> lottoNumbers = RandomNumberGenerator.generateNotDuplicatedRandomNumbersOrderByAsc();
         return new Lotto(lottoNumbers);

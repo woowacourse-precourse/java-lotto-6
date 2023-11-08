@@ -2,7 +2,8 @@ package lotto.controller;
 
 import lotto.model.Customer;
 import lotto.model.LottoWinning;
-import lotto.validation.Validator;
+import lotto.model.WinningEnquiry;
+import lotto.validation.LottoValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.constant.ErrorMessage;
@@ -17,8 +18,11 @@ public class LottoDraw {
     private Customer customer;
     private int numOfLotto;
     private LottoWinning lottoWinning;
+    private WinningEnquiry winningEnquiry;
 
-    public LottoDraw() {}
+    public LottoDraw() {
+        winningEnquiry = new WinningEnquiry();
+    }
     public void start() {
         // 로또 구입 금액을 입력
         payLottoAmount();
@@ -33,18 +37,14 @@ public class LottoDraw {
         inputBonusNumber();
 
         // 당첨 확인
-        customer.calcWinningLotto(lottoWinning.getWinningNumber(), lottoWinning.getBonusNumber());
-        OutputView.println(customer.getWinningLottos().toString());
+        winningEnquiry.calculateWinningStatics(customer.getLottos(), lottoWinning);
 
         // 당첨 통계
         OutputView.printConstantMessage(WINNING_STATICS);
-        OutputView.printWinningStatics(customer.getWinningLottos());
-
-        // 총 수익률 계산
-        customer.calcRateOfReturn();
+        OutputView.printWinningStatics(winningEnquiry.getStatics());
 
         // 총 수익률 출력
-        OutputView.printRateOfReturn(customer.getRateOrReturn());
+        OutputView.printRateOfReturn(winningEnquiry.calculateRateOfReturn(customer.getMoney()));
     }
 
     private void payLottoAmount() {
@@ -53,32 +53,12 @@ public class LottoDraw {
         String pay = InputView.requestPayMoney();
 
         try {
-//            if (validationPayAmount(pay)) {
-//                throw new IllegalArgumentException(ErrorMessage.ERROR.getMessage()+ErrorMessage.INPUT.getMessage());
-//            }
             customer = new Customer(pay);
             OutputView.println(String.valueOf(customer.getMoney()));
         }
         catch (IllegalArgumentException error) {
             payLottoAmount();
         }
-    }
-
-    private boolean validationPayAmount(String pay) {
-        if (Validator.checkIsNotNumber(pay)) {
-            OutputView.printError(ErrorMessage.IS_NOT_NUMBER.getMessage());
-            return true;
-        }
-
-        if (Validator.checkIsPositive(parseInt(pay))) {
-            OutputView.printError(ErrorMessage.PAY_IS_NOT_POSITIVE.getMessage());
-            return true;
-        }
-
-        if (Validator.checkMultipleOf1000(parseInt(pay))) {
-            OutputView.printError(ErrorMessage.PAY_NOT_MULTIPLE_OF_1000.getMessage());
-        }
-        return false;
     }
 
     private void issueLotto() {
@@ -130,19 +110,19 @@ public class LottoDraw {
 
     private boolean validationBonusNumber(String _input) {
         // check Number
-        if (Validator.checkIsNotNumber(_input)) {
+        if (LottoValidator.checkIsNotNumber(_input)) {
             OutputView.printError(ErrorMessage.IS_NOT_NUMBER.getMessage());
             return true;
         }
 
         // check 1 ~ 45
-        if (!Validator.checkRangeNumber(parseInt(_input), RANGE_START.getNumber(), RANGE_END.getNumber())) {
+        if (!LottoValidator.checkRangeNumber(parseInt(_input), RANGE_START.getNumber(), RANGE_END.getNumber())) {
             OutputView.printError(ErrorMessage.LOTTO_OUT_OF_RANGE.getMessage());
             return true;
         }
 
         // check winning lotto duplicate
-        if (Validator.checkDuplicateNumber(lottoWinning.getWinningNumber(), parseInt(_input))) {
+        if (LottoValidator.checkDuplicateNumber(lottoWinning.getWinningNumber(), parseInt(_input))) {
             OutputView.printError(ErrorMessage.DUPLICATE_NUMBER.getMessage());
             return true;
         }
@@ -150,21 +130,20 @@ public class LottoDraw {
         return false;
     }
 
-
     private boolean validationWinningLotto(String _input) {
-        if (Validator.checkSizeIsSix(_input)) {
+        if (LottoValidator.checkSizeIsSix(_input)) {
             OutputView.printError(ErrorMessage.SIZE_IS_NOT_SIX.getMessage());
             return true;
         }
 
         List<String> _lotto = List.of(_input.split(","));
-        if (Validator.checkIsNotNumberList(_lotto)) {
+        if (LottoValidator.checkIsNotNumberList(_lotto)) {
             OutputView.printError(ErrorMessage.IS_NOT_NUMBER_LIST.getMessage());
             return true;
         }
 
         List<Integer> __lotto = _lotto.stream().map(Integer::parseInt).toList();
-        if (Validator.checkRangeLotto(__lotto)) {
+        if (LottoValidator.checkRangeLotto(__lotto)) {
             OutputView.printError(ErrorMessage.LOTTO_OUT_OF_RANGE.getMessage());
             return true;
         }
@@ -173,7 +152,7 @@ public class LottoDraw {
     }
 
     private boolean validationLottoRange(List<Integer> _lotto) {
-        if (Validator.checkRangeLotto(_lotto)) {
+        if (LottoValidator.checkRangeLotto(_lotto)) {
             OutputView.printError(ErrorMessage.LOTTO_OUT_OF_RANGE.getMessage());
             return true;
         }

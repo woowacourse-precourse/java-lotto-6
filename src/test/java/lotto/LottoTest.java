@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.model.BonusNum;
+import lotto.model.BuyingMoney;
 import lotto.model.CorrectNum;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
@@ -52,6 +53,16 @@ class LottoTest {
         assertThatThrownBy(() -> new CorrectNum("1,2,3,4,5,6,7,8"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    
 
+    @Test
+    void BuyingMoney_1000으로_나눠지는지_테스트(){
+        assertThatThrownBy(() -> new BuyingMoney("19922"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void BuyingMoney_숫자테스트(){
+        assertThatThrownBy(() -> new BuyingMoney("팔천"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -10,11 +10,11 @@ import lotto.domain.user.UserLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class WinLottoTest {
+class WinLottoTest {
     @Test
     @DisplayName("동일한 로또 번호 개수를 잘 찾아내는지 확인한다.")
     void checkIsEqualAndBonus() {
-        LottoCount lottoCount = new LottoCount(1000);
+        LottoCount lottoCount = LottoCount.from(1000);
         UserLotto userLotto = new UserLotto(lottoCount);
         userLotto.create(new MockNumberGenerator(List.of(1, 3, 5, 7, 9, 11)));
 
@@ -22,7 +22,7 @@ public class WinLottoTest {
         Bonus bonus = new Bonus(7);
         WinLotto winLotto = new WinLotto(lotto, bonus);
 
-        assertThat(winLotto.isEqual(userLotto.getLottos().get(0))).isEqualTo(3);
-        assertThat(winLotto.isBonus(userLotto.getLottos().get(0))).isEqualTo(1);
+        assertThat(winLotto.countEqual(userLotto.indexOf(0))).isEqualTo(3);
+        assertThat(winLotto.countBonus(userLotto.indexOf(0))).isEqualTo(1);
     }
 }

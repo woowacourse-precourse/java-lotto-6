@@ -12,12 +12,19 @@ import lotto.view.OutputView;
 
 public class Game {
 
-    private final InputView inputView = new InputView();
-    private final LottoMaker lottoMaker = new LottoMaker();
+    private final InputView inputView;
+    private final LottoMaker lottoMaker;
 
-    private final OutputView outputView = new OutputView();
+    private final OutputView outputView;
 
-    private final WinningAnalyzer winningAnalyzer = new WinningAnalyzer();
+    private final WinningAnalyzer winningAnalyzer;
+
+    public Game() {
+        inputView = new InputView();
+        outputView = new OutputView();
+        lottoMaker = new LottoMaker();
+        winningAnalyzer = new WinningAnalyzer();
+    }
 
 
     public void run() {

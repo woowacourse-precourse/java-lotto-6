@@ -15,28 +15,24 @@ import static lotto.view.InputValidator.*;
 public class InputView {
 
     public static Buyer payForLottery() {
-        try {
-            int paymentNumber = getPaymentNumber();
-            int ticketCount = calculateTicketCount(paymentNumber);
-            Buyer buyer = new Buyer(paymentNumber, ticketCount);
-            printTickets(buyer);
-            return buyer;
-        } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        while (true) {
+            try {
+                int paymentNumber = getPaymentNumber();
+                int ticketCount = calculateTicketCount(paymentNumber);
+                Buyer buyer = new Buyer(paymentNumber, ticketCount);
+                printTickets(buyer);
+                return buyer;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return null;
     }
 
     public static Lotto inputWinningNum() {
         while (true) {
             String input = getWinningNumbersFromUser();
             try {
-                Lotto lotto = createLottoFromInput(input);
-                return lotto;
-            } catch (NumberFormatException e) {
-                System.out.println(e.getMessage());
+                return createLottoFromInput(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -51,7 +47,7 @@ public class InputView {
     private static Lotto createLottoFromInput(String input) {
         List<Integer> winningNumbers = Arrays.stream(input.split(",",-1))
                 .map(String::trim)
-                .map(InputValidator::parsePayment)
+                .map(InputValidator::parseNumber)
                 .collect(Collectors.toList());
 
         return new Lotto(winningNumbers);
@@ -64,8 +60,6 @@ public class InputView {
                 bonusNumber = getBonusNumberFromUser();
                 checkDuplicateBonusNumber(bonusNumber, lotto);
                 return new Winning(lotto, bonusNumber);
-            } catch (NumberFormatException e) {
-                System.out.println(e.getMessage());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -75,13 +69,13 @@ public class InputView {
     private static int getBonusNumberFromUser() {
         System.out.println(INPUT_BONUS_NUMBER);
         String input = Console.readLine();
-        return parsePayment(input);
+        return parseNumber(input);
     }
 
     public static int getPaymentNumber() {
         System.out.println(BUY_LOTTERY_INPUT);
         String payment = Console.readLine();
-        return parsePayment(payment);
+        return parseNumber(payment);
     }
 
     public static void printTickets(Buyer buyer) {

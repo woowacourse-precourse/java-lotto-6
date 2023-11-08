@@ -11,7 +11,7 @@ public class InputValidator {
         return payment / 1000;
     }
 
-    public static int parsePayment(String string) {
+    public static int parseNumber(String string) {
         try {
             return Integer.parseInt(string);
         } catch (NumberFormatException e) {

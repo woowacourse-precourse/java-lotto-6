@@ -14,10 +14,10 @@ import lotto.view.OutputView;
 
 public class LottoController {
         private Lotto lotto;
-        private RandomLotto randomLotto;
         private int quantity;
         private List<List<Integer>> randomNumbers;
         private List<Integer> lottoNumbers;
+
         private int bonusNumber;
 
         public LottoController() {
@@ -25,6 +25,7 @@ public class LottoController {
                 showStart();
                 set();
                 calculate();
+                printResult();
         }
 
         public void setStart() {
@@ -40,13 +41,23 @@ public class LottoController {
         public void set() {
                 lottoNumbers = InputController.setLottoNumbers();
                 bonusNumber = InputController.setBonusNumber(lottoNumbers);
-                Lotto lotto = new Lotto(lottoNumbers);
+                this.lotto = new Lotto(lottoNumbers);
         }
 
         public void calculate() {
                 lotto.getWinningData(randomNumbers,bonusNumber);
-                lotto.calculatePrize();
-                lotto.calculateCost();
+                int ticketCost = quantity * Constants.COST;
+                lotto.setCost(ticketCost);
                 lotto.calculateReturn();
+                lotto.setWinningCount();
         }
+
+
+
+        public void printResult() {
+                OutputView.printWinningData(lotto.getCount());
+                OutputView.printRate(lotto.getValue());
+        }
+
+
 }

@@ -21,7 +21,7 @@ public class LottoGame {
         while (isGaming) {
             money = inputMoney();
             lottoTickets = generateLottoTickets(money);
-
+            printTickets();
         }
     }
 
@@ -87,18 +87,6 @@ public class LottoGame {
                 .collect(Collectors.toList());
     }
 
-    private List<Integer> pickWinningNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 7);
-    }
-
-    private void getLottoRank() {
-
-    }
-
-    private void getMoneyForRank() {
-
-    }
-
     private List<Lotto> generateLottoTickets(Integer money) {
         List<Lotto> lottos = new ArrayList<>();
         int ticketAmount = (int) money / 1000;
@@ -110,6 +98,26 @@ public class LottoGame {
         }
 
         return lottos;
+    }
+
+    private void printTickets() {
+        System.out.println(lottoTickets.size() + "개를 구매했습니다.");
+
+        for (Lotto lotto : lottoTickets) {
+            lotto.printNumbers();
+        }
+    }
+
+    private List<Integer> pickWinningNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 7);
+    }
+
+    private void getLottoRank() {
+
+    }
+
+    private void getMoneyForRank() {
+
     }
 
     private void printResult() {

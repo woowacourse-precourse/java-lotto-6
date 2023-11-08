@@ -2,44 +2,82 @@ package lotto.view;
 
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.exception.InputValidator;
 
 public class InputView {
 
-    private static final String INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
+    private static final String INPUT_PURCHASE_COST = "구입금액을 입력해 주세요.";
     private static final String INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
-
-    //당첨번호를 입력받는 메서드
-    //파싱하는 기능을 포함하고 있다. 리팩토링여부 고민
-    //유효성 검사 추가해야된다
     public List<Integer> winningNumbers() {
         System.out.println(INPUT_WINNING_NUMBER);
-        String input =  Console.readLine();
+        boolean validInput = false;
+        List<Integer> numbers = new ArrayList<>();
 
-        List<Integer> numbers = Arrays.stream(input.split(","))
-            .map(Integer::parseInt)
-            .collect(Collectors.toList());
+        while( !validInput ) {
+            try {
+                String input =  Console.readLine();
+
+                InputValidator.validateStringInput(input);
+
+                numbers = Arrays.stream(input.split(","))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+
+                validInput = InputValidator.validateWinningNumInput(numbers);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
 
         return numbers;
     }
 
-    //보너스 번호를 입력받는 메서드
-    //파싱하는 기능을 포함하고 있다. 리팩토링여부 고민
     public int bonusNumber() {
-        System.out.printf(INPUT_BONUS_NUMBER);
-        String input =  Console.readLine();
+
+        System.out.println(INPUT_BONUS_NUMBER);
+        boolean validInput = false;
+        String input = "";
+
+        while( !validInput ) {
+            try {
+
+                input = Console.readLine();
+                validInput = InputValidator.validateBonusNumInput(input);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
         return Integer.parseInt(input);
     }
 
-    //로또 구입금액을 입력받는 메서드
-    //파싱하는 기능을 포함하고 있다. 리팩토링여부 고민
-    public int lottoPurchaseAmount() {
-        System.out.println(INPUT_PURCHASE_AMOUNT);
-        String input =  Console.readLine();
+    public int lottoPurchaseCost() {
+        boolean validInput = false;
+        System.out.println(INPUT_PURCHASE_COST);
+        String input = "";
+
+        while( !validInput ) {
+            try {
+
+                input = Console.readLine();
+                validInput = InputValidator.validatePurchaseAmountInput(input);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
         return Integer.parseInt(input);
     }
+
+
 }

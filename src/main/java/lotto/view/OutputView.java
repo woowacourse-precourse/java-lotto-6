@@ -11,7 +11,7 @@ public class OutputView {
     private static final String WINNING_STATISTICS_HEADER = "당첨 통계";
     private static final String WINNING_STATISTICS_LINE = "---";
     private static final String RESULT_FORMAT = "%d개 일치 (%d원) - %d개";
-    private static final String PROFIT_RATE_FORMAT = "총 수익률은 %.2f%%입니다.";
+    private static final String PROFIT_RATE_FORMAT = "총 수익률은 %.1f%%입니다.";
 
     public static void printPurchasedTickets(List<LottoTicket> tickets) {
         System.out.println(tickets.size() + PURCHASED_TICKETS_MESSAGE);
@@ -21,6 +21,7 @@ public class OutputView {
     }
 
     public static void printWinningStatistics(LottoResult lottoResult) {
+        System.out.println();
         System.out.println(WINNING_STATISTICS_HEADER);
         System.out.println(WINNING_STATISTICS_LINE);
 

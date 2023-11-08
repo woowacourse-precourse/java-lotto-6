@@ -17,7 +17,7 @@ public class Rating {
             }
         }
 
-        if(winNumbers.contains(bonusNumber)) {
+        if(lotto.contains(bonusNumber)) {
             needBonusBall = TRUE;
         }
 

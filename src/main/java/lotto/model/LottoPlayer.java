@@ -5,6 +5,7 @@ import java.util.List;
 
 public class LottoPlayer {
     private static final int LOTTO_PRICE = 1000;
+    private static final int PERCENTAGE = 100;
     private int initialAmount;
     private int lottoCount;
     private List<Lotto> lottoList = new ArrayList<>();
@@ -24,5 +25,9 @@ public class LottoPlayer {
 
     public int getLottoCount() {
         return lottoCount;
+    }
+
+    public double computeRateOfReturn(int income) {
+        return (double) PERCENTAGE * income / initialAmount;
     }
 }

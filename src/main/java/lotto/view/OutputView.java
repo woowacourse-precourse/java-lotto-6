@@ -22,4 +22,7 @@ public class OutputView {
         System.out.println(sb);
     }
 
+    public void printTotalPrize(double revenueRate){
+        System.out.println("총 수익률은 " + revenueRate + "%입니다.");
+    }
 }

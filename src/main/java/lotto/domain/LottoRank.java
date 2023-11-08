@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constant.MagicNumber;
 import lotto.constant.WinningPrize;
 import lotto.dto.AllLotteriesNumbersInfoDTO;
 
@@ -17,10 +18,11 @@ public class LottoRank {
     }
 
     public double calculateProfitPercentage(PurchasePrice purchasePrice) {
-        int profitSum = 0;
+        long profitSum = 0;
         int rankIndex = 0;
         for (WinningPrize prize : WinningPrize.values()) {
-            profitSum += prize.getAmount() * rank.get(rankIndex++);
+            profitSum += (long) prize.getAmount() * rank.get(rankIndex);
+            rankIndex++;
         }
 
         return (double) profitSum / purchasePrice.getPurchasePrice() * 100;
@@ -32,25 +34,16 @@ public class LottoRank {
         List<Lotto> generateLotteries = allLotteriesNumbers.getGenerateLotteries().getLotteries();
 
         List<Integer> rankCount = new ArrayList<>();
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < MagicNumber.RANK_COUNT.getNumber(); i++) {
             rankCount.add(0);
         }
 
-        int index = 0;
-        int winCount = 0;
-        int bonusCount = 0;
         for (Lotto generateLotto : generateLotteries) {
-            List<Integer> answerLotto = generateLotto.getNumbers();
-            Set<Integer> uniqueNumbers = new HashSet<>(answerLotto);
-            uniqueNumbers.addAll(lotto);
+            int winCount = countDuplicates(lotto, generateLotto.getNumbers());
+            boolean isBonusMatching = isBonusDuplicate(bonusLotto, generateLotto.getNumbers());
 
-            winCount = 12 - uniqueNumbers.size();
-            if (answerLotto.contains(bonusLotto)) {
-                bonusCount = 1;
-            }
-
-            if (winCount >= 3) {
-                index = calculateRankIndex(winCount, bonusCount);
+            int index = calculateRankIndex(winCount, isBonusMatching);
+            if (index >= 0) {
                 rankCount.set(index, rankCount.get(index) + 1);
             }
         }
@@ -58,10 +51,23 @@ public class LottoRank {
         return rankCount;
     }
 
-    private int calculateRankIndex(int winCount, int bonusCount) {
+    private int countDuplicates(List<Integer> lotto, List<Integer> generateLotto) {
+        Set<Integer> uniqueNumbers = new HashSet<>(lotto);
+        uniqueNumbers.addAll(generateLotto);
+        return MagicNumber.LOTTO_COUNT.getNumber() * 2 - uniqueNumbers.size();
+    }
+
+    private boolean isBonusDuplicate(int bonus, List<Integer> generateLotto) {
+        if (generateLotto.contains(bonus)) {
+            return true;
+        }
+        return false;
+    }
+
+    private int calculateRankIndex(int winCount, boolean isBonusMatching) {
         if (winCount == 6)  // 1등(6개) index = 0
             return 0;
-        if (winCount == 5 && bonusCount == 1)
+        if (winCount == 5 && isBonusMatching == true)
             return 1;
         if (winCount == 5)
             return 2;

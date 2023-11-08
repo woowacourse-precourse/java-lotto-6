@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constant.MagicNumber;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,7 +27,7 @@ public class Lotto {
     }
 
     private void checkNumbersCountSix(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != MagicNumber.LOTTO_COUNT.getNumber()) {
             throw new IllegalArgumentException("[ERROR] 숫자를 여섯개 입력해 주세요.");
         }
     }
@@ -38,8 +40,9 @@ public class Lotto {
     }
 
     private void checkNumberInRange(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해 주세요.");
+        if (number < MagicNumber.MIN_NUMBER.getNumber() || number > MagicNumber.MAX_NUMBER.getNumber()) {
+            throw new IllegalArgumentException("[ERROR] " + MagicNumber.MIN_NUMBER.getNumber() + " ~ "
+                    + MagicNumber.MAX_NUMBER.getNumber() + "사이의 숫자를 입력해 주세요.");
         }
     }
 }

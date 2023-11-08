@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constant.MagicNumber;
+
 public class PurchasePrice {
     private final int purchasePrice;
 
@@ -9,7 +11,7 @@ public class PurchasePrice {
     }
 
     public int getTotalLottoTickets() {
-        return purchasePrice / 1000;
+        return purchasePrice / MagicNumber.PRICE_UNIT.getNumber();
     }
 
     public int getPurchasePrice() {
@@ -22,14 +24,14 @@ public class PurchasePrice {
     }
 
     private void checkDivideByPriceUnit(int price) {
-        if (price % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원 단위로 구입 금액을 입력해 주세요.");
+        if (price % MagicNumber.PRICE_UNIT.getNumber() != 0) {
+            throw new IllegalArgumentException("[ERROR] " + MagicNumber.PRICE_UNIT.getNumber() + "원 단위로 구입 금액을 입력해 주세요.");
         }
     }
 
     private void checkIsZeroOrMinus(int price) {
         if (price <= 0) {
-            throw new IllegalArgumentException("[ERROR] 1000 이상의 금액을 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] " + MagicNumber.PRICE_UNIT.getNumber() + "이상의 금액을 입력해 주세요.");
         }
     }
 }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constant.MagicNumber;
+
 public class BonusLotto {
     private final int number;
 
@@ -18,8 +20,9 @@ public class BonusLotto {
     }
 
     private void checkNumberInRange(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해 주세요.");
+        if (number < MagicNumber.MIN_NUMBER.getNumber() || number > MagicNumber.MAX_NUMBER.getNumber()) {
+            throw new IllegalArgumentException("[ERROR] " + MagicNumber.MIN_NUMBER.getNumber() + " ~ "
+                    + MagicNumber.MAX_NUMBER.getNumber() + "사이의 숫자를 입력해 주세요.");
         }
     }
 

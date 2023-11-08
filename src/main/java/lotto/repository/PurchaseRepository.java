@@ -1,11 +1,9 @@
 package lotto.repository;
 
-import lotto.domain.Lotto;
-
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Lotto;
 
-// TODO: Repository 인터페이스화
 public class PurchaseRepository {
     private static final PurchaseRepository instance = new PurchaseRepository();
     private List<Lotto> lottos = new ArrayList<>();

@@ -22,7 +22,7 @@ public class OutputView {
     public static void printGeneratedLottoResult(final List<Integer> generatedLotto) {
         String lottoResult = generatedLotto.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(","));
+                .collect(Collectors.joining(", "));
         printMessage("[" + lottoResult + "]");
     }
 

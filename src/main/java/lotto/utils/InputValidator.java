@@ -63,9 +63,9 @@ public class InputValidator {
     }
 
     private static void checkNumberOfRange(String numberInput) {
-        String replaceNumberInput = numberInput.replace(",", "");
-        for (int i = 0; i < replaceNumberInput.length(); i++) {
-            int number = Integer.parseInt(String.valueOf(replaceNumberInput.charAt(i)));
+        String[] numbers = numberInput.split(",");
+        for (int i = 0; i < numbers.length; i++) {
+            int number = Integer.parseInt(numbers[i]);
             if (number < LottoConfig.LOTTO_MINIMUM_NUMBER.getValue()
                     || LottoConfig.LOTTO_MAXIMUM_NUMBER.getValue() < number) {
                 throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE_ERROR.getErrorMessage());

@@ -7,11 +7,7 @@ import java.util.List;
 public class InputConverter {
 
     public int convertToInteger(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.PREFIX.message + ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.message);
-        }
+        return Integer.parseInt(input);
     }
 
     public List<Integer> convertToListOfInteger(String input) {

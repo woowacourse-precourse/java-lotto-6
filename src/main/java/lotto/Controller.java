@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Controller {
     GameManager gameManager;
@@ -18,29 +20,31 @@ public class Controller {
     }
 
     public void run() {
-        int purchasePrice = getValidPurchasePrice();
-
-        int purchaseQuantity = gameManager.calculatePurchaseQuantity(purchasePrice);
+        int validPurchasePrice = getValidPurchasePrice();
+        int purchaseQuantity = gameManager.calculatePurchaseQuantity(validPurchasePrice);
         System.out.println();
         outputView.print(purchaseQuantity);
         List<Lotto> lottoTickets = lottoTicketGenerator.buy(purchaseQuantity);
         outputView.print(lottoTickets);
         System.out.println();
-        List<Integer> winningNumbers = inputConverter.convertToListOfInteger(inputView.askWinningNumbers());
+
+        String validWinningNumbers = getValidWinningNumbers();
+        List<Integer> convertedNumbers = inputConverter.convertToListOfInteger(validWinningNumbers);
+
         System.out.println();
-        int bonusNumber = inputConverter.convertToInteger(inputView.askBonusNumber());
+        int bonusNumber = getValidBonusNumber();
         System.out.println();
-        gameManager.saveWinningNumbers(winningNumbers, bonusNumber);
+        gameManager.saveWinningNumbers(convertedNumbers, bonusNumber);
         gameManager.updatePrizeStatistic(lottoTickets);
         outputView.print(gameManager.getPrizeStatistics());
-        outputView.print(gameManager.calculateEarningRate(purchasePrice));
+        outputView.print(gameManager.calculateEarningRate(validPurchasePrice));
     }
 
     private int getValidPurchasePrice() {
         while (true) {
             try {
                 String input = inputView.askPurchasePrice();
-                validateOnlyNumber(input);
+                validateOnlyDigits(input);
                 int purchasePrice = inputConverter.convertToInteger(input);
                 validatePurchasePrice(purchasePrice);
                 return purchasePrice;
@@ -51,7 +55,7 @@ public class Controller {
     }
 
     private void validatePurchasePrice(int purchasePrice) {
-        if (purchasePrice % 10 != 0) {
+        if (purchasePrice % 10 != 0 || purchasePrice < 1000) {
             throw new IllegalArgumentException(ErrorMessage.PREFIX.message + ErrorMessage.INVALID_PURCHASE_PRICE_UNIT.message);
         }
         if (purchasePrice > 100000) {
@@ -59,7 +63,58 @@ public class Controller {
         }
     }
 
-    private void validateOnlyNumber(String input) {
+    private String getValidWinningNumbers() {
+        while (true) {
+            String input = inputView.askWinningNumbers();
+            try {
+                validateWinningNumbers(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void validateWinningNumbers(String input) {
+        final String SEPARATOR = ",";
+        String[] splitInput = input.split(SEPARATOR);
+
+        if (splitInput.length != LottoTicketGenerator.NUMBER_COUNT) {
+            throw new IllegalArgumentException(ErrorMessage.PREFIX.message + ErrorMessage.INVALID_NUMBER_LENGTH.message);
+        }
+
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (String digit : splitInput) {
+            int number = Integer.parseInt(digit);
+            if (number < LottoTicketGenerator.MINIMUM_NUMBER || number > LottoTicketGenerator.MAXIMUM_NUMBER) {
+                throw new IllegalArgumentException(ErrorMessage.PREFIX.message + ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.message);
+            }
+            if (!uniqueNumbers.add(number)) {
+                throw new IllegalArgumentException(ErrorMessage.PREFIX.message + ErrorMessage.INVALID_DUPLICATE_NUMBER.message);
+            }
+        }
+    }
+
+    private int getValidBonusNumber() {
+        while (true) {
+            try {
+                String input = inputView.askBonusNumber();
+                int bonusNumber = inputConverter.convertToInteger(input);
+                validateBonusNumber(bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < LottoTicketGenerator.MINIMUM_NUMBER || bonusNumber > LottoTicketGenerator.MAXIMUM_NUMBER) {
+            throw new IllegalArgumentException(ErrorMessage.PREFIX.message + ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.message);
+        }
+    }
+
+    private void validateOnlyDigits(String input) {
         if (!input.matches("\\d+")) {
             throw new IllegalArgumentException(ErrorMessage.PREFIX.message + ErrorMessage.INVALID_CONTAIN_NOT_ONLY_NUMBER.message);
         }

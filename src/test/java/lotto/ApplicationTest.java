@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.validator.InputValidator;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,6 +13,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+    InputValidator inputValidator = new InputValidator();
+
+    @Test
+    @DisplayName("입력 받은 당첨번호는 정수 여섯 개여야 합니다.")
+    void isNumberSetIsSIx(){
+        List<Integer> truePrice=List.of(1, 2, 3, 4, 5, 6);
+        boolean result = inputValidator.checkWinningNumberInputLength(truePrice);
+        assertThat(result).isTrue();
+
+        List<Integer> falsePrice=List.of(1, 2, 3, 4, 5, 6, 7);
+        boolean result2 = inputValidator.checkWinningNumberInputLength(falsePrice);
+        assertThat(result2).isFalse();
+    }
 
     @Test
     void 기능_테스트() {

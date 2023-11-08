@@ -14,19 +14,18 @@ public class LottoNumber {
     return winningNumbers;
 
   }
+
   public int bonusNumber() {
     System.out.println("보너스 번호를 입력해 주세요.");
     int bonusNumber = Integer.parseInt(Console.readLine());
-    
+
     return bonusNumber;
   }
 
-// 쉼표로 구분된 숫자 문자열 -> 정수 리스트
+  // 쉼표로 구분된 숫자 문자열 -> 정수 리스트
   private static List<Integer> readNumbers(String readLine) {
 
-    return List.of(readLine.split(","))
-        .stream()
-        .map(Integer::parseInt)
+    return List.of(readLine.split(",")).stream().map(Integer::parseInt)
         .collect(Collectors.toList());
   }
 }

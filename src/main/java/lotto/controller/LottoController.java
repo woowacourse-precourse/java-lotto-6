@@ -20,11 +20,6 @@ public class LottoController {
 	private static final int TICKET_PRICE = 1000;
 	private static final int PERCENTAGE = 100;
 
-	private static PlayerLottoAmount playerLottoAmount;
-	private static List<Integer> lotto = new ArrayList<>();
-	private static List<Lotto> lottoList;
-	private static WinningResult winningResult;
-
 	public void run() {
 		try {
 			start();
@@ -37,29 +32,27 @@ public class LottoController {
 		int ticketCount = inputPlayerAmount();
 		OutputView.printTicketCount(ticketCount);
 
-		lottoList = makeLottoList(ticketCount);
-		winningResult = validateBonus();
+		List<Lotto> lottoList = makeLottoList(ticketCount);
+		WinningResult winningResult = createWinningResult();
 
-		lottoResult(lottoList, winningResult, ticketCount);
+		displaylottoResult(lottoList, winningResult, ticketCount);
 	}
 
 	public int inputPlayerAmount() {
-		playerLottoAmount = new PlayerLottoAmount(InputView.inputPlayerAmount());
+		PlayerLottoAmount playerLottoAmount = new PlayerLottoAmount(InputView.inputPlayerAmount());
 		return playerLottoAmount.calculateLottoCount();
 	}
 
-	public WinningResult validateBonus() {
-		Lotto lotto = new Lotto(InputView.inputLottoWinningNum());
-		List<Integer> winningNumber = lotto.getLottoNumbers();
+	public WinningResult createWinningResult() {
+		List<Integer> winningNumber = InputView.inputLottoWinningNum();
+		int bonusBall = InputView.inputBonusNumber();
 
-		int ball = InputView.inputBonusNumber();
-		winningResult = new WinningResult(new Lotto(winningNumber), ball);
-
-		return winningResult;
+		Lotto lotto = new Lotto(winningNumber);
+		return new WinningResult(lotto, bonusBall);
 	}
 
 	private static List<Lotto> makeLottoList(int ticketCount) {
-		lottoList = new ArrayList<>();
+		List<Lotto> lottoList = new ArrayList<>();
 		for (int i = 0; i < ticketCount; i++) {
 			lottoList.add(makeLotto());
 		}
@@ -68,19 +61,17 @@ public class LottoController {
 
 	private static Lotto makeLotto() {
 		LottoNumbers lottoNumbers = new LottoNumbers();
-
+		List<Integer> lotto = new ArrayList<>();
 		lotto = lottoNumbers.setRandomNumbers();
 		System.out.println(lotto);
 		return new Lotto(lotto);
 	}
 
-	private void lottoResult(List<Lotto> lottoList, WinningResult winningLotto, int amount) {
-		Map<Ranking, Integer> result = setResult();
-		Ranking rank;
-
+	private void displaylottoResult(List<Lotto> lottoList, WinningResult winningLotto, int amount) {
+		Map<Ranking, Integer> result = initializeResult();
 		OutputView.printSuccessResult();
-		for (int i = 0; i < lottoList.size(); i++) {
-			rank = winningLotto.match(lottoList.get(i));
+		for (Lotto playerLotto : lottoList) {
+			Ranking rank = winningLotto.match(playerLotto);
 			result.put(rank, result.get(rank) + 1);
 		}
 		printResult(result);
@@ -88,28 +79,30 @@ public class LottoController {
 	}
 
 	private void printResult(Map<Ranking, Integer> result) {
-		for (int i = Ranking.values().length - 1; i >= 0; i--) {
-			Ranking.values()[i].printMessage(result.get(Ranking.values()[i]));
+		for (Ranking rank : Ranking.values()) {
+			rank.printMessage(result.get(rank));
 		}
 	}
 
 	private void printEarningRate(Map<Ranking, Integer> result, int lottoAmount) {
-		double EarningRate = 0;
-		for (Ranking rank : result.keySet()) {
-			EarningRate = EarningRate + ((double) (rank.getWinningAmount()) / (lottoAmount * TICKET_PRICE)
-					* (result.get(rank)) * (PERCENTAGE));
-
-		}
-		OutputView.printRevenueRate(EarningRate);
+		double earningRate = calculateEarningRate(result, lottoAmount);
+		OutputView.printRevenueRate(earningRate);
 	}
 
-	private Map<Ranking, Integer> setResult() {
-		Map<Ranking, Integer> result = new LinkedHashMap<>();
+	private double calculateEarningRate(Map<Ranking, Integer> result, int lottoAmount) {
+		double earningRate = 0;
+		for (Ranking rank : result.keySet()) {
+			earningRate += (double) rank.getWinningAmount() / (lottoAmount * TICKET_PRICE) * result.get(rank)
+					* PERCENTAGE;
+		}
+		return earningRate;
+	}
 
+	private Map<Ranking, Integer> initializeResult() {
+		Map<Ranking, Integer> result = new LinkedHashMap<>();
 		for (Ranking rank : Ranking.values()) {
 			result.put(rank, 0);
 		}
 		return result;
 	}
-
 }

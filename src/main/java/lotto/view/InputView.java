@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import static java.lang.Integer.parseInt;
 
 public class InputView {
-    private static final String VALIDATE_NUMBER_MESSAGE = "[ERROR] 숫자만 입력해야 합니다.";
+    private static final String VALIDATE_NUMBER_MASSAGE = "[ERROR] 숫자만 입력해야 합니다.";
 
     public static int inputLottoAmount() {
         OutputView.printInputAmount();
@@ -19,18 +19,20 @@ public class InputView {
             int amount = parseInt(money);
             return amount;
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException(VALIDATE_NUMBER_MESSAGE);
+            throw new IllegalArgumentException(VALIDATE_NUMBER_MASSAGE);
         }
     }
 
-    public static List<String> inputWinningNumbers() {
+    public static List<Integer> inputWinningNumbers() {
         OutputView.printWinningNumbers();
         String numberInput = Console.readLine();
         System.out.println(numberInput);
         String[] numbers = numberInput.split(",");
-        return List.of(numbers);
+        List<String> numberList = new ArrayList<>(List.of(numbers));
+        return numberList.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
-
     public static int inputBonusNumber() {
         OutputView.printBonusNumber();
         String bonusNumber = Console.readLine();

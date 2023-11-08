@@ -2,11 +2,11 @@ package lotto.app.game.io;
 
 import java.util.function.Supplier;
 import lotto.app.enums.GlobalMessage;
-import lotto.app.io.ConsoleOutput;
+import lotto.config.Dependency;
 
 public interface InteractionRepeatable {
 
-    Output output = new ConsoleOutput();
+    Output output = Dependency.output();
 
     default void runInteraction(final Runnable runnable) {
         while (true) {

@@ -1,6 +1,9 @@
 package lotto.domain;
 
-import lotto.util.ExceptionMessage;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public enum Ranking {
     FIRST_PRIZE(6, 2_000_000_000, "6개 일치 (2,000,000,000원) - "),
@@ -9,8 +12,6 @@ public enum Ranking {
     FOURTH_PRIZE(4, 50_000, "4개 일치 (50,000원) - "),
     FIFTH_PRIZE(3, 5_000, "3개 일치 (5,000원) - "),
     MISS(0, 0, "");
-
-    private static final int RANKING_MIN_COUNT = 3;
 
     private final int countOfMatch;
     private final int prizeMoney;
@@ -22,32 +23,36 @@ public enum Ranking {
         this.message = message;
     }
 
-    public static Ranking valueOf(int countOfMatch, boolean matchBonus){
-        if(countOfMatch < RANKING_MIN_COUNT){
-            return MISS;
-        }
+    public static List<Ranking> getValues(){
+        List<Ranking> values = new ArrayList<>(Arrays.asList(Ranking.values()));
+        Collections.reverse(values);
+        values.remove(Ranking.MISS);
+        return values;
+    }
 
-        if(SECOND_PRIZE.matchCount(countOfMatch) && matchBonus){
+    public static Ranking valueOf(int countOfMatch, boolean containsBonus){
+        if(SECOND_PRIZE.matchCount(countOfMatch) && containsBonus){
             return SECOND_PRIZE;
         }
 
         for(Ranking ranking : values()){
-            if (ranking.matchCount(countOfMatch) && ranking != SECOND_PRIZE){
+            if(ranking.matchCount(countOfMatch) && ranking != SECOND_PRIZE){
                 return ranking;
             }
         }
+        return MISS;
     }
 
     private boolean matchCount(int countOfMatch){
         return this.countOfMatch == countOfMatch;
     }
 
-    public int getCountOfMatch(){
-        return countOfMatch;
+    public String getMessage(int count){
+        return message + count + "개";
     }
 
-    public String getResultMessage(int count){
-        return message + count + "개";
+    public int getPrizeMoney(){
+        return prizeMoney;
     }
 
 }

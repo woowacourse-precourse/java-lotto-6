@@ -10,9 +10,30 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        validateNumberCount(numbers);
+        validateNumberDuplicate(numbers);
+    }
+
+    private void validateNumberCount(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != 6) {
             throw new IllegalArgumentException();
         }
     }
+
+    private void validateNumberDuplicate(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Lotto[" + numbers + ']';
+    }
+
 }

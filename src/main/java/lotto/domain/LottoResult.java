@@ -21,11 +21,12 @@ public class LottoResult {
             count = playerNumberCompare(computerNumber);
             if (count == 5 && bonusNumberCompare(computerNumber)) {
                 fiveBonusCorrect++;
-            }else {
-                sumResult(count);
+                return;
+            }
+            sumResult(count);
             }
         }
-    }
+
 
     public static int playerNumberCompare(List<Integer> computerNumber) {
         int count  = 0;
@@ -41,7 +42,7 @@ public class LottoResult {
         }
 
     public static boolean bonusNumberCompare(List<Integer> computerNumber) {
-        if (computerNumber.contains(Application.playerBonusNumber)) {
+        if (computerNumber.contains(Application.bonusNumber)) {
             return true;
         }
         return false;
@@ -67,7 +68,7 @@ public class LottoResult {
         }
     }
 
-    public static void resultPrint()  {
+    public static void resultContents() {
         earningRateCaculator();
 
         System.out.println("당첨 통계");

@@ -15,23 +15,7 @@ public class Calculation {
     private Rank calculateRank(Lotto lotto, WinningNumber winningNumber) {
         int matchCount = countMatchedNumbers(lotto, winningNumber.getLotto());
         boolean hasBonus = lotto.getNumbers().contains(winningNumber.getBonusNumber());
-
-        if (matchCount == 6) {
-            return Rank.FIRST;
-        }
-        if (matchCount == 5 && hasBonus) {
-            return Rank.SECOND;
-        }
-        if (matchCount == 5) {
-            return Rank.THIRD;
-        }
-        if (matchCount == 4) {
-            return Rank.FOURTH;
-        }
-        if (matchCount == 3) {
-            return Rank.FIFTH;
-        }
-        return Rank.NONE;
+        return Rank.findRank(matchCount, hasBonus);
     }
 
     private int countMatchedNumbers(Lotto userLotto, Lotto winningLotto) {

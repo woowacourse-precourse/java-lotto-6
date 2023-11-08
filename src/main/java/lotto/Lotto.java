@@ -9,10 +9,17 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
     }
-
+    public List<Integer> getLotto(){
+        return numbers;
+    }
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+        for(Object object : numbers) {
+            if( (int) object > 45 || (int) object <0) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 

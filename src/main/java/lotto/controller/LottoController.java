@@ -13,58 +13,56 @@ import lotto.util.LottoResult;
 import lotto.view.UserInputOutput;
 
 public class LottoController {
-
     private final LotteryKiosk lotteryKiosk;
 
-
     private final UserInputOutput userInputOutput = new UserInputOutput();
-
 
     public LottoController(LotteryKiosk lotteryKiosk) {
         this.lotteryKiosk = lotteryKiosk;
     }
 
     public void run() {
+        Lottos lottos = buyLottoTicket();
+        showIssuedLottoNumbers(lottos);
+        LottoDraw winningNumbers = getWinningNumbers();
+        LottoResultNotifier resultNotifier = new LottoResultNotifier(lottos, winningNumbers);
+        resultNotifier(resultNotifier);
+    }
+
+
+    private Lottos buyLottoTicket() {
         while (true) {
             try {
-                Lottos lottos = buyLottoTicket();
-                printIssuedLottoNumbers(lottos);
-                LottoDraw winningNumbers = getWinningNumbers();
-                LottoResultNotifier resultNotifier = new LottoResultNotifier(lottos, winningNumbers);
-                resultNotifier(resultNotifier);
-                break;
+                String amount = userInputOutput.enterPurchaseAmount();
+                int purchaseAmount = Integer.parseInt(amount);
+                return lotteryKiosk.publish(purchaseAmount);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
     }
 
-    private Lottos buyLottoTicket() {
-        String amount = userInputOutput.enterPurchaseAmount();
-        int purchaseAmount = Integer.parseInt(amount);
-
-        return lotteryKiosk.publish(purchaseAmount);
-    }
-
-    private void printIssuedLottoNumbers(Lottos lottos) {
+    private void showIssuedLottoNumbers(Lottos lottos) {
         List<Lotto> lottoBundle = lottos.lottoBundle();
         userInputOutput.printLottoNum(lottoBundle.size());
-
         for (Lotto lotto : lottoBundle) {
             userInputOutput.printLotto(lotto);
         }
     }
 
     private LottoDraw getWinningNumbers() {
-        String winningNumbers = userInputOutput.enterWinningNumbers();
-        List<Integer> numbers = Arrays.stream(winningNumbers.split(","))
-                .map(Integer::parseInt)
-                .toList();
-
-        int bonusNum = Integer.parseInt(userInputOutput.enterBonusNumber());
-
-        return new LottoDraw(numbers, bonusNum);
+        while (true) {
+            try {
+                String winningNumbers = userInputOutput.enterWinningNumbers();
+                int bonusNum = Integer.parseInt(userInputOutput.enterBonusNumber());
+                List<Integer> numbers = Arrays.stream(winningNumbers.split(","))
+                        .map(Integer::parseInt)
+                        .toList();
+                return new LottoDraw(numbers, bonusNum);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void resultNotifier(LottoResultNotifier resultNotifier) {

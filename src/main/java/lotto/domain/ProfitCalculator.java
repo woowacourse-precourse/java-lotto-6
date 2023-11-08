@@ -12,7 +12,7 @@ public class ProfitCalculator {
         validateLottoCount(lottoCount);
         double profit = (double) priceSum / (lottoCount * LOTTO_PRICE) * 100;
 
-        return String.format("%.1f", profit);
+        return String.format("%,.1f", profit);
     }
 
     private static void validateLottoCount(int lottoCount) {

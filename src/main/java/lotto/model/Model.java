@@ -13,10 +13,13 @@ import lotto.domain.result.PurchaseResult;
 import lotto.domain.result.WinningResult;
 import lotto.domain.Purchase;
 import lotto.domain.strategy.LottoStrategy;
-import lotto.domain.strategy.RandomLottoStrategy;
 
 public class Model {
-    private final LottoStrategy lottoStrategy = new RandomLottoStrategy();
+    private final LottoStrategy lottoStrategy;
+
+    public Model(LottoStrategy lottoStrategy) {
+        this.lottoStrategy = lottoStrategy;
+    }
 
     public List<Lotto> generateLottos(Purchase purchase) {
         int finalRound = purchase.getFinalRound();

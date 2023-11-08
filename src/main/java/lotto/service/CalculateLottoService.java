@@ -47,6 +47,16 @@ public class CalculateLottoService {
 			return;
 		}
 	}
+	public int countLottoNumbersExcludingBonusNumber(List<Integer> userNumbers, List<Integer> lottoNumbers) {
+	    int count = 0;
+	    for (int i = 0; i < BEFORE_BONUS_NUMBER_INDEX; i++) {
+	        if (userNumbers.contains(lottoNumbers.get(i))) {
+	            count++;
+	        }
+	    }
+	    return count;
+	}
+	
 	public void winningLotto(int countLottoNumbers, User user) {
 		inputWinningCount(WinningLotto.FIND.valueOf(countLottoNumbers));
 		user.sumWinningPrice(WinningLotto.FIND.valueOf(countLottoNumbers).getPrice());
@@ -77,4 +87,6 @@ public class CalculateLottoService {
         }
         return false;
     }
+    
+    
 }

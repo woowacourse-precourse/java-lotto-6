@@ -40,4 +40,14 @@ public class Lotto {
                 .sorted()
                 .collect(Collectors.toList());
     }
+
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
+
+    public int getMatchNumber(WinNumber winNumber) {
+        return (int) numbers.stream()
+                .filter(winNumber::isContain)
+                .count();
+    }
 }

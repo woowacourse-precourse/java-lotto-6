@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.exception.DuplicatedNumberException;
 import lotto.exception.InvalidNumbersLengthException;
+import lotto.exception.OverRangeWinningNumbersException;
 import lotto.message.ExceptionMessage;
 import lotto.message.NumberUsedLotto;
 
@@ -18,8 +19,18 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateRange(numbers);
         validateNumbersLength(numbers);
         validateNumbersDuplicated(numbers);
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        if (numbers.stream()
+                .anyMatch(number -> number > NumberUsedLotto.MAX_LANGE.getNumber()
+                        || number < NumberUsedLotto.MIN_RANGE.getNumber())) {
+            String message = ExceptionMessage.IS_OVER_RANGE_LOTTO.toString();
+            throw new OverRangeWinningNumbersException(message);
+        }
     }
 
     private void validateNumbersDuplicated(List<Integer> numbers) {

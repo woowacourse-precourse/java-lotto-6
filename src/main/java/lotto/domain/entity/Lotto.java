@@ -35,8 +35,20 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
-    public boolean doesContain(int number) {
+    public boolean isContaining(int number) {
         return numbers.contains(number);
+    }
+
+    public boolean isContaining(LottoNumber lottoNumber) {
+        return this.numbers
+                .stream()
+                .anyMatch(num -> lottoNumber.isSameAmount(num));
+    }
+
+    public int calcSameCount(Lotto anotherNumbers) {
+        return (int) numbers.stream()
+                .filter(number -> anotherNumbers.isContaining(number))
+                .count();
     }
 
     private void validate(List<Integer> numbers) {

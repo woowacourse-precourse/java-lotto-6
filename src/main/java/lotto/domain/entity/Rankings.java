@@ -11,14 +11,18 @@ public class Rankings {
         init();
     }
 
+    public static Rankings create() {
+        return new Rankings();
+    }
+
     private void init() {
         for (Ranking rank : Ranking.values()) {
             rankings.put(rank, 0);
         }
     }
 
-    public static Rankings create() {
-        return new Rankings();
+    public void addRankings(Ranking ranking) {
+        rankings.put(ranking, rankings.get(ranking) + 1);
     }
 
     public Map<Ranking, Integer> getRankings() {

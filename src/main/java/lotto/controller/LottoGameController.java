@@ -34,7 +34,7 @@ public class LottoGameController {
     public void playGame() {
         Purchase purchase = purchaseLotto();
 
-        outputView.outputPurchaseLottoList(DtoMapper.toPurchaseDtofrom(purchase.getLottos()));
+        outputView.outputPurchaseLottoList(DtoMapper.toPurchaseDtofrom(purchase.getLottosByDoubleList()));
 
         WinningTicket winningTicket = generateWinningTicket();
 
@@ -50,23 +50,34 @@ public class LottoGameController {
         replayGame(false);
     }
 
+
     private Purchase purchaseLotto() {
-        String purchaseAmountInput = inputView.inputPurchaseAmount();
+        try {
+            String purchaseAmountInput =  inputView.inputPurchaseAmount();
+            ThousandUnitMoney purchasePrice = ThousandUnitMoney.create(purchaseAmountInput);
+            Lottos automaticLottos = Lottos.createAutomatic(purchasePrice, COST_OF_LOTTO.getValue());
 
-        ThousandUnitMoney purchasePrice = ThousandUnitMoney.create(purchaseAmountInput);
-        Lottos automaticLottos = Lottos.createAutomatic(purchasePrice, COST_OF_LOTTO.getValue());
-
-        return Purchase.create(purchasePrice, automaticLottos);
+            return Purchase.create(purchasePrice, automaticLottos);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return purchaseLotto();
+        }
     }
 
+
     private WinningTicket generateWinningTicket() {
-        String winningNumbersInput = inputView.inputWinningLotto();
-        String bonusNumberInput = inputView.inputBonusNumber();
+        try {
+            String winningNumbersInput = inputView.inputWinningLotto();
+            String bonusNumberInput = inputView.inputBonusNumber();
 
-        Lotto winningNumbers = Lotto.create(winningNumbersInput);
-        LottoNumber bonusNumber = LottoNumber.create(bonusNumberInput);
+            Lotto winningNumbers = Lotto.create(winningNumbersInput);
+            LottoNumber bonusNumber = LottoNumber.create(bonusNumberInput);
 
-        return WinningTicket.create(winningNumbers, bonusNumber);
+            return WinningTicket.create(winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return generateWinningTicket();
+        }
     }
 
     private void replayGame(boolean isContinue) {

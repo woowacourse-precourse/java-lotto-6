@@ -45,20 +45,44 @@ public class ConsoleOutputView implements OutputView {
     }
 
     private String buildRankingCountsMessage(Map<Ranking, Integer> rankingCounts) {
-        return Arrays.stream(Ranking.values())
-                .filter(ranking -> ranking != Ranking.No)
-                .map(ranking
-                        -> String.format("%s개 일치 (%s원) - %d개",
-                        ranking.getMatchCount(),
-                        StringUtil.formatByThousandSeparator(ranking.getPrizeAmount()),
-                        rankingCounts.get(ranking)))
-                .collect(Collectors.joining("\n"));
+        StringBuilder sb = new StringBuilder();
+
+        rankingCounts.forEach(
+                (ranking, rankingCount) -> sb.append(buildDescription(ranking,rankingCount)));
+
+        return sb.toString();
+    }
+
+    private String buildDescription(Ranking ranking, int rankingCount) {
+        if (ranking == Ranking.No) {
+            return "";
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(ranking.getMatchCount());
+        sb.append("개 일치");
+
+        if (ranking.isUsingBonusNumber()) {
+            sb.append(", 보너스 볼 일치");
+        }
+
+        sb.append(" (");
+        sb.append(StringUtil.formatByThousandSeparator(ranking.getPrizeAmount()));
+        sb.append("원");
+        sb.append(") ");
+        sb.append("- ");
+
+        sb.append(rankingCount);
+        sb.append("개");
+        sb.append("\n");
+
+        return sb.toString();
     }
 
     private String buildRateOfReturnMessage(double rateOfReturn) {
         return RATE_OF_RETURN_MESSAGE_HEAD.getMessage()
-                + DoubleUtil.formatByThousandSeparatorAndRoundUntilFirstDecimalWithPercent(
-                rateOfReturn)
+                + DoubleUtil.formatByThousandSeparatorAndRoundUntilFirstDecimalWithPercent(rateOfReturn)
                 + RATE_OF_RETURN_MESSAGE_TAIL.getMessage();
     }
 }

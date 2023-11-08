@@ -16,7 +16,7 @@ public class Lottos {
     }
 
     public static Lottos createAutomatic(ThousandUnitMoney purchaseAmount, int oneLottoPrice) {
-        int count = purchaseAmount.divide(oneLottoPrice);
+        int count = purchaseAmount.quotient(oneLottoPrice);
 
         return new Lottos(Stream.generate(() -> Lotto.createRandomSorted())
                 .limit(count)
@@ -27,9 +27,13 @@ public class Lottos {
         return lottos.size();
     }
 
-    public List<List<Integer>> getLottos() {
+    public List<List<Integer>> getLottosByDoubleList() {
         return lottos.stream()
                 .map(Lotto::getNumbers)
                 .collect(Collectors.toList());
+    }
+
+    public List<Lotto> getLottosByLottoList() {
+        return lottos;
     }
 }

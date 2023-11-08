@@ -14,4 +14,11 @@ public class WinningTicket {
         return new WinningTicket(winningNumbers, bonusNumber);
     }
 
+    public Lotto getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public LottoNumber getBonusNumber() {
+        return bonusNumber;
+    }
 }

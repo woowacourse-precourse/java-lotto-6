@@ -8,7 +8,7 @@ public class Percent {
         this.percent = percent;
     }
 
-    public Percent create(Double percent) {
+    public static Percent create(Double percent) {
         return new Percent(percent);
     }
 

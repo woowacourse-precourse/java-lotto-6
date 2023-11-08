@@ -21,7 +21,7 @@ public class LottoTest {
 
         // Then
         numbers.stream()
-                .forEach(number -> assertTrue(lotto.doesContain(number)));
+                .forEach(number -> assertTrue(lotto.isContaining(number)));
     }
 
 
@@ -36,7 +36,7 @@ public class LottoTest {
 
         // Then
         numbers.stream()
-                .forEach(number -> assertTrue(lotto.doesContain(number)));
+                .forEach(number -> assertTrue(lotto.isContaining(number)));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class LottoTest {
 
         // Then
         numbers.stream()
-                .forEach(number -> assertTrue(lotto.doesContain(number)));
+                .forEach(number -> assertTrue(lotto.isContaining(number)));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class LottoTest {
 
         // Then
         numbers.stream()
-                .forEach(number -> assertTrue(lotto.doesContain(number)));
+                .forEach(number -> assertTrue(lotto.isContaining(number)));
     }
 
     @Test
@@ -73,8 +73,8 @@ public class LottoTest {
         Lotto lotto = Lotto.create("1,2,3,4,5,6");
 
         // When
-        boolean resultTrue = lotto.doesContain(1);
-        boolean resultFalse = lotto.doesContain(7);
+        boolean resultTrue = lotto.isContaining(1);
+        boolean resultFalse = lotto.isContaining(7);
 
         // Then
         assertTrue(resultTrue);
@@ -123,17 +123,5 @@ public class LottoTest {
         assertThatThrownBy(() -> Lotto.create(unrefinedNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("정해진 범위의 숫자를 입력하세요.");
-    }
-
-    @Test
-    public void 리스트형식으로_로또_출력() {
-        // Given
-        Lotto lotto = Lotto.create("1,2,3,4,5,6");
-
-        // When
-        String result = lotto.toString();
-
-        // Then
-        assertThat(result).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 }

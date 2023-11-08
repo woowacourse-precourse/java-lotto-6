@@ -134,7 +134,7 @@ public class ThousandUnitMoneyTest {
         ThousandUnitMoney money1 = ThousandUnitMoney.create(8000);
 
         // When
-        int result = money1.divide(1000);
+        int result = money1.quotient(1000);
 
         // Then
         assertThat(result).isEqualTo(8);

@@ -29,7 +29,7 @@ public class LottoGame extends IndexModel {
     }
 
     public List<List<Integer>> getPurchaseLottos() {
-        return purchase.getLottos();
+        return purchase.getLottosByDoubleList();
     }
 
     public Map<Ranking, Integer> getRankings() {

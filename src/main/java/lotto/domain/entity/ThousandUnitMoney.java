@@ -23,6 +23,10 @@ public class ThousandUnitMoney {
         return new ThousandUnitMoney(IntegerUtil.trimAndParseInt(input));
     }
 
+    public static ThousandUnitMoney createEmpty() {
+        return new ThousandUnitMoney(0);
+    }
+
     public boolean isSameAmount(int amount) {
         return this.amount == amount;
     }
@@ -32,9 +36,22 @@ public class ThousandUnitMoney {
         return this.amount + money.amount;
     }
 
-    public int divide(int value) {
+    public int plus(int money) {
+        IntegerValidator.validatePlusRange(this.amount, money);
+        return this.amount + money;
+    }
+
+    public double divide(ThousandUnitMoney money) {
+        return this.amount / (double) money.getAmount();
+    }
+
+    public double divide(int value) {
         return this.amount / value;
-    } // TODO: 나누기랑 몫이랑 구분하기
+    }
+
+    public int quotient(int value) {
+        return this.amount / value;
+    }
 
     @Override
     public String toString() {

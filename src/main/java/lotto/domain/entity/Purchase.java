@@ -16,7 +16,15 @@ public class Purchase {
         return new Purchase(purchaseAmount, automaticLottos);
     }
 
-    public List<List<Integer>> getLottos() {
-        return automaticLottos.getLottos();
+    public ThousandUnitMoney getPurchaseAmount() {
+        return purchaseAmount;
+    }
+
+    public List<List<Integer>> getLottosByDoubleList() {
+        return automaticLottos.getLottosByDoubleList();
+    }
+
+    public List<Lotto> getLottosByLottoList() {
+        return automaticLottos.getLottosByLottoList();
     }
 }

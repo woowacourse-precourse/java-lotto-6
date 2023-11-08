@@ -22,13 +22,23 @@ public class MainController {
     }
 
     private static LottoPurchaseAmount readLottoPurchaseAmount() {
-        int lottoPurchasePrice = InputView.readLottoPurchasePrice();
-        return LottoPurchaseAmount.from(lottoPurchasePrice);
+        try {
+            int lottoPurchasePrice = InputView.readLottoPurchasePrice();
+            return LottoPurchaseAmount.from(lottoPurchasePrice);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printException(exception);
+            return readLottoPurchaseAmount();
+        }
     }
 
     private static WinningLotto readWinningLotto() {
-        List<Integer> winningLottoNumbers = InputView.readWinningLottoNumbers();
-        int bonusNumber = InputView.readBonusNumber();
-        return new WinningLotto(winningLottoNumbers, bonusNumber);
+        try {
+            List<Integer> winningLottoNumbers = InputView.readWinningLottoNumbers();
+            int bonusNumber = InputView.readBonusNumber();
+            return new WinningLotto(winningLottoNumbers, bonusNumber);
+        } catch (IllegalArgumentException exception) {
+            OutputView.printException(exception);
+            return readWinningLotto();
+        }
     }
 }

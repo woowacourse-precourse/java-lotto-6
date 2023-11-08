@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.LongStream;
 
 public class LotteryReceipt implements Iterable<PurchasedLottery> {
@@ -20,7 +21,7 @@ public class LotteryReceipt implements Iterable<PurchasedLottery> {
 
     public LotteryReceipt(List<PurchasedLottery> lotteries, LotteryOperator operator) {
         this.lotteries = lotteries;
-        this.operator = operator;
+        this.operator = Objects.requireNonNull(operator);
     }
 
     private static List<PurchasedLottery> createPurchasedLotteries(LotteryOperator operator, long quantity,

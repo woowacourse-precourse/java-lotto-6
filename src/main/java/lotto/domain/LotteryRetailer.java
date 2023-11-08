@@ -1,11 +1,13 @@
 package lotto.domain;
 
+import java.util.Objects;
+
 public class LotteryRetailer {
 
     private final LottoRandom random;
 
     public LotteryRetailer(LottoRandom random) {
-        this.random = random;
+        this.random = Objects.requireNonNull(random);
     }
 
     private static void validate(LotteryOperator operator, long amount) {

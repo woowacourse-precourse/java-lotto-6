@@ -15,10 +15,17 @@ public class LotteryOperator {
     private final long lotteryPrice;
 
     public LotteryOperator(LotteryRound round, Collection<? extends LotteryRanking> rankings, long lotteryPrice) {
+        validatePrice(lotteryPrice);
         this.round = Objects.requireNonNull(round);
-        this.history = new HashMap<>();
         this.rankings = Objects.requireNonNull(rankings);
+        this.history = new HashMap<>();
         this.lotteryPrice = lotteryPrice;
+    }
+
+    private static void validatePrice(long lotteryPrice){
+        if(lotteryPrice <= 0){
+            throw new IllegalArgumentException();
+        }
     }
 
     public void draw(List<Integer> winningNumbers, int bonusNumber) {

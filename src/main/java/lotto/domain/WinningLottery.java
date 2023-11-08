@@ -2,14 +2,15 @@ package lotto.domain;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 public class WinningLottery {
     private final Lotto lotto;
     private final BonusNumber bonusNumber;
 
     public WinningLottery(Lotto lotto, BonusNumber bonusNumber) {
-        this.lotto = lotto;
-        this.bonusNumber = bonusNumber;
+        this.lotto = Objects.requireNonNull(lotto);
+        this.bonusNumber = Objects.requireNonNull(bonusNumber);
     }
 
     public static WinningLottery of(List<Integer> winningNumbers, int bonusNumber) {

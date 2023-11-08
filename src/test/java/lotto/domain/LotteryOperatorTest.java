@@ -27,7 +27,7 @@ public class LotteryOperatorTest {
     @Test
     void constructor_lotteryPrice가_0보다_작거나_같으면_예외를_발생시킨다() {
 
-        assertThatThrownBy(() -> new LotteryOperator(new LotteryRound(1), rankings, 1000))
+        assertThatThrownBy(() -> new LotteryOperator(new LotteryRound(1), rankings, 0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

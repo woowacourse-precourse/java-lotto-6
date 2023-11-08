@@ -5,13 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.adapter.UserInputAdaptor;
+import lotto.adapter.UserInputAdapter;
 import lotto.port.InputPort;
 import org.junit.jupiter.api.Test;
 
 public class InputTest {
 
-    private InputPort userInput = new UserInputAdaptor();
+    private InputPort userInput = new UserInputAdapter();
 
     @Test
     public void 구입금액을_입력받는_테스트() {

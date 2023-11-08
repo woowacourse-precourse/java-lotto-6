@@ -11,8 +11,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != LottoEnum.SIZE.getValue()) {
+            throw new IllegalArgumentException("[ERROR] 1개의 로또를 발행할 때 6개의 숫자를 전달해야 합니다.");
         }
     }
 

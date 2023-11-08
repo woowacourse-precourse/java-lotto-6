@@ -41,7 +41,7 @@ public class LottoService {
         return lottoRepository.findAll();
     }
 
-    public void savePurchaseCount(int purchaseAmount) {
+    public void savePurchaseCount(int purchaseAmount) throws IllegalArgumentException {
         this.purchaseCount = new PurchaseCount(purchaseAmount);
     }
 
@@ -72,14 +72,12 @@ public class LottoService {
             tempLottos.add(new Lotto(createRandomNumberList()));
         }
 
-        lottoRepository.saveAll(new Lottos(new ArrayList<>(tempLottos)));
+        lottoRepository.saveAll(new Lottos(tempLottos));
     }
 
     private List<Integer> createRandomNumberList(){
         return pickUniqueNumbersInRange(MIN_NUMBER.getValue(), MAX_NUMBER.getValue(), NUMBER_COUNT.getValue());
     }
-
-
 
     public void createWinningResult(Lottos lottos, WinningLotto winningLotto){
         List<Integer> totalRankingCount = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));

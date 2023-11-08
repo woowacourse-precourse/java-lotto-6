@@ -22,14 +22,14 @@ public class GameController {
 
     public void run(){
         int purchaseAmount = getPurchaseAmount(view.inputLottoPurchaseAmount());
-        model.savePurchaseCount(purchaseAmount);
+        validatePurchaseAmount(purchaseAmount);
 
         model.issueLottos(model.findPurchaseCount());
         printLottos(model.findPurchaseCount(), model.findAllLottos());
 
         List<Integer> numbers = getLottoNumbers(view.inputLottoNumbers());
         int bonusNumber = getLottoBonusNumber(view.inputLottoBonusNumber());
-        model.saveWinningLotto(numbers, bonusNumber);
+        validateWinningLotto(numbers,bonusNumber);
 
         model.createWinningResult(model.findAllLottos(), model.findWinningLotto());
         printWinningStatistics(model.findWinningResult(), purchaseAmount);
@@ -44,11 +44,20 @@ public class GameController {
         }
     }
 
+    private void validatePurchaseAmount(int purchaseAmount) {
+        try {
+            model.savePurchaseCount(purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            view.printErrorMessage(e.getMessage());
+            validatePurchaseAmount(getPurchaseAmount(view.inputLottoPurchaseAmount()));
+        }
+    }
+
     private List<Integer> getLottoNumbers(String lottoNumbers) {
         try {
             return inputParser.parseLottoNumbers(lottoNumbers);
         } catch (IllegalArgumentException e) {
-            view.printErrorMessage(INVALID_INPUT.getMessage());
+            view.printErrorMessage(e.getMessage());
             return getLottoNumbers(view.inputLottoNumbers());
         }
     }
@@ -57,8 +66,17 @@ public class GameController {
         try {
             return inputParser.parseToInteger(lottoBonusNumber);
         } catch (IllegalArgumentException e) {
-            view.printErrorMessage(INVALID_INPUT.getMessage());
+            view.printErrorMessage(e.getMessage());
             return getLottoBonusNumber(view.inputLottoBonusNumber());
+        }
+    }
+
+    private void validateWinningLotto(List<Integer> numbers,int bonusNumber){
+        try {
+            model.saveWinningLotto(numbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            view.printErrorMessage(e.getMessage());
+            validateWinningLotto(getLottoNumbers(view.inputLottoNumbers()), getLottoBonusNumber(view.inputLottoBonusNumber()));
         }
     }
 

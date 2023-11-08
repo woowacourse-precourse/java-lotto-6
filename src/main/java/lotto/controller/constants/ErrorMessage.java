@@ -1,7 +1,7 @@
 package lotto.controller.constants;
 
 public enum ErrorMessage {
-    INVALID_INPUT("[ERROR] 올바른 입력값이 아닙니다."),
+    INVALID_INPUT("[ERROR] 입력값이 숫자가 아닙니다."),
     INVALID_PURCHASE_AMOUNT("[ERROR] 입금액은 1,000원 단위로 입력되어야 합니다."),
     INVALID_NUMBER_COUNT("[ERROR] 로또 번호는 6개여야 합니다."),
     DUPLICATED_NUMBER("[ERROR] 로또 번호에 중복된 숫자가 있습니다."),

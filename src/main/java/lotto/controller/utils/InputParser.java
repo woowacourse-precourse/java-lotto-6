@@ -16,8 +16,8 @@ public class InputParser {
     }
 
     public List<Integer> parseLottoNumbers(String input) {
-        String[] numberStrings = input.split(",");
-        return Arrays.stream(numberStrings)
+        String[] numbers = input.split(",");
+        return Arrays.stream(numbers)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }

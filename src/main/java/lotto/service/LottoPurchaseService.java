@@ -13,7 +13,7 @@ public class LottoPurchaseService {
         return new LottoTicket(Integer.parseInt(purchaseAmount));
     }
 
-    private void validatePurchaseAmount(String purchaseAmount) {
+    public void validatePurchaseAmount(String purchaseAmount) {
         // 구매 금액 검증
         StringUtil.checkNotNull(purchaseAmount);
         StringUtil.checkNumeric(purchaseAmount);
@@ -23,14 +23,14 @@ public class LottoPurchaseService {
         isAmountInUnit(value);
     }
 
-    private void isMinimumAmountValid(int value) {
+    public void isMinimumAmountValid(int value) {
         if (value < AppConstants.LOTTO_TICKET_PRICE) {
             throw new IllegalArgumentException(
                     String.format(ErrorConstants.INVALID_RANGE_INPUT.getData(), AppConstants.LOTTO_TICKET_PRICE));
         }
     }
 
-    private void isAmountInUnit(int value) {
+    public void isAmountInUnit(int value) {
         if (value % AppConstants.LOTTO_TICKET_PRICE != 0) {
             throw new IllegalArgumentException(
                     String.format(ErrorConstants.INVALID_UNIT_INPUT.getData(), AppConstants.LOTTO_TICKET_PRICE));

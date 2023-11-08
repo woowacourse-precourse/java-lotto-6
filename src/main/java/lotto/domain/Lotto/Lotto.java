@@ -2,7 +2,6 @@ package lotto.domain.Lotto;
 
 import java.util.*;
 
-
 public class Lotto {
     private List<Integer> numbers;
 

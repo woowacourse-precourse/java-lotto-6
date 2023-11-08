@@ -1,7 +1,7 @@
 package lotto.model;
 
 public class PurchasePrice {
-    int price;
+    private final int price;
 
     public PurchasePrice(int price) {
         this.price = price;

@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoGame;
 import lotto.model.PurchasePrice;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -31,5 +32,12 @@ public class LottoController {
     private void playLottoGame(LottoGame lottoGame) {
         List<Lotto> lottoList = lottoGame.generateLottos();
         outputView.printLottos(lottoList);
+        WinningLotto winningLotto = readWinningLotto();
+    }
+
+    private WinningLotto readWinningLotto() {
+        Lotto winningLotto = inputView.readWinningNumbers();
+        int bonusNumber = inputView.readBonusNumber();
+        return new WinningLotto(winningLotto, bonusNumber);
     }
 }

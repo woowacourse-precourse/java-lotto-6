@@ -4,20 +4,20 @@ import lotto.domain.Lotto;
 import lotto.domain.Result;
 import lotto.dto.Payment;
 import lotto.exception.LottoGameException;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CalculatorTest {
     private Calculator calculator;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         calculator = new Calculator();
     }

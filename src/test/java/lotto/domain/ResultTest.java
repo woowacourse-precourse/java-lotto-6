@@ -1,17 +1,17 @@
 package lotto.domain;
 
-import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
 public class ResultTest {
     private Result result;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         result = new Result();
     }

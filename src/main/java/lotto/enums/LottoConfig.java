@@ -6,7 +6,7 @@ public enum LottoConfig {
     LOTTO_NUMBER_SIZE(6),
     LOTTO_AMOUNT(1000);
 
-    private int value;
+    private final int value;
 
     LottoConfig(int value) {
         this.value = value;

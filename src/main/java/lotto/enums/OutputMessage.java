@@ -10,7 +10,7 @@ public enum OutputMessage {
     WINNING_RANK_FIRST_MESSAGE("6개 일치 (2,000,000,000원) - "),
     COUNT_UNIT_MESSAGE("개");
 
-    private String message;
+    private final String message;
 
     OutputMessage(String message) {
         this.message = message;

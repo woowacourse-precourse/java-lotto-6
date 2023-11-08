@@ -43,7 +43,7 @@ public class Controller {
     public List<Lotto> purchaseLotto(int money) {
         int numberOfLottoTicket = service.calculateNumberOfLottoTicket(money);
         OutputView.printPurchaseAmount(numberOfLottoTicket);
-        List<Lotto> lottos = service.generateLotto(numberOfLottoTicket);
+        List<Lotto> lottos = service.generateLottos(numberOfLottoTicket);
         for (Lotto lotto : lottos) {
             OutputView.printLotto(lotto);
         }

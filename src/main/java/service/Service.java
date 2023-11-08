@@ -26,7 +26,7 @@ public class Service {
         return money;
     }
 
-    public List<Lotto> generateLotto(int lottoAmount) {
+    public List<Lotto> generateLottos(int lottoAmount) {
         List<Lotto> lottos = new ArrayList<Lotto>();
         for (int i = 0; i < lottoAmount; i++) {
             Lotto lotto = new Lotto(generateRandomNumbers());

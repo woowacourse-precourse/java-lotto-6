@@ -7,6 +7,10 @@ public class Money {
     public static final int MIN_BOUND = 0;
     private final int value;
 
+    public int getValue() {
+        return value;
+    }
+
     public Money(int value) {
         validateMoneyPositive(value);
         this.value = value;
@@ -34,6 +38,10 @@ public class Money {
     public int divide(int target) {
         validateTargetPositive(target);
         return this.value / target;
+    }
+
+    public int multiply(int target) {
+        return this.value * target;
     }
 
     private void validateTargetPositive(int target) {

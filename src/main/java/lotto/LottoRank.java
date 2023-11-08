@@ -19,6 +19,10 @@ public enum LottoRank {
     private final BiPredicate<Lotto, WinningLotto> judge;
     private final Money prize;
 
+    public Money getPrize() {
+        return prize;
+    }
+
     LottoRank(BiPredicate<Lotto, WinningLotto> judge, Money prize) {
         this.judge = judge;
         this.prize = prize;

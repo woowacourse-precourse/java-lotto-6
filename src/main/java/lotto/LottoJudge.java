@@ -33,6 +33,16 @@ public class LottoJudge {
                         Collectors.counting()
                 ));
 
-        return LottoResult.from(rankMap);
+        double profitRate = calculateProfitRate(rankMap);
+
+        return LottoResult.from(rankMap, profitRate);
+    }
+
+    private double calculateProfitRate(Map<LottoRank, Long> rankMap) {
+        return rankMap.entrySet().stream()
+                .mapToDouble(entry -> entry.getKey()
+                        .getPrize()
+                        .multiply(entry.getValue().intValue()))
+                .sum() / LottoSeller.LOTTO_PRICE;
     }
 }

@@ -1,9 +1,11 @@
 package lotto.controller;
 
-import static lotto.generator.RandomNumberGenerator.*;
+
+import static lotto.domain.LottoWinningCombination.createLottoWinningCombination;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoWinningCombination;
 import lotto.handler.InputHandler;
 import lotto.handler.OutputHandler;
 import lotto.service.LottoService;
@@ -23,6 +25,8 @@ public class GameController {
 
         int bonusNum = InputHandler.setBonusNum(winnerNums);
         OutputView.printMessageBlankLine();
+
+        LottoWinningCombination lottoWinningCombination = createLottoWinningCombination(winnerNums, bonusNum);
 
     }
 

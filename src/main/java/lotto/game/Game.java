@@ -17,13 +17,15 @@ public class Game {
     }
 
     public void play() {
+        buyAndReceiveLottos();
+        buyer.compareWithLotteryResult(lottoCompany.getLotteryResult());
+        buyer.printLotteryResult();
+    }
+
+    private void buyAndReceiveLottos() {
         int buyAmount = buyer.payForLotto();
         List<Lotto> generatedLottos = lottoCompany.generateLottoList(buyAmount);
         lottoCompany.printLottoList(generatedLottos);
         buyer.receiveLottos(generatedLottos);
-
-        LotteryResult lotteryResult = lottoCompany.getLotteryResult();
-        buyer.compareWithLotteryResult(lotteryResult);
-        buyer.printLotteryResult();
     }
 }

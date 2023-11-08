@@ -52,11 +52,15 @@ public class LottoMachine {
         try{
             validateLength(input);
             validateRange(input);
+            validateDuplication(input);
         }catch (IllegalArgumentException e){
             System.out.println("[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             getWin();
         }catch (ArrayIndexOutOfBoundsException e){
             System.out.println("[Error] 6개의 로또 번호를 입력해 주세요.");
+            getWin();
+        }catch(IllegalStateException e){
+            System.out.println("[Error] 중복된 번호가 없게 입력해 주세요.");
             getWin();
         }
         for(String i : input.split(",")){
@@ -87,6 +91,16 @@ public class LottoMachine {
             if(1 > Integer.parseInt(i) || Integer.parseInt(i) > 45){
                 throw new IllegalArgumentException();
             }
+        }
+    }
+
+    public void validateDuplication(String input){
+        Set<String> set = new HashSet<>();
+        for(String i: input.split(",")){
+            set.add(i);
+        }
+        if(set.size() !=6){
+            throw new IllegalStateException();
         }
     }
 }

@@ -19,7 +19,7 @@ public class Lotto {
     public static int bonusNumber;
     private final List<Integer> numbers;
 
-    public Lotto () {
+    public Lotto() {
         this(generateNumbers());
     }
 
@@ -63,8 +63,8 @@ public class Lotto {
         bonusNumber = askNumber(StaticMessage.INPUT_BONUS_NUMBER);
     }
 
-//    private static String[] convertInputTo
-    private static List<Integer> generateNumbers () {
+    //    private static String[] convertInputTo
+    private static List<Integer> generateNumbers() {
         return Randoms.pickUniqueNumbersInRange(
                 RANDOM_RANGE_MIN_NUMBER.getValue(),
                 RANDOM_RANGE_MAX_NUMBER.getValue(),
@@ -72,12 +72,15 @@ public class Lotto {
         );
     }
 
-    private static int getLottoCount (int payment) {
+    private static int getLottoCount(int payment) {
         return payment / LottoConfig.UNIT_PRICE.getValue();
     }
 
-    private void compare() {
-
+    public long compare(Lotto lotto) {
+        return lotto.getNumbers()
+                    .stream()
+                    .filter(winningNumbers::contains)
+                    .count();
     }
 
 }

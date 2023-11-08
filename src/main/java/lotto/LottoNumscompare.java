@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoNumscompare {
-    private Map<Integer, Integer> userWinningRanks = new HashMap<>(){{
+    private final Map<Integer, Integer> userWinningRanks = new HashMap<>(){{
         put(1, 0);
         put(2, 0);
         put(3, 0);
@@ -24,7 +24,7 @@ public class LottoNumscompare {
         public Long getWinningAmount() {
             return Long.parseLong(winningAmount);
         }
-        private Rank(String winningAmount){
+        Rank(String winningAmount){
             this.winningAmount = winningAmount;
         }
     }
@@ -36,7 +36,7 @@ public class LottoNumscompare {
     public int compareLotto(List<Integer> userNums, List<Integer> winningNums){
         int sameNum = 0, userNumIndex = 0, winningNumIndex = 0;
         while(userNumIndex<6&&winningNumIndex<6){
-            if(userNums.get(userNumIndex)==winningNums.get(winningNumIndex)){
+            if(userNums.get(userNumIndex).equals(winningNums.get(winningNumIndex))){
                 sameNum++;
                 winningNumIndex++;
                 userNumIndex++;

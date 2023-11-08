@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.controller.dto.LottoDtos;
-import lotto.domain.entity.User;
+import lotto.domain.User;
 import lotto.exception.ExceptionHandler;
 import lotto.service.LottoService;
 import lotto.service.dto.GameResult;

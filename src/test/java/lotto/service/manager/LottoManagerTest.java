@@ -1,6 +1,6 @@
 package lotto.service.manager;
 
-import lotto.domain.entity.Lotto;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

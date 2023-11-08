@@ -1,6 +1,6 @@
 package lotto.service.manager;
 
-import lotto.domain.entity.Lotto;
+import lotto.domain.Lotto;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;

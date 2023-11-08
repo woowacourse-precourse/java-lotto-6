@@ -1,7 +1,7 @@
 package lotto.controller.dto;
 
 import java.util.List;
-import lotto.domain.entity.User;
+import lotto.domain.User;
 
 public record LottoDtos(
         List<LottoDto> lottoDtos

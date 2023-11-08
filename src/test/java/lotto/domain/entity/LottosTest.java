@@ -1,5 +1,7 @@
 package lotto.domain.entity;
 
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.service.manager.Rank;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

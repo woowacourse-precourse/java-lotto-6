@@ -1,10 +1,10 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.domain.entity.Lotto;
+import lotto.domain.Lotto;
 import lotto.service.generator.LottoGenerator;
 import lotto.service.manager.LottoManager;
-import lotto.domain.entity.User;
+import lotto.domain.User;
 import lotto.service.dto.GameResult;
 
 public class LottoService {

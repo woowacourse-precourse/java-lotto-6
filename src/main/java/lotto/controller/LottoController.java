@@ -41,19 +41,19 @@ public class LottoController {
     }
 
     public String printLottoPrices() {
-        return "구입금액을 입력해 주세요.";
+        return "[ERROR] 구입금액을 입력해 주세요.";
     }
     public int inputLottoPrices() {
         String confirmString = "";
         int lottoPrices = isInteger(confirmString);
         if(!isPriceLowerThanMax(lottoPrices)) {
-            throw new IllegalArgumentException("최대 구입 가능 금액은 " + MAX_LOTTO_PRICES + "원 입니다.");
+            throw new IllegalArgumentException("[ERROR] 최대 구입 가능 금액은 " + MAX_LOTTO_PRICES + "원 입니다.");
         }
         if(!isPriceBiggerThanMin(lottoPrices)) {
-            throw new IllegalArgumentException("최소 구입 가능 금액은 " + MIN_LOTTO_PRICES + "원 입니다.");
+            throw new IllegalArgumentException("[ERROR] 최소 구입 가능 금액은 " + MIN_LOTTO_PRICES + "원 입니다.");
         }
         if(!isPriceModZero(lottoPrices)) {
-            throw new IllegalArgumentException("구입 금액은 " + MOD_VALUE + "원 단위 여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 " + MOD_VALUE + "원 단위 여야 합니다.");
         }
         setLottoCounts(lottoPrices % MOD_VALUE);
         return lottoPrices;
@@ -62,7 +62,7 @@ public class LottoController {
         try {
             return Integer.parseInt(confirmString);
         } catch (NumberFormatException numberFormatException) {
-        throw new IllegalArgumentException("숫자만 입력하실 수 있습니다");
+        throw new IllegalArgumentException("[ERROR] 숫자만 입력하실 수 있습니다");
         }
     }
     public boolean isPriceLowerThanMax(int confirmInteger) {
@@ -97,7 +97,7 @@ public class LottoController {
             String confirmString = Console.readLine();
             prizeNumbers.addAll(splitPrizeNumbers(confirmString));
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException("숫자만 입력하실 수 있습니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력하실 수 있습니다.");
         }
         return prizeNumbers;
     }
@@ -107,7 +107,7 @@ public class LottoController {
         for (String splited:
                 testing) {
             if(!isInRangeNumber(Integer.parseInt(splited))) {
-                throw new IllegalArgumentException("1부터 45 사이의 숫자만 입력하실 수 있습니다.");
+                throw new IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자만 입력하실 수 있습니다.");
             }
             prizeNumbers.add(Integer.parseInt(splited));
         }

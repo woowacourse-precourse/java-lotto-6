@@ -16,7 +16,7 @@ public class LottoService {
     public static final int MIN = 1;
     public static final int MAX = 45;
     public static final int COUNT = 6;
-    private List<Lotto> lottos;
+    private final List<Lotto> lottos;
 
     private final Profit profit;
     private final Input input;
@@ -32,55 +32,56 @@ public class LottoService {
         this.validator = validator;
     }
     public void startLotto(){
-
-        Integer buyAmount = 0;
+        Integer buyAmount = inputAmount();
+        int count = buyAmount/1000;
+        generateLottos(count);
+        output.lottoResult(lottos);
+    }
+    public Integer inputAmount(){
         while(true){
             try{
                 String rawBuyAmount = input.buyAmount();
-                buyAmount = validator.validateBuyAmount(rawBuyAmount);
-                break;
+                return validator.validateBuyAmount(rawBuyAmount);
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }
-        int count = buyAmount/1000;
+    }
+    public void generateLottos(int count){
         for(int i = 0; i<count; i++){
             List<Integer> generate = Randoms.pickUniqueNumbersInRange(MIN, MAX,COUNT);
             Lotto generatedLotto = new Lotto(generate);
             lottos.add(generatedLotto);
-
         }
-        output.lottoResult(lottos);
     }
-    public void drawNumber(){
-        List<Integer> drawNumber = new ArrayList<>();
-        while(true){
-            try{
-                String rawDrawNumber = input.pickSixNumber();
-                drawNumber = validator.validatePickSixNumber(rawDrawNumber);
-                break;
-            }catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-            }
-
-        }
-
-
+    public void drawProcess(){
+        List<Integer> drawNumber = drawNumber();
         try{
             drawLotto = new Lotto(drawNumber);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
         }
+        bonus = drawBonus();
+    }
+    public List<Integer> drawNumber(){
         while(true){
             try{
-                String rawBonusNumber = input.pickBonusNumber();
-                bonus = validator.validatePickBonusNumber(rawBonusNumber,drawLotto.getNumbers());
-                break;
+                String rawDrawNumber = input.pickSixNumber();
+                return validator.validatePickSixNumber(rawDrawNumber);
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }
-
+    }
+    public Integer drawBonus(){
+        while(true){
+            try{
+                String rawBonusNumber = input.pickBonusNumber();
+                return validator.validatePickBonusNumber(rawBonusNumber,drawLotto.getNumbers());
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
     public void calculateProfit(){
         for(Lotto lotto1 : lottos){
@@ -109,10 +110,7 @@ public class LottoService {
         return generatedLotto.getNumbers().contains(bonus);
     }
     private boolean isNumberMatch(Integer pickedNumber){
-        if(drawLotto.getNumbers().contains(pickedNumber)){
-            return true;
-        }
-        return false;
+        return drawLotto.getNumbers().contains(pickedNumber);
     }
     private Prize lottoChecker(Integer matchCount, boolean bonus){
         Prize result = Prize.OUT;

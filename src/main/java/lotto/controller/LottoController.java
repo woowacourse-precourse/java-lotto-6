@@ -9,7 +9,7 @@ public class LottoController {
     }
     public void start(){
         lottoService.startLotto();
-        lottoService.drawNumber();
+        lottoService.drawProcess();
         lottoService.calculateProfit();
         lottoService.resultOutput();
     }

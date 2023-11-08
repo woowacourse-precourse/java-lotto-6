@@ -29,10 +29,8 @@
 ## 핵심 객체 분석
 
 ```markdown
-
 - LottoBall [ x ]
     - match
-    
 ```
 
 ## 핵심 도메인, 역할 분석
@@ -52,7 +50,6 @@
 ## 시스템 도메인 객체 분석
 
 ```markdown
-
 - Shop [ x ]
     - operate
 
@@ -66,7 +63,6 @@
 
 - Viewer [ x ]
     - print
-
 ```
 
 ## 시스템 도메인, 역할 분석
@@ -85,13 +81,11 @@
 ## 객체 결합 관계
 
 ```markdown
-
 - LottoShop : Shop
     - LottoMachine : Machine
         - LottoBall
     - ConsoleReader : Reader
     - ConsoleViewer : Viewer
-
 ```
 
 ## 시나리오 분석
@@ -128,7 +122,6 @@
 ## 패키지 구조
 
 ```markdown
-
 ├── core
 │ // 핵심 패키지 : 핵심 도메인을 위한 패키지
 ├──── 핵심 도메인
@@ -144,5 +137,4 @@
 ├─────── 시스템 도메인 멤버 인터페이스
 ├────── exception
 ├────── 시스템 도메인 멤버 인터페이스 구현체 별 패키지
-
 ```

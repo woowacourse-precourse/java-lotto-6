@@ -2,7 +2,9 @@ package lotto.output;
 
 import java.util.Map;
 import lotto.domain.Lotteries;
+import lotto.domain.Profit;
 import lotto.domain.Rank;
+import lotto.domain.UserLotto;
 
 public class Output {
     public static final String PURCHASE_AMOUNT_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -23,5 +25,9 @@ public class Output {
         System.out.println("---");
         rankIntegerMap.keySet()
                 .forEach(rank -> System.out.printf(rank + " - %d개%n", rankIntegerMap.get(rank)));
+    }
+
+    public static void printProfit(final Profit profit, final UserLotto userLotto) {
+        System.out.printf("총 수익률은 %s%%입니다.%n", profit.calculate(userLotto).toString());
     }
 }

@@ -1,9 +1,11 @@
 package lotto.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.IssueLotto;
 import lotto.model.Lotto;
+import lotto.model.LottoRankings;
 import lotto.model.LottoResult;
 import lotto.model.MatchLotto;
 import lotto.model.PurchaseLotto;
@@ -17,14 +19,12 @@ public class DrawController {
     private final IssueLotto issueLotto;
     private final BonusNumber bonusNumber;
     private final MatchLotto matchLotto;
-    private final LottoResult lottoResult;
 
     public DrawController() {
         this.purchaseLotto = new PurchaseLotto();
         this.issueLotto = new IssueLotto();
         this.bonusNumber = new BonusNumber();
         this.matchLotto = new MatchLotto();
-        this.lottoResult = new LottoResult();
     }
 
     public void draw() {
@@ -34,16 +34,16 @@ public class DrawController {
         inputBonusNumber(winningNumbers);
 
         matchLotto.matchLotto(winningNumbers, bonusNumber.getBonusNumber(), issueLotto.getLottoPurchaseHistory());
-        lottoResult.checkResult(matchLotto.getMatchResult());
+        HashMap<LottoRankings, Integer> lottoResult = LottoResult.createLottoResult()
+                .checkResult(matchLotto.getMatchResult());
+        OutputView.printResultMessage(lottoResult);
 
-        OutputView.printResultMessage(lottoResult.getLottoResult());
-
-        checkYield();
+        checkYield(lottoResult);
     }
 
-    private void checkYield() {
+    private void checkYield(HashMap<LottoRankings, Integer> lottoResult) {
         String yield = Yield.createYield()
-                .calculateYield(purchaseLotto.getPurchaseAmount(), lottoResult.getLottoResult());
+                .calculateYield(purchaseLotto.getPurchaseAmount(), lottoResult);
         OutputView.printYieldMessage(yield);
     }
 

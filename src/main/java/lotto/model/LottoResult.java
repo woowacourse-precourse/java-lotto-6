@@ -5,21 +5,19 @@ import java.util.List;
 
 public class LottoResult {
 
-    private HashMap<LottoRankings, Integer> lottoResult;
-
-    public void checkResult(List<LottoRankings> results) {
-        HashMap<LottoRankings, Integer> hashMap = new HashMap<>();
-        for (LottoRankings result : results) {
-            if (hashMap.containsKey(result)) {
-                hashMap.put(result, hashMap.get(result) + 1);
-                continue;
-            }
-            hashMap.put(result, 1);
-        }
-        this.lottoResult = hashMap;
+    public static LottoResult createLottoResult() {
+        return new LottoResult();
     }
 
-    public HashMap<LottoRankings, Integer> getLottoResult() {
-        return lottoResult;
+    public HashMap<LottoRankings, Integer> checkResult(List<LottoRankings> results) {
+        HashMap<LottoRankings, Integer> drawResult = new HashMap<>();
+        for (LottoRankings result : results) {
+            if (drawResult.containsKey(result)) {
+                drawResult.put(result, drawResult.get(result) + 1);
+                continue;
+            }
+            drawResult.put(result, 1);
+        }
+        return drawResult;
     }
 }

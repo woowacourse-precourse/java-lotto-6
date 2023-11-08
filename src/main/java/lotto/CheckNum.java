@@ -24,16 +24,16 @@ public class CheckNum {
 		return rankingList;
 	}
 
-	private static int checkMatchingNumbers(List<Integer> lotto, List<Integer> usernums) {
-	    int matching = 0;
-	    
-	    for (Integer mynums : lotto) {
-	        if (usernums.contains(mynums)) {
-	            matching++;
-	        }
-	    }
-	    
-	    return matching;
+	public static int checkMatchingNumbers(List<Integer> lotto, List<Integer> usernums) {
+		int matching = 0;
+
+		for (Integer mynums : lotto) {
+			if (usernums.contains(mynums)) {
+				matching++;
+			}
+		}
+
+		return matching;
 	}
 
 }

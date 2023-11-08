@@ -27,8 +27,6 @@ public enum Prize {
         return prizeProfit;
     }
 
-
-
     public static Prize getPrize(int sameCount, boolean hasBonusNumber) {
         validateSameCount(sameCount);
         if (SECOND.getSameCount() == sameCount) {

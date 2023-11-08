@@ -22,14 +22,14 @@ public class Game {
     }
 
     public void start() {
-        PurchaseAmount purchaseAmount = callback(this::inputPurchaseAmount);
+        PurchaseAmount purchaseAmount = inputUntilValid(this::inputPurchaseAmount);
 
         Lottos lottos = lottoGenerator.generateAutomaticallyBy(purchaseAmount);
         outputWriter.writeLottos(lottos);
 
-        Lotto winningNumbers = callback(this::inputWinningNumbers);
+        Lotto winningNumbers = inputUntilValid(this::inputWinningNumbers);
 
-        DrawnNumbers drawnNumbers = callback(() -> {
+        DrawnNumbers drawnNumbers = inputUntilValid(() -> {
             Number bonusNumber = inputBonusNumber();
             return new DrawnNumbers(winningNumbers, bonusNumber);
         });
@@ -38,11 +38,10 @@ public class Game {
         outputWriter.writeWinningStatistics(winningStatistics);
     }
 
-    // TODO: 메서드 이름 명확하게 바꾸기
-    private <T> T callback(Supplier<T> supplier) {
+    private <T> T inputUntilValid(Supplier<T> inputMethod) {
         while (true) {
             try {
-                return supplier.get();
+                return inputMethod.get();
             } catch (IllegalArgumentException e) {
                 outputWriter.writeError(e);
             }

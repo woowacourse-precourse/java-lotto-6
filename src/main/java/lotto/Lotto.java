@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private static ArrayList<List<Integer>> randomNumbers = new ArrayList<List<Integer>>();
+    private static final ArrayList<List<Integer>> randomNumbers = new ArrayList<List<Integer>>();
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -12,7 +12,12 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> sortNumber(List<Integer> unSortedNumbers) {
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
+
+    public List<Integer> sortNumber(List<Integer> numbers) {
+        List<Integer> unSortedNumbers = new ArrayList<>(numbers);
         Collections.sort(unSortedNumbers);
         return unSortedNumbers;
     }

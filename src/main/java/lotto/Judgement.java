@@ -1,13 +1,12 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Judgement {
-    public Set<Integer> commonNumber(List<Integer> winNumber, List<Integer> randomNumber) {
+    public Set<Integer> getCommonNumber(List<Integer> winNumber, List<Integer> randomNumber) {
         Set<Integer> commonNumber = winNumber.stream().filter(randomNumber::contains).collect(Collectors.toSet());
         return commonNumber;
     }
@@ -16,7 +15,7 @@ public class Judgement {
         return MatchCount.getMatchIndex(commonNumber, bonus);
     }
 
-    public static void earingRate(List<Integer> result, int inputMoney) {
+    public void showEaringRate(List<Integer> result, int inputMoney) {
         List<Integer> mount = Arrays.asList(2000000000, 30000000, 1500000, 50000, 5000);
         double totalMoney = 0;
         for (int i = 0; i < mount.size(); i++) {
@@ -26,7 +25,7 @@ public class Judgement {
         System.out.print("총 수익률은 " + totalMoney + "%입니다.");
     }
 
-    public void statics(List<Integer> result) {
+    public void showStatics(List<Integer> result) {
         System.out.println("당첨 통계\n" +
                 "---\n3개 일치 (5,000원) - " + result.get(4) + "개\n" +
                 "4개 일치 (50,000원) - " + result.get(3) + "개\n" +

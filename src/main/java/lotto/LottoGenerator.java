@@ -7,9 +7,10 @@ public class LottoGenerator {
     PlayerInput input = new PlayerInput();
     private final int time = input.inputMoney() / 1000;
 
-    public int getTime(){
+    public int getTime() {
         return this.time;
     }
+
     public ArrayList<List<Integer>> lottoGenerator() {
         ArrayList<List<Integer>> randoms = new ArrayList<>();
         NumberGenerator generator = new NumberGenerator();

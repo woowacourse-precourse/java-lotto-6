@@ -8,7 +8,6 @@ import static lotto.utilTest.Validator.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ValidatorTest {
-
     @Test
     void shouldThrowIllegalException_whenMoneyInputHasRemains() {
         Integer testMoney = 1500;
@@ -17,7 +16,6 @@ public class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("입력한 금액은 1000원으로 나누어 떨어져야 합니다");
     }
-
 
     @Test
     void shouldThrowIllegalException_whenMoneyInputIsLowerThan0() {
@@ -62,8 +60,6 @@ public class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("로또 번호는 6개 이어야 합니다");
     }
-
-
     @Test
     void shouldThrowIllegalException_whenBonusNumberisBlank() {
         String bonusNumber = " ";

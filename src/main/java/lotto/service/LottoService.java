@@ -35,9 +35,9 @@ public class LottoService {
         return result;
     }
 
-    private LottoResult matchLottoNumber(List<Integer> inputLottoNumber, List<Lotto> boughtLottoList, Integer bonusNumber) {
+    private LottoResult matchLottoNumber(List<Integer> inputLottoNumber, List<Lotto> boughtLottos, Integer bonusNumber) {
         LottoResult lottoResult = new LottoResult();
-        for (Lotto boughtLotto : boughtLottoList) {
+        for (Lotto boughtLotto : boughtLottos) {
             int matchCount = getMatchCount(inputLottoNumber, boughtLotto.getNumbers());
             Boolean matched = matchBonusNumber(bonusNumber, boughtLotto.getNumbers());
 
@@ -57,8 +57,8 @@ public class LottoService {
         return false;
     }
 
-    public int getMatchCount(List<Integer> inputLottoNumberList, List<Integer> lottoNumber) {
-        return (int) inputLottoNumberList.stream()
+    public int getMatchCount(List<Integer> inputLottoNumbers, List<Integer> lottoNumber) {
+        return (int) inputLottoNumbers.stream()
                 .filter(lottoNumber::contains)
                 .count();
     }

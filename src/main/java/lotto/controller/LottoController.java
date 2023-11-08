@@ -45,17 +45,17 @@ public class LottoController {
 
     private List<Integer> getLottoNumbersFromUser() {
         boolean isDoneToValidateInput = false;
-        List<Integer> lottoNumberList = null;
+        List<Integer> lottoNumbers = null;
         while (!isDoneToValidateInput) {
-            String NumberString = Prompt.forInputLottoNumbers();
+            String input = Prompt.forInputLottoNumbers();
             try {
-                lottoNumberList = stringToIntegerList(NumberString);
+                lottoNumbers = stringToIntegerList(input);
                 isDoneToValidateInput = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_TAG + e.getMessage());
             }
         }
-        return lottoNumberList;
+        return lottoNumbers;
     }
 
     private Integer getBonusNumbersFromUser(List<Integer> lottoNumbers) {

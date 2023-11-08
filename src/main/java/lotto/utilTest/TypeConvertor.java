@@ -8,25 +8,24 @@ import static lotto.utilTest.Validator.*;
 
 public class TypeConvertor {
     public static List<Integer> stringToIntegerList(String string) {
-        List<Integer> lottoNumberList = null;
+        List<Integer> lottoNumbers = null;
         try {
-            lottoNumberList = Arrays.stream(string.strip().split(","))
+            lottoNumbers = Arrays.stream(string.strip().split(","))
                     .map(a -> a.strip())
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("로또 번호에 정수가 아닌 값이 들어있습니다");
         }
-        validateLottoNumbers(lottoNumberList);
+        validateLottoNumbers(lottoNumbers);
 
-        return lottoNumberList;
+        return lottoNumbers;
     }
 
-    public static Integer stringToInteger(String string) {
-        validateStringMoney(string);
+    public static Integer stringToInteger(String input) {
+        validateStringMoney(input);
 
-        Integer money = Integer.parseInt(string);
-
+        Integer money = Integer.parseInt(input);
         validateIntegerMoney(money);
         return money;
     }

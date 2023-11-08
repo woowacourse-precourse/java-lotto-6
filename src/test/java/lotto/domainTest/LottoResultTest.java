@@ -96,5 +96,4 @@ public class LottoResultTest {
 
         assertThat(profitRate).isEqualTo(expectedProfitRate);
     }
-
 }

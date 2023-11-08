@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
 
 public class LottoResultCalculatorService {
@@ -16,5 +17,9 @@ public class LottoResultCalculatorService {
                         winningNumbers.bonusNumberMatch(lotto)))
                 .forEach(rank -> ranks.put(rank, ranks.getOrDefault(rank, 0) + 1));
         return LottoResult.from(ranks);
+    }
+
+    public double calculateProfit(LottoResult lottoResult, PurchaseAmount purchaseAmount) {
+        return lottoResult.calculateProfitRate(purchaseAmount);
     }
 }

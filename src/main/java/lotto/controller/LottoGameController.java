@@ -31,6 +31,7 @@ public class LottoGameController {
         WinningNumbers winningNumbers = inputView.requestWinningNumbers();
         LottoResult lottoResult = lottoResultCalculatorService.calculateResult(lottos, winningNumbers);
         outputView.showResults(lottoResult);
-        outputView.showProfitRate(lottoResult.calculateProfitRate(purchaseAmount));
+        double profitRate = lottoResultCalculatorService.calculateProfit(lottoResult, purchaseAmount);
+        outputView.showProfitRate(profitRate);
     }
 }

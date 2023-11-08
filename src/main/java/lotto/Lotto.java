@@ -56,8 +56,7 @@ public class Lotto {
     }
 
     private boolean isCheckRange(int number) {
-        return number >= LOTTO_NUMBER_RANGE_START
-                && number <= LOTTO_NUMBER_RANGE_END;
+        return number >= LOTTO_NUMBER_RANGE_START && number <= LOTTO_NUMBER_RANGE_END;
     }
 
     private boolean isDifferentLottoNumber(List<Integer> numbers) {

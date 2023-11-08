@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.config.Config;
+import lotto.constant.MyConstant;
 import lotto.control.Process;
 
 public class ShowLottoProcess {
@@ -11,7 +12,7 @@ public class ShowLottoProcess {
     }
 
     public void printBuyLotto() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(MyConstant.MSG_INPUT_MONEY());
         while (true) {
             try {
                 process.buyLotto();

@@ -29,4 +29,7 @@ public class MyConstant {
         return "6개 일치 (2,000,000,000원) - " + count + "개\n";
     }
 
+    public static String MSG_INPUT_MONEY() {
+        return "구입금액을 입력해 주세요.";
+    }
 }

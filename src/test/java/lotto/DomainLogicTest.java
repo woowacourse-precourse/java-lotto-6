@@ -15,7 +15,6 @@ public class DomainLogicTest {
     void purchaseLottoInCostInput() {
         int lottoCost = 5000;
         int expectedLottoCount = lottoCost / 1000;
-
         int purchasedLottoCount = Control.calculateTicketCount(lottoCost);
 
         assertThat(purchasedLottoCount).isEqualTo(expectedLottoCount);
@@ -75,7 +74,7 @@ public class DomainLogicTest {
     void isReturnRateValueRightBasedOnPrize() {
         int purchasePrice = 5000;
         int totalPrize = 1500000;
-        String expectedProfitRate = "30000.0"; // 예상 수익률
+        String expectedProfitRate = "30000.0";
 
         String profitRate = ProfitRate.calculateProfit(totalPrize, purchasePrice);
 

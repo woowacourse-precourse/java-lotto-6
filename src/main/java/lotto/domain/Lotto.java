@@ -9,6 +9,9 @@ public class Lotto {
     public Lotto(List<Integer> generatedNumbers) {
         validate(generatedNumbers);
         this.numbers = sortNumbersToAsc(generatedNumbers);
+
+        Printer printer = new Printer();
+        printer.showLotteryNumbers(numbers);
     }
 
     public List<Integer> getLotteryNumbers() {

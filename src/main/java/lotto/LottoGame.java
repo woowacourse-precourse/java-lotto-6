@@ -6,7 +6,7 @@ public class LottoGame {
 
 	public static void run() {
 
-		String usermoney = Input.moneyInput();
+		String usermoney = Input.money();
 
 		int lottoCount = Input.calculateLottoCount(usermoney);
 

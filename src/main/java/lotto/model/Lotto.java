@@ -8,13 +8,12 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Lotto {
-    // enum 으로 고칠 수 있으면 고쳐
     public static final int MIN_RANGE = 1;
     public static final int MAX_RANGE = 45;
     public static final int NUMBER_COUNT = 6;
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
 
         validateCount(sortedNumbers);
@@ -29,16 +28,13 @@ public class Lotto {
         return numbers;
     }
 
-    // 메서드 이름 고칠 수 있음녀 고쳐
-    // 빈 리스트도 사이즈로 확인 바로 가능 굳이 메서드 안 만ㄷ르어도 됨
-    private void validateCount(List<Integer> numbers) {
+    private void validateCount(final List<Integer> numbers) {
         if (numbers.size() != NUMBER_COUNT) {
             throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
     }
 
-    // TODO: 추가 기능 구현
-    private void hasDuplicateNumber(List<Integer> numbers) {
+    private void hasDuplicateNumber(final List<Integer> numbers) {
         Set<Integer> exceptDuplicateNumber = new HashSet<>(numbers);
 
         if (exceptDuplicateNumber.size() != numbers.size()) {
@@ -46,25 +42,30 @@ public class Lotto {
         }
     }
 
-    private void validRange(List<Integer> numbers) {
-        // stream 가능하면 바꿔
-        for (int number : numbers) {
-            if (!(number >= MIN_RANGE && number <= MAX_RANGE)) {
-                throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
+    private void validRange(final List<Integer> numbers) {
+        if (numbers.stream().anyMatch(number -> !(number >= MIN_RANGE && number <= MAX_RANGE))) {
+            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
+    public boolean contains(final int targetNumber) {
+        return numbers.contains(targetNumber);
+    }
+
+    public void sortNumbers(final List<Integer> numbers) {
+        Collections.sort(numbers);
+    }
+
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Lotto that = (Lotto) o;
-        return Objects.equals(numbers, that.numbers);
+        Lotto other = (Lotto) o;
+        return Objects.equals(numbers, other.numbers);
     }
 
     @Override
@@ -72,13 +73,8 @@ public class Lotto {
         return Objects.hash(numbers);
     }
 
-    public void sortNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
-    }
-
-    public boolean contains(int number) {
-        return numbers.contains(number);
-    }
     @Override
-    public String toString() {return numbers.toString();}
+    public String toString() {
+        return numbers.toString();
+    }
 }

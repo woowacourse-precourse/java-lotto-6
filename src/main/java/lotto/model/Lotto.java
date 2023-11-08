@@ -40,4 +40,8 @@ public class Lotto {
         if (numberSet.size() != numbers.size())
             throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBERS_MESSAGE);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

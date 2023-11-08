@@ -81,6 +81,14 @@ public class InputViewTest {
                 .hasMessageContaining(ErrorMessage.NOT_INTEGER.getMessage());
     }
 
+    @DisplayName("입력받은 로또 번호가 중복된다면 예외가 발생한다.")
+    @Test
+    void testValidateDuplicateNumbers() {
+        String[] input = {"1", "2", "3", "4", "5", "5"};
+        assertThatThrownBy(() -> Validator.checkNumbers(input)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.NUMBER_DUBPLICATE.getMessage());
+    }
+
     @DisplayName("입력받은 보너스 로또 번호가 로또 번호와 중복된다면 예외가 발생한다.")
     @Test
     void testValidateBonusNumber() {

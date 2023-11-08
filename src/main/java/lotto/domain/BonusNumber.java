@@ -14,13 +14,13 @@ public class BonusNumber {
         this.bonus = bonusNumber;
     }
 
+    public int getBonus() {
+        return bonus;
+    }
+
     private static void validateBonusNumber(List<Integer> lotto, int bonus) {
         Validator.validateInputIsNatural(bonus);
         Validator.validateInputRange(bonus);
         Validator.validateBonusNumberInLotto(lotto, bonus);
-    }
-
-    public int getBonus() {
-        return bonus;
     }
 }

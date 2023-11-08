@@ -23,6 +23,10 @@ public class Result {
                 .sum();
     }
 
+    public Map<LottoRanking, Integer> getLottoResult() {
+        return Collections.unmodifiableMap(lottoResult);
+    }
+
     private void setResult() {
         for (LottoRanking rank : LottoRanking.values()) {
             lottoResult.put(rank, Constants.ZERO);
@@ -34,9 +38,5 @@ public class Result {
             int increaseCount = lottoResult.get(lottoRanking) + INCREASE_AMOUNT;
             lottoResult.put(lottoRanking, increaseCount);
         }
-    }
-
-    public Map<LottoRanking, Integer> getLottoResult() {
-        return Collections.unmodifiableMap(lottoResult);
     }
 }

@@ -22,6 +22,10 @@ public class LottoTickets {
         return new Result(ranking);
     }
 
+    public List<Lotto> getLottoTickets() {
+        return Collections.unmodifiableList(lottoTickets);
+    }
+
     private List<Lotto> createLottoTickets(int ticketAmount) {
         List<Lotto> tickets = new ArrayList<>();
         IntStream.range(0, ticketAmount).forEach(i ->
@@ -35,9 +39,5 @@ public class LottoTickets {
                         Constants.MAX_NUMBER, Constants.LOTTO_SIZE));
         Collections.sort(randomNumbers);
         return randomNumbers;
-    }
-
-    public List<Lotto> getLottoTickets() {
-        return Collections.unmodifiableList(lottoTickets);
     }
 }

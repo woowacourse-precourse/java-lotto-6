@@ -32,15 +32,15 @@ public enum LottoRanking {
                 .orElse(NO_MATCH);
     }
 
-    private boolean matchNumber(int matchingNumber) {
-        return this.matchingNumber == matchingNumber;
-    }
-
     public int getPrizeAmount() {
         return prizeAmount;
     }
 
     public String getResultMessage() {
         return resultMessage;
+    }
+
+    private boolean matchNumber(int matchingNumber) {
+        return this.matchingNumber == matchingNumber;
     }
 }

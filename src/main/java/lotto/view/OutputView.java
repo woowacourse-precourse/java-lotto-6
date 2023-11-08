@@ -34,16 +34,6 @@ public class OutputView {
                 .forEach(lotto -> printMessage(createLottoTicket(lotto)));
     }
 
-    private static String createLottoTicket(Lotto lotto) {
-        StringBuilder lottoNumbers = new StringBuilder(OPEN_BRACKET);
-        lotto.getNumbers()
-                .forEach(number -> lottoNumbers.append(number)
-                        .append(COMMA));
-        lottoNumbers.delete(lottoNumbers.length() - 2, lottoNumbers.length());
-        lottoNumbers.append(CLOSE_BRACKET);
-        return lottoNumbers.toString();
-    }
-
     public static void printLottoInputMessage() {
         printMessage(LOTTO_NUMBERS_INPUT_MESSAGE);
     }
@@ -64,6 +54,16 @@ public class OutputView {
 
     public static void printRateOfReturn(double rateOfReturn) {
         System.out.printf(RATE_OF_RETURN_MESSAGE, rateOfReturn);
+    }
+
+    private static String createLottoTicket(Lotto lotto) {
+        StringBuilder lottoNumbers = new StringBuilder(OPEN_BRACKET);
+        lotto.getNumbers()
+                .forEach(number -> lottoNumbers.append(number)
+                        .append(COMMA));
+        lottoNumbers.delete(lottoNumbers.length() - 2, lottoNumbers.length());
+        lottoNumbers.append(CLOSE_BRACKET);
+        return lottoNumbers.toString();
     }
 
     private static List<Map.Entry<LottoRanking, Integer>> filterAndSortResult(Result result) {

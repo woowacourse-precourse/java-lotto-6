@@ -73,15 +73,18 @@ public class UserInterface {
             throw new IllegalArgumentException("[ERROR] 한개의 숫자를 입력해 주세요");
         }
     }
-    public static Integer bonusValidate(Integer bonus){
+    public static Integer bonusValidate(List<Integer> winningNumbers,Integer bonus){
         try {
             if (bonus < 1 || bonus > 45) {
                 throw new IllegalArgumentException("[ERROR] 1 ~ 45의 숫자를 입력해 주세요.");
             }
+            if(winningNumbers.contains(bonus)){
+                throw new IllegalArgumentException("[ERROR] 당첨번호가 아닌 숫자를 입력해 주세요");
+            }
             return bonus;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            return bonusValidate(bonusInput());
+            return bonusValidate(winningNumbers, bonusInput());
         }
     }
     // 당첨 내역을 출력하기

@@ -58,7 +58,7 @@ public class Customer {
         return Arrays.asList(count, bonusCount);
     }
 
-    public Integer calculatePrize(List<LottoResults> results){
+    public static Integer calculatePrize(List<LottoResults> results){
         Integer prize = 0;
         prize += (results.get(0).getCounts() * 2000000000);
         prize += (results.get(1).getCounts() * 30000000);
@@ -67,7 +67,7 @@ public class Customer {
         prize += (results.get(4).getCounts() * 5000);
         return prize;
     }
-    public Double calculatePrizeRate(Integer prize, Integer money){
+    public static Double calculatePrizeRate(Integer prize, Integer money){
         Double prizeRate = Double.valueOf(prize) / Double.valueOf(money);
         Double result = ((prizeRate * 100.0) * 10.0) / 10.0;
 

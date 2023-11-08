@@ -13,7 +13,10 @@ public enum LottoResults {
         return counts;
     }
 
-    public void addCounts(){
-        this.counts += 1;
-    }
+    public void addCounts(){this.counts += 1;}
+
+    public void setCounts(Integer count) {this.counts = count;}
 }
+
+
+

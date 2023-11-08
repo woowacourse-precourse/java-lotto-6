@@ -13,7 +13,7 @@ public class Application {
         user.buyLottos(controll.moneyValidate(money));
         user.printPocket();
         List<Integer> winningNumbers = controll.winningValidate(controll.winningNumberInput());
-        Integer bonusNumber = controll.bonusValidate(controll.bonusInput());
+        Integer bonusNumber = controll.bonusValidate(winningNumbers, controll.bonusInput());
         user.judgment(winningNumbers, bonusNumber, judgeresult);
         controll.printJudgment(judgeresult);
         controll.printPrizeRate(user.calculatePrizeRate(user.calculatePrize(judgeresult),money));

@@ -3,6 +3,7 @@ package lotto.view;
 import static lotto.constant.message.LottoMessage.LOTTO_NUMBERS_PREFIX_MESSAGE;
 import static lotto.constant.message.LottoMessage.LOTTO_NUMBERS_SUFFIX_MESSAGE;
 import static lotto.constant.message.LottoMessage.LOTTO_PURCHASE_FIXMESSAGE;
+import static lotto.constant.message.LottoMessage.RATE_OF_RETURN_MESSAGE;
 import static lotto.constant.message.LottoMessage.SEPARATION;
 import static lotto.domain.Rank.FIFTH;
 import static lotto.domain.Rank.FIRST;
@@ -57,5 +58,9 @@ public class OutputView {
         System.out.println("5개 일치, 보너스 볼 일치 (" + decimalFormat.format(SECOND.getPrize()) + "원) - "
                 + results.get(SECOND) + "개");
         System.out.println("6개 일치 (" + decimalFormat.format(FIRST.getPrize()) + "원) - " + results.get(FIRST) + "개");
+    }
+
+    public void printRateOfReturn(double rateOfReturn) {
+        System.out.printf(RATE_OF_RETURN_MESSAGE, rateOfReturn);
     }
 }

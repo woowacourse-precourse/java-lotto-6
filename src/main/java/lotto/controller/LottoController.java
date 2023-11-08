@@ -26,6 +26,7 @@ public class LottoController {
         LottoResult lottoResult = winningNumbers.checkLottos(lottos);
 
         outputView.printLottosResult(lottoResult.getResults());
+        outputView.printRateOfReturn(lottoResult.getRateOfReturn(money));
     }
 
     private Money inputMoney() {

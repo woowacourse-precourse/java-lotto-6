@@ -29,8 +29,8 @@ public class LottoService {
         PRIZE_BY_STATE.put(StateType.SIX_MATCH, 2000000000);
     }
 
-    public LottoService() {
-        this.lottoRepository = new LottoRepository();
+    public LottoService(LottoRepository lottoRepository) {
+        this.lottoRepository = lottoRepository;
     }
 
     public void createLottos(LottoDto lottoDto) {

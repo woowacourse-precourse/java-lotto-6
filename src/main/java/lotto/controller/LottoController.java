@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.dto.LottoDto;
+import lotto.model.repository.LottoRepository;
 import lotto.model.service.LottoService;
 import lotto.view.OutputView;
 
@@ -8,7 +9,7 @@ public class LottoController {
     private final LottoService service;
 
     public LottoController() {
-        this.service = new LottoService();
+        this.service = new LottoService(new LottoRepository());
     }
 
     public void run() {

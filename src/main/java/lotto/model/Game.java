@@ -39,6 +39,15 @@ public class Game {
         return this.userLottoNumbers;
     }
 
+    public List<Integer> getMatchResult(List<Integer> lottoNumber) {
+        this.result = initMatchResult();
+        for (List<Integer> numbers : this.getUserLottoNumbers()) {
+            checkMatchResult(this.result, countMatchResult(numbers, lottoNumber), numbers);
+        }
+
+        return this.result;
+    }
+
     public List<Integer> initMatchResult() {
         List<Integer> matchResult = new ArrayList<>();
         for (int i = 0; i < 8; i++) {

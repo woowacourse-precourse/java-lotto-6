@@ -7,13 +7,14 @@ import lotto.view.OutputView;
 import java.util.List;
 
 public class LottoPurchaseController {
+    private final PaymentController paymentController = new PaymentController();
     private final OutputView outputView = new OutputView();
     private final LottoShop lottoShop = new LottoShop();
 
     public List<Lotto> purchase(int userPayment) {
         List<Lotto> purchasedLotto = purchaseLotto(userPayment);
-        purchasedLotto.forEach(this::printPurchasedLotto);
         printPurchasedAmount(purchasedLotto.size());
+        purchasedLotto.forEach(this::printPurchasedLotto);
         return purchasedLotto;
     }
 
@@ -22,6 +23,7 @@ public class LottoPurchaseController {
             return lottoShop.sell(payment);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
+            payment = paymentController.getUserPayment();
             return purchaseLotto(payment);
         }
     }

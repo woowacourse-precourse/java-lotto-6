@@ -12,6 +12,10 @@ public class Input {
         String input = Console.readLine();
         int bonusNumber = parseInt(input);
 
+        if (isNotLottoNumber(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
+
         return bonusNumber;
     }
 
@@ -44,11 +48,11 @@ public class Input {
         }
 
         for (int lottoNumber: lottoNumbers) {
-            isValidLottoRange(isLottoNumber(lottoNumber));
+            isValidLottoRange(isNotLottoNumber(lottoNumber));
         }
     }
 
-    private static boolean isLottoNumber(int lottoNumber) {
+    private static boolean isNotLottoNumber(int lottoNumber) {
         return lottoNumber < 1 || lottoNumber > 45;
     }
 

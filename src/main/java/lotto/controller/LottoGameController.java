@@ -25,7 +25,7 @@ public class LottoGameController {
     public LottoGameController(OutputView outputView, ErrorView errorView) {
         this.outputView = outputView;
         this.errorView = errorView;
-        this.lottoStore = LottoStore.of(new RandomNumberGenerateStrategy());
+        this.lottoStore = new LottoStore(new RandomNumberGenerateStrategy());
         this.lottoHeadQuarter = new LottoHeadQuarter();
     }
 

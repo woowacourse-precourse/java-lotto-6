@@ -13,12 +13,8 @@ public class LottoStore {
     private static final int ZERO_COUNT_VALUE = 0;
     private NumberGenerateStrategy numberGenerateStrategy;
 
-    private LottoStore(NumberGenerateStrategy numberGenerateStrategy) {
+    public LottoStore(NumberGenerateStrategy numberGenerateStrategy) {
         this.numberGenerateStrategy = numberGenerateStrategy;
-    }
-
-    public static LottoStore of(NumberGenerateStrategy numberGenerateStrategy) {
-        return new LottoStore(numberGenerateStrategy);
     }
 
     public Lottos sellLotto(Money money) {

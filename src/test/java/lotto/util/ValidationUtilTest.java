@@ -23,7 +23,6 @@ class ValidationUtilTest {
     @DisplayName("올바르지 않은 구매금액 입력시 예외 발생")
     void shouldThrowInvalidPurchaseInput() throws Exception {
         //given
-        ValidationUtil validationUtil = new ValidationUtil();
         Method method = validationUtil.getClass().getDeclaredMethod("validateNumberType", String.class);
         method.setAccessible(true);
 
@@ -44,7 +43,6 @@ class ValidationUtilTest {
     @DisplayName("올바르지 않은 구매금액 입력시 예외 발생2")
     void shouldThrowInvalidPurchaseInputTwo() throws Exception {
         //given
-        ValidationUtil validationUtil = new ValidationUtil();
         Method method = validationUtil.getClass().getDeclaredMethod("validateNumberType", String.class);
         method.setAccessible(true);
 
@@ -105,7 +103,6 @@ class ValidationUtilTest {
     @DisplayName("6개가 아닌 숫자들을 입력시 예외 발생")
     void shouldThrowOverCountInput() throws Exception {
         //given
-        ValidationUtil validationUtil = new ValidationUtil();
         Method method = validationUtil.getClass().getDeclaredMethod("validateCount", List.class);
         method.setAccessible(true);
 
@@ -126,7 +123,6 @@ class ValidationUtilTest {
     @DisplayName("입력받은 값들 중 숫자가 아닌 값을 입력시 예외 발생")
     void shouldThrowCannotMakeIntegerInput() throws Exception {
         //given
-        ValidationUtil validationUtil = new ValidationUtil();
         Method method = validationUtil.getClass().getDeclaredMethod("StringToInteger", List.class);
         method.setAccessible(true);
 
@@ -147,7 +143,6 @@ class ValidationUtilTest {
     @DisplayName("범위 외의 숫자들 입력시 예외 발생")
     void shouldThrowNotInRangeInput() throws Exception {
         //given
-        ValidationUtil validationUtil = new ValidationUtil();
         Method method = validationUtil.getClass().getDeclaredMethod("StringToInteger", List.class);
         method.setAccessible(true);
 

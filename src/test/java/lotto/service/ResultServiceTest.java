@@ -1,18 +1,27 @@
 package lotto.service;
 
 import lotto.domain.LottoResultCount;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ResultServiceTest {
+
+    private LottoResultCount resultCount;
+    private ResultService resultService;
+
+    @BeforeEach
+    void init() {
+        resultCount = new LottoResultCount();
+        resultService = new ResultService();
+    }
+
     @Test
     @DisplayName("수익률이 0.0%인 경우")
     void testZeroProfitRate() {
         // Arrange
-        LottoResultCount resultCount = new LottoResultCount();
-        ResultService resultService = new ResultService();
         resultService.createResultService(resultCount, 0);
 
         // Act
@@ -26,7 +35,6 @@ class ResultServiceTest {
     @DisplayName("수익률 계산 테스트")
     void testProfitRateCalculation() {
         // Arrange
-        LottoResultCount resultCount = new LottoResultCount();
         resultCount.addThreeCount();
         resultCount.addFourCount();
         resultCount.addFiveCount();

@@ -4,7 +4,6 @@ import java.util.NoSuchElementException;
 import lotto.service.PurchaseService;
 import lotto.service.ResultService;
 import lotto.service.WinningNumberService;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,7 +28,6 @@ class LottoControllerTest {
     private InputStream originalSystemIn;
     private PrintStream originalSystemOut;
     private ByteArrayOutputStream outputStream;
-    private ByteArrayInputStream inputStream;
 
     private LottoController lottoController;
 
@@ -41,7 +39,7 @@ class LottoControllerTest {
         outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-        lottoController = new LottoController(new InputView(), new OutputView(), new PurchaseService(),
+        lottoController = new LottoController(new OutputView(), new PurchaseService(),
                 new ResultService(), new WinningNumberService());
     }
 
@@ -57,8 +55,7 @@ class LottoControllerTest {
     @DisplayName("올바른 값들이 입력되었을 때")
     void testPlayMethod(String input) {
         // given
-        inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
+        setInputStream(input);
 
         // when
         lottoController.play();
@@ -77,11 +74,7 @@ class LottoControllerTest {
     @DisplayName("구매 금액에 잘못된 값을 넣은 경우")
     void testPlayMethodWithInvalidPurchaseInput(String input) {
         // given
-        inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
-
-        lottoController = new LottoController(new InputView(), new OutputView(), new PurchaseService(),
-                new ResultService(), new WinningNumberService());
+        setInputStream(input);
 
         // when
         assertThrows(NoSuchElementException.class, () -> lottoController.play());
@@ -97,11 +90,7 @@ class LottoControllerTest {
     @DisplayName("로또 번호에 잘못된 값을 넣은 경우")
     void testPlayMethodWithInvalidWinningNumberInput(String input) {
         // given
-        inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
-
-        lottoController = new LottoController(new InputView(), new OutputView(), new PurchaseService(),
-                new ResultService(), new WinningNumberService());
+        setInputStream(input);
 
         // when
         assertThrows(NoSuchElementException.class, () -> lottoController.play());
@@ -117,11 +106,7 @@ class LottoControllerTest {
     @DisplayName("보너스 번호에 잘못된 값을 넣은 경우")
     void testPlayMethodWithInvalidBonusInput(String input) {
         // given
-        inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
-
-        lottoController = new LottoController(new InputView(), new OutputView(), new PurchaseService(),
-                new ResultService(), new WinningNumberService());
+        setInputStream(input);
 
         // when
         assertThrows(NoSuchElementException.class, () -> lottoController.play());
@@ -131,5 +116,10 @@ class LottoControllerTest {
         assertThat(outputStream.toString()).contains(INPUT_NUMBER.getMessage());
         assertThat(outputStream.toString()).contains(INPUT_BONUS.getMessage());
         assertThat(outputStream.toString()).contains(ERROR.getMessage());
+    }
+
+    void setInputStream(String input) {
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
     }
 }

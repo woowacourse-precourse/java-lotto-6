@@ -18,18 +18,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 class WinningNumberServiceTest {
 
     private WinningNumberService winningNumberService;
+    private ValidationUtil validationUtil;
+    private LottoPurchase lottoPurchase;
+    private ResultService resultService;
 
     @BeforeEach
     void setUp() {
         winningNumberService = new WinningNumberService();
+        validationUtil = new ValidationUtil();
+        lottoPurchase = new LottoPurchase();
+        resultService = new ResultService();
     }
 
     @Test
     @DisplayName("당첨 번호 및 보너스 번호 입력 및 로또 당첨 결과 계산 테스트")
     void testCalculateLottoWinningResult() {
         // Arrange
-        LottoPurchase lottoPurchase = new LottoPurchase();
-        ResultService resultService = new ResultService();
         winningNumberService.getInputWinningSixNumber("1,2,3,4,5,6"); // 당첨 번호 입력
         winningNumberService.getInputWinningNumber("7"); // 보너스 번호 입력
 
@@ -57,7 +61,6 @@ class WinningNumberServiceTest {
     @DisplayName("빈칸이 포함된 입력시 예외 발생")
     void shouldThrowArithmeticExceptionForInvalidPurchaseInput() throws Exception {
         //given
-        ValidationUtil validationUtil = new ValidationUtil();
         Method method = validationUtil.getClass().getDeclaredMethod("validateBlank", List.class);
         method.setAccessible(true);
 
@@ -78,7 +81,6 @@ class WinningNumberServiceTest {
     @DisplayName("6개가 아닌 숫자들을 입력시 예외 발생")
     void shouldThrowCountFailInput() throws Exception {
         //given
-        ValidationUtil validationUtil = new ValidationUtil();
         Method method = validationUtil.getClass().getDeclaredMethod("validateCount", List.class);
         method.setAccessible(true);
 
@@ -99,7 +101,6 @@ class WinningNumberServiceTest {
     @DisplayName("입력받은 값들 중 중복되는 숫자들 입력시 예외 발생")
     void shouldThrowDuplicateInput() throws Exception {
         //given
-        ValidationUtil validationUtil = new ValidationUtil();
         Method method = validationUtil.getClass().getDeclaredMethod("validateDuplicate", List.class);
         method.setAccessible(true);
 
@@ -120,7 +121,6 @@ class WinningNumberServiceTest {
     @DisplayName("입력받은 값들 중 표기는 다르지만 중복되는 숫자들 입력시 예외 발생")
     void shouldThrowDuplicateSameMeanInput() throws Exception {
         //given
-        ValidationUtil validationUtil = new ValidationUtil();
         Method method = validationUtil.getClass().getDeclaredMethod("validateDuplicate", List.class);
         method.setAccessible(true);
 
@@ -141,7 +141,6 @@ class WinningNumberServiceTest {
     @DisplayName("입력받은 값이 숫자가 아닌 경우 예외 발생")
     void shouldThrowNoneNumberInput() throws Exception {
         //given
-        ValidationUtil validationUtil = new ValidationUtil();
         Method method = validationUtil.getClass().getDeclaredMethod("isValidNumber", String.class);
         method.setAccessible(true);
 
@@ -162,7 +161,6 @@ class WinningNumberServiceTest {
     @DisplayName("입력받은 값이 숫자가 범위 내의 숫자가 아닌 경우 예외 발생")
     void shouldThrowNoneRangeNumberInput() throws Exception {
         //given
-        ValidationUtil validationUtil = new ValidationUtil();
         Method method = validationUtil.getClass().getDeclaredMethod("isValidNumber", String.class);
         method.setAccessible(true);
 
@@ -183,7 +181,6 @@ class WinningNumberServiceTest {
     @DisplayName("입력받은 보너스값이 숫자가 아닌 경우 예외 발생")
     void shouldThrowNoneNumberBonusInput() throws Exception {
         //given
-        ValidationUtil validationUtil = new ValidationUtil();
         Method method = validationUtil.getClass().getDeclaredMethod("isValidNumber", String.class);
         method.setAccessible(true);
 
@@ -204,7 +201,6 @@ class WinningNumberServiceTest {
     @DisplayName("입력받은 보너스 번호가 이미 당첨번호에 존재하는 경우 예외 발생")
     void shouldThrowExistedNumberInput() throws Exception {
         //given
-        ValidationUtil validationUtil = new ValidationUtil();
         Method method = validationUtil.getClass().getDeclaredMethod("isExistedNumber", int.class, List.class);
         method.setAccessible(true);
 

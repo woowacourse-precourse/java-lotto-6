@@ -19,10 +19,12 @@ import java.util.List;
 public class PurchaseServiceTest {
 
     private PurchaseService purchaseService;
+    private ValidationUtil validationUtil;
 
     @BeforeEach
     void setUp() {
         purchaseService = new PurchaseService();
+        validationUtil = new ValidationUtil();
     }
 
     @ParameterizedTest
@@ -39,7 +41,6 @@ public class PurchaseServiceTest {
     @DisplayName("올바르지 않은 구매금액 입력시 예외 발생")
     void shouldThrowArithmeticExceptionForInvalidPurchaseInput() throws Exception {
         //given
-        ValidationUtil validationUtil = new ValidationUtil();
         Method method = validationUtil.getClass().getDeclaredMethod("validateNumberType", String.class);
         method.setAccessible(true);
 
@@ -60,7 +61,6 @@ public class PurchaseServiceTest {
     @DisplayName("올바르지 않은 구매금액인 0을 입력시 예외 발생")
     void shouldThrowArithmeticExceptionForZeroPurchaseInput() throws Exception {
         //given
-        ValidationUtil validationUtil = new ValidationUtil();
         Method method = validationUtil.getClass().getDeclaredMethod("validateAmount", int.class);
         method.setAccessible(true);
 
@@ -81,7 +81,6 @@ public class PurchaseServiceTest {
     @DisplayName("구매금액을 1000원으로 떨어지지 않는 입력 시 예외 발생")
     void shouldThrowIllegalArgumentExceptionForInvalidPurchaseInput() throws Exception {
         //given
-        ValidationUtil validationUtil = new ValidationUtil();
         Method method = validationUtil.getClass().getDeclaredMethod("validateDivision", String.class);
         method.setAccessible(true);
 

@@ -36,6 +36,11 @@ public class WinningNumber {
         return winningNumbers;
     }
 
+    private void validate(String winningNumberInput) {
+        validateCount(winningNumberInput);
+        validateDuplicate(winningNumberInput);
+    }
+
     private void validateCount(String winningNumber) {
         if (winningNumber.split(",").length != THE_NUMBER_OF_WINNING_NUMBER) {
             throw new IllegalStateException("[ERROR] 당첨 번호 6개를 입력해주세요.");

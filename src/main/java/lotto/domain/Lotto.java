@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.StringJoiner;
 import lotto.util.GenerationUtil;
 import lotto.util.ValidationUtil;
 
@@ -25,5 +28,14 @@ public class Lotto {
         return numbers;
     }
 
+    public String printNumbers() {
+        StringJoiner stringJoiner = new StringJoiner(", ", "[", "]");
+        List<Integer> numbers = new ArrayList<>(getNumbers());
+        Collections.sort(numbers);
+        for (Integer number : numbers) {
+            stringJoiner.add(String.valueOf(number));
+        }
+        return stringJoiner.toString();
+    }
 
 }

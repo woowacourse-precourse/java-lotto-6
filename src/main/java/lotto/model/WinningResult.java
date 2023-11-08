@@ -24,6 +24,14 @@ public enum WinningResult {
         this.price = price;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public int getCountResult() {
+        return countResult;
+    }
+
     public static void countLottoResult(int correctCnt, boolean correctBonus) {
         Arrays.stream(WinningResult.values())
                 .filter(value -> value.matchCount == correctCnt && value.matchBonus == correctBonus)

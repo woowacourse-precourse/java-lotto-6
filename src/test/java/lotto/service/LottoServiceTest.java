@@ -28,5 +28,22 @@ public class LottoServiceTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("사용자가 작성한 로또 번호와 보너스 번호 중에서 중복이 있는 경우 예외가 발생한다.")
+    @Test
+    void createLottoBySpace() {
+        //given
+        String lottoNum = "1,2,4,13,24,35";
+        String bonusNum = "2";
+        LottoService lottoService = new LottoService();
+
+        //when
+        lottoService.setPurchaseNum(lottoNum);
+        lottoService.setBonusNum(bonusNum);
+
+        //then
+        assertThatThrownBy(lottoService::setBonusNumber)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }

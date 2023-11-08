@@ -3,6 +3,7 @@ package lotto.validation;
 import static lotto.exception.GlobalExceptionHandler.handleCustomException;
 
 import lotto.exception.errorzip.*;
+import lotto.parsing.Parsing;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -21,7 +22,7 @@ public class NumberValidation {
 
     public static void isDistinct(List<Integer> inputValue){
         if(inputValue.stream().distinct().count() != inputValue.size()){
-            handleCustomException(new NotSameNumberInList());
+            handleCustomException(new NotSameNumberInGroup());
         }
     }
 
@@ -67,6 +68,12 @@ public class NumberValidation {
     public static void isCorrectRange(List<Integer> inputValue){
         if(!inputValue.stream().allMatch(number -> number>=START_NUMBER && number<=END_NUMBER)){
             handleCustomException(new NotInRange());
+        }
+    }
+
+    public static void isAllUnique(List<Integer> inputValue, String number){
+        if(!inputValue.stream().allMatch(listNum -> listNum!= Parsing.stringToInt(number))){
+            handleCustomException(new NotSameNumberInGroup());
         }
     }
 

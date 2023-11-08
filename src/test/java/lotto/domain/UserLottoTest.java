@@ -47,5 +47,7 @@ public class UserLottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    
+
+
+
 }

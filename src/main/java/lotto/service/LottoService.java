@@ -66,9 +66,14 @@ public class LottoService {
         purchaseNum = InputView.inputLine();
         lotto = new Lotto(setLottoNumberList());
         outputView.bonusNumberComment();
-        bonusNum = InputView.inputLine();
+        getBonus();
         int bonusNumber = setBonusNumber();
         userLotto = new UserLotto(lotto, new BonusLotto(bonusNumber));
+    }
+
+    private static void getBonus() {
+        bonusNum = InputView.inputLine();
+        NumberValidation.isAllUnique(lotto.getUserNumbers(), bonusNum);
     }
 
     public int setBonusNumber() {

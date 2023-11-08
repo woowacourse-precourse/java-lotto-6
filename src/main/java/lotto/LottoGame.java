@@ -206,7 +206,7 @@ public class LottoGame {
     private void printRoundedTotalIncome(Integer inputMoney, Integer totalIncome) {
         double rateOfReturn = ((totalIncome - inputMoney) / (double) inputMoney) * 100;
 
-        System.out.printf("총 수익률은 %.1f입니다.", rateOfReturn);
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
     }
 
     private void getRateOfReturn() {

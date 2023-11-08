@@ -67,8 +67,10 @@
     ```
     - LottoGame.getMoneyForRank() : 등수를 입력받아 당첨금액을 반환
     - LottoGame.printRoundedTotalIncome()
-- [] Enum을 사용하여 문자열, 숫자등의 값은 상수로 관리
+- [ ] Enum을 사용하여 문자열, 숫자등의 값은 상수로 관리
     - Constant Enum 생성
+- [x] 로또 번호가 중복되도록 입력 할 수 없다.
+    - Lotto.validate 수정
 - [x] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     ```
     Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.

@@ -34,12 +34,18 @@ public class LottoSalesman {
                 String resultDescription = rank.getDescription();
                 int prize = rank.getPrize();
                 System.out.println(resultDescription + " - " + count + "개");
-                if(count != 0 ) {
-                    totalPrize += count * prize;
-                }
+                totalPrize = answerCount(count, prize, totalPrize);
             }
         }
         InputLottoUI.rateOfReturn(totalPrize, money);
     }
+
+    public static int answerCount(int count, int prize, int totalPrize) {
+        if(count != 0) {
+            totalPrize += count * prize;
+        }
+        return totalPrize;
+    }
+
 
 }

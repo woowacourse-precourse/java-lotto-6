@@ -22,10 +22,10 @@ public class LottoController {
     }
 
     public void run() {
-        PurchaseAmountRequest purchaseAmountRequest = readPurchaseAmount();
-        Lottos lottos = lottoMakeService.makeRandomLottos(purchaseAmountRequest);
+        Lottos lottos = lottoMakeService.makeRandomLottos(readPurchaseAmount());
+        output.writeEmptyLine();
         output.writeLottosInfo(lottos.getLottoInfoResponse());
-        output.writeWinningNumberInputMessage();
+        output.writeEmptyLine();
         LottoNumbers lottoNumbers = readLottoNumbers();
     }
 
@@ -35,11 +35,19 @@ public class LottoController {
     }
 
     private LottoNumbers readLottoNumbers() {
-        WinningNumberRequest winningNumberRequest = readUntilValidInput(
-            input::readWinningNumber);
+        output.writeWinningNumberInputMessage();
+        WinningNumberRequest winningNumberRequest =
+            readUntilValidInput(input::readWinningNumber);
+
+        output.writeEmptyLine();
+
         output.writeBonusNumberInputMessage();
-        return readUntilValidInput(() -> new LottoNumbers(winningNumberRequest.winningNumber(),
-            input.readBonusNumber().bonusNumber()));
+        return readUntilValidInput(() ->
+            new LottoNumbers(
+                winningNumberRequest.winningNumber(),
+                input.readBonusNumber().bonusNumber()
+            )
+        );
     }
 
     private <T> T readUntilValidInput(Supplier<T> supplier) {

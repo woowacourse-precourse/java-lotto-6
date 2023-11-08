@@ -17,8 +17,7 @@ public class InputView {
         while (true) {
             try {
                 String input = Console.readLine();
-                inputValidation.isNumber(input);
-                inputValidation.isThousandMultiple(input);
+                inputValidation.validatePayment(input);
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException error) {
                 System.out.println(error);
@@ -43,7 +42,7 @@ public class InputView {
         while (true) {
             try {
                 String input = Console.readLine();
-                inputValidation.isNumber(input);
+                inputValidation.validateBonusNumber(input);
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException error) {
                 System.out.println(error);

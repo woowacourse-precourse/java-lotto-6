@@ -12,8 +12,6 @@ public class GameController {
     private WinningNumberGenerator winningNumberGenerator;
     private OutputController outputController;
     private LottoCountGenerator lottoCountGenerator;
-    private int lottoCount;
-    private int customerPrice;
 
     public GameController(Player player, PlayerService playerService, WinningNumberGenerator winningNumberGenerator,
                           OutputController outputController, LottoCountGenerator lottoCountGenerator) {
@@ -25,11 +23,11 @@ public class GameController {
     }
 
     public void start() {
-        customerPrice = lottoCountGenerator.getCustomerPrice();
-        lottoCount = lottoCountGenerator.getLottoCount(customerPrice);
+        int customerPrice = lottoCountGenerator.getCustomerPrice();
+        int lottoCount = lottoCountGenerator.getLottoCount(customerPrice);
 
         playerService.buy(lottoCount);
-        outputController.printLottoPapers(player.getLottoPapers(), lottoCount);
+        outputController.printLottoPapers(player.getLottoPapers());
 
         playerService.check(winningNumberGenerator.generate());
         outputController.printWinningStatistics(customerPrice);

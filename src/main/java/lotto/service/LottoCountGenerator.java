@@ -6,15 +6,14 @@ import lotto.util.LottoValues;
 
 public class LottoCountGenerator {
 
+    public Integer getCustomerPrice() {
+        Integer customerPrice = InputController.repeat(() -> inputAndValidateCustomerPrice());
+        return customerPrice;
+    }
+
     public Integer getLottoCount(int customerPrice) {
         Integer lottoCount = parseLottoCount(customerPrice);
         return lottoCount;
-    }
-
-    public Integer getCustomerPrice() {
-        Integer customerPrice = InputController.repeat(() -> inputAndValidateCustomerPrice());
-
-        return customerPrice;
     }
 
     private int parseLottoCount(int customerPrice) {

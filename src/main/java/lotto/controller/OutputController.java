@@ -16,11 +16,11 @@ public class OutputController {
         this.totalStatCalculator = totalStatCalculator;
     }
 
-    public void printLottoPapers(List<Lotto> lottos, int lottoCount) {
+    public void printLottoPapers(List<Lotto> lottos) {
         System.out.println();
-        System.out.println(String.format(OutputMessage.LOTTO_PRINT_TITLE.toString(), lottoCount));
+        System.out.println(String.format(OutputMessage.LOTTO_PRINT_TITLE.toString(), lottos.size()));
         for (Lotto lotto : lottos) {
-            System.out.println(lotto.toString());
+            System.out.println(lotto);
         }
     }
 

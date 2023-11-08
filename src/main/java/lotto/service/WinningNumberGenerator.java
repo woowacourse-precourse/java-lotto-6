@@ -13,12 +13,12 @@ public class WinningNumberGenerator {
         return new WinningNumbers(winningNumbers, bonusNumber);
     }
 
-
     private List<Integer> getWinningNumbers() {
         List<Integer> winningNumbers = InputController.repeat(() -> inputAndValidateWinningNumbers());
 
         return winningNumbers;
     }
+
     private Integer getBonusNumber(List<Integer> winningNumbers) {
         Integer bonusNumber = InputController.repeat(() -> inputAndValidateBonusNumbers(winningNumbers));
         NumberValidator.validate(bonusNumber, winningNumbers);

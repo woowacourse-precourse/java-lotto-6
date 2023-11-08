@@ -48,4 +48,52 @@ public class UserTest {
         );
     }
 
+    @DisplayName("구매한 로또 당첨 통계를 출력한다.")
+    @Test
+    void printWinningStatistics() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    int purchaseAmount = 5000;
+                    User user = new User(purchaseAmount);
+
+                    List<Integer> numbers = createLottoNumbers();
+                    int bonusNumber = 8;
+
+                    LottoResult result = new LottoResult(numbers, bonusNumber);
+                    user.matchLottoNumbers(result);
+
+                    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                    System.setOut(new PrintStream(outputStream));
+
+                    user.printWinningStatistics();
+
+                    String captured = outputStream.toString().trim();
+
+                    assertThat(captured).contains(
+                            "당첨 통계",
+                            "---",
+                            "3개 일치 (5,000원) - 1개",
+                            "4개 일치 (50,000원) - 1개",
+                            "5개 일치 (1,500,000원) - 1개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+                            "6개 일치 (2,000,000,000원) - 1개"
+                    );
+
+
+                },
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 8),
+                List.of(1, 2, 3, 8, 9, 10),
+                List.of(1, 2, 3, 4, 9, 10),
+                List.of(1, 2, 3, 4, 5, 11)
+        );
+    }
+
+    List<Integer> createLottoNumbers() {
+        List<Integer> numbers = new ArrayList<>();
+        for (int i = 1; i < 7; i++) {
+            numbers.add(i);
+        }
+        return numbers;
+    }
 }

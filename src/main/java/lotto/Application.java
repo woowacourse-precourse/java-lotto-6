@@ -73,26 +73,12 @@ public class Application {
         return lottoCount;
     }
 
-    public static List<Integer> getNumbers() {
-        List<Integer> numbers = new ArrayList<Integer>();
-
-        int num;
-        for (int i=0; i<NUM_OF_LOTTO_NUMBERS; i++){
-            do {
-                num = Randoms.pickNumberInRange(1, 45);
-            } while(numbers.contains(num));
-            numbers.add(num);
-        }
-
-        return numbers;
-    }
-
     public static Lotto[] getLottos(int lottoCount) {
         Lotto[] lottos = new Lotto[lottoCount];
 
         List<Integer> numbers;
         for (int i = 0; i < lottoCount; i++){
-            numbers = getNumbers();
+            numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             numbers.sort(Comparator.naturalOrder());
             lottos[i] = new Lotto(numbers);
             System.out.println(numbers);

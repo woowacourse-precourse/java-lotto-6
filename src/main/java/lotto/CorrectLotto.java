@@ -36,22 +36,13 @@ public class CorrectLotto {
         }
     }
 
-    // 입력값이 정수인지 확인하여 변환
-    private int convertToInt(String number){
-        try {
-            return Integer.parseInt(number);
-        } catch (NumberFormatException e){
-            throw new IllegalArgumentException("입력값이 정수가 아닙니다. 1~45 사이의 숫자를 입력해주세요.");
-        }
-    }
-
     private List<Integer> convertStringToInteger(String input_numbers){
         String[] numbers = input_numbers.split(",");
         checkEmptyPart(countComma(input_numbers) + 1, numbers.length);
 
         List<Integer> converted_numbers = new ArrayList<>();
         for(String number : numbers){
-            int converted_number = convertToInt(number.strip());
+            int converted_number = CommonFunction.convertToInt(number.strip());
             converted_numbers.add(converted_number);
         }
 
@@ -75,13 +66,6 @@ public class CorrectLotto {
         System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
-    // 보너스 번호가 [1, 45] 구간에 있는지 확인
-    private void checkNumberIn1to45(int number){
-        if(number < 1 || number > 45){
-            throw new IllegalArgumentException("보너스 번호는 1~45 사이의 숫자여야 합니다.");
-        }
-    }
-
     // 보너스 번호가 당첨 번호와 중복되는지 확인
     private void checkNumberDuplicate(int number){
         for(Integer correct_number : correct_lotto.getNumbers()){
@@ -96,8 +80,8 @@ public class CorrectLotto {
             printInputBonusMessage();
             String input_number = readLine();
             try {
-                int converted_number = convertToInt(input_number.strip());
-                checkNumberIn1to45(converted_number);
+                int converted_number = CommonFunction.convertToInt(input_number.strip());
+                CommonFunction.checkNumberIn1to45(converted_number);
                 checkNumberDuplicate(converted_number);
                 bonus = converted_number;
                 break;

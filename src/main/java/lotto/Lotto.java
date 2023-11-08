@@ -23,16 +23,7 @@ public class Lotto {
         }
     }
 
-    // 번호가 모두 [1, 45] 구간에 있는지 확인
-    private void checkNumbersIn1to45(List<Integer> numbers){
-        for(Integer number : numbers){
-            if(number < 1 || number > 45){
-                throw new IllegalArgumentException("번호는 1~45 사이의 숫자여야 합니다.");
-            }
-        }
-    }
-
-    // 번호가 중복되는지 확인
+    // 번호가 서로 중복되는지 확인
     private void checkNumbersDuplicate(List<Integer> numbers){
         Set<Integer> unique_numbers = new HashSet<>();
         for(Integer number : numbers){
@@ -45,7 +36,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         checkSize6(numbers);
-        checkNumbersIn1to45(numbers);
+        CommonFunction.checkNumbersIn1to45(numbers);
         checkNumbersDuplicate(numbers);
     }
 

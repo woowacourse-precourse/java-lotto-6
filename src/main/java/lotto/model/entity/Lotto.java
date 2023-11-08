@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.entity;
 
 import java.util.List;
 import lotto.view.ExceptionMessage;

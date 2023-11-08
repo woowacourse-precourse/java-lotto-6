@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -84,5 +85,12 @@ public class WinningLotto {
             throw new IllegalArgumentException();
     }
 
+    public Lotto getterWinningNumbers(){
+        return this.winningNumbers;
+    }
+
+    public int getterBonusNumber(){
+        return this.bonusNumber;
+    }
 
 }

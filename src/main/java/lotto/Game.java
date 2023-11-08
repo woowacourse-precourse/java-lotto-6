@@ -1,11 +1,16 @@
 package lotto;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Game {
     private Amount amount;
     private List<Lotto> lottos;
     private Output output = new Output();
+    private WinningLotto winningLotto;
+    private Map<Ranking, Integer> result = new HashMap<>();
+
     public void setAmount() {
         while(true) {
             try {
@@ -20,4 +25,11 @@ public class Game {
         output.printLottoPurchaseCountMessage(amount.getLottoCount());
         output.printLottos(lottos);
     }
+
+    public void checkWinning(){
+        Lotto winningNumbers = winningLotto.getterWinningNumbers();
+        int bonusNumber = winningLotto.getterBonusNumber();
+        result = Ranking.getWinningResult(lottos, winningNumbers, bonusNumber);
+    }
+
 }

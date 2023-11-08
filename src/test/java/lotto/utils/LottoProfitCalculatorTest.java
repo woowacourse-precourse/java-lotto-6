@@ -1,10 +1,10 @@
-package lotto.model;
+package lotto.utils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
 import java.util.Map;
-import lotto.utils.LottoProfitCalculator;
+import lotto.model.LottoPrize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

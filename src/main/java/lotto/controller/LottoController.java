@@ -5,8 +5,6 @@ import lotto.model.LottoDrawSystem;
 import lotto.utils.Utils;
 import lotto.view.LottoView;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Arrays;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -24,17 +22,15 @@ public class LottoController {
     }
 
     public void run() {
-        // 로또 번호를 뽑고 추첨을 하는 모든 과정을 호출하는 최상단의 함수
         this.buyLottos();
         this.setWinningNumbers();
         this.compareLottos();
     }
 
     public void buyLottos() {
-        String price = this.enterPrice();
-        this.view.newLine();
+        String price;
+        price = this.enterPrice();
 
-        lottoBuySystem.validatePrice(price);
         lottoBuySystem.buyLottos(price);
 
         int lottosCount = lottoBuySystem.getLottosCount();
@@ -49,7 +45,6 @@ public class LottoController {
 
     public void setWinningNumbers() {
         String numbers = this.enterLottoDrawNumbers();
-        lottoDrawSystem.validateNumbers(numbers);
         lottoDrawSystem.setNumbers(numbers);
     }
 
@@ -84,19 +79,54 @@ public class LottoController {
 
 
     private String enterPrice() {
-        this.view.printEnterLottosCount(); // 구입금액을 입력해 주세요.
-        return readLine();
+        String res = "";
+        boolean isValidInput = false;
+
+        while (!isValidInput) {
+            this.view.printEnterLottosCount();
+            try {
+                res = readLine();
+                lottoBuySystem.validatePrice(res);
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return res;
     }
 
-    private String enterLottoDrawNumbers() {
-        this.view.printEnterLottoWinningNumbers(); // 당첨 번호를 입력해 주세요.
-        String numbers = readLine();
-        this.view.newLine();
 
-        this.view.printEnterBonusNumber(); // 보너스 번호를 입력해 주세요.
-        String bonusNumber = readLine();
-        this.view.newLine();
+
+    private String enterLottoDrawNumbers() {
+        boolean validInput = false;
+        String numbers = "";
+        String bonusNumber = "";
+
+        while (!validInput) {
+            numbers = enterLottoDrawWiningNumbers();
+            bonusNumber = enterLottoDrawBonusNumber();
+            String fullInput = String.join(SEPERATOR, numbers, bonusNumber);
+
+            try {
+                lottoDrawSystem.validateNumbers(fullInput);
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         return String.join(SEPERATOR, numbers, bonusNumber);
     }
+
+    private String enterLottoDrawWiningNumbers() {
+        this.view.printEnterLottoWinningNumbers();
+        return readLine();
+    }
+
+    private String enterLottoDrawBonusNumber() {
+        this.view.printEnterBonusNumber();
+        return readLine();
+    }
+
 }

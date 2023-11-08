@@ -16,40 +16,12 @@ public class InteractServiceTest extends NsTest {
     private final String LOTTO_NUM = "1,2,3,4,5,6";
     private final String BONUS_NUM = "7";
 
-    @DisplayName("로또 구입 금액을 문자열로 입력할 경우 예외가 발생한다.")
+    @DisplayName("로또 구입 금액에 숫자가 아닌 문자를 입력할 경우 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {
-            "test", "purchase", "String"
+            "test", "purchase", "String", "@@@", ",,,", "!@#$!@$!", " ", "\n"
     })
     void purchaseByString(String input) {
-        assertSimpleTest(() -> {
-            runException(
-                    input
-            );
-            assertThat(output()).contains(ErrorStatus.PARSE_INT_ERROR.getMessage());
-        });
-    }
-
-    @DisplayName("로또 구입 금액을 기호로 입력할 경우 예외가 발생한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {
-            "@@@", ",,,", "!@#$!@$!"
-    })
-    void purchaseBySign(String input) {
-        assertSimpleTest(() -> {
-            runException(
-                    input
-            );
-            assertThat(output()).contains(ErrorStatus.PARSE_INT_ERROR.getMessage());
-        });
-    }
-
-    @DisplayName("로또 구입 금액을 공백로 입력할 경우 예외가 발생한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {
-            " ", "\n"
-    })
-    void purchaseByBlank(String input) {
         assertSimpleTest(() -> {
             runException(
                     input

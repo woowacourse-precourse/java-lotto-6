@@ -1,12 +1,11 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.NumberGenerator;
+import lotto.model.Lotto;
+import lotto.model.NumberGenerator;
 import lotto.view.Input;
 import lotto.view.Output;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LottoController {

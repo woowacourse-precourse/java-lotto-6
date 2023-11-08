@@ -1,7 +1,7 @@
 package lotto.view;
 
 import lotto.constants.OutputMessage;
-import lotto.domain.Lotto;
+import lotto.model.Lotto;
 
 import java.util.ArrayList;
 

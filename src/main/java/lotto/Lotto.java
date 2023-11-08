@@ -12,13 +12,16 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 6개를 입력하셔야 합니다.\n");
+            System.err.println("[ERROR] 당첨번호는 6개를 입력하셔야 합니다.\n");
+            throw new IllegalArgumentException();
         }
         if (hasSameNumbers(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호에는 중복되지 않는 6개를 입력하셔야 합니다.\n");
+            System.err.println("[ERROR] 당첨번호에는 중복되지 않는 6개를 입력하셔야 합니다.\n");
+            throw new IllegalArgumentException();
         }
         if (!areInRange(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.\n");
+            System.err.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.\n");
+            throw new IllegalArgumentException();
         }
 
     }

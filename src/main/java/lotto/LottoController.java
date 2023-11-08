@@ -1,22 +1,47 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LottoController {
+        int payMoney;
+        private static List<Integer> lottoNumbers;
+        private static List<Lotto> lottos;
+        int bonusNumber;
 
         public void run(){
-
+                buyingLotto();
         }
-        public void inputLottoPrice(){
+        private void buyingLotto() {
                 OutputView.mentionInputPrice();
-                String inputPrice = Console.readLine();
+                payMoney = InputView.inputMoney();
+                LottoPrice lottoPrice = new LottoPrice(payMoney);
+                int count = lottoPrice.getLottoCount();
+                makeLottos(count);
+                OutputView.mentionInputWinningNumber();
+                lottoNumbers = InputView.inputLottoNumbers();
+                Lotto lotto = new Lotto(lottoNumbers);
+                lotto.printNumbers();
+                OutputView.mentionInputBonusNumber();
+                bonusNumber = InputView.inputBonusNumber();
         }
-        private void vaildateLottoPrice(String inputPrice){
-                if(inputPrice.isEmpty()){
-                        throw new IllegalArgumentException("구입금액을 입력해 주세요.");
+        private static List<Lotto> makeLottos(int count){
+                lottos = new ArrayList<>();
+                for(int i = 0; i< count; i++){
+                        lottos.add(makeLotto());
                 }
-                if(!inputPrice.matches("[0-9]+")){
-                        throw new IllegalArgumentException("구입금액은 숫자만 입력 가능합니다.");
-                }
+                return lottos;
         }
+        private static Lotto makeLotto(){
+                LottoGenerator lottoGenerator = new LottoGenerator();
+                lottoNumbers = LottoGenerator.startRandom();
+                System.out.println(lottoNumbers);
+                return new Lotto(lottoNumbers);
+        }
+
+        // lottoPrice.getLottoCount()에 따라 lottos를 생성하는 메서드
+
 }

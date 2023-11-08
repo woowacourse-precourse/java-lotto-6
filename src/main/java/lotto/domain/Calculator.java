@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Calculator {
 
-    ResultRepository resultRepository = new ResultRepository();
+    private ResultRepository resultRepository = new ResultRepository();
 
     public double getRateOfReturn() {
         return getTotalReward() / (getNumberOfLotto() * 10);

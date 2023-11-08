@@ -33,4 +33,20 @@ class LottoResultTest {
                 .containsEntry(LottoRank.FOURTH, 0)
                 .containsEntry(LottoRank.FIFTH, 0);
     }
+
+    @Test
+    @DisplayName("6개 번호가 모두 일치할 경우 FIRST 순위가 올바르게 계산되어야 한다.")
+    void shouldCalculateFirstRankCorrectly() {
+        // given
+        List<Set<Integer>> purchasedNumbers = List.of(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;  // Not relevant for FIRST rank
+
+        // when
+        LottoResult lottoResult = new LottoResult(purchasedNumbers, winningNumbers, bonusNumber);
+        Map<LottoRank, Integer> matchCounts = lottoResult.getMatchCounts();
+
+        // then
+        assertThat(matchCounts.get(LottoRank.FIRST)).isEqualTo(1);
+    }
 }

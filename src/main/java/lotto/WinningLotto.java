@@ -25,7 +25,7 @@ public class WinningLotto {
     }
 
     private void validateBonusNumberNotOverlapWinningNumber(Lotto lotto, int bonusNumber) {
-        if (lotto.getNumbers().contains(bonusNumber)) {
+        if (lotto.isContainBonusNumber(bonusNumber)) {
             throw new IllegalArgumentException(NON_OVERLAPPING_NUMBER_REQUEST_MESSAGE);
         }
     }

@@ -63,7 +63,7 @@ public class StatsService {
 
     public void calculateProfitRate() {
         int totalWinnings = calculateTotalWinnings();
-        double profitRatePercent = (totalWinnings - player.getPayment()) / (double) player.getPayment() * 100;
+        double profitRatePercent = totalWinnings / (double) player.getPayment() * 100;
         profitRate = formatProfitRate(profitRatePercent);
 
         printStats();

@@ -6,14 +6,13 @@ import java.util.List;
 
 public class InputValidator {
 
-    private static final String ERROR = "[ERROR] ";
-    private static final String NOT_NUMBER = ERROR + "숫자가 아닙니다.";
-    private static final String OUT_OF_RANGE = ERROR + "수의 범위 1 ~ 45를 벗어났습니다.";
-    private static final String NOT_DIVISIBLE_BY_THOUSAND = ERROR + "1,000으로 나누어 떨어지지 않습니다.";
-    private static final String LESS_THAN_THOUSAND = ERROR + "1,000보다 작습니다.";
-    private static final String DUPLICATE_WINNING_NUMBERS = ERROR + "당첨 번호에 중복된 번호가 존재합니다.";
-    private static final String NOT_SIX_WINNING_NUMBERS = ERROR + "당첨 번호가 6개가 아닙니다.";
-    private static final String ALREADY_USED_WINNING_NUMBER = ERROR + "이미 당첨 번호로 사용 중인 번호 입니다.";
+    private static final String NOT_NUMBER = "숫자가 아닙니다.";
+    private static final String OUT_OF_RANGE = "수의 범위 1 ~ 45를 벗어났습니다.";
+    private static final String NOT_DIVISIBLE_BY_THOUSAND = "1,000으로 나누어 떨어지지 않습니다.";
+    private static final String LESS_THAN_THOUSAND = "1,000보다 작습니다.";
+    private static final String DUPLICATE_WINNING_NUMBERS = "당첨 번호에 중복된 번호가 존재합니다.";
+    private static final String NOT_SIX_WINNING_NUMBERS = "당첨 번호가 6개가 아닙니다.";
+    private static final String ALREADY_USED_WINNING_NUMBER = "이미 당첨 번호로 사용 중인 번호 입니다.";
 
     private static final int ZERO = 0;
     public static final int MIN_NUMBER = 1;

@@ -13,6 +13,15 @@ public class Validator {
         }
     }
 
+    public static void checkBonusNumber(Integer bonusNumber, List<Integer> winNumbers) {
+        if (winNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE);
+        }
+        if (!isInRange(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE);
+        }
+    }
+
     public static void checkNumberCount(List<Integer> numbers) {
         if (numbers.size() != LottoCondition.NUMBER_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_COUNT);

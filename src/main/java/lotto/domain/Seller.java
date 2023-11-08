@@ -9,6 +9,7 @@ import lotto.view.Print;
 public class Seller {
     private List<Lotto> lottos;
     private Lotto win;
+    private Integer bonusNumber;
     private Integer purchaseAmount;
 
     public void buy() {
@@ -22,5 +23,8 @@ public class Seller {
     public void draw() {
         Print.getWinNumbers();
         win = Input.getWinNumbers();
+
+        Print.getBonusNumber();
+        bonusNumber = Input.getBonusNumber(win);
     }
 }

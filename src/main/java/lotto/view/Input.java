@@ -30,4 +30,15 @@ public class Input {
             return getWinNumbers();
         }
     }
+    
+    public static Integer getBonusNumber(Lotto lotto) {
+        try {
+            Integer bonusNumber = Util.parseIntOrThrowException(Console.readLine());
+            Validator.checkBonusNumber(bonusNumber, lotto.getNumbers());
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumber(lotto);
+        }
+    }
 }

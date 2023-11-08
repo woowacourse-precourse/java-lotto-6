@@ -27,6 +27,10 @@ public class Application {
     PrizeMoney Prize = new PrizeMoney();
     Prize.printResults(results);
 
+    int totalPurchaseCost =    numberOfTickets * 1000;
+    double totalRevenueRate = Prize.calculateTotalRevenueRate(results,totalPurchaseCost);
+    double roundedRevenueRate = Math.round(totalRevenueRate * 100.0) / 100.0;
+    System.out.println("총 수익률은 " + roundedRevenueRate + "% 입니다.");
   }
 
 }

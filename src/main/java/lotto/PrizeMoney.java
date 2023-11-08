@@ -43,6 +43,18 @@ public class PrizeMoney {
 
     prizeAmount = Prize.values()[4].getAmount();
     System.out.println("6개 일치 (" + formattedAmount + "원) - " + results[3] + "개");
+
+
+  }
+
+  static double calculateTotalRevenueRate(int[] results, int totalPurchaseCost) {
+    int totalPrize = 0;
+    for (int i = 0; i < results.length; i++) {
+      int prizeAmount = Prize.values()[i].getAmount();
+      totalPrize += results[i] * prizeAmount;
+    }
+
+    return ((double) totalPrize / totalPurchaseCost) * 100;
   }
 
 

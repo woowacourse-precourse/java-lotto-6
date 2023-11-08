@@ -39,12 +39,13 @@ public class Application {
 
     private static int getLottoCount() {
         while (true) {
-            int amount = getInputAmount();
-            if (amount % 1000 != 0) {
-                System.out.println("[ERROR] 로또 구입 금액은 1,000원 단위로 입력해야 합니다.");
-                continue;
+            try {
+                int amount = getInputAmount();
+                validateAmount(amount);
+                return amount / 1000;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
-            return amount / 1000;
         }
     }
 
@@ -57,6 +58,12 @@ public class Application {
                 continue;
             }
             return Integer.parseInt(input);
+        }
+    }
+
+    private static void validateAmount(int amount) {
+        if (amount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위로 입력해야 합니다.");
         }
     }
 
@@ -89,8 +96,16 @@ public class Application {
     }
 
     private static int getBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                int bonusNumber = Integer.parseInt(Console.readLine());
+                Lotto.validateBonusNumber(bonusNumber);  // 유효성 검사를 수행
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static List<Integer> parseNumbers(String input) {

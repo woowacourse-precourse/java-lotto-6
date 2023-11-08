@@ -63,7 +63,7 @@ public class LottoController {
     private void printLottosNumberAndTicket(LottosInfoDto lottosInfoDto) {
         ConsoleOutput.printNewLine();
         outputView.displayTicket(lottosInfoDto.ticket());
-        outputView.displayLottosNumber(lottosInfoDto.lottosNumbers());
+        outputView.displayLottosNumber(lottosInfoDto);
     }
 
     private List<Integer> getWinningNumbers() {

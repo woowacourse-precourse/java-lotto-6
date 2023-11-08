@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.enums.Prize;
+import lotto.dto.response.LottosInfoDto;
 
 public class OutputView {
     private static final String WINNING_STATISTICS_FORMAT = "%s %d개";
@@ -13,8 +14,8 @@ public class OutputView {
         System.out.println(ticket + TICKET_BUYING_MESSAGE);
     }
 
-    public void displayLottosNumber(List<List<Integer>> lottosNumber) {
-        for (List<Integer> numbers : lottosNumber) {
+    public void displayLottosNumber(LottosInfoDto lottosInfoDto) {
+        for (List<Integer> numbers : lottosInfoDto.lottosNumbers()) {
             System.out.println(numbers);
         }
     }

@@ -5,7 +5,13 @@ import lotto.model.Lotto;
 import lotto.model.Player;
 
 public class StatsService {
+    private static final Integer THREE_MATCH_AMOUNT = 5000;
+    private static final Integer FOUR_MATCH_AMOUNT = 50000;
+    private static final Integer FIVE_MATCH_AMOUNT = 1500000;
+    private static final Integer FIVE_MATCH_WITH_BONUS_AMOUNT = 30000000;
+    private static final Integer SIX_MATCH_AMOUNT = 2000000000;
     private Player player;
+    private String profitRate;
 
     public StatsService(Player player) {
         this.player = player;
@@ -16,7 +22,7 @@ public class StatsService {
             int matchCount = countMatchingNumbers(lotto, player.getLotto());
             addMatch(lotto, matchCount);
         }
-
+        calculateProfitRate();
     }
 
     public int countMatchingNumbers(Lotto lotto, Lotto winningNumber) {
@@ -52,5 +58,26 @@ public class StatsService {
         } else if (matchCount == 6) {
             player.addSixMatch();
         }
+    }
+
+    public void calculateProfitRate() {
+        int totalWinnings = calculateTotalWinnings();
+        double profitRatePercent = (totalWinnings - player.getPayment()) / (double) player.getPayment() * 100;
+        profitRate = formatProfitRate(profitRatePercent);
+    }
+
+    public int calculateTotalWinnings() {
+        int totalWinnings = 0;
+        totalWinnings += player.getThreeMatch() * THREE_MATCH_AMOUNT;
+        totalWinnings += player.getFourMatch() * FOUR_MATCH_AMOUNT;
+        totalWinnings += player.getFiveMatch() * FIVE_MATCH_AMOUNT;
+        totalWinnings += player.getFiveMatchWithBonus() * FIVE_MATCH_WITH_BONUS_AMOUNT;
+        totalWinnings += player.getSixMatch() * SIX_MATCH_AMOUNT;
+        return totalWinnings;
+    }
+
+    public String formatProfitRate(double profitRate) {
+        double roundedProfitRate = Math.round(profitRate * 10.0) / 10.0;
+        return String.format("%.1f%%", roundedProfitRate);
     }
 }

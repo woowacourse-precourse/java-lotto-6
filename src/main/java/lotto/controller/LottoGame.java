@@ -21,6 +21,7 @@ public class LottoGame {
         lottoService.createBonusNumber();
         player = new Player(lottoService.getPayment(), lottoService.getWinningNumbers(), lottoService.getBonusNumber());
         statsService = new StatsService(player);
+        statsService.calculateWinnings(lottoService.getLottos());
     }
 
 }

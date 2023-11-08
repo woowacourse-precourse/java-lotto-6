@@ -46,4 +46,11 @@ public class PrizeTierTest {
     void getPrizeTierTest_5_1() {
         Assertions.assertEquals(PrizeTier.SECOND, PrizeTier.getPrizeTier(5, true));
     }
+
+    @DisplayName("일치하는 당첨 번호 수가 6개와 보너스 번호가 일치하지 않을때에 대한 PrizeTier 반환 테스트")
+    @Test
+    void getPrizeTierTest_6_0() {
+        Assertions.assertEquals(PrizeTier.FIRST, PrizeTier.getPrizeTier(6, false
+        ));
+    }
 }

@@ -1,9 +1,12 @@
 package lotto.util;
 
+import lotto.model.Price;
+
 public class PriceException {
-    public static void validPrice(int money) {
+    public static Price validPrice(int money) {
         checkPositiveNumber(money);
         checkMultipleOfThousand(money);
+        return new Price(money);
     }
 
     public static void checkValidNumber (String input) {
@@ -12,7 +15,7 @@ public class PriceException {
             invalidSpace(input);
             Integer.parseInt(input);
         } catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] : 옳바른 숫자를 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] : 옳바른 값을 입력해주세요.");
         }
     }
 

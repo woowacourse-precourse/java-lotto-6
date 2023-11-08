@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.Rank;
+import lotto.domain.LottoRank;
 import lotto.vo.BonusNumber;
 import lotto.vo.WinningNumbers;
 import org.assertj.core.api.Assertions;
@@ -56,7 +56,7 @@ class LottoTest {
         WinningNumbers winningNumbers = WinningNumbers.from(List.of(7, 8, 9, 10, 11, 12));
         BonusNumber bonusNumber = BonusNumber.from(13);
 
-        Assertions.assertThat(lotto.matchRank(winningNumbers, bonusNumber)).isEqualTo(Rank.NONE);
+        Assertions.assertThat(lotto.matchRank(winningNumbers, bonusNumber)).isEqualTo(LottoRank.NONE);
     }
 
     @DisplayName("일치하는 번호가 3개일 경우 Rank.FIFTH를 반환한다.")
@@ -66,7 +66,7 @@ class LottoTest {
         WinningNumbers winningNumbers = WinningNumbers.from(List.of(1, 2, 3, 7, 8, 9));
         BonusNumber bonusNumber = BonusNumber.from(45);
 
-        Assertions.assertThat(lotto.matchRank(winningNumbers, bonusNumber)).isEqualTo(Rank.FIFTH);
+        Assertions.assertThat(lotto.matchRank(winningNumbers, bonusNumber)).isEqualTo(LottoRank.FIFTH);
     }
 
     @DisplayName("일치하는 번호가 4개일 경우 Rank.FOURTH를 반환한다.")
@@ -76,7 +76,7 @@ class LottoTest {
         WinningNumbers winningNumbers = WinningNumbers.from(List.of(1, 2, 3, 4, 8, 9));
         BonusNumber bonusNumber = BonusNumber.from(13);
 
-        Assertions.assertThat(lotto.matchRank(winningNumbers, bonusNumber)).isEqualTo(Rank.FOURTH);
+        Assertions.assertThat(lotto.matchRank(winningNumbers, bonusNumber)).isEqualTo(LottoRank.FOURTH);
     }
 
     @DisplayName("일치하는 번호가 5개일 경우 Rank.THIRD를 반환한다.")
@@ -86,7 +86,7 @@ class LottoTest {
         WinningNumbers winningNumbers = WinningNumbers.from(List.of(1, 2, 3, 4, 5, 9));
         BonusNumber bonusNumber = BonusNumber.from(13);
 
-        Assertions.assertThat(lotto.matchRank(winningNumbers, bonusNumber)).isEqualTo(Rank.THIRD);
+        Assertions.assertThat(lotto.matchRank(winningNumbers, bonusNumber)).isEqualTo(LottoRank.THIRD);
     }
 
     @DisplayName("일치하는 번호가 5개이고 보너스 번호도 일치할 경우 Rank.SECOND를 반환한다.")
@@ -96,7 +96,7 @@ class LottoTest {
         WinningNumbers winningNumbers = WinningNumbers.from(List.of(1, 2, 3, 4, 5, 9));
         BonusNumber bonusNumber = BonusNumber.from(12);
 
-        Assertions.assertThat(lotto.matchRank(winningNumbers, bonusNumber)).isEqualTo(Rank.SECOND);
+        Assertions.assertThat(lotto.matchRank(winningNumbers, bonusNumber)).isEqualTo(LottoRank.SECOND);
     }
 
     @DisplayName("일치하는 번호가 6개일 경우 Rank.FIRST를 반환한다.")
@@ -106,6 +106,6 @@ class LottoTest {
         WinningNumbers winningNumbers = WinningNumbers.from(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = BonusNumber.from(12);
 
-        Assertions.assertThat(lotto.matchRank(winningNumbers, bonusNumber)).isEqualTo(Rank.FIRST);
+        Assertions.assertThat(lotto.matchRank(winningNumbers, bonusNumber)).isEqualTo(LottoRank.FIRST);
     }
 }

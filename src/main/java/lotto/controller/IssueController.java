@@ -1,19 +1,19 @@
 package lotto.controller;
 
+import lotto.domain.LottoPurchase;
 import lotto.domain.LottoTickets;
-import lotto.domain.Purchase;
 import lotto.dto.output.LottoIssueResultDTO;
 import lotto.view.console.OutputView;
 
 public class IssueController {
-    private final Purchase purchase;
+    private final LottoPurchase lottoPurchase;
 
-    private IssueController(Purchase purchase) {
-        this.purchase = purchase;
+    private IssueController(LottoPurchase lottoPurchase) {
+        this.lottoPurchase = lottoPurchase;
     }
 
-    public static IssueController from(Purchase purchase) {
-        return new IssueController(purchase);
+    public static IssueController from(LottoPurchase lottoPurchase) {
+        return new IssueController(lottoPurchase);
     }
 
     public LottoTickets issueTickets() {
@@ -23,11 +23,11 @@ public class IssueController {
     }
 
     private LottoTickets buyLottoTickets() {
-        return purchase.generateLottoTickets();
+        return lottoPurchase.generateTickets();
     }
 
     private void displayLottoTickets(LottoTickets tickets) {
-        LottoIssueResultDTO result = LottoIssueResultDTO.of(purchase.getTicketCount(), tickets.getTickets());
+        LottoIssueResultDTO result = LottoIssueResultDTO.of(lottoPurchase.getTicketCount(), tickets.getTickets());
         OutputView.printLottoIssueResult(result);
     }
 }

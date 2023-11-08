@@ -7,19 +7,21 @@ import lotto.constant.LottoConstants;
 import lotto.vo.TicketCount;
 import lotto.vo.TotalAmount;
 
-public class Purchase {
+public class LottoPurchase {
+    private final TotalAmount totalAmount;
     private final TicketCount ticketCount;
 
-    private Purchase(TicketCount ticketCount) {
+    private LottoPurchase(TotalAmount totalAmount, TicketCount ticketCount) {
+        this.totalAmount = totalAmount;
         this.ticketCount = ticketCount;
     }
 
-    public static Purchase from(TotalAmount totalAmount) {
+    public static LottoPurchase from(TotalAmount totalAmount) {
         TicketCount ticketCount = totalAmount.calculateTicketCount();
-        return new Purchase(ticketCount);
+        return new LottoPurchase(totalAmount, ticketCount);
     }
 
-    public LottoTickets generateLottoTickets() {
+    public LottoTickets generateTickets() {
         List<Lotto> tickets = new ArrayList<>();
         ticketCount.forEach(() -> {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoConstants.MIN_NUMBER,
@@ -31,5 +33,9 @@ public class Purchase {
 
     public int getTicketCount() {
         return ticketCount.getCount();
+    }
+
+    public int getTotalAmount() {
+        return totalAmount.getAmount();
     }
 }

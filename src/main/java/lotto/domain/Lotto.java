@@ -34,7 +34,7 @@ public class Lotto {
     private void validateUniqueNumbers(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != LottoConstants.LOTTO_COUNT) {
-            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_IS_DUPLICATED);
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_IS_DUPLICATED);
         }
     }
 
@@ -46,10 +46,10 @@ public class Lotto {
         }
     }
 
-    public Rank matchRank(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    public LottoRank matchRank(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         int matchCount = calculateMatchCount(winningNumbers);
         boolean matchBonus = containsBonusNumber(bonusNumber);
-        return Rank.determineRank(matchCount, matchBonus);
+        return LottoRank.determineRank(matchCount, matchBonus);
     }
 
     private int calculateMatchCount(WinningNumbers winningNumbers) {

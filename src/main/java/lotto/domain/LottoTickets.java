@@ -21,7 +21,7 @@ public class LottoTickets {
     }
 
     public RankResult evaluateWinningStatus(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        RankResult rankResult = new RankResult();
+        RankResult rankResult = RankResult.create();
         tickets.stream()
                 .map(lotto -> lotto.matchRank(winningNumbers, bonusNumber))
                 .forEach(rankResult::add);

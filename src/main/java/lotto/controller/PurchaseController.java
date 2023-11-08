@@ -1,17 +1,17 @@
 package lotto.controller;
 
 import lotto.config.InputConfiguration;
-import lotto.domain.Purchase;
+import lotto.domain.LottoPurchase;
 import lotto.util.handler.InputHandler;
 import lotto.vo.TotalAmount;
 
 public class PurchaseController {
-    public Purchase processPurchase() {
+    public LottoPurchase processPurchase() {
         TotalAmount totalAmount = InputHandler.processInput(
                 InputConfiguration.createAmountInputHandler(),
                 TotalAmount::from
         );
 
-        return Purchase.from(totalAmount);
+        return LottoPurchase.from(totalAmount);
     }
 }

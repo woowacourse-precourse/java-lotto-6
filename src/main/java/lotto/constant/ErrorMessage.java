@@ -1,6 +1,10 @@
 package lotto.constant;
 
 public class ErrorMessage {
+    private ErrorMessage() {
+
+    }
+
     public static final String NOT_A_NUMBER = "숫자로 입력하셔야 됩니다!\n";
     public static final String IS_BLANK = "입력값이 비어있습니다!\n";
 
@@ -16,8 +20,4 @@ public class ErrorMessage {
     public static final String LOTTO_SIZE_IS_SMALL = "로또 번호는 6개여야 합니다!\n";
     public static final String LOTTO_IS_DUPLICATED = "로또 번호는 중복되면 안됩니다!\n";
     public static final String LOTTO_IS_NOT_VALID_RANGE = "로또 번호는 1부터 45사이의 숫자여야 합니다!\n";
-
-    private ErrorMessage() {
-
-    }
 }

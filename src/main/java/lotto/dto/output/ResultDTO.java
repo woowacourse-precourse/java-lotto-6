@@ -2,7 +2,7 @@ package lotto.dto.output;
 
 import java.util.List;
 
-public class ResultDTO {
+public final class ResultDTO {
     private final List<RankResultDTO> results;
 
     private ResultDTO(List<RankResultDTO> results) {

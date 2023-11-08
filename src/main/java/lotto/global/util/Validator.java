@@ -35,7 +35,7 @@ public interface Validator {
     }
 
     private static void validateMismatchPrice(int processedPrice) {
-        if (processedPrice % 1000 != 0) {
+        if (processedPrice % 1000 != 0 || processedPrice == 0) {
             throw new IllegalArgumentException(ErrorMessage.PRICE_MISMATCH.getMessage());
         }
     }

@@ -19,30 +19,17 @@ class ResultTest {
         // 5등
         Lotto lotto1 = new Lotto(Arrays.asList(4, 5, 6, 7, 8, 9));
         Lotto lotto2 = new Lotto(Arrays.asList(4, 5, 6, 7, 8, 9));
-
         // 1등
         Lotto lotto3 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-
         // 2등
         Lotto lotto4 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 45));
-
         // 3등
         Lotto lotto5 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7));
-
         // 4등
         Lotto lotto6 = new Lotto(Arrays.asList(1, 2, 3, 4, 7, 9));
 
-        List<Lotto> lottos = new ArrayList<>();
-
-        lottos.add(lotto1);
-        lottos.add(lotto2);
-        lottos.add(lotto3);
-        lottos.add(lotto4);
-        lottos.add(lotto5);
-        lottos.add(lotto6);
-
+        List<Lotto> lottos = Arrays.asList(lotto1,lotto2,lotto3,lotto4,lotto5,lotto6);
         Purchase purchase = Purchase.fromPurchaseAmount("6000");
-
         Result result = new Result(jackpot, lottos, purchase);
 
         // when
@@ -73,19 +60,8 @@ class ResultTest {
         Lotto lotto7 = new Lotto(Arrays.asList(1, 2, 3, 4, 7, 9));
         Lotto lotto8 = new Lotto(Arrays.asList(1, 2, 3, 4, 7, 9));
 
-        List<Lotto> lottos = new ArrayList<>();
-
-        lottos.add(lotto1);
-        lottos.add(lotto2);
-        lottos.add(lotto3);
-        lottos.add(lotto4);
-        lottos.add(lotto5);
-        lottos.add(lotto6);
-        lottos.add(lotto7);
-        lottos.add(lotto8);
-
+        List<Lotto> lottos = Arrays.asList(lotto1,lotto2,lotto3,lotto4,lotto5,lotto6,lotto7,lotto8);
         Purchase purchase = Purchase.fromPurchaseAmount("8000");
-
         Result result = new Result(jackpot, lottos, purchase);
 
         result.calculateWinningRanks();

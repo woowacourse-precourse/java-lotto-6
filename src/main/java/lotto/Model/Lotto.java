@@ -1,6 +1,8 @@
 package lotto.Model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.Model.VO.LottoData;
 
 public class Lotto {
@@ -14,6 +16,12 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+        if(isNumbersOutOfRange(numbers)){
+            throw new IllegalArgumentException("[ERROR] 로또의 번호는 1~45 사이어야 합니다.");
+        }
+        if(isNumbersDuplicate(numbers)){
+            throw new IllegalArgumentException("[ERROR] 로또의 번호는 서로 다른 숫자여야 합니다.");
         }
     }
 
@@ -40,8 +48,27 @@ public class Lotto {
         return Prize.NO_RANK;
 
     }
+    private boolean isNumberOutOfRange(Integer number){
+        return number < 1  || 45 < number;
+    }
 
+    private boolean isNumbersDuplicate(List<Integer> numbers){
+        Set<Integer> set = new HashSet<>();
+        for (Integer number : numbers) {
+            if (!set.add(number)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    private boolean isNumbersOutOfRange(List<Integer> numbers){
+        for(Integer number:numbers){
+            if(isNumberOutOfRange(number))
+                return true;
+        }
+        return false;
+    }
     private int calculateMatchCount(List<Integer> answer){
         int matchCount = 0;
         for (Integer number : answer) {

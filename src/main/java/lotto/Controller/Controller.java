@@ -20,14 +20,11 @@ public class Controller {
         gameModel = new GameModel();
     }
 
-    private void startGame(){
-        Output.printEnterPurchaseMount();
-        Integer playerInsert = Input.insertInteger();
-        gameModel.initGameModel(playerInsert);
-    }
-
-    private void proceedGame(){
+    private void startGame() {
+        insertPlayerMoney();
         issuanceLotto();
+    }
+    private void proceedGame(){
         createAnswerLotto();
         createBonusNumber();
     }
@@ -38,16 +35,47 @@ public class Controller {
         Output.printLottos(playerLottos);
     }
 
+    private void insertPlayerMoney(){
+        boolean errorChecker = true;
+        while (errorChecker) {
+            try {
+                Output.printEnterPurchaseMount();
+                Integer playerInsert = Input.insertInteger();
+                gameModel.initGameModel(playerInsert);
+                errorChecker=false;
+            }catch (IllegalArgumentException error){
+                System.out.println(error.getMessage());
+            }
+        }
+    }
     private void createAnswerLotto(){
-        Output.printInsertLottoNumbers();
-        String playerInsert = Input.insertString();
-        gameModel.initAnswerByStrings(playerInsert);
-
+        boolean errorChecker = true;
+        while (errorChecker) {
+            try {
+                Output.printInsertLottoNumbers();
+                String playerInsert = Input.insertString();
+                gameModel.initAnswerByStrings(playerInsert);
+                errorChecker=false;
+            }catch (IllegalArgumentException error){
+                System.out.println(error.getMessage());
+            }
+        }
     }
     private void createBonusNumber(){
-        Output.printInsertBonusNumber();
-        Integer insertBonusNumber = Input.insertInteger();
-        gameModel.initBonus(insertBonusNumber);
+        boolean errorChecker = true;
+
+        while (errorChecker) {
+            try {
+
+                Output.printInsertBonusNumber();
+                Integer insertBonusNumber = Input.insertInteger();
+                gameModel.initBonus(insertBonusNumber);
+
+                errorChecker=false;
+            }catch (IllegalArgumentException error){
+                System.out.println(error.getMessage());
+            }
+        }
     }
 
     private void finshGame(){

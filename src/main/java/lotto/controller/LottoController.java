@@ -1,6 +1,9 @@
 package lotto.controller;
 
+import java.lang.reflect.Member;
+import java.util.List;
 import lotto.domain.Customer;
+import lotto.domain.LottoResult;
 import lotto.domain.PurchasedLotto;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
@@ -24,6 +27,8 @@ public class LottoController {
                 = lottoService.createLotto(customer.getLottoCount());
         outputView.printPurchasedLotto(purchased);
         WinningLotto winningLotto = inputView.getWinningLotto();
-
+        List<LottoResult> lottoResultList = lottoService.getLottoResultList(purchased, winningLotto);
     }
+
+
 }

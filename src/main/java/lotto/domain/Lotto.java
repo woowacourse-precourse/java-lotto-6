@@ -38,9 +38,13 @@ public class Lotto {
     }
 
     public void validateDuplicate(int bonusNumber) {
-        if(numbers.contains(bonusNumber)) {
+        if(containsNumber(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_DUPLICATE_ERROR);
         }
+    }
+
+    public boolean containsNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 
     public List<Integer> getNumbers() {

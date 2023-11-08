@@ -3,7 +3,9 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.PurchasedLotto;
+import lotto.domain.WinningLotto;
 
 public class LottoService {
 
@@ -25,5 +27,11 @@ public class LottoService {
             lottos.add(lotto);
         }
         return new PurchasedLotto(lottos);
+    }
+
+    public List<LottoResult> getLottoResultList(PurchasedLotto purchased, WinningLotto winningLotto) {
+        return purchased.getLottos().stream()
+                .map(lotto -> LottoResult.calculate(lotto, winningLotto))
+                .toList();
     }
 }

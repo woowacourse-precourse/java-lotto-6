@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.utils.NumberConstants;
@@ -9,6 +10,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        isDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -30,6 +32,14 @@ public class Lotto {
 
     public boolean isContainBonusNumber(int bonusNumber) {
         return numbers.contains(bonusNumber);
+    }
+
+    private void isDuplicate(List<Integer> numbers) {
+        boolean result = numbers.stream()
+            .anyMatch(winningNumber -> Collections.frequency(numbers, winningNumber) > 1);
+        if (result) {
+            throw new IllegalArgumentException("[ERROR] 중복된 번호는 존재할 수 없습니다.");
+        }
     }
 
     @Override

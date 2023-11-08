@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,9 +38,9 @@ class WinningNumberValidatorTest {
         List<Integer> numbers = List.of(1,1,2,3,4,5);
 
         //when //then
-        assertThatThrownBy(() -> WinningNumberValidator.validateDuplicateWinningNumber(numbers))
+        assertThatThrownBy(() -> new Lotto(numbers))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("[ERROR] 당첨 번호는 중복이 존재할 수 없습니다.");
+            .hasMessage("[ERROR] 중복된 번호는 존재할 수 없습니다.");
     }
 
     @Test
@@ -49,7 +50,7 @@ class WinningNumberValidatorTest {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
 
         //when //then
-        assertThatCode(() -> WinningNumberValidator.validateDuplicateWinningNumber(numbers))
+        assertThatCode(() -> new Lotto(numbers))
             .doesNotThrowAnyException();
     }
 }

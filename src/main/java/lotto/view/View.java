@@ -45,7 +45,6 @@ public class View {
             outputView.printWinningNumbersGuideMessage();
             String winningNumbers = inputView.inputWinningNumbers();
             List<Integer> list = convertToIntegerList(winningNumbers);
-            WinningNumberValidator.validateDuplicateWinningNumber(list);
             return new Lotto(list);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());

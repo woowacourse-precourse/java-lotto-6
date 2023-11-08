@@ -18,15 +18,4 @@ public class WinningNumberValidator {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표를 구분으로 입력해야 합니다.");
         }
     }
-
-    public static void validateDuplicateWinningNumber(List<Integer> winningNumbers) {
-        if (isDuplicate(winningNumbers)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복이 존재할 수 없습니다.");
-        }
-    }
-
-    private static boolean isDuplicate(List<Integer> winningNumbers) {
-        return winningNumbers.stream()
-            .anyMatch(winningNumber -> Collections.frequency(winningNumbers, winningNumber) > 1);
-    }
 }

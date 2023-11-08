@@ -24,10 +24,8 @@ public class Application {
         }
 
         Lotto winningNumbers = LottoNumbersMaker.generateWinningNumbers(InputView.getWinningNumbers());
-        Number bonusNumber = InputView.getBonusNumber();
-        if(bonusNumber.isContainedIn(winningNumbers.getNumbers())){
-            throw new IllegalArgumentException("당첨번호와 중복입니다.");
-        }
+        int bonusNumber=InputView.getBonusNumber(winningNumbers.getNumbers());
+
         RankChecker rankChecker = new RankChecker(winningNumbers, bonusNumber);
 
         EnumMap<Rank, Integer> rankCounts=new EnumMap<>(Rank.class);

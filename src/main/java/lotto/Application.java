@@ -9,5 +9,6 @@ public class Application {
         lottoManager.printLotties();
         lottoManager.inputLottoWinningNumbers();
         lottoManager.totalLotto();
+        lottoManager.printWinning();
     }
 }

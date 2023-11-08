@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,20 +11,26 @@ public class LottoManager {
     private List<Lotto> lotties;
     private List<Integer> winningNumbers;
     private int bonusNumber;
-    private int[] winningCnt = new int[5];
-    private int totalAmount = 0;
+    private int[] winningCnt;
+    private int totalAmount;
 
     enum winningType {
-        THREE(5000),
-        FOUR(50000),
-        FIVE(1500000),
-        FIVE_ONE(30000000),
-        SIX(2000000000);
+        THREE("3개 일치", 5000),
+        FOUR("4개 일치", 50000),
+        FIVE("5개 일치", 1500000),
+        FIVE_ONE("5개 일치, 보너스 볼 일치", 30000000),
+        SIX("6개 일치", 2000000000);
 
+        private final String num;
         private final int amount;
 
-        private winningType(int amount) {
+        private winningType(String num, int amount) {
+            this.num = num;
             this.amount = amount;
+        }
+
+        public String getNum() {
+            return this.num;
         }
 
         public int getAmount() {
@@ -40,7 +47,9 @@ public class LottoManager {
         lotties = new ArrayList<>();
         NumberGenerator numberGenerator = new NumberGenerator();
         int lottoPrice = 1000;
-        for(int i = 0; i < this.purchaseAmount/lottoPrice; i++) {
+        int lottoNum = this.purchaseAmount/lottoPrice;
+        System.out.println(lottoNum+"개를 구매했습니다.");
+        for(int i = 0; i < lottoNum; i++) {
             List<Integer> numbers = numberGenerator.createRandomNumbers();
             lotties.add(new Lotto(numbers));
         }
@@ -64,9 +73,11 @@ public class LottoManager {
     }
 
     public void totalLotto() {
+        winningCnt = new int[5];
+        totalAmount = 0;
         for(Lotto l:lotties) {
             List<Integer> result = l.compare(winningNumbers, bonusNumber);
-            winningAmount(result.get(0), result.get(1));
+            totalAmount += winningAmount(result.get(0), result.get(1));
         }
     }
 
@@ -92,5 +103,17 @@ public class LottoManager {
             return winningType.SIX.amount;
         }
         return 0;
+    }
+
+    public void printWinning() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        int idx = 0;
+        for(winningType type : winningType.values()) {
+            DecimalFormat decFormat = new DecimalFormat("###,###");
+            System.out.println(type.num + " (" + decFormat.format(type.amount) + "원) - " + winningCnt[idx++] + "개");
+        }
+        double rate = (double)this.totalAmount/purchaseAmount*100;
+        System.out.println("총 수익률은 "+ rate + "%입니다.");
     }
 }

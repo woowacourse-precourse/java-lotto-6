@@ -10,4 +10,4 @@
 - [X] 당첨된 로또 개수와 당첨 금액을 알 수 있다 - LottoManager#totalLotto()
   - [X] 추첨된 수(7자리)와 발행된 수(6자리)를 비교한다. - Lotto#compare()
   - [X] 당첨 기준에 따른 금액을 알 수 있다. - LottoManager#winningAmount()
-- [ ] 당첨된 로또 개수와 당첨 금액을 출력한다. - LottoManager#printWinning()
+- [X] 당첨된 로또 개수와 당첨 금액을 출력한다. - LottoManager#printWinning()

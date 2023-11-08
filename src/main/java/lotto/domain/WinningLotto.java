@@ -1,9 +1,10 @@
 package lotto.domain;
 
-import lotto.exception.BonusNumberDuplicatedException;
+import static lotto.exception.ErrorType.BonusNumberDuplicatedException;
+
+import lotto.exception.LottoException;
 
 public class WinningLotto {
-    private static final String ERROR_HEAD = "[ERROR] ";
     private final Lotto winningNumbers;
     private final Number bonusNumber;
 
@@ -16,7 +17,7 @@ public class WinningLotto {
     private void validateDuplicated(final Lotto lotto, final Number bonusNumber) {
         boolean contains = lotto.contains(bonusNumber);
         if (contains) {
-            throw new BonusNumberDuplicatedException();
+            throw new LottoException(BonusNumberDuplicatedException);
         }
     }
 

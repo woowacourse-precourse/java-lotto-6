@@ -1,12 +1,13 @@
 package lotto.domain;
 
+import static lotto.exception.ErrorType.OverValueException;
+
 import java.util.Objects;
-import lotto.exception.OverValueException;
+import lotto.exception.LottoException;
 
 public class Number {
 
     private static final int LOTTO_MAX_NUM = 45;
-    private static final String ERROR_HEAD = "[ERROR] ";
 
     private final int value;
 
@@ -22,7 +23,7 @@ public class Number {
     private static void validRange(final int value) {
         boolean overRange = value > LOTTO_MAX_NUM;
         if (overRange) {
-            throw new OverValueException();
+            throw new LottoException(OverValueException);
         }
     }
 

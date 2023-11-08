@@ -1,17 +1,19 @@
 package lotto.domain;
 
-import lotto.exception.AmountMinimumException;
-import lotto.exception.AmountUnitException;
-import lotto.exception.InputMoneyNotDigitException;
-import lotto.exception.InputMoneyOverflowException;
+
+import static lotto.exception.ErrorType.AmountMinimumException;
+import static lotto.exception.ErrorType.AmountUnitException;
+import static lotto.exception.ErrorType.InputMoneyNotDigitException;
+import static lotto.exception.ErrorType.InputMoneyOverflowException;
+
+import lotto.exception.LottoException;
 
 public class MoneyManagement {
-    private final int balance;
     private static final int PERCENT = 100;
     private static final int LOTTO_AMOUNT = 1000;
     private static final int ZERO = 0;
     private static final String NUMERIC_PATTERN = "\\d+";
-    private static final String ERROR_HEAD = "[ERROR] ";
+    private final int balance;
 
     private MoneyManagement(final String userInput) {
         validate(userInput);
@@ -20,6 +22,18 @@ public class MoneyManagement {
 
     public static MoneyManagement from(final String userInput) {
         return new MoneyManagement(userInput);
+    }
+
+    public static long totalAmount(final LottoResult lottoResult) {
+        return lottoResult.getResults().entrySet()
+                .stream()
+                .mapToLong(entry -> entry.getKey().getAmount() * entry.getValue())
+                .sum();
+    }
+
+    public static double calculateYield(final int purchaseAmount, final long totalAmount) {
+        double value = (double) totalAmount / (double) purchaseAmount * PERCENT;
+        return Math.round(value);
     }
 
     private void validate(final String userInput) {
@@ -31,7 +45,7 @@ public class MoneyManagement {
 
     private void validNumber(final String userInput) {
         if (!userInput.matches(NUMERIC_PATTERN)) {
-            throw new InputMoneyNotDigitException();
+            throw new LottoException(InputMoneyNotDigitException);
         }
     }
 
@@ -39,27 +53,20 @@ public class MoneyManagement {
         try {
             return Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            throw new InputMoneyOverflowException();
+            throw new LottoException(InputMoneyOverflowException);
         }
     }
 
     private void validAmountMinimum(final int userAmount) {
         if (userAmount < LOTTO_AMOUNT) {
-            throw new AmountMinimumException();
+            throw new LottoException(AmountMinimumException);
         }
     }
 
     private void validLottoAmountUnit(final int userAmount) {
         if (userAmount % LOTTO_AMOUNT != ZERO) {
-            throw new AmountUnitException();
+            throw new LottoException(AmountUnitException);
         }
-    }
-
-    public static long totalAmount(final LottoResult lottoResult) {
-        return lottoResult.getResults().entrySet()
-                .stream()
-                .mapToLong(entry -> entry.getKey().getAmount() * entry.getValue())
-                .sum();
     }
 
     public int getQuantity() {
@@ -68,10 +75,5 @@ public class MoneyManagement {
 
     public int getBalance() {
         return balance;
-    }
-
-    public static double calculateYield(final int purchaseAmount, final long totalAmount) {
-        double value = (double) totalAmount / (double) purchaseAmount * PERCENT;
-        return Math.round(value);
     }
 }

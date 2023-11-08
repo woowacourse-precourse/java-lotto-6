@@ -36,15 +36,12 @@ public class LottoResult {
     }
 
     public String description() {
-        return results.entrySet()
-                .stream()
-                .map(entry -> {
-                    LottoRank rank = entry.getKey();
-                    Integer value = entry.getValue();
-                    String description = rank.getDescription();
-                    return description + value + VALUE_UNIT;
-                })
-                .collect(Collectors.joining(NEW_LINE));
+        return results.entrySet().stream().map(entry -> {
+            LottoRank rank = entry.getKey();
+            Integer value = entry.getValue();
+            String description = rank.getDescription();
+            return description + value + VALUE_UNIT;
+        }).collect(Collectors.joining(NEW_LINE));
     }
 
 }

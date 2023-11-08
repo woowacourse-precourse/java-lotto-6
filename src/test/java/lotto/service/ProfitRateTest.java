@@ -32,8 +32,8 @@ public class ProfitRateTest{
                 +RankCategory.THIRD.getPrize()*0
                 +RankCategory.FOURTH.getPrize()*0
                 +RankCategory.FIFTH.getPrize()*1
-                +RankCategory.NONE.getPrize()*3)/mockPurchaseAmount.getAmount())*100 ;
+                +RankCategory.NONE.getPrize()*3)/mockPurchaseAmount.amount())*100 ;
 
-        Assertions.assertThat(profitRate.getRate()).isEqualTo(expectedRate);
+        Assertions.assertThat(profitRate.rate()).isEqualTo(expectedRate);
     }
 }

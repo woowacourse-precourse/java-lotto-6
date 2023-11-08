@@ -18,6 +18,7 @@ public class LottoTicketService {
     private final int startInclusive = LOTTO_START_NUMBER.getValue();
     private final int endInclusive = LOTTO_END_NUMBER.getValue();
     private final int count = LOTTO_COUNT_NUMBER.getValue();
+    private final int DEFAULT_COUNT = 0;
     private final PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
 
     public LottoPurchaseAmount parsePurchaseAmount(String userInput) {
@@ -27,7 +28,7 @@ public class LottoTicketService {
     }
 
     public LottoTicketCount calculateTicketCount(LottoPurchaseAmount purchaseAmount) {
-        int ticketCount = purchaseAmount.getAmount() / TICKET_PRICE.getValue();
+        int ticketCount = purchaseAmount.amount() / TICKET_PRICE.getValue();
         return new LottoTicketCount(ticketCount);
     }
 
@@ -39,7 +40,7 @@ public class LottoTicketService {
     }
 
     public LottoBundle generateLottoBundle(int ticketCount) {
-        List<Lotto> lottoBundle = IntStream.range(0, ticketCount)
+        List<Lotto> lottoBundle = IntStream.range(DEFAULT_COUNT, ticketCount)
                 .mapToObj(countIndex -> createLotto())
                 .toList();
         return new LottoBundle(lottoBundle);

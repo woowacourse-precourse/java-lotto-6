@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.view.output;
 
 import lotto.constant.RankCategory;
 import lotto.model.Lotto;
@@ -6,7 +6,7 @@ import lotto.model.LottoResult;
 import lotto.model.ProfitRate;
 import lotto.model.LottoBundle;
 
-import static lotto.view.OutputFormatter.*;
+import static lotto.view.output.OutputFormatter.*;
 import static lotto.view.message.GameMessage.*;
 
 public class OutputView {
@@ -20,8 +20,8 @@ public class OutputView {
     }
 
     public static void printLottoBundle(LottoBundle lottoBundle) {
-        for (Lotto lotto : lottoBundle.getLottoBundle()) {
-            printMessage(formatLottoNumbers(lotto.getNumbers()));
+        for (Lotto lotto : lottoBundle.lottoBundle()) {
+            printMessage(formatLottoNumbers(lotto.numbers()));
         }
     }
 

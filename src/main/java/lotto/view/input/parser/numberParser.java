@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static lotto.constant.LottoSymbol.LOTTO_SEPARATOR;
-import static lotto.view.message.ValidationErrorMessage.INPUT_WRONG_SEPARATOR;
 
 public class numberParser {
     public static int parseInteger(String userInput) {

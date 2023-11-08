@@ -17,6 +17,6 @@ public class LottoController {
         WinningNumbers validWinningNumbers = lottoService.getValidWinningNumbers();
         BonusNumber validBonusNumber = lottoService.getValidBonusNumber(validWinningNumbers);
         LottoResult lottoResult = lottoService.getLottoResult(lottoBundle, validWinningNumbers, validBonusNumber);
-        lottoService.showProfitRate(lottoResult,validPurchaseAmount);
+        lottoService.showProfitRate(lottoResult, validPurchaseAmount);
     }
 }

@@ -10,7 +10,7 @@ public class PurchaseAmountValidator {
 
     public void validate(String userInput) {
         validateNotEmpty(userInput);
-        validateAndParseInteger(userInput);
+        validateInteger(userInput);
     }
 
     private void validateNotEmpty(String userInput) {
@@ -19,7 +19,7 @@ public class PurchaseAmountValidator {
         }
     }
 
-    private void validateAndParseInteger(String userInput) {
+    private void validateInteger(String userInput) {
         try {
             parseInteger(userInput);
         } catch (NumberFormatException e) {

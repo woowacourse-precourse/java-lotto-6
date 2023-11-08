@@ -13,7 +13,7 @@ public class winningNumbersTest {
     void validate_1에서_45_사이의_중복_없는_6자리는_참이다() {
         List<Integer> numbers = List.of(1,2,3,4,5,6);
         WinningNumbers winningNumbers = new WinningNumbers(numbers);
-        assertThat(winningNumbers.getNumbers()).containsExactly(1,2,3,4,5,6);
+        assertThat(winningNumbers.numbers()).containsExactly(1,2,3,4,5,6);
     }
 
     @Test

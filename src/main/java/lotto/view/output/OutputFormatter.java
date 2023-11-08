@@ -45,7 +45,7 @@ public class OutputFormatter {
     }
 
     private static String formatProfitRate(ProfitRate profitRate) {
-        return String.format(PROFIT_RATE_PATTERN, profitRate.getRate());
+        return String.format(PROFIT_RATE_PATTERN, profitRate.rate());
     }
 
     private static String formatPrize(int prize) {

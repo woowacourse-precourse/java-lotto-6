@@ -4,8 +4,8 @@ import lotto.model.*;
 import lotto.service.lotto.LottoResultService;
 import lotto.service.lotto.LottoTicketService;
 import lotto.service.lotto.WinningNumberService;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.view.input.InputView;
+import lotto.view.output.OutputView;
 
 public class LottoService {
 
@@ -42,7 +42,7 @@ public class LottoService {
         while (true) {
             try {
                 OutputView.printBonusNumberMessage();
-                return winningNumberService.createBonusNumber(InputView.read(), winningNumbers.getNumbers());
+                return winningNumberService.createBonusNumber(InputView.read(), winningNumbers.numbers());
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
@@ -51,12 +51,12 @@ public class LottoService {
 
     public LottoTicketCount getTicketCount(LottoPurchaseAmount purchaseAmount) {
         LottoTicketCount ticketCount = lottoTicketService.calculateTicketCount(purchaseAmount);
-        OutputView.printTicketCountMessage(ticketCount.getCount());
+        OutputView.printTicketCountMessage(ticketCount.count());
         return ticketCount;
     }
 
     public LottoBundle getLottoBundle(LottoTicketCount ticketCount) {
-        LottoBundle lottoBundle = lottoTicketService.generateLottoBundle(ticketCount.getCount());
+        LottoBundle lottoBundle = lottoTicketService.generateLottoBundle(ticketCount.count());
         OutputView.printLottoBundle(lottoBundle);
         return lottoBundle;
     }

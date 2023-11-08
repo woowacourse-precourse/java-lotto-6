@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.exception.business.LottoException;
+import lotto.exception.model.LottoException;
 
 import java.util.Collections;
 import java.util.List;
@@ -8,17 +8,15 @@ import java.util.List;
 import static lotto.view.message.ValidationErrorMessage.LOTTO_BUNDLE_EMPTY;
 import static lotto.view.message.ValidationErrorMessage.LOTTO_BUNDLE_NULL;
 
-public class LottoBundle {
-    private final List<Lotto> lottoBundle;
-
-    public List<Lotto> getLottoBundle() {
+public record LottoBundle(List<Lotto> lottoBundle) {
+    @Override
+    public List<Lotto> lottoBundle() {
         return Collections.unmodifiableList(lottoBundle);
     }
 
-    public LottoBundle(List<Lotto> lottoBundle) {
+    public LottoBundle {
         validateNull(lottoBundle);
         validateNotEmpty(lottoBundle);
-        this.lottoBundle = lottoBundle;
     }
 
     private void validateNull(List<Lotto> lottoBundle) {

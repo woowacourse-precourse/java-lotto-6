@@ -11,7 +11,7 @@ public class purchaseAmountTest {
     @Test
     void validate_양의_정수_1000의_배수면_참을_반환한다() {
         LottoPurchaseAmount lottoPurchaseAmount = new LottoPurchaseAmount(9000);
-        assertThat(lottoPurchaseAmount.getAmount()).isEqualTo(9000);
+        assertThat(lottoPurchaseAmount.amount()).isEqualTo(9000);
     }
 
     @Test

@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.exception.business.LottoException;
+import lotto.exception.model.LottoException;
 
 import java.util.HashSet;
 import java.util.List;
@@ -9,18 +9,11 @@ import java.util.Set;
 import static lotto.constant.LottoConfig.*;
 import static lotto.view.message.ValidationErrorMessage.*;
 
-public class Lotto {
-    private final List<Integer> numbers;
-
-    public Lotto(List<Integer> numbers) {
+public record Lotto(List<Integer> numbers) {
+    public Lotto {
         validateCounts(numbers);
         validateRange(numbers);
         validateDuplicate(numbers);
-        this.numbers = numbers;
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 
     private void validateCounts(List<Integer> numbers) {

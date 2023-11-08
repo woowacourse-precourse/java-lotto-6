@@ -1,4 +1,4 @@
-package lotto.exception.business;
+package lotto.exception.model;
 
 public class LottoException extends IllegalArgumentException {
     public LottoException(String message) {

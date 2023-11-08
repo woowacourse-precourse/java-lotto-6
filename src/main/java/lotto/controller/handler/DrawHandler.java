@@ -1,5 +1,6 @@
 package lotto.controller.handler;
 
+import lotto.constant.Error;
 import lotto.controller.user.BonusDraw;
 import lotto.controller.user.LottoDraw;
 import lotto.domain.Lotto;
@@ -8,7 +9,6 @@ import lotto.model.LottoTicket;
 import lotto.view.InputView;
 
 public class DrawHandler {
-    private static final String DUPLICATE_NUMBER = "당첨 번호와 중복 되지 않는 1~45사이의 수를 입력해 주세요.";
     private final InputView inputView;
     private WinningNumber winningNumber;
 
@@ -34,7 +34,7 @@ public class DrawHandler {
 
                 winningNumber = new WinningNumber(lotto, bonusNumber);
             } catch (IllegalArgumentException exception) {
-                inputView.showInputErrorMessage(DUPLICATE_NUMBER);
+                inputView.showInputErrorMessage(Error.DUPLICATE_NUMBER.getMessage());
                 continue;
             }
             break;

@@ -1,5 +1,6 @@
 package lotto.util.validation;
 
+import static lotto.util.content.ErrorMessage.ERROR_WORD;
 import static lotto.util.content.ErrorMessage.INPUT_UNIT_ERROR;
 import static lotto.util.content.ErrorMessage.LOTTO_RANGE_ERROR;
 import static lotto.util.content.ErrorMessage.LOTTO_SIZE_ERROR;
@@ -16,26 +17,32 @@ public class ModelCensor {
 
     public static void validatePurchaseUnit(Integer money) {
         if (money % TICKET_PRICE.getValue() != 0) {
-            throw new IllegalArgumentException(INPUT_UNIT_ERROR.getContent());
+            throw new IllegalArgumentException(
+                    ERROR_WORD.getContent() + INPUT_UNIT_ERROR.getContent());
         }
     }
 
     public static void validateLotto(List<Integer> numbers) {
         if (!isValidLottoNumberSize(numbers)) {
-            throw new IllegalArgumentException(LOTTO_SIZE_ERROR.getContent());
+            throw new IllegalArgumentException(
+                    ERROR_WORD.getContent() + LOTTO_SIZE_ERROR.getContent());
         }
 
         if (hasUniqueNumbers(numbers)) {
-            throw new IllegalArgumentException(UNIQUE_NUMBER_ERROR.getContent());
+            throw new IllegalArgumentException(
+                    ERROR_WORD.getContent() + UNIQUE_NUMBER_ERROR.getContent());
         }
     }
+
     public static void validateAnnouncementNumber(List<Integer> numbers) {
         if (hasUniqueNumbers(numbers)) {
-            throw new IllegalArgumentException(UNIQUE_NUMBER_ERROR.getContent());
+            throw new IllegalArgumentException(
+                    ERROR_WORD.getContent() + UNIQUE_NUMBER_ERROR.getContent());
         }
 
         if (numbers.stream().anyMatch(number -> !isValidLottoNumber(number))) {
-            throw new IllegalArgumentException(LOTTO_RANGE_ERROR.getContent());
+            throw new IllegalArgumentException(
+                    ERROR_WORD.getContent() + LOTTO_RANGE_ERROR.getContent());
         }
     }
 

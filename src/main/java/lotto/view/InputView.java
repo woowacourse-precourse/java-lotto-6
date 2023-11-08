@@ -18,7 +18,7 @@ public class InputView {
             ViewCensor.validatePurchase(input);
         } catch (IllegalArgumentException e) {
             OutputView.displayErrorMessage(e);
-            purchaseAmount();
+            return purchaseAmount();
         }
         return input;
     }
@@ -30,7 +30,7 @@ public class InputView {
             ViewCensor.validateWinningNumber(input);
         } catch (IllegalArgumentException e) {
             OutputView.displayErrorMessage(e);
-            winningNumbers();
+            return winningNumbers();
         }
         return input;
     }
@@ -42,7 +42,7 @@ public class InputView {
             ViewCensor.validateBonusNumber(input, number);
         } catch (IllegalArgumentException e) {
             OutputView.displayErrorMessage(e);
-            bonusNumber(number);
+            return bonusNumber(number);
         }
         return input;
     }

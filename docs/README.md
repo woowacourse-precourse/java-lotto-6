@@ -3,8 +3,8 @@
   - [x] 구입금액 입력 getPurchaseAmount()
   - [x] 당첨번호 입력 getWinnigNumbers()
   - [x] 보너스 번호 입력 getBonusNumber()
-- [] 로또 구입 클래스 LottoGenerator
-  - [] 중복없는 로또 번호 발행 generateLotto()
+- [x] 로또 구입 클래스 LottoGenerator
+  - [x] 중복없는 로또 번호 발행 generateLotto()
 - [] 출력 클래스 ResultManager
   - [] 당첨 통계 출력 calculatePrizes()
   - [] 수익률 출력 displayResults()

@@ -13,10 +13,15 @@ public class LottoApp {
         this.lottoController = new LottoController();
     }
 
+    public void inputBudgets() {
+        do {
+            lottoView.inputBudgets();
+        } while (lottoController.gameStart(lottoConsole.inputBudgets()));
+    }
+
     public void run() {
         //First Step Get Budgets
-        lottoView.inputBudgets();
-        lottoController.gameStart(lottoConsole.inputBudgets());
+        inputBudgets();
 
         //Buy
         lottoController.buyLottos();

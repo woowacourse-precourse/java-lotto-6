@@ -14,22 +14,26 @@ import lotto.RandomGenerator.LottoGenerator;
 public class LottoController {
     private Human human;
     private LottoDraw lottoDraw;
+    private LottoInputValidator lottoInputValidator;
 
-    public void gameStart(String budgets) {
-        // Exception Checking will be here
-        // If Exception occur -> return
+    public boolean gameStart(String budgets) {
+        lottoInputValidator = new LottoInputValidator();
+        try {
+            lottoInputValidator.validateBudget(budgets);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
         human = new Human(Long.parseLong(budgets));
-        // return Successful
+        return false;
     }
 
     public void buyLottos() {
-
         LottoGenerator lottoGenerator = new LottoGenerator();
 
         while (human.buyLotto()) {
             human.addLotto(lottoGenerator.getLottoNumber());
         }
-
         // Return -> is successful
     }
 

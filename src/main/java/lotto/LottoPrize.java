@@ -34,9 +34,8 @@ public enum LottoPrize {
     public String getPrizeDescription() {
         if (this == SECOND) {
             return String.format("%d개 일치, 보너스 볼 일치 (%s원)", matchCount, formatPrizeMoney(prizeMoney));
-        } else {
-            return String.format("%d개 일치 (%s원)", matchCount, formatPrizeMoney(prizeMoney));
         }
+        return String.format("%d개 일치 (%s원)", matchCount, formatPrizeMoney(prizeMoney));
     }
 
     public int getPrizeMoney() {

@@ -1,29 +1,24 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.view.InputView;
 
 public class WinningLotto extends Lotto {
-    private static final String SIZE_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개를 입력해야 합니다.";
-    private static final String RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
-    private static final String DUPLICATE_ERROR_MESSAGE = "[ERROR] 로또 번호와 보너스 번호는 중복 없이 입력해야 합니다.";
+    private static final String SIZE_ERROR = "[ERROR] 로또 번호는 6개를 입력해야 합니다.";
+    private static final String RANGE_ERROR = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String DUPLICATE_ERROR = "[ERROR] 로또 번호와 보너스 번호는 중복 없이 입력해야 합니다.";
 
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final int LOTTO_COUNT = 6;
 
-    private BonusNumber bonusNumber;
+    private LottoNumber bonusNumber;
 
-    public WinningLotto(List<Integer> numbers) {
+    public WinningLotto(List<LottoNumber> numbers) {
         super(numbers);
-        numbers.forEach(number -> InputView.validateBlank(String.valueOf(number)));
-        numbers.forEach(InputView::validateNegativeInteger);
-        validateSize(numbers.size());
-        validateRange(numbers);
-        validateDuplicate(numbers);
+        this.validate(numbers);
     }
 
-    public void setBonusNumber(BonusNumber bonusNumber) {
+    public void setBonusNumber(LottoNumber bonusNumber) {
         validateDuplicate(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
@@ -33,45 +28,48 @@ public class WinningLotto extends Lotto {
         return super.getNumbers();
     }
 
-    public Prize getPrize(Lotto playerLotto) {
-        int matchingCount = countMatchingNumbers(playerLotto);
-        Prize prize = Prize.matchingCountOf(matchingCount);
+    private void validate(List<LottoNumber> numbers) {
+        validateSize(numbers.size());
+        validateRange(numbers);
+        validateDuplicate(numbers);
+    }
 
-        if (prize.equals(Prize.THIRD) && playerLotto.getNumbers().contains(bonusNumber.getNumber())) {
-            prize = Prize.SECOND;
+    private void validateSize(int size) {
+        if (size != LOTTO_COUNT) {
+            throw new IllegalArgumentException(SIZE_ERROR);
         }
-        return prize;
+    }
+
+    private void validateRange(List<LottoNumber> numbers) {
+        numbers.forEach(number -> {
+            if (number.getNumber() < MIN_NUMBER || number.getNumber() > MAX_NUMBER) {
+                throw new IllegalArgumentException(RANGE_ERROR);
+            }
+        });
+    }
+
+    private void validateDuplicate(List<LottoNumber> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(DUPLICATE_ERROR);
+        }
+    }
+
+    private void validateDuplicate(LottoNumber bonusNumber) {
+        if (super.getNumbers().contains(bonusNumber.getNumber())) {
+            throw new IllegalArgumentException(DUPLICATE_ERROR);
+        }
+    }
+
+    public Prize match(Lotto playerLotto) {
+        int matchingCount = countMatchingNumbers(playerLotto);
+        boolean matchBonus = playerLotto.contains(bonusNumber);
+
+        return Prize.valueOf(matchingCount, matchBonus);
     }
 
     private int countMatchingNumbers(Lotto playerLotto) {
         return (int) super.getNumbers().stream()
                 .filter(playerLotto.getNumbers()::contains)
                 .count();
-    }
-
-    private void validateSize(int size) {
-        if (size != LOTTO_COUNT) {
-            throw new IllegalArgumentException(SIZE_ERROR_MESSAGE);
-        }
-    }
-
-    private void validateRange(List<Integer> numbers) {
-        numbers.forEach(number -> {
-            if (number < MIN_NUMBER || number > MAX_NUMBER) {
-                throw new IllegalArgumentException(RANGE_ERROR_MESSAGE);
-            }
-        });
-    }
-
-    private void validateDuplicate(List<Integer> numbers) {
-        if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
-        }
-    }
-
-    private void validateDuplicate(BonusNumber bonusNumber) {
-        if (super.getNumbers().contains(bonusNumber.getNumber())) {
-            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
-        }
     }
 }

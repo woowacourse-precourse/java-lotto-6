@@ -4,21 +4,25 @@ import java.util.Arrays;
 import java.util.List;
 
 public class WinningLottoFactory {
-    private static final String INTEGER_ERROR_MESSAGE = "[ERROR] 정수만 입력해야 합니다.";
-    private static final String LOTTO_NUMBER_SEPERATOR = ",";
+    private static final String FORMAT_ERROR = "[ERROR] 정수만 입력하세요.";
+
+    private static final String LOTTO_NUMBER_DELIMITER = ",";
 
     public static WinningLotto of(String lottoNumbersInput) {
-        return new WinningLotto(splitNumbers(lottoNumbersInput));
+        List<LottoNumber> lottoNumbers = splitNumbers(lottoNumbersInput).stream()
+                .map(LottoNumber::new)
+                .toList();
+        return new WinningLotto(lottoNumbers);
     }
 
     private static List<Integer> splitNumbers(String lottoNumbers) {
         try {
-            return Arrays.stream(lottoNumbers.split(LOTTO_NUMBER_SEPERATOR))
+            return Arrays.stream(lottoNumbers.split(LOTTO_NUMBER_DELIMITER))
                     .map(String::trim)
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INTEGER_ERROR_MESSAGE);
+            throw new IllegalArgumentException(FORMAT_ERROR);
         }
     }
 }

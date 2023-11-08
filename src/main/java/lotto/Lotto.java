@@ -15,7 +15,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 숫자 6개가 만들어지지 않았습나다.");
+            throw new IllegalStateException("[ERROR] 로또 숫자 6개가 만들어지지 않았습나다.");
         }
     }
 
@@ -23,7 +23,7 @@ public class Lotto {
         if (numbers.stream()
                 .distinct()
                 .count() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 존재합니다.");
+            throw new IllegalStateException("[ERROR] 중복된 숫자가 존재합니다.");
         }
     }
 

@@ -7,10 +7,13 @@ import lotto.domain.Validators;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -88,9 +91,18 @@ class LottoTest {
     @DisplayName("로또 번호와 당첨 번호를 올바르게 비교하는 지 확인한다.")
     @Test
     void checkCompareLottoAndWinningNumbers() {
-        List<Integer> lottoNumbers = List.of(1,2,3,4,5,6);
-        List<Integer> winningNumbers = List.of(1,2,3,10,11,12);
-        int count = Prize.compare(lottoNumbers,winningNumbers);
-        assertThat(Integer.toString(count)).isEqualTo("3");
+        List<Integer> winning = new ArrayList<>();
+        winning.add(1);
+        winning.add(2);
+        winning.add(3);
+
+        List<Integer> lotto = new ArrayList<>();
+        lotto.add(2);
+        lotto.add(3);
+        lotto.add(4);
+
+        int sameNumbers;
+        sameNumbers = Prize.compare(lotto, winning);
+        assertEquals(sameNumbers, 2);
     }
 }

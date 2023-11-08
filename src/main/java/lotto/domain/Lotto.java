@@ -12,9 +12,8 @@ public class Lotto {
     private static final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
 
-    private ValidateUtils validateUtils = new ValidateUtils();
-
     public Lotto(List<Integer> numbers) {
+        ValidateUtils validateUtils = new ValidateUtils();
         validateUtils.validateSize(numbers, LOTTO_SIZE);
         validateUtils.validateDuplicated(numbers);
         this.numbers = numbers;

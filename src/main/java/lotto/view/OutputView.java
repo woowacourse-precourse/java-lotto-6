@@ -28,8 +28,8 @@ public class OutputView {
         }
     }
 
-    public static void printTotalProfit(Double returnRate) {
-        String stringProfit = String.format("%.1f", returnRate);
+    public static void printTotalProfit(Double rateOfReturn) {
+        String stringProfit = String.format("%.1f", rateOfReturn);
         System.out.println("총 수익률은 " + stringProfit + "%입니다.");
     }
 }

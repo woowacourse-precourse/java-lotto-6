@@ -31,14 +31,14 @@ public class PrizeStatistics {
         return winningAmount;
     }
 
-    public Double calculateLottoReturnRate(Price price) {
+    public Double calculateLottoRateOfReturn(Price price) {
         int purchaseAmount = price.getPrice();
         long winningAmount = calculateWinningAmount();
 
-        double returnRate = (double) winningAmount / purchaseAmount * 100;
-        returnRate = Math.round(returnRate * 100.0) / 100.0; // 소수 둘째자리에서 반올림
+        double rateOfreturn = (double) winningAmount / purchaseAmount * 100;
+        rateOfreturn = Math.round(rateOfreturn * 100.0) / 100.0; // 소수 둘째자리에서 반올림
 
-        return returnRate;
+        return rateOfreturn;
     }
 
 }

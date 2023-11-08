@@ -22,7 +22,7 @@ public class InputView {
         String winningNumbersInput = Console.readLine();
         List<Integer> winningLottoNumbers = LottoGenerator.generateWinningLottoNumbers(winningNumbersInput);
 
-        System.out.println("보너스번호를 입력해주세요.");
+        System.out.println("\n보너스번호를 입력해주세요.");
         String bonusNumberInput = Console.readLine();
         int bonusNumber = LottoUtil.parseLottoNumber(bonusNumberInput);
 

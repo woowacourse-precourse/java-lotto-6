@@ -21,10 +21,10 @@ public class LottoController {
 
         WinningLotto winningLotto = InputView.getWinningLottoNumbers();
         PrizeStatistics prizeStatistics = lottos.calculatePrizeStatistics(winningLotto);
-        Double returnRate = prizeStatistics.calculateLottoReturnRate(purchasePrice);
+        Double rateOfReturn = prizeStatistics.calculateLottoRateOfReturn(purchasePrice);
 
         OutputView.printResults(prizeStatistics);
-        OutputView.printTotalProfit(returnRate);
+        OutputView.printTotalProfit(rateOfReturn);
     }
 
 }

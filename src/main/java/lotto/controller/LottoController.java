@@ -1,9 +1,9 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoMachine;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.validation.InputValidation;
@@ -19,7 +19,7 @@ public class LottoController {
 
     public void lottoService() {
         int purchaseAmount = getPurchaseAmount();
-        int numberOfLottoTickets = purchaseLottoTickets(purchaseAmount);
+        int numberOfLottoTickets = calculateNumberOfLottoTickets(purchaseAmount);
         Lottos generatedLottos = generateLottoTickets(numberOfLottoTickets);
         showPurchasedLottoTickets(generatedLottos);
 
@@ -35,25 +35,6 @@ public class LottoController {
         showTotalRevenue(totalRevenue);
     }
 
-    private int makeBonusNumber(Lotto winningNumbers) {
-        try {
-            String inputBonusNumber = getBonusNumber();
-            validateBonusNumber(winningNumbers.getNumbers(), inputBonusNumber);
-            return Integer.parseInt(inputBonusNumber);
-        }catch (IllegalArgumentException exception){
-            System.out.println(exception.getMessage());
-            return makeBonusNumber(winningNumbers);
-        }
-    }
-
-    private String getBonusNumber() {
-        return inputView.bonusNumberInput();
-    }
-
-    private void validateBonusNumber(List<Integer> winningNumbers, String inputBonusNumber) {
-        InputValidation.validateBonusNumberInput(winningNumbers, inputBonusNumber);
-    }
-
     private int getPurchaseAmount() {
         try {
             String purchaseAmount = inputView.purchaseAmountInput();
@@ -65,8 +46,12 @@ public class LottoController {
         }
     }
 
-    private int purchaseLottoTickets(int purchaseAmount) {
-        return calculateNumberOfLottoTickets(purchaseAmount);
+    private int calculateNumberOfLottoTickets(int purchaseAmount) {
+        return purchaseAmount / LOTTO_TICKET_PRIZE;
+    }
+
+    private void showNumberOfLottos(int numberOfLottoTickets) {
+        outputView.printNumberOfPurchasedLottoTickets(numberOfLottoTickets);
     }
 
     private void showPurchasedLottoTickets(Lottos lottos) {
@@ -75,6 +60,47 @@ public class LottoController {
         for (Lotto lotto : generatedLottos) {
             showGeneratedLottos(lotto.getNumbers());
         }
+    }
+
+    private static Lotto generateRandomLotto() {
+        LottoMachine lottoMachine = new LottoMachine();
+        return new Lotto(lottoMachine.getRandomNumbers());
+    }
+
+    private Lottos generateLottoTickets(int numberOfLottoTickets) {
+        Lottos lottos = new Lottos();
+        for (int i = 0; i < numberOfLottoTickets; i++) {
+            lottos.addLotto(generateRandomLotto());
+        }
+        return lottos;
+    }
+
+    private void showGeneratedLottos(List<Integer> lotto) {
+        outputView.printGeneratedLottos(lotto);
+    }
+
+    private String getBonusNumber() {
+        return inputView.bonusNumberInput();
+    }
+
+    private void validateBonusNumber(List<Integer> winningNumbers, String inputBonusNumber) {
+        InputValidation.validateBonusNumberInput(winningNumbers, inputBonusNumber);
+    }
+
+    private int makeBonusNumber(Lotto winningNumbers) {
+        try {
+            String inputBonusNumber = getBonusNumber();
+            validateBonusNumber(winningNumbers.getNumbers(), inputBonusNumber);
+            return Integer.parseInt(inputBonusNumber);
+        }catch (IllegalArgumentException exception){
+            System.out.println(exception.getMessage());
+            return makeBonusNumber(winningNumbers);
+        }
+    }
+
+
+    private String getWinningNumbers() {
+        return inputView.winningNumbersInput();
     }
 
     private Lotto makeWinningNumbers() {
@@ -86,10 +112,6 @@ public class LottoController {
             System.out.println(exception.getMessage());
             return makeWinningNumbers();
         }
-    }
-
-    private String getWinningNumbers() {
-        return inputView.winningNumbersInput();
     }
 
     private List<String> splitWinningNumbers(String winningNumbers) {
@@ -105,34 +127,6 @@ public class LottoController {
             .map(Integer::parseInt)
             .toList();
         return new Lotto(winningLottoNumbers);
-    }
-
-    private Lottos generateLottoTickets(int numberOfLottoTickets) {
-        Lottos lottos = new Lottos();
-        for (int i = 0; i < numberOfLottoTickets; i++) {
-            Lotto randomLotto = generateRandomLotto();
-            lottos.addLotto(randomLotto);
-        }
-        return lottos;
-    }
-
-    private int calculateNumberOfLottoTickets(int purchaseAmount) {
-        return purchaseAmount / LOTTO_TICKET_PRIZE;
-    }
-
-    private static Lotto generateRandomLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Lotto randomLotto = new Lotto(randomNumbers);
-        List<Integer> sortedNumbers = randomLotto.sortNumbers();
-        return new Lotto(sortedNumbers);
-    }
-
-    private void showNumberOfLottos(int numberOfLottoTickets) {
-        outputView.printNumberOfPurchasedLottoTickets(numberOfLottoTickets);
-    }
-
-    private void showGeneratedLottos(List<Integer> lotto) {
-        outputView.printGeneratedLottos(lotto);
     }
 
     private Integer calculateMatchCount(Lotto generatedLotto, Lotto winningNumbers) {

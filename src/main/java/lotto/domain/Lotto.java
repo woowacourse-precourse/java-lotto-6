@@ -13,12 +13,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> sortNumbers() {
-        List<Integer> sortedNumbers = new ArrayList<>(numbers);
-        Collections.sort(sortedNumbers);
-        return sortedNumbers;
-    }
-
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();

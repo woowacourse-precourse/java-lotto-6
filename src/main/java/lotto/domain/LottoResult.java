@@ -3,7 +3,7 @@ package lotto.domain;
 
 public class LottoResult {
 
-    private int[] winningCounts;
+    private final int[] winningCounts;
 
     public LottoResult() {
         winningCounts = new int[5];

@@ -22,11 +22,18 @@ public class Game {
     }
     
     void calculateNumberOfPurchase() {
-        OutputView.outputPurchaseAmount();
-        String inputPurchaseAmount = InputView.inputPurchaseAmount();
-        int number = checkInteger(inputPurchaseAmount);
-        checkNaturalNumber(number);
-        purchaseAmount = checkMultiple(number);
+        while (true) {
+            try {
+                OutputView.outputPurchaseAmount();
+                String inputPurchaseAmount = InputView.inputPurchaseAmount();
+                int number = checkInteger(inputPurchaseAmount);
+                checkNaturalNumber(number);
+                purchaseAmount = checkMultiple(number);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         System.out.println();
     }
     
@@ -35,19 +42,19 @@ public class Game {
             int number = Integer.parseInt(string);
             return number;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[Error] 정수가 아닌 입력입니다.");
+            throw new IllegalArgumentException("[ERROR] 정수가 아닌 입력입니다.");
         }
     }
     
     void checkNaturalNumber(int number) {
         if (number < 1) {
-            throw new IllegalArgumentException("[Error] 자연수가 아닌 입력입니다.");
+            throw new IllegalArgumentException("[ERROR] 자연수가 아닌 입력입니다.");
         }
     }
     
     int checkMultiple(int number) {
         if(number % 1000 != 0) {
-            throw new IllegalArgumentException("[Error] 1000의 배수가 아닌 입력입니다.");
+            throw new IllegalArgumentException("[ERROR] 1000의 배수가 아닌 입력입니다.");
         }
         return number / 1000;
     }
@@ -66,8 +73,14 @@ public class Game {
     }
     
     List<Integer> setWinningNumbers() {
-        OutputView.outputWinningNumbers();
-        return checkWinningNumbers(InputView.inputWinningNumbers());
+        while(true) {
+            try {
+                OutputView.outputWinningNumbers();
+                return checkWinningNumbers(InputView.inputWinningNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
     
     List<Integer> checkWinningNumbers(String inputWinningNumbers) {
@@ -90,25 +103,31 @@ public class Game {
     
     void checkNumberCount(List<String> string) {
         if (string.size() != 6) {
-            throw new IllegalArgumentException("[Error] 당첨 번호는 6개가 입력되어야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개가 입력되어야 합니다.");
         }
     }
     
     void checkLottoNumberRange(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[Error] 당첨 번호의 범위는 1 ~ 45 입니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호의 범위는 1 ~ 45 입니다.");
         }
     }
     
     void checkDuplication(List<Integer> number) {
         if(number.size() != number.stream().distinct().count()){
-            throw new IllegalArgumentException("[Error] 당첨 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
         }
     }
     
     int setBonusNumber(List<Integer> winningNumbers) {
-        OutputView.outputBonusNumber();
-        return checkBonusNumber(InputView.inputBonusNumber(), winningNumbers);
+        while(true) {
+            try {
+                OutputView.outputBonusNumber();
+                return checkBonusNumber(InputView.inputBonusNumber(), winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }   
     }
     
     int checkBonusNumber(String inputBonusNumber, List<Integer> winningNumbers) {
@@ -122,7 +141,7 @@ public class Game {
     
     void checkDuplication(int number, List<Integer> winningNumbers) {
         if (winningNumbers.contains(number)) {
-            throw new IllegalArgumentException("[Error] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
     
@@ -131,6 +150,7 @@ public class Game {
         calculateMatchedCount();
         OutputView.outputWinnintStatistics(rankCounts);
         calculateRateOfReturn();
+        OutputView.outputRateOfReturn(rateOfReturn);
     }
     
     void calculateMatchedCount() {
@@ -169,6 +189,11 @@ public class Game {
     }
     
     void calculateRateOfReturn() {
-        
+        long prize = rankCounts[1] * 2000000000;
+        prize += rankCounts[2] * 30000000;
+        prize += rankCounts[3] * 1500000;
+        prize += rankCounts[4] * 50000;
+        prize += rankCounts[5] * 5000;
+        rateOfReturn = (double)prize / (purchaseAmount * 1000) * 100;
     }
 }

@@ -16,7 +16,8 @@ public class Lottos {
     }
     
     Lotto makeLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> immutableNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = new ArrayList<>(immutableNumbers);
         Collections.sort(numbers);
         Lotto lotto = new Lotto(numbers);
         return lotto;

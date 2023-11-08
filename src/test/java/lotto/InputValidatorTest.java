@@ -98,4 +98,24 @@ public class InputValidatorTest {
         assertThat(result1).isInstanceOf(IllegalArgumentException.class);
         assertThat(result2).doesNotThrowAnyException();
     }
+
+    @DisplayName("당첨 번호 6개를 입력했는지 검사")
+    @Test
+    void 당첨_번호_개수_테스트() {
+        // given
+        List<Integer> case1 = List.of(1, 2, 3, 4, 5);
+        List<Integer> case2 = List.of(1, 2, 3, 4, 5, 6);
+
+        // when
+        Throwable result1 = catchThrowable(() -> {
+            InputValidator.validateWinningNumberCount(case1);
+        });
+        Throwable result2 = catchThrowable(() -> {
+            InputValidator.validateWinningNumberCount(case2);
+        });
+
+        // then
+        assertThat(result1).isInstanceOf(IllegalArgumentException.class);
+        assertThat(result2).doesNotThrowAnyException();
+    }
 }

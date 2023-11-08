@@ -1,5 +1,6 @@
 package lotto.service;
 
+import static lotto.domain.ExceptionModule.checkBonusNumDub;
 import static lotto.domain.ExceptionModule.checkNegative;
 import static lotto.domain.ExceptionModule.checkNumBoundary;
 import static lotto.domain.ExceptionModule.checkParseIntException;
@@ -35,6 +36,20 @@ public class InteractService {
                 List<Integer> winningNum = splitWinningNum();
                 checkWinningNumDubAndSize(winningNum);
                 return winningNum;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static Integer bonusNumPhase(List<Integer> winningNum) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        while (true) {
+            try {
+                Integer bonusNum = checkParseIntException(Console.readLine());
+                checkNumBoundary(bonusNum);
+                checkBonusNumDub(bonusNum, winningNum);
+                return bonusNum;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

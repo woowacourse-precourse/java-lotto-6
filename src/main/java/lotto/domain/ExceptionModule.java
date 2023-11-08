@@ -42,4 +42,10 @@ public class ExceptionModule {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
+
+    public static void checkBonusNumDub(Integer bonusNum, List<Integer> winningNum) throws IllegalArgumentException{
+        if (winningNum.contains(bonusNum)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+        }
+    }
 }

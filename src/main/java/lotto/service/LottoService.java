@@ -1,7 +1,5 @@
 package lotto.service;
 
-import static lotto.domain.ExceptionModule.checkParseIntException;
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -34,21 +32,9 @@ public class LottoService {
         ExceptionModule.checkLottoCount(lottos.size(), lottoCount);
         //당첨 번호 입력 받기
         List<Integer> winningNum = InteractService.winningNumPhase();
+        //보너스 번호 입력 받기
+        Integer bonusNum = InteractService.bonusNumPhase(winningNum);
 
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNum;
-        while (true) {
-            //TODO 메세지 출력 부분을 IllegalArgumentException 발생 후 처리로 변경
-            try {
-                bonusNum = checkParseIntException(Console.readLine());
-                if (!winningNum.contains(bonusNum)) {
-                    break;
-                }
-                System.out.println("[ERROR] 보너스 번호는 당첨 번호 6개 외의 숫자만 입력 가능합니다.");
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 보너스 번호는 1~45 사이의 숫자만 입력 가능합니다.");
-            }
-        }
         //로또 결과 생성
         List<Integer> result = new ArrayList<>(
                 Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)

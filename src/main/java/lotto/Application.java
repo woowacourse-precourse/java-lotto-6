@@ -150,6 +150,16 @@ public class Application {
         return wins;
     }
 
+    public static void printWins(int[] wins) {
+        System.out.printf("\n당첨 통계\n---\n");
+
+        System.out.printf("3개 일치 (5,000원) - %d개\n", wins[Ranks.FIFTH.ordinal()]);
+        System.out.printf("4개 일치 (50,000원) - %d개\n", wins[Ranks.THIRD.ordinal()]);
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n", wins[Ranks.THIRD.ordinal()]);
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", wins[Ranks.SECOND.ordinal()]);
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", wins[Ranks.FIRST.ordinal()]);
+    }
+
     public static void lottery(int lottoCount, Lotto[] lottos, Winner winner) {
         int[] wins = {0, 0, 0, 0, 0};
 
@@ -157,7 +167,8 @@ public class Application {
             wins = calWins(wins, lottos[i].lottery(winner.winNums), lottos[i].lottery(winner.bonusNum));
         }
 
-        System.out.printf("\n당첨 통계\n---\n");
+        printWins(wins);
+       
     }
 
     public static void main(String[] args) {

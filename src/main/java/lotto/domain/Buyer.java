@@ -9,8 +9,7 @@ public class Buyer {
 
     private Buyer(final String purchaseAmount) {
         new BuyerPurchaseAmountValidator().validate(purchaseAmount);
-        int purchaseAmount1 = Integer.valueOf(purchaseAmount);
-        this.purchaseCount = purchaseAmount1 / LOTTO_UNIT_PRICE.getValue();
+        this.purchaseCount = Integer.parseInt(purchaseAmount) / LOTTO_UNIT_PRICE.getValue();
     }
 
     public static Buyer of(final String purchaseAmount) {

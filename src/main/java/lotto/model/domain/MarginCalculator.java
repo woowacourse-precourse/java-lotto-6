@@ -28,7 +28,6 @@ public class MarginCalculator {
         return profit;
     }
 
-
     public double getMargin() {
         return this.margin;
     }

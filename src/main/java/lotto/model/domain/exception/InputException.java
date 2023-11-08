@@ -3,7 +3,6 @@ package lotto.model.domain.exception;
 public class InputException extends Exception {
 
     private InputException() {
-
     }
 
     public static void inputNumberException() {

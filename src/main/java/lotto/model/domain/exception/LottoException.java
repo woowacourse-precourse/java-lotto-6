@@ -5,7 +5,6 @@ import lotto.model.domain.constants.LottoGameConstants;
 public class LottoException extends Exception {
 
     private LottoException() {
-
     }
 
     public static void rangeException() {

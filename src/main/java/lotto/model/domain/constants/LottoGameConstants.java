@@ -1,7 +1,6 @@
 package lotto.model.domain.constants;
 
 public enum LottoGameConstants {
-
     MIN_NUMBER(1), // 로또 최소범위
     MAX_NUMBER(45), // 로또 최대범위
     NUMBERS_PER_LOTTO(6), // 로또번호 개수

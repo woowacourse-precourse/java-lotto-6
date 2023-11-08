@@ -79,7 +79,6 @@ public class LottoController {
         }
     }
 
-
     private void createWinningNumbers(Lotto lotto) {
         try {
             String input = Console.readLine();

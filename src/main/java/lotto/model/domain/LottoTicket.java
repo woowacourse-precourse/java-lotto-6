@@ -38,5 +38,4 @@ public class LottoTicket {
     public List<Lotto> getLottoTicket() {
         return this.lottos;
     }
-
 }

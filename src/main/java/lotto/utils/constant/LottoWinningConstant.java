@@ -6,7 +6,8 @@ public enum LottoWinningConstant {
     SECOND_PLACE(5, 30000000, true),
     THIRD_PLACE(5, 1500000, false),
     FOURTH_PLACE(4, 50000, false),
-    FIFTH_PLACE(3, 5000, false);
+    FIFTH_PLACE(3, 5000, false),
+    NONE(0, 0, false);
 
     private final int winningCount;
     private final int winningMoney;

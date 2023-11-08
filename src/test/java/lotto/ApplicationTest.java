@@ -86,7 +86,13 @@ class ApplicationTest extends NsTest {
         });
     }
 
-
+    @Test
+    void 보너스번호_예외_테스트_중복() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,5,6,7", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
 
     @Override
     public void runMain() {

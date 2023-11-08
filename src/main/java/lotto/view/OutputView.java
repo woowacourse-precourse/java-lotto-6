@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.enums.Instructions;
 import lotto.enums.Rank;
 
 public class OutputView {
@@ -18,8 +19,7 @@ public class OutputView {
     }
 
     public void printStatistics(Map<Rank, Integer> result) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(Instructions.STATISTICS.getInstruction());
 
         System.out.printf("3개 일치 (5,000원) - %d개\n", result.get(Rank.FIFTH));
         System.out.printf("4개 일치 (50,000원) - %d개\n", result.get(Rank.FOURTH));

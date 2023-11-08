@@ -33,27 +33,26 @@ public class Lotto {
                 count++;
             }
         }
-        if (count == 6) {
+
+        return getPrize(count, winningNumbers.getBonus());
+    }
+
+    private Prize getPrize(int count, int bonusNumber) {
+        if (count == Prize.First.getCount())
             return Prize.First;
-        }
-        if (count == 5) {
-            if (numbers.contains(winningNumbers.getBonus())) {
-                return Prize.Second;
-            }
+        if (count == Prize.Second.getCount() && numbers.contains(bonusNumber))
+            return Prize.Second;
+        if (count == Prize.Third.getCount())
             return Prize.Third;
-        }
-        if (count == 4) {
+        if (count == Prize.Forth.getCount())
             return Prize.Forth;
-        }
-        if (count == 3) {
+        if (count == Prize.Fifth.getCount())
             return Prize.Fifth;
-        }
         return Prize.None;
     }
 
     @Override
     public String toString() {
         return numbers.toString();
-
     }
 }

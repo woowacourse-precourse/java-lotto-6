@@ -65,11 +65,11 @@ public class LottoGameView {
         int first = Collections.frequency(result, Prize.First);
 
         System.out.println(WINNING_RESULT);
-        System.out.printf(LOTTERY_RESULT, 3, Prize.Fifth.getMoneyString(), fifth);
-        System.out.printf(LOTTERY_RESULT, 4, Prize.Forth.getMoneyString(), forth);
-        System.out.printf(LOTTERY_RESULT, 5, Prize.Third.getMoneyString(), third);
-        System.out.printf(LOTTERY_RESULT_WITH_BONUS, 5, Prize.Second.getMoneyString(), second);
-        System.out.printf(LOTTERY_RESULT, 6, Prize.First.getMoneyString(), first);
+        System.out.printf(LOTTERY_RESULT, Prize.Fifth.getCount(), Prize.Fifth.getMoneyString(), fifth);
+        System.out.printf(LOTTERY_RESULT, Prize.Forth.getCount(), Prize.Forth.getMoneyString(), forth);
+        System.out.printf(LOTTERY_RESULT, Prize.Third.getCount(), Prize.Third.getMoneyString(), third);
+        System.out.printf(LOTTERY_RESULT_WITH_BONUS, Prize.Second.getCount(), Prize.Second.getMoneyString(), second);
+        System.out.printf(LOTTERY_RESULT, Prize.First.getCount(), Prize.First.getMoneyString(), first);
     }
 
     public void printRateReturn(double rateReturn) {

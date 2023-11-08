@@ -9,7 +9,7 @@ import static lotto.Constants.*;
 
 public class LottoGame {
 
-    private LottoGameView lottoGameView;
+    private final LottoGameView lottoGameView;
 
     public LottoGame() {
         this.lottoGameView = new LottoGameView();
@@ -21,7 +21,7 @@ public class LottoGame {
         List<Lotto> lotteries = issueLottery(tickets);
         WinningNumbers winningNumbers = lottoGameView.inputWinningNumbers();
         List<Prize> result = lotteries.stream().map(lotto -> lotto.check(winningNumbers)).toList();
-        int resultSum = result.stream().mapToInt(Prize::getMoney).sum();
+        Long resultSum = result.stream().mapToLong(Prize::getMoney).sum();
         lottoGameView.printResult(result);
         lottoGameView.printRateReturn(calculateReturn(resultSum, purchaseAmount));
     }
@@ -40,7 +40,7 @@ public class LottoGame {
         return lotteries;
     }
 
-    public double calculateReturn(int prize, int purchase) {
+    public double calculateReturn(Long prize, int purchase) {
         double rateReturn = (double) prize / purchase * 1000;
         double result = Math.round(rateReturn);
         return result / 10;

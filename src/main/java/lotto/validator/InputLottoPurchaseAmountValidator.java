@@ -8,9 +8,11 @@ public class InputLottoPurchaseAmountValidator {
     private static final String NON_DIVIDE_1000_ERROR_MESSAGE = "[ERROR] 로또 구입금액은 1000원 단위입니다.";
     private static final String NON_OVER_ZERO_ERROR_MESSAGE = "[ERROR] 로또 구입금액은 0이상이여야 합니다.";
     private static final String inputPattern = "[0-9]+";
+    private static final String BLANK = "";
+
 
     public void validateNonInputPurchaseAmount(String purchaseAmount) {
-        if (purchaseAmount.equals("")) {
+        if (purchaseAmount.equals(BLANK)) {
             throw new IllegalArgumentException(NON_INPUT_ERROR_MESSAGE);
         }
     }

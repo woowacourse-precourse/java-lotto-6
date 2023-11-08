@@ -13,6 +13,12 @@ public enum LottoGrade {
     SECOND(5, 30000000),
     FIRST(6, 2000000000);
 
+    private static final int SECOND_THIRD_MATCH_NUMBER_COUNT = 5;
+    private static final int FIRST_INDEX = 0;
+    private static final int SECOND_INDEX = 1;
+    private static final int THIRD_INDEX = 2;
+    private static final int FOURTH_INDEX = 3;
+    private static final int FIFTH_INDEX = 4;
 
     private final int matchCount;
     private final int prize;
@@ -23,7 +29,7 @@ public enum LottoGrade {
     }
 
     public static LottoGrade getLottoGrade(int matchNumberCount, boolean isMatchBonus) {
-        if (matchNumberCount == 5) {
+        if (matchNumberCount == SECOND_THIRD_MATCH_NUMBER_COUNT) {
             return bonusNumberMatch(isMatchBonus);
         }
 
@@ -42,11 +48,11 @@ public enum LottoGrade {
 
     public static int getTotalPrize(Map<LottoGrade, Integer> result) {
         List<Integer> lottoGradeCount = new ArrayList<>(result.values());
-        int FirstPrize = LottoGrade.FIRST.prize * lottoGradeCount.get(0);
-        int SecondPrize = LottoGrade.SECOND.prize * lottoGradeCount.get(1);
-        int ThirdPrize = LottoGrade.THIRD.prize * lottoGradeCount.get(2);
-        int FourthPrize = LottoGrade.FOURTH.prize * lottoGradeCount.get(3);
-        int FifthPrize = LottoGrade.FIFTH.prize * lottoGradeCount.get(4);
+        int FirstPrize = LottoGrade.FIRST.prize * lottoGradeCount.get(FIRST_INDEX);
+        int SecondPrize = LottoGrade.SECOND.prize * lottoGradeCount.get(SECOND_INDEX);
+        int ThirdPrize = LottoGrade.THIRD.prize * lottoGradeCount.get(THIRD_INDEX);
+        int FourthPrize = LottoGrade.FOURTH.prize * lottoGradeCount.get(FOURTH_INDEX);
+        int FifthPrize = LottoGrade.FIFTH.prize * lottoGradeCount.get(FIFTH_INDEX);
 
         return FirstPrize + SecondPrize + ThirdPrize + FourthPrize + FifthPrize;
     }

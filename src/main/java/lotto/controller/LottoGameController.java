@@ -19,7 +19,7 @@ public class LottoGameController {
     private String winningNumbers;
     private String bonusNumber;
     private final List<Lotto> issueLottos = new ArrayList<>();
-
+    private static final String COMMA = ",";
 
     public LottoGameController() {
         inputView = new InputView();
@@ -93,7 +93,7 @@ public class LottoGameController {
     }
 
     private List<Integer> splitLottoWinningNumbers(String lottoWinningNumbers) {
-        return Arrays.stream(lottoWinningNumbers.split(","))
+        return Arrays.stream(lottoWinningNumbers.split(COMMA))
                 .map(Integer::valueOf)
                 .collect(Collectors.toList());
     }

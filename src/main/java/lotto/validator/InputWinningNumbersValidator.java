@@ -14,29 +14,31 @@ public class InputWinningNumbersValidator {
     private static final String NON_COMMA_ERROR_MESSAGE = "[ERROR] 당첨 번호는 쉼표(,)로 구분해주세요.";
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
+    private static final int WINNING_NUMBERS_SIZE = 6;
     private static final String[] inputMark = {".", "/", "-", "&", "_"};
-
+    private static final String BLANK = "";
+    private static final String COMMA = ",";
 
     public void validateNonInputWinningNumbers(String winningNumbers) {
-        if (winningNumbers.equals("")) {
+        if (winningNumbers.equals(BLANK)) {
             throw new IllegalArgumentException(NON_INPUT_ERROR_MESSAGE);
         }
     }
 
     public void validateNonNumberSizeSix(String winningNumbers) {
-        List<Integer> winningNumber = Arrays.stream(winningNumbers.split(","))
+        List<Integer> winningNumber = Arrays.stream(winningNumbers.split(COMMA))
                 .map(Integer::parseInt)
-                .collect(Collectors.toList());
+                .toList();
 
-        if (winningNumber.size() != 6) {
+        if (winningNumber.size() != WINNING_NUMBERS_SIZE) {
             throw new IllegalArgumentException(NON_NUMBER_SIZE_SIX_ERROR_MESSAGE);
         }
     }
 
     public void validateWrongRangeWinningNumbers(String winningNumbers) {
-        List<Integer> winningNumber = Arrays.stream(winningNumbers.split(","))
+        List<Integer> winningNumber = Arrays.stream(winningNumbers.split(COMMA))
                 .map(Integer::parseInt)
-                .collect(Collectors.toList());
+                .toList();
 
         for (int number : winningNumber) {
             if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
@@ -46,9 +48,9 @@ public class InputWinningNumbersValidator {
     }
 
     public void validateDuplicateWinningNumbers(String winningNumbers) {
-        List<Integer> winningNumber = Arrays.stream(winningNumbers.split(","))
+        List<Integer> winningNumber = Arrays.stream(winningNumbers.split(COMMA))
                 .map(Integer::parseInt)
-                .collect(Collectors.toList());
+                .toList();
         Set<Integer> uniqueNumbers = new HashSet<>(winningNumber);
 
         if (uniqueNumbers.size() != winningNumber.size()) {

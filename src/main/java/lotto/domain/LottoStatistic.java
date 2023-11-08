@@ -4,6 +4,7 @@ import java.util.*;
 
 public class LottoStatistic {
     private final Map<LottoGrade, Integer> result = new LinkedHashMap<>();
+    private static final int HUNDRED = 100;
 
     public LottoStatistic(List<Lotto> issueLottos, WinningLotto winningLotto) {
         initLottoRankCountMap();
@@ -47,6 +48,6 @@ public class LottoStatistic {
 
     public double getAllReturnRate(int lottoPurchaseAmount) {
         int totalPrize = LottoGrade.getTotalPrize(result);
-        return ((double) totalPrize / lottoPurchaseAmount) * 100;
+        return ((double) totalPrize / lottoPurchaseAmount) * HUNDRED;
     }
 }

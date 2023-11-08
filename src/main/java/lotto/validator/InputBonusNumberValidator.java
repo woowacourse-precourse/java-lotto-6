@@ -11,9 +11,11 @@ public class InputBonusNumberValidator {
     private static final String WRONG_RANGE_ERROR_MESSAGE = "[ERROR] 보너스 번호는 1부터 45 사이의 정수입니다.";
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
+    private static final String BLANK = "";
+    private static final String COMMA = ",";
 
     public void validateNonInputBonusNumber(String bonusNumber) {
-        if (bonusNumber.equals("")) {
+        if (bonusNumber.equals(BLANK)) {
             throw new IllegalArgumentException(NON_INPUT_ERROR_MESSAGE);
         }
     }
@@ -27,7 +29,7 @@ public class InputBonusNumberValidator {
     }
 
     public void validateNonNumberSizeOne(String bonusNumber) {
-        List<Integer> number = Arrays.stream(bonusNumber.split(","))
+        List<Integer> number = Arrays.stream(bonusNumber.split(COMMA))
                 .map(Integer::parseInt)
                 .toList();
 

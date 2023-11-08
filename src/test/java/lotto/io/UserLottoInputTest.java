@@ -10,7 +10,6 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoBall;
 import lotto.domain.MatchDetail;
 import lotto.domain.WinningNumbers;
-import lotto.exception.InvalidInputException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

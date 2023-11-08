@@ -1,10 +1,12 @@
 package lotto;
 
 import static lotto.message.Message.BONUS_NUMBER_REQUEST;
+import static lotto.message.Message.COUNT;
 import static lotto.message.Message.DIVIDING_LINE;
 import static lotto.message.Message.LINE_BREAK;
 import static lotto.message.Message.PAYMENT_COMPLETE;
 import static lotto.message.Message.PAYMENT_REQUEST;
+import static lotto.message.Message.SPACE;
 import static lotto.message.Message.WINNING_NUMBER_REQUEST;
 import static lotto.message.Message.WINNING_STATISTICS_RESULT;
 
@@ -115,9 +117,13 @@ public class LottoGame {
             OutputView.print(DIVIDING_LINE.getMessage());
         }
         OutputView.print(LINE_BREAK.getMessage());
-        HashMap<String, Integer> result = new LottoCalculator().calculate(lottoTicket, win);
+        HashMap<Integer, Integer> winResult = new LottoCalculator().calculate(lottoTicket, win);
 
-
+        for (LottoResult result : LottoResult.values()) {
+            OutputView.print(result.getWon() + SPACE.getMessage() + DIVIDING_LINE.getMessage() + SPACE.getMessage()
+                    + winResult.get(result.getCount()) + COUNT.getMessage());
+            OutputView.print(LINE_BREAK.getMessage());
+        }
     }
 
 

@@ -26,14 +26,14 @@ public class LottoController {
         getLottoResults(winningLotto.getNumbers(), lottos, bonusNumber);
     }
 
-    private List<Lotto> getLottos() {
+    private void getLottos() {
         RandomNumbers randomNumbers = new RandomNumbers();
         for (int i = 0; i < amount / 1000; i++) {
             Lotto lotto = new Lotto(randomNumbers.getRandomNumbers());
             lottos.add(lotto);
         }
         OutputView.IssuedLottoNumbers(amount, lottos);
-        return lottos;
+//        return lottos;
     }
 
     private void getLottoAmount() {

@@ -4,6 +4,14 @@ public class WinningLotto {
     private final Lotto winningLotto;
     private final int bonus;
 
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public int getBonus() {
+        return bonus;
+    }
+
     public WinningLotto(Lotto lotto, int bonus) {
         this.winningLotto = lotto;
         this.bonus = bonus;

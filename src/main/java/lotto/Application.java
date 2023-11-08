@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoPrizeCalculator;
 import lotto.domain.LottoReceipt;
 import lotto.domain.WinningLotto;
 import lotto.service.Input;
@@ -22,6 +23,10 @@ public class Application {
 
         Lotto lotto = new Lotto(Input.getWinningNumber());
         WinningLotto winningLotto = new WinningLotto(lotto, Input.getBonusNumber());
+
+        // 당첨 통계
+        LottoPrizeCalculator.checkLottoResult(lottoReceipt, winningLotto);
+        Output.printLottoWinningResults(lottoReceipt);
     }
 
     public static int validateAmount(String amount) {

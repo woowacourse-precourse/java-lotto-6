@@ -31,7 +31,6 @@ public class Customer {
                 validatelotto(mylotto.getlotto());
                 inputbonus();
                 validatebonus(getbonus(), mylotto.getlotto());
-
                 break;
             }catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage()); // 에러 메시지를 출력합니다. 다시 while 루프의 처음으로 돌아가서 값을 다시 입력 받습니다.

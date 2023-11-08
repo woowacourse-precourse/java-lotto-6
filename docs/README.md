@@ -66,9 +66,18 @@ customer클래스
 inputprice 메소드를 통해 입력값을 받고 1000으로 나누어 떨어지는지 검사한다.
 caltrying 메소드를 통해 반복횟수를 구한다.
 inputlotto 메소드를 통해 입력값을 받고 Lotto로 만든다.
-forraffle메소드로 inputlotto에서 받은 값이 1~45사이 숫자인지 확인한다.
+forraffle메소드로 추첨 전에 필요한 로또번호와 보너스를 입력받고 inputlotto에서 받은 값이 1~45사이 숫자인지 확인한다.
+
 
 Raffle클래스
 Java Enum을 통해 1~6등을 정의한다
 result 메소드를 통해 결과를 계산한다.
-printresult 메소드를 통해 결과를 출력한다.
+makeLotto 메소드로 입력받은 가격만큼 랜덤으로 로또를 생성한다
+showLotto 메소드로 생성한 로또를 출력한다.
+rankLotto 메소드를 통해 등수를 정한다. 각 등수의 조건에 따라 설정한다.
+countMatch 메소드를 통해 위rankLotto에서 쓸 로직을 만든다. 필터 기능을 이용해 구현한다.
+calculateReturnRate 메소드를 통해 수익률을 계산한다. 소수 둘째자리에서 반올림한다.
+
+UserInterface클래스
+makeLotto메소드와 makingRank메소드를 통해 위에서 구현한 것들을 실행하한다.
+printResults메소드로 등수를 출력하고 doLotto메소드를 통해 모든기능을 모은다.

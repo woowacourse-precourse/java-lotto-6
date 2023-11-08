@@ -1,6 +1,7 @@
 package lotto.util;
 
 public class PrintConstants {
+	public static final String ERROR="[ERROR] ";
 	public static final String INPUT_BUYING_PRICE = "구입금액을 입력해 주세요.";
 	public static final String NUBMER_OF_PURCHASED = "개를 구매했습니다..";
 	public static final String INPUT_NUMBER_OF_LOTTO = "당첨 번호를 입력해 주세요.";

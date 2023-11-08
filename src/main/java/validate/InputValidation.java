@@ -1,5 +1,6 @@
 package validate;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static constants.LottoErrorMessageConstants.*;
@@ -35,8 +36,8 @@ public class InputValidation {
         }
     }
 
-    public static void validateAmountMinimum(int purchaseAmount) {
-        if (purchaseAmount < 1000) {
+    public static void validateAmount(int purchaseAmount) {
+        if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException(ERROR_MESSAGE_AMOUNT_LESS_THAN_MINIMUM);
         }
     }

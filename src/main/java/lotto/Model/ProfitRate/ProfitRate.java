@@ -8,8 +8,8 @@ public class ProfitRate {
     }
 
 
-    public String getStringProfitRate(){
-        return String.format("%.2f%%", ProfitRate);
+    public Double getProfitRatePercent(){
+        return this.ProfitRate;
     }
 
 

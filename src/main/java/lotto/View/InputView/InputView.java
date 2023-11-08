@@ -18,11 +18,13 @@ public class InputView {
     }
 
     public String getLottoWinningNumber() {
+        System.out.println();
         GeneralOutput.stringPrintln(WINNING_NUMBER_PROMPT);
         return GeneralInput.stringInput();
     }
 
     public String getLottoBonusNumber() {
+        System.out.println();
         GeneralOutput.stringPrintln(BONUS_NUMBER_PROMPT);
         return GeneralInput.stringInput();
     }

@@ -27,7 +27,7 @@ public class ProfitRateService {
 
         int totalProfit = calculateTotalProfit(winningResult);
 
-        double profitPercentage = ((double) totalProfit / (totalLottoCount * LOTTO_ONE_TICKET_PRICE.getValue()) * 1000);
+        double profitPercentage = ((double) totalProfit / (totalLottoCount * LOTTO_ONE_TICKET_PRICE.getValue()) * 100);
 
         profitPercentage = Math.round(profitPercentage * 100.0) / 100.0;
 

@@ -3,6 +3,7 @@ package lotto;
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.service.LottoService;
 import lotto.util.RandomNumbers;
 import lotto.view.InputView;
 import org.assertj.core.api.Assertions;
@@ -85,7 +86,7 @@ public class TddTest {
 
         Lottos lottos = new Lottos(lottoList);
 
-        Map<Long,Long> testMap = lottos.checkWinningNumbers(Arrays.asList(2, 5, 9, 15, 18, 20), 7);
+        Map<Long,Long> testMap = lottos.checkWinningNumbers(Arrays.asList(1, 2, 3, 4, 5, 8), 9);
         for (Map.Entry<Long, Long> entry : testMap.entrySet()) {
             Long key = entry.getKey();
             Long value = entry.getValue();
@@ -106,7 +107,18 @@ public class TddTest {
                 .collect(Collectors.toList());
     }
 
+    @Test
+    public void 수익률_계산(){
+        Map<Long, Long> winningResults = new HashMap<>();
+        winningResults.put(3L, 1L); // 3개 일치 상금 5,000원
+        winningResults.put(4L, 1L); // 4개 일치 상금 50,000원
+        int buyCount = 5;
 
+        LottoService lottoService = new LottoService();
+        double profitRate = lottoService.calculateProfitRate(buyCount, winningResults);
 
+        double expectedProfitRate = 1000.0;
+        assertThat(profitRate).isEqualTo(expectedProfitRate);
+    }
 
 }

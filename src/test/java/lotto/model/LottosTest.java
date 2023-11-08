@@ -88,5 +88,57 @@ class LottosTest {
             Assertions.assertThat(equalsResult).isTrue();
             Assertions.assertThat(hashCodeResult).isTrue();
         }
+
+        @Test
+        @DisplayName("같은 인스턴스 비교")
+        void testEqualsWithSameInstance() {
+            // 준비
+            List<Lotto> lottoList = Arrays.asList(
+                    new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
+                    new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12))
+            );
+            Lottos lottos = Lottos.from(lottoList);
+
+            // 실행
+            boolean equalsResult = lottos.equals(lottos);
+
+            // 검증
+            Assertions.assertThat(equalsResult).isTrue();
+        }
+
+        @Test
+        @DisplayName("null 객체와 비교")
+        void testEqualsWithNull() {
+            // 준비
+            List<Lotto> lottoList = Arrays.asList(
+                    new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
+                    new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12))
+            );
+            Lottos lottos = Lottos.from(lottoList);
+
+            // 실행
+            boolean equalsResult = lottos.equals(null);
+
+            // 검증
+            Assertions.assertThat(equalsResult).isFalse();
+        }
+
+        @Test
+        @DisplayName("다른 객체 타입과 비교")
+        void testEqualsWithDifferentObjectType() {
+            // 준비
+            List<Lotto> lottoList = Arrays.asList(
+                    new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
+                    new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12))
+            );
+            Lottos lottos = Lottos.from(lottoList);
+            Object differentTypeObject = new Object();
+
+            // 실행
+            boolean equalsResult = lottos.equals(differentTypeObject);
+
+            // 검증
+            Assertions.assertThat(equalsResult).isFalse();
+        }
     }
 }

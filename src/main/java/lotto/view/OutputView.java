@@ -8,9 +8,10 @@ import lotto.model.Lotto;
 import lotto.model.Rank;
 
 public class OutputView {
-    private static final String PURCHASED_LOTTIES_MENT = "%d개를 구매했습니다.\n";
+    private static final String PURCHASED_LOTTIES_MENT = "\n%d개를 구매했습니다.\n";
     private static final String WINNING_STATISTICS_MENT = "%s (%s원) - %d개\n";
     private static final String PROFITABILITY_MENT = "총 수익률은 %.1f%%입니다.\n";
+    private static final String STATISTIC_INITIAL_MENT = "\n당첨 통계\n---";
 
     public void printPurchasedLotties(List<Lotto> lotties) {
         System.out.printf(PURCHASED_LOTTIES_MENT, lotties.size());
@@ -20,17 +21,24 @@ public class OutputView {
     }
 
     public void printWinningStatistics(EnumMap<Rank, Integer> enumMap) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        System.out.println(STATISTIC_INITIAL_MENT);
+
         for (Rank rank : Rank.values()) {
-            String correctNumberCount = rank.getDescription();
-            int winning = rank.getPrize();
-            int matchLottoCount = enumMap.getOrDefault(rank, 0);
-            String winningWithComma = decimalFormat.format(winning);
-            System.out.printf(WINNING_STATISTICS_MENT, correctNumberCount
-                    , winningWithComma, matchLottoCount);
+            printRank(rank, enumMap);
         }
+
+    }
+
+    private void printRank(Rank rank, EnumMap<Rank, Integer> enumMap) {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+
+        String correctNumberCount = rank.getDescription();
+        int winning = rank.getPrize();
+        int matchLottoCount = enumMap.getOrDefault(rank, 0);
+        String winningWithComma = decimalFormat.format(winning);
+
+        System.out.printf(WINNING_STATISTICS_MENT, correctNumberCount
+                , winningWithComma, matchLottoCount);
 
     }
 

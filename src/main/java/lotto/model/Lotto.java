@@ -9,6 +9,7 @@ import lotto.view.ExceptionOutputView;
 
 public class Lotto {
     private final List<Integer> numbers;
+    public static final int PRICE_PER_LOTTO = 1000;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -62,10 +63,14 @@ public class Lotto {
 
     public Rank determineRank(Lotto targetLotto, int bonusNumber) {
         int matchingCount = countMatchingNumbers(targetLotto);
-        if (matchingCount == 5 && numbers.contains(bonusNumber)) {
+        Rank rankWithoutBonus = determineRankWithoutBonus(matchingCount);
+        if (rankWithoutBonus == Rank.MATCH_5 && numbers.contains(bonusNumber)) {
             return Rank.MATCH_5_BONUS;
         }
+        return rankWithoutBonus;
+    }
 
+    private Rank determineRankWithoutBonus(int matchingCount) {
         if (matchingCount == 3) {
             return Rank.MATCH_3;
         }

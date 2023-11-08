@@ -11,7 +11,7 @@ class WinningResultTest {
     void addPrize() {
         WinningResult winningResult = new WinningResult();
 
-        winningResult.addPrize(Rank.FIFTH);
+        winningResult.addRank(Rank.FIFTH);
 
         assertThat(winningResult.getValues()).containsEntry(Rank.FIFTH, 1);
     }
@@ -20,8 +20,8 @@ class WinningResultTest {
     @Test
     void getFormattedStatistics() {
         WinningResult winningResult = new WinningResult();
-        winningResult.addPrize(Rank.FIRST);
-        winningResult.addPrize(Rank.FIFTH);
+        winningResult.addRank(Rank.FIRST);
+        winningResult.addRank(Rank.FIFTH);
 
         String actual = winningResult.getFormattedStatistics();
 
@@ -38,7 +38,7 @@ class WinningResultTest {
     void getFormattedProfit() {
         Long money = 8_000L;
         WinningResult winningResult = new WinningResult();
-        winningResult.addPrize(Rank.FIFTH);
+        winningResult.addRank(Rank.FIFTH);
 
         String actual = winningResult.getFormattedProfit(money);
 

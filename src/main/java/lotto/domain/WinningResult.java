@@ -12,7 +12,7 @@ public class WinningResult {
     private static final String PROFIT_FORMAT = "총 수익률은 %.1f%%입니다.";
     private final Map<Rank, Integer> values = new EnumMap<>(Rank.class);
 
-    public void addPrize(Rank rank) {
+    public void addRank(Rank rank) {
         values.put(rank, values.getOrDefault(rank, 0) + 1);
     }
 

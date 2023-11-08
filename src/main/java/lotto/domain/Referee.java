@@ -11,12 +11,7 @@ public class Referee {
 
     public WinningResult judgeRanks(List<Lotto> lottos) {
         WinningResult winningResult = new WinningResult();
-        Lotto winningNumberValues = winningNumber.getValues();
-        for (Lotto lotto : lottos) {
-            int matchedCount = lotto.countMatchedNumber(winningNumberValues);
-            boolean isBonus = lotto.contains(winningNumber.getBonusNumber());
-            winningResult.addPrize(Rank.valueOf(matchedCount, isBonus));
-        }
+        lottos.forEach(lotto -> winningResult.addRank(lotto.judgeRank(winningNumber)));
         return winningResult;
     }
 }

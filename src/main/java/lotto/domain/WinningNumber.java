@@ -11,7 +11,7 @@ public class WinningNumber {
     }
 
     private void validateAlreadyPickedNumber(int bonusNumber) {
-        if (values.contains(bonusNumber)) {
+        if (values.numbers().contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }
     }

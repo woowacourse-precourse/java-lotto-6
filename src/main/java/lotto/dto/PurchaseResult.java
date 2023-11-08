@@ -6,8 +6,8 @@ import java.util.List;
 
 public class PurchaseResult {
 
-    private int quantity;
-    private List<Lotto> lottos;
+    private final int quantity;
+    private final List<Lotto> lottos;
 
     public PurchaseResult(int quantity, List<Lotto> lottos) {
         this.quantity = quantity;

@@ -42,7 +42,7 @@ public class LottoResult {
         for(int i = 0; i < lottoPurchaseCnt; i++) {
             int result = 0;
             for (int j = 0; j < 6; j++) {
-                if (Objects.equals(numbers.get(j), randomNumbers.get(i).get(j))) {
+                if (randomNumbers.get(i).contains(numbers.get(j))) {
                     result++;
                 }
             }

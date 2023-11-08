@@ -1,11 +1,16 @@
 package lotto.domain;
 
+import lotto.Constant;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class Lotto {
+    private static final String ERROR_INPUT_NUMBER = "입력된 숫자를 다시 확인하세요.";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,7 +20,12 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Constant.ERROR_PREFIX + ERROR_INPUT_NUMBER);
+        }
+
+        Set<Integer> set = new HashSet<>(numbers);
+        if (set.size() != Constant.LOTTO_PICK_NUMBER) {
+            throw new IllegalArgumentException(Constant.ERROR_PREFIX + ERROR_INPUT_NUMBER);
         }
     }
 

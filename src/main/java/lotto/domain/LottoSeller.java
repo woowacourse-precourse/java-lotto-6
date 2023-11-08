@@ -3,10 +3,7 @@ package lotto.domain;
 import lotto.Constant;
 import lotto.Util;
 
-import java.util.EnumMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class LottoSeller {
 
@@ -63,7 +60,7 @@ public class LottoSeller {
         return bonusNumber;
     }
 
-    public static Rank getMatchedRank(int matchedCount, boolean isBonus) {
+    public Rank getMatchedRank(int matchedCount, boolean isBonus) {
         for (Rank rank : Rank.values()) {
             if (rank.getMatchCount() == matchedCount && rank.isBonus() == isBonus) {
                 return rank;
@@ -73,12 +70,22 @@ public class LottoSeller {
         return Rank.NONE;
     }
 
-    public void contrastWithWinningNumber(List<Lotto> lottos) {
-        for (Lotto lotto : lottos) {
+    public void contrastWithWinningNumber(LottoBuyer lottoBuyer) {
+        for (Lotto lotto : lottoBuyer.getLottos()) {
             int size = winningLotto.matchedNumberCount(lotto);
             boolean isBonus = winningLotto.getNumbers().contains(bonusNumber);
             Rank matchedRank = getMatchedRank(size, isBonus);
             matchedResult.put(matchedRank, matchedResult.get(matchedRank) + 1);
         }
+    }
+
+    public double calculateRateOfReturn(LottoBuyer lottoBuyer, Map<Rank, Integer> result) {
+        double totalAmount = lottoBuyer.getPurchaseNumber() * Constant.LOTTO_PRICE_UNIT;
+        double sum = 0;
+        for (Rank rank : result.keySet()) {
+            sum += rank.getPrize() * result.get(rank);
+        }
+
+        return sum / totalAmount * 100;
     }
 }

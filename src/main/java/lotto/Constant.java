@@ -9,4 +9,5 @@ public class Constant {
 
     public static final String ERROR_PREFIX = "[ERROR]" + " ";
     public static final String INVALID_NUMBER_TYPE = "숫자만 입력 가능합니다.";
+    public static final String LOTTO_COUNT_UNIT = "개";
 }

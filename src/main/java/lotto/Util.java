@@ -6,6 +6,7 @@ public class Util {
         try {
             return Integer.parseInt(str);
         } catch (NumberFormatException ex) {
+            System.out.print(Constant.ERROR_PREFIX + Constant.INVALID_NUMBER_TYPE);
             throw new IllegalArgumentException(Constant.ERROR_PREFIX + Constant.INVALID_NUMBER_TYPE);
         }
     }

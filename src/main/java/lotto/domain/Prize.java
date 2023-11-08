@@ -11,12 +11,12 @@ public enum Prize {
     FOURTH(4, 50000, (matchCount, isMatchBonus) -> matchCount == 4),
     FIFTH(3, 5000, (matchCount, isMatchBonus) -> matchCount == 3);
 
-    private final int matchNumber;
+    private final int matchCount;
     private final int reward;
     private final BiPredicate<Integer, Boolean> biPredicate;
 
-    Prize(int matchNumber, int reward, BiPredicate<Integer, Boolean> biPredicate) {
-        this.matchNumber = matchNumber;
+    Prize(int matchCount, int reward, BiPredicate<Integer, Boolean> biPredicate) {
+        this.matchCount = matchCount;
         this.reward = reward;
         this.biPredicate = biPredicate;
     }
@@ -26,5 +26,13 @@ public enum Prize {
                 .filter(prize -> prize.biPredicate.test(matchCount, isMatchBonus))
                 .findAny()
                 .orElse(NONE);
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getReward() {
+        return reward;
     }
 }

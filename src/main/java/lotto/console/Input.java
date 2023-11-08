@@ -16,7 +16,7 @@ public class Input {
             Double money = Utils.convertInput(Console.readLine());
             return new Asset(money);
         }catch (IllegalArgumentException e){
-            System.out.println("[ERROR] :" + e.getMessage());
+            System.out.println("[ERROR] : " + e.getMessage());
             return askMoney();
         }
     }

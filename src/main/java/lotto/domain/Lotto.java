@@ -35,7 +35,7 @@ public class Lotto {
 
     private void validOutOfRange(List<Integer> numbers) {
         boolean outOfRange = numbers.stream()
-                .anyMatch(num -> num < 0 || 45 < num);
+                .anyMatch(num -> num < 1 || 45 < num);
 
         if(outOfRange) {
             throw new IllegalArgumentException("로또 1부터 45까지 입니다.\n");
@@ -57,4 +57,5 @@ public class Lotto {
     public List<Integer> getNumbers(){
         return numbers;
     }
+
 }

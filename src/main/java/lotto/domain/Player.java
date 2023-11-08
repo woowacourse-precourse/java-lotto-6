@@ -37,6 +37,8 @@ public class Player {
         state.setGradeState(grade);
     }
 
+    public void setLottoTickets(List<Lotto> lottoTickets) {}
+
     public Long calTicketNum(Double money){
         long ticketNum = (long) (money / 1000);
 

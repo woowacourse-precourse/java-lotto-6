@@ -6,40 +6,42 @@ import lotto.domain.LottoPrize;
 
 import java.text.DecimalFormat;
 
-import static lotto.constants.MsgConstants.*;
+import static lotto.constants.MsgConstants.WINNING_STATISTICS_RESULT_PRIZE;
+import static lotto.constants.MsgConstants.WINNING_STATISTICS_RESULT_SECOND_PRIZE;
 
 public class OutputView {
-
 
     public static void printErrorMessage(String err) {
         System.out.println(err);
     }
 
+    public static void printMessage(String message) {
+        System.out.println(message);
+    }
 
     public static void printEnterPurchaseAmount() {
-        System.out.println(MsgConstants.PLEASE_ENTER_PURCHASE_AMOUNT.getData());
+        printMessage(MsgConstants.PLEASE_ENTER_PURCHASE_AMOUNT.getData());
     }
 
     public static void printPurchasedLottoNumber(String msg) {
-        System.out.println(msg);
+        printMessage(msg);
     }
 
     public static void printEnterWinningNumber() {
-        System.out.println(MsgConstants.PLEASE_ENTER_WINNING_NUMBER.getData());
+        printMessage(MsgConstants.PLEASE_ENTER_WINNING_NUMBER.getData());
     }
 
     public static void printEnterBonusNumber() {
-        System.out.println(MsgConstants.PLEASE_ENTER_BONUS_NUMBER.getData());
+        printMessage(MsgConstants.PLEASE_ENTER_BONUS_NUMBER.getData());
     }
 
     public static void printPurchasedQuantity(int quantity) {
-        System.out.printf((PURCHASED_SOME_PIECES.getData()) + "%n", quantity);
+        printMessage(String.format(MsgConstants.PURCHASED_SOME_PIECES.getData(), quantity));
     }
 
     public static void printWinningStatistics(int[] winningCount) {
-        System.out.println(WINNING_STATISTICS.getData());
-        LottoPrize[] values = LottoPrize.values();
-        for (LottoPrize lottoPrize : values) {
+        printMessage(MsgConstants.WINNING_STATISTICS.getData());
+        for (LottoPrize lottoPrize : LottoPrize.values()) {
             printPrize(lottoPrize, winningCount[lottoPrize.ordinal()]);
         }
     }
@@ -61,6 +63,6 @@ public class OutputView {
     }
 
     public static void printProfitRatio(double ratio) {
-        System.out.printf((WINNING_STATISTICS_RESULT_RATIO.getData()) + "%n", ratio);
+        System.out.printf(MsgConstants.WINNING_STATISTICS_RESULT_RATIO.getData() + "%n", ratio);
     }
 }

@@ -35,4 +35,8 @@ public class View {
     public void showLottoStatisticsResult(LottoStatisticsResult lottoStatisticsResult) {
         outputView.printLottoStatisticsResult(lottoStatisticsResult);
     }
+
+    public void showExceptionMessage(String exceptionMessage) {
+        outputView.printExceptionMessage(exceptionMessage);
+    }
 }

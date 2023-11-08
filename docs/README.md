@@ -60,11 +60,10 @@
 1000원보다 작을 때
 1000원으로 나누어 떨어지지 않을 때
 → 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고
-'[ERROR]'로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받음
+&nbsp;&nbsp;'[ERROR]'로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받음
 
 **3) 로또 발행**
-1 ~ 45까지의 숫자를 가지고 중복되지 않은 6개의 숫자를 뽑아 구입한 로또 수량만큼 발행
-로또 번호 오름차순 정렬
+1 ~ 45까지의 숫자를 가지고 중복되지 않은 6개의 숫자를 뽑아 구입한 로또 수량만큼 발행 로또 번호 오름차순 정렬
 
 **4) 발행된 로또 출력**
 오름차순으로 정렬된 로또 출력
@@ -76,9 +75,9 @@
 **[예외]**
 쉼표(,)로 구분되지 않을 때
 1 ~ 45 범위의 숫자가 아닐 때 (문자, 음수, 소수, 0이 아닐 때)
-숫자가 중복될 때
+숫자가 중복될 때 
 → 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고
-'[ERROR]'로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받음
+&nbsp;&nbsp;'[ERROR]'로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받음
 
 **7) 보너스 번호를 입력받기 위해 '보너스 번호를 입력해 주세요.'를 출력**
 
@@ -86,9 +85,9 @@
 당첨 번호와 중복되지 않는 숫자 1개
 **[예외]**
 1 ~ 45 범위의 숫자가 아닐 때 (문자, 음수, 소수, 0이 아닐 때)
-당첨 번호와 중복될 때
+당첨 번호와 중복될 때 
 → 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고
-'[ERROR]'로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받음
+&nbsp;&nbsp;'[ERROR]'로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받음
 
 **9) 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률 계산**
 3개 일치, 4개 일치, 5개 일치, 5개 일치 및 보너스 볼 일치, 6개 일치 비교 계산
@@ -102,7 +101,42 @@
 <br>
 
 <h2> 🗂 MVC 패턴을 적용한 디렉토리 구조 </h2>
-
 <pre>
-이후 추가 예정
+
+**model**
+|- lotto
+&nbsp;&nbsp;|- Lotto : 로또 객체 Domain
+&nbsp;&nbsp;|- Player : 사용자 객체 Domain
+&nbsp;&nbsp;|- PlayerAmount : 사용자의 로또 구매 수량 객체 Domain
+&nbsp;&nbsp;|- Winning : 당첨 번호 객체 Domain
+|- result
+&nbsp;&nbsp;|- Prize : 상금 객체 Domain
+&nbsp;&nbsp;|- Result : 결과 객체 Domain
+
+**view**
+|- InputView.java : 사용자 입력 View
+|- OutputView.java : 사용자 출력 View
+
+**controller**
+|- MainController : 메인 시작 Controller
+|- PlayerController : 사용자 관련 Controller
+|- WinningController : 당첨 번호 관련 Controller
+|- ResultController : 결과 관련 Controller
+
+**exception**
+|- InvalidNonNumericInputException : 숫자가 아닐 때 예외처리
+|- InvalidCommaMissingException : 쉼표가 없을 때 예외처리
+|- InvalidMinimumAmountException : 구입 금액의 최소 금액보다 작을 때 예외처리
+|- InvalidDivisionAmountException : 구입 금액이 1000원 단위가 아니어서 나누어지지 않을 때 예외처리
+|- InvalidDuplicateLottoNumberException : 로또 숫자 중복 예외처리
+|- InvalidLottoNumberCountException : 로또 숫자 갯수 예외처리
+|- InvalidLottoNumberRangeException : 로또 숫자 범위 예외처리
+
+**utils**
+|- Constant : 룰과 관련된 상수 Constant
+|- Generator : 로또 발행값 생성 Util
+|- InputParser : 입력값 형변환 Util
+|- Validator : 입력 변수 예외처리 Util
+
+**Application.java**
 </pre>

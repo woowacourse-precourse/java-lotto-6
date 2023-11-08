@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,17 +24,18 @@ public class Application {
     static int matchRecord = 0;
     static int [] lottoRecord = new int[8];
 
+    static DecimalFormat formatter = new DecimalFormat("###,###");
     public enum Grade {
-        FIRST("2,000,000,000"),
-        SECOND("30,000,000"),
-        THIRD("1,500,000"),
-        FOURTH("50,000"),
-        FIFTH("5,000");
-        private final String PRIZE;
-        private Grade (String prize){
+        FIRST(2000000000),
+        SECOND(30000000),
+        THIRD(1500000),
+        FOURTH(50000),
+        FIFTH(5000);
+        private final int PRIZE;
+        private Grade (int prize){
             this.PRIZE = prize;
         }
-        public String getPrize(){
+        public int getPrize(){
             return this.PRIZE;
         }
     }
@@ -133,19 +135,56 @@ public class Application {
             compareNumbers(lottos.get(i));
             lottoRecord[i] = matchRecord;
             matchRecord = 0;
-            System.out.print(lottoRecord[i] + " ");
         }
     }
 
-    public static void printWinningStats(){
-        System.out.println("\n당첨 통계\n---");
-        System.out.println("3개 일치 (" + Grade.FIFTH.PRIZE +")원 - " + Collections.frequency(grades,Grade.FIFTH) + "개");
-        System.out.println("4개 일치 (" + Grade.FOURTH.PRIZE +")원 - " + Collections.frequency(grades,Grade.FOURTH)+"개");
-        System.out.println("5개 일치 (" + Grade.THIRD.PRIZE +")원 - " + Collections.frequency(grades,Grade.THIRD) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (" + Grade.SECOND.PRIZE +")원 - " + Collections.frequency(grades,Grade.SECOND)+"개");
-        System.out.println("6개 일치 (" + Grade.FIRST.PRIZE +")원 - " + Collections.frequency(grades,Grade.FIRST) + "개");
+    static void getWinningStat(){
+        for (int i = 0; i < lottos.size(); i++) {
+            grade = null;
+            if (lottoRecord[i] == 3)
+                grade = Grade.FIFTH;
+            if (lottoRecord[i] == 4)
+                grade = Grade.FOURTH;
+            if (lottoRecord[i] == 5)
+                grade = Grade.THIRD;
+            if (lottoRecord[i] == 5 && lottos.get(i).contains(BonusNumber))
+                grade = Grade.SECOND;
+            if (lottoRecord[i] == 6)
+                grade = Grade.FIRST;
+            grades.add(grade);
+        }
     }
 
+    public static void printWinningStat(){
+        System.out.println("\n당첨 통계\n---");
+        System.out.println("3개 일치 (" + formatter.format(Grade.FIFTH.PRIZE)+")원 - "
+                + Collections.frequency(grades,Grade.FIFTH) + "개");
+        System.out.println("4개 일치 (" + formatter.format(Grade.FOURTH.PRIZE) +")원 - "
+                + Collections.frequency(grades,Grade.FOURTH) + "개");
+        System.out.println("5개 일치 (" + formatter.format(Grade.THIRD.PRIZE) +")원 - "
+                + Collections.frequency(grades,Grade.THIRD) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (" + formatter.format(Grade.SECOND.PRIZE) +")원 - "
+                + Collections.frequency(grades,Grade.SECOND) + "개");
+        System.out.println("6개 일치 (" + formatter.format(Grade.FIRST.PRIZE) +")원 - "
+                + Collections.frequency(grades,Grade.FIRST) + "개");
+    }
+    public static double getEarningRate(){
+        List<Integer> earning = new ArrayList<>();
+        int earningSum = 0;
+        for (Grade g: Grade.values()) {
+             earning.add(g.PRIZE * Collections.frequency(grades,g));
+        }
+        for (int i = 0; i < 5; i++) {
+            earningSum += earning.get(i);
+        }
+        double earningRate = (double) earningSum / (double) purchasePrice * 100;
+        return earningRate;
+    }
+    public static void printEarningRate(double rate){
+        //double result = Math.round(rate * 100) / 100.0;
+        String result = String.format("%.1f",rate);
+        System.out.println("총 수익률은 " + result +"%입니다.");
+    }
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
@@ -175,28 +214,11 @@ public class Application {
         getLottoRecord();
 
         //  당첨 유형 분류
-        for (int i = 0; i < lottos.size(); i++) {
-            grade = null;
+        getWinningStat();
+        printWinningStat();
 
-            if (lottoRecord[i] == 3)
-                grade = Grade.FIFTH;
-            if (lottoRecord[i] == 4)
-                grade = Grade.FOURTH;
-            if (lottoRecord[i] == 5)
-                grade = Grade.THIRD;
-            if (lottoRecord[i] == 5 && lottos.get(i).contains(BonusNumber))
-                grade = Grade.SECOND;
-            if (lottoRecord[i] == 6)
-                grade = Grade.FIRST;
-
-            grades.add(grade);
-        }
-
-        System.out.println("\n" + grades);
-
-        printWinningStats();
-
-
+        // 수익률
+        printEarningRate(getEarningRate());
 
         /*
         try{

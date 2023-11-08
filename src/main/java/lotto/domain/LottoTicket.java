@@ -11,6 +11,10 @@ public class LottoTicket {
         this.tickets = tickets;
     }
 
+    public List<Lotto> getTickets() {
+        return tickets;
+    }
+
     public void printTickets() {
         for (Lotto lotto : tickets) {
             System.out.println(lotto.getNumbers());
@@ -32,23 +36,13 @@ public class LottoTicket {
         return new LottoTicket(tickets);
     }
 
-    public void calculateAndPrintResult(WinningNumbers winningNumbers, int bonusNumber) {
-        Map<Rank, Integer> result = new HashMap<>();
-
+    public WinningStatistic calculateResult(WinningNumbers winningNumbers) {
+        WinningStatistic winningStatistic = new WinningStatistic();
         for (Lotto lotto : tickets) {
-            Rank rank = winningNumbers.calculateRank(lotto, bonusNumber);
-            result.put(rank, result.getOrDefault(rank, 0) + 1);
+            Rank rank = winningNumbers.calculateRank(lotto);
+            winningStatistic.addRank(rank);
         }
-
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        for (Rank rank : Rank.values()) {
-            int count = result.getOrDefault(rank, 0);
-            rank.printResult(count);
-        }
-
-        double profitRate = winningNumbers.calculateProfitRate(result);
-        System.out.printf("총 수익률은 %.1f%% 입니다.%n", profitRate);
+        return winningStatistic;
     }
 
 }

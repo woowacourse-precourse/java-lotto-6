@@ -1,5 +1,6 @@
 package lotto.ui;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.BonusBall;
@@ -34,25 +35,24 @@ public class StatisticsUI {
     }
 
     private Lotto getWinningNumber() {
-        try {
-            return Lotto.of(getWinningLotto());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-
-            return getWinningNumber();
+        while (true) {
+            try {
+                return Lotto.of(getWinningLotto());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
     private BonusBall getBonusNumber(Lotto winningLotto) {
-        try {
-            int bonusBall = inputUI.getBonusBall();
-            winningLotto.contain(bonusBall);
-
-            return BonusBall.valueOf(bonusBall);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-
-            return getBonusNumber(winningLotto);
+        while (true) {
+            try {
+                int bonusBall = inputUI.getBonusBall();
+                winningLotto.contain(bonusBall);
+                return BonusBall.valueOf(bonusBall);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 

@@ -22,12 +22,12 @@ public class LottoStore {
     }
 
     public LottoTickets buyLotto() {
-        try {
-            return getLottos(LottoPurchaseAmount.valueOf(inputUI.getAmount()));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-
-            return buyLotto();
+        while (true) {
+            try {
+                return getLottos(LottoPurchaseAmount.valueOf(inputUI.getAmount()));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 

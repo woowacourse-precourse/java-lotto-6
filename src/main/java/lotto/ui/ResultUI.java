@@ -1,7 +1,5 @@
 package lotto.ui;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.EnumSet;
 import java.util.Map;
 import java.util.Set;
@@ -16,14 +14,13 @@ import lotto.util.LottoPrizeCalculator;
  **********************************************************************************************************************/
 public class ResultUI {
 
-    // TODO 계산등의 기능을 분리 시켜야 함
     public void printBoughtLottos(LottoTickets lottos) {
         StringBuilder sb = new StringBuilder();
 
         String purchaseMsg = String.format("%d개를 구매했습니다.", lottos.size());
         sb.append(purchaseMsg).append(System.lineSeparator());
 
-        lottos.labelNumbers((numbers) -> sb.append(numbers).append(System.lineSeparator()));
+        lottos.acceptLottoNumbers((lottoNumbers) -> sb.append(lottoNumbers).append(System.lineSeparator()));
 
         System.out.println(sb);
     }
@@ -35,7 +32,7 @@ public class ResultUI {
         appendStatistics(countOfWinningRanks, sb);
         appendProfitRate(countOfWinningRanks, sb, boughtLottos);
 
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 
     private void appendProfitRate(Map<LottoPrize, Integer> countOfWinningRanks, StringBuilder sb,

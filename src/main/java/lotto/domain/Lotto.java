@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.stream.Collectors;
+import java.util.function.Consumer;
 
 public class Lotto {
 
@@ -32,8 +32,8 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public void acceptLottoNumbers(Consumer<List<Integer>> consumer) {
+        consumer.accept(numbers);
     }
 
     public void contain(int number) {
@@ -75,9 +75,7 @@ public class Lotto {
     }
 
     private List<Integer> getLottoNumbersFrom(Collection<Integer> numbers) {
-        TreeSet<Integer> sorted = numbers.stream()
-                .collect(Collectors.toCollection(TreeSet::new));
-
+        TreeSet<Integer> sorted = new TreeSet<>(numbers);
         return new ArrayList<>(sorted);
     }
 

@@ -16,13 +16,13 @@ public class InputUI {
     private static final String DELIMITER = ",";
 
     public int getAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        try {
-            return validate(Console.readLine());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-
-            return getAmount();
+        while (true) {
+            System.out.println("구입금액을 입력해 주세요.");
+            try {
+                return validate(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 

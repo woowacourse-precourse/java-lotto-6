@@ -26,9 +26,9 @@ public class LottoTickets {
         return lottoTickets.size();
     }
 
-    public void labelNumbers(Consumer<List<Integer>> consumer) {
+    public void acceptLottoNumbers(Consumer<List<Integer>> consumer) {
         for (Lotto lottoTicket : lottoTickets) {
-            consumer.accept(lottoTicket.getNumbers());
+            lottoTicket.acceptLottoNumbers(consumer);
         }
     }
 

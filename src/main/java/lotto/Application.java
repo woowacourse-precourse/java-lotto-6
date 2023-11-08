@@ -19,6 +19,8 @@ public class Application {
         Lotto[] userLotto = getLottos(purchaseAmount, purchaseNumbers);
         LottoResultChecker lottoResultChecker = new LottoResultChecker(winningNumbers, userLotto, bonusNumber);
         lottoResultChecker.checkLottoResult();
+        // 당첨 결과를 출력
+        printResult(lottoResultChecker);
     }
 
     // 입력 값이 1,000 단위로 나누어 떨어지는지 체크하는 메서드
@@ -103,5 +105,16 @@ public class Application {
             purchaseNumbers[i].generateLottoNumbers();
             System.out.println(purchaseNumbers[i].getLottoNumbers());
         }
+    }
+
+    private static void printResult(LottoResultChecker lottoResultChecker) {
+        System.out.println("\n당첨 통계\n---");
+        System.out.printf("3개 일치 (5,000원) - %d개\n", lottoResultChecker.ranks[5]);
+        System.out.printf("4개 일치 (50,000원) - %d개\n", lottoResultChecker.ranks[4]);
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n", lottoResultChecker.ranks[3]);
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", lottoResultChecker.ranks[2]);
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", lottoResultChecker.ranks[1]);
+        System.out.println("총 수익률은 " + lottoResultChecker.returnRatio + "%입니다.");
+
     }
 }

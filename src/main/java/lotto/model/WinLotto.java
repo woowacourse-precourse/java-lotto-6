@@ -12,8 +12,8 @@ public class WinLotto {
   private final List<Integer> winLotto;
   private final int bonusNumber;
 
-  private WinLotto(List<Integer> winLotto, String bonusNumber) {
-    this.winLotto = winLotto;
+  private WinLotto(Lotto winLotto, String bonusNumber) {
+    this.winLotto = winLotto.getNumbers();
     validateBonusNumRange(bonusNumber);
     this.bonusNumber = isValidBonusNumber(bonusNumber);
   }

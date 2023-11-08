@@ -34,7 +34,10 @@ public class LottoService {
     }
 
     public List<Integer> generateLottoNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(
+                Constant.MINIMUM_LOTTO_NUMBER.getValue(),
+                Constant.MAXIMUM_LOTTO_NUMBER.getValue(),
+                Constant.SIZE_OF_LOTTO_NUMBERS.getValue());
         lottoNumbers.sort(Comparator.naturalOrder());
         return lottoNumbers;
     }

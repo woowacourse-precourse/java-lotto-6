@@ -3,16 +3,13 @@ package lotto;
 import java.util.List;
 
 public class LottoGenerator {
-    private final List<Integer> numbers;
     int lottoCount;
     int bonus;
+    private final List<Integer> numbers;
 
-
-    public LottoGenerator(List<Integer> numbers, int lottoCount, int bonus) {
+    public LottoGenerator(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-        this.lottoCount = lottoCount;
-        this.bonus = bonus;
     }
 
     private void validate(List<Integer> numbers) {

@@ -1,4 +1,4 @@
-package model;
+package domain;
 
 
 import java.util.ArrayList;
@@ -21,5 +21,13 @@ public class WinningNumber {
 
     public void setBonusNumber(int bonusNumber){
         this.bonusNumber = bonusNumber;
+    }
+
+    public ArrayList<Integer> getWinningNumber(){
+        return winningNumber;
+    }
+
+    public int getBonusNumber(){
+        return bonusNumber;
     }
 }

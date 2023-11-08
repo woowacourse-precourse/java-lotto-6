@@ -1,4 +1,4 @@
-package model;
+package domain;
 
 import java.util.ArrayList;
 import util.NumberGenerator;
@@ -45,5 +45,9 @@ public class LottoService {
         for (Lotto lotto : myLotto) {
             outputView.printMyLottoNumber(lotto.getNumber());
         }
+    }
+
+    public ArrayList<Lotto> getMyLottoNumber(){
+        return myLotto;
     }
 }

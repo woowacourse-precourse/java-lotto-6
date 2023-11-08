@@ -7,6 +7,7 @@ public class Player {
     private int purChaseAmount;
     private List<Integer> winningNumbers;
     private int bonusNumber;
+    private double rateOfReturn;
 
     public void insertPurchaseAmount(int purChaseAmountInput) {
         this.purChaseAmount = purChaseAmountInput;
@@ -34,10 +35,12 @@ public class Player {
         return purChaseAmount;
     }
 
-    public double calculateRateOfReturn(double totalReturn) {
-        double rateOfReturn = (totalReturn / purChaseAmount) * 100.0;
-        rateOfReturn = Math.round(rateOfReturn * 100.0) / 100.0;
-
+    public double getRateOfReturn() {
         return rateOfReturn;
+    }
+
+    public void calculateRateOfReturn(double totalReturn) {
+        double rawRate = (totalReturn / purChaseAmount) * 100.0;
+        rateOfReturn = Math.round(rawRate * 100.0) / 100.0;
     }
 }

@@ -46,8 +46,8 @@ class PlayerTest {
         player.insertPurchaseAmount(purChaseAmountInput);
         double expectedRateOfReturn = 1000.0;
 
-        double rateOfReturn = player.calculateRateOfReturn(1000000);
+        player.calculateRateOfReturn(1000000);
 
-        assertEquals(expectedRateOfReturn, rateOfReturn);
+        assertEquals(expectedRateOfReturn, player.getRateOfReturn());
     }
 }

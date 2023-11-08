@@ -1,7 +1,6 @@
 package lotto.model;
 
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
@@ -14,9 +13,11 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        /* Check if List has six numbers */
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        /* Check if List has overlapping numbers */
         if (new HashSet<>(numbers).size() != 6) {
             throw new IllegalArgumentException();
         }

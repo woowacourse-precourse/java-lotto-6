@@ -1,10 +1,7 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
-import lotto.model.LottoTicket;
-import lotto.model.WinningNumbers;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.model.*;
+import lotto.view.*;
 
 import java.util.List;
 
@@ -19,19 +16,27 @@ public class LottoGameController {
 
     public void run() {
         int purchaseAmount = inputView.purchase();
-        int numberOfLotto = purchaseAmount / Lotto.TICKET_PRICE;
-        LottoTicket lottoTicket = LottoTicket.generate(numberOfLotto);
+        LottoTicket lottoTicket = generateLottoTicket(purchaseAmount);
 
-        List<Integer> winningNumbers = inputView.winningNumbers();
+        WinningNumbers winningNumbers = receiveWinningNumbers();
         int bonusNumber = inputView.bonusNumber();
-        WinningNumbers winningNumbersObject = new WinningNumbers(winningNumbers);
 
-        int totalPrize = lottoTicket.calculateTotalPrize(winningNumbersObject, bonusNumber);
+        int totalPrize = lottoTicket.calculateTotalPrize(winningNumbers, bonusNumber);
         double earningRate = lottoTicket.calculateEarningRate(totalPrize, purchaseAmount);
 
-        outputView.printNumberOfPurchase(numberOfLotto);
+        outputView.printNumberOfPurchase(lottoTicket.getLottoList().size());
         outputView.printLottoTicket(lottoTicket);
         outputView.printPrize(lottoTicket);
         outputView.printEarningRate(earningRate);
+    }
+
+    private LottoTicket generateLottoTicket(int purchaseAmount) {
+        int numberOfLotto = purchaseAmount / Lotto.TICKET_PRICE;
+        return LottoTicket.generate(numberOfLotto);
+    }
+
+    private WinningNumbers receiveWinningNumbers() {
+        List<Integer> winningNumbers = inputView.winningNumbers();
+        return new WinningNumbers(winningNumbers);
     }
 }

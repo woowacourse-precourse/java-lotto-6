@@ -72,6 +72,14 @@ public class Lotto {
         );
     }
 
+    public static void checkWinOrNot(User user) {
+        long count = 0L;
+        for (Lotto lotto: user.lottos) {
+            count = lotto.compare(lotto);
+        }
+        user.saveCheckResult(count);
+    }
+
     private static int getLottoCount(int payment) {
         return payment / LottoConfig.UNIT_PRICE.getValue();
     }

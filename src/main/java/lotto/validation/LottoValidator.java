@@ -6,6 +6,7 @@ import java.util.Set;
 
 public class LottoValidator implements Validator<List<Integer>> {
     private final static int COUNT = 6;
+    private final static int END_INCLUSIVE = 45;
 
     @Override
     public void validate(List<Integer> numbers) {
@@ -15,6 +16,10 @@ public class LottoValidator implements Validator<List<Integer>> {
         }
         if (!areAllElementsDistinct(numbers)) {
             Error error = Error.DISTINCT_ERROR;
+            throw new IllegalArgumentException(error.message());
+        }
+        if (!areAllInRage(numbers)) {
+            Error error = Error.RANGE_ERROR;
             throw new IllegalArgumentException(error.message());
         }
     }
@@ -34,7 +39,16 @@ public class LottoValidator implements Validator<List<Integer>> {
         return true;
     }
 
-    public boolean isSmallerThan(int input, int n) {
-        return input < n;
+    public boolean areAllInRage(List<Integer> numbers) {
+        for (int i = 0; i < numbers.size(); i++) {
+            if (!isPositive(numbers.get(i)) || !isSmallerThan(numbers.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isSmallerThan(int input) {
+        return input < END_INCLUSIVE + 1;
     }
 }

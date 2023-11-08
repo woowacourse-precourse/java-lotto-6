@@ -10,6 +10,48 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+enum Prize {
+    THREE_MATCH(3, 5_000),
+    FOUR_MATCH(4, 50_000),
+    FIVE_MATCH(5, 1_500_000),
+    FIVE_MATCH_WITH_BONUS(5, 30_000_000),
+    SIX_MATCH(6, 2_000_000_000);
+
+    private int matchNumbers;
+    private int prizeAmount;
+    private int matchCount;
+
+    Prize(int matchNumbers, int prizeAmount) {
+        this.matchNumbers = matchNumbers;
+        this.prizeAmount = prizeAmount;
+        this.matchCount = 0;
+    }
+    public int getMatchNumbers() {
+        return matchNumbers;
+    }
+    public int getPrizeAmount() {
+        return prizeAmount;
+    }
+    public void increaseMatchCount() {
+        this.matchCount++;
+    }
+    public int getMatchCount() {
+        return matchCount;
+    }
+    public static int matchPrize(int numberOfMatches, boolean hasBonus) {
+        for (Prize prize : values()) {
+            if (prize.matchNumbers == numberOfMatches) {
+                if (hasBonus && prize == FIVE_MATCH) {
+                    return FIVE_MATCH_WITH_BONUS.prizeAmount;
+                }
+                prize.increaseMatchCount();
+                return prize.prizeAmount;
+            }
+
+        }
+        return 0;
+    }
+}
 public class Application {
     static ArrayList<Lotto> lottoTickets = new ArrayList<>();
     static List<Integer> winningNumbers = new ArrayList<>();
@@ -22,6 +64,7 @@ public class Application {
         System.out.println("보너스 번호를 입력해주세요.");
         Integer bonusNumber=getBonusNumber(Console.readLine());
         compareLottoWithWinning(bonusNumber);
+        showPrizeAmount();
     }
 
     public static Integer convertMoneyFormat(String inputMoney) {
@@ -63,10 +106,22 @@ public class Application {
     }
     public static void compareLottoWithWinning(Integer bonusNumber) {
         for(Lotto lottoTicket : lottoTickets) {
-            Integer matchNumber = (int) lottoTicket.getNumbers().stream()
+            Integer numberOfMatches = (int) lottoTicket.getNumbers().stream()
                     .filter(winningNumbers::contains)
                     .count();
-            boolean matchBonus = lottoTicket.getNumbers().contains(bonusNumber);
+            boolean hasBonus = lottoTicket.getNumbers().contains(bonusNumber);
+            calculatePrizeAmount(numberOfMatches,hasBonus);
+
         }
+    }
+    public static void calculatePrizeAmount(int numberOfMatches, boolean hasBonus) {
+        int prizeAmount = Prize.matchPrize(numberOfMatches, hasBonus);
+    }
+    public static void showPrizeAmount() {
+        System.out.println(Prize.THREE_MATCH.getMatchCount());
+        System.out.println(Prize.FOUR_MATCH.getMatchCount());
+        System.out.println(Prize.FIVE_MATCH.getMatchCount());
+        System.out.println(Prize.FIVE_MATCH_WITH_BONUS.getMatchCount());
+        System.out.println(Prize.SIX_MATCH.getMatchCount());
     }
 }

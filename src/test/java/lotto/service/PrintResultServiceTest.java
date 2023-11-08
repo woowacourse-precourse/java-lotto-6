@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PrintResultServiceTest extends NsTest {
     private static final String FIFTH_PLACE = "3개 일치 (5,000원) - %d개";
     private static final String FOURTH_PLACE = "4개 일치 (50,000원) - %d개";
-    private static final String THIRD_PLACE =" 5개 일치 (1,500,000원) - %d개";
+    private static final String THIRD_PLACE = "5개 일치 (1,500,000원) - %d개";
     private static final String SECOND_PLACE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개";
     private static final String FIRST_PLACE = "6개 일치 (2,000,000,000원) - %d개";
 
@@ -96,6 +96,7 @@ public class PrintResultServiceTest extends NsTest {
                 new HashSet<>(List.of(1, 2, 3, 4, 5, 6)),
                 7
         );
+        System.out.println(printResultService.getWinningCount());
         assertThat(printResultService.getWinningCount().get(THIRD_PLACE)).isEqualTo(1);
     }
 

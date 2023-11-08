@@ -1,5 +1,7 @@
 package lotto.service;
 
+import lotto.golbal.Error;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,12 +13,6 @@ public class UserInputService {
     private static final String MONEY_INPUT_REQUEST = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBERS_INPUT_REQUEST = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_REQUEST = "보너스 번호를 입력해 주세요.";
-
-    private static final String MONEY_INPUT_REQUEST_ERROR_MESSAGE = "[ERROR] 1000으로 나누어 떨어지는 정수로 재입력 해주세요";
-
-    private static final String WINNING_NUMBERS_INPUT_REQUEST_ERROR_MESSAGE = "[ERROR] 6가지 로또 번호를 똑바로 입력해 주세요";
-
-    private static final String BONUS_NUMBERS_INPUT_REQUEST_ERROR_MESSAGE = "[ERROR] 중복되지 않는 정확한 숫자를 입력해 주세요";
 
 
     public Integer validMoneyInputRequest(){
@@ -37,7 +33,7 @@ public class UserInputService {
         System.out.println(MONEY_INPUT_REQUEST);
         String input = readLine();
         if (!isNumber(input) || !checkDevisedBy1000(input)) {
-            throw new IllegalArgumentException(MONEY_INPUT_REQUEST_ERROR_MESSAGE);
+            throw new IllegalArgumentException(Error.MONEY_INPUT_REQUEST_ERROR_MESSAGE.getType());
         }
         return Integer.parseInt(input);
     }
@@ -80,7 +76,7 @@ public class UserInputService {
         if (consistOfNumberTest(numbers) == false ||
                 sizeIsSixTest(numbers) == false ||
                 numberInOneToFourtyFIve(numbers) == false)
-            throw new IllegalArgumentException(WINNING_NUMBERS_INPUT_REQUEST_ERROR_MESSAGE);
+            throw new IllegalArgumentException(Error.WINNING_NUMBERS_INPUT_REQUEST_ERROR_MESSAGE.getType());
 
         List<Integer> newNumbers = numbers.stream().map(num -> Integer.parseInt(num)).toList();
         return new HashSet<>(newNumbers);
@@ -139,7 +135,7 @@ public class UserInputService {
         if( isNumber(bonusNumber) == false ||
                 bonusNumberNotInLottoNumbers(lottoNumbers, Integer.parseInt(bonusNumber)) == false ||
                 numberInOneToFourtyFIve(List.of(bonusNumber)) == false)
-            throw new IllegalArgumentException(BONUS_NUMBERS_INPUT_REQUEST_ERROR_MESSAGE);
+            throw new IllegalArgumentException(Error.BONUS_NUMBERS_INPUT_REQUEST_ERROR_MESSAGE.getType());
         return Integer.parseInt(bonusNumber);
     }
 

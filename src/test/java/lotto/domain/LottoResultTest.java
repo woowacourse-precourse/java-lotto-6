@@ -53,5 +53,13 @@ public class LottoResultTest {
         );
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"1000:6000", "5000:1200", "10000:600"}, delimiter = ':')
+    void calculateTotalReturn_메소드는_구매금액이_주어지면_수익률을_반환한다(int money, double totalReturn) {
+        Money testMoney = new Money(money);
+        LottoResult lottoResult = LottoResult.create();
+        lottoResult.addLottoRankCount(List.of(FIFTH, FIFTH, FOURTH));
 
+        Assertions.assertEquals(lottoResult.calculateTotalReturn(testMoney), totalReturn);
+    }
 }

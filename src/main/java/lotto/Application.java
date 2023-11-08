@@ -76,8 +76,12 @@ public class Application {
     public static List<Integer> getNumbers() {
         List<Integer> numbers = new ArrayList<Integer>();
 
+        int num;
         for (int i=0; i<NUM_OF_LOTTO_NUMBERS; i++){
-            numbers.add(Randoms.pickNumberInRange(1, 45));
+            do {
+                num = Randoms.pickNumberInRange(1, 45);
+            } while(numbers.contains(num));
+            numbers.add(num);
         }
 
         return numbers;

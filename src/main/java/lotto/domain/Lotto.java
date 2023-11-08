@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.Exception.LottoException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,14 +16,16 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            LottoException lottoException = new LottoException();
+            lottoException.notSixLottoNumber();
         }
     }
 
     public void isLottoNumberNotDuplication(List<Integer> numbers) {
         Set<Integer> duplicationCheck = new HashSet<>(numbers);
         if (duplicationCheck.size() != numbers.size()) {
-            throw new IllegalArgumentException();
+            LottoException lottoException = new LottoException();
+            lottoException.duplicationLottoNumber();
         }
     }
 

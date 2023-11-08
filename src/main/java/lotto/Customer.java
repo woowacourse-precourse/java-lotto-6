@@ -33,7 +33,7 @@ public class Customer {
                 validatebonus(getbonus(), mylotto.getlotto());
                 break;
             }catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage()); // 에러 메시지를 출력합니다. 다시 while 루프의 처음으로 돌아가서 값을 다시 입력 받습니다.
+                System.out.println(e.getMessage()); // 에러 메시지를 출력 후 다시 while 루프의 처음으로 돌아가서 값을 다시 입력 받습니다.
             }
         }
     }
@@ -44,7 +44,7 @@ public class Customer {
                 String num=Console.readLine();
                 price = Integer.parseInt(num);
                 validateprice(price);
-                break; // 유효한 값을 입력 받으면 while 루프를 빠져나옵니다.
+                break; // 유효한 값을 입력 받으면 while 루프를 빠져나온다.
             } catch (NumberFormatException e) {System.out.println(numstrerr);}
             catch (IllegalArgumentException e) {System.out.println(e.getMessage()); /* 에러 메시지를 출력합니다.*/}
         }

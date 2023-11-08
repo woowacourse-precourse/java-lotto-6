@@ -15,7 +15,7 @@ public class UserInterface {
         countByRank=new HashMap<Raffle.LottoRank, Integer>();
         ranks = new ArrayList<>();
     }
-    public int[][] makeLotto(){
+    public int[][] UI_makeLotto(){
         int price = customer.inputpprice();
         customer.forraffle();
         int[][] lottos = raffle.showLottes(customer);
@@ -45,7 +45,7 @@ public class UserInterface {
         System.out.println(returnRate);
     }
     public void doLotto(){
-        int[][] lottos=makeLotto();
+        int[][] lottos=UI_makeLotto();
         makingRank(lottos,customer.getLotto(),customer.getbonus());
         printResults();
     }

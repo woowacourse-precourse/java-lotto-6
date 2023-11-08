@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
-public class Lottos {
+public final class Lottos {
     private static final String DELIMITER = "\n";
     private static final String FORMAT = "%d개를 구매했습니다.";
-    private List<Lotto> lottos;
+    private final List<Lotto> lottos;
 
     private Lottos(List<Lotto> lottos) {
         this.lottos = lottos;

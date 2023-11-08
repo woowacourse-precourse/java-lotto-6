@@ -11,11 +11,11 @@ import static lotto.error.ErrorMessage.WINNING_NUMBER_OUT_OF_RANGE;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WinningNumbers {
+public final class WinningNumbers {
 
     private static final String COMMA = ",";
 
-    private List<Integer> winningNumbers;
+    private final List<Integer> winningNumbers;
 
     private WinningNumbers(List<Integer> winningNumbers) {
         this.winningNumbers = winningNumbers;

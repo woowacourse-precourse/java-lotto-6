@@ -1,15 +1,14 @@
 package controller;
 
 import exception.Exception;
+import lotto.Utils;
 import model.Lotto;
 import model.LottoGame;
 import model.Money;
 import model.WinningLotto;
 import service.LottoService;
 import service.MoneyService;
-import view.InputView;
 import view.OutputView;
-
 import java.util.Map;
 
 public class LottoGameController {
@@ -32,6 +31,11 @@ public class LottoGameController {
         gameResult = lottoGame.countWinningLottoResult(winningLotto);
     }
 
+    void reportLottoResult() {
+        String earningRate = Utils.formatAndRoundNumber(lottoGame.calculateEarningRate(gameResult, money.getCost()));
+        OutputView.printLottoResult(gameResult, earningRate);
+    }
+
     public void playLotto() {
         try {
             purchaseLottos();
@@ -42,7 +46,7 @@ public class LottoGameController {
             makeLottoResult();
         } catch (NullPointerException nullPointerException) {
             Exception.raiseInvalidInputException();
-        }
-        OutputView.printEarningRateResultMessage(gameResult, lottoGame.calculateEarningRate(lottoGame.calculateEarnings(gameResult) * 100, money.getCost()));
     }
+        reportLottoResult();
+}
 }

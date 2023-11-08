@@ -33,11 +33,11 @@ public class PrizeValidator {
     }
 
     private static boolean isPositiveInteger(String number) {
-        return number.matches(POSITIVE_INTEGER.regex());
+        return number.matches(POSITIVE_INTEGER.type());
     }
 
     private static boolean isNumbers(String numbers) {
-        return numbers.matches(NUMBERS_AND_COMMA.regex());
+        return numbers.matches(NUMBERS_AND_COMMA.type());
     }
 
     private static boolean inRange(int bonusNumber) {

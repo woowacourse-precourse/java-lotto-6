@@ -16,7 +16,7 @@ public class UserValidator {
     }
 
     private static boolean isPositiveInteger(String money) {
-        return money.matches(POSITIVE_INTEGER.regex());
+        return money.matches(POSITIVE_INTEGER.type());
     }
 
     private static boolean isCorrectUnit(String money) {

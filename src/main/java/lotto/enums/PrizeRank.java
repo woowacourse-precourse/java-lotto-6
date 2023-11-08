@@ -8,18 +8,18 @@ public enum PrizeRank {
     FIRST(6, 2000000000);
 
     private final int matchCondition;
-    private final int prize;
+    private final int prizeMoney;
 
-    PrizeRank(int matchCondition, int prize) {
+    PrizeRank(int matchCondition, int prizeMoney) {
         this.matchCondition = matchCondition;
-        this.prize = prize;
+        this.prizeMoney = prizeMoney;
     }
 
     public int matchCondition() {
         return matchCondition;
     }
 
-    public int prize() {
-        return prize;
+    public int prizeMoney() {
+        return prizeMoney;
     }
 }

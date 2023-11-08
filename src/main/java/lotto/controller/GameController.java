@@ -96,7 +96,7 @@ public class GameController {
 
     private void addNthPrize(int n) {
         nthPrizeNumber[n]++;
-        totalPrizeMoney += Converter.rankToPrize(n);
+        totalPrizeMoney += Converter.rankToPrizeMoney(n);
     }
 
     public BigDecimal calculateReturnRate(int count, int totalPrizeMoney) {

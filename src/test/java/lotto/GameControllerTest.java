@@ -61,11 +61,11 @@ public class GameControllerTest {
 
     static Stream<Arguments> ticketList() {
         return Stream.of(
-                Arguments.of(VALID_FIFTH_PRIZE_TICKET, FIFTH.matchCondition(), FIFTH.prize()),
-                Arguments.of(VALID_FOURTH_PRIZE_TICKET, FOURTH.matchCondition(), FOURTH.prize()),
-                Arguments.of(VALID_THIRD_PRIZE_TICKET, THIRD.matchCondition(), THIRD.prize()),
-                Arguments.of(VALID_SECOND_PRIZE_TICKET, SECOND.matchCondition(), SECOND.prize()),
-                Arguments.of(VALID_FIRST_PRIZE_TICKET, FIRST.matchCondition(), FIRST.prize())
+                Arguments.of(VALID_FIFTH_PRIZE_TICKET, FIFTH.matchCondition(), FIFTH.prizeMoney()),
+                Arguments.of(VALID_FOURTH_PRIZE_TICKET, FOURTH.matchCondition(), FOURTH.prizeMoney()),
+                Arguments.of(VALID_THIRD_PRIZE_TICKET, THIRD.matchCondition(), THIRD.prizeMoney()),
+                Arguments.of(VALID_SECOND_PRIZE_TICKET, SECOND.matchCondition(), SECOND.prizeMoney()),
+                Arguments.of(VALID_FIRST_PRIZE_TICKET, FIRST.matchCondition(), FIRST.prizeMoney())
         );
     }
 }

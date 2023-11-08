@@ -10,7 +10,7 @@ public enum RegularExpression {
         this.regex = regex;
     }
 
-    public String regex() {
+    public String type() {
         return regex;
     }
 }

@@ -71,7 +71,7 @@ public class OutputView {
 
     private static void printPrizeDetail(int prizeNumber, int rank) {
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
-        int prize = Converter.rankToPrize(rank);
+        int prize = Converter.rankToPrizeMoney(rank);
         String prizeWithComma = decimalFormat.format(prize);
         if (rank != 2) {
             System.out.printf((NTH_PRIZE_DETAIL) + "%n",

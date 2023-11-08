@@ -26,21 +26,21 @@ public class Converter {
                 .collect(Collectors.toList());
     }
 
-    public static int rankToPrize(int rank) {
+    public static int rankToPrizeMoney(int rank) {
         if (rank == 5) {
-            return FIFTH.prize();
+            return FIFTH.prizeMoney();
         }
         if (rank == 4) {
-            return FOURTH.prize();
+            return FOURTH.prizeMoney();
         }
         if (rank == 3) {
-            return THIRD.prize();
+            return THIRD.prizeMoney();
         }
         if (rank == 2) {
-            return SECOND.prize();
+            return SECOND.prizeMoney();
         }
         if (rank == 1) {
-            return FIRST.prize();
+            return FIRST.prizeMoney();
         }
         return 0;
     }

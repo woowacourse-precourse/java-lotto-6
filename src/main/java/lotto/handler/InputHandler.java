@@ -23,7 +23,7 @@ public class InputHandler {
                 InputValidator.validateIsNumber(input);
                 int lottoPurchasePrice = InputUtil.parseInt(input);
 
-                //너도 마찬가지
+                // 이건 input이 아니라.. 다른 검증 클래스 생성해서 분리 하는게 좋을지도
                 InputValidator.validateIsMultiplesOfSingleLottoPrice(lottoPurchasePrice);
                 return lottoPurchasePrice;
             } catch (IllegalArgumentException e) {
@@ -42,8 +42,6 @@ public class InputHandler {
 
                 List<Integer> winningNums = InputUtil.parseNums(splitInput);
 
-                // 이건 input이 아니라.. 다른 검증 클래스에서 하는게 좋을지도
-                // 예를 들어 로또검증 클래스나.. 이런데서 하는게 좋을듯.
                 InputValidator.validateInLottoRange(winningNums);
                 InputValidator.validateIsLottoSize(winningNums);
                 InputValidator.validateUniqueNumbers(winningNums);
@@ -63,7 +61,6 @@ public class InputHandler {
                 InputValidator.validateIsNumber(input);
                 int bonusNum = InputUtil.parseInt(input);
 
-                // 너도 위에와 마찬가지
                 InputValidator.validateInLottoRange(bonusNum);
                 InputValidator.validateUniqueNumbers(winningNums, bonusNum);
                 return bonusNum;

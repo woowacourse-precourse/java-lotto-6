@@ -11,7 +11,6 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.message.SystemMessage;
 import lotto.util.OutputUtil;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

@@ -5,19 +5,23 @@ import lotto.Constants;
 import lotto.Prize;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private static int quantity;
-    private static int value = 0;
-    private static int cost = 0;
-    private static int prize = 0;
-    private static int sixSame = 0;
-    private static int fiveBonus = 0;
-    private static int fiveSame = 0;
-    private static int fourSame = 0;
-    private static int threeSame = 0;
+    private static final int quantity = 0;
+    private static double value = 0;
+    private static double cost;
+    public static int sixSame = 0;
+    public static int fiveBonus = 0;
+    public static int fiveSame = 0;
+    public static int fourSame = 0;
+    public static int threeSame = 0;
+
+    public static int[] count;
+
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
@@ -25,8 +29,21 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
+
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("로또 번호에 중복된 숫자가 있습니다.");
+        }
+    }
+
+    public int[] getCount() {
+        return count;
+    }
+
+    public double getValue() {
+        return value;
     }
 
     public int compareWith(List<Integer> inputNumbers) {
@@ -70,7 +87,7 @@ public class Lotto {
         int num = 0;
         for (List<Integer> randomNumber : randomNumbers) {
             num = compareWithBonus(randomNumber, bonusNumber);
-        }
+
             if (num == 6) {
                 sixSame++;
             }
@@ -86,23 +103,50 @@ public class Lotto {
             if (num == 2) {
                 threeSame++;
             }
+        }
+    }
+
+    public double multiplyAndAdd(int multiplier, double addition) {
+        return (multiplier * addition);
     }
 
 
-    public void calculatePrize() {
-        Prize prizeInit = Prize.ZERO;
-        prize += prizeInit.multiplyAndAdd(sixSame, Prize.FIRST.getPrizeAmount());
-        prize += prizeInit.multiplyAndAdd(fiveBonus, Prize.SECOND.getPrizeAmount());
-        prize += prizeInit.multiplyAndAdd(fiveSame, Prize.THIRD.getPrizeAmount());
-        prize += prizeInit.multiplyAndAdd(fourSame, Prize.FOURTH.getPrizeAmount());
-        prize += prizeInit.multiplyAndAdd(threeSame, Prize.FIFTH.getPrizeAmount());
-    }
-
-    public void calculateCost() {
-        cost += quantity * Constants.COST;
+    public double calculatePrize() {
+        double prize = 0;
+        prize += multiplyAndAdd(sixSame, Prize.FIRST.getPrizeAmount());
+        prize += multiplyAndAdd(fiveBonus, Prize.SECOND.getPrizeAmount());
+        prize += multiplyAndAdd(fiveSame, Prize.THIRD.getPrizeAmount());
+        prize += multiplyAndAdd(fourSame, Prize.FOURTH.getPrizeAmount());
+        prize += multiplyAndAdd(threeSame, Prize.FIFTH.getPrizeAmount());
+        return prize;
     }
 
     public void calculateReturn() {
-        value = (prize/cost) * 100;
+        if (cost == 0) {
+            value = 0.0;
+            return;
+        }
+        double totalPrize = calculatePrize();
+        double returnRate = (totalPrize / cost) * 100;
+        value = Math.round(returnRate * 10.0) / 10.0;
+        if (Math.abs(value - (int) value) < 0.01) {
+            value = Math.round(value);
+        }
+
+    }
+
+
+    public void setCost(int ticketCost) {
+        cost = ticketCost;
+    }
+
+
+    public void setWinningCount() {
+        count = new int[5];
+        count[0]=threeSame;
+        count[1]=fourSame;
+        count[2]=fiveSame;
+        count[3]=fiveBonus;
+        count[4]=sixSame;
     }
 }

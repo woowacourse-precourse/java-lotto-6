@@ -50,12 +50,6 @@ public class Lotto {
         }
     }
 
-    protected void isUnique(List<Integer> numbers, int bonusNumber) {
-        Set<Integer> set = new HashSet<>(numbers);
-        if (set.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBERS);
-        }
-    }
 
     public List<Integer> getNumbers() {
         return numbers;

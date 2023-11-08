@@ -3,6 +3,10 @@ package lotto.domain;
 
 import lotto.error.ErrorMessage;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class LottoAnswer extends Lotto {
     private BonusNumber bonusNumber;
 
@@ -42,5 +46,12 @@ public class LottoAnswer extends Lotto {
     public void setBonusNumber(BonusNumber bonusNumber) {
         isUnique(getNumbers(), bonusNumber.getNumber());
         this.bonusNumber = bonusNumber;
+    }
+
+    private void isUnique(List<Integer> numbers, int bonusNumber) {
+        Set<Integer> set = new HashSet<>(numbers);
+        if (set.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBERS);
+        }
     }
 }

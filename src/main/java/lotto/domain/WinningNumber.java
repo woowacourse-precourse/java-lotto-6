@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.exception.ErrorCode;
+import lotto.exception.*;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -31,7 +31,7 @@ public class WinningNumber {
         isNullWinningNumber(number);
         isValidWinningNumber(number);
         List<Integer> winningNumbers = createWinningNumbers(number);
-        isLengthWinningNumber(winningNumbers);
+        isSizeWinningNumber(winningNumbers);
         isDuplicateWinningNumber(winningNumbers);
         isWinningNumberInRange(winningNumbers);
 
@@ -40,19 +40,19 @@ public class WinningNumber {
 
     private void isNullWinningNumber(String number) {
         if (number.isEmpty()) {
-            throw new IllegalArgumentException(ErrorCode.MISSING_WINNING_NUMBERS.getMessage());
+            throw new MissingWinningNumbersException();
         }
     }
 
     private void isValidWinningNumber(String number) {
         if (!number.matches("^[0-9,]+$")) {
-            throw new IllegalArgumentException(ErrorCode.INVALID_WINNING_NUMBERS_FORMAT.getMessage());
+            throw new InvalidWinningNumbersFormatException();
         }
     }
 
-    private void isLengthWinningNumber(List<Integer> winningNumbers) {
+    private void isSizeWinningNumber(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorCode.INVALID_WINNING_NUMBERS_SIZE.getMessage());
+            throw new InvalidWinningNumbersSizeException();
         }
     }
 
@@ -60,7 +60,7 @@ public class WinningNumber {
         boolean hasDuplicates = winningNumbers.size() != new HashSet<>(winningNumbers).size();
 
         if (hasDuplicates) {
-            throw new IllegalArgumentException(ErrorCode.DUPLICATE_WINNING_NUMBERS.getMessage());
+            throw new DuplicateWinningNumbersException();
         }
     }
 
@@ -69,7 +69,7 @@ public class WinningNumber {
                 .anyMatch(number -> number < 1 || number > 45);
 
         if (isInvalid) {
-            throw new IllegalArgumentException(ErrorCode.INVALID_WINNING_NUMBER_RANGE.getMessage());
+            throw new InvalidWinningNumberRangeException();
         }
     }
 }

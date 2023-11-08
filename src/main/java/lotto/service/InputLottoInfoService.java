@@ -13,7 +13,9 @@ public class InputLottoInfoService {
 		
 	}
 	public Lotto setLotto(List<Integer> lottoNumbersList, int bonusNumber) {
-		Lotto lotto = new Lotto(lottoNumbers);
+		Lotto lotto = new Lotto(lottoNumbersList);
+		lotto.setBonusNumber(bonusNumber);
+		return lotto;
 		
 	}
 

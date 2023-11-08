@@ -3,9 +3,8 @@ package lotto.controller;
 import lotto.Lotto;
 import lotto.domain.*;
 import lotto.validator.Validator;
-import lotto.view.SystemOutput;
+import lotto.view.*;
 import main.java.lotto.domain.WinningLottos;
-import lotto.view.SystemInput;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,7 @@ public class LottoController {
 
     public void start() {
 
-        int money = SystemInput.readMoney();
+        int money = SystemMoneyInput.readMoney();
         SystemOutput.printPurchaseAmount(money);
 
         int gameAmount = money / THOUSANDS;
@@ -51,9 +50,9 @@ public class LottoController {
     }
 
     private UserLotto getUserLotto() {
-        String userPickLotto = SystemInput.readPickLotto();
+        String userPickLotto = SystemLottoInput.readPickLotto();
         List<Integer> userPickNumber = getUserPickLotto(userPickLotto);
-        int userBonusNumber = SystemInput.readBonusNumber();
+        int userBonusNumber = SystemBonusInput.readBonusNumber();
         return new UserLotto(userPickNumber, userBonusNumber);
     }
 
@@ -79,7 +78,7 @@ public class LottoController {
         double roundRate = roundUp(rate);
         SystemOutput.printRankResult(rankContainer, roundRate);
     }
-    
+
     private double roundUp(double rate) {
         BigDecimal bd = new BigDecimal(rate);
         bd = bd.setScale(ROUND_NUMBER, RoundingMode.HALF_UP);

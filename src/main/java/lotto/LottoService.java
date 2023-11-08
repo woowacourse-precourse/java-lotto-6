@@ -39,6 +39,19 @@ public class LottoService {
         return false;
     }
 
+    public int getPrizeMoney(LottoResult lottoResult) {
+        System.out.println("3개 일치 (5,000원) - " + lottoResult.getThree() + "개");
+        System.out.println("4개 일치 (50,000원) - " + lottoResult.getFour() + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + lottoResult.getFive() + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoResult.getFive_bonus() + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + lottoResult.getSix() + "개");
+        return lottoResult.total();
+    }
+
+    public double getROI(double purchaseAmount, double total) {
+        return (total / purchaseAmount) * 100.0;
+    }
+
     public int inputPurchaseAmount() {
         while (true) {
             String input = Console.readLine();

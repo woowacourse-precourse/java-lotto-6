@@ -6,18 +6,18 @@ public class LottoDrawMachine {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
 
-    private final Lotto lottoNumber;
+    private final Lotto lotto;
     private final int bonusNumber;
 
-    public LottoDrawMachine(Lotto lottoNumber, int bonusNumber) {
-        this.lottoNumber = lottoNumber;
+    public LottoDrawMachine(Lotto lotto, int bonusNumber) {
+        this.lotto = lotto;
         validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateBonusNumber(int number) {
-        checkValidRange(number);
-        checkDuplicate(number);
+    private void validateBonusNumber(int bonusNumber) {
+        checkValidRange(bonusNumber);
+        checkDuplicate(bonusNumber);
     }
 
     private void checkValidRange(int number) {
@@ -29,8 +29,8 @@ public class LottoDrawMachine {
         }
     }
 
-    private void checkDuplicate(int number) {
-        if (this.lottoNumber.getNumbers().contains(number)) {
+    private void checkDuplicate(int bonusNumber) {
+        if (this.lotto.matchesBonus(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WITH_LOTTO.getMessage());
         }
     }

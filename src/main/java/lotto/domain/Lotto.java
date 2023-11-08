@@ -52,6 +52,16 @@ public class Lotto {
         }
     }
 
+    public int countMatches(Lotto winningLotto) {
+        return (int) this.numbers.stream()
+                .filter(winningLotto.numbers::contains)
+                .count();
+    }
+
+    public boolean matchesBonus(int bonusNumber) {
+        return this.numbers.contains(bonusNumber);
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }

@@ -29,21 +29,11 @@ public class PrizeCalculator {
 
     private Prize calculatePrize(Lotto lotto) {
         boolean matchBonus = false;
-        int matchCount = getMatchCount(lotto);
+        int matchCount = lotto.countMatches(winningLotto);
         if (matchCount == 5) {
-            matchBonus = lotto.getNumbers().contains(bonusNumber);
+            matchBonus = lotto.matchesBonus(bonusNumber);
         }
         return Prize.valueOf(matchCount, matchBonus);
-    }
-
-    private int getMatchCount(Lotto lotto) {
-        int matchCount = 0;
-        for (int number : lotto.getNumbers()) {
-            if (winningLotto.getNumbers().contains(number)) {
-                matchCount++;
-            }
-        }
-        return matchCount;
     }
 
     private double calculateEarnRate(EnumMap<Prize, Integer> prizeResults, int purchaseAmount) {

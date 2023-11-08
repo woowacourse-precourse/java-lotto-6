@@ -9,12 +9,8 @@ import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        try {
-            LottoController lottoController = new LottoController(inputView(), outputView());
-            lottoController.run();
-        } catch (IllegalArgumentException e) {
-            ErrorHandler.printErrorMessage(e.getMessage());
-        }
+        LottoController lottoController = new LottoController(inputView(), outputView());
+        lottoController.run();
     }
 
     private static InputView inputView() {

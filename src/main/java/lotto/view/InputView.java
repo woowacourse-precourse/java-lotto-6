@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.domain.Customer;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
+import lotto.util.ErrorHandler;
 import lotto.util.TypeConverter;
 
 public class InputView {
@@ -20,7 +21,12 @@ public class InputView {
     public Customer getCustomer() {
         System.out.println(PURCHASE_AMOUNT_INPUT);
         String input = Console.readLine();
-        return typeConverter.convertStringToCustomer(input);
+        try {
+            return typeConverter.convertStringToCustomer(input);
+        } catch (IllegalArgumentException e) {
+            ErrorHandler.printErrorMessage(e.getMessage());
+            return getCustomer();
+        }
     }
 
     public WinningLotto getWinningLotto() {
@@ -32,12 +38,22 @@ public class InputView {
     private Lotto inputLotto() {
         System.out.println(WINNING_NUMBER_INPUT);
         String input = Console.readLine();
-        return typeConverter.convertStringToLotto(input);
+        try {
+            return typeConverter.convertStringToLotto(input);
+        } catch (IllegalArgumentException e) {
+            ErrorHandler.printErrorMessage(e.getMessage());
+            return inputLotto();
+        }
     }
 
     private int inputBonusNumber(Lotto lotto) {
         System.out.println(BONUS_NUMBER_INPUT);
         String input = Console.readLine();
-        return typeConverter.convertStringToNumber(lotto, input);
+        try {
+            return typeConverter.convertStringToNumber(lotto, input);
+        } catch (IllegalArgumentException e) {
+            ErrorHandler.printErrorMessage(e.getMessage());
+            return inputBonusNumber(lotto);
+        }
     }
 }

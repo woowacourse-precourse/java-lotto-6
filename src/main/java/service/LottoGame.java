@@ -80,4 +80,15 @@ public class LottoGame {
             lottoResult.put(Ranking.FIRST, lottoResult.getOrDefault(Ranking.FIRST, COUNT_ZERO) + COUNT_PLUS_ONE);
         }
     }
+
+    public long calculateEarningsRate(Map<Ranking, Integer> lottoResult, LottoMachine lottoMachine) {
+        long totalPrize = lottoResult.entrySet()
+                                     .stream()
+                                     .mapToLong(entry -> entry.getKey()
+                                                              .getPrize() * entry.getValue())
+                                     .sum();
+
+        long earningsRate = (totalPrize * 100) / lottoMachine.getSpend();
+        return earningsRate;
+    }
 }

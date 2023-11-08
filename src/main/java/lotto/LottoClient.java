@@ -59,6 +59,7 @@ public class LottoClient {
         lottoOutput.printAskingWinningNumbers();
         return lottoInput.getLotto();
     }
+
     private LottoBall askAndGetBonusBall() {
         lottoOutput.printAskingBonusNumber();
         return lottoInput.getBall();

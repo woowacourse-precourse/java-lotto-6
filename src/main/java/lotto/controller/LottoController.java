@@ -14,8 +14,8 @@ import lotto.view.OutputView;
 
 public class LottoController {
     private Lottos lottos;
-    private WinningLotto winningLotto = winningLotto = new WinningLotto();
-    private LottoService lottoService = LottoServiceImpl.getInstance();
+    private final WinningLotto winningLotto = new WinningLotto();
+    private final LottoService lottoService = LottoServiceImpl.getInstance();
 
     public void run() {
         buyLottos();

@@ -13,7 +13,7 @@ public class WiningLottoTest {
     void createBonusNumberByOutOfRange() {
         assertThatThrownBy(() -> new WiningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 50))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 1과 45 사이의 수를 입력하세요");
+                .hasMessageContaining("[ERROR] 1과 45 사이의 숫자만 가능합니다.");
     }
 
     @DisplayName("보너스 값과 당첨 번호 값이 중복될 때 예외가 발생한다.")

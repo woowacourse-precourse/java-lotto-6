@@ -27,6 +27,14 @@ public class LottoGame {
 
         // 3. 발행한 로또의 번호를 오름차순으로 정렬하여 출력한다.
         writeAllLottoNumbers(lottos);
+
+        DrawLottoMachine drawLottoMachine = new DrawLottoMachine();
+
+        drawLottoMachine.draw(lottos);
+
+        drawLottoMachine.writeEntireDrawResult();
+
+        drawLottoMachine.writeReturnRate(lottoCount * LOTTO_PRICE);
     }
 
     private List<Lotto> makeLottos(int count) {

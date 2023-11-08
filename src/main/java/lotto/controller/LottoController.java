@@ -8,11 +8,11 @@ import lotto.service.InputUserInfoService;
 
 public class LottoController {
 	public void startLotto() {
-		User user = setUserinfo();
+		User user = setUserInfo();
 		Lotto lotto = setLottoInfo();
 		calculatingWinningLotto(user, lotto);
 	}
-	public User setUserinfo() {
+	public User setUserInfo() {
 		return InputUserInfoService.inputUserInfo();
 	}
 	public Lotto setLottoInfo() {

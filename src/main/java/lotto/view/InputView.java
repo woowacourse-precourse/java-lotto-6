@@ -15,7 +15,7 @@ public class InputView {
     public static int inputMoney() {
         while (true) {
             try {
-                System.out.println("구입금액을 입력해 주세요. (1000원 단위)");
+                System.out.println("구입금액을 입력해 주세요.");
                 String input = scanner.nextLine();
                 int purchaseAmount = Integer.parseInt(input);
                 if (purchaseAmount <= 0 || purchaseAmount % 1000 != 0) {

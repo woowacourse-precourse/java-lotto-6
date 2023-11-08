@@ -1,8 +1,9 @@
 package lotto.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoMachineTest {
 
@@ -16,7 +17,7 @@ class LottoMachineTest {
         // when
         int lottoCount = lottoMachine.getLottos().size();
 
-        //then
-        Assertions.assertThat(lottoCount).isEqualTo(6);
+        // then
+        assertThat(lottoCount).isEqualTo(6);
     }
 }

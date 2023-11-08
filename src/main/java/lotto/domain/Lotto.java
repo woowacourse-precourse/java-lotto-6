@@ -8,18 +8,25 @@ import static lotto.exception.LottoErrorMsg.OUT_OF_RANGE;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.exception.LottoException;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        try {
+            validate(numbers);
+        }catch (IllegalArgumentException e){
+            throw e;
+        }
         this.numbers = numbers;
     }
 
     public List<Integer> getNumbers() {
-        numbers.sort(Comparator.naturalOrder());
+        numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
         return numbers;
     }
 

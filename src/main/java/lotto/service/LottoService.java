@@ -20,7 +20,11 @@ public class LottoService {
 
     public LottoRepositoryDto buyLotto(Money money){
         int tickets;
-        tickets = Validation.validateDivide(Validation.validateInt(money.getMoney()), LottoConstraint.MIN_PRICE);
+        try {
+            tickets = Validation.validateDivide(Validation.validateInt(money.getMoney()), LottoConstraint.MIN_PRICE);
+        }catch (IllegalArgumentException e){
+            throw e;
+        }
         for (int ticket=0; ticket < tickets;ticket++){
             lottoRepository.addOne(new Lotto(RandomLottoNumGenerator.generateLotto()));
         }

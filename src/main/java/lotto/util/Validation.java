@@ -16,7 +16,7 @@ public class Validation {
             for (String string:numberStrings){
                 numbers.add(validateInt(string));
             }
-        }catch (NumberFormatException e){
+        } catch (IllegalArgumentException e){
             throw LottoException.triggeredBy(UNABLE_TO_PARSE_INT);
         }
         return numbers;
@@ -26,7 +26,7 @@ public class Validation {
         try {
             inputToInteger = Integer.parseInt(input);
             validatePositiveInteger(inputToInteger);
-        }catch (NumberFormatException e){
+        }catch (IllegalArgumentException e){
             throw LottoException.triggeredBy(UNABLE_TO_PARSE_INT);
         }
         return inputToInteger;

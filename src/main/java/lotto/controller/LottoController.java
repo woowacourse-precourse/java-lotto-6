@@ -18,9 +18,13 @@ public class LottoController {
     public LottoController(){
     }
     public void runLotto(){
-        buyLotto();
-        getWinningNumbers();
-        getResult();
+        try {
+            buyLotto();
+            getWinningNumbers();
+            getResult();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
     private void buyLotto(){
         Money money = lottoView.requestBuyLotto();
@@ -29,9 +33,13 @@ public class LottoController {
     }
 
     private void getWinningNumbers(){
-        Lotto winningLotto = new Lotto(Validation.validateList(lottoView.requestWinningLotto()));
-        int BonusNum = Validation.validateInt(lottoView.requestBonusNum());
-        winningNumber = new WinningNumber(winningLotto,BonusNum);
+        try {
+            Lotto winningLotto = new Lotto(Validation.validateList(lottoView.requestWinningLotto()));
+            int BonusNum = Validation.validateInt(lottoView.requestBonusNum());
+            winningNumber = new WinningNumber(winningLotto,BonusNum);
+        }catch (IllegalArgumentException e){
+            throw e;
+        }
     }
     private void getResult(){
         LottoResultDto lottoResultDto = lottoService.getResult(winningNumber);

@@ -16,7 +16,11 @@ public class WinningNumber{
     private boolean[] WinningNum =new boolean[MAX_LOTTO_NUM +1];
 
     public WinningNumber(Lotto winningNum, int bonusNum){
-        validate(winningNum,bonusNum);
+        try {
+            validate(winningNum, bonusNum);
+        }catch (IllegalArgumentException e){
+            throw e;
+        }
         this.winningNum = winningNum;
         this.bonusNum = bonusNum;
         Arrays.fill(WinningNum,false);

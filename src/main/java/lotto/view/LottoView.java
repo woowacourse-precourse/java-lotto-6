@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.domain.LottoPrize.SECOND;
 import static lotto.view.LottoViewMessage.ASK_BONUS_NUM;
 import static lotto.view.LottoViewMessage.ASK_BUY_LOTTO;
 import static lotto.view.LottoViewMessage.ASK_WINNING_NUM;
@@ -39,7 +40,12 @@ public class LottoView {
         for (LottoPrize prize : LottoPrize.lowestPrizeOrder()) {
             int count = prizeCount.get(prize);
             String formattedAmount = numberFormatter.format(prize.getPrizeAmount());
-            System.out.println(prize.getMatchingNumber() + "개 일치 (" + formattedAmount + "원) - " + count + "개");
+            String bonus = " ";
+            if (prize == SECOND){
+                bonus = ", 보너스 볼 일치 ";
+            }
+            System.out.println(prize.getMatchingNumber() + "개 일치" +bonus+
+                    "(" + formattedAmount + "원) - " + count + "개");
         }
         System.out.println("총 수익률은 " + lottoResultDto.getProfitRatio()+ "%입니다.");
     }

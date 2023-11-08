@@ -6,7 +6,7 @@ public class BillAcceptor {
 
     private static final String REQUEST_ACCEPT_BILL_MESSAGE = "구입금액을 입력해 주세요.";
 
-    public static int acceptBill() {
+    public int acceptBill() {
         System.out.println(REQUEST_ACCEPT_BILL_MESSAGE);
         String input = Console.readLine();
         try {

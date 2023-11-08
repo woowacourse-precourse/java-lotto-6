@@ -15,6 +15,10 @@ public class LottoNumber {
         this.number = createRandomNumber();
     }
 
+    public LottoNumber(int number) {
+        this.number = number;
+    }
+
     private int createRandomNumber() {
         return Randoms.pickNumberInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
     }

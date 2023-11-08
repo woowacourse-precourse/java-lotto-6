@@ -34,6 +34,16 @@ public class UserView {
         System.out.println("총 수익률은 " + winningRate + "%입니다.");
     }
 
+    public void bonusBall() {
+        boolean state = STATE_INIT;
+        while (state == STATE_SUCESS) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String tempBonus = Console.readLine().trim();
+            state = viewProcessor.bonusBall(tempBonus);
+        }
+
+    }
+
     public void winnings() {
         boolean state = STATE_INIT;
         while (state == STATE_SUCESS) {

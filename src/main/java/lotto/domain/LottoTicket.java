@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoTicket {
     private final List<Lotto> tickets;
@@ -28,6 +30,25 @@ public class LottoTicket {
         }
 
         return new LottoTicket(tickets);
+    }
+
+    public void calculateAndPrintResult(WinningNumbers winningNumbers, int bonusNumber) {
+        Map<Rank, Integer> result = new HashMap<>();
+
+        for (Lotto lotto : tickets) {
+            Rank rank = winningNumbers.calculateRank(lotto, bonusNumber);
+            result.put(rank, result.getOrDefault(rank, 0) + 1);
+        }
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (Rank rank : Rank.values()) {
+            int count = result.getOrDefault(rank, 0);
+            rank.printResult(count);
+        }
+
+        double profitRate = winningNumbers.calculateProfitRate(result);
+        System.out.printf("총 수익률은 %.1f%% 입니다.%n", profitRate);
     }
 
 }

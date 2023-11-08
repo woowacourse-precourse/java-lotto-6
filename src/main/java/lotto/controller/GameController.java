@@ -31,8 +31,9 @@ public class GameController {
     }
 
     private void setUser() {
-        Money money = inputController.readMoney();
         LottoSalesOffice salesOffice = new LottoSalesOffice();
+
+        Money money = inputController.readMoney();
         user = new User(money, salesOffice.buyLottos(money.getPurchaseLottoCount()));
     }
 

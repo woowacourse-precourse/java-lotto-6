@@ -1,6 +1,6 @@
 package lotto.domain.winning;
 
-import static lotto.utils.LottoConstant.LOTTO_NUMBER_COUNT;
+import static lotto.utils.LottoConstant.LOTTO_NUMBERS_SIZE;
 
 import java.util.List;
 import lotto.domain.grade.Grade;
@@ -33,7 +33,7 @@ public class Winning {
     private int matchLottoNumbers(List<Integer> lottoNumbers) {
         int matchCount = IntegerConstant.ZERO;
 
-        for (int index = IntegerConstant.ZERO; index < LOTTO_NUMBER_COUNT; index++) {
+        for (int index = IntegerConstant.ZERO; index < LOTTO_NUMBERS_SIZE; index++) {
             if (this.numbers.contains(lottoNumbers.get(index))) {
                 matchCount++;
             }
@@ -47,5 +47,13 @@ public class Winning {
         }
 
         return IntegerConstant.ZERO;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

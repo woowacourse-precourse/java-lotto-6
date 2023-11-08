@@ -1,19 +1,16 @@
-package lotto.domain;
+package lotto.service;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.validator.InputCSVNumbersValidator;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.List;
 import lotto.view.InputView;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputViewTest {
     @AfterEach

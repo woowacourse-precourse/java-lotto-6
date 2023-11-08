@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.service;
 
 import lotto.constants.LottoRankConstants;
 import lotto.dto.Lotto;

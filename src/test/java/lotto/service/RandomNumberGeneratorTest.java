@@ -1,15 +1,16 @@
-package lotto.domain;
+package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.utils.RandomNumberGenerator;
-import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.utils.RandomNumberGenerator;
+import org.junit.jupiter.api.Test;
 
 public class RandomNumberGeneratorTest {
     RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+
     @Test
     public void generateLottoNumbers_개수는_6개() {
         //when

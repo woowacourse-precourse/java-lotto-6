@@ -1,11 +1,11 @@
-package lotto.domain;
+package lotto.service;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 import lotto.constants.LottoRankConstants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoRankTest {
     @DisplayName("1등부터 5등까지 결과를 출력할 수 있다.")

@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.service;
 
 public class ReturnService {
     public String evaluateLottoReturn(int payment, int winningAmount) {

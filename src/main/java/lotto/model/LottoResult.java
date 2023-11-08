@@ -9,7 +9,6 @@ import lotto.service.LottoResultDto;
 public class LottoResult {
     private static final int LOTTO_PRICE = 1000;
     private static final int PERCENTAGE_FACTOR = 100;
-    private static final double ROUND_DIGITS = 10.0;
 
     private final List<LottoStatus> lottoResult;
 

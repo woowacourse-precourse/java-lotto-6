@@ -7,8 +7,7 @@ public class LottoPlayer {
 
     public LottoPlayer(int purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
-        count = purchaseAmount / LottoConfiguration.UNIT;
-        System.out.println("count = " + count);
+        this.count = purchaseAmount / LottoConfiguration.UNIT;
         createLottos();
     }
 

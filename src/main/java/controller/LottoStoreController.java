@@ -4,6 +4,7 @@ import domain.Lotto;
 import domain.PurchaseAmount;
 import domain.PurchaseLotto;
 import domain.WinningLotto;
+import domain.WinningLottoCalculator;
 import view.InputView;
 import view.OutputView;
 
@@ -13,12 +14,14 @@ public class LottoStoreController {
 	private PurchaseAmount purchaseAmount;
 	private PurchaseLotto purchaseLotto;
 	private WinningLotto winningLotto;
+	private WinningLottoCalculator winningLottoCalculator;
 
 	public void runLottoGame() {
 		try {
 			buyLotto();
 			showPurchaseLotto();
 			initWinningLotto();
+			showWinningLotto();
 		} catch (NumberFormatException exception) {
 			System.out.println("[ERROR] message");
 		} catch (IllegalArgumentException exception) {
@@ -49,5 +52,11 @@ public class LottoStoreController {
 		outputView.printBlank();
 
 		winningLotto = new WinningLotto(inputWinningLotto, inputBonusNumber);
+	}
+
+	private void showWinningLotto() {
+		winningLottoCalculator.calculateLottoPrizeCount(purchaseLotto,winningLotto);
+		outputView.printLottoPrizes(winningLottoCalculator);
+		outputView.printRateOfReturn(winningLottoCalculator, purchaseAmount);
 	}
 }

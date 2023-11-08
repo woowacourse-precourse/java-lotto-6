@@ -10,6 +10,7 @@ import java.util.List;
 
 public class LottoBuyer {
     public static Integer LOTTO_COUNT;
+    private static List<Lotto> boughtLottos;
     public static final Integer LOTTO_PRICE = 1_000;
     private static final String LOTTO_BUY_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String LOTTO_PRICE_ERROR_MESSAGE = "%s 입력한 금액은 로또 한 장 가격(1,000원)의 배수여야 합니다.";
@@ -42,16 +43,19 @@ public class LottoBuyer {
         return lottoNumbers;
     }
 
-    public static List<Lotto> generateLottos(List<Integer> lottoNumbers) {
+    public static List<Lotto> generateLottos() {
         List<Lotto> lottos = new ArrayList<>();
+        LOTTO_COUNT = calculateLottoCount(LOTTO_PRICE);
         for (int i = 0; i < LOTTO_COUNT; i++) {
+            List<Integer> lottoNumbers = generateLottoNumbers();
             lottos.add(new Lotto(lottoNumbers));
         }
-        return lottos;
+        boughtLottos = lottos;
+        return boughtLottos;
     }
 
-    public static void printLottos(List<Lotto> lottos) {
-        for (Lotto lotto : lottos) {
+    public static void printLottos() {
+        for (Lotto lotto : boughtLottos) {
             System.out.println(lotto);
         }
     }

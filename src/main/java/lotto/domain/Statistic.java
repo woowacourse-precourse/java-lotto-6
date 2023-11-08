@@ -37,7 +37,6 @@ public class Statistic {
                 .filter(rank -> !rank.equals(Rank.LOSE))
                 .forEach(rank -> sum.addAndGet(rank.getWinningMoney() * statistic.get(rank)));
 
-        double rate = (double) sum.get() / budget * 100.0;
-        return rate;
+        return (double) sum.get() / budget * 100.0;
     }
 }

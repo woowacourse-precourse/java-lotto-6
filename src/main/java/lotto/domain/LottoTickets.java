@@ -10,7 +10,7 @@ public class LottoTickets {
     private final static int MAX_LOTTO_NUMBER = 45;
     private final static int LOTTO_LENGTH = 6;
 
-    private List<Lotto> lottoTickets;
+    private final List<Lotto> lottoTickets;
 
     public LottoTickets(int quantity) {
         lottoTickets = new ArrayList<>();

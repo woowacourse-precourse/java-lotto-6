@@ -3,7 +3,7 @@ package lotto.domain;
 import lotto.util.Validator;
 
 public class Budget {
-    private int budget;
+    private final int budget;
 
     public Budget(int budget) {
         validate(budget);

@@ -7,7 +7,7 @@ import java.util.Set;
 
 import static lotto.configuration.GameConfiguration.LOTTO_NUMBER_SIZE;
 import static lotto.exception.errorcode.InputErrorCode.DUPLICATED_LOTTO_NUMBER;
-import static lotto.exception.errorcode.InputErrorCode.INVALID_LOTTO_NUMBERS_SIZE;
+import static lotto.exception.errorcode.InputErrorCode.INVALID_LOTTO_NUMBER_SIZE;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -39,7 +39,7 @@ public class Lotto {
 
     private void validateSize(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_SIZE) {
-            throw new InputException(INVALID_LOTTO_NUMBERS_SIZE);
+            throw new InputException(INVALID_LOTTO_NUMBER_SIZE);
         }
     }
 

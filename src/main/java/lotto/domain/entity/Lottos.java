@@ -2,6 +2,7 @@ package lotto.domain.entity;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.service.manager.Rank;
 
 public class Lottos {
 

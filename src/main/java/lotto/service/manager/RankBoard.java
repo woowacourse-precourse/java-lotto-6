@@ -1,12 +1,10 @@
-package lotto.domain.entity;
+package lotto.service.manager;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.service.generator.LottoGenerator;
-import lotto.service.manager.Count;
-import lotto.service.manager.Rank;
 
 public class RankBoard {
 

@@ -1,8 +1,10 @@
-package lotto.domain.entity;
+package lotto.service.generator;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.entity.Lotto;
+import lotto.domain.entity.Lottos;
 
 public class LottoGenerator {
 

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.controller.dto.LottoDto;
 import lotto.controller.dto.LottoDtos;
-import lotto.domain.entity.Rank;
+import lotto.service.manager.Rank;
 import lotto.service.dto.GameResult;
 
 public class LottoOutputView {

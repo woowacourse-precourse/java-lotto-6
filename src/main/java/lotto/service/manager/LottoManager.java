@@ -1,7 +1,9 @@
-package lotto.domain.entity;
+package lotto.service.manager;
 
 import java.util.List;
 import java.util.Map;
+import lotto.domain.entity.Lotto;
+import lotto.domain.entity.Lottos;
 
 public class LottoManager {
 

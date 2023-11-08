@@ -24,14 +24,15 @@ public class InputView {
     }
 
     public List<Integer> readWinningLotto() {
-        System.out.println(MESSAGE_ENTER_WINNING_LOTTO);
-        String input = Console.readLine();
-        String[] inputSplit = input.split(",");
-        List<Integer> winningLotto = new ArrayList<>();
-        for (String str : inputSplit) {
-            winningLotto.add(Integer.parseInt(str));
+        while (true) {
+            try {
+                System.out.println(MESSAGE_ENTER_WINNING_LOTTO);
+                String input = Console.readLine();
+                return InputViewUtil.getValidLottoNumbers(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return winningLotto;
     }
 
     public int readBonusNumber() {

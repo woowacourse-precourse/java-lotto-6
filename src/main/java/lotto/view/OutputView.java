@@ -51,8 +51,7 @@ public class OutputView {
 
     public static void printStatisticsMessage(LottoResult lottoResult) {
 
-        List<Rank> ranks = Arrays.asList(Rank.values())
-            .stream()
+        List<Rank> ranks = Arrays.stream(Rank.values())
             .filter(rank -> rank != Rank.MISS)
             .sorted(Collections.reverseOrder())
             .toList();

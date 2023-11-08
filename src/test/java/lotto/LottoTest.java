@@ -5,9 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -15,13 +17,57 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호의 개수가 6개보다 적으면 예외가 발생한다.")
+    @Test
+    void createLottoByUnderSize() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호가 45보다 크면 예외가 발생한다.")
+    @Test
+    void createLottoByOverRangeNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 1보다 작으면 예외가 발생한다.")
+    @Test
+    void createLottoByUnderRangeNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호와 당첨 번호의 일치 개수를 반환한다.")
+    @Test
+    void countMatchingNumbers() {
+        Lotto lotto = new Lotto(List.of(7, 6, 5, 4, 3, 2));
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        assertThat(lotto.countMatchingNumbers(winningNumbers)).isEqualTo(5);
+    }
+
+    @DisplayName("로또 번호에 보너스 번호가 있는지 확인한다.")
+    @Test
+    void hasBonusNumber() {
+        Lotto lotto = new Lotto(List.of(7, 6, 5, 4, 3, 2));
+        int bonusNumber = 7;
+
+        assertThat(lotto.hasBonusNumber(bonusNumber)).isTrue();
+    }
+
+    @DisplayName("구입 금액만큼 로또를 생성한다.")
+    @Test
+    void generateLottos() {
+        int purchaseAmount = 5000;
+
+        assertThat(Lotto.generateLottos(purchaseAmount).size()).isEqualTo(5);
+    }
 }

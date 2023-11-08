@@ -17,6 +17,20 @@ public class LottoController {
         this.lottoManager = LottoManager.getInstance();
         this.lottoMachine = new LottoMachine();
     }
+    public void playLotto() {
+        // 구입금액 입력 및 지갑 생성
+        createWallet();
 
+        // 로또 구매
+        purchaseLottos();
+
+        //당첨 번호 입력
+        initWinningNumbers();
+
+        //내 지갑의 당첨번호 확인
+        checkMyLottos();
+
+        printResult();
+    }
 
 }

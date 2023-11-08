@@ -52,6 +52,7 @@ public class GameService {
                 OutputLottoUI.answerBonusNumberView();
                 bonusNumber = LottoSalesman.bonusValidate(bonusNumber);
                 referee = new Referee(answerNumbers, bonusNumber);
+                break;
             } catch (IllegalArgumentException e) {
                 OutputLottoUI.bonusViewReInput();
             }

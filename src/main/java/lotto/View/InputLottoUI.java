@@ -14,8 +14,6 @@ public class InputLottoUI {
     public static int inputBonusNumber() {
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
-
-
     }
 
     public static List<Integer> inputAnswerLottoPrint() {

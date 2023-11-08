@@ -1,12 +1,15 @@
 package lotto.controller;
 
+import lotto.constant.LottoCount;
 import lotto.model.Lotto;
 import lotto.model.RandomSixNumber;
 import lotto.model.User;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class LottoController {
@@ -24,6 +27,7 @@ public class LottoController {
     }
 
     public void startGame() {
+        LottoService lottoService = new LottoService();
         int bonusNumber = 0;
         int purchaseAmount = 0;
         while (true) {
@@ -56,6 +60,7 @@ public class LottoController {
                 outputView.printErrorMessage(e);
             }
         }
+        outputView.printWinningStatistics(lottoService.calculateWinningResult(randomSixNumbers, lotto, bonusNumber));
     }
 
     private void generatePurchaseAmountRandomSixNumber(int purchaseAmount) {

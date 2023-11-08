@@ -39,7 +39,7 @@ public class WinningResultTest {
     @Test
     void getTotalPrizeMoney_메서드로_당첨된_총_상금_반환() {
         Map<PrizeCategory, Integer> map = new HashMap<>();
-        map.put(PrizeCategory.SIXTH, 1);
+        map.put(PrizeCategory.LOSE, 1);
         map.put(PrizeCategory.FIFTH, 2);
         map.put(PrizeCategory.FOURTH, 0);
         map.put(PrizeCategory.THIRD, 1);

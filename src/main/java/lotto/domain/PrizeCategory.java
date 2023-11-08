@@ -1,7 +1,7 @@
 package lotto.domain;
 
 public enum PrizeCategory {
-    SIXTH("2개 이하 일치", 0),
+    LOSE("2개 이하 일치", 0),
     FIFTH("3개 일치", 5000),
     FOURTH("4개 일치", 50000),
     THIRD("5개 일치", 1500000),

@@ -20,7 +20,7 @@ class MessageContainerTest {
     @Test
     void createWinningDetails_메서드로_당첨_내역_안내_메시지_생성() {
         Map<PrizeCategory, Integer> map = new HashMap<>();
-        map.put(PrizeCategory.SIXTH, 1);
+        map.put(PrizeCategory.LOSE, 1);
         map.put(PrizeCategory.FIFTH, 2);
         map.put(PrizeCategory.FOURTH, 0);
         map.put(PrizeCategory.THIRD, 1);

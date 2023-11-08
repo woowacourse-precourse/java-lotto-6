@@ -45,20 +45,29 @@ public class Lotto {
             }
         }
 
-        if (matchingNumbers <= 2) {
-            return PrizeCategory.SIXTH;
+        if (isLose(matchingNumbers)) {
+            return PrizeCategory.LOSE;
         }
+
+        return calculatePrizeCategory(matchingNumbers, bonusNumber);
+    }
+
+    private boolean isLose(int matchingNumbers) {
+        return matchingNumbers <= 2;
+    }
+
+    private PrizeCategory calculatePrizeCategory(int matchingNumbers, int bonusNumber) {
         if (matchingNumbers == 3) {
             return PrizeCategory.FIFTH;
         }
         if (matchingNumbers == 4) {
             return PrizeCategory.FOURTH;
         }
-        if (matchingNumbers == 5) {
-            if (this.numbers.contains(bonusNumber)) {
-                return PrizeCategory.SECOND;
-            }
+        if (matchingNumbers == 5 && !this.numbers.contains(bonusNumber)) {
             return PrizeCategory.THIRD;
+        }
+        if (matchingNumbers == 5) {
+            return PrizeCategory.SECOND;
         }
         return PrizeCategory.FIRST;
     }

@@ -45,6 +45,13 @@ class LottoTest {
         );
     }
 
+    @DisplayName("보너스 번호가 로또 번호에 포함되면 예외가 발생한다.")
+    @Test
+    void createBonusNumberByDuplicatedNumber() {
+        assertThatThrownBy(() -> new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)),6))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 
 

@@ -31,4 +31,14 @@ public class NumberValidator {
             throw new IllegalArgumentException("[ERROR] 번호는 양의 정수만 입력할 수 있습니다.");
         }
     }
+
+    public static void validateInRangeNumber(int number) {
+        isInRange(number);
+    }
+
+    private static void isInRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 번호는 1이상 45이하의 수만 입력할 수 있습니다.");
+        }
+    }
 }

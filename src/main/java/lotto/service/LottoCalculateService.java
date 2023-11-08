@@ -57,9 +57,9 @@ public class LottoCalculateService {
             revenue += rank.getPrice() * entry.getValue(); // 가격 가져와서 더하기
         }
 
-        double roi = ((double) revenue / (count * LOTTO_PRICE)) * 100.0;
+        double rateOfReturn = ((double) revenue / (count * LOTTO_PRICE)) * 100.0;
 
-        return Math.round(roi * 10) / 10.0;
+        return Math.round(rateOfReturn * 10) / 10.0;
     }
 
 

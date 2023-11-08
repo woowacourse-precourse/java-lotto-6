@@ -5,20 +5,28 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    private PurchaseAmount purchaseAmount;
+    private LottoTicket lottoTicket;
+    private LuckyNumbers luckyNumbers;
+    private WinningResults winningResults;
 
     public void start() {
-        PurchaseAmount purchaseAmount = readAmount();
-
-        LottoTicket lottoTicket = buyTicket(purchaseAmount);
-
-        LuckyNumbers luckyNumbers = createLuckyNumber();
-
-        WinningResults winningResults = new WinningResults(lottoTicket, luckyNumbers);
-
-        getLottoResult(purchaseAmount, winningResults);
+        set();
+        lotto();
+        getLottoResult();
     }
 
-    private void getLottoResult(PurchaseAmount purchaseAmount, WinningResults winningResults) {
+    private void set(){
+        purchaseAmount = readAmount();
+        lottoTicket = buyTicket();
+        luckyNumbers = createLuckyNumber();
+    }
+
+    private void lotto(){
+        winningResults = new WinningResults(lottoTicket, luckyNumbers);
+    }
+
+    private void getLottoResult() {
         OutputView.printResultMessage();
         OutputView.printWinningStatistic(winningResults);
         OutputView.printProfit(purchaseAmount.calculateProfit(winningResults.calculatePrizeSum()));
@@ -33,11 +41,11 @@ public class LottoController {
         }
     }
 
-    private LottoTicket buyTicket(PurchaseAmount purchaseAmount) {
+    private LottoTicket buyTicket() {
         int lottoCount = purchaseAmount.calculateLottoCount();
         OutputView.printLottoCount(lottoCount);
 
-        LottoTicket lottoTicket = new LottoTicket(lottoCount);
+        lottoTicket = new LottoTicket(lottoCount);
         OutputView.printTicket(lottoTicket);
         return lottoTicket;
     }

@@ -48,6 +48,7 @@ public class GameController {
         Output.consoleLine(GameMessage.OUT_REQUEST_BONUS_NUMBER_MESSAGE);
         int bonusNumbers = Integer.parseInt(Input.consoleLine());
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumbers);
+        System.out.println();
 
         return winningLotto;
     }
@@ -60,12 +61,7 @@ public class GameController {
     }
 
     private void printResult(Map<Integer, Integer> resultLottos, Money money) {
-        long profitPercentage = calculateResult(resultLottos, money);
+        double profitPercentage = money.calculateProfit(resultLottos);
         OutputResult.printAllReultMessge(resultLottos, profitPercentage);
         }
-
-    private long calculateResult(Map<Integer, Integer> resultLottos, Money money){
-        return money.calculateProfit(resultLottos);
-    }
-
 }

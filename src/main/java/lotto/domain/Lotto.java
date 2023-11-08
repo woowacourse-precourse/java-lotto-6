@@ -27,8 +27,6 @@ public class Lotto {
                 .filter(this.numbers::contains)
                 .count();
 
-
-
         return checkbonusNumber(number,bonusNumber);
     }
 

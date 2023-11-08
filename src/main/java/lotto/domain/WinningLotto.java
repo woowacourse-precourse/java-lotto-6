@@ -20,20 +20,27 @@ public class WinningLotto {
     public Map<Integer, Integer> compareLottos(List<Lotto> lottos) {
         List<Integer> resultNumber = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            resultNumber.add(lotto.checkNumber(numbers,bonusNumber));
+            resultNumber.add(lotto.checkNumber(numbers, bonusNumber));
         }
         return changeNumbersMap(resultNumber);
     }
 
-    public Map<Integer,Integer> changeNumbersMap (List<Integer> resultNumber) {
+    public Map<Integer, Integer> changeNumbersMap(List<Integer> resultNumber) {
         List<Integer> excludeValues = Arrays.asList(0, 1, 2);
-
         Map<Integer, Integer> countByNumberAsInteger = resultNumber.stream()
                 .filter(number -> !excludeValues.contains(number))
                 .collect(Collectors.groupingBy(
                         number -> number,
                         Collectors.summingInt(e -> 1)
                 ));
+
+        for (int key = 3; key <= 7; key++) {
+            countByNumberAsInteger.putIfAbsent(key, 0);
+        }
+
         return countByNumberAsInteger;
     }
+
 }
+
+

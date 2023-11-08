@@ -1,6 +1,7 @@
 package lotto.Controller;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.RewardChecker;
 import lotto.domain.LottoGenerator;
@@ -29,7 +30,7 @@ public class LottoController {
 
         Lotto winTicket = getWinNumber();
 
-        int bonusNumber = inputView.getBonusNumber();
+        BonusNumber bonusNumber = new BonusNumber(inputView.getBonusNumber());
 
         outputView.printAllTickets(tickets);
 
@@ -45,15 +46,15 @@ public class LottoController {
     public Lotto getWinNumber(){
         return new Lotto(inputView.getWinNumbers());
     }
-    public int calculateReward(List<Lotto> tickets, Lotto winTicket, int bonusNumber){
+    public int calculateReward(List<Lotto> tickets, Lotto winTicket, BonusNumber bonusNumber){
         int totalReward = 0;
         for (int i = 0; i < tickets.size() ; i++) {
-            totalReward = rewardChecker.checkReward(tickets.get(i), winTicket, bonusNumber);
+            totalReward = rewardChecker.checkReward(tickets.get(i), winTicket, bonusNumber.getBonusNumber());
         }
         return totalReward;
     }
 
-    public void printResult(List<Lotto> tickets, Lotto winTicket, int bonusNumber, int money){
+    public void printResult(List<Lotto> tickets, Lotto winTicket, BonusNumber bonusNumber, int money){
         int totalReward = calculateReward(tickets, winTicket, bonusNumber);
         int[] rankCount = rewardChecker.getRankCount();
 

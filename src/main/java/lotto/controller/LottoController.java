@@ -4,6 +4,7 @@ import static lotto.view.InputView.inputBonusNumber;
 import static lotto.view.InputView.inputPayment;
 import static lotto.view.InputView.inputWinningNumbers;
 import static lotto.view.OutputView.printBuyLottoCount;
+import static lotto.view.OutputView.printLottoNumbers;
 
 import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
@@ -34,6 +35,7 @@ public class LottoController {
             }
         }
         printBuyLottoCount(lottos.getLottoCount());
+        printLottoNumbers(lottos);
     }
 
     private void drawWinningNumbers() {

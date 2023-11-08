@@ -18,9 +18,9 @@
 - [x] LottoTickets
   - List<Lotto> 
   - [x] 로또 번호 생성 (로또 번호는 오름차순으로 저장)
-- [ ] WinningLotto
+- [x] WinningLotto
   - Lotto, bonusNumber
-  - [ ] LottoTickets와 비교해서 Rank 찾기
+  - [x] LottoTickets와 비교해서 Rank 찾기
 - [ ] Statistic : 로또 당첨 통계
   - Map<Rank, Integer> : 등수와 당첨 갯수
   - [ ] WinningLotto의 Rank 찾기 메서드를 이용해 당첨 개수 증가시키기

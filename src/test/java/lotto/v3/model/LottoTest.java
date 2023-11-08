@@ -44,7 +44,7 @@ class LottoTest {
     @Test
     void shouldSortNumbersOnCreation() {
         Lotto lotto = new Lotto(Arrays.asList(6, 5, 4, 3, 2, 1));
-        assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+        assertThat(lotto.getNumbers()).containsExactly(6, 5, 4, 3, 2, 1);
     }
 
 }

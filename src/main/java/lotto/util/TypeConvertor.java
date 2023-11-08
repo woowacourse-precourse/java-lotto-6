@@ -10,6 +10,9 @@ public class TypeConvertor {
 
     private static final String REGEX = ",";
 
+    private TypeConvertor() {
+    }
+
     public static Integer stringToInt(final String input) {
         try {
             return Integer.parseInt(input);

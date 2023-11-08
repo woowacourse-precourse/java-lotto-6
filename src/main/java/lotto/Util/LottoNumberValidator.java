@@ -14,7 +14,7 @@ public class LottoNumberValidator {
         isInt();
     }
     public void isInt() {
-        if(!Rule.LottoNumberPattern.matcher(LOTTO_NUMBER_INT).matches()) {
+        if(!Rule.LottoNumberPattern.matcher(LOTTO_NUMBER_INT+"").matches()) {
             throw new IllegalArgumentException(Rule.NOTNUMBER_PATTERN);
         }
     }

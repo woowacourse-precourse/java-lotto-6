@@ -9,13 +9,13 @@ public class ExceptionModule {
         try {
             return Integer.parseInt(consoleRead);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 양의 정수를 입력해야 합니다.");
         }
     }
 
     public static void checkThousandException(Integer tryNum, Integer LOTTO_PRICE) throws IllegalArgumentException{
         if (tryNum % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위로 입력해야 합니다.");
         }
     }
 
@@ -27,19 +27,19 @@ public class ExceptionModule {
 
     public static void checkWinningNumDub(List<Integer> winningNum) throws IllegalArgumentException{
         if (new HashSet<>(winningNum).size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않는 6자리 숫자여야 합니다.");
         }
     }
 
     public static void checkWinningNumSize(List<Integer> winningNum) throws IllegalArgumentException{
         if (winningNum.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리의 숫자여야 합니다.");
         }
     }
 
     public static void checkNumBoundary(Integer num) throws IllegalArgumentException{
         if (num < 1 || num > 45) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 }

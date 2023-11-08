@@ -22,7 +22,7 @@ public class InteractService {
                 checkThousandException(tryNum, LOTTO_PRICE);
                 return tryNum;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 로또 구입 금액은 1000원의 양의 정수배만 입력 가능합니다.");
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -36,7 +36,7 @@ public class InteractService {
                 checkWinningNumSize(winningNum);
                 return winningNum;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 중복되지 않는 6개의 숫자여야 합니다.");
+                System.out.println(e.getMessage());
             }
         }
     }

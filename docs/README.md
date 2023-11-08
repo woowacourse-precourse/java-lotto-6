@@ -101,20 +101,20 @@
 
 # ✅ 구현 체크리스트
 
-- [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-- [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
-- [ ] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
-- [ ] 3항 연산자를 쓰지 않는다.
-- [ ] 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
-- [ ] JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.
-- [ ] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
-- [ ] 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
-- [ ] else, switch/case 쓰지 않는다.
-- [ ] Java Enum을 적용한다.
-- [ ] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
-- [ ] 제공된 Lotto 클래스를 활용해 구현해야 한다.
-- [ ] numbers의 접근 제어자인 private을 변경할 수 없다.
-- [ ] Lotto에 필드(인스턴스 변수)를 추가할 수 없다.
-- [ ] Lotto의 패키지 변경은 가능하다.  
+- [x] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+- [x] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
+- [x] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
+- [x] 3항 연산자를 쓰지 않는다.
+- [x] 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
+- [x] JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.
+- [x] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
+- [x] 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
+- [x] else, switch/case 쓰지 않는다.
+- [x] Java Enum을 적용한다.
+- [x] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+- [x] 제공된 Lotto 클래스를 활용해 구현해야 한다.
+- [x] numbers의 접근 제어자인 private을 변경할 수 없다.
+- [x] Lotto에 필드(인스턴스 변수)를 추가할 수 없다.
+- [x] Lotto의 패키지 변경은 가능하다.  
 
 

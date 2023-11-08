@@ -14,6 +14,18 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException();
+        }
+        validateOverlap(numbers);
+    }
+
+    private void validateOverlap(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException();
+            }
+        }
     }
 
     // TODO: 추가 기능 구현

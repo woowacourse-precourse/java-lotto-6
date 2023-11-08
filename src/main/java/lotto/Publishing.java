@@ -1,2 +1,4 @@
-package lotto;public class Publishing {
+package lotto;
+
+public class Publishing {
 }

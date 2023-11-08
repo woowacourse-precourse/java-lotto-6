@@ -24,15 +24,13 @@ public class Application {
                 }
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자가 아닙니다.(구입 금액)");
-                System.out.println();
+                System.out.println("[ERROR] 숫자가 아닙니다.(구입 금액)\n");
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                System.out.println();
+                System.out.println(e.getMessage()+ '\n');
             }
         }
 
-        // 2. 발행한 로또 수량 및 번호 출력
+        // 2. 로또 발행 및 번호 출력
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < numberOfLottos; i++) {
@@ -70,8 +68,7 @@ public class Application {
                 }
 
                 long countDistinctElements = winningNumbers.stream().distinct().count();
-                boolean hasDuplicate = countDistinctElements != 6;
-                if (hasDuplicate) {
+                if (countDistinctElements != 6) {
                     throw new IllegalArgumentException("[ERROR] 중복 입력된 숫자가 있습니다.(당첨 번호)");
                 }
 
@@ -93,9 +90,8 @@ public class Application {
                     throw new IllegalArgumentException("[ERROR] 1-45 내에 숫자만 입력해야 됩니다.(보너스 번호)");
                 }
 
-                long countDistinctElements = winningNumbers.stream().distinct().count();
-                boolean hasDuplicate = countDistinctElements != 7;
-                if (hasDuplicate) {
+                long countDistinctWinningNumbers = winningNumbers.stream().distinct().count();
+                if (countDistinctWinningNumbers != 7) {
                     throw new IllegalArgumentException("[ERROR] 중복 입력된 숫자가 있습니다.(보너스 번호)");
                 }
                 break;
@@ -106,13 +102,15 @@ public class Application {
             }
         }
 
+        // 4. 당첨 여부 확인 및 등수(LottoRank) 부여
         for (int i = 0; i < lottos.size(); i++) {
             Lotto lotto = lottos.get(i);
             LottoWinChecker winChecker = new LottoWinChecker(lotto, winningNumbers);
         }
 
+        // 5. 당첨 통계 계산 및 출력
         System.out.println('\n' + "당첨 통계");
-        System.out.println('\n' + "---");
+        System.out.println("---");
         LottoProfitCalculator lottoProfitCalculator = new LottoProfitCalculator(purchaseAmount, lottos);
         System.out.println(lottoProfitCalculator.rankPrinter());
         System.out.println("총 수익률은 " + lottoProfitCalculator.getProfitRate() + "%입니다.");

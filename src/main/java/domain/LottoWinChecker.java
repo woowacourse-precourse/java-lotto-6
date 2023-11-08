@@ -7,20 +7,17 @@ import java.util.List;
 
 public class LottoWinChecker {
     private final List<Integer> winningNumbers;
-    private List<Integer> userNumbers;
-
-    boolean correctBonus = false;
+    private List<Integer> lottoNumbers;
 
     public LottoWinChecker(Lotto lotto, List<Integer> winningNumbers) {
         this.winningNumbers = winningNumbers;
-        this.userNumbers = lotto.getNumbers();
+        this.lottoNumbers = lotto.getNumbers();
 
         int correctNumbers = getCorrectNumbersCount();
-        bonusChecker();
 
         if (correctNumbers == 6) lotto.setRank(LottoRank.FIRST);
-        if (correctNumbers == 5 && correctBonus) lotto.setRank(LottoRank.SECOND);
-        if (correctNumbers == 5 && !correctBonus) lotto.setRank(LottoRank.THIRD);
+        if (correctNumbers == 5 && hasBonusNumber()) lotto.setRank(LottoRank.SECOND);
+        if (correctNumbers == 5 && !hasBonusNumber()) lotto.setRank(LottoRank.THIRD);
         if (correctNumbers == 4) lotto.setRank(LottoRank.FOURTH);
         if (correctNumbers == 3) lotto.setRank(LottoRank.FIFTH);
     }
@@ -30,7 +27,7 @@ public class LottoWinChecker {
 
         for (int i = 0; i < 6; i++) {
             int winningNumber = this.winningNumbers.get(i);
-            if (this.userNumbers.contains(winningNumber)) {
+            if (this.lottoNumbers.contains(winningNumber)) {
                 correctNumbersCount++;
             }
         }
@@ -38,11 +35,12 @@ public class LottoWinChecker {
         return correctNumbersCount;
     }
 
-    void bonusChecker() {
+    boolean hasBonusNumber() {
         int bonusNumber = this.winningNumbers.get(6);
 
-        if (this.userNumbers.contains(bonusNumber)) {
-            correctBonus = true;
+        if (this.lottoNumbers.contains(bonusNumber)) {
+            return true;
         }
+        return false;
     }
 }

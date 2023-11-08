@@ -58,7 +58,7 @@ class LottoWinCheckerTest {
         for (int i = 0; i < lottos.size(); i++) {
             Lotto lotto = lottos.get(i);
             lottoWinChecker = new LottoWinChecker(lotto, winningNumbers);
-            actual.add(lottoWinChecker.correctBonus);
+            actual.add(lottoWinChecker.hasBonusNumber());
         }
 
         List<Boolean> expected = List.of(false, true, false, false, false, false);

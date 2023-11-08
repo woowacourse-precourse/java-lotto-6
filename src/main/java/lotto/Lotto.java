@@ -16,6 +16,11 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
+        long countDistinctNumbers = numbers.stream().distinct().count();
+        if (countDistinctNumbers != 6) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public List<Integer> getNumbers() {

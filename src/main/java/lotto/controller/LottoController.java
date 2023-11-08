@@ -1,0 +1,189 @@
+package lotto.controller;
+
+import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import lotto.model.Lotto;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+
+/*
+- [v] 로또 구입 금액을 입력받는 기능
+    - [v] "구입금액을 입력해 주세요." 메시지를 출력하는 기능
+- [v] 랜덤 메서드를 이용해서 중복되지 않는 숫자를 뽑는 기능 -> 컨트롤러에서 하기
+- [v] 뽑은 숫자를 저장하는 기능 -> 이것도 컨트롤러
+- [v] 로또를 발행하는 기능 -> 이것도 컨트롤러
+- [ ] 당첨 번호를 입력받는 기능 -> 컨트롤러
+    - [ ] 당첨 번호를 입력해 주세요. 메시지를 출력하는 기능
+- [ ] 보너스 번호를 입력받는 기능 -> 컨트롤러
+    - [ ] 보너스 번호를 입력해 주세요. 메시지를 출력하는 기능
+- [ ] 당첨 여부와 등수를 계산하는 기능 -> 이건 계산 클래스에서 하자
+- [ ] 수익률을 계산 하는 기능 -> 이것도 계산 클래스
+- [ ] 당첨 통계를 출력하는 기능 -> 이건 컨트롤러(뷰에서 할까?)
+    - [ ] 수익률을 출력하는 기능
+- [ ] 예외가 발생했을 때 에러 메시지를 처리 하는 기능 -> 일단 컨트롤러에서 하고, 예외 클래스를 따로 둘지 생각해보기
+- [ ] 예외가 발생한 다음 다시 입력을 받는 기능 */
+// 이 컨트롤러에서는 로또 구입 금액 입력, 로또 발행(데이터 전달)을 구현
+// 로또 구입 금액이 로또 클래스에 필요할까? ㄴㄴ, 로또 구입 금액은 로또컨트롤러에서만 필요
+public class LottoController {
+    final static int LOTTO_COUNTS = 7;
+    final static int BONUS_COUNTS = 1;
+    final static int MOD_VALUE = 1000;
+    final static int MAX_LOTTO_PRICES = 2147483000;
+    final static int MIN_LOTTO_PRICES = 1000;
+    int lottoCounts;
+    int lottoPrices;
+    List<Integer> prizeNumbers = new ArrayList<>();
+    int bonusNumber;
+    List<Lotto> lottos = new ArrayList<>();
+
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public List<Integer> getPrizeNumbers() {
+        return prizeNumbers;
+    }
+
+    public int getLottoCounts() {
+        return lottoCounts;
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public void setLottoCounts(int lottoCounts) {
+        this.lottoCounts = lottoCounts;
+    }
+
+    public int getLottoPrices() {
+        return lottoPrices;
+    }
+
+    public String printLottoPrices() {
+        return "구입금액을 입력해 주세요.";
+    }
+    public void inputLottoPrices() {
+        lottoPrices = isInteger();
+        if(!isPriceLowerThanMax(lottoPrices)) {
+            throw new IllegalArgumentException("[ERROR] 최대 구입 가능 금액은 " + MAX_LOTTO_PRICES + "원 입니다.");
+        }
+        if(!isPriceBiggerThanMin(lottoPrices)) {
+            throw new IllegalArgumentException("[ERROR] 최소 구입 가능 금액은 " + MIN_LOTTO_PRICES + "원 입니다.");
+        }
+        if(!isPriceModZero(lottoPrices)) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 " + MOD_VALUE + "원 단위 여야 합니다.");
+        }
+        setLottoCounts(lottoPrices / MOD_VALUE);
+    }
+    public int isInteger() {
+        try {
+            String confirmString = Console.readLine();
+            return Integer.parseInt(confirmString);
+        } catch (NumberFormatException numberFormatException) {
+        throw new IllegalArgumentException("[ERROR] 숫자만 입력하실 수 있습니다");
+        }
+    }
+    public boolean isPriceLowerThanMax(int confirmInteger) {
+        return confirmInteger < MAX_LOTTO_PRICES;
+    }
+    public boolean isPriceBiggerThanMin(int confirmInteger) {
+        return confirmInteger >= MIN_LOTTO_PRICES;
+    }
+    public boolean isPriceModZero(int confirmInteger) {
+        return confirmInteger % MOD_VALUE == 0;
+    }
+
+    public List<Integer> GenerateRandomNumber() {
+        List<Integer> lottoNumbers;
+        lottoNumbers = pickUniqueNumbersInRange(1,45,6);
+        return lottoNumbers;
+    }
+    public void saveLottoNumbers(List<Integer> lottoNumbers) {
+        Collections.sort(lottoNumbers);
+        lottos.add(new Lotto(lottoNumbers));
+    }
+    public void iterateLottos() {
+        for (int i = 0; i < lottoCounts; i++) {
+            saveLottoNumbers(GenerateRandomNumber());
+        }
+    }
+    public String printLottoNumbers() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Lotto numbers:
+             lottos) {
+            stringBuilder.append(numbers.getNumbers().toString()).append("\n");
+        }
+        System.out.println(stringBuilder.toString());
+        return stringBuilder.toString();
+    }
+    public String printPrizeNumbers() {
+        return "당첨 번호를 입력해 주세요.";
+    }
+    public List<Integer> inputPrizeNumbers() {
+        List<Integer> prizeNumbers = new ArrayList<>();
+        try {
+            String confirmString = Console.readLine();
+            prizeNumbers.addAll(splitPrizeNumbers(confirmString));
+        } catch (NumberFormatException numberFormatException) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력하실 수 있습니다.");
+        }
+        return prizeNumbers;
+    }
+    public List<Integer> splitPrizeNumbers(String confirmString) {
+        List<String> testing = List.of(confirmString.split(","));
+        List<Integer> prizeNumbers = new ArrayList<>();
+        for (String splited:
+                testing) {
+            if(!isInRangeNumber(Integer.parseInt(splited))) {
+                throw new IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자만 입력하실 수 있습니다.");
+            }
+            prizeNumbers.add(Integer.parseInt(splited));
+        }
+        return prizeNumbers;
+    }
+    public String printBonusNumber() {
+        return "보너스 번호를 입력해 주세요.";
+    }
+    public int inputBonusNumber() {
+        try {
+            int bonusNumber;
+            String confirmString = Console.readLine();
+            if(!isInRangeNumber(Integer.parseInt(confirmString))) {
+                throw new IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자만 입력하실 수 있습니다.");
+            }
+            bonusNumber = Integer.parseInt(confirmString);
+            return bonusNumber;
+        } catch (NumberFormatException numberFormatException) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력하실 수 있습니다.");
+        }
+    }
+    public boolean isInRangeNumber(int confirmInteger) {
+        return confirmInteger >= 1 && confirmInteger <= 45;
+    }
+
+    public void run() {
+        System.out.println(printLottoPrices());
+        inputLottoPrices();
+        iterateLottos();
+        System.out.println(printLottoNumbers());
+
+        System.out.println(printPrizeNumbers());
+        this.prizeNumbers.addAll(inputPrizeNumbers());
+        System.out.println(printBonusNumber());
+        this.bonusNumber = inputBonusNumber();
+
+    }
+
+
+
+    // 순서 - 상수, 클래스 변수
+    // 인스턴스 변수
+    // 생성자
+    // 메서드
+}

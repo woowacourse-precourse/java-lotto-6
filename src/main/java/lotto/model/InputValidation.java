@@ -4,15 +4,14 @@ public class InputValidation {
     private static final int DIVIDED_AMOUNT = 1000;
     private static final int START_RANGE = 1;
     private static final int END_RANGE = 45;
-    private static final String INVALID_AMOUNT_MESSAGE = "구입 금액은 1,000원 단위로 입력해야 합니다.";
-    private static final String INVALID_RANGE_MESSAGE = "1~45 사이의 숫자를 입력해야 합니다.";
-    private static final String INVALID_NUMBER_MESSAGE = "숫자이여야 합니다.";
+    private static final String INVALID_AMOUNT_MESSAGE = "[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.";
+    private static final String INVALID_RANGE_MESSAGE = "[ERROR] 1~45 사이의 숫자를 입력해야 합니다.";
+    private static final String INVALID_NUMBER_MESSAGE = "[ERROR] 숫자이여야 합니다.";
 
     public static void validateNumber(String amount) {
         try {
             Integer.parseInt(amount);
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] " + INVALID_NUMBER_MESSAGE);
             throw new IllegalArgumentException(INVALID_NUMBER_MESSAGE);
         }
     }

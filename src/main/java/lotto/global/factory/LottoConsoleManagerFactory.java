@@ -1,13 +1,13 @@
 package lotto.global.factory;
 
 import lotto.module.console.Console;
-import lotto.module.console.ConsoleMessageComposer;
+import lotto.module.console.LottoConsoleManager;
 import lotto.module.console.input.ConsoleReader;
 import lotto.module.console.input.impl.ConsoleReaderImpl;
 import lotto.module.console.input.validation.InputValidation;
 import lotto.module.console.output.ConsoleWriter;
+import lotto.module.console.output.composer.ConsoleMessageComposer;
 import lotto.module.console.output.impl.ConsoleWriterImpl;
-import lotto.module.manager.LottoConsoleManager;
 
 public class LottoConsoleManagerFactory {
     private static LottoConsoleManager lottoConsoleManager;

@@ -1,13 +1,13 @@
 package lotto.domain;
 
-import org.junit.jupiter.api.Test;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoNumber;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class WinningLottoTest {
 

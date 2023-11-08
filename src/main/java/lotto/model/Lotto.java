@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 import java.util.HashSet;
 import java.util.List;
@@ -24,11 +24,6 @@ public class Lotto {
         if (checkIsDuplicateNumbers.size() != 6) {
             throw new IllegalArgumentException();
         }
-    }
-
-    public void issueTicket(List<List<Integer>> purchasedLottoTickets) {
-        purchasedLottoTickets.add(numbers);
-        System.out.println(numbers);
     }
 
 }

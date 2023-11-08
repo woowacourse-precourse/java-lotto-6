@@ -34,6 +34,7 @@ public class Validation {
     public static void validateBonusNumber(String bonusNumber){
         isEmpty(bonusNumber);
         isNumber(bonusNumber);
+        isNumberRangeOneToFortyFive(Integer.parseInt(bonusNumber));
     }
 
     private static void isEmpty(String input) {
@@ -90,9 +91,13 @@ public class Validation {
         List<Integer> numbers = castTypeStringListToIntegerList(castTypeStringToStringListByComma(winningNumbers));
 
         for(int number : numbers){
-            if( number < Standards.MIN_LOTTO_NUMBER.getNumber() || number > Standards.MAX_LOTTO_NUMBER.getNumber()){
-                throw new IllegalArgumentException(ExceptionMessages.OUT_OF_NUMBER_RANGE.getMessage());
-            }
+            isNumberRangeOneToFortyFive(number);
+        }
+    }
+
+    private static void isNumberRangeOneToFortyFive(int input){
+        if( input < Standards.MIN_LOTTO_NUMBER.getNumber() || input > Standards.MAX_LOTTO_NUMBER.getNumber()){
+            throw new IllegalArgumentException(ExceptionMessages.OUT_OF_NUMBER_RANGE.getMessage());
         }
     }
 

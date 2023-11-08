@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.config.OutputMessage;
 import lotto.config.LottoPrize;
 import lotto.model.Lotto;
+import lotto.util.Util;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,6 +31,6 @@ public class OutputView {
     }
 
     public static void printLottoProfit(double profit) {
-        System.out.printf(OutputMessage.OUTPUT_LOTTO_PROFIT.getMessage(), profit);
+        System.out.printf(OutputMessage.OUTPUT_LOTTO_PROFIT.getMessage(), Util.formattingNumber(profit));
     }
 }

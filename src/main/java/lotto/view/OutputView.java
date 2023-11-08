@@ -21,8 +21,6 @@ public class OutputView {
         System.out.println("---");
 
         System.out.println(lottoGameResult);
-
-
     }
     public void printProfitRate(double profitRate) {
         System.out.println(String.format(LOTTO_PROFIT_RATE, profitRate));

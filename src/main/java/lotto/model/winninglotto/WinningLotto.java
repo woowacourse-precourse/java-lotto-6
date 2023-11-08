@@ -27,14 +27,6 @@ public class WinningLotto {
         return new WinningLotto(winningLotto, bonusLottoNumber);
     }
 
-    public LottoRanking checkRanking(Set<LottoNumber> lottoNumbers) {
-        Set<Integer> numbers = lottoNumbers.stream()
-            .map(LottoNumber::number)
-            .collect(Collectors.toSet());
-        HitResult hitResult = hitCounter.countHit(numbers);
-        return LottoRanking.getRanking(hitResult.getHitCount(), hitResult.getIsBonusBallHit());
-    }
-
     public LottoWinningResult getLottoResult(List<Lotto> lottoTicket) {
         List<LottoRanking> lottoRankings = lottoTicket.stream()
             .map(Lotto::getLottoNumbers)
@@ -57,5 +49,13 @@ public class WinningLotto {
             .collect(Collectors.toSet());
 
         return new HitCounter(winningNumbers, bonusLottoNumber.number());
+    }
+
+    private LottoRanking checkRanking(Set<LottoNumber> lottoNumbers) {
+        Set<Integer> numbers = lottoNumbers.stream()
+            .map(LottoNumber::number)
+            .collect(Collectors.toSet());
+        HitResult hitResult = hitCounter.countHit(numbers);
+        return LottoRanking.getRanking(hitResult.getHitCount(), hitResult.getIsBonusBallHit());
     }
 }

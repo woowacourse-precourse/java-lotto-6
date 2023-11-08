@@ -11,19 +11,20 @@ public class LottoNumberValidator {
     private static final String SHOULD_BE_IN_LOTTO_NUMBER_RANGE = "[ERROR] 복권 번호는 %d이상 %d이하 이어야 합니다.";
 
     public static void validateLottoSize(List<Integer> numbers) {
-        if (numbers.size() != NUMBER_OF_NUMBERS_TO_MATCH.getValue()) {
-            throw new IllegalArgumentException(String.format(
-                    LOTTO_INPUT_SHOULD_BE_N,
-                    NUMBER_OF_NUMBERS_TO_MATCH.getValue())
-            );
+        if (numbers.size() == NUMBER_OF_NUMBERS_TO_MATCH.getValue()) {
+            return;
         }
+        throw new IllegalArgumentException(String.format(
+                LOTTO_INPUT_SHOULD_BE_N,
+                NUMBER_OF_NUMBERS_TO_MATCH.getValue())
+        );
     }
 
     public static void validateDuplication(List<Integer> numbers) {
-        List<Integer> deduplicatedNumbers = numbers.stream()
+        int deduplicatedNumbersSize = (int) numbers.stream()
                 .distinct()
-                .collect(Collectors.toList());
-        if (deduplicatedNumbers.size() == numbers.size()) {
+                .count();
+        if (deduplicatedNumbersSize == numbers.size()) {
             return;
         }
         throw new IllegalArgumentException(SHOULD_NOT_DUPLICATE);
@@ -41,11 +42,15 @@ public class LottoNumberValidator {
     }
 
     public static void validateLottoNumberRange(int number) {
-        if ((number < MIN_LOTTO_NUMBER.getValue()) || (number > MAX_LOTTO_NUMBER.getValue())) {
+        if (isInLottoNumberRange(number)) {
             throw new IllegalArgumentException(String.format(
                     SHOULD_BE_IN_LOTTO_NUMBER_RANGE,
                     MIN_LOTTO_NUMBER.getValue(),
                     MAX_LOTTO_NUMBER.getValue()));
         }
+    }
+
+    public static boolean isInLottoNumberRange(int number) {
+        return (number < MIN_LOTTO_NUMBER.getValue()) || (number > MAX_LOTTO_NUMBER.getValue());
     }
 }

@@ -47,7 +47,7 @@ public class Lotto {
     }
 
     public static void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != DIGITS) {
             throw new IllegalArgumentException(LOTTO_IS_NOT_SIX_DIGITS.getMessage());
         }
         numbers.forEach(Lotto::validateLottoNum);
@@ -55,7 +55,7 @@ public class Lotto {
     }
 
     private static void validateDuplication(List<Integer> numbers) {
-        boolean[] visited = new boolean[46];
+        boolean[] visited = new boolean[END_NUMBER + 1];
         numbers.forEach((num) -> {
             if (visited[num]) {
                 throw new IllegalArgumentException(LOTTO_NUMBER_IS_DUPLICATED.getMessage());

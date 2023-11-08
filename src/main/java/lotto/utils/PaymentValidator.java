@@ -4,7 +4,7 @@ import static lotto.enums.ExceptionMessageType.NUMBER_NOT_INTEGER;
 import static lotto.enums.ExceptionMessageType.PAYMENT_INVALID_UNIT;
 import static lotto.enums.ExceptionMessageType.PAYMENT_NOT_NATURAL_NUMBER;
 
-public class InputValidator {
+public class PaymentValidator {
     private static final int UNIT = 1000;
     public static void validateInteger(String number) {
         try {

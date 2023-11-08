@@ -22,4 +22,10 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.WRONG_SIZE_OF_LOTTO.getMessage());
         }
     }
+
+    public static void validateUniqueValues(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_VALUES_EXIST.getMessage());
+        }
+    }
 }

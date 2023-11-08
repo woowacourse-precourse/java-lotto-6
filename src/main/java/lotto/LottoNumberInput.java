@@ -48,12 +48,15 @@ public class LottoNumberInput {
         //hasduplication();
     }
 
-    public void hasduplication(List<Integer> testNumbers){
+    public void validate(List<Integer> testNumbers){
         Set<Integer> uniqueNumbers = new HashSet<>();
         for( int number : testNumbers){
             if(!uniqueNumbers.add(number)) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되면 안됩니다.");
             }
+        }
+        if (testNumbers.size() != 6) {
+            throw new IllegalArgumentException();
         }
     }
 }

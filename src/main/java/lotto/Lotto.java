@@ -10,7 +10,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        Collections.sort(numbers);
+        this.numbers = new ArrayList<>(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -28,4 +29,7 @@ public class Lotto {
         }
     }
 
+    public String toString() {
+        return numbers.toString();
+    }
 }

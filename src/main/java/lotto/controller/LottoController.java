@@ -11,17 +11,25 @@ import lotto.view.OutputView;
 import java.util.List;
 
 public class LottoController {
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
-    WinningLottoFactory winningLottoFactory = new WinningLottoFactoryImpl();
-    LottoGeneratorService lottoGeneratorService = new LottoGeneratorServiceImpl();
+    private final InputView inputView = InputView.getInstance();
+    private final OutputView outputView = OutputView.getInstance();
+    private final WinningLottoFactory winningLottoFactory = WinningLottoFactoryImpl.getInstance();
+    private final LottoGeneratorService lottoGeneratorService = LottoGeneratorServiceImpl.getInstance();
+
+    private LottoController() {}
+    private static class  LottoControllerHelper {
+        private static final LottoController LOTTO_CONTROLLER = new LottoController();
+    }
+    public static LottoController getInstance() {
+        return LottoControllerHelper.LOTTO_CONTROLLER;
+    }
 
     public void start() {
         List<Lotto> lottos = getMyLottos();
         outputView.printLottos(lottos);
         Lotto lotto = getWinningLotto();
         BonusNumber bonusNumber = getBonusNumber(lotto);
-        StatisticsService statisticsService = new StatisticsServiceImpl(lottos, lotto, bonusNumber);
+        StatisticsService statisticsService = StatisticsServiceImpl.getInstance(lottos, lotto, bonusNumber);
         Result result = statisticsService.calculateResult();
         double revenueRate = statisticsService.calculateRevenueRate(lottos, result);
         outputView.result(result);

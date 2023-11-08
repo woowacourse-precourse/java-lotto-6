@@ -11,6 +11,15 @@ import java.util.List;
 import static lotto.utils.NumberConstant.*;
 
 public class LottoGeneratorServiceImpl implements LottoGeneratorService {
+    private LottoGeneratorServiceImpl() {}
+    private static class LottoGeneratorHelper {
+        private static final LottoGeneratorService LOTTO_GENERATOR_SERVICE = new LottoGeneratorServiceImpl();
+    }
+
+    public static LottoGeneratorService getInstance(){
+        return LottoGeneratorHelper.LOTTO_GENERATOR_SERVICE;
+    }
+
     @Override
     public List<Lotto> myLottos(String inputPrice) {
         int price = NumberParser.toInteger(inputPrice);

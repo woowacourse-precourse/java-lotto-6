@@ -8,6 +8,13 @@ import java.util.List;
 import static lotto.view.constant.OutputMessage.*;
 
 public class OutputView {
+    private OutputView() {}
+    private static class OutputViewHelper {
+        private final static OutputView OUTPUT_VIEW = new OutputView();
+    }
+    public static OutputView getInstance() {
+        return OutputViewHelper.OUTPUT_VIEW;
+    }
     public void printLottos(List<Lotto> lottos) {
         System.out.printf("%d" + COUNT.getMessage() + "\n", lottos.size());
         for (Lotto lotto : lottos) {

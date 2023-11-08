@@ -1,7 +1,7 @@
-package lotto.domain;
+package lotto.domain.utils;
 
 import java.util.Arrays;
-import lotto.CustomLotteryRanking;
+import lotto.domain.LotteryRanking;
 
 public enum TestLotteryRanking implements LotteryRanking {
     LAST_PLACE(0, 2) {

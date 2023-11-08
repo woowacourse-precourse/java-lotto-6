@@ -1,6 +1,6 @@
 package lotto.domain;
 
-public class LottoChecker {
+public class RewardChecker {
     private static int rewardAmount;
     private static final int SIX_CORRECT = 2000000000;
     private static final int FIVE_CORRECT_AND_BONUS = 30000000;
@@ -9,6 +9,8 @@ public class LottoChecker {
     private static final int THREE_CORRECT = 5000;
 
     private int[] rankCount = new int[5];
+
+    public RewardChecker(){}
 
     public int checkReward(Lotto myNumber, Lotto winNumber, int bonusNumber){
         LottoValidator lottoValidator = new LottoValidator(myNumber, winNumber,bonusNumber);
@@ -31,6 +33,9 @@ public class LottoChecker {
             rankCount[0] ++;
         }
         return rewardAmount;
+    }
+    public double calculateProfitability(int totalReward, int money){
+        return ((double) totalReward / money) * 100;
     }
 
     public int[] getRankCount(){

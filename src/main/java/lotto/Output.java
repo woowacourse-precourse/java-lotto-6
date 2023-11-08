@@ -1,6 +1,7 @@
 package lotto;
 
-import java.util.ArrayList;
+import lotto.lottoMaker.Lotto;
+
 import java.util.List;
 
 public class Output {

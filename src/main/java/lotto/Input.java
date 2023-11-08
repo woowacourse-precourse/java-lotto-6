@@ -1,10 +1,10 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.lottoMaker.Lotto;
+import lotto.lottoMaker.LottoGenerator;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.PurcahseAmountValidator;
 import lotto.validator.WinningNumberValidator;
@@ -63,12 +63,8 @@ public class Input {
 
         int numOfTicket = Integer.parseInt(purchaseAmount)/1000;
         System.out.println(numOfTicket+"개를 구매했습니다.");
-
-        for(int i=0; i<numOfTicket; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottoTicket.add(new Lotto(numbers));
-            printLottoTicket(lottoTicket.get(i));
-        }
+        LottoGenerator.generate(lottoTicket, numOfTicket);
+        LottoGenerator.printLottoTicket(lottoTicket);
         System.out.println();
         return purchaseAmount;
     }
@@ -87,6 +83,7 @@ public class Input {
     private String inputBonusNum() throws IllegalArgumentException {
         String bonusNum = Console.readLine();
         BonusNumberValidator.validate(bonusNum);
+        System.out.println();
         return bonusNum;
     }
 }

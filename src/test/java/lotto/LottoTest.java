@@ -1,7 +1,9 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import lotto.domain.User;
 import lotto.domain.WinningLotto;
+import lotto.view.InputMoneySpentOnLottoView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -50,6 +52,20 @@ class LottoTest {
     @Test
     void BonusNumberRangeCheck() {
         assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6)).setBonusNumber(60))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력된 구입 금액이 0원일 때 예외가 발생한다.")
+    @Test
+    void userMoneyZero() {
+        assertThatThrownBy(() -> new User(0))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력된 구입 금액이 1000의 배수가 아니라면 예외가 발생한다.")
+    @Test
+    void userMoneyThousands() {
+        assertThatThrownBy(() -> new User(1500))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

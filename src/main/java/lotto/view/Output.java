@@ -11,6 +11,7 @@ public class Output {
 
   public static void printGeneratedLottoNumbers(List<Lotto> lottoTickets) {
     System.out.println("생성된 로또 번호:");
+    // Todo : DTO 로 변환해서 생성할 것.
     for (Lotto lotto : lottoTickets) {
       for (int number : lotto.getNumbers()) {
         System.out.print("[" + number + "] ");

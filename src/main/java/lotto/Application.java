@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.List;
 
 public class Application {
@@ -30,6 +32,16 @@ public class Application {
     }
 
     private static int inputBuyAmount() {
-        return 0;
+        System.out.println("구입금액을 입력해 주세요.");
+        int buyAmount = 0;
+        while (true) {
+            try {
+                String inputBuyAmount = Console.readLine();
+                LottoGameValidator.validateInputAmount(inputBuyAmount);
+                return buyAmount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

@@ -17,11 +17,19 @@ public enum Ranking {
         this.prizeMoney = prizeMoney;
     }
     
+    public long calculatePrizeMoney(int count) {
+        return (long) prizeMoney * count;
+    }
+    
     public int getMatchingNumberCount() {
         return matchingNumberCount;
     }
     
     public String getMessage() {
         return message;
+    }
+    
+    public int getPrizeMoney() {
+        return prizeMoney;
     }
 }

@@ -8,6 +8,8 @@ public class LottoResult {
     private static final int DEFALUT_VALUE = 0;
     private static final int ADD_AMOUNT = 1;
     private static final int STANDARD_COUNT_OF_BONUS_EXECUTE = 5;
+    private static final int NUMBER_FOR_PERCENTAGE = 100;
+    private static final double NUMBER_FOR_ROUND = 10.0;
     
     private final Map<Ranking, Integer> winningResult = new EnumMap<>(Ranking.class);
     
@@ -25,6 +27,23 @@ public class LottoResult {
         for (Lotto ticket : lottoTickets) {
             updateWinningResult(ticket, winningNumbers, bonusNumber);
         }
+    }
+    
+    public double getProfitRate(LottoPurchase lottoPurchase) {
+        long totalPrizeMoney = calculateTotalPrizeMoney();
+        int purchaseAmount = lottoPurchase.getAmount();
+        return calculateProfitRate(totalPrizeMoney, purchaseAmount);
+    }
+    
+    public double calculateProfitRate(long totalPrizeMoney, int purchaseAmount) {
+        double profitRatePercent = ((double) totalPrizeMoney / purchaseAmount) * NUMBER_FOR_PERCENTAGE;
+        return Math.round(profitRatePercent * NUMBER_FOR_ROUND) / NUMBER_FOR_ROUND;
+    }
+    
+    public long calculateTotalPrizeMoney() {
+        return winningResult.keySet().stream()
+                .mapToLong(ranking -> ranking.calculatePrizeMoney(winningResult.get(ranking)))
+                .sum();
     }
     
     private void updateWinningResult(Lotto ticket, Lotto winningNumbers, int bonusNumber) {

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.LottoResults;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.WinningNumbers;
@@ -12,5 +13,7 @@ public class LottoController {
         Lottos lottos = Lottos.createLottos(money);
         OutputView.printLottos(lottos);
         WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers();
+        LottoResults lottoResults = LottoResults.createLottoResults(lottos, winningNumbers);
+        OutputView.printLottoResults(lottoResults, money);
     }
 }

@@ -2,6 +2,8 @@ package lotto.domain;
 
 import static lotto.domain.constant.CommonMessage.INPUT_ERROR_MESSAGE;
 
+import java.util.Arrays;
+import lotto.domain.constant.Rank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -41,6 +43,14 @@ public class Money {
         if (money % UNIT_PRICE != 0) {
             throw new IllegalArgumentException(INPUT_ERROR_MESSAGE.getValue());
         }
+    }
+
+    public static Money from(LottoResults lottoResults) {
+        return new Money(Arrays.stream(Rank.values())
+                .filter(rank -> !rank.equals(Rank.NOTHING))
+                .mapToInt(rank -> rank.getPrice() * lottoResults.getRankCount(rank))
+                .sum()
+        );
     }
 
     public int getMoney() {

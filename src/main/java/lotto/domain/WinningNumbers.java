@@ -93,6 +93,17 @@ public class WinningNumbers {
         duplicateCheckSet.add(number);
     }
 
+    public int countMatchedNumber(Lotto lotto) {
+        return (int) this.getGeneralNumbers()
+                .stream()
+                .filter(lotto::containsNumber)
+                .count();
+    }
+
+    public boolean hasBonusNumber(Lotto lotto) {
+        return lotto.containsNumber(this.getBonusNumber());
+    }
+
     public List<Integer> getGeneralNumbers() {
         return generalNumbers;
     }

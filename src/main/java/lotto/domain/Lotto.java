@@ -60,6 +60,14 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
+    public boolean containsNumber(int number) {
+        return numbers.contains(number);
+    }
+
+    public void printLotto() {
+        OutputView.printMessage(this.toString());
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }
@@ -71,13 +79,5 @@ public class Lotto {
                         .map(Objects::toString)
                         .collect(Collectors.joining(LOTTO_DELIMITER)) +
                 LOTTO_CLOSE_BRACKET;
-    }
-
-    public boolean containsNumber(int number) {
-        return numbers.contains(number);
-    }
-
-    public void printLotto() {
-        OutputView.printMessage(this.toString());
     }
 }

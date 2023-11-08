@@ -1,6 +1,7 @@
 package lotto.constant;
 
 public enum LottoPrize {
+    NO_MATCH(0, false, 0),
     MATCH_3(3, false, 5000),
     MATCH_4(4, false, 50000),
     MATCH_5(5, false, 1500000),

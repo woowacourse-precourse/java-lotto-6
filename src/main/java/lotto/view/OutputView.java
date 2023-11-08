@@ -1,10 +1,7 @@
 package lotto.view;
 
 import lotto.model.Lotto;
-import lotto.model.Rank;
 import lotto.model.UserLotto;
-
-import java.util.List;
 
 public class OutputView {
 
@@ -15,8 +12,6 @@ public class OutputView {
     public static void printPurchaseLottoCount(int count) {
         System.out.println(String.format(Messages.PURCHASE_COUNT_MESSAGE, count));
     }
-
-    
 
     public static void printWinningLotto() {
         System.out.println(Messages.LOTTO_NUMBERS_HEADER);

@@ -3,9 +3,6 @@ package lotto.model;
 import lotto.config.LottoConstants;
 import lotto.view.Messages;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class Bonus {
 
     private final int number;

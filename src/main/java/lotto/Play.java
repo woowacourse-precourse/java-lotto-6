@@ -57,8 +57,7 @@ public class Play {
         compare.calculateStatistics();
         compare.printResult();
 
-        int purchasePrice = Integer.parseInt(purchaseInput);
-        String profit = compare.computeEarningRate(purchasePrice);
+        String profit = compare.calculateProfit(purchase.getPurchasePrice(purchaseInput));
         outputView.printProfit(Double.parseDouble(profit));
     }
     private String getValidPurchase() {

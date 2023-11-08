@@ -9,7 +9,7 @@ public enum Error {
     NUMBER_BLANK("[ERROR] 당첨 번호는 ,(쉼표)로 구분하며며, 공백을 포함할 수 없습니다."),
     NUMBER_DUPLICATE("[ERROR] 당첨 번호는 중복될 수 없습니다."),
     BONUS_DUPLICATE("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."),
-    BONUS_RANGE("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."),
+    BONUS_RANGE("[ERROR] 보너스 번호는 1부터 45의 숫자입니다."),
     BONUS_TYPE("[ERROR] 보너스 번호는 숫자여야 합니다."),
     NUMBER_RANGE("[ERROR] 로또 번호는 " + Number.MIN.getRange() + "부터 " + Number.MAX.getRange() + " 사이의 숫자여야 합니다.");
 

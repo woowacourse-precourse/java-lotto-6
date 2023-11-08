@@ -59,13 +59,13 @@ public class Compare {
         return count;
     }
 
-    public String computeEarningRate(int purchasePrice) {
+    public String calculateProfit(int purchasePrice) {
         int winningAmount =
             Rank.FIRST.getMoney()*same.getSixSame() +
             Rank.SECOND.getMoney()*same.getFiveSameWithBonus() +
             Rank.THIRD.getMoney()*same.getFiveSame() +
-            Rank.FOURTH.getMoney() * same.getFourSame() +
-            Rank.FIFTH.getMoney() * same.getThreeSame();
+            Rank.FOURTH.getMoney()*same.getFourSame() +
+            Rank.FIFTH.getMoney()*same.getThreeSame();
 
         if (winningAmount == 0) {
             return "0";

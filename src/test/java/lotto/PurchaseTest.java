@@ -28,7 +28,7 @@ public class PurchaseTest {
     }
 
     @Test
-    @DisplayName("로또 번호 생성 테스트")
+    @DisplayName("로또 번호 생성")
     void generateNumber() {
         Purchase purchase = new Purchase("5000");
 

@@ -16,7 +16,7 @@ public class Purchase {
         this.myLotto = makeMyLotto(purchaseAmount);
     }
 
-    private int getPurchasePrice(String purchaseInput) {
+    public int getPurchasePrice(String purchaseInput) {
         return Integer.parseInt(purchaseInput);
     }
 

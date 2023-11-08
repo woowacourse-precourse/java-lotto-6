@@ -9,6 +9,7 @@ import static java.util.Collections.sort;
 
 public class GameManager {
     User user = new User();
+    int amountOfLotto;
     Output output = new Output();
     List<Lotto> lotto = new ArrayList<>();
     List<Integer> winningNumber;
@@ -18,7 +19,7 @@ public class GameManager {
     public void start() {
         int inputPrice = user.inputPrice();
         System.out.println();
-        int amountOfLotto = buyLotto(inputPrice);
+        amountOfLotto = buyLotto(inputPrice);
         output.printAmount(amountOfLotto);
         for (int i = 0; i < amountOfLotto; i++) {
             List<Integer> lottoNumber = getLotto();
@@ -39,14 +40,12 @@ public class GameManager {
     }
 
     public List<Integer> getLotto() {
-        List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        sort(lottoNumber);
-        return lottoNumber;
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     public void checkEachLotto() {
-        for (int i = 0; i < lotto.size(); i++) {
-            List<Integer> userLotto = lotto.get(i).getNumbers();
+        for (Lotto value : lotto) {
+            List<Integer> userLotto = value.getNumbers();
             List<Integer> winningLotto = winningNumber;
 
             int matchCnt = countMatchingNumber(userLotto, winningLotto);
@@ -97,5 +96,6 @@ public class GameManager {
 
     public void printResult() {
         output.printResult(countRankArray);
+        output.printProfit(countRankArray, amountOfLotto);
     }
 }

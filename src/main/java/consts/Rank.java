@@ -23,6 +23,10 @@ public enum Rank {
         if (matchCount == SECOND.matchCount && isBonusMatched) {
             return SECOND;
         }
+        if (matchCount == THIRD.matchCount) {
+            return THIRD;
+        }
+
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.matchCount == matchCount)
                 .findFirst()

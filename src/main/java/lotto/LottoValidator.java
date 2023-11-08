@@ -26,6 +26,7 @@ public class LottoValidator {
     public static void validateDuplicateNumber(final List<Integer> numbers, final int target) {
         boolean condition = !numbers.contains(target);
         throwException(condition, DUPLICATED_BONUS_NUMBER);
+        LottoValidator.validateDuplicateNumber(numbers);
     }
 
     public static void validateDuplicateNumber(final List<Integer> numbers) {
@@ -51,7 +52,7 @@ public class LottoValidator {
         throwException(condition, INVALID_LOTTO_NUMBER_COUNT);
     }
 
-    protected static void validateLottoRange(final int number) {
+    public static void validateLottoRange(final int number) {
         boolean condition = LOTTO_MIN_NUMBER <= number && number <= LOTTO_MAX_NUMBER;
         throwException(condition, INVALID_LOTTO_NUMBER_RANGE);
     }

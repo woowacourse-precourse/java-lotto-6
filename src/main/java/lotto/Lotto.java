@@ -19,6 +19,7 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
         LottoValidator.validateDuplicateNumber(numbers);
+        numbers.forEach(number -> LottoValidator.validateLottoRange(number));
     }
 
     private void sort() {

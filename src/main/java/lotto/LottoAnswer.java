@@ -9,8 +9,18 @@ public class LottoAnswer {
     private int bonusNumber;
 
     public LottoAnswer(List<Integer> numbers, int bonusNumber) {
+        this.validate(numbers, bonusNumber);
         this.lottoAnswer = new Lotto(numbers);
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validate(List<Integer> numbers, int bonusNumber) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+        LottoValidator.validateDuplicateNumber(numbers, bonusNumber);
+        numbers.forEach(number -> LottoValidator.validateLottoRange(number));
+        LottoValidator.validateLottoRange(bonusNumber);
     }
 
     public Rank compareAndReturnRank(Lotto lotto) {

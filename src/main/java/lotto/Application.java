@@ -12,7 +12,7 @@ public class Application {
                 play.startGame();
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]");
+                System.out.println("[ERROR] 구매금액은 숫자여야 합니다.");
             }
         }
     }

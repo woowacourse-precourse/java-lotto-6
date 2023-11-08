@@ -92,7 +92,7 @@ public class Play {
             try {
                 System.out.println("\n보너스 번호를 입력해 주세요.");
                 int bonus = Integer.parseInt(Console.readLine());
-//                checkDuplicate(bonus);
+                checkDuplicate(bonus);
                 checkEachNumRange(new ArrayList<>(bonus));
                 return bonus;
             } catch (IllegalArgumentException e) {
@@ -158,7 +158,7 @@ public class Play {
         System.out.println("\n당첨 통계\n---");
         int total = getAllSuccess(result);
         double earningRate = ((double) total / (lottoCnt * 1000)) * 100;
-        System.out.println("총 수익률은 " + earningRate + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", earningRate) + "%입니다.");
     }
 
     public int[] getSuccess(int[] result, int answerCnt, boolean bonus) {

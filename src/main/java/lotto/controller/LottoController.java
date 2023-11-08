@@ -25,12 +25,10 @@ public class LottoController {
     }
 
     public void run() {
-        int totalCost = getValidBuyingCost(inputView);
+        int totalCost = getValidBuyingCost();
         List<List<Integer>> purchased = purchaseLotto(totalCost);
-        outputView.makeCompartment();
-        Lotto winningNum = getValidWinningNum(inputView);
-        outputView.makeCompartment();
-        int bonusNum = getValidBonusNum(inputView, winningNum);
+        Lotto winningNum = getValidWinningNum();
+        int bonusNum = getValidBonusNum(winningNum);
         inputView.finishInput();
 
         Map<LottoRanks, Integer> lottoResult = compareLotto(purchased, winningNum, bonusNum);
@@ -38,7 +36,7 @@ public class LottoController {
         outputView.printTotalResult(lottoResult, returnRate);
     }
 
-    private int getValidBuyingCost(InputView inputView) {
+    private int getValidBuyingCost() {
         BuyingCost buyingCost = new BuyingCost();
         int validCost;
         while (true) {
@@ -52,7 +50,7 @@ public class LottoController {
         return validCost;
     }
 
-    private Lotto getValidWinningNum(InputView inputView) {
+    private Lotto getValidWinningNum() {
         WinningNumbers winningNum = new WinningNumbers();
         Lotto result;
         while (true) {
@@ -64,15 +62,16 @@ public class LottoController {
                 winningNum.clearList();
             }
         }
+        outputView.makeCompartment();
         return result;
     }
 
-    private int getValidBonusNum(InputView inputview, Lotto lotto) {
+    private int getValidBonusNum(Lotto lotto) {
         BonusNum bonusNum = new BonusNum();
         int validBonusNum;
         while (true) {
             try {
-                validBonusNum = bonusNum.getBonusNum(inputview.inputBonusNumber(), lotto);
+                validBonusNum = bonusNum.getBonusNum(inputView.inputBonusNumber(), lotto);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -83,7 +82,7 @@ public class LottoController {
 
     private List<List<Integer>> purchaseLotto(int totalPrice) {
         List<List<Integer>> purchased = Lotto.getManyLotto(totalPrice / SINGLE_LOTTO_PRICE);
-        outputView.printQuantityAndAllLottoNumbers(purchased.size(), purchased);
+        outputView.printQuantityAndAllPurchasedLotto(purchased.size(), purchased);
         return purchased;
     }
 

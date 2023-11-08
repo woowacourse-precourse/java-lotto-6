@@ -23,9 +23,10 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printQuantityAndAllLottoNumbers(int quantity, List<List<Integer>> manyLotto) {
+    public void printQuantityAndAllPurchasedLotto(int quantity, List<List<Integer>> manyLotto) {
         System.out.println(convertQuantityToString(quantity));
         printAllLottoNumber(manyLotto);
+        makeCompartment();
     }
 
     public String convertQuantityToString(int quantity) {

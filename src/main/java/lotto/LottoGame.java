@@ -53,8 +53,6 @@ public class LottoGame {
         } while (swapped);
     }
 
-
-
     // 당첨 번호
     public Lotto inputWinningNumbers() {
         while(true){

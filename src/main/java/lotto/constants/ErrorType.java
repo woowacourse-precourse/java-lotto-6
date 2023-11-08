@@ -5,7 +5,7 @@ public enum ErrorType {
 
     LOTTO_NUMBERS_SIZE_IS_NOT_RIGHT("[ERROR] 로또는 6자만 가능합니다."),
 
-    NUMBER_OVER_MAX_OR_MIN_RANGE("[ERROR] 당첨 번호는 0보다 크고 45보다 작아야 합니다."),
+    NUMBER_OVER_MAX_OR_MIN_RANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
 
     CAN_NOT_CONVERT_INTEGER("[ERROR] INTEGER로 변환할 수 없습니다."),
 

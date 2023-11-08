@@ -3,6 +3,8 @@ package lotto.service;
 import static lotto.constants.RangeType.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
@@ -29,12 +31,16 @@ public class RandomLottoGenerator {
     private List<Integer> getRandomNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(PRIZE_NUMBER_MIN_RANGE.getRange(),
                 PRIZE_NUMBER_MAX_RANGE.getRange(), PRIZE_NUMBER_SIZE.getRange());
+        sortNumbers(numbers);
         return numbers;
+    }
+
+    private void sortNumbers(List<Integer> numbers) {
+        Collections.sort(numbers);
     }
 
     private int convertAmountToCount(int amount) {
         return amount / DIVISION_UNIT.getRange();
     }
-
 
 }

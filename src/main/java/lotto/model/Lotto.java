@@ -1,6 +1,8 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.constant.Number;
+import lotto.constant.ValidatorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -39,18 +41,28 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(ValidatorMessage.INVALID_LOTTO_SIZE);
+        }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(ValidatorMessage.INVALID_LOTTO_DUPLICATE);
+        }
     }
 
     private void validateIsNull(List<Integer> numbers) {
-
+        if (numbers == null || numbers.size() == 0) {
+            throw new IllegalArgumentException(ValidatorMessage.INVALID_IS_NULL);
+        }
     }
 
     private void validateNumberRange(List<Integer> numbers) {
-
+        if (!numbers.stream()
+                .allMatch(element -> element >= Number.MIN_NUMBER && element <= Number.MAX_NUMBER)
+        ) {
+            throw new IllegalArgumentException(ValidatorMessage.INVALID_LOTTO_RANGE);
+        }
     }
 }

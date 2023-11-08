@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 public class OrderTest {
     private final String expectCost = "4000";
     private final int expectBuyCount = 4;
+    private final String ERROR_MESSAGE = "[ERROR]";
 
     @DisplayName("입력한 구매 금액이 1000원 단위여야 한다.")
     @Test
@@ -16,7 +17,8 @@ public class OrderTest {
         String cost = "4500";
 
         assertThatThrownBy(() -> new Order(cost))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
     }
 
     @DisplayName("입력한 금액이 숫자여야 한다.")
@@ -25,7 +27,8 @@ public class OrderTest {
         String cost = "400zero";
 
         assertThatThrownBy(() -> new Order(cost))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
     }
 
     @DisplayName("입력한 금액은 0보다 큰 정수여야 한다.")
@@ -34,6 +37,7 @@ public class OrderTest {
         String cost = "0";
 
         assertThatThrownBy(() -> new Order(cost))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);;
     }
 }

@@ -1,5 +1,6 @@
 package lotto.domain.model.lotto;
 
+import lotto.ErrorMessage;
 import lotto.constants.LottoConfig;
 
 import java.util.HashMap;
@@ -26,12 +27,12 @@ public class LottoNumber {
 
     private static void validate(final Integer number) {
         if (isNotInRange(number)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호 범위가 아닙니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 
     private static boolean isNotInRange(final Integer number) {
-        return number < LottoConfig.LOTTO_NUMBER_MIN || number > LottoConfig.LOTTO_NUMBER_MAX;
+        return number < LottoConfig.LOTTO_NUMBER_MIN.getValue() || number > LottoConfig.LOTTO_NUMBER_MAX.getValue();
     }
 
     @Override

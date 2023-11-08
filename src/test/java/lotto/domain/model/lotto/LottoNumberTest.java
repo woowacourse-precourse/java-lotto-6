@@ -3,6 +3,7 @@ package lotto.domain.model.lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -14,7 +15,8 @@ class LottoNumberTest {
     @ValueSource(ints = {-1, 0, 46})
     void createNumberByNotInRangeNumber(int number) {
         assertThatThrownBy(() -> LottoNumber.from(number))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
     }
 
     @DisplayName("번호가 로또 숫자 범위(1~45)에 맞는 숫자를 생성한다.")

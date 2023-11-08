@@ -1,5 +1,6 @@
 package lotto.domain.model.lotto;
 
+import lotto.ErrorMessage;
 import lotto.constants.LottoConfig;
 
 public class PaidAmount {
@@ -14,7 +15,7 @@ public class PaidAmount {
     }
 
     public Integer toNumberOfLottoTickets() {
-        return paidAmount / LottoConfig.PRICE_PER_TICKET;
+        return paidAmount / LottoConfig.PRICE_PER_TICKET.getValue();
     }
 
     public Integer getPaidAmount() {
@@ -23,10 +24,10 @@ public class PaidAmount {
 
     private void validate(Integer paidAmount) {
         if (isZero(paidAmount)) {
-            throw new IllegalArgumentException("[ERROR] " + ZERO + "원보다 큰 금액을 입력해주세요." );
+            throw new IllegalArgumentException(ErrorMessage.ZERO_PAID_AMOUNT.getMessage());
         }
         if (isNotDivisibleByPrice(paidAmount)) {
-            throw new IllegalArgumentException("[ERROR] 로또 금액 " + LottoConfig.PRICE_PER_TICKET + "으로 나누어떨어진 금액이어야합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_DIVISIBLE_PAID_AMOUNT.getMessage());
         }
     }
 
@@ -35,6 +36,6 @@ public class PaidAmount {
     }
 
     private boolean isNotDivisibleByPrice(Integer paidAmount) {
-        return paidAmount % LottoConfig.PRICE_PER_TICKET != 0;
+        return paidAmount % LottoConfig.PRICE_PER_TICKET.getValue() != 0;
     }
 }

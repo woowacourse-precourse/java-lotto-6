@@ -1,5 +1,7 @@
 package lotto.domain.model.lotto;
 
+import lotto.ErrorMessage;
+
 public class LottoWinningNumbers {
 
     private final Lotto winningNumbers;
@@ -21,7 +23,7 @@ public class LottoWinningNumbers {
 
     private void validate(final Lotto winningNumbers, final LottoNumber bonusNumber) {
         if (hasDuplicates(winningNumbers, bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호와 보너스번호가 중복된 값을 가집니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 

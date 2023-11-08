@@ -1,5 +1,6 @@
 package lotto.domain.model.lotto;
 
+import lotto.ErrorMessage;
 import lotto.constants.LottoConfig;
 import java.util.Collections;
 import java.util.HashSet;
@@ -38,17 +39,17 @@ public class Lotto {
 
     private void validate(List<LottoNumber> numbers) {
         if (isSizeDifferent(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또는" +  LottoConfig.LOTTO_NUMBERS_SIZE + "여야합니다.");
+            throw new IllegalArgumentException(ErrorMessage.DIFFERENT_LOTTO_SIZE.getMessage());
         }
 
         if (hasDuplicates(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 값이 있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
         }
 
     }
 
     private boolean isSizeDifferent(List<LottoNumber> numbers) {
-        return numbers.size() != LottoConfig.LOTTO_NUMBERS_SIZE;
+        return numbers.size() != LottoConfig.LOTTO_NUMBERS_SIZE.getValue();
     }
 
     private boolean hasDuplicates(final List<LottoNumber> numbers) {

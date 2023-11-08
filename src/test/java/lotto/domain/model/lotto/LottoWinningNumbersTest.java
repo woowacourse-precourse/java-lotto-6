@@ -3,6 +3,7 @@ package lotto.domain.model.lotto;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,8 @@ class LottoWinningNumbersTest {
     @Test
     void createLottoWinningNumbersByDuplicatedNumber() {
         assertThatThrownBy(() -> new LottoWinningNumbers(Lotto.from(List.of(1, 2, 3, 4, 5, 6)), LottoNumber.from(6)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
     }
 
     @DisplayName("보너스 번호와 당첨번호에 중복되는 숫자가 없을시 생성에 성공한다.")

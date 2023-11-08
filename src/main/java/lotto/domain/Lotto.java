@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.config.LottoConfig;
-import lotto.view.ErrorMessage;
+import lotto.error.ErrorMessage;
 
 public record Lotto(List<Integer> numbers) {
     public Lotto {

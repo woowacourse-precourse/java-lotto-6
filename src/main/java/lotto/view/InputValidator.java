@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.config.LottoConfig;
+import lotto.error.ErrorMessage;
 
 public class InputValidator {
     private final String typeRegex = "^[0-9]*$";

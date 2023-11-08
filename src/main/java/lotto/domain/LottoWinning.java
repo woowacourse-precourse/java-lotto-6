@@ -1,10 +1,8 @@
 package lotto.domain;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
-import lotto.view.ErrorMessage;
+import lotto.error.ErrorMessage;
 
 public class LottoWinning {
     private Lotto winningNumbers;

@@ -34,5 +34,9 @@ public class PrintResult {
     public String printProfitRate() {
         return "총 수익률은 " + resultOfProfitRate + "% 입니다.";
     }
-
+    void run() {
+        System.out.println(printStartText());
+        System.out.println(printResults());
+        System.out.println(printProfitRate());
+    }
 }

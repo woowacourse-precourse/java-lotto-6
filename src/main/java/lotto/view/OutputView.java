@@ -27,6 +27,8 @@ public class OutputView {
         }
     }
 
+    private static final DecimalFormat formatter = new DecimalFormat(OutputMessage.OUTPUT_DECIMAL_FORMAT.message);
+
     public static void outputNumberOfLottoTicks(int numberOfLottoTickets) {
         System.out.printf(OutputMessage.NUMBER_OF_LOTTO_TICKETS.message, numberOfLottoTickets);
     }
@@ -39,29 +41,34 @@ public class OutputView {
     }
 
     public static void outputStatistics(Statistics statistics) {
-
         System.out.println(OutputMessage.OUTPUT_STATISTICS.message);
         Map<Prize, Integer> result = statistics.getResult();
-        DecimalFormat formatter = new DecimalFormat(OutputMessage.OUTPUT_DECIMAL_FORMAT.message);
 
         for (Map.Entry<Prize, Integer> entry : result.entrySet()) {
             if (entry.getKey() == Prize.NONE) continue;
             if (entry.getKey() == SECOND) {
-                System.out.printf(OutputMessage.OUTPUT_SECOND_MATCH_RESULT.message,
-                        SECOND.getMatch(),
-                        formatter.format(SECOND.getPrize()),
-                        entry.getValue());
+                printSecondPrize(entry.getValue());
                 continue;
             }
-
-            System.out.printf(OutputMessage.OUTPUT_MATCH_RESULT.message
-                    ,entry.getKey().getMatch(),
-                    formatter.format(entry.getKey().getPrize()),
-                    entry.getValue());
+            printOtherPrize(entry);
         }
     }
 
     public static void outputProfitRatio(ProfitCalculator profitCalculator) {
         System.out.printf(OutputMessage.OUTPUT_PROFIT_RATIO.message, profitCalculator.getProfitRatio());
+    }
+
+    private static void printSecondPrize(int count) {
+        System.out.printf(OutputMessage.OUTPUT_SECOND_MATCH_RESULT.message,
+                SECOND.getMatch(),
+                formatter.format(SECOND.getPrize()),
+                count);
+    }
+
+    private static void printOtherPrize(Map.Entry<Prize, Integer> entry) {
+        System.out.printf(OutputMessage.OUTPUT_MATCH_RESULT.message
+                ,entry.getKey().getMatch(),
+                formatter.format(entry.getKey().getPrize()),
+                entry.getValue());
     }
 }

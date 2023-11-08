@@ -2,15 +2,21 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Computer {
     final String ASK_PRICE = "구입금액을 입력해 주세요.";
 
     final String BUY_LOTTO_MESSAGE = "개를 구매했습니다.";
     final String ONLY_NUMBER_ERROR_MESSAGE = "[ERROR] 구입 금액은 숫자만 가능합니다.";
-    final String AMOUNT_OF_MONEY_MUST_DIVIDED_THOUSAND = "[ERROR] 금액은 1000원 단위로 나누어 떨어져야합니다.";
+    final String AMOUNT_OF_MONEY_MUST_DIVIDED_THOUSAND = "[ERROR] 금액은 1000원 단위로 나누어 떨어져야 합니다.";
+    final String ASK_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
+    final String ASK_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     final int LOTTO_PRICE = 1000;
     final int LOTTO_NUMBER = 6;
     final int MIN_NUMBER = 1;
@@ -63,5 +69,17 @@ public class Computer {
         for(Lotto lotto : lottos){
             System.out.println(lotto.toString());
         }
+    }
+
+    String getWinningNumber(){
+        System.out.println(ASK_WINNING_NUMBER);
+        return Console.readLine();
+    }
+
+    Lotto validateWinningNumber(String input){
+        List<Integer> numbers = Arrays.stream(input.split(",")).mapToInt(Integer::parseInt).boxed().collect(
+                Collectors.toList());
+        Lotto winLotto = new Lotto(numbers);
+        return winLotto;
     }
 }

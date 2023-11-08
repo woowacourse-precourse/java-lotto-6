@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
+
     public static void main(String[] args) {
         Computer computer = new Computer();
-        List<Lotto> lottos = new ArrayList<>();
+        List<Lotto> lottos;
 
         String input = computer.getPriceFromUser();
         computer.validatePrice(input);
@@ -18,5 +19,8 @@ public class Application {
         lottos = computer.buyLotto(money);
         computer.printLottos(lottos);
 
+        input = computer.getWinningNumber();
+        Lotto winLotto = computer.validateWinningNumber(input);
+        System.out.println(winLotto.toString());
     }
 }

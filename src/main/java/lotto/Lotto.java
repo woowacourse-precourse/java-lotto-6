@@ -24,7 +24,11 @@ public class Lotto {
         if(new HashSet<Integer>(numbers).size() != numbers.size()){
             throw new IllegalArgumentException(UNIQUE_NUMBER_EXCEPTION_MESSAGE);
         }
-
+        for(Integer i : numbers){
+            if(i > 45 || i < 1){
+                throw new IllegalArgumentException(RANGE_EXCEPTION_MESSAGE);
+            }
+        }
     }
 
     @Override

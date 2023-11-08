@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import utils.NumberValidation;
@@ -10,16 +11,15 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
         sortNumbers();
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
     public void sortNumbers(){
-       Collections.sort(numbers);
+        Collections.sort(numbers);
+    }
+    public List<Integer> getNumbers() {
+        return this.numbers;
     }
 
     public void validate(List<Integer> numbers) {

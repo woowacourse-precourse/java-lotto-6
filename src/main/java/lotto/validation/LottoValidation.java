@@ -44,7 +44,7 @@ public class LottoValidation {
         }
     }
 
-    public static void validateIsDuplicatedWiningAndBonusNumber(List<Integer> winningNumber, int bonusNumber) {
+    public static void validateIsDuplicatedWinningAndBonusNumber(List<Integer> winningNumber, int bonusNumber) {
         if (winningNumber.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복을 허용하지 않습니다.");
         }

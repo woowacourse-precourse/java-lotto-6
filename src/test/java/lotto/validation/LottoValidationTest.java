@@ -89,7 +89,7 @@ public class LottoValidationTest {
         List<Integer> lotto = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 6;
 
-        assertThatThrownBy(() -> LottoValidation.validateIsDuplicatedWiningAndBonusNumber(lotto, bonusNumber))
+        assertThatThrownBy(() -> LottoValidation.validateIsDuplicatedWinningAndBonusNumber(lotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호와 보너스 번호는 중복을 허용하지 않습니다.");
     }

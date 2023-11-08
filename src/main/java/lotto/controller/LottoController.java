@@ -31,7 +31,7 @@ public class LottoController {
         int bonusNumber = getBonusNumber();
         while (true) {
             try {
-                LottoValidation.validateIsDuplicatedWiningAndBonusNumber(winningNumber, bonusNumber);
+                LottoValidation.validateIsDuplicatedWinningAndBonusNumber(winningNumber, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e);

@@ -17,6 +17,20 @@ public class WinningResult {
         this.lotto = lotto;
     }
 
+    private static double calculateTotalPrize(Map<Ranking, Integer> result) {
+        double totalPrize = 0.0;
+
+        for (Ranking rank : Ranking.values()) {
+            Integer counts = result.get(rank);
+            int prize = Integer.parseInt(rank.getPrize());
+
+            if (counts != null) {
+                totalPrize += (double) counts * prize;
+            }
+        }
+        return totalPrize;
+    }
+
     private static Ranking getRankingForRank(int rank) {
         for (Ranking ranking : Ranking.values()) {
             if (ranking.getRank() == rank) {

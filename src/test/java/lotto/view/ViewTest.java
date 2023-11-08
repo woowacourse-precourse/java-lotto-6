@@ -102,8 +102,14 @@ class ViewTest extends NsTest {
         );
     }
 
+    @DisplayName("보너스 번호에 숫자가 아닌 문자를 입력하면 예외가 발생한다.")
     @Test
-    void inputAndValidateBonus() {
+    void inputNonNumericBonus() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "!");
+            assertThat(output()).contains("[ERROR] 보너스 번호는 하나의 숫자여야 합니다.");
+        });
+
     }
 
     @Override

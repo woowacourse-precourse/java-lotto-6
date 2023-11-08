@@ -26,10 +26,10 @@ public class LottoController {
     public void run() {
         Purchase purchase = read(this::readPurchase);
         LottoCount lottoCount = createLottoCount(purchase);
-        OutputView.printLottoCount(lottoCount.getCount());
+        printLottoCount(lottoCount);
 
         LottoCollection lottoCollection = createLottoCollection(lottoCount);
-        OutputView.printLottoCollection(lottoCollection.getLottoCollection());
+        printLottoCollection(lottoCollection);
 
         List<MatchingCase> matchingResult = calculateMatchingResult(lottoCollection);
         Profit profit = calculateProfit(matchingResult, purchase);
@@ -45,10 +45,18 @@ public class LottoController {
         return LottoCount.from(purchase.getPurchase());
     }
 
+    private static void printLottoCount(LottoCount lottoCount) {
+        OutputView.printLottoCount(lottoCount.getCount());
+    }
+
     private LottoCollection createLottoCollection(LottoCount lottoCount) {
         LottoCollectionGenerator lottoCollectionGenerator = new LottoCollectionGenerator(lottoCount.getCount(),
                 numberGenerator);
         return LottoCollection.from(lottoCollectionGenerator.generate());
+    }
+
+    private static void printLottoCollection(LottoCollection lottoCollection) {
+        OutputView.printLottoCollection(lottoCollection.getLottoCollection());
     }
 
     private List<MatchingCase> calculateMatchingResult(LottoCollection lottoCollection) {

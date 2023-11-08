@@ -1,18 +1,23 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import camp.nextstep.edu.missionutils.test.NsTest;
+import dto.BuyLottoBonusDto;
+import dto.BuyLottoDto;
+import model.BonusNumber;
+import model.Lotto;
+
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-    @Test
+	@Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
@@ -53,7 +58,16 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
-
+    
+    @Test
+    void 당첨통계_기능_테스트() {
+    	BuyLottoDto buyLottoDto = new BuyLottoDto("5000");
+    	Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+    	BonusNumber bonus = new BonusNumber("7", lotto);
+    	BuyLottoBonusDto buyLottoBonusDto = new BuyLottoBonusDto(lotto, bonus, buyLottoDto);
+    	buyLottoBonusDto.WinStats();
+    }
+    
     @Override
     public void runMain() {
         Application.main(new String[]{});

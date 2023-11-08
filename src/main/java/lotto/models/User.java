@@ -8,11 +8,13 @@ import lotto.configs.Prize;
 
 public class User {
     private int money;
+    private int useMoney;
     private HashMap<Prize, Integer> prizes;
     private List<Lotto> lotteries;
 
     public User() {
         this.money = 0;
+        this.useMoney = 0;
         this.prizes = new HashMap<>();
         this.lotteries = new ArrayList<>();
         for(Prize prize: Prize.values()){
@@ -39,6 +41,7 @@ public class User {
     public void buyLottery(Machine machine){
         lotteries.add(machine.newLottery());
         this.money -= Constant.LOTTO_PRICE;
+        this.useMoney += Constant.LOTTO_PRICE;
     }
 
     public List<Lotto> getLotteries(){
@@ -50,5 +53,9 @@ public class User {
             Prize prize = machine.payPrize(lotto);
             prizes.put(prize, prizes.getOrDefault(prize, 0)+1);
         }
+    }
+
+    public int getUseMoney(){
+        return useMoney;
     }
 }

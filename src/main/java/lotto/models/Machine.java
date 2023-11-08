@@ -7,9 +7,12 @@ import lotto.configs.Prize;
 public class Machine{
     private Lotto lotto;
     private int bonus;
+    private int payMoney;
+
     public Machine(){
         this.lotto = null;
         this.bonus = 0;
+        this.payMoney = 0;
     }
     public void setNumbers(Lotto lotto){
         this.lotto = lotto;
@@ -33,6 +36,12 @@ public class Machine{
     }
 
     public Prize payPrize(Lotto lotto){
-        return Prize.valueOf(lotto.getComparisonScore(this.lotto, this.bonus));
+        Prize prize = Prize.valueOf(lotto.getComparisonScore(this.lotto, this.bonus));
+        payMoney += prize.getPrize();
+        return prize;
+    }
+
+    public int getPayMoney(){
+        return payMoney;
     }
 }

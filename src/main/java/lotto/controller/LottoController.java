@@ -138,6 +138,18 @@ public class LottoController {
         return totalProfit;
     }
 
+    private int getCountInCaseOfNotFive(Map<Integer, Boolean> matchingCountMap, Rank rank) {
+        return (int) matchingCountMap.entrySet().stream()
+                .filter(entry -> entry.getKey() == rank.getMatchCount())
+                .count();
+    }
+
+    private int getCountInCaseOfFive(Map<Integer, Boolean> matchingCountMap, Rank rank) {
+        return (int) matchingCountMap.entrySet().stream()
+                .filter(entry -> entry.getKey() == rank.getMatchCount() && entry.getValue() == rank.getIsMatchWithBonus())
+                .count();
+    }
+
     private void printWinningProfitRatio(Price price, double totalProfit) {
         outputView.printWinningProfitRatioMessage(totalProfit / price.value() * 100);
     }
@@ -152,18 +164,6 @@ public class LottoController {
             matchingCountMap.put(matchingCount, isMatchedWithBonus);
         }
         return matchingCountMap;
-    }
-
-    private int getCountInCaseOfNotFive(Map<Integer, Boolean> matchingCountMap, Rank rank) {
-        return (int) matchingCountMap.entrySet().stream()
-                .filter(entry -> entry.getKey() == rank.getMatchCount())
-                .count();
-    }
-
-    private int getCountInCaseOfFive(Map<Integer, Boolean> matchingCountMap, Rank rank) {
-        return (int) matchingCountMap.entrySet().stream()
-                .filter(entry -> entry.getKey() == rank.getMatchCount() && entry.getValue() == rank.getIsMatchWithBonus())
-                .count();
     }
 
     private int countMatchNumber(Lotto consumerLotto, Lotto producerLotto) {

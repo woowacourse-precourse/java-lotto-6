@@ -59,9 +59,4 @@ public class Lotto {
         return 0;
     }
 
-    @Override
-    public String toString() {
-        return numbers.toString();
-    }
-
 }

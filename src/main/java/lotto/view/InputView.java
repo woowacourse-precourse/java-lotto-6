@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
+    private static final String SPLIT_SYMBOL = ",";
 
     private InputView() {
     }
@@ -39,7 +40,7 @@ public class InputView {
     }
 
     private static List<Integer> parseNumbers(String numbers) {
-        return Arrays.stream(numbers.split(","))
+        return Arrays.stream(numbers.split(SPLIT_SYMBOL))
                 .map(Validator::validateAndParseInteger)
                 .collect(Collectors.toList());
     }

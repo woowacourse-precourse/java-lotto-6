@@ -1,7 +1,8 @@
 package lotto.view;
 
+import java.util.Collections;
 import java.util.List;
-import lotto.Dto.MyLottosDto;
+import lotto.Dto.BoughtLottosDto;
 import lotto.Dto.SingleResultDto;
 import lotto.Dto.TotalResultDto;
 import lotto.constant.constants.Prize;
@@ -13,10 +14,12 @@ public class OutputView {
         System.out.println(Notification.BUDGET.getMessage());
     }
 
-    public void showMyTickets(MyLottosDto myLottosDto) {
-        System.out.printf(Notification.PURCHASED.getMessage(), myLottosDto.size());
+    public void showMyTickets(BoughtLottosDto boughtLottosDto) {
+        System.out.printf(Notification.PURCHASED.getMessage(), boughtLottosDto.size());
         System.out.println();
-        for (List<Integer> myLotto : myLottosDto.getMyLottos()) {
+
+        for (List<Integer> myLotto : boughtLottosDto.getMyLottos()) {
+            Collections.sort(myLotto);
             System.out.println(myLotto);
         }
     }

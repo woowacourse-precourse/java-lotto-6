@@ -2,7 +2,7 @@ package lotto.Dto;
 
 public class SingleResultDto {
 
-    // 3개 당첨
+    // 3개 당첨시
     // 3개를 matched했고 상금이 prize인 로또를 won개 만큼 당첨 됨
     int matched;
     int prize;

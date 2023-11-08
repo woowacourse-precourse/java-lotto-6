@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Dto.MyLottosDto;
+import lotto.Dto.BoughtLottosDto;
 import lotto.constant.constants.Prize;
 
 public class Lottos {
@@ -43,11 +43,11 @@ public class Lottos {
     }
 
 
-    public MyLottosDto toDto() {
+    public BoughtLottosDto toDto() {
         List<List<Integer>> result = new ArrayList<>();
         for (Lotto lotto : Lottos) {
             result.add(lotto.getNumbers());
         }
-        return new MyLottosDto(result);
+        return new BoughtLottosDto(result);
     }
 }

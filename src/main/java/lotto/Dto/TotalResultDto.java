@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TotalResultDto {
-    // [match, bonus, prize, won]
+    // [match, prize, won]
     List<SingleResultDto> results = new ArrayList<>();
     double profit;
     int size;
 
-    public void add(Integer code, SingleResultDto singleResultDto) {
+    public void add(SingleResultDto singleResultDto) {
         this.results.add(singleResultDto);
     }
 
@@ -17,8 +17,8 @@ public class TotalResultDto {
         return this.results.size();
     }
 
-    public SingleResultDto get(int x) {
-        return results.get(x);
+    public SingleResultDto get(int index) {
+        return results.get(index);
     }
 
     public void setProfit(double profit) {

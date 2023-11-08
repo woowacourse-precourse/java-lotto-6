@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,12 +13,11 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto() {
-        numbers = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0));
+        numbers = new ArrayList<>(List.of(0, 0, 0, 0, 0, 0));
     }
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -78,7 +76,7 @@ public class Lotto {
                 Integer.parseInt(number);
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
 
         }
     }

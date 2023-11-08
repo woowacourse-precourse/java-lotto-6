@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.constant.LottoPrice;
 import lotto.domain.WinningPrize;
 import lotto.model.WinningInfo;
 
@@ -23,21 +24,18 @@ public class LottoService {
             long prizeMatchingCount = resultEntry.getKey();
             Long winningCount = resultEntry.getValue();
 
-            // Check if the key exists in the WinningInfo model
             if (winnings.containsKey(prizeMatchingCount)) {
-                // Increment the count in the WinningInfo model
+
                 winnings.put(prizeMatchingCount, winnings.get(prizeMatchingCount) + winningCount);
             }
         }
 
-        // Update the WinningInfo model with the modified winnings
         winningInfo.setWinnings(winnings);
     }
 
     public double calculateProfitRate(int buyCount, Map<Long, Long> winningResults) {
         long totalPrize = 0L;
 
-        // Calculate total prize by matching the keys from winningResults with WinningPrize keys
         for (Map.Entry<Long, Long> resultEntry : winningResults.entrySet()) {
             long prizeMatchingCount = resultEntry.getKey();
             Long winningCount = resultEntry.getValue();
@@ -49,12 +47,11 @@ public class LottoService {
             }
         }
 
-        // Calculate profit
-        long totalCost = buyCount * 1000;
+        LottoPrice lottoPrice = LottoPrice.ONE_TICKET_PRICE;
+        long totalCost = buyCount * lottoPrice.getPrice();
         double profitRate = ((totalPrize - totalCost) / (double) totalCost) * 100.0;
 
 
-        // Set the calculated profit rate in the WinningInfo object
         return profitRate;
     }
 

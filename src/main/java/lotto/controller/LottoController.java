@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.constant.LottoPrice;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.model.WinningInfo;
@@ -72,10 +73,11 @@ public class LottoController {
     }
 
     public int calculateLottoCount(int money) {
-        if (money % 1000 != 0) {
-            throw new IllegalArgumentException("로또는 1000원 단위만 구매할 수 있습니다.");
+        LottoPrice lottoPrice = LottoPrice.ONE_TICKET_PRICE;
+        if (money % lottoPrice.getPrice() != 0) {
+            throw new IllegalArgumentException(Message.CHECK_AMOUNT);
         }
-        return money / 1000;
+        return money / lottoPrice.getPrice();
     }
 
 }

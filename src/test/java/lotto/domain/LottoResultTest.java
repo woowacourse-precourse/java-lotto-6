@@ -7,7 +7,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 
 class LottoResultTest {
@@ -44,6 +43,6 @@ class LottoResultTest {
                 Arguments.of(new LottoResult(List.of(Rank.BLANK, Rank.FIFTH, Rank.THIRD)), Rank.FIFTH, 1),
                 Arguments.of(new LottoResult(List.of(Rank.THIRD, Rank.THIRD, Rank.FOURTH)), Rank.FOURTH, 1),
                 Arguments.of(new LottoResult(List.of(Rank.SECOND, Rank.FIRST, Rank.SECOND)), Rank.SECOND, 2)
-                );
+        );
     }
 }

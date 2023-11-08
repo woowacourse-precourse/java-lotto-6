@@ -52,8 +52,8 @@ class WinningNumbersTest {
 
     @ParameterizedTest
     @CsvSource(value = {"1,2,3,4,5,6:FIRST", "1,2,3,4,5,7:SECOND", "1,2,3,4,5,8:THIRD",
-                        "1,2,3,4,44,45:FOURTH", "1,2,3,43,44,45:FIFTH", "1,2,42,43,44,45:BLANK"},
-                        delimiterString = ":")
+            "1,2,3,4,44,45:FOURTH", "1,2,3,43,44,45:FIFTH", "1,2,42,43,44,45:BLANK"},
+            delimiterString = ":")
     public void WinningNumbers_객체는_LottoTicket과_비교를_통해_올바른_Rank를_생성할_수_있다(String lottoNumbers, Rank expected) {
         // given
         List<Integer> numbers = convertInput(lottoNumbers);

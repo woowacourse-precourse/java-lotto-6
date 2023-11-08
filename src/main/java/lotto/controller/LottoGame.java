@@ -73,7 +73,8 @@ public class LottoGame {
     private Integer getBonusNumber(List<Integer> winningNumbers) {
         try {
             int bonusNumber = inputBonusNumber();
-            if (winningNumbers.contains(bonusNumber)) throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
+            if (winningNumbers.contains(bonusNumber))
+                throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());

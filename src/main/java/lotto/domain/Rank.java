@@ -8,7 +8,8 @@ public enum Rank {
     THIRD(5, 1500000, "5개 일치 (1,500,000원) - "),
     FOURTH(4, 50000, "4개 일치 (50,000원) - "),
     FIFTH(3, 5000, "3개 일치 (5,000원) - "),
-    BLANK(0, 0, "꽝"),;
+    BLANK(0, 0, "꽝"),
+    ;
 
     private final int matchCount;
     private final int prizeMoney;
@@ -28,10 +29,6 @@ public enum Rank {
                 .filter(value -> !value.equals(SECOND) && value.matchCount == matchCount)
                 .findFirst()
                 .orElse(BLANK);
-    }
-
-    public int getMatchCount() {
-        return matchCount;
     }
 
     public int getPrizeMoney() {

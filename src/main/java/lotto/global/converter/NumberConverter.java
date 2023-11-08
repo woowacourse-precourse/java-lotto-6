@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lotto.global.constant.exception.ExceptionMessage.INPUT_MUST_BE_NUMBER;
+
 public class NumberConverter {
     private static final String SEPARATOR = ",";
 
@@ -36,6 +38,11 @@ public class NumberConverter {
     }
 
     public static Integer convertToNumber(String inputNumber) {
-        return Integer.parseInt(inputNumber);
+        try {
+            return Integer.parseInt(inputNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INPUT_MUST_BE_NUMBER.getMessage());
+        }
+
     }
 }

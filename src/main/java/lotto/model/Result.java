@@ -1,6 +1,9 @@
 package lotto.model;
 
 import java.util.Arrays;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public enum Result {
     SIX(6, BonusType.UNMATCHED, 2_000_000_000, "6개 일치 (2,000,000,000원) - "),
@@ -27,6 +30,12 @@ public enum Result {
 
     public int getPrize() {
         return prize;
+    }
+
+    public static Map<Result, Integer> getBaseMap() {
+        return Arrays.stream(Result.values())
+                .collect(Collectors.toMap(
+                        Function.identity(), value -> 0, Integer::sum));
     }
 
     public static Result checkResult(int matchCount, boolean hasBonus) {

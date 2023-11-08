@@ -5,8 +5,9 @@ import lotto.model.BonusNumber;
 import lotto.model.GameNumbers;
 import lotto.model.LottoMachine;
 import lotto.model.Lottos;
+import lotto.model.Result;
+import lotto.model.StatisticsResult;
 import lotto.model.WinningNumbers;
-import lotto.utils.NumberUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,16 +17,19 @@ public class LottoController {
 
     public void init() {
         int purchaseAmount = fetchPurchaseAmount();
-        int lottoCount = NumberUtil.toLottoCount(purchaseAmount, LOTTO_PRICE);
+        StatisticsResult statisticsResult = new StatisticsResult(purchaseAmount, LOTTO_PRICE);
+        int lottoCount = statisticsResult.getLottoCount();
 
         OutputView.printLottoCount(lottoCount);
         Lottos lottos = new Lottos(LottoMachine.createLotto(lottoCount));
         lottos.printLottos(OutputView::printEachLotto);
 
         GameNumbers gameNumbers = new GameNumbers(fetchWinningNumbers());
-
         tryFetchBonusNumbers(gameNumbers);
 
+        showWinningStatistics(lottos, gameNumbers, statisticsResult);
+
+        OutputView.printFinalReturnRate(statisticsResult.getFinalReturnRate());
     }
 
     private int fetchPurchaseAmount() {
@@ -63,5 +67,13 @@ public class LottoController {
             System.out.println(exception.getMessage());
             return tryFetchBonusNumbers(gameNumbers);
         }
+    }
+
+    private void showWinningStatistics(final Lottos lottos, final GameNumbers gameNumbers,
+                                       final StatisticsResult statisticsResult) {
+        OutputView.printStatisticsMessage();
+        List<Result> results = lottos.getResults(gameNumbers);
+        statisticsResult.addLottoResults(results);
+        OutputView.printFinalResult(statisticsResult.getFinalResult());
     }
 }

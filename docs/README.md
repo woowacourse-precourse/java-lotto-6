@@ -6,6 +6,7 @@
 - WinningDetails :
   - 당첨내역 List 변수
   - 수익률 계산하는 함수
+- Prize : 당첨금액 enum list
 
 ## View
 - InputView :
@@ -13,7 +14,7 @@
   - getWinningLottoNumbers : 당첨번호 입력받기
   - getBonusNumber: 보너스 번호 입력 받기
 - OutputView 
-  - 발행 로또 및 번호 출력
+  - printLottoList: 발행 로또 및 번호 출력
   - 당첨 내역 출력
 
 

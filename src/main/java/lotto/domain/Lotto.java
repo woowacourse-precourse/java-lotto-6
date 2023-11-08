@@ -11,6 +11,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        sortNumbers();
     }
 
 
@@ -39,7 +40,7 @@ public class Lotto {
 
     // 로또 번호를 정렬하는 메서드
     public void sortNumbers() {
-        Collections.sort(numbers);
+        Collections.sort(this.numbers);
     }
 
 

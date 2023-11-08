@@ -11,7 +11,7 @@ public class Exception {
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return UserRequestService.requestLottoCost();
+            return UserRequestService.requestLottoCostWithException();
         }
     }
 
@@ -21,7 +21,7 @@ public class Exception {
             return new Lotto(winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return UserRequestService.requestWinningLotto();
+            return UserRequestService.requestWinningLottoWithException();
         }
     }
 
@@ -31,7 +31,7 @@ public class Exception {
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return UserRequestService.requestBonusNumber(winningNumbers);
+            return UserRequestService.requestBonusNumberWithException(winningNumbers);
         }
     }
 }

@@ -2,10 +2,10 @@ package lotto.view;
 
 import static lotto.validator.Validator.validateMainNumbersInput;
 import static lotto.validator.Validator.validateNumeric;
-import static lotto.view.ViewConstant.ASK_BONUS_NUMBER_MESSAGE;
-import static lotto.view.ViewConstant.ASK_MAIN_NUMBER_MESSAGE;
-import static lotto.view.ViewConstant.ASK_PAYMENT_MESSAGE;
-import static lotto.view.ViewConstant.MAIN_NUMBER_DELIMITER;
+import static lotto.view.Message.ASK_BONUS_NUMBER_MESSAGE;
+import static lotto.view.Message.ASK_MAIN_NUMBER_MESSAGE;
+import static lotto.view.Message.ASK_PAYMENT_MESSAGE;
+import static lotto.view.Message.MAIN_NUMBER_DELIMITER;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;

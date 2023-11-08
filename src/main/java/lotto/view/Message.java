@@ -1,6 +1,6 @@
 package lotto.view;
 
-public enum ViewConstant {
+public enum Message {
 
     ASK_PAYMENT_MESSAGE("구입금액을 입력해 주세요."),
     ASK_MAIN_NUMBER_MESSAGE("\n당첨 번호를 입력해 주세요."),
@@ -22,7 +22,7 @@ public enum ViewConstant {
 
     private final String value;
 
-    ViewConstant(String value) {
+    Message(String value) {
         this.value = value;
     }
 

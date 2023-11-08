@@ -1,7 +1,7 @@
 package lotto.validator;
 
-import static lotto.view.ViewConstant.MAIN_NUMBER_PATTERN;
-import static lotto.view.ViewConstant.NUMBER_PATTERN;
+import static lotto.view.Message.MAIN_NUMBER_PATTERN;
+import static lotto.view.Message.NUMBER_PATTERN;
 
 import java.util.List;
 import lotto.LottoRule;

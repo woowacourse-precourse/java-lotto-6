@@ -1,7 +1,7 @@
 package lotto.dto;
 
 import java.util.List;
-import lotto.view.ViewConstant;
+import lotto.view.Message;
 
 public record LottoTicket(List<Integer> numbers) {
     @Override
@@ -9,6 +9,6 @@ public record LottoTicket(List<Integer> numbers) {
         List<String> strings = this.numbers.stream()
                 .map(String::valueOf)
                 .toList();
-        return String.join(ViewConstant.TICKET_NUMBER_DELIMITER.value(), strings);
+        return String.join(Message.TICKET_NUMBER_DELIMITER.value(), strings);
     }
 }

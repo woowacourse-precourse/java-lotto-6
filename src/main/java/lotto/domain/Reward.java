@@ -28,6 +28,12 @@ public enum Reward {
         this.rank = rank;
     }
 
+    public static List<Reward> getWinningRewards() {
+        return Arrays.stream(Reward.values())
+                .filter(r -> r != NONE)
+                .toList();
+    }
+
     public static Reward getInstance(final boolean bonusNumberMatched, final int matchedCount) {
         if (matchedCount < LAST_PLACE.matchedCount) {
             return NONE;

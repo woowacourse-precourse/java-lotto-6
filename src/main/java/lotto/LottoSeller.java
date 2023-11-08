@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Map;
 import lotto.data.Amount;
 import lotto.data.Lotto;
+import lotto.data.LottoPrize;
 import lotto.data.WinningCombination;
 import lotto.domain.LottoResult;
 import lotto.io.LottoPurchaseInput;
 import lotto.io.LottoPurchaseOutput;
-import lotto.data.LottoPrize;
 import lotto.utils.LottoUtil;
 import lotto.utils.Util;
 
@@ -20,7 +20,8 @@ public class LottoSeller {
         Amount purchaseAmount = LottoPurchaseInput.inputPurchaseAmount(lottoPrice);
 
         BigDecimal numberOfLottoPurchased = Util.getHowManyTimes(purchaseAmount, lottoPrice);
-        List<Lotto> lottos = LottoUtil.generateLottos(numberOfLottoPurchased, () -> LottoUtil.generateLotto());
+        List<Lotto> lottos = LottoUtil.generateLottos(numberOfLottoPurchased,
+                () -> LottoUtil.generateRandomLotto(Lotto.START_NUMBER, Lotto.END_NUMBER, Lotto.DIGITS));
         LottoPurchaseOutput.printLottos(lottos);
 
         List<Integer> winningNumbers = LottoPurchaseInput.inputWinningNumbers();

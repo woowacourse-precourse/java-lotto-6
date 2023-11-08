@@ -18,7 +18,7 @@ public class LottoUtil {
         return lottos;
     }
 
-    public static Lotto generateLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+    public static Lotto generateRandomLotto(int rangeStartNumber, int rangeEndNumber, int digits) {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(rangeStartNumber, rangeEndNumber, digits));
     }
 }

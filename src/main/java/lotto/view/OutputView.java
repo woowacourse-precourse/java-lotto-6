@@ -14,13 +14,13 @@ public class OutputView {
         lottos.getLottos().forEach(Lotto::printNumbers);
     }
 
-    public static void printGameResult(Map<LottoResult, Integer> result, double yieldRate) {
-        Set<LottoResult> lottoResults = result.keySet();
+    public static void printGameResult(Map<LottoResult, Integer> winningCount, double yieldRate) {
+        Set<LottoResult> lottoResults = winningCount.keySet();
 
         Output.RESULT.print();
         lottoResults.forEach(
                 lottoResult -> {
-                    Integer count = result.get(lottoResult);
+                    Integer count = winningCount.get(lottoResult);
                     lottoResult.print(count);
                 }
         );

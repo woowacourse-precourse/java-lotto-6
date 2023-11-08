@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import lotto.message.LottoResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -34,10 +33,10 @@ class LottosTest {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     Lottos lottos = lottoIssuer.buy(LOTTO_PRICE);
-                    Map<LottoResult, Integer> result = lottos.getResult(winningNumber, bonusNumber);
+                    GameResult result = lottos.getResult(winningNumber, bonusNumber);
 
-                    List<LottoResult> keys = new ArrayList<>(result.keySet());
-                    List<Integer> values = new ArrayList<>(result.values());
+                    List<LottoResult> keys = new ArrayList<>(result.getWinningCount().keySet());
+                    List<Integer> values = new ArrayList<>(result.getWinningCount().values());
                     List<LottoResult> sortedKeys = new ArrayList<>(keys);
                     sortedKeys.sort(Comparator.naturalOrder());
 

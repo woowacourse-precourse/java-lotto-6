@@ -21,7 +21,7 @@ public class Lottos {
         this.lottos = Collections.unmodifiableList(lottos);
     }
 
-    public Map<LottoResult, Integer> getResult(WinningNumber winningNumber, int bonusNumber) {
+    public GameResult getResult(WinningNumber winningNumber, int bonusNumber) {
         Map<LottoResult, Integer> result = getInitialResultMap();
 
         lottos.forEach(lotto -> {
@@ -29,7 +29,7 @@ public class Lottos {
                     lottoResult.ifPresent(l -> result.merge(l, INCREMENT_COUNT, Integer::sum));
                 }
         );
-        return result;
+        return new GameResult(result);
     }
 
     private Optional<LottoResult> checkLottoResult(Lotto lotto, WinningNumber winningNumber, int bonusNumber) {

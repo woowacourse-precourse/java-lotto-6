@@ -1,7 +1,5 @@
 package lotto.domain.lotto;
 
-import lotto.utils.ErrorMessage;
-
 import java.util.Objects;
 
 import static lotto.utils.LottoUtils.validateNumber;

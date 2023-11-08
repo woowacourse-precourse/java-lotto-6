@@ -57,15 +57,15 @@ public class LottoService {
             int sameCount = getSameCount(lotto, lottoWinning);
             boolean isContainsBonusNumber = isContainsBonusNumber(lotto, lottoWinning);
 
-            if(sameCount == 6){
+            if(sameCount == LottoConfig.LOTTO_FIRST_WINNER_CONDITION.getValue()){
                 firstCount++;
-            } else if(sameCount == 5 && isContainsBonusNumber){
+            } else if(sameCount == LottoConfig.LOTTO_SECOND_WINNER_CONDITION.getValue() && isContainsBonusNumber){
                 secondCount++;
-            } else if(sameCount == 5){
+            } else if(sameCount == LottoConfig.LOTTO_THIRD_WINNER_CONDITION.getValue()){
                 thirdCount++;
-            } else if(sameCount == 4){
+            } else if(sameCount == LottoConfig.LOTTO_FOURTH_WINNER_CONDITION.getValue()){
                 fourthCount++;
-            } else if(sameCount == 3){
+            } else if(sameCount == LottoConfig.LOTTO_FIFTH_WINNER_CONDITION.getValue()){
                 fifthCount++;
             }
         }

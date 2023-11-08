@@ -35,7 +35,7 @@ public class LottoConsole {
         System.out.println("구입금액을 입력해 주세요.");
         int number = of(Console.readLine());
         if (isNotFit(number, LOTTO_PRICE)) {
-            throw new IllegalArgumentException("로또는 1000원 단위로 구매 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또는 1000원 단위로 구매 가능합니다.");
         }
         return number / LOTTO_PRICE;
     }
@@ -45,7 +45,7 @@ public class LottoConsole {
         try {
             number = Integer.parseInt(word);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
         return number;
     }

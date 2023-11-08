@@ -30,4 +30,12 @@ public class WinningNumbersTest {
         assertThatThrownBy(() -> new Lotto(List.of(10, 55, 42, 33, 22, 11)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void validateByDuplicatedNumber() {
+        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
+        assertThatThrownBy(() -> new Lotto(List.of(10, 10, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

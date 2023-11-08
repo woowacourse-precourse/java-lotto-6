@@ -1,7 +1,23 @@
 # 🔍 프로젝트 구조
 
 --- 
-
+📦lotto<br>
+┣ 📂controller<br>
+┃ ┗ 📜LottoController<br>
+┣ 📂domain<br>
+┃ ┣ 📜Lotto<br>
+┃ ┣ 📜LottoTicket<br>
+┃ ┗ 📜Prize<br>
+┣ 📂io<br>
+┃ ┣ 📜Input<br>
+┃ ┗ 📜Output<br>
+┣ 📂service<br>
+┃ ┣ 📜LottoService<br>
+┃ ┗ 📜LottoTicketService<br>
+┣ 📂validation<br>
+┃ ┣ 📜Error<br>
+┃ ┗ 📜InputValidator<br>
+┗ 📜Application<br>
 
 # 📋 기능 목록
 

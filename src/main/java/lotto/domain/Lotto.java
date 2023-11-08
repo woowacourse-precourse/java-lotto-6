@@ -28,6 +28,10 @@ public class Lotto {
             .count();
     }
 
+    public boolean isContainBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
     @Override
     public String toString() {
         String lottoPrintFormat = numbers.stream()

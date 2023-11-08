@@ -42,8 +42,4 @@ public class LottoTicket {
     public List<Lotto> getLottoTickets() {
         return lottoTickets;
     }
-
-    public int getNumberOfLotto() {
-        return numberOfLotto;
-    }
 }

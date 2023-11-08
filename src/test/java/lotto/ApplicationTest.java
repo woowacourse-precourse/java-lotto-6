@@ -74,7 +74,7 @@ class ApplicationTest extends NsTest {
                     run("1000", "1,2,3,4,5,a", "1,2,3,4,5,6", "7");
                     assertThat(output()).contains(ErrorMessage.CHAR_STRING.getMessage());
                 },
-                List.of(1,2,3,4,5,45)
+                List.of(1, 2, 3, 4, 5, 45)
         );
     }
 
@@ -86,7 +86,7 @@ class ApplicationTest extends NsTest {
                     run("1000", "1,2,3,4,5,6", "a", "7");
                     assertThat(output()).contains(ErrorMessage.CHAR_STRING.getMessage());
                 },
-                List.of(1,2,3,4,5,45)
+                List.of(1, 2, 3, 4, 5, 45)
         );
     }
 
@@ -94,10 +94,10 @@ class ApplicationTest extends NsTest {
     @DisplayName("로또 bonusNumber는 winningNumber와 중복되면 안된다.")
     void 예외_테스트5() {
         assertSimpleTest(() -> {
-            run("1000", "1,2,3,4,5,45","45","10");
+            run("1000", "1,2,3,4,5,45", "45", "10");
             assertThat(output()).contains(ErrorMessage.DUPLICATE_WITH_LOTTO.getMessage());
         });
-        List.of(1,2,3,4,5,45);
+        List.of(1, 2, 3, 4, 5, 45);
     }
 
     @Override

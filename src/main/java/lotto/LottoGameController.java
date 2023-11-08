@@ -53,7 +53,7 @@ public class LottoGameController {
                 lottoTicket.printLottoTickets(outputView);
             } catch (IllegalArgumentException e) {
                 outputView.displayError(e.getMessage());
-                amount = requestPurchaseAmount(); // 구입 금액을 다시 요청합니다.
+                amount = requestPurchaseAmount();
             }
         }
         return lottoTicket;

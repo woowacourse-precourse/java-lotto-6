@@ -30,7 +30,7 @@
 - 생성한 각 로또 세트의 당첨 여부를 확인한다. LottoManager#loopJudgeLottoCandidateSetsResult
     - 한 로또 세트의 당첨 여부를 확인한다. LottoManager#judgeLottoCandiateSetResult
         - Lotto의 당첨 번호와 한 세트의 번호가 몇 개 일치하는 지 확인한다. LottoManager#countCorrectNumbers
-        - 당첨 번호와의 일치 개수에 따라 등수를 판단하고, 당첨 복권 수량을 관리하는 리스트에, 해당 등수의 당첨 복권 수량을 추가한다. LottoManager#addWinNumbers
+        - 당첨 번호와의 일치 개수에 따라 등수에 따라, 당첨 복권 수량을 관리하는 리스트에, 해당 등수의 당첨 복권 수량을 추가한다. LottoManager#addWinNumbers
 
 - 5등부터 1등까지, 당첨 조건(숫자 일치 개수), 당첨금, 당첨 수량을 차례로 표시한다. LottoManager#showResult
 - 수익금을 구입금액으로 나누고, 소수 둘째자리에서 반올림해서 수익률을 표시한다. LottoManager#showReturnRate

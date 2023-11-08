@@ -117,6 +117,7 @@ public class LottoManager {
             System.out.println();
             insertBonusNumber();
         }
+        bonusNumber=number;
     }
 
     private void checkBonusNumberRange(int number){
@@ -140,7 +141,7 @@ public class LottoManager {
     }
 
     private void judgeLottoCandiateSetResult(List<Integer> lottoCandidateSet){
-
+        countCorrectNumbers(lottoCandidateSet);
     }
 
     private void countCorrectNumbers(List<Integer> lottoCandidateSet){
@@ -150,8 +151,11 @@ public class LottoManager {
 
         for(int number : lottoCandidateSet){
             for(int winNumber : winNumbers){
-                if(number==winNumber || number==bonusNumber){
+                if(number==winNumber){
                     count++;
+                    break;
+                }
+                if(number==bonusNumber){
                     bonusCount++;
                     break;
                 }

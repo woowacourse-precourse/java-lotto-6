@@ -26,7 +26,10 @@ public class LottoController {
 
         final WinningNumbers winningNumbers = generateWinningNumber();
         generateBonusNumber(winningNumbers);
-        result(customer, winningNumbers);
+        final LottoChecker lottoChecker = result(customer, winningNumbers);
+
+        outputView.prizeResult(lottoChecker.getResult());
+        outputView.profitRate(lottoChecker.getProfitRate());
     }
 
     public void purchaseLottos(final Customer customer, final LottoStore lottoStore) {
@@ -82,17 +85,13 @@ public class LottoController {
         }
     }
 
-    public void result(final Customer customer, final WinningNumbers winningNumbers) {
+    public LottoChecker result(final Customer customer, final WinningNumbers winningNumbers) {
         final LottoChecker lottoChecker= new LottoChecker(
                 winningNumbers.getWinningNumbers(),
                 winningNumbers.getBonusNumber()
         );
 
         customer.checkResult(lottoChecker);
-        final Map<Prize, Integer> result = lottoChecker.getResult();
-        final String profitRate = lottoChecker.getProfitRate();
-
-        outputView.prizeResult(result);
-        outputView.profitRate(profitRate);
+        return lottoChecker;
     }
 }

@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static lotto.model.constants.StringConstants.NEW_LINE;
 import static lotto.view.constants.OutputMessage.*;
 
 public class View {
@@ -16,7 +17,7 @@ public class View {
     }
 
     public void printOrderedLottoCount(int ticketCount) {
-        printMessage("\n" + ticketCount + COUNT_BUYING_TICKETS.getMessage());
+        printMessage(NEW_LINE.get() + ticketCount + COUNT_BUYING_TICKETS.getMessage());
     }
 
     public void printLottoTickets(String tickets){

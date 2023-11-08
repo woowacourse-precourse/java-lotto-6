@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import static lotto.model.constants.IntegerConstants.*;
+import static lotto.model.constants.StringConstants.NEW_LINE;
 
 public class LottoTickets {
     private List<Lotto> tickets = new ArrayList<>();
@@ -51,7 +52,7 @@ public class LottoTickets {
         StringBuilder ticketContents = new StringBuilder();
 
         for (Lotto ticket : tickets) {
-            ticketContents.append(ticket.getTicketContent()).append("\n");
+            ticketContents.append(ticket.getTicketContent()).append(NEW_LINE.get());
         }
 
         return ticketContents.toString();

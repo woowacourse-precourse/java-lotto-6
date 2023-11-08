@@ -40,4 +40,7 @@ public class OutputView {
             }
     }
 
+    public void displayProfit(double profit) {
+        System.out.println("총 수익률은" + profit +"% 입니다");
+    }
 }

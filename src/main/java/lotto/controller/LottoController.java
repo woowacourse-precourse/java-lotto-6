@@ -38,6 +38,10 @@ public class LottoController {
         lottoService.WinningResults(winningResults);
 
         outputView.displayWinningResults(winningInfo.getWinnings());
+
+        double profit = lottoService.calculateProfitRate(buyCount,winningResults);
+
+        outputView.displayProfit(profit);
     }
 
 

@@ -1,9 +1,8 @@
 package lotto.util;
 
-import lotto.model.domain.WinningLottoNumber;
-
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class LottoValidator {
@@ -37,10 +36,10 @@ public class LottoValidator {
         }
     }
 
-    public static int checkBonusNumber(String bonusNumber, WinningLottoNumber winningLottoNumber) {
+    public static int checkBonusNumber(String bonusNumber, List<Integer> getWinningNumberWithBonusNumber) {
         int number = checkNumberRange(bonusNumber);
 
-        Set<Integer> numbers = new HashSet<>(winningLottoNumber.getWinningNumberWithBonusNumber());
+        Set<Integer> numbers = new HashSet<>(getWinningNumberWithBonusNumber);
         numbers.add(number);
         checkLength(numbers.size(), WINNING_NUMBER_LENGTH_PLUS_BONUS);
 

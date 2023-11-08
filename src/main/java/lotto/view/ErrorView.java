@@ -22,4 +22,8 @@ public class ErrorView {
         return "[ERROR] 로또 번호는 쉼표(,)로 구분된 숫자여야 합니다.";
     }
 
+    public static String getInvalidInputAmountErrorMessage() {
+        return "[ERROR] 유효하지 않은 금액입니다. 숫자만 입력해 주세요.";
+    }
+
 }

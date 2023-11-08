@@ -8,26 +8,36 @@ import java.util.List;
 public class LottoController {
 
     //    private static List<Integer> lotto = new ArrayList<>();
-    private Lotto lotto;
+    private static Lotto lotto;
+
+    static List<Integer> winNums;
 
     public void start() {
-        List<Integer> winNums;
-
         boolean result = true;
         int bonusNum;
         int amount = Input.inputLottoAmount();
 
-        while (true) {
-            winNums = Input.inputWinNums();
-            lotto = new Lotto(winNums);
-            break;
-        }
+        InputWinNum();
 
         List<Integer> passedWinNums = lotto.getNumbers();
 
         while (result) {
             bonusNum = Input.inputBonusNum();
             result = lotto.validateBonusNum(bonusNum, passedWinNums);
+        }
+
+    }
+
+    private static List<Integer> InputWinNum() {
+        while (true) {
+            try {
+                winNums = Input.inputWinNums();
+                lotto = new Lotto(winNums);
+                return winNums;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+
         }
 
     }

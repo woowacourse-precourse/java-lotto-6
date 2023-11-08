@@ -6,7 +6,7 @@ public class BonusNumber {
     private final int bonusNumber;
 
     private BonusNumber(int bonusNumber) {
-        LottoValidator.verifyRange(bonusNumber);
+        LottoValidator.verifyBonusNumberRange(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 

@@ -69,7 +69,7 @@ class LottoValidatorTest {
         // when
         // then
         assertThatThrownBy(() ->
-                LottoValidator.verifyRange(number))
+                LottoValidator.verifyBonusNumberRange(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

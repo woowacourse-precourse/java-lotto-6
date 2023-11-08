@@ -40,7 +40,7 @@ public class WinningCombinationBuilder {
 
     public WinningCombinationBuilder withBonusNumber(String input) {
         int bonusNumber = parseInputToInt(input);
-        LottoValidator.verifyRange(bonusNumber);
+        LottoValidator.verifyBonusNumberRange(bonusNumber);
         verifyBonusNotContainedInWinningNumbers(bonusNumber);
         this.bonusNumber = bonusNumber;
         this.isBonusNumberNotSet = false;

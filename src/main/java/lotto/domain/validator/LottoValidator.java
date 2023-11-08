@@ -36,7 +36,7 @@ public class LottoValidator {
         return numbers.stream().anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER);
     }
 
-    public static void verifyRange(int bonusNumber) {
+    public static void verifyBonusNumberRange(int bonusNumber) {
         if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
             throw new IllegalArgumentException("보너스 번호는 1에서 45 사이에 있어야 합니다.");
         }
@@ -52,7 +52,7 @@ public class LottoValidator {
         List<Integer> lottoNumbers = winningNumbers.getLottoNumbers();
         return lottoNumbers.contains(bonusNumber.getBonusNumber());
     }
-    
+
     public static void verifyLottosNotNullOrNotEmpty(List<Lotto> lottos) {
         if (lottos == null || lottos.isEmpty()) {
             throw new IllegalArgumentException("Lottos 객체는 최소 하나 이상의 Lotto로 이루어져야 합니다.");

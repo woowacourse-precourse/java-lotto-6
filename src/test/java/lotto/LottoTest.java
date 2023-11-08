@@ -7,10 +7,13 @@ import static org.assertj.core.api.Assertions.in;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.constant.Condition;
 import lotto.constant.Message;
 import lotto.domain.Lotto;
+import lotto.domain.LottoBuyer;
 import lotto.domain.Prize;
 import lotto.domain.Procedure;
 import lotto.service.LottoService;
@@ -193,7 +196,7 @@ class LottoTest {
     }
 
     @Test
-    void 상금의_인덱스를_계산합니다(){
+    void 상금의_인덱스를_계산합니다() {
         /* 순위 인덱스
         0 - 순위 밖
         1 - 5등
@@ -204,21 +207,72 @@ class LottoTest {
          */
 
         assertAll(
-                ()->assertEquals(Prize.checkPrize(3, false), 1),
-                ()->assertEquals(Prize.checkPrize(5, false), 3),
-                ()->assertEquals(Prize.checkPrize(5, true), 4)
+                () -> assertEquals(Prize.checkPrize(3, false), 1),
+                () -> assertEquals(Prize.checkPrize(5, false), 3),
+                () -> assertEquals(Prize.checkPrize(5, true), 4)
         );
     }
 
     @Test
-    void 상금_정보를_주세요(){
+    void 상금_정보를_주세요() {
         int rank_5 = 1, rank_3 = 3, rank_2 = 4, rank_1 = 5;
 
         assertAll(
-                ()->assertThat(Prize.getPrizeInfo(rank_5)).contains(Message.FIFTH_PRIZE, Integer.toString(Condition.FIFTH_PRIZE_AMOUNT)),
-                ()->assertThat(Prize.getPrizeInfo(rank_3)).contains(Message.THIRD_PRIZE, Integer.toString(Condition.THIRD_PRIZE_AMOUNT)),
-                ()->assertThat(Prize.getPrizeInfo(rank_2)).contains(Message.SECOND_PRIZE, Integer.toString(Condition.SECOND_PRIZE_AMOUNT)),
-                ()->assertThat(Prize.getPrizeInfo(rank_1)).contains(Message.FIRST_PRIZE, Integer.toString(Condition.FIRST_PRIZE_AMOUNT))
+                () -> assertThat(Prize.getPrizeInfo(rank_5)).contains(Message.FIFTH_PRIZE,
+                        Integer.toString(Condition.FIFTH_PRIZE_AMOUNT)),
+                () -> assertThat(Prize.getPrizeInfo(rank_3)).contains(Message.THIRD_PRIZE,
+                        Integer.toString(Condition.THIRD_PRIZE_AMOUNT)),
+                () -> assertThat(Prize.getPrizeInfo(rank_2)).contains(Message.SECOND_PRIZE,
+                        Integer.toString(Condition.SECOND_PRIZE_AMOUNT)),
+                () -> assertThat(Prize.getPrizeInfo(rank_1)).contains(Message.FIRST_PRIZE,
+                        Integer.toString(Condition.FIRST_PRIZE_AMOUNT))
         );
+    }
+
+    @Test
+    void 당첨_번호와_내_로또를_주면_등수를_계산합니다() {
+        // given
+        List<Lotto> lottos = List.of(
+                new Lotto(Arrays.asList(10, 20, 40, 45, 30, 16)), // 1등
+                new Lotto(Arrays.asList(10, 20, 40, 45, 30, 33)), // 2등
+                new Lotto(Arrays.asList(10, 20, 40, 45, 30, 17)) // 3등
+        );
+        Lotto winningNumbers = new Lotto(Arrays.asList(10, 20, 40, 45, 30, 16));
+        int bonusNumber = 33;
+
+        LottoBuyer customer = new LottoBuyer(lottos, winningNumbers, bonusNumber, 3000);
+
+        //when + then
+        assertEquals(List.of(0, 0, 0, 1, 1, 1), customer.retrieveAllResult());
+
+    }
+
+    @Test
+    void 당첨_번호와_내_로또를_주면_상금_내역을_줍니다() {
+        // given
+        List<Lotto> lottos = List.of(
+                new Lotto(Arrays.asList(10, 20, 40, 45, 30, 16)), // 1등
+                new Lotto(Arrays.asList(10, 20, 40, 45, 30, 33)), // 2등
+                new Lotto(Arrays.asList(10, 20, 40, 45, 30, 17)) // 3등
+        );
+        Lotto winningNumbers = new Lotto(Arrays.asList(10, 20, 40, 45, 30, 16));
+        int bonusNumber = 33;
+
+        LottoBuyer customer = new LottoBuyer(lottos, winningNumbers, bonusNumber, 3000);
+
+        List<Integer> myPrizes = customer.retrieveAllResult();
+
+        //when + then
+        assertThat(
+                IntStream.range(Condition.ZERO, Condition.SIX_WINNING_NUMBERS)
+                        .filter(idx -> myPrizes.get(idx) != 0)
+                        .mapToObj(Prize::getPrizeInfo)
+                        .toList())
+                .contains(
+                        Message.FIRST_PRIZE + "(" + Integer.toString(Condition.FIRST_PRIZE_AMOUNT) + "원) - ",
+                        Message.SECOND_PRIZE + "(" + Integer.toString(Condition.SECOND_PRIZE_AMOUNT) + "원) - ",
+                        Message.THIRD_PRIZE + "(" + Integer.toString(Condition.THIRD_PRIZE_AMOUNT) + "원) - "
+                );
+
     }
 }

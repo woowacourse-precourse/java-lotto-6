@@ -15,6 +15,9 @@ public class LottoController {
     private final LottoService lottoService;
     private Buyer buyer;
     private WinningLotto winningLotto;
+
+    private Rank rank;
+
     private Integer buyPrice;
     private Integer buyLottoCount;
 
@@ -30,6 +33,7 @@ public class LottoController {
         randomLotto();
         winningLotto();
         lottoResult();
+        rate();
     }
 
     private void start() {
@@ -74,12 +78,17 @@ public class LottoController {
 
     private void lottoResult() {
         outputView.outputLottoResult();
-        Rank rank = lottoService.setLottoResult(buyer, winningLotto);
-        
+        rank = lottoService.setLottoResult(buyer, winningLotto);
+
         outputView.outputRankFiveResult(rank.getFive());
         outputView.outputRankFourResult(rank.getFour());
         outputView.outputRankThreeResult(rank.getThree());
         outputView.outputRankTwoResult(rank.getTwo());
         outputView.outputRankOneResult(rank.getOne());
+    }
+
+    private void rate() {
+        double rateOfReturn = rank.getResultPrice(buyPrice);
+        outputView.outputRate(rateOfReturn);
     }
 }

@@ -57,6 +57,10 @@ public class OutputView {
         printlnOut(OutputMessage.RANK_ONE_RESULT.getMessage(result));
     }
 
+    public void outputRate(double result) {
+        printlnOut(OutputMessage.RATE.getMessage(result));
+    }
+
     private void printlnOut(String message) {
         System.out.println(message);
     }

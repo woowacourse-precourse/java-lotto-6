@@ -10,7 +10,8 @@ public enum OutputMessage {
     RANK_FOUR_RESULT("4개 일치 (50,000원) - %d개"),
     RANK_THREE_RESULT("5개 일치 (1,500,000원) - %d개"),
     RANK_TWO_RESULT("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
-    RANK_ONE_RESULT("6개 일치 (2,000,000,000원) - %d개");
+    RANK_ONE_RESULT("6개 일치 (2,000,000,000원) - %d개"),
+    RATE("총 수익률은 %.1f%%입니다.");
 
     private final String message;
 
@@ -24,5 +25,9 @@ public enum OutputMessage {
 
     public String getMessage(int count) {
         return String.format(this.message, count);
+    }
+
+    public String getMessage(double rate) {
+        return String.format(this.message, rate);
     }
 }

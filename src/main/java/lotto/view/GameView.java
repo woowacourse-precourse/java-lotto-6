@@ -16,4 +16,8 @@ public class GameView {
     public static void printWinningNumberInputPhrase() {
         System.out.println(Phrase.WINNING_NUMBER_INPUT.getPrintPhrase());
     }
+
+    public static void printBonusNumberInputPhrase() {
+        System.out.println(Phrase.BONUS_NUMBER_INPUT.getPrintPhrase());
+    }
 }

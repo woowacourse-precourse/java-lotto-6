@@ -16,7 +16,7 @@ public class OutputView {
     private static final String SIX_CORRECT = "6개 일치 (2,000,000,000원) - ";
     private static final String COUNT = "개";
     private static final String TOTAL_RATE_OF_RETURN = "총 수익률은 ";
-    private static final String PERCENT = "% 입니다.";
+    private static final String PERCENT = "%입니다.";
 
     public OutputView(){
 

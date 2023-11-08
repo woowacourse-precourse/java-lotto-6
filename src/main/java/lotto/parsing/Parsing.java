@@ -1,4 +1,4 @@
-package lotto.parse;
+package lotto.parsing;
 import java.util.*;
 import java.util.stream.Collectors;
 import lotto.validation.NumberValidation;

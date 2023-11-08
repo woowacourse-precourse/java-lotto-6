@@ -1,14 +1,12 @@
 package lotto.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.BonusLotto;
 import lotto.domain.Lotto;
 import lotto.domain.RandomGenerator;
 import lotto.domain.RandomLotto;
 import lotto.domain.UserLotto;
-import lotto.parse.Parsing;
-import lotto.validation.NumberValidation;
+import lotto.parsing.Parsing;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -64,7 +62,6 @@ public class LottoService {
         consistencyService = new ConsistencyService(capital, userLotto);
         List<Integer> totalConsistency = consistencyService.winnerGraph(rl.getLottoLists());
         consistencyService.setRateMoney();
-        System.out.println(consistencyService.getRateOfReturn());
         outputView.winnerGraphComment(totalConsistency, consistencyService.getRateOfReturn());
     }
 

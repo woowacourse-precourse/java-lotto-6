@@ -66,8 +66,6 @@ public class ConsistencyService {
     }
 
     public double getRateOfReturn(){
-        System.out.println("rateMoney : " + rateMoney);
-        System.out.println("capital : "+capital);
         return ((double) rateMoney/capital)*100;
     }
 

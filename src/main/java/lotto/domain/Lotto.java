@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.exception.GlobalExceptionHandler.handleCustomException;
+
 import java.util.List;
 import lotto.exception.CustomException;
 import lotto.exception.ErrorCode;
@@ -19,7 +21,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != TARGET_SIZE) {
-            throw new NotSizeOfList();
+            handleCustomException(new NotSizeOfList());
         }
     }
 

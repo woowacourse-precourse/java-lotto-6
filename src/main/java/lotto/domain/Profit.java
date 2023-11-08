@@ -38,7 +38,7 @@ public class Profit {
     }
 
     public void setProfitRatio(int purchaseAmount) {
-        this.profitRatio = matchDecimalPlace(((double) purchaseAmount) / totalProfit);
+        this.profitRatio = matchDecimalPlace(((double) totalProfit) / purchaseAmount * 100);
     }
 
     public String matchDecimalPlace(Double ratio) {

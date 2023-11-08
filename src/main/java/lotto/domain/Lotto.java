@@ -14,6 +14,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public Lotto(String numbers) {
+        List<Integer> numbersConverted = Lotto.convertToIntegers(numbers);
+        validate(numbersConverted);
+        numbersConverted.sort(Comparator.naturalOrder());
+        this.numbers = numbersConverted;
+    }
+
     @Override
     public String toString() {
         return numbers.toString();

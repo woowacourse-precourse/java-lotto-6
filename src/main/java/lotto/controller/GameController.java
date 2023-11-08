@@ -51,8 +51,7 @@ public class GameController {
     private void inputWinningLotto() {
         while (true) {
             try {
-                List<Integer> winningNumbers = Lotto.convertToIntegers(inputView.inputWinningNumbers());
-                winningLotto = new Lotto(winningNumbers);
+                winningLotto = new Lotto(inputView.inputWinningNumbers());
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

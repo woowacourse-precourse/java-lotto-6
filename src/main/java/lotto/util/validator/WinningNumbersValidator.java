@@ -15,12 +15,19 @@ public class WinningNumbersValidator {
         validateInputFormat();
 
         List<String> winningNumbers = List.of(numbers.split(Constant.NUMBER_DELIMITER));
+        validateNumberCount(winningNumbers);
         validateDuplicateNumber(winningNumbers);
         winningNumbers.forEach(this::validateNumberInRange);
     }
 
     private void validateInputFormat() {
         if (!numbers.matches(Constant.PATTERN_NUMBERS)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_FORMAT.getMessage());
+        }
+    }
+
+    private void validateNumberCount(List<String> numbers) {
+        if (numbers.size() != LottoConfig.LOTTO_NUMBER_COUNT.getNumber()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_FORMAT.getMessage());
         }
     }

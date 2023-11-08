@@ -10,7 +10,9 @@ import java.util.stream.Collectors;
 public class LottoConsole {
     public static String inputAmount() {
         System.out.println("구입금액을 입력해주세요.");
-        return Console.readLine();
+        String input = Console.readLine();
+        System.out.println();
+        return input;
     }
 
     public static void printLottoListInfo(List<Lotto> lottos) {
@@ -22,16 +24,21 @@ public class LottoConsole {
                     .collect(Collectors.joining(", ", "[", "]"));
             System.out.println(lottoInfo);
         });
+        System.out.println();
     }
 
     public static String inputAnswerNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        return Console.readLine();
+        String input = Console.readLine();
+        System.out.println();
+        return input;
     }
 
     public static String inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Console.readLine();
+        String input = Console.readLine();
+        System.out.println();
+        return input;
     }
 
     public static void printPrizeResults(List<LottoPrize> prizes, Double ROI) {

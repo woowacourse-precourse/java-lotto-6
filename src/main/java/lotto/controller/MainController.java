@@ -31,8 +31,10 @@ public class MainController {
     }
 
     private List<Lotto> buyLottos() {
+        LottoStore lottoStore = new LottoStore(LottoGenerator.getInstance());
+
         int purchaseAmount = inputView.inputPurchaseAmount();
-        return LottoStore.buyLotto(purchaseAmount);
+        return lottoStore.buyLotto(purchaseAmount);
     }
 
     private void showUserLottos(List<Lotto> userLottos) {

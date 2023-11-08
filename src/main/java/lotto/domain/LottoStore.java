@@ -10,13 +10,19 @@ public class LottoStore {
 
     private static final int VALID_REMAINING_AMOUNT = 0;
 
-    public static List<Lotto> buyLotto(int purchaseAmount) {
-        validatePurchaseAmount(purchaseAmount);
+    private final LottoGenerator lottoGenerator;
 
-        return LottoGenerator.createLottos(purchaseAmount / LOTTO_PRICE);
+    public LottoStore(LottoGenerator lottoGenerator) {
+        this.lottoGenerator = lottoGenerator;
     }
 
-    private static void validatePurchaseAmount(int purchaseAmount) {
+    public List<Lotto> buyLotto(int purchaseAmount) {
+        validatePurchaseAmount(purchaseAmount);
+
+        return lottoGenerator.createLottos(purchaseAmount / LOTTO_PRICE);
+    }
+
+    private void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount < LOTTO_PRICE) {
             throw new IllegalArgumentException(
                     String.format(LESS_THAN_MINIMUM_PRICE_EXCEPTION_FORMAT, LOTTO_PRICE));
@@ -27,7 +33,7 @@ public class LottoStore {
         }
     }
 
-    private static boolean isInvalidPurchaseAmount(int purchaseAmount) {
+    private boolean isInvalidPurchaseAmount(int purchaseAmount) {
         return purchaseAmount % LOTTO_PRICE != VALID_REMAINING_AMOUNT;
     }
 }

@@ -47,7 +47,7 @@ public class LottoCheck {
     }
 
     //enum을 활용한 출력.
-    public void place(Integer[] lottoResult) {
+    private void place(Integer[] lottoResult) {
             for(LottoConfig lottoDate : lottoConfig){
                 System.out.println(lottoDate.message() + lottoResult[lottoDate.match()] + "개");
             }

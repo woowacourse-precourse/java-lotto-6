@@ -47,8 +47,8 @@ public class LottoPick {
     }
 
     private void vaildateAmniotic(int money){
-        if (money < 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 0보다 커야 합니다.");
+        if (money <= 0) {
+            throw new IllegalArgumentException("[ERROR] 금액은 양수 값어야 합니다.");
         }
     }
 

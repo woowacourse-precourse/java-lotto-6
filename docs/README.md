@@ -35,6 +35,8 @@
 
   투자 금액 대비 수익률을 나타냄 소수점 2자릿수로 반올림함.
 
+
+
 # 코드
 
 ## Application
@@ -134,17 +136,17 @@
 
   로또 번호를 출력함.
 
-#### String sortResult(List<Integer> arr)
-
-  로또 번호를 오름차순으로 바꿔줌. (기능테스트에서 정렬을 사용시 오류로 인한 메서드.)
-
 #### validate(int money)
 
   금액이 1000단위 인지 입증해줌.
 
+#### vaildateAmniotic(int money)
+
+   금액이 양수 값인지 확인함.
+
 #### List<Integer> randomCreate()
 
-  랜덤 숫자를 생성함 1~45
+  랜덤 숫자를 생성함 1~45 이후 오름차순으로 정렬해 리턴함.
 
 ## LottoCheck
 
@@ -165,7 +167,7 @@
 
   맞힌 횟수가 저장됌.
 
-#### Integer[] lottoPrice
+#### LottoConfig[] lottoConfig
 
   맞횐 횟수에 따른 금액이 저장됌.
 
@@ -189,25 +191,9 @@
 
  리스트에 값이 존재 하는지 확인함.
 
-#### String place5th(int number)
+#### void place(Integer[] lottoResult)
 
- 5등 결과 출력 값.
-
-#### String place4th(int number)
-
- 4등 결과 출력 값.
-
-#### String place3th(int number)
-
- 3등 결과 출력 값.
-
-#### String place2th(int number)
-
- 2등 결과 출력 값.
-
-#### String place1th(int number)
-
- 1등 결과 출력 값.
+  로또 1~5등의 결과 값을 출력함. 
 
 #### String profit(double profit)
 
@@ -216,6 +202,40 @@
 #### double profit()
 
  수익률을 확인 해서 return 함.
+
+
+## enum LottoConfig
+
+eunm을 활용한 중복되는 상수를 배열 형식으로 정렬해 놓음.
+
+#### Integer match
+
+배열 값을 식별할 수 있게 하는 값
+
+#### String message
+
+로또 등수에 따른 출력 값
+
+#### Integer price
+
+로또 등수에 따른 당첨 금액
+
+#### LottoConfig(int match, String message, int price)
+
+필요시 형식에 맞게 객체에 상수 값을 저장 할 수 있음.
+
+#### Integer match()
+
+식별 값을 리턴함.
+
+#### String message()
+
+등수에 따른 출력 값을 리턴함.
+
+#### Integer price()
+
+당첨 금액 값을 리턴함.
+
 
 
 

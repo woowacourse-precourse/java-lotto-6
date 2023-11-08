@@ -5,6 +5,8 @@ import lotto.model.PrizeResultDto;
 import lotto.util.*;
 import lotto.view.InputView;
 import lotto.view.OutputLotto;
+import lotto.view.OutputResult;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +72,11 @@ public class Game {
 
     public PrizeResultDto calculateResult(List<Lotto> lottoList, Lotto winningLotto, int winningBonusNumber){
         return CalculateMatch.calculate(lottoList, winningLotto, winningBonusNumber);
+    }
+
+    public void printResult(PrizeResultDto prizeResultDto){
+        OutputResult.printResult(prizeResultDto.getPrizeCount());
+        OutputResult.printReturnRate(prizeResultDto.getTotalPrize(), lottoCount * 1000);
     }
 
 }

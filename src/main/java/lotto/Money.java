@@ -37,4 +37,8 @@ public class Money {
     public int calculateLottoSize() {
         return price / priceUnit;
     }
+
+    public int getPrice(){
+        return price;
+    }
 }

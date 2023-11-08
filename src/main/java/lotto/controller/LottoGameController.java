@@ -10,7 +10,6 @@ import lotto.model.service.LottoHeadQuarter;
 import lotto.model.service.LottoStore;
 import lotto.model.domain.vo.BonusNumber;
 import lotto.model.domain.vo.Money;
-import lotto.model.service.RandomNumberGenerateStrategy;
 import lotto.model.domain.vo.WinNumber;
 import lotto.view.ErrorView;
 import lotto.view.OutputView;
@@ -22,11 +21,14 @@ public class LottoGameController {
     private LottoStore lottoStore;
     private LottoHeadQuarter lottoHeadQuarter;
 
-    public LottoGameController(OutputView outputView, ErrorView errorView) {
+    public LottoGameController(OutputView outputView,
+            ErrorView errorView,
+            LottoStore lottoStore,
+            LottoHeadQuarter lottoHeadQuarter) {
         this.outputView = outputView;
         this.errorView = errorView;
-        this.lottoStore = new LottoStore(new RandomNumberGenerateStrategy());
-        this.lottoHeadQuarter = new LottoHeadQuarter();
+        this.lottoStore = lottoStore;
+        this.lottoHeadQuarter = lottoHeadQuarter;
     }
 
     public void run() {

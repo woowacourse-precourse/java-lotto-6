@@ -5,13 +5,11 @@ import lotto.domain.Buyer;
 import lotto.domain.Lotto;
 import lotto.domain.Winning;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.utils.Constants.BUY_LOTTERY_INPUT;
-import static lotto.utils.Constants.TICKETS_COUNT_OUTPUT;
+import static lotto.utils.Constants.*;
 import static lotto.view.InputValidator.*;
 
 public class InputView {
@@ -46,7 +44,7 @@ public class InputView {
 
     private static String getWinningNumbersFromUser() {
         System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(INPUT_WINNING_LOTTO);
         return Console.readLine();
     }
 
@@ -76,7 +74,7 @@ public class InputView {
 
     private static int getBonusNumberFromUser() {
         System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(INPUT_BONUS_NUMBER);
         String input = Console.readLine();
         return parsePayment(input);
     }

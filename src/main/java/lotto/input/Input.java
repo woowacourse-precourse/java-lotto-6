@@ -15,10 +15,10 @@ public class Input {
         print(InputMessage.ENTER_LOTTO_NUMBERS);
     }
 
-    public static int getPurchaseAmount() throws IllegalArgumentException {
+    public static int getPurchaseAmount() {
         printEnterPurchaseAmount();
         String purchaseAmount = Console.readLine();
-        // InputValidator
+        InputValidator.isValidPurchaseAmount(purchaseAmount);
         return Integer.parseInt(purchaseAmount);
     }
 }

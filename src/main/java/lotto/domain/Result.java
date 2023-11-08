@@ -15,6 +15,13 @@ public class Result {
         createResult(lottoRankingList);
     }
 
+    public int calculateTotalPrize() {
+        return lottoResult.entrySet().stream()
+                .filter(entry -> entry.getKey() != LottoRanking.NO_MATCH)
+                .mapToInt(entry -> entry.getKey().getPrizeAmount() * entry.getValue())
+                .sum();
+    }
+
     private void setResult() {
         for (LottoRanking rank: LottoRanking.values()) {
             lottoResult.put(rank, Constants.ZERO);

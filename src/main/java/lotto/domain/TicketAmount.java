@@ -19,11 +19,8 @@ public class TicketAmount {
     }
 
     public double calculateRateOfReturn(Result result) {
-        double totalPrize  = result.getLottoResult().entrySet().stream()
-                .filter(entry -> LottoRanking.NO_MATCH != entry.getKey())
-                .map(entry -> entry.getKey().getPrizeAmount() * entry.getValue())
-                .mapToDouble(Integer::doubleValue).sum();
-        return totalPrize / amount * PERCENT;
+        double totalPrize  = result.calculateTotalPrize();
+        return (totalPrize / amount) * PERCENT;
     }
 
     private static void validateMoney(int money) {

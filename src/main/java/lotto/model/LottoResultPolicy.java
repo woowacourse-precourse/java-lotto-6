@@ -1,6 +1,7 @@
 package lotto.model;
 
-import static lotto.enums.ErrorMessage.NEGATIVE_NUM_ERROR;
+import static lotto.constant.NumberConstant.LOTTO_MAX_NUMBER;
+import static lotto.constant.NumberConstant.LOTTO_MIN_NUMBER;
 
 import java.util.List;
 import lotto.enums.ErrorMessage;
@@ -49,7 +50,7 @@ public class LottoResultPolicy implements ResultPolicy {
     }
 
     private void validateNumberRange(int bonusNumber) throws IllegalArgumentException {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < LOTTO_MIN_NUMBER || bonusNumber > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.EXCEED_LOTTO_RANGE_ERROR.getMessage());
         }
     }

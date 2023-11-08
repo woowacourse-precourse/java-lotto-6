@@ -10,6 +10,8 @@ import lotto.model.Lotto;
 
 public class OutputView {
 
+    public static final String RANK_DESCRIPTION_PREFIX = " - ";
+    public static final String COUNT_SUFFIX = "개";
     public void promptForPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_PROMPT.getMessage());
     }
@@ -34,10 +36,9 @@ public class OutputView {
         System.out.println(WINNING_STATISTICS_OUTPUT.getMessage());
         for (LottoRank rank : LottoRank.values()) {
             int count = lottoResult.get(rank);
-            System.out.println(rank.getRankDescription() + " - " + count + "개");
+            System.out.println(rank.getRankDescription() + RANK_DESCRIPTION_PREFIX + count + COUNT_SUFFIX);
         }
-
-        System.out.println("총 수익률은 " + String.format("%.1f", profit) + "%입니다.");
+        System.out.println(String.format(TOTAL_PROFIT_OUTPUT.getMessage(), profit));
     }
 
     public void displayArgumentError(IllegalArgumentException e) {

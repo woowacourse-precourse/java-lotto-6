@@ -33,5 +33,19 @@ class LottoResultTest {
         assertThat(lottoResult.getSixMatchCount()).isEqualTo(1);
     }
 
+    @DisplayName("로또 당첨 통계를 통해 총 수익률을 계산한다.")
+    @Test
+    void calculateProfitRate() {
+        LottoResult lottoResult = new LottoResult();
+        //3개 일치 - 1개, 4개 일치 - 1개, 5개 일치 - 1개, 5개 일치 + 보너스 볼 - 0개, 6개 일치 - 0개
+        lottoResult.addMatchingCount(3, false);
+        lottoResult.addMatchingCount(4, false);
+        lottoResult.addMatchingCount(5, false);
+        assertThat(lottoResult.calculateProfitRate(100000)).isEqualTo(1555.0);
 
+        //3개 일치 - 1개, 4개 일치 - 1개, 5개 일치 - 1개, 5개 일치 + 보너스 볼 - 1개, 6개 일치 - 1개
+        lottoResult.addMatchingCount(5, true);
+        lottoResult.addMatchingCount(6, false);
+        assertThat(lottoResult.calculateProfitRate(50000000)).isEqualTo(4063.1);
+    }
 }

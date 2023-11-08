@@ -1,13 +1,21 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
+import lotto.util.Validator;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        checkDuplicate(numbers);
+        checkValidRange(numbers);
+
         this.numbers = numbers;
+    }
+
+    public List<Integer> getLottoNumbers(){
+        return numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -16,5 +24,13 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void checkDuplicate(List<Integer> numbers){
+        Validator.isIntListDuplicate(numbers);
+    }
+
+    private void checkValidRange(List<Integer> numbers) {
+        numbers.forEach((num)->{
+            Validator.isValidRange(num);
+        });
+    }
 }

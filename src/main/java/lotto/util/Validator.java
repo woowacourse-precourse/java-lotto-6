@@ -31,8 +31,9 @@ public class Validator {
         }
     }
 
+
     public static void validateWinnigNumber( List<String> winningNumber){
-        isDuplicate(winningNumber);
+        isStrListDuplicate(winningNumber);
         isValidSize(winningNumber);
         winningNumber.forEach((e)->{
             int num = convertToNumber(e);
@@ -40,7 +41,7 @@ public class Validator {
         });
     }
 
-    private static void isValidRange(int num){
+    public static void isValidRange(int num){
         if (num<1 || num>45){
             throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_RANGE.getMessage());
         }
@@ -50,8 +51,16 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_SIZE.getMessage());
         }
     }
-    private static void isDuplicate(List<String> list){
+    private static void isStrListDuplicate(List<String> list){
         Set<String> set = new HashSet<String>(list);
+        if (list.size()!=set.size()){
+            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_DUPLICATE.getMessage());
+        }
+    }
+
+
+    public static void isIntListDuplicate(List<Integer> list){
+        Set<Integer> set = new HashSet<Integer>(list);
         if (list.size()!=set.size()){
             throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_DUPLICATE.getMessage());
         }
@@ -66,9 +75,6 @@ public class Validator {
 
     private static void isBonusDuplicate(int bonusNumber, List<Integer> winningNumber){
         winningNumber.add(bonusNumber);
-        Set<Integer> set = new HashSet<Integer>(winningNumber);
-        if (winningNumber.size()!=set.size()){
-            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_DUPLICATE.getMessage());
-        }
+        isIntListDuplicate(winningNumber);
     }
     }

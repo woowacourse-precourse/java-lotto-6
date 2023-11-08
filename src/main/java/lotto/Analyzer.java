@@ -31,10 +31,10 @@ public class Analyzer {
     public Map<Integer, Integer> fillTicketResults(int ticket, List<Integer> winningNumbers,
                                                    List<List<Integer>> allTicketNumbers, int bonusNumber) {
         Map<Integer, Integer> ticketResults = new HashMap<>();
-        for (int i = 0; i < ticket; i++) {
+        for (int i = 1; i <= ticket; i++) {
             ticketResults.putIfAbsent(i, 0);
         }
-        for (int i = 0; i < ticket; i++) {
+        for (int i = 1; i <= ticket; i++) {
             int rank = check(winningNumbers, allTicketNumbers.get(i), bonusNumber);
             ticketResults.put(rank, ticketResults.get(rank) + 1);
         }
@@ -44,8 +44,9 @@ public class Analyzer {
     public double calculateYield(int purchaseAmount, Map<Integer, Integer> ticketResults) {
         int totalPrize = 0;
         double yieldRate;
-        for (int i = 0; i < 5; i++) {
-            totalPrize += getPrizeMoney(ticketResults.get(i));
+        for (int i = 1; i < 6; i++) {
+            ticketResults.putIfAbsent(i, 0);
+            totalPrize += getPrizeMoney(i) * ticketResults.get(i);
         }
         yieldRate = (double) totalPrize / purchaseAmount * 100;
         return Math.round(yieldRate * 100.0) / 100.0;

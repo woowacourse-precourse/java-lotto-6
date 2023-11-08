@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.config.GameConfig.LOTTO_NUMBERS_LENGTH;
-import static lotto.exception.ErrorMessage.LOTTO_NUMBER_DUPLICATED;
-import static lotto.exception.ErrorMessage.LOTTO_NUMBER_INPUT_LENGTH_INVALID;
+import static lotto.exception.ErrorMessage.LOTTO_NUMBERS_DUPLICATED;
+import static lotto.exception.ErrorMessage.LOTTO_NUMBERS_INPUT_LENGTH_INVALID;
 
 public class Lotto {
     private final List<LottoNumber> lottoNumbers;
@@ -27,7 +27,7 @@ public class Lotto {
     private static void validateLottoNumbersLength(List<Integer> numbers) {
         if (isLengthInvalid(numbers)) {
             throw new IllegalArgumentException(String.format(
-                    LOTTO_NUMBER_INPUT_LENGTH_INVALID.getMessage(),
+                    LOTTO_NUMBERS_INPUT_LENGTH_INVALID.getMessage(),
                     LOTTO_NUMBERS_LENGTH.getNumber())
             );
         }
@@ -39,7 +39,7 @@ public class Lotto {
 
     private static void validateIsNumberDuplicate(List<Integer> numbers) {
         if (isNumberDuplicated(numbers)) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATED.getMessage());
+            throw new IllegalArgumentException(LOTTO_NUMBERS_DUPLICATED.getMessage());
         }
     }
 

@@ -2,7 +2,7 @@ package lotto.domain.lotto;
 
 import static lotto.config.GameConfig.MAXIMUM_LOTTO_NUMBER;
 import static lotto.config.GameConfig.MINIMUM_LOTTO_NUMBER;
-import static lotto.exception.ErrorMessage.BONUS_NUMBER_RANGE_INVALID;
+import static lotto.exception.ErrorMessage.LOTTO_NUMBER_RANGE_INVALID;
 
 public class LottoNumber {
 
@@ -24,7 +24,7 @@ public class LottoNumber {
     private static void validateLottoNumberRange(Integer lottoNumber) {
         if (isNumberRangeInvalid(lottoNumber)) {
             throw new IllegalArgumentException(String.format(
-                    BONUS_NUMBER_RANGE_INVALID.getMessage(),
+                    LOTTO_NUMBER_RANGE_INVALID.getMessage(),
                     MINIMUM_LOTTO_NUMBER.getNumber(),
                     MAXIMUM_LOTTO_NUMBER.getNumber())
             );

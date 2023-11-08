@@ -54,7 +54,7 @@ public class InputValidator {
     private static void validateLottoNumberRange(String input) {
         if (parseInt(input) < 1 || parseInt(input) > 45) {
             throw new IllegalArgumentException(String.format(
-                    BONUS_NUMBER_RANGE_INVALID.getMessage(),
+                    LOTTO_NUMBER_RANGE_INVALID.getMessage(),
                     MINIMUM_LOTTO_NUMBER.getNumber(),
                     MAXIMUM_LOTTO_NUMBER.getNumber())
             );
@@ -77,7 +77,7 @@ public class InputValidator {
 
     private static void validateIsRightFormat(String input) {
         if (!isRightFormat(input)) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_INPUT_INVALID_FORMAT.getMessage());
+            throw new IllegalArgumentException(LOTTO_NUMBERS_INPUT_INVALID_FORMAT.getMessage());
         }
     }
 
@@ -91,7 +91,7 @@ public class InputValidator {
     private static void validateLottoNumbersLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(String.format(
-                    LOTTO_NUMBER_INPUT_LENGTH_INVALID.getMessage(),
+                    LOTTO_NUMBERS_INPUT_LENGTH_INVALID.getMessage(),
                     LOTTO_NUMBERS_LENGTH.getNumber())
             );
         }
@@ -99,7 +99,7 @@ public class InputValidator {
 
     private static void validateIsNumberDuplicate(List<Integer> numbers) {
         if (isNumberDuplicated(numbers)) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATED.getMessage());
+            throw new IllegalArgumentException(LOTTO_NUMBERS_DUPLICATED.getMessage());
         }
     }
 

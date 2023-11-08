@@ -11,21 +11,29 @@ public class LottoGame {
     private Lotto target;
     private List<Lotto> lottos;
 
-    public void init() {
+    public void initCost() {
         while (cost == Integer.MIN_VALUE) {
-            initCost();
-        }
-
-        while (Objects.isNull(target)) {
-            initTarget();
-        }
-
-        while (bonusNumber == Integer.MIN_VALUE) {
-            initBonusNumber();
+            readCost();
         }
     }
 
-    private void initCost() {
+    public void initTarget() {
+        while (Objects.isNull(target)) {
+            readTarget();
+        }
+    }
+
+    public void initBonusNumber() {
+        while (bonusNumber == Integer.MIN_VALUE) {
+            readBonusNumber();
+        }
+    }
+
+    public void initLottos() {
+
+    }
+
+    private void readCost() {
         try {
             cost = LottoGameConsole.readCost();
         } catch (NumberFormatException e) {
@@ -35,7 +43,7 @@ public class LottoGame {
         }
     }
 
-    private void initTarget() {
+    private void readTarget() {
         try {
             target = LottoGameConsole.readTargetLotto();
         } catch (NumberFormatException e) {
@@ -45,7 +53,7 @@ public class LottoGame {
         }
     }
 
-    private void initBonusNumber() {
+    private void readBonusNumber() {
         try {
             bonusNumber = LottoGameConsole.readBonusNumber();
         } catch (NumberFormatException e) {

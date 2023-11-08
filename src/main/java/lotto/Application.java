@@ -53,5 +53,16 @@ public class Application {
         printLotto(lottoList);
 
         System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> luckyNumbers = new ArrayList<>();
+        while (true) {
+            try {
+                String luckyNumberString = Console.readLine();
+                Validator.LuckyNumberValidation(luckyNumberString);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("다시 당첨 번호를 입력해주세요.");
+            }
+        }
     }
 }

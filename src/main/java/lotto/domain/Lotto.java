@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.validation.LottoNumbersValidator;
 
 public class Lotto {
@@ -16,4 +17,10 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    public String getFormalizedNumbers() {
+        return numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", "));
+    }
 }

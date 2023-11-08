@@ -27,6 +27,10 @@ public class LottoController {
         this.resultCalculator = resultCalculator;
     }
 
+    public List<Result> getResults() {
+        return results;
+    }
+
     public void run() {
         enterLottoAmount();
         printLottoAmount();

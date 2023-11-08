@@ -17,11 +17,11 @@ public class LottoService {
     private static final String COMMON_ERROR_MESSAGE = "[ERROR] ";
     private static final String LOTTO_NUMBER_MESSAGE = COMMON_ERROR_MESSAGE + "당첨 번호는 ";
     private static final String BONUS_NUMBER_MESSAGE = COMMON_ERROR_MESSAGE + "보너스 번호는 ";
-    private static final String BUY_AMOUNT_MESSAGE = COMMON_ERROR_MESSAGE + "구입 가격은 ";
+    private static final String BUY_AMOUNT_MESSAGE = COMMON_ERROR_MESSAGE + "구입 금액은 ";
 
     private static final String INVALID_BUY_AMOUNT = BUY_AMOUNT_MESSAGE + "1000원 단위로 입력해야 합니다.";
 
-    private static final String INVALID_LOTTO_SIZE_MESSAGE = "6자리의 숫자여야 합니다.";
+    private static final String INVALID_LOTTO_SIZE_MESSAGE = "쉼표(,)로 구분된 6자리의 숫자여야 합니다.";
     private static final String DUPLICATE_MESSAGE = "서로 중복 될 수 없습니다.";
     private static final String ONLY_NUMBER_MESSAGE = "숫자로만 이루어져야 합니다.";
     private static final String INVALID_NUMBER_RANGE_MESSAGE = "1~45 사이의 숫자여야 합니다.";
@@ -58,9 +58,7 @@ public class LottoService {
     }
 
     public void buyLottoAmountValidate(String inputBuyLottoAmount) {
-        if (!isInteger(inputBuyLottoAmount)) {
-            throw new IllegalArgumentException(BUY_AMOUNT_MESSAGE + ONLY_NUMBER_MESSAGE);
-        }
+        validateIsInteger(inputBuyLottoAmount);
 
         int buyLottoAmount = Integer.parseInt(inputBuyLottoAmount);
         if (buyLottoAmount % LOTTO_PRICE_PER_TICKET != 0 || buyLottoAmount == 0) {
@@ -77,12 +75,7 @@ public class LottoService {
         }
 
         for (String tempUserLottoNumber : tempUserLottoNumbers) {
-            // 각 로또 번호가 숫자인지 체크한다.
-            if (!isInteger(tempUserLottoNumber)) {
-                throw new IllegalArgumentException(LOTTO_NUMBER_MESSAGE + ONLY_NUMBER_MESSAGE);
-            }
-
-            // 로또 번호가 1~45 사이의 값인지 체크한다.
+            validateIsInteger(tempUserLottoNumber);
             validateRangeNumber(tempUserLottoNumber);
         }
 
@@ -93,12 +86,7 @@ public class LottoService {
     }
 
     public void userBonusNumberValidate(String inputUserLottoNumbers, String inputUserBonusNumber) {
-        // 숫자인지 체크
-        if (!isInteger(inputUserBonusNumber)) {
-            throw new IllegalArgumentException(BONUS_NUMBER_MESSAGE + ONLY_NUMBER_MESSAGE);
-        }
-
-        // 1~45 범위에 있는지 체크
+        validateIsInteger(inputUserBonusNumber);
         validateRangeNumber(inputUserBonusNumber);
 
         // 사용자가 입력한 당첨 번호와 중복되는지 체크
@@ -109,12 +97,11 @@ public class LottoService {
         }
     }
 
-    public boolean isInteger(String strValue) {
+    private void validateIsInteger(String number) {
         try {
-            Integer.parseInt(strValue);
-            return true;
+            Integer.parseInt(number);
         } catch (NumberFormatException ex) {
-            return false;
+            throw new IllegalArgumentException(COMMON_ERROR_MESSAGE + ONLY_NUMBER_MESSAGE);
         }
     }
 

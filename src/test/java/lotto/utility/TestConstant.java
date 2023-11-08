@@ -8,7 +8,8 @@ public enum TestConstant {
     CONSTANT_ONE(1),
     VALID_GRADE(3),
     NOT_VALID_GRADE(7),
-    VALID_MATCHED_NUMBER(5);
+    VALID_MATCHED_NUMBER(5),
+    BONUS_NUMBER(7)
     ;
 
     private final int constant;

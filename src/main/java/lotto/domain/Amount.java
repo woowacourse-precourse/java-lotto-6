@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.validation.AmountException;
 
 public class Amount {
+    private static final int MAX_LOTTO_PRICE = 100_000;
     private static final int ONE_LOTTO_PRICE = 1_000;
     private static final int PERCENTAGE = 100;
 
@@ -14,8 +15,15 @@ public class Amount {
     }
 
     private void validate(int value) {
+        isLessThanEqualMostValue(value);
         isGreaterThanEqualLeastValue(value);
         isMultiple(value);
+    }
+
+    private static void isLessThanEqualMostValue(int value) {
+        if (value > MAX_LOTTO_PRICE) {
+            throw AmountException.MOST_VALUE_EXCEPTION.getException();
+        }
     }
 
     private void isGreaterThanEqualLeastValue(int value) {

@@ -15,4 +15,8 @@ public class LottoCost {
             throw new IllegalArgumentException("1000원 단위로 입력해주세요.");
         }
     }
+
+    public int getLottoCount() {
+        return lottoCost / 1000;
+    }
 }

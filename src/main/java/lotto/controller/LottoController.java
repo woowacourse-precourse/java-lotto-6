@@ -23,8 +23,8 @@ public class LottoController implements LottoFinalConsts {
         LottoMachine lottoMachine = lottoService.createLottoMachine(lottoPurchase, lottoPurchaseReturn);
         lottoView.printPublishedLotto(lottoMachine.getLottos());
 
-        String winningNumber = lottoView.inputLottoWinningNumber();
-        String bonusNumber = lottoView.inputLottoBonusNumber();
+        final String winningNumber = lottoView.inputLottoWinningNumber();
+        final String bonusNumber = lottoView.inputLottoBonusNumber();
 
         runLottoMachine(lottoMachine, winningNumber, bonusNumber);
 

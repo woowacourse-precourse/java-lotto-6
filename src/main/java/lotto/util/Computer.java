@@ -8,18 +8,14 @@ import java.util.List;
 import lotto.Lotto;
 import lotto.enums.LottoNumberRange;
 import lotto.enums.LottoRank;
-import lotto.model.Result;
-import lotto.model.User;
 
 public class Computer {
 
-    public void getLottoNumber(Result result) {
+    public Lotto getLottoNumber() {
         while (true) {
             try {
                 List<Integer> numbers = getRandomNumber();
-                Lotto lotto = new Lotto(numbers);
-                result.addLottoTicket(lotto);
-                break;
+                return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

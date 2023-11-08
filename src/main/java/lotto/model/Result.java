@@ -19,8 +19,8 @@ public class Result {
         return winningCount;
     }
 
-    public void addLottoTicket(Lotto lotto) {
-        lottoTickets.add(lotto);
+    public void setLottoTicket(List<Lotto> lottoTickets) {
+        this.lottoTickets = lottoTickets;
     }
 
     public List<Lotto> getLottoTicket() {

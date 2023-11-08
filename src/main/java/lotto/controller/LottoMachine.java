@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import lotto.Lotto;
@@ -29,9 +30,11 @@ public class LottoMachine {
     }
 
     public void drawLottoNumber() {
+        List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < user.getLottoTicketCount(); i++) {
-            computer.getLottoNumber(result);
+            lottoTickets.add(computer.getLottoNumber());
         }
+        result.setLottoTicket(lottoTickets);
         outputView.printLottoNumber(result.getLottoTicket(), user);
     }
 

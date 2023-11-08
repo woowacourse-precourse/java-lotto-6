@@ -29,6 +29,7 @@ public class LottoMachine {
         System.out.println(lottoToString(myLottos));
         Lotto lotto = setWinningNumbers();
         int bonus = setBonusNumber(lotto);
+        List<LottoResult> lottoResults = getCountingMatches(lotto, bonus, myLottos);
     }
 
     public int setLottoCount() {
@@ -59,6 +60,14 @@ public class LottoMachine {
             ret.append("\n");
         });
         return ret.toString().trim();
+    }
+
+    public List<LottoResult> getCountingMatches(Lotto lotto, int bonus, List<List<Integer>> myLottos) {
+        List<LottoResult> count = new ArrayList<>();
+        myLottos.forEach(i -> {
+            count.add(new LottoResult(i, lotto, bonus));
+        });
+        return count;
     }
 
     private Lotto setWinningNumbers() {

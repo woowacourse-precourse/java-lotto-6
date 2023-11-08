@@ -16,16 +16,13 @@ import lotto.view.OutputView;
 
 public class LottoController {
     private final InputView inputView;
-    private final LottoShop lottoShop;
     private final OutputView outputView;
     private final LottoService lottoService;
     private final Bank bank;
     private Player player;
 
-    public LottoController(InputView inputView, LottoShop lottoShop, OutputView outputView, LottoService lottoService,
-                           Bank bank) {
+    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService, Bank bank) {
         this.inputView = inputView;
-        this.lottoShop = lottoShop;
         this.outputView = outputView;
         this.lottoService = lottoService;
         this.bank = bank;
@@ -62,9 +59,8 @@ public class LottoController {
     }
 
     private void createLottos(String input) {
-        player = new Player(input, lottoShop);
-        LottosInfoDto lottosInfoDto = player.buyLottos();
-        printLottosNumberAndTicket(lottosInfoDto);
+        player = new Player(input);
+        printLottosNumberAndTicket(player.buyLottos());
     }
 
     private void printLottosNumberAndTicket(LottosInfoDto lottosInfoDto) {

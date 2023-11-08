@@ -6,15 +6,14 @@ import lotto.dto.response.LottosInfoDto;
 
 public class Player {
     private final int money;
-    private final LottoShop lottoShop;
     private Lottos lottos;
 
-    public Player(String input, LottoShop lottoShop) {
+    public Player(String input) {
         this.money = Integer.parseInt(input);
-        this.lottoShop = lottoShop;
     }
 
     public LottosInfoDto buyLottos() {
+        LottoShop lottoShop = new LottoShop();
         LottosInfoDto lottosInfoDto = lottoShop.sellLottos(money);
         this.lottos = new Lottos(lottosInfoDto.lottosNumbers());
         return lottosInfoDto;

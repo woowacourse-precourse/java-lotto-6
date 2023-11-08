@@ -86,27 +86,39 @@ public class LottoGame {
     }
 
     private Lotto getBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-
-        List<Integer> bonusNumber = new ArrayList<>();
-
-        try {
-            bonusNumber.add(Integer.parseInt(Console.readLine()));
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException("[ERROR] 숫자를 입력해 주세요.");
+        List<Integer> bonusNumber;
+        Lotto lotto;
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                bonusNumber = new ArrayList<>();
+                bonusNumber.add(Integer.parseInt(Console.readLine()));
+                lotto = new Lotto(bonusNumber, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO_BONUS_NUMBER);
+                System.out.println();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-
-        System.out.println();
-        return new Lotto(bonusNumber, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO_BONUS_NUMBER);
+        return lotto;
     }
 
 
     private Lotto getWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> winningNumbers = Arrays.stream(Console.readLine().split(",")).map(Integer::parseInt).toList();
-        System.out.println();
-
-        return new Lotto(winningNumbers, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO_NUMBERS);
+        List<Integer> winningNumbers;
+        Lotto lotto;
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                winningNumbers = Arrays.stream(Console.readLine().split(",")).map(Integer::parseInt).toList();
+                lotto = new Lotto(winningNumbers, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO_NUMBERS);
+                System.out.println();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return lotto;
     }
 
     private void printGeneratedNumbers(int ticketQuantity, List<Lotto> tickets) {
@@ -132,6 +144,23 @@ public class LottoGame {
     }
 
     private int getTicketPurchaseAmount() {
+        int ticketPurchaseAmount = 0;
+
+        while (true) {
+            try {
+                String input = getInput();
+                validatePurchaseAmount(input);
+                ticketPurchaseAmount = Integer.parseInt(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return ticketPurchaseAmount;
+    }
+
+    private String getInput() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
         validatePurchaseAmount(input);

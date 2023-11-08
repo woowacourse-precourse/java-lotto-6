@@ -4,7 +4,7 @@ import lotto.domain.Result;
 
 import java.util.List;
 
-import static lotto.view.ViewMessage.*;
+import static lotto.enums.ViewMessage.*;
 
 public class OutputView {
 

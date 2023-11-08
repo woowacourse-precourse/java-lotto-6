@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.enums;
 
 public enum UtilNumber {
     LOTTO_LENGTH(6),

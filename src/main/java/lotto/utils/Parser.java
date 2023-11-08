@@ -2,8 +2,8 @@ package lotto.utils;
 
 import lotto.exception.LottoGameException;
 
-import static lotto.utils.UtilNumber.LOTTO_COST;
-import static lotto.exception.ErrorMessage.NOT_INTEGER_ERROR_MESSAGE;
+import static lotto.enums.UtilNumber.LOTTO_COST;
+import static lotto.enums.ErrorMessage.NOT_INTEGER_ERROR_MESSAGE;
 
 public class Parser {
 

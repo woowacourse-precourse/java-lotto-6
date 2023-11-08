@@ -6,7 +6,7 @@ import lotto.exception.LottoGameException;
 
 import java.util.List;
 
-import static lotto.utils.UtilNumber.*;
+import static lotto.enums.UtilNumber.*;
 
 public class LottoMachine {
 

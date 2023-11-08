@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.enums;
 
 public enum ErrorMessage {
     NOT_INTEGER_ERROR_MESSAGE("[ERROR] 숫자를 입력해 주세요."),

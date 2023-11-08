@@ -5,8 +5,8 @@ import lotto.exception.LottoGameException;
 import java.util.HashSet;
 import java.util.List;
 
-import static lotto.exception.ErrorMessage.*;
-import static lotto.utils.UtilNumber.*;
+import static lotto.enums.ErrorMessage.*;
+import static lotto.enums.UtilNumber.*;
 
 public class LottoValidator {
     public static void validInRangeNumber(List<Integer> numbers) throws LottoGameException {

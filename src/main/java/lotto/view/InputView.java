@@ -2,7 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static lotto.view.ViewMessage.*;
+import static lotto.enums.ViewMessage.*;
 
 public class InputView {
 

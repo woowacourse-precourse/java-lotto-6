@@ -31,6 +31,7 @@ public class GameController {
 
             OutputView.printResult(result);
             OutputView.printIncomeRate(calculator.calculateIncomeRate(result, payment));
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

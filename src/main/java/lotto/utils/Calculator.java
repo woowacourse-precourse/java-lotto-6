@@ -6,7 +6,7 @@ import lotto.domain.Result;
 
 import java.util.List;
 
-import static lotto.utils.UtilNumber.*;
+import static lotto.enums.UtilNumber.*;
 
 public class Calculator {
     private final Result result;

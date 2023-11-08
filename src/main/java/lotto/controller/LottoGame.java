@@ -68,7 +68,7 @@ public class LottoGame {
                 revenue += lottoUtil.getStatisticsValue(num) * sameCnt;
             }
         });
-        System.out.println("총 수익률은 " + String.format("%.0f", revenue / money.getInputMoney()) + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", revenue / money.getInputMoney() * 100) + "%입니다.");
     }
 
     public Map<String, Integer> getResultStatistics(List<List<Integer>> myLottos) {

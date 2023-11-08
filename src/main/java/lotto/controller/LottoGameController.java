@@ -22,7 +22,9 @@ public class LottoGameController {
         LottoPlayerNumbers lottoPlayerNumbers = generateLottoPlayerNumbers(numberOfLottoTickets);
         OutputView.outputLottoPlayerNumbers(lottoPlayerNumbers);
 
-        WinningLotto winningLotto = createWinningLotto();
+        Lotto lotto = getLotto();
+
+        WinningLotto winningLotto = createWinningLotto(lotto);
         Statistics statistics = calculateStatistics(lottoPlayerNumbers, winningLotto);
         OutputView.outputStatistics(statistics);
 
@@ -43,11 +45,13 @@ public class LottoGameController {
         return new LottoPlayerNumbers(numberOfLottoTickets);
     }
 
-    private WinningLotto createWinningLotto() {
-        Lotto lotto = getLotto();
-        BonusNumber bonusNumber = getBonusNumber();
-
-        return new WinningLotto(lotto, bonusNumber);
+    private WinningLotto createWinningLotto(Lotto lotto) {
+        try {
+            return new WinningLotto(lotto, getBonusNumber());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createWinningLotto(lotto);
+        }
     }
 
     private Lotto getLotto() {

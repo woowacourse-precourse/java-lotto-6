@@ -52,10 +52,7 @@ public class Input {
         }
         return bonusNumber;
     }
-
-    private void printLottoTicket(Lotto lo) {
-        System.out.println(lo.getNumbers());
-    }
+    
     private String inputPurchaseAmount() throws IllegalArgumentException {
         String purchaseAmount = Console.readLine();
         if(PurcahseAmountValidator.validate(purchaseAmount));

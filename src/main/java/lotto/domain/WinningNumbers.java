@@ -21,7 +21,7 @@ public class WinningNumbers {
     }
 
     private List<Integer> getWinningNumberList(String strNum) {
-        return Arrays.stream(strNum.split(AppConstants.INPUT_DELIMITER.name()))
+        return Arrays.stream(strNum.split(AppConstants.INPUT_DELIMITER))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }

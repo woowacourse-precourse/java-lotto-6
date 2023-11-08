@@ -1,19 +1,10 @@
 package lotto.constants;
-public enum AppConstants {
-    RANDOM_RANGE_BEGIN("1"),
-    RANDOM_RANGE_END("45"),
-    LOTTO_LENGTH("6"),
-    LOTTO_TICKET_PRICE("1000"),
-    INPUT_DELIMITER(",");
+public final class AppConstants {
+    public static final int RANDOM_RANGE_MIN = 1;
+    public static final int RANDOM_RANGE_MAX = 45;
+    public static final int LOTTO_LENGTH = 6;
+    public static final int LOTTO_TICKET_PRICE = 1000;
+    public static final String INPUT_DELIMITER = ",";
 
-
-    private final String constants;
-
-    AppConstants(String str) {
-        this.constants =  str;
-    }
-
-    public String getData() {
-        return constants;
-    }
+    private AppConstants() {}
 }

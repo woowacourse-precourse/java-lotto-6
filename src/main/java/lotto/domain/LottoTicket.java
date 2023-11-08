@@ -15,7 +15,7 @@ public class LottoTicket {
     public LottoTicket(int purchaseAmount) {
         // 사용자로부터 입력된 금액으로 로또 티켓 수량을 계산하고 필드에 저장
         this.purchaseAmount = purchaseAmount;
-        this.purchaseQuantity = purchaseAmount / Integer.parseInt(AppConstants.LOTTO_LENGTH.name());
+        this.purchaseQuantity = purchaseAmount / AppConstants.LOTTO_LENGTH;
         this.lottoList = publishLotto();
     }
     private List<Lotto> publishLotto() {
@@ -31,10 +31,8 @@ public class LottoTicket {
 
     private List<Integer> getUniqueNumbersList() {
         // 범위 내 랜덤 값 반환
-        int begin = Integer.parseInt(AppConstants.RANDOM_RANGE_BEGIN.name());
-        int end = Integer.parseInt(AppConstants.RANDOM_RANGE_END.name());
-        int length = Integer.parseInt(AppConstants.LOTTO_LENGTH.name());
-        return Randoms.pickUniqueNumbersInRange(begin, end, length);
+        return Randoms.pickUniqueNumbersInRange(AppConstants.RANDOM_RANGE_MIN,
+                AppConstants.RANDOM_RANGE_MAX, AppConstants.LOTTO_LENGTH);
     }
 
     public List<Lotto> getLottoList() {

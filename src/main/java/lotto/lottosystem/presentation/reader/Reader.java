@@ -37,7 +37,7 @@ public class Reader {
         if (validateNumbers(numbers)) {
             return new Lotto(parseNumbers(numbers));
         }
-        throw new IllegalArgumentException("당첨 번호는 공백을 제외한 숫자와 숫자 사이의 콤마만 입력 가능합니다.");
+        throw new IllegalArgumentException("[ERROR] 당첨 번호는 공백을 제외한 숫자와 숫자 사이의 콤마만 입력 가능합니다.");
     }
 
     private int readNumber() {
@@ -45,7 +45,7 @@ public class Reader {
         if (validateNumber(number)) {
             return Integer.parseInt(number);
         }
-        throw new IllegalArgumentException("보너스 번호는 숫자만 입력 가능합니다.");
+        throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
     }
 
     private boolean validateNumbers(String rawNumbers) {

@@ -30,7 +30,7 @@ public class LottoService {
 
     private void validateMoney(int money) {
         if ((money % ONE_LOTTO_EXPENCE) != 0) {
-            throw new IllegalArgumentException("구입 금액은 1000원 단위여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
         }
     }
 

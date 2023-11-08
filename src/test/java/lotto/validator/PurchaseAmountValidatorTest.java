@@ -3,7 +3,7 @@ package lotto.validator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static lotto.validator.ErrorMessage.*;
+import static lotto.message.ErrorMessage.*;
 
 class PurchaseAmountValidatorTest {
     PurchaseAmountValidator validator = new PurchaseAmountValidator();
@@ -21,7 +21,7 @@ class PurchaseAmountValidatorTest {
 
         Assertions.assertThatIllegalArgumentException().
                 isThrownBy(() -> validator.validate(input)).
-                withMessage(PURCHASE_AMOUNT_IS_NOT_NUMERIC_MESSAGE);
+                withMessage(PURCHASE_AMOUNT_IS_NOT_NUMERIC_MESSAGE.getMessage());
     }
 
     @Test
@@ -31,10 +31,10 @@ class PurchaseAmountValidatorTest {
 
         Assertions.assertThatIllegalArgumentException().
                 isThrownBy(() -> validator.validate(input1)).
-                withMessage(PURCHASE_AMOUNT_IS_NOT_JUSTIFIED_MESSAGE);
+                withMessage(PURCHASE_AMOUNT_IS_NOT_JUSTIFIED_MESSAGE.getMessage());
         Assertions.assertThatIllegalArgumentException().
                 isThrownBy(() -> validator.validate(input2)).
-                withMessage(PURCHASE_AMOUNT_IS_NOT_JUSTIFIED_MESSAGE);
+                withMessage(PURCHASE_AMOUNT_IS_NOT_JUSTIFIED_MESSAGE.getMessage());
 
     }
 

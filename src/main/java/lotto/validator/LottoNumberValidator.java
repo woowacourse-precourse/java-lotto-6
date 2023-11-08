@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import static lotto.validator.ErrorMessage.*;
+import static lotto.message.ErrorMessage.*;
 
 public class LottoNumberValidator {
 
@@ -24,7 +24,7 @@ public class LottoNumberValidator {
 
     private void isLottoNumbersSizeJustified(List<String> tokenList) {
         if (tokenList.size() != 6) {
-            throw new IllegalArgumentException(LOTTO_NUMBERS_ARE_NOT_ENOUGH_MESSAGE);
+            throw new IllegalArgumentException(LOTTO_NUMBERS_ARE_NOT_ENOUGH_MESSAGE.getMessage());
         }
     }
 
@@ -42,14 +42,14 @@ public class LottoNumberValidator {
         List<Integer> deduplicationList = numList.stream().distinct().toList();
 
         if (numList.size() != deduplicationList.size()) {
-            throw new IllegalArgumentException(LOTTO_NUMBERS_ARE_DUPLICATED_MESSAGE);
+            throw new IllegalArgumentException(LOTTO_NUMBERS_ARE_DUPLICATED_MESSAGE.getMessage());
         }
     }
 
     private void areNumbersInRange(List<Integer> list) {
         for (int number : list) {
             if (number < MIN_BONUS_NUMBER || MAX_BONUS_NUMBER < number) {
-                throw new IllegalArgumentException(LOTTO_NUMBERS_ARE_NOT_IN_RANGE_MESSAGE);
+                throw new IllegalArgumentException(LOTTO_NUMBERS_ARE_NOT_IN_RANGE_MESSAGE.getMessage());
             }
         }
 
@@ -72,7 +72,7 @@ public class LottoNumberValidator {
             try {
                 Integer.parseInt(token);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(LOTTO_NUMBERS_ARE_NOT_NUMERIC_MESSAGE);
+                throw new IllegalArgumentException(LOTTO_NUMBERS_ARE_NOT_NUMERIC_MESSAGE.getMessage());
             }
         }
     }

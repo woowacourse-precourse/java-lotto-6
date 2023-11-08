@@ -3,7 +3,7 @@ package lotto.validator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static lotto.validator.ErrorMessage.*;
+import static lotto.message.ErrorMessage.*;
 
 class LottoNumberValidatorTest {
 
@@ -20,7 +20,7 @@ class LottoNumberValidatorTest {
         String input = "asd,asd,asd,asd,asd";
         Assertions.assertThatIllegalArgumentException().
                 isThrownBy(() -> validator.validate(input)).
-                withMessage(LOTTO_NUMBERS_ARE_NOT_NUMERIC_MESSAGE);
+                withMessage(LOTTO_NUMBERS_ARE_NOT_NUMERIC_MESSAGE.getMessage());
     }
 
     @Test
@@ -30,11 +30,11 @@ class LottoNumberValidatorTest {
 
         Assertions.assertThatIllegalArgumentException().
                 isThrownBy(() -> validator.validate(input1)).
-                withMessage(LOTTO_NUMBERS_ARE_NOT_ENOUGH_MESSAGE);
+                withMessage(LOTTO_NUMBERS_ARE_NOT_ENOUGH_MESSAGE.getMessage());
 
         Assertions.assertThatIllegalArgumentException().
                 isThrownBy(() -> validator.validate(input2)).
-                withMessage(LOTTO_NUMBERS_ARE_NOT_ENOUGH_MESSAGE);
+                withMessage(LOTTO_NUMBERS_ARE_NOT_ENOUGH_MESSAGE.getMessage());
     }
 
     @Test
@@ -44,24 +44,21 @@ class LottoNumberValidatorTest {
 
         Assertions.assertThatIllegalArgumentException().
                 isThrownBy(() -> validator.validate(input1)).
-                withMessage(LOTTO_NUMBERS_ARE_NOT_IN_RANGE_MESSAGE);
+                withMessage(LOTTO_NUMBERS_ARE_NOT_IN_RANGE_MESSAGE.getMessage());
 
         Assertions.assertThatIllegalArgumentException().
                 isThrownBy(() -> validator.validate(input2)).
-                withMessage(LOTTO_NUMBERS_ARE_NOT_IN_RANGE_MESSAGE);
+                withMessage(LOTTO_NUMBERS_ARE_NOT_IN_RANGE_MESSAGE.getMessage());
     }
 
     @Test
     void
     로또번호가_중복되지_않았는지_검증() {
-        String input="1,2,2,3,4,5";
+        String input = "1,2,2,3,4,5";
 
         Assertions.assertThatIllegalArgumentException().
                 isThrownBy(() -> validator.validate(input)).
-                withMessage(LOTTO_NUMBERS_ARE_DUPLICATED_MESSAGE);
-
+                withMessage(LOTTO_NUMBERS_ARE_DUPLICATED_MESSAGE.getMessage());
 
     }
-
-
 }

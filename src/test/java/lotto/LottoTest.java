@@ -1,11 +1,14 @@
 package lotto;
 
+import lotto.vo.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -24,4 +27,19 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+    @DisplayName("출력할 때 오름차순으로 로또 번호 정렬")
+    @Test
+    void test(){
+        List<Integer> list = new ArrayList<>();
+        list.add(8);
+        list.add(17);
+        list.add(30);
+        list.add(2);
+        list.add(44);
+        list.add(5);
+        Lotto lotto = new Lotto(list);
+
+        assertEquals("[2, 5, 8, 17, 30, 44]", String.valueOf(lotto.getNumbersForPrint()));
+    }
 }

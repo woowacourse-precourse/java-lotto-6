@@ -10,8 +10,7 @@ import lotto.view.UI;
 public class LottoController {
 
     public void start() {
-        String lottoPurchaseRequest = lottoOrderRequest();
-        LottoStore lottoStore = buyLottoTicketRequest(lottoPurchaseRequest);
+        LottoStore lottoStore = buyLottoTicketRequest();
         respondLottoTicketsHistory(lottoStore.getUserLottoTickets());
         Lotto winningLotto = createWinningNumbers();
         int bonusNumber = createBonusNumber(winningLotto);
@@ -20,11 +19,39 @@ public class LottoController {
         UI.displayLottoReceipt(lottoReceipt);
     }
 
-    public LottoStore buyLottoTicketRequest(String lottoPurchaseRequest) {
 
-        LottoStore lottoStore = new LottoStore();
-        lottoStore.buyLottoTickets(lottoPurchaseRequest);
-        return lottoStore;
+    public LottoStore buyLottoTicketRequest() {
+        while (true) {
+            try {
+                String lottoPurchaseRequest = UI.sendLottoPurchaseRequest();
+                LottoStore lottoStore = new LottoStore();
+                lottoStore.buyLottoTickets(lottoPurchaseRequest);
+                return lottoStore;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public Lotto createWinningNumbers() {
+        while (true) {
+            try {
+                String InputWinningNumbers = requestInputWinningNumbers();
+                return createLotto(InputWinningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public int createBonusNumber(Lotto winningLotto) {
+        while (true) {
+            try {
+                return winningLotto.createBonusNumber(requestBonusNumber());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void respondLottoTicketsHistory(List<Lotto> LottoTickets) {

@@ -50,7 +50,7 @@ public class WinningBonusNumber {
 
 	private static void checkInputIsEmpty(String input) {
 		if (input == null || input.isEmpty()) {
-			throw new IllegalArgumentException(ExceptionText.EMPTY.getText());
+			throw new NullPointerException(ExceptionText.EMPTY.getText());
 		}
 	}
 	private static void numbersCountCheck(String[] parts) {

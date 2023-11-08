@@ -11,7 +11,7 @@ class PriceTest {
 	@Test
 	void createPriceByEmpty() {
 		assertThatThrownBy(() -> new Price(""))
-			.isInstanceOf(IllegalArgumentException.class);
+			.isInstanceOf(NullPointerException.class);
 	}
 
 	@DisplayName("숫자가 아니면 예외가 발생한다.")
@@ -34,10 +34,5 @@ class PriceTest {
 		assertThatCode(() -> new Price("2000"))
 			.doesNotThrowAnyException();
 	}
-
-
-
-
-
 
 }

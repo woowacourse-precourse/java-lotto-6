@@ -14,7 +14,7 @@ class WinningBonusNumberTest {
 	@Test
 	void createWinningNumByEmpty() {
 		assertThatThrownBy(() -> winningBonusNumber.setWinningNumber(""))
-			.isInstanceOf(IllegalArgumentException.class);
+			.isInstanceOf(NullPointerException.class);
 	}
 
 	@DisplayName("숫자가 6개가 아니면 예외가 발생한다.")
@@ -51,7 +51,7 @@ class WinningBonusNumberTest {
 		assertThatThrownBy(() -> {
 			winningBonusNumber.setWinningNumber("1,2,3,4,5,6");
 			winningBonusNumber.setBonusNumber("");
-		}).isInstanceOf(IllegalArgumentException.class);
+		}).isInstanceOf(NullPointerException.class);
 	}
 
 	@DisplayName("범위가 1과 45 사이가 아니면 예외가 발생한다.")

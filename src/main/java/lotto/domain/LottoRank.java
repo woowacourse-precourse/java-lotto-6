@@ -30,15 +30,24 @@ public enum LottoRank {
                 .filter(winningNumbers::contains)
                 .count();
 
-        if (matchCount == SECOND.getMatchCount() && ticketNumbers.contains(bonusNumber)) {
-            return SECOND;
+        if (matchCount == 5) {
+            return determineSecondOrThird(ticketNumbers, bonusNumber);
         }
-        for (LottoRank rank : values()) {
+
+        for (LottoRank rank : LottoRank.values()) {
             if (rank.getMatchCount() == matchCount) {
                 return rank;
             }
         }
+
         return NONE;
+    }
+
+    private static LottoRank determineSecondOrThird(List<Integer> ticketNumbers, int bonusNumber) {
+        if (ticketNumbers.contains(bonusNumber)) {
+            return SECOND;
+        }
+        return THIRD;
     }
 
 }

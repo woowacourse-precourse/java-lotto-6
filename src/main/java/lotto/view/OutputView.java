@@ -2,7 +2,6 @@ package lotto.view;
 
 import lotto.constant.LottoConstant;
 import lotto.constant.LottoCount;
-import lotto.constant.OutputMessage;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +12,7 @@ public class OutputView {
     }
 
     public void printRandomSixNumbers(List<List<Integer>> randomSixNumbers) {
-        System.out.println(OutputMessage.OUTPUT_PURCHASE_AMOUNT_MESSAGE.getMessage(randomSixNumbers.size()));
+        System.out.println(String.format(LottoConstant.OUTPUT_PURCHASE_AMOUNT_MESSAGE, randomSixNumbers.size()));
         for(List<Integer> randomSixNumber : randomSixNumbers){
             System.out.println(randomSixNumber);
         }

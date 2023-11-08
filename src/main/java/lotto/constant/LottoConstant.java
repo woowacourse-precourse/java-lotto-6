@@ -20,4 +20,5 @@ public class LottoConstant {
     public static final String PROFIT_MARGIN_MESSAGE = "총 수익률은 %.1f%%입니다.";
     public static final String OUTPUT_WINNING_STATISTICS = "당첨 통계";
     public static final String OUTPUT_LINE = "---";
+    public static final String OUTPUT_PURCHASE_AMOUNT_MESSAGE = "%d개를 구매했습니다.";
 }

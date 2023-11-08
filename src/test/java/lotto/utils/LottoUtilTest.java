@@ -18,4 +18,15 @@ public class LottoUtilTest {
         List<Integer> expectedNumbers = List.of(1, 2, 3, 4, 5, 6);
         Assertions.assertEquals(expectedNumbers, lottoNumbers);
     }
+
+    @DisplayName("보너스 번호 StringToInt 타입 변환 테스트")
+    @Test
+    public void bonusNumberTypeCasting() {
+        // given
+        String bonusNumber = "7";
+        // when
+        int result = LottoUtil.bonusNumberParser(bonusNumber);
+        // then
+        Assertions.assertEquals(7, result);
+    }
 }

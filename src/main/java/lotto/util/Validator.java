@@ -8,13 +8,8 @@ import java.util.InputMismatchException;
 import java.util.List;
 
 public class Validator {
-    public static boolean validateAmount(String input) {
-        return validateAmountType(input) &&
-                validateAmountRange(Integer.parseInt(input)) &&
-                validateAmountMultiple(Integer.parseInt(input));
-    }
 
-    public static boolean validateAmountType(String input) {
+    public static boolean validateAmountType(String input){
         try {
             Integer.parseInt(input);
             return true;
@@ -49,12 +44,14 @@ public class Validator {
         }
     }
 
-    public static void validateLottoInput(String input) {
+    public static boolean validateLottoInput(String input) {
         try {
             validateLottoComma(input);
             validateLottoFormat(input);
+            return true;
         } catch (NumberFormatException e) {
             System.out.println(ExceptionType.INVALID_LOTTO_FORMAT.getMessage());
+            return false;
         }
     }
 

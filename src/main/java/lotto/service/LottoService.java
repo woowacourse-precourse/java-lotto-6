@@ -15,9 +15,9 @@ import java.util.List;
 
 public class LottoService {
 
-    public List<Lotto> issue(int amount) {
+    public List<Lotto> issue(int count) {
         List<Lotto> tickets = new ArrayList<>();
-        for (int i = 0; i < amount / Constants.TICKET_PRICE.getConstant(); i++) {
+        for (int i = 0; i < count; i++) {
             List<Integer> nums = Randoms.pickUniqueNumbersInRange(
                     Constants.START_DIGIT.getConstant(),
                     Constants.END_DIGIT.getConstant(),
@@ -31,7 +31,7 @@ public class LottoService {
         String[] inputArray = input.split(",");
         List<Integer> lottoNums = new ArrayList<>();
 
-        for(String str : inputArray) {
+        for (String str : inputArray) {
             String num = str.replaceAll("\\s", "");
             lottoNums.add(Integer.parseInt(num));
         }
@@ -90,15 +90,15 @@ public class LottoService {
     }
 
     public void printWinningStat(Result result) {
-        for(WinningType winningType : WinningType.values()) {
-            if(winningType == WinningType.MISS) {
+        for (WinningType winningType : WinningType.values()) {
+            if (winningType == WinningType.MISS) {
                 continue;
             }
             int matchedCount = winningType.getMatchedCount();
             String prize = formatWithComma(winningType.getPrize());
             int count = result.getResult().get(winningType);
 
-            if(winningType == WinningType.SECOND) {
+            if (winningType == WinningType.SECOND) {
                 System.out.println(matchedCount + "개 일치, 보너스 볼 일치 (" + prize + "원) - " + count + "개");
                 continue;
             }

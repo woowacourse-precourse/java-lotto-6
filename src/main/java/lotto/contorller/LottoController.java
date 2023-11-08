@@ -1,6 +1,7 @@
 package lotto.contorller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Amount;
 import lotto.domain.Lotto;
 import lotto.domain.Result;
 import lotto.domain.WinningLotto;
@@ -16,17 +17,18 @@ public class LottoController {
     List<Lotto> tickets;
     Result result;
     BigDecimal profitRate;
-    int amount;
+    Amount amount;
     private final LottoService ticketsService = new LottoService();
 
     public Lotto getLottoInput() {
-        System.out.println(NoticeType.WINNING_LOTTO_INPUT.getMessage());
-
         while (true) {
+            System.out.println(NoticeType.WINNING_LOTTO_INPUT.getMessage());
             String lottoInput = Console.readLine();
+            if(!Validator.validateLottoInput(lottoInput)) {
+                continue;
+            }
             try {
                 System.out.println();
-                Validator.validateLottoInput(lottoInput);
                 return ticketsService.stringToLotto(lottoInput);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -34,22 +36,24 @@ public class LottoController {
         }
     }
 
-    public int getAmountInput() {
-        System.out.println("\n" + NoticeType.AMOUNT_INPUT.getMessage());
-
+    public Amount getAmountInput() {
         while (true) {
+            System.out.println("\n" + NoticeType.AMOUNT_INPUT.getMessage());
             String amountInput = Console.readLine();
-            if (Validator.validateAmount(amountInput)) {
-                System.out.println();
-                return Integer.parseInt(amountInput);
+            if(!Validator.validateAmountType(amountInput)) {
+                continue;
+            }
+            try {
+                return new Amount(Integer.parseInt(amountInput));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
 
     public int getBonusNumInput() {
-        System.out.println(NoticeType.BONUS_NUM_INPUT.getMessage());
-
         while (true) {
+            System.out.println(NoticeType.BONUS_NUM_INPUT.getMessage());
             String bonusNumInput = Console.readLine();
 
             if (Validator.validateBonus(bonusNumInput)) {
@@ -75,7 +79,7 @@ public class LottoController {
     }
 
     public void issueTickets() {
-        tickets = ticketsService.issue(amount);
+        tickets = ticketsService.issue(amount.getTicketCount());
         printTickets();
     }
 
@@ -91,7 +95,7 @@ public class LottoController {
     }
 
     public void getProfitRate() {
-        profitRate = ticketsService.calcProfitRate(amount, result);
+        profitRate = ticketsService.calcProfitRate(amount.getAmount(), result);
     }
 
     private void printResult() {

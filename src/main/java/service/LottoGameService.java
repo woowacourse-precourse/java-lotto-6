@@ -29,6 +29,8 @@ public class LottoGameService {
         setInputBonusLottoGame();
 
         printLottoResultStatistic();
+
+        Console.close();
     }
 
     private void purchaseLottoGame(){

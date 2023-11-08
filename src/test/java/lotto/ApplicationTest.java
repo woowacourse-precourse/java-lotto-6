@@ -150,6 +150,38 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("보너스 번호 입력: 숫자가 아닌 경우")
+    @Test
+    void inputBonusNumberNotNumeric() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호 입력: 1~45에서 벗어난 숫자인 경우 예외 처리")
+    @Test
+    void inputBonusNumberOutOfRange() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호 입력: 정상")
+    @Test
+    void inputBonusNumber() {
+        assertSimpleTest(() -> {
+            run("8000", "1,2,3,4,5,6", "7");
+            assertThat(output()).contains("당첨 통계");
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

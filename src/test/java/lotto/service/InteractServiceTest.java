@@ -133,6 +133,22 @@ public class InteractServiceTest extends NsTest {
         });
     }
 
+    @DisplayName("보너스 번호가 1~45 사이에 속하지 않을 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "0", "46", "999"
+    })
+    void bonusNumOverBoundary(String input) {
+        assertSimpleTest(() -> {
+            runException(
+                    PURCHASE_FEE,
+                    LOTTO_NUM,
+                    input
+            );
+            assertThat(output()).contains(ErrorStatus.LOTTO_BOUNDARY_ERROR.getMessage());
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

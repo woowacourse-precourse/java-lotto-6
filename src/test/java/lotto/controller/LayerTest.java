@@ -1,7 +1,10 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
+import lotto.utils.message.LottoExceptionMessage;
 import lotto.utils.message.PurchaseAmountExceptionMessage;
+import lotto.utils.message.WinningInformationExceptionMessage;
 import lotto.view.InputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +22,7 @@ public class LayerTest {
 
     @Nested
     @DisplayName("구매 금액 입력 했을 때")
-    class PurchaseAmmountTest {
+    class PurchaseAmountTest {
         @ParameterizedTest
         @ValueSource(strings = {"", " ", "  ", "   ", "     ", "\n", "\t", "\r"})
         @DisplayName("[Exception] 공백 입력 시 view에서 예외가 발생한다.")
@@ -97,5 +100,102 @@ public class LayerTest {
             Assertions.assertThatCode(() -> new PurchaseAmount(inputView.readPurchaseAmount()))
                     .doesNotThrowAnyException();
         }
+
     }
+
+    @Nested
+    @DisplayName("당첨 번호를 입력했을 때")
+    class WinningNumberTest {
+
+        @ParameterizedTest
+        @ValueSource(strings = {"", " ", "  ", "   ", "     ", "\n", "\t", "\r"})
+        @DisplayName("[Exception] 공백 입력 시 view에서 예외가 발생한다.")
+        void blank(String wrongInput) {
+            InputView inputView = new InputView(() -> wrongInput);
+            Assertions.assertThatThrownBy(inputView::readWinningNumbers)
+                    .hasMessageContaining(ERROR_CODE)
+                    .hasMessage(WinningInformationExceptionMessage.BLANK.getError());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"12,13,14,15,16,18,20,10", "123,456,789,23,1,2411", "21474836472147483647 ",
+                "   ㄱ            q   !"})
+        @DisplayName("[Exception] 20자리 초과 입력 시 view에서 예외가 발생한다.")
+        void exceedLength(String wrongInput) {
+            InputView inputView = new InputView(() -> wrongInput);
+            Assertions.assertThatThrownBy(inputView::readWinningNumbers)
+                    .hasMessageContaining(ERROR_CODE)
+                    .hasMessage(WinningInformationExceptionMessage.EXCEED_WINNING_NUMBER_LENGTH.getError());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {",1,2,3,4,5,6", ",,12,23,24,25,26,17"})
+        @DisplayName("[Exception] 첫 문자로 콤마 입력 시 view에서 예외가 발생한다.")
+        void firstCharacterComma(String wrongInput) {
+            InputView inputView = new InputView(() -> wrongInput);
+            Assertions.assertThatThrownBy(inputView::readWinningNumbers)
+                    .hasMessageContaining(ERROR_CODE)
+                    .hasMessage(WinningInformationExceptionMessage.FIRST_CHARACTER_COMMA.getError());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"1,2,3,4,5,6,", "12,23,24,25,26,17,,"})
+        @DisplayName("[Exception] 마지막 문자로 콤마 입력 시 view에서 예외가 발생한다.")
+        void lastCharacterComma(String wrongInput) {
+            InputView inputView = new InputView(() -> wrongInput);
+            Assertions.assertThatThrownBy(inputView::readWinningNumbers)
+                    .hasMessageContaining(ERROR_CODE)
+                    .hasMessage(WinningInformationExceptionMessage.LAST_CHARACTER_COMMA.getError());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"1,,3,4,5,6", "12, ,24,25,26,17", "34,김,1,2,3,45", "1,2,\n,3,4,5,6"})
+        @DisplayName("[Exception] 콤마로 구분된 문자가 숫자가 아닐 시 view에서 예외가 발생한다.")
+        void notNumeric(String wrongInput) {
+            InputView inputView = new InputView(() -> wrongInput);
+            Assertions.assertThatThrownBy(inputView::readWinningNumbers)
+                    .hasMessageContaining(ERROR_CODE)
+                    .hasMessage(WinningInformationExceptionMessage.NOT_NUMERIC.getError());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"1,2,3,4,5,0", "12,13,14,46,1,3", "1,2,-1,34,42,27"})
+        @DisplayName("[Exception] 1 ~ 45 범위가 아닐 시 domain에서 예외가 발생한다.")
+        void outOfRange(String wrongInput) {
+            InputView inputView = new InputView(() -> wrongInput);
+            Assertions.assertThatThrownBy(() -> new Lotto(inputView.readWinningNumbers()))
+                    .hasMessageContaining(ERROR_CODE)
+                    .hasMessage(LottoExceptionMessage.INVALID_NUMBER.getError());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"1,2,3,4,5,1", "12,44,14,44,1,2", "1,27,34,42,27,2"})
+        @DisplayName("[Exception] 중복 숫자가 존재 시 domain에서 예외가 발생한다.")
+        void duplicate(String wrongInput) {
+            InputView inputView = new InputView(() -> wrongInput);
+            Assertions.assertThatThrownBy(() -> new Lotto(inputView.readWinningNumbers()))
+                    .hasMessageContaining(ERROR_CODE)
+                    .hasMessage(LottoExceptionMessage.DUPLICATE_EXISTS.getError());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"1", "2,3", "11,12,18", "1,2,3,4", "23,24,25,26,31", "35,36,37,38,39,40,45"})
+        @DisplayName("[Exception] 숫자가 6개가 아닐 경우 domain에서 예외가 발생한다.")
+        void outOfCount(String wrongInput) {
+            InputView inputView = new InputView(() -> wrongInput);
+            Assertions.assertThatThrownBy(() -> new Lotto(inputView.readWinningNumbers()))
+                    .hasMessageContaining(ERROR_CODE)
+                    .hasMessage(LottoExceptionMessage.NOT_SATISFY_REQUIRED_COUNT.getError());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"1,2,3,4,5,6", "1,45,2,34,23,12", "45,44,43,1,2,3"})
+        @DisplayName("[Exception] 올바른 당첨 번호이면 view와 domain에서 예외가 발생하지 않는다.")
+        void correctWinningNumber(String correctInput) {
+            InputView inputView = new InputView(() -> correctInput);
+            Assertions.assertThatCode(() -> new Lotto(inputView.readWinningNumbers()))
+                    .doesNotThrowAnyException();
+        }
+    }
+
 }

@@ -17,22 +17,34 @@ public class Input {
 
     public int getUserCash() {
         System.out.println(INPUT_USER_CASH);
-        int userCash = Integer.parseInt(Console.readLine());
-        checkCashUnit(userCash);
+        String userCashString = (Console.readLine());
+        int userCash = 0;
+        try {
+            userCash = makeStringToNum(userCashString);
+            checkCashUnit(userCash);
+        } catch (IllegalArgumentException e) {
+            getUserCash();
+        }
         return userCash;
     }
 
     public void checkCashUnit(int userCash) {
         if (userCash % 1000 != 0) {
-            System.out.println("천원맞춰오십시오");
+            System.out.println("[ERROR] 입력 금액 단위는 1000단위입니다.");
             throw new IllegalArgumentException();
         }
     }
 
     public List<Integer> printWinnerNum() {
-        System.out.println(INPUT_WIN_LOTTO_NUM);
-        String[] winnerNumList = (Console.readLine()).split(",");
-        List<Integer> winnerNum = makeList(winnerNumList);
+       List<Integer>winnerNum = new ArrayList<>();
+        try {
+            System.out.println(INPUT_WIN_LOTTO_NUM);
+            String[] winnerNumList = (Console.readLine()).split(",");
+            winnerNum = makeList(winnerNumList);
+        } catch
+        (IllegalArgumentException e) {
+            printWinnerNum();
+        }
         return winnerNum;
     }
 
@@ -50,18 +62,29 @@ public class Input {
                 winnerNumList.add(Integer.parseInt(numList[i]));
             }
         } catch (NumberFormatException exception) {
-            System.out.println("숫자를 입력하십시오");
+            System.out.println("[ERROR] 숫자를 입력하십시오.");
             throw new IllegalArgumentException();
         }
         return winnerNumList;
     }
 
-    private int makeNum (String bonusNum){
+    private int makeNum(String bonusNum) {
         int Num;
-        try{
+        try {
             Num = Integer.parseInt(bonusNum);
-        }catch(NumberFormatException exception){
-            System.out.println("숫자를 입력하십시오");
+        } catch (NumberFormatException exception) {
+            System.out.println("[ERROR] 숫자를 입력하십시오.");
+            throw new IllegalArgumentException();
+        }
+        return Num;
+    }
+
+    private int makeStringToNum(String userCash) {
+        int Num;
+        try {
+            Num = Integer.parseInt(userCash);
+        } catch (NumberFormatException exception) {
+            System.out.println("[ERROR] 숫자를 입력하십시오.");
             throw new IllegalArgumentException();
         }
         return Num;

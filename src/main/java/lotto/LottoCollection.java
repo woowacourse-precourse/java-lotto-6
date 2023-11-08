@@ -13,7 +13,7 @@ public class LottoCollection {
     public List<Lotto> lottoCollection;
     private final int numberOfLotto;
 
-    private final Map<Integer, Integer> rankingCount = new HashMap<>();
+    private Map<Integer, Integer> rankingCount = new HashMap<>();
     private final Map<Integer, Integer> rankMapping = new HashMap<>();
 
     public LottoCollection(int purchaseAmount) {
@@ -38,6 +38,7 @@ public class LottoCollection {
     }
 
     public void matchLottoNumbers(LottoResult result) {
+        rankingCount = new HashMap<>();
         int matchingCount = 0;
         boolean matchingBonusCount = false;
         for (Lotto lotto : lottoCollection) {

@@ -45,4 +45,19 @@ public class LottoController {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
+
+    public int inputBonusNumber(List<Integer> winningNumbers) {
+        lottoView.printBonusPrompt();
+        String bonusNumber = "";
+        while (true) {
+            try {
+                bonusNumber = Console.readLine();
+                Validator.validateBonusNumber(bonusNumber, winningNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return Integer.parseInt(bonusNumber);
+    }
 }

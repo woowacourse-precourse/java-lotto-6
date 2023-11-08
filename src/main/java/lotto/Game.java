@@ -42,6 +42,11 @@ public class Game {
 
     }
 
+    private void userBonus(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        this.bonus = Integer.parseInt(Console.readLine());
+    }
+
     public void DoIt(){
         start();
         generate();

@@ -18,4 +18,8 @@ public class Output {
         System.out.println(String.format(BONUS_WINNING.getMessage(),5,1500000,value[2]));
         System.out.println(String.format(WINNING.getMessage(),6,2000000000,value[4]));
     }
+
+    public void outputProfitRate(double profitRate) {
+        System.out.println(String.format(PROFIT_RATE.getMessage(), profitRate));
+    }
 }

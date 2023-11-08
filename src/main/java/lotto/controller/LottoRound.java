@@ -14,8 +14,15 @@ public class LottoRound {
         OutputView.printPurchaseAmountInputMessage();
         Integer lottoCount = generateLottoCount();
         OutputView.printLottoCountMessage(lottoCount);
-        
 
+        generateLottoBatch(lottoCount);
+        OutputView.printLottoBatch(lottoBatch.toStrings());
+
+        OutputView.printWinningNumbersInputMessage();
+        generateWinningNumbers();
+
+        OutputView.printBonusNumberInputMessage();
+        
     }
 
     public Integer generateLottoCount() {
@@ -26,6 +33,20 @@ public class LottoRound {
             System.out.println(e.getMessage());
             return generateLottoCount();
         }
+    }
+
+    public void generateLottoBatch(Integer lottoCount) {
+        lottoBatch = new LottoBatch(lottoCount);
+    }
+
+    public void generateWinningNumbers() {
+        try {
+            prizeNumbers = new PrizeNumbers(InputView.inputWinningNumbers());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            generateWinningNumbers();
+        }
+
     }
 
 

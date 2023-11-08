@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 public class LottoNumberValidator {
 	public void validateLottoNumber(String input) {
+		validateInteger(input);
 		validateNumberCount(input);
 		validateNumberRange(input);
 		validateDuplicatedNumber(input);
@@ -31,6 +32,17 @@ public class LottoNumberValidator {
 				.size();
 		if (inputNumberCount != inputNumberSetCount) {
 			throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUM_DUPLICATED_MESSAGE);
+		}
+	}
+
+	private void validateInteger(String input) {
+		String[] numbers = input.split(",");
+		try {
+			for (String number : numbers) {
+				Integer.parseInt(number);
+			}
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUM_NOT_INTEGER_MESSAGE);
 		}
 	}
 }

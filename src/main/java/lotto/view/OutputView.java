@@ -40,6 +40,10 @@ public class OutputView {
         System.out.println(WINNING_RESULT_CONTOUR);
     }
 
+    public static void responseYieldOfLotto(String yieldOfLotto) {
+        System.out.println("총 수익률은 " + yieldOfLotto + "%입니다.");
+    }
+
     public static void printException(Exception exception){
         System.out.println(exception.getMessage());
     }

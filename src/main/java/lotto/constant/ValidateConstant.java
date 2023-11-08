@@ -34,6 +34,6 @@ public class ValidateConstant {
     }
 
     public static String ERROR_INPUT_ZERO_NUMBER() {
-        return "[ERROR] 양수만 입력해 주세요";
+        return "[ERROR] 0은 입력할수 없습니다.";
     }
 }

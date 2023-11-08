@@ -97,7 +97,7 @@ public class LottoService {
         sum += matchingCount.get(3) * PrizeMoney.SECOND.getValue();
         sum += matchingCount.get(4) * PrizeMoney.FIRST.getValue();
 
-        double result = sum/purchaseSum;
+        double result = (sum*100)/purchaseSum;
 
         return result;
     }

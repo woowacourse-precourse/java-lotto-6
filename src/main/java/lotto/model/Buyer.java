@@ -57,7 +57,7 @@ public class Buyer {
         return winningAmount / (float) purchaseAmount * 100;
     }
 
-    public int getWinningNumberCount(List<Integer> numbers, int[] winningNumbers) {
+    private int getWinningNumberCount(List<Integer> numbers, int[] winningNumbers) {
         int count = 0;
         for (int winningNumber : winningNumbers) {
             if (numbers.contains(winningNumber)) {
@@ -67,18 +67,18 @@ public class Buyer {
         return count;
     }
 
-    public int getBonusNumberCount(List<Integer> numbers, int bonusNumber) {
+    private int getBonusNumberCount(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber))
             return 1;
         return 0;
     }
 
-    public void updateWinningStatistics(WinningCondition winningCondition) {
+    private void updateWinningStatistics(WinningCondition winningCondition) {
         int value = winningStatistics.get(winningCondition);
         winningStatistics.put(winningCondition, value + 1);
     }
 
-    public void updateWinningAmount(int winningAmount) {
+    private void updateWinningAmount(int winningAmount) {
         this.winningAmount += winningAmount;
     }
 

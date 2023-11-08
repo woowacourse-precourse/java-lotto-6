@@ -14,6 +14,16 @@ public class Lotto {
         return numbers;
     }
 
+    public void printNumbers() {
+        System.out.print("[");
+        for (int i=0; i<numbers.size(); i++) {
+            if (i != 0) {
+                System.out.print(", ");
+            }
+            System.out.print(numbers.get(i));
+        }
+        System.out.println("]");
+    }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {

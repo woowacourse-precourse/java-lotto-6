@@ -1,8 +1,11 @@
 package lotto;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-import static lotto.Constants.LOTTERY_DIGIT_LENGTH;
+import static lotto.LottoValidator.validateLotteryLength;
+import static lotto.LottoValidator.validateUniqueNumber;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,14 +18,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTERY_DIGIT_LENGTH) {
-            throw new IllegalArgumentException();
-        }
-
-        Set<Integer> set = new HashSet<>(numbers);
-        if (set.size() < numbers.size()) {
-            throw new IllegalArgumentException();
-        }
+        validateLotteryLength(numbers);
+        validateUniqueNumber(numbers);
     }
 
     public Prize check(WinningNumbers winningNumbers) {

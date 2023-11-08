@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.LottoValidator.validateNumberInRange;
+
 public class WinningNumbers {
 
     private final List<Integer> numbers;
@@ -34,17 +36,16 @@ public class WinningNumbers {
     private void validateNumbers(String numbers) {
         InputValidator.validateIsNotBlank(numbers);
         String[] split = numbers.split(",");
-        InputValidator.validateStringArrayLength(split, 6);
         InputValidator.validateIsNumbers(split);
         for (String s : split) {
-            InputValidator.validateNumberInRange(Integer.parseInt(s), 1, 45);
+            validateNumberInRange(Integer.parseInt(s));
         }
     }
 
     private void validateBonus(String bonus) {
         InputValidator.validateIsNotBlank(bonus);
         InputValidator.validateIsNumbers(bonus);
-        InputValidator.validateNumberInRange(Integer.parseInt(bonus), 1, 45);
+        validateNumberInRange(Integer.parseInt(bonus));
     }
 
     public List<Integer> getNumbers() {

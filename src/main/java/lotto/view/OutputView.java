@@ -28,6 +28,6 @@ public class OutputView {
         System.out.println("6개 일치 (2,000,000,000원) - "+ WinningAmounts.FIRST_AMOUNT.getCount() +"개");
     }
     public static void winningRate(double rate){
-        System.out.println("총 수익률은 "+rate+"%입니다");
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", rate));
     }
 }

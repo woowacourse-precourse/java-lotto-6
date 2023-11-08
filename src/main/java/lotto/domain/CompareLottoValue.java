@@ -99,7 +99,6 @@ public class CompareLottoValue {
 
     public static double getRateOfTurn(Integer amount){
         double turn = ((double) (resultMoney ) / amount ) * 100;
-        double rateOfTurn =  Math.round(turn * 100) / 100.0;
-        return rateOfTurn;
+        return turn;
     }
 }

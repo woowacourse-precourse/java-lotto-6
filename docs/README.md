@@ -107,6 +107,16 @@
 
 #### LottoService
 
+* 책임:
+    * 입력을 변환하여 도메인 레벨로 전달
+    * Domain Layer의 Ticket, DrawResult 인스턴스를 저장
+* 기능:
+    * 구입 금액을 갯수로 변환해 티켓을 구매하고 그 값을 반환한다.
+    * 당첨 번호와 보너스 번호를 전달받아 티켓들의 당첨 통계를 계산하고 그 값을 반환한다.
+* 메서드:
+    * createTickets
+    * createDrawResult
+
 ### 💡 Domain Layer
 
 * Application Layer로부터 전달받은 요청을 처리한다.
@@ -127,6 +137,27 @@
     * 당첨 번호와 비교한 결과를 계산한다.
 * 메소드:
     * match
+
+### Tickets
+
+* 책임:
+    * 티켓 객체들을 저장한다(일급 콜렉션).
+* 필드:
+    * 티켓 객체들
+* 메소드:
+    * add
+
+#### DrawResultBuilder
+
+* 책임:
+    * DrawResult를 생성하는 빌더 패턴.
+* 필드:
+    * 당첨 번호
+    * 보너스 볼 번호
+* 메소드:
+    * setNumbers
+    * setBonusNumber
+    * build
 
 #### DrawResult
 
@@ -163,6 +194,17 @@
     * 랜덤한 로또 번호를 생성한다.
 * 메소드:
     * generate
+
+#### LottoSystem
+
+* 책임:
+    * 티켓을 수량만큼 구매하고 저장한다.
+    * 당첨 번호를 저장한다.
+    * 저장된 티켓의 당첨 여부를 확인하고 당첨 통계를 생성한다.
+* 메소드:
+    * buyTickets
+    * setDrawResult
+    * matchTickets
 
 ### 📁 Repository Layer
 

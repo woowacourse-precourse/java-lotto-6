@@ -4,12 +4,12 @@ import java.util.Arrays;
 
 public enum LottoRank {
 
-    FirstPlace(6, 2000000000),
-    SecondPlace(5, true, 300000000),
-    ThirdPlace(5, false, 1500000),
-    ForthPlace(4, 50000),
-    FifthPlace(3, 5000),
-    NoWinning(0, 0);
+    FIRST_PLACE(6, 2000000000),
+    SECOND_PLACE(5, true, 300000000),
+    THIRD_PLACE(5, false, 1500000),
+    FORTH_PLACE(4, 50000),
+    FIFTH_PLACE(3, 5000),
+    NO_WINNING(0, 0);
 
     private int match;
     private Boolean requiredBonus;
@@ -33,6 +33,6 @@ public enum LottoRank {
         return Arrays.stream(LottoRank.values())
                 .filter(w -> (w.match == match)
                         && (w.requiredBonus == null || w.requiredBonus == bonus))
-                .findAny().orElse(NoWinning);
+                .findAny().orElse(NO_WINNING);
     }
 }

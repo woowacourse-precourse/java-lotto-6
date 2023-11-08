@@ -1,9 +1,20 @@
 # 🎱 로또  
 
 ---
-## 클래스 다이어그램
-
-## 기능 요구 사항
+## 📈 클래스 다이어그램
+![temp](image/lotto.png)
+<br/><br/>
+* Application 클래스에서 LottoController 객체를 생성해서 startLotto()호출
+* startLotto
+  1. 유저의 로또 구입 금액 입력 받아서 객체 생성
+  2. 입력받은 금액만큼 로또 발행
+  3. 당첨 번호 입력받고 객체 생성
+  4. 보너스 번호 입력 받고 당첨 번호 객체에 추가
+  5. 발행한 로또 번호와 당첨 번호 비교해서 당첨 결과 담는 객체 생성
+  6. 결과 출력
+* 검증로직을 각 클래스마다 필요한 부분에 감싸려고 했으나 너무 길어진 부분이 많아서 따로 떼어냄
+<br/>
+## 📑 기능 요구 사항
 - 로또 번호의 숫자 범위는 1~45
 - 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑기
 - 당첨 번호 추첨 시 중복되지 않는 숫자 6개와 보너스 번호 1개를 뽑기
@@ -28,7 +39,7 @@
   > - 수익률은 소수점 둘째 자리에서 반올림. (ex. 100.0%, 51.5%, 1,000,000.0%)
   > - 예외 상황 시 에러 문구를 출력. 단, 에러 문구는 "[ERROR]"로 시작해야 함.
 
-# 기능 목록
+## 🧾 기능 목록 TO DO LIST
 - [x] 금액 입력 받음
 - [x] 입력받은 금액이 나누어 떨어지는 검증(잘못된 값을 입력할 경우 예외 처리하고 그 부분 다시 입력받음)
 - [x] 발행한 로또 수량 및 번호 출력
@@ -41,6 +52,95 @@
 - [x] 수익률 계산
 - [x] 수익률 출력
 
-## 클래스별 기능 목록
+## 🪙 클래스별 기능 목록
+>Application - 프로그램 시작 클래스<br/>
+> * main => 컨트롤러 객체 생성 후 시작 메서드 호출
 
-## 테스트  
+**VIEW**<br/>
+>LottoView - 입출력 담당 클래스<br/>
+> * inputUserAmount => 로또 구매 금액 입력받음
+> * printLottoNumbers => 구매한 로또 번호 출력
+> * inputWinningNumber => 당첨 번호 입력 받음
+> * inputBonusNumber => 보너스 번호 입력 받음
+> * printWinningStatistics => 당첨 통계 출력
+
+**VALIDATION** <br/>
+>ValidationUtils - 검증 담당 클래스<br/>
+> * validateUserAmount => 입력받은 로또 구매 금액 검증
+>   * 입력 유무 및 정수인지 확인
+>   * 1000단위 입력 확인
+> * validateWinningNumber => 입력받은 당첨 번호 검증
+>   * 입력 유무 확인
+>   * 쉼표가 첫 글자인지 확인
+>   * 쉼표가 마지막 글자인지 확인
+>   * 쉼표가 연달아 있는지 확인
+>   * 쉼표 옆에 공백 확인
+>   * 숫자 범위 확인
+>   * 중복 숫자 확인
+>   * 숫자 6개인지 확인
+> * validateBonusNumber =>
+>   * 입력 유무 확인
+>   * 숫자 범위 확인
+>   * 중복 숫자 확인
+
+**MODEL** <br/>
+>UserAmount - 유저 입력 금액 클래스<br/>
+> * getNumberOfLotto => 유저 입력금액으로 구매할 수 있는 로또 수 반환
+> * getAmount => 유저 입력금액 반환
+
+>LottoNumberCreator - 로또 번호 생성 담당 클래스
+> * createLottoNumbers => 인자로 전달받은 수 만큼 로또 발행
+> * stringToList => 입력받은 문자열을 번호 리스트로 반환
+
+>Lotto - 로또 클래스<br/>
+> * getNumbers => 로또 번호에 해당하는 컬렉션 반환
+
+>Lottos - 로또 묶음 클래스<br/>
+> * getBundleLotto => 로또 묶음 컬렉션 반환  
+> * toString => 로또 묶음이 가지고 있는 모든 번호를 하나의 문자열로 반환
+> * getSize => 로또 갯수 반환
+
+>WinningNumber - 당첨 번호 클래스<br/>
+> * addBonusNumber => 입력받은 당첨번호에 더해서, 보너스 번호 세팅
+> * contains => 당첨번호에 해당하는 번호 있는지 확인
+> * getBonusNumber => 보너스 번호 반환
+
+>LottoResult - 로또 결과 담는 클래스
+> * getWinningResult => 인자로 전달받은 등수의 당첨 횟수 반환 
+> * getEarningRate => 당첨 결과에 대한 수익률 반환
+
+**ENUMERATION** <br/>
+>NumberRange - 랜덤 숫자 뽑을 때 사용하는 열거형 클래스
+> * getValue => 매칭되는 상수 반환
+
+>WinningPrize - 당첨 등수와 금액, 맞힌 숫자 횟수 열거형 클래스
+> * getRank => 매칭되는 랭크 반환
+> * getPrize => 매칭되는 상금 반환
+> * getCount => 매칭되는 맞힌 숫자 횟수 반환
+
+**CONTROLLER** <br/>
+>LottoController - view와 model사이에서 프로그램을 진행하는 클래스
+> * startLotto => 필요한 입출력과 서비스 로직을 실행시켜서 프로그램 순차진행
+
+## 🧬 테스트
+**VALIDATION** <br/>
+>ValidationUtilsTest
+> * 유저_입력금액_검증_테스트 => 유저가 입력한 금액에 대한 예외처리 테스트
+> * 입력_당첨번호_검증_테스트 => 입력한 당첨번호에 대한 예외처리 테스트
+> * 입력_보너스번호_검증_테스트 => 입력한 보너스 번호 예외처리 테스트
+
+**MODEL** <br/>
+> LottoNumberCreatorTest
+> * 로또_숫자_생성_테스트 => 입력받은 수 만큼 로또 생성하는지 확인하고, 문자열을 리스트로 바꾸는 함수 테스트
+
+> LottoResultTest
+> * 로또결과_생성_테스트 => 임의로 로또번호와 당첨번호를 만들어서 로또 결과가 알맞게 나오는지 테스트
+
+> LottosTest
+> * 로또묶음_생성_테스트 => lotto들이 lottos 객체에 잘 담기는지 테스트
+
+> UserAmountTest
+> * 유저_입력금액_생성_테스트 => 유저 입력금액을 생성해서, 금액에 받는 로또의 갯수가 반환되는지 테스트
+
+> WinningNumberTest
+> * 당첨번호_생성_테스트 => 당첨번호를 생성해서 해당 번호들을 잘 가지고 있는지 테스트

@@ -33,10 +33,6 @@ public class ValidationUtils {
             return false;
         }
 
-        if (userAmount / PRICE_LOTTO != 0 && userAmount % PRICE_LOTTO == 0) {
-            return true;
-        }
-
         return isCorrectAmountUnit(userAmount);
     }
 

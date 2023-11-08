@@ -41,10 +41,6 @@ public class OutputView {
         System.out.println(WINNING_STATISTICS);
     }
 
-    public static void printTotalProfitRate() {
-        System.out.println(TOTAL_PROFIT_RATE);
-    }
-
     public static void printLottoNumbers(List<List<Integer>> lottoNumbers) {
         lottoNumbers.stream().forEach(lottoNumber -> System.out.println(lottoNumber));
     }

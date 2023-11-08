@@ -92,18 +92,6 @@ public class LottoService {
         }
     }
 
-
-    public long getProfit() {
-        long profit = 0;
-        profit += numOfFirstPlace * LottoRank.FIRST_PLACE.getPrize();
-        profit += numOfSecondPlace * LottoRank.SECOND_PLACE.getPrize();
-        profit += numOfThirdPlace * LottoRank.THIRD_PLACE.getPrize();
-        profit += numOfFourthPlace * LottoRank.FOURTH_PLACE.getPrize();
-        profit += numOfFifthPlace * LottoRank.FIFTH_PLACE.getPrize();
-
-        return profit;
-    }
-
     public int getNumOfFirstPlace() {
         return numOfFirstPlace;
     }

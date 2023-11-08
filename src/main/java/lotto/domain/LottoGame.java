@@ -25,8 +25,10 @@ public class LottoGame {
         WinningNumbers winnerNumbers = getWinningNumbers();
         Map<LottoRank, Integer> winningResults = lottoService.getWinningResults(lottoBundle, winnerNumbers);
 
-        lottoService.compareAll(lottoBundle, winnerNumbers.getNumbers(), winnerNumbers.getBonusNumber());
-        long profit = lottoService.getProfit();
+
+        lottoService.compareAll(lottoBundle, winnerNumbers.getNumbers(), winnerNumbers.getBonusNumber()); // 리팩토링 대상
+        long profit = lottoService.calculateTotalPrize(winningResults);
+
         double profitRate = profit / (double) purchaseAmount * 100;
 
         printResults(lottoService, profitRate);

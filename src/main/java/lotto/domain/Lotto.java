@@ -11,10 +11,10 @@ import static lotto.view.constant.Exception.LOTTO_SIZE;
 import static lotto.view.constant.Exception.LOTTO_FORMAT;
 
 public class Lotto {
-    private final List<Integer> numbers;
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 45;
     private static final int COUNT = 6;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

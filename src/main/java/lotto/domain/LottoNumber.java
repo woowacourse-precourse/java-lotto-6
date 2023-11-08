@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Objects;
+
 public class LottoNumber implements Comparable<LottoNumber> {
 
     public static final String OUT_OF_LOTTO_VALUE_RANGE = "[ERROR] 로또 입력 값은 1이상 45이하의 값만 가능합니다.";
@@ -32,7 +34,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
             return false;
         }
         LottoNumber that = (LottoNumber) o;
-        return LottoNumber == that.LottoNumber;
+        return Objects.equals(LottoNumber, that.LottoNumber);
     }
 
     @Override

@@ -29,7 +29,7 @@ public class OutputView {
         printResultMessage();
         System.out.println("3개 일치 (5,000원) - " + rankings[5] + "개");
         System.out.println("4개 일치 (50,000원) - " + rankings[4] + "개");
-        System.out.println("5개 일치 (5,000원) - " + rankings[3] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + rankings[3] + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankings[2] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + rankings[1] + "개");
     }
@@ -41,7 +41,7 @@ public class OutputView {
 
     public static void printReturns(double returns) {
         System.out.print("총 수익률은 ");
-        System.out.print(Math.round(returns * 100) / 100.0);
+        System.out.print(Math.round(returns) / 10.0);
         System.out.println("%입니다.");
     }
 }

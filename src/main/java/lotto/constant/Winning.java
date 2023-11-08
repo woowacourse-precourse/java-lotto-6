@@ -8,13 +8,13 @@ public enum Winning {
     FIRST("6개 일치 (2,000,000,000원)", MatchNumber.SIX, BonusMatchType.NOT_APPLICABLE, 2000000000);
 
     private final String prizeMessage;
-    private final MatchNumber matchNumber;
+    private final int matchNumber;
     private final BonusMatchType bonus;
     private final int money;
 
     Winning(String message, MatchNumber number, BonusMatchType bonus, int money) {
         this.prizeMessage = message;
-        this.matchNumber = number;
+        this.matchNumber = number.getNumber();
         this.bonus = bonus;
         this.money = money;
     }
@@ -22,7 +22,7 @@ public enum Winning {
     public String getPrizeMessage() {
         return prizeMessage;
     }
-    public MatchNumber getMatchNumber() {
+    public int getMatchNumber() {
         return matchNumber;
     }
 

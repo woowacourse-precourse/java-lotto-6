@@ -24,9 +24,13 @@ public class CheckTest {
         CheckWinning checkWinning = new CheckWinning(winningNumber, bonusNumber);
         int count = checkWinning.winningNumberCounter(purchaseNumber);
         bonus = checkWinning.bonusNumberCounter(purchaseNumber);
-        winningRank.recorderWinningRank(count, bonus);
+        winningRank.recordWinningRank(count, bonus);
 
         assertThat(winningRank.getAllPrizeCount().get(Winning.FIRST)).isEqualTo(1);
+        assertThat(winningRank.getAllPrizeCount().get(Winning.SECOND)).isEqualTo(0);
+        assertThat(winningRank.getAllPrizeCount().get(Winning.THIRD)).isEqualTo(0);
+        assertThat(winningRank.getAllPrizeCount().get(Winning.FOURTH)).isEqualTo(0);
+        assertThat(winningRank.getAllPrizeCount().get(Winning.FIFTH)).isEqualTo(0);
     }
 
     @DisplayName("당첨 번호와 발행 번호가 5개 일치하고 보너스 번호가 일치하면 2등으로 판단한다.")
@@ -41,9 +45,13 @@ public class CheckTest {
         CheckWinning checkWinning = new CheckWinning(winningNumber, bonusNumber);
         int count = checkWinning.winningNumberCounter(purchaseNumber);
         bonus = checkWinning.bonusNumberCounter(purchaseNumber);
-        winningRank.recorderWinningRank(count, bonus);
+        winningRank.recordWinningRank(count, bonus);
 
+        assertThat(winningRank.getAllPrizeCount().get(Winning.FIRST)).isEqualTo(0);
         assertThat(winningRank.getAllPrizeCount().get(Winning.SECOND)).isEqualTo(1);
+        assertThat(winningRank.getAllPrizeCount().get(Winning.THIRD)).isEqualTo(0);
+        assertThat(winningRank.getAllPrizeCount().get(Winning.FOURTH)).isEqualTo(0);
+        assertThat(winningRank.getAllPrizeCount().get(Winning.FIFTH)).isEqualTo(0);
     }
 
     @DisplayName("당첨 번호와 발행 번호가 5개 일치하고 보너스 번호가 불일치하면 3등으로 판단한다.")
@@ -58,8 +66,12 @@ public class CheckTest {
         CheckWinning checkWinning = new CheckWinning(winningNumber, bonusNumber);
         int count = checkWinning.winningNumberCounter(purchaseNumber);
         bonus = checkWinning.bonusNumberCounter(purchaseNumber);
-        winningRank.recorderWinningRank(count, bonus);
+        winningRank.recordWinningRank(count, bonus);
 
+        assertThat(winningRank.getAllPrizeCount().get(Winning.FIRST)).isEqualTo(0);
+        assertThat(winningRank.getAllPrizeCount().get(Winning.SECOND)).isEqualTo(0);
         assertThat(winningRank.getAllPrizeCount().get(Winning.THIRD)).isEqualTo(1);
+        assertThat(winningRank.getAllPrizeCount().get(Winning.FOURTH)).isEqualTo(0);
+        assertThat(winningRank.getAllPrizeCount().get(Winning.FIFTH)).isEqualTo(0);
     }
 }

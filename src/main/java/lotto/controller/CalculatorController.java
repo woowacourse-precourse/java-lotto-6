@@ -35,7 +35,7 @@ public class CalculatorController {
     }
 
     public void wonRecordController(WinningRank winningRank, int count, BonusMatchType bonus) {
-        winningRank.recorderWinningRank(count, bonus);
+        winningRank.recordWinningRank(count, bonus);
     }
 
     public void rateOfReturnController(int purchase, Map<Winning, Integer> allPrizeCount) {

@@ -3,41 +3,52 @@ package lotto.model.calculator;
 import java.util.HashMap;
 import java.util.Map;
 import lotto.constant.BonusMatchType;
-import lotto.constant.MatchNumber;
+import lotto.constant.UnitNumber;
 import lotto.constant.Winning;
 
 public class WinningRank {
     private static final Map<Winning, Integer> prizeCount = new HashMap<>();
-    private static int firstPrizeCount = 0;
-    private static int secondPrizeCount = 0;
-    private static int thirdPrizeCount = 0;
-    private static int fourthPrizeCount = 0;
-    private static int fifthPrizeCount = 0;
 
-    public void recorderWinningRank(int count, BonusMatchType bonus) {
-        if(count == MatchNumber.THREE.getNumber()) {
-            fifthPrizeCount++;
+    public WinningRank() {
+        initializePrizeCount();
+    }
+
+    public void initializePrizeCount() {
+        for(Winning winning : Winning.values()) {
+            prizeCount.put(winning, UnitNumber.ZERO.getNumber());
         }
-        if(count == MatchNumber.FOUR.getNumber()) {
-            fourthPrizeCount++;
+    }
+
+    public void recordWinningRank(int count, BonusMatchType bonus) {
+        recordRank(count, Winning.FIFTH);
+        recordRank(count, Winning.FOURTH);
+        recordRankThird(count, Winning.THIRD, bonus);
+        recordRankSecond(count, Winning.SECOND, bonus);
+        recordRank(count, Winning.FIRST);
+    }
+
+    public void recordRank(int count, Winning winning) {
+        int currentCount = prizeCount.get(winning);
+        if(count == winning.getMatchNumber()) {
+            prizeCount.put(winning, currentCount + UnitNumber.RANK_PLUS.getNumber());
         }
-        if(count == MatchNumber.FIVE.getNumber() && bonus == BonusMatchType.MISMATCH) {
-            thirdPrizeCount++;
+    }
+
+    public void recordRankThird(int count, Winning winning, BonusMatchType bonus) {
+        int currentCount = prizeCount.get(winning);
+        if(count == winning.getMatchNumber() && bonus == BonusMatchType.MISMATCH) {
+            prizeCount.put(winning, currentCount + UnitNumber.RANK_PLUS.getNumber());
         }
-        if(count == MatchNumber.FIVE.getNumber() && bonus == BonusMatchType.MATCH) {
-            secondPrizeCount++;
-        }
-        if(count == MatchNumber.SIX.getNumber()) {
-            firstPrizeCount++;
+    }
+
+    public void recordRankSecond(int count, Winning winning, BonusMatchType bonus) {
+        int currentCount = prizeCount.get(winning);
+        if(count == winning.getMatchNumber() && bonus == BonusMatchType.MATCH) {
+            prizeCount.put(winning, currentCount + UnitNumber.RANK_PLUS.getNumber());
         }
     }
 
     public Map<Winning, Integer> getAllPrizeCount() {
-        prizeCount.put(Winning.FIRST, firstPrizeCount);
-        prizeCount.put(Winning.SECOND, secondPrizeCount);
-        prizeCount.put(Winning.THIRD, thirdPrizeCount);
-        prizeCount.put(Winning.FOURTH, fourthPrizeCount);
-        prizeCount.put(Winning.FIFTH, fifthPrizeCount);
         return prizeCount;
     }
 }

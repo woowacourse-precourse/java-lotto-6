@@ -13,6 +13,7 @@ import lotto.domain.WinningPrize;
 public class LottoService {
 
     private static final int ROUNDS_UP_RATE_OR_RETURN = 10;
+    private static final int STANDARD_OF_PERCENT = 100;
 
     public LottoService() {
     }
@@ -53,7 +54,7 @@ public class LottoService {
     }
 
     public double calculateReturnOnLotto(int winningPrizeAmount, int lottoPurchaseAmount) {
-        return (double) winningPrizeAmount / lottoPurchaseAmount * 100;
+        return (double) winningPrizeAmount / lottoPurchaseAmount * STANDARD_OF_PERCENT;
     }
 
     private int sumWinningPrizeAmount(Map<WinningPrize, Integer> winningPrizes) {

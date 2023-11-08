@@ -85,16 +85,24 @@ class LottoTest {
     @DisplayName("수익률 계산 테스트")
     @Test
     void calculateSumOfRewardTest() {
-        TotalLotto totalLotto = new TotalLotto(new Money("20000"));
-        LottoNumber bonusNumber = new LottoNumber("7");
+        TotalLotto totalLotto = new TotalLotto(new Money("1000"));
+        int number = 0;
+        LottoNumber bonusNumber;
 
         // 사용자 로또 번호에서 하나를 당첨 번호로 사용한다.
         Lotto winLotto = new Lotto(totalLotto.getTotalLotto().get(0).getNumbers());
+
+        // 중복이면 다른숫자로
+        do {
+            bonusNumber = new LottoNumber(++number + "");
+        }
+        while (winLotto.getNumbers().contains(bonusNumber.getLottoNumber()));
+
         LottoResult lottoResult = new LottoResult(winLotto);
         lottoResult.createStatistic(totalLotto, bonusNumber);
-        String reward = lottoResult.calculateSumOfReward(new Money("20000"));
-
-        // 20,000원 -> 2,000,000,000원이 됐으므로 10,000,000.0%의 수익률을 가진다.
-        assertThat(reward).isEqualTo("10000000.0");
+        String reward = lottoResult.calculateSumOfReward(new Money("1000"));
+        
+        // 1,000원 -> 2,000,000,000원이 됐으므로 200000000.0% 이상의 수익률을 가진다.
+        assertThat(reward).isEqualTo("200000000.0");
     }
 }

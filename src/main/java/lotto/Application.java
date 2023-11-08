@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 public class Application {
+    private static final int START_INCLUSIVE = 1;
+    private static final int END_INCLUSIVE = 45;
+    private static final int COUNT = 6;
     private final Output output;
     private final Input input;
     private final Analyzer analyzer;
@@ -51,7 +54,7 @@ public class Application {
     }
 
     private List<Integer> generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT);
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
         Collections.sort(sortedNumbers);
         return sortedNumbers;

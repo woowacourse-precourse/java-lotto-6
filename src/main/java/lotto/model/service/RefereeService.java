@@ -17,11 +17,10 @@ public class RefereeService {
 
         for (Lotto lotto : lottoList) {
             int hitNumberCount = INITIALIZE_NUMBER;
-            boolean isHitBonusNumber = false;
             int rank = INITIALIZE_NUMBER;
             List<Integer> numbers = lotto.getNumbers();
             hitNumberCount = getHitNumberCount(winningNumbers, hitNumberCount, numbers);
-            isHitBonusNumber = isHitBonusNumber(bonusNumber, isHitBonusNumber, numbers);
+            boolean isHitBonusNumber = isHitBonusNumber(bonusNumber, numbers);
             rank = getRank(hitNumberCount, isHitBonusNumber, rank);
 
             referee.increaseCountForRank(rank);
@@ -44,11 +43,8 @@ public class RefereeService {
         return rank;
     }
 
-    public boolean isHitBonusNumber(int bonusNumber, boolean isHitBonusNumber, List<Integer> numbers) {
-        if (numbers.contains(bonusNumber)) {
-            isHitBonusNumber = true;
-        }
-        return isHitBonusNumber;
+    public boolean isHitBonusNumber(int bonusNumber, List<Integer> numbers) {
+        return numbers.contains(bonusNumber);
     }
 
     public int getHitNumberCount(List<Integer> winningNumbers, int hitNumberCount, List<Integer> numbers) {

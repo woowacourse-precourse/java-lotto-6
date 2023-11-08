@@ -1,7 +1,6 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class LottoMachine {
 
@@ -15,6 +14,23 @@ public class LottoMachine {
         validateCanBuy(purchaseMoney);
         this.purchaseMoney = purchaseMoney;
         this.lottoTickets = purchase(calculateLottoCount(purchaseMoney));
+    }
+
+    public LottoResult calculatePrize(WinningLotto winningLotto) {
+        List<LottoRank> ranks = new ArrayList<>();
+        for (Lotto lottoTicket : lottoTickets) {
+            Optional<LottoRank> lottoRank = winningLotto.calculateRank(lottoTicket);
+            lottoRank.ifPresent(ranks::add);
+        }
+
+        int earnMoney = 0;
+        Map<LottoRank, Integer> rankToCount = new HashMap<>();
+        for (LottoRank rank : ranks) {
+            rankToCount.put(rank, rankToCount.getOrDefault(rank, 0) + 1);
+            earnMoney += rank.getWinningMoney();
+        }
+
+        return new LottoResult(purchaseMoney, earnMoney, rankToCount);
     }
 
     public List<Lotto> getLottoTickets() {

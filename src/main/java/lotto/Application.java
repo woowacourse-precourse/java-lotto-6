@@ -16,6 +16,9 @@ public class Application {
 
         int bonusNumber = view.askBonusNumber();
         WinningLotto winningLotto = new WinningLotto(winningLottoTicket, bonusNumber);
+        LottoResult lottoResult = lottoMachine.calculatePrize(winningLotto);
+
+        view.showLottoResult(lottoResult);
     }
 
     private static void showPurchaseLotto(LottoMachine lottoMachine,

@@ -25,6 +25,16 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public int countMatchNumber(Lotto lotto) {
+        int matchCount = 0;
+        for (Integer number : numbers) {
+            if (lotto.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
     public boolean contains(int number) {
         return numbers.contains(number);
     }
@@ -45,7 +55,7 @@ public class Lotto {
         }
     }
 
-    private static void validateIsSatisfyLottoLength(List<Integer> numbers) {
+    private void validateIsSatisfyLottoLength(List<Integer> numbers) {
         if (numbers.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException(ERROR_INVALID_LOTTO_LENGTH);
         }

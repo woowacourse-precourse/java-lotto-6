@@ -14,7 +14,6 @@ public class WinningRank {
     private static int fourthPrizeCount = 0;
     private static int fifthPrizeCount = 0;
 
-
     public void recorderWinningRank(int count, BonusMatchType bonus) {
         if(count == MatchNumber.THREE.getNumber()) {
             fifthPrizeCount++;

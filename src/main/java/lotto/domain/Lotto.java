@@ -38,9 +38,13 @@ public record Lotto(List<Integer> numbers) {
         int distinctSize = (int) numbers.stream()
                 .distinct()
                 .count();
-        if (distinctSize != numbers.size()) {
+        if (isNotEquals(numbers, distinctSize)) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_LOTTO_NUMBER);
         }
+    }
+
+    private boolean isNotEquals(List<Integer> numbers, int distinctSize) {
+        return distinctSize != numbers.size();
     }
 
     private void validateInRange(List<Integer> numbers) {

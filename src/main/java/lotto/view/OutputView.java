@@ -15,7 +15,6 @@ import lotto.domain.ResultSheet;
 import lotto.message.ExceptionMessage;
 
 public class OutputView {
-
     public static final String LOTTO_NUMBER_DELIMITER = ", ";
     public static final String PRINT_LOTTO_FORMAT = "[%s]\n";
 

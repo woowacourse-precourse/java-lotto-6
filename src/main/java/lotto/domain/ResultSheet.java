@@ -15,10 +15,7 @@ public record ResultSheet(Map<Rank, Integer> sheet) {
 
     public double getTotalProfit() {
         int purchaseCost = LottoOption.LOTTO_PRICE * getTotalCount();
-        double totalPrize = sheet.keySet()
-                .stream()
-                .mapToDouble(rank -> rank.getPrize() * sheet.get(rank))
-                .sum();
+        double totalPrize = getTotalPrize();
         return (totalPrize / purchaseCost) * PERCENTAGE;
     }
 
@@ -26,6 +23,13 @@ public record ResultSheet(Map<Rank, Integer> sheet) {
         return sheet.values()
                 .stream()
                 .mapToInt(Integer::intValue)
+                .sum();
+    }
+
+    private double getTotalPrize() {
+        return sheet.keySet()
+                .stream()
+                .mapToDouble(rank -> rank.getPrize() * sheet.get(rank))
                 .sum();
     }
 }

@@ -1,12 +1,14 @@
 package lotto.model;
 
 import lotto.constant.ConsoleMessage;
+import lotto.constant.LottoConstant;
 import lotto.constant.LottoNumberRange;
 import lotto.utils.LottoGenerator;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,12 +24,21 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
+        validateDuplicatedNumber(numbers);
         validateRange(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoConstant.LOTTO_SIZE) {
             throw new IllegalArgumentException(ConsoleMessage.SIZE_MISMATCH_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateDuplicatedNumber(List<Integer> numbers) {
+        Set<Integer> copy = new HashSet<>(numbers);
+
+        if (copy.size() != LottoConstant.LOTTO_SIZE) {
+            throw new IllegalArgumentException(ConsoleMessage.DUPLICATED_NUMBER_ERROR_MESSAGE);
         }
     }
 

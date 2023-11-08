@@ -63,6 +63,22 @@ class ResultTest {
     }
 
     @Test
+    @DisplayName("5등(3개 일치) 로또가 2개일 때")
+    public void createResultWhenFifthIsTwo() {
+        // given
+        Lotto LOTTO = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lottos LOTTOS = new Lottos(List.of(Arrays.asList(1, 2, 3, 7, 8, 9), Arrays.asList(1, 2, 3, 7, 8, 9)));
+        Bonus BONUS = new Bonus(10, LOTTO);
+
+        // when
+        Result result = new Result(LOTTO, LOTTOS, BONUS);
+        Map<Rank, Integer> store = result.getStore();
+
+        // then
+        assertThat(store.get(Rank.FIFTH)).isEqualTo(2);
+    }
+
+    @Test
     @DisplayName("2등(5개 일치 + 보너스 당첨) 로또가 1개일 때 당첨금액 확인")
     public void getRewardWhenFifthIsOne() {
         // given

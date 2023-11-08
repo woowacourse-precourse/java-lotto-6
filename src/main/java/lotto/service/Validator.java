@@ -13,7 +13,6 @@ public class Validator {
      */
 
     public static void isEmpty(String input) {
-        System.out.println(input);
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(BLANK_ERROR.toString());
         }

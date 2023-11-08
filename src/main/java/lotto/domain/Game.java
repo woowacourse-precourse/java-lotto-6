@@ -13,10 +13,15 @@ public class Game {
     private List<Lotto> userLottos;
     private Lotto winnerNumber;
     private BonusNumber bonusNumber;
+    private Generator generator;
+
+    public Game(Generator generator) {
+        this.generator = generator;
+    }
 
     public void createUserLottos(int amount) {
         this.userLottos = IntStream.range(0, amount)
-                .mapToObj(i -> new Lotto(Generator.generateRandomNumbers()))
+                .mapToObj(i -> new Lotto(generator.generateRandomNumbers()))
                 .collect(Collectors.toList());
     }
 

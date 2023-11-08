@@ -7,17 +7,18 @@ import lotto.constant.Rank;
 import lotto.domain.Game;
 import lotto.domain.Lotto;
 import lotto.domain.Pay;
+import lotto.util.Generator;
 import lotto.view.ErrorView;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
-    private final double PERCENTAGE = 100.0;
+    private static final double PERCENTAGE = 100;
     Pay pay;
-    private Game game = new Game();
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
-    private ErrorView errorView = new ErrorView();
+    private final Game game = new Game(new Generator());
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final ErrorView errorView = new ErrorView();
 
 
     public void run() {
@@ -82,10 +83,9 @@ public class GameController {
     }
 
     private int calculateTotalProfit(Map<Rank, Integer> ranks) {
-        int totalProfit = ranks.entrySet().stream()
+        return ranks.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getReward() * entry.getValue())
                 .sum();
-        return totalProfit;
     }
 
     private void calculateProfitRate(int profit) {

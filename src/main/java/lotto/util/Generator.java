@@ -6,7 +6,7 @@ import java.util.List;
 import lotto.constant.ConfigurationNumbers;
 
 public class Generator {
-    public static List<Integer> generateRandomNumbers() {
+    public List<Integer> generateRandomNumbers() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
                 ConfigurationNumbers.MIN_NUMBER.getNumber(),
                 ConfigurationNumbers.MAX_NUMBER.getNumber(),

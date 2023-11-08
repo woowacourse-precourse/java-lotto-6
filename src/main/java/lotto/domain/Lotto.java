@@ -28,8 +28,8 @@ public class Lotto {
         LottoValidator.isUnvalidLength(numbers);
         LottoValidator.isDuplicated(numbers);
         for (int num : numbers) {
-            NumberValidator.isWrongType(String.valueOf(num));
             NumberValidator.isNegative(num);
+            NumberValidator.isWrongType(String.valueOf(num));
             NumberValidator.isOutRange(num);
         }
     }

@@ -1,13 +1,12 @@
 package lotto;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
+import static lotto.PlaceAndPrize.Place;
+
 public class Messages {
-    final static int firstPlace = 6;
-    final static int secondPlace = 5;
-    final static int thridPlace = 5;
-    final static int forthPlace = 4;
-    final static int fifthPlace = 3;
 
     public static void priceMessage() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -27,24 +26,24 @@ public class Messages {
     }
 
     public static void winsMessage(List<Integer> wins) {
+
         for (int i = 4; i >= 0; i--) {
-            if (i == 4) {
-                System.out.println(fifthPlace + "개 일치 (5,000원) - " + wins.get(i) + "개");
-            }
-            if (i == 3) {
-                System.out.println(forthPlace + "개 일치 (50,000원) - " + wins.get(i) + "개");
-            }
-            if (i == 2) {
-                System.out.println(thridPlace + "개 일치 (1,500,000원) - " + wins.get(i) + "개");
-            }
+            Place place = Place.values()[i];
+            int matchingCount = place.getMatchPlace();
+            int prizeAmount = place.getPrizeAmount();
+            String formattingPrize = formatIncludeComma(prizeAmount);
             if (i == 1) {
-                System.out.println(secondPlace + "개 일치, 보너스 볼 일치 (30,000,000원) - " + wins.get(i) + "개");
+                System.out.println(matchingCount + "개 일치, 보너스 볼 일치 (" + formattingPrize + "원) - " + wins.get(i) + "개");
             }
-            if (i == 0) {
-                System.out.println(firstPlace + "개 일치 (2,000,000,000원) - " + wins.get(i) + "개");
-            }
+            System.out.println(matchingCount + "개 일치 (" + formattingPrize + "원) - " + wins.get(i) + "개");
         }
     }
+
+    public static String formatIncludeComma(int money) {
+        NumberFormat numberFormat = new DecimalFormat("#,###");
+        return numberFormat.format(money);
+    }
+
     public static void prizeMessage(int prize, double earn) {
         System.out.println("상금은 "+prize+"원 입니다.");
         System.out.println("총 수익률은 "+earn+"%입니다.");

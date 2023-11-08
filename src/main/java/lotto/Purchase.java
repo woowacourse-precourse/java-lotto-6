@@ -14,8 +14,8 @@ public class Purchase {
     while (true) {
         try {
             int purchaseAmount = Integer.parseInt(Console.readLine());
-            validateAmount(purchaseAmount);  // 입력값을 유효성 검사
-            return purchaseAmount / 1000;  // 1,000원 단위로 구입 가능
+            validateAmount(purchaseAmount);  
+            return purchaseAmount / 1000;  
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 숫자가 아닌 입력입니다.");
         } catch (IllegalArgumentException e) {

@@ -37,6 +37,7 @@ public class PrizeMoney {
     System.out.println("5개 일치, 보너스 볼 일치 (" + formattedAmount + "원) - " + results[4] + "개");
 
     prizeAmount = Prize.values()[4].getAmount();
+    formattedAmount = NumberFormat.getNumberInstance(Locale.US).format(prizeAmount);
     System.out.println("6개 일치 (" + formattedAmount + "원) - " + results[3] + "개");
   }
 

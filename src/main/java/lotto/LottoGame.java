@@ -17,12 +17,11 @@ public class LottoGame {
       System.out.println(purchasedTicket.getNumbers());
     }
   }
+  
 
   public void setWinningTicket(Lotto winningTicket) {
     this.winningTicket = winningTicket;
   }
-  
-//  public void setBonusNumber()
 
   // 당첨된 숫자 3개 이상인 티켓 처리
   public int[] calculateResults(int bonusNumber) {
@@ -32,34 +31,23 @@ public class LottoGame {
       int matchingNumbers = ticket.countMatchingNumbers(winningTicket);
       if (matchingNumbers >= 3) {
         results[matchingNumbers - 3]++;
-
-
-        // System.out.println(matchingNumbers+"매칭 넘버");
-        // System.out.println(results[0]);
-        // System.out.println(results[1]);
-        // System.out.println(results[2]);
-        // System.out.println(results[3]);
-
       }
       if (results[2] > 0) {
         int bonusMatching = ticket.countMatchingNumbers(bonusNumber);
-        if(bonusMatching > 0) {
+        if (bonusMatching > 0) {
           results[4]++;
           results[2]--;
         }
-        
-        
       }
     }
     return results;
   }
 
-
-
   private Lotto generateRandomLotto() {
     List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-    Collections.sort(numbers);
-    return new Lotto(numbers);
+    List<Integer> sortedNumbers = new ArrayList<>(numbers);  // 복제
+    Collections.sort(sortedNumbers);
+    return new Lotto(sortedNumbers);
   }
 
 

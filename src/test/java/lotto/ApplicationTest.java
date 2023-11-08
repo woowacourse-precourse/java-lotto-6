@@ -15,6 +15,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
+            
                 () -> {
                     run("8000", "1,2,3,4,5,6", "7");
                     assertThat(output()).contains(

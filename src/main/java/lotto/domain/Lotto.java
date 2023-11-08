@@ -77,4 +77,14 @@ public class Lotto {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.get(1) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + result.get(0) + "개");
     }
+
+    public static String profitCalc(List<Integer> result, int money) {
+        List<Integer> profit = new ArrayList<>(Arrays.asList(2000000000, 30000000, 1500000, 50000, 5000, 0));
+        double sum = 0.0;
+        for (int i = 0; i < result.size(); i++) {
+            sum += profit.get(i) * result.get(i);
+        }
+        System.out.println("sum = " + sum);
+        return String.format("%.1f", sum / money * 100);
+    }
 }

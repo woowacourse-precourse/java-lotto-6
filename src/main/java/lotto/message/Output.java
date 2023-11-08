@@ -4,7 +4,7 @@ public enum Output {
 
     RESULT("당첨 통계\n---"),
     ISSUED_LOTTO_COUNT("%d개를 구매했습니다."),
-    TOTAL_RETURN("총 수익률은 %.1f%%입니다.");
+    TOTAL_YIELD("총 수익률은 %.1f%%입니다.");
 
     private final String message;
 

@@ -24,6 +24,6 @@ public class OutputView {
                     lottoResult.print(count);
                 }
         );
-        Output.TOTAL_RETURN.print(yieldRate);
+        Output.TOTAL_YIELD.print(yieldRate);
     }
 }

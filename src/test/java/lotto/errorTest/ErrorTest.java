@@ -54,10 +54,20 @@ public class ErrorTest extends NsTest {
     @DisplayName("당첨 금액 입력시 숫자가 아닌 문자형이 들어왔을때")
     public void inputWinningNumberFormatError(){
         assertSimpleTest(() -> {
-            runException("3000","1,2,3,4,가,6,7");
+            runException("3000","1,2,3,4,가,6");
             assertThat(output()).contains(ExceptionMessage.NumberFormatError.getErrorMessage());
         });
     }
+
+    @Test
+    @DisplayName("당첨 금액 입력시 숫자가 중복일때")
+    public void inputWinningNumberDuplicationError(){
+        assertSimpleTest(() -> {
+            runException("3000","1,2,3,4,1,6");
+            assertThat(output()).contains(ExceptionMessage.duplicationError.getErrorMessage());
+        });
+    }
+
 
 
 

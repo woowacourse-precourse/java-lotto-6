@@ -45,4 +45,12 @@ public class UserTest {
         assertThat(WinningResult.FOURTH.getCountResult()).isEqualTo(1);
         assertThat(WinningResult.FIFTH.getCountResult()).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("user의 getMoney와 실제 입력받은 돈이 같은지 테스트")
+    void testGetMoney() {
+        int userMoney = user.getMoney();
+
+        assertThat(userMoney).isEqualTo(Integer.parseInt(money.getMoney()));
+    }
 }

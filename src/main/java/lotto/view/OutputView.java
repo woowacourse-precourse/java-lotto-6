@@ -10,13 +10,13 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.Lottos;
 import lotto.domain.Ranking;
-import lotto.domain.Result;
-
 import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
+
+    private static final int HUNDRED_FOR_PERCENTAGE = 100;
 
     public static void printErrorMessage(String message) {
         System.out.println(message);
@@ -45,6 +45,6 @@ public class OutputView {
                             System.out.println(String.format(LOTTO_RESULT_FORMAT, ranking.getDescription(), count));
                         }
                 );
-        System.out.println(String.format(RATE_OF_RETURN_FORMAT, rateOfReturn * 100));
+        System.out.println(String.format(RATE_OF_RETURN_FORMAT, rateOfReturn * HUNDRED_FOR_PERCENTAGE));
     }
 }

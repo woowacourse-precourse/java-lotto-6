@@ -8,7 +8,6 @@ import static lotto.exception.ErrorMessage.INPUT_STRING_NOT_NUMBER;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 import lotto.exception.LottoGameException;
 
 
@@ -17,12 +16,9 @@ public class InputView {
     public static final String LOTTO_NUMBER_STRING_REGEX = "((\\d)+,)*\\d+";
     public static final String LOTTO_NUMBER_DELIMITER = ",";
 
-    public static int inputMoney() {
-        return inputNumber();
-    }
 
     public static List<Integer> inputWinningLottoNumber() {
-        String inputString = readNotEmptyLine();
+        String inputString = readLine();
 
         validateInputStringNotBlank(inputString);
         validateInputStringIsLottoNumber(inputString);
@@ -32,20 +28,17 @@ public class InputView {
                 .toList();
     }
 
+    public static int inputMoney() {
+        return inputNumber();
+    }
+
     public static int inputBonusNumber() {
         return inputNumber();
     }
 
-    private static String readNotEmptyLine() {
-        try {
-            return readLine();
-        } catch (NoSuchElementException ignore) {
-            throw LottoGameException.of(EMPTY_STRING_EXCEPTION);
-        }
-    }
 
     private static int inputNumber() {
-        String inputString = readNotEmptyLine();
+        String inputString = readLine();
 
         validateInputString(inputString);
         validateInputStringIsNumber(inputString);

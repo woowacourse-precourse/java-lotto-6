@@ -5,8 +5,15 @@ import java.util.List;
 import lotto.lotto.model.Lotto;
 
 public class LottoView {
+
+    private static final StringBuilder sb = new StringBuilder();
+
     private static void printUserCount(int count){
-        System.out.println(count+"개를 구매했습니다.");
+        sb
+            .append(count)
+            .append("개를 구매했습니다.")
+        ;
+        System.out.println(sb);
     }
 
     public static void printUserLotto(List<Lotto> lottos){

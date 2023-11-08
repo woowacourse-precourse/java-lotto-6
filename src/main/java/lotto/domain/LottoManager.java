@@ -22,7 +22,7 @@ public class LottoManager {
         List<Lotto> lottos = IntStream.range(0, ticketCount)
                 .mapToObj(i -> generateValidLotto())
                 .collect(Collectors.toList());
-        return new Lottos(lottos);
+        return new Lottos(List.copyOf(lottos));
     }
 
     private Lotto generateValidLotto() {

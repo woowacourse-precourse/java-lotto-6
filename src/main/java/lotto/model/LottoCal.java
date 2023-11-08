@@ -28,7 +28,6 @@ public class LottoCal {
         boolean bonusCheck = userLotto.contains(userBonus);
         lotto.retainAll(userLotto);
         int count = lotto.size();
-        System.out.println("aa" + count);
         if (count == SECOND_REQUIRE && bonusCheck) {
             count = SECOND_REQUIRE_SUCCESS;
         }

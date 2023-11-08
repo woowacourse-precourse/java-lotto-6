@@ -13,7 +13,7 @@ public class RateView {
         }
     }
 
-    public void printRate(int returnRate) {
+    public void printRate(String returnRate) {
         System.out.println("총 수익률은 " + returnRate + "%입니다.");
     }
 

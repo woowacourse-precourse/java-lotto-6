@@ -71,7 +71,8 @@ public class LottoController {
         rateView.printPrize(resultCount, resultHit, resultPrize);
 
         RateCal rateCal = new RateCal(lottoCal.getPrizeCount());
-        rateView.printRate(rateCal.getReturnRate(userLottoPrice.getPrice()));
+        String formatResult = String.format("%.2f", rateCal.getReturnRate(userLottoPrice.getPrice()));
+        rateView.printRate(formatResult);
 
     }
 

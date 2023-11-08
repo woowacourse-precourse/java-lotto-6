@@ -5,7 +5,7 @@ import lotto.Domain.LottoRate;
 
 public class RateCal {
     private int sumPrize = 0;
-    private int returnRate;
+    private double returnRate;
     private Map<Integer, Integer> prizeCount;
 
     public RateCal(Map<Integer, Integer> prizeCount) {
@@ -32,8 +32,8 @@ public class RateCal {
         return 0;
     }
 
-    public int getReturnRate(int price) {
-        returnRate = sumPrize / price;
+    public double getReturnRate(int price) {
+        returnRate = sumPrize / (double) price;
         return returnRate;
     }
 }

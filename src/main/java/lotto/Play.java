@@ -4,7 +4,9 @@ import static lotto.io.ErrorHandler.*;
 
 
 import camp.nextstep.edu.missionutils.Console;
+import java.awt.PrintGraphics;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +25,7 @@ public class Play {
         jackpotNumber.append(",");
         jackpotNumber.append(Console.readLine());
         List<Integer> jackpotInts = checkJackpotNumber(jackpotNumber.toString());
+
 
     }
 
@@ -51,6 +54,14 @@ public class Play {
         return jackpotInts;
     }
 
+    public List<Integer> compareAll(List<Integer> jackpotInts, List<List<Integer>> numbers) {
+        List<Integer> rankings = new ArrayList<>();
+        for (List<Integer> nums : numbers) {
+            int ranking = givePrize(compare(jackpotInts, nums));
+            rankings.add(ranking);
+        }
+        return rankings;
+    }
 
     public List<Integer> compare(List<Integer> jackpotInts, List<Integer> nums) {
         int matched = 0;
@@ -63,15 +74,7 @@ public class Play {
         if (jackpotInts.get(6).equals(nums.get(6))) {
             bonusMatched++;
         }
-        int finalMatched = matched;
-        int finalBonusMatched = bonusMatched;
-        List<Integer> matchedResults = new ArrayList<>() {
-            {
-                add(finalMatched);
-                add(finalBonusMatched);
-            }
-        };
-        return matchedResults;
+        return List.of(matched, bonusMatched);
     }
 
     // 여기서 enum  써야 할 듯
@@ -89,5 +92,16 @@ public class Play {
         } else if (matched == 3) {
             return 5;
         }
-    return 0; }
+        return 0;
+    }
+
+    public List<Integer> alignRanking(List<Integer> rankings) {
+        int first = Collections.frequency(rankings, 1);
+        int second = Collections.frequency(rankings, 2);
+        int third = Collections.frequency(rankings, 3);
+        int fourth = Collections.frequency(rankings, 4);
+        int fifth = Collections.frequency(rankings, 5);
+        return List.of(first, second, third, fourth, fifth);
+    }
+
 }

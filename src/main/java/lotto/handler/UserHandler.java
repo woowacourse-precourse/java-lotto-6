@@ -35,7 +35,6 @@ public class UserHandler {
         return amount;
     }
 
-
     public static int getLottoCountFromUser(int amount) {
         return amount/1000;
     }
@@ -97,18 +96,24 @@ public class UserHandler {
         ResultView.printNewLine();
         System.out.println("보너스 번호를 입력해주세요.");
         String bonusNumberInput = Console.readLine();
-        checkValidBonusNumberInput(bonusNumberInput);
+
         return bonusNumberInput;
     }
 
-    private static int validateAndReturnBonusNumber(String bonusNumberInput, List<String> winningNumbers) {
+    public static int validateAndReturnBonusNumber(String bonusNumberInput, List<String> winningNumbers) {
+        checkValidBonusNumberInput(bonusNumberInput);
+
+        if (bonusNumberInput == null || bonusNumberInput.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 다시 입력하세요.");
+        }
+
         int bonusNumber = Integer.parseInt(bonusNumberInput);
         checkvalidateBonusNumber(bonusNumber);
         checkDuplicateWithWinningNumbers(bonusNumber, winningNumbers);
         return bonusNumber;
     }
 
-    private static List<String> validateWinningNumberInput(String winningNumberInput) {
+    public static List<String> validateWinningNumberInput(String winningNumberInput) {
         if (winningNumberInput == null || winningNumberInput.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 번호를 입력해주세요.");
         }
@@ -175,10 +180,6 @@ public class UserHandler {
     }
 
     private static void checkValidBonusNumberInput(String bonusNumberInput) {
-        if (bonusNumberInput == null || bonusNumberInput.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 다시 입력하세요.");
-        }
-
         try {
             Integer.parseInt(bonusNumberInput);
         } catch (NumberFormatException e) {

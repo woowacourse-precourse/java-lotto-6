@@ -5,7 +5,6 @@ import lotto.validation.WinningNumbersValidator;
 
 public class WinningNumbers {
 
-    private static final int WINNING_NUMBER_COUNT = 6;
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 

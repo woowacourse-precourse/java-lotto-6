@@ -26,6 +26,7 @@ public class LottoController {
     public void run() {
         int purchaseAmount = inputPurchaseAmount();
         List<Lotto> lottos = lottoService.createLottoTickets(purchaseAmount);
+        ResultView.printPurchasedLottos(lottos);
         WinningNumbers winningNumbers = inputWinningNumbers();
         processWinningNumbers(lottos, winningNumbers, purchaseAmount);
     }
@@ -38,7 +39,8 @@ public class LottoController {
         return new WinningNumbers(InputView.inputWinningNumbers(), InputView.inputBonusNumber());
     }
 
-    private void processWinningNumbers(List<Lotto> lottos, WinningNumbers winningNumbers, int purchaseAmount) {
+    private void processWinningNumbers(List<Lotto> lottos, WinningNumbers winningNumbers,
+            int purchaseAmount) {
         Map<LottoRank, Integer> results = winningService.calculateResults(lottos, winningNumbers);
         int totalPrize = winningService.calculateTotalPrize(results);
         double yield = winningService.calculateYield(purchaseAmount, totalPrize);

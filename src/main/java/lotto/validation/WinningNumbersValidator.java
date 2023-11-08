@@ -40,7 +40,8 @@ public class WinningNumbersValidator {
 
     private static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new LottoValidationException(LottoError.BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBER.toString());
+            throw new LottoValidationException(
+                    LottoError.BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBER.toString());
         }
     }
 }

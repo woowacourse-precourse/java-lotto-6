@@ -20,16 +20,24 @@ public class ResultView {
         System.out.println("---");
         for (LottoRank rank : LottoRank.values()) {
             if (rank != LottoRank.NONE) {
-                System.out.printf("%d개 일치 (%d원)- %d개\n",
-                        rank.getMatchCount(),
-                        rank.getPrize(),
+                String prizeFormat = String.format("%,d원", rank.getPrize());
+                String matchMessage = rank.getMatchCount() + "개 일치";
+
+                if (rank == LottoRank.SECOND) {
+                    matchMessage += ", 보너스 볼 일치";
+                }
+
+                System.out.printf("%s (%s) - %d개\n",
+                        matchMessage,
+                        prizeFormat,
                         results.getOrDefault(rank, 0));
             }
         }
     }
 
+
     public static void printYield(double yield) {
-        System.out.printf("총 수익률은 %.2f%%입니다.\n", yield * 100);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", yield * 100);
     }
 
     private static String formatLottoNumbers(List<Integer> numbers) {

@@ -1,9 +1,16 @@
 package lotto;
 
-import static lotto.domain.util.LottoParser.*;
+import static lotto.domain.util.LottoParser.parseBonusNumber;
+import static lotto.domain.util.LottoParser.parseLottoToInteger;
+import static lotto.domain.util.LottoParser.parseMoney;
+import static lotto.domain.util.LottoParser.parseWinningNumbers;
 
-import java.util.*;
-import lotto.domain.*;
+import java.util.List;
+import java.util.Map;
+import lotto.domain.Lotto;
+import lotto.domain.LottoGenerator;
+import lotto.domain.LottoMatchChecker;
+import lotto.domain.LottoRank;
 import lotto.domain.numbergenerator.NumberGenerator;
 import lotto.exception.InputException;
 import lotto.exception.LottoException;
@@ -14,32 +21,33 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final NumberGenerator generator;
-    private LottoGameService service;
+    private final LottoGenerator lottoGenerator;
 
     public LottoController(InputView inputView, OutputView outputView, NumberGenerator generator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.generator = generator;
-        this.service = new LottoGameService();
+        this.lottoGenerator = new LottoGenerator();
     }
 
     public void run() {
         // 로또 발행
         int money = receiveValidMoney();
-        List <Lotto> lottos = service.generateLottos(money, generator);
+        List<Lotto> lottos = lottoGenerator.generate(money, generator);
         // 발행 로또 출력
         outputView.printLottoNumbers(parseLottoToInteger(lottos));
         // 로또 당첨 판단 객체 생성
         List<Integer> validWinningNumbers = receiveValidWinningNumbers();
         int validBonusNumber = receiveValidBonusNumber();
         // 당첨 등수 맵 생성
-        Map<LottoRank, Integer> rankCount = service.getResultRankCount(lottos, validWinningNumbers, validBonusNumber);
+        LottoMatchChecker lottoMatchChecker = new LottoMatchChecker(validWinningNumbers, validBonusNumber);
+        Map<LottoRank, Integer> result = lottoMatchChecker.getResult(lottos);
         // 결과 출력
-        showResult(rankCount);
+        showResult(result);
     }
 
     private int receiveValidMoney() {
-        while(true) {
+        while (true) {
             outputView.printInputMoneyMessage();
             try {
                 String money = inputView.inputMoney();
@@ -51,7 +59,7 @@ public class LottoController {
     }
 
     private List<Integer> receiveValidWinningNumbers() {
-        while(true) {
+        while (true) {
             outputView.printInputWinningNumbersMessage();
             try {
                 String winningNumbers = inputView.inputWinningNumber();
@@ -63,7 +71,7 @@ public class LottoController {
     }
 
     private int receiveValidBonusNumber() {
-        while(true) {
+        while (true) {
             outputView.printInputBonusNumberMessage();
             try {
                 String bonusNumber = inputView.inputBonusNumber();

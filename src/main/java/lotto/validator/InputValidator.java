@@ -24,7 +24,7 @@ public class InputValidator {
     }
 
 
-    public static void validateAmount(int amount) {
+    private static void validateAmount(int amount) {
         if (amount % LottoConstants.UNIT != 0) {
             throw new IllegalArgumentException();
         }

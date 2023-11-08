@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class LottoUtil {
 
-    public Lotto lottoCreate(List<Integer> randomNumbers) {
+    private Lotto lottoCreate(List<Integer> randomNumbers) {
         List<Integer> lottoNumbers = randomNumbers.stream().sorted().collect(Collectors.toList());
         return new Lotto(lottoNumbers);
     }

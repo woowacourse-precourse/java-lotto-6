@@ -10,7 +10,7 @@ public class PurchasedLottos {
         this.lottos = lottos;
     }
 
-    public static PurchasedLottos of(final int numberOfLottos, final LottoGenerator lottoGenerator) {
+    public static PurchasedLottos of(int numberOfLottos, LottoGenerator lottoGenerator) {
         final List<Lotto> purchasedLottos = new ArrayList<>(numberOfLottos);
 
         for (int i = 0; i < numberOfLottos; i++) {

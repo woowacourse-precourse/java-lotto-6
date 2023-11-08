@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.config.Config;
 import lotto.constant.MyConstant;
 import lotto.control.Process;
+import lotto.utill.Output;
 
 public class ShowLottoProcess {
     private Process process;
@@ -12,61 +13,61 @@ public class ShowLottoProcess {
     }
 
     public void printBuyLotto() {
-        System.out.println(MyConstant.MSG_INPUT_MONEY());
+        Output.printMsg(MyConstant.MSG_INPUT_MONEY());
         while (true) {
             try {
                 process.buyLotto();
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                Output.printMsg(e.getMessage());
             }
         }
-        System.out.println();
+        Output.printNewLine();
     }
 
     public void printNumberBuyLotto() {
-        System.out.println(process.tellNumberLotto());
+        Output.printMsg(process.tellNumberLotto());
     }
 
     public void printInformationUserLotto() {
-        System.out.println(process.showLottosInformation());
-        System.out.println();
+        Output.printMsg(process.showLottosInformation());
+        Output.printNewLine();
     }
 
     public void printPickWinNumbers() {
-        System.out.println(MyConstant.MSG_INPUT_WIN_NUMBERS());
+        Output.printMsg(MyConstant.MSG_INPUT_WIN_NUMBERS());
         while (true) {
             try {
                 process.pickWinNumber();
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                Output.printMsg(e.getMessage());
             }
         }
-        System.out.println();
+        Output.printNewLine();
     }
 
     public void printPickBonusNumbers() {
-        System.out.println(MyConstant.MSG_INPUT_BONUS_NUMBER());
+        Output.printMsg(MyConstant.MSG_INPUT_BONUS_NUMBER());
         while (true) {
             try {
                 process.pickBonusNumber();
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                Output.printMsg(e.getMessage());
             }
         }
-        System.out.println();
+        Output.printNewLine();
     }
 
     public void printStatisticResult() {
-        System.out.println(MyConstant.MSG_START_WIN_STATISTIC());
-        System.out.println(MyConstant.MSG_SEPARATOR_DASH());
-        System.out.println(process.showStatisticResult());
+        Output.printMsg(MyConstant.MSG_START_WIN_STATISTIC());
+        Output.printMsg(MyConstant.MSG_SEPARATOR_DASH());
+        Output.printMsg(process.showStatisticResult());
     }
 
     public void printRateResult() {
-        System.out.println(process.showRateResult());
+        Output.printMsg(process.showRateResult());
     }
 
     public void run() {

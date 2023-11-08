@@ -1,15 +1,18 @@
 package lotto;
 
+import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
 
 public class Validator {
     public static int validatePrice(String inputstr){
         if (!Pattern.compile("^[\\d]*$").matcher(inputstr).matches()) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요");
+            System.out.println(ErrorMessage.NON_NUMBER);
+            throw new NoSuchElementException();
         }
         int parsedstr = Integer.parseInt(inputstr);
         if (parsedstr % 1000 > 0) {
-            throw new IllegalArgumentException("[ERROR] 구매 가격은 1000원 단위입니다.");
+            System.out.println(ErrorMessage.NON_1000_DIVIDABLE);
+            throw new IllegalArgumentException();
         }
         return parsedstr;
     }
@@ -17,11 +20,13 @@ public class Validator {
         try{
             int bonus = Integer.parseInt(inputstr);
             if(bonus > 45 || bonus < 1){
-                throw new IllegalArgumentException(ErrorMessage.BONUS_NON_RANGE);
+                System.out.println(ErrorMessage.BONUS_NON_RANGE);
+                throw new IllegalArgumentException();
             }
             return bonus;
         }catch(NumberFormatException e){
-            throw new IllegalArgumentException(ErrorMessage.NON_NUMBER);
+            System.out.println(ErrorMessage.NON_NUMBER);
+            throw new IllegalArgumentException();
         }
     }
 }

@@ -43,10 +43,10 @@ public class GameController {
 
     private void showResult() {
         OutputView.printEmpty();
-        List<LottoRank> resultLottoToMatch = lottoManager.judgeRankByLotto();
-        HashMap<LottoRank, Integer> countPerMatchNumber = lottoManager.totalCountPerRank(resultLottoToMatch);
-        OutputView.printResultCount(countPerMatchNumber);
-        double rateOfReturn = LottoCaclulator.calculateRateOfReturn(countPerMatchNumber, money.getMoney());
+        List<LottoRank> resultLottoToRank = lottoManager.judgeRankByLotto();
+        HashMap<LottoRank, Integer> countPerRank = lottoManager.totalCountPerRank(resultLottoToRank);
+        OutputView.printResultCount(countPerRank);
+        double rateOfReturn = LottoCaclulator.calculateRateOfReturn(countPerRank, money.getMoney());
         OutputView.printRateOfResult(rateOfReturn);
     }
 

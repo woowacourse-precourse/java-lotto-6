@@ -22,19 +22,25 @@ public class Lotto {
         return numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    public static void validate(List<Integer> numbers) {
         validateNumbersSize(numbers);
         validateDuplicateNumbers(numbers);
         validateLottoNumberRange(numbers);
     }
 
-    private void validateNumbersSize(List<Integer> numbers) {
+    protected static void validateNumberRange(int number) {
+        if (number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER) {
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_RANGE);
+        }
+    }
+
+    private static void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ERROR_NOT_NUMBERS_SIZE);
         }
     }
 
-    private void validateDuplicateNumbers(List<Integer> numbers) {
+    private static void validateDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> notDuplicateNumbers = new HashSet<>(numbers);
 
         if (notDuplicateNumbers.size() != numbers.size()) {
@@ -42,13 +48,10 @@ public class Lotto {
         }
     }
 
-    private void validateLottoNumberRange(List<Integer> numbers) {
+    private static void validateLottoNumberRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER) {
-                throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_RANGE);
-            }
+            validateNumberRange(number);
         }
     }
-
     // TODO: 추가 기능 구현
 }

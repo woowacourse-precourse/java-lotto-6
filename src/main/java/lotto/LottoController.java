@@ -4,6 +4,7 @@ import static lotto.constant.GuideMessage.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 import lotto.constant.LottoResult;
 import lotto.domain.Lotto;
 import lotto.domain.LottoStatistics;
@@ -13,30 +14,76 @@ import lotto.domain.WinnerNumbers;
 public class LottoController {
 
     private static final String CRLF = "";
-
     private static final Wallet wallet = new Wallet();
     private static final LottoView view = new LottoView();
-    private static WinnerNumbers winnerNumbers;
 
+    private final Supplier<Boolean> inputAmountOfLotto = () -> {
 
-    void inputAmountOfLotto() {
+        boolean exceptionOccurrenceStatus;
 
-        boolean exceptionOccurrenceStatus = true;
+        try {
+            int amount = view.inputNumber(INPUT_BUY_AMOUNT);
+            wallet.addBalance(amount);
 
-        while (exceptionOccurrenceStatus) {
-            try {
-                int amount = view.inputNumber(INPUT_BUY_AMOUNT);
-                wallet.addBalance(amount);
+            exceptionOccurrenceStatus = false;
 
-                exceptionOccurrenceStatus = false;
-
-            } catch (IllegalArgumentException e) {
-                view.printMessage(e.getMessage());
-                exceptionOccurrenceStatus = true;
-            }
+        } catch (IllegalArgumentException e) {
+            view.printMessage(e.getMessage());
+            exceptionOccurrenceStatus = true;
         }
 
         view.printMessage(CRLF);
+
+        return exceptionOccurrenceStatus;
+    };
+
+    private final Supplier<Boolean> inputWinnerNumber = () -> {
+        boolean exceptionOccurrenceStatus;
+
+        try {
+            List<Integer> numbers = view.inputNumbers(INPUT_WINNER_NUMBERS);
+            view.printMessage(CRLF);
+            Lotto.validate(numbers);
+
+            int bonusNumber = inputBonusNumber(numbers);
+            winnerNumbers = new WinnerNumbers(numbers, bonusNumber);
+
+            exceptionOccurrenceStatus = false;
+
+        } catch (IllegalArgumentException e) {
+            view.printMessage(e.getMessage());
+            exceptionOccurrenceStatus = true;
+        }
+
+        view.printMessage(CRLF);
+
+        return exceptionOccurrenceStatus;
+    };
+
+    private static WinnerNumbers winnerNumbers;
+
+    void run() {
+
+        loopMethod(inputAmountOfLotto);
+
+        buyLotto();
+
+        loopMethod(inputWinnerNumber);
+
+        showTotalLottoResult();
+    }
+
+    void showTotalLottoResult() {
+
+        LottoStatistics lottoStatistics = new LottoStatistics();
+        List<Lotto> lottos = wallet.getLottos();
+        int balance = wallet.getBalance();
+
+        Map<LottoResult, Integer> lottoResult = lottoStatistics.calculateLottoResults(lottos, winnerNumbers);
+        double rateOfReturn = lottoStatistics.calculateLottoRateOfReturn(balance);
+
+        view.printLottoResult(lottoResult, rateOfReturn);
+
     }
 
     void buyLotto() {
@@ -54,28 +101,8 @@ public class LottoController {
         view.printMessage(CRLF);
     }
 
-    void inputWinnerNumber() {
-
-        boolean exceptionOccurrenceStatus = true;
-
-        while (exceptionOccurrenceStatus) {
-            try {
-                List<Integer> numbers = view.inputNumbers(INPUT_WINNER_NUMBERS);
-                view.printMessage(CRLF);
-                WinnerNumbers.validateNumbers(numbers);
-
-                int bonusNumber = inputBonusNumber(numbers);
-                winnerNumbers = new WinnerNumbers(numbers, bonusNumber);
-
-                exceptionOccurrenceStatus = false;
-
-            } catch (IllegalArgumentException e) {
-                view.printMessage(e.getMessage());
-                exceptionOccurrenceStatus = true;
-            }
-        }
-
-        view.printMessage(CRLF);
+    private void loopMethod(Supplier<Boolean> method) {
+        while (method.get());
     }
 
     private int inputBonusNumber(List<Integer> numbers) {
@@ -87,7 +114,7 @@ public class LottoController {
         while (exceptionOccurrenceStatus) {
             try {
                 bonusNumber = view.inputNumber(INPUT_BONUS_NUMBER);
-                winnerNumbers = new WinnerNumbers(numbers, bonusNumber);
+                WinnerNumbers.validateBonusNumber(numbers, bonusNumber);
                 exceptionOccurrenceStatus = false;
 
             } catch (IllegalArgumentException e) {
@@ -97,18 +124,5 @@ public class LottoController {
         }
 
         return bonusNumber;
-    }
-
-    void showTotalLottoResult() {
-
-        LottoStatistics lottoStatistics = new LottoStatistics();
-        List<Lotto> lottos = wallet.getLottos();
-        int balance = wallet.getBalance();
-
-        Map<LottoResult, Integer> lottoResult = lottoStatistics.calculateLottoResults(lottos, winnerNumbers);
-        double rateOfReturn = lottoStatistics.calculateLottoRateOfReturn(balance);
-
-        view.printLottoResult(lottoResult, rateOfReturn);
-
     }
 }

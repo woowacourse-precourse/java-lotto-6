@@ -11,8 +11,6 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    private static boolean abc;
-
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoDto lottoDto;
@@ -48,21 +46,6 @@ public class LottoController {
         storeBonusNumber();
     }
 
-    private int getLottoCount() {
-        return lottoDto.getPurchaseAmount() / 1000;
-    }
-
-    private void drawLots() {
-        lottoService.getResult(lottoDto.getWinningNumbers(), lottoDto.getBonusNumber());
-        String totalYield = lottoService.calculateTotalYield(lottoDto.getPurchaseAmount());
-        printResult(totalYield);
-    }
-
-    private void printResult(String totalYield) {
-        outputView.printWinningStatistics(lottoDto.getWinningStatistics());
-        outputView.printTotalYield(totalYield);
-    }
-
     private void storePurchaseAmount() {
         boolean isValid = false;
         while (!isValid) {
@@ -76,6 +59,10 @@ public class LottoController {
                 System.out.println();
             }
         }
+    }
+
+    private int getLottoCount() {
+        return lottoDto.getPurchaseAmount() / 1000;
     }
 
     private void printPurchaseLottoTickets(int lottoCount) {
@@ -109,5 +96,16 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void drawLots() {
+        lottoService.getResult(lottoDto.getWinningNumbers(), lottoDto.getBonusNumber());
+        String totalYield = lottoService.calculateTotalYield(lottoDto.getPurchaseAmount());
+        printResult(totalYield);
+    }
+
+    private void printResult(String totalYield) {
+        outputView.printWinningStatistics(lottoDto.getWinningStatistics());
+        outputView.printTotalYield(totalYield);
     }
 }

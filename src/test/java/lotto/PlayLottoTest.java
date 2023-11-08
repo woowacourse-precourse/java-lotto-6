@@ -28,6 +28,13 @@ class PlayLottoTest {
         assertThat(result).isEqualTo(expected);
     }
 
+    @ParameterizedTest
+    @MethodSource("generateRankData")
+    void 맞은_갯수에_따른_등수를_알아낸다(int matchedNumberCnt, boolean hasBonusNumber, Rank rank) {
+        assertThat(rank.matchedCnt).isEqualTo(matchedNumberCnt);
+        assertThat(rank.hasBonusNumber).isEqualTo(hasBonusNumber);
+    }
+
     static Stream<Arguments> generateMatchedNumberData(){
         return Stream.of(
                 Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), Arrays.asList(1, 2, 3, 4, 5, 6), 6),
@@ -37,6 +44,16 @@ class PlayLottoTest {
                 Arguments.of(Arrays.asList(1, 2, 7, 8, 9, 10), Arrays.asList(1, 2, 3, 4, 5, 6), 2),
                 Arguments.of(Arrays.asList(1, 7, 8, 9, 10, 11), Arrays.asList(1, 2, 3, 4, 5, 6), 1),
                 Arguments.of(Arrays.asList(7, 8, 9, 10, 11, 12), Arrays.asList(1, 2, 3, 4, 5, 6), 0)
+        );
+    }
+
+    static Stream<Arguments> generateRankData(){
+        return Stream.of(
+                Arguments.of(6, false, Rank.FIRST),
+                Arguments.of(5, true, Rank.SECOND),
+                Arguments.of(5, false, Rank.THIRD),
+                Arguments.of(4, false, Rank.FOURTH),
+                Arguments.of(3, false, Rank.FIFTH)
         );
     }
 }

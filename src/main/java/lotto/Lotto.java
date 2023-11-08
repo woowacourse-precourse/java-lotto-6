@@ -37,7 +37,7 @@ public class Lotto {
         return originalNumbers.size();
     }
 
-    public boolean contain(Integer number) {
+    public Boolean contain(Integer number) {
         return this.numbers.contains(number);
     }
 }

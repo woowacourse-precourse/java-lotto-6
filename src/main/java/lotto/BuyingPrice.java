@@ -17,6 +17,10 @@ public class BuyingPrice extends Input {
         return this.price / 1000;
     }
 
+    public void printCount() {
+        System.out.println(getBuyingCount() + BUYING_COUNT);
+    }
+
     public void save(String readLine) {
         Integer price = validate(readLine);
         this.price = price;

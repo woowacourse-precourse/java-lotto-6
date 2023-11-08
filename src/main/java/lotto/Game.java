@@ -28,9 +28,11 @@ public class Game {
 
     public void run() {
         saveBuyingPrice();
+        printBuyingCount();
         giveLotto();
         saveWinningNumber();
         saveBonusNumber();
+        countWinning();
         printWinning();
         printRateOfReturn();
     }
@@ -39,17 +41,19 @@ public class Game {
         saveValue(BUYING_PRICE, buyingPrice);
     }
 
+    private void printBuyingCount() {
+        buyingPrice.printCount();
+    }
+
     private void giveLotto() {
-        int buyingCount = buyingPrice.getBuyingCount();
-        System.out.println(buyingCount + BUYING_COUNT);
-        for (int i = 0; i < buyingCount; i++) {
+        for (int i = 0; i < buyingPrice.getBuyingCount(); i++) {
             List<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, COUNT);
-            showLotto(uniqueNumbers);
             lottos.add(new Lotto(uniqueNumbers));
+            show(uniqueNumbers);
         }
     }
 
-    private void showLotto(List<Integer> uniqueNumbers) {
+    private void show(List<Integer> uniqueNumbers) {
         ArrayList<Integer> copyNumbers = new ArrayList<>(uniqueNumbers);
         Collections.sort(copyNumbers);
         String result = copyNumbers.stream()
@@ -66,47 +70,43 @@ public class Game {
         saveValue(BONUS_NUMBER, bonus);
     }
 
-    private void printWinning() {
-        System.out.println(WINNING_STATISTICS);
-        printWinning(THREE_CORRECTNESS);
-        printWinning(FOUR_CORRECTNESS);
-        printWinning(FIVE_CORRECTNESS);
-        printWinning(FIVE_AND_BONUS_CORRECTNESS);
-        printWinning(SIX_CORRECTNESS);
+    private void countWinning() {
+        for (ResultCase resultCase : ResultCase.values()) {
+            result.save(resultCase, count(resultCase));
+        }
     }
 
-    private void printWinning(ResultCase resultCase) {
-        int matchLotto = countMatchLotto(resultCase);
-        result.change(resultCase, matchLotto);
-        result.print();
-    }
-
-    private int countMatchLotto(ResultCase resultCase) {
-        int matchLotto = 0;
+    private Integer count(ResultCase resultCase) {
+        int matchNumbers = 0;
         for (Lotto lotto : lottos) {
             int equal = lotto.countEqual(winning.getNumbers());
             if (resultCase == FIVE_AND_BONUS_CORRECTNESS) {
                 equal = addBonus(lotto, equal);
             }
             if (equal == resultCase.getCorrectness()) {
-                matchLotto++;
+                matchNumbers++;
             }
         }
-        return matchLotto;
+        return matchNumbers;
     }
 
-    private int addBonus(Lotto lotto, int equalNumber) {
+    private Integer addBonus(Lotto lotto, Integer equalNumber) {
         if (lotto.contain(bonus.getNumber())) {
             equalNumber++;
         }
         return equalNumber;
     }
 
+    private void printWinning() {
+        System.out.println(WINNING_STATISTICS);
+        result.print();
+    }
+
     private void printRateOfReturn() {
         System.out.println(RATE_OF_RETURN + calculateRateOfReturn() + PERCENT);
     }
 
-    private double calculateRateOfReturn() {
+    private Double calculateRateOfReturn() {
         return result.getCalculateRateOfReturn(buyingPrice.getPrice());
     }
 

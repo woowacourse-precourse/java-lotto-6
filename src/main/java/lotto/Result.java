@@ -12,7 +12,7 @@ public class Result {
         result = new HashMap<>();
     }
 
-    public void change(ResultCase resultCase, int matchLotto) {
+    public void save(ResultCase resultCase, int matchLotto) {
         if (result.containsKey(resultCase)) {
             result.put(resultCase, result.get(resultCase) + matchLotto);
             return;
@@ -21,12 +21,14 @@ public class Result {
     }
 
     public void print() {
-        System.out.println(resultCase.getInform() + matchLotto + UNIT);
+        for (ResultCase resultCase : ResultCase.values()) {
+            System.out.println(resultCase.getComment() + result.get(resultCase) + UNIT);
+        }
     }
 
     public double getCalculateRateOfReturn(int buyingPrice) {
         double rateOfReturn = ((double) getWinningPrice() / buyingPrice) * 100;
-        double refinedRateOfReturn = (double) Math.round(rateOfReturn * Math.pow(10, 2)) / Math.pow(10, 2);
+        double refinedRateOfReturn = Math.round(rateOfReturn * Math.pow(10, 2)) / Math.pow(10, 2);
         return refinedRateOfReturn;
     }
 

@@ -10,21 +10,21 @@ public enum ResultCase {
     FOUR_CORRECTNESS( 4,50000, FOUR_CORRECTNESS_CASE),
     THREE_CORRECTNESS( 3,5000, THREE_CORRECTNESS_CASE);
 
-    private int correctness;
-    private int price;
+    private Integer correctness;
+    private Integer price;
     private String comment;
 
-    ResultCase(int correctness, int price, String comment) {
+    ResultCase(Integer correctness, Integer price, String comment) {
         this.correctness = correctness;
         this.price = price;
         this.comment = comment;
     }
 
-    public int getCorrectness() {
+    public Integer getCorrectness() {
         return this.correctness;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return this.price;
     }
 

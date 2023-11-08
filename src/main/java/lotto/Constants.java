@@ -25,7 +25,6 @@ public class Constants {
     public static final String NUMBER_DUPLICATE_ERROR = "[ERROR] 모든 번호는 중복이지 않아야 합니다.";
     public static final String WINNING_NUMBER_TYPE_ERROR = "[ERROR] 당첨 번호는 숫자와 쉼표(,)만이 입력 가능합니다.";
 
-
     public static final String SIX_CORRECTNESS_CASE = "6개 일치 (2,000,000,000원) - ";
     public static final String FIVE_AND_BONUS_CORRECTNESS_CASE = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     public static final String FIVE_CORRECTNESS_CASE = "5개 일치 (1,500,000원) - ";

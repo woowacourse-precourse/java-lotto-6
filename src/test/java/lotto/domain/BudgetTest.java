@@ -10,7 +10,7 @@ class BudgetTest {
 
     @DisplayName("구입금액이 1000원 미만일 때 예외 발생")
     @Test
-    void budgetLessThan1000() {
+    void createUnder1000Budget() {
         assertThatThrownBy(() -> new Budget("100"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(BudgetInputErrorMessage.LESS_THAN_1000.getMessage());
@@ -18,7 +18,7 @@ class BudgetTest {
 
     @DisplayName("구입금액이 1000으로 나누어 떨어지지 않을 때 예외 발생")
     @Test
-    void budgetNotDivisible1000(){
+    void createBudgetNotDivisible1000(){
         assertThatThrownBy(() -> new Budget("3333"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(BudgetInputErrorMessage.DIVISIBLE_BY_THOUSAND.getMessage());

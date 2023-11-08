@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class WinningLottoNumbersTest {
     @DisplayName("입력된 당첨 숫자의 개수가 6개가 아닐 때 예외 발생")
     @Test
-    void incorrectWinningNumbersSize() {
+    void createIncorrectWinningNumbersSize() {
         String inputWinningNumbers = "1,2,3,34";
         assertThatThrownBy(() -> new WinningLottoNumbers(inputWinningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -20,7 +20,7 @@ class WinningLottoNumbersTest {
 
     @DisplayName("입력된 당첨 숫자가 범위를 벗어날 때 예외 발생")
     @Test
-    void outOfRangeWinningNumbers(){
+    void createOutOfRangeWinningNumbers(){
         String inputWinningNumbers = "1,2,3,4,5,500";
         assertThatThrownBy(() -> new WinningLottoNumbers(inputWinningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -29,7 +29,7 @@ class WinningLottoNumbersTest {
 
     @DisplayName("입력된 당첨 숫자가 중복일 때 예외 발생")
     @Test
-    void isDuplidateWinningNumbers(){
+    void createCheckDuplicateWinningNumbers(){
         String inputWinningNumbers = "1,2,3,3,4,5";
         assertThatThrownBy(() -> new WinningLottoNumbers(inputWinningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)

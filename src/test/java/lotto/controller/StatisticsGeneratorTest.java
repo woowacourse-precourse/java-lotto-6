@@ -15,7 +15,7 @@ class StatisticsGeneratorTest {
 
     @DisplayName("2개 이하 맞췄을 때 확인")
     @Test
-    void matchesNoneTest() {
+    void createUnderTwoMatchesStatistics() {
         int budget = 1000;
         int bonus = 7;
         BonusNumber bonusNumber = new BonusNumber(bonus);
@@ -39,7 +39,7 @@ class StatisticsGeneratorTest {
 
     @DisplayName("당첨번호 2개 이하 맞추고 보너스 번호 맞췄을 때 확인")
     @Test
-    void matchesNoneAndBonusTest() {
+    void createUnderTwoAndBonusMatchesStatistics() {
         int budget = 1000;
         int bonus = 7;
         BonusNumber bonusNumber = new BonusNumber(bonus);
@@ -63,7 +63,7 @@ class StatisticsGeneratorTest {
 
     @DisplayName("3개 맞췄을 때 확인")
     @Test
-    void matchesThreeTest() {
+    void createThreeMatchesStatistics() {
         int budget = 1000;
         int bonus = 7;
         BonusNumber bonusNumber = new BonusNumber(bonus);
@@ -85,7 +85,7 @@ class StatisticsGeneratorTest {
 
     @DisplayName("4개 맞췄을 때 확인")
     @Test
-    void matchesFourTest() {
+    void createFourMatchesStatistics() {
         int budget = 1000;
         int bonus = 7;
         BonusNumber bonusNumber = new BonusNumber(bonus);
@@ -107,7 +107,7 @@ class StatisticsGeneratorTest {
 
     @DisplayName("5개 맞췄을 때 확인")
     @Test
-    void matchesFiveTest() {
+    void createFiveMatchesStatistics() {
         int budget = 1000;
         int bonus = 7;
         BonusNumber bonusNumber = new BonusNumber(bonus);
@@ -129,7 +129,7 @@ class StatisticsGeneratorTest {
 
     @DisplayName("5개 맞추고 보너스 번호 맞췄을 때 확인")
     @Test
-    void matchesFiveAndBonusTest() {
+    void createFiveAndBonusMatchesStatistics() {
         int budget = 1000;
         int bonus = 7;
         BonusNumber bonusNumber = new BonusNumber(bonus);
@@ -151,7 +151,7 @@ class StatisticsGeneratorTest {
 
     @DisplayName("6개 맞췄을 때 확인")
     @Test
-    void matchesSixTest() {
+    void createSixMatchesStatistics() {
         int bonus = 7;
         BonusNumber bonusNumber = new BonusNumber(bonus);
         Map<String, Integer> statisticsMatchesCounts = Map.of(

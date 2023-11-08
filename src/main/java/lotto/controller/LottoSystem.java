@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.*;
 import lotto.view.InputView;
@@ -36,6 +37,8 @@ public class LottoSystem {
         WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers(inputView.InputWinningNumbers());
         BonusNumber bonusNumber = new BonusNumber(Integer.parseInt(inputView.InputBonusNumber()));
         winningCombination = new WinningCombination(winningLottoNumbers,bonusNumber);
+
+        Console.close();
     }
 
     private void ResultSystem(){

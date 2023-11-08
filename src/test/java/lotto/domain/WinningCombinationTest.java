@@ -12,7 +12,7 @@ class WinningCombinationTest {
 
     @DisplayName("이미 winningNumbers의 검증이 완료가 되었다고 가정 \n 입력된 보너스 넘버가 당첨 번호와 중복일 때 예외 발생")
     @Test
-    void isDuplicateBonusNumber(){
+    void createCheckDuplicateWinningCombination(){
         BonusNumber inputBonusNumber = new BonusNumber(6);
         assertThatThrownBy(() -> new WinningCombination(new WinningLottoNumbers(inputWinningNumbers),inputBonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)

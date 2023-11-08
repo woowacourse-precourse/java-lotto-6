@@ -15,9 +15,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProfitCalculatorTest {
     private final ProfitCalculator profitCalculator = new ProfitCalculator();
-    @DisplayName("수익률 계산 확인")
+    @DisplayName("3개 수익률 계산 확인")
     @Test
-    void profitTest1() {
+    void createThreeMatchesProfit() {
         int budget = 1000;
         Map<String, Integer> statisticsMatchesCounts = Map.of(
                 "matchesThree",1,
@@ -30,9 +30,9 @@ class ProfitCalculatorTest {
                 .isEqualTo(500.0f);
     }
 
-    @DisplayName("수익률 계산 확인")
+    @DisplayName("4개 수익률 계산 확인")
     @Test
-    void profitTest2() {
+    void createFourMatchesProfit() {
         int budget = 1000;
         Map<String, Integer> statisticsMatchesCounts = Map.of(
                 "matchesThree",0,
@@ -45,9 +45,9 @@ class ProfitCalculatorTest {
                 .isEqualTo(5000.0f);
     }
 
-    @DisplayName("수익률 계산 확인")
+    @DisplayName("5개 수익률 계산 확인")
     @Test
-    void profitTest3() {
+    void createFiveMatchesProfit() {
         int budget = 1000;
         Map<String, Integer> statisticsMatchesCounts = Map.of(
                 "matchesThree",0,
@@ -60,9 +60,9 @@ class ProfitCalculatorTest {
                 .isEqualTo(150000.0f);
     }
 
-    @DisplayName("수익률 계산 확인")
+    @DisplayName("5개+보너스번호 수익률 계산 확인")
     @Test
-    void profitTest4() {
+    void createFiveAndBonusMatchesProfit() {
         int budget = 1000;
         Map<String, Integer> statisticsMatchesCounts = Map.of(
                 "matchesThree",0,
@@ -75,9 +75,9 @@ class ProfitCalculatorTest {
                 .isEqualTo(3000000.0f);
     }
 
-    @DisplayName("수익률 계산 확인")
+    @DisplayName("6개 수익률 계산 확인")
     @Test
-    void profitTest5() {
+    void createSixMatchesProfit() {
         int budget = 1000;
         Map<String, Integer> statisticsMatchesCounts = Map.of(
                 "matchesThree",0,

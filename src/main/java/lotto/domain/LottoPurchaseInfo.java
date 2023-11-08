@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constants.LottoConstants.LOTTO_PRICE;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +32,6 @@ public class LottoPurchaseInfo {
     }
 
     public int makePurchaseLottoCount(int purchaseAmount) {
-        return purchaseAmount / 1000;
+        return purchaseAmount / LOTTO_PRICE;
     }
 }

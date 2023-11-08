@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.constants.LottoConstants.BONUS_CHALLENGE;
+
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchaseInfo;
@@ -87,7 +89,7 @@ public class Game {
         boolean isMatchedBonus = false;
 
         int countMatchedNum = winningLotto.countMatchedNum(numbers);
-        if (countMatchedNum == 5) {
+        if (countMatchedNum == BONUS_CHALLENGE) {
             isMatchedBonus = winningLotto.isMatchedBonus(numbers);
         }
         return WinningDetails.calculateResult(countMatchedNum, isMatchedBonus);

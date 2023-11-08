@@ -1,39 +1,51 @@
 package lotto.view;
 
+import static lotto.constants.ExceptionMessage.ERROR_PREFIX;
+import static lotto.constants.ExceptionMessage.EXCEPTION_DUPLICATED;
+import static lotto.constants.ExceptionMessage.EXCEPTION_NEED_BIGGER_NUM;
+import static lotto.constants.ExceptionMessage.EXCEPTION_NEED_DIVISIBLE_NUM;
+import static lotto.constants.ExceptionMessage.EXCEPTION_NOT_INTEGER;
+import static lotto.constants.ExceptionMessage.EXCEPTION_OUT_OF_RANGE;
+import static lotto.constants.ExceptionMessage.EXCEPTION_WRONG_LENGTH;
+import static lotto.constants.LottoConstants.LOTTO_LENGTH;
+import static lotto.constants.LottoConstants.LOTTO_PRICE;
+import static lotto.constants.LottoConstants.MAXIMUM_NUM;
+import static lotto.constants.LottoConstants.MINIMUM_NUM;
+
 import java.util.List;
 
 public class Exceptions {
     public static void validateDuplicateNum(int number, List<Integer> nums) {
         if (nums.contains(number)) {
-            throw new IllegalArgumentException("중복된 번호가 존재합니다.");
+            throw new IllegalArgumentException(ERROR_PREFIX + EXCEPTION_DUPLICATED);
         }
     }
 
     public static void validateLottoNum(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("번호는 1~45사이 값이여야 합니다.");
+        if (number < MINIMUM_NUM || number > MAXIMUM_NUM) {
+            throw new IllegalArgumentException(ERROR_PREFIX + EXCEPTION_OUT_OF_RANGE);
         }
     }
 
     public static void validateLottoLength(int length) {
-        if (length != 6) {
-            throw new IllegalArgumentException("입력된 번호의 길이는 6개여야합니다.");
+        if (length != LOTTO_LENGTH) {
+            throw new IllegalArgumentException(ERROR_PREFIX + EXCEPTION_WRONG_LENGTH);
         }
     }
 
     public static void validateNumber() {
-        throw new IllegalArgumentException("입력 값은 정수여야 합니다.");
+        throw new IllegalArgumentException(ERROR_PREFIX + EXCEPTION_NOT_INTEGER);
     }
 
     public static void validateExceedMinimum(int purchaseAmount) {
-        if (purchaseAmount < 1000) {
-            throw new IllegalArgumentException("구입금액은 1000원 보다 커야합니다.");
+        if (purchaseAmount < LOTTO_PRICE) {
+            throw new IllegalArgumentException(ERROR_PREFIX + EXCEPTION_NEED_BIGGER_NUM);
         }
     }
 
     public static void validateDivisibleAmount(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("1000원으로 나누어떨어지지 않습니다");
+        if (purchaseAmount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ERROR_PREFIX + EXCEPTION_NEED_DIVISIBLE_NUM);
         }
     }
 }

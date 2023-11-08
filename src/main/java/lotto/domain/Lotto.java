@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.constants.LottoConstants.LOTTO_LENGTH;
+import static lotto.constants.LottoConstants.MAXIMUM_NUM;
+import static lotto.constants.LottoConstants.MINIMUM_NUM;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
@@ -17,13 +21,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
 
     private List<Integer> makeSixSortedLottoNum() {
-        List<Integer> sixLottoNum = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> sixLottoNum = Randoms.pickUniqueNumbersInRange(MINIMUM_NUM, MAXIMUM_NUM, LOTTO_LENGTH);
         Collections.sort(sixLottoNum);
         return sixLottoNum;
     }
@@ -31,6 +35,4 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return this.numbers;
     }
-
-    // TODO: 추가 기능 구현
 }

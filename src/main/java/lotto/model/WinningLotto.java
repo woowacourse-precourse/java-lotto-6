@@ -56,7 +56,7 @@ public class WinningLotto extends Lotto {
     protected void validateDuplicate(List<Integer> numbers) {
         HashSet<Integer> numberSet = new HashSet<>(numbers);
         if (numberSet.size() != 6) {
-            throw new IllegalStateException(ErrorMessage.WINNING_NUMBER_DUPLICATED.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_DUPLICATED.getMessage());
         }
     }
 }

@@ -120,8 +120,8 @@
 - [o] LottoBonusTest
 
 ### 기능 테스트
-- [ ] LottoNumberGeneratorTest
-- [ ] LottoTicketCalculatorTest
+- [o] LottoNumberGeneratorTest
+- [o] LottoTicketCalculatorTest
 - [ ] LottoTicketCreatorTest
 - [ ] LottoMatchingDataTest
 - [ ] LottoRankCheckerTest

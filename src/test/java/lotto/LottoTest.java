@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
@@ -67,17 +68,9 @@ class LottoTest {
     @DisplayName("로또 번호를 랜덤으로 추가하는지 테스트한다.")
     @Test
     void generateLotto_shouldGenerate6UniqueNumbers() {
-        // Arrange
-        LottoPublisher lottoPublisher = new LottoPublisher(1000);
-        int count = 1; // 1장의 로또만 생성
-
-        // Act
-        List<List<Integer>> lottos = LottoPublisher.LottoSixNumber(count);
-
-        // Assert
-        assertEquals(count, lottos.size());
-        List<Integer> generatedLotto = lottos.get(0);
-        assertEquals(6, generatedLotto.size());
+        List<Integer> lottoNumbers = LottoPublisher.generateLotto();
+        assertEquals(6, lottoNumbers.size());
+        assertThat(lottoNumbers).doesNotHaveDuplicates();
     }
 
     @DisplayName("구매한 티켓의 장수에 대하여 테스트한다.")

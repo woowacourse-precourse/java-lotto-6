@@ -1,9 +1,15 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -52,6 +58,32 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @DisplayName("사용자가 숫자만 입력하지 않았으면 예외가 발생한다.")
+    @Test
+    void 보너스입력_숫자아니면_예외() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨번호는 숫자와 쉼표로 구성되며 총 11자리이다. 중복된 숫자는 없다.")
+    @ParameterizedTest
+    @MethodSource("winningNumbers")
+    void 당첨번호_예외(String winningNumber) {
+        assertSimpleTest(() -> {
+            runException("1000", winningNumber);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    static Stream<String> winningNumbers() {
+        return Stream.of(
+                "1,2,3,4,5", // 11자리가 아닌 경우
+                "1j2j3j4j", // 숫자와 쉼표가 아닌 다른 문자가 섞여 있는 경우
+                "1,2,3,4,4,4"
+        );
     }
 
     @Override

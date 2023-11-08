@@ -26,7 +26,7 @@ public class LottoDrawSystem {
                 .mapToInt(Integer::parseInt)
                 .toArray();
 
-        Validations.checkDuplicateWinningNumbers(numbers);
+        Validations.checkDuplicateWinningNumbers(numbers, LOTTO_DRAW_TOTAL_COUNT);
         Arrays.stream(numbers)
                 .forEach(Validations::checkWinningNumberRange);
     }

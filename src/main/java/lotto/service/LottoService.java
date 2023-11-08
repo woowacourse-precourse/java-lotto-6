@@ -2,26 +2,22 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
-import java.util.StringTokenizer;
 import lotto.model.Lotties;
 import lotto.model.Lotto;
 import lotto.model.Rank;
-import lotto.view.ExceptionOutputView;
 
 public class LottoService {
-    private static final int PRICE_PER_LOTTO = 1000;
+
 
     public Lotties buyLotties(int money) {
-        validateMoney(money);
         return new Lotties(generateLotties(money));
     }
 
     private List<Lotto> generateLotties(int money) {
         List<Lotto> lotties = new ArrayList<>();
-        for (int i = 0; i < money / PRICE_PER_LOTTO; i++) {
+        for (int i = 0; i < money / Lotto.PRICE_PER_LOTTO; i++) {
             lotties.add(generateLotto());
         }
         return lotties;
@@ -30,38 +26,6 @@ public class LottoService {
     private Lotto generateLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(numbers);
-    }
-
-    private void validateMoney(int money) {
-        if (money % PRICE_PER_LOTTO != 0) {
-            ExceptionOutputView.printMoneyRangeError();
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public Lotto convertLottoNumbers(String winningNumbers) {
-        StringTokenizer stringTokenizer = new StringTokenizer(winningNumbers, ",");
-        try {
-            return convertToLotto(stringTokenizer);
-        } catch (Exception e) {
-            ExceptionOutputView.printLottoStringFormatError();
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public Lotto convertToLotto(StringTokenizer stringTokenizer) {
-        List<Integer> numbers = new ArrayList<>();
-        while (stringTokenizer.hasMoreTokens()) {
-            numbers.add(Integer.parseInt(stringTokenizer.nextToken()));
-        }
-        return new Lotto(numbers);
-    }
-
-    public void validateBonusNumber(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            ExceptionOutputView.printBonusRangeError();
-            throw new IllegalArgumentException();
-        }
     }
 
     public double getProfitability(EnumMap<Rank, Integer> rankCounts, int money) {

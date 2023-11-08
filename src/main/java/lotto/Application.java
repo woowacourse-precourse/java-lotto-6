@@ -1,6 +1,10 @@
 package lotto;
 
-import java.util.ArrayList;
+import lotto.domain.Lotto;
+import lotto.domain.LottoGame;
+import lotto.enums.Rank;
+import lotto.input.Input;
+
 import java.util.List;
 
 public class Application {

@@ -1,6 +1,8 @@
 package lotto;
 
-import org.assertj.core.api.Assertions;
+import lotto.domain.Lotto;
+import lotto.domain.LottoGame;
+import lotto.enums.Rank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoGameTest {
 

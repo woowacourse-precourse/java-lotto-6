@@ -1,7 +1,8 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class PlayerLottos {
 
@@ -16,11 +17,8 @@ public class PlayerLottos {
     }
 
     private List<Lotto> generatePlayerLottos(int numberOfLottoTickets) {
-        List<Lotto> playerLottos = new ArrayList<>();
-
-        for (int count = 0; count < numberOfLottoTickets; count++) {
-            playerLottos.add(LottoFactory.generateLotto());
-        }
-        return playerLottos;
+        return Stream.generate(LottoFactory::generateLotto)
+                .limit(numberOfLottoTickets)
+                .collect(Collectors.toList());
     }
 }

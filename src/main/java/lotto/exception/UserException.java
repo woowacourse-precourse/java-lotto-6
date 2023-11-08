@@ -1,8 +1,8 @@
 package lotto.exception;
 
 
-import static lotto.utility.Constants.ERROR_MESSAGE_2;
-import static lotto.utility.Constants.ONLYINT;
+import static lotto.utility.Constants.ERROR_MESSAGE_1;
+
 
 public class UserException {
     private UserException() {}
@@ -11,8 +11,7 @@ public class UserException {
         try {
             Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
-            System.out.println(ERROR_MESSAGE_2);
-            throw new IllegalStateException(ERROR_MESSAGE_2);
+            throw new IllegalArgumentException(ERROR_MESSAGE_1);
         }
     }
 }

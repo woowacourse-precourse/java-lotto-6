@@ -4,16 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoAnalyzer {
-    private List<Integer> prizeNumber;
+    Lotto prizeNumber;
     private int bonusNumber;
     private float yield;
     private List<Integer> numberOfWins;
 
     public LottoAnalyzer(List<String> prizeNumbers, int bonusNumber) {
-        this.prizeNumber = prizeNumber(prizeNumbers);
+
+        prizeNumber = new Lotto(prizeNumber(prizeNumbers));
         this.bonusNumber = bonusNumber;
         this.yield = 0;
         numberOfWins = List.of(0,0,0,0,0);
+    }
+
+    public List<Integer> getPrizeNumber() {
+        return prizeNumber.getNumbers();
+    }
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 
     private List<Integer> prizeNumber(List<String> prizeNumbers) {
@@ -41,7 +49,7 @@ public class LottoAnalyzer {
     }
 
     private int compareNumbers(int lottoNumber, int equalNum) {
-        for (Integer integer : prizeNumber) {
+        for (Integer integer : prizeNumber.getNumbers()) {
             if (integer == lottoNumber) {
                 equalNum += 1;
                 return equalNum;

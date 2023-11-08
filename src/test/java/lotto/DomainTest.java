@@ -4,10 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 class DomainTest {
     Domain domain;
@@ -48,15 +45,17 @@ class DomainTest {
 
     @Test
     void 수익금을_제대로_계산했는지_확인(){
-        List<Rank> ranks = new ArrayList<>();
-        ranks.add(Rank.FIRST_PLACE);
-        ranks.add(Rank.SECOND_PLACE);
-        ranks.add(Rank.FIFTH_PLACE);
+        Map<Rank,Integer> rankingResult = new LinkedHashMap<>();
+        List<Integer> wins = new ArrayList<>(Arrays.asList(0,0,0,0,2,4));
+        Iterator<Integer> winsIterator = wins.iterator();
+        for(Rank rank:Rank.values()){
+            rankingResult.put(rank,winsIterator.next());
+        }
 
-        int profit = domain.calculateProfit(ranks);
+        long profit = domain.calculateProfit(rankingResult);
 
         Assertions.assertThat(profit)
-                .isEqualTo(2030005000);
+                .isEqualTo(10000);
     }
 
     @Test

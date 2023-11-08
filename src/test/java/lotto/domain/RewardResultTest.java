@@ -30,7 +30,7 @@ class RewardResultTest {
     }
 
     @Test
-    @DisplayName("RewardResult should correctly calculate the number of each reward")
+    @DisplayName("RewardResult가 각 Reward를 올바르게 계산하는지 확인한다.")
     void calcRewardResultShouldCalculateResultsCorrectly() {
         rewardResult.calcRewardResult(winningNumber, bonusNumber, lottos);
         assertEquals(1, rewardResult.getRewardCount(Reward.FIFTH));

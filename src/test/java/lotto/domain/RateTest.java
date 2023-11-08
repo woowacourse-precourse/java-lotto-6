@@ -1,11 +1,13 @@
 package lotto.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 class RateTest {
 
+    @DisplayName("로또 수익률이 올바르게 출력되는지 확인한다.")
     @Test
     void getRateShouldCalculateRateCorrectly() {
         Money money = mock(Money.class);

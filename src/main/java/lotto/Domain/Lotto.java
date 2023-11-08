@@ -1,7 +1,5 @@
 package lotto.Domain;
 
-import lotto.View.OutputView;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,10 +19,10 @@ public class Lotto {
         }
     }
 
-    public void duplicate(List<Integer> numbers){
+    public void duplicate(List<Integer> numbers) {
         Set<Integer> distinctedWinningNumbers = new HashSet<>(numbers);
 
-        if(distinctedWinningNumbers.size() != numbers.size()){
+        if( distinctedWinningNumbers.size() != numbers.size() ) {
             throw new IllegalArgumentException();
         }
     }
@@ -32,5 +30,4 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
 }

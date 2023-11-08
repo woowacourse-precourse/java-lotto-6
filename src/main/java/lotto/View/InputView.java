@@ -1,7 +1,6 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,8 +11,6 @@ public class InputView {
     private static final String PURCHASE_SUM_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBER_INPUT_MESSAGE = "\n당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_MESSAGE = "\n보너스 번호를 입력해 주세요.";
-
-
 
     public static Integer inputPurchaseSum() {
         OutputView.printInputMessage(PURCHASE_SUM_INPUT_MESSAGE);
@@ -63,7 +60,6 @@ public class InputView {
             Validation.checkNotInteger(str);
             Integer number = Integer.parseInt(str);
             Validation.checkNotInLottoRange(number);
-
             winningNumbers.add(number);
         }
 
@@ -91,6 +87,7 @@ public class InputView {
         Validation.checkNotBlank(input);
         Validation.checkNotNumber(input);
         Validation.checkNotInteger(input);
+
         Integer number = Integer.parseInt(input);
         Validation.checkNotInLottoRange(number);
         Validation.checkBonusNumberDuplication(number, winningNumbers);

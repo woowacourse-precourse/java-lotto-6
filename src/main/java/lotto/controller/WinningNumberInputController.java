@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Exception.LottoException;
 import lotto.domain.Lotto;
+import lotto.domain.WinningNumber;
 import lotto.validation.InputValidator;
 import lotto.validation.WinningNumberInputValidator;
 
@@ -56,6 +57,7 @@ public class WinningNumberInputController {
             try {
                 bonusNumber = Console.readLine();
                 checkBonusNumber(bonusNumber);
+                checkBonusNumberDuplication(winningLotto, bonusNumber);
                 break;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
@@ -76,6 +78,14 @@ public class WinningNumberInputController {
         int realBonusNumber = Integer.parseInt(bonusNumber);
         if (!winningNumberInputValidator.isLottoNumber(realBonusNumber)) {
             lottoException.notLottoNumber();
+        }
+    }
+
+    public void checkBonusNumberDuplication(Lotto winningLotto, String bonusNumber) throws IllegalArgumentException {
+        int realBonusNumber = Integer.parseInt(bonusNumber);
+        WinningNumber winningNumber = new WinningNumber(winningLotto, realBonusNumber);
+        if (!winningNumberInputValidator.isWinningLottoNotDuplication(winningNumber)) {
+            lottoException.duplicationLottoNumber();
         }
     }
 }

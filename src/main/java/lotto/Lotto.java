@@ -1,9 +1,11 @@
 package lotto;
 
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Set;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
+
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -25,11 +27,16 @@ public class Lotto {
 		System.out.println("구매금액을 입력해 주세요.");
 		String n = Console.readLine();
 		int money = Integer.parseInt(n); // 구매 금액
-
-		if (money % 1000 != 0) { // 1000원으로 나눠떨어지지 않을 경우
-			throw new IllegalArgumentException();
+		try {
+			if (money % 1000 != 0) { // 1000원으로 나눠떨어지지 않을 경우
+				throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력하세요.");
+			}
+		}  catch (NumberFormatException e) {
+			System.out.println("[ERROR] 1000원 단위로 입력하세요.");
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return 0;
 		}
-
 		int num = money / 1000; // 구매 수량
 		System.out.println();
 		System.out.println(num + "개를 구매했습니다.");
@@ -46,20 +53,65 @@ public class Lotto {
 		return lottoArray;
 	}
 
+	public static int check_lotto_len(String[] user) {
+		try {
+			if (user.length != 6) { // 6개 이외의 값을 넣었을 경우
+				throw new IllegalArgumentException("[ERROR] 6개 입력해주세요.");
+			}
+		} catch (NumberFormatException e) {
+			System.out.println();
+			System.out.println("[ERROR] 6개 입력해주세요.");
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return 1;
+		}
+		return 0;
+	}
+	
+	
+	public static int check_lotto_dupl(String[] user) {
+		try {
+			for (int i = 0; i < user.length; i++) {
+			    for (int j = i + 1; j < user.length; j++) {
+			        if (user[i].equals(user[j])) {
+			        	throw new IllegalArgumentException("[ERROR] 중복값이 있습니다."); // 중복값 발견
+			        }
+			    }
+			}
+
+		} catch (NumberFormatException e) {
+			System.out.println();
+			System.out.println("[ERROR] 중복값이 있습니다.");
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return 1;
+		}
+		return 0;
+	}
+	
+
 	public static int[] get_num() { // 사용자 당첨 번호 입력값 받기
 		System.out.println();
 		System.out.println("당첨 번호를 입력해 주세요.");
 		String n = Console.readLine();
 		String[] num = n.split(",");
-		if (num.length != 6) { // 6개 이외의 값을 넣었을 경우
-			throw new IllegalArgumentException();
+		
+		if(Lotto.check_lotto_dupl(num)==1) {
+			return null;
 		}
+		if(Lotto.check_lotto_len(num)==1) {
+			return null;
+		};
+		
+	
 		int[] money = new int[6];
 		for (int i = 0; i < 6; i++) {
 			money[i] = Integer.parseInt(num[i]);
 		}
 		return money;
 	}
+
+	
 
 	public static int get_bonus() { // 사용자 보너스번호 입력값 받기
 		System.out.println();
@@ -107,7 +159,7 @@ public class Lotto {
 
 	public static void print_result(int[] count) {
 		System.out.println();
-		System.out.println("당첨통계");
+		System.out.println("당첨 통계");
 		System.out.println("---");
 		System.out.println("3개 일치 (5,000원) - " + count[0] + "개");
 		System.out.println("4개 일치 (50,000원) - " + count[1] + "개");
@@ -137,11 +189,7 @@ public class Lotto {
 		}
 		double moresult = (double) money / (double) user / 10;
 		String formattedNumber = String.format("%.1f", moresult);
-		System.out.println("총 수익률은 " + formattedNumber + "% 입니다.");
-	}
-
-	public enum lotto_result {
-		Co3, Co4, Co5, Co5Bo, Co6
+		System.out.println("총 수익률은 " + formattedNumber + "%입니다.");
 	}
 
 }

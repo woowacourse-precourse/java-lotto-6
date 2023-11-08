@@ -6,10 +6,19 @@ import lotto.Lotto;
 
 public class Application {
 	public static void main(String[] args) {
-		int user_input = Lotto.make_num();
+		int user_input = 0;
+		while(user_input == 0) {
+			user_input = Lotto.make_num();
+		}
+		
 		List<Integer>[] lotto = Lotto.make_lotto(user_input);
-
-		int[] num = Lotto.get_num();
+		
+		int[] num = null;
+		while(num == null) {
+			num = Lotto.get_num();
+		}
+		
+		
 		int bonus = Lotto.get_bonus();
 
 		int[] result = Lotto.compare_num(lotto, num);

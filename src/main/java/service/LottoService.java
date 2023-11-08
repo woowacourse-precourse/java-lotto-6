@@ -6,9 +6,7 @@ import domain.Lottos;
 import domain.Player;
 import utils.Validator;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class LottoService {
     private Player player;
@@ -29,7 +27,8 @@ public class LottoService {
 
     private void getLottoNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
+        List<Integer> subList = new ArrayList<>();
+        subList.addAll(numbers);
         lottos.addLotto(new Lotto(numbers));
     }
 

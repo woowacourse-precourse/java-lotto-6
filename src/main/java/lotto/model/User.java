@@ -16,7 +16,7 @@ public class User {
     }
 
     private List<UserLotto> createLottos(){
-        return GenerateNumbers.generateLotto(getLottoQuantity());
+        return GenerateNumbers.createLotto(getLottoQuantity());
     }
 
     private int getLottoQuantity(){

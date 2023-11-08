@@ -3,12 +3,13 @@ package lotto.model;
 import java.util.List;
 
 public class UserLotto {
-    private List<Integer> numbers;
-    public UserLotto(List<Integer> numbers) {
-        this.numbers = numbers;
+    private final List<Integer> lotto;
+
+    public UserLotto(List<Integer> lotto) {
+        this.lotto = lotto;
     }
 
-    public List<Integer> getNumbers(){
-        return numbers;
+    public List<Integer> getLotto() {
+        return lotto;
     }
 }

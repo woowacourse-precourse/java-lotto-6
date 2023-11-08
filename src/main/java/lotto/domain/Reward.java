@@ -16,14 +16,14 @@ public enum Reward {
         this.prize = prize;
     }
 
-    public Reward getReward(int matchCount, boolean containBonus) {
+    public Reward getReward(int matchCount, boolean matchBonus) {
         if(matchCount == FIRST.matchCount){
             return FIRST;
         }
-        if(matchCount == SECOND.matchCount && containBonus){
+        if(matchCount == SECOND.matchCount && matchBonus){
             return SECOND;
         }
-        if (matchCount == THIRD.matchCount && !containBonus) {
+        if (matchCount == THIRD.matchCount && !matchBonus) {
             return THIRD;
         }
         if(matchCount == FOURTH.matchCount){

@@ -18,15 +18,15 @@ public class Judge {
     public Result calculateWinning(Player player, Lottos lottos){
         Result result = new Result();
         Lotto winningNumber = player.getWinningNumber();
-        int bonus = player.getBonusNumber();
+        int bonusNumber = player.getBonusNumber();
 
         for (Lotto lotto : lottos.getLottos()){
-            int matchingCount = checkMatchingNumbers(winningNumber, bonus, lotto);
-            boolean containBonus = false;
+            int matchingCount = checkMatchingNumbers(winningNumber, lotto);
+            boolean matchBonus = false;
             if(matchingCount == Reward.SECOND.getMatchCount()){
-                containBonus = checkBonus(player.getBonusNumber(),lotto);
+                matchBonus = checkBonus(bonusNumber,lotto);
             }
-            Reward reward = findReward(matchingCount, containBonus);
+            Reward reward = findReward(matchingCount, matchBonus);
             result.addResult(reward);
         }
 
@@ -41,18 +41,13 @@ public class Judge {
         return String.format("%.1f", earningRate);
     }
 
-    private int checkMatchingNumbers(Lotto player, int bonus, Lotto computer){
+    private int checkMatchingNumbers(Lotto player, Lotto computer){
         int result = 0;
         List<Integer> playerNumbers = player.getNumbers();
         List<Integer> computerNumbers = computer.getNumbers();
         result = (int) playerNumbers.stream()
                 .filter(o -> computerNumbers.stream().anyMatch(Predicate.isEqual(o)))
                 .count();
-
-        if(checkBonus(bonus,computer)) {
-            result++;
-        }
-
         return result;
     }
 

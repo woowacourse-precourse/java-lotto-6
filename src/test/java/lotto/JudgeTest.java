@@ -22,7 +22,7 @@ class JudgeTest {
         Lotto playerLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         first = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        second = new Lotto(List.of(1,2,3,4,45,10));
+        second = new Lotto(List.of(1,2,3,4,5,45));
         third = new Lotto(List.of(1,2,3,4,5,10));
         fourth = new Lotto(List.of(1,2,3,4,10,11));
         fifth = new Lotto(List.of(1,2,3,10,11,12));

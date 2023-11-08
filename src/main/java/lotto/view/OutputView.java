@@ -1,12 +1,10 @@
 package lotto.view;
 
-
 import java.util.List;
 
 import static lotto.utils.Constants.*;
 
 public class OutputView {
-
     public static void printTicketCount(int ticketCount) {
         System.out.println();
         System.out.println(ticketCount + PURCHASE_MESSAGE);

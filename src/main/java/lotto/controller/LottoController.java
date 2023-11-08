@@ -13,16 +13,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-// EnumMap 더 공부!!
-// Lotto.getNumber() 사용 좀 없애고 싶다
 public class LottoController {
-    // 여러 매서드에서 이용하는 전역변수
-    // but 전역변수는 결합도 높임. 리팩토링 필요...
     private static List<Lotto> lottoTickets;
     private int lottoTicketAmount;
     private int purchaseMoney;
     private NumberStrategy winningLotto;
-    private int bonusNumber; // 얘를 BonusNumber 클래스 책임으로 넘기면 다른 매서드에선 항상 getter로 받아와야 함. 어떻게 리팩토링할까?
+    private int bonusNumber;
 
     public void run() {
         try {
@@ -33,22 +29,20 @@ public class LottoController {
     }
 
     public void LottoGame() {
-        purchaseLotto(); //로또 구매
-        printTickets(); //산 로또 티켓들 출력
-        setWinningNumbers(); //당첨번호 세팅
-        setBonusNumber(); //보너스넘버 세팅
+        purchaseLotto();
+        printTickets();
+        setWinningNumbers();
+        setBonusNumber();
 
-        LottoDraw lottoDraw = new LottoDraw(lottoTickets); //로또 추첨
+        LottoDraw lottoDraw = new LottoDraw(lottoTickets);
         Map<LottoResult, Integer> resultCounts = lottoDraw.extractResult(winningLotto, bonusNumber);
         OutputView.printWinningMessage();
-        printResult(resultCounts); //결과 출력
+        printResult(resultCounts);
 
-        //수익률 산출
         EarningsRate earningsRate = new EarningsRate();
         OutputView.printEarningsRate(earningsRate.getEarningsRate(purchaseMoney, resultCounts));
     }
 
-    // "에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다" -> while, try-catch문 이용
     private void setBonusNumber() {
         while (true) {
             try {
@@ -64,7 +58,7 @@ public class LottoController {
         while (true) {
             try {
                 String inputWinningNumber = InputView.inputWinningNumbers();
-                winningLotto = new ManualNumberStrategy(inputWinningNumber); //파라미터 세팅
+                winningLotto = new ManualNumberStrategy(inputWinningNumber);
                 break;
             } catch (IllegalArgumentException ignored) {
             }
@@ -90,7 +84,6 @@ public class LottoController {
         }
     }
 
-    // stream API 이용하도록 수정
     private void makeLottoTickets(int lottoTicketAmount) {
         RandomNumberStrategy randomNumberStrategy = new RandomNumberStrategy();
         lottoTickets = IntStream.range(0, lottoTicketAmount)

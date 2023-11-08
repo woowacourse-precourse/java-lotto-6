@@ -13,7 +13,6 @@ public class BonusNumber {
         validateBonus(winningNumbers, bonusNumber);
     }
 
-    //1~45 숫자범위 검증 + 이미 numbers에 포함되어있는지 검증
     private static void validateBonus(Lotto winningNumbers, int bonusNumber) {
         validateBonusRange(bonusNumber);
         validateBonusDuplicate(winningNumbers, bonusNumber);

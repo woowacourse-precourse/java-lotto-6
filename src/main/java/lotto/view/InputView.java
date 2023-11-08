@@ -6,7 +6,6 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.utils.Constants.*;
 
 public class InputView {
-
     public static int inputBuyLotto() {
         System.out.println(PURCHASE_AMOUNT_MESSAGE);
         return readInt();

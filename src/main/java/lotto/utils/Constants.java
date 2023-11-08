@@ -6,7 +6,6 @@ public class Constants {
     public static final int MAX_NUMBER = 45;
     public static final int LOTTO_NUMBER_COUNT = 6;
 
-
     public static final String INVALID_NUMBER_RANGE_ERROR = ERROR_PREFIX + "로또 번호는 " + MIN_NUMBER + "에서 " + MAX_NUMBER + " 범위 내에 있어야 합니다.";
     public static final String NOT_INTEGER_ERROR = ERROR_PREFIX + "정수를 입력해 주십시오.";
     public static final String NOT_POSITIVE_NUMBER_ERROR = ERROR_PREFIX + "양수를 입력해 주십시오.";

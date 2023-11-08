@@ -11,6 +11,7 @@ import static lotto.constant.StringPattern.NUMBER_PATTERN;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -19,6 +20,7 @@ public class Lottos {
     private final List<Lotto> lottos;
 
     public Lottos(final List<Lotto> lottos) {
+        Objects.requireNonNull(lottos);
         this.lottos = lottos;
     }
 
@@ -34,6 +36,8 @@ public class Lottos {
             final String inputWinningNumber,
             final String inputBonusNumber
     ) {
+        Objects.requireNonNull(inputWinningNumber);
+        Objects.requireNonNull(inputBonusNumber);
         List<Integer> winningNumbers = Arrays.stream(inputWinningNumber.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
@@ -57,6 +61,7 @@ public class Lottos {
     }
 
     private void validateBonusNumber(final String inputBonusNumber) {
+        Objects.requireNonNull(inputBonusNumber);
         if (NUMBER_PATTERN.isNotMatching(inputBonusNumber)) {
             throw new IllegalArgumentException(CONTAINING_OTHER_THAN_NUMBER.getMessage());
         }
@@ -73,6 +78,7 @@ public class Lottos {
             WinningResult winningResult,
             final boolean matchesBonusNumber
     ) {
+        Objects.requireNonNull(winningResult);
         if (winningCount == FIRST_PLACE.getCount()) {
             winningResult = winningResult.withIncreasedPlaceCount(0);
         }

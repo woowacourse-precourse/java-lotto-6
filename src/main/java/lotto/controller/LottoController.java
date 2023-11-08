@@ -2,6 +2,7 @@ package lotto.controller;
 
 import static lotto.constant.Message.WINNING_STATS;
 
+import java.util.Objects;
 import lotto.dto.LottoPurchaseDto;
 import lotto.dto.LottosDto;
 import lotto.dto.ReturnRateDto;
@@ -14,11 +15,15 @@ public class LottoController extends AbstractRetry {
     private final Service service;
 
     private LottoController(final View view, final Service service) {
+        Objects.requireNonNull(view);
+        Objects.requireNonNull(service);
         this.view = view;
         this.service = service;
     }
 
     public static LottoController from(final View view, final Service service) {
+        Objects.requireNonNull(view);
+        Objects.requireNonNull(service);
         return new LottoController(view, service);
     }
 
@@ -40,6 +45,7 @@ public class LottoController extends AbstractRetry {
     }
 
     private LottosDto generateLottos(final LottoPurchaseDto lottoPurchaseDto) {
+        Objects.requireNonNull(lottoPurchaseDto);
         view.printPurchaseQuantity(lottoPurchaseDto);
         LottosDto lottosDto = service.generateLotto(lottoPurchaseDto.quantity());
         view.printLottoNumbers(lottosDto);
@@ -47,6 +53,7 @@ public class LottoController extends AbstractRetry {
     }
 
     private WinningResultDto drawLotto(final LottosDto lottosDto) {
+        Objects.requireNonNull(lottosDto);
         return run(() -> {
             String inputWinningNumber = view.askWinningNumber();
             String inputBonusNumber = view.askBonusNumber();
@@ -62,6 +69,8 @@ public class LottoController extends AbstractRetry {
             final WinningResultDto winningResultDto,
             final LottoPurchaseDto lottoPurchaseDto
     ) {
+        Objects.requireNonNull(winningResultDto);
+        Objects.requireNonNull(lottoPurchaseDto);
         view.printMessage(WINNING_STATS);
         view.printWinningResult(winningResultDto);
         ReturnRateDto returnRateDto = service.getReturnRate(lottoPurchaseDto, winningResultDto);

@@ -8,6 +8,7 @@ import static lotto.constant.Message.WINNING_CASE_MESSAGE;
 import static lotto.constant.Message.WINNING_NUMBER_PROMPT;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Objects;
 import lotto.constant.Message;
 import lotto.dto.LottoPurchaseDto;
 import lotto.dto.LottosDto;
@@ -24,16 +25,20 @@ public class LottoView implements View {
 
     @Override
     public void println(final String string) {
+        Objects.requireNonNull(string);
         System.out.println(string);
     }
 
     @Override
     public void printMessage(final Message message) {
+        Objects.requireNonNull(message);
         System.out.println(message.getMessage());
     }
 
     @Override
     public void printMessage(final Message message, final Object... args) {
+        Objects.requireNonNull(message);
+        Objects.requireNonNull(args);
         System.out.printf(message.getMessage(), args);
     }
 
@@ -45,11 +50,13 @@ public class LottoView implements View {
 
     @Override
     public void printPurchaseQuantity(final LottoPurchaseDto lottoPurchaseDto) {
+        Objects.requireNonNull(lottoPurchaseDto);
         printMessage(PURCHASE_AMOUNT_MESSAGE, lottoPurchaseDto.quantity());
     }
 
     @Override
     public void printLottoNumbers(final LottosDto lottosDto) {
+        Objects.requireNonNull(lottosDto);
         lottosDto.lottos()
                 .forEach(lottoDto ->
                         println(lottoDto.toString())
@@ -70,6 +77,7 @@ public class LottoView implements View {
 
     @Override
     public void printWinningResult(final WinningResultDto winningResultDto) {
+        Objects.requireNonNull(winningResultDto);
         printMessage(
                 WINNING_CASE_MESSAGE,
                 winningResultDto.fifthPlaceCount(),
@@ -82,6 +90,7 @@ public class LottoView implements View {
 
     @Override
     public void printReturnRateMessage(final ReturnRateDto returnRateDto) {
+        Objects.requireNonNull(returnRateDto);
         printMessage(RETURN_RATE_MESSAGE, returnRateDto.returnRate());
     }
 

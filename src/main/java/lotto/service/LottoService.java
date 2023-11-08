@@ -1,6 +1,7 @@
 package lotto.service;
 
 import java.util.List;
+import java.util.Objects;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoPurchaseDto;
 import lotto.dto.LottosDto;
@@ -23,6 +24,7 @@ public class LottoService implements Service {
 
     @Override
     public LottoPurchaseDto buyLottery(final String inputPurchaseAmount) {
+        Objects.requireNonNull(inputPurchaseAmount);
         LottoPurchaseAmount amount = LottoPurchaseAmount.from(inputPurchaseAmount);
         LottoPurchaseQuantity quantity = amount.getLottoPurchaseQuantity();
 
@@ -31,6 +33,8 @@ public class LottoService implements Service {
 
     private LottoPurchaseDto getLottoPurchaseDto(final LottoPurchaseAmount amount,
                                                  final LottoPurchaseQuantity quantity) {
+        Objects.requireNonNull(amount);
+        Objects.requireNonNull(quantity);
         return new LottoPurchaseDto(amount.getAmount(), quantity.quantity());
     }
 
@@ -42,6 +46,7 @@ public class LottoService implements Service {
     }
 
     private LottosDto getLottosDto(final Lottos lottos) {
+        Objects.requireNonNull(lottos);
         List<LottoDto> lottoDtos = lottos.getLotto()
                 .stream()
                 .map(this::getLottoDto)
@@ -51,6 +56,7 @@ public class LottoService implements Service {
     }
 
     private LottoDto getLottoDto(final Lotto lotto) {
+        Objects.requireNonNull(lotto);
         return new LottoDto(lotto.getNumbers());
     }
 
@@ -60,11 +66,15 @@ public class LottoService implements Service {
             String inputBonusNumber,
             LottosDto lottosDto
     ) {
+        Objects.requireNonNull(inputWinningNumber);
+        Objects.requireNonNull(inputBonusNumber);
+        Objects.requireNonNull(lottosDto);
         WinningResult winningResult = getLottos(lottosDto).getWinningResult(inputWinningNumber, inputBonusNumber);
         return getWinningDto(winningResult);
     }
 
     private WinningResultDto getWinningDto(final WinningResult winningResult) {
+        Objects.requireNonNull(winningResult);
         return new WinningResultDto(
                 winningResult.getFirstPlaceCount(),
                 winningResult.getSecondPlaceCount(),
@@ -75,6 +85,7 @@ public class LottoService implements Service {
     }
 
     private Lottos getLottos(final LottosDto lottosDto) {
+        Objects.requireNonNull(lottosDto);
         List<Lotto> lottos = lottosDto.lottos()
                 .stream()
                 .map(this::getLotto)
@@ -83,6 +94,7 @@ public class LottoService implements Service {
     }
 
     private Lotto getLotto(final LottoDto lottoDto) {
+        Objects.requireNonNull(lottoDto);
         return new Lotto(lottoDto.numbers());
     }
 
@@ -91,6 +103,8 @@ public class LottoService implements Service {
             final LottoPurchaseDto lottoPurchaseDto,
             final WinningResultDto winningResultDto
     ) {
+        Objects.requireNonNull(lottoPurchaseDto);
+        Objects.requireNonNull(winningResultDto);
         ReturnRate returnRate = getWinningResult(winningResultDto
         )
                 .getTotalWinningAmount()
@@ -99,6 +113,7 @@ public class LottoService implements Service {
     }
 
     private WinningResult getWinningResult(final WinningResultDto winningResultDto) {
+        Objects.requireNonNull(winningResultDto);
         return new WinningResult(
                 List.of(
                         winningResultDto.firstPlaceCount(),
@@ -111,6 +126,7 @@ public class LottoService implements Service {
     }
 
     private ReturnRateDto getReturnRateDto(final ReturnRate returnRate) {
+        Objects.requireNonNull(returnRate);
         return new ReturnRateDto(returnRate.returnRate());
     }
 }

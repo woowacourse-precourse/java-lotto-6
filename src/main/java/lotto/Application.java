@@ -26,10 +26,10 @@ public class Application {
 
         List<Integer> countOfMatch = calculator.countCorrectLuckyNumbers(lottoNumbers, luckyNumbers, bonusNumber);
 
-        calculator.countRanking(countOfMatch);
+        List<Integer> countRanking = calculator.countRanking(countOfMatch);
 
-        calculator.printResult();
+        calculator.printResult(countRanking);
 
-        calculator.rateOfReturn();
+        calculator.rateOfReturn(inputPurchaseAmount, countRanking);
     }
 }

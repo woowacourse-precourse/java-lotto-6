@@ -5,19 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Calculator {
-    public enum Ranking {
-        FIRST("6개 일치 (2,000,000,000원) - "),
-        SECOND("5개 일치, 보너스 볼 일치 (30,000,000원) - "),
-        THIRD("5개 일치 (1,500,000원) - "),
-        FOURTH("4개 일치 (50,000원) - "),
-        FIFTH("3개 일치 (5,000원) - ");
-
-        private final String message;
-
-        Ranking(String message) {
-            this.message = message;
-        }
-    }
 
     private int FIRST_COUNT = 0;
     private int SECOND_COUNT = 0;
@@ -48,20 +35,20 @@ public class Calculator {
 
         List<Integer> countRanking = new ArrayList<>();
 
-        for (int count : counts){
-            if (count == 7){
+        for (int count : counts) {
+            if (count == 7) {
                 FIRST_COUNT++;
             }
-            if (count == 6){
+            if (count == 6) {
                 SECOND_COUNT++;
             }
-            if (count == 5){
+            if (count == 5) {
                 THIRD_COUNT++;
             }
-            if (count == 4){
+            if (count == 4) {
                 FOURTH_COUNT++;
             }
-            if (count == 3){
+            if (count == 3) {
                 FIFTH_COUNT++;
             }
         }
@@ -75,11 +62,44 @@ public class Calculator {
         return countRanking;
     }
 
-    public void printResult(){
+    public void printResult(List<Integer> countRanking) {
+
+        Ranking first = Ranking.valueOf("FIRST");
+        Ranking second = Ranking.valueOf("SECOND");
+        Ranking third = Ranking.valueOf("THIRD");
+        Ranking fourth = Ranking.valueOf("FOURTH");
+        Ranking fifth = Ranking.valueOf("FIFTH");
+        String firstMessage = first.getMessage();
+        String secondMessage = second.getMessage();
+        String thirdMessage = third.getMessage();
+        String fourthMessage = fourth.getMessage();
+        String fifthMessage = fifth.getMessage();
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println(fifthMessage + countRanking.get(4) + "개");
+        System.out.println(fourthMessage + countRanking.get(3) + "개");
+        System.out.println(thirdMessage + countRanking.get(2) + "개");
+        System.out.println(secondMessage + countRanking.get(1) + "개");
+        System.out.println(firstMessage + countRanking.get(0) + "개");
 
     }
 
-    public void rateOfReturn() {
+    public void rateOfReturn(int inputPurchaseAmount, List<Integer> countRanking) {
+        Ranking first = Ranking.valueOf("FIRST");
+        Ranking second = Ranking.valueOf("SECOND");
+        Ranking third = Ranking.valueOf("THIRD");
+        Ranking fourth = Ranking.valueOf("FOURTH");
+        Ranking fifth = Ranking.valueOf("FIFTH");
+        int firstRankingAmount = first.getRankingAmount() * countRanking.get(0);
+        int secondRankingAmount = second.getRankingAmount()  * countRanking.get(1);
+        int thirdRankingAmount = third.getRankingAmount() * countRanking.get(2);
+        int fourthRankingAmount = fourth.getRankingAmount() * countRanking.get(3);
+        int fifthRankingAmount = fifth.getRankingAmount() * countRanking.get(4);
+        int sum = firstRankingAmount + secondRankingAmount + thirdRankingAmount + fourthRankingAmount + fifthRankingAmount;
 
+        float originRateOfReturn = (float) sum /inputPurchaseAmount * 100;
+        float rateOfReturn = (float) Math.round(originRateOfReturn * 100) / 100;
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 }

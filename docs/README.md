@@ -112,6 +112,7 @@
 >- Lotto
 >  - `run`
 >  - `validate`
+>- Ranking(Enum)
 
 ## 7. 테스트 코드 설계
 

@@ -15,7 +15,7 @@ public class OutputView {
     private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String STATISTICS_MESSAGE = "당첨 통계";
     private static final String MATCH_MESSAGE = "%d개 일치 (%,d원)- %d개";
-    private static final String MATCH_MESSAGE_FOR_SECOND = "%d개 일치, 보너스 볼 일치 (%d원) - %d개";
+    private static final String MATCH_MESSAGE_FOR_SECOND = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
     private static final String PROFIT_MESSAGE = "총 수익률은 %s%%입니다.";
     private static final String DIVIDER = "---";
 

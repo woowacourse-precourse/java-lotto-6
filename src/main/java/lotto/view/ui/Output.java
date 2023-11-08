@@ -1,8 +1,8 @@
 package lotto.view.ui;
 
-import static lotto.view.constants.SymbolType.NEWLINE;
-
 public final class Output {
+    private static final String NEWLINE = "\n";
+
     public static void printlnResult(String result) {
         System.out.println(result);
     }
@@ -12,7 +12,7 @@ public final class Output {
     }
 
     public static void printlnFormatWithNewLine(String message, Object... args) {
-        System.out.print(NEWLINE.getSymbol());
+        System.out.print(NEWLINE);
         printlnFormat(message, args);
     }
 
@@ -21,7 +21,7 @@ public final class Output {
     }
 
     public static void printlnMessageWithNewLine(String messageType) {
-        System.out.print(NEWLINE.getSymbol());
+        System.out.print(NEWLINE);
         printlnMessage(messageType);
     }
 }

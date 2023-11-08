@@ -22,10 +22,7 @@ public enum Prize {
             return FIRST;
         }
         if (matchingCount == SECOND.matchingNumber) {
-            if (hasBonus) {
-                return Prize.SECOND;
-            }
-            return Prize.THIRD;
+            return distinguishSecond(hasBonus);
         }
         if (matchingCount == FOURTH.matchingNumber) {
             return Prize.FOURTH;
@@ -34,6 +31,13 @@ public enum Prize {
             return Prize.FIFTH;
         }
         return null;
+    }
+
+    private static Prize distinguishSecond(boolean hasBonus) {
+        if (hasBonus) {
+            return Prize.SECOND;
+        }
+        return Prize.THIRD;
     }
 
     public Integer getMatchingNumber() {

@@ -45,14 +45,16 @@ public class Lotto {
 
     public void moneyInput(/*int testNum*/){
         System.out.println("구입금액을 입력해 주세요.");
-        int money = Integer.parseInt(Console.readLine());
+
         try {
+            int money = Integer.parseInt(Console.readLine());
             if(money%1000 != 0){
                 throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해 주세요");
             }
             this.chance = money/1000;
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("[ERROR] 로또 번호는 숫자여야 합니다.");
+            //throw new NumberFormatException("[ERROR] 로또 번호는 숫자여야 합니다.");
+            System.out.println("[ERROR] 로또 번호는 숫자여야 합니다.");
         }
         System.out.printf("%d개를 구매했습니다.\n", chance);
         generateLotto(chance);
@@ -90,7 +92,8 @@ public class Lotto {
 
     public void generateLotto(int count) {
         for(int i=0; i< count;i++) {
-            List<Integer> generatenumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> generatenumberss = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> generatenumbers = new ArrayList<>(generatenumberss);
             generatenumbers.sort(null);
             storedNumber.add(generatenumbers);
             numbersPrint(generatenumbers);
@@ -136,16 +139,18 @@ public class Lotto {
         counts[sameNumber]++;*/
 
     public void printResult(){
+        System.out.println("당첨 통계");
+        System.out.println("---");
         System.out.printf("3개 일치 (5,000원) - %d개\n",counts[3]);
-        System.out.printf("4개 일치 (5,0000원) - %d개\n",counts[4]);
+        System.out.printf("4개 일치 (50,000원) - %d개\n",counts[4]);
         System.out.printf("5개 일치 (1,500,000원) - %d개\n",counts[5]);
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n",counts[7]);
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n",counts[6]);
-        System.out.printf("총 수익률은 %.2f", rateOfReturn);
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
     }
 
     public void calculateRateofReturn(){
         rateOfReturn = (float) (FIRST_WINNING_PRICE * counts[6] + THIRD_WINNING_PRICE * counts[5] +
-                FOURTH_WINNING_PRICE * counts[4] + FIFTH_WINNING_PRICE * counts[3] + SECOND_WINNING_PRICE * counts[7]) / chance;
+                FOURTH_WINNING_PRICE * counts[4] + FIFTH_WINNING_PRICE * counts[3] + SECOND_WINNING_PRICE * counts[7]) / (chance*10);
     }
 }

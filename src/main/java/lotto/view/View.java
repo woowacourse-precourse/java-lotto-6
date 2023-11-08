@@ -86,6 +86,10 @@ public class View {
         println("");
     }
 
+    public static void error(String str){
+        println("[ERROR]"+str);
+    }
+
     private static void printlnFormat(String format, Object... args) {
         println(String.format(format, args));
     }

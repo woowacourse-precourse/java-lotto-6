@@ -19,29 +19,42 @@ public class Input {
 
 
     public static Lotto prizeNumber() {
-        final String SEPARATION_PATTERN = ",";
-        View.inputPrizeNumber();
-        String input = Console.readLine();
-        List<String> numString = Arrays.stream(input.split(SEPARATION_PATTERN)).toList();
-        List<Integer> numbers = new ArrayList<>();
+        while(true){
+            try{
+                final String SEPARATION_PATTERN = ",";
+                View.inputPrizeNumber();
+                String input = Console.readLine();
+                List<String> numString = Arrays.stream(input.split(SEPARATION_PATTERN)).toList();
+                List<Integer> numbers = new ArrayList<>();
 
-        for (String s : numString) {
-            int value = Tool.unsafeString2Int(s);
-            Tool.uniqueAdd(numbers, value);
+                for (String s : numString) {
+                    int value = Tool.unsafeString2Int(s);
+                    Tool.uniqueAdd(numbers, value);
+                }
+                Validation.validatePrizeNumbers(numbers);
+                View.println();
+                return new Lotto(numbers);
+
+            }catch (IllegalArgumentException e){
+                View.error(e.getMessage());
+            }
         }
-        Validation.validatePrizeNumbers(numbers);
-        View.println();
-        return new Lotto(numbers);
     }
 
     public static int bonusNumber() {
-        View.inputBonusNumber();
-        String str = Console.readLine();
-        int num = Tool.unsafeString2Int(str);
-        Validation.validateNumberRange(num);
-        View.println();
+        while (true) {
+            try {
+                View.inputBonusNumber();
+                String str = Console.readLine();
+                int num = Tool.unsafeString2Int(str);
+                Validation.validateNumberRange(num);
+                View.println();
+                return num;
+            } catch (IllegalArgumentException e) {
+                View.error(e.toString());
+            }
+        }
 
-        return num;
     }
 
 }

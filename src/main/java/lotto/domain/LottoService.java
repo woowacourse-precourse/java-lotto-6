@@ -1,15 +1,13 @@
 package lotto.domain;
 
-import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import static lotto.domain.constants.LottoNumber.MAX_NUMBER;
 import static lotto.domain.constants.LottoNumber.MIN_NUMBER;
 import static lotto.domain.constants.LottoNumber.NUMBER_COUNT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class LottoService {
     private final static int INITIAL_VALUE = 0;
@@ -23,6 +21,12 @@ public class LottoService {
     private final static int THIRD_RANKING = 3;
     private final static int FOURTH_RANKING = 4;
     private final static int FIFTH_RANKING = 5;
+    private final static int FIRST_RANKING_PRIZE = 2000000000;
+    private final static int SECOND_RANKING_PRIZE = 30000000;
+    private final static int THIRD_RANKING_PRIZE = 1500000;
+    private final static int FOURTH_RANKING_PRIZE = 50000;
+    private final static int FIFTH_RANKING_PRIZE = 5000;
+
 
     private final LottoRepository lottoRepository;
     private PurchaseCount purchaseCount;
@@ -72,18 +76,9 @@ public class LottoService {
     }
 
     private List<Integer> createRandomNumberList(){
-        Set<Integer> numberSet = new HashSet<>();
-
-        while (numberSet.size()<NUMBER_COUNT.getValue()){
-            numberSet.add(getRandomNumber());
-        }
-
-        return new ArrayList<>(numberSet);
+        return pickUniqueNumbersInRange(MIN_NUMBER.getValue(), MAX_NUMBER.getValue(), NUMBER_COUNT.getValue());
     }
 
-    private int getRandomNumber() {
-        return pickNumberInRange(MIN_NUMBER.getValue(), MAX_NUMBER.getValue());
-    }
 
 
     public void createWinningResult(Lottos lottos, WinningLotto winningLotto){
@@ -99,7 +94,7 @@ public class LottoService {
             int ranking = getRanking(matchingCount, matchingBonusCount);
             putRanking(ranking, totalRankingCount);
         }
-        System.out.println(totalRankingCount);
+
         saveWinningResult(totalRankingCount);
     }
 
@@ -136,8 +131,17 @@ public class LottoService {
         }
     }
 
-    public void calculatePrizeMoney(){
+    public float getReturnRate(WinningResult winningResult, int purchaseAmount) {
+        int totalReturn = calculateTotalReturn(winningResult);
+        return (float) totalReturn / purchaseAmount * 100;
+    }
 
+    private int calculateTotalReturn(WinningResult winningResult) {
+        return winningResult.getFirstPlaceCount() * FIRST_RANKING_PRIZE +
+                winningResult.getSecondPlaceCount() * SECOND_RANKING_PRIZE +
+                winningResult.getThirdPlaceCount() * THIRD_RANKING_PRIZE +
+                winningResult.getFourthPlaceCount() * FOURTH_RANKING_PRIZE +
+                winningResult.getFifthPlaceCount() * FIFTH_RANKING_PRIZE;
     }
 
 }

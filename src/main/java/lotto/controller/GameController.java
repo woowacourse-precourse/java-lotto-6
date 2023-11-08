@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.LottoService;
 import lotto.domain.Lottos;
 import lotto.controller.utils.InputParser;
+import lotto.domain.WinningResult;
 import lotto.view.GameView;
 
 public class GameController {
@@ -29,11 +30,15 @@ public class GameController {
         model.saveWinningLotto(numbers, bonusNumber);
 
         model.createWinningResult(model.findAllLottos(), model.findWinningLotto());
-
+        printWinningStatistics(model.findWinningResult(), purchaseAmount);
     }
 
     private int getPurchaseAmount(String lottPurchaseAmount) {
-        return inputParser.parseToInteger(lottPurchaseAmount);
+        try {
+            return Integer.parseInt(lottPurchaseAmount);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("[ERROR] 숫자가 아닙니다.");
+        }
     }
 
     private List<Integer> getLottoNumbers(String lottoNumbers) {
@@ -48,6 +53,16 @@ public class GameController {
         view.printLottoCount(lottoPurchaseCount);
         lottos.getLottos()
                 .forEach(lotto -> view.printLottoNumbers(lotto.getNumbers()));
+    }
+
+    private void printWinningStatistics(WinningResult winningResult, int purchaseAmount) {
+        view.printTotalRankingCount();
+        view.printFifthRankingCount(winningResult.getFifthPlaceCount());
+        view.printFourthRankingCount(winningResult.getFourthPlaceCount());
+        view.printThirdRankingCount(winningResult.getThirdPlaceCount());
+        view.printSecondRankingCount(winningResult.getSecondPlaceCount());
+        view.printFirstRankingCount(winningResult.getFirstPlaceCount());
+        view.printReturnRate(model.getReturnRate(winningResult, purchaseAmount));
     }
 
 }

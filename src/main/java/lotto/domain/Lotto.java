@@ -7,7 +7,6 @@ import static lotto.domain.constants.LottoNumber.MAX_NUMBER;
 import static lotto.domain.constants.LottoNumber.MIN_NUMBER;
 import static lotto.domain.constants.LottoNumber.NUMBER_COUNT;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -17,7 +16,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        sortNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -48,9 +46,6 @@ public class Lotto {
         }
     }
 
-    private void sortNumbers(List<Integer> numberList){
-        Collections.sort(numberList);
-    }
 
     public List<Integer> getNumbers() {
         return numbers;

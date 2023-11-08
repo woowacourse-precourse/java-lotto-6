@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
@@ -40,16 +39,6 @@ class LottoTest {
 
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("로또 번호 리스트가 정렬이 되었는지 확인")
-    @Test
-    void CheckLottoNumberSorted() {
-        List<Integer> numbers = new ArrayList<>(List.of(6, 2, 4, 1, 5, 3));
-        Lotto lotto = new Lotto(numbers);
-        List<Integer> sortedNumbers = lotto.getNumbers();
-
-        assertThat(sortedNumbers).isSorted();
     }
 
 }

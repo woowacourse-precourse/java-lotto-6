@@ -41,11 +41,11 @@ public class Statistic {
 
         execution();
 
-        resultString.append(MyConstant.MSG_STATISTIC_FIFTH_PLACE(getCount(LOTTO_FIFTH)));
-        resultString.append(MyConstant.MSG_STATISTIC_FOURTH_PLACE(getCount(LOTTO_FOURTH)));
-        resultString.append(MyConstant.MSG_STATISTIC_THIRD_PLACE(getCount(LOTTO_THIRD)));
-        resultString.append(MyConstant.MSG_STATISTIC_SECOND_PLACE(getCount(LOTTO_SECOND)));
-        resultString.append(MyConstant.MSG_STATISTIC_FIRST_PLACE(getCount(LOTTO_FIRST)));
+        resultString.append(MyConstant.MSG_STATISTIC_FIFTH_PLACE_RESULT(getCount(LOTTO_FIFTH)));
+        resultString.append(MyConstant.MSG_STATISTIC_FOURTH_PLACE_RESULT(getCount(LOTTO_FOURTH)));
+        resultString.append(MyConstant.MSG_STATISTIC_THIRD_PLACE_RESULT(getCount(LOTTO_THIRD)));
+        resultString.append(MyConstant.MSG_STATISTIC_SECOND_PLACE_RESULT(getCount(LOTTO_SECOND)));
+        resultString.append(MyConstant.MSG_STATISTIC_FIRST_PLACE_RESULT(getCount(LOTTO_FIRST)));
 
         return resultString;
     }

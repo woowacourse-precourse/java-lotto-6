@@ -30,7 +30,7 @@ public class LottoWinning {
         }
     }
 
-    private void validateBonusNumber(int bonusNumber) {
+    private void validateBonusNumber(Integer bonusNumber) {
         if (bonusNumber > LOTTO_WINNING_NUM_MAX || bonusNumber < LOTTO_WINNING_NUM_MIN) {
             throw new IllegalArgumentException("[ERROR] 로또 보너스 당첨 번호에 유효하지 않은 숫자가 사용되었습니다.");
         }
@@ -39,7 +39,7 @@ public class LottoWinning {
         }
     }
 
-    public void setBonusNumber(int bonusNumber) {
+    public void setBonusNumber(Integer bonusNumber) {
         validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }

@@ -23,6 +23,10 @@ public class LottoPurchase {
 	public int getNumber() {
 		return number;
 	}
+	
+	public int lottoMinAmout() {
+		return LOTTO_MIN_AMOUNT;
+	}
 
 	public void printButLotto() {
 		

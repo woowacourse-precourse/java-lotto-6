@@ -50,6 +50,20 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public boolean contains(int value) {
+        return numbers.contains(value);
+    }
+
+    public int getMatchingCount(Lotto other) {
+        return (int) numbers.stream()
+                .filter(other::contains)
+                .count();
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(numbers);
@@ -67,17 +81,11 @@ public class Lotto {
         return Objects.equals(numbers, lotto.numbers);
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    @Override
+    public String toString() {
+        return "Lotto{" +
+                "numbers=" + numbers +
+                '}';
     }
 
-    public boolean contains(int value) {
-        return numbers.contains(value);
-    }
-
-    public int getMatchingCount(Lotto other) {
-        return (int) numbers.stream()
-                .filter(other::contains)
-                .count();
-    }
 }

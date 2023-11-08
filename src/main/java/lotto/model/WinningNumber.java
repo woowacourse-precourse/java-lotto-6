@@ -12,16 +12,20 @@ public class WinningNumber {
     }
 
     public void setBonusNumber(int bonusNumber) {
+        checkExistWinningNumber();
         validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
     private void validateBonusNumber(int bonusNumber) {
-        if (winningNumber == null) {
-            throw new NoWinningNumberException();
-        }
         if (winningNumber.contains(bonusNumber)) {
             throw new DuplicatedLottoNumbersException();
+        }
+    }
+
+    private void checkExistWinningNumber() {
+        if (winningNumber == null) {
+            throw new NoWinningNumberException();
         }
     }
 

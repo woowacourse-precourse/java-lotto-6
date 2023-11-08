@@ -27,7 +27,6 @@ public class MainController {
     }
 
     public void set() {
-        outputView.printInsertBuyPrice();
         buyPrice = buyPriceController.setBuyPrice();
         lottos = new Lottos(lottoGenerator.generate(buyPrice, numberGenerator));
     }

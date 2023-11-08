@@ -4,8 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
@@ -14,6 +15,7 @@ public class Application {
             List<Lotto> lottos = issueLotto(lottoAmount / 1000);
             printLottos(lottos);
             Lotto winningLotto = askWinningNumber();
+            int bonusNumber = askBonusNumber(winningLotto.getNumbers());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -60,6 +62,23 @@ public class Application {
             }
         }
         return new Lotto(numbers);
+    }
+
+    public static int askBonusNumber(List<Integer> winningNumbers) {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        int bonusNumber = -1;
+        try {
+            bonusNumber = Integer.parseInt(Console.readLine());
+            if (bonusNumber < 1 || bonusNumber > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+            if (winningNumbers.contains(bonusNumber)) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복된 숫자가 있으면 안됩니다.");
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
+        }
+        return bonusNumber;
     }
 
 }

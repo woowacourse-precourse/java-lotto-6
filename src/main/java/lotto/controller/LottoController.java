@@ -26,11 +26,16 @@ public class LottoController {
 
     public List<Lotto> buyTicket(String price) {
         Integer numberOfTickets = lottoTicketManager.countTickets(price);
-        while (numberOfTickets-- > ZERO ){
+        settingTicketNumbers(numberOfTickets);
+        List<Lotto> userLottoTicket = lottoTickets.getLottoTickets();
+        lottoTicketManager.setUserLottoTickets(userLottoTicket);
+        return userLottoTicket;
+    }
+
+    private void settingTicketNumbers(Integer ticketCount){
+        while (ticketCount-- > ZERO ){
             lottoTickets.setTicket(lottoNumberGenerator.getLottoNumbers());
         }
-        lottoTicketManager.getUserLottoTickets(lottoTickets.getLottoTickets());
-        return lottoTickets.getLottoTickets();
     }
 
     public void setLuckyNumber(Lotto luckyNumber) {

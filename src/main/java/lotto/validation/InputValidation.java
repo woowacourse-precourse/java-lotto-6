@@ -8,6 +8,10 @@ import lotto.constants.ExceptionMessages;
 
 public class InputValidation {
 
+    private static final int LOTTO_MAX_NUMBER = 45;
+    private static final int LOTTO_MIN_NUMBER = 1;
+    private static final int LOTTO_NUMBER_COUNT = 6;
+    private static final int ONE_LOTTO_TICKET_PRIZE = 1000;
     public static void validatePurchaseAmountInput(String input) {
         isExist(input);
         isDigit(input);
@@ -60,7 +64,7 @@ public class InputValidation {
     }
 
     private static void isDivisibleBy1000(String input) {
-        if (Integer.parseInt(input) % 1000 != 0) {
+        if (Integer.parseInt(input) % ONE_LOTTO_TICKET_PRIZE != 0) {
             ExceptionMessages.NON_MULTIPLE_OF_1000.throwException();
         }
     }
@@ -73,13 +77,13 @@ public class InputValidation {
 
     private static void isWithinLottoRange(String input) {
         int inputNumber = Integer.parseInt(input);
-        if ((inputNumber < 1) || (inputNumber > 45)) {
+        if ((inputNumber < LOTTO_MIN_NUMBER) || (inputNumber > LOTTO_MAX_NUMBER)) {
             ExceptionMessages.OUT_OF_RANGE.throwException();
         }
     }
 
     private static void isValidLottoNumbersLength(List<String> input) {
-        if (input.size() != 6) {
+        if (input.size() != LOTTO_NUMBER_COUNT) {
             ExceptionMessages.INVALID_LOTTO_NUMBERS_LENGTH.throwException();
         }
     }

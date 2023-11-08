@@ -3,7 +3,7 @@ package lotto.domain;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoPaper;
 import lotto.domain.payment.Payment;
-import lotto.util.LottoNumberGenerator;
+import lotto.util.NumberGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ public class LottoPaperTest {
         List<Lotto> lottoTickets = new ArrayList<>();
 
         for ( int i = 0 ; i < ticketPurchaseCount; i++ ) {
-            lottoTickets.add(new Lotto(LottoNumberGenerator.generateOrderedLottoNumbers()));
+            lottoTickets.add(new Lotto(NumberGenerator.generateOrderedNumbers()));
         }
         LottoPaper lottoPaper = new LottoPaper(payment.amount(),lottoTickets);
 

@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoPaper;
 import lotto.domain.payment.Payment;
-import lotto.util.LottoNumberGenerator;
+import lotto.util.NumberGenerator;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class LottoPaperController {
         return lottoTickets;
     }
     private Lotto issueLottoTicket(){
-        List<Integer> lottoNumbers = LottoNumberGenerator.generateOrderedLottoNumbers();
+        List<Integer> lottoNumbers = NumberGenerator.generateOrderedNumbers();
         return new Lotto(lottoNumbers);
     }
 }

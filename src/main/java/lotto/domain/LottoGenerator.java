@@ -23,7 +23,7 @@ public class LottoGenerator {
 
     private Lotto generate() {
         List<Integer> lotto = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LOTTO_SIZE);
-        lotto.stream().sorted().collect(Collectors.toList());
-        return new Lotto(lotto);
+        List<Integer> sortedLotto = lotto.stream().sorted().collect(Collectors.toList());
+        return new Lotto(sortedLotto);
     }
 }

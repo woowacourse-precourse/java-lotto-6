@@ -22,7 +22,10 @@ public class LottoGame {
                 .collect(Collectors.toList());
     }
     public void printLottos() {
-
+        System.out.println(purchaseAmount / PRICE_PER_LOTTO + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
     }
     public void checkResults(List<Integer> winningNumbers, int bonusNumber) {
 

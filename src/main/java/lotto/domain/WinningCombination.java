@@ -33,6 +33,7 @@ public final class WinningCombination {
 
     private WinningDetails checkSecondWinning(
             final Lottos lottos, final WinningDetails winningDetails) {
+
         return IntStream.range(START_INDEX, winningDetails.numOfValues())
                 .mapToObj(index -> convertIfSecondWinning(lottos, winningDetails.getByIndex(index)))
                 .collect(Collectors.collectingAndThen(Collectors.toList(), WinningDetails::new));
@@ -40,6 +41,7 @@ public final class WinningCombination {
 
     private WinningDetail convertIfSecondWinning(
             final Lottos lottos, final WinningDetail winningDetail) {
+
         return winningDetail.convertIfSecondWinning(
                 lottos.getByWinningDetail(winningDetail), bonusNumber);
     }

@@ -35,8 +35,8 @@ public final class Lottos {
     private Optional<WinningDetail> makeWinningDetail(final Lotto lotto, final int index) {
         final Lotto element = elements.get(index);
         final int matchNum = element.matchNum(lotto);
-        final Optional<WinningGrade> winningGrade = WinningGrade.valueOfMatchNum(matchNum);
-        return winningGrade.map(value -> new WinningDetail(value, index));
+
+        return WinningGrade.valueOfMatchNum(matchNum).map(value -> new WinningDetail(value, index));
     }
 
     public Lotto getByIndex(final int index) {

@@ -31,7 +31,7 @@ public final class WinningDetail {
 
     public WinningDetail convertIfSecondWinning(final Lotto lotto, final BonusNumber bonusNumber) {
         if (winningGrade.isPossibleSecondWinner()) {
-            return new WinningDetail(bonusNumber.checkSecondWinning(lotto), toIndex());
+            return new WinningDetail(bonusNumber.checkSecondWinning(lotto), index);
         }
         return this;
     }

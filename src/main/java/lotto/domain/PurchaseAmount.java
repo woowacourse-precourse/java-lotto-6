@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.view.message.ExceptionMessage;
+
 public class PurchaseAmount {
     private int money;
 
@@ -21,14 +23,14 @@ public class PurchaseAmount {
     }
     private void validatePurchaseAmount(int money) {
         if (money % 1000 != 0) {
-            System.out.println("[ERROR] 구입 금액은 1,000원 단위로 입력해주세요.");
+            System.out.println(ExceptionMessage.ERROR_MESSAGE_ABOUT_NOT_DIVIDED_THOUSAND.getMessage());
             throw new IllegalArgumentException();
         }
     }
 
     private void validateInputZero(int money) {
         if (money == 0) {
-            System.out.println("[ERROR] 구입 금액은 0보다 커야 합니다.");
+            System.out.println(ExceptionMessage.ERROR_MESSAGE_ABOUT_ZERO.getMessage());
             throw new IllegalArgumentException();
         }
     }

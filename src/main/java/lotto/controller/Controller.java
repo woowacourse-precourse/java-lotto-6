@@ -45,14 +45,12 @@ public class Controller {
     private void startLottoGame() {
         prize.compareAnswerAndLotto(answerNumber, lottoGame);
         prize.calculateTotalPrizeMoney();
-        int num = lottoGame.getLottoNumber();
         prize.calculateProfit(money);
     }
 
     private void showGameResult() {
         Map<Rank, Integer> prizeResult = prize.getPrizeResult();
         Set<Rank> keySet = prizeResult.keySet();
-        long totalPrize = prize.getTotalPrizeMoney();
         outputView.resultStatistics();
         double profit = prize.getProfit();
         for (Rank key : keySet) {

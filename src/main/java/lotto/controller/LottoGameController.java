@@ -6,6 +6,7 @@ import lotto.dto.request.BonusNumberDto;
 import lotto.dto.request.InvestmentMoneyDto;
 import lotto.dto.request.WinningLottoNumbersDto;
 import lotto.dto.response.LottoGroupDto;
+import lotto.dto.response.PrizeSummaryDto;
 import lotto.dto.response.TotalProfitRateDto;
 import lotto.model.InvestmentMoney;
 import lotto.model.Lotto;
@@ -90,7 +91,8 @@ public class LottoGameController {
     }
 
     private void printPrizeSummary(PrizeSummary prizeSummary) {
-        outputView.printPrizeSummary(prizeSummary);
+        PrizeSummaryDto prizeSummaryDto = PrizeSummaryDto.from(prizeSummary);
+        outputView.printPrizeSummary(prizeSummaryDto);
     }
 
     private void printTotalProfitRate(PrizeSummary prizeSummary, InvestmentMoney investmentMoney) {

@@ -1,17 +1,19 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
 import lotto.dto.response.LottoDto;
 import lotto.dto.response.LottoGroupDto;
+import lotto.dto.response.PrizeSummaryDto;
 import lotto.dto.response.TotalProfitRateDto;
 import lotto.model.LottoPrize;
-import lotto.model.PrizeSummary;
 import lotto.view.printer.Printer;
 
 public class OutputView {
     private static final String EXCEPTION_FORMAT = "[ERROR] %s";
     private static final String LOTTO_GROUP_SIZE_FORMAT = "%d개를 구매했습니다.";
-    private static final String TOTAL_PRIZE_RESULT_MESSAGE = "당첨 통계\n---";
+    private static final String TOTAL_PRIZE_RESULT_START_MESSAGE = "당첨 통계";
+    private static final String LINE_SEPARATOR = "---";
     private static final String PRIZE_AMOUNT_FORMAT = "%,d";
     private static final String NORMAL_PRIZE_MESSAGE_FORMAT = "%d개 일치 (%s원) - %d개";
     private static final String SECOND_PRIZE_MESSAGE_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
@@ -85,28 +87,25 @@ public class OutputView {
         return String.format(TOTAL_PROFIT_RATE_MESSAGE_FORMAT, totalProfitRateFormatted);
     }
 
-    public void printPrizeSummary(PrizeSummary prizeSummary) {
-        printer.printLine(TOTAL_PRIZE_RESULT_MESSAGE);
-        for (LottoPrize lottoPrize : LottoPrize.values()) {
-            printWinningPrize(prizeSummary, lottoPrize);
-        }
+    public void printPrizeSummary(PrizeSummaryDto prizeSummaryDto) {
+        printer.printLine(TOTAL_PRIZE_RESULT_START_MESSAGE);
+        printer.printLine(LINE_SEPARATOR);
+        printWinningPrizes(prizeSummaryDto);
     }
 
-    private void printWinningPrize(PrizeSummary prizeSummary, LottoPrize lottoPrize) {
-        if (lottoPrize.isWinningPrize()) {
-            printPrize(prizeSummary, lottoPrize);
-        }
+    private void printWinningPrizes(PrizeSummaryDto prizeSummaryDto) {
+        Map<LottoPrize, Long> winningPrizeSummary = prizeSummaryDto.getPrizeSummary();
+        winningPrizeSummary.forEach(this::printWinningPrize);
     }
 
-    private void printPrize(PrizeSummary prizeSummary, LottoPrize lottoPrize) {
-        String prizeMessage = formatPrizeMessage(prizeSummary, lottoPrize);
+    private void printWinningPrize(LottoPrize lottoPrize, Long numberOfPrizesMatched) {
+        String prizeMessage = formatPrizeMessage(lottoPrize, numberOfPrizesMatched);
         printer.printLine(prizeMessage);
     }
 
-    private static String formatPrizeMessage(PrizeSummary prizeSummary, LottoPrize lottoPrize) {
+    private static String formatPrizeMessage(LottoPrize lottoPrize, Long numberOfPrizesMatched) {
         int numberOfRequiredMatches = lottoPrize.getRequiredMatchingNumbers();
         String prizeAmountFormatted = formatPrizeAmount(lottoPrize);
-        long numberOfPrizesMatched = prizeSummary.getMatchCountForPrize(lottoPrize);
         String prizeMessage = formatNormalPrizeMessage(numberOfRequiredMatches, prizeAmountFormatted,
                 numberOfPrizesMatched);
 
@@ -129,5 +128,4 @@ public class OutputView {
     private static String formatSecondPrizeMessage(int matchCount, String formattedPrizeAmount, long prizeCount) {
         return String.format(SECOND_PRIZE_MESSAGE_FORMAT, matchCount, formattedPrizeAmount, prizeCount);
     }
-
 }

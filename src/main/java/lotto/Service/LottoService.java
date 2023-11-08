@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Enum.LottoError;
 import lotto.Enum.Prize;
 import lotto.Lotto;
+import lotto.WinPrize;
 
 import java.util.List;
 import java.util.Map;
@@ -45,10 +46,10 @@ public class LottoService {
         return String.format("%.1f", ((float) winAmount / (float) lottoAmount * 100f));
     }
 
-    public int prizeAmount(Map<Prize, Integer> winResult) {
+    public int prizeAmount(WinPrize winResult) {
         int winAmount = 0;
-        for (Prize prize : winResult.keySet()) {
-            winAmount += (prize.getMoney() * winResult.get(prize));
+        for (Prize prize : winResult.getWinPrize().keySet()) {
+            winAmount += (prize.getMoney() * winResult.getWinPrize().get(prize));
         }
         return winAmount;
     }

@@ -2,6 +2,7 @@ package lotto.View;
 
 import lotto.Enum.Prize;
 import lotto.Lotto;
+import lotto.WinPrize;
 
 import java.text.MessageFormat;
 import java.util.*;

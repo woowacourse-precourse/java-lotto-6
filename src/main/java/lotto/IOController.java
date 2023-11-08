@@ -10,18 +10,27 @@ import java.util.Set;
 
 public class IOController {
     private static HashSet<Integer> winNumberSet;
+
     public IOController() {
-
         winNumberSet = new HashSet<>();
-
     }
 
     int inputPrice() {
         System.out.println(InstructionMessage.INPUT_PRICE.getMessageText());
         String inputStringPrice = Console.readLine();
-        return isAvailableNumber(inputStringPrice);
+
+        int price = isAvailableNumber(inputStringPrice);
+        isDivisibleByThousand(price);
+
+        return price;
     }
-    
+
+    public void isDivisibleByThousand(int intNumer) {
+
+        if (intNumer % 1000 != 0) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_AMOUNT.getMessageText());
+        }
+    }
 
     public List<Integer> inputWinNumber() {
         System.out.println(InstructionMessage.INPUT_NUMBER.getMessageText());
@@ -38,12 +47,7 @@ public class IOController {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_FORMAT.getMessageText());
         }
-        if(intNumber < 46)
-            return intNumber;
 
-        if (intNumber % 1000 != 0) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_AMOUNT.getMessageText());
-        }
         return intNumber;
     }
 
@@ -78,7 +82,7 @@ public class IOController {
         String[] numbers = stringInputWinNumber.split(",");
         for (String number : numbers) {
             try {
-                int intInputNumber=Integer.parseInt(number.trim());
+                int intInputNumber = Integer.parseInt(number.trim());
                 isOutOfArrange(intInputNumber);
                 winNumberList.add(intInputNumber);
             } catch (NumberFormatException e) {
@@ -98,7 +102,7 @@ public class IOController {
     public int inputBonusNumber() {
         System.out.println(InstructionMessage.INPUT_BONUS_NUMBER.getMessageText());
         String inputStringBonusNumber = Console.readLine();
-        int bonusNumber= isAvailableNumber(inputStringBonusNumber);
+        int bonusNumber = isAvailableNumber(inputStringBonusNumber);
 
         isOutOfArrange(bonusNumber);
         isDuplicatedNumber(bonusNumber);
@@ -112,7 +116,12 @@ public class IOController {
     }
 
     private void isOutOfArrange(int number) {
-        if(number < 1 || number >45)
-            throw  new IllegalArgumentException(ExceptionMessage.INPUT_OUT_OF_ARRANGE.getMessageText());
+        if (number < 1 || number > 45)
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_OUT_OF_ARRANGE.getMessageText());
+    }
+
+    public void printUserLottoNumbers(List<Lotto> lottoList) {
+        for (Lotto lotto : lottoList)
+            System.out.println(lotto.getNumbers());
     }
 }

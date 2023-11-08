@@ -1,10 +1,10 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-    boolean isBonus = false;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -14,6 +14,13 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != Number.LOTTO_SIZE.getNumber()) {
             throw new IllegalArgumentException();
+        }
+        List<Integer> temp = new ArrayList<>(numbers);
+        for (int number : numbers) {
+            temp.remove((Integer) number);
+            if (temp.contains(number)) {
+                throw new IllegalArgumentException();
+            }
         }
     }
     // TODO: 추가 기능 구현

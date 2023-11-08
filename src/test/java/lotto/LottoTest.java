@@ -47,4 +47,11 @@ class LottoTest {
         Assertions.assertNotNull(lotto);
     }
 
+    @DisplayName("무작위 로또 번호가 생성되는지 확인한다.")
+    @Test
+    void generateRandomNumbers() {
+        Lotto lotto = Lotto.generate();
+        Assertions.assertNotNull(lotto);
+    }
+
 }

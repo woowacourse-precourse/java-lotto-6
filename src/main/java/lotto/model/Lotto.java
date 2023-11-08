@@ -1,12 +1,16 @@
-package lotto;
+package lotto.model;
+
+import lotto.service.ValidateSystem;
 
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private ValidateSystem validateSystem = new ValidateSystem();
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateSystem.validateLottoNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -16,5 +20,7 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers(){
+        return this.numbers;
+    }
 }

@@ -8,5 +8,8 @@ public class Application {
         lottoGame.publish();
         lottoGame.printLotto();
 
+        lottoGame.setPrizeWinNum();
+
+
     }
 }

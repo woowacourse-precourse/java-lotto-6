@@ -7,8 +7,11 @@ import net.bytebuddy.pool.TypePool.Resolution.Illegal;
 
 public class Game {
     static final int LOTTO_PRICE = 1000;
+    static final int LIMIT_LOTTO_NUMBER = 45;
+
     int numOfLotto;
     Lotto publishedLotto[];
+    int prizeWinNum[] = new int[LIMIT_LOTTO_NUMBER + 1];
 
     int inputCredit() { //로또 구매 금액 입력
         int credit;
@@ -57,5 +60,47 @@ public class Game {
             publishedLotto[i].printLotto();
             System.out.println("]");
         }
+    }
+
+    void initPrizeWinNum(){ //당첨 번호 배열 초기화
+        for (int i = 1; i < LIMIT_LOTTO_NUMBER; i++){
+            prizeWinNum[i] = 0;
+        }
+    }
+
+    String[] inputNum(){ // 당첨 번호 입력
+        String[] input;
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+        input = readLine().split(",");
+
+        return input;
+    }
+
+    void setNum(String inputNum[]){ //당첨 번호 셋팅
+        for(int i = 0; i < inputNum.length; i++){
+            int num = Integer.parseInt(inputNum[i]);
+            prizeWinNum[num] = 1;
+        }
+    }
+
+    String inputBonusNum(){ //보너스 번호 입력
+        String input;
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        input = readLine();
+
+        return input;
+    }
+
+    void setBounusNum(String inputNum){ //보너스 번호 2로 셋팅
+        int num = Integer.parseInt(inputNum);
+        prizeWinNum[num] = 2;
+    }
+
+    void setPrizeWinNum(){ //발행 번호 배열 셋팅
+        initPrizeWinNum();
+        setNum(inputNum());
+        setBounusNum(inputBonusNum());
     }
 }

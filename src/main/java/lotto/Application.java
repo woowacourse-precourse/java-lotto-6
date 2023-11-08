@@ -55,15 +55,13 @@ public class Application {
     }
     public static void getCatchNumber() {
         while(true) {
-            errorCode = null;
             System.out.println("당첨 번호를 입력해 주세요.");
             String userInput = Console.readLine();
             String[] catchNumber = userInput.split(",");
             try{
-                catchNumbers = new Lotto(validateCatchNumber(catchNumber,errorCode));
+                catchNumbers = new Lotto(validateCatchNumber(catchNumber,errorCode),errorCode);
                 break;
             }catch (IllegalArgumentException e){
-                if(errorCode == null) errorCode[0] = "당첨 번호는 6개의 중복되지 않은 숫자이어야 합니다.";
                 System.out.println(errorCode);
             }
         }
@@ -101,12 +99,12 @@ public class Application {
         System.out.println(num + "개를 구매했습니다.");
         while(lottoNumbers.size() < num){
             try {
-                Lotto lotto = new Lotto(createLotto());
+                Lotto lotto = new Lotto(createLotto(),errorCode);
                 checkDuplicateNumber(lotto);
                 lotto.printNumber();
                 lottoNumbers.add(lotto);
             }catch(IllegalArgumentException e) {
-
+                System.out.println(errorCode);
             }
         }
     }

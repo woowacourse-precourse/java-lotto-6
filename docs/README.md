@@ -36,11 +36,22 @@
 #### 주요 함수
 - `startGame()`: 프로그램의 메인 동작 흐름을 시작합니다.
 - `int purchaseAmount()`: 구입 금액을 입력받고 유효성을 검사합니다.
-- `List<Lotto> purchaseLottos(int purchaseAmount)`: 구입 금액에 따라 랜덤 로또를 생성합니다.
+- `List<Lotto> getRandomLottos(int lottoCount)`: 구입 금액에 따라 랜덤 로또를 생성합니다.
 - `List<Integer> lottoNumbers()`: 당첨 번호를 입력받습니다.
 - `int bonusNumber()`: 보너스 번호를 입력받습니다.
 - `int[] calculateResults(List<Lotto> purchasedLottos, List<Integer> lottoNumbers, int bonusNumber)`: 로또 당첨 결과 및 수익률을 계산합니다.
 - `void printResults(int[] results, int amount)`: 당첨 결과 및 수익률을 출력합니다.
+
+### 2. `LottoResult` 클래스
+
+#### 주요 기능
+- 다양한 당첨 결과 표현: LottoResult 클래스는 프로그램에서 정의한 로또 당첨 결과를 표현하는 상수들을 가지고 있습니다. 이를 통해 3개 일치, 4개 일치 등 다양한 등수의 결과를 표현합니다.
+
+- 결과에 대한 가격 설정: 각 상수는 해당 결과에 대한 상금(가격)을 가지고 있습니다. 이를 통해 각 결과에 대한 상금을 쉽게 가져올 수 있습니다.
+
+- 결과 출력 및 형식화: LottoResult 클래스는 결과를 특정 형식으로 표시하는데 사용됩니다. 예를 들어, "3개 일치 (5,000원) - %d개"와 같은 문자열 형식을 갖고 있으며, 결과 출력 시 상수에 해당하는 개수를 치환하여 결과를 형식화합니다.
+
+- 총 수익 계산: LottoResult 클래스는 결과와 개수에 따른 총 수익을 계산하는데 사용됩니다. getTotalPriceResult 함수를 통해 총 수익을 계산하고 출력합니다.
 
 ## 문제 해결 전략
 

@@ -13,5 +13,5 @@ public interface LottoPrinter {
 
 	void askBonusNumber();
 
-	void noticeResult(List<Integer> results, Double returnRate);
+	void noticeResult(int[] results, Double returnRate);
 }

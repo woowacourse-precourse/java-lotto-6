@@ -24,7 +24,7 @@ public class ConsoleLottoPrinter implements LottoPrinter {
     @Override
     public void noticePurchaseLotto(List<Lotto> purchasedLottos) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(purchasedLottos.size()).append(PrintMessage.NOTICE_PURCHASE.getMessage());
+        stringBuilder.append(ENTER).append(purchasedLottos.size()).append(PrintMessage.NOTICE_PURCHASE.getMessage());
 
         for (Lotto lotto : purchasedLottos) {
             stringBuilder.append(OPENING_SQUARE_BRACKET);
@@ -49,15 +49,22 @@ public class ConsoleLottoPrinter implements LottoPrinter {
     }
 
     @Override
-    public void noticeResult(List<Integer> results, Double returnRate) {
+    public void noticeResult(int[] results, Double returnRate) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(PrintMessage.NOTICE_RESULT);
-        stringBuilder.append(PrintMessage.FIFTH_PLACE_RESULT).append(results.get(ZERO_INDEX)).append(LOTTO_UNIT);
-        stringBuilder.append(PrintMessage.FOURTH_PLACE_RESULT).append(results.get(ONE_INDEX)).append(LOTTO_UNIT);
-        stringBuilder.append(PrintMessage.THIRD_PLACE_RESULT).append(results.get(TWO_INDEX)).append(LOTTO_UNIT);
-        stringBuilder.append(PrintMessage.SECOND_PLACE_RESULT).append(results.get(THREE_INDEX)).append(LOTTO_UNIT);
-        stringBuilder.append(PrintMessage.FIRST_PLACE_RESULT).append(results.get(FOUR_INDEX)).append(LOTTO_UNIT);
-        stringBuilder.append(PrintMessage.RETURN_RATE_FIRST).append(returnRate).append(PrintMessage.RETURN_RATE_SECOND);
+        stringBuilder.append(PrintMessage.NOTICE_RESULT.getMessage());
+        stringBuilder
+                .append(PrintMessage.FIFTH_PLACE_RESULT.getMessage()).append(results[ZERO_INDEX]).append(LOTTO_UNIT);
+        stringBuilder
+                .append(PrintMessage.FOURTH_PLACE_RESULT.getMessage()).append(results[ONE_INDEX]).append(LOTTO_UNIT);
+        stringBuilder
+                .append(PrintMessage.THIRD_PLACE_RESULT.getMessage()).append(results[TWO_INDEX]).append(LOTTO_UNIT);
+        stringBuilder
+                .append(PrintMessage.SECOND_PLACE_RESULT.getMessage()).append(results[THREE_INDEX]).append(LOTTO_UNIT);
+        stringBuilder
+                .append(PrintMessage.FIRST_PLACE_RESULT.getMessage()).append(results[FOUR_INDEX]).append(LOTTO_UNIT);
+        stringBuilder
+                .append(PrintMessage.RETURN_RATE_FIRST.getMessage())
+                .append(returnRate).append(PrintMessage.RETURN_RATE_SECOND.getMessage());
 
         System.out.println(stringBuilder);
     }

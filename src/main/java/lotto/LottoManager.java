@@ -18,7 +18,23 @@ public class LottoManager {
     private static final int LOOP_START_NUMBER = 0;
     private static final int BONUS_NUMBER_START_NUMBER = 1;
     private static final int BONUS_NUMBER_END_NUMBER = 45;
+    private static final int RESULT_INITIAL_NUMBER = 5;
     private static final String SEPARATOR = ",";
+    private static final int FIFTH_PLACE_MATCH_COUNT = 3;
+    private static final int FOURTH_PLACE_MATCH_COUNT = 4;
+    private static final int THIRD_PLACE_MATCH_COUNT = 5;
+    private static final int SECOND_PLACE_MATCH_COUNT = 5;
+    private static final int FIRST_PLACE_MATCH_COUNT = 6;
+    private static final int FIFTH_PLACE_INDEX = 0;
+    private static final int FOURTH_PLACE_INDEX = 1;
+    private static final int THIRD_PLACE_INDEX = 2;
+    private static final int SECOND_PLACE_INDEX = 3;
+    private static final int FIRST_PLACE_INDEX = 4;
+    private static final int FIFTH_PLACE_PRICE = 5000;
+    private static final int FOURTH_PLACE_PRICE = 50000;
+    private static final int THIRD_PLACE_PRICE = 1500000;
+    private static final int SECOND_PLACE_PRICE = 30000000;
+    private static final int FIRST_PLACE_PRICE = 2000000000;
 
     private final LottoPrinter lottoPrinter = new ConsoleLottoPrinter();
     private final LottoReceiver lottoReceiver = new ConsoleLottoReceiver();
@@ -28,6 +44,9 @@ public class LottoManager {
     private int lottoCount;
     private Lotto winningNumbers;
     private int bonusNumber;
+    private int[] result = new int[RESULT_INITIAL_NUMBER];
+    private int returnPrice;
+    private double returnRate;
 
     public void run() {
         receivePurchasePrice();
@@ -38,8 +57,67 @@ public class LottoManager {
         // 보너스 번호 입력
         receiveBonusNumber();
         // 계산
+        calculateResult(lottos);
+        calculateReturnRate();
         // 출력
+        lottoPrinter.noticeResult(result, returnRate);
+    }
 
+    private void calculateReturnRate() {
+        this.returnRate = Math.round((returnPrice - purchasePrice) * 100.0 / purchasePrice);
+    }
+
+    private void calculateResult(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            int matchCount = calculateMatchCount(lotto);
+            isFifthPlace(matchCount);
+            isFourthPlace(matchCount);
+            isThirdPlaceOrSecondPlace(matchCount, lotto);
+            isFirstPlace(matchCount);
+        }
+    }
+
+    private void isFifthPlace(int matchCount) {
+        if (matchCount == FIFTH_PLACE_MATCH_COUNT) {
+            result[FIFTH_PLACE_INDEX]++;
+            returnPrice += FIFTH_PLACE_PRICE;
+        }
+    }
+
+    private void isFourthPlace(int matchCount) {
+        if (matchCount == FOURTH_PLACE_MATCH_COUNT) {
+            result[FOURTH_PLACE_INDEX]++;
+            returnPrice += FOURTH_PLACE_PRICE;
+        }
+    }
+
+    private void isThirdPlaceOrSecondPlace(int matchCount, Lotto lotto) {
+        if (lotto.getNumbers().contains(bonusNumber) && matchCount == SECOND_PLACE_MATCH_COUNT) {
+            result[SECOND_PLACE_INDEX]++;
+            returnPrice += SECOND_PLACE_PRICE;
+            return;
+        }
+        if (matchCount == THIRD_PLACE_MATCH_COUNT) {
+            result[THIRD_PLACE_INDEX]++;
+            returnPrice += THIRD_PLACE_PRICE;
+        }
+    }
+
+    private void isFirstPlace(int matchCount) {
+        if (matchCount == FIRST_PLACE_MATCH_COUNT) {
+            result[FIRST_PLACE_INDEX]++;
+            returnPrice += FIRST_PLACE_PRICE;
+        }
+    }
+
+    private int calculateMatchCount(Lotto lotto) {
+        int matchCount = 0;
+        for (int number : lotto.getNumbers()) {
+            if (winningNumbers.getNumbers().contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
     }
 
     private void receivePurchasePrice() {
@@ -116,8 +194,8 @@ public class LottoManager {
         try {
             int[] separatedWinningNumber = Arrays.stream(winningNumbers.split(SEPARATOR)).mapToInt(Integer::parseInt)
                     .toArray();
-            for (int i = LOOP_START_NUMBER; i < separatedWinningNumber.length; i++) {
-                validWinningNumber.add(separatedWinningNumber[i]);
+            for (int i : separatedWinningNumber) {
+                validWinningNumber.add(i);
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ExceptionInfo.WINNING_NUMBERS_ARE_NOT_INTEGER.getMessage());
@@ -154,8 +232,7 @@ public class LottoManager {
 
     private int validateBonusIsIntegerType(String bonusNumber) {
         try {
-            int validBonusNumber = Integer.parseInt(bonusNumber);
-            return validBonusNumber;
+            return Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ExceptionInfo.BONUS_NUMBER_IS_NOT_INTEGER.getMessage());
         }

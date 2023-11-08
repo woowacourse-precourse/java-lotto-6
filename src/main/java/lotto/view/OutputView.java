@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.domain.Yield;
 import lotto.dto.WinningResult;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface OutputView {
 
     void writeLottoBonusNumber();
 
-    void writeResult(WinningResult winningResult);
+    void writeResult(WinningResult winningResult, Yield yield);
 
     void writeBlank();
 

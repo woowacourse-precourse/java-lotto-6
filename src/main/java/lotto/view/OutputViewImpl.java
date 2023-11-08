@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
+import lotto.domain.Yield;
 import lotto.dto.WinningResult;
 
 import java.util.*;
@@ -32,15 +33,16 @@ public class OutputViewImpl implements OutputView {
     }
 
     @Override
-    public void writeResult(WinningResult winningResult) {
+    public void writeResult(WinningResult winningResult, Yield yield) {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        List<Rank> ranks = getRanksExceptNONE();
+        List<Rank> ranks = getRanksExceptMiss();
         for (Rank rank : ranks) {
             printIndividualRank(winningResult.getRanks(), rank);
         }
-        // TODO : 수익률 출력
+
+        printYield(yield);
     }
 
     @Override
@@ -53,7 +55,7 @@ public class OutputViewImpl implements OutputView {
         System.out.println(HEADER + message);
     }
 
-    private List<Rank> getRanksExceptNONE() {
+    private List<Rank> getRanksExceptMiss() {
         List<Rank> ranks = new ArrayList<>(Arrays.asList(Rank.values()));
         ranks.remove(Rank.MISS);
         Collections.reverse(ranks);
@@ -63,6 +65,11 @@ public class OutputViewImpl implements OutputView {
     private void printIndividualRank(Map<Rank, Integer> rankMap, Rank rank) {
         int count = rankMap.getOrDefault(rank, 0);
         String message = rank.showMessage(count);
+        System.out.println(message);
+    }
+
+    private void printYield(Yield yield) {
+        String message = String.format("총 수익률은 %s입니다.", yield);
         System.out.println(message);
     }
 }

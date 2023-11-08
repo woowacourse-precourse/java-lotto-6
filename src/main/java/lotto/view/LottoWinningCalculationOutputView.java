@@ -12,6 +12,8 @@ public class LottoWinningCalculationOutputView {
     private final static String SECOND_PLACE_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     private final static String FIRST_PLACE_MESSAGE = "6개 일치 (2,000,000,000원) - ";
     private final static String COUNT = "개";
+    private final static String WINNING_RATE = "총 수익률은 ";
+    private final static String END = "입니다.";
 
 
     public void printWinningStatistics(WinningStatistics winningStatistics) {
@@ -21,6 +23,11 @@ public class LottoWinningCalculationOutputView {
         System.out.println(THIRD_PLACE_MESSAGE + winningStatistics.getThirdPlace() + COUNT);
         System.out.println(SECOND_PLACE_MESSAGE + winningStatistics.getSecondPlace() + COUNT);
         System.out.println(FIRST_PLACE_MESSAGE + winningStatistics.getFirstPlace() + COUNT);
+        printWinningStatistics(winningStatistics);
+    }
+
+    public void printWinningRate(WinningStatistics winningStatistics) {
+        System.out.println(WINNING_RATE + winningStatistics.getWinningRate() + END);
     }
 }
 

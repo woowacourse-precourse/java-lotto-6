@@ -48,9 +48,14 @@ class PlayerTest {
     @Test
     void getTotalWinningAccount() {
         //when
-
+        Player player = new Player();
+        int winningAccount1 = 10000;
+        int winningAccount2 = 2000;
         //given
-
+        player.receiveWinningAccount(winningAccount1);
+        player.receiveWinningAccount(winningAccount2);
+        int totalWinningAccount = player.getTotalWinningAccount();
         //then
+        assertThat(totalWinningAccount).isEqualTo(winningAccount1 + winningAccount2);
     }
 }

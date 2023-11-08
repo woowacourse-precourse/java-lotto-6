@@ -7,7 +7,11 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        try {
+            validate(numbers);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("[Error] 6자리의 수를 입력 하세요");
+        }
         validateRange(numbers);
         validateUnique(numbers);
         this.numbers = numbers;
@@ -21,7 +25,7 @@ public class Lotto {
 
     private void validateUnique(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 겹치지 않는 번호를 입력하세요");
         }
     }
 
@@ -38,8 +42,7 @@ public class Lotto {
 
     public static Lotto createLotto(String inputLottoNumbers) {
         List<Integer> lottoNumbers = ValidateUtil.stringToArrayList(inputLottoNumbers);
-        Lotto lotto = new Lotto(lottoNumbers);
-        return lotto;
+        return new Lotto(lottoNumbers);
     }
 
     public int createBonusNumber(String inputNumber) {

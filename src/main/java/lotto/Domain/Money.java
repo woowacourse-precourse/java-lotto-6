@@ -1,32 +1,15 @@
 package lotto.Domain;
 
-import lotto.Util.ErrorMessage;
+import lotto.Function.Validate;
 
 public class Money {
-    private static final int ZERO = 0;
-    private static final int THOUSAND = 1000;
-    private final int money;
+    public static final int ZERO = 0;
+    public static final int THOUSAND = 1000;
+    public final int money;
 
     public Money(int money) {
-        validate(money);
+        Validate.validateMoney(money);
         this.money = money;
-    }
-
-    private void validate(int inputMoney) {
-        validateZero(inputMoney);
-        validateThousandMoney(inputMoney);
-    }
-
-    private void validateZero(int inputMoney) {
-        if (inputMoney == ZERO) {
-            throw new IllegalArgumentException(ErrorMessage.ZERO_ERROR_MESSAGE);
-        }
-    }
-
-    private void validateThousandMoney(int inputMoney) {
-        if (inputMoney % THOUSAND != ZERO) {
-            throw new IllegalArgumentException(ErrorMessage.THOUSAND_ERROR_MESSAGE);
-        }
     }
 
     public int getTicket() {

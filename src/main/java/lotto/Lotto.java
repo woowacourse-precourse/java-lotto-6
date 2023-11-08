@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.Domain.PrizeBonusNumber;
+import lotto.Function.Validate;
 import lotto.Util.ErrorMessage;
 
 import java.util.List;
@@ -15,69 +17,27 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-//        Collections.sort(numbers);
+        Validate.validateLotto(numbers);
         numbers = sorted(numbers);
         this.numbers = numbers;
     }
-
-    private void validate(List<Integer> numbers) {
-        validateNumberSize(numbers);
-        validateNumberRange(numbers);
-        validateNumber_NotEqual(numbers);
-    }
-
-    private void validateNumberSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.NUMBER_SIZE_ERROR_MESSAGE);
-        }
-    }
-
-    /*private void validateNumberRange(List<Integer> numbers) {
-        numbers.forEach(this::validateRange);
-    }
-
-    private void validateRange(Integer number) {
-        if (!(MIN_LOTTO_RANGE <= number && number <= MAX_LOTTO_RANGE)) {
-            throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE_ERROR_MESSAGE);
-        }
-    }*/
-
-    private void validateNumberRange(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            if (number < MIN_LOTTO_RANGE || number > MAX_LOTTO_RANGE) {
-                throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE_ERROR_MESSAGE);
-            }
-        }
-    }
-
-   /* private void validateNumber_NotEqual(List<Integer> numbers) {
-        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
-        if (nonDuplicateNumbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.NUMBER_DUPLICATE_ERROR_MESSAGE);
-        }
-    }*/
-
-
-    private void validateNumber_NotEqual(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size(); i++) {
-            for (int j = i + 1; j < numbers.size(); j++) {
-                checkNotEqual(numbers.get(i), numbers.get(j));
-            }
-        }
-    }
-
-    private void checkNotEqual(Integer number1,Integer number2) {
-        if (number1.equals(number2)) {
-            throw new IllegalArgumentException(ErrorMessage.NUMBER_DUPLICATE_ERROR_MESSAGE);
-        }
-    }
-
-    public List<Integer> sorted(List<Integer> numbers) {
+    //오름차순 정렬
+    private List<Integer> sorted(List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
                 .toList();
     }
+    //생성된 로또 번호 내 번호 찾기
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
+    //생성된 로또 번호 내 번호 찾기와 카운팅 하기
+    public int getMatchLottoNumber(PrizeBonusNumber prizeBonusNumber) {
+        return (int) numbers.stream()
+                .filter(prizeBonusNumber::isContain)
+                .count();
+    }
+    //배열 주소에 있는 값을 보여줌
     @Override
     public String toString() {
         return numbers.toString();

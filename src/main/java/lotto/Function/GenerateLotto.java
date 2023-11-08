@@ -9,6 +9,11 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class GenerateLotto {
 
+    private static final Integer MIN_RANGE = 1;
+    private static final Integer MAX_RANGE = 45;
+    private static final Integer PICKUP_NUMBER = 6;
+
+    //티켓 수 만큼 로또 번호 생성
     public List<Lotto> generateLottoTickets(int ticket) {
         List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < ticket; i++) {
@@ -18,8 +23,11 @@ public class GenerateLotto {
     }
 
     public Lotto generateLottoNumber() {
-        GenerateLottoNumbers generateLottoNumbers = new GenerateLottoNumbers();
-        return new Lotto(generateLottoNumbers.generateLotto_RandomNumbers());
+        return new Lotto(generateLotto_RandomNumbers());
+    }
+
+    private List<Integer> generateLotto_RandomNumbers() {
+        return Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, PICKUP_NUMBER);
     }
 
 

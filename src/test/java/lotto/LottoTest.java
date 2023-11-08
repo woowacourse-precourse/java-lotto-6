@@ -6,6 +6,7 @@ import static lotto.global.enums.ErrorMessage.NUMBER_OUT_OF_RANGE_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -18,16 +19,14 @@ class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7))).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(EXCEED_LENGTH_ERROR_MESSAGE.getMessage());
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5))).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(DUPLICATE_NUMBER_ERROR_MESSAGE.getMessage());
     }
 
@@ -40,8 +39,7 @@ class LottoTest {
     @DisplayName("로또 번호가 범위를 벗어나면 에러가 발생한다.")
     @Test
     void createLottoByOutOfRangeNumber() {
-        assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
-                .isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5))).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NUMBER_OUT_OF_RANGE_ERROR_MESSAGE.getMessage());
     }
 
@@ -69,5 +67,19 @@ class LottoTest {
 
         //then
         assertThat(matchCount).isEqualTo(expectedCount);
+    }
+
+    @DisplayName("오름차순 정렬된 로또 번호를 반환한다.")
+    @Test
+    void getSortedLottoTest() {
+        //given
+        Lotto lotto = new Lotto(List.of(7, 2, 3, 4, 5, 6));
+
+        //when
+        List<Integer> sortedLotto = lotto.getSortedLotto();
+
+        //then
+        assertIterableEquals(sortedLotto, List.of(2, 3, 4, 5, 6, 7));
+
     }
 }

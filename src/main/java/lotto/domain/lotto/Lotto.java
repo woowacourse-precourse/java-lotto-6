@@ -23,6 +23,10 @@ public class Lotto {
         this.numbers = new ArrayList<>(numbers);
     }
 
+    public List<Integer> getSortedLotto() {
+        return Collections.unmodifiableList(numbers).stream().sorted().toList();
+    }
+
     private void validateLottoNumberLength(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_LENGTH.getConstant()) {
             throw new IllegalArgumentException(EXCEED_LENGTH_ERROR_MESSAGE.getMessage());

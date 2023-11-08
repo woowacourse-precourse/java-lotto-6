@@ -4,8 +4,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.GameResult;
-import lotto.domain.lotto.Lotto;
 import lotto.domain.Money;
+import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Score;
 
 public class OutputView {
@@ -28,7 +28,7 @@ public class OutputView {
     public static void printPurchaseLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             //리팩토링 필요
-            List<Integer> sortedLotto = lotto.getNumbers().stream().sorted().toList();
+            List<Integer> sortedLotto = lotto.getSortedLotto();
             System.out.printf("%s%n", sortedLotto);
         }
     }

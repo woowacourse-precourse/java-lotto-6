@@ -4,14 +4,14 @@ import static lotto.domain.result.Grade.FIFTH;
 import static lotto.domain.result.Grade.FIRST;
 import static lotto.domain.result.Grade.THIRD;
 import static lotto.domain.result.Grade.values;
-import static lotto.io.write.OutputMessage.LOTTO_STATISTICS_MESSAGE;
+import static lotto.view.write.OutputMessage.LOTTO_STATISTICS_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
-import lotto.io.write.OutputWriter;
 import lotto.service.LottoOutputWriter;
+import lotto.view.write.OutputView;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -70,7 +70,7 @@ class StatisticsTest {
         statistics.apply(THIRD);
 
         //Act
-        statistics.print(LottoOutputWriter.of(new OutputWriter()));
+        statistics.print(LottoOutputWriter.of(new OutputView()));
 
         //Assert
         assertThat(outputStreamCaptor.toString())

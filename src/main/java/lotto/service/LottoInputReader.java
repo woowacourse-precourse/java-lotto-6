@@ -2,20 +2,20 @@ package lotto.service;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.io.read.InputReader;
 import lotto.validation.LottoValidator;
+import lotto.view.read.InputView;
 
 public class LottoInputReader {
 
-    private final InputReader reader;
+    private final InputView reader;
     private final LottoOutputWriter writer;
     private final LottoValidator validator;
 
-    public static LottoInputReader of(InputReader reader, LottoOutputWriter writer, LottoValidator validator) {
+    public static LottoInputReader of(InputView reader, LottoOutputWriter writer, LottoValidator validator) {
         return new LottoInputReader(reader, writer, validator);
     }
 
-    private LottoInputReader(InputReader reader, LottoOutputWriter writer, LottoValidator validator) {
+    private LottoInputReader(InputView reader, LottoOutputWriter writer, LottoValidator validator) {
         this.writer = writer;
         this.reader = reader;
         this.validator = validator;

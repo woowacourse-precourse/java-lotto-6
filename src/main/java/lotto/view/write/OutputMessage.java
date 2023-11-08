@@ -1,4 +1,4 @@
-package lotto.io.write;
+package lotto.view.write;
 
 public enum OutputMessage {
 

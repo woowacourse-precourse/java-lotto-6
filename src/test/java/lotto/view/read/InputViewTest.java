@@ -1,4 +1,4 @@
-package lotto.io.read;
+package lotto.view.read;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -8,7 +8,7 @@ import java.io.InputStream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-class InputReaderTest {
+class InputViewTest {
 
     private final InputStream originalIn = System.in;
     private ByteArrayInputStream testIn;
@@ -27,7 +27,7 @@ class InputReaderTest {
         System.setIn(testIn);
 
         //Act
-        String result = new InputReader().readLine();
+        String result = new InputView().readLine();
 
         //Assert
         assertThat(result).isEqualTo(input);

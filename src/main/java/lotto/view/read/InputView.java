@@ -1,8 +1,8 @@
-package lotto.io.read;
+package lotto.view.read;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class InputReader {
+public class InputView {
     public String readLine() {
         return Console.readLine();
     }

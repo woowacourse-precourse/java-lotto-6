@@ -1,4 +1,4 @@
-package lotto.io.read;
+package lotto.view.read;
 
 public enum InputMessage {
 

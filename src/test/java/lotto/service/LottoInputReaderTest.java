@@ -5,10 +5,10 @@ import static lotto.exception.ExceptionMessage.DUPLICATED_LOTTO_NUMBERS;
 import static lotto.exception.ExceptionMessage.INVALID_LOTTO_NUMBER_RANGE;
 import static lotto.exception.ExceptionMessage.INVALID_LOTTO_NUMBER_SIZE;
 import static lotto.exception.ExceptionMessage.INVALID_PURCHASE_AMOUNT_MESSAGE;
-import static lotto.io.read.InputMessage.READ_LOTTO_BONUS_NUMBER;
-import static lotto.io.read.InputMessage.READ_LOTTO_WIN_NUMBERS;
-import static lotto.io.read.InputMessage.READ_PURCHASE_AMOUNT_MESSAGE;
 import static lotto.utils.LottoConstant.LOTTO_NUMBER_COUNT;
+import static lotto.view.read.InputMessage.READ_LOTTO_BONUS_NUMBER;
+import static lotto.view.read.InputMessage.READ_LOTTO_WIN_NUMBERS;
+import static lotto.view.read.InputMessage.READ_PURCHASE_AMOUNT_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
@@ -20,9 +20,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.io.read.InputReader;
-import lotto.io.write.OutputWriter;
 import lotto.validation.LottoValidator;
+import lotto.view.read.InputView;
+import lotto.view.write.OutputView;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,7 +41,7 @@ class LottoInputReaderTest {
     LottoInputReader lottoInputReader;
 
     @Mock
-    InputReader mockReader;
+    InputView mockReader;
 
     @Spy
     LottoValidator spyValidator;
@@ -49,7 +49,7 @@ class LottoInputReaderTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        LottoOutputWriter writer = LottoOutputWriter.of(new OutputWriter());
+        LottoOutputWriter writer = LottoOutputWriter.of(new OutputView());
         lottoInputReader = LottoInputReader.of(mockReader, writer, spyValidator);
         System.setOut(new PrintStream(outputStreamCaptor));
     }

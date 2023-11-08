@@ -1,6 +1,6 @@
-package lotto.io.write;
+package lotto.view.write;
 
-public class OutputWriter {
+public class OutputView {
     public void write(String message) {
         System.out.println(message);
     }

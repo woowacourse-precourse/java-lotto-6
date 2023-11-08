@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
+import lotto.model.PrizeResultDto;
 import lotto.util.*;
 import lotto.view.InputView;
 import lotto.view.OutputLotto;
@@ -19,7 +20,6 @@ public class Game {
     public static Game create(){
         return new Game();
     }
-
 
     public void setLottoCount() {
         String inputStringValue = InputView.inputBuyValue();
@@ -66,6 +66,10 @@ public class Game {
             setWinningBonusNumber();
         }
 
+    }
+
+    public PrizeResultDto calculateResult(List<Lotto> lottoList, Lotto winningLotto, int winningBonusNumber){
+        return CalculateMatch.calculate(lottoList, winningLotto, winningBonusNumber);
     }
 
 }

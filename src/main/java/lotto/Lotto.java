@@ -6,7 +6,6 @@ import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
-    int prize;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -25,8 +24,19 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public void checkPrize(List<Integer> numbers, int bonusNumber) {
+    public List<Integer> checkPrize(List<Integer> answerNumbers, int bonusNumber) {
+        int answerCnt = 0;
+        int bonusCnt = 0;
+        for (Integer num : this.numbers) {
+            if (answerNumbers.contains(num)) {
+                answerCnt++;
+            }
+        }
+        if (this.numbers.contains(bonusNumber)) {
+            bonusCnt++;
+        }
 
+        return List.of(answerCnt, bonusCnt);
     }
 
 }

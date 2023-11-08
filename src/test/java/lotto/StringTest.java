@@ -1,6 +1,7 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -19,5 +20,15 @@ public class StringTest {
         String[] numbers2 = input2.split(",");
         assertThat(numbers2).contains("1");
         assertThat(numbers2).containsExactly("1");
+    }
+
+    @DisplayName("문자열에서 특정 위치의 문자를 잘 가져오는지 확인하기")
+    @Test
+    void stringCharAtTest() {
+        char two = input.charAt(2);
+        assertThat(two).isEqualTo('2');
+
+        assertThatThrownBy(() -> input.charAt(100))
+                .isInstanceOf(StringIndexOutOfBoundsException.class);
     }
 }

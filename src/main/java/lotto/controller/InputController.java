@@ -4,12 +4,15 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.Util;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class InputController {
 
     Validation validation = new Validation();
     InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
     Util util = new Util();
+
     public int purchaseAmount() {
 
         inputView.purchaseAmount();
@@ -19,7 +22,7 @@ public class InputController {
         try {
             validation.purchaseAmount(input);
         } catch(IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.exception(e.getMessage());
             purchaseAmount();
         }
 
@@ -36,7 +39,7 @@ public class InputController {
             validation.winNumber(input);
 
         } catch(IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.exception(e.getMessage());
             winNumbers();
         }
 
@@ -52,7 +55,7 @@ public class InputController {
         try {
             validation.bonusNumber(input, winNumber);
         } catch(IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.exception(e.getMessage());
             bonusNumber(winNumber);
         }
 

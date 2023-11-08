@@ -1,5 +1,6 @@
 package lotto.presentation;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import lotto.data.Lotto;
 import lotto.data.Prize;
@@ -20,9 +21,17 @@ public class Output {
     void printSingleWinningStatic(Prize prices, Statics statics) {
         List<Integer> staticsCount = statics.getCount();
         StringBuilder stringBuilder = new StringBuilder();
+        if (prices.equals(Prize.BONUS)){
+            System.out.print("5개 일치, 보너스 볼 일치 (30,000,000원) - ");
+            System.out.print(statics.getCountNumber(prices.ordinal()));
+            System.out.println("개");
+            return;
+        }
         stringBuilder.append(prices.ordinal() + 3);
         stringBuilder.append("개 일치 (");
-        stringBuilder.append(prices.getMoney());
+        DecimalFormat df = new DecimalFormat("###,###");
+        String money = df.format(prices.getMoney());
+        stringBuilder.append(money);
         stringBuilder.append("원) - ");
         stringBuilder.append(statics.getCountNumber(prices.ordinal()));
         stringBuilder.append("개");
@@ -32,10 +41,10 @@ public class Output {
     public void printMultipleWinningStatics(Statics statics) {
         System.out.println("\n" + "당첨 통계");
         System.out.println("---");
-        printSingleWinningStatic(Prize.FIFTH, statics);
         printSingleWinningStatic(Prize.FOURTH, statics);
         printSingleWinningStatic(Prize.THIRD, statics);
         printSingleWinningStatic(Prize.SECOND, statics);
+        printSingleWinningStatic(Prize.BONUS, statics);
         printSingleWinningStatic(Prize.FIRST, statics);
         System.out.println("총 수익률은 " + statics.getProfit() + "%입니다.");
     }

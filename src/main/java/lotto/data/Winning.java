@@ -17,4 +17,18 @@ public class Winning {
             throw new IllegalArgumentException();
         }
     }
+
+    public int match(Lotto lotto) {
+        int matchCount = 0;
+        for (Integer number : lotto.getNumbers()) {
+            if (numbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    public boolean isBonusMatch(Lotto lotto) {
+        return lotto.getNumbers().contains(bonus);
+    }
 }

@@ -1,11 +1,11 @@
 package lotto.data;
 
 public enum Prize {
-    FIFTH(3, 5000),
-    FOURTH(4, 50000),
-    THIRD(5, 1500000),
-    SECOND(6, 30000000),
-    FIRST(7, 2000000000);
+    FOURTH(3, 5000),
+    THIRD(4, 50000),
+    SECOND(5, 1500000),
+    FIRST(6, 2000000000),
+    BONUS(9, 30000000);
 
     private final int number;
     private final int money;

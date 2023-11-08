@@ -15,7 +15,7 @@ public class Statics {
         count.add(0);
         count.add(0);
         count.add(0);
-    } // CHECK
+    }
 
     public void EvaluateProfit(Purchasing purchasing){
         int purchasedPrice = purchasing.getPurchasedPrice();
@@ -27,6 +27,23 @@ public class Statics {
 
         double profitRate = ((double) (purchasedPrice - totalCost) / totalCost) * 100;
         this.profit = (int) Math.round(profitRate);
+    }
+
+    public void recordResult(int matchCount, boolean hasBonus) {
+        if (matchCount < 3) {
+            return;
+        }
+        if (matchCount == 5 && hasBonus) {
+            this.count.set(Prize.BONUS.ordinal(), this.count.get(Prize.BONUS.ordinal()) + 1);
+            return;
+        }
+        for (Prize prize : Prize.values()) {
+            if (prize.getNumber() == matchCount) {
+                int prizeIndex = prize.ordinal();
+                this.count.set(prizeIndex, this.count.get(prizeIndex) + 1);
+                break;
+            }
+        }
     }
 
     public int getProfit() {

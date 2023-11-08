@@ -12,7 +12,10 @@ public class MoneyController {
     }
 
     public double calculateProfit(final GameResult gameResult, final Money money) {
-        return (double) gameResult.getReward() / money.getMoney();
+        double reward = (double) gameResult.getReward();
+        double investedMoney = (double) money.getMoney();
+
+        return (reward / investedMoney) * 100.0;
     }
 
     public void printProfit(double profit) {

@@ -23,4 +23,28 @@ class LottoMachineTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨번호를 바르게 입력한 경우")
+    @Test
+    void textToLotto() {
+        LottoMachine lottoMachine = new LottoMachine();
+        String winningNumberText = "1,2,3,4,5,6";
+
+        Lotto actual = lottoMachine.textToLotto(winningNumberText);
+        Lotto expected = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+
+        assertThat(actual)
+                .usingRecursiveComparison()
+                .isEqualTo(expected);
+    }
+
+    @DisplayName("당첨번호를 6개 입력하지 않은 경우 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6,7", "1,2,3,4,5", "1,1,2,2,3,4", "0,1,2,3,46,5"})
+    void textToLotto(String value) {
+        LottoMachine lottoMachine = new LottoMachine();
+        String winningNumberText = value;
+
+        assertThatThrownBy(() -> lottoMachine.textToLotto(winningNumberText))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

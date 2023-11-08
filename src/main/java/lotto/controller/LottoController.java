@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.entity.Lotto;
+import lotto.entity.LottoScore;
 import lotto.service.LottoService;
 
 public class LottoController {
@@ -17,6 +18,10 @@ public class LottoController {
 
     public List<Lotto> lottoGenerate(int count){
         return lottoService.lottoGenerate(count);
+    }
+
+    public LottoScore lottoScore(List<Integer> results, List<Lotto> lottos, int bonusNumber){
+        return lottoService.lottoScore(results, lottos, bonusNumber);
     }
 
 }

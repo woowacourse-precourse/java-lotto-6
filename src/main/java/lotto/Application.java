@@ -60,4 +60,13 @@ public class Application {
         System.out.println("당첨 번호를 입력해 주세요.");
         return parseNumbers(console.readLine());
     }
+
+    private static List<Integer> parseNumbers(String input) {
+        String[] inputNumbers = input.split(",");
+        List<Integer> numbers = new ArrayList<>();
+        for (String number : inputNumbers) {
+            numbers.add(Integer.parseInt(number));
+        }
+        return numbers;
+    }
 }

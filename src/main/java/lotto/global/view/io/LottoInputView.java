@@ -1,7 +1,5 @@
 package lotto.global.view.io;
 
-import lotto.domain.lotto.WinningNumbers;
-import lotto.domain.money.Money;
 import lotto.global.view.output.OutputView;
 
 import java.lang.reflect.InvocationHandler;
@@ -10,7 +8,6 @@ import java.lang.reflect.Method;
 import java.util.NoSuchElementException;
 
 import static lotto.global.constant.exception.ExceptionMessage.EXCEPTION_PREFIX;
-import static lotto.global.constant.exception.ExceptionMessage.MAX_INPUT_ATTEMPT_COUNT;
 
 public class LottoInputView implements InvocationHandler {
 
@@ -26,15 +23,15 @@ public class LottoInputView implements InvocationHandler {
             try {
                 return method.invoke(inputProcessor, args);
             } catch (InvocationTargetException e) {
-                throwNoSuchElementException(e);
+                checkIllegalArgumentException(e);
                 OutputView.printMessageLine(EXCEPTION_PREFIX.getMessage() + e.getTargetException().getMessage());
             }
         }
     }
 
-    private void throwNoSuchElementException(InvocationTargetException e) {
-        if(e.getTargetException() instanceof NoSuchElementException) {
-            throw new IllegalStateException(e.getTargetException());
+    private void checkIllegalArgumentException(InvocationTargetException e) throws Throwable {
+        if(!(e.getTargetException() instanceof IllegalArgumentException)) {
+            throw e.getTargetException();
         }
     }
 }

@@ -15,6 +15,7 @@ public class Application {
             gameController.play();
         } catch (Exception e) {
             OutputView.printMessageLine(EXCEPTION_PREFIX.getMessage() + e.getMessage());
+            throw e;
         }
 
     }

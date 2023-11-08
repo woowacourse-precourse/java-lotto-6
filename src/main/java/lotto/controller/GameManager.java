@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import static lotto.util.OutputEnum.WINNING_RESULT_OUTPUT;
-
 import lotto.domain.Amount;
 import lotto.domain.Calculator;
 import lotto.domain.LottoPublisher;
@@ -20,7 +18,7 @@ public class GameManager {
     private Calculator calculator = new Calculator();
 
     public void run() {
-        Amount amount = inputView.inputPurchaseAmount();
+        Amount amount = inputPurchaseAmountWhileNoError();
         outputView.printPublishedLottoCount(lottoPublisher.getLottoCountByAmount(amount));
         Lottos lottos = lottoPublisher.publishLottosByAmount(amount);
         outputView.printPublishedLottos(lottos);
@@ -31,5 +29,16 @@ public class GameManager {
         long prize = winningResult.getTotalLotteryPrize();
         outputView.printROI(calculator.calculateROI(prize,amount));
     }
+
+    private Amount inputPurchaseAmountWhileNoError(){
+        while(true){
+            try {
+                return inputView.inputPurchaseAmount();
+            }catch (IllegalArgumentException e){
+                outputView.printErrorMessage(e);
+            }
+        }
+    }
+
 
 }

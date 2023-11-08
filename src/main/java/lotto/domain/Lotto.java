@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.domain.util.Validation;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,7 +23,7 @@ public class Lotto {
                 .allMatch(number -> number >= 1 && number <= 45)) {
             throw new IllegalArgumentException();
         }
-        // TODO: 로또 번호 검증 추가 구현
+        Validation.validateLottoNumbers(numbers);
     }
 
     // TODO: 추가 기능 구현

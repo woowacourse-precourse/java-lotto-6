@@ -1,8 +1,7 @@
 package lotto.domain;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import lotto.domain.util.Validation;
 
 public class LottoWinningNumber {
     private static final int MIN_LOTTO_NUMBER = 1;
@@ -16,7 +15,7 @@ public class LottoWinningNumber {
     }
 
     public void setWinningNumbers(List<Integer> winningNumbers) {
-        validateWinningNumbers(winningNumbers);
+        Validation.validateLottoNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
     }
 
@@ -33,21 +32,6 @@ public class LottoWinningNumber {
         return bonusNumber;
     }
 
-    private void validateWinningNumbers(List<Integer> winningNumbers) {
-        if (winningNumbers == null || winningNumbers.size() != NUMBER_PER_LOTTO) {
-            throw new IllegalArgumentException();
-        }
-
-        Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
-        if (uniqueNumbers.size() != NUMBER_PER_LOTTO) {
-            throw new IllegalArgumentException();
-        }
-
-        if (winningNumbers.stream()
-                .anyMatch(num -> num < MIN_LOTTO_NUMBER || num > MAX_LOTTO_NUMBER)) {
-            throw new IllegalArgumentException();
-        }
-    }
 
     private void validateBonusNumbers(int bonusNumber) {
         if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {

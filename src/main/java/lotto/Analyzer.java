@@ -7,14 +7,15 @@ import java.util.Map;
 import static lotto.enums.Prize.*;
 
 public class Analyzer {
-    public int check(List<Integer> winningNumbers, List<Integer> ticketNumbers, int bonusNumber) {
+    public int check(List<Integer> winningNumbers, Lotto lotto, int bonusNumber) {
+        List<Integer> ticketNumbers = lotto.getNumbers();
         int matchedCount = countMatchingNumbers(winningNumbers, ticketNumbers);
         boolean bonusNumberMatched = ticketNumbers.contains(bonusNumber);
         return checkRanking(matchedCount, bonusNumberMatched);
     }
 
     public Map<Integer, Integer> fillTicketResults(int ticket, List<Integer> winningNumbers,
-                                                   List<List<Integer>> allTicketNumbers, int bonusNumber) {
+                                                   List<Lotto> allTicketNumbers, int bonusNumber) {
         Map<Integer, Integer> ticketResults = new HashMap<>();
         for (int i = 0; i < ticket; i++) {
             ticketResults.putIfAbsent(i, 0);

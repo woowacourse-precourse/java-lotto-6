@@ -8,10 +8,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.enums.LottoConfig.*;
+
 public class Application {
-    private static final int START_INCLUSIVE = 1;
-    private static final int END_INCLUSIVE = 45;
-    private static final int COUNT = 6;
+
     private final Output output;
     private final Input input;
     private final Analyzer analyzer;
@@ -24,6 +24,7 @@ public class Application {
     private Application() {
         output = new Output();
         input = new Input();
+        List<Lotto> lottos = new ArrayList<>();
         analyzer = new Analyzer();
     }
 
@@ -31,7 +32,7 @@ public class Application {
         output.outputPurchaseAmount();
         int purchaseAmount = input.inputPurchaseAmount();
         int ticket = purchaseAmount / Ticket.TICKET_PRICE.getTicketPrice();
-        List<List<Integer>> allTicketNumbers = generateAllTickets(ticket);
+        List<Lotto> allTicketNumbers = generateAllTickets(ticket);
 
         output.outputWinningNumbers();
         List<Integer> winningNumbers = input.inputWinningNumbers();
@@ -44,19 +45,20 @@ public class Application {
         output.outputResult(ticketResults, yieldRate);
     }
 
-    private List<List<Integer>> generateAllTickets(int ticket) {
-        List<List<Integer>> allTicketNumbers = new ArrayList<>();
+    public Lotto generateLotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+                START_INCLUSIVE.getValue(), END_INCLUSIVE.getValue(), COUNT.getValue());
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return new Lotto(sortedNumbers);
+    }
+
+    private List<Lotto> generateAllTickets(int ticket) {
+        List<Lotto> allTicketNumbers = new ArrayList<>();
         for (int i = 0; i < ticket; i++) {
-            allTicketNumbers.add(new ArrayList<>(generateLotto()));
+            allTicketNumbers.add(generateLotto());
         }
         output.outputTicketPurchaseHistory(ticket, allTicketNumbers);
         return allTicketNumbers;
-    }
-
-    private List<Integer> generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT);
-        List<Integer> sortedNumbers = new ArrayList<>(numbers);
-        Collections.sort(sortedNumbers);
-        return sortedNumbers;
     }
 }

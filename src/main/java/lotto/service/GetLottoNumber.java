@@ -78,6 +78,7 @@ public class GetLottoNumber {
     }
 
     public static void validateInput(String num) {
+        num.replace(" ", "");
         Validator.isEmpty(num);
         Validator.isNumericInput(num);
         Validator.isNumberInRange(num);

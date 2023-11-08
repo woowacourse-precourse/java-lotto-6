@@ -125,10 +125,9 @@ public class LottoStoreTest {
         //when
         long money = 250000;
         lottoStore.getMoney(money);
-        lottoStore.generateAllLottos();
 
         //then
-        List<Lotto> lottoPapers = lottoStore.getLottos();
+        List<Lotto> lottoPapers = lottoStore.generateAllLottos();
         assertThat(lottoPapers.size()).isEqualTo(lottoStore.getChargedMoney() / LOTTO_PRICE);
     }
 }

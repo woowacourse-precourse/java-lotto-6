@@ -55,7 +55,7 @@ public class Controller {
             try {
                 InputView.printAskForInputWinNumber();
                 String input = Console.readLine();
-                return service.getWinNumbersByUserInput(input);
+                return service.generateLottoByUserInput(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -67,7 +67,7 @@ public class Controller {
             try {
                 InputView.printAskForInputBonusNumber();
                 String input = Console.readLine();
-                return service.getBonusNumberByUserInput(input, winningLotto);
+                return service.generateWinningNumberWithBonusNumberByUserInput(input, winningLotto);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

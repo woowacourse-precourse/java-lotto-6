@@ -22,7 +22,7 @@ public class WinningNumber {
 
     private void validateNumberRange(int number) throws IllegalArgumentException {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + "값이 범위를 벗어납니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE + "로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
@@ -40,4 +40,7 @@ public class WinningNumber {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
+    public int getBonusNumber(){
+        return bonusNumber;
+    }
 }

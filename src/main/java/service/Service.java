@@ -1,6 +1,5 @@
 package service;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import domain.Lotto;
 import domain.Rank;
 import domain.WinningNumber;
@@ -45,7 +44,7 @@ public class Service {
         return money / THOUSAND;
     }
 
-    public Lotto getWinNumbersByUserInput(String input) {
+    public Lotto generateLottoByUserInput(String input) {
         validator.checkStartOrEndWithComma(input);
         List<String> splitNumbers = Utility.splitByComma(input);
         validator.checkWinNumbersIsNumber(splitNumbers);
@@ -61,7 +60,7 @@ public class Service {
         return new Lotto(winNumbers);
     }
 
-    public WinningNumber getBonusNumberByUserInput(String input, Lotto winNumbers) {
+    public WinningNumber generateWinningNumberWithBonusNumberByUserInput(String input, Lotto winNumbers) {
         validator.checkIsNumber(input);
         int number = Integer.parseInt(input);
         return new WinningNumber(winNumbers, number);
@@ -89,7 +88,7 @@ public class Service {
         return (float) calculateSumOfPrizeMoney(lottoResult) / money * PERCENT;
     }
 
-    private long calculateSumOfPrizeMoney(LinkedHashMap<Rank, Integer> lottoResult) {
+    public long calculateSumOfPrizeMoney(LinkedHashMap<Rank, Integer> lottoResult) {
         long sumOfPrizeMoney = 0;
         for (Map.Entry<Rank, Integer> set : lottoResult.entrySet()) {
             sumOfPrizeMoney += set.getKey().getPrizeMoney() * set.getValue();

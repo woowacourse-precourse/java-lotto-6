@@ -20,7 +20,7 @@ public class OutputView {
     }
 
     public static void printLottos(Lottos lottos) {
-        lottos.getLottos().stream()
+        lottos.lottosInfo().stream()
                 .map(Lotto::toString)
                 .forEach(System.out::println);
     }

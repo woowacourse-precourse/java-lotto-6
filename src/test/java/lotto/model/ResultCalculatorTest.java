@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static org.assertj.core.api.Assertions.entry;
+import static java.util.Map.entry;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.ArrayList;
@@ -12,25 +12,29 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LottosTest {
-    WinLotto winLotto;
+class ResultCalculatorTest {
+    WinLotto winNumbers;
+    Lottos lottos;
     List<Lotto> testLottos;
+    ResultCalculator resultCalculator;
 
     @BeforeEach
     void setUp() {
-        winLotto = createWinLotto();
-        testLottos = new ArrayList<>();
+        winNumbers = createWinLotto();
+        lottos = new Lottos(new ArrayList<>());
+        testLottos = lottos.lottosInfo();
+        resultCalculator = new ResultCalculator(winNumbers, lottos);
     }
 
     @Test
     @DisplayName("1등 1개, 2등 1개, 3등 1개")
     void lottosResultTest() {
+
         testLottos.add(createFirstTicket());
         testLottos.add(createSecondTicket());
         testLottos.add((createThirdTicket()));
 
-        Lottos lottos = new Lottos(testLottos);
-        Map<Rank, Integer> result = lottos.calculateResult(winLotto);
+        Map<Rank, Integer> result = resultCalculator.calculateResult();
 
         Assertions.assertThat(result)
                 .contains(entry(Rank.FIRST, 1), entry(Rank.SECOND, 1), entry(Rank.THIRD, 1));
@@ -44,8 +48,7 @@ class LottosTest {
         }
         testLottos.add(createFifthTicket());
 
-        Lottos lottos = new Lottos(testLottos);
-        double rateOfReturn = lottos.calculateRateOfReturn(winLotto);
+        double rateOfReturn = resultCalculator.calculateRateOfReturn();
 
         assertThat(rateOfReturn).isEqualTo(62.5);
     }

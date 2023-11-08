@@ -38,6 +38,6 @@ public class Converter {
         List<Integer> converts = convertTypes(splits);
         List<Integer> sorts = sortToAscending(converts);
 
-        return converts;
+        return sorts;
     }
 }

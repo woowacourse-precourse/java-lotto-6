@@ -51,9 +51,9 @@ public enum PrizeType {
             return MATCH5_WITH_BONUS;
         }
 
-        for (PrizeType status : values()) {
-            if (status.getMatchCount() == matchCount) {
-                return status;
+        for (PrizeType prizeType : values()) {
+            if (prizeType.getMatchCount() == matchCount) {
+                return prizeType;
             }
         }
 

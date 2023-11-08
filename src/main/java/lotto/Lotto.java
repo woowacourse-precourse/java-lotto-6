@@ -1,8 +1,7 @@
 package lotto;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -11,7 +10,7 @@ public class Lotto {
 
 	public Lotto(List<Integer> numbers) {
 		validate(numbers);
-		this.numbers = numbers;
+		this.numbers = numbers.stream().collect(Collectors.toList());;
 	}
 
 	private void validate(List<Integer> numbers) {
@@ -31,13 +30,13 @@ public class Lotto {
 	}
 
 	public static Lotto randomLotto() {
-		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);;
-		return new Lotto(numbers);
+		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+		List<Integer> sortednumbers = numbers.stream().sorted().toList();
+		return new Lotto(sortednumbers);
 	}
 
-	public int compareNumbers(List<Integer> lottoNumbers) {
-		long matchingCount = numbers.stream().filter(lottoNumbers::contains).count();
-		return (int) matchingCount;
+	public long compareNumbers(List<Integer> lottoNumbers) {
+		return numbers.stream().filter(lottoNumbers::contains).count();
 	}
 
 	private boolean isValidRange(List<Integer> numbers) {
@@ -45,7 +44,7 @@ public class Lotto {
 	}
 
 	private boolean hasDuplicates(List<Integer> numbers) {
-		Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-		return uniqueNumbers.size() < numbers.size();
+		long distinctCount = numbers.stream().distinct().count();
+		return distinctCount != numbers.size();
 	}
 }

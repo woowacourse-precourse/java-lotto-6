@@ -1,4 +1,5 @@
 package lotto;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,4 +19,5 @@ public class PurchasedLottosTest {
         String actual = purchasedLottos.LottosToString();
         assertEquals(expected, actual);
     }
+
 }

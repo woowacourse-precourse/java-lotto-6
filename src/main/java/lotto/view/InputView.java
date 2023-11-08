@@ -25,4 +25,15 @@ public class InputView {
         }
         return winningLottoNumber;
     }
+
+    public static String getWinningBonusNumber() {
+        String winningBonusNumber;
+
+        try {
+            winningBonusNumber = Console.readLine();
+        } catch (NoSuchElementException noSuchElementException){
+            throw new IllegalArgumentException("[ERROR] 보너스번호에 값이 안들어왔습니다");
+        }
+        return winningBonusNumber;
+    }
 }

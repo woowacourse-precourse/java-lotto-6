@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
-import lotto.constant.Rank;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Price;

@@ -10,7 +10,7 @@ import static lotto.constant.GameMessage.YOU_BOUGHT_N_LOTTOS;
 
 import java.util.EnumMap;
 import java.util.List;
-import lotto.constant.Rank;
+import lotto.Rank;
 import lotto.domain.Lotto;
 import lotto.domain.Price;
 

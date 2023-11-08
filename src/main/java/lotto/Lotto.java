@@ -36,9 +36,10 @@ public class Lotto {
         int n = LottoCounter.countLotto(money);
         List<List<Integer>> lottos = new ArrayList<>();
         for(int i = 0; i < n; i++) {
-            Lotto temp = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Collections.sort(numbers);
+            Lotto temp = new Lotto(numbers);
             List<Integer> lotto = temp.getLotto();
-            Collections.sort(lotto);
             lottos.add(lotto);
         }
         return lottos;

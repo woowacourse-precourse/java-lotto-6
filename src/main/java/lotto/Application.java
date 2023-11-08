@@ -52,5 +52,6 @@ public class Application {
         List<Lotto> lottoList = setLottoList(purchaseCount);
         printLotto(lottoList);
 
+        System.out.println("당첨 번호를 입력해 주세요.");
     }
 }

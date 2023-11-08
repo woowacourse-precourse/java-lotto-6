@@ -19,11 +19,19 @@
 - enum 적용하기
 - 도메인 로직에 단위테스트 구현하기
 
-### 클래스 나누기
-- lotto: 주어진 model(domain) 클래스
-- enum: 상금을 나누는 model 클래스
-- controller: 뷰로부터 입력받고, domain 이용 
-- service: 게임의 로직 관리
-- util: 게임에 이용될 도구들
-- view: 클래스
-- validation: 검증담당 클래스
+### 패키지 및 클래스
+model
+- Lotto: 구입시 얻는 로또번호를 나타내는 클래스
+- WinningLotto: 당첨번호를 나타내는 클래스
+- PrizeRank: 상금과 등수를 구분하는 열거형 클래스
+dto
+- LottoDTO:
+service
+- LottoService:
+controller
+- LottoController:
+view
+- InputView:
+- ResultView:
+util
+- LottoUtils:

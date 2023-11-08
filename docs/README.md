@@ -68,24 +68,13 @@
 
 ### 1. Exception
 
-<br/>
-
-#### public
-
-| 메서드 이름               | 기능                     |
-|----------------------|------------------------|
-| validateLottoNumbers | 로또 번호 관련 예외 처리 메서드 모음  |
-| validateBonusNumber  | 보너스 번호 관련 예외 처리 메서드 모음 |
-| validateMoney        | 금액 관련 예외 처리 메서드 모음     |
-| validateSeparator    | 구분자 예외 처리              |
-| notParsableNumber    | String 형변환 예외 처리       |
-
-<br/>
-
-#### private
-
 | 메서드 이름                 | 기능                         |
 |------------------------|----------------------------|
+| validateLottoNumbers   | 로또 번호 관련 예외 처리 메서드 모음      |
+| validateBonusNumber    | 보너스 번호 관련 예외 처리 메서드 모음     |
+| validateMoney          | 금액 관련 예외 처리 메서드 모음         |
+| validateSeparator      | 구분자 예외 처리                  |
+| notParsableNumber      | String 형변환 예외 처리           |
 | notSixNumbers          | 번호 개수가 6개가 아니면 예외 발생       |
 | numberNotInRange       | 번호가 1~45에 속하는 값이 아니면 예외 발생 |
 | duplicateNumber        | 중복 번호가 있으면 예외 발생           |
@@ -97,10 +86,6 @@
 
 ### 2. Lotto
 
-<br/>
-
-#### public
-
 | 메서드 이름                | 기능                      |
 |-----------------------|-------------------------|
 | lottoPrintFormat      | 로또에 적힌 숫자를 출력 형식에 맞게 배치 |
@@ -111,21 +96,10 @@
 
 ### 3. LottoMachine
 
-<br/>
-
-#### public
-
-| 메서드 이름             | 기능          |
-|--------------------|-------------|
-| lottoMachineInput  | 로또 구입 금액 입력 |
-| lottoMachineOutput | 로또 구입 결과 출력 |
-
-<br/>
-
-#### private
-
 | 메서드 이름               | 기능                 |
 |----------------------|--------------------|
+| lottoMachineInput    | 로또 구입 금액 입력        |
+| lottoMachineOutput   | 로또 구입 결과 출력        |
 | insertMoney          | 로또 구입 금액 예외 처리와 저장 |
 | generateLottoBundle  | 구입 개수만큼 로또 생성      |
 | generateLottoNumbers | 로또 번호 생성           |
@@ -135,26 +109,14 @@
 
 ### 4. LottoResultChecker
 
-<br/>
-
-#### public
-
 | 메서드 이름                   | 기능               |
 |--------------------------|------------------|
 | lottoResultCheckerInput  | 당첨 번호와 보너스 번호 입력 |
 | lottoResultCheckerOutput | 로또 당첨 결과 출력      |
-
-<br/>
-
-#### private
-
-| 메서드 이름             | 기능               |
-|--------------------|------------------|
-| winNumbersInput    | 당첨 번호 입력         |
-| setWinNumbers      | 당첨 번호 예외 처리와 저장  |
-| bonusNumberInput   | 보너스 번호 입력        |
-| setBonusNumber     | 보너스 번호 예외 처리와 저장 |
-| checkLottoBundle   | 로또 당첨 결과 확인      |
-| printResultOfCheck | 로또 당첨 결과 출력      |
-| calculatePortfolio | 수익률 계산           |
-
+| winNumbersInput          | 당첨 번호 입력         |
+| setWinNumbers            | 당첨 번호 예외 처리와 저장  |
+| bonusNumberInput         | 보너스 번호 입력        |
+| setBonusNumber           | 보너스 번호 예외 처리와 저장 |
+| checkLottoBundle         | 로또 당첨 결과 확인      |
+| printResultOfCheck       | 로또 당첨 결과 출력      |
+| calculatePortfolio       | 수익률 계산           |

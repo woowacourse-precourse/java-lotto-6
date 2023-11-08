@@ -20,7 +20,7 @@ public class Generator {
     //생성자
 
     //메서드
-    public void getAmountOfMoney() {
+    private void getAmountOfMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         while(true) {
             try {
@@ -32,7 +32,6 @@ public class Generator {
             }
         }
         printer.showLotteryCount(numberOfLottery);
-        createLotto(numberOfLottery);
     }
 
     private int isDivisible(int money) {
@@ -53,11 +52,13 @@ public class Generator {
         }
     }
 
-    private void createLotto(int numberOfLottery) {
+    public List<Lotto> createLotto() {
+        getAmountOfMoney();
         while(Lottos.size() != numberOfLottery) {
             Lotto generatedLotto = new Lotto(generateRandomNumbers());
             Lottos.add(generatedLotto);
         }
+        return Lottos;
     }
 
     private List<Integer> generateRandomNumbers() {

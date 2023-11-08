@@ -1,19 +1,20 @@
 package lotto.domain.lotto;
 
 import java.util.List;
+import lotto.util.ExceptionMessage;
 import lotto.util.LottoConstants;
 
 public class BonusNumber {
     private int bonusNumber;
 
     public BonusNumber(int bonusNumber) {
-        validate(bonusNumber);
+        validateNumberRange(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(int bonusNumber) {
+    private void validateNumberRange(int bonusNumber) {
         if (!LottoConstants.isNumberInRange(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.OVER_LOTTO_NUMBER_RANGE_MESSAGE.getErrorMessage());
         }
     }
 

@@ -38,13 +38,13 @@ public class WinningDetails {
         return totalPrizeForRank;
     }
 
-    public int getPrizeAmount(Prize prize) {
-        return winningDetails.getOrDefault(prize, 0);
-    }
-
     public int calculateTotalPrize() {
         return Arrays.stream(Prize.values())
                 .mapToInt(prize -> calculateTotalPrizeForRank(prize))
                 .sum();
+    }
+
+    public int getPrizeAmount(Prize prize) {
+        return winningDetails.getOrDefault(prize, 0);
     }
 }

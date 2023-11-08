@@ -13,7 +13,8 @@ public class PurchaseAmount {
 
     public void validatePurchaseAmount(int money) {
         if (money % LottoConstants.LOTTO_PRICE.getValue() != 0) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_ALLOW_PURCHASE_AMOUNT_UNIT_MESSAGE.getErrorMessage());
+            throw new IllegalArgumentException(
+                    ExceptionMessage.NOT_ALLOW_PURCHASE_AMOUNT_UNIT_MESSAGE.getErrorMessage());
         }
     }
 

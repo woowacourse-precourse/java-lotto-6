@@ -13,7 +13,8 @@ public class Lotto {
         validate(numbers);
         validateDuplication(numbers);
         validateNumberRange(numbers);
-        this.numbers = sort(numbers);;
+        this.numbers = sort(numbers);
+        ;
     }
 
     private void validate(List<Integer> numbers) {
@@ -33,7 +34,8 @@ public class Lotto {
                 .filter(number -> !LottoConstants.isNumberInRange(number))
                 .findAny()
                 .ifPresent(number -> {
-                    throw new IllegalArgumentException(ExceptionMessage.OVER_LOTTO_NUMBER_RANGE_MESSAGE.getErrorMessage());
+                    throw new IllegalArgumentException(
+                            ExceptionMessage.OVER_LOTTO_NUMBER_RANGE_MESSAGE.getErrorMessage());
                 });
     }
 

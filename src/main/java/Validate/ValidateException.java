@@ -62,7 +62,7 @@ public class ValidateException {
         if (!strLine.equals(NOTING_STRING)) {
             return true;
         }
-        throw new NumberFormatException("[ERROR] 빈칸은 입력할 수 없습니다.");
+        throw new NumberFormatException(ValidateConstant.ERROR_BLANK_CHECK());
     }
 
     public static void includeBlank(String strLine) {

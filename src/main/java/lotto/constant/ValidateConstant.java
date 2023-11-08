@@ -20,4 +20,8 @@ public class ValidateConstant {
     public static String ERROR_CONSECUTIVE_EMPTY_VALUES() {
         return "[ERROR] 문자열 \",,\" 사이에 숫자가 없습니다.";
     }
+
+    public static String ERROR_BLANK_CHECK() {
+        return "[ERROR] 빈칸은 입력할 수 없습니다.";
+    }
 }

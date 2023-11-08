@@ -28,7 +28,7 @@ public class Money {
 
     private void validateDivision(){
         if(money%DIVISION_FACTOR != 0){
-            throw new IllegalArgumentException("1000원 단위로 입력되지 않았습니다.");
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력되지 않았습니다.");
         }
     }
 

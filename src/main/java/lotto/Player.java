@@ -83,6 +83,27 @@ public class Player{
         return count;
     }
 
+    public void printWonLotto(){
+        String[] str = {"","", "", "THREE", "FOUR", "FIVE","FIVEBONUS", "SIX"};
+        LotteryMatchNumber Match;
+        int count = 0;
+
+        System.out.println("\n당첨 통계\n" + "---");
+
+        for(int i=3; i < winningCount.length; i++){
+            Match = LotteryMatchNumber.valueOf(str[i]);
+            addProfit(winningCount[i], Match);
+
+            System.out.println(Match.getLabel() + " - " + winningCount[i] + "개");
+        }
+    }
+    public void addProfit(int winningCount, LotteryMatchNumber Match){
+        if(winningCount > 0) {
+            totalProfit += Match.getProfits() * winningCount;
+        }
+
+    }
+
     public void playGame(){
         inputAmount();
         buyLotto();
@@ -92,6 +113,7 @@ public class Player{
         judge.userInput();
 
         checkNumbers();
+        printWonLotto();
 
     }
 }

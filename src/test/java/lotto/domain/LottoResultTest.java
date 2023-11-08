@@ -8,9 +8,41 @@ import org.junit.jupiter.api.Test;
 
 class LottoResultTest {
 
-    @DisplayName("로또 결과 초기화 값 확인")
+    @DisplayName("로또 결과 초기화 -> key를 Prize 열거형 초기화")
     @Test
-    void initializeLottoResult() {
+    void initializeLottoResultOfKey() {
+        // given
+        LottoResult lottoResult;
+
+        // when
+        lottoResult = new LottoResult();
+
+        // then, key - Prize
+        for (Prize prize : Prize.values()) {
+            assertThat(lottoResult.state.containsKey(prize)).isTrue();
+        }
+
+
+    }
+
+    @DisplayName("로또 결과 초기화 -> value를 0으로 초기화")
+    @Test
+    void initializeLottoResultOfValue() {
+        // given
+        LottoResult lottoResult;
+
+        // when
+        lottoResult = new LottoResult();
+
+        // then, value - 0
+        for (Prize prize : lottoResult.state.keySet()) {
+            assertThat(lottoResult.state.get(prize)).isEqualTo(0);
+        }
+    }
+
+    @DisplayName("로또 결과 초기화 -> 크기는 5")
+    @Test
+    void initializeLottoResultOfSize() {
         // given
         LottoResult lottoResult;
 
@@ -18,16 +50,10 @@ class LottoResultTest {
         lottoResult = new LottoResult();
 
         // then
-        // key - Prize
-        for (Prize prize : Prize.values()) {
-            assertThat(lottoResult.state.containsKey(prize)).isTrue();
-        }
+        assertThat(lottoResult.state.size()).isEqualTo(5);
 
-        // value - 0
-        for (Prize prize : lottoResult.state.keySet()) {
-            assertThat(lottoResult.state.get(prize)).isEqualTo(0);
-        }
     }
+
 
     @DisplayName("수익률 계산")
     @Test

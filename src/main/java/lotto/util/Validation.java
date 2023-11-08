@@ -7,13 +7,13 @@ public class Validation {
 
     // 금액에 대한 validation
     public static void validatePrice(String input) {
-        validateNumericString(input);
+        validateNumberFormat(input);
         validateEmptySpace(input);
         int inputNum = Integer.parseInt(input);
         validateDivisiblePrice(inputNum);
     }
 
-    private static void validateNumericString(String input) {
+    private static void validateNumberFormat(String input) {
         if (!input.matches("[0-9]+")) {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 입력값은 숫자여야 합니다.");
         }
@@ -63,12 +63,12 @@ public class Validation {
 
 
     public static void validateBonusNumber(String bonusNumberInput, List<Integer> winningNumbers) {
-        int bonusNumber = validateAndParseBonusNumber(bonusNumberInput);
-        validateNumberRange(bonusNumber);
+        int bonusNumber = validateBonusNumberFormat(bonusNumberInput);
+        validateBonusNumberRange(bonusNumber);
         validateNumberNotDuplicated(bonusNumber, winningNumbers);
     }
 
-    private static void validateNumberRange(int bonusNumber) {
+    private static void validateBonusNumberRange(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
@@ -80,9 +80,9 @@ public class Validation {
         }
     }
 
-    private static int validateAndParseBonusNumber(String bonusNumberInput) {
+    private static int validateBonusNumberFormat(String bonusNumberInput) {
         String numberInput = bonusNumberInput.trim();
-        if (!numberInput.matches("\\d+")) {
+        if (!numberInput.matches("[0-9]+")) {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 보너스 번호는 숫자여야 합니다.");
         }
         return Integer.parseInt(numberInput);

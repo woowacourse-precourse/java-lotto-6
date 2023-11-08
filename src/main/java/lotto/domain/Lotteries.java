@@ -27,16 +27,19 @@ public class Lotteries {
         return stringBuilder.toString();
     }
 
-    public String getResult(Lotto winningNumbers, BonusNumber bonusNumber) {
+    public String getResult(PurchaseAmount purchaseAmount, Lotto winningNumbers, BonusNumber bonusNumber) {
         EnumMap<Rank, Integer> ranks = initRanks();
+        double totalPrize = 0;
         for (Lotto lotto : lotteries) {
             int matchCount = lotto.compareMatches(winningNumbers);
             boolean bonusMatch = bonusNumber.isMatch(lotto, matchCount);
             Rank rank = Rank.getRank(matchCount, bonusMatch);
+            totalPrize += rank.getPrize();
             int winCount = ranks.get(rank);
             ranks.put(rank, winCount + 1);
         }
-        return createResult(ranks);
+        double returnRate = purchaseAmount.getReturnRate(totalPrize);
+        return createResult(ranks, returnRate);
     }
 
     private EnumMap<Rank, Integer> initRanks() {
@@ -47,15 +50,16 @@ public class Lotteries {
         return ranks;
     }
 
-    private String createResult(EnumMap<Rank, Integer> ranks) {
+    private String createResult(EnumMap<Rank, Integer> ranks, double returnRate) {
         String result = "당첨 통계\n---\n";
         for (Rank rank : Rank.values()) {
-            if (rank == Rank.NONE) {
+            if (rank == Rank.NO_RANK) {
                 continue;
             }
             int winCount = ranks.get(rank);
             result += rank.getMessage(winCount);
         }
+        result += String.format("총 수익률은 %.1f%%입니다.", returnRate);
         return result;
     }
 }

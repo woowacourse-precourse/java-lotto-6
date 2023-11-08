@@ -42,6 +42,6 @@ public class LottoRepository {
     }
 
     public String getLottoResult() {
-        return lotteries.getResult(winningNumbers, bonusNumber);
+        return lotteries.getResult(purchaseAmount, winningNumbers, bonusNumber);
     }
 }

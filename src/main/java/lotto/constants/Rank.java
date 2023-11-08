@@ -6,7 +6,7 @@ public enum Rank {
     THIRD(5, false, 1500000),
     SECOND(5, true, 30000000),
     FISRT(6, false, 2000000000),
-    NONE(-1, false, 0);
+    NO_RANK(-1, false, 0);
 
     private static final String MATCH_FORMAT = "%d개 일치";
     private static final String BONUS = ", 보너스 볼 일치";
@@ -38,6 +38,10 @@ public enum Rank {
                 return rank;
             }
         }
-        return NONE;
+        return NO_RANK;
+    }
+
+    public double getPrize() {
+        return prize;
     }
 }

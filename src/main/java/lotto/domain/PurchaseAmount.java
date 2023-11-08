@@ -23,6 +23,10 @@ public class PurchaseAmount implements LottoConstants {
         return String.format(FORMAT_QUANTITY, quantity);
     }
 
+    public double getReturnRate(double totalPrize) {
+        return (totalPrize / (double) amount) * 100.0;
+    }
+
     private void validate(int amount) {
         if (amount == 0) {
             throw new IllegalArgumentException(ErrorMessage.ZERO_NUMBER.toString());

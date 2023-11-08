@@ -39,7 +39,7 @@ public class Lotto {
 
         if (isSizeInvalid || isThereAnyDuplicatedNumber || isThereAnyOutrangedNumber) {
             throw new IllegalArgumentException(
-                    "유효하지 않는 로또 번호입니다. 로또 번호는 1이상 45 이하의 중복되지 않는 6개의 정수여야 합니다.");
+                    "로또 번호는 1이상 45 이하의 중복되지 않는 6개의 정수여야 합니다.");
         }
     }
 

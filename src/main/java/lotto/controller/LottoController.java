@@ -10,8 +10,9 @@ public class LottoController {
     private LottoService lottoService = new LottoService();
 
     public void runLotto(){
-        String lottoPurchase = lottoView.inputLottoPurchase();
-        int lottoPurchaseReturn = lottoService.getLottoCount(lottoPurchase);
+        final String lottoPurchase = lottoView.inputLottoPurchase();
+        final int lottoPurchaseReturn = lottoService.getLottoCount(lottoPurchase);
+
         lottoView.printLottoPurchase(lottoPurchaseReturn);
 
         LottoMachine lottoMachine = lottoService.createLottoMachine(lottoPurchase, lottoPurchaseReturn);
@@ -19,12 +20,15 @@ public class LottoController {
 
         String winningNumber = lottoView.inputLottoWinningNumber();
         String bonusNumber = lottoView.inputLottoBonusNumber();
-        lottoService.saveWinningAndBonusNumbers(lottoMachine, winningNumber, bonusNumber);
 
-        lottoService.saveRankCount(lottoMachine);
-
-        lottoService.computeLottoReturnRate(lottoMachine);
+        runLottoMachine(lottoMachine, winningNumber, bonusNumber);
 
         lottoView.printTotalResults(lottoMachine.getLottoRanks(), lottoMachine.getLottoReturnRate());
+    }
+
+    public void runLottoMachine(LottoMachine lottoMachine, String winningNumber, String bonusNumber){
+        lottoService.saveWinningAndBonusNumbers(lottoMachine, winningNumber, bonusNumber);
+        lottoService.saveRankCount(lottoMachine);
+        lottoService.computeLottoReturnRate(lottoMachine);
     }
 }

@@ -1,8 +1,12 @@
 package lotto.domain;
 
 import lotto.dto.LottoResultDto;
+import lotto.dto.WinningCountDto;
+import lotto.dto.WinningNumberDto;
 import lotto.utility.enums.Standards;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 public class Result {
@@ -12,10 +16,25 @@ public class Result {
     private int matchFiveWinningAndBonusCount;
     private int matchSixWinningCount;
     private int prizeAmount;
+    private WinningCountDto winningCountDto;
 
     public Result(List<LottoResultDto> lottosResult) {
         resetCount();
         setWinningResult(lottosResult);
+        winningCountDto = new WinningCountDto(matchThreeWinningCount, matchFourWinningCount, matchFiveWinningCount, matchFiveWinningAndBonusCount, matchSixWinningCount);
+    }
+
+    public WinningCountDto getWinningCountDto() {
+        return winningCountDto;
+    }
+
+    public BigDecimal calculateProfitRate(int purchaseAmount){
+        final BigDecimal ONE_HUNDRED = new BigDecimal(100);
+
+        BigDecimal denominator = new BigDecimal(purchaseAmount);
+        BigDecimal numerator = new BigDecimal(prizeAmount);
+
+        return numerator.divide(denominator).multiply(ONE_HUNDRED).setScale(1, BigDecimal.ROUND_HALF_UP);
     }
 
     private void resetCount() {

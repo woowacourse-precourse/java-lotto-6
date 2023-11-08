@@ -24,6 +24,7 @@ public class LottoController {
         textView.inputPrice();
         String price = inputView.price();
         ticket = new LottoTicket(Integer.parseInt(price));
+        System.out.print("\n");
     }
 
     private void lottoPrint() {
@@ -31,6 +32,7 @@ public class LottoController {
         for (int i = 0; i < (ticket.getPrice() / 1000); i++) {
             outputView.lottoNumber(ticket.getLottos().get(i).getNumbers());
         }
+        System.out.print("\n");
     }
 
     private void prizeNumberGet() {
@@ -44,6 +46,7 @@ public class LottoController {
         textView.inputBonusNum();
         int bonusNum = Integer.parseInt(inputView.bonusNumber());
         analyzer = new LottoAnalyzer(prizeNum, bonusNum);
+        System.out.print("\n");
     }
 
     private void winStatistics() {

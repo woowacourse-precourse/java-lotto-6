@@ -25,6 +25,6 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return "[" + String.join(",", Converter.convertToStringNumbers(numbers)) + "]";
+        return "[" + String.join(", ", Converter.convertToStringNumbers(numbers)) + "]";
     }
 }

@@ -29,7 +29,7 @@ public class LottoController {
     public void simulate() {
 
         outputManager.requestMoney();
-        int purchaseAmount = inputManager.getPurchaseAmount(inputManager.readData());
+        int purchaseAmount = inputManager.getPurchaseAmount();
 
         createLotto(purchaseAmount);
         outputManager.printPurchaseMessage(purchaseAmount);
@@ -37,9 +37,9 @@ public class LottoController {
             outputManager.printLotto(lotto.getLottoNumbers());
         }
         outputManager.requestWinningNumbers();
-        winningNumbers = inputManager.getWinningNumbers(inputManager.readData());
+        winningNumbers = inputManager.getWinningNumbers();
         outputManager.requestBonusNumber();
-        bonusNumber = inputManager.getBonusNumber(inputManager.readData());
+        bonusNumber = inputManager.getBonusNumber();
 
         createStatistic();
         outputManager.printStatistic(statistic);

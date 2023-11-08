@@ -43,9 +43,27 @@ class ValidationTest {
     @DisplayName("6개 번호가 모두 있는지 확인한다.")
     @Test
     void validSize() {
-        assertThat(Validation.validSize("1", 1)).as("번호가 일치할 때의 반환값").isEqualTo(false);
+        assertThat(Validation.validSize("1", 1)).as("번호가 일치할 때의 반환값").isEqualTo(true);
         assertThat(Validation.validSize("1,2,3,4,5,6", 6)).as("번호가 일치할 때의 반환값").isEqualTo(true);
         assertThat(Validation.validSize("1,2,3,4,5,6,7", 6)).as("번호가 많을 때의 반환값").isEqualTo(false);
         assertThat(Validation.validSize("1,2,3,4,5", 6)).as("번호가 적을 때의 반환값").isEqualTo(false);
+    }
+
+    @DisplayName("1부터 45범위 안에 있는지 확인한다.")
+    @Test
+    void validRange() {
+        assertThat(Validation.validRange("1,2,5,0")).as("범위에 벗어나는 값들에 대한 반환값").isEqualTo(false);
+        assertThat(Validation.validRange("46")).as("범위에 벗어나는 값에 대한 반환값").isEqualTo(false);
+        assertThat(Validation.validRange("1,2,3,4,5,6")).as("범위 안의 값에 대한 반환값").isEqualTo(true);
+    }
+
+    @DisplayName("중복값을 확인한다.")
+    @Test
+    void validDuplication() {
+        assertThat(Validation.validDuplication("1,2,3,4,5,6")).as("중복된 값이 없을 때의 반환값").isEqualTo(true);
+
+        assertThat(Validation.validDuplication("7,8,8,9")).as("중복된 값이 있을 때의 반환값").isEqualTo(false);
+        assertThat(Validation.validDuplication("1")).as("하나의 값이 전달되며 중복값이 있을 때의 반환값").isEqualTo(false);
+        assertThat(Validation.validDuplication("10")).as("하나의 값이 전달되며 중복값이 없을 때의 반환값").isEqualTo(true);
     }
 }

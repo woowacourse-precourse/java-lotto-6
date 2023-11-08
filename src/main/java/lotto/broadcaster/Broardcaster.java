@@ -24,7 +24,7 @@ public class Broardcaster {
     private List<Integer> getListFromArray(String[] parseResult) {
         List<Integer> result = new ArrayList<>();
         Arrays.stream(parseResult)
-                .forEach(num -> result.add(Integer.parseInt(num)));
+            .forEach(num -> result.add(Integer.parseInt(num)));
         return result;
     }
 

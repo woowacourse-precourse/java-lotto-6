@@ -18,7 +18,6 @@ class CompanyTest {
     private static ByteArrayOutputStream outputMessage;
 
     String getOutput() {
-        // ByteArrayOutputStream의 toString은 기본 문자집합을 사용하여 버퍼의 내용을 문자열 디코딩 바이트로 변환해줍니다.
         return outputMessage.toString();
     }
 
@@ -58,7 +57,7 @@ class CompanyTest {
         List<Lotto> lottoList = company.generateLottoList(buyAmount);
         company.printLottoList(lottoList);
 
-        // then
+        //then
         assertThat(getOutput()).contains("8개를 구매했습니다.");
     }
 }

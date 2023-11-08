@@ -10,17 +10,22 @@ import lotto.util.NumberSplitter;
 import lotto.validator.Validator;
 
 public class LottoSettingService {
-    private Optional<String> validateInput(Validator<String> validator, Supplier<String> inputSupplier,
-                                          Consumer<String> errorConsumer) {
-        String input = inputSupplier.get();
-        Optional<String> errorMessage =
-                ErrorMessageSender.validateAndGetErrorMessage(validator, input);
+    public int selectPurchaseAmount(Validator<String> validator, Supplier<String> inputSupplier,
+                                    Runnable requestMessage, Consumer<String> errorMessage) {
+        String validInput = getValidInput(validator, inputSupplier, requestMessage, errorMessage);
+        return IntParser.parseInt(validInput);
+    }
 
-        if(errorMessage.isPresent()) {
-            errorConsumer.accept(errorMessage.get());
-            return Optional.empty();
-        }
-        return Optional.of(input);
+    public List<Integer> selectWinningNumbers(Validator<String> validator, Supplier<String> inputSupplier,
+                                              Runnable requestMessage, Consumer<String> errorMessage) {
+        String validInput = getValidInput(validator, inputSupplier, requestMessage, errorMessage);
+        return NumberSplitter.splitNumbers(validInput);
+    }
+
+    public int selectBonusNumber(Validator<String> validator, Supplier<String> input,
+                                 Runnable requestMessage, Consumer<String> errorMessage) {
+        String validInput = getValidInput(validator, input, requestMessage, errorMessage);
+        return IntParser.parseInt(validInput);
     }
 
     private String getValidInput(Validator<String> validator, Supplier<String> inputSupplier,
@@ -34,22 +39,16 @@ public class LottoSettingService {
         } while (userInput.isEmpty());
         return userInput.get();
     }
+    private Optional<String> validateInput(Validator<String> validator, Supplier<String> inputSupplier,
+                                          Consumer<String> errorConsumer) {
+        String input = inputSupplier.get();
+        Optional<String> errorMessage =
+                ErrorMessageSender.validateAndGetErrorMessage(validator, input);
 
-    public int selectPurchaseAmount(Validator<String> validator, Supplier<String> inputSupplier,
-                                     Runnable requestMessage, Consumer<String> errorMessage) {
-        String validInput = getValidInput(validator, inputSupplier, requestMessage, errorMessage);
-        return IntParser.parseInt(validInput);
-    }
-
-    public List<Integer> selectWinningNumbers(Validator<String> validator, Supplier<String> inputSupplier,
-                                               Runnable requestMessage, Consumer<String> errorMessage) {
-        String validInput = getValidInput(validator, inputSupplier, requestMessage, errorMessage);
-        return NumberSplitter.splitNumbers(validInput);
-    }
-
-    public int selectBonusNumber(Validator<String> validator, Supplier<String> input,
-                                  Runnable requestMessage, Consumer<String> errorMessage) {
-        String validInput = getValidInput(validator, input, requestMessage, errorMessage);
-        return IntParser.parseInt(validInput);
+        if(errorMessage.isPresent()) {
+            errorConsumer.accept(errorMessage.get());
+            return Optional.empty();
+        }
+        return Optional.of(input);
     }
 }

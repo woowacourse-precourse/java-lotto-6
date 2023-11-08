@@ -17,8 +17,9 @@ public class Lottos {
     public Lottos(int paymentAmount, RandomUtil randomUtil) {
         int numberOfLotto = computeNumberOfLotto(paymentAmount);
         lottos = IntStream.range(0, numberOfLotto)
-                .mapToObj(i -> new Lotto(randomUtil.createRandomNumbersInRange(START_LOTTO_NUMBER, LAST_LOTTO_NUMBER
-                        , LOTTO_NUMBER_COUNT))).toList();
+                .mapToObj(
+                        i -> new Lotto(randomUtil.createSortedRandomNumbersInRange(START_LOTTO_NUMBER, LAST_LOTTO_NUMBER
+                                , LOTTO_NUMBER_COUNT))).toList();
     }
 
     private int computeNumberOfLotto(int price) {

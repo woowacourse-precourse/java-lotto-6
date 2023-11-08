@@ -33,7 +33,7 @@ class LottosTest {
     @Test
     void createLottoTest() {
         RandomUtil randomUtil = Mockito.mock(RandomUtil.class);
-        when(randomUtil.createRandomNumbersInRange(anyInt(), anyInt(), anyInt())).thenReturn(LOTTO_NUMBER);
+        when(randomUtil.createSortedRandomNumbersInRange(anyInt(), anyInt(), anyInt())).thenReturn(LOTTO_NUMBER);
 
         Lottos lottos = new Lottos(SUCCESSFUL_PAYMENT_AMOUNT, randomUtil);
         assertThat(lottos).hasToString(lottosInfo());

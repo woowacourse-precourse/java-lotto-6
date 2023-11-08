@@ -24,10 +24,10 @@ class PlayerTest {
     void calculateProfitRateTest() {
         RandomUtil randomUtil = Mockito.mock(RandomUtil.class);
 
-        when(randomUtil.createRandomNumbersInRange(anyInt(), anyInt(), anyInt())).thenReturn(FIRST_LOTTO)
+        when(randomUtil.createSortedRandomNumbersInRange(anyInt(), anyInt(), anyInt())).thenReturn(FIRST_LOTTO)
                 .thenReturn(SECOND_LOTTO).thenReturn(THIRD_LOTTO);
         Player player = new Player(PAYMENT_AMOUNT, randomUtil);
-        
+
         double profitRate = player.calculateProfitRate(new WinningNumbers(WINNING_NUMBERS, BONUS_NUMBER));
         assertThat(String.format("%.1f", profitRate)).isEqualTo(String.format("%.1f", PROFIT_RATE));
     }

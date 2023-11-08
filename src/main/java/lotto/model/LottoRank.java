@@ -27,8 +27,11 @@ public enum LottoRank {
     }
 
     public static LottoRank valueOf(int matchCount, boolean bonusMatch) {
+        if (matchCount == 5 && bonusMatch) {
+            return SECOND;
+        }
         for (LottoRank rank : LottoRank.values()) {
-            if (rank.matchCount == matchCount && (!rank.needBonus || bonusMatch)) {
+            if (rank.matchCount == matchCount && (!rank.needBonus)) {
                 return rank;
             }
         }

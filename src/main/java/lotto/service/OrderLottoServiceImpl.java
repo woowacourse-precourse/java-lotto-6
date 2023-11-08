@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.dto.MoneyDTO;
 import lotto.enums.Constant;
 import lotto.enums.OutputMessage;
@@ -21,7 +22,7 @@ public class OrderLottoServiceImpl implements OrderLottoService {
         Integer countOfLotto = getCountOfLotto(moneyDTO);
 
         for (int i = 0; i < countOfLotto; ++i) {
-            List<Integer> lottoNumbers = createLotto();
+            List<Integer> lottoNumbers = createLotto().stream().collect(Collectors.toList());
             Collections.sort(lottoNumbers);
 
             Lotto lotto = new Lotto(lottoNumbers);

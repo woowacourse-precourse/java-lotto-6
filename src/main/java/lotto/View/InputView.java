@@ -11,13 +11,13 @@ public class InputView {
         return Validation.validatePurchaseAmount(input);
     }
 
-    public static List<Integer> getWinnerNumbers() {
+    public static List<Integer> getLottoNumbers() {
         String input = Console.readLine();
-        return Validation.validateWinnerNumbers(input);
+        return Validation.validateLottoNumbers(input);
     }
 
-    public static int getBonusNumber(List<Integer> winnerNumbers) {
+    public static int getBonusNumber(List<Integer> lottoNumbers) {
         String input = Console.readLine();
-        return Validation.validateBonusNumber(winnerNumbers, input);
+        return Validation.validateBonusNumber(lottoNumbers, input);
     }
 }

@@ -13,11 +13,11 @@ public class Validation {
             = "[ERROR] 로또 구입 금액은 1,000원 단위로 입력해주세요.";
     private static final String INPUT_RANGE_ERROR_MSG
             = "[ERROR] 당첨 번호는 1 이상 45 이하의 정수로 입력해주세요.";
-    private static final String INPUT_WINNER_NUMBER_DUPLICATED_ERROR_MSG
+    private static final String INPUT_LOTTO_NUMBER_DUPLICATED_ERROR_MSG
             = "[ERROR] 당첨 번호 중 중복되는 번호가 있습니다.";
-    private static final String INPUT_WINNER_NUMBER_SIZE_ERROR_MSG
+    private static final String INPUT_LOTTO_NUMBER_SIZE_ERROR_MSG
             = "[ERROR] 총 6개의 당첨 번호를 입력해주세요.";
-    private static final String INPUT_WINNER_BONUS_DUPLICATED_ERROR_MSG
+    private static final String INPUT_LOTTO_BONUS_DUPLICATED_ERROR_MSG
             = "[ERROR] 당첨 번호 중 보너스 번호와 중복되는 번호가 존재합니다.";
 
     private static final int MIN_VALUE = 1;
@@ -51,17 +51,17 @@ public class Validation {
         Set<Integer> sample = new HashSet<>(numbers);
 
         if (sample.size() != numbers.size()) {
-            throw new IllegalArgumentException(INPUT_WINNER_NUMBER_DUPLICATED_ERROR_MSG);
+            throw new IllegalArgumentException(INPUT_LOTTO_NUMBER_DUPLICATED_ERROR_MSG);
         }
 
         if (numbers.size() != SIZE) {
-            throw new IllegalArgumentException(INPUT_WINNER_NUMBER_SIZE_ERROR_MSG);
+            throw new IllegalArgumentException(INPUT_LOTTO_NUMBER_SIZE_ERROR_MSG);
         }
     }
 
-    private static void validateDuplicatedBonusNumber(List<Integer> winnerNumbers, int bonusNumber) {
-        if (winnerNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(INPUT_WINNER_BONUS_DUPLICATED_ERROR_MSG);
+    private static void validateDuplicatedBonusNumber(List<Integer> lottoNumbers, int bonusNumber) {
+        if (lottoNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(INPUT_LOTTO_BONUS_DUPLICATED_ERROR_MSG);
         }
     }
 
@@ -71,24 +71,24 @@ public class Validation {
         return purchaseAmount;
     }
 
-    public static List<Integer> validateWinnerNumbers(String input) {
+    public static List<Integer> validateLottoNumbers(String input) {
         String[] numbers = input.split(SEPERATOR);
-        List<Integer> winnerNumbers = new ArrayList<>();
+        List<Integer> lottoNumbers = new ArrayList<>();
 
         for (String elem : numbers) {
             int number = parseInteger(elem);
             validateRange(number);
-            winnerNumbers.add(number);
+            lottoNumbers.add(number);
         }
 
-        validateNumbers(winnerNumbers);
-        return winnerNumbers;
+        validateNumbers(lottoNumbers);
+        return lottoNumbers;
     }
 
-    public static int validateBonusNumber(List<Integer> winnerNumbers, String input) {
+    public static int validateBonusNumber(List<Integer> lottoNumbers, String input) {
         int bonusNumber = parseInteger(input);
         validateRange(bonusNumber);
-        validateDuplicatedBonusNumber(winnerNumbers, bonusNumber);
+        validateDuplicatedBonusNumber(lottoNumbers, bonusNumber);
         return bonusNumber;
     }
 }

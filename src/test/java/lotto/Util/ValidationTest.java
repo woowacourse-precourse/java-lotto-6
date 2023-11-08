@@ -34,9 +34,9 @@ public class ValidationTest {
             "1,2,3,4,5,5:[ERROR] 당첨 번호 중 중복되는 번호가 있습니다.",
             "1,1,2,2,3,3:[ERROR] 당첨 번호 중 중복되는 번호가 있습니다."},
             delimiter = ':')
-    void checkWinnerNumbersException(String input, String exceptionMessage) {
+    void checkLottoNumbersException(String input, String exceptionMessage) {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            Validation.validateWinnerNumbers(input);
+            Validation.validateLottoNumbers(input);
         });
 
         assertThat(exception.getMessage()).contains(exceptionMessage);
@@ -49,9 +49,9 @@ public class ValidationTest {
             "'1:2:3:4:5:6':a:[ERROR] 숫자를 입력해주세요.",
             "'1:2:3:4:5:6':6:[ERROR] 당첨 번호 중 보너스 번호와 중복되는 번호가 존재합니다."},
             delimiter = ':')
-    void checkBonusNumberException(List<Integer> winnerNumbers, String input, String exceptionMessage) {
+    void checkBonusNumberException(List<Integer> lottoNumbers, String input, String exceptionMessage) {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            Validation.validateBonusNumber(winnerNumbers, input);
+            Validation.validateBonusNumber(lottoNumbers, input);
         });
         assertThat(exception.getMessage()).contains(exceptionMessage);
     }

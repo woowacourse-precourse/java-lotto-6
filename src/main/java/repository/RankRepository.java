@@ -11,8 +11,12 @@ public class RankRepository {
     private static final Integer INCREMENT_VALUE = 1;
     private static final Integer START_INDEX = 0;
     private static final Integer END_INDEX = 5;
+    private static final Integer MIN_RANK = 5;
 
     public static void increaseNumberOfWins(Integer rank) {
+        if (rank > MIN_RANK) {
+            return;
+        }
         rankRepository.put(rank, rankRepository.getOrDefault(rank, DEFAULT_VALUE) + INCREMENT_VALUE);
     }
 

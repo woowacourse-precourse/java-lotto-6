@@ -4,6 +4,7 @@ import domain.User;
 import java.util.LinkedList;
 import java.util.List;
 import lotto.Lotto;
+import repository.RankRepository;
 import util.LottoNumber;
 import util.ValidationBonusNumber;
 import view.InputView;
@@ -28,6 +29,14 @@ public class LottoController {
 
     public void startGame() {
         initGame();
+        calcTwoNumberList();
+    }
+
+    public void calcTwoNumberList() {
+        lottoList.forEach(lotto -> {
+            Integer rank = lotto.getRank(user.getNumbers(), user.getBonusNumber());
+            RankRepository.increaseNumberOfWins(rank);
+        });
     }
 
     public void createUser() {

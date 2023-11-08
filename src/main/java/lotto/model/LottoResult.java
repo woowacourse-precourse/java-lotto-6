@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.enumeration.WinningPrize;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,25 +27,25 @@ public class LottoResult {
                     .count();
 
             // 1등
-            if (winningCount == 6) {
+            if (winningCount == WinningPrize.FIRST.getCount()) {
                 result.add(0, result.get(0) + 1);
             }
 
             // 2등
-            if (winningCount == 5 && numbers.contains(winningNumber.getBonusNumber())) {
+            if (winningCount == WinningPrize.SECOND.getCount() && numbers.contains(winningNumber.getBonusNumber())) {
                 result.add(1, result.get(1) + 1);
             }
 
             // 3,4,5등
-            if (winningCount == 5 && !numbers.contains(winningNumber.getBonusNumber())) {
+            if (winningCount == WinningPrize.THIRD.getCount() && !numbers.contains(winningNumber.getBonusNumber())) {
                 result.add(2, result.get(2) + 1);
             }
 
-            if (winningCount == 4) {
+            if (winningCount == WinningPrize.FOURTH.getCount()) {
                 result.add(3, result.get(3) + 1);
             }
 
-            if (winningCount == 3) {
+            if (winningCount == WinningPrize.FIFTH.getCount()) {
                 result.add(4, result.get(4) + 1);
             }
         }

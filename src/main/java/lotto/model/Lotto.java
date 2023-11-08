@@ -3,21 +3,16 @@ package lotto.model;
 import java.util.Comparator;
 import java.util.List;
 import lotto.constant.LottoPrize;
+import lotto.validator.LottoNumberValidator;
 
 public class Lotto {
 
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        LottoNumberValidator.validateLottoNumbers(numbers);
         numbers.sort(Comparator.naturalOrder());
         this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
     }
 
     public LottoPrize findPrize(WinningNumberAndBonusNumber winningNumberAndBonusNumber) {

@@ -17,6 +17,7 @@ class RandomLottoNumberTest {
     @BeforeEach
     void initRandomLottoNumber() {
         randomLottoNumber = new RandomLottoNumber();
+        randomLottoNumber.initRandomNumber();
     }
 
     @DisplayName("로또 번호가 중복 없이 무작위로 생성되는지 확인")

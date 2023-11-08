@@ -20,7 +20,7 @@ public class Utils {
 
     // 입력 받은 문자열을 숫자 리스트로 변환
     public static List<Integer> stringToIntegerList(String string) {
-        Validation.validateListParseInt(Arrays.asList(string.split(",")));
+        Validations.validateListParseInt(Arrays.asList(string.split(",")));
         return Arrays.stream(stringToIntArray(string))
                 .boxed()
                 .collect(Collectors.toList());
@@ -28,7 +28,7 @@ public class Utils {
 
     // 입력 받은 문자를 숫자로 변환 (보너스 번호 입력)
     public static int stringToInteger(String string) {
-        Validation.validateParseInt(string);
+        Validations.validateParseInt(string);
         return Integer.parseInt(string);
     }
 

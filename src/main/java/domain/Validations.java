@@ -6,7 +6,7 @@ import static domain.Messages.*;
 import java.util.HashSet;
 import java.util.List;
 
-public class Validation {
+public class Validations {
 
     // 인당 최대 구매 가능 금액은 10만원이다.
     public static void validateMaxPurchase(int price) {

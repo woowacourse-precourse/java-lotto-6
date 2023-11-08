@@ -19,10 +19,8 @@ class InputViewTest {
     @DisplayName("입력 받은 숫자 문자열을 숫자 타입으로 변환한다.")
     @Test
     void convertToInt() {
-        //Given
-        String input = "5000";
         //When
-        int number = inputView.convertToInt(input);
+        int number = inputView.convertToInt("5000");
         //Then
         assertThat(number).isEqualTo(5000);
     }
@@ -38,10 +36,8 @@ class InputViewTest {
     @DisplayName("입력 받은 값이 콤마로 구분된 숫자라면 숫자 리스트를 반환한다.")
     @Test
     void getIntegerListByComma() {
-        //Given
-        String input = "1,2,3,4,5,6";
         //When
-        List<Integer> numbers = inputView.convertToIntegerList(input);
+        List<Integer> numbers = inputView.convertToIntegerList("1,2,3,4,5,6");
         //Then
         assertThat(numbers).hasSameElementsAs(List.of(1,2,3,4,5,6));
     }

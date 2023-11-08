@@ -21,7 +21,6 @@ public enum LottoPrice {
         return purchaseAmount / price;
     }
 
-
     public int getPrice() {
         return price;
     }

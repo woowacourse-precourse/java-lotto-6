@@ -22,9 +22,6 @@ public enum ExceptionMessage {
     ExceptionMessage(String message) {
         this.message = prefix + message;
     }
-    public String getMessage() {
-        return message;
-    }
 
     public void throwException(){
         throw new IllegalArgumentException(message);

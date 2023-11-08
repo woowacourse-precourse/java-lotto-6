@@ -28,6 +28,15 @@ public class LottoRule {
         return false;
     }
 
+    private boolean isOutOfRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (isOutOfRange(number)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private boolean isMismatchLength(List<Integer> numbers) {
         if (numbers.size() != LENGTH) {
             return true;
@@ -42,12 +51,4 @@ public class LottoRule {
         return false;
     }
 
-    private boolean isOutOfRange(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            if (isOutOfRange(number)) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

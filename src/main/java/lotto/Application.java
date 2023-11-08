@@ -149,6 +149,17 @@ public class Application {
         return numbers;
     }
 
+    private static List<Integer> getValidatePlayerNumbers(){
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        List<Integer> playerNumbers;
+        do {
+            playerNumbers = inputPlayerNumbers();
+        } while (playerNumbers.isEmpty());
+        Collections.sort(playerNumbers);
+
+        return playerNumbers;
+    }
+
     private static Integer inputPlayerBonusNumber(List<Integer> numbers) {
         String sNumber = Console.readLine().replace(" ", "");
 
@@ -182,14 +193,8 @@ public class Application {
     public static void main(String[] args) {
         int tickets = getValidateTickets();        
         List<Lotto> lottos = getValidateLottos(tickets);
-
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        List<Integer> playerNumbers;
-        do {
-            playerNumbers = inputPlayerNumbers();
-        } while (playerNumbers.isEmpty());
-        Collections.sort(playerNumbers);
-
+        List<Integer> playerNumbers = getValidatePlayerNumbers();
+        
         System.out.println("\n보너스 번호를 입력해 주세요.");
         Integer playerBonusNumber;
         do {

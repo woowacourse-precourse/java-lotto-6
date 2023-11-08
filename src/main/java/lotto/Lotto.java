@@ -2,9 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static lotto.Rank.*;
 
@@ -24,6 +22,12 @@ public class Lotto {
     public static void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해주세요.");
+        }
+        Set<Integer> set = new HashSet<>();
+        for (Integer element : numbers) {
+            if (!set.add(element)) {
+                throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
+            }
         }
     }
     // TODO: 추가 기능 구현

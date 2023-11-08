@@ -117,7 +117,7 @@ public class ValidateException {
 
         for (Integer num : numbers) {
             if (!set.add(num)) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복이 되면 안 됩니다.");
+                throw new IllegalArgumentException(ValidateConstant.ERROR_DUPLICATE_WIN_NUMBERS());
             }
         }
 
@@ -130,7 +130,7 @@ public class ValidateException {
             return true;
         }
 
-        throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 입니다.");
+        throw new IllegalArgumentException(ValidateConstant.ERROR_WIN_NUMBER_COUNT_SIX());
     }
 
     public static boolean checkRangeWinNumbers(List<Integer> numbers) {

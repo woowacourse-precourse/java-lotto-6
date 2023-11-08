@@ -49,4 +49,13 @@ public class ValidateConstant {
     public static String ERROR_LOTTO_NUMBER_RANGE() {
         return "[ERROR] 보너스 번호의 범위는 1~45입니다.";
     }
+
+    // ================== 로또 진행자 ==================
+    public static String ERROR_DUPLICATE_WIN_NUMBERS() {
+        return "[ERROR] 당첨 번호는 중복이 되면 안 됩니다.";
+    }
+
+    public static String ERROR_WIN_NUMBER_COUNT_SIX() {
+        return "[ERROR] 당첨 번호는 중복이 되면 안 됩니다.";
+    }
 }

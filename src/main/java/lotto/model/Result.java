@@ -1,16 +1,18 @@
 package lotto.model;
 
+import static lotto.constants.LottoConstants.PRICE_OF_LOTTO;
+
 import java.util.List;
+import lotto.constants.LottoConstants;
 
 public class Result {
     private static final String UNIT = "개\n";
-    private static final int PRICE_OF_LOTTO = 1000;
     private final List<Ranking> rankings;
     private final double totalProfit;
 
     public Result(List<Ranking> rankings) {
         this.rankings = rankings;
-        this.totalProfit = calculateTotalProfit(rankings.size()*PRICE_OF_LOTTO);
+        this.totalProfit = calculateTotalProfit(rankings.size()* PRICE_OF_LOTTO);
     }
 
     private double calculateTotalProfit(int payment) {

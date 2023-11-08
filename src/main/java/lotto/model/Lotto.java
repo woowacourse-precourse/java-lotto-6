@@ -1,6 +1,9 @@
 package lotto.model;
 
+import static lotto.constants.LottoConstants.NUMBER_OF_LOTTOS;
+
 import java.util.List;
+import lotto.constants.LottoConstants;
 import lotto.model.dto.WinningNumDTO;
 
 public class Lotto {
@@ -15,7 +18,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NUMBER_OF_LOTTOS) {
             throw new IllegalArgumentException();
         }
         if (isDuplicated(numbers)) {

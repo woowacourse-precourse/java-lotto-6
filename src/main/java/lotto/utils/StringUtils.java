@@ -1,12 +1,13 @@
 package lotto.utils;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class StringUtils {
-
+    private static final DecimalFormat decimalFormat = new DecimalFormat("0.0");
     private static final NumberFormat numberFormat = NumberFormat.getNumberInstance();
 
     public static List<Integer> stringToNumbers(String numbers) {
@@ -29,5 +30,8 @@ public class StringUtils {
 
     public static String numbersToString(int number) {
         return numberFormat.format(number);
+    }
+    public static String numbersToString(double number) {
+        return decimalFormat.format(number);
     }
 }

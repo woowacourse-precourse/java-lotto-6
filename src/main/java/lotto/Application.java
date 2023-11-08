@@ -1,10 +1,8 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
-import lotto.domain.Rank;
 import lotto.domain.Results;
 import lotto.domain.Tickets;
 import lotto.domain.Winning;
@@ -23,7 +21,7 @@ public class Application {
         Results results = Results.of(lottos, winning, bonus);
 
         View.printString(results.makeResultToString());
-        //View.printString(results.makeProfitRateToString());
+        View.printString(results.makeProfitRateToString());
     }
 
     private static Tickets getValidTickets() {

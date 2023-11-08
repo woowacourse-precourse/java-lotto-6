@@ -10,6 +10,9 @@ import java.util.stream.Collectors;
 
 public class Results {
 
+    private static final int LOTTO_PRICE = 1000;
+    private static final int PERCENT = 100;
+
     private static List<Lotto> lottos;
     private static Winning winning;
     private static Bonus bonus;
@@ -36,7 +39,7 @@ public class Results {
                 + "4개 일치 (" + numbersToString(Rank.FOURTH.getPrize()) + "원) - " + resultCount.get(Rank.FOURTH) + "개\n"
                 + "5개 일치 (" + numbersToString(Rank.THIRD.getPrize()) + "원) - " + resultCount.get(Rank.THIRD) + "개\n"
                 + "5개 일치, 보너스 볼 일치 (" + numbersToString(Rank.SECOND.getPrize()) + "원) - " + resultCount.get(Rank.SECOND) + "개\n"
-                + "6개 일치 (" + numbersToString(Rank.FIRST.getPrize()) + "원) - " + resultCount.get(Rank.FIRST) + "개\n";
+                + "6개 일치 (" + numbersToString(Rank.FIRST.getPrize()) + "원) - " + resultCount.get(Rank.FIRST) + "개";
     }
 
     private void makeResults() {
@@ -47,5 +50,19 @@ public class Results {
         resultCount = Arrays.stream(Rank.values())
                 .filter(rank -> rank != Rank.MISS)
                 .collect(Collectors.toMap(rank -> rank, rank -> results.stream().filter(r -> r == rank).count()));
+    }
+
+    public String makeProfitRateToString() {
+        return "총 수익률은 " + numbersToString(calculateProfitRate()) + "%입니다.";
+    }
+
+    private double calculateProfitRate() {
+        long totalReward = 0;
+        for (Rank rank : resultCount.keySet()) {
+            totalReward += rank.getPrize() * resultCount.get(rank);
+        }
+
+        double profitRate = (double) totalReward / (lottos.size() * LOTTO_PRICE) * PERCENT;
+        return Math.round(profitRate * 10.0) / 10.0;
     }
 }

@@ -14,14 +14,19 @@ public class Controller {
     Exceptions exceptions = new Exceptions();
     private WinningNumber winningNumber;
     private Customer customer;
-    public void start(){
-        getBuyLottoMoney();
-        winningNumberShow();
-        gameResult();
+    public void start() {
+        try {
+            getBuyLottoMoney();
+            winningNumberShow();
+            gameResult();
+        } catch (IllegalArgumentException e) {
+            Exceptions.showErrorMessage();
+        }
     }
     private void getBuyLottoMoney() {
         InputMessage.inputMoney();
-        int inputMoney = Integer.parseInt(Console.readLine());
+        String money = Console.readLine().trim();
+        int inputMoney = Integer.parseInt(money);
         customer = new Customer(inputMoney);
         lottoService.buyLottoByTicket(customer);
         resultLotto(customer);
@@ -42,7 +47,7 @@ public class Controller {
     }
 
     private void winningNumberShow() {
-        winningNumber = new WinningNumber(getWinningNumber(),getBonusNumber());
+        winningNumber = new WinningNumber(getWinningNumber(), getBonusNumber());
     }
 
     private List<Integer> getWinningNumber() {

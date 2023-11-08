@@ -1,8 +1,9 @@
 package lotto.exception;
 
-import java.util.List;
-
 public class Exceptions {
+    public static void showErrorMessage() {
+        System.out.println("[ERROR] 횟수는 숫자만 입력 가능합니다.");
+    }
     public void isInvalidPurchaseMoneyAmount(int money, int divided){
         if(money % divided != 0) {
             throw new IllegalArgumentException("[ERROR] 금액은 1000원단위로 가능합니다.");

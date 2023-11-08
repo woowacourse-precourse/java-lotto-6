@@ -1,11 +1,16 @@
 package lotto.model;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.Application;
+import lotto.view.constant.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-public class LottoWinningTest {
+public class LottoWinningTest extends NsTest {
     @DisplayName("LottoWinning은 문자열이 들어가면 에러처리한다.")
     @Test
     void createLottoWinningByNotNumber() {
@@ -52,5 +57,36 @@ public class LottoWinningTest {
             LottoWinning lottoWinning = new LottoWinning("2,32,33,1,43,67");
             lottoWinning.setBonusNumber("33");
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("Winning Number 정상적으로 set 되는지 확인")
+    @Test
+    void createWinningNumber() {
+        assertSimpleTest(() -> {
+            LottoWinning lottoWinning = new LottoWinning("2,32,33,1,43,12");
+            System.out.println(lottoWinning.getWinningNumber().toString());
+
+            assertThat(output()).contains("[2, 32, 33, 1, 43, 12]");
+        });
+    }
+
+    @DisplayName("Bonus Number 정상적으로 set 되는지 확인")
+    @Test
+    void createWinningNumberWithBonusNumber() {
+        assertSimpleTest(() -> {
+            LottoWinning lottoWinning = new LottoWinning("2,32,33,1,43,12");
+            lottoWinning.setBonusNumber("3");
+            System.out.println(lottoWinning.getWinningNumber().toString());
+            System.out.println(lottoWinning.getBonusNumber());
+
+            assertThat(output())
+                    .contains("[2, 32, 33, 1, 43, 12]",
+                            "3");
+        });
+    }
+
+    @Override
+    public void runMain() {
+        Application.main(new String[]{});
     }
 }

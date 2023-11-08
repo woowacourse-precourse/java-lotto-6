@@ -23,11 +23,7 @@ public class Controller {
         Lotto winningNumber = getWinningNumber();
         int bonusNumber = getBonusNumber();
 
-        LottoResult result = new LottoResult();
-        for (Lotto lotto: lottos) {
-            LottoRank rank = winningNumber.checkRank(lotto, bonusNumber);
-            result.record(rank);
-        }
+        LottoResult result = new LottoResult(lottos, winningNumber, bonusNumber);
         OutputView.printResultStatistics(result.getResult());
         OutputView.printProfitPercentage(result.getProfitPercentage(purchasePrice.getPrice()));
     }

@@ -91,4 +91,8 @@ public class CompareLottoValue {
         System.out.println(resultMoney);
     }
 
+    public static int getResultMoney(){
+        return resultMoney;
+    }
+
 }

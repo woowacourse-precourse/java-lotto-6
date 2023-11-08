@@ -5,7 +5,7 @@ public enum WinningAmounts {
     SECOND_AMOUNT(30000000,0,6),
     THIRD_AMOUNT(1500000,0,5),
     FORTH_AMOUNT(50000,0,4),
-    FIFTH_AMOUNT(3000,0,3),
+    FIFTH_AMOUNT(5000,0,3),
     NO_AMOUNT(0,0,0);
 
     private final int value;

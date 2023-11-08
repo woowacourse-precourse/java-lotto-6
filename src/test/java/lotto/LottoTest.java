@@ -1,12 +1,16 @@
 package lotto;
 
+import lotto.domain.CompareLottoValue;
 import lotto.domain.Lotto;
 import lotto.util.Validator;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.domain.CompareLottoValue.compareValueStart;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -101,6 +105,31 @@ class LottoTest {
         assertThatThrownBy(() ->
                 Validator.validateWinningAndBonus(bonusBall, winningBalls))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 총_상금_계산(){
+        final int prizeSum = 203155000;
+
+        List<Integer> lottoBalls1 = List.of(1,2,3,4,5,6);
+        List<Integer> lottoBalls2 = List.of(1,2,3,4,5,7);
+        List<Integer> lottoBalls3 = List.of(1,45,3,4,5,6);
+        List<Integer> lottoBalls4 = List.of(1,2,3,4,44,45);
+        List<Integer> lottoBalls5 = List.of(1,2,3,43,44,45);
+
+        List<List<Integer>> lottoBalls = new ArrayList<>();
+        lottoBalls.add(lottoBalls1);
+        lottoBalls.add(lottoBalls2);
+        lottoBalls.add(lottoBalls3);
+        lottoBalls.add(lottoBalls4);
+        lottoBalls.add(lottoBalls5);
+
+        List<Integer> winningBalls = List.of(1,2,3,4,5,6);
+        int bonusBall = 7;
+        compareValueStart(winningBalls, lottoBalls, bonusBall);
+
+        Assertions.assertThat(Integer.toString(CompareLottoValue.getResultMoney())).isEqualTo("2031555000");
+
     }
 
 

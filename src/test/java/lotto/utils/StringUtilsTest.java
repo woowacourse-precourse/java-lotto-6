@@ -73,4 +73,16 @@ public class StringUtilsTest {
         // then
         assertThat(result).isEqualTo(Arrays.asList(1, 2, 3));
     }
+
+    @Test
+    @DisplayName("문자열을 정수로 변환하지 못하는 경우 예외가 발생한다.")
+    void getIntegerValueList_예외() {
+        // given
+        String[] inputs = new String[]{"1.2", "2", "3"};
+
+        // when & then
+        assertThatThrownBy(() -> StringUtils.getIntegerValueList(inputs))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INPUT_IS_NOT_INTEGER);
+    }
 }

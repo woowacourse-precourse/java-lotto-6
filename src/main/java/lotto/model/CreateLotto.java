@@ -16,5 +16,4 @@ public class CreateLotto {
         }
         return lottos;
     }
-
 }

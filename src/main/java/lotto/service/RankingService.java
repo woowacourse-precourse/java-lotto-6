@@ -6,50 +6,48 @@ import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.WinningNumbers;
 
-import lotto.repository.ReceiptRepository;
+import lotto.repository.RankingRepository;
 import lotto.repository.LottoRepository;
 
 
-public class ReceiptService {
+public class RankingService {
     LottoRepository lottoRepository;
-    ReceiptRepository receiptRepository;
+    RankingRepository rankingRepository;
 
     private static class SingletonLottoScoringService {
-        private static final ReceiptService LOTTO_SCORING_SERVICE = new ReceiptService();
+        private static final RankingService LOTTO_SCORING_SERVICE = new RankingService();
     }
 
-    public static ReceiptService getInstance() {
+    public static RankingService getInstance() {
         return SingletonLottoScoringService.LOTTO_SCORING_SERVICE;
     }
 
-    private ReceiptService() {
+    private RankingService() {
         lottoRepository = LottoRepository.getInstance();
-        receiptRepository = ReceiptRepository.getInstance();
+        rankingRepository = RankingRepository.getInstance();
     }
 
-    public void rankUserLottos(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        lottoRepository.resetIndex();
-        while (lottoRepository.isRemainUserLotto()) {
-
-            Lotto userLotto = lottoRepository.getNextUserLotto();
+    public void rankLottos(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        for (int index = 0; index < lottoRepository.findNumberOfUserLotto(); index++) {
+            Lotto userLotto = lottoRepository.findUserLottoByIndex(index);
 
             Integer ranking = scoreALotto(winningNumbers, bonusNumber, userLotto);
 
-            receiptRepository.increaseNumberOfRanking(ranking);
+            rankingRepository.increaseNumberOfRanking(ranking);
         }
     }
 
     public Integer[] getNumbersOfRanking() {
         Integer[] numbersOfRanking = new Integer[]{0, 0, 0, 0, 0, 0};
         for (int i = FAIL.get(); i <= FIFTH.get(); i++) {
-            numbersOfRanking[i] = receiptRepository.getNumberOfRanking(i);
+            numbersOfRanking[i] = rankingRepository.findNumberOfRankingByRanking(i);
         }
         return numbersOfRanking;
     }
 
     public Double getProfitRatio() {
-        Long totalRewards = receiptRepository.getTotalRewards();
-        Long numberOfLotto = (long) lottoRepository.getNumberOfLotto();
+        Long totalRewards = rankingRepository.findTotalRewards();
+        Long numberOfLotto = (long) lottoRepository.findNumberOfUserLotto();
         Long purchaseAmount = numberOfLotto * (long) PRICE_OF_LOTTO.get();
 
         return (double) totalRewards / (double) purchaseAmount;

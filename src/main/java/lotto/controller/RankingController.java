@@ -7,37 +7,37 @@ import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.WinningNumbers;
 
-import lotto.service.ReceiptService;
+import lotto.service.RankingService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class ReceiptController {
+public class RankingController {
     InputView inputView;
     OutputView outputView;
-    ReceiptService receiptService;
+    RankingService rankingService;
 
     private static class SingletonReceiptController {
-        private static final ReceiptController RECEIPT_CONTROLLER = new ReceiptController();
+        private static final RankingController RECEIPT_CONTROLLER = new RankingController();
     }
 
-    public static ReceiptController getInstance() {
+    public static RankingController getInstance() {
         return SingletonReceiptController.RECEIPT_CONTROLLER;
     }
 
-    private ReceiptController() {
+    private RankingController() {
         inputView = InputView.getInstance();
         outputView = OutputView.getInstance();
-        receiptService = ReceiptService.getInstance();
+        rankingService = RankingService.getInstance();
     }
 
-    public void showResult() {
+    public void rankLottos() {
         WinningNumbers winningNumbers = inputWinningNumber();
         BonusNumber bonusNumber = inputBonusNumber(winningNumbers);
 
-        receiptService.rankUserLottos(winningNumbers, bonusNumber);
+        rankingService.rankLottos(winningNumbers, bonusNumber);
 
-        Integer[] numberOfRanking = receiptService.getNumbersOfRanking();
-        Double profitRatio = receiptService.getProfitRatio();
+        Integer[] numberOfRanking = rankingService.getNumbersOfRanking();
+        Double profitRatio = rankingService.getProfitRatio();
         printReceipt(numberOfRanking, profitRatio);
     }
 

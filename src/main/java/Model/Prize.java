@@ -37,4 +37,11 @@ public enum Prize {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
+    public int getMatchAmount() {
+        return matchAmount;
+    }
+
+    public int getMoney() {
+        return money;
+    }
 }

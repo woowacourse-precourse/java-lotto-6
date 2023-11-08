@@ -59,8 +59,12 @@
     - 각 로또 번호가 1과 45 사이의 값이 아닐 시 IllegalArgumentException 발생
     - 로또 번호가 오름차순으로 정렬되어 있지 않을 시 IllegalArgumentException 발생
 - 당첨 번호 입력
-    - 서로 중복된 당첨 번호가 존재할 시 IllegalArgumentException 발생
+    - 당첨 번호가 6개가 아닐 시 IllegalArgumentException 발생
+    - 당첨 번호가 양의 정수가 아닐 시 IllegalArgumentException 발생
     - 당첨 번호가 1과 45 사이의 값이 아닐 시 IllegalArgumentException 발생
     - 당첨 번호가 오름차순으로 입력되지 않을 시 IllegalArgumentException 발생
+    - 서로 중복된 당첨 번호가 존재할 시 IllegalArgumentException 발생
 - 보너스 번호 입력
+    - 보너스 번호가 양의 정수가 아닐 시 IllegalArgumentException 발생
+    - 보너스 번호가 1과 45 사이의 값이 아닐 시 IllegalArgumentException 발생
     - 보너스 번호가 당첨 번호와 중복될 시 IllegalArgumentException 발생

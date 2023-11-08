@@ -1,13 +1,8 @@
 package lotto.model;
 
-import java.util.List;
 import java.util.Map;
 
 public class Wallet {
-    private static final int MAXIMUM_PURCHASE_AMOUNT =  1000000000;
-    private static final int LOTTO_PRICE = 1000;
-    static final List<Long> priceMoney = List.of(0L, 2000000000L, 30000000L, 1500000L, 50000L, 5000L);
-
     private final int initialAmount;
     private int money;
 
@@ -25,41 +20,38 @@ public class Wallet {
     }
 
     public boolean canBuyLotto() {
-        return money - LOTTO_PRICE >= 0;
+        return money - LottoGameSettingConstValue.LOTTO_PRICE.getValue() >= 0;
     }
 
     public void buyLotto() {
-        money -= LOTTO_PRICE;
+        money -= LottoGameSettingConstValue.LOTTO_PRICE.getValue();
     }
 
     private void validateNonNumericMoney(String money) {
         if (!money.matches("^[0-9]*")) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액에 숫자가 아닌 값이 들어왔습니다.");
+            throw new IllegalArgumentException(Exception.NON_NUMERIC_MONEY_ERROR.getMessage());
         }
     }
 
     private void validateNotNullMoney(String money) {
         if (money == null) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
-                    + MAXIMUM_PURCHASE_AMOUNT + "원.");
+            throw new IllegalArgumentException(Exception.OUT_OF_RANGE_MONEY_ERROR.getMessage());
         }
     }
 
     private void validateOutOfRangeMoney(String money) {
         int convertMoney = convertStringToInt(money);
 
-        if (convertMoney > MAXIMUM_PURCHASE_AMOUNT) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
-                    + MAXIMUM_PURCHASE_AMOUNT + "원.");
+        if (convertMoney > LottoGameSettingConstValue.MAXIMUM_PURCHASE_AMOUNT.getValue()) {
+            throw new IllegalArgumentException(Exception.OUT_OF_RANGE_MONEY_ERROR.getMessage());
         }
     }
 
     private void validateNotDivisionMoney(String money) {
         int convertMoney = convertStringToInt(money);
 
-        if (convertMoney == 0 || convertMoney % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
-                    + MAXIMUM_PURCHASE_AMOUNT + "원.");
+        if (convertMoney == 0 || convertMoney % LottoGameSettingConstValue.LOTTO_PRICE.getValue() != 0) {
+            throw new IllegalArgumentException(Exception.OUT_OF_RANGE_MONEY_ERROR.getMessage());
         }
     }
 
@@ -69,8 +61,7 @@ public class Wallet {
         try {
             convertMoney = Integer.parseInt(money);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
-                    + MAXIMUM_PURCHASE_AMOUNT + "원.");
+            throw new IllegalArgumentException(Exception.OUT_OF_RANGE_MONEY_ERROR.getMessage());
         }
         return convertMoney;
     }
@@ -86,7 +77,7 @@ public class Wallet {
         long profit = 0;
 
         for (int rank = 1; rank <= 5; rank++) {
-            profit += lottoesResult.get(rank) * priceMoney.get(rank);
+            profit += (long) lottoesResult.get(rank) * LottoGameSettingConstValue.FIRST_PRIZE_MONEY.getPrizeMoney(rank);
         }
         return profit;
     }

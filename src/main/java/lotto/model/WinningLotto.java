@@ -28,27 +28,25 @@ public class WinningLotto extends Lotto{
 
     private void validateNotNullBonusNumber(String bonusNumber) {
         if (bonusNumber == null) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호를 지정된 범위안의 숫자로 넣어주세요. 범위 "
-                    + MIN_LOTTO_NUMBER + "~" + MAX_LOTTO_NUMBER);
+            throw new IllegalArgumentException(Exception.OUT_OF_RANGE_BONUS_MONEY_ERROR.getMessage());
         }
     }
 
     private void validateNonNumericBonusNumber(String bonusNumber) {
         if (!bonusNumber.matches("^[0-9]*")) {
-            throw new IllegalArgumentException("[Error] 보너스 번호에 숫자가 아닌 값이 들어왔습니다.");
+            throw new IllegalArgumentException(Exception.NON_NUMERIC_BONUS_NUMBERS_ERROR.getMessage());
         }
     }
 
     private void vaildateOutOfRangeBonusNumber(Integer bonusNumber) {
-        if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호를 지정된 범위안의 숫자로 넣어주세요. 범위 "
-                    + MIN_LOTTO_NUMBER + "~" + MAX_LOTTO_NUMBER);
+        if (bonusNumber < LottoGameSettingConstValue.MIN_LOTTO_NUMBER.getValue() || bonusNumber > LottoGameSettingConstValue.MAX_LOTTO_NUMBER.getValue()) {
+            throw new IllegalArgumentException(Exception.OUT_OF_RANGE_BONUS_MONEY_ERROR.getMessage());
         }
     }
 
     private void vaildateLottoNumbersContainBonusNumber(Integer bonusNumber) {
         if (super.isInputNumberContainLottoNumbers(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 번호와 겹치면 안됩니다.");
+            throw new IllegalArgumentException(Exception.LOTTO_NUMBERS_CONTAIN_BONUS_NUMBER_ERROR.getMessage());
         }
     }
 
@@ -59,8 +57,7 @@ public class WinningLotto extends Lotto{
         try {
             convertBonusNumber = Integer.parseInt(bonusNumber);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호를 지정된 범위안의 숫자로 넣어주세요. 범위 "
-                    + MIN_LOTTO_NUMBER + "~" + MAX_LOTTO_NUMBER);
+            throw new IllegalArgumentException(Exception.OUT_OF_RANGE_BONUS_MONEY_ERROR.getMessage());
         }
         return convertBonusNumber;
     }
@@ -92,17 +89,14 @@ public class WinningLotto extends Lotto{
     private Integer searchLottoRanking (Integer numberOfHitLottoNumbers, boolean hitBonusNumber) {
         if (numberOfHitLottoNumbers == 3) {
             return 5;
-        }
-        if (numberOfHitLottoNumbers == 4) {
+        } else if (numberOfHitLottoNumbers == 4) {
             return 4;
-        }
-        if (numberOfHitLottoNumbers == 5) {
+        } else if (numberOfHitLottoNumbers == 5) {
             if (hitBonusNumber) {
                 return 2;
             }
             return 3;
-        }
-        if (numberOfHitLottoNumbers == 6) {
+        } else if (numberOfHitLottoNumbers == 6) {
             return 1;
         }
         return 0;

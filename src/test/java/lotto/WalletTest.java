@@ -8,8 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
+import lotto.model.Exception;
+import lotto.model.LottoGameSettingConstValue;
 import lotto.model.Wallet;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,25 +18,13 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class WalletTest {
-    static Integer maximumPurchaseAmount;
-
-    @BeforeAll
-    public static void getConstantValue() throws NoSuchFieldException, IllegalAccessException {
-        Wallet wallet = new Wallet("1000");
-
-        Field privateMaximumPurchaseAmount = Wallet.class.getDeclaredField("MAXIMUM_PURCHASE_AMOUNT");
-        privateMaximumPurchaseAmount.setAccessible(true);
-
-        maximumPurchaseAmount = (Integer) privateMaximumPurchaseAmount.get(wallet);
-    }
-
     @DisplayName("구입 금액에 숫자가 아닌 값이 있으면 예외가 발생 한다.")
     @ParameterizedTest
     @ValueSource(strings = {"숫자아님", "notNumber", "1섞어2MIX3"})
     void createWalletByNonNumericValueMoney(String money) {
         assertThatThrownBy(() -> new Wallet(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액에 숫자가 아닌 값이 들어왔습니다.");
+                .hasMessageContaining(Exception.NON_NUMERIC_MONEY_ERROR.getMessage());
     }
 
     @DisplayName("구입 금액이 null이거나 비어있는 경우 예외가 발생한다.")
@@ -44,19 +33,17 @@ public class WalletTest {
     void createWalletByNullOrEmptyMoney(String money) {
         assertThatThrownBy(() -> new Wallet(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
-                        + maximumPurchaseAmount + "원.");
+                .hasMessageContaining(Exception.OUT_OF_RANGE_MONEY_ERROR.getMessage());
     }
 
     @DisplayName("구입 금액이 최대금액을 넘는 경우 예외가 발생한다.")
     @Test
     void createWalletByNullMoney() {
-        int inputMoney = maximumPurchaseAmount + 1000;
+        int inputMoney = LottoGameSettingConstValue.MAXIMUM_PURCHASE_AMOUNT.getValue() + 1000;
 
         assertThatThrownBy(() -> new Wallet(String.valueOf(inputMoney)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
-                        + maximumPurchaseAmount + "원.");
+                .hasMessageContaining(Exception.OUT_OF_RANGE_MONEY_ERROR.getMessage());
     }
 
     @DisplayName("구입 금액이 1000으로 나누어 떨어지지 않는 경우 예외가 발생한다.")
@@ -65,8 +52,7 @@ public class WalletTest {
     void createWalletByNotDivisibleBy1000(String money) {
         assertThatThrownBy(() -> new Wallet(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
-                        + maximumPurchaseAmount + "원.");
+                .hasMessageContaining(Exception.OUT_OF_RANGE_MONEY_ERROR.getMessage());
     }
 
     @DisplayName("구입 금액이 정상적으로 들어온 경우.")

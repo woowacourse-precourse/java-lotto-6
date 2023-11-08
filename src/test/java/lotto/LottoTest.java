@@ -2,8 +2,8 @@ package lotto;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import lotto.model.Exception;
 import lotto.model.Lotto;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,26 +16,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class    LottoTest {
-    static Integer lottoNumberSize;
-    static Integer minLottoNumber;
-    static Integer maxLottoNumber;
-
-    @BeforeAll
-    public static void getConstantValue() throws NoSuchFieldException, IllegalAccessException {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
-        Field privateLottoNumberSize = Lotto.class.getDeclaredField("LOTTO_NUMBER_SIZE");
-        Field privateMinLottoNumber = Lotto.class.getDeclaredField("MIN_LOTTO_NUMBER");
-        Field privateMaxLottoNumber = Lotto.class.getDeclaredField("MAX_LOTTO_NUMBER");
-        privateMinLottoNumber.setAccessible(true);
-        privateMaxLottoNumber.setAccessible(true);
-        privateLottoNumberSize.setAccessible(true);
-
-        lottoNumberSize = (Integer) privateLottoNumberSize.get(lotto);
-        minLottoNumber = (Integer) privateMinLottoNumber.get(lotto);
-        maxLottoNumber = (Integer) privateMaxLottoNumber.get(lotto);
-    }
-
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -56,7 +36,7 @@ class    LottoTest {
     void createLottoByNullOrEmpty(List<Integer> numbers) {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] " + lottoNumberSize + "개의 로또번호를 입력해주세요");
+                .hasMessageContaining(Exception.LOTTO_NUMBER_COUNT_ERROR.getMessage());
     }
 
     @DisplayName("로또 번호의 개수가 6개보다 부족하면 예외가 발생한다.")
@@ -64,7 +44,7 @@ class    LottoTest {
     void createLottoByUnderSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] " + lottoNumberSize + "개의 로또번호를 입력해주세요");
+                .hasMessageContaining(Exception.LOTTO_NUMBER_COUNT_ERROR.getMessage());
     }
 
     @DisplayName("로또 번호에 범위(1 ~ 45) 밖의 숫자가 있으면 예외가 발생한다.")
@@ -80,8 +60,7 @@ class    LottoTest {
 
         assertThatThrownBy(() -> new Lotto(lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호를 지정된 범위안의 숫자로 넣어주세요. 범위 "
-                        + minLottoNumber + "~" + maxLottoNumber);
+                .hasMessageContaining(Exception.OUT_OF_RANGE_LOTTO_NUMBER_ERROR.getMessage());
     }
 
     @DisplayName("로또 번호를 String으로 생성할 때 숫자가 아니면 예외를 발생한다.")
@@ -90,7 +69,7 @@ class    LottoTest {
     void createLottoByNonNumericValueNumbers(String lottoNumbers) {
         assertThatThrownBy(() -> new Lotto(lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호에 숫자가 아닌 값이 들어왔습니다.");
+                .hasMessageContaining(Exception.NON_NUMERIC_LOTTO_NUMBERS_ERROR.getMessage());
     }
 
     @DisplayName("로또 번호를 String으로 생성할 때 쉼표가 연속해서 들어온 경우 예외를 발생한다.")
@@ -99,8 +78,7 @@ class    LottoTest {
     void createLottoByConsecutiveCommasValueNumbers(String numbers) {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호를 지정된 범위안의 숫자로 넣어주세요. 범위 "
-                        + minLottoNumber + "~" + maxLottoNumber);
+                .hasMessageContaining(Exception.OUT_OF_RANGE_LOTTO_NUMBER_ERROR.getMessage());
     }
 
     @DisplayName("로또 번호를 String으로 생성할 때 int 범위 밖의 숫자가 들어온 경우 예외를 발생한다.")
@@ -108,8 +86,7 @@ class    LottoTest {
     void createLottoByOutOfRangeToInteger() {
         assertThatThrownBy(() -> new Lotto("1,2,3,4,5,21474836479"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호를 지정된 범위안의 숫자로 넣어주세요. 범위 "
-                        + minLottoNumber + "~" + maxLottoNumber);
+                .hasMessageContaining(Exception.OUT_OF_RANGE_LOTTO_NUMBER_ERROR.getMessage());
     }
 
     @DisplayName("로또번호가 정상적으로 들어온 경우.")

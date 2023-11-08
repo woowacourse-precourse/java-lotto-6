@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static lotto.View.Input.money;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -24,4 +26,11 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void 로또_티켓_개수_확인() {
+        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
+        Lotto.issuanceLotto(5000);
+        assertThat(5);
+    }
 }

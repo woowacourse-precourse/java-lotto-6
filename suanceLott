@@ -1,0 +1,71 @@
+[33mcommit 64bd83b396af3e992d09f3beeae8505a62dd680a[m[33m ([m[1;36mHEAD -> [m[1;32mdragon0622[m[33m, [m[1;31morigin/dragon0622[m[33m)[m
+Author: dragon0622 <iamdragon.dev@gmail.com>
+Date:   Tue Nov 7 10:45:12 2023 +0900
+
+    feat(Lotto) : 게임 초반 입출력 logic
+
+[33mcommit 26e99b9856eaf2c1cecc5149c4f7678f96b35f37[m
+Author: dragon0622 <iamdragon.dev@gmail.com>
+Date:   Tue Nov 7 00:58:02 2023 +0900
+
+    feat(Lotto) : 게임 초반 입출력 logic
+
+[33mcommit 631a95ddf486dbf665ceb79f05622d5fd1cde3fe[m
+Author: dragon0622 <iamdragon.dev@gmail.com>
+Date:   Tue Nov 7 00:55:13 2023 +0900
+
+    feat(Lotto) : 게임 초반 입출력 logic
+
+[33mcommit f359c7f94a6ccfb9b02fd1036709230a1e4e2624[m
+Author: dragon0622 <iamdragon.dev@gmail.com>
+Date:   Mon Nov 6 17:19:07 2023 +0900
+
+    feat(Lotto) : Create User class
+
+[33mcommit 92d8fa3bef34d757290c4a9fe6df9aa3151eb183[m
+Author: dragon0622 <iamdragon.dev@gmail.com>
+Date:   Sun Nov 5 23:37:27 2023 +0900
+
+    refactor(Lotto) : 클래스이름 변경
+
+[33mcommit 973e6d6e8fa162c388f9853574b604f1a3102005[m
+Author: dragon0622 <iamdragon.dev@gmail.com>
+Date:   Sun Nov 5 23:34:52 2023 +0900
+
+    feat(Lotto) : 로또번호 예외처리 메시지 추가
+
+[33mcommit cf5081e44515e8adc45869c133aa2935d6c46c8b[m
+Author: dragon0622 <iamdragon.dev@gmail.com>
+Date:   Sun Nov 5 20:06:20 2023 +0900
+
+    feat(Lotto) : howManyLotto 클래스, issuanceLotto 생성
+
+[33mcommit dc77ea9f97e240074ea867e0e45c838ce025703a[m
+Author: dragon0622 <iamdragon.dev@gmail.com>
+Date:   Sun Nov 5 19:51:14 2023 +0900
+
+    feat(Lotto) : money 메소드 추가
+
+[33mcommit 2648ea477108ff8b320c62aa22a3ecb21e696a8c[m
+Author: dragon0622 <iamdragon.dev@gmail.com>
+Date:   Sun Nov 5 19:47:45 2023 +0900
+
+    feat(Lotto) : Input 클래스 내의 메소드 skeleton code 작성
+
+[33mcommit 8302ab6d8d5d22bd62a11c6c472e3fe5cb3b1395[m
+Author: dragon0622 <iamdragon.dev@gmail.com>
+Date:   Sun Nov 5 19:16:15 2023 +0900
+
+    feat(Lotto) : output 클래스 내의 메소드 skeleton code 작성
+
+[33mcommit 06b54eacac364ba4d71774c4c75dcc79c53ef85d[m
+Author: dragon0622 <iamdragon.dev@gmail.com>
+Date:   Sun Nov 5 18:57:32 2023 +0900
+
+    docs(Lotto) : 기능목록, 예외처리 README 작성
+
+[33mcommit 666a0907c5435a03f1dab996c5d18af3438f06b5[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: solarsalt <solar@woowahan.com>
+Date:   Sat Oct 28 14:03:10 2023 +0900
+
+    feat: setup precourse lotto project

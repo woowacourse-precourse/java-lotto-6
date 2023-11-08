@@ -17,4 +17,8 @@ public class RankCounts {
         int nowCount = rankCounts.getOrDefault(lottoRank, 0);
         rankCounts.put(lottoRank, nowCount + 1);
     }
+
+    public Integer getRankCount(LottoRank lottoRank) {
+        return rankCounts.getOrDefault(lottoRank, 0);
+    }
 }

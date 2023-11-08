@@ -4,6 +4,7 @@ import lotto.constants.OutputMessage;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseQuantity;
+import lotto.domain.WinnerStatistics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,9 +41,10 @@ public class OutputView {
         System.out.print(String.format(outputMessage.getMessage(), object.toString()));
     }
 
-    public static void announceWinningStatistics() {
+    public static void announceWinningStatistics(WinnerStatistics winnerStatistics) {
         System.out.println(ANNOUNCE_WINNING_STATISTICS_START.getMessage());
         System.out.println(DIVISION_LINE.getMessage());
+        printObject(winnerStatistics);
     }
 
     public static void printObject(Object object) {

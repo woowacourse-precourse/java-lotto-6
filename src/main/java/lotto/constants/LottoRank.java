@@ -14,10 +14,11 @@ public enum LottoRank {
     NONE(0, 2, false, 0);
 
     private final int rank;
+
     private final int correctCount;
+
     private final boolean isBonusCorrect;
     private final int prizeMoney;
-
     LottoRank(int rank, int correctCount, boolean isBonusCorrect, int prizeMoney) {
         this.rank = rank;
         this.correctCount = correctCount;
@@ -44,11 +45,19 @@ public enum LottoRank {
         return correctCount;
     }
 
-    public int getPrizeMoney() {
+    public long getPrizeMoney() {
         return prizeMoney;
+    }
+
+    public String getFormattedPrizeMoney() {
+       return String.format("%,d", prizeMoney);
     }
 
     public int getRank() {
         return rank;
+    }
+
+    public boolean isBonusCorrect() {
+        return isBonusCorrect;
     }
 }

@@ -73,7 +73,7 @@
 - LottoRank 당첨 순위를 나타내는 enum 구현
 - WinnerStatistics 당첨 대조 결과를 전달받아 받아 집계하는 기능 구현
     - 내부 래핑클래스 RankCounts, TotalPrizeAmount
-- [ ] 당첨 내역을 출력하는 기능 구현
+- [x] 당첨 내역을 출력하는 기능 구현
 - [ ] 수익률을 계산하고 출력하는 기능 구현
 ## 리팩터링 해야할 부분
 - [ ] issuedLottos 생성로직과 출력로직 분리
@@ -101,7 +101,7 @@
 - [ ] 클래스는 상수, 멤버 변수, 생성자, 메서드 순으로 작성
 - [ ] 메서드 추출 시 static 자동 추가 주의
 - [ ] MatchingResult 상수값 포장
-
+- [ ] enum 수정
 - ## ✏️ 과제 진행 요구 사항
 
 - [ ] 미션은 [java-lotto-6](https://github.com/woowacourse-precourse/java-lotto-6) 저장소를 Fork & Clone해 시작한다.

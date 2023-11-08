@@ -14,7 +14,7 @@ public class LottoController {
         LottoNumber bonusLottoNumber = InputView.getBonusLottoNumber(winningLotto);
 
         WinnerStatistics winnerStatistic = getWinnerStatistic(issuedLottos, winningLotto, bonusLottoNumber);
-        OutputView.announceWinningStatistics();
+        OutputView.announceWinningStatistics(winnerStatistic);
     }
 
     private WinnerStatistics getWinnerStatistic(Lottos issuedLottos, Lotto winningLotto, LottoNumber bonusLottoNumber) {

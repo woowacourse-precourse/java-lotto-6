@@ -169,6 +169,23 @@ public class LottoGame {
 
         return report;
     }
+
+    private String getReturnRate() {
+        Map<Integer, List<List<Integer>>> matchedLottosResult = this.getMatchedLottosResult();
+        long totalReturn = 0;
+
+        for (int i = 1; i <= LottoConstants.LOTTO_LAST_WINNER; ++i) {
+            LottoWinnerRule lottoWinnerRule= LottoWinnerRule.valueOfIndex(i);
+            List<List<Integer>> currentWinnerMatchedLotto = matchedLottosResult.get(lottoWinnerRule.index());
+            int count = 0;
+
+            if (currentWinnerMatchedLotto != null) count = currentWinnerMatchedLotto.size();
+
+            totalReturn += lottoWinnerRule.prize() * count;
+        }
+
+        return String.format("%.1f", totalReturn / (double)this.price * 100);
+    }
     
     public void printLottos() {
         printStream.println(this.lottos.size() + "개를 구매했습니다.");
@@ -181,4 +198,9 @@ public class LottoGame {
         printStream.println("---");
         this.getMatchedLottosReport().forEach(report -> printStream.println(report));
     }
+
+    public void printReturnRate() {
+        printStream.println("총 수익률은 " + this.getReturnRate() + "%입니다.");
+    }
+
 }

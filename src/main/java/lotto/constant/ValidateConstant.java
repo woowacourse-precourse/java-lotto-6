@@ -56,6 +56,6 @@ public class ValidateConstant {
     }
 
     public static String ERROR_WIN_NUMBER_COUNT_SIX() {
-        return "[ERROR] 당첨 번호는 중복이 되면 안 됩니다.";
+        return "[ERROR] 당첨 번호는 6개 입니다.";
     }
 }

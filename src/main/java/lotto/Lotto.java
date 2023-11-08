@@ -3,13 +3,14 @@ package lotto;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sort(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -44,13 +45,15 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
-    public void sort() {
-        Collections.sort(numbers);
+    private List<Integer> sort(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     @Override
     public String toString() {
-        return Arrays.deepToString(numbers.toArray());
+        return Arrays.toString(numbers.toArray());
     }
 }
 

@@ -1,18 +1,25 @@
 package lotto.model.service;
 
+import static lotto.model.validator.AmountOfInvestmentValidator.checkAmountWithinLottoPriceRange;
+import static lotto.model.validator.AmountOfInvestmentValidator.checkDivideByLottoPrice;
+import static lotto.model.validator.AmountOfInvestmentValidator.checkType;
+import static lotto.model.validator.BonusNumberValidator.checkDuplicateWithWinningNumbers;
+import static lotto.model.validator.BonusNumberValidator.checkInRange;
+import static lotto.model.validator.WinningNumberValidator.checkBlankOfLottoNumbers;
+import static lotto.model.validator.WinningNumberValidator.checkDuplicateLottoNumbers;
+import static lotto.model.validator.WinningNumberValidator.checkInRangeOfLottoNumbers;
+import static lotto.model.validator.WinningNumberValidator.checkNumberOfLottoNumbers;
+
+import java.util.Comparator;
 import java.util.List;
 import lotto.model.converter.IntegerConverter;
 import lotto.model.converter.LongConverter;
-import lotto.model.data.AnswerNumbers;
 import lotto.model.data.GameNumberFactory;
 import lotto.model.data.Lotto;
 import lotto.model.data.LottoPortfolio;
 import lotto.model.data.WinningPortfolio;
 import lotto.model.data.WinningStatus;
-import lotto.model.generator.QuickPick;
-import lotto.model.validator.AmountOfInvestmentValidator;
-import lotto.model.validator.BonusNumberValidator;
-import lotto.model.validator.WinningNumberValidator;
+import lotto.model.generator.LottoNumberGenerator;
 
 public class LottoService {
     private GameNumberFactory gameNumberFactory;
@@ -23,47 +30,47 @@ public class LottoService {
         lottoPortfolio = new LottoPortfolio();
     }
 
-    public Integer convertAmountOfInvestment(String amountOfInvestment) {
-        AmountOfInvestmentValidator.checkType(amountOfInvestment);
+    public Integer validateAndConvertInvestmentAmount(String amountOfInvestment) {
+        checkType(amountOfInvestment);
         Long convertedAmountOfInvestment = new LongConverter().toType(amountOfInvestment);
-        AmountOfInvestmentValidator.checkAmountWithinLottoPriceRange(convertedAmountOfInvestment);
-        AmountOfInvestmentValidator.checkDivideByLottoPrice(convertedAmountOfInvestment);
+        checkAmountWithinLottoPriceRange(convertedAmountOfInvestment);
+        checkDivideByLottoPrice(convertedAmountOfInvestment);
         
         return convertedAmountOfInvestment.intValue();
     }
-    
-    public Integer makeRecipe(Integer amountOfInvestment) {
-        return lottoPortfolio.save(amountOfInvestment);
+
+    public Integer calculateNumberOfLottos(int amountOfInvestment) {
+        return lottoPortfolio.createPayRecipe(amountOfInvestment);
     }
 
-    public List<Lotto> generateLottos(Integer amountOfLotto) {
-        return gameNumberFactory.quickPickOrSlip(amountOfLotto, new QuickPick());
+    public List<Lotto> purchaseLottos(Integer numberOfLotto, LottoNumberGenerator lottoNumberGenerator, Comparator<Integer> order) {
+        return gameNumberFactory.quickPickOrSlip(numberOfLotto, lottoNumberGenerator, order);
     }
 
-    public List<Integer> convertWinningNumbers(List<String> winningNumbers) {
-        WinningNumberValidator.checkNumberOfLottoNumbers(winningNumbers);
-        WinningNumberValidator.checkBlankOfLottoNumbers(winningNumbers);
+    public List<Integer> validateAndConvertWinningNumbers(List<String> winningNumbers) {
+        checkNumberOfLottoNumbers(winningNumbers);
+        checkBlankOfLottoNumbers(winningNumbers);
         List<Integer> convertedWinningNumbers = new IntegerConverter().toTypeList(winningNumbers);
-        WinningNumberValidator.checkInRangeOfLottoNumbers(convertedWinningNumbers);
-        WinningNumberValidator.checkDuplicateLottoNumbers(convertedWinningNumbers);
+        checkInRangeOfLottoNumbers(convertedWinningNumbers);
+        checkDuplicateLottoNumbers(convertedWinningNumbers);
 
         return convertedWinningNumbers;
     }
 
-    public Integer convertBonusNumber(String bonusNumber, List<Integer> winningNumbers) {
+    public Integer validateAndConvertBonusNumber(String bonusNumber, List<Integer> winningNumbers) {
         Integer convertedBonusNumber = new IntegerConverter().toType(bonusNumber);
-        BonusNumberValidator.checkInRange(convertedBonusNumber);
-        BonusNumberValidator.checkDuplicateWithWinningNumbers(winningNumbers, convertedBonusNumber);
+        checkInRange(convertedBonusNumber);
+        checkDuplicateWithWinningNumbers(winningNumbers, convertedBonusNumber);
 
         return convertedBonusNumber;
     }
 
-    public AnswerNumbers createWinningNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
-        return gameNumberFactory.createWinningNumbers(winningNumbers, bonusNumber);
+    public void createWinningNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
+        gameNumberFactory.saveWinningNumbers(winningNumbers, bonusNumber);
     }
 
-    public WinningPortfolio confirmWin() {
-        WinningStatus winningStatus = gameNumberFactory.compareLottosAndAnswerNumbers();
-        return lottoPortfolio.addWinning(winningStatus);
+    public WinningPortfolio evaluateWinnings() {
+        WinningStatus winningStatus = gameNumberFactory.calculateWinningStatus();
+        return lottoPortfolio.saveWinningStatus(winningStatus);
     }
 }

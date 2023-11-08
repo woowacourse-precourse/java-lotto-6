@@ -24,7 +24,7 @@ public class WinningStatus {
         return prizes.getOrDefault(place, 0);
     }
 
-    public void winning(Integer countOfMatchedLottoNumbers, Integer countOfMatchedBonusNumber) {
+    public void recordWinning(Integer countOfMatchedLottoNumbers, Integer countOfMatchedBonusNumber) {
         Integer prize = PrizeDetails.calculatePrize(countOfMatchedLottoNumbers, countOfMatchedBonusNumber);
 
         if (prize != NOT_WIN) {

@@ -13,7 +13,7 @@ public class LottoRecipe {
         this.money = money;
     }
 
-    public static LottoRecipe of(Money money) {
+    public static LottoRecipe from(Money money) {
         return new LottoRecipe(money);
     }
 
@@ -22,6 +22,8 @@ public class LottoRecipe {
     }
 
     public NumberOfLotto purchaseLotto() {
-        return this.numberOfLotto = new NumberOfLotto((int) (money.money() / LOTTO_PRICE.getPrice()));
+        numberOfLotto = new NumberOfLotto(money.money() / LOTTO_PRICE.getPrice());
+
+        return numberOfLotto;
     }
 }

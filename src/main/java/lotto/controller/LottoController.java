@@ -3,17 +3,12 @@ package lotto.controller;
 import static lotto.util.Introduction.INPUT_AMOUNT_OF_LOTTO;
 import static lotto.util.Introduction.INPUT_BONUS_NUMBER;
 import static lotto.util.Introduction.INPUT_WINNING_NUMBERS;
-import static lotto.util.Introduction.SEPARATOR;
-import static lotto.util.Introduction.WINNING_STATISTICS;
-import static lotto.util.PrizeDetails.FIFTH_PRIZE;
-import static lotto.util.PrizeDetails.FIRST_PRIZE;
-import static lotto.util.PrizeDetails.FOURTH_PRIZE;
-import static lotto.util.PrizeDetails.SECOND_PRIZE;
-import static lotto.util.PrizeDetails.THIRD_PRIZE;
 
+import java.util.Comparator;
 import java.util.List;
 import lotto.model.data.Lotto;
 import lotto.model.data.WinningPortfolio;
+import lotto.model.generator.LottoNumberGenerator;
 import lotto.model.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -33,79 +28,71 @@ public class LottoController {
         return new LottoController(inputView, outputView);
     }
 
-    public void lottoStore() {
-        boolean successToBuyLotto = false;
+    public void runLottoStore(LottoNumberGenerator lottoNumberGenerator, Comparator<Integer> order) {
+        payMoney(lottoNumberGenerator, order);
+        drawNumber();
+        printWinning();
+    }
 
-        do {
+    private void payMoney(LottoNumberGenerator lottoNumberGenerator, Comparator<Integer> order) {
+        while (true) {
             try {
-                Integer amountOfLotto = getAmountOfLotto();
-                createLottos(amountOfLotto);
+                Integer numberOfLotto = getNumberOfLotto();
+                createLottos(numberOfLotto, lottoNumberGenerator, order);
 
-                successToBuyLotto = true;
+                break;
             } catch (IllegalArgumentException e) {
-                outputView.printIntroduction(e.getMessage());
+                outputView.printException(e.getMessage());
             }
-        } while (!successToBuyLotto);
+        }
     }
 
-    private Integer getAmountOfLotto() {
-        outputView.printIntroduction(INPUT_AMOUNT_OF_LOTTO.getIntroduction());
-        Integer amountOfInvestment = lottoService.convertAmountOfInvestment(inputView.inputConstant());
-        return lottoService.makeRecipe(amountOfInvestment);
-    }
-
-    private void createLottos(Integer amountOfLotto) {
-        List<Lotto> purchasedLottos = lottoService.generateLottos(amountOfLotto);
-        outputView.printResultOfBuy(amountOfLotto);
-        outputView.printLottos(purchasedLottos);
-    }
-
-    public void answerNumbersInput() {
+    private void drawNumber() {
         List<Integer> winningNumbers = getWinningNumbers();
         Integer bonusNumber = getBonusNumber(winningNumbers);
 
         lottoService.createWinningNumbers(winningNumbers, bonusNumber);
     }
 
-    private List<Integer> getWinningNumbers() {
-        boolean successToCreateWinningNumbers = false;
+    private void printWinning() {
+        WinningPortfolio winningPortfolio = lottoService.evaluateWinnings();
+        outputView.printWinningStatistics(winningPortfolio);
+    }
 
-        do {
+    private Integer getNumberOfLotto() {
+        outputView.printIntroduction(INPUT_AMOUNT_OF_LOTTO.getIntroduction());
+        int amountOfInvestment = lottoService.validateAndConvertInvestmentAmount(inputView.inputConstant());
+
+        return lottoService.calculateNumberOfLottos(amountOfInvestment);
+    }
+
+    private void createLottos(Integer numberOfLotto, LottoNumberGenerator lottoNumberGenerator,
+                              Comparator<Integer> order) {
+        List<Lotto> purchasedLottos = lottoService.purchaseLottos(numberOfLotto, lottoNumberGenerator, order);
+        outputView.printLottos(purchasedLottos);
+    }
+
+    private List<Integer> getWinningNumbers() {
+        while (true) {
             try {
                 outputView.printIntroduction(INPUT_WINNING_NUMBERS.getIntroduction());
-                return lottoService.convertWinningNumbers(inputView.inputList());
-            } catch (IllegalArgumentException e) {
-                outputView.printIntroduction(e.getMessage());
-            }
-        } while (!successToCreateWinningNumbers);
 
-        return null;
+                return lottoService.validateAndConvertWinningNumbers(inputView.inputList());
+            } catch (IllegalArgumentException e) {
+                outputView.printException(e.getMessage());
+            }
+        }
     }
 
     private Integer getBonusNumber(List<Integer> winningNumbers) {
-        boolean successToCreateBonusNumber = false;
-
-        do {
+        while (true) {
             try {
                 outputView.printIntroduction(INPUT_BONUS_NUMBER.getIntroduction());
-                return lottoService.convertBonusNumber(inputView.inputConstant(), winningNumbers);
+
+                return lottoService.validateAndConvertBonusNumber(inputView.inputConstant(), winningNumbers);
             } catch (IllegalArgumentException e) {
-                outputView.printIntroduction(e.getMessage());
+                outputView.printException(e.getMessage());
             }
-        } while (!successToCreateBonusNumber);
-
-        return null;
-    }
-
-    public void printWinning() {
-        WinningPortfolio winningPortfolio = lottoService.confirmWin();
-        outputView.printIntroduction(WINNING_STATISTICS.getIntroduction());
-        outputView.printIntroduction(SEPARATOR.getIntroduction());
-        outputView.printNotBonusPrize(FIFTH_PRIZE.getPrize(), winningPortfolio.getCountOfPrize(FIFTH_PRIZE.getPrize()));
-        outputView.printNotBonusPrize(FOURTH_PRIZE.getPrize(), winningPortfolio.getCountOfPrize(FOURTH_PRIZE.getPrize()));
-        outputView.printNotBonusPrize(THIRD_PRIZE.getPrize(), winningPortfolio.getCountOfPrize(THIRD_PRIZE.getPrize()));
-        outputView.printBonusPrize(SECOND_PRIZE.getPrize(), winningPortfolio.getCountOfPrize(SECOND_PRIZE.getPrize()));
-        outputView.printNotBonusPrize(FIRST_PRIZE.getPrize(), winningPortfolio.getCountOfPrize(FIRST_PRIZE.getPrize()));
-        outputView.printRateOfReturn(winningPortfolio.getRateOfReturn().rateOfReturn());
+        }
     }
 }

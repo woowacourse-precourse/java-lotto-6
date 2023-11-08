@@ -5,6 +5,7 @@ import static lotto.util.LottoDetails.MAXIMUM_OF_LOTTO_NUMBER;
 import static lotto.util.LottoDetails.MINIMUM_OF_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +19,7 @@ class QuickPickTest {
     @BeforeEach
     void beforeEach() {
         quickPick = new QuickPick();
-        lottoNumbers = quickPick.drawLots();
+        lottoNumbers = quickPick.drawLots(Comparator.naturalOrder());
     }
 
     @Test

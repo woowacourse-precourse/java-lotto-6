@@ -1,6 +1,7 @@
 package lotto.model.data;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
@@ -15,6 +16,20 @@ public class Lottos {
     }
 
     public List<Lotto> purchasedLotto() {
-        return lottos;
+        return Collections.unmodifiableList(lottos);
+    }
+
+    public WinningStatus compareWithAnswerNumbers(AnswerNumbers answerNumbers) {
+        WinningStatus winningStatus = new WinningStatus();
+
+        for (Lotto lotto : lottos) {
+            int countOfMatchedWinningNumber = lotto.compareLottoAndWinningNumbers(
+                    answerNumbers.getWinningNumbers());
+            int countOfMatchedBonusNumber = lotto.compareLottoAndBonusNumber(answerNumbers.getBonusNumber());
+
+            winningStatus.recordWinning(countOfMatchedWinningNumber, countOfMatchedBonusNumber);
+        }
+
+        return winningStatus;
     }
 }

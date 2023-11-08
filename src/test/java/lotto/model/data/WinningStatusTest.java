@@ -31,7 +31,7 @@ class WinningStatusTest {
         Integer fifthPlace = winningStatus.countOfPlace(5);
 
         // when
-        winningStatus.winning(3, 0);
+        winningStatus.recordWinning(3, 0);
 
         // then
         assertThat(winningStatus.countOfPlace(5)).isEqualTo(fifthPlace + 1);
@@ -52,7 +52,7 @@ class WinningStatusTest {
         Integer fifthPlace = winningStatus.countOfPlace(5);
 
         // when
-        winningStatus.winning(4, 0);
+        winningStatus.recordWinning(4, 0);
 
         // then
         assertThat(winningStatus.countOfPlace(5)).isEqualTo(fifthPlace);
@@ -73,7 +73,7 @@ class WinningStatusTest {
         Integer fifthPlace = winningStatus.countOfPlace(5);
 
         // when
-        winningStatus.winning(5, 0);
+        winningStatus.recordWinning(5, 0);
 
         // then
         assertThat(winningStatus.countOfPlace(5)).isEqualTo(fifthPlace);
@@ -94,7 +94,7 @@ class WinningStatusTest {
         Integer fifthPlace = winningStatus.countOfPlace(5);
 
         // when
-        winningStatus.winning(5, 1);
+        winningStatus.recordWinning(5, 1);
 
         // then
         assertThat(winningStatus.countOfPlace(5)).isEqualTo(fifthPlace);
@@ -115,7 +115,7 @@ class WinningStatusTest {
         Integer fifthPlace = winningStatus.countOfPlace(5);
 
         // when
-        winningStatus.winning(6, 0);
+        winningStatus.recordWinning(6, 0);
 
         // then
         assertThat(winningStatus.countOfPlace(5)).isEqualTo(fifthPlace);
@@ -136,7 +136,7 @@ class WinningStatusTest {
         Integer fifthPlace = winningStatus.countOfPlace(5);
 
         // when
-        winningStatus.winning(2, 0);
+        winningStatus.recordWinning(2, 0);
 
         // then
         assertThat(winningStatus.countOfPlace(5)).isEqualTo(fifthPlace);

@@ -1,5 +1,6 @@
 package lotto.model.data;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.model.record.BonusNumber;
 
@@ -13,7 +14,7 @@ public class AnswerNumbers {
     }
 
     public List<Integer> getWinningNumbers() {
-        return winningNumbers.getWinningNumbers();
+        return Collections.unmodifiableList(winningNumbers.getWinningNumbers());
     }
 
     public Integer getBonusNumber() {

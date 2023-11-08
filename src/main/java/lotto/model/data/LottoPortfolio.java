@@ -7,14 +7,14 @@ public class LottoPortfolio {
     private LottoRecipe lottoRecipe;
     private WinningPortfolio winningPortfolio;
 
-    public Integer save(Integer amountOfLotto) {
-        lottoRecipe = LottoRecipe.of(new Money(amountOfLotto));
+    public Integer createPayRecipe(int amountOfInvestment) {
+        lottoRecipe = LottoRecipe.from(new Money(amountOfInvestment));
         NumberOfLotto numberOfLotto = lottoRecipe.purchaseLotto();
 
         return numberOfLotto.numberOfLotto();
     }
 
-    public WinningPortfolio addWinning(WinningStatus winningStatus) {
+    public WinningPortfolio saveWinningStatus(WinningStatus winningStatus) {
         winningPortfolio = new WinningPortfolio(winningStatus);
         winningPortfolio.updateRateOfReturn(lottoRecipe);
 

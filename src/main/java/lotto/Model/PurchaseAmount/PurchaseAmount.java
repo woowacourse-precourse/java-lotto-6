@@ -6,6 +6,8 @@ public class PurchaseAmount {
     private final Integer Amount;
 
     public PurchaseAmount(Integer amount) {
+        validateInteger(amount);
+        validateThousandUnit(amount);
         this.Amount = amount;
     }
 
@@ -23,7 +25,7 @@ public class PurchaseAmount {
     }
 
     private void validateThousandUnit( Integer amount) {
-        if( amount <= LOTTO_ONE_TICKET_PRICE.getValue() && amount % LOTTO_ONE_TICKET_PRICE.getValue() != 0 ) {
+        if( amount < LOTTO_ONE_TICKET_PRICE.getValue() || amount % LOTTO_ONE_TICKET_PRICE.getValue() != 0 ) {
             throw new IllegalArgumentException("");
         }
     }

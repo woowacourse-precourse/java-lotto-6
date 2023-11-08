@@ -3,6 +3,6 @@ package lotto.exception;
 public class CanNotConvertToNumberException extends IllegalArgumentException {
 
     public CanNotConvertToNumberException(final String text) {
-        super("[ERROR]" + text + "를(을) 정수로 변환할 수 없습니다.");
+        super("[ERROR]" + text + "에는 정수로 변환 불가능한 값이 존재합니다.");
     }
 }

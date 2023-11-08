@@ -20,8 +20,8 @@ public class WinningNumber {
 
     public static WinningNumber createWith(final String number) {
         List<String> numbers = splitWithComma(number);
-        validateConvertibleToNumber(numbers);
         validateSixNumbers(numbers);
+        validateConvertibleToNumber(numbers);
         validateDuplicates(numbers);
 
         return new WinningNumber(convertToLottoNumbers(numbers));
@@ -38,8 +38,9 @@ public class WinningNumber {
                 .filter(number -> !isNumeric(number))
                 .findFirst()
                 .ifPresent(number -> {
-                    throw new CanNotConvertToNumberException(number);
+                    throw new CanNotConvertToNumberException(numbers.toString());
                 });
+
     }
 
     private static boolean isNumeric(final String number) {

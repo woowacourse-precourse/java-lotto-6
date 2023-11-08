@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.LottoPercentageCalculation;
-import lotto.model.LottoPrize;
+import lotto.model.constants.LottoPrize;
 import lotto.model.RandomIntGenerator;
 import lotto.view.LottoView;
 
@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
-import static lotto.model.LottoInformation.BUY_PRICE;
-import static lotto.model.LottoPrize.*;
+import static lotto.model.constants.LottoInformation.BUY_PRICE;
+import static lotto.model.constants.LottoPrize.*;
 
 public class LottoController {
     private static LottoView lottoView = new LottoView();

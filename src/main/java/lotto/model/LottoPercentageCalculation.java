@@ -1,5 +1,8 @@
 package lotto.model;
 
+import lotto.model.constants.LottoInformation;
+import lotto.model.constants.LottoPrize;
+
 import java.util.List;
 
 public class LottoPercentageCalculation {

@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static lotto.model.LottoInformation.BUY_PRICE;
-import static lotto.model.LottoInformation.COUNT_DIVISION;
+import static lotto.model.constants.LottoInformation.BUY_PRICE;
+import static lotto.model.constants.LottoInformation.COUNT_DIVISION;
 
 public class RandomIntGenerator {
     private static final List<List<Integer>> numbers = new ArrayList<>();

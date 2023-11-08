@@ -1,9 +1,11 @@
 package lotto.model;
 
+import lotto.model.constants.LottoPrize;
+
 import java.util.List;
 import java.util.function.Predicate;
 
-import static lotto.model.LottoPrize.*;
+import static lotto.model.constants.LottoPrize.*;
 
 public class Lotto {
     private final List<Integer> numbers;

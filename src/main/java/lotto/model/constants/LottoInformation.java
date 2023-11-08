@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.constants;
 
 public enum LottoInformation {
     COUNT_DIVISION(1000),

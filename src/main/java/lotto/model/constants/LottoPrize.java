@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.constants;
 
 public enum LottoPrize {
     FIRST_PRIZE(0,"6개 일치 (2,000,000,000원) - ","개",2000000000),

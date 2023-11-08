@@ -1,7 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.model.LottoPrize;
+import lotto.model.constants.LottoPrize;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,5 +1,6 @@
 package lotto.validation;
 
+import lotto.domain.Lotto;
 import lotto.domain.WinningNumber;
 
 public class WinningNumberInputValidator {
@@ -20,6 +21,19 @@ public class WinningNumberInputValidator {
     }
 
     public boolean isLottoNumberDuplication(WinningNumber winningNumber) {
-        return false;
+        Lotto winningLotto = winningNumber.getWinningNumber();
+        int bonusNumber = winningNumber.getBonusNumber();
+
+        for (int i = 0; i < winningLotto.size(); i++) {
+            int oneNumber = winningLotto.get(i);
+            if (winningLotto.contains(oneNumber)) {
+                return false;
+            }
+        }
+
+        if (winningLotto.contains(bonusNumber)) {
+            return false;
+        }
+        return true;
     }
 }

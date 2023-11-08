@@ -2,6 +2,8 @@ package lotto.domain;
 
 import lotto.validator.LottoPurchaseValidator;
 
+import java.util.List;
+
 // TODO: 로또 생성 전략을 Interface로
 public class PurchaseMachine {
     private static PurchaseRepository purchaseRepository = PurchaseRepository.getInstance();
@@ -12,10 +14,11 @@ public class PurchaseMachine {
         return amount / 1000;
     }
 
-    public static void purchaseLottoForCount(int count) {
+    public static List<Lotto> purchaseLottoForCount(int count) {
         for (int i = 0; i < count; i++) {
             purchaseEachLotto();
         }
+        return purchaseRepository.findLottos();
     }
 
     private static void purchaseEachLotto() {

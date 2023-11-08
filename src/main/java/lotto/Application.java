@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -50,6 +51,15 @@ public class Application {
         return lottos;
     }
 
+    public static Lotto inputWinningLotto() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String[] input = Console.readLine().split(",");
+        List<Integer> winningNumbers = Arrays.stream(input)
+                .map(Application::convertInteger)
+                .toList();
+        return new Lotto(winningNumbers);
+    }
+
     public static void main(String[] args) {
         int budget;
         List<Lotto> lottos;
@@ -58,6 +68,13 @@ public class Application {
             lottos = buyLottos(budget);
         } catch (IllegalArgumentException e) {
             alertError("로또 구입 금액은 1,000 단위의 숫자여야 합니다.");
+        }
+
+        Lotto winningLotto;
+        try {
+            winningLotto = inputWinningLotto();
+        } catch (IllegalArgumentException e) {
+            alertError("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 }

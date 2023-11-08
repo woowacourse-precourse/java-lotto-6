@@ -7,11 +7,11 @@ import lotto.constant.ErrorMessage;
 public class LottoPurchaseMoney {
     private static final int TICKET_PRICE = 1000;
 
-    private int money;
+    private final int lottoPurchaseMoney;
 
     public LottoPurchaseMoney(int money){
         validateTicket(money);
-        this.money = money;
+        lottoPurchaseMoney = money;
     }
 
     public void validateTicket(int money){
@@ -21,10 +21,10 @@ public class LottoPurchaseMoney {
     }
 
     public int getTicketCount(){
-        return money / TICKET_PRICE;
+        return lottoPurchaseMoney / TICKET_PRICE;
     }
 
     public int getMoney(){
-        return money;
+        return lottoPurchaseMoney;
     }
 }

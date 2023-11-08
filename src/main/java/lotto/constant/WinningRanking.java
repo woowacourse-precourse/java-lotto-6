@@ -5,8 +5,8 @@ public enum WinningRanking {
     RANK1(1,6, 2_000_000_000),
     RANK2(2,5, 3_000_000_0),
     RANK3(3,5, 1_500_000),
-    RANK4(4, 4, 50000),
-    RANK5(5, 3, 5000);
+    RANK4(4, 4, 50_000),
+    RANK5(5, 3, 5_000);
 
     private final int ranking;
     private final int matchNumCnt;

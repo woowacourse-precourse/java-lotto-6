@@ -1,13 +1,12 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoMachine {
-    private final String ERROR = "[ERROR] ";
+    private static final String ERROR = "[ERROR] ";
     private final LottoService lottoService;
 
     public LottoMachine(LottoService lottoService) {

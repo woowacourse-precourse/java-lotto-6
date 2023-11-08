@@ -10,5 +10,5 @@ public enum LottoConfig {
     private LottoConfig(int num) {
         this.num = num;
     }
-    int getNum() {return this.num;}
+    public int getNum() {return this.num;}
 }

@@ -29,4 +29,14 @@ public class GameController {
             return getLottoNumbers();
         }
     }
+
+    public int getBonusLottoNumber() {
+        Output.printBonusLottoNumbersInputMessage();
+        try {
+            return Input.getInteger();
+        } catch (IllegalArgumentException e) {
+            Output.printErrorMessage(e.getMessage());
+            return getBonusLottoNumber();
+        }
+    }
 }

@@ -151,10 +151,34 @@ public class LottoGame {
 
         return matchedLottosResult;
     }
+
+    public List<String> getMatchedLottosReport() {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        Map<Integer, List<List<Integer>>> matchedLottosResult = this.getMatchedLottosResult();
+        List<String> report = new ArrayList<String>();
+
+        for (int i = LottoConstants.LOTTO_LAST_WINNER; i > 0; --i) {
+            LottoWinnerRule lottoWinnerRule= LottoWinnerRule.valueOfIndex(i);
+            List<List<Integer>> currentWinnerMatchedLotto = matchedLottosResult.get(lottoWinnerRule.index());
+            int count = 0;
+
+            if (currentWinnerMatchedLotto != null) count = currentWinnerMatchedLotto.size();
+
+            report.add(lottoWinnerRule.description() + " (" + decimalFormat.format(lottoWinnerRule.prize()) + "원) - " + count + "개");
+        }
+
+        return report;
+    }
     
     public void printLottos() {
         printStream.println(this.lottos.size() + "개를 구매했습니다.");
         this.lottos.forEach(lotto -> printStream.println(lotto.toString()));
         printStream.println();
+    }
+
+    public void printMatchedLottosReport() {
+        printStream.println("당첨 통계");
+        printStream.println("---");
+        this.getMatchedLottosReport().forEach(report -> printStream.println(report));
     }
 }

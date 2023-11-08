@@ -4,12 +4,19 @@ import java.util.List;
 
 public class OutputView {
 
-    public void printLottoBuyingResult(int lottoAmount, List<List<Integer>> lottoNumbers) {
+    public void printLottoAmount(int lottoAmount) {
         System.out.println(lottoAmount + "개를 구매했습니다.");
-        for (List<Integer> lottoNumber : lottoNumbers) {
-            printNumbers(lottoNumber);
-            System.out.println();
+    }
+
+    public void printNumbers(List<Integer> numbers) {
+        System.out.print("[");
+        for (int i = 0; i < numbers.size(); i++) {
+            if (i != 0) {
+                System.out.print(", ");
+            }
+            System.out.print(numbers.get(i));
         }
+        System.out.println("]");
     }
 
     public void printLottoWinningResult(List<String> eachWinningResult) {
@@ -22,16 +29,5 @@ public class OutputView {
 
     public void printTotalProfitRate(String totalProfitRate) {
         System.out.println("총 수익률은 " + totalProfitRate + "%입니다.");
-    }
-
-    private void printNumbers(List<Integer> numbers) {
-        System.out.print("[");
-        for (int i = 0; i < numbers.size(); i++) {
-            if (i != 0) {
-                System.out.print(", ");
-            }
-            System.out.print(numbers.get(i));
-        }
-        System.out.print("]");
     }
 }

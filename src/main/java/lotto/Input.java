@@ -58,14 +58,22 @@ public class Input {
         return purchaseAmount;
     }
 
-    private String inputWinningNum() throws IllegalArgumentException {
-        String winningNum = Console.readLine();
-        WinningNumberValidator.validate(winningNum);
-        String[] splitWinningNumber = winningNum.split(",");
-        for (String num : splitWinningNumber) {
-            winningNumber.add(Integer.parseInt(num));
+    private String inputWinningNum() {
+        String winningNum;
+        while(true) {
+            try {
+                winningNum = Console.readLine();
+                WinningNumberValidator.validate(winningNum);
+                String[] splitWinningNumber = winningNum.split(",");
+                for (String num : splitWinningNumber) {
+                    winningNumber.add(Integer.parseInt(num));
+                }
+                System.out.println();
+                break;
+            } catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        System.out.println();
         return winningNum;
     }
 

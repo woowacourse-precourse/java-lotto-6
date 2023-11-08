@@ -1,11 +1,12 @@
 package lotto.model;
 
+import lotto.validate.InvalidlputException;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
-
     private static final int LOTTO_SIZE = 6;
     private static final int LOTTO_RANGE_MIN = 1;
     private static final int LOTTO_RANGE_MAX = 45;
@@ -13,22 +14,12 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         numbers = sortedNumbers(numbers);
-        validate(numbers);
-        validateRange(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateRange(List<Integer> numbers){
-        for ( int i = 0; i < numbers.size(); i++ ){
-            if (!(numbers.get(i) <= LOTTO_RANGE_MAX && numbers.get(i) >= LOTTO_RANGE_MIN)){
-                throw new IllegalArgumentException();
-            }
         }
     }
 
@@ -40,5 +31,11 @@ public class Lotto {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public String toString() {
+        return numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ", "[", "]"));
+    }
 
 }

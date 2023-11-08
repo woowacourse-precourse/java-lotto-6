@@ -1,9 +1,9 @@
 # 미션 - 로또
 
 ## 목차
-- 프로젝트 소개(#프로젝트-소개)
-- 구현 기능 목록(#구현-기능-목록)
-
+- [프로젝트 소개](#프로젝트-소개)
+- [구현 기능 목록](#구현-기능-목록)
+- [개발 환경](#개발-환경)
 ## 프로젝트 소개
 
 ## 구현 기능 목록
@@ -47,3 +47,8 @@
 - [x] 보너스 번호가 숫자가 아닌 경우
 - [x] 로또 당첨 번호가 중복으로 입력된 경우
 - [x] 로또 당첨 번호에 보너스 번호가 포함된 경우 
+
+## 개발 환경
+<img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
+<img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
+<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">

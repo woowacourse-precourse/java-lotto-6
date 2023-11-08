@@ -40,10 +40,19 @@ public class Exception {
         for (String str : lottoNumbers.split(",")) {
             int number = checkInt(str);
             if (number < 1 || number > 45 || numbers.contains(number)) {
-                System.out.println("[ERROR] 1부터 45까지 중복되지 않은 6개의 숫자를 공백없이 쉼표로 구분하여 입력해주세요.");
+                String message = "[ERROR] 1부터 45까지 중복되지 않은 6개의 숫자를 공백없이 쉼표로 구분하여 입력해주세요.";
+                System.out.println(throwIllegalArgument(message));
                 return numbers;
             }
             numbers.add(number);
+        }
+        return checkLength(numbers);
+    }
+
+    public List<Integer> checkLength(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            String message = "[ERROR] 1부터 45까지 중복되지 않은 6개의 숫자를 공백없이 쉼표로 구분하여 입력해주세요.";
+            System.out.println(throwIllegalArgument(message));
         }
         return numbers;
     }
@@ -51,9 +60,18 @@ public class Exception {
     public int checkBonus(List<Integer> winningNumber, String bonus) {
         int bonusNumber = checkInt(bonus);
         if (winningNumber.contains(bonusNumber) || bonusNumber < 1 || bonusNumber > 45) {
-            System.out.println("[ERROR] 당첨 번호와 중복되지 않는 1부터 45 사이의 숫자 1개를 입력해주세요.");
+            String message = "[ERROR] 당첨 번호와 중복되지 않는 1부터 45 사이의 숫자 1개를 입력해주세요.";
+            System.out.println(throwIllegalArgument(message));
             return 0;
         }
         return bonusNumber;
+    }
+
+    public String throwIllegalArgument(String message) {
+        try {
+            throw new IllegalArgumentException();
+        } finally {
+            return message;
+        }
     }
 }

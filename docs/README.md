@@ -40,11 +40,12 @@
 - [x] 총 수익 계산하기 - Judgement#resultAmount()
 
 # Exception
-- [x] 예외 처리
-  - [x] String to int 변환 체크 - Exception#checkInt
-  - [x] 1000 단위 체크 - Exception#checkAmount
-  - [x] 숫자 중복 여부 체크 - Exception#checkNumbers
-  - [x] 보너스 숫자 중복 여부 체크 - Exception#checkBonus
+- [x] 예외 처리 Exception#throwIllegalArgument()
+  - [x] String to int 변환 체크 - Exception#checkInt()
+  - [x] 1000 단위 체크 - Exception#checkAmount()
+  - [x] 숫자 중복 여부 체크 - Exception#checkNumbers()
+  - [x] 6자리 숫자 여부 체크 - Exception#checkLength()
+  - [x] 보너스 숫자 중복 여부 체크 - Exception#checkBonus()
 
 # view
 - [x] 구매 로또 출력하기 - PrintGames#purchaseHistory()

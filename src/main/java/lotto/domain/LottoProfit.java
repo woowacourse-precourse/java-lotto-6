@@ -42,7 +42,7 @@ public class LottoProfit {
         return lottoPurchase.getPurchaseCount().getCount() * LOTTO_PRICE.getNumber();
     }
 
-    public double roundToTwoDigits(double totalWinningAmount, double totalPurchaseAmount) {
+    private double roundToTwoDigits(double totalWinningAmount, double totalPurchaseAmount) {
         double lottoProfit = totalWinningAmount / totalPurchaseAmount * 100;
         return Math.round(lottoProfit * 10) / 10.0;
     }

@@ -25,6 +25,7 @@ public class MainNumbers extends WinningNumber implements Askable<List<Integer>>
         return convertedInput;
     }
 
+    @Override
     protected void checkValidity(List<Integer> convertedInput) {
         if (!isCorrectRange.test(convertedInput)) {
             throw new IllegalArgumentException(NUMBER_RANGE_ERROR);

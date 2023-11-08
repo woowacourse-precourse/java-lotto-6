@@ -27,6 +27,7 @@ public class LottoView {
                         .map(String::valueOf)
                         .collect(Collectors.joining(", ")) + "]")
                 .forEach(System.out::println);
+        System.out.println();
     }
 
     public void printWinningPrompt() {

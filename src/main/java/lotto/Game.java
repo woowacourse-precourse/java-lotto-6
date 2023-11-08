@@ -20,9 +20,6 @@ public class Game {
     public void play(){
         this.lottoMoney = inputUser.inputLottoMoney();
         makeNumberTicket(lottoMoney);
-        for (Lotto l : numberTickets){
-            System.out.println(l.getNumbers());
-        }
         List<Integer> winningNumbers = inputUser.inputWinningNumber();
         Integer bonusNumber = inputUser.inputBonusNumber();
         this.winningLotto = new WinningLotto(winningNumbers, bonusNumber);

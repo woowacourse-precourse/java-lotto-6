@@ -71,7 +71,7 @@ public class LottoController {
         try {
             InputView.inputWinningNumber();
             String input = Console.readLine();
-            List<Integer> number =  convertStringToIntList(input);
+            List<Integer> number = convertStringToIntList(input);
             validateWinningNumber(number);
             return number;
         }

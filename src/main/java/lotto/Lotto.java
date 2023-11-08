@@ -20,4 +20,11 @@ public class Lotto {
     public List<Integer> getLotto() {
         return this.numbers;
     }
+
+    public void countWinningNumber() {
+    }
+
+    public Integer getLottoIndex(int index){
+        return this.numbers.get(index);
+    }
 }

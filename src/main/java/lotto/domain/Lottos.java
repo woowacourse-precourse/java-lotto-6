@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.dto.LottoMatchResponse;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -9,7 +10,7 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public List<Prize> match(WinningLotto winningLotto) {
+    public List<LottoMatchResponse> match(WinningLotto winningLotto) {
         return lottos.stream()
                 .map(winningLotto::match)
                 .toList();

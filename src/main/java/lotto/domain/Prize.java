@@ -1,10 +1,12 @@
 package lotto.domain;
 
+import lotto.dto.LottoMatchResponse;
+
 public enum Prize {
     FIRST(6, 2_000_000_000),
     SECOND(5, 30_000_000),
     THIRD(5, 1_500_000),
-    FORTH(4, 50_000),
+    FOURTH(4, 50_000),
     FIFTH(3, 5_000),
     NONE(0, 0);
 
@@ -19,25 +21,41 @@ public enum Prize {
         this.winningAmount = winningAmount;
     }
 
-    public static Prize valueOf(int matchingCount, boolean matchBonus) {
-        if (matchingCount < MIN_WINNING_COUNT) {
-            return NONE;
+    public static Prize valueOf(LottoMatchResponse matchResponse) {
+        int matchingCount = matchResponse.getMatchingCount();
+
+        if (isSecond(matchingCount, matchResponse.isBonus())) {
+            return SECOND;
         }
 
         Prize prize = valueOf(matchingCount);
-        if (SECOND.matchingCount == matchingCount && matchBonus) {
-            return SECOND;
-        }
         return prize;
     }
 
     private static Prize valueOf(int matchingCount) {
         for (Prize prize : values()) {
-            if (prize.matchingCount == matchingCount) {
+            if (matchingCount < MIN_WINNING_COUNT) {
+                return NONE;
+            }
+            if (isEqualMatchingCount(matchingCount, THIRD.matchingCount)) {
+                return THIRD;
+            }
+            if (isEqualMatchingCount(matchingCount, prize.matchingCount)) {
                 return prize;
             }
         }
         throw new IllegalArgumentException(NUMBERS_MATCH_COUNT_ERROR);
+    }
+
+    private static boolean isEqualMatchingCount(int matchingCount, int otherMatchingCount) {
+        return matchingCount == otherMatchingCount;
+    }
+
+    private static boolean isSecond(int matchingCount, boolean bonusMatch) {
+        if (matchingCount == SECOND.matchingCount && bonusMatch) {
+            return true;
+        }
+        return false;
     }
 
     public long calculateAmount(int winningCount) {

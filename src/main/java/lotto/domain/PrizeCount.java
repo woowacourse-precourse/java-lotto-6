@@ -1,11 +1,11 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
+import lotto.dto.LottoMatchResponse;
 
 public class PrizeCount {
     private final Map<Prize, Integer> prizeCount;
@@ -19,8 +19,9 @@ public class PrizeCount {
         prizes.forEach(prize -> prizeCount.put(prize, 0));
     }
 
-    public PrizeCount(List<Prize> matchResult) {
-        for (Prize prize : matchResult) {
+    public PrizeCount(List<LottoMatchResponse> matchResponses) {
+        for (LottoMatchResponse matchResponse : matchResponses) {
+            Prize prize = Prize.valueOf(matchResponse);
             if (prize.equals(Prize.NONE)) {
                 continue;
             }
@@ -33,7 +34,7 @@ public class PrizeCount {
     }
 
     public Map<Prize, Integer> getPrizeCount() {
-        return Collections.unmodifiableMap(this.prizeCount);
+        return this.prizeCount;
     }
 
     private long getTotalWinningAmount() {

@@ -13,7 +13,7 @@ public class OutputView {
 
     private static final String WINNING_STATISTICS = "당첨 통계";
     private static final String DELIMITER = "---";
-    private static final String TOTAL_ERAN_RATE = "총 수익률은 %.1f%%입니다.\n";
+    private static final String TOTAL_ERAN_RATE = "총 수익률은 %s%%입니다.\n";
 
 
     public void printUserLottoInfo(BuyLottoInfo buyLottoInfo){
@@ -35,7 +35,7 @@ public class OutputView {
                 System.out.printf(winningRank.getMessage(), count);
             }
         });
-        System.out.printf(TOTAL_ERAN_RATE, rateOfReturn);
+        System.out.printf(TOTAL_ERAN_RATE, String.format("%.1f", rateOfReturn));
     }
 
     public void printError(String errorMessage){

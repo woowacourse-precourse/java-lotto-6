@@ -54,7 +54,7 @@ public class LottoController {
         this.view.printDrawSummaryTitle();
 
         int[] grades = Arrays.stream(this.lottoBuySystem.getLottosNumbers())
-                .map((lottoNumbers) -> this.lottoDrawSystem.draw(lottoNumbers))
+                .map(this.lottoDrawSystem::draw)
                 .mapToInt(grade -> grade).toArray();
 
         int[] gradesCount = new int[LOTTO_DRAW_NUMBER_COUNT];
@@ -79,9 +79,10 @@ public class LottoController {
     }
 
 
-
     private String enterPrice() {
-        PriceEnter dto = new PriceEnter("", false);
+        String price = "";
+        boolean validInput = false;
+        PriceEnter dto = new PriceEnter(price, validInput);
 
         while (!dto.isInputValid()) {
             _enterPrice(dto);
@@ -89,8 +90,6 @@ public class LottoController {
 
         return dto.getPrice();
     }
-
-
 
 
     private String enterLottoDrawNumbers() {

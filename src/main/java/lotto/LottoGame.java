@@ -36,6 +36,7 @@ public class LottoGame {
         prizeResults.printResults();
     }
     public double calculateProfit() {
-
+        int totalPrize = prizeResults.calculateTotalPrize();
+        return (double) totalPrize / purchaseAmount * 100;
     }
 }

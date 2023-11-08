@@ -62,13 +62,13 @@
 ---
 
 ## 💥예외 발생
-| 조건 | ErrorMessages | 출력 |
-| --- | --- | --- |
-| 입력한 값이 숫자가 아니다 | NUMBER_FORMAT_EXCEPTION | ERROR] 정수만 입력 가능합니다. |
-| 입력한 값이 공백이다 | BLANK_EXCEPTION | [ERROR] 공백 문자는 입력할 수 없습니다. |
-| 로또 구입 금액이 1,000원으로 나누어 떨어지지 않는다 | USER_MONEY_UNIT_EXCEPTION | [ERROR] 구입 금액은 1000원 단위입니다. |
-| 로또 번호의 개수가 6개가 아니다 | LOTTO_LENGTH_EXCEPTION | [ERROR] 로또 번호의 개수는 6개만 가능합니다. |
-| 로또 번호가 1부터 45 사이 숫자가 아니다 | LOTTO_RANGE_EXCEPTION | [ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다. |
-| 로또 번호 중 중복된 숫자가 존재한다 | LOTTO_DUPLICATION_EXCEPTION | [ERROR] 로또 번호 중 중복된 숫자가 존재합니다. |
+| 조건 | ErrorMessages | 출력                                   |
+| --- | --- |--------------------------------------|
+| 입력한 값이 숫자가 아니다 | NUMBER_FORMAT_EXCEPTION | [ERROR] 정수만 입력 가능합니다.                |
+| 입력한 값이 공백이다 | BLANK_EXCEPTION | [ERROR] 공백 문자는 입력할 수 없습니다.           |
+| 로또 구입 금액이 1,000원으로 나누어 떨어지지 않는다 | USER_MONEY_UNIT_EXCEPTION | [ERROR] 구입 금액은 1000원 단위입니다.          |
+| 로또 번호의 개수가 6개가 아니다 | LOTTO_LENGTH_EXCEPTION | [ERROR] 로또 번호의 개수는 6개만 가능합니다.        |
+| 로또 번호가 1부터 45 사이 숫자가 아니다 | LOTTO_RANGE_EXCEPTION | [ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.  |
+| 로또 번호 중 중복된 숫자가 존재한다 | LOTTO_DUPLICATION_EXCEPTION | [ERROR] 로또 번호 중 중복된 숫자가 존재합니다.       |
 | 보너스 번호가 1부터 45 사이 숫자가 아니다 | BONUS_RANGE_EXCEPTION | [ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다. |
-| 당첨 번호와 보너스 번호가 중복된다 | BONUS_DUPLICATION_EXCEPTION | [ERROR] 당첨 번호와 보너스 번호가 중복됩니다. |
+| 당첨 번호와 보너스 번호가 중복된다 | BONUS_DUPLICATION_EXCEPTION | [ERROR] 당첨 번호와 보너스 번호가 중복됩니다.        |

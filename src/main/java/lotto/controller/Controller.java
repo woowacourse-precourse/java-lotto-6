@@ -165,6 +165,7 @@ public class Controller {
 
     private void checkInputValidation(String inputBonusNumber) {
         InputValidator.isNullOrIsEmpty(inputBonusNumber);
+        InputValidator.isNotOneNumber(inputBonusNumber);
         InputValidator.isNotDigit(inputBonusNumber);
     }
 

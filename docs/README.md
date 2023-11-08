@@ -108,6 +108,13 @@
 - 무작위로 로또 생성한 뒤 getWinningNumberFromUser()의 당첨번호들이 5개 + 보너스 볼이 일치하는지 검사하는 로직 (일치하면 개수를 ResultView로 반환)
 - 무작위로 로또 생성한 뒤 getWinningNumberFromUser()의 당첨번호들이 6개가 일치하는지 검사하는 로직
 
+### Rank : 로또의 당첨 등수와 그에 따른 상금을 정의하는 클래스
+- FIRST, SECOND, THIRD, FOURTH, FIFTH: 각 등수를 나타내며, 각 등수는 일치하는 번호의 개수와 상금을 가지고 있음
+- getMatchCount(): 이 enum 상수가 가지고 있는 일치하는 번호의 개수를 반환 
+- getWinningMoney(): 이 enum 상수가 가지고 있는 상금을 반환
+- valueOf(int MatchCount, boolean matchBonus): 주어진 일치하는 번호의 개수와 보너스 번호의 일치 여부를 기반으로 적절한 등수를 반환 
+- determineRank(int MatchCount, boolean matchBonus): 주어진 일치하는 번호의 개수와 보너스 번호의 일치 여부를 기반으로 적절한 등수를 반환 
+- getRankForFiveMatches(boolean matchBonus): 보너스 번호가 일치하면 SECOND를, 일치하지 않으면 THIRD를 반환
 
 ---
 

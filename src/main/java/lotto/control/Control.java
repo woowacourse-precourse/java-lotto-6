@@ -6,6 +6,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
 import lotto.domain.Prize;
 import lotto.service.LottoTicketGenerator;
+import lotto.service.PrizeStatisticAccumulator;
 import lotto.service.PrizeStatisticService;
 import lotto.service.UserRequestService;
 import lotto.view.OutputView;
@@ -18,7 +19,7 @@ public class Control {
     }
 
     private static int startLotto() {
-        int lottoCost = UserRequestService.requestLottoCost();
+        int lottoCost = UserRequestService.requestLottoCostWithException();
         int lottoTicketCount = calculateTicketCount(lottoCost);
         OutputView.printLottoTicketCount(lottoTicketCount);
         return lottoCost;
@@ -30,11 +31,11 @@ public class Control {
     }
 
     private static void resultLotto (int lottoCost) {
-        Lotto winningLotto = UserRequestService.requestWinningLotto();
-        int bonusNumber = UserRequestService.requestBonusNumber(winningLotto.getNumbers());
+        Lotto winningLotto = UserRequestService.requestWinningLottoWithException();
+        int bonusNumber = UserRequestService.requestBonusNumberWithException(winningLotto.getNumbers());
 
-        Map<Prize, Integer> matchNumberCount = PrizeStatisticService.compilePrizeStatistics(winningLotto, bonusNumber);
-        int totalPrize = PrizeStatisticService.processAndReportPrizeResults(matchNumberCount);
+        Map<Prize, Integer> matchNumberCount = PrizeStatisticAccumulator.compilePrizeStatistics(winningLotto, bonusNumber);
+        int totalPrize = PrizeStatisticService.reportPrizeResults(matchNumberCount);
 
         OutputView.printProfitRate(totalPrize, lottoCost);
     }

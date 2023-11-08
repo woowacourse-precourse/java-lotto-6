@@ -10,15 +10,6 @@ import org.junit.jupiter.api.Test;
 public class LottoGameTest {
 
 
-    @DisplayName("입력 값이 1000으로 나누어지는 값인지 확인한다")
-    @Test
-    void checkMultipleOfThousand() {
-        assertThatThrownBy(() -> new LottoGame().validateMultiple("12200"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 한장이 1000원이므로 구매금액은 1000원 단위로 입력해야 합니다.");
-    }
-
-
     @DisplayName("입력 값이 1과 45 사이의 숫자가 아닐때 예외가 발생한다.")
     @Test
     void createNumberByOutOfRange() {

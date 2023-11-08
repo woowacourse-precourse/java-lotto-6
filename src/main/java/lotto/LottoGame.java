@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import lotto.validator.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,16 +20,11 @@ import lotto.view.OutputView;
 public class LottoGame {
     public void start() {
 
-        int payment = receiveMoney();
-
-        OutputView.print(LINE_BREAK.getMessage());
-        int countOfLotto = payment / 1000;
-        OutputView.print(String.valueOf(countOfLotto));
-        OutputView.print(PAYMENT_COMPLETE.getMessage());
-        OutputView.print(LINE_BREAK.getMessage());
+        Money money = runMoneySavingProcess();
+        printCountOfLotto(money.toString());
 
         List<Lotto> lottoTicket = new ArrayList<>();
-        for (int count = 0; count < countOfLotto; count++) {
+        for (int count = 0; count < money.calculatePurchasedLotto(); count++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto attempt = new Lotto(numbers);
             lottoTicket.add(attempt);
@@ -76,22 +70,29 @@ public class LottoGame {
 
     }
 
+    private Money runMoneySavingProcess() {
+        try {
+            return new Money(receiveMoney());
+        } catch (IllegalArgumentException exception) {
+            OutputView.print(exception.getMessage());
+            return runMoneySavingProcess();
+        }
+    }
+
     private int receiveMoney() {
         OutputView.print(PAYMENT_REQUEST.getMessage());
         OutputView.print(LINE_BREAK.getMessage());
         String money = InputView.read();
         InputValidator.validateNumber(money);
-        validateMultiple(money);
+
         return Integer.parseInt(money);
     }
 
-
-    public void validateMultiple(String input) {
-        if (Stream.of(input)
-                .map(Integer::parseInt)
-                .anyMatch(number -> number % 1000 != 0)) {
-            throw new IllegalArgumentException("[ERROR] 로또 한장이 1000원이므로 구매금액은 1000원 단위로 입력해야 합니다.");
-        }
+    private void printCountOfLotto(String count) {
+        OutputView.print(LINE_BREAK.getMessage());
+        OutputView.print(count);
+        OutputView.print(PAYMENT_COMPLETE.getMessage());
+        OutputView.print(LINE_BREAK.getMessage());
     }
 
 

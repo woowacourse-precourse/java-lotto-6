@@ -28,14 +28,14 @@ public class LottoGame {
 
 	public void start() {
 
-		LottoMachine lottoMachine = new LottoMachine();
 		int price = inputPrice();
-		Customer customer = new Customer(lottoMachine.sellLotto(price));
+		Customer customer = new Customer(LottoMachine.sellLotto(price));
 
 		lottoOutputProvider.getOutputBuyLotto(customer.getLottos());
 
-		lottoMachine.setWinningNumbers(inputWinningNumber());
-		lottoMachine.setBonusNumber(inputBonusNumber());
+		Lotto winningNumbers = inputWinningNumber();
+		int bonusNumber = inputBonusNumber();
+		LottoMachine lottoMachine = new LottoMachine(winningNumbers, bonusNumber);
 
 		List<LottoResult> lottoResults = lottoService.checkWinning(customer.getLottos()
 			, lottoMachine.getWinningNumbers()

@@ -18,24 +18,26 @@ public class LottoMachine {
 	private Lotto winningNumbers;
 	private int bonusNumber;
 
+	public LottoMachine() {
+	}
+
+	public LottoMachine(Lotto winningNumbers, int bonusNumber) {
+		validateBonusNumber(winningNumbers, bonusNumber);
+		this.winningNumbers = winningNumbers;
+		this.bonusNumber = bonusNumber;
+	}
+
 	public Lotto getWinningNumbers() {
 		return winningNumbers;
 	}
 
-	public void setWinningNumbers(Lotto winningNumbers) {
-		this.winningNumbers = winningNumbers;
-	}
 
 	public int getBonusNumber() {
 		return bonusNumber;
 	}
 
-	public void setBonusNumber(int bonusNumber) {
-		validateBonusNumber(bonusNumber);
-		this.bonusNumber = bonusNumber;
-	}
 
-	public List<Lotto> sellLotto(int price) {
+	public static List<Lotto> sellLotto(int price) {
 		validatePrice(price);
 
 		int lottoAmount = price / MIN_LOTTO_PRICE;
@@ -45,12 +47,12 @@ public class LottoMachine {
 			.collect(Collectors.toList());
 	}
 
-	private Lotto generateRandomLotto() {
+	private static Lotto generateRandomLotto() {
 		return new Lotto(Randoms.pickUniqueNumbersInRange(
 			MIN_LOTTO_NUMBER, Lotto.MAX_LOTTO_NUMBER, Lotto.MAX_LOTTO_SIZE));
 	}
 
-	private void validateBonusNumber(int bonusNumber) {
+	private void validateBonusNumber(Lotto winningNumbers, int bonusNumber) {
 		if (winningNumbers.getNumbers().contains(bonusNumber) || !isInRange(bonusNumber))
 			throw new IllegalArgumentException(ErrorType.INVALID_BONUS_NUMBER.getErrorMessage());
 	}
@@ -59,7 +61,7 @@ public class LottoMachine {
 		return bonusNumber >= MIN_LOTTO_NUMBER && bonusNumber <= MAX_LOTTO_NUMBER;
 	}
 
-	private void validatePrice(int price) {
+	private static void validatePrice(int price) {
 		if (price < MIN_LOTTO_PRICE || price % MIN_LOTTO_PRICE != 0) {
 			throw new IllegalArgumentException(ErrorType.INVALID_PURCHASE_ERROR.getErrorMessage());
 		}

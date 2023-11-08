@@ -38,8 +38,6 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
-    private static final List<Integer> SUCCESSFUL_LOTTO_NUMBERS = List.of(1, 8, 12, 15, 23, 36);
-
     @Nested
     @DisplayName("로또 번호 생성 테스트")
     class LottoNumberCreationTest {

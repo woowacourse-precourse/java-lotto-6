@@ -9,12 +9,8 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
         LottoValidator.validateLottoNumbers(numbers);
+        this.numbers = numbers;
     }
 
     public List<Integer> getSortedNumbers() {
@@ -25,14 +21,26 @@ public class Lotto {
 
     public int getHowManySameNumbers(Lotto compare) {
         int count = 0;
-        for(int number = 0; number < numbers.size(); number++){
-            if(compare.getSortedNumbers().contains(numbers.get(number)))
+        for (int number = 0; number < numbers.size(); number++) {
+            if (compare.getSortedNumbers().contains(numbers.get(number))) {
                 count++;
+            }
         }
         return count;
     }
 
-    public boolean hasBonus(int bonus){
-        return this.numbers.contains(bonus);
+    public boolean hasBonus(Lotto compare, int bonus) {
+        List<Integer> compares = compare.getSortedNumbers();
+        for (int number :
+                compares) {
+            if (this.numbers.contains(number)) {
+                continue;
+            }
+            if (number == bonus) {
+                return true;
+            }
+        }
+        return false;
     }
+
 }

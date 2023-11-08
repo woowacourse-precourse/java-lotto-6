@@ -12,12 +12,16 @@ import static lotto.view.output.PrintMessage.PRINT_SECOND_RANK;
 import static lotto.view.output.PrintMessage.PRINT_STATISTICS;
 import static lotto.view.output.PrintMessage.PRINT_THIRD_RANK;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import lotto.domain.dto.LottoDto;
 import lotto.domain.dto.LottoRankDto;
 import lotto.domain.dto.WinningStatisticsDto;
 
 public class OutputConsoleView implements OutputView {
+
+    private final DecimalFormat df = new DecimalFormat("###,###");
+
     @Override
     public void writeAskingBonusNumber() {
         System.out.println(ASKING_BONUS_NUMBER);
@@ -72,7 +76,7 @@ public class OutputConsoleView implements OutputView {
                                  LottoRankDto lottoRankDto) {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format(PRINT_FIFTH_RANK.toString(),lottoRankDto.standardOfFifthPlace(),
-                lottoRankDto.prizeOfFifthPlace(),winningStatisticsDto.countOfFifthPlace()))
+                df.format(lottoRankDto.prizeOfFifthPlace()),winningStatisticsDto.countOfFifthPlace()))
                 .append("\n");
         return sb.toString();
     }
@@ -80,7 +84,7 @@ public class OutputConsoleView implements OutputView {
                                  LottoRankDto lottoRankDto) {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format(PRINT_FOURTH_RANK.toString(),lottoRankDto.standardOfFourthPlace(),
-                        lottoRankDto.prizeOfFourthPlace(),winningStatisticsDto.countOfFourthPlace()))
+                        df.format(lottoRankDto.prizeOfFourthPlace()),winningStatisticsDto.countOfFourthPlace()))
                 .append("\n");
         return sb.toString();
     }
@@ -89,7 +93,7 @@ public class OutputConsoleView implements OutputView {
                                   LottoRankDto lottoRankDto) {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format(PRINT_THIRD_RANK.toString(),lottoRankDto.standardOfThirdPlace(),
-                        lottoRankDto.prizeOfThirdPlace(),winningStatisticsDto.countOfThirdPlace()))
+                        df.format(lottoRankDto.prizeOfThirdPlace()),winningStatisticsDto.countOfThirdPlace()))
                 .append("\n");
         return sb.toString();
     }
@@ -98,7 +102,7 @@ public class OutputConsoleView implements OutputView {
                                   LottoRankDto lottoRankDto) {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format(PRINT_SECOND_RANK.toString(),lottoRankDto.standardOfSecondPlace(),
-                        lottoRankDto.prizeOfSecondPlace(),winningStatisticsDto.countOfSecondPlace()))
+                        df.format(lottoRankDto.prizeOfSecondPlace()),winningStatisticsDto.countOfSecondPlace()))
                 .append("\n");
         return sb.toString();
     }
@@ -107,7 +111,7 @@ public class OutputConsoleView implements OutputView {
                                   LottoRankDto lottoRankDto) {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format(PRINT_FIRST_RANK.toString(),lottoRankDto.standardOfFirstPlace(),
-                        lottoRankDto.prizeOfFirstPlace(),winningStatisticsDto.countOfFirstPlace()))
+                        df.format(lottoRankDto.prizeOfFirstPlace()),winningStatisticsDto.countOfFirstPlace()))
                 .append("\n");
         return sb.toString();
     }

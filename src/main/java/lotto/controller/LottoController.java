@@ -16,6 +16,9 @@ public class LottoController {
     private List<Integer> prizeCount;
     private float profitPercent;
 
+    public LottoController() {
+    }
+
     public void startGame() {
         setMyLotto();
         printMyLotto();

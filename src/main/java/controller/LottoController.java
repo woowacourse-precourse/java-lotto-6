@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lotto.Lotto;
@@ -45,13 +46,10 @@ public class LottoController {
     }
 
     private int getLottoWinnerCount(List<Integer> lottoNumbers) {
-        int lottoCount = 0;
-        for (int lottoIndex = 0; lottoIndex < lottoNumbers.size(); lottoIndex++) {
-            if (luckeyLotto.getluckeyNumbers().contains(lottoNumbers.get(lottoIndex))) {
-                lottoCount++;
-            }
-        }
-        return lottoCount;
+        List<Integer> lottoCounts = new ArrayList<>(lottoNumbers);
+        lottoCounts.retainAll(lotto.getNumbers());
+
+        return lottoCounts.size();
     }
 
     private void increaseLottoWinnerCount(List<Integer> lottoNumbers, int lottoWinnerCount) {

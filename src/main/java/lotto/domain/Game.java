@@ -66,7 +66,7 @@ public class Game {
         List<Integer> input = null;
         try {
             input = inputView.readNumbers();
-        } catch (IllegalArgumentException e) {
+        } catch (NumberFormatException e) {
             outputView.print(e.getMessage());
             getAnswerLottos();
         }

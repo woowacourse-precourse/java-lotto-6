@@ -7,11 +7,13 @@ import lotto.model.Payment;
 import lotto.service.LottoService;
 import lotto.utils.InputValidator;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.List;
 
 public class LottoController {
     InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
     InputValidator inputValidator = new InputValidator();
     LottoService lottoService = new LottoService();
 
@@ -20,6 +22,14 @@ public class LottoController {
         Lottos userLottos = lottoService.createUserLottos(userPayment.providePaymentStatus().get(1));
         Lotto answerLotto = setAnswerLotto();
         BonusNumber bonusNumber = setBonusNumber();
+        printBuyingResult(userPayment, userLottos);
+    }
+
+    private void printBuyingResult(Payment userPayment, Lottos userLottos) {
+        outputView.printLottoAmount(userPayment.providePaymentStatus().get(1));
+        for (Lotto userLotto : userLottos.getLottos()) {
+            outputView.printNumbers(userLotto.getNumbers());
+        }
     }
 
     private Payment buyLottos() {

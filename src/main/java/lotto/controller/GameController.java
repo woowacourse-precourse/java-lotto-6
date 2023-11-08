@@ -3,7 +3,6 @@ package lotto.controller;
 import static lotto.model.User.userNumListInt;
 
 import lotto.model.Lotto;
-import lotto.model.User;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

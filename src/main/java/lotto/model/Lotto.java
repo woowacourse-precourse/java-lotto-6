@@ -1,10 +1,11 @@
 package lotto.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import static lotto.model.User.lottoBoughtNum;
 import static lotto.model.User.userBonusNum;
 import static lotto.model.User.userNumListInt;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

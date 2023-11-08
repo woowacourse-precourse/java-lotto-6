@@ -21,8 +21,8 @@ public class User {
     public static void userNumListInt() {
         String[] userNumListStr = userNum.split(",");
 
-        for (int i = 0; i < userNumListStr.length; i++) {
-            userNumListInt.add(Integer.parseInt(userNumListStr[i]));
+        for (String s : userNumListStr) {
+            userNumListInt.add(Integer.parseInt(s));
         }
     }
 
@@ -34,8 +34,7 @@ public class User {
         double rateOfReturn = ((double) prize / lottoBoughtPrice) * 100.0;
 
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.0%");
-        String formattedRateOfReturn = decimalFormat.format(rateOfReturn / 100.0);
 
-        return formattedRateOfReturn;
+        return decimalFormat.format(rateOfReturn / 100.0);
     }
 }

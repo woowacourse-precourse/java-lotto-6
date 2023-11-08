@@ -8,11 +8,14 @@ public class LottoGame {
     private int numLotto;
     private List<Lotto> lottoGames = new ArrayList<>(5);
 
-    public  LottoGame(){}
+    public LottoGame() {
+    }
+
     public LottoGame(int money) {
         this.numLotto = money / 1_000;
     }
-    public LottoGame(int money,List<Lotto> lotto) {
+
+    public LottoGame(int money, List<Lotto> lotto) {
         this.numLotto = money / 1_000;
         this.lottoGames = lotto;
     }

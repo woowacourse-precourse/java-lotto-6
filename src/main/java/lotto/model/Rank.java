@@ -18,6 +18,7 @@ public enum Rank {
         this.prize = prize;
         this.convertPrize = convertPrize;
     }
+
     public int getCount() {
         return count;
     }

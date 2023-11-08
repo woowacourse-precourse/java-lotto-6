@@ -28,7 +28,12 @@ public class LottoGame {
         }
     }
     public void checkResults(List<Integer> winningNumbers, int bonusNumber) {
-
+        for (Lotto lotto : lottos) {
+            int matchCount = lotto.countMatchingNumbers(winningNumbers);
+            boolean hasBonus = lotto.containsBonusNumber(bonusNumber);
+            prizeResults.addResult(matchCount, hasBonus);
+        }
+        prizeResults.printResults();
     }
     public double calculateProfit() {
 

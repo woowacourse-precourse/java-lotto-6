@@ -16,11 +16,11 @@ public class Input {
         try {
             int money = Integer.parseInt(input);
             if (money % 1000 != 0) {
-                throw new IllegalArgumentException("1,000원 단위로 입력하세요.");
+                throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력하세요.");
             }
             return money;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력하세요");
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요");
         }
 
     }
@@ -32,18 +32,18 @@ public class Input {
         try {
             String[] nums = input.split(",");
             if (nums.length == 0) {
-                throw new IllegalArgumentException("쉼표로 구분된 숫자를 입력하세요.");
+                throw new IllegalArgumentException("[ERROR] 쉼표로 구분된 숫자를 입력하세요.");
             }
             for (String num : nums) {
                 int number = Integer.parseInt(num.trim());
                 if (number < 1 || number > 45) {
-                    throw new IllegalArgumentException("숫자는 1이상45이하 이여야 합니다.");
+                    throw new IllegalArgumentException("[ERROR] 숫자는 1이상45이하 이여야 합니다.");
                 }
                 numbers.add(number);
             }
             return numbers;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력하세요.");
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요.");
         }
     }
 
@@ -52,11 +52,11 @@ public class Input {
         try {
             Integer bonusNumber = Integer.parseInt(input);
             if (bonusNumber < 1 || bonusNumber > 45) {
-                throw new IllegalArgumentException("숫자는 1이상45이하 이여야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 숫자는 1이상45이하 이여야 합니다.");
             }
             return bonusNumber;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력하세요.");
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요.");
         }
     }
 

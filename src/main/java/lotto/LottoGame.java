@@ -14,11 +14,16 @@ public class LottoGame {
 
 
     public void startGame() {
-        int moneyInput = requestMoneyInput();
-        List<Lotto> lottos = buyLotto(moneyInput);
-        List<Integer> numbers = requestWinningNumbers();
-        int bonusNumber = requestBonusNumber();
-        responseCalculateWinners(lottos, numbers, bonusNumber, moneyInput);
+        try {
+            int moneyInput = requestMoneyInput();
+            List<Lotto> lottos = buyLotto(moneyInput);
+            List<Integer> numbers = requestWinningNumbers();
+            int bonusNumber = requestBonusNumber();
+            responseCalculateWinners(lottos, numbers, bonusNumber, moneyInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            
+        }
     }
 
     private List<Lotto> buyLotto(int moneyInput) {

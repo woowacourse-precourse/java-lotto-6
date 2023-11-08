@@ -1,5 +1,6 @@
 package lotto.IO;
 
+import static lotto.constant.Constants.BONUS_BALL;
 import static lotto.constant.Constants.MONEY_WHEN_FIVE_MATCHED;
 import static lotto.constant.Constants.MONEY_WHEN_FIVE_PLUS_BONUS_BALL_MATCHED;
 import static lotto.constant.Constants.MONEY_WHEN_FOUR_MATCHED;
@@ -36,12 +37,13 @@ public class Output {
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 " + MONEY_WHEN_THREE_MATCHED + " - " + winners.get(3).toString() + "개");
-        System.out.println("4개 일치 " + MONEY_WHEN_FOUR_MATCHED + " - " + winners.get(3).toString() + "개");
-        System.out.println("5개 일치 " + MONEY_WHEN_FIVE_MATCHED + " - " + winners.get(3).toString() + "개");
+        System.out.println("4개 일치 " + MONEY_WHEN_FOUR_MATCHED + " - " + winners.get(4).toString() + "개");
+        System.out.println("5개 일치 " + MONEY_WHEN_FIVE_MATCHED + " - " + winners.get(5).toString() + "개");
         System.out.println(
-                "5개 일치, 보너스 볼 일치 " + MONEY_WHEN_FIVE_PLUS_BONUS_BALL_MATCHED + " - " + winners.get(3).toString() + "개");
-        System.out.println("6개 일치 " + MONEY_WHEN_SIX_MATCHED + " - " + winners.get(3).toString() + "개");
-        System.out.println(String.format("총 수익률은 %.1f%% 입니다.", profit));
+                "5개 일치, 보너스 볼 일치 " + MONEY_WHEN_FIVE_PLUS_BONUS_BALL_MATCHED + " - " + winners.get(5 + BONUS_BALL)
+                        .toString() + "개");
+        System.out.println("6개 일치 " + MONEY_WHEN_SIX_MATCHED + " - " + winners.get(6).toString() + "개");
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", profit));
     }
 
 

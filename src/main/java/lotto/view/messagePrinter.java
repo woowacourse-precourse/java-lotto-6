@@ -1,8 +1,13 @@
 package lotto.view;
 
+
+import java.util.Map.Entry;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.Rank;
 import lotto.service.lottoService;
 public class messagePrinter {
 
@@ -29,8 +34,21 @@ public class messagePrinter {
             Collections.sort(lottos.get(i).getNumbers());
             System.out.println(lottos.get(i).getNumbers());
         }
-
     }
+    public static void printLottoResults(LinkedHashMap<Rank, Integer> lottoHashMap){
+        for(Entry<Rank,Integer> hash : lottoHashMap.entrySet()){
+            if(hash.getKey().equals(Rank.NONE)){ continue; }
+            System.out.println(hash.getKey().getResult()+" - "+hash.getValue()+"개");
+        }
+    }
+
+    public static void printProfitRate(){
+        double profitRate = lottoService.getProfitRate();
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.",profitRate));
+    }
+
+
+
 
 
 

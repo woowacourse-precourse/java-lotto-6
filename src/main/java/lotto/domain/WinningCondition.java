@@ -1,13 +1,13 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 import lotto.constants.Config;
 import lotto.constants.Message;
 import lotto.dto.BonusNumber;
 import lotto.dto.LottoCompareResult;
 import lotto.dto.WinningNumber;
+import lotto.utils.Converter;
 
 public class WinningCondition {
     private WinningNumber winningNumber;
@@ -30,7 +30,7 @@ public class WinningCondition {
     }
 
     public void inputBonusNumbers(String readLine) {
-        Integer parsingNumber = parseToInteger(readLine);
+        Integer parsingNumber = Converter.convertToInteger(readLine);
         if (isWinningNumberContains(parsingNumber)) {
             throw new IllegalArgumentException(Message.DUPLICATED_BONUS_NUMBER);
         }
@@ -39,18 +39,6 @@ public class WinningCondition {
 
     private boolean isWinningNumberContains(Integer parsingNumber) {
         return winningNumber.getNumbers().contains(parsingNumber);
-    }
-
-    private Integer parseToInteger(String readLine) {
-        Integer number;
-        try {
-            number = Integer.parseInt(readLine);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Message.INPUT_NOT_NUMBER_EXCEPTION);
-        } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException(Message.INPUT_NULL_EXCEPTION);
-        }
-        return number;
     }
 
     public void inputWinningNumbers(String readLine) {
@@ -66,18 +54,10 @@ public class WinningCondition {
     }
 
     private List<Integer> getIntegerList(List<String> parsedString) {
-        List<Integer> parsingNumbers = new ArrayList<>();
-        for (String str : parsedString) {
-            try {
-                parsingNumbers.add(Integer.parseInt(str));
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(Message.INPUT_NOT_NUMBER_EXCEPTION);
-            } catch (NoSuchElementException e) {
-                throw new IllegalArgumentException(Message.INPUT_NULL_EXCEPTION);
-            }
-        }
-        return parsingNumbers;
+        return parsedString.stream().map(Converter::convertToInteger)
+                .collect(Collectors.toList());
     }
+
     public WinningCondition() {
     }
 

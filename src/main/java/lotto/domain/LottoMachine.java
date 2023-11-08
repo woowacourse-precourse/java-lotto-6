@@ -5,9 +5,9 @@ import static lotto.constants.Config.LOTTO_PRICE;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
 import lotto.constants.Message;
 import lotto.dto.UserInputMoney;
+import lotto.utils.Converter;
 
 public class LottoMachine {
 
@@ -30,20 +30,8 @@ public class LottoMachine {
     }
 
     public void insertMoney(String readLine) {
-        Long inputAmount = validateAndConvertInt(readLine);
+        Long inputAmount = Converter.convertToLong(readLine);
         this.inputMoney = new UserInputMoney(inputAmount);
-    }
-
-    private static Long validateAndConvertInt(String inputMoney) {
-        Long inputAmount;
-        try {
-            inputAmount = Long.parseLong(inputMoney);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Message.INPUT_NOT_NUMBER_EXCEPTION);
-        } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException(Message.INPUT_NULL_EXCEPTION);
-        }
-        return inputAmount;
     }
 
     public long getInputAmount() {

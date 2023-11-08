@@ -70,21 +70,21 @@
 ## 💙 새로운 요구사항
 
 - 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, <br>
-  "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+  "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다
   <br></br>
-- Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
+- Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다
   <br></br>
-- 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
-    - 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
+- 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다
+    - 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다
       <br></br>
-- else 예약어를 쓰지 않는다.
-    - switch/case도 허용하지 않는다.
+- else 예약어를 쓰지 않는다
+    - switch/case도 허용하지 않는다
       <br></br>
-- Java Enum을 적용한다.
+- Java Enum을 적용한다
   <br></br>
-- 도메인 로직에 단위 테스트를 구현해야 한다.
-    - 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
-    - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
+- 도메인 로직에 단위 테스트를 구현해야 한다
+    - 단, UI(System.out, System.in, Scanner) 로직은 제외한다
+    - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다
 
 <br>
 
@@ -98,7 +98,7 @@
     - 실제로 최대 10만원분의 로또를 구매할 수 있으므로 구입 금액 최대 금액은 10만원으로 결정한다
       <br></br>
 - 미리 제시된 Lotto 클래스를 어떤 식으로 활용해볼 수 있을까?
-    - Lotto 클래스의 생성자 접근 제어자를 default로 변경하여 lotto 패키지 내에서만 Lotto 객체를 생성할 수 있도록 했다.
+    - Lotto 클래스의 생성자 접근 제어자를 default로 변경하여 lotto 패키지 내에서만 Lotto 객체를 생성할 수 있도록 했다
     - Lotto 클래스의 패키지가 변경됨에 따라 LottoTest의 패키지도 이동시켰다.<br></br>
 - 검증 로직은 어디에 있어야 할까?<br>
     - 입력 데이터의 정합성 확인<br>

@@ -30,14 +30,7 @@ public class Input {
         }
 
         System.out.println("당첨 번호를 입력해 주세요.");
-        while(true) {
-            try {
-                String winningNum = inputWinningNum();
-                break;
-            } catch(IllegalArgumentException e) {
-                ;
-            }
-        }
+        String winningNum = inputWinningNum();
 
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNum = inputBonusNum();
@@ -64,10 +57,7 @@ public class Input {
             try {
                 winningNum = Console.readLine();
                 WinningNumberValidator.validate(winningNum);
-                String[] splitWinningNumber = winningNum.split(",");
-                for (String num : splitWinningNumber) {
-                    winningNumber.add(Integer.parseInt(num));
-                }
+                splitWinningNumber(winningNum);
                 System.out.println();
                 break;
             } catch(IllegalArgumentException e) {
@@ -75,6 +65,13 @@ public class Input {
             }
         }
         return winningNum;
+    }
+
+    void splitWinningNumber(String winningNum) {
+        String[] splitWinningNumber = winningNum.split(",");
+        for (String num : splitWinningNumber) {
+            winningNumber.add(Integer.parseInt(num));
+        }
     }
 
     private String inputBonusNum() {

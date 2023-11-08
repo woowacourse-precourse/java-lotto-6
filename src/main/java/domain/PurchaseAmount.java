@@ -4,6 +4,7 @@ import exception.IllegalArgumentExceptionMessage;
 import exception.NumberFormatExceptionMessage;
 
 public class PurchaseAmount {
+	private static final int THOUSAND_UNIT = 1000;
 	private final int amount;
 	private final int lottoPurchaseCount;
 
@@ -26,7 +27,7 @@ public class PurchaseAmount {
 	}
 
 	private int calculateLottoPurchaseCount(int amount) {
-		return amount / 1000;
+		return amount / THOUSAND_UNIT;
 	}
 
 	private int convertStringToInt(String amount) {
@@ -40,7 +41,7 @@ public class PurchaseAmount {
 	}
 
 	private void validateIsThousandUnit(int amount) {
-		if (!(amount % 1000 == 0)) {
+		if (!(amount % THOUSAND_UNIT == 0)) {
 			IllegalArgumentExceptionMessage.PURCHASE_AMOUNT_THOUSAND_UNIT.throwException();
 		}
 	}

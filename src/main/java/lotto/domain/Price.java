@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import static lotto.constant.ErrorMessage.ONLY_NUMBERS_ALLOWED;
 import static lotto.constant.ErrorMessage.WRONG_BUY_PRICE;
 import static lotto.constant.ErrorMessage.WRONG_MAXIMUM_BUY;
 import static lotto.constant.ErrorMessage.WRONG_MINIMUM_BUY;

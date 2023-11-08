@@ -18,11 +18,6 @@ public class Lotto {
         return numbers;
     }
 
-    public boolean contains(int number) {
-        List<Integer> lottoNumbers = getNumbers();
-        return lottoNumbers.contains(number);
-    }
-
     private void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();

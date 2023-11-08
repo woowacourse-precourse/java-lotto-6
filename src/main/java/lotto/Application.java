@@ -24,7 +24,6 @@ public class Application {
     private Application() {
         output = new Output();
         input = new Input();
-        List<Lotto> lottos = new ArrayList<>();
         analyzer = new Analyzer();
     }
 

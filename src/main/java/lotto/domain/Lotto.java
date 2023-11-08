@@ -15,12 +15,11 @@ public class Lotto {
 
     public Lotto(final List<Integer> numbers) {
         validate(numbers);
-        sortNumbers(numbers);
-        this.numbers = numbers;
+        this.numbers = sortNumbers(numbers);
     }
 
-    private void sortNumbers(List<Integer> numbers) {
-        numbers.stream()
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        return numbers.stream()
                 .sorted()
                 .toList();
     }

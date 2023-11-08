@@ -14,10 +14,7 @@ public class Application {
 
         LottoPlay lottoPlay = new LottoPlay();
 
-
         lottoPlay.play(input,output);
-
-
 
         // TODO: 프로그램 구현
     }

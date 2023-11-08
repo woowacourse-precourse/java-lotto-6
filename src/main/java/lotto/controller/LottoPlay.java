@@ -13,6 +13,7 @@ public class LottoPlay {
 
     public void play(Input input, Output output){
 
+
         List<Lotto> lottoPlayList = makeLottoInput(input,output);
         Lotto winNumber = makeWinInput(input, output);
         int bonus = makeBonusInput(input,output);
@@ -21,27 +22,44 @@ public class LottoPlay {
 
     }
 
-    private List<Lotto> makeLottoInput(Input input, Output output){
+    private List<Lotto> makeLottoInput(Input input, Output output) {
         RandomNumber randomNumber = new RandomNumber();
         output.howManyLotto();
-        List<Lotto> lottolists = randomNumber.lottoList();
-        output.printLine();
-        return lottolists;
+        while (true) {
+            try {
+                List<Lotto> lottolists = randomNumber.lottoList();
+                output.printLine();
+                return lottolists;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
-
     private Lotto makeWinInput(Input input, Output output){
         InputData inputData = new InputData();
         output.printWinNumber();
-        Lotto lottoWin = new Lotto(inputData.lottoList(input.inputWinNumber()));
-        output.printLine();
-        return lottoWin;
+        while(true) {
+            try {
+                Lotto lottoWin = new Lotto(inputData.lottoList(input.inputWinNumber()));
+                output.printLine();
+                return lottoWin;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private int makeBonusInput(Input input, Output output) {
         output.printBonusNumber();
-        String bonus = input.inputBonusNumber();
-        output.printLine();
-        return Integer.parseInt(bonus);
+        while(true){
+            try{
+                String bonus = input.inputBonusNumber();
+                output.printLine();
+                return Integer.parseInt(bonus);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private long result(List<Lotto> lottoPlayList, Lotto winNumber, int bonus){

@@ -1,5 +1,8 @@
 package lotto.Domain;
 
+import lotto.InputData;
+
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -11,6 +14,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        checkDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -20,6 +24,13 @@ public class Lotto {
         }
     }
 
+    private void checkDuplicate(List<Integer> number){
+        for(int i : number){
+            if(Collections.frequency(number,i)>1){
+                throw new IllegalArgumentException();
+            }
+        }
+    }
 
 
 

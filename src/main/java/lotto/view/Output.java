@@ -21,7 +21,6 @@ public class Output {
 
     public void printLottoList(List<Lotto> lottolist) {
         for (Lotto lotto : lottolist) {
-            Collections.sort(lotto.getNumbers());
             System.out.println(lotto.getNumbers());
         }
     }

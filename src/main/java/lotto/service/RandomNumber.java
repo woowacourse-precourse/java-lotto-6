@@ -6,6 +6,8 @@ import lotto.view.Input;
 import lotto.view.Output;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class RandomNumber {
@@ -22,7 +24,9 @@ public class RandomNumber {
         List<Lotto> lottolist = new ArrayList<>();
         int money = Integer.parseInt(input.readMoney());
         for (int i = 0; i < money / 1000; i++,lottocount++) {
-            Lotto lotto = new Lotto(randomNumber());
+            List<Integer> number = new ArrayList<>(randomNumber());
+            Collections.sort(number);
+            Lotto lotto = new Lotto(number);
             lottolist.add(lotto);
         }
         System.out.printf("\n%d",lottocount);

@@ -6,7 +6,7 @@ import lotto.model.Utils;
 
 public class InputView {
 
-    public int inputNumber() {
+    public int inputBonusNumber() {
         return Utils.convertStringToInt(Console.readLine());
     }
 

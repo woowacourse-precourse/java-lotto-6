@@ -31,8 +31,7 @@ public class InputValidator {
     }
 
     public Integer convertInputToBonusNumber(String preprocessedInput) {
-        isNonNumeric(preprocessedInput);
-        return castingStringToInteger(preprocessedInput);
+        return castStringToInteger(preprocessedInput);
     }
 
     private int castStringToInt(String preprocessedInput) {
@@ -54,10 +53,11 @@ public class InputValidator {
         return convertedInput;
     }
 
-    private Integer castingStringToInteger(String preprocessedInput) {
+    private Integer castStringToInteger(String preprocessedInput) {
         if (isNotOneElement(preprocessedInput)) {
             ExceptionMessages.WRONG_AMOUNT_BONUS_NUMBERS.throwException();
         }
+        isNonNumeric(preprocessedInput);
         return Integer.parseInt(preprocessedInput);
     }
 

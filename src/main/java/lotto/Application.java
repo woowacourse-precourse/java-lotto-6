@@ -34,10 +34,10 @@ public class Application {
             }
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 구매금액으로 숫자 외의 값을 입력했습니다.");
+            return askPurchaseAmount();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 구매금액이 1,000원으로 나누어 떨어지지 않습니다.");
-        } finally {
-            askPurchaseAmount();
+            return askPurchaseAmount();
         }
 
         return purchaseAmount;

@@ -48,21 +48,9 @@ public class LottoController {
             System.out.println("matchResult = " + matchResult);
         }
 
-        // 아래 부분 추가해야함
-//        당첨 통계
-//        ---
-//        3개 일치 (5,000원) - 1개
-//        4개 일치 (50,000원) - 0개
-//        5개 일치 (1,500,000원) - 0개
-//        5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
-//        6개 일치 (2,000,000,000원) - 0개
-
-
         // 통계 계산 및 결과 출력
         Statistics statistics = new Statistics(amount.getAmount(), matchResults);
-        float totalProfit = statistics.evaluateTotalProfit();
-        String convertedTotalProfit = String.valueOf(totalProfit);
-        lottoView.printTotalProfitRate(convertedTotalProfit);
+        statistics.evaluateTotalProfit();
     }
 
     private Amount promptForAmount() {

@@ -73,7 +73,7 @@ public class Lotto {
         long count = 0L;
         for (Lotto lotto : user.lottos) {
             count = lotto.compare(lotto);
-            user.processCheckResult(String.valueOf(count), lotto.bonusCompare(lotto));
+            user.processCheckResult(count, lotto.bonusCompare(lotto));
         }
     }
 

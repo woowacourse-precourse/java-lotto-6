@@ -24,14 +24,12 @@ public class OutputHandler {
     public static void printResultHistory(User user) {
         System.out.println(PRINT_RESULT_NOTICE.getMessage());
         for (ResultConfig rc : ResultConfig.values()) {
-            System.out.println(rc.getMessage() + user.totalResult.get(rc.getCount()) + "개");
+            System.out.println(rc.getMessage() + user.totalResult.get(rc) + "개");
         }
         printTotalProfit(user);
     }
 
     public static void printTotalProfit(User user) {
-        System.out.println(user.totalAmount);
-        System.out.println(user.payment);
         System.out.printf("총 수익률은 %.1f%%입니다.%n", ((double) user.totalAmount / user.payment) * 100);
     }
 

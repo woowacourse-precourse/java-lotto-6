@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 
 public class Service {
 
@@ -31,11 +32,19 @@ public class Service {
 
     //3. 보너스 번호가 1~45 숫자인지 확인
     public static void rangeValidation(int number) {
-        if (LOWERBOUND < number && number < UPPERBOUND) {
+        if (LOWERBOUND <= number && number <= UPPERBOUND) {
             return;
         }
-        System.out.println("[ERROR] 1~45 범위의 숫자를 입력하세요");
+        System.out.println("[ERROR] 1과 45 사이의 정수만 입력할 수 있습니다");
         throw new IllegalArgumentException();
     }
 
+    //4. 보너스 번호가 당첨 번호 리스트에 있는지 확인
+    public static void bonusRedundancyCheck(List<Integer> numbers, int bonus) {
+        if (!numbers.contains(bonus)) {
+            return;
+        }
+        System.out.println("[ERROR] 당첨 번호로 입력했던 숫자는 보너스 번호가 될 수 없습니다");
+        throw new IllegalArgumentException();
+    }
 }

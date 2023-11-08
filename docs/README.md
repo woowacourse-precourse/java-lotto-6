@@ -22,7 +22,7 @@
 - 중복된 숫자인지 검증
     - 예외 발생시 IllegalArgumentException 던지고 “[ERROR] 같은 숫자를 2개 이상 입력할 수 없습니다” 출력
 - 입력된 번호가 1~45 사이의 숫자인지 검증
-    - 예외 발생시 IllegalArgumentException 던지고 “[ERROR] 1과 45 사이의 정수만 입력할 수 있습니다” 출력
+    - Service의 rangeValidation() 사용
 
 # 4. 보너스 번호 입력 받아 저장하기
 
@@ -32,6 +32,9 @@
         - 다시 입력받기
 - 1~45 범위의 수를 입력했는지 검증
   - 예외 발생시 IllegalArgumentException 던지고 “[ERROR] 1~45 범위의 숫자를 입력하세요.” 출력
+    - 다시 입력받기
+- 당첨번호로 입력했던 수와 보너스번호가 겹치는지 검증
+  - 예외 발생시 IllegalArgumentException 던지고 “[ERROR] 당첨 번호로 입력했던 숫자는 보너스 번호가 될 수 없습니다.” 출력
     - 다시 입력받기
 
 # 5. 로또 발행 - Lottery 클래스로 관리

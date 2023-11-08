@@ -2,9 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class LottoGame {
     private static final int PERCENTAGE = 100;
@@ -15,47 +13,15 @@ public class LottoGame {
         int purchaseNumber = purchaseAmount/lottoAmount;
 
         Lotto[] lottos = new Lotto[purchaseNumber];
-
-        System.out.println(purchaseNumber+"개를 구매했습니다.");
-        for(int i = 0; i < purchaseNumber; i++){
-            List<Integer> autoLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottos[i] = new Lotto(autoLotto);
-            System.out.println(lottos[i].getLottoNumbers());
-        }
-        System.out.println();
-
-        List<Integer> winningNumbers = InputHandler.winningNumberInput();
-        int bonusNumber = InputHandler.bonusNumberInput();
-
         LottoResult lottoResult = new LottoResult();
-        for(int i = 0; i < purchaseNumber; i ++){
-            List<Integer> purchaseLotto = lottos[i].getLottoNumbers();
-            int matchedCount = compareNumbers(purchaseLotto,winningNumbers);
-            boolean matchBounus = compareBounusNumber(purchaseLotto,bonusNumber);
 
-            Rank rank = Rank.getRank(matchedCount,matchBounus);
-            lottoResult.addNumberOfMatch(rank);
-        }
+        View.printPurchaseLottoNumber(purchaseNumber);
 
-        System.out.println("당첨통계");
-        System.out.println("---");
-        int totalMoney = 0;
-        for (Rank rank : Rank.values()) {
-            if(rank.getWinningMoney() == 0){
-                continue;
-            }
+        purchaseAutoLotto(lottos,purchaseNumber);
 
-            totalMoney += rank.getWinningMoney()*lottoResult.getLottoResultTable().get(rank);
+        recordLottoResult(lottos,lottoResult,purchaseNumber);
 
-            System.out.print(rank.getNumberOfMatch() + "개 일치");
-            if(rank.getWinningMoney() == 30000000 ){
-                System.out.print(", 보너스 볼 일치");
-            }
-            System.out.println(" ("+ String.format("%,d",rank.getWinningMoney())+ "원) - "+ lottoResult.getLottoResultTable().get(rank) + "개");
-        }
-
-        float rateOfReturn = (float)totalMoney/purchaseAmount*PERCENTAGE;
-        System.out.println("총 수익률은 "+ String.format("%.1f", rateOfReturn)+"%입니다.");
+        caculateRateOfReturn(lottoResult,purchaseAmount);
 
     }
 
@@ -77,5 +43,57 @@ public class LottoGame {
         else{
             return false;
         }
+    }
+
+    public static Lotto[] purchaseAutoLotto(Lotto[] lottos,int purchaseNumber){
+        for(int i = 0; i < purchaseNumber; i++){
+            List<Integer> autoLotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Collections.sort(autoLotto);
+
+            lottos[i] = new Lotto(autoLotto);
+        }
+        View.printAllLotto(lottos,purchaseNumber);
+
+        return lottos;
+
+    }
+
+    public static void recordLottoResult(Lotto[] lottos,LottoResult lottoResult,int purchaseNumber){
+        List<Integer> winningNumbers = InputHandler.winningNumberInput();
+        int bonusNumber = InputHandler.bonusNumberInput();
+
+        for(int i = 0; i < purchaseNumber; i ++){
+            List<Integer> purchaseLotto = lottos[i].getLottoNumbers();
+            int matchedCount = compareNumbers(purchaseLotto,winningNumbers);
+            boolean matchBounus = compareBounusNumber(purchaseLotto,bonusNumber);
+
+            Rank rank = Rank.getRank(matchedCount,matchBounus);
+            lottoResult.addNumberOfMatch(rank);
+        }
+    }
+
+    public  static void caculateRateOfReturn(LottoResult lottoResult,int purchaseAmount){
+        int totalMoney = 0;
+
+        View.printLottoResultBoard();
+
+        for (Rank rank : Rank.values()) {
+            if(rank.getWinningMoney() == 0){
+                continue;
+            }
+
+            totalMoney += rank.getWinningMoney()*lottoResult.getLottoResultTable().get(rank);
+
+            View.printNumberOfMatch(rank.getNumberOfMatch());
+
+            if(rank.getWinningMoney() == 30000000 ){
+                View.printBonusNumberOfMatch();
+            }
+
+            View.printLottoResult(rank.getWinningMoney(),lottoResult.getLottoResultTable().get(rank));
+        }
+
+        float rateOfReturn = (float)totalMoney/purchaseAmount*PERCENTAGE;
+        View.printRateOfReturn(rateOfReturn);
     }
 }

@@ -67,19 +67,4 @@ public class Lotto {
     public int hashCode() {
         return Objects.hash(numbers);
     }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(SpecialSign.LEFT_BRACKET.getSign());
-
-        for (Number number : numbers) {
-            sb.append(number)
-                    .append(SpecialSign.SEPARATOR.getSign())
-                    .append(SpecialSign.BLANK.getSign());
-        }
-        sb.delete(sb.length() - Constants.REMOVE_INDEX, sb.length());
-        sb.append(SpecialSign.RIGHT_BRACKET);
-        return sb.toString();
-    }
 }

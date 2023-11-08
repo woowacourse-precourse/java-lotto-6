@@ -10,4 +10,8 @@ public class InputView {
     public String readWinningNumber() {
         return Console.readLine();
     }
+
+    public String readBonusNumber() {
+        return Console.readLine();
+    }
 }

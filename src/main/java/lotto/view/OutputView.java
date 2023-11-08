@@ -8,15 +8,13 @@ public class OutputView {
         System.out.println("\n"+ticketCount + PRINT_TICKET_COUNT_MESSAGE);
     }
     public static void printBoughtLottos(String boughtLottos){
-        System.out.println(boughtLottos+"\n");
+        System.out.println(boughtLottos);
     }
 
-    public static void printWinningStatistics() {
+    public static void printWinningStatistics(String statisticsResult) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        /*
-        enum 로직 없어서 추후 구현
-         */
+        System.out.println(statisticsResult);
     }
     public static void printEarningRate(double earningRate) {
         System.out.println("총 수익률은 " + String.format("%.1f", earningRate) + "%입니다.");

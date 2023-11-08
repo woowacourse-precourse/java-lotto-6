@@ -7,6 +7,7 @@ import lotto.domain.Price;
 
 public class LottoGame {
 
+    final int lottoLength = 6;
     private final LottoController lottoController = new LottoController();
 
 
@@ -23,7 +24,8 @@ public class LottoGame {
         System.out.println(String.format("%d개를 구매했습니다.", boughtCount));
         Lottos lottos = new Lottos(lottoController.makeLottos(boughtCount));
         for (int i = 0; i < boughtCount; i++) {
-            System.out.println(lottos.getLottos().get(i));
+            Lotto lotto = lottos.getLottos().get(i);
+            System.out.println(lotto.getNumbers());
         }
 
         return lottos;

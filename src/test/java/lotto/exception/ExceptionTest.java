@@ -32,11 +32,11 @@ class ExceptionTest {
         assertThat(result).isEqualTo(-1000);
     }
 
-    @DisplayName("숫자가 아닌 문자열 입력시 0과 에러 메시지를 반환한다.")
+    @DisplayName("숫자가 아닌 문자열 입력시 IllegalArgumentException과 에러 메시지를 반환한다.")
     @Test
     void 인트_변환_문자_입력() {
-        int result = exception.checkInt("test", "오류!");
-        assertThat(result).isEqualTo(0);
+        assertThatThrownBy(() ->  exception.checkInt("test", "오류!"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("1000 단위 입력시 true 반환한다.")
@@ -46,11 +46,11 @@ class ExceptionTest {
         assertThat(result).isEqualTo(true);
     }
 
-    @DisplayName("1000 단위가 아닐시 false와 에러 메시지를 반환한다.")
+    @DisplayName("1000 단위가 아닐시 IllegalArgumentException과 에러 메시지를 반환한다.")
     @Test
     void 단위1000_잘못된_입력() {
-        boolean result = exception.checkAmount(2222, false, "오류!");
-        assertThat(result).isEqualTo(false);
+        assertThatThrownBy(() ->  exception.checkAmount(2222, false, "오류!"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("중복 없는 6자리일 경우 그대로 반환한다.")
@@ -60,11 +60,11 @@ class ExceptionTest {
         assertThat(result).isEqualTo(result);
     }
 
-    @DisplayName("중복 확인되면 바로 반환하며 에러 메시지를 출력한다.")
+    @DisplayName("중복 확인되면 바로 반환하며 IllegalArgumentException과 에러 메시지를 출력한다.")
     @Test
     void 중복_있는_숫자_6개() {
-        List<Integer> result = exception.checkNumbers("1,2,3,4,4,5");
-        assertThat(result).isEqualTo(List.of(1, 2, 3, 4));
+        assertThatThrownBy(() ->  exception.checkNumbers("1,2,3,4,4,5"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("6자리 숫자일 경우 그대로 반환한다.")
@@ -74,11 +74,11 @@ class ExceptionTest {
         assertThat(result).isEqualTo(result);
     }
 
-    @DisplayName("6자리 숫자가 아닐 경우 그대로 반환하며 에러 메시지를 출력한다.")
+    @DisplayName("6자리 숫자가 아닐 경우 그대로 반환하며 IllegalArgumentException과 에러 메시지를 출력한다.")
     @Test
     void 길이_6자리_초과() {
-        List<Integer> result = exception.checkLength(List.of(1, 2, 3, 4, 5, 6,7));
-        assertThat(result).isEqualTo(result);
+        assertThatThrownBy(() ->  exception.checkLength(List.of(1, 2, 3, 4, 5, 6,7)))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("중복 없는 숫자일 경우 그대로 반환한다.")
@@ -88,10 +88,11 @@ class ExceptionTest {
         assertThat(result).isEqualTo(1);
     }
 
-    @DisplayName("중복 확인되면 0과 에러 메시지를 반환한다.")
+    @DisplayName("중복 확인되면 IllegalArgumentException과 에러 메시지를 반환한다.")
     @Test
     void 중복_있는_보너스_숫자_1개() {
-        int result = exception.checkBonus(List.of(1, 2, 3, 4, 5), "1");
-        assertThat(result).isEqualTo(0);
+        assertThatThrownBy(() ->  exception.checkBonus(List.of(1, 2, 3, 4, 5), "1"))
+                .isInstanceOf(IllegalArgumentException.class);
+
     }
 }

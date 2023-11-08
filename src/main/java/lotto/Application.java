@@ -1,7 +1,11 @@
 package lotto;
 
+import lotto.utils.converterStringToInteger;
+import lotto.utils.sperateByComma;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Controller controller = new Controller(new converterStringToInteger(),new sperateByComma());
+        controller.tempInputOutputController();
     }
 }

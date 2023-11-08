@@ -19,17 +19,18 @@ public class Application {
         PlayLotto playLotto = new PlayLotto();
 
         //[입력] 구입 금액
-        int amount = playLotto.typeAmount();
+        playLotto.typeAmount();
 
         //[출력] 구매 금액에 맞는 로또 수량
-        // & 로또 수량만큼의 로또 번호 (오름차순)
-        List<Lotto> lottos = playLotto.buyLottos(amount);
+        // & 로또 수량 만큼의 로또 번호 (오름차순)
+        playLotto.buyLottos();
         playLotto.printLottoNumbers();
 
         //[입력] 당첨 번호&보너스 번호
         playLotto.typeWinningNumbers();
         playLotto.typeBonusNumber();
 
+        //[출력] 당첨 내역&수익률
         playLotto.printResult();
         playLotto.printRateOfReturn();
 

@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 public class PlayLotto {
 
+    private int amount;
     private List<Lotto> lottos;
     private Wining wining;
     private Referee referee;
@@ -19,11 +20,11 @@ public class PlayLotto {
     public PlayLotto() {
     }
 
-    public int typeAmount() {
+    public void typeAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        int amount = Integer.parseInt(Console.readLine());
-        validateAmount(amount);
-        return amount;
+        int price = Integer.parseInt(Console.readLine());
+        validateAmount(price);
+        amount = price / 1000;
     }
 
     private void validateAmount(int amount) {
@@ -32,12 +33,12 @@ public class PlayLotto {
         }
     }
 
-    public List<Lotto> buyLottos(int amount) {
+    public void buyLottos() {
         List<Lotto> games = new ArrayList<>();
         for (int i=0; i<amount; i++){
             games.add(buyLotto());
         }
-        return games;
+        lottos = games;
     }
 
     private Lotto buyLotto(){

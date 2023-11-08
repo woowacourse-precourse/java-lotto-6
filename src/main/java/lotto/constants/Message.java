@@ -16,6 +16,7 @@ public class Message {
     public static final String LINEBREAK = "\n";
     public static final String HYPHEN = "- ";
     public static final String SEPARATOR = "---";
+    public static final String COMMA = ",";
     public static final String DELIMITER = ", ";
     public static final String LEFT_PARENTHESES = " (";
     public static final String RIGHT_PARENTHESES = ") ";

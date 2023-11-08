@@ -3,6 +3,7 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constants.Constants;
 import lotto.constants.Errors;
+import lotto.constants.Message;
 import lotto.model.Lotto;
 import lotto.model.Result;
 import lotto.model.Validator;
@@ -121,7 +122,7 @@ public class Game {
     private String[] inputNumbers() {
         String numbers = view.inputString();
 
-        return numbers.split(",");
+        return numbers.split(Message.COMMA);
     }
 
     private List<Integer> stringToNumbers(String[] numbers) {

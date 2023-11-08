@@ -49,9 +49,6 @@ public class LottoGame {
 
     private List<Integer> generateRandomNumbersInOrder() {
         List<Integer> RandomNumbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LOTTO_NUMBER_COUNT);
-//        List<Integer> sortedRandomNumbers= RandomNumbers.stream()
-//                .sorted()
-//                .collect(Collectors.toList());
         return RandomNumbers;
     }
 

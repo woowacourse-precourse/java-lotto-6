@@ -16,7 +16,6 @@ public class ConfirmationWinning {
 
     int FIRST_PRIZE = LottoRules.FIRST_PRIZE.getValue();
     int SECOND_PRIZE = LottoRules.SECOND_PRIZE.getValue();
-    int THIRD_PRIZE = LottoRules.THIRD_PRIZE.getValue();
     int FORTH_PRIZE = LottoRules.FORTH_PRIZE.getValue();
 
     List<EachLottoResult> lottoResult = new ArrayList<>();
@@ -39,25 +38,26 @@ public class ConfirmationWinning {
 
     public void calculateWinningCountAboutEachLotto(List<Integer> winningNumbres, Lotto eachLotto) {
         List<Integer> lottoNumbers = eachLotto.getNumbers();
-
-
         this.tempWinningCount = 0;
         this.tempBounsNumberContains = false;
 
         for (int lottoNumber : lottoNumbers) {
-            for (int winningNumber : winningNumbres) {
-                if (lottoNumber == winningNumber) {
-                    this.tempWinningCount += 1;
-                }
-
-                if (lottoNumber == bonusNumber) {
-                    this.tempBounsNumberContains = true;
-                }
-            }
+            countUpWinningCount(winningNumbres, lottoNumber);
         }
         lottoResult.add(new EachLottoResult(tempWinningCount, tempBounsNumberContains));
     }
 
+    public void countUpWinningCount(List<Integer> winningNumbres, int lottoNumber) {
+        for (int winningNumber : winningNumbres) {
+            if (lottoNumber == winningNumber) {
+                this.tempWinningCount += 1;
+            }
+
+            if (lottoNumber == bonusNumber) {
+                this.tempBounsNumberContains = true;
+            }
+        }
+    }
 
     public Map<Integer, Integer> countAllLottosResult(List<EachLottoResult> lottoResult) {
         Map<Integer, Integer> lottoResultCount = MapMaker.makeEmptyLottoResultCount();
@@ -70,8 +70,7 @@ public class ConfirmationWinning {
             }
         }
         return lottoResultCount;
-}
-
+    }
 
     public Map<Integer, Integer> splitBonusNumberCase(EachLottoResult eachLotto, Map<Integer, Integer> lottoResultCount) {
         if (eachLotto.bounsNumberContains) {
@@ -82,13 +81,11 @@ public class ConfirmationWinning {
         }
         return lottoResultCount;
     }
-
     public Map<Integer, Integer> countUpLottoResult(int winningNumberCount, Map<Integer, Integer> lottoResultCount) {
         int previousCount = lottoResultCount.get(winningNumberCount);
         lottoResultCount.replace(winningNumberCount, previousCount + 1);
         return lottoResultCount;
     }
-
 
     public void showLottoGameResult(Map<Integer, Integer> lottoResultCount) {
         Map<Integer, String> winningAmount = MapMaker.makeWinningAmount();
@@ -102,7 +99,6 @@ public class ConfirmationWinning {
             }
         }
     }
-
     public void calculateRate(int purchaseAmount) {
         double totalIncome = calculateTotalIncome(lottoResultCount);
         double rate = (totalIncome / purchaseAmount) * 100;

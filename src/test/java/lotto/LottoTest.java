@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,5 +36,13 @@ class LottoTest {
     void createLottoByLowerSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 구입 가격에 대해 올바른 개수를 반환하는지 확인한다.")
+    @Test
+    void checkGetLottoCount() {
+        int purchaseAmount = 12000;
+        int expectedCount = 12;
+        Assertions.assertThat(Lotto.getLottoCount(purchaseAmount)).isEqualTo(expectedCount);
     }
 }

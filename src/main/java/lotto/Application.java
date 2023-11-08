@@ -1,7 +1,23 @@
 package lotto;
 
+import lotto.controller.LottoController;
+import lotto.domain.LottoStore;
+import lotto.domain.NumberGenerator.RandomNumberGenerator;
+import lotto.service.LottoPurchaseService;
+import lotto.service.LottoResultService;
+import lotto.view.InputView;
+import lotto.view.OutputView;
+
 public class Application {
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        var lottoPurchaseService = new LottoPurchaseService(LottoStore.from(new RandomNumberGenerator()));
+        var lottoController = new LottoController(
+            lottoPurchaseService,
+            new LottoResultService(),
+            new InputView(),
+            new OutputView());
+
+        lottoController.run();
     }
 }

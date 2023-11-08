@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoPrice;
 import lotto.validation.ErrorMessage;
@@ -38,6 +39,19 @@ public class InputView {
         catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputWinningNumber();
+        }
+    }
+
+    public static BonusNumber inputBonusNumber() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        try {
+            validateString(input);
+            return new BonusNumber(Integer.parseInt(input));
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBonusNumber();
         }
     }
 

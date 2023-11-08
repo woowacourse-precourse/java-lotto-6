@@ -13,18 +13,19 @@ public class Input {
 
     public int getPrice() {
         System.out.println(priceMessage);
-        return Integer.parseInt(Console.readLine());
+        return Integer.parseInt(Console.readLine().trim());
     }
 
     public List<Integer> getWinningNumbers() {
         System.out.println(winningNumbersMessage);
         return Arrays.stream(Console.readLine().split(","))
+                .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
     public int getBonusNumber() {
         System.out.println(bonusNumberMessage);
-        return Integer.parseInt(Console.readLine());
+        return Integer.parseInt(Console.readLine().trim());
     }
 }

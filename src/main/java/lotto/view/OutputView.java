@@ -11,7 +11,6 @@ public class OutputView {
 
     private enum OutputMessage {
         PURCHASE_MESSAGE("%d개를 구매했습니다."),
-        WINNING_NUMBER("당첨 번호를 입력해 주세요."),
         STATISTICS_MESSAGE("당첨 통계"),
         DIVIDER_MESSAGE("---"),
         THREE_MATCH_MESSAGE("3개 일치 (5,000원) - %d개"),

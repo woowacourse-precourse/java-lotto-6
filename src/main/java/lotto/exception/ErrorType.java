@@ -13,10 +13,7 @@ public enum ErrorType {
     INVALID_LOTTO_SIZE(String.format("로또는 숫자 %d개로 구성됩니다.", Constants.CONFIG_NUMBERS_SIZE)),
     INVALID_IN_RANGE(String.format("로또는 %d~%d 범위 숫자로 구성됩니다.", Constants.MIN_NUMBER_RANGE, Constants.MAX_NUMBER_RANGE)),
     INVALID_DIVIDE_PRICE(String.format("구입 금액은 %d원 단위입니다.", Constants.DIVIDE_PRICE)),
-    INVALID_MIN_PRICE(String.format("최소 구입 금액은 %d원 이상입니다.", Constants.MIN_PRICE)),
-    INVALID_INPUT_MONEY("구매 금액을 다시 입력해 주세요."),
-    INVALID_INPUT_NUMBER("당첨 번호를 다시 입력해 주세요."),
-    INVALID_INPUT_BONUS("보너스 번호를 다시 입력해 주세요.");
+    INVALID_MIN_PRICE(String.format("최소 구입 금액은 %d원 이상입니다.", Constants.MIN_PRICE));
 
     private final String message;
 

@@ -8,8 +8,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.exception.ErrorType;
-import lotto.util.Constants;
-import lotto.util.SpecialSign;
 
 public class Lotto {
 

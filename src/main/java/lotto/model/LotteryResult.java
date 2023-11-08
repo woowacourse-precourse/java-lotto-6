@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class LotteryResult {
 
-    private static final String DECIMAL_FORMAT = "#,##0.0";
+    private static final String PROFIT_PERCENTAGE_FORMAT = "#,##0.0";
 
     private final Map<WinningMoney, Integer> store;
 
@@ -16,7 +16,7 @@ public class LotteryResult {
 
     public String getProfitPercentage(PurchaseMoney purchaseMoney) {
         double profitPercentage = (double) calculateProfit() / purchaseMoney.getPurchaseMoney() * 100;
-        return new DecimalFormat(DECIMAL_FORMAT).format(profitPercentage);
+        return new DecimalFormat(PROFIT_PERCENTAGE_FORMAT).format(profitPercentage);
     }
 
     public Map<WinningMoney, Integer> getStore() {

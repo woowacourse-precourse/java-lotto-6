@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.exception.ErrorType;
 import lotto.util.InputConverter;
 import lotto.validation.InputValidator;
 

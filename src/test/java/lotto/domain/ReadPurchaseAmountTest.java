@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.view.ExceptionMessage.DIVISIBLE_EXCEPTION;
+import static lotto.view.ExceptionMessage.NATURAL_EXCEPTION;
+import static lotto.view.ExceptionMessage.TYPE_EXCEPTION;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,7 +22,7 @@ class ReadPurchaseAmountTest {
         //when //then
         assertThatThrownBy(() -> new ReadPurchaseAmount(readAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 금액은 0 초과이어야 합니다.");
+                .hasMessageContaining(NATURAL_EXCEPTION.getMessage());
     }
 
     @DisplayName("로또 구입 금액의 입력 받은 값이 1,000원으로 나누어 떨어지지 않는 경우 체크")
@@ -31,6 +34,17 @@ class ReadPurchaseAmountTest {
         //when //then
         assertThatThrownBy(() -> new ReadPurchaseAmount(readAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 금액은 1000단위여야 합니다.");
+                .hasMessageContaining(DIVISIBLE_EXCEPTION.getMessage());
+    }
+
+    @DisplayName("숫자만 입력해 주세요.")
+    @Test
+    void 숫자만_입력해_주세요() {
+        String readAmount = "1000j";
+
+        //when //then
+        assertThatThrownBy(() -> new ReadPurchaseAmount(readAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(TYPE_EXCEPTION.getMessage());
     }
 }

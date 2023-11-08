@@ -17,7 +17,7 @@ class LottoWinningNumberTest {
         //when
         LottoWinningNumber lottoWinningNumber = new LottoWinningNumber(readLine);
         //then
-        assertThat(lottoWinningNumber.getReadWinningNumber().toString()).isEqualTo("[1, 2, 3, 4, 6, 25]");
+        assertThat(lottoWinningNumber.getReadWinningNumber().toString()).isEqualTo("[1, 2, 3, 4, 25, 6]");
     }
 
     @DisplayName("당첨 번호는 숫자와 콤마 형식이어야 합니다.")

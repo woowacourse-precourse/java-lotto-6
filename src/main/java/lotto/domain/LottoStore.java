@@ -8,7 +8,7 @@ import lotto.constants.WinningResult;
 import lotto.view.OutputView;
 
 public class LottoStore {
-    private static List<Lotto> lottoList;
+    private static List<Lotto> lottoList = new ArrayList<Lotto>();
     private static int lottoCount;
     int purchaseAmount;
 
@@ -31,14 +31,14 @@ public class LottoStore {
     }
 
     private static List<Lotto> generateLottoList() {
-        List<Lotto> lottoList = new ArrayList<Lotto>();
+        List<Lotto> tempLottoList = new ArrayList<Lotto>();
         for (int i = 0; i < lottoCount; i++) {
-            lottoList.add(generateLotto());
+            tempLottoList.add(makeLotto());
         }
-        return lottoList;
+        return tempLottoList;
     }
 
-    private static Lotto generateLotto() {
+    private static Lotto makeLotto() {
         LottoGenerator lottoGenerator = new LottoGenerator();
         Lotto lotto = new Lotto(lottoGenerator.generateLotto());
         return lotto;

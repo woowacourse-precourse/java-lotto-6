@@ -13,7 +13,7 @@ public class LottoService {
 
     public int inputAmountAndGetLottoCount(){
         boolean validate = true;
-        ValidateAmountResponseDto validateAmountResponseDto = new ValidateAmountResponseDto();
+        ValidateAmountResponseDto validateAmountResponseDto = new ValidateAmountResponseDto(0,true);
         while (validate) {
             System.out.println("구입금액을 입력해 주세요.");
             String amountStr = Console.readLine();

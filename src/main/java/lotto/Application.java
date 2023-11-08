@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.controller.Input;
 import lotto.controller.LottoController;
+import lotto.service.Calculation;
 import lotto.service.LottoService;
 import lotto.start.LottoGame;
 import lotto.view.Exception;
@@ -14,7 +15,7 @@ public class Application {
         // TODO: 프로그램 구현
         Output view = new LottoView();
         Exception exception = new ExceptionView();
-        LottoService lottoService = new LottoService();
+        Calculation lottoService = new LottoService();
         Input controller = new LottoController(view,exception,lottoService);
         LottoGame lottoGame = new LottoGame(controller);
 

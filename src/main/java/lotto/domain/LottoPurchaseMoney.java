@@ -28,4 +28,8 @@ public class LottoPurchaseMoney {
         return this.money;
     }
 
+    public int getAvailablePurchaseCount() {
+        return money / UNIT_OF_MONEY;
+    }
+
 }

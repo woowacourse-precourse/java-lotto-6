@@ -35,6 +35,14 @@ public class LottoTicket {
     }
 
     public String printResult() {
+        StringBuilder stringBuilder = new StringBuilder();
 
+        lottoTicket.forEach(
+                lotto -> {
+                    stringBuilder.append(lotto.getLottoNumber()).append("\r\n");
+                }
+        );
+
+        return stringBuilder.toString();
     }
 }

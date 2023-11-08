@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
+import java.util.stream.Collectors;
 import lotto.constant.Number;
 import lotto.constant.ValidatorMessage;
 
@@ -47,7 +48,10 @@ public class Lotto {
     }
 
     public String getLottoNumber() {
-
+        return this.numbers
+                .stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(", ", "[", "]"));
     }
 
     private int getCorrectCount(Lotto winNumbers) {

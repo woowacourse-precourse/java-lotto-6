@@ -10,7 +10,7 @@ public class Output {
         System.out.print(order.getBuyCountToString());
         System.out.println(OutputMessage.PURCHASED_COUNT_MESSAGE);
 
-        // 구매한 티켓 번호 출력
+        System.out.println(lottoTicket.printResult());
     }
 
     public void printProfitRate(Order order, WinStatistics winStatistics) {

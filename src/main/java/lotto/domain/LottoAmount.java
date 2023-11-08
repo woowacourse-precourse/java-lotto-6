@@ -4,16 +4,11 @@ import static lotto.exception.Exception.ONLY_DIVISIBLE_BY_THOUSAND;
 
 import java.util.Objects;
 
-public class LottoAmount {
-    private final int LOTTO_PRICE = 1_000;
-    private final int amount;
+public record LottoAmount (int amount) {
+    private static final int LOTTO_PRICE = 1_000;
 
-    public LottoAmount(int amount) {
+    public LottoAmount {
         validate(amount);
-        this.amount = amount;
-    }
-    public int getAmount() {
-        return amount;
     }
 
     private void validate(int amount) {

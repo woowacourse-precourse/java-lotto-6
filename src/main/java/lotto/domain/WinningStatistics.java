@@ -12,7 +12,7 @@ public record WinningStatistics(LottoAmount lottoAmount, Map<Ranking, Integer> r
     }
 
     private double calculateReturnRate() {
-        int amount = lottoAmount.getAmount();
+        int amount = lottoAmount.amount();
         return (double) getTotalPrize() / amount * 100;
     }
 

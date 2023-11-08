@@ -14,7 +14,7 @@ public class LottoMachine {
     }
 
     public List<Lotto> buyLottos(LottoAmount lottoAmount) {
-        int amount = lottoAmount.getAmount();
+        int amount = lottoAmount.amount();
         int quantity = calculateLottoQuantity(amount);
 
         return IntStream.range(0, quantity)

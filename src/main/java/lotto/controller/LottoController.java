@@ -15,6 +15,7 @@ public class LottoController {
     private WinningLotto winningLotto;
     private BonusLotto bonusLotto;
     private LottoService lottoContainer = new LottoService(new ArrayList<>());
+    private LottoStatistics lottoStatistics = new LottoStatistics(new LinkedHashMap<>());
     public void run() {
         getLottoMoney();
         generatedLotto();
@@ -73,14 +74,17 @@ public class LottoController {
 
     private void statisticLotto() {
         OutputView.printStatistics();
+        OutputView.printRankResult(saveToLinkedHashMap());
+        double profit = lottoStatistics.calculateProfit(amount.getMoney());
+        OutputView.printProfitResult(profit);
+    }
+
+    private LinkedHashMap<Rank, Integer> saveToLinkedHashMap() {
         LinkedHashMap<Rank, Integer> rankHashMap = new LinkedHashMap<>();
-        LottoStatistics result = new LottoStatistics(new LinkedHashMap<>());
         List<Lotto> savedLotto = lottoContainer.getLottos();
         for (Lotto lotto : savedLotto) {
-            rankHashMap = result.getRankResult(lotto, winningLotto.getWinningNumbers(), bonusLotto.getBonusNumber());
+            rankHashMap = lottoStatistics.getRankResult(lotto, winningLotto.getWinningNumbers(), bonusLotto.getBonusNumber());
         }
-        OutputView.printRankResult(rankHashMap);
-        double profit = result.calculateProfit(amount.getMoney());
-        OutputView.printProfitResult(profit);
+        return rankHashMap;
     }
 }

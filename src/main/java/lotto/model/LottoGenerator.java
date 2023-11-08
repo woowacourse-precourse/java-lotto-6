@@ -1,8 +1,8 @@
-package lotto;
+package lotto.model;
 
-import static lotto.Constant.LOTTO_NUMBER_COUNT;
-import static lotto.Constant.MAXIMUM_LOTTO_NUMBER;
-import static lotto.Constant.MINIMUM_LOTTO_NUMBER;
+import static lotto.constants.Constant.LOTTO_NUMBER_COUNT;
+import static lotto.constants.Constant.MAXIMUM_LOTTO_NUMBER;
+import static lotto.constants.Constant.MINIMUM_LOTTO_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;

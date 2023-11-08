@@ -1,9 +1,9 @@
-package lotto;
+package lotto.model;
 
-import static lotto.Constant.MAXIMUM_LOTTO_NUMBER;
-import static lotto.Constant.MINIMUM_LOTTO_NUMBER;
-import static lotto.Message.DUPLICATED_BONUS_NUMBER;
-import static lotto.Message.INVALID_LOTTO_NUMBER_RANGE;
+import static lotto.constants.Constant.MAXIMUM_LOTTO_NUMBER;
+import static lotto.constants.Constant.MINIMUM_LOTTO_NUMBER;
+import static lotto.constants.Message.DUPLICATED_BONUS_NUMBER;
+import static lotto.constants.Message.INVALID_LOTTO_NUMBER_RANGE;
 
 import java.util.List;
 

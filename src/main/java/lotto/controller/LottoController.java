@@ -1,10 +1,10 @@
-package Controller;
+package lotto.controller;
 
-import View.InputView;
-import View.OutputView;
-import lotto.Player;
-import lotto.WinningNumbers;
-import lotto.WinningResult;
+import lotto.model.Player;
+import lotto.model.WinningNumbers;
+import lotto.model.WinningResult;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
     private final InputView inputView;

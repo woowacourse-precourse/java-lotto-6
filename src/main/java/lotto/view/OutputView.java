@@ -1,15 +1,15 @@
-package View;
+package lotto.view;
 
-import static lotto.Message.PURCHASED_LOTTO_AMOUNT;
-import static lotto.Message.WINNING_RATE;
-import static lotto.Message.WINNING_RESULT;
+import static lotto.constants.Message.PURCHASED_LOTTO_AMOUNT;
+import static lotto.constants.Message.WINNING_RATE;
+import static lotto.constants.Message.WINNING_RESULT;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
-import lotto.Rank;
-import lotto.WinningResult;
+import lotto.model.Lotto;
+import lotto.model.Rank;
+import lotto.model.WinningResult;
 
 public class OutputView {
     public void printPlayerLottoNumbers(List<Lotto> lottos) {

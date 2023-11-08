@@ -1,6 +1,6 @@
-package lotto;
+package lotto.model;
 
-import static lotto.Constant.MINIMUM_LOTTO_PRICE_UNIT;
+import static lotto.constants.Constant.MINIMUM_LOTTO_PRICE_UNIT;
 
 import java.util.ArrayList;
 import java.util.List;

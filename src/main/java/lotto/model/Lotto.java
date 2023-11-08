@@ -1,11 +1,11 @@
-package lotto;
+package lotto.model;
 
-import static lotto.Constant.LOTTO_NUMBER_COUNT;
-import static lotto.Constant.MAXIMUM_LOTTO_NUMBER;
-import static lotto.Constant.MINIMUM_LOTTO_NUMBER;
-import static lotto.Message.DUPLICATED_LOTTO_NUMBER;
-import static lotto.Message.INVALID_LOTTO_NUMBER_RANGE;
-import static lotto.Message.INVALID_LOTTO_SIZE;
+import static lotto.constants.Constant.LOTTO_NUMBER_COUNT;
+import static lotto.constants.Constant.MAXIMUM_LOTTO_NUMBER;
+import static lotto.constants.Constant.MINIMUM_LOTTO_NUMBER;
+import static lotto.constants.Message.DUPLICATED_LOTTO_NUMBER;
+import static lotto.constants.Message.INVALID_LOTTO_NUMBER_RANGE;
+import static lotto.constants.Message.INVALID_LOTTO_SIZE;
 
 import java.util.List;
 

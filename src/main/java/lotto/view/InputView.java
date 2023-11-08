@@ -1,25 +1,25 @@
-package View;
+package lotto.view;
 
-import static lotto.Constant.DELIMITER;
-import static lotto.Constant.MINIMUM_LOTTO_NUMBER;
-import static lotto.Constant.MINIMUM_LOTTO_PRICE_UNIT;
-import static lotto.Constant.WHITESPACE_REGEX;
-import static lotto.Message.CONTAINS_WHITESPACE;
-import static lotto.Message.ENDS_WITH_DELIMITER;
-import static lotto.Message.INPUT_BONUS_NUMBER;
-import static lotto.Message.INPUT_PURCHASE_AMOUNT;
-import static lotto.Message.INPUT_WINNING_LOTTO;
-import static lotto.Message.INVALID_NUMBER_FORMAT;
-import static lotto.Message.INVALID_PURCHASE_AMOUNT;
-import static lotto.Message.NEGATIVE_NUMBER;
+import static lotto.constants.Constant.DELIMITER;
+import static lotto.constants.Constant.MINIMUM_LOTTO_NUMBER;
+import static lotto.constants.Constant.MINIMUM_LOTTO_PRICE_UNIT;
+import static lotto.constants.Constant.WHITESPACE_REGEX;
+import static lotto.constants.Message.CONTAINS_WHITESPACE;
+import static lotto.constants.Message.ENDS_WITH_DELIMITER;
+import static lotto.constants.Message.INPUT_BONUS_NUMBER;
+import static lotto.constants.Message.INPUT_PURCHASE_AMOUNT;
+import static lotto.constants.Message.INPUT_WINNING_LOTTO;
+import static lotto.constants.Message.INVALID_NUMBER_FORMAT;
+import static lotto.constants.Message.INVALID_PURCHASE_AMOUNT;
+import static lotto.constants.Message.NEGATIVE_NUMBER;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
-import lotto.Lotto;
-import lotto.WinningNumbers;
+import lotto.model.Lotto;
+import lotto.model.WinningNumbers;
 
 public class InputView {
     private static final Integer ZERO_REMAINDER = 0;

@@ -19,6 +19,7 @@ public class LottoController {
     private Lotto lotto;
     private OutputView outputView;
     private List<List<Integer>> randomSixNumbers;
+
     public LottoController() {
         this.inputView = new InputView();
         this.user = new User();
@@ -57,11 +58,14 @@ public class LottoController {
                 inputView.inputBonusNumberView();
                 bonusNumber = user.inputBonusNumber(lotto.getNumbers());
                 break;
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
         }
-        outputView.printWinningStatistics(lottoService.calculateWinningResult(randomSixNumbers, lotto, bonusNumber));
+        HashMap<Integer, Integer> winningResult = lottoService.calculateWinningResult(randomSixNumbers, lotto, bonusNumber);
+        outputView.printWinningStatistics(winningResult);
+        double profitMargin = lottoService.calculateTotalProfitMargin(winningResult, purchaseAmount);
+        outputView.printProfitMargin(profitMargin);
     }
 
     private void generatePurchaseAmountRandomSixNumber(int purchaseAmount) {

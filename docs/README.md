@@ -33,7 +33,7 @@
 
 ---
 
-## 구현한 기능 목록
+## 🧭구현한 기능 목록
 
 - ✅ 예외 발생시 예외 메세지 출력 후 그 부분부터 입력을 다시 받는다.
 
@@ -108,28 +108,28 @@
 
 ---
 
-## 패키지 구조
+## 🗂️패키지 구조
 
-|    패키지     |            이름             | 설명                              |
-|:----------:|:-------------------------:|---------------------------------|
-|   domain   |       PurchasePrice       | 로또 구입 금액 클래스                    |
-|            |           Lotto           | 로또 번호 클래스                       |
-|            |        LottoResult        | 로또 게임 결과 클래스                    |
-|            |        LottoOwner         | 로또 소유자 클래스                      |
-|            |       WinningLotto        | 당첨 로또와 보너스번호 클래스                |
-|            |     LottoGameManager      | 로또 게임을 관리하는 클래스                 |
-|    dto     |        LottosInfo         | 로또 번호목록들을 출력하는 문구로 변환하는 DTO 레코드 |
-|            |     WinningStatistics     | 당첨 통계를 출력 문구로 변환하는 DTO 레코드      |
-|            |       RateOfReturn        | 수익률을 출력 문구로 변환하는 DTO 레코드        |
-| generator  |   IntegerListGenerator    | Integer List를 생성하는 인터페이스        |
-|            | RandomUniqueListGenerator | 무작위 유일한 숫자로 List를 생성하는 클래스      |
-| controller |      LottoController      | 모델과 UI를 제어하는 클래스                |
-|    view    |         InputView         | 화면 입력을 담당하는 클래스                 |
-|            |        OutputView         | 화면 출력을 담당하는 클래스                 |
-|  constant  |       ErrorMessage        | 예외 메세지를 모아둔 Enum                |
-|            |      LottoGameConfig      | Model에 공통으로 필요한 상수를 모아둔 Enum    |
-|            |       LottoRanking        | 로또 순위와 상금을 모아둔 Enum             |
-|            |        OutputText         | 화면 출력 문구 Enum Enum              |
+|            패키지            |             이름             | 설명                                |
+|:-------------------------:|:--------------------------:|-----------------------------------|
+|          domain           |       PurchasePrice        | 로또 구입 금액 클래스                      |
+|                           |           Lotto            | 로또 번호 클래스                         |
+|                           |        LottoResult         | 로또 게임 결과 클래스                      |
+|                           |         LottoOwner         | 로또 소유자 클래스                        |
+|                           |        WinningLotto        | 당첨 로또와 보너스번호 클래스                  |
+|                           |      LottoGameManager      | 로또 게임을 관리하는 클래스                   |
+|            dto            |         LottosInfo         | 로또 번호목록들을 출력하는 문구로 변환하는 DTO 레코드   |
+|                           |     WinningStatistics      | 당첨 통계를 출력 문구로 변환하는 DTO 레코드        |
+|                           |        RateOfReturn        | 수익률을 출력 문구로 변환하는 DTO 레코드          |
+|         generator         |    IntegerListGenerator    | Integer List를 생성하는 인터페이스          |
+|                           | RandomUniqueListGenerator  | 무작위 유일한 숫자로 List를 생성하는 클래스        |
+|        controller         |      LottoController       | 모델과 UI를 제어하는 클래스                  |
+|           view            |         InputView          | 화면 입력을 담당하는 클래스                   |
+|                           |         OutputView         | 화면 출력을 담당하는 클래스                   |
+|         constant          |        ErrorMessage        | 예외 메세지를 모아둔 Enum                  |
+|                           |      LottoGameConfig       | Model에 공통으로 필요한 상수를 모아둔 Enum      |
+|                           |        LottoRanking        | 로또 순위와 상금을 모아둔 Enum               |
+|                           |         OutputText         | 화면 출력 문구 Enum Enum                |
+| test/java/lotto/generator | CustomIntegerListGenerator | 테스트를 위한 고정 Integer List를 생성하는 클래스 |
 
-<br/>
-
+---

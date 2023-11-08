@@ -5,6 +5,7 @@ public enum Message {
     FOR_LOTTO_COUNT("%d개를 구매했습니다."),
     FOR_LOTTO("[%d, %d, %d, %d, %d, %d]"),
     FOR_ANSWER_LOTTO_NUMBERS("당첨 번호를 입력해 주세요."),
+    FOR_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     ERROR_IS_NOT_PLUS_INT("양의 정수가 아닙니다."),
     ERROR_IS_NOT_THOUSAND_UNIT("1000의 단위가 아닙니다."),
     ERROR_IS_NOT_NUMBER("숫자가 아닙니다."),

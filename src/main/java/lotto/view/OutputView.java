@@ -19,4 +19,8 @@ public class OutputView {
     public static void promptForAnswerLottoNumbers() {
         System.out.println(Message.FOR_ANSWER_LOTTO_NUMBERS.label());
     }
+
+    public static void promptForBonusNumber() {
+        System.out.println(Message.FOR_BONUS_NUMBER.label());
+    }
 }

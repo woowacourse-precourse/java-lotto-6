@@ -13,11 +13,13 @@ public class LottoController {
     private static int lottoCnt;
     private static List<Lotto> lottos = new ArrayList<>();
     private static List<Integer> answerlottoNumbers;
+    private static int bonusNumber;
 
     public static void run() {
         setBuyAmount();
         buyLotto();
         setAnswerLottoNumbers();
+        setBonusNumber();
     }
 
     private static void setBuyAmount() {
@@ -44,6 +46,9 @@ public class LottoController {
     private static void setAnswerLottoNumbers() {
         OutputView.promptForAnswerLottoNumbers();
         answerlottoNumbers = InputView.getAnswerLottoNumbers();
+    }
 
+    private static void setBonusNumber() {
+        OutputView.promptForBonusNumber();
     }
 }

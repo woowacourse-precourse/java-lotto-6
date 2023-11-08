@@ -38,7 +38,7 @@ class InputMapperTest {
 
         List<Integer> lottoNumbers = lotto.getNumbers();
 
-        assertThat(lottoNumbers).containsExactly(1,2,3,4,5,6);
+        assertThat(lottoNumbers).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
     @Test

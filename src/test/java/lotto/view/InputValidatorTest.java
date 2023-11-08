@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.constants.ErrorMessage.IS_NOT_NUMERIC_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -30,7 +31,7 @@ class InputValidatorTest {
         assertThatThrownBy(() ->
                         InputValidator.validateAndParseInput(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("입력에 숫자가 아닌 문자가 포함되어 있거나 숫자가 너무 큽니다.");
+                .hasMessage(IS_NOT_NUMERIC_ERROR_MESSAGE);
     }
 
     @DisplayName("입력이 정수 자료형의 최대 값 보다 클 경우 에러를 발생한다")
@@ -39,6 +40,6 @@ class InputValidatorTest {
         assertThatThrownBy(() ->
                         InputValidator.validateAndParseInput("2222222222"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("입력에 숫자가 아닌 문자가 포함되어 있거나 숫자가 너무 큽니다.");
+                .hasMessage(IS_NOT_NUMERIC_ERROR_MESSAGE);
     }
 }

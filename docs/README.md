@@ -1,18 +1,18 @@
 # 미션 - 로또 🔢🎯
 ***
 ## 주요 기능 요구 사항
-- [ ] 로또 발행
+- [x] 로또 발행
     - 로또 번호의 숫자 범위: 1~45 
     - 중복되지 않는 6개의 숫자
     - 로또 1장의 가격: 1,000원
-- [ ] 로또 당첨 비교 / 판정
+- [x] 로또 당첨 비교 / 판정
     - 1등: 6개 번호 일치 / 2,000,000,000원
     - 2등: 5개 번호 일치 + 보너스 번호 일치 /30,000,000원
     - 3등: 5개 번호 일치 / 1,500,000원
     - 4등: 4개 번호 일치 / 50,000원
     - 5등: 3개 번호 일치 / 5,000원
-- [ ] 당첨 번호 입력
-- [ ] 당첨 내역, 수익률 출력
+- [x] 당첨 번호 입력
+- [x] 당첨 내역, 수익률 출력
 - [ ] 잘못된 입력 감지 / 에러메시지 출력
 ***
 ## 기능 목록
@@ -27,12 +27,14 @@
     - [x] 결제: pay
 - [x] 발행: Publish
     - [x] 번호 생성: makeNumbers
-- [ ] 당첨 판정: Judgment
+- [x] 당첨 판정: Judgment
     - [x] 당첨 번호 판정: judgeWinningNumber
     - [x] 보너스 번호 판정: judgeBonusNumber
     - [x] 순위 판정: judgeRanking
-- [ ] 당첨 통계: Statistics
-    - [ ] 수치 계산: calculateNumeric
+- [x] 리스트 생성: MakeList
+    - [x] 문자열을 정수형 리스트로 변환: makeStringToIntegerList
+- [x] 당첨 통계: Statistics
+    - [x] 수익률 계산: calculateRateOfReturn
 - [ ] 잘못된 입력 확인: WrongChecker
     - [ ] 구입 금액 문제 확인: checkWrongAmount
     - [ ] 구입 금액 문자 확인: checkAmountCharacter
@@ -52,16 +54,16 @@
     - [x] 당첨 번호 입력: enterWiningNumber
     - [x] 보너스 번호 입력: enterBonusNumber
     - [x] 입력 닫기: inputClose
-- [ ] 출력: Output
+- [x] 출력: Output
     - [x] 구입금액 입력 요청: requestAmount
     - [x] 구매 갯수 출력: printPurchaseCount
     - [x] 구매 로또 출력: printLottos
     - [x] 당첨 번호 입력 요청: requestWiningNumber
     - [x] 보너스 번호 입력 요청: requestBonusNumber
-    - [ ] 로또 결과 출력: printResultLotto
+    - [x] 로또 결과 출력: printResultLotto
     - [x] 당첨 통계 시작 문구: printWiningStatisticsStart
-    - [ ] 당첨 갯수 출력: printWiningCount
-    - [ ] 수익률 출력: printReturnRate
+    - [x] 당첨 갯수 출력: printWiningCount
+    - [x] 수익률 출력: printReturnRate
 ***
 ## 예외 처리
 - [ ] 로또 구입 금액 입력 관련
@@ -87,3 +89,7 @@
     - [x] 당첨번호판정테스트
     - [x] 보너스번호판정테스트
     - [x] 랭크판정테스트
+- [x] 리스트 생성 테스트: MakeListTest
+    - [x] 문자열을정수형리스트로변환테스트
+- [x] 당첨 통계 테스트: StatisticsTest
+    - [x] 수익률계산테스트

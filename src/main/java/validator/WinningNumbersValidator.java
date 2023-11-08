@@ -1,11 +1,12 @@
 package validator;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class WinningNumbersValidator {
-    public static void winningNumbersValidate(String winningNumbers) {
+    public static List<Integer> winningNumbersValidate(String winningNumbers) {
         winningNumbersNotNull(winningNumbers);
         winningNumbersComma(winningNumbers);
         winningNumbersEndComma(winningNumbers);
@@ -14,6 +15,21 @@ public class WinningNumbersValidator {
         winningNumberNotNull(winningSixNumbers);
         winningNumberRange(winningSixNumbers);
         winningNumberUnique(winningSixNumbers);
+        List<Integer> lottoWinningNumbers = makeLottoWinningNumbers(winningSixNumbers);
+        return lottoWinningNumbers;
+    }
+
+    public static List<Integer> makeLottoWinningNumbers(List<String> winningSixNumbers) {
+        List<Integer> lottoWinningNumbers = new ArrayList<>();
+        for (String winningNumber : winningSixNumbers) {
+            try {
+                int Num = Integer.parseInt(winningNumber);
+                lottoWinningNumbers.add(Num);
+            } catch (Exception e) {
+                throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요");
+            }
+        }
+        return lottoWinningNumbers;
     }
 
     private static void winningNumbersNotNull(String winningNumbers) {

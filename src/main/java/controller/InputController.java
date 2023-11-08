@@ -6,6 +6,7 @@ import static view.View.moneyMessagePrint;
 import static view.View.winningNumbersMessagePrint;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 
 public class InputController {
     public static int getMoneyInput() {
@@ -22,13 +23,13 @@ public class InputController {
         }
     }
 
-    public static void getWinningNumbersInput() {
+    public static List<Integer> getWinningNumbersInput() {
         winningNumbersMessagePrint();
         while (true) {
             try {
                 String winningNumbers = Console.readLine();
-                winningNumbersValidate(winningNumbers);
-                return;
+                List<Integer> lottoWinningNumbers = winningNumbersValidate(winningNumbers);
+                return lottoWinningNumbers;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }

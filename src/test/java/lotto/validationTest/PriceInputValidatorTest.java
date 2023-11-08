@@ -9,6 +9,10 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class PriceInputValidatorTest {
+    private static final String NOT_ALONE_EXCEPTION_MESSAGE = "입력값이 한 개가 아닙니다.";
+    private static final String NOT_THOUSAND_EXCEPTION_MESSAGE = "입력값을 천 단위로 입력해주세요.";
+    private static final String NOT_DIGIT_EXCEPTION_MESSAGE = "입력값이 숫자가 아닙니다.";
+
     @DisplayName("구매 금액이 1000단위로 정상 입력된 상황 테스트")
     @Test
     public void testValidPriceInput() {
@@ -24,7 +28,7 @@ public class PriceInputValidatorTest {
         String invalidPrice = "1 000";
 
         assertThatIllegalArgumentException().isThrownBy(() -> PriceInputValidator.validate(invalidPrice))
-                .withMessage("입력값이 한 개가 아닙니다.");
+                .withMessage(NOT_ALONE_EXCEPTION_MESSAGE);
     }
 
     @DisplayName("구매 금액이 1000원 단위가 아닐 때 예외 처리")
@@ -33,7 +37,7 @@ public class PriceInputValidatorTest {
         String invalidPrice = "1500";
 
         assertThatIllegalArgumentException().isThrownBy(() -> PriceInputValidator.validate(invalidPrice))
-                .withMessage("입력값을 천 단위로 입력해주세요.");
+                .withMessage(NOT_THOUSAND_EXCEPTION_MESSAGE);
     }
 
     @DisplayName("구매 금액 입력값이 숫자가 아닐 때 예외 처리")
@@ -42,6 +46,6 @@ public class PriceInputValidatorTest {
         String invalidPrice = "abc";
 
         assertThatIllegalArgumentException().isThrownBy(() -> PriceInputValidator.validate(invalidPrice))
-                .withMessage("입력값이 숫자가 아닙니다.");
+                .withMessage(NOT_DIGIT_EXCEPTION_MESSAGE);
     }
 }

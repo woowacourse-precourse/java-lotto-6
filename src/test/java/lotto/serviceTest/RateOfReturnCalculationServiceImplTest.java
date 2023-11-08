@@ -25,6 +25,6 @@ public class RateOfReturnCalculationServiceImplTest {
 
         double rateOfReturn = rateOfReturnCalculationService.calculateRateOfReturn(8000, winningStatistics);
 
-        assertThat(rateOfReturn).isEqualTo(62.5); // Adjust this value according to your expected result
+        assertThat(rateOfReturn).isEqualTo(62.5);
     }
 }

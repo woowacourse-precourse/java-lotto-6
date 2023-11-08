@@ -15,13 +15,12 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoServiceTest {
-
     private LottoRepository lottoRepository;
     private LottoService lottoService;
 
     @BeforeEach
     public void setUp() {
-        lottoRepository = new MemoryRandomLottoRepository(); // Initialize the memory repository
+        lottoRepository = new MemoryRandomLottoRepository();
         lottoService = new LottoServiceImpl(lottoRepository);
     }
 
@@ -31,9 +30,9 @@ public class LottoServiceTest {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         lottoService.recordLotto(lotto);
 
-        List<Lotto> lottos = lottoRepository.getLottoList(); // Get lottos from the memory repository
+        List<Lotto> lottos = lottoRepository.getLottoList();
 
-        assertThat(lottos).contains(lotto); // Check if the lotto is stored in the memory repository
+        assertThat(lottos).contains(lotto);
     }
 
     @DisplayName("로또서비스 조회기능 테스트")
@@ -44,8 +43,8 @@ public class LottoServiceTest {
         lottoRepository.save(lotto1);
         lottoRepository.save(lotto2);
 
-        List<Lotto> lottos = lottoService.getAllLottoRecord(); // Get all lotto records
+        List<Lotto> lottos = lottoService.getAllLottoRecord();
 
-        assertThat(lottos).contains(lotto1, lotto2); // Check if the expected lotto records are returned
+        assertThat(lottos).contains(lotto1, lotto2);
     }
 }

@@ -12,9 +12,11 @@ import lotto.service.WinningCalculationServiceImpl;
 public class Application {
     public static void main(String[] args) {
         LottoRepository lottoRepository = new MemoryRandomLottoRepository();
+
         LottoService lottoService = new LottoServiceImpl(lottoRepository);
         WinningCalculationService winningCalculationService = new WinningCalculationServiceImpl(lottoRepository);
         RateOfReturnCalculationService rateOfReturnCalculationService = new RateOfReturnCalculationServiceImpl();
+
         LottoGameManager lottoGameManager = new LottoGameManager(lottoService, winningCalculationService,
                 rateOfReturnCalculationService);
         lottoGameManager.run();

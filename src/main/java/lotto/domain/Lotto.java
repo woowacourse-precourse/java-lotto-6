@@ -40,7 +40,6 @@ public class Lotto {
                 throw new IllegalArgumentException(OUT_OF_RANGE_EXCEPTION_MESSAGE);
             }
         }
-        //boolean numbers.stream().allMatch(number -> number >=1 && number <= 45);
     }
 
     public List<Integer> getNumbers() {

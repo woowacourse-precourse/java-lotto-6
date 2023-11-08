@@ -8,6 +8,10 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class WinningNumbersInputValidatorTest {
+    private static final String NOT_SIX_DIGIT_EXCEPTION_MESSAGE = "로또 번호는 6개여야 합니다.";
+    private static final String DUPLICATE_EXCEPTION_MESSAGE = "로또 번호에 중복된 숫자가 있습니다.";
+    private static final String OUT_OF_RANGE_EXCEPTION_MESSAGE = "로또 번호는 1~45 사이의 숫자여야 합니다.";
+    private static final String STRING_SEPARATION_EXCEPTION_MESSAGE = "로또 번호는 쉼표(,)로 구분되어야 합니다.";
 
     @DisplayName("당첨 번호 정상 입력 테스트")
     @Test
@@ -24,7 +28,7 @@ public class WinningNumbersInputValidatorTest {
         String invalidNumbers = "1,2,3,4,5";
 
         assertThatIllegalArgumentException().isThrownBy(() -> WinningNumbersInputValidator.validate(invalidNumbers))
-                .withMessage("로또 번호는 6개여야 합니다.");
+                .withMessage(NOT_SIX_DIGIT_EXCEPTION_MESSAGE);
     }
 
     @DisplayName("당첨 번호에 중복된 숫자가 있을 때 예외 처리")
@@ -33,7 +37,7 @@ public class WinningNumbersInputValidatorTest {
         String invalidNumbers = "1,2,3,4,5,5";
 
         assertThatIllegalArgumentException().isThrownBy(() -> WinningNumbersInputValidator.validate(invalidNumbers))
-                .withMessage("로또 번호에 중복된 숫자가 있습니다.");
+                .withMessage(DUPLICATE_EXCEPTION_MESSAGE);
     }
 
     @DisplayName("당첨 번호들이 1~45 사이의 숫자가 아닐 때 예외처리")
@@ -42,7 +46,7 @@ public class WinningNumbersInputValidatorTest {
         String invalidNumbers = "0,2,3,46,5,6";
 
         assertThatIllegalArgumentException().isThrownBy(() -> WinningNumbersInputValidator.validate(invalidNumbers))
-                .withMessage("로또 번호는 1~45 사이의 숫자여야 합니다.");
+                .withMessage(OUT_OF_RANGE_EXCEPTION_MESSAGE);
     }
 
     @DisplayName("당첨 번호 입력시 구분자가 , 인지 테스트")
@@ -51,6 +55,6 @@ public class WinningNumbersInputValidatorTest {
         String invalidNumbers = "1;2;3;4;5;6";
 
         assertThatIllegalArgumentException().isThrownBy(() -> WinningNumbersInputValidator.validate(invalidNumbers))
-                .withMessage("로또 번호는 쉼표(,)로 구분되어야 합니다.");
+                .withMessage(STRING_SEPARATION_EXCEPTION_MESSAGE);
     }
 }

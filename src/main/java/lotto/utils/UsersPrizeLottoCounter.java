@@ -16,9 +16,9 @@ public class UsersPrizeLottoCounter {
 
     public static Map<LottoPrize, Long> countPrizeLotto(WinningLotto winningLotto, UserLotteries userLotteries) {
         List<Lotto> drawnUserLotto = filterDrawnUserLotto(winningLotto, userLotteries);
-        Map<LottoPrize, Long> lottoPrizeCountMap = groupByLottoPrize(winningLotto, drawnUserLotto);
-        allocateZeroToNull(lottoPrizeCountMap);
-        return lottoPrizeCountMap;
+        Map<LottoPrize, Long> lottoPrizeCount = groupByLottoPrize(winningLotto, drawnUserLotto);
+        allocateZeroToNull(lottoPrizeCount);
+        return lottoPrizeCount;
     }
 
     private static List<Lotto> filterDrawnUserLotto(WinningLotto winningLotto, UserLotteries userLotteries) {

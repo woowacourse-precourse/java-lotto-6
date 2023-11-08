@@ -14,17 +14,17 @@ public enum LottoPrize {
 
     private final Integer matchedNumberCount;
     private final Integer prizeMoney;
-    private final BiPredicate<Integer, Boolean> condition;
+    private final BiPredicate<Integer, Boolean> isLottoPrize;
 
-    LottoPrize(Integer matchedNumberCount, Integer prizeMoney, BiPredicate<Integer, Boolean> condition) {
+    LottoPrize(Integer matchedNumberCount, Integer prizeMoney, BiPredicate<Integer, Boolean> isLottoPrize) {
         this.matchedNumberCount = matchedNumberCount;
         this.prizeMoney = prizeMoney;
-        this.condition = condition;
+        this.isLottoPrize = isLottoPrize;
     }
 
     public static LottoPrize valueOf(Boolean hasBonusNumber, Integer countMatchNumber) {
         return Arrays.stream(LottoPrize.values())
-                .filter(lottoPrize -> lottoPrize.condition.test(countMatchNumber, hasBonusNumber))
+                .filter(lottoPrize -> lottoPrize.isLottoPrize.test(countMatchNumber, hasBonusNumber))
                 .findAny()
                 .orElseThrow(() -> new NoSuchElementException("[ERROR] 보너스 넘버와 로또에 맞는 등수가 없습니다."));
     }

@@ -14,14 +14,14 @@ public class LottoFactory {
     }
 
     public Lotto createLotto() {
-        List<Integer> randomList = randomNumbersGenerator.get();
-        List<Integer> sortedRandomList = sortRandomNumber(randomList);
-        return new Lotto(sortedRandomList);
+        List<Integer> randomNumbers = randomNumbersGenerator.get();
+        List<Integer> sortedRandomNumbers = sortRandomNumber(randomNumbers);
+        return new Lotto(sortedRandomNumbers);
     }
 
-    private List<Integer> sortRandomNumber(List<Integer> randomList) {
-        List<Integer> sortedRandomList = new ArrayList<>(randomList);
-        sortedRandomList.sort(null);
-        return sortedRandomList;
+    private List<Integer> sortRandomNumber(List<Integer> randomNumbers) {
+        List<Integer> sortedRandomNumbers = new ArrayList<>(randomNumbers);
+        sortedRandomNumbers.sort(null);
+        return sortedRandomNumbers;
     }
 }

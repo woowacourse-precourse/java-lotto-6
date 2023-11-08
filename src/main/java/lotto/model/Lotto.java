@@ -29,8 +29,8 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     private void validateNotDuplicated(List<Integer> numbers) {
-        Set<Integer> numberSet = new HashSet<>(numbers);
-        if (numberSet.size() < numbers.size()) {
+        Set<Integer> distinctNumbers = new HashSet<>(numbers);
+        if (distinctNumbers.size() < numbers.size()) {
             throw new IllegalArgumentException(ALREADY_USED_NUMBER_NOT_ALLOWED.toString());
         }
     }

@@ -1,6 +1,10 @@
 package lotto.validation;
 
-import static lotto.constants.ErrorMessage.*;
+import static lotto.constants.ErrorMessage.BLANK_NOT_ALLOWED;
+import static lotto.constants.ErrorMessage.DIVISIBLE_BY_THOUSAND_ALLOWED;
+import static lotto.constants.ErrorMessage.EMPTY_NOT_ALLOWED;
+import static lotto.constants.ErrorMessage.ONLY_NUMBER_ALLOWED;
+import static lotto.constants.ErrorMessage.ZERO_OR_LESS_NOT_ALLOWED;
 import static lotto.constants.LottoNumber.LOTTO_PRICE;
 
 public class PurchaseAmountValidator {

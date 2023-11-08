@@ -30,7 +30,8 @@ public enum Rank {
     }
 
     private static boolean isSameMatchPoint(int matchCount, boolean matchBonus, Rank rank) {
-        return rank.matchCount == matchCount && rank.matchBonus == matchBonus;
+        return (rank.matchCount == matchCount && rank.matchBonus == matchBonus)
+                || (rank.matchCount == matchCount && !rank.matchBonus);
     }
 
 

@@ -37,12 +37,12 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.LOTTO_NUMBER_OUT_OF_COUNT_ERROR.getMessage());
         }
         if (numbers.size() > numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.LOTTO_NUMBER_DUPLICATE_ERROR.getMessage());
         }
         if (numbers.stream().anyMatch(number -> number < 1 || number > 45))
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.LOTTO_NUMBER_OUT_OF_RANGE_ERROR.getMessage());
     }
 }

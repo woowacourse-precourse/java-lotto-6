@@ -47,7 +47,7 @@ public enum LottoRank {
                 .findAny().orElse(NO_WINNING);
     }
 
-    public static Comparator<LottoRank> getComparator() {
-        return Comparator.comparingInt(r -> r.order);
+    public static int compare(LottoRank a, LottoRank b) {
+        return Integer.compare(a.order, b.order);
     }
 }

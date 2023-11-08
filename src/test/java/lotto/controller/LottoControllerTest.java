@@ -8,7 +8,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
-import lotto.service.LottoService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -223,7 +222,7 @@ class LottoControllerTest {
 
         // when
         Lotto lotto = lottoController.registerWinningLottoCombination();
-        String result = lotto.getStatus();
+        String result = lotto.getNumbers();
 
         // then
         assertThat(result).containsSubsequence("[", "1", "2", "3", "4", "5", "6", "]");
@@ -237,7 +236,7 @@ class LottoControllerTest {
 
         // when
         Lotto lotto = lottoController.registerWinningLottoCombination();
-        String result = lotto.getStatus();
+        String result = lotto.getNumbers();
 
         // then
         assertThat(result).containsSubsequence("[", "1", "2", "3", "4", "5", "6", "]");

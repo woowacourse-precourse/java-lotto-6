@@ -22,7 +22,7 @@ public class LottoService {
         result.append(purchaseCount).append(PURCHASE_X_COUNT + "\n");
 
         for (Lotto lotto : lottoList) {
-            result.append(lotto.getStatus()).append("\n");
+            result.append(lotto.getNumbers()).append("\n");
         }
 
         return result.toString();

@@ -2,19 +2,17 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.model.WinningNumberValidator;
 
 public class InputView {
 
-    public int insertBuyPrice() {
+    public static String insertBuyPrice() {
         String buyPrice = Console.readLine();
-        return convertToInt(buyPrice);
+        return buyPrice;
     }
 
-    public List<Integer> insertWinningNumber() {
+    public static String insertWinningNumber() {
         String winningNumber = Console.readLine();
-        new WinningNumberValidator(winningNumber);
-        return convertToList(winningNumber);
+        return winningNumber;
     }
 
     public int insertBonusNumber() {
@@ -26,12 +24,12 @@ public class InputView {
         return Integer.parseInt(buyPrice);
     }
 
-    private List<Integer> convertToList(String winningNumber) {
+    public static List<Integer> convertToList(String winningNumber) {
         List<String> numbers = List.of(winningNumber.split(","));
         return convertToIntList(numbers);
     }
 
-    private List<Integer> convertToIntList(List<String> numbers) {
+    private static List<Integer> convertToIntList(List<String> numbers) {
         return numbers.stream()
                 .map(Integer::parseInt)
                 .toList();

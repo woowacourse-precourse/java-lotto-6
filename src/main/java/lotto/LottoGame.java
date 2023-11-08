@@ -10,7 +10,7 @@ import java.util.Map;
 public class LottoGame {
 
     public List<Lotto> buyLottos(int lottoCounts) {
-        System.out.println(lottoCounts + "개를 구매했습니다.");
+        System.out.println("\n" + lottoCounts + "개를 구매했습니다.");
 
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCounts; i++) {
@@ -38,7 +38,7 @@ public class LottoGame {
     public void printResult(List<Rank> ranks) {
         Map<Rank, Integer> rankCount = getRankCount(ranks);
 
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
         System.out.println("3개 일치 (5,000원) - " + rankCount.getOrDefault(Rank.FIFTH, 0) + "개");
         System.out.println("4개 일치 (50,000원) - " + rankCount.getOrDefault(Rank.FOURTH, 0) + "개");
         System.out.println("5개 일치 (1,500,000원) - " + rankCount.getOrDefault(Rank.THIRD, 0) + "개");

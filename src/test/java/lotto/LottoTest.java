@@ -38,4 +38,18 @@ class LottoTest {
         assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6)).setBonusNumber(6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 당첨 번호는 1~45 사이의 숫자가 아니라면 예외가 발생한다.")
+    @Test
+    void LottoNumberRangeCheck() {
+        assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 60)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호는 1~45 사이의 숫자가 아니라면 예외가 발생한다.")
+    @Test
+    void BonusNumberRangeCheck() {
+        assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6)).setBonusNumber(60))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

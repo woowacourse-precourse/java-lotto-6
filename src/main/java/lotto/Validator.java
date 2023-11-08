@@ -31,4 +31,10 @@ public class Validator {
         throw new IllegalArgumentException("[ERROR]");
     }
 
+    static void isSizeInRange(HashSet<Integer> list) {
+        if (list.size() != 6) {
+            throw new IllegalArgumentException("[ERROR]");
+        }
+    }
+
 }

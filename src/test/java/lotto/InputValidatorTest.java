@@ -3,6 +3,7 @@ package lotto;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import validator.InputValidator;
@@ -76,5 +77,25 @@ public class InputValidatorTest {
         assertThat(result2).isInstanceOf(IllegalArgumentException.class);
         assertThat(result3).isInstanceOf(IllegalArgumentException.class);
         assertThat(result4).doesNotThrowAnyException();
+    }
+
+    @DisplayName("당첨 번호 중 중복된 값이 있는지 검사")
+    @Test
+    void 당첨_번호_중복_테스트() {
+        // given
+        List<Integer> case1 = List.of(1, 2, 3, 4, 5, 5);
+        List<Integer> case2 = List.of(1, 2, 3, 4, 5, 6);
+
+        // when
+        Throwable result1 = catchThrowable(() -> {
+            InputValidator.validateLottoNumbersUniqueness(case1);
+        });
+        Throwable result2 = catchThrowable(() -> {
+            InputValidator.validateLottoNumbersUniqueness(case2);
+        });
+
+        // then
+        assertThat(result1).isInstanceOf(IllegalArgumentException.class);
+        assertThat(result2).doesNotThrowAnyException();
     }
 }

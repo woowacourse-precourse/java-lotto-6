@@ -30,9 +30,8 @@ public class Lotto {
         return numbers;
     }
 
-    List<Integer> sortRandomNumber(List<Integer> notSortedNumbers){
+    void sortRandomNumber(List<Integer> notSortedNumbers){
         Collections.sort(notSortedNumbers);
-        return notSortedNumbers;
     }
 
     List<List<Integer>> makeLottoNumbersCollection(int count){
@@ -42,7 +41,7 @@ public class Lotto {
             lottoNumbers.add(randomNumbers);
         }
         for(List<Integer> notSortedNumbers: lottoNumbers){
-            notSortedNumbers = sortRandomNumber(notSortedNumbers);
+             sortRandomNumber(notSortedNumbers);
         }
         return lottoNumbers;
     }

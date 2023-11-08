@@ -8,15 +8,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ResultsTest {
 
-    List<Lotto> lottos = List.of(
+    private final List<Lotto> lottos = List.of(
             new Lotto(List.of(1, 2, 3, 4, 5, 6)),
             new Lotto(List.of(2, 3, 4, 5, 6, 7)),
             new Lotto(List.of(5, 6, 7, 8, 9, 10)),
             new Lotto(List.of(11, 12, 13, 14, 15, 16))
     );
-    Winning winning = new Winning("1,2,3,4,5,6");
-    Bonus bonus = new Bonus(winning, "7");
-    Results result = Results.of(lottos, winning, bonus);
+    private final Winning winning = new Winning("1,2,3,4,5,6");
+    private final Bonus bonus = new Bonus(winning, "7");
+    private final Results result = Results.of(lottos, winning, bonus);
 
     @DisplayName("당첨 결과 문자열 생성")
     @Test

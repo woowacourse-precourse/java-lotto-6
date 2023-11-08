@@ -16,6 +16,7 @@ public class InputView {
     public static int getGeneratedLottoCount() {
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
         String amount = Console.readLine();
+        System.out.println();
         ValidationUtil.isValidAmount(amount);
         int count = Integer.parseInt(amount) / ConstVariable.STANDARD.getValue();
         System.out.println(MessageFormat.format(LOTTO_COUNT_MESSAGE, count));

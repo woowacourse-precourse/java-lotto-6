@@ -23,6 +23,7 @@ public class GenerationUtil {
             System.out.println(lotto.printNumbers());
             generatedLottos.add(lotto);
         }
+        System.out.println();
         return generatedLottos;
     }
 }

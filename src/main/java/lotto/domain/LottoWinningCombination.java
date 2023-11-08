@@ -14,6 +14,7 @@ public class LottoWinningCombination {
         LottoWinningCombination lottoWinningCombination = new LottoWinningCombination();
         lottoWinningCombination.winnerNums = winnerNums;
         lottoWinningCombination.bonusNum = bonusNum;
+
         return lottoWinningCombination;
 
     }

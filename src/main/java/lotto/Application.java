@@ -80,5 +80,7 @@ class WinnigNum {
         String bonusnum = Console.readLine();
         return bonusnum;
     }
-
+    public static int BonusNum(String bonusnum){
+        return Integer.parseInt(bonusnum);
+    }
 }

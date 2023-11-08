@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.Arrays;
 import lotto.model.User;
 import lotto.model.WinningResult;
 import lotto.utils.Utils;
@@ -24,7 +25,9 @@ public class OutputView {
     public static void printResult() {
         System.out.println(WINNING_RESULT);
         System.out.println("---");
-        WinningResult.showResult();
+        Arrays.stream(WinningResult.values())
+                .map(value -> String.format(value.getMessage(), value.getCountResult()))
+                .forEach(System.out::println);
     }
 
     public static void printProfit(double profit) {

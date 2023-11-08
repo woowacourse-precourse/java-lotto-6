@@ -31,5 +31,8 @@ public class PrintResult {
         }
         return results.toString();
     }
+    public String printProfitRate() {
+        return "총 수익률은 " + resultOfProfitRate + "% 입니다.";
+    }
 
 }

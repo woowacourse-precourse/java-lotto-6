@@ -61,13 +61,46 @@ public class LottoController {
     }
 
     private void getWinLotto() {
-        outputView.printMessage(Message.GET_LOTTO_NUMBER);
-        String inputNumber = inputView.getLottoResult();
-        List<Integer> lottoNumber = lottoService.numbersToList(inputNumber);
-        Lotto winLotto = lottoService.getLotto(lottoNumber);
+        Lotto winLottoNumber = getWinLottoNumber();
+        int winLottoBonusNumber = getWinLottoBonusNumber(winLottoNumber.getLottoNumbers());
 
-        outputView.printMessage(Message.GET_LOTTO_BONUS_NUMBER);
-        int bonusNumber = inputView.getBonusNumber();
-        this.winLotto = new WinLotto(winLotto, bonusNumber);
+        this.winLotto = new WinLotto(winLottoNumber, winLottoBonusNumber);
+    }
+
+    private Lotto getWinLottoNumber() {
+        List<Integer> lottoNumber;
+
+        while (true) {
+            outputView.printMessage(Message.GET_LOTTO_NUMBER);
+            String inputNumber = inputView.getLottoResult();
+
+            try {
+                Validator.validateWinLotto(inputNumber);
+                lottoNumber = lottoService.numbersToList(inputNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e.getMessage());
+            }
+        }
+
+        return lottoService.getLotto(lottoNumber);
+    }
+
+    private int getWinLottoBonusNumber(List<Integer> numbers) {
+        int bonus;
+
+        while (true) {
+            outputView.printMessage(Message.GET_LOTTO_BONUS_NUMBER);
+            String input = inputView.getBonusNumber();
+            try {
+                Validator.validateWinBonus(input, numbers);
+                bonus = Integer.parseInt(input);
+                break;
+            } catch (IllegalArgumentException e) {
+
+            }
+        }
+        
+        return bonus;
     }
 }

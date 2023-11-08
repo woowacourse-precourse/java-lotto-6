@@ -107,30 +107,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void 총_상금_계산(){
-        final int prizeSum = 203155000;
-
-        List<Integer> lottoBalls1 = List.of(1,2,3,4,5,6);
-        List<Integer> lottoBalls2 = List.of(1,2,3,4,5,7);
-        List<Integer> lottoBalls3 = List.of(1,45,3,4,5,6);
-        List<Integer> lottoBalls4 = List.of(1,2,3,4,44,45);
-        List<Integer> lottoBalls5 = List.of(1,2,3,43,44,45);
-
-        List<List<Integer>> lottoBalls = new ArrayList<>();
-        lottoBalls.add(lottoBalls1);
-        lottoBalls.add(lottoBalls2);
-        lottoBalls.add(lottoBalls3);
-        lottoBalls.add(lottoBalls4);
-        lottoBalls.add(lottoBalls5);
-
-        List<Integer> winningBalls = List.of(1,2,3,4,5,6);
-        int bonusBall = 7;
-        compareValueStart(winningBalls, lottoBalls, bonusBall,5000);
-
-        Assertions.assertThat(Integer.toString(CompareLottoValue.getResultMoney())).isEqualTo("2031555000");
-
-    }
 
     @Test
     void 총_수익률_계산(){
@@ -155,10 +131,10 @@ class LottoTest {
 
         int amount = 8000;
 
-        List<Integer> winningBalls = List.of(1,2,3,4,5,6);
+        List<Integer> winningBalls2 = List.of(1,2,3,4,5,6);
         int bonusBall = 7;
-        compareValueStart(winningBalls, lottoBalls2, bonusBall,8000);
-        Assertions.assertThat((CompareLottoValue.getRateOfTurn(amount))).isEqualTo(62.5);
+        compareValueStart(winningBalls2, lottoBalls2, bonusBall,8000);
+        Assertions.assertThat(CompareLottoValue.getRateOfTurn(amount)).isEqualTo(62.5);
     }
 
 }

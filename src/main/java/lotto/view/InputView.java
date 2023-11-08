@@ -5,15 +5,15 @@ import static lotto.utils.InputViewPhrase.*;
 public class InputView {
 
     public static void printInputMoneyPhrase() {
-        System.out.println(inputMoneyPhrase);
+        System.out.println(PHRASE_INPUT_MONEY);
     }
 
     public static void printInputLottoNumberPhrase() {
-        System.out.println(inputLottoNumberPhrase);
+        System.out.println(PHRASE_INPUT_LOTTO_NUMBER);
     }
 
     public static void printInputLottoBonusNumberPhrase() {
-        System.out.println(inputLottoBonusNumberPhrase);
+        System.out.println(INPUT_LOTTO_BONUS_NUMBER);
     }
 
 }

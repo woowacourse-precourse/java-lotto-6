@@ -25,6 +25,7 @@ class LottoGeneratorTest {
     @Test
     void generate_ShouldGenerateSpecifiedNumberOfLottos() {
         LottoGenerator lottoGenerator = new LottoGenerator();
+
         List<Lotto> lottos = lottoGenerator.generate(3000, numberGenerator);
 
         assertThat(lottos).hasSize(3000 / LOTTO_PRICE);
@@ -34,6 +35,7 @@ class LottoGeneratorTest {
     @Test
     void generate_LottosShouldContainNumbersFromSetNumberGenerator() {
         LottoGenerator lottoGenerator = new LottoGenerator();
+
         List<Lotto> lottos = lottoGenerator.generate(3000, numberGenerator);
 
         for (Lotto lotto : lottos) {
@@ -45,6 +47,7 @@ class LottoGeneratorTest {
     @Test
     void generate_ShouldReturnImmutableList() {
         LottoGenerator lottoGenerator = new LottoGenerator();
+
         List<Lotto> lottos = lottoGenerator.generate(3000, numberGenerator);
 
         assertThatThrownBy(() -> lottos.add(new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12))))

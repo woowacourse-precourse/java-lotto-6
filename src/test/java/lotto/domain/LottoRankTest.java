@@ -1,15 +1,15 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoRankTest {
 
     @DisplayName("각 등수에 맞는 상금이 올바르게 반환되는지 테스트")
     @Test
     public void shouldReturnCorrectPrizeForLottoRank() {
-        //
         assertThat(LottoRank.FIRST.getPrize()).isEqualTo(2000000000);
         assertThat(LottoRank.SECOND.getPrize()).isEqualTo(30000000);
         assertThat(LottoRank.THIRD.getPrize()).isEqualTo(1500000);
@@ -39,7 +39,6 @@ public class LottoRankTest {
     @DisplayName("보너스 번호에 따른 올바른 LottoRank를 반환하는지 테스트")
     @Test
     public void shouldConsiderBonusMatchForSecondRank() {
-        //
         assertThat(LottoRank.of(5, true)).isEqualTo(LottoRank.SECOND);
         assertThat(LottoRank.of(5, false)).isEqualTo(LottoRank.THIRD);
     }

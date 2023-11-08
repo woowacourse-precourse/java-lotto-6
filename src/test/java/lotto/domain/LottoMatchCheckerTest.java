@@ -12,9 +12,10 @@ class LottoMatchCheckerTest {
     @Test
     @DisplayName("당첨 번호와 비교하여 로또 등수를 매기는 테스트")
     void getResult_ShouldReturnCorrectRankCount() {
-        // 당첨 번호와 보너스 번호 설정
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+
         Map<LottoRank, Integer> result = getLottoRankIntegerMap(winningNumbers);
+        
         assertThat(result.get(LottoRank.NONE)).isEqualTo(1);
         assertThat(result.get(LottoRank.FIFTH)).isEqualTo(1);
         assertThat(result.get(LottoRank.FOURTH)).isEqualTo(1);
@@ -27,7 +28,6 @@ class LottoMatchCheckerTest {
         int bonusNumber = 7;
         LottoMatchChecker lottoMatchChecker = new LottoMatchChecker(winningNumbers, bonusNumber);
 
-        // 로또 리스트 생성
         List<Lotto> lottos = Arrays.asList(
                 new Lotto(Arrays.asList(8, 9, 10, 11, 12, 13)), // NO WIN
                 new Lotto(Arrays.asList(1, 2, 3, 14, 15, 16)),  // FIFTH
@@ -37,8 +37,6 @@ class LottoMatchCheckerTest {
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6))      // FIRST
         );
 
-        // 결과 확인
-        Map<LottoRank, Integer> result = lottoMatchChecker.getResult(lottos);
-        return result;
+        return lottoMatchChecker.getResult(lottos);
     }
 }

@@ -4,8 +4,8 @@ import java.util.EnumMap;
 import java.util.List;
 
 public class LottoGame {
-    private Long purchaseAmount;
-
+    private final Long purchaseAmount;
+    private final Long lottoCnt;
     private List<Lotto> lottos;
 
     private Lotto winningNumber;
@@ -13,8 +13,10 @@ public class LottoGame {
     private int bonusNumber;
 
     private final EnumMap<LottoStatistic, Integer> lottoResult;
+    private static final int lottoPrice = 1000;
     public LottoGame(Long purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
+        this.lottoCnt = purchaseAmount/lottoPrice;
         lottoResult = new EnumMap<>(LottoStatistic.class);
         for (LottoStatistic ls : LottoStatistic.values()) {
             lottoResult.put(ls, 0);
@@ -24,6 +26,8 @@ public class LottoGame {
     public Long getPurchaseAmount() {
         return purchaseAmount;
     }
+
+    public Long getLottoCnt() { return lottoCnt;}
 
     public List<Lotto> getLottos() {
         return lottos;

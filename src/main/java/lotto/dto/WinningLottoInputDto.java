@@ -2,7 +2,7 @@ package lotto.dto;
 
 import lotto.domain.Lotto;
 
-public final class WinningLottoInputDto extends Dto.Input {
+public final class WinningLottoInputDto extends InputDto {
     private Lotto lotto;
     private Integer bonus;
 
@@ -11,7 +11,6 @@ public final class WinningLottoInputDto extends Dto.Input {
     }
 
     public void setLotto(Lotto lotto) {
-        validateOverride(this.lotto);
         this.lotto = lotto;
     }
 

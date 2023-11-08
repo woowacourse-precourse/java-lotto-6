@@ -6,7 +6,7 @@ public final class BuyLottoDto {
     private BuyLottoDto() {
     }
 
-    public static class Input extends Dto.Input {
+    public static class Input extends InputDto {
         private Long buyPrice;
 
         public Long getBuyPrice() {
@@ -14,12 +14,11 @@ public final class BuyLottoDto {
         }
 
         public void setBuyPrice(Long buyPrice) {
-            validateOverride(this.buyPrice);
             this.buyPrice = buyPrice;
         }
     }
 
-    public static class Output extends Dto.Output {
+    public static class Output extends OutputDto {
         private final BuyLotto buyLotto;
 
         public Output(BuyLotto buyLotto) {

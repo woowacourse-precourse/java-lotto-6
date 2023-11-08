@@ -64,11 +64,9 @@ public class WinningLotto {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("정수만 입력 가능");
         }
-
         if (parsedNumber <= 0) {
             throw new IllegalArgumentException("양의 정수만 입력 가능");
         }
-
         return parsedNumber;
     }
 
@@ -80,7 +78,6 @@ public class WinningLotto {
 
     private static void validateUnique(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-
         if (uniqueNumbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("각 숫자는 고유해야함");
         }

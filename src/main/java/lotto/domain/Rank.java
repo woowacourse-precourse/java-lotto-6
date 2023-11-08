@@ -7,12 +7,7 @@ public enum Rank {
     THIRD(5, 1500000),
     SECOND(5, 30000000),
     FIRST(6, 2000000000);
-
-
-
-
-
-
+    
     private final int correctNumbers;
     private final int winnings;
 

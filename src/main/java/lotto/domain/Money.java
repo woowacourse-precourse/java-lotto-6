@@ -11,8 +11,8 @@ public class Money {
     }
 
     private int validateMoney(String inputMoney) {
-        InputValidator.validateEmpty(inputMoney);
         InputValidator.validateNull(inputMoney);
+        InputValidator.validateEmpty(inputMoney);
         return validateInteger(inputMoney);
     }
 
@@ -31,11 +31,11 @@ public class Money {
         return parsedMoney;
     }
 
-    public int getMoney(){
+    public int getMoney() {
         return this.money;
     }
 
-    public int getLottoCount(){
-        return money/1000;
+    public int getLottoCount() {
+        return money / 1000;
     }
 }

@@ -3,12 +3,8 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 enum Prize {
     THREE_MATCH(3, 5_000),
@@ -55,6 +51,7 @@ enum Prize {
 public class Application {
     static ArrayList<Lotto> lottoTickets = new ArrayList<>();
     static List<Integer> winningNumbers = new ArrayList<>();
+    static int totalPrizeAmount = 0;
     public static void main(String[] args) {
         System.out.println("구입금액을 입력해주세요:");
         generateLottoTickets(Console.readLine());
@@ -64,7 +61,8 @@ public class Application {
         System.out.println("보너스 번호를 입력해주세요.");
         Integer bonusNumber=getBonusNumber(Console.readLine());
         compareLottoWithWinning(bonusNumber);
-        showPrizeAmount();
+        showPrizeCount();
+        calculateProfitRate();
     }
 
     public static Integer convertMoneyFormat(String inputMoney) {
@@ -110,14 +108,21 @@ public class Application {
                     .filter(winningNumbers::contains)
                     .count();
             boolean hasBonus = lottoTicket.getNumbers().contains(bonusNumber);
-            calculatePrizeAmount(numberOfMatches,hasBonus);
+            totalPrizeAmount += calculatePrizeAmount(numberOfMatches,hasBonus);
+
+
 
         }
     }
-    public static void calculatePrizeAmount(int numberOfMatches, boolean hasBonus) {
+    public static Integer calculatePrizeAmount(int numberOfMatches, boolean hasBonus) {
         int prizeAmount = Prize.matchPrize(numberOfMatches, hasBonus);
+        return prizeAmount;
     }
-    public static void showPrizeAmount() {
+    public static void calculateProfitRate() {
+        int totalPurchase = lottoTickets.size() * 1000;
+        float profitRate = ((float) totalPrizeAmount / totalPurchase) * 100;
+    }
+    public static void showPrizeCount() {
         System.out.println(Prize.THREE_MATCH.getMatchCount());
         System.out.println(Prize.FOUR_MATCH.getMatchCount());
         System.out.println(Prize.FIVE_MATCH.getMatchCount());

@@ -1,7 +1,9 @@
 package lotto;
 
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.function.BiPredicate;
 
 enum WinningDetails {
@@ -28,7 +30,7 @@ enum WinningDetails {
         this.rankDeterminer = rankDeterminer;
     }
 
-    public WinningDetails getRank(final int matchCount, Boolean containBonusNumber) {
+    public static WinningDetails getRank(final int matchCount, Boolean containBonusNumber) {
         return Arrays.stream(WinningDetails.values())
                 .filter(rank -> rank.rankDeterminer.test(matchCount, containBonusNumber))
                 .findAny()
@@ -40,11 +42,18 @@ public class Calculate {
     private List<Lotto> lottos;
     private List<Integer> answer;
     private int bonus;
+    private final Map<WinningDetails, Integer> rankResult;
 
     public Calculate(List<Lotto> lottos, List<Integer> answer, int bonus) {
+        rankResult = new EnumMap<WinningDetails, Integer>(WinningDetails.class);
         this.lottos = lottos;
         this.answer = answer;
         this.bonus = bonus;
+    }
+
+    private void initMap() {
+        Arrays.stream(WinningDetails.values())
+                .forEach(rank -> rankResult.put(rank, 0));
     }
 
     private int count(List<Integer> lotto) {
@@ -60,8 +69,14 @@ public class Calculate {
     public void countAll() {
         for (int i = 0; i < lottos.size(); i++) {
             int cnt = count(lottos.get(i).getLotto());
-
+            WinningDetails rank = WinningDetails.getRank(cnt, containBonus(lottos.get(i).getLotto()));
+            updateRank(rank);
         }
+    }
+
+    private void updateRank(WinningDetails rank) {
+        int number = rankResult.get(rank);
+        rankResult.put(rank, number + 1);
     }
 
     public boolean containBonus(List<Integer> lotto) {

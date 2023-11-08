@@ -24,9 +24,7 @@ public class GameService {
         LottoMachine lottoMachine = new LottoMachine(numbersCreator);
         userLottos = lottoMachine.purchaseLotto(this.purchaseMoney);
 
-        return userLottos.getLottos().stream()
-                .map(Lotto::getSortedNumbers)
-                .toList();
+        return userLottos.getSortedLottos();
     }
 
     public WinningStatistics determineWinningStatistics(Lotto winningLotto, LottoNumber bonusLottoNumber) {

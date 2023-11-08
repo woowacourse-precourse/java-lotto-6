@@ -19,7 +19,9 @@ public final class Lottos {
                 .toList();
     }
 
-    public List<Lotto> getLottos() {
-        return Collections.unmodifiableList(lottos);
+    public List<List<Integer>> getSortedLottos() {
+        return lottos.stream()
+                .map(Lotto::getSortedNumbers)
+                .toList();
     }
 }

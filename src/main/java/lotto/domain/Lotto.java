@@ -48,8 +48,8 @@ public final class Lotto {
 
     public List<Integer> getSortedNumbers() {
         return numbers.stream()
-                .map(LottoNumber::getNumber)
                 .sorted()
+                .map(LottoNumber::getNumber)
                 .toList();
     }
 }

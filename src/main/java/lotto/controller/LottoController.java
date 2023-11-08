@@ -93,7 +93,7 @@ public class LottoController {
         outputView.printWinningRate(winningRate);
     }
 
-    private void checkBonusNumberDuplicatedWithWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+    public void checkBonusNumberDuplicatedWithWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_DUPLICATED_BONUS_NUMBER.getMessage());
         }

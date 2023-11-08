@@ -6,13 +6,13 @@ import static lotto.constant.ErrorMessage.NOT_MULTIPLES_OF_ONE_THOUSAND;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.stub.LottoPurchaseAmountStub;
 import org.junit.jupiter.api.Test;
 
-class LottoPurchaseAmountTest {
+class LottoPurchaseAmountTest extends LottoPurchaseAmountStub {
     @Test
     void createLottoPurchaseAmount() {
-        String inputPurchaseAmount = "5000";
-        LottoPurchaseAmount purchaseAmount = LottoPurchaseAmount.from(inputPurchaseAmount);
+        LottoPurchaseAmount purchaseAmount = LottoPurchaseAmount.from(INPUT_PURCHASE_AMOUNT);
 
         assertThat(purchaseAmount)
                 .isInstanceOf(LottoPurchaseAmount.class);
@@ -20,35 +20,31 @@ class LottoPurchaseAmountTest {
 
     @Test
     void throw_exception_unless_number() {
-        String inputPurchaseAmount = "가나다";
-        assertThatThrownBy(() -> LottoPurchaseAmount.from(inputPurchaseAmount))
+        assertThatThrownBy(() -> LottoPurchaseAmount.from(INPUT_PURCHASE_AMOUNT1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(CONTAINING_OTHER_THAN_NUMBER.getMessage());
     }
 
     @Test
     void throw_exception_unless_under_maximum_purchase_amount() {
-        String inputPurchaseAmount = "110000";
-        assertThatThrownBy(() -> LottoPurchaseAmount.from(inputPurchaseAmount))
+        assertThatThrownBy(() -> LottoPurchaseAmount.from(INPUT_PURCHASE_AMOUNT2))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(EXCEEDING_MAXIMUM_PURCHASE.getMessage());
     }
 
     @Test
     void throw_exception_unless_multiples_of_thousand() {
-        String inputPurchaseAmount = "99999";
-        assertThatThrownBy(() -> LottoPurchaseAmount.from(inputPurchaseAmount))
+        assertThatThrownBy(() -> LottoPurchaseAmount.from(INPUT_PURCHASE_AMOUNT3))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NOT_MULTIPLES_OF_ONE_THOUSAND.getMessage());
     }
 
     @Test
     public void getLottoPurchaseQuantity() {
-        String inputPurchaseAmount = "5000";
-        LottoPurchaseAmount amount = LottoPurchaseAmount.from(inputPurchaseAmount);
+        LottoPurchaseAmount amount = LottoPurchaseAmount.from(INPUT_PURCHASE_AMOUNT4);
         amount.getLottoPurchaseQuantity();
 
         assertThat(amount.getLottoPurchaseQuantity())
-                .isEqualTo(new LottoPurchaseQuantity(5));
+                .isEqualTo(new LottoPurchaseQuantity(PURCHASE_QUANTITY));
     }
 }

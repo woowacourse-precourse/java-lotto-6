@@ -9,6 +9,7 @@ import lotto.view.ExceptionView;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,26 +26,30 @@ public class LottoManager {
     }
 
     public void startLottoService() {
-        WinningNumberDto winningNumberDto;
-        Result result;
+        String purchaseAmount;
         List<Lotto> userLottoCollection;
         List<LottoResultDto> lottosResult;
 
-        purchaseLotto(); //로또 구매하기
+        WinningNumberDto winningNumberDto;
+        Result result;
+
+        purchaseAmount = purchaseLotto(); //로또 구매하기
         userLottoCollection = generateLotto(); //로또 생성하기
         winningNumberDto = setWinningAndBounsNumber(); //당첨 숫자 입력하기
         lottosResult = judgeLottoWinning(userLottoCollection, winningNumberDto); //로또와 당첨번호 비교하기
         result = setLottosResult(lottosResult); //로또 최종결과 구하기
-
+        getProfitRate(result,purchaseAmount); //로또 수익률 계산 및 출력
     }
 
-    private void purchaseLotto() {
+    private String purchaseLotto() {
         String purchaseAmount;
 
         purchaseAmount = inputPurchaseAmount();
         LottoChanger lottoChanger = new LottoChanger(Integer.parseInt(purchaseAmount));
         lottoCount = lottoChanger.getLottoCount();
         OutputView.printLottoCount(lottoCount);
+
+        return purchaseAmount;
     }
 
     private String inputPurchaseAmount() {
@@ -126,5 +131,10 @@ public class LottoManager {
         OutputView.printLottosResult(result.getWinningCountDto());
 
         return result;
+    }
+
+    private void getProfitRate(Result result, String purchaseAmount){
+        BigDecimal profitRate = result.calculateProfitRate(Integer.parseInt(purchaseAmount));
+        OutputView.printLottoProfitRate(profitRate);
     }
 }

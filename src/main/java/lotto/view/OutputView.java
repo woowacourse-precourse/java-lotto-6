@@ -4,6 +4,7 @@ import lotto.domain.Lotto;
 import lotto.dto.WinningCountDto;
 import lotto.utility.enums.Messages;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class OutputView {
@@ -24,6 +25,10 @@ public class OutputView {
         System.out.println(String.format(Messages.FIVE_WINNING_MESSAGE.getMessage(),winningCountDto.getMatchFiveWinningCount()));
         System.out.println(String.format(Messages.FIVE_WINNING_AND_BONUS_MESSAGE.getMessage(),winningCountDto.getMatchFiveWinningAndBonusCount()));
         System.out.println(String.format(Messages.SIX_WINNING_MESSAGE.getMessage(),winningCountDto.getMatchSixWinningCount()));
+    }
+
+    public static void printLottoProfitRate(BigDecimal profitRate){
+        System.out.println(String.format(Messages.LOTTO_PROFIT_RATE_MESSAGE.getMessage(),profitRate.toString()));
     }
 
 }

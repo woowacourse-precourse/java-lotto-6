@@ -18,9 +18,9 @@ public class OutputView {
     private static final int RESULT_DASH_COUNT = 3;
     private static final String NEW_LINE = "\n";
 
-    public void printLottoCountOfPurchase(int lottosCount) {
+    public void printLottoCount(int lottoCount) {
         System.out.println();
-        System.out.println(String.format(LOTTO_COUNT_OF_PURCHASES_FORMAT, lottosCount));
+        System.out.println(String.format(LOTTO_COUNT_OF_PURCHASES_FORMAT, lottoCount));
     }
 
     public void printLottos(List<Lotto> lottos) {

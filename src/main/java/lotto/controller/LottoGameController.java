@@ -14,11 +14,6 @@ public class LottoGameController {
     private final OutputView outputView;
     private final LottoService lottoService;
 
-    private List<Lotto> lottos;
-
-    private List<Integer> winningNumbers;
-    private Integer bonusNumber;
-
     public LottoGameController(InputView inputView, OutputView outputView, LottoService lottoService) {
         this.inputView = inputView;
         this.outputView = outputView;
@@ -26,26 +21,22 @@ public class LottoGameController {
     }
 
     public void run() {
-        initGame();
-        setWinningCondition();
-        printResult();
-    }
+        int purchasedAmount = inputView.requestLottoPurchaseAmount();
+        List<Lotto> lottos = buyLottos(purchasedAmount);
 
-    private void initGame() {
-        int lottoPurchaseAmount = inputView.requestLottoPurchaseAmount();
-        this.lottos = lottoService.createLottos(lottoPurchaseAmount);
-        outputView.printLottoCountOfPurchase(this.lottos.size());
-        outputView.printLottos(this.lottos);
-    }
+        List<Integer> winningNumbers = inputView.requestWinningNumbers();
+        int bonusNumber = inputView.requestBonusNumber(winningNumbers);
 
-    private void setWinningCondition() {
-        this.winningNumbers = inputView.requestWinningNumbers();
-        this.bonusNumber = inputView.requestBonusNumber(this.winningNumbers);
-    }
-
-    private void printResult() {
         Map<WinningPrize, Integer> winningPrizes = lottoService.getWinningPrizes(lottos, winningNumbers, bonusNumber);
-        double returnOnLotto = lottoService.getRateOfReturn(lottos, this.winningNumbers, this.bonusNumber);
+        double returnOnLotto = lottoService.getRateOfReturn(lottos, winningNumbers, bonusNumber);
+
         outputView.printResult(winningPrizes, returnOnLotto);
+    }
+
+    private List<Lotto> buyLottos(int lottoPurchaseAmount) {
+        List<Lotto> lottos = lottoService.createLottos(lottoPurchaseAmount);
+        outputView.printLottoCount(lottos.size());
+        outputView.printLottos(lottos);
+        return lottos;
     }
 }

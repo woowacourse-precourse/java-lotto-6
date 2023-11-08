@@ -45,9 +45,9 @@ public class InteractService {
     }
 
     public static Integer bonusNumPhase(List<Integer> winningNum) {
-        System.out.println("보너스 번호를 입력해 주세요.");
-
         while (true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+
             try {
                 Integer bonusNum = checkParseIntException(Console.readLine());
                 checkNumBoundary(bonusNum);

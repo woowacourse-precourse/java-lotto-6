@@ -6,6 +6,7 @@ import lotto.model.*;
 import lotto.view.InputView;
 
 public class InputController {
+
         public static int setQuantity() {
                 try {
                         PurchaseAmountValidator validation = new PurchaseAmountValidator(InputView.purchaseInput());
@@ -13,10 +14,12 @@ public class InputController {
                         Quantity quantity = new Quantity(purchaseAmount);
                         return quantity.quantityNum;
                 } catch (IllegalArgumentException e) {
-                        System.out.println(e.getMessage());
+                        System.out.println(Constants.PURCHASE_WRONG_ERROR);
                         return setQuantity();
                 }
         }
+
+
 
         public static List<List<Integer>> setRandomNumbers(int quantity) {
                 RandomLotto randomLotto = new RandomLotto(quantity);

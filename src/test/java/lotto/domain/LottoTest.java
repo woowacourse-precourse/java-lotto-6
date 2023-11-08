@@ -33,6 +33,15 @@ public class LottoTest {
     }
 
     @Test
+    @DisplayName("범위 밖의 숫자를 넣으면 예외를 발생한다.")
+    void throwExceptionWhenNumbersIsOutRange() {
+        var outRangeNumbers = Randoms.pickUniqueNumbersInRange(45, 60, 6);
+        Assertions.assertThrows(LottoException.class,() ->{
+            new Lotto(outRangeNumbers);
+        });
+    }
+
+    @Test
     @DisplayName("중복된 숫자가 있으면 예외를 발생한다.")
     void throwExceptionWhenNumbersIsDuplicated() {
         var duplicatedNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 5);

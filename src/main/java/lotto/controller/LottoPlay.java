@@ -9,6 +9,7 @@ import lotto.domain.LottoResult;
 import lotto.util.InputUtil;
 import lotto.view.OutputView;
 import lotto.domain.LottoWinningNumber;
+import lotto.util.ValidationUtil;
 
 public class LottoPlay {
     
@@ -34,7 +35,7 @@ public class LottoPlay {
     }
 
     public void play() {
-        int userMoney = getUserMoney();
+        int userMoney = printUserMoney();
         lottoPurchase.calculateLottoCount(userMoney);
         lottoPurchase.createLottos();
         showPurchaseMessage();
@@ -45,9 +46,18 @@ public class LottoPlay {
         showRate(userMoney);
     } 
 
-    private int getUserMoney() {
+    private int printUserMoney() {
         outputView.printPriceMessage();
-        return Integer.parseInt(InputUtil.getInput());
+        return getUserMoney();
+    }
+
+    private int getUserMoney() {
+        try {
+            return ValidationUtil.validatePurchase(InputUtil.getInput());
+        } catch (IllegalArgumentException e) {
+            outputView.printMessage(e.getMessage());
+            return getUserMoney();
+        }
     }
 
     private void showPurchaseMessage() {
@@ -62,7 +72,7 @@ public class LottoPlay {
 
     private void getBonusNumber() {
         outputView.bonusNumberMessage();
-        lottoWinningNumber.createBonusNumber();
+        lottoWinningNumber.createBonusNumber(lottoWinningNumber.getWinningNumber());
     }
 
     private void showResult() {

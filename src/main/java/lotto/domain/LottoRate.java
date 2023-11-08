@@ -18,7 +18,8 @@ public class LottoRate {
         totalMoney += LottoPrize.FOURTH_PRIZE.getPrice() * lottoResult.getFourCount();
         totalMoney += LottoPrize.FIFTH_PRIZE.getPrice() * lottoResult.getThreeCount();
 
-        result = (double) totalMoney / paidMoney;
+        result = ((double) totalMoney / paidMoney) * 100;
+        
         result = roundRate(result);
 
         return String.format("%.1f", result);

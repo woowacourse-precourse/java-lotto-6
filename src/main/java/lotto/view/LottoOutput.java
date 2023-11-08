@@ -34,8 +34,7 @@ public class LottoOutput {
 
     public void printPrizeStatistics(Map<Integer, Integer> prizeCountMap) {
 
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        printPrizeStatisticsHeader();
 
         Map<Integer, Integer> sortedPrizeCountMap = new TreeMap<>(prizeCountMap);
 
@@ -48,6 +47,13 @@ public class LottoOutput {
             }
         }
     }
+
+    public void printPrizeStatisticsHeader() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
+
+
 
     public void printEarningsRate(double earningsRate) {
         DecimalFormat df = new DecimalFormat("0.0%");

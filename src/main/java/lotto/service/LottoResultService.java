@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.service;
 
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoDraw;
@@ -7,13 +7,11 @@ import lotto.domain.lotto.enums.LottoRank;
 import lotto.domain.result.LottoResult;
 import lotto.domain.result.MatchResult;
 
-import lotto.view.OutputView;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoResultController {
-    public LottoResult evaluateLottoResult(
+public class LottoResultService {
+    public LottoResult createLottoResult(
             final LottoPaper lottoPaper,
             final LottoDraw lottoDraw
     ) {
@@ -21,9 +19,7 @@ public class LottoResultController {
 
         List<MatchResult> matchResults = generateMatchResults(lottoTickets, lottoDraw);
         List<LottoRank> lottoRanks = generateLottoRanks(matchResults);
-
         LottoResult lottoResult = LottoResult.of(lottoRanks);
-        OutputView.printLottoResultMessage(lottoResult);
 
         return lottoResult;
     }
@@ -72,4 +68,3 @@ public class LottoResultController {
         return ticketNumbers.contains(bonusNumber);
     }
 }
-

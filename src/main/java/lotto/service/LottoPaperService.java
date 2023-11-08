@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.service;
 
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoPaper;
@@ -6,19 +6,16 @@ import lotto.domain.payment.Payment;
 
 import lotto.util.NumberGenerator;
 
-import lotto.view.OutputView;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoPaperController {
-    public LottoPaper purchaseLottoPaper(final Payment payment) {
+public class LottoPaperService {
+    public LottoPaper createLottoPaper(final Payment payment) {
         int ticketPurchaseCount = payment.ticketPurchaseCount();
         int payAmount = payment.amount();
 
         List<Lotto> lottoTickets = purchaseLottoWithTicketCount(ticketPurchaseCount);
         LottoPaper lottoPaper = new LottoPaper(payAmount, lottoTickets);
-        OutputView.printLottoPaperMessage(lottoPaper);
 
         return lottoPaper;
     }

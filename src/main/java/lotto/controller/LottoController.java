@@ -1,51 +1,55 @@
 package lotto.controller;
 
-import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoDraw;
 
-import lotto.util.Parser;
+import lotto.domain.lotto.LottoPaper;
+import lotto.domain.payment.Payment;
+import lotto.domain.prize.Prize;
+import lotto.domain.result.LottoResult;
 
-import lotto.view.InputView;
+import lotto.service.LottoPaperService;
+import lotto.service.LottoPrizeService;
+import lotto.service.LottoResultService;
+import lotto.service.LottoService;
+
 import lotto.view.OutputView;
 
-import java.util.List;
 
 public class LottoController {
+    private final LottoService lottoService;
+    private final LottoPaperService lottoPaperService;
+    private final LottoResultService lottoResultService;
+    private final LottoPrizeService lottoPrizeService;
 
-    public LottoDraw createLottoDraw() {
+    LottoController() {
+        this.lottoService = new LottoService();
+        this.lottoPaperService = new LottoPaperService();
+        this.lottoResultService = new LottoResultService();
+        this.lottoPrizeService = new LottoPrizeService();
+    }
+
+    public LottoPaper purchaseLottoPaper(final Payment payment) {
+        LottoPaper lottoPaper = lottoPaperService.createLottoPaper(payment);
+        OutputView.printLottoPaperMessage(lottoPaper);
+        return lottoPaper;
+    }
+
+    public LottoDraw requestLottoDraw() {
         OutputView.printWinningDrawMessage();
-        Lotto winningLotto = createWinningLotto();
-        LottoDraw lottoDraw = generateLottoDrawWithWinningLotto(winningLotto);
-        return lottoDraw;
+        return lottoService.createLottoDraw();
     }
 
-    private Lotto createWinningLotto() {
-        try {
-            String winningLottoNumbersInfo = InputView.readLine();
-            List<Integer> winningLottoNumbers = Parser.parseInfoToNumbers(winningLottoNumbersInfo);
-            return new Lotto(winningLottoNumbers);
-        } catch (IllegalArgumentException exception) {
-            OutputView.printErrorMessage(exception.getMessage());
-            return createWinningLotto();
-        }
+    public LottoResult evaluateLottoResult(
+            final LottoPaper lottoPaper,
+            final LottoDraw lottoDraw
+    ) {
+        LottoResult lottoResult = lottoResultService.createLottoResult(lottoPaper, lottoDraw);
+        OutputView.printLottoResultMessage(lottoResult);
+        return lottoResult;
     }
 
-    private LottoDraw generateLottoDrawWithWinningLotto(final Lotto winningLotto) {
-        try {
-            int bonusNumber = createBonusNumber();
-            return new LottoDraw(winningLotto, bonusNumber);
-        } catch (IllegalArgumentException exception) {
-            OutputView.printErrorMessage(exception.getMessage());
-            return generateLottoDrawWithWinningLotto(winningLotto);
-        }
+    public Prize calculatePrize(LottoResult lottoResult) {
+        return lottoPrizeService.createPrize(lottoResult);
     }
-
-    private int createBonusNumber() {
-        OutputView.printBonusDrawMessage();
-        String bonusNumberInfo = InputView.readLine();
-        int bonusNumber = Parser.parseInfoToNumber(bonusNumberInfo);
-        return bonusNumber;
-    }
-
 }
 

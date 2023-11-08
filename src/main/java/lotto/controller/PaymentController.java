@@ -2,39 +2,20 @@ package lotto.controller;
 
 import lotto.domain.payment.Payment;
 
-import lotto.exception.ParserException;
-import lotto.exception.PaymentException;
-import lotto.exception.message.PaymentExceptionMessage;
+import lotto.service.PaymentService;
 
-import lotto.util.Parser;
-
-import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public final class PaymentController {
+    private final PaymentService paymentService;
+
+    PaymentController() {
+        this.paymentService = new PaymentService();
+    }
+
     public Payment processPayment() {
         OutputView.printPaymentMessage();
-        Payment payment = generatePaymentFromAmount();
+        Payment payment = paymentService.createPayment();
         return payment;
-    }
-
-    private Payment generatePaymentFromAmount() {
-        try {
-            Integer amount = requestAmount();
-            return Payment.of(amount);
-        } catch (PaymentException exception) {
-            OutputView.printErrorMessage(exception.getMessage());
-            return generatePaymentFromAmount();
-        }
-    }
-
-    private Integer requestAmount() {
-        String amountInfo = InputView.readLine();
-        try {
-            Integer amount = Parser.parseInfoToNumber(amountInfo);
-            return amount;
-        } catch (ParserException exception) {
-            throw new PaymentException(PaymentExceptionMessage.NOT_NUMBER);
-        }
     }
 }

@@ -21,16 +21,18 @@ public class LottoGame {
         while (isGaming) {
             money = inputMoney();
             lottoTickets = generateLottoTickets(money);
+
         }
     }
 
     private Integer inputMoney() {
         boolean validInput = false;
-        Integer money;
+        Integer money = 0;
+
+        System.out.println("로또 구입 금액이 얼마인가요?");
 
         while (!validInput) {
             try {
-                System.out.println("로또 구입 금액이 얼마인가요?");
                 money = Integer.valueOf(Console.readLine());
                 validateThousandWonUnits(money);
                 validInput = true;
@@ -48,10 +50,34 @@ public class LottoGame {
     }
 
     private Lotto inputNumbers() {
-        System.out.println("로또 번호를 입력하세요");
+        Lotto lotto = null;
+        String inputNumbers = null;
+        boolean validInput = false;
 
-        String inputNumbers = Console.readLine();
-        return new Lotto(splitByComma(inputNumbers));
+        System.out.println("로또 번호를 입력하세요.");
+
+        while (!validInput) {
+            inputNumbers = Console.readLine();
+            try {
+                lotto = new Lotto(splitByComma(inputNumbers));
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return lotto;
+    }
+
+    private Lotto inputBonusNumber(Lotto lotto) {
+        String inputNumber;
+
+        System.out.println("보너스 번호를 입력해주세요.");
+
+        inputNumber = Console.readLine();
+
+        lotto.setBonusNumber(Integer.valueOf(inputNumber));
+
+        return lotto;
     }
 
     private List<Integer> splitByComma(String inputNumbers) {
@@ -74,9 +100,15 @@ public class LottoGame {
     }
 
     private List<Lotto> generateLottoTickets(Integer money) {
-        int ticketAmount = (int) money / 1000;
         List<Lotto> lottos = new ArrayList<>();
-        lottos.add(inputNumbers());
+        int ticketAmount = (int) money / 1000;
+
+        for (int i = 0; i < ticketAmount; i++) {
+            Lotto newLotto = inputNumbers();
+            Lotto newLottoBonus = inputBonusNumber(newLotto);
+            lottos.add(newLottoBonus);
+        }
+
         return lottos;
     }
 

@@ -25,4 +25,5 @@ class LottoPurchaseTest {
         int purchaseCount = (int) method.invoke(lottoPurchase, purchaseAmount);
         assertThat(purchaseCount).isEqualTo(5);
     }
+
 }

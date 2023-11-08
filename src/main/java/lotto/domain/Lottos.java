@@ -41,4 +41,8 @@ public class Lottos {
 
         return stats;
     }
+
+    public Integer size() {
+        return lottos.size();
+    }
 }

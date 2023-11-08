@@ -1,4 +1,4 @@
-# 로또 (ver 1.2.5)
+# 로또 (ver 1.3.0)
 
 ## 문서 Versioning 규칙
 
@@ -62,7 +62,10 @@
 - LottoAmount: 로또 구매 금액을 추상화한 클래스
   - getLottoCount(): 로또 구매 갯수를 반환한다.
   - 유효성 검증
+    - [ ] 로또 금액 입력 시, 숫자가 아닌 문자가 입력된다면 IllegalArgumentException을 발생시킨다.
+    - [ ] 로또 금액 입력 시, 음수가 입력된다면 IllegalArgumentException을 발생시킨다.
     - validateAmount(): 로또 금액이 1000원으로 나누어 떨어지지 않는다면, IllegalArgumentException을 발생시킨다.
+
 - LottoTickets: 구매한 로또들을 추상화한 클래스
   - buyLotto(): 구매 횟수를 받아 로또를 생성한다.
   - generateLottoNumbers(): 1부터 45까지 6개의 무작위 번호를 생성하고 오름차순하여 반환한다.
@@ -72,9 +75,13 @@
     - validateWinningNumSize(): 당첨 번호의 원소가 6개가 아니라면 IllegalArgumentException을 발생시킨다.
     - validateWinningNumRange(): 당첨 번호의 원소가 1부터 45까지의 숫자가 아니라면 IllegalArgumentException을 발생시킨다.
     - validateIsDuplicated(): 당첨 번호의 원소가 중복된다면 IllegalArgumentException을 발생시킨다.
+    - [ ] 당첨 번호 입력 시, 숫자가 아닌 문자가 입력된다면 IllegalArgumentException을 발생시킨다.
+    - [ ] 당첨 번호 입력 시, 음수가 입력된다면 IllegalArgumentException을 발생시킨다.
 - BonusNumber: 보너스 번호를 추상화한 클래스
   - 유효성 검증
     - validateBonusNumber(): 보너스 번호가 1부터 45까지의 숫자가 아니라면 IllegalArgumentException을 발생시킨다.
+    - [ ] 보너스 번호 입력 시, 숫자가 아닌 문자가 입력된다면 IllegalArgumentException을 발생시킨다.
+    - [ ] 보너스 번호 입력 시, 음수가 입력된다면 IllegalArgumentException을 발생시킨다.
 - LottoRanking: 로또 당첨 등수를 추상화한 ENUM
   - determineRanking(): 당첨 번호와 보너스 번호 일치 여부를 판단하고 당첨 등수를 반환한다.
 - WinningResult : 로또 당첨 결과를 추상화한 클래스
@@ -98,3 +105,6 @@
   - printWinningResult(): 당첨 통계를 출력한다.
   - printEarningRate(): 수익률을 출력한다.
   - printErrorMessage(): 예외 메시지(String)을 인자로 받아, 에러 메시지를 출력한다.
+
+### Constant
+- LottoConstants: 로또 미션에서 공통으로 사용되는 상수들을 모아놓은 클래스

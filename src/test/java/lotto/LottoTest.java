@@ -34,4 +34,22 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호가 정렬되어 있으면 예외가 발생하지 않아야 함")
+    @Test
+    void validateSortedLottoNumbers() {
+        List<Integer> sortedLottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        Lotto lotto = new Lotto(sortedLottoNumbers);
+
+        assertThat(lotto.getNumbers()).isEqualTo(sortedLottoNumbers);
+    }
+
+    @DisplayName("로또 번호가 정렬되어 있지 않으면 예외가 발생해야 함")
+    @Test
+    void validateUnsortedLottoNumbers() {
+        List<Integer> unsortedLottoNumbers = List.of(6, 2, 4, 3, 1, 5);
+
+        assertThatThrownBy(() -> new Lotto(unsortedLottoNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

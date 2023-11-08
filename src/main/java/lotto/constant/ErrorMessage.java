@@ -24,4 +24,5 @@ public class ErrorMessage {
 
     // 보너스 번호 입력
     public static final String INPUT_BONUS_NUMBER_IN_WINNING_NUMBERS = "보너스 번호 값은 당첨 번호와 다른 값을 입력해 주세요.";
+    public static final String INPUT_BONUS_NUMBER_OUT_OF_RANGE = "보너스 번호 값은 1 ~ 45 사이의 값을 입력해 주세요.";
 }

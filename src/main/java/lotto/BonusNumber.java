@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.constant.LottoConstant;
+
 import java.util.regex.Pattern;
 
 public class BonusNumber {
@@ -24,7 +26,7 @@ public class BonusNumber {
 
     private void vaildateRange(String num) {
         int number = Integer.parseInt(num);
-        if (number <= 0 || 45 < number) {
+        if (number < LottoConstant.START.getNumber() || LottoConstant.END.getNumber() < number) {
             throw new IllegalArgumentException();
         }
     }

@@ -1,11 +1,11 @@
 package lotto;
 
+import lotto.constant.LottoConstant;
 import lotto.constant.RottoResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LottoSystem {
@@ -33,7 +33,7 @@ public class LottoSystem {
     private static List<Integer> initArrayList() {
         List<Integer> arrayList = new ArrayList<>();
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < LottoConstant.LENGTH.getNumber(); i++) {
             arrayList.add(0);
         }
         return arrayList;

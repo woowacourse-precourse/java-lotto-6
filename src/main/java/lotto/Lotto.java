@@ -1,13 +1,13 @@
 package lotto;
 
+import lotto.constant.LottoConstant;
+
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private final int START = 1;
-    private final int END = 45;
 
     public Lotto(){
         this.numbers = new ArrayList<>();
@@ -39,7 +39,7 @@ public class Lotto {
 
     private void validateNumber(List<Integer> numbers) {
         for (Integer num : numbers) {
-            if (num < START || num > END) {
+            if (num < LottoConstant.START.getNumber() || num > LottoConstant.END.getNumber()) {
                 throw new IllegalArgumentException();
             }
         }

@@ -11,15 +11,15 @@ public class Application {
         int numberOfLotto=purchaseAmount/1000;
         OutputView.printNumberOfLotto(numberOfLotto);
 
-        List<Lotto> lottoTickets=new ArrayList<>();
+        LottoTickets lottoTickets = new LottoTickets();
 
         for(int i=0;i<numberOfLotto;i++){
             List<Integer> randomNumbers=LottoNumbersMaker.generateRandomNumbers();
             Lotto lottoTicket=new Lotto(new ArrayList<>(randomNumbers));
-            lottoTickets.add(lottoTicket);
+            lottoTickets.addTicket(lottoTicket);
         }
 
-        for (Lotto lottoTicket: lottoTickets){
+        for (Lotto lottoTicket: lottoTickets.getTickets()){
             OutputView.printLottoTicketNumbers(lottoTicket);
         }
 
@@ -32,7 +32,7 @@ public class Application {
         int bonusNumber=InputView.getBonusNumber();
         EnumMap<Rank, Integer> rankCounts=new EnumMap<>(Rank.class);
         int totalPrizeMoney=0;
-        for(Lotto lottoTicket: lottoTickets){
+        for(Lotto lottoTicket: lottoTickets.getTickets()){
             int countForMatchingWinningNumbers=0;
             int countForMatchingBonusNumbers=0;
             List<Integer> ticketNumbers=lottoTicket.getNumbers();

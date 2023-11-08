@@ -8,7 +8,7 @@ public enum InputException {
     NOT_IN_RANGE_LOTTO_NUMBER("입력된 로또 숫자 값을 1-45 사이로 입력하십시오."),
     NOT_DISTINCT_BONUS_NUMBER("당첨 번호와 보너스 번호가 중복되지 않게 입력하십시오.");
 
-    private static final String prefix = "[ERROR] ";
+    private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
     private final String message;
 
     InputException(String message) {
@@ -16,6 +16,6 @@ public enum InputException {
     }
 
     public String getMessage() {
-        return prefix + message;
+        return ERROR_MESSAGE_PREFIX + message;
     }
 }

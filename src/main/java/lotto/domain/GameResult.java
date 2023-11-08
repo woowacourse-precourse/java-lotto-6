@@ -11,7 +11,7 @@ public class GameResult {
         this.gameResult = gameResult;
     }
 
-    public static GameResult create() {
+    public static GameResult createInitialResult() {
         Map<Rank, Integer> result = Arrays.stream(Rank.values())
                 .collect(Collectors.toMap(rank -> rank, count -> 0));
 

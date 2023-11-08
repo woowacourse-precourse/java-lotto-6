@@ -75,7 +75,7 @@ public class LottoGame {
     }
 
     private GameResult calculateGameResult(WinningLotto winningLotto, BonusNumber bonusNumber, List<Lotto> lottos) {
-        GameResult result = GameResult.create();
+        GameResult result = GameResult.createInitialResult();
         for (Lotto lotto : lottos) {
             Optional<Rank> rank = winningLotto.compareNumbers(lotto, bonusNumber);
             rank.ifPresent(result::add);

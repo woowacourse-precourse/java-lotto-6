@@ -28,7 +28,7 @@ class LottoMessageConverterTest {
     @Test
     void 로또_결과_메시지_컨버팅() {
         Money money = new Money(8000);
-        GameResult result = GameResult.create();
+        GameResult result = GameResult.createInitialResult();
         result.add(Rank.FIFTH);
 
         double profitPercentage = result.calculateProfitPercentage(money);

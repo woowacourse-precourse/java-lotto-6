@@ -1,8 +1,10 @@
 package lotto.view;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +19,7 @@ class InputValidatorTest {
 
         ArrayList<Integer> actualResult = InputValidator.validateAndParseNumbersInput(input);
 
-        Assertions.assertThat(actualResult).isEqualTo(expectResult);
+        assertThat(actualResult).isEqualTo(expectResult);
     }
 
 
@@ -25,7 +27,7 @@ class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"4000a", "5000  ", "d"})
     void inputWithNonNumericCharacters(String input) {
-        Assertions.assertThatThrownBy(() ->
+        assertThatThrownBy(() ->
                         InputValidator.validateAndParseInput(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("입력에 숫자가 아닌 문자가 포함되어 있거나 숫자가 너무 큽니다.");
@@ -34,7 +36,7 @@ class InputValidatorTest {
     @DisplayName("입력이 정수 자료형의 최대 값 보다 클 경우 에러를 발생한다")
     @Test
     void inputGreaterThanMaxIntValue() {
-        Assertions.assertThatThrownBy(() ->
+        assertThatThrownBy(() ->
                         InputValidator.validateAndParseInput("2222222222"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("입력에 숫자가 아닌 문자가 포함되어 있거나 숫자가 너무 큽니다.");

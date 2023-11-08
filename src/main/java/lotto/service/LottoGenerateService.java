@@ -36,7 +36,7 @@ public class LottoGenerateService {
     }
 
     private List<Integer> generateLotto() {
-        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM, MAX_LOTTO_NUM, LOTTO_SIZE);
+        List<Integer> lotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM, MAX_LOTTO_NUM, LOTTO_SIZE));
         Collections.sort(lotto);
         return lotto;
     }

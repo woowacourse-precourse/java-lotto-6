@@ -2,7 +2,7 @@ package lotto.purchase;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static lotto.handler.ExceptionHandler.handle;
+import lotto.handler.ExceptionHandler;
 
 public class Purchase {
 
@@ -26,11 +26,11 @@ public class Purchase {
 
         while (true) {
             try {
-                checkNull(rawMoney);
-                checkNumberFormat(rawMoney);
+                ExceptionHandler.checkNull(rawMoney);
+                ExceptionHandler.checkNumberFormat(rawMoney);
                 return rawMoney;
             } catch (NullPointerException | NumberFormatException e) {
-                handle(e);
+                ExceptionHandler.handle(e);
                 rawMoney = Console.readLine();
             }
         }
@@ -42,24 +42,10 @@ public class Purchase {
                 checkMoney(money);
                 return money;
             } catch (IllegalArgumentException e) {
-                handle(e);
+                ExceptionHandler.handle(e);
                 rawMoney = getValidMoneyFromUser();
                 money = Integer.parseInt(rawMoney);
             }
-        }
-    }
-
-    private static void checkNull(String input) {
-        if (input == null || input.isEmpty()) {
-            throw new NullPointerException("String is null or empty. \n └─ errorVar : " + input);
-        }
-    }
-
-    private static void checkNumberFormat(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException("Invalid number format. \n └─ errorVar : " + input);
         }
     }
 

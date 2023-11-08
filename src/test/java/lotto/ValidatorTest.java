@@ -16,7 +16,7 @@ public class ValidatorTest {
 
     @DisplayName("구입금액에 문자가 포함되어있다면 예외가 발생하고 false를 반환한다.")
     @Test
-    void verifyPurchaseAmountByCharacter() {
+    void verifyPurchaseAmountByIncludeCharacter() {
         assertThat(Validator.verifyPurchaseAmount("a")).isFalse();
     }
 

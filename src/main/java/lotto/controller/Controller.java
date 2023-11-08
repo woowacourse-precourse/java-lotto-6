@@ -18,18 +18,23 @@ public class Controller {
     private Customer customer;
 
     public void start() {
+        try {
             getBuyLottoMoney();
             winningNumberShow();
             gameResult();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void getBuyLottoMoney() {
-            InputMessage.inputMoney();
-            String money = Console.readLine().trim();
-            int inputMoney = Integer.parseInt(money);
-            customer = new Customer(inputMoney);
-            lottoService.buyLottoByTicket(customer);
-            resultLotto(customer);
+        InputMessage.inputMoney();
+        String money = Console.readLine().trim();
+        exceptions.isInvalidStringMoney(money);
+        int inputMoney = Integer.parseInt(money);
+        customer = new Customer(inputMoney);
+        lottoService.buyLottoByTicket(customer);
+        resultLotto(customer);
     }
 
     private void gameResult() {
@@ -47,14 +52,14 @@ public class Controller {
     }
 
     private void winningNumberShow() {
-        exceptions.isInvalidDuplicatedLottoNumber(getWinningNumber());
         winningNumber = new WinningNumber(getWinningNumber(), getBonusNumber());
     }
 
     private List<Integer> getWinningNumber() { // String[] vs List<Integer> ..
         InputMessage.winningNumberInput();
-        String input = Console.readLine().trim();
+        String input = Console.readLine();
         exceptions.isInvalidNumberOfLotteries(input);
+        exceptions.isInvalidDuplicatedLottoNumber(lottoService.integerList(input));
         return lottoService.integerList(input);
     }
 

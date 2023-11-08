@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.model.Ranking;
+
 import java.util.HashMap;
 import java.util.List;
 

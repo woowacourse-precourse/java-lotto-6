@@ -27,15 +27,15 @@ public class LottoViewController {
     }
 
     long receivePurchaseAmount() {
-        return receive(AMOUNT, inputView::supplyPurchaseAmount);
+        return receive(AMOUNT, inputView::receivePurchaseAmountInput);
     }
 
     String receiveWinningNumber() {
-        return receive(WINNING_NUMBER, inputView::supplyWinningNumber);
+        return receive(WINNING_NUMBER, inputView::receiveWinningNumberInput);
     }
 
     int receiveBonusNumber(final String winningNumber) {
-        return receive(BONUS_NUMBER, () -> inputView.supplyBonusNumber(winningNumber));
+        return receive(BONUS_NUMBER, () -> inputView.receiveBonusNumberInput(winningNumber));
     }
 
     void printResultMessage(final List<Long> winCounts, final double earningRate) {

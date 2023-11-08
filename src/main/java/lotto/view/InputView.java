@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Set;
 
 public class InputView {
-    public long supplyPurchaseAmount() {
+    public long receivePurchaseAmountInput() {
         final String purchaseAmount = Console.readLine();
         validatePurchaseAmount(purchaseAmount);
         return Long.parseLong(purchaseAmount);
@@ -52,7 +52,7 @@ public class InputView {
         return !purchaseAmount.matches(NUMBER_REGEX);
     }
 
-    public String supplyWinningNumber() {
+    public String receiveWinningNumberInput() {
         final String winningNumber = Console.readLine();
         validateWinningNumber(winningNumber);
         return winningNumber;
@@ -97,7 +97,7 @@ public class InputView {
         }
     }
 
-    public int supplyBonusNumber(final String winningNumber) {
+    public int receiveBonusNumberInput(final String winningNumber) {
         final String bonusNumber = Console.readLine();
         validateBonusNumber(winningNumber, bonusNumber);
         return Integer.parseInt(bonusNumber);

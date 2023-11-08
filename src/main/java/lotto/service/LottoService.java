@@ -62,6 +62,10 @@ public class LottoService {
         return checkSameNumber(winningNumber.getWinningNumbers(),lotto.getNumbers());
     }
 
+    private boolean checkBonusNumberInLotto(WinningNumber winningNumber, Lotto lotto){
+        return lotto.getNumbers().contains(winningNumber.getBonusNumber());
+    }
+
     private int checkSameNumber(List<Integer> list1,List<Integer> list2) {
         return (int) list2.stream()
                 .filter(list1::contains)

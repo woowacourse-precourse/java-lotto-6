@@ -1,23 +1,22 @@
 package lotto;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class NumberGenerator {
-    private List<Integer> lottoNumbers;
-    private int bonusNumber;
+    private Lotto lottoNumbers;
 
     public void generateLottoNumbers() {
-        lottoNumbers = camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1, 45, 7);
-        int randomNumber = camp.nextstep.edu.missionutils.Randoms.pickNumberInRange(0, 6);
-        bonusNumber = lottoNumbers.get(randomNumber); //보너스 번호를 추출
-        lottoNumbers.remove(randomNumber); // 리스트에서 보너스 번호를 제거
+        lottoNumbers = new Lotto(camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        lottoNumbers.getNumbers().sort(Comparator.naturalOrder()); // 리스트를 오름차 순으로 정렬
     }
 
     public List<Integer> getLottoNumbers() {
+        return lottoNumbers.getNumbers();
+    }
+
+    public Lotto getLotto(){
         return lottoNumbers;
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
 }

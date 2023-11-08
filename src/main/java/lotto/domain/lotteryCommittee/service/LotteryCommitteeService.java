@@ -16,7 +16,7 @@ public class LotteryCommitteeService {
     static final int END_NUMBER = 45;
     static final int LOTTO_SIZE = 6;
 
-    public void getWeeklyNumber() {
+    public Lotto getWeeklyNumber() {
 
         System.out.println("당첨 번호를 입력해 주세요.");
         String WeeklyNumber = Console.readLine();
@@ -26,10 +26,12 @@ public class LotteryCommitteeService {
         if (!checkResult(checkResult.get("Result").toString())) {
             failWorks(checkNumber(WeeklyNumber).get("Result").toString());
             getWeeklyNumber();
-            return;
+            return null;
         }
 
-        return;
+        Lotto weeklyLotto = new Lotto((List<Integer>) checkResult.get("Data"));
+
+        return weeklyLotto;
     }
 
     public Map<String, Object> checkNumber(String numbers) {

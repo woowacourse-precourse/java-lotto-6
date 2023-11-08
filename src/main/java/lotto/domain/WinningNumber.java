@@ -1,19 +1,22 @@
 package lotto.domain;
 
+import lotto.util.Message;
+
 import java.util.List;
 
 public class WinningNumber {
 
-    private List<Integer> winningNumber;
+    private List<Integer> winningNumbers;
+    private int bonusNumber;
 
-    public WinningNumber(List<Integer> winningNumber) {
-        this.winningNumber = winningNumber;
+    public WinningNumber(List<Integer> winningNumbers) {
+        this.winningNumbers = winningNumbers;
     }
 
-    public void addNumber(int number) {
-        if (winningNumber.contains(number)) {
+    public void setBonusNumber(int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(Message.duplicateNumberError);
         }
-        this.winningNumber.add(number);
+        this.bonusNumber = bonusNumber;
     }
 }

@@ -3,6 +3,7 @@ package controller;
 import static controller.InputController.getBonusNumberInput;
 import static controller.InputController.getMoneyInput;
 import static controller.InputController.getWinningNumbersInput;
+import static model.LottoGenerate.generateLottoResult;
 import static model.LottoGenerate.generateLottoTickets;
 import static model.LottoGenerate.lottoTicketsCount;
 import static view.View.lottoTicketsCountPrint;
@@ -12,15 +13,19 @@ import java.util.List;
 import model.Lotto;
 
 public class LottoController {
-    public static void buyLotto() {
+    public static List<Lotto> buyLotto() {
         int lottoTicketsCount = lottoTicketsCount(getMoneyInput());
         lottoTicketsCountPrint(lottoTicketsCount);
         List<Lotto> lottoTickets = generateLottoTickets(lottoTicketsCount);
         lottoTicketsPrint(lottoTickets);
+        return lottoTickets;
     }
 
-    public static void lottoMachine() {
+    public static List<Integer> lottoMachine(List<Lotto> lottoTickets) {
         List<Integer> lottoWinningNumbers = getWinningNumbersInput();
         int lottoBonusNumber = getBonusNumberInput(lottoWinningNumbers);
+        List<Integer> lottoResult = generateLottoResult(lottoTickets, lottoWinningNumbers, lottoBonusNumber);
+        System.out.println(lottoResult);
+        return lottoResult;
     }
 }

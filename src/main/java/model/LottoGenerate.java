@@ -30,4 +30,38 @@ public class LottoGenerate {
         }
         return lottoTickets;
     }
+
+    public static void classifyLottoResult(List<Integer> lottoResult,
+                                           int matchingCount,
+                                           boolean matchBonus) {
+
+        if (matchingCount == 3) {
+            lottoResult.set(0, lottoResult.get(0) + 1);
+        }
+        if (matchingCount == 4) {
+            lottoResult.set(1, lottoResult.get(1) + 1);
+        }
+        if (matchingCount == 5 && !matchBonus) {
+            lottoResult.set(2, lottoResult.get(2) + 1);
+        }
+        if (matchingCount == 5 && matchBonus) {
+            lottoResult.set(3, lottoResult.get(3) + 1);
+        }
+        if (matchingCount == 6) {
+            lottoResult.set(4, lottoResult.get(4) + 1);
+        }
+    }
+
+    public static List<Integer> generateLottoResult(List<Lotto> lottoTickets,
+                                                    List<Integer> lottoWinngNumbers,
+                                                    int lottoBonusNumber) {
+        Integer[] tempArray = {0, 0, 0, 0, 0};
+        List<Integer> lottoResult = new ArrayList<>(List.of(tempArray));
+        for (Lotto lotto : lottoTickets) {
+            int matchingCount = lotto.getLottoMatchingCount(lottoWinngNumbers);
+            boolean matchBonus = lotto.getLottoMatchBonus(lottoBonusNumber);
+            classifyLottoResult(lottoResult, matchingCount, matchBonus);
+        }
+        return lottoResult;
+    }
 }

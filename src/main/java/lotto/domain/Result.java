@@ -30,4 +30,13 @@ public class Result {
             .mapToLong(rank -> (long) rank.getPrize() * result.get(rank))
             .sum();
     }
+
+    public Map<Rank, Integer> getResult() {
+        Map<Rank, Integer> forReturn = new EnumMap<>(Rank.class);
+        for (Rank rank : result.keySet()) {
+            forReturn.put(rank, result.get(rank));
+        }
+        forReturn.remove(Rank.NONE);
+        return forReturn;
+    }
 }

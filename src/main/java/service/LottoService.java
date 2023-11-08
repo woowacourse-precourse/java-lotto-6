@@ -1,31 +1,42 @@
 package service;
 
-import model.Lottos;
-import model.ResultLotto;
+import model.AllLotto;
+import model.ResultLottos;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class LottoService {
-    private final Lottos lottos;
-    private final Integer count;
+    private final AllLotto allLotto;
+    private final List<Integer> winningLotto;
+    private final Integer bonus;
 
-    public LottoService(Integer count){
-        lottos = new Lottos(count);
-        this.count = count;
+    public LottoService(AllLotto allLotto, List<Integer> winningLotto, Integer bonus) {
+        this.allLotto = allLotto;
+        this.winningLotto = winningLotto;
+        this.bonus = bonus;
     }
 
-    private Integer findEqualNumber(List<Integer> winningLotto,Integer index){
-        return (int) lottos.getLotto(index).stream()
+    private Integer findEqualNumber(List<Integer> winningLotto, Integer index) {
+        return (int) allLotto.getLotto(index).stream()
                 .filter(winningLotto::contains)
                 .count();
     }
-    private Boolean findEqualBonus(Integer bonusNumber,Integer index){
-        return lottos.getLotto(index).contains(bonusNumber);
+
+    private Boolean findEqualBonus(Integer bonusNumber, Integer index) {
+        return allLotto.getLotto(index).contains(bonusNumber);
     }
-    public List<ResultLotto> findResults(List<Integer> winningLotto,Integer bonusNumber){
-        return IntStream.range(0, count)
-                .mapToObj(i -> new ResultLotto(findEqualNumber(winningLotto, i), findEqualBonus(bonusNumber, i)))
-                .toList();
+
+    public ResultLottos createResults() {
+        ResultLottos resultLottos = new ResultLottos();
+        for (int i = 0; i < allLotto.size(); i++) {
+            Integer equalNumber = findEqualNumber(winningLotto, i);
+            Boolean bonusNumber = findEqualBonus(bonus, i);
+            resultLottos.addResultLotto(equalNumber, bonusNumber);
+        }
+        return resultLottos;
+    }
+
+    public double calculateReturnRate(ResultLottos lottos, Long money) {
+        return (double) (lottos.sumResult() * 100) / money;
     }
 }

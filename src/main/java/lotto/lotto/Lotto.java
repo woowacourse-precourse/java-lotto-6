@@ -19,7 +19,7 @@ public class Lotto {
 
     private void validateNumbersLength(List<Integer> numbers) {
         if (numbers.size() != LottoConstants.LOTTO_NUMBER_LENGTH) {
-            throw new IllegalArgumentException(LottoConstants.INVALID_LENGTH);
+            throw new IllegalArgumentException(LottoConstants.INVALID_LENGTH_ERROR);
         }
     }
 
@@ -27,7 +27,7 @@ public class Lotto {
         boolean duplicated = isDuplicated(numbers);
 
         if (duplicated) {
-            throw new IllegalArgumentException(LottoConstants.DUPLICATE_NUMBER);
+            throw new IllegalArgumentException(LottoConstants.DUPLICATE_NUMBER_ERROR);
         }
     }
 
@@ -41,7 +41,7 @@ public class Lotto {
 
     private void checkWrongRangeNumber(Integer number) {
         if (number < LottoConstants.MIN_LOTTO_NUMBER || number > LottoConstants.MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException(LottoConstants.WRONG_RANGE_NUMBER);
+            throw new IllegalArgumentException(LottoConstants.WRONG_RANGE_NUMBER_ERROR);
         }
     }
 
@@ -51,10 +51,6 @@ public class Lotto {
 
     public boolean hasBonusNumber(BonusNumber bonusNumber) {
         return numbers.stream().anyMatch(bonusNumber::isSameNumber);
-    }
-
-    public boolean hasSameNumber(Integer number) {
-        return numbers.contains(number);
     }
 
     @Override

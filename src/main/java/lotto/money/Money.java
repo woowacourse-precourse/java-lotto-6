@@ -5,8 +5,8 @@ import java.math.RoundingMode;
 
 public class Money {
 
-    private static final String WRONG_MONEY = "로또는 1000원씩 구매해야 합니다.";
-    private static final String INVALID_RANGE_AMOUNT = "1000원 이상 입력하세요";
+    private static final String WRONG_MONEY_ERROR = "로또는 1000원씩 구매해야 합니다.";
+    private static final String INVALID_RANGE_AMOUNT_ERROR = "1000원 이상 입력하세요";
     private static final int LOTTO_PRICE = 1000;
     private static final int ROUNDING_DIGITS = 1;
 
@@ -25,7 +25,7 @@ public class Money {
 
     private void checkMinimumPrice(Price price) {
         if (!isAmountBelowMinimum(price)) {
-            throw new IllegalArgumentException(INVALID_RANGE_AMOUNT);
+            throw new IllegalArgumentException(INVALID_RANGE_AMOUNT_ERROR);
         }
     }
 
@@ -35,7 +35,7 @@ public class Money {
 
     private void checkCorrectUnit(Price price) {
         if (!isDivisibleByLottoPrice(price)) {
-            throw new IllegalArgumentException(WRONG_MONEY);
+            throw new IllegalArgumentException(WRONG_MONEY_ERROR);
         }
     }
 

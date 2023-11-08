@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class Price {
 
     private static final int PERCENTAGE_NUMBER = 100;
-    private static final String NOT_INTEGER = "금액은 정수로 입력하세요.";
+    private static final String NOT_INTEGER_ERROR = "금액은 정수로 입력하세요.";
 
     private final Integer price;
 
@@ -17,7 +17,7 @@ public class Price {
         try {
             return Integer.valueOf(amount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_INTEGER);
+            throw new IllegalArgumentException(NOT_INTEGER_ERROR);
         }
     }
 

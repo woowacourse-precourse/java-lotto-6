@@ -3,11 +3,14 @@ package lotto.domain;
 import lotto.Lotto;
 import lotto.LottoTicket;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
     private static Lotto lotto;
+    private LottoTicket lottoTicket;
+    private LottoOutput lottoOutput;
     private LottoTicketGenerator lottoTicketGenerator;
     private UserInput userInput;
     private UserInputChecker userInputChecker;
@@ -16,24 +19,7 @@ public class LottoController {
         lottoTicketGenerator = new LottoTicketGenerator();
         userInput = new UserInput();
         userInputChecker = new UserInputChecker();
-    }
-
-    public enum LottoMessage {
-        PURCHASE_AMOUNT_MESSAGE("구입금액을 입력해 주세요."),
-        PURCHASE_COUNT_MESSAGE("개를 구매했습니다."),
-        REQUEST_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
-        REQUEST_BOUNS_NUMBERS("보너스 번호를 입력해 주세요."),
-        WINNING_STATS_HEADER("당첨 통계 ln ---");
-
-        private String message;
-
-        LottoMessage(String message) {
-            this.message = message;
-        }
-
-        public String getMessage() {
-            return message;
-        }
+        lottoOutput = new LottoOutput();
     }
 
     public void playGame() {
@@ -41,25 +27,28 @@ public class LottoController {
         int purchaseAmount = handlePurchaseAmount();
 
         userLottoTickets = lottoTicketGenerator.generateLottoTicket(purchaseAmount);
-        printTickets(userLottoTickets); // 구매한 로또들 번호 출력
+        lottoOutput.printTickets(userLottoTickets); // 구매한 로또들 번호 출력
 
         lotto = new Lotto(handleWinningNumbers()); // 당첨번호 입력, lotto 객체에 저장
         compareNumbers(userLottoTickets); // 당첨번호와 추첨번호 비교
         compareBonusNumber(userLottoTickets);
+        lottoOutput.printResults(userLottoTickets);
 
     }
-    public void compareBonusNumber(List<LottoTicket> userLottoTickets) {
-        System.out.println(LottoMessage.REQUEST_BOUNS_NUMBERS.getMessage());
+
+    public void compareBonusNumber(List<LottoTicket> userLottoTickets) { // 2등 확인
+        lottoOutput.requestBounsNumbers();
         String input = userInput.input();
         int bonusNumber = 0;
 
         bonusNumber = userInput.getUserBonusNumber(userInputChecker, input);
 
         for (LottoTicket lottoTicket : userLottoTickets) {
-            if (lottoTicket.getMatchCount() == 5) // 5개 일치하는 로또티켓은 보너스번호까지 확인 후 결과 저장
-                lottoTicket.setBonusNumberMatch(lotto.compareBonusNumber(lottoTicket, bonusNumber));
+            if (lottoTicket.getMatchCount() == 5 && lotto.compareBonusNumber(lottoTicket, bonusNumber)) // 5개 일치하고 보너스번호 일치할 경우
+                lottoTicket.setMatchCount(6); //matchCount = 6, 2등
         }
     }
+
     public void compareNumbers(List<LottoTicket> userLottoTickets) {
         int matchCount = 0;
         for (LottoTicket lottoTicket : userLottoTickets) {
@@ -71,7 +60,7 @@ public class LottoController {
     public List<Integer> handleWinningNumbers() {
         List<Integer> winningNumbers = new ArrayList<>();
         do {
-            System.out.println(LottoMessage.REQUEST_WINNING_NUMBERS.getMessage()); // 당첨번호 입력 안내문구 출력
+            lottoOutput.requestWinningNumbers(); // 당첨번호 입력 안내문구 출력
             String input = userInput.input();
             winningNumbers = userInput.getUserWinningNumbers(userInputChecker, input);
         } while (winningNumbers == null);
@@ -81,21 +70,15 @@ public class LottoController {
 
     public int handlePurchaseAmount() {
         int purchaseAmount = 0;
+
         do {
-            System.out.println(LottoMessage.PURCHASE_AMOUNT_MESSAGE.getMessage()); // 구입금액 입력 안내문구 출력
-            int ticketCount = 0;
+            lottoOutput.purchaseAmountMessage(); // 구입금액 입력 안내문구 출력
             String input = userInput.input();
             purchaseAmount = userInput.getUserPurchaseAmount(userInputChecker, input);
-            ticketCount = purchaseAmount / 1000;
-            if (ticketCount != 0)
-                System.out.println(ticketCount + LottoMessage.PURCHASE_COUNT_MESSAGE.getMessage()); // 구매한 로또 개수 출력
         } while (purchaseAmount == 0);
-        return purchaseAmount;
-    }
 
-    public void printTickets(List<LottoTicket> userLottoTickets) {
-        for (LottoTicket ticket : userLottoTickets) {
-            System.out.println(ticket.getNumbers());
-        }
+        int ticketCount = purchaseAmount / 1000;
+        lottoOutput.purchaseCountMessage(ticketCount); // 구매한 로또 개수 출력
+        return purchaseAmount;
     }
 }

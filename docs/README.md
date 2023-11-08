@@ -16,11 +16,11 @@
             <td rowspan="6">config</td>
             <td rowspan="2">exception</td>
             <td>ExceptionType</td>
-            <td>모든 에러 메시지들의 내용을 관리합니다.</td>
+            <td>에러 메시지들의 내용을 관리합니다.</td>
         </tr>
         <tr>
             <td>InputException</td>
-            <td>에러 메시지들의 예외를 처리합니다.</td>
+            <td>입력 예외를 처리합니다.</td>
         </tr>
         <tr>
             <td rowspan="2">output</td>
@@ -29,7 +29,7 @@
         </tr>
         <tr>
             <td>OutputMessage</td>
-            <td>출력 메시지들의 출력을 처리합니다.</td>
+            <td>출력 메시지들을 처리합니다.</td>
         </tr>
         <tr>
             <td rowspan="2">X</td>
@@ -81,11 +81,11 @@
         </tr>
         <tr>
             <td>Ticket</td>
-            <td>로또 자동 발급에 대해 관리합니다.</td>
+            <td>로또 복권을 관리합니다.</td>
         </tr>
         <tr>
             <td>Tickets</td>
-            <td>자동 발급된 로또들을 관리합니다.</td>
+            <td>로또 복권들을 관리합니다.</td>
         </tr>
         <tr>
             <td>WinRecord</td>

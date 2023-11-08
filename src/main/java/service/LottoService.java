@@ -20,7 +20,13 @@ public class LottoService {
     private static List<Lotto> lottos = new ArrayList<>();
     private static EnumMap<Reward, Integer> reward = new EnumMap<>(Reward.class);
     private static LottoService instance = new LottoService();
-    private LottoService(){}
+    private LottoService(){
+        reward.put(Reward.FIRST, 0);
+        reward.put(Reward.SECOND, 0);
+        reward.put(Reward.THIRD, 0);
+        reward.put(Reward.FOURTH, 0);
+        reward.put(Reward.FIFTH, 0);
+    }
 
     public static LottoService getInstance(){
         return instance;
@@ -40,13 +46,6 @@ public class LottoService {
     }
 
     public EnumMap<Reward, Integer> pick(Lotto lotto, Bonus bonus) {
-        // 어디서 초기화를 해야 되지.. ?
-        reward.put(Reward.FIRST, 0);
-        reward.put(Reward.SECOND, 0);
-        reward.put(Reward.THIRD, 0);
-        reward.put(Reward.FOURTH, 0);
-        reward.put(Reward.FIFTH, 0);
-
         for(Lotto l : lottos){
             List<Integer> duplication = new ArrayList<>();
             duplication = l.getNumbers().stream().filter(s -> lotto.getNumbers().contains(s))
@@ -62,16 +61,16 @@ public class LottoService {
     }
 
     private void setReward(int sameCount, boolean isSameBouns){
-        if(sameCount == Reward.FIRST.getSameCount()) reward.put(Reward.FIRST, setCount(Reward.FIRST));
-        else if(sameCount == Reward.SECOND.getSameCount() && isSameBouns) reward.put(Reward.SECOND, setCount(Reward.SECOND));
-        else if(sameCount == Reward.THIRD.getSameCount() && ! isSameBouns) reward.put(Reward.THIRD, setCount(Reward.THIRD));
-        else if(sameCount == Reward.FOURTH.getSameCount()) reward.put(Reward.FOURTH, setCount(Reward.FOURTH));
-        else if (sameCount == Reward.FIFTH.getSameCount()) reward.put(Reward.FIFTH, setCount(Reward.FIFTH));
-    }
-
-    private int setCount(Reward key){
-        int value = reward.get(key);
-        return value + 1;
+        if(sameCount == Reward.FIRST.getSameCount())
+            reward.put(Reward.FIRST, reward.get(Reward.FIRST) + 1);
+        else if(sameCount == Reward.SECOND.getSameCount() && isSameBouns)
+            reward.put(Reward.SECOND, reward.get(Reward.SECOND) + 1);
+        else if(sameCount == Reward.THIRD.getSameCount() && ! isSameBouns)
+            reward.put(Reward.THIRD, reward.get(Reward.THIRD) + 1);
+        else if(sameCount == Reward.FOURTH.getSameCount())
+            reward.put(Reward.FOURTH, reward.get(Reward.FOURTH) + 1);
+        else if (sameCount == Reward.FIFTH.getSameCount())
+            reward.put(Reward.FIFTH, reward.get(Reward.FIFTH) + 1);
     }
 
     public double calRateOfReturn(Amount amount){

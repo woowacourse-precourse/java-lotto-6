@@ -10,6 +10,7 @@ import lotto.utils.generator.LottoGenerator;
 import lotto.utils.view.Messages;
 
 public class Lottos {
+    public static final String LOTTOS_DELIMITER = "\n";
     private final List<Lotto> lottos;
     private final BuyPrice buyPrice;
 
@@ -35,7 +36,7 @@ public class Lottos {
     public String getLottoMessages() {
         return lottos.stream()
                 .map(Lotto::getLottoMessage)
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(LOTTOS_DELIMITER));
     }
 
     public WinningResult getWinningResult(WinningNumbers winningNumbers) {

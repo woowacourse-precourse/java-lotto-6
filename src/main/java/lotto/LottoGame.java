@@ -62,10 +62,10 @@ public class LottoGame {
     }
 
     void inputWinningNumber(){
-        String input = readLine();
+        List<String> splitInput = Arrays.asList(readLine().split(","));
         List<Integer> splitNumber = new ArrayList<>();
         for(int i=0;i<6;i++){
-            String here = input.split(",")[i];
+            String here = splitInput.get(i);
             if(!exception.checkInputIsNumber(here) || !exception.checkInputInRange(here)) {
                 inputWinningNumber();
             }

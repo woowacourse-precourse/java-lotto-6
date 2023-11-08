@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.domain.Cashier;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
+import lotto.domain.LottoNumberConverter;
 
 public class Application {
     public static void main(String[] args) {
@@ -30,7 +31,22 @@ public class Application {
         for (List<Integer> numbers : lottoNumbers) {
             System.out.println(numbers.toString());
         }
+        System.out.println();
         List<Lotto> lottoTickets = Lotto.createLottoTickets(lottoNumbers);
+
+        LottoNumberConverter lottoNumberConverter = new LottoNumberConverter();
+        List<Integer> winningNumbers;
+        while (true) {
+            System.out.println(messageContainer.getEnterWinningNumbers());
+            try {
+                winningNumbers = lottoNumberConverter.convertWinningNumbers(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            System.out.println();
+            break;
+        }
 
     }
 }

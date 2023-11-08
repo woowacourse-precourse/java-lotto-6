@@ -1,6 +1,7 @@
 package lotto.domain.handler.output;
 
 import java.util.List;
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import lotto.domain.event.LottoMessageBroker;
 import lotto.domain.event.Yieldcalculationcompleted;
 import lotto.domain.event.LottoGameStart;
@@ -23,10 +24,6 @@ public class OutPutEventHandlers {
                 + LottoOutputConstant.PURCHASE_MESSAGE.getMessage());
     }
 
-
-    public void printRequetLottoMoney(LottoGameStart event) {
-        System.out.println(event.startMessage());
-    }
 
     public void printTicketCreation(TicketsCreated tickets) {
         tickets.lottos().forEach(lotto -> System.out.println(lotto.numbers() + System.lineSeparator()));

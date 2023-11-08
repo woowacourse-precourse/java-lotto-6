@@ -38,7 +38,6 @@ public class LottoSystem {
         LottoYieldCalculatorHandler lottoYieldCalculatorHandler = new LottoYieldCalculatorHandler(lottoMessageBroker);
 
         lottoMessageBroker.subscribe(LottoGameStart.class,
-                outPutEventHandlers::printRequetLottoMoney,
                 lottoInputEventHandler::requestLottoMoney
         );
         lottoMessageBroker.subscribe(MoneyInputRequested.class,

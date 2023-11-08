@@ -26,7 +26,6 @@ public class LottoYieldCalculatorHandler {
 
         List<String> allRankResults = calculateAllRankResults(rankCount);
         long totalPrizeMoney = calculateTotalPrizeMoney(rankCount);
-
         double profitRate = calculateProfitRate(totalPrizeMoney, tickets);
 
         lottoMessageBroker.enqueue(new Yieldcalculationcompleted(allRankResults, profitRate));

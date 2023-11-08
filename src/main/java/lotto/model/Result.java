@@ -19,11 +19,11 @@ public class Result {
         return winningCount;
     }
 
-    public void setLottoTicket(List<Lotto> lottoTickets) {
+    public void setLottoTickets(List<Lotto> lottoTickets) {
         this.lottoTickets = lottoTickets;
     }
 
-    public List<Lotto> getLottoTicket() {
+    public List<Lotto> getLottoTickets() {
         return lottoTickets;
     }
 

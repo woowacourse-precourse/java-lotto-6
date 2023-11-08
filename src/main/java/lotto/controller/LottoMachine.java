@@ -34,8 +34,8 @@ public class LottoMachine {
         for (int i = 0; i < user.getLottoTicketCount(); i++) {
             lottoTickets.add(computer.getLottoNumber());
         }
-        result.setLottoTicket(lottoTickets);
-        outputView.printLottoNumber(result.getLottoTicket(), user);
+        result.setLottoTickets(lottoTickets);
+        outputView.printLottoNumber(result.getLottoTickets(), user);
     }
 
     public void drawWinningNumber() {
@@ -54,7 +54,7 @@ public class LottoMachine {
     public HashMap<Integer, Integer> countWinningLottoTicket() {
         //key:rank value:count
         HashMap<Integer, Integer> winningCount = new HashMap<>();
-        for (Lotto lotto : result.getLottoTicket()) {
+        for (Lotto lotto : result.getLottoTickets()) {
             compareNumber(lotto.getNumbers(), winningCount);
         }
         return winningCount;

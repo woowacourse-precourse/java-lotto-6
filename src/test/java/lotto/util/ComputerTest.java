@@ -3,7 +3,6 @@ package lotto.util;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import lotto.Lotto;
@@ -81,7 +80,7 @@ class ComputerTest {
     }
 
     @Test
-    void 등수별_당청_횟수를_구하는_테스트() {
+    void 등수별_당청_횟수를_가져오는_테스트() {
         HashMap<Integer, Integer> winningCount = new HashMap<>();
         winningCount.put(1, 0);
         winningCount.put(2, 1);

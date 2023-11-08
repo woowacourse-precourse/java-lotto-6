@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import lotto.constant.LottoResultStatus;
 import lotto.exception.LottoExceptionMessage;
 
 public class Lotto {
@@ -22,18 +21,8 @@ public class Lotto {
         return sortedNumbers.toString();
     }
 
-    public LottoResultStatus getLottoResultStatus(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        List<Integer> winning = winningNumbers.getWinningNumbers();
-        int matchCount = (int) numbers.stream().filter(winning::contains).count();
-
-        if (matchCount == 5 && isBonusMatch(bonusNumber)) {
-            return LottoResultStatus.from(7);
-        }
-        return LottoResultStatus.from(matchCount);
-    }
-
-    private boolean isBonusMatch(BonusNumber bonusNumber) {
-        return numbers.contains(bonusNumber.getBonusNumber());
+    public List<Integer> getNumbers() {
+        return numbers.stream().toList();
     }
 
     private void validate(List<Integer> numbers) {

@@ -20,8 +20,9 @@ public class LottoResultTest {
         PurchaseLottos purchaseLottos = new PurchaseLottos(PurchasePrice.from(1000), new ManualGenerator());
         WinningNumbers winningNumbers = WinningNumbers.from(List.of(7, 8, 9, 10, 11, 12));
         BonusNumber bonusNumber = BonusNumber.of(13, winningNumbers);
+        LottoWinning lottoWinning = new LottoWinning(winningNumbers, bonusNumber);
 
-        lottoResult = LottoResult.of(purchaseLottos, winningNumbers, bonusNumber);
+        lottoResult = LottoResult.of(purchaseLottos, lottoWinning);
         lottoResult.add(LottoResultStatus.THREE);
     }
 

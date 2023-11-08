@@ -18,13 +18,10 @@ public class LottoGame {
     public void start() {
         PurchasePrice purchasePrice = inputPurchasePrice();
         PurchaseLottos purchaseLottos = new PurchaseLottos(purchasePrice, new AutoGenerator());
-
         outputView.printPurchaseLottos(purchaseLottos);
 
-        WinningNumbers winningNumbers = inputWinningNumbers();
-        BonusNumber bonusNumber = inputBonusNumber(winningNumbers);
-
-        LottoResult lottoResult = LottoResult.of(purchaseLottos, winningNumbers, bonusNumber);
+        LottoWinning lottoWinning = getLottoWinning();
+        LottoResult lottoResult = LottoResult.of(purchaseLottos, lottoWinning);
 
         outputView.printLottoResult(lottoResult);
         outputView.printRateOfReturn(lottoResult, purchasePrice);
@@ -39,7 +36,6 @@ public class LottoGame {
 
         return purchasePrice;
     }
-
 
     private WinningNumbers inputWinningNumbers() {
         WinningNumbers winningNumbers = null;
@@ -59,5 +55,10 @@ public class LottoGame {
         }
 
         return bonusNumber;
+    }
+
+    private LottoWinning getLottoWinning() {
+        WinningNumbers winningNumbers = inputWinningNumbers();
+        return new LottoWinning(winningNumbers, inputBonusNumber(winningNumbers));
     }
 }

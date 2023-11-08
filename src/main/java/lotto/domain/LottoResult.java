@@ -18,11 +18,10 @@ public class LottoResult {
         }};
     }
 
-    public static LottoResult of(PurchaseLottos purchaseLottos, WinningNumbers winningNumbers,
-                                 BonusNumber bonusNumber) {
+    public static LottoResult of(PurchaseLottos purchaseLottos, LottoWinning lottoWinning) {
         LottoResult lottoResult = new LottoResult();
         purchaseLottos.getPurchaseLottos().forEach(lotto -> {
-            LottoResultStatus lottoResultStatus = lotto.getLottoResultStatus(winningNumbers, bonusNumber);
+            LottoResultStatus lottoResultStatus = lottoWinning.calculateLottoResultStatus(lotto);
             lottoResult.add(lottoResultStatus);
         });
         return lottoResult;

@@ -33,8 +33,10 @@ class LottoTest {
                               int expectedCount) {
         WinningNumbers winningNumbers = WinningNumbers.from(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = BonusNumber.of(7, winningNumbers);
+        LottoWinning lottoWinning = new LottoWinning(winningNumbers, bonusNumber);
         Lotto lotto = new Lotto(List.of(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6));
-        LottoResultStatus actual = lotto.getLottoResultStatus(winningNumbers, bonusNumber);
+
+        LottoResultStatus actual = lottoWinning.calculateLottoResultStatus(lotto);
         assertThat(actual).isEqualTo(LottoResultStatus.from(expectedCount));
     }
 

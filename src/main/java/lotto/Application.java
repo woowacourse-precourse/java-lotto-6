@@ -1,7 +1,14 @@
 package lotto;
 
+import controller.LottoController;
+import view.ConsoleInputView;
+import view.ConsoleOutputView;
+import view.View;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        View view = new View(new ConsoleInputView(), new ConsoleOutputView());
+        LottoController lottoController = new LottoController(view);
+        lottoController.tryLottoSimulation();
     }
 }

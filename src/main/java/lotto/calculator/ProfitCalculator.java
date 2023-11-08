@@ -7,7 +7,6 @@ import static lotto.constants.ConstantValues.*;
 public class ProfitCalculator {
 
     public static double caculateProfit(int prize, int cost) {
-        // 수익률은 소수점 둘째 자리에서 반올림한다.
         return Math.round((double) prize / cost * 100) / 100.0;
     }
 

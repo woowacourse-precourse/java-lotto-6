@@ -21,7 +21,7 @@ public class Lottos {
         Integer issueCount = countNumberOfLottoIssue(money);
         List<Lotto> numberOfLotto = new ArrayList<Lotto>(issueCount);
         for (Integer count = 0; count < issueCount; count++) {
-            Lotto lotto = Converter.convertListIntToLotto(Randoms.pickUniqueNumbersInRange(
+            Lotto lotto = Converter.listIntToLotto(Randoms.pickUniqueNumbersInRange(
                     LOTTO_MINIMAL_NUMBER, LOTTO_MAXIMUM_NUMBER,NUMBER_OF_UNIQUE_NUMBERS));
             numberOfLotto.add(lotto);
         }

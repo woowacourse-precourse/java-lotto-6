@@ -16,7 +16,7 @@ public class TotalPrizeMoney {
             if (lottoResultWinners.getNumberOfRankWinner(rank) == 0){
                 continue;
             }
-            sum += Integer.valueOf(Converter.convertCommaStringToString(rank.getPrizeMoney()))
+            sum += Integer.valueOf(Converter.commaStringToString(rank.getPrizeMoney()))
                     * lottoResultWinners.getNumberOfRankWinner(rank);
         }
         return new TotalPrizeMoney(sum);

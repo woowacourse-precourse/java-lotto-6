@@ -12,7 +12,7 @@ import lotto.Lotto;
 
 public class Converter {
 
-    public static String convertCommaStringToString(String commaValue){
+    public static String commaStringToString(String commaValue){
         String result = "";
         for (String splitValue : commaValue.split(COMMA)) {
             result += splitValue;
@@ -20,36 +20,36 @@ public class Converter {
         return result;
     }
 
-    public static Lotto convertCommaStringToLotto(String commaValue) throws IllegalArgumentException{
+    public static Lotto commaStringToLotto(String commaValue) throws IllegalArgumentException{
         List<Integer> numbers = new ArrayList<>(LOTTO_SIZE);
         for(String splitValue : commaValue.split(COMMA)){
-            Integer number = convertStringToLottoNumber(splitValue);
+            Integer number = stringToLottoNumber(splitValue);
             numbers.add(number);
         }
-        return convertListIntToLotto(numbers);
+        return listIntToLotto(numbers);
     }
 
-    public static Lotto convertListIntToLotto(List<Integer> value){
+    public static Lotto listIntToLotto(List<Integer> value){
         List<Integer> randomNumbers = new ArrayList<Integer>(value);
         Collections.sort(randomNumbers);
         return new Lotto(Collections.unmodifiableList(randomNumbers));
     }
 
-    public static Integer convertStringToLottoNumber(String value){
+    public static Integer stringToLottoNumber(String value){
         IntegerValidator.checkEmptyValue(value);
         IntegerValidator.checkZeroOrPositiveInteger(value);
         IntegerValidator.checkLottoNumberRange(value);
         return Integer.valueOf(value);
     }
 
-    public static Integer convertStringToMoney(String value)throws IllegalArgumentException{
-        Integer money = convertStringToPositiveInteger(value);
+    public static Integer stringToMoney(String value)throws IllegalArgumentException{
+        Integer money = stringToPositiveInteger(value);
         MoneyValidator.isDividedInto1000(money);
         return money;
     }
 
     /* include 0 */
-    public static Integer convertStringToPositiveInteger(String value) throws IllegalArgumentException{
+    public static Integer stringToPositiveInteger(String value) throws IllegalArgumentException{
         IntegerValidator.checkEmptyValue(value);
         IntegerValidator.checkZeroOrPositiveInteger(value);
         IntegerValidator.checkIntegerMaxValue(value);

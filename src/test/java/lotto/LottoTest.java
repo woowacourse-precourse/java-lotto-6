@@ -77,10 +77,10 @@ class LottoTest {
     @DisplayName("로또 번호의 범위(1~45)를 벗어나면 예외가 발생한다.")
     @Test
     void createLottoNumberOutOfRange(){
-        assertThatThrownBy(() -> Converter.convertCommaStringToLotto("1,2,3,4,5,100"))
+        assertThatThrownBy(() -> Converter.commaStringToLotto("1,2,3,4,5,100"))
                 .isInstanceOf(IllegalArgumentException.class);
 
-        assertThatThrownBy(() -> Converter.convertCommaStringToLotto("0,2,3,4,5,6"))
+        assertThatThrownBy(() -> Converter.commaStringToLotto("0,2,3,4,5,6"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -94,7 +94,7 @@ class LottoTest {
     @DisplayName("로또 번호는 오름차 순으로 정렬된다.")
     @Test
     void sortLottoNumberAsAscending(){
-        Lotto lotto = Converter.convertListIntToLotto(List.of(6,5,4,3,2,1));
+        Lotto lotto = Converter.listIntToLotto(List.of(6,5,4,3,2,1));
         assertThat(lotto.getNumber(0)).isEqualTo(1);
         assertThat(lotto.getNumber(1)).isEqualTo(2);
         assertThat(lotto.getNumber(2)).isEqualTo(3);
@@ -113,13 +113,13 @@ class LottoTest {
     @DisplayName("보너스 번호의 범위(1~45)를 벗어나면 예외가 발생한다.")
     @Test
     void createLBonusNumberOutOfRange(){
-        assertThatThrownBy(() -> Converter.convertStringToLottoNumber("0"))
+        assertThatThrownBy(() -> Converter.stringToLottoNumber("0"))
                 .isInstanceOf(IllegalArgumentException.class);
 
-        assertThatThrownBy(() -> Converter.convertStringToLottoNumber("-1"))
+        assertThatThrownBy(() -> Converter.stringToLottoNumber("-1"))
                 .isInstanceOf(IllegalArgumentException.class);
 
-        assertThatThrownBy(() -> Converter.convertStringToLottoNumber("46"))
+        assertThatThrownBy(() -> Converter.stringToLottoNumber("46"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

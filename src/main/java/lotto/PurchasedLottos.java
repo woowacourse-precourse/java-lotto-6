@@ -57,6 +57,17 @@ public class PurchasedLottos {
         double averageWinnings = (double) totalWinnings / purchase.getPrice() * 100.0;
         return Math.round(averageWinnings * 10.0) / 10.0;
     }
-    
+    public String generateRewardString() {
+        StringBuilder rewardStringBuilder = new StringBuilder();
+
+        for (LottoReward reward : LottoReward.values()) {
+            if (reward != LottoReward.NOTHING) {
+                rewardStringBuilder.append(reward.getMessage());
+                rewardStringBuilder.append(rewardmap.getOrDefault(reward, 0));
+                rewardStringBuilder.append("개\n");
+            }
+        }
+        return rewardStringBuilder.toString();
+    }
 
 }

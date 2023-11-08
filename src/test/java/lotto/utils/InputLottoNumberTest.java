@@ -31,6 +31,15 @@ public class InputLottoNumberTest {
                 .hasMessageContaining("[ERROR] 입력 형식에 올바르게 입력되지 않았습니다.");
     }
 
+    @Test
+    void 보너스번호_당첨번호_포함된_경우(String input) {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 55);
+        Integer bonusNumber = Integer.parseInt("1");
+        assertThatThrownBy(() -> Validator.checkBonusNumber(winningNumbers,bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호에 중복된 번호가 존재합니다.");
+    }
+
     @DisplayName("당첨 번호가 형식에 올바르지 않게 들어왔을 때 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,false,4,5"})

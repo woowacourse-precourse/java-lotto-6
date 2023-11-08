@@ -20,7 +20,7 @@ class LottoBonusNumberTest {
     void createBonusNumbersByOverRange() {
         assertThatThrownBy(() -> new LottoBonusNumber(46,List.of(1, 2, 3, 4, 5, 123)))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new LottoBonusNumber(0,List.of(1, 2, 3, 4, 5, 123)))
+        assertThatThrownBy(() -> new LottoBonusNumber(0, List.of(1, 2, 3, 4, 5, 123)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

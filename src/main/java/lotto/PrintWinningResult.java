@@ -8,9 +8,7 @@ public class PrintWinningResult {
     }
 
     public String printLottoResult() {
-
         int[] result = lottoResult;
-
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append("3개 일치 (5,000원) - ").append(result[1]).append("개\n");
@@ -24,7 +22,6 @@ public class PrintWinningResult {
     }
 
     public String printProfitResult(double profitPercentage) {
-
         return "총 수익률은 " + profitPercentage + "%입니다.";
     }
 }

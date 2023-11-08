@@ -22,6 +22,7 @@ public class Buyer {
         List<Integer> sortedLotto = lotto.stream()
                 .sorted()
                 .collect(Collectors.toList());
+
         lottoCollection.add(sortedLotto);
     }
 

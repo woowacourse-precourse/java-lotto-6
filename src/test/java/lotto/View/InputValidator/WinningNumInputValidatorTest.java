@@ -10,12 +10,7 @@ import static lotto.Message.InputValidatorPrompt.ASK_WINNING_NUM_IN_VALID_RANGE;
 import static lotto.Message.InputValidatorPrompt.ASK_WINNING_NUM_WITH_NO_DUPLICATION;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
-import lotto.View.InputValidator.WinningNumValidator;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

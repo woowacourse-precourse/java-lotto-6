@@ -25,7 +25,7 @@ public class InputView {
             InputValidator.verifyValidaNumberFormat(input);
             return MoneyDto.from(input);
         } catch (IllegalArgumentException e) {
-            writer.writeLine(Writer.ERROR_PREFIX + e.getMessage());
+            writer.writeLine(e.getMessage());
             return inputMoney();
         }
     }
@@ -45,7 +45,7 @@ public class InputView {
             InputValidator.verifyValidaNumberFormat(input);
             builder.withWinningNumbers(input);
         } catch (IllegalArgumentException e) {
-            writer.writeLine(Writer.ERROR_PREFIX + e.getMessage());
+            writer.writeLine(e.getMessage());
             return inputWinningNumbers(builder);
         }
         return builder;
@@ -59,7 +59,7 @@ public class InputView {
             InputValidator.verifyNumericString(input);
             builder.withBonusNumber(input);
         } catch (IllegalArgumentException e) {
-            writer.writeLine(Writer.ERROR_PREFIX + e.getMessage());
+            writer.writeLine(e.getMessage());
             return inputBonusNumber(builder);
         }
         return builder;

@@ -23,8 +23,8 @@ public class Lotto {
 		return numbers.contains(number);
 	}
 
-	public void printLotto(List<Integer> lotto) {
-		OutputView.printLotto(lotto);
+	public void printLotto() {
+		OutputView.printLotto(numbers);
 	}
 
 	public int countNumberList(List<Integer> lottoNumbers) {

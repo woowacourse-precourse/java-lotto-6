@@ -19,6 +19,9 @@ import lotto.model.WinningLotto;
 import lotto.util.parser.LottoParser;
 
 public class LottoUtil {
+    /**
+     * Description: 로또들을 생성해 반환한다.
+     */
     public static List<Lotto> generateLottos(int lottoCount) {
         List<Lotto> generatedLottos = new ArrayList<>();
         IntStream.range(0, lottoCount).forEach(i -> {

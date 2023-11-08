@@ -16,6 +16,8 @@ public class Application {
         List<Lotto> lottoList = lottoGame.createLottoList(numberOfGames);
         OutputView.printLottoList(lottoList);
 
+        List<Integer> integers = InputView.winningNumber();
         int bonusNumber = InputView.getBonusNumber();
+
     }
 }

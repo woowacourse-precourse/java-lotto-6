@@ -34,4 +34,48 @@ public class UserInput {
             }
         }
     }
+
+    public void validateNumber(String input) {
+        int number;
+        try {
+            number = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+        }
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    public List<Integer> winningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        while (true) {
+            try {
+                String input = Console.readLine();
+                String[] temp = input.split(",");
+                List<Integer> numbers = new ArrayList<>();
+                for (String item : temp) {
+                    validateNumber(item);
+                    numbers.add(Integer.parseInt(item));
+                }
+                return numbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public int bonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        while (true) {
+            try {
+                String input = Console.readLine();
+                validateNumber(input);
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
 }

@@ -9,6 +9,8 @@ public class PartialFunction {
     private static final Validation validation = new Validation();
 
     public int getMoneyNumber(String purchaseMoney) {
+        validation.checkNull(purchaseMoney);
+
         int moneyNumber;
         try {
             moneyNumber = convertStringToInteger(purchaseMoney);
@@ -68,6 +70,7 @@ public class PartialFunction {
     }
 
     private static Integer convertStringToInteger(String number) {
+        number = number.trim();
         return Integer.parseInt(number);
     }
 }

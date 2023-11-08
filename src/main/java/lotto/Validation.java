@@ -40,4 +40,10 @@ public class Validation {
             throw new IllegalArgumentException("당첨 번호에 중복이 없어야 합니다.");
         }
     }
+
+    public void checkNull(String purchaseMoney) {
+        if (purchaseMoney == "") {
+            throw new IllegalArgumentException("값을 입력하세요.");
+        }
+    }
 }

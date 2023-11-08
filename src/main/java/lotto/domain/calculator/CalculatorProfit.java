@@ -5,6 +5,14 @@ import lotto.domain.Rank;
 import java.util.List;
 
 public class CalculatorProfit {
+    public int calculateTotalPrize(List<Rank> ranks) {
+        int totalPrize = 0;
+        for (Rank rank : ranks) {
+            totalPrize += rank.getPrize() * countRanks(ranks, rank);
+        }
+        return totalPrize;
+    }
+
     private int countRanks(List<Rank> ranks, Rank targetRank) {
         int count = 0;
         for (Rank rank : ranks) {

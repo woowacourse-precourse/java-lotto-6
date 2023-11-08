@@ -12,16 +12,13 @@ import java.util.stream.Stream;
 public class LottoController {
 
     public static final OutputView OUTPUT_VIEW = new OutputView();
-    public static final int LOTTO_PRICE = 1000;
-    public static final int MIN_NUMBER_LOTTO = 1;
-    public static final int MAX_NUMBER_LOTTO = 45;
-    public static final int COUNT_OF_LOTTO = 6;
+    public final LottoPublisher LOTTO_PUBLISHER = new LottoPublisher();
     public Statistics statistics;
     public int price;
 
     public void run() {
         price = buyLotto();
-        int lottoCount = getLottoCount(price);
+        int lottoCount = LOTTO_PUBLISHER.getLottoCount(price);
 
         List<Lotto> userLottos = userLotto(lottoCount);
 
@@ -38,46 +35,19 @@ public class LottoController {
             try {
                 OUTPUT_VIEW.printPriceMessage();
                 String inputPrice = Console.readLine();
-                price = validationPrice(inputPrice);
+                price = LOTTO_PUBLISHER.validationPrice(inputPrice);
                 break;
             } catch (IllegalArgumentException e) {}
         }
         return price;
     }
 
-    private int validationPrice(String inputPrice) {
-        int price = 0;
-
-        Error.CHECK.isAllInteger(inputPrice);
-        price = Integer.parseInt(inputPrice);
-        Error.CHECK.isUnder1000Price(price);
-
-        return price;
-    }
-
-    public int getLottoCount(int price) {
-        return price / LOTTO_PRICE;
-    }
-
     public List<Lotto> userLotto(int lottoCount) {
         OUTPUT_VIEW.enterMessage();
         OUTPUT_VIEW.printBuyLottoMessage(lottoCount);
-        List<Lotto> lottos = publishLotto(lottoCount);
+        List<Lotto> lottos = LOTTO_PUBLISHER.publishLotto(lottoCount);
         OUTPUT_VIEW.printLottoMessage(lottos);
 
-        return lottos;
-    }
-
-    public List<Lotto> publishLotto(int lottoCount) {
-        List<Lotto> lottos = new ArrayList<>();
-
-        while (lottoCount > 0) {
-            List<Integer> randomNumber = Randoms.pickUniqueNumbersInRange(MIN_NUMBER_LOTTO, MAX_NUMBER_LOTTO, COUNT_OF_LOTTO);
-            List<Integer> lotto = new ArrayList<>(randomNumber);
-            Collections.sort(lotto);
-            lottos.add(new Lotto(lotto));
-            lottoCount--;
-        }
         return lottos;
     }
 
@@ -89,7 +59,7 @@ public class LottoController {
             try {
                 String input = removeSpace(Console.readLine());
                 String[] inputNumbers = input.split(",");
-                winnerNumbers = validationWinNumber(inputNumbers);
+                winnerNumbers = LOTTO_PUBLISHER.validationWinNumber(inputNumbers);
                 break;
             } catch (IllegalArgumentException e) {}
         }
@@ -103,23 +73,6 @@ public class LottoController {
         return number.replace(" ", "");
     }
 
-    public List<Integer> validationWinNumber(String[] inputNumbers) {
-        Error.CHECK.isAllInteger(inputNumbers);
-        List<Integer> winnerNumbers = arrayToList(stringArrayToInteger(inputNumbers));
-        Error.CHECK.isCollect6Number(winnerNumbers);
-        Error.CHECK.isRange45(winnerNumbers);
-        Error.CHECK.isDuplicate(winnerNumbers);
-        return winnerNumbers;
-    }
-
-    public int[] stringArrayToInteger(String[] array) {
-        return Stream.of(array).mapToInt(Integer::parseInt).toArray();
-    }
-
-    public List<Integer> arrayToList(int[] array) {
-        return Arrays.stream(array).boxed().collect(Collectors.toList());
-    }
-
     public int getBonusNumber(Lotto number) {
         OUTPUT_VIEW.enterMessage();
         int bonusNumber = 0;
@@ -127,10 +80,7 @@ public class LottoController {
             try {
                 OUTPUT_VIEW.printInsertBonusMessage();
                 String input = Console.readLine();
-                Error.CHECK.isAllInteger(input);
-                bonusNumber = Integer.parseInt(input);
-                Error.CHECK.isDuplicate(number, bonusNumber);
-                Error.CHECK.isRange45(List.of(bonusNumber));
+                LOTTO_PUBLISHER.validationBonusNumber(number, input);
                 break;
             } catch (IllegalArgumentException e) {}
         }

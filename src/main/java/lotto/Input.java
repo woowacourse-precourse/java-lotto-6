@@ -8,6 +8,14 @@ import java.util.List;
 
 public class Input {
 
+    public static int getBonusNumber() {
+        String input = Console.readLine();
+        int bonusNumber = parseInt(input);
+
+        return bonusNumber;
+    }
+
+
     public static int getAmount() {
         String input = Console.readLine();
         int amount = parseInt(input);

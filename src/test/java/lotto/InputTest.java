@@ -91,4 +91,16 @@ public class InputTest {
         })
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"7"})
+    public void testBonusNumber(String bonusNumber) {
+        //given
+        setUp(bonusNumber);
+
+        // when
+        int expect = 7;
+
+        assertThat(expect).isEqualTo(Input.getBonusNumber());
+    }
 }

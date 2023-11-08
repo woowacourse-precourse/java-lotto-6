@@ -40,12 +40,6 @@ public class Lotto {
         }
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-    }
-
     public void printNumbers() {
         for (int i = 0; i < numbers.size() - 1; i++) {
             System.out.print(numbers.get(i));

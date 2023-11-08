@@ -7,4 +7,10 @@ public class WinningCheck {
         this.lotto = lotto;
         this.bonusball = bonusball;
     }
+
+    public RankingLotto match(Lotto playerLottoNum) {
+        int matchLottoNumber = playerLottoNum.countMatch(lotto);
+        boolean containBonusNumber = playerLottoNum.containNumber(bonusball);
+        return RankingLotto.getPrize(matchLottoNumber,containBonusNumber);
+    }
 }

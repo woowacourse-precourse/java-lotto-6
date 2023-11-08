@@ -1,14 +1,13 @@
 package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.utils.constants.ExceptionMessage;
 import org.junit.jupiter.api.Test;
 
 public class LottoServiceTest {
+
     @Test
     void amountPurchaseDivide_천단위_로또구매금액_나누기() {
         int purchaseInput = 6000;

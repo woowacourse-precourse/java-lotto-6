@@ -29,7 +29,7 @@ public class Lotto {
         }
     }
 
-    private List<LottoNumber> convertToLottoNumbers(List<Integer> numbers){
+    private List<LottoNumber> convertToLottoNumbers(List<Integer> numbers) {
         return numbers.stream()
                 .map(LottoNumber::new)
                 .sorted(Comparator.comparing(LottoNumber::getNumber))
@@ -37,13 +37,13 @@ public class Lotto {
 
     }
 
-    public int matchCount(Lotto lotto){
+    public int matchCount(Lotto lotto) {
         return (int) numbers.stream()
                 .filter(lotto::hasNumber)
                 .count();
     }
 
-    public boolean hasNumber(LottoNumber lottoNumber){
+    public boolean hasNumber(LottoNumber lottoNumber) {
         return numbers.contains(lottoNumber);
     }
 

@@ -15,7 +15,10 @@ import org.junit.jupiter.api.Test;
 public class VerifyTest extends NsTest {
     public static final Integer CAN_BUY_VALUE = 14000;
     public static final String CAN_BUY = "14000";
+    public static final Integer CAN_BUY_VALUE2 = 1000;
+    public static final String CAN_BUY2 = "1000";
     public static final String CAN_NOT_BUY = "100";
+    public static final String CAN_NOT_BUY2 = "999";
 
     @Test
     void 값이1000원이상일경우() {
@@ -24,14 +27,25 @@ public class VerifyTest extends NsTest {
         });
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void createLottoByDuplicatedNumber() {
+    void 값이1000원이상일경우2() {
+        assertSimpleTest(() -> {
+            assertThat(verifyAmount(CAN_BUY2)).isEqualTo(CAN_BUY_VALUE2);
+        });
+    }
+    @Test
+    void 값이1000원미만일경우() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> verifyAmount(CAN_NOT_BUY))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 값이1000원미만일경우2() {
+        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
+        assertThatThrownBy(() -> verifyAmount(CAN_NOT_BUY2))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
     @Override
     public void runMain() {
         new Verify();

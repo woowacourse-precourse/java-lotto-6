@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.common.Validator;
-import lotto.engine.LottoFactory;
+import lotto.engine.manager.LottoFactory;
 import lotto.engine.LottoGame;
 import lotto.view.LottoGameViewer;
 import lotto.view.LottoGameViewerMapper;

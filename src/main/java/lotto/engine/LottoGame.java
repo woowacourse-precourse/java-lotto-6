@@ -1,11 +1,14 @@
 package lotto.engine;
 
+import static lotto.engine.LottoSystemConstant.LOTTO_MINIMUM_NUMBER_OF_WINNINGS;
 import static lotto.engine.LottoSystemConstant.LOTTO_PRICE;
 
 import java.util.List;
-import lotto.Lotto;
 import lotto.engine.LottoSystemConstant.TextMessage.Pattern;
-import lotto.engine.dto.WinningNumber;
+import lotto.engine.domain.Customer;
+import lotto.engine.domain.Lotto;
+import lotto.engine.dto.WinningResult;
+import lotto.engine.manager.LottoFactory;
 import lotto.view.LottoGameViewer;
 
 public final class LottoGame {
@@ -34,8 +37,21 @@ public final class LottoGame {
         int bonus = viewer.interactForBonusNumber();
         viewer.printNewLine();
 
-        WinningNumber winningNumber = new WinningNumber(numbers, bonus);
-        //todo : 당첨 통계 보여주기
+        Customer customer = new Customer(numbers, bonus);
+        WinningResult winningResult = lottoFactory.aggregate(customer, lottos);
+        viewer.println(() -> showAggregation(winningResult));
+    }
+
+    private String showAggregation(WinningResult winningResult) {
+
+        return String.format(Pattern.AGGREGATION_RESULTS.getMessage(),
+                winningResult.winningCriteria().get(LOTTO_MINIMUM_NUMBER_OF_WINNINGS.value()),
+                winningResult.winningCriteria().get(4),
+                winningResult.winningCriteria().get(5),
+                winningResult.specailMatchCount(),
+                winningResult.winningCriteria().get(LOTTO_MINIMUM_NUMBER_OF_WINNINGS.value()),
+                winningResult.profit()
+        );
     }
 
 }

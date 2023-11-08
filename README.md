@@ -6,10 +6,10 @@
   - [x] 요구한 길이와 일치하는지
   - [x] 숫자 형식으로 되어있는지
   - [x] 유효한 범위 내의 숫자인지
-- [ ] 집계하기
-  - [ ] 일치여부 집계하기
-  - [ ] 수익률 계산하기
-- [ ] 통계 내역 보여주기
+- [x] 집계하기
+  - [x] 일치여부 집계하기
+  - [x] 수익률 계산하기
+- [x] 통계 내역 보여주기
 
 
 ## whyWhale 숫자야구게임 TODO LIST
@@ -23,25 +23,24 @@
 
 <img src="image/프로그래밍요구사항/java코드컨벤션확인_20231105.png">
 - 라이브러리 사용
-  - [ ] random 값 추출(camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용)
-  - [ ] 사용자 입력 (camp.nextstep.edu.missionutils.Console의 readLine()을 활용)
-- [ ] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
+  - [x] random 값 추출(camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용)
+  - [x] 사용자 입력 (camp.nextstep.edu.missionutils.Console의 readLine()을 활용)
+- [x] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
   - 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
   - 힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메서드)를 분리하면 된다.
-- [ ] 3항 연산자를 쓰지 않는다.
-- [ ] 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
-- [ ] JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.
+- [x] 3항 연산자를 쓰지 않는다.
+- [x] 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
+- [x] JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.
 
 **추가 요구사항**
 - [ ] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
 - 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
-- [ ] else 예약어를 쓰지 않는다.
+- [x] else 예약어를 쓰지 않는다.
 - 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
 - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
-- [ ] Java Enum을 적용한다.
-- [ ] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
-- 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
-- 단위 테스트 작성이 익숙하지 않다면 `test/java/lotto/LottoTest`를 참고하여 학습한 후 테스트를 구현한다.
+- [x] Java Enum을 적용한다.
+- [x] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+- [x] 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
 
 
 

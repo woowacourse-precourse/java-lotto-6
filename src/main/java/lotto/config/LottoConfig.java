@@ -1,4 +1,4 @@
-package lotto.constants;
+package lotto.config;
 
 public enum LottoConfig {
     PRICE_PER_TICKET(1000),

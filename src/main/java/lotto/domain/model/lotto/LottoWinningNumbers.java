@@ -1,6 +1,6 @@
 package lotto.domain.model.lotto;
 
-import lotto.ErrorMessage;
+import lotto.error.ErrorMessage;
 
 public class LottoWinningNumbers {
 

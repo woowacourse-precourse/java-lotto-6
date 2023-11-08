@@ -1,6 +1,4 @@
-package lotto;
-
-import lotto.constants.LottoConfig;
+package lotto.error;
 
 public enum ErrorMessage {
     LOTTO_NUMBER_OUT_OF_RANGE("[ERROR] 로또 번호 범위가 아닙니다."),

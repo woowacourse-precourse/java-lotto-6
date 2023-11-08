@@ -1,7 +1,7 @@
 package lotto.domain.model.lotto;
 
-import lotto.ErrorMessage;
-import lotto.constants.LottoConfig;
+import lotto.error.ErrorMessage;
+import lotto.config.LottoConfig;
 
 import java.util.HashMap;
 import java.util.Map;

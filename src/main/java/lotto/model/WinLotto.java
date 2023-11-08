@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class WinLotto {
@@ -24,7 +25,9 @@ public class WinLotto {
 
     List<Integer> winLotto = validateWinningNumbers(winningLottery);
 
-    return new WinLotto(new Lotto(winLotto), bonusNumber);
+    Lotto lotto = new Lotto(winLotto);
+
+    return new WinLotto(lotto, bonusNumber);
   }
 
   private static List<Integer> validateWinningNumbers(String winningLottery) {
@@ -39,6 +42,10 @@ public class WinLotto {
         .toList();
 
     return new ArrayList<>(checkValue);
+  }
+
+  public List<Integer> getWinLotto() {
+    return winLotto;
   }
 
   public int getBonusNumber() {
@@ -58,8 +65,9 @@ public class WinLotto {
   private int isValidBonusNumber(String bonusNumber) {
 
     int checkValue = Integer.parseInt(bonusNumber);
+    List<Integer> winLottoList = new ArrayList<>(winLotto);
 
-    if (winLotto.contains(checkValue))
+    if (winLottoList.contains(checkValue))
       throw new IllegalArgumentException(NON_OVERLAPPING_BONUS_NUMBER_MESSAGE);
 
     return checkValue;

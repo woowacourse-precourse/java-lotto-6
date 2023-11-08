@@ -26,7 +26,7 @@ public class PlayerTest {
     }
 
     @Test
-    @DisplayName("createDomain() method 테스트")
+    @DisplayName("Player Domain이 성공적으로 생성된다.")
     public void createDomainTest() {
         // when - then
         assertThat(player.getLottoNumbers().isEmpty()).isTrue();

@@ -42,13 +42,16 @@ public class LottoService {
         return new LottoMachine(lottoCount, lottos, lottoRanks);
     }
 
-    public List<Integer> getWinningNumbers(String winningNumber){
+    public void saveWinningAndBonusNumbers(LottoMachine lottoMachine, String winningNumber, String bonusNumber){
         String[] winning = winningNumber.split(",");
-        List<Integer> winningNumbers = new ArrayList<>();
         for(String number:winning){
-            winningNumbers.add(Integer.parseInt(number));
+            lottoMachine.updateLottoWinningNumbers(Integer.parseInt(number));
         }
-        return winningNumbers;
+        lottoMachine.updateLottoBonusNumber(Integer.parseInt(bonusNumber));
+    }
+
+    public void saveRankCount(LottoMachine lottoMachine, List<Integer> winningNumbers, String bonusNumber){
+
     }
 
 }

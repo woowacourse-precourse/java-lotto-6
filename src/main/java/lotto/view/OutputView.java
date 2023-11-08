@@ -16,6 +16,10 @@ import java.util.stream.Collectors;
 
 public class OutputView {
 
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
+    }
+
     public static void printLottos(Lottos userLottos) {
         List<Lotto> lottos = userLottos.getLottos();
         System.out.println(String.format(NUMBER_OF_LOTTO, lottos.size()));

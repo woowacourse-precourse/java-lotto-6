@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Application {
@@ -28,7 +27,8 @@ public class Application {
         System.out.println("구입금액을 입력해 주세요.");
         int input = convertInteger(Console.readLine());
         boolean isNotMultipleOf1000 = input % 1000 != 0;
-        if(isNotMultipleOf1000) {
+        if (isNotMultipleOf1000) {
+            alertError("로또 구입 금액은 1,000 단위의 숫자여야 합니다.");
             throw new IllegalArgumentException();
         }
         return input;
@@ -65,28 +65,17 @@ public class Application {
         System.out.println("보너스 번호를 입력해 주세요.");
         Integer input = convertInteger(Console.readLine());
         boolean isNotInLottoNumberRange = input < 1 || 45 < input;
-        if(isNotInLottoNumberRange)
+        if (isNotInLottoNumberRange) {
+            alertError("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             throw new IllegalArgumentException();
+        }
         return input;
     }
 
     public static void main(String[] args) {
-        int budget;
-        List<Lotto> lottos;
-        try {
-            budget = inputBudget();
-            lottos = buyLottos(budget);
-        } catch (IllegalArgumentException e) {
-            alertError("로또 구입 금액은 1,000 단위의 숫자여야 합니다.");
-        }
-
-        Lotto winningLotto;
-        int bonusNumber;
-        try {
-            winningLotto = inputWinningLotto();
-            bonusNumber = inputBonusNumber();
-        } catch (IllegalArgumentException e) {
-            alertError("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
+        int budget = inputBudget();
+        List<Lotto> lottos = buyLottos(budget);
+        Lotto winningLotto = inputWinningLotto();
+        int bonusNumber = inputBonusNumber();
     }
 }

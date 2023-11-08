@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.Application.alertError;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -20,12 +22,16 @@ public class Lotto {
         }
         boolean isInvalidRange = numbers.stream()
                 .anyMatch(number -> number < 1 || 45 < number);
-        if(isInvalidRange)
+        if(isInvalidRange) {
+            alertError("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             throw new IllegalArgumentException();
+        }
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         boolean isDuplicated = numbers.size() != uniqueNumbers.size();
-        if(isDuplicated)
+        if(isDuplicated) {
+            alertError("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             throw new IllegalArgumentException();
+        }
     }
 
     public String toString() {

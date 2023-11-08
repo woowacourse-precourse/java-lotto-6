@@ -19,12 +19,9 @@ public class Lotto {
     }
 
     public int countMatchingNumbers(final Lotto lotto) {
-        int matchedNumberCount = 0;
-        for (Integer number : numbers) {
-            matchedNumberCount += getMatchedNumberCount(lotto, number);
-        }
-
-        return matchedNumberCount;
+        return numbers.stream()
+                .map(number -> getMatchedNumberCount(lotto, number))
+                .reduce(0, Integer::sum);
     }
 
     private int getMatchedNumberCount(final Lotto lotto, final Integer number) {

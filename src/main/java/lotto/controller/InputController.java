@@ -8,6 +8,7 @@ import lotto.view.InputView;
 public class InputController {
     private InputController() {
     }
+
     public static TicketAmount setTicketAmount() {
         while (true) {
             try {

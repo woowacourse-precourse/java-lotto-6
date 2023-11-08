@@ -61,6 +61,6 @@ public class WinningNumberTest {
                 Arguments.of(List.of(1, 2, 3, 4, 8, 10), "10", "FOURTH"),
                 Arguments.of(List.of(1, 2, 3, 8, 9, 10), "11", "FIFTH"),
                 Arguments.of(List.of(1, 2, 8, 9, 10, 11), "12", "NO_MATCH")
-                );
+        );
     }
 }

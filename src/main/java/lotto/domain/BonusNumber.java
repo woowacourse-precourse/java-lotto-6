@@ -5,6 +5,7 @@ import lotto.util.Validator;
 
 public class BonusNumber {
     private final int bonus;
+
     public BonusNumber(WinningNumber winningNumber, String number) {
         Validator.validateInput(number);
         int bonusNumber = Integer.parseInt(number);

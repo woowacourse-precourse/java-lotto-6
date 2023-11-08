@@ -19,7 +19,7 @@ public class TicketAmount {
     }
 
     public double calculateRateOfReturn(Result result) {
-        double totalPrize  = result.calculateTotalPrize();
+        double totalPrize = result.calculateTotalPrize();
         return (totalPrize / amount) * PERCENT;
     }
 

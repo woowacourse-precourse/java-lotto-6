@@ -9,13 +9,15 @@ import lotto.util.Constants;
 
 public class LottoTickets {
     private final List<Lotto> lottoTickets;
+
     public LottoTickets(int ticketAmount) {
         this.lottoTickets = createLottoTickets(ticketAmount);
     }
 
     public Result calculateLottoRank(WinningNumber winningNumber, BonusNumber bonusNumber) {
         List<LottoRanking> ranking = lottoTickets.stream()
-                .map(lotto -> winningNumber.calculateLottoRanking(lotto, bonusNumber))
+                .map(lotto ->
+                        winningNumber.calculateLottoRanking(lotto, bonusNumber))
                 .toList();
         return new Result(ranking);
     }
@@ -23,13 +25,14 @@ public class LottoTickets {
     private List<Lotto> createLottoTickets(int ticketAmount) {
         List<Lotto> tickets = new ArrayList<>();
         IntStream.range(0, ticketAmount).forEach(i ->
-            tickets.add(new Lotto(generateRandomNumbers())));
+                tickets.add(new Lotto(generateRandomNumbers())));
         return tickets;
     }
 
     private List<Integer> generateRandomNumbers() {
-        List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(Constants.MIN_NUMBER,
-            Constants.MAX_NUMBER, Constants.LOTTO_SIZE));
+        List<Integer> randomNumbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(Constants.MIN_NUMBER,
+                        Constants.MAX_NUMBER, Constants.LOTTO_SIZE));
         Collections.sort(randomNumbers);
         return randomNumbers;
     }

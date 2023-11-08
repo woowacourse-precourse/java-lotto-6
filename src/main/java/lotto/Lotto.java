@@ -1,8 +1,11 @@
 package lotto;
+import static lotto.ErrorMessages.INVALID_LOTTO_SIZE;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
+    private static final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -11,8 +14,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        checkLottoSize(numbers);
+
+    }
+
+    private static void checkLottoSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException(INVALID_LOTTO_SIZE);
         }
     }
 

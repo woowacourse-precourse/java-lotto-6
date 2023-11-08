@@ -28,12 +28,17 @@ public class Game {
     }
 
     private static WinningLotto createWinningLotto() {
-        askWinningLotto();
-        Lotto lotto = inputWinningLotto();
-        askBonusNumber();
-        int bonusNumber = inputBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
-        return winningLotto;
+        try {
+            askWinningLotto();
+            Lotto lotto = inputWinningLotto();
+            askBonusNumber();
+            int bonusNumber = inputBonusNumber();
+            WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
+            return winningLotto;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createWinningLotto();
+        }
     }
 
     private static void winningResult(int purchaseAmount, UserLotto userLotto, WinningLotto winningLotto) {

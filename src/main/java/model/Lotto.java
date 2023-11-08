@@ -17,6 +17,7 @@ public class Lotto {
 
     public static void validate(List<Integer> numbers) {
         lengthVlalidator(numbers);
+        numberRangeValidator(numbers);
         hasDupleNum(numbers);
     }
 
@@ -30,6 +31,18 @@ public class Lotto {
         Set<Integer> nonDupleNumbers = new HashSet<>(numbers);
         if (nonDupleNumbers.size() != numbers.size()) {
             throw new CustomIllegalArgumentException(InputException.DUPLE_NUMBER_EXCEPTION);
+        }
+    }
+
+    private static void numberRangeValidator(List<Integer> numbers) {
+        for (int i = 0; i < numbers.size(); i++) {
+            isInRange(numbers.get(i));
+        }
+    }
+
+    private static void isInRange(int number) {
+        if (number < GameProperty.LOTTO_MIN_NUMBER || number > GameProperty.LOTTO_MAX_NUMBER) {
+            throw new CustomIllegalArgumentException(InputException.RANGE_OF_NUMBER_EXCEPTION);
         }
     }
 

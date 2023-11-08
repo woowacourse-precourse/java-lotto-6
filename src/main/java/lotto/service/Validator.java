@@ -14,20 +14,20 @@ public class Validator {
 
     public static void isEmpty(String input) {
         System.out.println(input);
-        if ((input == null || input.isBlank()) == true) {
+        if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(BLANK_ERROR.toString());
         }
     }
 
     public static void isNumericInput(String input) {
-        if (input.matches("[0-9]+") != true) {
+        if (!input.matches("[0-9]+")) {
             throw new IllegalArgumentException(CONTAIN_SYMBOL_ERROR.toString());
         }
     }
 
     public static void isNumberInRange(String input) {
         int number = Integer.parseInt(input);
-        if ((number >= MIN_NUMBER && number <= MAX_NUMBER) != true) {
+        if (!(number >= MIN_NUMBER && number <= MAX_NUMBER)) {
             throw new IllegalArgumentException(NUMBER_RANGE_ERROR.toString());
         }
     }

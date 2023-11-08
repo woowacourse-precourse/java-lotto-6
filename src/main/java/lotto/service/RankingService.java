@@ -29,7 +29,7 @@ public class RankingService {
         }
     }
 
-    public static Rank getRank(List<Lotto> userNumbers, int matchCount, int bonusNumber) {
+    public static Rank getRank(List<Integer> userNumbers, int matchCount, int bonusNumber) {
         if (matchCount == 5 && userNumbers.contains(bonusNumber)) {
             return SECOND;
         }

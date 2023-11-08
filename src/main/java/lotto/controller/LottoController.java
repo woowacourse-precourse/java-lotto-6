@@ -11,7 +11,7 @@ import java.util.*;
 
 public class LottoController {
 
-    private List<Lotto> userTickets = new ArrayList<>();
+    private final List<Lotto> userTickets = new ArrayList<>();
     private Lotto winningTicket;
     private int bonusNumber;
     private int purchasePrice;
@@ -75,7 +75,7 @@ public class LottoController {
             List<Integer> winningNumbers = winningTicket.getNumbers();
 
             int matchingNumberCount = countMatchingNumbers(userNumbers, winningNumbers);
-            Rank rank = RankingService.getRank(userTickets, matchingNumberCount, bonusNumber);
+            Rank rank = RankingService.getRank(userNumbers, matchingNumberCount, bonusNumber);
 
             RankingService.calculateWinnersByRank(rank, rankBoard);
         }

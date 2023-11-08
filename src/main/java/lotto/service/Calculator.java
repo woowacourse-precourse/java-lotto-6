@@ -13,8 +13,7 @@ public class Calculator {
 
     public static float rateOfProfit(int purchasePrice, int[] rankBoard) {
         float totalPrize = totalPrize(rankBoard);
-        float rateOfProfit = (totalPrize / (float) purchasePrice) * PERCENTAGE;
-        return rateOfProfit;
+        return (totalPrize / (float) purchasePrice) * PERCENTAGE;
     }
 
     public static int totalPrize(int[] rates) {
@@ -27,7 +26,6 @@ public class Calculator {
     }
 
     public static int eachRankPrize(int rate, int rateNum) {
-
         switch (rate) {
             case 5:
                 return getPrizeMoney(FIFTH) * rateNum;
@@ -40,8 +38,6 @@ public class Calculator {
             case 1:
                 return getPrizeMoney(FIRST) * rateNum;
         }
-
         return 0;
-
     }
 }

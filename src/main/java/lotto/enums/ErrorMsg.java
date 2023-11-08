@@ -2,6 +2,7 @@ package lotto.enums;
 
 public enum ErrorMsg {
     ERROR("[ERROR]"),
+    INVALID_NO_INPUT("입력값이 없습니다."),
     INVALID_BONUS_NUMBER("보너스 번호는 숫자만 입력 가능합니다."),
     INVALID_BONUS_NUMBER_DUPLICATE("보너스 번호는 당첨 번호와 중복될 수 없습니다."),
     INVALID_BONUS_NUMBER_RANGE("보너스 번호는 1부터 45 사이의 숫자여야 합니다."),

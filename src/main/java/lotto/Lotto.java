@@ -50,7 +50,6 @@ public class Lotto {
             int currentValue = result.get(count);
             result.set(count, currentValue + 1);
         }
-        System.out.println(result);
 
         return result;
     }

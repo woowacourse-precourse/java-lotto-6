@@ -33,11 +33,9 @@ class LottoMoneyPrizeTest {
         //given
         List<Integer> randomWin = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNum = 7;
-
         //when
         LottoMoneyPrize lottoMoneyPrize = new LottoMoneyPrize(lottos, randomWin, bonusNum);
         Map<LottoMoney, Integer> result = lottoMoneyPrize.getLottoMoneyPrize();
-
         //then
         assertEquals(1, result.get(LottoMoney.FIRST));
         assertEquals(1, result.get(LottoMoney.SECOND));
@@ -45,7 +43,6 @@ class LottoMoneyPrizeTest {
         assertEquals(0, result.get(LottoMoney.FOURTH));
         assertEquals(1, result.get(LottoMoney.FIFTH));
         assertEquals(1, result.get(LottoMoney.ZERO));
-
     }
 
     @Test

@@ -9,7 +9,7 @@ public class LottoValidation {
 
     public static void validateIsNumber(String input) {
         if (!input.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 입력값은 숫자여야 합니다.");
         }
     }
 
@@ -22,12 +22,6 @@ public class LottoValidation {
     public static void validateIsStandardUnit(int amount) {
         if (amount % STANDARD_UNIT != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
-        }
-    }
-
-    public static void validateIsNumberBonus(String input) {
-        if (!input.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫쟈여야 합니다.");
         }
     }
 

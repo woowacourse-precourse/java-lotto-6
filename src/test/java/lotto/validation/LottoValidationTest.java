@@ -7,14 +7,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoValidationTest {
 
-    @DisplayName("구입 금액이 숫자가 아니면 예외가 발생한다.")
+    @DisplayName("입력값이 숫자가 아니면 예외가 발생한다.")
     @Test
-    void 구입금액이_숫자가_아니면_예외처리() {
+    void createValueByNotNumber() {
         String input = "three";
 
         assertThatThrownBy(() -> LottoValidation.validateIsNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구입 금액은 숫자여야 합니다.");
+                .hasMessage("[ERROR] 입력값은 숫자여야 합니다.");
     }
 
     @DisplayName("구입 금액이 1000원 미만이면 예외가 발생한다.")

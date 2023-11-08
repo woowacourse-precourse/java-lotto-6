@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -8,7 +9,9 @@ public class NumberGenerator {
 
     public void generateLottoNumbers() {
         lottoNumbers = new Lotto(camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1, 45, 6));
-        lottoNumbers.getNumbers().sort(Comparator.naturalOrder()); // 리스트를 오름차 순으로 정렬
+        List<Integer> sortedLottoNumbers = new ArrayList<>(lottoNumbers.getNumbers());
+        sortedLottoNumbers.sort(Comparator.naturalOrder());
+        lottoNumbers.setNumbers(sortedLottoNumbers);
     }
 
     // 구입 금액에 해당하는 만큼 로또를 발행하는 메서드

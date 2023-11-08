@@ -17,9 +17,9 @@ public class outputMessage {
         }
     }
 
-    public static void rankMessage(HashMap<Rank, Integer> map) {
-        for (Rank rank : map.keySet()) {
-            showRankResult(rank, map.getOrDefault(rank, 0));
+    public static void rankMessage(HashMap<Rank, Integer> ranks) {
+        for (Rank rank : ranks.keySet()) {
+            showRankResult(rank, ranks.getOrDefault(rank, 0));
         }
     }
 
@@ -34,6 +34,14 @@ public class outputMessage {
             return;
         }
         System.out.printf("%d개 일치 (%s원) - %d개\n", rank.getCount(), decFormat.format(rank.getMoney()), count);
+    }
+
+    public static void earningRateMessage(double earningRate) {
+        System.out.printf("총 수익률은 %s%%입니다.", String.format("%.1f", earningRate));
+    }
+
+    public static void printMessage(String msg) {
+        System.out.println(msg);
     }
 
 }

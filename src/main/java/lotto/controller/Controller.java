@@ -18,7 +18,8 @@ public class Controller {
 
     public void playGame() {
         buyLotto();
-        pickPrize();
+        HashMap<Rank,Integer> ranks = pickPrize();
+        getEarningRate(ranks);
     }
 
     public void buyLotto() {
@@ -27,10 +28,16 @@ public class Controller {
         buyer = new Buyer(price);
     }
 
-    public void pickPrize() {
+    public HashMap<Rank, Integer> pickPrize() {
         Prize prize = new Prize(getPrizeNumber(), getBonusNumber());
         HashMap<Rank, Integer> ranks = prize.makePrizeRanks(buyer);
         outputMessage.rankMessage(ranks);
+        return ranks;
+    }
+
+    public void getEarningRate(HashMap<Rank,Integer> ranks){
+        double earningRate =  buyer.calculationEarningRate(ranks);
+        outputMessage.earningRateMessage(earningRate);
     }
 
     private String getPrizeNumber() {

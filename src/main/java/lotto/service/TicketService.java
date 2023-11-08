@@ -1,6 +1,5 @@
 package lotto.service;
 
-import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Collectors;

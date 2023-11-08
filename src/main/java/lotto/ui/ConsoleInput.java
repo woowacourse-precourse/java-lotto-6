@@ -28,7 +28,7 @@ public class ConsoleInput implements Input {
         return parseNumber(inputBonusNumber);
     }
 
-    private static int parseNumber(String inputPrice) {
+    private int parseNumber(String inputPrice) {
         return Integer.parseInt(inputPrice);
     }
 

@@ -30,6 +30,7 @@ public class Game {
         Lotto answer = generateAnswer();
         Integer bonus = generateBonus();
         Result result = generateResult(lottos, answer, bonus);
+        showReturnRate(lottoCount, result);
     }
 
     private Integer buyLotto() {
@@ -145,5 +146,12 @@ public class Game {
         String resultMessage = result.generateResultMessage();
 
         message.printResult(resultMessage);
+    }
+
+    private void showReturnRate(Integer lottoCount, Result result) {
+        Integer cost = lottoCount * LOTTO_PRICE;
+        Double returnRate = result.calculateReturnRate(cost);
+
+        message.printReturnRate(returnRate);
     }
 }

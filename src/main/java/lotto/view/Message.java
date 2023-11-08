@@ -8,10 +8,13 @@ public class Message {
     private final String INPUT_ANSWER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private final String INPUT_BONUS_MESSAGE = "보너스 번호를 입력해 주세요.";
     private final String RESULT_MESSAGE = "당첨 통계";
+    private final String RETURN_RATE = "총 수익률은 ";
+    private final String PERCENT = "%입니다.";
     private final String SEPARATOR = "---";
     private final String LEFT_BRACKET = "[";
     private final String RIGHT_BRACKET = "]";
     private final String DELIMITER = ", ";
+    private final String ONE_DECIMAL_FORMAT = "%.1f";
 
     public String inputCost() {
         System.out.println(INPUT_COST_MESSAGE);
@@ -44,8 +47,15 @@ public class Message {
     }
 
     public void printResult(String resultMessage) {
+        System.out.println();
         System.out.println(RESULT_MESSAGE);
         System.out.println(SEPARATOR);
         System.out.print(resultMessage);
+    }
+
+    public void printReturnRate(Double returnRate) {
+        System.out.print(RETURN_RATE);
+        System.out.printf(ONE_DECIMAL_FORMAT, returnRate);
+        System.out.print(PERCENT);
     }
 }

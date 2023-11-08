@@ -90,12 +90,40 @@ public class Result {
     }
 
     private String countMessage(Prize prize) {
+        Integer count = findCount(prize);
+
+        return (HYPHEN + count + COUNT);
+    }
+
+    private Integer findCount(Prize prize) {
         Integer match = prize.getMatch();
-        Integer result = equalCount.get(match);
+        Integer count = equalCount.get(match);
 
         if (prize == Prize.BONUS) {
-            result = bonusCount;
+            count = bonusCount;
         }
-        return (HYPHEN + result + COUNT);
+        return count;
+    }
+
+    public Double calculateReturnRate(Integer cost) {
+        Prize[] prizes = Prize.values();
+        Integer profit = calculateProfit(prizes);
+
+        return ((profit.doubleValue() / cost) * 100);
+    }
+
+    private Integer calculateProfit(Prize[] prizes) {
+        int profit = 0;
+
+        for (Prize prize : prizes) {
+            profit += countMoney(prize);
+        }
+        return profit;
+    }
+
+    private Integer countMoney(Prize prize) {
+        Integer count = findCount(prize);
+
+        return (prize.getPayout() * count);
     }
 }

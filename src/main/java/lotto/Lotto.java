@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -7,18 +8,18 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
         this.numbers.sort(Integer::compareTo);
     }
 
     private void validate(List<Integer> numbers) {
         LottoValidator.sizeValidate(numbers);
-        LottoValidator.rangeValidate(numbers);
+        LottoValidator.rangeValidateFromList(numbers);
     }
 
     @Override
     public String toString() {
-        return "[" + String.join(", ", numbers.toString()) + "]";
+        return numbers.toString();
     }
 
     public LottoRank match(WinningLotto winningLotto) {

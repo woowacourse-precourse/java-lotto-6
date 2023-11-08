@@ -14,8 +14,8 @@ public class WinningLotto {
 
     private void validate(List<Integer> winningLotto, Integer bonusNumber) {
         LottoValidator.sizeValidate(winningLotto);
-        LottoValidator.rangeValidate(winningLotto);
-        LottoValidator.rangeValidate(List.of(bonusNumber));
+        LottoValidator.rangeValidateFromList(winningLotto);
+        LottoValidator.rangeValidate(bonusNumber);
         if (winningLotto.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호에 포함될 수 없습니다.");
         }

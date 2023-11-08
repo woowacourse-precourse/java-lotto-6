@@ -1,8 +1,7 @@
 package lotto;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.DecimalFormat;
+import java.util.*;
 
 public class LottoResult {
 
@@ -16,7 +15,7 @@ public class LottoResult {
             totalPrize += lottoRank.getPrize();
             result.put(lottoRank, result.getOrDefault(lottoRank, 0) + 1);
         }
-        profitRate = (double) totalPrize / (lottos.size() * LottoSalesMachine.lottoPrice);
+        profitRate = (double) totalPrize / (lottos.size() * LottoSalesMachine.lottoPrice) * 100;
     }
 
 
@@ -25,19 +24,25 @@ public class LottoResult {
         sb.append("당첨 통계\n---\n");
         messagePerLottoRank(sb);
         sb.append("총 수익률은 ")
-                .append(String.format("%.2f", profitRate))
+                .append(String.format("%.1f", profitRate))
                 .append("%입니다.");
 
         System.out.println(sb);
     }
 
     private void messagePerLottoRank(StringBuilder sb) {
-        for (LottoRank lottoRank : LottoRank.values()) {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        List<LottoRank> lottoRanks = Arrays.stream(LottoRank.values())
+                .sorted(Comparator.comparingInt(LottoRank::getPrize))
+                .filter(lottoRank -> lottoRank != LottoRank.NO_PLACE)
+                .toList();
+
+        for (LottoRank lottoRank : lottoRanks) {
             sb.append(lottoRank.getMatchCount())
                     .append("개 일치")
                     .append(lottoRank.isBonusMatch() ? ", 보너스 볼 일치" : "")
                     .append(" (")
-                    .append(lottoRank.getPrize())
+                    .append(decimalFormat.format(lottoRank.getPrize()))
                     .append("원) - ")
                     .append(result.getOrDefault(lottoRank, 0))
                     .append("개\n");

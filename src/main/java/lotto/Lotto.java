@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto;
 
 import lotto.exception.DuplicatedNumberException;
 import lotto.exception.InvalidNumbersLengthException;

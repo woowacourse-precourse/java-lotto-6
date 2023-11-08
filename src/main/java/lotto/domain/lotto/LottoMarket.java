@@ -2,7 +2,7 @@ package lotto.domain.lotto;
 
 import lotto.domain.Money;
 import lotto.domain.NumbersGenerator;
-import lotto.domain.Lotto;
+import lotto.Lotto;
 
 import java.util.List;
 import java.util.stream.IntStream;

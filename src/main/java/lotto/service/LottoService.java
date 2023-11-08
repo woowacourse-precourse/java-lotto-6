@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.Lotto;
 import lotto.domain.*;
 import lotto.domain.lotto.*;
 import lotto.domain.winning.WinningGrade;

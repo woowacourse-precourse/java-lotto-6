@@ -1,8 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.validator.BonusValidator;
 import lotto.validator.InputValidator;
-import lotto.validator.LottoValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +12,15 @@ import static lotto.validator.LottoValidator.LottoWinNumbers;
 
 public class InputView {
 
-    public static int inputMoney(){
+    public static int inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String userMoney = Console.readLine();
-        return InputValidator.purchaseMoney(userMoney);
+        try {
+            return InputValidator.purchaseMoney(userMoney);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            return inputMoney();
+        }
     }
 
     public List<Integer> inputWinNumbers() {
@@ -34,9 +39,13 @@ public class InputView {
     }
 
     public int inputBonusNumber(){
-        System.out.println("\n보너스 번호를 입력해 주세요.");
+        System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();
-        return Integer.parseInt(bonusNumber);
+        try {
+            return BonusValidator.validateBonusNumber(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBonusNumber();
+        }
     }
-
 }

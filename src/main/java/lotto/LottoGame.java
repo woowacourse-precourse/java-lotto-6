@@ -85,32 +85,40 @@ public class LottoGame {
     void calculateReward(){
         for(Lotto lotto : lottos){
             int correct = 0;
+            boolean isBonusNumber = false;
             for(int i=0;i<6;i++){
                 if(lotto.contain(winningLotto.returnNumber(i))){
                     correct++;
                 }
+                if(lotto.contain(bonusNumber)){
+                    isBonusNumber=true;
+                }
             }
-            int here=0;
-            if(correct==3){
-                here = rewardList.get(0);
-                rewardList.set(0,here+1);
-            }
-            if(correct==4){
-                here = rewardList.get(1);
-                rewardList.set(1,here+1);
-            }
-            if(correct==5 && !lotto.contain(bonusNumber)){
-                here = rewardList.get(2);
-                rewardList.set(2,here+1);
-            }
-            if(correct==5 && lotto.contain(bonusNumber)){
-                here = rewardList.get(3);
-                rewardList.set(3,here+1);
-            }
-            if(correct==6){
-                here = rewardList.get(4);
-                rewardList.set(4,here+1);
-            }
+            countReward(correct,isBonusNumber);
+        }
+    }
+
+    void countReward(int correct,boolean isBonusNumber){
+        int here=0;
+        if(correct==3){
+            here = rewardList.get(0);
+            rewardList.set(0,here+1);
+        }
+        if(correct==4){
+            here = rewardList.get(1);
+            rewardList.set(1,here+1);
+        }
+        if(correct==5 && !isBonusNumber){
+            here = rewardList.get(2);
+            rewardList.set(2,here+1);
+        }
+        if(correct==5 && isBonusNumber){
+            here = rewardList.get(3);
+            rewardList.set(3,here+1);
+        }
+        if(correct==6){
+            here = rewardList.get(4);
+            rewardList.set(4,here+1);
         }
     }
 

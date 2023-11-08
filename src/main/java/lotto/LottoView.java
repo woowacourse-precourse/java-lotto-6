@@ -2,8 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LottoView {
@@ -12,6 +10,8 @@ public class LottoView {
     public int number;
     public String winNumber;
     public int bonusNumber;
+
+    LottoService lottoService = new LottoService();
 
     public void inputPrice(){
         System.out.println("구입금액을 입력해 주세요.");
@@ -69,6 +69,13 @@ public class LottoView {
         System.out.println(Ranking.THIRD.getRankingName() + Ranking.THIRD.getRankingNumber() + "개");
         System.out.println(Ranking.SECOND.getRankingName() + Ranking.SECOND.getRankingNumber() + "개");
         System.out.println(Ranking.FIRST.getRankingName() + Ranking.FIRST.getRankingNumber() + "개");
+    }
+
+    public void printProfit() {
+        double percentage = lottoService.calculateProfit(price);
+        System.out.print("총 수익률은 ");
+        System.out.print(String.format("%.1f", percentage));
+        System.out.print("%입니다.");
     }
 
 }

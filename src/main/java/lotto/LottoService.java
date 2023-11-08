@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class LottoService {
 
@@ -69,6 +68,16 @@ public class LottoService {
         } else if(number ==6){
             Ranking.FIRST.setRankingNumber(1);
         }
+    }
+
+    public double calculateProfit(int price){
+        int profit = Ranking.FIFTH.getRankingNumber() * 5000 +
+                Ranking.FOURTH.getRankingNumber() * 50000 +
+                Ranking.THIRD.getRankingNumber() * 1500000 +
+                Ranking.SECOND.getRankingNumber() * 30000000 +
+                Ranking.FIRST.getRankingNumber() * 2000000000;
+        double percentage = (double) profit /price;
+        return percentage;
     }
 
 }

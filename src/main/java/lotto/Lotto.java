@@ -16,6 +16,7 @@ public class Lotto {
     private void validateNumbers(List<Integer> numbers) {
         this.validateNumberSize(numbers);
         this.validateNumberDuplicated(numbers);
+        numbers.forEach(number -> this.validateNumberRange(number));
     }
 
     private void validateNumberSize(List<Integer> numbers) {
@@ -34,9 +35,12 @@ public class Lotto {
         }
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+    private void validateNumberRange(Integer number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 로또 번호입니다.");
+        }
+    }
+    
         }
     }
 

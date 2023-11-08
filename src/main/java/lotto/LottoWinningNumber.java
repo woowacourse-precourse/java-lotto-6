@@ -2,12 +2,13 @@ package lotto;
 
 import java.util.List;
 
-public class LottoWinningInfo {
+public class LottoWinningNumber {
     private final List<Lotto> lottoList;
     private final List<Integer> winningNumber;
+
     private final int bonusNumber;
 
-    public LottoWinningInfo(List<Lotto> lottoList, List<Integer> winningNumber, int bonusNumber) {
+    public LottoWinningNumber(List<Lotto> lottoList, List<Integer> winningNumber, int bonusNumber) {
         this.lottoList = lottoList;
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
@@ -19,5 +20,9 @@ public class LottoWinningInfo {
 
     public List<Integer> getWinningNumber() {
         return winningNumber;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

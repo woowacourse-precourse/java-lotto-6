@@ -5,14 +5,14 @@ import java.util.*;
 public class LottoGame {
     private static final InputResolver inputResolver = new InputResolver();
     private static final LottoGenerator lottoGenerator = new LottoGenerator();
-    private static LottoWinningInfo lottoWinningInfo;
+    private static LottoWinningNumber lottoWinningNumber;
     private static Map<LottoWinningSpec, Integer> winningResult = new HashMap<>();
     public static void play() {
-        lottoWinningInfo = new LottoWinningInfo(
+        lottoWinningNumber = new LottoWinningNumber(
                 lottoGenerator.buyLotto(inputResolver.inputLottoBuy()),
                 inputResolver.inputWinningNumber(),
                 inputResolver.inputBonusNumber());
-        checkLottoResult(lottoWinningInfo.getLottoList());
+        checkLottoResult(lottoWinningNumber.getLottoList());
         System.out.println(winningResult);
     }
 
@@ -36,10 +36,17 @@ public class LottoGame {
 
     private static Optional<LottoWinningSpec> checkWinningNumber(Lotto lotto) {
         int count = 0;
+        boolean isBonus = false;
         for (Integer winNumber : lotto.getNumbers()) {
-            if (lottoWinningInfo.getWinningNumber().contains(winNumber)) {
+            if (lottoWinningNumber.getWinningNumber().contains(winNumber)) {
                 count++;
             }
+            if (lottoWinningNumber.getBonusNumber() == winNumber) {
+                isBonus = true;
+            }
+        }
+        if (count == 5 && isBonus) {
+            return Optional.of(LottoWinningSpec.SECOND_PRIZE);
         }
         return LottoWinningSpec.getRankByMatchingCount(count);
     }

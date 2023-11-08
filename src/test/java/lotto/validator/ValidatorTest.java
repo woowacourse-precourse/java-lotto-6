@@ -1,6 +1,5 @@
 package lotto.validator;
 
-import lotto.validator.Validator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,7 +32,7 @@ class ValidatorTest {
     @DisplayName("부적절한 당첨 번호 입력시 예외 발생")
     void validateWinNumbers() {
         stringTestCases = Arrays.asList(new String[]{"1,2,", "1,2,3,4,5,6,", ",1,2,3,4,5,6",
-        "46,0,1,2,3,4", "1,2,3,4,5,6,7"});
+                "46,0,1,2,3,4", "1,2,3,4,5,6,7"});
         for (String testCase : stringTestCases) {
             assertThatThrownBy(() -> Validator.validateWinNumbers(testCase));
         }
@@ -42,7 +41,7 @@ class ValidatorTest {
     @Test
     @DisplayName("부적절한 보너스 번호 입력시 예외 발생")
     void validateBonusNumber() {
-        numberTestCases = Arrays.asList(new Integer[] {1,2,3,4,5,6});
+        numberTestCases = Arrays.asList(new Integer[]{1, 2, 3, 4, 5, 6});
         stringTestCases = Arrays.asList(new String[]{"1", "-2", " ", "a"});
         for (String testCase : stringTestCases) {
             assertThatThrownBy(() -> Validator.validateWinNumbers(testCase));

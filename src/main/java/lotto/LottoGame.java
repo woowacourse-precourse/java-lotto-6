@@ -2,7 +2,6 @@ package lotto;
 
 import lotto.domain.UserLottos;
 import lotto.domain.WinLotto;
-import lotto.type.LottoResult;
 import lotto.ui.UI;
 
 import java.util.Arrays;
@@ -87,7 +86,7 @@ public class LottoGame {
         List<Integer> winCheck = winLotto.getWinCheck(userLottos);
         UI.show(winLotto.getWinString(winCheck));
         UI.show("총 수익률은 " +
-                Math.round((double)winLotto.getWinAmount() / userLottos.getAmount()*1000.0)/10.0
+                Math.round((double) winLotto.getWinAmount() / userLottos.getAmount() * 1000.0) / 10.0
                 + "%입니다.");
     }
 }

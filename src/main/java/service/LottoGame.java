@@ -25,9 +25,58 @@ public class LottoGame {
 
         Lotto winningNumbers = getWinningNumbers();
         Lotto bonusNumber = getBonusNumber();
+
+        Map<LottoRank, Integer> rankCounter = getRankCounter(tickets, winningNumbers, bonusNumber);
     }
 
-    private static void getBonusNumber() {
+    private Map<LottoRank, Integer> getRankCounter(List<Lotto> tickets, Lotto winningNumbers, Lotto bonusNumber) {
+        Map<LottoRank, Integer> rankCounter = new HashMap<>();
+
+        for (var value : LottoRank.values()) {
+            rankCounter.put(value, 0);
+        }
+
+        countMatchedNumbers(tickets, winningNumbers, bonusNumber, rankCounter);
+        return rankCounter;
+    }
+
+    private void countMatchedNumbers(List<Lotto> tickets, Lotto winningNumbers, Lotto bonusNumber, Map<LottoRank, Integer> rankCounter) {
+        for (Lotto ticket : tickets) {
+            int matchedCount = countMatchedCount(ticket.getNumbers(), winningNumbers.getNumbers());
+
+            LottoRank rank;
+
+            if (matchedCount == LottoRank.FIRST.getMatchedCount()) {
+                rank = LottoRank.FIRST;
+            } else if (matchedCount == LottoRank.SECOND.getMatchedCount() && checkBonusNumber(ticket.getNumbers(), bonusNumber.getNumbers())) {
+                rank = LottoRank.SECOND;
+            } else if (matchedCount == LottoRank.THIRD.getMatchedCount()) {
+                rank = LottoRank.THIRD;
+            } else if (matchedCount == LottoRank.FOURTH.getMatchedCount()) {
+                rank = LottoRank.FOURTH;
+            } else if (matchedCount == LottoRank.FIFTH.getMatchedCount()) {
+                rank = LottoRank.FIFTH;
+            } else rank = LottoRank.FAIL;
+
+            rankCounter.put(rank, rankCounter.get(rank) + 1);
+        }
+    }
+
+    private boolean checkBonusNumber(List<Integer> ticket, List<Integer> bonusNumber) {
+        return ticket.contains(bonusNumber.get(0));
+    }
+
+    private int countMatchedCount(List<Integer> ticket, List<Integer> winningNumbers) {
+        int matchedCount = 0;
+
+        for (var number : ticket) {
+            if (winningNumbers.contains(number)) {
+                matchedCount++;
+            }
+        }
+
+        return matchedCount;
+    }
 
     private Lotto getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");

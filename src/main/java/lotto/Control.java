@@ -1,8 +1,8 @@
 package lotto;
 
 import java.util.*;
-
 import camp.nextstep.edu.missionutils.Randoms;
+
 public class Control {
     static int inputMoney = 0;              // 사용자가 입력한 구입금액
     static int count = 0;                   // 구입금액으로 구입 가능한 로또 개수
@@ -13,11 +13,19 @@ public class Control {
     static int fiveCorrect = 0;             // 5개 번호 일치
     static int fiveBonusCorrect = 0;        // 5개 번호 + 보너스 번호 일치
     static int sixCorrect = 0;              // 6개 번호 일치
-    public static final List<Lotto> lottos = new ArrayList<>(); // 무작위로 뽑은 로또 번호
+    public static List<Lotto> lottos = new ArrayList<>(); // 무작위로 뽑은 로또 번호
 
     /* 구입금액에 따른 로또 구입 개수 계산 */
     static int calculateNumberOfLotto() {
-        // 1000원 단위로 나누어 떨어지지 않는 경우 예외처리 필요
+        try{
+            if(inputMoney % 1000 != 0) {
+                throw new IllegalArgumentException();
+            }
+        }catch (IllegalArgumentException e){
+            View view = new View();
+            System.out.println("[ERROR] 1000원 단위로 입력해주세요.");
+            view.inputMoney();
+        }
         count = inputMoney / 1000;
         return count;
     }
@@ -25,17 +33,34 @@ public class Control {
     /* 구입금액만큼 로또 번호 생성 */
     static void createLotto(){
         for(int i = 0; i < inputMoney/1000; i++){
+            boolean isSorted = false;
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            isSorted = isSorted(numbers);
+            if(!isSorted)
+                Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
         }
     }
 
-    /* 로또 번호 오름차순 정렬 */
-    static List<Integer> sortLottoNumber(List<Integer> lottoNumber){
-        Collections.sort(lottoNumber);
-        return lottoNumber;
+    /* 랜덤 숫자가 정렬이 되어있는지 체크 */
+    static boolean isSorted(List<Integer> numbers){
+        for(int i = 1; i < numbers.size(); i++){
+            if(numbers.get(i) < numbers.get(i-1)){
+                return false;
+            }
+        }
+        return true;
     }
-    /* 로또 당첨 번호 계산 */
+
+    static boolean isDuplication(List<Integer> correctNumber){
+        for(int num:correctNumber) {
+            if (Collections.frequency(correctNumber, num) > 2)
+                return true;
+        }
+        return false;
+    }
+
+    /* 로또 한 개를 불러와 로또 당첨 계산 메소드를 부른다 */
     static void calculateLotto(){
         for (Lotto lotto : lottos) {
             int count = calculateLottoNumberIsCorrect(lotto.getNumbers());
@@ -58,9 +83,8 @@ public class Control {
     static int calculateLottoNumberIsCorrect(List<Integer> lotto){
         int count = 0;
         for(int i = 0; i < lotto.size(); i++){
-            if(Objects.equals(lotto.get(i), correctNumber.get(i))){
+            if(lotto.contains(correctNumber.get(i)))
                 count += 1;
-            }
         }
         return count;
     }

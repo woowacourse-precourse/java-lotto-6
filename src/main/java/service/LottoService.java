@@ -54,7 +54,7 @@ public class LottoService {
             int sameCount = duplication.size();
 
             boolean isSameBonus = false;
-            if(l.getNumbers().contains(bonus)) isSameBonus = true;
+            if(l.getNumbers().contains(bonus.getBonus())) isSameBonus = true;
 
             setReward(sameCount, isSameBonus);
         }

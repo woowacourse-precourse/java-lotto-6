@@ -23,4 +23,8 @@ public class Bonus {
             if(bonus > Constant.LOTTO_MAX || bonus < Constant.LOTTO_MIN)
                 throw new IllegalArgumentException(ErrorMessage.LOTTO_SCOPE);
     }
+
+    public static int getBonus() {
+        return bonus;
+    }
 }

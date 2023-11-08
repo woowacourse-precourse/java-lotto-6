@@ -31,15 +31,9 @@ public class WinningCheck {
             if (winningTable.getCorrectNumberCount() == count && winningTable.getIsBonus() == bonus) {
                 rankingCount.put(winningTable.name(), rankingCount.get(winningTable.name()) + 1);
             }
-
-            if (winningTable.getCorrectNumberCount() == 0 && count == 1) {
+            if (winningTable.getCorrectNumberCount() == 0 && (count == 1 || count == 2)) {
                 rankingCount.put(winningTable.name(), rankingCount.get(winningTable.name()) + 1);
             }
-
-            if (winningTable.getCorrectNumberCount() == 0 && count == 2) {
-                rankingCount.put(winningTable.name(), rankingCount.get(winningTable.name()) + 1);
-            }
-
             if (winningTable.getCorrectNumberCount() == 0 && count == 0 && bonus) {
                 rankingCount.put(winningTable.name(), rankingCount.get(winningTable.name()) + 1);
             }

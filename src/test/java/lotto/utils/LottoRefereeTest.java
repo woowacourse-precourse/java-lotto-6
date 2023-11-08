@@ -37,6 +37,7 @@ public class LottoRefereeTest {
         assertEquals(expectedPrize, result.getPrize());
     }
 
+    @DisplayName("보너스 번호가 일치하는 것이 있는지 검사하는 기능 테스트")
     @Test
     public void testIsBonusMatch() {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 7);

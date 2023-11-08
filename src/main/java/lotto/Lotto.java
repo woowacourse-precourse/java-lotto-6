@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -13,8 +14,7 @@ public class Lotto {
         validate(numbers);
         validateDuplicate(numbers);
         validateNumberRange(numbers);
-        sortAscend(numbers);
-        this.numbers = numbers;
+        this.numbers = sortAscend(new ArrayList<>(numbers));
     }
 
     private void validate(List<Integer> numbers) {
@@ -46,8 +46,9 @@ public class Lotto {
         }
     }
 
-    private void sortAscend(List<Integer> numbers) {
+    private List<Integer> sortAscend(List<Integer> numbers) {
         Collections.sort(numbers);
+        return numbers;
     }
 
     @Override

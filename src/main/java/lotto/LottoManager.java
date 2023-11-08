@@ -15,9 +15,6 @@ public class LottoManager {
     public void launch() {
         try {
             int purchaseAmount = inputPurchaseAmount();
-            if (!isValidPurchaseAmount(purchaseAmount)) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
-            }
             List<Lotto> lottos = purchaseLottos(purchaseAmount);
             // 로또 게임의 나머지 진행 로직을 추가
         } catch (IllegalArgumentException e) {
@@ -35,7 +32,14 @@ public class LottoManager {
         return purchaseAmount % pricePerLotto == 0;
     }
 
+    private void verifyValidPurchaseAmount(int purchaseAmount) {
+        if (!isValidPurchaseAmount(purchaseAmount)) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
+        }
+    }
+
     public List<Lotto> purchaseLottos(int purchaseAmount) {
+        verifyValidPurchaseAmount(purchaseAmount);
         int numberOfLottos = purchaseAmount / pricePerLotto;
         List<Lotto> lottos = new ArrayList<>();
 

@@ -11,4 +11,8 @@ public class Judgement {
         Set<Integer> commonNumber = winNumber.stream().filter(randomNumber::contains).collect(Collectors.toSet());
         return commonNumber;
     }
+
+    public int getResultIndex(int commonNumber, boolean bonus) {
+        return MatchCount.getMatchIndex(commonNumber, bonus);
+    }
 }

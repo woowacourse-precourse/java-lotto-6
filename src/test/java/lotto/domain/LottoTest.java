@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +8,7 @@ import java.util.List;
 import static lotto.constants.ErrorMessage.LOTTO_NUMBER_COUNT_ERROR_MESSAGE;
 import static lotto.constants.ErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE;
 import static lotto.constants.ErrorMessage.LOTTO_NUMBER_RANGE_ERROR_MESSAGE;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -51,7 +51,7 @@ class LottoTest {
 
         int count = lotto.getDuplicatedNumberCount(new Lotto(List.of(10, 20, 30, 3, 6, 9)));
 
-        Assertions.assertThat(count).isEqualTo(3);
+        assertThat(count).isEqualTo(3);
     }
 
     @DisplayName("로또에 특정 번호가 중복되어 있는지 확인한다.")
@@ -61,6 +61,6 @@ class LottoTest {
 
         boolean bool = lotto.hasNumber(4);
 
-        Assertions.assertThat(bool).isFalse();
+        assertThat(bool).isFalse();
     }
 }

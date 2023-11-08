@@ -1,13 +1,14 @@
 package lotto.domain;
 
+import lotto.config.Constant;
+
 public class Deposit {
 
     private final int deposit;
-    public static String DEPOSIT_UNIT_EXCEPTION = "금액은 1000원 단위로 입력해주세요.";
 
     public Deposit(int deposit) {
         if (deposit % 1000 != 0) {
-            throw new IllegalArgumentException(DEPOSIT_UNIT_EXCEPTION);
+            throw new IllegalArgumentException(Constant.DEPOSIT_UNIT_EXCEPTION);
         }
         this.deposit = deposit;
     }

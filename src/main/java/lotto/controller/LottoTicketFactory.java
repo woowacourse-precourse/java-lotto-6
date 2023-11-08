@@ -6,13 +6,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import lotto.config.Constant;
 import lotto.domain.Lotto;
 
 public class LottoTicketFactory {
-
-    private static int MIN_LOTTO_NUMBER_RANGE = 1;
-    private static int MAX_LOTTO_NUMBER_RANGE = 45;
-    private static int LOTTO_NUMBER_SIZE = 6;
 
     public static List<Lotto> lottoTickets(int ticketCount) {
         List<Lotto> tickets = new ArrayList<>();
@@ -23,7 +20,9 @@ public class LottoTicketFactory {
     }
 
     private static Lotto lottoTicket() {
-        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER_RANGE, MAX_LOTTO_NUMBER_RANGE, LOTTO_NUMBER_SIZE));
+        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
+                Constant.MIN_LOTTO_NUMBER, Constant.MAX_LOTTO_NUMBER, Constant.LOTTO_NUMBER_COUNT
+        ));
         Collections.sort(lottoNumbers);
         return new Lotto(lottoNumbers);
     }

@@ -1,11 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.config.Constant;
 import lotto.domain.Deposit;
 
 public class DepositInput {
-
-    private static final String ERROR_ALARM = "[ERROR] ";
 
     public static Deposit deposit() {
         try {
@@ -13,7 +12,7 @@ public class DepositInput {
             int amount = WinningNumbersInput.getNumber(deposit);
             return new Deposit(amount);
         } catch (NumberFormatException e) {
-            System.out.println(ERROR_ALARM + e.getMessage());
+            System.out.println(Constant.ERROR_ALARM + e.getMessage());
             return deposit();
         }
     }

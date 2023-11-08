@@ -1,13 +1,14 @@
 package lotto.domain;
 
+import lotto.config.Constant;
+
 public class BonusNumber {
 
     private int bonusNumber;
-    private static final String NUMBER_RANGE_EXCEPTION = "1 부터 45 까지의 숫자를 입력해 주세요.";
 
     public BonusNumber(int bonusNumber) {
-        if (bonusNumber > 45 || bonusNumber < 1) {
-            throw new IllegalArgumentException(NUMBER_RANGE_EXCEPTION);
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(Constant.NUMBER_RANGE_EXCEPTION);
         }
         this.bonusNumber = bonusNumber;
     }

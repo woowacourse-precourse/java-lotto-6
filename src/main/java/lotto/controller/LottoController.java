@@ -17,8 +17,6 @@ import lotto.view.WinningResultOutput;
 
 public class LottoController {
 
-    public static final int TICKET_PRICE = 1000;
-
     public void start() {
         LottoOutput.deposit();
 

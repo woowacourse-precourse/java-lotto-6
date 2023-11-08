@@ -1,9 +1,9 @@
 package lotto.domain;
 
-import static lotto.controller.LottoController.TICKET_PRICE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.config.Constant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ class DepositTest {
     @DisplayName("Deposit 을 생성한다.")
     @Test
     public void createDeposit() {
-        int amount = TICKET_PRICE * 2;
+        int amount = Constant.TICKET_PRICE * 2;
         Deposit deposit = new Deposit(amount);
         assertThat(deposit.getDeposit()).isEqualTo(amount);
     }
@@ -38,7 +38,7 @@ class DepositTest {
     public void getTicketCount() {
         int ticketCount = 1;
 
-        Deposit deposit = new Deposit(TICKET_PRICE * ticketCount);
+        Deposit deposit = new Deposit(Constant.TICKET_PRICE * ticketCount);
         assertThat(deposit.getLottoTicketsCount()).isEqualTo(ticketCount);
     }
 }

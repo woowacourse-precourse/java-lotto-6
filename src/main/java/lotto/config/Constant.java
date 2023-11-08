@@ -18,8 +18,12 @@ public class Constant {
     public static final String NUMBER_RANGE_EXCEPTION = "1 부터 45 까지의 숫자를 입력해 주세요.";
     public static final String DUPLICATE_NUMBER_EXCEPTION = "중복된 수는 입력할 수 없습니다.";
     public static final String DEPOSIT_UNIT_EXCEPTION = "금액은 1000원 단위로 입력해주세요.";
+    public static final String NUMBER_FORMAT_EXCEPTION = "정수형 수를 입력해주세요.";
 
     public static final String INPUT_DEPOSIT = "구매금액을 입력해 주세요.";
     public static final String INPUT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     public static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+
+    public static final String ERROR_ALARM = "[ERROR] ";
+
 }

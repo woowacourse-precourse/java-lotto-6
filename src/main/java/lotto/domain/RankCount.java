@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class RankCount {
 
-    private Map<Rank, Integer> rankCount;
+    private final Map<Rank, Integer> rankCount;
 
     public RankCount(List<Lotto> tickets, List<Integer> winningNumbers, int bonusNumber) {
         this.rankCount = resultRank(tickets, winningNumbers, bonusNumber);

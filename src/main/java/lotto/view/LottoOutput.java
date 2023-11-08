@@ -1,14 +1,13 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.config.Constant;
 import lotto.domain.Lotto;
 
 public class LottoOutput {
 
-    public static String INPUT_DEPOSIT = "구매금액을 입력해 주세요.";
-
     public static void deposit() {
-        System.out.println(INPUT_DEPOSIT);
+        System.out.println(Constant.INPUT_DEPOSIT);
     }
     public static void ticketsCount(int lottoTickets) {
         System.out.println();

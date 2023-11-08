@@ -27,5 +27,4 @@ public class BonusTest {
         assertThatThrownBy(() -> new Bonus(invalidBonusNumber, lotto))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 }

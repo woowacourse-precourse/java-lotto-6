@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Lucky {
@@ -8,6 +10,10 @@ public class Lucky {
     private final int bonus;
 
     public Lucky(List<Integer> lucky, int bonus) {
+        validateDuplication(lucky);
+        validateSize(lucky);
+        validateBonus(lucky,bonus);
+        validateRange(bonus);
         this.lucky = lucky;
         this.bonus = bonus;
     }
@@ -25,8 +31,33 @@ public class Lucky {
         return Rank.valueOfCount(count, bonus);
     }
 
-    public boolean checkBonus(List<Integer> lotto) {
+    private boolean checkBonus(List<Integer> lotto) {
         return lotto.contains(bonus);
+    }
+
+
+    private void validateDuplication(List<Integer> numbers){
+        if(numbers.size()!=numbers.stream().distinct().count()){
+            throw new IllegalArgumentException("[ERROR] 중복되는 숫자는 불가능합니다.");
+        }
+    }
+
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 6자리의 당첨 번호를 입력해야 합니다.");
+        }
+    }
+
+    private void validateBonus(List<Integer> numbers,int bonus){
+        if(numbers.contains(bonus)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다.");
+        }
+    }
+
+    private void validateRange(int n){
+        if(n<1 || n>45){
+            throw new IllegalArgumentException("[ERROR] 1에서 45 사이의 숫자를 입력하세요.");
+        }
     }
 
 }

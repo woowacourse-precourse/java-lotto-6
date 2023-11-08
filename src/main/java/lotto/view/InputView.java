@@ -34,16 +34,7 @@ public class InputView {
         }
     }
 
-    public static WinNumber inputWinNumberAndBonusNumber() {
-        try {
-            return WinNumber.from(inputWinNumber(), inputBonusNumber());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return inputWinNumberAndBonusNumber();
-        }
-    }
-
-    private static Lotto inputWinNumber() {
+    public static Lotto inputWinNumber() {
         try {
             System.out.println(INPUT_WIN_NUMBER_MESSAGE);
             return new Lotto(toList(Console.readLine()));
@@ -53,13 +44,14 @@ public class InputView {
         }
     }
 
-    private static int inputBonusNumber() {
+    public static WinNumber inputBonusNumber(Lotto winLotto) {
         try {
             System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-            return toInt(Console.readLine());
+            int bonusNumber = toInt(Console.readLine());
+            return WinNumber.from(winLotto, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputBonusNumber();
+            return inputBonusNumber(winLotto);
         }
     }
 

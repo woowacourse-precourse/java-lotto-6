@@ -10,7 +10,8 @@ public class LottoGame {
         Lottos lottos = LottoMachine.buyLottos(money);
         ResultView.printTicket(lottos);
         ResultView.showLottoNumbers(lottos);
-        WinNumber winNumber = InputView.inputWinNumberAndBonusNumber();
+        Lotto winLotto = InputView.inputWinNumber();
+        WinNumber winNumber = InputView.inputBonusNumber(winLotto);
         PrizeResult prizeResult = PrizeResult.from(lottos, winNumber);
         ResultView.showResult(prizeResult);
         ResultView.showReturnRate(prizeResult, money);

@@ -3,13 +3,13 @@ package lotto.util;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
-public class RandomNumberUtil implements RandomNumber {
-        private static final RandomNumber instance = new RandomNumberUtil();
+public class RandomNumberGenerator implements RandomNumbers {
+        private static final RandomNumbers instance = new RandomNumberGenerator();
 
-        private RandomNumberUtil() {
+        private RandomNumberGenerator() {
         }
 
-        public static RandomNumber getInstance() {
+        public static RandomNumbers getInstance() {
                 return instance;
         }
 

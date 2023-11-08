@@ -11,7 +11,6 @@ public class LottoResultView {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        // 원하는 출력 순서로 LottoRank 값들을 List에 추가
         List<LottoRank> sortedRanks = new ArrayList<>();
         sortedRanks.add(LottoRank.FIFTH);
         sortedRanks.add(LottoRank.FOURTH);
@@ -19,7 +18,6 @@ public class LottoResultView {
         sortedRanks.add(LottoRank.SECOND);
         sortedRanks.add(LottoRank.FIRST);
 
-        // 정렬된 순서대로 결과 출력
         for (LottoRank rank : sortedRanks) {
             String result = String.format("%d개 일치", rank.getMatchCount());
             if(rank.isBonusMatch()) {

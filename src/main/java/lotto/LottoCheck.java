@@ -61,7 +61,7 @@ public class LottoCheck {
     //수익률
     private double profit(){
         long sum = 0;
-        double profit = 0;
+        double profit;
         for (int i = 3; i <= 7; i++) {
             sum += (long) lottoResult[i] * lottoConfig[i-3].price();
         }

@@ -1,6 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
@@ -45,7 +44,7 @@ public class Application {
 
 
     // 금액 받기.
-    private static int getMoney() {
+    public static int getMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String line = Console.readLine();
         isInteger(line);
@@ -53,7 +52,7 @@ public class Application {
     }
 
     // 당첨 번호 받기.
-    private static List<Integer> winningNumber() {
+    public static List<Integer> winningNumber() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         List<String> inputdate = Arrays.asList(input.split(","));
@@ -70,7 +69,7 @@ public class Application {
     }
 
     //보너스 번호 받기.
-    private static int bonusNumber() {
+    public static int bonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         String line = Console.readLine();
         isInteger(line);
@@ -78,7 +77,7 @@ public class Application {
     }
 
     // 숫자 인지 확인
-    private static void isInteger(String strValue) {
+    public static void isInteger(String strValue) {
         try {
             Integer.parseInt(strValue);
         } catch (IllegalArgumentException e) {

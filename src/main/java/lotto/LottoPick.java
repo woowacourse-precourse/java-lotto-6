@@ -11,7 +11,8 @@ public class LottoPick {
     private int attempt;
 
     public LottoPick(int attempt) {
-        validate(attempt);
+        vaildate(attempt);
+        vaildateAmniotic(attempt);
         this.attempt = attempt / 1000;
         numbers = new List[this.attempt];
     }
@@ -39,9 +40,15 @@ public class LottoPick {
 
 
     // 금액 입증 확인.
-    private void validate(int money) {
+    private void vaildate(int money) {
         if (money % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 금액은 1000단위로 나누어 져야 합니다.");
+        }
+    }
+
+    private void vaildateAmniotic(int money){
+        if (money < 0) {
+            throw new IllegalArgumentException("[ERROR] 금액은 0보다 커야 합니다.");
         }
     }
 

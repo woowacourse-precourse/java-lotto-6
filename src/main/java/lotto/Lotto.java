@@ -2,8 +2,6 @@ package lotto;
 
 import java.util.*;
 
-import camp.nextstep.edu.missionutils.*;
-
 public class Lotto {
     private final List<Integer> numbers;
 

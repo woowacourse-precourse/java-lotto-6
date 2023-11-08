@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.model.domain.lotto.Lotto;
-import lotto.model.domain.result.LottoCompareResult;
+import lotto.model.domain.result.compare.LottoCompareResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -56,20 +56,19 @@ class LottoTest {
         return Stream.of(
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                        new LottoCompareResult(6, false)),
+                        new LottoCompareResult(6)),
 
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         new Lotto(List.of(2, 3, 4, 5, 6, 7)),
-                        new LottoCompareResult(5, false)),
+                        new LottoCompareResult(5)),
 
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         new Lotto(List.of(7, 8, 9, 10, 11, 12)),
-                        new LottoCompareResult(0, false)),
+                        new LottoCompareResult(0)),
 
                 Arguments.of(new Lotto(List.of(1, 3, 6, 15, 19, 31)),
                         new Lotto(List.of(6, 11, 19, 23, 31, 42)),
-                        new LottoCompareResult(3, false))
+                        new LottoCompareResult(3))
         );
     }
-
 }

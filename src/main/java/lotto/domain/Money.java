@@ -3,14 +3,12 @@ package lotto.domain;
 import lotto.exception.Non1000WonUnitException;
 import lotto.message.ExceptionMessage;
 
-public class Money {
+public record Money(int value) {
     private static final int LOTTO_PRICE = 1000;
     private static final int THOUSAND_WON_UNIT = 0;
-    private final int value;
 
-    public Money(int value) {
+    public Money {
         validateIsDivisibleBy1000(value);
-        this.value = value;
     }
 
     private void validateIsDivisibleBy1000(int value) {
@@ -26,9 +24,5 @@ public class Money {
 
     public int convertMoneyToCount() {
         return value / LOTTO_PRICE;
-    }
-
-    public int getValue() {
-        return value;
     }
 }

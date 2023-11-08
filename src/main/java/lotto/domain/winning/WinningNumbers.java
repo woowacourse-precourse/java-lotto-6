@@ -61,7 +61,7 @@ public class WinningNumbers {
     }
 
     private boolean bonusNumberAlreadyIncluded(BonusNumber bonusNumber) {
-        return numbers.contains(bonusNumber.getNumber());
+        return numbers.contains(bonusNumber.number());
     }
 
     public boolean contains(Integer number) {
@@ -69,6 +69,6 @@ public class WinningNumbers {
     }
 
     public boolean hasBonusNumber(List<Integer> lotto) {
-        return lotto.contains(bonusNumber.getNumber());
+        return lotto.contains(bonusNumber.number());
     }
 }

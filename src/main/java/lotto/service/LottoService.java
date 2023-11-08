@@ -22,7 +22,7 @@ public class LottoService {
     }
 
     public List<List<Integer>> findBoughtLottos() {
-        return lottoBuyer.getLottos().stream().map(Lotto::getSortedNumbers).toList();
+        return lottoBuyer.lottos().stream().map(Lotto::getSortedNumbers).toList();
     }
 
     public void setWiningNumbers(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
@@ -51,6 +51,6 @@ public class LottoService {
     }
 
     private Money getPaidMoney() {
-        return lottoBuyer.getPaidMoney();
+        return lottoBuyer.paidMoney();
     }
 }

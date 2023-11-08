@@ -4,12 +4,9 @@ import lotto.exception.OverRangeBonusNumberException;
 import lotto.message.ExceptionMessage;
 import lotto.message.NumberUsedLotto;
 
-public class BonusNumber {
-    private final int number;
-
-    public BonusNumber(int number) {
+public record BonusNumber(int number) {
+    public BonusNumber {
         validateRange(number);
-        this.number = number;
     }
 
     private void validateRange(int number) {
@@ -18,9 +15,5 @@ public class BonusNumber {
             String exceptionMessage = ExceptionMessage.IS_OVER_RANGE_BONUS.toString();
             throw new OverRangeBonusNumberException(exceptionMessage);
         }
-    }
-
-    public int getNumber() {
-        return number;
     }
 }

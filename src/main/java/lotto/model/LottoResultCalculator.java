@@ -25,13 +25,13 @@ public class LottoResultCalculator {
         return lottoSameSize;
     }
 
-    public double getEarningsRate(int size) {
+    public double getEarningsRate(int buyPrice) {
         long prizeSum = 0;
 
         for(int i=3;i<lottoSameSize.length;i++) {
             prizeSum += lottoPrizeMoney[i] * lottoSameSize[i];
         }
 
-        return prizeSum / (double)size * 100.0;
+        return prizeSum / (double)buyPrice * 100.0;
     }
 }

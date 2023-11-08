@@ -10,6 +10,7 @@ import java.util.List;
 public class Application {
 
     public static final int LOTTO_SIZE = 6;
+    public static final int LOTTO_PRICE = 1000;
 
     public static void main(String[] args) {
         int buyAmount = inputBuyAmount();
@@ -21,20 +22,20 @@ public class Application {
         printGameResults(result);
     }
 
-    private static void printGameResults(LottoResult result) {
+    public static void printGameResults(LottoResult result) {
 
     }
 
-    private static LottoResult playLottoGame(List<Lotto> lottos) {
+    public static LottoResult playLottoGame(List<Lotto> lottos) {
         return null;
     }
 
-    private static void printLottoTickets(List<Lotto> lottos) {
+    public static void printLottoTickets(List<Lotto> lottos) {
 
     }
 
-    private static List<Lotto> generateRandomLottoTickets(int buyAmount) {
-        int buyLottoNumber = buyAmount / 1000;
+    public static List<Lotto> generateRandomLottoTickets(int buyAmount) {
+        int buyLottoNumber = buyAmount / LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < buyLottoNumber; i++) {
             lottos.add(generateRandomLottoTicket());
@@ -42,7 +43,7 @@ public class Application {
         return lottos;
     }
 
-    private static Lotto generateRandomLottoTicket() {
+    public static Lotto generateRandomLottoTicket() {
         List<Integer> numbers = new ArrayList<>();
         while (numbers.size() < LOTTO_SIZE) {
             int randomNumber = Randoms.pickNumberInRange(1, 45);
@@ -54,7 +55,7 @@ public class Application {
         return new Lotto(numbers);
     }
 
-    private static int inputBuyAmount() {
+    public static int inputBuyAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         while (true) {
             try {

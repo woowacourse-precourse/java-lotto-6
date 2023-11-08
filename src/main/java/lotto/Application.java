@@ -2,33 +2,31 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
 
-        System.out.println("구입금액을 입력해주세요.");
-        String str = Console.readLine();
-        int purchaseAmount = UserInputProcessor.purchaseAmountValidator(str);
+        int purchaseAmount = UserInput.getUserPurchaseAmount();
 
-        List<Lotto> lottoList = Store.publishLotto(purchaseAmount);
+        LottoManager lottoManager = new LottoManager();
 
+        // 구입금액에 따라 로또 번호를 발행함
+        List<Lotto> lottoList = lottoManager.publishLotto(purchaseAmount);
+
+        // 로또 번호 출력
         for(Lotto lotto : lottoList) {
             lotto.showLottoNumbers();
         }
 
-        System.out.println("당첨 번호를 입력해주세요.");
-        String lottoNumbers = Console.readLine();
+        String arr[] = UserInput.getUserLottoNumbers();
 
-        System.out.println("보너스 번호를 입력해주세요.");
-        String bonusNumber = Console.readLine();
+        int bonusNumber = UserInput.getUserBonusNumber();
 
-        String[] arr = lottoNumbers.split(",");
-        LottoManager lotto = new LottoManager(arr, bonusNumber);
+        lottoManager.setLottoWinnerNumber(arr, bonusNumber);
 
-        lotto.checkWining(lottoList);
+        lottoManager.checkWining(lottoList);
 
-        lotto.showWiningStatics();
+        lottoManager.showWiningStatics(purchaseAmount);
     }
 }

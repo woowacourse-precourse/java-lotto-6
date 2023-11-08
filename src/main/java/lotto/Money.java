@@ -16,4 +16,8 @@ public class Money {
     public int geBuyTicket() {
         return money / TICKET_PRICE;
     }
+
+    public int getMoney() {
+        return money;
+    }
 }

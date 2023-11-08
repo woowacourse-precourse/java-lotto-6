@@ -17,14 +17,13 @@ public class Application {
 
         Map<Result, Integer> resultCount = getResultCount(lottoList, winningLotto);
 
-        OutputView.printResult(ticketCount, resultCount);
+        OutputView.printResult(money, resultCount);
     }
 
     private static WinningLotto createdWinningLotto() {
         List<Integer> winningLottoNumbers = InputView.inputWinningLotto();
         int bonusNumber = InputView.inputBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(new Lotto(winningLottoNumbers), bonusNumber);
-        return winningLotto;
+        return new WinningLotto(new Lotto(winningLottoNumbers), bonusNumber);
     }
 
     private static Map<Result, Integer> getResultCount(List<Lotto> lottoList, WinningLotto winningLotto) {

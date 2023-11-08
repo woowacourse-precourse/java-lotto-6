@@ -16,6 +16,7 @@ public class InputView {
                 return checkInputMoney(Console.readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println();
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -25,7 +26,10 @@ public class InputView {
         try {
             inputMoney = Integer.parseInt(input);
         } catch (Exception e) {
-            throw new IllegalArgumentException(System.lineSeparator() + "[ERROR] 금액은 숫자로 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 금액은 숫자로 입력해주세요.");
+        }
+        if (inputMoney == 0 || inputMoney % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 1000 단위어야 합니다.");
         }
         return inputMoney;
     }

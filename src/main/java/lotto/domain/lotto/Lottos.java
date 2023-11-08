@@ -12,8 +12,8 @@ public class Lottos {
         lottoTickets.add(lotto);
     }
 
-    public List<Lotto> getLottoTickets() {
-        return lottoTickets;
+    public List<List<Integer>> getLottoTickets() {
+        return lottoTickets.stream().map(Lotto::getNumbers).toList();
     }
 
     public List<LottoResultDto> matchAll(List<Integer> winningNumbers, int bonusNumber) {

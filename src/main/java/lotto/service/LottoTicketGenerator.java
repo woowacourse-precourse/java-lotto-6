@@ -10,7 +10,7 @@ public class LottoTicketGenerator {
         List<Lotto> lottoRandomNumbers = LottoTicket.randomLottoNumbers(lottoTicketCount);
 
         for (Lotto lotto : lottoRandomNumbers) {
-            ticket.addLottoGame(lotto);
+            ticket.addLotto(lotto);
         }
         return ticket;
     }

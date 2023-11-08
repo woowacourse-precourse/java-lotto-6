@@ -5,7 +5,7 @@ import static lotto.option.GameOption.LOTTO_PRICE;
 import lotto.validator.LottoCountValidator;
 
 public class LottoCount {
-    int count;
+    private int count;
 
     private LottoCount(int count) {
         this.count = count;

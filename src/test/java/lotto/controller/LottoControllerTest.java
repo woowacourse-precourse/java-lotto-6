@@ -111,7 +111,7 @@ class LottoControllerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
     }
-//    - [X] 숫자가 아닌 값 입력 시 예외 발생
+
     @Test
     @DisplayName("보너스 번호 공백 입력 시 예외 발생")
     void bonusNumberSpace() {
@@ -130,6 +130,19 @@ class LottoControllerTest {
     void bonusNumberCountOver() {
         // Given
         String bonusNumber = "3 32";
+
+        // When
+        // Then
+        assertThatThrownBy(() -> lottoController.createBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
+    }
+
+    @Test
+    @DisplayName("숫자가 아닌 값 입력 시 예외 발생")
+    void bonusNumberTypeNotNumber() {
+        // Given
+        String bonusNumber = "sdfe";
 
         // When
         // Then

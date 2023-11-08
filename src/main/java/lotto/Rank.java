@@ -28,7 +28,6 @@ public enum Rank {
                                         .count();
         boolean bonusMatch = userLotto.getNumbers().contains(bonusNumber);
         
-        // Special handling for the second prize
         if (matchCount == 5 && bonusMatch) {
             return SECOND;
         }

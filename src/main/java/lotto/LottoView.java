@@ -38,15 +38,17 @@ public class LottoView {
     public void displayResults(LottoResult result) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
-
+    
+        // Rank 열거형의 순서대로 출력
         Arrays.stream(Rank.values())
-            .filter(rank -> rank != Rank.NONE)
-            .sorted(Comparator.comparingInt(Rank::getMatchCount))
+            .filter(rank -> rank != Rank.NONE) // NONE 등수는 제외
+            .sorted(Comparator.comparingInt(Rank::getMatchCount)) // 오름차순 정렬
             .forEach(rank -> {
                 int count = result.getMatchResults().getOrDefault(rank, 0);
-                System.out.println(rank.getMatchCount() + "개 일치 (" + rank.getPrize() + "원) - " + count + "개");
+                String bonusText = rank.isBonusMatch() ? ", 보너스 볼 일치" : "";
+                System.out.println(rank.getMatchCount() + "개 일치" + bonusText + " (" + rank.getPrize() + "원) - " + count + "개");
             });
-
-        System.out.printf("총 수익률은 %.2f%%입니다.\n", result.getProfitRate());
+    
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", result.getProfitRate());
     }
 }

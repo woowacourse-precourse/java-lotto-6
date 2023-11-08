@@ -32,4 +32,8 @@ public class MyConstant {
     public static String MSG_INPUT_MONEY() {
         return "구입금액을 입력해 주세요.";
     }
+
+    public static String MSG_INPUT_WIN_NUMBERS() {
+        return "당첨 번호를 입력해 주세요.";
+    }
 }

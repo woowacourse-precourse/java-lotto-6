@@ -1,5 +1,7 @@
 package lotto.service;
 
+import java.util.Arrays;
+
 public enum WinningNumber {
     FIRST(6, 2_000_000_000), // 1등
     SECOND(7, 30_000_000), // 2등
@@ -8,7 +10,6 @@ public enum WinningNumber {
     FIFTH(3, 5_000), // 5등
     MISS(0, 0);
 
-    private static final int WINNING_MIN_COUNT = 3;
     private int countOfMatch;
     private int winningAmount;
 
@@ -18,26 +19,13 @@ public enum WinningNumber {
     }
 
     public static WinningNumber valueOf(int countOfMatch) throws IllegalArgumentException {
-        if (countOfMatch < WINNING_MIN_COUNT) {
-            return MISS;
-        }
-        for (WinningNumber number : values()) {
-            if (number.matchCount(countOfMatch)) {
-                return number;
-            }
-        }
-        throw new IllegalArgumentException();
+        return Arrays.stream(values())
+                .filter(value -> value.countOfMatch == countOfMatch)
+                .findAny()
+                .orElse(MISS);
     }
 
     public int getWinningAmount() {
         return winningAmount;
-    }
-
-    public int getCountOfMatch() {
-        return countOfMatch;
-    }
-
-    private boolean matchCount(int countOfMatch) {
-        return this.countOfMatch == countOfMatch;
     }
 }

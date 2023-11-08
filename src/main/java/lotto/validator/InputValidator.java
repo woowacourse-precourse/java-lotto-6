@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import java.util.List;
+import lotto.domain.LottoProperty;
 import lotto.exception.EmptyInputException;
 import lotto.exception.EmptySpaceIncludeException;
 import lotto.exception.NotIntegerInputException;
@@ -36,7 +37,7 @@ public class InputValidator {
 
 
     private static void checkLottoLengthAndThrowException(List<Integer> carNameList) throws IllegalArgumentException {
-        if (ValidNumber.LOTTO_DIGIT_RESTRICTIONS.getNumber() != carNameList.size()) {
+        if (LottoProperty.LOTTO_DIGIT_RESTRICTIONS.getNumber() != carNameList.size()) {
             throw new OutOfLengthException();
         }
     }

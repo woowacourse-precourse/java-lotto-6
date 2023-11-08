@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 import lotto.exception.DuplicatedLottoNumberException;
 import lotto.exception.OutOfNumberRangeException;
-import lotto.validator.ValidNumber;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -42,8 +41,8 @@ public class Lotto {
     private void checkLottoNumberRangeAndThrowException(List<Integer> numbers) throws IllegalArgumentException {
 
         for (int number : numbers) {
-            if (number > ValidNumber.LOTTO_NUMBER_MAX_RANGE.getNumber()
-                    || number < ValidNumber.LOTTO_NUMBER_MIN_RANGE.getNumber()) {
+            if (number > LottoProperty.LOTTO_NUMBER_MAX_RANGE.getNumber()
+                    || number < LottoProperty.LOTTO_NUMBER_MIN_RANGE.getNumber()) {
                 throw new OutOfNumberRangeException();
             }
         }

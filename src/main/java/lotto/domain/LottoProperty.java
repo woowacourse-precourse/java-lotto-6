@@ -1,6 +1,6 @@
-package lotto.validator;
+package lotto.domain;
 
-public enum ValidNumber {
+public enum LottoProperty {
     LOTTO_NUMBER_MIN_RANGE(1),
     LOTTO_NUMBER_MAX_RANGE(45),
     LOTTO_DIGIT_RESTRICTIONS(6),
@@ -8,7 +8,7 @@ public enum ValidNumber {
 
     private final int number;
 
-    ValidNumber(int number) {
+    LottoProperty(int number) {
         this.number = number;
     }
 

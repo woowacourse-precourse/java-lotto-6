@@ -6,18 +6,15 @@ import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
+import lotto.domain.LottoProperty;
 import lotto.dto.WinningStatisticsDto;
 
 public class LottoServiceImpl implements LottoService {
 
-    public LottoNumberGenerator lottoNumberGenerator;
-
-    private static final int NUMBER_OF_LOTTO_DIGITS = 6;
-    private static final int START_LOTTO_NUMBER_RANGE = 1;
-    private static final int END_LOTTO_NUMBER_RANGE = 45;
+    LottoNumberGenerator lottoNumberGenerator;
     private static final int BONUS_LOTTO_NUMBER = 5;
     private static final int BONUS_LOTTO_KEY = 7;
-    private static final int LOTTO_DEFAULT_PRICE = 1000;
+    private static final int PERCENTAGE = 100;
 
     public LottoServiceImpl(LottoNumberGenerator lottoNumberGenerator) {
         this.lottoNumberGenerator = lottoNumberGenerator;
@@ -29,8 +26,9 @@ public class LottoServiceImpl implements LottoService {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < issueCount; i++) {
             lottos.add(new Lotto(lottoNumberGenerator
-                    .getRandomNumber(START_LOTTO_NUMBER_RANGE, END_LOTTO_NUMBER_RANGE,
-                            NUMBER_OF_LOTTO_DIGITS)));
+                    .getRandomNumber(LottoProperty.LOTTO_NUMBER_MIN_RANGE.getNumber(),
+                            LottoProperty.LOTTO_NUMBER_MAX_RANGE.getNumber(),
+                            LottoProperty.LOTTO_DIGIT_RESTRICTIONS.getNumber())));
         }
         return lottos;
     }
@@ -45,19 +43,21 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public int getNumberOfLottoToBeIssued(int price) {
-        return price / 1000;
+        return price / LottoProperty.LOTTO_PRICE_UNIT.getNumber();
     }
 
     private double getWinningRate(Map<Integer, Integer> countMap, int totalPurchasedLottoCount) {
         double winningPrice = getWinningPrice(countMap);
-        return (winningPrice * 100) / (totalPurchasedLottoCount * LOTTO_DEFAULT_PRICE);
+        return (winningPrice * PERCENTAGE) / (totalPurchasedLottoCount * LottoProperty.LOTTO_PRICE_UNIT.getNumber());
     }
 
     private double getWinningPrice(Map<Integer, Integer> countMap) {
         double winningPrice = 0;
-        for (int i = START_LOTTO_NUMBER_RANGE; i < END_LOTTO_NUMBER_RANGE; i++) {
+        for (int i = LottoProperty.LOTTO_NUMBER_MIN_RANGE.getNumber();
+             i < LottoProperty.LOTTO_NUMBER_MAX_RANGE.getNumber(); i++) {
+            WinningNumber winningNumber = WinningNumber.valueOf(i);
             if (countMap.containsKey(i)) {
-                winningPrice += WinningNumber.valueOf(i).getWinningAmount();
+                winningPrice += winningNumber.getWinningAmount();
             }
         }
         return winningPrice;

@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.exception.OutOfNumberRangeException;
-import lotto.validator.ValidNumber;
 
 public class BonusNumber {
 
@@ -21,8 +20,8 @@ public class BonusNumber {
     }
 
     private void checkBonusNumberRangeAndThrowException(int bonusNumber) throws IllegalArgumentException {
-        if (bonusNumber < ValidNumber.LOTTO_NUMBER_MIN_RANGE.getNumber() ||
-                bonusNumber > ValidNumber.LOTTO_NUMBER_MAX_RANGE.getNumber()) {
+        if (bonusNumber < LottoProperty.LOTTO_NUMBER_MIN_RANGE.getNumber() ||
+                bonusNumber > LottoProperty.LOTTO_NUMBER_MAX_RANGE.getNumber()) {
             throw new OutOfNumberRangeException();
         }
     }

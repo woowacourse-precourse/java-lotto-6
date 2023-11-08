@@ -14,7 +14,7 @@ public class LottoWinner {
         return winningLotto.countSameNumbers(lotto);
     }
 
-    public static boolean compareBonusLotto(Lotto lotto) {
+    public static float compareBonusLotto(Lotto lotto) {
         return bonusLotto.countSameNumber(lotto);
     }
 }

@@ -9,9 +9,10 @@ import java.util.List;
 
 public class LottoMatching {
 
-    private int matchingCount = 0;
-    
-    public void MatchingNumber(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+    private int matchingCount;
+
+    public void matchingNumber(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+        matchingCount = 0;
         for (int i = 0; i < lottoNumbers.size(); i++) {
             if (winningNumbers.contains(lottoNumbers.get(i))) {
                 matchingCount++;

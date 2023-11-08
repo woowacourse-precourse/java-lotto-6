@@ -17,7 +17,7 @@ public class OutputView {
 
     public static void printLottoNumbers(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            System.out.printf(LOTTO_NUMBERS_MESSAGE, lotto.getNumbers());
+            System.out.printf(LOTTO_NUMBERS_MESSAGE, lotto.getNumbers().toArray());
         }
         System.out.println();
     }

@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.controller.exception.Exception;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Price;
@@ -31,7 +32,6 @@ public class Controller {
                 break;
             } catch (IllegalArgumentException e) {
                 System.err.println("[ERROR] " + e.getMessage());
-                getPurchasePrice();
             }
         }
         return new Price(price);
@@ -64,7 +64,6 @@ public class Controller {
                 break;
             } catch (IllegalArgumentException e) {
                 System.err.println("[ERROR] " + e.getMessage());
-                winningNumbers();
             }
         }
         return new Lotto(winningNumbers);
@@ -80,7 +79,6 @@ public class Controller {
                 break;
             } catch (IllegalArgumentException e) {
                 System.err.println("[ERROR] " + e.getMessage());
-                getBonusNumber();
             }
         }
         return bonus;

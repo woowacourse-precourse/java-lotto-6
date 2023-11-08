@@ -1,17 +1,13 @@
 package lotto.controller;
 
-import static lotto.service.Buyer.calculateLottoTickets;
-import static lotto.service.Buyer.getInstance;
-import static lotto.view.IO.checkLottoTickets;
-import static lotto.view.IO.requestBonusNumber;
-import static lotto.view.IO.requestPerchaseAmount;
-import static lotto.view.IO.requestWinningNumbers;
-import static lotto.view.IO.showResults;
-import static lotto.view.constants.Front.CHECK_LOTTO_TICKETS;
-import static lotto.view.constants.Front.REQUEST_BONUS_NUMBER;
-import static lotto.view.constants.Front.REQUEST_PURCHASE_AMOUNT;
-import static lotto.view.constants.Front.REQUEST_WINNING_NUMBERS;
-import static lotto.view.constants.Front.SHOW_THE_WINNING_STATISTICS;
+import static lotto.view.View.checkLottoTickets;
+import static lotto.view.View.requestBonusNumber;
+import static lotto.view.View.requestPerchaseAmount;
+import static lotto.view.View.requestWinningNumbers;
+import static lotto.view.constants.ViewConstants.CHECK_LOTTO_TICKETS;
+import static lotto.view.constants.ViewConstants.REQUEST_BONUS_NUMBER;
+import static lotto.view.constants.ViewConstants.REQUEST_PURCHASE_AMOUNT;
+import static lotto.view.constants.ViewConstants.REQUEST_WINNING_NUMBERS;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.BonusNumber;
@@ -34,6 +30,8 @@ public class LottoGame {
         BonusNumber bonusNumber = inputBonusNumber(winningNumbers);
         Checker checker = new Checker(bonusNumber, winningNumbers, buyer.getLottoTickets());
         checker.checkLottoTickets();
+        checker.calculateToTalProfit(purchaseAmount);
+        Console.close();
     }
 
     private static PurchaseAmount inputPurchaseAmount(){

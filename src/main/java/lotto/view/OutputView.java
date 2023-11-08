@@ -15,29 +15,33 @@ public class OutputView {
 
     public static void displayLottos(List<LottoDto> lottoDtos) {
         printEmptyLine();
-        System.out.println(lottoDtos.size() + "개를 구매했습니다.");
+        StringBuilder lottoStringBuilder = new StringBuilder();
+
+        lottoStringBuilder.append(lottoDtos.size() + "개를 구매했습니다.").append("\n");
         for (LottoDto lottoDto : lottoDtos) {
-            System.out.println(lottoDto.numbers());
+            lottoStringBuilder.append(lottoDto.numbers()).append("\n");
         }
-        printEmptyLine();
+        
+        System.out.println(lottoStringBuilder);
     }
 
     public static void displayResult(LottoResultDto lottoResultDto) {
         Map<LottoStatus, Integer> lottoStatusCounts = lottoResultDto.lottoStatusCounts();
         printEmptyLine();
-        StringBuilder lottoResult = new StringBuilder();
-        lottoResult.append(WINNING_STATISTICS).append("\n");
-        lottoResult.append("---").append("\n");
+        StringBuilder lottoResultStringBuilder = new StringBuilder();
+        lottoResultStringBuilder.append(WINNING_STATISTICS).append("\n");
+        lottoResultStringBuilder.append("---").append("\n");
 
         for (LottoStatus status : LottoStatus.values()) {
             if (status != LottoStatus.SIXTH) {
-                lottoResult.append(status.getStatusMessage()).append(" - ").append(lottoStatusCounts.get(status))
+                lottoResultStringBuilder.append(status.getStatusMessage()).append(" - ")
+                        .append(lottoStatusCounts.get(status))
                         .append("개")
                         .append("\n");
             }
         }
 
-        System.out.println(lottoResult);
+        System.out.println(lottoResultStringBuilder);
     }
 
     public static void printEmptyLine() {

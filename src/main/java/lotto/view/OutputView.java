@@ -5,7 +5,7 @@ import lotto.domain.Constants;
 public class OutputView {
     public void printLottos(String lottoList, Integer lottoSize) {
         System.out.printf((Constants.PRINT_LOTTO_LIST) + "\n", lottoSize);
-        System.out.println(lottoList);
+        System.out.println(lottoList + "\n");
     }
 
     public void printWinningStatic(String winningStatic) {

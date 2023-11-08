@@ -4,14 +4,15 @@ import static lotto.view.constants.SymbolType.INPUT_SEPARATOR;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.Number;
 import lotto.global.exception.ErrorMessage;
 import lotto.global.exception.LottoException;
 
 public class DrawnNumbersDto {
-    private List<Integer> winningNumbers;
-    private Integer bonusNumber;
+    private List<Number> winningNumbers;
+    private Number bonusNumber;
 
-    private DrawnNumbersDto(List<Integer> winningNumbers, Integer bonusNumber) {
+    private DrawnNumbersDto(List<Number> winningNumbers, Number bonusNumber) {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
@@ -23,10 +24,11 @@ public class DrawnNumbersDto {
         );
     }
 
-    private static List<Integer> parseWinningNumbers(String winningNumbers) {
+    private static List<Number> parseWinningNumbers(String winningNumbers) {
         try {
             return Arrays.stream(split(winningNumbers))
                     .map(Integer::parseInt)
+                    .map(Number::valueOf)
                     .toList();
         } catch (NumberFormatException e) {
             throw LottoException.from(ErrorMessage.NOT_NUMBER_ERROR);
@@ -37,19 +39,20 @@ public class DrawnNumbersDto {
         return winningNumbers.split(INPUT_SEPARATOR.getSymbol());
     }
 
-    private static Integer parseBonusNumber(String bonusNumber) {
+    private static Number parseBonusNumber(String bonusNumber) {
         try {
-            return Integer.parseInt(bonusNumber);
+            int number = Integer.parseInt(bonusNumber);
+            return Number.valueOf(number);
         } catch (NumberFormatException e) {
             throw LottoException.from(ErrorMessage.NOT_NUMBER_ERROR);
         }
     }
 
-    public List<Integer> getWinningNumbers() {
+    public List<Number> getWinningNumbers() {
         return this.winningNumbers;
     }
 
-    public Integer getBonusNumber() {
+    public Number getBonusNumber() {
         return this.bonusNumber;
     }
 }

@@ -6,6 +6,7 @@ import static lotto.view.ui.Output.printlnResult;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.Number;
 
 public class LottoResultView {
     private static final String LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다.";
@@ -33,10 +34,10 @@ public class LottoResultView {
         printlnResult(PREFIX + result + POSTFIX);
     }
 
-    private static String[] convertNumbers(List<Integer> numbers) {
+    private static String[] convertNumbers(List<Number> numbers) {
         return numbers
                 .stream()
-                .map(Object::toString)
+                .map(number -> Integer.toString(number.getValue()))
                 .toArray(String[]::new);
     }
 }

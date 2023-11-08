@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+
 import java.util.*;
 
 public class LottoInputHandler {
@@ -60,5 +61,24 @@ public class LottoInputHandler {
 
         }
         return newNumbers;
+    }
+
+    public int getBonusNumber() {
+        boolean isValidAmount = false;
+        int bonusNumber = 0;
+        while (!isValidAmount) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                bonusNumber = Integer.parseInt(Console.readLine());
+                if (bonusNumber < 1 || bonusNumber > 45) {
+                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45사이의 숫자여야합니다.");
+                }
+                isValidAmount = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage()); // 에러 메시지 출력
+
+            }
+        }
+        return bonusNumber;
     }
 }

@@ -10,17 +10,23 @@ import lotto.view.View;
 public class Input {
 
     public static int moneyForBuyLotto() {
-        View.moneyForBuyLotto();
-        var input = Console.readLine();
-        View.println();
+        while (true) {
+            try {
+                View.moneyForBuyLotto();
+                var input = Console.readLine();
+                View.println();
 
-        return Tool.unsafeString2Int(input);
+                return Tool.unsafeString2Int(input);
+            } catch (IllegalArgumentException e) {
+                View.error("숫자만 입력 가능");
+            }
+        }
     }
 
 
     public static Lotto prizeNumber() {
-        while(true){
-            try{
+        while (true) {
+            try {
                 final String SEPARATION_PATTERN = ",";
                 View.inputPrizeNumber();
                 String input = Console.readLine();
@@ -35,7 +41,7 @@ public class Input {
                 View.println();
                 return new Lotto(numbers);
 
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 View.error(e.getMessage());
             }
         }

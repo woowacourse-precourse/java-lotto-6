@@ -9,8 +9,17 @@ import lotto.view.View;
 public class Application {
 
     public static void main(String[] args) {
-        int money = Input.moneyForBuyLotto();
-        int numberOfTicket = Tool.unsafeDivideBy1000(money);
+        int money;
+        int numberOfTicket;
+        while(true){
+            try{
+                money = Input.moneyForBuyLotto();
+                numberOfTicket = Tool.unsafeDivideBy1000(money);
+                break;
+            }catch(IllegalArgumentException e){
+                View.error(e.toString());
+            }
+        }
 
         List<Lotto> lottos = Calculate.makeLottos(numberOfTicket);
         View.lottoList(lottos);

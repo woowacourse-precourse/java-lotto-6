@@ -8,26 +8,28 @@ public class LottoManager {
 
     private final List<Integer> winningLottoNumbers;
     private final int bonusLottoNumber;
-    private Map<Integer, Boolean> matchingCounts;
+    private List<LottoResult> lottoResults;
 
     public LottoManager(List<Integer> winningLottoNumbers, int bonusLottoNumber) {
         this.winningLottoNumbers = winningLottoNumbers;
         this.bonusLottoNumber = bonusLottoNumber;
-        this.matchingCounts = new HashMap<>();
+        this.lottoResults = List.of();
     }
 
     public void countMatchingWinningLottoNumbers(LottoBuyer lottoBuyer) {
 
         List<Lotto> lottoTickets = lottoBuyer.getLottoTickets();
-        Map<Integer, Boolean> lottoWinningResults = new HashMap<>();
 
         lottoTickets.forEach(lotto -> {
             List<Integer> numbers = lotto.getNumbers();
-            int count = (int) winningLottoNumbers.stream()
+            int matchingNumbers = (int) winningLottoNumbers.stream()
                     .filter(numbers::contains)
                     .count();
-            boolean flag = numbers.contains(bonusLottoNumber);
-            lottoWinningResults.put(count, flag);
+            boolean hasBonusNumber = numbers.contains(bonusLottoNumber);
+
+            if (matchingNumbers >= 3) {
+                lottoResults.add(new LottoResult(matchingNumbers, hasBonusNumber));
+            }
         });
     }
 

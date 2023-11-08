@@ -22,12 +22,11 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGame {
-    private static final String DELIMITER = ",";
     private final InputView inputView;
     private final OutputView outputView;
-    private Lottos lottos;
     private final LottoFactory lottoFactory;
     private final LottoValidator validator;
+    private Lottos lottos;
 
     public LottoGame() {
         this.inputView = new InputView();

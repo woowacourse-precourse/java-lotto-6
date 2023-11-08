@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoConsole {
 
@@ -9,15 +11,26 @@ public class LottoConsole {
 
     public static void start() {
         while (true) {
-            int number = numberOfPurchases();
+            try {
+                int number = numberOfPurchases();
 
-            if (!isFit(number, LOTTO_PRICE)) {
-                System.out.println("1000원 단위로 구매할 수 있습니다.");
-                continue;
+                if (!isFit(number, LOTTO_PRICE)) {
+                    throw new IllegalArgumentException("1000원 단위로 구입할 수 있습니다.");
+                }
+
+                number /= 1000;
+                System.out.println(number + "개를 구매했습니다.\n");
+
+                List<Lotto> lottos = new ArrayList<>(number);
+                for (int i = 0; i < number; i++) {
+                    lottos.add(buy());
+                }
+
+                LottoView.printOf(lottos);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
-
-            System.out.println(number / 1000 + "개를 구매했습니다.");
-            break;
         }
     }
 
@@ -39,5 +52,4 @@ public class LottoConsole {
     public static Lotto buy() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
-
 }

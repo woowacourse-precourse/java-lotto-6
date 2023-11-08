@@ -14,6 +14,7 @@ public class OutputView {
     private static final String SECOND = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
     private static final String FIRST = "6개 일치 (2,000,000,000원) - %d개\n";
     private static final String RATE = "총 수익률은 %.1f%%입니다.";
+    private static final double PERCENTAGE = 100.0;
     public static void printLottoQuantity(Money money) {
         System.out.printf(PURCHASED_MESSAGE, money.getLottoQuantity());
     }
@@ -36,7 +37,7 @@ public class OutputView {
         double totalPrize = lottoResult.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
-        double rate = (totalPrize / money.getMoney()) * 100;
+        double rate = (totalPrize / money.getMoney()) * PERCENTAGE;
 
         System.out.printf(RATE, rate);
     }

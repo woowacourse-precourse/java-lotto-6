@@ -11,8 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.InstanceOfAssertFactories.BOOLEAN;
 
 class StatisticsGeneratorTest {
-    private final StatisticsGenerator statisticsGenerator = new StatisticsGenerator();
-
     @DisplayName("2개 이하 맞췄을 때 확인")
     @Test
     void createUnderTwoMatchesStatistics() {
@@ -33,7 +31,8 @@ class StatisticsGeneratorTest {
         WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers("1,2,3,11,22,33");
         WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonusNumber);
 
-        assertThat(statisticsGenerator.generateMatchesCount(lottos,winningCombination))
+        StatisticsGenerator statisticsGenerator = new StatisticsGenerator(lottos,winningCombination);
+        assertThat(statisticsGenerator.generateMatchesCount())
                 .isEqualTo(statisticsMatchesCounts);
     }
 
@@ -57,7 +56,8 @@ class StatisticsGeneratorTest {
         WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers("1,2,3,11,22,33");
         WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonusNumber);
 
-        assertThat(statisticsGenerator.generateMatchesCount(lottos,winningCombination))
+        StatisticsGenerator statisticsGenerator = new StatisticsGenerator(lottos,winningCombination);
+        assertThat(statisticsGenerator.generateMatchesCount())
                 .isEqualTo(statisticsMatchesCounts);
     }
 
@@ -79,7 +79,8 @@ class StatisticsGeneratorTest {
         WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers("1,2,3,11,22,33");
         WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonusNumber);
 
-        assertThat(statisticsGenerator.generateMatchesCount(lottos,winningCombination))
+        StatisticsGenerator statisticsGenerator = new StatisticsGenerator(lottos,winningCombination);
+        assertThat(statisticsGenerator.generateMatchesCount())
                 .isEqualTo(statisticsMatchesCounts);
     }
 
@@ -101,7 +102,8 @@ class StatisticsGeneratorTest {
         WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers("1,2,3,11,22,33");
         WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonusNumber);
 
-        assertThat(statisticsGenerator.generateMatchesCount(lottos,winningCombination))
+        StatisticsGenerator statisticsGenerator = new StatisticsGenerator(lottos,winningCombination);
+        assertThat(statisticsGenerator.generateMatchesCount())
                 .isEqualTo(statisticsMatchesCounts);
     }
 
@@ -123,7 +125,8 @@ class StatisticsGeneratorTest {
         WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers("1,2,3,11,22,33");
         WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonusNumber);
 
-        assertThat(statisticsGenerator.generateMatchesCount(lottos,winningCombination))
+        StatisticsGenerator statisticsGenerator = new StatisticsGenerator(lottos,winningCombination);
+        assertThat(statisticsGenerator.generateMatchesCount())
                 .isEqualTo(statisticsMatchesCounts);
     }
 
@@ -145,7 +148,8 @@ class StatisticsGeneratorTest {
         WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers("1,2,3,11,22,33");
         WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonusNumber);
 
-        assertThat(statisticsGenerator.generateMatchesCount(lottos,winningCombination))
+        StatisticsGenerator statisticsGenerator = new StatisticsGenerator(lottos,winningCombination);
+        assertThat(statisticsGenerator.generateMatchesCount())
                 .isEqualTo(statisticsMatchesCounts);
     }
 
@@ -166,7 +170,8 @@ class StatisticsGeneratorTest {
         WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers("1,2,3,11,22,33");
         WinningCombination winningCombination = new WinningCombination(winningLottoNumbers, bonusNumber);
 
-        assertThat(statisticsGenerator.generateMatchesCount(lottos,winningCombination))
+        StatisticsGenerator statisticsGenerator = new StatisticsGenerator(lottos,winningCombination);
+        assertThat(statisticsGenerator.generateMatchesCount())
                 .isEqualTo(statisticsMatchesCounts);
     }
 }

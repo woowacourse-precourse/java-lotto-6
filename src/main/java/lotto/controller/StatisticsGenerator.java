@@ -15,10 +15,18 @@ public class StatisticsGenerator {
             "matchesSix"
     );
 
+    private final Lottos lottos;
+    private final WinningCombination winningCombination;
+
     private List<Integer> matchesCounts;
 
-    public Map<String, Integer> generateMatchesCount(Lottos lottos, WinningCombination winningCombination) {
-        generateMatchesCounts(lottos, winningCombination);
+    public StatisticsGenerator(Lottos lottos, WinningCombination winningCombination){
+        this.lottos = lottos;
+        this.winningCombination = winningCombination;
+    }
+
+    public Map<String, Integer> generateMatchesCount() {
+        generateMatchesCounts();
 
         Map<String, Integer> statisticsMatchesCounts = new HashMap<>();
         for (int i = 0; i < STATISTICS_KEY_NAME.size(); i++) {
@@ -27,52 +35,40 @@ public class StatisticsGenerator {
         return statisticsMatchesCounts;
     }
 
-    private void generateMatchesCounts(Lottos lottos, WinningCombination winningCombination){
+    private void generateMatchesCounts(){
         matchesCounts = new ArrayList<>(Collections.nCopies(5, 0));
 
         for(Lotto lotto : lottos.getLottos()){
-            int plusIndex=indexOfMatchCounts(lotto,winningCombination);
+            int plusIndex=indexOfMatchCounts(lotto);
             if(plusIndex>=0){
                 matchesCounts.set(plusIndex,matchesCounts.get(plusIndex)+1);
             }
         }
     }
 
-    private int indexOfMatchCounts(Lotto lotto, WinningCombination winningCombination){
+    private int indexOfMatchCounts(Lotto lotto){
         int matchesCount=0;
-        int inputStatisticsIndex =-1;
         for(int lottoNumber : lotto.getNumbers()){
             if(isMatchWinningNumber(lottoNumber,winningCombination)){
                 matchesCount++;
             }
         }
-
-        switch (matchesCount) {
-            case 0,1,2:
-                inputStatisticsIndex= -1; //no match
-                break;
-            case 3:
-                inputStatisticsIndex= 0; //matchesThree
-                break;
-            case 4:
-                inputStatisticsIndex= 1; //matchesFour
-                break;
-            case 5:
-                if(isMatchBonusNumber(lotto,winningCombination.getBonusNumber())){
-                    inputStatisticsIndex= 3; //matchesFiveAndBonus
-                    break;
-                }
-                inputStatisticsIndex=  2; //matchesFive
-                break;
-            case 6:
-                inputStatisticsIndex=  4; //matchesSix
-                break;
-        }
-        return inputStatisticsIndex;
+        return statisticsIndex(lotto,matchesCount);
     }
 
-    private boolean isMatchBonusNumber(Lotto lotto, int bonusNumber){
-        return lotto.getNumbers().contains(bonusNumber);
+    private int statisticsIndex(Lotto lotto, int matchesCount){
+        if(matchesCount==3) return 0; //matchesThree
+        if(matchesCount==4) return 1; //matchesFour
+        if(matchesCount==5) {
+            if(isMatchBonusNumber(lotto)) return 3; //matchesFiveAndBonus
+            return 2; //matchesFive
+        }
+        if(matchesCount==6) return 4; //matchesSix
+        return -1; // no matches
+    }
+
+    private boolean isMatchBonusNumber(Lotto lotto){
+        return lotto.getNumbers().contains(winningCombination.getBonusNumber());
     }
 
     private boolean isMatchWinningNumber(int lottoNumber, WinningCombination WinningCombination){

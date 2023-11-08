@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoSystem {
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
     private Lottos lottos;
     private WinningCombination winningCombination;
     private Budget budget;
@@ -42,11 +42,11 @@ public class LottoSystem {
     }
 
     private void ResultSystem(){
-        StatisticsGenerator statisticsGenerator = new StatisticsGenerator();
+        StatisticsGenerator statisticsGenerator = new StatisticsGenerator(lottos,winningCombination);
         ProfitCalculator profitCalculator = new ProfitCalculator();
 
         //lottos와 winningCombination을 통해 통계
-        Map<String, Integer> statisticsMatchesCounts = statisticsGenerator.generateMatchesCount(lottos,winningCombination);
+        Map<String, Integer> statisticsMatchesCounts = statisticsGenerator.generateMatchesCount();
 
         //budget과 winningmoney를 통해 수익률 계산
         float profitPercent = profitCalculator.calculateProfit(budget.getBudget(),statisticsMatchesCounts);

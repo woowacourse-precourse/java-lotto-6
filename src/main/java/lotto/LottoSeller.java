@@ -5,11 +5,17 @@ import lotto.exception.lottoseller.NonMultipleMoneyException;
 
 public class LottoSeller {
     public static final int LOTTO_PRICE = 1000;
+    private final LottoPublisher lottoPublisher;
+
+    public LottoSeller(LottoPublisher lottoPublisher) {
+        this.lottoPublisher = lottoPublisher;
+    }
 
     public LottoBundle sell(Money payedMoney) {
         validateOverSingleLottoPrice(payedMoney);
         validateMultipleOfLottoPrice(payedMoney);
-        return publishLottoBundle(payedMoney);
+        int lottoCount = calculateLottoCount(payedMoney);
+        return lottoPublisher.publishBundle(lottoCount);
     }
 
     private void validateOverSingleLottoPrice(Money payedMoney) {
@@ -32,13 +38,7 @@ public class LottoSeller {
         return payedMoney.isMultipleOf(LOTTO_PRICE);
     }
 
-    private LottoBundle publishLottoBundle(Money payedMoney) {
-        int lottoCountToPublish = calculateLottoCountToPublish(payedMoney);
-
-        return null;
-    }
-
-    private int calculateLottoCountToPublish(Money payedMoney) {
+    private int calculateLottoCount(Money payedMoney) {
         return payedMoney.divide(LOTTO_PRICE);
     }
 }

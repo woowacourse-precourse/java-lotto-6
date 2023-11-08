@@ -18,6 +18,16 @@ public class BonusNumberTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호가 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void createBonusNumberByNotInteger() {
+        WinningNumber winningNumber = new WinningNumber(WINNING_NUMBER);
+        String input = "1000j";
+
+        assertThatThrownBy(() -> new BonusNumber(winningNumber, input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("보너스 번호가 자연수가 아니라면 예외가 발생한다.")
     @Test
     void createBonusNumberByNotNatural() {

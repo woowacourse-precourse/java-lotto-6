@@ -11,7 +11,7 @@ public enum LottoError {
     LOTTO_BUY_FORMAT_ERROR("구매 금액은 숫자로만 이루어져야 합니다."),
     BUY_ENOUGH_MONEY_ERROR("구매 금액은 음수값을 입력할 수 없습니다.");
 
-    private final String ERROR_PREFIX = "[ERROR] ";
+    private final String ERROR_PREFIX = "[ERROR]";
     private final String message;
 
     LottoError(String message) {

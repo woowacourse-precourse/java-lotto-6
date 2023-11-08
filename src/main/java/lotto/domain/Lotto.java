@@ -15,10 +15,6 @@ public class Lotto {
         this.lottoNumbers = lottoNumbers;
     }
 
-    public boolean contains(LottoNumber number) {
-        return lottoNumbers.contains(number);
-    }
-
     private void validateLength(List<LottoNumber> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(OUT_OF_LOTTO_NUMBERS_SIZE);
@@ -30,4 +26,10 @@ public class Lotto {
             throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE);
         }
     }
+
+    @Override
+    public String toString() {
+        return lottoNumbers.toString();
+    }
+
 }

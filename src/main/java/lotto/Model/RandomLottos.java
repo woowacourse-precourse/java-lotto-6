@@ -6,29 +6,29 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class RandomLottos {
-    private final int counting;
+    private final int count;
     private final List<Lotto> randomLottos;
 
     public RandomLottos(Price price) {
-        this.counting = price.countPurchasedLotto();
-        this.randomLottos = createRandomLottos(counting);
+        this.count = price.countPurchasedLotto();
+        this.randomLottos = createRandomLottos(count);
     }
 
     public List<Lotto> getRandomLottos() {
         return randomLottos;
     }
 
-    public int getCounting() {
-        return counting;
+    public int getCount() {
+        return count;
     }
 
-    private List<Lotto> createRandomLottos(int counting) {
-        return IntStream.range(0, counting)
-                .mapToObj(lotto -> createRandomLotto())
+    private List<Lotto> createRandomLottos(int count) {
+        return IntStream.range(0, count)
+                .mapToObj(lotto -> makeRandomLotto())
                 .collect(Collectors.toList());
     }
 
-    private Lotto createRandomLotto() {
+    private Lotto makeRandomLotto() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 }

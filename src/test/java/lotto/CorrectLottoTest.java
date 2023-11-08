@@ -3,6 +3,9 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CorrectLottoTest {
@@ -10,7 +13,7 @@ class CorrectLottoTest {
 
     @DisplayName("당첨 번호에 입력값이 비어있는 부분이 있으면 예외가 발생한다.")
     @Test
-    void 입력값_비어있는지_확인() {
+    void 당첨번호_입력값_비어있는지_확인() {
         // given
         String input_numbers1 = "";
         String input_numbers2 = "1,,3,4,5,6";
@@ -32,5 +35,18 @@ class CorrectLottoTest {
         });
     }
 
+    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
+    @Test
+    void 보너스번호_중복_확인() {
+        // given
+        int bonus = 1;
+        List<Integer> input_numbers = List.of(1,2,3,4,5,6);
+        correctLotto.setCorrect_lotto(new Lotto(input_numbers));
+
+        // then
+        assertThrows(IllegalArgumentException.class, () -> {
+            correctLotto.checkNumberDuplicate(bonus);
+        });
+    }
 
 }

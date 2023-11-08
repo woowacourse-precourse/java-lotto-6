@@ -9,6 +9,10 @@ public class CorrectLotto {
     private Lotto correct_lotto;
     private int bonus;
 
+    public void setCorrect_lotto(Lotto correct_lotto) {
+        this.correct_lotto = correct_lotto;
+    }
+
     public Lotto getCorrect_lotto() {
         return correct_lotto;
     }
@@ -67,7 +71,7 @@ public class CorrectLotto {
     }
 
     // 보너스 번호가 당첨 번호와 중복되는지 확인
-    private void checkNumberDuplicate(int number){
+    public void checkNumberDuplicate(int number){
         if(correct_lotto.getNumbers().contains(number)){
             throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }

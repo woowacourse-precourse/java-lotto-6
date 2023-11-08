@@ -17,15 +17,22 @@ public class InputValidatorControllerTest {
 
     @DisplayName("돈 최소 범위보다 작을 경우 예외 발생")
     @Test
-    void inputMoneyValidateTest_isRightRangeMoney() {
+    void inputMoneyValidateTest_isRightRangeMoney1() {
         assertThatThrownBy(() -> inputMoneyValidate("-1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("돈 최대 범위보다 클 경우 예외 발생")
     @Test
-    void inputMoneyValidateTest_isRightMoneyUnit() {
+    void inputMoneyValidateTest_isRightRangeMoney2() {
         assertThatThrownBy(() -> inputMoneyValidate("3000000000"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("돈 설정 단위로 나누어 떨어지지 않을 경우 예외 발생")
+    @Test
+    void inputMoneyValidateTest_isRightMoneyUnit() {
+        assertThatThrownBy(() -> inputMoneyValidate("1234"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

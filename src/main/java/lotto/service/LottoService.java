@@ -61,8 +61,7 @@ public class LottoService {
         return lotto.getNumbers()
                 .stream()
                 .filter(number ->
-                        winLotto.getNumbers()
-                                .contains(number))
+                        winLotto.getNumbers().contains(number))
                 .toList()
                 .size();
     }
@@ -81,8 +80,7 @@ public class LottoService {
     }
 
     private LottoWinningRank compareBonusNumber(Lotto lotto, int bonusNumber) {
-        if (lotto.getNumbers()
-                .contains(bonusNumber)) {
+        if (lotto.getNumbers().contains(bonusNumber)) {
             return LottoWinningRank.SECOND;
         }
 

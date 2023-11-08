@@ -12,6 +12,7 @@ public class BonusNumber {
         if(bonusNum < LOTTO_MIN_NUMBER || bonusNum > LOTTO_MAX_NUMBER)
             throw new IllegalArgumentException(ExceptionUtils.LOTTO_RANGE_ERROR.getErrorMessage());
     }
+    //public static void valDupBonusNumber() {}
 
     public int getBonusNum() {
         return bonusNum;

@@ -1,19 +1,28 @@
 package lotto.view;
 
-import java.util.List;
 import java.util.Map;
-import lotto.domain.Lotto;
 import lotto.domain.WinningDetails;
 
 public class OutputView {
+    public static void requestPurchaseAmount() {
+        System.out.println("구입금액을 입력해 주세요.");
+    }
+
+    public static void requestWinningNum() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public static void requestBonusNum() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+
     public static void outputPurchaseCount(int purchaseCount) {
         System.out.println(purchaseCount + "개를 구매했습니다.");
     }
 
-    public static void outputPurchaseLottos(List<Lotto> lottos) {
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers().toString());
-        }
+    public static void outputPurchaseLottos(String lottoNumbers) {
+        System.out.println(lottoNumbers);
     }
 
     public static void outputResult(Map<WinningDetails, Integer> result) {

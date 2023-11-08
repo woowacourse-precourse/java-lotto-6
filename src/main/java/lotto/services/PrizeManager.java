@@ -2,7 +2,7 @@ package lotto.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.Rank;
+import lotto.domain.Rank;
 import lotto.utils.Constants;
 
 public class PrizeManager {

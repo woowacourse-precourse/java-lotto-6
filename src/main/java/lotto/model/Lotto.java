@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.global.ErrorCode;
 import lotto.model.exception.LottoNumbersException;
 
@@ -13,8 +14,8 @@ public class Lotto {
 
     public Lotto(List<Integer> lottoNumbers) {
         validate(lottoNumbers);
-        Collections.sort(lottoNumbers);
-        this.numbers = lottoNumbers;
+        List<Integer> lotto = lottoNumbers.stream().sorted().collect(Collectors.toList());
+        this.numbers = lotto;
     }
 
     public int countMatchNumber(Lotto winningNumbers) {

@@ -77,7 +77,7 @@ public class Lotto {
         return false;
     }
 
-    private Boolean checkDuplicate(List<Integer> numbers) {
+    public Boolean checkDuplicate(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>();
         for (Integer i : numbers) {
             if (!set.add(i)) {
@@ -88,7 +88,7 @@ public class Lotto {
         return false;
     }
 
-    private Boolean checkNumberSize(List<Integer> numbers) {
+    public Boolean checkNumberSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             System.out.println("[ERROR] 로또 번호는 6자리여야 합니다. 다시 입력해주세요");
             return true;
@@ -96,7 +96,7 @@ public class Lotto {
         return false;
     }
 
-    private Boolean check1000(String num) {
+    public Boolean check1000(String num) {
         if (Integer.parseInt(num) % 1000 != 0) {
             System.out.println("[ERROR] 급액은 1000단위여야 합니다. 다시 입력해주세요.");
             return true;
@@ -104,7 +104,7 @@ public class Lotto {
         return false;
     }
 
-    private Boolean checkValidate(String num) {
+    public Boolean checkValidate(String num) {
         try {
             int number = Integer.parseInt(num);
             if(number<0){
@@ -118,7 +118,7 @@ public class Lotto {
         return false;
     }
 
-    private Boolean checkNumInRange(String num) {
+    public Boolean checkNumInRange(String num) {
         int number = Integer.parseInt(num);
         if (number < 1 || number > 45) {
             System.out.println("[ERROR] 로또 또는 보너스 번호는 1과 45 사이여야 합니다.다시 입력해주세요");

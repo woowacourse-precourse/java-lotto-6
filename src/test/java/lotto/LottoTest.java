@@ -38,4 +38,39 @@ class LottoTest {
         assertThatThrownBy(() -> new LottoNumberInput().moneyInput(14222))
                 .isInstanceOf(IllegalArgumentException.class);
     }*/
+
+/*    @DisplayName("중복 테스트")
+    @Test
+    void dup() {
+        assertThatThrownBy(() -> new Lotto().checkDuplicate(List.of(1,2,3,4,5,5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("6자리 테스트")
+    @Test
+    void six() {
+        assertThatThrownBy(() -> new Lotto().checkNumberSize(1,2,3,4,5))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("단위 테스트")
+    @Test
+    void check1000() {
+        assertThatThrownBy(() -> new Lotto().check1000("1234"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("양수 테스트")
+    @Test
+    void plus() {
+        assertThatThrownBy(() -> new Lotto().checkValidate("-8000"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("숫자인지 테스트")
+    @Test
+    void isNum() {
+        assertThatThrownBy(() -> new Lotto().checkNumInRange("asdf"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }*/
 }

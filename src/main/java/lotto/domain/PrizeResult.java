@@ -22,7 +22,7 @@ public class PrizeResult {
         }
     }
 
-    private void updatePrizeCount(Prize prize) {
+    public void updatePrizeCount(Prize prize) {
         prizeResult.put(prize, prizeResult.get(prize) + 1);
     }
 

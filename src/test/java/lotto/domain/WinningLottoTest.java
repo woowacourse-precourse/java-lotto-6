@@ -16,10 +16,24 @@ class WinningLottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨 번호의 개수가 6개가 미만이면 예외가 발생한다.")
+    @Test
+    void createLottoByUnderSize() {
+        assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5), 8))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 5), 8))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력된 보너스번호가 당첨번호 중 중복되는 값이라면 예외를 발생한다.")
+    @Test
+    void createLottoByDuplicatedBonusNumber() {
+        assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

@@ -91,5 +91,15 @@ public class LottoSystemTest {
         assertThatThrownBy(() -> lottoSystem.getBonusNumber(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 입력받은_보너스_번호가_당첨된_번호와_중복되는_경우(){
+        LottoSystem lottoSystem = new LottoSystem();
+        List<Integer> numbers = List.of(1,2,3,4,5,6);
+        int bonusNumber = 1;
+        assertThatThrownBy(() -> lottoSystem.bonusNumberOverlap(numbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
 }
 

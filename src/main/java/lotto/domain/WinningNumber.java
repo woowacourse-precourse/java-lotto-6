@@ -29,6 +29,10 @@ public class WinningNumber {
         return result;
     }
 
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
     private void validateCount() {
         // 입력받은 당첨번호의 개수 확인
     }

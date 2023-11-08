@@ -8,6 +8,9 @@ public class Game {
     private int bonusNumber;
     private List<List<Integer>> lottoNumbersCollection;
 
+    InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
+    Util util = new Util();
 
     void execute(){
         purchaseLotto();
@@ -21,18 +24,28 @@ public class Game {
     }
 
     void printLottoNumber(){
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
-        Util util = new Util();
         int countOfPurchasedLotto = util.countPurchasedLotto(purchasingPrice);
         outputView.printPurchasedLottoQuantity(countOfPurchasedLotto);
 
         lottoNumbersCollection = util.makeLottoNumbersCollection(countOfPurchasedLotto);
         outputView.printLottoNumbers(lottoNumbersCollection);
 
-        winningNumber = inputView.inputLottoNumber();
-        bonusNumber = inputView.inputBonusNumber();
-        Lotto lotto = new Lotto(winningNumber);
+        setWinningNumber();
+    }
+
+    void setWinningNumber(){
+        boolean isValid = false;
+        while(!isValid){
+            try{
+                winningNumber = inputView.inputLottoNumber();
+                bonusNumber = inputView.inputBonusNumber();
+                Lotto lotto = new Lotto(winningNumber);
+                isValid = true;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     void printStatistics(){

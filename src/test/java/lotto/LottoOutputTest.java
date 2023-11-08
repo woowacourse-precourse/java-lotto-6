@@ -27,7 +27,7 @@ public class LottoOutputTest {
     @Test
     void 구매한_티켓_수_메시지_반환_테스트() {
         int ticketCount = 5;
-        String expectedMessage = "5개를 구매했습니다.";
+        String expectedMessage = "\n5개를 구매했습니다.";
         String actualMessage = lottoOutput.printNumberOfTicketsMessage(ticketCount);
         assertEquals(expectedMessage, actualMessage, "구매한 티켓 수 메시지가 올바르지 않습니다.");
     }
@@ -67,7 +67,7 @@ public class LottoOutputTest {
 
     @Test
     void 당첨번호_입력_메시지_반환_테스트() {
-        String expected = "당첨 번호를 입력해 주세요.";
+        String expected = "\n당첨 번호를 입력해 주세요.";
         String actualMessage = lottoOutput.requestWinningNumber();
         assertEquals(expected, actualMessage);
     }

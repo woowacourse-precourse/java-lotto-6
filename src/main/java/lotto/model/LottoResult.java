@@ -15,6 +15,10 @@ public class LottoResult {
 
     public void addResult(LottoPrize prize, int count) {
         resultMap.put(prize, resultMap.getOrDefault(prize, 0) + count);
+        calculateProfit(prize, count);
+    }
+
+    private void calculateProfit(LottoPrize prize, int count) {
         if (count > 0) {
             profit += (count * prize.getPrizeAmount());
         }

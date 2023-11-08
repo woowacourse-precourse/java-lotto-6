@@ -39,7 +39,6 @@
 
 - [x] LuckeyLotto 생성자 생성
 - luckyBonusNumbers: 보너스 당첨 로또 번호 저장
-- luckyNumbers: 당첨 로또 번호(보너스 로또 번호 포함) 저장
 
 - validate()
   - [x] 보너스 로또 번호가 숫자 타입인지 확인

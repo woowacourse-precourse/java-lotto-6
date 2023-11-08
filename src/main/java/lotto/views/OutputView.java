@@ -28,11 +28,11 @@ public class OutputView {
         System.out.println(
                 String.format(
                         Constant.VIEW_STATISTIC,
-                        prizes.get(ComparisonScore.THREE),
-                        prizes.get(ComparisonScore.FOUR),
-                        prizes.get(ComparisonScore.FIVE),
-                        prizes.get(ComparisonScore.FIVE_BONUS),
-                        prizes.get(ComparisonScore.SIX)
+                        prizes.get(Prize.FIFTH),
+                        prizes.get(Prize.FOURTH),
+                        prizes.get(Prize.THIRD),
+                        prizes.get(Prize.SECOND),
+                        prizes.get(Prize.FIRST)
                 )
         );
     }

@@ -15,6 +15,9 @@ public class User {
         this.money = 0;
         this.prizes = new HashMap<>();
         this.lotteries = new ArrayList<>();
+        for(Prize prize: Prize.values()){
+            prizes.put(prize, 0);
+        }
     }
 
     public void setMoney(int money) {

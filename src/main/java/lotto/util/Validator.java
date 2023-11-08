@@ -1,4 +1,6 @@
-package lotto.domain;
+package lotto.util;
+
+import lotto.domain.LottoConfiguration;
 
 import java.util.*;
 

@@ -1,5 +1,7 @@
-package lotto.domain;
+package lotto.util;
 
+import lotto.util.Message;
+import lotto.util.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

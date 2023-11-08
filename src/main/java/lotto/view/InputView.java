@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
+    private static String[] inputValues;
 
     public static Integer inputPurchaseAmount() {
         String inputValue = null;
@@ -29,7 +30,7 @@ public class InputView {
     }
 
     public static List<Integer> inputWinningNumbers() {
-        String[] inputValues = null;
+        inputValues = null;
         Boolean flag = false;
 
         while (!flag) {
@@ -62,6 +63,7 @@ public class InputView {
             try {
                 BonusNumberValidator.validateType(inputValue);
                 BonusNumberValidator.validateRange(inputValue);
+                BonusNumberValidator.validateDuplicate(inputValue, inputValues);
                 flag = true;
             } catch (IllegalArgumentException e) {}
         }

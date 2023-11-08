@@ -9,15 +9,14 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
 
     public Lotto(String numberString) {
         String [] number = CheckNumber(numberString);
         List<Integer> numbers = ChangeToInteger(numberString);
+
         this.numbers = numbers;
     }
+
 
     private  List<Integer> ChangeToInteger(String numberString){
         String[] changeToNumber = numberString.split(",");
@@ -47,7 +46,7 @@ public class Lotto {
                 checkAllIntegers(numberList);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] ','로 구분한 6개의 정수를 입력해주세요.");
+                System.out.println("[ERROR] ','로 구분한 6개의 정수를 입력해주세요.(수의 범위는 1이상 45이하)");
                 String newInput = Console.readLine();
                 numberList = newInput.split(",");
                 len = numberList.length;
@@ -64,11 +63,14 @@ public class Lotto {
 
     private void checkAllIntegers(String[] numberString) {
         for (String s : numberString) {
-            if(!isInteger(s)){
-                throw new IllegalArgumentException();
+            if(!isInteger(s) || !isValidRange(Integer.parseInt(s))) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 정수여야 합니다.");
             }
         }
+    }
 
+    private boolean isValidRange(int s) {
+        return s >= 1 && s <= 45;
     }
 
     private boolean isInteger(String s) {

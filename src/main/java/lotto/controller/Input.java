@@ -19,7 +19,7 @@ public class Input {
                 Validation.buyingMoneyMoreThenZero(num);
                 return num;
             } catch (IllegalArgumentException e) {
-                View.error(e.toString());
+                View.error(e.getMessage());
             }
         }
     }

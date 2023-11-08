@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,8 +26,9 @@ public class Exception {
 
     public static void validateBonusNumber(List<Integer> wins, Integer bonus) {
         numberNotInRange(bonus);
-        wins.add(bonus);
-        duplicateNumber(wins);
+        List<Integer> winsAndBonus = new ArrayList<>(wins);
+        winsAndBonus.add(bonus);
+        duplicateNumber(winsAndBonus);
     }
 
     public static void validateMoney(String input) {

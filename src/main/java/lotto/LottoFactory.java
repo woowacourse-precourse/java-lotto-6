@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static constant.LottoValue.*;
+import static output.OutputMessage.OUTPUT_PURCHASE_AMOUNT;
 
 public class LottoFactory {
     private int lottoNumber;
@@ -29,9 +30,10 @@ public class LottoFactory {
 
     public void printLottos(){
         System.out.println();
-        System.out.println(lottoNumber+"개를 구매했습니다.");
-        for (int i = 0; i < lottoNumber; i++) {
-            lottos.get(i).printLotto();
-        }
+        System.out.printf(OUTPUT_PURCHASE_AMOUNT.message(), lottoNumber);
+        lottos.stream()
+                .filter(lotto -> lotto!=null)
+                .forEach(Lotto::printLotto);
     }
+
 }

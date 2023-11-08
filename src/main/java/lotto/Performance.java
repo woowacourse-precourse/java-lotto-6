@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static constant.LottoValue.*;
 import static constant.Reward.*;
 import static constant.Reward.REWARDS;
 import static output.OutputMessage.*;
@@ -32,12 +33,12 @@ public class Performance {
         WinningNumbersFactory setter = new WinningNumbersFactory();
         for (Lotto lotto:lottos) {
             int matchCount = lotto.match(winningLotto);
-            if(matchCount == 5){
+            if(matchCount == STATISTICS_FIVE_SAME_WITHOUT_BONUS.value()){
                 bonuscheck(lotto, setter.getBonus(), performance);
                 continue;
             }
             if(matchCount == 6){
-                performance.add(7);
+                performance.add(STATISTICS_SIX_SAME.value());
                 continue;
             }
             performance.add(matchCount);
@@ -54,7 +55,7 @@ public class Performance {
     }
 
     private void statistics(List<Integer> performance) {
-        System.out.println("\n당첨 통계\n---");
+        System.out.println(OUTPUT_STATISTICS_START);
         AtomicInteger num = new AtomicInteger(3);
         Arrays.stream(REWARDS)
                 .forEach(reward -> printOutput(num.getAndIncrement(), reward, performance));
@@ -63,7 +64,7 @@ public class Performance {
 
     private void printOutput(int num, Reward reward, List<Integer> performance){
         //5+보너스
-        if(num == 6) {
+        if(num == STATISTICS_FIVE_SAME_WITH_BONUS.value()) {
             System.out.printf(OUTPUT_MESSAGE_WITH_BONUS.message(), reward.getSameCount(), DECIMAL_FORMAT.format(reward.getReward()), Collections.frequency(performance, num));
             return;
         }
@@ -90,8 +91,6 @@ public class Performance {
 
     private void rateOfReturn(int totalRevenue) {
         float rate = (float)totalRevenue / lottos.size() / 10;
-//        System.out.println(totalRevenue);
-//        System.out.println(rate);
         System.out.printf(PRINT_RATE_OF_RETURN.message(), String.format("%.1f",rate));
     }
 }

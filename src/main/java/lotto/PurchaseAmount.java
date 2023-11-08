@@ -1,19 +1,17 @@
 package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.*;
+import static constant.LottoValue.*;
 import static exception.ExceptionMessage.*;
+import static output.InputMessage.GIVE_THE_PURCHASE_AMOUNT;
 
 public class PurchaseAmount {
-
-    private static final int AMOUNT_UPPER_LIMIT = 2000000000;
-    private static final int AMOUNT_LOWER_LIMIT = 0;
-
     int purchaseAmount;
 
     public PurchaseAmount(){}
 
     public int input() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(GIVE_THE_PURCHASE_AMOUNT.message());
         String input = readLine();
         try{
             validateAmount(validateInteger(input));
@@ -21,7 +19,7 @@ public class PurchaseAmount {
             System.out.println(e.getMessage());
             input();
         }
-        return purchaseAmount/1000;
+        return purchaseAmount/ THOUSAND.value();
     }
 
     private int validateInteger(String input) {
@@ -37,10 +35,10 @@ public class PurchaseAmount {
         if(purchaseAmount % 1000 != 0){
             throw new IllegalArgumentException(PURCHASE_AMOUNT_REMAIN.message());
         }
-        if(purchaseAmount > AMOUNT_UPPER_LIMIT){
+        if(purchaseAmount > AMOUNT_UPPER_LIMIT.value()){
             throw new IllegalArgumentException(PURCHASE_AMOUNT_OVERFLOW.message());
         }
-        if(purchaseAmount < AMOUNT_LOWER_LIMIT){
+        if(purchaseAmount < AMOUNT_LOWER_LIMIT.value()){
             throw new IllegalArgumentException(PURCHASE_AMOUNT_NEGATIVE_NUMBER.message());
         }
     }

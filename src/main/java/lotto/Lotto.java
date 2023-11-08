@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static constant.LottoValue.*;
-import static exception.ExceptionMessage.*;
+import static constant.LottoValue.LOTTO_SIZE;
 
 public class Lotto {
 
@@ -32,7 +31,8 @@ public class Lotto {
         }
         System.out.println("]");
     }
-    public boolean containSame(Integer i){
+
+    public boolean containSame(int i){
         if(numbers.contains(i)) {
             return true;
         }

@@ -9,6 +9,8 @@ import java.util.StringTokenizer;
 import static camp.nextstep.edu.missionutils.Console.*;
 import static constant.LottoValue.*;
 import static exception.ExceptionMessage.*;
+import static output.OutputMessage.COMMA;
+import static output.OutputMessage.GIVE_THE_WINNING_NUMBERS;
 
 public class WinningNumbersFactory {
     private List<Integer> winningNumbers;
@@ -16,7 +18,7 @@ public class WinningNumbersFactory {
     private int bonus;
 
     public Lotto setWinning(){
-        System.out.println("\n당첨 번호를 입력해 주세요.");
+        System.out.println(GIVE_THE_WINNING_NUMBERS.message());
         String input = readLine();
         try{
             winningNumbers = validateString(input);
@@ -32,7 +34,7 @@ public class WinningNumbersFactory {
 
     private List<Integer> validateString(String input) {
         List<Integer> inputNumbers = new ArrayList<>();
-        StringTokenizer st = new StringTokenizer(input, ",");
+        StringTokenizer st = new StringTokenizer(input, COMMA.message());
         try {
             while(st.hasMoreTokens()) {
                 inputNumbers.add(Integer.parseInt(st.nextToken()));
@@ -52,7 +54,7 @@ public class WinningNumbersFactory {
 
 
     public void setBonus(List<Integer> winning){
-        System.out.println("\n보너스 번호를 입력해 주세요.");
+        System.out.println(GIVE_THE_WINNING_NUMBERS.message());
         String input = readLine();
         try{
             bonus = Integer.parseInt(input);

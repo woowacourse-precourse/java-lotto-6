@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.List;
 
 public enum Prize {
     FIRST(6, false, 2000000000),
@@ -29,6 +30,16 @@ public enum Prize {
 
     private boolean isSamePrize(int numberOfMatches, boolean bonusMatched) {
         return this.numberOfMatches == numberOfMatches && (!this.bonusIncluded || bonusMatched);
+    }
+
+    public static List<Prize> valuesWithoutDefault() {
+        return Arrays.stream(Prize.values())
+                .filter(Prize::isNotDefault)
+                .toList();
+    }
+
+    public static boolean isNotDefault(Prize prize) {
+        return prize != NONE;
     }
 
     public int getNumberOfMatches() {

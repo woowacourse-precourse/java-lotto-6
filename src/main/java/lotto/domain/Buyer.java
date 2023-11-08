@@ -19,6 +19,10 @@ public class Buyer {
     public Buyer(int money) {
         this.lottos = new ArrayList<>();
         this.lottoAmount = money / LOTTO_PRICE;
+        winningLottoInit();
+    }
+
+    private void winningLottoInit(){
         this.winningLotto = new HashMap<>();
         for(int i=3; i<=7; i++){
             winningLotto.put(i,0);
@@ -26,7 +30,7 @@ public class Buyer {
     }
 
     public void buyLotto(){
-        LotteryGenerator generator = new LotteryGenerator();
+        final LotteryGenerator generator = new LotteryGenerator();
         for(int i=0; i<lottoAmount; i++){
             this.lottos.add(generator.getLotto());
         }
@@ -39,7 +43,6 @@ public class Buyer {
     }
 
     public void checkEachLottoLine(Lotto lotto, WinningManager manager){
-
         int matchCount = compareWinningNumber(lotto,manager.getWinningNumber());
         boolean bonus = compareBonusNumber(lotto,manager.getBonusNumber());
 
@@ -64,9 +67,6 @@ public class Buyer {
             return true;
         }
         return false;
-    }
-    private void saveEachResult(int matchCount){
-
     }
 
     public List<Lotto> getLottos(){

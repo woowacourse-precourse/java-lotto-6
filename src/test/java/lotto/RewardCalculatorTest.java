@@ -44,7 +44,8 @@ public class RewardCalculatorTest {
     @DisplayName("getPrizeResultsTest")
     public void getPrizeResultsTest(List<Prize> prizes, int answer) {
         RewardCalculator rewardCalculator = new RewardCalculator();
-        int result = rewardCalculator.getTotalReward(prizes);;
+        int result = rewardCalculator.getTotalReward(prizes);
+        ;
 
         assertThat(result).isEqualTo(answer);
     }

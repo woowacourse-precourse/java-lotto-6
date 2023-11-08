@@ -23,7 +23,6 @@ public class NumberComparing {
 
         lottoNumberBundle.retainAll(winningNumbersBundle);
 
-//        int result = SIZEOFLOTTONUMBERS - lottoNumberBundle.size();
         int result = lottoNumberBundle.size();
 
         return result;

@@ -22,7 +22,7 @@ public class Application {
 
         List<Lotto> lottos = new ArrayList<>();
 
-        for (int i = 0; i < budget/1000; i++) {
+        for (int i = 0; i < budget / 1000; i++) {
             List<Integer> numbers = numberGenerator.generateRandomNumbers();
 
             lottos.add(new Lotto(numbers));
@@ -39,7 +39,7 @@ public class Application {
         outputManager.outputMessageInputBonusWinningNumber();
         int bonusWinningNumber = inputManager.inputBonusWinningNumber(winningNumber);
 
-        numberComparing = new NumberComparing(winningNumber.getNumbers(),bonusWinningNumber);
+        numberComparing = new NumberComparing(winningNumber.getNumbers(), bonusWinningNumber);
 
         List<Prize> prizes = numberComparing.getPrizeResults(lottos);
         int totalReward = rewardCalculator.getTotalReward(prizes);

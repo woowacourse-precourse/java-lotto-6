@@ -12,7 +12,7 @@ class LottoNumberTest {
     @DisplayName("로또 번호가 범위(1~45)를 넘어가면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(ints = {0, 46, 47})
-    void createLottoByOverSize(int wrongNumber) {
+    void createLottoNumberByOverRange(int wrongNumber) {
         assertThatThrownBy(() -> new LottoNumber(wrongNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBER_OVER_RANGE);

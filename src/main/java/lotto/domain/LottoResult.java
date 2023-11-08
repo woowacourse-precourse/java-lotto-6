@@ -19,7 +19,7 @@ public class LottoResult {
                 .count();
     }
 
-    public boolean hasBonus() {
+    private boolean hasBonus() {
         return getMatchCount() == 5 && lottoGame.containBonusNumber(bonusNumber);
     }
 

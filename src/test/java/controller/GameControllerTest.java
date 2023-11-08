@@ -52,4 +52,54 @@ public class GameControllerTest {
 
     }
 
+    @DisplayName("당첨번호 예외처리 "
+            + "1.공백이 입력됐는지 확인")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,,3,4,5,6", "1,23,3,,4,5"})
+    void 당첨번호_예외테스트1(String winningNumber) {
+        assertThatThrownBy(() -> lottoService.convertToIntegerList(winningNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ENTER_INPUT_BLANK.getMessage());
+    }
+
+    @DisplayName("당첨번호 예외처리 "
+            + "2.숫자인 수가 입력되었는지 확인")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2a,3,4,5,6", "1,ss,3,6,4,5", "1,2,한글,45,6,7"})
+    void 당첨번호_예외테스트2(String winningNumber) {
+        assertThatThrownBy(() -> lottoService.convertToIntegerList(winningNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ENTER_NOT_INTEGER_NUMBER.getMessage());
+    }
+
+    @DisplayName("당첨번호 예외처리 "
+            + "3.숫자 6개를 입력하였는지 확인")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6,7", "1,3,6,4,5", "1,2,45,6,7,8,9"})
+    void 당첨번호_예외테스트3(String winningNumber) {
+        assertThatThrownBy(() -> lottoService.convertToIntegerList(winningNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ENTER_NOT_SIX_LENGTH.getMessage());
+    }
+
+    @DisplayName("당첨번호 예외처리 "
+            + "4.중복된 숫자를 입력했는지 확인")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,5", "1,3,6,4,5,6", "1,2,45,6,45,6"})
+    void 당첨번호_예외테스트4(String winningNumber) {
+        assertThatThrownBy(() -> lottoService.convertToIntegerList(winningNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ENTER_DUPLICATE_NUMBER.getMessage());
+    }
+
+    @DisplayName("당첨번호 예외처리 "
+            + "5.1부터 45사이의 숫자를 입력했는지 확인")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,46", "0,3,6,4,5,7", "0,2,45,6,46,8"})
+    void 당첨번호_예외테스트5(String winningNumber) {
+        assertThatThrownBy(() -> lottoService.convertToIntegerList(winningNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ENTER_OUT_OF_LANGE.getMessage());
+    }
+
 }

@@ -19,7 +19,8 @@ public class GameController {
         inputPurchase();
         lottoDatas.generateLottoNumbers();
         printLotto();
-        inputWinningNumber();
+        inputWinningNumbers();
+        inputBonusNumber();
         printFinalPrize();
     }
 
@@ -40,11 +41,23 @@ public class GameController {
         lottoService.printLottoNumbers();
     }
 
-    private void inputWinningNumber() {
+    private void inputWinningNumbers() {
         while (true) {
             String inputLottoNumbers = InputView.inputWinningNumbers();
             try {
                 lottoService.convertToIntegerList(inputLottoNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private void inputBonusNumber() {
+        while (true) {
+            String inputBonusNumbers = InputView.inputBonusNumber();
+            try {
+                lottoService.checkBonusNumber(inputBonusNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());

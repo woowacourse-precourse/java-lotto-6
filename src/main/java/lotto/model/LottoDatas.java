@@ -8,13 +8,13 @@ import lotto.constant.Number;
 
 public class LottoDatas {
     private List<Lotto> lottoNumbers;
-    private BonusNumber bonusNumbers;
+    private BonusNumber bonusNumber;
     private PurChase purchase;
     private Lotto winnigNumber;
 
     public LottoDatas() {
         this.lottoNumbers = new ArrayList<>();
-        this.bonusNumbers = null;
+        this.bonusNumber = null;
         this.purchase = null;
         this.winnigNumber = null;
     }
@@ -34,6 +34,10 @@ public class LottoDatas {
         this.winnigNumber = lotto;
     }
 
+    public void inputBonusNumber(final int bonusNumber) {
+        this.bonusNumber = BonusNumber.CreateBonusNumber(bonusNumber);
+    }
+
     public List<Integer> getlottoNumbers(int index) {
         List<Integer> lottoNumbersIntegers = new ArrayList<>();
         lottoNumbersIntegers.addAll(lottoNumbers.get(index).getNumbers());
@@ -42,6 +46,10 @@ public class LottoDatas {
 
     public int getLottoCount() {
         return purchase.getLottoCount();
+    }
+
+    public List<Integer> getWinningNumbers() {
+        return winnigNumber.getNumbers();
     }
 
     public void generateLottoNumbers() {

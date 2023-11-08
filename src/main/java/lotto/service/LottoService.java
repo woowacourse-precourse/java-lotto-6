@@ -42,6 +42,13 @@ public class LottoService {
         lottoDatas.inputWinningNumber(ListWinningNumbers);
     }
 
+    public void checkBonusNumber(String bonusNumber) {
+        int integerBonusNumber = parseIntBonusNumbers(bonusNumber);
+        checkDuplicateBonusNumber(integerBonusNumber);
+        checkOutOfBonusNumericalRange(integerBonusNumber);
+        lottoDatas.inputBonusNumber(Integer.parseInt(bonusNumber));
+    }
+
     private void checkValidLength(List<Integer> listWinningNumbers) {
         Validator.validateInputLength(listWinningNumbers);
     }
@@ -63,6 +70,19 @@ public class LottoService {
             listWinningNumbers.add(Integer.valueOf(arrayWinningNumbers[arrayIndex]));
         }
         return listWinningNumbers;
+    }
+
+    public int parseIntBonusNumbers(String bonusNumbers) {
+        Validator.parseIntNumber(bonusNumbers);
+        return Integer.parseInt(bonusNumbers);
+    }
+
+    public void checkDuplicateBonusNumber(int integerBonusNumber) {
+        Validator.duplicateBonusNumber(integerBonusNumber, lottoDatas.getWinningNumbers());
+    }
+
+    public void checkOutOfBonusNumericalRange(int integerBonusNumber) {
+        Validator.outOfLottoNumericalRange(integerBonusNumber);
     }
 
     public void printLottoCount() {

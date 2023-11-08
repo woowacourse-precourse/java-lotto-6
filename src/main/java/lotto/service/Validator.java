@@ -46,13 +46,9 @@ public class Validator {
     public static void duplicateBonusNumber(int inputBonusNumbers, List<Integer> inputNumbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(inputNumbers);
         uniqueNumbers.add(inputBonusNumbers);
-        if (inputNumbers.size() != uniqueNumbers.size()) {
+        if (inputNumbers.size() + 1 != uniqueNumbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.ENTER_DUPLICATE_BONUS_NUMBER.getMessage());
         }
-    }
-
-    public static void validateInputNumbers(List<Integer> inputNumbers) {
-
     }
 
     public static void outOfLottoNumericalRange(int lottoNumber) {
@@ -60,10 +56,6 @@ public class Validator {
                 lottoNumber > Number.THE_BIGGEST_LOTTO_NUMBER.getMessage()) {
             throw new IllegalArgumentException(ErrorMessage.ENTER_OUT_OF_LANGE.getMessage());
         }
-    }
-
-    public static void outOfBonusNumericalRange(int inputBonusNumbers) {
-
     }
 
 }

@@ -4,7 +4,17 @@ import lotto.enums.ErrorMessages;
 import lotto.enums.LottoEnum;
 import lotto.utils.StringUtil;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.IntStream;
+
 public class LottoNumber {
+    private static final Map<Integer, LottoNumber> lottoNumberCache = new HashMap<>();
+
+    static {
+        IntStream.range(LottoEnum.MIN_LOTTO_NUMBER.getValue(), LottoEnum.MAX_LOTTO_NUMBER.getValue() + 1)
+                .forEach(i -> lottoNumberCache.put(i, new LottoNumber(i)));
+    }
     private final int number;
 
     private LottoNumber(int number) {
@@ -17,7 +27,7 @@ public class LottoNumber {
     }
 
     public static LottoNumber valueOf(int number) {
-        return new LottoNumber(number);
+        return lottoNumberCache.get(number);
     }
 
     public int getNumber() {

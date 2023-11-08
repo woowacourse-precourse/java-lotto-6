@@ -23,7 +23,7 @@ public enum Rank {
         this.showWinningAmount = showWinningAmount;
     }
 
-    public static Rank findByRank(int correctCount, boolean isBonus) {
+    public static Rank findByCorrectCountAndIsBonus(int correctCount, boolean isBonus) {
         Stream<Rank> ranks = Arrays.stream(Rank.values());
 
         if (correctCount == Rank._2ND.correctCount) {

@@ -46,7 +46,7 @@ public class Player {
             correctCount = checkCorrectCount(lotto, winningNumber.getNumbers());
             isBonus = checkCorrectBonus(lotto, bonusNumber);
 
-            rank = Rank.findByRank(correctCount, isBonus);
+            rank = Rank.findByCorrectCountAndIsBonus(correctCount, isBonus);
             winningDetails.put(rank, winningDetails.get(rank) + 1);
         }
     }

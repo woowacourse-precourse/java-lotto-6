@@ -8,9 +8,7 @@ import lotto.exception.ExceptionMessage;
 import lotto.view.message.ViewMessage;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class TextProcessor {
     private final static String SPLIT = ",";
@@ -28,19 +26,19 @@ public class TextProcessor {
     }
 
     public int parsePurchaseAmount(String inputAmount) {
-        validateEmptyCheck(inputAmount, ExceptionMessage.EMPTY_PURCHASE_AMOUNT);
+        validateEmptyCheck(inputAmount.trim(), ExceptionMessage.EMPTY_PURCHASE_AMOUNT);
 
         return parseInput(inputAmount);
     }
 
     public int parseBonusNumber(String inputBonusNumber) {
-        validateEmptyCheck(inputBonusNumber, ExceptionMessage.EMPTY_BONUS_NUMBER);
+        validateEmptyCheck(inputBonusNumber.trim(), ExceptionMessage.EMPTY_BONUS_NUMBER);
 
         return parseInput(inputBonusNumber);
     }
 
     private void validateEmptyCheck(String input, ExceptionMessage emptyMessage) {
-        if (input.isEmpty()) {
+        if (input == null || input.isEmpty()) {
             throw new CustomIllegalArgumentException(emptyMessage);
         }
     }
@@ -57,11 +55,9 @@ public class TextProcessor {
         StringBuilder builder = new StringBuilder();
         List<Integer> numbers = lotto.getNumbers();
 
-        builder.append("[")
-                .append(numbers.get(0));
+        builder.append("[").append(numbers.get(0));
         for (int i = 1; i < numbers.size(); i++) {
-            builder.append(DELIMITER)
-                    .append(numbers.get(i));
+            builder.append(DELIMITER).append(numbers.get(i));
         }
         builder.append("]");
 
@@ -69,26 +65,25 @@ public class TextProcessor {
     }
 
     public String generateLottoResult(LottoTotalPrize lottoResult) {
-        StringBuilder builder = new StringBuilder();
-        Map<LottoWinningRank, Integer> prizeResult = Collections.unmodifiableMap(lottoResult.getPrizeCounts());
+        return ViewMessage.WINNING_STATISTICS_FIFTH
+                .getMessage(getPrizeCount(lottoResult, LottoWinningRank.FIFTH)) +
+                ViewMessage.WINNING_STATISTICS_FOURTH
+                        .getMessage(getPrizeCount(lottoResult, LottoWinningRank.FOURTH)) +
+                ViewMessage.WINNING_STATISTICS_THIRD
+                        .getMessage(getPrizeCount(lottoResult, LottoWinningRank.THIRD)) +
+                ViewMessage.WINNING_STATISTICS_SECOND
+                        .getMessage(getPrizeCount(lottoResult, LottoWinningRank.SECOND)) +
+                ViewMessage.WINNING_STATISTICS_FIRST
+                        .getMessage(getPrizeCount(lottoResult, LottoWinningRank.FIRST));
+    }
 
-        builder.append(ViewMessage.WINNING_STATISTICS_FIFTH
-                .getMessage(prizeResult.get(LottoWinningRank.FIFTH)));
-        builder.append(ViewMessage.WINNING_STATISTICS_FOURTH.
-                getMessage(prizeResult.get(LottoWinningRank.FOURTH)));
-        builder.append(ViewMessage.WINNING_STATISTICS_THIRD
-                .getMessage(prizeResult.get(LottoWinningRank.THIRD)));
-        builder.append(ViewMessage.WINNING_STATISTICS_SECOND
-                .getMessage(prizeResult.get(LottoWinningRank.SECOND)));
-        builder.append(ViewMessage.WINNING_STATISTICS_FIRST
-                .getMessage(prizeResult.get(LottoWinningRank.FIRST)));
-
-        return builder.toString();
+    private Integer getPrizeCount(LottoTotalPrize lottoResult, LottoWinningRank lottoWinningRank) {
+        return lottoResult.getPrizeCounts().get(lottoWinningRank);
     }
 
     private void validateParseInputsWithEmptyCheck(String[] winningNumbers) {
         if (Arrays.stream(winningNumbers)
-                .anyMatch(String::isEmpty)) {
+                .anyMatch(string -> string.trim().isEmpty())) {
             throw new CustomIllegalArgumentException(ExceptionMessage.EMPTY_WINNING_NUMBER);
         }
     }

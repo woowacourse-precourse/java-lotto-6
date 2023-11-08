@@ -31,4 +31,10 @@ public class Input {
         return numbers;
     }
 
+    private void validateWinningNumber(List<Integer> numbers){
+        if(numbers.size() > 6 || numbers.size() < 6){
+            throw new IllegalArgumentException(ERROR_MESSAGE +" 당첨 번호는 총 6개로 이루어져 있습니다.");
+        }
+
+    }
 }

@@ -1,8 +1,6 @@
 package lotto.controller;
 
 import lotto.model.*;
-import lotto.model.constant.PrizeConstants;
-import lotto.util.ConvertUtil;
 import lotto.util.LottoNumberGenerator;
 import lotto.util.NumberGenrator;
 import lotto.view.InputView;
@@ -66,7 +64,7 @@ public class LottoController {
             try {
                 OutputView.printOutputMessage(OutputMessageConstants.PURCHASE_AMOUNT_INPUT_MESSAGE.getMessage());
                 return new PurchaseAmount(InputView.readPurchaseAmount());
-            }catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 OutputView.printOutputMessage(e.getMessage());
             }
         }

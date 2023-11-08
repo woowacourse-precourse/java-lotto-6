@@ -3,7 +3,8 @@ package lotto;
 public class LottoMoney {
     private enum ErrorMessage {
         WRONG_TYPE("[ERROR] 로또 구매금액의 타입은 숫자여야 합니다."),
-        WRONG_AMOUNT("[ERROR] 로또 구매금액은 1000단위 숫자여야 합니다.");
+        WRONG_AMOUNT("[ERROR] 로또 구매금액은 1000단위 숫자여야 합니다."),
+        WRONG_PRICE("[ERROR] 최소 로또 구매금액은 1,000원 입니다.");
 
         private final String message;
 
@@ -31,6 +32,8 @@ public class LottoMoney {
             throw new IllegalArgumentException(ErrorMessage.WRONG_TYPE.getMessage());
         } else if (Integer.valueOf(inputMoney) % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_AMOUNT.getMessage());
+        } else if (Integer.valueOf(inputMoney) == 0) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_PRICE.getMessage());
         }
     }
 

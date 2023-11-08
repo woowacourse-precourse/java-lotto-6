@@ -8,20 +8,16 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        int money = 0;
-        int lottoTickets = 0;
-
+        LottoAmount lottoAmount;
         do {
             System.out.println("구입금액을 입력해 주세요.");
-            money = checkMoneyValidate(Console.readLine());
-        } while (money == 0);
+            lottoAmount = checkMoneyValidate(Console.readLine());
+        } while (lottoAmount.getMoney() == 0);
         System.out.println();
-
-        lottoTickets = money / 1000;
-        System.out.println(lottoTickets + "개를 구매했습니다.");
+        System.out.println(lottoAmount.getTickets() + "개를 구매했습니다.");
 
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < lottoTickets; i++) {
+        for (int i = 0; i < lottoAmount.getTickets(); i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
@@ -50,7 +46,7 @@ public class Application {
         System.out.println("---");
         LottoResult lottoResult = new LottoResult();
         lottoResult.totalRanking(lottos, winningNumbers, bonusNumber);
-        lottoResult.calculateRateOfReturn(lottos, winningNumbers, bonusNumber, money);
+        lottoResult.calculateRateOfReturn(lottos, winningNumbers, bonusNumber, lottoAmount.getMoney());
         System.out.println(lottoResult);
     }
 
@@ -59,8 +55,7 @@ public class Application {
         try {
             bonusNumber = isOnlyNumber(input);
             checkRange(bonusNumber);
-            if (lotto.contains(bonusNumber))
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+            checkDuplicationWithBonus(lotto, bonusNumber);
         } catch (IllegalArgumentException e) {
             bonusNumber = 0;
             System.out.println(e.getMessage());
@@ -68,18 +63,21 @@ public class Application {
         return bonusNumber;
     }
 
+    private static void checkDuplicationWithBonus(Lotto lotto, int bonusNumber) {
+        if (lotto.contains(bonusNumber))
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+    }
+
     private static void checkRange(int number) {
         if (number < 1 || number > 45)
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
-    private static int checkMoneyValidate(String input) {
-        int money = 0;
+    private static LottoAmount checkMoneyValidate(String input) {
+        LottoAmount money = new LottoAmount();
         try {
-            money = isOnlyNumber(input);
-            isDivisibleBy1000(money);
+            money.setMoney(isOnlyNumber(input));
         } catch (IllegalArgumentException e) {
-            money = 0;
             System.out.println(e.getMessage());
         }
         return money;
@@ -90,15 +88,9 @@ public class Application {
         try {
             number = Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자로 입력해 주세요. ");
+            throw new IllegalArgumentException("[ERROR] 숫자로 입력해 주세요.");
         }
         return number;
-    }
-
-    private static void isDivisibleBy1000(int input) {
-        if ((input % 1000) != 0 || input <= 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
-        }
     }
 
     private static Lotto winningNumbersValidate(String input) {
@@ -113,13 +105,9 @@ public class Application {
 
     private static List<Integer> checkInteger(String input) {
         List<Integer> parseNumbers = new ArrayList<>();
-        try {
-            for (String number : List.of(input.split(","))) {
-                int n = Integer.parseInt(number.trim());
-                parseNumbers.add(n);
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자로 입력해 주세요.");
+        for (String number : List.of(input.split(","))) {
+            int n = isOnlyNumber(number);
+            parseNumbers.add(n);
         }
         return parseNumbers;
     }

@@ -25,20 +25,27 @@ public class Statistics {
         for (List<Integer> lottoNumber : lottoNumbers) {
             int matchingCount = 0;
             for (Integer number : lottoNumber) {
-                if(number == bonus){
-                    matchingBonus++;
-                }else{// else 사용하지 않기.
-                    for (Integer winningNumber : winningNumbers) {
-                        if(number == winningNumber){
-                            matchingCount++;
-                            break;
-                        }
-                    }
-                }
+                matchingCount = getMatchingCount(number, matchingCount);
             }
             countMatch(matchingCount, matchingBonus);
         }
         printResult();
+    }
+
+    private int getMatchingCount(Integer number, int matchingCount) {
+        if(number == bonus){
+            matchingBonus++;
+            return matchingCount;
+        }
+        
+        for (Integer winningNumber : winningNumbers) {
+            if(number == winningNumber){
+                matchingCount++;
+                break;
+            }
+        }
+
+        return matchingCount;
     }
 
     private void countMatch(int matchingCount, int matchingBonus) {

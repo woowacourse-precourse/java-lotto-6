@@ -37,6 +37,7 @@ public class ConsoleOutputView implements Output {
                 rank.getDescription(), count);
         System.out.println(formattedMessage);
     }
+
     @Override
     public void printTotalEarningsRate(double earningsRate) {
         System.out.println(TOTAL_EARNINGS_RATE.getFormattedEarningRate(earningsRate));

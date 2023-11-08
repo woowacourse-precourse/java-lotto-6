@@ -51,8 +51,7 @@ public class LottoResultCalculator {
 
     private static Map<LottoRank, Integer> initializeWithDefaults(
             Map<LottoRank, Integer> countedRanks) {
-        Map<LottoRank, Integer> allRanksWithDefaults = new EnumMap<LottoRank, Integer>(
-                LottoRank.class);
+        Map<LottoRank, Integer> allRanksWithDefaults = new EnumMap<>(LottoRank.class);
         for (LottoRank rank : LottoRank.values()) {
             allRanksWithDefaults.put(rank, countedRanks.getOrDefault(rank, 0));
         }

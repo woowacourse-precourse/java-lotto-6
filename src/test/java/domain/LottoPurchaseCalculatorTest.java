@@ -24,7 +24,7 @@ public class LottoPurchaseCalculatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0,-100,-1000})
+    @ValueSource(ints = {0, -100, -1000})
     @DisplayName("부적절한 로또 가격으로 인한 예외 발생")
     void invalidPrice(int amount) {
 

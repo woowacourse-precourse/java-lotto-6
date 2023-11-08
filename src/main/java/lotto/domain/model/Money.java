@@ -2,9 +2,6 @@ package lotto.domain.model;
 
 
 import static lotto.domain.LottoConfig.*;
-import static lotto.domain.model.LottoErrorMessages.*;
-
-import lotto.domain.LottoConfig;
 
 public class Money {
 

@@ -6,7 +6,6 @@ import static lotto.domain.LottoConfig.*;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.domain.LottoConfig;
 import lotto.domain.model.Lotto;
 import lotto.domain.generator.LottoGenerator;
 import lotto.domain.caclulator.LottoResultCalculator;

@@ -7,6 +7,8 @@ public class Application {
         lottoManager.insertMoney();
         lottoManager.buyLottoAmount();
         lottoManager.showBuyAmount();
+        lottoManager.loopCreateLottoCandidateNumbers();
+        lottoManager.showAllLottoCandidateSets();
 
     }
 }

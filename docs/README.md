@@ -63,11 +63,15 @@ K개 구매 :
 - OutputVies : 출력기 (singleton)
 
 ### 🎮 controller
-- LottoController : 로또 프로그램을 제어하는 클래스 (singleton)
+- LottoController : 사용자가 로또를 구매하게 하는 클래스 (singleton)
+- ReceiptController : 사용자에게 결과를 보여주는 클래스 (singleton)
 
 ### 🔑 service
-- AutoLottoService : 로또 번호를 만들어주는 클래스 (singleton)
-- LottoScoringService : 로또를 채점해주는 클래스 (singleton)
+- LottoService : 로또를 실제로 생성하는 클래스 (singleton)
+- ReceiptService : 결과를 생성하는 클래스 (singleton)
+### 🗄️ repository
+- LottoRepository : 생성한 로또를 저장하는 클래스 (singleton)
+- ReceiptRepository : 생성한 결과를 저장하는 클래스 (singleton)
 
 ### 🛠️ util
 - NumberConverter : 출력형식에 맞게 String 으로 바꿔주는 클래스

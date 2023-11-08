@@ -1,5 +1,4 @@
 package lotto;
-import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.inputAction.InputBonusNumber;
 import lotto.inputAction.InputPurchaseAmount;

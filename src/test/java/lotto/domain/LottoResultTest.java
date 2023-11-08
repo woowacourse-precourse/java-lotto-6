@@ -79,6 +79,24 @@ class LottoResultTest {
         verify(money, times(1)).getAmount();
     }
 
+    @DisplayName("수익률 계산: 계산 값이 정수형 자료 범위를 넘어갈 때")
+    @Test
+    void calculatePrizeRate_PreventOverflow() {
+        Map<Ranking, Integer> bigPrizeRankingCounts = new EnumMap<>(Ranking.class);
+        Arrays.stream(Ranking.values()).forEach(key -> bigPrizeRankingCounts.put(key, 0));
+        bigPrizeRankingCounts.put(Ranking.FIRST, LOTTOS_SIZE);
+        BigDecimal expectedPrizeRate = BigDecimal.valueOf(2000000.0).multiply(BigDecimal.valueOf(100L));
+
+        lottoResult = new LottoResult(bigPrizeRankingCounts, LOTTOS_SIZE);
+        Money money = mock(Money.class);
+        when(money.getAmount()).thenReturn(8_000);
+
+        BigDecimal prizeRate = lottoResult.calculatePrizeRate(money, SCALE, ROUNDING_MODE);
+
+        assertThat(prizeRate).isEqualTo(expectedPrizeRate);
+        verify(money, times(1)).getAmount();
+    }
+
     @DisplayName("당첨 결과 반환")
     @Test
     void getRankingCounts() {

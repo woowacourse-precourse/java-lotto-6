@@ -46,4 +46,22 @@ public class InputLottoPurchaseAmountValidatorTest {
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
+
+    @Test
+    @DisplayName("로또 구입 금액 0이하인 경우")
+    void 로또_구입_금액_0이하() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> inputLottoPurchaseAmountValidator.validateNonOverZeroPurchaseAmount("0"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    @DisplayName("로또 구입 금액 0이하인 경우2")
+    void 로또_구입_금액_0이하2() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> inputLottoPurchaseAmountValidator.validateNonOverZeroPurchaseAmount("-1000"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
 }

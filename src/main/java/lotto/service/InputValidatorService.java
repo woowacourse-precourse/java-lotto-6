@@ -12,6 +12,7 @@ public class InputValidatorService {
     public void validateInputPurchaseAmount(String purchaseAmount) {
         purchaseAmountValidator.validateNonInputPurchaseAmount(purchaseAmount);
         purchaseAmountValidator.validateNonIntegerPurchaseAmount(purchaseAmount);
+        purchaseAmountValidator.validateNonOverZeroPurchaseAmount(purchaseAmount);
         purchaseAmountValidator.validateNonDivide1000PurchaseAmount(purchaseAmount);
     }
 

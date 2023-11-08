@@ -81,6 +81,7 @@ chore : 빌드 업무 수정, 패키지 매니저 수정
 │                   └── OutputMessage.java
 └── test
     └── java
+        ├── SingleTonTest.java
         ├── lotto
         │   ├── ApplicationTest.java
         │   └── LottoTest.java

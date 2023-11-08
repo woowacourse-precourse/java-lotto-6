@@ -71,7 +71,6 @@ public class LottoController {
             }
         }
     }
-
     private void statisticLotto() {
         OutputView.printStatistics();
         OutputView.printRankResult(saveToLinkedHashMap());

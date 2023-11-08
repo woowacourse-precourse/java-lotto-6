@@ -8,7 +8,6 @@ public class Lotto{
         LottoValidator.validate(numbers);
         this.numbers = numbers;
     }
-
     public List<Integer> getNumbers() {
         return List.copyOf(numbers);
     }

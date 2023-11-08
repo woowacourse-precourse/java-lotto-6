@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.service.LottoService;
+import lotto.utils.BonusNumberValidator;
 import lotto.utils.PurchasePriceValidator;
 
 import lotto.utils.WinningNumbersValidator;
@@ -26,7 +27,8 @@ public class LottoController {
     public void start() {
         int purchasePrice = getPurchasePrice();
         List<Lotto> lottos = purchaseLottos(purchasePrice);
-        Lotto WinningNumbers = getWinningNumbers();
+        Lotto winningNumbers = getWinningNumbers();
+        Bonus bonusNumber = getBonusNumber(winningNumbers);
     }
 
     private int getPurchasePrice() {
@@ -57,6 +59,14 @@ public class LottoController {
             winningNumbers.add(Integer.parseInt(digit));
         }
         return new Lotto(winningNumbers);
+    }
+
+    private Bonus getBonusNumber(Lotto winningNumbers) {
+        String input = inputView.getBonusNumber();
+        BonusNumberValidator.validIsInt(input);
+        int bonusNumber = Integer.parseInt(input);
+        BonusNumberValidator.validIsNotDuplicateWithWinningNumbers(bonusNumber, winningNumbers);
+        return new Bonus(bonusNumber);
     }
 
 }

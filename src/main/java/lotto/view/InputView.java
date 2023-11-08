@@ -18,4 +18,8 @@ public class InputView {
         Validator.validateInputPattern(winningLottoNumbers);
         return LottoConverter.convertStringToLotto(winningLottoNumbers);
     }
+
+    public static String inputBonusNumber() {
+        return Console.readLine();
+    }
 }

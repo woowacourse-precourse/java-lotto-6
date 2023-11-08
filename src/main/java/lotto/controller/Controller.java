@@ -1,4 +1,4 @@
-package lotto;
+package lotto.controller;
 
 import static lotto.InputReader.*;
 import static lotto.MessagePrinter.*;
@@ -10,7 +10,7 @@ import lotto.domain.Rank;
 import lotto.domain.UserLotto;
 import lotto.domain.WinningLotto;
 
-public class Game {
+public class Controller {
     public void run() {
         int purchaseAmount = buyLotto();
         UserLotto userLotto = completeBuyingLotto(purchaseAmount);

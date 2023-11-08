@@ -59,7 +59,7 @@ public class InputValidator {
 
     public static ResponseStatus lottoLengthCheck(List<Integer> lottoNumbers){
         try{
-            if(lottoNumbers.size() > LottoConstant.LOTTO_NUMBER_COUNT){
+            if(lottoNumbers.size() != LottoConstant.LOTTO_NUMBER_COUNT){
                 throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
             }
             return ResponseStatus.OK;

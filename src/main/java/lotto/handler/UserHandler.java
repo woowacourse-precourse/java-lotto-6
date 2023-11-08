@@ -128,10 +128,11 @@ public class UserHandler {
         if (BonusNumberInput == null || BonusNumberInput.isEmpty()){
             throw new IllegalArgumentException("값을 입력해주세요.");
         }
-
         int bonusNumber = Integer.parseInt(BonusNumberInput);
+        List<String> winningNumbers = UserHandler.getWinningNumberFromUser();
 
         checkvalidateBonusNumber(bonusNumber);
+        checkDuplicateWithWinningNumbers(bonusNumber,winningNumbers);
 
         return bonusNumber;
     }
@@ -141,4 +142,11 @@ public class UserHandler {
             throw new IllegalArgumentException("보너스 번호는 1부터 45까지의 숫자입니다.");
         }
     }
+    private static void checkDuplicateWithWinningNumbers(int bonusNumber, List<String> winningNumbers) {
+        if (winningNumbers.contains(String.valueOf(bonusNumber))) {
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
+
+
 }

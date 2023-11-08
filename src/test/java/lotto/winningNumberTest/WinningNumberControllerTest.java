@@ -21,11 +21,11 @@ public class WinningNumberControllerTest {
         WinningNumberController.getInstance().putWinningNums(winningNums);
 
         //then
-        Assertions.assertThat(WinningNumber.getWinningNums().get(0)).isEqualTo(1);
-        Assertions.assertThat(WinningNumber.getWinningNums().get(1)).isEqualTo(2);
-        Assertions.assertThat(WinningNumber.getWinningNums().get(2)).isEqualTo(3);
-        Assertions.assertThat(WinningNumber.getWinningNums().get(3)).isEqualTo(4);
-        Assertions.assertThat(WinningNumber.getWinningNums().get(4)).isEqualTo(5);
+        Assertions.assertThat(WinningNumber.getInstance().getWinningNums().get(0)).isEqualTo(1);
+        Assertions.assertThat(WinningNumber.getInstance().getWinningNums().get(1)).isEqualTo(2);
+        Assertions.assertThat(WinningNumber.getInstance().getWinningNums().get(2)).isEqualTo(3);
+        Assertions.assertThat(WinningNumber.getInstance().getWinningNums().get(3)).isEqualTo(4);
+        Assertions.assertThat(WinningNumber.getInstance().getWinningNums().get(4)).isEqualTo(5);
 
     }
 
@@ -41,7 +41,7 @@ public class WinningNumberControllerTest {
         WinningNumberController.getInstance().putBonusNum(bonusNum);
 
         //then
-        Assertions.assertThat(WinningNumber.getBonusNum()).isEqualTo(7);
+        Assertions.assertThat(WinningNumber.getInstance().getBonusNum()).isEqualTo(7);
 
 
     }

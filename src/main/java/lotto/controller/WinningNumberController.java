@@ -15,10 +15,10 @@ public class WinningNumberController {
     }
 
     public   void putWinningNums(String winningNums){
-        WinningNumber.putWinningNums(winningNums);
+        WinningNumber.getInstance().putWinningNums(winningNums);
     }
     public  void putBonusNum(String bonusNum){
-        WinningNumber.putBonusNum(bonusNum);
+        WinningNumber.getInstance().putBonusNum(bonusNum);
 
     }
 }

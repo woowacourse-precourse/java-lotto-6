@@ -34,10 +34,10 @@ public class LottoCompareController {
         int mathNum = 0;
         boolean bonusNum = false;
         for(Integer lottoNum : lotto.getNumbers()){
-            if(WinningNumber.getWinningNums().contains(lottoNum)){
+            if(WinningNumber.getInstance().getWinningNums().contains(lottoNum)){
                 mathNum++;
             }
-            if(WinningNumber.getBonusNum() == lottoNum){
+            if(WinningNumber.getInstance().getBonusNum() == lottoNum){
                 bonusNum = true;
             }
         }

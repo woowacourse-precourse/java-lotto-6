@@ -11,11 +11,11 @@ public class LottoDrawMachine {
 
     public LottoDrawMachine(Lotto lottoNumber, int bonusNumber) {
         this.lottoNumber = lottoNumber;
-        validate(bonusNumber);
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(int number) {
+    private void validateBonusNumber(int number) {
         checkValidRange(number);
         checkDuplicate(number);
     }
@@ -35,11 +35,4 @@ public class LottoDrawMachine {
         }
     }
 
-    public Lotto getLottoNumber() {
-        return lottoNumber;
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
 }

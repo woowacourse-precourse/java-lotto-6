@@ -10,12 +10,12 @@ public class LottoTicket {
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
 
-    private final int count;
+    private final int numberOfLotto;
     private final List<Lotto> lottoTickets;
 
-    public LottoTicket(int count) {
-        this.count = count;
-        List<Lotto> lottoTickets = issueTickets(count);
+    public LottoTicket(int numberOfLotto) {
+        this.numberOfLotto = numberOfLotto;
+        List<Lotto> lottoTickets = issueTickets(numberOfLotto);
         this.lottoTickets = lottoTickets;
     }
 
@@ -40,6 +40,6 @@ public class LottoTicket {
     }
 
     public int getCount() {
-        return count;
+        return numberOfLotto;
     }
 }

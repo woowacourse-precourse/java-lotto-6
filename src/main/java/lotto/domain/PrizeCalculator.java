@@ -12,7 +12,7 @@ public class PrizeCalculator {
         this.bonusNumber = bonusNumber;
     }
 
-    public LottoResult evaluateLotto(LottoTicket lottoTicket, int purchaseAmount) {
+    public LottoResult calculateLottoResult(LottoTicket lottoTicket, int purchaseAmount) {
         EnumMap<Prize, Integer> prizeResults = calculatePrizes(lottoTicket);
         double earnRate = calculateEarnRate(prizeResults, purchaseAmount);
         return new LottoResult(prizeResults, earnRate);

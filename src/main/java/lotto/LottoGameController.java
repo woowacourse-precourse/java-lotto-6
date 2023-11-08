@@ -85,7 +85,7 @@ public class LottoGameController {
     }
 
     private void prizeResult(LottoTicket lottoTicket, int purchaseAmount) {
-        LottoResult lottoResult = prizeCalculator.evaluateLotto(lottoTicket, purchaseAmount);
+        LottoResult lottoResult = prizeCalculator.calculateLottoResult(lottoTicket, purchaseAmount);
         outputView.prizeResult(lottoResult.getPrizeResults(), lottoResult.getEarnRate());
     }
 

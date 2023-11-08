@@ -31,7 +31,7 @@ class PrizeCalculatorTest {
         int purchaseAmount = 10000; // 구매 금액 예시
         LottoTicket lottoTicket = new LottoTicket(count);
 
-        LottoResult result = calculator.evaluateLotto(lottoTicket, purchaseAmount);
+        LottoResult result = calculator.calculateLottoResult(lottoTicket, purchaseAmount);
         EnumMap<Prize, Integer> results = result.getPrizeResults();
 
         int totalPrizesCount = results.values().stream()
@@ -51,7 +51,7 @@ class PrizeCalculatorTest {
         when(lottoTicket.getLottoTickets())
                 .thenReturn(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6))));
 
-        LottoResult result = calculator.evaluateLotto(lottoTicket, purchaseAmount);
+        LottoResult result = calculator.calculateLottoResult(lottoTicket, purchaseAmount);
         assertEquals(1, result.getPrizeResults().getOrDefault(Prize.FIRST, 0));
         assertEquals(expectedEarnRate, result.getEarnRate());
     }
@@ -67,7 +67,7 @@ class PrizeCalculatorTest {
         when(lottoTicket.getLottoTickets())
                 .thenReturn(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 7))));
 
-        LottoResult result = calculator.evaluateLotto(lottoTicket, purchaseAmount);
+        LottoResult result = calculator.calculateLottoResult(lottoTicket, purchaseAmount);
         assertEquals(1, result.getPrizeResults().getOrDefault(Prize.SECOND, 0));
         assertEquals(expectedEarnRate, result.getEarnRate());
     }
@@ -83,7 +83,7 @@ class PrizeCalculatorTest {
         when(lottoTicket.getLottoTickets())
                 .thenReturn(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 8))));
 
-        LottoResult result = calculator.evaluateLotto(lottoTicket, purchaseAmount);
+        LottoResult result = calculator.calculateLottoResult(lottoTicket, purchaseAmount);
         assertEquals(1, result.getPrizeResults().getOrDefault(Prize.THIRD, 0));
         assertEquals(expectedEarnRate, result.getEarnRate());
     }
@@ -99,7 +99,7 @@ class PrizeCalculatorTest {
         when(lottoTicket.getLottoTickets())
                 .thenReturn(List.of(new Lotto(List.of(1, 2, 3, 4, 7, 8))));
 
-        LottoResult result = calculator.evaluateLotto(lottoTicket, purchaseAmount);
+        LottoResult result = calculator.calculateLottoResult(lottoTicket, purchaseAmount);
         assertEquals(1, result.getPrizeResults().getOrDefault(Prize.FOURTH, 0));
         assertEquals(expectedEarnRate, result.getEarnRate());
     }
@@ -115,7 +115,7 @@ class PrizeCalculatorTest {
         when(lottoTicket.getLottoTickets())
                 .thenReturn(List.of(new Lotto(List.of(1, 2, 3, 7, 8, 9))));
 
-        LottoResult result = calculator.evaluateLotto(lottoTicket, purchaseAmount);
+        LottoResult result = calculator.calculateLottoResult(lottoTicket, purchaseAmount);
         assertEquals(1, result.getPrizeResults().getOrDefault(Prize.FIFTH, 0));
         assertEquals(expectedEarnRate, result.getEarnRate());
     }
@@ -130,7 +130,7 @@ class PrizeCalculatorTest {
         when(lottoTicket.getLottoTickets())
                 .thenReturn(List.of(new Lotto(List.of(1, 2, 7, 8, 9, 10))));
 
-        LottoResult result = calculator.evaluateLotto(lottoTicket, purchaseAmount);
+        LottoResult result = calculator.calculateLottoResult(lottoTicket, purchaseAmount);
         assertEquals(1, result.getPrizeResults().getOrDefault(Prize.NONE, 0));
         assertEquals(expectedEarnRate, result.getEarnRate());
     }

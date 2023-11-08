@@ -32,7 +32,7 @@ public class Lotto {
         }
     }
 
-    private static boolean hasInvalidRange(int number) {
+    public static boolean hasInvalidRange(int number) {
         return number < LOTTO_NUMBER_LOWER_BOUND || number > LOTTO_NUMBER_UPPER_BOUND;
     }
 

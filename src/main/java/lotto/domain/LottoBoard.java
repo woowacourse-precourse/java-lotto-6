@@ -23,6 +23,9 @@ public class LottoBoard {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION);
         }
+        if (Lotto.hasInvalidRange(bonusNumber)) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_OUT_OF_RANGE);
+        }
     }
 
     public List<Rank> calculateRanks() {

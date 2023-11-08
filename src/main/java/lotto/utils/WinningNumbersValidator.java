@@ -6,7 +6,7 @@ public class WinningNumbersValidator {
         validIsEndWithComma(input);
     }
 
-    public static int validDigitIsInt(String digit) {
+    public static void validDigitIsInt(String digit) {
         try {
             Integer.parseInt(digit);
         } catch (NumberFormatException e) {

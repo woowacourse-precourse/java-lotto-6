@@ -9,11 +9,11 @@ import java.util.ListIterator;
 
 public class LottoMachine {
     private enum rank{
-        FIRST(0,2000000000),
-        SECOND(1,30000000),
-        THIRD(2,1500000),
-        FOURTH(3,50000),
-        FIFTH(4,5000);
+        FIRST(6,2000000000),
+        SECOND(7,30000000),
+        THIRD(5,1500000),
+        FOURTH(4,50000),
+        FIFTH(3,5000);
 
         private final int index;
         private final int reward;
@@ -137,28 +137,19 @@ public class LottoMachine {
     }
 
     public void result(){
-        int[] winner = new int[5];
+        int[] winner = new int[8];
         for(Lotto k : lotto){
-            check(k.getNumbers(),winner);
+            int count = k.check(win);
+            winner[count]++;
+            if(count == 5 && k.checkBonus(bonus)){
+                winner[count]--;
+                winner[rank.SECOND.index]++;
+            }
         }
         drawResult(winner);
     }
 
-    public void check(List<Integer> currentLotto, int[] winner){
-        int count = 0;
-        for(int i = 0; i < win.size(); i++){
-            if(currentLotto.contains(win.get(i))){
-                count++;
-            }
-        }
-        if(count == 5){
-            if(currentLotto.contains(bonus)){
-                winner[rank.SECOND.index]++;
-                return;
-            }
-        }
-        winner[count]++;
-    }
+
 
     public void drawResult(int[] winner){
         System.out.println("\n당첨 통계\n---");

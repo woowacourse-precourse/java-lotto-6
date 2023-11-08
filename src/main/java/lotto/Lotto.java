@@ -37,17 +37,20 @@ public class Lotto {
     public List<Integer> getNumbers(){
         return this.numbers;
     }
-    public int check(List<Integer> answer, int bonus){
+    public int check(List<Integer> answer){
         int count = 0;
-        for(int i = 0; i < answer.size(); i++){
-            if(numbers.contains(answer.get(i))){
+        for(int i = 0; i < answer.size(); i++) {
+            if (numbers.contains(answer.get(i))) {
                 count++;
             }
         }
-        if(count == 5 && numbers.contains(bonus)){
-            return 7;
-        }
+        return count;
+    }
 
-        return answer.size() - count;
+    public boolean checkBonus(int bonus){
+        if(numbers.contains(bonus)){
+            return true;
+        }
+        return false;
     }
 }

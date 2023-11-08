@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class CalEarn {
 
-    public static void CalEarn(Map<Ranking, Integer> result, Long price){
+    public static void CalEarn(Map<Ranking, Integer> result, Long price) {
 
         double earn = 0;
 

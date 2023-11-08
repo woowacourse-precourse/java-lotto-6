@@ -19,8 +19,8 @@ public class CompareTest {
 
         Map<Ranking, Integer> result = new HashMap<>();
         List<Lotto> lottos = new ArrayList<>();
-        lottos.add(new Lotto(List.of(1,2,3,4,5,6)));
-        Lotto winer_lotto = new Lotto(List.of(1,2,3,4,5,6));
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        Lotto winer_lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         result = CompareNumbers(lottos, winer_lotto, 7);
 
@@ -34,8 +34,8 @@ public class CompareTest {
 
         Map<Ranking, Integer> result = new HashMap<>();
         List<Lotto> lottos = new ArrayList<>();
-        lottos.add(new Lotto(List.of(1,2,3,4,5,6)));
-        Lotto winer_lotto = new Lotto(List.of(1,2,3,4,5,7));
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        Lotto winer_lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
 
         result = CompareNumbers(lottos, winer_lotto, 6);
 
@@ -49,8 +49,8 @@ public class CompareTest {
 
         Map<Ranking, Integer> result = new HashMap<>();
         List<Lotto> lottos = new ArrayList<>();
-        lottos.add(new Lotto(List.of(1,2,3,4,5,6)));
-        Lotto winer_lotto = new Lotto(List.of(1,2,3,4,5,8));
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        Lotto winer_lotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
 
         result = CompareNumbers(lottos, winer_lotto, 7);
 
@@ -64,8 +64,8 @@ public class CompareTest {
 
         Map<Ranking, Integer> result = new HashMap<>();
         List<Lotto> lottos = new ArrayList<>();
-        lottos.add(new Lotto(List.of(1,2,3,4,5,6)));
-        Lotto winer_lotto = new Lotto(List.of(1,2,3,4,7,8));
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        Lotto winer_lotto = new Lotto(List.of(1, 2, 3, 4, 7, 8));
 
         result = CompareNumbers(lottos, winer_lotto, 7);
 
@@ -79,8 +79,8 @@ public class CompareTest {
 
         Map<Ranking, Integer> result = new HashMap<>();
         List<Lotto> lottos = new ArrayList<>();
-        lottos.add(new Lotto(List.of(1,2,3,4,5,6)));
-        Lotto winer_lotto = new Lotto(List.of(1,2,3,7,8,9));
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        Lotto winer_lotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
 
         result = CompareNumbers(lottos, winer_lotto, 7);
 

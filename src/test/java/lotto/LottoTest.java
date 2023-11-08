@@ -36,8 +36,8 @@ class LottoTest {
     @Test
     void compareLottoWithWinnerLotto() {
 
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
-        Lotto winner_lotto = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winner_lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         assertThat(lotto.CompWinner(winner_lotto)).isEqualTo(6);
 
@@ -47,7 +47,7 @@ class LottoTest {
     @Test
     void compareLottoWithBonus() {
 
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         assertThat(lotto.ContainNumber(6)).isEqualTo(true);
 

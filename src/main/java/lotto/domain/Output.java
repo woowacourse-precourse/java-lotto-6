@@ -35,7 +35,7 @@ public class Output {
         }
     }
 
-    public static void PrintEarning(double earn){
+    public static void PrintEarning(double earn) {
         System.out.println("총 수익률은 " + String.format("%.1f", earn) + "%입니다.");
     }
 

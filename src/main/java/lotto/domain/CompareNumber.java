@@ -11,7 +11,7 @@ public class CompareNumber {
 
         Map<Ranking, Integer> result = new HashMap<>();
 
-        for(Ranking rank: Ranking.values()){
+        for (Ranking rank : Ranking.values()) {
             result.put(rank, 0);
         }
 

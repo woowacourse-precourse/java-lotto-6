@@ -19,6 +19,7 @@ public class Application {
     private static int bonus_number = 0;
     private static List<Lotto> lottos = new ArrayList<>();
     private static Map<Ranking, Integer> result = new HashMap<>();
+
     public static void main(String[] args) {
         Output.PrintInputPrice();
         price = Input.InputPrice();

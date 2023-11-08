@@ -63,8 +63,13 @@ class ViewTest extends NsTest {
         );
     }
 
+    @DisplayName("당첨 로또에 숫자가 아닌 문자를 입력하면 예외가 발생한다.")
     @Test
-    void inputAndValidateWinningLotto() {
+    void inputNonNumericWinningLotto() {
+        assertSimpleTest(() -> {
+            runException("1000", "a,b,c,d,e,f");
+            assertThat(output()).contains("[ERROR] 로또 번호는 숫자여야 합니다.");
+        });
     }
 
     @Test

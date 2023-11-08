@@ -28,13 +28,14 @@ public class Buy {
         Exception exception = new Exception();
         System.out.println("구입금액을 입력해주세요.");
         String message = "[ERROR] 금액은 1000 단위 숫자로 입력해주세요.";
-        while (totalAmount < Constants.LOTTOPRICE) {
-            totalAmount = exception.checkInt(Console.readLine(), message);
-        }
         while (!correctAmount) {
+            totalAmount = exception.checkInt(Console.readLine());
+            if(totalAmount < Constants.LOTTOPRICE) {
+                System.out.println(message);
+                continue;
+            }
             correctAmount = exception.checkAmount(totalAmount, correctAmount, message);
         }
-        System.out.println();
         return totalAmount / Constants.LOTTOPRICE;
     }
 

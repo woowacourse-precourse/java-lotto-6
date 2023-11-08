@@ -3,11 +3,7 @@ package lotto;
 import lotto.domain.Buy;
 import lotto.domain.Draw;
 import lotto.domain.Judgement;
-import lotto.domain.Prize;
 import lotto.view.PrintGames;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {

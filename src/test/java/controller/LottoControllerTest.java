@@ -10,8 +10,6 @@ import type.TextType;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoControllerTest extends NsTest {
     private LottoController lottoController;
@@ -76,10 +74,38 @@ class LottoControllerTest extends NsTest {
         assertSimpleTest(
                 () -> {
                     runException("5000", input);
-                    assertThat(output()).contains();
+                    assertThat(output()).contains(TextType.LOTTO_BONUS.getText());
                 }
         );
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {" ", "\n", "A"})
+    void 보너스_번호_입력_예외_테스트(String input) {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", input);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "46", "0"})
+    void 보너스_번호_중복_범위_예외_테스트(String input) {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", input);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"7", "45", "1"})
+    void 보너스_번호_정상_입력_테스트(String input) {
+        assertSimpleTest(() -> {
+            runException("5000", "9,2,3,4,5,6", input);
+            assertThat(output()).contains(TextType.WINNING_STATISTICS.getText());
+        });
+    }
+
 
     @Override
     protected void runMain() {

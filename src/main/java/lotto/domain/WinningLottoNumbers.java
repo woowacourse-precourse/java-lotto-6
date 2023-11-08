@@ -60,4 +60,7 @@ public class WinningLottoNumbers {
         return winningLotto;
     }
 
+    public int getBonus() {
+        return bouns;
+    }
 }

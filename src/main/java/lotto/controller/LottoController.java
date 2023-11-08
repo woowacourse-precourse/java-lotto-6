@@ -44,5 +44,10 @@ public class LottoController {
             enterWinning();
             return;
         }
+        showWinningStatistics();
+    }
+
+    private void showWinningStatistics() {
+        outputView.showWinningStatistics(lottoService.setWinningStatistics());
     }
 }

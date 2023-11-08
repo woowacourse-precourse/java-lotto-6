@@ -3,9 +3,9 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.Winning;
+import lotto.domain.WinningDto;
 import lotto.repository.LottoRepository;
 import lotto.repository.WinningRepository;
-
 import java.util.List;
 
 public class LottoService {
@@ -37,14 +37,59 @@ public class LottoService {
         Integer validatedBonus = validation.validateBonus(bonusNumber, validatedWinning);
         Winning winning = new Winning(validatedWinning, validatedBonus);
         winningRepository.save(winning);
-
-        System.out.println("validatedWinning = " + validatedWinning);
-        System.out.println("validatedBonus = " + validatedBonus);
     }
 
+    public WinningDto setWinningStatistics() {
+        List<Lotto> lottos = lottoRepository.findAll();
+        Winning winning = winningRepository.find();
+        List<Integer> winningNumbers = winning.getWinningNumbers();
+        Integer bonusNumber = winning.getBonusNumber();
+        WinningDto winningDto = new WinningDto();
 
+        calculateCoincidenceAndAddToWinningDto(lottos, winningNumbers, bonusNumber, winningDto);
+        calculateAndSetEarningRate(lottos, winningDto);
+        
+        return winningDto;
+    }
 
+    
+    private static void calculateCoincidenceAndAddToWinningDto(List<Lotto> lottos, List<Integer> winningNumbers, Integer bonusNumber, WinningDto winningDto) {
+        for (Lotto lotto : lottos) {
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            int coincidenceCount = calculateCoincidenceCount(winningNumbers, lottoNumbers);
+            addCountToWinningDto(bonusNumber, winningDto, lottoNumbers, coincidenceCount);
+        }
+    }
 
+    private static int calculateCoincidenceCount(List<Integer> winningNumbers, List<Integer> lottoNumbers) {
+        int coincidenceCount = 0;
+        for (Integer lottoNumber : lottoNumbers) {
+            if (winningNumbers.contains(lottoNumber)) {
+                coincidenceCount++;
+            }
+        }
+        return coincidenceCount;
+    }
 
+    private static void addCountToWinningDto(Integer bonusNumber, WinningDto winningDto, List<Integer> lottoNumbers, int coincidenceCount) {
+        if (coincidenceCount == 3) {
+            winningDto.addCountThree();
+        } else if (coincidenceCount == 4) {
+            winningDto.addCountFour();
+        } else if (coincidenceCount == 5) {
+            if (lottoNumbers.contains(bonusNumber)) {
+                winningDto.addCountFivePlusBonus();
+            } else if (!lottoNumbers.contains(bonusNumber)) {
+                winningDto.addCountFive();
+            }
+        } else if (coincidenceCount == 6) {
+            winningDto.addCountSix();
+        }
+    }
 
+    private static void calculateAndSetEarningRate(List<Lotto> lottos, WinningDto winningDto) {
+        double totalPrize = winningDto.calculateTotalPrize();
+        Double earningRate = totalPrize / (lottos.size() * 1000) * 100;
+        winningDto.setEarningRate(earningRate);
+    }
 }

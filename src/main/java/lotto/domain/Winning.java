@@ -19,6 +19,10 @@ public class Winning {
         return winningNumbers;
     }
 
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validateWinningNumbers(List<Integer> winningNumbers) {
         validateWinningNumberSize(winningNumbers);
         validateWinningNumbersRange(winningNumbers);

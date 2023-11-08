@@ -32,5 +32,4 @@ public class WinningAnalyzer {
         return total / (double) inputMoney * 100;
 
     }
-
 }

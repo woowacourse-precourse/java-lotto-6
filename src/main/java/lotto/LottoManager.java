@@ -14,32 +14,28 @@ public class LottoManager {
     List<List<Integer>> lottoCandidateSets = new ArrayList<>();
     Lotto winLotto;
     public void insertMoney() {
+        int money=0;
+
         System.out.println("구입금액을 입력해 주세요.");
-        insertMoneyErrorHandling();
+        money=Integer.parseInt(Console.readLine());
+        insertMoneyErrorHandling(money);
     }
 
-    public void insertMoneyErrorHandling()
-    {
-        int money =0;
-        boolean pass = true;
-
-        do {
-            try {
-                money=Integer.parseInt(Console.readLine());
-                pass=true;
-                checkMoney(money);
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
-                pass = false;
-            }
-        } while (!pass);
-        buyMoney=money;
+    public void insertMoneyErrorHandling(int money) {
+        try {
+            checkMoney(money);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            System.out.println();
+            insertMoney();
+        }
     }
 
     private void checkMoney(int money) {
         if (money % 1000 != 0) {
             throw new IllegalArgumentException("금액은 1000단위로 입력해주세요.");
         }
+        buyMoney=money;
     }
 
     public void buyLottoAmount(){
@@ -91,8 +87,7 @@ public class LottoManager {
         insertLottoNumbersErrorHandling(winLottoSet);
     }
 
-    private void insertLottoNumbersErrorHandling(List<Integer> winLottoSet)
-    {
+    private void insertLottoNumbersErrorHandling(List<Integer> winLottoSet) {
         try {
             winLotto = new Lotto(winLottoSet);
         } catch (IllegalArgumentException e) {
@@ -102,8 +97,24 @@ public class LottoManager {
         }
     }
 
-    private void insertBonusNumber(){
+    public void insertBonusNumber(){
+        int number=0;
 
+        System.out.println();
+        System.out.println("보너스 번호를 입력해주세요.");
+        number=Integer.parseInt(Console.readLine());
+        insertBonusNumberErrorHandling(number);
+    }
+
+    private void insertBonusNumberErrorHandling(int number){
+        try {
+            checkBonusNumberRange(number);
+            checkBonusNumberInLottoNumbers(number);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            System.out.println();
+            insertBonusNumber();
+        }
     }
 
     private void checkBonusNumberRange(int number){

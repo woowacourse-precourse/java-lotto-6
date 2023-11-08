@@ -11,5 +11,6 @@ public class Application {
         lottoManager.loopCreateLottoCandidateNumbers();
         lottoManager.showAllLottoCandidateSets();
         lottoManager.insertLottoNumbers();
+        lottoManager.insertBonusNumber();
     }
 }

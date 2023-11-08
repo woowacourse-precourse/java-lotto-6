@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,9 @@ public class LottoTicket {
     }
 
     public static LottoTicket purchase(int amount) {
+        if (amount < 1000) {
+            throw new IllegalArgumentException("로또 한 장의 가격은 1,000원입니다. 1,000원 이상의 금액을 입력해주세요.");
+        }
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("로또 한 장은 1,000원입니다.");
         }

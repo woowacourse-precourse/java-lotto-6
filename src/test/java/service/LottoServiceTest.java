@@ -18,6 +18,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoServiceTest extends NsTest {
+    public static final double FIFTH_PRICE = 5000;
+    public static final double FOURTH_PRICE = 50000;
+    public static final double SECOND_PRICE = 30000000;
     private LottoService lottoService;
 
     @BeforeEach
@@ -100,6 +103,25 @@ class LottoServiceTest extends NsTest {
         assertEquals(1, winningResult.get(3));
         assertEquals(1, winningResult.get(4));
         assertEquals(1, winningResult.get(7));
+    }
+
+    @Test
+    void 수익률_예측_테스트() {
+        //given
+        lottoService.generatePlayer(3000);
+        lottoService.setPlayerWinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        lottoService.setPlayerBonusMatchNumber(7);
+        lottoService.addLotto(new Lotto(List.of(1, 2, 3, 10, 20, 30)));
+        lottoService.addLotto(new Lotto(List.of(1, 2, 3, 4, 20, 30)));
+        lottoService.addLotto(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
+
+        //when
+        lottoService.getWinningResult();
+        double result = lottoService.getEarnRatio();
+        double earnRatio = ((FIFTH_PRICE + FOURTH_PRICE + SECOND_PRICE) / 3000) * 100.0;
+
+        //then
+        assertEquals(earnRatio, result);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.manager.AwardManager;
+import lotto.domain.manager.AwardManager;
 import lotto.domain.BonusNumber;
 import lotto.domain.UserLotto;
 import lotto.domain.WinningLotto;
@@ -12,9 +12,13 @@ public class LottoController {
     private BonusNumber bonusNumber;
     private RuntimeValidation runtimeValidation = new RuntimeValidation();
 
-    public void run() {
+    public LottoController() {
+        userLotto = new UserLotto();
+        winningLotto = new WinningLotto();
+        bonusNumber = new BonusNumber();
+    }
 
-        initialize();
+    public void run() {
 
         runtimeValidation.runtimeCompareBounsWithWinning(bonusNumber, winningLotto);
         AwardManager awardManager = new AwardManager();
@@ -22,9 +26,4 @@ public class LottoController {
         awardManager.printYield();
     }
 
-    private void initialize() {
-        userLotto = new UserLotto();
-        winningLotto = new WinningLotto();
-        bonusNumber = new BonusNumber();
-    }
 }

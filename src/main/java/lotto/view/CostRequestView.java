@@ -14,7 +14,7 @@ public final class CostRequestView {
     }
 
     private static class Validator {
-        private static String validate(String cost) {
+        private static String validate(final String cost) {
             validateNumber(cost);
             return cost;
         }

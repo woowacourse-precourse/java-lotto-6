@@ -26,7 +26,7 @@ public class BonusRequestVIew {
     }
 
     private static class Validator {
-        private static String validate(String message) {
+        private static String validate(final String message) {
             lotto.global.validator.Validator.validateNumber(message);
             return message;
         }

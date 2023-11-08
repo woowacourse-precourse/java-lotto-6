@@ -39,30 +39,30 @@ public class WinningRequestView {
     }
 
     private static class Validator {
-        private static String validate(String message) {
+        private static String validate(final String message) {
             validateInvalidSeparators(message);
             return message;
         }
 
-        private static void validateInvalidSeparators(String message) {
+        private static void validateInvalidSeparators(final String message) {
             if (hasEdgeSeparator(message) || hasDuplicatedSeparator(message)) {
                 throw LottoException.from(ErrorMessage.INVALID_SEPARATOR_ERROR);
             }
         }
 
-        private static boolean hasEdgeSeparator(String message) {
+        private static boolean hasEdgeSeparator(final String message) {
             return startsWithSeparator(message) || endsWithSeparator(message);
         }
 
-        private static boolean startsWithSeparator(String message) {
+        private static boolean startsWithSeparator(final String message) {
             return message.startsWith(SEPARATOR);
         }
 
-        private static boolean endsWithSeparator(String message) {
+        private static boolean endsWithSeparator(final String message) {
             return message.endsWith(SEPARATOR);
         }
 
-        private static boolean hasDuplicatedSeparator(String message) {
+        private static boolean hasDuplicatedSeparator(final String message) {
             return message.contains(SEPARATOR.repeat(2));
         }
     }

@@ -10,14 +10,14 @@ public final class Input {
     }
 
     private static class Validator {
-        private static String validate(String message) {
+        private static String validate(final String message) {
             if (isBlank(message)) {
                 throw LottoException.from(ErrorMessage.BLANK_INPUT_ERROR);
             }
             return message;
         }
 
-        private static boolean isBlank(String message) {
+        private static boolean isBlank(final String message) {
             return message.isBlank();
         }
     }

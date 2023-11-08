@@ -15,7 +15,7 @@ public class WinningResultView {
     private static final String WINNING_RESULT_WITH_BONUS_INFORMATION = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
     private static final String EARNINGS_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
-    public static void print(WinningResult winningResult, Cost cost) {
+    public static void print(final WinningResult winningResult, final Cost cost) {
         printlnMessageWithNewLine(WINNING_RESULT_NOTICE);
 
         Arrays.stream(WinningType.values())
@@ -25,14 +25,14 @@ public class WinningResultView {
         printlnFormat(EARNINGS_RATE_MESSAGE, winningResult.calculateEarningsRate(cost));
     }
 
-    private static void printWinningNumbers(WinningType winningType, WinningResult winningResult) {
+    private static void printWinningNumbers(final WinningType winningType, final WinningResult winningResult) {
         printlnFormat(getResultInformation(winningType),
                 winningType.getWinningCount(),
                 winningType.getPrice(),
                 winningResult.getValue(winningType));
     }
 
-    private static String getResultInformation(WinningType winningType) {
+    private static String getResultInformation(final WinningType winningType) {
         if (winningType.hasBonusNumber() == false) {
             return WINNING_RESULT_INFORMATION;
         }

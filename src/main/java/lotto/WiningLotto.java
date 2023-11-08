@@ -34,5 +34,9 @@ public class WiningLotto {
         return winNumber.getNumbers();
     }
 
+    public int getBonus() {
+        return bonus;
+    }
+
 
 }

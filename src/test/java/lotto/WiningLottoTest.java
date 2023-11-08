@@ -30,4 +30,10 @@ public class WiningLottoTest {
     void createPassingWinNumbers() {
         assertThat(new WiningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7).getWinNumber()).isInstanceOf(List.class);
     }
+
+    @DisplayName("보너스 숫자를 전달한다.")
+    @Test
+    void createPassingBonusNumber() {
+        assertThat(new WiningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7).getBonus()).isEqualTo(7);
+    }
 }

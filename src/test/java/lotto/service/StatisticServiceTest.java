@@ -45,8 +45,16 @@ public class StatisticServiceTest {
     }
     @Test
     void testCalculateYield() {
-        double expectedYield = 348334.2;
-        double actualYield =  statisticService.calculateYield(results, LOTTO_PRICE);
-        assertThat(expectedYield).isEqualTo(actualYield);
+        int totalPrize = LottoPrize.FIRST_PRIZE.getPrize() +
+            3 * LottoPrize.SECOND_PRIZE.getPrize() +
+            LottoPrize.FIFTH_PRIZE.getPrize();
+        int totalPrice = results.size() * LOTTO_PRICE;
+
+        double expectedYield = ((double) totalPrize / totalPrice) * 100;
+        expectedYield = Math.round(expectedYield * 100.0) / 100.0;
+
+        double actualYield = statisticService.calculateYield(results, LOTTO_PRICE);
+
+        assertThat(actualYield).isEqualTo(expectedYield);
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Buyer {
     private final int purchasedLottoCount;
-    private ArrayList<Lotto> purchasedLotto = new ArrayList<>();
+    private final ArrayList<Lotto> purchasedLotto = new ArrayList<>();
 
     public Buyer(Integer purchasedLottoCount) {
         this.purchasedLottoCount = purchasedLottoCount;

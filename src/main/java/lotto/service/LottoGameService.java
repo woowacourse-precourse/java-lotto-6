@@ -2,20 +2,16 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.WinningDataCategory;
-import lotto.exception.InvalidDuplicateNumberException;
 import lotto.model.Buyer;
 import lotto.model.Lotto;
 import lotto.model.LottoDecision;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.IntStream;
 
 public class LottoGameService {
     private static final int LOTTO_PRICE = 1000;
-
     private static final int WINNING_NUMBER_LENGTH = 7;
     private static final int BONUS_NUMBER_POSITION = 6;
     private static final int WINNING_DATA_LENGTH = 6;
@@ -48,27 +44,22 @@ public class LottoGameService {
     }
 
     public void completeMakingWinningNumber(List<String> defaultWinningNumbers, int bonusWinningNumber) {
-        int[] finalWinningNumber = makeFinalWinningNumber(defaultWinningNumbers, bonusWinningNumber);
-        finalWinningNumber[BONUS_NUMBER_POSITION] = bonusWinningNumber;
+        ArrayList<Integer> finalWinningNumber = makeFinalWinningNumber(defaultWinningNumbers, bonusWinningNumber);
         lottoDecision = new LottoDecision(finalWinningNumber);
     }
 
-    private int[] makeFinalWinningNumber(List<String> defaultWinningNumbers, int bonusWinningNumber) {
-        int[] finalWinningNumber = new int[WINNING_NUMBER_LENGTH];
-
-        int i = 0;
+    private ArrayList<Integer> makeFinalWinningNumber(List<String> defaultWinningNumbers, int bonusWinningNumber) {
+        ArrayList<Integer> finalWinningNumber = new ArrayList<>();
         for (String number : defaultWinningNumbers) {
-            finalWinningNumber[i] = Integer.parseInt(number);
-            i ++;
+            finalWinningNumber.add(Integer.parseInt(number));
         }
-
-        finalWinningNumber[WINNING_NUMBER_LENGTH - 1] = bonusWinningNumber;
+        finalWinningNumber.add(bonusWinningNumber);
         return finalWinningNumber;
     }
 
     public void makeWinningData() {
         ArrayList<Lotto> purchasedLotto = buyer.getPurchasedLotto();
-        int[] winningNumber = lottoDecision.getWinningNumber();
+        List<Integer> winningNumber = lottoDecision.getWinningNumber();
         int[] winningData = new int[WINNING_DATA_LENGTH];
 
         for (Lotto lotto : purchasedLotto) {
@@ -79,17 +70,17 @@ public class LottoGameService {
         lottoDecision.setWinningData(winningData);
     }
 
-    private int decisionWinningCount(List<Integer> numbers, int[]winningNumber) {
+    private int decisionWinningCount(List<Integer> numbers, List<Integer> winningNumber) {
         int winningCountPerOneLotto = 0;
-        for (int i = 0; i < winningNumber.length - 1; i++) {
-            if (numbers.contains(winningNumber[i])) {
+        for (int i = 0; i < winningNumber.size() - 1; i++) {
+            if (numbers.contains(winningNumber.get(i))) {
                 winningCountPerOneLotto += 1;
             }
         }
         return winningCountPerOneLotto;
     }
 
-    private void settingWinningData(List<Integer> numbers, int[] lottoResultList, int lottoResult, int[] winningNumber) {
+    private void settingWinningData(List<Integer> numbers, int[] lottoResultList, int lottoResult, List<Integer> winningNumber) {
         if (lottoResult == 3) {
             lottoResultList[WinningDataCategory.THREE_MATCH.getPosition()] += 1;
         }
@@ -109,8 +100,8 @@ public class LottoGameService {
         }
     }
 
-    private boolean isBonusNumberExist(List<Integer> numbers, int[] winningNumber) {
-        return numbers.contains(winningNumber[BONUS_NUMBER_POSITION]);
+    private boolean isBonusNumberExist(List<Integer> numbers, List<Integer> winningNumber) {
+        return numbers.contains(winningNumber.get(BONUS_NUMBER_POSITION));
     }
 
     public int[] getWinningData() {

@@ -1,20 +1,21 @@
 package lotto.model;
 
-import java.util.ArrayList;
+import lotto.exception.InvalidPaymentAmountException;
+
+import java.util.List;
 
 public class LottoDecision {
-    private final int[] winningNumber;
+    private final List<Integer> winningNumbers;
     private int[] winningData;
-    private float rateOfReturn;
 
-    public LottoDecision(int[] winningNumber) {
-        this.winningNumber = winningNumber;
+    public LottoDecision(List<Integer> winningNumbers) {
+        validateWinningNumberLength(winningNumbers);
+        this.winningNumbers = winningNumbers;
     }
 
-    public int[] getWinningNumber() {
-        return winningNumber;
+    public List<Integer> getWinningNumber() {
+        return winningNumbers;
     }
-
 
     public void setWinningData(int[] winningData) {
         this.winningData = winningData;
@@ -22,5 +23,11 @@ public class LottoDecision {
 
     public int[] getWinningData() {
         return this.winningData;
+    }
+
+    private void validateWinningNumberLength(List<Integer> winningNumber) {
+        if (winningNumber.size() != 7) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 7자리여야 합니다.");
+        }
     }
 }

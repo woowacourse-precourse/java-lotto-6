@@ -15,6 +15,9 @@ public class User {
 
     private void purchaseLotto(int money) {
         this.purchasedLotto = lottoStore.buyLotto(money);
+        for (Lotto purchasedLotto : purchasedLotto) {
+            System.out.println(purchasedLotto);
+        }
     }
 
     public int getMoney() {

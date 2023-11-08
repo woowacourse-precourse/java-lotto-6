@@ -2,6 +2,8 @@ package lotto.model;
 
 import java.util.List;
 import lotto.util.InputUtil;
+import lotto.util.message.ResultMessage;
+import lotto.util.message.SystemMessage;
 
 public class LottoService {
 
@@ -14,13 +16,6 @@ public class LottoService {
         this.user = buyer;
         sellLotto(buyer);
         generateWinningData();
-        List<Lotto> purchasedLotto = user.getPurchasedLotto();
-        for (Lotto lotto : purchasedLotto) {
-            System.out.println(lotto);
-        }
-        System.out.println("===============");
-        System.out.println(winningLotto);
-        System.out.println(bonusNumber);
     }
 
     private void sellLotto(User buyer) {
@@ -34,6 +29,7 @@ public class LottoService {
 
     private void generateWinningLotto() {
         boolean isValidLotto = false;
+        SystemMessage.INPUT_WINNING_NUMBER.printMessage();
         while (!isValidLotto) {
             List<Integer> winningNumbers = inputUtil.inputWinningNumbers();
             isValidLotto = isValidLottoNumber(winningNumbers);
@@ -45,12 +41,12 @@ public class LottoService {
             winningLotto = new Lotto(winningNumbers);
             return true;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
             return false;
         }
     }
 
     private void generateBonusNumber(List<LottoNumber> lottoNumbers) {
+        SystemMessage.INPUT_BONUS_NUMBER.printMessage();
         boolean isValidBonusNumber = false;
         while (!isValidBonusNumber) {
             int bonusNumber = inputUtil.inputBonusNumber(lottoNumbers);
@@ -63,7 +59,6 @@ public class LottoService {
             bonusNumber = new LottoNumber(bonusNumberInput);
             return true;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -73,6 +68,7 @@ public class LottoService {
         Judge judge = new Judge(winningLotto, bonusNumber, user);
         LottoResult drawResult = judge.draw();
         System.out.println(drawResult);
-        System.out.println(judge.calculateReturnRate(drawResult, user.getMoney()));
+        double returnRate = judge.calculateReturnRate(drawResult, user.getMoney());
+        System.out.println(ResultMessage.RETURN_RATE.getReturnRate(returnRate));
     }
 }

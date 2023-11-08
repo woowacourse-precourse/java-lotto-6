@@ -10,7 +10,7 @@ public class InputView {
         return input();
     }
 
-    public String winningNumber() {
+    public String winningNumbers() {
         System.out.println(InputMsg.WINNING_NUMBER.getMsg());
         return input();
     }

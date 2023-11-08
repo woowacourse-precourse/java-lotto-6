@@ -23,7 +23,7 @@ public class RandomLottoFactory {
 
     private static Lotto generateOneLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, LOTTO_NUMBER_CNT);
-        List<LottoNumber> lottoNumbers = numbers.stream().map(LottoNumber::new).toList();
+        List<LottoNumber> lottoNumbers = numbers.stream().map(LottoNumber::new).sorted().toList();
         return new Lotto(lottoNumbers);
     }
 }

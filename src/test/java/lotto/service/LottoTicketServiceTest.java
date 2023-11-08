@@ -8,14 +8,14 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
-import lotto.domain.Ticket;
+import lotto.domain.LottoTicket;
 import org.junit.jupiter.api.Test;
 
-class TicketServiceTest {
+class LottoTicketServiceTest {
     @Test
     void Ticket_발급_테스트() {
-        Ticket ticket = TicketService.createTicket(10000);
-        assertThat(ticket.getLottos().size()).isEqualTo(10);
+        LottoTicket lottoTicket = LottoTicketService.createTicket(10000);
+        assertThat(lottoTicket.getLottos().size()).isEqualTo(10);
     }
 
     @Test
@@ -37,15 +37,15 @@ class TicketServiceTest {
         // 5등 1개
         Lotto lotto11 = new Lotto(List.of(1, 2, 3, 7, 8, 9));
 
-        Ticket ticket = new Ticket(List.of(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6, lotto7, lotto8, lotto9, lotto10, lotto11));
+        LottoTicket lottoTicket = new LottoTicket(List.of(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6, lotto7, lotto8, lotto9, lotto10, lotto11));
         List<Integer> winningNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
-        assertThat(TicketService.getStatistics(ticket, winningNumbers, bonusNumber).get(Prize.FIRST)).isEqualTo(3);
-        assertThat(TicketService.getStatistics(ticket, winningNumbers, bonusNumber).get(Prize.SECOND)).isEqualTo(2);
-        assertThat(TicketService.getStatistics(ticket, winningNumbers, bonusNumber).get(Prize.THIRD)).isEqualTo(2);
-        assertThat(TicketService.getStatistics(ticket, winningNumbers, bonusNumber).get(Prize.FOURTH)).isEqualTo(3);
-        assertThat(TicketService.getStatistics(ticket, winningNumbers, bonusNumber).get(Prize.FIFTH)).isEqualTo(1);
+        assertThat(LottoTicketService.getStatistics(lottoTicket, winningNumbers, bonusNumber).get(Prize.FIRST)).isEqualTo(3);
+        assertThat(LottoTicketService.getStatistics(lottoTicket, winningNumbers, bonusNumber).get(Prize.SECOND)).isEqualTo(2);
+        assertThat(LottoTicketService.getStatistics(lottoTicket, winningNumbers, bonusNumber).get(Prize.THIRD)).isEqualTo(2);
+        assertThat(LottoTicketService.getStatistics(lottoTicket, winningNumbers, bonusNumber).get(Prize.FOURTH)).isEqualTo(3);
+        assertThat(LottoTicketService.getStatistics(lottoTicket, winningNumbers, bonusNumber).get(Prize.FIFTH)).isEqualTo(1);
     }
 
 
@@ -59,12 +59,12 @@ class TicketServiceTest {
         Lotto lotto6 = new Lotto(List.of(7, 11, 30, 40, 42, 43));
         Lotto lotto7 = new Lotto(List.of(2, 13, 22, 32, 38, 45));
         Lotto lotto8 = new Lotto(List.of(1, 3, 5, 14, 22, 45));
-        Ticket ticket = new Ticket(List.of(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6, lotto7, lotto8));
+        LottoTicket lottoTicket = new LottoTicket(List.of(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6, lotto7, lotto8));
 
         List<Integer> winningNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
-        double winningRate = TicketService.getProfitRate(ticket, winningNumbers, bonusNumber);
+        double winningRate = LottoTicketService.getProfitRate(lottoTicket, winningNumbers, bonusNumber);
         assertThat(winningRate).isEqualTo(62.5);
     }
 
@@ -77,11 +77,11 @@ class TicketServiceTest {
         Lotto lotto5 = new Lotto(List.of(11, 12, 13, 14, 15, 16));
         Lotto lotto6 = new Lotto(List.of(11, 12, 13, 14, 15, 16));
 
-        Ticket ticket = new Ticket(List.of(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6));
+        LottoTicket lottoTicket = new LottoTicket(List.of(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6));
         List<Integer> winningNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
-        double winningRate = TicketService.getProfitRate(ticket, winningNumbers, bonusNumber);
+        double winningRate = LottoTicketService.getProfitRate(lottoTicket, winningNumbers, bonusNumber);
         //총 수익률 -> 166.66666666...
         assertThat(winningRate).isEqualTo(166.7);
     }
@@ -92,11 +92,11 @@ class TicketServiceTest {
                 .mapToObj(i -> new Lotto(List.of(1, 2, 3, 4, 5, 6)))
                 .collect(Collectors.toList());
 
-        Ticket ticket = new Ticket(lottos);
+        LottoTicket lottoTicket = new LottoTicket(lottos);
         List<Integer> winningNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
-        double winningRate = TicketService.getProfitRate(ticket, winningNumbers, bonusNumber);
+        double winningRate = LottoTicketService.getProfitRate(lottoTicket, winningNumbers, bonusNumber);
         // 1등 100번 -> 2,000,000,000(20억) * 100 = 200,000,000,000(2천억)
         // 최대 구입 금액 -> 100,000
         // 최대 수익률 -> 2,000,000,000,000 / 100,000 = 200,000,000

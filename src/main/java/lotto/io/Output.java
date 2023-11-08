@@ -5,8 +5,8 @@ import java.util.EnumMap;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
-import lotto.domain.Ticket;
-import lotto.service.TicketService;
+import lotto.domain.LottoTicket;
+import lotto.service.LottoTicketService;
 
 public class Output {
     private static final String OUTPUT_TICKET_AMOUNT_MESSAGE = "개를 구매했습니다.";
@@ -15,9 +15,9 @@ public class Output {
     private static final String PRINT_MATCH_MASSAGE = "%d개 일치 (%,d원) - %d개%n";
     private static final String PRINT_PROFIT_RATE_MESSAGE = "총 수익률은 %s%%입니다.%n";
 
-    public static void printTicket(Ticket ticket) {
-        List<Lotto> lottos = ticket.getLottos();
-        System.out.println(ticket.getLottos().size() + OUTPUT_TICKET_AMOUNT_MESSAGE);
+    public static void printTicket(LottoTicket lottoTicket) {
+        List<Lotto> lottos = lottoTicket.getLottos();
+        System.out.println(lottoTicket.getLottos().size() + OUTPUT_TICKET_AMOUNT_MESSAGE);
         lottos.forEach(Lotto::printLotto);
         System.out.println();
     }
@@ -37,12 +37,12 @@ public class Output {
     }
 
     public static void printProfitRate(
-            Ticket ticket,
+            LottoTicket lottoTicket,
             List<Integer> winningNumbers,
             int bonusNumber)
     {
         DecimalFormat decimalFormat = new DecimalFormat("###,##0.0");
-        double profitRate = TicketService.getProfitRate(ticket, winningNumbers, bonusNumber);
+        double profitRate = LottoTicketService.getProfitRate(lottoTicket, winningNumbers, bonusNumber);
         System.out.printf(PRINT_PROFIT_RATE_MESSAGE, decimalFormat.format(profitRate));
     }
 }

@@ -6,28 +6,28 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
-import lotto.domain.Ticket;
+import lotto.domain.LottoTicket;
 
-public class TicketService {
-    public static Ticket createTicket(final int purchaseAmount) {
+public class LottoTicketService {
+    public static LottoTicket createTicket(final int purchaseAmount) {
         int lottoCount = purchaseAmount / 1000;
         List<Lotto> lottos = IntStream.range(0, lottoCount)
                 .mapToObj(i -> LottoService.createLotto())
                 .collect(Collectors.toList());
-        return new Ticket(lottos);
+        return new LottoTicket(lottos);
     }
 
     public static double getProfitRate(
-            Ticket ticket,
+            LottoTicket lottoTicket,
             List<Integer> winningNumbers,
             int bonusNumber)
     {
-        double winningAmount = getWinningAmount(ticket, winningNumbers, bonusNumber);
-        return Math.round(winningAmount / ticket.getPurchaseAmount() * 100 * 10) / 10.0;
+        double winningAmount = getWinningAmount(lottoTicket, winningNumbers, bonusNumber);
+        return Math.round(winningAmount / lottoTicket.getPurchaseAmount() * 100 * 10) / 10.0;
     }
 
     public static EnumMap<Prize, Integer> getStatistics(
-            Ticket ticket,
+            LottoTicket lottoTicket,
             List<Integer> winningNumbers,
             int bonusNumber)
     {
@@ -35,7 +35,7 @@ public class TicketService {
         for (Prize prize : Prize.values()) {
             statistics.put(prize, 0);
         }
-        ticket.getLottos()
+        lottoTicket.getLottos()
                 .forEach(lotto -> {
                     Prize prize = LottoService.getResult(lotto, winningNumbers, bonusNumber);
                     statistics.put(prize, statistics.get(prize) + 1);
@@ -44,11 +44,11 @@ public class TicketService {
     }
 
     private static double getWinningAmount(
-            final Ticket ticket,
+            final LottoTicket lottoTicket,
             final List<Integer> winningNumbers,
             final int bonusNumber)
     {
-        return ticket.getLottos()
+        return lottoTicket.getLottos()
                 .stream()
                 .map(lotto -> LottoService.getResult(lotto, winningNumbers, bonusNumber))
                 .mapToDouble(Prize::getPrizeMoney).sum();

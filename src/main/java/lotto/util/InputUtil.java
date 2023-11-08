@@ -2,14 +2,8 @@ package lotto.util;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Constants;
-import lotto.validator.InputValidator;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class InputUtil {
-    InputValidator validator = new InputValidator();
     Constants constants = new Constants();
 
     public String inputLottoAmount() {

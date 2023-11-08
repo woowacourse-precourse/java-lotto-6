@@ -10,6 +10,8 @@ public class Constants {
     public static final String LOTTO_NUMBER_OUTPUT_MESSAGE = "\n%s개를 구매했습니다.\n";
     public static final String WINNING_NUMBER_INPUT_MESSAGE ="\n당첨 번호를 입력해 주세요.\n";
     public static final String BONUS_NUMBER_INPUT_MESSAGE ="\n보너스 번호를 입력해 주세요.\n";
+    public static final String TOTAL_PROFIT_OUTPUT_MESSAGE ="총 수익률은 %.1f%%입니다.\n";
+    public static final String RESULT_OUTPUT_MESSAGE="\n당첨 통계\n---\n";
 
     public static final String LOTTO_PRICE_NOT_NUMBER_ERROR = "[ERROR] 로또 구입 금액은 숫자만 입력하세요.\n\n";
     public static final String LOTTO_PRICE_NOT_POSITIVE_ERROR = "[ERROR] 로또 구입 금액은 양수만 입력하세요.\n\n";

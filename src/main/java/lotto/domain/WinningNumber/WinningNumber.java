@@ -7,7 +7,6 @@ import java.util.List;
 import lotto.util.InputUtil;
 import lotto.validator.WinningNumberValidator;
 
-
 public class WinningNumber {
     private List<Integer> winningNumbers = new ArrayList<>();
     private int bonusNumber;

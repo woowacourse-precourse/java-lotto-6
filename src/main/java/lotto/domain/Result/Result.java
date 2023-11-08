@@ -1,5 +1,6 @@
 package lotto.domain.Result;
 
+import lotto.domain.Constants;
 import lotto.domain.Lotto.Lotto;
 import lotto.domain.WinningNumber.WinningNumber;
 
@@ -8,10 +9,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Result {
-
     private static final int INITIAL_VALUE = 0;
-
-    List<Integer> rankWinner = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0));
+    Constants constants = new Constants();
+    List<Integer> rankWinner = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
     Rank rank;
 
     private List<Lotto> lotties;
@@ -19,9 +19,7 @@ public class Result {
     private double profit;
 
     public void printResult(List<Lotto> lotties, WinningNumber winningnumber) {
-        System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.printf(constants.RESULT_OUTPUT_MESSAGE);
         this.lotties = lotties;
         this.winningNumber = winningnumber;
         setAllRank();
@@ -59,17 +57,8 @@ public class Result {
             rankWinner.set(1, rankWinner.get(1) + 1);
             return;
         }
-        if (matchNumberCount == 5) {
-            rankWinner.set(2, rankWinner.get(2) + 1);
-            return;
-        }
-        if (matchNumberCount == 4) {
-            rankWinner.set(3, rankWinner.get(3) + 1);
-            return;
-        }
-        if (matchNumberCount == 3) {
-            rankWinner.set(4, rankWinner.get(4) + 1);
-            return;
+        if (matchNumberCount >= 3) {
+            rankWinner.set(7 - matchNumberCount, rankWinner.get(7 - matchNumberCount) + 1);
         }
     }
 
@@ -79,7 +68,6 @@ public class Result {
         }
         return false;
     }
-
 
     private boolean matchBonusNumber(int num) {
         if (winningNumber.getBonusNumber() == num) {
@@ -91,22 +79,19 @@ public class Result {
     private void printRankResult() {
         int i = 0;
         for (Rank rank : Rank.values()) {
-            System.out.printf(rank.getRankOutput(), rankWinner.get(i));
+            System.out.printf(rank.getRankOutput(), rankWinner.get(4-i));
             i++;
         }
     }
 
     private void calculateProfit() {
-
         int totalProfit =
-                rankWinner.get(0) * rank.FIRSTRANK.getRankPrize()  + rankWinner.get(1) * rank.SECONDRANK.getRankPrize() + rankWinner.get(2) * rank.THIRDRANK.getRankPrize() + rankWinner.get(3) * rank.FORTHRANK.getRankPrize() + rankWinner.get(4) * rank.FIFTHRANK.getRankPrize();
+                rankWinner.get(0) * rank.FIRSTRANK.getRankPrize() + rankWinner.get(1) * rank.SECONDRANK.getRankPrize() + rankWinner.get(2) * rank.THIRDRANK.getRankPrize() + rankWinner.get(3) * rank.FORTHRANK.getRankPrize() + rankWinner.get(4) * rank.FIFTHRANK.getRankPrize();
         int totalExpenditure = lotties.size() * 1000;
-        this.profit = ((double)totalProfit / totalExpenditure) * 100;
+        this.profit = ((double) totalProfit / totalExpenditure) * 100;
     }
 
     private void printProfit() {
-        System.out.println("총 수익률은 " + String.format("%.1f", profit) + "%입니다.");
+        System.out.println(String.format(constants.TOTAL_PROFIT_OUTPUT_MESSAGE, profit));
     }
-
-
 }

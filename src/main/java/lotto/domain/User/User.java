@@ -19,6 +19,7 @@ public class User {
     InputValidator validator = new InputValidator();
     WinningNumber winningNumber = new WinningNumber();
     Result result = new Result();
+    Constants constants = new Constants();
 
     public User() {
         inputLottoAmount();
@@ -59,7 +60,7 @@ public class User {
     }
 
     private List<Integer> createLottoNumber() {
-        List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(constants.LOTTO_NUMBER_MIN, constants.LOTTO_NUMBER_MAX,constants.LOTTO_NUMBER);
         return lottoNumber;
     }
 

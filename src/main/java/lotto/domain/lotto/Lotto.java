@@ -3,8 +3,11 @@ package lotto.domain.lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.Optional;
+import java.util.Set;
+
 import lotto.domain.number.LottoNumber;
+import lotto.global.enums.ErrorMessage;
+import lotto.global.exception.InvalidValueException;
 
 public class Lotto {
 
@@ -20,6 +23,7 @@ public class Lotto {
     }
 
     public void addBonusNumber(LottoNumber lottoNumber){
+        validateDuplicateBonusNumber(lottoNumber);
         this.numbers.add(lottoNumber);
     }
 
@@ -34,8 +38,20 @@ public class Lotto {
     }
 
     private Lotto(List<LottoNumber> numbers) {
+        validateDuplicateNumber(numbers);
         validateNumberSize(numbers);
         this.numbers.addAll(numbers);
+    }
+
+    private void validateDuplicateNumber(List<LottoNumber> lottoNumbers){
+        if (this.numbers.contains(Set.of(lottoNumbers).size() != LOTTO_NUMBERS_SIZE)){
+            throw new InvalidValueException(ErrorMessage.DUPLICATED_NUMBER_VALUE);
+        }
+    };
+    private void validateDuplicateBonusNumber(LottoNumber lottoNumber){
+        if (this.numbers.contains(lottoNumber)){
+            throw new InvalidValueException(ErrorMessage.DUPLICATED_NUMBER_VALUE);
+        }
     }
 
     private void validateNumberSize(List<LottoNumber> numbers) {

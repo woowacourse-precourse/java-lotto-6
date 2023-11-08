@@ -42,11 +42,7 @@ public enum Reward {
             return NONE;
         }
 
-        boolean requiredBonusNumber = false;
-        if (matchedCount == SECOND_PLACE.matchedCount) {
-            requiredBonusNumber = bonusNumberMatched;
-        }
-
+        boolean requiredBonusNumber = getRequiredBonusNumberFromMatchedCount(bonusNumberMatched, matchedCount);
         try {
             return REWARD_GROUPING_BY_RANK
                     .get(matchedCount)
@@ -55,6 +51,14 @@ public enum Reward {
         } catch (Exception e) {
             throw new StateException(FAIL_GET_VALUE_FROM_COLLECTION);
         }
+    }
+
+    private static boolean getRequiredBonusNumberFromMatchedCount(boolean bonusNumberMatched, int matchedCount) {
+        boolean requiredBonusNumber = false;
+        if (matchedCount == SECOND_PLACE.matchedCount) {
+            requiredBonusNumber = bonusNumberMatched;
+        }
+        return requiredBonusNumber;
     }
 
     public long getAmount() {

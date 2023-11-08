@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 
+//로또 번호를 나타내는 클래스
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -28,6 +29,10 @@ public class Lotto {
         if (hasDuplicates(numbers)) {
             throw new IllegalArgumentException("[ERROR] 중복된 로또 번호가 있습니다.");
         }
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
     private boolean isWithinRange(List<Integer> numbers) {

@@ -9,7 +9,7 @@ import java.util.List;
 import lotto.Lotto;
 
 public class Printer {
-    Generator generator;
+    private final Generator generator;
 
     public Printer(Generator generator) {
         this.generator = generator;

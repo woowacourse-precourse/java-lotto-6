@@ -15,13 +15,13 @@ import lotto.winning.Tally;
 import lotto.winning.MainNumbers;
 
 public class SequenceManager {
-    PurchaseAmount purchaseAmount;
-    Printer printer;
-    MainNumbers mainNumbers;
-    BonusNumber bonusNumber;
-    PrizeRankChecker prizeRankChecker;
-    Analyst analyst;
-    ResultBoard resultBoard;
+    private final PurchaseAmount purchaseAmount;
+    private final MainNumbers mainNumbers;
+    private final BonusNumber bonusNumber;
+    private final PrizeRankChecker prizeRankChecker;
+    private final Analyst analyst;
+    private final ResultBoard resultBoard;
+
     public SequenceManager() {
         this.purchaseAmount = new PurchaseAmount();
         this.mainNumbers = new MainNumbers();
@@ -34,7 +34,7 @@ public class SequenceManager {
     public void proceed() {
         Integer totalPurchaseAmount = purchaseAmount.ask();
 
-        printer = new Printer(new Generator(totalPurchaseAmount));
+        Printer printer = new Printer(new Generator(totalPurchaseAmount));
         List<Lotto> lottos = printer.print();
 
         HashMap<Prize, HashMap<Tally, Integer>> updatedPrizes =

@@ -33,17 +33,17 @@ public class Money {
 
     // 로또 구입 금액 입력에 대한 예외 처리
     private void validateOfCost() {
-        boolean validInputPriceToBuyLotto = false;
-        while (!validInputPriceToBuyLotto) {
+        while (true) {
             try {
                 errors.checkErrorsOfInputMoney();
-                validInputPriceToBuyLotto = true;
             } catch (NumberFormatException e) {
                 System.out.println("[Error] 숫자만 입력 가능합니다.");
                 System.out.println("다시 입력해주세요.");
+                validateOfCost();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 System.out.println("다시 입력해주세요.");
+                validateOfCost();
             }
         }
     }

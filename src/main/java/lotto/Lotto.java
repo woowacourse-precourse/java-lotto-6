@@ -24,19 +24,19 @@ public class Lotto {
     private void validateOfLottoNumbers(List<Integer> numbers) {
         Errors errors = new Errors();
 
-        boolean validInputLottoNumber = false;
-        while (!validInputLottoNumber) {
+        while (true) {
             try {
                 errors.checkErrorsOfInputLottoNumbers(numbers);
-                validInputLottoNumber = true;
             } catch (NumberFormatException e) {
                 System.out.println("[Error] 숫자만 입력 가능합니다.");
                 System.out.println("다시 입력해주세요.");
                 numbers.clear();
+                validateOfLottoNumbers(numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 System.out.println("다시 입력해주세요.");
                 numbers.clear();
+                validateOfLottoNumbers(numbers);
             }
         }
     }

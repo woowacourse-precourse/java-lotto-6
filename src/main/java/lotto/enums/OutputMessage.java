@@ -12,7 +12,7 @@ public enum OutputMessage {
             + "5개 일치, 보너스 볼 일치 (5,000원) - %d개\n"
             + "6개 일치 (5,000원) - %d개"
     ),
-    RETURN_RATE("총 수익률은 %.1f%입니다.");
+    RETURN_RATE("총 수익률은 %.1f%%입니다.");
 
     private String message;
 

@@ -22,6 +22,7 @@ public class MatchCounter {
 
     public MatchCounter() {
         this.matchCounter = new HashMap<>();
+        init();
     }
 
     public void init() {
@@ -53,7 +54,7 @@ public class MatchCounter {
     }
 
     public void increaseCountByKey(String key) {
-        if (key.isBlank()) return;
+        if (key == null) return;
 
         matchCounter.put(key, matchCounter.get(key) + ONE);
     }

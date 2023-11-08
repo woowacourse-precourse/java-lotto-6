@@ -39,11 +39,11 @@ public class Converter {
     }
 
     public static Float integerToFloat(Integer number) {
-        return (Float)(Number)number;
+        return number.floatValue();
     }
 
     public static Float longToFloat(Long number) {
-        return (Float)(Number)number;
+        return number.floatValue();
     }
 
     private static void validateNumberPattern(String text) {

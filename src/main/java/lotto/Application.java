@@ -21,9 +21,9 @@ public class Application {
 
         System.out.println("");
 
-        Lotto winLotto = computer.getWinningNumber();
+        WinLotto winLotto = computer.getWinningNumber();
         int bonusNumber = computer.getBonusNumber();
-        computer.validateBonusNumber(bonusNumber, winLotto);
+        //computer.validateBonusNumber(bonusNumber, winLotto);
 
     }
 }

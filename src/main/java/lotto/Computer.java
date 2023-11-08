@@ -2,10 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -71,15 +70,15 @@ public class Computer {
         }
     }
 
-    Lotto getWinningNumber(){
+    WinLotto getWinningNumber(){
         System.out.println(ASK_WINNING_NUMBER);
         return validateWinningNumber(Console.readLine());
     }
 
-    Lotto validateWinningNumber(String input){
+   WinLotto validateWinningNumber(String input){
         List<Integer> numbers = Arrays.stream(input.split(",")).mapToInt(Integer::parseInt).boxed().collect(
                 Collectors.toList());
-        Lotto winLotto = new Lotto(numbers);
+        WinLotto winLotto = new WinLotto(numbers);
         return winLotto;
     }
 
@@ -102,8 +101,16 @@ public class Computer {
         if(bonusNumber > MAX_NUMBER || bonusNumber < MIN_NUMBER){
             throw new IllegalArgumentException(RANGE_EXCEPTION_MESSAGE);
         }
-        if(lotto.isNumbersContainBonusNumber(bonusNumber)){
+        if(lotto.isContainNumber(bonusNumber)){
             throw new IllegalArgumentException(UNIQUE_NUMBER_EXCEPTION_MESSAGE);
         }
+    }
+
+    void printWinningStatistics(Lotto winLotto, int bonusNumber, List<Lotto> lottos){
+
+    }
+
+    int compareLotto(WinLotto winLotto, Lotto lotto, int bonus){
+
     }
 }

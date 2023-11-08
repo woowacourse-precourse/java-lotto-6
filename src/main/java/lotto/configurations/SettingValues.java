@@ -4,7 +4,6 @@ public enum SettingValues {
     // config values
     MIN_OF_RANGE(1),
     MAX_OF_RANGE(45),
-    MIN_WINNING_RANKING(5),
     SIZE_OF_LOTTO(6),
     PRICE_OF_LOTTO(1000),
 

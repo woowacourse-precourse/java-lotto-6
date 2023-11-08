@@ -11,7 +11,7 @@ public class InputConsole {
         String inputPrice = Console.readLine();
         String inputPriceNoSpace = removeWhiteSpace(inputPrice);
         validateDigit(inputPriceNoSpace);
-        return Integer.parseInt(inputPrice);
+        return parseInt(inputPrice);
     }
 
     private static void validateDigit(String inputPrice) {
@@ -30,7 +30,7 @@ public class InputConsole {
         List<Integer> winningNumbers = new ArrayList<>();
         for (String inputNumber : splittedWinningNumber) {
             validateDigit(inputNumber);
-            winningNumbers.add(Integer.parseInt(inputNumber));
+            winningNumbers.add(parseInt(inputNumber));
         }
 
         return winningNumbers;
@@ -40,11 +40,19 @@ public class InputConsole {
         String inputBonusNumber = Console.readLine();
         String inputBonusNumberNoSpace = removeWhiteSpace(inputBonusNumber);
         validateDigit(inputBonusNumberNoSpace);
-        return Integer.parseInt(inputBonusNumber);
+        return parseInt(inputBonusNumber);
     }
 
     public static String removeWhiteSpace(String input) {
         return input.replaceAll(" ", "");
+    }
+
+    public static int parseInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 입력값에 숫자가 존재하지 않습니다.");
+        }
     }
 
 }

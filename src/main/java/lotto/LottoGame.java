@@ -151,4 +151,10 @@ public class LottoGame {
 
         return matchedLottosResult;
     }
+    
+    public void printLottos() {
+        printStream.println(this.lottos.size() + "개를 구매했습니다.");
+        this.lottos.forEach(lotto -> printStream.println(lotto.toString()));
+        printStream.println();
+    }
 }

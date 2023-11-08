@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -21,13 +22,13 @@ public class WinningNumber {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String winningNumber = readLine();
         validateCount(winningNumber);
+        validateDuplicate(winningNumber);
 
         List<Integer> result = new ArrayList<>();
         for (String s : winningNumber.split(",")) {
             result.add(Integer.parseInt(s));
         }
 
-        isDuplicate(result);
         return result;
     }
 
@@ -41,8 +42,9 @@ public class WinningNumber {
         }
     }
 
-    private void isDuplicate(List<Integer> winningNumber) {
-       // 입력받은 당첨번호의 중복체크
-       // 예외던짐
+    private void validateDuplicate(String winningNumber) {
+       if (Arrays.stream(winningNumber.split(",")).distinct().count() != THE_NUMBER_OF_WINNING_NUMBER) {
+           throw new IllegalStateException("[ERROR] 중복되지 않는 숫자 6개를 입력해주세요.");
+       }
     }
 }

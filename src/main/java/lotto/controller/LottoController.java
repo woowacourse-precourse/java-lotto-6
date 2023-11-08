@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
+import lotto.domain.WinningLotto;
 import lotto.service.LottoPaymentService;
 import lotto.view.InputView;
 import lotto.view.ResultView;
@@ -26,8 +27,8 @@ public class LottoController {
     public void run() {
         List<Lotto> purchasedLottos = purchaseLottos();
 
-        Lotto winningLotto = askValidWinningLotto();
-        int bonusBall = askValidBonusBall(winningLotto);
+        Lotto drawNumbers = askValidWinningLotto();
+        WinningLotto drawWithBonus = askValidBonusBall(drawNumbers);
     }
 
     private List<Lotto> purchaseLottos() {
@@ -81,22 +82,21 @@ public class LottoController {
         }
     }
 
-    private int askValidBonusBall(final Lotto winningLotto) {
-        int bonusBall;
+    private WinningLotto askValidBonusBall(final Lotto winningLotto) {
+        WinningLotto drawWithBonus;
         do {
-            bonusBall = askBonusBall(winningLotto);
-        } while (bonusBall == -1);
-        return bonusBall;
+            drawWithBonus = askBonusBall(winningLotto);
+        } while (drawWithBonus == null);
+        return drawWithBonus;
     }
 
-    private int askBonusBall(final Lotto winningLotto) {
+    private WinningLotto askBonusBall(final Lotto winningLotto) {
         try {
             final int bonusBall = inputView.inputBonusBall();
-            winningLotto.validateBonusBall(bonusBall);
-            return bonusBall;
+            return new WinningLotto(winningLotto, bonusBall);
         } catch (IllegalArgumentException e) {
             resultView.printException(e);
-            return -1;
+            return null;
         }
     }
 }

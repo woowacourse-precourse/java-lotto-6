@@ -9,7 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoTest {
-    private final Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
@@ -57,28 +56,6 @@ class LottoTest {
     @Test
     void createLottoByIncludeNull() {
         assertThatThrownBy(() -> new Lotto(Arrays.asList(null, 2, 3, 4, 5, 6)))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-
-    @DisplayName("보너스 번호가 중복되었으면 예외가 발생한다.")
-    @Test
-    void validateBonusBallByDuplicateNumber() {
-        assertThatThrownBy(() -> lotto.validateBonusBall(1))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("보너스 번호의 크기가 상한을 벗어나면 예외가 발생한다.")
-    @Test
-    void validateBonusBallByOverMaxNumber() {
-        assertThatThrownBy(() -> lotto.validateBonusBall(46))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("보너스 번호의 크기가 하한을 벗어나면 예외가 발생한다.")
-    @Test
-    void validateBonusBallByUnderMinNumber() {
-        assertThatThrownBy(() -> lotto.validateBonusBall(0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

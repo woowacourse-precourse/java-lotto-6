@@ -59,6 +59,6 @@ public class LottoSystem {
     }
 
     private static List<Integer> createRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN_RANGE, LOTTO_NUMBER_MAX_RANGE, lottoCount);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN_RANGE, LOTTO_NUMBER_MAX_RANGE, LOTTO_CNT);
     }
 }

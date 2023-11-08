@@ -96,6 +96,22 @@ public class ResultModuleTest extends NsTest {
         );
     }
 
+    @DisplayName("[1등] 로또 번호가 6개 당첨되었을 때")
+    @Test
+    void getFirstPlace() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        //when
+        ResultModule.checkResult(result, lotto, LOTTO_NUM, BONUS_NUM);
+        ResultModule.formattingResult(result);
+
+        //then
+        assertSimpleTest(() ->
+                assertEquals(1, result.get(FIRST_PLACE))
+        );
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

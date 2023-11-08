@@ -31,4 +31,40 @@ public class NumbersValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("null 입력시 예외 발생")
+    @Test
+    void testExceptionThrownForNullInput() {
+        String nullInput = "";
+
+        assertThatThrownBy(() -> validateNumber(nullInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("공백 입력시 예외 발생")
+    @Test
+    void testExceptionThrownForWhitespaceInput() {
+        String whiteSpaceInput = "1 2 3 4 5";
+
+        assertThatThrownBy(() -> validateNumber(whiteSpaceInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("숫자가 아닌 값 입력시 예외 발생")
+    @Test
+    void testExceptionThrownForNotNumericInput() {
+        String notNumericInput = "56000k";
+
+        assertThatThrownBy(() -> validateNumber(notNumericInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호에 ,를 제외한 다른 숫자가 없을 시 예외 발생")
+    @Test
+    void testExceptionThrownForOnlyCommaInput() {
+        String onlyCommaInput = ",,,,,";
+
+        assertThatThrownBy(() -> validateLottoNumber(onlyCommaInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

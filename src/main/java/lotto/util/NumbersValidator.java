@@ -6,7 +6,7 @@ import static lotto.util.ErrorMessage.*;
 
 public class NumbersValidator {
 
-    private static final int TOTAL_LOTTO_NUMBER = 6;
+    public static final int TOTAL_LOTTO_NUMBER = 6;
     public static final int RANDOM_NUMBER_MIN_VALUE = 1;
     public static final int RANDOM_NUMBER_MAX_VALUE = 45;
 
@@ -32,5 +32,41 @@ public class NumbersValidator {
         }
     }
 
+    public static void validateNumber(String input) {
+        checkInputEmpty(input);
+        checkForWhitespace(input);
+        checkNumeric(input);
+    }
+
+    public static void validateLottoNumber(String input) {
+        checkInputEmpty(input);
+        checkForWhitespace(input);
+        checkOtherCharacters(input);
+    }
+
+    private static void checkInputEmpty(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_EMPTY_INPUT);
+        }
+    }
+
+    private static void checkForWhitespace(String input) {
+        if (input.contains(" ")) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_EMPTY_INPUT);
+        }
+    }
+
+    private static void checkNumeric(String input) {
+        if (!input.matches("\\d+")) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_ONLY_NUMBER);
+        }
+    }
+
+    private static void checkOtherCharacters(String input) {
+        String checkString = input.replace(",", "");
+        if (checkString.isBlank()) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_ONLY_COMMA);
+        }
+    }
 
 }

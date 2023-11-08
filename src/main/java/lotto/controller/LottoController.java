@@ -9,10 +9,10 @@ import lotto.model.Lotto;
 import lotto.model.LottoMachine;
 import lotto.model.LottoStatistics;
 import lotto.model.Purchase;
+import lotto.util.NumbersValidator;
 import lotto.view.LottoView;
 
 import static lotto.model.LottoStatistics.DEFAULT_VALUE;
-import static lotto.util.ErrorMessage.*;
 
 public class LottoController {
 
@@ -35,6 +35,7 @@ public class LottoController {
         readAndValidateBonusNumber();
 
         lottoStatistics.writeStatistics(lottoMachine.determineLottoWinning(lottoTickets));
+
         LottoView.printLottoStatistics(lottoStatistics.getStatistics());
         LottoView.printLottoProfit(lottoStatistics.calculateLottoProfit(purchase.getPurchaseAmount()));
     }
@@ -45,7 +46,7 @@ public class LottoController {
         while (!validPurchase) {
             try {
                 String purchaseAmountInput = LottoView.readPurchaseAmount();
-                validateNumber(purchaseAmountInput);
+                NumbersValidator.validateNumber(purchaseAmountInput);
                 purchaseAmount = Integer.parseInt(purchaseAmountInput);
                 validPurchase = true;
             } catch (IllegalArgumentException e) {
@@ -68,7 +69,7 @@ public class LottoController {
         while (!vaildWinningNumber) {
             try {
                 String winningNumberInput = LottoView.readWinningNumber();
-                validateLottoNumber(winningNumberInput);
+                NumbersValidator.validateLottoNumber(winningNumberInput);
                 List<String> winningNumber = Arrays.asList(winningNumberInput.split(","));
                 List<Integer> processedWinningNumber = winningNumber.stream()
                         .map(Integer::parseInt).collect(Collectors.toList());
@@ -85,50 +86,13 @@ public class LottoController {
         while (!vaildBonusNumber) {
             try {
                 String bonusNumberInput = LottoView.readBonusNumber();
-                validateNumber(bonusNumberInput);
+                NumbersValidator.validateNumber(bonusNumberInput);
                 int bonusNumber = Integer.parseInt(bonusNumberInput);
                 lottoMachine.setBonusNumber(bonusNumber);
                 vaildBonusNumber = true;
             } catch (IllegalArgumentException e) {
                 LottoView.displayErrorMessage(e);
             }
-        }
-    }
-
-    public void validateNumber(String input) {
-        checkInputEmpty(input);
-        checkForWhitespace(input);
-        checkNumeric(input);
-    }
-
-    public void validateLottoNumber(String input) {
-        checkInputEmpty(input);
-        checkForWhitespace(input);
-        checkOtherCharacters(input);
-    }
-
-    private void checkInputEmpty(String input) {
-        if (input.isBlank()) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_EMPTY_INPUT);
-        }
-    }
-
-    private void checkForWhitespace(String input) {
-        if (input.contains(" ")) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_EMPTY_INPUT);
-        }
-    }
-
-    private void checkNumeric(String input) {
-        if (!input.matches("\\d+")) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_ONLY_NUMBER);
-        }
-    }
-
-    private void checkOtherCharacters(String input) {
-        String checkString = input.replace(",", "");
-        if (checkString.isBlank()) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_ONLY_COMMA);
         }
     }
 }

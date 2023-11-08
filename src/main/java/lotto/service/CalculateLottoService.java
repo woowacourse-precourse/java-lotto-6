@@ -52,4 +52,7 @@ public class CalculateLottoService {
 		user.sumWinningPrice(WinningLotto.FIND.valueOf(countLottoNumbers).getPrice());
 	}
 
+	public void inputWinningCount(WinningLotto winningLotto) {
+		winningCount.put(winningLotto, winningCount.getOrDefault(winningLotto, 0) + 1);
+	}
 }

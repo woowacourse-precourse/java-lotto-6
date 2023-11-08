@@ -24,10 +24,12 @@ public class LottoController {
     outputView.printPurchasedMessage(myLotto);
     outputView.printPurchasedMyLottoList();
 
-    winningNumber();
+    WinLotto winLotto = winningNumber();
+
+    compareWithWinningNumbers(myLotto, winLotto);
   }
 
-  private void winningNumber() {
-    WinLotto winLotto = lottoService.setWinningLottery(inputView.readLotteryNumber(), inputView.readBonusNumber());
+  private WinLotto winningNumber() {
+    return lottoService.setWinningLottery(inputView.readLotteryNumber(), inputView.readBonusNumber());
   }
 }

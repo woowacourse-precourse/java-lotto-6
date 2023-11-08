@@ -4,11 +4,13 @@ import static lotto.game.LottoGameMessage.INVALID_COST_UNIT;
 import static lotto.game.LottoGameMessage.INVALID_LOTTO_NUMBERS;
 import static lotto.game.LottoGameMessage.NON_NUMBER;
 import static lotto.game.LottoGameMessage.NUMBER_OUT_OF_RANGE;
+import static lotto.game.LottoGameMessage.PURCHASE_LOTTOS_FORMATTER;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.stream.Stream;
 import lotto.common.ConsoleTest;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -66,6 +68,25 @@ class LottoGameTest extends ConsoleTest {
         String stdout = getStdout();
 
         assertThat(stdout).contains(message.getMessage());
+    }
+
+    @DisplayName("구입한 로또 개수를 출력한다.")
+    @Test
+    void purchaseLottos() {
+        setStdin("\n", "10000");
+
+        LottoGame lottoGame = new LottoGame();
+
+        lottoGame.initCost();
+
+        // when
+        lottoGame.purchaseLottos();
+
+        // then
+        String stdout = getStdout();
+        String formatterMessage = PURCHASE_LOTTOS_FORMATTER.getMessage();
+
+        assertThat(stdout).contains(formatterMessage.formatted(10));
     }
 
     public static Stream<Arguments> initCostSource() {

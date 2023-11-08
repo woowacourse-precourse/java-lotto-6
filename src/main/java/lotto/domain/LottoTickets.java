@@ -9,7 +9,7 @@ public class LottoTickets {
     private final LottoMachine lottoMachine = new LottoMachine();
 
     public LottoTickets(Money money) {
-        int count = money.getPurchasingQuantity();
+        int count = money.calculateCount();
         while (count-- > 0) {
             buyLottoTicket();
         }

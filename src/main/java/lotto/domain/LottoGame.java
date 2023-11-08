@@ -8,8 +8,6 @@ import lotto.enums.Rank;
 public class LottoGame {
 
     private final Map<Rank, Integer> result = new HashMap<>();
-    private int totalPrize;
-    private double profitRate;
 
     public LottoGame() {
         for (Rank rank : Rank.values()) {
@@ -24,8 +22,6 @@ public class LottoGame {
         for (Lotto lotto : lottoTickets.getLottoTickets()) {
             addResult(winning.matchCount(lotto), lotto.contains(bonusNumber));
         }
-        totalPrize = calculateTotalPrize();
-        profitRate = calculateProfitRate(totalPrize, lottoTickets.getLottoTickets().size());
     }
 
     private void addResult(int matchCount, boolean isBonus) {
@@ -48,20 +44,16 @@ public class LottoGame {
         }
     }
 
+    public double calculateProfitRate(int amount) {
+        return Math.round((float) calculateTotalPrize() / amount * 1000) / 10.0;
+    }
+
     private int calculateTotalPrize() {
         int totalPrize = 0;
         for (Rank rank : result.keySet()) {
             totalPrize += rank.getWinningMoney() * result.get(rank);
         }
         return totalPrize;
-    }
-
-    public double calculateProfitRate(int totalPrize, int amount) {
-        return Math.round((float) totalPrize / amount) / 10.0;
-    }
-
-    public double getProfitRate() {
-        return profitRate;
     }
 
     public Map<Rank, Integer> getResult() {

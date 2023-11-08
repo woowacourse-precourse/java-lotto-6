@@ -30,7 +30,11 @@ public class Money {
         return amount % UNIT != 0;
     }
 
-    public int getPurchasingQuantity() {
+    public int calculateCount() {
         return amount / UNIT;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 }

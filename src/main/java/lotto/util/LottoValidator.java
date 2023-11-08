@@ -22,12 +22,11 @@ public class LottoValidator {
         checkDuplicateBonus(bonus, splittedNumbers);
     }
 
-    private void checkSize(List<String> splittedNumbers) { //6개
+    private void checkSize(List<String> splittedNumbers) {
         if (splittedNumbers.size() != SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE.getMessage());
         }
     }
-
     
     private void checkNum(String number) {
         checkInteger(number);

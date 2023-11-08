@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.Map;
 import lotto.domain.LottoBundle;
 import lotto.domain.LottoMachine;
@@ -21,6 +22,7 @@ public class Controller {
         buyLotto();
         showYourLotto();
         checkLotto();
+        Console.close();
         showYourResult();
         showYourRateOfReturn();
     }

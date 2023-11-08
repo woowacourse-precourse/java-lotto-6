@@ -7,10 +7,10 @@ public class Validator {
     private static final int END_NUMBER = 45;
     private static final int TOTAL_NUMBER = 6;
     private static final int LOTTO_PRICE = 1000;
-    private static String ERROR_MESSAGE = "[ERROR]";
-    private static String INPUT_CONTAINS_STRING = " 숫자가 아닌 값이 포함되어 있습니다.";
-    private static String INPUT_OVER_MINIMUM = " 로또는 최소 1,000원 부터 구매 가능합니다.";
-    private static String INPUT_NOT_MEET_UNIT = " 1,000원 단위로 입력해주세요.";
+    private static String ERROR_MESSAGE = "[ERROR] ";
+    private static String INPUT_CONTAINS_STRING = "숫자가 아닌 값이 포함되어 있습니다.";
+    private static String INPUT_OVER_MINIMUM = "로또는 최소 1,000원 부터 구매 가능합니다.";
+    private static String INPUT_NOT_MEET_UNIT = " ,000원 단위로 입력해주세요.";
     private static String DUPLICATE_NUMBERS = "중복된 로또 번호가 존재합니다.";
     private static String CHECK_NUMBERS_COUNT = "로또 번호의 개수는 6개여야 합니다.";
     private static String NUMBERS_IN_RANGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";

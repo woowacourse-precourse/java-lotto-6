@@ -3,6 +3,8 @@ package lotto;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class BuyLotto {
+
+    Validation validate = new Validation();
     private int numLotto;
     private boolean checkValidBudget = true;
     public int BuyLotto() {
@@ -25,21 +27,10 @@ public class BuyLotto {
     }
 
     public void calculateNumLotto(String input) {
-        validateIsNum(input);
+        validate.validateIsNum(input);
         int budget = Integer.parseInt(input);
-        validateIsThousand(budget);
+        validate.validateIsThousand(budget);
         numLotto = budget / 1000;
     }
 
-    private void validateIsNum(String buget) {
-        if (!buget.matches("[+-]?\\d*(\\.\\d+)?")){
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
-        }
-    }
-
-    private void validateIsThousand(int budget) {
-        if (budget % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 금액을 1,000단위로 입력해주세요.");
-        }
-    }
 }

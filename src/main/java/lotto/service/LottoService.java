@@ -45,6 +45,25 @@ public class LottoService {
             System.out.println(numbers);
         }
     }
+    public int getBonusNum(){
+        System.out.println("당첨 번호를 입력하세요.");
+        String inputStr = Console.readLine();
+        int bonusNum = validateBonusNum(inputStr);
+        return bonusNum;
+    }
+    public void
+    private int validateBonusNum(String inputStr){
+        int number = 0;
+        try {
+            number = Integer.parseInt(inputStr);
+            if(number>=1 && number<=45){
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 로또 번호입니다.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return number;
+    }
     private List<Integer> validateLottoNum(List<Integer> numbers, String numberStr){
         try {
             int number = Integer.parseInt(numberStr);

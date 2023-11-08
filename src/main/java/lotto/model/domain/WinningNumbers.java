@@ -1,6 +1,7 @@
 package lotto.model.domain;
 
 
+import lotto.model.domain.constants.LottoGameConstants;
 import lotto.model.domain.exception.LottoException;
 
 public class WinningNumbers {
@@ -16,6 +17,9 @@ public class WinningNumbers {
     private void validate(Lotto lotto, int bonus) {
         if (lotto.getNumbers().contains(bonus)) {
             LottoException.duplicateException();
+        }
+        if (bonus < LottoGameConstants.MIN_NUMBER.getValue() || bonus > LottoGameConstants.MAX_NUMBER.getValue()) {
+            LottoException.rangeException();
         }
     }
 

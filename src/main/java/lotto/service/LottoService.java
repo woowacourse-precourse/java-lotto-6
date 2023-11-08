@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lotto.Lotto;
 import lotto.Lotto.Rank;
 
@@ -18,7 +19,13 @@ public class LottoService {
         return convertToInt(purchasePrice) / LOTTO_PRICE;
     }
 
-    public Lotto generateLotto() {
+    public List<Lotto> generateLottos(int lottoPurchasePrice, List<Lotto> lottos) {
+        IntStream.range(0,lottoPurchasePrice)
+                .forEach(i -> lottos.add(generateLotto()));
+        return lottos;
+    }
+
+    private Lotto generateLotto() {
         List<Integer> lottoNumber = new ArrayList<>(generateRandomNumber());
         Collections.sort(lottoNumber);
         Lotto lotto = new Lotto(lottoNumber);

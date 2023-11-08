@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.IntStream;
 import lotto.Lotto;
 import lotto.Lotto.Rank;
 import lotto.service.LottoService;
@@ -17,24 +16,20 @@ public class LottoController {
     private final LottoService lottoService = new LottoService();
     private final int LOTTOPRICE = 1000;
     public void run() {
-
         List<Lotto> lottos = new ArrayList<>();
+        int lottoPurchasePrice = inputPurchasePrice();
+        lottos = lottoService.generateLottos(lottoPurchasePrice, lottos);
 
-        int lottoAmount = inputPurchasePrice();
-
-        IntStream.range(0,lottoAmount)
-                .forEach(i -> lottos.add(lottoService.generateLotto()));
-
-        outputView.printBuyLotto(lottoAmount);
+        outputView.printBuyLotto(lottoPurchasePrice);
         outputView.printTotalLotto(lottos);
 
         String winningNumber = inputView.inputWinningNumber();
         String bonusNumber = inputView.inputBonusNumber();
 
-        Map<Rank, Integer> lottoResult = lottoService.checkwin(winningNumber,bonusNumber,lottos);
+        Map<Rank, Integer> lottoResult = lottoService.checkwin(winningNumber, bonusNumber, lottos);
         outputView.printWinningStatistics();
         result(lottoResult);
-        outputView.printEarningRate(checkEarningRate(lottoResult, lottoAmount * LOTTOPRICE));
+        outputView.printEarningRate(checkEarningRate(lottoResult, lottoPurchasePrice * LOTTOPRICE));
     }
 
     public int inputPurchasePrice() {
@@ -49,7 +44,7 @@ public class LottoController {
         }
     }
 
-    public void result(Map<Rank, Integer> rankCounts) {
+    private void result(Map<Rank, Integer> rankCounts) {
         EnumSet.allOf(Rank.class).stream()
                 .filter(rank -> rank != Rank.NONE)
                 .forEach(rank -> {
@@ -62,7 +57,7 @@ public class LottoController {
                 });
     }
 
-    public double checkEarningRate(Map<Rank, Integer> rankCounts, int purchasePrice) {
+    private double checkEarningRate(Map<Rank, Integer> rankCounts, int purchasePrice) {
        int totalEarning = lottoService.calculateTotalEarning(rankCounts);
        return lottoService.calculateEarningRate(totalEarning, purchasePrice);
     }

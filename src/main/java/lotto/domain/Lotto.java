@@ -60,8 +60,7 @@ public class Lotto {
             }
         }
 
-        //todo: 수정 필요 -> THIRD
-        return LottoPlace.SECOND;
+        return LottoPlace.THIRD;
     }
 
     private LottoResult countCorrectNumbers(WinningNumbers winningNumbers) {

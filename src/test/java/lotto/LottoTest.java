@@ -26,29 +26,25 @@ class LottoTest {
 
     // 아래에 추가 테스트 작성 가능
 
+    @DisplayName("로또 번호의 개수가 6개가 안되면 예외가 발생한다.")
     @Test
-    void 숫자_범위_테스트() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-    }
-
-    @Test
-    void 적은_숫자입력_테스트() {
+    void underNumberTest() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]로또 번호는 중복되지 않는 6개여야 합니다."); // Assuming you add this validation and message
     }
 
+    @DisplayName("숫자 범위가 1~45 를 넘어가면 예외가 발생한다.")
     @Test
-    void 많은_숫자입력_테스트() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+    void numberLangeTest() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]로또 번호는 중복되지 않는 6개여야 합니다."); // Assuming you add this validation and message
+                .hasMessageContaining("[ERROR]로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
+    @DisplayName("로또번호에 음수가 입력되면 예외가 발생한다.")
     @Test
-    void 음수입력_테스트() {
+    void minusNumberTest() {
         assertThatThrownBy(() -> new Lotto(List.of(-1, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]로또 번호는 1부터 45 사이의 숫자여야 합니다.");

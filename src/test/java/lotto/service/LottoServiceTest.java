@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
+import lotto.domain.Lottos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,9 +18,9 @@ public class LottoServiceTest {
     @ValueSource(ints = {3, 5, 7, 9})
     void 로또_여러개_생성_기능(int count) {
         LottoService lottoService = new LottoService();
-        List<Lotto> lottos = lottoService.generateAutoLottos(count);
+        Lottos lottos = lottoService.generateAutoLottos(count);
 
-        assertThat(lottos.size()).isEqualTo(count);
+        assertThat(lottos.getLottoAmount()).isEqualTo(count);
     }
 
     @DisplayName("수동 로또 생성 로직")

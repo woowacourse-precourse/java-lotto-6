@@ -41,7 +41,7 @@ public class LottoGameController {
 
     public Lottos purchaseLotto(BuyCash buyCash) {
         long buyAmount = buyCash.getLottoAmount();
-        return new Lottos(lottoService.generateAutoLottos(buyAmount));
+        return lottoService.generateAutoLottos(buyAmount);
     }
 
     public void printLottosInformation(Lottos lottos) {

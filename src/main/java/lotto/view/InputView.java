@@ -15,6 +15,8 @@ public class InputView {
                     throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위의 양수여야 합니다.");
                 }
                 return amount;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해주세요.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

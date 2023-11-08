@@ -26,6 +26,7 @@ public class OutputView {
     public static void printResult(List<MatchingCase> matchingCaseGroup) {
         System.out.println("당첨 통계");
         System.out.println("---");
+
         for (MatchingCase matchingCase : matchingCaseGroup) {
             generateResultMessage(matchingCase);
         }
@@ -35,6 +36,7 @@ public class OutputView {
         int matchingValue = matchingCase.getMatchingValue();
         String prize = String.format("%,d", matchingCase.getPrize());
         int winningCount = matchingCase.getWinningCount();
+
         if (matchingCase != FIVE_MATCHING_WITH_BONUS) {
             System.out.printf("%d개 일치 (%s원) - %d개" + NEW_LINE, matchingValue, prize, winningCount);
         }

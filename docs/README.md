@@ -88,7 +88,7 @@
 - [x] 테스트 클래스 리팩토링
 - [x] getter 리스트 레퍼런스에 unmodifaible 추가
 - [x] dto에 record, unmodifiableList 추가
-- [ ] 이해를 위한 코드 전반의 공백 추가
+- [x] 이해를 위한 코드 전반의 공백 추가
 
 
 # 🧐 고민해볼 주제

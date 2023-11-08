@@ -33,7 +33,6 @@ public class LottoController {
 
         List<MatchingCase> matchingResult = calculateMatchingResult(lottoCollection);
         Profit profit = calculateProfit(matchingResult, purchase);
-
         displayResults(matchingResult, profit);
     }
 
@@ -54,8 +53,10 @@ public class LottoController {
 
     private List<MatchingCase> calculateMatchingResult(LottoCollection lottoCollection) {
         MatchingCase.NEW_GAME.initMatchingCase();
+
         Lotto winningLotto = readWinningLotto();
         BonusNumber bonusNumber = readBonusNumber(winningLotto);
+
         lottoCollection.applyResults(winningLotto, bonusNumber.getNumber());
         return MatchingCase.NEW_GAME.getResult();
     }

@@ -3,7 +3,7 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<Integer> numbers; // 사용자로부터 입력받은 로또 번호
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

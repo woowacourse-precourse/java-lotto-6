@@ -43,8 +43,8 @@ public class OutputView {
         if (prize.getBonus()) {
             branchBonus(lottoPrize,prize);
         }
-        if (lottoPrize.getPrizeRepository().containsKey(prize)) {
-            printWinning(prize, (Integer) lottoPrize.getPrizeRepository().get(prize));
+        if (lottoPrize.isWinning(prize)) {
+            printWinning(prize, lottoPrize.getWinningCount(prize));
             return;
         }
         printNotWinning(prize);
@@ -52,7 +52,7 @@ public class OutputView {
 
     public String addThousandSeparator(int priceNumber) {
         String price = String.valueOf(priceNumber);
-        return price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", THOUSAND_SEPARATOR);
+        return price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", THOUSAND_SEPARATOR); //3자릿 수 마다 "," 문자 추가
     }
 
     public void printNotWinning(Prize prize) {
@@ -64,8 +64,8 @@ public class OutputView {
     }
 
     public void branchBonus(LottoPrize lottoPrize, Prize prize){
-        if(lottoPrize.getPrizeRepository().containsKey(prize)){
-            printWinningWithBonus(prize, (Integer) lottoPrize.getPrizeRepository().get(prize));
+        if(lottoPrize.isWinning(prize)){
+            printWinningWithBonus(prize, lottoPrize.getWinningCount(prize));
             return;
         }
         printWinningWithBonus(prize,0);

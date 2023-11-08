@@ -15,10 +15,13 @@ public class LottoPrize {
         return prizeRepository.calculateTotalReword();
     }
 
-    public HashMap getPrizeRepository() {
-        return prizeRepository.getPrizeRepository();
+    public boolean isWinning(Prize prize){
+        return prizeRepository.getPrizeRepository().containsKey(prize);
     }
 
+    public int getWinningCount(Prize prize){
+        return (int) prizeRepository.getPrizeRepository().get(prize);
+    }
 
     public void judgePrize(LottoWinningNumbers lottoWinningNumbers, List<Lotto> lottos) {
         for (Lotto lotto : lottos) {

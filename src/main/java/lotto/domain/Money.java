@@ -4,7 +4,7 @@ import lotto.exception.MoneyException;
 
 public class Money {
     private static final Integer ZERO = 0;
-    private static final Integer THOUSAND =1000;
+    private static final Integer THOUSAND = 1000;
     private final int money;
 
     public Money(int money) {

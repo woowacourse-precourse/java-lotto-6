@@ -72,6 +72,6 @@ class WinningLottoTest {
     }
 
     private WinningLotto createWinningLotto(List<Integer> lottoNumbers, int bonusNumber) {
-        return new WinningLotto(new Lotto(lottoNumbers), new LottoNumber(bonusNumber));
+        return new WinningLotto(new Lotto(lottoNumbers), LottoNumber.from(bonusNumber));
     }
 }

@@ -50,7 +50,7 @@ public class MainController {
 
     private static LottoNumber readBonusNumber() {
         try {
-            return new LottoNumber(InputView.readBonusNumber());
+            return LottoNumber.from(InputView.readBonusNumber());
         } catch (IllegalArgumentException exception) {
             OutputView.printException(exception);
             return readBonusNumber();

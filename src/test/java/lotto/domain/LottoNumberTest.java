@@ -8,25 +8,25 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoNumberTest {
-    @DisplayName("1과 45사이의 숫자를 입력하면 객체가 생성된다.")
+    @DisplayName("숫자를 입력하면 캐싱된 객체가 반환된다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 20, 45})
+    void createFromCachedInstances(int number) {
+        assertThat(LottoNumber.from(number)).isSameAs(LottoNumber.from(number));
+    }
+
+    @DisplayName("1과 45사이의 숫자를 입력하면 객체가 반환된다.")
     @ParameterizedTest
     @ValueSource(ints = {1, 20, 45})
     void createByValidNumber(int number) {
-        assertThat(new LottoNumber(number)).isNotNull();
+        assertThat(LottoNumber.from(number)).isNotNull();
     }
 
     @DisplayName("1과 45사이를 벗어난 숫자를 입력하면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 46, 47})
     void createByInvalidNumber(int number) {
-        assertThatThrownBy(() -> new LottoNumber(number))
+        assertThatThrownBy(() -> LottoNumber.from(number))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("값을 기준으로 동등성을 비교한다.")
-    @ParameterizedTest
-    @ValueSource(ints = {1, 20, 45})
-    void equals(int number) {
-        assertThat(new LottoNumber(number)).isEqualTo(new LottoNumber(number));
     }
 }

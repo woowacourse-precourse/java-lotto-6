@@ -41,7 +41,7 @@ class LottoTest {
     void contains(int lottoNumber, boolean expected) {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertThat(lotto.contains(new LottoNumber(lottoNumber))).isEqualTo(expected);
+        assertThat(lotto.contains(LottoNumber.from(lottoNumber))).isEqualTo(expected);
     }
 
     @DisplayName("주어진 Lotto와 몇 개의 로또 번호가 일치하는지 계산한다.")

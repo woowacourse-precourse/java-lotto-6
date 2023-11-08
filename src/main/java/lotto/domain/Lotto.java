@@ -39,7 +39,7 @@ public class Lotto {
     private static List<LottoNumber> mapToAscendingLottoNumbers(List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
-                .map(LottoNumber::new)
+                .map(LottoNumber::from)
                 .toList();
     }
 

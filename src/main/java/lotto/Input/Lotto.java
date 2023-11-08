@@ -24,11 +24,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 숫자 6개를 입력하셔야 합니다.");
         }
-
     }
 
     public void duplicateException(List<Integer> lotto) {
@@ -37,10 +35,8 @@ public class Lotto {
     }
 
     public void rangeException(List<Integer> lotto) {
-
         if (lotto.stream().filter(s -> s < 1 || s > 45).count() != 0)
             throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자만 입력 가능합니다.");
-
     }
 
 

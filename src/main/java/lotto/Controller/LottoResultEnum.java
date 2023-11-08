@@ -8,19 +8,19 @@ public enum LottoResultEnum {
     SIX_MATCH("6개 일치 (2,000,000,000원) - ", 0, 2000000000);
 
     private final String result;
-    private final Integer match;
+    private final Integer matchListNum;
     private final Integer prize;
 
     LottoResultEnum(String result, Integer match, Integer prize) {
         this.result = result;
-        this.match = match;
+        this.matchListNum = match;
         this.prize = prize;
     }
     public String getResult() {
         return result;
     }
-    public Integer getMatch() {
-        return match;
+    public Integer getMatchListNum() {
+        return matchListNum;
     }
     public Integer getPrize() {
         return prize;

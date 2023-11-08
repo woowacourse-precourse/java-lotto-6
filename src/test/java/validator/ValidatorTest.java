@@ -1,8 +1,6 @@
-package lotto;
+package validator;
 
 import org.junit.jupiter.api.Test;
-import validator.Validator;
-
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

@@ -1,4 +1,4 @@
-package lotto;
+package winningNumber;
 
 import domain.Lotto;
 import domain.WinningNumber;

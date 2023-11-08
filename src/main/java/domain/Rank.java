@@ -42,7 +42,7 @@ public enum Rank {
         return LOSING_TICKET;
     }
 
-    public boolean isSameNumberOfMatch(int numberOfMatch) {
+    private boolean isSameNumberOfMatch(int numberOfMatch) {
         return this.numberOfMatch == numberOfMatch;
     }
 }

@@ -1,7 +1,7 @@
 package lotto.validation;
 
 import lotto.model.Lotto;
-import lotto.model.WinningNumber;
+import lotto.model.WinningLotto;
 
 public class WinningNumberInputValidator {
 
@@ -20,7 +20,7 @@ public class WinningNumberInputValidator {
         return (1 <= oneLottoNumber && oneLottoNumber <= 45);
     }
 
-    public boolean isWinningLottoNotDuplication(WinningNumber winningNumber) {
+    public boolean isWinningLottoNotDuplication(WinningLotto winningNumber) {
         Lotto winningLotto = winningNumber.getWinningNumber();
         int bonusNumber = winningNumber.getBonusNumber();
 

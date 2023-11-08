@@ -1,4 +1,4 @@
-package lotto.Exception;
+package lotto.exception;
 
 public class LottoException {
 

@@ -2,14 +2,14 @@ package lotto.domain;
 
 import lotto.model.Lotto;
 import lotto.model.Lottos;
-import lotto.model.WinningNumber;
+import lotto.model.WinningLotto;
 import lotto.model.WinningStatistics;
 
 public class LottoWinningCalculationMachine {
 
-    public int calculateWinningNumber(Lotto oneLotto, WinningNumber winningNumber) {
+    public int calculateWinningNumber(Lotto oneLotto, WinningLotto winningLotto) {
         int correctNumber = 0;
-        Lotto lottoWinningNumber = winningNumber.getWinningNumber();
+        Lotto lottoWinningNumber = winningLotto.getWinningNumber();
         for (int i = 0; i < oneLotto.size(); i++) {
             if (lottoWinningNumber.contains(oneLotto.get(i))) {
                 correctNumber++;
@@ -18,22 +18,22 @@ public class LottoWinningCalculationMachine {
         return correctNumber;
     }
 
-    public int calculateBonusNumber(Lotto oneLotto, WinningNumber winningNumber) {
+    public int calculateBonusNumber(Lotto oneLotto, WinningLotto winningLotto) {
         int correctNumber = 0;
-        int lottoBonusNumber = winningNumber.getBonusNumber();
+        int lottoBonusNumber = winningLotto.getBonusNumber();
         if (oneLotto.contains(lottoBonusNumber)) {
             correctNumber++;
         }
         return correctNumber;
     }
 
-    public WinningStatistics calculateWinningStatistics(Lottos lottos, WinningNumber winningNumber) {
+    public WinningStatistics calculateWinningStatistics(Lottos lottos, WinningLotto winningLotto) {
         WinningStatistics winningStatistics = new WinningStatistics();
         int lottoCount = lottos.size();
 
         for (int i = 0; i < lottoCount; i++) {
-            int correctWinningNumber = calculateWinningNumber(lottos.get(i), winningNumber);
-            int correctBonusNumber = calculateBonusNumber(lottos.get(i), winningNumber);
+            int correctWinningNumber = calculateWinningNumber(lottos.get(i), winningLotto);
+            int correctBonusNumber = calculateBonusNumber(lottos.get(i), winningLotto);
             calculatePlace(winningStatistics, correctWinningNumber, correctBonusNumber);
         }
 

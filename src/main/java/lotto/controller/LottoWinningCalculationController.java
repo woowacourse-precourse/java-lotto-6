@@ -1,9 +1,9 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
 import lotto.domain.LottoWinningCalculationMachine;
+import lotto.model.Lotto;
 import lotto.model.Lottos;
-import lotto.model.WinningNumber;
+import lotto.model.WinningLotto;
 import lotto.model.WinningStatistics;
 import lotto.view.LottoWinningCalculationOutputView;
 
@@ -25,10 +25,10 @@ public class LottoWinningCalculationController {
         lottoWinningCalculationOutputView.outputBonusNumber();
         int bonusNumber = winningNumberInputController.inputBonusNumber(lotto);
 
-        WinningNumber winningNumber = new WinningNumber(lotto, bonusNumber);
+        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
 
         WinningStatistics winningStatistics = lottoWinningCalculationMachine.calculateWinningStatistics(lottos,
-                winningNumber);
+                winningLotto);
         lottoWinningCalculationOutputView.outputWinningStatistics(winningStatistics);
     }
 }

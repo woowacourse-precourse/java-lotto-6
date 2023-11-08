@@ -3,9 +3,9 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Exception.LottoException;
+import lotto.exception.LottoException;
 import lotto.model.Lotto;
-import lotto.model.WinningNumber;
+import lotto.model.WinningLotto;
 import lotto.validation.InputValidator;
 import lotto.validation.WinningNumberInputValidator;
 
@@ -93,7 +93,7 @@ public class WinningNumberInputController {
 
     public void checkBonusNumberDuplication(Lotto winningLotto, String bonusNumber) throws IllegalArgumentException {
         int realBonusNumber = Integer.parseInt(bonusNumber);
-        WinningNumber winningNumber = new WinningNumber(winningLotto, realBonusNumber);
+        WinningLotto winningNumber = new WinningLotto(winningLotto, realBonusNumber);
         if (!winningNumberInputValidator.isWinningLottoNotDuplication(winningNumber)) {
             LottoException.duplicationLottoNumber();
         }

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Stream;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
-import lotto.model.WinningNumber;
+import lotto.model.WinningLotto;
 import lotto.model.WinningStatistics;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ class LottoWinningCalculationMachineTest {
     LottoWinningCalculationMachine calculationMachine = new LottoWinningCalculationMachine();
 
     Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-    WinningNumber winningNumber = new WinningNumber(lotto, 7);
+    WinningLotto winningLotto = new WinningLotto(lotto, 7);
 
     static Stream<Arguments> generateLottoData() {
         return Stream.of(
@@ -37,7 +37,7 @@ class LottoWinningCalculationMachineTest {
     @DisplayName("당첨 번호와 일치 개수 테스트")
     void 당첨번호_일치_개수_테스트(List<Integer> lotto, int expectedCount) {
         Lotto oneLotto = new Lotto(lotto);
-        int actualCount = calculationMachine.calculateWinningNumber(oneLotto, winningNumber);
+        int actualCount = calculationMachine.calculateWinningNumber(oneLotto, winningLotto);
         assertThat(actualCount).isEqualTo(expectedCount);
     }
 
@@ -55,7 +55,7 @@ class LottoWinningCalculationMachineTest {
     @DisplayName("보너스 번호와 일치 개수 테스트")
     void 보너스번호_일치_개수_테스트(List<Integer> lotto, int expectedCount) {
         Lotto oneLotto = new Lotto(lotto);
-        int actualCount = calculationMachine.calculateBonusNumber(oneLotto, winningNumber);
+        int actualCount = calculationMachine.calculateBonusNumber(oneLotto, winningLotto);
         assertThat(actualCount).isEqualTo(expectedCount);
     }
 
@@ -101,7 +101,7 @@ class LottoWinningCalculationMachineTest {
         lottos.add(new Lotto(Arrays.asList(2, 13, 22, 32, 38, 45)));
         lottos.add(new Lotto(Arrays.asList(1, 3, 5, 14, 22, 45)));
 
-        WinningStatistics winningStatistics = calculationMachine.calculateWinningStatistics(lottos, winningNumber);
+        WinningStatistics winningStatistics = calculationMachine.calculateWinningStatistics(lottos, winningLotto);
         assertThat(winningStatistics.getWinningRate()).isEqualTo(62.5);
         assertThat(winningStatistics.getFifthPlace()).isEqualTo(1);
     }

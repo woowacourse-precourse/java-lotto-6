@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Exception.LottoException;
+import lotto.exception.LottoException;
 import lotto.validation.InputValidator;
 import lotto.validation.MoneyInputValidator;
 

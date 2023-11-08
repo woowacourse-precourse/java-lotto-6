@@ -6,14 +6,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.model.Lotto;
-import lotto.model.WinningNumber;
+import lotto.model.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class WinningNumberInputValidatorTest {
+class WinningLottoInputValidatorTest {
 
     WinningNumberInputValidator winningNumberInputValidator = new WinningNumberInputValidator();
 
@@ -43,7 +43,7 @@ class WinningNumberInputValidatorTest {
     @DisplayName("당첨 번호 중복 테스트")
     void 당첨_번호_중복_테스트(List<Integer> numbers, int bonusNumber, boolean expected) {
         Lotto lotto = new Lotto(numbers);
-        WinningNumber winningNumber = new WinningNumber(lotto, bonusNumber);
-        assertThat(winningNumberInputValidator.isWinningLottoNotDuplication(winningNumber)).isEqualTo(expected);
+        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
+        assertThat(winningNumberInputValidator.isWinningLottoNotDuplication(winningLotto)).isEqualTo(expected);
     }
 }

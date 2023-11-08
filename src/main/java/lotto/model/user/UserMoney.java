@@ -23,9 +23,6 @@ public class UserMoney {
     }
 
     public double getRevenueRate(long prize) {
-        if (prize != 0) {
-            return Math.round((double) this.amount / prize * 100) / 100.0;
-        }
-        return 0.0;
+        return Math.round((double) prize / this.amount * 10000.0) / 100.0;
     }
 }

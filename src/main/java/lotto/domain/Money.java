@@ -1,7 +1,7 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.ErrorMessage.ZERO_MONEY_ERROR;
-import static lotto.ErrorMessage.MONEY_REMAINDER_ERROR;
+import static lotto.view.ErrorMessage.ZERO_MONEY_ERROR;
+import static lotto.view.ErrorMessage.MONEY_REMAINDER_ERROR;
 
 public class Money {
     private static final int LOTTO_MIN_MONEY = 1000;

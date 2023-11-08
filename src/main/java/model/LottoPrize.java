@@ -8,11 +8,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class LottoPrize {
-    private final static int COUNT = 1;
-    HashMap<Prize, Integer> prizeRepository = new LinkedHashMap<>();
+    PrizeRepository prizeRepository;
     private int price;
 
     public LottoPrize(LottoWinningNumbers winningNumbers, List<Lotto> lottos) {
+        prizeRepository = new PrizeRepository();
         judgePrize(winningNumbers, lottos);
         price = calculateTotalPrice(prizeRepository);
     }
@@ -21,13 +21,13 @@ public class LottoPrize {
         return price;
     }
 
-    public HashMap getPrize() {
-        return prizeRepository;
+    public HashMap getPrizeRepository() {
+        return prizeRepository.getPrizeRepository();
     }
 
-    public int calculateTotalPrice(HashMap prizeRepository) {
+    public int calculateTotalPrice(PrizeRepository prizeRepository) {
         int totalPrice = 0;
-        Iterator<Entry<Prize, Integer>> iterator = prizeRepository.entrySet().iterator();
+        Iterator<Entry<Prize, Integer>> iterator = prizeRepository.getPrizeRepository().entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<Prize, Integer> entry = iterator.next();
             totalPrice = totalPrice + calculateOnePrice(entry.getKey(), entry.getValue());
@@ -43,20 +43,8 @@ public class LottoPrize {
         for (Lotto lotto : lottos) {
             int count = compareTo(lottoWinningNumbers.getWinningNumbers(), lotto);
             boolean isBonus = hasBonusNumber(lottoWinningNumbers, lotto);
-            createOrSum(Prize.of(count, isBonus));
+            prizeRepository.add(Prize.of(count, isBonus));
         }
-    }
-
-    public boolean hasContain(Prize prize) {
-        return prizeRepository.containsKey(prize);
-    }
-
-    public void createOrSum(Prize prize) {
-        if (hasContain(prize)) {
-            prizeRepository.put(prize, prizeRepository.get(prize) + COUNT);
-            return;
-        }
-        prizeRepository.put(prize, COUNT);
     }
 
     public int compareTo(List<Integer> winningNumbers, Lotto lotto) {

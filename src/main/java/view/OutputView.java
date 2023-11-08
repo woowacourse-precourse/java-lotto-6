@@ -42,8 +42,8 @@ public class OutputView {
         if (prize.getBonus()) {
             branchBonus(lottoPrize,prize);
         }
-        if (lottoPrize.getPrize().containsKey(prize)) {
-            printWinning(prize, (Integer) lottoPrize.getPrize().get(prize));
+        if (lottoPrize.getPrizeRepository().containsKey(prize)) {
+            printWinning(prize, (Integer) lottoPrize.getPrizeRepository().get(prize));
             return;
         }
         printNotWinning(prize);
@@ -63,8 +63,8 @@ public class OutputView {
     }
 
     public void branchBonus(LottoPrize lottoPrize, Prize prize){
-        if(lottoPrize.getPrize().containsKey(prize)){
-            printWinningWithBonus(prize, (Integer) lottoPrize.getPrize().get(prize));
+        if(lottoPrize.getPrizeRepository().containsKey(prize)){
+            printWinningWithBonus(prize, (Integer) lottoPrize.getPrizeRepository().get(prize));
             return;
         }
         printWinningWithBonus(prize,0);

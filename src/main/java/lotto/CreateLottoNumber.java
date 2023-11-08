@@ -23,6 +23,7 @@ public class CreateLottoNumber {
     }
 
     public void createRandomNumber(int count) {
+        System.out.println();
         System.out.println(count + "개를 구매했습니다.");
         for(int i = 0; i < count; i++) {
             numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);

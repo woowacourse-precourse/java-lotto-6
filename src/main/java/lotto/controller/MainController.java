@@ -17,6 +17,8 @@ public class MainController {
 
         WinningLotto winningLotto = readWinningLotto();
         LottoResult lottoResult = winningLotto.result(customer);
+        OutputView.printLottoResult(lottoResult);
+        OutputView.printPrizeRate(lottoResult);
     }
 
     private static LottoPurchaseAmount readLottoPurchaseAmount() {

@@ -10,6 +10,7 @@ public class Validator {
     private final static int MIN_LOTTO_NUM = 1;
     private final static int MAX_LOTTO_NUM = 45;
 
+    //구입 금액 예외처리
     public void check_InputMoney(String input) throws IllegalArgumentException {
         check_Empty(input);
         check_NotNumber(input);
@@ -53,6 +54,7 @@ public class Validator {
         }
     }
 
+    //당첨 번호 예외처리
     public void check_InputWinLotto(String input) throws IllegalArgumentException {
         check_Empty(input);
         check_LastIndex(input);
@@ -121,18 +123,28 @@ public class Validator {
         return hashSet.size() != input.size();
     }
 
-    public void check_BonusNum(String input) throws IllegalArgumentException {
+    //보너스번호 예외처리
+    public void check_BonusNum(String input, List<Integer> winLotto) throws IllegalArgumentException {
         check_Empty(input);
         check_NotNumber(input);
 
         int bonusNum = Integer.parseInt(input);
 
         check_BonusNumRange(bonusNum);
+        check_BonusNumUnique(bonusNum,winLotto);
     }
 
     private void check_BonusNumRange(int input) {
         if (!isValidLottoNumberRange(input)) {
             throw new IllegalArgumentException(ErrorMessage.IS_NOT_LOTTO_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    private void check_BonusNumUnique(int input, List<Integer> winLotto){
+        HashSet<Integer> hashSet = new HashSet<>(winLotto);
+        hashSet.add(input);
+        if(hashSet.size()!=7){
+            throw new IllegalArgumentException(ErrorMessage.IS_NOT_UNIQUE_LOTTO_NUMBER.getMessage());
         }
     }
 }

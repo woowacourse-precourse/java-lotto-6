@@ -72,7 +72,7 @@ public class Game {
 
         Lotto winLotto = new Lotto(inputWinLotto);
 
-        int bonusNum = getBonusNum();
+        int bonusNum = getBonusNum(inputWinLotto);
 
         prizeLotto = new PrizeLotto(winLotto, bonusNum);
     }
@@ -99,23 +99,23 @@ public class Game {
         }
     }
 
-    private int getBonusNum() {
-        return Integer.parseInt(inputBonusNum());
+    private int getBonusNum(List<Integer> winLotto) {
+        return Integer.parseInt(inputBonusNum(winLotto));
     }
 
-    private String inputBonusNum() {
+    private String inputBonusNum(List<Integer> winLotto) {
         view.request_InputBonusNumbers();
 
-        return check_ValidationInputBonusNum(Console.readLine());
+        return check_ValidationInputBonusNum(Console.readLine(), winLotto);
     }
 
-    private String check_ValidationInputBonusNum(String input) {
+    private String check_ValidationInputBonusNum(String input, List<Integer> winLotto) {
         try {
-            validator.check_BonusNum(input);
+            validator.check_BonusNum(input, winLotto);
             return input;
         } catch (IllegalArgumentException e) {
             view.print_Exception(e.getMessage());
-            return inputBonusNum();
+            return inputBonusNum(winLotto);
         }
     }
 

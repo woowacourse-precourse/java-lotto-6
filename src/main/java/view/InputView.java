@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 
 public class InputView {
 
-    String getMoneyForLottoPurchasing() {
+    public static String getMoneyForLottoPurchasing() {
         String money;
         try {
             money = Console.readLine();
@@ -16,7 +16,7 @@ public class InputView {
         return money;
     }
 
-    String getWinningNumber() {
+    public static String getWinningNumber() {
         String winningNumber;
         try {
             winningNumber = Console.readLine();
@@ -26,7 +26,7 @@ public class InputView {
         return winningNumber;
     }
 
-    String getBonusNumber() {
+    public static String getBonusNumber() {
         String bonusNumber;
         try {
             bonusNumber = Console.readLine();

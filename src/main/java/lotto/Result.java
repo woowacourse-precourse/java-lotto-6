@@ -20,7 +20,8 @@ public class Result {
     for(Rank rank : Rank.values()) {
       total_rate += rank.getPrizeMoney() * winningCounts[rank.ordinal()];
     }
-    total_rate = total_rate / total_price * 100.0;
+    total_rate = Math.round((total_rate / total_price * 100.0) * 100) / 100.0;
+
   }
   public void result() {
     System.out.println();

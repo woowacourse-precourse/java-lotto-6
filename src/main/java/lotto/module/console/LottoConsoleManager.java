@@ -4,7 +4,6 @@ import lotto.module.console.output.composer.ConsoleMessageComposer;
 import lotto.module.domain.LottoProfit;
 import lotto.module.domain.PurchaseAmount;
 import lotto.module.lotto.Lotto;
-import lotto.module.lotto.WinningLotto;
 import lotto.module.result.LottoResult;
 
 import java.util.List;
@@ -34,13 +33,14 @@ public class LottoConsoleManager {
         console.printPurchasedLottoTickets(message);
     }
 
-    public WinningLotto getWinningLottoNumbers() {
+    public Lotto getWinningLottoNumbers() {
         List<Integer> winningLottoNumbers = console.getWinningLottoNumbers();
-        Lotto lotto = new Lotto(winningLottoNumbers);
 
-        int lottoBonusNumber = console.getLottoBonusNumber();
+        return new Lotto(winningLottoNumbers);
+    }
 
-        return WinningLotto.of(lotto, lottoBonusNumber);
+    public int getLottoBonusNumber() {
+        return console.getLottoBonusNumber();
     }
 
     public void printLottoWinningResult(LottoResult lottoResult, LottoProfit lottoProfit) {

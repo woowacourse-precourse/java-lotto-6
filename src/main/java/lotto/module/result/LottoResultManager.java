@@ -27,7 +27,6 @@ public class LottoResultManager {
 
     public LottoProfit calculateProfit(PurchaseAmount purchaseAmount) {
         TotalPrize totalPrize = lottoResultChecker.getTotalPrize();
-        System.out.println("totalPrize = " + totalPrize);
         return lottoProfitCalculator.getProfitRate(purchaseAmount, totalPrize);
     }
 

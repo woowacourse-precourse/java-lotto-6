@@ -57,8 +57,9 @@ class LottoTest {
     void sortLottoNumbers() {
         List<Integer> unsortedNumbers = List.of(6, 1, 5, 2, 4, 3);
         Lotto lotto = new Lotto(unsortedNumbers);
-        lotto.sortNumbers();
+
         List<Integer> sortedNumbers = List.of(1, 2, 3, 4, 5, 6);
+
         assertIterableEquals(sortedNumbers, lotto.getNumbers());
     }
 }

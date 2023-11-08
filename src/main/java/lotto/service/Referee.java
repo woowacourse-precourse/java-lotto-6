@@ -19,7 +19,7 @@ public class Referee {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Lotto.MIN_RANGE, Lotto.MAX_RANGE,
                     Lotto.NUMBER_COUNT);
             LottoTicket newLottoTicket = new LottoTicket(numbers);
-            ticketRepository.createLottoNumbers(newLottoTicket);
+            ticketRepository.addLottoNumbers(newLottoTicket);
         }
     }
 }

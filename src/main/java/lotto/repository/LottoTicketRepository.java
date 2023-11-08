@@ -15,7 +15,7 @@ public class LottoTicketRepository {
         return instance;
     }
 
-    public void createLottoNumbers(LottoTicket lottoTicket) {
+    public void addLottoNumbers(LottoTicket lottoTicket) {
         lottoNumbers.add(lottoTicket);
     }
 

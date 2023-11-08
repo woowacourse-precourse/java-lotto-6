@@ -10,6 +10,11 @@ public class Lotto extends LottoRule {
         this.numbers = numbers;
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }

@@ -8,8 +8,8 @@ import lotto.config.LottoConfig;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class MatchCountCheckerTest {
-    MatchCountChecker matchCountChecker = new MatchCountChecker();
+class RewardCheckerTest {
+    RewardChecker rewardChecker = new RewardChecker();
 
     @DisplayName("상금 액수별 로또 개수 확인")
     @Test
@@ -28,6 +28,6 @@ class MatchCountCheckerTest {
            put(LottoConfig.FIFTH_PRIZE_REWARD, 0);
         }};
 
-        assertThat(matchCountChecker.countLottoByPrize(matchNumberByLotto)).isEqualTo(result);
+        assertThat(rewardChecker.countLottoByPrize(matchNumberByLotto)).isEqualTo(result);
     }
 }

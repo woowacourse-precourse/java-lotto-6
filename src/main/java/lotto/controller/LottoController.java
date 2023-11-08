@@ -11,7 +11,7 @@ import lotto.domain.LottoCost;
 import lotto.domain.WinningNumber;
 import lotto.service.LottoCompare;
 import lotto.service.LottoGenerate;
-import lotto.service.MatchCountChecker;
+import lotto.service.RewardChecker;
 import lotto.service.ReturnRateCalculator;
 import lotto.view.Input;
 import lotto.view.Output;
@@ -21,7 +21,7 @@ public class LottoController {
     private final Output output = new Output();
     private final LottoGenerate lottoGenerate = new LottoGenerate();
     private final LottoCompare lottoCompare = new LottoCompare();
-    private final MatchCountChecker matchCountChecker = new MatchCountChecker();
+    private final RewardChecker rewardChecker = new RewardChecker();
 
     public void run() {
         LottoCost lottoCost = inputValueToLottoCost();
@@ -36,7 +36,7 @@ public class LottoController {
         HashMap<Integer, List<Integer>> compareLottoNumResult =
                 lottoCompare.compareLottoToNumber(lottoNumbers, winningNumber, bonusNumber);
 
-        printResult(matchCountChecker.countLottoByPrize(compareLottoNumResult), lottoCost.getCost());
+        printResult(rewardChecker.countLottoByPrize(compareLottoNumResult), lottoCost.getCost());
     }
 
     public void printResult(HashMap<String, Integer> countByPrize, int lottoCost) {

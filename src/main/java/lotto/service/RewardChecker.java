@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import lotto.config.LottoConfig;
 
-public class MatchCountChecker {
+public class RewardChecker {
     public HashMap<String, Integer> countLottoByPrize(HashMap<Integer, List<Integer>> checkMatchCountResult) {
         HashMap<String, Integer> countByPrize = new HashMap<>();
 

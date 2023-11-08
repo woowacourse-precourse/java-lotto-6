@@ -61,7 +61,7 @@ public class WinningLottoCalculator {
 	}
 
 	public double getRateOfReturn(PurchaseAmount purchaseAmount) {
-		return roundToTwoDecimalPlaces((this.totalPrizeMoney / purchaseAmount.getAmount()) * 100);
+		return roundToTwoDecimalPlaces((((double) this.totalPrizeMoney) / purchaseAmount.getAmount()) * 100);
 	}
 
 	public double roundToTwoDecimalPlaces(double rateOfReturn) {

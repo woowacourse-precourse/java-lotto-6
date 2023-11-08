@@ -2,7 +2,6 @@ package lotto;
 
 public final class Error {
     private static final String PREFIX = "[ERROR] ";
-    private static final String SUFFIX = "\n";
 
     public enum Domain {
         SAME_LOTTO_NUMBER("중복된 로또 번호가 있습니다."),
@@ -18,7 +17,7 @@ public final class Error {
         }
 
         public String getText() {
-            return PREFIX + text + SUFFIX;
+            return PREFIX + text;
         }
     }
 
@@ -33,7 +32,7 @@ public final class Error {
         }
 
         public String getText() {
-            return PREFIX + text + SUFFIX;
+            return PREFIX + text;
         }
     }
 }

@@ -22,7 +22,7 @@ public class LottoController {
 
     public void play() {
         PurchaseAmount purchaseAmount = getPurchaseAmount();
-        List<Lotto> userLottos = getUserLottos(purchaseAmount);
+        List<Lotto> userLottos = LottoShop.createLottosBy(purchaseAmount);
         List<Integer> winningNumbers = getWinningLottoNumbers();
 
         outputView.printLottos(userLottos, LottoShop.countLottoTicket(purchaseAmount));
@@ -72,10 +72,6 @@ public class LottoController {
             outputView.printError(exception.getMessage());
             return getBonusNumber();
         }
-    }
-
-    private List<Lotto> getUserLottos(PurchaseAmount purchaseAmount) {
-        return LottoShop.createLottosBy(purchaseAmount);
     }
 
     private void printResult(Map<Rank, Integer> lottosRanks, PurchaseAmount purchaseAmount) {

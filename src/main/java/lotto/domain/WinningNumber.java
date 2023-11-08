@@ -41,15 +41,28 @@ public class WinningNumber {
         validateDuplicate(winningNumberInput);
     }
 
-    private void validateCount(String winningNumber) {
-        if (winningNumber.split(",").length != THE_NUMBER_OF_WINNING_NUMBER) {
-            throw new IllegalStateException("[ERROR] 당첨 번호 6개를 입력해주세요.");
+    private List<Integer> validateFormat(String winningNumberInput) {
+        List<Integer> result = new ArrayList<>();
+
+        for (String s : winningNumberInput.split(",")) {
+            try {
+                result.add(Integer.parseInt(s));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+            }
+        }
+        return result;
+    }
+
+    private void validateCount(String winningNumberInput) {
+        if (winningNumberInput.split(",").length != THE_NUMBER_OF_WINNING_NUMBER) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호 6개를 입력해주세요.");
         }
     }
 
-    private void validateDuplicate(String winningNumber) {
-       if (Arrays.stream(winningNumber.split(",")).distinct().count() != THE_NUMBER_OF_WINNING_NUMBER) {
-           throw new IllegalStateException("[ERROR] 중복되지 않는 숫자 6개를 입력해주세요.");
+    private void validateDuplicate(String winningNumberInput) {
+       if (Arrays.stream(winningNumberInput.split(",")).distinct().count() != THE_NUMBER_OF_WINNING_NUMBER) {
+           throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자 6개를 입력해주세요.");
        }
     }
 }

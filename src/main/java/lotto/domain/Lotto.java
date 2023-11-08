@@ -21,8 +21,6 @@ public class Lotto {
         validateNumbersRange(numbers);
         validateDuplicateNumber(numbers);
 
-        sortAscendingLotto(numbers);
-
         this.numbers = numbers;
     }
 
@@ -61,9 +59,5 @@ public class Lotto {
         if (notDuplicateNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorCode.DUPLICATE_NUMBER.getMessage());
         }
-    }
-
-    private static void sortAscendingLotto(List<Integer> numbers) {
-        Collections.sort(numbers);
     }
 }

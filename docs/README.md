@@ -1,3 +1,37 @@
+## 🎫  Directory Structure
+```
+src
+├─ main
+│  └─ java
+│       └─ lotto
+│          ├─ constant
+│          │   └─ LottoConstant ["로또 기본 상수"]
+│          ├─ controller
+│          │   └─ LottoDraw ["로또 비지니스 로직"]
+│          ├─ model
+│          │   ├─ Customer ["고객 클래스"]
+│          │   ├─ Lotto ["로또 클래스"]
+│          │   ├─ LottoWinning ["당첨 로또 클래스"]
+│          │   ├─ Money ["돈 클래스"]
+│          │   └─ WinningEnquiry ["당첨 통계 클래스"]
+│          ├─ view
+│          │   ├─ constant 
+│          │   │   ├─ ConstantMessage ["로또 기본 출력 문구"]
+│          │   │   └─ ErrorMessage ["로또 에러 메시지"]
+│          │   ├─ OutputView ["출력 뷰"]
+│          │   └─ InputView ["입력 뷰"]
+│          └─ Application
+└─ test
+   └─ java
+        ├─ lotto
+        │   ├─ ApplicationTest
+        │   └─ LottoTest 
+        └─ model
+            ├─ MoneyTest ["Money class test"]
+            ├─ LottoWinningTest ["LottoWinning class test"]
+            └─ CustomerTest ["Customer class test"]
+```
+
 ## 📦&nbsp;&nbsp;패키지 구조
 
 <div>

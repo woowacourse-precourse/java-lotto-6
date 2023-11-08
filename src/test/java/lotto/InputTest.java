@@ -12,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InputTest {
 
+    public static final List<Integer> TEST_WIN_NUMS = List.of(6, 7, 8, 9, 10, 11);
+
     @Test
     void validateWinNumsInput_정상입력() {
         String input = "1,2,3,4,5,6";
@@ -61,26 +63,32 @@ class InputTest {
     @ParameterizedTest
     @CsvSource({"1, 1", "2, 2", "5, 5", "15, 15", "45, 45"})
     void validateBonusNumInput_정상입력(String input, int answer) {
-        int result = Input.validateBonusNumInput(input);
+        int result = Input.validateBonusNumInput(input, TEST_WIN_NUMS);
 
         assertThat(result).isEqualTo(answer);
     }
 
     @Test
     void validateBonusNumInput_잘못된_입력타입_예외() {
-        assertThatThrownBy(() -> Input.validateBonusNumInput("abc"))
+        assertThatThrownBy(() -> Input.validateBonusNumInput("abc", TEST_WIN_NUMS))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void validateBonusNumInput_1미만_입력_예외() {
-        assertThatThrownBy(() -> Input.validateBonusNumInput("0"))
+        assertThatThrownBy(() -> Input.validateBonusNumInput("0", TEST_WIN_NUMS))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void validateBonusNumInput_45초과_입력_예외() {
-        assertThatThrownBy(() -> Input.validateBonusNumInput("46"))
+        assertThatThrownBy(() -> Input.validateBonusNumInput("46", TEST_WIN_NUMS))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void validateBonusNumInput_중복_입력_예외() {
+        assertThatThrownBy(() -> Input.validateBonusNumInput("6", TEST_WIN_NUMS))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

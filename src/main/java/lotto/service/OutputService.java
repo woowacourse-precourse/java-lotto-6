@@ -19,12 +19,12 @@ public class OutputService {
     public List<String> winResult(Map<LottoPrize, Integer> result) {
         List<String> list = new ArrayList<>();
         for (LottoPrize lottoPrize : result.keySet()) {
-            list.add(winReturnFormat(lottoPrize.getMessage(), result.get(lottoPrize)));
+            list.add(winResultReturnFormat(lottoPrize.getMessage(), result.get(lottoPrize)));
         }
         return list;
     }
 
-    private String winReturnFormat(String message, int number) {
+    private String winResultReturnFormat(String message, int number) {
         StringBuilder sb = new StringBuilder();
         sb.append(message);
         sb.append(number);
@@ -32,7 +32,7 @@ public class OutputService {
         return sb.toString();
     }
 
-    public String earningRateToFormat(float earningRate) {
+    public String earningRateFormat(float earningRate) {
         return String.format("%.1f", earningRate);
     }
 }

@@ -15,6 +15,6 @@ public class ReturnResultController {
 
     public void printStatistics() {
         outputView.statisticsOutput(outputService.winResult(result.getMatchResult()));
-        outputView.earningRateOutput(outputService.earningRateToFormat(result.getEarningRate()));
+        outputView.earningRateOutput(outputService.earningRateFormat(result.getEarningRate()));
     }
 }

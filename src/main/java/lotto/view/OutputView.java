@@ -8,14 +8,14 @@ public class OutputView {
         System.out.println(PrintMessage.INPUT_PRICE.getMessage());
     }
 
-    public void boughtLottoOutput(int number, List<String> list) {
-        String stringNumber = String.valueOf(number);
-        System.out.println(stringNumber.concat(PrintMessage.BOUGHT_LOTTO_NUMBERS.getMessage()));
-        for (String s : list) {
+    public void boughtLottoOutput(int number, List<String> boughtLottos) {
+        String boughtNumber = String.valueOf(number);
+        System.out.println(boughtNumber.concat(PrintMessage.BOUGHT_LOTTO_NUMBERS.getMessage()));
+        for (String s : boughtLottos) {
             System.out.println(s);
         }
     }
- 
+
     public void inputWinLottoNumberNoticeOutput() {
         System.out.println(PrintMessage.INPUT_WIN_LOTTO_NUMBERS.getMessage());
     }

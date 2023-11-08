@@ -28,7 +28,7 @@ public class Lotto {
                 .count();
 
         if (distinctCount != numbers.size()) {
-            throw new IllegalArgumentException(CHECK_DUPLICATES.getMessage());
+            throw new IllegalArgumentException(CHECK_WINNING_NUM_DUPLICATES.getMessage());
         }
     }
 

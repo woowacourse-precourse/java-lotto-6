@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.controller.GameController;
+import lotto.domain.generator.CustomRandomNumberGenerator;
 import lotto.utils.generator.RandomNumber;
 import lotto.utils.generator.RandomNumberGenerator;
 import lotto.view.InputView;
@@ -15,14 +16,14 @@ public class AppConfig {
     public final CustomReader reader;
     public final InputView inputView;
     public final OutputView outputView;
-    public final RandomNumber randomNumber;
+    public final CustomRandomNumberGenerator customRandomNumber;
     public final GameController gameController;
 
     private AppConfig() {
         this.reader = initReader();
         this.inputView = initInputView(reader);
         this.outputView = initOutputView();
-        this.randomNumber = initRandomNumber();
+        this.customRandomNumber = initCustomRandomNumber();
         this.gameController = initGameController(inputView, outputView);
     }
 
@@ -42,8 +43,8 @@ public class AppConfig {
         return new OutputView();
     }
 
-    private RandomNumber initRandomNumber() {
-        return new RandomNumberGenerator();
+    private CustomRandomNumberGenerator initCustomRandomNumber() {
+        return new CustomRandomNumberGenerator();
     }
 
     private GameController initGameController(final InputView inputView, final OutputView outputView) {

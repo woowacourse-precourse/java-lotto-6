@@ -7,6 +7,7 @@ import lotto.domain.lotto.validator.LottoValidator;
 import lotto.domain.rank.Rank;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

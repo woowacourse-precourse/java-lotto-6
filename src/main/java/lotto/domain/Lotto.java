@@ -8,7 +8,7 @@ import java.util.List;
 
 import static lotto.view.constant.Exception.LOTTO_DUPLICATED;
 import static lotto.view.constant.Exception.LOTTO_SIZE;
-import static lotto.view.constant.Exception.LOTTO_RANGE;
+import static lotto.view.constant.Exception.LOTTO_FORMAT;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -41,7 +41,7 @@ public class Lotto {
 
     protected void checkRange(int number) {
         if (number < MIN_RANGE || number > MAX_RANGE) {
-            throw new IllegalArgumentException(LOTTO_RANGE);
+            throw new IllegalArgumentException(LOTTO_FORMAT);
         }
     }
 

@@ -20,6 +20,13 @@ public class InputView {
         return winningNumbers;
     }
 
+    public static int getBonusNumber() {
+        System.out.println(ConsoleMessage.GET_BONUS_NUMBER.getMessage());
+        int bonusNumber = validateNumber(Console.readLine());
+        System.out.println();
+        return bonusNumber;
+    }
+
 
     public static int validateNumber(String number) {
         try {

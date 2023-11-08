@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class LottoInputValidator {
 
-    public void validateBudget(String budgetStr) throws Exception {
+    public void validateBudget(String budgetStr) throws IllegalArgumentException {
         Long budget;
 
         try {
@@ -20,7 +20,7 @@ public class LottoInputValidator {
         }
     }
 
-    public List<Integer> validateNormalNumbersIsInteger(String normalNumbersStr) throws Exception {
+    public List<Integer> validateNormalNumbersIsInteger(String normalNumbersStr) throws IllegalArgumentException {
         List<Integer> normalNumbers;
         try {
             normalNumbers = Arrays.stream(normalNumbersStr.split(","))
@@ -33,17 +33,17 @@ public class LottoInputValidator {
         return normalNumbers;
     }
 
-    public int validateBonusNumberIsInteger(String bonusNumberStr) throws Exception {
+    public int validateBonusNumberIsInteger(String bonusNumberStr) throws IllegalArgumentException {
         int bonusNumber;
         try {
-            bonusNumber = Integer.valueOf(bonusNumberStr);
+            bonusNumber = Integer.parseInt(bonusNumberStr);
         } catch (Exception e) {
             throw new IllegalArgumentException("[ERROR] 당첨번호는 숫자여야합니다.");
         }
         return bonusNumber;
     }
 
-    public void validateNormalNumbersInRange(List<Integer> normalNumbers) throws Exception {
+    public void validateNormalNumbersInRange(List<Integer> normalNumbers) throws IllegalArgumentException {
         List<Integer> errorNumbers = new ArrayList<>();
         for (Integer normalNumber : normalNumbers) {
             if (normalNumber < 1 || normalNumber > 45) {

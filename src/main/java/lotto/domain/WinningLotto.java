@@ -15,7 +15,7 @@ public class WinningLotto {
 
     public LottoRank lottoResult(Lotto lotto) {
         int matchCount = matchCount(lotto);
-        boolean bonus = bonusResult(lotto);
+        boolean bonus = isFiveMatchGreaterThanAndIsBonus(lotto);
         return Arrays.stream(LottoRank.values())
                 .filter(lottoRank -> lottoRank.getCount() == matchCount)
                 .filter(lottoRank -> lottoRank.isBonus() == bonus)
@@ -23,7 +23,7 @@ public class WinningLotto {
                 .orElse(LottoRank.LOSE);
     }
 
-    public boolean bonusResult(Lotto lotto) {
+    public boolean isFiveMatchGreaterThanAndIsBonus(Lotto lotto) {
         if (matchCount(lotto) < 5) {
             return false;
         }

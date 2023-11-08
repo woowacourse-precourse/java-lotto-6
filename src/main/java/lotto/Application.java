@@ -22,8 +22,7 @@ public class Application {
         int receivedMoney = Integer.parseInt(inputMoney);
 
         Customer customer = new Customer(receivedMoney);
-        List<Lotto> customerTickets = new ArrayList<>();
-        customerTickets = lottoManager.printTickets(customer.numberOfTickets);
+        List<Lotto> customerTickets = lottoManager.printTickets(customer.numberOfTickets);
 
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> winningNumbers = new ArrayList<>();
@@ -52,9 +51,8 @@ public class Application {
             }
         }
 
-        Prize prize = new Prize();
-        HashMap<String, Integer> prizeCountsRecords = prize.compareAllLottoTickets(customerTickets, winningNumbers, bonusNumber);
-        prize.printResults(prizeCountsRecords);
+        HashMap<String, Integer> prizeCountsRecords = Prize.compareAllLottoTickets(customerTickets, winningNumbers, bonusNumber);
+        Prize.printResults(prizeCountsRecords);
 
         double rateOfReturn = customer.getRateOfReturn(prizeCountsRecords, receivedMoney);
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);

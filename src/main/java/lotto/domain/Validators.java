@@ -33,7 +33,6 @@ public class Validators {
 
     public static void validateNumberRange(int number) {
         if (number > 45 || number < 1) {
-
             throw new IllegalArgumentException();
         }
     }

@@ -48,7 +48,7 @@ public class Prize {
         }
     }
 
-    private static int compare(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+    public static int compare(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         lottoNumbers.retainAll(winningNumbers);
         int containingCount = 0;
         for (int lottoNumber : lottoNumbers) {
@@ -111,7 +111,7 @@ public class Prize {
         return placeType;
     }
 
-    public void printResults(HashMap<String, Integer> prizeCountsRecords) {
+    public static void printResults(HashMap<String, Integer> prizeCountsRecords) {
         PrizeType[] prizeTypeValues = PrizeType.values();
         for (int i = prizeTypeValues.length - 1; i >= 0; i--) {
             PrizeType current = prizeTypeValues[i];

@@ -45,4 +45,8 @@ public class ValidateConstant {
     public static String ERROR_INPUT_1000_WON_UNIT() {
         return "[ERROR] 돈은 1000원 단위 입니다.";
     }
+
+    public static String ERROR_LOTTO_NUMBER_RANGE() {
+        return "[ERROR] 보너스 번호의 범위는 1~45입니다.";
+    }
 }

@@ -106,7 +106,7 @@ public class ValidateException {
 
     public static boolean isInRangeBonusNumber(int number) {
         if (number <= START_BONUS_NUMBER || number >= END_BONUS_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호의 범위는 1~45입니다.");
+            throw new IllegalArgumentException(ValidateConstant.ERROR_LOTTO_NUMBER_RANGE());
         }
         return false;
     }

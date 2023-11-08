@@ -30,6 +30,21 @@ public class Lotto {
         return sortedList;
     }
 
+    public int countContain(List<Integer> winningNumbers) {
+        int count = 0;
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public boolean containNumber(int bounsNumber) {
+        return numbers.contains(bounsNumber);
+    }
+
+
     @Override
     public String toString() {
         return numbers.toString();

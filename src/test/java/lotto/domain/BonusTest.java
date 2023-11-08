@@ -37,7 +37,7 @@ public class BonusTest {
     void create_bonus_error_with_out_of_range(int bonusNumber) {
         // when // then
         assertThatThrownBy(() -> new Bonus(winnerLotto, bonusNumber))
-                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .isExactlyInstanceOf(IndexOutOfBoundsException.class)
                 .hasMessage(BONUS_NUMBER_RANGE_EXCEPTION);
     }
 
@@ -47,7 +47,7 @@ public class BonusTest {
     void create_bonus_error_with_duplication(int bonusNumber) {
         // when // then
         assertThatThrownBy(() -> new Bonus(winnerLotto, bonusNumber))
-                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .isExactlyInstanceOf(IllegalStateException.class)
                 .hasMessage(BONUS_NUMBER_DUPLICATION_EXCEPTION);
     }
 }

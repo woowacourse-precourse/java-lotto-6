@@ -17,7 +17,7 @@ public class Bonus {
 
     private void validateRange(int bonusNumber) {
         if (outOfRange(bonusNumber)) {
-            throw new IllegalArgumentException(BONUS_NUMBER_RANGE_EXCEPTION);
+            throw new IndexOutOfBoundsException(BONUS_NUMBER_RANGE_EXCEPTION);
         }
     }
 
@@ -27,7 +27,7 @@ public class Bonus {
 
     private void validateDuplication(Lotto winnerLotto, int bonusNumber) {
         if (isDuplicated(winnerLotto, bonusNumber)) {
-            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION_EXCEPTION);
+            throw new IllegalStateException(BONUS_NUMBER_DUPLICATION_EXCEPTION);
         }
     }
 

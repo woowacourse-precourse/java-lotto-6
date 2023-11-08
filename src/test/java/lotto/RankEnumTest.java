@@ -47,4 +47,17 @@ public class RankEnumTest {
 		assertEquals("2,000,000,000", RankEnum.FIRST.getFormattedPrize());
 	}
 
+	@Test
+	public void testGetRankByMatchCount() {
+		RankEnum result1 = RankEnum.getRankByMatchCount(0);
+		assertEquals(RankEnum.NONE, result1);
+
+
+		RankEnum result2 = RankEnum.getRankByMatchCount(3);
+		assertEquals(RankEnum.FIFTH, result2);
+
+		RankEnum result3 = RankEnum.getRankByMatchCount(6);
+		assertEquals(RankEnum.FIRST, result3);
+	}
+
 }

@@ -47,7 +47,7 @@ public class LottoWinningRecord {
 
     public void calculateAndPrintStatistics(List<List<Integer>> ticketList, int purchaseAmount) {
         int totalPrize = 0;
-        int[] prizes = new int[5]; // 3개 일치, 4개 일치, 5개 일치, 5개 일치 + 보너스 볼 일치, 6개 일치
+        int[] prizes = new int[5];
 
         for (List<Integer> ticketNumbers : ticketList) {
             int prize = calculatePrize(ticketNumbers);

@@ -75,7 +75,7 @@ public class LottoController {
         Optional<ResultType> resultType = Arrays.stream(ResultType.values())
                 .filter(result -> result.sameNumber() == sameNumber && result.isBonus() == isBonus)
                 .findFirst();
-        return resultType.orElse(null);
+        return resultType.orElse(ResultType.NOTHING);
     }
 
     public ResultType getTotalResult(List<Integer> target, List<Integer> tryLotto, int bonus) {

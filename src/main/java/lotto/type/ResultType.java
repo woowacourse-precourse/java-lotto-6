@@ -5,7 +5,8 @@ public enum ResultType {
     FOURTH(4, false, 50000),
     FIFTH(5, false, 1500000),
     FIFTH_BONUS(5, true, 30000000),
-    ALL(6, false, 2000000000);
+    ALL(6, false, 2000000000),
+    NOTHING(0, false, 0);       // 아무런 경우의 수가 아닐 때
     private final int sameNumber;
     private final boolean isBonus;
     private final int reward;

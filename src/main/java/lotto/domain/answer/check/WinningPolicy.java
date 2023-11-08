@@ -8,6 +8,9 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiFunction;
 
 public final class WinningPolicy {
+    private WinningPolicy() {
+    }
+
     // 당첨 알고리즘 정책 적용
     public static BiFunction<Integer, Boolean, Integer> getRank = (Integer count, Boolean hasBonusNumber) -> {
         AtomicReference<Integer> rank = new AtomicReference<>(0);

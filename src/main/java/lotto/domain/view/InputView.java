@@ -1,6 +1,9 @@
 package lotto.domain.view;
 
 public final class InputView {
+    private InputView() {
+    }
+
     public static void getCash() {
         System.out.println(InputViewFormat.GUIDE_CASH.getState());
     }

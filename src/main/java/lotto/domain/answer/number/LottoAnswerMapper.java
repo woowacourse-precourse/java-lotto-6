@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 
 public final class LottoAnswerMapper {
+    private LottoAnswerMapper() {
+    }
+
     private final static String DELIMITER = ",";
 
     public static Lotto mapToLotto(String lottoAnswerInput) {

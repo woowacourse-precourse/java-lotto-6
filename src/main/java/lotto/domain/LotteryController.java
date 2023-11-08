@@ -4,7 +4,7 @@ import lotto.domain.answer.LotteryAnswerController;
 import lotto.domain.answer.LottoAnswer;
 import lotto.domain.purchase.LotteryPurchaseController;
 
-public final class LotteryController {
+public class LotteryController {
     private static final LotteryPurchaseController purchaseController = new LotteryPurchaseController();
     private static final LotteryAnswerController answerController = new LotteryAnswerController();
 

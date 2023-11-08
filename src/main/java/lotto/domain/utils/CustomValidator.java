@@ -1,6 +1,9 @@
 package lotto.domain.utils;
 
 public final class CustomValidator {
+    private CustomValidator() {
+    }
+
     public static String formatException(String exceptionMessage) {
         return String.format("[ERROR]%s", exceptionMessage);
     }

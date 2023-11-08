@@ -9,6 +9,9 @@ import java.util.List;
 import lotto.domain.Lotto;
 
 public final class LottoIssuer {
+    private LottoIssuer() {
+    }
+
     // 서로 다른 로또 번호가 생성될 때까지 호출
     public static Lotto issueLotto() {
         Lotto lotto = null;

@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.Set;
 
 public final class WinningMoneyCalculator {
+    private WinningMoneyCalculator() {
+    }
+
     // 총 상금액 계산
     public static Long calculateWinnigPrice(Map<Integer, Integer> rankToCount) {
         Set<Integer> keys = rankToCount.keySet();

@@ -5,6 +5,9 @@ import static lotto.domain.view.OutputViewFormat.GUIDE_RESULT_FORMAT;
 import static lotto.domain.view.OutputViewFormat.GUIDE_STATICS;
 
 public final class OutputView {
+    private OutputView() {
+    }
+
     public static void printLottos(String lottosStatus) {
         System.out.println(lottosStatus);
     }

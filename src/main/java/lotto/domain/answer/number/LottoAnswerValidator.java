@@ -11,6 +11,9 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public final class LottoAnswerValidator {
+    private LottoAnswerValidator() {
+    }
+
     private final static String LOTTO_ANSWER_REGEX = "^[1-9]+(,[1-9]+){5}$";
     private final static String BONUS_REGEX = "^[1-9]\\d*$";
 

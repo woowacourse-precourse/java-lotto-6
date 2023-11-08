@@ -78,7 +78,7 @@ public class OutputService {
     }
 
 
-    public static void printError(String errorMessage) {
-        System.out.println(ERROR_PREFIX + errorMessage);
+    public static void printError(Exception e) {
+        System.out.println("\n" + ERROR_PREFIX + e.getMessage());
     }
 }

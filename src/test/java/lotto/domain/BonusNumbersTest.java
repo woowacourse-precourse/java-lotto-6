@@ -1,36 +1,61 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Console;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.config.ConstantNum.*;
+import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.config.ConstantNum.LOTTO_BONUS_NUMBER_CNT;
+import static lotto.config.ConstantNum.LOTTO_NUMBER_MIN;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.ThrowableAssert.ThrowingCallable;
+import static org.mockito.Mockito.mockStatic;
 
 class BonusNumbersTest {
-    private static final String ERROR_MESSAGE = "[ERROR]";
+    private List<Integer> bonus;
+    private List<Integer> wrongBonus;
+    private BonusNumbers bonusNumbers;
 
-    @Test
-    @DisplayName("주어진 보너스 번호의 개수가 일치하지 않을 경우 예외 발생")
-    void testValidate() {
+    @BeforeEach
+    void setUp() {
         // given
-        List<Integer> bonus = new ArrayList<>();
+        bonus = new ArrayList<>();
         for (int i = LOTTO_NUMBER_MIN.getNum(); i < LOTTO_NUMBER_MIN.getNum() + LOTTO_BONUS_NUMBER_CNT.getNum(); i++) {
             bonus.add(i);
         }
-        List<Integer> wrongBonus = new ArrayList<>(bonus);
-        wrongBonus.add(LOTTO_NUMBER_MAX.getNum());
+        wrongBonus = new ArrayList<>(bonus);
+    }
 
+    @Test
+    @DisplayName("주어진 번호의 개수, 범위가 일치할 경우 정상적으로 BonusNumbers 객체 리턴")
+    void Should_Success_When_ValidBonusNumberCntAndRange() {
         // when
-        BonusNumbers bonusNumbers = new BonusNumbers(bonus);
+        ThrowingCallable throwingCallable = () -> new BonusNumbers(bonus);
 
         // then
-        assertThatThrownBy(() -> bonusNumbers.validate(wrongBonus))
-                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ERROR_MESSAGE);
-        assertThatCode(() -> bonusNumbers.validate(bonus)).doesNotThrowAnyException();
+        assertThatCode(throwingCallable).doesNotThrowAnyException();
+    }
 
+    @Test
+    @DisplayName("주어진 보너스 번호의 개수가 일치하지 않을 경우 예외 처리하고 재입력 동작")
+    void Should_ReEnter_When_BonusNumberCntIsNotMatch() {
+        // given
+        wrongBonus.add(LOTTO_NUMBER_MIN.getNum());
+
+        // when
+        try (final MockedStatic<Console> consoleMock = mockStatic(Console.class)) {
+            consoleMock.when(() -> readLine()).thenReturn(
+                    bonus.toString().substring(1, bonus.toString().length() - 1).replaceAll("\\s", ""));
+            bonusNumbers = new BonusNumbers(bonus);
+        }
+
+        // then
+        assertThat(bonusNumbers.getNumbers()).usingRecursiveComparison().isEqualTo(bonus);
     }
 }

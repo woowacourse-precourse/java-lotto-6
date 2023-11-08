@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class LotteryOperator {
-    public final long LOTTO_PRICE = 1000;
     private LotteryRound round;
 
     private Map<LotteryRound, WinningLottery> history;
@@ -15,10 +15,9 @@ public class LotteryOperator {
     private final long lotteryPrice;
 
     public LotteryOperator(LotteryRound round, Collection<? extends LotteryRanking> rankings, long lotteryPrice) {
-        assert(rankings != null);
-        this.round = round;
+        this.round = Objects.requireNonNull(round);
         this.history = new HashMap<>();
-        this.rankings = rankings;
+        this.rankings = Objects.requireNonNull(rankings);
         this.lotteryPrice = lotteryPrice;
     }
 

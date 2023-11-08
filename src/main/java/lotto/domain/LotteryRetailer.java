@@ -8,7 +8,14 @@ public class LotteryRetailer {
         this.random = random;
     }
 
+    private static void validate(LotteryOperator operator, long amount) {
+        if (amount % operator.getLotteryPrice() != 0) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public LotteryReceipt purchase(LotteryOperator operator, long amount) {
+        validate(operator, amount);
         long quantity = amount / operator.getLotteryPrice();
         return LotteryReceipt.createLotteryReceipt(operator, quantity, random);
     }

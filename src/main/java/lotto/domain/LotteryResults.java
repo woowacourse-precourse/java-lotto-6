@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
-import lotto.CustomLotteryRanking;
 
 
 public class LotteryResults {

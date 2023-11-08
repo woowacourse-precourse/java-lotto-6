@@ -7,10 +7,14 @@ import java.util.List;
 import java.util.stream.LongStream;
 
 public class LotteryReceipt implements Iterable<PurchasedLottery> {
+    private static final int MIN_SIZE = 1;
     private final List<PurchasedLottery> lotteries;
     private final LotteryOperator operator;
 
     public static LotteryReceipt createLotteryReceipt(LotteryOperator operator, long quantity, LottoRandom random) {
+        if (quantity < MIN_SIZE) {
+            throw new IllegalArgumentException();
+        }
         return new LotteryReceipt(createPurchasedLotteries(operator, quantity, random), operator);
     }
 

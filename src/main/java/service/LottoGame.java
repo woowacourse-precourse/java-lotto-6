@@ -87,7 +87,7 @@ public class LottoGame {
         List<Integer> bonusNumber = new ArrayList<>();
 
         try {
-            bonusNumber = Arrays.asList(Integer.parseInt(Console.readLine()));
+            bonusNumber.add(Integer.parseInt(Console.readLine()));
         } catch (NumberFormatException e) {
             throw new NumberFormatException("[ERROR] 숫자를 입력해 주세요.");
         }

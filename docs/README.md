@@ -1,7 +1,7 @@
 # 로또
 
 ## 기능 목록
-- [ ] 1 ~ 45 사이 중복되지 않는 6개의 숫자를 생성한다. - NumberGenerator#createRandomNumbers()
+- [X] 1 ~ 45 사이 중복되지 않는 6개의 숫자를 생성한다. - NumberGenerator#createRandomNumbers()
 - [ ] 로또 구입 금액을 입력받을 수 있다. - LottoManager#inputLottoPurchaseAmount()
 - [ ] 로또 당첨 번호를 입력받을 수 있다 - LottoManager#inputLottoWinningNumbers()
 - [ ] 로또 구입 금액에 따라 로또를 발행할 수 있다. - LottoManager#createLotties()

@@ -9,7 +9,7 @@ public class Money {
 
     public Money(long fee) {
         if (lessThanZero(fee)) {
-            throw new IllegalArgumentException(MONEY_CREATION_EXCEPTION);
+            throw new IllegalStateException(MONEY_CREATION_EXCEPTION);
         }
         this.fee = fee;
     }
@@ -20,7 +20,7 @@ public class Money {
 
     public long toLottoCnt() {
         if (dividable()) {
-            throw new IllegalArgumentException(CANNOT_BUY_LOTTO_EXCEPTION);
+            throw new IllegalStateException(CANNOT_BUY_LOTTO_EXCEPTION);
         }
         return fee / LOTTO_PRICE;
     }

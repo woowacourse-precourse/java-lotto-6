@@ -35,7 +35,7 @@ public class MoneyTest {
 
         // when // then
         assertThatThrownBy(money::toLottoCnt)
-                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .isExactlyInstanceOf(IllegalStateException.class)
                 .hasMessage(CANNOT_BUY_LOTTO_EXCEPTION);
     }
 
@@ -46,7 +46,7 @@ public class MoneyTest {
 
         // when // then
         assertThatThrownBy(() -> new Money(fee))
-                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .isExactlyInstanceOf(IllegalStateException.class)
                 .hasMessage(MONEY_CREATION_EXCEPTION);
     }
 }

@@ -27,7 +27,7 @@ public class LottoController {
     public void start() {
         createLottos();
         makewinninglotto();
-        Draw(winningLotto);
+        Draw(this.winningLotto);
     }
 
     private void makewinninglotto() {
@@ -65,9 +65,9 @@ public class LottoController {
         Map<Rank, Integer> rankCount = initializeRankCount();;
         List<Lotto> lottos = this.lottos.getLottos();
         for(Lotto lotto : lottos){
-            int sameNumberCount = winningLotto.countSameNumber(lotto);
+            int sameNumberCount = this.winningLotto.countSameNumber(lotto);
             if (isWinningLotto(sameNumberCount)) {
-                Rank rank = winningLotto.calculateRank(lotto);
+                Rank rank = this.winningLotto.calculateRank(lotto);
                 rankCount.put(rank, rankCount.get(rank) + 1);
             }
         }

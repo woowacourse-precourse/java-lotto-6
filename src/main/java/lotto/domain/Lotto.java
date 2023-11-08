@@ -53,10 +53,10 @@ public class Lotto { //Lotto = numbers
         }
     }
 
-    public int countSameNumber(Lotto userLotto) {
+    public int countSameNumber(Lotto Lotto) {
         int sameNumberCount = 0;
-        for(LottoNumber lottoNumber: numbers) {
-            if(userLotto.hasNumber(lottoNumber)) {
+        for(LottoNumber lottoNumber: this.numbers) {
+            if(Lotto.hasNumber(lottoNumber)) {
                 sameNumberCount++;
             }
         }
@@ -64,8 +64,10 @@ public class Lotto { //Lotto = numbers
     }
 
     public boolean hasNumber(LottoNumber userLottoNumber) {
-        for(LottoNumber lottoNumber: numbers) {
-            if (lottoNumber.equals(userLottoNumber)) {
+        int user = userLottoNumber.getLottoNumber();
+        for(LottoNumber lottoNumber: this.numbers) {
+            int num = lottoNumber.getLottoNumber();
+            if (num == user){
                 return true;
             }
         }

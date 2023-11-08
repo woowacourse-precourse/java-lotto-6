@@ -31,7 +31,7 @@ public class OutputView {
 
             content.append(lottoGrade.toString())
                     .append(" - ")
-                    .append(lottoResult.getLottoResultMap().getOrDefault(lottoGrade, 0))
+                    .append(lottoResult.getLottoResultAmount(lottoGrade))
                     .append("개\n");
         }
 

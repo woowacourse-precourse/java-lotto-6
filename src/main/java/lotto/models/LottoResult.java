@@ -62,4 +62,8 @@ public class LottoResult {
     public int getLottoAmount() {
         return lottoAmount;
     }
+
+    public int getLottoResultAmount(LottoGrade lottoGrade) {
+        return getLottoResultMap().getOrDefault(lottoGrade, 0);
+    }
 }

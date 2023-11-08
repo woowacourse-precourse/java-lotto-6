@@ -30,4 +30,19 @@ class LottoYieldCalculatorServiceTest {
         // Then
         assertThat(yield).isEqualTo(669166.67, within(0.01));
     }
+
+    @Test
+    @DisplayName("일치하는 번호가 없을 때 수익률을 0으로 계산")
+    void testCalculateYieldNoMatches() {
+        // Given
+        LottoYieldCalculatorService yieldCalculator = new LottoYieldCalculatorService();
+        Map<LottoRank, Integer> matchCounts = new EnumMap<>(LottoRank.class);
+        int purchasedTickets = 300;
+
+        // When
+        double yield = yieldCalculator.calculateYield(matchCounts, purchasedTickets);
+
+        // Then
+        assertThat(yield).isEqualTo(0.0);
+    }
 }

@@ -15,7 +15,7 @@ public class WinningLotto {
 
     private void validateBonusNumberDuplicated() {
         if (bonusNumberMatches(lotto)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException("당첨 번호와 보너스 번호는 중복될 수 없습니다.");
         }
     }
 

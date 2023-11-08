@@ -15,7 +15,7 @@ public class IntegerInput {
 
     private void validateInteger(String input) {
         if (!INTEGER_PATTERN.matcher(input).matches()) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
         }
     }
 

@@ -73,4 +73,8 @@ public class OutputView {
     public static void printPrizeRate(LottoResult lottoResult) {
         System.out.printf(PRIZE_RATE_MESSAGE_FORMAT, lottoResult.calculatePrizeRate());
     }
+
+    public static void printException(Exception exception) {
+        System.out.printf("[ERROR] %s", exception.getMessage());
+    }
 }

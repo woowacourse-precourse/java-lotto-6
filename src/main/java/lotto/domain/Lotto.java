@@ -19,13 +19,13 @@ public class Lotto {
 
     private void validateLength(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_LENGTH) {
-            throw new IllegalArgumentException(String.format("[ERROR] 로또 번호는 %d자리입니다.", LOTTO_NUMBER_LENGTH));
+            throw new IllegalArgumentException(String.format("로또 번호는 %d자리입니다.", LOTTO_NUMBER_LENGTH));
         }
     }
 
     private void validateDuplicated(List<Integer> numbers) {
         if (numbers.size() != new HashSet<>(numbers).size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
         }
     }
 

@@ -30,8 +30,22 @@ public class LottoManager {
         return lotto.getNumbers().contains(lottoValidation.getBonusNumber());
     }
 
-    public void checkUserLotto(User user, LottoValidation lottoValidation) {
+    private Rank setLottoRank(LottoValidation lottoValidation, Lotto lotto) {
+        int matchLottoNumber = countMatchLottoNumbers(lottoValidation, lotto);
+        boolean matchBonusNumber = hasBonusNumber(lottoValidation, lotto);
+        Rank rank = Rank.values()[matchLottoNumber];
+        if (rank == Rank.THIRD && matchBonusNumber) {
+            return Rank.SECOND;
+        }
+        return rank;
+    }
 
+    public void checkUserLotto(User user, LottoValidation lottoValidation) {
+        HashMap<Rank, Integer> lottoResult = user.getLottoResult();
+        for (Lotto lotto : user.getPurchasedLotto()) {
+            Rank rank = setLottoRank(lottoValidation, lotto);
+            lottoResult.put(rank, lottoResult.getOrDefault(rank, 0) + 1);
+        }
     }
 
 }

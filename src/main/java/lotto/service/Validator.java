@@ -75,14 +75,14 @@ public class Validator {
     /**
      * Common validator
      */
-    public static void isBlank(String purchaseAmount) {
-        if (purchaseAmount == null || purchaseAmount.isBlank()) {
+    public static void isBlank(String numberValue) {
+        if (numberValue == null || numberValue.isBlank()) {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_BLANK.getMessage());
         }
     }
 
-    private static void isNumber(String purchaseAmount) {
-        if (!purchaseAmount.matches("\\d+")) {
+    private static void isNumber(String numberStr) {
+        if (!numberStr.matches("\\d+")) {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_STRING_NOT_NUMBER.getMessage());
         }
     }

@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -29,6 +30,12 @@ public class OutputView {
     }
 
     public void printProfitRate(double profitRate) {
-        System.out.println("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
+        System.out.println("총 수익률은 " + formatProfitRate(profitRate) + "%입니다.");
+    }
+
+    private String formatProfitRate(double profitRate) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.#");
+
+        return decimalFormat.format(profitRate);
     }
 }

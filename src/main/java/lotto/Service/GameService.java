@@ -1,5 +1,6 @@
 package lotto.Service;
 
+import lotto.Domain.Lotto;
 import lotto.Domain.LottoSalesman;
 import lotto.Domain.Rank;
 import lotto.Domain.Referee;
@@ -34,21 +35,14 @@ public class GameService {
 
         while (true) {
             OutputLottoUI.answerLottoView();
-
             try {
                 List<Integer> answerNumbers = InputLottoUI.inputAnswerLottoPrint();
-
-                //TODO 들여쓰기 3번이라 추후에 클래스로 구현하기
-                if (answerNumbers.size() != 6) {
-                    System.out.println("Please enter exactly 6 numbers.");
-                    continue;
-                }
-
+                Lotto.validate(answerNumbers);
                 OutputLottoUI.answerBonusNumberView();
                 referee = new Referee(answerNumbers, InputLottoUI.inputBonusNumber());
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println("[ERROR] 당첨 숫자 6개를 입력해주세요.");
             }
 
         }

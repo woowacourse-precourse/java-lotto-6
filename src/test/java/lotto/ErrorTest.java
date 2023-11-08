@@ -2,10 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.Arrays;
 import lotto.controller.LottoController;
-import lotto.domain.Lotto;
-import lotto.dto.BonusRequestDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -65,35 +62,21 @@ public class ErrorTest {
     // 서비스 번호 생성
     @Test
     void 서비스_번호_숫자아님(){
-        Lotto lotto = new Lotto(Arrays.asList(1,2,3,4,5,45));
         String bonus = "ㅂㅈㄷ";
-        BonusRequestDTO dto = new BonusRequestDTO.Builder()
-                .lotto(lotto)
-                .bonus(bonus)
-                .build();
-        assertThatThrownBy(() -> controller.createBonusNumber(dto))
+        assertThatThrownBy(() -> controller.createBonusNumber(bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
     @Test
     void 서비스_번호_범위_이탈(){
-        Lotto lotto = new Lotto(Arrays.asList(1,2,3,4,5,45));
         String bonus = "55";
-        BonusRequestDTO dto = new BonusRequestDTO.Builder()
-                .lotto(lotto)
-                .bonus(bonus)
-                .build();
-        assertThatThrownBy(() -> controller.createBonusNumber(dto))
+        assertThatThrownBy(() -> controller.createBonusNumber(bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
     @Test
     void 제공번호와_서비스_번호_같음(){
-        Lotto lotto = new Lotto(Arrays.asList(1,2,3,4,5,45));
+        controller.createUserLottoNumber("1,2,3,4,5,45");
         String bonus = "45";
-        BonusRequestDTO dto = new BonusRequestDTO.Builder()
-                .lotto(lotto)
-                .bonus(bonus)
-                .build();
-        assertThatThrownBy(() -> controller.createBonusNumber(dto))
+        assertThatThrownBy(() -> controller.createBonusNumber(bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

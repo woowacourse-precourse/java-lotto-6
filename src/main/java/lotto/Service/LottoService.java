@@ -1,95 +1,102 @@
 package lotto.Service;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
-import static lotto.etc.RuleConstant.COUNT;
-import static lotto.etc.RuleConstant.END_INCLUSIVE;
-import static lotto.etc.RuleConstant.FIFTH;
-import static lotto.etc.RuleConstant.FIRST;
-import static lotto.etc.RuleConstant.FIVE_MATCH;
-import static lotto.etc.RuleConstant.FORE_MATCH;
-import static lotto.etc.RuleConstant.FOURTH;
-import static lotto.etc.RuleConstant.SECOND;
-import static lotto.etc.RuleConstant.SIX_MATCH;
-import static lotto.etc.RuleConstant.START_INCLUSIVE;
-import static lotto.etc.RuleConstant.THIRD;
-import static lotto.etc.RuleConstant.THREE_MATCH;
+import static lotto.etc.RuleConstant.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.domain.Lotto;
-import lotto.dto.CountScoreRequestDTO;
 import lotto.dto.CountScoreResponseDTO;
 
 public class LottoService {
-    private static final LottoService instance = new LottoService();
-    private LottoService() {}
+    private static LottoService instance;
+    private ValidateService validateService;
+    private List<Lotto> lottoTickets;
+    private Lotto userLotto;
+    private int bonus;
+
+    private LottoService() {
+        this.validateService = ValidateService.getInstance();
+    }
     public static LottoService getInstance() {
+        if (instance == null) instance = new LottoService();
         return instance;
     }
 
-    public List<Lotto> buyLotto(int time) {
+    public List<Lotto> buyLotto(int money) {
+        validateService.checkLengthValidate(money);
+        validateService.checkDivideThousand(money);
+        int time = money / LOTTO_PRICE.toInt();
         List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < time; i++) {
             List<Integer> numbers = pickUniqueNumbersInRange(START_INCLUSIVE.toInt(), END_INCLUSIVE.toInt(), COUNT.toInt());
             Lotto lotto = new Lotto(numbers);
             lottoTickets.add(lotto);
         }
+        this.lottoTickets = lottoTickets;
         return lottoTickets;
     }
+    public void setUserLotto(Lotto lotto){
+        this.userLotto = lotto;
+    }
+    public void setBonus(int bonus){
+        validateService.checkOneAndFortyFive(bonus);
+        validateService.duplicateBonusNumber(userLotto,bonus);
+        this.bonus = bonus;
+    }
+    public CountScoreResponseDTO countScore() {
+        CountScoreResponseDTO dto = new CountScoreResponseDTO();
+        checkTickets(dto);
 
-    public CountScoreResponseDTO countScore(CountScoreRequestDTO countScoreRequestDTO) {
-        Lotto userLotto = countScoreRequestDTO.getLotto();
-        List<Lotto> lottoTickets = countScoreRequestDTO.getLottoTickets();
-        int lottoCount = lottoTickets.size();
-        int bonus = countScoreRequestDTO.getBonus();
-        CountScoreResponseDTO countScoreResponseDTO = new CountScoreResponseDTO();
+        double rateOfReturn = calculateRateOfReturn(dto);
+        dto.setRateOfReturn(rateOfReturn);
 
-        checkTickets(userLotto, lottoTickets, bonus, countScoreResponseDTO);
-
-        double rateOfReturn = calculateRateOfReturn(lottoCount, countScoreResponseDTO);
-        countScoreResponseDTO.setRateOfReturn(rateOfReturn);
-
-        return countScoreResponseDTO;
+        return dto;
+    }
+    public void cleanData(){
+        this.lottoTickets = null;
+        this.userLotto = null;
+        this.bonus = -1;
     }
 
-    private void checkTickets(Lotto userLotto, List<Lotto> lottoTickets, int bonus, CountScoreResponseDTO countScoreResponseDTO) {
+    private void checkTickets(CountScoreResponseDTO dto) {
         for (Lotto ticket : lottoTickets) {
-            int overlappingNumber = calculateOverlappingNumber(userLotto, ticket);
-            calculateScore(ticket, bonus, countScoreResponseDTO, overlappingNumber);
+            int overlappingNumber = calculateOverlappingNumber(ticket);
+            calculateScore(ticket,dto, overlappingNumber);
         }
     }
 
-    private void calculateScore(Lotto ticket, int bonus, CountScoreResponseDTO dto, int overlappingNumber) {
+    private void calculateScore(Lotto ticket, CountScoreResponseDTO dto, int overlappingNumber) {
         if (overlappingNumber == THREE_MATCH.toInt())
             dto.plusFifthPlace();
         if (overlappingNumber == FORE_MATCH.toInt())
             dto.plusFourthPlace();
-        if (overlappingNumber == FIVE_MATCH.toInt() && !containsBonus(ticket, bonus))
+        if (overlappingNumber == FIVE_MATCH.toInt() && !containsBonus(ticket))
             dto.plusThirdPlace();
-        if (overlappingNumber == FIVE_MATCH.toInt() && containsBonus(ticket, bonus))
+        if (overlappingNumber == FIVE_MATCH.toInt() && containsBonus(ticket))
             dto.plusSecondPlace();
         if (overlappingNumber == SIX_MATCH.toInt())
             dto.plusFirstPlace();
     }
 
-    private boolean containsBonus(Lotto ticket, int bonus) {
+    private boolean containsBonus(Lotto ticket) {
         return ticket.getNumbers()
                 .contains(bonus);
     }
 
-    private double calculateRateOfReturn(int lottoCount, CountScoreResponseDTO countScoreResponseDTO) {
-        int sum = countScoreResponseDTO.getFifthPlace() * FIFTH.toInt() +
-                countScoreResponseDTO.getFourthPlace() * FOURTH.toInt() +
-                countScoreResponseDTO.getThirdPlace() * THIRD.toInt() +
-                countScoreResponseDTO.getSecondPlace() * SECOND.toInt() +
-                countScoreResponseDTO.getFirstPlace() * FIRST.toInt();
+    private double calculateRateOfReturn(CountScoreResponseDTO dto) {
+        int sum = dto.getFifthPlace() * FIFTH.toInt() +
+                dto.getFourthPlace() * FOURTH.toInt() +
+                dto.getThirdPlace() * THIRD.toInt() +
+                dto.getSecondPlace() * SECOND.toInt() +
+                dto.getFirstPlace() * FIRST.toInt();
 
-        return Math.round((double) sum / lottoCount * 10) / 100.0;
+        return Math.round((double) sum / lottoTickets.size() * 10) / 100.0;
     }
 
-    private int calculateOverlappingNumber(Lotto userLotto, Lotto lottoTickets) {
+    private int calculateOverlappingNumber(Lotto lottoTickets) {
         Set<Integer> userNumbers = new HashSet<>(userLotto.getNumbers());
         Set<Integer> computerNumbers = new HashSet<>(lottoTickets.getNumbers());
 

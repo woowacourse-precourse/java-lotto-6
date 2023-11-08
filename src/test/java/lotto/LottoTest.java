@@ -4,22 +4,23 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import lotto.Service.LottoService;
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
-import lotto.dto.CountScoreRequestDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoTest {
     private LottoController lottoController;
+    private LottoService lottoService;
 
     @BeforeEach
     void after(){
         lottoController = LottoController.getInstance();
+        lottoService = LottoService.getInstance();
+        lottoService.cleanData();
     }
 
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -42,17 +43,11 @@ class LottoTest {
     void 이등_테스트(){
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    List<Lotto> lottoTickets = lottoController
-                            .setLottoBudget("1000");
-                    ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-                    Lotto lotto = new Lotto(numbers);
-                    int bonus = 7;
-                    CountScoreRequestDTO dto = new CountScoreRequestDTO.Builder()
-                            .lottoTickets(lottoTickets)
-                            .bonus(bonus)
-                            .numbers(lotto)
-                            .build();
-                    assertThat(lottoController.countScore(dto).getSecondPlace())
+                    lottoController.setLottoBudget("1000");
+                    lottoController.createUserLottoNumber("1,2,3,4,5,6");
+                    lottoController.createBonusNumber("7");
+
+                    assertThat(lottoController.countScore().getSecondPlace())
                             .isEqualTo(1);
                 },
                 List.of(1,2,3,4,5,7)
@@ -63,17 +58,11 @@ class LottoTest {
     void 삼등_테스트(){
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    List<Lotto> lottoTickets = lottoController
-                            .setLottoBudget("1000");
-                    ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-                    Lotto lotto = new Lotto(numbers);
-                    int bonus = 45;
-                    CountScoreRequestDTO dto = new CountScoreRequestDTO.Builder()
-                            .lottoTickets(lottoTickets)
-                            .bonus(bonus)
-                            .numbers(lotto)
-                            .build();
-                    assertThat(lottoController.countScore(dto).getThirdPlace())
+                    lottoController.setLottoBudget("1000");
+                    lottoController.createUserLottoNumber("1,2,3,4,5,6");
+                    lottoController.createBonusNumber("45");
+
+                    assertThat(lottoController.countScore().getThirdPlace())
                             .isEqualTo(1);
                 },
                 List.of(1,2,3,4,5,7)

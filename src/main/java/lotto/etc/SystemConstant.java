@@ -12,8 +12,7 @@ public enum SystemConstant {
     FIVE_SAMECONSTANT("5개 일치 (1,500,000원) - %s개\n"),
     FIVE_BONUS_SAMECONSTANT("5개 일치, 보너스 볼 일치 (30,000,000원) - %s개\n"),
     SIX_SAME("6개 일치 (2,000,000,000원) - %s개\n"),
-    RATE_OF_RETURN("총 수익률은 %s%%입니다."),
-    THREE_ZERO("000");
+    RATE_OF_RETURN("총 수익률은 %s%%입니다.");
 
     private String enumString;
     SystemConstant(String enumStr) {

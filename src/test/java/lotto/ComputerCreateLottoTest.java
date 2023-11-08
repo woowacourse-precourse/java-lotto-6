@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.Service.LottoService;
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,13 +21,14 @@ public class ComputerCreateLottoTest {
     @BeforeEach
     void after(){
         lottoController = LottoController.getInstance();
+        LottoService.getInstance().cleanData();
     }
 
     @Test
     void 금액_입력시_로또_번호_발행() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    List<Lotto> lottoTickets1 = lottoController.setLottoBudget("3000");
+                    List<Lotto> lottoTickets1 = lottoController.setLottoBudget("1000");
                     List<Lotto> lottoTickets2 = new ArrayList<>();
                     ArrayList<Integer> number1 = new ArrayList<>(Arrays.asList(8, 21, 23, 41, 42, 43));
                     lottoTickets2.add(new Lotto(number1));
@@ -45,8 +47,7 @@ public class ComputerCreateLottoTest {
     void 정렬확인(){
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    List<Lotto> lottoTickets = lottoController
-                            .setLottoBudget("1000");
+                    List<Lotto> lottoTickets = lottoController.setLottoBudget("1000");
                     ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(21, 8, 23, 41, 42, 43));
                     Lotto lotto = new Lotto(numbers);
                     boolean isEqual = lottoTickets.get(0).getNumbers().equals(lotto.getNumbers());

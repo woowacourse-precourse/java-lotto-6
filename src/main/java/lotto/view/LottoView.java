@@ -17,14 +17,9 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
-import lotto.dto.BonusRequestDTO;
-import lotto.dto.CountScoreRequestDTO;
 import lotto.dto.CountScoreResponseDTO;
 
 public class LottoView {
-    private List<Lotto> lottoTickets;
-    private Lotto userLotto;
-    private int bonus;
     private LottoController lottoController;
     public LottoView(){
         this.lottoController = LottoController.getInstance();
@@ -43,16 +38,15 @@ public class LottoView {
                 System.out.println(START);
                 String money = Console.readLine();
                 List<Lotto> tickets = lottoController.setLottoBudget(money);
-                this.lottoTickets = tickets;
+
+                System.out.printf(BUY.toString(), tickets.size());
+                tickets.stream()
+                    .forEach(ticket -> System.out.println(ticket.getNumbers().toString()));
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_TYPE_ILLEGAL_ARGUMENT.toString() + e.getMessage());
             }
         }
-
-        System.out.printf(BUY.toString(), lottoTickets.size());
-        lottoTickets.stream()
-                .forEach(ticket -> System.out.println(ticket.getNumbers().toString()));
     }
 
     private void parseLotto() {
@@ -60,8 +54,7 @@ public class LottoView {
             try {
                 System.out.println(JACKPOT);
                 String number = Console.readLine();
-                this.userLotto = LottoController.getInstance()
-                        .createUserLottoNumber(number);
+                lottoController.createUserLottoNumber(number);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_TYPE_ILLEGAL_ARGUMENT.toString() + e.getMessage());
@@ -74,12 +67,7 @@ public class LottoView {
             try {
                 System.out.println(BONUS);
                 String bonus = Console.readLine();
-                BonusRequestDTO bonusRequestDTO = new BonusRequestDTO.Builder()
-                        .lotto(userLotto)
-                        .bonus(bonus)
-                        .build();
-                this.bonus = lottoController
-                        .createBonusNumber(bonusRequestDTO);
+                lottoController.createBonusNumber(bonus);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_TYPE_ILLEGAL_ARGUMENT.toString() + e.getMessage());
@@ -88,16 +76,8 @@ public class LottoView {
     }
 
     private void lottoResult() {
-        CountScoreRequestDTO countScoreRequestDTO = new CountScoreRequestDTO.Builder()
-                .lottoTickets(lottoTickets)
-                .numbers(userLotto)
-                .bonus(bonus)
-                .build();
-
-        CountScoreResponseDTO countScoreResponseDTO = lottoController.countScore(countScoreRequestDTO);
-
+        CountScoreResponseDTO countScoreResponseDTO = lottoController.countScore();
         printResult(countScoreResponseDTO);
-
     }
 
     private void printResult(CountScoreResponseDTO countScoreResponseDTO) {

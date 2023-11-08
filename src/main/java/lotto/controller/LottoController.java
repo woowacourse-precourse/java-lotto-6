@@ -4,12 +4,10 @@ import java.util.List;
 import lotto.Service.LottoParseService;
 import lotto.Service.LottoService;
 import lotto.domain.Lotto;
-import lotto.dto.BonusRequestDTO;
-import lotto.dto.CountScoreRequestDTO;
 import lotto.dto.CountScoreResponseDTO;
 
 public class LottoController {
-    private static LottoController instance = new LottoController();
+    private static LottoController instance;
     private LottoService lottoService;
     private LottoParseService lottoParseService;
     private LottoController() {
@@ -17,6 +15,7 @@ public class LottoController {
         this.lottoParseService = LottoParseService.getInstance();
     }
     public static LottoController getInstance() {
+        if (instance == null) instance = new LottoController();
         return instance;
     }
 
@@ -24,15 +23,17 @@ public class LottoController {
         int time = lottoParseService.parseTimes(money);
         return lottoService.buyLotto(time);
     }
-    public Lotto createUserLottoNumber(String numbers) {
+    public void createUserLottoNumber(String numbers) {
         List<Integer> userNumbers = lottoParseService.parseList(numbers);
-        return lottoParseService.parseLotto(userNumbers);
+        Lotto userLotto = lottoParseService.parseLotto(userNumbers);
+        lottoService.setUserLotto(userLotto);
     }
-    public int createBonusNumber(BonusRequestDTO bonusRequestDTO) {
-        return lottoParseService.parseBonusNumber(bonusRequestDTO);
+    public void createBonusNumber(String bonus) {
+        int bonusNumber = lottoParseService.parseBonusNumber(bonus);
+        lottoService.setBonus(bonusNumber);
+
     }
-    public CountScoreResponseDTO countScore(CountScoreRequestDTO countScoreRequestDTO) {
-        return lottoService
-                .countScore(countScoreRequestDTO);
+    public CountScoreResponseDTO countScore() {
+        return lottoService.countScore();
     }
 }

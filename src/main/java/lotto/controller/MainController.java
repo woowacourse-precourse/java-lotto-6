@@ -9,33 +9,34 @@ import lotto.model.user.OrderAmount;
 import lotto.view.View;
 
 public class MainController {
-    static View view = new View();
+    final View view = new View();
     OrderAmount payedMoney;
     LottoTickets lottoTickets;
     WinningNumber winningNumber;
     BonusNumber bonusNumber;
 
     public void run() {
-        lottoTickets = purchaseLottoTickets();
-        view.printLottoTickets(lottoTickets.printTickets());
+        purchaseLottoTickets();
         makeWinningNumbers();
         makeBonusNumber();
-        calculateStatistics(winningNumber, bonusNumber);
+        showStatistics();
+
         Console.close();
     }
 
-    private LottoTickets purchaseLottoTickets() {
+    private void purchaseLottoTickets() {
         while (true){
             try {
                 String order = view.askPurchasingAmount();
                 payedMoney = new OrderAmount(order);
                 break;
             } catch (IllegalArgumentException exception){
-                System.out.println(exception.getMessage());
+                view.printMessage(exception.getMessage());
             }
         }
         view.printOrderedLottoCount(payedMoney.amountOfLotto());
-        return new LottoTickets(payedMoney.amountOfLotto());
+        lottoTickets = new LottoTickets(payedMoney.amountOfLotto());
+        view.printLottoTickets(lottoTickets.printTickets());
     }
 
     private void makeWinningNumbers(){
@@ -44,7 +45,7 @@ public class MainController {
                 winningNumber = new WinningNumber(view.askWinningNumbers());
                 break;
             } catch (IllegalArgumentException exception){
-                System.out.println(exception.getMessage());
+                view.printMessage(exception.getMessage());
             }
         }
     }
@@ -55,12 +56,12 @@ public class MainController {
                 bonusNumber = new BonusNumber(winningNumber, view.askBonusNumber());
                 break;
             } catch (IllegalArgumentException exception){
-                System.out.println(exception.getMessage());
+                view.printMessage(exception.getMessage());
             }
         }
     }
 
-    private void calculateStatistics(WinningNumber winningNumber, BonusNumber bonusNumber) {
+    private void showStatistics() {
         LottoResults results = lottoTickets.calculateResult(winningNumber, bonusNumber);
         view.printStatistics(results.showResults());
         view.printProfit(payedMoney.calculateProfit(results));

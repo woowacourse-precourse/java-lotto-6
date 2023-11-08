@@ -6,7 +6,7 @@ import static lotto.view.constants.OutputMessage.*;
 
 public class View {
 
-    private void printMessage(String outputMessage){
+    public void printMessage(String outputMessage){
         System.out.println(outputMessage);
     }
 

@@ -15,7 +15,7 @@ public class BonusNumber {
         lottoMustBeUniqueNumber(winningNumber, bonus);
     }
 
-    public int getNumber() {
+    public int getBonusNumber() {
         return bonus;
     }
 }

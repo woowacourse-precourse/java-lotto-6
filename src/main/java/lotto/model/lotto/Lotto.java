@@ -41,7 +41,7 @@ public class Lotto {
     }
 
     public boolean isHitBonusNumber(BonusNumber bonusNumber) {
-        return numbers.contains(bonusNumber.getNumber());
+        return numbers.contains(bonusNumber.getBonusNumber());
     }
 
     public String getTicketContent() {

@@ -26,10 +26,6 @@ public class Exception {
         throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_NUMBER_RANGE_MESSAGE.getMessage());
     }
 
-    public static void raiseInvalidWinningNumberInputFormatException() {
-        throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_NUMBER_INPUT_FORMAT_MESSAGE.getMessage());
-    }
-
     public static void raiseInvalidWinningNumberDuplicationException() {
         throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_NUMBER_DUPLICATION_MESSAGE.getMessage());
     }

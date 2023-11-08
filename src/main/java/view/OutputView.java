@@ -1,6 +1,6 @@
 package view;
 
-import static model.WinningLotto.*;
+import static model.LottoUtils.*;
 
 import java.util.List;
 import java.util.Map;
@@ -59,5 +59,9 @@ public class OutputView {
         printWinningResultTitle();
         printWinningResult(winningResult);
         printEarningRateResultMessage(earningRate);
+    }
+
+    public static void printErrorMessage(IllegalArgumentException illegalArgumentException) {
+        System.out.println(illegalArgumentException.getMessage());
     }
 }

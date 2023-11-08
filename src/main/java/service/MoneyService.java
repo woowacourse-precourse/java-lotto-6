@@ -15,8 +15,8 @@ public class MoneyService {
                 String cost = InputView.getMoneyForLottoPurchasing();
                 money = new Money(cost);
                 isSuccess = true;
-            } catch (IllegalArgumentException illegalArgumentException) {
-                System.out.println(illegalArgumentException.getMessage());
+            } catch (IllegalArgumentException moneyInputError) {
+                OutputView.printErrorMessage(moneyInputError);
             }
         }
         return money;

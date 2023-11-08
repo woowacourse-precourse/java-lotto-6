@@ -7,7 +7,6 @@ public enum ExceptionMessage {
     INVALID_WINNING_NUMBER_ARGUMENT_MESSAGE("[ERROR] 당첨 번호는 숫자로만 이루어져 있어야 합니다."),
     INVALID_WINNING_NUMBER_RANGE_MESSAGE("[ERROR] 당첨 번호는 1 이상 45 이하여야 합니다."),
     INVALID_WINNING_NUMBER_SIZE_MESSAGE("[ERROR] 당첨 번호는 6개만 입력되어야 합니다."),
-    INVALID_WINNING_NUMBER_INPUT_FORMAT_MESSAGE("[ERROR] 당첨 번호는 쉼표로 구분하여 6개 입력해야 합니다."),
     INVALID_WINNING_NUMBER_DUPLICATION_MESSAGE("[ERROR] 당첨 번호에 중복된 숫자가 입력되어서는 안됩니다."),
     INVALID_BONUS_NUMBER_ARGUMENT_MESSAGE("[ERROR] 보너스 번호는 숫자로만 이루어져 있어야 합니다."),
     INVALID_BONUS_NUMBER_RANGE_MESSAGE("[ERROR] 보너스 번호는 1 이상 45 이하여야 합니다."),

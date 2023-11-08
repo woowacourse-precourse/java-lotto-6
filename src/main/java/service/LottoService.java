@@ -16,8 +16,8 @@ public class LottoService {
                 String winningNumber = InputView.getWinningNumber();
                 lotto = new Lotto(winningNumber);
                 isSuccess = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException winningNumberInputError) {
+                OutputView.printErrorMessage(winningNumberInputError);
             }
         }
         return lotto;
@@ -32,8 +32,8 @@ public class LottoService {
                 String bonusNumber = InputView.getBonusNumber();
                 winningLotto = new WinningLotto(lotto.getNumbers(), bonusNumber);
                 isSuccess = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException bonusNumberInputError) {
+                OutputView.printErrorMessage(bonusNumberInputError);
             }
         }
         return winningLotto;

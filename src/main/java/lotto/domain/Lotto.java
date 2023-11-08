@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.validation.LottoValidation;
+
 import java.util.List;
 
 public class Lotto {
@@ -11,7 +13,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        LottoValidation.validateRange(numbers);
+        LottoValidation.validateDuplicates(numbers);
+        LottoValidation.validateLength(numbers);
     }
-
-    // TODO: 추가 기능 구현
 }

@@ -12,13 +12,12 @@ public class View {
 
     public enum ErrorMessage {
         INVALID_NUMBER("유효한 숫자를 입력해주세요."),
-        NOT_POSITIVE("양의 정수를 입력해주세요"),
+        NOT_POSITIVE("양의 정수를 입력해주세요."),
         BELOW_MINIMUM_AMOUNT("로또 가격보다 큰 값을 입력해주세요."),
-        INVALID_FORMAT("올바른 방식으로 입력해주세요"),
-        INCORRECT_NUMBER_COUNT("6개의 수를 입력해주세요"),
+        INCORRECT_NUMBER_COUNT("6개의 수를 입력해주세요."),
         INVALID_RANGE("1~45 사이의 숫자만 입력해주세요."),
-        DUPLICATE_NUMBER("중복된 숫자는 입력할 수 없습니다."),
-        BONUS_INCORRECT_COUNT("1개의 수만 입력해주세요");
+        DUPLICATE_NUMBER("중복된 숫자는 입력할 수 없습니다.");
+
 
         private final String message;
 
@@ -31,7 +30,7 @@ public class View {
         }
     }
 
-    private static final String ERROR_PREFIX = "[ERROR] ";
+    public static final String ERROR_PREFIX = "[ERROR] ";
 
     public static int getPurchaseAmount() {
         while (true) {
@@ -41,7 +40,7 @@ public class View {
                 Validator.validatePurchaseInput(input);
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println(ERROR_PREFIX + e.getMessage());
             }
         }
     }
@@ -68,10 +67,11 @@ public class View {
                 System.out.println("보너스 번호를 입력하세요.");
                 String input = Console.readLine().trim();
                 Validator.isPositiveInteger(input);
-                Validator.validateBonusNumber(Integer.parseInt(input), winningNumbers);
-                return Integer.parseInt(input);
+                int bonusNumber = Integer.parseInt(input);
+                Validator.validateBonusNumber(bonusNumber, winningNumbers);
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println(ERROR_PREFIX + e.getMessage());
             }
         }
     }
@@ -80,7 +80,7 @@ public class View {
 
     private static void validateWinningNumber(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.name());
+            throw new IllegalArgumentException(ERROR_PREFIX + ErrorMessage.INVALID_RANGE.name());
         }
     }
 
@@ -109,9 +109,6 @@ public class View {
         return rankDescriptionMap.get(rank);
     }
 
-    private static void printErrorMessage(ErrorMessage errorMessage) {
-        System.out.println(ERROR_PREFIX + errorMessage.getMessage());
-    }
     public static void printEarningsRate(double earningRate) {
         System.out.printf("총 수익률은 %.1f%%입니다.\n", earningRate);
     }

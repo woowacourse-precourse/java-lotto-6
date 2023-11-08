@@ -16,7 +16,7 @@ public class InputView {
             validateNumber(input);
             money = Integer.parseInt(input);
             validateInputMoneyUnit(money);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             money = getMoney();
         }
@@ -30,7 +30,7 @@ public class InputView {
             String[] inputAnswer = Console.readLine().split(",");
             List<Integer> numbers = getValidatedNumbers(inputAnswer);
             lotto = new Lotto(numbers);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             lotto = getInputAnswerLotto();
         }
@@ -58,7 +58,7 @@ public class InputView {
         try{
             validateNumber(input);
             winningLotto = new WinningLotto(lotto,Integer.parseInt(input));
-        }catch(Exception e){
+        }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
             winningLotto = getBonusNumber(lotto);
         }

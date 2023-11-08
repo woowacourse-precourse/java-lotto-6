@@ -13,9 +13,10 @@ public class WinningLotto {
         validate(numbers);
         validateWinningNumberSize(numbers);
         validateWinningNumberUnique(numbers);
-        validateRedundantBonusNumber(bonusNum);
         this.winningNumbers = numbers;
+        validateRedundantBonusNumber(bonusNum);
         this.bonusNumber = bonusNum;
+
     }
 
     private void validate(List<Integer> numbers) {

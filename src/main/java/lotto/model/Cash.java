@@ -8,11 +8,11 @@ public class Cash {
     public Cash(int amount) {
         validateAmount(amount);
         validateAmountUnit(amount);
-        this.amount = amount;
+        Cash.amount = amount;
     }
 
     public int getCount() {
-        return this.amount / UNIT;
+        return amount / UNIT;
     }
 
     public static int getAmount() { return amount; }

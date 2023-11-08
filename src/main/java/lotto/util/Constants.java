@@ -36,7 +36,7 @@ public class Constants {
     }
     public enum Format {
         LOTTO("로또"),
-        BONUS_NUMBER("보너스 번호");
+        BONUS_NUMBER("보너스");
 
         private final String type;
 

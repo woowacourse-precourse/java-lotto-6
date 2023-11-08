@@ -17,4 +17,33 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public int checkPrize(List<Integer> winnerNumbers){
+        int matchCount = 0;
+
+        for (int number:numbers){
+            for(int winner:winnerNumbers){
+                if(number<winner){
+                    break;
+                }
+                if(number==winner){
+                    matchCount++;
+                }
+            }
+        }
+
+        return matchCount;
+    }
+
+    public boolean checkBonus(int bonus){
+        for (int number:numbers){
+            if(number==bonus){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void printLottoNumbers(){
+        System.out.println(numbers.toString());
+    }
 }

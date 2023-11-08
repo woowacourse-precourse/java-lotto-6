@@ -1,5 +1,6 @@
 package lotto.lottosystem.bussiness;
 
+import lotto.lottosystem.presentation.printer.StatisticsVO;
 import lotto.lottosystem.presentation.printer.TicketsVO;
 import lotto.lottosystem.presentation.reader.LottoNumbersVO;
 import lotto.lottosystem.presentation.reader.MoneyVO;
@@ -41,5 +42,66 @@ public class LottoService {
 
     private int calcCount(int money) {
         return (money / ONE_LOTTO_EXPENCE);
+    }
+
+    public StatisticsVO calcStatistics() {
+        int win3Count = 0;
+        int win4Count = 0;
+        int win5Count = 0;
+        int win5WithBonusCount = 0;
+        int win6Count = 0;
+        double revenueRatio = 0;
+
+        for(Lotto ticket : userTickets) {
+            LottoStatus status = calcTicketStatus(ticket);
+            if (status == LottoStatus.WIN3) { win3Count++; continue;}
+            if (status == LottoStatus.WIN4) { win4Count++; continue;}
+            if (status == LottoStatus.WIN5) { win5Count++; continue;}
+            if (status == LottoStatus.WIN5_WITH_BONUS) { win5WithBonusCount++; continue;}
+            if (status == LottoStatus.WIN6) { win6Count++;}
+        }
+
+        int totalRevenue =
+                (
+                    win3Count*LottoStatus.WIN3.getPrize() +
+                    win4Count*LottoStatus.WIN4.getPrize() +
+                    win5Count*LottoStatus.WIN5.getPrize() +
+                    win5WithBonusCount*LottoStatus.WIN5_WITH_BONUS.getPrize() +
+                    win6Count*LottoStatus.WIN6.getPrize()
+                );
+
+        revenueRatio = (totalRevenue / (userTickets.size()*1000.0)) * 100.0;
+        return new StatisticsVO(win3Count, win4Count, win5Count, win5WithBonusCount, win6Count, revenueRatio);
+    }
+
+    private int countMatchingNumbers(Lotto ticket) {
+        int count = 0;
+        for(Integer number : ticket.getNumbers()) {
+            if (answerLotto.getNumbers().contains(number)) {
+                count += 1;
+            }
+        }
+        return count;
+    }
+
+    private LottoStatus calcTicketStatus(Lotto ticket) {
+        int count = countMatchingNumbers(ticket);
+        boolean isBonus = ticket.getNumbers().contains(bonusNumber);
+        if (count == 3) {
+            return LottoStatus.WIN3;
+        }
+        if (count == 4) {
+            return LottoStatus.WIN3;
+        }
+        if ((count == 5) && (!isBonus)) {
+            return LottoStatus.WIN5;
+        }
+        if ((count == 5) && (isBonus)) {
+            return LottoStatus.WIN5_WITH_BONUS;
+        }
+        if (count == 6) {
+            return LottoStatus.WIN6;
+        }
+        return LottoStatus.NOT_MATCHING;
     }
 }

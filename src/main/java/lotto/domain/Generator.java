@@ -26,37 +26,10 @@ public class Generator {
                 Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
         );
 
-        for (Lotto l : generateLotto) {
-            List<Integer> lotto = l.getNumbers();
-            lotto.addAll(winningNum);
-
-            int correctNum = getDubRemovedListSize(lotto, lotto.contains(bonusNum));
-
-            if (correctNum < 10) {
-                result.set(correctNum, result.get(correctNum) + 1);
-            }
+        for (Lotto lotto : generateLotto) {
+            ResultModule.checkResult(result, lotto, winningNum, bonusNum);
         }
 
-        return result;
-    }
-
-    private static int getDubRemovedListSize(List<Integer> lotto, boolean isBonus) {
-        int dupRemovedNum = lotto.stream().distinct().toList().size();
-
-        return checkWinningNum(dupRemovedNum, isBonus);
-    }
-
-    private static int checkWinningNum(int dubRemovedNum, boolean isBonus) {
-        int result = dubRemovedNum;
-
-        if (dubRemovedNum == 6) {
-            result = 5;
-        }
-
-        if (dubRemovedNum == 7 && isBonus) {
-            result = 6;
-        }
-
-        return result;
+        return ResultModule.formattingResult(result);
     }
 }

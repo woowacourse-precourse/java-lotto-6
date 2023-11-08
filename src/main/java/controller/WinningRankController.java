@@ -18,8 +18,8 @@ public class WinningRankController {
 
     public void run(List<Lotto> lottos){
         for(Lotto lotto : lottos){
-            Rank rank = winningMachine.getWinningRank(lotto);
-            addRank(rank);
+            Rank currentLottoRank = winningMachine.getWinningRank(lotto);
+            addRank(currentLottoRank);
         }
     }
 

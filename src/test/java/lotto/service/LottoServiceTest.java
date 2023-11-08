@@ -37,13 +37,14 @@ class LottoServiceTest implements LottoFinalConsts {
 
     @Test
     void 사용자가_입력한_보너스_번호가_이미_당첨번호에_존재할_경우_예외를_발생한다() {
-        int bonusNumber = 6;
-        assertThatThrownBy(() -> lottoService.isBonusNumberAlreadyExist(winningNumbers, bonusNumber))
+        assertThatThrownBy(() -> lottoService.isBonusNumberAlreadyExist(winningNumbers, 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void isNumberOutOfRange() {
+    void 사용자가_입력한_당첨번호와_보너스번호의_범위가_1부터_45까지가_아닌_경우_예외를_발생한다() {
+        assertThatThrownBy(() -> lottoService.isNumberOutOfRange("66"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

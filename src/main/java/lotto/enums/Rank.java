@@ -13,4 +13,12 @@ public enum Rank {
         this.countOfMatch = countOfMatch;
         this.winningMoney = winningMoney;
     }
+
+    public int getCountOfMatch() {
+        return countOfMatch;
+    }
+
+    public int getWinningMoney() {
+        return winningMoney;
+    }
 }

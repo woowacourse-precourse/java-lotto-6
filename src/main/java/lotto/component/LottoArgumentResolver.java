@@ -29,13 +29,9 @@ public class LottoArgumentResolver {
 
     public LottoArgument resolve() {
         int lottoSize = readLottoSize();
-
         List<Lotto> lottos = generateLottos(lottoSize);
-
         List<Integer> winNumbers = readWinNumbers();
-
         int bonusNumber = readBonusNumber(winNumbers);
-
         Winning winning = Winning.of(winNumbers, bonusNumber);
 
         return LottoArgument.of(lottos, winning);
@@ -45,23 +41,18 @@ public class LottoArgumentResolver {
         printer.printPurchaseAmountInputMessage();
 
         int purchaseAmount;
-
         while (true) {
             try {
                 String purchaseAmountInput = reader.readLine();
                 validator.verifyPurchaseAmount(purchaseAmountInput);
                 purchaseAmount = Integer.parseInt(purchaseAmountInput);
                 break;
-
             } catch (IllegalArgumentException ex) {
                 printer.printExceptionMessage(ex.getMessage());
             }
         }
 
-        int lottoSize = purchaseAmount / PURCHASE_AMOUNT_UNIT;
-        printer.printPurchaseLottoSize(lottoSize);
-
-        return lottoSize;
+        return getLottoSize(purchaseAmount);
     }
 
     protected List<Integer> readWinNumbers() {
@@ -71,11 +62,7 @@ public class LottoArgumentResolver {
             try {
                 String winNumbersInput = reader.readLine();
                 validator.verifyWinNumbers(winNumbersInput);
-
-                return Arrays.stream(winNumbersInput.split(","))
-                        .map(it -> Integer.parseInt(it.trim()))
-                        .sorted()
-                        .toList();
+                return parsingToWinNumbers(winNumbersInput);
 
             } catch (IllegalArgumentException ex) {
                 printer.printExceptionMessage(ex.getMessage());
@@ -106,5 +93,19 @@ public class LottoArgumentResolver {
         printer.printAllLotto(lottos);
 
         return lottos;
+    }
+
+    private int getLottoSize(int purchaseAmount) {
+        int lottoSize = purchaseAmount / PURCHASE_AMOUNT_UNIT;
+        printer.printPurchaseLottoSize(lottoSize);
+
+        return lottoSize;
+    }
+
+    private List<Integer> parsingToWinNumbers(String winNumbersInput) {
+        return Arrays.stream(winNumbersInput.split(","))
+                .map(it -> Integer.parseInt(it.trim()))
+                .sorted()
+                .toList();
     }
 }

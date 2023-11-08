@@ -22,7 +22,6 @@ public class LottoViewResolver {
 
     public void showResult(Result result) {
         writer.printResult();
-
         showStatistics(result.getStatistics());
         showProfit(result.getProfit());
     }

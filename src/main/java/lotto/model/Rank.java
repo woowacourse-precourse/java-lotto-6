@@ -30,6 +30,17 @@ public enum Rank {
         return determineRank(MatchCount, matchBonus);
     }
 
-
+    private static Rank determineRank(int MatchCount, boolean matchBonus) {
+        if (MatchCount == 6) {
+            return FIRST;
+        }
+        if (MatchCount == 5) {
+            return getRankForFiveMatches(matchBonus);
+        }
+        if (MatchCount == 4) {
+            return FOURTH;
+        }
+        return FIFTH;
+    }
 }
 

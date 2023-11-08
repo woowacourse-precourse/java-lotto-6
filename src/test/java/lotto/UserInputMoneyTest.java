@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
+import lotto.view.UserInput;
 import org.junit.jupiter.api.Test;
 
 public class UserInputMoneyTest {

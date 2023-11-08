@@ -6,9 +6,9 @@ import lotto.domain.BuyLotto;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumbers;
 import lotto.domain.Money;
-import lotto.OutputView;
+import lotto.view.OutputView;
 import lotto.domain.Score;
-import lotto.UserInput;
+import lotto.view.UserInput;
 import lotto.domain.WinStatistics;
 
 public class LottoController {

@@ -9,8 +9,10 @@ public class FrontController {
 
     MyLotto myLotto;
     WinningNumbers winningNumbers;
+    CompareController compareController;
 
     public FrontController() {
+        compareController = new CompareController();
     }
 
     public void run() {
@@ -18,6 +20,7 @@ public class FrontController {
         OutPutView.printPurchaseResult(myLotto);
         winningNumbers = drawWinningNumbers();
         setBonusNumber();
+        compareController.run(myLotto, winningNumbers);
     }
 
     public MyLotto buyLotto() {

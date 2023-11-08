@@ -1,27 +1,28 @@
 package lotto.model;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 class ProfitRateTest {
     @Test
     @DisplayName("수익률 계산 테스트")
-    void 수익률_계산_테스트() {
+    void profit_rate_calculate_test() {
         //given
-        Map<WinningStrategy, Integer> matchResult = new HashMap<>();
-        matchResult.put(WinningStrategy.MATCHES_FOUR, 2);
+        Map<WinningCriteria, Integer> matchResult = Map.of(
+                WinningCriteria.MATCHES_THREE, 1,
+                WinningCriteria.MATCHES_FOUR, 2
+        );
 
         //when
-        ProfitRate profitRateCalculator = new ProfitRate(matchResult, 2000);
-        double profitRate = profitRateCalculator.calculateProfitRate(100000, 2000);
+        ProfitRate profitRateCalculator = new ProfitRate(matchResult, 130000);
 
         //then
-        assertEquals(5000, profitRate);
+        assertEquals(80.8, profitRateCalculator.getProfitRate(), 0.1);
     }
 
 

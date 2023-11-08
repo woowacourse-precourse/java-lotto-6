@@ -4,12 +4,17 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.service.generator.LottoGenerator;
+import lotto.service.manager.Count;
+import lotto.service.manager.Rank;
 
 public class RankBoard {
 
     private final Map<Rank, Count> board;
+    private long totalPrize;
 
     public RankBoard() {
+        this.totalPrize = 0L;
         this.board = new LinkedHashMap<>(LottoGenerator.COUNT);
 
         for (Rank rank : Rank.values()) {
@@ -23,6 +28,7 @@ public class RankBoard {
 
     private void plusCount(Rank rank) {
         board.get(rank).plus();
+        this.totalPrize += rank.getPrize();
     }
 
     /**
@@ -44,14 +50,7 @@ public class RankBoard {
     }
 
     public long getTotalPrize() {
-        return board.keySet()
-                .stream()
-                .mapToLong(this::calculatePrizePer)
-                .sum();
-    }
-
-    private long calculatePrizePer(Rank rank) {
-        return rank.getPrize() * getCount(rank);
+        return totalPrize;
     }
 
     private long getCount(Rank rank) {

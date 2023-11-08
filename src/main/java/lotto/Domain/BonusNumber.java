@@ -1,5 +1,7 @@
 package lotto.Domain;
 
+import lotto.validator.InputValidator;
+
 public class BonusNumber {
     private int bonusNumber;
 

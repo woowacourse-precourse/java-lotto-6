@@ -2,6 +2,6 @@ package lotto.LottoNumGenerator;
 
 import java.util.List;
 
-public class LottoGenerator {
+public interface LottoGenerator {
     List<Integer> pickLottoNumber();
 }

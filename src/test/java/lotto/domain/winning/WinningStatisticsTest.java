@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.winning;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
+import lotto.domain.Lottos;
+import lotto.domain.Money;
 import lotto.domain.winning.WinningNumbers;
 import lotto.domain.winning.WinningResult;
 import lotto.domain.winning.WinningStatistics;

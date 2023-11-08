@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.winning;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import java.util.stream.Stream;
 
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.winning.WinningNumbers;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

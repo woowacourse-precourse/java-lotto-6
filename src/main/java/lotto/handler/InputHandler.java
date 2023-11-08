@@ -29,7 +29,7 @@ public class InputHandler {
                 InputValidator.validateIsMultiplesOf1000(lottoPurchasePrice);
                 return lottoPurchasePrice;
             } catch (IllegalArgumentException e) {
-                OutputView.printWithBlankLine(e.getMessage());
+                OutputView.print(e.getMessage());
             }
         }
     }
@@ -51,7 +51,7 @@ public class InputHandler {
 
                 return winningNums;
             } catch (IllegalArgumentException e){
-                OutputView.printWithBlankLine(e.getMessage());
+                OutputView.print(e.getMessage());
             }
         }
     }
@@ -69,7 +69,7 @@ public class InputHandler {
                 InputValidator.validateUniqueNumbers(winningNums, bonusNum);
                 return bonusNum;
             } catch (IllegalArgumentException e){
-                OutputView.printWithBlankLine(e.getMessage());
+                OutputView.print(e.getMessage());
             }
         }
     }

@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Result {
@@ -47,15 +48,19 @@ public class Result {
         if (rank == Rank.FIFTH) { prize = Rank.FIFTH.getReward(); }
         return prize;
     }
-    private Result calculateWinningResult(Lotto userLotto, WinningLotto winningLotto) {
-        int matchCount = countMatchNumbers(userLotto, winningLotto);
-        boolean hasBonus = userLotto.contains(winningLotto.getBonusNumber());
+    public List<Result> calculateWinningResults(UserLotto userLotto, WinningLotto winningLotto) {
+        List<Result> results = new ArrayList<>();
+        for (Lotto lotto : userLotto.getUserLotto()) {
+            int matchCount = countMatchNumbers(lotto, winningLotto);
+            boolean hasBonus = lotto.contains(winningLotto.getBonusNumber());
 
-        if (hasBonus) {
-            matchCount++;
+            if (hasBonus) {
+                matchCount++;
+            }
+
+            results.add(Result.of(matchCount, hasBonus));
         }
-
-        return Result.of(matchCount, hasBonus);
+        return results;
     }
 
     private int countMatchNumbers(Lotto userLotto, WinningLotto winningLotto) {

@@ -9,12 +9,12 @@ public class Profit {
         this.profit = profit;
     }
 
-    public double calculateProfit(List<Result> winningResults, int purchaseAmount) {
+    public double calculateProfit(List<Result> winningResults, Amount purchaseAmount) {
         int totalPrize = winningResults.stream()
                 .mapToInt(Result::getPrize)
                 .sum();
 
-        double profitRatio = (double) totalPrize / purchaseAmount;
+        double profitRatio = (double) totalPrize / purchaseAmount.getAmount();
         return profitRatio * 100;
     }
 

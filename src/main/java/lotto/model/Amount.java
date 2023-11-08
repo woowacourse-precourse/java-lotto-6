@@ -27,7 +27,7 @@ public class Amount {
         }
     }
 
-    private int calculateLottosAmount(String amount) {
+    public int calculateLottosAmount(String amount) {
         return Integer.parseInt(amount) / LottoPrice.LOTTO_PRICE.getValue();
     }
 }

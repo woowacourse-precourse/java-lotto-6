@@ -29,7 +29,7 @@ public class LottoAmountGenerator implements Generator<String, Integer> {
         }
         return true;
     }
-    
+
     public int calculateAmount(int number) {
         return number / UNIT;
     }

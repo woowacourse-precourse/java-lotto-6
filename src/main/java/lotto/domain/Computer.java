@@ -10,7 +10,7 @@ public class Computer {
 
     private Lotto lotto;
 
-    public List<Lotto> drawRandomNumber(int money) {
+    public List<Lotto> drawLottoRandomNumber(int money) {
         List<Lotto> lottos = new ArrayList<>();
         for (int drawAttempt = 0;  drawAttempt < money / LottoInformation.MONEY_UNIT.getNumber(); drawAttempt++) {
             List<Integer> numbers = new ArrayList<>(

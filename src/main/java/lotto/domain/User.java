@@ -11,7 +11,7 @@ public class User {
 
     public User(String money) {
         this.money = changeInteger(money);
-        lottos = computer.drawRandomNumber(this.money);
+        lottos = computer.drawLottoRandomNumber(this.money);
     }
 
     public List<Lotto> getLottos() {

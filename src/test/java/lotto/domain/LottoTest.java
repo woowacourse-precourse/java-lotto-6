@@ -63,7 +63,7 @@ class LottoTest {
         );
     }
 
-    @ParameterizedTest
+    @Test
     @DisplayName("로또의 3개의 번호가 일치하는 경우 RANK.FIFTH를 반환한다.")
     void matchWithNumbers_FIFTH() {
         // given

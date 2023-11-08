@@ -28,4 +28,8 @@ public enum LottoRank {
     public int getPrizeAmount() {
         return prizeAmount;
     }
+
+    public String getMessage() {
+        return message;
+    }
 }

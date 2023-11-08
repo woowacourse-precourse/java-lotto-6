@@ -17,14 +17,13 @@ public class PurchaseMachine {
 
     public static List<Lotto> purchaseLottoForCount(int count) {
         for (int i = 0; i < count; i++) {
-            purchaseEachLotto();
+            purchaseRepository.recordPurchase(generateEachLotto());
         }
         return purchaseRepository.findLottos();
     }
 
-    private static void purchaseEachLotto() {
+    private static Lotto generateEachLotto() {
         RandomNumberGenerator generator = new RandomNumberGenerator();
-        Lotto lottoTicket = new Lotto(generator.generateNumbers());
-        purchaseRepository.recordPurchase(lottoTicket);
+        return new Lotto(generator.generateNumbers());
     }
 }

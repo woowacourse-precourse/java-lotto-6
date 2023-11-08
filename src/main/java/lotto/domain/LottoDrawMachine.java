@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoDrawMachine {
-    private final PurchaseRepository purchaseRepository = PurchaseRepository.getInstance();
     private final LottoRanks lottoRanks = LottoRanks.getInstance();
     private WinningLotto winningLotto;
 
@@ -12,15 +11,12 @@ public class LottoDrawMachine {
         this.winningLotto = winningLotto;
     }
 
-    private List<Lotto> getPurchasedAllLotto() {
-        return purchaseRepository.findLottos();
-    }
-
-    public void evaluateRanks(List<Lotto> purchasedLottos) {
+    public LottoRanks evaluateRanks(List<Lotto> purchasedLottos) {
         Comparator comparator = new Comparator(winningLotto);
         for (Lotto purchasedLotto : purchasedLottos) {
             storeRank(comparator.compareWithWinningLotto(purchasedLotto));
         }
+        return lottoRanks;
     }
 
     public int getWinningAmount() {
@@ -34,5 +30,4 @@ public class LottoDrawMachine {
     private void storeRank(LottoRank lottoRank) {
         lottoRanks.increaseRankCount(lottoRank);
     }
-
 }

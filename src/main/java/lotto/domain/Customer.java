@@ -4,24 +4,34 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import lotto.constants.Constants;
+import lotto.utils.Utils;
+import lotto.validator.InputValidator;
 
 public class Customer {
-    private final int numberOfLottoTicket;
     private final int money;
+    private int numberOfLottoTicket;
+    private int prizeSum = 0;
     private List<Lotto> purchasedLottos = new ArrayList<>();
     private EnumMap<Reward, Integer> prizes = new EnumMap<>(Reward.class);
-    private int prizeSum = 0;
-    public Customer(int money, int numberOfLottoTicket) {
+
+
+    public Customer(int money) {
         this.money = money;
-        this.numberOfLottoTicket = numberOfLottoTicket;
+        validate(money);
         setPrizes();
 
     }
-    public int getMoney(){
+    private void validate(int number) {
+        InputValidator inputValidator = new InputValidator();
+        inputValidator.checkRemainder(number);
+    }
+
+    public int getMoney() {
         return this.money;
     }
 
     public int getNumberOfLottoTicket() {
+        numberOfLottoTicket =Utils.figureOutQuotient(this.money, Constants.LOTTO_PRICE);
         return numberOfLottoTicket;
     }
 
@@ -45,13 +55,14 @@ public class Customer {
     public EnumMap<Reward, Integer> getPrizes() {
         return prizes;
     }
-    public int getTotalPrize(){
-        for(Reward reward : Reward.values()){
-            if(reward.getCount() == Constants.ZERO){
+
+    public int getTotalPrize() {
+        for (Reward reward : Reward.values()) {
+            if (reward.getCount() == Constants.ZERO) {
                 continue;
             }
-            prizeSum  += (int) (prizes.get(reward) * reward.getPrize());
+            prizeSum += (int) (prizes.get(reward) * reward.getPrize());
         }
-       return prizeSum;
+        return prizeSum;
     }
 }

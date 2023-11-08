@@ -33,9 +33,6 @@ public class Utils {
         }
         return integerArray;
     }
-//    public static String deleteLastCommas(String inputString){
-//        return inputString.stripTrailing();
-//    }
 
     public static List<Integer> compareTwoList(List<Integer> firstNumbers, List<Integer> secondNumbers) {
         List<Integer> matchNumbers = firstNumbers.stream().filter(o -> secondNumbers.stream()

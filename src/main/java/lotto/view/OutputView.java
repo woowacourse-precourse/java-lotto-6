@@ -11,6 +11,7 @@ import lotto.domain.Reward;
 public class OutputView {
 
     DecimalFormat decimalFormat = new DecimalFormat("###,###");
+
     public void showLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
@@ -22,7 +23,8 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
     }
-    public void showPrizes(EnumMap<Reward,Integer> prizes){
+
+    public void showPrizes(EnumMap<Reward, Integer> prizes) {
         for (Reward reward : Reward.values()) {
             if (reward.getCount() == Constants.ZERO) {
                 continue;
@@ -38,11 +40,13 @@ public class OutputView {
                             + prizes.get(reward) + "개");
         }
     }
-    public void showEarningRate(int money, int prizeSum){
+
+    public void showEarningRate(int money, int prizeSum) {
         double earningRate = 0;
-        earningRate = Math.round((((double) prizeSum / money) * Constants.HUNDRED)* Constants.HUNDRED)/ Constants.DOUBLEHUNDRED;
+        earningRate = Math.round((((double) prizeSum / money) * Constants.HUNDRED) * Constants.HUNDRED)
+                / Constants.DOUBLEHUNDRED;
         BigDecimal bigDecimal = new BigDecimal(earningRate);
-        System.out.println("총 수익률은 " + bigDecimal +"%입니다.");
+        System.out.println("총 수익률은 " + bigDecimal + "%입니다.");
     }
 
 }

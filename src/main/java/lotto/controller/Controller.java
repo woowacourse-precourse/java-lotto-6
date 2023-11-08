@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -14,16 +13,15 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Controller {
-    Customer customer;
+
+    int bonusNumber = 0;
     LottoController lottoController = new LottoController();
     InputView inputView = new InputView();
     InputValidator inputValidator = new InputValidator();
     OutputView outputView = new OutputView();
-    WinningLotto winningLotto;
     List<Integer> winningNumbers = new ArrayList<>();
-    int bonusNumber = 0;
-
-
+    Customer customer;
+    WinningLotto winningLotto;
     public void playLotto() {
         purchaseLotto();
         setWinningLotto();
@@ -40,8 +38,8 @@ public class Controller {
             try {
                 String lottoPrice = inputView.showInputMention();
                 int purchasedTicketPrice = inputValidator.checkAll(lottoPrice);
-                int purchasedTicketNumber = Utils.figureOutQuotient(purchasedTicketPrice, Constants.LOTTO_PRICE);
-                customer = new Customer(purchasedTicketPrice, purchasedTicketNumber);
+//                int purchasedTicketNumber = Utils.figureOutQuotient(purchasedTicketPrice, Constants.LOTTO_PRICE);
+                customer = new Customer(purchasedTicketPrice);
                 purchaseAllLotto(customer.getNumberOfLottoTicket());
                 outputView.showLottos(customer.getLottos());
                 break;
@@ -91,10 +89,11 @@ public class Controller {
         outputView.showWinning();
         outputView.showPrizes(prizes);
     }
-    private void showEarningRate(Customer customer){
+
+    private void showEarningRate(Customer customer) {
         int money = customer.getMoney();
         int prizeSum = customer.getTotalPrize();
-        outputView.showEarningRate(money,prizeSum);
+        outputView.showEarningRate(money, prizeSum);
 
     }
 }

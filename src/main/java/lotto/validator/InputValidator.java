@@ -31,14 +31,19 @@ public class InputValidator {
     }
 
     public List<Integer> checkWinningNumber(String winningNumber) throws IllegalArgumentException {
-        checkLastCommas(winningNumber);
-        List<String> stringwinningnumbers = Utils.makeStringtoArray(winningNumber);
-        checkLetterAndBlank(stringwinningnumbers);
-        winningNumbers = Utils.makeStringArraytoIntegerArray(stringwinningnumbers);
-        checkWinningNumberLong(winningNumbers);
-        checkDuplicateWinningNumber(winningNumbers);
-        checkWinningNumberRange(winningNumbers);
-        return winningNumbers;
+        try {
+            checkLastCommas(winningNumber);
+            List<String> stringwinningnumbers = Utils.makeStringtoArray(winningNumber);
+            checkLetterAndBlank(stringwinningnumbers);
+            winningNumbers = Utils.makeStringArraytoIntegerArray(stringwinningnumbers);
+            checkWinningNumberLong(winningNumbers);
+            checkDuplicateWinningNumber(winningNumbers);
+            checkWinningNumberRange(winningNumbers);
+            return winningNumbers;
+        }catch (IllegalArgumentException e){
+            throw e;
+        }
+
     }
 
     public void checkLastCommas(String stringNumber) throws IllegalArgumentException {
@@ -47,11 +52,16 @@ public class InputValidator {
         }
     }
 
-    public void checkDuplicateWinningNumber(List<Integer> winningNumbers) throws IllegalArgumentException {
-        long number = winningNumbers.stream().distinct().count();
-        if (winningNumbers.size() != number) {
-            throw new IllegalArgumentException("[ERROR] 중복되는 숫자를 입력하지 마세요");
+    public void checkDuplicateWinningNumber(List<Integer> winningNumbers) throws IllegalArgumentException{
+        try{
+            long number = winningNumbers.stream().distinct().count();
+            if (winningNumbers.size() != number) {
+                throw new IllegalArgumentException("[ERROR] 중복되는 숫자를 입력하지 마세요");
+            }
+        }catch (IllegalArgumentException e){
+            throw e;
         }
+
 
     }
 
@@ -69,9 +79,15 @@ public class InputValidator {
         }
     }
 
-    public void checkWinningNumberLong(List<Integer> strings) {
-        if (strings.size() != Constants.SIX) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해 주세요");
+    public void checkWinningNumberLong(List<Integer> strings) throws IllegalArgumentException{
+        try {
+            if (strings.size() != Constants.SIX) {
+                throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해 주세요");
+            }
+
+        }
+        catch (IllegalArgumentException e){
+            throw e;
         }
     }
 

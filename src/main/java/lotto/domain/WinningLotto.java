@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import lotto.constants.Constants;
+import lotto.validator.InputValidator;
 
 public class WinningLotto {
     private List<Integer> winninglottos = new ArrayList<>(Constants.SIX);
@@ -11,8 +12,17 @@ public class WinningLotto {
 
 
     public WinningLotto(List<Integer> winninglottos, Integer bonusNumber) {
+        validate(winninglottos, bonusNumber);
         this.winninglottos = winninglottos;
         this.bonusNumber = bonusNumber;
+    }
+    private void validate(List<Integer> winninglottos, Integer bonusNumber){
+        InputValidator inputValidator = new InputValidator();
+        inputValidator.checkWinningNumberRange(winninglottos);
+        inputValidator.checkBonusNumberRange(bonusNumber);
+        inputValidator.checkWinningNumberLong(winninglottos);
+        inputValidator.checkDuplicateWinningNumber(winninglottos);
+        inputValidator.checkDuplicateWinningAndBonus(winninglottos,bonusNumber);
     }
 
     public List<Integer> getWinninglottos() {

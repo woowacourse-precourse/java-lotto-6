@@ -48,4 +48,18 @@ public class LottoInitServiceTest {
         assertThatThrownBy(() -> service.inputWinningNumberToList(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1,1", "3,3", "22,22", "42,42", "45,45"})
+    void 올바른_보너스_번호를_숫자로_변환한다(String input, Integer expected) {
+        Integer actualValue = service.inputBonusNumberToInteger(input);
+        assertEquals(expected, actualValue);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"abc", "0", "46", "3a", "4,5", "1 1"})
+    void 잘못된_보너스_번호는_예외를_반환한다(String input) {
+        assertThatThrownBy(() -> service.inputBonusNumberToInteger(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

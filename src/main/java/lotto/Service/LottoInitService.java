@@ -35,4 +35,15 @@ public class LottoInitService {
                 .map(Integer::parseInt)
                 .toList();
     }
+
+    /**
+     * 보너스 번호를 검증하고 정수로 반환
+     * @param input 사용자가 입력한 보너스 번호
+     * @return 정수로 변환된 보너스 번호
+     */
+    public Integer inputBonusNumberToInteger(String input) {
+        String validatedInput = ValidatorFactory.forInputBonusNumber().valid(input);
+
+        return Integer.parseInt(validatedInput);
+    }
 }

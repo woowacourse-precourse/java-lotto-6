@@ -1,15 +1,17 @@
 구현할 기능 목록
-- 사용자 입력받기 - LottoInputHandler
-  - 구입 금액(1000원 단위가 아니면 예외 처리) - LottoInputHandler#getPurchaseAmount()
-  - 당첨 번호(1-45사이 숫자가 아니면 예외 처리) - LottoInputHandler#getWinningNumbers()
-  - 보너스 번호 - LottoInputHandler#getBonusNumber()
-- 로또 1장당 번호 6개 발행 - LottoNumberFactory#generate()
+- [x] 사용자 입력받기 - LottoInputHandler
+  - [x] 구입 금액(1000원 단위가 아니면 예외 처리) - LottoInputHandler #getPurchaseAmount()
+  - [x] 당첨 번호(1-45사이 숫자가 아니면 예외 처리) - LottoInputHandler #getWinningNumbers()
+  - [x] 보너스 번호 - LottoInputHandler #getBonusNumber()
+- [x] 로또 1장당 번호 6개 발행 - LottoNumberFactory #generateNumbers()
   - 랜덤, 중복x, 범위:1-45
-- 당첨 번호와 구입한 로또 번호 비교 - Number#compare()
-- 결과 출력 - LottoManager
-  - 발행한 로또 수량 및 번호(오름차순) - LottoManager#showTicketInfo()
-  - 당첨내역 - LottoManager#showResults()
-  - 수익률(소수점 둘째 자리에서 반올림) - LottoManager#printProfitRate
+- [x] 당첨 번호와 구입한 로또 번호 비교 - Lotto #compareNumbers(winningNumbers,randomNumbers)
+- [x] 수익률 계산(소수점 둘째 자리에서 반올림) - LottoAnalyzer #getProfitRate()
+- [x] 결과 출력 - LottoResultManager
+  - [x] 발행한 로또 수량 - Lotto #showTicketCount()
+  - [x] 발행한 로또 번호(오름차순) - Lotto #showTicketInfo()
+  - [x] 당첨내역 - LottoResultManager #showWinningResults()
+ 
 
 
 

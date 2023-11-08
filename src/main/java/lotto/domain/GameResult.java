@@ -38,4 +38,8 @@ public enum GameResult {
     public void increaseResultCount() {
         this.resultCount++;
     }
+
+    public void clearResultCount() {
+        this.resultCount = 0;
+    }
 }

@@ -1,4 +1,4 @@
-package lotto.embedded;
+package lotto.model;
 
 public enum LottoResult {
     FIRST(2000000000, 6, false, "6개 일치 (2,000,000,000원)"),

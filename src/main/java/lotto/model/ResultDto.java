@@ -1,7 +1,7 @@
-package lotto.dto;
+package lotto.model;
 
 import java.util.Map;
-import lotto.embedded.LottoResult;
+import lotto.model.LottoResult;
 
 /**
  * 전체 로또의 결과를 저장하는 레코드

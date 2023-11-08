@@ -18,14 +18,14 @@ public class OutputView {
     private static final String FIRST_RANK_MESSAGE = "6개 일치 (2,000,000,000원) - %s개";
     private static final String STATISTICS_MESSAGE = "당첨 통계";
     private static final String HYPHEN = "---";
-    private static final String LINE = "\n";
 
     public void printRequestInputBuyAmountMessage() {
         printMessage(INPUT_BUY_AMOUNT_MESSAGE);
     }
 
     public void printTicketCountMessage(final Integer count) {
-        printMessage(LINE + String.format(TICKET_COUNT_MESSAGE, count));
+        printLine();
+        printMessage(String.format(TICKET_COUNT_MESSAGE, count));
     }
 
     public void printRequestInputWinningNumberMessage() {
@@ -40,7 +40,7 @@ public class OutputView {
         lotteries.stream().forEach(lottoDto -> {
             printMessage(lottoDto.getNumbers().toString());
         });
-        printMessage(LINE);
+        printLine();
     }
 
     public void printStatistics(final StatisticDto statisticDto) {
@@ -53,7 +53,8 @@ public class OutputView {
     }
 
     private void printHeader() {
-        printMessage(LINE + STATISTICS_MESSAGE);
+        printLine();
+        printMessage(STATISTICS_MESSAGE);
         printMessage(HYPHEN);
     }
 
@@ -63,5 +64,9 @@ public class OutputView {
 
     public void printMessage(final String message) {
         System.out.println(message);
+    }
+
+    private void printLine() {
+        System.out.println();
     }
 }

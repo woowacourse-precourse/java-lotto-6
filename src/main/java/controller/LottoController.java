@@ -56,7 +56,7 @@ public class LottoController {
         Integer purchasePrice = InputView.inputPurchasePrice();
         Integer totalPurchaseQuantity = purchasePrice / UNIT_NUMBER;
         OutputView.outputTotalPurchaseQuantity(totalPurchaseQuantity);
-        for (int i=START_INDEX;i<totalPurchaseQuantity;i++) {
+        for (int i = START_INDEX;i < totalPurchaseQuantity;i++) {
             lottoList.add(new Lotto(LottoNumber.makeLottoNumbers()));
         }
         OutputView.outputLottoList(lottoList);

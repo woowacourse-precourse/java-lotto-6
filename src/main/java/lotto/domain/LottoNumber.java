@@ -7,7 +7,6 @@ public class LottoNumber {
     private static final String ERROR_MESSAGE_HEADER = "[ERROR] ";
     private static final String ERROR_LESS_THAN_MINIMUM_NUMBER = "로또 번호의 최솟값은 %d입니다.";
     private static final String ERROR_BIGGER_THAN_MAXIMUM_NUMBER = "로또 번호의 최댓값은 %d입니다.";
-
     private static final int MINIMUM_NUMBER_OF_LOTTO_NUMBER = 1;
     private static final int MAXIMUM_NUMBER_OF_LOTTO_NUMBER = 45;
 

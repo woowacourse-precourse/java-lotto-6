@@ -102,7 +102,7 @@
 - [x] indent depth 2이하
 - [x] 메서드 길이 최대 15라인
 - [x] Java Enum 사용
-- [] 도메인 로직 단위 테스트 작성
+- [x] 도메인 로직 단위 테스트 작성
 - [x] Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()` 활용
 - [x] 사용자 입력값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()` 활용
 - [x] 제공된 `Lotto` 클래스 활용

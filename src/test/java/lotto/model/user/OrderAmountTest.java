@@ -1,7 +1,5 @@
 package lotto.model.user;
 
-import lotto.model.user.LottoResults;
-import lotto.model.user.OrderAmount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,11 +16,27 @@ class OrderAmountTest {
     }
 
     @Test
-    @DisplayName("로또 수익률 계산시 정확한 값인지 확인해 본다.")
-    void calculateProfit(){
+    @DisplayName("로또 수익률 계산시 정확한 값인지 확인해 본다.(8천원, 5등)")
+    void calculateProfitOf5Place(){
         OrderAmount order = new OrderAmount("8000");
         LottoResults results = new LottoResults( 0, 0, 0, 0, 1);
         assertThat(order.calculateProfit(results)).isEqualTo("62.5");
+    }
+
+    @Test
+    @DisplayName("로또 수익률 계산시 정확한 값인지 확인해 본다.(1000원, 1등)")
+    void calculateProfitOf1Place(){
+        OrderAmount order = new OrderAmount("1000");
+        LottoResults results = new LottoResults( 1, 0, 0, 0, 0);
+        assertThat(order.calculateProfit(results)).isEqualTo("200000000.0");
+    }
+
+    @Test
+    @DisplayName("로또 수익률 계산시 정확한 값인지 확인해 본다.(10,000원, 미당첨)")
+    void calculateProfitOfZero(){
+        OrderAmount order = new OrderAmount("10000");
+        LottoResults results = new LottoResults( 0, 0, 0, 0, 0);
+        assertThat(order.calculateProfit(results)).isEqualTo("0.0");
     }
 
     @Test

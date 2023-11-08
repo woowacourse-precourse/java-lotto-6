@@ -49,10 +49,12 @@ public class MatchCounter {
             return SIX_MATCHED;
         }
 
-        throw new IllegalArgumentException(ErrorMessage.ILLEGAL_COUNT_OF_NUMBER_MATCHES.getMessage()); // 에러문 추가
+        return null;
     }
 
     public void increaseCountByKey(String key) {
+        if (key.isBlank()) return;
+
         matchCounter.put(key, matchCounter.get(key) + ONE);
     }
 

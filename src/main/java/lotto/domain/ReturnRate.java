@@ -1,6 +1,6 @@
-package lotto.util;
+package lotto.domain;
 
-public class ReturnRateCountUtil {
+public class ReturnRate {
 
     private static final int PERCENT_CONVERSION_FACTOR = 100;
 

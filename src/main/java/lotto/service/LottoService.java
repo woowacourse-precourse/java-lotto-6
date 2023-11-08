@@ -5,7 +5,7 @@ import lotto.domain.*;
 import lotto.dto.LottoNumbers;
 import lotto.dto.LottoWinningResult;
 import lotto.repository.LottoRepository;
-import lotto.util.ReturnRateCountUtil;
+import lotto.domain.ReturnRate;
 
 import java.util.List;
 import java.util.function.Function;
@@ -71,7 +71,7 @@ public class LottoService {
         int totalWinningAmount = countTotalWinningAmount(lottoWinningRanks);
         int lottoBuyPrice = LottoBuyPrice.countTotalLottoPrice(lottoWinningRanks.size());
 
-        return ReturnRateCountUtil.countReturnRate(totalWinningAmount, lottoBuyPrice);
+        return ReturnRate.countReturnRate(totalWinningAmount, lottoBuyPrice);
     }
 
     private int countTotalWinningAmount(List<LottoWinningRank> lottoWinningRanks) {

@@ -2,9 +2,12 @@ package lotto;
 
 import org.junit.jupiter.api.Test;
 
+import java.net.Inet4Address;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoSystemTest {
     @Test
@@ -100,6 +103,32 @@ public class LottoSystemTest {
         assertThatThrownBy(() -> lottoSystem.bonusNumberOverlap(numbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
 
+    }
+
+    @Test
+    void 구매한_로또_중_순위_별로_당첨된_로또의_개수(){
+        LottoSystem lottoSystem = new LottoSystem();
+        List<Integer> winNumber = List.of(4,5,6,10,11,12);
+        int bonus = 3;
+        ArrayList<Lotto> lottoNumbers = new ArrayList<>();
+        lottoNumbers.add(new Lotto(List.of(1,2,3,4,5,6)));
+        lottoNumbers.add(new Lotto(List.of(4,5,6,7,8,9)));
+        int[] answer = lottoSystem.lottoWinCheck(lottoNumbers, winNumber, bonus);
+
+        assertThat(answer).containsExactly(2,0,0,0,0);
+    }
+
+    @Test
+    void 구매한_로또_중_2등이_포함되어있는_경우(){
+        LottoSystem lottoSystem = new LottoSystem();
+        List<Integer> winNumber = List.of(4,5,6,10,11,12);
+        int bonus = 7;
+        ArrayList<Lotto> lottoNumbers = new ArrayList<>();
+        lottoNumbers.add(new Lotto(List.of(1,2,3,4,5,6)));
+        lottoNumbers.add(new Lotto(List.of(4,5,6,7,10,11)));
+        int[] answer = lottoSystem.lottoWinCheck(lottoNumbers, winNumber, bonus);
+
+        assertThat(answer).containsExactly(1,0,0,1,0);
     }
 }
 

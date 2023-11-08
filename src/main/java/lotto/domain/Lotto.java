@@ -29,7 +29,7 @@ public class Lotto {
         int matchCount = checkWinningNumbers(winningNumbers);
         return LottoRank.calculateRank(matchCount,checkBonusNumber(bonusNumber) );
     }
-    public int checkWinningNumbers(List<Integer> winningNumber) {
+    private int checkWinningNumbers(List<Integer> winningNumber) {
         int matchCount = 0;
 
         for (int number : winningNumber) {
@@ -40,7 +40,7 @@ public class Lotto {
         return matchCount;
     }
 
-    public boolean checkBonusNumber(int bonusNumber){
+    private boolean checkBonusNumber(int bonusNumber){
         return numbers.contains(bonusNumber);
     }
 

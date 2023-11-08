@@ -16,6 +16,21 @@ public class Lottos {
         generateRandomNumber(count);
     }
 
+    /**
+     * 여러 개의 로또를 생성하는 메서드
+     *
+     * @param count 생성할 로또 갯수
+     * @return 여러 개의 로또의 정보가 저장된 객체
+     */
+    public static Lottos from(int count) {
+        return new Lottos(count);
+    }
+
+    /**
+     * 무작위로 로또 번호를 생성하는 메서드
+     *
+     * @param count 생성할 로또 갯수
+     */
     private void generateRandomNumber(int count) {
         for (int i = 0; i < count; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
@@ -26,15 +41,21 @@ public class Lottos {
         }
     }
 
-    public static Lottos from(int count) {
-        return new Lottos(count);
-    }
-
-    public List<Lotto> getLottos() {
-        return Collections.unmodifiableList(lottos);
-    }
-
+    /**
+     * 로또의 갯수를 반한하는 메서드
+     *
+     * @return 로또의 갯수
+     */
     public int getSize() {
         return lottos.size();
+    }
+
+    /**
+     * 로또들의 정보를 반환하는 메서드
+     *
+     * @return 로또 객체의 리스트
+     */
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
     }
 }

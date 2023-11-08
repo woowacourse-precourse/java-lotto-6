@@ -3,12 +3,12 @@ package lotto.view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.StringJoiner;
-import lotto.constant.LottoResultStatus;
 import lotto.constant.Message;
-import lotto.domain.Lotto;
-import lotto.domain.LottoResult;
-import lotto.domain.PurchaseLottos;
-import lotto.domain.PurchasePrice;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.PurchaseLottos;
+import lotto.domain.lotto.PurchasePrice;
+import lotto.domain.lottoResult.LottoResult;
+import lotto.domain.lottoResult.LottoResultStatus;
 
 public class OutputView {
     private static final String DELIMITER = "\n";

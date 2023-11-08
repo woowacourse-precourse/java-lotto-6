@@ -1,7 +1,7 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import java.util.List;
-import lotto.util.LottoNumbersGenerator;
+import lotto.domain.lotto.generator.LottoNumbersGenerator;
 
 public class PurchaseLottos {
     private PurchasePrice purchasePrice;

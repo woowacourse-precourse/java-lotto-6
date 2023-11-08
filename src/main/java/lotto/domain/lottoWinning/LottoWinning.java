@@ -1,7 +1,8 @@
-package lotto.domain;
+package lotto.domain.lottoWinning;
 
 import java.util.List;
-import lotto.constant.LottoResultStatus;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lottoResult.LottoResultStatus;
 
 public class LottoWinning {
     private static final int FIVE_MATCH = 5;

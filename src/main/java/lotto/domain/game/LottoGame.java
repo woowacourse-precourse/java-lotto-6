@@ -1,7 +1,13 @@
-package lotto.domain;
+package lotto.domain.game;
 
 import java.util.List;
-import lotto.util.AutoGenerator;
+import lotto.domain.lotto.PurchaseLottos;
+import lotto.domain.lotto.PurchasePrice;
+import lotto.domain.lotto.generator.AutoGenerator;
+import lotto.domain.lottoResult.LottoResult;
+import lotto.domain.lottoWinning.BonusNumber;
+import lotto.domain.lottoWinning.LottoWinning;
+import lotto.domain.lottoWinning.WinningNumbers;
 import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;

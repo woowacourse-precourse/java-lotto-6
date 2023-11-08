@@ -1,9 +1,9 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.lotto.generator.LottoNumbersGenerator;
 import lotto.exception.ErrorMessagePrinter;
-import lotto.util.LottoNumbersGenerator;
 
 public class Lottos {
     private final List<Lotto> lottos = new ArrayList<>();

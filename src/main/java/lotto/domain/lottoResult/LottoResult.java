@@ -1,8 +1,10 @@
-package lotto.domain;
+package lotto.domain.lottoResult;
 
 import java.util.HashMap;
 import java.util.Map;
-import lotto.constant.LottoResultStatus;
+import lotto.domain.lotto.PurchaseLottos;
+import lotto.domain.lotto.PurchasePrice;
+import lotto.domain.lottoWinning.LottoWinning;
 
 public class LottoResult {
     private static final int INIT_COUNT = 0;

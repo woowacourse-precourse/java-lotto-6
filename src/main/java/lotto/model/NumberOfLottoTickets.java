@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.Collections;
 
 public class NumberOfLottoTickets {
 

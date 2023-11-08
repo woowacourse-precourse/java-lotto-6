@@ -30,5 +30,19 @@ public class Output {
         }
     }
 
+    public void showStatsIn(int[] results){
+        System.out.println("3개 일치 (5,000원) - "+results[5]+"개");
+        System.out.println("4개 일치 (50,000원) - "+results[4]+"개");
+        System.out.println("5개 일치 (1,500,000원) - "+results[3]+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+results[2]+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - "+results[1]+"개");
+    }
+
+    public void showRateOfReturn(double rate){
+        String result = String.format("%.1f", rate);
+        System.out.println("총 수익률은 "+rate+"%입니다.");
+//        System.out.println("총 수익률은 "+result+"%입니다.");
+    }
+
 
 }

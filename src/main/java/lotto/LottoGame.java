@@ -7,12 +7,18 @@ import java.util.List;
 
 public class LottoGame {
 
-    int firstPrize=0;
-    int secondPrize=0;
-    int thirdPrize=0;
-    int forthPrize=0;
-    int fifthPrize=0;
     int[] prizeCount=new int[6];
+    long totalProfit=0;
+    int payMoney=0;
+    int lottoCount=0;
+
+    public void setPayMoney(int payMoney){
+        this.payMoney=payMoney;
+    }
+
+    public void setLottoCount(){
+        lottoCount=payMoney/1000;
+    }
 
     public List<Lotto> generateLottos(int gameNumber){
         List<Lotto> ret=new ArrayList<>();
@@ -37,7 +43,7 @@ public class LottoGame {
     public void checkHowManyMatch(Lotto lotto, List<Integer> winningList, int bonusNumber){
 
         int duplicatedCount=getDuplicatedCount(lotto.getLottoNumbers(),winningList);
-        List<Integer> userLotto=lotto.getLottoNumbers();
+        System.out.println("count = "+duplicatedCount);
         if (checkFirstPrize(duplicatedCount)) {
             return;
         } if (checkSecondPrize(duplicatedCount, lotto.getLottoNumbers(), bonusNumber)) {
@@ -49,7 +55,6 @@ public class LottoGame {
         }  if (checkFifthPrize(duplicatedCount)) {
             return;
         }
-        return;
     }
 
     public int getDuplicatedCount(List<Integer> userLotto, List<Integer> winningLotto){
@@ -65,8 +70,8 @@ public class LottoGame {
 
     public boolean checkFirstPrize(int count) {
         if(count==6){
-            firstPrize++;
             prizeCount[1]++;
+            totalProfit+=2000000000;
             return true;
         }
         return false;
@@ -75,8 +80,8 @@ public class LottoGame {
     public boolean checkSecondPrize(int count, List<Integer>userLotto, int bonusBall) {
 
         if (count == 5 && userLotto.contains(bonusBall)) {
-            secondPrize++;
             prizeCount[2]++;
+            totalProfit+=30000000;
             return true;
         }
         return false;
@@ -85,8 +90,8 @@ public class LottoGame {
     public boolean checkThirdPrize(int count) {
 
         if (count == 5) {
-            thirdPrize++;
             prizeCount[3]++;
+            totalProfit+=1500000;
             return true;
         }
         return false;
@@ -96,25 +101,29 @@ public class LottoGame {
 
 
         if (count == 4) {
-            forthPrize++;
             prizeCount[4]++;
+            totalProfit+=50000;
             return true;
         }
 
-       return true;
+       return false;
     }
 
     public boolean checkFifthPrize(int count) {
-
         if (count == 3) {
-            fifthPrize++;
             prizeCount[5]++;
+            totalProfit+=5000;
             return true;
         }
-        return true;
+        return false;
     }
 
     public int[] getPrizeCount(){
+        System.out.println();
         return prizeCount;
+    }
+
+    public double getStats(){
+        return (double)totalProfit / payMoney * 100;
     }
 }

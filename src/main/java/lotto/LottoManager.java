@@ -20,11 +20,13 @@ public class LottoManager {
 
         // 얼마로 로또 살지
         output.instructInputMoney();
-        howManyLottos=input.getInput()/1000;
+        int payMoney=input.getInput();
+        howManyLottos=payMoney/1000;
         output.showLottoPurchaseCount(howManyLottos);
 
         // 개수에 맞게 로또 번호 생성
         LottoGame lottoGame=new LottoGame();
+        lottoGame.setPayMoney(payMoney);
         lottoList=lottoGame.generateLottos(howManyLottos);
         output.showPurchaseLottoNumber(lottoList);
 
@@ -34,6 +36,10 @@ public class LottoManager {
         output.instructInputBonusNumber();
         bonusNumber=input.getBonusNumber();
 
+        lottoGame.checkWinningCombination(lottoList,winningNumbers,bonusNumber);
+        int[] result= lottoGame.getPrizeCount();
+        output.showStatsIn(result);
+        output.showRateOfReturn(lottoGame.getStats());
         // 당첨 로직
 
         /*

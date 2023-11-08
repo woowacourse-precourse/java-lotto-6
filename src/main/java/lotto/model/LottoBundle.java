@@ -9,4 +9,8 @@ public class LottoBundle {
     public LottoBundle(List<Lotto> lottoBundle) {
         this.lottoBundle = lottoBundle;
     }
+
+    public List<Lotto> getLottoBundle() {
+        return lottoBundle;
+    }
 }

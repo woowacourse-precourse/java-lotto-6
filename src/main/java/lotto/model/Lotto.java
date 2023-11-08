@@ -29,5 +29,9 @@ public class Lotto {
         return numbers.contains(value);
     }
 
-    // TODO: 추가 기능 구현
+    public int match(Lotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto::contains)
+                .count();
+    }
 }

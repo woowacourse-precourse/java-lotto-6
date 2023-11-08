@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.domain.ClientLottoData;
+import lotto.model.domain.Lotto;
 import lotto.model.domain.RankTable;
 import lotto.model.domain.WinningLottoNumber;
 import lotto.util.LottoTypeConverter;
@@ -80,7 +81,10 @@ public class LottoController {
     }
 
     public void setMatchNumber(ClientLottoData clientLottoData, WinningLottoNumber winningLottoNumber) {
-        List<RankTable> rankTables = winningLottoNumber.matchLottoCalculate(clientLottoData.getLottos());
+        List<Integer> matchNumbers = winningLottoNumber.matchLottoCalculate(clientLottoData.getLottos());
+        List<Lotto> lottos = clientLottoData.getLottos();
+
+        List<RankTable> rankTables = RankTable.filterBonusNumber(lottos, winningLottoNumber.getBonusNumber(), matchNumbers);
         clientLottoData.setMatchLottoCalculate(rankTables);
     }
 

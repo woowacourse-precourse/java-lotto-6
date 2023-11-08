@@ -12,7 +12,7 @@ public class Tickets {
         createTickets(quantity);
     }
 
-    private void createTickets(int quantity) {
+    public void createTickets(int quantity) {
         List<Ticket> tickets = new ArrayList<>();
         for (int number = 1; number <= quantity; number++) {
             tickets.add(new Ticket());

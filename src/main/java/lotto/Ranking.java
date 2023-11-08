@@ -7,7 +7,8 @@ public enum Ranking {
     SECOND(5, true, 30000000L),
     THIRD(5, false, 1500000L),
     FOURTH(4, false, 50000L),
-    FIFTH(3, false, 5000L);
+    FIFTH(3, false, 5000L),
+    BLANK(0, false, 0L);
 
     private final int winningNumber;
     private final boolean hasBonus;
@@ -24,7 +25,7 @@ public enum Ranking {
                 .filter(ranking -> ranking.winningNumber == winningNumber
                         && ranking.hasBonus == checkBonus(winningNumber, hasBonus))
                 .findAny()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElse(BLANK);
     }
 
     private static boolean checkBonus(int winningNumber, boolean hasBonus) {

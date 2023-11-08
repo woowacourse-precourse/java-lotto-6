@@ -64,4 +64,16 @@ public class LottoGenerate {
         }
         return lottoResult;
     }
+
+    public static Double calculateLottoRate(int lottoTickets, List<Integer> lottoResult) {
+        int money = lottoTickets * 1000;
+        int earning = (lottoResult.get(0) * 5000) +
+                (lottoResult.get(1) * 50000) +
+                (lottoResult.get(2) * 1500000) +
+                (lottoResult.get(3) * 30000000) +
+                (lottoResult.get(4) * 2000000000);
+        double rate = (double) earning / money;
+        rate = Math.round(rate * 1000.0) / 10.0;
+        return rate;
+    }
 }

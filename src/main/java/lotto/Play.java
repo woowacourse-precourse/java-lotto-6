@@ -92,7 +92,7 @@ public class Play {
             try {
                 System.out.println("\n보너스 번호를 입력해 주세요.");
                 int bonus = Integer.parseInt(Console.readLine());
-                checkDuplicate(bonus);
+//                checkDuplicate(bonus);
                 checkEachNumRange(new ArrayList<>(bonus));
                 return bonus;
             } catch (IllegalArgumentException e) {

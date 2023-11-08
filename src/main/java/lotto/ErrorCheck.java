@@ -24,6 +24,9 @@ public class ErrorCheck {
 
     public static boolean userLottoCheck(List<Integer> list){
         try{
+            if(list.size()!=6){
+                throw new IllegalArgumentException();
+            }
             for(Integer i:list){
                 if(i<1 || i>45){
                     throw new IllegalArgumentException();

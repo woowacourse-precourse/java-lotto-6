@@ -2,7 +2,6 @@ package lotto.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Domain.BonusNumber;
 import lotto.Domain.Lotto;
 import lotto.Domain.LottoResult;
 import lotto.Domain.Money;

@@ -5,13 +5,8 @@ import lotto.domain.Lotto;
 
 public class OutputView {
 
-    private static final String RATE_OF_RETURN = "총 수익률은 %2.f%% 입니다.";
+    private static final String RATE_OF_RETURN = "총 수익률은 %.1f%%입니다.";
     private static final String PURCHASE_QUANTITY = "%d개를 구매했습니다.";
-    private static final String WINNING_STATISTICS =
-            """
-            
-            당첨통계
-            ---""";
 
     public void printLottos(List<Lotto> lottoList) {
         for (Lotto lotto : lottoList) {
@@ -25,12 +20,7 @@ public class OutputView {
         System.out.println(String.format(PURCHASE_QUANTITY, quantity));
     }
 
-    public void printRateOfReturn() {
-        System.out.println(RATE_OF_RETURN);
+    public void printRateOfReturn(double rateOfReturn) {
+        System.out.println(String.format(RATE_OF_RETURN, rateOfReturn));
     }
-
-    public void printWinningStatistics() {
-        System.out.println(WINNING_STATISTICS);
-    }
-
 }

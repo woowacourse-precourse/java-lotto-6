@@ -10,12 +10,10 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
     }
-
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        new LottoNumberValueValidator().checkValidationOfLottoNumber(numbers);
     }
-
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

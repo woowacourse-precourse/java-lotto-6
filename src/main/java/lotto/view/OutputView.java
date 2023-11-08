@@ -15,8 +15,8 @@ public class OutputView {
         System.out.println(ticket + TICKET_BUYING_MESSAGE);
     }
 
-    public void displayLottosNumber(LottosInfoDto lottosInfoDto) {
-        for (List<Integer> numbers : lottosInfoDto.lottosNumbers()) {
+    public void displayLottosNumber(List<List<Integer>> lottosNumber) {
+        for (List<Integer> numbers : lottosNumber) {
             System.out.println(numbers);
         }
     }

@@ -45,7 +45,7 @@ public class Calculator {
 
     public void printProfitRate(Map<Integer, Integer> winningHistory, int insertAmount) {
         int profit = 5000*winningHistory.get(3) + 50000*winningHistory.get(4) + 1500000*winningHistory.get(5) + 30000000*winningHistory.get(51) + 2000000000*winningHistory.get(6);
-        double profitRate = (double) Math.round((double) profit / insertAmount * 100) /10000;
+        double profitRate = (double) Math.round((double) profit / insertAmount * 100) /1000;
         System.out.println("총 수익률은 " + profitRate + "%입니다.");
     }
 

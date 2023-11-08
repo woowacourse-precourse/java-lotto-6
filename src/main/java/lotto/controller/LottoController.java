@@ -26,6 +26,18 @@ public class LottoController {
         this.lottoGenerator = new LottoGenerator();
     }
 
+    public void play() {
+        long purchaseAmount = inputPurchaseAmount();
+
+        List<Lotto> lottos = generateLottos(purchaseAmount);
+
+        WinningNumber winningNumber = inputWinningNumbers();
+
+        int bonusNumber = inputBonusNumber(winningNumber);
+
+        calculateLottoResult(lottos, winningNumber, bonusNumber, purchaseAmount);
+    }
+
     private List<Lotto> generateLottos(long purchaseAmount) {
         List<Lotto> lottos = lottoGenerator.generateLottos(purchaseAmount);
         outputView.printPurchasedLottoTickets(lottos);

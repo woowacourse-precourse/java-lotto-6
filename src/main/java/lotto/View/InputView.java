@@ -14,7 +14,7 @@ public class InputView {
     private static final Pattern isNumber = Pattern.compile("\\d+");
 
 
-    public List<Integer> NumberListSplitInput(int length) {
+    public List<Integer> numberListSplitInput(int length) {
         String input = Console.readLine();
         if (!checkSplitBySymbol(input, length)) {
             throw new IllegalArgumentException(
@@ -23,7 +23,7 @@ public class InputView {
         return convertStringListToIntegerList(Arrays.stream(input.split(splitSymbol)).toList());
     }
 
-    public int SingleNumberInput() {
+    public int singleNumberInput() {
         String input = Console.readLine();
         if (!checkIfNumber(input)) {
             throw new IllegalArgumentException(NOT_NUMBER_VALUE.getErrorPhrase());

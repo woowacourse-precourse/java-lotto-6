@@ -27,7 +27,7 @@ public class View {
 
     public int getLottoBuyAmout() {
         outputView.printPhrase(PURCHASE_INPUT.getPhrase());
-        return inputView.SingleNumberInput();
+        return inputView.singleNumberInput();
     }
 
     public void putLottoSellResult(List<String> lottos) {
@@ -37,12 +37,12 @@ public class View {
 
     public List<Integer> getWinningLottoNumber(int length) {
         outputView.printPhrase(WINNER_NUMBER_INPUT.getPhrase());
-        return inputView.NumberListSplitInput(length);
+        return inputView.numberListSplitInput(length);
     }
 
     public int getBonusLottoNumber() {
         outputView.printPhrase(BONUS_NUMBER_INPUT.getPhrase());
-        return inputView.SingleNumberInput();
+        return inputView.singleNumberInput();
     }
 
     public void putLottoResult(HashMap<String, Integer> result, float rateOfResult) {

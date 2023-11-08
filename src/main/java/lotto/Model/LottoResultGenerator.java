@@ -25,18 +25,19 @@ public class LottoResultGenerator {
     }
 
     private class WinningLotto {
-        private Lotto winningNumber;
+        private Lotto winningLotto;
         private int bonusNumber;
 
-        public WinningLotto(Lotto winningNumber, int bonusNumber) {
-            this.winningNumber = winningNumber;
+        public WinningLotto(Lotto winningLotto, int bonusNumber) {
+            this.winningLotto = winningLotto;
             if (isBonusNumberValid(bonusNumber)) {
                 this.bonusNumber = bonusNumber;
             }
         }
 
         private boolean isBonusNumberValid(int bonusNumber) {
-            if (bonusNumber < LOTTO_NUMBER_MIN_RANGE || bonusNumber > LOTTO_NUMBER_MAX_RANGE) {
+            if (bonusNumber < LOTTO_NUMBER_MIN_RANGE || bonusNumber > LOTTO_NUMBER_MAX_RANGE
+                    || winningLotto.matchesSingleNumber(bonusNumber) == 1) {
                 throw new IllegalArgumentException(LOTTO_BONUS_NUMBER_INPUT.getErrorPhrase());
             }
             return true;
@@ -44,7 +45,7 @@ public class LottoResultGenerator {
 
         public HashMap<String, Integer> matchesResult(Lotto lotto) {
             HashMap<String, Integer> result = new HashMap<>();
-            result.put(WINNING_NUMBER_MATCHES, lotto.matchesNumberList(winningNumber));
+            result.put(WINNING_NUMBER_MATCHES, lotto.matchesNumberList(winningLotto));
             result.put(BONUS_NUMBER_MATCHES, lotto.matchesSingleNumber(bonusNumber));
             return result;
         }
@@ -54,8 +55,8 @@ public class LottoResultGenerator {
         selledLottos.add(lotto);
     }
 
-    public void putWinningLottoNumber(List<Integer> winningNumber, int bonusNumber) {
-        winningLotto = new WinningLotto(new Lotto(winningNumber), bonusNumber);
+    public void putWinningLottoNumber(Lotto winningLottoValue, int bonusNumber) {
+        winningLotto = new WinningLotto(winningLottoValue, bonusNumber);
     }
 
     public HashMap<String, Integer> getLottosResult() {

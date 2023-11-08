@@ -6,6 +6,7 @@ import static lotto.Global.Exception.LOTTO_PURCHASE_INPUT;
 
 import java.util.HashMap;
 import java.util.List;
+import lotto.Model.Lotto;
 import lotto.Model.LottoMachine;
 import lotto.View.View;
 
@@ -21,14 +22,14 @@ public class LottoController {
 
     public void run() {
         sellLotto();
-        getWinningLottoInformation();
+        getWinningLottoInformation(getWinningLotto(), getBonusNumber());
         getTotalLottoResult();
     }
 
     private void sellLotto() {
         try {
             int lottoAmount = getLottoAmountByReceivedMoney();
-            view.putLottoSellResult(lottoMachine.buyLottos(lottoAmount));
+            view.putLottoSellResult(lottoMachine.purchaseLottos(lottoAmount));
         } catch (IllegalArgumentException e) {
             view.printErrorMessage(e.getMessage());
             sellLotto();
@@ -48,19 +49,22 @@ public class LottoController {
         }
     }
 
-    private void getWinningLottoInformation() {
-        List<Integer> winningNumber = getWinningNumber();
-        int bonusNumber = getBonusNumber();
-        lottoMachine.setWinningNumberInformation(winningNumber, bonusNumber);
-    }
-
-    private List<Integer> getWinningNumber() {
+    private void getWinningLottoInformation(Lotto winningLotto, int bonusNumber) {
         try {
-            List<Integer> winningNumber = view.getWinningLottoNumber(LOTTO_NUMBER_AMOUNT);
-            return winningNumber;
+            lottoMachine.setWinningNumberInformation(winningLotto, bonusNumber);
         } catch (IllegalArgumentException e) {
             view.printErrorMessage(e.getMessage());
-            return getWinningNumber();
+            getWinningLottoInformation(winningLotto, getBonusNumber());
+        }
+    }
+
+    private Lotto getWinningLotto() {
+        try {
+            List<Integer> winningNumber = view.getWinningLottoNumber(LOTTO_NUMBER_AMOUNT);
+            return new Lotto(winningNumber);
+        } catch (IllegalArgumentException e) {
+            view.printErrorMessage(e.getMessage());
+            return getWinningLotto();
         }
     }
 
@@ -81,7 +85,7 @@ public class LottoController {
 
     private HashMap<String, Integer> getLottoResult() {
         try {
-            HashMap<String, Integer> result = lottoMachine.getResult();
+            HashMap<String, Integer> result = lottoMachine.getLottoWinningResult();
             return result;
         } catch (IllegalArgumentException e) {
             view.printErrorMessage(e.getMessage());

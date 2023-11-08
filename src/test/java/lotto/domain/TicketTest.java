@@ -13,7 +13,9 @@ public class TicketTest {
     @Test
     void 티켓_개수() {
         int money = 10000;
-        assertThat(money / ticketPrice).isEqualTo(10);
+
+        Ticket ticket = new Ticket(money);
+        assertThat(ticket.getTicket()).isEqualTo(10);
     }
 
 

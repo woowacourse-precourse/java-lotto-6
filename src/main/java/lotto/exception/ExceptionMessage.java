@@ -11,7 +11,7 @@ public enum ExceptionMessage {
     NUMBER_OUT_OF_RANGE("[ERROR] Value must be within the range."),
     NO_DUPLICATES_ALLOWED("[ERROR] Values must be unique and cannot be duplicated."),
     NON_ZERO_STARTING_POSITIVE_NUMBERS_REQUIRED(
-            "[ERROR] Each winning number must be a positive number that does not start with 0.");
+            "[ERROR] Only numeric values that do not start with zero are allowed.");
 
     private final String message;
 

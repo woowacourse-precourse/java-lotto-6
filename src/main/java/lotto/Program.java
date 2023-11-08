@@ -8,6 +8,8 @@ public class Program {
     private InputValidator inputValidator = new InputValidator();
 
     private long purchaseAmount;
+    private String[] winningNumbers;
+    private int bonusNumber;
 
     public void start() {
         processPayment();
@@ -15,6 +17,7 @@ public class Program {
         lottoTerminal.printAllLotto();
 
         processWinningNumber();
+        processBonusNumber();
     }
 
     private void processPayment() {
@@ -51,6 +54,7 @@ public class Program {
         boolean isValidInput = false;
 
         while (!isValidInput) {
+            System.out.println();
             String winningNumber = lottoTerminal.requestAndReadWinningNumber();
 
             isValidInput = handleWinningNumber(winningNumber);
@@ -69,9 +73,39 @@ public class Program {
 
     private void validateWinningNumber(String value) {
         inputValidator.validateNonEmpty(value);
-        String[] winningNumbers = inputValidator.validateSeparatedByComma(value);
+        winningNumbers = inputValidator.validateSeparatedByComma(value);
         inputValidator.validateOnlyNumericValues(winningNumbers);
-        inputValidator.validateNumbersInRange(winningNumbers);
+        for (int i = 0; i < winningNumbers.length; i++) {
+            inputValidator.validateNumbersInRange(winningNumbers[i]);
+        }
+
         inputValidator.validateNoDuplicates(winningNumbers);
+    }
+
+    private void processBonusNumber() {
+        boolean isValidInput = false;
+
+        while (!isValidInput) {
+            System.out.println();
+            String bonusNumber = lottoTerminal.requestAndReadBonusNumber();
+
+            isValidInput = handleBonusNumber(bonusNumber);
+        }
+    }
+
+    private boolean handleBonusNumber(String value) {
+        try {
+            validateBonusNumber(value);
+            return true;
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            return false;
+        }
+    }
+
+    private void validateBonusNumber(String value) {
+        inputValidator.validateNonEmpty(value);
+        inputValidator.validateNumericOnly(value);
+        inputValidator.validateNumbersInRange(value);
     }
 }

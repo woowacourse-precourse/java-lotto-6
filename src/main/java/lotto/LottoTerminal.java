@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.constants.ProgramMessage.PRINT_COUNT_OF_LOTTO_ISSUED;
+import static lotto.constants.ProgramMessage.REQUEST_BONUS_NUMBER;
 import static lotto.constants.ProgramMessage.REQUEST_PURCHASE_AMOUNT;
 import static lotto.constants.ProgramMessage.REQUEST_WINNING_NUMBER;
 
@@ -72,6 +73,12 @@ public class LottoTerminal {
 
     public String requestAndReadWinningNumber() {
         System.out.println(REQUEST_WINNING_NUMBER.getMessage());
+
+        return Console.readLine();
+    }
+
+    public String requestAndReadBonusNumber() {
+        System.out.println(REQUEST_BONUS_NUMBER.getMessage());
 
         return Console.readLine();
     }

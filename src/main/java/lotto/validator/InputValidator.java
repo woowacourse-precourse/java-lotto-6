@@ -84,13 +84,11 @@ public class InputValidator {
         return value.matches("[1-9]\\d*");
     }
 
-    public void validateNumbersInRange(String[] winningNumbers) {
-        for (int i = 0; i < winningNumbers.length; i++) {
-            BigInteger number = new BigInteger(winningNumbers[i]);
+    public void validateNumbersInRange(String value) {
+        BigInteger number = new BigInteger(value);
 
-            if (number.compareTo(MIN_OF_LOTTO_NUMBER) < 0 || number.compareTo(MAX_OF_LOTTO_NUMBER) > 0) {
-                throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.getMessage());
-            }
+        if (number.compareTo(MIN_OF_LOTTO_NUMBER) < 0 || number.compareTo(MAX_OF_LOTTO_NUMBER) > 0) {
+            throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 
@@ -103,6 +101,12 @@ public class InputValidator {
 
         if (tempForCheck.size() != winningNumbers.length) {
             throw new IllegalArgumentException(NO_DUPLICATES_ALLOWED.getMessage());
+        }
+    }
+
+    public void validateNumericOnly(String value) {
+        if (!isValidNumeric(value)) {
+            throw new IllegalArgumentException(NON_ZERO_STARTING_POSITIVE_NUMBERS_REQUIRED.getMessage());
         }
     }
 }

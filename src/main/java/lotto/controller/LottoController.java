@@ -65,7 +65,7 @@ public class LottoController {
     private double calculate(int ticket) {
         CalculateProfit calculateProfit = new CalculateProfit();
         calculateProfit.calcProfit();
-        return calculateProfit.calcProfitPercent(ticket);
+        return calculateProfit.calcProfitPercent(ticket*1000);
     }
 
 }

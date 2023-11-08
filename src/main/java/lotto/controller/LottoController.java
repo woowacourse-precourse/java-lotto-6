@@ -3,7 +3,6 @@ package lotto.controller;
 import lotto.model.domain.ClientLottoData;
 import lotto.model.domain.RankTable;
 import lotto.model.domain.WinningLottoNumber;
-import lotto.model.LottoMachine;
 import lotto.util.LottoTypeConverter;
 import lotto.util.LottoValidator;
 import lotto.view.InputView;
@@ -81,7 +80,7 @@ public class LottoController {
     }
 
     public void setMatchNumber(ClientLottoData clientLottoData, WinningLottoNumber winningLottoNumber) {
-        List<RankTable> rankTables = LottoMachine.matchLottoCalculate(clientLottoData, winningLottoNumber);
+        List<RankTable> rankTables = winningLottoNumber.matchLottoCalculate(clientLottoData.getLottos());
         clientLottoData.setMatchLottoCalculate(rankTables);
     }
 

@@ -46,10 +46,10 @@ class LottoTest {
             return Stream.of(
                     Arguments.of(List.of()),
                     Arguments.of(List.of(1)),
-                    Arguments.of(List.of(1,2)),
-                    Arguments.of(List.of(1,2,3)),
-                    Arguments.of(List.of(1,2,3,4,5)),
-                    Arguments.of(List.of(1,2,3,4,5,6,7))
+                    Arguments.of(List.of(1, 2)),
+                    Arguments.of(List.of(1, 2, 3)),
+                    Arguments.of(List.of(1, 2, 3, 4, 5)),
+                    Arguments.of(List.of(1, 2, 3, 4, 5, 6, 7))
             );
         }
     }
@@ -68,9 +68,9 @@ class LottoTest {
 
         private Stream<Arguments> parameterProvider() {
             return Stream.of(
-                    Arguments.of(List.of(1,2,3,4,5,1)),
-                    Arguments.of(List.of(1,2,3,4,4,4)),
-                    Arguments.of(List.of(43,43,43,45,45,45))
+                    Arguments.of(List.of(1, 2, 3, 4, 5, 1)),
+                    Arguments.of(List.of(1, 2, 3, 4, 4, 4)),
+                    Arguments.of(List.of(43, 43, 43, 45, 45, 45))
             );
         }
     }
@@ -89,8 +89,8 @@ class LottoTest {
 
         private Stream<Arguments> parameterProvider() {
             return Stream.of(
-                    Arguments.of(List.of(1,2,3,4,5, Constant.END_INCLUSIVE + 1)),
-                    Arguments.of(List.of(Constant.START_INCLUSIVE - 1,1,2,3,4,5))
+                    Arguments.of(List.of(1, 2, 3, 4, 5, Constant.END_INCLUSIVE + 1)),
+                    Arguments.of(List.of(Constant.START_INCLUSIVE - 1, 1, 2, 3, 4, 5))
             );
         }
     }

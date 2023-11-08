@@ -17,10 +17,11 @@ public class UserLotto {
         printMyLotto();
     }
 
-    public UserLotto(int lottoNum){
+    public UserLotto(int lottoNum) {
         IntStream.range(0, lottoNum)
                 .forEach(i -> userRepository.add(makeLotto()));
     }
+
     public Lotto getIndexAt(int index) {
         return userRepository.get(index);
     }
@@ -44,7 +45,7 @@ public class UserLotto {
         userRepository.printAllLotto();
     }
 
-    private int calculateLottoNum(){
+    private int calculateLottoNum() {
         return InputView.readMoney() / Constant.MONEY_UNIT;
     }
 }

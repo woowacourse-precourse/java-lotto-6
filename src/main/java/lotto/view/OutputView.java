@@ -11,39 +11,40 @@ import java.util.List;
 
 public final class OutputView {
 
-    private OutputView(){
+    private OutputView() {
 
     }
 
-    public static void printLotto(List<Integer> lotto){
+    public static void printLotto(List<Integer> lotto) {
         printMessage(lotto.toString());
     }
 
-    public static void printReceipts(int size){
+    public static void printReceipts(int size) {
         printEmptyLine();
-        printMessage(size+"개를 구매했습니다.");
+        printMessage(size + "개를 구매했습니다.");
     }
 
-    public static void printReward(List<Award> awards){
+    public static void printReward(List<Award> awards) {
         printEmptyLine();
         printMessage(IOMessage.WRITE_RESULT);
         printMessage("---");
-        printMessage("3개 일치 (5,000원) - "+ Collections.frequency(awards,Award.THREE)+"개");
-        printMessage("4개 일치 (50,000원) - "+ Collections.frequency(awards,Award.FOUR)+"개");
-        printMessage("5개 일치 (1,500,000원) - "+ Collections.frequency(awards,Award.FIVE)+"개");
-        printMessage("5개 일치, 보너스 볼 일치 (30,000,000원) - "+ Collections.frequency(awards,Award.FIVE_BONUS)+"개");
-        printMessage("6개 일치 (2,000,000,000원) - "+ Collections.frequency(awards,Award.SIX)+"개");
+        printMessage("3개 일치 (5,000원) - " + Collections.frequency(awards, Award.THREE) + "개");
+        printMessage("4개 일치 (50,000원) - " + Collections.frequency(awards, Award.FOUR) + "개");
+        printMessage("5개 일치 (1,500,000원) - " + Collections.frequency(awards, Award.FIVE) + "개");
+        printMessage("5개 일치, 보너스 볼 일치 (30,000,000원) - " + Collections.frequency(awards, Award.FIVE_BONUS) + "개");
+        printMessage("6개 일치 (2,000,000,000원) - " + Collections.frequency(awards, Award.SIX) + "개");
     }
 
-    public static void printMessage(String message){
+    public static void printMessage(String message) {
         System.out.println(message);
     }
 
-    public static void printEmptyLine(){
+    public static void printEmptyLine() {
         System.out.println();
     }
-    public static void printYield(float yield){
+
+    public static void printYield(float yield) {
         String formattedYield = Util.makeFloatFormattedYield(yield, Constant.YIELD_PRECISION);
-        printMessage("총 수익률은 "+formattedYield+"%입니다.");
+        printMessage("총 수익률은 " + formattedYield + "%입니다.");
     }
 }

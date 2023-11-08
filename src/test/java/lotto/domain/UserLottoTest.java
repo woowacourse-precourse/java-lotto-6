@@ -18,19 +18,20 @@ class UserLottoTest {
         @ParameterizedTest(name = "{0}이 입력으로 들어왔을 때")
         @CsvSource(value = {"8000, 8", "1000, 1", "0, 0", "2000, 2"})
         void 로또_개수를_잘_반환하는지_테스트(int target, int expected) {
-            int lottoNum = target/ Constant.MONEY_UNIT;
+            int lottoNum = target / Constant.MONEY_UNIT;
             UserLotto userLotto = new UserLotto(lottoNum);
 
             assertThat(userLotto.size()).isEqualTo(expected);
         }
     }
+
     @DisplayName("getLottoAt 메소드 테스트")
     @Nested
     class GetLottoAt {
         @ParameterizedTest(name = "{0}이 입력으로 들어왔을 때")
         @CsvSource(value = {"8000, 8", "1000, 1", "15000, 15", "2000, 2"})
         void 로또객체를_잘_가져오는지_테스트(int target, int size) {
-            int lottoNum = target/ Constant.MONEY_UNIT;
+            int lottoNum = target / Constant.MONEY_UNIT;
             UserLotto userLotto = new UserLotto(lottoNum);
 
             Assertions.assertAll(() -> {

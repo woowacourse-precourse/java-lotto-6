@@ -28,7 +28,7 @@ class BonusNumberVerifierTest extends NsTest {
         @Test
         void 정상입력이_주어진경우() {
             Assertions.assertSimpleTest(() -> {
-                assertThatCode(() -> run("14000", "1,2,3,4,5,6","7"))
+                assertThatCode(() -> run("14000", "1,2,3,4,5,6", "7"))
                         .doesNotThrowAnyException();
             });
         }
@@ -39,14 +39,16 @@ class BonusNumberVerifierTest extends NsTest {
     class ExceptionTest {
 
         private final Verifier bonusNumberVerifier = new BonusNumberVerifier();
+
         @ParameterizedTest
         @DisplayName("checkNumeric 메서드 테스트")
-        @CsvSource(value = {"13f","183j33", "10k00", "k832", "0/1?"})
+        @CsvSource(value = {"13f", "183j33", "10k00", "k832", "0/1?"})
         void 숫자가아닌_보너스번호가_주어진경우(String input) {
             assertThatThrownBy(() -> bonusNumberVerifier.check(input))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ExceptionMessage.IS_NOT_NUMERIC);
         }
+
         @ParameterizedTest
         @DisplayName("checkTypeRange 메세드 테스트")
         @ValueSource(strings = {
@@ -54,11 +56,12 @@ class BonusNumberVerifierTest extends NsTest {
                 "9223372036854775808",
                 "812878316387112231331"
         })
-        void Long_타입으로변환될수없는_보너스번호가_주어진경우(String input){
+        void Long_타입으로변환될수없는_보너스번호가_주어진경우(String input) {
             assertThatThrownBy(() -> bonusNumberVerifier.check(input))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ExceptionMessage.NUMBER_OUT_OF_TYPE_RANGE);
         }
+
         @ParameterizedTest
         @DisplayName("checkRange 메서드 테스트")
         @MethodSource("parameterProvider")
@@ -70,7 +73,7 @@ class BonusNumberVerifierTest extends NsTest {
 
         private Stream<Arguments> parameterProvider() {
             return Stream.of(
-                    Arguments.of( "72"),
+                    Arguments.of("72"),
                     Arguments.of("4823"),
                     Arguments.of("-24")
 

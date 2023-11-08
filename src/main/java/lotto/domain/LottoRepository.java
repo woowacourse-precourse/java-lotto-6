@@ -9,19 +9,19 @@ public class LottoRepository {
 
     private List<Lotto> lottoRepository = new ArrayList<>();
 
-    public void add(Lotto lotto){
+    public void add(Lotto lotto) {
         lottoRepository.add(lotto);
     }
 
-    public void printAllLotto(){
+    public void printAllLotto() {
         lottoRepository.forEach(Lotto::printLottoInfo);
     }
 
-    public Lotto get(int index){
+    public Lotto get(int index) {
         return lottoRepository.get(index);
     }
 
-    public int size(){
+    public int size() {
         return lottoRepository.size();
     }
 

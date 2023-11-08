@@ -39,9 +39,9 @@ public class RuntimeVerifierTest {
 
         private Stream<Arguments> parameterProvider() {
             return Stream.of(
-                    Arguments.of(List.of(7,8,9,10,11,12), 7),
-                    Arguments.of(List.of(4,7,8,9,10,11), 4),
-                    Arguments.of(List.of(1,2,7,8,9,10), 10)
+                    Arguments.of(List.of(7, 8, 9, 10, 11, 12), 7),
+                    Arguments.of(List.of(4, 7, 8, 9, 10, 11), 4),
+                    Arguments.of(List.of(1, 2, 7, 8, 9, 10), 10)
 
             );
         }

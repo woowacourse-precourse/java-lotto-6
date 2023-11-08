@@ -17,11 +17,11 @@ public enum Award {
         this.reward = reward;
     }
 
-    public int getReward(){
+    public int getReward() {
         return this.reward;
     }
 
-    public static Award getByOrdinal(int ordinal){
+    public static Award getByOrdinal(int ordinal) {
         return Award.values()[ordinal];
     }
 

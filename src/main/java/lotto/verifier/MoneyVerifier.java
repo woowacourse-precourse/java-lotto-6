@@ -22,13 +22,14 @@ public class MoneyVerifier implements Verifier {
         }
     }
 
-    private void checkTypeRange(String input){
-        try{
+    private void checkTypeRange(String input) {
+        try {
             Long.parseLong(input);
         } catch (Exception e) {
             throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE);
         }
     }
+
     private void checkRange(String input) {
         long money = Long.parseLong(input);
         if (money <= 0)

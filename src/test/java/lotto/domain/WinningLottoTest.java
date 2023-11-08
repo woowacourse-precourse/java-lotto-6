@@ -30,9 +30,9 @@ class WinningLottoTest {
 
         private Stream<Arguments> parameterProvider() {
             return Stream.of(
-                    Arguments.of(new Lotto(Arrays.asList(1,2,3,4,5,6)), new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 6),
-                    Arguments.of(new Lotto(Arrays.asList(1,2,3,4,5,6)), new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9)), 3),
-                    Arguments.of(new Lotto(Arrays.asList(1,2,3,4,5,6)), new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12)), 0)
+                    Arguments.of(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 6),
+                    Arguments.of(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9)), 3),
+                    Arguments.of(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12)), 0)
             );
         }
     }

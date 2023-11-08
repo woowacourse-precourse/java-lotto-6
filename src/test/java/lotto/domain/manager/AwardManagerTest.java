@@ -27,27 +27,27 @@ class AwardManagerTest {
             assertRandomUniqueNumbersInRangeTest(
                     () -> {
 
-                        int lottoNum = money/ Constant.MONEY_UNIT;
+                        int lottoNum = money / Constant.MONEY_UNIT;
                         UserLotto userLotto = new UserLotto(lottoNum);
                         WinningLotto winningLotto = new WinningLotto(new Lotto(winning));
                         BonusNumber bonusNumber = new BonusNumber(bonus);
 
                         assertThat(AwardManager.makeAwards(winningLotto, userLotto, bonusNumber)).isEqualTo(expected);
                     },
-                    List.of(1,2,3,4,5,6)
+                    List.of(1, 2, 3, 4, 5, 6)
             );
         }
 
         private Stream<Arguments> parameterProvider() {
             return Stream.of(
-                    Arguments.of(List.of(Award.ZERO), "1000", List.of(7,8,9,10,11,12), "13"),
-                    Arguments.of(List.of(Award.ONE), "1000", List.of(4,7,8,9,10,11), "12"),
-                    Arguments.of(List.of(Award.TWO), "1000", List.of(1,2,7,8,9,10), "11"),
-                    Arguments.of(List.of(Award.THREE), "1000", List.of(1,2,3,7,8,9), "10"),
-                    Arguments.of(List.of(Award.FOUR), "1000", List.of(1,2,3,4,7,8), "9"),
-                    Arguments.of(List.of(Award.FIVE), "1000", List.of(1,2,3,4,5,7), "8"),
-                    Arguments.of(List.of(Award.FIVE_BONUS), "1000", List.of(1,2,3,4,5,8), "6"),
-                    Arguments.of(List.of(Award.SIX), "1000", List.of(1,2,3,4,5,6), "7")
+                    Arguments.of(List.of(Award.ZERO), "1000", List.of(7, 8, 9, 10, 11, 12), "13"),
+                    Arguments.of(List.of(Award.ONE), "1000", List.of(4, 7, 8, 9, 10, 11), "12"),
+                    Arguments.of(List.of(Award.TWO), "1000", List.of(1, 2, 7, 8, 9, 10), "11"),
+                    Arguments.of(List.of(Award.THREE), "1000", List.of(1, 2, 3, 7, 8, 9), "10"),
+                    Arguments.of(List.of(Award.FOUR), "1000", List.of(1, 2, 3, 4, 7, 8), "9"),
+                    Arguments.of(List.of(Award.FIVE), "1000", List.of(1, 2, 3, 4, 5, 7), "8"),
+                    Arguments.of(List.of(Award.FIVE_BONUS), "1000", List.of(1, 2, 3, 4, 5, 8), "6"),
+                    Arguments.of(List.of(Award.SIX), "1000", List.of(1, 2, 3, 4, 5, 6), "7")
 
             );
         }

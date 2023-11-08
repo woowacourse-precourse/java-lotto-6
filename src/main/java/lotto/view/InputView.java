@@ -22,7 +22,7 @@ public final class InputView {
     }
 
     public static int readMoney() {
-        while(true) {
+        while (true) {
             try {
                 OutputView.printMessage(IOMessage.READ_MONEY_MESSAGE);
                 String input = Console.readLine();
@@ -36,7 +36,7 @@ public final class InputView {
     }
 
     public static List<Integer> readWinnerNumber() {
-        while(true) {
+        while (true) {
             try {
                 OutputView.printEmptyLine();
                 OutputView.printMessage(IOMessage.READ_WINNING_NUM_MESSAGE);
@@ -46,14 +46,14 @@ public final class InputView {
                 return Arrays.stream(input.split(","))
                         .map(Integer::parseInt)
                         .collect(Collectors.toList());
-            }catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 OutputView.printMessage(e.getMessage());
             }
         }
     }
 
     public static Integer readBonusNumber() {
-        while(true) {
+        while (true) {
             try {
                 OutputView.printEmptyLine();
                 OutputView.printMessage(IOMessage.READ_BONUS_NUM_MESSAGE);
@@ -61,7 +61,7 @@ public final class InputView {
                 bonusNumVerifier.check(input);
 
                 return Integer.parseInt(input);
-            }catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 OutputView.printMessage(e.getMessage());
             }
         }

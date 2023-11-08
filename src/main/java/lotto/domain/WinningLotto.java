@@ -10,7 +10,7 @@ public class WinningLotto {
         winningLotto = makeWinningLotto();
     }
 
-    public WinningLotto(Lotto lotto){
+    public WinningLotto(Lotto lotto) {
         winningLotto = lotto;
     }
 

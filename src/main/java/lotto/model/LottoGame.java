@@ -1,6 +1,5 @@
 package lotto.model;
 
-import lotto.Lotto;
 import lotto.manager.InputManager;
 import lotto.manager.OutputManager;
 
@@ -41,9 +40,10 @@ public class LottoGame {
     private void createWinningNumbers() {
         try {
             List<Integer> winningNumbers = inputManager.inputMultipleInt("\n당첨 번호를 입력해 주세요.");
+            Lotto winningLotto = new Lotto(winningNumbers);
             int bonusNumber = inputManager.inputInt("\n보너스 번호를 입력해 주세요.");
 
-            LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(new Lotto(winningNumbers), bonusNumber);
+            LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(winningLotto, bonusNumber);
             matchCounts = lottoWinningNumbers.correctNumberCheckerForMultipleLottos(lottos);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

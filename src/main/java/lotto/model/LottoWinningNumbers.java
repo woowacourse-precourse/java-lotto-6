@@ -1,10 +1,7 @@
 package lotto.model;
 
-import lotto.Lotto;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 public class LottoWinningNumbers {
@@ -14,7 +11,6 @@ public class LottoWinningNumbers {
     public LottoWinningNumbers(Lotto winningNumbers, int bonusNumber) {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
-        validateWinningNumbers(winningNumbers.getNumbers());
         validateBonusNumber(winningNumbers.getNumbers(), bonusNumber);
     }
 
@@ -53,41 +49,15 @@ public class LottoWinningNumbers {
         duplicateCheckForBonusNumber(numbers, bonusNumber);
     }
 
-    private void validateWinningNumbers(List<Integer> numbers) {
-        isNumberInRangeForMultipleNumber(numbers);
-        duplicateCheckForWinningNumbers(numbers);
-        checkListSize(numbers);
-    }
-
-    private void checkListSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호가 6개의 숫자가 아닙니다.");
-        }
-    }
-
-
     private void isNumberInRange(int number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("[ERROR] 1과 45사이의 숫자가 아닙니다.");
         }
     }
 
-    private void isNumberInRangeForMultipleNumber(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size(); i++) {
-            isNumberInRange(numbers.get(i));
-        }
-    }
-
     private void duplicateCheckForBonusNumber(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERRPR] 당첨 번호 중 보너스 번호와 중복되는 숫자가 있습니다.");
-        }
-    }
-
-    private void duplicateCheckForWinningNumbers(List<Integer> numbers) {
-        HashSet<Integer> set = new HashSet<>(numbers);
-        if (numbers.size() != set.size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복되는 숫자가 있습니다.");
         }
     }
 

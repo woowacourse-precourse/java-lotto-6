@@ -6,16 +6,20 @@ import java.util.List;
 import lotto.domain.LottoCollector;
 import lotto.service.LottoPublishService;
 import lotto.service.WinningService;
+import lotto.service.YieldRateService;
 import lotto.utils.ExceptionMessage;
 
 public class LottoController {
 
     private final LottoPublishService lottoPublishService;
     private final WinningService winningService;
+    private final YieldRateService yieldRateService;
 
-    public LottoController(LottoPublishService lottoPublishService, WinningService winningService) {
+    public LottoController(LottoPublishService lottoPublishService, WinningService winningService,
+                           YieldRateService yieldRateService) {
         this.lottoPublishService = lottoPublishService;
         this.winningService = winningService;
+        this.yieldRateService = yieldRateService;
     }
 
     public LottoCollector publishLotto(String inputPurchaseAmount) throws IllegalArgumentException {
@@ -34,6 +38,10 @@ public class LottoController {
 
     public String getWinningDetail(LottoCollector lottoCollector) {
         return winningService.calculateWinningDetail(lottoCollector);
+    }
+
+    public String getYieldRate() {
+        return yieldRateService.calculateYieldRate();
     }
 
     private int validateType(String inputPurchaseAmount) {

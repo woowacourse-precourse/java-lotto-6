@@ -1,7 +1,7 @@
 package lotto.model.lotto;
 
-import static lotto.utils.LottoConstant.MAX_NUMBER;
-import static lotto.utils.LottoConstant.MIN_NUMBER;
+import static lotto.model.lotto.LottoConstant.MAX_NUMBER;
+import static lotto.model.lotto.LottoConstant.MIN_NUMBER;
 
 import java.util.List;
 import lotto.exception.lotto.LottoDuplicateException;

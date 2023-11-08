@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.model.lotto;
 
 
 public enum LottoConstant {

@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.utils.LottoConstant.LOTTO_PRICE;
+import static lotto.model.lotto.LottoConstant.LOTTO_PRICE;
 
 import lotto.validator.BudgetValidator;
 

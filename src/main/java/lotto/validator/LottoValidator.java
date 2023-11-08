@@ -1,8 +1,8 @@
 package lotto.validator;
 
-import static lotto.utils.LottoConstant.LOTTO_SIZE;
-import static lotto.utils.LottoConstant.MAX_NUMBER;
-import static lotto.utils.LottoConstant.MIN_NUMBER;
+import static lotto.model.lotto.LottoConstant.LOTTO_SIZE;
+import static lotto.model.lotto.LottoConstant.MAX_NUMBER;
+import static lotto.model.lotto.LottoConstant.MIN_NUMBER;
 
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +12,7 @@ import lotto.exception.lotto.LottoOutOfRangeException;
 import lotto.exception.lotto.LottoSizeException;
 
 public class LottoValidator {
+    // 로또 비즈니스 로직 검증
 
     public static void validateLotto(List<Integer> numbers){
         validateSize(numbers);

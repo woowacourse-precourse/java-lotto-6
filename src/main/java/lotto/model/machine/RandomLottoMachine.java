@@ -1,13 +1,12 @@
 package lotto.model.machine;
 
-import static lotto.utils.LottoConstant.LOTTO_SIZE;
-import static lotto.utils.LottoConstant.MAX_NUMBER;
-import static lotto.utils.LottoConstant.MIN_NUMBER;
+import static lotto.model.lotto.LottoConstant.LOTTO_SIZE;
+import static lotto.model.lotto.LottoConstant.MAX_NUMBER;
+import static lotto.model.lotto.LottoConstant.MIN_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import lotto.model.lotto.Lotto;
-import lotto.model.machine.LottoMachine;
 
 public class RandomLottoMachine implements LottoMachine {
     @Override

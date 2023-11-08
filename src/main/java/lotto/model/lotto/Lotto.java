@@ -1,9 +1,10 @@
 package lotto.model.lotto;
 
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+
 import lotto.validator.LottoValidator;
 
 public class Lotto {
@@ -14,7 +15,8 @@ public class Lotto {
         LottoValidator.validateLotto(numbers);
         this.numbers = sortNumbers(numbers);
     }
-    public List<Integer> getLotto(){
+
+    public List<Integer> getLotto() {
         return numbers;
     }
 
@@ -26,7 +28,8 @@ public class Lotto {
     private List<Integer> sortNumbers(List<Integer> numbers) {
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
         Collections.sort(sortedNumbers);
-        return Collections.unmodifiableList(sortedNumbers); // Return the sorted and unmodifiable list
+        return Collections.unmodifiableList(sortedNumbers);
     }
+
 
 }

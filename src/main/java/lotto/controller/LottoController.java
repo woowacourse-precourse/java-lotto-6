@@ -1,8 +1,6 @@
 package lotto.controller;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.model.Budget;
 import lotto.model.LottoGame;
 import lotto.model.Revenue;
@@ -10,16 +8,15 @@ import lotto.model.lotto.BonusNumber;
 import lotto.model.lotto.LottoTicket;
 import lotto.model.lotto.RankCount;
 import lotto.model.lotto.WinningLotto;
-import lotto.model.machine.LottoMachine;
-import lotto.model.machine.RandomLottoMachine;
-import lotto.model.strategy.LottoStrategy;
-import lotto.model.strategy.MyLottoStrategy;
+import lotto.utils.Parser;
 import lotto.validator.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private final LottoGame lottoGame;
+    private final Parser parser = new Parser();
+    private final InputValidator inputValidator = new InputValidator();
 
     public LottoController(LottoGame lottoGame) {
         this.lottoGame = lottoGame;
@@ -43,10 +40,10 @@ public class LottoController {
     }
 
 
-    public Budget getBudget() {
+    private Budget getBudget() {
         try {
             String inputPrice = InputView.inputBudget();
-            InputValidator.validateInputBudget(inputPrice);
+            inputValidator.validateInputBudgetType(inputPrice);
             return new Budget(Integer.parseInt(inputPrice));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -54,10 +51,11 @@ public class LottoController {
         }
     }
 
-    public WinningLotto getWinningLotto() {
+    private WinningLotto getWinningLotto() {
         try {
             String inputWinningNumber = InputView.inputWinningNumbers();
-            List<Integer> numbers = parseListFromNumbers(inputWinningNumber);
+            inputValidator.validateInputNumbersType(inputWinningNumber);
+            List<Integer> numbers = parser.parseListFromNumbers(inputWinningNumber);
             return new WinningLotto(numbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -67,10 +65,9 @@ public class LottoController {
     }
 
     private BonusNumber getBonusNumber(WinningLotto winningLotto) {
-
         try {
             String inputBonusNumber = InputView.inputBonusNumber();
-            InputValidator.validateBonusNumber(inputBonusNumber);
+            inputValidator.validateBonusNumberType(inputBonusNumber);
             return new BonusNumber(Integer.parseInt(inputBonusNumber), winningLotto);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -79,10 +76,5 @@ public class LottoController {
 
     }
 
-    private List<Integer> parseListFromNumbers(String inputNumbers) {
-        return Arrays.stream(inputNumbers.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-    }
 
 }

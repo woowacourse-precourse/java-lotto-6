@@ -1,9 +1,5 @@
-package lotto;
+package lotto.model;
 
-import lotto.model.Budget;
-import lotto.model.Revenue;
-import lotto.model.lotto.LottoRank;
-import lotto.model.lotto.RankCount;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,7 +26,7 @@ public class RevenueTest {
         //when
         revenue = new Revenue(rankCount, budget);
         //then
-        assertThat(revenue.getRevenue())
+        assertThat(revenue.getValue())
                 .isEqualTo("62.5");
     }
 
@@ -43,7 +39,7 @@ public class RevenueTest {
         //when
         revenue = new Revenue(rankCount, budget);
         //then
-        assertThat(revenue.getRevenue())
+        assertThat(revenue.getValue())
                 .isEqualTo("687.5");
     }
 
@@ -55,7 +51,7 @@ public class RevenueTest {
         //when
         revenue = new Revenue(rankCount, budget);
         //then
-        assertThat(revenue.getRevenue())
+        assertThat(revenue.getValue())
                 .isEqualTo("25,000,000.0");
     }
 }

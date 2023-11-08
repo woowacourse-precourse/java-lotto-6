@@ -15,7 +15,7 @@ public class InputTest {
     @ParameterizedTest
     @ValueSource(strings = {""," "})
     void inputNull(String input) {
-        assertThatThrownBy(() -> InputValidator.validateInputBudget(input))
+        assertThatThrownBy(() -> InputValidator.validateInputBudgetType(input))
                 .isInstanceOf(NullInputException.class);
     }
 
@@ -23,7 +23,7 @@ public class InputTest {
     @ParameterizedTest
     @ValueSource(strings = {"a","-",".","1.0","8,000"})
     void inputNotInteger(String input){
-        assertThatThrownBy(() -> InputValidator.validateInputBudget(input))
+        assertThatThrownBy(() -> InputValidator.validateInputBudgetType(input))
                 .isInstanceOf(NotIntegerException.class);
     }
 
@@ -31,14 +31,14 @@ public class InputTest {
     @ParameterizedTest
     @ValueSource(strings = {"1 100", "11 00"})
     void inputHasSpace(String input){
-        assertThatThrownBy(() -> InputValidator.validateInputBudget(input))
+        assertThatThrownBy(() -> InputValidator.validateInputBudgetType(input))
                 .isInstanceOf(HasSpaceException.class);
     }
     @DisplayName("당첨숫자 입력이 공백일 시 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {" ","" })
     void numbersInputIsNull(String input){
-        assertThatThrownBy(() -> InputValidator.validateInputNumbers(input))
+        assertThatThrownBy(() -> InputValidator.validateInputNumbersType(input))
                 .isInstanceOf(NullInputException.class);
     }
 
@@ -46,7 +46,7 @@ public class InputTest {
     @ParameterizedTest
     @ValueSource(strings = {"a","1,a","a,b","1,2,3,a"})
     void numbersInputNotInteger(String input){
-        assertThatThrownBy(() -> InputValidator.validateInputNumbers(input))
+        assertThatThrownBy(() -> InputValidator.validateInputNumbersType(input))
                 .isInstanceOf(NotIntegerException.class);
     }
 
@@ -54,7 +54,7 @@ public class InputTest {
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3, 4", " ,1,2,3", "1 0,11,12"})
     void numbersInputHasSpace(String input){
-        assertThatThrownBy(() -> InputValidator.validateInputNumbers(input))
+        assertThatThrownBy(() -> InputValidator.validateInputNumbersType(input))
                 .isInstanceOf(HasSpaceException.class);
     }
 

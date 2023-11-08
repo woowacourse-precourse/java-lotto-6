@@ -1,7 +1,6 @@
 package lotto.model.lotto;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public enum LottoRank {
     FAIL(0, false, 0, ""),

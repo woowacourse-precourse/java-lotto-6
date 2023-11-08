@@ -38,7 +38,6 @@ class LottoTest {
     void createAscendingNumber() {
         List<Integer> numbers = new ArrayList<>(List.of(2, 3, 8, 12, 41, 28));
         Lotto lotto = new Lotto(numbers);
-        lotto.sort();
         assertThat(lotto.getNumbers()).isSorted();
     }
 
@@ -53,7 +52,7 @@ class LottoTest {
     void createStringOfNumbers() {
         assertThat(new Lotto(List.of(2, 24, 32, 29, 45, 17)).toString())
                 .startsWith("[")
-                .contains("2, 24, 32, 29, 45, 17")
+                .contains("2, 17, 24, 29, 32, 45")
                 .endsWith("]");
     }
 }

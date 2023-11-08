@@ -36,15 +36,14 @@ public class Controller {
         List<Integer> winningNumbersWithBonusNumber = new WinningNumbersWithBonusNumber(winningNumbers, bonusNumber)
                 .getWinningNumbersWithBonusNumber();
 
-        // 당첨 통계
-        WinningRecords winningRecords = new WinningRecords(lottoTickets, bonusNumber,
-                winningNumbersWithBonusNumber);
-
+        // 당첨 통계 산출
+        WinningRecords winningRecords = new WinningRecords(lottoTickets, bonusNumber, winningNumbersWithBonusNumber);
         int[] lotteryResults = winningRecords.getLotteryResults();
         int matchFiveWithBonus = winningRecords.getMatchFiveWithBonus();
 
         output.printWinningStatistics(lotteryResults, matchFiveWithBonus);
 
+        // 수익률 계산 및 출력
         int winningPrize = calculateWinningPrize(lotteryResults);
         double rateOfReturn = calculateRateOfReturn(winningPrize, countLottoTickets);
         RateOfReturn yieldRateOfReturn = new RateOfReturn(winningPrize, rateOfReturn);
@@ -60,7 +59,6 @@ public class Controller {
         private double calculateRateOfReturn(int winningPrize, int numberOfLottoTickets) {
         return (double) winningPrize / (numberOfLottoTickets * 1000) * 100;
     }
-
 
     private List<List<Integer>> getLottoTicketsTickets(int countLottoTickets) {
         List<List<Integer>> lottoTickets = new ArrayList<>();

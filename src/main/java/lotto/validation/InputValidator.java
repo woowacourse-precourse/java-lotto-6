@@ -1,6 +1,7 @@
 package lotto.validation;
 
 import lotto.controller.Controller;
+import lotto.util.InputErrorMessage;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -14,7 +15,7 @@ public class InputValidator {
         try{
             Integer.parseInt(inputValue);
         } catch(IllegalArgumentException e) {
-            System.out.println("[ERROR] 숫자를 입력하세요.");
+            System.out.println(InputErrorMessage.NOT_A_NUMBER);
 
             Input input = new Input();
             Output output = new Output();
@@ -25,8 +26,7 @@ public class InputValidator {
     }
     public void ensureCommaDelimiter(String input) {
         if (input.contains(",") == false) {
-//            System.out.println("[ERROR] 번호는 쉼표(,)를 기준으로 구분해주세요. (ex.1,2,3,4,5,6)");
-            throw new IllegalArgumentException("[ERROR] 번호는 쉼표(,)를 기준으로 구분해주세요. (ex.1,2,3,4,5,6)");
+            throw new IllegalArgumentException(InputErrorMessage.COMMA_DELIMITER.getMessage());
         }
     }
 
@@ -36,13 +36,13 @@ public class InputValidator {
             selectedNumbers.add(number);
         }
         if (selectedNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자 6개를 입력해주세요.");
+            throw new IllegalArgumentException(InputErrorMessage.DUPLICATE_NUMBERS.getMessage());
         }
     }
 
     public void checkNumbersLength(String[] numbers) {
         if (numbers.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(InputErrorMessage.INVALID_VALUE_LENGTH.getMessage());
         }
     }
 
@@ -54,7 +54,7 @@ public class InputValidator {
 
     public void checkLottoNumberRange(int num) {
         if (num < 1 || num > 45) {
-            throw new IllegalArgumentException("[ERROR] 1~45 사이의 값을 선택하세요.");
+            throw new IllegalArgumentException(InputErrorMessage.INVALID_VALUE_RANGE.getMessage());
         }
     }
 
@@ -64,7 +64,7 @@ public class InputValidator {
                 Integer.parseInt(numbers[i]);
             }
         } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 숫자 이외의 값은 입력할 수 없습니다.");
+            throw new IllegalArgumentException(InputErrorMessage.NOT_AN_INTEGER.getMessage());
         }
 
     }
@@ -73,7 +73,7 @@ public class InputValidator {
         try {
             Integer.parseInt(input);
         } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 숫자 이외의 값은 입력할 수 없습니다.");
+            throw new IllegalArgumentException(InputErrorMessage.NOT_AN_INTEGER.getMessage());
         }
     }
 }

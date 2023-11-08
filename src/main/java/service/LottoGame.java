@@ -2,11 +2,10 @@ package service;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
+import lotto.LottoRank;
 import util.LottoNumberGenerator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static util.TicketPurchaseAmountValidator.validateTicketPurchaseAmount;
 
@@ -23,9 +22,14 @@ public class LottoGame {
         List<Lotto> tickets = getTickets(ticketQuantity);
 
         printGeneratedNumbers(ticketQuantity, tickets);
+
+        Lotto winningNumbers = getWinningNumbers();
+        Lotto bonusNumber = getBonusNumber();
     }
 
     private static void getBonusNumber() {
+
+    private Lotto getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
 
         List<Integer> bonusNumber = new ArrayList<>();
@@ -36,16 +40,17 @@ public class LottoGame {
             throw new NumberFormatException("[ERROR] 숫자를 입력해 주세요.");
         }
 
-        Lotto bonusLotto = new Lotto(bonusNumber, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO_BONUS_NUMBER);
         System.out.println();
+        return new Lotto(bonusNumber, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO_BONUS_NUMBER);
     }
 
 
-    private static void getWinningNumbers() {
+    private Lotto getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> winningNumbers = Arrays.stream(Console.readLine().split(",")).map(Integer::parseInt).toList();
-        Lotto winningTicket = new Lotto(winningNumbers, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO_NUMBERS);
         System.out.println();
+
+        return new Lotto(winningNumbers, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO_NUMBERS);
     }
 
     private void printGeneratedNumbers(int ticketQuantity, List<Lotto> tickets) {

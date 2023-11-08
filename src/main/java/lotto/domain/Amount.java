@@ -6,7 +6,7 @@ public class Amount {
     private static final int ONE_LOTTO_PRICE = 1_000;
     private static final int PERCENTAGE = 100;
 
-    private int value;
+    private final int value;
 
     public Amount(int value) {
         validate(value);

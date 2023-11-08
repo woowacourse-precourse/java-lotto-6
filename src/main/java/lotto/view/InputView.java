@@ -18,7 +18,7 @@ public class InputView {
         OutputView.printWinningNumbersPrompt();
         String input = Console.readLine();
         validateWinningNumbers(input);
-        return Arrays.stream(input.split(","))
+        List<Integer> winningNumbers = Arrays.stream(input.split(DELIMITER))
             .map(Integer::parseInt)
             .toList();
     }
@@ -39,26 +39,26 @@ public class InputView {
     }
 
     private static void validateNotStartOrEndWithComma(String input) {
-        if (input.startsWith(",") || input.endsWith(",")) {
-            throw new IllegalArgumentException("입력의 시작이나 끝에 쉼표가 있습니다");
+        if (input.startsWith(DELIMITER) || input.endsWith(DELIMITER)) {
+            throw new IllegalArgumentException("입력의 시작 혹은 끝에 쉼표가 있습니다.");
         }
     }
 
     private static void validateNoConsecutiveCommas(String input) {
-        if (input.contains(",,") || input.contains(", ,")) {
-            throw new IllegalArgumentException("쉼표가 연속해서 있습니다");
+        if (input.contains(DELIMITER.repeat(2))) {
+            throw new IllegalArgumentException("쉼표가 연속해서 있습니다.");
         }
     }
 
     private static void validateNoCommasWithSpaces(String input) {
-        if (input.contains(" ,") || input.contains(", ")) {
-            throw new IllegalArgumentException("쉼표 옆에 공백이 있습니다");
+        if (input.contains(SPACE + DELIMITER) || input.contains(DELIMITER + SPACE)) {
+            throw new IllegalArgumentException("쉼표 옆에 공백이 있습니다.");
         }
     }
 
     private static void validateNoSpecialCharactersExceptComma(String input) {
         if (input.matches(".*[^0-9,\\s]+.*")) {
-            throw new IllegalArgumentException("쉼표를 제외한 특수문자가 있습니다");
+            throw new IllegalArgumentException("쉼표를 제외한 특수문자가 있습니다.");
         }
     }
 }

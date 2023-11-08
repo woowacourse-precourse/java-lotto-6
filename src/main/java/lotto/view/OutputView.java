@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.util.ConstantUtils.*;
+
 import java.util.StringJoiner;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoPrize;
@@ -17,7 +19,6 @@ public class OutputView {
     private static final String WINNING_STATISTICS_FORMAT = "%s개 일치 (%s원) - %d개\n";
     private static final String WINNING_WITH_BONUS_STATISTIC_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
     private static final String TOTAL_EARNING_RATE_FORMAT = "총 수익률은 %.1f%%입니다.\n";
-    private static final String DELIMITER = ", ";
     private static final String STRING_JOIN_PREFIX = "[";
     private static final String STRING_JOIN_SUFFIX = "]";
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -41,7 +42,7 @@ public class OutputView {
 
     public static void printLottos(LottosResponse lottosResponse) {
         for (Lotto lotto : lottosResponse.getLottos().asList()) {
-            StringJoiner stringJoiner = new StringJoiner(DELIMITER, STRING_JOIN_PREFIX,
+            StringJoiner stringJoiner = new StringJoiner(DELIMITER + SPACE, STRING_JOIN_PREFIX,
                 STRING_JOIN_SUFFIX);
             lotto.getNumbers().forEach(
                 number -> stringJoiner.add(String.valueOf(number))
@@ -70,6 +71,7 @@ public class OutputView {
                 System.out.printf(WINNING_WITH_BONUS_STATISTIC_FORMAT, prize.matchCount() + 1,
                     formatPrizeMoney(
                         prize.prizeAmount()), count);
+                continue;
             }
             int count = response.getWinningCount().getOrDefault(prize, 0);
             System.out.printf(WINNING_STATISTICS_FORMAT, prize.matchCount(),

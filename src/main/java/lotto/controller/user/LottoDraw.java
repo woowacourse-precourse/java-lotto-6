@@ -36,7 +36,7 @@ public class LottoDraw {
 
         while (true) {
             inputView.showWinningNumbersInputForm();
-            input = readLine();
+            input = readLine().trim();
             inputView.endInput();
 
             if (isCorrectLottoNumbers(input)) {

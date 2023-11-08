@@ -8,7 +8,7 @@ public class LottoNumberException {
     private static final int SIX_INPUT = 6;
 
     public void checkBlank(String input) {
-        if (input.isEmpty()) {
+        if (input.trim().isEmpty()) {
             throw new IllegalArgumentException(ErrorText.BLANK.getMessage());
         }
     }

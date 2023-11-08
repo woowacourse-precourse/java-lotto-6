@@ -20,16 +20,6 @@ public class Lotto {
             .collect(Collectors.toList());
     }
 
-    public List<Integer> getNumbers() {
-        return numbers.stream()
-            .map(LottoNumber::getLottoNumber)
-            .collect(Collectors.toList());
-    }
-
-    public List<LottoNumber> getLottoNumbers() {
-        return Collections.unmodifiableList(numbers);
-    }
-
     public boolean contains(LottoNumber lottoNumber) {
         return numbers.contains(lottoNumber);
     }
@@ -58,5 +48,15 @@ public class Lotto {
 
     private boolean hasRepetition(List<Integer> numbers) {
         return numbers.size() != numbers.stream().distinct().count();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers.stream()
+            .map(LottoNumber::getLottoNumber)
+            .collect(Collectors.toList());
+    }
+
+    public List<LottoNumber> getLottoNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

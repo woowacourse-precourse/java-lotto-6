@@ -28,10 +28,6 @@ public class WinningStatistics {
         }
     }
 
-    public Map<Ranking, Integer> getStatistics() {
-        return Collections.unmodifiableMap(statistics);
-    }
-
     public Money calculateTotalWinningPrize() {
         List<Ranking> rankings;
         rankings = new ArrayList<>(List.of(Ranking.values()));
@@ -40,5 +36,9 @@ public class WinningStatistics {
             totalWinningPrize += statistics.get(ranking) * ranking.getPrizeMoney();
         }
         return new Money(totalWinningPrize);
+    }
+
+    public Map<Ranking, Integer> getStatistics() {
+        return Collections.unmodifiableMap(statistics);
     }
 }

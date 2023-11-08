@@ -18,10 +18,6 @@ public class LottoNumber {
         this.lottoNumber = lottoNumber;
     }
 
-    public int getLottoNumber() {
-        return lottoNumber;
-    }
-
     private void validateLottoNumberRange(int lottoNumber) {
         validateBiggerThanMinimumNumberOfRange(lottoNumber);
         validateLessThanMaximumNumberOfRange(lottoNumber);
@@ -68,5 +64,9 @@ public class LottoNumber {
     @Override
     public int hashCode() {
         return Objects.hash(lottoNumber);
+    }
+
+    public int getLottoNumber() {
+        return lottoNumber;
     }
 }

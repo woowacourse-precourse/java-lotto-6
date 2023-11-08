@@ -21,18 +21,10 @@ public class Money {
         this.money = money;
     }
 
-    public long getMoney() {
-        return money;
-    }
-
     private void validate(long money) {
         validateNegativePurchaseMoney(money);
         validateMinimumPurchaseMoney(money);
         validateDivisibleByLottoPrice(money);
-    }
-
-    public long calculatePurchasableLottosCount() {
-        return money / LOTTO_PRICE;
     }
 
     public double calculateRateOfReturn(Money totalWinningPrize) {
@@ -69,5 +61,13 @@ public class Money {
 
     private boolean isNegative(long money) {
         return money < ZERO;
+    }
+
+    public long calculatePurchasableLottosCount() {
+        return money / LOTTO_PRICE;
+    }
+
+    public long getMoney() {
+        return money;
     }
 }

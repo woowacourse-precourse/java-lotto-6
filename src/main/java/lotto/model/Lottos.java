@@ -13,8 +13,4 @@ public class Lottos {
     public List<Lotto> get() {
         return Collections.unmodifiableList(lottos);
     }
-
-    public void addLotto(Lotto lotto) {
-        lottos.add(lotto);
-    }
 }

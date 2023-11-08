@@ -9,14 +9,13 @@ import org.assertj.core.util.Arrays;
 
 public class Game {
     int purchaseAmount;
-    List<Integer> winningNumbers;
-    int bonusNumber;
+    Lottos lottos;
+    LotteryNumbers lotteryNumbers;
     
     void play() {
         calculateNumberOfPurchase();
         showPurchasedLottos();
-        setWinningNumbers();
-        setBonusNumber();
+        setLotteryNumbers();
     }
     
     void calculateNumberOfPurchase() {
@@ -52,15 +51,20 @@ public class Game {
     
     void showPurchasedLottos() {
         OutputView.outputNumberOfPurchases(purchaseAmount);
-        Lottos lottos = new Lottos(purchaseAmount);
+        lottos = new Lottos(purchaseAmount);
         lottos.printLottos();
         System.out.println();
     }
     
-    void setWinningNumbers() {
+    void setLotteryNumbers() {
+        List<Integer> winningNumbers = setWinningNumbers();
+        int bonusNumber = setBonusNumber(winningNumbers);
+        lotteryNumbers = new LotteryNumbers(winningNumbers, bonusNumber);
+    }
+    
+    List<Integer> setWinningNumbers() {
         OutputView.outputWinningNumbers();
-        winningNumbers = checkWinningNumbers(InputView.inputWinningNumbers());
-        System.out.println();
+        return checkWinningNumbers(InputView.inputWinningNumbers());
     }
     
     List<Integer> checkWinningNumbers(String inputWinningNumbers) {
@@ -76,6 +80,7 @@ public class Game {
             convertedWinningNumbers.add(dummy);
         }
         checkDuplication(convertedWinningNumbers);
+        System.out.println();
         
         return convertedWinningNumbers;
     }
@@ -98,21 +103,21 @@ public class Game {
         }
     }
     
-    void setBonusNumber() {
+    int setBonusNumber(List<Integer> winningNumbers) {
         OutputView.outputBonusNumber();
-        bonusNumber = checkBonusNumber(InputView.inputBonusNumber());
-        System.out.println();
+        return checkBonusNumber(InputView.inputBonusNumber(), winningNumbers);
     }
     
-    int checkBonusNumber(String inputBonusNumber) {
+    int checkBonusNumber(String inputBonusNumber, List<Integer> winningNumbers) {
         int convertedBonusNumber = checkInteger(inputBonusNumber);
         checkLottoNumberRange(convertedBonusNumber);
-        checkDuplication(convertedBonusNumber);
+        checkDuplication(convertedBonusNumber, winningNumbers);
+        System.out.println();
         
         return convertedBonusNumber;
     }
     
-    void checkDuplication(int number) {
+    void checkDuplication(int number, List<Integer> winningNumbers) {
         if (winningNumbers.contains(number)) {
             throw new IllegalArgumentException("[Error] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }

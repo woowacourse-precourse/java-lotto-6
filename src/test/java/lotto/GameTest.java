@@ -9,13 +9,22 @@ import org.junit.jupiter.api.DisplayName;
 public class GameTest {
     Game test = new Game();
 
-    @DisplayName("입력 받은 금액이 잘 체크되는지 확인")
+    @DisplayName("입력 받은 금액이 잘 체크되는 지 확인")
     @Test
     void validateNumberTest() {
         assertThat(test.validateNumber("1000")).isEqualTo(1000);
         assertThatThrownBy(() -> test.validateNumber("1234"))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> test.validateNumber("asdfasdf"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력 받은 당첨 번호가 유효한 지 확인")
+    @Test
+    void validateAnswerNumberTest() {
+        assertThatThrownBy(() -> test.validateAnswerNumber("1,2,3,4"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> test.validateAnswerNumber("a,s,d,f,a,s,d,f"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

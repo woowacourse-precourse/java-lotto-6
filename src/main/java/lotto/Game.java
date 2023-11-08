@@ -124,7 +124,7 @@ public class Game {
         }
     }
 
-    private void validateAnswerNumber(String input) {
+    public void validateAnswerNumber(String input) {
         String[] numbers = input.split(",");
         //입력받은 숫자가 6개인지 확인
         if (numbers.length != 6) {

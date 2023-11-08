@@ -1,7 +1,6 @@
 package lotto.domain;
 
-import static lotto.view.constatnt.Constant.*;
-import static lotto.view.constatnt.ErrorMessage.MONEY_UNIT_ERROR_MESSAGE;
+import static lotto.view.constatnt.Constant.DIVIDE_AMOUNT;
 
 public class Money {
     private final int money;

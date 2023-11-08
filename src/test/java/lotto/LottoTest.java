@@ -58,4 +58,17 @@ class LottoTest {
         });
     }
 
+    @Test
+    @DisplayName("보너스 넘버와 당첨 번호가 중복되면 예외가 발생한다.")
+    void bonusNumberWinningNumbersSame() {
+        List<Integer> winningNumbers = Arrays.asList(10, 20, 30, 40, 45);
+        int bonusNumber = 30;
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            CustomizedException.bonusNumberWinningNumbersSame(winningNumbers, bonusNumber);
+        });
+        String expectedMessage = "당첨번호와 보너스 번호가 중복 되서는 안됩니다.";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
 }

@@ -33,17 +33,22 @@ public class LottoClient {
         LottoReceipt lottoReceipt = repeatUntilValid(this::purchaseLotto);
         lottoOutput.printLottoReceipt(lottoReceipt);
 
-        Lotto winningLotto = repeatUntilValid(this::askAndGetWinningLotto);
-        LottoBall bonusBall = repeatUntilValid(this::askAndGetBonusBall);
-        WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusBall);
-
+        WinningNumbers winningNumbers = repeatUntilValid(this::constructWinningNumbers);
         Map<Rank, Integer> results = lottoReceipt.getResults(winningNumbers);
         lottoOutput.printResults(results);
 
         double profitRate = profitCalculator.calculateProfitRateInPercentage(results);
         lottoOutput.printProfitAsPercentage(profitRate);
     }
-    
+
+    private WinningNumbers constructWinningNumbers() {
+        Lotto winningLotto = repeatUntilValid(this::askAndGetWinningLotto);
+        return repeatUntilValid(() -> {
+            LottoBall bonusBall = askAndGetBonusBall();
+            return new WinningNumbers(winningLotto, bonusBall);
+        });
+    }
+
     private LottoReceipt purchaseLotto() {
         lottoOutput.printAskingMoney();
         int money = lottoInput.getMoneyAmount();

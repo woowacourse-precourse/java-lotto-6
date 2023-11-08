@@ -28,16 +28,11 @@ public class LottoController {
         try {
             int lottoAmount = getInput(() -> inputView.getPurchaseAmount());
 
-//            int lottoAmount = getPurchaseInput();
-
             List<Lotto> userPurchasedLotto = lottoGenerateService.generateMultipleLotto(lottoAmount);
 
             outputView.printPurchasedLotto(userPurchasedLotto);
 
-//            WinningLottoNumbers winningLottoNumbers = getWinningLottoNumbersInput();
-
-            WinningLottoNumbers winningLottoNumbers = getInput(()-> inputView.getWinningLottoNumbers());
-
+            WinningLottoNumbers winningLottoNumbers = getInput(() -> inputView.getWinningLottoNumbers());
 
             Bonus bonus = inputView.getBonusLottoNumber(winningLottoNumbers);
 
@@ -54,38 +49,15 @@ public class LottoController {
         }
     }
 
-    private int getPurchaseInput(){
 
-        do {
-            try {
-                int lottoAmount = inputView.getPurchaseAmount();
-                return lottoAmount;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }while (true);
-    }
-
-    private WinningLottoNumbers getWinningLottoNumbersInput(){
-        do {
-            try {
-                WinningLottoNumbers winningLottoNumbers = inputView.getWinningLottoNumbers();
-                return winningLottoNumbers;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }while (true);
-
-    }
-
-    private <T> T getInput(Supplier<T> inputSupplier){
+    private <T> T getInput(Supplier<T> inputSupplier) {
         do {
             try {
                 return inputSupplier.get();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-        }while (true);
+        } while (true);
     }
 
 }

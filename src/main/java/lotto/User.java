@@ -20,7 +20,7 @@ public class User {
     private final static String NOT_NUMBER = "[ERROR] 숫자를 입력해주세요.";
     private final static String LOTTO_ERROR = "[ERROR] 잘못된 입력입니다. 다시 입력해주세요.";
 
-    public void enterAmount() {
+    public int enterAmount() {
         System.out.println(START);
         while(true) {
             try {
@@ -34,9 +34,10 @@ public class User {
             }
         }
         decideNumberOfLotto();
+        return money;
     }
 
-    public void enterWinningNumber() {
+    public List<Integer> enterWinningNumber() {
         System.out.println(WINNING_NUMBER);
         String[] winNumber = Console.readLine().split(",");
         List<Integer> numbers = new ArrayList<Integer>();
@@ -45,9 +46,10 @@ public class User {
             numbers.add(number);
         }
         winningNumber = new Lotto(numbers);
+        return numbers;
     }
 
-    public void enterBonusNumber() {
+    public int enterBonusNumber() {
         System.out.println(BONUS_NUMBER);
         while (true) {
             try {
@@ -60,6 +62,7 @@ public class User {
                 System.out.println(LOTTO_ERROR);
             }
         }
+        return bonusNumber;
     }
 
     private void validateNumber() {

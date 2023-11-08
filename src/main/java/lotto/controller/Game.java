@@ -25,6 +25,7 @@ public class Game {
     void purchaseLotto() {
         OutputView.requestPurchaseAmount();
         registerPurchaseAmount();
+        OutputView.outputEmptyLine();
     }
 
     void registerPurchaseAmount() {
@@ -35,6 +36,7 @@ public class Game {
     void showPurchaseResult() {
         OutputView.outputPurchaseCount(lottoPurchaseInfo.getPurchaseLottoCount());
         showPurchaseLottos();
+        OutputView.outputEmptyLine();
     }
 
     void showPurchaseLottos() {
@@ -50,7 +52,11 @@ public class Game {
 
     void registerWinningLotto() {
         List<Integer> winningNum = getWinningNum();
-        int bonusNum = getBonusNum();
+        OutputView.outputEmptyLine();
+
+        int bonusNum = getBonusNum(winningNum);
+        OutputView.outputEmptyLine();
+
         this.winningLotto = new WinningLotto(winningNum, bonusNum);
     }
 
@@ -59,9 +65,9 @@ public class Game {
         return InputView.inputWinningNum();
     }
 
-    int getBonusNum() {
+    int getBonusNum(List<Integer> winningNum) {
         OutputView.requestBonusNum();
-        return InputView.inputBonusNum();
+        return InputView.inputBonusNum(winningNum);
     }
 
     void setResult() {
@@ -79,11 +85,11 @@ public class Game {
 
     WinningDetails calculateMatchStatus(List<Integer> numbers) {
         boolean isMatchedBonus = false;
+
         int countMatchedNum = winningLotto.countMatchedNum(numbers);
         if (countMatchedNum == 5) {
             isMatchedBonus = winningLotto.isMatchedBonus(numbers);
         }
-
         return WinningDetails.calculateResult(countMatchedNum, isMatchedBonus);
     }
 

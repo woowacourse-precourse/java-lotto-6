@@ -12,10 +12,8 @@ public class LotteriesGenerator {
         this.numbersGeneratorStrategy = numbersGeneratorStrategy;
     }
 
-    public Lotteries createByPurchaseCount(final int purchaseCount) {
-        if (purchaseCount <= 0) {
-            throw new IllegalArgumentException();
-        }
+    public Lotteries createByPurchaseCount(final Money money) {
+        int purchaseCount = money.calculateLottoPurchaseCount();
         List<Lotto> lottos = IntStream.range(0, purchaseCount)
                 .mapToObj(index -> new Lotto(numbersGeneratorStrategy.generate()))
                 .toList();

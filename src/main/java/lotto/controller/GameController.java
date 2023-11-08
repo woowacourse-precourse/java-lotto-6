@@ -45,7 +45,7 @@ public class GameController {
 
     private Lotteries getLotteries(final NumbersGeneratorStrategy numbersGeneratorStrategy, final Money money) {
         LotteriesGenerator lotteriesGenerator = new LotteriesGenerator(numbersGeneratorStrategy);
-        Lotteries lotteries = lotteriesGenerator.createByPurchaseCount(money.calculateLottoPurchaseCount());
+        Lotteries lotteries = lotteriesGenerator.createByPurchaseCount(money);
         Output.printLotteries(lotteries);
         return lotteries;
     }

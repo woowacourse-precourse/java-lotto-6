@@ -27,17 +27,14 @@ public class LotteryMessageBuilder {
 
     private String showLottoNumbers(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
-        String lottoNumbers = numbers.stream()
+
+        return numbers.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(DELIMITER.getMessage(), LOTTO_NUMBER_PREFIX.getMessage(), LOTTO_NUMBER_SUFFIX.getMessage()));
-
-        return lottoNumbers;
     }
 
     private String returnRateOfProfit() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(PROFIT_MESSAGE_START.getMessage()).append(rateOfProfit).append(PROFIT_MESSAGE_END.getMessage());
-        return sb.toString();
+        return PROFIT_MESSAGE_START.getMessage() + rateOfProfit + PROFIT_MESSAGE_END.getMessage();
     }
     public String returnWinningLottoList(Map<Integer, Integer> winningStats) {
         StringBuilder sb = new StringBuilder();

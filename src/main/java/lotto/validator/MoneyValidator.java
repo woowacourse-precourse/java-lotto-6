@@ -9,14 +9,7 @@ public class MoneyValidator {
     }
 
     public void validateAll(){
-        validateDigit();
         validateRange();
-    }
-
-    public void validateDigit() throws IllegalArgumentException {
-        if (!moneyString.matches("^\\d+$")) {
-            throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
-        }
     }
 
     public void validateRange() {

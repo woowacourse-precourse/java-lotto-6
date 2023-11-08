@@ -21,6 +21,7 @@ public class LottoAmountofMoney {
 
     private void validate(String lottoAmountofMoney) {
         validateLottoMoneyIsNumber(lottoAmountofMoney);
+        validateLottoMoneyIsPositive(lottoAmountofMoney);
     }
     private void validateLottoMoneyIsNumber(String lottoAmountofMoney){
         if (!Pattern.matches(REGEX_DIGIT.getValue(), lottoAmountofMoney)) {

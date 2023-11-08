@@ -17,8 +17,8 @@ public class Payment {
         }
     }
 
-    public double calculateProfitPercentage(long totalPrize) {
-        return Math.round(((double) totalPrize / payment) * 100 * 100) / 100.0;
+    public double calculatePercentageOfProfit(long totalIncome) {
+        return Math.round(((double) totalIncome / payment) * 100 * 100) / 100.0;
     }
 
     public int countAffortable(int targetPrice) {

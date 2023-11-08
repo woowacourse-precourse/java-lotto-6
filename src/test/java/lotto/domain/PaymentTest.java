@@ -22,7 +22,7 @@ class PaymentTest {
         Payment payment = new Payment(5000);
 
         // when
-        double profitPercentage = payment.calculateProfitPercentage(10000);
+        double profitPercentage = payment.calculatePercentageOfProfit(10000);
 
         // then
         assertThat(profitPercentage).isEqualTo(200.0);

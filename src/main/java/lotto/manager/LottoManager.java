@@ -44,6 +44,6 @@ public class LottoManager {
 
     public double calculateProfitPercentage(Payment payment, LottoRankings winningRankings) {
         long totalPrize = winningRankings.calculateTotalPrize();
-        return payment.calculateProfitPercentage(totalPrize);
+        return payment.calculatePercentageOfProfit(totalPrize);
     }
 }

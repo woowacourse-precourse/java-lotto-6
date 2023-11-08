@@ -1,7 +1,6 @@
 package lotto.domain;
 
-
-import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.numbermaker.NumberMaker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +8,11 @@ import java.util.List;
 public class LottoMachine {
 
     private static final Integer LOTTO_PRICE = 1000;
+    private final NumberMaker numberMaker;
+
+    public LottoMachine(NumberMaker numberMaker) {
+        this.numberMaker = numberMaker;
+    }
 
     public List<Lotto> buyLotto(Money money) {
         List<Lotto> lottoBundle = new ArrayList<>();
@@ -28,7 +32,8 @@ public class LottoMachine {
     }
 
     private Lotto issueLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        List<Integer> numbers = numberMaker.generateNumbers();
+        return new Lotto(numbers);
     }
 
 }

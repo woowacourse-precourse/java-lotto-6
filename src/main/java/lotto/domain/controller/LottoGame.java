@@ -1,8 +1,10 @@
-package lotto.domain;
+package lotto.domain.controller;
 
+import lotto.domain.*;
+import lotto.domain.numbermaker.NumberMaker;
+import lotto.domain.numbermaker.RandomNumberMaker;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
-import lotto.ui.message.OutputMessage;
 
 import java.util.List;
 
@@ -10,20 +12,24 @@ public class LottoGame {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
 
-    LottoMachine lottoMachine = new LottoMachine();
+    LottoMachine lottoMachine;
+
+    public LottoGame() {
+        NumberMaker numberMaker = new RandomNumberMaker();
+        lottoMachine = new LottoMachine(numberMaker);
+    }
 
     public void doLottoGame() {
 
         Money money = getMoney();
-        List<Lotto> lottoBundle = lottoMachine.buyLotto(money);
 
+        List<Lotto> lottoBundle = lottoMachine.buyLotto(money);
         printIssuedLotto(lottoBundle);
 
         WinLotto winLotto = getWinLotto();
 
         LottoResult lottoResult = new LottoResult(lottoBundle, winLotto);
         Double earningRatio = lottoResult.calculateEarningRatio(money);
-
         printLottoResult(lottoResult, earningRatio);
 
     }
@@ -34,6 +40,7 @@ public class LottoGame {
                 return new Money(inputView.readMoney());
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
+                exception.printStackTrace();
             }
         }
     }
@@ -52,6 +59,7 @@ public class LottoGame {
                 return new WinLotto(winLottoNumbers, winLottoBonus);
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
+                exception.printStackTrace();
             }
         }
 

@@ -13,6 +13,12 @@ import java.util.regex.Pattern;
 import lotto.exception.ExceptionMessages;
 
 public class Validator {
+    /**
+     * Description: Validate PurchaseAmount<br> rule1: PurchaseAmount must be greater than 0<br> rule2: PurchaseAmount
+     * must be multiple of 1000<br>
+     *
+     * @param amount
+     */
     public static void validatePurchaseAmount(int amount) {
         Pattern pattern = Pattern.compile(PURCHASE_AMOUNT_REGEX);
         Matcher matcher = pattern.matcher(String.valueOf(amount));

@@ -1,4 +1,4 @@
-package lotto.ui;
+package lotto.userinterface;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.data.Lotto;
@@ -15,7 +15,7 @@ public class UserView {
 
     public void purchase() {
         boolean state = STATE_INIT;
-        while (state == STATE_SUCESS) {
+        while (state != STATE_SUCESS) {
             System.out.println("구입금액을 입력해 주세요.");
             String tempCost = Console.readLine();
             state = viewProcessor.purchase(tempCost);
@@ -36,7 +36,7 @@ public class UserView {
 
     public void bonusBall() {
         boolean state = STATE_INIT;
-        while (state == STATE_SUCESS) {
+        while (state != STATE_SUCESS) {
             System.out.println("보너스 번호를 입력해 주세요.");
             String tempBonus = Console.readLine().trim();
             state = viewProcessor.bonusBall(tempBonus);
@@ -45,7 +45,7 @@ public class UserView {
 
     public void winnings() {
         boolean state = STATE_INIT;
-        while (state == STATE_SUCESS) {
+        while (state != STATE_SUCESS) {
             System.out.println("당첨 번호를 입력해 주세요.");
             String inputWinnings = Console.readLine();
             state = viewProcessor.winnings(inputWinnings);
@@ -68,6 +68,13 @@ public class UserView {
             System.out.printf("%s %s - %d개\n", reward.getNotifyMessege(), viewProcessor.moneyEdit(reward)
                     , resultAll.get(reward));
         }
+    }
+
+    public void run() {
+        purchase();
+        winnings();
+        bonusBall();
+        viewProcessor.totalResult();
     }
 
 }

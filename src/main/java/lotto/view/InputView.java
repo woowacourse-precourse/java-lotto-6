@@ -1,13 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
 
 public class InputView {
 
@@ -32,13 +25,13 @@ public class InputView {
         }
     }
 
-    public Lotto askWinningNumber() {
+    public String askWinningNumber() {
         try {
             String input = printWinningNumber();
             validateBlankAndEmptyInteger(input);
             validateFirstCharacter(input);
             validateLastCharacter(input);
-            return new Lotto(new ArrayList<>((Collection) new LottoNumber(Integer.parseInt(input))));
+            return input;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return askWinningNumber();
@@ -110,12 +103,4 @@ public class InputView {
         }
         return input;
     }
-
-    private List<Integer> parseNumbers(String input) {
-        return Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-    }
-
-
 }

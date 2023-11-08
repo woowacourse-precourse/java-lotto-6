@@ -7,7 +7,7 @@ import java.util.Set;
 public class Validation {
 
     public void checkUnit(int number) {
-        if (number % 1000 != 0) {
+        if (number == 0 || number % 1000 != 0) {
             throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해야 합니다.");
         }
     }
@@ -42,7 +42,7 @@ public class Validation {
     }
 
     public void checkNull(String purchaseMoney) {
-        if (purchaseMoney == "") {
+        if (purchaseMoney.equals("")) {
             throw new IllegalArgumentException("값을 입력하세요.");
         }
     }

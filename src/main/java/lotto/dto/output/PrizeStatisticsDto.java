@@ -1,6 +1,6 @@
 package lotto.dto.output;
 
-public record DrawingResultDto(
+public record PrizeStatisticsDto(
         int firstMatchCount,
         int secondMatchCount,
         int thirdMatchCount,

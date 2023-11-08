@@ -10,8 +10,8 @@ import lotto.domain.lotto.WinningCombination;
 import lotto.domain.money.Money;
 import lotto.dto.input.MoneyDto;
 import lotto.dto.input.WinningCombinationDto;
-import lotto.dto.output.DrawingResultDto;
 import lotto.dto.output.LottosDto;
+import lotto.dto.output.PrizeStatisticsDto;
 import lotto.mapper.LottoMapper;
 import lotto.repository.LottoRepository;
 
@@ -33,7 +33,7 @@ public class LottoService {
         return LottoMapper.mapFrom(lottoTickets);
     }
 
-    public DrawingResultDto calculateDrawingResult(WinningCombinationDto winningCombinationDto) {
+    public PrizeStatisticsDto calculateDrawingResult(WinningCombinationDto winningCombinationDto) {
         WinningCombination winningCombination = LottoMapper.mapFrom(winningCombinationDto);
         List<Lotto> purchasedLottoTickets = lottoRepository.findAll();
         Lottos totalLottoTickets = Lottos.from(purchasedLottoTickets);

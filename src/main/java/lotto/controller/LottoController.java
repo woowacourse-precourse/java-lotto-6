@@ -2,8 +2,8 @@ package lotto.controller;
 
 import lotto.dto.input.MoneyDto;
 import lotto.dto.input.WinningCombinationDto;
-import lotto.dto.output.DrawingResultDto;
 import lotto.dto.output.LottosDto;
+import lotto.dto.output.PrizeStatisticsDto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -32,7 +32,7 @@ public class LottoController {
 
     private void calculateDrawingResult() {
         WinningCombinationDto winningCombination = inputView.inputWinningCombination();
-        DrawingResultDto result = lottoService.calculateDrawingResult(winningCombination);
+        PrizeStatisticsDto result = lottoService.calculateDrawingResult(winningCombination);
         outputView.printResult(result);
     }
 }

@@ -11,9 +11,9 @@ import lotto.domain.lotto.WinningCombination;
 import lotto.domain.money.Money;
 import lotto.dto.input.MoneyDto;
 import lotto.dto.input.WinningCombinationDto;
-import lotto.dto.output.DrawingResultDto;
 import lotto.dto.output.LottoDto;
 import lotto.dto.output.LottosDto;
+import lotto.dto.output.PrizeStatisticsDto;
 
 public class LottoMapper {
 
@@ -37,9 +37,9 @@ public class LottoMapper {
         return WinningCombination.of(winningNumbers, bonusNumber);
     }
 
-    public static DrawingResultDto mapFrom(PrizeStatistics prizeStatistics) {
+    public static PrizeStatisticsDto mapFrom(PrizeStatistics prizeStatistics) {
         EnumMap<LottoRank, Integer> result = prizeStatistics.getDrawingResult();
-        return new DrawingResultDto(
+        return new PrizeStatisticsDto(
                 result.get(LottoRank.FIRST),
                 result.get(LottoRank.SECOND),
                 result.get(LottoRank.THIRD),

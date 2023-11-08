@@ -3,9 +3,9 @@ package lotto.view;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.dto.output.DrawingResultDto;
 import lotto.dto.output.LottoDto;
 import lotto.dto.output.LottosDto;
+import lotto.dto.output.PrizeStatisticsDto;
 import lotto.io.output.StdWriter;
 import lotto.io.output.Writer;
 import lotto.util.ViewConstants;
@@ -41,7 +41,7 @@ public class OutputView {
                 .collect(Collectors.joining(ViewConstants.DELIMITER, ViewConstants.PREFIX, ViewConstants.SUFFIX));
     }
 
-    public void printResult(DrawingResultDto drawingResult) {
+    public void printResult(PrizeStatisticsDto drawingResult) {
         String message = String.format(
                 ViewConstants.TEMPLATE,
                 drawingResult.fifthMatchCount(),
@@ -54,14 +54,14 @@ public class OutputView {
         writer.writeLine(message);
     }
 
-    private String getFormattedProfitOfRate(DrawingResultDto drawingResult) {
+    private String getFormattedProfitOfRate(PrizeStatisticsDto drawingResult) {
         if (drawingResult.prizeOfRate() == ViewConstants.ZERO_PROFIT_RATE) {
             return ViewConstants.ZERO_PROFIT_RATE_STRING;
         }
         return formatPrizeOfRate(drawingResult);
     }
 
-    private String formatPrizeOfRate(DrawingResultDto drawingResult) {
+    private String formatPrizeOfRate(PrizeStatisticsDto drawingResult) {
         DecimalFormat df = new DecimalFormat(ViewConstants.NUMBER_FORMAT_PATTERN);
         return df.format(drawingResult.prizeOfRate());
     }

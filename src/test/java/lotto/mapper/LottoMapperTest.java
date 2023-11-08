@@ -13,8 +13,8 @@ import lotto.domain.lotto.WinningCombination;
 import lotto.domain.money.Money;
 import lotto.dto.input.MoneyDto;
 import lotto.dto.input.WinningCombinationDto;
-import lotto.dto.output.DrawingResultDto;
 import lotto.dto.output.LottosDto;
+import lotto.dto.output.PrizeStatisticsDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -77,9 +77,9 @@ class LottoMapperTest {
         )));
 
         // when
-        DrawingResultDto drawingResultDto = LottoMapper.mapFrom(prizeStatistics);
+        PrizeStatisticsDto prizeStatisticsDto = LottoMapper.mapFrom(prizeStatistics);
 
         // then
-        assertThat(drawingResultDto).isInstanceOf(DrawingResultDto.class);
+        assertThat(prizeStatisticsDto).isInstanceOf(PrizeStatisticsDto.class);
     }
 }

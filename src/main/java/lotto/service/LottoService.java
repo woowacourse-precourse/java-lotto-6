@@ -5,6 +5,7 @@ import lotto.domain.Consumer;
 import lotto.domain.Lotto;
 import lotto.domain.PrizeLotto;
 import lotto.exception.DuplicatedNumber;
+import lotto.exception.NotCorrectSize;
 import lotto.exception.NotRangeException;
 import lotto.utils.RandomUtils;
 import lotto.view.LottoPrint;
@@ -78,10 +79,7 @@ public class LottoService {
                 int num = Integer.parseInt(s);
                 if(num < 1 || num > 45) throw new NotRangeException();
                 primaryNumber.add(num);
-            }
-            if(primaryNumber.size() != 6){
-                System.out.println("[ERROR] 6개의 숫자를 입력해주세요.");
-                inputPrimaryNumber();
+                prizeLotto.setPrimaryNumbers(new Lotto(primaryNumber));
             }
         }catch (NumberFormatException e){
             System.out.println("[ERROR] 숫자를 입력해주세요.");
@@ -89,8 +87,10 @@ public class LottoService {
         }catch (NotRangeException e){
             System.out.println("[ERROR] 범위 내의 숫자를 입력해주세요.");
             inputPrimaryNumber();
+        }catch (NotCorrectSize e){
+            System.out.println("[ERROR] 6개의 숫자를 입력해주세요.");
+            inputPrimaryNumber();
         }
-        prizeLotto.setPrimaryNumbers(new Lotto(primaryNumber));
     }
 
     // 보너스 번호 추출

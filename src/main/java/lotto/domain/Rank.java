@@ -41,7 +41,7 @@ public class Rank {
 
     private void updateSecondRankCount(final int numberMatchCount, final boolean isBonusNumberMatch) {
         if (numberMatchCount == SECOND_NUMBER_MATCH_COUNT.getValue() && isBonusNumberMatch) {
-            fourthRankCount++;
+            secondRankCount++;
         }
     }
 
@@ -53,7 +53,7 @@ public class Rank {
 
     private void updateFourthRankCount(final int numberMatchCount) {
         if (numberMatchCount == FOURTH_NUMBER_MATCH_COUNT.getValue()) {
-            secondRankCount++;
+            fourthRankCount++;
         }
     }
 

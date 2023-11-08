@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.constant.LottoConstant.LOTTO_END_NUMBER;
 import static lotto.constant.LottoConstant.LOTTO_SIZE;

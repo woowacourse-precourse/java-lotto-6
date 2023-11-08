@@ -5,8 +5,6 @@ import static lotto.constant.LottoConstant.LOTTO_START_NUMBER;
 import static lotto.exception.Message.BONUS_NUMBER_DUPLICATION_EXCEPTION;
 import static lotto.exception.Message.BONUS_NUMBER_RANGE_EXCEPTION;
 
-import lotto.Lotto;
-
 public class Bonus {
 
     private final int bonusNumber;

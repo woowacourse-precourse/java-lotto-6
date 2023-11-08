@@ -1,10 +1,11 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.exception.Message.NUMBER_OUT_OF_RANGE_EXCEPTION;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -1,8 +1,6 @@
 package lotto.dto;
 
 import java.util.List;
-import lotto.Lotto;
-import lotto.domain.LottoBundle;
 
 public class LottoBundleDto {
 

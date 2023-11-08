@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.Lotto;
-
 public class WinnerReader {
     private final Lotto winnerLotto;
     private final Bonus bonus;

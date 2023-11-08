@@ -121,9 +121,23 @@ class JudgeTest {
     @Test
     void earningRateIsRight(){
         long expectedPrize = Reward.FIRST.getPrize() + Reward.SECOND.getPrize()+Reward.THIRD.getPrize()+Reward.FOURTH.getPrize()+Reward.FIFTH.getPrize();
+        String actual = judge.calculateEarningRate(result,8);
+        String expected = String.format("%.1f", ((float) expectedPrize /8000) * 100);
+        System.out.println(actual);
+        assertThat(actual).isEqualTo(expected);
+    }
 
-        String actual = judge.calculateEarningRate(result,5);
-        String expected = String.format("%.1f", ((float) expectedPrize /5000) * 100);
+    @DisplayName("수익률 반올림이 올바르게 적용된다.")
+    @Test
+    void roundOfEarningRateIsRight(){
+        List<Lotto> lottoList1 = new ArrayList<>(List.of(fifth));
+        Lottos computerLotto = new Lottos(lottoList1);
+        Result result1 = judge.calculateWinning(player,computerLotto);
+        String actual = judge.calculateEarningRate(result1,16);
+
+        long expectedPrize = Reward.FIFTH.getPrize();
+        String expected = String.format("%.1f", ((float) expectedPrize /16000) * 100);
+
         assertThat(actual).isEqualTo(expected);
     }
 

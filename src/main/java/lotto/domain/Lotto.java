@@ -8,7 +8,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> generatedNumbers) {
-        validate(generatedNumbers);
+        validateCount(generatedNumbers);
         validateDuplicate(generatedNumbers);
         this.numbers = sortNumbersToAsc(generatedNumbers);
 
@@ -20,25 +20,22 @@ public class Lotto {
         return numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        // 숫자가 6개인지 확인
+    private List<Integer> sortNumbersToAsc(List<Integer> numbers) {
+        List<Integer> result = new ArrayList<>(numbers);
+        Collections.sort(result);
+        return result;
+    }
+
+    private void validateCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
-
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException();
         }
-    }
-
-    private List<Integer> sortNumbersToAsc(List<Integer> numbers) {
-        List<Integer> result = new ArrayList<>(numbers);
-        Collections.sort(result);
-        return result;
     }
 }
 

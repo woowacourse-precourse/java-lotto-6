@@ -14,7 +14,7 @@ class LottoTest {
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1개의 로또를 발행할 때 6개의 숫자만 존재합니다.");
+                .hasMessage("[ERROR] 1개의 로또를 발행할 때 6개의 숫자만 존재합니다. you input size = [7]");
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
@@ -22,7 +22,7 @@ class LottoTest {
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또번호는 중복 숫자가 있어서는 안됩니다.");
+                .hasMessage("[ERROR] 로또번호는 중복 숫자가 있어서는 안됩니다. you input numbers = [1, 2, 3, 4, 5, 5]");
 
     }
 
@@ -31,11 +31,11 @@ class LottoTest {
     void createLottoByBeyondScope() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다. you input number = [0]");
 
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다. you input number = [46]");
     }
 
     @DisplayName("발행된 로또 번호가 그대로 저장되있어야 한다")

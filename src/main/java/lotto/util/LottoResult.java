@@ -27,24 +27,20 @@ public enum LottoResult {
     public static LottoResult calculateResult(Lotto lotto, LottoDraw lottoDraw) {
         int countMatches = (int) compareLottoAndLottoDraw(lotto, lottoDraw);
         boolean matchBonus = compareLottoAndBonusNumber(lotto, lottoDraw);
-
-        if (matchBonus && countMatches == 5) {
+        if (matchBonus && countMatches == SECOND_PRIZE.matchCount) {
             return SECOND_PRIZE;
-        } else if (!matchBonus && countMatches == 5) {
+        } else if (!matchBonus && countMatches == THIRD_PRIZE.matchCount) {
             return THIRD_PRIZE;
         }
-
         return Arrays.stream(LottoResult.values())
                 .filter(result -> result.matchCount == countMatches)
                 .findAny()
                 .orElse(NO_PRIZE);
-
     }
 
     private static long compareLottoAndLottoDraw(Lotto lotto, LottoDraw lottoDraw) {
         // 시간복잡도 O(n)으로 바꾸기 위해 Set 이용
         Set<Integer> lottoDrawNumbers = new HashSet<>(lottoDraw.getNumbers());
-
         return lotto.getNumbers().stream()
                 .filter(lottoDrawNumbers::contains)
                 .count();

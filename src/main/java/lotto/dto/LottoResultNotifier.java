@@ -36,7 +36,7 @@ public class LottoResultNotifier {
         int purchaseAmount = lottos.getSize() * UNIT_MONEY;
         long winningAmount = getTotalWinningAmount();
         if (purchaseAmount == 0) {
-            throw new IllegalArgumentException("[ERROR] 로또는 최소 1개이상 구입해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또는 최소 1개이상 구입해야 합니다. 사용자의 purchaseAmount = " + purchaseAmount);
         }
         double rateOfReturn = ((double) winningAmount / purchaseAmount) * 100.0;
         return String.format("%.1f", rateOfReturn);

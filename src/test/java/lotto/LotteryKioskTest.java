@@ -21,7 +21,7 @@ public class LotteryKioskTest {
     void throwExceptionWhenDoesNotDivideBy1000(int money) {
         assertThatThrownBy(() -> lotteryKiosk.issueCount(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 사용자는 1000원 단위로 구입할 수 있습니다.");
+                .hasMessage("[ERROR] 사용자는 1000원 단위로 구입할 수 있습니다. you input = " + money);
     }
 
     @DisplayName("3000원을 입력하면 3개의 로또가 발행된다(issueCount테스트)")

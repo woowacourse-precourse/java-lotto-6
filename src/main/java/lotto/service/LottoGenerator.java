@@ -8,11 +8,13 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 
 public class LottoGenerator {
+    private static final int MIN_LOTTO_NUM = 1;
+    private static final int MAX_LOTTO_NUM = 45;
     private static final int LOTTO_NUMBER_SIZE = 6;
 
     public List<Integer> createRandomNumbersByAscending() {
         List<Integer> numbers =
-                Randoms.pickUniqueNumbersInRange(1, 45, LOTTO_NUMBER_SIZE);
+                Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM, MAX_LOTTO_NUM, LOTTO_NUMBER_SIZE);
         List<Integer> copyNumbers = new ArrayList<>(numbers);
         Collections.sort(copyNumbers);
         return copyNumbers;

@@ -21,7 +21,7 @@ public class LotteryKiosk {
 
     public int issueCount(int money) {
         if (money % UNIT_MONEY != 0 || money <= 0) {
-            throw new IllegalArgumentException("[ERROR] 사용자는 1000원 단위로 구입할 수 있습니다.");
+            throw new IllegalArgumentException("[ERROR] 사용자는 1000원 단위로 구입할 수 있습니다. you input = " + money);
         }
         return money / UNIT_MONEY;
     }

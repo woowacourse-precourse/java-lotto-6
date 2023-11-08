@@ -123,7 +123,7 @@ public class LottoResultNotifierTest {
 
         assertThatThrownBy(notifier::getRateOfReturn)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또는 최소 1개이상 구입해야 합니다.");
+                .hasMessage("[ERROR] 로또는 최소 1개이상 구입해야 합니다. 사용자의 purchaseAmount = 0");
 
     }
 

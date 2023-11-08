@@ -24,6 +24,8 @@ public class LottoController {
 
         WinningNumbers winningNumbers = getTotalWinningNumbers();
         LottoResult lottoResult = winningNumbers.checkLottos(lottos);
+
+        outputView.printLottosResult(lottoResult.getResults());
     }
 
     private Money inputMoney() {

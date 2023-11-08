@@ -30,6 +30,7 @@ public class Application {
         prize.printResults(prizeCountsRecords);
 
         // TODO: 로또 수익률 출654
-
+        double rateOfReturn = customer.getRateOfReturn(prizeCountsRecords);
+        System.out.printf("총 수익률은 %.1f%입니다.", rateOfReturn);
     }
 }

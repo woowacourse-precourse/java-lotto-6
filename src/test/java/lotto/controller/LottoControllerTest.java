@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import lotto.dto.DatabaseDto;
+import lotto.dto.RepositoryDto;
 import lotto.exception.LottoPriceUnitException;
 import lotto.exception.NonPositiveAmountException;
 import lotto.model.Lotto;
@@ -29,7 +29,7 @@ class LottoControllerTest extends NsTest {
     void setup() {
         this.userLottoRepository = new UserLottoRepository();
         this.lottoWinningRepository = new LottoWinningRepository();
-        DatabaseDto dto = new DatabaseDto(userLottoRepository, lottoWinningRepository);
+        RepositoryDto dto = new RepositoryDto(userLottoRepository, lottoWinningRepository);
         this.lottoController = new LottoController(dto);
     }
 

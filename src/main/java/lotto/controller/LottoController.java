@@ -10,7 +10,7 @@ import static lotto.view.LottoOutputView.printWinningNumber;
 import static lotto.view.LottoOutputView.printWinningStatistics;
 
 import java.util.List;
-import lotto.dto.DatabaseDto;
+import lotto.dto.RepositoryDto;
 import lotto.dto.LottosCalculateResult;
 import lotto.model.Lotto;
 import lotto.model.LottoBonusNumber;
@@ -26,7 +26,7 @@ public class LottoController {
     private final LottoService lottoService;
     private final LottoCalculateService lottoCalculateService;
 
-    public LottoController(DatabaseDto dto) { // 초기화
+    public LottoController(RepositoryDto dto) { // 초기화
         UserLottoRepository userLottoRepository = dto.getUserLottoDataRepository();
         this.lottoService = new LottoService(userLottoRepository);
         LottoWinningRepository lottoWinningRepository = dto.getLottoWinningDataRepository();

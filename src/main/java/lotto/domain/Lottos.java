@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -19,5 +20,12 @@ public class Lottos {
             });
 
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return lottos.stream()
+            .map(lotto -> lotto.toString().concat("\n"))
+            .collect(Collectors.joining());
     }
 }

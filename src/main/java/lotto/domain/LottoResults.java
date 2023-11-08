@@ -1,10 +1,14 @@
 package lotto.domain;
 
 import java.math.BigDecimal;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import static java.math.RoundingMode.HALF_UP;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.flatMapping;
+import static java.util.stream.Collectors.groupingBy;
 
 public class LottoResults {
 
@@ -22,7 +26,7 @@ public class LottoResults {
                 .doubleValue();
     }
 
-    private long calculateTotalWinningMoney() {
+    public long calculateTotalWinningMoney() {
         return ranks.stream()
                 .mapToLong(Rank::getWinningMoney)
                 .sum();
@@ -32,8 +36,18 @@ public class LottoResults {
         return (totalWinningMoney / inputPrice) * 100;
     }
 
-    public List<Rank> getRanks() {
-        return Collections.unmodifiableList(ranks);
+    public Map<Rank, Long> generateRankGroup() {
+        return Arrays.stream(Rank.values())
+                .collect(
+                        groupingBy(
+                                rank -> rank,
+                                flatMapping(rank ->
+                                                this.ranks.stream()
+                                                        .filter(result -> result.equals(rank)),
+                                        counting()
+                                )
+                        )
+                );
     }
 
 }

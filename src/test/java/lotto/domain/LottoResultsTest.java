@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Test;
@@ -7,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
+import java.util.Map;
 
 import static lotto.domain.Rank.FIFTH;
 import static lotto.domain.Rank.FIRST;
@@ -19,18 +21,28 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayNameGeneration(ReplaceUnderscores.class)
 class LottoResultsTest {
 
+    private List<Rank> ranks;
+
+    @BeforeEach
+    void setUp() {
+        ranks = List.of(
+                THIRD, FOURTH, FIFTH, MISS, FIFTH, FIFTH, FIFTH, MISS, MISS
+        );
+    }
+
     @Test
     void 로또의_총_우승_금액_계산에_성공한다() {
         // given
-        List<Rank> ranks = List.of(FIRST, SECOND, THIRD, FOURTH, FIFTH, MISS, FIRST);
         LottoResults lottoResults = new LottoResults(ranks);
-        long expectedResult = (long)FIRST.getWinningMoney() +
-                SECOND.getWinningMoney() +
-                THIRD.getWinningMoney() +
+        long expectedResult = (long) THIRD.getWinningMoney() +
                 FOURTH.getWinningMoney() +
                 FIFTH.getWinningMoney() +
                 MISS.getWinningMoney() +
-                FIRST.getWinningMoney();
+                FIFTH.getWinningMoney() +
+                FIFTH.getWinningMoney() +
+                FIFTH.getWinningMoney() +
+                MISS.getWinningMoney() +
+                MISS.getWinningMoney();
 
         // when
         long totalWinningMoney = lottoResults.calculateTotalWinningMoney();
@@ -42,23 +54,43 @@ class LottoResultsTest {
     @ParameterizedTest
     @CsvSource(
             value = {
-                    "5_000/8_000/62.5",
-                    "10_000/10_000/100.0",
-                    "2_000_000_000/1_000/200_000_000.0",
-                    "5_000/13_000/38.5",
-                    "5_000/17_000/29.4"
+                    "10_000/15700.0",
+                    "13_000/12076.9",
+                    "370_000/424.3",
+                    "578_000/271.6"
             },
             delimiter = '/')
-    void 가격_금액을_입력하면_로또_수익률_계산에_성공한다(int totalWinningMoney, int inputPrice, double expected) {
+    void 투입_금액을_입력하면_로또_수익률_계산에_성공한다(int inputPrice, double expected) {
         // given
-        LottoResults lottoResults = new LottoResults(List.of());
+        LottoResults lottoResults = new LottoResults(ranks);
 
         // when
-        double actual = lottoResults.calculateTotalProfit(totalWinningMoney, inputPrice);
+        double actualProfitRate = lottoResults.calculateTotalProfitRate(inputPrice);
 
         // then
-        assertThat(actual).isEqualTo(expected);
+        assertThat(actualProfitRate).isEqualTo(expected);
     }
 
+    @Test
+    void 등수_결과_리스트를_그룹화하는데_성공한다() {
+        // given
+        LottoResults lottoResults = new LottoResults(ranks);
+
+        // when
+        Map<Rank, Long> rankGroup = lottoResults.generateRankGroup();
+        Map<Rank, Long> expectedRankGroup = Map.of(
+                FIRST, 0L,
+                SECOND, 0L,
+                THIRD, 1L,
+                FOURTH, 1L,
+                FIFTH, 4L,
+                MISS, 3L
+        );
+
+        // then
+        assertThat(rankGroup).containsExactlyInAnyOrderEntriesOf(
+                expectedRankGroup
+        );
+    }
 
 }

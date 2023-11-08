@@ -16,6 +16,8 @@ public class Console {
 
     private static final Pattern REGEX = Pattern.compile("^[0-9]*$");
     private static final String DELIMITER = ",";
+    private static final String LOTTO_PREFIX = "[";
+    private static final String LOTTO_SUFFIX = "]";
 
     private final Input input;
     private final Output output;
@@ -105,8 +107,9 @@ public class Console {
 
     private void printLotto(LottoResponse lottoResponse) {
         String lotto = lottoResponse.numbers().stream()
+                .sorted()
                 .map(String::valueOf)
-                .collect(Collectors.joining(",", "[", "]"));
+                .collect(Collectors.joining(DELIMITER, LOTTO_PREFIX, LOTTO_SUFFIX));
 
         output.println(lotto);
     }

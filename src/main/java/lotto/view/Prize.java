@@ -18,13 +18,6 @@ public enum Prize {
             this.prizeDescription = prizeDescription;
         }
 
-        public Amount getAmount() {
-            return amount;
-        }
-
-        public int getNumberOfWinners() {
-            return numberOfWinners;
-        }
 
         public String generatePrizeString(int numberOfMatches) {
             return String.format(prizeDescription, numberOfMatches);

@@ -13,7 +13,4 @@ public enum Amount {
         this.amountValue = amountValue;
     }
 
-    public int getAmountValue() {
-        return amountValue;
-    }
 }

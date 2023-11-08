@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.math.BigDecimal;
+
 public enum OutputMessage {
     PURCHASE_PRICE_MESSAGE("구입금액을 입력해 주세요."),
     PURCHASE_INTRODUCE_MESSAGE("개를 구매했습니다."),
@@ -30,7 +32,7 @@ public enum OutputMessage {
         return GET_NEXT_LINE+sNum+PURCHASE_INTRODUCE_MESSAGE;
     }
 
-    public String getWinningRateMessage(double rate){
+    public String getWinningRateMessage(BigDecimal rate){
         String resultForm = String.format("%.1f",rate);
         return "총 수익률은 "+resultForm+"%입니다.";
     }

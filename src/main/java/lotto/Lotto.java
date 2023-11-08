@@ -1,6 +1,6 @@
 package lotto;
 
-import java.util.Collection;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -37,8 +37,24 @@ public class Lotto {
     }
 
     public void printNum(){
-        Collections.sort(numbers);
+        sortNumbers();
         System.out.println(numbers.toString());
+    }
+
+    public void sortNumbers(){
+        for(int i = 0; i < numbers.size()-1; i++) {
+            for(int j = 0; j < numbers.size() - i-1; j++) {
+                int firstValue = (int)numbers.get(j);
+                int secondValue = numbers.get(j+1);
+                if(firstValue>secondValue){
+                    int temp=firstValue;
+                    numbers.add(j,secondValue);
+                    numbers.remove(j+1);
+                    numbers.add(j+1,firstValue);
+                    numbers.remove(j+2);
+                }
+            }
+        }
     }
 
 

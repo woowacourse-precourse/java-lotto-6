@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import lotto.Lotto;
@@ -9,7 +10,7 @@ public class LottoRefree {
 
     private HashMap<String,Integer> prizeNum = new HashMap<>();
 
-    private double winningPrize=0;
+    private BigDecimal winningPrize;
     private int threeNum=0;
     private int fourNum=0;
     private int fiveNum=0;
@@ -67,12 +68,15 @@ public class LottoRefree {
     }
 
     public void calcWinningPrize(){
-        winningPrize+=threeNum*5000+fourNum*50000+fiveNum*1500000+five_WITH_BONUS_Num*30000000+sixNum+2000000000;
+        winningPrize = new BigDecimal(threeNum*5000+fourNum*50000+fiveNum*1500000+five_WITH_BONUS_Num*30000000+sixNum*2000000000);
     }
 
-    public double calcWinningRate(int totalPrice){
+    public BigDecimal calcWinningRate(int totalPrice){
         calcWinningPrize();
-        return winningPrize/totalPrice;
+        BigDecimal BDtotalPrice = new BigDecimal(totalPrice);
+        BigDecimal result = winningPrize.divide(BDtotalPrice);
+        BigDecimal percent = new BigDecimal(100);
+        return result.multiply(percent);
     }
 
 

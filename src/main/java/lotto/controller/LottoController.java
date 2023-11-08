@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import lotto.Lotto;
@@ -61,7 +62,7 @@ public class LottoController {
 
     public void lottoResult(){
         HashMap<String,Integer> prizeNum=lottoRefree.makePrizeNum(winningNumberDTO,lottos);
-        double winningRate=lottoRefree.calcWinningRate(purchasePrice);
+        BigDecimal winningRate=lottoRefree.calcWinningRate(purchasePrice);
         ioController.printPrizeNum(prizeNum);
         ioController.printWinningRate(winningRate);
     }

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -96,7 +97,7 @@ public class LottoIOController {
         iovIew.showMessages(result);
     }
 
-    public void printWinningRate(double winningRate){
+    public void printWinningRate(BigDecimal winningRate){
         iovIew.showSingleMessage(OutputMessage.RESULT_MESSAGE.getWinningRateMessage(winningRate));
     }
     public void notifyResult(){

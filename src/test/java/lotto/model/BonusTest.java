@@ -34,7 +34,7 @@ public class BonusTest {
     @Test
     void compareLottoAndBonusByDuplicateNumber() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int bonus = 7;
+        int bonus = 6;
         assertThatThrownBy(() -> new Bonus(bonus, lotto))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);

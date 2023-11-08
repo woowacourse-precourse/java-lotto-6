@@ -29,6 +29,6 @@ public class OutputView {
         }
 
         System.out.println(OutputMessageEnum.OUTPUT_RESULT_END_MESSAGE.getMessage(
-                (double) totalPrize / lottoPlayer.getPurchasePrice()));
+                (double) totalPrize / lottoPlayer.getPurchasePrice() * 100));
     }
 }

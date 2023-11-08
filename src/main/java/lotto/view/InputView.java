@@ -65,7 +65,10 @@ public class InputView {
     private void validateWinningNumbers(String input, String[] inputNumbers) {
         inputValidator.validateEmpty(input);
         inputValidator.validateBlank(input);
+        validateNumberElements(inputNumbers);
+    }
 
+    private void validateNumberElements(String[] inputNumbers) {
         for (String x : inputNumbers) {
             inputValidator.validateEmpty(x);
             inputValidator.validateBlank(x);

@@ -37,7 +37,8 @@ public class Score {
     }
 
     public void winner() {
-        System.out.println(Message.MSG_STATISTICS);
+        System.out.println();
+        System.out.println(Message.MSG_STATISTICS.getMessage());
         System.out.println(printMessage(result[7], Prize.SIX_PRIZE));
         System.out.println(printMessage(result[6], Prize.FIVE_PRIZE_BONUS));
         System.out.println(printMessage(result[5], Prize.FIVE_PRIZE));

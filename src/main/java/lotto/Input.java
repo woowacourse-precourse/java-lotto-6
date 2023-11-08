@@ -9,11 +9,13 @@ public class Input {
     }
 
     public String targetInput() {
+        System.out.println();
         System.out.println(Message.INPUT_TARGET.getMessage());
         return Console.readLine();
     }
 
     public String bonusInput() {
+        System.out.println();
         System.out.println(Message.INPUT_BONUS.getMessage());
         return Console.readLine();
     }

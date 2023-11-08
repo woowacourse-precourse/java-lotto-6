@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import lotto.dto.LottoResultDto;
 
 /**
  * 로또 당첨 결과를 저장하는 클래스 당첨 등수와 그에 해당하는 개수를 저장

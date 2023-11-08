@@ -10,10 +10,10 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Game {
-    int money, count;
-    List<Lotto> buy = new ArrayList<>();
-    Lotto answer; int bonus;
-    int[] correct = new int[7];
+    private int money, count;
+    private List<Lotto> buy = new ArrayList<>();
+    private Lotto answer; private int bonus;
+    private int[] correct = new int[5];
 
     private void start(){
         System.out.println("구입 금액을 입력해 주세요.");
@@ -25,8 +25,8 @@ public class Game {
         System.out.println(this.count+"개를 구매했습니다.");
         for(int i=0;i<this.count;i++){
             //로또 생성
-            buy.add(new Lotto(random()));
-            buy.get(i).printInfo();
+            this.buy.add(new Lotto(random()));
+            this.buy.get(i).printInfo();
         }
     }
 
@@ -39,7 +39,7 @@ public class Game {
         List<Integer> list = Arrays.stream(Console.readLine().split(","))
                 .mapToInt(Integer::parseInt)
                 .boxed().collect(Collectors.toList());
-        answer = new Lotto(list);
+        this.answer = new Lotto(list);
 
     }
 
@@ -51,14 +51,14 @@ public class Game {
     private void checkLottos(){
         for(int i=0;i<this.count;i++){
             // 중복 여부 확인
-            System.out.println(buy.get(i).compareOther(answer));
+            System.out.println(this.buy.get(i).compareOther(this.answer));
         }
     }
 
     private double result(){
         double res_result=0;
         checkLottos();
-        res_result = (correct[0]*5000)+(correct[1]*50000)+(correct[2]*1500000)+(correct[3]*30000000)+(correct[4]*2000000000);
+        res_result = (this.correct[0]*5000)+(this.correct[1]*50000)+(this.correct[2]*1500000)+(correct[3]*30000000)+(correct[4]*2000000000);
         return res_result;
     }
 

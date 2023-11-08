@@ -7,7 +7,7 @@ import lotto.model.Buyer;
 import lotto.model.LottoSeller;
 import lotto.model.Lottos;
 import lotto.model.Money;
-import lotto.model.PurchasngMoney;
+import lotto.model.PurchasingMoney;
 import lotto.model.WinnigLotto;
 import lotto.model.WinningNumbers;
 import lotto.model.dto.LottoPaper;
@@ -89,7 +89,7 @@ public class LottoController {
         while (true) {
             try {
                 String inputMoney = inputView.insertMoney();
-                return new PurchasngMoney(inputMoney);
+                return new PurchasingMoney(inputMoney);
             } catch (IllegalArgumentException e) {
                 handleException(e);
             }

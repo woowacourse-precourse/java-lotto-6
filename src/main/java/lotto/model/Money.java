@@ -2,18 +2,27 @@ package lotto.model;
 
 import java.math.BigDecimal;
 import java.util.Objects;
-import lotto.utils.AmountValidator;
+import lotto.utils.CommonValidator;
 
 public class Money {
-    private final BigDecimal amount;
+    private static final String MONEY_REGEX = "^[1-9][0-9]*|0$";
+
+    protected final BigDecimal amount;
 
     public Money(String amount) {
-        AmountValidator.validateMoney(amount);
+        validate(amount);
         this.amount = new BigDecimal(amount);
     }
 
     public Money(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    private void validate(String amount) {
+        CommonValidator.validateEmptyString(amount);
+        if (!amount.matches(MONEY_REGEX)) {
+            throw new IllegalArgumentException("잘못된 금액입니다.");
+        }
     }
 
     public static Money getZeroMoney() {

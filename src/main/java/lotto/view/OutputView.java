@@ -17,18 +17,18 @@ public class OutputView {
     private static final String DASH = " - ";
 
 
-    public void printQuantityOfLotteries(Quantity quantity) {
+    public static void printQuantityOfLotteries(Quantity quantity) {
         System.out.printf(MSG_PURCHASE + NEW_LINE, quantity.getAmount());
     }
 
-    public void printBoughtLottos(Lottos lottos) {
+    public static void printBoughtLottos(Lottos lottos) {
         String boughtLottos = lottos.getPackOfLotteryTickets().stream()
                 .map(lotto -> lotto.getNumbers() + "")
                 .collect(Collectors.joining(NEW_LINE));
         System.out.println(boughtLottos);
     }
 
-    public void printResult(LottoResult result) {
+    public static void printResult(LottoResult result) {
         StringBuilder output = new StringBuilder();
         output.append(MSG_RESULT).append(NEW_LINE).append(MSG_DIVISION).append(NEW_LINE);
         for (Prize prize : Prize.values()) {
@@ -40,7 +40,7 @@ public class OutputView {
         System.out.print(output.toString());
     }
 
-    public void printProfit(double profit) {
+    public static void printProfit(double profit) {
         System.out.printf(MSG_PROFIT + NEW_LINE, profit);
     }
 }

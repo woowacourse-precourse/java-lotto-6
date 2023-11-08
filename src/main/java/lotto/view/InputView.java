@@ -13,11 +13,11 @@ public class InputView {
     private static final String MSG_ASKING_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final String DELIMITER = ",";
 
-    public String getUserInput() {
+    public static String getUserInput() {
         return Console.readLine().trim();
     }
 
-    public int printAskingBudget() {
+    public static int printAskingBudget() {
         int budget;
         System.out.println(MSG_ASKING_BUDGET);
         while (true) {
@@ -32,7 +32,7 @@ public class InputView {
         return budget;
     }
 
-    public List<Integer> printAskingWinningNumbers() {
+    public static List<Integer> printAskingWinningNumbers() {
         List<Integer> winningNumbers;
         System.out.println(MSG_ASKING_WINNING_NUMBERS);
         while (true) {
@@ -47,14 +47,14 @@ public class InputView {
         return winningNumbers;
     }
 
-    private List<Integer> parseStringToList(String userInput) {
+    private static List<Integer> parseStringToList(String userInput) {
         return Arrays.stream(userInput.split(DELIMITER))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
-    public int printAskingBonusNumber() {
+    public static int printAskingBonusNumber() {
         int bonusNumber;
         System.out.println(MSG_ASKING_BONUS_NUMBER);
         while (true) {
@@ -69,7 +69,7 @@ public class InputView {
         return bonusNumber;
     }
 
-    public void close() {
+    public static void close() {
         Console.close();
     }
 }

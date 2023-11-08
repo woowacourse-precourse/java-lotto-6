@@ -14,13 +14,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    private final InputView input;
-    private final OutputView output;
-
-    public LottoController() {
-        this.input = new InputView();
-        this.output = new OutputView();
-    }
 
     public void run() {
         Quantity totalLotteries = makeQuantities();
@@ -28,12 +21,12 @@ public class LottoController {
         WinningLotto winningLotto = makeWinningLotto();
         LottoResult result = LottoResult.of(lottos, winningLotto);
         showResultAndProfit(result);
-        input.close();
+        InputView.close();
     }
 
     private Quantity makeQuantities() {
         Quantity totalLotteries = Quantity.of(parseIntToMoney(), LottoConfig.PRICE);
-        output.printQuantityOfLotteries(totalLotteries);
+        OutputView.printQuantityOfLotteries(totalLotteries);
         return totalLotteries;
     }
 
@@ -41,7 +34,7 @@ public class LottoController {
         Money parsedMoney;
         while (true) {
             try {
-                parsedMoney = new Money(input.printAskingBudget());
+                parsedMoney = new Money(InputView.printAskingBudget());
                 break;
             } catch (LottoException e) {
                 System.out.println(e.getMessage());
@@ -53,7 +46,7 @@ public class LottoController {
 
     private Lottos makeLottos(Quantity totalLotteries) {
         Lottos lottos = Lottos.of(totalLotteries, new RandomLottoGenerator());
-        output.printBoughtLottos(lottos);
+        OutputView.printBoughtLottos(lottos);
         return lottos;
     }
 
@@ -67,7 +60,7 @@ public class LottoController {
         Lotto parsedLotto;
         while (true) {
             try {
-                parsedLotto = new Lotto(input.printAskingWinningNumbers());
+                parsedLotto = new Lotto(InputView.printAskingWinningNumbers());
                 break;
             } catch (LottoException e) {
                 System.out.println(e.getMessage());
@@ -80,7 +73,7 @@ public class LottoController {
         BonusNumber parsedBonusNumber;
         while (true) {
             try {
-                parsedBonusNumber = new BonusNumber(input.printAskingBonusNumber(), winningNumbers);
+                parsedBonusNumber = new BonusNumber(InputView.printAskingBonusNumber(), winningNumbers);
                 break;
             } catch (LottoException e) {
                 System.out.println(e.getMessage());
@@ -90,8 +83,8 @@ public class LottoController {
     }
 
     private void showResultAndProfit(LottoResult result) {
-        output.printResult(result);
-        output.printProfit(result.calculateProfit());
+        OutputView.printResult(result);
+        OutputView.printProfit(result.calculateProfit());
     }
 
 }

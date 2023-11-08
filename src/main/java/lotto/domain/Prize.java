@@ -21,7 +21,7 @@ public enum  Prize {
     private final int winningPrize;
     private final BiPredicate<Integer, Boolean> isMatch;
 
-    public static Prize getLottoResult(int matchLottoNumber, boolean containBonusNumber) {
+    public static Prize getPrizeResult(int matchLottoNumber, boolean containBonusNumber) {
         return Arrays.stream(Prize.values())
                 .filter(prizeResult -> prizeResult.isMatch.test(matchLottoNumber, containBonusNumber))
                 .findAny()

@@ -20,13 +20,13 @@ public class PrizeResult {
 
     public void calculatePrizeResult(WinningLotto winningLotto, UserLotto userLotto) {
         for (Lotto lotto : userLotto.getUserLottoNumbers()) {
-            Prize rank = Prize.getLottoResult(lotto.getMatchLottoNumber(winningLotto),
+            Prize prize = Prize.getPrizeResult(lotto.getMatchLottoNumber(winningLotto),
                     lotto.isContain(winningLotto.getBonusNumber()));
-            updateRankCount(rank);
+            updatePrizeCount(prize);
         }
     }
 
-    private void updateRankCount(Prize prize) {
+    private void updatePrizeCount(Prize prize) {
         prizeResult.replace(prize, prizeResult.getOrDefault(prize, ZER0) + ONE);
     }
 

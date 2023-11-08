@@ -20,4 +20,10 @@ public class Lotto {
     public static Lotto create() {
         return new Lotto(GenerationUtil.generateRandomNumbers());
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+
 }

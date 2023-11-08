@@ -1,21 +1,22 @@
 package lotto.domain.config;
 
 import lotto.domain.valueobject.FormattedNumber;
+import lotto.domain.valueobject.Reward;
 
 public enum ScoreConfig {
-    FIRST(6, false, 2000000000L),
-    SECOND(5, true, 30000000L),
-    THIRD(5, false, 1500000L),
-    FORTH(4, false, 50000L),
-    FIFTH(3, false, 5000L),
-    NOTHING(0, false, 0L),
+    FIRST(6, false, new Reward(2000000000L)),
+    SECOND(5, true, new Reward(30000000L)),
+    THIRD(5, false, new Reward(1500000L)),
+    FORTH(4, false, new Reward(50000L)),
+    FIFTH(3, false, new Reward(5000L)),
+    NOTHING(0, false, new Reward(0L)),
     ;
 
     private final int matchCount;
     private final boolean bonusMatch;
-    private final long reward;
+    private final Reward reward;
 
-    ScoreConfig(int matchCount, boolean bonusMatch, long reward) {
+    ScoreConfig(int matchCount, boolean bonusMatch, Reward reward) {
         this.matchCount = matchCount;
         this.bonusMatch = bonusMatch;
         this.reward = reward;
@@ -38,7 +39,7 @@ public enum ScoreConfig {
     }
 
     public FormattedNumber getFormattedReward() {
-        return new FormattedNumber(reward);
+        return new FormattedNumber(reward.getValue());
     }
 
     public int getMatchCount() {
@@ -50,6 +51,6 @@ public enum ScoreConfig {
     }
 
     public long getReward() {
-        return reward;
+        return reward.getValue();
     }
 }

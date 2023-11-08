@@ -16,13 +16,13 @@ class StatisticsTest {
     private static final Long FORTH_REWARD = 50000L;
     private Statistics statistics;
     private List<ScoreConfig> scores_4등_2개_2등_1개;
-    private List<ScoreConfig> scores_1등_1개_2등_1개;
+    private List<ScoreConfig> scores_1등_2개_2등_1개;
 
     @BeforeEach
     void setUp() {
         statistics = new Statistics();
         scores_4등_2개_2등_1개 = Arrays.asList(ScoreConfig.FORTH, ScoreConfig.SECOND, ScoreConfig.FORTH);
-        scores_1등_1개_2등_1개 = Arrays.asList(ScoreConfig.FIRST, ScoreConfig.SECOND);
+        scores_1등_2개_2등_1개 = Arrays.asList(ScoreConfig.FIRST, ScoreConfig.SECOND, ScoreConfig.FIRST);
     }
 
     @DisplayName("해당 등수가 잘 카운팅 됐는지 확인한다.(4등 2개, 2등 1개)")
@@ -64,12 +64,12 @@ class StatisticsTest {
         assertThat(result).isEqualTo(expectedRevenue);
     }
 
-    @DisplayName("1등 1개와 2등 1개를 해도 오버플로우가 일어나지 않는다.")
+    @DisplayName("1등 2개와 2등 1개를 해도 오버플로우가 일어나지 않는다.")
     @Test
-    void getRevenue_1등_1개_2등_1개() {
-        Long expectedRevenue = FIRST_REWARD + SECOND_REWARD;
+    void getRevenue_1등_2개_2등_1개() {
+        Long expectedRevenue = 2 * FIRST_REWARD + SECOND_REWARD;
 
-        statistics.incrementWinningCount(scores_1등_1개_2등_1개);
+        statistics.incrementWinningCount(scores_1등_2개_2등_1개);
         Long result = statistics.getRevenue();
 
         assertThat(result).isEqualTo(expectedRevenue);

@@ -91,6 +91,7 @@ public class User {
         totalEarning += Rank.FOURTH.getReward() * fourthRank;
         totalEarning += Rank.FIFTH.getReward() * fifthRank;
         this.earningRate = (double) totalEarning / purchaseAmount * 100;
+        this.earningRate = Math.round(this.earningRate * 10.0) / 10.0;
     }
 
     public Double getEarningRate() {

@@ -4,10 +4,7 @@ import lotto.userinterface.UserView;
 import lotto.data.Lotto;
 import lotto.data.Rewards;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class ViewProcessor {
 
@@ -22,7 +19,7 @@ public class ViewProcessor {
     enum MagicNums {
 
         INIT_NUM(0),
-        LOTTONUM_MIN_RANGE(0),
+        LOTTONUM_MIN_RANGE(1),
         LOTTONUM_MAX_RANGE(45),
         LOTTO_LENGTH(6),
         PURCHASE_MIN(0),
@@ -75,7 +72,21 @@ public class ViewProcessor {
     public void totalResult() {
         HashMap<Rewards,Integer> winningTable = lottomodel.getWinningTable();
         String computedRate = lottomodel.computeRate(lottomodel.getTotalEarnedMoney(),cost);
-        userView.totalResult(winningTable, computedRate);
+        List<String> resultWinningTable = makeResult(winningTable);
+        userView.totalResult(resultWinningTable, computedRate);
+    }
+
+    public List<String> makeResult(HashMap<Rewards, Integer> resultAll) {
+        Rewards[] rewards = Rewards.values();
+        List<String> result = new ArrayList<>();
+        Arrays.sort(rewards, Collections.reverseOrder());
+
+        for (Rewards reward : rewards) {
+            String message = String.format("%s %s - %d개", reward.getNotifyMessege(),
+                    moneyEdit(reward), resultAll.get(reward));
+            result.add(message);
+        }
+        return result;
     }
 
 

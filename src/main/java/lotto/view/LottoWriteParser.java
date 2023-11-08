@@ -9,9 +9,11 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class LottoViewParser {
+import static lotto.view.LottoWriteMessage.*;
 
-    private static final String WON_FORMAT_PATTERN = "#,###";
+public class LottoWriteParser {
+
+    private static final DecimalFormat wonDecimalFormat = new DecimalFormat("#,###");
 
     public String parseLottosDetail(LottoDto.Information lottos) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -26,38 +28,32 @@ public class LottoViewParser {
 
     public String parseLottoResult(LottoDto.Result lottoResult) {
         Map<LottoRanking, Integer> result = lottoResult.getResult();
-        DecimalFormat decimalFormat = new DecimalFormat(WON_FORMAT_PATTERN);
-
         return Arrays.stream(LottoRanking.values())
                 .map(lottoRanking -> {
                     if (lottoRanking.equals(LottoRanking.NO_LUCK)) {
-                        return "";
+                        return BLANK.getMessage();
                     }
-                    StringBuilder stringBuilder = new StringBuilder()
-                            .append(lottoRanking.getCorrectNumberCount())
-                            .append("개 일치");
+                    StringBuilder stringBuilder = new StringBuilder(
+                            String.format(WINNING_NUMBER_MATCH_FORMAT.getMessage(), lottoRanking.getCorrectNumberCount())
+                    );
                     if (lottoRanking.equals(LottoRanking.SECOND)) {
-                        stringBuilder.append(", 보너스 볼 일치");
+                        stringBuilder.append(BONUS_NUMBER_MATCH_FORMAT);
                     }
-                    stringBuilder.append(" (")
-                            .append(decimalFormat.format(lottoRanking.getPrize()))
-                            .append("원) - ")
-                            .append(result.getOrDefault(lottoRanking, 0))
-                            .append("개\n");
+                    stringBuilder.append(String.format(
+                            RESULT_FORMAT.getMessage(),
+                            wonDecimalFormat.format(lottoRanking.getPrize()),
+                            result.getOrDefault(lottoRanking, 0)
+                    ));
                     return stringBuilder.toString();
                 })
-                .collect(Collectors.joining(""));
+                .collect(Collectors.joining(LINE_BREAK.getMessage()));
     }
 
     public String parseProfit(double calculateProfit) {
-        return new StringBuilder()
-                .append("총 수익률은 ")
-                .append(calculateProfit)
-                .append("%입니다.")
-                .toString();
+        return String.format(TOTAL_PROFIT_FORMAT.getMessage(), calculateProfit);
     }
 
     public String parsePaidLottoLog(int size) {
-        return size + LottoGuideMessage.BOUGHT_LOG.getMessage();
+        return String.format(BUY_HISTORY.getMessage(), size);
     }
 }

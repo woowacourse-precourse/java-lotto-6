@@ -5,9 +5,9 @@ import lotto.domain.Lottos;
 import lotto.domain.Payment;
 import lotto.dto.LottoDto;
 import lotto.manager.LottoManager;
-import lotto.view.LottoGuideMessage;
+import lotto.view.LottoReadMessage;
 import lotto.view.LottoReader;
-import lotto.view.LottoViewParser;
+import lotto.view.LottoWriteParser;
 import lotto.view.LottoWriter;
 
 import java.util.List;
@@ -18,15 +18,15 @@ public class LottoHandler {
     private final LottoManager lottoManager;
     private final LottoReader reader;
     private final LottoWriter writer;
-    private final LottoViewParser lottoViewParser;
+    private final LottoWriteParser lottoWriteParser;
 
     public LottoHandler(
-            LottoManager lottoManager, LottoReader reader, LottoWriter writer, LottoViewParser lottoViewParser
+            LottoManager lottoManager, LottoReader reader, LottoWriter writer, LottoWriteParser lottoWriteParser
     ) {
         this.lottoManager = lottoManager;
         this.reader = reader;
         this.writer = writer;
-        this.lottoViewParser = lottoViewParser;
+        this.lottoWriteParser = lottoWriteParser;
     }
 
     public void run() {
@@ -45,27 +45,27 @@ public class LottoHandler {
     }
 
     private void showPaidLottos(Lottos lottos) {
-        writer.write(lottoViewParser.parsePaidLottoLog(lottos.size()));
-        writer.write(lottoViewParser.parseLottosDetail(LottoDto.Information.from(lottos)));
+        writer.write(lottoWriteParser.parsePaidLottoLog(lottos.size()));
+        writer.write(lottoWriteParser.parseLottosDetail(LottoDto.Information.from(lottos)));
     }
 
     private void showResult(LottoRankings winningRankings, double profitPercentage) {
-        writer.write(lottoViewParser.parseLottoResult(LottoDto.Result.from(winningRankings)));
-        writer.write(lottoViewParser.parseProfit(profitPercentage));
+        writer.write(lottoWriteParser.parseLottoResult(LottoDto.Result.from(winningRankings)));
+        writer.write(lottoWriteParser.parseProfit(profitPercentage));
     }
 
     private int getBonusNumber(List<Integer> winningNumbers) {
-        writer.write(LottoGuideMessage.INPUT_BONUS_NUMBER.getMessage());
+        writer.write(LottoReadMessage.INPUT_BONUS_NUMBER.getMessage());
         return reader.readBonusNumber(winningNumbers);
     }
 
     private List<Integer> getWinningNumbers() {
-        writer.write(LottoGuideMessage.INPUT_WINNING_NUMBERS.getMessage());
+        writer.write(LottoReadMessage.INPUT_WINNING_NUMBERS.getMessage());
         return reader.readWinningNumbers();
     }
 
     private Payment getPayment() {
-        writer.write(LottoGuideMessage.INPUT_MONEY.getMessage());
+        writer.write(LottoReadMessage.INPUT_MONEY.getMessage());
         return reader.readPayment();
     }
 }

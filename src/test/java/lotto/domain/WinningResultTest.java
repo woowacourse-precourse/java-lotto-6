@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;

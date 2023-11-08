@@ -8,17 +8,17 @@ import java.util.Map.Entry;
 public class WinningResult {
     private Map<WinningType, Integer> winningResult;
 
-    private WinningResult(Lottos lottos, DrawnNumbers drawnNumbers) {
+    private WinningResult(final Lottos lottos, final DrawnNumbers drawnNumbers) {
         this.winningResult = new EnumMap<>(WinningType.class);
         initializeWinningResult();
         generateWinningResult(lottos, drawnNumbers);
     }
 
-    public static WinningResult of(Lottos lottos, DrawnNumbers drawnNumbers) {
+    public static WinningResult of(final Lottos lottos, final DrawnNumbers drawnNumbers) {
         return new WinningResult(lottos, drawnNumbers);
     }
 
-    private void generateWinningResult(Lottos lottos, DrawnNumbers drawnNumbers) {
+    private void generateWinningResult(final Lottos lottos, final DrawnNumbers drawnNumbers) {
         for (Lotto lotto : lottos.getLottos()) {
             LottoResultDto lottoResultDto = drawnNumbers.compare(lotto);
             WinningType winningType = WinningType.findWinningType(
@@ -28,7 +28,7 @@ public class WinningResult {
         }
     }
 
-    private void countWinningType(WinningType winningType) {
+    private void countWinningType(final WinningType winningType) {
         winningResult.put(winningType, winningResult.get(winningType) + 1);
     }
 
@@ -37,11 +37,11 @@ public class WinningResult {
                 .forEach(winning -> winningResult.put(winning, 0));
     }
 
-    public Integer getValue(WinningType winningType) {
+    public Integer getValue(final WinningType winningType) {
         return winningResult.get(winningType);
     }
 
-    public double calculateEarningsRate(int cost) {
+    public double calculateEarningsRate(final int cost) {
         return getEarnings() / cost;
     }
 
@@ -53,7 +53,7 @@ public class WinningResult {
         return earnings;
     }
 
-    private int calculateWinningPrice(Entry<WinningType, Integer> entry) {
+    private int calculateWinningPrice(final Entry<WinningType, Integer> entry) {
         return entry.getKey().getPrice() * entry.getValue();
     }
 }

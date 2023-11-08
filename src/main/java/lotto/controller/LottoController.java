@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 import lotto.model.Lottos;
 import lotto.model.Money;
 import lotto.model.User;
@@ -27,7 +28,8 @@ public class LottoController {
         outputView.printLine();
         Lotto userLotto = getLotto();
         User user = getBonus(userLotto);
-        outputView.showLottoStatistics(lottos, user, money);
+        LottoResult lottoResult = new LottoResult(lottos, user);
+        outputView.showLottoStatistics(lottoResult, money);
     }
 
     private Money getMoney() {

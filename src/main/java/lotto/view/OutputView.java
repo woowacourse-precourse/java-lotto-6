@@ -27,8 +27,7 @@ public class OutputView {
         System.out.println(lotto);
     }
 
-    public void showLottoStatistics(Lottos lottos, User user, Money money) {
-        LottoResult lottoResult = new LottoResult(lottos, user);
+    public void showLottoStatistics(LottoResult lottoResult, Money money) {
         System.out.println(STAT_MESSAGE);
         printLottoStatistics(lottoResult);
         printEarningRate(lottoResult.calEarningRate(money.getMoney()));

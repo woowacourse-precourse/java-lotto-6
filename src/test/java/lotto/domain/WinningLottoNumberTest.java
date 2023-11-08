@@ -17,7 +17,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 public class WinningLottoNumberTest {
     private final Lotto testLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     private final WinningLottoNumber winningLottoNumber
-            = WinningLottoNumber.of(new Lotto(List.of(1,2,3,4,5,7)), 8);
+            = WinningLottoNumber.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)), 8);
 
     @DisplayName("로또 번호와 중복된 값을 보너스 번호로 입력하면 예외가 발생한다.")
     @Test
@@ -43,13 +43,13 @@ public class WinningLottoNumberTest {
     }
 
     static Stream<Arguments> generateLottoData() {
-        return Stream.of (
-                Arguments.of(new Lotto(List.of(1,2,3,4,5,7)), LottoRank.FIRST_RANK),
-                Arguments.of(new Lotto(List.of(1,2,3,4,5,8)), LottoRank.SECOND_RANK),
-                Arguments.of(new Lotto(List.of(1,2,3,4,5,6)), LottoRank.THIRD_RANK),
-                Arguments.of(new Lotto(List.of(3,4,5,6,7,8)), LottoRank.FOURTH_RANK),
-                Arguments.of(new Lotto(List.of(4,5,6,7,8,9)), LottoRank.FIFTH_RANK),
-                Arguments.of(new Lotto(List.of(10,11,12,13,14,15)), LottoRank.NO_LUCK)
+        return Stream.of(
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)), LottoRank.FIRST_RANK),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 8)), LottoRank.SECOND_RANK),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), LottoRank.THIRD_RANK),
+                Arguments.of(new Lotto(List.of(3, 4, 5, 6, 7, 8)), LottoRank.FOURTH_RANK),
+                Arguments.of(new Lotto(List.of(4, 5, 6, 7, 8, 9)), LottoRank.FIFTH_RANK),
+                Arguments.of(new Lotto(List.of(10, 11, 12, 13, 14, 15)), LottoRank.NO_LUCK)
         );
     }
 }

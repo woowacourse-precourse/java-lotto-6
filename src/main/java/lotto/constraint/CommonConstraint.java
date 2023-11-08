@@ -5,7 +5,7 @@ public enum CommonConstraint {
 
     private final String value;
 
-    CommonConstraint(String value){
+    CommonConstraint(String value) {
         this.value = value;
     }
 

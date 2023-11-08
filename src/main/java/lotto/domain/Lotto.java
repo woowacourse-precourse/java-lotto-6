@@ -41,8 +41,8 @@ public class Lotto {
         }
     }
 
-    private void validateNumberRange(List<Integer> numbers){
-        if(!isInRange(numbers)){
+    private void validateNumberRange(List<Integer> numbers) {
+        if (!isInRange(numbers)) {
             throw InputException.from(LOTTO_NUMBER_HAS_OUT_OF_BOUND_NUMBER);
         }
     }
@@ -59,16 +59,17 @@ public class Lotto {
 
     private boolean isInRange(List<Integer> numbers) {
         return numbers.stream()
-                .allMatch(number -> number >= LOTTO_MINIMUM_BOUND.getValue() && number <= LOTTO_MAXIMUM_BOUND.getValue());
+                .allMatch(
+                        number -> number >= LOTTO_MINIMUM_BOUND.getValue() && number <= LOTTO_MAXIMUM_BOUND.getValue());
     }
 
-    private List<Integer> sortLottoNumbers(List<Integer> numbers){
+    private List<Integer> sortLottoNumbers(List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
                 .toList();
     }
 
-    public boolean containsBonusNumber(int bonusNumber){
+    public boolean containsBonusNumber(int bonusNumber) {
         return numbers.contains(bonusNumber);
     }
 }

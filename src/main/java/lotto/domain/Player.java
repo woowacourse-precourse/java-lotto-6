@@ -50,7 +50,7 @@ public class Player {
     }
 
     private void validateDividedByUnitAmount(int purchaseAmount) {
-        if(!isDividedByUnitAmount(purchaseAmount)) {
+        if (!isDividedByUnitAmount(purchaseAmount)) {
             throw InputException.from(PURCHASE_AMOUNT_IS_NOT_DIVIDED_UNIT_AMOUNT);
         }
     }

@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.DuplicateException;
+import lotto.exception.NumberException;
 import lotto.exception.RangeException;
 import lotto.exception.SizeException;
 
@@ -19,22 +20,32 @@ public class InputLottoNumber {
     private static final int MAX=45;
     private static final int SIZE=6;
 
-
-    public List<Integer> getLottoNumbers() {
+    public String input() {
         System.out.println(INPUT_LOTTO_MESSAGE);
-        String lottoNumbs = Console.readLine();
-        System.out.println();
-        validate(lottoNumbs);
-        List<Integer> lottoNumb = split(lottoNumbs);
-        validateSize(lottoNumb);
-        validateLottoNumber(lottoNumb);
-        validateDuplicate(lottoNumb);
-        return lottoNumb;
+        return Console.readLine();
+    }
+    public List<Integer> getLottoNumbers() {
+        boolean validInput=false;
+        String lottoNumbs = finalValidate(validInput);
+        return split(lottoNumbs);
     }
 
-    private void validate(String lottoNumbs) {
+    private String finalValidate(boolean validInput) {
+        String lottoNumbs = "";
+        while (!validInput) {
+            lottoNumbs = input();
+            validateSize(lottoNumbs);
+            validateNumber(lottoNumbs);
+            validateDuplicate(lottoNumbs);
+            validateRangeNumber(lottoNumbs);
+            validInput=true;
+        }
+        return lottoNumbs;
+    }
+    private void validateNumber(String lottoNumbs) {
         if (!Pattern.compile("(\\d{1,2},){5}\\d{1,2}").matcher(lottoNumbs).matches()) {
-            throw new IllegalArgumentException();
+            System.out.println(NumberException.NOT_NUMBER_ERROR_MESSAGE);
+            throw new NumberException();
         }
     }
 
@@ -46,22 +57,28 @@ public class InputLottoNumber {
         return inputLottoNumber;
     }
 
-    private void validateLottoNumber(List<Integer> lottoNumbs) {
+    private void validateRangeNumber(String lottoNumber) {
+        List<Integer> lottoNumbs = split(lottoNumber);
         for (int number:lottoNumbs) {
             if (!checkNumberRange(number)) {
+                System.out.println(RangeException.RANGE_ERROR_MESSAGE);
                 throw new RangeException();
             }
         }
     }
-    private void validateSize(List<Integer> lottoNumbs) {
+    private void validateSize(String lottoNumber) {
+        List<Integer> lottoNumbs = split(lottoNumber);
         if (lottoNumbs.size() != SIZE) {
+            System.out.println(SizeException.SIZE_ERROR_MESSAGE);
             throw new SizeException();
         }
     }
 
-    private void validateDuplicate(List<Integer> lottoNumbs) {
+    private void validateDuplicate(String lottoNumber) {
+        List<Integer> lottoNumbs = split(lottoNumber);
         Set<Integer> lottoNumb = new HashSet<>(lottoNumbs);
         if (lottoNumb.size() != SIZE) {
+            System.out.println(DuplicateException.DUPLICATE_ERROR_MESSAGE);
             throw new DuplicateException();
         }
     }

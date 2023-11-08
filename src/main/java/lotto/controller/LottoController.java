@@ -29,6 +29,7 @@ public class LottoController {
         int ticket = getTicket(money);
         List<Lotto> lottoNumbers = getLottoNumbers(randomLottoNumber, ticket);
         List<Integer> inputlottoNumbers = inputLottoNumber.getLottoNumbers();
+        System.out.println();
         int bonus = inputBonus.getBonus();
         List<Integer> matching = numberMatch.matching(lottoNumbers, inputlottoNumbers);
         List<Boolean> containBonus = numberMatch.containBonusAll(lottoNumbers, bonus);

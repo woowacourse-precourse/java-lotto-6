@@ -7,12 +7,11 @@ public class Lotto {
     private List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        this.numbers = new ArrayList<>(numbers);
+        numbers = new ArrayList<>(numbers);
 
         System.out.println("\n당첨번호를 입력해주세요.(쉼표(,)로 구분)");
 
-        Errors errors = new Errors();
-        errors.checkErrorsOfInputLottoNumbers(this.numbers);
+        validateOfLottoNumbers();
     }
 
     public List<Integer> getNumbers() {
@@ -37,10 +36,8 @@ public class Lotto {
                 System.out.println("다시 입력해주세요.");
                 numbers.clear();
             }
-
         }
-        numbers = this.numbers;
-        return this.numbers = getNumbers();
+        return numbers;
     }
 
 }

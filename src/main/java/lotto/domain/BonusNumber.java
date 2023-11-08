@@ -1,6 +1,8 @@
 package lotto.domain;
 
-import lotto.exception.ErrorCode;
+import lotto.exception.InvalidBonusNumberFormatException;
+import lotto.exception.InvalidBonusNumberRangeException;
+import lotto.exception.MissingBonusNumberException;
 
 public class BonusNumber {
     private final int number;
@@ -22,19 +24,19 @@ public class BonusNumber {
 
     private void isNullBonusNumber(String number) {
         if (number.isEmpty()) {
-            throw new IllegalArgumentException(ErrorCode.MISSING_BONUS_NUMBER.getMessage());
+            throw new MissingBonusNumberException();
         }
     }
 
     private void isValidBonusNumber(String number) {
         if (number.matches(".*[^0-9].*")) {
-            throw new IllegalArgumentException(ErrorCode.INVALID_BONUS_NUMBER_FORMAT.getMessage());
+            throw new InvalidBonusNumberFormatException();
         }
     }
 
     private void isBonusNumberInRange(String number) {
         if (Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45) {
-            throw new IllegalArgumentException(ErrorCode.INVALID_BONUS_NUMBER_RANGE.getMessage());
+            throw new InvalidBonusNumberRangeException();
         }
     }
 }

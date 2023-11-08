@@ -32,7 +32,7 @@ public enum LottoResult {
 
     public static void makeMatchCntNull() {
         LottoResult[] lottoResultValues = LottoResult.values();
-        for (var i=0; i < lottoResultValues.length; i++) {
+        for (var i = 0; i < lottoResultValues.length; i++) {
             if (lottoResultValues[i].getNumOfMatches() != 0) {
                 LottoResult nameOfResult = lottoResultValues[i];
                 nameOfResult.numOfMatches = 0;

@@ -1,9 +1,8 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public record LottoNumber(int number) {
 
@@ -14,12 +13,12 @@ public record LottoNumber(int number) {
         validateLottoNumberInRange(number);
     }
 
-    public static Set<LottoNumber> createRandomLottoNumbers(int count) {
+    public static List<LottoNumber> createRandomLottoNumbers(int count) {
         return Randoms.pickUniqueNumbersInRange(
                 LOTTO_NUMBER_RANGE_START, LOTTO_NUMBER_RANGE_END, count)
             .stream()
             .map(LottoNumber::new)
-            .collect(Collectors.toSet());
+            .toList();
     }
 
     private void validateLottoNumberInRange(int number) {

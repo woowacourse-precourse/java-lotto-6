@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -35,7 +36,7 @@ public class LottoNumberTest {
     @Test
     @DisplayName("LottoNumber는 1에서 45 사이의 무작위 숫자를 정해진 갯수만큼 생성할 수 있다.")
     void createRandomLottoNumberTest() {
-        Set<LottoNumber> randomLottoNumbers = LottoNumber.createRandomLottoNumbers(6);
+        List<LottoNumber> randomLottoNumbers = LottoNumber.createRandomLottoNumbers(6);
         LottoNumber randomLottoNumber = randomLottoNumbers.stream()
             .findAny()
             .get();

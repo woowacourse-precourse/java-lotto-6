@@ -1,6 +1,6 @@
 package lotto.view;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 import lotto.model.Lotto;
 import lotto.model.LottoNumber;
@@ -16,7 +16,7 @@ class LottoTicketStringBuilder {
             .collect(Collectors.joining("\n"));
     }
 
-    private static String getNumbers(Set<LottoNumber> lottoNumbers) {
+    private static String getNumbers(List<LottoNumber> lottoNumbers) {
         return lottoNumbers.stream()
             .map(LottoNumber::number)
             .toList()

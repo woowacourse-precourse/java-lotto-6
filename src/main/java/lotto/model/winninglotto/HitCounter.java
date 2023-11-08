@@ -1,10 +1,10 @@
 package lotto.model.winninglotto;
 
-import java.util.Set;
+import java.util.List;
 
-record HitCounter(Set<Integer> winningNumbers, int bonusNumber) {
+record HitCounter(List<Integer> winningNumbers, int bonusNumber) {
 
-    HitResult countHit(Set<Integer> numbers) {
+    HitResult countHit(List<Integer> numbers) {
         int hitCount = (int) numbers.stream()
             .filter(winningNumbers::contains)
             .count();

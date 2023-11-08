@@ -1,7 +1,6 @@
 package lotto.model.winninglotto;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.model.Lotto;
 import lotto.model.LottoNumber;
@@ -43,18 +42,18 @@ public class WinningLotto {
     }
 
     private HitCounter createHitCounter(Lotto winningLotto, LottoNumber bonusLottoNumber) {
-        Set<Integer> winningNumbers = winningLotto.getLottoNumbers()
+        List<Integer> winningNumbers = winningLotto.getLottoNumbers()
             .stream()
             .map(LottoNumber::number)
-            .collect(Collectors.toSet());
+            .collect(Collectors.toList());
 
         return new HitCounter(winningNumbers, bonusLottoNumber.number());
     }
 
-    private LottoRanking checkRanking(Set<LottoNumber> lottoNumbers) {
-        Set<Integer> numbers = lottoNumbers.stream()
+    private LottoRanking checkRanking(List<LottoNumber> lottoNumbers) {
+        List<Integer> numbers = lottoNumbers.stream()
             .map(LottoNumber::number)
-            .collect(Collectors.toSet());
+            .toList();
         HitResult hitResult = hitCounter.countHit(numbers);
         return LottoRanking.getRanking(hitResult.hitCount(), hitResult.isBonusBallHit());
     }

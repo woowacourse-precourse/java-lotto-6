@@ -1,39 +1,38 @@
 package lotto.model;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Lotto {
 
     private static final int LOTTO_NUMBERS_SIZE = 6;
 
-    private final Set<LottoNumber> lottoNumbers;
+    private final List<LottoNumber> lottoNumbers;
 
-    private Lotto(Set<LottoNumber> lottoNumbers) {
+    private Lotto(List<LottoNumber> lottoNumbers) {
         validateLottoSize(lottoNumbers);
         this.lottoNumbers = lottoNumbers;
     }
 
     public static Lotto issueAutoPickNumbersLotto() {
-        Set<LottoNumber> randomLottoNumbers = LottoNumber.createRandomLottoNumbers(
+        List<LottoNumber> randomLottoNumbers = LottoNumber.createRandomLottoNumbers(
             LOTTO_NUMBERS_SIZE);
         return new Lotto(randomLottoNumbers);
     }
 
     public static Lotto issueChooseNumbersLotto(List<Integer> userChoosedNumbers) {
-        Set<LottoNumber> lottoNumbers = userChoosedNumbers.stream()
+        List<LottoNumber> lottoNumbers = userChoosedNumbers.stream()
             .map(LottoNumber::new)
-            .collect(Collectors.toSet());
+            .distinct()
+            .toList();
 
         return new Lotto(lottoNumbers);
     }
 
-    public Set<LottoNumber> getLottoNumbers() {
-        return Set.copyOf(lottoNumbers);
+    public List<LottoNumber> getLottoNumbers() {
+        return List.copyOf(lottoNumbers);
     }
 
-    private void validateLottoSize(Set<LottoNumber> lottoNumbers) {
+    private void validateLottoSize(List<LottoNumber> lottoNumbers) {
         if (lottoNumbers.size() != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException();
         }

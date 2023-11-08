@@ -5,10 +5,10 @@ import java.util.stream.IntStream;
 
 public class LottoTicket {
 
-    private final List<Lotto> lottos;
+    private final List<Lotto> lottoTicket;
 
-    private LottoTicket(List<Lotto> lottos) {
-        this.lottos = lottos;
+    private LottoTicket(List<Lotto> lottoTicket) {
+        this.lottoTicket = lottoTicket;
     }
 
     public static LottoTicket issueLottoTicket(int lottoCount) {
@@ -16,5 +16,9 @@ public class LottoTicket {
             .mapToObj(i -> Lotto.issueAutoPickNumbersLotto())
             .toList();
         return new LottoTicket(lottoNumbers);
+    }
+
+    public List<Lotto> getLottoTicket() {
+        return List.copyOf(lottoTicket);
     }
 }

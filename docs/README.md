@@ -29,7 +29,7 @@
 - [x] UserWallet단위테스트
 - [x] User단위테스트
 - [x] WinningLotto단위테스트
-
+- [x] LottoProvider단위테스트
 
 ---
 

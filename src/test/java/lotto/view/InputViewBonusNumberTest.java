@@ -20,7 +20,7 @@ class InputViewBonusNumberTest {
     }
     @DisplayName("InputBonusNumber에 숫자를 넣으면 예외 출력 없이 그대로 입력되는지 확인")
     @Test
-    void testInputBonusNumber() {
+    void createInputRightBonusNumber() {
         String expectedBudget = "45";
         setUp(expectedBudget);
 
@@ -30,9 +30,9 @@ class InputViewBonusNumberTest {
         Console.close();
     }
 
-    @DisplayName("InputBonusNumber에서 숫자를 넣지 않았을 경우 예외출력 확인")
+    @DisplayName("InputBonusNumber에서 숫자를 넣지 않았을 때 예외 발생")
     @Test
-    void testInputBudgetNotNumber(){
+    void createInputBudgetNotNumber(){
         String expectedBudget = "aaa";
         setUp(expectedBudget);
 
@@ -43,9 +43,9 @@ class InputViewBonusNumberTest {
 
     }
 
-    @DisplayName("InputBonusNumber에서 아무것도 입력하지 않았을 때 예외 출력")
+    @DisplayName("InputBonusNumber에서 아무것도 입력하지 않았을 때 예외 발생")
     @Test
-    void testInputBudgetEmpty() {
+    void createInputBudgetEmpty() {
         String expectedBudget = "\n";
         setUp(expectedBudget);
 
@@ -56,9 +56,9 @@ class InputViewBonusNumberTest {
 
     }
 
-    @DisplayName("InputBonusNumber에 소수를 적었을 때 예외 출력")
+    @DisplayName("InputBonusNumber에 소수를 적었을 때 예외 발생")
     @Test
-    void testInputBudgetDouble() {
+    void createInputBudgetPrimeNumber() {
         String expectedBudget = "10000.11";
         setUp(expectedBudget);
 

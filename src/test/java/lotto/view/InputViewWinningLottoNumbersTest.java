@@ -22,7 +22,7 @@ class InputViewWinningLottoNumbersTest {
 
     @DisplayName("정상적인 값 입력")
     @Test
-    void testInputWinningNumbersNumber() {
+    void createInputRightWinningNumbersNumber() {
         String expectedWinningNumbers = "1,2,3,4,5,7";
         setUp(expectedWinningNumbers);
 
@@ -34,7 +34,7 @@ class InputViewWinningLottoNumbersTest {
 
     @DisplayName("숫자를 넣지 않았을 때")
     @Test
-    void testInputWinningNumbersNotNumber(){
+    void createInputWinningNumbersNotNumber(){
         String expectedWinningNumbers = "1,2,3,aaa";
         setUp(expectedWinningNumbers);
 
@@ -46,9 +46,9 @@ class InputViewWinningLottoNumbersTest {
 
     @DisplayName("아무것도 입력하지 않았을 때")
     @Test
-    void testInputWinningNumbersEmpty() {
+    void createInputWinningNumbersEmpty() {
         String expectedWinningNumbers = "\n";
-        setUp("\n");
+        setUp(expectedWinningNumbers);
 
         assertThatThrownBy(inputView::InputWinningNumbers)
                 .isInstanceOf(IllegalArgumentException.class)
@@ -58,7 +58,7 @@ class InputViewWinningLottoNumbersTest {
 
     @DisplayName("소수를 적었을 때")
     @Test
-    void testInputWinningNumbersDouble() {
+    void createInputWinningNumbersDouble() {
         String expectedWinningNumbers = "10000.11";
         setUp(expectedWinningNumbers);
 
@@ -68,9 +68,9 @@ class InputViewWinningLottoNumbersTest {
         Console.close();
     }
 
-    @DisplayName("콤마 입력 형식이 잘못되었을 때")
+    @DisplayName("콤마가 맨 앞에 입력되었을 때 예외 발생")
     @Test
-    void wrongSyntexInputWinningNumbers1() {
+    void createWrongSyntexInputWinningNumbers1() {
         String expectedWinningNumbers = ",1,2,3,4,5,6";
         setUp(expectedWinningNumbers);
 
@@ -80,9 +80,9 @@ class InputViewWinningLottoNumbersTest {
         Console.close();
     }
 
-    @DisplayName("콤마 입력 형식이 잘못되었을 때")
+    @DisplayName("콤마가 맨 뒤에 입력되었을 때 예외 발생")
     @Test
-    void wrongSyntexInputWinningNumbers2() {
+    void createWrongSyntexInputWinningNumbers2() {
         String expectedWinningNumbers = "1,2,3,4,5,6,";
         setUp(expectedWinningNumbers);
 
@@ -92,9 +92,9 @@ class InputViewWinningLottoNumbersTest {
         Console.close();
     }
 
-    @DisplayName("콤마 입력 형식이 잘못되었을 때")
+    @DisplayName("콤마가 연속으로 입력되었을 때 예외 발생")
     @Test
-    void wrongSyntexInputWinningNumbers3() {
+    void createWrongSyntexInputWinningNumbers3() {
         String expectedWinningNumbers = "1,2,3,,4,5,6,";
         setUp(expectedWinningNumbers);
 
@@ -104,9 +104,9 @@ class InputViewWinningLottoNumbersTest {
         Console.close();
     }
 
-    @DisplayName("콤마 입력 형식이 잘못되었을 때")
+    @DisplayName("콤마가 연속으로 입력되었을 때(3개 이상) 예외 발생")
     @Test
-    void wrongSyntexInputWinningNumbers4() {
+    void createWrongSyntexInputWinningNumbers4() {
         String expectedWinningNumbers = "1,2,3,,,,,,,4,5,6,";
         setUp(expectedWinningNumbers);
 

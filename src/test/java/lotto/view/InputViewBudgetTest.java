@@ -31,11 +31,11 @@ class InputViewBudgetTest {
         Console.close();
     }
 
-    @DisplayName("숫자를 넣지 않았을 경우 예외출력 확인")
+    @DisplayName("숫자를 넣지 않았을 때 예외 발생")
     @Test
-    void testInputBudgetNotNumber(){
+    void createInputBudgetNotNumber(){
         String expectedBudget = "aaa";
-        setUp("aaaa");
+        setUp(expectedBudget);
 
         assertThatThrownBy(inputView::InputBudget)
                 .isInstanceOf(IllegalArgumentException.class)
@@ -43,11 +43,11 @@ class InputViewBudgetTest {
         Console.close();
     }
 
-    @DisplayName("아무것도 입력하지 않았을 때 예외 출력")
+    @DisplayName("아무것도 입력하지 않았을 때 예외 발생")
     @Test
-    void testInputBudgetEmpty() {
+    void createInputBudgetEmpty() {
         String expectedBudget = "\n";
-        setUp("\n");
+        setUp(expectedBudget);
 
         assertThatThrownBy(inputView::InputBudget)
                 .isInstanceOf(IllegalArgumentException.class)
@@ -55,11 +55,11 @@ class InputViewBudgetTest {
         Console.close();
     }
 
-    @DisplayName("소수를 적었을 때 예외 출력")
+    @DisplayName("소수를 적었을 때 예외 발생")
     @Test
-    void testInputBudgetDouble() {
+    void createInputBudgetDouble() {
         String expectedBudget = "10000.11";
-        setUp("1000.11");
+        setUp(expectedBudget);
 
         assertThatThrownBy(inputView::InputBudget)
                 .isInstanceOf(IllegalArgumentException.class)

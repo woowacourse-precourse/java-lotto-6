@@ -1,7 +1,6 @@
 package lotto;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static lotto.message.ErrorMessage.NUMBER_FORMAT_MONEY;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_WINNING_NUMBERS;
 import static lotto.message.ErrorMessage.WINNING_NUMBERS_DUPLICATE;
 import static lotto.message.ErrorMessage.WINNING_NUMBERS_LENGTH;
@@ -10,7 +9,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.io.ByteArrayInputStream;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.view.Input;

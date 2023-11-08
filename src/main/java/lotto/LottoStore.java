@@ -7,28 +7,28 @@ import number_generator.RandomNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoPublisher {
+public class LottoStore {
     private final NumberGenerator ng;
 
-    public LottoPublisher() {
+    public LottoStore() {
         this.ng = new RandomNumberGenerator();
     }
 
-    public LottoPublisher(NumberGenerator ng) {
+    public LottoStore(NumberGenerator ng) {
         this.ng = ng;
     }
 
-    public List<Lotto> publish(int amount) throws IllegalArgumentException {
+    public List<Lotto> purchaseLottoTickets(int amount) throws IllegalArgumentException {
         int lottoCount = getLottoCount(amount);
 
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            lottos.add(publish());
+            lottos.add(purchaseLottoTicket());
         }
         return lottos;
     }
 
-    private Lotto publish() {
+    private Lotto purchaseLottoTicket() {
         return new Lotto(ng.generateNumberSet(LottoConfig.LOTTO_MIN, LottoConfig.LOTTO_MAX, LottoConfig.LOTTO_SIZE));
     }
 

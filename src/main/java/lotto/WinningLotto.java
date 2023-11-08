@@ -11,6 +11,7 @@ import net.bytebuddy.pool.TypePool.Resolution.Illegal;
 public class WinningLotto {
 
     static Lotto winningLotto;
+
     static int bonusNumber;
 
     static public void gettingWinningNumbers() {
@@ -50,5 +51,21 @@ public class WinningLotto {
             System.out.println(e.getMessage());
             gettingBonusNumber();
         }
+    }
+
+    public static Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public static int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public static void setWinningLotto(Lotto winningLotto) {
+        WinningLotto.winningLotto = winningLotto;
+    }
+
+    public static void setBonusNumber(int bonusNumber) {
+        WinningLotto.bonusNumber = bonusNumber;
     }
 }

@@ -13,7 +13,7 @@ public enum ErrorMessage {
     MONEY_OUT_OF_SIZE_ERROR_MESSAGE("구매 금액은 1000원 이상 100,000원 이하로만 가능합니다"),
     MONEY_COST_IN_UNIT_ERROR_MESSAGE("구매 금액은 1000원 단위로만 가능합니다"),
     BONUS_DUPLICATION_ERROR_MESSAGE("보너스 번호는 당첨 번호와 중복되지 않는 숫자만 가능합니다"),
-    BONUS_OUT_OF_RANGE("보너스 번호는 1부터 45까지의 숫자 하나만 가능합니다");
+    BONUS_OUT_OF_RANGE_ERROR_MESSAGE("보너스 번호는 1부터 45까지의 숫자 하나만 가능합니다");
 
     private final String message;
 

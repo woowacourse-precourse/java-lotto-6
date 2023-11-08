@@ -26,7 +26,7 @@ public class BonusNumber {
 
     private void validateOutOfRange(int bonus) {
         if (bonus < MIN_RANGE || bonus > MAX_RANGE) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_OUT_OF_RANGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.BONUS_OUT_OF_RANGE_ERROR_MESSAGE.getMessage());
         }
     }
 }

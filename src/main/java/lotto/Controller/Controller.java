@@ -3,7 +3,7 @@ package lotto.Controller;
 import java.util.ArrayList;
 import lotto.Model.GameModel;
 import lotto.Model.ScoreBoard;
-import lotto.Model.VO.LottoData;
+import lotto.Model.LottoData;
 import lotto.View.Input;
 import lotto.View.Output;
 
@@ -37,11 +37,14 @@ public class Controller {
 
     private void insertPlayerMoney(){
         boolean errorChecker = true;
+
         while (errorChecker) {
             try {
+
                 Output.printEnterPurchaseMount();
                 Integer playerInsert = Input.insertInteger();
                 gameModel.initGameModel(playerInsert);
+
                 errorChecker=false;
             }catch (IllegalArgumentException error){
                 Output.printError(error.getMessage());
@@ -50,11 +53,14 @@ public class Controller {
     }
     private void createAnswerLotto(){
         boolean errorChecker = true;
+
         while (errorChecker) {
             try {
+
                 Output.printInsertLottoNumbers();
                 String playerInsert = Input.insertString();
                 gameModel.initAnswerByStrings(playerInsert);
+
                 errorChecker=false;
             }catch (IllegalArgumentException error){
                 Output.printError(error.getMessage());

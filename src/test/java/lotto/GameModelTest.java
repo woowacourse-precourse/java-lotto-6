@@ -1,13 +1,9 @@
 package lotto;
 
-import java.util.ArrayList;
 import lotto.Controller.ErrorMessage;
 import lotto.Model.GameModel;
-import lotto.Model.LottoPlayer;
-import lotto.Model.VO.LottoData;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class GameModelTest {

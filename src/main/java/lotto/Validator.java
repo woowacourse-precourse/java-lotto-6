@@ -1,6 +1,14 @@
 package lotto;
 
+import java.util.HashSet;
+
 public class Validator {
+    static void isNotZero(int input) {
+        if (input != 0) {
+            return;
+        }
+        throw new IllegalArgumentException("[ERROR]");
+    }
 
     static void isInteger(String input) {
         try {

@@ -30,7 +30,7 @@ public class Lotto {
 
     private void duplicateValidation(List<Integer> numbers) {
         Set<Integer> removeDuplicationNumber = new HashSet<>(numbers);
-        if(removeDuplicationNumber.size() != numbers.size()){
+        if(removeDuplicationNumber.size() != LottoInformation.LOTTO_NUMBER_TOTAL_SIZE.getNumber()){
             throw new IllegalArgumentException();
         }
     }
@@ -50,7 +50,6 @@ public class Lotto {
     private List<Integer> WinningNumbers(String input) {
         String[] splitNumbers = input.replace(" ","").split(",");
         List<Integer> lottoNumbers = changeIntegerNumber(splitNumbers);
-        validate(lottoNumbers);
         sortNumbers(lottoNumbers);
         return lottoNumbers;
     }

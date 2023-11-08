@@ -23,7 +23,7 @@ public class LottoService {
         for (String splitedInputNumber : splitedInputNumbers) {
             toBeReturnedInputNumbers.add(Integer.parseInt(splitedInputNumber.trim()));
         }
-        if(toBeReturnedInputNumbers.contains("")){
+        if (toBeReturnedInputNumbers.contains("")) {
             throw new IllegalArgumentException(CONTAINS_EMPTY_NUMBER);
         }
         return toBeReturnedInputNumbers;
@@ -45,7 +45,7 @@ public class LottoService {
 
     public List<Lotto> generateRandomLottoNums(int availableTicketsCount) {
         List<Lotto> lottoList = new ArrayList<>();
-        for(int i = 0; i < availableTicketsCount; i++) {
+        for (int i = 0; i < availableTicketsCount; i++) {
             List<Integer> integers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(integers);
             lottoList.add(lotto);
@@ -66,12 +66,14 @@ public class LottoService {
         return totalIncome;
     }
 
-    public String typeConvertIncomeRate(float incomeRate) {
+    private String typeConvertIncomeRate(float incomeRate) {
         double roundedIncomeRate = Math.round(incomeRate * 1000) / 10.0;
         String converted = Double.toString(roundedIncomeRate) + PERCENT;
 
         return converted;
     }
 
-    public String calculateIncomeRate(int totalIncomde, int spentAmount) {return "A";}
+    public String calculateIncomeRate(int totalIncome, int spentAmount) {
+        return typeConvertIncomeRate(spentAmount / (float) totalIncome);
+    }
 }

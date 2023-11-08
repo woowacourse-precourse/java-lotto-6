@@ -82,4 +82,8 @@ public class Lotto {
         return Score.NONE;
     }
 
+    public void print() {
+        System.out.println(numbers);
+    }
+
 }

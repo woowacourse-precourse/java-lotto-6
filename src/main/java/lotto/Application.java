@@ -113,8 +113,6 @@ public class Application {
 
         double earningsRate = (double) totalPrize / investMoney;
 
-        earningsRate = Math.round(earningsRate * 100) / 100.0;
-
         System.out.println("총 수익률은 " + (earningsRate * 100) + "%입니다.");
     }
 }

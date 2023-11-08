@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class LottoDrawSystem {
     private WinningNumber winningNumber;
-    private Prize prize;
+    private final Prize prize;
     public LottoDrawSystem() {
         this.prize = new Prize();
         prize.setGradeBoard();

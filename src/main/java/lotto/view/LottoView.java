@@ -27,6 +27,11 @@ public class LottoView {
         write(outputMaker.makeLottosNumbersOutput(lottoInfoResponse.lottoNumbers()));
     }
 
+    public void readWinningNumber() {
+        write(LottoMessage.getEmpty());
+        write(LottoMessage.getWinningNumberInputMessage());
+    }
+
     private void write(String output) {
         System.out.println(output);
     }

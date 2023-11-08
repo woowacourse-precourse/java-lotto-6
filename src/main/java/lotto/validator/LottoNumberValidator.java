@@ -35,7 +35,7 @@ public class LottoNumberValidator {
                 Integer.parseInt(number.toString());
             } catch (Exception e) {
                 String errorMessage = ExceptionMessages.LOTTO_NUMBER_TYPE_ERROR_MESSAGE.getErrorMessage();
-                throw new IllegalStateException(errorMessage);
+                throw new IllegalArgumentException(errorMessage);
             }
         }
     }
@@ -44,7 +44,7 @@ public class LottoNumberValidator {
         HashSet<Integer> distinctLotto = new HashSet<Integer>(numbers);
         if (distinctLotto.size() != numbers.size()) {
             String errorMessage = ExceptionMessages.LOTTO_NUMBER_DUPLICATION_ERROR_MESSAGE.getErrorMessage();
-            throw new IllegalStateException(errorMessage);
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 }

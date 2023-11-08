@@ -20,13 +20,11 @@ class WinningCheckerTest {
                 , new Lotto(List.of(1, 2, 3, 10, 11, 12))); //5등
         WinningNumbers winningNumbers = new WinningNumbers(List.of("1", "2", "3", "4", "5", "6"));
         BonusNumber bonusNumber = new BonusNumber("7");
-
         WinningChecker winningChecker = new WinningChecker(myLottos, winningNumbers, bonusNumber);
 
         //when
-        List<Integer> winningLottos = winningChecker.countWinningLottos();
 
         //then
-        Assertions.assertThat(winningLottos).isEqualTo(List.of(1, 1, 1, 1, 1));
+        Assertions.assertThat(winningChecker.countWinningLottos()).isEqualTo(List.of(1, 1, 1, 1, 1));
     }
 }

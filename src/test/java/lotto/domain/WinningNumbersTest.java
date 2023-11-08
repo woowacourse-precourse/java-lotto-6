@@ -26,6 +26,11 @@ class WinningNumbersTest {
     @Test
     @DisplayName("보너스 넘버가 이미 당첨번호에 존재할 시 예외가 발생한다.")
     void validateDuplication() {
+        //given
+
+        //when
+
+        //then
         assertThatThrownBy(() -> winningNumbers.validateDuplication(1)).isInstanceOf(IllegalArgumentException.class);
     }
 

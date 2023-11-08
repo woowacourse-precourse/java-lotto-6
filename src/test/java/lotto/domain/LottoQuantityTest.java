@@ -21,10 +21,9 @@ class LottoQuantityTest {
         //given
 
         //when
-        int quantity = lottoQuantity.getQuantity();
 
         //then
-        assertThat(quantity).isEqualTo(3);
+        assertThat(lottoQuantity.getQuantity()).isEqualTo(3);
     }
 
     @Test

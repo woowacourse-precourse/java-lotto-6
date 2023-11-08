@@ -23,10 +23,9 @@ public class MoneyTest {
         //given
 
         //when
-        int temp = money.getMoney();
 
         //then
-        assertThat(temp).isEqualTo(1000);
+        assertThat(money.getMoney()).isEqualTo(1000);
     }
 
     @Test

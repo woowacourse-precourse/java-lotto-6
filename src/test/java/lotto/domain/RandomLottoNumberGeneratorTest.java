@@ -12,6 +12,7 @@ class RandomLottoNumberGeneratorTest {
 
     RandomLottoNumberGenerator randomLottoNumberGenerator;
     List<Integer> randomNumbers;
+
     @BeforeEach
     void setUp() {
         randomLottoNumberGenerator = new RandomLottoNumberGenerator();
@@ -43,7 +44,7 @@ class RandomLottoNumberGeneratorTest {
         }
 
         //then
-        assertThat(flag).isEqualTo(true);
+        assertThat(flag).isTrue();
     }
 
     @Test

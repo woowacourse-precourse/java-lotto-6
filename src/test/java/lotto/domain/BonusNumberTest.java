@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,8 +25,8 @@ class BonusNumberTest {
         boolean expectFalse = bonusNumber.containBonusNumber(lottoNumbersFalse);
 
         //then
-        assertThat(expectTrue).isEqualTo(true);
-        assertThat(expectFalse).isEqualTo(false);
+        assertThat(expectTrue).isTrue();
+        assertThat(expectFalse).isFalse();
     }
 
     @ParameterizedTest

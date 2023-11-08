@@ -5,7 +5,7 @@ import static lotto.constants.Constants.LOTTO_COST;
 import lotto.exception.CostUnitDivideException;
 import lotto.exception.CostZeroException;
 
-public class CostValidator extends CommonValidator {
+public class CostValidator extends Validator {
     public static void validateCostReadLine(String readline) {
         checkBlank(readline);
         checkDigit(readline);
@@ -15,7 +15,6 @@ public class CostValidator extends CommonValidator {
         checkDivideUnit(cost);
         checkZero(cost);
     }
-
 
     private static void checkDivideUnit(int cost) {
         if (cost % LOTTO_COST != 0) {

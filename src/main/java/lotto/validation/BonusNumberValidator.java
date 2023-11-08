@@ -7,7 +7,7 @@ import lotto.domain.Lotto;
 import lotto.exception.NumberDuplicateException;
 import lotto.exception.NumberRangeException;
 
-public class BonusNumberValidator extends CommonValidator {
+public class BonusNumberValidator extends Validator {
 
     public static void validateBonusReadLine(String readline) {
         checkBlank(readline);

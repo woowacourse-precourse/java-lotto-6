@@ -2,7 +2,6 @@ package lotto.service;
 
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
-import lotto.exception.DataTypeRangeException;
 import lotto.validation.BonusNumberValidator;
 import lotto.view.Input;
 import lotto.view.Output;
@@ -20,18 +19,11 @@ public class BonusNumberService {
                 Output.askBonusNumberEnter();
                 String readLine = input.getReadLine();
                 BonusNumberValidator.validateBonusReadLine(readLine);
-                return new Bonus(validateParseNumber(readLine), winningLotto);
+                int parsedNBonus = BonusNumberValidator.validateParseNumber(readLine);
+                return new Bonus(parsedNBonus, winningLotto);
             } catch (IllegalArgumentException e) {
                 Output.printErrorMessage(e);
             }
-        }
-    }
-
-    private int validateParseNumber(String readLine) {
-        try {
-            return Integer.parseInt(readLine);
-        } catch (NumberFormatException e) {
-            throw DataTypeRangeException.dataTypeRangeException;
         }
     }
 }

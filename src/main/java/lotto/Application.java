@@ -1,7 +1,15 @@
 package lotto;
 
+import lotto.controller.SystemController;
+import lotto.view.OutputView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        try {
+            SystemController systemController = SystemController.createAndPlay();
+            systemController.showResult();
+        } catch (IllegalStateException e) {
+            OutputView.exceptionMessage(e);
+        }
     }
 }

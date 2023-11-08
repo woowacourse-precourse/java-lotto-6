@@ -8,18 +8,20 @@ import java.util.Collections;
 
 public enum LottoRank implements LottoFinalConsts{
 
-    FIRST(LOTTO_FIRST, LOTTO_FIRST_RETURN),
-    SECOND(LOTTO_SECOND, LOTTO_SECOND_RETURN),
-    THIRD(LOTTO_THIRD, LOTTO_THIRD_RETURN),
-    FOURTH(LOTTO_FOURTH, LOTTO_FOURTH_RETURN),
-    FIFTH(LOTTO_FIFTH, LOTTO_FIFTH_RETURN);
+    FIRST(LOTTO_FIRST, LOTTO_FIRST_RETURN, LOTTO_FIRST_PRINT),
+    SECOND(LOTTO_SECOND, LOTTO_SECOND_RETURN, LOTTO_SECOND_PRINT),
+    THIRD(LOTTO_THIRD, LOTTO_THIRD_RETURN, LOTTO_THIRD_PRINT),
+    FOURTH(LOTTO_FOURTH, LOTTO_FOURTH_RETURN, LOTTO_FOURTH_PRINT),
+    FIFTH(LOTTO_FIFTH, LOTTO_FIFTH_RETURN, LOTTO_FIFTH_PRINT);
 
     private String sameCount;
     private int lottoReturn;
+    private String lottoResultPrint;
 
-    LottoRank(String sameCount, int lottoReturn){
+    LottoRank(String sameCount, int lottoReturn, String lottoResultPrint){
         this.sameCount = sameCount;
         this.lottoReturn = lottoReturn;
+        this.lottoResultPrint = lottoResultPrint;
     }
 
     public static LottoRank findByRank(String rank){
@@ -31,6 +33,10 @@ public enum LottoRank implements LottoFinalConsts{
 
     public int getLottoReturn(){
         return lottoReturn;
+    }
+
+    public String getLottoResultPrint(){
+        return lottoResultPrint;
     }
 
 }

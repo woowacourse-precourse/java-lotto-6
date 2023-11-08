@@ -62,4 +62,8 @@ public class LottoMachine {
         return this.lottoPurchase;
     }
 
+    public String getLottoReturnRate(){
+        return this.lottoReturnRate;
+    }
+
 }

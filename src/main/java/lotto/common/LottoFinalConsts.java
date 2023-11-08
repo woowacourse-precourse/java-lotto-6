@@ -18,4 +18,11 @@ public interface LottoFinalConsts {
     String INPUT_WIN_LOTTO = "당첨 번호를 입력해 주세요.";
     String INPUT_BONUS_LOTTO = "보너스 번호를 입력해 주세요.";
 
+    String LOTTO_FIRST_PRINT = "6개 일치 (2,000,000,000원) - %d개";
+    String LOTTO_SECOND_PRINT = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개";
+    String LOTTO_THIRD_PRINT = "5개 일치 (1,500,000원) - %d개";
+    String LOTTO_FOURTH_PRINT = "4개 일치 (50,000원) - %d개";
+    String LOTTO_FIFTH_PRINT = "3개 일치 (5,000원) - %d개";
+    String LOTTO_RETURN_RATE_PRINT = "총 수익률은 %d %입니다.";
+
 }

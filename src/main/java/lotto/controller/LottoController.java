@@ -22,5 +22,9 @@ public class LottoController {
         lottoService.saveWinningAndBonusNumbers(lottoMachine, winningNumber, bonusNumber);
 
         lottoService.saveRankCount(lottoMachine);
+
+        lottoService.computeLottoReturnRate(lottoMachine);
+
+        lottoView.printTotalResults(lottoMachine.getLottoRanks(), lottoMachine.getLottoReturnRate());
     }
 }

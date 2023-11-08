@@ -3,7 +3,10 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.common.LottoFinalConsts;
 import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class LottoView implements LottoFinalConsts {
@@ -31,5 +34,21 @@ public class LottoView implements LottoFinalConsts {
     public String inputLottoBonusNumber(){
         System.out.println(INPUT_BONUS_LOTTO);
         return Console.readLine();
+    }
+
+    public void printTotalResults(HashMap<LottoRank, Integer> lottoRanks, String lottoReturnRate){
+        List<LottoRank> lottoRankEnums = List.of(LottoRank.values());
+        for (LottoRank lottoRank:lottoRankEnums){
+            printLottoResult(lottoRanks, lottoRank);
+        }
+        System.out.printf(LOTTO_RETURN_RATE_PRINT, lottoReturnRate);
+    }
+
+    public void printLottoResult(HashMap<LottoRank, Integer> lottoRanks, LottoRank lottoRank){
+        if (!lottoRanks.keySet().contains(lottoRank)){
+            System.out.printf(lottoRank.getLottoResultPrint(), 0);
+        } else if (lottoRanks.keySet().contains(lottoRank)){
+            System.out.printf(lottoRank.getLottoResultPrint(), lottoRanks.get(lottoRank));
+        }
     }
 }

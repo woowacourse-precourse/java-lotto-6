@@ -17,7 +17,7 @@ public class NumberValidator {
         validateInWinningNumbers(bonusNumber,winningNumbers);
     }
 
-    private static void validateInWinningNumbers(int bonusNumber, List<Integer> winningNumbers) throws IllegalArgumentException {
+    public static void validateInWinningNumbers(int bonusNumber, List<Integer> winningNumbers) throws IllegalArgumentException {
         if (winningNumbers.contains(bonusNumber)) {
             System.out.println(ErrorMessage.ERROR_VALIDATE_BONUS_DUPLICATE_MESSAGE);
             throw new IllegalArgumentException();
@@ -36,14 +36,14 @@ public class NumberValidator {
         return (customerPrice % LottoValues.LOTTO_PRICE != 0) || (customerPrice == 0);
     }
 
-    private static void validateNumberCount(List<Integer> numbers) throws IllegalArgumentException {
+    public static void validateNumberCount(List<Integer> numbers) throws IllegalArgumentException {
         if (numbers.size() != LottoValues.LOTTO_NUMBER_COUNT) {
             System.out.println(ErrorMessage.ERROR_VALIDATE_NUMBER_COUNT_MESSAGE);
             throw new IllegalArgumentException();
         }
     }
 
-    private static void validateDuplicate(List<Integer> numbers) throws IllegalArgumentException {
+    public static void validateDuplicate(List<Integer> numbers) throws IllegalArgumentException {
         long uniqueCount = numbers.stream().distinct().count();
         if (uniqueCount < numbers.size()) {
             System.out.println(ErrorMessage.ERROR_VALIDATE_NUMBER_DUPLICATE_MESSAGE);
@@ -51,7 +51,7 @@ public class NumberValidator {
         }
     }
 
-    private static void validateRange(List<Integer> numbers) throws IllegalArgumentException {
+    public static void validateRange(List<Integer> numbers) throws IllegalArgumentException {
         for (Integer number : numbers) {
             if (isInRange(number)) {
                 System.out.println(ErrorMessage.ERROR_VALIDATE_NUMBER_IN_RANGE_MESSAGE);
@@ -60,7 +60,7 @@ public class NumberValidator {
         }
     }
 
-    private static void validateRange(int bonusNumber) throws IllegalArgumentException {
+    public static void validateRange(int bonusNumber) throws IllegalArgumentException {
         if (isInRange(bonusNumber)) {
             System.out.println(ErrorMessage.ERROR_VALIDATE_NUMBER_IN_RANGE_MESSAGE);
             throw new IllegalArgumentException();

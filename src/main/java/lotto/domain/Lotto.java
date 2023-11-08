@@ -71,4 +71,8 @@ public class Lotto {
                 .map(number -> Integer.toString(number))
                 .collect(Collectors.toList());
     }
+
+    public boolean isContains(final int number) {
+        return numbers.contains(number);
+    }
 }

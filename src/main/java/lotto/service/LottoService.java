@@ -27,12 +27,13 @@ public class LottoService implements Service {
         Objects.requireNonNull(inputPurchaseAmount);
         LottoPurchaseAmount amount = LottoPurchaseAmount.from(inputPurchaseAmount);
         LottoPurchaseQuantity quantity = amount.getLottoPurchaseQuantity();
-
         return getLottoPurchaseDto(amount, quantity);
     }
 
-    private LottoPurchaseDto getLottoPurchaseDto(final LottoPurchaseAmount amount,
-                                                 final LottoPurchaseQuantity quantity) {
+    private LottoPurchaseDto getLottoPurchaseDto(
+            final LottoPurchaseAmount amount,
+            final LottoPurchaseQuantity quantity
+    ) {
         Objects.requireNonNull(amount);
         Objects.requireNonNull(quantity);
         return new LottoPurchaseDto(amount.getAmount(), quantity.quantity());
@@ -40,9 +41,7 @@ public class LottoService implements Service {
 
     @Override
     public LottosDto generateLotto(final int quantity) {
-        return getLottosDto(
-                Lottos.from(quantity)
-        );
+        return getLottosDto(Lottos.from(quantity));
     }
 
     private LottosDto getLottosDto(final Lottos lottos) {
@@ -51,7 +50,6 @@ public class LottoService implements Service {
                 .stream()
                 .map(this::getLottoDto)
                 .toList();
-
         return new LottosDto(lottoDtos);
     }
 
@@ -76,11 +74,11 @@ public class LottoService implements Service {
     private WinningResultDto getWinningDto(final WinningResult winningResult) {
         Objects.requireNonNull(winningResult);
         return new WinningResultDto(
-                winningResult.getFirstPlaceCount(),
-                winningResult.getSecondPlaceCount(),
-                winningResult.getThirdPlaceCount(),
-                winningResult.getFourthPlaceCount(),
-                winningResult.getFifthPlaceCount()
+                winningResult.placeCounts().get(0),
+                winningResult.placeCounts().get(1),
+                winningResult.placeCounts().get(2),
+                winningResult.placeCounts().get(3),
+                winningResult.placeCounts().get(4)
         );
     }
 
@@ -105,8 +103,7 @@ public class LottoService implements Service {
     ) {
         Objects.requireNonNull(lottoPurchaseDto);
         Objects.requireNonNull(winningResultDto);
-        ReturnRate returnRate = getWinningResult(winningResultDto
-        )
+        ReturnRate returnRate = getWinningResult(winningResultDto)
                 .getTotalWinningAmount()
                 .calculateReturnRateFrom(lottoPurchaseDto.amount());
         return getReturnRateDto(returnRate);

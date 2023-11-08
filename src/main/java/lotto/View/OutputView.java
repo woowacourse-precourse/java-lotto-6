@@ -16,16 +16,19 @@ public class OutputView {
         Integer numOfLottery = lotteryBudget / BUDGET_UNIT.getPrice();
         System.out.println(String.format(HOW_MANY_LOTTERY_ARE_BOUGHT.getMessage(), numOfLottery));
     }
+    
+
+    public void printGameResult(List<Lotto> lottoGroup, Map<MatchTypes, Integer> gameResult, Double turnOutRate) {
+        printRegisteredLottery(lottoGroup);
+        System.out.println(LOTTO_GAME_RESULT_NOTICE.getMessage());
+        printLottoResult(gameResult);
+        printTurnOutRate(turnOutRate);
+    }
 
     public void printRegisteredLottery(List<Lotto> lottoGroup) {
         for (Lotto lotto : lottoGroup) {
             System.out.println(lotto.getLottoNumbers().toString());
         }
-    }
-
-    public void printGameResult(Map<MatchTypes, Integer> gameResult) {
-        System.out.println(LOTTO_GAME_RESULT_NOTICE.getMessage());
-        printLottoResult(gameResult);
     }
 
     public void printLottoResult(Map<MatchTypes, Integer> gameResult) {

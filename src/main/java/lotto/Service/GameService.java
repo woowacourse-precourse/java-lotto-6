@@ -67,12 +67,10 @@ public class GameService {
         Map<Rank, Integer> matchingCounts = new HashMap<>();
         int totalPrize = 0;
         for (Rank rank : Rank.values()) { matchingCounts.put(rank, 0);}
-
         for (List<Integer> playerLotto : lottos) {
             int matchingNumbers = referee.compare(playerLotto);
             boolean bonusNumberMatch = referee.getBonusNumber();
             Rank rank = Rank.matchingNumbersToRank(matchingNumbers, bonusNumberMatch);
-
             if (rank != Rank.NO_MATCH) {
                 matchingCounts.put(rank, matchingCounts.get(rank) + 1);
             }

@@ -24,17 +24,14 @@ public class Referee {
 
     public int compare(List<Integer> lottoPlayer) {
         int matchingNumbers = 0;
-
         for (int i = 0; i < answerNumbers.size(); i++) {
             if (lottoPlayer.contains(answerNumbers.get(i))) {
                 matchingNumbers++;
             }
         }
-
         if (matchingNumbers == 5 && lottoPlayer.contains(bonusNumber)) {
             bonusNumberMatch = true;
         }
-
         return matchingNumbers;
     }
 

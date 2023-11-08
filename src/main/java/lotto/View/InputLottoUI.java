@@ -20,7 +20,6 @@ public class InputLottoUI {
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
         List<Integer> lottoNumbers = new ArrayList<>();
-
         String[] numberTokens = input.split("[,\\s]+");
         for (String token : numberTokens) {
             try {

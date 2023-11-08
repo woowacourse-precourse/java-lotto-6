@@ -11,6 +11,31 @@ import org.junit.jupiter.api.Test;
 
 
 class ServiceTest {
+    Lottery 테스트용_Lottery_객체() throws Exception {
+        List<Integer> customWinningNumbers = Arrays.asList(1, 2, 3, 21, 22, 23);
+        List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lottery lottery = new Lottery(lottoNumbers, 7);
+
+        Field winningNumberField = Lottery.class.getDeclaredField("winningNumbers");
+        Field rankField = Lottery.class.getDeclaredField("rank");
+        winningNumberField.setAccessible(true);
+        rankField.setAccessible(true);
+        winningNumberField.set(lottery, customWinningNumbers);
+        rankField.set(lottery, Rank.FIFTH);
+
+        return lottery;
+    }
+
+    Map<Rank, Long> 테스트용_Map() {
+        Map<Rank, Long> expectedMap = new HashMap<>();
+        expectedMap.put(Rank.FIRST, 0L);
+        expectedMap.put(Rank.SECOND, 0L);
+        expectedMap.put(Rank.THIRD, 0L);
+        expectedMap.put(Rank.FORTH, 0L);
+        expectedMap.put(Rank.FIFTH, 1L);
+        expectedMap.put(Rank.NONE, 0L);
+        return expectedMap;
+    }
 
     @Test
     void 문자_입력시_에러발생() {
@@ -42,31 +67,10 @@ class ServiceTest {
     @DisplayName("메서드로 생성된 맵과 예상하는 맵이 일치하면 테스트 통과")
     @Test
     void 순위집계_맵_생성_테스트() throws Exception {
-        List<Integer> customWinningNumbers = Arrays.asList(1, 2, 3, 21, 22, 23);
-        List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        Lottery lottery = new Lottery(lottoNumbers, 7);
-
-        Field winningNumberField = Lottery.class.getDeclaredField("winningNumbers");
-        Field rankField = Lottery.class.getDeclaredField("rank");
-        winningNumberField.setAccessible(true);
-        rankField.setAccessible(true);
-        winningNumberField.set(lottery, customWinningNumbers);
-        rankField.set(lottery, Rank.FIFTH);
+        Lottery lottery = 테스트용_Lottery_객체();
         List<Lottery> lotteries = Arrays.asList(lottery);
-        System.out.println(lottery.getRank());
-        //입력한 당첨 번호: 1,2,3,4,5,6
-        //보너스 번호: 7
-        //실제 당첨 번호: 1,2,3,21,22,23
-        //등수: FIFTH
 
-        Map<Rank, Long> expectedMap = new HashMap<>();
-        expectedMap.put(Rank.FIRST, 0L);
-        expectedMap.put(Rank.SECOND, 0L);
-        expectedMap.put(Rank.THIRD, 0L);
-        expectedMap.put(Rank.FORTH, 0L);
-        expectedMap.put(Rank.FIFTH, 1L);
-        expectedMap.put(Rank.NONE, 0L);
-
+        Map<Rank, Long> expectedMap = 테스트용_Map();
         Map<Rank, Long> realMap = Service.makeRankCountMap(lotteries);
 
         Assertions.assertThat(expectedMap).isEqualTo(realMap);
@@ -75,13 +79,7 @@ class ServiceTest {
     @DisplayName("수익률이 50f로 계산되면 테스트 성공")
     @Test
     void 수익률_계산_테스트() {
-        Map<Rank, Long> rankCountMap = new HashMap<>();
-        rankCountMap.put(Rank.FIRST, 0L);
-        rankCountMap.put(Rank.SECOND, 0L);
-        rankCountMap.put(Rank.THIRD, 0L);
-        rankCountMap.put(Rank.FORTH, 0L);
-        rankCountMap.put(Rank.FIFTH, 1L);
-        rankCountMap.put(Rank.NONE, 0L);
+        Map<Rank, Long> rankCountMap = 테스트용_Map();
         float rateOfReturn = Service.calculateRateOfReturn(rankCountMap, 10000);
         Assertions.assertThat(rateOfReturn).isEqualTo(50f);
     }

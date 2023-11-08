@@ -1,15 +1,24 @@
 package lotto.Model;
 
 import lotto.View.ExceptionMessage;
+import lotto.View.InputView;
 
 public class UserLottoAmount {
     private static final int LOTTO_PRICE = 1000;
-    private final int amount;
+    private int amount;
 
     public UserLottoAmount(String amount) {
-        int amountNum = ValidateNumber(amount);
-        ValidateAmount(amountNum);
-        this.amount = amountNum;
+        int amountNum;
+        while (true) {
+            try {
+                amountNum = ValidateNumber(amount);
+                ValidateAmount(amountNum);
+                this.amount = amountNum;
+                break;
+            } catch (IllegalArgumentException e) {
+                amount = InputView.InputBuyCost();
+            }
+        }
     }
 
     public int CalcLottoCount() {

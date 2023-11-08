@@ -16,10 +16,9 @@ public class Constants {
     public static final String WINNING_STATISTIC = "당첨 통계";
     public static final String EARNING_RATE_MESSAGE_1 = "총 수익률은 ";
     public static final String EARNING_RATE_MESSAGE_2 = "%입니다.";
-    public static final String ERROR_MESSAGE_1 = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
-    public static final String ERROR_MESSAGE_2 = "[ERROR] 구입 가격은 양의 정수로만 이루어져야 합니다.";
-    public static final String ERROR_MESSAGE_3 = "[ERROR] 당첨 번호의 개수는 6개여야 합니다.";
-    public static final String ERROR_MESSAGE_4 = "[ERROR] 로또 번호는 중복되지 않아야 합니다.";
+    public static final String ERROR_MESSAGE_1 = "[ERROR] 올바른 구입 가격을 입력해주세요.";
+    public static final String ERROR_MESSAGE_2 = "[ERROR] 올바른 당첨 번호를 입력해주세요.";
+    public static final String ERROR_MESSAGE_3 = "[ERROR] 올바른 보너스 번호를 입력해주세요.";
 
     // 정규식
     public static final String ONLYINT = "\\d+";

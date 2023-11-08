@@ -7,10 +7,11 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Person {
 	private List<List<Integer>> lottoTicket = new ArrayList<>();
+	private int pay;
 	
 	public void buyLotto(LottoMachine lottoMachine) {
 		System.out.println("구입금액을 입력해주세요");
-		int pay = Integer.parseInt(Console.readLine());
+		pay = Integer.parseInt(Console.readLine());
 		for(int i=0; i<pay/1000; i++) {
 			List<Integer> numbers = lottoMachine.generateLottoTicket();
 			lottoTicket.add(numbers);
@@ -69,6 +70,13 @@ public class Person {
 		System.out.println("5개 일치 (1,500,000원) - " + count[2] + "개");
 		System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + count[3] + "개");
 		System.out.println("6개 일치 (2,000,000,000원) - " + count[4] + "개");
+		System.out.println("총 수익률은 " + calculateProfit(count) + "%입니다.");
+	}
+	
+	public double calculateProfit(int[] count) {
+		int totalWinnings = count[0] * 5000 + count[1] * 50000 + count[2] * 1500000 + count[3] * 30000000 + count[4] * 2000000000;
+		double profit = ((double)totalWinnings / pay) * 100;
+		return profit;
 	}
 	
 	public List<List<Integer>> getLottoTicket(){

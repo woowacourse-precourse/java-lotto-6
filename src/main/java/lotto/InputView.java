@@ -8,7 +8,12 @@ public class InputView {
 
     public static int inputMoney() {
         System.out.println(INPUT_MONEY_MESSAGE);
-        return Integer.parseInt(Console.readLine());
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 1,000원 단위 숫자를 입력해주세요.");
+            return inputMoney(); // 재귀적으로 다시 입력을 요청할 수도 있습니다.
+        }
     }
 
     public static String inputWinningNumber() {
@@ -19,6 +24,11 @@ public class InputView {
 
     public static int inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-        return Integer.parseInt(Console.readLine());
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 숫자를 입력해주세요.");
+            return inputBonusNumber();
+        }
     }
 }

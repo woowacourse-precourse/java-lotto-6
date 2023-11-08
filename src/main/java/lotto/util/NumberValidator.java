@@ -2,10 +2,13 @@ package lotto.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 import lotto.constants.ErrorMessages;
 import lotto.constants.LottoValues;
 
 public class NumberValidator {
+    private static final Pattern numberRegex = Pattern.compile("[^0-9]");
+
     public static void verifyPurchaseAmount(Integer amount) {
         validateNull(amount, ErrorMessages.LLOTTO_PURCHASE_AMOUNT_NOT_NULL);
         validateNegative(amount, ErrorMessages.LOTTO_PURCHASE_AMOUNT_POSITIVE_ONLY);
@@ -88,8 +91,27 @@ public class NumberValidator {
         newWinningNumbers.add(bonusNumber);
         Integer winningWithBonusNumbersCount = LottoValues.NUMBERS_COUNT.getPlusValue(1);
 
-        validateNumbersDuplicate(newWinningNumbers, ErrorMessages.BONUS_NUMBER__DUPLICATE,
+        validateNumbersDuplicate(
+                newWinningNumbers,
+                ErrorMessages.BONUS_NUMBER__DUPLICATE,
                 winningWithBonusNumbersCount);
-        validateNumbersRange(newWinningNumbers, ErrorMessages.BONUS_NUMBER_RANGE, winningWithBonusNumbersCount);
+        validateNumbersRange(
+                newWinningNumbers,
+                ErrorMessages.BONUS_NUMBER_RANGE,
+                winningWithBonusNumbersCount);
+    }
+
+    public static void verifyNumberType(String input, ErrorMessages error) {
+        if (isNotNumber(input)) {
+            throw new IllegalArgumentException(error.getMessage());
+        }
+    }
+
+    private static boolean isNotNumber(String input) {
+        if (input.isEmpty()) {
+            return true;
+        }
+
+        return numberRegex.matcher(input).matches();
     }
 }

@@ -6,8 +6,8 @@ public class WinningResponse {
     private final Map<Integer, WinningStatistic> countGroupingByRank;
     private final double profitRate;
 
-    public WinningResponse(final Map<Integer, WinningStatistic> countGroupingByRank, final double profitRate) {
-        this.countGroupingByRank = countGroupingByRank;
+    public WinningResponse(final Map<Integer, WinningStatistic> statisticGroupingByRank, final double profitRate) {
+        this.countGroupingByRank = statisticGroupingByRank;
         this.profitRate = profitRate;
     }
 

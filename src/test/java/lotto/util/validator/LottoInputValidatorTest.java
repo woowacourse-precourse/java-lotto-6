@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoInputValidatorTest {
-    private final static InputValidator lottoInputValidator = new LottoInputValidator();
+    private final static InputValidator winningInputValidator = new WinningInputValidator();
 
     @DisplayName("당첨 번호 입력 개수가 6개가 넘어갈 경우 예외가 발생한다.")
     @Test
@@ -17,7 +17,7 @@ class LottoInputValidatorTest {
         String values = "1,2,3,4,5,6,7";
 
         //when,then
-        Assertions.assertThatThrownBy(() -> lottoInputValidator.validate(values))
+        Assertions.assertThatThrownBy(() -> winningInputValidator.validate(values))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.WINNING_LENGTH_NOT_SIX_MESSAGE.getMessage());
     }
 
@@ -28,7 +28,7 @@ class LottoInputValidatorTest {
         String values = "1,2,3,4,5";
 
         //when,then
-        Assertions.assertThatThrownBy(() -> lottoInputValidator.validate(values))
+        Assertions.assertThatThrownBy(() -> winningInputValidator.validate(values))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.WINNING_LENGTH_NOT_SIX_MESSAGE.getMessage());
     }
 
@@ -39,7 +39,7 @@ class LottoInputValidatorTest {
         String values = "1,w,2,3,4,5";
 
         //when,then
-        Assertions.assertThatThrownBy(() -> lottoInputValidator.validate(values))
+        Assertions.assertThatThrownBy(() -> winningInputValidator.validate(values))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.WINNING_NUMBER_IS_NOT_NUMERIC.getMessage());
     }
 
@@ -50,7 +50,7 @@ class LottoInputValidatorTest {
         String values = "1,2,3,4,5,67";
 
         //when,then
-        Assertions.assertThatThrownBy(() -> lottoInputValidator.validate(values))
+        Assertions.assertThatThrownBy(() -> winningInputValidator.validate(values))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.WINNING_NUMBER_RANGE_ERROR_MESSAGE.getMessage());
     }
 
@@ -61,7 +61,7 @@ class LottoInputValidatorTest {
         String values = "1,2,3,4,5,0";
 
         //when,then
-        Assertions.assertThatThrownBy(() -> lottoInputValidator.validate(values))
+        Assertions.assertThatThrownBy(() -> winningInputValidator.validate(values))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.WINNING_NUMBER_RANGE_ERROR_MESSAGE.getMessage());
     }
 
@@ -72,7 +72,7 @@ class LottoInputValidatorTest {
         String values = "1,2,3,4,5,5";
 
         //when,then
-        Assertions.assertThatThrownBy(() -> lottoInputValidator.validate(values))
+        Assertions.assertThatThrownBy(() -> winningInputValidator.validate(values))
                 .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.WINNING_NUMBER_DUPLICATE_MESSAGE.getMessage());
     }
 }

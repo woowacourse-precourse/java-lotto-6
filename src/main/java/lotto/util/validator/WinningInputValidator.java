@@ -1,15 +1,13 @@
 package lotto.util.validator;
 
-import lotto.model.constant.LottoConstant;
 import lotto.util.ConvertUtil;
-import lotto.util.validator.constant.ErrorMessageConstant;
 
 import java.util.Arrays;
 
 import static lotto.model.constant.LottoConstant.*;
 import static lotto.util.validator.constant.ErrorMessageConstant.*;
 
-public class LottoInputValidator implements InputValidator{
+public class WinningInputValidator implements InputValidator{
     @Override
     public void validate(String checkValue) {
         String[] checkValues = ConvertUtil.convertInputToLottoNumbers(checkValue);
@@ -35,7 +33,7 @@ public class LottoInputValidator implements InputValidator{
     private static void validateNumberRange(String[] checkValues) {
         if(Arrays.stream(checkValues)
                 .mapToInt(Integer::parseInt)
-                .anyMatch(LottoInputValidator::isValidRange)) {
+                .anyMatch(WinningInputValidator::isValidRange)) {
             throw new IllegalArgumentException(WINNING_NUMBER_RANGE_ERROR_MESSAGE.getMessage());
         }
     }

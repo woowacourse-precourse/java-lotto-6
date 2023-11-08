@@ -8,7 +8,8 @@ public enum ErrorMessages {
     NOT_LOTTO_NUMBER("입력한 로또 번호가 유효하지 않습니다. 쉼표로 구분한 숫자만 입력 가능합니다."),
     NOT_SIX("입력한 로또 번호가 유효하지 않습니다. 6개의 숫자를 입력해주세요."),
     NOT_IN_RANGE("입력한 로또 번호가 유효하지 않습니다. 1부터 45까지의 숫자만 입력 가능합니다."),
-    NOT_UNIQUE("입력한 로또 번호가 유효하지 않습니다. 중복되지 않은 숫자 6개를 입력해주세요.");
+    NOT_UNIQUE("입력한 로또 번호가 유효하지 않습니다. 중복되지 않은 숫자 6개를 입력해주세요."),
+    NOT_BONUS("입력한 보너스 번호가 유효하지 않습니다. 정수만 입력 가능합니다.");
 
     private static final String ERROR_FORM = "[ERROR]";
 

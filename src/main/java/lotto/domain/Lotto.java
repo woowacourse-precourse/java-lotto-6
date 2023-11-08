@@ -4,8 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.message.ErrorMessage.INVALID_SIZE_EXCEPTION;
-import static lotto.message.ErrorMessage.NOT_UNIQUE_EXCEPTION;
+import static lotto.message.ErrorMessage.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,6 +21,9 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(NOT_UNIQUE_EXCEPTION.getMessage());
+        }
+        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+            throw new IllegalArgumentException(NOT_IN_RANGE_EXCEPTION.getMessage());
         }
     }
 

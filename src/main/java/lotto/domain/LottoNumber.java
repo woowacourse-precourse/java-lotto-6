@@ -24,7 +24,6 @@ public class LottoNumber {
             System.out.println(exception.getMessage());
             InputView.inputWinningNumbers();
         }
-
     }
 
     public static List<Integer> pickRandomNumbers(int counter) {

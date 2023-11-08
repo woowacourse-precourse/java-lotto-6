@@ -14,9 +14,12 @@ public class LottoController {
     public static int[] resultCounter = new int[6];
 
     public void play() {
+        OutputView.printAskMoneyMessage();
         Money money = new Money();
         buyLottos(money.trial());
+        OutputView.printAskWinningNumbersMessage();
         winningLotto = new Lotto(InputView.inputWinningNumbers());
+        OutputView.printAskBonusNumberMessage();
         bonusNumber = InputView.inputBonusNumber();
         OutputView.printAlertResultMessage();
         Winning.check();

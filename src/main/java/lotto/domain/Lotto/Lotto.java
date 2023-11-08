@@ -1,11 +1,7 @@
 package lotto.domain.Lotto;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
     private List<Integer> numbers;
@@ -13,7 +9,8 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         checkDuplicate(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>();
+        sortLottoNumbers(new ArrayList<>(numbers));
     }
 
     private void validate(List<Integer> numbers) {
@@ -23,6 +20,13 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public void sortLottoNumbers(List<Integer> numbers) {
+        Collections.sort(numbers);
+        for (int i = 0; i < 6; i++) {
+            this.numbers.add(numbers.get(i));
+        }
+    }
+
     public List<Integer> getNumbers() {
         return this.numbers;
     }

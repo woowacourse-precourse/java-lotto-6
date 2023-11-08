@@ -5,7 +5,6 @@ import lotto.domain.Lotto.Lotto;
 
 import java.util.*;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Result.Result;
 import lotto.domain.WinningNumber.WinningNumber;
@@ -55,9 +54,7 @@ public class User {
     private void printLotties() {
         System.out.printf(Constants.LOTTO_NUMBER_OUTPUT_MESSAGE, lottoCount);
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> sortedNumbers = new ArrayList<>(lotties.get(i).getNumbers());
-            Collections.sort(sortedNumbers);
-            System.out.println(sortedNumbers);
+            System.out.println(lotties.get(i).getNumbers());
         }
     }
 

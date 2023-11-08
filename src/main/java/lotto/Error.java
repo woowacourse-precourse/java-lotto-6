@@ -1,6 +1,7 @@
 package lotto;
 
 public enum Error {
+    INIT_STATE,
     NO_PROBLEM,
     INPUT_ERROR("[ERROR] 입력 양식이 잘못되었습니다. 다시 입력해주세요."),
     PRICE_ERROR("[ERROR] 구입 금액은 1000단위의 숫자여야 합니다."),
@@ -22,7 +23,7 @@ public enum Error {
         this.message = message;
     }
 
-    public static Error printERROR(Error error) {
+    public static Error printError(Error error) {
         if (error == NO_PROBLEM)
         {
             System.out.println(INPUT_ERROR.getMessage());

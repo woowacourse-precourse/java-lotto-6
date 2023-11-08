@@ -18,7 +18,6 @@ public class BonusNumberTest {
     @DisplayName("입력 값 검증")
     @Nested
     class ValidatorTest {
-        //숫자가 아닌 값 입력 시 예외 발생
         private Lotto winningNumbers;
 
         @BeforeEach
@@ -54,6 +53,5 @@ public class BonusNumberTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.LOTTO_NUMBER_NOT_UNIQUE.getMessage());
         }
-
     }
 }

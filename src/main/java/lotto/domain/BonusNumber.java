@@ -18,13 +18,13 @@ public class BonusNumber {
     }
 
     private void validate(String bonusNumber, Lotto winningNumbers) {
-        if(!isDigit(bonusNumber)) {
+        if (!isDigit(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_NOT_DIGIT.getMessage());
         }
-        if(!isInRange(bonusNumber)) {
+        if (!isInRange(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_IN_RANGE.getMessage());
         }
-        if(!isUnique(bonusNumber, winningNumbers)) {
+        if (!isUnique(bonusNumber, winningNumbers)) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_UNIQUE.getMessage());
         }
     }
@@ -32,8 +32,10 @@ public class BonusNumber {
     private boolean isUnique(String inputBonusNumber, Lotto winningNumbers) {
         List<Integer> numbers = winningNumbers.getNumbers();
         int bonusNumber = stringToIntConverter(inputBonusNumber);
-        for(Integer number : numbers) {
-            if(number == bonusNumber) return false;
+        for (Integer number : numbers) {
+            if (number == bonusNumber) {
+                return false;
+            }
         }
         return true;
     }

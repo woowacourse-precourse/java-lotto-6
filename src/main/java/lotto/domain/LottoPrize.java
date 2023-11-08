@@ -18,19 +18,6 @@ public enum LottoPrize {
         this.isBonusNumber = isBonusNumber;
     }
 
-    public static LottoPrize getPrizeRank(int matchNumbers, boolean isMatchBonus) {
-        for(LottoPrize lottoPrize : LottoPrize.values()) {
-            if(isMatch(lottoPrize, matchNumbers, isMatchBonus)) {
-                return lottoPrize;
-            }
-        }
-        return LottoPrize.NOTHING_PRIZE;
-    }
-
-    private static boolean isMatch(LottoPrize lottoPrize, int matchNumbers, boolean isMatchBonus) {
-        return lottoPrize.getMatchNumbers() == matchNumbers && lottoPrize.isBonusNumber == isMatchBonus;
-    }
-
     public int getMatchNumbers() {
         return matchNumbers;
     }
@@ -43,8 +30,21 @@ public enum LottoPrize {
         return isBonusNumber;
     }
 
+    public static LottoPrize getPrizeRank(int matchNumbers, boolean isMatchBonus) {
+        for (LottoPrize lottoPrize : LottoPrize.values()) {
+            if (isMatch(lottoPrize, matchNumbers, isMatchBonus)) {
+                return lottoPrize;
+            }
+        }
+        return LottoPrize.NOTHING_PRIZE;
+    }
+
+    private static boolean isMatch(LottoPrize lottoPrize, int matchNumbers, boolean isMatchBonus) {
+        return lottoPrize.getMatchNumbers() == matchNumbers && lottoPrize.isBonusNumber == isMatchBonus;
+    }
+
     public String getResultMessage(int count) {
-        if(isSecondPrizeResult()) {
+        if (isSecondPrizeResult()) {
             return String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개", matchNumbers, prizeMoney, count);
         }
         return String.format("%d개 일치 (%,d원) - %d개", matchNumbers, prizeMoney, count);

@@ -8,7 +8,7 @@ public class TotalWinningResult {
 
     public TotalWinningResult() {
         prizeResult = new HashMap<>();
-        for(LottoPrize lottoPrize : LottoPrize.values()) {
+        for (LottoPrize lottoPrize : LottoPrize.values()) {
             prizeResult.put(lottoPrize, 0);
         }
 
@@ -20,7 +20,7 @@ public class TotalWinningResult {
     }
 
     public void calculateToTalRanks(Lottos lottos, Lotto winningNumbers, BonusNumber bonusNumber) {
-        for(Lotto lotto : lottos.getLottos()) {
+        for (Lotto lotto : lottos.getLottos()) {
             int matchNumbers = getMatchNumbers(lotto, winningNumbers);
             boolean isMatchBonus = isMatchBonusNumber(lotto, bonusNumber.getBonusNumber());
             LottoPrize lottoPrize = LottoPrize.getPrizeRank(matchNumbers, isMatchBonus);
@@ -29,31 +29,31 @@ public class TotalWinningResult {
         }
     }
 
-    public String calculateRateOfReturn(int amount) {
-        double rate = (totalPrizeMoney / amount) * 100;
-        return String.format("%.1f", rate);
-    }
-
-    private void addPrizeResult(LottoPrize lottoPrize) {
-        prizeResult.put(lottoPrize, prizeResult.get(lottoPrize)+1);
-    }
-
-    private void addTotalPrizeMoney(LottoPrize lottoPrize) {
-        totalPrizeMoney += lottoPrize.getPrizeMoney();
+    private int getMatchNumbers(Lotto lotto, Lotto winningNumbers) {
+        int matchCount = 0;
+        for (int number : lotto.getNumbers()) {
+            if (winningNumbers.getNumbers().contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
     }
 
     private boolean isMatchBonusNumber(Lotto lotto, int bonusNumber) {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
-    private int getMatchNumbers(Lotto lotto, Lotto winningNumbers) {
-        int matchCount = 0;
-        for(int number : lotto.getNumbers()) {
-            if(winningNumbers.getNumbers().contains(number)) {
-                matchCount++;
-            }
-        }
-        return matchCount;
+    private void addPrizeResult(LottoPrize lottoPrize) {
+        prizeResult.put(lottoPrize, prizeResult.get(lottoPrize) + 1);
+    }
+
+    private void addTotalPrizeMoney(LottoPrize lottoPrize) {
+        totalPrizeMoney += lottoPrize.getPrizeMoney();
+    }
+
+    public String calculateRateOfReturn(int amount) {
+        double rate = (totalPrizeMoney / amount) * 100;
+        return String.format("%.1f", rate);
     }
 
 }

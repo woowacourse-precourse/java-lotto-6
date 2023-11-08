@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import lotto.constants.ErrorMessage;
 import lotto.domain.PurchaseAmount;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -53,7 +52,6 @@ class PurchaseAmountTest {
             assertThat(purchaseAmount.getAmount()).isEqualTo(1000);
         }
 
-        //2,500입력
         @DisplayName("1,000원 단위로 나누어 떨어지지 않을 시 예외가 발생한다.")
         @ParameterizedTest(name = "구매 금액=\"{0}\"")
         @ValueSource(strings = {"2,500", "3,100"})

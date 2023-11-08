@@ -13,7 +13,7 @@ public class Lottos {
 
     private List<Lotto> createLottos(int numberOfLotto) {
         List<Lotto> lottos = new ArrayList<>();
-        for(int i=0; i<numberOfLotto; i++) {
+        for (int i = 0; i < numberOfLotto; i++) {
             lottos.add(new Lotto(LottoGenerator.createLotto()));
         }
         return lottos;

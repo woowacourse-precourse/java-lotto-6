@@ -7,6 +7,7 @@ import lotto.constants.ErrorMessage;
 public class Lotto {
     public static final int LOTTO_NUMBER_RANGE_MIN = 1;
     public static final int LOTTO_NUMBER_RANGE_MAX = 45;
+    public static final int LOTTO_NUMBER_LENGTH = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,36 +16,37 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if(!isCorrectSize(numbers)) {
+        if (!isCorrectSize(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_WRONG_SIZE.getMessage());
         }
-        if(!isInRange(numbers)) {
+        if (!isInRange(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_IN_RANGE.getMessage());
         }
-        if(!isUniqueNumbers(numbers)) {
+        if (!isUniqueNumbers(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_UNIQUE.getMessage());
         }
-        if(!isAscending(numbers)){
+        if (!isAscending(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_ASCENDING.getMessage());
         }
     }
 
     private boolean isCorrectSize(List<Integer> numbers) {
-        return numbers.size() == 6;
+        return numbers.size() == LOTTO_NUMBER_LENGTH;
     }
 
     private boolean isInRange(List<Integer> numbers) {
-        for(Integer number : numbers) {
-            if(number < LOTTO_NUMBER_RANGE_MIN || number > LOTTO_NUMBER_RANGE_MAX)
+        for (Integer number : numbers) {
+            if (number < LOTTO_NUMBER_RANGE_MIN || number > LOTTO_NUMBER_RANGE_MAX) {
                 return false;
+            }
         }
         return true;
     }
 
     private boolean isUniqueNumbers(List<Integer> numbers) {
-        boolean[] isContained = new boolean[LOTTO_NUMBER_RANGE_MAX+1];
-        for(Integer number : numbers) {
-            if(isContained[number]) {
+        boolean[] isContained = new boolean[LOTTO_NUMBER_RANGE_MAX + 1];
+        for (Integer number : numbers) {
+            if (isContained[number]) {
                 return false;
             }
             isContained[number] = true;
@@ -53,8 +55,8 @@ public class Lotto {
     }
 
     private boolean isAscending(List<Integer> numbers) {
-        for(int i = 1; i< numbers.size(); i++) {
-            if(numbers.get(i) < numbers.get(i-1)) {
+        for (int i = 1; i < numbers.size(); i++) {
+            if (numbers.get(i) < numbers.get(i - 1)) {
                 return false;
             }
         }

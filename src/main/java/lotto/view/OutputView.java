@@ -9,7 +9,6 @@ import lotto.domain.LottoPrize;
 import lotto.domain.Lottos;
 
 public class OutputView {
-
     public static final int NO_PRIZE_NUMBER = 2;
 
     public void printInputPurchaseAmount() {

@@ -33,34 +33,26 @@ public class LottoGameController {
         calculateWinningResult();
     }
 
-    private void calculateWinningResult() {
-        TotalWinningResult totalWinningResult = new TotalWinningResult();
-        totalWinningResult.calculateToTalRanks(lottos, winningNumbers, bonusNumber);
-
-        showPrizeResult(totalWinningResult);
-        showRateOfReturn(totalWinningResult);
+    private void purchaseLotto() {
+        PurchaseAmount purchaseAmount = setPurchaseAmount();
+        amount = purchaseAmount.getAmount();
+        lottos = createLottos(purchaseAmount.getNumberOfLotto());
+        outputView.printLottos(lottos);
     }
 
-    private void showPrizeResult(TotalWinningResult totalWinningResult) {
-        HashMap<LottoPrize, Integer> prizeResult = totalWinningResult.getPrizeResult();
-        outputView.printPrizeResult(prizeResult);
-    }
-
-    private void showRateOfReturn(TotalWinningResult totalWinningResult) {
-        String rateOfReturn = totalWinningResult.calculateRateOfReturn(amount);
-        outputView.printRateOfReturn(rateOfReturn);
-    }
-
-    private BonusNumber setBonusNumber(Lotto winningNumbers) {
+    public PurchaseAmount setPurchaseAmount() {
         try {
-            outputView.printInputBonusNumber();
-            String inputBonusNumber = inputView.inputBonusNumber();
-            return new BonusNumber(inputBonusNumber, winningNumbers);
+            outputView.printInputPurchaseAmount();
+            String amount = inputView.inputPurchaseAmount();
+            return new PurchaseAmount(amount);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
         }
+        return setPurchaseAmount();
+    }
 
-        return setBonusNumber(winningNumbers);
+    private Lottos createLottos(int numberOfLotto) {
+        return new Lottos(numberOfLotto);
     }
 
     private Lotto setWinningNumbers() {
@@ -77,25 +69,33 @@ public class LottoGameController {
         return setWinningNumbers();
     }
 
-    private void purchaseLotto() {
-        PurchaseAmount purchaseAmount = setPurchaseAmount();
-        amount = purchaseAmount.getAmount();
-        lottos = createLottos(purchaseAmount.getNumberOfLotto());
-        outputView.printLottos(lottos);
-    }
-
-    private Lottos createLottos(int numberOfLotto) {
-        return new Lottos(numberOfLotto);
-    }
-
-    public PurchaseAmount setPurchaseAmount() {
+    private BonusNumber setBonusNumber(Lotto winningNumbers) {
         try {
-            outputView.printInputPurchaseAmount();
-            String amount = inputView.inputPurchaseAmount();
-            return new PurchaseAmount(amount);
+            outputView.printInputBonusNumber();
+            String inputBonusNumber = inputView.inputBonusNumber();
+            return new BonusNumber(inputBonusNumber, winningNumbers);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
         }
-        return setPurchaseAmount();
+
+        return setBonusNumber(winningNumbers);
+    }
+
+    private void calculateWinningResult() {
+        TotalWinningResult totalWinningResult = new TotalWinningResult();
+        totalWinningResult.calculateToTalRanks(lottos, winningNumbers, bonusNumber);
+
+        showPrizeResult(totalWinningResult);
+        showRateOfReturn(totalWinningResult);
+    }
+
+    private void showPrizeResult(TotalWinningResult totalWinningResult) {
+        HashMap<LottoPrize, Integer> prizeResult = totalWinningResult.getPrizeResult();
+        outputView.printPrizeResult(prizeResult);
+    }
+
+    private void showRateOfReturn(TotalWinningResult totalWinningResult) {
+        String rateOfReturn = totalWinningResult.calculateRateOfReturn(amount);
+        outputView.printRateOfReturn(rateOfReturn);
     }
 }

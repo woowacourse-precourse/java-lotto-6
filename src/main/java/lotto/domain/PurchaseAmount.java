@@ -17,18 +17,18 @@ public class PurchaseAmount {
         this.amount = convertStringToInt(amount);
         this.numberOfLotto = this.amount / PRICE_PER_ONE_LOTTO;
     }
-    
+
     private void validate(String amount) {
-        if(isNull(amount)) {
+        if (isNull(amount)) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NULL_INPUT.getMessage());
         }
-        if(!isDigit(amount)) {
+        if (!isDigit(amount)) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NOT_DIGIT.getMessage());
         }
-        if(!isInRange(amount)) {
+        if (!isInRange(amount)) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_ZERO.getMessage());
         }
-        if(!isCorrectUnit(amount)) {
+        if (!isCorrectUnit(amount)) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_WRONG_UNIT_INPUT.getMessage());
         }
     }
@@ -38,7 +38,7 @@ public class PurchaseAmount {
     }
 
     private boolean isNull(String amount) {
-        return amount==null || amount.isEmpty() || amount.isBlank();
+        return amount == null || amount.isEmpty() || amount.isBlank();
     }
 
     private boolean isDigit(String amount) {

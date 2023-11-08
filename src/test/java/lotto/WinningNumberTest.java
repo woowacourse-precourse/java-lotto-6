@@ -7,7 +7,6 @@ import java.util.List;
 import lotto.constants.ErrorMessage;
 import lotto.util.StringToListConverter;
 import lotto.util.WinningNumbersValidator;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,6 @@ public class WinningNumberTest {
     @DisplayName("입력 값 검증")
     @Nested
     class ValidatorTest {
-        //쉼표가 포함되어야 한다.
         @DisplayName("당첨 번호에 쉼표(,)가 없다면 예외가 발생한다.")
         @Test
         void inputWinningNumberWithoutCommaSeparator() {
@@ -39,7 +37,6 @@ public class WinningNumberTest {
                     .hasMessage(ErrorMessage.LOTTO_NUMBER_WRONG_SIZE.getMessage());
         }
 
-        //쉼표로 나누었을 때, 각 String은 숫자여야 한다.
         @DisplayName("당첨 번호를 쉼표(,)를 기준으로 나눌 때, 각 문자열이 숫자가 아니면 예외가 발생한다.")
         @Test
         void inputWinningNumberNoDigit() {
@@ -58,7 +55,7 @@ public class WinningNumberTest {
 
         assertAll(
                 () -> assertThat(winningNumbers.size()).isEqualTo(6),
-                () -> assertThat(winningNumbers.containsAll(List.of(1,2,3,4,5,6)))
+                () -> assertThat(winningNumbers.containsAll(List.of(1, 2, 3, 4, 5, 6)))
         );
     }
 }

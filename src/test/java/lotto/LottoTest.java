@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -54,5 +55,16 @@ class LottoTest {
 
         assertThatThrownBy(() -> lottoService.validateWinningNumbers(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구매한 로또 수에 맞는 로또 발행 여부 확인")
+    @Test
+    void createLottosByLottoAmount() {
+        List<Lotto> lottos = new ArrayList<>();
+        final int lottoAmount = 5;
+
+        lottos = lottoService.generateLottos(lottoAmount, lottos);
+
+        assertThat(lottos.size()).isEqualTo(5);
     }
 }

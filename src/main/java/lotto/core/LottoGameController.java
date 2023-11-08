@@ -1,5 +1,6 @@
 package lotto.core;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.preprocessor.BonusNumPreprocessor;
@@ -72,16 +73,25 @@ public class LottoGameController {
     private void reportWinningResult() {
         System.out.println("\n당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + rankCounts.get(4) + "개\n" +
-                "4개 일치 (50,000원) - " + rankCounts.get(3) + "개\n" +
-                "5개 일치 (1,500,000원) - " + rankCounts.get(2) + "개\n" +
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCounts.get(1) + "개\n" +
-                "6개 일치 (2,000,000,000원) - " + rankCounts.get(0) + "개");
+        for (int i = Rank.values().length-1; i >= 0; i--) {
+            String matchOfNumResult = makeMatchOtNumsResult(Rank.values()[i]);
+            printMatchOtNumsResult(matchOfNumResult);
+        }
     }
 
     private void reportEarningsRate() {
-        System.out.println(earning);
-        System.out.println(amount);
         System.out.println("총 수익률은 " + String.format("%.1f", (double) earning / amount * 100) + "%입니다.");
+    }
+
+    private void printMatchOtNumsResult(String matchOfNumResult) {
+        System.out.println(matchOfNumResult);
+    }
+
+    private String makeMatchOtNumsResult(Rank rank) {
+        String matchOfNumResult = rank.toString();
+        matchOfNumResult += " ("
+                + new DecimalFormat("###,###").format(rank.getPrizeMoney())
+                + "원) - " + rankCounts.get(rank.ordinal()) + "개";
+        return matchOfNumResult;
     }
 }

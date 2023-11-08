@@ -24,8 +24,22 @@ public enum Rank {
                 .orElse(null);
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
     public int getPrizeMoney() {
         return prizeMoney;
     }
 
+    @Override
+    public String toString() {
+        String matchOfNumResult = this.getMatchCount() + "개 일치";
+
+        if (this == Rank.SECOND) {
+            matchOfNumResult += ", 보너스 볼 일치";
+        }
+
+        return matchOfNumResult;
+    }
 }

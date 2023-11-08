@@ -6,6 +6,7 @@ import lotto.Validator.Validator;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 import lotto.domain.Lottos;
+import lotto.domain.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public class LottoController {
         buyTicket();
         receiveWinningNumber();
         compareLottos();
+        showComparisonResults();
     }
     private void receiveMoney() {
         try {
@@ -76,5 +78,12 @@ public class LottoController {
     private void compareLottos() {
         matchedNumber = lottoService.CompareNumbers(lottos.purchasedLottos, winningNumbers);
         isBonusBall = lottoService.CompareBonusNumbers(lottos.purchasedLottos, bonusBall);
+    }
+    private void showComparisonResults() {
+        User user = new User(matchedNumber);
+        user.setRanks(isBonusBall);
+        outputView.printWinningCounts(user.getAllRanks());//당첨자 수를 표시한다.
+        float profitPercentage = user.getProfitPercentage(money);
+        outputView.printprofitPercentage(profitPercentage);//수익률을 표시한다.
     }
 }

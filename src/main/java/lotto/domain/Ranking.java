@@ -1,31 +1,32 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.function.BiPredicate;
 
 public enum Ranking {
 
-    NONE(-1, false, 0),
-    FIFTH(3, false, 5_000),
-    FOURTH(4, false, 50_000),
-    THIRD(5, false, 1_500_000),
-    SECOND(5, true, 30_000_000),
-    FIRST(6, false, 2_000_000_000);
+    NONE(0, (correctCount, hasBonus) -> correctCount < 3, 0),
+    FIFTH(3, (correctCount, hasBonus) -> correctCount == 3, 5_000),
+    FOURTH(4, (correctCount, hasBonus) -> correctCount == 4, 50_000),
+    THIRD(5, (correctCount, hasBonus) -> correctCount == 5 && !hasBonus, 1_500_000),
+    SECOND(5, (correctCount, hasBonus) -> correctCount == 5 && hasBonus, 30_000_000),
+    FIRST(6, (correctCount, hasBonus) -> correctCount == 6, 2_000_000_000);
 
 
     private final int correctCount;
-    private final boolean bonusCheck;
+    private final BiPredicate<Integer, Boolean> condition;
     private final int prize;
 
-    Ranking(int correctCount, boolean bonusCheck, int prize) {
+    Ranking(int correctCount, BiPredicate<Integer, Boolean> condition, int prize) {
         this.correctCount = correctCount;
-        this.bonusCheck = bonusCheck;
+        this.condition = condition;
         this.prize = prize;
     }
 
     public static Ranking from(int correctCount, boolean hasBonus) {
         return Arrays.stream(values())
-                .filter(ranking -> ranking.correctCount == correctCount && ranking.bonusCheck == hasBonus)
-                .findFirst()
+                .filter(ranking -> ranking.condition.test(correctCount, hasBonus))
+                .findAny()
                 .orElse(NONE);
     }
 

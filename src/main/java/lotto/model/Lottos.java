@@ -15,14 +15,14 @@ public class Lottos {
     private final List<Lotto> lottos;
 
     public Lottos(int paymentAmount, RandomUtil randomUtil) {
-        int numberOfLotto = computeNumberOfLotto(paymentAmount);
+        int numberOfLotto = calculateNumberOfLotto(paymentAmount);
         lottos = IntStream.range(0, numberOfLotto)
                 .mapToObj(
                         i -> new Lotto(randomUtil.createSortedRandomNumbersInRange(START_LOTTO_NUMBER, LAST_LOTTO_NUMBER
                                 , LOTTO_NUMBER_COUNT))).toList();
     }
 
-    private int computeNumberOfLotto(int price) {
+    private int calculateNumberOfLotto(int price) {
         return price / LOTTO_PRICE;
     }
 

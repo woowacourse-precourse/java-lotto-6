@@ -7,8 +7,8 @@ import java.util.Map;
 import lotto.Domain.Lotto;
 import lotto.Domain.Result;
 import lotto.LottoGenerator;
-import lotto.Util.Validation;
 import lotto.View.InputView;
+import lotto.View.OutputView;
 
 
 public class LottoController {
@@ -35,21 +35,30 @@ public class LottoController {
     }
 
     private void purchaseLotto() {
+        OutputView.printAvailableMoneyMsg();
+
         int availableMoney = InputView.getAvailableMoney();
         this.purchasedAmount = calcAvailableAmount(availableMoney);
+
+        OutputView.printPurchasedAmountMsg(this.purchasedAmount);
     }
 
     private void publishLotto() {
         for (int i = 0; i < this.purchasedAmount; i++) {
             List<Integer> lottoNumbers = LottoGenerator.generateRandomLotto();
             Lotto lotto = new Lotto(lottoNumbers);
+            OutputView.printNumbers(lotto.getNumbers());
             lottos.add(lotto);
         }
     }
 
     private void getWinnerLotto() {
+        OutputView.printWinnerLottoMsg();
+
         List<Integer> numbers = InputView.getLottoNumbers();
         setWinnerLotto(new Lotto(numbers));
+
+        OutputView.printBonusNumberMsg();
 
         int bonusNumber = InputView.getBonusNumber(numbers);
         setBonusNumber(bonusNumber);
@@ -122,5 +131,20 @@ public class LottoController {
         }
 
         return ((double) totalProfit / (this.purchasedAmount * LOTTO_PRICE_PER_GAME) * 100);
+    }
+
+    private void getResult() {
+        Map<String, Integer> allLottoResults = allLottoResult();
+        OutputView.printResultsMsg();
+        OutputView.printAllResultsMsg(allLottoResults);
+        OutputView.printProfitRateMsg(
+                calcProfitRate(allLottoResults));
+    }
+
+    public void run() {
+        purchaseLotto();
+        publishLotto();
+        getWinnerLotto();
+        getResult();
     }
 }

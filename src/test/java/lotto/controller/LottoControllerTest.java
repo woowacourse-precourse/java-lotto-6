@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static org.mockito.Mockito.*;
+
 import lotto.model.PurchaseAmount;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -10,9 +12,6 @@ import org.mockito.*;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
-
-
-import static org.mockito.Mockito.*;
 
 class LottoControllerTest {
 
@@ -35,9 +34,8 @@ class LottoControllerTest {
 
     @Test
     @DisplayName("로또 구매 성공")
-    void testPurchaseLotto() {
+    void testGenerateLottos() {
         Long paidMoney = 1000L;
-        PurchaseAmount purchaseAmount = new PurchaseAmount(paidMoney);
 
         when(inputView.inputPurchaseAmount()).thenReturn(paidMoney);
         when(lottoService.generateLotto()).thenReturn(Arrays.asList(1, 2, 3, 4, 5, 6));

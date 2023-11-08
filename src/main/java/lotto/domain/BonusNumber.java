@@ -1,13 +1,14 @@
 package lotto.domain;
 
+import java.util.List;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class BonusNumber {
-    WinningNumber winningNumbers;
     //상수(static final) 또는 클래스 변수
     private static int BONUS_NUMBER;
 
-    public void createBonusNumber() {
+    public int createBonusNumber(List<Integer> winningNumbers) {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonusNumberInput;
 
@@ -15,13 +16,13 @@ public class BonusNumber {
             try {
                 bonusNumberInput = validateFormat(readLine());
                 validateRange(bonusNumberInput);
+                compareWinningAndBonus(winningNumbers, bonusNumberInput);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        compareWinningAndBonus();
-        BONUS_NUMBER = bonusNumberInput;
+        return BONUS_NUMBER = bonusNumberInput;
     }
 
     private int validateFormat(String bonusNumberInput) {

@@ -7,7 +7,6 @@ public class ValidatorMessage {
     public static final String NOT_A_NUMBER_ERROR = "숫자로 입력하셔야합니다.";
     public static final String NOT_A_SIX_DIGIT_ERROR = "로또 번호는 6자리여야 합니다.";
     public static final String NOT_A_VALID_RANGE_NUMBER_ERROR = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
-    public static final String NOT_A_VALID_DELIMITER_ERROR = "구분자는 콤마(,)로 이루어져야 합니다.";
     public static final String NOT_A_DISTINCT_NUMBER_ERROR = "로또 번호의 각 자리수는 서로 달라야합니다.";
     public static final String NOT_ENTER_VALUE_BETWEEN_DELIMITER = "콤마 사이에 값을 넣어주셔야합니다.";
 }

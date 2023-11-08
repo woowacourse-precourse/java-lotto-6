@@ -1,6 +1,5 @@
 package lotto.Domain;
 
-import static lotto.Util.InputValidator.checkCommaDelimiter;
 import static lotto.Util.InputValidator.checkDistinctBetweenWinningAndBonusNumber;
 import static lotto.Util.InputValidator.checkDistinctNumbers;
 import static lotto.Util.InputValidator.checkSixNumber;
@@ -20,11 +19,10 @@ public class LottoSystem {
     public void storeLottoWinningNumber(String lottoWinningNumber) {
         lottoWinningNumber = lottoWinningNumber.replaceAll("\\s*,\\s*", ",");
         if (isValidRangeNumber(lottoWinningNumber)) {
-            isValidRangeNumber(lottoWinningNumber);
-            checkCommaDelimiter(lottoWinningNumber);
             checkSixNumber(lottoWinningNumber);
             checkDistinctNumbers(lottoWinningNumber);
         }
+
         this.lottoWinningNumbers = convertStringToIntegerList(lottoWinningNumber);
         Collections.sort(this.lottoWinningNumbers);
     }
@@ -44,7 +42,8 @@ public class LottoSystem {
             int countMatchingNumber = 0;
             boolean bonusNumberflag = false;
             for (int ticketNumber : ticketNumbers) {
-                countMatchingNumber = checkContainWinningNumber(this.lottoWinningNumbers, ticketNumber, countMatchingNumber);
+                countMatchingNumber = checkContainWinningNumber(this.lottoWinningNumbers, ticketNumber,
+                        countMatchingNumber);
                 bonusNumberflag = checkContainBonusNumber(this.lottoBonusNumber, ticketNumber);
             }
             countMatchingNumber = checkBonusNumber(countMatchingNumber, bonusNumberflag);

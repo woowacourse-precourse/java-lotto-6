@@ -9,11 +9,10 @@ public class Customer {
     private List<Lotto> purchasedLottos;
     private int lottoPurchaseAmount;
 
-    public List<Lotto> buyLotto(LottoStore lottoStore, String lottoPurchaseAmount) {
+    public void buyLotto(LottoStore lottoStore, String lottoPurchaseAmount) {
         checkDivisibleBy1000(lottoPurchaseAmount);
         this.lottoPurchaseAmount = Integer.parseInt(lottoPurchaseAmount);
         this.purchasedLottos = lottoStore.generateLotto(this.lottoPurchaseAmount);
-        return this.purchasedLottos;
     }
 
     public List<String> getPurchasedLottoNumbers() {

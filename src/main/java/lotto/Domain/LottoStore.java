@@ -21,13 +21,6 @@ public class LottoStore {
         return lotto;
     }
 
-    List<Integer> generateSortedRandomNumber() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_MAX_DIGIT);
-        List<Integer> sortedRandomNumbers = new ArrayList<>(randomNumbers);
-        Collections.sort(sortedRandomNumbers);
-        return sortedRandomNumbers;
-    }
-
     public double caculateTotalLottoReward(Map<String, Integer> lottoWinningStatistics) {
         double totalReward = 0;
         for (WinningStatistics winningInformation : WinningStatistics.values()) {
@@ -38,7 +31,16 @@ public class LottoStore {
         return totalReward;
     }
 
-    private boolean isExistingWinningType(Map<String, Integer> lottoWinningStatistics, WinningStatistics winningInformation) {
+    private List<Integer> generateSortedRandomNumber() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER,
+                LOTTO_MAX_DIGIT);
+        List<Integer> sortedRandomNumbers = new ArrayList<>(randomNumbers);
+        Collections.sort(sortedRandomNumbers);
+        return sortedRandomNumbers;
+    }
+
+    private boolean isExistingWinningType(Map<String, Integer> lottoWinningStatistics,
+                                          WinningStatistics winningInformation) {
         String winningType = winningInformation.getWinningType();
         return lottoWinningStatistics.get(winningType) != null;
     }

@@ -17,6 +17,9 @@ public class InputView {
             input = Console.readLine();
             isNumber(input);
             isEmpty(input);
+        } catch (NumberFormatException e) {
+            System.out.println(e.getMessage());
+            return inputLottoPurchaseAmount();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputLottoPurchaseAmount();
@@ -31,9 +34,12 @@ public class InputView {
             input = Console.readLine();
             isNumber(input);
             isEmpty(input);
+        } catch (NumberFormatException e) {
+            System.out.println(e.getMessage());
+            return inputLottoPurchaseAmount();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputLottoWinningNumber();
+            return inputLottoPurchaseAmount();
         }
         return input;
     }
@@ -45,9 +51,12 @@ public class InputView {
             input = Console.readLine();
             isNumber(input);
             isEmpty(input);
+        } catch (NumberFormatException e) {
+            System.out.println(e.getMessage());
+            return inputLottoPurchaseAmount();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputLottoBonusNumber();
+            return inputLottoPurchaseAmount();
         }
         return input;
     }

@@ -6,8 +6,6 @@ import static lotto.Util.ValidatorMessage.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class InputValidator {
 
@@ -26,20 +24,18 @@ public class InputValidator {
 
     public static boolean isNumber(String input) {
         if (input.contains(LOTTO_NUMBER_DELIMITER)) {
-            input = input.replaceAll("\\s*,\\s*", "");
-            System.out.println(input);
+            input = input.replaceAll("[,\\\\s]+", "");
         }
         for (char c : input.toCharArray()) {
             if (!Character.isDigit(c)) {
-                throw new IllegalArgumentException(ERROR_MESSAGE + NOT_A_NUMBER_ERROR);
+                throw new NumberFormatException(ERROR_MESSAGE + NOT_A_NUMBER_ERROR);
             }
         }
         return true;
     }
 
     public static void checkSixNumber(String input) {
-        String[] parts = input.split(LOTTO_NUMBER_DELIMITER);
-        if (parts.length != 6) {
+        if (input.split(LOTTO_NUMBER_DELIMITER).length != 6) {
             throw new IllegalArgumentException(ERROR_MESSAGE + NOT_A_SIX_DIGIT_ERROR);
         }
     }
@@ -60,15 +56,6 @@ public class InputValidator {
             }
         }
         return true;
-    }
-
-    public static void checkCommaDelimiter(String input) {
-        Pattern pattern = Pattern.compile("^[0-9]+,[0-9]+,[0-9]+,[0-9]+,[0-9]+,[0-9]+$");
-        Matcher matcher = pattern.matcher(input);
-
-        if (!matcher.matches()) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + NOT_A_VALID_DELIMITER_ERROR);
-        }
     }
 
     public static void checkDistinctNumbers(String input) {

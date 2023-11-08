@@ -14,11 +14,13 @@ public class LottoController {
     private final User user;
     private Lotto lotto;
     private OutputView outputView;
+    private List<List<Integer>> randomSixNumbers;
     public LottoController() {
         this.inputView = new InputView();
         this.user = new User();
         this.lotto = null;
         this.outputView = new OutputView();
+        this.randomSixNumbers = new ArrayList<>();
     }
 
     public void startGame() {
@@ -33,8 +35,8 @@ public class LottoController {
                 outputView.printErrorMessage(e);
             }
         }
-        List<List<Integer>> RandomSixNumbers = generatePurchaseAmountRandomSixNumber(purchaseAmount);
-        outputView.printRandomSixNumbers(RandomSixNumbers);
+        generatePurchaseAmountRandomSixNumber(purchaseAmount);
+        outputView.printRandomSixNumbers(randomSixNumbers);
         while (true) {
             inputView.inputLottoNumbersView();
             try {
@@ -56,14 +58,14 @@ public class LottoController {
         }
     }
 
-    private List<List<Integer>> generatePurchaseAmountRandomSixNumber(int purchaseAmount) {
+    private void generatePurchaseAmountRandomSixNumber(int purchaseAmount) {
         int amount = purchaseAmount / 1000;
         RandomSixNumber randomSixNumber = new RandomSixNumber();
-        List<List<Integer>> randomSixNumbers = new ArrayList<>();
         for (int round = 1; round <= amount; round++) {
             List<Integer> sixNumber = randomSixNumber.generate();
             randomSixNumbers.add(sixNumber);
         }
-        return randomSixNumbers;
     }
+
+
 }

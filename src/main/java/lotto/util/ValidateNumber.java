@@ -11,4 +11,13 @@ public class ValidateNumber {
         return Integer.parseInt(inputValue);
     }
 
+
+    private static void isPositive(int inputValue){
+
+        if(inputValue <= 0){
+            throw new IllegalArgumentException("[ERROR] 0보다 큰 정수를 입력해주세요.");
+        }
+
+    }
+
 }

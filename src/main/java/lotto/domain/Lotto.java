@@ -15,15 +15,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-        if (numbers.stream().count() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException();
-        }
-    }
-
     public static Lotto makeLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LOTTO_COUNT);
         return new Lotto(numbers);
@@ -31,5 +22,19 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return this.numbers;
+    }
+
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+        if (numbers.stream().count() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException();
+        }
+        for (Integer number : numbers) {
+            if (number < START_NUMBER || number > END_NUMBER) {
+                throw new IllegalArgumentException();
+            }
+        }
     }
 }

@@ -31,6 +31,12 @@ public class InputValidator {
         return ResponseStatus.OK;
     }
 
+    public static ResponseStatus lottoLengthCheck(List<Integer> lottoNumbers){
+        if(lottoNumbers.size() > LottoConstant.LOTTO_NUMBER_COUNT){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
+        }
+        return ResponseStatus.OK;
+    }
 
     public static <E> ResponseStatus lottoNumbersEmptyCheck(List<E> lottoNumbers){
         if(lottoNumbers.isEmpty()) {

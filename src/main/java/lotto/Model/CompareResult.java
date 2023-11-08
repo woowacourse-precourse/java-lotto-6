@@ -1,4 +1,4 @@
-package lotto.Domain;
+package lotto.Model;
 
 public class CompareResult {
 

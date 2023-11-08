@@ -1,10 +1,8 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import lotto.Domain.BonusNumber;
 
 public class InputView {
     private final static String INPUT_LOTTO_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";

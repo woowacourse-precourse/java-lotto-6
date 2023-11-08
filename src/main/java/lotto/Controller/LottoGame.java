@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.Domain.BonusNumber;
-import lotto.Domain.CompareResult;
-import lotto.Domain.LottoPurchaseAmount;
-import lotto.Domain.Lotto;
-import lotto.Domain.LottoGenerator;
-import lotto.Domain.WinningResult;
+import lotto.Model.BonusNumber;
+import lotto.Model.CompareResult;
+import lotto.Model.LottoPurchaseAmount;
+import lotto.Model.Lotto;
+import lotto.Model.LottoGenerator;
+import lotto.Model.WinningResult;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 

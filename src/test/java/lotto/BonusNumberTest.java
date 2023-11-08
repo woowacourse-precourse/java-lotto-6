@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.Domain.BonusNumber;
+import lotto.Model.BonusNumber;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;

@@ -1,4 +1,4 @@
-package lotto.Domain;
+package lotto.Model;
 
 import lotto.View.ExceptionMessages;
 import java.util.HashSet;

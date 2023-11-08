@@ -2,7 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.Test;
-import lotto.Domain.LottoPurchaseAmount;
+import lotto.Model.LottoPurchaseAmount;
 
 public class PurchaseAmountTest {
 

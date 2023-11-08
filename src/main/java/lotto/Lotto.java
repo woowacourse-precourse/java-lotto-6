@@ -15,13 +15,27 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
-        if(!checkAll(numbers)){
+        if(!checkRangeAll(numbers)){
             throw new IllegalArgumentException();
         }
-
+        if(!checkDupliAll(numbers)){
+            throw new IllegalArgumentException();
+        }
     }
 
-    private boolean checkAll(List<Integer> numbers){
+    private boolean checkDupliAll(List<Integer> numbers){
+        boolean res = true;
+        for(int i=1;i<6;i++){
+            res = res & checkDupli(numbers.get(i-1), numbers.get(i));
+        }
+        return res;
+    }
+
+    private boolean checkDupli(int a, int b){
+        return a!=b;
+    }
+
+    private boolean checkRangeAll(List<Integer> numbers){
         boolean res = true;
         for(int i=0;i<6;i++){
             res = res & checkRange(numbers.get(i));

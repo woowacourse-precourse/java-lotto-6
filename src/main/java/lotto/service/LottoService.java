@@ -6,8 +6,10 @@ import lotto.domain.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import static lotto.ErrorMessage.*;
+import static lotto.constant.DefinedNumber.PERCENT;
+import static lotto.constant.ErrorMessage.*;
 
 public class LottoService {
 
@@ -55,11 +57,18 @@ public class LottoService {
         return LottoWinningCase.compareWhichCaseItIs(myLottoNumbers, winningNumber, bonusNumnber);
     }
 
-    public int getCaseNum(int lottoWinCase) {return 0;}
+    public int calculateTotalIncome(Map<LottoWinningCase, Integer> winStatisticMap) {
+        int totalIncome = 0;
+        for (LottoWinningCase lottoWinningCase : winStatisticMap.keySet()) {
+            int winCaseCount = winStatisticMap.get(lottoWinningCase);
+            totalIncome += winCaseCount * lottoWinningCase.getReward();
+        }
+        return totalIncome;
+    }
 
-    public void increaseTotalIncomeTest(int lottoWinCase) {}
+    public String typeConvertIncomeRate(float incomeRate) {
 
-    public String typeConvertIncomeRate(float incomeRate) {return "A";}
+    }
 
     public String calculateIncomeRate(int totalIncomde, int spentAmount) {return "A";}
 }

@@ -13,7 +13,6 @@ public class LottoControllerTest {
     void buyLottoByChange(){
         LottoController lottoController = new LottoController();
         assertThatThrownBy(lottoController::buyLotto);
-
     }
 
 

@@ -6,6 +6,7 @@ public class LottoException extends IllegalArgumentException{
     }
 
     public static LottoException triggeredBy(LottoErrorMsg lottoErrorMsg){
+        System.out.println(lottoErrorMsg.getMessage());
         return new LottoException(lottoErrorMsg);
     }
 }

@@ -6,6 +6,7 @@ import static lotto.exception.LottoErrorMsg.DUPLICATED;
 import static lotto.exception.LottoErrorMsg.OUT_OF_RANGE;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import lotto.exception.LottoException;
 
@@ -18,6 +19,7 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
+        numbers.sort(Comparator.naturalOrder());
         return numbers;
     }
 

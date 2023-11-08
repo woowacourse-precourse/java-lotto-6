@@ -35,7 +35,7 @@ public class PurchasedLottos {
     }
 
     public Amount spendAmount() {
-        int i = purchasedLottosCount() * 1000;
+        int i = purchasedLottosCount() * UNIT_OF_MONEY;
         return new Amount(String.valueOf(i));
     }
 }

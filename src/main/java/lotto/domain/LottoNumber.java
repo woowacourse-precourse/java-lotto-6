@@ -3,6 +3,9 @@ package lotto.domain;
 import java.util.Objects;
 
 public class LottoNumber {
+    private static final String ERROR_INTEGER_MESSAGE = "[ERROR] 로또 번호는 숫자여야 합니다.";
+    private static final String ERROR_RANGE_MESSAGE = "[ERROR] 로또 번호는 1이상 45이하 입니다.";
+
     private final int lottoNumber;
 
     public LottoNumber(String lottoNumber) {
@@ -12,10 +15,10 @@ public class LottoNumber {
 
     private void validate(String lottoNumber) {
         if (isInvalidType(lottoNumber)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
+            throw new IllegalArgumentException(ERROR_INTEGER_MESSAGE);
         }
         if (isInvalidRange(lottoNumber)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1이상 45이하 입니다.");
+            throw new IllegalArgumentException(ERROR_RANGE_MESSAGE);
         }
     }
 

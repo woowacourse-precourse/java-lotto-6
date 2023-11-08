@@ -11,25 +11,25 @@ import lotto.dto.LottoMatchResultDto;
 public class OutputView {
     private static final String DIVIDER = "---";
     private static final String RESULT_HEADER_MESSAGE = "당첨 통계";
+    private static final String DELIMITER = ", ";
+    private static final String PREFIX = "[";
+    private static final String SUFFIX = "]";
+    private static final String PURCHASED_LOTTOS_COUNT_MESSAGE = "%d개를 구매했습니다.\n";
+    private static final String LOTTO_STATISTIC_FORMAT = "%d개 일치 (%,d원) - %d개";
+    private static final String LOTTO_STATISTIC_FORMAT2 = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
+    private static final String PROFITRATE_MESSAGE = "총 수익률은 %.1f%%입니다.\n";
 
     public void outputPurchasedLottos(PurchasedLottos purchasedLottos) {
         outputPurchasedLottosCount(purchasedLottos);
 
         purchasedLottos.getCurrentPurchasedLottosList()
                 .stream()
-                .map(lotto -> lotto.stream().collect(Collectors.joining(", ", "[", "]")))
+                .map(lotto -> lotto.stream().collect(Collectors.joining(DELIMITER, PREFIX, SUFFIX)))
                 .forEach(System.out::println);
     }
 
-    private static void printYield(double yield) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("총 수익률은 ")
-                .append(yield)
-                .append("입니다.");
-    }
-
     public void outputPurchasedLottosCount(PurchasedLottos purchasedLottos) {
-        System.out.printf("%d개를 구매했습니다.%n", purchasedLottos.purchasedLottosCount());
+        System.out.printf(PURCHASED_LOTTOS_COUNT_MESSAGE, purchasedLottos.purchasedLottosCount());
     }
 
     public void outputLottoMatchResult(LottoMatchResultDto lottoMatchResultDto) {
@@ -39,7 +39,7 @@ public class OutputView {
     }
 
     private void outputProfitRate(LottoMatchResultDto lottoMatchResultDto) {
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", lottoMatchResultDto.getProfitRate());
+        System.out.printf(PROFITRATE_MESSAGE, lottoMatchResultDto.getProfitRate());
     }
 
     private void outputLottoStatistic(LottoMatchResultDto lottoMatchResultDto) {
@@ -55,9 +55,9 @@ public class OutputView {
         Rank rank = entry.getKey();
         int ticketCount = entry.getValue();
 
-        String printFormat = "%d개 일치 (%,d원) - %d개";
+        String printFormat = LOTTO_STATISTIC_FORMAT;
         if (rank == Rank.SECOND) {
-            printFormat = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
+            printFormat = LOTTO_STATISTIC_FORMAT2;
         }
         return String.format(printFormat, rank.getMatchCount(), rank.getPrize(), ticketCount);
     }

@@ -1,6 +1,9 @@
 package lotto.domain;
 
 public class Amount {
+    private static final String ERROR_INTEGER_MESSAGE = "[ERROR] 구입 금액이 숫자가 아닙니다.";
+    private static final String ERROR_RANGE_MESSAGE = "[ERROR] 구입 금액은 1000원 단위여야 합니다.";
+
     private final int amount;
 
     public Amount(String amount) {
@@ -10,10 +13,10 @@ public class Amount {
 
     private void validate(String amount) {
         if (isInvalidType(amount)) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액이 숫자가 아닙니다.");
+            throw new IllegalArgumentException(ERROR_INTEGER_MESSAGE);
         }
         if (isInvalidUnit(amount)) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
+            throw new IllegalArgumentException(ERROR_RANGE_MESSAGE);
         }
     }
 

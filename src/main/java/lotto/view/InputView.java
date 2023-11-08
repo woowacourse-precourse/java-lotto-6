@@ -14,8 +14,26 @@ public class InputView {
     public int inputPurchasePrice() {
         System.out.println(InputMessageEnum.INPUT_PURCHASE_PRICE_MESSAGE.getMessage());
         String amount = Console.readLine();
-        // validate(amount); // TODO : 검증 로직 작성
+        try {
+            validateAmount(amount);
+        } catch (Exception e) {
+            inputPurchasePrice();
+        }
         return Integer.parseInt(amount);
+    }
+
+    private void validateAmount(String amount) {
+        int amountNumber;
+        try {
+            amountNumber = Integer.parseInt(amount);
+        } catch (Exception e) {
+            System.out.println(ErrorMessageEnum.ERROR_PRICE_NOT_NUMBER_MESSAGE.getMessage());
+            throw new IllegalArgumentException();
+        }
+        if (amountNumber % 1000 != 0) {
+            System.out.println(ErrorMessageEnum.ERROR_PRICE_NOT_THOUSANDS_MESSAGE.getMessage());
+            throw new IllegalArgumentException();
+        }
     }
 
     public List<Integer> inputWinningNumbers(int lottoCount) {

@@ -2,10 +2,14 @@ package lotto.service;
 
 import lotto.domain.LottoCount;
 import lotto.domain.Lottos;
+import lotto.domain.WinningNumbers;
 import lotto.utility.TypeConverter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static lotto.configuration.InputFormatConfig.LOTTO_PRICE;
 import static lotto.configuration.RandomNumberConfig.COUNT;
@@ -44,5 +48,25 @@ class LottoGameServiceTest {
         for (int i = 0; i < lottoCount.getLottoCount(); i++) {
             assertThat(lottos.get(i).getNumbers()).hasSize(COUNT);
         }
+    }
+
+    @DisplayName("입력 받은 당첨 번호들의 문자열 값을 정수 리스트를 가지는 object type으로 포장할 수 있다.")
+    @ParameterizedTest
+    @CsvSource({"'1,2,3,4,5,6'", "'40,41,42,43,44,45'", "'1,7,19,28,37,45'"})
+    void parseWinningNumbers(String winningNumberInput) {
+        // given
+        List<Integer> winningNumbers = new ArrayList<>();
+
+        for (String winningNumber : winningNumberInput.split(",")) {
+            winningNumbers.add(Integer.parseInt(winningNumber));
+        }
+
+        // when
+        WinningNumbers parsedWinningNumbers = lottoGameService.parseWinningNumbers(winningNumberInput);
+
+        // then
+        assertThat(parsedWinningNumbers.getWinningNumbers()).hasSize(COUNT)
+                .containsExactly(winningNumbers.get(0), winningNumbers.get(1), winningNumbers.get(2),
+                        winningNumbers.get(3), winningNumbers.get(4), winningNumbers.get(5));
     }
 }

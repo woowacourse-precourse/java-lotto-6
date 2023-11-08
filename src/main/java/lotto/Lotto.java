@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import static constant.LottoValue.LOTTO_SIZE;
+import static output.OutputMessage.*;
 
 public class Lotto {
 
@@ -22,14 +23,15 @@ public class Lotto {
         lottoValidation.lottoValidate(numbers);
     }
 
-    // TODO: 추가 기능 구현
     public void printLotto(){
-        System.out.print("[");
+        System.out.print(FRONT_BRACKET.message());
         for (int i = 0; i < LOTTO_SIZE.value(); i++) {
             System.out.print(numbers.get(i));
-            if(i!=LOTTO_SIZE.value()-1) System.out.print(", ");
+            if(i!=LOTTO_SIZE.value()-1) {
+                System.out.print(COMMA_WITH_SPACE.message());
+            }
         }
-        System.out.println("]");
+        System.out.println(BACK_BRACKET.message());
     }
 
     public boolean containSame(int i){

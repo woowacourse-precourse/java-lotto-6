@@ -56,6 +56,10 @@ public class WinningNumbersFactory {
     public void setBonus(List<Integer> winning){
         System.out.println(GIVE_THE_WINNING_NUMBERS.message());
         String input = readLine();
+        bonusValidate(winning, input);
+    }
+
+    private void bonusValidate(List<Integer> winning, String input) {
         try{
             bonus = Integer.parseInt(input);
             if(winning.contains(bonus)){

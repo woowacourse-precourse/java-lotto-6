@@ -1,6 +1,8 @@
-package lotto;
+package output;
 
 import constant.Reward;
+import lotto.Lotto;
+import lotto.WinningNumbersFactory;
 
 import java.text.DecimalFormat;
 import java.util.*;
@@ -37,7 +39,7 @@ public class Performance {
                 bonuscheck(lotto, setter.getBonus(), performance);
                 continue;
             }
-            if(matchCount == 6){
+            if(matchCount == SIX.getSameCount()){
                 performance.add(STATISTICS_SIX_SAME.value());
                 continue;
             }
@@ -48,15 +50,15 @@ public class Performance {
 
     private void bonuscheck(Lotto lotto, int bonus, List<Integer> performance) {
         if(lotto.containSame(bonus)) {
-            performance.add(6);
+            performance.add(SIX.getSameCount());
             return;
         }
-        performance.add(5);
+        performance.add(FIVE.getSameCount());
     }
 
     private void statistics(List<Integer> performance) {
         System.out.println(OUTPUT_STATISTICS_START);
-        AtomicInteger num = new AtomicInteger(3);
+        AtomicInteger num = new AtomicInteger(THREE.getSameCount());
         Arrays.stream(REWARDS)
                 .forEach(reward -> printOutput(num.getAndIncrement(), reward, performance));
     }
@@ -71,9 +73,6 @@ public class Performance {
         System.out.printf(OUTPUT_MESSAGE_WITHOUT_BONUS.message(), reward.getSameCount(), DECIMAL_FORMAT.format(reward.getReward()), Collections.frequency(performance, num));
     }
 
-
-
-    //여기서 totalRevenue계산해서 넘기면 됨
     private int setResult(List<Integer> performance) {
         int totalRevenue = 0;
         int i=3;
@@ -91,6 +90,6 @@ public class Performance {
 
     private void rateOfReturn(int totalRevenue) {
         float rate = (float)totalRevenue / lottos.size() / 10;
-        System.out.printf(PRINT_RATE_OF_RETURN.message(), String.format("%.1f",rate));
+        System.out.printf(PRINT_RATE_OF_RETURN.message(), String.format(OUTPUT_RATE_OF_RETURN.message(),rate));
     }
 }

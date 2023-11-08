@@ -1,4 +1,4 @@
-package lotto;
+package purchaseAmount;
 
 import static camp.nextstep.edu.missionutils.Console.*;
 import static constant.LottoValue.*;
@@ -22,7 +22,7 @@ public class PurchaseAmount {
         return purchaseAmount/ THOUSAND.value();
     }
 
-    private int validateInteger(String input) {
+    int validateInteger(String input) {
         try{
             purchaseAmount = Integer.parseInt(input);
             return purchaseAmount;
@@ -32,7 +32,7 @@ public class PurchaseAmount {
     }
 
     private void validateAmount(int purchaseAmount){
-        if(purchaseAmount % 1000 != 0){
+        if(purchaseAmount % THOUSAND.value() != 0){
             throw new IllegalArgumentException(PURCHASE_AMOUNT_REMAIN.message());
         }
         if(purchaseAmount > AMOUNT_UPPER_LIMIT.value()){

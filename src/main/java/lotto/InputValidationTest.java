@@ -1,6 +1,6 @@
 package lotto;
 
-public class CheckInputValidation {
+public class InputValidationTest {
     public static void isItInteger(String input) {
         try {
             Integer.parseInt(input);

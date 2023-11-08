@@ -2,7 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class GetInput {
+public class InputReader {
     public static int askPurchaseMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         while (true) {
@@ -22,7 +22,7 @@ public class GetInput {
 
     public static boolean isPurchaseMoneyInteger(String purchaseMoney) {
         try {
-            CheckInputValidation.isItInteger(purchaseMoney);
+            InputValidationTest.isItInteger(purchaseMoney);
         } catch (IllegalArgumentException ex) {
             System.out.println("[ERROR] 구입금액은 숫자로 입력해주세요.");
             return false;
@@ -32,7 +32,7 @@ public class GetInput {
 
     public static boolean isPurchaseMoneyPositive(String purchaseMoney) {
         try {
-            CheckInputValidation.isItPositive(purchaseMoney);
+            InputValidationTest.isItPositive(purchaseMoney);
         } catch (IllegalArgumentException ex) {
             System.out.println("[ERROR] 구입금액은 양수로 입력해주세요.");
             return false;
@@ -42,7 +42,7 @@ public class GetInput {
 
     public static boolean isPurchaseMoneyThousands(String purchaseMoney) {
         try {
-            CheckInputValidation.isItThousands(purchaseMoney);
+            InputValidationTest.isItThousands(purchaseMoney);
         } catch (IllegalArgumentException ex) {
             System.out.println("[ERROR] 구입금액은 1000의 배수로 입력해주세요.");
             return false;

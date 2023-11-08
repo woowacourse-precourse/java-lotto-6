@@ -104,4 +104,10 @@ class WinningCaculate {
         }
         return matchcnt;
     }
+    public static int SpecialCount(int mat_num, int bonus, List<Integer> nums){
+        if (mat_num == 5 && nums.contains(bonus)){
+            return 6;
+        }
+        return mat_num;
+    }
 }

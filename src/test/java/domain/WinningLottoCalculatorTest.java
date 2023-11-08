@@ -31,7 +31,10 @@ class WinningLottoCalculatorTest {
 	}
 
 	private static WinningLotto getWinningLotto() {
-		WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,6", "7");
+		Lotto lotto = new Lotto("1,2,3,4,5,6");
+		BonusNumber bonusNumber = new BonusNumber("7", lotto);
+
+		WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
 		return winningLotto;
 	}
 

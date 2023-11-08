@@ -4,9 +4,9 @@ public class WinningLotto {
 	private final Lotto winningLotto;
 	private final BonusNumber bonusNumber;
 
-	public WinningLotto(String winningLottoNumber, String bonusNumber) {
-		this.winningLotto = new Lotto(winningLottoNumber);
-		this.bonusNumber = new BonusNumber(bonusNumber, winningLotto);
+	public WinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {
+		this.winningLotto = winningLotto;
+		this.bonusNumber = bonusNumber;
 	}
 
 	public Lotto getWinningLotto() {

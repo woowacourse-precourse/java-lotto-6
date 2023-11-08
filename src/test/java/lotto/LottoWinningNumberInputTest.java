@@ -2,8 +2,13 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -46,5 +51,34 @@ public class LottoWinningNumberInputTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 번호는 1과 45 사이여야 합니다");
     }
+
+    private Set<Integer> winningNumbers;
+
+    @BeforeEach
+    void setUp() {
+        winningNumbers = Stream.of(3, 12, 18, 23, 34, 41).collect(Collectors.toSet());
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복될 경우 예외를 발생")
+    @Test
+    void whenBonusNumberIsDuplicatedWithWinningNumbers_thenThrowsException() {
+        int duplicatedNumber = 18;
+        assertThrows(IllegalArgumentException.class, () -> lottoWinningNumberInput.parseAndValidateBonusNumber(String.valueOf(duplicatedNumber), winningNumbers));
+    }
+
+    @DisplayName("보너스 번호가 1과 45 사이가 아닐 경우 예외를 발생")
+    @Test
+    void whenBonusNumberIsOutOfRange_thenThrowsException() {
+        int outOfRangeNumber = 46;
+        assertThrows(IllegalArgumentException.class, () -> lottoWinningNumberInput.parseAndValidateBonusNumber(String.valueOf(outOfRangeNumber), winningNumbers));
+    }
+
+    @DisplayName("유효한 보너스 번호 입력 시 해당 번호를 반환")
+    @Test
+    void whenBonusNumberIsValid_thenReturnsNumber() {
+        int validNumber = 44;
+        assertEquals(validNumber, lottoWinningNumberInput.parseAndValidateBonusNumber(String.valueOf(validNumber), winningNumbers));
+    }
+
 
 }

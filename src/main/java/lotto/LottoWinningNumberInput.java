@@ -81,13 +81,13 @@ public class LottoWinningNumberInput {
         }
     }
 
-    private int parseAndValidateBonusNumber(String input, Set<Integer> winningNumbers) {
+    public int parseAndValidateBonusNumber(String input, Set<Integer> winningNumbers) {
         int bonusNumber = parseInt(input);
         validateBonusNumber(bonusNumber, winningNumbers);
         return bonusNumber;
     }
 
-    private void validateBonusNumber(int bonusNumber, Set<Integer> winningNumbers) {
+    public void validateBonusNumber(int bonusNumber, Set<Integer> winningNumbers) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다: " + bonusNumber);
         }

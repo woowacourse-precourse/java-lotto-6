@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class PurchasedLottos implements Iterable<Lotto> {
+public class Lottos implements Iterable<Lotto> {
     private List<Lotto> lottos;
 
-    public PurchasedLottos() {
+    public Lottos() {
         this.lottos = new ArrayList<>();
     }
 

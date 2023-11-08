@@ -1,12 +1,11 @@
 package lotto.controller;
 
-import static lotto.view.View.requestBonusNumber;
-
 import lotto.domain.Cost;
 import lotto.domain.DrawnNumbers;
 import lotto.domain.Lottos;
 import lotto.domain.WinningResult;
 import lotto.dto.DrawnNumbersDto;
+import lotto.view.BonusRequestVIew;
 import lotto.view.CostRequestView;
 import lotto.view.LottoResultView;
 import lotto.view.View;
@@ -27,7 +26,7 @@ public class LottoController {
     }
 
     private DrawnNumbers draw() {
-        DrawnNumbersDto dto = DrawnNumbersDto.of(WinningRequestView.request(), requestBonusNumber());
+        DrawnNumbersDto dto = DrawnNumbersDto.of(WinningRequestView.request(), BonusRequestVIew.request());
         return DrawnNumbers.from(dto);
     }
 

@@ -32,11 +32,6 @@ import lotto.view.constants.MessageType;
 public final class View {
 
 
-    public static String requestBonusNumber() {
-        printlnMessageWithNewLine(BONUS_NUMBER_REQUEST_MESSAGE);
-        return Validator.validateBonusNumber(enterMessage());
-    }
-
     public static void printWinningResult(WinningResult winningResult, Cost cost) {
         printlnMessageWithNewLine(WINNING_RESULT_NOTICE);
 
@@ -59,15 +54,5 @@ public final class View {
             return WINNING_RESULT_INFORMATION;
         }
         return WINNING_RESULT_WITH_BONUS_INFORMATION;
-    }
-
-
-    private static class Validator {
-
-
-        private static String validateBonusNumber(String message) {
-            validateNumber(message);
-            return message;
-        }
     }
 }

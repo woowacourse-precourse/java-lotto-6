@@ -16,7 +16,8 @@ public enum Rank {
     private final boolean isBonusNumberMatching;
     private final String description;
 
-    private Rank(int number, long prizeAmount, int numberOfMatching, boolean isBonusNumberMatching) {
+    private Rank(int number, long prizeAmount, int numberOfMatching,
+                 boolean isBonusNumberMatching) {
         this.number = number;
         this.prizeAmount = prizeAmount;
         this.numberOfMatching = numberOfMatching;
@@ -32,7 +33,8 @@ public enum Rank {
             bonusMatchingDescription = ", 보너스 볼 일치";
         }
 
-        return String.format("%d개 일치%s (%s원)", numberOfMatching, bonusMatchingDescription, commaSeparatedPrizeAmount);
+        return String.format("%d개 일치%s (%s원)", numberOfMatching, bonusMatchingDescription,
+                commaSeparatedPrizeAmount);
     }
 
     public static Rank of(int number) {

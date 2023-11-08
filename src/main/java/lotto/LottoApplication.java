@@ -12,11 +12,13 @@ import java.util.List;
 public class LottoApplication {
     void execute() {
         try {
-            Buyer buyer = new Buyer(getReceivedAmount(), new Ticket(getPickedNumbers(), getBonusNumber()));
+            Buyer buyer = new Buyer(getReceivedAmount(),
+                    new Ticket(getPickedNumbers(), getBonusNumber()));
             List<Lotto> drawnLottos = drawLottos(buyer);
             List<Result> results = compareTicketAndLottos(buyer.getTicket(), drawnLottos);
             int[] rankCounter = getRankCounter(results);
-            calculateWinningProfit(buyer.getReceivedAmount(), calculateTotalWinningAmount(rankCounter));
+            calculateWinningProfit(buyer.getReceivedAmount(),
+                    calculateTotalWinningAmount(rankCounter));
         } catch (IllegalArgumentException iae) {
             Output.printErrorMessage(iae.getMessage());
         }
@@ -57,9 +59,9 @@ public class LottoApplication {
     private Lotto getPickedNumbers() {
         try {
             List<Integer> pickedNumbers = Arrays.stream(
-                    Input.readPickedNumbers()
-                            .trim()
-                            .split(","))
+                            Input.readPickedNumbers()
+                                    .trim()
+                                    .split(","))
                     .map(Integer::valueOf)
                     .toList(); // String[]을 List<Integer>로 변환
 
@@ -78,7 +80,8 @@ public class LottoApplication {
     }
 
     private Lotto drawLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(Lotto.START_NUMBER, Lotto.END_NUMBER, Lotto.NUMBERS_COUNTER));
+        return new Lotto(Randoms.pickUniqueNumbersInRange(Lotto.START_NUMBER, Lotto.END_NUMBER,
+                Lotto.NUMBERS_COUNTER));
     }
 
     private int getNumberOfLotto(int receivedAmount) {
@@ -118,9 +121,9 @@ public class LottoApplication {
     }
 
     private void calculateWinningProfit(int receivedAmount, long totalWinningAmount) {
-        double totalProfit = Math.round(totalWinningAmount / (double) receivedAmount * 1000.0) / 10.0;
+        double totalProfit =
+                Math.round(totalWinningAmount / (double) receivedAmount * 1000.0) / 10.0;
 
         Output.printTotalProfit(String.valueOf(totalProfit));
     }
-
 }

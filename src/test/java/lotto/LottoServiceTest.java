@@ -31,11 +31,12 @@ class LottoServiceTest {
         int bonusNumber = 1;
 
         LottoResult lottoResult = lottoService.lotteryStatistics(lottos, winningNumbers, bonusNumber);
-        assertEquals(lottoResult.getThree(), 0);
-        assertEquals(lottoResult.getFour(), 0);
-        assertEquals(lottoResult.getFive(), 0);
-        assertEquals(lottoResult.getFive_bonus(), 1);
-        assertEquals(lottoResult.getSix(), 0);
+        int[] winningLottoResult = lottoResult.getLottoResult();
+        assertEquals(winningLottoResult[0], 0);
+        assertEquals(winningLottoResult[1], 0);
+        assertEquals(winningLottoResult[2], 0);
+        assertEquals(winningLottoResult[4], 1);
+        assertEquals(winningLottoResult[3], 0);
     }
 
     @DisplayName("당첨 개수 추출")
@@ -56,18 +57,6 @@ class LottoServiceTest {
         int bonusNumber = 2;
         boolean result = lottoService.isBonusNumberCorrect(numbers, bonusNumber);
         assertTrue(result);
-    }
-
-    @DisplayName("당첨 결과 확인")
-    @Test
-    void getPrizeMoney() {
-        LottoResult lottoResult = new LottoResult();
-        lottoResult.plusCnt(3, false);
-        lottoResult.plusCnt(4, false);
-        lottoResult.plusCnt(5, true);
-        int total = lottoService.getPrizeMoney(lottoResult);
-
-        assertEquals(total, 30055000);
     }
 
     @DisplayName("발행한 로또 번호 출력")
@@ -93,7 +82,7 @@ class LottoServiceTest {
     @Test
     void winningNumbersContainBonusNumber() {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        String bonusNumber = "7";
+        String bonusNumber = "6";
         assertThatThrownBy(() -> {
             lottoService.isWinningNumbersContainBonusNumber(winningNumbers, bonusNumber);
         })

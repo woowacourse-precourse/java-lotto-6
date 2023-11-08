@@ -6,6 +6,11 @@ public class DrawLotto {
 
     private final LottoList lottoList;
     private final CorrectLotto correct_lotto;
+
+    public double getProfitPercentage() {
+        return profitPercentage;
+    }
+
     private double profitPercentage = 0;
 
     public DrawLotto(LottoList lottoList, CorrectLotto correct_lotto) {

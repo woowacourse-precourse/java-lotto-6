@@ -12,8 +12,9 @@ public class WinningLotto extends Lotto {
     }
 
     private void validate(int bonusNumber) {
-        if (super.getNumbers().contains(bonusNumber))
+        if (super.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 달라야 한다.");
+        }
     }
 
     public int getBonusNumber() {

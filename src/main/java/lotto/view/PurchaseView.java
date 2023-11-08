@@ -21,7 +21,7 @@ public class PurchaseView {
             validateAmountIsNumber(input);
             validateAmountUnit(input);
             validateAmountIsZero(input);
-        } catch (Exception exception) {
+        } catch (IllegalArgumentException exception) {
             exception.printStackTrace();
             System.out.println(exception.getMessage());
             System.out.println();

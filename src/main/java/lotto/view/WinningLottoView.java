@@ -38,7 +38,7 @@ public class WinningLottoView {
         try {
             validateLottoNumbers(input);
             validateDuplicate(Convertor.convertStringToList(input), Constants.COUNT_NO_BONUS);
-        } catch (Exception exception) {
+        } catch (IllegalArgumentException exception) {
             exception.printStackTrace();
             System.out.println(exception.getMessage());
             System.out.println();
@@ -54,7 +54,7 @@ public class WinningLottoView {
 
             validateDuplicate(lottoWithBonus, Constants.COUNT_WITH_BONUS);
             validateLottoNumber(input);
-        } catch (Exception exception) {
+        } catch (IllegalArgumentException exception) {
             exception.printStackTrace();
             System.out.println(exception.getMessage());
             System.out.println();

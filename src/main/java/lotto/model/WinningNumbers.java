@@ -14,14 +14,14 @@ public class WinningNumbers {
     }
 
     public int countMatchNumbers(Lotto lotto) {
-        Set<Integer> winningNumbersSet = new HashSet<>(numbers);
-        int matchCount = calculateMatchCount(lotto, winningNumbersSet);
+        Set<Integer> selectedNumbers = new HashSet<>(numbers);
+        int matchCount = calculateMatchCount(lotto, selectedNumbers);
         return adjustMatchCount(matchCount, lotto);
     }
 
-    private int calculateMatchCount(Lotto lotto, Set<Integer> winningNumbersSet) {
+    private int calculateMatchCount(Lotto lotto, Set<Integer> selectedNumbers) {
         return (int) lotto.getNumbers().stream()
-                .filter(winningNumbersSet::contains)
+                .filter(selectedNumbers::contains)
                 .count();
     }
 

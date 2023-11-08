@@ -11,7 +11,7 @@ import lotto.object.LottoNumber;
 public class LottoGenerate {
     private static final int LOTTOPRICE = LottoEnum.LOTTO_PRICE.getMoney();
 
-    public static void moneyCheck(String money) {
+    public static String  moneyCheck(String money) {
         try {
             Application.purchaseAmount = Integer.parseInt(money);
             if (Application.purchaseAmount % LOTTOPRICE  != 0) {
@@ -20,9 +20,11 @@ public class LottoGenerate {
             Application.ticketNumber = Application.purchaseAmount / LOTTOPRICE ;
             System.out.println(Application.ticketNumber + "개를 구매했습니다.");
             makeLotto();
+            return (Application.ticketNumber + "개를 구매했습니다.");
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 금액을 1000 단위의 숫자만 입력하세요.");
             LottoStart.buyLotto();
+            return (Application.ticketNumber + "개를 구매했습니다.");
         }
     }
 

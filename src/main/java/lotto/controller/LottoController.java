@@ -21,7 +21,7 @@ public class LottoController {
 
     public void run() {
         purchaseLottoTickets();
-        calculateDrawingResult();
+        generatePrizeStatistics();
     }
 
     private void purchaseLottoTickets() {
@@ -30,7 +30,7 @@ public class LottoController {
         outputView.printPurchasedLottoTickets(lottoTickets);
     }
 
-    private void calculateDrawingResult() {
+    private void generatePrizeStatistics() {
         WinningCombinationDto winningCombination = inputView.inputWinningCombination();
         PrizeStatisticsDto result = lottoService.calculateDrawingResult(winningCombination);
         outputView.printResult(result);

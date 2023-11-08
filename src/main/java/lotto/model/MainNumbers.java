@@ -3,8 +3,8 @@ package lotto.model;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 import static lotto.common.Constant.LOTTO_NUMBERS_SIZE;
-import static lotto.common.ExceptionMessage.ERROR_MAIN_NUMBERS_DUPLICATE;
-import static lotto.common.ExceptionMessage.ERROR_MAIN_NUMBERS_SIZE_INCORRECT;
+import static lotto.common.ExceptionMessage.ERROR_NUMBERS_DUPLICATE;
+import static lotto.common.ExceptionMessage.ERROR_NUMBERS_SIZE_INCORRECT;
 
 import java.util.Comparator;
 import java.util.HashSet;
@@ -32,7 +32,7 @@ public class MainNumbers {
 
     private void validateSize(List<MainNumber> mainNumbers) {
         if (hasOverSize(mainNumbers)) {
-            throw new IllegalArgumentException(ERROR_MAIN_NUMBERS_SIZE_INCORRECT);
+            throw new IllegalArgumentException(ERROR_NUMBERS_SIZE_INCORRECT);
         }
     }
 
@@ -42,7 +42,7 @@ public class MainNumbers {
 
     private void validateUnique(List<MainNumber> mainNumbers) {
         if (hasDuplicate(mainNumbers)) {
-            throw new IllegalArgumentException(ERROR_MAIN_NUMBERS_DUPLICATE);
+            throw new IllegalArgumentException(ERROR_NUMBERS_DUPLICATE);
         }
     }
 

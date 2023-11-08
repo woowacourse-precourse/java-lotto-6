@@ -1,8 +1,10 @@
 package lotto.model;
 
 import static lotto.common.Constant.LOTTO_NUMBERS_SIZE;
+import static lotto.common.ExceptionMessage.ERROR_NUMBERS_DUPLICATE;
+import static lotto.common.ExceptionMessage.ERROR_NUMBERS_SIZE_INCORRECT;
 
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -16,18 +18,33 @@ public class Lotto {
     }
 
     public static Lotto issue(List<Integer> numbers) {
-        Collections.sort(numbers);
+//        Collections.sort(numbers);
         return new Lotto(numbers);
     }
 
     private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateUnique(numbers);
+    }
+
+    private void validateSize(List<Integer> numbers) {
         if (hasOverSize(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_NUMBERS_SIZE_INCORRECT);
         }
     }
 
     private boolean hasOverSize(List<Integer> numbers) {
         return numbers.size() != LOTTO_NUMBERS_SIZE;
+    }
+
+    private void validateUnique(List<Integer> numbers) {
+        if (hasDuplicate(numbers)) {
+            throw new IllegalArgumentException(ERROR_NUMBERS_DUPLICATE);
+        }
+    }
+
+    private boolean hasDuplicate(List<Integer> numbers) {
+        return numbers.size() != new HashSet<>(numbers).size();
     }
 
     public int countMatchingNumbers(MainNumbers mainNumbers) {

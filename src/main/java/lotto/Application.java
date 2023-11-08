@@ -13,8 +13,8 @@ public class Application {
         int purchaseAmount = 0;
         int purchaseCount = 0;
 
-        List<Integer> lottoNumbers = null;
-        List<Integer> eachLottoNumber = null;
+//        List<Integer> lottoNumbers = null;
+//        List<Integer> eachLottoNumber = null;
         List<List<Integer>> lottos = new ArrayList<>();
 
         Map<Integer, Integer> winRecordBoard = new LinkedHashMap<>();
@@ -32,15 +32,10 @@ public class Application {
 
         //로또 개수만큼 로또 객체의 로또 번호 출력
         Process startProcess = new Process();
-        //로또 개수만큼 반복 => 나중에 개별 함수화 리팩토링!
-        for (int i = 0; i < purchaseCount; i++) {
-            lottoNumbers = startProcess.generateLottoNumbers();
-            startProcess.sortLottoNumbers(lottoNumbers);
-            Lotto lotto = new Lotto(lottoNumbers);
-            eachLottoNumber = lotto.getLottoNumbers();
-            lottos.add(eachLottoNumber);
-            System.out.println(eachLottoNumber);
-        }
+        Print lottosPrint = new Print();
+
+        lottos = startProcess.saveLottos(purchaseCount);
+        lottosPrint.printLottos(lottos);
 
         System.out.println();
 
@@ -66,19 +61,19 @@ public class Application {
 
 
         ///
-        createWinRecordBoard();
+//        createWinRecordBoard();
 //        Map<Integer, Integer> winRecordBoard = new LinkedHashMap<>();
-//        Integer firstPlaceCount = Integer.valueOf(0);
-//        Integer secondPlaceCount = Integer.valueOf(0);
-//        Integer thirdPlaceCount = Integer.valueOf(0);
-//        Integer fourthPlaceCount = Integer.valueOf(0);
-//        Integer fifthPlaceCount = Integer.valueOf(0);
-//
-//        winRecordBoard.put(1, firstPlaceCount);
-//        winRecordBoard.put(2, secondPlaceCount);
-//        winRecordBoard.put(3, thirdPlaceCount);
-//        winRecordBoard.put(4, fourthPlaceCount);
-//        winRecordBoard.put(5, fifthPlaceCount);
+        Integer firstPlaceCount = Integer.valueOf(0);
+        Integer secondPlaceCount = Integer.valueOf(0);
+        Integer thirdPlaceCount = Integer.valueOf(0);
+        Integer fourthPlaceCount = Integer.valueOf(0);
+        Integer fifthPlaceCount = Integer.valueOf(0);
+
+        winRecordBoard.put(1, firstPlaceCount);
+        winRecordBoard.put(2, secondPlaceCount);
+        winRecordBoard.put(3, thirdPlaceCount);
+        winRecordBoard.put(4, fourthPlaceCount);
+        winRecordBoard.put(5, fifthPlaceCount);
 
         ///
 
@@ -131,6 +126,7 @@ public class Application {
 
     }
 
+    //개별 객체(Class)화?
     private static Map<Integer, Integer> createWinRecordBoard(){
         Map<Integer, Integer> winRecordBoard = new LinkedHashMap<>();
 

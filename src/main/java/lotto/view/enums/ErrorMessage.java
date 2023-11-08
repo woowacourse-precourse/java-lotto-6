@@ -23,6 +23,6 @@ public enum ErrorMessage {
     }
 
     public String getMessage() {
-        return message;
+        return ERROR_HEADER.message + this.message + ERROR_FOOTER.message;
     }
 }

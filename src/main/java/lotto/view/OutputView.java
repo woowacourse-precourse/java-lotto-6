@@ -2,7 +2,6 @@ package lotto.view;
 
 import lotto.model.Lotto;
 import lotto.model.LottoRankResult;
-import lotto.view.enums.ErrorMessage;
 import lotto.view.enums.PrintMessage;
 import lotto.view.enums.RankMessage;
 import lotto.model.enums.PrizeInfo;
@@ -78,10 +77,7 @@ public class OutputView {
     }
 
     public void printErrorMessage(String message) {
-        String errorMessage = ErrorMessage.ERROR_HEADER.getMessage()
-                + message
-                + ErrorMessage.ERROR_FOOTER.getMessage();
-        System.out.println(errorMessage);
+        System.out.println(message);
     }
 
     public void printBlankLine() {

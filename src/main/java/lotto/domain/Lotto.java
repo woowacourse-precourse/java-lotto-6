@@ -11,6 +11,7 @@ public class Lotto {
     public static final int LOTTO_SIZE_NUMBER = 6;
     public static final int LOTTO_START_RANGE = 1;
     public static final int LOTTO_END_RANGE = 45;
+    public static final String LOTTO_IS_EMPTY = "로또 번호가 없습니다.";
     private final List<Integer> numbers;
 
     public Lotto(final List<Integer> numbers) {
@@ -42,5 +43,18 @@ public class Lotto {
         if (invalid) {
             throw new IllegalArgumentException(NUMBER_RANGE_VALID_LOG);
         }
+    }
+
+    public int matchNumbers(final Lotto argument) {
+        return (int) numbers.stream()
+                .filter(argument.numbers::contains)
+                .count();
+    }
+
+    public int getBonusNumber() {
+        if (numbers.isEmpty()) {
+            throw new IllegalStateException(LOTTO_IS_EMPTY);
+        }
+        return numbers.get(numbers.size() - 1);
     }
 }

@@ -2,8 +2,8 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.LottoComputer;
 import lotto.domain.LottoPlayer;
+import lotto.domain.LottoResult;
 
 public class Application {
         public static String money;
@@ -14,8 +14,6 @@ public class Application {
 //        LottoPlayer.buyLotto();
 //        LottoComputer.makingLottoIndex();
 
-        LottoPlayer.inputNumber();
-        System.out.println(playerNumber);
-        System.out.println(playerBonusNumber);
+        LottoResult.resultPrint();
     }
 }

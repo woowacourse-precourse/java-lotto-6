@@ -7,6 +7,7 @@ import lotto.utils.constants.Comment;
 import lotto.utils.constants.LottoNumConstant;
 
 public class LottoWinningCalculator {
+
     static int countFifthPrize = 0;
     static int countFourthPrize = 0;
     static int countThirdPrize = 0;
@@ -14,12 +15,14 @@ public class LottoWinningCalculator {
     static int countFirstPrize = 0;
     static DecimalFormat format = new DecimalFormat("0.0");
 
-    public static void calculatorLotto(List<Lotto> lottoNumbers, Lotto winningNumbers, int bonusNumber, int purchaseAmount) {
+    public static void calculatorLotto(List<Lotto> lottoNumbers, Lotto winningNumbers, int bonusNumber,
+        int purchaseAmount) {
         for (int index = 0; index < purchaseAmount; index++) {
             updatePrizeCounts(lottoNumbers.get(index), winningNumbers, bonusNumber);
         }
 
-        double profitRate = calculateProfitRate(countFifthPrize, countFourthPrize, countThirdPrize, countSecondPrize, countFirstPrize, purchaseAmount);
+        double profitRate = calculateProfitRate(countFifthPrize, countFourthPrize, countThirdPrize, countSecondPrize,
+            countFirstPrize, purchaseAmount);
 
         printPrizeCounts(profitRate);
     }
@@ -50,7 +53,8 @@ public class LottoWinningCalculator {
             .count();
     }
 
-    private static double calculateTotalPrize(int countFifthPrize, int countFourthPrize, int countThirdPrize, int countSecondPrize, int countFirstPrize) {
+    private static double calculateTotalPrize(int countFifthPrize, int countFourthPrize, int countThirdPrize,
+        int countSecondPrize, int countFirstPrize) {
         int fifthPrize = countFifthPrize * LottoNumConstant.LOTTO_FIFTH_PRIZE.getNumber();
         int fourthPrize = countFourthPrize * LottoNumConstant.LOTTO_FOURTH_PRIZE.getNumber();
         int thirdPrize = countThirdPrize * LottoNumConstant.LOTTO_THIRD_PRIZE.getNumber();
@@ -60,18 +64,25 @@ public class LottoWinningCalculator {
         return fifthPrize + fourthPrize + thirdPrize + secondPrize + firstPrize;
     }
 
-    private static double calculateProfitRate(int countFifthPrize, int countFourthPrize, int countThirdPrize, int countSecondPrize, int countFirstPrize, int purchaseAmount) {
-        double totalPrize = calculateTotalPrize(countFifthPrize, countFourthPrize, countThirdPrize, countSecondPrize, countFirstPrize);
+    private static double calculateProfitRate(int countFifthPrize, int countFourthPrize, int countThirdPrize,
+        int countSecondPrize, int countFirstPrize, int purchaseAmount) {
+        double totalPrize = calculateTotalPrize(countFifthPrize, countFourthPrize, countThirdPrize, countSecondPrize,
+            countFirstPrize);
         double profitRate = totalPrize / purchaseAmount;
         return Math.round(profitRate * 10.0) / 100.0;
     }
 
     private static void printPrizeCounts(double profitRate) {
-        System.out.println(Comment.OUTPUT_FIFTH_PRIZE.getComment() + countFifthPrize + Comment.OUTPUT_COUNT.getComment());
-        System.out.println(Comment.OUTPUT_FOURTH_PRIZE.getComment() + countFourthPrize + Comment.OUTPUT_COUNT.getComment());
-        System.out.println(Comment.OUTPUT_THIRD_PRIZE.getComment() + countThirdPrize + Comment.OUTPUT_COUNT.getComment());
-        System.out.println(Comment.OUTPUT_SECOND_PRIZE.getComment() + countSecondPrize + Comment.OUTPUT_COUNT.getComment());
-        System.out.println(Comment.OUTPUT_FIRST_PRIZE.getComment() + countFirstPrize + Comment.OUTPUT_COUNT.getComment());
+        System.out.println(
+            Comment.OUTPUT_FIFTH_PRIZE.getComment() + countFifthPrize + Comment.OUTPUT_COUNT.getComment());
+        System.out.println(
+            Comment.OUTPUT_FOURTH_PRIZE.getComment() + countFourthPrize + Comment.OUTPUT_COUNT.getComment());
+        System.out.println(
+            Comment.OUTPUT_THIRD_PRIZE.getComment() + countThirdPrize + Comment.OUTPUT_COUNT.getComment());
+        System.out.println(
+            Comment.OUTPUT_SECOND_PRIZE.getComment() + countSecondPrize + Comment.OUTPUT_COUNT.getComment());
+        System.out.println(
+            Comment.OUTPUT_FIRST_PRIZE.getComment() + countFirstPrize + Comment.OUTPUT_COUNT.getComment());
         System.out.println(Comment.OUTPUT_TOTAL_RETURN.getComment() + format.format(profitRate) + "%입니다.");
     }
 }

@@ -1,16 +1,16 @@
 package lotto;
 
 
-import lotto.v3.controller.*;
-import lotto.v3.model.Lotto;
+import lotto.v3.controller.LottoBonusNumberController;
+import lotto.v3.controller.LottoGenerationController;
+import lotto.v3.controller.LottoPurchaseController;
+import lotto.v3.controller.LottoWinningNumberController;
 import lotto.v3.model.LottoMachine;
 import lotto.v3.model.LottoWinningNumber;
 import lotto.v3.view.LottoBonusNumberView;
 import lotto.v3.view.LottoGenerateView;
 import lotto.v3.view.LottoPurchaseView;
 import lotto.v3.view.LottoWinningNumbersView;
-
-import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -22,7 +22,7 @@ public class Application {
         LottoGenerationController generationController = new LottoGenerationController(generateView, machine);
 
         int numberOfTickets = purchaseController.startPurchaseProcess();
-        List<Lotto> tickets = generationController.generateLottoTickets(numberOfTickets);
+        generationController.generateLottoTickets(numberOfTickets);
 
         LottoWinningNumbersView winningNumbersView = new LottoWinningNumbersView();
         LottoWinningNumberController winningNumberController = new LottoWinningNumberController(winningNumbersView);

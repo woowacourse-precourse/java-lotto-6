@@ -26,16 +26,10 @@ public class LottoResult {
         for (Set<Integer> numbers : purchasedNumbers) {
             int matches = (int) winningNumbers.stream().filter(numbers::contains).count();
             boolean bonusMatch = numbers.contains(bonusNumber) && matches == LottoRank.SECOND.getMatchCount();
-
-            try {
-                LottoRank rank = LottoRank.valueOf(matches, bonusMatch);
-                matchCounts.put(rank, matchCounts.get(rank) + 1);
-            } catch (IllegalArgumentException e) {
-                System.out.printf("[ERROR] 일치하는 등수를 찾을 수 없어 결과를 계산할 수 없습니다.");
-            }
+            LottoRank rank = LottoRank.valueOf(matches, bonusMatch);
+            matchCounts.put(rank, matchCounts.get(rank) + 1);
         }
     }
-
     public Map<LottoRank, Integer> getMatchCounts() {
         return matchCounts;
     }

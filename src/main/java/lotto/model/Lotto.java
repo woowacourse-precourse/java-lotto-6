@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Lotto extends ValidateLottoNumbers{
+public class Lotto extends ValidateLottoNumbers {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

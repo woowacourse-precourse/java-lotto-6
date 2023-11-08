@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -15,28 +14,30 @@ public class WinningNumber {
 
     //생성자
     public WinningNumber() {
-        this.winningNumbers = createWinningNumber();
+        winningNumbers = createWinningNumber();
     }
 
     private List<Integer> createWinningNumber() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        String winningNumber = readLine();
-        validateCount(winningNumber);
-        validateDuplicate(winningNumber);
+        List<Integer> winningNumberInput;
 
-        List<Integer> result = new ArrayList<>();
-        for (String s : winningNumber.split(",")) {
-            result.add(Integer.parseInt(s));
+        while(true) {
+            try {
+                winningNumberInput = validateFormat(readLine());
+                validate(winningNumberInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-
-        return result;
+        return winningNumberInput;
     }
 
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
     }
 
-    private void validate(String winningNumberInput) {
+    private void validate(List<Integer> winningNumberInput) {
         validateCount(winningNumberInput);
         validateDuplicate(winningNumberInput);
     }
@@ -54,14 +55,14 @@ public class WinningNumber {
         return result;
     }
 
-    private void validateCount(String winningNumberInput) {
-        if (winningNumberInput.split(",").length != THE_NUMBER_OF_WINNING_NUMBER) {
+    private void validateCount(List<Integer> winningNumberInput) {
+        if (winningNumberInput.size() != THE_NUMBER_OF_WINNING_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호 6개를 입력해주세요.");
         }
     }
 
-    private void validateDuplicate(String winningNumberInput) {
-       if (Arrays.stream(winningNumberInput.split(",")).distinct().count() != THE_NUMBER_OF_WINNING_NUMBER) {
+    private void validateDuplicate(List<Integer> winningNumberInput) {
+       if (winningNumberInput.stream().distinct().count() != THE_NUMBER_OF_WINNING_NUMBER) {
            throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자 6개를 입력해주세요.");
        }
     }

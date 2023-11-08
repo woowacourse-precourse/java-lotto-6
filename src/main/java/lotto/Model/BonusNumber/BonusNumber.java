@@ -7,7 +7,7 @@ public class BonusNumber {
         this.BonusNumber = number;
     }
 
-    public Integer GetBonusNumber(){
+    public Integer getBonusNumber(){
         return this.BonusNumber;
     }
 }

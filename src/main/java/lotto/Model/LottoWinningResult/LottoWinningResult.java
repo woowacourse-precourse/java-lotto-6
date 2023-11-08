@@ -10,7 +10,7 @@ public class LottoWinningResult {
     private final Map<Integer, List<Lotto>> matchingResults;
 
 
-    private LottoWinningResult (List<Lotto> matchedLotto) {
+    public LottoWinningResult() {
         this.matchingResults = new HashMap<>();
 
     }

@@ -9,7 +9,7 @@ public class WinningNumber {
         this.winningNumber = numbers;
     }
 
-    public List<Integer> GetWinningNumber(){
+    public List<Integer> getWinningNumber(){
         return this.winningNumber;
     }
 }

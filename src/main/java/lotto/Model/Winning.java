@@ -11,7 +11,7 @@ import java.util.List;
         EMPTY(0
                 , 0
                 , (matchLottoNumber, containBonusNumber) -> matchLottoNumber < 3),
-        FIFTH(5_0000
+        FIFTH(5_000
                 , 3
                 , (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 3),
         FOURTH(50_000

@@ -35,6 +35,7 @@ public class LottoMachine {
         List<LottoResult> lottoResults = getCountingMatches(lotto, bonus, myLottos);
         TreeMap<LottoPrize, Integer> winningCount = countLottoPrize(lottoResults);
         System.out.println(getLottoResult(winningCount));
+        double profit = calculateProfit(lottoCount, winningCount)*100;
     }
 
     public int setLottoCount() {
@@ -92,6 +93,16 @@ public class LottoMachine {
             buildLottoResult(ret, lottoPrize, count);
         }
         return ret.toString().trim();
+    }
+
+    public double calculateProfit(int lottoCount, TreeMap<LottoPrize, Integer> winningCount) {
+        double totalPrice = lottoCount*LOTTO_PRICE;
+        double ret = 0;
+        for (LottoPrize lottoPrize: LottoPrize.values()) {
+            long prizeMoney = lottoPrize.getPrizeMoney();
+            ret += winningCount.getOrDefault(lottoPrize, 0)*prizeMoney;
+        }
+        return ret/totalPrice;
     }
 
     private Lotto setWinningNumbers() {

@@ -6,7 +6,6 @@ public record WinningStatisticsDto(
         int countOfThirdPlace,
         int countOfSecondPlace,
         int countOfFirstPlace,
-        int standardOfFifthPlace,
         double rateOrReturn
 ) {
 }

@@ -13,6 +13,10 @@ public class Money {
         this.userMoney = userMoney;
     }
 
+    public int getUserMoney() {
+        return userMoney;
+    }
+
     public int getNumberOfLottos() {
         return userMoney / LOTTO_COST.getValue();
     }

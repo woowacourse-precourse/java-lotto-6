@@ -1,5 +1,7 @@
 package lotto.domain.statistics;
 
+import lotto.domain.dto.LottoRankDto;
+
 public enum LottoRank {
 
     FIRST_PLACE(6,2000000000),
@@ -24,4 +26,13 @@ public enum LottoRank {
         return standard;
     }
 
+    public static LottoRankDto mapToDto() {
+        return new LottoRankDto(
+                FIFTH_PLACE.getStandard(), FIFTH_PLACE.getPrize(),
+                FOURTH_PLACE.getStandard(), FOURTH_PLACE.getPrize(),
+                THIRD_PLACE.getStandard(), THIRD_PLACE.getPrize(),
+                SECOND_PLACE.getStandard(), SECOND_PLACE.getPrize(),
+                FIRST_PLACE.getStandard(), FIRST_PLACE.getPrize()
+        );
+    }
 }

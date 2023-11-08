@@ -6,7 +6,9 @@ import static lotto.util.rule.GameRule.RANK_SIZE;
 import static lotto.util.rule.GameRule.TICKET_PRICE;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Ticket;
@@ -17,9 +19,15 @@ import lotto.util.AutomaticGenerator;
 public class TicketService {
 
     private final MemoryTicketRepository memoryTicketRepository;
+    private final Map<Integer, Integer> prizeMap;
 
     public TicketService(MemoryTicketRepository memoryTicketRepository) {
         this.memoryTicketRepository = memoryTicketRepository;
+        prizeMap = new HashMap<>();
+        prizeMap.put(6, 0);
+        prizeMap.put(5, 1);
+        prizeMap.put(4, 3);
+        prizeMap.put(3, 4);
     }
 
     public Integer getPurchaseAmount() {
@@ -79,13 +87,9 @@ public class TicketService {
 
     private int matchNumbers(Ticket ticket, List<Integer> winningNumbers) {
         List<Integer> ticketNumbers = ticket.getLotto().getNumbers();
-        int matchCount = 0;
-        for (Integer number : ticketNumbers) {
-            if (winningNumbers.contains(number)) {
-                matchCount++;
-            }
-        }
-        return matchCount;
+        return (int) ticketNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
     }
 
     private boolean hasBonus(Ticket ticket, Integer bonusNumber) {
@@ -94,18 +98,7 @@ public class TicketService {
     }
 
     private int calculatePrizeRank(int matchCount, boolean hasBonus) {
-        if (matchCount == 6) {
-            return 0; // 1등
-        } else if (matchCount == 5 && hasBonus) {
-            return 1; // 2등
-        } else if (matchCount == 5|| (matchCount == 4 && hasBonus)) {
-            return 2; // 3등
-        } else if (matchCount == 4 || (matchCount == 3 && hasBonus)) {
-            return 3; // 4등
-        } else if (matchCount == 3 || (matchCount == 2 && hasBonus)) {
-            return 4; // 5등
-        }
-        return -1; // 어떤 상금에도 해당하지 않음
+        return prizeMap.getOrDefault(matchCount, -1);
     }
 
 }

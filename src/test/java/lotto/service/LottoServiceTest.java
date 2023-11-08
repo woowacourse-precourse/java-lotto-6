@@ -103,10 +103,14 @@ class LottoServiceTest {
 
         final WinningStatistic winningStatistic = lottoService.compareLotto(lottos, winningLotto);
 
+        final String expectedNumber = "40631100.0";
+
         //when
-        final String performance = lottoService.getPerformance(winningStatistic, purchaseAmount);
+        final String performance =
+                String.format("%.1f", Double.valueOf(lottoService.getPerformance(winningStatistic, purchaseAmount)));
+        System.out.println(performance);
 
         //then
-        assertThat(performance).isNotNull();
+        assertThat(performance).isEqualTo(expectedNumber);
     }
 }

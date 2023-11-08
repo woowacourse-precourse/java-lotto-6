@@ -4,12 +4,14 @@ import lotto.validation.Validator;
 import java.util.List;
 
 public class LottoDecision {
+    private static final String WINNING_NUMBER = "당첨";
     private final List<Integer> winningNumbers;
     private int[] winningData;
 
     public LottoDecision(List<Integer> winningNumbers) {
         validateWinningNumberLength(winningNumbers);
-        Validator.validateDuplicateNumber(winningNumbers, "당첨");
+        Validator.validateDuplicateNumber(winningNumbers, WINNING_NUMBER);
+        Validator.validateNumberInRange(winningNumbers, WINNING_NUMBER);
         this.winningNumbers = winningNumbers;
     }
 

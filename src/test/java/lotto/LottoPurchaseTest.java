@@ -1,7 +1,6 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.model.LottoPurchase;
@@ -12,29 +11,29 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class LottoPurchaseTest {
 
-    @DisplayName("입력한 구입 금액이 숫자인지 검증한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {"-13000", "1.53", "0.555", "asdf"})
-    void validateByNumericType(String input) {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> LottoPurchase.validateInputTypeNumeric(input));
-    }
-
-    @DisplayName("입력한 구입 금액이 1000원 이상인지 검증한다.")
-    @Test
-    void validateByMinimumPrice() {
-        int price = 700;
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> LottoPurchase.validateMinimunPrice(price));
-    }
-
-    @DisplayName("입력한 구입 금액이 1000원으로 나누어지는지 검증한다.")
-    @Test
-    void validateDivideBy1000() {
-        int price = 7777;
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> LottoPurchase.validateDivideLottoPrice(price));
-    }
+//    @DisplayName("입력한 구입 금액이 숫자인지 검증한다.")
+//    @ParameterizedTest
+//    @ValueSource(strings = {"-13000", "1.53", "0.555", "asdf"})
+//    void validateByNumericType(String input) {
+//        assertThatIllegalArgumentException()
+//                .isThrownBy(() -> LottoPurchase.validateInputTypeNumeric(input));
+//    }
+//
+//    @DisplayName("입력한 구입 금액이 1000원 이상인지 검증한다.")
+//    @Test
+//    void validateByMinimumPrice() {
+//        int price = 700;
+//        assertThatIllegalArgumentException()
+//                .isThrownBy(() -> LottoPurchase.validateMinimunPrice(price));
+//    }
+//
+//    @DisplayName("입력한 구입 금액이 1000원으로 나누어지는지 검증한다.")
+//    @Test
+//    void validateDivideBy1000() {
+//        int price = 7777;
+//        assertThatIllegalArgumentException()
+//                .isThrownBy(() -> LottoPurchase.validateDivideLottoPrice(price));
+//    }
 
     @DisplayName("구입 금액 입력에 대한 유효성 검증 테스트")
     @ParameterizedTest

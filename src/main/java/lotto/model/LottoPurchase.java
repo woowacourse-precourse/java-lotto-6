@@ -13,19 +13,19 @@ public class LottoPurchase {
         setLottoPurchaseCount(inputNumber);
     }
 
-    public static void validateInputTypeNumeric(String inputNumber) {
+    private static void validateInputTypeNumeric(String inputNumber) {
         if (!REGEX_NUMERIC.matcher(inputNumber).matches()) {
             throw new IllegalArgumentException(ERROR_NUMERIC_TYPE);
         }
     }
 
-    public static void validateMinimunPrice(int totalPrice) {
+    private static void validateMinimunPrice(int totalPrice) {
         if (totalPrice < LOTTO_PER_PRICE) {
             throw new IllegalArgumentException(ERROR_MINIMUM_PRICE);
         }
     }
 
-    public static void validateDivideLottoPrice(int totalPrice) {
+    private static void validateDivideLottoPrice(int totalPrice) {
         if ((totalPrice % LOTTO_PER_PRICE) != 0) {
             throw new IllegalArgumentException(ERROR_NOT_DIVIDE_LOTTO_PRICE);
         }

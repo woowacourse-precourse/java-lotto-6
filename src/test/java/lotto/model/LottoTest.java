@@ -211,5 +211,37 @@ public class LottoTest {
             assertThat(lottoOne).isNotEqualTo(lottoTwo);
             assertThat(lottoOne.hashCode()).isNotEqualTo(lottoTwo.hashCode());
         }
+
+        @Test
+        @DisplayName("동일한 Lotto 인스턴스 비교 - equals & hashCode")
+        void testSameInstanceEquality() {
+            // 준비
+            Lotto lottoOne = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+
+            // 실행 & 검증
+            assertThat(lottoOne).isEqualTo(lottoOne); // 자기 자신과의 비교
+            assertThat(lottoOne.hashCode()).isEqualTo(lottoOne.hashCode());
+        }
+
+        @Test
+        @DisplayName("Lotto와 null 비교")
+        void testLottoWithNull() {
+            // 준비
+            Lotto lottoOne = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+
+            // 실행 & 검증
+            assertThat(lottoOne).isNotEqualTo(null); // null과 비교
+        }
+
+        @Test
+        @DisplayName("다른 클래스의 인스턴스와 Lotto 비교")
+        void testLottoWithDifferentClass() {
+            // 준비
+            Lotto lottoOne = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+            Object differentObject = new Object();
+
+            // 실행 & 검증
+            assertThat(lottoOne).isNotEqualTo(differentObject); // 다른 타입과의 비교
+        }
     }
 }

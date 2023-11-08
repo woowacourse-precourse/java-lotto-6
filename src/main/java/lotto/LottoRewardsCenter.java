@@ -10,4 +10,8 @@ public class LottoRewardsCenter {
     public LottoRewardsCenter(LottoChecker lottoChecker) {
         this.lottoChecker = lottoChecker;
     }
+
+    public List<LottoPrize> getPrizeResults(List<Lotto> lottos) {
+        return lottos.stream().map(lottoChecker::check).toList();
+    }
 }

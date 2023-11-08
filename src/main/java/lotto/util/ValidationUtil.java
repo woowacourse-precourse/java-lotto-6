@@ -1,7 +1,9 @@
 package lotto.util;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import lotto.enums.ConstVariable;
 
 public class ValidationUtil {
@@ -22,4 +24,13 @@ public class ValidationUtil {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void hasDistinctNumbers(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>(numbers);
+        if (set.size() != numbers.size()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+
 }

@@ -15,30 +15,48 @@ public class User {
     public static void inputLottoNumber(){
 
         System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-    // TODO: input이 숫자6개가 ,로 되어있는지, 1~45까지인지, 숫자와 컴마로만 이루어져있는지, 중복이 없는지 확인
-        String[] userInput = input.split(",");
-        for(String inputParsing : userInput){
-            int number;
-            try {
-                number = Integer.parseInt(inputParsing);
-            }catch (IllegalArgumentException e){
-                throw new IllegalArgumentException();
+        while(true){
+            String input = Console.readLine();
+            String[] userInput = input.split(",");
+            try{
+                for(String temp : userInput){
+                    int number = Integer.parseInt(temp);
+                    checkNumberRange(number);
+                    userLotto.add(number);
+                }
+                userLotto.sort(Comparator.naturalOrder());
+                break;
+            }catch(IllegalArgumentException e){
+                System.out.println("[ERROR] 유효한 정수를 입력하세요.");
             }
 
-            userLotto.add(number);
 
         }
-        userLotto.sort(Comparator.naturalOrder());
-
+        Lotto.checkItemUnique(userLotto);
     }
+
+    public static void checkNumberRange(int number){
+        if(number<1 || number>45){
+            throw new IllegalArgumentException();
+        }
+    }
+
 
     public static void inputBonusNumber(){
 
         System.out.println("보너스 번호를 입력해 주세요.");
-        String inputBonus = Console.readLine();
-        // TODO: 1~45의 정수 입력하는지 확인하기
-        bonusNumber = Integer.parseInt(inputBonus);
+        int number;
+        while(true) {
+            try {
+                String input = Console.readLine();
+                number = Integer.parseInt(input);
+                checkNumberRange(number);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 유효한 정수를 입력하세요.");
+            }
+        }
+        bonusNumber = number;
 
     }
 
@@ -74,7 +92,7 @@ public class User {
 
     }
 
-    private static double returnPercent(int profit, int expense){
+    public static double returnPercent(int profit, int expense){
 
         return (double) profit / (double) expense * 100.0;
 

@@ -13,6 +13,7 @@ public class Money {
             try {
                 String input = Console.readLine();
                 money = Integer.parseInt(input);
+                checkMoney(money);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 유효한 정수를 입력하세요.");
@@ -21,6 +22,13 @@ public class Money {
 
     }
 
+    static void checkMoney(int money){
+        if(money%1000!=0){
+            throw new IllegalArgumentException();
+        }
+
+
+    }
     static void printLottoNum(){
 
         lottoNum = money/1000;

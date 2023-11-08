@@ -1,7 +1,6 @@
 package lotto;
 
 
-import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Comparator;
 import java.util.List;

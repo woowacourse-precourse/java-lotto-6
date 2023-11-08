@@ -24,7 +24,7 @@ public class Lotto {
         }
     }
 
-    private void checkItemUnique(List<Integer> numbers){
+    public static void checkItemUnique(List<Integer> numbers){
 
         boolean unique = false;
         Set<Integer> uniqueElements = new HashSet<>();

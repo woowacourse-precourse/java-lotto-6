@@ -34,6 +34,7 @@ public class PrintView {
     }
 
     public static void printStatistics(PrizeResult prizeResult, Rate rate) {
+        System.out.println();
         System.out.println(OUTPUT_TOP_MESSAGE);
         Arrays.stream(Prize.values())
                 .filter(prize -> !prize.equals(Prize.EMPTY))

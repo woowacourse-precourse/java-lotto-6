@@ -29,13 +29,13 @@
   - [x] 1 개의 중복되지 않는 보너스 번호 입력
   - [x] 중복되는 숫자일 경우 예외 처리 후 다시 입력
 
-- [ ] 로또 번호 비교하기 - Judgement#correctNumbers()
-  - [ ] 몇 개의 숫자가 같은지 판단
-  - [ ] 6개 번호 일치하면 1등
-  - [ ] 5개 번호와 보너스 번호가 일치하면 2등
-  - [ ] 5개 번호 일치하면 3등
-  - [ ] 4개 번호 일치하면 4등
-  - [ ] 3개 번호 일치하면 5등
+- [x] 로또 번호 비교하기 - Judgement#correctNumbers()
+  - [x] 몇 개의 숫자가 같은지 판단 - Judgement#correctCount()
+  - [x] 6개 번호 일치하면 1등
+  - [x] 5개 번호와 보너스 번호가 일치하면 2등
+  - [x] 5개 번호 일치하면 3등
+  - [x] 4개 번호 일치하면 4등
+  - [x] 3개 번호 일치하면 5등
 
 - [ ] 수익률 계산하기 - Judgement#calculateReturnRate()
 
@@ -43,7 +43,8 @@
 - [x] 예외 처리
   - [x] String to int 변환 체크 - Exception#checkInt
   - [x] 1000 단위 체크 - Exception#checkAmount
-  - [x] 숫자 6개 중복 여부 체크 - Exception#checkNumbers
+  - [x] 숫자 중복 여부 체크 - Exception#checkNumbers
+  - [x] 6자리 숫자 여부 체크 - Exception#checkLength
   - [x] 보너스 숫자 중복 여부 체크 - Exception#checkBonus
 
 # view

@@ -32,6 +32,22 @@ public class InteractServiceTest extends NsTest {
         });
     }
 
+    @DisplayName("로또 구입 금액을 기호로 입력할 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(
+            strings = {
+                    "@@@", ",,,", "!@#$!@$!"
+            }
+    )
+    void purchaseBySign(String input) {
+        assertSimpleTest(() -> {
+            runException(
+                    input
+            );
+            assertThat(output()).contains(ErrorStatus.PARSE_INT_ERROR.getMessage());
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

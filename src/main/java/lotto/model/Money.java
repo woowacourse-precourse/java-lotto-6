@@ -1,7 +1,7 @@
 package lotto.model;
 
 import static lotto.ErrorMessage.INDIVISIBLE_NUMBER;
-import static lotto.ErrorMessage.NOT_NUMBER_FORMAT;
+import static lotto.ErrorMessage.NOT_NUMBER_MONEY_FORMAT;
 import static lotto.ErrorMessage.ZERO_NUMBER;
 import static lotto.configuration.LottoConfiguration.LOTTO_PRICE;
 
@@ -50,7 +50,7 @@ public class Money {
 
     private static boolean isNumber(String money) {
         if (!money.matches("\\d+")) {
-            OutPutView.println(NOT_NUMBER_FORMAT.getMessage());
+            OutPutView.println(NOT_NUMBER_MONEY_FORMAT.getMessage());
             return false;
         }
         return true;

@@ -1,25 +1,17 @@
 package lotto;
 
-import static lotto.ErrorMessage.INDIVISIBLE_NUMBER;
-import static lotto.ErrorMessage.NOT_NUMBER_FORMAT;
-import static lotto.ErrorMessage.ZERO_NUMBER;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
-import lotto.controller.LottoManager;
 import lotto.model.Money;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class MoneyTest {
     private static ByteArrayOutputStream outputMessage;

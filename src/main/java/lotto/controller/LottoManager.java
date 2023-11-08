@@ -1,8 +1,5 @@
 package lotto.controller;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 import lotto.model.BonusNumber;
 import lotto.model.Customer;
 import lotto.model.Money;
@@ -54,7 +51,7 @@ public class LottoManager {
         while (winNumbers == null) {
             OutPutView.printEnterWinNumber();
             String numbers = InputView.readLine();
-            winNumbers = WinNumbers.createWinNumbers(StringToList(numbers));
+            winNumbers = WinNumbers.createWinNumbers(numbers);
         }
         return winNumbers;
     }
@@ -67,11 +64,5 @@ public class LottoManager {
             bonusNumber = BonusNumber.createBonusNumber(Integer.parseInt(number));
         }
         return bonusNumber;
-    }
-
-    private List<Integer> StringToList(String numbers) {
-        return Arrays.stream(numbers.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
     }
 }

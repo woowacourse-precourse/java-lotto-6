@@ -17,7 +17,7 @@ public class LottoController {
 
     public void startGame() {
         LottoWallet lottoWallet = purchaseLotto();
-        System.out.println(lottoWallet);
+        consoleLottoView.displayPurchased(lottoWallet);
     }
 
     private LottoWallet purchaseLotto() {

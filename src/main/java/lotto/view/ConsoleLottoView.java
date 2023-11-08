@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashMap;
+import lotto.domain.LottoWallet;
 
 public class ConsoleLottoView implements LottoView {
 
@@ -38,7 +39,12 @@ public class ConsoleLottoView implements LottoView {
     }
 
     @Override
-    public void displayPurchased() {
+    public void displayPurchased(LottoWallet lottoWallet) {
+        display(lottoWallet.getLottoCount() + Message.PURCHASE_DISPLAY_MESSAGE_SUFFIX.getMessage());
+
+        for (int i = 0; i < lottoWallet.getLottoCount(); i++) {
+            display(lottoWallet.getSingleLottoNumbers(i).toString());
+        }
     }
 
     @Override

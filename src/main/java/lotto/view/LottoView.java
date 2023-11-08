@@ -1,11 +1,12 @@
 package lotto.view;
 
 import java.util.HashMap;
+import lotto.domain.LottoWallet;
 
 public interface LottoView {
     public Integer getPurchaseAmount();
 
-    public void displayPurchased();
+    public void displayPurchased(LottoWallet lottoWallet);
 
     public String getWinningNumbers();
 

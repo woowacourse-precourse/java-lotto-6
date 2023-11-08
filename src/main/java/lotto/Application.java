@@ -7,5 +7,8 @@ public class Application {
         lottoManagement.initMoney();
         int money= lottoManagement.getMoney();
         System.out.print(money);
+        lottoManagement.initWinningLottoNumbers();
+        int bonusNumber=lottoManagement.getBonusNumber();
+        System.out.print(bonusNumber);
     }
 }

@@ -1,7 +1,5 @@
 package lotto.constant;
 
-import java.util.List;
-
 public enum ConsoleMessage {
     ENTER_PURCHASE_AMOUNT("구입금액을 입력해주세요."),
     PURCHASED_LOTTO_HEADER("%s개를 구매했습니다."),
@@ -20,20 +18,12 @@ public enum ConsoleMessage {
         this.message = message;
     }
 
-    private int getExpectedValueCount() {
+    public int getExpectedValueCount() {
         return message.split("%s", -1).length - 1; // Format 할 문자의 개수 반환
     }
 
     public String getMessage() {
-        assert getExpectedValueCount() == 0; // Format 할 문자가 없는 메시지
-
         return message;
-    }
-
-    public String getFormattedMessage(List<String> values) {
-        assert values.size() == getExpectedValueCount(); // Format 할 문자가 있는 메시지 (개수 일치 확인)
-
-        return String.format(message, values.toArray());
     }
 
 }

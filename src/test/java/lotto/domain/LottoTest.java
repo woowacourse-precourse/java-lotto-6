@@ -3,6 +3,7 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,4 +40,17 @@ class LottoTest {
         assertThat(actual).isEqualTo(PrizeCategory.valueOf(expected));
     }
 
+    @Test
+    void createLottoTickets_메서드로_Lotto_객체_생성_및_Lotto_객체들의_리스트_반환() {
+        List<List<Integer>> lottoNumbers = new ArrayList<>();
+        lottoNumbers.add(List.of(1, 2, 3, 4, 5, 6));
+        lottoNumbers.add(List.of(7, 8, 9, 10, 11, 12));
+        lottoNumbers.add(List.of(13, 14, 15, 16, 17, 18));
+
+        List<Lotto> lottoTickets = Lotto.createLottoTickets(lottoNumbers);
+        for (int i = 0; i < lottoTickets.size(); i++) {
+            List<Integer> actual = lottoTickets.get(i).getNumbers();
+            assertThat(actual).isEqualTo(lottoNumbers.get(i));
+        }
+    }
 }

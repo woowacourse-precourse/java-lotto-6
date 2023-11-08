@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,6 +12,14 @@ public class Lotto {
         validate(numbers);
         checkDuplicatedNumber(numbers);
         this.numbers = numbers;
+    }
+
+    public static List<Lotto> createLottoTickets(List<List<Integer>> lottoNumbers) {
+        List<Lotto> lottoTickets = new ArrayList<>();
+        for (List<Integer> numbers : lottoNumbers) {
+            lottoTickets.add(new Lotto(numbers));
+        }
+        return lottoTickets;
     }
 
     private void validate(List<Integer> numbers) {
@@ -52,5 +61,10 @@ public class Lotto {
             return PrizeCategory.THIRD;
         }
         return PrizeCategory.FIRST;
+    }
+
+    // 테스트를 위한 함수 정의
+    List<Integer> getNumbers() {
+        return new ArrayList<>(this.numbers);
     }
 }

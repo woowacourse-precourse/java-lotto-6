@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.domain.Cashier;
+import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 
 public class Application {
@@ -25,9 +26,11 @@ public class Application {
         long purchaseQuantity = cashier.getPurchaseQuantity();
         System.out.println(messageContainer.getPurchaseQuantityMessage(purchaseQuantity));
         LottoGenerator lottoGenerator = new LottoGenerator();
-        for (List<Integer> lottoNumbers : lottoGenerator.issueLottoAsManyAsPurchased(purchaseQuantity)) {
-            System.out.println(lottoNumbers.toString());
+        List<List<Integer>> lottoNumbers = lottoGenerator.issueLottoAsManyAsPurchased(purchaseQuantity);
+        for (List<Integer> numbers : lottoNumbers) {
+            System.out.println(numbers.toString());
         }
+        List<Lotto> lottoTickets = Lotto.createLottoTickets(lottoNumbers);
 
     }
 }

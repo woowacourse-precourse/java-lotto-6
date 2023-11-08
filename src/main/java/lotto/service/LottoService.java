@@ -27,12 +27,12 @@ public class LottoService {
         lottoRepository = LottoRepository.getInstance();
     }
 
-    public List<Integer> generateLottos() {
+    public List<Integer> generateLotto() {
         List<Integer> randomNumbers = generateRandomNumbers();
         List<Integer> lottoNumbers = sortNumbers(randomNumbers);
 
         Lotto newLotto = new Lotto(lottoNumbers);
-        lottoRepository.addLotto(newLotto);
+        lottoRepository.saveLotto(newLotto);
 
         return lottoNumbers;
     }

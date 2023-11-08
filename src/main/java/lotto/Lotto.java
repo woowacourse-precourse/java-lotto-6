@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto;
 
 import lotto.model.enums.LottoSpec;
 import lotto.view.enums.ErrorMessage;

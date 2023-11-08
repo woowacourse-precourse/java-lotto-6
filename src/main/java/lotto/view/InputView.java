@@ -1,8 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.List;
 import lotto.converter.InputConverter;
+import lotto.model.Lotto;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.LottoMoneyValidator;
 import lotto.validator.LottoNumberValidator;
@@ -21,7 +21,8 @@ public class InputView {
         return InputConverter.convertLottoMoney(lottoMoneyInput);
     }
 
-    public static List<Integer> getWinningLotto() {
+    public static Lotto getWinningLotto() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
 
         String lottoNumberInput = Console.readLine();
@@ -34,7 +35,8 @@ public class InputView {
         return InputConverter.convertWinningLotto(lottoNumberInput);
     }
 
-    public static Integer getBonusNumber(List<Integer> winningLotto) {
+    public static Integer getBonusNumber(Lotto winningLotto) {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
 
         String bonusNumberInput = Console.readLine();

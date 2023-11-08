@@ -1,17 +1,17 @@
 package lotto.validator;
 
-import java.util.List;
 import lotto.constant.ErrorMessages;
+import lotto.model.Lotto;
 
 public class BonusNumberValidator {
-    public static void validate(String bonusNumberInput, List<Integer> winningLotto) {
+    public static void validate(String bonusNumberInput, Lotto winningLotto) {
         isNumeric(bonusNumberInput);
         isInRange(bonusNumberInput);
         isUnique(bonusNumberInput, winningLotto);
 
     }
 
-    private static void isUnique(String bonusNumberInput, List<Integer> winningLotto) {
+    private static void isUnique(String bonusNumberInput, Lotto winningLotto) {
         if (winningLotto.contains(Integer.parseInt(bonusNumberInput))) {
             System.out.println(ErrorMessages.NOT_UNIQUE.getMessage());
             throw new IllegalArgumentException(ErrorMessages.NOT_UNIQUE.getMessage());

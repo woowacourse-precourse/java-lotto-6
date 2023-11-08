@@ -2,7 +2,9 @@ package lotto.converter;
 
 import static java.lang.Integer.parseInt;
 
+import java.util.ArrayList;
 import java.util.List;
+import lotto.model.Lotto;
 
 public class InputConverter {
 
@@ -10,11 +12,15 @@ public class InputConverter {
         return parseInt(lottoMoneyInput);
     }
 
-    public static List<Integer> convertWinningLotto(String lottoNumberInput) {
+    public static Lotto convertWinningLotto(String lottoNumberInput) {
         List<String> lottoNumbers = List.of(lottoNumberInput.split(","));
-        return lottoNumbers.stream()
-                .map(Integer::parseInt)
-                .toList();
+
+        List<Integer> convertedLottoNumbers = new ArrayList<>();
+        for (String lottoNumber : lottoNumbers) {
+            convertedLottoNumbers.add(parseInt(lottoNumber));
+        }
+
+        return new Lotto(convertedLottoNumbers);
     }
 
     public static Integer convertBonusNumber(String bonusNumberInput) {

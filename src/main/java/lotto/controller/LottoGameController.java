@@ -1,8 +1,9 @@
 package lotto.controller;
 
-import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.LottoBundle;
 import lotto.model.LottoGenerator;
+import lotto.model.ResultJudge;
 import lotto.view.InputView;
 
 public class LottoGameController {
@@ -10,12 +11,9 @@ public class LottoGameController {
     public void play() {
         LottoBundle lottoBundle = LottoGenerator.getLottoBundle();
 
-        List<Integer> winningLotto = InputView.getWinningLotto();
+        Lotto winningLotto = InputView.getWinningLotto();
         Integer bonusNumber = InputView.getBonusNumber(winningLotto);
 
-        System.out.println(winningLotto.toString());
-        System.out.println(bonusNumber);
-
-
+        ResultJudge.judge(lottoBundle, winningLotto, bonusNumber);
     }
 }

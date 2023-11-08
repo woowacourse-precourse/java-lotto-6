@@ -4,7 +4,8 @@ import lotto.controller.LottoController;
 
 public class Application {
     public static void main(String[] args) {
-        LottoController lottosController = new LottoController();
+        AppConfig appConfig = new AppConfig();
+        LottoController lottosController = appConfig.lottosController();
         lottosController.run();
     }
 }

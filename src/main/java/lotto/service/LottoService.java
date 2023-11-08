@@ -8,23 +8,18 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import lotto.Prize;
-import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.MainNumbers;
 import lotto.domain.Payment;
-import lotto.domain.RankingCounter;
-import lotto.domain.Ranking;
-import lotto.domain.WinningNumbers;
 import lotto.dto.LottoTicket;
-import lotto.dto.StatisticsResult;
 
 public class LottoService {
+    private RankingService rankingService;
     private List<Lotto> lottos;
     private Payment payment;
-    private MainNumbers mainNumbers;
-    private BonusNumber bonusNumber;
-    private WinningNumbers winningNumbers;
+
+    public void setRankingService(RankingService rankingService) {
+        this.rankingService = rankingService;
+    }
 
     public void buyTickets(int price) {
         initPayment(price);
@@ -55,45 +50,15 @@ public class LottoService {
         return numbers;
     }
 
-    public void initMainNumbers(List<Integer> mainNumbers) {
-        this.mainNumbers = new MainNumbers(mainNumbers);
-    }
-
-    public void initBonusNumber(int bonus) {
-        this.bonusNumber = new BonusNumber(this.mainNumbers.toList(), bonus);
-    }
-
-    public void initWinningNumbers() {
-        this.winningNumbers = new WinningNumbers(this.mainNumbers, this.bonusNumber);
+    public void play() {
+        lottos.forEach(lotto -> rankingService.savePlayResult(lotto));
     }
 
     public List<LottoTicket> tickets() {
         return lottos.stream().map(Lotto::toLottoTicket).toList();
     }
 
-    public StatisticsResult getPrizeResult() {
-        RankingCounter countingResult = countPrize();
-        return new StatisticsResult(countingResult.getCounter(), prizeMoney(countingResult), payment.getPayment());
-    }
-
-    private int prizeMoney(RankingCounter rankingCounter) {
-        return rankingCounter.getCounter().entrySet().stream()
-                .mapToInt(entry -> Prize.valueOf(entry.getKey()).value() * entry.getValue()).sum();
-    }
-
-    private RankingCounter countPrize() {
-        RankingCounter rankingCounter = new RankingCounter();
-        lottos.stream()
-                .map(this::findRanking)
-                .filter(Ranking::inRanking)
-                .map(Enum::name)
-                .forEach(rankingCounter::addCount);
-        return rankingCounter;
-    }
-
-    private Ranking findRanking(Lotto lotto) {
-        int nMatchingMainNumber = (int) lotto.countMatchingMainNumbers(winningNumbers);
-        boolean isBonusMatched = lotto.isBonusMatched(winningNumbers);
-        return Ranking.findFrom(nMatchingMainNumber, isBonusMatched);
+    public int getPayment() {
+        return payment.getPayment();
     }
 }

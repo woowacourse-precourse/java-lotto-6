@@ -21,9 +21,9 @@ public class ParserTest {
     @DisplayName("입력값을 숫자로 변환하는 기능 테스트")
     @Test
     void parseInputToNumberTest() {
-        String inputNumbers = "1, 4,10, 2,6,3";
-        List<Integer> actual = Arrays.asList(1, 4, 10, 2, 6, 3);
-        List<Integer> expected = Parser.parseInputToList(inputNumbers);
+        String inputNumber = "7";
+        int actual = Parser.parseInputToNumber(inputNumber);
+        int expected = 7;
         assertEquals(expected, actual);
     }
 

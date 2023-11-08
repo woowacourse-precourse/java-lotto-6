@@ -22,7 +22,7 @@ public class FormatterTest {
         assertEquals("1,050.5", rateWithComma);
     }
 
-    @DisplayName("수익률이 세자리 미만일 땐 콤마를 찍지 않는다")
+    @DisplayName("수익률이 세자리 이하일 땐 콤마를 찍지 않는다")
     @Test
     void notInsertCommaToRateWhenLengthLessThanThree() {
         float rate = 62.5f;

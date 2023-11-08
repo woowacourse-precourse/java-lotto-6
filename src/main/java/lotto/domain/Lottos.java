@@ -6,7 +6,7 @@ import lotto.service.RandomNumbers;
 import lotto.view.InputView;
 
 public class Lottos {
-    private final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_PRICE = 1000;
     private final List<Lotto> lottos;
 
     public Lottos(RandomNumbers randomNumbers, InputView inputView) {

@@ -24,14 +24,6 @@ public class Lotto {
     }
 
     public void printNumbersInAscendingOrder() {
-        List<Integer> sortedNumbers = this.getSortedNumbers();
-        System.out.print("[");
-        for (int number = 0; number < sortedNumbers.size(); number++) {
-            System.out.print(sortedNumbers.get(number));
-            if (number != numbers.size() - 1) {
-                System.out.print(", ");
-            }
-        }
-        System.out.println("[");
+        OutputService.printLottoNumbers(this.getSortedNumbers());
     }
 }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.enums.ErrorMessages;
+
 public class Money {
     private static final int UNIT = 1_000;
     private final int amount;
@@ -11,10 +13,12 @@ public class Money {
 
     private void validate(Integer amount) {
         if (isCorrectUnit(amount)) {
-            throw new IllegalArgumentException("[Error] 구매 금액은 1,000단위로만 입력 가능합니다.");
+            System.out.println(ErrorMessages.PURCHASE_UNIT.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessages.PURCHASE_UNIT.getErrorMessage());
         }
         if (isZero(amount)) {
-            throw new IllegalArgumentException("[Error] 구매 금액은 0원 이상만 가능합니다.");
+            System.out.println(ErrorMessages.PURCHASE_LEAST.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessages.PURCHASE_LEAST.getErrorMessage());
         }
     }
 

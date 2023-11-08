@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.enums.ErrorMessages;
 import lotto.enums.LottoNumbers;
 
 public class WinningLotto {
@@ -14,10 +15,12 @@ public class WinningLotto {
 
     private void validate(Integer bonusNumber) {
         if (bonusNumber < LottoNumbers.MIN_RANGE.getNumber() || bonusNumber > LottoNumbers.MAX_RANGE.getNumber()) {
-            throw new IllegalArgumentException("[Error] 보너스 번호의 범위는 1~45 입니다.");
+            System.out.println(ErrorMessages.IN_RANGE.getDeclaringClass());
+            throw new IllegalArgumentException(ErrorMessages.IN_RANGE.getErrorMessage());
         }
         if (lotto.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[Error] 보너스 번호는 로또 번호와 중복 불가 입니다.");
+            System.out.println(ErrorMessages.NOT_DUPLICATE.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessages.NOT_DUPLICATE.getErrorMessage());
         }
     }
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
+import lotto.enums.ErrorMessages;
 
 public class NumberGenerator {
     public static List<Integer> formatNumbers(String input) {
@@ -24,11 +25,12 @@ public class NumberGenerator {
 
     private static void validate(String input) {
         if (input == null) {
-            throw new IllegalArgumentException("[ERROR] 반드시 입력 값이 있어야 합니다.");
+            System.out.println(ErrorMessages.NOT_EMPTY.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessages.NOT_EMPTY.getErrorMessage());
         }
         if (!Pattern.matches("^[0-9]*$", input)) {
-            System.out.println("[ERROR] 입력은 숫자만 가능합니다.");
-            throw new NoSuchElementException("[ERROR] 입력은 숫자만 가능합니다.");
+            System.out.println(ErrorMessages.ONLY_NUMBER.getErrorMessage());
+            throw new NoSuchElementException(ErrorMessages.ONLY_NUMBER.getErrorMessage());
         }
     }
 }

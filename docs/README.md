@@ -26,15 +26,14 @@
 (class) Application
 
 (class) Lotto
-
 validate(): 예외 처리
-(class) WinLotto
 
+(class) WinLotto
 inputWinNum(): 당첨 번호 입력
 setWinLotto(): 당첨 로또 설정
 inputBonus(): 보너스 번호 입력
-(class) UserData
 
+(class) UserData
 money
 inputMoney(): 금액 입력
 validateMoney(): 금액에 대한 예외 처리

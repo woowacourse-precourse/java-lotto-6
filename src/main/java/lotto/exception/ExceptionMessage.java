@@ -19,7 +19,8 @@ public enum ExceptionMessage {
     LOTTO_MONEY_NOT_INTEGER("로또 구입 금액은 정수만 가능합니다."),
     LOTTO_MONEY_UNIT_ERROR("로또 구입 금액은 %d원 단위로 가능합니다.".formatted(LOTTO_MONEY_UNIT.getValue())),
     LOTTO_NUMBER_COUNT_ERROR("로또 번호는 %d개여야 합니다.".formatted(LOTTO_NUMBER_COUNT.getValue())),
-    INVALID_INPUT("공백 및 빈 문자열 또는 구분자의 연속 입력은 올바르지 않은 입력입니다.");
+    INVALID_INPUT("공백 및 빈 문자열 또는 구분자의 연속 입력은 올바르지 않은 입력입니다."),
+    MONEY_OUR_RANGE("금액은 양수여야 합니다.");
 
     private final String message;
 

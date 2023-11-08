@@ -1,5 +1,7 @@
 package lotto.model.money;
 
+import static lotto.exception.ExceptionMessage.MONEY_OUR_RANGE;
+
 import java.util.Map;
 import lotto.utils.constant.LottoWinningConstant;
 
@@ -13,6 +15,7 @@ public class Money {
     }
 
     public static Money of(int money) {
+        validateMoneyInRange(money);
         return new Money(money);
     }
 
@@ -26,5 +29,11 @@ public class Money {
             totalPrize += lottoWinningConstant.getWinningMoney() * result.get(lottoWinningConstant);
         }
         money = totalPrize;
+    }
+
+    private static void validateMoneyInRange(int money) {
+        if (money < 0) {
+            throw new IllegalArgumentException(MONEY_OUR_RANGE.getMessage());
+        }
     }
 }

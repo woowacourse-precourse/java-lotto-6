@@ -10,7 +10,6 @@ public record LottoDto(List<Integer> numbers) {
         return new LottoDto(lotto.getNumbers());
     }
 
-    @Override
     public List<Integer> numbers() {
         return new ArrayList<>(numbers);
     }

@@ -5,6 +5,7 @@ import lotto.exception.InvalidPurchaseAmountException;
 import lotto.exception.LessThanLottoPriceException;
 
 public class Money {
+
     private final int amount;
 
     public Money(final int amount) {

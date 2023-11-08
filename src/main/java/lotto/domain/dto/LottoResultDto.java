@@ -11,7 +11,6 @@ public record LottoResultDto(Map<Rank, Integer> result) {
         return new LottoResultDto(lottoResult.getResult());
     }
 
-    @Override
     public Map<Rank, Integer> result() {
         return new HashMap<>(result);
     }

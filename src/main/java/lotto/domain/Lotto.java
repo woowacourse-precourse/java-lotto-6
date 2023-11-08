@@ -42,7 +42,6 @@ public class Lotto {
         return bonusNumber.isMatched(numbers);
     }
 
-
     public int size() {
         return numbers.size();
     }

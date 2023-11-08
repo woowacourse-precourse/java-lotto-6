@@ -1,6 +1,7 @@
 package lotto.config;
 
 public enum LottoGameRule {
+
     LOTTO_SIZE(6),
     LOTTO_MIN_VALUE(1),
     LOTTO_MAX_VALUE(45),

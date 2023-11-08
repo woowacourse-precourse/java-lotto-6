@@ -1,6 +1,7 @@
 package lotto.domain;
 
 public class WinningLotto {
+
     private final Lotto lotto;
     private final LottoNumber bonusNumber;
 
@@ -14,6 +15,4 @@ public class WinningLotto {
         boolean matchedBonus = lotto.hasBonusNumber(bonusNumber);
         return Rank.Of(matched, matchedBonus);
     }
-
-
 }

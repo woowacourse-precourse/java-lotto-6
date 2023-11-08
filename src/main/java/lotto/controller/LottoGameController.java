@@ -86,5 +86,4 @@ public class LottoGameController {
     public Money getMoney() {
         return inputView.getMoney();
     }
-
 }

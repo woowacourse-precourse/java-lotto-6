@@ -61,7 +61,7 @@ public class LottoController {
                 outputView.printBeforeGetWinningNumber();
                 String UserInputWinningNumbers = inputView.getWinningLottoNumbers();
                 winningNumbers = utils.StringToIntegerList(UserInputWinningNumbers);
-                validateLottoNumber(winningNumbers);
+                validator.validateLottoNumber(winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 잘못된 입력입니다.");
@@ -74,24 +74,14 @@ public class LottoController {
                 outputView.printGetBonusNumber();
                 String UserInputBonusNumber=inputView.getBonusNumbers();
                 bonusBall = utils.StringToInteger(UserInputBonusNumber);
-                validateBonusNumber(bonusBall);
+                validator.validateBonusNumber(bonusBall);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 잘못된 입력입니다.");
+                continue;
             }
         }
 
-    }
-    private void validateBonusNumber(int bonusBall) {
-        if(!validator.isValidRangeBonusNumber(bonusBall)){
-            throw new IllegalArgumentException("보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
-        }
-    }
-    private void validateLottoNumber(List<Integer> winningNumbers) {
-
-        if (validator.hasDubplicatesUserNumbers(winningNumbers)||
-                !validator.isValidRange(winningNumbers)||
-                !validator.isValidLength(winningNumbers)) throw new IllegalArgumentException();
     }
     private void compareLottos() {
         matchedNumber = lottoService.CompareNumbers(lottos.purchasedLottos, winningNumbers);

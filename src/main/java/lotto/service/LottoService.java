@@ -56,6 +56,7 @@ public class LottoService implements LottoFinalConsts {
             lottoMachine.updateLottoWinningNumbers(Integer.parseInt(number));
         }
         isBonusNumberAlreadyExist(lottoMachine.getLottoWinningNumbers(), Integer.parseInt(bonusNumber));
+        isNumberOutOfRange(bonusNumber);
         lottoMachine.updateLottoBonusNumber(Integer.parseInt(bonusNumber));
     }
 

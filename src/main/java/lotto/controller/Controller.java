@@ -56,7 +56,7 @@ public class Controller {
         winningNumber = new WinningNumber(getWinningNumber(), getBonusNumber());
     }
 
-    private List<Integer> getWinningNumber() { // String[] vs List<Integer> ..
+    private List<Integer> getWinningNumber() {
         InputMessage.winningNumberInput();
         String input = Console.readLine();
         exceptions.isInvalidNumberOfLotteries(input);

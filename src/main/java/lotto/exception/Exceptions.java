@@ -34,7 +34,7 @@ public class Exceptions {
         }
     }
 
-    public void isInvalidNumberOfBonusNumber(int bonus) { // try catch vs if ?
+    public void isInvalidNumberOfBonusNumber(int bonus) {
         try {
             if (bonus <= 1 || bonus >= 45) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호의 값은 1~45까지 입력 가능합니다.");

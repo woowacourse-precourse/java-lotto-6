@@ -55,4 +55,10 @@ class LottoTest {
     void 로또_인덱스(){
         assertThat(lotto.get(0)).isEqualTo(1);
     }
+
+    @DisplayName("로또 전체 값 가져오기")
+    @Test
+    void 로또_전체_조회(){
+        assertThat(lotto.getAll()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+    }
 }

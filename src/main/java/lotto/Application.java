@@ -10,17 +10,41 @@ public class Application {
     public static void main(String[] args) {
         //가격 입력
         int amount = CheckAmountLotto();
-        BuyLotto(amount);
+        ArrayList<Lotto> lottoList = BuyLotto(amount);
+        ArrayList<Integer> prize = ResultLotto();
 
+        LottoStats(lottoList, prize);
     }
 
-    public static void BuyLotto(int amountLotto) {
+    public static void LottoStats(ArrayList<Lotto> lottoList, ArrayList<Integer> prize) {
+
+    }
+    public static ArrayList<Integer> ResultLotto() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String lottoNumString = Console.readLine();
+        String[] lottoNumArray = lottoNumString.split(",");
+
+        int bonusNumber = Integer.parseInt(Console.readLine());
+
+        ArrayList<Integer> prize = new ArrayList<>();
+
+        for(String s : lottoNumArray) {
+            prize.add(Integer.parseInt(s));
+        }
+        prize.add(bonusNumber);
+
+        return prize;
+    }
+
+    public static ArrayList<Lotto> BuyLotto(int amountLotto) {
         int realAmount = amountLotto / 1000;
         System.out.println("\n" + realAmount+ "개를 구매했습니다.");
 
         ArrayList<Lotto> lottoList = new ArrayList<>();
 
         RandomLotto(realAmount, lottoList);
+
+        return lottoList;
     }
 
     public static void RandomLotto(int realAmount, ArrayList<Lotto> lottoList) {
@@ -30,6 +54,7 @@ public class Application {
                 List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45,6);
                 Collections.sort(numbers);
                 CheckNumbers(numbers);
+
                 Lotto lottoInstance = new Lotto(numbers);
                 lottoInstance.printNumbers();
                 lottoList.add(lottoInstance);

@@ -2,13 +2,16 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Application {
 
     private static List<Lotto> lottoes;
     private static List<Integer> selectedNumbers;
+    private static Map<RESULT, Integer> results;
     private static int price;
     private static int amount;
     private static int profit;
@@ -21,6 +24,26 @@ public class Application {
         getLottoes(amount);
         getSelectedNumbers();
         getBonusNumber();
+        results = new HashMap<>();
+        getResults();
+    }
+
+    private static void getResults() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        getCount();
+        System.out.println("3개 일치 (5,000원) - " + results.get(RESULT.THREE_STRIKE) + "개");
+        System.out.println("4개 일치 (50,000원) - " + results.get(RESULT.FOUR_STRIKE) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + results.get(RESULT.FIVE_STRIKE) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + results.get(RESULT.FIVE_STRIKE_AND_BONUS) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + results.get(RESULT.SIX_STRIKE) + "개");
+    }
+
+    private static void getCount() {
+        lottoes.stream().forEach(lotto -> {
+                RESULT result = lotto.countResult(selectedNumbers, bonusNumber);
+                results.put(result, results.getOrDefault(result, 0) + 1);
+                });
     }
 
     public static void getBonusNumber() {
@@ -33,7 +56,6 @@ public class Application {
                 System.out.println("[ERROR] 올바른 숫자를 입력해주세요.");
             }
         }
-
     }
 
     public static void getSelectedNumbers() {

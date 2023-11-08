@@ -34,4 +34,13 @@ class LottoTest {
         assertThat(lotto.getNumbers()).hasSize(6);
     }
 
+    @DisplayName("당첨 번호를 입력받아 결과를 출력한다.")
+    @Test
+    void countMatchedNumbers(){
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> selectedNumebers = List.of(1, 2, 3, 7, 8, 9);
+        int bonusNumeber = 2;
+        assertThat(lotto.countResult(selectedNumebers, bonusNumeber)).isEqualTo(RESULT.THREE_STRIKE);
+    }
+
 }

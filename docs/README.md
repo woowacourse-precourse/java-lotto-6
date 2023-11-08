@@ -123,7 +123,7 @@
 - [o] LottoNumberGeneratorTest
 - [o] LottoTicketCalculatorTest
 - [o] LottoTicketCreatorTest
-- [ ] LottoMatchingDataTest
+- [o] LottoMatchingDataTest
 - [ ] LottoRankCheckerTest
 - [ ] LottoReturnsCalculatorTest
 - [ ] LottoTotalWinningsTest

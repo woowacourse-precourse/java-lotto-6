@@ -1,4 +1,4 @@
-package lotto.domain.lotto;
+package lotto.model.lotto;
 
 import java.util.List;
 import lotto.controller.validation.lotto.LottoNumberValueValidator;

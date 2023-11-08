@@ -16,4 +16,8 @@ public class Lotto {
         }
     }
 
+    public void printLottoNumber() {
+        System.out.println(numbers);
+    }
+
 }

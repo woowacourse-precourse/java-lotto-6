@@ -33,4 +33,11 @@ public class User {
             lottos.add(lotto);
         }
     }
+
+    private void printLotto(){
+        System.out.println(lottoCount+"개를 구매했습니다.");
+        for (int i = 0; i < lottoCount; i++) {
+           lottos.get(i).printLottoNumber();
+        }
+    }
 }

@@ -10,7 +10,7 @@ import lotto.util.NumberSplitter;
 import lotto.validator.Validator;
 
 public class LottoSettingService {
-    public Optional<String> validateInput(Validator<String> validator, Supplier<String> inputSupplier,
+    private Optional<String> validateInput(Validator<String> validator, Supplier<String> inputSupplier,
                                           Consumer<String> errorConsumer) {
         String input = inputSupplier.get();
         Optional<String> errorMessage =

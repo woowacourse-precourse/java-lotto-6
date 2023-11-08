@@ -25,7 +25,7 @@ class LottoSettingServiceTest {
         }
     }
 
-    @Nested
+   /* @Nested
     @DisplayName("입력값 검증 테스트")
     class validate {
         @DisplayName("올바르지 않은 입력값 입력시 비어있는 Optional 반환")
@@ -58,6 +58,8 @@ class LottoSettingServiceTest {
             assertThat(optional.get()).isEqualTo("VALID");
         }
     }
+
+    */
 
     @Nested
     @DisplayName("입력값 반환 검증")

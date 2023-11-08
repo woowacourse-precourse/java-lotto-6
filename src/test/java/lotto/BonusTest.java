@@ -41,6 +41,13 @@ class BonusTest {
         Assertions.assertThat(noEmptyContained).isEqualTo("12");
     }
 
+    @DisplayName("보너스 번호에 공백만 존재할 시 예외가 발생한다.")
+    @Test
+    void saveBonusByEmptyOnly() {
+        assertThatThrownBy(() -> bonus.save("", numbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("보너스 번호가 문자를 포함한 경우 예외가 발생한다.")
     @Test
     void saveBonusByNotNumberOrRest() {

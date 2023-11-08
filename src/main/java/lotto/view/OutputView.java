@@ -1,7 +1,6 @@
 package lotto.view;
 
 import java.text.DecimalFormat;
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import lotto.model.Lotto;
@@ -22,11 +21,9 @@ public class OutputView {
 
     public void printWinningStatistics(EnumMap<Rank, Integer> enumMap) {
         System.out.println(STATISTIC_INITIAL_MENT);
-
         for (Rank rank : Rank.values()) {
             printRank(rank, enumMap);
         }
-
     }
 
     private void printRank(Rank rank, EnumMap<Rank, Integer> enumMap) {
@@ -37,9 +34,7 @@ public class OutputView {
         int matchLottoCount = enumMap.getOrDefault(rank, 0);
         String winningWithComma = decimalFormat.format(winning);
 
-        System.out.printf(WINNING_STATISTICS_MENT, correctNumberCount
-                , winningWithComma, matchLottoCount);
-
+        System.out.printf(WINNING_STATISTICS_MENT, correctNumberCount, winningWithComma, matchLottoCount);
     }
 
     public void printProfitability(double profitabliity) {

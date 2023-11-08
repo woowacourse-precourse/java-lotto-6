@@ -15,14 +15,14 @@ public class InputService {
     }
 
     public int getMoney() {
-            try {
-                int money = validateNumber(inputView.getMoney());
-                validateMoney(money);
-                return money;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                return getMoney();
-            }
+        try {
+            int money = validateNumber(inputView.getMoney());
+            validateMoney(money);
+            return money;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getMoney();
+        }
     }
 
     private int validateNumber(String number) {
@@ -66,6 +66,7 @@ public class InputService {
         }
         return new Lotto(numbers);
     }
+
     public int getBonusNumber() {
         try {
             int bonusNumber = validateNumber(inputView.getBonusNumber());

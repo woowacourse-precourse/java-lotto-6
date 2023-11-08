@@ -30,8 +30,7 @@ public class Lotto {
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = numbers.stream()
-                .collect(Collectors.toSet());
+        Set<Integer> uniqueNumbers = numbers.stream().collect(Collectors.toSet());
         if (uniqueNumbers.size() != numbers.size()) {
             ExceptionOutputView.printLottoDuplicateError();
             throw new IllegalArgumentException();

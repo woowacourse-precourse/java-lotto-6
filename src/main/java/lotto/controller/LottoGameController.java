@@ -1,11 +1,6 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.EnumMap;
-import java.util.List;
-import java.util.StringTokenizer;
 import lotto.model.Lotties;
 import lotto.model.Lotto;
 import lotto.model.Rank;
@@ -33,15 +28,13 @@ public class LottoGameController {
         Lotto winningLotto = inputService.getWinningNumbers();
         int bonusNumber = inputService.getBonusNumber();
 
-
-        EnumMap<Rank, Integer> rankCounts = lottoService.getWinningStatistics(purchasedLotties, winningLotto, bonusNumber);
+        EnumMap<Rank, Integer> rankCounts = lottoService.getWinningStatistics(purchasedLotties, winningLotto,
+                bonusNumber);
         outputView.printWinningStatistics(rankCounts);
 
-        double profitability =lottoService.getProfitability(rankCounts, money);
+        double profitability = lottoService.getProfitability(rankCounts, money);
         outputView.printProfitability(profitability);
     }
-
-
 
 
 }

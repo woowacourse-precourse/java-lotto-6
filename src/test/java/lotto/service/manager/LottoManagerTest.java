@@ -20,12 +20,20 @@ class LottoManagerTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("보너스 번호의 범위가 1 ~ 45이면 예외가 발생하지 않는다.")
+    @DisplayName("보너스 번호가 당첨번호에 포함되어 있으면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
+    void createLottoManagerByContainedBonusNumber(int bonusNumber) {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThatThrownBy(() -> new LottoManager(lotto, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호의 범위가 1 ~ 45이고 당첨번호에 포함되지 않으면 예외가 발생하지 않는다.")
     @ParameterizedTest
     @ValueSource(ints = {1, 45})
     void createLottoManagerSuccess(int bonusNumber) {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(List.of(2, 3, 4, 5, 6, 7));
         assertThatNoException().isThrownBy(() -> new LottoManager(lotto, bonusNumber));
     }
-
 }

@@ -1,12 +1,14 @@
 package lotto.model;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class ProfitRateTest {
 
+    @DisplayName("수익률이 50퍼센트인 경우")
     @Test
-    void calculate_수익률이_50퍼센트인_경우() {
+    void calculateProfitRate() {
         ProfitRate profitRate = new ProfitRate();
 
         double reward = 5000;

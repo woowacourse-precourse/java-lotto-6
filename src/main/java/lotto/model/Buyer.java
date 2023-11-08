@@ -4,9 +4,10 @@ import java.util.List;
 
 public class Buyer {
     private static final int ZERO = 0;
+    private List<Lotto> lottos;
+
     private final Integer budget;
     private int lottoCount;
-    private List<Lotto> lottos;
 
     public Buyer(int budget) {
         validateBudget(budget);
@@ -29,7 +30,7 @@ public class Buyer {
         this.lottos = lottos;
     }
 
-    private void validateBudget(int budget) {
+    private void validateBudget(int budget) throws IllegalArgumentException {
         if (budget < Rule.LOTTO_PRICE.value()) {
             throw new IllegalArgumentException(ErrorMessages.TOO_LOW_BUDGET.value());
         }

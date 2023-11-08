@@ -7,6 +7,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class WinningResult {
+    private static final int ZERO = 0;
     private final Map<Integer, String> rankTable;
     private Map<String, Long> winningResult;
 
@@ -35,7 +36,7 @@ public class WinningResult {
         List<String> ranks = List.of("1st", "2nd", "3rd", "4th", "5th");
 
         ranks.forEach(rank -> {
-            winningResult.computeIfAbsent(rank, k -> Long.valueOf(0));
+            winningResult.computeIfAbsent(rank, k -> Long.valueOf(ZERO));
         });
     }
 

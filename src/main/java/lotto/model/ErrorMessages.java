@@ -10,10 +10,9 @@ public enum ErrorMessages {
     TOO_LOW_BUDGET("[ERROR] 로또 구입 금액은 1,000원 이상이어야 합니다."),
     NOT_ALLOW_OVERLAP("중복된 숫자가 있습니다.");
 
-
     private final String message;
 
-    ErrorMessages (String message) {
+    ErrorMessages(String message) {
         this.message = message;
     }
 

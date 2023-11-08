@@ -1,6 +1,7 @@
 package lotto.model;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -8,8 +9,9 @@ import java.util.List;
 
 public class AggregatorTest {
 
+    @DisplayName("6개 당첨 1개와 0개 당첨 1개인 경우")
     @Test
-    void result_6개_당첨_1개와_0개_당첨_1개_인경우() {
+    void matchSixAndZero() {
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1,2,3,4,5,6)));
         lottos.add(new Lotto(List.of(11,12,13,14,15,16)));
@@ -25,8 +27,9 @@ public class AggregatorTest {
         Assertions.assertThat(result).isEqualTo(List.of(6, 0));
     }
 
+    @DisplayName("당첨 번호와 5개가 일치하고 보너스번호가 일치하는 경우")
     @Test
-    void result_당첨_번호와_5개가_일치하고_보너스번호가_일치하는_경우() {
+    void matchFiveAndBonus() {
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1,40,41,42,43,44)));
         lottos.add(new Lotto(List.of(11,12,13,14,15,16)));
@@ -42,8 +45,9 @@ public class AggregatorTest {
         Assertions.assertThat(result).isEqualTo(List.of(Rule.SECOND_RANK.value(), 0));
     }
 
+    @DisplayName("구입한 로또 번호들 중에서 일치하는 번호가 하나도 없는 경우")
     @Test
-    void result_구입한_로또_번호들_중에서_일치하는_번호가_하나도_없는_경우() {
+    void NomatchResult() {
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1,2,3,4,5,6)));
         lottos.add(new Lotto(List.of(11,12,13,14,15,16)));

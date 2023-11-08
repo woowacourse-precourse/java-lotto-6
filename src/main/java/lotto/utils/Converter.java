@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Converter {
 
-    public static Integer stringToInt(String purchaseAmount) {
+    public static Integer stringToInt(String purchaseAmount) throws IllegalArgumentException {
         try {
             return Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {

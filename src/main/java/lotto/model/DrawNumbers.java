@@ -24,7 +24,7 @@ public class DrawNumbers {
         return bonusNumber;
     }
 
-    private void validate(List<Integer> winningNumbers, List<Integer> bonusNumber) {
+    private void validate(List<Integer> winningNumbers, List<Integer> bonusNumber) throws IllegalArgumentException {
         validateDigits(winningNumbers, bonusNumber);
         validateOverlap(winningNumbers, bonusNumber.get(FIRST_ELEMENT));
         validateNumRange(winningNumbers, bonusNumber.get(FIRST_ELEMENT));

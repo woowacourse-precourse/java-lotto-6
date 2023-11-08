@@ -1,14 +1,16 @@
 package lotto.model;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 public class LottoStoreTest {
 
+    @DisplayName("로또 10장 판매한 경우")
     @Test
-    void sell_로또_10장_판매한_경우() {
+    void sellTenLottos() {
         LottoStore lottoStore = new LottoStore();
 
         int lottoCount = 10;
@@ -17,8 +19,9 @@ public class LottoStoreTest {
         Assertions.assertThat(lottos.size()).isEqualTo(lottoCount);
     }
 
+    @DisplayName("로또 0장 판매한 경우")
     @Test
-    void sell_로또_0장_판매한_경우() {
+    void sellNone() {
         LottoStore lottoStore = new LottoStore();
 
         int lottoCount = 0;

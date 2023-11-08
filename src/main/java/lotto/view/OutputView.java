@@ -1,7 +1,6 @@
 package lotto.view;
 
 import lotto.model.Lotto;
-import lotto.model.Reward;
 
 import java.util.*;
 import java.util.stream.Collectors;

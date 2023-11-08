@@ -1,6 +1,7 @@
 package lotto.model;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -9,8 +10,9 @@ import java.util.Map;
 
 public class WinningResultTest {
 
+    @DisplayName("5등 2명 4등 1명 인 경우의 당첨 등수 결과 집계")
     @Test
-    void WinningResult_5등_2명_4등_1명_인경우() {
+    void calculateWinningOfFifthAndFourth() {
         List<Integer> matchResult = List.of(3, 3, 4, 1, 2);
         WinningResult winningResult = new WinningResult();
         Map<String, Long> rank = new HashMap<>();
@@ -25,8 +27,9 @@ public class WinningResultTest {
         Assertions.assertThat(winningResult.getWinningResult()).isEqualTo(rank);
     }
 
+    @DisplayName("당첨이 하나도 안된 경우의 당첨 등수 결과 집계")
     @Test
-    void WinningResult_당첨이_하나도_안된_경우() {
+    void calculateNoWinning() {
         List<Integer> matchResult = List.of(1, 1, 2, 1, 2);
         WinningResult winningResult = new WinningResult();
         Map<String, Long> rank = new HashMap<>();

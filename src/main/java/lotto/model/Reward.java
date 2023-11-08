@@ -21,10 +21,6 @@ public class Reward {
         this.rewardTable.put("5th", FIFTH_RANK_REWARD);
     }
 
-    public Map<String, Integer> getRewardTable() {
-        return new HashMap<>(rewardTable);
-    }
-
     public int getReward() {
         return reward;
     }

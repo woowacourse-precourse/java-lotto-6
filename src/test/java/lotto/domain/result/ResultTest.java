@@ -110,8 +110,8 @@ class ResultTest {
                 Lotto.of(List.of(1, 2, 3, 4, 5, 7))
         );
 
-        double expectedProfit =
-                (FIRST.getWinningMoney() + SECOND.getWinningMoney()) / ((double) lottos.size() * PURCHASE_AMOUNT_UNIT);
+        double expected = (FIRST.getWinningMoney() + SECOND.getWinningMoney()) / (lottos.size() * PURCHASE_AMOUNT_UNIT)
+                * PROFIT_MULTIPLY;
 
         Result result = Result.of(winning, lottos);
 
@@ -119,7 +119,7 @@ class ResultTest {
         double actual = result.getProfit();
 
         //Assert
-        assertThat(actual * PROFIT_MULTIPLY).isEqualTo(expectedProfit);
+        assertThat(actual).isEqualTo(expected);
     }
 
     @Test

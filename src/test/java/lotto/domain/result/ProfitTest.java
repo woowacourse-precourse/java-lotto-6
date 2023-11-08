@@ -46,12 +46,14 @@ class ProfitTest {
 
         WinningMoney winningMoney = WinningMoney.of(statistics);
 
+        double expected =
+                (winningMoney.getMoney().doubleValue() / (purchaseCount * PURCHASE_AMOUNT_UNIT)) * PROFIT_MULTIPLY;
+
         // Act
-        Profit profit = Profit.of(winningMoney, purchaseCount);
+        double actual = Profit.of(winningMoney, purchaseCount).getPercentage();
 
         // Assert
-        double expected = winningMoney.getMoney().doubleValue() / (purchaseCount * PURCHASE_AMOUNT_UNIT);
-        assertThat(profit.getPercentage() * PROFIT_MULTIPLY).isEqualTo(expected);
+        assertThat(actual).isEqualTo(expected);
     }
 
     @Test

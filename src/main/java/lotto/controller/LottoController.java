@@ -4,8 +4,8 @@ import static lotto.utils.LottoConstant.PURCHASE_AMOUNT_UNIT;
 
 import java.util.List;
 import lotto.domain.lotto.Lotto;
-import lotto.domain.winning.Winning;
 import lotto.domain.result.Result;
+import lotto.domain.winning.Winning;
 import lotto.service.LottoInputReader;
 import lotto.service.LottoOutputWriter;
 import lotto.service.MultiLottoGenerator;
@@ -24,7 +24,7 @@ public class LottoController {
         this.writer = writer;
     }
 
-    public void handle() {
+    public void run() {
         int lottoSize = createLottoSize();
 
         List<Lotto> lottos = createLottos(lottoSize);

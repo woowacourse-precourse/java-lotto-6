@@ -19,7 +19,7 @@ public class Profit {
     }
 
     public double getPercentage() {
-        return percentage;
+        return this.percentage;
     }
 
     public void print(LottoOutputWriter writer) {

@@ -13,6 +13,6 @@ public class Application {
         LottoInputReader reader = LottoInputReader.of(new InputView(), writer, new LottoValidator());
 
         LottoController controller = LottoController.of(reader, writer);
-        controller.handle();
+        controller.run();
     }
 }

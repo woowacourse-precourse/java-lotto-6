@@ -60,7 +60,7 @@ class LottoInputReaderTest {
     }
 
     @Test
-    void 사용자에게_로또_구매_금액을_입력받을때_입력_메시지를_출력한다() throws Exception {
+    void 사용자에게_로또_구매_금액을_입력받을때_입력_메시지를_출력한다() {
         //Arrange
         String userInput = "3000";
         int expected = 3000;

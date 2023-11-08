@@ -30,7 +30,7 @@ class LottoControllerTest {
         LottoController controller = LottoController.of(mockInputReader, mockOutputWriter);
 
         // Act
-        controller.handle();
+        controller.run();
 
         // Assert
         verify(mockOutputWriter).showLottos(anyList());

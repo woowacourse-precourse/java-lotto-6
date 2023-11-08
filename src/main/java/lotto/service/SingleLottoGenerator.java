@@ -8,7 +8,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import lotto.domain.lotto.Lotto;
 
-public class SingleLottoGenerator {
+public abstract class SingleLottoGenerator {
+
+    private SingleLottoGenerator() {
+    }
 
     public static Lotto generate() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER,

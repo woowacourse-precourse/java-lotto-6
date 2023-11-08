@@ -28,13 +28,25 @@ public class LottoMoney {
     }
 
     private void validate(String inputMoney) {
-        if (!inputMoney.matches("\\d+")) {
+        if (!isNumber(inputMoney)) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_TYPE.getMessage());
-        } else if (Integer.valueOf(inputMoney) % 1000 != 0) {
+        } else if (!isTousandMoney(Integer.valueOf(inputMoney))) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_AMOUNT.getMessage());
-        } else if (Integer.valueOf(inputMoney) == 0) {
+        } else if (isZeroMoney(Integer.valueOf(inputMoney))) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_PRICE.getMessage());
         }
+    }
+
+    private boolean isNumber(String inputMoney) {
+        return inputMoney.matches("\\d+");
+    }
+
+    private boolean isTousandMoney(int inputMoney) {
+        return inputMoney % 1000 == 0;
+    }
+
+    private boolean isZeroMoney(int inputMoney) {
+        return Integer.valueOf(inputMoney) <= 0;
     }
 
     public double getLottoMoney() {

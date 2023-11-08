@@ -10,9 +10,12 @@
 
 - [x] LottoMoney 생성자 생성
 - validate()
-  - [x] 로또 구매 금액이 숫자인지 확인
-  - [x] 로또 구매 금액이 1,000단위인지 확인
-  - [x] 로또 구매 금액이 0인지 확인
+  - isNumber()
+    - [x] 로또 구매 금액이 숫자인지 확인
+  - isTousandMoney()
+    - [x] 로또 구매 금액이 1,000단위인지 확인
+  - isZeroMoney()
+    - [x] 로또 구매 금액이 0인지 확인
 - [x] get메서드 생성
 - lottoMoney: 로또 금액 저장
 - lottoTiket: 로또 개수 저장

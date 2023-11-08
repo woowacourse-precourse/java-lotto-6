@@ -1,5 +1,6 @@
 package lotto.util;
 
+import lotto.enumeration.Constants;
 import lotto.enumeration.ExceptionType;
 
 import java.util.ArrayList;
@@ -25,7 +26,8 @@ public class Validator {
 
     public static boolean validateAmountRange(int input) {
         try {
-            if (input > 2000000000 || input < 1000) { // limit 상수처리
+            if (input > Constants.AMOUNT_LIMIT.getConstant() ||
+                    input < Constants.UNITS_OF_AMOUNT.getConstant()) {
                 throw new InputMismatchException(ExceptionType.EXCEED_AMOUNT_LIMIT.getMessage());
             }
             return true;

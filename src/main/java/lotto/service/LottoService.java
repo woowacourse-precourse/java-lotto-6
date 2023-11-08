@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.Result;
 import lotto.domain.WinningLotto;
+import lotto.enumeration.Constants;
 import lotto.enumeration.WinningType;
 
 import java.math.BigDecimal;
@@ -13,18 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
-    final int START_DIGIT = 1;
-    final int END_DIGIT = 45;
-    final int LOTTO_NUM = 6;
-    final int TICKET_PRICE = 1000;
 
     public List<Lotto> issue(int amount) {
         List<Lotto> tickets = new ArrayList<>();
-        for (int i = 0; i < amount / TICKET_PRICE; i++) {
-            List<Integer> nums = Randoms.pickUniqueNumbersInRange(START_DIGIT, END_DIGIT, LOTTO_NUM);
+        for (int i = 0; i < amount / Constants.TICKET_PRICE.getConstant(); i++) {
+            List<Integer> nums = Randoms.pickUniqueNumbersInRange(
+                    Constants.START_DIGIT.getConstant(),
+                    Constants.END_DIGIT.getConstant(),
+                    Constants.LOTTO_NUM.getConstant());
             tickets.add(new Lotto(nums));
         }
-
         return tickets;
     }
 

@@ -29,4 +29,13 @@ public enum Rank {
     public long getPrize() {
         return prize;
     }
+
+    public String getFormalizedRank() {
+        String result = String.format("%d개 일치", this.count);
+        if (this.bonus) {
+            result += ", 보너스 볼 일치";
+        }
+        result += String.format(" (%,d원) - ", this.prize);
+        return result;
+    }
 }

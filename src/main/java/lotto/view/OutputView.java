@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.constants.Constants.INITIAL_COUNT;
+
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -17,10 +19,11 @@ public class OutputView {
     public void printLottoStatistics(Map<Rank, Integer> rankIntegerMap) {;
         for (Rank rank : Rank.values()) {
             if (rank == Rank.SECOND) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n", rank.getCount(), rank.getWinningAmount(), rankIntegerMap.getOrDefault(rank, 0));
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n", rank.getCount(), rank.getWinningAmount(), rankIntegerMap.getOrDefault(rank,
+                        INITIAL_COUNT));
                 continue;
             }
-            System.out.printf("%d개 일치 (%,d원) - %d개%n", rank.getCount(), rank.getWinningAmount(), rankIntegerMap.getOrDefault(rank, 0));
+            System.out.printf("%d개 일치 (%,d원) - %d개%n", rank.getCount(), rank.getWinningAmount(), rankIntegerMap.getOrDefault(rank, INITIAL_COUNT));
         }
     }
 

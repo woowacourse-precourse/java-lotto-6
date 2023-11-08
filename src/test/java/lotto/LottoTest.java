@@ -1,8 +1,12 @@
 package lotto;
 
+import static lotto.LottoConfig.COUNT;
+import static lotto.LottoConfig.END_NUM;
+import static lotto.LottoConfig.START_NUM;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,4 +40,33 @@ class LottoTest {
         assertThat(said).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 
+    @DisplayName("로또 번호 매칭 확인")
+    @Test
+    void lottoGetsFirstPrize() {
+        // given
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, COUNT);
+        Lotto lotto = new Lotto(lottoNumbers);
+
+        // when
+        LottoPrize prize = lotto.match(lottoNumbers, Randoms.pickNumberInRange(START_NUM, END_NUM));
+
+        // then
+        assertThat(prize).isEqualTo(LottoPrize.FIRST);
+    }
+
+    @DisplayName("로또 번호 NONE 매칭 확인")
+    @Test
+    void lottoGetsNoPrize() {
+        // given
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, COUNT * 2);
+        List<Integer> lottoNumbers = numbers.subList(0, COUNT);
+        List<Integer> winningNumbers = numbers.subList(COUNT, COUNT * 2);
+        Lotto lotto = new Lotto(lottoNumbers);
+
+        // when
+        LottoPrize prize = lotto.match(winningNumbers, Randoms.pickNumberInRange(START_NUM, END_NUM));
+
+        // then
+        assertThat(prize).isEqualTo(LottoPrize.NONE);
+    }
 }

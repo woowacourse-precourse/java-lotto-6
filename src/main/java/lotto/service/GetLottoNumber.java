@@ -41,7 +41,7 @@ public class GetLottoNumber {
     }
 
     public static Lotto winningTicketNumbers() {
-        Lotto winningLotto = null;
+        Lotto winningLotto;
 
         String input = InputView.inputWinNumber();
 

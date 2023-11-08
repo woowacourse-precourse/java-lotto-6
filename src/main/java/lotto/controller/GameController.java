@@ -13,6 +13,16 @@ public class GameController {
     Game game = new Game();
     Lotto lotto;
 
+    public void startGame() {
+        requestAmountInput();
+        requestPurchaseCountOutput();
+        requestLottoNumbers();
+        requestWinningNumberInput();
+        requestBonusNumberInput();
+        requestMatchResultOutput();
+        requestRevenueOutPut();
+    }
+
     public void requestAmountInput() {
         GameView.printAmountInputPhrase();
         inputAmount();

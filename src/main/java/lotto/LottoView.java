@@ -12,7 +12,7 @@ public class LottoView {
     public void displayPurchasedLottos(List<Lotto> purchasedLottos) {
         System.out.println(purchasedLottos.size() + "개를 구매했습니다.");
         for (Lotto purchasedLotto : purchasedLottos) {
-            System.out.println(purchasedLotto.getNumbers());
+            System.out.println(purchasedLotto.getNumbersDTO());
         }
     }
 

@@ -14,8 +14,8 @@ public class Lotto {
                 .toList(); // 불변 리스트
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public List<Integer> getNumbersDTO() {
+        return List.of(numbers.toArray(new Integer[0])); // 불변 DTO 리스트 반환
     }
 
     private void validate(List<Integer> numbers) {

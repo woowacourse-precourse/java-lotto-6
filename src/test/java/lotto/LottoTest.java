@@ -68,7 +68,7 @@ class LottoTest {
     @Test
     void checkLottoNumsAscending() {
         Lotto lotto = new Lotto(List.of(3, 45, 7, 8, 9, 1));
-        List<Integer> lottoNumbers = lotto.getNumbers();
+        List<Integer> lottoNumbers = lotto.getNumbersDTO();
         List<Integer> expected = List.of(1, 3, 7, 8, 9, 45);
 
         assertThat(lottoNumbers).isEqualTo(expected);

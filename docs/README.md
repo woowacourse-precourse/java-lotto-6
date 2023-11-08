@@ -64,12 +64,12 @@
     feat - [x] View “`---`” 일반 메세지 출력 기능
     feat - [x] Model Lotto 당첨 기준과 당첨 금액 정보를 제공하는 기능
         test - [x] Model Lotto 당첨 기준과 당첨 금액 정보를 제공하는 기능
-    feat - [ ] Model Lotto 객체가 담긴 리스트의 각 요소와 당첨 번호를 비교하여 당첨을 확인하는 기능
-    feat - [ ] Model 당첨결과를 각 등수의 당첨내역에 카운트하는 기능
-    feat - [ ] Controller 당첨 내역을 출력하는 기능을 호출하는 기능
-    feat - [ ] View 당첨내역을 출력하는 기능
-    feat - [ ] Model 각 당첨 내역의 수익을 합산하는 기능
-    feat - [ ] Model 수익률을 구하는 기능
-    feat - [ ] Controller 수익률 출력 기능을 호출하는 기능
-    feat - [ ] View 수익률을 출력하는 기능
-    feat - [ ] View 수익률에 대한 설명하는 내용을 출력하는 기능
+    feat - [x] Model Lotto 객체가 담긴 리스트의 각 요소와 당첨 번호를 비교하여 당첨을 확인하는 기능
+    feat - [x] Model 당첨결과를 각 등수의 당첨내역에 카운트하는 기능
+    feat - [x] Controller 당첨 내역을 출력하는 기능을 호출하는 기능
+    feat - [x] View 당첨내역을 출력하는 기능
+    feat - [x] Model 각 당첨 내역의 수익을 합산하는 기능
+    feat - [x] Model 수익률을 구하는 기능
+    feat - [x] Controller 수익률 출력 기능을 호출하는 기능
+    feat - [x] View 수익률을 출력하는 기능
+    feat - [x] View 수익률에 대한 설명하는 내용을 출력하는 기능

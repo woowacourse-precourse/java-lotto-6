@@ -2,9 +2,13 @@ package lotto.controllers;
 
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
+import lotto.model.LottoNumberMatcher;
+import lotto.views.LottoView;
 
 import java.util.ArrayList;
 
+import static lotto.controllers.LottoNumberChecker.LotteryResult;
+import static lotto.controllers.LottoNumberChecker.comparisonMyLottoNumberAndWinningNumber;
 import static lotto.model.InputValidator.*;
 import static lotto.model.Utilities.divide;
 import static lotto.model.Utilities.inputIntegerParsing;
@@ -15,20 +19,31 @@ public class LottoStoreManager {
     private final double LOTTO_PRICE = 1000;
     private static int lottoTicketCount;
 
-    public LottoStoreManager() {
-        initialize();
-    }
+    LottoView view = new LottoView();
+    LottoNumberMatcher model = new LottoNumberMatcher();
 
-    public void setInput(String inputAmount) {
-        this.inputAmount = inputAmount;
-    }
+    private ArrayList<Lotto> myLottoTicket = new ArrayList<>();
 
-    public int getLottoTicketCount() {
-        return lottoTicketCount;
-    }
+    public LottoStoreManager (){
+        getPurchaseAmountPromptMessage();
+        purchaseAmount();
+        myLottoTicket=lottoMachine().getLottoTickets();
+        System.out.println();
 
-    public void initialize() {
-        setInput(InputProcessor.readLine());
+        view.lottoTicketCountView(lottoTicketCount);
+        displayLottoTicketsNumber(myLottoTicket);
+
+        System.out.println();
+        getLottoNumberPromptMessage();
+        new DongHangLottery();
+
+        comparisonMyLottoNumberAndWinningNumber(myLottoTicket);
+
+        LotteryResult();
+        view.showRateOfReturn(model.calculateRateOfReturn(inputIntegerParsing(inputAmount)));
+    }
+    public void purchaseAmount() {
+        inputAmount = InputProcessor.readLine();
 
         int maxAttempts = 3;
         int attempts = 0;
@@ -54,9 +69,7 @@ public class LottoStoreManager {
         return new LottoGenerator(lottoTicketCount);
     }
 
-    public void displayLottoTicketsNumber() {
-        LottoGenerator tickets = lottoMachine();
-        ArrayList<Lotto> lottoTickets = tickets.getLottoTickets();
+    public void displayLottoTicketsNumber(ArrayList<Lotto> lottoTickets) {
         for (Lotto lottoTicket : lottoTickets) {
             System.out.println(lottoTicket);
         }

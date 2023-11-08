@@ -29,8 +29,9 @@ public class LottoGenerator {
     }
 
     public List<Integer> sortAscending(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 
 

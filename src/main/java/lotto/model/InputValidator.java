@@ -12,6 +12,7 @@ public class InputValidator {
     private static int WINNING_NUMBER_COUNT = 6;
 
     public static void validatePurchaseAmount(String inputAmount) {
+        
         validateNonInteger(inputAmount);
         validateDivisibleByThousand(inputIntegerParsing(inputAmount));
     }

@@ -44,7 +44,6 @@ public class DongHangLottery {
         if (attempts == maxAttempts) {
             getProgramClosePromoptMessage();
         }
-        System.out.println(inputWinningNumber);
     }
 
     public void bonusNumberValidate() {

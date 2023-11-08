@@ -1,5 +1,6 @@
 package view;
 
+import domain.Coincide;
 import domain.Lotto;
 import domain.LottoNumbers;
 
@@ -113,15 +114,15 @@ public class outputView {
         System.out.println();
         System.out.println(OUTPUT_WINNING_STATISTICS);
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + arr[0] + OUTPUT_COUNT);
-        System.out.println("4개 일치 (50,000원) - " + arr[1] + OUTPUT_COUNT);
-        System.out.println("5개 일치 (1,500,000원) - " + arr[2] + OUTPUT_COUNT);
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + arr[3] + OUTPUT_COUNT);
-        System.out.println("6개 일치 (2,000,000,000원) - " + arr[4] + OUTPUT_COUNT);
+        System.out.println(Coincide.FIVE.getMessage() + arr[0] + OUTPUT_COUNT);
+        System.out.println(Coincide.FOUR.getMessage() + arr[1] + OUTPUT_COUNT);
+        System.out.println(Coincide.THIRD.getMessage() + arr[2] + OUTPUT_COUNT);
+        System.out.println(Coincide.SECOND.getMessage() + arr[3] + OUTPUT_COUNT);
+        System.out.println(Coincide.FIRST.getMessage() + arr[4] + OUTPUT_COUNT);
     }
 
     private static void rateOfReturn(int[] arr, int input) {
-        float sum = (float) ((arr[0] * 5000) + (arr[1] * 50000) + (arr[2] * 1500000) + (arr[3] * 30000000) + (arr[4] * 2000000000)) / input;
+        float sum = (float) ((arr[0] * Coincide.FIVE.getCountOfMoney()) + (arr[1] * Coincide.FOUR.getCountOfMoney()) + (arr[2] * Coincide.THIRD.getCountOfMoney()) + (arr[3] * Coincide.SECOND.getCountOfMoney()) + (arr[4] * Coincide.FIRST.getCountOfMoney())) / input;
 
         String result = String.format("%,.1f", sum);
         System.out.println(OUTPUT_RATE_START + result + OUTPUT_RATE_END);

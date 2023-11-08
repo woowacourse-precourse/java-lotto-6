@@ -62,8 +62,8 @@ class RankingServiceTest {
         rankingService.initWinningNumbers();
         lottoService.play();
 
-        long prizeMoney = rankingService.getRankingResult().prizeMoney();
+        double revenue = rankingService.getRankingResult().revenue();
 
-        assertThat(prizeMoney).isEqualTo(2030005000);
+        assertThat(revenue).isEqualTo(2030005000/(double)8000);
     }
 }

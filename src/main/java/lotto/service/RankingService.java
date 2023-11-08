@@ -38,8 +38,7 @@ public class RankingService {
     }
 
     public StatisticsResult getRankingResult() {
-        return new StatisticsResult(rankingCounter.getCounter(), rankingCounter.getPrizeMoney(),
-                lottoService.getPayment());
+        return new StatisticsResult(rankingCounter.getCounter(), rankingCounter.getPrizeMoney()/(double)lottoService.getPayment());
     }
 
     private Ranking findRanking(Lotto lotto) {

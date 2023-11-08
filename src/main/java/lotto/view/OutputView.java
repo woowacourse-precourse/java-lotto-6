@@ -28,7 +28,7 @@ public class OutputView {
         System.out.println(STATISTICS_MESSAGE);
         System.out.println(SEPARATOR_LINE_MESSAGE);
         printCountingResponse(response.prizeCount());
-        printRevenue(response.prizeMoney(), response.payment());
+        printRevenue(response.revenue());
     }
 
     private static void printCountingResponse(Map<String, Integer> counter) {
@@ -36,8 +36,8 @@ public class OutputView {
                 .forEach(prize -> System.out.printf(prize.toString(), counter.get(prize.name())));
     }
 
-    private static void printRevenue(long prizeMoney, int payment) {
-        System.out.printf(REVENUE_MESSAGE.toString(), ((double) prizeMoney / payment) * 100);
+    private static void printRevenue(double revenue) {
+        System.out.printf(REVENUE_MESSAGE.toString(), revenue * 100);
     }
 
     public static void printErrorMessage(String errorMessage) {

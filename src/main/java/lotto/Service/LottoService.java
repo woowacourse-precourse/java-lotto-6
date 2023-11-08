@@ -1,13 +1,14 @@
 package lotto.Service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Enum.LottoError;
 import lotto.Enum.Prize;
 import lotto.Lotto;
 import lotto.WinPrize;
 
 import java.util.List;
+import java.util.Map;
 
-import static lotto.Enum.LottoError.BonusFormat;
 import static lotto.Enum.constants.*;
 
 
@@ -58,7 +59,7 @@ public class LottoService {
             throw new IllegalArgumentException();
         }
         if (winNumber.getNumbers().contains(bonus)) {
-            throw new IllegalStateException(BonusFormat.getErrorMessage());
+            throw new IllegalStateException(LottoError.BonusFormat.getErrorMessage());
         }
     }
 }

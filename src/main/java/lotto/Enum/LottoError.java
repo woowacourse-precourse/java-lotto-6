@@ -8,7 +8,7 @@ public enum LottoError {
     AmountFormat("로또 금액 형식에 맞지 않습니다.(로또 한장당 1000원 입니다.)"),
     BonusFormat("보너스 번호는 당첨 번호와 중복이 불가능 합니다.");
 
-    private String errorMessage;
+    private final String errorMessage;
 
     LottoError(String errorMessage) {
         this.errorMessage = errorMessage;

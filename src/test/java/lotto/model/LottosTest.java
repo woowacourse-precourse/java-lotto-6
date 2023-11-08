@@ -1,19 +1,17 @@
 package lotto.model;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class LottosTest {
-
-    @Test
     @DisplayName("로또 반복자 테스트")
-    void Lottos_Iterator_test() throws Exception {
+    @Test
+    void LottosIteratorTest() {
         //given
         Lottos lottos = new Lottos();
 

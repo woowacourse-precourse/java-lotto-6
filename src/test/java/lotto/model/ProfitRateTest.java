@@ -9,9 +9,9 @@ import java.util.Map;
 
 
 class ProfitRateTest {
-    @Test
     @DisplayName("수익률 계산 테스트")
-    void profit_rate_calculate_test() {
+    @Test
+    void profitRateCalculateTest() {
         //given
         Map<WinningCriteria, Integer> matchResult = Map.of(
                 WinningCriteria.MATCHES_THREE, 1,

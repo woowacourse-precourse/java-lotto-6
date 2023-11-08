@@ -11,9 +11,10 @@ import java.util.Map;
 
 
 class LottoResultTest {
-    @Test
+
     @DisplayName("로또 결과 테스트")
-    void lotto_result_test(){
+    @Test
+    void lottoResultTest(){
         //given
         Lotto winningNumber = new Lotto(Arrays.asList(1,2,3,4,5,6));
         BonusNumber bonusNumber = new BonusNumber(8);

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.view.InputView;
+
 import java.util.List;
 
 public class Lotto {
@@ -8,6 +10,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         duplicateNumbers(numbers);
+        checkRangeOneToFortyFive(numbers);
         this.numbers = numbers;
     }
 
@@ -26,6 +29,14 @@ public class Lotto {
 
         if (distinctCount != numbers.size()) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private static void checkRangeOneToFortyFive(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 

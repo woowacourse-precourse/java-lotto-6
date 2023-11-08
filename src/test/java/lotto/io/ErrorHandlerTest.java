@@ -1,5 +1,6 @@
 package lotto.io;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class ErrorHandlerTest {
     @Test
     void checkInt() {
-        assertThrows(IllegalArgumentException.class, () -> ErrorHandler.checkInt("string"));
+        assertThrows(IllegalArgumentException.class, () -> ErrorHandler.checkInt("1000j"));
     }
 
     @Test
@@ -36,6 +37,4 @@ class ErrorHandlerTest {
         assertThrows(IllegalArgumentException.class,
                 () -> ErrorHandler.checkSize(List.of("1", "2", "3", "4", "5", "6")));
     }
-
-
 }

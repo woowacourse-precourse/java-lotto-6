@@ -2,10 +2,15 @@ package lotto.view;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.domain.Amount;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.Result;
 import lotto.domain.WinningLotto;
+import lotto.dto.ResultResponse;
+import lotto.utils.Rank;
 import lotto.validation.NumberValidator;
 import lotto.validation.WinningNumberValidator;
 
@@ -83,5 +88,16 @@ public class View {
     public void printCreatedLottos(Amount amount, Lottos lottos) {
         outputView.printLottoCount(amount.getLottoCount());
         outputView.printLottos(lottos);
+    }
+
+    public void printResult(Result result, Amount amount) {
+        Map<Rank, Integer> noneRankRemovedResult = result.getResult();
+
+        List<ResultResponse> resultResponses = noneRankRemovedResult.entrySet().stream()
+            .map(entry -> new ResultResponse(entry.getKey(), entry.getValue()))
+            .collect(Collectors.toList());
+
+        outputView.printLottoResult(resultResponses);
+        outputView.printBenefitRate(result.calculateBenefitRate(amount));
     }
 }

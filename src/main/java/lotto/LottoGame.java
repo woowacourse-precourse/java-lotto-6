@@ -8,9 +8,9 @@ public class LottoGame {
         List<Lotto> lottoTicket = new ArrayList<>();
         List<Integer> winningNumber = new ArrayList<>();
         Input input = new Input(lottoTicket, winningNumber);
-        Output output = new Output(lottoTicket, winningNumber);
-
         int bonusNumber = input.startInput();
+
+        Output output = new Output(lottoTicket, winningNumber);
         output.printOutput(bonusNumber);
     }
 }

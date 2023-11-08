@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import domain.GenerateLotto;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -52,6 +54,16 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @DisplayName("로또 번호 랜덤으로 생성")
+    @Test
+    void 로또번호_랜덤생성(){
+        GenerateLotto[] lottos = new GenerateLotto[3];
+        for (int i=0;i< lottos.length;i++){
+            lottos[i] = new GenerateLotto();
+            System.out.println(lottos[i].generatedNumbers);
+        }
     }
 
     @Override

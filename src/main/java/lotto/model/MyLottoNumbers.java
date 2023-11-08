@@ -2,8 +2,6 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Collections;
-import lotto.model.MyLottoNumber;
 public class MyLottoNumbers {
 
     private final List<MyLottoNumber> myLottoNumbers;
@@ -26,7 +24,7 @@ public class MyLottoNumbers {
     }
 
     public List<MyLottoNumber> getMyLottoNumbers(){
-        return Collections.unmodifiableList(myLottoNumbers);
+        return myLottoNumbers;
     }
 
 

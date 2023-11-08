@@ -42,7 +42,7 @@ public class LottoController {
 
     private void setLottoNumbers() {
         LottoManager winningNumbers = getWinningNumbersFromUser();
-        addBonusNumberToWinningNumbers(winningNumbers);
+        addBonusNumberToLottoManager(winningNumbers);
         this.lottoManager = winningNumbers;
     }
 
@@ -75,7 +75,7 @@ public class LottoController {
         return inputValidator.validateWinningNumbers(inputView);
     }
 
-    private void addBonusNumberToWinningNumbers(LottoManager winningNumbers) {
+    private void addBonusNumberToLottoManager(LottoManager winningNumbers) {
         outputView.askBonusNumber();
         inputValidator.validateBonusNumber(winningNumbers, inputView);
     }

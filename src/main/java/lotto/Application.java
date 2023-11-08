@@ -45,8 +45,14 @@ public class Application {
         }
         return prizeCount;
     }
-    private static long calculatePrizes(List<Lotto> lottos, Set<Integer> winningNumberSet, int bonusNumber, Map<LottoRank, Integer> prizeCount){
-
+    private static long calculatePrizes(List<Lotto> lottos, Set<Integer> winningNumberSet, int bonusNumber, Map<LottoRank, Integer> prizeCount) {
+        long totalPrize = 0;
+        for (Lotto lotto : lottos) {
+            LottoRank rank = determineLottoRank(lotto, winningNumberSet, bonusNumber);
+            prizeCount.put(rank, prizeCount.get(rank) + 1);
+            totalPrize += rank.getPrizeMoney();
+        }
+        return totalPrize;
     }
     private static LottoRank determineLottoRank(Lotto lotto, Set<Integer> winningNumberSet, int bonusNumber){
 

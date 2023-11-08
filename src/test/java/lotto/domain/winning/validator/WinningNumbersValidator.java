@@ -1,7 +1,9 @@
 package lotto.domain.winning.validator;
 
 import java.util.List;
+import lotto.constant.Constant;
 import lotto.constant.errorMessage.input.IllegalArgumentAmountException;
+import lotto.constant.errorMessage.input.IllegalStateAmountException;
 import lotto.constant.errorMessage.winning.WinningExceptionStatus;
 
 public class WinningNumbersValidator {
@@ -13,6 +15,18 @@ public class WinningNumbersValidator {
 
     public static void validateWinningNumbers(final List<Integer> numbers, final int bonusNumber) {
         WINNING_NUMBERS_VALIDATOR.validateBonusNumberIsDuplicated(numbers, bonusNumber);
+        WINNING_NUMBERS_VALIDATOR.validateBonusNumberOutOfRange(bonusNumber);
+    }
+
+    private void validateBonusNumberOutOfRange(final int bonusNumber) {
+        if (isOutOfRange(bonusNumber)) {
+            throw new IllegalStateAmountException(WinningExceptionStatus.BONUS_NUMBER_IS_OUT_OF_RANGE);
+        }
+    }
+
+    private boolean isOutOfRange(final int bonusNumber) {
+        return bonusNumber < Constant.ALLOWED_MINIMUM_LOTTO_NUMBER
+                || Constant.ALLOWED_MAXIMUM_LOTTO_NUMBER < bonusNumber;
     }
 
     private void validateBonusNumberIsDuplicated(final List<Integer> numbers, final int bonusNumber) {

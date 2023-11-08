@@ -20,11 +20,6 @@ public class LottoResult {
     public Integer getNumberOf_6Correction() {
         return numberOf_6Correction;
     }
-
-    public Double getProfitRate() {
-        return profitRate;
-    }
-
     private Integer numberOf_3Correction;
     private Integer numberOf_4Correction;
     private Integer numberOf_5Correction;
@@ -64,7 +59,6 @@ public class LottoResult {
     }
 
     public double getProfitRate(Integer inputMoney) {
-
         Integer totalPrice = numberOf_3Correction * Price.CORRECTION_3.getPrice()
                 + numberOf_4Correction * Price.CORRECTION_4.getPrice()
                 + numberOf_5Correction * Price.CORRECTION_5.getPrice()

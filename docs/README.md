@@ -32,12 +32,12 @@
 - [v] 인덴트, 들여쓰기 depth는 2까지만 허용한다.
 - [v] 3항 연산자를 쓰지 않는다.
 - [] 메서드는 한 가지 일만 하도록, 최대한 작게 만들어라
-- [] JUnit5과 AssertJ를 이용해서 구현한 기능이 정상 작동하는지 테스트 코드를 작성한다.
+- [v] JUnit5과 AssertJ를 이용해서 구현한 기능이 정상 작동하는지 테스트 코드를 작성한다.
 - [] 메서드의 길이가 15라인을 넘지 않아야 한다.
 - [v] else 예약어를 쓰지 않는다.
   - [v] if 조건절에서 값을 return 한다.
 - [v] Enum을 사용한다.
-- [] 도메인 로직에 단위테스트를 구현한다.
+- [v] 도메인 로직에 단위테스트를 구현한다.
 - [v] 핵심 로직 부분과 UI를 담당하는 로직을 분리한다.
 - [v] Random값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용한다.
 - [v] 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.

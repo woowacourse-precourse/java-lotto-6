@@ -1,6 +1,5 @@
 package lotto;
 
-import lotto.common.ExceptionMessage;
 import lotto.controller.LottoController;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;

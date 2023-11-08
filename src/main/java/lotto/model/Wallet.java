@@ -79,7 +79,7 @@ public class Wallet {
         if (profit == 0) {
             return 0.0;
         }
-        return Math.round(((double)initialAmount / (double)profit) * 10.0) / 10.0;
+        return Math.round((((double)profit * 100) / (double)initialAmount) * 10.0) / 10.0;
     }
 
     public long calculateProfit(Map<Integer, Integer> lottoesResult) {

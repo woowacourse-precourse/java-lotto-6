@@ -105,8 +105,8 @@ public class WalletTest {
     void testCalculateProfitRate() {
         Wallet wallet = new Wallet("10000");
 
-        assertEquals(4.3, wallet.calculateProfitRate(2300));
-        assertEquals(4.2, wallet.calculateProfitRate(2400));
+        assertEquals(23.4, wallet.calculateProfitRate(2344));
+        assertEquals(23.9, wallet.calculateProfitRate(2388));
         assertEquals(0.0, wallet.calculateProfitRate(0));
     }
 

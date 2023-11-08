@@ -45,5 +45,4 @@ public class InputMoneyHandler {
     public int exceptionHandledMoney() {
         return verifiedMoney;
     }
-
 }

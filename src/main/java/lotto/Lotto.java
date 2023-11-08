@@ -6,7 +6,6 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
 
-
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         duplicateException(numbers);
@@ -19,9 +18,9 @@ public class Lotto {
         }
     }
 
-    public void duplicateException(List<Integer>numbers) {
+    public void duplicateException(List<Integer> numbers) {
         List<Integer> numberCount = new ArrayList<>(46);
-        for (int number = 0; number <=45 ; number++) numberCount.add(0);
+        for (int number = 0; number <= 45; number++) numberCount.add(0);
 
         for (int number : numbers) {
             numberCount.set(number, numberCount.get(number) + 1);
@@ -57,13 +56,11 @@ public class Lotto {
             print.append(number);
             print.append(", ");
         }
-        print.deleteCharAt(print.length()-1);
+        print.deleteCharAt(print.length() - 1);
         print.deleteCharAt(print.length() - 1);
         print.append("]");
 
 
-        System.out.println(print );
+        System.out.println(print);
     }
-
-    // TODO: 추가 기능 구현
 }

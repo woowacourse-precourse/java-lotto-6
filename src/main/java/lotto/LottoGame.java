@@ -7,17 +7,35 @@ import java.util.Map;
 
 public class LottoGame {
 
-
-    private RandomNumberGenerator randomNumberGenerator;
-
     private List<Lotto> lottos = new ArrayList<>();
 
 
-    public LottoGame() {
-        this.randomNumberGenerator = new RandomNumberGenerator();
+    public void startGame() {
+        Output output = new Output();
+        Input input = new Input();
+
+        output.requestMoneyOutput();
+        int moneyInput =input.getMoneyInput();
+        int count = moneyInput / Constants.LOTTO_PRICE;
+        List<Lotto> lottos = buyLotto(count);
+        output.responseBuyOutput(count, lottos);
+
+        output.requestWinnerNumbers();
+        List<Integer> numbers =input.getWinnerNumbers();
+
+        output.requestBonusNumber();
+        int bonusNumber = input.getBonusNumber();
+
+        Map<Integer, Integer> winners = new HashMap<>();
+        winners.put(3, 3);
+        winners.put(4, 4);
+        winners.put(5, 5);
+        winners.put(6, 6);
+        output.responseCalculateWinners(winners, 55.6);
     }
 
     public List<Lotto> buyLotto(int count) {
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         for (int i = 0; i < count; i++) {
             List<Integer> numbers = randomNumberGenerator.GenerateLottoNumbers();
             Lotto lotto = new Lotto(numbers);

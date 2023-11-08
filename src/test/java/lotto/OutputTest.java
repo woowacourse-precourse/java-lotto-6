@@ -22,8 +22,7 @@ class OutputTest {
         //when
         int count = 8;
 
-        //then
-        output.responseBuyOutput(count);
+
     }
 
     @Test

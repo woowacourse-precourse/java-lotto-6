@@ -7,6 +7,8 @@ public class Constants {
     public static final int LOTTO_NUMBERS_COUNTS = 6;
     public static final int LOTTO_BONUS_NUMBERS_COUNTS = 1;
 
+    public static final int LOTTO_PRICE = 1000;
+
 
     public static final String MONEY_WHEN_THREE_MATCHED = "(5,000원)";
     public static final String MONEY_WHEN_FOUR_MATCHED = "(50,000원)";

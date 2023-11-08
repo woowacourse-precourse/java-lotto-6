@@ -38,6 +38,11 @@ public class OutputView {
 
     public static void printResult(EnumMap<Ranking, Integer> result, double rateOfReturn) {
         System.out.println(RESULT);
+        printWinningStatistics(result);
+        System.out.println(String.format(RATE_OF_RETURN_FORMAT, rateOfReturn * HUNDRED_FOR_PERCENTAGE));
+    }
+
+    private static void printWinningStatistics(EnumMap<Ranking, Integer> result) {
         result.entrySet().stream()
                 .filter(entry -> entry.getKey() != Ranking.FAIL)
                 .forEach(
@@ -47,6 +52,5 @@ public class OutputView {
                             System.out.println(String.format(LOTTO_RESULT_FORMAT, ranking.getDescription(), count));
                         }
                 );
-        System.out.println(String.format(RATE_OF_RETURN_FORMAT, rateOfReturn * HUNDRED_FOR_PERCENTAGE));
     }
 }

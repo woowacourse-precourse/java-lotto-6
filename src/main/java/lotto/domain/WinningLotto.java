@@ -20,7 +20,7 @@ public class WinningLotto {
     }
 
     private int getMatchNumberCnt(Lotto lotto) {
-        return (int) lotto.matchCount(winningLotto);
+        return lotto.matchCount(winningLotto);
     }
 
     private boolean getMatchBonusNumber(Lotto lotto) {

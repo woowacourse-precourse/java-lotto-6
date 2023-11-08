@@ -3,10 +3,10 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import static lotto.domain.WinningResult.getWinningMoney;
 import static lotto.utils.LottoSystemUtils.*;
 
 public class LottoSystem {
@@ -18,36 +18,37 @@ public class LottoSystem {
         this.purchaseLottos = createLottos();
     }
 
-    public static List<Lotto> getPurchaseLottos() {
+    public List<Lotto> getPurchaseLottos() {
         return purchaseLottos;
     }
 
-    public static int getPurchaseLottoCount() {
+    public int getPurchaseLottoCount() {
         return purchaseLottos.size();
     }
 
     public static float calculateRateOfReturn(List<WinningResult> results) {
-        long winningMoney = calculateWinningMoney(results);
+        long winningMoney = getWinningMoney(results);
         return Math.round((float) winningMoney / purchaseMoney * 1000) / 10f;
     }
 
-    private static long calculateWinningMoney(List<WinningResult> results) {
+    private static long getWinningMoney(List<WinningResult> results) {
         return results.stream()
                 .mapToInt(WinningResult::getWinningMoney)
                 .sum();
     }
 
-    public static List<WinningResult> compareWinningLotto(WinningLotto winningLotto) {
-        List<WinningResult> result = new ArrayList<>();
+    public Map<WinningResult, Integer> compareWinningLotto(WinningLotto winningLotto) {
+        Map<WinningResult, Integer> result = new HashMap<>();
 
         for (Lotto lotto : purchaseLottos) {
-            result.add(winningLotto.compare(lotto));
+            WinningResult winning = winningLotto.compare(lotto);
+            result.put(winning, result.getOrDefault(winning, 0)+1);
         }
 
         return result;
     }
 
-    private static List<Lotto> createLottos() {
+    private List<Lotto> createLottos() {
         List<Lotto> lottos = new ArrayList<>();
 
         long purchaseLottoCnt = purchaseMoney / MONEY_UNIT;
@@ -58,7 +59,7 @@ public class LottoSystem {
         return lottos;
     }
 
-    private static List<Integer> createRandomNumbers() {
+    private List<Integer> createRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN_RANGE, LOTTO_NUMBER_MAX_RANGE, LOTTO_CNT);
     }
 }

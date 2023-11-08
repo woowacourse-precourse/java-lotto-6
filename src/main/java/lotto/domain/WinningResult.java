@@ -20,18 +20,6 @@ public enum WinningResult {
         this.matchBonusNumber = matchBonusNumber;
     }
 
-    public static boolean getMatchBonusNumber(WinningResult result) {
-        return result.matchBonusNumber;
-    }
-
-    public static int getWinningMoney(WinningResult result) {
-        return result.winningMoney;
-    }
-
-    public static int getMatchCount(WinningResult result) {
-        return result.matchCount;
-    }
-
     public static WinningResult valueOf(int matchCount, boolean matchBonusNumber) {
         if (matchCount < FIFTH.matchCount) {
             return NOTHING;
@@ -42,6 +30,18 @@ public enum WinningResult {
         }
 
         return findWinningResult(matchCount, matchBonusNumber);
+    }
+
+    public static boolean getMatchBonusNumber(WinningResult result) {
+        return result.matchBonusNumber;
+    }
+
+    public static int getWinningMoney(WinningResult result) {
+        return result.winningMoney;
+    }
+
+    public static int getMatchCount(WinningResult result) {
+        return result.matchCount;
     }
 
     private static WinningResult findWinningResult(int matchCount, boolean matchBonusNumber) {

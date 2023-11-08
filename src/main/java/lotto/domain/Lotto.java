@@ -17,18 +17,18 @@ public class Lotto {
         this.numbers = sortedNumbers(numbers);
     }
 
-    public long matchCount(Lotto myLotto) {
-        return numbers.stream()
-                .filter(myLotto::contain)
-                .count();
+    public List<Integer> getLottoNumbers() {
+        return numbers;
     }
 
     public boolean contain(Integer num) {
         return numbers.contains(num);
     }
 
-    public List<Integer> getLottoNumbers() {
-        return numbers;
+    public int matchCount(Lotto myLotto) {
+        return (int) numbers.stream()
+                .filter(myLotto::contain)
+                .count();
     }
 
     private List<Integer> sortedNumbers(List<Integer> numbers) {

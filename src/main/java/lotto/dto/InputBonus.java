@@ -1,7 +1,7 @@
 package lotto.dto;
 
-import static lotto.validatior.InputWinningBonusNumberValidator.validateBonusNumberRange;
-import static lotto.validatior.InputWinningBonusNumberValidator.validateOnlyPositiveNumberBonus;
+import static lotto.validator.InputWinningBonusNumberValidator.validateBonusNumberRange;
+import static lotto.validator.InputWinningBonusNumberValidator.validateOnlyPositiveNumberBonus;
 
 public class InputBonus {
     private final int inputBonusNumber;

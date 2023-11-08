@@ -1,4 +1,4 @@
-package lotto.validatior;
+package lotto.validator;
 
 public class InputPurchaseAmountValidator {
     public static void validatePurchaseAmount(String purchaseAmount) {

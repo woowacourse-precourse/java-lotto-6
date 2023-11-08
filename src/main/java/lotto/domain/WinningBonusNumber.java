@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.validatior.InputWinningBonusNumberValidator.validateWinningBonusNumberAlreadyExists;
+import static lotto.validator.InputWinningBonusNumberValidator.validateWinningBonusNumberAlreadyExists;
 
 import java.util.List;
 

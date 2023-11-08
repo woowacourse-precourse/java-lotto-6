@@ -1,7 +1,7 @@
 package lotto.dto;
 
 
-import static lotto.validatior.InputPurchaseAmountValidator.validatePurchaseAmount;
+import static lotto.validator.InputPurchaseAmountValidator.validatePurchaseAmount;
 
 public class InputMoney {
     private final String money;

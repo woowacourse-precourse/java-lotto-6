@@ -1,7 +1,7 @@
 package lotto.dto;
 
-import static lotto.validatior.InputWinningNumbersValidator.validateOnlyPositiveWinningNumbers;
-import static lotto.validatior.InputWinningNumbersValidator.validateWinningNumbers;
+import static lotto.validator.InputWinningNumbersValidator.validateOnlyPositiveWinningNumbers;
+import static lotto.validator.InputWinningNumbersValidator.validateWinningNumbers;
 
 import java.util.Arrays;
 import java.util.List;

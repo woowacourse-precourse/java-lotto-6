@@ -3,9 +3,8 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Application {
 
@@ -16,12 +15,34 @@ public class Application {
 
     public static void main(String[] args) {
         int buyAmount = inputBuyAmount();
-        List<Lotto> lottos = generateRandomLottoTickets(buyAmount);
 
+        List<Lotto> lottos = generateRandomLottoTickets(buyAmount);
         printLottoTickets(lottos);
+
+        Lotto winningLotto = inputWinningNumbers();
 
         LottoResult result = playLottoGame(lottos);
         printGameResults(result);
+    }
+
+    private static Lotto inputWinningNumbers() {
+        while (true) {
+            System.out.println("\n당첨 번호를 입력해 주세요.");
+            String input = Console.readLine();
+
+            try {
+                List<Integer> winningNumbers = parseWinningNumbers(input);
+                return new Lotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static List<Integer> parseWinningNumbers(String input) {
+        return Arrays.stream(input.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     public static void printGameResults(LottoResult result) {
@@ -33,7 +54,7 @@ public class Application {
     }
 
     public static void printLottoTickets(List<Lotto> lottos) {
-        System.out.println("\n로또 번호를 출력합니다.");
+        System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }

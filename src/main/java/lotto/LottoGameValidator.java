@@ -13,6 +13,11 @@ public class LottoGameValidator {
         validateBuyAmountFormat(inputBuyAmount);
     }
 
+    public static void validateLotteNumber(List<Integer> numbers) {
+        validateLottoSize(numbers);
+        validateLottoDuplicate(numbers);
+    }
+
     private static void validateNumericInput(String inputBuyAmount) {
         try {
             int buyAmount = Integer.parseInt(inputBuyAmount);
@@ -28,11 +33,6 @@ public class LottoGameValidator {
         if (buyAmount <= 0 || buyAmount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 0보다 큰 1000원 단위의 숫자로 입력해야 합니다");
         }
-    }
-
-    public static void validateLotteNumber(List<Integer> numbers) {
-        validateLottoDuplicate(numbers);
-        validateLottoSize(numbers);
     }
 
     private static void validateLottoDuplicate(List<Integer> numbers) {

@@ -25,7 +25,7 @@ class LottoTest {
 
     @DisplayName("랜덤 로또 생성 - 크기 검증")
     @Test
-    public void testGenerateRandomLotto() {
+    void testGenerateRandomLotto() {
         int buyAmount = 5000;
         List<Lotto> lottos = Application.generateRandomLottoTickets(buyAmount);
         int expectedLottoCount = buyAmount / Application.LOTTO_PRICE;
@@ -34,7 +34,7 @@ class LottoTest {
 
     @DisplayName("랜덤 로또 생성 - 번호 범위 검증")
     @Test
-    public void testGenerateRandomLottoTicketNumberRange() {
+    void testGenerateRandomLottoTicketNumberRange() {
         Lotto lotto = Application.generateRandomLottoTicket();
         for (int number : lotto.getNumbers()) {
             assertTrue(number >= Application.LOTTO_MIN_NUMBER && number <= Application.LOTTO_MAX_NUMBER);
@@ -43,7 +43,7 @@ class LottoTest {
 
     @DisplayName("랜덤 로또 생성 - 중복 검증")
     @Test
-    public void testGenerateRandomLottoTicketNoDuplicates() {
+    void testGenerateRandomLottoTicketNoDuplicates() {
         Lotto lotto = Application.generateRandomLottoTicket();
         List<Integer> numbers = lotto.getNumbers();
         for (int i = 0; i < numbers.size(); i++) {
@@ -55,7 +55,7 @@ class LottoTest {
 
     @DisplayName("랜덤 로또 생성 - 정렬 검증")
     @Test
-    public void testGenerateRandomLottoTicketSorted() {
+    void testGenerateRandomLottoTicketSorted() {
         Lotto lotto = Application.generateRandomLottoTicket();
         List<Integer> numbers = lotto.getNumbers();
         for (int i = 1; i < numbers.size(); i++) {

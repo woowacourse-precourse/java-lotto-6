@@ -28,7 +28,6 @@ public class LottoService {
     private final static int FIFTH_RANKING_PRIZE = 5000;
     private final static int MAKE_PERCENT = 100;
 
-
     private final LottoRepository lottoRepository;
     private PurchaseCount purchaseCount;
     private WinningLotto winningLotto;
@@ -97,21 +96,21 @@ public class LottoService {
         saveWinningResult(totalRankingCount);
     }
 
-    private static int getMatchingCount(WinningLotto winningLotto, int lottoNumber, int matchingCount) {
+    private static Integer getMatchingCount(WinningLotto winningLotto, int lottoNumber, int matchingCount) {
         if (winningLotto.getNumbers().contains(lottoNumber)) {
             matchingCount++;
         }
         return matchingCount;
     }
 
-    private static int getMatchingBonusCount(WinningLotto winningLotto, int lottoNumber, int matchingBonusCount) {
+    private static Integer getMatchingBonusCount(WinningLotto winningLotto, int lottoNumber, int matchingBonusCount) {
         if (winningLotto.getBonusNumber() == lottoNumber) {
             matchingBonusCount++;
         }
         return matchingBonusCount;
     }
 
-    private int getRanking(int matchingCount, int matchingBonusCount){
+    private Integer getRanking(int matchingCount, int matchingBonusCount){
         if (matchingCount == COUNT_FOR_FIFTH_RANKING){ return FIFTH_RANKING; }
         if (matchingCount == COUNT_FOR_FOURTH_RANKING){ return FOURTH_RANKING; }
         if (matchingCount == COUNT_FOR_THIRD_RANKING){
@@ -130,12 +129,12 @@ public class LottoService {
         }
     }
 
-    public float getReturnRate(WinningResult winningResult, int purchaseAmount) {
+    public Float getReturnRate(WinningResult winningResult, int purchaseAmount) {
         int totalReturn = calculateTotalReturn(winningResult);
         return (float) totalReturn / purchaseAmount * MAKE_PERCENT;
     }
 
-    private int calculateTotalReturn(WinningResult winningResult) {
+    private Integer calculateTotalReturn(WinningResult winningResult) {
         return winningResult.getFirstPlaceCount() * FIRST_RANKING_PRIZE +
                 winningResult.getSecondPlaceCount() * SECOND_RANKING_PRIZE +
                 winningResult.getThirdPlaceCount() * THIRD_RANKING_PRIZE +

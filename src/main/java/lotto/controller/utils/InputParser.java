@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputParser {
-    public int parseToInteger(String input) {
+    public Integer parseToInteger(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

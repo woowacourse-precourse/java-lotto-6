@@ -77,7 +77,7 @@ public class GameView {
 
     public static void printFirstRankingCount(int firstPlaceCount) {
         printConstantMessage(FIRST_RANKING_COUNT_MESSAGE);
-        System.out.printf("%d개", firstPlaceCount);
+        System.out.printf("%d개\n", firstPlaceCount);
     }
 
     public static void printReturnRate(float returnRate) {

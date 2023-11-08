@@ -13,29 +13,30 @@ public class GameController {
 
     private final LottoService model;
     private final GameView view;
-    InputParser inputParser = new InputParser();
+    private final InputParser inputParser;
 
     public GameController(LottoService model, GameView view){
         this.model = model;
         this.view = view;
+        this.inputParser = new InputParser();
     }
 
     public void run(){
-        int purchaseAmount = getPurchaseAmount(view.inputLottoPurchaseAmount());
+        Integer purchaseAmount = getPurchaseAmount(view.inputLottoPurchaseAmount());
         validatePurchaseAmount(purchaseAmount);
 
         model.issueLottos(model.findPurchaseCount());
         printLottos(model.findPurchaseCount(), model.findAllLottos());
 
         List<Integer> numbers = getLottoNumbers(view.inputLottoNumbers());
-        int bonusNumber = getLottoBonusNumber(view.inputLottoBonusNumber());
+        Integer bonusNumber = getLottoBonusNumber(view.inputLottoBonusNumber());
         validateWinningLotto(numbers,bonusNumber);
 
         model.createWinningResult(model.findAllLottos(), model.findWinningLotto());
         printWinningStatistics(model.findWinningResult(), model.findPurchaseCount()*1000);
     }
 
-    private int getPurchaseAmount(String lottPurchaseAmount) {
+    private Integer getPurchaseAmount(String lottPurchaseAmount) {
         try {
             return inputParser.parseToInteger(lottPurchaseAmount);
         } catch (IllegalArgumentException e) {
@@ -62,7 +63,7 @@ public class GameController {
         }
     }
 
-    private int getLottoBonusNumber(String lottoBonusNumber) {
+    private Integer getLottoBonusNumber(String lottoBonusNumber) {
         try {
             return inputParser.parseToInteger(lottoBonusNumber);
         } catch (IllegalArgumentException e) {

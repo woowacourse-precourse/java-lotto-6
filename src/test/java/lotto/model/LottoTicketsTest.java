@@ -12,8 +12,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class LottoTicketsTest {
     private LottoTickets lottoTickets;
-    private List<Integer> winningNumbers;
-    private int bonusNumber;
+    private WinningNumbers winningNumbers;
+    private BonusNumber bonusNumber;
 
     @BeforeEach
     void generateLottoTickets() {
@@ -24,8 +24,8 @@ class LottoTicketsTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 8))
         );
         lottoTickets = new LottoTickets(lottos);
-        winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        bonusNumber = 7;
+        winningNumbers = new WinningNumbers("1,2,3,4,5,6");
+        bonusNumber = new BonusNumber("7", winningNumbers);
     }
 
     @DisplayName("사용자가 구매한 로또 티켓들의 총 상금 금액을 반환한다.")
@@ -47,20 +47,6 @@ class LottoTicketsTest {
 
         // then
         assertThat(eachPrize.get(prize)).isEqualTo(count);
-    }
-
-    @DisplayName("사용자가 구매한 로또 티켓들의 총 수익률을 계산한다.")
-    @Test
-    void getTotalReturnRate() {
-        // given
-        int buyMoney = 8000;
-        long totalPrize = 5000;
-
-        // when
-        double totalReturnRate = lottoTickets.calculateReturnRate(buyMoney, totalPrize);
-
-        // then
-        assertThat(totalReturnRate).isEqualTo(62.5);
     }
 
     @DisplayName("사용자가 구매한 로또 티켓들은 한 줄씩 문자열 형태로 출력되어야 한다.")

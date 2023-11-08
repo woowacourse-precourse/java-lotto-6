@@ -15,12 +15,10 @@ public class Application {
         seller.getChosenLottoNumber(); // 당첨된 로또 번호 받기
 
         System.out.println();
-seller.getChosenBonusNumber(); // 보너스 번호 입력
+        seller.getChosenBonusNumber(); // 보너스 번호 입력
 
         System.out.println();
-
-
-
+        seller.notifyLottoResult();
     }
 
 }

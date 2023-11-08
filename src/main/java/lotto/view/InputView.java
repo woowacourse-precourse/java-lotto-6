@@ -26,8 +26,8 @@ public class InputView {
         try {
             int amount = Parser.parseStrToInt(reader.readLine());
             return new PurchaseLottoDto(amount);
-        } catch (IllegalArgumentException e) {
-            writer.writeln(e.getMessage());
+        } catch (IllegalArgumentException exception) {
+            writer.writeln(exception.getMessage());
             return getPurchaseAmount();
         }
     }
@@ -45,8 +45,8 @@ public class InputView {
             String inputNumbers = reader.readLine();
             List<Integer> winningNumbers = Parser.parseWinningNumbers(inputNumbers);
             return numbersDtoBuilder.winningNumbers(winningNumbers);
-        } catch (IllegalArgumentException e) {
-            writer.writeln(e.getMessage());
+        } catch (IllegalArgumentException exception) {
+            writer.writeln(exception.getMessage());
             return getWinningNumber(numbersDtoBuilder);
         }
     }
@@ -56,8 +56,8 @@ public class InputView {
         try {
             int bonusNumber = Parser.parseStrToInt(reader.readLine());
             return numbersDtoBuilder.bonusNumber(bonusNumber);
-        } catch (IllegalArgumentException e) {
-            writer.writeln(e.getMessage());
+        } catch (IllegalArgumentException exception) {
+            writer.writeln(exception.getMessage());
             return getBonusNumber(numbersDtoBuilder);
         }
     }

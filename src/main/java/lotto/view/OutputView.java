@@ -25,7 +25,6 @@ public class OutputView {
         System.out.println(buyAmount + BUY_AMOUNT_MESSAGE);
     }
 
-
     public static void printUserLottos(List<Lotto> userLottos) {
         for (Lotto userLotto : userLottos) {
             System.out.println(userLotto.getNumbers());

@@ -10,13 +10,10 @@ import lotto.view.OutputView;
 
 public class LottoController {
     private static final LottoController instance = new LottoController();
-
     public static LottoController getInstance() {
         return instance;
     }
-
-    private LottoController() {
-    }
+    private LottoController() {}
 
     private final LottoService lottoService = LottoService.getInstance();
 
@@ -33,11 +30,11 @@ public class LottoController {
         OutputView.printRevenueRate(revenueRate);
     }
 
-    private int getBonusNumber(List<Integer> winningNumber) {
+    private int buyLottoTicket() {
         while (true) {
             try {
-                OutputView.printRequireBonusMessage();
-                return InputView.getBonusNumber(winningNumber);
+                OutputView.printBuyPrice();
+                return InputView.getBuyAmount();
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
@@ -55,11 +52,11 @@ public class LottoController {
         }
     }
 
-    private int buyLottoTicket() {
+    private int getBonusNumber(List<Integer> winningNumber) {
         while (true) {
             try {
-                OutputView.printBuyPrice();
-                return InputView.getBuyAmount();
+                OutputView.printRequireBonusMessage();
+                return InputView.getBonusNumber(winningNumber);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }

@@ -1,8 +1,14 @@
 package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.LottoEnum.normalBallHitted;
+import static lotto.LottoEnum.prize;
+import static lotto.LottoEnum.prizeScores;
 
+import java.text.NumberFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import util.StringParser;
 
 public class LottoGame {
@@ -53,6 +59,32 @@ public class LottoGame {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private Map<Integer, Integer> createPrizeScoreToCountPrizes(List<Integer> scores) {
+        Map<Integer, Integer> prizeScoreToCountPrizes = new HashMap<>();
+        for (Integer prizeScore : prizeScores) {
+            prizeScoreToCountPrizes.put(prizeScore, 0);
+        }
+        for (Integer score : scores) {
+            if (prizeScores.contains(score)) {
+                prizeScoreToCountPrizes.put(score, prizeScoreToCountPrizes.get(score) + 1);
+            }
+        }
+        return prizeScoreToCountPrizes;
+    }
+
+    public void printScores(List<Integer> scores) {
+        Map<Integer, Integer> prizeScoreToCountPrizes = createPrizeScoreToCountPrizes(scores);
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        for (int i = 0; i < prizeScoreToCountPrizes.size(); ++i) {
+            System.out.printf("%d개 일치", normalBallHitted.get(i));
+            if (i == 3) {
+                System.out.print(", 보너스 볼 일치");
+            }
+            System.out.printf(" (%s원) - %d개\n", numberFormat.format(prize.get(i)),
+                    prizeScoreToCountPrizes.get(prizeScores.get(i)));
         }
     }
 }

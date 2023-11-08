@@ -1,6 +1,10 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.enums.LottoInfo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static lotto.Input.getNaturalNumber;
 
@@ -18,6 +22,9 @@ public class LottoMachine {
     }
 
     public void run() {
+        int lottoCount = setLottoCount();
+        System.out.println(lottoCount + "개를 구매했습니다.");
+        List<List<Integer>> myLottos = getAllLotto(lottoCount);
     }
 
     public int setLottoCount() {
@@ -31,5 +38,18 @@ public class LottoMachine {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public List<List<Integer>> getAllLotto(int count) {
+        List<List<Integer>> ret = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            ret.add(getLotto());
+        }
+        return ret;
+    }
+
+    private List<Integer> getLotto() {
+        List<Integer> ret = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBERS_PER_LOTTO);
+        return ret.stream().sorted().toList();
     }
 }

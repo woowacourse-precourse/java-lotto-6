@@ -8,10 +8,10 @@ public enum WinningStatus {
     FIFTH(3, 5_000, "3개 일치 (5,000원) - "); // 5등
 
     private final int matchingCount;
-    private final int prize;
+    private final long prize;
     private final String label;
 
-    WinningStatus(int matchingCount, int prize, String label) {
+    WinningStatus(int matchingCount, long prize, String label) {
         this.matchingCount = matchingCount;
         this.prize = prize;
         this.label = label;
@@ -21,7 +21,7 @@ public enum WinningStatus {
         return matchingCount;
     }
 
-    public int getPrize() {
+    public Long getPrize() {
         return prize;
     }
 

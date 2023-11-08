@@ -43,6 +43,10 @@ public class Lotto {
         //boolean numbers.stream().allMatch(number -> number >=1 && number <= 45);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     @Override
     public String toString() {
         return numbers.toString();

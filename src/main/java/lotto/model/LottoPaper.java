@@ -3,14 +3,23 @@ package lotto.model;
 import static lotto.view.ExceptionMessages.IS_NOT_DIVISIBLE;
 import static lotto.view.ExceptionMessages.IS_NOT_NUMBER;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class LottoPaper {
 
     private int amount;
 
     public int buy(String totalAmount) {
-        validate(totalAmount);
-        this.amount = calculatorLottoPaperNumber(totalAmount);
-        return amount;
+        while(true){
+            try {
+                validate(totalAmount);
+                this.amount = calculatorLottoPaperNumber(totalAmount);
+                return amount;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                totalAmount = Console.readLine();
+            }
+        }
     }
 
     public int getLottoPaper() {

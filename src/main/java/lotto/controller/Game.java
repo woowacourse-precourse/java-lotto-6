@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.model.Lotto;
 import lotto.model.LottoPaper;
+import lotto.model.MatchingLotto;
 import lotto.model.WinningLottoNumbers;
 import lotto.view.GamePrint;
 
@@ -33,6 +34,8 @@ public class Game {
         GamePrint.bonusNumberMessage();
         int bonusNumber = inputBonusNumber();
 
+        MatchingLotto matchingLotto = new MatchingLotto(lottos, winningNumbers, bonusNumber);
+        GamePrint.winningStatistics(matchingLotto);
     }
 
     private int buyLotto(String totalAmountPrice) {
@@ -53,9 +56,15 @@ public class Game {
     }
 
     private int inputBonusNumber() {
-        String input = Console.readLine();
-        validate(input);
-        return Integer.parseInt(input);
+        while(true) {
+            String input = Console.readLine();
+            try {
+                validate(input);
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void validate(String input) {

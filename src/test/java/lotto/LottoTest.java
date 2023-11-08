@@ -36,4 +36,12 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("1에서 45 사이의 값이어야 합니다.");
     }
+
+    @DisplayName("로또 번호 리스트가 null이면 예외가 발생한다.")
+    @Test
+    void createLottoWithNullList() {
+        assertThatThrownBy(() -> new Lotto(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("로또 숫자 정확히 6개이어야 합니다.");
+    }
 }

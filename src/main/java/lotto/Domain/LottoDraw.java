@@ -5,10 +5,15 @@ import java.util.List;
 import lotto.Enum.WinningType;
 
 public class LottoDraw {
+
     private final WinningLotto winningLotto;
 
     public LottoDraw(WinningLotto winningLotto) {
         this.winningLotto = winningLotto;
+    }
+
+    public WinningLotto getWinningLotto() {
+        return winningLotto;
     }
 
     public void checkNumbers(Human human) {

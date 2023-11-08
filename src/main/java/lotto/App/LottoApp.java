@@ -19,16 +19,23 @@ public class LottoApp {
         } while (lottoController.gameStart(lottoConsole.inputBudgets()));
     }
 
-    public void inputWinningNumbers() {
+    public void inputNormalNumbers() {
 
         String normalNumbers;
         String bonusNumber;
         do {
             lottoView.inputWinningLottoNormalNumber();
             normalNumbers = lottoConsole.inputWinningNormalNumbers();
+        } while (lottoController.raffleLottoNormalNumbers(normalNumbers));
+    }
+
+    public void inputBonusNumber() {
+
+        String bonusNumber;
+        do {
             lottoView.inputWinningLottoBonusNumber();
             bonusNumber = lottoConsole.inputWinningBonusNumber();
-        } while (lottoController.raffleLotto(normalNumbers, bonusNumber));
+        } while (lottoController.raffleLottoBonusNumbers(bonusNumber));
     }
 
     public void run() {
@@ -42,7 +49,8 @@ public class LottoApp {
         lottoView.printLottos(lottoController.getPurchasedLottos());
 
         //Get Winning Numbers
-        inputWinningNumbers();
+        inputNormalNumbers();
+        inputBonusNumber();
 
         lottoView.printWinningResults(lottoController.getWinningResult());
         lottoView.printReturnRate(lottoController.getReturnRate());

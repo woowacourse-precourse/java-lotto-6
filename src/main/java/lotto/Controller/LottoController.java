@@ -42,21 +42,32 @@ public class LottoController {
         return human.getLottos();
     }
 
-    public boolean raffleLotto(String normalNumbersStr, String bonusNumberStr) {
+    public boolean raffleLottoNormalNumbers(String normalNumbersStr) {
         List<Integer> normalNumbers;
-        int bonusNumber;
         try {
             normalNumbers = lottoInputValidator.validateNormalNumbersIsInteger(normalNumbersStr);
             lottoInputValidator.validateNormalNumbersInRange(normalNumbers);
             lottoInputValidator.validateNormalNumberCount(normalNumbers);
-            bonusNumber = lottoInputValidator.validateBonusNumberIsInteger(bonusNumberStr);
             lottoInputValidator.validateNormalNumberDuplicated(normalNumbers);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+        lottoDraw = new LottoDraw(new WinningLotto(normalNumbers, 0));
+        return false;
+    }
+
+    public boolean raffleLottoBonusNumbers(String bonusNumberStr) {
+        List<Integer> normalNumbers = lottoDraw.getWinningLotto().getNormalNumbers();
+        int bonusNumber;
+        try {
+            bonusNumber = lottoInputValidator.validateBonusNumberIsInteger(bonusNumberStr);
             lottoInputValidator.validateBonusNumberDuplicated(normalNumbers, bonusNumber);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return true;
         }
-        lottoDraw = new LottoDraw(new WinningLotto(normalNumbers, bonusNumber));
+        lottoDraw.getWinningLotto().setBonusNumber(bonusNumber);
         lottoDraw.checkNumbers(human);
         return false;
     }

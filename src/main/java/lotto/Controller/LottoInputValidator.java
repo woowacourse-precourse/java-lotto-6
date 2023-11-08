@@ -14,7 +14,7 @@ public class LottoInputValidator {
 
         try {
             budget = Long.parseLong(budgetStr);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입 금액이 숫자가아닙니다.");
         }
         if (budget <= 0 || budget % 1000 != 0) {
@@ -36,8 +36,8 @@ public class LottoInputValidator {
     }
 
     public void validateNormalNumberCount(List<Integer> normalNumbers) {
-        if (normalNumbers.size() != 5) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호를 5개 입력해야합니다.");
+        if (normalNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호를 6개 입력해야합니다.");
         }
     }
 

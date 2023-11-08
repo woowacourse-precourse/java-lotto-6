@@ -5,11 +5,18 @@ import lotto.utils.LottoUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoInputDataService {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+
+    public Lotto inputLottoData() {
+        List<Integer> lottoNumbers = inputLottoNumbers();
+        int bonusNumber = inputBonusNumber();
+        return setLotto(lottoNumbers, bonusNumber);
+    }
 
     public List<Integer> inputLottoNumbers() {
         outputView.askLottoNumbers();

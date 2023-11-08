@@ -1,7 +1,6 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -14,18 +13,26 @@ public class Application {
     private static int TICKET_PRICE = 1000;
 
     public enum LottoType {
-        LOTTO_1(2000000000),
-        LOTTO_2(30000000),
-        LOTTO_3(1500000),
-        LOTTO_4(50000),
-        LOTTO_5(5000);
+        LOTTO_1(4,2000000000),
+        LOTTO_2(3,30000000),
+        LOTTO_3(2,1500000),
+        LOTTO_4(1,50000),
+        LOTTO_5(0,5000);
 
+        private int lottoIndex;
         private double lottoPrice;
         
-        LottoType(double lottoPrice) {this.lottoPrice = lottoPrice;}
+        LottoType(int lottoIndex, double lottoPrice) {
+            this.lottoIndex = lottoIndex;
+            this.lottoPrice = lottoPrice;
+        }
 
         public double getPrice(){
             return lottoPrice;
+        }
+
+        public int getIndex(){
+            return lottoIndex;
         }
     }
 
@@ -145,8 +152,10 @@ public class Application {
     private static void printResult(int[] result, int tickets) {
         double revenue = 0;
         double price = tickets * TICKET_PRICE;
-        revenue = LottoType.LOTTO_5.getPrice() * result[0] + LottoType.LOTTO_4.getPrice() * result[1] + LottoType.LOTTO_3.getPrice() * result[2] + LottoType.LOTTO_2.getPrice() * result[3]
-                + LottoType.LOTTO_1.getPrice() * result[4];
+
+        for (LottoType l: LottoType.values()){
+            revenue += l.getPrice() * result[l.getIndex()];
+        }
 
         System.out.printf("3개 일치 (5,000원) - %d개\n", result[0]);
         System.out.printf("4개 일치 (50,000원) - %d개\n", result[1]);
@@ -195,19 +204,21 @@ public class Application {
         int[] result = { 0, 0, 0, 0, 0 };
         for (Lotto l : lottos) {
             int count = l.run(playerNumbers);
+            int index = count - 3;
 
-            count -= 3;
-            if (count < 0) {
+            if (index < 0) {
                 continue;
             }
 
-            if (count == 2) {
-                result[count + l.runBonus(playerBonusNumber)]++;
-            } 
-            if (count == 3) {
-                result[count + 1]++;
+            if (index < 2) {result[index] ++;}
+
+            if (index == 2) {
+                result[index + l.runBonus(playerBonusNumber)]++;
             }
-            result[count]++;
+
+            if (index == 3) {
+                result[index + 1]++;
+            }
         }
 
         System.out.println("\n당첨 통계");

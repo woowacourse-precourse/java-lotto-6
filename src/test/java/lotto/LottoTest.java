@@ -85,4 +85,17 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 번호를 오름차순으로 정렬한다.")
+    @Test
+    void sortedLottoNumbers() {
+        // given
+        numbers = List.of(5, 3, 1, 4, 2, 6);
+
+        // when
+        List<Integer> sortedNumbers = Lotto.sorted(numbers);
+
+        // then
+        assertThat(sortedNumbers).isNotNull().containsExactly(1, 2, 3, 4, 5, 6);
+    }
 }

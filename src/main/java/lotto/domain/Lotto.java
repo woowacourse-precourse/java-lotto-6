@@ -48,7 +48,7 @@ public class Lotto {
         }
     }
 
-    public List<Integer> sorted(List<Integer> numbers) {
+    public static List<Integer> sorted(List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
                 .collect(Collectors.toList());

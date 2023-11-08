@@ -85,8 +85,4 @@ public class ResultCheck {
     public static String getResultRevenue() {
         return resultRevenue;
     }
-
-    public static int[] getWinningNumber() {
-        return winningNumber;
-    }
 }

@@ -1,7 +1,5 @@
 package lotto.model;
-
 import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

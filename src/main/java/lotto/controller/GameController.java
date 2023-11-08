@@ -34,6 +34,7 @@ public class GameController {
 
         GameResult gameResult = createGameResult(lottoResults,lottoPurchasePrice);
         OutputHandler.outputGameResult(gameResult);
+        OutputHandler.outputRateOfReturn(gameResult);
 
     }
 

@@ -39,4 +39,8 @@ public class OutputHandler {
                     , count));
         }
     }
+
+    public static void outputRateOfReturn(GameResult gameResult) {
+        OutputView.print(String.format(OUTPUT_GAME_RETURN.getMessage(), gameResult.getRateOfReturn()));
+    }
 }

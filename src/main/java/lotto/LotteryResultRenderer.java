@@ -69,7 +69,7 @@ public class LotteryResultRenderer {
             + data.getMatch5Numbers() * 1500000 + data.getMatch6Numbers() * 2000000000
             + data.getMatch5NumbersWithBonus() * 30000000;
         float fullRate = ((float) totalMoneyForWinner / totalSale) * 100;
-        return Math.round(fullRate * 100.0) / 100.0;
+        return Math.round(fullRate * 10.0) / 10.0;
     }
 
 }

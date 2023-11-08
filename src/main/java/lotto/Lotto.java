@@ -25,7 +25,7 @@ public class Lotto {
     public int compareOther(Lotto other){
         List<Integer> res_com = this.numbers;
         res_com.retainAll(other.numbers);
-        System.out.println(res_com.toString());
+//        System.out.println(other.numbers + ":: "+res_com.toString());
         return res_com.size();
     }
 

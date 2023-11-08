@@ -35,6 +35,7 @@ public class Game {
     }
 
     private void userWinning(){
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> list = Arrays.stream(Console.readLine().split(","))
                 .mapToInt(Integer::parseInt)
@@ -44,6 +45,7 @@ public class Game {
     }
 
     private void userBonus(){
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         this.bonus = Integer.parseInt(Console.readLine());
     }
@@ -81,12 +83,13 @@ public class Game {
 
     private void printResult(){
         double res_result = result();
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
         for(int i=0;i<5;i++){
             System.out.println("- "+correct[i]+"개");
         }
-        System.out.println("총 수익률은 "+String.format("%.2f", res_result) +"%입니다.");
+        System.out.println("총 수익률은 "+String.format("%.1f", res_result) +"%입니다.");
     }
 
     public void DoIt(){

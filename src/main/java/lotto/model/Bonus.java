@@ -5,6 +5,7 @@ import java.util.List;
 public class Bonus {
 
     private static final String INPUT_CONTENT_REGEX = "^[0-9]+$";
+    
     private final int bonus;
 
     public Bonus(List<Integer> numbers, String bonus) {

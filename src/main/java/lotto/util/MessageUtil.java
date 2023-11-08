@@ -22,12 +22,7 @@ public class MessageUtil {
     }
     public String printBonusInput(){
         System.out.println(BONUS_INPUT.getMessage());
-        System.out.println();
         return inputUtil.getInput();
-    }
-    public void printBonusOutput(int bonus){
-        System.out.println(bonus);
-        System.out.println();
     }
     public void printBuyCount(int count){
         System.out.println();
@@ -54,6 +49,9 @@ public class MessageUtil {
             return;
         }
         System.out.printf(WINNING_STATISTICS_RESULT.getMessage(),rank, priceComma, matchCount);
+    }
+    public void printEarnRate(Double rate){
+        System.out.printf(RATE.getMessage(), rate);
     }
 
 }

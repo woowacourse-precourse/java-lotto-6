@@ -21,16 +21,21 @@ public class LottoStatistics {
             addLottoResult(getBonusNumber(lottoNums, matchCount));
         }
         messageUtil.printWinningStat();
-        printResult();
+        printResult(amount);
     }
-    private void printResult(){
+    private void printResult(int amount){
         messageUtil.printWinningStatResult(THREE_WIN.getNumber(), THREE_WIN.getPrice(), lottoWinResult.getThreeWin());
         messageUtil.printWinningStatResult(FOUR_WIN.getNumber(), FOUR_WIN.getPrice(), lottoWinResult.getFourWin());
         messageUtil.printWinningStatResult(FIVE_WIN.getNumber(), FIVE_WIN.getPrice(), lottoWinResult.getFiveWin());
         messageUtil.printWinningStatResult(FIVE_WITH_BONUS.getNumber(), FIVE_WITH_BONUS.getPrice(), lottoWinResult.getFiveWithBonus());
         messageUtil.printWinningStatResult(SIX_WIN.getNumber(), SIX_WIN.getPrice(), lottoWinResult.getSixWin());
+
+        long totalWinningAmount = totalWinningAmount();
+        double earnRate = Double.parseDouble(calculateRate(amount, totalWinningAmount));
+        messageUtil.printEarnRate(earnRate);
     }
     private void addLottoResult(int matchCount){
+        System.out.println(matchCount);
         if(matchCount == THREE_WIN.getNumber()){
             lottoWinResult.addThreeWinCount();
         }
@@ -56,5 +61,18 @@ public class LottoStatistics {
         }
         return matchCount;
     }
-
+    private long totalWinningAmount(){
+        return (long) lottoWinResult.getThreeWin() * THREE_WIN.getPrice()
+                + (long) lottoWinResult.getFourWin() * FOUR_WIN.getPrice()
+                + (long) lottoWinResult.getFiveWin() * FIVE_WIN.getPrice()
+                + (long) lottoWinResult.getFiveWithBonus() * FIVE_WITH_BONUS.getPrice()
+                + (long) lottoWinResult.getSixWin() * SIX_WIN.getPrice();
+    }
+    private String calculateRate(int amount, long winningAmount){
+        if(winningAmount == 0){
+            return "0";
+        }
+        double earnRate = (double) winningAmount / (double) amount * 100;
+        return String.format("%.1f", earnRate);
+    }
 }

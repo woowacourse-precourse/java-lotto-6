@@ -52,7 +52,6 @@ public class LottoWinCheck {
 //        messageUtil.printLottoNums(lottoNums);
         String playerBonusNums = messageUtil.printBonusInput();
         this.bonusNum = getBonusNumbers(playerBonusNums);
-        messageUtil.printBonusOutput(bonusNum);
         return lottoNums;
     }
     private int getBonusNumbers(String bonusNum){

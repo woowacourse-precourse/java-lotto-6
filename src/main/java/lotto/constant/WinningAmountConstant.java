@@ -1,6 +1,7 @@
 package lotto.constant;
 
 import java.util.LinkedHashMap;
+import java.util.Optional;
 
 public enum WinningAmountConstant {
     FIFTH(5000, 3),
@@ -17,18 +18,18 @@ public enum WinningAmountConstant {
         this.count = count;
     }
 
-    public static WinningAmountConstant getValueByCount(int count, boolean hasBonusNumber) {
+    public static Optional<WinningAmountConstant> getValueByCount(int count, boolean hasBonusNumber) {
         if (hasBonusNumber && (count == WinningAmountConstant.SECOND.count)) {
-            return WinningAmountConstant.SECOND;
+            return Optional.of(WinningAmountConstant.SECOND);
         }
 
         for (WinningAmountConstant winningAmountConstant : WinningAmountConstant.values()) {
             if (winningAmountConstant.count == count) {
-                return winningAmountConstant;
+                return Optional.of(winningAmountConstant);
             }
         }
 
-        throw new IllegalArgumentException();
+        return Optional.empty();
     }
 
     public int getValue() {

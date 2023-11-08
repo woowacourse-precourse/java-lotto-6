@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.StringJoiner;
 import lotto.constant.WinningAmountConstant;
 import lotto.domain.BonusNumber;
@@ -39,15 +40,11 @@ public class LottoGameService {
             boolean hasBonusNumber = bonusNumber.hasBonusNumber(lotto.getLotto());
             int count = getCompareLottoCount(lotto, winningNumbers, hasBonusNumber);
 
-            WinningAmountConstant value;
+            Optional<WinningAmountConstant> value = WinningAmountConstant.getValueByCount(count,
+                    hasBonusNumber);
 
-            try {
-                value = WinningAmountConstant.getValueByCount(count, hasBonusNumber);
-            } catch (IllegalArgumentException e) {
-                continue;
-            }
-
-            result.put(value, result.get(value) + 1);
+            value.ifPresent(winningAmountConstant ->
+                    result.put(winningAmountConstant, result.get(winningAmountConstant) + 1));
         }
 
         return new WinningResult(result);

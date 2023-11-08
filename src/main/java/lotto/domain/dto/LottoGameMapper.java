@@ -8,7 +8,11 @@ public class LottoGameMapper {
 
     }
 
-    public static LottoGamePurchaseDto from(final LottoGame lottoGame) {
+    public static LottoGamePurchaseDto toPurchaseDtofrom(final LottoGame lottoGame) {
         return LottoGamePurchaseDto.from(lottoGame);
+    }
+
+    public static LottoGameWinningResultDto toWinningResultDtofrom(final LottoGame lottoGame) {
+        return LottoGameWinningResultDto.from(lottoGame);
     }
 }

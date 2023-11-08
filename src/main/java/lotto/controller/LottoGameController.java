@@ -10,6 +10,7 @@ import lotto.domain.ThousandUnitMoney;
 import lotto.domain.WinningResult;
 import lotto.domain.dto.LottoGameMapper;
 import lotto.domain.dto.LottoGamePurchaseDto;
+import lotto.domain.dto.LottoGameWinningResultDto;
 import lotto.service.LottoGameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -72,8 +73,8 @@ public class LottoGameController {
         Long lottoGameId = lottoGameService.saveLottoGame(lottoGame);
 
         //구매 정보 데이터만을 담아 View로 전달하기 위해 DTO 사용
-        LottoGamePurchaseDto lottoGamePurchaseDto = LottoGameMapper.from(lottoGame);
-
+        LottoGamePurchaseDto lottoGamePurchaseDto = LottoGameMapper.toPurchaseDtofrom(lottoGame);
+        LottoGameWinningResultDto lottoGameWinningResultDto = LottoGameMapper.toWinningResultDtofrom(lottoGame);
 
         //재시작기능
         replayGame(false);

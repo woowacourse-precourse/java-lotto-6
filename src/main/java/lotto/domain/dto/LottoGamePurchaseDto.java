@@ -19,4 +19,11 @@ public class LottoGamePurchaseDto {
                 lottoGame.getPurchaseLottos());
     }
 
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
+
+    public List<List<Integer>> getPurchaseLottos() {
+        return purchaseLottos;
+    }
 }

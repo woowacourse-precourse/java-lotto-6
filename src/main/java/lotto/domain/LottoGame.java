@@ -38,4 +38,12 @@ public class LottoGame extends IndexModel {
     public List<List<Integer>> getPurchaseLottos() {
         return automaticLottos.getLottos();
     }
+
+    public List<Integer> getRankings() {
+        return winningResult.getRankings();
+    }
+
+    public double getRateOfReturn() {
+
+    }
 }

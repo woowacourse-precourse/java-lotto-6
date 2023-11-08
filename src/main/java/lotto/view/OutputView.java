@@ -29,7 +29,7 @@ public class OutputView {
         }
     }
 
-    public static String prizeResult(Prize prize) {
+    public String prizeResult(Prize prize) {
         if (prize == Prize.SECOND) {
             return "5개 일치, 보너스 볼 일치 " + prize.getPanel() + " - ";
         }

@@ -1,6 +1,10 @@
 package lotto.view;
 
+import java.util.List;
+
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
+import lotto.domain.LottoCondition;
 import lotto.global.Validator;
 import lotto.global.util.Util;
 
@@ -13,6 +17,17 @@ public class Input {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getPurchaseAmount();
+        }
+    }
+
+    public static Lotto getWinNumbers() {
+        try {   
+            List<Integer> numbers = 
+                    Util.parseIntToListOrThrowException(Console.readLine(), LottoCondition.REGEX);
+            return new Lotto(numbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinNumbers();
         }
     }
 }

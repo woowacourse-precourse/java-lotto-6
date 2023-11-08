@@ -8,6 +8,7 @@ import lotto.view.Print;
 
 public class Seller {
     private List<Lotto> lottos;
+    private Lotto win;
     private Integer purchaseAmount;
 
     public void buy() {
@@ -16,5 +17,10 @@ public class Seller {
 
         lottos = SellerHelper.buyLottos(purchaseAmount / LottoCondition.MONEY_UNIT);
         Print.purchase(purchaseAmount, lottos);
+    }
+
+    public void draw() {
+        Print.getWinNumbers();
+        win = Input.getWinNumbers();
     }
 }

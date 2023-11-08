@@ -17,4 +17,8 @@ public class Print {
     private static void purchasedLottoNumber(List<Lotto> lottos) {
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
+
+    public static void getWinNumbers() {
+        System.out.println(Announce.NEW_LINE + Announce.GET_WIN_NUMBER);
+    }
 }

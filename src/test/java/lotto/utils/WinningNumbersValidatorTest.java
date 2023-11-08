@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import static lotto.enums.ExceptionMessageType.INVALID_SEPARATOR_OR_NUMBER_COUNT;
+import static lotto.enums.ExceptionMessageType.NUMBER_OUT_OF_RANGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -16,5 +17,14 @@ class WinningNumbersValidatorTest {
         assertThatThrownBy(() -> WinningNumbersValidator.validateSeparator(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(INVALID_SEPARATOR_OR_NUMBER_COUNT.getMessage());
+    }
+
+    @DisplayName("번호는 1부터 45 사이의 숫자가 아니면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {0, 46, -20})
+    void testValidateRange(int numbers) {
+        assertThatThrownBy(() -> WinningNumbersValidator.validateRange(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(NUMBER_OUT_OF_RANGE.getMessage());
     }
 }

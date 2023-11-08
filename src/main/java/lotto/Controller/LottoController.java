@@ -20,9 +20,9 @@ public class LottoController {
     }
 
     public void startProcess() {
-        Money money = getMoney();
-        LottoGroup lottoGroup = getLottoGroup(money);
-        WinningLotto winningLotto = getWinningLotto();
+        Money money = inputMoney();
+        LottoGroup lottoGroup = createLottoGroup(money);
+        WinningLotto winningLotto = inputWinningLotto();
         LottoResultHandlerModel lottoResultHandlerModel =
                 diContainer.getLottoResultHandlerModel(winningLotto, lottoGroup);
 
@@ -31,31 +31,31 @@ public class LottoController {
         Console.close();
     }
 
-    protected Money getMoney() {
+    protected Money inputMoney() {
         String inputMoney = inputView.inputMoney();
         return Money.from(inputMoney);
     }
 
-    private LottoGroup getLottoGroup(Money money) {
+    private LottoGroup createLottoGroup(Money money) {
         LottoGroup lottoGroup = LottoGroup.from(money);
         outputView.printLottoCount(lottoGroup.findLottoNumbersSize());
         outputView.printOrderedLottos(lottoGroup);
         return lottoGroup;
     }
 
-    private WinningLotto getWinningLotto() {
+    private WinningLotto inputWinningLotto() {
         WinningLotto winningLotto = WinningLotto.of();
-        createWinningLottoNumber(winningLotto);
-        createWinningBonusNumber(winningLotto);
+        inputLottoNumber(winningLotto);
+        inputWinningBonusNumber(winningLotto);
         return winningLotto;
     }
 
-    protected void createWinningBonusNumber(WinningLotto winningLotto) {
+    protected void inputWinningBonusNumber(WinningLotto winningLotto) {
         String inputBonusNumber = inputView.inputBonusNumber();
         winningLotto.setBonusNumber(inputBonusNumber);
     }
 
-    protected void createWinningLottoNumber(WinningLotto winningLotto) {
+    protected void inputLottoNumber(WinningLotto winningLotto) {
         String inputWinningNumber = inputView.inputWinningNumber();
         winningLotto.setLotto(inputWinningNumber);
     }

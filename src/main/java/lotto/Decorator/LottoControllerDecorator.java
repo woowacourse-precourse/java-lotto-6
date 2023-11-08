@@ -19,11 +19,11 @@ public class LottoControllerDecorator extends LottoController {
     }
 
     @Override
-    public Money getMoney() {
+    public Money inputMoney() {
         Money money = null;
         do {
             try {
-                money = super.getMoney();
+                money = super.inputMoney();
             } catch (MoneyException | CommonValidationException e) {
                 System.out.println(e.getMessage());
             }
@@ -33,10 +33,10 @@ public class LottoControllerDecorator extends LottoController {
     }
 
     @Override
-    public void createWinningLottoNumber(WinningLotto winningLotto) {
+    public void inputLottoNumber(WinningLotto winningLotto) {
         do {
             try {
-                super.createWinningLottoNumber(winningLotto);
+                super.inputLottoNumber(winningLotto);
             } catch (CommonValidationException | LottoException e) {
                 System.out.println(e.getMessage());
             }
@@ -44,10 +44,10 @@ public class LottoControllerDecorator extends LottoController {
     }
 
     @Override
-    public void createWinningBonusNumber(WinningLotto winningLotto) {
+    public void inputWinningBonusNumber(WinningLotto winningLotto) {
         do {
             try {
-                super.createWinningBonusNumber(winningLotto);
+                super.inputWinningBonusNumber(winningLotto);
             } catch (CommonValidationException | LottoException e) {
                 System.out.println(e.getMessage());
             }

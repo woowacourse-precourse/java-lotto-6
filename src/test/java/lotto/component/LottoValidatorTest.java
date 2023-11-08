@@ -1,4 +1,4 @@
-package lotto.validation;
+package lotto.component;
 
 import static lotto.exception.ExceptionMessage.DUPLICATED_LOTTO_NUMBERS;
 import static lotto.exception.ExceptionMessage.INVALID_LOTTO_NUMBER_RANGE;

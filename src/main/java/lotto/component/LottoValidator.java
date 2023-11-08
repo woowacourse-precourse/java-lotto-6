@@ -1,11 +1,12 @@
-package lotto.validation;
+package lotto.component;
 
 import static lotto.exception.ExceptionMessage.DUPLICATED_LOTTO_NUMBERS;
 import static lotto.exception.ExceptionMessage.INVALID_LOTTO_NUMBER_RANGE;
 import static lotto.exception.ExceptionMessage.INVALID_LOTTO_NUMBER_SIZE;
 import static lotto.exception.ExceptionMessage.INVALID_PURCHASE_AMOUNT_MESSAGE;
+import static lotto.utils.IntegerConstant.ZERO;
 import static lotto.utils.LottoConstant.LOTTO_END_NUMBER;
-import static lotto.utils.LottoConstant.LOTTO_NUMBER_COUNT;
+import static lotto.utils.LottoConstant.LOTTO_NUMBERS_SIZE;
 import static lotto.utils.LottoConstant.LOTTO_START_NUMBER;
 import static lotto.utils.LottoConstant.PURCHASE_AMOUNT_UNIT;
 import static lotto.utils.StringConstant.COMMA;
@@ -13,7 +14,6 @@ import static lotto.utils.StringConstant.COMMA;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.utils.IntegerConstant;
 
 public class LottoValidator {
 
@@ -26,7 +26,7 @@ public class LottoValidator {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_MESSAGE.getMessage());
         }
 
-        if (purchaseAmount <= IntegerConstant.ZERO || purchaseAmount % PURCHASE_AMOUNT_UNIT != IntegerConstant.ZERO) {
+        if (purchaseAmount <= ZERO || purchaseAmount % PURCHASE_AMOUNT_UNIT != ZERO) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_MESSAGE.getMessage());
         }
     }
@@ -34,7 +34,7 @@ public class LottoValidator {
     public void verifyWinNumbers(String lottoWinNumbersInput) {
         String[] numbers = lottoWinNumbersInput.split(COMMA);
 
-        if (numbers.length != LOTTO_NUMBER_COUNT) {
+        if (numbers.length != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_SIZE.getMessage());
         }
 
@@ -56,7 +56,7 @@ public class LottoValidator {
             winNumbers.add(number);
         }
 
-        if (winNumbers.size() != LOTTO_NUMBER_COUNT) {
+        if (winNumbers.size() != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBERS.getMessage());
         }
     }

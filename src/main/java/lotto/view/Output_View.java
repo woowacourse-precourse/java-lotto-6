@@ -10,7 +10,7 @@ public class Output_View {
         System.out.println("---");
     }
 
-    public void print_winning_stat_prize(String prize_message,int prize_amount){
+    public static void print_winning_stat_prize(String prize_message,int prize_amount){
         System.out.println(prize_message + prize_amount + "개" );
     }
 

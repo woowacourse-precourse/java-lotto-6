@@ -1,6 +1,6 @@
 package lotto.service;
 
-import java.util.Arrays;
+import lotto.view.Output_View;
 
 public enum Prizes {
 
@@ -59,6 +59,20 @@ public enum Prizes {
 
         throw new IllegalArgumentException(ERROR_MESSAGE_single);
 
+    }
+
+    public int get_count_match_numbers() {
+        return count_match_numbers;
+    }
+
+    public int get_count_prize_numbers() {
+        return count_prize_numbers;
+    }
+
+    public void print_MESSAGE(int cnt) {
+        if (this != MISS) {
+            Output_View.print_winning_stat_prize(prize_message,cnt);
+        }
     }
 
 

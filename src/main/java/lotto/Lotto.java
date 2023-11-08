@@ -29,9 +29,13 @@ public class Lotto {
         List<Integer> notDuplicateNumber = new ArrayList<>();
         for (int i = 0; i < numbers.size(); i++) {
             if (notDuplicateNumber.contains(numbers.get((i)))) {
-                throw new IllegalArgumentException("[Error] 당첨 번호에 중복된 숫자가 있습니다.");
+                throw new IllegalArgumentException("[Error] 중복된 숫자를 입력하셨습니다.");
             }
             notDuplicateNumber.add(numbers.get(i));
         }
+    }
+
+    public void numberRange(List<Integer> numbers){
+        throw new IllegalArgumentException("[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 }

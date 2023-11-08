@@ -48,6 +48,19 @@ class ErrorValidationTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 	
+	@DisplayName("1-45가 아닌 당첨번호를 입력하면 예외가 발생한다.")
+    @Test
+    void testValidateWinningNumberSize() {
+		List<Integer> testWinningNumber = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 46));
+        assertThatThrownBy(() -> ErrorValidation.validateWinningNumbers(testWinningNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 	
-
+	@DisplayName("중복되는 당첨번호를 입력하면 예외가 발생한다.")
+    @Test
+    void testValidateWinningNumberDuplication() {
+		List<Integer> testWinningNumber = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 5));
+        assertThatThrownBy(() -> ErrorValidation.validateWinningNumbers(testWinningNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

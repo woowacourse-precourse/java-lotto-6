@@ -1,7 +1,9 @@
-package lotto;
+package lotto.util;
 
 import java.util.HashMap;
 import java.util.List;
+import lotto.domain.LottoTicket;
+import lotto.domain.WiningLotto;
 
 public class LottoCalculator {
 

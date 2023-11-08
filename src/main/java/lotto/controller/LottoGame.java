@@ -1,9 +1,17 @@
-package lotto;
+package lotto.controller;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.config.LottoResultInform;
+import lotto.domain.Lotto;
+import lotto.domain.LottoTicket;
+import lotto.domain.Money;
+import lotto.domain.WiningLotto;
+import lotto.util.LottoCalculator;
+import lotto.util.LottoTicketMaker;
+import lotto.util.StatisticsCalculator;
 import lotto.validator.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -101,7 +109,7 @@ public class LottoGame {
     private HashMap<Integer, Integer> makeWiningResult(LottoTicket lottoTicket, WiningLotto win) {
         HashMap<Integer, Integer> winResult = new LottoCalculator().calculate(lottoTicket, win);
 
-        for (LottoResult resultExplaine : LottoResult.values()) {
+        for (LottoResultInform resultExplaine : LottoResultInform.values()) {
             OutputView.printWiningResult(winResult.get(resultExplaine.getCount()), resultExplaine.getWon());
         }
         return winResult;

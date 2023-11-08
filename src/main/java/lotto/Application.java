@@ -9,8 +9,11 @@ import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-            GameMainController gameMainController = new GameMainController
-                    (new GameService(new RandomNumberGenerator()), new InputView(new InputValidator()), new OutputView());
+            GameMainController gameMainController = new GameMainController(
+                    new GameService(new RandomNumberGenerator()),
+                    new InputView(new InputValidator()),
+                    new OutputView());
+
             gameMainController.run();
     }
 }

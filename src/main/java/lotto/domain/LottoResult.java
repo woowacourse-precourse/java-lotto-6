@@ -9,6 +9,7 @@ import lotto.constant.PriceConstant;
 public class LottoResult {
 
     private static final Double PERCENTAGE = 100.0;
+
     private Map<String, Integer> resultMap;
     private int winningCount;
 
@@ -62,7 +63,6 @@ public class LottoResult {
         if (totalEarning == 0) {
             return 0;
         }
-
         return (double) totalEarning / (double) purchaseAmount * PERCENTAGE;
     }
 

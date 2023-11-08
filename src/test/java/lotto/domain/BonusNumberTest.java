@@ -25,7 +25,7 @@ public class BonusNumberTest {
 
         assertThatThrownBy(() -> BonusNumber.of(bonusNumber, lotto))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionConstant.LOTTO_NUMBER_DUPliCATE.getMessage());
+                .hasMessageContaining(ExceptionConstant.LOTTO_NUMBER_DUPlICATE.getMessage());
     }
 
     @ParameterizedTest

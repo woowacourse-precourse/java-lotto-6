@@ -28,7 +28,7 @@ class LotteriesTest {
     void createLotteriesByParticularNumberGenerator() {
         assertThatThrownBy(() -> Lotteries.of(3, particularNumberGenerator))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionConstant.LOTTO_NUMBER_DUPliCATE.getMessage());
+                .hasMessageContaining(ExceptionConstant.LOTTO_NUMBER_DUPlICATE.getMessage());
     }
 
     @DisplayName("Lotteries 객체가 불변한지 확인한다. 반환한 객체를 수정하려 할 경우 예외가 발생한다.")

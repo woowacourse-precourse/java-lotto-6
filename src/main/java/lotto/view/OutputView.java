@@ -22,6 +22,7 @@ public class OutputView {
         String lotteriesNumbers = lotteries.getLotteries().stream()
                 .map(lotto -> String.valueOf(lotto.getNumbers()))
                 .collect(Collectors.joining(PRINT_NEW_LINE));
+        
         System.out.println(lotteriesNumbers);
     }
 

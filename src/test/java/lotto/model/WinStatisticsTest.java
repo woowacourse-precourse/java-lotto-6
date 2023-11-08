@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WinStatisticsTest {
-
     @DisplayName("당첨금 합이 올바르게 계산되는지")
     @Test
     void verifyTotalPrizeAmountCalculation() {

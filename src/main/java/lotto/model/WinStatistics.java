@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Objects;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -83,5 +84,13 @@ public class WinStatistics {
                 .append(winStatistics.get(Rank.FIRST))
                 .append(OutputMessage.COUNT_SUFFIX)
                 .toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        WinStatistics that = (WinStatistics) obj;
+        return Objects.equals(winStatistics, that.winStatistics);
     }
 }

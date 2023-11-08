@@ -8,9 +8,21 @@ public class LottoResult {
     private final int lottoPurchaseCnt;
     private final List<Integer> numbers;
     private final List<List<Integer>> randomNumbers;
+
+
+
     private final List<Integer> lottoResult;
 
     private final List<Boolean> bonusCheck;
+
+
+    public List<Integer> getLottoResult() {
+        return lottoResult;
+    }
+
+    public List<Boolean> getBonusCheck() {
+        return bonusCheck;
+    }
 
     private final int bounsNumber;
 

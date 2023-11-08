@@ -15,10 +15,20 @@ public class CalculateProfit {
     private final List<Integer> cntProfit;
     private final List<Integer> bonusProfit;
 
-
     private final List<Integer> totalProfit;
 
     private final double rateOfReturn;
+
+
+    public List<Integer> getTotalProfit() {
+        return totalProfit;
+    }
+
+    public double getRateOfReturn() {
+        return rateOfReturn;
+    }
+
+
 
 
 

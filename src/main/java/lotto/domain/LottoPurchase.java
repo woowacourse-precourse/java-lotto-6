@@ -10,6 +10,12 @@ public class LottoPurchase {
     private final int LottoPurchaseCnt;
     private final List<List<Integer>> randomNumbers;
 
+
+    public List<List<Integer>> getRandomNumbers() {
+        return randomNumbers;
+    }
+
+
     public LottoPurchase(int LottoPurchaseCnt){
         validate(LottoPurchaseCnt);
         this.LottoPurchaseCnt = LottoPurchaseCnt;

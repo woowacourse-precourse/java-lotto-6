@@ -7,6 +7,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
 
+    
     public List<Integer> getNumbers() {
         return numbers;
     }

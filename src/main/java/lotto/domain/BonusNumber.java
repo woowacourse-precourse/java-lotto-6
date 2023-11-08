@@ -2,10 +2,16 @@ package lotto.domain;
 
 public class BonusNumber {
 
-    private final int BounsNumber;
+    private final int BonusNumber;
+
+
+    public int getBonusNumber() {
+        return BonusNumber;
+    }
+
 
     public BonusNumber(int BonusNumber) {
-        this.BounsNumber = BonusNumber;
+        this.BonusNumber = BonusNumber;
 
     }
 

@@ -12,14 +12,12 @@ public class CheckNum {
 		for (int i = 0; i < lottos.size(); i++) {
 			List<Integer> lotto = lottos.get(i);
 			int matching = checkMatchingNumbers(lotto, inputNumber);
-
 			if (matching == 5 && lottos.contains(inputBonus)) {
 				rankingList.add(WinningRank.SECOND);
 			}
 			WinningRank rank = WinningRank.findByMatchingNumbers(matching);
 			rankingList.add(rank);
 		}
-
 		return rankingList;
 	}
 

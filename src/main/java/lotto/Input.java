@@ -13,7 +13,6 @@ public class Input {
 
 	public static List<Integer> numbers() {
 
-		System.out.println();
 		System.out.println(INPUT_NUNBERS);
 
 		while (true) {
@@ -29,13 +28,11 @@ public class Input {
 		String[] usernums = inputNumber.split(",");
 		try {
 			List<Integer> numbers = new ArrayList<>();
-
 			for (String usernum : usernums) {
 				CheckValid.string(usernum);
 				numbers.add(Integer.parseInt(usernum));
 			}
 			CheckValid.numbers(numbers);
-
 			return numbers;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -44,22 +41,18 @@ public class Input {
 	}
 
 	public static int bonus(List<Integer> userNums) {
-
 		System.out.println();
 		System.out.println(INPUT_BONUS);
-
 		while (true) {
 			String inputBonus = Console.readLine();
 			try {
 				CheckValid.string(inputBonus);
 				int bonus = Integer.parseInt(inputBonus);
 				CheckValid.bonus(userNums, bonus);
-
 				return bonus;
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
-
 		}
 	}
 
@@ -71,9 +64,7 @@ public class Input {
 			String inputMoney = Console.readLine();
 			try {
 				CheckValid.money(inputMoney);
-
 				int userMoney = Integer.parseInt(inputMoney);
-
 				return userMoney;
 			} catch (Exception e) {
 				System.out.println(e.getMessage());

@@ -36,10 +36,11 @@ public class LottoGame {
 	}
 
 	private static void printLottoNumber(List<List<Integer>> lottos) {
-
+		
 		for (int i = 0; i < lottos.size(); i++) {
 			System.out.println(lottos.get(i));
 		}
+		System.out.println();
 	}
 
 	public static int calculateLottoCount(int userMoney) {

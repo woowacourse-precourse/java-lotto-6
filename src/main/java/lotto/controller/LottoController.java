@@ -3,69 +3,115 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+enum LottoRank {
+    FIFTH(3, 5_000),
+    FIRST(6, 2_000_000_000),
+    SECOND(5, 1_500_000),
+    THIRD(5, 30_000_000),
+    FOURTH(4, 50_000);
+
+    private final int matchCount;
+    private final int reward;
+
+    LottoRank(int matchCount, int reward) {
+        this.matchCount = matchCount;
+        this.reward = reward;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getReward() {
+        return reward;
+    }
+}
+
+
 
 public class LottoController {
 
     public static List<Lotto> generateLottos(int price) {
-        int purchasedLottoAmount = price / 1000;
         ArrayList<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < purchasedLottoAmount; i++) {
+        for (int i = 0; i < getPurchasedLottoAmount(price); i++) {
             Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             lottos.add(lotto);
         }
         return lottos;
     }
 
-    public static List<Integer> makeLottoResult(List<Integer> winningNumbers, int bonusNumber, List<Lotto> lottos) {
-        List<Integer> winningCounts = new ArrayList<>();
-        int size = 5;
-        List<Integer> zeros = Collections.nCopies(size, 0);
-        winningCounts.addAll(zeros);
+    private static int getPurchasedLottoAmount(int price) {
+        int purchasedLottoAmount = price / 1000;
+        return purchasedLottoAmount;
+    }
+
+    public static List<Integer> makeLottoResult(List<Integer> winningNumbers, int bonusNumber,
+            List<Lotto> lottos) {
+        List<Integer> winningCounts = new ArrayList<>(Collections.nCopies(5, 0));
         for (Lotto lotto : lottos) {
-            List<Integer> lottoNumbers = lotto.getNumbers();
-            int matchingNumber = 0;
-            boolean bonusFlag = false;
-            for (Integer lottoNumber : lottoNumbers) {
-                if (winningNumbers.contains(lottoNumber)) {
-                    matchingNumber++;
-                }
-                if (lottoNumber == bonusNumber) {
-                    bonusFlag = true;
-                }
-            }
-            if (matchingNumber == 3) {
-                winningCounts.set(0, winningCounts.get(0) + 1);
-            }
-            if (matchingNumber == 4) {
-                winningCounts.set(1, winningCounts.get(1) + 1);
-            }
-            if (matchingNumber == 5) {
-                winningCounts.set(2, winningCounts.get(2) + 1);
-            }
-            if (matchingNumber == 6) {
-                if (bonusFlag) {
-                    winningCounts.set(3, winningCounts.get(3) + 1);
-                }
-            }
-            if (matchingNumber == 6) {
-                if (!bonusFlag) {
-                    winningCounts.set(4, winningCounts.get(4) + 1);
-                }
-            }
+            Result result = getResult(winningNumbers, bonusNumber, lotto);
+            LottoRank lottoRank = getLottoRank(LottoRank.values(), result.matchingNumber(),
+                    result.bonusFlag());
+            updateWinningCounts(lottoRank, winningCounts);
         }
         return winningCounts;
     }
 
-    public static double calculateEarningRate(int purchaseAmount, List<Integer> rewards, List<Integer> counts) {
+    private static void updateWinningCounts(LottoRank lottoRank, List<Integer> winningCounts) {
+        if (lottoRank != null) {
+            winningCounts.set(lottoRank.ordinal(), winningCounts.get(lottoRank.ordinal()) + 1);
+        }
+    }
+
+    private static Result getResult(List<Integer> winningNumbers, int bonusNumber, Lotto lotto) {
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        int matchingNumber = 0;
+        boolean bonusFlag = false;
+        for (Integer lottoNumber : lottoNumbers) {
+            matchingNumber = getMatchingNumber(winningNumbers, lottoNumber, matchingNumber);
+            bonusFlag = isBonusFlag(bonusNumber, lottoNumber, bonusFlag);
+        }
+        return new Result(matchingNumber, bonusFlag);
+    }
+
+    private static boolean isBonusFlag(int bonusNumber, Integer lottoNumber, boolean bonusFlag) {
+        if (lottoNumber == bonusNumber) {
+            bonusFlag = true;
+        }
+        return bonusFlag;
+    }
+
+    private static int getMatchingNumber(List<Integer> winningNumbers, Integer lottoNumber,
+            int matchingNumber) {
+        if (winningNumbers.contains(lottoNumber)) {
+            matchingNumber++;
+        }
+        return matchingNumber;
+    }
+
+    private record Result(int matchingNumber, boolean bonusFlag) {
+
+    }
+
+    private static LottoRank getLottoRank(LottoRank[] lottoRanks, int matchingNumber, boolean bonusFlag) {
+        for (int i = 0; i < lottoRanks.length; i++) {
+            if (matchingNumber == lottoRanks[i].getMatchCount() && (i != 1 || bonusFlag)) {
+                return lottoRanks[i];
+            }
+        }
+        return null;
+    }
+
+    public static double calculateEarningRate(int purchaseAmount, List<Integer> rewards,
+            List<Integer> counts) {
         int iterTotalNumber = rewards.size();
         int totalEarning = 0;
         for (int i = 0; i < iterTotalNumber; i++) {
             totalEarning += rewards.get(i) * counts.get(i);
         }
-        return (double) Math.round((double) totalEarning * 1000 / purchaseAmount)/10;
+        return (double) Math.round((double) totalEarning * 1000 / purchaseAmount) / 10;
     }
 
 }

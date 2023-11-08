@@ -2,7 +2,7 @@ package lotto.model;
 
 import static lotto.ErrorMessage.INDIVISIBLE_NUMBER;
 import static lotto.ErrorMessage.NOT_NUMBER_MONEY_FORMAT;
-import static lotto.ErrorMessage.ZERO_NUMBER;
+import static lotto.ErrorMessage.ZERO_MONEY;
 import static lotto.configuration.LottoConfiguration.LOTTO_PRICE;
 
 import lotto.view.OutPutView;
@@ -42,7 +42,7 @@ public class Money {
 
     private static boolean isZeroMoney(int money) {
         if (money == 0) {
-            OutPutView.println(ZERO_NUMBER.getMessage());
+            OutPutView.println(ZERO_MONEY.getMessage());
             return false;
         }
         return true;

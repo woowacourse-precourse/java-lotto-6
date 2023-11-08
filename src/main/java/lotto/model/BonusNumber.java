@@ -1,6 +1,9 @@
 package lotto.model;
 
+import static lotto.ErrorMessage.NOT_NUMBER_FORMAT;
+
 import lotto.validator.LottoValidator;
+import lotto.view.OutPutView;
 
 public class BonusNumber {
 
@@ -10,15 +13,19 @@ public class BonusNumber {
         this.bonusNumber = bonusNumber;
     }
 
-    public static BonusNumber createBonusNumber(int bonusNumber) {
+    public static BonusNumber createBonusNumber(String bonusNumber) {
         if (isValid(bonusNumber)) {
-            return new BonusNumber(bonusNumber);
+            return new BonusNumber(Integer.parseInt(bonusNumber));
         }
         return null;
     }
 
-    private static boolean isValid(int bonusNumber) {
-        return LottoValidator.isBonusInRange(bonusNumber);
+    private static boolean isValid(String bonusNumber) {
+        if (!bonusNumber.matches("\\d+")) {
+            OutPutView.println(NOT_NUMBER_FORMAT.getMessage());
+            return false;
+        }
+        return LottoValidator.isBonusInRange(Integer.parseInt(bonusNumber));
     }
 
     public int getNumber() {

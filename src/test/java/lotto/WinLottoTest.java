@@ -1,13 +1,12 @@
 package lotto;
 
 import static lotto.ErrorMessage.DUPLICATE_WIN_BONUS;
-import static lotto.ErrorMessage.NOT_NUMBER_WIN_FORMAT;
+import static lotto.ErrorMessage.NOT_NUMBER_FORMAT;
 import static lotto.ErrorMessage.OVER_BONUS_NUMBER_BOUNDARY;
 import static lotto.configuration.LottoConfiguration.LOTTO_BOUNDARY_END_NUMBER;
 import static lotto.configuration.LottoConfiguration.LOTTO_BOUNDARY_START_NUMBER;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
@@ -15,10 +14,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
-import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
-import lotto.model.Ranking;
 import lotto.model.WinLotto;
 import lotto.model.WinNumbers;
 import org.junit.jupiter.api.AfterEach;
@@ -54,7 +51,7 @@ public class WinLottoTest {
         void issueWinLotto() {
             // given
             WinNumbers winNumbers = WinNumbers.createWinNumbers("1,2,3,4,5,6");
-            BonusNumber bonusNumber = BonusNumber.createBonusNumber(7);
+            BonusNumber bonusNumber = BonusNumber.createBonusNumber("7");
             // when
             // then
             assertDoesNotThrow(() -> WinLotto.issueWinLotto(winNumbers, bonusNumber));
@@ -68,13 +65,13 @@ public class WinLottoTest {
             // when
             WinNumbers winNumbers = WinNumbers.createWinNumbers(numbers);
             // then
-            assertThat(outputMessage.toString()).contains(NOT_NUMBER_WIN_FORMAT.getMessage());
+            assertThat(outputMessage.toString()).contains(NOT_NUMBER_FORMAT.getMessage());
         }
 
         @DisplayName("[Error] 당첨번호와 보너스번호가 중복되면 에러 메세지를 출력합니다.")
-        @ValueSource(ints = {1, 6})
+        @ValueSource(strings = {"1", "6"})
         @ParameterizedTest
-        void validateDuplicateBetweenWinAndBonus(int number) {
+        void validateDuplicateBetweenWinAndBonus(String number) {
             // given
             WinNumbers winNumber = WinNumbers.createWinNumbers("1,2,3,4,5,6");
             BonusNumber bonusNumber = BonusNumber.createBonusNumber(number);
@@ -89,9 +86,9 @@ public class WinLottoTest {
         @Test
         void validateBonusNumberBelowBoundary() {
             // given
-
+            String bonusNumber = String.valueOf(LOTTO_BOUNDARY_START_NUMBER.get() - 1);
             // when
-            BonusNumber invalidBonusNumber = BonusNumber.createBonusNumber(LOTTO_BOUNDARY_START_NUMBER.get() - 1);
+            BonusNumber invalidBonusNumber = BonusNumber.createBonusNumber(bonusNumber);
 
             // then
             assertThat(outputMessage.toString()).contains(OVER_BONUS_NUMBER_BOUNDARY.getMessage());
@@ -101,26 +98,24 @@ public class WinLottoTest {
         @Test
         void validateBonusNumberOverBoundary() {
             // given
-
+            String bonusNumber = String.valueOf(LOTTO_BOUNDARY_END_NUMBER.get() + 1);
             // when
-            BonusNumber invalidBonusNumber = BonusNumber.createBonusNumber(LOTTO_BOUNDARY_END_NUMBER.get() + 1);
+            BonusNumber invalidBonusNumber = BonusNumber.createBonusNumber(bonusNumber);
 
             // then
             assertThat(outputMessage.toString()).contains(OVER_BONUS_NUMBER_BOUNDARY.getMessage());
 //        }
         }
 
-        @DisplayName("[Error] 보너스 번호가 로또 범위를 벗어나면(END+1) 에러 메세지를 출력합니다.")
+        @DisplayName("[Error] 보너스 번호에 숫자가 아닌 형식이 입력되면 에러 메세지를 출력합니다.")
         @Test
-        void validateBonusNumberIsZero() {
+        void isCreateBonusNumberByNotNumber() {
             // given
-
+            String bonusNumber = String.valueOf("1 2");
             // when
-            BonusNumber invalidBonusNumber = BonusNumber.createBonusNumber(LOTTO_BOUNDARY_END_NUMBER.get() + 1);
-
+            BonusNumber invalidBonusNumber = BonusNumber.createBonusNumber(bonusNumber);
             // then
-            assertThat(outputMessage.toString()).contains(OVER_BONUS_NUMBER_BOUNDARY.getMessage());
-//        }
+            assertThat(outputMessage.toString()).contains(NOT_NUMBER_FORMAT.getMessage());
         }
     }
 
@@ -140,7 +135,7 @@ public class WinLottoTest {
             // given
             Lotto lotto = new Lotto(Arrays.asList(ball1, ball2, ball3, ball4, ball5, ball6));
             WinLotto winLotto = WinLotto.issueWinLotto(WinNumbers.createWinNumbers("1,2,3,4,5,6"),
-                    BonusNumber.createBonusNumber(7));
+                    BonusNumber.createBonusNumber("7"));
             // when
             int actualRanking = winLotto.findOutLottoRanking(lotto).getRank();
             // then

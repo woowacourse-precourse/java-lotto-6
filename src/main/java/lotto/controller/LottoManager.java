@@ -61,7 +61,7 @@ public class LottoManager {
         while (bonusNumber == null) {
             OutPutView.printBonusNumber();
             String number = InputView.readLine();
-            bonusNumber = BonusNumber.createBonusNumber(Integer.parseInt(number));
+            bonusNumber = BonusNumber.createBonusNumber(number);
         }
         return bonusNumber;
     }

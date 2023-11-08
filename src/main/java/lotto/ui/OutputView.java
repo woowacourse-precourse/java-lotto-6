@@ -43,8 +43,8 @@ public class OutputView {
 
         for (Rank rank : ranks) {
             StringBuilder statistics = new StringBuilder();
-            statistics.append(String.format(OVERLAP_NOTIFY_MESSAGE, rank.getCounted()));
-            if (rank.getChecked()) {
+            statistics.append(String.format(OVERLAP_NOTIFY_MESSAGE, rank.getCountDuplication()));
+            if (rank.getCheckBonus()) {
                 statistics.append(BONUS_NOTIFY_MESSAGE);
             }
             statistics.append(SPACE).append(String.format(PRIZE_MESSAGE, rank.getPrize())).append(SPACE + DASH + SPACE)

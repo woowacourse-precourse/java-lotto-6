@@ -7,12 +7,12 @@ import java.util.Map;
 public class LottoResult {
     private static final int PERCENT = 100;
 
-    public double calculateEarningRate(List<Rank> ranks2, int purchaseMoney) {
-        Map<Rank, Integer> result = completeResult(ranks2);
-        Rank[] ranks = Rank.values();
+    public double calculateEarningRate(List<Rank> ranks, int purchaseMoney) {
+        Map<Rank, Integer> result = completeResult(ranks);
+        Rank[] rankSpreadInOrder = Rank.values();
         double profit = 0;
 
-        for (Rank rank : ranks) {
+        for (Rank rank : rankSpreadInOrder) {
             profit += result.get(rank) * rank.getPrize();
         }
 

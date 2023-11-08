@@ -14,26 +14,27 @@ public class LottoProcess {
 
         return lottos;
     }
+
     public List<Rank> makeRanks(List<Lotto> lottos, WinningLotto winningLotto) {
         List<Rank> ranks = new ArrayList<>();
-        List<LottoWinningChecker> lottoWinningCheckers = makeLottoWinningCheckers(lottos, winningLotto);
+        List<LottoComparison> lottoComparisons = makeLottoComparisons(lottos, winningLotto);
 
-        for (LottoWinningChecker lottoWinningChecker : lottoWinningCheckers) {
-            ranks.add(Rank.decideRank(lottoWinningChecker.getDuplicationCounter(),
-                    lottoWinningChecker.getBonusChecker()));
+        for (LottoComparison lottoComparison : lottoComparisons) {
+            ranks.add(Rank.decideRank(lottoComparison.getCountDuplication(),
+                    lottoComparison.getCheckBonus()));
         }
 
         return ranks;
     }
 
-    private List<LottoWinningChecker> makeLottoWinningCheckers(List<Lotto> lottos, WinningLotto winningLotto) {
-        List<LottoWinningChecker> lottoWinningCheckers = new ArrayList<>();
+    private List<LottoComparison> makeLottoComparisons(List<Lotto> lottos, WinningLotto winningLotto) {
+        List<LottoComparison> lottoComparisons = new ArrayList<>();
 
         for (Lotto lotto : lottos) {
-            lottoWinningCheckers.add(new LottoWinningChecker(winningLotto.getLotto().countOverlappingNumbers(lotto),
+            lottoComparisons.add(new LottoComparison(winningLotto.getLotto().countOverlappingNumbers(lotto),
                     lotto.isContainBonusNumber(winningLotto.getBonusNumber())));
         }
 
-        return lottoWinningCheckers;
+        return lottoComparisons;
     }
 }

@@ -7,21 +7,21 @@ public enum Rank {
     FIVE_MATCH_AND_BONUS(5, true, 30000000),
     SIX_MATCH(6, false, 2000000000);
 
-    private final int counted;
-    private final boolean checked;
+    private final int countDuplication;
+    private final boolean checkBonus;
     private final int prize;
 
-    Rank(int counted, boolean checked, int prize) {
-        this.counted = counted;
-        this.checked = checked;
+    Rank(int countDuplication, boolean checkBonus, int prize) {
+        this.countDuplication = countDuplication;
+        this.checkBonus = checkBonus;
         this.prize = prize;
     }
 
-    public static Rank decideRank(int count, boolean check) {
-        Rank[] ranks = Rank.values();
+    public static Rank decideRank(int countDuplication, boolean checkBonus) {
+        Rank[] rankSpreadInOrder = Rank.values();
 
-        for (Rank rank : ranks) {
-            if (rank.getCounted() == count && rank.getChecked() == check) {
+        for (Rank rank : rankSpreadInOrder) {
+            if (rank.getCountDuplication() == countDuplication && rank.getCheckBonus() == checkBonus) {
                 return rank;
             }
         }
@@ -29,12 +29,12 @@ public enum Rank {
         return null;
     }
 
-    public int getCounted() {
-        return counted;
+    public int getCountDuplication() {
+        return countDuplication;
     }
 
-    public boolean getChecked() {
-        return checked;
+    public boolean getCheckBonus() {
+        return checkBonus;
     }
 
     public int getPrize() {

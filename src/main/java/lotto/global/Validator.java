@@ -1,5 +1,14 @@
 package lotto.global;
 
+import static lotto.global.RegularExpression.LOTTO_NUMBER_PATTERN;
+import static lotto.global.RegularExpression.PURCHASE_PRICE_PATTERN;
+import static lotto.global.common.GameMessage.BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE;
+import static lotto.global.common.GameMessage.LOTTO_NUMBERS_COUNT_ERROR_MESSAGE;
+import static lotto.global.common.GameMessage.LOTTO_NUMBERS_DUPLICATE_ERROR_MESSAGE;
+import static lotto.global.common.GameMessage.LOTTO_NUMBER_FORMAT_ERROR_MESSAGE;
+import static lotto.global.common.GameMessage.PURCHASE_PRICE_ERROR_MESSAGE;
+import static lotto.global.common.LottoConstant.PICK_NUMBERS_COUNT;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -7,8 +16,8 @@ import java.util.Set;
 public class Validator {
 
     public static boolean purchasePriceFormat(String input) {
-        if (!input.matches("^(\\d+000)$")) {
-            throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력받으며 1,000원으로 나누어떨어져야 합니다.\n");
+        if (!input.matches(PURCHASE_PRICE_PATTERN)) {
+            throw new IllegalArgumentException(PURCHASE_PRICE_ERROR_MESSAGE.message);
         }
 
         return true;
@@ -36,8 +45,8 @@ public class Validator {
     }
 
     private static void lottoNumbersCountWithString(List<String> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호는 쉼표(,)를 기준으로 6개여야 합니다.\n");
+        if (numbers.size() != PICK_NUMBERS_COUNT) {
+            throw new IllegalArgumentException(LOTTO_NUMBERS_COUNT_ERROR_MESSAGE.message);
         }
     }
 
@@ -51,13 +60,13 @@ public class Validator {
         Set<String> noDuplicateNumbers = new HashSet<>(numbers);
 
         if (noDuplicateNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("로또 번호는 중복되지 않는 숫자 6개여야 합니다.\n");
+            throw new IllegalArgumentException(LOTTO_NUMBERS_DUPLICATE_ERROR_MESSAGE.message);
         }
     }
 
     private static void lottoNumbersCountWithInteger(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호는 쉼표(,)를 기준으로 6개여야 합니다.\n");
+        if (numbers.size() != PICK_NUMBERS_COUNT) {
+            throw new IllegalArgumentException(LOTTO_NUMBERS_COUNT_ERROR_MESSAGE.message);
         }
     }
 
@@ -71,20 +80,20 @@ public class Validator {
         Set<Integer> noDuplicateNumbers = new HashSet<>(numbers);
 
         if (noDuplicateNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("로또 번호는 중복되지 않는 숫자 6개여야 합니다.\n");
+            throw new IllegalArgumentException(LOTTO_NUMBERS_DUPLICATE_ERROR_MESSAGE.message);
         }
     }
 
     private static void lottoNumberFormat(String input) {
-        if (!input.matches("^([1-9]|[1-3][0-9]|4[0-5])$")) {
-            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.\n");
+        if (!input.matches(LOTTO_NUMBER_PATTERN)) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_FORMAT_ERROR_MESSAGE.message);
         }
     }
 
     private static void bonusNumberDuplicate(String input, List<String> winningNumbers) {
         for (String number : winningNumbers) {
             if (input.equals(number)) {
-                throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복되지 않아야 합니다.\n");
+                throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE.message);
             }
         }
     }

@@ -1,5 +1,11 @@
 package lotto.domain;
 
+import static lotto.global.common.GameMessage.NEW_LINE_MESSAGE;
+import static lotto.global.common.GameMessage.PURCHASE_MESSAGE;
+import static lotto.global.common.LottoConstant.END_INCLUSIVE;
+import static lotto.global.common.LottoConstant.PICK_NUMBERS_COUNT;
+import static lotto.global.common.LottoConstant.START_INCLUSIVE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -17,7 +23,8 @@ public class LottoDraw {
 
     public void configureNumbers() {
         for (int i = 0; i < this.lottoTicketsNumber; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE,
+                    PICK_NUMBERS_COUNT);
             List<Integer> mutableNumbers = new ArrayList<>(numbers);
             mutableNumbers.sort(Comparator.naturalOrder());
             this.lottos.add(new Lotto(mutableNumbers));
@@ -25,7 +32,7 @@ public class LottoDraw {
     }
 
     public void printPurchaseHistory() {
-        System.out.print("\n" + this.lottoTicketsNumber + "개를 구매했습니다.\n");
+        System.out.print(NEW_LINE_MESSAGE.message + this.lottoTicketsNumber + PURCHASE_MESSAGE.message);
         this.lottos.forEach(Lotto::printNumbers);
     }
 

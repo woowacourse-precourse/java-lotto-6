@@ -1,5 +1,10 @@
 package lotto.ui;
 
+import static lotto.global.common.GameMessage.BONUS_NUMBER_MESSAGE;
+import static lotto.global.common.GameMessage.PURCHASE_PRICE_MESSAGE;
+import static lotto.global.common.GameMessage.WINNING_NUMBERS_MESSAGE;
+import static lotto.global.common.LottoConstant.LOTTO_TICKET_PRICE;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +13,7 @@ import lotto.global.Validator;
 
 public class Input {
 
+    private final static String SEPARATOR = ",";
     private String input;
     private List<String> winningNumbers;
 
@@ -64,23 +70,23 @@ public class Input {
     }
 
     private void readPurchasePrice() {
-        System.out.print("구입 금액을 입력해 주세요.\n");
+        System.out.print(PURCHASE_PRICE_MESSAGE.message);
         this.input = Console.readLine().trim();
     }
 
     private void readWinningNumbers() {
-        System.out.print("\n당첨 번호를 입력해 주세요.\n");
+        System.out.print(WINNING_NUMBERS_MESSAGE.message);
         this.input = Console.readLine().trim();
 
-        this.winningNumbers = new ArrayList<>(List.of(this.input.split(",")));
+        this.winningNumbers = new ArrayList<>(List.of(this.input.split(SEPARATOR)));
     }
 
     private void readBonusNumber() {
-        System.out.print("\n보너스 번호를 입력해 주세요.\n");
+        System.out.print(BONUS_NUMBER_MESSAGE.message);
         this.input = Console.readLine().trim();
     }
 
     private int getLottoTicketsNumber() {
-        return Integer.parseInt(this.input) / 1000;
+        return Integer.parseInt(this.input) / LOTTO_TICKET_PRICE;
     }
 }

@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.controller.utils;
 
 public class InputValidator {
 

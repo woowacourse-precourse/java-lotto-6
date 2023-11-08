@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.controller.utils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,7 +10,7 @@ public class InputParser {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("[ERROR] 숫자가 아닙니다: " + input);
+            throw new NumberFormatException("[ERROR] 숫자가 아닙니다.");
         }
     }
 

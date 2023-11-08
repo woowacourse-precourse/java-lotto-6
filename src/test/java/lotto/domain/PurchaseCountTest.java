@@ -27,4 +27,5 @@ class PurchaseCountTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_PURCHASE_AMOUNT.getMessage());
     }
+
 }

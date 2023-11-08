@@ -3,7 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.LottoService;
 import lotto.domain.Lottos;
-import lotto.utils.InputParser;
+import lotto.controller.utils.InputParser;
 import lotto.view.GameView;
 
 public class GameController {
@@ -27,6 +27,8 @@ public class GameController {
         List<Integer> numbers = getLottoNumbers(view.inputLottoNumbers());
         int bonusNumber = getLottoBonusNumber(view.inputLottoBonusNumber());
         model.saveWinningLotto(numbers, bonusNumber);
+
+        model.createWinningResult(model.findAllLottos(), model.findWinningLotto());
 
     }
 

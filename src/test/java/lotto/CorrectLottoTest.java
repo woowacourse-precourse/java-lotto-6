@@ -49,4 +49,19 @@ class CorrectLottoTest {
         });
     }
 
+    @DisplayName("당첨 번호와 보너스 번호가 정상적으로 입력되는지 확인한다.")
+    @Test
+    void 당첨번호_보너스번호_정상_입력_확인() {
+        // given
+        String input_numbers = "1,2,3,4,5,6";
+        String input_number = "7";
+
+        // when
+        correctLotto.inputCorrectLotto(input_numbers);
+        correctLotto.inputBonus(input_number);
+
+        // then
+        assertEquals(List.of(1,2,3,4,5,6), correctLotto.getCorrect_lotto().getNumbers());
+        assertEquals(7, correctLotto.getBonus());
+    }
 }

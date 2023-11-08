@@ -20,6 +20,10 @@ public class AmountException {
                 throw new IllegalArgumentException(ErrorText.NOT_INTEGER.getMessage());
             }
         }
+
+        if (Integer.parseInt(input) == 0) {
+            throw new IllegalArgumentException(ErrorText.NOT_INTEGER.getMessage());
+        }
     }
 
     public void checkOutOfIntegerRange(String input) {

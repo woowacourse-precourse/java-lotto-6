@@ -45,6 +45,7 @@
 │  └─ LottoController
 ├─ domain
 │  ├─ Lotto
+│  └─ LottoGenerator
 ├─ view
 │  ├─ InputView
 │  └─ OutputView

@@ -29,4 +29,9 @@ public class OutputView {
 			System.out.println(lotto.getLottoNumbers());
 		}
 	}
+	public void printAskingLottoNumbers() {
+		System.out.println();
+		System.out.println(INPUT_NUMBER_OF_LOTTO);
+	}
+	
 }

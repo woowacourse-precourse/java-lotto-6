@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.utils.message.WinningInformationExceptionMessage;
+import lotto.utils.message.LottoExceptionMessage;
 
 public class WinningInformation {
     private final Lotto winningNumbers;
@@ -15,7 +15,7 @@ public class WinningInformation {
     private void validateDuplicate(Lotto winningNumbers, LottoNumber bonusNumber) {
         if (winningNumbers.isContains(bonusNumber)) {
             throw new IllegalArgumentException(
-                    WinningInformationExceptionMessage.WINNING_AND_BONUS_DUPLICATE_EXISTS.getError());
+                    LottoExceptionMessage.WINNING_AND_BONUS_DUPLICATE_EXISTS.getError());
         }
     }
 

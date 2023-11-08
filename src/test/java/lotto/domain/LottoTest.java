@@ -73,7 +73,7 @@ class LottoTest {
         void duplicate(String input) {
             List<Integer> duplicateNumbers = createLottoNumbers(input);
             assertThatThrownBy(() -> new Lotto(duplicateNumbers))
-                    .hasMessage(LottoExceptionMessage.DUPLICATE_EXISTS.getError());
+                    .hasMessage(LottoExceptionMessage.NOT_SATISFY_LOTTO_NUMBER_UNIQUE.getError());
         }
 
         @ParameterizedTest
@@ -83,7 +83,7 @@ class LottoTest {
         void invalidLottNumber(String input) {
             List<Integer> invalidNumbers = createLottoNumbers(input);
             assertThatThrownBy(() -> new Lotto(invalidNumbers))
-                    .hasMessage(LottoExceptionMessage.INVALID_NUMBER.getError());
+                    .hasMessage(LottoExceptionMessage.NOT_SATISFY_LOTTO_NUMBER_RANGE.getError());
         }
     }
 

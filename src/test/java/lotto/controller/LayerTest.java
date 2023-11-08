@@ -4,9 +4,9 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningInformation;
+import lotto.utils.message.InputExceptionMessage;
 import lotto.utils.message.LottoExceptionMessage;
 import lotto.utils.message.PurchaseAmountExceptionMessage;
-import lotto.utils.message.WinningInformationExceptionMessage;
 import lotto.view.InputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -33,7 +33,7 @@ public class LayerTest {
             InputView inputView = new InputView(() -> wrongInput);
             Assertions.assertThatThrownBy(inputView::readPurchaseAmount)
                     .hasMessageContaining(ERROR_CODE)
-                    .hasMessage(PurchaseAmountExceptionMessage.BLANK.getError());
+                    .hasMessage(InputExceptionMessage.BLANK.getError());
         }
 
         @ParameterizedTest
@@ -43,7 +43,7 @@ public class LayerTest {
             InputView inputView = new InputView(() -> wrongInput);
             Assertions.assertThatThrownBy(inputView::readPurchaseAmount)
                     .hasMessageContaining(ERROR_CODE)
-                    .hasMessage(PurchaseAmountExceptionMessage.NOT_NUMERIC.getError());
+                    .hasMessage(InputExceptionMessage.NOT_NUMERIC.getError());
         }
 
         @ParameterizedTest
@@ -53,7 +53,7 @@ public class LayerTest {
             InputView inputView = new InputView(() -> wrongInput);
             Assertions.assertThatThrownBy(inputView::readPurchaseAmount)
                     .hasMessageContaining(ERROR_CODE)
-                    .hasMessage(PurchaseAmountExceptionMessage.EXCEED_LENGTH.getError());
+                    .hasMessage(InputExceptionMessage.EXCEED_PURCHASE_AMOUNT_LENGTH.getError());
         }
 
         @ParameterizedTest
@@ -63,7 +63,7 @@ public class LayerTest {
             InputView inputView = new InputView(() -> wrongInput);
             Assertions.assertThatThrownBy(inputView::readPurchaseAmount)
                     .hasMessageContaining(ERROR_CODE)
-                    .hasMessage(PurchaseAmountExceptionMessage.NOT_NUMERIC.getError());
+                    .hasMessage(InputExceptionMessage.NOT_NUMERIC.getError());
         }
 
         @ParameterizedTest
@@ -117,7 +117,7 @@ public class LayerTest {
             InputView inputView = new InputView(() -> wrongInput);
             Assertions.assertThatThrownBy(inputView::readWinningNumbers)
                     .hasMessageContaining(ERROR_CODE)
-                    .hasMessage(WinningInformationExceptionMessage.BLANK.getError());
+                    .hasMessage(InputExceptionMessage.BLANK.getError());
         }
 
         @ParameterizedTest
@@ -128,7 +128,7 @@ public class LayerTest {
             InputView inputView = new InputView(() -> wrongInput);
             Assertions.assertThatThrownBy(inputView::readWinningNumbers)
                     .hasMessageContaining(ERROR_CODE)
-                    .hasMessage(WinningInformationExceptionMessage.EXCEED_WINNING_NUMBER_LENGTH.getError());
+                    .hasMessage(InputExceptionMessage.EXCEED_WINNING_NUMBER_LENGTH.getError());
         }
 
         @ParameterizedTest
@@ -138,7 +138,7 @@ public class LayerTest {
             InputView inputView = new InputView(() -> wrongInput);
             Assertions.assertThatThrownBy(inputView::readWinningNumbers)
                     .hasMessageContaining(ERROR_CODE)
-                    .hasMessage(WinningInformationExceptionMessage.FIRST_CHARACTER_COMMA.getError());
+                    .hasMessage(InputExceptionMessage.FIRST_CHARACTER_COMMA.getError());
         }
 
         @ParameterizedTest
@@ -148,7 +148,7 @@ public class LayerTest {
             InputView inputView = new InputView(() -> wrongInput);
             Assertions.assertThatThrownBy(inputView::readWinningNumbers)
                     .hasMessageContaining(ERROR_CODE)
-                    .hasMessage(WinningInformationExceptionMessage.LAST_CHARACTER_COMMA.getError());
+                    .hasMessage(InputExceptionMessage.LAST_CHARACTER_COMMA.getError());
         }
 
         @ParameterizedTest
@@ -158,7 +158,7 @@ public class LayerTest {
             InputView inputView = new InputView(() -> wrongInput);
             Assertions.assertThatThrownBy(inputView::readWinningNumbers)
                     .hasMessageContaining(ERROR_CODE)
-                    .hasMessage(WinningInformationExceptionMessage.NOT_NUMERIC.getError());
+                    .hasMessage(InputExceptionMessage.NOT_NUMERIC.getError());
         }
 
         @ParameterizedTest
@@ -168,7 +168,7 @@ public class LayerTest {
             InputView inputView = new InputView(() -> wrongInput);
             Assertions.assertThatThrownBy(() -> new Lotto(inputView.readWinningNumbers()))
                     .hasMessageContaining(ERROR_CODE)
-                    .hasMessage(LottoExceptionMessage.INVALID_NUMBER.getError());
+                    .hasMessage(LottoExceptionMessage.NOT_SATISFY_LOTTO_NUMBER_RANGE.getError());
         }
 
         @ParameterizedTest
@@ -178,7 +178,7 @@ public class LayerTest {
             InputView inputView = new InputView(() -> wrongInput);
             Assertions.assertThatThrownBy(() -> new Lotto(inputView.readWinningNumbers()))
                     .hasMessageContaining(ERROR_CODE)
-                    .hasMessage(LottoExceptionMessage.DUPLICATE_EXISTS.getError());
+                    .hasMessage(LottoExceptionMessage.NOT_SATISFY_LOTTO_NUMBER_UNIQUE.getError());
         }
 
         @ParameterizedTest
@@ -212,7 +212,7 @@ public class LayerTest {
             InputView inputView = new InputView(() -> wrongInput);
             Assertions.assertThatThrownBy(inputView::readBonusNumber)
                     .hasMessageContaining(ERROR_CODE)
-                    .hasMessage(WinningInformationExceptionMessage.BLANK.getError());
+                    .hasMessage(InputExceptionMessage.BLANK.getError());
         }
 
         @ParameterizedTest
@@ -222,7 +222,7 @@ public class LayerTest {
             InputView inputView = new InputView(() -> wrongInput);
             Assertions.assertThatThrownBy(inputView::readBonusNumber)
                     .hasMessageContaining(ERROR_CODE)
-                    .hasMessage(WinningInformationExceptionMessage.EXCEED_BONUS_NUMBER_LENGTH.getError());
+                    .hasMessage(InputExceptionMessage.EXCEED_BONUS_NUMBER_LENGTH.getError());
         }
 
         @ParameterizedTest
@@ -232,7 +232,7 @@ public class LayerTest {
             InputView inputView = new InputView(() -> wrongInput);
             Assertions.assertThatThrownBy(inputView::readBonusNumber)
                     .hasMessageContaining(ERROR_CODE)
-                    .hasMessage(WinningInformationExceptionMessage.NOT_NUMERIC.getError());
+                    .hasMessage(InputExceptionMessage.NOT_NUMERIC.getError());
         }
 
         @ParameterizedTest
@@ -243,7 +243,7 @@ public class LayerTest {
             int bonusNumber = inputView.readBonusNumber();
             Assertions.assertThatThrownBy(() -> new LottoNumber(bonusNumber))
                     .hasMessageContaining(ERROR_CODE)
-                    .hasMessage(LottoExceptionMessage.INVALID_NUMBER.getError());
+                    .hasMessage(LottoExceptionMessage.NOT_SATISFY_LOTTO_NUMBER_RANGE.getError());
         }
 
         @ParameterizedTest
@@ -258,7 +258,7 @@ public class LayerTest {
 
             Assertions.assertThatThrownBy(() -> new WinningInformation(winningNumber, bonusNumber))
                     .hasMessageContaining(ERROR_CODE)
-                    .hasMessage(WinningInformationExceptionMessage.WINNING_AND_BONUS_DUPLICATE_EXISTS.getError());
+                    .hasMessage(LottoExceptionMessage.WINNING_AND_BONUS_DUPLICATE_EXISTS.getError());
         }
 
         @ParameterizedTest

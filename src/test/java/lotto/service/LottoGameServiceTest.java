@@ -29,7 +29,7 @@ class LottoGameServiceTest {
                     new YieldCalculator());
 
             Assertions.assertThatThrownBy(() -> lottoGameService.createPlayerLotto(1))
-                    .hasMessage(LottoExceptionMessage.INVALID_NUMBER.getError());
+                    .hasMessage(LottoExceptionMessage.NOT_SATISFY_LOTTO_NUMBER_RANGE.getError());
         }
 
         @Test
@@ -39,7 +39,7 @@ class LottoGameServiceTest {
                     new YieldCalculator());
 
             Assertions.assertThatThrownBy(() -> lottoGameService.createPlayerLotto(1))
-                    .hasMessage(LottoExceptionMessage.INVALID_NUMBER.getError());
+                    .hasMessage(LottoExceptionMessage.NOT_SATISFY_LOTTO_NUMBER_RANGE.getError());
         }
 
         @ParameterizedTest
@@ -60,7 +60,7 @@ class LottoGameServiceTest {
             lottoGameService = new LottoGameService(() -> duplicateNumbersInput, new YieldCalculator());
 
             Assertions.assertThatThrownBy(() -> lottoGameService.createPlayerLotto(1))
-                    .hasMessage(LottoExceptionMessage.DUPLICATE_EXISTS.getError());
+                    .hasMessage(LottoExceptionMessage.NOT_SATISFY_LOTTO_NUMBER_UNIQUE.getError());
         }
 
         @ParameterizedTest

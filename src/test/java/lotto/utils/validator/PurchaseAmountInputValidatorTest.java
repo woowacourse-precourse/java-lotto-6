@@ -1,6 +1,6 @@
 package lotto.utils.validator;
 
-import lotto.utils.message.PurchaseAmountExceptionMessage;
+import lotto.utils.message.InputExceptionMessage;
 import lotto.view.validator.PurchaseAmountInputValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -14,7 +14,7 @@ class PurchaseAmountInputValidatorTest {
     @DisplayName("[Exception] 공백만 입력")
     void onlyBlank(String input) {
         Assertions.assertThatThrownBy(() -> PurchaseAmountInputValidator.validate(input))
-                .hasMessage(PurchaseAmountExceptionMessage.BLANK.getError());
+                .hasMessage(InputExceptionMessage.BLANK.getError());
     }
 
     @ParameterizedTest
@@ -22,7 +22,7 @@ class PurchaseAmountInputValidatorTest {
     @DisplayName("[Exception] 최대 9자리 초과 입력")
     void exceedLength(String input) {
         Assertions.assertThatThrownBy(() -> PurchaseAmountInputValidator.validate(input))
-                .hasMessage(PurchaseAmountExceptionMessage.EXCEED_LENGTH.getError());
+                .hasMessage(InputExceptionMessage.EXCEED_PURCHASE_AMOUNT_LENGTH.getError());
     }
 
     @ParameterizedTest
@@ -30,7 +30,7 @@ class PurchaseAmountInputValidatorTest {
     @DisplayName("[Exception] 숫자와 공백 혼합 입력")
     void numericWithBlank(String input) {
         Assertions.assertThatThrownBy(() -> PurchaseAmountInputValidator.validate(input))
-                .hasMessage(PurchaseAmountExceptionMessage.NOT_NUMERIC.getError());
+                .hasMessage(InputExceptionMessage.NOT_NUMERIC.getError());
     }
 
     @ParameterizedTest
@@ -38,7 +38,7 @@ class PurchaseAmountInputValidatorTest {
     @DisplayName("[Exception] 문자 입력")
     void notNumeric(String input) {
         Assertions.assertThatThrownBy(() -> PurchaseAmountInputValidator.validate(input))
-                .hasMessage(PurchaseAmountExceptionMessage.NOT_NUMERIC.getError());
+                .hasMessage(InputExceptionMessage.NOT_NUMERIC.getError());
     }
 
     @ParameterizedTest

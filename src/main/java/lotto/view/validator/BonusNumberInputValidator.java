@@ -1,6 +1,6 @@
 package lotto.view.validator;
 
-import lotto.utils.message.WinningInformationExceptionMessage;
+import lotto.utils.message.InputExceptionMessage;
 
 public class BonusNumberInputValidator {
     private static final int MAX_LENGTH = 2;
@@ -13,14 +13,14 @@ public class BonusNumberInputValidator {
 
     private static void validateBlank(String target) {
         if (target == null || target.isBlank()) {
-            throw new IllegalArgumentException(WinningInformationExceptionMessage.BLANK.getError());
+            throw new IllegalArgumentException(InputExceptionMessage.BLANK.getError());
         }
     }
 
     private static void validateMaxLength(String target) {
         if (target == null || target.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(
-                    WinningInformationExceptionMessage.EXCEED_BONUS_NUMBER_LENGTH.getError());
+                    InputExceptionMessage.EXCEED_BONUS_NUMBER_LENGTH.getError());
         }
     }
 
@@ -28,7 +28,7 @@ public class BonusNumberInputValidator {
         try {
             Integer.parseInt(target);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(WinningInformationExceptionMessage.NOT_NUMERIC.getError(), e);
+            throw new IllegalArgumentException(InputExceptionMessage.NOT_NUMERIC.getError(), e);
         }
     }
 }

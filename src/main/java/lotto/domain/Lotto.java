@@ -37,7 +37,7 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>(target);
 
         if (uniqueNumbers.size() != target.size()) {
-            throw new IllegalArgumentException(LottoExceptionMessage.DUPLICATE_EXISTS.getError());
+            throw new IllegalArgumentException(LottoExceptionMessage.NOT_SATISFY_LOTTO_NUMBER_UNIQUE.getError());
         }
     }
 

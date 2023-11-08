@@ -31,7 +31,7 @@ class LottoNumberTest {
     @DisplayName("[Exception] 1 ~ 45 범위가 아닐시 예외가 발생한다.")
     void outOfRange(int wrongInput) {
         Assertions.assertThatThrownBy(() -> new LottoNumber(wrongInput))
-                .hasMessage(LottoExceptionMessage.INVALID_NUMBER.getError());
+                .hasMessage(LottoExceptionMessage.NOT_SATISFY_LOTTO_NUMBER_RANGE.getError());
     }
-    
+
 }

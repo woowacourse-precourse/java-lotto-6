@@ -16,7 +16,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
 
     private void validate(int number) {
         if (isOutOfRange(number)) {
-            throw new IllegalArgumentException(LottoExceptionMessage.INVALID_NUMBER.getError());
+            throw new IllegalArgumentException(LottoExceptionMessage.NOT_SATISFY_LOTTO_NUMBER_RANGE.getError());
         }
     }
 

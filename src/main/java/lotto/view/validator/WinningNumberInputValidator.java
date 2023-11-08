@@ -2,7 +2,7 @@ package lotto.view.validator;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.utils.message.WinningInformationExceptionMessage;
+import lotto.utils.message.InputExceptionMessage;
 
 public class WinningNumberInputValidator {
     private static final int MAX_LENGTH = 20;
@@ -20,26 +20,26 @@ public class WinningNumberInputValidator {
 
     private static void validateBlank(String target) {
         if (target == null || target.isBlank()) {
-            throw new IllegalArgumentException(WinningInformationExceptionMessage.BLANK.getError());
+            throw new IllegalArgumentException(InputExceptionMessage.BLANK.getError());
         }
     }
 
     private static void validateSize(String target) {
         if (target.length() > MAX_LENGTH) {
             throw new IllegalArgumentException(
-                    WinningInformationExceptionMessage.EXCEED_WINNING_NUMBER_LENGTH.getError());
+                    InputExceptionMessage.EXCEED_WINNING_NUMBER_LENGTH.getError());
         }
     }
 
     private static void validateFirstCharacterIsComma(String target) {
         if (target.charAt(0) == COMMA) {
-            throw new IllegalArgumentException(WinningInformationExceptionMessage.FIRST_CHARACTER_COMMA.getError());
+            throw new IllegalArgumentException(InputExceptionMessage.FIRST_CHARACTER_COMMA.getError());
         }
     }
 
     private static void validateLastCharacterIsComma(String target) {
         if (target.charAt(target.length() - 1) == COMMA) {
-            throw new IllegalArgumentException(WinningInformationExceptionMessage.LAST_CHARACTER_COMMA.getError());
+            throw new IllegalArgumentException(InputExceptionMessage.LAST_CHARACTER_COMMA.getError());
         }
     }
 
@@ -48,7 +48,7 @@ public class WinningNumberInputValidator {
                 .anyMatch(WinningNumberInputValidator::isNotNumeric);
 
         if (isNotNumericExists) {
-            throw new IllegalArgumentException(WinningInformationExceptionMessage.NOT_NUMERIC.getError());
+            throw new IllegalArgumentException(InputExceptionMessage.NOT_NUMERIC.getError());
         }
     }
 

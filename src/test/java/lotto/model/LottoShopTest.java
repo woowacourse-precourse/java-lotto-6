@@ -20,7 +20,7 @@ class LottoShopTest {
         final int lottoCount = 3;
         final int purchaseAmount = LOTTO_PRICE * lottoCount;
 
-        final List<Lotto> lottos = lottoTicketFactory.purchaseLottos(purchaseAmount);
+        final List<Lotto> lottos = lottoTicketFactory.purchase(purchaseAmount);
 
         assertThat(lottos.size()).isEqualTo(lottoCount);
     }
@@ -29,7 +29,7 @@ class LottoShopTest {
     void 티켓_가격_단위로_지불하지_않는다면_예외를_던진다() {
         final int purchaseAmount = LOTTO_PRICE + LOTTO_PRICE / 2;
 
-        assertThatThrownBy(() -> lottoTicketFactory.purchaseLottos(purchaseAmount))
+        assertThatThrownBy(() -> lottoTicketFactory.purchase(purchaseAmount))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(PURCHASE_AMOUNT_NOT_PRICE_UNIT.getMessage());
     }
@@ -37,7 +37,7 @@ class LottoShopTest {
     @ParameterizedTest
     @ValueSource(ints = {0, -1000})
     void 티켓_가격이_음수라면_예외를_던진다(final int purchaseAmount) {
-        assertThatThrownBy(() -> lottoTicketFactory.purchaseLottos(purchaseAmount))
+        assertThatThrownBy(() -> lottoTicketFactory.purchase(purchaseAmount))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(PURCHASE_AMOUNT_NOT_POSITIVE.getMessage());
     }

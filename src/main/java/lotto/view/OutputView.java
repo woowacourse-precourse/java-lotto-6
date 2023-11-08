@@ -22,9 +22,9 @@ public class OutputView {
     }
 
     private static void printLottosNumber(List<Lotto> lottos) {
-        for (final Lotto lotto : lottos) {
-            System.out.println(lotto.numbersToString());
-        }
+        lottos.stream()
+            .map(Lotto::numbersToString)
+            .forEach(System.out::println);
     }
 
     public static void printLottoResult(final LottoResult result) {

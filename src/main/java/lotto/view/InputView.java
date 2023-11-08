@@ -17,8 +17,8 @@ public class InputView {
     private static final String LOTTO_WINNING_NUMBER_DELIMITER = ",";
 
     public static int inputLottoPurchaseAmount() {
+        System.out.println(LOTTO_WINNING_NUMBER_MESSAGE);
         while (true) {
-            System.out.println(LOTTO_WINNING_NUMBER_MESSAGE);
             try {
                 return getIntegerInput();
             } catch (InputException e) {
@@ -28,8 +28,8 @@ public class InputView {
     }
 
     public static List<Integer> inputLottoWinningNumbers() {
+        System.out.println(LOTTO_WINNING_NUMBER_MESSAGE);
         while (true) {
-            System.out.println(LOTTO_WINNING_NUMBER_MESSAGE);
             try {
                 return getWinningNumbers();
             } catch (InputException e) {
@@ -45,8 +45,8 @@ public class InputView {
     }
 
     public static int inputLottoBonusNumber() {
+        System.out.println(LOTTO_BONUS_NUMBER_MESSAGE);
         while (true) {
-            System.out.println(LOTTO_BONUS_NUMBER_MESSAGE);
             try {
                 return getIntegerInput();
             } catch (InputException e) {

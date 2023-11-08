@@ -16,20 +16,9 @@ public class LottoShop {
 
     private final int ZERO = 0;
 
-    public List<Lotto> purchaseLottos(final int purchaseAmount) {
+    public List<Lotto> purchase(final int purchaseAmount) {
         final int purchasedCount = getPurchasedCount(purchaseAmount);
         return generateLottos(purchasedCount);
-    }
-
-    private List<Lotto> generateLottos(int purchasedCount) {
-        return IntStream.range(ZERO, purchasedCount)
-            .mapToObj(i -> new Lotto(generateNumbers()))
-            .toList();
-    }
-
-    private List<Integer> generateNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER,
-            LOTTO_NUMBER_COUNT);
     }
 
     private int getPurchasedCount(final int purchaseAmount) {
@@ -52,6 +41,17 @@ public class LottoShop {
         if (purchaseAmount % LOTTO_PRICE != ZERO) {
             throw new PurchaseException(PURCHASE_AMOUNT_NOT_PRICE_UNIT);
         }
+    }
+
+    private List<Lotto> generateLottos(int purchasedCount) {
+        return IntStream.range(ZERO, purchasedCount)
+            .mapToObj(i -> new Lotto(generateNumbers()))
+            .toList();
+    }
+
+    private List<Integer> generateNumbers() {
+        return Randoms.pickUniqueNumbersInRange(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER,
+            LOTTO_NUMBER_COUNT);
     }
 
 }

@@ -21,7 +21,7 @@ public class LottoGameController {
     private final LottoShop lottoShop = new LottoShop();
 
     public void run() {
-        final List<Lotto> lottos = getLottos();
+        final List<Lotto> lottos = purchaseLottos();
         printLottos(lottos);
 
         final LottoResult lottoResult = getLottoResult(lottos);
@@ -31,11 +31,11 @@ public class LottoGameController {
         printEarningRate(earningsRate);
     }
 
-    private List<Lotto> getLottos() {
-        int purchaseAmount = inputLottoPurchaseAmount();
+    private List<Lotto> purchaseLottos() {
         while (true) {
             try {
-                return lottoShop.purchaseLottos(purchaseAmount);
+                final int purchaseAmount = inputLottoPurchaseAmount();
+                return lottoShop.purchase(purchaseAmount);
             } catch (LottoException | PurchaseException e) {
                 System.out.println(e.getMessage());
             }

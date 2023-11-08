@@ -1,5 +1,7 @@
 package lotto.service;
 
+import lotto.domain.Lotto;
+
 import java.util.List;
 
 public class LottoService {
@@ -10,7 +12,7 @@ public class LottoService {
 
     public int calculateAvailableNumberOfLotteryTickets(int spentAmount) {}
 
-    public List<List<Integer>> generateRandomLottoNums(int availableTicketsCount) {}
+    public List<Lotto> generateRandomLottoNums(int availableTicketsCount) {}
 
     public int compareMyNumberWithWinningNumber(List<Integer> myLottoNumbers, List<Integer> winningNumber) {}
 

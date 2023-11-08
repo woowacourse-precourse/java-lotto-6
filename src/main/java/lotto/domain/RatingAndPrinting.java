@@ -38,7 +38,7 @@ public class RatingAndPrinting {
                 , key);
     }
 
-    private long getRate(Map<WinningDetails, Integer> rank) {
+    public long getRate(Map<WinningDetails, Integer> rank) {
         long result = 0;
         for (WinningDetails win : WinningDetails.values()) {
             result += win.getPrize() * rank.get(win);

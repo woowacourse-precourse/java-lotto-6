@@ -45,7 +45,7 @@ public class InputBonusNumber {
     private void validateOverlap(int number) {
         List<Integer> numbers = winningNumber.getWinningLotto();
         if (numbers.contains(number)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 중복된 값은 입력하실 수 없습니다.");
         }
     }
 }

@@ -11,7 +11,6 @@ import java.util.List;
 public class InputWinningNumber {
     private final static String WINNING_NUMBER = "\n당첨 번호를 입력해 주세요.";
     private final static String NOT_NUMBER = "[ERROR] 숫자를 입력해주세요.";
-    private final static String LOTTO_ERROR = "[ERROR] 잘못된 입력입니다. 다시 입력해주세요.";
 
     private Lotto lotto;
 
@@ -24,7 +23,7 @@ public class InputWinningNumber {
             } catch (NumberFormatException e) {
                 System.out.println(NOT_NUMBER);
             } catch (IllegalArgumentException e) {
-                System.out.println(LOTTO_ERROR);
+                System.out.println(e.getMessage());
             }
         }
         WinningNumber winningNumber = new WinningNumber(lotto);

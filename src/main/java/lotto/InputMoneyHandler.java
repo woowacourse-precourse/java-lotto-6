@@ -1,19 +1,36 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class InputMoneyHandler {
     static final int pricePerPiece = 1000;
-    private final String moneyInput;
     private int verifiedMoney;
 
-    InputMoneyHandler(String moneyInput) {
-        this.moneyInput = moneyInput;
+    InputMoneyHandler() {
     }
 
-    public void convertStringToInt(String moneyInput) {
+    public void init() {
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String moneyInput = Console.readLine();
+                if (!convertStringToInt(moneyInput)) throw new IllegalArgumentException("문자가 아닌 숫자를 입력해주세요.");
+                if (!isValidInput()) throw new IllegalArgumentException("0원 보다 큰 금액을 입력해주세요.");
+                if (!isDivisible()) throw new IllegalArgumentException("1000원 단위의 금액을 입력해주세요.");
+
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
+
+    public boolean convertStringToInt(String moneyInput) {
         try {
             verifiedMoney = Integer.parseInt(moneyInput);
+            return true;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            return false;
         }
     }
 
@@ -25,13 +42,7 @@ public class InputMoneyHandler {
         return verifiedMoney > 0;
     }
 
-    public void inputMoneyException() {
-        convertStringToInt(moneyInput);
-        if (!isDivisible() || !isValidInput()) throw new IllegalArgumentException();
-    }
-
-    public int exceptionHandledMoney(){
-        inputMoneyException();
+    public int exceptionHandledMoney() {
         return verifiedMoney;
     }
 

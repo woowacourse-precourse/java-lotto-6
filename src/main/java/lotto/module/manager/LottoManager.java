@@ -29,8 +29,11 @@ public class LottoManager {
     public void run() {
         PurchaseAmount purchaseAmount = getPurchaseAmount();
         List<Lotto> purchasedLottoTickets = purchaseLottoTickets(purchaseAmount);
-        WinningLotto winningLottoNumbers = generateWinningNumbers();
-        announceResults(purchaseAmount, purchasedLottoTickets, winningLottoNumbers);
+
+        Lotto lotto = generateNonBonusNumberWinningNumbers();
+        WinningLotto winningLotto = generateWinningNumbers(lotto);
+
+        announceResults(purchaseAmount, purchasedLottoTickets, winningLotto);
     }
 
     private PurchaseAmount getPurchaseAmount() {
@@ -55,10 +58,21 @@ public class LottoManager {
         }
     }
 
-    private WinningLotto generateWinningNumbers() {
+    private Lotto generateNonBonusNumberWinningNumbers() {
         while (true) {
             try {
                 return lottoConsoleManager.getWinningLottoNumbers();
+            } catch (IllegalArgumentException e) {
+                lottoConsoleManager.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private WinningLotto generateWinningNumbers(Lotto nonBonusNumberWinningNumbers) {
+        while (true) {
+            try {
+                int lottoBonusNumber = lottoConsoleManager.getLottoBonusNumber();
+                return WinningLotto.of(nonBonusNumberWinningNumbers, lottoBonusNumber);
             } catch (IllegalArgumentException e) {
                 lottoConsoleManager.printErrorMessage(e.getMessage());
             }

@@ -12,18 +12,26 @@ public class InputView {
     private static final String INPUT_LOTTO_WINNING = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
-    public static String inputPlayerAmount() {
+    public static void inputPlayerPayMessage(){
         System.out.println(INPUT_LOTTO_BUY);
+    }
+    public static String inputPlayerPay() {
         return Console.readLine();
     }
 
-    public static List<Integer> inputLottoWinningNum() {
+    public static void inputLottoWinningNumMessage() {
         System.out.println(INPUT_LOTTO_WINNING);
+    }
+
+    public static List<Integer> inputLottoWinningNum() {
         return createWinningLotto(Console.readLine());
     }
 
-    public static int inputBonusNumber() {
+    public static void inputBonusNumberMessage(){
         System.out.println(INPUT_BONUS_NUMBER);
+    }
+
+    public static int inputBonusNumber() {
         return validateTypeInt(Console.readLine());
     }
 }

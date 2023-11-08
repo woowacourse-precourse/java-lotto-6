@@ -19,7 +19,7 @@ class PlayerBuyLottoTest {
 
     @ParameterizedTest
     @CsvSource({"1000,1","8000,8"})
-    @DisplayName("올바르지 않은 금액일 경우")
+    @DisplayName("calcLottoCount 작동 테스트")
     void calcLottoCount(String number1, int amount){
         PlayerBuyLotto playerBuyLotto = new PlayerBuyLotto(number1);
         int result = playerBuyLotto.calcLottoCount();

@@ -28,4 +28,5 @@ public class LottoController {
         lottoNumbers = new ArrayList<>(allLottoNumbers.getLottoNumbers());
         OutputView.printLottoNumbers(lottoNumbers);
     }
+
 }

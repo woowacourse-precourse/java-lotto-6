@@ -7,4 +7,8 @@ public class Constant {
     public static final int LOTTO_PER_PRICE = 1000;
     public static final int PERCENT = 100;
     public static final String PERCENT_FORMAT = "%.1f";
+
+    public static final String COMMA = ",";
+    public static final String REGEX_SPACE = "\\s";
+    public static final String REGEX_NOSPACE = "";
 }

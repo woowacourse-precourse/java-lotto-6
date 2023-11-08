@@ -1,5 +1,6 @@
 package lotto.validation;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -80,5 +81,20 @@ public class Validation {
         if (winningNumbers.contains(validNumber)) {
             throw new DuplicateBonusNumberException();
         }
+    }
+
+    public static List<Integer> validateWinnerNumbers(List<String> winningNumber) {
+        List<Integer> validNumbers = new ArrayList<>();
+        for (String numberString : winningNumber) {
+            validNumbers.add(isInvalidNumber(numberString));
+        }
+        return validNumbers;
+    }
+
+    public static int validateBonusNumber(List<Integer> winningNumbers, String bounsNumber) {
+        int validNumber = isInvalidNumber(bounsNumber);
+        validateNumberRange(validNumber);
+        isNumberInList(winningNumbers, validNumber);
+        return validNumber;
     }
 }

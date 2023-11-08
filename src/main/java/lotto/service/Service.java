@@ -1,9 +1,7 @@
 package lotto.service;
 
-import static lotto.validation.Validation.isInvalidNumber;
-import static lotto.validation.Validation.isNumberInList;
-import static lotto.validation.Validation.validateNumberRange;
 import static lotto.validation.Validation.validateStringForSplit;
+import static lotto.validation.Validation.validateWinnerNumbers;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -35,18 +33,4 @@ public class Service {
     }
 
 
-    private List<Integer> validateWinnerNumbers(List<String> winningNumber) {
-        List<Integer> validNumbers = new ArrayList<>();
-        for (String numberString : winningNumber) {
-            validNumbers.add(isInvalidNumber(numberString));
-        }
-        return validNumbers;
-    }
-
-    public int validateBonusNumber(List<Integer> winningNumbers, String bounsNumber) {
-        int validNumber = isInvalidNumber(bounsNumber);
-        validateNumberRange(validNumber);
-        isNumberInList(winningNumbers, validNumber);
-        return validNumber;
-    }
 }

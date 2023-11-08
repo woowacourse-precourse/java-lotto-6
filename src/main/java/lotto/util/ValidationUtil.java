@@ -84,6 +84,13 @@ public class ValidationUtil {
             throw new IllegalArgumentException(NUMBER_RANGE);
         }
     }
+    public void validateBonusNumberDuplicate(int number, List<Integer> playerNums){
+        for(Integer num : playerNums){
+            if(number == num){
+                throw new IllegalArgumentException(NUMBER_DUPLICATE);
+            }
+        }
+    }
     private boolean isNotInRange(int number){
         return number < FIRST.getNumber() || number > LAST.getNumber();
     }

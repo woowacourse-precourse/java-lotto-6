@@ -53,7 +53,7 @@ public class LottoWinCheck {
         while(playing){
             try{
                 String playerBonusNums = messageUtil.printBonusInput();
-                this.bonusNum = getBonusNumbers(playerBonusNums);
+                this.bonusNum = getBonusNumbers(playerBonusNums, lottoNums);
                 playing = false;
             } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
@@ -61,8 +61,10 @@ public class LottoWinCheck {
         }
         return lottoNums;
     }
-    private int getBonusNumbers(String bonusNum){
-        validationUtil.validateBonusNumberRange(Integer.parseInt(bonusNum));
+    private int getBonusNumbers(String bonusNum, List<Integer> playerNums){
+        int bonus = Integer.parseInt(bonusNum);
+        validationUtil.validateBonusNumberRange(bonus);
+        validationUtil.validateBonusNumberDuplicate(bonus, playerNums);
         return Integer.parseInt(bonusNum);
     }
 }

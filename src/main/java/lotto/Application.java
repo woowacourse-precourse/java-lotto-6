@@ -1,9 +1,5 @@
 package lotto;
 
-import com.sun.source.tree.SynchronizedTree;
-import java.util.List;
-import java.util.Map;
-import lotto.Model.Lotto.Lotto;
 import lotto.Model.LottoSet.LottoSet;
 import lotto.Model.LottoWinningResult.LottoWinningResult;
 import lotto.Model.ProfitRate.ProfitRate;
@@ -39,10 +35,9 @@ public class Application {
 
 
         //당첨 통계
-        outputView.profitRatePrint(lottoWinningResult);
+        outputView.winningLottoPrint(lottoWinningResult);
 
         System.out.println("총수익률 : " + totalProfit.getStringProfitRate() +  "%");
-
 
 
     }

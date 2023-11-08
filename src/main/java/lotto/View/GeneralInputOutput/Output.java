@@ -14,4 +14,6 @@ public class Output {
     public void IntegerPrint(Integer value){
         System.out.print(value);
     }
+
+    public void
 }

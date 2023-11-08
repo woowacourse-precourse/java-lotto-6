@@ -44,10 +44,6 @@ public class LottoController {
         List<MatchResult> matchResults = calculateMatchResults(lottos, inputNumber,
             inputBonusNumber);
 
-        for (MatchResult matchResult : matchResults) {
-            System.out.println("matchResult = " + matchResult);
-        }
-
         // 통계 계산 및 결과 출력
         Statistics statistics = new Statistics(amount.getAmount(), matchResults);
         statistics.evaluateTotalProfit();

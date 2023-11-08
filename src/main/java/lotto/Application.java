@@ -88,8 +88,33 @@ public class Application {
                 .filter(winningLotto.getNumbers()::contains)
                 .count();
     }
+    private static int calculatePrizeMoney(int[] matchCounts) {
+        int prizeMoney = 0;
+        for (int i = 0; i < 6; i++) {
+            int matchCount = matchCounts[i];
+            if (i == 5) {
+                prizeMoney += matchCount * 30_000_000;
+            } else if (i == 6) {
+                prizeMoney += matchCount * 2_000_000_000;
+            } else {
+                prizeMoney += matchCount * (6 - i) * 1_000;
+            }
+        }
+        return prizeMoney;
+    }
 
+    private static void printResult(int[] matchCounts, double profitRate) {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---------");
+        for (int i = 3; i < 6; i++) {
+            int matchCount = matchCounts[i];
+            int prizeMoney = i == 5 ? 30_000_000 : i == 6 ? 2_000_000_000 : (6 - i) * 1_000;
+            System.out.println(i + "개 일치 (" + prizeMoney + "원) - " + matchCount + "개");
+        }
+        System.out.println();
+        System.out.println("총 수익률은 " + profitRate + "입니다.");
+    }
 
-
-
+    
 }

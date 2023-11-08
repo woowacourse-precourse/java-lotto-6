@@ -20,6 +20,8 @@ public class Input {
 
         String lotto = Console.readLine();
 
+        System.out.println();
+
         return lotto;
     }
 
@@ -27,6 +29,8 @@ public class Input {
         System.out.println(OutputMessage.ENTER_BONUS_NUMBER_MESSAGE);
 
         String bonus = Console.readLine();
+
+        System.out.println();
 
         return bonus;
     }

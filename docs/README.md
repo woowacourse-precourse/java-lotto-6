@@ -41,6 +41,7 @@ check new branch
 - start()
     - input : null / return : void
     - 구입 금액을 받고 Int 변환 후 Game class의 money 값으로 지정
+    - 숫자가 아닌경우 1000으로 나눠지지 않는 경우 다시 값을 받도록 함
 - generate()
     - input : null / return : void
     - 로또 개수(count)만큼 로또 생성 후 buy List에 add

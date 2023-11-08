@@ -1,7 +1,9 @@
 package lotto.view;
 
+import java.util.List;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoConstant;
+import lotto.model.Lotto;
 import lotto.util.IntegerParser;
 
 public class View {
@@ -18,17 +20,33 @@ public class View {
             try {
                 String inputMoney = inputView.getInputMoney();
                 int money = IntegerParser.parse(inputMoney);
-                validateSufficientMoney(money);
+                validateMoney(money);
                 return money;
             } catch (NumberFormatException e) {
                 outputView.printErrorMessage(ErrorMessage.NOT_INTEGER_ERROR);
             } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(ErrorMessage.INSUFFICIENT_MONEY_ERROR);
             }
         }
     }
 
-    private void validateSufficientMoney(int money) {
-        if (money < LottoConstant.LOTTO_PRICE) throw new IllegalArgumentException();
+
+
+    private void validateMoney(int money) {
+        verifySufficientMoney(money);
+        verifyDiviededByPrice(money);
+    }
+
+    private void verifySufficientMoney(int money) {
+        if (money < LottoConstant.LOTTO_PRICE) {
+            outputView.printErrorMessage(ErrorMessage.INSUFFICIENT_MONEY_ERROR);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void verifyDiviededByPrice(int money) {
+        if (money % LottoConstant.LOTTO_PRICE != 0) {
+            outputView.printErrorMessage(ErrorMessage.INAPPROPRIATE_MONEY_ERROR);
+            throw new IllegalArgumentException();
+        }
     }
 }

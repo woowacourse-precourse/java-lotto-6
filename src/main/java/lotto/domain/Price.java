@@ -5,6 +5,9 @@ import lotto.constant.LottoValue;
 
 import java.math.BigInteger;
 
+/**
+ * 로또 구입 가격 값 담고 있는 클래스
+ */
 public class Price {
     private int price;
 
@@ -18,6 +21,11 @@ public class Price {
         validatePrice(priceInt);
 
         this.price = priceInt;
+    }
+
+    public Price(int price) {
+        validatePrice(price);
+        this.price = price;
     }
 
     public int getPrice() {

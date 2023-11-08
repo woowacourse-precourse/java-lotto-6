@@ -6,6 +6,7 @@ import lotto.model.Lotto;
 import lotto.model.Player;
 import lotto.model.WinningDetails;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class OutputConsole {
@@ -47,7 +48,9 @@ public class OutputConsole {
     }
 
     private static void printROI(double returnOnInvestment) {
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", returnOnInvestment);
+        String stringROI = ConsoleMessage.decimalFormat.format(returnOnInvestment);
+
+        System.out.printf("총 수익률은 %s%%입니다.\n", stringROI);
     }
 
 }

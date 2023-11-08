@@ -47,9 +47,7 @@ public class Player {
                 .sum();
         int costOfInvestment = capital.amount();
 
-        DecimalFormat df = new DecimalFormat("#.#");
-
-        return Double.parseDouble(df.format((netReturn / costOfInvestment) * 100));
+        return (netReturn / costOfInvestment) * 100;
     }
 
     private List<LotteryRank> calculateLotteryRanks(LottoMachine lottoMachine) {

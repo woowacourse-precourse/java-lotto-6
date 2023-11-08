@@ -1,5 +1,7 @@
 package lotto.constant;
 
+import java.text.DecimalFormat;
+
 public class ConsoleMessage {
     public static final String ERROR_PREFIX = "[ERROR]";
 
@@ -22,5 +24,7 @@ public class ConsoleMessage {
     public static final String INVALID_INPUT_FORMAT_ERROR_MESSAGE = "번호는 쉼표(,)를 기준으로 구분되어야 합니다.";
 
     public static final String INVALID_INPUT_AMOUNT_ERROR_MESSAGE = "구입 금액은 1000원 단위여야 합니다.";
+
+    public static final DecimalFormat decimalFormat = new DecimalFormat("#,###.0");
 
 }

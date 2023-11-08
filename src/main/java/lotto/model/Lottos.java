@@ -41,6 +41,11 @@ public class Lottos {
         if(set.size()!=NUMBER_COUNT)
             throw new IllegalArgumentException(DUPLICATE_NUMBER.toString());
     }
+
+    public List<Integer> getGoal() {
+        return goal;
+    }
+
     public void setBonus(int bonus){
         validBonus(bonus);
         this.bonus = bonus;

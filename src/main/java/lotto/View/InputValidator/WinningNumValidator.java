@@ -1,29 +1,42 @@
 package lotto.View.InputValidator;
 
+import static lotto.Message.InputValidatorPrompt.ASK_NO_EMPTY_INPUT;
+import static lotto.Message.InputValidatorPrompt.ASK_NO_WHITE_SPACE;
 import static lotto.Message.InputValidatorPrompt.ASK_WINNING_NUM_IN_NUMBER;
 import static lotto.Message.InputValidatorPrompt.ASK_WINNING_NUM_IN_VALID_RANGE;
 import static lotto.Message.InputValidatorPrompt.ASK_WINNING_NUM_WITH_NO_DUPLICATION;
 import static lotto.Message.InputValidatorPrompt.ASK_WINNING_NUM_IN_RIGHT_AMOUNT;
 
-import static lotto.Message.LottoGameInputConstants.LOTTO_WINNING_NUM_AMOUNT;
-import static lotto.Message.LottoGameInputConstants.LOTTO_MIN_NUM;
-import static lotto.Message.LottoGameInputConstants.LOTTO_MAX_NUM;
+import static lotto.Constants.LottoGameInputConstants.LOTTO_WINNING_NUM_AMOUNT;
+import static lotto.Constants.LottoGameInputConstants.LOTTO_MIN_NUM;
+import static lotto.Constants.LottoGameInputConstants.LOTTO_MAX_NUM;
+import static lotto.Message.OutputPrompt.WHITE_SPACE;
 
 import java.util.Arrays;
 import java.util.List;
 
 
-public class WinningNumValidator implements Validator {
-
-    // TODO: 빈값, 공백 검증 로직 추가
+public class WinningNumValidator {
 
     public void validate(String winningNumInput){
         List<String> winningNumbers = Arrays.asList(winningNumInput.split(","));
+        areNotEmpty(winningNumInput);
+        containsNoWhiteSpace(winningNumInput);
         areRightAmount(winningNumbers);
         areNumbers(winningNumbers);
         areNotDuplicated(winningNumbers);
         areBetweenValidRange(winningNumbers);
-        return ;
+    }
+    public void areNotEmpty(String winningNumInput) throws IllegalArgumentException{
+        if(winningNumInput.isEmpty()){
+            throw new IllegalArgumentException(ASK_NO_EMPTY_INPUT.getMessage());
+        }
+    }
+
+    public void containsNoWhiteSpace(String winningNumInput) throws IllegalArgumentException{
+        if(winningNumInput.contains(WHITE_SPACE.getMessage())){
+            throw new IllegalArgumentException(ASK_NO_WHITE_SPACE.getMessage());
+        }
     }
 
     public void areRightAmount(List<String> winningNumbers) throws IllegalArgumentException {

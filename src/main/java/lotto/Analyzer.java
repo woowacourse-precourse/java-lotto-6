@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.Prize.*;
+
 public class Analyzer {
     public int check(List<Integer> winningNumbers, List<Integer> ticketNumbers, int bonusNumber) {
         int matchedCount = countMatchingNumbers(winningNumbers, ticketNumbers);
@@ -37,6 +39,16 @@ public class Analyzer {
         return ticketResults;
     }
 
+    public double calculateYield(int purchaseAmount, Map<Integer, Integer> ticketResults) {
+        int totalPrize = 0;
+        double yieldRate;
+        for (int i = 0; i < 5; i++) {
+            totalPrize += getPrizeMoney(ticketResults.get(i));
+        }
+        yieldRate = (double) totalPrize / purchaseAmount * 100;
+        return Math.round(yieldRate * 100.0) / 100.0;
+    }
+
     private int countMatchingNumbers(List<Integer> winningNumbers, List<Integer> ticketNumbers) {
         int count = 0, i = 0, j = 0;
         while (i < winningNumbers.size() && j < ticketNumbers.size()) {
@@ -49,5 +61,24 @@ public class Analyzer {
             else j++;
         }
         return count;
+    }
+
+    private int getPrizeMoney(int rank) {
+        if (rank == 1) {
+            return FIRST.getPrizeMoney();
+        }
+        if (rank == 2) {
+            return SECOND.getPrizeMoney();
+        }
+        if (rank == 3) {
+            return THIRD.getPrizeMoney();
+        }
+        if (rank == 4) {
+            return FOURTH.getPrizeMoney();
+        }
+        if (rank == 5) {
+            return FIFTH.getPrizeMoney();
+        }
+        return 0;
     }
 }

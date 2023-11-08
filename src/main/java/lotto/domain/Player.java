@@ -9,21 +9,19 @@ import lotto.exception.Exception;
 import lotto.util.ConvertInput;
 
 public class Player {
-    private static final int DIVIDED_REMAINDER = 0;
+    private final int DIVIDED_REMAINDER = 0;
     private final int purchaseAmount;
     private final int gameCount;
 
-    private Player(String userInput) {
-        int convertedInput = ConvertInput.makePlayerMoneyToInt(userInput);
+    private Player(int purchaseAmount) {
+        validate(purchaseAmount);
 
-        validate(convertedInput);
-
-        purchaseAmount = convertedInput;
+        this.purchaseAmount = purchaseAmount;
         gameCount = makeGameCount(purchaseAmount);
     }
 
-    public static Player from(String userInput) {
-        return new Player(userInput);
+    public static Player from(int purchaseAmount) {
+        return new Player(purchaseAmount);
     }
 
     public int getPurchaseAmount() {

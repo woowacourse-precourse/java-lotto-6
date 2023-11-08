@@ -12,7 +12,7 @@ public class Validator {
     }
 
     public static void validatePaymentAmount(int input) {
-        if (input % 1000 != 0) {
+        if (input <= 0 || input % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.UNAFFORDABLE_PRICE.getMessage());
         }
     }

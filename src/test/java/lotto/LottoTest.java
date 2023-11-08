@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static lotto.Validator.validatePaymentAmount;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -35,5 +36,19 @@ class LottoTest {
         profitability =  profit * 100 / payment;
 
         assertThat(profitability).isEqualTo(62.5);
+    }
+
+    @DisplayName("지불 금액이 0인 경우 예외처리가 정상 작동하는지 확인합니다")
+    @Test
+    void assertPaymentNonZeroValue() {
+        assertThatThrownBy(() -> validatePaymentAmount(0))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("지불 금액이 음수일 경우 예외처리가 정상 작동하는지 확인합니다.")
+    @Test
+    void assertPaymentPositiveValue() {
+        assertThatThrownBy(() -> validatePaymentAmount(-5000))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

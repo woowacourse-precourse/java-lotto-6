@@ -41,6 +41,8 @@ public class MainController extends Controller {
         resultController.run();
         updateClient(resultController.resultPlaces);
         updateClient(resultController.prize);
+
+        OutputUI.printResultStatistic(client);
     }
 
     private void updateClient(int price, int quantity) {

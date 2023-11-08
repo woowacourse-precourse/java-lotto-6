@@ -47,7 +47,6 @@ public class LottoController {
     public Lotto setLottoNumbers(){
         lottoNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
         List<Integer> list = new ArrayList<>(lottoNumbers);
-        lotto.duplicateNumbers(list);
         Collections.sort(list);
         return new Lotto(list);
     }
@@ -77,9 +76,6 @@ public class LottoController {
             winNumbers.add(Integer.parseInt(num));
         }
 
-        if(winNums.length()!=6){
-            throw new IllegalArgumentException("[ERROR]");
-        }
         return winNumbers;
     }
 

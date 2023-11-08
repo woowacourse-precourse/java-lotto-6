@@ -7,7 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        duplicateNumbers(numbers);
+        validateduplication(numbers);
         this.numbers = numbers;
     }
 
@@ -23,14 +23,10 @@ public class Lotto {
         return numbers;
     }
 
-    public void duplicateNumbers(List<Integer> list){
-        Set<Integer> set = new HashSet<>();
-        for(int num : list){
-            set.add(num);
-        }
-
-        if(list.size()!=set.size()){
-            throw new IllegalArgumentException("[ERROR]");
+    public void validateduplication(List<Integer> numbers) {
+        Set<Integer> duplicationNumbers = new HashSet<>(numbers);
+        if (duplicationNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException();
         }
     }
 }

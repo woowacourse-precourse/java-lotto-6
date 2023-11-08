@@ -7,7 +7,7 @@ public enum ErrorMessage {
     WRONG_ORDER_COUNT("[ERROR] 로또 번호는 6개 입력해야 합니다."),
     WRONG_ORDER_CHRACTER("[ERROR] 금액은 숫자만 입력 가능합니다."),
     WRONG_RANGE_NUMBER("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-    private String message;
+    private final String message;
 
     ErrorMessage(String message) {
         this.message = message;

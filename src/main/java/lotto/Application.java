@@ -1,7 +1,15 @@
 package lotto;
 
+import lotto.domain.EarnRate;
+import lotto.domain.LottoService;
+import lotto.domain.LotteryDraw;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoService lottoService = new LottoService();
+        LotteryDraw winnerCheck = new LotteryDraw(lottoService);
+        winnerCheck.printDrawResult();
+        EarnRate earnRate = new EarnRate(lottoService.getAmount(), winnerCheck.getDrawResultTable());
+        earnRate.printEarnRate();
     }
 }

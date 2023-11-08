@@ -1,34 +1,34 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Console;
-
 public class UserWallet {
 
-    private final UserWalletValidator userWalletValidator= new UserWalletValidator();
     private int myMoney;
-    UserWallet(){
-        System.out.println("구입금액을 입력해 주세요.");
-        myMoney = validateMoney(Console.readLine());
+    private int lottoPurchaseHistory;
+
+    private UserWallet(int money){
+        myMoney = money;
     }
 
     public int buyLotto(){
         return useMoney(myMoney);
     }
 
+    public static UserWallet createWallet(int money){
+        return new UserWallet(money);
+    }
+
     private int useMoney(int usedMoney){
+        lottoPurchaseHistory = myMoney/1000;
         myMoney -= usedMoney;
         return usedMoney;
     }
 
-    private int validateMoney(String validateLine){
-//        userWalletValidator.;
-        return 0;
+    public void receiveWinningsMoney(int receiveMoney) {
+        saveMoney(receiveMoney);
     }
 
-
-
-
-
-
+    private void saveMoney(int receiveMoney){
+        myMoney += receiveMoney;
+    }
 
 }

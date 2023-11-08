@@ -5,6 +5,7 @@ import lotto.view.UserInputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class User {
 
@@ -33,7 +34,12 @@ public class User {
     public void buyLotto(){
         myLottoNumbers = lottoMarket.buyLotto(useMoney());
         List<LottoRank> winnings = winLottoCheck();
-        int checkMoney = lottoMarket.winningsReceive(winnings);
+        userWallet.receiveWinningsMoney(
+                lottoMarket.winningsReceive(winnings)
+        );
+
+//        Map<String, Integer> lottoHistory = lottoMarket.getMyHistory(winningsMoney);
+
 
         check();
     }

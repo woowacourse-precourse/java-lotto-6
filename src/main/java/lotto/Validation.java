@@ -46,4 +46,10 @@ public class Validation {
             throw new IllegalArgumentException(ErrorMessage.NOT_EQUAL_LOTTO_LENGTH.getMessage());
         }
     }
+
+    public static void validateDuplicate(List<Integer> lotto) {
+        if (lotto.size() != lotto.stream().distinct().count()) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_DISTINCT_LIST.getMessage());
+        }
+    }
 }

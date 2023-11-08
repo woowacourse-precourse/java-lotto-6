@@ -9,7 +9,7 @@ public class LottoWinningResultSummary {
 
     public LottoWinningResultSummary(LottoResult lottoResult) {
         this.lottoResult = lottoResult;
-
+        this.grossProfitRate = calcGrossProfitRate(lottoResult);
     }
 
     private long calcTotalPrize(LottoResult lottoResult) {
@@ -23,8 +23,14 @@ public class LottoWinningResultSummary {
         return totalPrize;
     }
 
-    private int calcAmountSpent(LottoResult lottoResult){
+    private int calcAmountSpent(LottoResult lottoResult) {
         int countPurchased = lottoResult.countPurchases();
         return countPurchased * LottoManagement.PRICE_LOTTO;
+    }
+
+    public double calcGrossProfitRate(LottoResult lottoResult) {
+        long totalPrize = calcTotalPrize(lottoResult);
+        int amountSpent = calcAmountSpent(lottoResult);
+        return ((double) totalPrize / amountSpent) * 100;
     }
 }

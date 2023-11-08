@@ -1,6 +1,7 @@
 package lotto.domain.lotto;
 
 import lotto.utils.ErrorMessage;
+import lotto.utils.LottoUtils;
 
 import java.util.List;
 import java.util.Objects;
@@ -17,7 +18,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_SIZE.getMessage());
         }
-        numbers.forEach(this::validateSize);
+        numbers.forEach(LottoUtils::validateNumber);
         validateDuplicatedNumber(numbers);
     }
 
@@ -40,12 +41,6 @@ public class Lotto {
 
     private boolean hasDuplicates(List<Integer> numbers) {
         return numbers.stream().distinct().count() != numbers.size();
-    }
-
-    private void validateSize(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
-        }
     }
 
 

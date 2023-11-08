@@ -5,8 +5,10 @@ import java.util.StringJoiner;
 
 import static lotto.utils.ErrorMessage.INVALID_LOTTO_PAYMENT;
 
-public class Payment {
+public final class Payment {
 
+    private static final int ZERO = 0;
+    private static final int DIVISION = 1000;
     private final int amount;
 
     private Payment(int amount) {
@@ -19,13 +21,13 @@ public class Payment {
     }
 
     private static void validate(int amount) {
-        if (amount % 1000 != 0) {
+        if (amount % DIVISION != ZERO) {
             throw new IllegalArgumentException(INVALID_LOTTO_PAYMENT.getMessage());
         }
     }
 
     public int getLottoCount() {
-        return amount / 1000;
+        return amount / DIVISION;
     }
 
     public int getAmount() {

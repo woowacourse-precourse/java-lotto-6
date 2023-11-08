@@ -8,9 +8,9 @@ import java.util.Objects;
 import java.util.StringJoiner;
 import java.util.stream.IntStream;
 
-import static lotto.utils.StringUtils.toInt;
+import static lotto.utils.LottoUtils.toInt;
 
-public class Lottery {
+public final class Lottery {
 
     private final Payment payment;
     private final List<Lotto> lottos;

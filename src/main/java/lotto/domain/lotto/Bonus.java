@@ -4,7 +4,9 @@ import lotto.utils.ErrorMessage;
 
 import java.util.Objects;
 
-public class Bonus {
+import static lotto.utils.LottoUtils.validateNumber;
+
+public final class Bonus {
 
     private final int number;
 
@@ -14,14 +16,8 @@ public class Bonus {
 
 
     public static Bonus of(int number) {
-        validate(number);
+        validateNumber(number);
         return new Bonus(number);
-    }
-
-    private static void validate(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
-        }
     }
 
     public int matchingNumber(Lotto lotto) {

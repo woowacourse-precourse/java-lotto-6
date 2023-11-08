@@ -1,8 +1,8 @@
 package lotto.domain.proxy;
 
-import java.text.DecimalFormat;
+import static lotto.utils.LottoUtils.format;
 
-public class PrizeAmount {
+public final class PrizeAmount {
     private final int amount;
 
     private PrizeAmount(int amount) {
@@ -23,7 +23,6 @@ public class PrizeAmount {
      */
     @Override
     public String toString() {
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
-        return decimalFormat.format(amount);
+        return format("#,###", amount);
     }
 }

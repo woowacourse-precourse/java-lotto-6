@@ -1,6 +1,6 @@
 package lotto.domain.proxy;
 
-public class PrizeConfig {
+public final class PrizeConfig {
     private final PrizeHandler fiveRank;
     private PrizeConfig() {
         fiveRank = PrizeHandlerImpl.of(3, 5_000, false);

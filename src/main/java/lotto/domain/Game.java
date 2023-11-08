@@ -10,8 +10,8 @@ import lotto.view.InputView;
 
 import java.util.Optional;
 
-import static lotto.utils.StringUtils.toInt;
-import static lotto.utils.StringUtils.toIntegerList;
+import static lotto.utils.LottoUtils.toInt;
+import static lotto.utils.LottoUtils.toIntegerList;
 
 public class Game {
     private Lottery lottery;

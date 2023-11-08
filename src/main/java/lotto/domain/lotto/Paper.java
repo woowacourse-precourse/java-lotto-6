@@ -2,7 +2,7 @@ package lotto.domain.lotto;
 
 import java.util.Objects;
 
-public class Paper {
+public final class Paper {
     private final Lotto lotto;
     private final Bonus bonus;
 

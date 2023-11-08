@@ -36,7 +36,7 @@ public class Winning extends InputNumbers {
     }
 
     private void checkOtherCharacter(String noEmptyReadLine) {
-        String regex = "^[0-9,]+$";
+        String regex = NOT_WINNING_TYPE;
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(noEmptyReadLine);
         if (!matcher.matches()) {

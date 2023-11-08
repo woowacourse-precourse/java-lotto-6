@@ -47,7 +47,7 @@ public class Game {
 
     private void giveLotto() {
         for (int i = 0; i < buyingPrice.getBuyingCount(); i++) {
-            List<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, COUNT);
+            List<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT);
             lottos.add(new Lotto(uniqueNumbers));
             show(uniqueNumbers);
         }
@@ -58,7 +58,7 @@ public class Game {
         Collections.sort(copyNumbers);
         String result = copyNumbers.stream()
                 .map(Object::toString)
-                .collect(Collectors.joining(", ", "[", "]"));
+                .collect(Collectors.joining(LOTTO_NUMBER_DELIMITER, LOTTO_NUMBER_START, LOTTO_NUMBER_END));
         System.out.println(result);
     }
 
@@ -77,7 +77,7 @@ public class Game {
     }
 
     private Integer count(ResultCase resultCase) {
-        int matchNumbers = 0;
+        int matchNumbers = ZERO;
         for (Lotto lotto : lottos) {
             int equal = lotto.countEqual(winning.getNumbers());
             if (resultCase == FIVE_AND_BONUS_CORRECTNESS) {
@@ -103,7 +103,7 @@ public class Game {
     }
 
     private void printRateOfReturn() {
-        System.out.println(RATE_OF_RETURN + calculateRateOfReturn() + PERCENT);
+        System.out.println(RATE_OF_RETURN + calculateRateOfReturn() + PERCENT_IS);
     }
 
     private Double calculateRateOfReturn() {

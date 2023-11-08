@@ -8,7 +8,7 @@ public class Bonus extends InputNumber {
     private Integer number;
 
     public Bonus() {
-        this.number = 0;
+        this.number = ZERO;
     }
 
     public Integer getNumber() {
@@ -36,7 +36,7 @@ public class Bonus extends InputNumber {
     }
 
     protected void checkDigit(String readLine) {
-        if(readLine.length() == 0) {
+        if(readLine.length() == ZERO) {
             throw new IllegalArgumentException(BONUS_SIZE_ERROR);
         }
     }

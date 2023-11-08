@@ -1,6 +1,10 @@
 package lotto;
 
+import static lotto.Constants.BASE;
+import static lotto.Constants.PERCENT;
+import static lotto.Constants.ROUND;
 import static lotto.Constants.UNIT;
+import static lotto.Constants.ZERO;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,13 +31,13 @@ public class Result {
     }
 
     public double getCalculateRateOfReturn(int buyingPrice) {
-        double rateOfReturn = ((double) getWinningPrice() / buyingPrice) * 100;
-        double refinedRateOfReturn = Math.round(rateOfReturn * Math.pow(10, 2)) / Math.pow(10, 2);
+        double rateOfReturn = ((double) getWinningPrice() / buyingPrice) * PERCENT;
+        double refinedRateOfReturn = Math.round(rateOfReturn * Math.pow(BASE, ROUND)) / Math.pow(BASE, ROUND);
         return refinedRateOfReturn;
     }
 
     private int getWinningPrice() {
-        int winningPrice = 0;
+        int winningPrice = ZERO;
         for (Map.Entry<ResultCase, Integer> entry : result.entrySet()) {
             ResultCase resultCase = entry.getKey();
             Integer matchLotto = entry.getValue();

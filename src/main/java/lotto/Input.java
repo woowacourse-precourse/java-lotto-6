@@ -1,5 +1,9 @@
 package lotto;
 
+import static lotto.Constants.EMPTY;
+import static lotto.Constants.GAP;
+import static lotto.Constants.MAX_NUMBER;
+import static lotto.Constants.MIN_NUMBER;
 import static lotto.Constants.NUMBER_BOUNDARY_ERROR;
 
 public class Input<T> {
@@ -9,7 +13,7 @@ public class Input<T> {
     protected T validate(String readLine) {return null;}
 
     protected String removeEmpty(String readLine) {
-        return readLine.replaceAll("\\s", "");
+        return readLine.replaceAll(GAP, EMPTY);
     }
 
     protected void checkDigit(String readLine) {}
@@ -17,7 +21,7 @@ public class Input<T> {
     protected T translateToValueType(String noEmptyReadLine) {return null;}
 
     protected void checkBoundary(Integer number) {
-        if (number < 1 || number > 45) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException(NUMBER_BOUNDARY_ERROR);
         }
     }

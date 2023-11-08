@@ -7,7 +7,7 @@ public class BuyingPrice extends InputNumber {
     private Integer price;
 
     public BuyingPrice() {
-        this.price = 0;
+        this.price = ZERO;
     }
 
     public Integer getPrice() {
@@ -15,7 +15,7 @@ public class BuyingPrice extends InputNumber {
     }
 
     public Integer getBuyingCount() {
-        return this.price / 1000;
+        return this.price / BUYING_PRICE_UNIT;
     }
 
     public void printCount() {
@@ -38,20 +38,20 @@ public class BuyingPrice extends InputNumber {
 
     @Override
     protected void checkDigit(String noEmptyReadLine) {
-        if (noEmptyReadLine.length() == 0) {
+        if (noEmptyReadLine.length() == ZERO) {
             throw new IllegalArgumentException(BUYING_PRICE_DIGIT_ERROR);
         }
     }
 
     @Override
     protected void checkBoundary(Integer price) {
-        if (price < 1000 || price > 100000) {
+        if (price < MIN_BUYING_PRICE || price > MAX_BUYING_PRICE) {
             throw new IllegalArgumentException(BUYING_PRICE_BOUNDARY_ERROR);
         }
     }
 
     private void checkRest(Integer price) {
-        if (price % 1000 != 0) {
+        if (price % BUYING_PRICE_UNIT != ZERO) {
             throw new IllegalArgumentException(BUYING_PRICE_REST_ERROR);
         }
     }

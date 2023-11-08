@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.Input.getNaturalNumber;
+import static lotto.Input.getSplitNaturalNumberList;
 
 public class LottoMachine {
     private final int MIN_NUMBER;
@@ -25,6 +26,7 @@ public class LottoMachine {
         int lottoCount = setLottoCount();
         System.out.println(lottoCount + "개를 구매했습니다.");
         List<List<Integer>> myLottos = getAllLotto(lottoCount);
+        System.out.println(lottoToString(myLottos));
     }
 
     public int setLottoCount() {
@@ -46,6 +48,15 @@ public class LottoMachine {
             ret.add(getLotto());
         }
         return ret;
+    }
+
+    public String lottoToString(List<List<Integer>> lottos) {
+        StringBuilder ret = new StringBuilder();
+        lottos.forEach(i -> {
+            ret.append(i.toString());
+            ret.append("\n");
+        });
+        return ret.toString().trim();
     }
 
     private List<Integer> getLotto() {

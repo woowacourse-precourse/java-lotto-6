@@ -12,7 +12,7 @@ public class View {
         while (!validInput) {
             try {
                 number = Integer.parseInt(Console.readLine());
-                if (number % 1000 != 0) throw new IllegalArgumentException();
+                if (number % 1000 != 0 || number < 1000) throw new IllegalArgumentException();
                 validInput = true;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자만 입력하실 수 있습니다.");
@@ -22,8 +22,9 @@ public class View {
         }
         return number;
     }
+
     public static void printPurchasedLottos(List<Lotto> lottos) {
-        System.out.println(lottos.size()+"개를 구매했습니다.");
+        System.out.println(lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }

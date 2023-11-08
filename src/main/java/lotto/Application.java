@@ -5,7 +5,7 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         int money = View.getMoney();
-        int amount = money/1000;
+        int amount = money / 1000;
         List<Lotto> lottos = Service.buyLottos(amount);
         System.out.println();
 

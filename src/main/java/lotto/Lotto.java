@@ -16,7 +16,10 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-    public List<Integer> getNumbers() {return numbers;}
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 
     public void sortNumbers() {
         Collections.sort(numbers);

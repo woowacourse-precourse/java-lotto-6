@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public record Result(Map<Rank, Integer> result) {
     public String calculateTotalRate() {
@@ -17,5 +18,12 @@ public record Result(Map<Rank, Integer> result) {
         return result.values().stream()
                 .mapToInt(Integer::intValue)
                 .sum() * 1000;
+    }
+
+    public String calculateTotalRankStatus() {
+        return result.entrySet().stream()
+                .filter(entry -> entry.getKey() != Rank.NONE)
+                .map(entry -> entry.getKey().calculateRankStatus(entry.getValue()))
+                .collect(Collectors.joining("\n"));
     }
 }

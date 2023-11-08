@@ -54,4 +54,19 @@ public enum Rank {
 
         return Rank.NONE;
     }
+
+    public String calculateRankStatus(Integer winningCount) {
+        StringBuilder status = new StringBuilder();
+
+        status.append(matchNumber + "개 일치");
+
+        if (hasBonus) {
+            status.append(", 보너스 볼 일치");
+        }
+
+        status.append(String.format(" (%,d원)", prize));
+        status.append(String.format(" - %d개", winningCount));
+
+        return status.toString();
+    }
 }

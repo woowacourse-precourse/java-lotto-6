@@ -43,7 +43,9 @@ public class LottoGame {
     }
 
     private void announceResult(Result result) {
-
+        OutputView.printResult(
+                result.calculateTotalRankStatus()
+        );
     }
 
     private Integer convertToTicket(String userInput) {

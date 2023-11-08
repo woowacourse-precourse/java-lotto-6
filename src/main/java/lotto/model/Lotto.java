@@ -2,9 +2,7 @@ package lotto.model;
 
 import lotto.validator.InputValidator;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static lotto.model.Constants.*;
 

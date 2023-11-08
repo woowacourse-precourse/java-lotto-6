@@ -1,12 +1,16 @@
 package lotto.validation;
 
+import lotto.domain.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.List;
+
 import static lotto.message.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Mockito.mock;
 
 
 class InputFormatValidatorTest {
@@ -20,6 +24,10 @@ class InputFormatValidatorTest {
     private static final String notAscendingWinningNumberInput1 = "1,2,3,4,6,5";
     private static final String notAscendingWinningNumberInput2 = "2,5,13,39,28,45";
     private static final String notAscendingWinningNumberInput3 = "4,3,2,1,5,6";
+
+    private static final String duplidateBonusNumberInput1 = "1";
+    private static final String duplidateBonusNumberInput2 = "30";
+    private static final String duplidateBonusNumberInput3 = "45";
 
     @DisplayName("1,000원 단위의 양의 정수 값을 입력하면 IllegalArgumentException이 발생하지 않는다.")
     @ParameterizedTest
@@ -101,6 +109,52 @@ class InputFormatValidatorTest {
         throwNotAscendingExceptionForInput(notAscendingWinningNumberInput3, 1, 2, 4, 3);
     }
 
+    @DisplayName("유효한 값을 입력하면 IllegalArgumentException이 발생하지 앟는다.")
+    @ParameterizedTest
+    @CsvSource({"1", "45", "23"})
+    void validateBonusNumberWithValidValue(String bonusNumberInput) {
+        // given, when, then
+        InputFormatValidator.validateBonusNumber(bonusNumberInput, mock(WinningNumbers.class));
+    }
+
+    @DisplayName("유효하지 않은 값을 입력하면 IllegalArgumentException이 발생한다.")
+    @ParameterizedTest
+    @CsvSource({"-1", "0", "abc", "12ab", "ab12", "가나다"})
+    void validateBonusNumberWithInvalidValue(String bonusNumberInput) {
+        // given, when, then
+        assertThatThrownBy(() -> InputFormatValidator
+                .validateBonusNumber(bonusNumberInput, mock(WinningNumbers.class)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ERROR_MESSAGE_HEAD + INVALID_BONUS_NUMBER_INPUT_EXCEPTION);
+    }
+
+    @DisplayName("입력한 숫자가 설정된 로또 번호의 최댓값보다 크면 IllegalArgumentException이 발생한다.")
+    @ParameterizedTest
+    @CsvSource({"1", "45", "30"})
+    void validateBonusNumberWithDuplicateNumber(String bonusNumberInput) {
+        // given
+        WinningNumbers winningNumbers = WinningNumbers.of(List.of(1, 2, 23, 30, 38, 45));
+
+        // when, then
+        throwDuplicateExceptionForInput(duplidateBonusNumberInput1, winningNumbers, 1);
+        throwDuplicateExceptionForInput(duplidateBonusNumberInput2, winningNumbers, 4);
+        throwDuplicateExceptionForInput(duplidateBonusNumberInput3, winningNumbers, 6);
+    }
+
+    @DisplayName("입력한 숫자가 설정된 로또 번호의 최댓값보다 크면 IllegalArgumentException이 발생한다.")
+    @ParameterizedTest
+    @CsvSource({"46", "50", "301"})
+    void validateBonusNumberWithOutOfRange(String bonusNumberInput) {
+        // given, when, then
+        assertThatThrownBy(() -> InputFormatValidator
+                .validateBonusNumber(bonusNumberInput, mock(WinningNumbers.class)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ERROR_MESSAGE_HEAD + NUMBER_OUT_OF_RANGE_EXCEPTION + bonusNumberInput);
+    }
+
+    private void throwDuplicateExceptionForInput
+            (String duplidateWinningNumberInput, int firstIndex, int nextIndex, int duplicateNumber) {
+        assertThatThrownBy(() -> InputFormatValidator.validateWinningNumbers(duplidateWinningNumberInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(
                         ERROR_MESSAGE_HEAD + DUPLICATE_NUMBER_EXCEPTION
@@ -109,6 +163,12 @@ class InputFormatValidatorTest {
                 );
     }
 
+    private void throwDuplicateExceptionForInput(String bonusNumberInput, WinningNumbers winningNumbers, int index) {
+        assertThatThrownBy(() -> InputFormatValidator
+                .validateBonusNumber(bonusNumberInput, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ERROR_MESSAGE_HEAD + DUPLICATE_NUMBER_EXCEPTION + index + NUMBER_INDICATION + bonusNumberInput);
+    }
 
     private void throwNotAscendingExceptionForInput
             (String notAscendingWinningNumberInput, int firstIndex, int nextIndex, int firstNumber, int secondNumber) {

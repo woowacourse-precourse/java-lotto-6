@@ -1,8 +1,10 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Cost;
 import lotto.domain.DrawnNumbers;
 import lotto.domain.Lottos;
+import lotto.domain.WinningNumbers;
 import lotto.domain.WinningResult;
 import lotto.view.BonusRequestVIew;
 import lotto.view.CostRequestView;
@@ -36,7 +38,9 @@ public class LottoController {
      * @return 당첨 번호와 보너스 번호를 저장한 객체
      */
     private DrawnNumbers draw() {
-        return DrawnNumbers.from(WinningRequestView.request(), BonusRequestVIew.request());
+        WinningNumbers winningNumbers = WinningRequestView.request();
+        BonusNumber bonusNumber = BonusRequestVIew.request(winningNumbers);
+        return DrawnNumbers.from(winningNumbers, bonusNumber);
     }
 
     /**

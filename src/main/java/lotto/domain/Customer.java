@@ -8,8 +8,8 @@ public class Customer {
     private int money;
     private List<Lotto> lottos=new ArrayList<>();
 
-    public Customer(String money){
-        this.money=Integer.parseInt(money);
+    public Customer(int money){
+        this.money=money;
     }
 
     public void pay(){

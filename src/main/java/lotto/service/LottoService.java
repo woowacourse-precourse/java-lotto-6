@@ -18,6 +18,7 @@ public class LottoService {
     }
 
     public String checkLucky() {
+        resultRepository.init();
         customer.getLottos().stream()
                 .forEach(lotto -> resultRepository.save(lucky.checkWinning(lotto)));
 

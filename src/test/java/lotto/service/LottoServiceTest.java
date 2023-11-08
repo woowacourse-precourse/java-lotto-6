@@ -13,7 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoServiceTest {
-    Customer customer = new Customer("5000");
+    Customer customer = new Customer(5000);
     Lucky lucky = new Lucky(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
     LottoService lottoService = new LottoService(customer, lucky);
 

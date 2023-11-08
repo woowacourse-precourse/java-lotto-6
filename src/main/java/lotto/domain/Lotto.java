@@ -3,6 +3,9 @@ package lotto.domain;
 import static lotto.constants.Constants.LOTTO_NUMBER_COUNT;
 import static lotto.constants.Constants.MAX_LOTTO_NUMBER;
 import static lotto.constants.Constants.MIN_LOTTO_NUMBER;
+import static lotto.constants.ErrorMessage.LOTTO_NUMBER_COUNT_ERROR_MESSAGE;
+import static lotto.constants.ErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE;
+import static lotto.constants.ErrorMessage.LOTTO_NUMBER_RANGE_ERROR_MESSAGE;
 
 import java.util.HashSet;
 import java.util.List;
@@ -40,7 +43,7 @@ public class Lotto {
 
     private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("로또 번호의 개수는 6개여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_COUNT_ERROR_MESSAGE);
         }
     }
 
@@ -52,14 +55,14 @@ public class Lotto {
 
     protected void validateSingleNumberRange(Integer number) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException("로또 번호는 1부터 45사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR_MESSAGE);
         }
     }
 
     private void validateNumbersForDuplicates(List<Integer> numbers) {
         HashSet<Integer> distinctNumbers = new HashSet<>(numbers);
         if (numbers.size() != distinctNumbers.size()) {
-            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
         }
     }
 }

@@ -17,14 +17,18 @@ public class LottoController {
     LottoService lottoService = new LottoService();
 
     public void run() {
-        OutputView.printInputPrice();
-        PurchasePrice purchasePrice = getPurchasePrice();
-        int lottoCount = getLottoCount(purchasePrice);
-        Lottos lottos = new Lottos(lottoService.generateLotto(lottoCount));
-        printLottoValues(lottos);
-        UserLotto userLotto = getUserLotto();
-        List<LottoResult> results = lottoService.returnLottoResult(userLotto, lottos);
-        returnGameResult(results, purchasePrice);
+        try {
+            OutputView.printInputPrice();
+            PurchasePrice purchasePrice = getPurchasePrice();
+            int lottoCount = getLottoCount(purchasePrice);
+            Lottos lottos = new Lottos(lottoService.generateLotto(lottoCount));
+            printLottoValues(lottos);
+            UserLotto userLotto = getUserLotto();
+            List<LottoResult> results = lottoService.returnLottoResult(userLotto, lottos);
+            returnGameResult(results, purchasePrice);
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+        }
     }
 
     private void returnGameResult(List<LottoResult> results, PurchasePrice purchasePrice) {

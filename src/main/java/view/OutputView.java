@@ -25,6 +25,10 @@ public class OutputView {
         outputFirstPlaceCount();
     }
 
+    public static void outputRateOfReturn(Float rateOfReturn) {
+        System.out.println(String.format(OutputMessages.RATE_OF_RETURN.getMessage(), rateOfReturn));
+    }
+
     private static void outputFifthPlaceCount() {
         System.out.println(String.format(OutputMessages.FIFTH_PLACE.getMessage(),
                 RankRepository.getWinningStatistics(WinnerRank.FIFTH_PLACE.getRank())));

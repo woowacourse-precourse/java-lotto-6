@@ -11,7 +11,7 @@ import java.util.Set;
 public class InputValidation {
     public static List<Integer> getWinningNumbers() {
         List<Integer> winningNumbers = new ArrayList<>();
-        Set<Integer> uniqueNumbers = new HashSet<>(); // 중복 검사를 위한 Set
+        Set<Integer> uniqueNumbers = new HashSet<>();
 
         while (winningNumbers.size() < 6) {
             System.out.println(EntireMessage.WINNING_NUMBERS_MSG);
@@ -29,17 +29,39 @@ public class InputValidation {
         if (isInvalidInputFormat(numberStrings, winningNumbers)) {
             return false;
         }
+        if (initializeInvalidNumberRange(numberStrings)) {
+            EntireMessage.displayError(EntireMessage.INPUT_ERROR_MSG_BASIC);
+            return false;
+        }
+        boolean  duplicateFound = initializeDuplicateNumbers(numberStrings, uniqueNumbers);
+        if (duplicateFound) {
+            EntireMessage.displayError(EntireMessage.ERROR_MSG_DUPLICATED);
+            uniqueNumbers.clear();
+            return false;
+        }
+        return true;
+    }
+
+    private static boolean initializeDuplicateNumbers(String[] numberStrings, Set<Integer> uniqueNumbers) {
+        boolean duplicateFound = false;
         for (String numberString : numberStrings) {
             int number = Integer.parseInt(numberString);
             if (isInvalidLottoNumber(number, uniqueNumbers)) {
-                continue;
+                duplicateFound = true;
+                return duplicateFound;
             }
-            winningNumbers.add(number);
-            uniqueNumbers.add(number);
         }
-        return winningNumbers.size() >= 6;
+    return duplicateFound;
     }
-
+    private static boolean initializeInvalidNumberRange(String[] numberStrings) {
+        for (String numberString : numberStrings) {
+            int number = Integer.parseInt(numberString);
+            if (!isValidLottoNumber(number)) {
+                return true;
+            }
+        }
+        return false;
+    }
     private static boolean isInvalidInputFormat(String[] numberStrings, List<Integer> winningNumbers) {
         if (numberStrings.length != 6) {
             EntireMessage.displayError(EntireMessage.ERROR_MSG_LENGTH);
@@ -62,9 +84,9 @@ public class InputValidation {
 
     private static boolean isDuplicateNumber(Set<Integer> uniqueNumbers, int number) {
         if (uniqueNumbers.contains(number)) {
-            EntireMessage.displayError(EntireMessage.ERROR_MSG_DUPLICATED);
             return true;
         }
+        uniqueNumbers.add(number);
         return false;
     }
 }

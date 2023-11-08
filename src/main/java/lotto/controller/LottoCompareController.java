@@ -4,6 +4,8 @@ import lotto.domain.*;
 
 public class LottoCompareController {
 
+    private final WinningLotto winningLotto = WinningLotto.getInstance();
+    private final WinningNumber winningNumber = WinningNumber.getInstance();
 
     private LottoCompareController() {
     }
@@ -16,7 +18,7 @@ public class LottoCompareController {
         return LottoCompareControllerHolder.lottoCompareController;
     }
     public  void lottoTicketsCompareNum(){
-        WinningLotto.getInstance().WinningLottoInit();
+        winningLotto.WinningLottoInit();
         for(Lotto lotto : LottoTickets.getInstance().getBuyLottoTickets()){
             lottoCompareNum(lotto);
         }
@@ -34,10 +36,10 @@ public class LottoCompareController {
         int mathNum = 0;
         boolean bonusNum = false;
         for(Integer lottoNum : lotto.getNumbers()){
-            if(WinningNumber.getInstance().getWinningNums().contains(lottoNum)){
+            if(winningNumber.getWinningNums().contains(lottoNum)){
                 mathNum++;
             }
-            if(WinningNumber.getInstance().getBonusNum() == lottoNum){
+            if(winningNumber.getBonusNum() == lottoNum){
                 bonusNum = true;
             }
         }
@@ -45,31 +47,31 @@ public class LottoCompareController {
     }
     private void increaseWinningDetails(int mathNum, boolean bonusNum){
         if(mathNum == 3){
-            WinningLotto.getInstance().increaseTreeSameNumLotto();
+            winningLotto.increaseTreeSameNumLotto();
         }
         if(mathNum == 4){
-            WinningLotto.getInstance().increaseFourSameNumLotto();
+            winningLotto.increaseFourSameNumLotto();
         }
         if(mathNum == 5){
             if(!bonusNum){
-                WinningLotto.getInstance().increaseFiveSameNumLotto();
+                winningLotto.increaseFiveSameNumLotto();
             }
             if(bonusNum){
-                WinningLotto.getInstance().increaseFiveAndBonusSameNumLotto();
+                winningLotto.increaseFiveAndBonusSameNumLotto();
             }
         }
         if(mathNum == 6){
-            WinningLotto.getInstance().increaseSixSameNumLotto();
+            winningLotto.increaseSixSameNumLotto();
         }
     }
 
     private  long winningMoney(){
 
-        return WinningMoney.FIRST.getWinningMoney() * WinningLotto.getInstance().getSixSameNumLotto()
-                + WinningMoney.SECOND.getWinningMoney() * WinningLotto.getInstance().getFiveAndBonusSameNumLotto()
-                + WinningMoney.THIRD.getWinningMoney() * WinningLotto.getInstance().getFiveSameNumLotto()
-                + WinningMoney.FOURTH.getWinningMoney() * WinningLotto.getInstance().getFourSameNumLotto()
-                + WinningMoney.FIFTH.getWinningMoney() * WinningLotto.getInstance().getTreeSameNumLotto();
+        return WinningMoney.FIRST.getWinningMoney() * winningLotto.getSixSameNumLotto()
+                + WinningMoney.SECOND.getWinningMoney() * winningLotto.getFiveAndBonusSameNumLotto()
+                + WinningMoney.THIRD.getWinningMoney() * winningLotto.getFiveSameNumLotto()
+                + WinningMoney.FOURTH.getWinningMoney() * winningLotto.getFourSameNumLotto()
+                + WinningMoney.FIFTH.getWinningMoney() * winningLotto.getTreeSameNumLotto();
 
     }
 

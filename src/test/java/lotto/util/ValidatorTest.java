@@ -177,5 +177,35 @@ class ValidatorTest {
         }
     }
 
+    @Nested
+    @DisplayName("숫자 리스트 크기 검증")
+    class NumberListSizeValidationTests {
+
+        private static final int SIZE = LottoConfig.LOTTO_NUMBER_COUNT.getValue();
+        @Test
+        @DisplayName("리스트 크기가 유효함")
+        void validateNumbersSize_ValidSize() {
+            List<Integer> numbers = Arrays.asList(1, 10, 20, 30, 40, 45);
+            Validator.validateNumbersSize(numbers, SIZE);
+            assertThat(numbers).doesNotHaveDuplicates();
+        }
+
+        @Test
+        @DisplayName("리스트 크기가 작음")
+        void validateNumbersSize_InvalidSize_ThanSmall() {
+            List<Integer> numbers = Arrays.asList(1, 10, 20, 30, 40);
+            assertThatExceptionOfType(IllegalArgumentException.class)
+                    .isThrownBy(() -> Validator.validateNumbersSize(numbers, SIZE))
+                    .withMessageContaining(ERROR_MESSAGE);
+        }
+
+        @Test
+        @DisplayName("리스트 크기가 큼")
+        void validateNumbersSize_InvalidSize_ThanBig() {
+            List<Integer> numbers = Arrays.asList(1, 10, 20, 30, 40, 44, 45);
+            assertThatExceptionOfType(IllegalArgumentException.class)
+                    .isThrownBy(() -> Validator.validateNumbersSize(numbers, SIZE))
+                    .withMessageContaining(ERROR_MESSAGE);
+        }
     }
 }

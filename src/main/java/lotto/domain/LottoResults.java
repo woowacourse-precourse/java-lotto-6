@@ -17,7 +17,7 @@ public enum LottoResults {
     }
 
     public static LottoResults getLottoResult(int correctCount, boolean hasBonus) {
-        if (correctCount == LottoResults.SECOND.correctCount && !hasBonus) {
+        if (isThird(correctCount, hasBonus)) {
             return LottoResults.THIRD;
         }
 
@@ -32,5 +32,9 @@ public enum LottoResults {
 
     public long getWinningAmount() {
         return this.winningAmount;
+    }
+
+    private static boolean isThird(int correctCount, boolean hasBonus) {
+        return correctCount == LottoResults.THIRD.correctCount && !hasBonus;
     }
 }

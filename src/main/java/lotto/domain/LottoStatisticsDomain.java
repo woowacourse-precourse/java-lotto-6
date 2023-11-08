@@ -5,8 +5,7 @@ import lotto.Lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.constants.LottoNumberConstants.LOTTO_NUMBER_RANGE;
-import static lotto.constants.LottoNumberConstants.LOTTO_WINNING_NUMBER_RANGE;
+import static lotto.constants.LottoNumberConstants.*;
 
 public class LottoStatisticsDomain {
     private List<Lotto> purchaseLotto;
@@ -27,10 +26,12 @@ public class LottoStatisticsDomain {
     }
 
     private int oneLottoCompare(List<Integer> oneLotto) {
+        int additionNumber = winningLottoNumber.get(LOTTO_NUMBER_RANGE);
         int count = (int) oneLotto.stream()
+                .filter(n -> !n.equals(additionNumber))
                 .filter(winningLottoNumber::contains)
                 .count();
-        if(count == LOTTO_NUMBER_RANGE & isAdditionNumber(oneLotto)){
+        if(count == LOTTO_HAVE_ADDITION_NUMBER & isAdditionNumber(oneLotto)){
             return -count;
         }
         return count;

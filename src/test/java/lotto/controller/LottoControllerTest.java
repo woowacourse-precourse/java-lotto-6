@@ -41,7 +41,7 @@ class LottoControllerTest {
 
     @Test
     @DisplayName("구입 금액에 맞게 로또를 구매하고 결과를 출력해야 한다")
-    void shouldPurchaseLottoAndDisplayResult() {
+    void validatePurchaseAmountAndDisplayResult() {
         // Arrange
         int purchaseAmount = 5000;
         List<Lotto> purchasedLottos = Arrays.asList(

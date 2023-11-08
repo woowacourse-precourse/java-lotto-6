@@ -40,8 +40,14 @@ public class LottoRepository {
     }
 
     public int getSpendMoney() {
-        spendMoney = MoneyInput.getMoney();
-        return spendMoney / 1000;
+        while (true) {
+            try {
+                spendMoney = MoneyInput.getMoney();
+                return spendMoney / 1000;
+            } catch (IllegalArgumentException e) {
+                LottoOutput.printErrorMessage(e);
+            }
+        }
     }
 
     public void getUserLottos(int cnt) {
@@ -52,11 +58,25 @@ public class LottoRepository {
     }
 
     public void getLottoNumber() {
-        lotto = new Lotto(LottoInput.getLottoNumbers());
+        while (true) {
+            try {
+                lotto = new Lotto(LottoInput.getLottoNumbers());
+                return;
+            } catch (IllegalArgumentException e) {
+                LottoOutput.printErrorMessage(e);
+            }
+        }
     }
 
     public void getBonusNumber() {
-        bonusNumber = LottoInput.getBonusLottoNumber(lotto.getNumbers());
+        while (true) {
+            try {
+                bonusNumber = LottoInput.getBonusLottoNumber(lotto.getNumbers());
+                return;
+            } catch (IllegalArgumentException e) {
+                LottoOutput.printErrorMessage(e);
+            }
+        }
     }
 
     public void compareNumbers() {

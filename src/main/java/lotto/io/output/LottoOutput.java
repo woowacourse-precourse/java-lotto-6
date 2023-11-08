@@ -13,8 +13,8 @@ public class LottoOutput {
     private static final String GET_RESULT = "당첨 통계\n---";
     private static final String SPLIT_RESULT = " - ";
     private static final String RESULT_SUFFIX = "개";
-    private static final String TOTAL_PROFIT_PREFIX = "총 수익은 ";
-    private static final String TOTAL_PROFIT_SUFFIX = "% 입니다.";
+    private static final String TOTAL_PROFIT_PREFIX = "총 수익률은 ";
+    private static final String TOTAL_PROFIT_SUFFIX = "%입니다.";
 
     public static void printNewLine() {
         System.out.println();
@@ -54,6 +54,11 @@ public class LottoOutput {
     }
 
     public static void printTotalProfit(double sum, double spendMoney) {
-        System.out.println(TOTAL_PROFIT_PREFIX + sum * 100.0 / spendMoney + TOTAL_PROFIT_SUFFIX);
+        String totalProfit = String.format("%.1f", sum * 100.0 / spendMoney);
+        System.out.println(TOTAL_PROFIT_PREFIX + totalProfit + TOTAL_PROFIT_SUFFIX);
+    }
+
+    public static void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
     }
 }

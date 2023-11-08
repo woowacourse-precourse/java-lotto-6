@@ -2,6 +2,7 @@ package lotto.validator;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.utils.LottoUtil;
 
 public class LottoValidator {
     private static final String REGEX_NUMBER = "^[0-9]+$";
@@ -14,11 +15,11 @@ public class LottoValidator {
 
     public static void validateNumber(String number) {
         if (!isNumberFormat(number)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LottoUtil.ERROR_MESSAGE_PREFIX + LottoUtil.LOTTO_FORMAT);
         }
 
         if (isOutOfBoundsNumber(Integer.parseInt(number))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LottoUtil.ERROR_MESSAGE_PREFIX + LottoUtil.LOTTO_OUT_OF_BOUNDS);
         }
     }
 
@@ -26,7 +27,7 @@ public class LottoValidator {
         validateNumber(number);
 
         if (isBonusNumberDuplicate(lottos, Integer.parseInt(number))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LottoUtil.ERROR_MESSAGE_PREFIX + LottoUtil.LOTTO_DUPLICATE);
         }
     }
 

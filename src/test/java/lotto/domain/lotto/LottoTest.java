@@ -68,7 +68,7 @@ class LottoTest {
                                       final List<Integer> winningNumbers, final int matchCount) {
         final Lotto lotto = new Lotto(numbers);
         final Lotto winningLotto = new Lotto(winningNumbers);
-        final List<Integer> winningLottoNumbers = winningLotto.numbers();
+        final List<Integer> winningLottoNumbers = winningLotto.getNumbers();
         assertThat(lotto.matchedCount(winningLottoNumbers)).isEqualTo(matchCount);
     }
 

@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.stream.Stream;
 import lotto.domain.amount.Amount;
 import lotto.domain.rank.Rank;
-import org.junit.jupiter.api.Named;
 import org.junit.jupiter.params.provider.Arguments;
 
 public class WinningStatisticsTestProvider {

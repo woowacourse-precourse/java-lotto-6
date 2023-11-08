@@ -1,6 +1,10 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.constant.errorMessage.exception.CustomIllegalArgumentException;
+import lotto.constant.errorMessage.exception.CustomIllegalStateAmountException;
+import lotto.constant.errorMessage.exception.CustomNullPointAmountException;
+import lotto.constant.errorMessage.exception.CustomNumberFormatAmountException;
 import lotto.domain.amount.Amount;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.rank.Rank;
@@ -32,13 +36,38 @@ public class GameController {
     }
 
     public Amount initAmount() {
-        return new Amount(inputView.readAmount());
+        try {
+            return new Amount(inputView.readAmount());
+        } catch (CustomNumberFormatAmountException | CustomNullPointAmountException e) {
+            System.out.println(e.getMessage());
+            return initAmount();
+        }
     }
 
     public WinningNumbers initWinningNumbers() {
-        return new WinningNumbers(inputView.readWinningNumbers(), inputView.readBonusNumber())
+        return new WinningNumbers(getWinningNumbers(), getBonusNumber())
                 .getWinningNumbersStatus()
                 .toWinningTicket();
+    }
+
+    public List<Integer> getWinningNumbers() {
+        try {
+            return inputView.readWinningNumbers();
+        } catch (CustomNumberFormatAmountException | CustomNullPointAmountException |
+                 CustomIllegalArgumentException | CustomIllegalStateAmountException e) {
+            System.out.println(e.getMessage());
+            return getWinningNumbers();
+        }
+    }
+
+    public int getBonusNumber() {
+        try {
+            return inputView.readBonusNumber();
+        } catch (CustomNumberFormatAmountException | CustomNullPointAmountException |
+                 CustomIllegalArgumentException | CustomIllegalStateAmountException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumber();
+        }
     }
 
     public void announceLottos(final List<LottoDto> lottosDto) {

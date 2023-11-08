@@ -14,7 +14,8 @@ public class OutputView {
     private static final String PRINT_WINNING_STATISTICS_MESSAGE = "\n당첨 통계\n---";
     private static final String PRINT_STATISTICS_FORMAT = "%d개 일치 (%s원) - %d개\n";
     private static final String PRINT_STATISTICS_WITH_BONUS_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
-    private static final String PRINT_PROFIT_MARGIN_FORMAT = "총 수익률은 %.2f입니다.";
+    private static final String PRINT_PROFIT_MARGIN_FORMAT = "총 수익률은 %.1f%s입니다.";
+    private static final String PERCENT_VALUE = "%";
 
     public void printLottoCount(final List<LottoDto> lottoStatus) {
         System.out.printf(PRINT_PURCHASED_LOTTO_COUNT, lottoStatus.size());
@@ -28,6 +29,7 @@ public class OutputView {
 
     public void printStatistics(final WinningStatisticsDto statisticsDto) {
         printStatisticsRankCount(statisticsDto);
+        printStatisticProfitRate(statisticsDto);
     }
 
     private void printStatisticsRankCount(final WinningStatisticsDto statisticsDto) {
@@ -60,4 +62,10 @@ public class OutputView {
         }
         return PRINT_STATISTICS_FORMAT;
     }
+
+    private void printStatisticProfitRate(final WinningStatisticsDto statisticDto) {
+        final double profitRate = statisticDto.getProfitRate();
+        System.out.printf(PRINT_PROFIT_MARGIN_FORMAT, profitRate * 100, PERCENT_VALUE);
+    }
+
 }

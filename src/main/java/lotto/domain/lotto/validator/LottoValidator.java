@@ -15,19 +15,8 @@ public class LottoValidator {
     }
 
     public static void validateNumbers(final List<Integer> numbers) {
-        LOTTO_VALIDATOR.validateNumbersOutOfSize(numbers);
         LOTTO_VALIDATOR.validateNumbersOutOfRange(numbers);
         LOTTO_VALIDATOR.validateNumbersDuplicated(numbers);
-    }
-
-    private void validateNumbersOutOfSize(final List<Integer> numbers) {
-        if (checkNumbersOutOfSize(numbers)) {
-            throw new CustomIllegalArgumentException(LottoExceptionStatus.LOTTO_NUMBER_IS_OUT_OF_SIZE);
-        }
-    }
-
-    private boolean checkNumbersOutOfSize(List<Integer> numbers) {
-        return numbers.size() != Constant.ALLOWED_LOTTO_SIZE;
     }
 
     private void validateNumbersOutOfRange(final List<Integer> numbers) {

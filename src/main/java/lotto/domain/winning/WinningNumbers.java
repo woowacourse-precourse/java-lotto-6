@@ -19,7 +19,7 @@ public class WinningNumbers {
     }
 
     public WinningNumbersDto getWinningNumbersStatus() {
-        return new WinningNumbersDto(lotto.numbers(), bonusNumber);
+        return new WinningNumbersDto(lotto.getNumbers(), bonusNumber);
     }
 
     public List<Rank> calculateRanks(final Lottos lottos) {

@@ -1,7 +1,5 @@
 package lotto.view.reader;
 
-import camp.nextstep.edu.missionutils.Console;
-
 public class CustomReader implements Reader {
 
     private String input;
@@ -12,7 +10,6 @@ public class CustomReader implements Reader {
 
     @Override
     public String readLine() {
-        return Console.readLine();
-//        return this.input;
+        return this.input;
     }
 }

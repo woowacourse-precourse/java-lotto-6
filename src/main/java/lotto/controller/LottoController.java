@@ -7,6 +7,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Profit;
 import lotto.domain.Rank;
 import lotto.domain.LottoTicketMachine;
+import lotto.domain.WinningRanks;
 import lotto.utility.validation.WinningNumberChecker;
 import lotto.utility.vo.request.BonusNumberRequest;
 import lotto.utility.vo.response.LottoResponse;
@@ -30,7 +31,7 @@ public class LottoController {
         IssuedLottos issuedLottos = buyLottoTickets();
         printLottoTickets(issuedLottos);
 
-        List<Rank> rankResult = calculateWinning(issuedLottos);
+        WinningRanks rankResult = calculateWinning(issuedLottos);
         printWinning(rankResult);
 
         Profit profit = calculateProfit(rankResult);
@@ -53,7 +54,7 @@ public class LottoController {
         outputView.informIssuedLottos(lottoResponses);
     }
 
-    private List<Rank> calculateWinning(IssuedLottos issuedLottos) {
+    private WinningRanks calculateWinning(IssuedLottos issuedLottos) {
         while(true) {
             try {
                 WinningNumberRequest winningNumberRequest = inputView.getWinningNumber();
@@ -70,13 +71,12 @@ public class LottoController {
         }
     }
 
-    private void printWinning(List<Rank> ranks) {
-        WinningResponse response = new WinningResponse(ranks);
-        outputView.informWinningResult(response);
+    private void printWinning(WinningRanks ranks) {
+        outputView.informWinningResult(ranks.convertToResponse());
     }
 
-    private Profit calculateProfit(List<Rank> ranks) {
-        return new Profit(ranks);
+    private Profit calculateProfit(WinningRanks ranks) {
+        return ranks.determineProfit();
     }
 
     private void printProfit(Profit profit) {

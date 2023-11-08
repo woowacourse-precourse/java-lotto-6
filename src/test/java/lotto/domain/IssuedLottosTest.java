@@ -14,12 +14,11 @@ class IssuedLottosTest {
         BonusNumber 보너스번호 = new BonusNumber(33);
 
         // when
-        List<Rank> 등수결과 = 발행된_로또.determineRanks(당첨로또, 보너스번호);
+        WinningRanks 등수결과 = 발행된_로또.determineRanks(당첨로또, 보너스번호);
 
         // then
-        assertThat(등수결과).hasSize(8)
-            .containsExactly(Rank.FOURTH, Rank.UNRANKED, Rank.UNRANKED, Rank.UNRANKED,
-                Rank.UNRANKED, Rank.UNRANKED, Rank.UNRANKED, Rank.UNRANKED);
+        List<String> 당첨결과 = 등수결과.convertToResponse().createdMessage();
+        assertThat(당첨결과).contains("4개 일치 (50,000원) - 1개");
     }
 
     private List<Lotto> 로또_생성하기() {

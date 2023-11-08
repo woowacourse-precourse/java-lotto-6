@@ -22,7 +22,7 @@ public class IssuedLottos {
             .collect(Collectors.toList());
     }
 
-    public List<Rank> determineRanks(Lotto winnnigLotto, BonusNumber bonusNumber) {
+    public WinningRanks determineRanks(Lotto winnnigLotto, BonusNumber bonusNumber) {
         List<Rank> ranks = new ArrayList<>();
         for(Lotto lotto: lottos) {
             int criterion = lotto.countMatching(winnnigLotto);
@@ -30,6 +30,6 @@ public class IssuedLottos {
             Rank rank = Rank.determineByMatchingCount(criterion, hasBonusNum);
             ranks.add(rank);
         }
-        return ranks;
+        return new WinningRanks(ranks);
     }
 }

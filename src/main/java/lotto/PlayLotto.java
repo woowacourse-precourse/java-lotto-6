@@ -144,7 +144,7 @@ public class PlayLotto {
     }
 
     public void getProfitRate(){
-        profit = new Profit(result, money);
+        profit = new Profit(result, Integer.parseInt(money.amount));
         profit.printProfitRate();
     }
 

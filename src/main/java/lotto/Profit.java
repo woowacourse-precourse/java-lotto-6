@@ -8,9 +8,9 @@ public class Profit {
     Map<Rank, Integer> result;
     double profit;
     double profitRate;
-    Money money;
+    double money;
 
-    public Profit(Map<Rank, Integer> result, Money money) {
+    public Profit(Map<Rank, Integer> result, double money) {
         this.result = result;
         this.money = money;
         calProfit();
@@ -25,7 +25,7 @@ public class Profit {
     }
 
     public void calProfitRate(){
-        profitRate = profit / Integer.parseInt(money.amount) * 100;
+        profitRate = profit / money * 100;
     }
 
     public void printProfitRate(){

@@ -79,7 +79,7 @@ class InputFormatValidatorTest {
         throwDuplicateExceptionForInput(duplidateWinningNumberInput3, 3, 5, 13);
     }
 
-    @DisplayName("입력한 모든 숫자가 1에서 45 사이의 값이 아니면 IllegalArgumentException이 발생한다.")
+    @DisplayName("입력한 모든 숫자가 설정된 로또 번호의 최댓값보다 크면 IllegalArgumentException이 발생한다.")
     @Test
     void validateWinningNumbersWithOutOfRange() {
         // given, when, then

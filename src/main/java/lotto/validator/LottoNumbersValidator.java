@@ -9,7 +9,6 @@ public class LottoNumbersValidator {
     private LottoNumbersValidator() {
     }
 
-    // TODO: 숫자가 아닌 값이 들어오는 경우, INPUTVIEW에서 예외처리
     public static void validateLotto(final List<Integer> numbers) {
         validateCountOfLottoNumbers(numbers);
         for (int number : numbers) {

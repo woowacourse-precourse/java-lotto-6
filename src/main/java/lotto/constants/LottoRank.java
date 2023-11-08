@@ -8,7 +8,6 @@ public enum LottoRank {
             "3개 일치 (5,000원)"),
     FOURTH(50000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 4,
             "4개 일치 (50,000원)"),
-
     THIRD(1500000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 5 && !bonusWinningNumber,
             "5개 일치 (1,500,000원)"),
     SECOND(30000000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 5 && bonusWinningNumber,
@@ -29,11 +28,10 @@ public enum LottoRank {
     }
 
     public static LottoRank evaluateLottoRank(int matchedNumbers, boolean hasBonus) {
-        LottoRank lottoRank = Arrays.stream(values())
+        return Arrays.stream(values())
                 .filter(p -> p.picked.test(matchedNumbers, hasBonus))
                 .findFirst()
                 .orElse(NONE);
-        return lottoRank;
     }
 
     public int getPrizeMoney() {

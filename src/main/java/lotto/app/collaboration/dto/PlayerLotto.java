@@ -1,10 +1,16 @@
 package lotto.app.collaboration.dto;
 
+import static lotto.app.collaboration.dto.enums.PlayerLottoMessage.COUNT_OF_NUMBERS;
+import static lotto.app.collaboration.dto.enums.PlayerLottoMessage.EXCEPTION_IS_NULL;
+import static lotto.app.collaboration.dto.enums.PlayerLottoMessage.EXCEPTION_NOT_SIX;
+import static lotto.app.collaboration.dto.enums.PlayerLottoMessage.EXCEPTION_OUT_OF_RANGE;
+import static lotto.app.collaboration.dto.enums.PlayerLottoMessage.MAX_NUMBER_RANGE;
+import static lotto.app.collaboration.dto.enums.PlayerLottoMessage.MIN_NUMBER_RANGE;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 import lotto.app.collaboration.Lotto;
-import lotto.app.collaboration.dto.enums.PlayerLottoMessage;
 
 public class PlayerLotto {
 
@@ -23,19 +29,20 @@ public class PlayerLotto {
 
     private static void occurExceptionIfIsNull(Lotto lotto) {
         if (lotto == null) {
-            throw new IllegalArgumentException(PlayerLottoMessage.EXCEPTION_IS_NULL.get());
+            throw new IllegalArgumentException(EXCEPTION_IS_NULL.get());
         }
     }
 
     private static void occurExceptionIfNotSix(Lotto lotto) {
-        if (lotto.stream().count() != 6) {
-            throw new IllegalArgumentException(PlayerLottoMessage.EXCEPTION_NOT_SIX.get());
+        if (lotto.stream().count() != COUNT_OF_NUMBERS) {
+            throw new IllegalArgumentException(EXCEPTION_NOT_SIX.get());
         }
     }
 
     private static void occurExceptionIfOutOfRange(Lotto lotto) {
-        if (lotto.stream().anyMatch(number -> number < 1 || 45 < number)) {
-            throw new IllegalArgumentException(PlayerLottoMessage.EXCEPTION_OUT_OF_RANGE.get());
+        if (lotto.stream().anyMatch(number ->
+                number < MIN_NUMBER_RANGE || MAX_NUMBER_RANGE < number)) {
+            throw new IllegalArgumentException(EXCEPTION_OUT_OF_RANGE.get());
         }
     }
 

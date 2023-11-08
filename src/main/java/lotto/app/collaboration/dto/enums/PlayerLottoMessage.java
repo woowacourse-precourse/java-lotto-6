@@ -7,6 +7,10 @@ public enum PlayerLottoMessage {
     EXCEPTION_OUT_OF_RANGE("번호는 1부터 45까지의 숫자 중에서 선택할 수 있습니다."),
     ;
 
+    public static final int COUNT_OF_NUMBERS = 6;
+    public static final int MIN_NUMBER_RANGE = 1;
+    public static final int MAX_NUMBER_RANGE = 45;
+
     private final String message;
 
     PlayerLottoMessage(String message) {

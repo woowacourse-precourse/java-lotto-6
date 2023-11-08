@@ -39,5 +39,8 @@ public class Application {
                 bonusNumber);
 
         Long totalWinningAmount = lottoAgency.calculateTotalWinningAmount(winningResult);
+
+        Double totalReturnRate = lottoAgency.calculateTotalReturnRate(totalWinningAmount, purchasePrice);
+
     }
 }

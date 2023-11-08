@@ -31,6 +31,10 @@ public class LottoAgency {
         return sum;
     }
 
+    public Double calculateTotalReturnRate(Long winningAmount, Integer purchasePrice) {
+        return ((double) winningAmount / purchasePrice) * 100;
+    }
+
     private LottoRank compareLottoNumbers(Lotto lotto, List<Integer> winningNumbers, Integer bonusNumber) {
         int hit = 0;
         int bonusHit = 0;

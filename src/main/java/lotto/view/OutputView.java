@@ -22,13 +22,16 @@ public class OutputView {
         println(numberForamat.makeFormat(lottos));
     }
 
+    public String printResultFormat(List<Rank> ranks, int purchase) {
+        return  "3개 일치 (5,000원) - " + matchResult(ranks,Rank.FIFTH) + "개\n"
+        + "4개 일치 (50,000원) - " +  matchResult(ranks,Rank.FOURTH) + "개\n"
+        + "5개 일치 (1,500,000원) - " +  matchResult(ranks,Rank.THIRD) + "개\n"
+        +"5개 일치, 보너스 볼 일치 (30,000,000원) - " +  matchResult(ranks,Rank.SECOND) + "개\n"
+        + "6개 일치 (2,000,000,000원) - " + matchResult(ranks,Rank.FIRST) + "개\n"
+        + "총 수익률은 " + matchYeild(purchase, ranks) + "%입니다.";
+    }
     public void printResult(List<Rank> ranks, int purchase) {
-        String result = "3개 일치 (5,000원) -" + matchResult(ranks,Rank.FIFTH) + "개"
-        + "4개 일치 (50,000원) -" +  matchResult(ranks,Rank.FOURTH) + "개"
-        + "5개 일치 (1,500,000원) -" +  matchResult(ranks,Rank.THIRD) + "개"
-        +"5개 일치, 보너스 볼 일치 (30,000,000원) -" +  matchResult(ranks,Rank.SECOND) + "개"
-        + "6개 일치 (2,000,000,000원) -" + matchResult(ranks,Rank.FIRST) + "개"
-        + "총 수익률은" + matchYeild(purchase, ranks) + "%입니다.";
+        println(printResultFormat(ranks, purchase));
     }
 
     public int matchResult(List<Rank> ranks, Object o) {
@@ -36,7 +39,7 @@ public class OutputView {
                 .filter(rank -> rank == o)
                 .count();
     }
-    public String matchYeild(int purchase, List<Rank> ranks ) {
+    public double matchYeild(int purchase, List<Rank> ranks ) {
         return Rsult.yield(purchase, ranks);
     }
 }

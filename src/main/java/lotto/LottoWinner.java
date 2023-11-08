@@ -61,4 +61,12 @@ public class LottoWinner {
             result.setWinnerAndPrize();
         }
     }
+
+    public void printLottoResult(int rank) {
+        LottoResult result = LottoResult.getLottoResultByRank(rank);
+        if (result != null) {
+            System.out.println(result.getMessage() + " - " + result.getWinnerCount() + "개");
+        }
+    }
+
 }

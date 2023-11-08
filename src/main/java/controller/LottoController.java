@@ -13,8 +13,6 @@ public class LottoController {
     private static final int REWARD_SIZE = 5;
     private static final int LOTTO_BONUS_NUMBER_INDEX = 5;
     private static final int MINIMUM_LOTTO_NUMBER = 2;
-    private static final int START_WINNER_NUMBER = 3;
-    private static final int END_WINNER_NUMBER = 6;
     private static final int[] REWARD = { 5000, 50000, 1500000, 30000000, 2000000000 };
 
     LuckeyLotto luckeyLotto;
@@ -64,35 +62,9 @@ public class LottoController {
     }
 
     private void infoLottoWinner() {
-        int rewardIndex = 0;
-        String bonusMessage = "";
-        boolean bonusState = false;
-        for (int matchNumber = START_WINNER_NUMBER; matchNumber <= END_WINNER_NUMBER; matchNumber++) {
-            bonusMessage = isBonusMessage(matchNumber, bonusMessage, bonusState);
-            matchNumber = isBonusMatchNumber(matchNumber, bonusState);
-            outputView.printLottoResult(matchNumber, rewardIndex, bonusMessage, lottoWinners[rewardIndex]);
-            bonusState = cheackBonusLottoTime(matchNumber, bonusState);
-            rewardIndex++;
+        for (int rank = 6; rank > 0; rank--) {
+            lottoWinner.printLottoResult(rank);
         }
-    }
-
-    private String isBonusMessage(int matchNumber, String bonusMessage, boolean bonusState) {
-        bonusMessage = "";
-        if (bonusState == true) {
-            bonusMessage = ", 보너스 볼 일치";
-        }
-        return bonusMessage;
-    }
-
-    private int isBonusMatchNumber(int matchNumber, boolean bonusState) {
-        if (bonusState == true) {
-            matchNumber--;
-        }
-        return matchNumber;
-    }
-
-    private boolean cheackBonusLottoTime(int matchNumber, boolean bonusState) {
-        return matchNumber == LOTTO_BONUS_NUMBER_INDEX && bonusState == false;
     }
 
     private double decideRevenuePercentage() {

@@ -64,7 +64,7 @@
 - updateWinnerAndPrize()
   - [x] 로또 당첨자 수와 당첨 금액 증가
 - printLottoResult()
-  - [ ] 로또 통계 결과 출력
+  - [x] 로또 통계 결과 출력
 - getPrizeMoney()
   - [ ] 로또 당첨 금액 반환
 

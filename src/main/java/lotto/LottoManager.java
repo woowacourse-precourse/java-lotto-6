@@ -11,12 +11,12 @@ public class LottoManager {
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
-    void inputLottoPurchaseAmount() {
+    public void inputLottoPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         purchaseAmount = Integer.getInteger(Console.readLine());
     }
 
-    void createLotties() {
+    public void createLotties() {
         lotties = new ArrayList<>();
         NumberGenerator numberGenerator = new NumberGenerator();
         int lottoPrice = 1000;
@@ -26,7 +26,7 @@ public class LottoManager {
         }
     }
 
-    private void inputLottoWinningNumbers() {
+    public void inputLottoWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] numbers = Console.readLine().split(",");
         for (String number : numbers) {

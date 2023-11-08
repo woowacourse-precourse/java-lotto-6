@@ -24,35 +24,35 @@ public class Game {
         showResult();
     }
 
-    void purchaseLotto() {
+    private void purchaseLotto() {
         OutputView.requestPurchaseAmount();
         registerPurchaseAmount();
         OutputView.outputEmptyLine();
     }
 
-    void registerPurchaseAmount() {
+    private void registerPurchaseAmount() {
         int purchaseAmount = InputView.inputPurchaseAmount();
         this.lottoPurchaseInfo = new LottoPurchaseInfo(purchaseAmount);
     }
 
-    void showPurchaseResult() {
+    private void showPurchaseResult() {
         OutputView.outputPurchaseCount(lottoPurchaseInfo.getPurchaseLottoCount());
         showPurchaseLottos();
         OutputView.outputEmptyLine();
     }
 
-    void showPurchaseLottos() {
+    private void showPurchaseLottos() {
         for (Lotto lotto : lottoPurchaseInfo.getLottos()) {
             OutputView.outputPurchaseLottos(lotto.getNumbers().toString());
         }
     }
 
-    void showResult() {
+    private void showResult() {
         OutputView.outputResult(profit.getWinningResult());
         OutputView.outputProfitRatio(profit.getProfitRatio());
     }
 
-    void registerWinningLotto() {
+    private void registerWinningLotto() {
         List<Integer> winningNum = getWinningNum();
         OutputView.outputEmptyLine();
 
@@ -62,22 +62,22 @@ public class Game {
         this.winningLotto = new WinningLotto(winningNum, bonusNum);
     }
 
-    List<Integer> getWinningNum() {
+    private List<Integer> getWinningNum() {
         OutputView.requestWinningNum();
         return InputView.inputWinningNum();
     }
 
-    int getBonusNum(List<Integer> winningNum) {
+    private int getBonusNum(List<Integer> winningNum) {
         OutputView.requestBonusNum();
         return InputView.inputBonusNum(winningNum);
     }
 
-    void setResult() {
+    private void setResult() {
         calculateProfit();
         RegisterProfit();
     }
 
-    void calculateProfit() {
+    private void calculateProfit() {
         this.profit = new Profit();
 
         for (Lotto lotto : lottoPurchaseInfo.getLottos()) {
@@ -85,7 +85,7 @@ public class Game {
         }
     }
 
-    WinningDetails calculateMatchStatus(List<Integer> numbers) {
+    private WinningDetails calculateMatchStatus(List<Integer> numbers) {
         boolean isMatchedBonus = false;
 
         int countMatchedNum = winningLotto.countMatchedNum(numbers);
@@ -95,7 +95,7 @@ public class Game {
         return WinningDetails.calculateResult(countMatchedNum, isMatchedBonus);
     }
 
-    void RegisterProfit() {
+    private void RegisterProfit() {
         profit.setTotalProfit();
         profit.setProfitRatio(lottoPurchaseInfo.getPurchaseAmount());
     }

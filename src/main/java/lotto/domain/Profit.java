@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Profit {
-    Map<WinningDetails, Integer> winningResult; // 당첨내역
-    int totalProfit;
-    String profitRatio;
+    private final Map<WinningDetails, Integer> winningResult; // 당첨내역
+    private int totalProfit;
+    private String profitRatio;
 
     public Profit() {
         winningResult = new HashMap<>();

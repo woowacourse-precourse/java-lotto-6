@@ -20,7 +20,7 @@ public class LottoTicket {
 
     private void validate(List<Lotto> lottoTicket) {
         if (lottoTicket == null || lottoTicket.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또를 생성할 수 없습니다.");
         }
     }
 

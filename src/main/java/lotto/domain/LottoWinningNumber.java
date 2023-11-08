@@ -35,11 +35,11 @@ public class LottoWinningNumber {
 
     private void validateBonusNumbers(int bonusNumber) {
         if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또 숫자는 1~45까지의 정수만 선택해야 합니다.");
         }
 
         if (this.winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또 숫자는 중복될 수 없습니다.");
         }
     }
 

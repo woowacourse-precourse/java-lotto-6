@@ -14,17 +14,17 @@ public class Validation {
 
     public static void validateLottoNumbers(List<Integer> numbers) {
         if (numbers == null || numbers.size() != NUMBER_PER_LOTTO) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또 숫자는 6개 선택해야 합니다.");
         }
 
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != NUMBER_PER_LOTTO) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또 숫자는 중복될 수 없습니다.");
         }
 
         if (numbers.stream()
                 .anyMatch(num -> num < MIN_LOTTO_NUMBER || num > MAX_LOTTO_NUMBER)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또 숫자는 1~45까지의 정수만 선택해야 합니다.");
         }
     }
 }

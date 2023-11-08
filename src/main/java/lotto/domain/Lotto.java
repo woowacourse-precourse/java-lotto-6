@@ -17,11 +17,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또 숫자는 6개 선택해야 합니다.");
         }
         if (!numbers.stream()
                 .allMatch(number -> number >= 1 && number <= 45)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또 숫자는 1~45까지의 정수만 선택해야 합니다.");
         }
         Validation.validateLottoNumbers(numbers);
     }

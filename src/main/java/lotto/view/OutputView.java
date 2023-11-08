@@ -40,7 +40,7 @@ public class OutputView {
 
     public static void printResponseWinningStats(LottoResult lottoResult) {
         System.out.println();
-        
+
         String formattedMessage =
                 String.format(ResponseMessage.WINNING_STATS.getMessage(),
                         lottoResult.getCountOfRank(LottoRank.FIFTH),
@@ -59,5 +59,9 @@ public class OutputView {
                         profitRate);
 
         System.out.println(formattedMessage);
+    }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
     }
 }

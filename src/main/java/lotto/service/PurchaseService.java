@@ -28,11 +28,11 @@ public class PurchaseService {
         try {
             amount = Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("구매 금액은 정수만 입력 가능합니다.");
         }
 
         if (amount < 0 || amount % 1000 != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("구매 금액은 0보다 크고 1,000원으로 나누어 떨어져야 합니다.");
         }
     }
 

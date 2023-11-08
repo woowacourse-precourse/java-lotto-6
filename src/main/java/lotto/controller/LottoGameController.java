@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.function.Supplier;
 import lotto.domain.LottoResult;
 import lotto.domain.LottoTicket;
 import lotto.domain.LottoWinningNumber;
@@ -33,20 +34,28 @@ public class LottoGameController {
     private void buyLottoTicket() {
         OutputView.printRequestPurchaseAmount();
 
-        String PurchaseAmount = InputView.readLine();
-        lottoTicket = purchaseService.buyLottoTicket(PurchaseAmount);
+        lottoTicket = errorHandler(() -> {
+            String PurchaseAmount = InputView.readLine();
+            return purchaseService.buyLottoTicket(PurchaseAmount);
+        });
 
         OutputView.printPurchaseResult(lottoTicket);
     }
 
     private void setWinningNumbers() {
         OutputView.printRequestWinningNumber();
-        String winningNumbers = InputView.readLine();
-        winningNumberService.setWinningNumbers(winningNumbers);
+        errorHandler(() -> {
+            String winningNumbers = InputView.readLine();
+            winningNumberService.setWinningNumbers(winningNumbers);
+            return null;
+        });
 
         OutputView.printRequestBonusNumber();
-        String bonusNumber = InputView.readLine();
-        winningNumberService.setBonusNumbers(bonusNumber);
+        errorHandler(() -> {
+            String bonusNumber = InputView.readLine();
+            winningNumberService.setBonusNumbers(bonusNumber);
+            return null;
+        });
 
         lottoWinningNumber = winningNumberService.getLottoWinningNumber();
     }
@@ -58,5 +67,15 @@ public class LottoGameController {
     private void printResults() {
         OutputView.printResponseWinningStats(lottoResult);
         OutputView.printResponseProfitRate(lottoResult, lottoTicket);
+    }
+
+    private <T> T errorHandler(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }

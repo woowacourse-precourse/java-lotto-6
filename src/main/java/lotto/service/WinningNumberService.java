@@ -39,14 +39,14 @@ public class WinningNumberService {
 
     private void validateWinningNumbers(String winningNumbers) {
         if (winningNumbers == null || winningNumbers.trim().isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("당첨 번호가 입력되지 않았습니다.");
         }
         String[] numbersStr = winningNumbers.split(",");
         for (String numberStr : numbersStr) {
             try {
                 Integer.parseInt(numberStr.trim());
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("로또 숫자는 정수만 입력 가능합니다.");
             }
         }
     }
@@ -55,7 +55,7 @@ public class WinningNumberService {
         try {
             Integer.parseInt(bonusNumbers.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("보너스 숫자는 정수만 입력 가능합니다.");
         }
     }
 

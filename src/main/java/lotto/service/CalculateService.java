@@ -44,4 +44,21 @@ public class CalculateService {
             winningPrize.put("5",winningPrize.getOrDefault("1",0) + 1);
         }
     }
+
+    public int caculateTotalPrize(HashMap<String,Integer> winningPrize) {
+        int totalPrize = 0;
+        for (String rank : winningPrize.keySet()) {
+            if (rank == "1") totalPrize += winningPrize.get(rank) * Lotto.FIRST_PRIZE_MONEY.getLottoNumber();
+            else if (rank == "2") totalPrize += winningPrize.get(rank) * Lotto.SECOND_PRIZE_MONEY.getLottoNumber();
+            else if (rank == "3") totalPrize += winningPrize.get(rank) * Lotto.THIRD_PRIZE_MONEY.getLottoNumber();
+            else if (rank == "4") totalPrize += winningPrize.get(rank) * Lotto.FOURTH_PRIZE_MONEY.getLottoNumber();
+            else if (rank == "5") totalPrize += winningPrize.get(rank) * Lotto.FIFTH_PRIZE_MONEY.getLottoNumber();
+        }
+
+        return totalPrize;
+    }
+
+    public float calculateTotalReturn(int totalPrize, int purchaseAmount) {
+        return Math.round ((totalPrize / purchaseAmount) * 100/10.0);
+    }
 }

@@ -19,8 +19,7 @@
 ├── 🗿️domain
 │   ├── Lotto
 │   ├── Lottos
-│   ├── Buyer
-│   └── WinningStatus
+│   └── Buyer
 │
 ├── 🏃‍♂️service
 │   ├── InputService
@@ -37,10 +36,6 @@
 │   ├── StringValidator
 │   ├── NumberValidator
 │   └── DuplicateValidator 
-│
-├── 👀view
-│   ├── InputView
-│   └── OutputView
 ``` 
 
 ---

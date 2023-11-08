@@ -24,5 +24,8 @@ public class Controller {
         int[] buyerLottoNumbers = inputService.inputLottoNumber();
         int buyerBonusNumber = inputService.inputBounusNumber(buyerLottoNumbers);
         HashMap<String,Integer> winningPrize = calculateService.calculateWinningPrize(lottos, buyerLottoNumbers, buyerBonusNumber);
+        int totalPrize = calculateService.caculateTotalPrize(winningPrize);
+        float totalReturn = calculateService.calculateTotalReturn(totalPrize, buyer.getPurchaseAmount());
+        outputService.printFinalResult(winningPrize, totalReturn);
     }
 }

@@ -43,4 +43,9 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public boolean contains(LottoBall otherLottoNumber) {
+        return numbers.stream()
+                .anyMatch(lottoNumber -> lottoNumber.equals(otherLottoNumber.toInt()));
+    }
 }

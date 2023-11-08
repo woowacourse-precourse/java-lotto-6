@@ -38,6 +38,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 금액이 1,000원 이상이 아니면 예외가 발생한다.")
+    @Test
+    void createLottoMoneyUnderPrice() {
+        assertThatThrownBy(() -> new LottoMoney("0"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("로또 번호의 범위가 1부터 45사이가 아니면 예외가 발생한다.")
     @Test
     void createLottoByOverRange() {

@@ -25,7 +25,7 @@ public class Money {
 
     private void validatePositive(final int amount) {
         if (isNotPositive(amount)) {
-            throw new IllegalArgumentException("로또 구입 금액은 양수여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 양수여야 합니다.");
         }
     }
 
@@ -35,7 +35,7 @@ public class Money {
 
     private void validateScale(final int amount) {
         if (isNotMatchScale(amount)) {
-            throw new IllegalArgumentException("로또 구입 금액은 1,000원 단위여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");
         }
     }
 

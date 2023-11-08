@@ -27,7 +27,7 @@ public class LottoNumber {
 
     public static void validateBound(final int number) {
         if ((number < LOWER_BOUND) || (number > UPPER_BOUND)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.");
         }
     }
 

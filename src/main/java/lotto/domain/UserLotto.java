@@ -23,7 +23,7 @@ public class UserLotto {
 
     private void validateDuplicate(final Lotto lotto, final LottoNumber bonusLottoNumber) {
         if (lotto.contains(bonusLottoNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또와 보너스 번호가 서로 중복됩니다.");
         }
     }
 

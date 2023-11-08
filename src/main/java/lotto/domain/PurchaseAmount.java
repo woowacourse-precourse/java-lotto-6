@@ -18,13 +18,13 @@ public class PurchaseAmount {
     }
 
     private void validateMoneyRange(int money) {
-        if(money < MIN_MONEY) {
+        if (money < MIN_MONEY) {
             throw new IllegalArgumentException(ExceptionMessage.NEGATIVE_NUMBER.getMessage());
         }
     }
 
     public boolean divisible(int amount) {
-        if(money % amount == 0) {
+        if (money % amount == 0) {
             return true;
         }
         return false;

@@ -23,7 +23,7 @@ public enum Rank {
     }
 
     public static Rank decideRank(int sameNumberCount, boolean isContainBonusNumber) {
-        if(isContainBonusNumber && sameNumberCount == 5) {
+        if (isContainBonusNumber && sameNumberCount == 5) {
             return SECOND;
         }
         return Arrays.stream(Rank.values())

@@ -33,7 +33,7 @@ public class LottoShop {
     }
 
     public static void validateAmountDivisible(PurchaseAmount purchaseAmount) {
-        if(!purchaseAmount.divisible(LOTTO_AMOUNT)) {
+        if (!purchaseAmount.divisible(LOTTO_AMOUNT)) {
             throw new IllegalArgumentException(ExceptionMessage.UNDIVISIBLE_AMOUNT.getMessage());
         }
     }

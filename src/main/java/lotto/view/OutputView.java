@@ -31,8 +31,8 @@ public class OutputView {
     public void printResultStatistics(List<Integer> result) {
         printStatisticsResultPhrases();
         int i = 0;
-        for(Rank rank : Rank.values()) {
-            if(rank == Rank.ZERO) {
+        for (Rank rank : Rank.values()) {
+            if (rank == Rank.ZERO) {
                 continue;
             }
             System.out.printf(rank.getMessage() + RESULT_COUNT + System.lineSeparator(), result.get(i));

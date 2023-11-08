@@ -32,7 +32,8 @@ public class Lotto {
 
     private void checkLottoNumbersRange(List<Integer> numbers) {
         numbers.stream()
-                .filter(number -> number > NumberRange.MAX_NUMBER.getNumber() || number < NumberRange.MIN_NUMBER.getNumber())
+                .filter(number -> number > NumberRange.MAX_NUMBER.getNumber() ||
+                        number < NumberRange.MIN_NUMBER.getNumber())
                 .findAny()
                 .ifPresent(number -> {
                     throw new IllegalArgumentException(ExceptionMessage.OVER_NUMBER_RANGE.getMessage());

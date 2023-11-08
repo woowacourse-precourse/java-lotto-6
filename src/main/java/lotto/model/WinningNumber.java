@@ -2,22 +2,19 @@ package lotto.model;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lotto.validation.WinningNumberValidation;
 
 public class WinningNumber {
-    private final List<Integer> numbers;
+    private final Set<Integer> numbers;
 
     public WinningNumber(int[] numbers) {
         WinningNumberValidation.validateWinningNumber(numbers);
-        this.numbers = Arrays.stream(numbers).boxed().toList();
+        this.numbers = Arrays.stream(numbers).boxed().collect(Collectors.toSet());
     }
 
-    public boolean isDuplicated(int number) {
-        return numbers.contains(number);
-    }
-
-    public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+    public Set<Integer> getNumbers() {
+        return Collections.unmodifiableSet(numbers);
     }
 }

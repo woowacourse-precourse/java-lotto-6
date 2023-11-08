@@ -11,48 +11,63 @@ import static lotto.Constants.*;
 public class LottoGameView {
 
     public int inputPurchaseAmount() {
-        System.out.println(INPUT_PURCHASE_AMOUNT);
-        String input;
-        input = Console.readLine();
-        try {
-            InputValidator.validateIsNotBlank(input);
-            InputValidator.validateIsNumbers(input);
-            InputValidator.validateIsMultipleOf(input, LOTTERY_PRICE);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            inputPurchaseAmount();
+        while (true) {
+            System.out.println(INPUT_PURCHASE_AMOUNT);
+            String input = Console.readLine();
+            try {
+                validatePurchaseAmountInput(input);
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
+    }
 
-        return Integer.parseInt(input);
+    private void validatePurchaseAmountInput(String input) {
+        InputValidator.validateIsNotBlank(input);
+        InputValidator.validateIsNumbers(input);
+        InputValidator.validateIsMultipleOf(input, LOTTERY_PRICE);
     }
 
     public void inputWinningNumbers(WinningNumbers winningNumbers) {
-        System.out.println(INPUT_WINNING_NUMBERS);
-        String numbers = Console.readLine();
-        System.out.println();
-        try {
-            InputValidator.validateIsNotBlank(numbers);
-            String[] split = numbers.split(",");
-            InputValidator.validateIsNumbers(split);
-            List<Integer> list = Arrays.stream(numbers.split(",")).mapToInt(Integer::parseInt).boxed().toList();
-            winningNumbers.setNumbers(list);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            inputWinningNumbers(winningNumbers);
+        while (true) {
+            System.out.println(INPUT_WINNING_NUMBERS);
+            String input = Console.readLine();
+            System.out.println();
+            try {
+                validateWinningNumbersInput(input);
+                List<Integer> numbers = Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
+                winningNumbers.setNumbers(numbers);
+                return;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
+    private void validateWinningNumbersInput(String input) {
+        InputValidator.validateIsNotBlank(input);
+        String[] split = input.split(",");
+        InputValidator.validateIsNumbers(split);
+    }
+
     public void inputBonusNumbers(WinningNumbers winningNumbers) {
-        System.out.println(INPUT_BONUS_NUMBERS);
-        String bonus = Console.readLine();
-        try {
-            InputValidator.validateIsNotBlank(bonus);
-            InputValidator.validateIsNumbers(bonus);
-            winningNumbers.setBonus(Integer.parseInt(bonus));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            inputBonusNumbers(winningNumbers);
+        while (true) {
+            System.out.println(INPUT_BONUS_NUMBERS);
+            String bonus = Console.readLine();
+            try {
+                validateBonusNumberInput(bonus);
+                winningNumbers.setBonus(Integer.parseInt(bonus));
+                return;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
+    }
+
+    private void validateBonusNumberInput(String input) {
+        InputValidator.validateIsNotBlank(input);
+        InputValidator.validateIsNumbers(input);
     }
 
     public void printLotteryAmount(int amount) {

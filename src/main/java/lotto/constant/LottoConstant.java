@@ -9,6 +9,7 @@ public enum LottoConstant {
     RANGE_START(1),
     RANGE_END(45),
     LOTTO_SIZE(6),
+    RANK_SIZE(5),
     SIX_WINNINGS(2000000000);
 
     private final int number;

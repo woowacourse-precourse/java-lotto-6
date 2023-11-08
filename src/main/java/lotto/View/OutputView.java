@@ -19,12 +19,12 @@ public class OutputView {
         System.out.println(lotto.getNumbers().toString());
     }
 
-    public void LottoGameResult(Map<Prize, Integer> winResult) {
-        Set<Prize> prizes = winResult.keySet();
+    public void LottoGameResult(WinPrize winResult) {
+        Set<Prize> prizes = winResult.getWinPrize().keySet();
 
         System.out.println("당첨 통계\n---");
         for (Prize key : prizes) {
-            System.out.println(MessageFormat.format("{0} - {1}개", key.getTag(), winResult.get(key)));
+            System.out.println(MessageFormat.format("{0} - {1}개", key.getTag(), winResult.getWinPrize().get(key)));
         }
     }
 

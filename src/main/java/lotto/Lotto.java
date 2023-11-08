@@ -1,9 +1,8 @@
 package lotto;
 
-import lotto.Enum.LottoError;
-
 import java.util.*;
 
+import static lotto.Enum.LottoError.*;
 import static lotto.Enum.constants.*;
 
 public class Lotto {
@@ -26,13 +25,13 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT.getNumber()) {
-            throw new IllegalArgumentException(LottoError.NumberCount.getErrorMessage());
+            throw new IllegalArgumentException(NumberCount.getErrorMessage());
         }
         if (!validateDuplicatedNumber(numbers)) {
-            throw new IllegalArgumentException(LottoError.NumberDuplication.getErrorMessage());
+            throw new IllegalArgumentException(NumberDuplication.getErrorMessage());
         }
         if (!validateOverRangeNumber(numbers)) {
-            throw new IllegalArgumentException(LottoError.NumberRange.getErrorMessage());
+            throw new IllegalArgumentException(NumberRange.getErrorMessage());
         }
     }
 

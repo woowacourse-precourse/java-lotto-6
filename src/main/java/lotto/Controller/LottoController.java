@@ -1,6 +1,5 @@
 package lotto.Controller;
 
-import lotto.Enum.LottoError;
 import lotto.Enum.Prize;
 import lotto.Lotto;
 import lotto.Service.LottoService;
@@ -10,10 +9,10 @@ import lotto.WinPrize;
 
 import java.util.*;
 
+import static lotto.Enum.LottoError.*;
 import static lotto.Enum.constants.*;
 
 public class LottoController {
-    public static Map<Prize, Integer> winResult;
     static Lotto winNumber;
     static int bonus;
     static String lottoAmount;
@@ -41,7 +40,6 @@ public class LottoController {
     }
 
     private void LottoResult() {
-        ResultInit();
         for (Lotto lotto : lottos) {
             insertResult(lotto, winNumber);
         }
@@ -58,7 +56,7 @@ public class LottoController {
                 lottoService.ValidateBonus(bonus, winNumber);
                 validateInput = true;
             } catch (IllegalArgumentException e) {
-                System.out.println(LottoError.NumberRange.getErrorMessage());
+                System.out.println(NumberRange.getErrorMessage());
             } catch (IllegalStateException e){
                 System.out.println(e.getMessage());
             }
@@ -91,7 +89,7 @@ public class LottoController {
                 int value = Integer.parseInt(number);
                 numbers.add(value);
             } catch (NumberFormatException e) {
-                System.out.println(LottoError.NumberFormat.getErrorMessage());
+                System.out.println(NumberFormat.getErrorMessage());
             }
         }
         return numbers;
@@ -112,7 +110,7 @@ public class LottoController {
                 count = inputPurchase();
                 validInput = true;
             } catch (IllegalArgumentException e) {
-                System.out.println(LottoError.AmountFormat.getErrorMessage());
+                System.out.println(AmountFormat.getErrorMessage());
             }
         }
         System.out.println();

@@ -67,4 +67,8 @@ public class OutputMessage {
         System.out.println(TextType.EARN_PERCENT.getText() + SPACE
                 + String.format("%.1f", earnRatio) + "%입니다.");
     }
+
+    public static void printError(String log) {
+        System.out.println(log);
+    }
 }

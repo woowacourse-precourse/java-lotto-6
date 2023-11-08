@@ -3,6 +3,7 @@ package utils;
 import error.NotValidNumberInputException;
 import error.NotValidWinningNumberInputException;
 import type.ErrorType;
+import view.OutputMessage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +16,7 @@ public class Parser {
 
     public static int convertNumberInput(String input) {
         if (!input.matches(INT_REGEX)) {
-            System.out.println(ErrorType.INVALID_NUMBER_INPUT.getText());
+            OutputMessage.printError(ErrorType.INVALID_NUMBER_INPUT.getText());
             throw new NotValidNumberInputException();
         }
         return Integer.parseInt(input);
@@ -23,7 +24,7 @@ public class Parser {
 
     public static List<Integer> convertWinningNumberInput(String input) {
         if (!input.matches(COMMA_REGEX)) {
-            System.out.println(ErrorType.INVALID_WINNING_NUMBER_INPUT.getText());
+            OutputMessage.printError(ErrorType.INVALID_WINNING_NUMBER_INPUT.getText());
             throw new NotValidWinningNumberInputException();
         }
         return Arrays.stream(input.split(COMMA))

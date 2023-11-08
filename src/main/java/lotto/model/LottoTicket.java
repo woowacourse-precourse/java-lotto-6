@@ -38,7 +38,8 @@ public class LottoTicket {
 
         lottoTicket.forEach(
                 lotto -> {
-                    stringBuilder.append(lotto.getLottoNumber()).append("\r\n");
+                    stringBuilder.append(lotto.getLottoNumber())
+                            .append("\r\n");
                 }
         );
 

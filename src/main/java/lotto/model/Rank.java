@@ -17,7 +17,7 @@ public enum Rank {
     }
 
     public int getMoney() {
-        return money;
+        return this.money;
     }
 
     public static Rank lottoRank(long countMatch, boolean matchBonus) {

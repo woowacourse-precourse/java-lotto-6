@@ -38,7 +38,7 @@ public class Lotto {
                 Number.MIN_NUMBER,
                 Number.MAX_NUMBER,
                 Number.LOTTO_SIZE
-        ));
+        )); // 정렬을 위하여 불변 객체가 아닌 ArrayList 생성
 
         return new Lotto(result);
     }

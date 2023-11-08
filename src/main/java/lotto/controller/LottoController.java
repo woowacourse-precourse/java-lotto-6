@@ -1,18 +1,33 @@
 package lotto.controller;
 
-import lotto.domain.LottoWinningNumber;
-import lotto.domain.Lottos;
-import lotto.domain.Money;
-import lotto.domain.PrizeResult;
+import lotto.domain.*;
 import lotto.domain.generator.LottoGenerator;
 import lotto.view.InputBonusNumberView;
 import lotto.view.InputBuyLottoView;
 import lotto.view.InputLottoWinningNumbersView;
 
+import static lotto.view.OutputBuyLottoCount.printBuyLotto;
+import static lotto.view.OutputStatistics.printStatistics;
+import static lotto.view.OutputLottoList.printLottoList;
+
 import java.util.List;
 
 public class LottoController {
 
+    public void start(){
+        Money money = getLottoMoney();
+        printBuyLotto(money);
+
+        Lottos lottos = getLottos(money);
+        printLottoList(lottos);
+
+        LottoWinningNumber lottoWinningNumber = getLottoWinningNumber();
+        PrizeResult prizeResult = new PrizeResult();
+        calcLottoResult(prizeResult,lottoWinningNumber,lottos);
+
+        Rate rate = getRate(money, prizeResult);
+        printStatistics(prizeResult, rate);
+    }
 
     private Money getLottoMoney(){
         InputBuyLottoView inputBuyLottoView = new InputBuyLottoView();
@@ -37,5 +52,9 @@ public class LottoController {
 
     private void calcLottoResult(PrizeResult prizeResult, LottoWinningNumber lottoWinningNumber, Lottos lottos){
         prizeResult.calcPrizeResult(lottoWinningNumber, lottos);
+    }
+
+    private Rate getRate(Money money, PrizeResult prizeResult){
+        return new Rate(money, prizeResult);
     }
 }

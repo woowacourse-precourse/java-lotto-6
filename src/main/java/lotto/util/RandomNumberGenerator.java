@@ -18,5 +18,4 @@ public class RandomNumberGenerator implements NumberGenerator {
 	public List<Integer> generate() {
 		return Randoms.pickUniqueNumbersInRange(minimumInclusive, maximumInclusive, randomAmount);
 	}
-
 }

@@ -10,12 +10,12 @@ import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class GameController {
+public class LottoController {
 	private final InputView input;
 	private final OutputView output;
 	private final LottoService lottoService;
 
-	public GameController(InputView inputView, OutputView outputView, LottoService lottoService) {
+	public LottoController(InputView inputView, OutputView outputView, LottoService lottoService) {
 		this.input = inputView;
 		this.output = outputView;
 		this.lottoService = lottoService;

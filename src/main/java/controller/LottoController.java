@@ -6,7 +6,6 @@ import java.util.List;
 import lotto.Lotto;
 import repository.RankRepository;
 import util.LottoNumber;
-import util.ValidationBonusNumber;
 import view.InputView;
 import view.OutputView;
 
@@ -31,6 +30,13 @@ public class LottoController {
     public void startGame() {
         initGame();
         calcTwoNumberList();
+        endGame();
+    }
+
+    public void endGame() {
+        Integer purchasePrice = lottoList.size() * UNIT_NUMBER;
+        OutputView.outputWinningStatistics();
+        OutputView.outputRateOfReturn(RankRepository.getRateOfReturn(purchasePrice));
     }
 
     public void calcTwoNumberList() {

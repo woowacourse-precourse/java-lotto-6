@@ -13,24 +13,16 @@ public enum LottoPrice {
         this.price = price;
     }
 
-    public PurchasableLottoCount calculateLottoCount(int investMoney) {
-        int count = calculatePurchasableLottoCount(investMoney);
+    public PurchasableLottoCount createPurchasableLottoCount(InvestmentMoney investMoney) {
+        int count = calculateLottoCount(investMoney);
 
         return PurchasableLottoCount.from(count);
     }
 
-    private int calculatePurchasableLottoCount(int investMoney) {
-        validateUnderMinimum(investMoney);
-        validateDivisible(investMoney);
+    private int calculateLottoCount(InvestmentMoney investMoney) {
+        int money = investMoney.getMoney();
 
-        return investMoney / price;
-    }
-
-    private void validateUnderMinimum(int investMoney) {
-        if (investMoney < price) {
-            String exceptionMessage = String.format(MINIMUM_AMOUNT_EXCEPTION_FORMAT, price);
-            throw new IllegalArgumentException(exceptionMessage);
-        }
+        return money / price;
     }
 
     public void validateDivisible(int investMoney) {

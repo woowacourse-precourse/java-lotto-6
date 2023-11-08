@@ -54,7 +54,7 @@ public final class InvestmentMoney {
     }
 
     public PurchasableLottoCount calculatePurchasableLottoCount(LottoPrice lottoPrice) {
-        return lottoPrice.calculateLottoCount(money);
+        return lottoPrice.createPurchasableLottoCount(this);
     }
 
     public TotalProfitRate calculateTotalProfitRate(TotalPrizeAmount totalPrizeAmount) {
@@ -67,6 +67,10 @@ public final class InvestmentMoney {
 
     private BigDecimal toPercentage(BigDecimal prizeToInvestmentRatio, BigDecimal percentMultiplier) {
         return prizeToInvestmentRatio.multiply(percentMultiplier);
+    }
+
+    public int getMoney() {
+        return money;
     }
 
     @Override

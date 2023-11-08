@@ -6,8 +6,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
+    private static final String PROMPT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
+    private static final String PROMPT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
+    private static final String PROMPT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+
     public int getUserInputPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(PROMPT_PURCHASE_AMOUNT);
         String userInput = Console.readLine();
         System.out.println();
 
@@ -19,7 +23,7 @@ public class InputView {
     }
 
     public List<Integer> getUserInputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(PROMPT_WINNING_NUMBERS);
         String userInput = Console.readLine();
         System.out.println();
 
@@ -32,7 +36,7 @@ public class InputView {
     }
 
     public int getUserInputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(PROMPT_BONUS_NUMBER);
         String userInput = Console.readLine();
         System.out.println();
 

@@ -1,5 +1,6 @@
 package lotto.validator;
 
+import static lotto.validator.ExceptionMessages.BONUS_NUMBER_DUPLICATE;
 import static lotto.validator.ExceptionMessages.DUPLICATE_NUMBERS;
 import static lotto.validator.ExceptionMessages.INCORRECT_COUNT;
 import static lotto.validator.ExceptionMessages.INVALID_INPUT;
@@ -30,6 +31,14 @@ public class Validator {
         for (String value : winningNumbers) {
             validateNumericInput(value);
             validateInputRange(value);
+        }
+    }
+
+    public static void validateBonusNumber(List<Integer> winningNumbers, String input) {
+        validateNumericInput(input);
+        validateInputRange(input);
+        if (winningNumbers.contains(Integer.parseInt(input))) {
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE.getErrorMessage());
         }
     }
 

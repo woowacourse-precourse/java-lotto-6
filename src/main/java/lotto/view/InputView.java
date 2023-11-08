@@ -34,6 +34,19 @@ public class InputView {
         }
     }
 
+    public int inputBonusNumber(List<Integer> winningNumbers) {
+        System.out.println(INPUT_BONUS_NUMBER);
+        String bonusNumberInput = Console.readLine().trim();
+        try {
+            Validator.validateBonusNumber(winningNumbers, bonusNumberInput);
+            return Integer.parseInt(bonusNumberInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBonusNumber();
+        }
+    }
+
+
     private List<Integer> changeInputToNumber (String input) {
         String[] values = input.split(",");
         List<Integer> winningNumbers =  new ArrayList<>();

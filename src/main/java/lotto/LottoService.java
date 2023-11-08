@@ -18,6 +18,7 @@ public class LottoService {
         int lottoCount = lottoShop.buyLotto(money);
         List<Lotto> lottoTickets = getLottoTickets(lottoCount);
         List<Integer> winningNumbers = inputView.inputWinningNumbers();
+        int bonusNumber = inputView.inputBonusNumber(winningNumbers);
     }
 
     public List<Lotto> getLottoTickets(int count) {
@@ -29,5 +30,7 @@ public class LottoService {
         outputView.outputLottoTickets(lottoSets);
         return lottoSets;
     }
+
+
 }
 

@@ -34,9 +34,9 @@ public class InputLottoUI {
     }
 
     public static void rateOfReturn(int totalPrize, int money) {
-        double profitRate = (double) totalPrize / money * 100;
+        double profitRate = ((double) totalPrize / money) * 100;
         String formattedProfitRate = String.format("%.1f%%", profitRate);
-        System.out.println("총 수익률은: " + formattedProfitRate);
+        System.out.println("총 수익률은 " + formattedProfitRate + "입니다.");
     }
 
     public static void rankViewTotal(String resultDescription, int count){

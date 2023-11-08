@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.User;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,6 +16,7 @@ public class GameController {
             }
         }
 
+        User.lottoBoughtNum();
         OutputView.printBoughtNum();
 
         OutputView.printLotto();
@@ -43,6 +45,6 @@ public class GameController {
 
         OutputView.printLottoResult();
 
-        OutputView.printRateOfReturn();
+//        OutputView.printRateOfReturn();
     }
 }

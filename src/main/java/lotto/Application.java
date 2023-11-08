@@ -4,6 +4,7 @@ import lotto.controller.LottoController;
 import lotto.controller.MoneyController;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.WinningNumbers;
 
 public class Application {
     public static void main(final String... args) {
@@ -13,5 +14,7 @@ public class Application {
         Money money = moneyController.inputMoney();
         Lottos lottos = lottoController.createLottos(money.calculateNumberOfLottoTickets());
         lottoController.printLottos(lottos);
+
+        WinningNumbers winningNumbers = lottoController.createLottoWinningNumbers();
     }
 }

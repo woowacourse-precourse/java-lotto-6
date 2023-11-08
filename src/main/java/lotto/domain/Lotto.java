@@ -34,7 +34,7 @@ public class Lotto {
 
     public void isValidDuplication(List<LottoNumber> numbers) {
         boolean hasDuplicateLottoNumber = numbers.stream()
-                .anyMatch(lottoNumber -> Collections.frequency(lottoNumbers, lottoNumber) != 1);
+                .anyMatch(lottoNumber -> Collections.frequency(numbers, lottoNumber) != 1);
         if (hasDuplicateLottoNumber) {
             throw new IllegalArgumentException(ERROR_DUPLICATE_LOTTO_NUMBER_EXISTENCE.getMessage());
         }

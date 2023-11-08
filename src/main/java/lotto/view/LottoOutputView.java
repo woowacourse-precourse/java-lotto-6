@@ -70,11 +70,7 @@ public class LottoOutputView {
         );
 
         return IntStream.range(START_INDEX, winCounts.size())
-                .mapToObj(index -> {
-                    String prize = prizeMessages.get(index);
-                    long winCount = winCounts.get(index);
-                    return String.format(prize, winCount);
-                })
+                .mapToObj(index -> String.format(prizeMessages.get(index), winCounts.get(index)))
                 .collect(Collectors.joining(NEW_LINE));
     }
 }

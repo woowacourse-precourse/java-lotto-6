@@ -9,4 +9,13 @@ public class OutputPrinter {
             System.out.println(Lotteries.get(i).toString());
         }
     }
+
+    public static void printResult() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
+
+    public static void printRankingMessage(String message, int numberOfMatch) {
+        System.out.println(message + numberOfMatch + "개");
+    }
 }

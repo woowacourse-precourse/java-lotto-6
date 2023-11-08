@@ -5,8 +5,8 @@
 - [X] 구입 금액에 따라 발행할 로또 티켓 계산하기                                                   Lotto#countLottoTickets()
 - [X] 로또 티켓 개수에 맞춰 발권하기 (배열 생성)                                                   Lotto#createLottoTickets()
 
-- [] 당첨 확인하기                                                                         Judgement#compareLottoNumbers()
-- [] 총 수익률 계산하기 (소수점 둘째 자리에서 반올림)                                              Judgement#calculateRevenue()
+- [X] 당첨 확인하기                                                                         Judgement#compareLottoNumbers()
+- [X] 총 수익률 계산하기 (소수점 둘째 자리에서 반올림)                                              Judgement#calculateRevenue()
 
 - [X] 로또 구입 금액을 입력 받기 (1,000으로 나누어 떨어지지 않는 경우 예외처리)                          UserInput#getMoney()
 - [X] 당첨 번호를 입력 받기 (번호는 쉼표(,)를 기준으로 구분)                                         UserInput#getWinnersNumbers()

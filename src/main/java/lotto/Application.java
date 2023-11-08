@@ -8,6 +8,10 @@ public class Application {
     public static void main(String[] args) {
 
         LottoGame lottoGame = new LottoGame(InputView.getInputNumber());
-        OutputView.printBuyGames(lottoGame.getNumberOfGames());
+
+        int numberOfGames = lottoGame.getNumberOfGames();
+        OutputView.printBuyGames(numberOfGames);
+        lottoGame.createLottoList(numberOfGames);
+
     }
 }

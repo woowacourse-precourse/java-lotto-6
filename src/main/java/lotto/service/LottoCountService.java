@@ -17,13 +17,13 @@ public class LottoCountService {
 
     public Match countMatching(List<Lotto> userPurchasedLotto, WinningLottoNumbers winningLottoNumbers, Bonus bonus) {
 
-        Match match = new Match();
+        Match matchResult = new Match();
 
         userPurchasedLotto.forEach(lotto -> {
-            match.incrementMatchCount(countSingleMatching(lotto, winningLottoNumbers, bonus));
+            matchResult.incrementMatchCount(countSingleMatching(lotto, winningLottoNumbers, bonus));
         });
 
-        return match;
+        return matchResult;
     }
 
     private int countSingleMatching(Lotto singleLotto, WinningLottoNumbers winningLottoNumbers, Bonus bonus) {

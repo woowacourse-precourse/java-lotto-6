@@ -18,6 +18,14 @@ public class Match {
         }
     }
 
+    public List<Integer> getMatchCounts() {
+        return matchCounts;
+    }
+
+    public int getSingleMatchCount(int index){
+        return matchCounts.get(index);
+    }
+
     @Override
     public String toString() {
         return "Match{" +

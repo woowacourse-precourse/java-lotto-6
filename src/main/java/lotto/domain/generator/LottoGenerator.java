@@ -19,7 +19,7 @@ public class LottoGenerator {
         return lottos;
     }
 
-    public List<Integer> generateLottoNumber() {
+    private List<Integer> generateLottoNumber() {
         return Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT);
     }
 }

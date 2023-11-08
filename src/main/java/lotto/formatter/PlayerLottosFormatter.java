@@ -15,7 +15,7 @@ public class PlayerLottosFormatter {
         this.resultLottos = resultLottos;
     }
 
-    public String toResultLottoMessage() {
+    public String toPlayerLottosResultMessage() {
         StringBuilder sb = new StringBuilder();
 
         sb.append(String.format(ProgressMessage.PURCHASE_LOTTOS_MESSAGE, resultLottos.size()))

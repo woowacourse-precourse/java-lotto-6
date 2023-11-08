@@ -24,7 +24,7 @@ public class OutputView {
 
     public void printPlayerLottoResultMessage(PlayerLottosFormatter playerLottosFormatter) {
         printNextLine();
-        System.out.println(playerLottosFormatter.toResultLottoMessage());
+        System.out.println(playerLottosFormatter.toPlayerLottosResultMessage());
     }
 
     public void printGameResultMessage(GameResultFormatter lottoStatisticsResultFormatter) {

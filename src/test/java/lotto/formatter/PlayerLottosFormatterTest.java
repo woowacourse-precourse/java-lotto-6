@@ -22,12 +22,12 @@ class PlayerLottosFormatterTest {
     @ParameterizedTest
     @MethodSource("lottosResources")
     @DisplayName("로또 생성 결과에 따라 출력 형태를 얻는다.")
-    void Given_CreatePlayerLottosFormatter_When_toResultLottoMessage_Then_EqualType(List<Numbers> values) {
+    void Given_CreatePlayerLottosFormatter_When_toPlayerLottoResultMessage_Then_EqualType(List<Numbers> values) {
         //given
-        PlayerLottosFormatter lottoResultFormatter = new PlayerLottosFormatter(values);
+        PlayerLottosFormatter playerLottosFormatter = new PlayerLottosFormatter(values);
 
         //when
-        String resultLottoMessage = lottoResultFormatter.toResultLottoMessage();
+        String resultLottoMessage = playerLottosFormatter.toPlayerLottosResultMessage();
 
         //then
         assertThat(resultLottoMessage).isEqualTo(

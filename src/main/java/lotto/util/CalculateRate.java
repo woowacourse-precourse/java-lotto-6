@@ -8,6 +8,7 @@ public class CalculateRate {
         double result = (double) money / purchaseAmount * 100;
         String rate = formatNumberWithComma(result);
         Double resultRate = Double.parseDouble(rate);
+
         return resultRate;
     }
 

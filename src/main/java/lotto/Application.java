@@ -19,4 +19,4 @@ public class Application {
             Runtime.getRuntime().exit(0);
         }
     }
-}ㅎ
+}

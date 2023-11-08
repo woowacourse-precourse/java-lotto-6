@@ -111,3 +111,20 @@
   - [o] 이미 당첨 번호에 포함된 번호인 경우
   - [o] 보너스 번호가 입력 되지 않았을 경우 
   - [o] 숫자가 아닌 문자나 특수 문자를 입력 했을 때
+
+## 테스트
+
+### 예외처리 테스트
+- [ ] LottoTest
+- [ ] LottoPurchaseTest 
+- [ ] LottoBonusTest
+
+### 기능 테스트
+- [ ] LottoNumberTest
+- [ ] LottoTicketCalculatorTest
+- [ ] LottoTicketCreatorTest
+- [ ] LottoMatchingDataTest
+- [ ] LottoRankCheckerTest
+- [ ] LottoReturnsCalculatorTest
+- [ ] LottoTotalWinningsTest
+- [ ] LottoWinningStatisticsTest 

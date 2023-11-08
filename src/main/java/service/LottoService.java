@@ -40,7 +40,7 @@ public class LottoService {
 
     public EnumMap<Reward, Integer> pick(Lotto lotto, Bonus bonus) {
         for(Lotto l : lottos){
-            int sameCount = getSameSize(l);
+            int sameCount = getSameSize(l, lotto);
             boolean isSameBonus = checkBonus(lotto, bonus);
             setReward(sameCount, isSameBonus);
         }
@@ -61,9 +61,9 @@ public class LottoService {
         return amount / Constant.DIVIDE_UNIT;
     }
 
-    private int getSameSize(Lotto lotto){
+    private int getSameSize(Lotto lotto, Lotto winningLotto){
         List<Integer> duplication = new ArrayList<>();
-        duplication = lotto.getNumbers().stream().filter(s -> lotto.getNumbers().contains(s))
+        duplication = lotto.getNumbers().stream().filter(s -> winningLotto.getNumbers().contains(s))
                 .collect(Collectors.toList());
         return duplication.size();
     }

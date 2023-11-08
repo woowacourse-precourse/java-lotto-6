@@ -4,6 +4,7 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 import exception.DuplicateNumberException;
 import exception.SizeNotEqualException;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -41,5 +42,9 @@ public class Lotto {
         return numbers.stream()
                 .map(LottoNumber::new)
                 .toList();
+    }
+
+    public List<LottoNumber> getLottoNumbers() {
+        return Collections.unmodifiableList(lottoNumbers);
     }
 }

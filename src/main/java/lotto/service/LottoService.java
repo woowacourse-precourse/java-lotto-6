@@ -18,8 +18,9 @@ import java.util.HashSet;
 
 public class LottoService {
     private static final int TWO_LOTTO_CIPHERS = 12;
-    private static final double TEMPORARY_MULTIPLICATION_FOR_ROUND = 10.0;
+    private static final double MULTIPLICATION_FOR_ROUND = 10.0;
     public static final double PERCENT_UNIT = 100.0;
+
     private final LottoRepository lottoRepository = new LottoRepository();
     private int paidMoney;
 
@@ -77,7 +78,7 @@ public class LottoService {
 
     private void calculateRankingCount(Map<Ranking, Integer> rankingCount,
                                        int matchedNumberCount, boolean isBonusNumberMatched) {
-        for (Ranking ranking : Ranking.values()) {
+        for (Ranking ranking : Ranking.values()) { // Ranking에 저장한 순서 즉, 1 -> 5등 순으로 탐색한다.
             if (ranking.isThisRanking(matchedNumberCount, isBonusNumberMatched)) {
                 rankingCount.put(ranking, rankingCount.getOrDefault(ranking, 0) + 1);
                 return;
@@ -100,7 +101,7 @@ public class LottoService {
     }
 
     private double roundOffSecondDecimalPlace(double benefitRate) {
-        return Math.round(benefitRate * TEMPORARY_MULTIPLICATION_FOR_ROUND)
-                / TEMPORARY_MULTIPLICATION_FOR_ROUND;
+        return Math.round(benefitRate * MULTIPLICATION_FOR_ROUND)
+                / MULTIPLICATION_FOR_ROUND;
     }
 }

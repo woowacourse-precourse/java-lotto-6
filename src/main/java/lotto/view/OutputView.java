@@ -44,18 +44,28 @@ public class OutputView {
     }
 
     public void announceFinalResult(ResultDto resultDto) {
+        beforePrintFinalResult();
+        printWinResult(resultDto);
+        printBenefitRate(resultDto);
+    }
+
+    private void beforePrintFinalResult() {
         System.out.print(PreviewSentence.LINE_SEPARATOR.getMessage());
         System.out.println(PreviewSentence.START_WIN_RESULT.getMessage());
         System.out.println(PreviewSentence.BAR_SEPARATOR.getMessage());
+    }
 
+    private void printWinResult(ResultDto resultDto) {
         Map<Ranking, Integer> rankingCounts = resultDto.rankingCounts();
         Arrays.stream(Ranking.values())
-                .sorted(Comparator.reverseOrder())
+                .sorted(Comparator.reverseOrder()) // 5등 -> 1등 순으로 정렬
                 .forEach(ranking -> {
                     Integer rankingCount = rankingCounts.getOrDefault(ranking, NEVER_COUNTED);
-                        System.out.println(ranking.getMessage(rankingCount));
+                    System.out.println(ranking.getMessage(rankingCount));
                 });
+    }
 
+    private void printBenefitRate(ResultDto resultDto) {
         System.out.println(PreviewSentence.BENEFIT_RATE_ANNOUNCEMENT.getMessage(resultDto.benefitRate()));
     }
 }

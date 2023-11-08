@@ -6,7 +6,6 @@ import static lotto.util.consts.ErrorMessage.MINUS_MONEY;
 import static lotto.util.consts.ErrorMessage.NOT_DIVIDED_BY_LOTTO_PRICE;
 
 public record MoneyDto(int amount) {
-
     public MoneyDto {
         validate(amount);
     }

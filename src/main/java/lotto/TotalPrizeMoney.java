@@ -22,13 +22,13 @@ public class TotalPrizeMoney {
         return new TotalPrizeMoney(sum);
     }
 
+    public Integer getTotalPrizeMoney(){
+        return totalPrizeMoney;
+    }
+
     public Double getEarningRate(Integer money) {
         Double earningRate = Double.valueOf(totalPrizeMoney)  / Double.valueOf(money)  * 100;
         return Double.valueOf(Math.round(earningRate * 10)) / 10;
-    }
-
-    public Integer getTotalPrizeMoney(){
-        return totalPrizeMoney;
     }
 
 }

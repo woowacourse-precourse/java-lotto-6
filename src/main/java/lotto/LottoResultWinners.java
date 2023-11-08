@@ -13,6 +13,22 @@ public class LottoResultWinners {
         }
     }
 
+    public Integer getNumberOfRankWinner(Rank rank) {
+        return lottoResultWinner.get(rank);
+    }
+
+    public Integer getNumberOfAllWinner() {
+        Integer sum = 0;
+        Integer rankCount = 0;
+        for (Rank rank : Rank.values()) {
+            rankCount = getNumberOfRankWinner(rank);
+            if(rankCount >= 1){
+                sum += rankCount;
+            }
+        }
+        return sum;
+    }
+
     public void add(LottoResult lottoResult) {
         for (Rank rank : Rank.values()){
             if(!checkWinner(lottoResult,rank)){
@@ -39,19 +55,4 @@ public class LottoResultWinners {
                 && lottoResult.getBonus() != rank.getBonus();
     }
 
-    public Integer getNumberOfRankWinner(Rank rank) {
-        return lottoResultWinner.get(rank);
-    }
-
-    public Integer getNumberOfAllWinner() {
-        Integer sum = 0;
-        Integer rankCount = 0;
-        for (Rank rank : Rank.values()) {
-            rankCount = getNumberOfRankWinner(rank);
-            if(rankCount >= 1){
-                sum += rankCount;
-            }
-        }
-        return sum;
-    }
 }

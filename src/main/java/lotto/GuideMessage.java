@@ -72,16 +72,16 @@ public class GuideMessage{
         System.out.printf(GROSS_RETURN,earningRate);
     }
 
-    private static void printFiveMatchBonusResult(Rank rank, Integer numberOfWinner){
-        System.out.println(rank.getNumberOfMatch()+UNIT_EQUAL+COMMA+BLANK+BONUS_BALL_EQUAL+BLANK+LEFT_PARENTHESES
-                +rank.getPrizeMoney()+WON+RIGHT_PARENTHESES+BLANK+DASH+BLANK+numberOfWinner+UNIT);
-        return;
-    }
-
     private static void printLottoMatchResult(Rank rank, Integer numberOfWinner) {
         System.out.println(
                 rank.getNumberOfMatch()+UNIT_EQUAL+BLANK+LEFT_PARENTHESES +rank.getPrizeMoney()+WON
                         +RIGHT_PARENTHESES+BLANK+DASH+BLANK+numberOfWinner+UNIT);
+        return;
+    }
+    
+    private static void printFiveMatchBonusResult(Rank rank, Integer numberOfWinner){
+        System.out.println(rank.getNumberOfMatch()+UNIT_EQUAL+COMMA+BLANK+BONUS_BALL_EQUAL+BLANK+LEFT_PARENTHESES
+                +rank.getPrizeMoney()+WON+RIGHT_PARENTHESES+BLANK+DASH+BLANK+numberOfWinner+UNIT);
         return;
     }
 

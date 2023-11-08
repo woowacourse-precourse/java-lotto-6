@@ -28,16 +28,16 @@ public class Lottos {
         return new Lottos(numberOfLotto);
     }
 
-    public static Integer countNumberOfLottoIssue(Integer money){
-        return money / COST_OF_LOTTO;
-    }
-
     public Lotto getLotto(Integer index) {
         return lottos.get(index);
     }
 
     public Integer getSize(){
         return lottos.size();
+    }
+
+    public static Integer countNumberOfLottoIssue(Integer money){
+        return money / COST_OF_LOTTO;
     }
 
 }

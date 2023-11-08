@@ -4,8 +4,8 @@ import static lotto.configurations.ErrorMessages.*;
 import static lotto.configurations.SettingValues.*;
 
 public class BonusNumber {
-    WinningNumbers winningNumbers;
-    Integer bonusNumber;
+    private final WinningNumbers winningNumbers;
+    private final Integer bonusNumber;
 
     public BonusNumber(WinningNumbers winningNumbers, Integer bonusNumber) {
         validate(winningNumbers, bonusNumber);

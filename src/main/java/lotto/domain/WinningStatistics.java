@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.dto.WinningResponseDto;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,8 +12,6 @@ public enum WinningStatistics {
     FIFTH(List.of(3L), false, 5, 5000),
     RETIER(List.of(0L, 1L, 2L), false, 6, 0),
     NONE(List.of(), false, 0, 0);
-
-    private static final String NOT_EXIST_RANK_MESSAGE = "[ERROR] 존재하지 않는 등수입니다.";
 
     private List<Long> tier;
     private boolean correctBonusFlag;

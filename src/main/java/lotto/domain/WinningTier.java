@@ -59,9 +59,6 @@ public class WinningTier {
         return WinningTierResponseDto.of(responseMap);
     }
 
-
-
-
     public HashMap<Integer, Integer> toHashMap() {
         return this.winningTier;
     }

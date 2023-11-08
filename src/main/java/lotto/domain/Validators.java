@@ -21,12 +21,13 @@ public class Validators {
 
     public static void validateStringIsIntegerConvertable(String inputString) {
         if (inputString.isEmpty()) {
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             throw new IllegalArgumentException();
         }
-
         try {
             Integer.parseInt(inputString);
         } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             throw new IllegalArgumentException();
         }
     }
@@ -40,29 +41,38 @@ public class Validators {
     public static boolean validateWinningNumbers(String inputWinningNumbers) {
         try {
             validateSixNumbers(inputWinningNumbers);
-            String[] commaSeperatedString = inputWinningNumbers.split(",");
-            for (String stringNumber : commaSeperatedString) {
-                validateStringIsIntegerConvertable(stringNumber);
-            }
+            validateIntegerListConvertable(inputWinningNumbers);
+            String[] stringWinningNumbers = inputWinningNumbers.split(",");
+            List<Integer> winningNumbers = Manager.convertStringToIntegerList(stringWinningNumbers);
+            validateRedundancy(winningNumbers);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             return false;
         }
         return true;
     }
+
+    public static void validateIntegerListConvertable(String inputNumbers) {
+        String[] commaSeperated = inputNumbers.split(",");
+        try {
+            for (String stringNumber : commaSeperated) {
+                validateStringIsIntegerConvertable(stringNumber);
+            }
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static void validateBonusNumber(int number, List<Integer> winningNumbers) {
         if (winningNumbers.contains(number)) {
             throw new IllegalArgumentException();
         }
     }
-    public static void validateRedundance(List<Integer> numberList) {
-        try {
-            Set<Integer> numberSet = new HashSet<>(numberList);
-            if (numberSet.size() < 6) {
-                throw new IllegalArgumentException();
-            }
-        } catch (IllegalArgumentException e) {
+
+    public static void validateRedundancy(List<Integer> numberList) {
+        Set<Integer> numberSet = new HashSet<>(numberList);
+        if (numberSet.size() < 6) {
             System.out.println("[ERROR] 로또 번호는 서로 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException();
         }
     }
 

@@ -5,7 +5,6 @@ import lotto.domain.Lotto;
 import lotto.domain.Manager;
 import lotto.domain.Prize;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,9 +27,8 @@ public class Application {
         Prize prize = new Prize();
         HashMap<String, Integer> prizeCountsRecords = prize.compareAllLottoTickets(customerTickets, winningNumbers, bonusNumber);
         prize.printResults(prizeCountsRecords);
-
-        // TODO: 로또 수익률 출654
+        
         double rateOfReturn = customer.getRateOfReturn(prizeCountsRecords);
-        System.out.printf("총 수익률은 %.1f%입니다.", rateOfReturn);
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
     }
 }

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Prize {
-    private static HashMap<String, Integer> prizeRecords = new HashMap<>();
+    private static final HashMap<String, Integer> prizeRecords = new HashMap<>();
 
     enum PrizeType {
         FIRST_PLACE(6, "2,000,000,000", false, "firstPlace"),

@@ -1,15 +1,16 @@
 package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
-    public static List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
+        validateRedundancy(numbers);
+        numbers.sort(Comparator.naturalOrder());
         this.numbers = numbers;
     }
 
@@ -18,7 +19,15 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-    public List<Integer> getNumbers() {return numbers;}
+
+    private void validateRedundancy(List<Integer> numbers) {
+        Validators.validateRedundancy(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public String toString() {
         List<String> numbersForPrint = new ArrayList<>();
         for (int i : numbers) {

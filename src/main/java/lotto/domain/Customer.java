@@ -25,7 +25,7 @@ public class Customer {
         return totalProfits;
     }
 
-    public static double getRateOfReturn(HashMap<String, Integer> prizeCountsRecords) {
+    public double getRateOfReturn(HashMap<String, Integer> prizeCountsRecords) {
         int totalProfits = getTotalProfits(prizeCountsRecords);
         double rateOfReturn = (double) totalProfits / BUDGET;
         rateOfReturn = Math.round(rateOfReturn);

@@ -35,7 +35,7 @@ public class WinningNumberValidator {
 
     private void isNumber() {
         numbers.stream()
-                .filter(numbers -> !Pattern.compile(Patterns.WINNING_NUMBER_PATTERN.getPattern())
+                .filter(numbers -> !Pattern.compile(Patterns.LOTTO_NUMBER_PATTERN.getPattern())
                         .matcher(String.valueOf(numbers)).find())
                 .findAny()
                 .ifPresent(s -> {

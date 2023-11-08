@@ -9,6 +9,7 @@ public class Lottos {
     public Lottos(List<Lotto> lottoNumbers) {
         this.lottoNumbers = lottoNumbers;
     }
+
     public List<Integer> calcurateLottoCounts(WinningNumber winningNumber) {
         List<Integer> lottoPrizes = new ArrayList<>();
         lottoNumbers.stream().forEach(lotto -> {

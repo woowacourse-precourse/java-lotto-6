@@ -17,4 +17,8 @@ public class BonusNumber {
             throw new IllegalArgumentException(ErrorMessageConstant.BONUS_NUMBER_DUPLICATE_WINNING_NUMBER.getMessage());
         }
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

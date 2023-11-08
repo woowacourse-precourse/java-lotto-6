@@ -34,7 +34,7 @@ class LottoTest {
         List<Integer> winNums = List.of(1, 2, 3, 4, 5, 6);
         int bonusNum = 7;
 
-        int result = lotto.getRank(winNums, bonusNum);
+        int result = lotto.getRank(winNums, bonusNum).getValue();
 
         assertThat(result).isEqualTo(rank);
     }

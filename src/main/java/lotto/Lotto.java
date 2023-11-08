@@ -24,25 +24,23 @@ public class Lotto {
         }
     }
 
-    public int getRank(List<Integer> winNums, int bonusNum) {
+    public Rank getRank(List<Integer> winNums, int bonusNum) {
         long correctCount = numbers.stream()
                 .filter(number -> winNums.contains(number))
                 .count();
 
-        int rank = calculateRank((int) correctCount, bonusNum);
-        return rank;
+        return calculateRank((int) correctCount, bonusNum);
     }
 
-    private int calculateRank(int correctCount, int bonusNum) {
+    private Rank calculateRank(int correctCount, int bonusNum) {
         if(correctCount == 6) {
-            return 1;
+            return Rank.FIRST;
         }
 
         if (correctCount == 5 && numbers.contains(bonusNum)) {
-            return 2;
+            return Rank.SECOND;
         }
 
-        int rank = (correctCount >= 3) ? 8 - (int) correctCount : -1;
-        return rank;
+        return Rank.of((correctCount >= 3) ? 8 - (int) correctCount : -1);
     }
 }

@@ -14,4 +14,8 @@ public enum GameNumber {
     GameNumber(long number) {
         this.number = number;
     }
+
+    public long getNumber() {
+        return number;
+    }
 }

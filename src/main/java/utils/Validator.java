@@ -27,7 +27,7 @@ public class Validator {
     }
 
     public static void checkLottoBonusNumber(List<Integer> numbers, int bonusNumber) {
-        if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
+        if (bonusNumber <= MIN_NUMBER || bonusNumber > MAX_NUMBER) {
             System.out.println(ErrorType.INVALID_BONUS_NUMBER_RANGE.getText());
             throw new IllegalArgumentException();
         }

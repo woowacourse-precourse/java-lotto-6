@@ -4,16 +4,16 @@ import java.util.Arrays;
 import java.util.function.BiPredicate;
 
 public enum WinningDetails {
-    FIRST(6, 2_000_000_000,
-            (matchCount, isBonusNumberMatch) -> matchCount == 6),
-    SECOND(5, 30_000_000,
-            (matchCount, isBonusNumberMatch) -> matchCount == 5 && isBonusNumberMatch),
-    THIRD(5, 1_500_000,
-            (matchCount, isBonusNumberMatch) -> matchCount == 5 && !isBonusNumberMatch),
-    FOURTH(4, 50_000,
-            (matchCount, isBonusNumberMatch) -> matchCount == 4),
     FIFTH(3, 5_000,
             (matchCount, isBonusNumberMatch) -> matchCount == 3),
+    FOURTH(4, 50_000,
+            (matchCount, isBonusNumberMatch) -> matchCount == 4),
+    THIRD(5, 1_500_000,
+            (matchCount, isBonusNumberMatch) -> matchCount == 5 && !isBonusNumberMatch),
+    SECOND(5, 30_000_000,
+            (matchCount, isBonusNumberMatch) -> matchCount == 5 && isBonusNumberMatch),
+    FIRST(6, 2_000_000_000,
+            (matchCount, isBonusNumberMatch) -> matchCount == 6),
     MISS(0, 0,
             (matchCount, isBonusNumberMatch) -> matchCount < 3);
 

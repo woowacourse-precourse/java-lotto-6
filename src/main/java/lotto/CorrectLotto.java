@@ -1,7 +1,9 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -50,7 +52,7 @@ public class CorrectLotto {
 
         return converted_numbers;
     }
-    public void inputNumbers(){
+    public void inputCorrectLotto(){
         while(true) {
             String input_numbers = readLine();
             try {
@@ -67,9 +69,35 @@ public class CorrectLotto {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
+    // 보너스 번호가 [1, 45] 구간에 있는지 확인
+    private void IsNumberIn1to45(int number){
+        if(number < 1 || number > 45){
+            throw new IllegalArgumentException("보너스 번호는 1~45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    // 보너스 번호가 당첨 번호와 중복되는지 확인
+    private void IsNumberDuplicate(int number){
+        for(Integer correct_number : correct_lotto.getNumbers()){
+            if(correct_number == number){
+                throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            }
+        }
+    }
+
     public void inputBonus(){
-        String input_bonus = readLine();
-        bonus = IsInteger(input_bonus.strip());
+        while(true){
+            String input_number = readLine();
+            try {
+                int converted_number = IsInteger(input_number.strip());
+                IsNumberIn1to45(converted_number);
+                IsNumberDuplicate(converted_number);
+                bonus = converted_number;
+                break;
+            } catch(IllegalArgumentException e){
+                System.out.println("[Error] " + e.getMessage());
+            }
+        }
     }
 
 }

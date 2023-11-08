@@ -26,12 +26,20 @@ public class LottoController {
     }
 
     public void run() {
-        setting();
+        try {
+            setting();
+            settle();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private void setting() {
         PlayerAmount playerAmount = getPlayerAmount();
         Lottos lottos = createLottos(playerAmount);
+        outputView.printCreatedLotto(playerAmount, lottos);
+
         LottoResult lottoResult = setLottoResult();
 
         lottoService = new LottoService(lottos, lottoResult, playerAmount);
@@ -46,7 +54,7 @@ public class LottoController {
         List<Lotto> lottos = new ArrayList<>();
 
         IntStream.range(0, count)
-                .forEach(lotto -> new Lotto(RandomNumberGenerator.generate()));
+                .forEach(lotto -> lottos.add(new Lotto(RandomNumberGenerator.generate())));
 
         return Lottos.create(lottos);
     }
@@ -60,8 +68,9 @@ public class LottoController {
 
     private void settle() {
         RankResult rankResult = lottoService.getLottoRankResult();
+        outputView.printLottoRank(rankResult);
+
         Profit profit = lottoService.getLottoProfitRate(rankResult);
-
-
+        outputView.printLottoProfitRate(profit);
     }
 }

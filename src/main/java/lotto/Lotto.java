@@ -1,11 +1,14 @@
 package lotto;
 
+import static lotto.constant.ErrorMessage.INCORRECT_NUMBER_OF_LOTTO;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
 
     private static final int NUMBER_OF_LOTTO = 6;
+
     private final List<LottoNumber> numbers;
 
     public Lotto() {
@@ -13,13 +16,13 @@ public class Lotto {
     }
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers.stream().map(LottoNumber::new).toList();;
+        validateNumberOfLotto(numbers);
+        this.numbers = numbers.stream().map(LottoNumber::new).toList();
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+    private void validateNumberOfLotto(List<Integer> numbers) {
+        if (numbers.size() != NUMBER_OF_LOTTO) {
+            throw new IllegalArgumentException(INCORRECT_NUMBER_OF_LOTTO);
         }
     }
 

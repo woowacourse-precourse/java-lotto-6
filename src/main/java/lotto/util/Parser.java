@@ -13,11 +13,18 @@ public class Parser {
     }
 
     public static List<Integer> stringToIntList(final String string) {
+        validateNull(string);
         List<String> strings = List.of(string.split(LIST_DELIMITER));
         strings.forEach(Parser::validateInteger);
         return strings.stream()
                 .map(Parser::stringToInt)
                 .toList();
+    }
+
+    private static void validateNull(String string) {
+        if (string == null) {
+           INPUT_ONLY_NUMBER.create();
+        }
     }
 
     private static void validateInteger(final String string) {
@@ -35,6 +42,7 @@ public class Parser {
     }
 
     public static int stringToInt(final String string) {
+        validateNull(string);
         validateInteger(string);
         return Integer.parseInt(string);
     }

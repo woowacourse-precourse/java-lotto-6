@@ -1,9 +1,7 @@
 package lotto.view;
 
-import static lotto.validator.InputValidator.validateAmount;
-import static lotto.validator.InputValidator.validatePrizeNumbers;
-import static lotto.view.constants.PrintType.REQUEST_PRIZE_NUMBERS_MESSAGE;
-import static lotto.view.constants.PrintType.REQUEST_PURCHASE_AMOUNT_MESSAGE;
+import static lotto.validator.InputValidator.*;
+import static lotto.view.constants.PrintType.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;

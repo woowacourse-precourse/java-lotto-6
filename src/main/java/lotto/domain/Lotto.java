@@ -1,8 +1,7 @@
 package lotto.domain;
 
-import static lotto.domain.constants.ErrorType.*;
-import static lotto.domain.constants.RangeType.PRIZE_NUMBER_MAX_RANGE;
-import static lotto.domain.constants.RangeType.PRIZE_NUMBER_MIN_RANGE;
+import static lotto.constants.RangeType.*;
+import static lotto.constants.ErrorType.*;
 
 import java.util.List;
 

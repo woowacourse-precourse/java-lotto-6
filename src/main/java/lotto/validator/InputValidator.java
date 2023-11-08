@@ -1,11 +1,7 @@
 package lotto.validator;
 
-import static lotto.domain.constants.ErrorType.NUMBER_OVER_MAX_OR_MIN_RANGE;
-import static lotto.domain.constants.RangeType.PRIZE_NUMBER_MAX_RANGE;
-import static lotto.domain.constants.RangeType.PRIZE_NUMBER_MIN_RANGE;
-import static lotto.validator.constants.ErrorType.*;
-import static lotto.validator.constants.RegexType.REMOVE_WHITE_SPACE_REGEX;
-import static lotto.validator.constants.RegexType.SPLIT_DELIMITER;
+import static lotto.constants.ErrorType.*;
+import static lotto.constants.RegexType.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -54,15 +50,8 @@ public class InputValidator {
 
     private static List<Integer> convertStringToInteger(String prizeNumbers) {
         List<Integer> numbers = Arrays.stream(prizeNumbers.split(SPLIT_DELIMITER.getRegex()))
-                .map(number -> validatePrizeNumberRange(Integer.parseInt(number)))
+                .map(number -> Integer.parseInt(number))
                 .toList();
         return numbers;
-    }
-
-    private static int validatePrizeNumberRange(int number) {
-        if (number < PRIZE_NUMBER_MIN_RANGE.getRange() || number > PRIZE_NUMBER_MAX_RANGE.getRange()) {
-            throw new IllegalArgumentException(NUMBER_OVER_MAX_OR_MIN_RANGE.getErrorMessage());
-        }
-        return number;
     }
 }

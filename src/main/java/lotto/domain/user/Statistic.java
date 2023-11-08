@@ -2,6 +2,7 @@ package lotto.domain.user;
 
 import lotto.config.Config;
 import lotto.constant.LottoRank;
+import lotto.constant.MyConstant;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
 import lotto.domain.number.LottoTargetNumResults;
@@ -40,7 +41,7 @@ public class Statistic {
 
         execution();
 
-        resultString.append("3개 일치 (5,000원) - " + getCount(LOTTO_FIFTH) + "개\n");
+        resultString.append(MyConstant.MSG_STATISTIC_FIFTH_PLACE(getCount(LOTTO_FIFTH)));
         resultString.append("4개 일치 (50,000원) - " + getCount(LOTTO_FOURTH) + "개\n");
         resultString.append("5개 일치 (1,500,000원) - " + getCount(LOTTO_THIRD) + "개\n");
         resultString.append("5개 일치, 보너스 볼 일치 (30,000,000원) - " + getCount(LOTTO_SECOND) + "개\n");

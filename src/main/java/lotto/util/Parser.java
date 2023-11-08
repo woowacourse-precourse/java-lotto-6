@@ -12,38 +12,38 @@ public class Parser {
     private Parser() {
     }
 
-    public static List<Integer> stringToIntList(final String string) {
-        validateNull(string);
-        List<String> strings = List.of(string.split(LIST_DELIMITER));
-        strings.forEach(Parser::validateInteger);
-        return strings.stream()
+    public static List<Integer> stringToIntList(final String input) {
+        validateNull(input);
+        List<String> inputs = List.of(input.split(LIST_DELIMITER));
+        inputs.forEach(Parser::validateInteger);
+        return inputs.stream()
                 .map(Parser::stringToInt)
                 .toList();
     }
 
-    private static void validateNull(String string) {
-        if (string == null) {
+    private static void validateNull(String input) {
+        if (input == null) {
             INPUT_ONLY_NUMBER.create();
         }
     }
 
-    private static void validateInteger(final String string) {
-        if (isNotInteger(string) || isEmpty(string)) {
+    private static void validateInteger(final String input) {
+        if (isNotInteger(input) || isEmpty(input)) {
             INPUT_ONLY_NUMBER.create();
         }
     }
 
-    private static boolean isNotInteger(final String string) {
-        return !string.matches("^[\\d]*$");
+    private static boolean isNotInteger(final String input) {
+        return !input.matches("^[\\d]*$");
     }
 
-    private static boolean isEmpty(final String string) {
-        return string.equals(EMPTY);
+    private static boolean isEmpty(final String input) {
+        return input.equals(EMPTY);
     }
 
-    public static int stringToInt(final String string) {
-        validateNull(string);
-        validateInteger(string);
-        return Integer.parseInt(string);
+    public static int stringToInt(final String input) {
+        validateNull(input);
+        validateInteger(input);
+        return Integer.parseInt(input);
     }
 }

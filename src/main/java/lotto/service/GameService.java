@@ -49,6 +49,15 @@ public class GameService {
         }
     }
 
+    public double calculateProfitRate() {
+        double totalProfit = 0;
+        for(Rank rank : Rank.values()){
+            totalProfit += rank.getWinningMoney() * rankCountMap.get(rank);
+        }
+
+        return totalProfit / (lottoCount * Lotto.LOTTO_PRICE) * 100;
+    }
+
     public int getLottoCount() {
         return lottoCount;
     }

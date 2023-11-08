@@ -44,7 +44,11 @@ public class GameController {
     }
 
     public void endGame() {
+        Map<Rank, Integer> rankCountMap = gameService.getRankCountMap();
+        outputView.printWinningStatistics(rankCountMap);
 
+        double profitRate = gameService.calculateProfitRate();
+        outputView.printProfitRate(profitRate);
     }
 
     private int convertRawInputLottoMoneyToInt(String rawInput) {

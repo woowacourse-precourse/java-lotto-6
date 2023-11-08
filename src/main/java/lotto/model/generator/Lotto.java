@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.generator;
 
 import java.util.List;
 import lotto.constant.ErrorMessage;

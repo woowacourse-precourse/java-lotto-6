@@ -8,19 +8,20 @@ import lotto.constant.UnitNumber;
 import lotto.constant.Winning;
 
 public class LottoOutputView {
-    public void printLottoPurchaseCount(int count) {
+    public static void printLottoPurchaseCount(int count) {
+        lineBreak();
         System.out.println(count + Message.PURCHASE_COUNT.getMessage());
     }
 
-    public void printLottoNumbers(List<Integer> numbers) {
+    public static void printLottoNumbers(List<Integer> numbers) {
         List<Integer> sortedNumbers = numbers.stream()
                 .sorted()
                 .collect(Collectors.toList());
         System.out.println(sortedNumbers);
     }
 
-    public void printWinningStatistics(Map<Winning, Integer> prize) {
-        LottoOutputView.lineBreak();
+    public static void printWinningStatistics(Map<Winning, Integer> prize) {
+        lineBreak();
         System.out.println(Message.WINNING_STATISTICS.getMessage());
         System.out.println(Message.WINNING_LINE_BREAK.getMessage());
 
@@ -31,7 +32,7 @@ public class LottoOutputView {
         }
     }
 
-    public void printRateOfReturn(double rate) {
+    public static void printRateOfReturn(double rate) {
         rate = (double) Math.round(rate * UnitNumber.ROUNDED_HELPER_NUMBER.getNumber())
                 / UnitNumber.ROUNDED_HELPER_NUMBER.getNumber();
         System.out.println(Message.RATE_OF_RETURN_SUBJECT.getMessage()

@@ -7,7 +7,7 @@ import java.util.List;
 import lotto.constant.BonusMatchType;
 import lotto.constant.Winning;
 import lotto.model.calculator.CheckWinning;
-import lotto.model.result.WinningRank;
+import lotto.model.calculator.WinningRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

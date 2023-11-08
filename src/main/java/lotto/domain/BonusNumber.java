@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.view.constatnt.ErrorMessage.LENGTH_TYPE_ERROR_MESSAGE;
-import static lotto.view.constatnt.Constant.*;
+import static lotto.view.constatnt.Constant.MAX_LENGTH;
+import static lotto.view.constatnt.Constant.MIN_LENGTH;
 
 public class BonusNumber {
     private final int bonusNumber;
@@ -13,15 +13,9 @@ public class BonusNumber {
 
     private void validateLengthAndType(int bonusNumber) {
         if(!(bonusNumber >= MIN_LENGTH && bonusNumber <= MAX_LENGTH)) {
-            throw new IllegalArgumentException(LENGTH_TYPE_ERROR_MESSAGE.getMessage());
+            throw new IllegalArgumentException();
         }
     }
-
-//    private void validateDuplicate(Lotto lotto, int bonusNumber) {
-//        if(lotto.c) {
-//            throw new IllegalArgumentException(LENGTH_TYPE_ERROR_MESSAGE.getMessage());
-//        }
-//    }
 
     public int getBonusNumber() {
         return bonusNumber;

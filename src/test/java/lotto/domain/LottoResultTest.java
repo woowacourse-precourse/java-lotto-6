@@ -52,13 +52,6 @@ public class LottoResultTest {
     @Test
     @DisplayName("정돈된 당첨 결과를 계산한다.")
     void getLottoResults() {
-        Map<Prize, Long> prizeResults = Map.of(
-                Prize.FIRST_PLACE, 1L,
-                Prize.SECOND_PLACE, 1L,
-                Prize.FOURTH_PLACE, 1L,
-                Prize.FIFTH_PLACE, 1L,
-                Prize.NO_PRIZE, 3L
-        );
         Map<Prize, Long> finalPrizeResults = Map.of(
                 Prize.FIFTH_PLACE, 1L,
                 Prize.FOURTH_PLACE, 1L,

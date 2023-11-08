@@ -16,7 +16,7 @@ public class WiningNumbers {
     public WiningTypeCount countWining(List<Lotto> lottos) {
         Map<WiningType, Integer> winingCountMap = WiningType.winingCountToMap();
         lottos.forEach(lotto -> {
-            int correctCount = lotto.countCorrectNumbers(lotto);
+            int correctCount = lotto.countCorrectNumbers(numbers);
             boolean hasBonus = bonus.compareNumber(lotto);
             WiningType wining = WiningType.findByWiningType(correctCount, hasBonus);
             winingCountMap.computeIfPresent(wining, (key, count) -> ++count);

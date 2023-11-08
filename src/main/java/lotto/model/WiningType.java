@@ -16,9 +16,9 @@ public enum WiningType {
     private String name;
     private int correctCount;
     private boolean hasBonus;
-    private int amount;
+    private long amount;
 
-    WiningType(String name, int correctCount, boolean hasBonus, int amount) {
+    WiningType(String name, int correctCount, boolean hasBonus, long amount) {
         this.name = name;
         this.correctCount = correctCount;
         this.hasBonus = hasBonus;
@@ -52,7 +52,7 @@ public enum WiningType {
         return correctCount;
     }
 
-    public int getAmount() {
+    public long getAmount() {
         return amount;
     }
 }

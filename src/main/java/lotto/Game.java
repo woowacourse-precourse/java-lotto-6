@@ -38,7 +38,8 @@ public class Game {
         List<Integer> list = Arrays.stream(Console.readLine().split(","))
                 .mapToInt(Integer::parseInt)
                 .boxed().collect(Collectors.toList());
-        Lotto lotto = new Lotto(list);
+        answer = new Lotto(list);
+
     }
 
     public void DoIt(){

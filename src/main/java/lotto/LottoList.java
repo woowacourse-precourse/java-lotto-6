@@ -7,7 +7,7 @@ import java.util.List;
 
 public class LottoList {
     private final int number_of_lotto;
-    private List<Lotto> lottoList;
+    private List<Lotto> lottoList = new ArrayList<>();
 
     public LottoList(int purchaseAmount) {
         this.number_of_lotto = purchaseAmount / 1000;
@@ -28,7 +28,6 @@ public class LottoList {
     }
 
     public void createLottoList(){
-        lottoList = new ArrayList<>();
         for(int i = 1; i <= number_of_lotto; i++) {
             List<Integer> picked_numbers = pickLottoNumbers();
             try {

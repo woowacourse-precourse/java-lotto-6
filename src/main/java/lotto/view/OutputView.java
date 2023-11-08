@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.enums.WinningMessage;
 import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.utils.Calculator;
@@ -31,13 +32,11 @@ public class OutputView {
     private static void displayWinningDetails(User user){
         List<Integer> ranks = user.getRanks();
         System.out.println();
-        System.out.println("당첨통계");
-        System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - "+Calculator.rankCount(5,ranks)+"개");
-        System.out.println("4개 일치 (50,000원) - "+Calculator.rankCount(4,ranks)+"개");
-        System.out.println("5개 일치 (1,500,000원) - "+Calculator.rankCount(3,ranks)+"개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+Calculator.rankCount(2,ranks)+"개");
-        System.out.println("6개 일치 (2,000,000,000원) - "+Calculator.rankCount(1,ranks)+"개");
+        System.out.println("당첨통계\n---");
+        for(WinningMessage winningMessage : WinningMessage.values()){
+            int rankCount=Calculator.rankCount(winningMessage.getRank(),ranks);
+            System.out.println(winningMessage.getMessage()+rankCount+"개");
+        }
     }
 
     private static void displayEarningRate(User user){

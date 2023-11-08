@@ -17,6 +17,7 @@ public class LottoGame {
         purchasePrice = input.inputPurchasePrice();
         getLottoCountByPurchasePrice(purchasePrice);
         lottos = getLottoNumbers(lottoCount);
+        input.inputWinningNumbers();
     }
 
     private void getLottoCountByPurchasePrice(int price) {

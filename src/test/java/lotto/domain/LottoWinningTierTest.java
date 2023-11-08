@@ -3,8 +3,7 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import domain.LottoWinningTier;
-import dto.WinningMatchResult;
+import lotto.dto.WinningMatchResult;
 import java.util.Optional;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;

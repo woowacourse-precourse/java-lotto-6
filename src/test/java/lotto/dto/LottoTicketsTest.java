@@ -2,8 +2,7 @@ package lotto.dto;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import domain.Lotto;
-import dto.LottoTickets;
+import lotto.domain.Lotto;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

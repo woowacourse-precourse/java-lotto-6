@@ -4,13 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import domain.Amount;
-import domain.BonusNumber;
-import domain.Lotto;
-import domain.LottoWinningNumbers;
-import domain.LottoWinningTier;
-import domain.WinningNumbers;
-import dto.LottoTickets;
+import lotto.dto.LottoTickets;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;

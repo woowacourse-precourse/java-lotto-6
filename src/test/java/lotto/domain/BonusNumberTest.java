@@ -4,10 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import domain.BonusNumber;
-import domain.Lotto;
-import domain.WinningNumbers;
-import exception.DuplicateNumberException;
+import lotto.exception.DuplicateNumberException;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

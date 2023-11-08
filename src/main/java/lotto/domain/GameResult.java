@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.constant.LottoResultIndex.SECOND_RANK_INDEX;
+import static lotto.constant.LottoResultIndex.LOTTO_RESULT_SIZE;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -11,7 +12,6 @@ public class GameResult {
     private static final int INITIAL_AMOUNT = 0;
     private static final int DECIMAL_POINT = 2;
     private static final int PERCENTAGE_CONVERSION = 100;
-    private static final int ARRAY_INDEX_SIZE = 7;
 
     private final int[] lottoRankResult;
     private final List<Lotto> playerLotto;
@@ -21,7 +21,7 @@ public class GameResult {
     private GameResult(List<Lotto> playerLotto, WinningLottoNumber winningLottoNumber) {
         this.playerLotto = playerLotto;
         this.winningLottoNumber = winningLottoNumber;
-        lottoRankResult = new int[ARRAY_INDEX_SIZE];
+        lottoRankResult = new int[LOTTO_RESULT_SIZE.getIndex()];
         lottoResult = new ArrayList<>();
     }
 
@@ -39,7 +39,7 @@ public class GameResult {
 
     public int[] calculateLottoRankResult() {
         for (LottoRank eachRank : lottoResult) {
-            if(eachRank.getMatchNumbers() == LottoRank.SECOND_RANK.getMatchNumbers()) {
+            if (eachRank.getMatchNumbers() == LottoRank.SECOND_RANK.getMatchNumbers()) {
                 lottoRankResult[SECOND_RANK_INDEX.getIndex()]++;
                 continue;
             }

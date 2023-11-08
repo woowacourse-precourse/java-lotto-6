@@ -1,7 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.Number;
 import lotto.validation.AmountValidator;
 import lotto.validation.NumberValidator;
 import lotto.validation.WinningNumberValidator;

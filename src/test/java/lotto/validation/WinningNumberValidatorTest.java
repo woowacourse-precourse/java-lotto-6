@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.domain.Number;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,14 +34,7 @@ class WinningNumberValidatorTest {
     @DisplayName("중복된 번호가 존재할 경우 예외를 발생시킨다.")
     void throwExceptionExistDuplicateNumber() {
         //given
-        List<Number> numbers = List.of(
-            new Number(1),
-            new Number(1),
-            new Number(2),
-            new Number(3),
-            new Number(4),
-            new Number(5)
-        );
+        List<Integer> numbers = List.of(1,1,2,3,4,5);
 
         //when //then
         assertThatThrownBy(() -> WinningNumberValidator.validateDuplicateWinningNumber(numbers))
@@ -54,14 +46,7 @@ class WinningNumberValidatorTest {
     @DisplayName("중복된 번호가 존재하지 않을 경우 예외를 발생시키지 않는다.")
     void notThrowExceptionNotExistDuplicateNumber() {
         //given
-        List<Number> numbers = List.of(
-            new Number(1),
-            new Number(2),
-            new Number(3),
-            new Number(4),
-            new Number(5),
-            new Number(6)
-        );
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
 
         //when //then
         assertThatCode(() -> WinningNumberValidator.validateDuplicateWinningNumber(numbers))

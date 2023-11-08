@@ -15,9 +15,9 @@ public class UserLottoGenerator {
         this.lottoList = lottoList;
     }
 
-    public List<Lotto> makeLottoList(){
+    public List<Lotto> makeLottoList() {
 
-        for(int i = 0; i < trial; i++){
+        for (int i = 0; i < trial; i++) {
             lottoList.add(new Lotto(numberGenerator.createNumber()));
         }
 

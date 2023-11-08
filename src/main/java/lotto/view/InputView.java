@@ -8,7 +8,8 @@ import java.util.List;
 
 public class InputView {
 
-    private InputView(){}
+    private InputView() {
+    }
 
     public static String inputMoney() {
         System.out.println(ConsoleMessage.INPUT_MONEY.getMessage());
@@ -33,6 +34,7 @@ public class InputView {
 
     public static int inputBonusNumber() {
         System.out.println(ConsoleMessage.INPUT_BONUS_NUMBER.getMessage());
+
         return Integer.parseInt(Console.readLine());
     }
 }

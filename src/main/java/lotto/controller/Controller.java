@@ -13,17 +13,17 @@ import java.util.List;
 public class Controller {
     private final NumberGenerator numberGenerator;
 
-    public Controller(){
-       this.numberGenerator = new RandomNumberGenerator();
+    public Controller() {
+        this.numberGenerator = new RandomNumberGenerator();
     }
 
-    public void run(){
+    public void run() {
 
         String mymoney = InputView.inputMoney();
         validateParseInt(mymoney);
         validateThousandMultiple(Integer.parseInt(mymoney));
         Trial trial = new Trial(Integer.parseInt(mymoney));
-        System.out.printf(ConsoleMessage.PURCHASE_LOTTO.getMessage()+ "\n", trial.getTrial());
+        System.out.printf(ConsoleMessage.PURCHASE_LOTTO.getMessage() + "\n", trial.getTrial());
 
         List<Lotto> userLottoList = new ArrayList<>();
         UserLottoGenerator userLottoGenerator = new UserLottoGenerator(numberGenerator, trial.getTrial(), userLottoList);
@@ -42,8 +42,8 @@ public class Controller {
         OutputView.printRateOfReturn(rateOfReturn.getReturnOfRate());
     }
 
-    private void printUserNumber(List<Lotto> userLottoList){
-        for(Lotto userNumber : userLottoList){
+    private void printUserNumber(List<Lotto> userLottoList) {
+        for (Lotto userNumber : userLottoList) {
             OutputView.printLottoNumber(userNumber.getNumbers());
         }
     }

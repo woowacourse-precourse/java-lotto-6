@@ -19,13 +19,13 @@ public class LottoNumberChecker {
         this.userNumberList = userNumberList;
 
         validateNumberRange(bonusNumber);
-        checkDuplicate(answerNumber,bonusNumber);
+        checkDuplicate(answerNumber, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> getRankList(){
+    public List<Integer> getRankList() {
 
-        List<Integer> rankList = new ArrayList<>(Arrays.asList(0,0,0,0,0,0));
+        List<Integer> rankList = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0));
 
         for (Lotto userNumber : userNumberList) {
             int rank = checkRank(userNumber);
@@ -91,16 +91,16 @@ public class LottoNumberChecker {
         return count;
     }
 
-    private void validateNumberRange(int number){
+    private void validateNumberRange(int number) {
 
-        if( !((number >= 1) && (number <= 45))){
+        if (!((number >= 1) && (number <= 45))) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_RANGE_NUMBER.getMessage());
         }
     }
 
-    private void checkDuplicate(List<Integer> answerNumber, int bonusNumber){
+    private void checkDuplicate(List<Integer> answerNumber, int bonusNumber) {
 
-        if(answerNumber.contains(bonusNumber)){
+        if (answerNumber.contains(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_NUMBER.getMessage());
         }
     }

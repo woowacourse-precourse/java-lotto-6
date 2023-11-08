@@ -1,7 +1,5 @@
 package lotto.model;
 
-import lotto.message.ExceptionMessage;
-
 public class Trial {
     private final int money;
 

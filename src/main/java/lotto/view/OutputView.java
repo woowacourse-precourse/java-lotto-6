@@ -13,7 +13,6 @@ public class OutputView {
         System.out.println(userNumber);
     }
 
-
     public static void printWinningStat(List<Integer> winningList) {
         System.out.println(ConsoleMessage.RESULT_LOTTO.getMessage());
         System.out.println("---");

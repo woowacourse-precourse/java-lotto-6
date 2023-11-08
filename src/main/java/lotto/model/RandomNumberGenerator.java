@@ -10,7 +10,7 @@ public class RandomNumberGenerator implements NumberGenerator {
     private static final int MAX_NUMBER = 45;
     private static final int NUMBERS = 6;
 
-    public List<Integer> createNumber(){
+    public List<Integer> createNumber() {
 
         return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBERS);
     }

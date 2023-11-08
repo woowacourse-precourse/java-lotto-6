@@ -8,7 +8,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class LottoTest {
@@ -52,14 +51,12 @@ class LottoTest {
         assertThat(lotto1.hashCode()).isEqualTo(lotto2.hashCode());
     }
 
-    @DisplayName("로또 번호가 정렬되어야 한다.")
+    @DisplayName("로또의 toString() 메서드를 테스트한다.")
     @Test
-    void sortLottoNumbers() {
-        List<Integer> unsortedNumbers = List.of(6, 1, 5, 2, 4, 3);
-        Lotto lotto = new Lotto(unsortedNumbers);
+    void testToString() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        String expectedString = "[1, 2, 3, 4, 5, 6]";
 
-        List<Integer> sortedNumbers = List.of(1, 2, 3, 4, 5, 6);
-
-        assertIterableEquals(sortedNumbers, lotto.getNumbers());
+        assertThat(lotto.toString()).isEqualTo(expectedString);
     }
 }

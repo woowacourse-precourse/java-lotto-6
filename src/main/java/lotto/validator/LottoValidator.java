@@ -27,10 +27,10 @@ public class LottoValidator {
         if (value.isBlank()) throw new LottoGameException(NULL_INPUT_ERROR_MESSAGE);
     }
 
-    public static void validateDuplicateNumber(List<Integer> numbers) throws LottoGameException {
+    public static void validateDuplicateNumber(List<Integer> numbers) {
         HashSet<Integer> distinctNumbers = new HashSet<>(numbers);
         if (distinctNumbers.size() != 6) {
-            throw new LottoGameException(DUPLICATE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE.getMessage());
         }
     }
 
@@ -40,9 +40,9 @@ public class LottoValidator {
         }
     }
 
-    public static void validateLottoLength(List<Integer> numbers) throws LottoGameException {
+    public static void validateLottoLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new LottoGameException(LENGTH_ERROR_MESSAGE);
+            throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE.getMessage());
         }
     }
 

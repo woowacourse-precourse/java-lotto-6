@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.PlayerLotto;
+import lotto.domain.WinningInformation;
 import lotto.dto.WinningStatisticsDto;
 import lotto.service.numbergenerator.SixUniqueNumberGenerator;
 import lotto.utils.message.LottoExceptionMessage;
@@ -86,9 +87,10 @@ class LottoGameServiceTest {
                     new YieldCalculator());
             Lotto winningNumber = new Lotto(List.of(1, 4, 7, 2, 29, 30));
             LottoNumber lottoNumber = new LottoNumber(8);
+            WinningInformation winningInformation = new WinningInformation(winningNumber, lottoNumber);
             // when
             WinningStatisticsDto winningStatisticsDto = lottoGameService.calculateWinningStatistics(playerLotto,
-                    winningNumber, lottoNumber);
+                    winningInformation);
             // then
             Assertions.assertThat(winningStatisticsDto.getYieldRate().toString()).isEqualTo("3100.0");
         }
@@ -102,9 +104,10 @@ class LottoGameServiceTest {
                     new YieldCalculator());
             Lotto winningNumber = new Lotto(List.of(11, 12, 13, 3, 2, 7));
             LottoNumber lottoNumber = new LottoNumber(4);
+            WinningInformation winningInformation = new WinningInformation(winningNumber, lottoNumber);
             // when
             WinningStatisticsDto winningStatisticsDto = lottoGameService.calculateWinningStatistics(playerLotto,
-                    winningNumber, lottoNumber);
+                    winningInformation);
             // then
             Assertions.assertThat(winningStatisticsDto.getYieldRate().toString()).isEqualTo("40000300.0");
         }

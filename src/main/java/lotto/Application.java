@@ -13,6 +13,9 @@ public class Application {
         List<Lotto> purchasedLottoTickets = generateLottoTickets(purchaseAmount);
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber();
+
+        List<Prize> prizes = calculatePrizes(purchasedLottoTickets, winningNumbers, bonusNumber);
+        printResults(purchaseAmount, purchasedLottoTickets, prizes);
     }
 
     private static int getPurchaseAmount() {
@@ -31,7 +34,7 @@ public class Application {
     private static int parsePurchaseAmount(String input) {
         int purchaseAmount = Integer.parseInt(input);
         if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("1,000 단위로 입력 해주세요");
+            throw new IllegalArgumentException("[ERROR] 1,000 단위로 입력 해주세요");
         }
         return purchaseAmount / 1000;
     }
@@ -43,7 +46,9 @@ public class Application {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(numbers);
             lottoTickets.add(new Lotto(numbers));
+            System.out.println(lottoTickets.get(i));
         }
+
         return lottoTickets;
     }
 
@@ -115,7 +120,54 @@ public class Application {
 
     private static void validateBonusNumber(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
+    }
+
+    private static List<Prize> calculatePrizes(List<Lotto> purchasedLottoTickets, List<Integer> winningNumbers, int bonusNumber) {
+        List<Prize> prizes = new ArrayList<>();
+        for (Lotto lotto : purchasedLottoTickets) {
+            int matchingCount = countMatchingNumbers(lotto, winningNumbers);
+            boolean hasBonusNumber = lotto.hasNumber(bonusNumber);
+
+            Prize prize = Prize.calculatePrize(matchingCount, hasBonusNumber);
+
+            prizes.add(prize);
+        }
+        return prizes;
+    }
+
+    private static int countMatchingNumbers(Lotto lotto, List<Integer> winningNumbers) {
+        int count = 0;
+        for (int number : winningNumbers) {
+            if (lotto.hasNumber(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private static void printResults(int purchaseAmount, List<Lotto> purchasedLottoTickets, List<Prize> prizes) {
+        System.out.println("당첨 통계");
+        System.out.println("---------");
+        for (Prize prize : Prize.values()) {
+            int count = countPrizes(prizes, prize);
+            System.out.println(prize.getDescription() + " - " + count + "개");
+        }
+
+        double totalWinningAmount = prizes.stream()
+                .mapToLong(Prize::getWinningAmount)
+                .sum();
+
+        double investment = purchaseAmount * 1000;
+        double profitRate = (totalWinningAmount / investment) * 100;
+
+        System.out.printf("총 수익률은 %.2f%% 입니다.%n", profitRate);
+    }
+
+    private static int countPrizes(List<Prize> prizes, Prize prize) {
+        return (int) prizes.stream()
+                .filter(p -> p == prize)
+                .count();
     }
 }

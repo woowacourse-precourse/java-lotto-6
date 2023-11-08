@@ -1,13 +1,12 @@
-package lotto;
+package lotto.validator;
 
-import lotto.validator.PurchaseAmountValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class PurchaseAmountTest {
+public class PurchaseAmountValidatorTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1000, 100000})

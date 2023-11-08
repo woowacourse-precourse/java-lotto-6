@@ -10,6 +10,7 @@ public class LottoService {
     static final int START_NUMBER = 1;
     static final int END_NUMBER = 45;
     static final int COUNT_NUMBER = 6;
+    static final String ERROR_MESSAGE = "[ERROR] ";
 
     int getInput() {
         String input;
@@ -21,7 +22,7 @@ public class LottoService {
                 parsedInput = Integer.parseInt(input);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 숫자를 입력해주세요.");
+                System.out.println(ERROR_MESSAGE + "숫자를 입력해주세요.");
             }
         }
 

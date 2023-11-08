@@ -21,7 +21,7 @@ public class Lotto {
         }
     }
 
-    public boolean isDuplicateNumber(List<Integer> numbers) {
+    private boolean isDuplicateNumber(List<Integer> numbers) {
         return numbers.size() != Util.distinctListSize(numbers);
     }
 

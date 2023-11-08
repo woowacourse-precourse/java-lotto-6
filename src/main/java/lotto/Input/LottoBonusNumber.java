@@ -13,21 +13,21 @@ public class LottoBonusNumber {
     public Integer getBonus() {
         return bonus;
     }
+    public Integer inputPrice(){
+        return Integer.parseInt(readLine());
+    }
 
     public Integer bonusNumber() {
         Integer bonus;
-        boolean validNumber = false;
         while (true) {
             try {
-                bonus = Integer.parseInt(readLine());
-                if (bonus > 45 || bonus < 1) {
-                    throw new IllegalArgumentException();
-                }
+                bonus = inputPrice();
+                new LottoBonusNumberException(bonus);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자만 입력 가능합니다.");
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 1~45 사이의 숫자만 입력 가능합니다.");
+                System.out.println(e.getMessage());
             }
         }
         return bonus;

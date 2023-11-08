@@ -24,4 +24,8 @@ public class ValidateConstant {
     public static String ERROR_BLANK_CHECK() {
         return "[ERROR] 빈칸은 입력할 수 없습니다.";
     }
+
+    public static String ERROR_INCLUDE_BLANK() {
+        return "[ERROR] 입력 중간에 공백이 포함되어 있습니다.";
+    }
 }

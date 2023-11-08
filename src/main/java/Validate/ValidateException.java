@@ -67,7 +67,7 @@ public class ValidateException {
 
     public static void includeBlank(String strLine) {
         if (strLine.contains(BLANK)) {
-            throw new NumberFormatException("[ERROR] 입력 중간에 공백이 포함되어 있습니다.");
+            throw new NumberFormatException(ValidateConstant.ERROR_INCLUDE_BLANK());
         }
     }
 

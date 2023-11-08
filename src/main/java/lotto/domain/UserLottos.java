@@ -46,4 +46,8 @@ public class UserLottos {
 
         return purhcasedLotto;
     }
+
+    public int getAmount() {
+        return size * 1000;
+    }
 }

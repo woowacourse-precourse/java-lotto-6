@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.type.LottoResult;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.List;
 public class WinLotto {
     private Lotto winLotto;
     private int bonusNumber;
+    private int winAmount;
 
     public WinLotto(List<String> winNumbers) {
         List<Integer> numbers = new ArrayList<>();
@@ -55,6 +58,17 @@ public class WinLotto {
         return winResult;
     }
 
+    public String getWinString(List<Integer> winResult) {
+        LottoResult[] values = LottoResult.values();
+        String winString = "";
+        for (int i = 0; i < 5; i++) {
+            winString += values[i].getWinMessage() + " - " + winResult.get(i) + "개";
+            winAmount += winResult.get(i) * values[i].getReward();
+        }
+
+        return winString;
+    }
+
     // 보너스 번호 설정
     public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
@@ -62,5 +76,9 @@ public class WinLotto {
 
     public Lotto getWinLotto() {
         return winLotto;
+    }
+
+    public int getWinAmount() {
+        return winAmount;
     }
 }

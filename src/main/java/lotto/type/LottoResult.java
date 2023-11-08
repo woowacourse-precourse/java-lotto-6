@@ -6,16 +6,16 @@ public enum LottoResult {
     FIVE("5개 일치 (1,500,000원)", 1500000),
     FIVE_BONUS("5개 일치, 보너스 볼 일치 (30,000,000원)", 30000000),
     SIX("6개 일치 (2,000,000,000원)", 2000000000);
-    private final String winInfo;
+    private final String winMessage;
     private final int reward;
 
-    LottoResult(String winInfo, int reward) {
-        this.winInfo = winInfo;
+    LottoResult(String winMessage, int reward) {
+        this.winMessage = winMessage;
         this.reward = reward;
     }
 
-    public String getWinInfo() {
-        return winInfo;
+    public String getWinMessage() {
+        return winMessage;
     }
 
     public int getReward() {

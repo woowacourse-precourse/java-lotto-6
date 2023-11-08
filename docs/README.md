@@ -122,10 +122,98 @@ Windows : `gradlew.bat clean test` 또는 `./gradlew.bat clean test`
     - InputView
     - OutputView
 
+```mermaid
+classDiagram
+    Application --> LottoController
+    LottoController --> InputView
+    LottoController --> LottoService
+    LottoController --> OutputView
+    LottoService --> Cashier
+    LottoService --> LottoMachine
+    LottoService --> WinningLotto
+    LottoService --> Customer
+    LottoMachine --> Generator
+    Customer --> LottoResult
+    WinningLotto --> LottoResult
+    classDiagram
+    Application --> LottoController
+    LottoController --> InputView
+    LottoController --> LottoService
+    LottoController --> OutputView
+    LottoService --> Cashier
+    LottoService --> LottoMachine
+    LottoService --> WinningLotto
+    LottoService --> Customer
+    LottoMachine --> Generator
+    Customer --> LottoResult
+    WinningLotto --> LottoResult
+
+    class Application {
+        new LottoController
+        new LottoService
+    }
+    class LottoController{
+      - LottoService lottoController
+      - InputView inputView
+      - OuputView ouputView
+      + LottoController(InputView inputView, OutputView outputView, LottoService lottoService)
+      + run()
+      - buyLotto()
+      - setWinningNumber()
+      - showResults()
+    }
+    class InputView{
+      + inputMessage()
+    }
+    class OutputView{
+      + printMessage()
+      + printPurchaseResult()
+      + printWinningStatistics()
+    }
+    class LottoService {
+        - Cashier cashier
+        - LottoMachine lottoMachine
+        - Generator generator
+        - WinningLotto winningLotto
+        - Customer customer
+        + LottoService(Cashier cashier, LottoMachine lottoMachine, Generator generator)
+        + calculateLotto()
+        + issueLotto()
+        + saveWinningLotto()
+        + getResult()
+    }
+    class Cashier{
+        + calculateMoney()
+    }
+    class LottoMachine{
+        + issueLotto()
+    }
+    class Generator{
+        + generate()
+    }
+    class WinningLotto{
+        - Lotto lotto
+        - Bonus bonus
+    }
+    class Customer{
+        - int money
+        - List<Lotto> issuedLottos
+        + buyLotto()
+    }
+    class LottoResult{
+        + LottoResult(WinningLotto winningLotto,  List<Lotto> issuedLotto)
+        - WinnginLotto
+        - issuedLottos
+        - Map<LottoCriteria, Integer> rankingResult;
+        + getRankingResult()
+        + getReturnRate()
+    }
+```
+
 ### 🚀 달성 목표
 
 - 단위 테스트부터 돌아가게 만들기
-    - 함수형 인터페이스 사용
+    - 함수형 인터페이스 사용, 주입을 통해 의존성 낮추기
 - 객체를 최대한 분리하기
     - 역할별 나누기
 

@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.Arrays;
 import java.util.List;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoConstant;
@@ -19,12 +20,26 @@ public class View {
         while (true) {
             try {
                 String inputMoney = inputView.getInputMoney();
+                outputView.printLine();
                 int money = IntegerParser.parse(inputMoney);
                 validateMoney(money);
                 return money;
             } catch (NumberFormatException e) {
                 outputView.printErrorMessage(ErrorMessage.NOT_INTEGER_ERROR);
             } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    public List<Integer> getLottoNumbers() {
+        while (true) {
+            try {
+                String inputLottoNumbers = inputView.getInputLottoNumbers();
+                outputView.printLine();
+                return IntegerParser.parse(Arrays.asList(inputLottoNumbers.split(",")));
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -32,24 +47,19 @@ public class View {
     public void printLottosInfo(List<Lotto> lottos) {
         outputView.printLottoCountMessage(lottos.size());
         lottos.forEach(lotto -> outputView.printLottoNumber(lotto));
+        outputView.printLine();
+    }
+
+    public void printErrorMessage(String message) {
+        outputView.printErrorMessage(message);
     }
 
     private void validateMoney(int money) {
-        verifySufficientMoney(money);
-        verifyDiviededByPrice(money);
-    }
-
-    private void verifySufficientMoney(int money) {
         if (money < LottoConstant.LOTTO_PRICE) {
-            outputView.printErrorMessage(ErrorMessage.INSUFFICIENT_MONEY_ERROR);
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INSUFFICIENT_MONEY_ERROR);
         }
-    }
-
-    private void verifyDiviededByPrice(int money) {
         if (money % LottoConstant.LOTTO_PRICE != 0) {
-            outputView.printErrorMessage(ErrorMessage.INAPPROPRIATE_MONEY_ERROR);
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INAPPROPRIATE_MONEY_ERROR);
         }
     }
 }

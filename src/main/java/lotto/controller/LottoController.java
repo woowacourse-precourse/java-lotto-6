@@ -19,5 +19,18 @@ public class LottoController {
         int money = view.getMoney();
         List<Lotto> lottos = lottoShop.buy(money);
         view.printLottosInfo(lottos);
+        Lotto winningLotto = setWinningLotto();
+    }
+
+    private Lotto setWinningLotto() {
+        while (true) {
+            try {
+                List<Integer> lottoNumbers = view.getLottoNumbers();
+                return new Lotto(lottoNumbers);
+            }
+            catch (IllegalArgumentException e) {
+                view.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }

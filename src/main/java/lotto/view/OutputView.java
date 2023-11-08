@@ -1,7 +1,6 @@
 package lotto.view;
 
 import java.text.MessageFormat;
-import java.util.stream.Collectors;
 import lotto.constant.ErrorMessage;
 import lotto.constant.IOMessage;
 import lotto.model.Lotto;
@@ -18,5 +17,9 @@ public class OutputView {
 
     public void printLottoNumber(Lotto lotto) {
         System.out.println(MessageFormat.format(IOMessage.OUTPUT_LOTTO_NUMBER_MESSAGE, lotto.getNumbersAsString()));
+    }
+
+    public void printLine() {
+        System.out.println();
     }
 }

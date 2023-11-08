@@ -8,6 +8,13 @@ public class InputView {
 
     public String getInputMoney() {
         System.out.println(IOMessage.INPUT_MONEY_MESSAGE);
-        return Console.readLine();
+        String inputMoney = Console.readLine();
+        return inputMoney;
+    }
+
+    public String getInputLottoNumbers() {
+        System.out.println(IOMessage.INPUT_LOTTO_NUMBERS_MESSAGE);
+        String inputLottoNumbers = Console.readLine();
+        return inputLottoNumbers;
     }
 }

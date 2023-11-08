@@ -2,6 +2,8 @@ package lotto.model;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.constant.ErrorMessage;
+import lotto.constant.LottoConstant;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,8 +14,18 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != LottoConstant.LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(ErrorMessage.INAPPROPRIATE_NUMBER_COUNT_ERROR);
+        }
+
+        numbers.forEach(number -> {
+            if (number < LottoConstant.LOTTO_FIRST_NUMBER || number > LottoConstant.LOTTO_LAST_NUMBER) {
+                throw new IllegalArgumentException(ErrorMessage.INAPPROPRIATE_NUMBER_ERROR);
+            }
+        });
+
+        if (numbers.size() > numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER_ERROR);
         }
     }
 

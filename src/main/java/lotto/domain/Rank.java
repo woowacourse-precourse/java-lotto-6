@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import lotto.Lotto;
 
 /* 랭킹 enum
  *  */
@@ -29,18 +28,18 @@ public enum Rank {
         return prize;
     }
 
-    // 매핑
-
-    public static Rank valueOfMatchCount(int matchCount) {
+    public static Rank getMatchRank(int matchCount) {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.getMatchCount() == matchCount)
                 .findFirst()
-                .orElse(NONE); // or throw an exception if match count is not valid
-    }
-    // second 여부
-    public boolean isSecond(int matchCount) {
-        return matchCount != SECOND.matchCount;
+                .orElse(NONE);
     }
 
-
+    public static Rank isSecondMatch(int matchCount, boolean isBonus) {
+        // matchcount: 5면서, isBonus:true인건 SECOND로 return
+        if (matchCount == 5 && isBonus) {
+            return SECOND;
+        }
+        return getMatchRank(matchCount);
+    }
 }

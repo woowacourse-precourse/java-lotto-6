@@ -56,7 +56,7 @@ public class Application {
             } catch (NullPointerException e) {
                 System.err.println("[ERROR] 당첨번호를 입력하셔야 합니다.\n");
             } catch (NumberFormatException e) {
-                System.err.println("[ERROR] 당첨번호들은 쉼표로 구분된 숫자형식이어야 합니다.\n");
+                System.err.println("[ERROR] 당첨번호들은 공백없이 쉼표로 구분된 숫자들의 형식이어야 합니다.\n");
             } catch (IllegalArgumentException ignored) {
             }
         }

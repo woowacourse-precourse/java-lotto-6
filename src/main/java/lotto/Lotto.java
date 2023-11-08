@@ -61,4 +61,9 @@ public class Lotto {
                 .map(LottoNumber::valueOf)
                 .anyMatch(lottoNumber -> lottoNumber.equals(other));
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

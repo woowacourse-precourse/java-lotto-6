@@ -27,4 +27,13 @@ public class Lotteries {
                 .sum();
         return BigDecimal.valueOf(sum);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Lotto lotto : lotteries) {
+            sb.append(lotto).append("\n");
+        }
+        return sb.toString();
+    }
 }

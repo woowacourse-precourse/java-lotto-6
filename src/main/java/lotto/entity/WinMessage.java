@@ -16,9 +16,7 @@ public class WinMessage {
             this.label = label;
         }
 
-        public int getMatchCount() {
-            return matchCount;
-        }
+
 
         public String getLabel() {
             return label;

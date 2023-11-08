@@ -1,2 +1,13 @@
-package lotto.service;public class HasDuplicate {
+package lotto.service;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class HasDuplicate {
+
+    public static boolean hasDuplicates(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>(numbers);
+        return set.size() < numbers.size();
+    }
 }

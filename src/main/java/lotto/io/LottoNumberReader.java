@@ -3,6 +3,7 @@ package lotto.io;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.entity.Lotto;
 import lotto.exception.DuplicateLottoNumbersException;
+import lotto.service.HasDuplicate;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,7 +20,7 @@ public class LottoNumberReader {
             String input = Console.readLine();
             lottonumbers = LottoNumberException(input);
 
-            if (hasDuplicates(lottonumbers)) {
+            if (HasDuplicate.hasDuplicates(lottonumbers)) {
                 throw new DuplicateLottoNumbersException("로또 번호에 중복된 값이 있습니다.");
             }
 
@@ -38,16 +39,6 @@ public class LottoNumberReader {
         }
     }
 
-    private boolean hasDuplicates(List<Integer> numbers) {
-        Set<Integer> set = new HashSet<>();
-        for (Integer number : numbers) {
-            if (set.contains(number)) {
-                return true; // 중복된 값이 존재
-            }
-            set.add(number);
-        }
-        return false; // 중복된 값이 없음
-    }
 
     // LottoNumberException 메서드는 어디에 정의되어 있는지 확인하십시오.
     // 필요하면 추가 정의하고 import 문을 사용하여 올바른 클래스를 가져오십시오.

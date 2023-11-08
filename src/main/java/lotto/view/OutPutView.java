@@ -12,7 +12,8 @@ public class OutPutView {
     public static void println(String out) {
         System.out.println(out);
     }
-    public static void print(String out){
+
+    public static void print(String out) {
         System.out.print(out);
     }
 
@@ -39,8 +40,9 @@ public class OutPutView {
     public static void printMatchResult(String matchResult) {
         print(WIN_STATISTICS + matchResult);
     }
-    public static void printReturnRate(double returnRate){
-        System.out.printf(RETURN_RATE_OPENING+"%.1f"+RETURN_RATE_CLOSING,returnRate);
+
+    public static void printReturnRate(double returnRate) {
+        System.out.printf(RETURN_RATE_OPENING + "%.1f" + RETURN_RATE_CLOSING, returnRate);
     }
 
 }

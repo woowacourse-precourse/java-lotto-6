@@ -27,7 +27,7 @@ public class LottoValidator {
     }
 
     public static void validateNumbersInRange(List<Integer> numbers) {
-        if(!isNumbersInRange(numbers)){
+        if (!isNumbersInRange(numbers)) {
             throw new IllegalArgumentException(OVER_LOTTO_BOUNDARY.getMessage());
         }
     }

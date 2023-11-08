@@ -9,10 +9,10 @@ public enum LottoConfiguration {
     private final int value;
 
     LottoConfiguration(int value) {
-        this.value=value;
+        this.value = value;
     }
 
-    public int get(){
+    public int get() {
         return value;
     }
 }

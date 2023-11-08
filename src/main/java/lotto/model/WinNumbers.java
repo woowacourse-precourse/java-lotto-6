@@ -7,11 +7,11 @@ public class WinNumbers {
     private final List<Integer> winNumbers;
 
     private WinNumbers(List<Integer> numbers) {
-        this.winNumbers=numbers;
+        this.winNumbers = numbers;
     }
 
     public static WinNumbers createWinNumbers(List<Integer> numbers) {
-        if(isValid(numbers)){
+        if (isValid(numbers)) {
             return new WinNumbers(numbers);
         }
         return null;

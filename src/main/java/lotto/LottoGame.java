@@ -22,12 +22,6 @@ public class LottoGame {
         this.lottoCount = lottobudget.getLottoCount();
     }
     
-    //Test용
-    public void setLottoTicket(List<Lotto> lottoTicket){
-        this.lottoTicket = lottoTicket;
-        this.lottoCount = 8;
-    }
-    
     public void setLottos() {
         lottoTicket = LottoNumberGenerator.generateLottoTicket(lottoCount);
     }

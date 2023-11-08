@@ -2,6 +2,10 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Input {
     private static final String PURCHASE_PRICE_INPUT_MESSAGE = "구입 금액을 입력해 주세요.";
     private static final String WINNING_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
@@ -16,15 +20,37 @@ public class Input {
         return Integer.parseInt(purchasePrice);
     }
 
-    public void inputWinningNumbers() {
+    public void inputWinning() {
+        List<Integer> winningNumbers = inputWinningNumbers();
+        int bonusNumber = inputBonusNumber();
+    }
+
+    private List<Integer> inputWinningNumbers() {
         System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
         String winningNumbers = consoleReadLine();
-        exception.validateWinningNumbers(winningNumbers);
+        List<String> winningNumber = Arrays.asList(winningNumbers.split(","));
+        exception.validateWinningNumbersInput(winningNumber);
+        return convertStringListToIntegerList(winningNumber);
+    }
+
+    private int inputBonusNumber() {
+        System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
+        String bonusNumber = consoleReadLine();
+        exception.validateNumberInput(bonusNumber);
+        return Integer.parseInt(bonusNumber);
     }
 
     private String consoleReadLine() {
         String input = Console.readLine();
         System.out.println();
         return input;
+    }
+
+    private List<Integer> convertStringListToIntegerList(List<String> inputs) {
+        List<Integer> convertInput = new ArrayList<>();
+        for (String input: inputs) {
+            convertInput.add(Integer.parseInt(input));
+        }
+        return convertInput;
     }
 }

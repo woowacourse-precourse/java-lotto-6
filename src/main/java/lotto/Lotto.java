@@ -1,8 +1,6 @@
 package lotto;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,15 +12,16 @@ public class Lotto {
     }
 
     private void validateNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        new Exception().validateNumbersSize(numbers);
     }
 
     private void validateNumbersDuplication(List<Integer> numbers) {
-        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
-        if (nonDuplicateNumbers.size() != 6) {
-            throw new IllegalArgumentException();
+        new Exception().validateDuplicateNumber(numbers);
+    }
+
+    private void validateNumbersRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            new Exception().validateNumberRange(number);
         }
     }
 
@@ -30,5 +29,4 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
-
 }

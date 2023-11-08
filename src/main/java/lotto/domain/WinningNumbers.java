@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 
-import static lotto.util.message.ExceptionMessage.CHECK_DUPLICATES;
+import static lotto.util.message.ExceptionMessage.CHECK_BONUS_NUM_DUPLICATES;
 
 public class WinningNumbers {
 
@@ -18,7 +18,7 @@ public class WinningNumbers {
     private void checkDuplicateWinningNumInBonusNumber(Lotto winningNumbers, BonusNumber bonusNumber) {
         List<Integer> numbers = winningNumbers.getNumbers();
         if (bonusNumber.containsIn(numbers)) {
-            throw new IllegalArgumentException(CHECK_DUPLICATES.getMessage());
+            throw new IllegalArgumentException(CHECK_BONUS_NUM_DUPLICATES.getMessage());
         }
     }
 

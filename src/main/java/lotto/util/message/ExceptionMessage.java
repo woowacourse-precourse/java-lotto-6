@@ -13,7 +13,8 @@ public enum ExceptionMessage {
             LottoInfo.MAX_NUMBER.getNumberInfo()
     )),
     CHECK_SIZE_NUM(String.format("%s개의 번호를 입력해주세요.", LottoInfo.LOTTO_NUMBER_SIZE.getNumberInfo())),
-    CHECK_DUPLICATES("로또 숫자에 중복된 값이 존재합니다.");
+    CHECK_WINNING_NUM_DUPLICATES("로또 숫자에 중복된 값이 존재합니다."),
+    CHECK_BONUS_NUM_DUPLICATES("보너스 숫자에 중복된 값이 존재합니다.");
 
     private static final String ERROR = "[ERROR] %s";
     private final String message;

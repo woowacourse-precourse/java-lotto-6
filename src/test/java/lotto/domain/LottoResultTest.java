@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.domain.constants.LottoConstants.LOTTO_PRICE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -34,5 +35,16 @@ class LottoResultTest {
     @Test
     void countRank_forNoMatches() {
         assertThat(lottoResult.countRank(Rank.NONE)).isEqualTo(1);
+    }
+
+    @Test
+    void sumTotalPrizeMoney() {
+        assertThat(lottoResult.sumTotalPrizeMoney()).isEqualTo(
+                Rank.THIRD.getPrizeMoney() + Rank.FOURTH.getPrizeMoney());
+    }
+
+    @Test
+    void calculateTotalPurchaseAmount() {
+        assertThat(lottoResult.calculateTotalPurchaseAmount()).isEqualTo(3 * LOTTO_PRICE);
     }
 }

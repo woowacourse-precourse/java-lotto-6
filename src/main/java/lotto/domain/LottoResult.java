@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.constants.LottoConstants.LOTTO_PRICE;
+
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +13,22 @@ public class LottoResult {
         lottos.stream()
                 .map(lotto -> Rank.determineRank(lotto, winningLotto))
                 .forEach(rank -> result.merge(rank, 1, Integer::sum));
+    }
+
+    public long sumTotalPrizeMoney() {
+        return result.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
+                .sum();
+    }
+
+    public int calculateTotalPurchaseAmount() {
+        return sumTotalLottoCount() * LOTTO_PRICE;
+    }
+
+    public int sumTotalLottoCount() {
+        return result.values().stream()
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 
     public int countRank(Rank rank) {

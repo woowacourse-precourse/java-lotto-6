@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lotto.service.Service;
+import lotto.validation.Validation;
+
 public class Buyer {
 	
 	private List<Lotto> purchasedLotteries = new ArrayList<>();
@@ -13,7 +16,9 @@ public class Buyer {
 	private static final double PERCENT = 100;
 	
 	public Buyer(int purchaseAmount) {
+		validateInputAmount(purchaseAmount);
 		this.purchaseAmount = purchaseAmount;
+		initLottoResult();
 	}
 	
 	public void initLottoResult() {
@@ -57,6 +62,11 @@ public class Buyer {
 		double profitRate = (double) getTotalPrize() / purchaseAmount;
 		yield = profitRate * PERCENT;
 		return yield;
+	}
+	
+	public void validateInputAmount(int paid) {
+		Validation.validateDividablePaid(paid, Service.LOTTO_PRICE);
+		Validation.validateBuyableAmount(paid, Service.LIMITED_AMOUNT);
 	}
 
 }

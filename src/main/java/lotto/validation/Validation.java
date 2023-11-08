@@ -8,11 +8,6 @@ import lotto.utils.Utils;
 
 public class Validation {
 	
-	public static void validateInputFormat(String input) {
-		List<String> inputNumbers = Utils.splitString(input);
-		validateNaturalNumberList(inputNumbers);
-	}
-	
     public static void validateDistinctedNumbers(List<Integer> numbers) {
     	Set<Integer> DistinctedNumbers = new HashSet<Integer>(numbers);
     	if (numbers.size() != DistinctedNumbers.size()) {
@@ -31,10 +26,11 @@ public class Validation {
 		}
 	}
 	
-	public static void validateNaturalNumber(String input) {
+	public static int validateNaturalNumber(String input) {
 		if (!input.matches("\\d+")) {
 			throw new IllegalArgumentException();
 		}
+		return Integer.valueOf(input);
 	}
 	
 	public static void validateNaturalNumberList(List<String> inputStirng) {
@@ -61,8 +57,8 @@ public class Validation {
 		}
 	}
 	
-	public static void validateLottoSize (List<Integer> numbers) {
-        if (numbers.size() != 6) {
+	public static void validateListSize (List<Integer> numbers, int correctSize) {
+        if (numbers.size() != correctSize) {
             throw new IllegalArgumentException();
         }
     }

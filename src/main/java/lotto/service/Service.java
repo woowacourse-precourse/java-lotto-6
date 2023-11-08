@@ -11,9 +11,6 @@ import lotto.view.*;
 
 public class Service {
 	
-	public static final int LOTTO_RANGE_MIN = 1;
-	public static final int LOTTO_RANGE_MAX = 45;
-	public static final int LOTTO_SIZE = 6;
 	public static final int LOTTO_PRICE = 1_000;
 	public static final int LIMITED_AMOUNT = 100_000;
 	private static final long NOT_WINNING_PRIZE = 0;
@@ -22,31 +19,25 @@ public class Service {
 	LottoGame lottoGame;
 	
 	public void goLottoGame() {
-		lottoGame = new LottoGame(getInputWinningNumbers());
+		InputWinningNumbers();
 		System.out.println();
-		int bonusNumber = getInputBonusNumberForRetry();
+		int bonusNumber = getInputBonusNumber();
 		lottoGame.setBonusNumber(bonusNumber);
 	}
 
-	public int getInputBonusNumberForRetry() {
+	public int getInputBonusNumber() {
 		int bonusNumber;
 		while(true) {
 			try {  // 입력된 보너스 번호값이 적절하지 않은 경우 재시도 
 				InputView.inputBonusNumber();
 				String input = Console.readLine().trim();
-				bonusNumber = validateBonusNumber(input);
-				Validation.validateNumberNotInList(lottoGame.getWinningNumbers(), bonusNumber);
+				bonusNumber = LottoGame.validateBonusNumber(input);
 				break;
 			} catch (IllegalArgumentException e) {
 				System.out.println(ErrorView.BONUS_NUMBER_ERROR.message());
 			}
 		}
 		return bonusNumber;
-	}
-	
-	public void initBuyer() {
-		buyer = new Buyer(getInputAmount());
-		buyer.initLottoResult();
 	}
 	
 	public void buyOneLotto() {
@@ -71,9 +62,13 @@ public class Service {
 	
 	public Lotto generateLotto() {
 		ArrayList<Integer> numbers = new ArrayList<>();
-		numbers = Utils.generateUniqueNumberListInRange(LOTTO_RANGE_MIN, LOTTO_RANGE_MAX, LOTTO_SIZE);
+		numbers = Utils.generateUniqueNumberListInRange(Lotto.MIN_NUMBER, Lotto.MAX_NUMBER, Lotto.SIZE);
 		Utils.sortListAscendingOrder(numbers);
 		return new Lotto(numbers);
+	}
+	
+	public void initBuyer() {
+		buyer = new Buyer(getInputAmount());
 	}
 	
 	public int getInputAmount() {
@@ -82,7 +77,7 @@ public class Service {
 			try {
 				InputView.inputAmount();
 				String input = Console.readLine().trim();
-				paid = validateInputAmount(input);
+				paid = Validation.validateNaturalNumber(input);
 				break;
 			} catch (IllegalArgumentException e) {
 				System.out.println(ErrorView.AMOUNT_ERROR.message());
@@ -91,57 +86,19 @@ public class Service {
 		return paid;
 	}
 
-	public int validateInputAmount(String input) {
-		int paid;
-		Validation.validateNaturalNumber(input);
-		paid = Integer.valueOf(input);
-		Validation.validateDividablePaid(paid, LOTTO_PRICE);
-		Validation.validateBuyableAmount(paid, LIMITED_AMOUNT);
-		return paid;
-	}
 	
-	public List<Integer> getInputWinningNumbers() {
-		Lotto lotto;
-		while(true) { // 로또 클래스 생성자 검증을 통해 유효한 당첨번호 형식이 아닐 경우 재시도
+	public void InputWinningNumbers() {
+		while(true) { // 로또 생성자 검증을 통해 유효한 형식이 아닐 경우 재시도
 			try {
-				lotto = new Lotto(validateNumbersRangeForRetry());
+				InputView.inputWinningNumbers();
+				String input = Console.readLine().trim();
+				List<Integer> numbers = Utils.stringToIntegerList(input);
+				lottoGame = new LottoGame(numbers);
 				break;
 			} catch (IllegalArgumentException e) {
 				System.out.println(ErrorView.NOT_LOTTO.message());
 			}
 		}
-		return lotto.getNumbers();
-	}
-
-	public List<Integer> validateNumbersRangeForRetry() {
-		List<Integer> numbers;
-		while (true) {   //  당첨번호가 유효한 입력값이 아닐 경우 재시도
-			try {
-				InputView.inputWinningNumbers();
-				String input = Console.readLine().trim();
-				numbers = validateInputWinningNumbers(input);
-				break;
-			} catch (IllegalArgumentException e) {
-				System.out.println(ErrorView.INVALID_FORMAT.message());
-			}
-		}
-		return numbers;
-	}
-
-	public List<Integer> validateInputWinningNumbers(String input) {
-		List<Integer> numbers;
-		Validation.validateInputFormat(input);
-		numbers = Utils.stringToIntegerList(input);
-		Validation.validateListNumbersInRange(numbers, LOTTO_RANGE_MIN, LOTTO_RANGE_MAX);
-		return numbers;
-	}
-
-	public int validateBonusNumber(String input) {
-		int bonusNumber;
-		Validation.validateNaturalNumber(input);
-		bonusNumber = Integer.valueOf(input);
-		Validation.validateNumberInRange(bonusNumber, LOTTO_RANGE_MIN, LOTTO_RANGE_MAX);
-		return bonusNumber;
 	}
 	
 	public int countCorrectLottoNumber(Lotto lotto) {

@@ -14,7 +14,7 @@ class BonusTest {
     private List<Integer> numbers;
 
     @BeforeEach
-    void init() {
+    void setUp() {
         bonus = new Bonus();
         numbers = List.of(1, 2, 3, 4, 5, 6, 7);
     }

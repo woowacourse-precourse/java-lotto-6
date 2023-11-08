@@ -1,7 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameController {
     private static final int ERROR = -1;
@@ -10,9 +12,9 @@ public class GameController {
     public void start() {
         int ticketCount = cashToTicket();
         buyTicket(ticketCount);
-        ArrayList<Integer> winNumber = pickWinNumber();
+        List<Integer> winNumber = pickWinNumber();
         int bonusNumber = pickBonusNumber(winNumber);
-
+        showResult();
     }
 
     public int cashToTicket() {
@@ -34,7 +36,7 @@ public class GameController {
     }
 
     public void buyTicket(int ticketCount) {
-        System.out.println(ticketCount + "개를 구매했습니다.");
+        System.out.println("\n" + ticketCount + "개를 구매했습니다.");
         for (int count = 1; count <= ticketCount; count++) {
             String generateResult = gameService.generateNumber();
             System.out.println(generateResult);
@@ -47,8 +49,8 @@ public class GameController {
         return Console.readLine();
     }
 
-    public ArrayList<Integer> pickWinNumber() {
-        ArrayList<Integer> winNumber;
+    public List<Integer> pickWinNumber() {
+        List<Integer> winNumber;
 
         while (true) {
             String rawWinNumber = inputWinNumber();
@@ -66,7 +68,7 @@ public class GameController {
         return Console.readLine();
     }
 
-    public int pickBonusNumber(ArrayList<Integer> winNumber) {
+    public int pickBonusNumber(List<Integer> winNumber) {
         int bonusNumber;
 
         while (true) {
@@ -78,5 +80,11 @@ public class GameController {
         }
         System.out.println();
         return bonusNumber;
+    }
+
+    public void showResult() {
+        System.out.println("당첨 통계\n---");
+        List<String> scoreResultAndEarnRate = gameService.makeScoreResultAndEarnRate(gameService.calcTotalScore());
+        scoreResultAndEarnRate.forEach(System.out::println);
     }
 }

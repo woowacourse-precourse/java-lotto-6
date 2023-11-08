@@ -1,5 +1,6 @@
 package lotto.service;
 
+import static lotto.constant.ErrorMessage.ERROR_BONUS;
 import static lotto.constant.ErrorMessage.ERROR_PRICE;
 import static lotto.constant.ErrorMessage.ERROR_RANGE;
 
@@ -31,11 +32,12 @@ public class LottoService {
         }
     }
 
-    public BonusNumber readBonusNum() {
+    public BonusNumber readBonusNum(Lotto winningNumber) {
         while (true) {
             try {
-                return new BonusNumber(ConsolePrint.readBonusNum());
+                return new BonusNumber(ConsolePrint.readBonusNum(), winningNumber);
             } catch (IllegalArgumentException e) {
+                System.out.println(ERROR_BONUS.getMessage());
 
             }
         }

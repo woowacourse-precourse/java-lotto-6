@@ -21,17 +21,17 @@ public class Lotto {
     }
 
     public Lotto(String[] winningNumber) {//당첨번호 받기
-        List<Integer> numberList = new ArrayList<>();
+        List<Integer> numbers = new ArrayList<>();
         for (String num : winningNumber) {
             validateWinningPositive(num);
-            numberList.add(parstInt(num));
+            numbers.add(parstInt(num));
         }
 
 //        System.out.println("당첨번호" + numbers);
-        validate(numberList);
-        validateIs1_45(numberList);
-        validateDuplicated(numberList);
-        this.numbers = sort(numberList);
+        validate(numbers);
+        validateIs1_45(numbers);
+        validateDuplicated(numbers);
+        this.numbers = sort(numbers);
     }
 
     private void validate(List<Integer> numbers) throws IllegalArgumentException {

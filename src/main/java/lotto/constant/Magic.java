@@ -3,6 +3,7 @@ package lotto.constant;
 import java.util.regex.Pattern;
 
 public class Magic {
+    public static final String[] WINNING_NUM_EX = new String[]{"1", "2", "3", "4", "5", "21"};
     public static final Pattern NUMBER_POSITIVE = Pattern.compile(
             "[1-9]\\d*"); //cacheing to stop regenerating pattern instance
     public static final String INPUT_PRICE = "구입금액을 입력해 주세요.";

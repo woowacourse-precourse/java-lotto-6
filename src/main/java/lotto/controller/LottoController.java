@@ -31,7 +31,7 @@ public class LottoController {
         readPrice(service);
         printLottos();
         readWinningNum(service);
-        readBonusNum(service);
+        readBonusNum(service, winningNumber);
         List<Integer> sames = compareNumbers();
         makeRank(sames);
         printRevenue((float) sumRevenues(sames));
@@ -45,8 +45,8 @@ public class LottoController {
         winningNumber = service.readWinningNum();
     }
 
-    void readBonusNum(LottoService service) {
-        bonus = service.readBonusNum();
+    void readBonusNum(LottoService service, Lotto winningNumber) {
+        bonus = service.readBonusNum(winningNumber);
     }
 
     public List<Integer> compareNumbers() {

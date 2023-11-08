@@ -7,9 +7,10 @@ import java.util.regex.Pattern;
 
 public final class InputValidator {
 
-    private static final String INPUT_FORMAT = "^\\d+(?:,\\d+)*$";
-    private static final String WRONG_NUMBER_FORMAT = "^0\\d+";
-    private static final String NUMBER_FORMAT = "^\\d+$";
+    public static final Pattern NUMBER_PATTERN = Pattern.compile("^\\d+$");
+
+    private static final Pattern COMMON_INPUT_PATTERN = Pattern.compile("^\\d+(?:,\\d+)*$");
+    private static final Pattern WRONG_NUMBER_PATTERN = Pattern.compile("^0\\d+");
     private static final String NULL_ERROR_MESSAGE = "[ERROR] 입력 값이 null 입니다.";
     private static final String BLANK_ERROR_MESSAGE = "[ERROR] 값을 입력해 주세요.";
     private static final String FORMAT_ERROR_MESSAGE = "[ERROR] 숫자와 구분자 쉼표(,)로 구분한 숫자들만 입력할 수 있습니다.";
@@ -40,24 +41,21 @@ public final class InputValidator {
     }
 
     private static void validateInputFormat(final String input) {
-        Pattern pattern = Pattern.compile(INPUT_FORMAT);
-        Matcher matcher = pattern.matcher(input);
+        Matcher matcher = COMMON_INPUT_PATTERN.matcher(input);
         if (!matcher.find()) {
             throw new IllegalArgumentException(FORMAT_ERROR_MESSAGE);
         }
     }
 
     private static void validateWrongNumberFormat(final String input) {
-        Pattern pattern = Pattern.compile(WRONG_NUMBER_FORMAT);
-        Matcher matcher = pattern.matcher(input);
+        Matcher matcher = WRONG_NUMBER_PATTERN.matcher(input);
         if (matcher.find()) {
             throw new IllegalArgumentException(WRONG_NUMBER_FORMAT_ERROR_MESSAGE);
         }
     }
 
     private static void validateIntegerRange(final String input) {
-        Pattern pattern = Pattern.compile(NUMBER_FORMAT);
-        Matcher matcher = pattern.matcher(input);
+        Matcher matcher = NUMBER_PATTERN.matcher(input);
         if (matcher.find() && isOutOfIntegerRange(input)) {
             throw new IllegalArgumentException(INTEGER_RANGE_ERROR_MESSAGE);
         }

@@ -2,13 +2,11 @@ package lotto.validator;
 
 import java.math.BigInteger;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public final class PurchaseValidator {
 
     private static final int LOTTO_PRICE = 1000;
     private static final int MAX_AMOUNT = 2_000_000_000;
-    private static final Pattern NUMBER_PATTERN = Pattern.compile("^\\d+$");
     private static final String NUMBER_ERROR_MESSAGE = "[ERROR] 구입 금액은 숫자만 입력할 수 있습니다.";
     private static final String MIN_AMOUNT_ERROR_MESSAGE = "[ERROR] 최소 구입 금액은 1,000원 입니다.";
     private static final String UNIT_ERROR_MESSAGE = "[ERROR] 구입 금액은 1,000원 단위 입니다.";
@@ -25,7 +23,7 @@ public final class PurchaseValidator {
     }
 
     private static void validateOnlyNumberExist(final String amount) {
-        Matcher matcher = NUMBER_PATTERN.matcher(amount);
+        Matcher matcher = InputValidator.NUMBER_PATTERN.matcher(amount);
         if (!matcher.find()) {
             throw new IllegalArgumentException(NUMBER_ERROR_MESSAGE);
         }

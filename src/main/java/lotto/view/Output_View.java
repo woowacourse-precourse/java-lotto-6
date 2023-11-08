@@ -2,6 +2,7 @@ package lotto.view;
 
 public class Output_View {
     public static void print_ticket_counts(int count) {
+
         System.out.println(count + "개를 구매했습니다.");
     }
 
@@ -17,4 +18,5 @@ public class Output_View {
     public static void print_earning_rate(double earning_rate){
         System.out.println("총 수익률은 " + String.format("%,.1f",earning_rate) + "%입니다.");
     }
+
 }

@@ -40,4 +40,8 @@ public class PlayerTickets {
         check_amount_if_ERROR(amount_number);
         this.amount = amount_number;
     }
+
+    public int divide_per_lotto_purchase_unit() {
+        return amount / lotto_purchase_unit;
+    }
 }

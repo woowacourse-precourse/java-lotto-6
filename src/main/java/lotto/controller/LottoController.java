@@ -29,7 +29,7 @@ public class LottoController {
         lottoService = LottoService.getInstance();
     }
 
-    public void purchaseLotto() {
+    public void generateLottos() {
         PurchaseAmount purchaseAmount = inputPurchaseAmount();
 
         Integer numberOfLotto = purchaseAmount.getNumberOfLotto();
@@ -37,7 +37,7 @@ public class LottoController {
         outputView.printNumberOfPurchaseMessage(numberOfLotto);
 
         for (int i = 0; i < numberOfLotto; i++) {
-            List<Integer> lottoNumbers = lottoService.generateLottos();
+            List<Integer> lottoNumbers = lottoService.generateLotto();
             outputView.printLottoNumbers(lottoNumbers);
         }
     }

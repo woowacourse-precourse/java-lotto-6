@@ -93,6 +93,10 @@ public class ConsoleUI {
             int count = matchCounts.get(i);
             System.out.println(ranks[i].getDescription() + " - " + count + "개");
         }
+
+        int totalValue = LottoService.prize(matchCounts);
+        double result = Math.round((double) totalValue / bought.size()) / 10.0;
+        System.out.println("총 수익률은 " + result + "%입니다.");
     }
 
     private static void validateNumberRange(int number) {

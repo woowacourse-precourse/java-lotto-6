@@ -45,4 +45,15 @@ public class LottoService {
     public static boolean hasBonusMatch(List<Integer> userNumbers, int bonusNumber) {
         return userNumbers.contains(bonusNumber);
     }
+
+    public static int prize(List<Integer> matchCounts) {
+        int[] prizes = {5000, 50000, 1500000, 30000000, 2000000000};
+        int totalValue = 0;
+
+        for (int i = 0; i < matchCounts.size(); i++) {
+            totalValue += matchCounts.get(i) * prizes[i];
+        }
+
+        return totalValue;
+    }
 }

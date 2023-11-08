@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -235,7 +236,11 @@ public class Application {
     public static void calculateProfitRate() {
         int totalPurchase = lottoTickets.size() * 1000;
         float profitRate = ((float) totalPrizeAmount / totalPurchase) * 100;
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+        String formattedProfitRate = decimalFormat.format(profitRate);
+        System.out.println("총 수익률은 "+formattedProfitRate+"%입니다.");
     }
+
     public static void showPrizeCount() {
         System.out.println(Prize.THREE_MATCH.getMatchCount());
         System.out.println(Prize.FOUR_MATCH.getMatchCount());

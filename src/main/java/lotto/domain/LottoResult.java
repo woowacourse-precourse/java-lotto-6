@@ -40,7 +40,7 @@ public class LottoResult {
     }
 
     private void countResultMap(int winningCount, boolean isMatchBonusNumber) {
-        PriceConstant priceConstant = PriceConstant.countWinningPrice(winningCount, isMatchBonusNumber);
+        PriceConstant priceConstant = PriceConstant.countWinningPlace(winningCount, isMatchBonusNumber);
         if (priceConstant != null) {
             resultMap.put(priceConstant.getLabel(), resultMap.get(priceConstant.getLabel()) + 1);
         }

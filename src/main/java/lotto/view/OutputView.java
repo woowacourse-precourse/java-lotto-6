@@ -7,7 +7,7 @@ import lotto.domain.Lotteries;
 
 public class OutputView {
 
-    private static final String PRINT_PURCHASE_RESULT_MESSAGE = "%d개를 구매했습니다.";
+    private static final String PRINT_PURCHASE_RESULT_MESSAGE = "%d개를 구매했습니다.\n";
     private static final String PRINT_WINNING_STATS_MESSAGE = "당첨 통계\n---";
     private static final String PRINT_WINNING_STATS_RESULT_MESSAGE = "%d개 일치 (%,d원) - %d개\n";
     private static final String PRINT_WINNING_STATS_BONUS_RESULT_MESSAGE = "5개 일치, 보너스 볼 일치 (%,d원) - %d개\n";

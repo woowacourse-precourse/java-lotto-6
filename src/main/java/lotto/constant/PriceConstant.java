@@ -27,10 +27,10 @@ public enum PriceConstant {
         return count;
     }
 
-    public static PriceConstant countWinningPrice(int winningCount, boolean isMathchBonusNumber) {
+    public static PriceConstant countWinningPlace(int winningCount, boolean isMathchBonusNumber) {
 
         if (winningCount == SECOND_PLACE.getCount()) {
-            return countSecondOrThirdPrice(isMathchBonusNumber);
+            return countSecondOrThirdPlace(isMathchBonusNumber);
         }
 
         return Arrays.stream(PriceConstant.values())
@@ -39,7 +39,7 @@ public enum PriceConstant {
                 .orElse(null);
     }
 
-    private static PriceConstant countSecondOrThirdPrice(boolean isMatchBonusNumber) {
+    private static PriceConstant countSecondOrThirdPlace(boolean isMatchBonusNumber) {
         if (isMatchBonusNumber) {
             return SECOND_PLACE;
         }

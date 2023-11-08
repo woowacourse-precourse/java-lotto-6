@@ -19,7 +19,7 @@ public class Lotto implements Comparable<Lotto> {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != NumberConstant.LOTTO_COUNT.getNumber()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionConstant.LOTTO_NUMBER_LENGTH.getMessage());
         }
     }
 

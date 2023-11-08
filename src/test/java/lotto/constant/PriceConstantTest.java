@@ -11,7 +11,7 @@ public class PriceConstantTest {
     @ParameterizedTest
     @ValueSource(ints = {3, 4, 5})
     void 객체가_생성되는지_확인(int winningCount) {
-        PriceConstant priceConstant = PriceConstant.countWinningPrice(winningCount, false);
+        PriceConstant priceConstant = PriceConstant.countWinningPlace(winningCount, false);
         assertThat(priceConstant).isNotNull();
     }
 }

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.service.GameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,28 +18,34 @@ public class GameMainController {
     }
 
     public void run() {
-        try {
             startGame();
             playGame();
             stopGame();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     private void startGame() {
-        String purchaseAmount = inputView.inputPurchaseAmount();
-        gameService.createPurchaseAmount(purchaseAmount);
-        gameService.createLotteries();
-        outputView.printPurchaseAmount(gameService.printPurchaseAmount());
-        outputView.printLottoNumbers(gameService.printLottoNumbers());
+        try {
+            String purchaseAmount = inputView.inputPurchaseAmount();
+            gameService.createPurchaseAmount(purchaseAmount);
+            gameService.createLotteries();
+            outputView.printPurchaseAmount(gameService.printPurchaseAmount());
+            outputView.printLottoNumbers(gameService.printLottoNumbers());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            startGame();
+        }
     }
 
     private void playGame() {
-        String winningNumber = inputView.inputWinningNumber();
-        String bonusNumber = inputView.inputBonusNumber();
-        gameService.createWinningLotto(winningNumber, bonusNumber);
-        gameService.createLottoResult();
+        try {
+            String winningNumber = inputView.inputWinningNumber();
+            String bonusNumber = inputView.inputBonusNumber();
+            gameService.createWinningLotto(winningNumber, bonusNumber);
+            gameService.createLottoResult();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            playGame();
+        }
     }
 
     private void stopGame() {

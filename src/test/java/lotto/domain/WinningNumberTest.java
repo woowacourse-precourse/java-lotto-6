@@ -12,6 +12,16 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class WinningNumberTest {
+
+    @DisplayName("당첨 번호가 공백이 입력되면 예외가 발생한다.")
+    @Test
+    void createWinningNumberByIsEmpty() {
+        String input = "";
+
+        assertThatThrownBy(() -> new WinningNumber(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("당첨 번호가 숫자가 아닐 때 예외 발생한다.")
     @Test
     void createWinningNumber() {

@@ -8,8 +8,11 @@ public class Application {
     public static final double ONE_LOTTO_PRICE = 1000;
 
     public static void main(String[] args) {
-
-
+        int purchaseAmount = askPurchaseNumber();
+        NumberGenerator[] purchaseNumbers = new NumberGenerator[purchaseAmount];
+        System.out.println("\n" + purchaseAmount + "개를 구매했습니다.");
+        Lotto winningNumbers = askWiningNumber();
+        int bonusNumber = askBonusNumber();
     }
 
     // 입력 값이 1,000 단위로 나누어 떨어지는지 체크하는 메서드

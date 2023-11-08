@@ -6,9 +6,9 @@ import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import validator.InputValidator;
+import validator.Validator;
 
-public class InputValidatorTest {
+public class ValidatorTest {
     @DisplayName("구입금액이 1,000원 단위로 입력되었는지 검사")
     @Test
     void 구입금액_천_단위_테스트() {
@@ -18,10 +18,10 @@ public class InputValidatorTest {
 
         // when
         Throwable result1 = catchThrowable(() -> {
-            InputValidator.validatePurchaseAmount(case1);
+            Validator.validatePurchaseAmount(case1);
         });
         Throwable result2 = catchThrowable(() -> {
-            InputValidator.validatePurchaseAmount(case2);
+            Validator.validatePurchaseAmount(case2);
         });
 
         // then
@@ -38,10 +38,10 @@ public class InputValidatorTest {
 
         // when
         Throwable result1 = catchThrowable(() -> {
-            InputValidator.validateInputIsNumeric(case1);
+            Validator.validateInputIsNumeric(case1);
         });
         Throwable result2 = catchThrowable(() -> {
-            InputValidator.validateInputIsNumeric(case2);
+            Validator.validateInputIsNumeric(case2);
         });
 
         // then
@@ -61,19 +61,19 @@ public class InputValidatorTest {
 
         // when
         Throwable result1 = catchThrowable(() -> {
-            InputValidator.validateSeparatedByComma(case1);
+            Validator.validateSeparatedByComma(case1);
         });
         Throwable result2 = catchThrowable(() -> {
-            InputValidator.validateSeparatedByComma(case2);
+            Validator.validateSeparatedByComma(case2);
         });
         Throwable result3 = catchThrowable(() -> {
-            InputValidator.validateSeparatedByComma(case3);
+            Validator.validateSeparatedByComma(case3);
         });
         Throwable result4 = catchThrowable(() -> {
-            InputValidator.validateSeparatedByComma(case4);
+            Validator.validateSeparatedByComma(case4);
         });
         Throwable result5 = catchThrowable(() -> {
-            InputValidator.validateSeparatedByComma(case5);
+            Validator.validateSeparatedByComma(case5);
         });
 
         // then
@@ -93,10 +93,10 @@ public class InputValidatorTest {
 
         // when
         Throwable result1 = catchThrowable(() -> {
-            InputValidator.validateLottoNumbersUniqueness(case1);
+            Validator.validateLottoNumbersUniqueness(case1);
         });
         Throwable result2 = catchThrowable(() -> {
-            InputValidator.validateLottoNumbersUniqueness(case2);
+            Validator.validateLottoNumbersUniqueness(case2);
         });
 
         // then
@@ -113,10 +113,10 @@ public class InputValidatorTest {
 
         // when
         Throwable result1 = catchThrowable(() -> {
-            InputValidator.validateWinningNumberCount(case1);
+            Validator.validateWinningNumberCount(case1);
         });
         Throwable result2 = catchThrowable(() -> {
-            InputValidator.validateWinningNumberCount(case2);
+            Validator.validateWinningNumberCount(case2);
         });
 
         // then
@@ -134,13 +134,13 @@ public class InputValidatorTest {
 
         // when
         Throwable result1 = catchThrowable(() -> {
-            InputValidator.validateWinningNumbersInRange(case1);
+            Validator.validateWinningNumbersInRange(case1);
         });
         Throwable result2 = catchThrowable(() -> {
-            InputValidator.validateWinningNumbersInRange(case2);
+            Validator.validateWinningNumbersInRange(case2);
         });
         Throwable result3 = catchThrowable(() -> {
-            InputValidator.validateWinningNumbersInRange(case3);
+            Validator.validateWinningNumbersInRange(case3);
         });
 
         // then
@@ -158,10 +158,10 @@ public class InputValidatorTest {
 
         // when
         Throwable result1 = catchThrowable(() -> {
-            InputValidator.validateWinningNumbersIsNumeric(case1);
+            Validator.validateWinningNumbersIsNumeric(case1);
         });
         Throwable result2 = catchThrowable(() -> {
-            InputValidator.validateWinningNumbersIsNumeric(case2);
+            Validator.validateWinningNumbersIsNumeric(case2);
         });
 
         // then
@@ -179,10 +179,10 @@ public class InputValidatorTest {
 
         // when
         Throwable result1 = catchThrowable(() -> {
-            InputValidator.validateBonusNumberUniqueness(winningNumbers, case1);
+            Validator.validateBonusNumberUniqueness(winningNumbers, case1);
         });
         Throwable result2 = catchThrowable(() -> {
-            InputValidator.validateBonusNumberUniqueness(winningNumbers, case2);
+            Validator.validateBonusNumberUniqueness(winningNumbers, case2);
         });
 
         // then
@@ -201,16 +201,16 @@ public class InputValidatorTest {
 
         // when
         Throwable result1 = catchThrowable(() -> {
-            InputValidator.validateBonusNumberInRange(case1);
+            Validator.validateBonusNumberInRange(case1);
         });
         Throwable result2 = catchThrowable(() -> {
-            InputValidator.validateBonusNumberInRange(case2);
+            Validator.validateBonusNumberInRange(case2);
         });
         Throwable result3 = catchThrowable(() -> {
-            InputValidator.validateBonusNumberInRange(case3);
+            Validator.validateBonusNumberInRange(case3);
         });
         Throwable result4 = catchThrowable(() -> {
-            InputValidator.validateBonusNumberInRange(case4);
+            Validator.validateBonusNumberInRange(case4);
         });
 
         // then

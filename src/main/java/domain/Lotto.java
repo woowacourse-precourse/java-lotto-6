@@ -1,7 +1,7 @@
 package domain;
 
 import java.util.List;
-import validator.InputValidator;
+import validator.Validator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,7 +15,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
-        InputValidator.validateLottoNumbersUniqueness(numbers);
+        Validator.validateLottoNumbersUniqueness(numbers);
     }
 
     public List<Integer> getNumbers() {

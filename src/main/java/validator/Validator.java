@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 import utils.Utils;
 
-public class InputValidator {
+public class Validator {
     private static final int LOTTO_PRICE = 1_000;
     private static final int REMAINDER_ZERO = 0;
     private static final int WINNING_NUMBERS_COUNT = 6;

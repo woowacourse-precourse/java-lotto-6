@@ -3,11 +3,11 @@ package utils;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.List;
-import validator.InputValidator;
+import validator.Validator;
 
 public class Utils {
     public static List<Integer> convertToIntegerList(String[] input) {
-        InputValidator.validateWinningNumbersIsNumeric(input);
+        Validator.validateWinningNumbersIsNumeric(input);
         return Arrays.stream(input)
                      .map(Integer::parseInt)
                      .sorted()

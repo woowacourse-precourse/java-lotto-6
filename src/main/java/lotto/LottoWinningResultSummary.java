@@ -23,5 +23,8 @@ public class LottoWinningResultSummary {
         return totalPrize;
     }
 
-
+    private int calcAmountSpent(LottoResult lottoResult){
+        int countPurchased = lottoResult.countPurchases();
+        return countPurchased * LottoManagement.PRICE_LOTTO;
+    }
 }

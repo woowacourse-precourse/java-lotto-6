@@ -1,20 +1,20 @@
 package lotto.domain;
 
-import java.util.regex.Pattern;
+import lotto.enums.LottoNumbers;
 
 public class WinningLotto {
     private final Lotto lotto;
     private final Integer bonusNumber;
 
-    public WinningLotto(Lotto lotto, String bonusNumber) {
+    public WinningLotto(Lotto lotto, Integer bonusNumber) {
         this.lotto = lotto;
         validate(bonusNumber);
-        this.bonusNumber = Integer.parseInt(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
-    private void validate(String bonusNumber) {
-        if (!Pattern.matches("^[0-9]*$", bonusNumber)) {
-            throw new IllegalArgumentException("[Error] 보너스 번호는 숫자만 가능합니다.");
+    private void validate(Integer bonusNumber) {
+        if (bonusNumber < LottoNumbers.MIN_RANGE.getNumber() || bonusNumber > LottoNumbers.MAX_RANGE.getNumber()) {
+            throw new IllegalArgumentException("[Error] 보너스 번호의 범위는 1~45 입니다.");
         }
     }
 }

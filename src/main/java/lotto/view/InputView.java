@@ -40,7 +40,10 @@ public class InputView {
     public static int getBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE.getMessage());
 
-        return Integer.parseInt(Console.readLine());
+        String bonusNumber = Console.readLine();
+        validateStringInput(bonusNumber);
+
+        return Integer.parseInt(bonusNumber);
     }
 
     private static String validateStringInput(String input) {

@@ -40,15 +40,25 @@ public class Lotto {
                 .collect(Collectors.joining(stringConstant.value()));
     }
 
-    private void validateDuplicate(List<Integer> numbers){
+    private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>(numbers);
-        if(numberSet.size()!= LOTTO_SIZE.value()){
+        if (numberSet.size() != LOTTO_SIZE.value()) {
             throw new IllegalArgumentException(EXIST_DUPLICATE.getMessage());
         }
     }
 
     public boolean containsBonusNumber(int bonusNumber) {
         return numbers.contains(bonusNumber);
+    }
+
+    public int countCommonNumberFromAnotherLotto(Lotto lotto) {
+        return lotto.countCommonElementsFromAnotherNumbers(this.numbers);
+    }
+
+    public int countCommonElementsFromAnotherNumbers(List<Integer> compareNumbers) {
+        return (int) this.numbers.stream()
+                .filter(compareNumbers::contains)
+                .count();
     }
 
 }

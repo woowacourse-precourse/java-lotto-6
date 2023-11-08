@@ -11,6 +11,7 @@ import lotto.enums.ErrorMessage;
 
 public class Converter {
     public static Integer stringToInteger(String text) {
+        text = text.strip();
         validateNumberPattern(text);
 
         return Integer.parseInt(text);

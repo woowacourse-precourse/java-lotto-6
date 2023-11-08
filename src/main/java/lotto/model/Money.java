@@ -10,6 +10,7 @@ public class Money {
     private final Integer amount;
 
     public Money(String amount) {
+        amount = amount.strip();
         validatePositiveAnd1000Units(amount);
 
         this.amount = Converter.stringToInteger(amount);

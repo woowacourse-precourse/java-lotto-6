@@ -25,7 +25,7 @@ public class User {
     }
 
     public Map<Integer, Integer> checkLottoesRanking (WinningLotto winningLotto) {
-        Map<Integer, Integer> lottoesResult = new HashMap<>();
+        Map<Integer, Integer> lottoesResult = lottoesResultInitialize();
 
         for (Lotto currentLotto : lottoes) {
             addLottoResult(lottoesResult, winningLotto.checkLottoRanking(currentLotto));
@@ -33,14 +33,19 @@ public class User {
         return lottoesResult;
     }
 
+    private Map<Integer, Integer> lottoesResultInitialize() {
+        Map<Integer, Integer> lottoesResult = new HashMap<>();
+
+        for (int lottoRank = 1; lottoRank <= 5; lottoRank++) {
+            lottoesResult.put(lottoRank, 0);
+        }
+        return lottoesResult;
+    }
+
     private void addLottoResult (Map<Integer, Integer> lottoesResult, Integer ranking) {
         if (ranking == 0)
             return ;
-        if (lottoesResult.containsKey(ranking)) {
-            int value = lottoesResult.get(ranking);
-            lottoesResult.put(ranking, value + 1);
-            return ;
-        }
-        lottoesResult.put(ranking, 1);
+        int value = lottoesResult.get(ranking);
+        lottoesResult.put(ranking, value + 1);
     }
 }

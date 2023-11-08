@@ -1,10 +1,13 @@
 package lotto.model;
 
+import java.util.List;
 import java.util.Map;
+import javax.naming.InsufficientResourcesException;
 
 public class Wallet {
     private static final int MAXIMUM_PURCHASE_AMOUNT =  1000000000;
     private static final int LOTTO_PRICE = 1000;
+    static final List<Long> priceMoney = List.of(0L, 2000000000L, 30000000L, 1500000L, 50000L, 5000L);
 
     private final int initialAmount;
     private int money;
@@ -78,5 +81,14 @@ public class Wallet {
             return 0.0;
         }
         return Math.round(((double)initialAmount / (double)profit) * 10.0) / 10.0;
+    }
+
+    public long calculateProfit(Map<Integer, Integer> lottoesResult) {
+        long profit = 0;
+
+        for (int rank = 1; rank <= 5; rank++) {
+            profit += lottoesResult.get(rank) * priceMoney.get(rank);
+        }
+        return profit;
     }
 }

@@ -6,6 +6,7 @@ import static lotto.domain.constants.LottoConfig.LOTTO_NUMBER_MAX;
 import static lotto.domain.constants.LottoConfig.LOTTO_NUMBER_MIN;
 import static lotto.domain.constants.LottoConfig.LOTTO_SIZE;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -23,10 +24,8 @@ public class LottoService {
     private Lotto generateLotto() {
         List<Integer> numbers = new ArrayList<>();
         while (numbers.size() < LOTTO_SIZE.getValue()) {
-            int number = pickNumberInRange(LOTTO_NUMBER_MIN.getValue(), LOTTO_NUMBER_MAX.getValue());
-            if (!numbers.contains(number)) {
-                numbers.add(number);
-            }
+            numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN.getValue(), LOTTO_NUMBER_MAX.getValue(),
+                    LOTTO_SIZE.getValue());
         }
         return new Lotto(numbers);
     }

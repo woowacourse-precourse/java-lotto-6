@@ -6,4 +6,10 @@ public class StringUtils {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void validContainsWhiteSpace(String str) {
+        if (str != null && str.contains(" ")) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

@@ -25,7 +25,9 @@ public class LottoGame {
         bonusNumber = InputView.inputBonusNumber();
         winningNumber.validateContainsBonusInLotto(bonusNumber);
 
-        Map<Rank, Integer> playerWinningDetails = player.checkWinning(winningNumber, bonusNumber);
+        player.checkWinning(winningNumber, bonusNumber);
+
+        OutputView.showPlayerWinningStatistics(player, inputMoney);
     }
 
     private Player purchaseLotto(int inputMoney) {

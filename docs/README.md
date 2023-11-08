@@ -2,7 +2,8 @@
 
 - 로또 class 로또 발행 기능
 - 검사 class 입력받는 값 검사 기능
-- 금액 class 금액적으로 계산 및 로또 발행 
+- 금액 class 금액적으로 계산 및 로또 발행
+- Reward 상금 enum class 기능
 
 ## 예외 사항
 

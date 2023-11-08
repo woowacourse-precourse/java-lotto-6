@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserInput {
-    final static int LOTTO_PRICE = 1000;
+    public final static int LOTTO_PRICE = 1000;
 
     public void validateMoney(String input) {
         int money;
@@ -48,7 +48,7 @@ public class UserInput {
     }
 
     public List<Integer> winningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         while (true) {
             try {
                 String input = Console.readLine();
@@ -66,7 +66,7 @@ public class UserInput {
     }
 
     public int bonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         while (true) {
             try {
                 String input = Console.readLine();

@@ -59,7 +59,7 @@ public class Lotto {
     }
 
     public static void lottoPrint(List<Lotto> lottoNumbers, int quantity) {
-        System.out.println(quantity + "개를 구매했습니다.");
+        System.out.println("\n" + quantity + "개를 구매했습니다.");
         for (Lotto lotto : lottoNumbers) {
             Collections.sort(lotto.numbers);
             System.out.println(lotto.numbers);
@@ -67,7 +67,7 @@ public class Lotto {
     }
 
     public static void prizePrint(List<Integer> result) {
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
         System.out.println("3개 일치 (5,000원) - " + result.get(4) + "개");
         System.out.println("4개 일치 (50,000원) - " + result.get(3) + "개");
         System.out.println("5개 일치 (1,500,000원) - " + result.get(2) + "개");

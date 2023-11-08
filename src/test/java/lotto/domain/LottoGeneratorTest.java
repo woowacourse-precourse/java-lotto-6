@@ -1,9 +1,13 @@
 package lotto.domain;
 
+import static lotto.constants.Value.LOTTO_SIZE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,6 +20,19 @@ class LottoGeneratorTest {
     @ValueSource(ints = {1, 10, 8})
     void createLottos(int lottoCount) {
         assertThat(LottoGenerator.createLottos(lottoCount).size()).isEqualTo(lottoCount);
+    }
+
+    @DisplayName("서로 중복되지 않는 로또번호를 생성")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 10, 8})
+    void createLottosByNotDuplication(int lottoCount) {
+        for (int index = 0; index < lottoCount; index++) {
+            // when
+            Set<Integer> lotto = new HashSet<>(LottoGenerator.createLottos(lottoCount).get(index).getNumbers());
+
+            // then
+            assertThat(lotto.size()).isEqualTo(LOTTO_SIZE.get());
+        }
     }
 
     @DisplayName("당첨 번호를 입력 받아 당첨 로또 생성")

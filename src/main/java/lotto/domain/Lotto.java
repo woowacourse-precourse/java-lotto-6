@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.domain.dto.output.LottoDto;
 import lotto.exception.ExceptionMessage;
 
 import java.util.List;
@@ -42,13 +41,6 @@ public class Lotto {
         if (getDistinctLength(numbers) != LOTTO_NUMBERS_LENGTH) {
             throw LOTTO_NUMBERS_DUPLICATED.getException();
         }
-    }
-
-    public LottoDto toLottoDto() {
-        List<Integer> lottoNumbers = numbers.stream()
-                .map(LottoNumber::getNumber)
-                .toList();
-        return new LottoDto(lottoNumbers);
     }
 
     @Override

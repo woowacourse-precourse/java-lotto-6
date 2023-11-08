@@ -28,7 +28,7 @@ public class GameController {
         PurchaseLottoDto purchaseAmount = inputView.getPurchaseAmount();
         Money money = Money.from(purchaseAmount.amount());
         Lottos lottos = lottoStore.purchaseLottoTickets(money);
-        LottosDto lottosDto = lottos.toLottosDto();
+        LottosDto lottosDto = LottosDto.createLottosDto(lottos);
         outputView.printPurchasedLotto(lottosDto);
         return lottos;
     }

@@ -1,8 +1,5 @@
 package lotto.domain;
 
-import lotto.domain.dto.output.LottoDto;
-import lotto.domain.dto.output.LottosDto;
-
 import java.util.List;
 
 public class Lottos {
@@ -14,13 +11,6 @@ public class Lottos {
 
     public static Lottos from(List<Lotto> lottoTickets) {
         return new Lottos(lottoTickets);
-    }
-
-    public LottosDto toLottosDto() {
-        List<LottoDto> lottoNumbers = lottoTickets.stream()
-                .map(Lotto::toLottoDto)
-                .toList();
-        return new LottosDto(lottoNumbers, lottoTickets.size());
     }
 
     public List<Lotto> getLottoTickets() {

@@ -16,18 +16,19 @@ public class Result {
 
     private int compareLottoNumber(List<Integer> winningLotto, List<Integer> userLottoNumber) {
         int match = 0;
+
         for (int lottoNumber: userLottoNumber) {
-            match += checkLottoNumberMatch(winningLotto, lottoNumber);
+            match += checkLottoNumberMatch(winningLotto, lottoNumber).getValue();
         }
         return match;
     }
 
-    private int checkLottoNumberMatch(List<Integer> winningLotto, int lottoNumber) {
+    private LottoMatchResult checkLottoNumberMatch(List<Integer> winningLotto, int lottoNumber) {
 
         if (winningLotto.contains(lottoNumber)) {
-            return 1;
+            return LottoMatchResult.MATCHED;
         }
-        return 0;
+        return LottoMatchResult.NOT_MATCHED;
     }
 
     private boolean checkBonusNumber(List<Integer> winningLotto, int bonus) {

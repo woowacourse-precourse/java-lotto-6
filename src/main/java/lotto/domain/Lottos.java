@@ -7,8 +7,14 @@ import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
+    private final UserNumberInput userNumberInput;
+
+    public Lottos(UserNumberInput userNumberInput) {
+        this.userNumberInput = userNumberInput;
+    }
+
     //로또 수량을 입력 받아 1부터 45까지의 랜덤 숫자 생성
-    public void lottoTicketsNum(int lottoCount){
+    public List<Lotto> lottoTicketsNum(int lottoCount){
         List<Lotto> lottoTickets = new ArrayList<>();
         int count = 0;
 
@@ -23,6 +29,8 @@ public class Lottos {
             }
         }
         printLottoTickets(lottoTickets);
+        calculatePrizes(lottoTickets, userNumberInput);
+        return lottoTickets;
     }
 
     public void printLottoTickets(List<Lotto> lottoTickets) {
@@ -30,4 +38,11 @@ public class Lottos {
             System.out.println(lotto.getNumbers());
         }
     }
+
+    public int[] calculatePrizes(List<Lotto> lottoTickets, UserNumberInput userInput){
+        return CalculateStats.calculatePrize(lottoTickets, userInput);
+    }
+
+
+
 }

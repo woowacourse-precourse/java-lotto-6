@@ -2,7 +2,7 @@ package lotto;
 
 import static lotto.Constants.*;
 
-public abstract class InputNumber extends Input {
+public class InputNumber extends Input {
 
     protected Integer translateToValueType(String noEmptyReadLine) {
         try {

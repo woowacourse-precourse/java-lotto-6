@@ -85,6 +85,7 @@ public class Game {
     }
 
     private void saveBonusNumber() {
+        bonus.setWinningNumbers(winning.getNumbers());
         saveValue(bonus);
     }
 

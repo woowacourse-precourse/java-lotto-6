@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Bonus extends InputNumber {
     private Integer number;
+    private List<Integer> winningNumbers;
 
     public Bonus() {
         this.number = ZERO;
@@ -15,22 +16,20 @@ public class Bonus extends InputNumber {
         return number;
     }
 
-    public void save(String readLine, List<Integer> winningNumbers) {
-        Integer number = validate(readLine);
-        isContained(number, winningNumbers);
-        this.number = number;
+    public void setWinningNumbers(List<Integer> winningNumbers) {
+        this.winningNumbers = winningNumbers;
     }
 
-    private void isContained(Integer number, List<Integer> winningNumbers) {
-        if (winningNumbers.contains(number)) {
-            throw new IllegalArgumentException(BONUS_DUPLICATION_ERROR);
-        }
+    public void save(String readLine) {
+        Integer number = validate(readLine);
+        this.number = number;
     }
 
     protected Integer validate(String readLine) {
         String noEmptyReadLine = removeEmpty(readLine);
         checkDigit(noEmptyReadLine);
         Integer bonusNumber = translateToValueType(noEmptyReadLine);
+        isContained(bonusNumber);
         checkBoundary(bonusNumber);
         return bonusNumber;
     }
@@ -38,6 +37,12 @@ public class Bonus extends InputNumber {
     protected void checkDigit(String readLine) {
         if(readLine.length() == ZERO) {
             throw new IllegalArgumentException(BONUS_SIZE_ERROR);
+        }
+    }
+
+    private void isContained(Integer number) {
+        if (winningNumbers.contains(number)) {
+            throw new IllegalArgumentException(BONUS_DUPLICATION_ERROR);
         }
     }
 }

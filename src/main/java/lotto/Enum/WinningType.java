@@ -7,7 +7,8 @@ public enum WinningType {
     SECOND_PLACE(5, 30000000L),
     THIRD_PLACE(5, 1500000L),
     FORTH_PLACE(4, 50000L),
-    FIFTH_PLACE(3, 5000L);
+    FIFTH_PLACE(3, 5000L),
+    NONE(0, 0L);
 
 
     private int matchCnt;

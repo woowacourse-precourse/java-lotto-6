@@ -10,11 +10,15 @@ public class Human {
 
 
     private List<Lotto> lottos = new ArrayList<>();
-    private Map<WinningType, Integer> winningResult = new EnumMap<>(WinningType.class);
+    private Map<WinningType, Integer> winningResult;
     private Long budget;
 
     public Human(Long budget) {
         this.budget = budget;
+        this.winningResult = new EnumMap<>(WinningType.class);
+        for (WinningType type : WinningType.values()) {
+            winningResult.put(type, 0);
+        }
     }
 
     public boolean buyLotto() {
@@ -37,4 +41,7 @@ public class Human {
         return lottos;
     }
 
+    public void addWinningResult(WinningType winningType) {
+        winningResult.put(winningType, winningResult.get(winningType) + 1);
+    }
 }

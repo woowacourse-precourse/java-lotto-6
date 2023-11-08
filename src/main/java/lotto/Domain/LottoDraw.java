@@ -2,6 +2,7 @@ package lotto.Domain;
 
 
 import java.util.List;
+import lotto.Enum.WinningType;
 
 public class LottoDraw {
     private final WinningLotto winningLotto;
@@ -10,8 +11,7 @@ public class LottoDraw {
         this.winningLotto = winningLotto;
     }
 
-
-    public int checkNumbers(Human human) {
+    public void checkNumbers(Human human) {
         List<Lotto> lottos = human.getLottos();
         List<Integer> normalNumbers = winningLotto.getNormalNumbers();
         int bonusNumber = winningLotto.getBonusNumber();
@@ -19,18 +19,43 @@ public class LottoDraw {
         for (Lotto lotto : lottos) {
             List<Integer> numbers = lotto.getNumbers();
 
-            int normalNumberMatch = (int) normalNumbers.stream()
-                    .filter(numbers::contains)
-                    .count();
+            int normalNumberMatch = (int) normalNumbers.stream().filter(numbers::contains).count();
             boolean bonusNumberMatch = numbers.contains(bonusNumber);
 
-            checkWinner(normalNumberMatch, bonusNumberMatch);
-            System.out.println(normalNumberMatch + " " + bonusNumberMatch);
+            if (bonusNumberMatch) {
+                human.addWinningResult(checkWinnerBonusTrue(normalNumberMatch));
+                continue;
+            }
+            human.addWinningResult(checkWinnerBonusFalse(normalNumberMatch));
         }
-        return 1;
     }
 
-    private void checkWinner(int normalNumberMatch, boolean bonusNumberMatch) {
+    private WinningType checkWinnerBonusTrue(int normalNumberMatch) {
+        if (normalNumberMatch == 5) {
+            return WinningType.FIRST_PLACE;
+        }
+        if (normalNumberMatch == 4) {
+            return WinningType.THIRD_PLACE;
+        }
+        if (normalNumberMatch == 3) {
+            return WinningType.FORTH_PLACE;
+        }
+        if (normalNumberMatch == 2) {
+            return WinningType.FIFTH_PLACE;
+        }
+        return WinningType.NONE;
+    }
 
+    private WinningType checkWinnerBonusFalse(int normalNumberMatch) {
+        if (normalNumberMatch == 5) {
+            return WinningType.SECOND_PLACE;
+        }
+        if (normalNumberMatch == 4) {
+            return WinningType.FORTH_PLACE;
+        }
+        if (normalNumberMatch == 3) {
+            return WinningType.FIFTH_PLACE;
+        }
+        return WinningType.NONE;
     }
 }

@@ -7,6 +7,9 @@ import lotto.message.ConsoleMessage;
 
 public class WinningNumberValidator {
     private static final int LOTTO_NUM_SIZE = 6;
+    private static final int MAX_NUM = 45;
+    private static final int MIN_NUM = 1;
+
     public static List<Integer> validateWinningNumber(String number) {
         try {
             List<String> numbers = List.of(number.split(","));
@@ -24,7 +27,7 @@ public class WinningNumberValidator {
     }
 
     private static void validNumberRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> number < 0 || number > 45)) {
+        if (numbers.stream().anyMatch(number -> number < MIN_NUM || number > MAX_NUM)) {
             throw new IllegalArgumentException(ConsoleMessage.LOTTO_NUMBER_RANGE_ERROR.getMessage());
         }
     }
@@ -47,7 +50,7 @@ public class WinningNumberValidator {
     private static List<Integer> validateNumber(List<String> numbers) {
         List<Integer> formatNumbers = new ArrayList<>();
         try {
-            for(String number : numbers){
+            for (String number : numbers) {
                 formatNumbers.add(Integer.parseInt(number));
             }
             return formatNumbers;

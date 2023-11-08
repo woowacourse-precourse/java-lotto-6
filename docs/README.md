@@ -47,10 +47,10 @@
 - [x] 사용자 입력 UserInput
   - [x] 구입 금액 입력받기(UI) insertMoney()
   - [x] 당첨 번호 입력받기, 보너스 번호 입력받기(UI) inputWinnerNumbers(), inputBonusNumber()
-- [] 당첨자 Winner
-  - [] 당첨자 계산하기 checkLottoNumbers()
-  - [] 당첨자 결과 출력하기(UI) printLottoResult()
-- [] 수익률 Profit
-  - [] 수익률 계산하기 calculateProfit()
-  - [] 수익률 출력하기(UI) printProfit()
+- [x] 당첨자 Winner
+  - [x] 당첨자 계산하기 checkLottoNumbers()
+  - [x] 당첨자 결과 출력하기(UI) printLottoResult()
+- [x] 수익률 Profit
+  - [x] 수익률 계산하기 calculateProfit()
+  - [x] 수익률 출력하기(UI) printProfit()
 - [] 예외처리

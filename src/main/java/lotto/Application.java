@@ -23,9 +23,13 @@ public class Application {
 
         Winner winner = new Winner();
         for(int i=0;i<insertedMoney;i++){
-            winner.checkLottoNumbers(userLotto.get(i),inputList);
+            winner.checkLottoNumbers(userLotto.get(i),inputList,bonusNumber);
         }
         List<Integer> result = winner.getResult();
-        System.out.println(result);
+        winner.printLottoResult(result);
+
+        Profit profit = new Profit();
+        double profitPercentage =profit.calculateProfit(result);
+        profit.printProfit(profitPercentage);
     }
 }

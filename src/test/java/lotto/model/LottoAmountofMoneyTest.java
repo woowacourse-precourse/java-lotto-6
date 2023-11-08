@@ -18,4 +18,17 @@ class LottoAmountofMoneyTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void createLottoMoneyByNotDivided(){
+        assertThatThrownBy(()-> new LottoAmountofMoney("1999"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void createLottoMoneyByZero(){
+        assertThatThrownBy(()-> new LottoAmountofMoney("0"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
 }

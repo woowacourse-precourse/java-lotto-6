@@ -24,6 +24,10 @@ public class WinningLottoTable {
         return rankTable.getKey().getLotteryWinnings() * rankTable.getValue();
     }
 
+    public Map<Rank, Integer> getRankTable() {
+        return rankTable;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -40,6 +40,10 @@ public enum Rank {
         return rank != SECOND && rank.countOfMatch == countOfMatch;
     }
 
+    public int getCountOfMatch() {
+        return countOfMatch;
+    }
+
     public long getLotteryWinnings() {
         return lotteryWinnings;
     }

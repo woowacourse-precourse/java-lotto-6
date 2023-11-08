@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.core.enums.AmountEnum;
 import lotto.core.exception.IllegalAmountException;
-import lotto.core.exception.IllegalOverValueException;
+import lotto.core.exception.IllegalLottoRangeException;
 import lotto.core.exception.IllegalNullTypeException;
 import lotto.core.exception.IllegalNumberTypeException;
 import lotto.core.exception.IllegalRangeException;
@@ -39,8 +39,7 @@ public class NumberGenerator {
     private LottoTicket createWinningNumber(String unprocessedNumbers, List<Integer> numbers) {
         String[] splitUnprocessedNumber = unprocessedNumbers.split(DELIMITER);
         for (String unprocessedNumber : splitUnprocessedNumber) {
-            this.validateNumberType(unprocessedNumber);
-            this.validateNumberRange(unprocessedNumber);
+            this.commonValidate(unprocessedNumber);
             Integer number = Integer.valueOf(unprocessedNumber);
             numbers.add(number);
         }
@@ -61,7 +60,6 @@ public class NumberGenerator {
 
     private Integer createAmountFromConsole(String unprocessedAmount) {
         commonValidate(unprocessedAmount);
-        this.validateNumberRange(unprocessedAmount);
         Integer amount = Integer.valueOf(unprocessedAmount);
         this.validateMinimumAmount(amount);
         return amount;
@@ -75,6 +73,7 @@ public class NumberGenerator {
     private void commonValidate(String unprocessedNumbers) {
         this.validateIsNull(unprocessedNumbers);
         this.validateNumberType(unprocessedNumbers);
+        this.validateNumberRange(unprocessedNumbers);
     }
 
     private void validateNumberType(String unprocessedNumbers) {
@@ -97,7 +96,7 @@ public class NumberGenerator {
 
     private void validateIsSingleNumber(Integer bonusNumber) {
         if (bonusNumber < START_VALUE.getValue() || bonusNumber > END_VALUE.getValue()) {
-            throw new IllegalOverValueException();
+            throw new IllegalLottoRangeException();
         }
     }
 

@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.core.exception.IllegalAmountException;
-import lotto.core.exception.IllegalOverValueException;
+import lotto.core.exception.IllegalLottoRangeException;
 import lotto.core.exception.IllegalNullTypeException;
 import lotto.core.exception.IllegalNumberTypeException;
 import lotto.core.exception.IllegalRangeException;
@@ -113,7 +113,7 @@ class NumberGeneratorTest {
     @Test
     void createBonusNumberFromConsoleOverValueException() {
         assertThatThrownBy(()->numberGenerator.createBonusNumberFromConsole(BONUS_NUMBER_OVER))
-                .isInstanceOf(IllegalOverValueException.class);
+                .isInstanceOf(IllegalLottoRangeException.class);
     }
 
     @DisplayName("문자, 공백, 특수문자, null 포함시 예외가 발생한다.")

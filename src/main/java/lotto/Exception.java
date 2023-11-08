@@ -31,6 +31,7 @@ public class Exception {
     // 6개인지
     boolean checkSizeIsSix(int size){
         if(size != 6){
+            System.out.println("[ERROR] 입력된 숫자가 6개가 아닙니다.");
             return false;
         }
         return true;

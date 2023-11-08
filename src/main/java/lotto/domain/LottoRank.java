@@ -1,21 +1,17 @@
 package lotto.domain;
 
 public enum LottoRank {
-    FIRST(1),
-    SECOND(2),
-    THIRD(3),
-    FOURTH(4),
-    FIFTH(5),
-    NONE(-1);
+    FIRST(2_000_000_000),
+    SECOND(30_000_000),
+    THIRD(1_500_000),
+    FOURTH(50_000),
+    FIFTH(5_000),
+    NONE(0);
 
-    private final int rank;
+    private final int prizeAmount;
 
-    LottoRank(int rank) {
-        this.rank = rank;
-    }
-
-    public int getRank() {
-        return rank;
+    LottoRank(int prizeAmount) {
+        this.prizeAmount = prizeAmount;
     }
 
     public static LottoRank valueOf(int hitCount, boolean bonusMatch) {
@@ -25,5 +21,9 @@ public enum LottoRank {
         if (hitCount == 4) return FOURTH;
         if (hitCount == 3) return FIFTH;
         return NONE;
+    }
+
+    public int getPrizeAmount() {
+        return prizeAmount;
     }
 }

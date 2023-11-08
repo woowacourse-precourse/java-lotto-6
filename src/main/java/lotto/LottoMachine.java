@@ -12,7 +12,6 @@ import java.util.TreeMap;
 import static lotto.Input.getNaturalNumber;
 import static lotto.Input.getSplitNaturalNumberList;
 import static lotto.Output.*;
-import static lotto.enums.LottoPrize.lottoResultToLottoPrize;
 
 public class LottoMachine {
     private final int MIN_NUMBER;
@@ -62,7 +61,7 @@ public class LottoMachine {
     public TreeMap<LottoPrize, Integer> countLottoPrize(List<LottoResult> lottoResults) {
         TreeMap<LottoPrize, Integer> count = new TreeMap<>();
         lottoResults.forEach(lottoResult -> {
-            LottoPrize item = lottoResultToLottoPrize(lottoResult);
+            LottoPrize item = lottoResult.lottoResultToLottoPrize();
             count.put(item, count.getOrDefault(item, 0)+1);
         });
         return count;

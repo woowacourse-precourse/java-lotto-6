@@ -20,21 +20,6 @@ public enum LottoPrize {
         this.matchingNumbers = matchingNumbers;
     }
 
-    public static LottoPrize lottoResultToLottoPrize(LottoResult lottoResult) {
-        if (lottoResult.getCount() == 5) {
-            if (lottoResult.getBonus()) {
-                return MATCH_5_BONUS;
-            }
-            return MATCH_5;
-        }
-        for (LottoPrize lottoPrize: values()) {
-            if (lottoResult.getCount() == lottoPrize.matchingNumbers) {
-                return lottoPrize;
-            }
-        }
-        return null;
-    }
-
     public int getMatchingNumbers() {
         return matchingNumbers;
     }

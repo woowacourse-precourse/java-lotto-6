@@ -26,7 +26,7 @@ public enum Rank {
     public static Rank findByCorrectCountAndIsBonus(int correctCount, boolean isBonus) {
         Stream<Rank> ranks = Arrays.stream(Rank.values());
 
-        if (correctCount == Rank._2ND.correctCount) {
+        if (is2ndRank(correctCount)) {
             return ranks.filter(rank -> rank.isCorrectCount(correctCount)
                             && rank.isCorrectBonus(isBonus))
                     .findAny()
@@ -36,6 +36,10 @@ public enum Rank {
         return ranks.filter(rank -> rank.isCorrectCount(correctCount))
                 .findAny()
                 .orElse(BLANK);
+    }
+
+    private static boolean is2ndRank(int correctCount) {
+        return correctCount == Rank._2ND.correctCount;
     }
 
     private boolean isCorrectBonus(boolean isBonus) {

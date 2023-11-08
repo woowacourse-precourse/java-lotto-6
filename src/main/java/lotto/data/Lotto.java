@@ -10,6 +10,9 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    public static final int START_NUMBER = 1;
+    public static final int END_NUMBER = 45;
+    public static final int DIGITS = 6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -35,10 +38,10 @@ public class Lotto {
     }
 
     protected static void validateLottoNum(int num) {
-        if (num < 1) {
+        if (num < START_NUMBER) {
             throw new IllegalArgumentException(LOTTO_NUMBER_IS_NOT_IN_RANGE.getMessage());
         }
-        if (num > 45) {
+        if (num > END_NUMBER) {
             throw new IllegalArgumentException(LOTTO_NUMBER_IS_NOT_IN_RANGE.getMessage());
         }
     }

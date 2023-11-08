@@ -17,7 +17,7 @@ public class ConsoleOutput {
 
     public static void showLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            System.out.println(lottos);
+            System.out.println(lotto);
         }
     }
 
@@ -36,6 +36,6 @@ public class ConsoleOutput {
         System.out.println(InfoMessage.RESULT_3.getMessage() + model.getThird());
         System.out.println(InfoMessage.RESULT_2.getMessage() + model.getSecond());
         System.out.println(InfoMessage.RESULT_1.getMessage() + model.getFirst());
-        System.out.println(InfoMessage.EARNING_RATE.getMessage());
+        System.out.printf("총 수익률은 %.1f%%입니다.", model.getEarningRate());
     }
 }

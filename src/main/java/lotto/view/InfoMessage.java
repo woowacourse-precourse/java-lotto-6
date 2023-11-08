@@ -10,8 +10,7 @@ public enum InfoMessage {
     RESULT_4("4개 일치 (50,000원) - "),
     RESULT_3("5개 일치 (1,500,000원) - "),
     RESULT_2("5개 일치, 보너스 볼 일치 (30,000,000원) - "),
-    RESULT_1("6개 일치 (2,000,000,000원) - "),
-    EARNING_RATE("총 수익률은 입니다.");
+    RESULT_1("6개 일치 (2,000,000,000원) - ");
 
     private String Message;
 

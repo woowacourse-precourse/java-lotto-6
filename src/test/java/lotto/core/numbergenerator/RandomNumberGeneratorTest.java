@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class RandomNumberGeneratorTest {
-    @DisplayName("1~45사이 랜덤 번호를 생성한다.")
+    @DisplayName("1~45사이 오름차순으로 정렬된 랜덤 번호를 생성한다.")
     @Test
     void createRandomUniqueNumber() {
         //given
@@ -22,5 +22,6 @@ class RandomNumberGeneratorTest {
         //then
         assertThat(randomUniqueNumber.size()).isEqualTo(SIZE.getValue());
         assertThat(randomUniqueNumber).allMatch(num -> num >= START_VALUE.getValue() && num <= END_VALUE.getValue());
+        assertThat(randomUniqueNumber).isSorted();
     }
 }

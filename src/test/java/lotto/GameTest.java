@@ -3,6 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTest extends NsTest {
@@ -20,6 +23,14 @@ public class GameTest extends NsTest {
     void 천원단위확인(){
         assertTrue(exception.checkValidPurchase(4000));
         assertFalse(exception.checkValidPurchase(4500));
+    }
+
+    @Test
+    void 보너스숫자중복확인(){
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+
+        assertTrue(exception.checkDuplication(4,lotto));
+        assertFalse(exception.checkDuplication(7,lotto));
     }
 
     @Override

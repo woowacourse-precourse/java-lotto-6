@@ -30,5 +30,4 @@ public class MoneyRangeCondition extends ValidationCondition {
         }
     }
 
-
 }

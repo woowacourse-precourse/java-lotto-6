@@ -1,6 +1,5 @@
 package lotto.validation.lotto.domain;
 
-
 import java.util.List;
 import lotto.validation.ValidationCondition;
 
@@ -33,6 +32,5 @@ public class LottoRangeCondition extends ValidationCondition {
     private boolean isLottoNumInRange(int lottoNum) {
         return lottoMinValue <= lottoNum && lottoMaxValue >= lottoNum;
     }
-
 
 }

@@ -4,10 +4,8 @@ import lotto.domain.Money;
 import lotto.validation.ValidationCondition;
 
 public class MoneyDivisionCondition extends ValidationCondition {
-
     private Money lottoPrice;
     private static final String EXCEPTION_MSG = "잔돈이 남습니다.";
-
     public MoneyDivisionCondition(Money lottoPrice) {
         this.lottoPrice = lottoPrice;
     }
@@ -25,4 +23,5 @@ public class MoneyDivisionCondition extends ValidationCondition {
     protected boolean isObjectOf(Object obj) {
         return obj instanceof Integer;
     }
+
 }

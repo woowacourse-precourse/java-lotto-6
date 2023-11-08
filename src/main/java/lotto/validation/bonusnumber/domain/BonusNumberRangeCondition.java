@@ -3,10 +3,9 @@ package lotto.validation.bonusnumber.domain;
 import lotto.validation.ValidationCondition;
 
 public class BonusNumberRangeCondition extends ValidationCondition {
-
+    private static final String EXCEPTION_MSG = "입력 값의 범위를 확인해주세요.";
     private int lottoMinValue;
     private int lottoMaxValue;
-    private static final String EXCEPTION_MSG = "입력 값의 범위를 확인해주세요.";
 
     public BonusNumberRangeCondition(int lottoMinValue, int lottoMaxValue) {
         this.lottoMinValue = lottoMinValue;

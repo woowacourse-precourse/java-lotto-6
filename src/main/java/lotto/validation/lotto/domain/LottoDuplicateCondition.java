@@ -1,6 +1,5 @@
 package lotto.validation.lotto.domain;
 
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,4 +27,5 @@ public class LottoDuplicateCondition extends ValidationCondition {
     protected boolean isObjectOf(Object obj) {
         return obj instanceof List;
     }
+
 }

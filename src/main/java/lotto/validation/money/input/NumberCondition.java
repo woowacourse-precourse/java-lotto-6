@@ -20,4 +20,5 @@ public class NumberCondition extends ValidationCondition {
     protected boolean isObjectOf(Object obj) {
         return obj instanceof String;
     }
+
 }

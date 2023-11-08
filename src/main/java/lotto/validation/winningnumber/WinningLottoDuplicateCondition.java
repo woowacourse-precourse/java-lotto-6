@@ -6,10 +6,9 @@ import java.util.Set;
 import lotto.validation.ValidationCondition;
 
 public class WinningLottoDuplicateCondition extends ValidationCondition {
-
-    private final int winningLottoSize;
     private static final String EXCEPTION_MSG = "우승 번호의 숫자가 중복됩니다. 다시확인해주세요";
 
+    private final int winningLottoSize;
 
     public WinningLottoDuplicateCondition(int winningLottoSize) {
         this.winningLottoSize = winningLottoSize;
@@ -28,4 +27,5 @@ public class WinningLottoDuplicateCondition extends ValidationCondition {
     protected boolean isObjectOf(Object obj) {
         return obj instanceof List;
     }
+
 }

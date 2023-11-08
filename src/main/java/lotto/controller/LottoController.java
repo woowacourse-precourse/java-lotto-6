@@ -47,6 +47,7 @@ public class LottoController {
         issueLottos(this.budget);
         printStatus(this.user);
         readAnswer();
+        printResult(this.user);
     }
 
     private void payMoney() {
@@ -128,4 +129,7 @@ public class LottoController {
         return true;
     }
 
+    private void printResult(User user) {
+        OutputView.printResultDescription();
+    }
 }

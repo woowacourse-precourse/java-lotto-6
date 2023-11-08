@@ -15,3 +15,23 @@
 - 만약 6개가 일치할 때는 보너스 볼이 일치하였는지 판별하여 5개+ 보너스 볼일 경우와
 6개의 당첨 번호가 일치하는 것인지 판별하여 상금을 가린다.
 7.총 수익률을 계산하여 출력한다.
+
+
+### lotto
+- controller
+lottoController -> 구현 전반
+
+- domain
+inputAmountLotto -> 구매할 로또 금액 입력 받기
+generateLottoNumbers -> 로또 번호 생성
+numberOfWins -> 몇 등인지 가려내기
+winnigLottoNumber -> 보너스 번호를 포함한 당첨 로또 번호 저장
+
+
+- view
+view -> UI
+ExceptionMessage -> 예외 메세지
+
+- Application -> 동작
+
+- Lotto -> 성공 로또 관리

@@ -4,6 +4,7 @@ package lotto.domain;
 import static lotto.domain.constants.LottoConfig.LOTTO_UNIT_PRICE;
 import static lotto.domain.constants.LottoStatisticsConstants.DOTTED_LINE;
 import static lotto.domain.constants.LottoStatisticsConstants.INLINE;
+import static lotto.domain.constants.LottoStatisticsConstants.PROFIT_RATE_NOTICE;
 import static lotto.domain.constants.LottoStatisticsConstants.STATISTICS_NOTICE;
 import static lotto.domain.constants.LottoStatisticsContent.SECOND;
 
@@ -74,7 +75,7 @@ public class LottoStatistics {
 
     private String generateProfitRate() {
         return String.format(
-                "\n총 수익률은 %.1f%%입니다.\n",
+                INLINE.getValue() + PROFIT_RATE_NOTICE.getValue() + INLINE.getValue(),
                 ((double) totalPrize / (this.purchaseCount * LOTTO_UNIT_PRICE.getValue()) * 100)
         );
     }

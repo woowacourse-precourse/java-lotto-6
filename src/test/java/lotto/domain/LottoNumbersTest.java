@@ -25,4 +25,15 @@ class LottoNumbersTest {
         Assertions.assertThatThrownBy(() -> new LottoNumbers(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 보너스_번호와_중복이면_예외가_발생한다() {
+        // given
+        LottoNumbers lottoNumbers = new LottoNumbers("1,2,3,4,5,6");
+        BonusNumber bonusNumber = new BonusNumber("6");
+
+        // when
+        Assertions.assertThatThrownBy(() -> lottoNumbers.checkBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -55,6 +55,7 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
     @DisplayName("로또 구매 금액이 1000원 단위가 아닌 경우 예외가 발생한다.")
     @Test
     void 예외_테스트2() {
@@ -67,16 +68,17 @@ class ApplicationTest extends NsTest {
     @DisplayName("로또 번호가 1~45 사이의 숫자가 아닌 경우 예외가 발생한다.")
     @Test
     void 예외_테스트3() {
-        assertThatThrownBy(()->Validator.getInstance().validateWinningNumbers("0,1,2,3,4,5"))
+        assertThatThrownBy(() -> Validator.getInstance().validateWinningNumbers("0,1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("보너스 번호가 로또 번호와 겹치는 경우 예외가 발생한다.")
     @Test
     void 예외_테스트4() {
-        assertThatThrownBy(()->Validator.getInstance().validateBonusNumber("7",new Lotto(List.of(1, 2, 3, 4, 5, 6, 7))))
+        assertThatThrownBy(() -> Validator.getInstance().validateBonusNumber("7", new Lotto(List.of(2, 3, 4, 5, 6, 7))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

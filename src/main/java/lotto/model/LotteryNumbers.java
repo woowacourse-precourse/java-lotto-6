@@ -1,19 +1,21 @@
 package lotto.model;
 
+import lotto.constant.ErrorMessage;
 import java.util.List;
 
 public class LotteryNumbers {
     private final Lotto winningNumbers;
     private final BonusNumber bonusNumber;
-    public LotteryNumbers(List<Integer> winningNumbers, int bonusNumber) {
+
+    public LotteryNumbers(Lotto winningNumbers, BonusNumber bonusNumber) {
         checkDuplicatedNumber(winningNumbers, bonusNumber);
-        this.winningNumbers = new Lotto(winningNumbers);
-        this.bonusNumber = new BonusNumber(bonusNumber);
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
     }
 
-    public void checkDuplicatedNumber(List<Integer> winningNumbers, int bonusNumber) {
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+    public void checkDuplicatedNumber(Lotto winningNumbers, BonusNumber bonusNumber) {
+        if (winningNumbers.getNumbers().contains(bonusNumber.getBonusNumber())) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_DUPLICATED_NUMBER);
         }
     }
 

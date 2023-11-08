@@ -1,8 +1,7 @@
 package view;
-
+import static view.ViewMessage.*;
 public class Input {
 
-    private static final String TAB = "";
 
     public static void inputPrice() {
 
@@ -10,12 +9,12 @@ public class Input {
     }
 
     public static void inputPrize() {
-        System.out.println(TAB);
+        System.out.println(TAB.getMessage());
         System.out.println(ViewMessage.INPUT_PRIZE.getMessage());
     }
 
     public static void inputBonus() {
-        System.out.println(TAB);
+        System.out.println(TAB.getMessage());
         System.out.println(ViewMessage.INPUT_BONUS.getMessage());
     }
 }

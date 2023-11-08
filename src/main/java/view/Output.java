@@ -1,19 +1,17 @@
 package view;
 
+import static view.ViewMessage.*;
+
 public class Output {
-    private static final String TAB = "";
-    private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
-    private static final String RESULT_MESSAGE = "당첨 통계";
-    private static final String SEPERATE_LINE = "---";
 
     public static void printCount(int purchase) {
-        System.out.println(TAB);
-        System.out.println(purchase + PURCHASE_MESSAGE);
+        System.out.println(TAB.getMessage());
+        System.out.println(purchase + PURCHASE_RESULT.getMessage());
     }
 
     public static void printResult() {
-        System.out.println(TAB);
-        System.out.println(RESULT_MESSAGE);
-        System.out.println(SEPERATE_LINE);
+        System.out.println(TAB.getMessage());
+        System.out.println(RESULT.getMessage());
+        System.out.println(SEPERATE.getMessage());
     }
 }

@@ -13,7 +13,7 @@ public class User {
     private int bonusNumber;
 
     private final static String START = "구입금액을 입력해 주세요.";
-    private final static String NUMBER = "개를 구입했습니다.";
+    private final static String NUMBER = "개를 구매했습니다.";
     private final static String WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private final static String BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private final static String DIVIDE_ERROR = "[ERROR] 구입 금액을 1,000원 단위로 입력해주세요.";

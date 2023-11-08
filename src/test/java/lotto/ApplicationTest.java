@@ -2,7 +2,10 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
+import lotto.LottoManager;
+import lotto.Lotto;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
@@ -52,6 +55,21 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 예외_테스트_금액_1000단위_아님() {
+        assertSimpleTest(() -> {
+            runException("2304");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 수익금_산출_확인() {
+        LottoManager lottoManager = new LottoManager();
+
+        int result = lottoManager.sumWinMoney(Arrays.asList(1,2,3,4,5),Arrays.asList(1,2,3,4,5));
+        assertThat(result).isEqualTo(55);
     }
 
     @Override

@@ -89,7 +89,8 @@ public class LottoManager {
         List<Integer> winLottoSet=new ArrayList<>();
 
         System.out.println("당첨 번호를 입력해 주세요.");
-        tempWinLottoSet= Arrays.asList(Console.readLine().split(","));
+        winLottoNumbers=Console.readLine();
+        tempWinLottoSet= Arrays.asList(winLottoNumbers.split(","));
         for(String number : tempWinLottoSet){
             winLottoSet.add(Integer.parseInt(number));
         }
@@ -212,7 +213,7 @@ public class LottoManager {
         System.out.println("%입니다.");
     }
 
-    private int sumWinMoney(List<Integer> winLottoCount, List<Integer> winLottoMoney){
+    public int sumWinMoney(List<Integer> winLottoCount, List<Integer> winLottoMoney){
         int sum=0;
 
         for(int i=0; i<winLottoCount.size(); i++){

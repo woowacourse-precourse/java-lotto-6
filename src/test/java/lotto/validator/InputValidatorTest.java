@@ -39,6 +39,6 @@ class InputValidatorTest {
         // then
         assertThatThrownBy(() -> InputValidator.verifyNumericString(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("숫자만 입력해주세요.");
+                .hasMessage("보너스 번호는 하나의 숫자만 입력해주세요.");
     }
 }

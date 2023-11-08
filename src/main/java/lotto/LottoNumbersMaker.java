@@ -1,16 +1,15 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.sql.Array;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoNumbersMaker {
+
     public static List<Integer> generateRandomNumbers() {
-        List<Integer> numbers = new ArrayList<>();
-        for (int i = 1; i <= 45; i++) {
-            numbers.add(i);
-        }
-        Collections.shuffle(numbers);
-        return numbers.subList(0, 6);
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     public static Lotto generateWinningNumbers(String input) {

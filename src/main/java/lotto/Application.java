@@ -29,6 +29,12 @@ public class Application {
         RankChecker rankChecker = new RankChecker(winningNumbers, bonusNumber);
 
         EnumMap<Rank, Integer> rankCounts=new EnumMap<>(Rank.class);
+        rankCounts.put(Rank.FIRST,0);
+        rankCounts.put(Rank.SECOND,0);
+        rankCounts.put(Rank.THIRD,0);
+        rankCounts.put(Rank.FOURTH,0);
+        rankCounts.put(Rank.FIFTH,0);
+
         int totalPrizeMoney=0;
         for(Lotto lottoTicket: lottoTickets.getTickets()){
             Rank rank = rankChecker.check(lottoTicket);

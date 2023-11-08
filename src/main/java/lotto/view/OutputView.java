@@ -1,6 +1,8 @@
 package lotto.view;
 
 import lotto.model.WinningCriteria;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -46,6 +48,8 @@ public class OutputView {
     }
 
     public void printLottoPurchasedNumber(List<Integer> numbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
         System.out.println(numbers);
     }
 

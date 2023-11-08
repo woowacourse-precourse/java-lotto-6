@@ -70,6 +70,7 @@ public class LottoController {
     public void start() {
         int lottoAmount = receiveUserMoneyAndGetAmount();
         List<Lotto> userLottos = randomLottoGenerator.generateLottos(lottoAmount);
+        outputView.printRandomGeneratedPurchsedLottos(userLottos);
         Lotto winningLotto = receiveWinningLottoNumbers();
         int bonusNumber = receiveBonusLottoNumber(winningLotto);
         endLottoGame(userLottos, winningLotto, bonusNumber);

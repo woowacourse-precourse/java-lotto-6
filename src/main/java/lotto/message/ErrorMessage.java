@@ -15,6 +15,9 @@ public class ErrorMessage {
     public static final String NUMBER_OUT_OF_RANGE_EXCEPTION
             = "로또 번호는 " + START_INCLUSIVE + "부터 " + END_INCLUSIVE + "사이의 숫자여야 합니다. 유효하지 않은 로또 번호 : ";
     public static final String INVALID_NUMBERS_ORDER_EXCEPTION = "로또 번호들이 오름차순으로 정렬되어 있지 않습니다. ";
+    public static final String INVALID_WINNING_NUMBER_INPUT_EXCEPTION
+            = "로또 번호는 " + COUNT + "개의 양의 정수를 쉼표로 구분하여 입력해야 합니다. 예 : "
+            + generateSequenceBySizeOfCountWithComma();
 
     public static String generateSequenceBySizeOfCountWithComma() {
         StringBuilder sb = new StringBuilder();

@@ -6,6 +6,7 @@ import lotto.exception.ExceptionStatus;
 
 public class InputHandler {
     private static String purchaseAmount;
+    private static String winningNumbers;
     private static ExceptionStatus exceptionStatus;
 
     public static String getPurchaseInputMessage() {
@@ -19,8 +20,11 @@ public class InputHandler {
     }
 
     public static String getWinningNumberInputMessage() {
+        do {
             Printer.printWinningNumberChoiceMessage();
-            String winningNumbers = Console.readLine();
+            winningNumbers = Console.readLine();
+            exceptionStatus = ExceptionHandler.handleWinningNumberInputException(winningNumbers);
+        } while (exceptionStatus.isOccurred());
 
         return winningNumbers;
     }

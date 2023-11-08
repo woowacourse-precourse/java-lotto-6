@@ -15,4 +15,15 @@ public class ExceptionHandler {
 
         return ExceptionStatus.NOT_OCCURRED;
     }
+
+    public static ExceptionStatus handleWinningNumberInputException(String winningNumbers) {
+        try {
+            InputFormatValidator.validateWinningNumbers(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            Printer.printExceptionMessage(e.getMessage());
+            return ExceptionStatus.OCCURRED;
+        }
+
+        return ExceptionStatus.NOT_OCCURRED;
+    }
 }

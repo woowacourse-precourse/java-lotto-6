@@ -40,6 +40,9 @@ public class Lotto {
     }
 
     private int getBonusMatchedAmount(int bonusNumber) {
-        return numbers.contains(bonusNumber) ? 1 : 0;
+        if (numbers.contains(bonusNumber)) {
+            return 1;
+        }
+        return 0;
     }
 }

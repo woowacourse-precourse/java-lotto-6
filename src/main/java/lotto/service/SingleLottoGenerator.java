@@ -12,8 +12,11 @@ public class SingleLottoGenerator {
 
     public static Lotto generate() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER,
-                LOTTO_END_NUMBER,
-                LOTTO_NUMBER_COUNT);
+                        LOTTO_END_NUMBER,
+                        LOTTO_NUMBER_COUNT)
+                .stream()
+                .sorted()
+                .toList();
 
         return Lotto.of(numbers);
     }

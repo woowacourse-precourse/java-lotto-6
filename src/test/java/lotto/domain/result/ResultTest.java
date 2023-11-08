@@ -8,6 +8,7 @@ import static lotto.domain.result.Grade.THIRD;
 import static lotto.io.write.OutputMessage.LOTTO_PROFIT_MESSAGE;
 import static lotto.io.write.OutputMessage.LOTTO_RESULT_MESSAGE;
 import static lotto.io.write.OutputMessage.LOTTO_STATISTICS_MESSAGE;
+import static lotto.utils.LottoConstant.PROFIT_MULTIPLY;
 import static lotto.utils.LottoConstant.PURCHASE_AMOUNT_UNIT;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -114,10 +115,10 @@ class ResultTest {
         Result result = Result.of(winning, lottos);
 
         //Act
-        double profitPercentage = result.getProfit();
+        double actual = result.getProfit();
 
         //Assert
-        assertThat(profitPercentage).isEqualTo(expectedProfit);
+        assertThat(actual * PROFIT_MULTIPLY).isEqualTo(expectedProfit);
     }
 
     @Test

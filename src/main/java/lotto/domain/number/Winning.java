@@ -3,7 +3,6 @@ package lotto.domain.number;
 import static lotto.utils.LottoConstant.LOTTO_NUMBER_COUNT;
 
 import java.util.List;
-import java.util.Objects;
 import lotto.domain.result.Grade;
 
 public class Winning {
@@ -27,7 +26,7 @@ public class Winning {
         int bonusMatchCount = 0;
 
         for (int index = 0; index < LOTTO_NUMBER_COUNT; index++) {
-            if (Objects.equals(this.numbers.get(index), lottoNumbers.get(index))) {
+            if (this.numbers.contains(lottoNumbers.get(index))) {
                 matchCount++;
             }
         }

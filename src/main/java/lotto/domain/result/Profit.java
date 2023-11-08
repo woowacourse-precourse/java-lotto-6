@@ -1,5 +1,6 @@
 package lotto.domain.result;
 
+import static lotto.utils.LottoConstant.PROFIT_MULTIPLY;
 import static lotto.utils.LottoConstant.PURCHASE_AMOUNT_UNIT;
 
 import lotto.service.LottoOutputWriter;
@@ -13,7 +14,8 @@ public class Profit {
     }
 
     private Profit(WinningMoney winningMoney, int purchaseCount) {
-        this.percentage = winningMoney.getMoney().doubleValue() / (purchaseCount * PURCHASE_AMOUNT_UNIT);
+        this.percentage =
+                (winningMoney.getMoney().doubleValue() / (purchaseCount * PURCHASE_AMOUNT_UNIT * PROFIT_MULTIPLY));
     }
 
     public double getPercentage() {

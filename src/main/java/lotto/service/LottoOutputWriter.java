@@ -64,7 +64,6 @@ public final class LottoOutputWriter {
         String allLottos = lottos.stream()
                 .map(it -> it.getNumbers()
                         .stream()
-                        .sorted()
                         .map(Object::toString)
                         .collect(Collectors.joining(", ", "[", "]")))
                 .collect(Collectors.joining("\n"));

@@ -11,7 +11,7 @@ import lotto.model.PrizeSummary;
 class PrizeSummaryDtoTest {
 
     @Test
-    void 당첨_내역_출력을_위한_데이터는_상금이_0원인_당첨_내역은_포함하지_않는다() {
+    void 당첨_내역_출력을_위한_데이터는_상금이_0원인_당첨_내역을_포함하지_않는다() {
         Map<LottoPrize, Long> summary = Map.of(
                 LottoPrize.FIRST_PRIZE, 1L,
                 LottoPrize.SECOND_PRIZE, 1L,

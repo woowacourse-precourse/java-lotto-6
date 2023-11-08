@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Test;
 class TotalProfitRateTest {
 
     @Test
-    void 총_수익률은_음수값을_가질_수_없다() {
+    void 총_수익률은_음수값을_가지면_예외가_발생한다() {
         assertThatThrownBy(() -> TotalProfitRate.from(-1.0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 총_수익률은_0_이상이어야_한다() {
+    void 총_수익률은_0_이상이면_예외가_발생하지_않는다() {
         assertDoesNotThrow(
                 () -> TotalProfitRate.from(0.0)
         );

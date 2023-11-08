@@ -22,7 +22,7 @@ class LottoPriceTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1000, 1001})
-    void 로또_구입_금액은_최소_로또_가격보다_크거나_같아야_한다(int money) {
+    void 로또_구입_금액은_최소_로또_가격보다_크거나_같으면_예외가_발생하지_않는다(int money) {
         LottoPrice lottoPrice = LottoPrice.STANDARD_PRICE;
 
         assertDoesNotThrow(
@@ -44,7 +44,7 @@ class LottoPriceTest {
 
     @ParameterizedTest
     @ValueSource(ints = {999, 1001})
-    void 로또가격의_배수값을_갖지_않는_투자금액인지_검증할_수_있다(int money) {
+    void 로또가격의_배수값을_갖지_않는_투자금액이면_예외가_발생한다(int money) {
         LottoPrice lottoPrice = LottoPrice.STANDARD_PRICE;
 
         assertThatThrownBy(() -> lottoPrice.validateDivisible(money))

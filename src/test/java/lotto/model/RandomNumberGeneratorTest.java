@@ -34,7 +34,7 @@ class RandomNumberGeneratorTest {
 
         List<Integer> numbers = generator.generateUniqueNumbers(MIN_NUMBER, MAX_NUMBER, NUMBER_SIZE);
 
-        assertThat(numbers).hasSizeBetween(MIN_NUMBER, MAX_NUMBER);
+        assertThat(numbers).allMatch(number -> number >= MIN_NUMBER && number <= MAX_NUMBER);
     }
 
 }

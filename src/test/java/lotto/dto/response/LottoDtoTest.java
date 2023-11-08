@@ -9,7 +9,7 @@ import lotto.model.Lotto;
 class LottoDtoTest {
 
     @Test
-    void getSortedNumbers() {
+    void 뷰에_전달할_로또_번호들은_오름차순으로_정렬되어야_한다() {
         Lotto lotto = Lotto.from(List.of(6, 5, 4, 3, 2, 1));
         LottoDto lottoDto = LottoDto.from(lotto);
 

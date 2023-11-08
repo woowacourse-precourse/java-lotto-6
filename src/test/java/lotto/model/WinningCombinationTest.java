@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class WinningCombinationTest {
 
     @Test
-    void 보너스_번호는_당첨번호와_중복된_상태로_생성할_수_없다() {
+    void 보너스_번호는_당첨번호와_중복된_상태로_생성하면_예외가_발생한다() {
         Lotto winningLotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
         LottoNumber bonusNumber = LottoNumber.from(6);
 
@@ -19,11 +19,13 @@ class WinningCombinationTest {
     }
 
     @Test
-    void 보너스_번호는_당첨번호와_중복되지_않은_상태로_생성할_수_있다() {
+    void 보너스_번호는_당첨번호와_중복되지_않은_상태라면_예외가_발생하지_않는다() {
         Lotto winningLotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
         LottoNumber bonusNumber = LottoNumber.from(7);
 
-        assertDoesNotThrow(() -> WinningCombination.of(winningLotto, bonusNumber));
+        assertDoesNotThrow(
+                () -> WinningCombination.of(winningLotto, bonusNumber)
+        );
     }
 
     @Test

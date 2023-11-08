@@ -17,11 +17,9 @@ class PrizeSummaryTest {
         InvestmentMoney investmentMoney = InvestmentMoney.from(investment);
 
         TotalProfitRate actualTotalProfitRate = prizeSummary.generateTotalProfitRate(investmentMoney);
-        double profitRate = actualTotalProfitRate.getProfitRate();
 
         TotalProfitRate expectedTotalProfitRate = TotalProfitRate.from(expectedProfitRate);
-        double profitRate1 = expectedTotalProfitRate.getProfitRate();
-        assertThat(profitRate).isEqualTo(profitRate1);
+        assertThat(actualTotalProfitRate).isEqualTo(expectedTotalProfitRate);
     }
 
     private static Stream<Arguments> providePrizeSummaryAndInvestmentForTotalProfitRate() {

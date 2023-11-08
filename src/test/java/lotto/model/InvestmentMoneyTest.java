@@ -38,7 +38,7 @@ class InvestmentMoneyTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1000, 100_000})
-    void 투자_금액은_로또가격의_배수만큼_최소_금액과_최대한도_사이의_값을_가질수_있다(int investmentMoney) {
+    void 투자_금액은_로또가격의_배수만큼_최소_금액과_최대한도_사이의_값을_가지면_예외가_발생하지_않는다(int investmentMoney) {
         assertDoesNotThrow(
                 () -> InvestmentMoney.from(investmentMoney)
         );

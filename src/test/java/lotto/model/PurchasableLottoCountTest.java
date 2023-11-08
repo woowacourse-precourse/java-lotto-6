@@ -12,13 +12,13 @@ class PurchasableLottoCountTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 100})
-    void 로또_구매_개수는_유효한_범위안에서_있으면_생성된다(int count) {
+    void 로또_구매_개수는_유효한_범위안에서_생성되면_예외가_발생하지_않는다(int count) {
         assertDoesNotThrow(() -> PurchasableLottoCount.from(count));
     }
 
     @ParameterizedTest
     @ValueSource(ints = {0, 101})
-    void 로또_구매_개수는_유효한_범위안에_없으면_생성되지_않는다(int count) {
+    void 로또_구매_개수는_유효한_범위안에_생성되지_않으면_예외가_발생한다(int count) {
         assertThatThrownBy(() -> PurchasableLottoCount.from(count))
                 .isInstanceOf(IllegalArgumentException.class);
     }

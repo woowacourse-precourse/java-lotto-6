@@ -44,14 +44,14 @@ class LottoTest {
     }
 
     @Test
-    void 로또가_가져야할_로또_번호_개수가_6개라면_생성_가능하다() {
+    void 로또가_가져야할_로또_번호_개수가_6개라면_예외가_발생하지_않는다() {
         assertDoesNotThrow(
                 () -> Lotto.from(List.of(1, 2, 3, 4, 5, 6))
         );
     }
 
     @Test
-    void 로또가_중복되지_않는_로또_번호들로_이루어진다면_생성_가능하다() {
+    void 로또가_중복되지_않는_로또_번호들로_이루어진다면_예외가_발생하지_않는다() {
         assertDoesNotThrow(
                 () -> Lotto.from(List.of(1, 2, 3, 4, 5, 6))
         );
@@ -59,7 +59,7 @@ class LottoTest {
 
     @ParameterizedTest
     @MethodSource("rightRangeOfNumbers")
-    void 로또가_유효한_범위의_로또_번호들로_이루어지는_경우라면_생성_가능하다(List<Integer> numbers) {
+    void 로또가_유효한_범위의_로또_번호들로_이루어지는_경우라면_예외가_발생하지_않는다(List<Integer> numbers) {
         assertDoesNotThrow(
                 () -> Lotto.from(numbers)
         );
@@ -82,7 +82,7 @@ class LottoTest {
     }
 
     @Test
-    void 숫자_생성기가_6개의_로또_번호들을_생성하면_로또_생성이_가능하다() {
+    void 숫자_생성기가_6개의_로또_번호들을_생성하면_예외가_발생하지_않는다() {
         NumberGenerator numberGenerator = (min, max, size) -> List.of(1, 2, 3, 4, 5, 6);
 
         assertDoesNotThrow(
@@ -99,7 +99,7 @@ class LottoTest {
     }
 
     @Test
-    void 숫자_생성기가_중복되지_않는_로또_번호들을_생성하면_로또_생성이_가능하다() {
+    void 숫자_생성기가_중복되지_않는_로또_번호들을_생성하면_예외가_발생하지_않는다() {
         NumberGenerator numberGenerator = (min, max, size) -> List.of(1, 2, 3, 4, 5, 6);
 
         assertDoesNotThrow(
@@ -109,7 +109,7 @@ class LottoTest {
 
     @ParameterizedTest
     @MethodSource("rightRangeOfNumbers")
-    void 숫자_생성기가_유효한_범위의_로또_번호들을_생성하면_로또_생성_가능하다(List<Integer> numbers) {
+    void 숫자_생성기가_유효한_범위의_로또_번호들을_생성하면_예외가_발생하지_않는다(List<Integer> numbers) {
         NumberGenerator numberGenerator = (min, max, size) -> numbers;
 
         assertDoesNotThrow(

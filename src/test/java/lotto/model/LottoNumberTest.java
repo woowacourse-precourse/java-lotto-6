@@ -1,8 +1,8 @@
 package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,14 +12,15 @@ class LottoNumberTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 45})
-    void 로또_번호는_유효한_범위_값으로만_가능하다(int number) {
+    void 로또_번호는_유효한_범위_값으로_생성되면_예외가_발생하지_않는다(int number) {
         assertDoesNotThrow(() -> LottoNumber.from(number));
     }
 
     @ParameterizedTest
     @ValueSource(ints = {0, 46})
-    void 로또_번호는_유효한_범위_값이_아니면_생성되지_않는다(int number) {
-        assertThrows(IllegalArgumentException.class, () -> LottoNumber.from(number));
+    void 로또_번호는_유효한_범위_값으로_생성되지_않으면_예외가_발생한다(int number) {
+        assertThatThrownBy(() -> LottoNumber.from(number))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

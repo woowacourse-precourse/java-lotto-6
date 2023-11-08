@@ -94,7 +94,7 @@ class InputHandlerTest {
         List<Integer> winningNums = InputHandler.setWinningNums();
 
         // then
-        List<Integer> exceptedAnswer = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> expectedAnswer = List.of(1, 2, 3, 4, 5, 6);
 
         String inputMessage = OUTPUT_WINNING_NUMBERS.getMessage();
         String InvalidateIsNumbers = INVALID_COUNT_FORMAT.getMessage() + "\n"
@@ -114,7 +114,7 @@ class InputHandlerTest {
                 + InvalidateIsLottoSize
                 + InvalidateUniqueNumbers
         );
-        assertThat(winningNums).isEqualTo(exceptedAnswer);
+        assertThat(winningNums).isEqualTo(expectedAnswer);
     }
 
     @Test
@@ -129,7 +129,7 @@ class InputHandlerTest {
         int bonusNum = InputHandler.setBonusNum(winnerNums);
 
         // then
-        int exceptedAnswer = 7;
+        int expectedAnswer = 7;
 
         String inputMessage = OUTPUT_BONUS_NUMBER.getMessage();
         String InvalidateIsNumber = INVALID_COUNT_FORMAT.getMessage() + "\n"
@@ -148,7 +148,7 @@ class InputHandlerTest {
                 + InvalidateUniqueNumbers
         );
 
-        assertEquals(bonusNum,exceptedAnswer);
+        assertEquals(bonusNum,expectedAnswer);
     }
 
     private String output() {

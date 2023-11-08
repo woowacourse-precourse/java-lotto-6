@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.domain.policy.PricePolicy;
+import lotto.policy.PricePolicy;
 
 public class Store {
 

@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import lotto.domain.policy.LottoPricePolicy;
-import lotto.domain.policy.PricePolicy;
+import lotto.policy.LottoPricePolicy;
+import lotto.policy.PricePolicy;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.domain.policy.NumberGeneratePolicy;
+import lotto.policy.NumberGeneratePolicy;
 
 import java.util.List;
 import java.util.stream.IntStream;

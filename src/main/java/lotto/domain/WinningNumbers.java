@@ -2,8 +2,8 @@ package lotto.domain;
 
 import java.util.List;
 
-import static lotto.domain.policy.LottoNumberGeneratePolicy.MAX_NUM;
-import static lotto.domain.policy.LottoNumberGeneratePolicy.MIN_NUM;
+import static lotto.policy.LottoNumberGeneratePolicy.MAX_NUM;
+import static lotto.policy.LottoNumberGeneratePolicy.MIN_NUM;
 
 public class WinningNumbers {
 

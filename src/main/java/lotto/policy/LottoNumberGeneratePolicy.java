@@ -1,4 +1,4 @@
-package lotto.domain.policy;
+package lotto.policy;
 
 import camp.nextstep.edu.missionutils.Randoms;
 

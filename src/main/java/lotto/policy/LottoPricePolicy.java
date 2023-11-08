@@ -1,4 +1,4 @@
-package lotto.domain.policy;
+package lotto.policy;
 
 public class LottoPricePolicy implements PricePolicy {
 

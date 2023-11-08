@@ -1,4 +1,4 @@
-package lotto.domain.policy;
+package lotto.policy;
 
 @FunctionalInterface
 public interface PricePolicy {

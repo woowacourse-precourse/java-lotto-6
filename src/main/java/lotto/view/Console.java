@@ -12,8 +12,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static lotto.controller.dto.LottoResult.LottoResponse;
-import static lotto.domain.policy.LottoNumberGeneratePolicy.MAX_NUM;
-import static lotto.domain.policy.LottoNumberGeneratePolicy.MIN_NUM;
+import static lotto.policy.LottoNumberGeneratePolicy.MAX_NUM;
+import static lotto.policy.LottoNumberGeneratePolicy.MIN_NUM;
 
 public class Console {
 

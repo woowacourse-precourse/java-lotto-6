@@ -111,7 +111,7 @@
 ### Refactor
 - 정책 분리해 내기
 - [x] 로또 가격 정책 
-- [ ] 로또 당첨 금액 정책
+- [x] 로또 정렬 정책
 
 - [ ] 전체적으로 clean code로 refactoring
 

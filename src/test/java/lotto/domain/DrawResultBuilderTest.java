@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -13,7 +12,7 @@ public class DrawResultBuilderTest {
     @Test
     void setDrawResultAndBonusThenBuild() {
         DrawResultBuilder drawResultBuilder = new DrawResultBuilder();
-        drawResultBuilder.setLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        drawResultBuilder.setNumbers(List.of(1, 2, 3, 4, 5, 6));
         drawResultBuilder.setBonusNumber(7);
         assertThat(drawResultBuilder.build())
                 .isInstanceOf(DrawResult.class);
@@ -24,7 +23,7 @@ public class DrawResultBuilderTest {
     void setBonusNumber() {
         DrawResultBuilder drawResultBuilder = new DrawResultBuilder();
         drawResultBuilder.setBonusNumber(7);
-        drawResultBuilder.setLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        drawResultBuilder.setNumbers(List.of(1, 2, 3, 4, 5, 6));
         assertThat(drawResultBuilder.build())
                 .isInstanceOf(DrawResult.class);
     }
@@ -33,7 +32,7 @@ public class DrawResultBuilderTest {
     @Test
     void setInvalidNumbersThenBuild() {
         DrawResultBuilder drawResultBuilder = new DrawResultBuilder();
-        drawResultBuilder.setLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        drawResultBuilder.setNumbers(List.of(1, 2, 3, 4, 5, 6));
         drawResultBuilder.setBonusNumber(1);
         assertThatThrownBy(() -> drawResultBuilder.build())
                 .isInstanceOf(IllegalStateException.class);

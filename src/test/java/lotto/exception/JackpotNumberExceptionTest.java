@@ -50,4 +50,11 @@ public class JackpotNumberExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨번호 입력 시 아무것도 입력하지 않으면 예외가 발생한다.")
+    @Test
+    public void inputJackpotNumberByNoInput() {
+        assertThatThrownBy(() -> InputValidator.checkJackpotNumberInput(""))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

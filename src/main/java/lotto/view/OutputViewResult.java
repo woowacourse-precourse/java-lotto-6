@@ -31,6 +31,7 @@ public class OutputViewResult {
                     , count);
 
         }
+
         return String.format(LOTTO_RESULT_CASE_BASIC_MESSAGE,
                 lottoMoney.getMatchCount(),
                 String.format("%,d", lottoMoney.getMoney()),

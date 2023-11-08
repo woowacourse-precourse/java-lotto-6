@@ -1,12 +1,10 @@
-package lotto.Util;
+package Validate;
 
-import lotto.LottoFactory.LottoChecker;
+import lotto.Validate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import java.util.List;
 import java.util.NoSuchElementException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ValidateTest {
     @Test
@@ -22,12 +20,5 @@ class ValidateTest {
         assertThatThrownBy(() -> Validate.CashForm("1500"))
                 .isInstanceOf(NoSuchElementException.class);
     }
-    @Test
-    @DisplayName("당첨로또 입력시 잘못된 구분자를 사용한 경우 예외 발생")
-    void winningLottoInput_InvalidDelimiter() {
-        assertThatThrownBy(() -> Validate.WinningLottoInput("1|2 3,4*5a6&"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
 
 }

@@ -6,14 +6,19 @@ import static lotto.validate.InputValidation.THOUSAND;
 import lotto.validate.InputValidation;
 
 public class Purchase {
+    private int purchase;
 
     private int quantity;
     public Purchase(String purchaseAmount) {
         this.quantity = calculateQuantity(purchaseAmount);
+        this.purchase = Integer.parseInt(purchaseAmount);
     }
 
     public int getQuantity() {
         return quantity;
+    }
+    public int getPurchase() {
+        return purchase;
     }
 
     private int calculateQuantity(String purchaseAmount) {

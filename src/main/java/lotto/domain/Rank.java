@@ -1,0 +1,29 @@
+package lotto.domain;
+
+public enum Rank {
+    FirstRank(2000000000),
+    SecondRank(30000000),
+    ThirdRank(1500000),
+    ForthRank(50000),
+    FifthRank(5000),
+    None(0);
+
+    long prize;
+
+    private Rank(int prize) {
+        this.prize = prize;
+    }
+
+    public static Rank generateRank(int symbolNumber) {
+        if(symbolNumber == 60) return FirstRank;
+        if(symbolNumber == 51) return SecondRank;
+        if(symbolNumber == 50) return ThirdRank;
+        if(symbolNumber == 40 || symbolNumber == 41) return ForthRank;
+        if(symbolNumber == 30 || symbolNumber == 31) return FifthRank;
+        return None;
+    }
+
+    public long getPrize() {
+        return prize;
+    }
+}

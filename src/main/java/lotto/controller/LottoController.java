@@ -24,7 +24,7 @@ public class LottoController {
         List<Integer> wonLotto = InputView.inputWonLottoNumbers();
         int bonusNumber = InputView.inputBonusNumber(wonLotto);
         Result result = lottoService.calculateTotalResult(lottos,wonLotto,bonusNumber);
-        printResult(result,number*lottos.size()*1000);
+        printResult(result,number*1000);
     }
 
     public LottosOutputView printLottos(List<Lotto> lottos){

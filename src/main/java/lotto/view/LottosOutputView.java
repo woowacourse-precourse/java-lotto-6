@@ -13,7 +13,7 @@ public class LottosOutputView {
             for(int number:lotto.getNumbers()) {
                 result += number + ",";
             }
-            result.substring(0,result.length()-1);
+            result = result.substring(0,result.length()-1);
             result+="]";
             System.out.println(result);
         }

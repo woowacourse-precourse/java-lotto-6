@@ -4,6 +4,17 @@ import lotto.lottoMaker.Lotto;
 
 import java.util.List;
 
+import static lotto.constants.Constants.THREE_BAR_MSG;
+import static lotto.constants.Constants.WINNING_STATISTICS_MSG;
+import static lotto.constants.Constants.THREE_MATCH_MSG;
+import static lotto.constants.Constants.FOUR_MATCH_MSG;
+import static lotto.constants.Constants.FIVE_MATCH_MSG;
+import static lotto.constants.Constants.FIVE_MATCH_BONUS_MSG;
+import static lotto.constants.Constants.SIX_MATCH_MSG;
+import static lotto.constants.Constants.EA_MSG;
+import static lotto.constants.Constants.PROFIT_MSG_1;
+import static lotto.constants.Constants.PROFIT_MSG_2;
+
 public class Output {
     private List<Lotto> lottoTicket;
     private List<Integer> winningNumber;
@@ -41,17 +52,17 @@ public class Output {
             } else if (count == 6) sixMatch++;
         }
 
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + threeMatch + "개");
-        System.out.println("4개 일치 (50,000원) - " + fourMatch + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + fiveMatch + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + fiveMatchBonus + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + sixMatch + "개");
+        System.out.println(WINNING_STATISTICS_MSG);
+        System.out.println(THREE_BAR_MSG);
+        System.out.println(THREE_MATCH_MSG + threeMatch + EA_MSG);
+        System.out.println(FOUR_MATCH_MSG + fourMatch + EA_MSG);
+        System.out.println(FIVE_MATCH_MSG + fiveMatch + EA_MSG);
+        System.out.println(FIVE_MATCH_BONUS_MSG + fiveMatchBonus + EA_MSG);
+        System.out.println(SIX_MATCH_MSG + sixMatch + EA_MSG);
         int investment = lottoTicket.size() * 1000;
         long profit = (threeMatch * 5000 + fourMatch * 50000 + fiveMatch * 1500000 + fiveMatchBonus * 30000000 + sixMatch * 2000000000);
         double profitRate = profit / (double)investment * 100;
         double roundedProfitRate = Math.round(profitRate*100.0)/100.0;
-        System.out.println("총 수익률은 " + roundedProfitRate + "%입니다.");
+        System.out.println(PROFIT_MSG_1 + roundedProfitRate + PROFIT_MSG_2);
     }
 }

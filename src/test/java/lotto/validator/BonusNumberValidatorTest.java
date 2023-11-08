@@ -3,6 +3,8 @@ package lotto.validator;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static lotto.constants.Constants.BONUS_NOT_NUMBER_MSG;
+import static lotto.constants.Constants.BONUS_NOT_VALID_RANGE_MSG;
 
 class BonusNumberValidatorTest {
 
@@ -15,7 +17,7 @@ class BonusNumberValidatorTest {
     void isNumber_비정상입력_문자() {
         assertThatThrownBy(() -> BonusNumberValidator.isNumber("a"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 보너스 번호는 숫자여야 합니다.");
+                .hasMessageContaining(BONUS_NOT_NUMBER_MSG);
     }
 
     @Test
@@ -27,7 +29,7 @@ class BonusNumberValidatorTest {
     void isValidNumber_비정상입력_문자() {
         assertThatThrownBy(() -> BonusNumberValidator.isValidNumber("100"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessageContaining(BONUS_NOT_VALID_RANGE_MSG);
     }
 
 

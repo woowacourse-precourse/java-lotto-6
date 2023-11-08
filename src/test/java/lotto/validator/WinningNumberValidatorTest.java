@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
+import static lotto.constants.Constants.WINNING_NOT_VALID_FORMAT_MSG;
+import static lotto.constants.Constants.WINNING_NOT_NUMBER_MSG;
+import static lotto.constants.Constants.WINNING_NOT_VALID_RANGE_MSG;
+import static lotto.constants.Constants.WINNING_HAS_DUPLICATE_MSG;
 
 class WinningNumberValidatorTest {
 
@@ -21,7 +25,7 @@ class WinningNumberValidatorTest {
         String[] numbers = winningNum.split(",");
         assertThatThrownBy(() -> WinningNumberValidator.isValidFormat(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 당첨 번호는 \"(숫자),(숫자),(숫자),(숫자),(숫자),(숫자)\" 꼴의 입력이어야 합니다.");
+                .hasMessageContaining(WINNING_NOT_VALID_FORMAT_MSG);
     }
 
     @Test
@@ -37,7 +41,7 @@ class WinningNumberValidatorTest {
         String[] numbers = winningNum.split(",");
         assertThatThrownBy(() -> WinningNumberValidator.isNumbers(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 당첨 번호 중 숫자가 아닌 입력이 있습니다.");
+                .hasMessageContaining(WINNING_NOT_NUMBER_MSG);
 
     }
 
@@ -54,7 +58,7 @@ class WinningNumberValidatorTest {
         String[] numbers = winningNum.split(",");
         assertThatThrownBy(() -> WinningNumberValidator.isValidNumbers(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessageContaining(WINNING_NOT_VALID_RANGE_MSG);
     }
 
     @Test
@@ -70,6 +74,6 @@ class WinningNumberValidatorTest {
         String[] numbers = winningNum.split(",");
         assertThatThrownBy(() -> WinningNumberValidator.hasDuplicatedNumbers(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 당첨 번호는 중복이 없어야 합니다.");
+                .hasMessageContaining(WINNING_HAS_DUPLICATE_MSG);
     }
 }

@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
+import static lotto.constants.Constants.PURCHASE_NOT_NUMBER_MSG;
+import static lotto.constants.Constants.PURCHASE_NOT_POSITIVE_MSG;
+import static lotto.constants.Constants.PURCHASE_NOT_THOUSANDS_MSG;
 
 class PurcahseAmountValidatorTest {
 
@@ -17,7 +20,7 @@ class PurcahseAmountValidatorTest {
     void isNumber_비정상입력_문자() {
         assertThatThrownBy(() -> PurcahseAmountValidator.isNumber("a"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입금액은 숫자여야 합니다.");
+                .hasMessageContaining(PURCHASE_NOT_NUMBER_MSG);
     }
 
     @Test
@@ -29,7 +32,7 @@ class PurcahseAmountValidatorTest {
     void isPositive_비정상입력_음수() {
         assertThatThrownBy(() -> PurcahseAmountValidator.isPositive("-1"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입금액은 0이상의 숫자여야 합니다.");
+                .hasMessageContaining(PURCHASE_NOT_POSITIVE_MSG);
     }
 
     @Test
@@ -41,6 +44,6 @@ class PurcahseAmountValidatorTest {
     void isThousands_비정상입력() {
         assertThatThrownBy(() -> PurcahseAmountValidator.isThousands("1234"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입금액은 1000의 배수여야 합니다.");
+                .hasMessageContaining(PURCHASE_NOT_THOUSANDS_MSG);
     }
 }

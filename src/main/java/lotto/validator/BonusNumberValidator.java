@@ -1,5 +1,8 @@
 package lotto.validator;
 
+import static lotto.constants.Constants.BONUS_NOT_NUMBER_MSG;
+import static lotto.constants.Constants.BONUS_NOT_VALID_RANGE_MSG;
+
 public class BonusNumberValidator {
     public static boolean validate(String bonusNum) {
         if(isNumber(bonusNum));
@@ -11,13 +14,13 @@ public class BonusNumberValidator {
         try {
             Integer.parseInt(bonusNum);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            throw new IllegalArgumentException(BONUS_NOT_NUMBER_MSG);
         }
         return true;
     }
     public static boolean isValidNumber(String bonusNum) {
         if(Integer.parseInt(bonusNum)<0 || 56<Integer.parseInt(bonusNum)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(BONUS_NOT_VALID_RANGE_MSG);
         }
         return true;
     }

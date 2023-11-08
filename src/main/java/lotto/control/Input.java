@@ -10,6 +10,11 @@ import lotto.validator.BonusNumberValidator;
 import lotto.validator.PurcahseAmountValidator;
 import lotto.validator.WinningNumberValidator;
 
+import static lotto.constants.Constants.NUM_OF_TICKET_MSG;
+import static lotto.constants.Constants.PURCHASE_AMOUNT_MSG;
+import static lotto.constants.Constants.WINNING_NUM_MSG;
+import static lotto.constants.Constants.BONUS_NUM_MSG;
+
 public class Input {
     private List<Lotto> lottoTicket;
     private List<Integer> winningNumber;
@@ -20,15 +25,15 @@ public class Input {
     }
 
     public int startInput() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(PURCHASE_AMOUNT_MSG);
         String purchaseAmount = inputPurchaseAmount();
 
         genLottos(purchaseAmount);
 
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(WINNING_NUM_MSG);
         String winningNum = inputWinningNum();
 
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(BONUS_NUM_MSG);
         String bonusNum = inputBonusNum();
         int bonusNumber = Integer.parseInt(bonusNum);
         return bonusNumber;
@@ -51,7 +56,7 @@ public class Input {
 
     private void genLottos(String purchaseAmount) {
         int numOfTicket = Integer.parseInt(purchaseAmount) / 1000;
-        System.out.println(numOfTicket + "개를 구매했습니다.");
+        System.out.println(numOfTicket + NUM_OF_TICKET_MSG);
         LottoGenerator.generate(lottoTicket, numOfTicket);
         LottoGenerator.printLottoTicket(lottoTicket);
         System.out.println();

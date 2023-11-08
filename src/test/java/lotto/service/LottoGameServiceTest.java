@@ -22,6 +22,7 @@ class LottoGameServiceTest {
     @DisplayName("당첨금 총 합 계산 테스트")
     @Test
     void sumWinningAmount() {
+
         //given
         LinkedHashMap<WinningAmountConstant, Integer> map = new LinkedHashMap<WinningAmountConstant, Integer>();
 

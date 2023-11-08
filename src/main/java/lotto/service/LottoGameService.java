@@ -12,11 +12,12 @@ import lotto.domain.WinningResult;
 
 public class LottoGameService {
 
+    private static final String RATE_OF_RETURN_FORMAT = "총 수익률은 %.1f%%입니다.";
     public String generateWinningResult(WinningResult result, Double rateOfReturn) {
         StringJoiner joiner = new StringJoiner("\n");
 
         joiner.add(result.toString());
-        String format = String.format("총 수익률은 %.1f%%입니다.", rateOfReturn);
+        String format = String.format(RATE_OF_RETURN_FORMAT, rateOfReturn);
         joiner.add(format);
 
         return joiner.toString();

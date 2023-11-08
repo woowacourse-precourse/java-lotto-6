@@ -14,6 +14,6 @@ public class Output {
     public static void printResult() {
         System.out.println(TAB);
         System.out.println(RESULT_MESSAGE);
-        System.out.println(SEPERATE_LINE);G
+        System.out.println(SEPERATE_LINE);
     }
 }

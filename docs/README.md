@@ -22,9 +22,9 @@
   - [x] 3등: 5개 일치
   - [x] 4등: 4개 일치
   - [x] 5등: 3개 일치
-- [x] 복권을 구매하고 구매한다. Application#buyLotto
-- [x] 구매 개수와 로또 정보를 출력한다. Application#buyBoughtLottos
-- [x] 당첨 내역을 출력한다. Application#printBoughtLottos
+- [x] 복권을 개수만큼 구매한다. Application#buyLotto
+- [x] 로또 구매 정보를 출력한다. Application#printBoughtLottos
+- [ ] 당첨 내역을 출력한다.
 - [ ] 수익률을 계산한다.
   - [ ] 수익률은 소수점 둘째 자리에서 반올림한다.
 

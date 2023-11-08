@@ -63,10 +63,35 @@ public class Lotto_Wallet {
 
     public void Result_Print(){
         System.out.print("\n당첨 통계\n---\n");
-        System.out.print("3개 일치 (5,000원) - " + winning_count.get(Prize.Fifth.getPrize())+"\n");
-        System.out.print("4개 일치 (50,000원) - " + winning_count.get(Prize.Fourth.getPrize())+"\n");
-        System.out.print("5개 일치 (1,500,000원) - " + winning_count.get(Prize.Third.getPrize())+"\n");
-        System.out.print("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winning_count.get(Prize.Second.getPrize())+"\n");
-        System.out.print("6개 일치 (2,000,000,000원) - " + winning_count.get(Prize.First.getPrize())+"\n");
+        System.out.print("3개 일치 (5,000원) - " + winning_count.get(Prize.Fifth.name())+"\n");
+        System.out.print("4개 일치 (50,000원) - " + winning_count.get(Prize.Fourth.name())+"\n");
+        System.out.print("5개 일치 (1,500,000원) - " + winning_count.get(Prize.Third.name())+"\n");
+        System.out.print("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winning_count.get(Prize.Second.name())+"\n");
+        System.out.print("6개 일치 (2,000,000,000원) - " + winning_count.get(Prize.First.name())+"\n");
+    }
+
+    public HashMap<String, Integer> getWinning_count() {
+        return winning_count;
+    }
+
+    public void print_Return(int n){
+        float ret = RateOfReturn(n);
+        float rounded_ret =Round(ret, 1);
+        System.out.print("총 수익률은 "+ rounded_ret + "%입니다.\n");
+    }
+    private float RateOfReturn(int n){
+        float cost = 1000 * n;
+        float total_prize = 0;
+        for (Prize prize: Prize.values()){
+            String name = prize.name();
+            int individual_cnt= winning_count.get(name);
+            int individual_prize = prize.getPrize();
+            total_prize += individual_prize * individual_cnt;
+        }
+        return total_prize / cost * 100;
+    }
+    private float Round(float num, int under_dot){
+        double location = Math.pow(10,under_dot);
+        return Math.round(num * location)/(float)location;
     }
 }

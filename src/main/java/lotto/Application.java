@@ -4,7 +4,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+
+import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
@@ -20,8 +23,7 @@ public class Application {
 
         Wallet.Check_All_Lotto(winning_lotto, bonus_num);
         Wallet.Result_Print();
-
-
+        Wallet.print_Return(lotto_num);
     }
     private static int integ_input_money(){                // input 통합 부분, 재귀함수 처리
         String input = input_money();

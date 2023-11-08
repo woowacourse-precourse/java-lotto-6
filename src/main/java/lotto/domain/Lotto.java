@@ -7,7 +7,7 @@ public class Lotto {
     private final LottoValidator validator = new LottoValidator();
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<Integer> numbers) throws IllegalArgumentException {
         validator.validateSize(numbers);
         validator.validateDuplicate(numbers);
         this.numbers = numbers;

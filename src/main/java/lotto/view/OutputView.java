@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     public void outputLotto(Lotto lotto) {
-        System.out.print(lotto.toString());
+        System.out.println(lotto.toString());
     }
 
     public void outputWinningStatistics() {
@@ -23,23 +23,23 @@ public class OutputView {
     }
 
     public void outputFirstPlace(int count) {
-        System.out.print(FIRST_PLACE.getMessage(count));
+        System.out.println(FIRST_PLACE.getMessage(count));
     }
 
     public void outputSecondPlace(int count) {
-        System.out.print(SECOND_PLACE.getMessage(count));
+        System.out.println(SECOND_PLACE.getMessage(count));
     }
 
     public void outputThirdPlace(int count) {
-        System.out.print(THIRD_PLACE.getMessage(count));
+        System.out.println(THIRD_PLACE.getMessage(count));
     }
 
     public void outputFourthPlace(int count) {
-        System.out.print(FOURTH_PLACE.getMessage(count));
+        System.out.println(FOURTH_PLACE.getMessage(count));
     }
 
     public void outputFifthPlace(int count) {
-        System.out.print(FIFTH_PLACE.getMessage(count));
+        System.out.println(FIFTH_PLACE.getMessage(count));
     }
 
     public void outputRateOfReturn(double rateOfReturn) {

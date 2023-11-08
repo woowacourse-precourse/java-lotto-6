@@ -13,13 +13,15 @@ public class WinningLotto {
         return bonusNumber;
     }
 
-    public void addBonusNumber(String number) {
+    public void addBonusNumber(String number) throws IllegalArgumentException {
+        validator.validateWholeNumber(number);
         int bonusNumber = Integer.parseInt(number);
         validator.validateNumberRange(bonusNumber);
+        validator.validateContains(winningLotto, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    public WinningLotto(String lotto) {
+    public WinningLotto(String lotto) throws IllegalArgumentException {
         List<Integer> numbers = createLottos(lotto);
         validator.validateNumbersRange(numbers);
         winningLotto = new Lotto(numbers);

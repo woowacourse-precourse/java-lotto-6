@@ -12,6 +12,7 @@ public class LottoController {
     public void startLotto() {
         buyLotto();
 
+        outputNewLine();
         outputPurchasedLotto();
         outputNewLine();
 
@@ -35,38 +36,36 @@ public class LottoController {
     }
 
     private void createWinningLotto() {
-        lottoService.createWinningLotto(inputWinningNumber());
-        lottoService.addBonusNumber(inputBonusNumber());
+        inputWinningNumber();
+        inputBonusNumber();
     }
 
-    private String inputWinningNumber() {
-        String winningNumber = null;
+    private void inputWinningNumber() {
         boolean success = false;
 
         while (!success) {
             try {
-                winningNumber = inputView.inputWinningNumber();
+                String winningNumber = inputView.inputWinningNumber();
+                lottoService.createWinningLotto(winningNumber);
                 success = true;
             } catch (IllegalArgumentException e) {
                 outputView.outputErrorMessage(e.getMessage());
             }
         }
-        return winningNumber;
     }
 
-    private String inputBonusNumber() {
-        String bonusNumber = null;
+    private void inputBonusNumber() {
         boolean success = false;
 
         while (!success) {
             try {
-                bonusNumber = inputView.inputBonusNumber();
+                String bonusNumber = inputView.inputBonusNumber();
+                lottoService.addBonusNumber(bonusNumber);
                 success = true;
             } catch (IllegalArgumentException e) {
                 outputView.outputErrorMessage(e.getMessage());
             }
         }
-        return bonusNumber;
     }
 
     private void outputNewLine() {
@@ -79,7 +78,17 @@ public class LottoController {
     }
 
     private void buyLotto() {
-        lottoService.buyLotto(inputLottoAmount());
+        boolean success = false;
+
+        while (!success) {
+            try {
+                int lottoAmount = Integer.parseInt(inputView.inputLottoAmount());
+                lottoService.buyLotto(lottoAmount);
+                success = true;
+            } catch (IllegalArgumentException e) {
+                outputView.outputErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private void outputNumberOfPurchases() {
@@ -90,20 +99,5 @@ public class LottoController {
         for (int i = 0; i < lottoService.getLottoNumbers(); i++) {
             outputView.outputLotto(lottoService.getLotto(i));
         }
-    }
-
-    private int inputLottoAmount() {
-        int lottoAmount = 0;
-        boolean success = false;
-
-        while (!success) {
-            try {
-                lottoAmount = Integer.parseInt(inputView.inputLottoAmount());
-                success = true;
-            } catch (IllegalArgumentException e) {
-                outputView.outputErrorMessage(e.getMessage());
-            }
-        }
-        return lottoAmount;
     }
 }

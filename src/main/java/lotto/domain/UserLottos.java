@@ -11,7 +11,7 @@ public class UserLottos {
     private final Lottos lottos = new Lottos();
     private final int amount;
 
-    public UserLottos(int amount) {
+    public UserLottos(int amount) throws IllegalArgumentException {
         this.amount = amount;
         validator.validateDivideByLottoPrice(amount);
         buyLottos(amount/1000);

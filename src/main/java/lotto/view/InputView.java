@@ -18,7 +18,7 @@ public class InputView {
     public String inputWinningNumber() {
         System.out.println(WINNING_NUMBER.getMessage());
         String winningNumber = Console.readLine();
-        validator.validateWholeNumber(winningNumber);
+        validator.validateWholeNumbers(winningNumber);
         return winningNumber;
     }
 

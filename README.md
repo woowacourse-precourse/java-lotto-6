@@ -1,3 +1,102 @@
+# 구현 코드 설명
+
+## *Controller*
+
+### `InputController`
+
+- `InputView`로 부터 사용자 입력값을 받아온다.
+- 문자열 값을 필요에 맞게 가공하고, 기본적인 검증을 한다.
+- 값을 `MainController`로 반환한다.
+
+### `MainController`
+
+- `InputController`로 부터 기본적인 검증이 되고 가공된 사용자 입력값을 받아온다.
+- 받아온 값으로 객체를 생성한다.
+- 이 과정에서 잘못된 입력값에 의한 예외 발생시, 올바른 입력값을 받을 때 까지 사용자에게 해당 입력값을 다시 받는다.
+
+## _Domain_
+
+### `PurchaseAmount`
+
+- 사용자 입력값으로 부터 객체 생성
+- 1000으로 나누어 떨어지는지 검증
+- 총 당첨 금액을 받아 수익률을 반환하는 동작 수행
+
+### `Number`
+
+- 로또에서 사용되는 숫자 (당첨번호, 보너스번호, 로또번호 공통)
+- 원시값 포장 객체
+- 생성자에서 1에서 45사이의 값인지 검증한다.
+
+### `Numbers`
+
+- Number 객체를 List 형태로 가지고 있는 클래스.
+- `Lotto`, `WinningNumber` 내부에서 사용.
+- 객체 생성시 검증 수행
+  - 6개의 숫자인지
+  - 중복되는 값이 없는지
+- `List<Integer>` 형태의 값을 받아서 `Number` 객체로 변환, 저장하는 역할을 함.
+
+### `BonusNumber`
+
+- `Number` 만을 필드값으로 갖는 클래스
+- `Number`에서 수행되는 검증 이외에 `BonusNumber`에게 요구되는 사항을 검증함
+  - 당첨 번호와 중복되는 값이 없는지
+  - 해당 검증을 위해서 생성시 당첨 번호를 매개변수로 받음
+- 로또 번호를 받아서 BonusNumber가 포함되어 있는지 판단하는 동작 수행
+
+### `WinninNumber`
+
+- 내부에 `Numbers`를 가지고 있는 클래스
+- 사용자에게 입력 받은 값으로 객체 생성
+- 보너스 번호가 포함되어 있는지 판단하는 동작 수행
+
+### `Lotto`
+
+- 내부에 `Numbers`를 가지고 있는 클래스
+- 값을 받아 객체 생성
+- `LottoDTO`를 반환하는 동작 수행
+- 당첨 번호를 받아 해당 로또와 일치하는 수의 갯수를 반환
+- 보너스 번호를 받아 해당 로또에 존재하는지 여부 반환
+
+### `Lottos`
+
+- `Lotto` 객체를 List 로 가지고 있는 클래스
+- LottoDTO를 List 형태로 반환
+- 당첨 번호와 보너스 번호를 받아 각각의 로또에 대해
+  - 일치하는 수의 갯수
+  - 보너스 번호 포함 여부
+
+  값을 받아, 이 값을 토대로 등수 값을 가지는 `Rank` 객체 생성.
+- `Rank` 값을 받은 `WinningResult`는 당첨내역을 계산, 저장.
+
+### `Rank`
+
+- 각 등수에 대한 정보를 저장
+  - 각 등수의 기준 (일치히는 수의 갯수, 보너스 번호 포함 여부)
+  - 각 등수의 당첨 금액
+- 각 등수의 기준을 매개변수로 받아서, 기준에 맞는 `Rank` 객체를 반환하는 동작 수행
+
+### `WinningResult`
+
+- `Map<Rank, Integer>` 형태로 각 등수에 해당하는 당첨 내역을 저장
+- 총 당첨금액을 계산하여 반환하는 동작 수행
+
+## _Utils_
+
+### `InputValidator`
+
+- 사용자 입력값에서 가장 먼저 가장 기본적인 검증 수행
+  - 입력값이 공백이거나 빈칸이 아닌지
+  - 정수인지
+
+### `LottoMaker`
+
+- 1에서 45사이의 랜덤값을 6번 생성해서 로또 객체를 생성
+- 매개변수로 받은 구입금액에 해당하는 만큼의 로또를 생성
+
+---
+
 # 미션 - 로또
 
 ## 🔍 진행 방식
@@ -9,11 +108,11 @@
 ## 📮 미션 제출 방법
 
 - 미션 구현을 완료한 후 GitHub을 통해 제출해야 한다.
-    - GitHub을 활용한 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고해
-      제출한다.
+  - GitHub을 활용한 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고해
+    제출한다.
 - GitHub에 미션을 제출한 후 [우아한테크코스 지원](https://apply.techcourse.co.kr) 사이트에 접속하여 프리코스 과제를 제출한다.
-    - 자세한 방법은 [제출 가이드](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드) 참고
-    - **Pull Request만 보내고 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
+  - 자세한 방법은 [제출 가이드](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#제출-가이드) 참고
+  - **Pull Request만 보내고 지원 플랫폼에서 과제를 제출하지 않으면 최종 제출하지 않은 것으로 처리되니 주의한다.**
 
 ## 🚨 과제 제출 전 체크 리스트 - 0점 방지
 
@@ -55,7 +154,7 @@ BUILD SUCCESSFUL in 0s
 - 당첨 번호와 보너스 번호를 입력받는다.
 - 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-    - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
+  - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
 
 ### 입출력 요구 사항
 
@@ -161,8 +260,8 @@ BUILD SUCCESSFUL in 0s
 - 프로그램 구현이 완료되면 `ApplicationTest`의 모든 테스트가 성공해야 한다. **테스트가 실패할 경우 0점 처리한다.**
 - 프로그래밍 요구 사항에서 달리 명시하지 않는 한 파일, 패키지 이름을 수정하거나 이동하지 않는다.
 - indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
-    - 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
-    - 힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메서드)를 분리하면 된다.
+  - 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
+  - 힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메서드)를 분리하면 된다.
 - 3항 연산자를 쓰지 않는다.
 - 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
 - JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.
@@ -170,21 +269,21 @@ BUILD SUCCESSFUL in 0s
 ### 추가된 요구 사항
 
 - 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
-    - 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
+  - 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
 - else 예약어를 쓰지 않는다.
-    - 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
-    - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
+  - 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
+  - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
 - Java Enum을 적용한다.
 - 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
-    - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다. 
-    - 단위 테스트 작성이 익숙하지 않다면 `test/java/lotto/LottoTest`를 참고하여 학습한 후 테스트를 구현한다.
+  - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
+  - 단위 테스트 작성이 익숙하지 않다면 `test/java/lotto/LottoTest`를 참고하여 학습한 후 테스트를 구현한다.
 
 ### 라이브러리
 
 - `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms` 및 `Console`
   API를 사용하여 구현해야 한다.
-    - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용한다.
-    - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
+  - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용한다.
+  - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
 
 #### 사용 예시
 
@@ -201,20 +300,20 @@ List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
 ```java
 public class Lotto {
-    private final List<Integer> numbers;
+  private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+  public Lotto(List<Integer> numbers) {
+    validate(numbers);
+    this.numbers = numbers;
+  }
+
+  private void validate(List<Integer> numbers) {
+    if (numbers.size() != 6) {
+      throw new IllegalArgumentException();
     }
+  }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    // TODO: 추가 기능 구현
+  // TODO: 추가 기능 구현
 }
 ```
 
@@ -225,5 +324,5 @@ public class Lotto {
 - 미션은 [java-lotto-6](https://github.com/woowacourse-precourse/java-lotto-6) 저장소를 Fork & Clone해 시작한다.
 - **기능을 구현하기 전 `docs/README.md`에 구현할 기능 목록을 정리**해 추가한다.
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
-    - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
+  - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.

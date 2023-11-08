@@ -14,7 +14,9 @@ public class LottoResults {
     private final List<Integer> results;
 
     public LottoResults(String userInputMoney) {
+        InputValidator.checkUserInputIsNull(userInputMoney);
         InputValidator.checkUserInputIsInteger(userInputMoney);
+        InputValidator.checkUserInputIsOverflow(userInputMoney);
         InputValidator.checkUserInputIsDivided(Integer.parseInt(userInputMoney),LOTTO_PRICE);
 
         this.userInputMoney = Integer.parseInt(userInputMoney);

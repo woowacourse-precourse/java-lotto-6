@@ -11,6 +11,7 @@ public class Bonus {
     private final Integer bonus;
 
     public Bonus(String bonus) {
+        InputValidator.checkUserInputIsNull(bonus);
         InputValidator.checkUserInputIsInteger(bonus);
         int tmpBonus = Integer.parseInt(bonus);
         InputValidator.checkUserInputOutOfRange(tmpBonus,MIN_LOTTO_NUMBER,MAX_LOTTO_NUMBER);

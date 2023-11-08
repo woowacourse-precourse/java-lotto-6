@@ -4,6 +4,7 @@ import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.LottoResults;
 import lotto.model.RandomNumbers;
+import lotto.validator.InputValidator;
 
 
 import java.util.Arrays;
@@ -58,6 +59,7 @@ public class Controller {
         while (true) {
             try {
                 String numbers = getWinningNumberInput();
+                InputValidator.checkUserInputIsNull(numbers);
                 List<String> tmpLotto = Arrays.asList(numbers.split(","));
                 checkUserInputIsIntegerNOutOfRange(tmpLotto);
                 lotto = new Lotto(tmpLotto.stream()

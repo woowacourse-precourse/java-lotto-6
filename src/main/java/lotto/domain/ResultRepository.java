@@ -33,7 +33,7 @@ public class ResultRepository {
         board.entrySet().stream()
                 .filter(entry -> !entry.getKey().equals(Rank.OUT))
                 .sorted(Comparator.comparingInt(n -> n.getKey().getReward()))
-                .forEach(entry -> lottos.add(entry.getKey() + "-" + entry.getValue() + "개"));
+                .forEach(entry -> lottos.add(entry.getKey() + " - " + entry.getValue() + "개"));
         return lottos.toString();
     }
 

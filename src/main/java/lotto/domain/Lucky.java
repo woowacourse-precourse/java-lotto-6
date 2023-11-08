@@ -11,7 +11,10 @@ public class Lucky {
     private final int bonus;
 
     public Lucky(String lucky, int bonus) {
-        this.lucky = translateLucky(lucky);
+        List<Integer> number=translateLucky(lucky);
+        validateDuplication(number);
+        validateBonus(number,bonus);
+        this.lucky = number;
         this.bonus = bonus;
     }
 
@@ -47,6 +50,18 @@ public class Lucky {
         target.stream()
                 .forEach(t->lucky.add(Integer.parseInt(t)));
         return lucky;
+    }
+
+    private void validateDuplication(List<Integer> numbers){
+        if(numbers.size()!=numbers.stream().distinct().count()){
+            throw new IllegalArgumentException("[ERROR] 중복되는 숫자는 불가능합니다.");
+        }
+    }
+
+    private void validateBonus(List<Integer> numbers,int bonus){
+        if(numbers.contains(bonus)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다.");
+        }
     }
 
 

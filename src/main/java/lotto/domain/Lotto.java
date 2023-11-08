@@ -9,6 +9,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplication(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
     }
@@ -16,6 +17,12 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateDuplication(List<Integer> numbers){
+        if(numbers.size()!=numbers.stream().distinct().count()){
+            throw new IllegalArgumentException("[ERROR] 중복되는 숫자는 불가능합니다.");
         }
     }
 

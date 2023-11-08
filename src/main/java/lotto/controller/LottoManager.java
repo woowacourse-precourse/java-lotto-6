@@ -18,14 +18,17 @@ public class LottoManager {
             try {
                 customer = new Customer(inputView.inputMoney());
                 customer.pay();
+                System.out.println();
                 outputView.printCount(customer.getLottos().size());
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+
             }
         }
         showLottoList();
         playLotto();
+
     }
 
     private void showLottoList(){

@@ -68,13 +68,13 @@ public class LottoUI {
         return Arrays.stream(input.split(",")).mapToInt(Integer::parseInt).toArray();
     }
 
-    private static void isEnoughLottoNumber(int[] winningNumbers) {
+    private void isEnoughLottoNumber(int[] winningNumbers) {
         if (winningNumbers.length != Constants.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.NOT_ENOUGH_LOTTO_LENGTH.getMessage());
         }
     }
 
-    private static void areValidLottoNumber(int[] winningNumbers) {
+    private void areValidLottoNumber(int[] winningNumbers) {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (int number : winningNumbers) {
             if (!uniqueNumbers.add(number)) {
@@ -84,7 +84,7 @@ public class LottoUI {
         }
     }
 
-    private static void isValidLottoNumber(int number) {
+    private void isValidLottoNumber(int number) {
         if (number < Constants.LOTTO_NUMBER_MIN || number > Constants.LOTTO_NUMBER_MAX) {
             throw new IllegalArgumentException(ErrorMessage.NOT_VALID_LOTTO_NUMBER.getMessage());
         }

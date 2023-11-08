@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.assertj.core.util.Arrays;
-
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -69,14 +67,14 @@ public class Function {
 	
 	private boolean validateWinningNumber(String[] winningNum) {
 		boolean check= false;
+		if(winningNum.length!= 6 ) {
+			check= true;
+			throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입해 주세요.");
+		}
 		for(int i= 0; i<winningNum.length; i++) {
 			if(winningNum[i].getClass()!= String.class) {
 				check= true;
 				throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
-			}
-			if(winningNum.length!= 6 ) {
-				check= true;
-				throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입해 주세요.");
 			}
 			if(Integer.parseInt(winningNum[i])<0 || Integer.parseInt(winningNum[i])>45) {
 				check= true;
@@ -167,8 +165,8 @@ public class Function {
 	}
 	
 	protected void showRateOfReturn(int[] matched, int money) {
-		int sum=matched[3]*5000+matched[4]*50000+matched[5]*1500000+ matched[7]*30000000+matched[6]*2000000000;
-		double result= Math.round(sum/money);
+		double sum=matched[3]*5000+matched[4]*50000+matched[5]*1500000+ matched[7]*30000000+matched[6]*2000000000;
+		double result= sum/money*100;
 		System.out.printf("총 수익률은 %.1f%% 입니다.", result);
 		
 	}

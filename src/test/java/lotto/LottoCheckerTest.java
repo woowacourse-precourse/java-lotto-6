@@ -18,4 +18,17 @@ public class LottoCheckerTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스가 가능한 최솟값보다 작으면 예외가 발생한다.")
+    @Test
+    void createLottoCheckerByBonusNumberLessThanMinimumValue() {
+        assertThatThrownBy(() -> new LottoChecker(lotto, LottoEnum.NUMBER_MIN.getValue() - 1))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스가 가능한 최댓값보다 크면 예외가 발생한다.")
+    @Test
+    void createLottoCheckerByBonusNumberGreaterThanMaximumValue() {
+        assertThatThrownBy(() -> new LottoChecker(lotto, LottoEnum.NUMBER_MAX.getValue() + 1))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

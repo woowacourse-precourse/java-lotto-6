@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.view.ExceptionMessage;
 
 public class Lotto {
 
@@ -13,14 +14,14 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_COUNT.getMessage());
         }
     }
 
     private void validateOverlap(List<Integer> numbers) {
         long uniqueNumbersCount = numbers.stream().distinct().count();
         if (uniqueNumbersCount < numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_NUMBER_ERROR.getMessage());
         }
     }
 

@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.controller.InputController;
+import lotto.model.entity.Lotto;
 
 public class LottoService {
 
     public int calculateTicketCount() {
-        return InputController.inputPlayerAmount();
+        return InputController.inputValidPlayerAmount();
     }
     public List<Lotto> createLottos(int ticketCount) {
         return IntStream.range(0, ticketCount)

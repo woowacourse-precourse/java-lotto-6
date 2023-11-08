@@ -3,11 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
+import java.text.NumberFormat;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 public class Application {
     private static final int LOTTO_MIN_NUMBER = 1;
@@ -123,7 +121,10 @@ public class Application {
                 .sorted(Comparator.comparingInt(Rank::getPrizeMoney))
                 .forEach(rank -> {
                     int count = results.getOrDefault(rank, 0);
-                    String prizeMoneyFormatted = NumberFormat.getNumberInstance(Locale.KOREA).format(rank.getPrizeMoney());
+
+                    NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.KOREA);
+
+                    String prizeMoneyFormatted = numberFormat.format(rank.getPrizeMoney());
 
                     if (rank == Rank.SECOND) {
                         System.out.printf("5개 일치, 보너스 볼 일치 (%s원) - %d개\n", prizeMoneyFormatted, count);
@@ -138,6 +139,9 @@ public class Application {
                 .mapToLong(entry -> (long) entry.getKey().getPrizeMoney() * entry.getValue())
                 .sum();
         double yield = (double) totalPrize / purchaseAmount;
-        System.out.printf("총 수익률은 %.1f%%입니다.", yield * 100);
+
+        String formattedYield = String.format("%,.1f%%", yield * 100);
+
+        System.out.printf("총 수익률은 %s입니다.", formattedYield);
     }
 }

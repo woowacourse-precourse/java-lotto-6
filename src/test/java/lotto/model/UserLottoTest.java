@@ -91,7 +91,7 @@ public class UserLottoTest {
         //when,then
         Assertions.assertThatThrownBy(() -> new UserLotto(userLottoNumber, userBonusLotto))
                 .isInstanceOf(NumberFormatException.class)
-                .hasMessageContaining("[ERROR]숫자만을 입력해주세요");
+                .hasMessageContaining("[ERROR] 숫자만을 입력해주세요");
 
     }
 

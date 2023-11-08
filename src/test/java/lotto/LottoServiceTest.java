@@ -2,39 +2,32 @@ package lotto;
 
 
 import java.util.List;
+import lotto.controller.service.LottoService;
 import lotto.model.Lotto;
+import lotto.model.LottoMoney;
+import lotto.utils.NumberGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;;
 
-class LottoStoreTest {
+class LottoServiceTest {
 
     @ParameterizedTest
     @CsvSource(
             {
-                "10000, 10",
-                "20000, 20",
-                "15000, 15",
-                "100000, 100",
-                "99000, 99",
+                    "10000, 10",
+                    "20000, 20",
+                    "15000, 15",
+                    "100000, 100",
+                    "99000, 99",
             }
     )
     @DisplayName("돈 지불하여 로또를 구입할 개수를 받는다.")
     void countLottoTest(int money, int count) {
-        LottoStore lottoStore = new LottoStore(new NumberGenerator());
-        int quantity = lottoStore.calculateLottoNumberByMoney(money);
+        LottoMoney lottoMoney = new LottoMoney(money);
+        int quantity = lottoMoney.calculateCountLottoPrice();
         Assertions.assertThat(quantity).isEqualTo(count);
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {4, 2, 3, 4, 6, 7, 8, 9, 10})
-    @DisplayName("수량을 입력하여 로또를 생성한다.")
-    void createLottoTest(int quantity) {
-        LottoStore lottoStore = new LottoStore(new NumberGenerator());
-        List<Lotto> lottoNumbers = lottoStore.createLottoNumbers(quantity);
-        Assertions.assertThat(lottoNumbers.size()).isEqualTo(quantity);
     }
 
     @ParameterizedTest
@@ -49,8 +42,9 @@ class LottoStoreTest {
     )
     @DisplayName("돈을 지불하여 로또번호를 받는다.")
     void purchaseLottoTest(int money, int count) {
-        LottoStore lottoStore = new LottoStore(new NumberGenerator());
-        List<Lotto> lottos = lottoStore.purchaseLottoNumbers(money);
+        LottoService lottoService = new LottoService(new NumberGenerator());
+        LottoMoney lottoMoney = new LottoMoney(money);
+        List<Lotto> lottos = lottoService.createLottoNumbers(lottoMoney);
         Assertions.assertThat(lottos.size()).isEqualTo(count);
     }
 }

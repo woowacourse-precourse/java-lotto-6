@@ -34,4 +34,27 @@ public class LottoController {
                 .collect(Collectors.toList());
         return new Lotto(numbers);
     }
+
+    public Map<Rank, Integer> calculateResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+        Map<Rank, Integer> result = new HashMap<>();
+
+        for (Lotto lotto : lottos) {
+            Rank rank = getRank(lotto, winningLotto, bonusNumber);
+            result.put(rank, result.getOrDefault(rank, 0) + 1);
+        }
+
+        return result;
+    }
+
+    private Rank getRank(Lotto lotto, Lotto winningLotto, int bonusNumber) {
+        int countOfMatch = getCountOfMatch(lotto, winningLotto);
+        boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
+        return Rank.valueOf(countOfMatch, matchBonus);
+    }
+
+    private int getCountOfMatch(Lotto lotto, Lotto winningLotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(winningLotto.getNumbers()::contains)
+                .count();
+    }
 }

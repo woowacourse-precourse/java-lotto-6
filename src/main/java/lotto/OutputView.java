@@ -7,6 +7,7 @@ public class OutputView {
     }
 
     public static void noticeHeader() {
+        printWhiteSpace();
         System.out.println("당첨 통계");
         printLine();
     }

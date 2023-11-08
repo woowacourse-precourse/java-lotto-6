@@ -16,6 +16,7 @@ public class InputView {
     }
 
     public static String requestBonus() {
+        printWhiteSpace();
         System.out.println("보너스 번호를 입력해 주세요.");
 
         return reqeustInput();
@@ -23,5 +24,9 @@ public class InputView {
 
     private static String reqeustInput() {
         return Console.readLine();
+    }
+
+    private static void printWhiteSpace() {
+        System.out.println();
     }
 }

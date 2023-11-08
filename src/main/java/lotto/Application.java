@@ -1,7 +1,14 @@
 package lotto;
 
 public class Application {
+
+    static Bonus bonus;
+    static Lotto lotto;
+    static Money money;
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        PlayGame playGame = new PlayGame(money, lotto, bonus);
+        playGame.sumOfMoney();
     }
+
 }

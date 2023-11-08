@@ -95,22 +95,35 @@ public class LottoController {
         List<Integer> prizeNumbers = new ArrayList<>();
         try {
             String confirmString = Console.readLine();
-            List<String> testing = List.of(confirmString.split(","));
-            for (String splited:
-                    testing) {
-                prizeNumbers.add(Integer.parseInt(splited));
-            }
+            prizeNumbers.addAll(splitPrizeNumbers(confirmString));
         } catch (NumberFormatException numberFormatException) {
             throw new IllegalArgumentException("숫자만 입력하실 수 있습니다.");
         }
         return prizeNumbers;
-
+    }
+    public List<Integer> splitPrizeNumbers(String confirmString) {
+        List<String> testing = List.of(confirmString.split(","));
+        List<Integer> prizeNumbers = new ArrayList<>();
+        for (String splited:
+                testing) {
+            if(!isInRangeNumber(Integer.parseInt(splited))) {
+                throw new IllegalArgumentException("1부터 45 사이의 숫자만 입력하실 수 있습니다.");
+            }
+            prizeNumbers.add(Integer.parseInt(splited));
+        }
+        return prizeNumbers;
+    }
+    public boolean isInRangeNumber(int confirmInteger) {
+        return confirmInteger >= 1 && confirmInteger <= 45;
     }
 
     public void run() {
-        printLottoPrices();
+        System.out.println(printLottoPrices());
         inputLottoPrices();
         iterateLottos();
+
+        System.out.println(printPrizeNumbers());
+        inputPrizeNumbers();
     }
 
 

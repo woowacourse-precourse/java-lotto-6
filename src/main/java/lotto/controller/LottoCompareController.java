@@ -8,6 +8,7 @@ public class LottoCompareController {
 
 
     public static void lottoTicketsCompareNum(){
+        WinningLotto.WinningLottoInit();
         for(Lotto lotto : LottoTickets.getBuyLottoTickets()){
             lottoCompareNum(lotto);
         }

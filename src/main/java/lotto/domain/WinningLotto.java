@@ -44,5 +44,13 @@ public class WinningLotto {
         sixSameNumLotto++;
     }
 
+    public static void WinningLottoInit(){
+        treeSameNumLotto = 0;
+        fourSameNumLotto = 0;
+        fiveSameNumLotto = 0;
+        fiveAndBonusSameNumLotto = 0;
+        sixSameNumLotto = 0;
+    }
+
 
 }

@@ -81,7 +81,7 @@ public class Application {
         for (String number : inputNumbers) {
             int num = Integer.parseInt(number);
             if (num > 45) {
-                throw new IllegalArgumentException("당첨 번호는 1부터 45 사이의 숫자만 입력해야 합니다.");
+                throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
             numbers.add(num);
         }

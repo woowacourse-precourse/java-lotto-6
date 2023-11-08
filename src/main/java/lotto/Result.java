@@ -1,5 +1,7 @@
 package lotto;
 
+import java.text.NumberFormat;
+
 public class Result {
     // 각 로또의 당첨 여부를 저장하고 결과를 집계하는 역할
     private int[] matchCounts;
@@ -29,7 +31,9 @@ public class Result {
         System.out.printf("6개 일치 (2,000,000,000원) - %d개.\n", matchCounts[6]);
 
         double totalProfitRate = calculateTotalProfitRate();
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", totalProfitRate);
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(1);
+        System.out.printf("총 수익률은 %s%%입니다.\n", nf.format(totalProfitRate));
     }
 
     private double calculateTotalProfitRate() {

@@ -8,12 +8,11 @@
 - [x] 보너스 번호를 사용자로부터 입력 받는다. - enterBonusNumber()
 
 ---
-
+숫자만 입력해 주세요.
 ### 출력 기능
-- [ ] 사용자가 구매한 로또 번호와 당첨 번호 비교하여 당첨 내역 및 수익률을 출력 후 종료 -  printCompareUserLottoNumbersAndWinning()
 - [x] 발행한 로또 수량 및 번호를 오르차순으로 출력한다. - printIssuedLottoNumbersInAscendingOrder()
-- [ ] 당첨 내역을 출력한다. - printWinningDetails()
-- [ ] 수익률을 출력한다. - printReturnOnInvestment()
+- [x] 당첨 내역을 출력한다. - printWinningDetails()
+- [x] 수익률을 출력한다. - printReturnOnInvestment()
 
 ---
 
@@ -28,6 +27,7 @@
 ### ReadPurchaseAmount - 구매 금액을 관리하는 역할
  - [x] 로또 구입 금액의 입력 받은 값이 빈 값인지 체크하는 함수 - nullCheckPurchaseAmount()
  - [x] 로또 구입 금액이 1,000원 단위가 아닐 경우 예외를 처리하는 함수 - invalidLottoPurchaseAmount()
+ - [x] 로또 구입 금액이 숫자가 아니면 예외를 처리한다. - validateText()
 
 ### LottoRamdomNumbers - 랜덤 로또 번호 관리하는 역할
  - [x] 구입금액에 따른 로또 번호를 랜덤으로 생성하는 함수 - generateRandomLottoNumbers()

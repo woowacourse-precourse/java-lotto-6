@@ -22,7 +22,7 @@ class LottoStoreTest {
         LottoStore lottoStore = new LottoStore();
 
         int[] lottoResults = {0, 0, 0, 0, 0, 1};
-        double rateOfReturn = 62.5;
+        String rateOfReturn = "62.5";
 
         String result = "당첨 통계\n" +
                 "---\n" +

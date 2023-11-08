@@ -28,7 +28,7 @@ public class LottoController {
         List<Integer> winningNumbers = InputView.inputWinningNumbers();
         int bonusNumber = InputView.inputBonusNumbers();
 
-        double rateOfReturn = user.calculateRateOfReturn(winningNumbers,bonusNumber);
+        String rateOfReturn = user.calculateRateOfReturn(winningNumbers,bonusNumber);
         int[] lottoResult = user.getLottoResults(winningNumbers,bonusNumber);
         String resultMessage = lottoStore.getLottoResultsSummary(lottoResult, rateOfReturn);
         outputLottoResult(resultMessage);

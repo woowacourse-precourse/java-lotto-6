@@ -29,10 +29,10 @@ public class User {
         return totalWinningAmount;
     }
 
-    public double calculateRateOfReturn(List<Integer> winningNumbers, int bonusNumber) {
+    public String calculateRateOfReturn(List<Integer> winningNumbers, int bonusNumber) {
         Long totalWinningAmount = calculateWinningAmount(winningNumbers, bonusNumber);
-
-        return ((double) totalWinningAmount / PURCHASE_AMOUNT) * 100;
+        double rateOfReturn = ((double) totalWinningAmount / PURCHASE_AMOUNT) * 100;
+        return String.format("%.1f", rateOfReturn);
     }
 
     public int[] getLottoResults(List<Integer> winningNumbers, int bonusNumber) {

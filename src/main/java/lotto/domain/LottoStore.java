@@ -27,7 +27,7 @@ public class LottoStore {
         return Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_LAST_NUMBER, LOTTO_NUMBER_COUNT);
     }
 
-    public String getLottoResultsSummary(int[] lottoResult, double rateOfReturn) {
+    public String getLottoResultsSummary(int[] lottoResult, String rateOfReturn) {
         StringBuilder sb = new StringBuilder();
         sb.append("당첨 통계\n---\n");
 

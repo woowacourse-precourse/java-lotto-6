@@ -10,6 +10,7 @@ import lotto.message.ErrorMessage;
 import lotto.utils.Util;
 
 public class LottoPurchaseInput {
+    private static String WINNING_NUMBER_SPLIT_CRITERIA= ",";
     public static Amount inputPurchaseAmount(BigDecimal lottoPrice) {
         try {
             LottoPurchaseOutput.ASK_PURCHASE_AMOUNT.printMessage();
@@ -31,7 +32,7 @@ public class LottoPurchaseInput {
             String inputNumbers = Console.readLine().trim();
 
             validate(inputNumbers);
-            Util.validateIntegerList(inputNumbers, ",");
+            Util.validateIntegerList(inputNumbers, WINNING_NUMBER_SPLIT_CRITERIA);
             List<Integer> numbers = Util.convertToIntegerList(inputNumbers, ",");
             Lotto.validate(numbers);
 

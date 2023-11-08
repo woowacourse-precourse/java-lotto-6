@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.constant.GameMessage.INPUT_BONUS_NUMBERS;
 import static lotto.constant.GameMessage.INPUT_BUY_PRICE;
 import static lotto.constant.GameMessage.INPUT_WIN_NUMBERS;
 import static lotto.constant.GameMessage.YOU_BOUGHT_N_LOTTOS;
@@ -9,6 +10,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Price;
 
@@ -20,6 +22,7 @@ public class Game {
         List<Lotto> lottos = makeLottos(price.getAmount());
         printLottos(lottos);
         Lotto winLotto = inputWinningNumbers();
+        Bonus bonusNumber = inputBonusNumber();
     }
 
     private static Price inputBuyPrice() {
@@ -60,6 +63,18 @@ public class Game {
             try {
                 String input = Console.readLine();
                 return new Lotto(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static Bonus inputBonusNumber() {
+        while (true) {
+            System.out.println(INPUT_BONUS_NUMBERS.getMessage());
+            try {
+                String input = Console.readLine();
+                return new Bonus(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

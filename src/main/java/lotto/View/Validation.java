@@ -1,6 +1,8 @@
 package lotto.View;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Validation {
 
@@ -11,6 +13,10 @@ public class Validation {
     private static final String NOT_NUMBER_EXCEPTION_MESSAGE = "[ERROR]: 숫자가 아닌 값이 입력되었습니다. 올바른 수를 입력해주십시오.\n";
     private static final String NOT_IN_RANGE_EXCEPTION_MESSAGE = "[ERROR]: 입력 가능한 범위를 넘어선 숫자가 입력되었습니다. Integer범위 내의 올바른 수를 입력해 주십시오.\n";
     private static final String OVER_COUNT = "[ERROR]: 당첨번호는 6개입니다. 다시 입력해주십시오.\n";
+    private static final String WINNING_NUMBERS_DUPLICATED_EXCEPTION = "[ERROR]: 중복된 번호는 입력할 수 없습니다. 다시 입력해주십시오.\n";
+    private static final String BONUS_NUMBERS_DUPLICATED_EXCEPTION = "[ERROR]: 당첨 번호와 중복된 보너스 번호는 입력할 수 없습니다. 다시 입력해주십시오.\n";
+
+
 
 
     public static void checkNotNumber(String input){
@@ -62,4 +68,22 @@ public class Validation {
     }
 
 
+    public static void checkWinningNumbersDuplication(List<Integer> winningNumbers) {
+
+        Set<Integer> distinctedWinningNumbers = new HashSet<>(winningNumbers);
+
+        if(distinctedWinningNumbers.size()!= winningNumbers.size()){
+            OutputView.printInputException(WINNING_NUMBERS_DUPLICATED_EXCEPTION);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void checkBonusNumberDuplication(Integer number, List<Integer> winningNumbers) {
+
+        if(winningNumbers.contains(number)){
+            OutputView.printInputException(BONUS_NUMBERS_DUPLICATED_EXCEPTION);
+            throw new IllegalArgumentException();
+        }
+
+    }
 }

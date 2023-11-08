@@ -48,7 +48,7 @@ public class OutputView {
 
 
 
-        System.out.println(String.format("총 수익률은 %.1f입니다.", earningRate));
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", earningRate*100));
 
     }
 }

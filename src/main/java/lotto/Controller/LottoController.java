@@ -21,7 +21,7 @@ public class LottoController {
 
         List<Integer> winningNumbers = InputView.inputWinningNumber();
         lottoService.setWinningNumbers(winningNumbers);
-        Integer bonusNumber = InputView.inputBonusNumber();
+        Integer bonusNumber = InputView.inputBonusNumber(winningNumbers);
         lottoService.setBonusNumber(bonusNumber);
         List<Integer> matchingCount = lottoService.findMatcingCount();
         OutputView.printMatchingCount(matchingCount);

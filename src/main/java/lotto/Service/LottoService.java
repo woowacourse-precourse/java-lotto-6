@@ -58,7 +58,7 @@ public class LottoService {
 
     private Lotto createLotto(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
+//        Collections.sort(numbers);
         Lotto newLotto = new Lotto(numbers);
 
         return newLotto;

@@ -67,29 +67,32 @@ public class InputView {
             winningNumbers.add(number);
         }
 
+        Validation.checkWinningNumbersDuplication(winningNumbers);
+
         return winningNumbers;
     }
 
-    public static Integer inputBonusNumber() {
+    public static Integer inputBonusNumber(List<Integer> winningNumbers) {
         OutputView.printInputMessage(BONUS_NUMBER_INPUT_MESSAGE);
         String input = Console.readLine();
 
         try {
-            checkInputBonusNumberValid(input);
+            checkInputBonusNumberValid(input, winningNumbers);
             return Integer.parseInt(input);
 
         } catch ( IllegalArgumentException e ) {
-            InputView.inputBonusNumber();
+            InputView.inputBonusNumber(winningNumbers);
         }
 
         return null;
     }
 
-    private static void checkInputBonusNumberValid(String input) {
+    private static void checkInputBonusNumberValid(String input, List<Integer> winningNumbers) {
         Validation.checkNotBlank(input);
         Validation.checkNotNumber(input);
         Validation.checkNotInteger(input);
         Integer number = Integer.parseInt(input);
         Validation.checkNotInLottoRange(number);
+        Validation.checkBonusNumberDuplication(number, winningNumbers);
     }
 }

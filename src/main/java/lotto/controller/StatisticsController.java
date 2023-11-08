@@ -15,11 +15,14 @@ public class StatisticsController {
     private final Lottos lottos;
     private final WinningNumber winningNumber;
 
+    private final int purchaseMoney;
+
     private Map<Rank, Integer> rankTable = new LinkedHashMap<>();
 
-    public StatisticsController(Lottos lottos, WinningNumber winningNumber) {
+    public StatisticsController(Lottos lottos, WinningNumber winningNumber, int purchaseMoney) {
         this.lottos = lottos;
         this.winningNumber = winningNumber;
+        this.purchaseMoney = purchaseMoney;
     }
 
     public void process() {
@@ -81,11 +84,12 @@ public class StatisticsController {
         rankTable.forEach((rank, count) -> {
             sum.add(count * rank.getGettingMoney());
         });
-        int result = sum.stream().mapToInt(Integer::intValue).sum();
+        float result = sum.stream().mapToInt(Integer::intValue).sum();
+        printRevenue(result);
     }
 
-    public void printRevenue(){
-
+    public void printRevenue(float result) {
+        OutputView.printRevenue(result / purchaseMoney * 100);
     }
 
 

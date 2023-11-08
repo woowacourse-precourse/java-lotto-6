@@ -15,11 +15,12 @@ import org.mockito.internal.matchers.GreaterThan;
 public class LottoController {
     private final int lottoPrice = 1000;
     private int purchaseQuantity;
+
+    private int purchaseMoney;
     private boolean checkInitPurchaseQuantity = true;
     private boolean checkInitWinningNumber = true;
     private boolean checkBonusNumber = true;
     private Lottos lottos;
-
     private WinningNumber winningNumber;
 
 
@@ -44,7 +45,7 @@ public class LottoController {
     }
 
     public void calculateStatistics() {
-        StatisticsController statisticsController = new StatisticsController(lottos, winningNumber);
+        StatisticsController statisticsController = new StatisticsController(lottos, winningNumber, purchaseMoney);
         statisticsController.process();
     }
 
@@ -98,9 +99,9 @@ public class LottoController {
 
     private void calculateQuantity(String input) { // 로또 구매 수량 계산.
         try {
-            int money = Integer.parseInt(input);
-            validatePurchaseQuantity(money);
-            purchaseQuantity = money / lottoPrice;
+            purchaseMoney = Integer.parseInt(input);
+            validatePurchaseQuantity(purchaseMoney);
+            purchaseQuantity = purchaseMoney / lottoPrice;
             checkInitPurchaseQuantity = false;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

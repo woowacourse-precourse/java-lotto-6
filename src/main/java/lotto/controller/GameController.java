@@ -17,6 +17,7 @@ public class GameController {
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
+                System.out.println();
             }
         }
 
@@ -33,6 +34,7 @@ public class GameController {
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
+                System.out.println();
             }
         }
 
@@ -43,6 +45,7 @@ public class GameController {
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
+                System.out.println();
             }
         }
 

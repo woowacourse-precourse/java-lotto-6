@@ -204,9 +204,10 @@ class LottoHandlerTest {
     void receiveBonusNumber() {
         // given
         String receivedBonusNumber = "1";
+        Lotto winningLotto = new Lotto(List.of(2, 3, 4, 5, 6, 7));
 
         // when
-        int bonusNumber = lottoHandler.receiveBonusNumber(receivedBonusNumber);
+        int bonusNumber = lottoHandler.receiveBonusNumber(receivedBonusNumber, winningLotto);
 
         // then
         assertThat(bonusNumber).isEqualTo(1);
@@ -217,9 +218,10 @@ class LottoHandlerTest {
     void receiveBonusNumberRemoveSpaces() {
         // given
         String receivedBonusNumber = "1";
+        Lotto winningLotto = new Lotto(List.of(2, 3, 4, 5, 6, 7));
 
         // when
-        int bonusNumber = lottoHandler.receiveBonusNumber(receivedBonusNumber);
+        int bonusNumber = lottoHandler.receiveBonusNumber(receivedBonusNumber, winningLotto);
 
         // then
         assertThat(bonusNumber).isEqualTo(1);
@@ -230,9 +232,10 @@ class LottoHandlerTest {
     void receiveBonusNumberByString() {
         // given
         String receivedBonusNumber = "a";
+        Lotto winningLotto = new Lotto(List.of(2, 3, 4, 5, 6, 7));
 
         // when // then
-        assertThatThrownBy(() -> lottoHandler.receiveBonusNumber(receivedBonusNumber))
+        assertThatThrownBy(() -> lottoHandler.receiveBonusNumber(receivedBonusNumber, winningLotto))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 숫자만 입력해 주세요.");
     }
@@ -242,9 +245,10 @@ class LottoHandlerTest {
     void receiveBonusNumberByOutOfRangeNumberLessThan1() {
         // given
         String receivedBonusNumber = "0";
+        Lotto winningLotto = new Lotto(List.of(2, 3, 4, 5, 6, 7));
 
         // when // then
-        assertThatThrownBy(() -> lottoHandler.receiveBonusNumber(receivedBonusNumber))
+        assertThatThrownBy(() -> lottoHandler.receiveBonusNumber(receivedBonusNumber, winningLotto))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요.");
     }
@@ -254,11 +258,25 @@ class LottoHandlerTest {
     void receiveBonusNumberByOutOfRangeNumberGreaterThan45() {
         // given
         String receivedBonusNumber = "46";
+        Lotto winningLotto = new Lotto(List.of(2, 3, 4, 5, 6, 7));
 
         // when // then
-        assertThatThrownBy(() -> lottoHandler.receiveBonusNumber(receivedBonusNumber))
+        assertThatThrownBy(() -> lottoHandler.receiveBonusNumber(receivedBonusNumber, winningLotto))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요.");
+    }
+
+    @DisplayName("입력 받은 보너스 번호가 당첨 번호에 존재하면 예외가 발생한다.")
+    @Test
+    void receiveBonusNumberByExistWinningLotto() {
+        // given
+        String receivedBonusNumber = "2";
+        Lotto winningLotto = new Lotto(List.of(2, 3, 4, 5, 6, 7));
+
+        // when // then
+        assertThatThrownBy(() -> lottoHandler.receiveBonusNumber(receivedBonusNumber, winningLotto))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호에 없는 보너스 번호를 입력해 주세요.");
     }
 
     @DisplayName("로또와 당첨 로또를 비교하여 당첨 결과를 리턴한다.")

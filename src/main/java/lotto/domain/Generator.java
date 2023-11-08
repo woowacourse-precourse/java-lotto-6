@@ -28,8 +28,9 @@ public class Generator {
 
         for (Lotto l : generateLotto) {
             List<Integer> lotto = l.getNumbers();
+            lotto.addAll(winningNum);
 
-            int correctNum = dubRemovedListSize(lotto, winningNum, lotto.contains(bonusNum));
+            int correctNum = getDubRemovedListSize(lotto, lotto.contains(bonusNum));
 
             if (correctNum < 10) {
                 result.set(correctNum, result.get(correctNum) + 1);
@@ -39,8 +40,7 @@ public class Generator {
         return result;
     }
 
-    private static int dubRemovedListSize(List<Integer> lotto, List<Integer> winningNum, boolean isBonus) {
-        lotto.addAll(winningNum);
+    private static int getDubRemovedListSize(List<Integer> lotto, boolean isBonus) {
         int dupRemovedNum = lotto.stream().distinct().toList().size();
 
         return checkWinningNum(dupRemovedNum, isBonus);

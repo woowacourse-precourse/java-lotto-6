@@ -36,7 +36,7 @@ class StatisticsTest {
     @Test
     void 랭킹결과_리스트에_따라_점수를_업데이트한다() {
         List<Ranking> rankings = new ArrayList<>(List.of(NOTHING, THREE, FOUR, BONUS, THREE, NOTHING));
-        statistics.createData(rankings);
+        statistics.updateResultsFromRankings(rankings);
 
         Map<Ranking, Integer> resultBoard = statistics.getResults();
 
@@ -50,7 +50,7 @@ class StatisticsTest {
         Purchase purchase = new Purchase("5000");
         List<Ranking> rankings = new ArrayList<>(List.of(NOTHING, THREE, FOUR, BONUS, THREE, NOTHING));
 
-        statistics.createData(rankings);
+        statistics.updateResultsFromRankings(rankings);
         float rateOfReturn = statistics.calculateRateOfReturn(purchase);
 
         assertEquals(601200.0 ,rateOfReturn);

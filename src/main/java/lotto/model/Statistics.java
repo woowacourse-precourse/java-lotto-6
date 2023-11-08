@@ -19,7 +19,7 @@ public class Statistics {
         }
     }
 
-    public void createData(List<Ranking> rankings) {
+    public void updateResultsFromRankings(List<Ranking> rankings) {
         for (Ranking ranking : rankings) {
             if(ranking == NOTHING) {
                 continue;
@@ -28,7 +28,7 @@ public class Statistics {
         }
     }
 
-    private float getRateOfReturn() {
+    private float getTotalRevenueFromRankings() {
         float revenue = 0;
         for (Ranking ranking : results.keySet()) {
             revenue += (ranking.getAmount() * results.get(ranking));
@@ -37,7 +37,7 @@ public class Statistics {
     }
 
     public float calculateRateOfReturn(Purchase purchase) {
-        float revenue = getRateOfReturn();
+        float revenue = getTotalRevenueFromRankings();
         return (revenue / purchase.getPrice()) * 100;
     }
 

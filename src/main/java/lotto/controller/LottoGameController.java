@@ -80,7 +80,7 @@ public class LottoGameController {
     private void getLotteryStatistics(List<Ranking> rankings, Purchase purchase) {
         Statistics statistics = new Statistics();
         statistics.makeResultBoard();
-        statistics.createData(rankings);
+        statistics.updateResultsFromRankings(rankings);
 
         outputView.printLotteryStatistics();
         outputView.printStatisticsResult(statistics.getResults());

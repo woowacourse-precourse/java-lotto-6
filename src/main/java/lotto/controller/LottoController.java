@@ -25,6 +25,7 @@ public class LottoController {
 
     private Policy lottoPolicy;
     private Budget budget;
+    private Lotto winningLotto;
 
 
     public LottoController(
@@ -92,10 +93,21 @@ public class LottoController {
         while (!configured) {
             configured = doReadAnswer();
         }
+        configured = false;
+
     }
 
-    private void doReadAnswer() {
+    private boolean doReadAnswer() {
         OutputView.printAnswerInputDescription();
+
+        try {
+            String userInput = InputView.inputAnswer();
+            winningLotto = lottoService.createLotto(userInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
 }

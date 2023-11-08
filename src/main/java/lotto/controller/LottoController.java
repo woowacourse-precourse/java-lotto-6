@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.constant.LottoConstant;
 import lotto.model.BonusNumber;
 import lotto.model.GameNumbers;
 import lotto.model.LottoMachine;
@@ -13,11 +14,9 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    private static final int LOTTO_PRICE = 1000;
-
     public void init() {
         int purchaseAmount = fetchPurchaseAmount();
-        StatisticsResult statisticsResult = new StatisticsResult(purchaseAmount, LOTTO_PRICE);
+        StatisticsResult statisticsResult = new StatisticsResult(purchaseAmount, LottoConstant.LOTTO_PRICE.getValue());
         int lottoCount = statisticsResult.getLottoCount();
 
         OutputView.printLottoCount(lottoCount);

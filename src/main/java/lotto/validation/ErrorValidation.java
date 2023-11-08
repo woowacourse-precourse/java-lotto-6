@@ -2,7 +2,7 @@ package lotto.validation;
 
 import java.util.List;
 import java.util.regex.Pattern;
-import lotto.Lotto;
+import lotto.LottoNumber;
 import lotto.readUserInput.PurchaseAmount;
 
 public class ErrorValidation {
@@ -20,7 +20,7 @@ public class ErrorValidation {
     }
 
     public static void isNumberInRange(int number) {
-        if (!((number >= Lotto.MIN_NUMBER) && (number <= Lotto.MAX_NUMBER))) {
+        if (!((number >= LottoNumber.MIN_NUMBER.getNumber()) && (number <= LottoNumber.MAX_NUMBER.getNumber()))) {
             throw new IllegalArgumentException();
         }
     }

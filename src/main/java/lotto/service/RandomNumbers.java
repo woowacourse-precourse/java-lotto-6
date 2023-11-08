@@ -2,7 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import lotto.Lotto;
+import lotto.LottoNumber;
 
 public class RandomNumbers {
     public List<Integer> draw() {
@@ -10,7 +10,7 @@ public class RandomNumbers {
     }
 
     public List<Integer> randomNumberPick() {
-
-        return Randoms.pickUniqueNumbersInRange(Lotto.MIN_NUMBER, Lotto.MAX_NUMBER, Lotto.LOTTO_NUMBER_COUNT);
+        return Randoms.pickUniqueNumbersInRange(LottoNumber.MIN_NUMBER.getNumber(), LottoNumber.MAX_NUMBER.getNumber(),
+                LottoNumber.NUMBER_COUNT.getNumber());
     }
 }

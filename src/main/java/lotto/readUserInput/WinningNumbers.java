@@ -3,7 +3,7 @@ package lotto.readUserInput;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
+import lotto.LottoNumber;
 import lotto.validation.ErrorMessage;
 import lotto.validation.ErrorValidation;
 
@@ -36,7 +36,7 @@ public class WinningNumbers implements UserInput {
 
     public void addWinningNumbers(String[] readNumbers) {
         String[] readInputNumber = readNumbers;
-        while (numbers.size() < Lotto.LOTTO_NUMBER_COUNT) {
+        while (numbers.size() < LottoNumber.NUMBER_COUNT.getNumber()) {
             int singleNumber = singleTypeConversion(readInputNumber[numbers.size()]);
             try {
                 ErrorValidation.isNumberInRange(singleNumber);

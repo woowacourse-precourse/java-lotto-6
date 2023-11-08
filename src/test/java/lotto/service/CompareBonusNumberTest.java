@@ -21,7 +21,6 @@ class CompareBonusNumberTest {
         lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         compareBonusNumber = new CompareBonusNumber(lotto);
         bonusNumbers = new BonusNumbers();
-        Console.close();
     }
 
     @AfterEach

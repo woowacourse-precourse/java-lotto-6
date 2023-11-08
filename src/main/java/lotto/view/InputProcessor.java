@@ -1,9 +1,12 @@
 package lotto.view;
 
+import lotto.error.ErrorMessage;
 import java.util.Arrays;
 import java.util.List;
 
 public class InputProcessor {
+
+    private static final String COMMA = ",";
 
     public Integer toPaidAmount(String input) {
         input = input.trim();
@@ -14,7 +17,7 @@ public class InputProcessor {
     public List<Integer> toWinningNumbers(String input) {
         input = input.trim();
         validateNotNull(input);
-        return parseWith(input, ",");
+        return parseWith(input, COMMA);
     }
 
     public Integer toBonusNumber(String input) {
@@ -25,7 +28,7 @@ public class InputProcessor {
 
     private void validateNotNull(String input) {
         if (input == null) {
-            throw new IllegalArgumentException("[ERROR] 입력한 게 null입니다.");
+            throw new IllegalArgumentException(ErrorMessage.NULL_ERROR.getMessage());
         }
     }
 
@@ -33,7 +36,7 @@ public class InputProcessor {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC.getMessage());
         }
     }
 

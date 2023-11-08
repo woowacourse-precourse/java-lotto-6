@@ -12,6 +12,7 @@ public class UserInputHandler {
         do {
             try {
                 amount = amountConvertToInteger(Console.readLine());
+                NumberValidator.verifyPurchaseAmount(amount);
                 isNotEnd = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -33,6 +34,7 @@ public class UserInputHandler {
             try {
                 List<String> userInputs = List.of(Console.readLine().split(","));
                 winningNumbers.addAll(userInputs.stream().map(e -> winningNumbersConvertToInteger(e)).toList());
+                NumberValidator.verifyWinningNumbers(winningNumbers);
                 isNotEnd = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -47,12 +49,13 @@ public class UserInputHandler {
         return Integer.parseInt(userInput);
     }
 
-    public static Integer getBonusNumber() {
+    public static Integer getBonusNumber(List<Integer> winningNumbers) {
         boolean isNotEnd = true;
         Integer bonusNumber = 0;
         do {
             try {
                 bonusNumber = bonusNumberConvertToInteger(Console.readLine());
+                NumberValidator.verifyBonusNumber(winningNumbers, bonusNumber);
                 isNotEnd = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

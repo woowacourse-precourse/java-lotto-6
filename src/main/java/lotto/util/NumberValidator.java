@@ -7,7 +7,7 @@ import lotto.constants.ErrorMessages;
 import lotto.constants.LottoValues;
 
 public class NumberValidator {
-    private static final Pattern numberRegex = Pattern.compile("[^0-9]");
+    private static final Pattern NUMBER_PATTER = Pattern.compile(".*[^0-9].*");
 
     public static void verifyPurchaseAmount(Integer amount) {
         validateNull(amount, ErrorMessages.LLOTTO_PURCHASE_AMOUNT_NOT_NULL);
@@ -112,6 +112,6 @@ public class NumberValidator {
             return true;
         }
 
-        return numberRegex.matcher(input).matches();
+        return NUMBER_PATTER.matcher(input).matches();
     }
 }

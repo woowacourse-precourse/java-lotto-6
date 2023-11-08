@@ -74,7 +74,6 @@ public class LottoController {
         try {
             output.printInputBonusNumberMessage();
             return getBonusNumber(winningNumbers);
-
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return generateBonusNumber(winningNumbers);

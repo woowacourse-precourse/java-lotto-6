@@ -6,7 +6,7 @@ import lotto.domain.WinningLottoCounts;
 
 import java.util.List;
 
-import static lotto.domain.Constants.*;
+import static lotto.io.IoConstants.*;
 
 public class Output {
 

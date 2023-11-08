@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static lotto.domain.Constants.*;
+import static lotto.domain.DomainConstants.*;
 
 public class WinningChecker {
 

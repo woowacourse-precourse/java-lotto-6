@@ -1,7 +1,6 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.Constants;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +12,7 @@ public class Input {
     }
 
     public List<String> getWinningNumbers() {
-        return Arrays.asList(Console.readLine().split(Constants.COMMA));
+        return Arrays.asList(Console.readLine().split(IoConstants.COMMA));
     }
 
     public String getBonusNumber() {

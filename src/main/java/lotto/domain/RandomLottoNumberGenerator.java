@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import static lotto.domain.Constants.*;
+import static lotto.domain.DomainConstants.*;
 
 public class RandomLottoNumberGenerator {
 

@@ -10,13 +10,14 @@ import static lotto.Constants.*;
 
 public class LottoGameView {
 
-    public int inputPurchaseAmount() {
+    public Long inputPurchaseAmount() {
         while (true) {
             System.out.println(INPUT_PURCHASE_AMOUNT);
             String input = Console.readLine();
+            System.out.println();
             try {
                 validatePurchaseAmountInput(input);
-                return Integer.parseInt(input);
+                return Long.parseLong(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -71,11 +72,9 @@ public class LottoGameView {
         Validator.validateIsNumber(input);
     }
 
-    public void printLotteryAmount(int amount) {
-        System.out.printf(PURCHASE_RESULT, amount);
-    }
-
     public void printLotteries(List<Lotto> lotteries) {
+        int tickets = lotteries.size();
+        System.out.printf(PURCHASE_RESULT, tickets);
         for (Lotto lotto : lotteries) {
             System.out.println(lotto.toString());
         }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.Constants.*;
+import static lotto.Utils.calculateReturn;
 
 public class LottoGame {
 
@@ -16,10 +17,8 @@ public class LottoGame {
     }
 
     public void start() {
-        int purchaseAmount = lottoGameView.inputPurchaseAmount();
-        int tickets = purchaseAmount / LOTTERY_PRICE;
-        lottoGameView.printLotteryAmount(tickets);
-        List<Lotto> lotteries = issueLottery(tickets);
+        Long purchaseAmount = lottoGameView.inputPurchaseAmount();
+        List<Lotto> lotteries = issueLottery(purchaseAmount / LOTTERY_PRICE);
         lottoGameView.printLotteries(lotteries);
         WinningNumbers winningNumbers = new WinningNumbers();
         lottoGameView.inputWinningNumbers(winningNumbers);
@@ -30,7 +29,7 @@ public class LottoGame {
         lottoGameView.printRateReturn(calculateReturn(resultSum, purchaseAmount));
     }
 
-    private List<Lotto> issueLottery(int tickets) {
+    private List<Lotto> issueLottery(Long tickets) {
         List<Lotto> lotteries = new ArrayList<>();
 
         for (int i = 0; i < tickets; i++) {
@@ -42,11 +41,5 @@ public class LottoGame {
             lotteries.add(new Lotto(numbers));
         }
         return lotteries;
-    }
-
-    public double calculateReturn(Long prize, int purchase) {
-        double rateReturn = (double) prize / purchase * 1000;
-        double result = Math.round(rateReturn);
-        return result / 10;
     }
 }

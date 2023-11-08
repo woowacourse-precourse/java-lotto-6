@@ -278,29 +278,24 @@ InputView로부터 받은 사용자 입력을 적절한 모델의 타입으로 �
 
 ### 🔒 라이브러리(?) 제약 사항
 
-- 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
-- `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms` 및 `Console`
-  API를 사용하여 구현해야 한다.
-    - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용한다.
-- Java Enum을 적용한다.
-- 제공된 `Lotto` 클래스를 활용해 구현해야 한다.
+- [x] Java Enum을 적용한다.
+- [x] 제공된 `Lotto` 클래스를 활용해 구현해야 한다.
     - `numbers`의 접근 제어자인 private을 변경할 수 없다.
     - `Lotto`에 필드(인스턴스 변수)를 추가할 수 없다.
     - `Lotto`의 패키지 변경은 가능하다.
 
 ### 컨벤션 제약 사항
 
-- indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
-- 3항 연산자를 쓰지 않는다.
-- 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
-- else 예약어를 쓰지 않는다.
-    - 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
-    - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
+- [x] indent(인덴트, 들여쓰기) depth를 2까지만 허용한다.
+- [x] 3항 연산자를 쓰지 않는다.
+- [x] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
+- [x] else 예약어를 쓰지 않는다.
+- [x] switch/case도 허용하지 않는다.
 
 ### 테스트 요구 사항
 
-- JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.
-- 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+- [x] JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.
+- [x] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
     - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
     - 단위 테스트 작성이 익숙하지 않다면 `test/java/lotto/LottoTest`를 참고하여 학습한 후 테스트를 구현한다.
-- 프로그램 구현이 완료되면 ApplicationTest의 모든 테스트가 성공해야 한다. 테스트가 실패할 경우 0점 처리한다.
+- [x] 프로그램 구현이 완료되면 ApplicationTest의 모든 테스트가 성공해야 한다. 테스트가 실패할 경우 0점 처리한다.

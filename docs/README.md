@@ -146,3 +146,8 @@ CustomizedException bonusNumberWinningNumbersSame메소드
 로또 번호에 중복된 숫자가 있으면 IllegalArgumentException
 을 일으키는지
 ````````````````````````````````````````````````
+* createLottoByNotRange
+``````````````````````````````````````````````````````````
+로또 객체를 생성 했을 때 로또번호에1부터 45까지의 숫자 이외의 
+숫자가 있으면 IllegalArgumentException예외가 나타나는지
+``````````````````````````````````````````````````````````````

@@ -9,13 +9,18 @@ import java.util.List;
 public class Lottos {
     private List<Lotto> lottos = new ArrayList<Lotto>();
 
-    public void createLottos(int lottoCount) {
+    public List<Lotto> createLottos(int lottoCount) {
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }
         printLottos();
+        return lottos;
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 
     private void printLottos() {

@@ -8,7 +8,6 @@ import java.util.Map;
 public class UserLotto {
     private static final int RANK_FIRST_PLACE = 0;
     private static final int RANK_LAST_PLACE = 5;
-
     private List<Lotto> userLottos;
     private int lottoCount;
     private Map<Rank, Integer> result = new LinkedHashMap<>();

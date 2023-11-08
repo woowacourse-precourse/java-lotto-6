@@ -30,6 +30,7 @@ public enum Rank {
                 return rank;
             }
         }
+
         return NOTHING;
     }
 

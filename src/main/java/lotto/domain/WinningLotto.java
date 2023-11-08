@@ -22,7 +22,6 @@ public class WinningLotto {
 
     public Rank match(Lotto userLotto) {
         List<Integer> userLottoNumbers = new ArrayList<>(userLotto.getLottoNumbers());
-
         boolean hasBonus = userLottoNumbers.contains(bonus);
         userLottoNumbers.retainAll(lotto.getLottoNumbers());
 

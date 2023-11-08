@@ -39,4 +39,11 @@ class UserValidateTest {
         assertThatThrownBy(() -> UserValidate.checkDuplicate(List.of(1, 2, 1, 2, 1, 2)))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("입력된 6자리 로또 번호에 보너스 번호가 포함되어 있으면 예외 발생")
+    @Test
+    void 로또_보너스_번호_중복(){
+        assertThatThrownBy(() -> UserValidate.checkDuplicate(List.of(1, 2, 3, 4, 5, 6), 6))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }

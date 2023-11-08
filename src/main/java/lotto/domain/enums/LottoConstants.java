@@ -7,4 +7,6 @@ public class LottoConstants {
 
     public static final int CHECK_BONUS_COUNT = 5;
     public static final int LOTTO_MISS_COUNT = 0;
+
+    public static final int MIN_PLAYER_AMOUNT = 1000;
 }

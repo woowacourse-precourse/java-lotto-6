@@ -5,6 +5,7 @@ import static lotto.constant.ExceptionMessage.ERROR_NOT_IN_SPLIT_WORD;
 import static lotto.constant.ExceptionMessage.ERROR_NOT_NUMBER;
 import static lotto.constant.GuideMessage.*;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +50,8 @@ public class LottoView {
     }
 
     private void printRateOfReturn(double rateOfReturn) {
-        System.out.println("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
+        DecimalFormat decFormat = new DecimalFormat("###,###.0");
+        System.out.println("총 수익률은 " + decFormat.format(rateOfReturn) + "%입니다.");
     }
 
     private List<Integer> convertStringToList(String input) {

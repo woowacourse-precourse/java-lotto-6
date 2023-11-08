@@ -1,9 +1,7 @@
     package lotto.LottoFactory;
 
     import lotto.Util.Sorting;
-
     import java.util.ArrayList;
-    import java.util.Collections;
     import java.util.List;
 
     public class LottoContainer implements LottoChecker {

@@ -3,6 +3,7 @@ package lotto;
 import lotto.controller.PromptParser;
 import lotto.controller.Reader;
 import lotto.domain.Game;
+import lotto.domain.LottoMachine;
 import lotto.view.Message;
 import lotto.view.MessageBuilder;
 import lotto.view.WriterMessenger;
@@ -14,13 +15,8 @@ public class Application {
         try (Reader reader = new ConsoleReader()) {
             Message message = new Message(new WriterMessenger(), new MessageBuilder());
             Prompt prompt = new Prompt(reader, new PromptParser(), message);
-            Game game = new Game(message, prompt);
-
-            game.joinPlayer();
-            game.showIssuedLottos();
-            game.generateWinningLotto();
-            game.calculateResult();
-            game.showResult();
+            Game game = new Game(message, prompt, new LottoMachine());
+            game.run();
         }
     }
 }

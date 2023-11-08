@@ -3,9 +3,6 @@ package lotto.domain;
 import lotto.controller.Prompt;
 import lotto.view.Message;
 
-import java.util.Arrays;
-import java.util.Objects;
-
 public class Game {
     private final Message message;
     private final Prompt prompt;
@@ -14,43 +11,39 @@ public class Game {
     private WinningLotto winningLotto;
     private LottoResult lottoResult;
 
-    public Game(Message message, Prompt prompt) {
+    public Game(Message message, Prompt prompt, LottoMachine lottoMachine) {
         this.message = message;
         this.prompt = prompt;
-        this.lottoMachine = new LottoMachine();
+        this.lottoMachine = lottoMachine;
     }
 
-    public void joinPlayer() {
+    public void run() {
+        joinPlayer();
+        showIssuedLottos();
+        generateWinningLotto();
+        calculateResult();
+        showResult();
+    }
+
+    private void joinPlayer() {
         Money money = prompt.promptMoney();
         Lottos lottos = lottoMachine.issueLottos(money);
         player = new Player(money, lottos);
     }
 
-    public void showIssuedLottos() {
-        checkNullState(player);
-
+    private void showIssuedLottos() {
         message.print(player);
     }
 
-    public void generateWinningLotto() {
-        checkNullState(player);
-
+    private void generateWinningLotto() {
         winningLotto = prompt.promptWinningLotto();
     }
 
-    public void calculateResult() {
-        checkNullState(player, winningLotto);
-
+    private void calculateResult() {
         lottoResult = lottoMachine.rank(player, winningLotto);
     }
 
-    public void showResult() {
-        checkNullState(player, winningLotto, lottoResult);
-
+    private void showResult() {
         message.print(player, lottoResult);
-    }
-
-    private void checkNullState(Object ...objects) {
-        Arrays.stream(objects).forEach(Objects::requireNonNull);
     }
 }

@@ -3,12 +3,7 @@ package lotto.domain;
 import static lotto.domain.LottoUtils.getMatchCount;
 
 public enum LottoRank {
-    FIRST_PLACE(1, 2_000_000_000L, 6) {
-        @Override
-        public boolean isMatch(Lotto lotto, WinningNumbers winningNumbers, int matchCount) {
-            return matchCount == this.getMatchCondition();
-        }
-    },
+    FIRST_PLACE(1, 2_000_000_000L, 6),
     SECOND_PLACE(2, 30_000_000L, 5) {
         @Override
         public boolean isMatch(Lotto lotto, WinningNumbers winningNumbers, int matchCount) {
@@ -17,24 +12,9 @@ public enum LottoRank {
             return (matchCount == this.getMatchCondition()) && containBonusNumber;
         }
     },
-    THIRD_PLACE(3, 1_500_000L, 5) {
-        @Override
-        public boolean isMatch(Lotto lotto, WinningNumbers winningNumbers, int matchCount) {
-            return matchCount == this.getMatchCondition();
-        }
-    },
-    FOURTH_PLACE(4, 50_000L, 4) {
-        @Override
-        public boolean isMatch(Lotto lotto, WinningNumbers winningNumbers, int matchCount) {
-            return matchCount == this.getMatchCondition();
-        }
-    },
-    FIFTH_PLACE(5, 5_000L, 3) {
-        @Override
-        public boolean isMatch(Lotto lotto, WinningNumbers winningNumbers, int matchCount) {
-            return matchCount == this.getMatchCondition();
-        }
-    },
+    THIRD_PLACE(3, 1_500_000L, 5),
+    FOURTH_PLACE(4, 50_000L, 4),
+    FIFTH_PLACE(5, 5_000L, 3),
     NONE(0, 0L, 0) {
         @Override
         public boolean isMatch(Lotto lotto, WinningNumbers winningNumbers, int matchCount) {
@@ -52,7 +32,9 @@ public enum LottoRank {
         this.matchCondition = matchCondition;
     }
 
-    public abstract boolean isMatch(Lotto lotto, WinningNumbers winningNumbers, int matchCount);
+    public boolean isMatch(Lotto lotto, WinningNumbers winningNumbers, int matchCount) {
+        return matchCount == this.getMatchCondition();
+    };
 
 
     public static LottoRank valueOf(Lotto lotto, WinningNumbers winningNumbers) {

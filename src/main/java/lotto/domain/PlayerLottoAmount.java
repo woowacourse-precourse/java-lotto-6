@@ -7,9 +7,10 @@ public class PlayerLottoAmount {
     private static final String NOT_DIVISIBLE_NUMBER_ERROR = "[ERROR] 금액은 " +LOTTO_MIN_AMOUNT + "단위이어야 합니다.";
     private final int amount;
 
-    public PlayerLottoAmount(int amount) {
-        validateAmount(amount);
-        this.amount = amount;
+    public PlayerLottoAmount(String amount) {
+        int amountNum = validateNumber(amount);
+        validateAmount(amountNum);
+        this.amount = amountNum;
     }
 
     // 구매 가능한 로또 개수 계산 메소드
@@ -18,15 +19,14 @@ public class PlayerLottoAmount {
     }
 
     private void validateAmount(int amount) {
-        validateNumber(amount);
         validateNatural(amount);
         validateDivisible(amount);
     }
 
     // 자료형이 숫자 인지 확인 메소드
-    private void validateNumber(int amount) {
+    private static int validateNumber(String amount) throws IllegalArgumentException{
         try {
-            return;
+            return Integer.parseInt(amount);
         } catch(NumberFormatException e){
             throw new IllegalArgumentException(NOT_NUMBER_ERROR);
         }
@@ -35,6 +35,7 @@ public class PlayerLottoAmount {
     // 음수가 아닌지 확인 메소드
     private void validateNatural(int amount) {
         if (amount <= 0) {
+            System.out.println(NOT_NATURAL_NUMBER_ERROR);
             throw new IllegalArgumentException(NOT_NATURAL_NUMBER_ERROR);
         }
     }

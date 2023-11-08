@@ -14,9 +14,9 @@ public class InputView {
     private static List<Integer> winningNumberList;
 
     // 구입 금액 입력 메소드
-    public static int inputPurchaseAmount(){
+    public static String inputPurchaseAmount(){
         System.out.println(INPUT_LOTTO_AMOUT);
-        return Integer.parseInt(Console.readLine());
+        return Console.readLine();
     }
 
     // 당첨 번호 입력 메소드

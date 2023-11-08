@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class PlayerLottoAmountTest {
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 1100, -1})
+    @ValueSource(strings = {"0", "1100", "-1"})
     @DisplayName("올바르지 않은 금액")
-    void incorrect_amount(int inputAmount) {
+    void incorrect_amount(String inputAmount) {
         assertThatThrownBy(() -> new PlayerLottoAmount(inputAmount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -22,7 +22,7 @@ class PlayerLottoAmountTest {
     @Test
     @DisplayName("구매한 로또 티켓 장수")
     void calculateLottoCount() {
-        PlayerLottoAmount playerLottoAmount = new PlayerLottoAmount(8000);
+        PlayerLottoAmount playerLottoAmount = new PlayerLottoAmount("8000");
         assertThat(playerLottoAmount.calculateLottoCount()).isEqualTo(8);
     }
 }

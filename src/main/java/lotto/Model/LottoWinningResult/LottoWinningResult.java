@@ -12,7 +12,6 @@ public class LottoWinningResult {
 
     public LottoWinningResult() {
         this.matchingResults = new HashMap<>();
-
     }
 
     public void addMatchingLotto(int matchingNumbers, Lotto lotto) {

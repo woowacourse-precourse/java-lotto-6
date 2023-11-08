@@ -1,6 +1,7 @@
 package lotto.Service.LottoResultService;
 
 import java.util.List;
+import java.util.Objects;
 import lotto.Model.Lotto.Lotto;
 import lotto.Model.LottoSet.LottoSet;
 import lotto.Model.LottoWinningResult.LottoWinningResult;
@@ -8,34 +9,60 @@ import lotto.Service.PromptService.PromptService;
 
 public class LottoResultVerifier {
 
-    public LottoWinningResult findWinningLotto(LottoSet lottoSet) {
-        LottoWinningResult winningResultList = new LottoWinningResult();
+    private Integer bonusNumber;
+    private List<Integer> winningNumber;
+    private final LottoWinningResult winningResultList;
+    private final LottoSet lottoSet;
 
-        for(Lotto lotto : lottoSet.getLottoSet()){
-            winningResultList.addMatchingLotto(matchingLottoCount(lotto),lotto);
+    private final PromptService Prompt;
+
+
+    public LottoResultVerifier(PromptService Prompt, LottoSet lottoSet) {
+        this.Prompt = Prompt;
+        this.lottoSet = lottoSet;
+        this.winningResultList = new LottoWinningResult();
+    }
+
+    public LottoWinningResult findWinningLotto() {
+
+        this.winningNumber = Prompt.getLottoWinningNumber().getWinningNumber();
+        this.bonusNumber = Prompt.getLottoBonusNumber().getBonusNumber();
+
+        for (Lotto lotto : lottoSet.getLottoSet()) {
+            int matchingCount = matchingLottoCount(lotto);
+            if (matchingCount == 5) {
+                matchingCountFive(lotto, matchingCount);
+            }
+            if (matchingCount != 5) {
+                winningResultList.addMatchingLotto(matchingCount, lotto);
+            }
         }
 
         return winningResultList;
     }
 
-    private int matchingLottoCount(Lotto lotto){
-        List<Integer> winningNumber = getLottoWinningNumber();
-        Integer bonusNumber = getLottoBonusNumber();
+    private void matchingCountFive(Lotto lotto, int matchingCount) {
+        boolean isMatchingBonus = matchingBonusCount(lotto);
+        if (isMatchingBonus) {
+            winningResultList.addMatchingLotto(7, lotto);
+        }
+        if (!isMatchingBonus) {
+            winningResultList.addMatchingLotto(matchingCount, lotto);
+        }
 
-        return Math.toIntExact(winningNumber.stream()
+    }
+
+    private boolean matchingBonusCount(Lotto lotto) {
+        long count = lotto.getNumbers().stream()
+                .filter(number -> Objects.equals(number, bonusNumber))
+                .count();
+        return count > 0;
+    }
+
+    private int matchingLottoCount(Lotto lotto) {
+        return (int) winningNumber.stream()
                 .filter(lotto.getNumbers()::contains)
-                .count());
+                .count();
 
     }
-
-    private List<Integer> getLottoWinningNumber(){
-        PromptService Prompt = new PromptService();
-        return Prompt.getLottoWinningNumber().getWinningNumber();
-    }
-
-    private Integer getLottoBonusNumber(){
-        PromptService Prompt = new PromptService();
-        return Prompt.getLottoBonusNumber().getBonusNumber();
-    }
-
 }

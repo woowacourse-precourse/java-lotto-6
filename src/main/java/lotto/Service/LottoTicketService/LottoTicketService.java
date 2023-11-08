@@ -11,10 +11,14 @@ import lotto.Service.PromptService.PromptService;
 import static lotto.Common.LottoValue.*;
 
 public class LottoTicketService {
+    private final Integer purchaseAmount;
 
+    public LottoTicketService( PromptService Prompt){
+        this.purchaseAmount = convertAmountToCount(Prompt.getPurchaseAmount());
+    }
 
     public LottoSet GenerateLottoSet() {
-        final int purchaseAmount = convertAmountToCount(getPurchaseAmount());
+
         LottoNumberService lottoService = new LottoNumberService();
         List<Lotto> lottoTicketSet = new ArrayList<>();
 
@@ -25,10 +29,6 @@ public class LottoTicketService {
         return new LottoSet(lottoTicketSet);
     }
 
-    private PurchaseAmount getPurchaseAmount() {
-        PromptService Prompt = new PromptService();
-        return Prompt.getPurchaseAmount();
-    }
 
     private Integer convertAmountToCount(PurchaseAmount amount) {
         return amount.getPurchaseAmount() / LOTTO_ONE_TICKET_PRICE.getValue();

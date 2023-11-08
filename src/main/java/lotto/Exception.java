@@ -29,6 +29,12 @@ public class Exception {
         return true;
     }
     // 6개인지
+    boolean checkSizeIsSix(int size){
+        if(size != 6){
+            return false;
+        }
+        return true;
+    }
     // 중복이 없는지
     // 보너스와 숫자간 중복이 없는지
 }

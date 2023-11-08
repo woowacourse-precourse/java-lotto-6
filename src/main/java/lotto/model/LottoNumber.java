@@ -1,11 +1,13 @@
 package lotto.model;
 
+import lotto.constant.response.Exception;
+
 import java.util.Objects;
 
 public class LottoNumber {
     public static final int MIN = 1;
     public static final int MAX = 45;
-    public static final int SIZE = 6;
+
     private final Integer number;
 
     public LottoNumber(Integer number) {
@@ -15,7 +17,8 @@ public class LottoNumber {
 
     private void validRange(Integer number){
         if(number < MIN || number > MAX){
-            throw new IllegalArgumentException("[ERROR] 로또 번호의 숫자 범위는 1~45까지 입니다.");
+            throw new IllegalArgumentException(Exception.ERROR_PREFIX.getMessage()
+                    + Exception.LOTTO_NUMBER_RANGE);
         }
     }
 

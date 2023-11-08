@@ -5,6 +5,7 @@ import lotto.constant.response.Exception;
 import java.util.*;
 
 public class Lotto {
+    public static final int SIZE = 6;
     private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -14,7 +15,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LottoNumber.SIZE) {
+        if (numbers.size() != SIZE) {
             throw new IllegalArgumentException(Exception.ERROR_PREFIX.getMessage()
                     + Exception.LOTTO_SIZE.getMessage());
         }
@@ -22,7 +23,7 @@ public class Lotto {
 
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
-        if (nonDuplicateNumbers.size() != LottoNumber.SIZE) {
+        if (nonDuplicateNumbers.size() != SIZE) {
             throw new IllegalArgumentException(Exception.ERROR_PREFIX.getMessage()
                     + Exception.LOTTO_DUPLICATE.getMessage());
         }

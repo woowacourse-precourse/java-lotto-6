@@ -10,6 +10,9 @@ public enum Exception {
     BONUS_NUMBER_NUMERIC("보너스 번호는 숫자로만 이루어져야 합니다."),
     LOTTO_SIZE("로또는 6개의 번호를 가져야 합니다."),
     LOTTO_DUPLICATE("로또는 중복되지 않는 수로 이루어져야 합니다."),
+    LOTTO_NUMBER_RANGE("로또 번호의 숫자 범위는 1~45까지 입니다."),
+
+
 
 
     private String message;

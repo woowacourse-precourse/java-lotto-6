@@ -31,4 +31,8 @@ public class Lotto {
         lottoNumbers += "]";
         return lottoNumbers;
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

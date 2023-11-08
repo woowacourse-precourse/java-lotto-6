@@ -14,4 +14,5 @@ public class RegularExpressionTest {
         System.out.println(input2.matches("^[0-9]*$"));
         System.out.println(input2.matches("^\\d+$"));
     }
+
 }

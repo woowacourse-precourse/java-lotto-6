@@ -5,6 +5,7 @@ import lotto.utils.enums.Code;
 import lotto.utils.InputValidator;
 
 public class WinningNumbers {
+
     private final Lotto winningNumbers;
 
     public WinningNumbers(List<Integer> numbers) {
@@ -16,4 +17,5 @@ public class WinningNumbers {
     public List<Integer> getWinningNumbers() {
         return winningNumbers.getNumbers();
     }
+
 }

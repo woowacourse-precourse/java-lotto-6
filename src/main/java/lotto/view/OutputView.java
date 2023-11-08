@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import lotto.utils.enums.LottoCount;
 
 public class OutputView {
+
     private final String OUTPUT_FORMAT = "당첨 통계";
     private final String OUTPUT_LINE = "---";
 
@@ -47,4 +48,5 @@ public class OutputView {
         }
         System.out.printf("총 수익률은 %s입니다.", rateFormat);
     }
+
 }

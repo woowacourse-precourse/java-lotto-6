@@ -29,4 +29,5 @@ public class CasherTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("로또 금액 단위로 입력해야 합니다. 입력단위 : " + 1000);
     }
+
 }

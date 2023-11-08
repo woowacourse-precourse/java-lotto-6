@@ -11,6 +11,7 @@ import lotto.utils.enums.Code;
 import lotto.utils.enums.ErrorMessage;
 
 public class InputView {
+
     private final String INPUT_PRICE = "구입금액을 입력해 주세요.";
     private final String INPUT_WINNING = "당첨 번호를 입력해 주세요.";
     private final String INPUT_BONUS = "보너스 번호를 입력해 주세요.";
@@ -95,4 +96,5 @@ public class InputView {
     private String inputValue() {
         return Console.readLine();
     }
+
 }

@@ -67,4 +67,5 @@ public class ErrorTest extends NsTest {
     protected void runMain() {
         Application.main(new String[]{});
     }
+
 }

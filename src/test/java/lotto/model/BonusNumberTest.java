@@ -27,4 +27,5 @@ public class BonusNumberTest {
         Assertions.assertThatCode(() -> new BonusNumber(winning.getWinningNumbers(), bonusNumber))
                 .doesNotThrowAnyException();
     }
+
 }

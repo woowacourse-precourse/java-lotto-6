@@ -6,6 +6,7 @@ import lotto.utils.InputValidator;
 import lotto.utils.enums.ErrorMessage;
 
 public class BonusNumber {
+
     private final int bonusNumber;
 
     public BonusNumber(List<Integer> numbers, int bonusNumber) {
@@ -24,4 +25,5 @@ public class BonusNumber {
     public int getBonusNumber() {
         return bonusNumber;
     }
+
 }

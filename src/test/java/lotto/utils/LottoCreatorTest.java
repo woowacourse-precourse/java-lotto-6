@@ -14,4 +14,5 @@ public class LottoCreatorTest {
 
         Assertions.assertThat(lottoCreator.getCreatedLottos().size()).isEqualTo(lottoCount);
     }
+
 }

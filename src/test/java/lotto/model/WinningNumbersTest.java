@@ -33,4 +33,5 @@ public class WinningNumbersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.NOT_DUPLICATED.getMessage());
     }
+
 }

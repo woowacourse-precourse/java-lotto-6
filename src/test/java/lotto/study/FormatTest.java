@@ -46,4 +46,5 @@ public class FormatTest {
         String format5 = decimalFormat5.format(rate5);
         System.out.println(format5);
     }
+
 }

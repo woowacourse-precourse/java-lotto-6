@@ -8,6 +8,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+
     private final LottoService service;
     private final InputView inputView;
     private final OutputView outputView;
@@ -45,4 +46,5 @@ public class LottoController {
         long totalWinningPrice = service.getTotalWinningPrice(lottoResult);
         outputView.outputWinningRate(totalWinningPrice, inputPrice);
     }
+
 }

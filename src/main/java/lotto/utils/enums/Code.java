@@ -1,6 +1,7 @@
 package lotto.utils.enums;
 
 public enum Code {
+
     Error("[ERROR]"),
     WINNING("당첨"),
     BONUS("보너스");
@@ -14,4 +15,5 @@ public enum Code {
     public String getCode() {
         return code;
     }
+
 }

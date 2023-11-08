@@ -1,6 +1,7 @@
 package lotto.utils.enums;
 
 public enum ErrorMessage {
+
     NOT_NUMBER("유효한 숫자 형식이 아닙니다. 다시 입력해 주세요."),
     LACK_NUMBER_COUNT("번호는 6개여야 합니다."),
     NUMBER_NOT_INRANGE("번호는 1부터 45 사이의 숫자여야 합니다."),
@@ -16,4 +17,5 @@ public enum ErrorMessage {
     public String getMessage() {
         return message;
     }
+
 }

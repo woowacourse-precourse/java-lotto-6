@@ -5,6 +5,7 @@ import java.util.Map;
 import lotto.utils.enums.LottoCount;
 
 public interface LottoService {
+
     List<List<Integer>> createLotto(int lottoCount);
 
     Map<LottoCount, Integer> compareLottoToWinningAndBonus(List<List<Integer>> createdLottos,
@@ -12,4 +13,5 @@ public interface LottoService {
                                                            int bonusNumber);
 
     long getTotalWinningPrice(Map<LottoCount, Integer> lottoResult);
+
 }

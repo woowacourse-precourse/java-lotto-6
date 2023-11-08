@@ -3,6 +3,7 @@ package lotto.utils.enums;
 import java.util.Arrays;
 
 public enum LottoCount {
+
     THREE("3개 일치", 3, 5000, "5,000원"),
     FOUR("4개 일치", 4, 50000, "50,000원"),
     FIVE("5개 일치", 5, 1500000, "1,500,000원"),
@@ -45,4 +46,5 @@ public enum LottoCount {
     public String getPriceCommaFormat() {
         return priceCommaFormat;
     }
+
 }

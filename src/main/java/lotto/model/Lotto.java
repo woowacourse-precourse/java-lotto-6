@@ -6,6 +6,7 @@ import java.util.Set;
 import lotto.utils.enums.ErrorMessage;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -30,4 +31,5 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers.stream().toList();
     }
+
 }

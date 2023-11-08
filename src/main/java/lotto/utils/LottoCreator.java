@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import lotto.model.Lotto;
 
 public class LottoCreator {
+
     private final List<Lotto> lottos = new ArrayList<>();
 
     public void createLotto(int lottoCount) {
@@ -22,4 +23,5 @@ public class LottoCreator {
                 .map(Lotto::getNumbers)
                 .collect(Collectors.toList());
     }
+
 }

@@ -7,6 +7,7 @@ import lotto.domain.Lotto;
 import lotto.service.Result;
 
 public class OutputView {
+    private static final String WINNING_RATE_MASSAGE = "총 수익률은 %.1f";
     public void printLottoNumbers(List<Lotto> lottos) {
         System.out.println(TICKEY_NUMBER_MESSAGE.getMessage().formatted(lottos.size()));
         lottos.forEach((lotto) -> System.out.println(lotto.toString()));
@@ -18,6 +19,6 @@ public class OutputView {
     }
 
     public void printWinningRate(double winningRate) {
-        System.out.printf(WINNING_RATE_MASSAGE.getMessage().formatted(winningRate) + "%%입니다.");
+        System.out.printf(WINNING_RATE_MASSAGE.formatted(winningRate) + "%%입니다.");
     }
 }

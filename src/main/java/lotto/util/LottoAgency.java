@@ -1,10 +1,8 @@
 package lotto.util;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.domain.LottoNumbers;
+import lotto.Lotto;
 import lotto.domain.LottoTicket;
 
 public class LottoAgency {
@@ -14,7 +12,7 @@ public class LottoAgency {
     public static LottoTicket createAutoTicket(int quantity){
         return new LottoTicket(
                 IntStream.range(0, quantity)
-                        .mapToObj(i -> new LottoNumbers(randomUtils))
+                        .mapToObj(i -> new Lotto(randomUtils))
                         .collect(Collectors.toList())
         );
     }

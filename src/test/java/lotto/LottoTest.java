@@ -1,10 +1,13 @@
 package lotto;
 
+import lotto.util.GenerateLottoNumbersSuccessTest;
+import lotto.util.RandomUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -23,5 +26,16 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("constructor() : 무작위 로또 번호 생성 테스트")
+    @Test
+    void lottoNumbers_constructor_success() throws Exception {
+        //given
+        RandomUtils randomUtils = new GenerateLottoNumbersSuccessTest();
+
+        //when
+        Lotto lottoNumbers = new Lotto(randomUtils);
+
+        //then
+        assertThat(lottoNumbers.getNumbers()).isEqualTo(List.of(1,3,5,7,9,11));
+    }
 }

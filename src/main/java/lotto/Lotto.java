@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.util.RandomUtils;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -10,11 +11,17 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public Lotto(RandomUtils randomUtils) {
+        this.numbers = randomUtils.generateRandomNumbers();
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

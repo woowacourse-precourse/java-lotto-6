@@ -14,6 +14,11 @@ public class OutputView {
         System.out.printf("\n%d개를 구매했습니다.\n",lottoCount);
     }
 
+    public static void printLottoBatch(List<String> lottoBatch){
+        lottoBatch.forEach(lotto -> System.out.println(lotto));
+        System.out.println();
+    }
+
     
 
 }

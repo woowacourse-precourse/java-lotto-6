@@ -6,11 +6,10 @@ import java.util.List;
 
 public class Store {
     private List<Integer> targetNumbers;
-    private List<Integer> bonusNumber;
+    private int bonusNumber;
 
     public Store() {
         this.targetNumbers = new ArrayList<>();
-        this.bonusNumber = new ArrayList<>();
     }
 
     public void getTargetNumbers() {
@@ -28,8 +27,8 @@ public class Store {
         System.out.println("보너스 번호를 입력해 주세요.");
         String inputTargetNumbers = Console.readLine();
         try {
-            //Validator.targetNumberCheck(inputTargetNumbers);
-            //setTargetNumbers(inputTargetNumbers);
+            Validator.checkBonusNumber(inputTargetNumbers,targetNumbers);
+            bonusNumber = Integer.parseInt(inputTargetNumbers);
         } catch (IllegalArgumentException e) {
             getBonusNumber();
         }

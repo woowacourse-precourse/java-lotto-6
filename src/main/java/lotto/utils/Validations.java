@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,6 +31,11 @@ public class Validations {
         if(set.size() < LOTTO_DRAW_NUMBER_COUNT + LOTTO_DRAW_BONUS_NUMBER_COUNT) {
             throw new IllegalArgumentException(LottoMessages.DUPLICATE_NUMBER.getKr());
         }
+    }
+
+    public static void checkDuplicateWinningNumbers(List<Integer> givenWinningNumbers) {
+        int _givenWinningNumbers[] = givenWinningNumbers.stream().mapToInt(n -> n).toArray();
+        checkDuplicateWinningNumbers(_givenWinningNumbers);
     }
 
     public static void checkWinningNumberRange(int givenNumber) {

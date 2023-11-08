@@ -65,7 +65,7 @@ class LottoRepositoryTest {
 
         Lotto lotto1 = new Lotto(new ArrayList<>(List.of(1,2,3,4,5,6)));
         Lotto lotto2 = new Lotto(new ArrayList<>(List.of(1,2,3,4,5,7)));
-        Lotto lotto3 = new Lotto(new ArrayList<>(List.of(1,2,3,6,7,8)));
+        Lotto lotto3 = new Lotto(new ArrayList<>(List.of(1,2,3,10,7,8)));
 
         lottoRepository.add(lotto1);
         lottoRepository.add(lotto2);

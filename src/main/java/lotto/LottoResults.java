@@ -26,4 +26,7 @@ public class LottoResults {
         double totalPrize = calculateTotalPrize();
         return (totalPrize - purchaseAmount) / purchaseAmount * 100.0;
     }
+    public Map<LottoRank, Integer> getResults() {
+        return results;
+    }
 }

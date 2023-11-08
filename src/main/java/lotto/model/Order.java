@@ -44,7 +44,13 @@ public class Order {
     }
 
     private double calculateProfitRate(WinStatistics winStatistics) {
+        double profitRate = ((winStatistics.sum() - this.cost) / (this.cost)) * 100;
 
+        if(profitRate < 0.0) {
+            profitRate += 100;
+        }
+
+        return profitRate;
     }
 
 

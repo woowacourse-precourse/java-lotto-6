@@ -21,7 +21,12 @@ public class WinStatistics {
     }
 
     public double sum() {
+        double totalMoney = 0;
+        for (Rank rank : this.winStatistics.keySet()) {
+            totalMoney += rank.getMoney() * winStatistics.get(rank);
+        }
 
+        return totalMoney;
     }
 
     public String printResult() {

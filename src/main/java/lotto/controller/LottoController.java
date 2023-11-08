@@ -11,7 +11,7 @@ import lotto.view.OutputView;
 public class LottoController {
     private final InputView input = new InputView();
     private final OutputView output = new OutputView();
-    private LottoManager manager = new LottoManager();
+    private final LottoManager manager = new LottoManager();
     private int purchaseAmount;
 
     public void run() {

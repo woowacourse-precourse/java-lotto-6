@@ -16,8 +16,9 @@ import static lotto.exception.errorcode.InputErrorCode.INPUT_SPLIT_SIZE;
 public class ConsoleInputView implements InputView {
     @Override
     public PurchasePriceRequest requestPurchasePrice() {
-        final String input = Console.readLine();
-        return new PurchasePriceRequest(Long.parseLong(input));
+        final String purchasePrice = Console.readLine();
+        validateNumeric(purchasePrice);
+        return new PurchasePriceRequest(Long.parseLong(purchasePrice));
     }
 
     @Override

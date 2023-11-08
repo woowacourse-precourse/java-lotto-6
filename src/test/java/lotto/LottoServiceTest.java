@@ -62,4 +62,31 @@ public class LottoServiceTest {
         assertThat(winningStatistics.get(WinningRank.SECOND)).isEqualTo(1);
         assertThat(winningStatistics.get(WinningRank.FIFTH)).isEqualTo(2);
     }
+
+    @DisplayName("당첨 금액의 총액을 계산한다.")
+    @Test
+    void getTotalReturnAmount() {
+        // given
+        int firstCount = 1;
+        int secondCount = 2;
+        int thirdCount = 3;
+        int fourthCount = 4;
+        int fifthCount = 5;
+        HashMap<WinningRank, Integer> winningStatistics = new HashMap<>();
+        winningStatistics.put(WinningRank.FIRST, firstCount);
+        winningStatistics.put(WinningRank.SECOND, secondCount);
+        winningStatistics.put(WinningRank.THIRD, thirdCount);
+        winningStatistics.put(WinningRank.FOURTH, fourthCount);
+        winningStatistics.put(WinningRank.FIFTH, fifthCount);
+
+        // when
+        long returnAmount = lottoService.calculateReturnAmount(winningStatistics);
+
+        // then
+        assertThat(returnAmount).isEqualTo(WinningRank.FIRST.getReturnAmount() * firstCount
+                + (long) WinningRank.SECOND.getReturnAmount() * secondCount
+                + (long) WinningRank.THIRD.getReturnAmount() * thirdCount
+                + (long) WinningRank.FOURTH.getReturnAmount() * fourthCount
+                + (long) WinningRank.FIFTH.getReturnAmount() * fifthCount);
+    }
 }

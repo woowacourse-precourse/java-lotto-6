@@ -1,7 +1,8 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import static lotto.constant.ErrorMessage.LOTTO_NUMBER_OVER_RANGE;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Objects;
 
 public class LottoNumber {
@@ -16,7 +17,14 @@ public class LottoNumber {
     }
 
     public LottoNumber(int number) {
+        validateNumberInRange(number);
         this.number = number;
+    }
+
+    private void validateNumberInRange(int number) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_OVER_RANGE);
+        }
     }
 
     private int createRandomNumber() {

@@ -35,4 +35,6 @@ public class PurchaseAmount {
         return this.Amount;
     }
 
+
+
 }

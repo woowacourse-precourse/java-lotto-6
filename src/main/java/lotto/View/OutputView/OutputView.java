@@ -10,13 +10,16 @@ import lotto.Model.ProfitRate.ProfitRate;
 import static lotto.Common.LottoValue.*;
 
 public class OutputView {
-    private static final String LOTTO_BUY_COUNT = "%d개를 구매했습니다.";
+    private static final String LOTTO_BUY_COUNT = "%d개를 구매했습니다.\n";
     private static final String WINNING_PROFIT = "당첨 통계";
     private static final String WINNING_LOTTO_PRINT = "%d개 일치 (%,d원) - %d개%n";
     private static final String WINNING_LOTTO_PRINT_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n";
-    private static final String COMMA = ",";
-    private static final String RIGHTBRACKET = "[";
-    private static final String LEFTBRACKET = "]";
+    private static final String COMMA = ", ";
+    private static final String RIGHT_BRACKET = "[";
+    private static final String LEFT_BRACKET = "]\n";
+    private static final String TOTAL_PROFIT_RATE= "총 수익률은 %.1f%%입니다.";
+
+
 
 
     public void lottoSetPrint(LottoSet lottoSet) {
@@ -25,10 +28,10 @@ public class OutputView {
         System.out.printf(LOTTO_BUY_COUNT,lottoList.size());
 
         for (Lotto lotto : lottoList) {
-            System.out.printf(RIGHTBRACKET);
+            System.out.printf(RIGHT_BRACKET);
             List<Integer> numbers = lotto.getNumbers();
             lottoNumberPrint(numbers);
-            System.out.printf(LEFTBRACKET);
+            System.out.printf(LEFT_BRACKET);
         }
     }
 
@@ -42,6 +45,7 @@ public class OutputView {
                 System.out.printf(COMMA);
             }
         }
+
     }
 
     public void winningLottoPrint(LottoWinningResult lottoWinningResult) {
@@ -86,9 +90,7 @@ public class OutputView {
     }
 
     public void totalProfitRatePrint(ProfitRate profitRate) {
-        System.out.print("총 수익률 은");
-        System.out.print(profitRate.getProfitRatePercent() + "%");
-        System.out.print("입니다.");
+        System.out.printf(TOTAL_PROFIT_RATE,profitRate.getProfitRatePercent());
     }
 
 }

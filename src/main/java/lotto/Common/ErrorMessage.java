@@ -2,6 +2,8 @@ package lotto.Common;
 
 public enum ErrorMessage {
     //Model
+
+    NUMBER_NOT_SORTED("수가 오름차순 정렬이 아닙니다."),
     NUMBER_OUT_OF_RANGE("입력 숫자 범위가 1~9여야 합니다."),
     NUMBER_COUNT_INVALID("로또가 6자리가 아닙니다."),
     NUMBER_DUPLICATE("로또 번호에 중복이 있습니다."),

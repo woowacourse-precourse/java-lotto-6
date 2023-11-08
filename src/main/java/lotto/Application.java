@@ -14,16 +14,16 @@ public class Application {
 class Money {
     public static int InputMoney() {
         while (true) {
-            System.out.println("구입금액을 입력해 주세요.");
-            String m = Console.readLine();
-            try {
-                int money = Integer.parseInt(m);
-                return CorrectMoney(money);
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 제대로 된 값을 입력해 주세요.");
+            try{
+                System.out.println("구입금액을 입력해 주세요.");
+                String m = Console.readLine();
+                return ExceptMoney(m);
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
             }
         }
     }
+
     public static int ExceptMoney(String money){
         try {
             return Integer.parseInt(money);
@@ -31,11 +31,12 @@ class Money {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
         }
     }
+
     public static int CorrectMoney(int money) {
         if (money % 1000 == 0) {
             return money / 1000;
         }
-        throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요.");
+        throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해 주세요.");
     }
 }
 

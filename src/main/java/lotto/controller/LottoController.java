@@ -14,15 +14,17 @@ public class LottoController {
     public void run() {
         Amount amount = getAmount();
         int totalLottoNumber = amount.calculateTotalLottoNumber();
+        OutputView.printTotalLottoNumber(totalLottoNumber);
 
         LottoStore lottoStore = generateLottoes(totalLottoNumber);
+        OutputView.printLottos(lottoStore.getLottoes());
 
         WinningNumbers winningNumbers = generateWinningNumbers();
 
         WinningStatistic winningStatistic = generateWinningStatistic(lottoStore.getRanks(winningNumbers));
 
         OutputView.printWinningStatistic(winningStatistic.getResult());
-        
+
         OutputView.printTotalEarningsRate(amount.calculateEarningsRate(winningStatistic.calculateTotalPrize()));
     }
 
@@ -35,13 +37,13 @@ public class LottoController {
         }
     }
 
-    private Lotto getLottoNumbers() {
+    private Lotto getWinningNumber() {
         try {
             return new Lotto(InputView.inputWinningNumber());
 
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e);
-            return getLottoNumbers();
+            return getWinningNumber();
         }
     }
 
@@ -56,7 +58,7 @@ public class LottoController {
     }
 
     private WinningNumbers generateWinningNumbers() {
-        Lotto winningNumber = getLottoNumbers();
+        Lotto winningNumber = getWinningNumber();
         int bonusNumber = getBonusNumber();
         return new WinningNumbers(winningNumber, bonusNumber);
     }
@@ -66,9 +68,6 @@ public class LottoController {
     }
 
     private LottoStore generateLottoes(int totalLottoNumber) {
-        LottoStore lottoStore = new LottoStore(totalLottoNumber);
-        OutputView.printTotalLottoNumber(totalLottoNumber);
-        OutputView.printLottos(lottoStore.getLottoes());
-        return lottoStore;
+        return new LottoStore(totalLottoNumber);
     }
 }

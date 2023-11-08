@@ -13,6 +13,10 @@ public class BonusNumber {
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validate(String bonusNumber, List<Integer> lottoNumber) {
         validateIsDigit(bonusNumber);
         validateNumberRange(bonusNumber);

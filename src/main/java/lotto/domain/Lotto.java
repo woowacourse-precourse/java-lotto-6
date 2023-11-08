@@ -1,5 +1,5 @@
 package lotto.domain;
-import static lotto.ErrorMessages.*;
+import static lotto.message.ErrorMessages.*;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,6 +1,6 @@
 package lotto;
 
-import static lotto.ErrorMessages.*;
+import static lotto.message.ErrorMessages.*;
 
 public class Validator {
     private static final int START_RANGE = 1;

@@ -1,11 +1,9 @@
 package lotto.domain;
 
-import static lotto.ErrorMessages.LOTTO_WITH_BONUS_DUPLICATION;
+import static lotto.message.ErrorMessages.LOTTO_WITH_BONUS_DUPLICATION;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.Lotto;
-import lotto.domain.Rank;
 
 public class WinningLotto {
     private final Lotto lotto;

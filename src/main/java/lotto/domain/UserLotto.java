@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.Util.generateNumbers;
-import static lotto.Util.getLottoCount;
+import static lotto.util.Util.generateNumbers;
+import static lotto.util.Util.getLottoCount;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

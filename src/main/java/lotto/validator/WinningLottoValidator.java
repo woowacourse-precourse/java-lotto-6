@@ -24,7 +24,7 @@ public class WinningLottoValidator implements Validator <String> {
         comma(input);
         numericWithComma(input);
 
-        List<String> splitNumbers = NumberSplitter.splitNumbers(input);
+        List<Integer> splitNumbers = NumberSplitter.splitNumbers(input);
         maxAmount(splitNumbers);
         unique(splitNumbers);
 
@@ -43,16 +43,16 @@ public class WinningLottoValidator implements Validator <String> {
         }
     }
 
-    private void maxAmount(List<String> splitNumbers) {
+    private void maxAmount(List<Integer> splitNumbers) {
         if (splitNumbers.size() != LOTTO_NUMBER_AMOUNT_MAX.getValue()) {
             throw new IllegalArgumentException(LOTTO_AMOUNT_MAX_ERROR_MESSAGE.getMessage());
         }
     }
 
-    private void unique(List<String> splitNumbers) {
-        Set<String> uniqueNumbers = new HashSet<>();
+    private void unique(List<Integer> splitNumbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
 
-        for (String number : splitNumbers) {
+        for (int number : splitNumbers) {
             if (!uniqueNumbers.add(number)) {
                 throw new IllegalArgumentException(WINNING_LOTTO_UNIQUE_ERROR_MESSAGE.getMessage());
             }

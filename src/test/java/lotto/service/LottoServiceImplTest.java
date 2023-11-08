@@ -23,4 +23,11 @@ class LottoServiceImplTest {
         assertThat(lottoService.drawWinningNumbers("10,11,12,13,14,15").getNumbers())
                 .contains(10, 11, 12, 13, 14, 15);
     }
+
+    @DisplayName("보너스 번호 추첨하기")
+    @Test
+    void testDrawBonusNumber() {
+        assertThat(lottoService.drawBonusNumber("45"))
+                .isEqualTo(45);
+    }
 }

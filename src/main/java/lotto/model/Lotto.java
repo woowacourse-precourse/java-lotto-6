@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+import static lotto.util.Constants.*;
 
 public class Lotto {
     public static final String ERROR_MESSAGE_DUPLICATE_NUMBERS = "[ERROR] 로또 번호가 중복되어서는 안됩니다.";
@@ -21,7 +22,8 @@ public class Lotto {
     public static List<Lotto> purchaseLottos(int purchaseCount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < purchaseCount; i++) {
-            List<Integer> numbers = pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers =
+                    pickUniqueNumbersInRange(LOTTERY_NUMBER_MIN, LOTTERY_NUMBER_MAX, WINNING_NUMBERS_SIZE);
             lottos.add(new Lotto(numbers));
         }
         return lottos;
@@ -29,7 +31,7 @@ public class Lotto {
 
     private static void validateNumberInRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < LOTTERY_NUMBER_MIN || number > LOTTERY_NUMBER_MAX) {
                 throw new IllegalArgumentException(ERROR_MESSAGE_NUMBER_IN_RANGE);
             }
         }
@@ -43,7 +45,7 @@ public class Lotto {
     }
 
     private void validateSixNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != WINNING_NUMBERS_SIZE) {
             throw new IllegalArgumentException(ERROR_MESSAGE_NOT_SIX_NUMBERS);
         }
     }

@@ -19,12 +19,12 @@ public class Purchase {
     // 구매 금액에 따른 구매 개수 계산
     private static int calculatePurchaseCount(int purchaseAmount) {
         validateAmountInThousands(purchaseAmount);
-        return purchaseAmount / 1000;
+        return purchaseAmount / PRICE_VALUE;
     }
 
     // 구매 금액이 1000원 단위인지 검증
     private static void validateAmountInThousands(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
+        if (purchaseAmount % PRICE_VALUE != DEFAULT_VALUE) {
             throw new IllegalArgumentException(ERROR_MESSAGE_AMOUNT_NOT_IN_THOUSANDS);
         }
     }

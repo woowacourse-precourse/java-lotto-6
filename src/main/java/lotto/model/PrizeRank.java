@@ -1,11 +1,14 @@
 package lotto.model;
+import lotto.util.Constants.*;
+
+import static lotto.util.Constants.*;
 
 public enum PrizeRank {
-    FIRST(6, false, 2000000000),
-    SECOND(5, true, 30000000),
-    THIRD(5, false, 1500000),
-    FOURTH(4, false, 50000),
-    FIFTH(3, false, 5000);
+    FIRST(6, false, FIRST_PRICE),
+    SECOND(5, true, SECOND_PRICE),
+    THIRD(5, false, THIRD_PRICE),
+    FOURTH(4, false, FOURTH_PRICE),
+    FIFTH(3, false, FIFTH_PRICE);
 
     private final int matchCount;
     private final boolean bonusMatch;
@@ -33,4 +36,5 @@ public enum PrizeRank {
     public int getPrice() {
         return price;
     }
+
 }

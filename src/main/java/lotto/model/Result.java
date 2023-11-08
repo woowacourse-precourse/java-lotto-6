@@ -31,13 +31,13 @@ public class Result {
             PrizeRank rank = PrizeRank.findPrizeRankByMatches(matchCount, hasBonus);
 
             if (rank != null) {
-                prizeCounts.put(rank, prizeCounts.get(rank) + 1);
+                prizeCounts.put(rank, prizeCounts.get(rank) + PLUS_VALUE);
             }
         }
     }
 
     private static int getMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
-        int matchCount = 0;
+        int matchCount = DEFAULT_VALUE;
         for (Integer winningNumber : winningNumbers) {
             if (lottoNumbers.contains(winningNumber)) {
                 matchCount++;
@@ -47,7 +47,7 @@ public class Result {
     }
 
     public int getCountByRank(PrizeRank rank) {
-        return prizeCounts.getOrDefault(rank, 0);
+        return prizeCounts.getOrDefault(rank, DEFAULT_VALUE);
     }
 
     public Double calculateProfitRate() {
@@ -60,11 +60,11 @@ public class Result {
     }
 
     private int getPurchaseAmount() {
-        return purchase.getPurchaseCount() * 1000;
+        return purchase.getPurchaseCount() * PRICE_VALUE;
     }
 
     private int sumPrizeAmounts() {
-        int sum = 0;
+        int sum = DEFAULT_VALUE;
         for (PrizeRank prizeRank : prizeCounts.keySet()) {
             Integer count = prizeCounts.get(prizeRank);
             int price = prizeRank.getPrice();

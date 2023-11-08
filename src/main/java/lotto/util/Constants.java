@@ -20,5 +20,16 @@ public class Constants {
     public static final double PROFIT_RATE_MULTIPLIER = 1000.0;
     public static final double PROFIT_RATE_PERCENTAGE = 100.0;
     public static final double PROFIT_RATE_BASE = 10.0;
+    public static final int PRICE_VALUE = 1000;
     public static final int DEFAULT_COUNT = 0;
+    public static final int PLUS_VALUE = 1;
+    public static final int DEFAULT_VALUE = 0;
+
+    // PrizeRank
+    public static final int FIRST_PRICE = 2000000000;
+    public static final int SECOND_PRICE = 30000000;
+    public static final int THIRD_PRICE = 1500000;
+    public static final int FOURTH_PRICE = 50000;
+    public static final int FIFTH_PRICE = 5000;
+
 }

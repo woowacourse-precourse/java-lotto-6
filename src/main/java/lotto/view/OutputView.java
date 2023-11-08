@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.model.Lotto;
 import lotto.model.Rank;
+import lotto.model.UserLotto;
 
 import java.util.List;
 
@@ -40,9 +41,9 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void printLottos(List<Lotto> userLottos) {
-        for (Lotto lotto: userLottos) {
-            System.out.println(lotto);
+    public static void printLottos(UserLotto userLottos) {
+        for (Lotto lotto: userLottos.getUserLotto()) {
+            System.out.println(lotto.getNumbers());
         }
     }
 

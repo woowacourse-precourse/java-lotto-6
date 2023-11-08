@@ -81,7 +81,7 @@ public class InputValidator {
         Set<Integer> set = new HashSet<>(); // 중복된 값 체크를 위한 Set
         for (int number : winningNumber) {
             if (!set.add(number)) {
-                System.out.println(InputErrorMessage.LOTTO_BONUS_NUMBER_DUPLICATE_ERROR);
+                System.out.println(InputErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR);
                 return false;
             }
         }

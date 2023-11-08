@@ -7,7 +7,7 @@ public enum ExceptionMessage {
     IS_DUPLICATED("중복된 숫자가 있습니다."),
     OUT_OF_RANGE("1부터 45 사이의 값만 입력할 수 있습니다."),
     HAS_BLANK("공백은 입력할 수 없습니다."),
-    IS_NOT_POSITIVE_INTEGER("유효한 숫자가 아닙니다. 양의 정수를 입력해주세요."),
+    WRONG_TYPE("유효한 숫자가 아닙니다. 양의 정수를 입력해주세요."),
     IS_NEGATIVE("음수는 입력할 수 없습니다.");
 
     private final String message;

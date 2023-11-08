@@ -5,9 +5,16 @@ import lotto.constant.ExceptionMessage;
 
 public class NumberValidator {
     private static final String POSITIVE_INTEGER = "\\d+";
+    private static final String NEGATIVE_INTEGER = "-\\d+";
 
     public static void isNegative(int num) {
         if (num < 0) {
+            throw new IllegalArgumentException(ExceptionMessage.IS_NEGATIVE.getMessage());
+        }
+    }
+
+    public static void isNegative(String num) {
+        if (num.matches(NEGATIVE_INTEGER)) {
             throw new IllegalArgumentException(ExceptionMessage.IS_NEGATIVE.getMessage());
         }
     }
@@ -20,7 +27,7 @@ public class NumberValidator {
 
     public static void isWrongType(String num) {
         if (!num.matches(POSITIVE_INTEGER)) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_POSITIVE_INTEGER.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.WRONG_TYPE.getMessage());
         }
     }
 

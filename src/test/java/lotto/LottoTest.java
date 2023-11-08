@@ -30,7 +30,7 @@ class LottoTest {
     void createLottoByNegativeNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(-1, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.IS_NOT_POSITIVE_INTEGER.getMessage());
+                .hasMessage(ExceptionMessage.WRONG_TYPE.getMessage());
     }
 
     @DisplayName("로또 번호에 정수가 아닌 숫자가 있으면 예외가 발생한다.")
@@ -38,7 +38,7 @@ class LottoTest {
     void createLottoByNonIntegerNumber() {
         assertThatThrownBy(() -> new Lotto("1.1,2,3,4,5,6"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.IS_NOT_POSITIVE_INTEGER.getMessage());
+                .hasMessage(ExceptionMessage.WRONG_TYPE.getMessage());
     }
 
     @DisplayName("로또 번호에 범위 밖 숫자가 있으면 예외가 발생한다.")
@@ -54,7 +54,7 @@ class LottoTest {
     void createLottoByNonNumber() {
         assertThatThrownBy(() -> new Lotto("d,2,3,4,5,6"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.IS_NOT_POSITIVE_INTEGER.getMessage());
+                .hasMessage(ExceptionMessage.WRONG_TYPE.getMessage());
     }
 
     @DisplayName("로또 번호에 공백이 있으면 예외가 발생한다.")

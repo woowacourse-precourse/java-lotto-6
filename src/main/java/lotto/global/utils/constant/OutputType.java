@@ -20,7 +20,8 @@ public enum OutputType {
     EXCEPTION_INPUT_RANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     EXCEPTION_INPUT_LENGTH("[ERROR] 6자리의 로또 번호를 입력해야 합니다."),
     EXCEPTION_INPUT_REDUNDANT("[ERROR] 중복된 번호는 입력하실 수 없습니다."),
-    EXCEPTION_INPUT_PRICE("[ERROR] 로또 구입 금액은 1000원 단위로 입력해야 합니다.");
+    EXCEPTION_INPUT_PRICE("[ERROR] 로또 구입 금액은 1000원 단위로 입력해야 합니다."),
+    EXCEPTION("[ERROR] 잘못된 입력입니다. 다시 입력해주세요.");
 
     private final String comment;
 

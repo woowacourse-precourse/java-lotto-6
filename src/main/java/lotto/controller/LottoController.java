@@ -9,6 +9,7 @@ public class LottoController {
     public void run(){
         purchaseLotto();
         inputPrizeNumber();
+        winningStatics();
     }
 
     public void purchaseLotto(){
@@ -21,5 +22,10 @@ public class LottoController {
         lottoService.inputPrimaryNumber();
         lottoPrint.inputBonusNumberPrint();
         lottoService.inputBonusNumber();
+    }
+
+    public void winningStatics(){
+        lottoPrint.winningStaticsMent();
+        lottoService.predictWinning();
     }
 }

@@ -56,7 +56,7 @@ class LottoTest {
     void test_newLotto_3(String numbers) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Lotto(lm.setLuckyNumbers(numbers)))
-                .withMessage(ErrorMessage.WRONG_LUCKY_NUMBER_RANGE.getMessage());
+                .withMessage(ErrorMessage.WRONG_NUMBER_RANGE.getMessage());
     }
 
     // TODO , 로 끝날 때 별도 예외처리 필요

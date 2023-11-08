@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.controller.LottoGameController;
-import lotto.model.InputValidator;
+import lotto.Validation.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

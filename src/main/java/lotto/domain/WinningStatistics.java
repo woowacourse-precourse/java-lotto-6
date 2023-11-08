@@ -9,11 +9,18 @@ public class WinningStatistics {
     private HashMap<Integer, Integer> bonusStatistics;
 
     public WinningStatistics() {
+        initWinningStatistics();
+        initBonusStatistics();
+    }
+
+    private void initWinningStatistics() {
         this.winningStatistics = new HashMap<>();
         winningStatistics.put(3, LottoConstants.ZERO.getValue());
         winningStatistics.put(4, LottoConstants.ZERO.getValue());
         winningStatistics.put(6, LottoConstants.ZERO.getValue());
+    }
 
+    private void initBonusStatistics() {
         this.bonusStatistics = new HashMap<>();
         bonusStatistics.put(0, LottoConstants.ZERO.getValue());
         bonusStatistics.put(1, LottoConstants.ZERO.getValue());

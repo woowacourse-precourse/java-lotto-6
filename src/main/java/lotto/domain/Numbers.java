@@ -2,13 +2,13 @@ package lotto.domain;
 
 import java.util.Objects;
 
-public class Number {
+public class Numbers {
     private static final String DUPLICATED_NUMBER_ERROR_MESSAGE = "[ERROR] 당첨 번호와 중복되는 번호입니다.";
     
     private final Lotto winningNumbers;
     private final int bonusNumber;
     
-    public Number(Lotto winningNumbers, int bonusNumber) {
+    public Numbers(Lotto winningNumbers, int bonusNumber) {
         Lotto.validateNumberInSpecifiedRange(bonusNumber);
         validateDuplicatedNumber(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
@@ -37,7 +37,7 @@ public class Number {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Number number = (Number) o;
+        Numbers number = (Numbers) o;
         return bonusNumber == number.bonusNumber && Objects.equals(winningNumbers, number.winningNumbers);
     }
     

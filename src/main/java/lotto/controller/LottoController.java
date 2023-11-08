@@ -4,7 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.LottoPurchase;
 import lotto.domain.LottoResult;
-import lotto.domain.Number;
+import lotto.domain.Numbers;
 import lotto.domain.Ranking;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -36,9 +36,9 @@ public class LottoController {
         List<Lotto> lottoTickets = buyTickets(ticketCount);
         outputView.printTickets(lottoTickets);
         
-        Number number = getNumbers();
+        Numbers numbers = getNumbers();
         
-        lottoResult.calculateWinningResult(lottoTickets, number);
+        lottoResult.calculateWinningResult(lottoTickets, numbers);
         
         Map<Ranking, Integer> winningResult = lottoResult.getWinningResult();
         outputView.printWinningstatistics(winningResult);
@@ -62,7 +62,7 @@ public class LottoController {
                 .collect(Collectors.toList());
     }
     
-    private Number getNumbers() {
+    private Numbers getNumbers() {
         Lotto winningNumbers = getWinningNumbers();
         outputView.printNewLine();
         int bonusNumber = getBonusNumber();
@@ -87,9 +87,9 @@ public class LottoController {
         }
     }
     
-    private Number createNumbers(Lotto winningNumbers, int bonusNumber) {
+    private Numbers createNumbers(Lotto winningNumbers, int bonusNumber) {
         try {
-            return new Number(winningNumbers, bonusNumber);
+            return new Numbers(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return createNumbers(winningNumbers, getBonusNumber());

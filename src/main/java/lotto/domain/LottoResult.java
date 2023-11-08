@@ -20,9 +20,9 @@ public class LottoResult {
         }
     }
     
-    public void calculateWinningResult(List<Lotto> lottoTickets, Number number) {
-        Lotto winningNumbers = number.getWinningNumbers();
-        int bonusNumber = number.getBonusNumber();
+    public void calculateWinningResult(List<Lotto> lottoTickets, Numbers numbers) {
+        Lotto winningNumbers = numbers.getWinningNumbers();
+        int bonusNumber = numbers.getBonusNumber();
         
         for (Lotto ticket : lottoTickets) {
             updateWinningResult(ticket, winningNumbers, bonusNumber);

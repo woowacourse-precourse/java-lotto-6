@@ -22,24 +22,27 @@ public class OutputView {
 
     public void printLottoResult(LottoGameResult result) {
         printLottoResultHeader();
-
-        List<LottoRank> lottoRanks = LottoRank.getLottoRanksExceptNoLuck();
-        for (LottoRank rank : lottoRanks) {
-            if (rank == LottoRank.SECOND) {
-                System.out.printf(LOTTO_SECOND_RANK_RESULT_FORMAT
-                        , rank.getSameCount(), rank.getRewardMoneyFormat(), result.getCountOfRank(rank));
-                continue;
-            }
-            System.out.printf(LOTTO_RESULT_FORMAT
-                    , rank.getSameCount(), rank.getRewardMoneyFormat(), result.getCountOfRank(rank));
-        }
-
+        printLottoResultBody(result);
         printLottoProfitRate(result.calculateProfitRate());
     }
 
     private void printLottoResultHeader() {
         System.out.println("당첨 통계");
         System.out.println("---");
+    }
+
+    private static void printLottoResultBody(LottoGameResult result) {
+        List<LottoRank> lottoRanks = LottoRank.getLottoRanksExceptNoLuck();
+        for (LottoRank rank : lottoRanks) {
+            if (rank == LottoRank.SECOND) {
+                System.out.printf(LOTTO_SECOND_RANK_RESULT_FORMAT,
+                        rank.getSameCount(), rank.getRewardMoneyFormat(), result.getCountOfRank(rank));
+
+                continue;
+            }
+            System.out.printf(LOTTO_RESULT_FORMAT,
+                    rank.getSameCount(), rank.getRewardMoneyFormat(), result.getCountOfRank(rank));
+        }
     }
 
     private void printLottoProfitRate(double profitRate) {

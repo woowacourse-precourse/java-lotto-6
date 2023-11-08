@@ -10,6 +10,10 @@ import static lotto.utils.OutputViewPhrase.*;
 
 public class OutputView {
 
+    public static void printEmptyLine() {
+        System.out.println();
+    }
+
     public static void printLottoCnt(int lottoCnt) {
         System.out.println(lottoCnt+outputPurchaseLottoCnt);
     }

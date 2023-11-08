@@ -18,7 +18,7 @@ public class LottoSystemController {
 
     public static void startLottoSystem() {
         LottoSystem lottoSystem = buyLotto();
-        printBuyLotto(lottoSystem);
+        printBuyLotto(lottoSystem.getPurchaseLottoCount(), lottoSystem.getPurchaseLottos());
 
         WinningLotto winningLotto = enterLotto();
         printWinningStatus(calculateWinningStatus(lottoSystem, winningLotto));
@@ -68,10 +68,11 @@ public class LottoSystemController {
         return new LottoSystem(Long.parseLong(money));
     }
 
-    private static void printBuyLotto(LottoSystem lottoSystem) {
-        printLottoCnt(lottoSystem.getPurchaseLottoCount());
+    private static void printBuyLotto(int purchaseLottoCnt, List<Lotto> purchaseLottos) {
+        printEmptyLine();
+        printLottoCnt(purchaseLottoCnt);
 
-        for (Lotto lotto : lottoSystem.getPurchaseLottos()) {
+        for (Lotto lotto : purchaseLottos) {
             printLottoNumbers(lotto);
         }
     }

@@ -18,6 +18,14 @@ public class LottoSystem {
         this.purchaseLottos = createLottos();
     }
 
+    public static List<Lotto> getPurchaseLottos() {
+        return purchaseLottos;
+    }
+
+    public static int getPurchaseLottoCount() {
+        return purchaseLottos.size();
+    }
+
     public static float calculateRateOfReturn(List<WinningResult> results) {
         long winningMoney = calculateWinningMoney(results);
         return Math.round((float) winningMoney / purchaseMoney * 1000) / 10f;
@@ -37,14 +45,6 @@ public class LottoSystem {
         }
 
         return result;
-    }
-
-    public static List<Lotto> getPurchaseLottos() {
-        return purchaseLottos;
-    }
-
-    public static int getPurchaseLottoCount() {
-        return purchaseLottos.size();
     }
 
     private static List<Lotto> createLottos() {

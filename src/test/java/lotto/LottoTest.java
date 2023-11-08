@@ -10,6 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
+    private List<Integer> numbers;
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -30,7 +32,7 @@ class LottoTest {
     @Test
     void createLottoNormal() {
         // given
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        numbers = List.of(1, 2, 3, 4, 5, 6);
 
         // when
         Lotto lotto = new Lotto(numbers);
@@ -38,5 +40,49 @@ class LottoTest {
         // then
         assertThat(lotto).isNotNull().isInstanceOf(Lotto.class);
         assertThat(lotto.getNumbers()).hasSize(6);
+    }
+
+    @DisplayName("로또 번호에 1보다 작은 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByMinNumber() {
+        // given
+        numbers = List.of(0, 1, 2, 3, 4, 5);
+
+        // when & then
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호에 45보다 큰 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByMaxNumber() {
+        // given
+        numbers = List.of(1, 2, 3, 4, 5, 46);
+
+        // when & then
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호의 개수가 6개보다 적으면 예외가 발생한다.")
+    @Test
+    void createLottoByUnderSize() {
+        // given
+        numbers = List.of(1, 2, 3, 4, 5);
+
+        // when & then
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 비어있으면 예외를 반환한다.")
+    @Test
+    void createLottoByBlank() {
+        // given
+        numbers = List.of();
+
+        // when & then
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

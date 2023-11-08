@@ -30,4 +30,12 @@ class LottoTest {
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 7, 8, 9));
         assertThat(lotto1.matchNumbers(lotto2)).isEqualTo(3);
     }
+
+    @DisplayName("contains()는 특정 번호가 로또 번호에 포함되어 있는지 확인한다.")
+    @Test
+    void containsReturnsCorrectResult() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.contains(1)).isTrue();
+        assertThat(lotto.contains(7)).isFalse();
+    }
 }

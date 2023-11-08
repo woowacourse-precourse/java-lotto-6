@@ -9,6 +9,7 @@ public class InputView {
     private final static int LOTTO_UNIT_PRICE = 1000;
     private final static int LOTTO_MINIMUM_NUMBER = 1;
     private final static int LOTTO_MAXIMUM_NUMBER = 45;
+    private List<Integer> lottoNumbers;
 
     int inputLottoPrice(){
         int price = 0;
@@ -56,7 +57,6 @@ public class InputView {
     }
 
     List<Integer> inputLottoNumber(){
-        List<Integer> lottoNumbers = null;
         boolean isValid = false;
         while (!isValid){
             try {
@@ -129,6 +129,7 @@ public class InputView {
         if(bonusNumber < LOTTO_MINIMUM_NUMBER || bonusNumber > LOTTO_MAXIMUM_NUMBER){
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
+        if(lottoNumbers.contains(input)) throw new IllegalArgumentException("[ERROR] 보너스 번호와 기존 당첨 번호는 중복될 수 없습니다.");
         return bonusNumber;
     }
 }

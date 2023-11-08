@@ -61,4 +61,10 @@ public class Input {
     private int calculate(int money){
         return money / 1000;
     }
+
+    public int getBonusNumber(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonus = Integer.parseInt(Console.readLine());
+        return bonus;
+    }
 }

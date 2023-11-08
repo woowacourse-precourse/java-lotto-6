@@ -2,6 +2,8 @@ package lotto.Model.BonusNumber;
 import static lotto.Common.LottoValue.*;
 import static lotto.Common.ErrorMessage.*;
 
+import java.util.List;
+
 public class BonusNumber {
     private final Integer BonusNumber;
 
@@ -16,6 +18,8 @@ public class BonusNumber {
             throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
+
+
 
     public Integer getBonusNumber() {
         return this.BonusNumber;

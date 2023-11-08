@@ -4,9 +4,9 @@ import java.util.List;
 
 import static lotto.Common.LottoValue.*;
 
+import java.util.stream.IntStream;
 import lotto.Common.LottoValue;
 
-import static lotto.Common.ErrorMessage.*;
 import static lotto.Common.ErrorMessage.*;
 
 public class Lotto {
@@ -55,9 +55,9 @@ public class Lotto {
 
     //각 수가 오름차순 으로 정렬 되어 있는지
     private void validateNumberSorting(List<Integer> numbers) {
-        if (numbers.stream().distinct().sorted().toList().size()
-                != LottoValue.LOTTO_COUNT_NUMBER.getValue()) {
-            throw new IllegalArgumentException("");
+        if ( !IntStream.range(1, numbers.size())
+                .allMatch(i -> numbers.get(i) > numbers.get(i - 1))) {
+            throw new IllegalArgumentException(NUMBER_NOT_SORTED.getMessage());
         }
     }
 

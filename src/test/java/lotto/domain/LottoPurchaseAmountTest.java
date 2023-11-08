@@ -12,7 +12,8 @@ public class LottoPurchaseAmountTest {
     @ParameterizedTest
     @ValueSource(ints = {1_000, 2_000, 8_000, 10_000})
     void LottoPurchaseAmount_객체_생성(int input) {
-        assertThat(LottoPurchaseAmount.create(input));
+        assertThat(LottoPurchaseAmount.create(input))
+                .isInstanceOf(LottoPurchaseAmount.class);
     }
 
     @ParameterizedTest

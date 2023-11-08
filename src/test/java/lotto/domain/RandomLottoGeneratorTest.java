@@ -7,6 +7,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RandomLottoGeneratorTest {
 
     @Test
+    void RandomLottoGenerator_객체_생성() {
+        assertThat(RandomLottoGenerator.create())
+                .isInstanceOf(LottoGenerator.class);
+    }
+
+    @Test
     void 로또_번호_6개를_생성한다() {
         assertThat(RandomLottoGenerator.create()
                 .generate()

@@ -12,7 +12,8 @@ public class BonusNumberTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 10, 45})
     void BonusNumber_객체_생성(int input) {
-        assertThat(BonusNumber.create(input));
+        assertThat(BonusNumber.create(input))
+                .isInstanceOf(BonusNumber.class);
     }
 
     @ParameterizedTest

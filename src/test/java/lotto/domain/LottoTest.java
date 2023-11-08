@@ -33,7 +33,8 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("generateData")
     void Lotto_객체_생성(List<Integer> input) {
-        assertThat(new Lotto(input));
+        assertThat(new Lotto(input))
+                .isInstanceOf(Lotto.class);
     }
 
     @ParameterizedTest

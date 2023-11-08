@@ -13,6 +13,7 @@ public class CountTest {
     void Count_객체_생성(int input) {
         assertThat(new Count(input));
     }
+
     @ParameterizedTest
     @CsvSource(value = {"1,0", "10,9", "25,24", "100,99"})
     void 다음_count를_반환한다(int input, int expected) {
@@ -28,7 +29,7 @@ public class CountTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0,-10, -100, -1_000})
+    @ValueSource(ints = {0, -10, -100, -1_000})
     void 남아있는_count가_없을시_false를_반환한다(int input) {
         assertThat(new Count(input).hasMoreCount())
                 .isFalse();

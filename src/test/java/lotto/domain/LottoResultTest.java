@@ -18,7 +18,8 @@ public class LottoResultTest {
     @ParameterizedTest
     @MethodSource("generateData")
     void LottoResultTest_객체_생성(List<Integer> inputNumbers, int inputNumber) {
-        assertThat(LottoResult.create(new Lotto(inputNumbers), BonusNumber.create(inputNumber)));
+        assertThat(LottoResult.create(new Lotto(inputNumbers), BonusNumber.create(inputNumber)))
+                .isInstanceOf(LottoResult.class);
     }
 
     @ParameterizedTest

@@ -3,7 +3,6 @@ package lotto.utils.string;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
-import lotto.model.lotto.Numbers;
 
 public class StringUtils {
 

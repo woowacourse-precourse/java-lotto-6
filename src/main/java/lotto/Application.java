@@ -10,7 +10,7 @@ import lotto.domain.Lottos;
 import lotto.domain.Prize;
 import lotto.domain.WinnigMachine;
 import lotto.domain.ProfitCalculator;
-import lotto.domain.wrapper.PurchaseAmount;
+import lotto.domain.PurchaseAmount;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -26,7 +26,7 @@ public class Application {
         WinnigMachine winnigMachine = new WinnigMachine(winningLotto, bonusNumber);
         Map<Prize, Integer> lottosResult = lottos.getLottosResult(winnigMachine);
         ProfitCalculator profitCalculator = new ProfitCalculator(lottosResult);
-        double profitRate = profitCalculator.getProfitRate(purchaseAmount);
+        double profitRate = purchaseAmount.calculateProfitRate(profitCalculator.getTotalProfit());
         // 로또 게임 결과를 출력한다.
         OutputView.printPrizeResults(lottosResult);
         OutputView.printPrizeProfit(profitRate);

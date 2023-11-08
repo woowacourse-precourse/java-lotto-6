@@ -1,4 +1,4 @@
-package lotto.domain.wrapper;
+package lotto.domain;
 
 import static lotto.utils.ConstantValues.LOTTO_PRICE;
 import static lotto.utils.ConstantValues.MAX_NUMBER_OF_LOTTOS;
@@ -45,7 +45,7 @@ public class PurchaseAmount {
         return purchaseAmount / LOTTO_PRICE;
     }
 
-    public double calculateProfitRate(long allPrizeProfit) {
-        return (allPrizeProfit / (double) purchaseAmount) * PERCENTAGE_MULTIPLIER;
+    public double calculateProfitRate(long totalProfit) {
+        return (totalProfit / (double) purchaseAmount) * PERCENTAGE_MULTIPLIER;
     }
 }

@@ -9,8 +9,7 @@ import lotto.domain.Prize;
 public class LottoService {
     public static Lotto createLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        List<Integer> sortedNumber = sorted(numbers);
-        return new Lotto(sortedNumber);
+        return new Lotto(sorted(numbers));
     }
 
     public static Prize getResult(

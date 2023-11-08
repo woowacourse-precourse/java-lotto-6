@@ -25,7 +25,7 @@ public class UserTest {
         int buyingPrice = 3000;
         User user = new User(buyingPrice);
         // when
-        user.setLottos(user.getBuyingPrice);
+        user.setLottos(user.getBuyingPrice());
         // then
         assertThat(user.getLottos().size()).isEqualTo(buyingPrice / Constants.LOTTO_PRICE);
     }

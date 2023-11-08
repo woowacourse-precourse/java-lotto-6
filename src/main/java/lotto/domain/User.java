@@ -24,4 +24,8 @@ public class User {
     public List<UserLotto> getLottos() {
         return lottos;
     }
+
+    public int getBuyingPrice(){
+        return buyingPrice;
+    }
 }

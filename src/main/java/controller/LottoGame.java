@@ -4,7 +4,6 @@ import domain.PrizeUtil;
 import domain.PublishLottoUtil;
 import domain.ScoreUtil;
 import dto.Lotto;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import view.InputView;

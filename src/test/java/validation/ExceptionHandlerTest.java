@@ -1,6 +1,6 @@
 package validation;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.awt.IllegalComponentStateException;
 import java.util.List;
@@ -91,7 +91,7 @@ class ExceptionHandlerTest {
 
     @Test
     @DisplayName("당첨 번호 입력 시 1부터 45까지의 숫자가 아닌 숫자가 입력될 시 예외 발생")
-    void validateWinningNumberOneToFourtyFive(){
+    void validateWinningNumberOneToFourtyFive() {
         List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 47);
         assertThrows(NumberFormatException.class, () -> {
             exceptionHandler.validateWinningNumberOneToFourtyFive(winningNumber);

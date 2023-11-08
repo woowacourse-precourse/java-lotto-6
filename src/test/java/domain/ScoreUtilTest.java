@@ -12,9 +12,10 @@ class ScoreUtilTest {
 
     private final ScoreUtil scoreUtil;
 
-    public ScoreUtilTest(){
+    public ScoreUtilTest() {
         scoreUtil = new ScoreUtil();
     }
+
     @Test
     @DisplayName("로토 당첨 내역 Map에 잘 저장되는지 확인하는 테스트")
     void updateScore() {

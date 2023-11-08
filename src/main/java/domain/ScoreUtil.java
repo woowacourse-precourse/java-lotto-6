@@ -1,7 +1,6 @@
 package domain;
 
 import constant.Constants;
-import constant.Prize;
 import dto.Lotto;
 import java.util.List;
 import java.util.Map;

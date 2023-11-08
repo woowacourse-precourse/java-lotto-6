@@ -25,7 +25,7 @@ public class InputView {
                 return moneyToBuyLotto;
             } catch (IllegalArgumentException e) {
                 System.out.println(ErrorMessage.onlyNumberMessage);
-            } catch (IllegalStateException e){
+            } catch (IllegalStateException e) {
                 System.out.println(ErrorMessage.enterOnlyMultipleOfThounsandMessage);
             }
         }

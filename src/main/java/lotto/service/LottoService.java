@@ -50,7 +50,7 @@ public class LottoService {
         double interestRate = lottoBuyer.calculateInterestRate(interests);
         String res = PrizeInfoToString(userRanks);
         if(interestRate == 0){
-            return res + "\n" + "0%";
+            return res + "\n" + String.format(Message.INTEREST_RATE_MESSAGE, "0%");
         }
         return res  + String.format(Message.INTEREST_RATE_MESSAGE, decimalFormat.format(interestRate));
     }

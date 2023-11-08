@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Game {
-    private final List<Integer> answer;
-    private final int bonusNumber;
+    public final List<Integer> answer;
+    public final int bonusNumber;
 
     public Game(List<Integer> answer, int bonusNumber) {
         validateOverSize(answer);
@@ -16,17 +16,18 @@ public class Game {
     }
     private void validateOverSize(List<Integer> answer) {
         if (answer.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 6자리가 넘는 숫자를 입력했습니다.");
         }
     }
     private void validateDuplicateNumber(List<Integer> answer) {
         if (!answer.equals(answer.stream().distinct().collect(Collectors.toList()))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 숫자가 중복됩니다.");
         }
     }
+
     private void validateDuplicateBonusNumber(List<Integer> answer, int bonusNumber) {
         if (answer.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 숫자가 중복됩니다.");
         }
     }
 }

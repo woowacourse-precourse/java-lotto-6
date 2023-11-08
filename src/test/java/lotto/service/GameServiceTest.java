@@ -32,7 +32,7 @@ class GameServiceTest {
 
     @DisplayName("당첨된 로또 개수를 등수별로 저장하는 기능 테스트")
     @Test
-    void 당첨된_로또_개수의_등수별_저장_테스트(){
+    void saveMatchRankTest(){
         //given
         final Game lottogame = new Game(List.of(1,2,3,4,5,6),45);
         final User cases = new User(1000);
@@ -63,7 +63,7 @@ class GameServiceTest {
 
     @DisplayName("구매한 로또 번호에 보너스번호가 포함여부를 확인하고 2등 선정 테스트")
     @Test
-    void 보너스_번호가_포함되는지_확인하는_테스트(){
+    void isContainBonusNumberTest(){
         //given
         final Game lottogame = new Game(List.of(1,2,3,4,5,6),45);
         final User cases = new User(1000);

@@ -38,10 +38,10 @@ public class LottoController implements Controller {
             outputView.promptForPurchaseAmount();
             int purchaseAmount = inputView.readPurchaseAmount();
             lottoPurchaseManager = new LottoPurchaseManager(purchaseAmount);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             outputView.displayNumberFormatError(e);
             purchaseLotto();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             outputView.displayArgumentError(e);
             purchaseLotto();
         }
@@ -58,10 +58,10 @@ public class LottoController implements Controller {
             outputView.promptForWinningNumbers();
             List<Integer> winningNumbers = inputView.readWinningNumbers();
             lottoResultPolicy.setWinningNumbers(winningNumbers);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             outputView.displayNumberFormatError(e);
             readWinningNumber();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             outputView.displayArgumentError(e);
             readWinningNumber();
         }
@@ -72,10 +72,10 @@ public class LottoController implements Controller {
             outputView.promptForBonusNumbers();
             int bonusNumber = inputView.readBonusNumber();
             lottoResultPolicy.setBonusNumber(bonusNumber);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             outputView.displayNumberFormatError(e);
             readBonusNumber();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             outputView.displayArgumentError(e);
             readBonusNumber();
         }
@@ -85,9 +85,10 @@ public class LottoController implements Controller {
         lottoResultManager = new LottoResultManager(
             lottoPurchaseManager.getLottos(), lottoResultPolicy);
         Map<LottoRank, Integer> lottoResults = lottoResultManager.getLottoResults();
-        double lottoProfit = ProfitCalculator.calculateProfitPercentage(lottoPurchaseManager.getPurchaseAmount(),
+        double lottoProfit = ProfitCalculator.calculateProfitPercentage(
+            lottoPurchaseManager.getPurchaseAmount(),
             lottoResultManager.getWinningAmount());
-        outputView.displayResult(lottoResults,lottoProfit);
+        outputView.displayResult(lottoResults, lottoProfit);
     }
 
 }

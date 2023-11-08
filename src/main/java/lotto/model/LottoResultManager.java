@@ -23,6 +23,7 @@ public class LottoResultManager {
     public long getWinningAmount() {
         return winningAmount;
     }
+
     public Map<LottoRank, Integer> getLottoResults() {
         return lottoResults;
     }
@@ -34,7 +35,8 @@ public class LottoResultManager {
 
         for (Lotto lotto : lottos) {
             LottoResult lottoResult = lottoResultPolicy.calculateResult(lotto);
-            LottoRank rank = LottoRank.determineRank(lottoResult.getWinningCount(), lottoResult.isBonusMatch());
+            LottoRank rank = LottoRank.determineRank(lottoResult.getWinningCount(),
+                lottoResult.isBonusMatch());
             if (rank != null) {
                 int count = lottoResults.get(rank);
                 lottoResults.put(rank, count + 1);

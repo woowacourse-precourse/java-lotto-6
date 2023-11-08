@@ -50,8 +50,8 @@ public class LottoResultPolicy implements ResultPolicy {
         validateDuplicateNumber(bonusNumbers);
     }
 
-    private void validateNegativeNum(int bonusNumber) throws IllegalArgumentException{
-        if(bonusNumber < 0) {
+    private void validateNegativeNum(int bonusNumber) throws IllegalArgumentException {
+        if (bonusNumber < 0) {
             throw new IllegalArgumentException(NEGATIVE_NUM_ERROR.getMessage());
         }
     }
@@ -63,7 +63,7 @@ public class LottoResultPolicy implements ResultPolicy {
     }
 
     private void validateDuplicateNumber(int bonusNumber) throws IllegalArgumentException {
-        if(winningNumbers.contains(bonusNumber)){
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(
                 ErrorMessage.DUPLICATE_WINNING_NUMBER_ERROR.getMessage());
         }

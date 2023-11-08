@@ -5,6 +5,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import static lotto.enums.ErrorMessage.*;
 
 public class InputView {
@@ -32,7 +33,7 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    public void validateEmptyValue(String value) throws IllegalArgumentException{
+    public void validateEmptyValue(String value) throws IllegalArgumentException {
         if (value.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_VALUE_ERROR.getMessage());
         }

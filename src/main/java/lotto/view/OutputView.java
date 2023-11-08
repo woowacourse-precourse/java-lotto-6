@@ -10,6 +10,7 @@ import lotto.enums.LottoRank;
 import lotto.model.Lotto;
 
 public class OutputView {
+
     public void promptForPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_PROMPT.getMessage());
     }

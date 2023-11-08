@@ -35,6 +35,7 @@ public class LottoPurchaseManager {
     public int getPurchaseAmount() {
         return purchaseAmount;
     }
+
     public int getPurchaseCount() {
         return PurchaseCount;
     }
@@ -45,20 +46,20 @@ public class LottoPurchaseManager {
         validateAmountUnit(purchaseAmount);
     }
 
-    private void validateNegativeNum(int purchaseAmount) throws IllegalArgumentException{
-        if(purchaseAmount < 0) {
+    private void validateNegativeNum(int purchaseAmount) throws IllegalArgumentException {
+        if (purchaseAmount < 0) {
             throw new IllegalArgumentException(NEGATIVE_NUM_ERROR.getMessage());
         }
     }
 
-    private void validateLessAccount(int purchaseAmount) throws IllegalArgumentException{
-        if(purchaseAmount < 1000) {
+    private void validateLessAccount(int purchaseAmount) throws IllegalArgumentException {
+        if (purchaseAmount < 1000) {
             throw new IllegalArgumentException(LESS_NUM_ERROR.getMessage());
         }
     }
 
-    private void validateAmountUnit(int purchaseAmount) throws IllegalArgumentException{
-        if(purchaseAmount%1000!=0) {
+    private void validateAmountUnit(int purchaseAmount) throws IllegalArgumentException {
+        if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException(ACCOUNT_UNIT_ERROR.getMessage());
         }
     }

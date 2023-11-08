@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import lotto.enums.ErrorMessage;
 
 public class LottoNumberValidator {
+
     public static void validateNumbersSize(List<Integer> numbers) throws IllegalArgumentException {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(
@@ -21,7 +22,8 @@ public class LottoNumberValidator {
         }
     }
 
-    public static void validateDuplicateNumbers(List<Integer> numbers) throws IllegalArgumentException {
+    public static void validateDuplicateNumbers(List<Integer> numbers)
+        throws IllegalArgumentException {
         Set<Integer> uniqueNumbers = new HashSet<>();
         List<Integer> duplicateNumbers = numbers.stream()
             .filter(number -> !uniqueNumbers.add(number))

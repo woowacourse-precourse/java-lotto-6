@@ -21,6 +21,7 @@ public class OutputView {
     private static final String LOTTO_RANK_PRIZE_MESSAGE_FORMAT = " (%,d원)";
     private static final String LOTTO_RESULT_MATCH_COUNT_MESSAGE_FORMAT = " - %d개\n";
     private static final String PRIZE_RATE_MESSAGE_FORMAT = "총 수익률은 %.1f%%입니다.\n";
+    private static final String EXCEPTION_MESSAGE_FORMAT = "[ERROR] %s\n";
 
     private OutputView() {
     }
@@ -34,6 +35,7 @@ public class OutputView {
             buildPurchasedLottoNumbersMessage(purchasedLotto.numbers(), stringBuilder);
         }
         System.out.print(stringBuilder);
+        printNewLine();
     }
 
     private static void buildPurchasedLottoNumbersMessage(List<LottoNumber> lottoNumbers, StringBuilder stringBuilder) {
@@ -75,6 +77,10 @@ public class OutputView {
     }
 
     public static void printException(Exception exception) {
-        System.out.printf("[ERROR] %s", exception.getMessage());
+        System.out.printf(EXCEPTION_MESSAGE_FORMAT, exception.getMessage());
+    }
+
+    public static void printNewLine() {
+        System.out.println();
     }
 }

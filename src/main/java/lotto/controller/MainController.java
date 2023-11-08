@@ -34,6 +34,7 @@ public class MainController {
     private static WinningLotto readWinningLotto() {
         try {
             List<Integer> winningLottoNumbers = InputView.readWinningLottoNumbers();
+            OutputView.printNewLine();
             int bonusNumber = InputView.readBonusNumber();
             return new WinningLotto(winningLottoNumbers, bonusNumber);
         } catch (IllegalArgumentException exception) {

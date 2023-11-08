@@ -14,14 +14,14 @@ public class InputView {
     }
 
     public static List<Integer> readWinningLottoNumbers() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
+        System.out.println("당첨 번호를 입력해 주세요.");
 
         IntegerInputs integerInputs = new IntegerInputs(readTrimmedInput());
         return integerInputs.values();
     }
 
     public static int readBonusNumber() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
+        System.out.println("보너스 번호를 입력해 주세요.");
 
         IntegerInput integerInput = new IntegerInput(readTrimmedInput());
         return integerInput.value();

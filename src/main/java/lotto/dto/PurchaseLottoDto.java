@@ -1,4 +1,5 @@
 package lotto.dto;
+
 import lotto.Lotto;
 import java.util.List;
 import static lotto.constants.NumberOfLottoPurchaseConstants.ONE_LOTTO_AMOUNT;

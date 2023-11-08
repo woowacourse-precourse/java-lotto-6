@@ -1,6 +1,5 @@
 package lotto;
 
-import lotto.domain.EnterLottoWinningNumbersDomain;
 import lotto.domain.validation.LottoWinningNumberValidation;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,10 +9,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class EnterLottoWinningNumbersDomainTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
     private LottoWinningNumberValidation lottoWinningNumberValidation = new LottoWinningNumberValidation();
-    private static EnterLottoWinningNumbersDomain enterLottoWinningNumbersDomain;
-    private EnterLottoWinningNumbersDomainTest() {
-        enterLottoWinningNumbersDomain = new EnterLottoWinningNumbersDomain();
-    }
 
     @DisplayName("당첨 번호의 개수가 6개보다 낮으면 에러가 발생한다.")
     @Test

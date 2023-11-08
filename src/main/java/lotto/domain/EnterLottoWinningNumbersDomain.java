@@ -4,12 +4,7 @@ import lotto.domain.validation.LottoAdditionNumberValidation;
 import lotto.domain.validation.LottoWinningNumberValidation;
 import lotto.view.EnterLottoWinningNumberView;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static java.lang.Integer.parseInt;
-import static lotto.constants.NumberOfLottoPurchaseConstants.COMMA;
 
 public class EnterLottoWinningNumbersDomain {
     private final EnterLottoWinningNumberView enterLottoWinningNumberView;

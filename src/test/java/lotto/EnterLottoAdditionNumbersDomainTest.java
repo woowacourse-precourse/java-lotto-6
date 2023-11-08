@@ -1,8 +1,6 @@
 package lotto;
 
-import lotto.domain.EnterLottoWinningNumbersDomain;
 import lotto.domain.validation.LottoAdditionNumberValidation;
-import lotto.domain.validation.LottoWinningNumberValidation;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,12 +12,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class EnterLottoAdditionNumbersDomainTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
-    private static EnterLottoWinningNumbersDomain enterLottoWinningNumbersDomain;
     List<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
     private LottoAdditionNumberValidation lottoAdditionNumberValidation = new LottoAdditionNumberValidation();
-    private EnterLottoAdditionNumbersDomainTest() {
-        enterLottoWinningNumbersDomain = new EnterLottoWinningNumbersDomain();
-    }
 
     @DisplayName("보너스 번호가 숫자로 변환할 수 없다면 에러가 발생한다.")
     @Test

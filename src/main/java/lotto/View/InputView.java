@@ -11,52 +11,43 @@ public class InputView {
     private static final String INPUT_LOTTO_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public static String inputLottoPurchaseAmount() {
-        boolean isNumber = false;
-        boolean isEmpty = false;
         String input = "";
-        while (!isNumber || !isEmpty) {
-            try {
-                System.out.println(INPUT_LOTTO_PUCAHSE_AMOUNT_MESSAGE);
-                input = Console.readLine();
-                isNumber = isNumber(input);
-                isEmpty = isEmpty(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            System.out.println(INPUT_LOTTO_PUCAHSE_AMOUNT_MESSAGE);
+            input = Console.readLine();
+            isNumber(input);
+            isEmpty(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputLottoPurchaseAmount();
         }
         return input;
     }
 
     public static String inputLottoWinningNumber() {
-        boolean isNumber = false;
-        boolean isEmpty = false;
         String input = "";
-        while (!isNumber || !isEmpty) {
-            try {
-                System.out.println(INPUT_LOTTO_WINNING_NUMBER_MESSAGE);
-                input = Console.readLine();
-                isNumber = isNumber(input);
-                isEmpty = isEmpty(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            System.out.println(INPUT_LOTTO_WINNING_NUMBER_MESSAGE);
+            input = Console.readLine();
+            isNumber(input);
+            isEmpty(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputLottoWinningNumber();
         }
         return input;
     }
 
     public static String inputLottoBonusNumber() {
-        boolean isNumber = false;
-        boolean isEmpty = false;
         String input = "";
-        while (!isNumber || !isEmpty) {
-            try {
-                System.out.println(INPUT_LOTTO_BONUS_NUMBER_MESSAGE);
-                input = Console.readLine();
-                isNumber = isNumber(input);
-                isEmpty = isEmpty(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            System.out.println(INPUT_LOTTO_BONUS_NUMBER_MESSAGE);
+            input = Console.readLine();
+            isNumber(input);
+            isEmpty(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputLottoBonusNumber();
         }
         return input;
     }

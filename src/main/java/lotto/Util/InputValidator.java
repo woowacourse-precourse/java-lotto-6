@@ -1,6 +1,8 @@
 package lotto.Util;
 
-import java.util.Arrays;
+import static lotto.Util.LottoOption.*;
+import static lotto.Util.ValidatorMessage.*;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -8,15 +10,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputValidator {
-    public static final String ERROR_MESSAGE = "[ERROR] ";
-    public static final String NULL_OR_EMPTY_ERROR = "입력값이 NULL 또는 EMPTY값입니다.";
-    public static final String CAN_NOT_DIVIDE_BY_1000_ERROR = "로또 구입 금액은 1000으로 나누어 떨어져야 합니다.";
-    public static final String NOT_A_NUMBER_ERROR = "숫자로 입력하셔야합니다.";
-    public static final String NOT_A_SIX_NUMBER_ERROR = "당첨 번호 6자리를 입력해주셔야 합니다.";
-    public static final String NOT_A_VALID_RANGE_NUMBER_ERROR = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
-    public static final String NOT_A_VALID_DELIMITER_ERROR = "구분자는 콤마(,)로 이루어져야 합니다.";
-    public static final String NOT_A_DISTINCT_NUMBER_ERROR = "로또 번호의 각 자리수는 서로 달라야합니다.";
-
 
     public static boolean isEmpty(String input) {
         if (input == null || input.isEmpty()) {
@@ -26,14 +19,14 @@ public class InputValidator {
     }
 
     public static void checkDivisibleBy1000(String input) {
-        if (Integer.parseInt(input) % 1000 != 0) {
+        if (Integer.parseInt(input) % LOTTO_TICKET_PRICE != 0) {
             throw new IllegalArgumentException(ERROR_MESSAGE + CAN_NOT_DIVIDE_BY_1000_ERROR);
         }
     }
 
     public static boolean isNumber(String input) {
-        if (input.contains(",")) {
-            input = input.replace(",", "");
+        if (input.contains(LOTTO_NUMBER_DELIMITER)) {
+            input = input.replace(LOTTO_NUMBER_DELIMITER, "");
         }
         for (char c : input.toCharArray()) {
             if (!Character.isDigit(c)) {
@@ -44,21 +37,21 @@ public class InputValidator {
     }
 
     public static void checkSixNumber(String input) {
-        String[] parts = input.split(",");
+        String[] parts = input.split(LOTTO_NUMBER_DELIMITER);
         if (parts.length != 6) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + NOT_A_SIX_NUMBER_ERROR);
+            throw new IllegalArgumentException(ERROR_MESSAGE + NOT_A_SIX_DIGIT_ERROR);
         }
     }
 
     public static boolean isValidRangeNumber(String input) {
-        if (!input.contains(",")) {
-            if (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 45) {
+        if (!input.contains(LOTTO_NUMBER_DELIMITER)) {
+            if (Integer.parseInt(input) < LOTTO_MIN_NUMBER || Integer.parseInt(input) > LOTTO_MAX_NUMBER) {
                 throw new IllegalArgumentException(ERROR_MESSAGE + NOT_A_VALID_RANGE_NUMBER_ERROR);
             }
         }
-        List<String> numbers = List.of(input.split(","));
+        List<String> numbers = List.of(input.split(LOTTO_NUMBER_DELIMITER));
         for (String number : numbers) {
-            if (Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45) {
+            if (Integer.parseInt(number) < LOTTO_MIN_NUMBER || Integer.parseInt(number) > LOTTO_MAX_NUMBER) {
                 throw new IllegalArgumentException(ERROR_MESSAGE + NOT_A_VALID_RANGE_NUMBER_ERROR);
             }
         }
@@ -75,7 +68,7 @@ public class InputValidator {
     }
 
     public static void checkDistinctNumbers(String input) {
-        List<String> numbers = List.of(input.split(","));
+        List<String> numbers = List.of(input.split(LOTTO_NUMBER_DELIMITER));
         Set<String> uniqueNumbers = new HashSet<>();
         for (String number : numbers) {
             if (!uniqueNumbers.add(number)) {
@@ -84,9 +77,9 @@ public class InputValidator {
         }
     }
 
-    public static void checkDistinctBetweenWinningAndBonusNumber(String winningNumbers, String bonusNumber) {
-        Set<String> numbers = new HashSet<>(Arrays.asList(winningNumbers.split(",")));
-        if (!numbers.add(bonusNumber)) {
+    public static void checkDistinctBetweenWinningAndBonusNumber(List<Integer> winningNumbers, String bonusNumber) {
+        Set<Integer> numbers = new HashSet<>(winningNumbers);
+        if (!numbers.add(Integer.parseInt(bonusNumber))) {
             throw new IllegalArgumentException(ERROR_MESSAGE + NOT_A_DISTINCT_NUMBER_ERROR);
         }
     }

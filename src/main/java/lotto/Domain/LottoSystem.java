@@ -4,8 +4,6 @@ import static lotto.Util.InputValidator.checkCommaDelimiter;
 import static lotto.Util.InputValidator.checkDistinctBetweenWinningAndBonusNumber;
 import static lotto.Util.InputValidator.checkDistinctNumbers;
 import static lotto.Util.InputValidator.checkSixNumber;
-import static lotto.Util.InputValidator.isEmpty;
-import static lotto.Util.InputValidator.isNumber;
 import static lotto.Util.InputValidator.isValidRangeNumber;
 import static lotto.Util.TypeCaster.convertStringToIntegerList;
 
@@ -19,7 +17,7 @@ public class LottoSystem {
     private List<Integer> lottoWinningNumbers;
     private int lottoBonusNumber;
 
-    public LottoSystem(String lottoWinningNumber, String lottoBonusNumber) {
+    public void storeLottoWinningNumber(String lottoWinningNumber){
         lottoWinningNumber = lottoWinningNumber.replaceAll("\\s*,\\s*", ",");
         if (isValidRangeNumber(lottoWinningNumber)) {
             checkCommaDelimiter(lottoWinningNumber);
@@ -28,12 +26,14 @@ public class LottoSystem {
         }
         this.lottoWinningNumbers = convertStringToIntegerList(lottoWinningNumber);
         Collections.sort(this.lottoWinningNumbers);
+    }
+
+    public void storeLottoBonusNumber(String lottoBonusNumber){
         lottoBonusNumber.trim();
         if (isValidRangeNumber(lottoBonusNumber)) {
-            checkDistinctBetweenWinningAndBonusNumber(lottoWinningNumber, lottoBonusNumber);
+            checkDistinctBetweenWinningAndBonusNumber(lottoWinningNumbers, lottoBonusNumber);
             this.lottoBonusNumber = Integer.parseInt(lottoBonusNumber);
         }
-
     }
 
     public Map<String, Integer> compareLottoNumbers(List<String> purchasedLottos) {

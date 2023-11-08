@@ -55,7 +55,7 @@ class Money {
 }
 
 class MyLotto{
-    public static void LottoPaper(int cnt) {
+    public static List<Integer> LottoPaper(int cnt) {
         ArrayList<List<Integer>> mylotto = new ArrayList<>();
 
         for (int i = 0; i < cnt; i++) {
@@ -63,6 +63,8 @@ class MyLotto{
             mylotto.add(numbers);
         }
         PrintLottoPaper(cnt, mylotto);
+        List<Integer> numbers = MakeFlattend(mylotto);
+        return numbers;
     }
     public static void PrintLottoPaper(int cnt, ArrayList<List<Integer>> mylotto){
         System.out.println();

@@ -105,7 +105,7 @@ public class PlayLotto {
         initResult();
         for (UserLotto userLotto : userLottos){
             hasBonusNumber = false;
-            matchedNumberCnt = getMatchedNumberCnt(userLotto.numbers);
+            matchedNumberCnt = getMatchedNumberCnt(userLotto.numbers, lottoNumbers);
             if (matchedNumberCnt == 5 && userLotto.numbers.contains(bonusNumber.number)){
                 hasBonusNumber = true;
             }
@@ -119,7 +119,7 @@ public class PlayLotto {
         }
     }
 
-    public int getMatchedNumberCnt(List<Integer> userLottoNumber){
+    public int getMatchedNumberCnt(List<Integer> userLottoNumber, List<Integer> lottoNumbers){
         int cnt = 0;
         for (int num : userLottoNumber){
             if (lottoNumbers.contains(num)){

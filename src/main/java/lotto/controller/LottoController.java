@@ -8,9 +8,9 @@ import lotto.domain.RandomNumbers;
 import lotto.view.OutputView;
 
 public class LottoController {
-    private static int amount;
-    private static Lotto winningNumbers;
-    private static int bonusNumber;
+    private int amount;
+    private Lotto winningNumbers;
+    private int bonusNumber;
     List<Lotto> lottos = new ArrayList<>();
     InputController inputController = new InputController();
 

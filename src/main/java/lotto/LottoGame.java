@@ -12,11 +12,19 @@ public class LottoGame {
 
         LottoView.showLottos(lottoRepository);
 
-        Lotto winningLotto = LottoView.inputWinningLotto();
-        lottoRepository.setWinningLotto(winningLotto);
+        while(true){
+            Lotto winningLotto = LottoView.inputWinningLotto();
+            if(lottoRepository.setWinningLotto(winningLotto)){
+                break;
+            }
+        }
 
-        int bonusNum = LottoView.inputBonusNumber();
-        lottoRepository.setBonusNum(bonusNum);
+        while(true) {
+            int bonusNum = LottoView.inputBonusNumber();
+            if(lottoRepository.setBonusNum(bonusNum)){
+                break;
+            }
+        }
 
         LottoView.showStatus(lottoRepository);
     }

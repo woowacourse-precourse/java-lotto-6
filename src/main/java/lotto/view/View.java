@@ -1,23 +1,21 @@
 package lotto.view;
 
-import static lotto.view.constants.Front.FIVE_AND_BONUS_MATCH;
-import static lotto.view.constants.Front.FIVE_MATCH;
-import static lotto.view.constants.Front.FOUR_MATCH;
-import static lotto.view.constants.Front.SIX_MATCH;
-import static lotto.view.constants.Front.THREE_MATCH;
+import static lotto.view.constants.ViewConstants.FIVE_AND_BONUS_MATCH;
+import static lotto.view.constants.ViewConstants.FIVE_MATCH;
+import static lotto.view.constants.ViewConstants.FOUR_MATCH;
+import static lotto.view.constants.ViewConstants.SIX_MATCH;
+import static lotto.view.constants.ViewConstants.THREE_MATCH;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
-import lotto.view.constants.Front;
+import lotto.view.constants.ViewConstants;
 
-public class IO {
-    public static void requestPerchaseAmount(Front message) {
+public class View {
+    public static void requestPerchaseAmount(ViewConstants message) {
         System.out.println(message.getMessage());
     }
 
-    public static void checkLottoTickets(final int lottoTicketCount, Front message){
+    public static void checkLottoTickets(final int lottoTicketCount, ViewConstants message){
         System.out.println();
         System.out.println(lottoTicketCount+message.getMessage());
     }
@@ -28,15 +26,15 @@ public class IO {
         }
     }
 
-    public static void requestWinningNumbers(Front message){
+    public static void requestWinningNumbers(ViewConstants message){
         System.out.println(message.getMessage());
     }
 
-    public static void requestBonusNumber(Front message){
+    public static void requestBonusNumber(ViewConstants message){
         System.out.println(message.getMessage());
     }
 
-    public static void showResults(Front message, Integer[]matches){
+    public static void showResults(ViewConstants message, Integer[]matches){
         System.out.println(message.getMessage());
         System.out.println("---");
         System.out.println(THREE_MATCH.getMessage() + String.valueOf(matches[3]) + "개");

@@ -28,16 +28,28 @@ public class Game {
     }
 
     private static WinningLotto createWinningLotto() {
+        Lotto lotto = getWinningLotto();
+        int bonusNumber = getBonusNumber();
+        return new WinningLotto(lotto, bonusNumber);
+    }
+
+    private static Lotto getWinningLotto() {
         try {
             askWinningLotto();
-            Lotto lotto = inputWinningLotto();
-            askBonusNumber();
-            int bonusNumber = inputBonusNumber();
-            WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
-            return winningLotto;
+            return inputWinningLotto();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return createWinningLotto();
+            printErrorMessage(e.getMessage());
+            return getWinningLotto();
+        }
+    }
+
+    private static int getBonusNumber() {
+        try {
+            askBonusNumber();
+            return inputBonusNumber();
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e.getMessage());
+            return getBonusNumber();
         }
     }
 

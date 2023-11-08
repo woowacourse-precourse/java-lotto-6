@@ -65,4 +65,8 @@ public class MessagePrinter {
     public static void printRateOfReturn(float rateOfReturn) {
         System.out.printf(PRINT_RATE_OF_RETURN_FORMAT, rateOfReturn);
     }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

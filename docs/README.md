@@ -165,12 +165,76 @@
 - public static void bonusNumberComment() :: bonusNumber 출력
 -  public void winnerGraphComment(List<Integer> correctList, Long rateOfReturn) :: 당첨 통계 출력
 
+---
 
-## [contoller]
+# [service]
+## ① LottoService
+▶️ 로또 관련 서비스를 제공하는 클래스
 
+### 필드
+- private static OutputView outputView :: 출력 담당 클래스
+- private static RandomGenerator rg :: 랜덤 로또 발행 클래스
+- private static RandomLotto rl :: 랜덤 로또 리스트 클래스
+- private static int number :: 구매금액 저장
+- private static UserLotto userLotto :: 사용자의 로또번호와 보너스 번호 저장 클래스
+- private static Lotto lotto :: 사용자의 로또번호 저장 클래스
+- private static ConsistencyService consistencyService :: 일치성 모델 클래스
+- private static int capital :: 자본금을 저장
+- private static String purchaseNum :: 사용자 입력 로또번호
+- private static String bonusNum :: 사용자 입력 보너스 번호
 
+### 생성자
+- public LottoService() :: outputView, rl 주입
 
+### 메서드
+- public void purchase() :: 로또 구매 서비스(입출력/로또 발행 매수 저장), getString()으로 입력 검증
+- private static void getString() :: 올바르지 않은 경우 재입력(try-catch)
+- public void lottoLists() :: 랜덤 로또 발행 서비스(구매 매수만큼 발행), generateLotto() 호출
+- private void generateLotto() :: 구매매수만큼 rl에 리스트 입력
+- public void userNumber() :: 사용자의 번호 입력 서비스(사용자의 로또 번호, 보너스 번호 입출력), Lotto와 UserLotto 초기화
+- private static void getBonus() :: 보너스 입력 및 검증
+- public int setBonusNumber() :: 보너스 검증 및 int형 변환, 반환
+- public List<Integer> setLottoNumberList() :: 입력받은 사용자의 로또번호 검증 및 반환
+- public void winner() :: Consistency 모델 초기화와 당첨 통계 계산 및 출력
+- public void setPurchaseNum(String input) :: 로또번호 초기화
+- public void setBonusNum(String input) :: 보너스번호 초기화
 
+## ② ConsistencyService
+▶️ 당첨이 되었는지 여부를 확인하며 총 수익률을 제공하는 클래스
+
+### 필드
+- private static List<Integer> totalConsistency = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0)) :: 당첨번호와 보너스번호의 당첨 갯수에 따른 당첨갯수 저장 리스트
+- private static int bonusConsistency = 0 :: 보너스번호가 일치하는 지 여부 저장
+- private static int rateMoney :: 수익금 저장
+- private static int capital :: 자본금 저장
+- private static List<Integer> moneyList = new ArrayList<>(Arrays.asList(5000, 50000, 1500000, 30000000, 2000000000)) :: 당첨갯수에 따른 당첨금액 저장 리스트
+- private static UserLotto userLotto :: UserLotto 클래스
+
+### 생성자
+- public ConsistencyService(int capital, UserLotto userLotto) :: 자본금, UserLotto 주입
+
+### 메서드
+- public List<Integer> winnerGraph(List<List<Integer>> numList) :: 전체  랜덤 당첨번호를 이용해 사용자의 로또번호 및 보너스번호와 일치여부 확인, setTotalConsistency, getLottoConsistency 호출
+- private static void setTotalConsistency(int lottoCount) :: 전체 당첨여부에 대해 수정
+- private int getLottoConsistency(List<Integer> list) :: 넘어온 리스트에 대해 사용자의 로또번호와 일치 여부 확인
+- private boolean isContains(List<Integer> list) :: 보너스 번호를 가지고 있는지 여부 확인
+- public void setRateMoney() :: 수익금 저장
+- public double getRateOfReturn() :: 수익률 계산 및 반환
+
+---
+
+# [contoller]
+## ① LottoController
+▶️ 로또 서비스를 제공하는 클래스
+
+### 필드
+- private final LottoService lottoService :: 로또 서비스
+
+### 생성자
+- public LottoController() :: 로또 서비스 주입
+
+### 메서드
+- public void playLotto() :: 로또 구입, 랜덤 로또 발행, 사용자 로또 입력, 당첨 확률
 
 
 

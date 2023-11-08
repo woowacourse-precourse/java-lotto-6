@@ -74,4 +74,11 @@ class LottoResultTest {
         assertThat(result).isEqualTo(30100000);
     }
 
+    @Test
+    void getProfitMarginTest() {
+        lottoResult.second = 1;
+        double result = lottoResult.getProfitMargin(10000);
+        assertThat(result).isEqualTo(300000.0);
+    }
+
 }

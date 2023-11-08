@@ -14,7 +14,7 @@ public enum GameText {
 	SIX_CORRECT("6개 일치 (2,000,000,000원) - "),
 	RATE_OF_RETURN("총 수익률은 "),
 	COUNT("개"),
-	SENTENCE_END("입니다.");
+	SENTENCE_END("%입니다.");
 
 	private final String text;
 

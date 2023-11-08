@@ -56,7 +56,8 @@ public class LottoService implements Calculation{
 	}
 
 	private double calculateMargin(int totalPrize) {
-		double profitMargin = ((double) (totalPrize - userLotto.getPrice()) / totalPrize) * 100.0;
+		double profitMargin = ((double) totalPrize / userLotto.getPrice()) * 100.0;
+		profitMargin = Math.round(profitMargin * 10.0) / 10.0;
 		return profitMargin;
 	}
 
@@ -78,32 +79,32 @@ public class LottoService implements Calculation{
 
 	private static void sixCorrectCount(List<Integer> result, int matchCount) {
 		if (matchCount == 6) {
-			result.set(5, result.get(5) + 1); // 6개 일치 (2,000,000,000원)
+			result.set(4, result.get(4) + 1); // 6개 일치 (2,000,000,000원)
 		}
 	}
 
 	private static void fiveCorrectBonusCount(List<Integer> result, int bonus, List<Integer> userNumbers,
 		int matchCount) {
 		if (matchCount == 5 && userNumbers.contains(bonus)) {
-			result.set(4, result.get(4) + 1); // 5개 + 보너스 숫자 일치 (30,000,000원)
+			result.set(3, result.get(3) + 1); // 5개 + 보너스 숫자 일치 (30,000,000원)
 		}
 	}
 
 	private static void fiveCorrectCount(List<Integer> result, int matchCount) {
 		if (matchCount == 5) {
-			result.set(3, result.get(3) + 1); // 5개 일치 (1,500,000원)
+			result.set(2, result.get(2) + 1); // 5개 일치 (1,500,000원)
 		}
 	}
 
 	private static void fourCorrectCount(List<Integer> result, int matchCount) {
 		if (matchCount == 4) {
-			result.set(2, result.get(2) + 1); // 4개 일치 (50,000원)
+			result.set(1, result.get(1) + 1); // 4개 일치 (50,000원)
 		}
 	}
 
 	private static void threeCorrectCount(List<Integer> result, int matchCount) {
 		if (matchCount == 3) {
-			result.set(1, result.get(1) + 1); // 3개 일치 (5,000원)
+			result.set(0, result.get(0) + 1); // 3개 일치 (5,000원)
 		}
 	}
 

@@ -3,7 +3,7 @@ package lotto.view;
 public enum ExceptionText {
 	NUMBER("유효한 숫자 형식이 아닙니다."),
 	MULTIPLE("가격은 1000으로 나누어 떨어져야 합니다."),
-	EMPTY("구입 가격을 입력해주세요."),
+	EMPTY("빈값입니다. 입력해주세요."),
 	ERROR("[ERROR] "),
 	DIFFERENT_NUMBER("6개의 숫자가 아닙니다."),
 	BEYOND_SCOPE("숫자가 1에서 45 범위 밖에 있습니다."),

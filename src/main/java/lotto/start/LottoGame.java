@@ -1,7 +1,6 @@
 package lotto.start;
 
 import lotto.controller.Input;
-import lotto.controller.LottoController;
 
 public class LottoGame {
 

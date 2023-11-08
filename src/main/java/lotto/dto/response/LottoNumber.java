@@ -1,8 +1,6 @@
 package lotto.dto.response;
 
 import java.util.List;
-import lotto.Lotto;
-import lotto.domain.UserLotto;
 
 public class LottoNumber {
 

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.dto.response.LottoCollection;
+import lotto.dto.response.WinningResult;
 
 public interface Output {
 
@@ -11,5 +12,7 @@ public interface Output {
 	void WinningNumber();
 
 	void BonusNumber();
+
+	void result(WinningResult winningResulte);
 
 }

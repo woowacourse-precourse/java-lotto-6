@@ -2,7 +2,6 @@ package lotto.dto.response;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.UserLotto;
 
 public class LottoCollection {
 

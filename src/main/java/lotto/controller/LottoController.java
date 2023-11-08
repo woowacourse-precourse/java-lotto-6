@@ -8,7 +8,7 @@ import java.util.Set;
 import lotto.dto.requset.Price;
 import lotto.dto.requset.WinningBonusNumber;
 import lotto.dto.response.WinningResult;
-import lotto.service.LottoService;
+import lotto.service.Calculation;
 import lotto.view.Exception;
 import lotto.view.ExceptionText;
 import lotto.view.Output;
@@ -18,11 +18,11 @@ public class LottoController implements Input {
 	private Output lottoView;
 	private Exception exceptionView;
 
-	private LottoService lottoService;
+	private Calculation lottoService;
 
 	private final WinningBonusNumber winningBonusNumber = new WinningBonusNumber();
 
-	public LottoController(Output lottoView, Exception exceptionView, LottoService lottoService) {
+	public LottoController(Output lottoView, Exception exceptionView, Calculation lottoService) {
 		this.lottoView = lottoView;
 		this.exceptionView = exceptionView;
 		this.lottoService = lottoService;
@@ -34,7 +34,6 @@ public class LottoController implements Input {
 		try {
 			Price price = new Price(readLine());
 			validatePriceInput(price.getPrice());
-			System.out.println("성공" + price.getPrice());
 			lottoView.PurchaseCompleted(lottoService.createLotto(price.getPrice()));
 		} catch (IllegalArgumentException e) {
 			exceptionView.PriceException(e);
@@ -48,7 +47,6 @@ public class LottoController implements Input {
 		try {
 			winningBonusNumber.setWinningNumber(readLine());
 			validateWinningInput(winningBonusNumber.getWinningNumber());
-			System.out.println(winningBonusNumber.getWinningNumber()+"성공");
 		} catch (IllegalArgumentException e) {
 			exceptionView.PriceException(e);
 			winningNumber();
@@ -64,9 +62,8 @@ public class LottoController implements Input {
 			ScopeCheck(Integer.parseInt(winningBonusNumber.getBonusNumber()));
 			checkForOverlap(winningBonusNumber.getWinningNumber(),
 				winningBonusNumber.getBonusNumber());
-			System.out.println(winningBonusNumber.getBonusNumber()+"성공");
 			WinningResult winningResult = lottoService.winningCalculation(winningBonusNumber);
-
+			lottoView.result(winningResult);
 		} catch (IllegalArgumentException e) {
 			exceptionView.PriceException(e);
 			bonusNumber();

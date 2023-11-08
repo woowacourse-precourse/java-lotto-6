@@ -33,7 +33,7 @@ public class LottoPublisher {
         return lottoNumbers;
     }
 
-    private static List<Integer> generateLotto() {
+    public static List<Integer> generateLotto() {
         List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN, MAX, LottoNum));
         Collections.sort(numbers);  //List를 오름차순으로 정렬
         return numbers;

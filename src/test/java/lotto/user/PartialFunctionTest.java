@@ -73,6 +73,34 @@ class PartialFunctionTest {
         assertThat(expectedNumbers).isEqualTo(actualNumbers);
     }
 
+    @DisplayName("당첨 번호에 빈 값이 포함된 경우")
+    @Test
+    void getWinningNumbersWithNullValue() {
+        PartialFunction PARTIAL_FUNCTION = new PartialFunction();
+        List<Integer> actualNumbers = PARTIAL_FUNCTION.getWinningNumbers("1,2,,3,4,,5,6");
+        List<Integer> expectedNumbers = new ArrayList<>(List.of(1,2,3,4,5,6));
+
+        assertThat(expectedNumbers).isEqualTo(actualNumbers);
+    }
+
+    @DisplayName("당첨 번호에 공백이 포함된 경우")
+    @Test
+    void getWinningNumbersWithSpace() {
+        PartialFunction PARTIAL_FUNCTION = new PartialFunction();
+        List<Integer> actualNumbers = PARTIAL_FUNCTION.getWinningNumbers("1, 2, 3 , 4, 5, 6");
+        List<Integer> expectedNumbers = new ArrayList<>(List.of(1,2,3,4,5,6));
+
+        assertThat(expectedNumbers).isEqualTo(actualNumbers);
+    }
+
+    @DisplayName("당첨 번호 입력이 없는 경우")
+    @Test
+    void getWinningNumbersByNullInput() {
+        PartialFunction PARTIAL_FUNCTION = new PartialFunction();
+        assertThatThrownBy(() -> PARTIAL_FUNCTION.getWinningNumbers("1,a,2,3,4,5"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("당첨 번호에 정수가 아닌 값이 포함된 경우")
     @Test
     void getWinningNumbersByInvalidType() {

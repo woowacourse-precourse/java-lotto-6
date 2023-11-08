@@ -8,41 +8,12 @@ import java.util.Map;
  * 로또의 결과를 나타내는 enum 클래스입니다.
  */
 public enum LottoRank {
-        FIRST("6개 일치") {
-                @Override
-                public BigDecimal getPrizes() {
-                        return BigDecimal.valueOf(2_000_000_000);
-                }
-        },
-        SECOND("5개 일치, 보너스 볼 일치") {
-                @Override
-                public BigDecimal getPrizes() {
-                        return BigDecimal.valueOf(30_000_000);
-                }
-        },
-        THIRD("5개 일치") {
-                @Override
-                public BigDecimal getPrizes() {
-                        return BigDecimal.valueOf(1_500_000);
-                }
-        },
-        FOURTH("4개 일치") {
-                @Override
-                public BigDecimal getPrizes() {
-                        return BigDecimal.valueOf(50_000);
-                }
-        },
-        FIFTH("3개 일치") {
-                @Override
-                public BigDecimal getPrizes() {
-                        return BigDecimal.valueOf(5_000);
-                }
-        }, NONE("꽝") {
-                @Override
-                public BigDecimal getPrizes() {
-                        return BigDecimal.ZERO;
-                }
-        };
+        FIRST("6개 일치", BigDecimal.valueOf(2_000_000_000)),
+        SECOND("5개 일치, 보너스 볼 일치", BigDecimal.valueOf(30_000_000)),
+        THIRD("5개 일치", BigDecimal.valueOf(1_500_000)),
+        FOURTH("4개 일치", BigDecimal.valueOf(50_000)),
+        FIFTH("3개 일치", BigDecimal.valueOf(5_000)),
+        NONE("꽝", BigDecimal.valueOf(0));
 
         private static final Map<Long, LottoRank> RANK_KEY = new HashMap<>() {{
                 put(6L, FIRST);
@@ -52,9 +23,11 @@ public enum LottoRank {
         }};
 
         private final String description;
+        private final BigDecimal prizes;
 
-        LottoRank(String description) {
+        LottoRank(String description, BigDecimal prizes) {
                 this.description = description;
+                this.prizes = prizes;
         }
 
         /**
@@ -74,7 +47,9 @@ public enum LottoRank {
          * 각 RANK 에 할당된 당첨금을 반환합니다.
          * @return 당청금
          */
-        public abstract BigDecimal getPrizes();
+        public BigDecimal getPrizes() {
+                return prizes;
+        }
 
         @Override
         public String toString() {

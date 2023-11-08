@@ -21,6 +21,9 @@ public class Lotto {
         if (isWrongRangeNumbers(numbers)) {
             ExceptionMessages.WRONG_RANGE_LOTTO_NUMBERS.throwException();
         }
+        if (isDuplicatedNumbers(numbers)) {
+            ExceptionMessages.DUPLICATED_LOTTO_NUMBERS.throwException();
+        }
     }
 
     private boolean isNotSixNumbers(List<Integer> numbers) {
@@ -34,6 +37,12 @@ public class Lotto {
             }
         }
         return false;
+    }
+
+    private boolean isDuplicatedNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .distinct()
+                .count() != numbers.size();
     }
 
     public List<Integer> getNumbers() {

@@ -4,24 +4,29 @@ import lotto.domain.Buyer;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Result;
+import lotto.exception.LottoException;
 import lotto.util.ConvertingUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGame {
     public void play() {
-        String userPrice = InputView.requestPrice();
+        try {
+            String userPrice = InputView.requestPrice();
 
-        Lottos randomLottos = buyLotto(userPrice);
+            Lottos randomLottos = buyLotto(userPrice);
 
-        String userNumbers = InputView.requestNumbers();
-        String userBonus = InputView.requestBonus();
+            String userNumbers = InputView.requestNumbers();
+            String userBonus = InputView.requestBonus();
 
-        Buyer buyer = guessLotto(userNumbers, userBonus);
+            Buyer buyer = guessLotto(userNumbers, userBonus);
 
-        announceResult(
-                progress(randomLottos, buyer)
-        );
+            announceResult(
+                    progress(randomLottos, buyer)
+            );
+        } catch (LottoException e) {
+            OutputView.printResult(e.getMessage());
+        }
     }
 
     private Lottos buyLotto(String userPrice) {

@@ -61,3 +61,40 @@
   - [x] (총 당첨 금액 / 구매 금액) X 100
   - [X] 수익률은 소수점 둘째 자리에서 반올림 한다.
 - [X] 수익률을 출력한다.
+
+
+# 프로젝트 구조
+* LottoConfig
+  * 의존성 주입 하기 위해 Service 객체 생성
+* LottoApp
+  * 실제 Lotto 프로그램을 실행하기 위한 객체
+* LottoController
+  * LottoApp의 요청을 받는 역할
+* Amount
+  * 로또 구매 티켓 갯수를 구하고, 수익률를 구하는 역할
+* LottoCollector
+  * 발행된 로또들을 담아 놓는 역할
+* WinningNumber
+  * 당첨번호, 보너스 번호를 입력 받고, 발행된 번호를 가지고 당첨 여부를 구하는 역할
+* Rank
+  * 총 누적 금액을 구하고, 등수별 정보를 출력하는 역할
+* LottoPublishService
+  * 구매 금액을 가지고 로또를 발행하는 비즈니스 로직
+* LottoPublishServiceImpl
+  * LottoPublishService의 구현체
+* WinningService
+  * 당첨 내역을 구하는 비즈니스 로직
+* WinningServiceImpl
+  * WinningService의 구현체
+* YieldRateService
+  * 수익률을 구하는 실제 비즈니스 로직
+* YieldRateServiceImpl
+  * YieldRateService의 구현체
+* ExceptionMessage
+  * 예외 메시지를 상수로 선언한 객체
+* RandomPicker
+  * 랜덤 로또 번호 값을 뽑는 객체
+* InputView
+  * 입력을 요청하는 메서드를 모아놓은 객체
+* OutputView
+  * 출력 부분을 요청하는 객체

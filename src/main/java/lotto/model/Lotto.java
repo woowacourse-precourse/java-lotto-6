@@ -18,6 +18,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public boolean containsNumber(int number) {
+        return numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         validateLottoSize(numbers);
         validateLottoRange(numbers);

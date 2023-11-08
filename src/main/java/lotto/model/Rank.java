@@ -22,6 +22,10 @@ public enum Rank {
         this.message = message;
     }
 
+    public int getPrize() {
+        return this.prize;
+    }
+
     public static Rank result(int matchCnt, boolean bonus) {
 
         if(matchCnt == FIRST.match) {
@@ -46,5 +50,15 @@ public enum Rank {
         }
 
         return resultRepo;
+    }
+
+    public static int calculatePrize(Map<Rank, Integer> result) {
+        int totalPrize = 0;
+
+        for(Rank rank : result.keySet()) {
+            totalPrize += rank.prize * result.get(rank);
+        }
+
+        return totalPrize;
     }
 }

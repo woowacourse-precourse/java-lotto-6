@@ -49,4 +49,8 @@ public class GameController {
 
         return result;
     }
+
+    int calculatePrize(Map<Rank, Integer> result) {
+        return Rank.calculatePrize(result);
+    }
 }

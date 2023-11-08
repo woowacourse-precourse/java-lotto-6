@@ -2,7 +2,6 @@ package lotto;
 
 import static lotto.constant.ErrorMessage.LOTTO_NUMBER_OVER_RANGE;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Objects;
 
 public class LottoNumber implements Comparable<LottoNumber>{
@@ -11,10 +10,6 @@ public class LottoNumber implements Comparable<LottoNumber>{
     private static final int MAX_LOTTO_NUMBER = 45;
 
     private int number;
-
-    public LottoNumber() {
-        this.number = createRandomNumber();
-    }
 
     public LottoNumber(int number) {
         validateNumberInRange(number);
@@ -25,10 +20,6 @@ public class LottoNumber implements Comparable<LottoNumber>{
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(LOTTO_NUMBER_OVER_RANGE);
         }
-    }
-
-    private int createRandomNumber() {
-        return Randoms.pickNumberInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
     }
 
     @Override

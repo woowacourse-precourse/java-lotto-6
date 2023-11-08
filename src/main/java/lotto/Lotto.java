@@ -3,7 +3,7 @@ package lotto;
 import static lotto.constant.ErrorMessage.DUPLICATED_LOTTO;
 import static lotto.constant.ErrorMessage.INCORRECT_NUMBER_OF_LOTTO;
 
-import java.util.ArrayList;
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class Lotto {
@@ -35,14 +35,8 @@ public class Lotto {
     }
 
     private List<LottoNumber> createLotto() {
-        List<LottoNumber> lottoNumbers = new ArrayList<>();
-        while (lottoNumbers.size() < NUMBER_OF_LOTTO) {
-            LottoNumber lottoNumber = new LottoNumber();
-            if (!lottoNumbers.contains(lottoNumber)) {
-                lottoNumbers.add(lottoNumber);
-            }
-        }
-        return lottoNumbers;
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return lottoNumbers.stream().map(LottoNumber::new).toList();
     }
 
     public List<LottoNumber> getNumbers() {

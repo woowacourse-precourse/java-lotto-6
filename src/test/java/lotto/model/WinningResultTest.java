@@ -2,6 +2,9 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.model.calculate.WinningResult;
+import lotto.model.enums.LottoPlace;
+import lotto.model.money.Money;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

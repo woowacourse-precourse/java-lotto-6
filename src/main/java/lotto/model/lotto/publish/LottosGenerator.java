@@ -1,7 +1,9 @@
-package lotto.model;
+package lotto.model.lotto.publish;
 
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.Lottos;
 
 public class LottosGenerator {
     private final RandomNumberGeneratePolicy randomNumbersGeneratePolicy = new RandomNumberGeneratePolicy();

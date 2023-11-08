@@ -1,7 +1,7 @@
 package lotto.model.dto;
 
 import java.math.BigDecimal;
-import lotto.model.MarginRate;
+import lotto.model.calculate.MarginRate;
 
 public class MarginRateDto {
     private final BigDecimal wholePart;

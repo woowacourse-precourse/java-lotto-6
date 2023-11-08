@@ -2,8 +2,8 @@ package lotto.model.dto;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.model.MarginRate;
-import lotto.model.WinningResult;
+import lotto.model.calculate.MarginRate;
+import lotto.model.calculate.WinningResult;
 import lotto.model.enums.LottoPlace;
 
 public class LottoResult {

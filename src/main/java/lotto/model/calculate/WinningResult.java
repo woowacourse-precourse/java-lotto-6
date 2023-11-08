@@ -1,7 +1,9 @@
-package lotto.model;
+package lotto.model.calculate;
 
 import java.util.HashMap;
 import java.util.Map;
+import lotto.model.money.Money;
+import lotto.model.enums.LottoPlace;
 
 public class WinningResult {
     private static final Integer DEFAULT_COUNT = 0;
@@ -35,4 +37,6 @@ public class WinningResult {
     public Integer getCount(LottoPlace key) {
         return lottoPlaces.getOrDefault(key, DEFAULT_COUNT);
     }
+
+
 }

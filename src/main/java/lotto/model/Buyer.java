@@ -2,8 +2,13 @@ package lotto.model;
 
 import java.util.List;
 import java.util.Objects;
+import lotto.model.calculate.MarginRate;
+import lotto.model.calculate.WinningResult;
 import lotto.model.dto.LottoPaper;
 import lotto.model.dto.LottoResult;
+import lotto.model.lotto.Lottos;
+import lotto.model.lottoPick.PickedLotto;
+import lotto.model.money.Money;
 
 public class Buyer {
     private final Money purchasingMoney;
@@ -24,7 +29,7 @@ public class Buyer {
         return lottos.createLottoPapers();
     }
 
-    public LottoResult createLottoResult(WinningLotto winningLotto) {
+    public LottoResult createLottoResult(PickedLotto winningLotto) {
         final WinningResult winningResult = lottos.createWinningResult(winningLotto);
         final Money revenue = winningResult.calculateTotalRevenue();
         final MarginRate marginRate = new MarginRate(this.purchasingMoney, revenue);

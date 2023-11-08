@@ -1,6 +1,7 @@
-package lotto.model;
+package lotto.model.lotto.publish;
 
 import java.math.BigDecimal;
+import lotto.model.money.Money;
 
 public class LottoSellingPolicy {
     public static final Money LOTTO_PRICE = new Money("1000");

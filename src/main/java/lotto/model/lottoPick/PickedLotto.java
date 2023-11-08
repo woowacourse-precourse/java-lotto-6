@@ -1,10 +1,12 @@
-package lotto.model;
+package lotto.model.lottoPick;
 
-public class WinningLotto {
+import lotto.model.enums.NumberStatus;
+
+public class PickedLotto {
     private final WinningNumbers winningNumbers;
     private final Integer bonusNumber;
 
-    public WinningLotto(WinningNumbers winningNumbers, Integer bonusNumber) {
+    public PickedLotto(WinningNumbers winningNumbers, Integer bonusNumber) {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }

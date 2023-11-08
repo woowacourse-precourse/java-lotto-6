@@ -1,8 +1,8 @@
-package lotto.model;
+package lotto.model.calculate;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
+import lotto.model.money.Money;
 
 public class MarginRate {
     private final BigDecimal marginRateData;

@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.money;
 
 import java.math.BigDecimal;
 import java.util.Objects;

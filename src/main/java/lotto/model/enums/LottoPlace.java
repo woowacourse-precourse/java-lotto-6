@@ -1,7 +1,9 @@
-package lotto.model;
+package lotto.model.enums;
 
 import java.util.Arrays;
 import java.util.Optional;
+import lotto.model.calculate.LottoStatus;
+import lotto.model.money.Money;
 
 public enum LottoPlace {
     FIFTH(new LottoStatus(3), new Money("5000"), false),

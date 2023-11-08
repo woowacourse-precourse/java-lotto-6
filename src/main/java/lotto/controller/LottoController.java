@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.model.Buyer;
-import lotto.model.LottoSeller;
-import lotto.model.Lottos;
-import lotto.model.Money;
-import lotto.model.PurchasingMoney;
-import lotto.model.WinningLotto;
-import lotto.model.WinningNumbers;
+import lotto.model.lotto.publish.LottoSeller;
+import lotto.model.lotto.Lottos;
+import lotto.model.money.Money;
+import lotto.model.money.PurchasingMoney;
+import lotto.model.lottoPick.PickedLotto;
+import lotto.model.lottoPick.WinningNumbers;
 import lotto.model.dto.LottoPaper;
 import lotto.model.dto.LottoResult;
 import lotto.utils.LottoNumberValidator;
@@ -35,16 +35,16 @@ public class LottoController {
 
         ouputView.printPublishedLottos(lottoPapers);
 
-        final WinningLotto winningLotto = pickWinningLotto();
+        final PickedLotto winningLotto = pickWinningLotto();
         final LottoResult lottoResult = lottoBuyer.createLottoResult(winningLotto);
 
         ouputView.printLottoResult(lottoResult);
     }
 
-    private WinningLotto pickWinningLotto() {
+    private PickedLotto pickWinningLotto() {
         final WinningNumbers winningNumbers = inputNumbers();
         final Integer bonusNumber = inputBonusNumber(winningNumbers);
-        return new WinningLotto(winningNumbers, bonusNumber);
+        return new PickedLotto(winningNumbers, bonusNumber);
     }
 
     private Integer inputBonusNumber(WinningNumbers winningNumbers) {

@@ -1,7 +1,7 @@
 package lotto.model.dto;
 
 import java.math.BigDecimal;
-import lotto.model.LottoStatus;
+import lotto.model.calculate.LottoStatus;
 import lotto.model.enums.LottoPlace;
 
 public class WinningResultDto {

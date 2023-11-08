@@ -6,6 +6,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
+import lotto.model.enums.LottoPlace;
+import lotto.model.lotto.Lotto;
+import lotto.model.lottoPick.PickedLotto;
+import lotto.model.lottoPick.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -30,7 +34,7 @@ class LottoTest {
         Lotto lotto = new Lotto(numbers);
         WinningNumbers winningNumbers = WinningNumbers.createWinningNumbers(List.of(1, 3, 7, 8, 9, 11));
         Integer bonusNumber = 18;
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        PickedLotto winningLotto = new PickedLotto(winningNumbers, bonusNumber);
 
         Optional<LottoPlace> lottoPlace = lotto.calculateLottoPlace(winningLotto);
 

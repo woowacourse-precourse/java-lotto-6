@@ -1,4 +1,7 @@
-package lotto.model;
+package lotto.model.lotto.publish;
+
+import lotto.model.lotto.Lottos;
+import lotto.model.money.Money;
 
 public class LottoSeller {
     private final LottoSellingPolicy lottoSellingPolicy = new LottoSellingPolicy();

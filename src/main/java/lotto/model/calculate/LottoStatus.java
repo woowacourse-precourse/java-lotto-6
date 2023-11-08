@@ -1,4 +1,6 @@
-package lotto.model;
+package lotto.model.calculate;
+
+import lotto.model.enums.NumberStatus;
 
 public class LottoStatus {
     private int correctNumber;

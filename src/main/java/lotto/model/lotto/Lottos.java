@@ -1,7 +1,9 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import java.util.List;
+import lotto.model.calculate.WinningResult;
 import lotto.model.dto.LottoPaper;
+import lotto.model.lottoPick.PickedLotto;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -18,7 +20,7 @@ public class Lottos {
                 .toList();
     }
 
-    public WinningResult createWinningResult(WinningLotto winningLotto) {
+    public WinningResult createWinningResult(PickedLotto winningLotto) {
         WinningResult winningResult = new WinningResult();
         for (Lotto lotto : lottos) {
             lotto.calculateLottoPlace(winningLotto)

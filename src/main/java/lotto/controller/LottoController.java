@@ -45,12 +45,16 @@ public class LottoController {
     }
 
     private void inputCost() {
-        try {
-            this.order = new Order(inputView.inputCost());
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-        }
+        boolean isValidInput = false;
+        while (!isValidInput) {
+            try {
+                this.order = new Order(inputView.inputCost());
 
+                isValidInput = true;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     private void createLottoTicket() {

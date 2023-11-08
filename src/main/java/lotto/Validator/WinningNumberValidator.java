@@ -18,6 +18,7 @@ public class WinningNumberValidator {
         validateNumberRange(numbers);
         validateNumberOfNumbers(numbers);
         validateNumberFormat(numbers);
+        validateDuplicateNumbers(numbers);
 
         return input;
     }
@@ -49,6 +50,17 @@ public class WinningNumberValidator {
                 throw new IllegalArgumentException(
                         WinningNumberErrorMessage.INVALID_WINNING_NUMBER_FORMAT.getMessage());
             }
+        }
+    }
+
+    private static void validateDuplicateNumbers(String[] numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (String numberStr : numbers) {
+            int number = Integer.parseInt(numberStr);
+            if (uniqueNumbers.contains(number)) {
+                throw new IllegalArgumentException(WinningNumberErrorMessage.DUPLICATE_WINNING_NUMBER.getMessage());
+            }
+            uniqueNumbers.add(number);
         }
     }
 

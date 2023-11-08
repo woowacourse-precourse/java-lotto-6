@@ -10,10 +10,6 @@ public class MoneyInput {
 
     private int money;
 
-    public int getMoney() {
-        return money;
-    }
-
     public void moneyInput() {
         System.out.println(moneyWord);
         String money = Console.readLine();
@@ -33,5 +29,9 @@ public class MoneyInput {
             System.out.println(e.getMessage());
             moneyInput();
         }
+    }
+
+    public int getMoney() {
+        return money;
     }
 }

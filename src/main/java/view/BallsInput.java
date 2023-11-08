@@ -11,10 +11,6 @@ public class BallsInput {
 
     private List<Integer> numberBalls;
 
-    public List<Integer> getNumberBalls() {
-        return numberBalls;
-    }
-
     public void ballsInput() {
         System.out.println(ballsWord);
         String[] balls = Console.readLine().split(",");
@@ -22,24 +18,11 @@ public class BallsInput {
     }
 
     private void validationBalls(String[] balls) {
-        checkBallsSize(balls);
-        checkBallsDuplication(balls);
-    }
-
-    private void checkBallsSize(String[] balls) {
+        this.numberBalls = new ArrayList<>();
         try {
             if (balls.length != 6) {
                 throw new IllegalArgumentException(ErrorCode.BALLS_NOT_SIX.getErrorMessage());
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            ballsInput();
-        }
-    }
-
-    private void checkBallsDuplication(String[] balls) {
-        this.numberBalls = new ArrayList<>();
-        try {
             for (String ball : balls) {
                 int ballNumber = Integer.parseInt(ball);
                 if (ballNumber < 1 || ballNumber > 45) {
@@ -51,13 +34,17 @@ public class BallsInput {
                     this.numberBalls.add(ballNumber);
                 }
             }
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println(ErrorCode.BALL_NOT_NUMBER.getErrorMessage());
             ballsInput();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             ballsInput();
         }
+    }
+
+    public List<Integer> getNumberBalls() {
+        return numberBalls;
     }
 
 }

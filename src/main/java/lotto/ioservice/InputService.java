@@ -1,10 +1,10 @@
-package lotto;
+package lotto.ioservice;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.validservice.ValidateService;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -16,6 +16,7 @@ public class InputService {
         String tempMoney = Console.readLine();
         ValidateService.validateNumber(tempMoney);
         int money = Integer.parseInt(tempMoney);
+        ValidateService.validateProperMoney(money);
         return money;
     }
 
@@ -26,10 +27,11 @@ public class InputService {
         );
         tempWinningNumbers.stream()
                 .forEach(ValidateService::validateNumber);
+
         List<Integer> winningNumbers = tempWinningNumbers.stream()
                 .map(Integer::parseInt).collect(Collectors.toList());
-        ValidateService.validateNumbersInRange(winningNumbers);
         ValidateService.validateAuthorizedLength(winningNumbers);
+        ValidateService.validateNumbersInRange(winningNumbers);
         ValidateService.validateDuplicatedNums(winningNumbers);
         return winningNumbers;
     }
@@ -38,6 +40,7 @@ public class InputService {
         OutputService.requestBonusNum();
         String tempBonus = Console.readLine();
         ValidateService.validateNumber(tempBonus);
+
         Integer bonus = Integer.parseInt(tempBonus);
         ValidateService.validateBonusInWinningNums(bonus,winningNumbers);
         ValidateService.validateNumberInRange(bonus);

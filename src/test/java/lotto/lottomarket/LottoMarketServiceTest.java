@@ -1,13 +1,12 @@
-package lotto;
+package lotto.lottomarket;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.lottomarket.Lotto;
+import lotto.lottomarket.LottoMarketService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.mockito.MockedStatic;
-import org.mockito.Mockito;
 
 import java.util.List;
 
@@ -15,8 +14,6 @@ import static org.mockito.Mockito.*;
 
 class LottoMarketServiceTest {
     LottoMarketService lottoMarketService;
-    @Mock
-    LottoNumSupplier lottoNumSupplier;
     @BeforeEach
     void setUp(){
         lottoMarketService = new LottoMarketService();

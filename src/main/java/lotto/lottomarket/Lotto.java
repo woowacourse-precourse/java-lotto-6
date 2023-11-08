@@ -1,8 +1,8 @@
-package lotto;
+package lotto.lottomarket;
 
 import java.util.List;
 
-import static lotto.ValidateService.*;
+import static lotto.validservice.ValidateService.*;
 
 public class Lotto {
     private final List<Integer> numbers;

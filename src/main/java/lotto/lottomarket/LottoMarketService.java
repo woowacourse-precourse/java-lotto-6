@@ -1,11 +1,11 @@
-package lotto;
+package lotto.lottomarket;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.lottomarket.Lotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Supplier;
 
 
 public class LottoMarketService {

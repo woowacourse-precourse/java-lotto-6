@@ -1,4 +1,4 @@
-package lotto;
+package lotto.validservice;
 
 public enum ErrorMessage {
     BOUND_LENGTH("[ERROR] 로또 번호는 6개가 필요합니다."),

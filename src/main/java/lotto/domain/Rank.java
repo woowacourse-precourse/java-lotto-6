@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -44,7 +44,7 @@ public enum Rank {
         return decimalFormat.format((long)num);
     }
 
-    static Rank getRank(int hit,int bonus){
+    public static Rank getRank(int hit,int bonus){
         if(hit<3){
             return NOT_WIN;
         }

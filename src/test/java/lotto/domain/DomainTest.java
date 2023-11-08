@@ -1,5 +1,7 @@
-package lotto;
+package lotto.domain;
 
+import lotto.lottomarket.Lotto;
+import lotto.lottomarket.LottoMarketService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

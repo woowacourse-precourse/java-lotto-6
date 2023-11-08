@@ -1,5 +1,6 @@
-package lotto;
+package lotto.ioservice;
 
+import lotto.ioservice.InputService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,7 @@
 package lotto;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -56,6 +57,20 @@ class LottoTest {
         int count = lotto.countMatchingLottoNumbers(result);
 
         assertThat(count).isEqualTo(6);
+    }
+
+    @DisplayName("보너스 번호가 있는지 판별한다.")
+    @Test
+    void hasBonusNumber() {
+        List<Integer> numbers = createLottoNumbers();
+        int bonusNumber = 6;
+
+        Lotto lotto = new Lotto(numbers);
+        LottoResult result = new LottoResult(numbers, bonusNumber);
+
+        boolean hasBonusNumber = lotto.hasBonusNumber(result);
+
+        assertThat(hasBonusNumber).isEqualTo(true);
     }
 
     List<Integer> createLottoNumbers() {

@@ -22,16 +22,6 @@ public class InputView {
         return money;
     }
 
-    private void validateInputBudget(int money) {
-        if (money <= MIN_PRICE || MAX_PRICE < money) {
-            throw new IllegalArgumentException(ERROR_LOTTO_BUDGET_RANGE);
-        }
-
-        if (money % TICKET_PRICE != 0) {
-            throw new IllegalArgumentException(ERROR_LOTTO_BUDGET_PRICE);
-        }
-    }
-
     public List<Integer> getWinningLottoNumbers() {
         System.out.println();
         System.out.println(INPUT_WINNING_LOTTO_NUMBERS);
@@ -48,11 +38,21 @@ public class InputView {
         return inputNumber;
     }
 
-    private int turnToInteger(String money) {
+    public int turnToInteger(String money) {
         try {
             return Integer.parseInt(money.trim());
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ERROR_INTEGER_TYPE_ERROR);
+        }
+    }
+
+    public void validateInputBudget(int money) {
+        if (money <= MIN_PRICE || MAX_PRICE < money) {
+            throw new IllegalArgumentException(ERROR_LOTTO_BUDGET_RANGE);
+        }
+
+        if (money % TICKET_PRICE != 0) {
+            throw new IllegalArgumentException(ERROR_LOTTO_BUDGET_PRICE);
         }
     }
 

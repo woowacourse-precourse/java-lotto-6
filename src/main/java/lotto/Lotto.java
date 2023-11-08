@@ -16,7 +16,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_LOTTO_INVALID_SIZE);
         }
 
         //숫자가 6개가중 1~45사이가 아니거나 중복이 된경우
@@ -26,7 +26,7 @@ public class Lotto {
 
             //중복된 숫자가 있다면
             if (checkDuplicate[number])
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ERROR_LOTTO_DUPLICATE_NUMBER);
             checkDuplicate[number] = true;
         }
 

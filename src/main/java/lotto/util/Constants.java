@@ -11,4 +11,6 @@ public final class Constants {
     public static final String ERROR_LOTTO_NUMBER_RANGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     public static final int NUMBER_START_RANGE = 1;
     public static final int LOTTO_END_RANGE = 45;
+    public static final String ERROR_LOTTO_DUPLICATE_NUMBER = "[ERROR] 로또 번호가 중복됩니다.";
+    public static final String ERROR_LOTTO_INVALID_SIZE = "[ERROR] 로또 번호가 6개가 아닙니다.";
 }

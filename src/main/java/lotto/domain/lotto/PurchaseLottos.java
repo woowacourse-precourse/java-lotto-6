@@ -4,8 +4,8 @@ import java.util.List;
 import lotto.domain.lotto.generator.LottoNumbersGenerator;
 
 public class PurchaseLottos {
-    private PurchasePrice purchasePrice;
-    private Lottos lottos;
+    private final PurchasePrice purchasePrice;
+    private final Lottos lottos;
 
     public PurchaseLottos(PurchasePrice purchasePrice, LottoNumbersGenerator generator) {
         this.purchasePrice = purchasePrice;

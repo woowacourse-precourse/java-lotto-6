@@ -10,9 +10,9 @@ public enum LottoResultStatus {
     FIVE_BONUS(7, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     SIX(6, 2000000000, "6개 일치 (2,000,000,000원) - ");
 
-    private int matchCount;
-    private long winnings;
-    private String description;
+    private final int matchCount;
+    private final long winnings;
+    private final String description;
 
     LottoResultStatus(int matchCount, long winning, String description) {
         this.matchCount = matchCount;

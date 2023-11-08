@@ -9,7 +9,7 @@ import lotto.domain.lottoWinning.LottoWinning;
 public class LottoResult {
     private static final int INIT_COUNT = 0;
     private static final double PERCENT = 100.0;
-    private Map<LottoResultStatus, Integer> result;
+    private final Map<LottoResultStatus, Integer> result;
 
     private LottoResult() {
         result = new HashMap<>() {{

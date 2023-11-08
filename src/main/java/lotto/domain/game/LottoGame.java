@@ -13,8 +13,8 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGame {
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
 
     public LottoGame() {
         inputView = new InputView();

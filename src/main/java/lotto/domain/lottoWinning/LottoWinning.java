@@ -4,16 +4,9 @@ import java.util.List;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lottoResult.LottoResultStatus;
 
-public class LottoWinning {
+public record LottoWinning(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
     private static final int FIVE_MATCH = 5;
     private static final int FIVE_BONUS_MATCH = 7;
-    private WinningNumbers winningNumbers;
-    private BonusNumber bonusNumber;
-
-    public LottoWinning(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
-    }
 
     public LottoResultStatus calculateLottoResultStatus(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();

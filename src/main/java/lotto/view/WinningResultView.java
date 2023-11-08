@@ -1,7 +1,5 @@
 package lotto.view;
 
-import static lotto.view.constants.MessageType.EARNINGS_RATE_MESSAGE;
-import static lotto.view.constants.MessageType.WINNING_RESULT_NOTICE;
 import static lotto.view.constants.SymbolType.NEWLINE;
 import static lotto.view.ui.Output.printlnFormat;
 import static lotto.view.ui.Output.printlnMessageWithNewLine;
@@ -12,7 +10,6 @@ import lotto.domain.WinningResult;
 import lotto.domain.WinningType;
 
 public class WinningResultView {
-
     private static final String WINNING_RESULT_NOTICE = "당첨 통계" + NEWLINE.getSymbol() + "---";
     private static final String WINNING_RESULT_INFORMATION = "%d개 일치 (%,d원) - %d개";
     private static final String WINNING_RESULT_WITH_BONUS_INFORMATION = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
@@ -28,24 +25,17 @@ public class WinningResultView {
         printlnFormat(EARNINGS_RATE_MESSAGE, winningResult.calculateEarningsRate(cost));
     }
 
-    private static MessageType getResultInformation(WinningType winningType) {
+    private static void printWinningNumbers(WinningType winningType, WinningResult winningResult) {
+        printlnFormat(getResultInformation(winningType),
+                winningType.getWinningCount(),
+                winningType.getPrice(),
+                winningResult.getValue(winningType));
+    }
+
+    private static String getResultInformation(WinningType winningType) {
         if (winningType.hasBonusNumber() == false) {
             return WINNING_RESULT_INFORMATION;
         }
         return WINNING_RESULT_WITH_BONUS_INFORMATION;
-    }
-
-    private static void printWinningNumbers(WinningType winningType, WinningResult winningResult) {
-        printlnFormat(getResultInformation(winningType),
-                winningType.getWinningCount(),
-                winningType.getPrice(),
-                winningResult.getValue(winningType));
-    }
-
-    private static void printWinningNumbers(WinningType winningType, WinningResult winningResult) {
-        printlnFormat(getResultInformation(winningType),
-                winningType.getWinningCount(),
-                winningType.getPrice(),
-                winningResult.getValue(winningType));
     }
 }

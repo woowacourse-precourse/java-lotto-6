@@ -46,8 +46,7 @@ public class OutputView {
 
 
     public void printWinningResultStatistics(Map<Rank, Integer> winningResult) {
-        winningResult.entrySet().stream()
-                .filter(entry -> entry.getKey() != Rank.PASS)
+        winningResult.entrySet().stream().filter(entry -> entry.getKey() != Rank.PASS)
                 .forEach(entry -> {
 
                     int winningCount = entry.getKey().getMatchedNumberCount();
@@ -56,15 +55,15 @@ public class OutputView {
 
                     if (entry.getKey().isRequiredBonusMatch()) {
                         System.out.printf(EXIST_BONUS_MESSAGE.getMessage(), winningCount, reward, myWinningCount);
-                        System.out.println();
                     }
 
                     if (!entry.getKey().isRequiredBonusMatch()) {
                         System.out.printf(NOT_EXIST_BONUS_MESSEAGE.getMessage(), winningCount, reward, myWinningCount);
-                        System.out.println();
                     }
-
                 });
     }
 
+    public void printEarningRate(double earningRate) {
+        System.out.printf(EARNING_RESULT_FORMAT.getMessage(),earningRate);
+    }
 }

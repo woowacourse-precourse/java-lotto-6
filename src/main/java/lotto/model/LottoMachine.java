@@ -30,11 +30,6 @@ public class LottoMachine {
         winningRecord.put(rank, getRankValue(rank) + 1);
     }
 
-//    private void printEarningRate(List<Lotto> lottos) {
-//        double earningResult = calculateEarningRate(lottos);
-//        System.out.printf(EARNING_RESULT_FORMAT.getMessage(), earningResult);
-//    }
-
     public double calculateEarningRate(int lottoCount) {
         double totalPrize = 0;
         for (Rank rank : Rank.values()) {

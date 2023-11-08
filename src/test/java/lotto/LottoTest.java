@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.model.Lotto;
+import lotto.validator.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,4 +26,19 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("보너스 숫자가 45보다 크면 예외가 발생한다")
+    @Test
+    void createBonusNumberByOverFlow() {
+        Validator validator = new Validator();
+        assertThatThrownBy(() -> validator.validateAndGetBonusNumber("46"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 숫자가 1보다 작으면 예외가 발생한다")
+    @Test
+    void createBonusNumberByUnderFlow() {
+        Validator validator = new Validator();
+        assertThatThrownBy(() -> validator.validateAndGetBonusNumber("0"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -8,10 +8,10 @@ import static java.util.Collections.*;
 public class LottoResult {
 
     private List<WinningLotto> winningLottos = new ArrayList<>();
-    private Float rateOfReturn;
+    private Double rateOfReturn;
 
     public LottoResult() {
-        this.rateOfReturn = 0.0F;
+        this.rateOfReturn = 0.0;
     }
 
     public LottoResult showLottoResult(final List<Integer> winningNumbers, final Integer bonus, final List<Lotto> lottos) {
@@ -23,7 +23,7 @@ public class LottoResult {
                 .mapToLong(WinningLotto::getPrice)
                 .sum();
 
-        this.rateOfReturn = sumOfPrice / (lottos.size() * 10);
+        this.rateOfReturn = (double) (sumOfPrice / (lottos.size() * 10));
 
         return this;
     }

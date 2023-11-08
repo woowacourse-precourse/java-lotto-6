@@ -56,4 +56,10 @@ class CheckValidateInputTest {
 	    });
 	}
 
+	@Test
+	void 보너스_번호_입력_메서드_복권_숫자_범위가_넘어간_값을_입력시_예외_발생() {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+	        checkValidateInput.bonusNumber("46");
+	    });
+	}
 }

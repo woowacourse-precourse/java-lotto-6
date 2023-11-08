@@ -23,6 +23,9 @@ class ValidatorTest {
     @Test
     void validatePurchaseAmountTest() {
         assertAll(
+                () -> assertThatThrownBy(() -> validator.validatePurchaseAmount("love"))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessageContaining(INVALID_PURCHASE_AMOUNT_FORMAT),
                 () -> assertThatThrownBy(() -> validator.validatePurchaseAmount("-1"))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessageContaining(NEGATIVE_PURCHASE_AMOUNT),
@@ -38,6 +41,9 @@ class ValidatorTest {
     @Test
     void validateWinningNumbersTest() {
         assertAll(
+                () -> assertThatThrownBy(() -> validator.validateWinningNumbers("1,2,3,4,5,love"))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessageContaining(INVALID_WINNING_NUMBER_FORMAT),
                 () -> assertThatThrownBy(() -> validator.validateWinningNumbers("1,2,3,4,5,6,7"))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessageContaining(INVALID_WINNING_NUMBER_LENGTH),
@@ -56,6 +62,9 @@ class ValidatorTest {
     @Test
     void validateBonusNumberTest() {
         assertAll(
+                () -> assertThatThrownBy(() -> validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6), "love"))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessageContaining(INVALID_BONUS_NUMBER_FORMAT),
                 () -> assertThatThrownBy(() -> validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6), "46"))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessageContaining(BONUS_NUMBER_OUT_OF_RANGE),

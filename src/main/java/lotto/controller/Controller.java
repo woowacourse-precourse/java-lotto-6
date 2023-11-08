@@ -125,7 +125,7 @@ public class Controller {
     private void getWinningNumbers() {
         String inputWinningNumbers = askWinningNumbers();
         List<String> isSplitWinningNumbers = splitWinningNumbers(inputWinningNumbers);
-        checkInputValidation(inputWinningNumbers, isSplitWinningNumbers);
+        checkInputWinningNumbersValidation(inputWinningNumbers, isSplitWinningNumbers);
         winningNumbers = new WinningNumbers(convertedWinningNumbers(isSplitWinningNumbers));
     }
 
@@ -138,7 +138,7 @@ public class Controller {
         return Arrays.asList(inputWinningNumbers.split(","));
     }
 
-    private void checkInputValidation(String inputWinningNumbers, List<String> isSplitWinningNumbers) {
+    private void checkInputWinningNumbersValidation(String inputWinningNumbers, List<String> isSplitWinningNumbers) {
         InputValidator.isNullOrIsEmpty(inputWinningNumbers);
         InputValidator.includeSymbolExceptComma(inputWinningNumbers);
         InputValidator.isNotDigits(isSplitWinningNumbers);
@@ -154,7 +154,7 @@ public class Controller {
 
     private void getBonusNumber() {
         String inputBonusNumber = askBonusNumber();
-        checkInputValidation(inputBonusNumber);
+        checkInputBonusNumberValidation(inputBonusNumber);
         bonusNumber = new BonusNumber(Integer.parseInt(inputBonusNumber));
     }
 
@@ -163,7 +163,7 @@ public class Controller {
         return Console.readLine().trim();
     }
 
-    private void checkInputValidation(String inputBonusNumber) {
+    private void checkInputBonusNumberValidation(String inputBonusNumber) {
         InputValidator.isNullOrIsEmpty(inputBonusNumber);
         InputValidator.isNotOneNumber(inputBonusNumber);
         InputValidator.isNotDigit(inputBonusNumber);

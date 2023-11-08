@@ -1,8 +1,9 @@
 package lotto.view;
 
-import java.util.*;
-import lotto.domain.LottoRank;
 import java.text.DecimalFormat;
+import java.util.List;
+import java.util.Map;
+import lotto.domain.LottoRank;
 import lotto.domain.util.Constant;
 
 public class OutputView {
@@ -29,26 +30,38 @@ public class OutputView {
         System.out.println("\n당첨 통계\n---");
         DecimalFormat formatter = new DecimalFormat("###,###");
 
-        for(LottoRank lottoRank: rankCount.keySet()) {
-            if (lottoRank == LottoRank.NONE) continue;
+        for (LottoRank lottoRank : rankCount.keySet()) {
+            if (lottoRank == LottoRank.NONE) {
+                continue;
+            }
             int matchCount = lottoRank.getMatchCount();
+            String message = getMessage(lottoRank);
             String prize = formatter.format(lottoRank.getPrize());
             int count = rankCount.get(lottoRank);
-            String message = "일치";
-            if (lottoRank == LottoRank.SECOND) message = "일치, 보너스 볼 일치";
             System.out.printf("%d개 %s (%s원) - %d개\n", matchCount, message, prize, count);
         }
     }
 
+    private String getMessage(LottoRank lottoRank) {
+        if (lottoRank == LottoRank.SECOND) {
+            return "일치, 보너스 볼 일치";
+        }
+        return "일치";
+    }
+
     public void printRateOfProfits(Map<LottoRank, Integer> rankCount) {
-        int lottoCount = rankCount.values().stream().mapToInt(Integer::intValue).sum();
-        int inMoney = lottoCount * Constant.LOTTO_PRICE;
-        int outMoney = rankCount.keySet()
+        int lottoCount = getLottoCount(rankCount);
+        double inMoney = lottoCount * Constant.LOTTO_PRICE;
+        double outMoney = rankCount.keySet()
                 .stream()
-                .mapToInt(rank -> rank.getPrize() * rankCount.get(rank))
+                .mapToDouble(rank -> rank.getPrize() * rankCount.get(rank))
                 .sum();
-        double rateOfProfit = (double) outMoney / inMoney * 100.0;
+        double rateOfProfit = Math.round(outMoney / inMoney * 1000.0) / 10.0;
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfProfit);
+    }
+
+    private int getLottoCount(Map<LottoRank, Integer> rankCount) {
+        return rankCount.values().stream().mapToInt(Integer::intValue).sum();
     }
 
     public void printErrorMessage(Exception e) {

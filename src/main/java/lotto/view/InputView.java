@@ -63,9 +63,7 @@ public class InputView {
     public void printPurchaseAmount() {
         printMessage(PURCHASE_AMOUNT);
     }
-    public void printWinningNumbers() {
-        printMessage(WINNING_NUMBERS);
-    }
+    public void printWinningNumbers() { printMessage(WINNING_NUMBERS); }
     public void printBonusNumber() {
         printMessage(BONUS_NUMBER);
     }

@@ -18,10 +18,12 @@ import lotto.view.InputView;
 public class LottoController {
     private final InputView inputView;
     private final LottoResult lottoResult;
+
     public LottoController(InputView inputView, LottoResult lottoResult) {
         this.inputView = inputView;
         this.lottoResult = lottoResult;
     }
+
     public void play() {
         Money money = getUserMoney();
         Lottos lottos = generateUserLottos(money);
@@ -80,6 +82,4 @@ public class LottoController {
     private Map<Rank, Integer> getUserResults(Lottos lottos, Lotto winningLotto, int bonusNumber) {
         return lottoResult.compareLotto(lottos, winningLotto, bonusNumber);
     }
-
-
 }

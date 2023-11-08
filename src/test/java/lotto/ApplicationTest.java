@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -47,11 +48,97 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 구매금액_입력_예외_테스트() {
+        // 1. 빈 값을 입력한 경우
         assertSimpleTest(() -> {
-            runException("1000j");
+            runException(" ");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+
+        // 2. 숫자가 아닌 값을 입력한 경우
+        assertSimpleTest(() -> {
+            runException("100j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        // 3. 1,000 보다 작은 값을 입력한 경우
+        assertSimpleTest(() -> {
+            runException("560");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        // 4. 1,000으로 나누어지지 않는 값을 입력한 경우
+        assertSimpleTest(() -> {
+            runException("1200");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_입력_예외_테스트() {
+        // 1. 빈 값을 입력한 경우
+        assertSimpleTest(() -> {
+            runException("1000", " ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        // 2. 숫자가 아닌 값을 입력한 경우
+        assertSimpleTest(() -> {
+            runException("1000", "100j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        // 3. 쉼표와 숫자 사이에 공백을 입력한 경우
+        assertSimpleTest(() -> {
+            runException("1000", "1, 2, 3, 4, 5, 6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        // 4. 1~45 범위를 벗어난 숫자를 입력한 경우
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        // 5. 당첨번호를 6개 미만으로 입력한 경우
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        // 6. 당첨번호를 6개를 초과하여 입력한 경우
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호_입력_예외_테스트() {
+        // 1. 빈 값을 입력한 경우
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", " ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        // 2. 숫자가 아닌 값을 입력한 경우
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        // 3. 1~45 범위를 벗어난 숫자를 입력한 경우
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        // 4. 당첨 번호와 중복된 숫자를 입력한 경우
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
     }
 
     @Override

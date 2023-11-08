@@ -55,7 +55,7 @@ public class LottoGame {
     }
 
     public double calculateEarningRate(long earnings, long cost) {
-        return earnings / cost;
+        return (double) earnings / (double) cost;
     }
 
     public List<Lotto> getLottos() {

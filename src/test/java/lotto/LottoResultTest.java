@@ -21,4 +21,16 @@ public class LottoResultTest {
         assertThat(5).isEqualTo(matchResult);
     }
 
+    @DisplayName("보너스 번호 확인 테스트")
+    @Test
+    void testCheckBonusNumber() {
+        List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int match = 5;
+        int bonusNumber = 6;
+
+        int matchResult = LottoResult.checkBonusNumber(lottoNumbers, match, bonusNumber);
+
+        assertThat(35).isEqualTo(matchResult);
+    }
+
 }

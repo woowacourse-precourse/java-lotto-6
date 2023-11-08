@@ -21,7 +21,6 @@ public class OutputView {
     }
 
     public void printEnterBonusNumber() {
-        printSpace();
         printOutputText(ENTER_BONUS_NUMBER);
     }
 
@@ -48,7 +47,7 @@ public class OutputView {
         System.out.println(text);
     }
 
-    private void printSpace() {
+    public void printSpace() {
         System.out.println();
     }
 

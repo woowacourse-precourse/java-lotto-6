@@ -6,7 +6,7 @@ import java.util.List;
 public class LottoBatchResult {
     private LottoBatch lottoBatch;
     private PrizeNumbers prizeNumbers;
-    private List<LottoResult> lottoResults;
+    private List<LottoResult> lottoResults=new ArrayList<>();
 
     public LottoBatchResult(LottoBatch lottoBatch, PrizeNumbers prizeNumbers) {
         this.lottoBatch = lottoBatch;
@@ -14,7 +14,6 @@ public class LottoBatchResult {
     }
 
     public void calculateLottoResults() {
-        List<LottoResult> lottoResults = new ArrayList<>();
 
         lottoBatch.getLottos().forEach(lotto -> {
             lottoResults.add(LottoResult.determinePrize(
@@ -24,7 +23,6 @@ public class LottoBatchResult {
 
         LottoResult.sort(lottoResults);
 
-        this.lottoResults = lottoResults;
     }
 
 

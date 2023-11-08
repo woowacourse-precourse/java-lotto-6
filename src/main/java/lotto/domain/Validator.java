@@ -24,8 +24,8 @@ public class Validator {
             if (userInput.isEmpty()) {
                 throw new IllegalArgumentException(ErrorMessages.IS_EMPTY.writeErrorMessageByCase());
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
             return true;
         }
         return false;
@@ -37,8 +37,8 @@ public class Validator {
             if (commaCount != CORRECT_COMMA_COUNT) {
                 throw new IllegalArgumentException(ErrorMessages.IS_VALID_CHARACTER.writeErrorMessageByCase());
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
             return true;
         }
         return false;
@@ -50,11 +50,11 @@ public class Validator {
         }
         try {
             Integer.parseInt(userInput);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException numberFormatException) {
             try {
-                throw new IllegalArgumentException(ErrorMessages.IS_NUMBER_ONLY.writeErrorMessageByCase());
-            } catch (IllegalArgumentException ee) {
-                System.out.println(ee.getMessage());
+                throw new IllegalArgumentException(ErrorMessages.IS_NUMBER_ONLY.writeErrorMessageByCase(), numberFormatException);
+            } catch (IllegalArgumentException illegalArgumentException) {
+                System.out.println(illegalArgumentException.getMessage());
                 return true;
             }
         }
@@ -66,8 +66,8 @@ public class Validator {
             if (inputBudget < LOTTERY_PRICE) {
                 throw new IllegalArgumentException(ErrorMessages.IS_UNDER_1000.writeErrorMessageByCase());
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
             return true;
         }
         return false;
@@ -78,8 +78,8 @@ public class Validator {
             if ((inputBudget % LOTTERY_PRICE) != NO_REMAINDER) {
                 throw new IllegalArgumentException(ErrorMessages.IS_INDIVISIBLE_BY_1000.writeErrorMessageByCase());
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
             return true;
         }
         return false;
@@ -90,8 +90,8 @@ public class Validator {
             if (FIRST_LOTTERY_NUMBER > winningNumber || winningNumber > LAST_LOTTERY_NUMBER) {
                 throw new IllegalArgumentException(ErrorMessages.IS_NUMBER_OUT_OF_RANGE.writeErrorMessageByCase());
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
             return true;
         }
         return false;
@@ -103,8 +103,8 @@ public class Validator {
             if (duplicateNumberFrequency >= NUMBERS_MIN_DUPLICATE_COUNT) {
                 throw new IllegalArgumentException(ErrorMessages.ARE_WINNING_NUMBERS_DUPLICATE.writeErrorMessageByCase());
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
             return true;
         }
         return false;
@@ -116,8 +116,8 @@ public class Validator {
             if (duplicateNumberFrequency >= BONUS_NUMBER_MIN_DUPLICATE_COUNT) {
                 throw new IllegalArgumentException(ErrorMessages.IS_BONUS_NUMBER_DUPLICATE.writeErrorMessageByCase());
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
             return true;
         }
         return false;
@@ -128,8 +128,8 @@ public class Validator {
             if (winningNumbers.size() != MAX_LOTTERY_COUNT) {
                 throw new IllegalArgumentException(ErrorMessages.IS_NUMBER_COUNT_OUT_OF_RANGE.writeErrorMessageByCase());
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
             return true;
         }
         return false;

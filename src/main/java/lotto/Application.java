@@ -14,9 +14,12 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int purchaseAmount = getInputToPurchaseAmount();
+        User user = new User(purchaseAmount);
+        user.printLottoNumbers();
 
         List<Integer> resultNumbers = getInputToResultNumbers();
         int bonusNumber = getInputToBonusNumber(resultNumbers);
+
     }
 
     private static int getInputToPurchaseAmount() {

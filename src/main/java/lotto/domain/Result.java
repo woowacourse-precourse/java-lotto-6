@@ -29,7 +29,7 @@ public class Result {
     }
 
     private void setHasBonusNumber(WinLotto winLotto, Lotto generatedLotto) {
-        if (generatedLotto.getNumbers().contains((winLotto.bonusNumber))) {
+        if (generatedLotto.getNumbers().contains(winLotto.bonusNumber)) {
             this.hasBonusNumber = true;
         }
     }

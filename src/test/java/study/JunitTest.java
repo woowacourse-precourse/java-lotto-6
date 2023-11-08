@@ -1,13 +1,35 @@
 package study;
 
+import lotto.exception.LottoException;
+import lotto.validation.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class JunitTest {
+
+    @ParameterizedTest
+    @CsvSource(value = {"1,2,3,4,5, ", "sa", "!,1,2,3,4,5", " 1, 2,3,4,5,6", " 1,2,3,4,5,6 "})
+    @DisplayName("csvSource 의 구분자는 콤마이고, 문자열을 trim() 한다. 첫번째 인덱스만 가지고 테스트를 한다. 성공 하더라도 잘못된 테스트")
+    void 잘못된_테스트(String input) throws LottoException{
+        assertThatThrownBy(() -> Validator.validatedWinningNumbersFormat(input));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5, ", "sa", "!,1,2,3,4,5", " 1, 2,3,4,5,6", " 1,2,3,4,5,6 "})
+    @DisplayName("잘못된 테스트를 변경한 테스트")
+    void 변경한_테스트(String input) throws LottoException {
+        // 포맷 예시) 1,23,12,34,42,45
+        assertThatThrownBy(() -> Validator.validatedWinningNumbersFormat(input))
+                .isInstanceOf(LottoException.class)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3", "   1,2,3   ", "1,2,3 ", "  1,2,3"})
     @DisplayName("ValueSource 는 문자열 그대로 반환")

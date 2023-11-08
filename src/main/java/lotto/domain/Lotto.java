@@ -31,8 +31,8 @@ public class Lotto {
         if (!isValidRange(numbers)) {
             throw new IllegalArgumentException(ExceptionStatus.LOTTO_COMMON_OUT_OF_RANGE.getMessage());
         }
-        if (!isDuplicated(numbers)) {
-            throw new IllegalArgumentException(ExceptionStatus.LOTTO_COMMON_OUT_OF_RANGE.getMessage());
+        if (isDuplicated(numbers)) {
+            throw new IllegalArgumentException(ExceptionStatus.LOTTO_COMMON_DUPLICATE.getMessage());
         }
     }
 
@@ -57,7 +57,7 @@ public class Lotto {
 
     private boolean isValidRange(List<Integer> numbers) {
         return numbers.stream()
-                .allMatch(number -> LottoPolicy.LOTTO_START_NUMBER <= number && LottoPolicy.LOTTO_END_NUMBER <= number);
+                .allMatch(number -> LottoPolicy.LOTTO_START_NUMBER <= number && number <= LottoPolicy.LOTTO_END_NUMBER);
     }
 
     private List<String> splitByDelimiter(String number) {

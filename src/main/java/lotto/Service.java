@@ -24,8 +24,8 @@ public class Service {
 
     //2. 로또 개수 계산
     public static int numberOfLottery(int howMuch) {
-        if (howMuch%1000 == 0) {
-            return howMuch/1000;
+        if (howMuch % 1000 == 0) {
+            return howMuch / 1000;
         }
         System.out.println("[ERROR] 구입 금액은 1000의 배수여야 합니다.");
         throw new IllegalArgumentException();
@@ -67,7 +67,7 @@ public class Service {
             float winnings = rank.getWinnings();
             sumOfWinnings += numberOfRank * winnings;
         }
-        float rateOfReturn = (sumOfWinnings/howMuch) *100;
+        float rateOfReturn = (sumOfWinnings / howMuch) * 100;
         return rateOfReturn;
     }
 }

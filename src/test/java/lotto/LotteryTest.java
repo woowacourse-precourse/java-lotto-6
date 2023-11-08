@@ -10,17 +10,11 @@ import org.junit.jupiter.api.Test;
 
 public class LotteryTest {
 
-    @DisplayName("Lottery객체의 winningNumbers를 직접 지정")
-    @BeforeEach
-    void setUp()  {
-
-    }
-
     @DisplayName("실제 당첨 번호와 입력한 당첨 번호가 몇 개나 일치하는지 확인")
     @Test
     void 맞힌_번호_갯수_테스트() throws Exception {
-        List<Integer> customWinningNumbers = Arrays.asList(1,2,3,21,22,23);
-        List<Integer> lottoNumbers = Arrays.asList(1,2,3,4,5,6);
+        List<Integer> customWinningNumbers = Arrays.asList(1, 2, 3, 21, 22, 23);
+        List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         Lottery lottery = new Lottery(lottoNumbers, 7);
 
         Field winningNumberField = Lottery.class.getDeclaredField("winningNumbers");
@@ -42,8 +36,8 @@ public class LotteryTest {
     @DisplayName("등수 계산")
     @Test
     void 등수_계산_테스트() throws Exception {
-        List<Integer> customWinningNumbers = Arrays.asList(1,2,3,21,22,23);
-        List<Integer> lottoNumbers = Arrays.asList(1,2,3,4,5,6);
+        List<Integer> customWinningNumbers = Arrays.asList(1, 2, 3, 21, 22, 23);
+        List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         Lottery lottery = new Lottery(lottoNumbers, 7);
 
         Field winningNumberField = Lottery.class.getDeclaredField("winningNumbers");

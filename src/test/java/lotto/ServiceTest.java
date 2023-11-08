@@ -34,16 +34,16 @@ class ServiceTest {
     @DisplayName("당첨 번호로 입력한 숫자를 보너스 번호로 중복해서 입력했을 떄 에러 발생")
     @Test
     void 보너스_번호_유효성_테스트() {
-        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6);
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         Assertions.assertThatThrownBy(() -> Service.bonusRedundancyCheck(numbers, 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("메서드로 생성된 맵과 예상하는 맵이 일치하면 테스트 통과")
     @Test
-    void 순위집계_맵_생성_테스트() throws Exception{
-        List<Integer> customWinningNumbers = Arrays.asList(1,2,3,21,22,23);
-        List<Integer> lottoNumbers = Arrays.asList(1,2,3,4,5,6);
+    void 순위집계_맵_생성_테스트() throws Exception {
+        List<Integer> customWinningNumbers = Arrays.asList(1, 2, 3, 21, 22, 23);
+        List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         Lottery lottery = new Lottery(lottoNumbers, 7);
 
         Field winningNumberField = Lottery.class.getDeclaredField("winningNumbers");

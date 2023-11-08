@@ -35,9 +35,8 @@ public class LottoViewTest {
         //when
         Lotto lotto = new Lotto(checkNumber);
         LottoView lottoView = new LottoView();
-        List<Lotto> lottos = new ArrayList<>(Arrays.asList(lotto));
         //then
-        lottoView.printLottoNumber(lottos);
+        lottoView.printLottoNumber(lotto.getNumbers());
         assertThat(printResult).isEqualTo(outContent.toString());
     }
 }

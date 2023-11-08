@@ -8,6 +8,10 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
 import java.util.List;
+/*
+    당첨 번호를 입력 받는 역할을 지닌 객체로써 그 기능은 service쪽에 더 가까우나
+    input을 처리하고 view를 가지고 있다는 점에서 controller라고 이름 붙였다.
+ */
 
 public class WinningNumberInputController {
     InputView view;

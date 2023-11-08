@@ -7,7 +7,9 @@ import View.BoardView;
 import Domain.WinningNumber.WinningNumber;
 import Domain.lotto.Lotto;
 import java.util.List;
-
+/*
+    Board에 당첨 내역을 저장하고 필요시 내장된 view를 활용하여 Board의 정보를 보여준다.
+ */
 public class BoardController {
     BoardView boardView;
     Board board;

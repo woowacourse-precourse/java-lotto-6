@@ -8,7 +8,10 @@ import View.MoneyInputErrorText;
 import View.InputView;
 import camp.nextstep.edu.missionutils.Console;
 import Domain.lotto.LottoPrice;
-
+/*
+    돈을 입력 받는 역할을 지닌 객체로써 그 기능은 service에 더 가깝지만
+    input을 처리하고 View를 지니고 있다는 점에서 controller로 이름 붙였다.
+ */
 public class MoneyInputController {
     InputView view;
 

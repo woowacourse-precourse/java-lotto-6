@@ -5,7 +5,9 @@ import View.LottoView;
 import Domain.lotto.Lotto;
 
 import java.util.List;
-
+/*
+    발행된 Lotto들을 저장하고 내장된 view를 활용하여 필요시 해당 lotto들의 정보를 보여준다.
+ */
 public class LotteryController {
     List<Lotto> lotteries;
     LottoView view;

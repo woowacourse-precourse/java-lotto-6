@@ -14,7 +14,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CalculatorTest {
-    public Lotto getOutComeLotto(WinningNumber winningNumber, List<Integer> remains, Integer bonus, LottoOutcome outcome){
+    //결과에 맞는 로또를 만드는 함수
+    public Lotto getLottoFromOutcome(WinningNumber winningNumber, List<Integer> remains, Integer bonus, LottoOutcome outcome){
         List<Integer> test = new LinkedList<>();
         List<Integer> numbers = winningNumber.getNumbers();
 
@@ -29,8 +30,8 @@ public class CalculatorTest {
         }
         return new Lotto(test);
     }
-
-    public List<Integer> getRemainNumbersAtLotto(List<Integer> numbersAndBonus){
+    //1~45까지의 수와 당첨 번호 수의 차집합 리스트
+    public List<Integer> getRemainNumbersAtLottoNumber(List<Integer> numbersAndBonus){
         List<Integer> remainNumber = new LinkedList<>();
         for (int i = 1; i <= 45; i++) {
             remainNumber.add(i);
@@ -38,6 +39,7 @@ public class CalculatorTest {
         remainNumber.removeAll(numbersAndBonus);
         return remainNumber;
     }
+
     @DisplayName("당첨 번호와 Lotto를 비교하여 결과를 산출합니다.")
     @Test
     void calculateLotto() {
@@ -45,10 +47,10 @@ public class CalculatorTest {
         List<Integer> numbers = numbersAndBonus.subList(0, 6);
         Integer bonus = numbersAndBonus.get(6);
         WinningNumber winningNumber = new WinningNumber(numbers, bonus);
-        List<Integer> remains = getRemainNumbersAtLotto(numbersAndBonus);
+        List<Integer> remains = getRemainNumbersAtLottoNumber(numbersAndBonus);
 
         for(LottoOutcome outcome: LottoOutcome.values()){
-            Lotto testLotto = getOutComeLotto(winningNumber, remains, bonus, outcome);
+            Lotto testLotto = getLottoFromOutcome(winningNumber, remains, bonus, outcome);
             assertThat(Calculator.calLottoOutcome(winningNumber, testLotto)).isEqualTo(outcome);
         }
     }

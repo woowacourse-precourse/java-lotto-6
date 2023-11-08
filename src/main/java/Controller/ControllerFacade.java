@@ -9,7 +9,10 @@ import Domain.WinningNumber.WinningNumber;
 import Domain.lotto.Lotto;
 
 import java.util.List;
-
+/*
+    여러 Controller들의 기능을 모아 원하는 기능을 완성시킨다.
+    facade 패턴을 생각하며 작성하였다.
+ */
 public class ControllerFacade {
     MoneyInputController moneyInputController;
     WinningNumberInputController winningNumberInputController;

@@ -8,7 +8,7 @@ import Domain.lotto.LottoPrice;
 import java.util.HashMap;
 import java.util.Map;
 /*
-    당첨 내역을 저장하는 class
+    당첨 내역을 저장하는 객체
  */
 public class Board {
     private Map<LottoOutcome, Integer> winningRecord;

@@ -6,7 +6,9 @@ import Domain.lotto.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+    당첨 번호와 로또를 비교해서 결과를 계산하는 객체
+ */
 public class Calculator {
     public static LottoOutcome calLottoOutcome(WinningNumber winningNumber, Lotto lotto){
         int numbersMatch = calNumbers(lotto.getNumbers(), winningNumber.getNumbers());

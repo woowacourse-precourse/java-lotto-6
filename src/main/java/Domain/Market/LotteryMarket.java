@@ -6,7 +6,9 @@ import Domain.lotto.LottoPrice;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+    복권을 발행하는 역할을 가진 객체
+ */
 public class LotteryMarket {
     //들어온 money와 LotteryPrice에 맞춰 Lotto를 List에 담아 return.
     public static List<Lotto> issueLotteries(int money){

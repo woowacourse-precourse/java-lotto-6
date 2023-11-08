@@ -1,5 +1,7 @@
 package Domain.lotto;
-
+/*
+    로또와 당첨 번호를 비교 하였을 때 나올 수 있는 결과를 담은 enum
+ */
 public enum LottoOutcome {
     rank1(6, 0, 2000000000),
     rank2(5, 1, 30000000),

@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.message.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
+import static lotto.message.ErrorMessage.*;
 
 import java.util.regex.Pattern;
 

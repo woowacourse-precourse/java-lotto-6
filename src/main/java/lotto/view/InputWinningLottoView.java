@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static lotto.message.ErrorMessage.INVALID_LOTTO_INPUT_FORMAT;
+import static lotto.message.ErrorMessage.*;
 
 public class InputWinningLottoView extends InputView {
     private static final Pattern PATTERN = Pattern.compile("(\\d{1,2},){5}\\d{1,2}");

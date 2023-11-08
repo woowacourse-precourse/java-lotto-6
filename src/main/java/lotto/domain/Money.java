@@ -1,7 +1,6 @@
 package lotto.domain;
 
-import static lotto.message.ErrorMessage.INVALID_DIVIDE_MONEY;
-import static lotto.message.ErrorMessage.LOTTO_PRICE_UNABLE_ZERO;
+import static lotto.message.ErrorMessage.*;
 
 public class Money {
     private static final int ZERO = 0;

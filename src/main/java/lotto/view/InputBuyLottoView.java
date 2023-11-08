@@ -2,7 +2,7 @@ package lotto.view;
 
 import java.util.regex.Pattern;
 
-import static lotto.message.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
+import static lotto.message.ErrorMessage.*;
 
 public final class InputBuyLottoView extends InputView {
     private static final Pattern PATTERN = Pattern.compile("\\d+");

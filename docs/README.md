@@ -541,5 +541,379 @@ public static void lottoWinningResult (List<Lotto> lottos ,List<Integer> winning
 
 ---
 ## ✏️ 리펙터링
-#### 검색의 도움을 받아 MVC 페턴을 적용하고, 객체지향 코드로 리펙터링하여 학습해 보았습니다.
+#### 검색의 도움을 받아 MVC 디자인 페턴을 적용하고, 객체지향 코드로 리펙터링하여 학습해 보았습니다.
+  
+* 리팩터링에 앞서 2주차 때 부족했던 부분을 피드백 받았고, 피드백을 적용하고자 목록을 정리해 보있습니다.
+    ````
+        * 값을 하드 코딩하지 않는다
+            - 문자열, 숫자 등의 값을 하드 코딩하지 마라. 상수(static final)를 만들고 이름을 부여해 이 변수의 역할이 무엇인지 의도를 드러내라. 구글에서 "java 상수"와 같은 키워드로 검색해 상수 구현 방법을 학습하고 적용해 본다.
+        
+        * 한 함수가 한 가지 기능만 담당하게 한다
+            - 함수 길이가 길어진다면 한 함수에서 여러 일을 하려고 하는 경우일 가능성이 높다. 아래와 같이 한 함수에서 안내 문구 출력, 사용자 입력, 유효값 검증 등 여러 일을 하고 있다면 이를 적절하게 분리한다.
+            - 만약 여러 함수에서 중복되어 사용되는 코드가 있다면 함수 분리를 고민해 본다. 또한, 함수의 길이를 15라인을 넘어가지 않도록 구현하며 함수를 분리하는 의식적인 연습을 할 수 있다.
+  
+        * 처음부터 큰 단위의 테스트를 만들지 않는다
+            - 테스트의 중요한 목적 중 하나는 내가 작성하는 코드에 대해 빠르게 피드백을 받는 것이다. 시작부터 큰 단위의 테스트를 만들게 된다면 작성한 코드에 대한 피드백을 받기까지 많은 시간이 걸린다. 그래서 문제를 작게 나누고, 그 중 핵심 기능에 가까운 부분부터 작게 테스트를 만들어 나간다.
+            - 큰 단위의 테스트
+                자동차경주를 시작해서 사용자가 이름, 진행 횟수를 입력하면, 게임을 진행한 후 그 결과를 알려준다.
+            - 작은 단위의 테스트
+                무작위 값이 4 이상이면 자동차가 전진한다.
+                무작위 값이 3 이하이면 자동차가 전진하지 않는다.
+    ````
+<br>
+
+## 1. MVC 디자인 패턴으로 적용하기  
+![img_2.png](img_2.png)  
+
+MVC 디자인 패턴을 적용하여 구조를 변경하고 역할을 분리하였습니다.
+
+* ### Controller
+  컨트롤러는 클라이언트 측의 요청을 직접적으로 전달받는 엔드포인트(Endpoint)로써 Model과 View의 중간에서 상호작용을 해주는 역할을 한다.
+  * LottoGameController
+      ```java
+      public class LottoGameController {
+
+          private int lottoPurchaseAmount;
+          private int bonusNumber;
+          private int lottoQuantity;
+          private List<Integer> winningNumber;
+          private List<Lotto> lotto;
+
+          InputView inputView = new InputView();
+          OutputView outputView = new OutputView();
+          LottoGameService lottoGameService = new LottoGameService();
+
+          public void gameStart(){
+              inputPurchaseAmount();
+              createLotto();
+              lottoNumbersDisplayModelAndView();
+              inputWinningNumber();
+              inputBonusNumber();
+              lottoWinningResultModelAndView();
+          }
+
+          private void inputPurchaseAmount(){
+              ....
+          }
+
+          private void createLotto(){
+              ....
+          }
+
+          private void lottoNumbersDisplayModelAndView(){
+              ....
+          }
+
+          private void inputWinningNumber(){
+              ....
+          }
+
+          private void inputBonusNumber(){
+              ....
+          }
+
+          private void lottoWinningResultModelAndView(){
+              .... 
+          }
+    
+          private LottoResultModel createLottoResultModel(List<Lotto> lotto , List<Integer> winningNumber, int bonusNumber){
+              ....
+          }
+    
+          private LottoNumberModel createLottoNumberModel(List<Lotto> lotto){
+              ....
+          }
+      }
+      ```
+    * LottoGameController는 View, Model, Service를 의존하고 있고, Service를 활용하여 데이터를 만들고, 데이터를 Model에 담아 View로 전달하는 역할으 합니다.
+    * 데이터는 Controller의 createLottoResultModel(), createLottoNumberModel() 메서드에서 데이터를 담아 Model을 생성합니다.
+    * Controller의 lottoNumbersDisplayModelAndView(),lottoWinningResultModelAndView() 메서드를 통하여 Model을 View로 전달됩니다.
+* ### View
+  View는 Model을 이용하여 웹 브라우저와 같은 애플리케이션의 화면에 보이는 리소스(Resource)를 제공하는 역할을 한다.
+  * InputView
+      ```java
+      public class InputView {
+    
+          private static final String INPUT_LOTTO_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해주세요.";
+          private static final String INPUT_LOTTO_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
+          private static final String INPUT_LOTTO_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+    
+          public String inputPurchaseAmount(){
+              System.out.println(INPUT_LOTTO_PURCHASE_AMOUNT_MESSAGE);
+              return Console.readLine();
+          }
+    
+          public String inputWinningNumber(){
+              System.out.println(INPUT_LOTTO_WINNING_NUMBERS_MESSAGE);
+              return Console.readLine();
+          }
+    
+          public String inputBonusNumber(){
+              System.out.println();
+              System.out.println(INPUT_LOTTO_BONUS_NUMBER_MESSAGE);
+              return Console.readLine();
+          }
+      }
+      ```
+    * InputView의 역할은 클라이언트(사용자)에게 값을 입력 받는 역할입니다.
+    * 입력받은 값을 Controller에게 전달만 하는 역할을 하기 때문에 값을 따로 검증하거나 하지 않습니다.
+    * 입력받은 값이 잘못된 값이더라도 전달만 하는 역할입니다.
+  * OutputView
+      ```java
+      public class OutputView {
+
+          private static final String LOTTO_THIRD_MATCH_MESSAGE = "3개 일치 (5,000원) - ";
+          private static final String LOTTO_FOURTH_MATCH_MESSAGE = "4개 일치 (50,000원) - ";
+          private static final String LOTTO_FIFTH_MATCH_MESSAGE = "5개 일치 (1,500,000원) - ";
+          private static final String LOTTO_FIFTH_BONUS_MATCH_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
+          private static final String LOTTO_SIXTH_MATCH_MESSAGE = "6개 일치 (2,000,000,000원) - ";
+          private static final String TOTAL_RETURN_RATE = "총 수익률은 ";
+          private static final String COUNT_UNIT = "개";
+          private static final String PERCENT = "%";
+          private static final String SUFFIX_MESSAGE = "입니다.";
+          private static final String DIVIDING_LINE = "---";
+          private static final String LOTTO_WINNING_STATISTICS_MESSAGE = "당첨 통계";
+          private static final String PURCHASE_LOTTO_MESSAGE = "개를 구매했습니다.";
+
+          public void purchaseLottoNumbersDisplay(LottoNumberModel lottoNumberModel){
+              System.out.println();
+              System.out.println(lottoNumberModel.getLottoQuantity()+PURCHASE_LOTTO_MESSAGE);
+              lottoNumberModel.lottoNumberDisplay();
+              System.out.println();
+          }
+
+          public void lottoResultDisplay(LottoResultModel lottoResultModel){
+              System.out.println();
+              System.out.println(LOTTO_WINNING_STATISTICS_MESSAGE);
+              System.out.println(DIVIDING_LINE);
+              System.out.println(LOTTO_THIRD_MATCH_MESSAGE + lottoResultModel.getThreeMatch()+COUNT_UNIT);
+              System.out.println(LOTTO_FOURTH_MATCH_MESSAGE + lottoResultModel.getFourMatch()+COUNT_UNIT);
+              System.out.println(LOTTO_FIFTH_MATCH_MESSAGE + lottoResultModel.getFiveMatch()+COUNT_UNIT);
+              System.out.println(LOTTO_FIFTH_BONUS_MATCH_MESSAGE + lottoResultModel.getFiveBonusMatch()+COUNT_UNIT);
+              System.out.println(LOTTO_SIXTH_MATCH_MESSAGE + lottoResultModel.getSixMatch()+COUNT_UNIT);
+              System.out.println(TOTAL_RETURN_RATE+  lottoResultModel.getTotalReturnRate() +PERCENT+SUFFIX_MESSAGE);
+          }
+      }
+      ```
+    * OutputView의 역할은 Controller에서 받은 Model 데이터를  클라이언트(사용자)에게 보여주는 역할입니다.
+    * 전달받은 Model 객체의 데이터가 옳은지 검증을 하지 않습니다.
+    * 값이 잘못된 값이더라도 클라이언트에게 그대로 보여주는 역할만 합니다.
+* ### Model
+  처리한 작업의 결과 데이터를 클라이언트에게 응답을 돌려주어야 하는데, 이때 클라이언트에게 응답으로 돌려주는 작업의 처리 결과 데이터를 Model이라 한다.
+    * Model의 경우 View에게 전달할 데이터를 담는 역할만을 하기 때문에 자체로 값의 검증을 하지 않습니다.
+    * 데이터의 검증은 Controller가 Service를 활용하여 검증합니다.
+
+## 2. 과연 Getter,Setter를 사용하면 객체의 캡슐화일까?
+
+객체에 선언된 변수나 메소드가 구분없이 외부에서 접근할 수 있다면 정상적인 객체로 보기 어렵다.  
+
+그렇기 때문에 내부 변수나 메소드를 접근제어자로 정보를 은닉하고 getter, setter 메소드를 활용하여 접근하는 방식을 사용합니다.  
+
+getter, setter 메소드를 통하여 데이터를 접근하는 방식이 과연 캡슐화이고 정보은닉일까?
+  
+아니라고 생각합니다.
+
+그렇다고  getter, setter 메소드를 사용하지 말자는 것이 아닙니다.
+
+그러면 어떻게 해야할까?
+
+객체에게 명확한 메세지를 보내면 됩니다.
+```java
+    public class LottoNumberModel {
+        private List<Lotto> lotto;
+        private int lottoQuantity;
+    
+        public LottoNumberModel(List<Lotto> lotto) {
+            this.lotto = lotto;
+            this.lottoQuantity = lotto.size();
+        }
+    
+        public int getLottoQuantity() {
+            return lottoQuantity;
+        }
+    
+        public void lottoNumberDisplay(){
+            for (int quantity = 1 ; quantity <= lottoQuantity ; quantity++){
+                lotto.get(quantity-1).lottoNumberDisplay();
+            }
+        }
+    }
+```
+위와 같이 LottoNumberModel 클래스는 private List<Lotto> lotto, private int lottoQuantity 두가지 변수를 private로 외부에서 접근하지 못하도록 하였습니다.  
+
+lotto,lottoQuantity의 변수에 값을 초기화 하기 위해서는 setLotto(),setLottoQuantity()로 변수를 초기화 했던 방식을 생성자를 통하여 변수를 초기화하도록 하였습니다.
+
+로또번호를 확인하기 위해서 getLotto()로 외부에서 lotto 변수에 접근하여 로또번호를 확인하는 방식을 객체에 lottoNumberDisplay() 메세지를 보내 로또번호를 확인 하도록 하였습니다.
+
+## 3. Enum을 어떻게 활용하지?
+요구사항에 **Java Enum을 적용한다.** 이있었고 내가 알고있는 활용방법은 상수를 관리하는 방법이었다.
+
+그리하여 Exception 메세지를 관리하는 것에 활용하였습니다. 
+
+이렇게 관리하게 되면 예외 메세지가 변경되어도 하나하나 변경하지 않고 LottoException에서 변경하는 것으로 코드에 유지보수가 더욱 편할 것 같다.
+```java
+public enum LottoException {
+    INPUT_NOT_DiGIT("[ERROR] 숫자로 입력해 주세요."),
+    INPUT_NOT_THOUSAND_UNITS("[ERROR] 구입금액을 1,000원 단위로 입력하세요."),
+    INPUT_NOT_SPLIT("[ERROR] 쉼표(,)를 기준으로 6자리를 입력해주세요."),
+    INPUT_NOT_RANGE("[ERROR] 1~45 사이의 숫자를 입력해 주세요."),
+    INPUT_DUPLICATION_NUMBER("[ERROR] 숫자가 중복됩니다."),
+    LOTTO_NUMBER_DUPLICATION("[ERROR] 로또 번호에 중복이 있습니다."),
+    LOTTO_NUMBER_NOT_SIX_DIGITS("[ERROR] 로또 번호가 6자리가 아닙니다.")
+    ;
+
+    final private String message;
+
+    LottoException(String message) {
+        this.message = message;
+    }
+    public String getMessage() {
+        return message;
+    }
+}
+```
+Enum의 또 다른 활용방법을 찾아보다가,
+
+Enum에는 상수만 관리 할 수 있는 줄만 알았는데 내부에 메서드를 구현할 수 있다는 것을 확인하였고, 활용해 보았습니다.
+
+```java
+public enum LottoRank {
+    NO_RANK(0, List.of(0L, 1L, 2L), "0"),
+    FIRST(1, List.of(6L), "2000000000"),
+    SECOND(2, List.of(5L), "30000000"),
+    THIRD(3, List.of(5L), "1500000"),
+    FOURTH(4, List.of(4L), "50000"),
+    FIFTH(5, List.of(3L), "5000");
+
+    private static final int WINNING_RANK_INDEX = 0;
+
+    private final int rank;
+    private final List<Long> matchCount;
+    private final String winningMoney;
+
+    LottoRank(int rank, List<Long> matchCount, String winningMoney) {
+        this.rank = rank;
+        this.matchCount = matchCount;
+        this.winningMoney = winningMoney;
+    }
+
+    public static LottoRank getLottoRank(long matchCount, boolean isMatchBonusNumber) {
+        List<LottoRank> lottoWinningRanks = Arrays.stream(LottoRank.values())
+                .filter(lottoWinningRank ->
+                        lottoWinningRank.getMatchCount()
+                                .contains(matchCount))
+                .collect(Collectors.toList());
+
+        if (lottoWinningRanks.contains(SECOND) && lottoWinningRanks.contains(THIRD)) {
+            fiveMatchOrFiveBonusNumberMatch(isMatchBonusNumber, lottoWinningRanks);
+        }
+
+        return lottoWinningRanks.get(WINNING_RANK_INDEX);
+    }
+}
+```
+if(matchCount==3) ...
+
+if(matchCount==4) ...
+
+if(matchCount==5) ...
+
+이런식으로 로또 당첨 등급을 정하는 조건문을 사용하였지만
+
+getLottoRank() 메서드를 구현하여 matchCount와 isMatchBonusNumber 값만 전달해주면 메서드에서 로또 당첨 등급을 반환하도록 활용하여 코드의 길이를 줄였습니다.
+
+## 4. [BigDecimal] 정확한 실수를 어떻게 표현하지?
+미션을 진행하다가 총 수익률을 구하는 메서드를 구현해야 했다.
+
+처음에는 Primitive 자료형을 사용하였다,
+
+테스트 과정에서 결과를 2000000로 예상 하였지만 결과는 2.0E7의 지수표현식이 나와 테스트에 통과하지 못하였습니다.
+
+발생한 이유는 Primitive 자료형의 크기보다 더 큰 수가 발생하여 지수표현식으로 나왔던 것이었습니다.
+
+이 문제를 해결하기 위해 BigDecimal 자료형을 사용하여 해결하였습니다.
+
+```java
+    public BigDecimal totalReturnRateCalculation (List<LottoRank> lottoRanks){
+        BigDecimal totalLottoPurchase = BigDecimal.ZERO;
+        BigDecimal totalWinningAmount = BigDecimal.ZERO;
+        BigDecimal totalReturnRate;
+
+        for (LottoRank lottoRank : lottoRanks){
+            totalLottoPurchase = totalLottoPurchase.add(BigDecimal.valueOf(1000)) ;
+            totalWinningAmount = totalWinningAmount.add(BigDecimal.valueOf(Double.valueOf(lottoRank.getWinningMoney())));
+        }
+
+        totalReturnRate = totalWinningAmount.divide(totalLottoPurchase);
+        totalReturnRate = totalReturnRate.multiply(BigDecimal.valueOf(100));
+        totalReturnRate = totalReturnRate.setScale(1, RoundingMode.HALF_UP);
+
+        return totalReturnRate;
+    }
+```
+BigDecimal 자료형의 연산은 내부 메서드로 하였습니다.
+* BigDecimal add(BigDecimal val) - 덧셈
+* BigDecimal subtract(BigDecimal val) - 뺄셈
+* BigDecimal multiply(BigDecimal val) - 곱셈
+* BigDecimal divide(BigDecimal val) - 나눗셈
+* BigDecimal remainder(BigDecimal val) - 나머지
+
+요구사항 중 **"수익률은 소수점 둘째 자리에서 반올림한다."** 만족하기 위해 
+
+BigDecimal setScale(int newScale, RoundingMode mode) 메소들 활용하여 소숫점 자리수와 반올림 정책을 지정하여 요구사항을 충족시켰다.
+
+BigDecimal 자료형을 지수표현식과 반올림 문제를 해결하기 위해 사용하였지만,
+
+BigDecimal 자료형의 **근본적인 사용 이유가** 궁금했다.
+
+부동 소수점을 이용해 실수 넘버를 저장하는타입인 float과 double은 소수점의 정밀도가 완벽하지 않는 다는 특징을 지니고 있고,
+
+그래서 소수점 이하의 수를 다룰 때 사칙연산 시 정확한 값을 출력하지 않게 된다.
+
+왜냐하면 내부적으로 수를 저장할 때 이진수의 근사치를 저장하기 때문이다.
+
+하지만 BigDecimal은 계산 속도는 double , float을 사용하는 경우보다 조금 느리지만 정밀한 결과를 보장한다는 것을 알 수 있었다.
+
+## 5. 테스트 코드는 왜 작성하는 가?
+테스트 코드를 알지 못하였을 때 항상 main 메서드를 호출하며 콘솔창에 System.out.println()를 활용하여 테스트를 진행 했었다.
+
+그렇게 되면 각각의 기능을 테스트 할 때마다 main 메서드를 변경해야 하고 테스트가 완료 되어도, 테스트 코드가 남지 않으니 시간이 지난 후에도 잘 동작했던 것인지 의문이 들 때가 있었다.
+
+이번 미션을 진행할때는 가장 작은 단위의 기능부터 테스트 코드로 테스트 하였고 각 기능마다 테스트 코드가 남아있어 시간이 지난 후에도 다시 테스트 코드를 돌려보며 의문을 해소하였다.
+
+이렇게 테스트코드를 작성하다가 문뜩 의문이 들었다.
+
+먼저 테스트 코드에서 기능을 만들고 적용하면 되지 않을까?
+
+찾아보니,
+
+**TDD(Test Driven Development) 테스트 주도 개발** 라는 개발방법론으로 제시되고 있었고, 많은 개발자들이 이러한 방식으로 개발하고 있다는 사실을 확인 하였다. 
+![img_3.png](img_3.png)
+
+다음 미션에서는 TDD 개발방법론을 더욱 구체적으로 공부하여 적용해보는 것을 목표로 잡았다.
+
+## ✏️ 학습내용
+* MVC 디자인 패턴 적용
+* 객체지향(OOP)의 캡슐화
+* Enum 사용 이유와 활용방법
+* BigDecimal 사용 이유와 활용방법
+* TDD 개발 방법론이란
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+   
+
+  
+
 

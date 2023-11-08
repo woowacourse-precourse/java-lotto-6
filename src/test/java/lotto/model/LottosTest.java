@@ -34,6 +34,6 @@ class LottosTest {
         Result expected = new Result(List.of(Ranking.FIRST, Ranking.FAIL, Ranking.FAIL));
         // then
         Assertions.assertThat(result.getTotalProfit()).isEqualTo(expected.getTotalProfit());
-        Assertions.assertThat(result.getNumOfRanks()).isEqualTo(expected.getNumOfRanks());
+        Assertions.assertThat(result.writeResultsOfRanks()).isEqualTo(expected.writeResultsOfRanks());
     }
 }

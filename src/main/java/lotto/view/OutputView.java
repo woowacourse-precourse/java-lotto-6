@@ -13,17 +13,9 @@ public class OutputView {
         System.out.println(resultOfPurchasedLottos);
     }
 
-    public static void printResult(Result result) {
+    public static void printResult(String resultsOfRanks, double totalProfit) {
         System.out.println(RESULT_OF_LOTTOS);
-        printWinningStatistic(result.writeResultsOfRanks());
-        printProfits(result.getTotalProfit());
-    }
-
-    private static void printWinningStatistic(String resultsOfRanks) {
         System.out.println(resultsOfRanks);
-    }
-
-    public static void printProfits(double totalProfit) {
         System.out.println(RESULT_OF_TOTAL_PROFIT_IS + String.format("%.1f", totalProfit) + END);
     }
 }

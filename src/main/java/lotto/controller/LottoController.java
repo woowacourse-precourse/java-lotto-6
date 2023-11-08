@@ -48,7 +48,7 @@ public class LottoController {
     public void checkResult() {
         WinningNumDTO winningNumDTO = readWinningNumsAndBonus();
         Result result = lottos.checkResult(winningNumDTO);
-        OutputView.printResult(result);
+        OutputView.printResult(result.writeResultsOfRanks(), result.getTotalProfit());
     }
 
     public WinningNumDTO readWinningNumsAndBonus() {

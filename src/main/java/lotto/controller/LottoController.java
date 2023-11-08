@@ -12,6 +12,18 @@ import lotto.view.OutputView;
 import java.util.List;
 
 public class LottoController {
+    private static LottoController lottoController = new LottoController();
+
+    private LottoController() {
+    }
+
+    public static LottoController getLottoController() {
+        if (lottoController == null) {
+            lottoController = new LottoController();
+        }
+        return lottoController;
+    }
+
     public void run() {
         ClientLottoData clientLottoData = new ClientLottoData();
         WinningLottoNumber winningLottoNumber = new WinningLottoNumber();
@@ -59,7 +71,8 @@ public class LottoController {
     public void setBonusNumber(WinningLottoNumber winningLottoNumber) {
         OutputView.askWriteBonusNumber();
         try {
-            int bonusNumber = LottoValidator.checkNumber(InputView.bonusNumber());
+            int bonusNumber = LottoValidator.checkBonusNumber(InputView.bonusNumber(),
+                    winningLottoNumber.getWinningNumberWithBonusNumber());
             winningLottoNumber.setBonusNumber(bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

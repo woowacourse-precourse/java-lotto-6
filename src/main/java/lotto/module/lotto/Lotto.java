@@ -1,4 +1,4 @@
-package lotto.module.domain.lotto;
+package lotto.module.lotto;
 
 import lotto.global.exception.LottoException;
 
@@ -11,6 +11,20 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
+    }
+
+    public boolean contains(final int number) {
+        return numbers.contains(number);
+    }
+
+    public int numbersContains(Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(this.numbers::contains)
+                .count();
     }
 
     private void validate(List<Integer> numbers) {
@@ -32,20 +46,6 @@ public class Lotto {
         if (distinctNumberCount != numbers.size()) {
             throw new IllegalArgumentException(LottoException.LOTTO_NUMBERS_DUPLICATE_VALIDATION.getDefaultMessage());
         }
-    }
-
-    public List<Integer> getNumbers() {
-        return new ArrayList<>(numbers);
-    }
-
-    public boolean contains(final int number) {
-        return numbers.contains(number);
-    }
-
-    public int valuesContains(Lotto lotto) {
-        return (int) lotto.getNumbers().stream()
-                .filter(this.numbers::contains)
-                .count();
     }
 
 }

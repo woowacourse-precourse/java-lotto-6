@@ -1,18 +1,18 @@
 package lotto.domain.result;
 
-import static lotto.Option.GameOption.FIVE_AND_BONUS_MONEY;
-import static lotto.Option.GameOption.FIVE_MONEY;
-import static lotto.Option.GameOption.FOUR_MONEY;
-import static lotto.Option.GameOption.LOTTO_PRICE;
-import static lotto.Option.GameOption.SIX_MONEY;
-import static lotto.Option.GameOption.THREE_MONEY;
+import static lotto.option.GameOption.FIVE_AND_BONUS_MONEY;
+import static lotto.option.GameOption.FIVE_MONEY;
+import static lotto.option.GameOption.FOUR_MONEY;
+import static lotto.option.GameOption.LOTTO_PRICE;
+import static lotto.option.GameOption.SIX_MONEY;
+import static lotto.option.GameOption.THREE_MONEY;
 
 import java.util.HashMap;
 import java.util.Map;
-import lotto.Option.EqualStatus;
 import lotto.domain.user.UserLotto;
 import lotto.domain.win.WinLotto;
 import lotto.generator.LottoResultGenerator;
+import lotto.option.EqualStatus;
 
 public class CompareMachine {
     private final Map<LottoResult, Integer> winStatus = new HashMap<>();

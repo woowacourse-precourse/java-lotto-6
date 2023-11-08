@@ -1,4 +1,4 @@
-package lotto.Option;
+package lotto.option;
 
 public enum GameOption {
     LOTTO_NUMBER_LENGTH(6),

@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.validator.system.domain.WinningCombinationValidator;
 import lotto.validator.system.domain.WinningLottoNumbersValidator;
 
 import java.util.Arrays;

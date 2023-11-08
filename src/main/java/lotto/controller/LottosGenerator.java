@@ -4,9 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class LottosGenerator {
     private static final int LOTTO_MAX_NUMBER =45;
     private static final int LOTTO_MIN_NUMBER = 1;

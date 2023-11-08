@@ -70,7 +70,7 @@
       * 범위를 벗어나는 경우
 
 ---
-## ▶ 클래스 목록
+## ▶ 주요 클래스 목록
 ### LottoSystem
 * 로또 시스템을 위와 같은 순서로 진행한다.
 ### OutputView
@@ -155,11 +155,11 @@
 ---
 ## ▶ 시스템 기능 흐름
 1. LottoSystemController 실행
-2. MoneyInputManager로 입력 받고 BudgetMoney 객체 생성(InputView)
-   * 유효성 검사(MoneyInputVaildator)
-3. Lotto들을 입력 받고(LottoGenerator) LottoTicket를 생성(InputView)
+2. 금액을 입력 받고 Budget 객체 생성(InputView)
+   * 유효성 검사(BudgetInputVaildator)
+3. Lotto들을 입력 받고(LottoGenerator) Lottos를 생성(InputView)
    * 유효성 검사(LottoVaildator)
-4. WinningNumbersGenerator로 당첨 번호와 보너스 번호 입력 받기(InputView)
+4. 당첨 번호와 보너스 번호 입력 받기(InputView)
    * 유효성 검사(WinningNumbersInputVaildator)
 5. StatisticCalculator로 당첨 통계를 계산한 뒤 화면에 표시(OutputView)
 6. ProfitCalculator로 수익률을 계산한 뒤 화면에 표시(OutputView)
@@ -203,17 +203,21 @@
 ---
 ## ▶ 요구 사항 목록
 - [x] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록
-- [ ] else 예약어를 쓰지 않는다
+- [x] else 예약어를 쓰지 않는다
   - if 조건절에서 값을 return하는 방식 
-  - [ ] switch/case도 허용하지 않는다.
-- [ ] Java Enum
-- [ ] 도메인 로직에 단위 테스트
+  - [x] switch/case도 허용하지 않는다.
+- [x] Java Enum
+- [x] 도메인 로직에 단위 테스트
   - 단, UI(System.out, System.in, Scanner) 로직은 제외
-- [ ] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현
+- [x] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현
   - while문 안에 if문이 있으면 들여쓰기는 2이다.
 ## ▶ 보완할 사항 목록
-- [ ] 패키지마다 목적이 정확한가
+- [x] 직관적인 변수명 사용
+- [ ] 패키지마다 정확한 목적
 - [ ] 객체 따로 생성
 - [ ] InputView와 OutputView의 역할을 확실히 하기
 - [ ] List로 추상화하기
-- [ ] Console.close() 까먹지말기
+- [ ] Console.close() 까먹지 말기
+- [ ] 구현 순서
+- [ ] 하드 코딩 X
+- [ ] private public protected 확인

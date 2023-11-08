@@ -17,6 +17,7 @@ public class WinningCombination {
     public List<Integer> getWinningNumbers() {
         return winningLottoNumbers.getNumbers();
     }
+
     public int getBonusNumber(){
         return bonusNumeber.getBonusNumber();
     }

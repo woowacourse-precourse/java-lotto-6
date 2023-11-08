@@ -19,11 +19,11 @@ public class Lottos {
     }
 
     public String getLottosForDisplay(){
-        StringBuilder sb = new StringBuilder();
+        StringBuilder stackLotto = new StringBuilder();
         for(Lotto lotto : lottos){
-            sb.append(lotto.toStringForDisplay()).append("\n");
+            stackLotto.append(lotto.toStringForDisplay()).append("\n");
         }
-        return sb.toString();
+        return stackLotto.toString();
     }
 
     public int getSize(){

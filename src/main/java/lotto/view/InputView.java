@@ -8,7 +8,6 @@ public class InputView {
     private final InputValidator inputValidator = new InputValidator();
 
     public String InputBudget(){
-        //문장 출력
         System.out.print(ProcessMessage.PLEASE_INPUT_BUDGET.getMessage());
         String budget = input();
         inputValidator.validateInputBudgetIsNumber(budget);

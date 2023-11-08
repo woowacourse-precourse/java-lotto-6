@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.BOOLEAN;
 
 class StatisticsGeneratorTest {
     @DisplayName("2개 이하 맞췄을 때 확인")

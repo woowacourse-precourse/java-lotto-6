@@ -1,12 +1,10 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.List;
 import java.util.Map;
 
 public class LottoSystem {
@@ -45,13 +43,12 @@ public class LottoSystem {
         StatisticsGenerator statisticsGenerator = new StatisticsGenerator(lottos,winningCombination);
         ProfitCalculator profitCalculator = new ProfitCalculator();
 
-        //lottos와 winningCombination을 통해 통계
+        //통계
         Map<String, Integer> statisticsMatchesCounts = statisticsGenerator.generateMatchesCount();
 
-        //budget과 winningmoney를 통해 수익률 계산
+        //수익률 계산
         float profitPercent = profitCalculator.calculateProfit(budget.getBudget(),statisticsMatchesCounts);
 
         outputView.displayResult(statisticsMatchesCounts,profitPercent);
     }
-
 }

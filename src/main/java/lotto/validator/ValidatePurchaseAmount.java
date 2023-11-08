@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import lotto.validator.errormessage.ErrorMessage;
+
 public class ValidatePurchaseAmount {
 
     static final int LOTTO_PRICE=1000;
@@ -14,7 +16,7 @@ public class ValidatePurchaseAmount {
 
     private static void validateDividableThousand(String buyerInput) {
         if(!canDivide(buyerInput)){
-            throw new IllegalArgumentException("[ERROR] 로또의 한장 가격은 1000원 입니다. 1000원 단위로 입력하십시오.");
+            throw new IllegalArgumentException(ErrorMessage.INDIVIDABLE_THOUSAND.getMessage());
         }
     }
 
@@ -25,19 +27,19 @@ public class ValidatePurchaseAmount {
     private static void validateSmallThanThousand(String buyerInput) {
         int purchaseAmount = Integer.parseInt(buyerInput);
         if(purchaseAmount<LOTTO_PRICE){
-            throw new IllegalArgumentException("[ERROR] 로또의 한장 가격은 1000원 입니다.");
+            throw new IllegalArgumentException(ErrorMessage.SMALL_THAN_THOUSAND.getMessage());
         }
     }
 
     private static void validateConvertable(String buyerInput) {
         if(!buyerInput.matches("-?\\d+")){
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER.getMessage());
         }
     }
 
     private static void validateEmpty(String buyerInput) {
         if(buyerInput.isBlank()){
-            throw new IllegalArgumentException("[ERROR] 값을 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage());
         }
     }
 }

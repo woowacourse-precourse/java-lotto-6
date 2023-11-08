@@ -1,6 +1,8 @@
 package lotto.validator;
 
 
+import lotto.validator.errormessage.ErrorMessage;
+
 import java.util.HashSet;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
@@ -22,7 +24,7 @@ public class ValidateWinningNumber {
         while(tokenizer.hasMoreTokens()){
              int number = Integer.parseInt(tokenizer.nextToken());
              if(hasDuplication(set,number)){
-                 throw new IllegalArgumentException("[ERROR] 증복된 숫자는 입력할 수 없습니다.");
+                 throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
              }
         }
 
@@ -38,7 +40,7 @@ public class ValidateWinningNumber {
     private static void validateNumerical(StringTokenizer tokenizer) {
         while(tokenizer.hasMoreTokens()){
             if(!isNumerical(tokenizer)){
-                throw new IllegalArgumentException("[ERROR] 입력값으로 올바른 숫자를 입력하십시오.");
+                throw new IllegalArgumentException(ErrorMessage.INCORRECT_NUMERICAL_INPUT.getMessage());
             }
         }
 
@@ -56,7 +58,7 @@ public class ValidateWinningNumber {
     }
     private static void validateSize(StringTokenizer tokenizer){
         if(isOutOfSize(tokenizer)){
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 6자리 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_SIZE.getMessage());
         }
     }
 
@@ -72,7 +74,7 @@ public class ValidateWinningNumber {
 
     private static void validateEmpty(String buyerInput) {
         if(buyerInput.isBlank()){
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력헤주세요.");
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage());
         }
     }
 
@@ -80,7 +82,7 @@ public class ValidateWinningNumber {
         while(tokenizer.hasMoreTokens()){
             int number = Integer.parseInt(tokenizer.nextToken());
             if(isOutOfRange(number))
-                throw new IllegalArgumentException("[ERROR] 숫자의 범위는 1~45 입니다.");
+                throw new IllegalArgumentException(ErrorMessage.NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
     private static boolean isOutOfRange(int number){

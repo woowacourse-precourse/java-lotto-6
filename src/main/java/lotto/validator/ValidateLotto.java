@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import lotto.validator.errormessage.ErrorMessage;
+
 import java.util.HashSet;
 import java.util.List;
 
@@ -12,7 +14,7 @@ public class ValidateLotto {
 
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_SIZE.getMessage());
         }
     }
 
@@ -20,7 +22,7 @@ public class ValidateLotto {
         HashSet set=new HashSet();
         for(Integer number:numbers){
             if(hasDuplication(set,number)){
-                throw new IllegalArgumentException("[ERROR] 중복된 로또번호가 있습니다.");
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
             }
         }
     }

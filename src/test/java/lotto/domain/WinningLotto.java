@@ -20,8 +20,8 @@ public class WinningLotto {
 
     private void validate(List<Integer> numbers, int number) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.toString());
-        }else if(1 > number && number > 45){
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_SHOULD_BE_SIX.toString());
+        }else if(number < 1 || 45 < number){
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE.toString());
         }
 
@@ -30,7 +30,7 @@ public class WinningLotto {
                 checkDuplicatedError(i);
             }
 
-            if (1 > numbers.get(i) && numbers.get(i) > 45){
+            if (numbers.get(i)<1  || 45 < numbers.get(i)){
                 throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.toString());
             }else if (number == numbers.get(i)){
                 throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATION.toString());

@@ -11,7 +11,7 @@ public class Money {
 
         public Money(int money) {
             this.money = money;
-
+            checkmoney();
         }
 
         public void checkmoney() {

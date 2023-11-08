@@ -33,7 +33,6 @@ public class Lotto {
         }
     }
 
-
     public void checkDuplicatedError(int firstfor) {
         for(int j = 0; j < numbers.size(); j++) {
             if(firstfor == j){

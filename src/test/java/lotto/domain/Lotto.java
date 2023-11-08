@@ -26,7 +26,7 @@ public class Lotto {
                 checkDuplicatedError(i);
             }
 
-            if (1 > numbers.get(i) && numbers.get(i) > 45){
+            if (1 > numbers.get(i) || numbers.get(i) > 45){
                 throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.toString());
             }
         }

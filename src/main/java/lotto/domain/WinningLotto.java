@@ -30,7 +30,6 @@ public class WinningLotto {
             for(int j = 0; j < numbers.size(); j++) {
                 checkDuplicatedError(i);
             }
-
             if (1 > numbers.get(i) && numbers.get(i) > 45){
                 throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.toString());
             }else if (number == numbers.get(i)){

@@ -10,6 +10,7 @@ import java.util.List;
 public class LottoGame {
     public void run() {
         Money money = inputUserMoney();
+        Lotteries lotteries = buyLotteriesWithMoney(money);
     private Money inputUserMoney() {
                 String purchaseAmount = Input.purchaseAmount();
 
@@ -20,4 +21,14 @@ public class LottoGame {
                 return new Money(money);
     }
 
+    private Lotteries buyLotteriesWithMoney(Money money) {
+                int lottoCount = money.calculateLottoCount();
+                Output.printCountOfLotteries(lottoCount);
+
+                List<Lotto> lottoList = LottoFactory.newLottoList(lottoCount);
+                Lotteries lotteries = new Lotteries(lottoList);
+                Output.printAllLotteries(lotteries);
+
+                return lotteries;
+    }
     }

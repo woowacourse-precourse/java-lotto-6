@@ -27,9 +27,11 @@ class LotteriesTest {
                 new Lotto(List.of(1, 3, 5, 14, 22, 45))
         ));
         Lotto lotto = new Lotto(numbers);
+        LottoNumber bonusLottoNumber = LottoNumber.valueOf(bonusNumber);
+        UserLotto userLotto = UserLotto.from(lotto, bonusLottoNumber);
 
         // when
-        BigDecimal actual = lotteries.calculateTotalWinningPrice(lotto, bonusNumber);
+        BigDecimal actual = lotteries.calculateTotalWinningPrice(userLotto);
 
         // then
         assertEquals(expected, actual);

@@ -29,9 +29,11 @@ class ProfitTest {
         ));
         Profit profit = Profit.from(money, lotteries);
         Lotto lotto = new Lotto(numbers);
+        LottoNumber bonusLottoNumber = LottoNumber.valueOf(bonusNumber);
+        UserLotto userLotto = UserLotto.from(lotto, bonusLottoNumber);
 
         // when
-        BigDecimal actual = profit.calculate(lotto, bonusNumber);
+        BigDecimal actual = profit.calculate(userLotto);
 
         // then
         assertEquals(expected, actual);

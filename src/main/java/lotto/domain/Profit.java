@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import lotto.Lotto;
 
 public class Profit {
     private static final int PERCENT_SCALE = 100;
@@ -20,8 +19,8 @@ public class Profit {
         return new Profit(money, lotteries);
     }
 
-    public BigDecimal calculate(final Lotto lotto, final int bonusNumber) {
-        BigDecimal winningPrice = lotteries.calculateTotalWinningPrice(lotto, bonusNumber);
+    public BigDecimal calculate(final UserLotto userLotto) {
+        BigDecimal winningPrice = lotteries.calculateTotalWinningPrice(userLotto);
         BigDecimal amount = money.getAmount();
 
         return winningPrice.multiply(BigDecimal.valueOf(PERCENT_SCALE))

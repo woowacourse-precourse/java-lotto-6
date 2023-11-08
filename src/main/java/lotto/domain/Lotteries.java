@@ -20,9 +20,9 @@ public class Lotteries {
         return lotteries;
     }
 
-    public BigDecimal calculateTotalWinningPrice(final Lotto other, final int bonusNumber) {
+    public BigDecimal calculateTotalWinningPrice(final UserLotto userLotto) {
         int sum = lotteries.stream()
-                .map(lotto -> lotto.calculateRank(other, bonusNumber))
+                .map(userLotto::calculateRank)
                 .mapToInt(Rank::getPrice)
                 .sum();
         return BigDecimal.valueOf(sum);

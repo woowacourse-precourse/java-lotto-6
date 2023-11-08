@@ -1,7 +1,7 @@
 package lotto;
 
 import java.util.List;
-import lotto.domain.Rank;
+import lotto.domain.LottoNumber;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -50,18 +50,15 @@ public class Lotto {
                 .anyMatch(number -> number.equals(other));
     }
 
-    private long compare(final Lotto other) {
+    public long compare(final Lotto other) {
         return numbers.stream()
                 .filter(other::contains)
                 .count();
     }
 
-    public Rank calculateRank(final Lotto other, final int bonusNumber) {
-        if (other.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
-        }
-        long matchCount = compare(other);
-        boolean isBonus = contains(bonusNumber);
-        return Rank.findBy(matchCount, isBonus);
+    public boolean contains(final LottoNumber other) {
+        return numbers.stream()
+                .map(LottoNumber::valueOf)
+                .anyMatch(lottoNumber -> lottoNumber.equals(other));
     }
 }

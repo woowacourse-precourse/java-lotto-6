@@ -12,7 +12,7 @@ public class LottoResult {
     private final HashMap<LottoRanking, Integer> results;
     private final PurchaseAmount purchaseAmount;
 
-    public LottoResult(HashMap<LottoRanking, Integer> results,PurchaseAmount purchaseAmount) {
+    public LottoResult(HashMap<LottoRanking, Integer> results, PurchaseAmount purchaseAmount) {
         this.results = results;
         this.purchaseAmount = purchaseAmount;
     }
@@ -26,7 +26,7 @@ public class LottoResult {
             results.put(ranking, results.getOrDefault(ranking, DEFAULT_VALUE) + ADD_COUNT);
         }
 
-        return new LottoResult(results,purchaseAmount);
+        return new LottoResult(results, purchaseAmount);
     }
 
     public Integer getResult(LottoRanking key) {

@@ -9,15 +9,12 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         //가격 입력
-        System.out.println("구입금액을 입력해 주세요.");
-        int amount = Integer.parseInt(Console.readLine());
+        int amount = CheckAmountLotto();
         BuyLotto(amount);
 
     }
 
     public static void BuyLotto(int amountLotto) {
-        CheckAmountLotto(amountLotto);
-
         int realAmount = amountLotto / 1000;
         System.out.println("\n" + realAmount+ "개를 구매했습니다.");
 
@@ -28,14 +25,27 @@ public class Application {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45,6);
             Lotto lottoInstance = new Lotto(numbers);
             System.out.println(numbers);
-
             lottoList.add(lottoInstance);
         }
     }
 
-    public static void CheckAmountLotto(int amountLotto) {
-        if(amountLotto % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해야 합니다.");
+    public static int CheckAmountLotto() {
+        boolean validInput = false;
+        int amountLotto = 0;
+
+        while(!validInput) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                amountLotto = Integer.parseInt(Console.readLine());
+                if(amountLotto % 1000 != 0) {
+                    throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해야 합니다.");
+                }
+
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println("\n[ERROR] 구입 금액은 1000원 단위여야 합니다.");
+            }
         }
+        return amountLotto;
     }
 }

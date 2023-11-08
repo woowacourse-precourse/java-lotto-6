@@ -54,7 +54,7 @@ public class Input {
 
     public List<Integer> readInputWinNumbers() {
         String rawNumbers = Console.readLine();
-        return convertedWinNumber(rawNumbers); // 범위확인 넣을것
+        return convertedWinNumber(rawNumbers);
     }
 
     private List<Integer> convertedWinNumber(String rawNumbers) {
@@ -82,13 +82,13 @@ public class Input {
 
     private void checkNumberRange(int tempNumber) {
         if (!(tempNumber>=1 && tempNumber<=45)) {
-            throw new IllegalArgumentException("1부터 45까지의 정수를 입력해 주세요");
+            throw new IllegalArgumentException("1부터 45까지의 정수를 입력해 주세요"); // 값이 하드코딩되어있음
         }
     }
 
     private void checkWinNumberSize(List<Integer> winNumbers) {
         if (!(winNumbers.size() == 6)) {
-            throw new IllegalArgumentException("6개의 정수를 입력해주세요");
+            throw new IllegalArgumentException("6개의 정수를 입력해주세요"); // 하드코딩해놧음 수정필요
         }
     }
 

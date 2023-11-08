@@ -10,34 +10,36 @@ public class Controller {
     Converter converter = new Converter();
 
     public void run() {
-        List<List<Integer>> createdGames;
-        List<Integer> winNumbers;
         List<Integer> wins = new ArrayList<>(List.of(0,0,0,0,0,0));
-        int bonusNumber;
 
-        Messages.priceMessage();
+        int price = priceRequest();
 
-        int price = input.inputPrice();
-        int ticket = price / 1000;
-
-        Messages.howManyBuy(ticket);
-
-        createdGames = generator.createGames(ticket);
+        Messages.howManyBuy(price/1000);
+        List<List<Integer>> createdGames = generator.createGames(price/1000);
         Messages.winNumberMessage();
-        winNumbers = input.inputWinNumbers();
+        List<Integer> winNumbers = input.inputWinNumbers();
         Messages.bonusNumberMessage();
-        bonusNumber = input.inputBonusNumber();
+        int bonusNumber = input.inputBonusNumber();
 
-        for (List<Integer> createdNumbers : createdGames) {
-            int place = judgeNumber(winNumbers, bonusNumber, createdNumbers);
-            wins.set(place, wins.get(place) + 1);
-        }
+        wins = judgeWins(winNumbers, bonusNumber, createdGames, wins);
 
         Messages.winsMessage(wins);
         int prize = converter.carculateWinPrize(wins);
         double earn = ((double) prize / price) * 100;
         Messages.prizeMessage(prize,earn);
+    }
 
+    public int priceRequest () {
+        Messages.priceMessage();
+        return input.inputPrice();
+    }
+
+    public List<Integer> judgeWins(List<Integer> winNumbers, int bonusNumber, List<List<Integer>> createdGames, List<Integer> wins) {
+        for (List<Integer> createdNumbers : createdGames) {
+            int place = judgeNumber(winNumbers, bonusNumber, createdNumbers);
+            wins.set(place, wins.get(place) + 1);
+        }
+        return wins;
     }
 
     public int judgeNumber(List<Integer> winNumber, int bonusNumber, List<Integer> createdNumber) {

@@ -57,6 +57,10 @@ check new branch
 - checkLotto()
   - input : null / return : void
   - 로또 개수 만큼 for문 진행하여 맞춘 개수에 따라 correct 값 증가
+- result()
+  - input : null / return : double
+  - checkLotto 실행 후 correct 값이 변경
+  - correct 값을 통해 수익률 계산 
   
 ## (Class) Lotto
 - numbers(List<Integer>, 로또 번호)

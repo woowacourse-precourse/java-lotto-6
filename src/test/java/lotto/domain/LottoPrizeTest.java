@@ -11,7 +11,7 @@ class LottoPrizeTest {
     @DisplayName("getMatchingNumbers() 메서드 테스트")
     void testMatchingNumbers() {
         assertEquals(6, LottoPrize.FIRST.getMatchingNumbers());
-        assertEquals(5, LottoPrize.SECOND.getMatchingNumbers());
+        assertEquals(6, LottoPrize.SECOND.getMatchingNumbers());
         assertEquals(5, LottoPrize.THIRD.getMatchingNumbers());
         assertEquals(4, LottoPrize.FOURTH.getMatchingNumbers());
         assertEquals(3, LottoPrize.FIFTH.getMatchingNumbers());

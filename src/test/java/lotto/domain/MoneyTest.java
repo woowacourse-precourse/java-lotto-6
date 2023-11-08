@@ -36,6 +36,6 @@ class MoneyTest {
     @Test
     void 입력이_정상인_경우() {
         Money money = new Money("2000");
-        assertEquals(2000, money.amount);
+        assertEquals(2000, money.getAmount());
     }
 }

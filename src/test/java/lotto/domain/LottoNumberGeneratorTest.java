@@ -27,7 +27,7 @@ class LottoNumberGeneratorTest {
         Lotto lotto = generator.generateLotto();
 
         for (int number : lotto.getNumbers()) {
-            assertTrue( Lotto.MIN_VALUE<= number && number <= Lotto.MAX_VALUE );
+            assertTrue(Lotto.MIN_VALUE <= number && number <= Lotto.MAX_VALUE);
         }
     }
 
@@ -39,7 +39,7 @@ class LottoNumberGeneratorTest {
 
         List<Integer> sortedNumbers = new ArrayList<>(lotto.getNumbers());
         Collections.sort(sortedNumbers);
-        assertEquals(sortedNumbers , lotto.getNumbers());
+        assertEquals(sortedNumbers, lotto.getNumbers());
     }
 
     @Test
@@ -47,9 +47,9 @@ class LottoNumberGeneratorTest {
     void testGenerateLotto() {
         LottoNumberGenerator generator = new LottoNumberGenerator();
         Lotto lotto = generator.generateLotto();
-        try{
+        try {
             lotto.validate(lotto.getNumbers());
-        }catch (Exception e){
+        } catch (Exception e) {
             fail("에러가 발생하면 안됩니다");
         }
 

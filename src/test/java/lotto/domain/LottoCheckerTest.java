@@ -21,7 +21,7 @@ class LottoCheckerTest {
     @DisplayName("보너스 번호가 있을 떄, 당첨 번호와 로또 번호의 일치 개수 테스트")
     void testCountMatchingNumbers2() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoAnswer lottoAnswer = new LottoAnswer("4,5,6,7,8,9",1);
+        LottoAnswer lottoAnswer = new LottoAnswer("4,5,6,7,8,9", 1);
         assertEquals(4, LottoChecker.countMatchingNumbers(lotto, lottoAnswer));
     }
 

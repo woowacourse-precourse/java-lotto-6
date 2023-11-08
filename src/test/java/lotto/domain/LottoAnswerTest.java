@@ -67,8 +67,8 @@ class LottoAnswerTest {
 
     @Test
     @DisplayName("BonusNumber 가 중복될 경우 에러가 발생한다.")
-    void testIsUnique(){
-        assertThatThrownBy(() -> new LottoAnswer("1,2,3,4,5,6",6))
+    void testIsUnique() {
+        assertThatThrownBy(() -> new LottoAnswer("1,2,3,4,5,6", 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

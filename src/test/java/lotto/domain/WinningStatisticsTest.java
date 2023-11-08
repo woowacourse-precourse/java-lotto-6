@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.io.Output;
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -24,30 +25,28 @@ class WinningStatisticsTest {
                 new Lotto(List.of(2, 3, 4, 5, 6, 7)),
                 new Lotto(List.of(1, 2, 3, 4, 5, 6))
         );
-
-        this.winningStatistics = new WinningStatistics(new LottoStore(lottoStore), lottoAnswer);
+        Money money = new Money("6000");
+        this.winningStatistics = new WinningStatistics(new LottoStore(lottoStore), lottoAnswer, money);
     }
 
     @Test
     @DisplayName("당첨된 등수가 몇 개인지 확인 하는 테스트")
     void testGetMatchingResult() {
         Map<LottoPrize, Integer> result = winningStatistics.getMatchingResult();
-        assertEquals(1,result.getOrDefault(LottoPrize.FIRST,0));
-        assertEquals(1,result.getOrDefault(LottoPrize.SECOND,0));
-        assertEquals(1,result.getOrDefault(LottoPrize.THIRD,0));
-        assertEquals(1,result.getOrDefault(LottoPrize.FOURTH,0));
-        assertEquals(2,result.getOrDefault(LottoPrize.FIFTH,0));
+        assertEquals(1, result.getOrDefault(LottoPrize.FIRST, 0));
+        assertEquals(1, result.getOrDefault(LottoPrize.SECOND, 0));
+        assertEquals(1, result.getOrDefault(LottoPrize.THIRD, 0));
+        assertEquals(1, result.getOrDefault(LottoPrize.FOURTH, 0));
+        assertEquals(2, result.getOrDefault(LottoPrize.FIFTH, 0));
     }
 
     @Test
     @DisplayName("수익률 확인 테스트")
     void getReturnRate() {
-        Money money = new Money("6000");
-        double returnRate = winningStatistics.getReturnRate(money);
+        double returnRate = winningStatistics.getReturnRate();
         long totalPrize = winningStatistics.getTotalPrize();
-
-        double expectedValue = Math.round(((double) totalPrize/ money.getAmount()) * 100 * 10.0)/10.0;
-        assertEquals(expectedValue , returnRate);
+        double expectedValue = Math.round(((double) totalPrize / winningStatistics.getMoney().getAmount()) * 100 * 10.0) / 10.0;
+        assertEquals(expectedValue, returnRate);
     }
 
     @Test

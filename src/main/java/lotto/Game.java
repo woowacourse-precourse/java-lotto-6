@@ -11,11 +11,13 @@ public class Game {
     int purchaseAmount;
     Lottos lottos;
     LotteryNumbers lotteryNumbers;
+    int[] rankCounts = new int[6];
     
     void play() {
         calculateNumberOfPurchase();
         showPurchasedLottos();
         setLotteryNumbers();
+        calculateRateOfReturn();
     }
     
     void calculateNumberOfPurchase() {
@@ -120,6 +122,13 @@ public class Game {
     void checkDuplication(int number, List<Integer> winningNumbers) {
         if (winningNumbers.contains(number)) {
             throw new IllegalArgumentException("[Error] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
+    
+    void calculateRateOfReturn() {
+        for (Lotto lotto : lottos.lottos) {
+            int matchedCount = lotto.matchedCount(lotteryNumbers.winningNumbers);
+            //System.out.println(matchedCount);
         }
     }
 }

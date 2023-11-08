@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -19,5 +20,11 @@ public class Lotto {
     @Override
     public String toString() {
         return numbers.toString();
-    }   
+    }
+    
+    int matchedCount(List<Integer> numbers) {
+        List<Integer> copyOfNumbers = new ArrayList<Integer>(numbers);
+        copyOfNumbers.retainAll(this.numbers);
+        return copyOfNumbers.size();
+    }
 }

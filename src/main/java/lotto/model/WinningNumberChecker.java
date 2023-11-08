@@ -1,6 +1,6 @@
 package lotto.model;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -11,17 +11,17 @@ public class WinningNumberChecker {
     private final List<Integer> winningNumber;
     private final int bonus;
     private final Lottos lottos;
-    private Map<Rank, Integer> map = new HashMap<>();
+    private Map<Rank, Integer> rankScore;
 
     public WinningNumberChecker(List<Integer> winningNumber, int bonus, Lottos lottos) {
         this.winningNumber = winningNumber;
         this.bonus = bonus;
         this.lottos = lottos;
-        setMap();
+        initRankScore();
     }
 
     public Map<Rank, Integer> getWinningRankResult() {
-        return map;
+        return rankScore;
     }
 
     public void checkWinningRankResult() {
@@ -32,30 +32,29 @@ public class WinningNumberChecker {
     }
 
     private void checkWinningRank(Lotto lotto) {
-        int rank = checkWinningNumbers(lotto);
-        if (rank == Rank.FIRST.getMatchNumberCount()) {
-            map.compute(Rank.FIRST, (k, v) -> v + 1);
+        int matchNumber = checkWinningNumbers(lotto);
+        if (matchNumber == Rank.FIRST.getMatchNumberCount()) {
+            rankScore.compute(Rank.FIRST, (k, v) -> v + 1);
         }
-        if (rank == Rank.SECOND.getMatchNumberCount() && isBonusCheck(lotto)) {
-            map.compute(Rank.SECOND, (k, v) -> v + 1);
+        if (matchNumber == Rank.SECOND.getMatchNumberCount() && isBonusCheck(lotto)) {
+            rankScore.compute(Rank.SECOND, (k, v) -> v + 1);
         }
-        if (rank == Rank.THIRD.getMatchNumberCount() && !isBonusCheck(lotto)) {
-            map.compute(Rank.THIRD, (k, v) -> v + 1);
+        if (matchNumber == Rank.THIRD.getMatchNumberCount() && !isBonusCheck(lotto)) {
+            rankScore.compute(Rank.THIRD, (k, v) -> v + 1);
         }
-        if (rank == Rank.FOURTH.getMatchNumberCount()) {
-            map.compute(Rank.FOURTH, (k, v) -> v + 1);
+        if (matchNumber == Rank.FOURTH.getMatchNumberCount()) {
+            rankScore.compute(Rank.FOURTH, (k, v) -> v + 1);
         }
-        if (rank == Rank.FIFTH.getMatchNumberCount()) {
-            map.compute(Rank.FIFTH, (k, v) -> v + 1);
+        if (matchNumber == Rank.FIFTH.getMatchNumberCount()) {
+            rankScore.compute(Rank.FIFTH, (k, v) -> v + 1);
         }
     }
 
-    private void setMap() {
-        map.put(Rank.FIRST, 0);
-        map.put(Rank.SECOND, 0);
-        map.put(Rank.THIRD, 0);
-        map.put(Rank.FOURTH, 0);
-        map.put(Rank.FIFTH, 0);
+    private void initRankScore() {
+        rankScore = new EnumMap<>(Rank.class);
+        for (Rank rank : Rank.values()) {
+            rankScore.put(rank, 0);
+        }
     }
 
     private boolean isBonusCheck(Lotto lotto) {

@@ -13,5 +13,5 @@ public interface ViewInputService {
 
     void printMessageBonusNumber();
 
-    int inputBonusNumber();
+    int inputBonusNumber(List<Integer> winningNumbers);
 }

@@ -31,7 +31,7 @@ public class LottoMachine {
         // 당첨 번호 입력
         setWinningNumbers(viewController.inputWinnerNumbers());
         // 보너스 번호 입력 및 저장
-        setBonusNumber(viewController.inputBonusNumber());
+        setBonusNumber(viewController.inputBonusNumber(getWinningNumbers()));
         // 번호 비교
 
         // 당첨 통계 생성

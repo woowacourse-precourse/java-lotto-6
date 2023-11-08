@@ -50,12 +50,12 @@ public class ViewInputServiceImpl implements ViewInputService {
     }
 
     @Override
-    public int inputBonusNumber() {
+    public int inputBonusNumber(List<Integer> winningNumbers) {
         try {
-            return Integer.parseInt(InputValidator.validInputBonus(readLine()));
+            return Integer.parseInt(InputValidator.validInputBonus(winningNumbers, readLine()));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputBonusNumber();
+            return inputBonusNumber(winningNumbers);
         }
     }
 }

@@ -27,12 +27,20 @@ public class InputValidator {
         throw new IllegalArgumentException(sb.toString());
     }
 
-    public static String validInputBonus(String input) {
+    public static String validInputBonus(List<Integer> winningNumbers, String input) {
         initStringBuilder();
-        if (isNumberFormat(input) && isRange(input)) {
+        if (isNumberFormat(input) && isContain(winningNumbers, input) && isRange(input)) {
             return input;
         }
         throw new IllegalArgumentException(sb.toString());
+    }
+
+    public static boolean isContain(List<Integer> winningNumbers, String input) {
+        if (winningNumbers.contains(Integer.parseInt(input))) {
+            sb.append(ErrorMessage.ERROR_WINNING_CONTAIN_BONUS);
+            return false;
+        }
+        return true;
     }
 
     public static boolean isRange(String input) {

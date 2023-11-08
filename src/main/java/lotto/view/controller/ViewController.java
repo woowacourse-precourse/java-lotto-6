@@ -34,10 +34,10 @@ public class ViewController {
         return viewInputService.inputWinningNumbers();
     }
 
-    public int inputBonusNumber() {
+    public int inputBonusNumber(List<Integer> winningNumbers) {
         // 보너스 번호 입력 요구 메세지
         viewInputService.printMessageBonusNumber();
         // 보너스 번호 입력
-        return viewInputService.inputBonusNumber();
+        return viewInputService.inputBonusNumber(winningNumbers);
     }
 }

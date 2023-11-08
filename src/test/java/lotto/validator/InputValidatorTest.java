@@ -3,6 +3,9 @@ package lotto.validator;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 class InputValidatorTest {
@@ -21,10 +24,12 @@ class InputValidatorTest {
 
     @Test
     void validInputBonusTest() {
-        assertThat(InputValidator.validInputBonus("45")).isEqualTo("45");
-        assertThatThrownBy(() -> InputValidator.validInputBonus("46")).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> InputValidator.validInputBonus("1,45")).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> InputValidator.validInputBonus("[1,45")).isInstanceOf(IllegalArgumentException.class);
+        String input = "1,2,3,4,5,6";
+        List<Integer> winningNumbers = Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
+        assertThat(InputValidator.validInputBonus(winningNumbers, "45")).isEqualTo("45");
+        assertThatThrownBy(() -> InputValidator.validInputBonus(winningNumbers, "46")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> InputValidator.validInputBonus(winningNumbers, "1,45")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> InputValidator.validInputBonus(winningNumbers, "[1,45")).isInstanceOf(IllegalArgumentException.class);
     }
 
 

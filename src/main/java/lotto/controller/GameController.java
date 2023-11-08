@@ -44,7 +44,7 @@ public class GameController {
         WinningStatistics statistics =
                 gameService.getWinningStatistics(winningLotto, bonusNumber, receipt.purchasedLottos());
 
-        printWinningStatistics(statistics.getSortedStatistics());
+        printWinningStatistics(statistics.sortedByWinningMoney());
         printRateOfReturn(statistics.getTotalWinningMoney(), receipt.purchaseMoney());
     }
 

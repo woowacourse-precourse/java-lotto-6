@@ -45,7 +45,7 @@ public final class WinningStatistics {
         return winningMoney.multiply(winningCount);
     }
 
-    public Map<WinningResult, Integer> getSortedStatistics() {
+    public Map<WinningResult, Integer> sortedByWinningMoney() {
         Map<WinningResult, Integer> sortedStatistics = new LinkedHashMap<>();
 
         statistics.keySet().stream()

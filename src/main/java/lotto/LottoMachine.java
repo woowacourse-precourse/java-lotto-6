@@ -22,10 +22,10 @@ public class LottoMachine {
             }
             this.count = Integer.parseInt(input)/1000;
         } catch (NumberFormatException e){
-            System.out.println(("[Error] 숫자를 입력해줘야 합니다."));
+            System.out.println(("[ERROR] 숫자를 입력해줘야 합니다."));
             getMoney();
         } catch(IllegalArgumentException e){
-            System.out.println(("[Error] 1000원 단위로 나누어 떨어져야 합니다."));
+            System.out.println(("[ERROR] 1000원 단위로 나누어 떨어져야 합니다."));
             getMoney();
         }
     }
@@ -72,9 +72,12 @@ public class LottoMachine {
         String input = Console.readLine();
         try{
             validateBonus(input);
+            if(1 > Integer.parseInt(input) || Integer.parseInt(input) > 45){
+                throw new IllegalArgumentException();
+            }
             bonus = Integer.parseInt(input);
         }catch (IllegalArgumentException e) {
-            System.out.println("[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             addBonus();
         }catch (IllegalStateException e){
             addBonus();
@@ -82,21 +85,21 @@ public class LottoMachine {
     }
     public void validateBonus(String input){
         if(win.contains(Integer.parseInt(input))){
-            System.out.println("[Error] 중복 되지 않게 입력해주세요.");
+            System.out.println("[ERROR] 중복 되지 않게 입력해주세요.");
             throw new IllegalStateException();
         }
     }
 
     public void validateLength(String input){
         if(input.split(",").length !=6) {
-            System.out.println("[Error] 6개의 로또 번호를 입력해 주세요.");
+            System.out.println("[ERROR] 6개의 로또 번호를 입력해 주세요.");
             throw new ArrayIndexOutOfBoundsException();
         }
     }
     public void validateRange(String input){
         for(String i : input.split(",")){
             if(1 > Integer.parseInt(i) || Integer.parseInt(i) > 45){
-                System.out.println("[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
                 throw new IllegalArgumentException();
             }
         }
@@ -108,15 +111,16 @@ public class LottoMachine {
             set.add(i);
         }
         if(set.size() !=6){
-            System.out.println("[Error] 중복된 번호가 없게 입력해 주세요.");
+            System.out.println("[ERROR] 중복된 번호가 없게 입력해 주세요.");
             throw new IllegalStateException();
         }
     }
 
     public void result(){
-        int[] winner = new int[win.size()+1];
+        int[] winner = new int[win.size()+2];
         int bonusWinner = 0;
         for(Lotto k : lotto){
+
             winner[k.check(win, bonus)]++;
         }
         drawResult(winner, bonusWinner);
@@ -127,8 +131,9 @@ public class LottoMachine {
         System.out.println("3개 일치 (5,000원) - " + winner[3] + "개");
         System.out.println("4개 일치 (50,000원) - " + winner[2] + "개");
         System.out.println("5개 일치 (1,500,000원) - " + winner[1] + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winner[6] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winner[7] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + winner[0] + "개");
-        System.out.println("총 수익률은 " + count*1000 + "입니다.");
+        double temp = (2000000000*winner[0] + 30000000*winner[7] +1500000*winner[1]+50000*winner[2] + 5000*winner[3])/(count*1000.0)*100;
+        System.out.println("총 수익률은 " + String.format("%.1f",temp) + "%입니다.");
     }
 }

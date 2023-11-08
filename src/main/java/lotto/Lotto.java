@@ -9,7 +9,6 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-        sortNumber();
     }
 
     private void validate(List<Integer> numbers) {
@@ -32,7 +31,7 @@ public class Lotto {
     }
 
     private void sortNumber(){
-        Collections.sort(numbers);
+        Collections.sort(this.numbers);
     }
 
     public int check(List<Integer> answer, int bonus){
@@ -43,7 +42,7 @@ public class Lotto {
             }
         }
         if(count == 5 && numbers.contains(bonus)){
-            return answer.size();
+            return 7;
         }
 
         return answer.size() - count;

@@ -15,8 +15,28 @@ public class Application {
         Lotto correctNumber = readInputCorrectNumber();
         int bonusNumber = readBonusNumber(correctNumber);
         checkLottoResult(lottoResult, lottoList, correctNumber, bonusNumber);
+        printOutPut(lottoResult, inputTry);
     }
+    private static void printOutPut(HashMap<LottoGrade, Integer> lottoResult, int inputTry) {
+        double sum = 0;
+        for (LottoGrade rank : LottoGrade.values()) {
+            showSingleRankResult(lottoResult, rank);
+            sum +=(Integer.parseInt(rank.getPrice().replaceAll(",","")) * lottoResult.get(rank));
+        }
+        System.out.print("총 수익률은 "+ (sum/ inputTry /10) +"%입니다.");
+    }
+    private static void showSingleRankResult(Map<LottoGrade, Integer> map, LottoGrade rank) {
+        if (rank.getCorrect()<3) {
+            return;
+        }
+        if (rank.equals(LottoGrade.second)) {
+            System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n",
+                    rank.getCorrect(), rank.getPrice(), map.get(rank));
+            return;
+        }
+        System.out.printf("%d개 일치 (%s원) - %d개\n", rank.getCorrect(), rank.getPrice(), map.get(rank));
 
+    }
     private static void checkLottoResult(HashMap<LottoGrade, Integer> lottoResult, List<Lotto> lottoList, Lotto correctNumber, int bonusNumber) {
         for (Lotto userlotto : lottoList) {
             int correct = Lotto.countSameElements(userlotto, correctNumber);

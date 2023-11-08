@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.LottoGrade.fifth;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
@@ -36,11 +38,15 @@ class LottoTest {
                         .filter(lotto -> lotto.getCorrect()==3).toList();
         LottoGrade lottoGrade=lottoCalculatorList.get(0);
         System.out.println(lottoGrade.getName());
-        /*Arrays.stream(LottoGrade.values())
-                .filter(lotto -> 5 == lotto.getCorrect())
-                .forEach(lotto -> System.out.println(lotto.getName()));*/
-/*        LottoCalculator test = LottoCalculator.fifth;
-        assertThat(test.getPrice()).isEqualTo(5000);
-        assertThat(test.getName()).isEqualTo("5등");*/
+        assertThat(lottoGrade).isEqualTo(fifth);
+        assertThat(lottoGrade.getName()).isEqualTo("5등");
+    }
+    @DisplayName("구매횟수 테스트")
+    @Test
+    void readInputPrice() {
+        int inputTry;
+        int inputPrice = 3000;
+        inputTry = (inputPrice / 1000);
+        assertThat(inputTry).isEqualTo(3);
     }
 }

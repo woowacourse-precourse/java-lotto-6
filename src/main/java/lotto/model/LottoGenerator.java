@@ -24,6 +24,7 @@ public class LottoGenerator {
 
         List<Integer> lottoNumbers = Randoms
                 .pickUniqueNumbersInRange(lowerBound, upperBound, maxLottoSize);
+        Collections.sort(lottoNumbers);
 
         return Collections.unmodifiableList(lottoNumbers);
     }

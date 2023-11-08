@@ -28,6 +28,11 @@ public class InputView {
         } catch (Exception e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다. 다시 입력해주세요.");
         }
+
+        if (inputNumber == 0 || inputNumber % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 1,000원 단위의 숫자만 입력 가능합니다. 다시 입력해주세요.");
+        }
+
         return inputNumber;
     }
 }

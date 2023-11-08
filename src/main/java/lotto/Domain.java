@@ -37,10 +37,11 @@ public class Domain {
         return allRankingResult;
     }
 
-    public int calculateProfit(List<Rank> rankingResults){
-        return rankingResults.stream()
-                .mapToInt(Rank::getPrizeMoney)
-                .sum();
+    public long calculateProfit(Map<Rank,Integer> rankingResults){
+        return rankingResults.keySet().stream()
+                .reduce(0,(profit,rank)->{
+                    return profit + rank.getPrizeMoney();
+                },Integer::sum);
     }
 
     public double calculatePercent(long money, long profit){

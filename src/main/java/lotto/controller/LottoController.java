@@ -32,17 +32,17 @@ public class LottoController {
     }
 
     public void run() {
-        PurchasingMoney purchasingMoney = inputPurchaseCash();
+        PurchasingMoney purchasingMoney = requestPurchaseCash();
         List<Lotto> lotteries = purchaseLotteries(purchasingMoney);
 
-        WinningLottoNumbers winningLottoNumbers = inputWinningLottoNumbers();
+        WinningLottoNumbers winningLottoNumbers = requestWinningLottoNumbers();
 
         List<WinStateInformationDTO> winStateInformationDTOs = determineWinStates(winningLottoNumbers, lotteries);
         printWinningStatistics(winStateInformationDTOs);
         printYield(winStateInformationDTOs, purchasingMoney);
     }
 
-    private PurchasingMoney inputPurchaseCash() {
+    private PurchasingMoney requestPurchaseCash() {
         outputView.print(messenger.getInputPurchaseCashAmountMessage());
         while (true) {
             try {
@@ -68,7 +68,7 @@ public class LottoController {
                 .toList();
     }
 
-    private WinningLottoNumbers inputWinningLottoNumbers() {
+    private WinningLottoNumbers requestWinningLottoNumbers() {
 
         outputView.print(messenger.getInputWinningNumbersMessage());
         Lotto winningNumbers = inputNumbers();

@@ -1,9 +1,11 @@
 package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Lotto;
 import lotto.util.Validator;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ConsoleUI {
     private final Validator validator;
@@ -84,6 +86,17 @@ public class ConsoleUI {
     }
 
 
+    public void displayLottoNumbers(List<Lotto> lottos) {
+        System.out.println(lottos.size()+"개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(formatNumbersForDisplay(lotto.getNumbers()));
+        }
+    }
 
-
+    private String formatNumbersForDisplay(List<Integer> numbers) {
+        return "[" +numbers.stream()
+                .sorted()
+                .map(Object::toString)
+                .collect(Collectors.joining(", ")) + "]";
+    }
 }

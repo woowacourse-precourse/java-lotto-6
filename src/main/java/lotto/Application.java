@@ -39,7 +39,7 @@ import lotto.controller.GameController;
 //        System.out.println(lottoNum + "개를 구매했습니다."); V
 //
 //        // stream.Collectors 사용하기
-//        List<List<Integer>> allLottoList = IntStream.range(0, lottoNum)
+//        List<List<Integer>> allLottoList = IntStream.range(0, lottoNum) v
 //                .mapToObj(i -> Randoms.pickUniqueNumbersInRange(1, 45, 6)
 //                        .stream()
 //                        .sorted()
@@ -55,11 +55,11 @@ import lotto.controller.GameController;
 //                System.out.println("당첨 번호를 입력해 주세요."); V
 //                String userNum = Console.readLine(); v
 //
-//                String[] userNumListStr = userNum.split(",");
+//                String[] userNumListStr = userNum.split(","); v
 //
-//                userNumListInt = new int[userNumListStr.length];
-//                for (int i = 0; i < userNumListStr.length; i++) {
-//                    userNumListInt[i] = Integer.parseInt(userNumListStr[i]);
+//                userNumListInt = new int[userNumListStr.length]; v
+//                for (int i = 0; i < userNumListStr.length; i++) { v
+//                    userNumListInt[i] = Integer.parseInt(userNumListStr[i]); v
 //                }
 //
 //                if (userNum.startsWith(",") || userNum.endsWith(",")) {
@@ -86,7 +86,7 @@ import lotto.controller.GameController;
 //                System.out.println("보너스 번호를 입력해 주세요."); V
 //                String userBonusStr = Console.readLine(); v
 //
-//                userBonusNum = Integer.parseInt(userBonusStr);
+//                userBonusNum = Integer.parseInt(userBonusStr); v
 //
 //                break;
 //            } catch (IllegalArgumentException e) {
@@ -95,15 +95,15 @@ import lotto.controller.GameController;
 //        }
 //
 //        // TODO: 로또 번호와 당첨 번호 비교
-//        int rank5th = 0;
-//        int rank4th = 0;
-//        int rank3rd = 0;
-//        int rank2nd = 0;
-//        int rank1st = 0;
+//        int rank5th = 0; v
+//        int rank4th = 0; v
+//        int rank3rd = 0; v
+//        int rank2nd = 0; v
+//        int rank1st = 0; v
 //
-//        int prize = 0;
+//        int prize = 0; v
 //
-//        for (int i = 0; i < lottoNum; i++) {
+//        for (int i = 0; i < lottoNum; i++) { v
 //            int lottoCount = 0;
 //            int lottoBonusCount = 0;
 //
@@ -134,7 +134,7 @@ import lotto.controller.GameController;
 //            }
 //            else if (lottoCount == 6) {
 //                rank1st++;
-//                prize += 2000000000;
+//                prize += 2000000000; v
 //            }
 //        }
 //
@@ -155,7 +155,7 @@ import lotto.controller.GameController;
 //        String formattedRateOfReturn = decimalFormat.format(rateOfReturn / 100.0);
 //
 //        // TODO: 수익률 출력
-//        System.out.println("총 수익률은 " + formattedRateOfReturn + "입니다.");
+//        System.out.println("총 수익률은 " + formattedRateOfReturn + "입니다."); v
 //    }
 //}
 

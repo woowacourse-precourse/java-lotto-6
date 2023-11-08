@@ -16,7 +16,6 @@ public class GameController {
             }
         }
 
-        User.lottoBoughtNum();
         OutputView.printBoughtNum();
 
         OutputView.printLotto();
@@ -25,6 +24,7 @@ public class GameController {
             try {
                 OutputView.printUserNum();
                 InputView.inputUserNum();
+                User.userNumListInt();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
@@ -35,6 +35,7 @@ public class GameController {
             try {
                 OutputView.printBonusNum();
                 InputView.inputUserBonusStr();
+                User.userBonusNum();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
@@ -45,6 +46,6 @@ public class GameController {
 
         OutputView.printLottoResult();
 
-//        OutputView.printRateOfReturn();
+        OutputView.printRateOfReturn();
     }
 }

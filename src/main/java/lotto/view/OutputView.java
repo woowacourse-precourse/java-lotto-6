@@ -1,12 +1,11 @@
 package lotto.view;
 
-import static lotto.model.Lotto.allLottoList;
-import static lotto.model.User.lottoBoughtNum;
-
-import lotto.model.LottoRank;
+import static lotto.model.Lotto.*;
+import static lotto.model.User.userRateOfReturn;
 
 import java.util.List;
-
+import lotto.model.Lotto;
+import lotto.model.User;
 
 public class OutputView {
     public static void printLottoBuyPrice() {
@@ -15,16 +14,13 @@ public class OutputView {
 
     public static void printBoughtNum() {
         System.out.println();
-        System.out.println(lottoBoughtNum + "개를 구매했습니다.");
+        System.out.println(User.lottoBoughtNum() + "개를 구매했습니다.");
     }
 
     public static void printLotto() {
-        List<List<Integer>> allLottoList = allLottoList();
-
-        for (List<Integer> lotto : allLottoList) {
+        for (List<Integer> lotto : Lotto.allLottoList()) {
             System.out.println(lotto);
         }
-
     }
 
     public static void printUserNum() {
@@ -52,6 +48,6 @@ public class OutputView {
     }
 
     public static void printRateOfReturn() {
-        System.out.println("총 수익률은 " + formattedRateOfReturn + "입니다.");
+        System.out.println("총 수익률은 " + userRateOfReturn() + "입니다.");
     }
 }

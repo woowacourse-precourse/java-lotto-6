@@ -1,6 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.HashMap;
+import java.util.Map;
+import lotto.domain.Lotto;
+import lotto.domain.LottoService;
+import lotto.domain.User;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,6 +13,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -52,6 +58,118 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 구매금액_나누어_떨어지지_않는_수() {
+        assertSimpleTest(() -> {
+            runException("10001");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구매금액_0일때() {
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
+    @Test
+    void 당첨번호_정수가_아닌값_입력() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_6자리가_아닌_경우() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_중복_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,6,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_범위_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,6,99");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호_정수_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호_범위_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "49");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 로또_번호_비교_테스트() {
+        // given
+        List<Lotto> lottos = List.of(new Lotto(List.of(1, 4, 8, 20, 40, 45)),
+                new Lotto(List.of(1, 9, 27, 30, 35, 36)),
+                new Lotto(List.of(2, 3, 6, 8, 10, 15)));
+        User user = new User();
+        LottoService lottoService = new LottoService();
+        Map<Integer, Integer> map = new HashMap<>();
+
+        try {
+            user.setWinnerNumbers("1,4,8,9,27,38");
+            user.setBonusNumber("2");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        map.put(1, 1);
+        map.put(3, 2);
+
+        // when
+        Map<Integer, Integer> result = lottoService.compareValue(lottos, user);
+
+        // then
+        assertEquals(map, result);
+    }
+
+    @Test
+    void 로또_수익률_테스트() {
+        // given
+        Map<Integer, Integer> map = new HashMap<>();
+        User user = new User();
+        LottoService lottoService = new LottoService();
+
+        map.put(3, 2);
+        try {
+            user.setPurchaseAmount("8000");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        // when
+        double rate = lottoService.getRate(map, user);
+
+        //then
+        assertEquals(rate, 125);
     }
 
     @Override

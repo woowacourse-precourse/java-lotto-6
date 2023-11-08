@@ -7,12 +7,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import lotto.domain.Lotto;
 
 public class LottoRepository {
-    public static final int LOTTO_PRICE = 1000;
+    private static LottoRepository instance;
+
     private static Map<Long, Lotto> lottos = new ConcurrentHashMap<>();
     private static long id = 0L;
     private static int budget;
-
-    private static LottoRepository instance;
 
     private LottoRepository() {
     }

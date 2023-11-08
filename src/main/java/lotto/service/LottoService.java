@@ -1,6 +1,8 @@
 package lotto.service;
 
-import static lotto.repository.LottoRepository.LOTTO_PRICE;
+import static lotto.domain.LottoAttribute.LOTTO_MAX_NUMBER;
+import static lotto.domain.LottoAttribute.LOTTO_MIN_NUMBER;
+import static lotto.domain.LottoAttribute.LOTTO_PRICE;
 import static lotto.repository.LottoRepository.getBudget;
 import static lotto.repository.LottoRepository.getInstance;
 
@@ -13,13 +15,13 @@ public class LottoService {
     LottoRepository lottoRepository = getInstance();
 
     public void issueLottos() {
-        for (int i = 0; i < getBudget() / LOTTO_PRICE; i++) {
+        for (int i = 0; i < getBudget() / LOTTO_PRICE.getValue(); i++) {
             lottoRepository.save(issueOneLotto());
         }
     }
 
     private Lotto issueOneLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER.getValue(), LOTTO_MAX_NUMBER.getValue(), 6);
         return new Lotto(numbers);
     }
 }

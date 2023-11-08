@@ -1,11 +1,12 @@
 package lotto.view;
 
+import static lotto.domain.LottoAttribute.LOTTO_PRICE;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.repository.LottoRepository;
 
 public class InputView {
     private static final String INPUT_ERROR_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
@@ -24,7 +25,7 @@ public class InputView {
     }
 
     private static void validateBudgetInput(String input) {
-        if (!isPositiveNonZeroInteger(input) || !isDivisible(input, LottoRepository.LOTTO_PRICE)) {
+        if (!isPositiveNonZeroInteger(input) || !isDivisible(input, LOTTO_PRICE.getValue())) {
             throw new IllegalArgumentException();
         }
     }

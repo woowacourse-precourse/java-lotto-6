@@ -1,9 +1,11 @@
 package lotto;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -40,5 +42,9 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public void setNumbers(List<Integer> numbers) {
+        this.numbers = numbers;
     }
 }

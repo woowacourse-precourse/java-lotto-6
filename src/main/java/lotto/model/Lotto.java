@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.validator.InputValidator;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,13 +10,14 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        sortLottoNumbers(numbers);
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sortLottoNumbers(numbers);
     }
 
-    private void sortLottoNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
+    private List<Integer> sortLottoNumbers(List<Integer> numbers) {
+        List<Integer> modifiable = new ArrayList<>(numbers);
+        Collections.sort(modifiable);
+        return modifiable;
     }
 
     private void validate(List<Integer> numbers) {

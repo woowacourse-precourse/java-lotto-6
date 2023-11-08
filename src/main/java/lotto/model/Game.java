@@ -31,8 +31,7 @@ public class Game {
 
     public void generateLottoNumber(LottoGenerator lottoGenerator) {
         for (int i = 0; i < amountOfLotto; i++) {
-            List<Integer> modifiable = new ArrayList<>(lottoGenerator.pickLottoNumber());
-            lottoNumbers.add(new Lotto(modifiable));
+            lottoNumbers.add(new Lotto(lottoGenerator.pickLottoNumber()));
         }
     }
     public int getAmountOfLotto() {

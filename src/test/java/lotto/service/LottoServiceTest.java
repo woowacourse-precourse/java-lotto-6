@@ -2,6 +2,7 @@ package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
 import java.util.List;
 import lotto.repository.BuyLottoRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -41,6 +42,27 @@ class LottoServiceTest {
             // 6자리 인지 확인
             assertThat(randomNumbers.size()).isEqualTo(6);
             cnt--;
+        }
+    }
+
+    @DisplayName("구매한 복권은 오름차순으로 출력됩니다.")
+    @Test
+    void extractAscendingNumbers() {
+        // given
+        List<String> buyLotto = lottoService.extractAscendingNumbers();
+        // when
+        for (String numbers : buyLotto) {
+            Integer[] array = Arrays.stream(numbers.split(", "))
+                    .map(Integer::parseInt)
+                    .toArray(Integer[]::new);
+            testAscending(array);
+        }
+        // then
+    }
+    private void testAscending(Integer[] array) {
+        for(int i=0;i<=4;i++){
+            assertThat(array[i])
+                    .isLessThanOrEqualTo(array[i+1]);
         }
     }
 }

@@ -21,6 +21,7 @@ class WinningLottoRepositoryTest {
         WinningLottoRepository winningLottoRepository = WinningLottoRepository.of(winningLotto, bonusNumber);
         //복권을 구매한다
         Lotto buyLotto = new Lotto(List.of(1, 26, 4, 5, 6, 7));
+
         // then
         Assertions.assertThat(winningLottoRepository.countMatchingNumber(buyLotto)).isEqualTo(5);
 

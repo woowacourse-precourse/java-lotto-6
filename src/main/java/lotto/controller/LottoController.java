@@ -22,7 +22,7 @@ public class LottoController {
         // 구입개수 출력
         View.purchaseCount(purchaseCount);
 
-        // 구입개수만큼 로또자동번호 사기
+        // 구입개수만큼 로또자동번호 받기
         BuyLottoRepository buyLottos = lottoService.quickPick(purchaseCount);
         // 구매한 로또의 번호들을 오름차순으로 저장
         List<String> buyLottosNumber = lottoService.extractAscendingNumbers();

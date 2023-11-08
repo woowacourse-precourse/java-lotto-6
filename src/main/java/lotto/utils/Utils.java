@@ -12,12 +12,12 @@ public class Utils {
         return formatter.format(money);
     }
 
-    public static String getPercentage(int a, int b) {
-        if (b == 0) {
+    public static String getPercentage(int part, int whole) {
+        if (whole == 0) {
             throw new IllegalArgumentException(LottoMessages.DIVIDE_BY_ZERO.getKr());
         }
 
-        double result = (double) a / b;
+        double result = (double) part / whole;
         result = Math.round(result * 10000) / 100.0;
 
         String percentage = String.format("%.2f%%", result);

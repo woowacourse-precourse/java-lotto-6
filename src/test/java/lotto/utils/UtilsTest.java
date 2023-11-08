@@ -25,8 +25,8 @@ class UtilsTest {
             "30, 100, 30.0%",
             "45, 160, 28.13%"
     })
-    public void testPercentage(int a, int b, String expectedPercentage) {
-        String percentage = Utils.getPercentage(a, b);
+    public void testPercentage(int part, int whole, String expectedPercentage) {
+        String percentage = Utils.getPercentage(part, whole);
         assertThat(percentage).isEqualTo(expectedPercentage);
     }
 

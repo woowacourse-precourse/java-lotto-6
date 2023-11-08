@@ -9,6 +9,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCost;
 import lotto.domain.WinningNumber;
+import lotto.service.LottoCompare;
 import lotto.service.LottoGenerate;
 import lotto.service.MatchCountChecker;
 import lotto.service.ReturnRateCalculator;
@@ -18,21 +19,22 @@ import lotto.view.Output;
 public class LottoController {
     private final Input input = new Input();
     private final Output output = new Output();
+    private final LottoGenerate lottoGenerate = new LottoGenerate();
+    private final LottoCompare lottoCompare = new LottoCompare();
+    private final MatchCountChecker matchCountChecker = new MatchCountChecker();
 
     public void run() {
         LottoCost lottoCost = inputValueToLottoCost();
         int lottoTicket = lottoCost.getNumberOfLotto();
         output.printNumberOfPurchase(lottoTicket);
 
-        LottoGenerate lottoGenerate = new LottoGenerate();
         HashMap<Integer, Lotto> lottoNumbers = lottoGenerate.createLottoRepeat(lottoTicket);
         printAllLotto(lottoNumbers);
 
-        MatchCountChecker matchCountChecker = new MatchCountChecker();
         WinningNumber winningNumber = inputValueToWinningNumber();
         BonusNumber bonusNumber = inputValueToBonusNumber(winningNumber);
         HashMap<Integer, List<Integer>> compareLottoNumResult =
-                matchCountChecker.compareLottoToNumber(lottoNumbers, winningNumber, bonusNumber);
+                lottoCompare.compareLottoToNumber(lottoNumbers, winningNumber, bonusNumber);
 
         printResult(matchCountChecker.countLottoByPrize(compareLottoNumResult), lottoCost.getCost());
     }

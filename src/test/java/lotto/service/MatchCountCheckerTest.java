@@ -46,8 +46,11 @@ class MatchCountCheckerTest {
            put(LottoConfig.FIFTH_PRIZE_REWARD, 0);
         }};
 
-        HashMap<Integer, List<Integer>> matchNumberByLotto =
-                matchCountChecker.compareLottoToNumber(lottoNumbers, winningNumber, bonusNumber);
+        HashMap<Integer, List<Integer>> matchNumberByLotto = new HashMap<>() {{
+            put(0, List.of(6, 0));
+            put(1, List.of(0, 1));
+            put(2, List.of(5, 1));
+        }};
 
         assertThat(matchCountChecker.countLottoByPrize(matchNumberByLotto)).isEqualTo(result);
     }

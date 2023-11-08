@@ -3,18 +3,13 @@ package lotto.model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.swing.JViewport;
 
 public class Statistics {
 
-    private static final Map<MatchResult, Integer> PRIZE_MONEY = new HashMap<>();
-
-    static {
-        PRIZE_MONEY.put(new MatchResult(3, false), 5_000);
-        PRIZE_MONEY.put(new MatchResult(4, false), 50_000);
-        PRIZE_MONEY.put(new MatchResult(5, false), 1_500_000);
-        PRIZE_MONEY.put(new MatchResult(5, true), 30_000_000);
-        PRIZE_MONEY.put(new MatchResult(6, false), 2_000_000_000);
-    }
+    private static final Map<MatchResult, Integer> PRIZE_MONEY = initializePrizeMoney();
 
     private final int totalAmount;
     private final List<MatchResult> matchResults;
@@ -24,16 +19,31 @@ public class Statistics {
         this.matchResults = matchResults;
     }
 
-    public void evaluateTotalProfit() {
-        // 각 MatchResult에 대한 카운트를 저장할 맵
-        Map<MatchResult, Integer> counts = new HashMap<>();
-        float totalWinnings = 0;
+    private static Map<MatchResult, Integer> initializePrizeMoney() {
+        Map<MatchResult, Integer> prizeMoney = new HashMap<>();
+        prizeMoney.put(new MatchResult(3, false), 5_000);
+        prizeMoney.put(new MatchResult(4, false), 50_000);
+        prizeMoney.put(new MatchResult(5, false), 1_500_000);
+        prizeMoney.put(new MatchResult(5, true), 30_000_000);
+        prizeMoney.put(new MatchResult(6, false), 2_000_000_000);
+        return prizeMoney;
+    }
 
-        // 각 MatchResult의 카운트를 계산
-        for (MatchResult matchResult : matchResults) {
-            counts.put(matchResult, counts.getOrDefault(matchResult, 0) + 1);
-            totalWinnings += PRIZE_MONEY.getOrDefault(matchResult, 0);
-        }
+    public Map<MatchResult, Integer> calculateMatchCounts(List<MatchResult> matchResults) {
+        return matchResults.stream()
+            .collect(Collectors.toMap(Function.identity(), matchResult -> 1, Integer::sum));
+    }
+
+    public int calculateTotalWinnings(Map<MatchResult, Integer> matchCounts) {
+        return matchCounts.entrySet().stream()
+            .mapToInt(entry -> entry.getValue() * PRIZE_MONEY.getOrDefault(entry.getKey(), 0))
+            .sum();
+    }
+
+    public float evaluateTotalProfit() {
+        // 각 MatchResult에 대한 카운트를 저장할 맵
+        Map<MatchResult, Integer> counts = calculateMatchCounts(matchResults);
+        float totalWinnings = calculateTotalWinnings(counts);
 
         // 결과 출력
         System.out.println("당첨 통계\n---");
@@ -57,6 +67,7 @@ public class Statistics {
         // 총 수익률 계산 및 출력
         float profitRate = getProfitRate(totalWinnings);
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
+        return profitRate;
     }
 
     private String formatPrize(Integer prize) {

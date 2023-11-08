@@ -5,11 +5,11 @@ import lotto.constant.Grade;
 
 public class Info {
     private int[] statistic;
-    private int rewards;
+    private long rewards;
 
     public Info() {
         this.statistic = new int[CommonUnits.NUM_OF_GRADES+1];
-        this.rewards = 0;
+        this.rewards = 0L;
     }
 
     public void addStatistic(Grade grade) {
@@ -21,7 +21,7 @@ public class Info {
         return statistic;
     }
 
-    public int getRewards() {
+    public long getRewards() {
         return rewards;
     }
 }

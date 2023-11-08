@@ -4,42 +4,34 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-
 import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
+
 
 public class Manager {
-    private static List<Lotto> customerTickets = new ArrayList<>();
-
-    public int receiveMoney() {
-        String inputMoney = Console.readLine();
-        while (!Validators.validateMoney(inputMoney)) {
-            inputMoney = Console.readLine();
-        }
-        return Integer.parseInt(inputMoney);
-    }
+    public static List<Lotto> customerTickets = new ArrayList<>();
 
     public List<Lotto> printTickets(int numberOfTickets) {
+        System.out.printf("%d개를 구매했습니다.", numberOfTickets);
+        List<Lotto> customerTickets1 = new ArrayList<>();
         for (int i = 0; i < numberOfTickets; i++) {
-            customerTickets.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
-            System.out.println(customerTickets.get(i));
+            List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            customerTickets1.add(new Lotto(randomNumbers));
+            System.out.println(customerTickets1.get(i));
         }
-        return customerTickets;
+        return customerTickets1;
     }
 
     public static List<Lotto> totalTickets() {
         return customerTickets;
     }
 
-    public List<Integer> setWinningNumbers() {
-        List<Integer> winningNumbers = new ArrayList<>();
-        String inputWinningNumbers = Console.readLine().replace(" ", "");
-        while (!Validators.validateWinningNumbers(inputWinningNumbers)) {
-            inputWinningNumbers = Console.readLine().replace(" ", "");
-        }
+    public List<Integer> setWinningNumbers(String inputWinningNumbers, List<Integer> winningNumbers) {
         String[] stringWinningNumbers = inputWinningNumbers.split(",");
         winningNumbers = convertStringToIntegerList(stringWinningNumbers);
         winningNumbers.sort(Comparator.naturalOrder());
+
         return winningNumbers;
     }
 
@@ -50,23 +42,4 @@ public class Manager {
         }
         return winningNumbers;
     }
-
-    public int setBonusNumber(List<Integer> winningNumbers) {
-        String inputBonusNumber = Console.readLine();
-        int bonusNumber;
-        while (true) {
-            try {
-                Validators.validateStringIsIntegerConvertable(inputBonusNumber);
-                bonusNumber = Integer.parseInt(inputBonusNumber);
-                Validators.validateBonusNumber(bonusNumber, winningNumbers);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
-            inputBonusNumber = Console.readLine();
-        }
-        return bonusNumber;
-    }
-
-
 }

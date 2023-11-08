@@ -9,7 +9,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateRedundancy(numbers);
+        Validators.validateDuplicated(numbers);
         numbers.sort(Comparator.naturalOrder());
         this.numbers = numbers;
     }
@@ -18,10 +18,6 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
-    }
-
-    private void validateRedundancy(List<Integer> numbers) {
-        Validators.validateRedundancy(numbers);
     }
 
     public List<Integer> getNumbers() {

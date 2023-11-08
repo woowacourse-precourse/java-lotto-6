@@ -1,34 +1,63 @@
 package lotto;
 
-import lotto.domain.Customer;
-import lotto.domain.Lotto;
-import lotto.domain.Manager;
-import lotto.domain.Prize;
+import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        System.out.println("구입금액을 입력해 주세요");
-
         Manager lottoManager = new Manager();
-        int receivedMoney = lottoManager.receiveMoney();
-        Customer customer = new Customer(receivedMoney);
 
-        List<Lotto> customerTickets = lottoManager.printTickets(customer.NUMBER_OF_TICKETS);
+        System.out.println("구입금액을 입력해 주세요");
+        String inputMoney = Console.readLine().trim();
+        boolean passed = Validators.validateMoney(inputMoney);
+        while (!passed) {
+            System.out.println("구입금액을 입력해 주세요");
+            inputMoney = Console.readLine().trim();
+            passed = Validators.validateMoney(inputMoney);
+        }
+        int receivedMoney = Integer.parseInt(inputMoney);
+
+        Customer customer = new Customer(receivedMoney);
+        List<Lotto> customerTickets = new ArrayList<>();
+        customerTickets = lottoManager.printTickets(customer.numberOfTickets);
 
         System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> winningNumbers = lottoManager.setWinningNumbers();
-        System.out.println(winningNumbers.toString());
+        List<Integer> winningNumbers = new ArrayList<>();
+        String inputWinningNumbers = Console.readLine().trim();
+        boolean passedWinning = Validators.validateWinningNumbers(inputWinningNumbers);
+        while (!passedWinning) {
+            passedWinning = Validators.validateWinningNumbers(inputWinningNumbers);
+            inputWinningNumbers = Console.readLine();
+        }
+        winningNumbers = lottoManager.setWinningNumbers(inputWinningNumbers, winningNumbers);
+
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = lottoManager.setBonusNumber(winningNumbers);
+        int bonusNumber = 0;
+        boolean passedBonus = false;
+        while (!passedBonus) {
+            String inputBonusNumber = Console.readLine().trim();
+            try {
+                bonusNumber = Integer.parseInt(inputBonusNumber);
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                continue; // Continue to the next iteration of the loop
+            }
+            passedBonus = Validators.validateBonusNumber(bonusNumber, winningNumbers);
+            if (!passedBonus) {
+                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
 
         Prize prize = new Prize();
         HashMap<String, Integer> prizeCountsRecords = prize.compareAllLottoTickets(customerTickets, winningNumbers, bonusNumber);
         prize.printResults(prizeCountsRecords);
-        
+
         double rateOfReturn = customer.getRateOfReturn(prizeCountsRecords);
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
+
     }
 }

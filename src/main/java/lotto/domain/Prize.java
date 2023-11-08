@@ -60,7 +60,7 @@ public class Prize {
     }
 
     public HashMap<String, Integer> compareAllLottoTickets(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusNumber) {
-        HashMap<String, Integer> prizeCountsRecords = createPrizeCountsRecords();
+        HashMap<String, Integer> prizeCountsRecords = Prize.createPrizeCountsRecords();
         int matchCount;
         boolean needToCheckBonus;
         for (Lotto lotto : lottoTickets) {
@@ -78,7 +78,7 @@ public class Prize {
         return matchCount == 5 && numbers.contains(bonusNumber);
     }
 
-    public HashMap<String, Integer> createPrizeCountsRecords() {
+    public static HashMap<String, Integer> createPrizeCountsRecords() {
         prizeRecords.put("firstPlace", 0);
         prizeRecords.put("secondPlace", 0);
         prizeRecords.put("thirdPlace", 0);

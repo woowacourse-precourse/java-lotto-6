@@ -6,12 +6,12 @@ import java.util.HashMap;
 
 public class Customer {
     public static final int TICKET_UNIT = 1000;
-    private static int BUDGET;
-    public int NUMBER_OF_TICKETS;
+    private final int budget;
+    public int numberOfTickets ;
 
     public Customer(Integer budget) {
-        this.BUDGET = budget;
-        this.NUMBER_OF_TICKETS = BUDGET / TICKET_UNIT;
+        this.budget = budget;
+        this.numberOfTickets = budget / TICKET_UNIT;
     }
 
     private static int getTotalProfits(HashMap<String, Integer> prizeCountsRecords) {
@@ -27,12 +27,12 @@ public class Customer {
 
     public double getRateOfReturn(HashMap<String, Integer> prizeCountsRecords) {
         int totalProfits = getTotalProfits(prizeCountsRecords);
-        double rateOfReturn = (double) totalProfits / BUDGET;
+        double rateOfReturn = (double) totalProfits / budget;
         rateOfReturn = Math.round(rateOfReturn);
         return rateOfReturn;
     }
 
     public String toString() {
-        return System.out.printf("%d개를 구매했습니다.", NUMBER_OF_TICKETS).toString();
+        return System.out.printf("%d개를 구매했습니다.", numberOfTickets).toString();
     }
 }

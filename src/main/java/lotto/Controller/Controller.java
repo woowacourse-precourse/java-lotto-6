@@ -53,6 +53,14 @@ public class Controller {
     }
 
     public void RunLotto() {
+        for (Lotto lotto : lottoContainer.getLottoContainer()) {
+            Boolean isBonusDuplicate = lotto.getNumbers().contains(bonus);
+            lottoController.CheckDuplicateNum(lottoContainer, lotto, isBonusDuplicate);
+        }
+        int AllPrize = lottoController.returnAllPrize();
+        int cash = count*1000;
+        double rate = RateCalculator.returnRate(AllPrize,cash);
+        PrintResult(rate);
     }
 
     public void PrintResult(double rate){

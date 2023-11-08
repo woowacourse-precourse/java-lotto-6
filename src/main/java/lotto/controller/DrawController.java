@@ -17,24 +17,20 @@ public class DrawController {
 
     private final PurchaseLotto purchaseLotto;
     private final IssueLotto issueLotto;
-    private final BonusNumber bonusNumber;
-    private final MatchLotto matchLotto;
 
     public DrawController() {
         this.purchaseLotto = new PurchaseLotto();
         this.issueLotto = new IssueLotto();
-        this.bonusNumber = new BonusNumber();
-        this.matchLotto = new MatchLotto();
     }
 
     public void draw() {
         inputPurchaseAmount();
         issueLotto.issue(purchaseLotto.getNumberOfPurchases());
         List<Integer> winningNumbers = inputWinningNumber().getNumbers();
-        inputBonusNumber(winningNumbers);
+        int bonusNumber = inputBonusNumber(winningNumbers);
 
         List<LottoRankings> matchResult = MatchLotto.createMatchLotto()
-                .matchLotto(winningNumbers, bonusNumber.getBonusNumber(), issueLotto.getLottoPurchaseHistory());
+                .matchLotto(winningNumbers, bonusNumber, issueLotto.getLottoPurchaseHistory());
         HashMap<LottoRankings, Integer> lottoResult = LottoResult.createLottoResult()
                 .checkResult(matchResult);
         OutputView.printResultMessage(lottoResult);
@@ -48,13 +44,14 @@ public class DrawController {
         OutputView.printYieldMessage(yield);
     }
 
-    private void inputBonusNumber(List<Integer> winningNumbers) {
+    private int inputBonusNumber(List<Integer> winningNumbers) {
         OutputView.printBonusNumberInputMessage();
+        BonusNumber bonusNumber = new BonusNumber();
         try {
-            bonusNumber.inputBonusNumber(InputView.input(), winningNumbers);
+            return bonusNumber.inputBonusNumber(InputView.input(), winningNumbers);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
-            bonusNumber.inputBonusNumber(InputView.input(), winningNumbers);
+            return bonusNumber.inputBonusNumber(InputView.input(), winningNumbers);
         }
     }
 

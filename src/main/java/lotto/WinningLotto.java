@@ -21,4 +21,12 @@ public class WinningLotto {
         }
     }
 
+    public int countMatchNumbers(Lotto userLotto) {
+        return lottoNumbers.countMatchNumbers(userLotto);
+    }
+
+    public boolean hasBonusNumber(Lotto userLotto) {
+        return userLotto.contains(bonusNumber);
+    }
+
 }

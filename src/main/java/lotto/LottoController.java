@@ -12,6 +12,20 @@ public class LottoController {
         Lottos userLottos = new Lottos(numberOfLottos);
         OutputView.printLottos(userLottos);
         WinningLotto winningLotto = getWinningLotto();
+        getResult(userLottos, winningLotto);
+    }
+
+    private Result getResult(Lottos userLottos, WinningLotto winningLotto) {
+        Result result = new Result();
+        userLottos.getLottos().forEach(
+                lotto -> {
+                    int countMatchNumbers = winningLotto.countMatchNumbers(lotto);
+                    boolean hasBonusNumber = winningLotto.hasBonusNumber(lotto);
+                    Ranking ranking = Ranking.getRanking(countMatchNumbers, hasBonusNumber);
+                    result.put(ranking);
+                }
+        );
+        return result;
     }
 
     private WinningLotto getWinningLotto() {

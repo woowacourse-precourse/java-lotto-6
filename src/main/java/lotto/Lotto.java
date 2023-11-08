@@ -48,4 +48,12 @@ public class Lotto {
     public List<LottoNumber> getNumbers() {
         return numbers;
     }
+
+    public int countMatchNumbers(Lotto userLotto) {
+        return (int) numbers.stream().filter(userLotto::contains).count();
+    }
+
+    public boolean contains(LottoNumber number) {
+        return numbers.contains(number);
+    }
 }

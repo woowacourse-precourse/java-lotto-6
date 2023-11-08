@@ -3,10 +3,14 @@ package lotto;
 import java.util.List;
 
 public class Rank {
-
+    private int[] rank = new int[6];
     public int[] rankAndWinning(int lottoTickets, List[] allTickets, int bonus, List<Integer> numbers) {
+        matching(lottoTickets, allTickets, bonus,numbers);
+        statistics();
+        return rank;
+    }
+    public void matching(int lottoTickets, List[] allTickets, int bonus, List<Integer> numbers){
         //당첨여부
-        int[] rank = new int[6];
         boolean includedBonus = false;
         for (int i = 0; i < lottoTickets; i++) {
             if (allTickets[i].contains(bonus)) {
@@ -17,8 +21,6 @@ public class Rank {
             matchingNumCount = autoNumHasWinningNum(numbers, allTickets, i);
             rank = totalRankCount(matchingNumCount, includedBonus);
         }
-        statistics(rank);
-        return rank;
     }
 
     public int autoNumHasWinningNum(List<Integer> numbers, List[] allTickets, int i) {
@@ -51,7 +53,7 @@ public class Rank {
         return rank;
     }
 
-    public void statistics(int[] rank) {
+    public void statistics() {
         System.out.println("\n당첨 통계");
         System.out.println("---");
         System.out.printf("""

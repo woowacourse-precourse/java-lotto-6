@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,7 +16,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         checkDuplicates(numbers);
         validate(numbers);
-        this.numbers = sortNumbers(numbers);
+        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -36,8 +37,9 @@ public class Lotto {
         }
     }
 
-    private List<Integer> sortNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
+    public Lotto sortLotto() {
+        return new Lotto(numbers.stream()
+                .sorted()
+                .toList());
     }
 }

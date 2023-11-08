@@ -23,9 +23,9 @@ public class PaperBag {
     public String lottoesToString() {
         StringBuilder sb = new StringBuilder();
         for(Lotto lotto : lottoes){
-            sb.append(lotto.getNumbers()).append("\n");
+            Lotto sortedLotto = lotto.sortLotto();
+            sb.append(sortedLotto.getNumbers()).append("\n");
         }
         return sb.toString();
     }
-
 }

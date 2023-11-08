@@ -10,6 +10,7 @@ import static lotto.config.PurchaseErrorMessage.PURCHASE_NUMERIC_ERROR_MESSAGE;
 import static lotto.config.PurchaseErrorMessage.PURCHASE_STARTS_ZERO_ERROR_MESSAGE;
 
 import java.util.regex.Pattern;
+import lotto.util.IntParser;
 
 public class PurchaseAmountValidator implements Validator<String> {
     private static final Pattern PURCHASE_AMOUNT_PATTERN = Pattern.compile(PURCHASE_AMOUNT_REGEX.getRegex());
@@ -44,7 +45,7 @@ public class PurchaseAmountValidator implements Validator<String> {
     }
 
     private void divisibleByUnit(String input) {
-        int amount = parseInt(input);
+        int amount = IntParser.parseInt(input);
 
         if (amount % PURCHASE_DIVISIBLE_AMOUNT.getValue() != 0) {
             throw new IllegalArgumentException(PURCHASE_DIVISIBLE_ERROR_MESSAGE.getMessage());
@@ -52,18 +53,10 @@ public class PurchaseAmountValidator implements Validator<String> {
     }
 
     private void range(String input) {
-        int amount = parseInt(input);
+        int amount = IntParser.parseInt(input);
 
         if (amount > PURCHASE_AMOUNT_MAX.getValue()) { // 최소 구매 검증은 divisibleByUnit() 에서 자동으로 검증됨
             throw new IllegalArgumentException(PURCHASE_AMOUNT_MAX_ERROR_MESSAGE.getMessage());
-        }
-    }
-
-    private int parseInt(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(PURCHASE_NUMERIC_ERROR_MESSAGE.getMessage());
         }
     }
 }

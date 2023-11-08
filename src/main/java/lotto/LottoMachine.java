@@ -1,11 +1,13 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
     private List<Integer> WinningNum;
+    private int bonus;
     private int maxLotto;
     private List<Lotto> lottos;
 
@@ -37,5 +39,24 @@ public class LottoMachine {
     public List<Integer> generateLottoNum() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return numbers;
+    }
+
+    public void insertWinningNum() {
+        WinningNum = new ArrayList<>(6);
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String Winning = Console.readLine();
+        String[] numbers = parseNumbers(Winning);
+        saveWinningNum(numbers);
+    }
+
+    public String[] parseNumbers(String Numbers) {
+        String[] numbers = Numbers.split(",");
+        return numbers;
+    }
+
+    public void saveWinningNum(String[] numbers) {
+        for (String num : numbers) {
+            this.WinningNum.add(Integer.parseInt(num));
+        }
     }
 }

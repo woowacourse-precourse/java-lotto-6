@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lottoResult;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -6,8 +6,6 @@ import java.util.List;
 import lotto.domain.lotto.PurchaseLottos;
 import lotto.domain.lotto.PurchasePrice;
 import lotto.domain.lotto.generator.ManualGenerator;
-import lotto.domain.lottoResult.LottoResult;
-import lotto.domain.lottoResult.LottoResultStatus;
 import lotto.domain.lottoWinning.BonusNumber;
 import lotto.domain.lottoWinning.LottoWinning;
 import lotto.domain.lottoWinning.WinningNumbers;

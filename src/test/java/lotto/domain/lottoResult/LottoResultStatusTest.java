@@ -1,8 +1,7 @@
-package lotto.constant;
+package lotto.domain.lottoResult;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.domain.lottoResult.LottoResultStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

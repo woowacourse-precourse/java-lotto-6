@@ -1,9 +1,7 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.domain.lotto.PurchaseLottos;
-import lotto.domain.lotto.PurchasePrice;
 import lotto.domain.lotto.generator.AutoGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

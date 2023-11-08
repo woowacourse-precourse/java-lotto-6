@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.Arrays;
 import java.util.List;
 import lotto.command.Command;
 import lotto.controller.FrontController;

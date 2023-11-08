@@ -5,16 +5,6 @@ import java.util.List;
 import java.util.Map;
 import lotto.command.Command;
 import lotto.controller.config.ControllerConfig;
-import lotto.controller.lotto.WinningLottoSaveController;
-import lotto.controller.result.WinningResultController;
-import lotto.controller.user.UserBuyLottoController;
-import lotto.controller.user.UserGetLottoController;
-import lotto.controller.user.UserSaveController;
-import lotto.repository.UserRepository;
-import lotto.repository.WinningLottoRepository;
-import lotto.service.LottoService;
-import lotto.service.UserService;
-import lotto.service.WinningLottoService;
 import lotto.view.View;
 
 public class FrontController {

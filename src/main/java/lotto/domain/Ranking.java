@@ -47,14 +47,6 @@ public enum Ranking {
                 .orElse(NON_RANKING);
     }
 
-    public Integer getMatchNumbers() {
-        return matchNumbers;
-    }
-
-    public Integer getMatchBonus() {
-        return matchBonus;
-    }
-
     public Integer getPrizeMoney() {
         return prizeAmount;
     }

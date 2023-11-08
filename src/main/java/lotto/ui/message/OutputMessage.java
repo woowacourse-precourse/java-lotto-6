@@ -5,10 +5,6 @@ import lotto.domain.Ranking;
 
 public enum OutputMessage {
 
-    GET_PURCHASE_MONEY("구입금액을 입력해 주세요."),
-    GET_WIN_NUMBERS("당첨 번호를 입력해 주세요."),
-    GET_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
-
     PRINT_LOTTO_COUNT("개를 구매했습니다."),
     PRINT_LOTTO_RESULT(
             "당첨 통계\n" +

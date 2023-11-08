@@ -8,11 +8,9 @@ import java.util.List;
 public class ExpectedNumberMaker implements NumberMaker{
 
     private List<Integer> numbers;
-    private Integer bonus;
 
-    public ExpectedNumberMaker(List<Integer> numbers, Integer bonus) {
+    public ExpectedNumberMaker(List<Integer> numbers) {
         this.numbers = numbers;
-        this.bonus = bonus;
     }
 
     @Override

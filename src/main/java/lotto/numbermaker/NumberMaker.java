@@ -1,4 +1,4 @@
-package lotto.domain.numbermaker;
+package lotto.numbermaker;
 
 import java.util.List;
 

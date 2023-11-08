@@ -1,4 +1,4 @@
-package lotto.domain.numbermaker;
+package lotto.numbermaker;
 
 import camp.nextstep.edu.missionutils.Randoms;
 

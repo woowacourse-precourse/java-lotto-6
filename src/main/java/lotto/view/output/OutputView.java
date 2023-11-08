@@ -12,6 +12,5 @@ public interface OutputView {
     void writeAskingWinningNumbers();
     void writeLottos(List<LottoDto> lottoDtos);
     void writeWinningStatistics(WinningStatisticsDto winningStatisticsDto, LottoRankDto lottoRankDto);
-    }
 
 }

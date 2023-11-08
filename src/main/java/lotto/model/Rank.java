@@ -42,5 +42,12 @@ public enum Rank {
         }
         return FIFTH;
     }
+
+    private static Rank getRankForFiveMatches(boolean matchBonus) {
+        if(matchBonus) {
+            return SECOND;
+        }
+        return THIRD;
+    }
 }
 

@@ -88,4 +88,21 @@ class ResultTest {
 
         assertThat(result.getScores().get(0)).isEqualTo(Score.FIFTH);
     }
+
+    @Test
+    @DisplayName("findProfitRate: 10개 뽑아서 2등과 4등에 하나씩 당첨되었을 때: 300500% 수익")
+    void findProfitRateTest() {
+        Result result = new Result();
+        List<Score> scores = new ArrayList<>();
+
+        scores.add(Score.SECOND); //30000000
+        scores.add(Score.FOURTH); //50000
+
+        result.setScores(scores);
+        int moneyInput = 10000;
+        result.findProfitRate(result, moneyInput);
+
+        assertThat(result.getProfitRate()).isEqualTo(300500);
+
+    }
 }

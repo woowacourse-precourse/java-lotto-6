@@ -13,13 +13,13 @@ public class PrintHandler {
     }
     
     
-    public static void printResults(Result results, Profit profit) {
+    public static void printResults(Result results) {
         System.out.println("당첨 통계");
         for(Score score : Score.values()) {
             int frequency = Collections.frequency(results.getScores(), score);
             System.out.println(score.getMessage() + " - " + frequency + "개");
         }
-        System.out.println("총 수익률은 " + profit.getProfitRate() + "%입니다.");
+        System.out.println("총 수익률은 " + results.getProfitRate() + "%입니다.");
     }
     
 }

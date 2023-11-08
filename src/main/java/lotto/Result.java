@@ -1,17 +1,20 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
+import static java.lang.Math.round;
 
 public class Result {
     private final List<Score> scores;
+    private double profitRate;
     public Result() {
         this.scores = new ArrayList<>();
+        this.profitRate = 0;
     }
     public List<Score> getScores() { return this.scores; }
-    
+    public double getProfitRate() { return this.profitRate; }
+
+
     //For Test code only
     public void setScores(List<Score> scores) {
         this.scores.addAll(scores);
@@ -53,6 +56,17 @@ public class Result {
             return Score.SECOND;
         }
         return Score.THIRD;
+    }
+    
+    
+    public void findProfitRate(Result result, int moneyYouPut) {
+        List<Score> scores = result.getScores();
+        int profit = 0;
+        for(Score score : Score.values()) {
+            int frequency = Collections.frequency(scores, score);
+            profit += score.getPrize() * frequency;
+        }
+        this.profitRate = round((float) profit / moneyYouPut * 100 * 100) / 100.0;
     }
     
 }

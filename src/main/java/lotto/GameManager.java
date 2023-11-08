@@ -9,7 +9,6 @@ import java.util.List;
 public class GameManager {
     private int moneyYouPut;
     private final Result result;
-    private final Profit profit;
     private final List<Lotto> lottos;
     private List<Integer> winningNumbers;
     private Integer bonusNumber;
@@ -19,7 +18,6 @@ public class GameManager {
         this.lottos = new ArrayList<>();
         this.winningNumbers = null;
         this.bonusNumber = null;
-        this.profit = new Profit();
         this.moneyYouPut = 0;
     }
     public int getMoneyYouPut() {
@@ -30,9 +28,6 @@ public class GameManager {
     }
     public Result getResult() {
         return this.result;
-    }
-    public Profit getProfit() {
-        return this.profit;
     }
     public List<Lotto> getLottos() {
         return this.lottos;
@@ -67,5 +62,5 @@ public class GameManager {
         this.result.makeScores(winningNumbers,bonusNumber,this.lottos);
     }
     
-    public void updateProfit() { this.profit.findProfitRate(result, moneyYouPut); }
+    public void updateProfit() { this.result.findProfitRate(result, moneyYouPut); }
 }

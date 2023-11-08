@@ -22,7 +22,7 @@ public class ResultTest {
 
         // 결과 추가
         List<LottoCompareResult> compareResultList = new ArrayList<>(List.of(first, first,second));
-        result.getTotalWinningMoney(compareResultList);
+        result.calculateTotalWinningMoney(compareResultList);
 
         // 결과 확인
         assertEquals(2, result.getCount(Rank.FIRST));
@@ -38,9 +38,10 @@ public class ResultTest {
 
         // 결과 추가
         List<LottoCompareResult> compareResultList = new ArrayList<>(List.of(first, second,third,fourth,fifth));
+        result.calculateTotalWinningMoney(compareResultList);
 
         // 총 당첨금 확인
-        assertEquals(2_031_555_000, result.getTotalWinningMoney(compareResultList));
+        assertEquals(2_031_555_000, result.getProfitAmount());
     }
 
 

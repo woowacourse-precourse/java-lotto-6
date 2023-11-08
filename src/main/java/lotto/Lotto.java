@@ -34,4 +34,18 @@ public class Lotto {
     private void sortNumber(){
         Collections.sort(numbers);
     }
+
+    public int check(List<Integer> answer, int bonus){
+        int count = 0;
+        for(int i = 0; i < answer.size(); i++){
+            if(numbers.contains(answer.get(i))){
+                count++;
+            }
+        }
+        if(count == 5 && numbers.contains(bonus)){
+            return answer.size();
+        }
+
+        return answer.size() - count;
+    }
 }

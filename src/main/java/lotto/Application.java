@@ -5,14 +5,12 @@ public class Application {
         // TODO: 프로그램 구현
         LottoMachine LM = new LottoMachine();
 
-        //LM.getMoney();
-        //LM.makeLotto();
-        //LM.printLotto();
+        LM.getMoney();
+        LM.makeLotto();
+        LM.printLotto();
         LM.getWin();
         LM.addBonus();
+        LM.result();
 
-        for(int i = 0; i < 7; i++){
-            System.out.println(LM.win.get(i));
-        }
     }
 }

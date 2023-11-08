@@ -10,6 +10,7 @@ import java.util.ListIterator;
 public class LottoMachine {
     private int count;
     public List<Integer> win = new ArrayList<>();
+    public int bonus;
     Lotto[] lotto;
 
     public void getMoney(){
@@ -71,14 +72,13 @@ public class LottoMachine {
         String input = Console.readLine();
         try{
             validateBonus(input);
-            win.add(Integer.parseInt(input));
+            bonus = Integer.parseInt(input);
         }catch (IllegalArgumentException e) {
             System.out.println("[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             addBonus();
         }catch (IllegalStateException e){
             addBonus();
         }
-        Collections.sort(win);
     }
     public void validateBonus(String input){
         if(win.contains(Integer.parseInt(input))){
@@ -111,5 +111,24 @@ public class LottoMachine {
             System.out.println("[Error] 중복된 번호가 없게 입력해 주세요.");
             throw new IllegalStateException();
         }
+    }
+
+    public void result(){
+        int[] winner = new int[win.size()+1];
+        int bonusWinner = 0;
+        for(Lotto k : lotto){
+            winner[k.check(win, bonus)]++;
+        }
+        drawResult(winner, bonusWinner);
+    }
+
+    public void drawResult(int[] winner, int bonusWinner){
+        System.out.println("\n당첨 통계\n---");
+        System.out.println("3개 일치 (5,000원) - " + winner[3] + "개");
+        System.out.println("4개 일치 (50,000원) - " + winner[2] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + winner[1] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winner[6] + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + winner[0] + "개");
+        System.out.println("총 수익률은 " + count*1000 + "입니다.");
     }
 }

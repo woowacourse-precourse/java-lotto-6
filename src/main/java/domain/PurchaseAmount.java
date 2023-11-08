@@ -1,5 +1,8 @@
 package domain;
 
+import exception.IllegalArgumentExceptionMessage;
+import exception.NumberFormatExceptionMessage;
+
 public class PurchaseAmount {
 	private final int amount;
 	private final int lottoPurchaseCount;
@@ -31,13 +34,13 @@ public class PurchaseAmount {
 
 	private void validateIsDigit(String amount) {
 		if (!isDigit(amount)) {
-			ExceptionMessage.PURCHASE_AMOUNT_NUMERIC.throwException();
+			NumberFormatExceptionMessage.PURCHASE_AMOUNT_NUMBERS_ONLY.throwException();
 		}
 	}
 
 	private void validateIsThousandUnit(int amount) {
 		if (!(amount % 1000 == 0)) {
-			ExceptionMessage.PURCHASE_AMOUNT_THOUSAND_UNIT.throwException();
+			IllegalArgumentExceptionMessage.PURCHASE_AMOUNT_THOUSAND_UNIT.throwException();
 		}
 	}
 
@@ -48,7 +51,7 @@ public class PurchaseAmount {
 
 	private void validateIsPositive(int amount) {
 		if (!(amount > 0)) {
-			ExceptionMessage.PURCHASE_AMOUNT_NOT_EXCEED_ZERO.throwException();
+			IllegalArgumentExceptionMessage.PURCHASE_AMOUNT_NOT_EXCEED_ZERO.throwException();
 		}
 	}
 

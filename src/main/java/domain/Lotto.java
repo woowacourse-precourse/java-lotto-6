@@ -3,6 +3,9 @@ package domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import exception.IllegalArgumentExceptionMessage;
+import exception.NumberFormatExceptionMessage;
+
 public class Lotto {
 	private final List<Integer> numbers;
 
@@ -36,7 +39,7 @@ public class Lotto {
 
 	private void validateIsSixLength(List<String> numbers) {
 		if (!isSixLength(numbers)) {
-			ExceptionMessage.LOTTO_WRONG_FORMAT.throwException();
+			IllegalArgumentExceptionMessage.LOTTO_WRONG_FORMAT.throwException();
 		}
 	}
 
@@ -46,8 +49,7 @@ public class Lotto {
 
 	private void validateIsDigit(List<String> numbers) {
 		if (!isDigit(numbers)) {
-			// NumberFormat
-			ExceptionMessage.NUMBERS_ONLY.throwException();
+			NumberFormatExceptionMessage.NUMBERS_ONLY.throwException();
 		}
 	}
 
@@ -66,19 +68,19 @@ public class Lotto {
 
 	private void validate(List<Integer> numbers) {
 		if (numbers.size() != 6) {
-			ExceptionMessage.LOTTO_WRONG_FORMAT.throwException();
+			IllegalArgumentExceptionMessage.LOTTO_WRONG_FORMAT.throwException();
 		}
 	}
 
 	private void validateDuplicateNumber(List<Integer> numbers) {
 		if (numbers.size() != numbers.stream().distinct().count()) {
-			ExceptionMessage.LOTTO_NUMBER_DUPLICATE.throwException();
+			IllegalArgumentExceptionMessage.LOTTO_NUMBER_DUPLICATE.throwException();
 		}
 	}
 
 	private void validateIsBetweenLottoRange(List<Integer> numbers) {
 		if (!isBetweenLottoRange(numbers)) {
-			ExceptionMessage.LOTTO_OUT_OF_RANGE.throwException();
+			IllegalArgumentExceptionMessage.LOTTO_OUT_OF_RANGE.throwException();
 		}
 	}
 

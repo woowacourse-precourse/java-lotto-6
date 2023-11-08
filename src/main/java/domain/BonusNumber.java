@@ -1,5 +1,8 @@
 package domain;
 
+import exception.IllegalArgumentExceptionMessage;
+import exception.NumberFormatExceptionMessage;
+
 public class BonusNumber {
 	private final int bonusNumber;
 
@@ -21,13 +24,13 @@ public class BonusNumber {
 
 	private void validateIsDigit(String bonusNumber) {
 		if (!isDigit(bonusNumber)) {
-			ExceptionMessage.NUMBERS_ONLY.throwException();
+			NumberFormatExceptionMessage.NUMBERS_ONLY.throwException();
 		}
 	}
 
 	private void validateIsBetweenLottoRange(int bonusNumber) {
 		if (!(1 <= bonusNumber && bonusNumber <= 45)) {
-			ExceptionMessage.BONUS_OUT_OF_RANGE.throwException();
+			IllegalArgumentExceptionMessage.BONUS_OUT_OF_RANGE.throwException();
 		}
 	}
 
@@ -38,7 +41,7 @@ public class BonusNumber {
 
 	private void validateWinningLottoNumberDuplicate(int bonusNumber, Lotto lotto) {
 		if (!isWinningLottoNumberDuplicate(bonusNumber, lotto)) {
-			ExceptionMessage.BONUS_NUMBER_DUPLICATE.throwException();
+			IllegalArgumentExceptionMessage.BONUS_NUMBER_DUPLICATE.throwException();
 		}
 	}
 

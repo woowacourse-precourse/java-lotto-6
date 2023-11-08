@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.domain.*;
-import lotto.message.ErrorMessage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

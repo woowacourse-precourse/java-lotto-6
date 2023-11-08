@@ -15,6 +15,7 @@ public class Lotto {
         validate(numbers);
         validateLottoNums();
         this.numbers = numbers;
+        ascendingNumbers();
     }
 
     private void validate(List<Integer> numbers) {

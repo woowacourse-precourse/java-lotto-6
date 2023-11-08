@@ -12,10 +12,18 @@ import lotto.view.OutputView;
 
 public class GameController {
 
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
-    Validator validator = new Validator();
-    LottoGenerator generator = new LottoGenerator();
+    InputView inputView;
+    OutputView outputView;
+    Validator validator;
+    LottoGenerator generator;
+
+    public GameController(InputView inputView, OutputView outputView, Validator validator,
+            LottoGenerator generator) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.validator = validator;
+        this.generator = generator;
+    }
 
     public void play() {
         int payment = getPayment();

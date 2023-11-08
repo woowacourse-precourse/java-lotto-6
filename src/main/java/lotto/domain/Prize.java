@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.utils.ConstantValues.LOTTO_NUMBERS_LENGTH;
+import static lotto.utils.ErrorMessages.SAME_COUNT_OUT_OF_RANGE;
+
 public enum Prize {
     NO_PRIZE(0, 0),
     FIFTH(3, 5000),
@@ -25,10 +28,12 @@ public enum Prize {
     }
 
     public static boolean canGetPrize(int sameCount) {
+        validateSameCount(sameCount);
         return sameCount >= FIFTH.getSameCount();
     }
 
     public static Prize getPrize(int sameCount, boolean hasBonusNumber) {
+        validateSameCount(sameCount);
         if (SECOND.getSameCount() == sameCount) {
             return distinguishSecondOrThird(hasBonusNumber);
         }
@@ -41,6 +46,12 @@ public enum Prize {
             }
         }
         return NO_PRIZE;
+    }
+
+    private static void validateSameCount(int sameCount) {
+        if (sameCount < NO_PRIZE.getSameCount() || sameCount > FIRST.getSameCount()) {
+            throw new IllegalArgumentException(String.format(SAME_COUNT_OUT_OF_RANGE, LOTTO_NUMBERS_LENGTH));
+        }
     }
 
     private static Prize distinguishSecondOrThird(boolean hasBonusNumber) {

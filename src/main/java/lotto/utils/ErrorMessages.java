@@ -12,4 +12,5 @@ public class ErrorMessages {
     public static final String INVALID_LOTTO_NUMBERS_LENGTH = PREFIX + "로또는 총 %d개의 번호로 이루어져야 합니다.";
     public static final String LOTTO_NUMBER_DUPLICATION = PREFIX + "로또 번호에 중복이 있습니다.";
     public static final String WINNING_NUMBERS_CONTAINS_BONUS_NUMBER = PREFIX + "보너스 번호가 당첨 번호와 중복됩니다.";
+    public static final String SAME_COUNT_OUT_OF_RANGE = PREFIX + "당첨 번호와 동일한 로또 번호의 개수는 0~%d개 사이입니다.";
 }

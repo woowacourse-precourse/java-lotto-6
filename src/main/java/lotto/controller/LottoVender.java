@@ -14,6 +14,9 @@ import java.util.List;
 
 public class LottoVender {
     private final int LOTTO_PRICE = 1000;
+    private final int MIN_LOTTO_NUMBER = 1;
+    private final int MAX_LOTTO_NUMBER = 45;
+    private final int LOTTO_NUMBER_LENGTH = 6;
     private int inputPrice;
     private int lottoCount;
     private List<Lotto> boughtTickets;
@@ -77,7 +80,7 @@ public class LottoVender {
         List<Lotto> lottoticekts = new ArrayList<>();
         for(int i = 0; i<buyLottoCount; i++){
             //6개의 랜덤 로또 번호 생성해주는 numbers
-            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_LENGTH));
             //Randoms.pickUniqueNumbersInRange 메서드는 unmodifiableList를 반환해주기때문에 수정할 수 있도록 modifiablelist로 새로 만들어줌
             Collections.sort(numbers);
             lottoticekts.add(new Lotto(numbers));

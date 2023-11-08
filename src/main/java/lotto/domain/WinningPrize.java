@@ -9,8 +9,6 @@ public enum WinningPrize {
 
     private final int price;
     private final String message;
-
-    public static int[] priceArray = {5000,50000,1500000,30000000,2000000000};
     public static String[] matchArray = {"THREE_MATCH","FOUR_MATCH","FIVE_MATCH","BONUS_MATCH","SIX_MATCH"};
     WinningPrize(int price, String message){
         this.price = price;

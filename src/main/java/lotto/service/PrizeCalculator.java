@@ -27,9 +27,6 @@ public class PrizeCalculator {
     }
 
     public static float calculateProfitRate(int totalPrize, int inputPrice) {
-        float prifit = ((float) totalPrize / inputPrice) * 100;
-        return prifit;
+        return ((float) totalPrize / inputPrice) * 100;
     }
-
-
 }

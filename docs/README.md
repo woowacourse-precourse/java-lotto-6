@@ -27,11 +27,9 @@
 
   - [x] a. 구매한 갯수 (ex. n개를 구매했습니다.) (LottoCounter.java)
   - [x] b. 구매한 로또 출력 (LottoPrinter,java)
-  - [ ] b. 당첨 내역
-    - [ ] 번호 일치 갯수
-    - [ ] 당첨 금액
-    - [ ] 번호 일치 갯수 별 로또 당첨 갯수
-    - [ ] 총 수익률(소수점 둘째 자리 반올림)
+  - [x] b. 당첨 내역
+    - [x] 로또 당첨 갯수 (LottoResult.java)
+    - [x] 총 수익률(소수점 둘째 자리 반올림) (TotalProfit.java)
 
 
 

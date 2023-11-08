@@ -1,12 +1,14 @@
-package lotto;
+package lotto.model;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Validator {
     public static final String regexSixNumber = "^[0-9,]*";
-    public static final String regexNumber = "^[0-9]{1,2}";
-    public List<Integer> validatePickSixNumber(String rawInput){
+    public static final String regexNumber = "^[0-9]*";
+    public List<Integer> validatePickSixNumber(String rawInput) throws IllegalArgumentException{
         validateNumberList(rawInput);
         List<Integer> numbers = Arrays.stream(rawInput.split(","))
                 .map(Integer::parseInt)
@@ -16,14 +18,14 @@ public class Validator {
         numbers.forEach(this::validateRange);
         return numbers;
     }
-    public Integer validatePickBonusNumber(String rawInput,List<Integer> sixNumber){
+    public Integer validatePickBonusNumber(String rawInput,List<Integer> sixNumber) throws IllegalArgumentException{
         validateNumber(rawInput);
         Integer number = Integer.parseInt(rawInput);
         validateRange(number);
         validateDuplicateSeven(number,sixNumber);
         return number;
     }
-    public Integer validateBuyAmount(String rawInput){
+    public Integer validateBuyAmount(String rawInput) throws IllegalArgumentException{
         validateNumber(rawInput);
         Integer amount = Integer.parseInt(rawInput);
         validateModuler(amount);
@@ -36,8 +38,11 @@ public class Validator {
     }
 }
     public void validateDuplicateSix(List<Integer> input){
-        if(input.stream().distinct().count()!=input.size()){
-            throw new IllegalArgumentException("[ERROR] 중복되는 숫자가 있습니다.");
+        Set<Integer> set = new HashSet<>();
+        for (Integer number : input) {
+            if (!set.add(number)) {
+                throw new IllegalArgumentException("[ERROR] 중복되는 숫자가 있습니다.");
+            }
         }
     }
     public void validateDuplicateSeven(Integer input,List<Integer> sixNumber){

@@ -14,7 +14,7 @@ public class Lotto {
         validateLottoSize(numbers);
         validateDuplicate(numbers);
         validateNumberInRange(numbers);
-        this.numbers = numbers;
+        this.numbers = sortLottoNumber(numbers);
     }
 
     public int countNumber(final Lotto another) {
@@ -69,9 +69,9 @@ public class Lotto {
         return number < LottoConstants.START_NUMBER || number > LottoConstants.END_NUMBER;
     }
 
-//    private List<Integer> sortLottoNumber(final List<Integer> numbers) {
-//        return numbers.stream()
-//                .sorted()
-//                .toList();
-//    }
+    private List<Integer> sortLottoNumber(final List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .toList();
+    }
 }

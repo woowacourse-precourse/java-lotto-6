@@ -1,11 +1,13 @@
 package lotto.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Money {
 
     private static final String MONEY_UNIT_EXCEPTION_MESSAGE = "[ERROR] 입력 금액은 1000원 단위여야 합니다.";
     private static final String NEGATIVE_AMOUNT_EXCEPTION_MESSAGE = "[ERROR] 입력 금액은 음수이면 안 됩니다.";
+    private static final int DEFAULT_SCALE = 4;
 
     private final long money;
 
@@ -20,7 +22,8 @@ public class Money {
     }
 
     public BigDecimal divide(final Money another) {
-        return BigDecimal.valueOf(money).divide(BigDecimal.valueOf(another.getMoney()));
+        return BigDecimal.valueOf(money)
+                .divide(BigDecimal.valueOf(another.getMoney()), DEFAULT_SCALE, RoundingMode.HALF_UP);
     }
 
     public int getNumberOfLotto() {

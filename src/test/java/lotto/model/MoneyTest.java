@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -41,6 +42,6 @@ class MoneyTest {
         final BigDecimal divide = money.divide(another);
 
         // then
-        Assertions.assertThat(divide).isEqualTo(BigDecimal.valueOf(5.0));
+        Assertions.assertThat(divide).isEqualTo(BigDecimal.valueOf(5.000).setScale(4, RoundingMode.HALF_UP));
     }
 }

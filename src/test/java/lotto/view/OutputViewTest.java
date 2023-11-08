@@ -40,7 +40,7 @@ public class OutputViewTest {
     @Test
     void 당첨_통계를_잘출력해주는지() {
         //given
-        OuputView outputView = new OuputView();
+        OutputView outputView = new OutputView();
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 8, 9, 20));
         Lotto lotto2 = new Lotto(List.of(5, 6, 3, 10, 11, 12));
         //when

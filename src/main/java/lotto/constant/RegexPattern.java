@@ -12,12 +12,12 @@ public enum RegexPattern {
         this.pattern = pattern;
     }
 
-    public static boolean isNumberic(String input) {
+    public static boolean isNotNumberic(String input) {
         Pattern pattern = NUMERIC_PATTERN.pattern;
         return !pattern.matcher(input).matches();
     }
 
-    public static boolean isLottoNumberAvailable(Integer input) {
+    public static boolean isLottoNumberUnavailable(Integer input) {
         Pattern pattern = LOTTO_REGEX_PATTERN.pattern;
         return !pattern.matcher(input.toString()).matches();
     }

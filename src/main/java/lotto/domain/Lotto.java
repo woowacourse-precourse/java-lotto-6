@@ -41,7 +41,7 @@ public class Lotto {
 
     private void validateLottoRegex(final List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (RegexPattern.isLottoNumberAvailable(number)) {
+            if (RegexPattern.isLottoNumberUnavailable(number)) {
                 throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_RANGE.toMessage());
             }
         }

@@ -18,7 +18,7 @@ public class InputValidator {
     }
 
     private boolean isNumeric(final String input) {
-        return RegexPattern.isNumberic(input);
+        return RegexPattern.isNotNumberic(input);
     }
 
     public void validateNull(final String input) {

@@ -48,9 +48,7 @@ class OutputViewTest extends NsTest {
         // given
         int purchase = 2000;
 
-        LottoPrizeCount prizeCount = LottoPrizeCount.create();
-        prizeCount.add(PRIZE_1);
-        prizeCount.add(PRIZE_2);
+        LottoPrizeCount prizeCount = LottoPrizeCount.from(List.of(PRIZE_1, PRIZE_2));
 
         double earningRate = (double) (PRIZE_1.getPrizeMoney() + PRIZE_2.getPrizeMoney()) / purchase;
 

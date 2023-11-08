@@ -6,6 +6,7 @@ import static lotto.model.LottoPurchaseMoney.INVALID_PURCHASE_AMOUNT;
 import static lotto.model.LottoStatistic.RATE;
 import static lotto.model.LottoWinningNumbers.INVALID_BONUS_NUMBER;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import lotto.exception.InputCallback;
@@ -65,11 +66,10 @@ public class LottoService {
     }
 
     private LottoPrizeCount countLottoPrizes(final Lottos lottos, final LottoWinningNumbers lottoWinningNumbers) {
-        LottoPrizeCount prizeCount = LottoPrizeCount.create();
-        lottos.stream()
+        List<LottoPrize> prizes = lottos.stream()
                 .map(lotto -> match(lotto, lottoWinningNumbers))
-                .forEach(prizeCount::add);
-        return prizeCount;
+                .toList();
+        return LottoPrizeCount.from(prizes);
     }
 
     private double computeEarningRate(final LottoPurchaseMoney lottoPurchaseMoney, final LottoPrizeCount prizeCount) {

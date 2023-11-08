@@ -3,6 +3,7 @@ package lotto.model;
 import static java.util.stream.Collectors.toMap;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 public class LottoPrizeCount {
@@ -11,13 +12,14 @@ public class LottoPrizeCount {
 
     private final Map<LottoPrize, Integer> prizeCounts;
 
-    private LottoPrizeCount() {
+    private LottoPrizeCount(List<LottoPrize> prizes) {
         this.prizeCounts = new EnumMap<>(LottoPrize.class);
         initializePrizeCounts();
+        prizes.forEach(this::add);
     }
 
-    public static LottoPrizeCount create() {
-        return new LottoPrizeCount();
+    public static LottoPrizeCount from(List<LottoPrize> prizes) {
+        return new LottoPrizeCount(prizes);
     }
 
     private void initializePrizeCounts() {
@@ -27,7 +29,7 @@ public class LottoPrizeCount {
         );
     }
 
-    public void add(final LottoPrize prize) {
+    private void add(final LottoPrize prize) {
         prizeCounts.computeIfPresent(prize, (key, count) -> ++count);
     }
 

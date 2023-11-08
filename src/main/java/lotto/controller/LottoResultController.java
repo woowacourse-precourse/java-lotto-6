@@ -6,6 +6,7 @@ import lotto.domain.lotto.LottoPaper;
 import lotto.domain.lotto.enums.LottoRank;
 import lotto.domain.result.LottoResult;
 import lotto.domain.result.MatchResult;
+
 import lotto.view.OutputView;
 
 import java.util.ArrayList;

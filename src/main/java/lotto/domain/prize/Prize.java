@@ -1,6 +1,7 @@
 package lotto.domain.prize;
 
 import lotto.constant.PrizeConstant;
+
 import lotto.domain.lotto.enums.LottoPrize;
 import lotto.domain.lotto.enums.LottoRank;
 

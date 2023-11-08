@@ -1,6 +1,7 @@
 package lotto.util;
 
 import lotto.constant.ParserConstant;
+
 import lotto.exception.ParserException;
 import lotto.exception.message.ParserExceptionMessage;
 

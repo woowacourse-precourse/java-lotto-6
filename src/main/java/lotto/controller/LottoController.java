@@ -2,7 +2,9 @@ package lotto.controller;
 
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoDraw;
+
 import lotto.util.Parser;
+
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

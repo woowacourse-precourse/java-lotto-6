@@ -1,7 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+
 import lotto.controller.GameController;
+
 import lotto.domain.lotto.LottoPaper;
 import lotto.domain.prize.Prize;
 import lotto.domain.result.LottoResult;

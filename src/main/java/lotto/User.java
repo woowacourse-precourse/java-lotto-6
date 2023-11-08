@@ -2,10 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class User {
 
@@ -46,7 +43,7 @@ public class User {
             int randomNumber;
 
             do {
-                randomNumber = Randoms.pickNumberInRange(0, 45) + 1;
+                randomNumber = new Random().nextInt(45) + 1;
             } while ( lottoNumbers.contains( randomNumber ) );
 
             lottoNumbers.add( randomNumber );
@@ -64,7 +61,6 @@ public class User {
         for ( int i = 0; i < number; i++ ) {
 
             userLotto.add( this.createLottoNumbers() );
-
         }
         return userLotto;
     }

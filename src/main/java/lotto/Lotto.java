@@ -15,9 +15,80 @@ public class Lotto {
         numbers = new ArrayList<>();
     }
 
+    public int getResult( List<List<Integer>> userLotto ) {
+
+        int FIRST = 0;
+        int SECOND = 0;
+        int THIRD = 0;
+        int FORTH = 0;
+        int FIFTH = 0;
+
+        for ( List<Integer> list : userLotto ) {
+            int count = 0;
+            boolean isBonus = false;
+
+            for ( Integer commons : list ){
+
+                if ( numbers.contains( commons ) ) {
+                    count++;
+                }
+            }
+
+            if ( list.contains( numbers.get(numbers.size() - 1) ) ) {
+                isBonus = true;
+            }
+
+            switch ( count ) {
+                case 3:
+                    FIFTH++;
+                    break;
+                case 4:
+                    FORTH++;
+                    break;
+                case 5:
+                    if ( isBonus )  SECOND++;
+                    else THIRD++;
+                    break;
+                case 6:
+                    FIRST++;
+                    break;
+            }
+        }
+
+        System.out.println(
+                "3개 일치 (5,000원) - "+ FIFTH +"개\n" +
+                "4개 일치 (50,000원) - "+ FORTH +"개 \n" +
+                "5개 일치 (1,500,000원) - "+ THIRD +"개\n" +
+                "5개 일치, 보너스 볼 일치 (30,000,000원) - "+ SECOND +"개\n" +
+                "6개 일치 (2,000,000,000원) - "+ FIRST +"개"
+        );
+
+        int totalIncome = 5000*FIFTH + 50000*FORTH + 1500000*THIRD + 30000000*SECOND + 2000000000*FIRST;
+        return totalIncome;
+    }
+
+    public void makeWinLottoNumber ( String winNumber ) {
+
+        this.validateLottoNumber( winNumber );
+
+        List<String> inputLotto = List.of( winNumber.split(",", -1) );
+
+        for ( String lottoNumber : inputLotto ) {
+
+            int number = Integer.parseInt( lottoNumber );
+
+             numbers.add(number);
+        }
+    }
+
+    public void makeWinLottoBonus( String bonusNumber ) {
+
+        this.validateBonusNumber( bonusNumber, numbers );
+        numbers.add( Integer.parseInt( bonusNumber ));
+    }
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] ");
         }
     }
 
@@ -41,7 +112,6 @@ public class Lotto {
             this.checkIsEmpty( lottoNumber );
         }
         this.checkIsDuplicate( lotto );
-
     }
 
     private void checkNameValid( String number ) {

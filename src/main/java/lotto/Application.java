@@ -2,12 +2,14 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
 
         final String START = "구입금액을 입력해 주세요.";
         final String WIN_LOTTO_NUMBER = "당첨 번호를 입력해 주세요.";
@@ -29,10 +31,9 @@ public class Application {
                 isContinue = true;
             } catch ( IllegalArgumentException e ) {
 
-                System.err.println("[ERROR] 로또 구입 금액 에러");
+                System.out.println(e.getMessage());
             }
         }
-
 
         int lottoNum = user.lottoNumber( price );
         final String BUY_LOTTO = "\n" + lottoNum + "개를 구매했습니다.";
@@ -41,59 +42,50 @@ public class Application {
         List<List<Integer>> userLotto = user.makeUserLotto( lottoNum );
         user.printUserLotto( userLotto );
 
-        List<Integer> wonLottoNumber = new ArrayList<>();
         Lotto lotto = new Lotto();
 
         isContinue = false;
         while( !isContinue ){
 
-            System.out.println( "\n" + WIN_LOTTO_NUMBER );
-            String winNumber = Console.readLine();
-
             try{
 
-                lotto.validateLottoNumber( winNumber );
+                System.out.println( "\n" + WIN_LOTTO_NUMBER );
+                String winNumber = Console.readLine();
 
-                List<String> inputLotto = List.of( winNumber.split(",", -1) );
-
-                for ( String lottoNumber : inputLotto ) {
-
-                    int number = Integer.parseInt( lottoNumber );
-
-                    wonLottoNumber.add(number);
-                }
-
+                lotto.makeWinLottoNumber( winNumber );
                 isContinue = true;
 
             } catch ( IllegalArgumentException e ) {
 
-                System.err.println( e.getMessage() );
+                System.out.println( e.getMessage() );
             }
-
-
-
-
-
         }
 
         isContinue = false;
         while( !isContinue ) {
 
-            System.out.println( "\n" + WIN_BONUS_NUMBER );
-            String bonusNumber = Console.readLine();
-
             try {
+                System.out.println( "\n" + WIN_BONUS_NUMBER );
+                String bonusNumber = Console.readLine();
 
-                lotto.validateBonusNumber( bonusNumber, wonLottoNumber );
-                wonLottoNumber.add( Integer.parseInt( bonusNumber ));
+                lotto.makeWinLottoBonus( bonusNumber );
                 isContinue = true;
 
             } catch ( IllegalArgumentException e ) {
 
-                System.err.println( e.getMessage() );
+                System.out.println( e.getMessage() );
             }
         }
 
-        //TODO 결과 출력
+        int wonMoney = lotto.getResult( userLotto );
+        int spentMoney = Integer.parseInt(price);
+
+        double result = ((double) (wonMoney - spentMoney) / spentMoney ) * 100.0;
+        if( result < 0 ) {
+            result = 100 + result;
+        }
+
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        System.out.println( "총 수익률은 " + decimalFormat.format( result ) + "%입니다." );
     }
 }

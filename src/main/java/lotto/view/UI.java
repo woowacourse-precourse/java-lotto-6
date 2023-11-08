@@ -40,4 +40,9 @@ public class UI {
         String bonusNumber = Console.readLine();
         return bonusNumber;
     }
+
+    public static void displayLottoReceipt(String lottoReceipt) {
+        displayMessage(Instructions.MESSAGE_OF_LOTTO_RESULT);
+        System.out.println(lottoReceipt);
+    }
 }

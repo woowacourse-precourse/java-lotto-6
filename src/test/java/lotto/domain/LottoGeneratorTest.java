@@ -7,7 +7,7 @@ import lotto.utils.Constants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LottoGeneratorTest {
+class LottoGeneratorTest {
     @DisplayName("로또 번호를 생성할 수 있다.")
     @Test
     void generateNumbers_Success() {

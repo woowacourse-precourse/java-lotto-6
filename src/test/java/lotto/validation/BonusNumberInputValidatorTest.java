@@ -6,7 +6,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class BonusNumberInputValidatorTest {
+class BonusNumberInputValidatorTest {
     @DisplayName("보너스 번호 입력값이 숫자가 아닌 경우 예외 발생")
     @Test
     void validate_IsNumeric_ExceptionThrown() {

@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class PurchaseAmountValidatorTest {
+class PurchaseAmountValidatorTest {
     @DisplayName("구입 금액이 양의 정수가 아닐 경우 예외 발생")
     @Test
     void validateIsPositiveInteger_NotPositiveInteger_ExceptionThrown() {

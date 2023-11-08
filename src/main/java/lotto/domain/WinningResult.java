@@ -12,7 +12,7 @@ public class WinningResult {
         winningResult = lottoTickets.calculateWinningResult(winningLotto);
     }
 
-    public static WinningResult compare (LottoTickets lottoTickets, WinningLotto winningLotto) {
+    public static WinningResult compare(LottoTickets lottoTickets, WinningLotto winningLotto) {
         return new WinningResult(lottoTickets, winningLotto);
     }
 

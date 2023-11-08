@@ -11,6 +11,7 @@ import java.util.Map;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class WinningResultTest {
 
@@ -24,10 +25,18 @@ class WinningResultTest {
             LottoNumber lottoNumber = LottoNumber.valueOf("7");
             WinningLotto winningLotto= WinningLotto.of(lotto, lottoNumber);
 
-            LottoTickets tickets = LottoTickets.createdByNumber(5);
+            LottoTickets tickets = LottoTickets.createdByNumber(7);
 
             winningResult = WinningResult.compare(tickets, winningLotto);
-        }, List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 4, 5, 7), List.of(1, 2, 3, 4, 5, 8), List.of(1, 2, 3, 4, 8, 7), List.of(1, 2, 3, 14, 15, 18));
+        },
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 7),
+                List.of(1, 2, 3, 4, 5, 8),
+                List.of(1, 2, 3, 4, 8, 7),
+                List.of(1, 2, 3, 14, 15, 18),
+                List.of(1, 2, 10, 14, 15, 18),
+                List.of(1, 2, 10, 14, 15, 18)
+        );
     }
 
     @Test
@@ -52,6 +61,13 @@ class WinningResultTest {
         assertThat(winningResult.getCount(Rank.THIRD)).isEqualTo(1);
         assertThat(winningResult.getCount(Rank.FOURTH)).isEqualTo(1);
         assertThat(winningResult.getCount(Rank.FIFTH)).isEqualTo(1);
+    }
+
+    @DisplayName("당첨된 로또 결과의 수 가져오는 함수 예외상황하지 않네요")
+    @Test
+    void getCountByNull() {
+        System.out.println(winningResult.getCount(null));
+        assertThat(winningResult.getCount(null)).isEqualTo(0);
     }
 
     @DisplayName("총 당첨 금액 계산하기 테스트")

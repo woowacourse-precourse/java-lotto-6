@@ -2,7 +2,6 @@ package lotto.domain;
 
 import lotto.enums.ErrorMessages;
 import lotto.enums.Rank;
-import lotto.enums.SystemErrorMessages;
 import lotto.utils.LottoNumbersGenerator;
 
 import java.util.EnumMap;

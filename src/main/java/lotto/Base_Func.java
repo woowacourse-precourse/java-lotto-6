@@ -56,7 +56,7 @@ public class Base_Func {
                 if (list.get(i) < 1 || list.get(i) > 45)
                     throw new IllegalArgumentException("[ERROR] 1~45 범위를 벗어난 입력이 있습니다.");
                 for(int t=i+1; t<list.size(); t++){
-                    if(list.get(i) == list.get(t))
+                    if(Objects.equals(list.get(i), list.get(t)))
                         throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
                 }
             }

@@ -21,12 +21,12 @@ class LottoCompareTest {
     @DisplayName("당첨 번호와 로또 번호가 6개 일치하면 1등이다.")
     @Test
     void createFirstWinningGrade() {
-        WinningNumbers winningNumbers = new WinningNumbers(List.of(1,2,3,4,5,6));
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7);
         winningNumbers.addBonusNumber(bonusNumber);
 
         List<Lotto> lottos = new ArrayList<>();
-        lottos.add(new Lotto(List.of(1,2,3,4,5,6)));
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
 
         compare.compareAllLottoToWinning(lottos, winningNumbers);
 
@@ -40,12 +40,12 @@ class LottoCompareTest {
     @DisplayName("당첨 번호와 로또 번호가 5개 일치하고, 보너스 번호도 일치하면 2등이다.")
     @Test
     void createSecondWinningGrade() {
-        WinningNumbers winningNumbers = new WinningNumbers(List.of(1,2,3,4,5,6));
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7);
         winningNumbers.addBonusNumber(bonusNumber);
 
         List<Lotto> lottos = new ArrayList<>();
-        lottos.add(new Lotto(List.of(1,2,3,4,5,7)));
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
 
         compare.compareAllLottoToWinning(lottos, winningNumbers);
 
@@ -59,12 +59,12 @@ class LottoCompareTest {
     @DisplayName("당첨 번호와 로또 번호가 5개 일치하면 3등이다.")
     @Test
     void createThirdWinningGrade() {
-        WinningNumbers winningNumbers = new WinningNumbers(List.of(1,2,3,4,5,6));
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7);
         winningNumbers.addBonusNumber(bonusNumber);
 
         List<Lotto> lottos = new ArrayList<>();
-        lottos.add(new Lotto(List.of(1,2,3,4,5,8)));
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 8)));
 
         compare.compareAllLottoToWinning(lottos, winningNumbers);
 
@@ -78,12 +78,12 @@ class LottoCompareTest {
     @DisplayName("당첨 번호와 로또 번호가 4개 일치하면 4등이다.")
     @Test
     void createFourthWinningGrade() {
-        WinningNumbers winningNumbers = new WinningNumbers(List.of(1,2,3,4,5,6));
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7);
         winningNumbers.addBonusNumber(bonusNumber);
 
         List<Lotto> lottos = new ArrayList<>();
-        lottos.add(new Lotto(List.of(1,2,3,4,8,9)));
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 8, 9)));
 
         compare.compareAllLottoToWinning(lottos, winningNumbers);
 
@@ -97,12 +97,12 @@ class LottoCompareTest {
     @DisplayName("당첨 번호와 로또 번호가 3개 일치하면 5등이다.")
     @Test
     void createFifthWinningGrade() {
-        WinningNumbers winningNumbers = new WinningNumbers(List.of(1,2,3,4,5,6));
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7);
         winningNumbers.addBonusNumber(bonusNumber);
 
         List<Lotto> lottos = new ArrayList<>();
-        lottos.add(new Lotto(List.of(1,2,3,8,9,10)));
+        lottos.add(new Lotto(List.of(1, 2, 3, 8, 9, 10)));
 
         compare.compareAllLottoToWinning(lottos, winningNumbers);
 
@@ -116,14 +116,14 @@ class LottoCompareTest {
     @DisplayName("당첨 번호와 로또 번호가 2개로 일치하면 6등이다.")
     @Test
     void createNoWinningGrade() {
-        WinningNumbers winningNumbers = new WinningNumbers(List.of(1,2,3,4,5,6));
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7);
         winningNumbers.addBonusNumber(bonusNumber);
 
         List<Lotto> lottos = new ArrayList<>();
-        lottos.add(new Lotto(List.of(1,2,8,9,10,11)));
-        lottos.add(new Lotto(List.of(1,20,21,22,23,24)));
-        lottos.add(new Lotto(List.of(30,31,32,33,34,35)));
+        lottos.add(new Lotto(List.of(1, 2, 8, 9, 10, 11)));
+        lottos.add(new Lotto(List.of(1, 20, 21, 22, 23, 24)));
+        lottos.add(new Lotto(List.of(30, 31, 32, 33, 34, 35)));
 
         compare.compareAllLottoToWinning(lottos, winningNumbers);
 

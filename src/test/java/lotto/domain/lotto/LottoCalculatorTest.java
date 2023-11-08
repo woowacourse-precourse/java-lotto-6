@@ -22,7 +22,7 @@ class LottoCalculatorTest {
         Money money = new Money(8000);
 
         double yield = calculator.calculate(money, winningResult);
-        double expected = ((double) 5000 / 8000 ) * 100;
+        double expected = ((double) 5000 / 8000) * 100;
         assertEquals(expected, yield);
     }
 }

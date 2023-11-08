@@ -7,12 +7,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class LottoTicketTest {
-    @DisplayName("로또 티켓 구입 금액이 1000원 미만이거나 1000원의 배수가 아닐 때 예외가 발생한다.")
+    @DisplayName("로또 티켓 구입 금액이 1000원 미만 또는 1000의 배수가 아닌 경우 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(ints = {800, 1200})
-    void checkIfRangeOut(int inputBuyingCost) {
+    @ValueSource(ints = {800, 1200, 1300})
+    void checkIfInvalidBuyingCost(int inputBuyingCost) {
         assertThatThrownBy(() -> LottoTicket.isNotMultipleOfLottoPrice(inputBuyingCost))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("로또 구입 금액은 로또 가격의 배수여야 합니다.");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

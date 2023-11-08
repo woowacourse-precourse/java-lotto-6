@@ -45,7 +45,8 @@ public class GameController {
             List<Integer> userTicket = user.getTicket(index);
             List<Integer> winningNumber = prize.getNumbers();
             int bonusNumber = prize.getBonusNumber();
-            addPrize(userTicket, matchNumberAmount(userTicket, winningNumber), bonusNumber);
+            int rank = getRank(userTicket, matchNumberAmount(userTicket, winningNumber), bonusNumber);
+            addNthPrize(rank);
         }
     }
 
@@ -56,22 +57,23 @@ public class GameController {
         return matchingList.size();
     }
 
-    public void addPrize(List<Integer> userTicket, int matchNumberAmount, int bonusNumber) {
+    public int getRank(List<Integer> userTicket, int matchNumberAmount, int bonusNumber) {
         if (isFifthPrize(matchNumberAmount)) {
-            addNthPrize(5);
+            return 5;
         }
         if (isFourthPrize(matchNumberAmount)) {
-            addNthPrize(4);
+            return 4;
         }
         if (isThirdPrize(userTicket, matchNumberAmount, bonusNumber)) {
-            addNthPrize(3);
+            return 3;
         }
         if (isSecondPrize(userTicket, matchNumberAmount, bonusNumber)) {
-            addNthPrize(2);
+            return 2;
         }
         if (isFirstPrize(matchNumberAmount)) {
-            addNthPrize(1);
+            return 1;
         }
+        return 0;
     }
 
     private boolean isFifthPrize(int matchNumberAmount) {
@@ -107,7 +109,4 @@ public class GameController {
                 .divide(money, DECIMAL_PLACE, RoundingMode.HALF_UP);
     }
 
-    public int getTotalPrizeMoney() {
-        return totalPrizeMoney;
-    }
 }

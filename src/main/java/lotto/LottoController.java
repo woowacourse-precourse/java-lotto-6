@@ -58,9 +58,16 @@ public class LottoController {
     }
 
     private void outputWinningStatistics() {
+        WinningStatistics winningStatistics = calculateStatistic();
+        winningStatistics.outputAllStatisticsInfo();
+
+        player.outputYieldResult(winningStatistics.calculatePrizeMoney());
+    }
+
+    private WinningStatistics calculateStatistic() {
         ResultDTO resultDTO = player.calculateResult(winningNumber);
         int quantity = player.getPurchaseQuantity();
-        WinningStatistics winningStatistics = new WinningStatistics(resultDTO, quantity);
-        winningStatistics.outputAllStatisticsInfo();
+
+        return new WinningStatistics(resultDTO, quantity);
     }
 }

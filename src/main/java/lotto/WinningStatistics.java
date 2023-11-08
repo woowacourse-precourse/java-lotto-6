@@ -37,4 +37,14 @@ public class WinningStatistics {
             System.out.printf(entry.getKey().getMessage(), entry.getValue());
         }
     }
+
+    public long calculatePrizeMoney() {
+        long prizeMoney = 0;
+
+        for (Map.Entry<Statistics, Integer> entry : winningStatistics.entrySet()) {
+            prizeMoney = prizeMoney + ((long) entry.getKey().getMoney() * entry.getValue());
+        }
+
+        return prizeMoney;
+    }
 }

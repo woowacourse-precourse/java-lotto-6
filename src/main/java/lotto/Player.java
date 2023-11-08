@@ -50,4 +50,11 @@ public class Player {
 
         return new ResultDTO(result, bonusCount);
     }
+
+    public void outputYieldResult(long prizeMoney) {
+        double yieldResult = ((float) prizeMoney / purchaseAmount) * 100;
+        yieldResult = Math.round(yieldResult * 10) / 10.0;
+
+        System.out.printf(LottoMessage.YIELD_RESULTS.getMessage(), yieldResult);
+    }
 }

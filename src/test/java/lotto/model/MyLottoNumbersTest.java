@@ -14,7 +14,7 @@ class MyLottoNumbersTest {
                 .hasMessageContaining("숫자들만 입력 가능합니다");
     }
 
-    @DisplayName("숫자가 아닌 입력값이 있을 경우 예외처리")
+    @DisplayName("입력값이 주어진 범위를 벗어날 경우 예외처리")
     @Test
     void 입력값_범위확인() {
         assertThatThrownBy(() -> new MyLottoNumbers("0,1,2,3,4,500"))
@@ -22,7 +22,7 @@ class MyLottoNumbersTest {
                 .hasMessageContaining("1~45의 숫자들만 입력 가능합니다");
     }
 
-    @DisplayName("숫자가 아닌 입력값이 있을 경우 예외처리")
+    @DisplayName("입력번호들의 개수가 6개가 아닐 경우 예외처리")
     @Test
     void 입력값_개수확인() {
         assertThatThrownBy(() -> new MyLottoNumbers("1,2,3,4,5,6,7,8,9,10"))

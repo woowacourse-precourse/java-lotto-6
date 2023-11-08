@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.math.BigDecimal;
 import lotto.domain.WinningStatistics;
 
 public class LottoWinningCalculationOutputView {
@@ -28,7 +29,8 @@ public class LottoWinningCalculationOutputView {
     }
 
     public void outputWinningRate(WinningStatistics winningStatistics) {
-        System.out.println(WINNING_RATE + winningStatistics.getWinningRate() + END);
+        BigDecimal formatWinningRate = new BigDecimal(winningStatistics.getWinningRate());
+        System.out.println(WINNING_RATE + formatWinningRate + END);
     }
 
     public void outputWinningNumber() {

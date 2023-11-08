@@ -1,11 +1,11 @@
 package lotto.view;
 
 import lotto.Domain.Lotto;
+import lotto.Domain.LottoGrade;
 import lotto.Domain.Message;
+import lotto.service.Match;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Output {
 
@@ -33,4 +33,25 @@ public class Output {
     public void printBonusNumber(){
         System.out.println(Message.INPUT_BONUS.getContent());
     }
+
+    public void printResultstart(){
+        System.out.println(Message.WINNING_STATISTICS.getContent());
+    }
+
+    public void printLottoResult(Match match){
+        Map<LottoGrade,Integer> match_s = match.getLottoResult();
+        List<LottoGrade> lottoGrades = Arrays.asList(LottoGrade.values());
+        for(LottoGrade lottoGrade : lottoGrades){
+            if(lottoGrade.equals(lottoGrade.LOSING))
+                continue;       //꽝이면 출력x
+
+        System.out.print(lottoGrade.getMessage().getContent());
+        System.out.println(match_s.get(lottoGrade) + "개");
+        }
+    }
+
+    public void printRate(double rate){
+        System.out.print(Message.TOTAL_RETURN.getContent()+String.format("%.1f",rate)+Message.TOTAL_RETURN_FINISH.getContent());
+    }
+
 }

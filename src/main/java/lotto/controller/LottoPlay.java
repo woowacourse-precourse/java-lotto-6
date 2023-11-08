@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.Domain.Lotto;
 import lotto.InputData;
+import lotto.service.Match;
 import lotto.service.RandomNumber;
 import lotto.view.Input;
 import lotto.view.Output;
@@ -15,13 +16,13 @@ public class LottoPlay {
         List<Lotto> lottoPlayList = makeLottoInput(input,output);
         Lotto winNumber = makeWinInput(input, output);
         int bonus = makeBonusInput(input,output);
-        result(lottoPlayList,winNumber,bonus);
+        long sumPrize = result(lottoPlayList,winNumber,bonus);
+        statistics(sumPrize,lottoPlayList.size()*1000);
 
     }
 
     private List<Lotto> makeLottoInput(Input input, Output output){
         RandomNumber randomNumber = new RandomNumber();
-
         output.howManyLotto();
         List<Lotto> lottolists = randomNumber.lottoList();
         output.printLine();
@@ -43,14 +44,19 @@ public class LottoPlay {
         return Integer.parseInt(bonus);
     }
 
-    private void result(List<Lotto> lottoPlayList, Lotto winNumber, int bonus){
+    private long result(List<Lotto> lottoPlayList, Lotto winNumber, int bonus){
+        Output output = new Output();
+        output.printResultstart();
+        Match match = new Match();
+        match.lottoResult(lottoPlayList,winNumber,bonus);
+        output.printLottoResult(match);
+        return match.sumPrize();
+    }
 
-
-        //랜덤값 복권과 당첨번호비교 Match
-        //당첨금 계산 Prize
-        //수익율 계산 Prize
-        //출력
-
+    private void statistics(long sumPrize,long money){
+        Output output = new Output();
+        Match match = new Match();
+        output.printRate(match.rate(sumPrize,money));
     }
 
 

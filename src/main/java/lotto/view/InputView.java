@@ -18,6 +18,10 @@ public class InputView {
 
         String input = Console.readLine();
 
+        validateNumber(input);
+
+        validateDivide(input);
+
         return Integer.parseInt(input) / 1000;
     }
 
@@ -27,7 +31,9 @@ public class InputView {
 
         String input = Console.readLine();
 
-        validateNumber(input);
+        for (String inputSplit : input.split(",")) {
+            validateNumber(inputSplit);
+        }
 
         return new WinningLottoNumbers(
                 Arrays.stream(input.split(",")).map(Integer::parseInt).collect(Collectors.toList()));
@@ -45,6 +51,22 @@ public class InputView {
     }
 
     private void validateNumber(String input) {
+
+        for (char eachNumber : input.toCharArray()) {
+
+            if (eachNumber < 48 || eachNumber > 57) {
+                throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
+            }
+
+        }
+
+    }
+
+    private void validateDivide(String input){
+
+        if(Integer.parseInt(input)%1000 !=0){
+            throw new IllegalArgumentException("[ERROR] 1000으로 나누어 떨어지지 않습니다.");
+        }
 
     }
 

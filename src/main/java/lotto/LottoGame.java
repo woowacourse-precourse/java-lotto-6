@@ -11,14 +11,10 @@ public class LottoGame {
     private int bonusNumber;
 
     public void inputLottoNumbers(List<Integer> winningNumbers) {
-//        try {
             winningLottoNumbers = winningNumbers;
             validateWinningNumberSize();
             validateNumberRange();
             validateDuplicateWinningNumber();
-//        } catch (IllegalArgumentException e) {
-//            System.out.println("[ERROR] " + e.getMessage());
-//        }
     }
 
     public void printLottos(List<Lotto> lottos) {

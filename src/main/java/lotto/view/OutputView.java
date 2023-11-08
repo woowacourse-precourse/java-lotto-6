@@ -17,6 +17,7 @@ public class OutputView {
     }
 
     public static void printPurchaseLottoQuantity(int purchasedLottoQuantity) {
+        print("");
         print(purchasedLottoQuantity + Message.QUANTITY_OF_LOTTO.getMessage());
     }
 
@@ -33,14 +34,17 @@ public class OutputView {
     }
 
     public static void askWinningLottoNumbers() {
+        print("");
         print(Message.ASK_WINNING_LOTTO_NUMBERS.getMessage());
     }
 
     public static void askBonusNumber() {
+        print("");
         print(Message.ASK_BONUS_NUMBER.getMessage());
     }
 
     public static void printResultTitle() {
+        print("");
         print(Message.RESULT_TITLE.getMessage());
         print(Message.RESULT_TITLE_DECORATION.getMessage());
     }

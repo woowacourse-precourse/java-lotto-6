@@ -1,25 +1,38 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.view.OutputView;
+import lotto.view.constant.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
 import static lotto.constant.LottoConstant.*;
 
 public class Customer {
-    private final int money;
+    private final Money money;
     private List<Lotto> lottos;
     private double rateOfReturn;
     private List<Integer> winningLottos; // [3, 4, 5, 6]
-    public Customer(int _money) {
-        this.money = _money;
+    public Customer(String money) {
+        validationMoney(money);
+        this.money = new Money(parseInt(money));
         this.lottos = new ArrayList<Lotto>();
         this.winningLottos = new ArrayList<Integer>();
         initWinningLottos();
     }
+
+    private void validationMoney(String money) {
+        try {
+            parseInt(money);
+        } catch (NumberFormatException error) {
+            OutputView.printError(ErrorMessage.IS_NOT_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR.getMessage()+ErrorMessage.INPUT.getMessage());
+        }
+    }
     public int getMoney() {
-        return money;
+        return money.getValue();
     }
 
     private void initWinningLottos() {
@@ -70,7 +83,7 @@ public class Customer {
                 + (winningLottos.get(2) * FIVE_WINNINGS.getNumber())
                 + (winningLottos.get(3) * SIX_WINNINGS.getNumber())
                 + (winningLottos.get(4) * FIVE_BONUS_WINNINGS.getNumber())
-        ) / (double)money * 100;
+        ) / (double)money.getValue() * 100;
 
         rateOfReturn = Math.round((rateOfReturn * 10)) / 10.0;
     }

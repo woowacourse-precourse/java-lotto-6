@@ -53,10 +53,10 @@ public class LottoDraw {
         String pay = InputView.requestPayMoney();
 
         try {
-            if (validationPayAmount(pay)) {
-                throw new IllegalArgumentException(ErrorMessage.ERROR.getMessage()+ErrorMessage.INPUT.getMessage());
-            }
-            customer = new Customer(parseInt(pay));
+//            if (validationPayAmount(pay)) {
+//                throw new IllegalArgumentException(ErrorMessage.ERROR.getMessage()+ErrorMessage.INPUT.getMessage());
+//            }
+            customer = new Customer(pay);
             OutputView.println(String.valueOf(customer.getMoney()));
         }
         catch (IllegalArgumentException error) {

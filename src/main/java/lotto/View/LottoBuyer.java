@@ -56,7 +56,7 @@ public class LottoBuyer {
 
     public static void printLottos() {
         for (Lotto lotto : boughtLottos) {
-            System.out.println(lotto);
+            System.out.println(lotto.toString());
         }
     }
 }

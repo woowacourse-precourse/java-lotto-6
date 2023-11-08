@@ -18,6 +18,11 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
     public void validateBonusNumber(Integer bonusNumber) {
         validateSingleNumberRange(bonusNumber, NumberType.BONUS_NUMBER);
         validateBonusNumberDuplicate(bonusNumber, NumberType.BONUS_NUMBER);

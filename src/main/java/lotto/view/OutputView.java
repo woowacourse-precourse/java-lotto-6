@@ -1,15 +1,20 @@
-package lotto;
+package lotto.view;
+
+import lotto.domain.Lottos;
+import lotto.domain.Prize;
+import lotto.domain.ProfitRate;
+import lotto.domain.Ranking;
 
 import java.util.Arrays;
 
-import static lotto.Constants.REQUEST_BUY_MONEY;
-import static lotto.Constants.TICKET_COUNT;
-import static lotto.Constants.REQUEST_WINNING_NUMBERS;
-import static lotto.Constants.REQUEST_BONUS_NUMBERS;
-import static lotto.Constants.WINNING_STATISTICS;
-import static lotto.Constants.MATCH_RESULT;
-import static lotto.Constants.SECOND_MATCH_RESULT;
-import static lotto.Constants.PROFIT_RATE;
+import static lotto.view.Constants.REQUEST_BUY_MONEY;
+import static lotto.view.Constants.TICKET_COUNT;
+import static lotto.view.Constants.REQUEST_WINNING_NUMBERS;
+import static lotto.view.Constants.REQUEST_BONUS_NUMBERS;
+import static lotto.view.Constants.WINNING_STATISTICS;
+import static lotto.view.Constants.MATCH_RESULT;
+import static lotto.view.Constants.SECOND_MATCH_RESULT;
+import static lotto.view.Constants.PROFIT_RATE;
 
 public class OutputView {
     public static void printRequestMoney() {

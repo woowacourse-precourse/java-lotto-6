@@ -19,7 +19,7 @@ public class Output {
 
     public void winStatistics(WinStatistics winStatistics) {
         System.out.println(OutputMessage.WINNING_STATISTICS_TITLE);
-        // 등수별 개수 출력
+        System.out.println(winStatistics.printResult());
     }
 
 }

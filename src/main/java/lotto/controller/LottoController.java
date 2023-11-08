@@ -83,6 +83,8 @@ public class LottoController {
     }
 
     private void printWinStatistics() {
+        this.winStatistics = lottoTicket.getRank(winingLotto, bonus);
 
+        outputView.winStatistics(this.winStatistics);
     }
 }

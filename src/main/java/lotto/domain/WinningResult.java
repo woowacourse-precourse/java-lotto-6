@@ -35,4 +35,19 @@ public class WinningResult {
         Arrays.stream(WinningType.values())
                 .forEach(winning -> winningResult.put(winning, 0));
     }
+
+    public Integer getValue(WinningType winningType) {
+        return winningResult.get(winningType);
+    }
+
+    public double calculateEarningsRate(int cost) {
+        return getEarnings() / cost;
+    }
+
+    private double getEarnings() {
+        return winningResult.entrySet()
+                .stream()
+                .mapToDouble(entry -> entry.getKey().getPrice() * entry.getValue())
+                .sum();
+    }
 }

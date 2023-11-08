@@ -7,6 +7,7 @@ import static lotto.model.LottoPrize.NO_PRIZE;
 import static lotto.model.LottoPrize.SECOND_PRIZE;
 import static lotto.model.LottoPrize.THIRD_PRIZE;
 
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -41,8 +42,9 @@ public class LottoPrizeCalculator {
     }
 
     private Map<LottoPrize, Long> groupByLottoPrize() {
+        List<Lotto> purchasedLottos = lottos.getPurchasedLottos();
 
-        return lottos.getPurchasedLottos().stream()
+        return purchasedLottos.stream()
                 .collect(Collectors.groupingBy(this::getLottoPrize, Collectors.counting()));
     }
 

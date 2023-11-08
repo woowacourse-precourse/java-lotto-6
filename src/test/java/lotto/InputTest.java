@@ -82,7 +82,7 @@ public class InputTest {
     @DisplayName("당첨 번호 입력 범위 유효 테스트")
     public void testLottoRangeValid() {
         //given
-        String expect = "1,2,3,4,5,6";
+        String expect = "0,2,3,4,5,46";
         InputStream inputStream = setConsole(expect);
         System.setIn(inputStream);
 

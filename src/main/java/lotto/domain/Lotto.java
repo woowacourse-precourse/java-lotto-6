@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static lotto.constants.ExceptionMessage.ERROR_PREFIX;
 import static lotto.constants.ExceptionMessage.EXCEPTION_DUPLICATED;
+import static lotto.constants.ExceptionMessage.EXCEPTION_WRONG_LENGTH;
 import static lotto.constants.LottoConstants.LOTTO_LENGTH;
 import static lotto.constants.LottoConstants.MAXIMUM_NUM;
 import static lotto.constants.LottoConstants.MINIMUM_NUM;
@@ -25,7 +26,7 @@ public class Lotto {
 
     private void validateLength(List<Integer> numbers) {
         if (numbers.size() != LOTTO_LENGTH) {
-            throw new IllegalArgumentException(ERROR_PREFIX + EXCEPTION_DUPLICATED);
+            throw new IllegalArgumentException(ERROR_PREFIX + EXCEPTION_WRONG_LENGTH);
         }
     }
 

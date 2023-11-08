@@ -16,10 +16,15 @@ import lotto.util.constant.ValidatorStatus;
 public class ExceptionHandler {
 
     public final Map<ValidatorStatus, Consumer<ValidatorStatus>> validatorStatusMap;
+    private static final ExceptionHandler instance = new ExceptionHandler();
 
-    public ExceptionHandler() {
+    private ExceptionHandler() {
         validatorStatusMap = new EnumMap<>(ValidatorStatus.class);
         initValidatorStatusMap();
+    }
+
+    public static ExceptionHandler getInstance(){
+        return instance;
     }
 
     private void initValidatorStatusMap() {

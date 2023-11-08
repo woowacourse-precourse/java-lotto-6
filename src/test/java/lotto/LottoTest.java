@@ -37,4 +37,10 @@ class LottoTest {
         assertThatThrownBy(() ->
                 assertThat(1100).isInstanceOf(IllegalArgumentException.class));
     }
+
+    @Test
+    void 로또번호_입력_6개미만_예외처리() {
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

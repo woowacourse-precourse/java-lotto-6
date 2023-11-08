@@ -1,18 +1,20 @@
 package lotto;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    int duplitest[] = new int[46];
     rank ranking;
     int same = 0;
     int bonus = 0;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        duplicate(numbers);
         this.numbers = numbers;
-        Collections.sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -22,6 +24,18 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    void duplicate(List<Integer> numbers){
+        for(int i = 0; i < duplitest.length; i++){
+            duplitest[i] = 0;
+        }
+        for(int i : numbers){
+            if(duplitest[i] == 1){
+                throw new IllegalArgumentException();
+            }
+            duplitest[i] = 1;
+        }
+    }
 
     void printLotto(){ // 로또 출력
         System.out.print(numbers.get(0));

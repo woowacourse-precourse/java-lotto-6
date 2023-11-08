@@ -24,7 +24,7 @@ public class Game {
         credit = Double.parseDouble(readLine());
 
 
-        if (credit % LOTTO_PRICE != 0) {
+        if (credit % LOTTO_PRICE != 0 || credit <= 0) {
             throw new IllegalArgumentException();
         }
 
@@ -74,7 +74,7 @@ public class Game {
     String[] inputNum(){ // 당첨 번호 입력
         String[] input;
 
-        while (true) {
+        while(true) {
             try {
                 System.out.println("\n당첨 번호를 입력해 주세요.");
                 input = readLine().split(",");
@@ -83,9 +83,8 @@ public class Game {
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            } catch (IllegalStateException e){
+            } catch (IllegalStateException e) {
                 System.out.println("[ERROR] 로또 번호의 개수는 6개여야 합니다.");
-
             }
         }
 
@@ -95,6 +94,9 @@ public class Game {
     void setNum(String inputNum[]){ //당첨 번호 셋팅
         for(int i = 0; i < inputNum.length; i++){
             int num = Integer.parseInt(inputNum[i]);
+            if(prizeWinNum[num] != 0){
+                throw new IllegalArgumentException();
+            }
             prizeWinNum[num] = 1;
         }
     }
@@ -102,7 +104,7 @@ public class Game {
     String inputBonusNum(){ //보너스 번호 입력
         String input;
 
-        while (true) {
+        while(true) {
             try {
                 System.out.println("\n보너스 번호를 입력해 주세요.");
                 input = readLine();
@@ -119,13 +121,32 @@ public class Game {
 
     void setBounusNum(String inputNum){ //보너스 번호 2로 셋팅
         int num = Integer.parseInt(inputNum);
+        if(prizeWinNum[num] != 0){
+            throw new IllegalArgumentException();
+        }
         prizeWinNum[num] = 2;
     }
 
     void setPrizeWinNum(){ //발행 번호 배열 셋팅
         initPrizeWinNum();
-        setNum(inputNum());
-        setBounusNum(inputBonusNum());
+
+        while(true) {
+            try {
+                setNum(inputNum());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 로또 번호가 중복되었습니다.");
+            }
+        }
+
+        while(true) {
+            try {
+                setBounusNum(inputBonusNum());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 로또 번호가 중복되었습니다.");
+            }
+        }
     }
 
     void initStat(){
@@ -155,12 +176,12 @@ public class Game {
     }
 
     void printPrizeWinStat(){
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
         for(rank r : ranking){
             System.out.println(r.getAnsNum() + " " + r.getKorWinMoney() + " - " + winStat[r.ordinal()] + "개");
         }
-        System.out.println("총 수익률은 " + prizeWinMoney / credit + "%입니다.");
+        System.out.println("총 수익률은 " + prizeWinMoney / credit * 100 + "%입니다.");
     }
 
     void countCheck(String num[]){
@@ -170,7 +191,7 @@ public class Game {
     }
 
     void rangeCheck(int i){
-        if(i < 0 || i > 45) {
+        if(i < 1 || i > 45) {
             throw new IllegalArgumentException();
         }
     }
@@ -188,7 +209,7 @@ public class Game {
     void inputBonusErrorCheck(String num){
         int i = Integer.parseInt(num);
 
-        if(i < 0 || i > 45) {
+        if(i < 1 || i > 45) {
             throw new IllegalArgumentException();
         }
     }

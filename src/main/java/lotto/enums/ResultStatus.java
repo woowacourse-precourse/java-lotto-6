@@ -1,5 +1,7 @@
 package lotto.enums;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public enum ResultStatus {
@@ -14,6 +16,7 @@ public enum ResultStatus {
 
     private final int value;
     private final boolean hasBonusBall;
+    private static final Map<ResultFlag, ResultStatus> map = new HashMap<>();
 
     ResultStatus(int value, boolean hasBonusBall) {
         this.value = value;
@@ -26,6 +29,25 @@ public enum ResultStatus {
 
     public boolean getHasBonusBall() {
         return hasBonusBall;
+    }
+
+    private static void getMap() {
+        if (!map.isEmpty()) {
+            return;
+        }
+        map.put(new ResultFlag(0), NONE0);
+        map.put(new ResultFlag(1), NONE1);
+        map.put(new ResultFlag(2), NONE2);
+        map.put(new ResultFlag(3), MATCH3);
+        map.put(new ResultFlag(4), MATCH4);
+        map.put(new ResultFlag(5, false), MATCH5);
+        map.put(new ResultFlag(5, true), MATCH5_WITH_BONUS_BALL);
+        map.put(new ResultFlag(6), MATCH6);
+    }
+
+    public static ResultStatus getResultStatus(int count, boolean hasBonusBall) {
+        getMap();
+        return map.get(new ResultFlag(count, hasBonusBall));
     }
 
     private static class ResultFlag {

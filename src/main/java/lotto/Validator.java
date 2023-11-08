@@ -26,17 +26,18 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] : ','로 구분하여 6개의 숫자를 입력해주십시오.");
         }
         for (int i = 0; i < 6; i++) {
-            Integer number = NumberValidation(lottoNumbers, i);
+            String numberString = lottoNumbers[i];
+            Integer number = NumberValidation(numberString);
             lottoNumberList.add(number);
         }
 
         return lottoNumberList;
     }
 
-    public static Integer NumberValidation(String[] lottoNumbers, Integer i) {
+    public static Integer NumberValidation(String numberString) {
         Integer number;
         try {
-            number = Integer.valueOf(lottoNumbers[i]);
+            number = Integer.valueOf(numberString);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] : 숫자만 입력해주십시오.");
         }

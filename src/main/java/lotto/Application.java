@@ -30,7 +30,6 @@ public class Application {
         for (int i = 0; lottoCount > i; i++) {
             lottoList.get(i).printLotto();
         }
-        System.out.println();
     }
 
     public static void main(String[] args) {
@@ -52,7 +51,7 @@ public class Application {
         List<Lotto> lottoList = setLottoList(purchaseCount);
         printLotto(lottoList);
 
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         List<Integer> luckyNumbers = new ArrayList<>();
         while (true) {
             try {
@@ -64,5 +63,19 @@ public class Application {
                 System.out.println("다시 당첨 번호를 입력해주세요.");
             }
         }
+
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        Integer bonusNumber;
+        while (true) {
+            try {
+                String bonusNumberString = Console.readLine();
+                Validator.NumberValidation(bonusNumberString);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("다시 보너스 번호를 입력해주세요.");
+            }
+        }
+
     }
 }

@@ -15,11 +15,13 @@ enum Reward {
         this.amount = amount;
     }
 
-    private Reward[] rewards = Reward.values();
+    private static Reward[] rewards = Reward.values();
 
-    public Integer getReward(Integer ranking) {
-        ranking = ranking - 1;
-        return rewards[ranking].amount;
+    public static Integer getReward(Integer score) {
+        if (score < 6) {
+            return rewards[score].amount;
+        }
+        return 0;
     }
 }
 
@@ -41,5 +43,19 @@ public class Lotto {
         System.out.println(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    public Integer matchingLotto(List<Integer> luckNumbers, Integer bonusNumber) {
+        Integer score = 7;
+        for (Integer number : numbers) {
+            if (luckNumbers.contains(number)) {
+                score = score - 1;
+            }
+        }
+        if (numbers.contains(bonusNumber) && score == 2) {
+            score = 1;
+        }
+        if (score == 1) {
+            score = 0;
+        }
+        return Reward.getReward(score);
+    }
 }

@@ -17,6 +17,7 @@ public class LottoGame {
 
     private Map<Prize, Integer> result = new HashMap<>();
 
+
     public void initResult() {
         for (Prize prize : Prize.values()) {
             result.put(prize, 0);
@@ -54,9 +55,10 @@ public class LottoGame {
         outputController.printResult(result, sumOfReturns(result), lottoBoard.getTickets());
     }
 
-    void compareLottoAndPlayer(Lotto lotto, List<Integer> numbers, Integer bonus) {
+    public void compareLottoAndPlayer(Lotto lotto, List<Integer> numbers, Integer bonus) {
         int numSame = 0;
         Boolean hasBonus = false;
+
         for (Integer num : numbers) {
             if (lotto.getNumbers().contains(num)) {
                 numSame++;
@@ -90,5 +92,6 @@ public class LottoGame {
             result.put(prize, result.get(prize) + 1);
         }
     }
+
 
 }

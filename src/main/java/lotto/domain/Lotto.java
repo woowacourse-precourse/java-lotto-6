@@ -14,7 +14,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해주세요.");
         }
 
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);

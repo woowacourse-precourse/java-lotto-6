@@ -21,7 +21,7 @@ public class InputController {
                 money = Integer.parseInt(moneyArg);
                 break;
             } catch (NumberFormatException e) {
-                viewer.printArgs("[ERROR] 구입금액을 입력해 주세요.");
+                viewer.printArgs("[ERROR]구입금액을 입력해 주세요.");
                 moneyArg = Console.readLine(); // 다시 입력 요청
             }
         }

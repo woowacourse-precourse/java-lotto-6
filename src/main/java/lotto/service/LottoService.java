@@ -25,6 +25,10 @@ public class LottoService {
     private static List<Integer> getResult(List<Lotto> generateLotto, List<Integer> winningNum, Integer bonusNum) {
         List<Integer> result = Generator.generateResult(generateLotto, winningNum, bonusNum);
 
+        return formattingResult(result);
+    }
+
+    private static List<Integer> formattingResult(List<Integer> result) {
         result.subList(5, 9);
         Collections.reverse(result);
         return result;

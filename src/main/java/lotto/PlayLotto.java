@@ -16,7 +16,7 @@ public class PlayLotto {
     Lotto lotto;
     BonusNumber bonusNumber;
     String[] inputLottoNumbers;
-    List<List<Integer>> userLottoNumbers = new ArrayList<>();
+    List<UserLotto> userLottos = new ArrayList<>();
     List<Integer> lottoNumbers;
     int lottoCnt;
     int matchedNumberCnt;
@@ -53,11 +53,11 @@ public class PlayLotto {
         System.out.println(lottoCnt + "개를 구매했습니다.");
 
         for (int i=0; i<lottoCnt; i++){
-            userLottoNumbers.add(getGeneratedRandomNumbers());
+            userLottos.add(new UserLotto(getGeneratedRandomNumbers()));
         }
 
-        for (List<Integer> userLottoNumber : userLottoNumbers){
-            System.out.println(userLottoNumber);
+        for (UserLotto userLotto : userLottos){
+            System.out.println(userLotto.numbers);
         }
 
         System.out.println();
@@ -66,7 +66,6 @@ public class PlayLotto {
     public List<Integer> getGeneratedRandomNumbers(){
         List<Integer> curNumbers;
         curNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUM_CNT);
-        curNumbers.sort(Comparator.naturalOrder());
         return curNumbers;
     }
 
@@ -104,10 +103,10 @@ public class PlayLotto {
     public void getResult(){
         System.out.println("당첨 통계\n---");
         initResult();
-        for (List<Integer> userLottoNumber : userLottoNumbers){
+        for (UserLotto userLotto : userLottos){
             hasBonusNumber = false;
-            matchedNumberCnt = getMatchedNumberCnt(userLottoNumber);
-            if (matchedNumberCnt == 5 && userLottoNumber.contains(bonusNumber.number)){
+            matchedNumberCnt = getMatchedNumberCnt(userLotto.numbers);
+            if (matchedNumberCnt == 5 && userLotto.numbers.contains(bonusNumber.number)){
                 hasBonusNumber = true;
             }
             updateResult(matchedNumberCnt, hasBonusNumber);

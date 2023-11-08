@@ -23,16 +23,6 @@ public class Result {
         return result;
     }
 
-    private int countMatchNumber(Lotto lotto) {
-        int matchCount = 0;
-        for (int number : lotto.getNumbers()) {
-            if (winningNumber.contains(number)) {
-                matchCount++;
-            }
-        }
-        return matchCount;
-    }
-
     enum ResultType {
         FIRST(6, false),
         SECOND(5, true),

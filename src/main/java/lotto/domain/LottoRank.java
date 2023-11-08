@@ -25,7 +25,6 @@ public enum LottoRank {
     }
 
     public static LottoRank of(int matchingCount, boolean bonusNumberMatch) {
-
         return Arrays.stream(values())
                 .filter(rank -> rank.conditionMatch(matchingCount, bonusNumberMatch))
                 .findFirst()

@@ -3,7 +3,6 @@ package lotto.util;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.domain.Answer;
 import lotto.domain.Lotto;
 import lotto.enums.ErrorMessages;
 import org.junit.jupiter.api.Test;
@@ -75,19 +74,5 @@ public class InputValidatorTest {
         assertThatThrownBy(() -> validator.validateBonusNumber("ab"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.NON_NUMBER_EXCEPTION_MSG.getMsg());
-    }
-
-    @Test
-    void 보너스_번호에_1부터_45사이의_숫자를_입력하지_않은_경우() {
-        assertThatThrownBy(() -> new Answer(mockHitNumbers, 50))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessages.NUMBER_RANGE_EXCEPTION_MSG.getMsg());
-    }
-
-    @Test
-    void 당첨_번호에_입력한_숫자를_입력한_경우() {
-        assertThatThrownBy(() -> new Answer(mockHitNumbers, 5))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessages.BONUS_NUMER_CONFLICT_EXCEPTION_MSG.getMsg());
     }
 }

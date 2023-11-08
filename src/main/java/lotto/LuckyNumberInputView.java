@@ -1,8 +1,10 @@
 package lotto;
 
+import static lotto.ErrorMessage.LOTTO_BONUS_ONLY_ONE;
+import static lotto.ErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR;
+import static lotto.ErrorMessage.LOTTO_NUMBER_ERROR;
+
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LuckyNumberInputView {
@@ -40,10 +42,10 @@ public class LuckyNumberInputView {
     private void validateLength() {
         int inputLength = input.length();
         if (NUMBER_LENGTH_MIN > inputLength) {
-            throw new IllegalArgumentException("[ERROR] 최소 1 자리 이상의 숫자를 입력 해야합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_ERROR);
         }
         if (inputLength > NUMBER_LENGTH_MAX) {
-            throw new IllegalArgumentException("[ERROR] : 최대 2 자리의 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_ERROR);
         }
     }
 
@@ -51,20 +53,20 @@ public class LuckyNumberInputView {
         try {
             luckyNumber = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 오직 하나의 숫자만 가능합니다.");
+            throw new IllegalArgumentException(LOTTO_BONUS_ONLY_ONE);
         }
     }
 
     private void validateNumerics() {
         if (!isDigit()) {
-            throw new IllegalArgumentException("[ERROR] : 1-45 내 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_ERROR);
         }
     }
 
     private void validateDupleNumber() {
         boolean isContained = numbers.contains(luckyNumber);
         if (isContained) {
-            throw new IllegalArgumentException("[ERROR] : 당첨 번호와 중복 될 수 없습니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR);
         }
     }
 

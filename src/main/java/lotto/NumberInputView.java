@@ -1,5 +1,10 @@
 package lotto;
 
+import static lotto.ErrorMessage.LEAST_ONE_ISSUE_ERROR;
+import static lotto.ErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR;
+import static lotto.ErrorMessage.NUMBER_SIZE_ERROR;
+import static lotto.ErrorMessage.NUMERIC_ERROR;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
@@ -9,6 +14,7 @@ public class NumberInputView {
     private static final int INPUT_DIGIT_FIRST = 1;
     private static final int INPUT_DIGIT_LAST = 45;
     private static final int COLUMN = 6;
+    private static final String EMPTY = "";
     private static final String DELIMITER = ",";
     private List<String> numbers;
     private List<Integer> validNumbers;
@@ -37,26 +43,26 @@ public class NumberInputView {
 
     private void integrating(String input) {
         try {
-            this.numbers = Arrays.stream(input.split(DELIMITER, -1))
+            this.numbers = Arrays.stream(input.split(DELIMITER))
                     .map(String::trim)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] : 제대로 된 숫자여야합니다.");
+            throw new IllegalArgumentException(NUMERIC_ERROR);
         }
-        if (numbers.contains("")) {
-            throw new IllegalArgumentException("[ERROR] : 빈 숫자는 넣을 수 없습니다.");
+        if (numbers.contains(EMPTY)) {
+            throw new IllegalArgumentException(LEAST_ONE_ISSUE_ERROR);
         }
     }
 
     private void validateLength() {
         if (numbers.size() != COLUMN) {
-            throw new IllegalArgumentException("[ERROR] : 6자리 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(NUMBER_SIZE_ERROR);
         }
     }
 
     private void validateNumerics() {
         numbers.stream().filter(str -> !isDigit(str)).forEach(str -> {
-            throw new IllegalArgumentException("[ERROR] : 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(NUMERIC_ERROR);
         });
     }
 
@@ -71,7 +77,7 @@ public class NumberInputView {
                 .distinct()
                 .count() < numbers.size();
         if (hasDuplicates) {
-            throw new IllegalArgumentException("[ERROR] : 중복된 숫자가 존재합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR);
         }
     }
 

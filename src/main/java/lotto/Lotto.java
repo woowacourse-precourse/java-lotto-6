@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.ErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR;
+
 import java.util.List;
 
 public class Lotto {
@@ -22,7 +24,7 @@ public class Lotto {
                 .distinct()
                 .count() < numbers.size();
         if (hasDuplicates) {
-            throw new IllegalArgumentException("[ERROR] : 중복된 숫자가 존재합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR);
         }
     }
 

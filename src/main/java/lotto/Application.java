@@ -31,6 +31,21 @@ public class Application {
                 continue;
             }
         }
+        // 구매 출력
+        int lottoCnt = price / 1000;
+        List<Lotto> lottos = new ArrayList<Lotto>();
+
+        for (int i = 0; i < lottoCnt; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+
+            lottos.add(new Lotto(new ArrayList<Integer>(numbers)));
+        }
+        int[] goalCount = new int[10];
+        System.out.println(lottoCnt + "개를 구매했습니다.");
+        for (int i = 0; i < lottos.size(); i++) {
+            lottos.get(i).printNumbers();
+        }
+
 
     }
 }

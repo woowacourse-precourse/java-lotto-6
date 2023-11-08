@@ -10,15 +10,14 @@ import lotto.enums.NoticeMessage;
 import lotto.enums.PrizeMoney;
 
 public class LottoController {
-    private Lottos lottos;
-    private int bonusNumber;
-    private int money;
-    private Lotto winningLotto;
-
     private static final int START_RANGE = 1;
     private static final int END_RANGE = 45;
     private static final int LOTTO_NUMBER_DIGITS = 6;
 
+    private Lottos lottos;
+    private int bonusNumber;
+    private int money;
+    private Lotto winningLotto;
 
     public LottoController() {
     }
@@ -26,10 +25,9 @@ public class LottoController {
     public void run() {
         purchaseLotto();
         drawWinningNumbers();
-        drawBonusNumbers();
+        drawBonusNumber();
         announceResultOfLotto();
     }
-
 
     public void purchaseLotto() {
         PrintOutput.printNoticeMessage(NoticeMessage.BUY_MONEY);
@@ -47,12 +45,16 @@ public class LottoController {
         PrintOutput.printLottos(lottos);
     }
 
+    public List<Integer> makeLottoNumbers() {
+        return pickUniqueNumbersInRange(START_RANGE, END_RANGE, LOTTO_NUMBER_DIGITS);
+    }
+
     public void drawWinningNumbers() {
         PrintOutput.printNoticeMessage(NoticeMessage.WINNING_NUMBERS);
         winningLotto = new Lotto(UserInput.getWinningNumbers());
     }
 
-    public void drawBonusNumbers() {
+    public void drawBonusNumber() {
         System.out.println();
         PrintOutput.printNoticeMessage(NoticeMessage.BONUS_NUMBER);
         bonusNumber = UserInput.getBonusNumber(winningLotto);
@@ -70,10 +72,6 @@ public class LottoController {
         double rateOfReturn = calculateRateOfReturn(winningRanks, money);
 
         PrintOutput.printRateOfReturn(rateOfReturn);
-    }
-
-    public List<Integer> makeLottoNumbers() {
-        return pickUniqueNumbersInRange(START_RANGE, END_RANGE, LOTTO_NUMBER_DIGITS);
     }
 
     private double calculateRateOfReturn(Map<Integer, Integer> winningRanks, int buyMoney) {

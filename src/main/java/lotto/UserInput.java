@@ -40,13 +40,13 @@ public class UserInput {
                 System.out.println(exception.getMessage());
             }
         }
-
         List<Integer> winningNumbers = new ArrayList<>(inputs.stream().map(Integer::parseInt).toList());
         return winningNumbers;
     }
 
     public static int getBonusNumber(Lotto winningLotto) {
         String input;
+
         while (true) {
             try {
                 input = readLine();
@@ -56,6 +56,7 @@ public class UserInput {
                 System.out.println(exception.getMessage());
             }
         }
+
         return Integer.parseInt(input);
     }
 

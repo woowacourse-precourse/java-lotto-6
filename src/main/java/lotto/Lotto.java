@@ -7,10 +7,11 @@ import java.util.stream.Collectors;
 import lotto.enums.ErrorMessage;
 
 public class Lotto {
-    private List<Integer> numbers;
     private static final String OPEN_SQUARE_BRACKETS = "[";
     private static final String CLOSE_SQUARE_BRACKETS = "]";
     private static final int PRICE = 1000;
+
+    private List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -25,17 +26,27 @@ public class Lotto {
         validateWinningNumbersNotSame(numbers);
     }
 
+    private static void validateWinningNumbersNotSame(List<Integer> inputs) {
+        if (new HashSet<>(inputs).size() != inputs.size()) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_OF_WINNIG_NUMBER_SAME_NUMBER.getMessage());
+        }
+    }
+
     private void sort() {
         Collections.sort(numbers);
+    }
+
+    public static int getPrice() {
+        return PRICE;
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
     public String toString() {
         String result = numbers.stream().map(String::valueOf).collect(Collectors.joining(", "));
         return OPEN_SQUARE_BRACKETS + result + CLOSE_SQUARE_BRACKETS;
-    }
-
-    public boolean contains(int number) {
-        return numbers.contains(number);
     }
 
     public int countMatchWithWinningLotto(Lotto winningLotto) {
@@ -45,16 +56,7 @@ public class Lotto {
                 count++;
             }
         }
+
         return count;
-    }
-
-    public static int getPrice() {
-        return PRICE;
-    }
-
-    private static void validateWinningNumbersNotSame(List<Integer> inputs) {
-        if (new HashSet<>(inputs).size() != inputs.size()) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_OF_WINNIG_NUMBER_SAME_NUMBER.getMessage());
-        }
     }
 }

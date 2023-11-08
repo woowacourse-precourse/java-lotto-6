@@ -60,7 +60,6 @@ class LottoControllerTest extends NsTest {
 
     @Test
     void runWithTwo3rd() {
-
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("3000", "11, 15, 16, 31, 32, 38", "40");

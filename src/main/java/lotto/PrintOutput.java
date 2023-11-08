@@ -37,13 +37,13 @@ public class PrintOutput {
         }
     }
 
-    private static void printMatchCountMessage(String message, int count) {
-        System.out.println(message + count + COUNT_NUMBER);
-    }
-
     public static void printRateOfReturn(double rate) {
         System.out.println(
                 RATE_OF_RETURN_HEAD.getMessage() + String.format("%.1f", rate) + RATE_OF_RETURN_TAIL.getMessage());
 
+    }
+
+    private static void printMatchCountMessage(String message, int count) {
+        System.out.println(message + count + COUNT_NUMBER);
     }
 }

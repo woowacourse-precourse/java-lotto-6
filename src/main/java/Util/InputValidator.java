@@ -16,7 +16,7 @@ public class InputValidator {
         }
     }
 
-    private List<Integer> convertToIntegerList(String userInput) {
+    public List<Integer> convertToIntegerList(String userInput) {
         try {
             userInput = userInput.replaceAll(" ", "");
             return Arrays.stream(userInput.split(",")).map(Integer::parseInt).collect(Collectors.toList());

@@ -64,38 +64,16 @@ public class GameHandler {
         return winningStatics;
     }
 
-    //우승상금 수익률 계산하는 기능
-    public float calculatePrizes(int purchaseQuantity, List<Integer> rankResult) {
-        int purchaseAmount = purchaseQuantity * LOTTO_PRICE;
+    public float calculatePrizes(int purchaseAmount, EnumMap<Rank, Integer> winningStatics) {
         int winningPrize = 0;
 
-        for(int i=0; i<rankResult.size(); i++) {
-            if(i == 0) {
-                winningPrize += rankResult.get(i) * FIRST_PRIZE;
-            }
-            if(i == 1) {
-                winningPrize += rankResult.get(i) * SECOND_PRIZE;
-            }
-            if(i == 2) {
-                winningPrize += rankResult.get(i) * THIRD_PRIZE;
-            }
-            if(i == 3) {
-                winningPrize += rankResult.get(i) * FOURTH_PRIZE;
-            }
-            if(i == 4) {
-                winningPrize += rankResult.get(i) * FIFTH_PRIZE;
-            }
+        for (Rank rank : Rank.values()) {
+            winningPrize += winningStatics.get(rank) * rank.getPrize();
         }
 
-        float rateOfReturn1 =  (((float)(winningPrize - purchaseAmount) / purchaseAmount) * 100) + 100f;
+        float rateOfReturn = ((float)winningPrize / purchaseAmount) * 100;
 
-        float rateOfReturn2 = (float) (Math.round(rateOfReturn1 * 100.0) / 100.0);
-
-
-
-
-
-        return rateOfReturn2;
+        return rateOfReturn;
     }
 
 

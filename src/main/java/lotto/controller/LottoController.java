@@ -21,6 +21,14 @@ public class LottoController {
         WinningNumber winningNumber = getWinningNumber();
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
 
+        LottoResult lottoResult = createLottoResult(winningNumber, lottos, bonusNumber);
+
+    }
+
+    private LottoResult createLottoResult(WinningNumber winningNumber, Lottos lottos, BonusNumber bonusNumber) {
+        LottoResult lottoResult = new LottoResult(winningNumber, lottos, bonusNumber);
+        lottoResult.calcurateLottoRank();
+        return lottoResult;
     }
 
     private List<Lotto> createLotto(int lottoCount) {

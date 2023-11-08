@@ -12,10 +12,10 @@ public class OutputView {
         lottoNumResult(lottoNums);
     }
     public void lottoNumResult(List<Lotto> lottoNums){
-        lottoNums.forEach(lotto->lotto.printResult());
+        lottoNums.forEach(Lotto::printResult);
         System.out.println();
     }
-    public void lottoResult(){
+    public static void lottoResult(){
         System.out.println(Constants.END_RESULT_MESSAGE);
     }
     public void lottoRate(){

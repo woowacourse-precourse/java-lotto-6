@@ -6,9 +6,6 @@ import lotto.domain.LottoPrize;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import javax.xml.transform.Result;
-import java.util.List;
-
 
 public class LottoController {
     private InputController input;

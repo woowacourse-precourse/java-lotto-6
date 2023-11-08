@@ -22,8 +22,6 @@ public class CostValidator {
             }
 
         }
-
-
     }
     public void isRightNum(int cost){
         if(cost<=0){

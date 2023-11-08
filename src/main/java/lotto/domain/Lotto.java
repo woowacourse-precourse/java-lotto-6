@@ -3,16 +3,12 @@ package lotto.domain;
 import lotto.util.Constants;
 
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    //제공된 Lotto 클래스를 활용해 구현해야 한다.
-    //numbers의 접근 제어자인 private을 변경할 수 없다.
-    //Lotto에 필드(인스턴스 변수)를 추가할 수 없다.
-    //Lotto의 패키지 변경은 가능하다.
-
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -24,11 +20,22 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
         isNotDuplicate(numbers);
+        isRightRange(numbers);
     }
     // TODO: 추가 기능 구현
     public void isNotDuplicate(List<Integer>numbers){
         if(numbers.size()!=numbers.stream().distinct().count()){
             throw new IllegalArgumentException(Constants.NUM_DUPLICATE_EORROR);
+        }
+    }
+    public static void isRightNums(String input){
+        if (!Constants.numsStringPattern.matcher(input).matches()) {
+            throw new IllegalArgumentException(Constants.NUM_WRONG_ERROR);
+        }
+    }
+    public void isRightRange(List<Integer>numbers){
+        if(numbers.stream().anyMatch(num->num<1||num>45)){
+            throw new IllegalArgumentException(Constants.NUM_SIZE_ERROR);
         }
     }
     public void sort() {
@@ -43,4 +50,11 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+    public List<Integer> cloneNumbers() {
+        return new ArrayList<>(numbers);
+    }
+
 }

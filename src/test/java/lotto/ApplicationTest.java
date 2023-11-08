@@ -51,10 +51,9 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains(Constants.NUM_IS_INT);
+            assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
-
     @Override
     public void runMain() {
         Application.main(new String[]{});

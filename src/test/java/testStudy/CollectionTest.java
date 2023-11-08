@@ -22,9 +22,10 @@ public class CollectionTest {
         numbers.add(2);
         numbers.add(3);
     }
+
     @Test
     @DisplayName("Set 크기 확인 테스트")
-    public void setSizeTest(){
+    public void setSizeTest() {
         //given
         int resultSize = 3;
         //when
@@ -35,15 +36,15 @@ public class CollectionTest {
 
     @ParameterizedTest
     @DisplayName("Set Parameterized 확인 테스트")
-    @ValueSource(ints = {1,2,3})
-    public void setParamterzedTest(int number){
+    @ValueSource(ints = {1, 2, 3})
+    public void setParamterzedTest(int number) {
         assertThat(numbers.contains(number)).isTrue();
     }
 
     @ParameterizedTest
     @DisplayName("Set CsvSource 확인 테스트")
-    @CsvSource(value = {"1:true", "2:true", "3:true","4:false","5:false"}, delimiter = ':')
-    public void setCsvSourceTest(int num,boolean result){
+    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
+    public void setCsvSourceTest(int num, boolean result) {
         assertThat(numbers.contains(num)).isEqualTo(result);
     }
 }

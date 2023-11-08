@@ -3,7 +3,7 @@ package lotto;
 import lotto.controller.LottoController;
 
 public class PlayLotto {
-    public void play(){
+    public void play() {
 
         LottoController lottoController = new LottoController();
         lottoController.buyLotto();

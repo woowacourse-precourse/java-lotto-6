@@ -20,6 +20,7 @@ public class StringTest {
         assertThat(inputNumberSplit).contains("1");
         assertThat(inputNumberSplit).contains("2");
     }
+
     @Test
     @DisplayName("1,를 split했을 떄 분리 테스트")
     public void splitOneNumberTest() {
@@ -32,21 +33,23 @@ public class StringTest {
 
         assertThat(inputNumberSplit).contains("1");
     }
+
     @Test
     @DisplayName("String에서 (1,2)의 입력중 괄호를 제거")
-    public void removeBracket(){
+    public void removeBracket() {
         //given
-        String bracket="(1,2)";
+        String bracket = "(1,2)";
         //when
-        String removeWord = bracket.substring(1,bracket.length()-1);
+        String removeWord = bracket.substring(1, bracket.length() - 1);
         //then
         assertThat(removeWord).isEqualTo("1,2");
     }
+
     @Test
     @DisplayName("charAt사용시 Exception 발생 테스트")
-    public void chatAtExceptionTest(){
+    public void chatAtExceptionTest() {
         //given
-        String word="abc";
+        String word = "abc";
         //when,then
         assertThatThrownBy(() -> word.charAt(word.length()))
                 .isInstanceOf(StringIndexOutOfBoundsException.class)

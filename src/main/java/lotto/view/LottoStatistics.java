@@ -1,35 +1,35 @@
 package lotto.view;
 
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.constants.LottoRank;
 
 public class LottoStatistics {
-    private final List<LottoRank> ranks;
+    private final List<LottoRank> lottoRanks;
 
-    public LottoStatistics(List<LottoRank> ranks) {
-        this.ranks = ranks;
+    public LottoStatistics(List<LottoRank> lottoRanks) {
+        this.lottoRanks = lottoRanks;
     }
 
     public void printStatistics() {
-        Map<LottoRank, Integer> rankCounts = countRankOccurrences();
+        EnumSet<LottoRank> allRanks = EnumSet.allOf(LottoRank.class);
+        Map<LottoRank, Long> rankCounts = countRankOccurrences();
+
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        for (LottoRank rank : LottoRank.values()) {
-            if (rank != LottoRank.NONE) {
-                int count = rankCounts.getOrDefault(rank, 0);
-                String description = rank.getDescription();
-                int prizeMoney = rank.getPrizeMoney();
-                String message = String.format("%s - %d개", description, count);
-                System.out.println(message);
-            }
-        }
+        allRanks.forEach(rank -> {
+            long count = rankCounts.getOrDefault(rank, 0L);
+            String description = rank.getDescription();
+            String message = String.format("%s - %d개", description, count);
+            System.out.println(message);
+        });
     }
 
-    private Map<LottoRank, Integer> countRankOccurrences() {
-        return ranks.stream()
-                .collect(Collectors.toMap(rank -> rank, rank -> 1, Integer::sum));
+    private Map<LottoRank, Long> countRankOccurrences() {
+        return lottoRanks.stream()
+                .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
     }
 }

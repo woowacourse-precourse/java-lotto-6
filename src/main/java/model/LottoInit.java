@@ -1,7 +1,6 @@
 package model;
 
 public enum LottoInit {
-
     MINIMUM(1),
     MAXIMUM(45),
     SIZE(6);
@@ -11,7 +10,7 @@ public enum LottoInit {
         this.initial = initial;
     }
 
-    public int getInitial(){
+    public int getInitial() {
         return initial;
     }
 }

@@ -1,6 +1,7 @@
 package model;
 
 public class Purchase {
+    private final int MODULAR_NUMBER = 0;
     private final int LOTTO_PRICE = 1000;
     private int purchaseCount;
     private int purchasePrice;
@@ -13,7 +14,7 @@ public class Purchase {
     }
 
     private void priceCheck(int price) {
-        if (price % LOTTO_PRICE != 0) {
+        if (price % LOTTO_PRICE != MODULAR_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_ORDER_PRICE.getMessage());
         }
     }

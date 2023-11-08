@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class Ranking {
     private final List<Integer> winningDetails = new ArrayList<>();
 
@@ -20,7 +19,6 @@ public class Ranking {
     private final int MATCH_FIVE_BONUS = 7;
     private final int MATCH_SIX = 6;
     private final String COUNT_MESSAGE = "개";
-
 
 
     public void addRank(int rank) {

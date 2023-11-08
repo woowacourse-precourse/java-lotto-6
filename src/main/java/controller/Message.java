@@ -6,7 +6,6 @@ import view.Input;
 import view.Output;
 
 public class Message {
-    //view로 메세지 출력을 의뢰하는 클래스
 
     public static void start() {
         Input.inputPrice();

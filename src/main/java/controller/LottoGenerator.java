@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGenerator {
-    //로또 생성을 담당하는 클래스
 
     private static final int ZERO = 0;
+
     public static List<Lotto> createLottos(int number) {
         List<Lotto> lottos = new ArrayList<>();
         while (number > ZERO) {

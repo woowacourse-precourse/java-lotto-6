@@ -18,7 +18,7 @@ public class Lotto {
     public int checkMatch(List<Integer> prizeNumber) {
         int count = 0;
         for (int number : prizeNumber) {
-            if (numbers.contains(number)) { //이 로또가 정답을 갖고있다면
+            if (numbers.contains(number)) {
                 count++;
             }
         }
@@ -30,7 +30,7 @@ public class Lotto {
     }
 
     public static void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoInit.SIZE.getInitial()) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_ORDER_COUNT.getMessage());
         }
     }

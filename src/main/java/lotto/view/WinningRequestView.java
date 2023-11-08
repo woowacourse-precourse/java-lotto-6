@@ -1,6 +1,5 @@
 package lotto.view;
 
-import static lotto.view.constants.SymbolType.INPUT_SEPARATOR;
 import static lotto.view.ui.Input.enterMessage;
 import static lotto.view.ui.Output.printlnMessageWithNewLine;
 
@@ -36,7 +35,7 @@ public class WinningRequestView {
     }
 
     private static String[] split(final String winningNumbers) {
-        return winningNumbers.split(INPUT_SEPARATOR.getSymbol());
+        return winningNumbers.split(SEPARATOR);
     }
 
     private static class Validator {
@@ -56,15 +55,15 @@ public class WinningRequestView {
         }
 
         private static boolean startsWithSeparator(String message) {
-            return message.startsWith(INPUT_SEPARATOR.getSymbol());
+            return message.startsWith(SEPARATOR);
         }
 
         private static boolean endsWithSeparator(String message) {
-            return message.endsWith(INPUT_SEPARATOR.getSymbol());
+            return message.endsWith(SEPARATOR);
         }
 
         private static boolean hasDuplicatedSeparator(String message) {
-            return message.contains(INPUT_SEPARATOR.getSymbol().repeat(2));
+            return message.contains(SEPARATOR.repeat(2));
         }
     }
 }

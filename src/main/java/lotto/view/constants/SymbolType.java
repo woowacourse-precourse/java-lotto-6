@@ -1,7 +1,6 @@
 package lotto.view.constants;
 
 public enum SymbolType {
-    INPUT_SEPARATOR(","),
     NEWLINE("\n"),
     WINNING_RESULT_SEPARATOR(" - ");
 

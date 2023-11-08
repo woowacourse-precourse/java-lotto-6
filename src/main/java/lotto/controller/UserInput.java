@@ -34,10 +34,10 @@ public class UserInput {
 
     public static BonusNumber inputBonusNumber(Lotto winningNumbers) {
         ConsoleView.printBonusNumberExplanation();
-        String bonusNumberCommand = readLine();
         BonusNumber bonusNumber;
         while (true) {
             try {
+                String bonusNumberCommand = readLine();
                 bonusNumber = new BonusNumber(bonusNumberCommand);
                 validateDoubledWinningNumbers(bonusNumber, winningNumbers);
                 return bonusNumber;

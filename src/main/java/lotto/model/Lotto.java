@@ -50,10 +50,10 @@ public class Lotto {
         }
     }
 
-    public int countMatch(Lotto targetNumbers) {
+    public int countMatch(Lotto winningNumbers) {
         int countNumberMatching = 0;
         for (int i = 0; i < numbers.size(); i++) {
-            if (targetNumbers.numbers.get(i) == numbers.get(i))
+            if (winningNumbers.numbers.contains(numbers.get(i)))
                 countNumberMatching++;
         }
         return countNumberMatching;
@@ -75,7 +75,10 @@ public class Lotto {
         if (countTotalMatches == 5 && !bonusNumberCheck) {
             return Ranking.SECOND;
         }
-        return Ranking.getRanking(countTotalMatches, false);
+        if (countTotalMatches >= 3) {
+            return Ranking.getRanking(countTotalMatches, false);
+        }
+        return Ranking.NONE;
     }
 
     @Override

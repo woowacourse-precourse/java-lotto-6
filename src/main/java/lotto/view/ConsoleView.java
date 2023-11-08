@@ -35,11 +35,17 @@ public class ConsoleView {
     }
 
     public static void printRankingResult(Map<Ranking, Integer> rankingCounts) {
-        System.out.println("\n당첨 통계");
+        System.out.println();
+        System.out.println("당첨 통계");
         System.out.println("---");
+        List<Ranking> allRankings = List.of(Ranking.values());
+
         for (Ranking ranking: Ranking.values()) {
             int rankingCount = rankingCounts.get(ranking);
-            System.out.printf((ranking + " - %d개\n"), rankingCount);
+            if (ranking != Ranking.NONE) {
+                String rankingResult = String.format((ranking + " - %d개"), rankingCount);
+                System.out.println(rankingResult);
+            }
         }
     }
 

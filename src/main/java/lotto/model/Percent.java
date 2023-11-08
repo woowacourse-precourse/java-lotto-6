@@ -13,10 +13,9 @@ public class Percent {
 
     @Override
     public String toString() {
-        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
-        String roundPercent = String.format("%.1f%%", percent);
-        return numberFormat.format(roundPercent);
+        return String.format(Locale.US, "%.1f%%", percent);
     }
+
 
     @Override
     public int hashCode() {

@@ -6,13 +6,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-public class LottoServiceTest extends NsTest {
+public class ServiceTest extends NsTest {
     @DisplayName("로또가 정상적으로 발행될 경우")
     @Test
     void issueLottoTicketTest() {
@@ -22,7 +20,7 @@ public class LottoServiceTest extends NsTest {
 
         // when/then
         assertDoesNotThrow(() -> {
-            LottoService lottoTicketCounter = new LottoService();
+            Service lottoTicketCounter = new Service();
             lottoTicketCounter.issueLottoTicket();
         });
     }

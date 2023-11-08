@@ -7,6 +7,11 @@ import java.util.List;
 import java.util.Set;
 
 public class UserInput {
+    public static final int LOTTO_NUMBER_COUNT = 6;
+    public static final int MIN_LOTTO_NUMBER = 1;
+    public static final int MAX_LOTTO_NUMBER = 45;
+    public static final int PURCHASE_UNIT = 1000;
+
     public static int getPurchaseAmount() {
         while (true) {
             try {
@@ -30,7 +35,7 @@ public class UserInput {
     }
 
     private static void validatePurchaseAmount(int amount) {
-        if (amount <= 0 || amount % 1000 != 0) {
+        if (amount <= 0 || amount % PURCHASE_UNIT != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위의 양수여야 합니다.");
         }
     }
@@ -56,11 +61,11 @@ public class UserInput {
     }
 
     private static void validateNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
@@ -73,7 +78,6 @@ public class UserInput {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (Integer number : numbers) {
             if (!uniqueNumbers.add(number)) {
-                // If the set's add method returns false, it means the number is already in the set, hence a duplicate.
                 return true;
             }
         }
@@ -96,7 +100,7 @@ public class UserInput {
     }
 
     private static void validateBonusNumber(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }

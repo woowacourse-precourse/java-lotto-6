@@ -53,8 +53,7 @@ public class Generator {
     }
 
     private List<Integer> generateRandomNumbers() {
-        List<Integer> randomNumbers = pickUniqueNumbersInRange(1, 45, 6);
-        return randomNumbers;
+        return pickUniqueNumbersInRange(1, 45, 6);
     }
 
     private int validateCorrectFormat() {

@@ -31,8 +31,10 @@ public class LottoService {
 
         List<String> validatedInput = validator.validateInputForNumbers(splitedInput, COUNT_NUMBER);
 
-        for (int i = 0; i < validatedInput.size(); i++) {
-            parsedInput.add(Integer.parseInt(validatedInput.get(i)));
+        List<String> noDuplicatedInput = validator.checkDuplicationInputForNumbers(splitedInput);
+
+        for (int i = 0; i < noDuplicatedInput.size(); i++) {
+            parsedInput.add(Integer.parseInt(noDuplicatedInput.get(i)));
         }
 
         return parsedInput;
@@ -46,15 +48,6 @@ public class LottoService {
         }
 
         ticket = cash / 1000;
-
-//        while (true) {
-//            try {
-//                ticket = validator.validateCash(parsedInput);
-//                break;
-//            } catch (IllegalArgumentException e) {
-//                System.out.println("[ERROR] 구입금액은 1000원 단위이여야 합니다.");
-//            }
-//        }
 
         return ticket;
     }

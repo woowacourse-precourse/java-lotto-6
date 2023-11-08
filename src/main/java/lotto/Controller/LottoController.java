@@ -26,10 +26,15 @@ public class LottoController {
     public static void start() {
         purchaseLotto();
         printAllLottoNumbers();
-        setWinningNumbers();
-        setBonusNumber();
+        validateDuplicationByWinningNumbersAndBonusNumber();
         printStatisticsResult();
         printLottoProfitResult();
+    }
+
+    private static void validateDuplicationByWinningNumbersAndBonusNumber() {
+        setWinningNumbers();
+        setBonusNumber();
+        BonusNumber.validateDuplicate(winningNumbers, bonusNumber);
     }
 
     private static void purchaseLotto() {

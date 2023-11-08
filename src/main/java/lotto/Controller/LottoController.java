@@ -45,7 +45,7 @@ public class LottoController {
     public Lotto getWinNumber(){
         return new Lotto(inputView.getWinNumbers());
     }
-    public int calculateReword(List<Lotto> tickets, Lotto winTicket, int bonusNumber){
+    public int calculateReward(List<Lotto> tickets, Lotto winTicket, int bonusNumber){
         int totalReward = 0;
         for (int i = 0; i < tickets.size() ; i++) {
             totalReward = rewardChecker.checkReward(tickets.get(i), winTicket, bonusNumber);
@@ -54,7 +54,7 @@ public class LottoController {
     }
 
     public void printResult(List<Lotto> tickets, Lotto winTicket, int bonusNumber, int money){
-        int totalReward = calculateReword(tickets, winTicket, bonusNumber);
+        int totalReward = calculateReward(tickets, winTicket, bonusNumber);
         int[] rankCount = rewardChecker.getRankCount();
 
         double profitability = rewardChecker.calculateProfitability(totalReward, money);

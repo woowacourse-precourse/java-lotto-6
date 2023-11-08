@@ -1,6 +1,6 @@
 package lotto.View;
-import camp.nextstep.edu.missionutils.Console;
 
+import camp.nextstep.edu.missionutils.Console;
 import static lotto.Constants.*;
 
 public class InputView {

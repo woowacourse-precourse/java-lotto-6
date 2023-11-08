@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Model.Lotto;
+import static lotto.Constants.*;
 import java.util.*;
 
 public class Util {
@@ -20,14 +21,13 @@ public class Util {
     }
 
     public static List<Integer> getRandomNum() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Constants.RANDOM_START_NUM, Constants.RANDOM_END_NUM, Constants.NUM_COUNT);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Numbers.ONE.getValue(), END_NUMBER, Numbers.SIX.getValue());
         List<Integer> noDuplication = new ArrayList<>(numbers.stream().distinct().toList());
 
-        while(noDuplication.size() != Constants.NUM_COUNT){
-            noDuplication.add(Randoms.pickNumberInRange(Constants.RANDOM_START_NUM, Constants.RANDOM_END_NUM));
+        while(noDuplication.size() != Numbers.SIX.getValue()){
+            noDuplication.add(Randoms.pickNumberInRange(Numbers.ONE.getValue(), END_NUMBER));
             noDuplication = new ArrayList<>(noDuplication.stream().distinct().toList());
         }
-
         return noDuplication;
     }
 

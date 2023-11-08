@@ -1,15 +1,12 @@
 package lotto.Controller;
 
-import lotto.Model.Lotto;
-import lotto.Util;
-import lotto.View.OutputView;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.Constants.NUM_COUNT;
-import static lotto.Util.getRandomNum;
-import static lotto.Util.sortLottoNumbers;
+import lotto.Model.Lotto;
+import lotto.View.OutputView;
+import static lotto.Constants.*;
+import static lotto.Util.*;
 
 public class LottoController {
     private Lotto winningLotto;
@@ -40,7 +37,7 @@ public class LottoController {
     public void matchingStart() {
         for(int i = 0; i < lottoCount; i++){
             int matchCount = 0;
-            for(int j = 0; j < NUM_COUNT; j++){
+            for(int j = 0; j < Numbers.SIX.getValue(); j++){
                 if(randomLotto.get(i).isSameNumber(winningLotto.getValue(j))){
                     matchCount++;
                 }
@@ -52,13 +49,13 @@ public class LottoController {
     public void rateCalculation() {
         double total = 0;
         for(int i = 0; i < resultLotto.size(); i++){
-            if(resultLotto.get(i) == 3) {
+            if(resultLotto.get(i) == Numbers.THREE.getValue()) {
                 total = total +  5_000;
             }
-            if(resultLotto.get(i) == 4) {
+            if(resultLotto.get(i) == Numbers.FOUR.getValue()) {
                 total = total +  50_000;
             }
-            if(resultLotto.get(i) == 5) {
+            if(resultLotto.get(i) == Numbers.FIVE.getValue()) {
                 if(randomLotto.get(i).isSameNumber(bonusNumber)) {
                     total = total + 30_000_000;
                     BonusNumberMatchCount++;
@@ -66,11 +63,11 @@ public class LottoController {
                 }
                 total = total +  1_500_000;
             }
-            if(resultLotto.get(i) == 6) {
+            if(resultLotto.get(i) == Numbers.SIX.getValue()) {
                 total = total +  2_000_000_000;
             }
         }
-        lottoRate = total / (lottoCount * 1000.0) * 100.0;
+        lottoRate = total / (lottoCount * PRICE_OF_LOTTO) * 100.0;
     }
 
     public void printResult() {

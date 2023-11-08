@@ -58,9 +58,13 @@ public class Picker {
         if (!Character.isDigit(winBonusNumberInput.charAt(0))) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요");
         }
-
-        if (Integer.parseInt(winBonusNumberInput)<1 || Integer.parseInt(winBonusNumberInput)>45) {
+        int winBonusNumber = Integer.parseInt(winBonusNumberInput);
+        if (winBonusNumber<1 || winBonusNumber>45) {
             throw new IllegalArgumentException("[ERROR] 1이상 45이하인 숫자만 입력해주세요.");
+        }
+
+        if(this.winNumbers.contains(winBonusNumber)){
+            throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자를 입력해주세요.");
         }
     }
 }

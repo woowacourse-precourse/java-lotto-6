@@ -1,7 +1,7 @@
 package view;
 
-import lotto.Lotto;
-import lotto.LottoNumbers;
+import domain.Lotto;
+import domain.LottoNumbers;
 
 
 import java.util.Collections;

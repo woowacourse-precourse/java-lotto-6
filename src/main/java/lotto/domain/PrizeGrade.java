@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain;
+
+import lotto.StringConstants;
 
 public enum PrizeGrade {
     FIRST(6, 2000000000, StringConstants.EMPTY),

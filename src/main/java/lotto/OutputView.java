@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.domain.Lotto;
+import lotto.domain.PrizeGrade;
+
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.TreeMap;

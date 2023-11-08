@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.domain.Lotto;
+
 import java.util.List;
 import java.util.regex.Pattern;
 

@@ -1,4 +1,8 @@
-package lotto;
+package lotto.domain;
+
+import lotto.domain.Lotto;
+import lotto.domain.PrizeGrade;
+import lotto.domain.WinningNumbers;
 
 import java.util.List;
 import java.util.TreeMap;

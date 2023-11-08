@@ -1,4 +1,7 @@
-package lotto;
+package lotto.domain;
+
+import lotto.domain.PrizeGrade;
+import lotto.domain.PrizeStats;
 
 import java.util.Map;
 

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.Validator.*;
 import static lotto.NumberConstants.*;

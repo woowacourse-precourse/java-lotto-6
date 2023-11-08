@@ -12,11 +12,19 @@ public class UserInput {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return numbers;
     }
-    public int ableBuy(){
+    public int countLotto(int money){
+        if(money%1000!=0){
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해 주세요.");
+        }
+        int count = money/1000;
+        return count;
+    }
+    public void ableBuy(){
         while(true){
             try {
                 int money = buy();
-                return money;
+                countLotto(money);
+                return;
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }

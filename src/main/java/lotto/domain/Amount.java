@@ -2,24 +2,26 @@ package lotto.domain;
 
 import lotto.exception.BlankException;
 import lotto.exception.amount.IllegalCipherException;
-import lotto.exception.amount.NumberFormatException;
+import lotto.exception.amount.NonNumberFormatException;
 import lotto.util.Utils;
 
 public class Amount {
     private static final String ONLY_NUMBER_REGEX = "[0-9]+";
+    private static final int MINIMUM_AMOUNT = 1000;
+    private static final int TARGET_LEFTOVER = 0;
     private int amount;
 
     public Amount(String amount) {
-        setAmount(validate(amount));
+        this.amount = validate(amount);
     }
 
     public int getAmount() {
         return this.amount;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
+//    public void setAmount(int amount) {
+//        this.amount = amount;
+//    }
 
     private int validate(String amount) {
         validateIsBlank(amount);
@@ -40,12 +42,12 @@ public class Amount {
 
     private void validateNumberFormat(String amount) {
         if (!amount.matches(ONLY_NUMBER_REGEX)) {
-            throw new NumberFormatException();
+            throw new NonNumberFormatException();
         }
     }
 
     private void validateCipher(int amountNumber) {
-        if (amountNumber % 1000 != 0) {
+        if (amountNumber % MINIMUM_AMOUNT != TARGET_LEFTOVER) {
             throw new IllegalCipherException();
         }
     }

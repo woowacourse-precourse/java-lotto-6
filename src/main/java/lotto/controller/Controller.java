@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Buyer;
+import lotto.domain.Game;
 import lotto.dto.PurchaseResult;
 import lotto.service.Service;
 import lotto.view.Input;
@@ -12,7 +13,7 @@ public class Controller {
     public void run() {
         readyForGame();
         proceedGame();
-        getResult();
+        endGame();
     }
 
     private void readyForGame() {
@@ -29,15 +30,19 @@ public class Controller {
         }
     }
 
-    private void purchaseLotto() {
-
-    }
-
     private void proceedGame() {
-
+        while (true) {
+            try {
+                Output.printWinningNumberMessage();
+                Game game = new Game(Input.inputWinningNumbers());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private void getResult() {
+    private void endGame() {
 
     }
 

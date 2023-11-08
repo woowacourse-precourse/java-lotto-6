@@ -26,9 +26,10 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return this.numbers;
     }
+
     private void validateDuplicate(List<Integer> numbers) {
         HashSet set = new HashSet(numbers);
-        if(set.size()!= numbers.size()){
+        if (set.size() != numbers.size()) {
             throw new IllegalArgumentException(ConsoleMessage.LOTTO_NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
@@ -61,7 +62,5 @@ public class Lotto {
                         .anyMatch(winningNumber -> Objects.equals(winningNumber.getWinningNum(), number)))
                 .count();
     }
-
-
 
 }

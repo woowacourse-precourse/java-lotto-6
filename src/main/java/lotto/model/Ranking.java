@@ -34,7 +34,9 @@ public enum Ranking {
             return SECOND;
         }
         for (Ranking rank : values()) {
-            return rank;
+            if (rank.matchCount(matchCount) && matchBonus) {
+                return rank;
+            }
         }
         throw new IllegalArgumentException(NOT_INCLUDE_RANKING);
     }

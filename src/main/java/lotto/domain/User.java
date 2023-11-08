@@ -5,8 +5,8 @@ import java.util.List;
 public class User {
     public int payment;
     public final List<List<Integer>> userLottos;
-    public User(String payment) {
-        this.payment = InputHandler.convertStringToInteger(payment);
+    public User(int payment) {
+        this.payment = payment;
         userLottos = Lotto.publish(this.payment);
     }
 

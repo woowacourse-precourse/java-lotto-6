@@ -1,9 +1,9 @@
 package lotto.view;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.common.constants.LottoRank;
 import lotto.controller.dto.input.BonusBallDto;
 import lotto.controller.dto.input.LottoPurchaseAmountDto;
 import lotto.controller.dto.input.WinningLottoNumbersDto;
@@ -11,10 +11,10 @@ import lotto.controller.dto.output.PurchasedLottosDto;
 import lotto.controller.dto.output.WinningLottoResultDto;
 import lotto.io.reader.Reader;
 import lotto.io.writer.Writer;
-import lotto.model.Lotto;
+import lotto.model.lotto.Lotto;
 import lotto.view.constants.LottoRankMessage;
 import lotto.view.constants.Message;
-import lotto.view.constants.MessageFormat;
+import lotto.view.constants.MessageFormatter;
 
 public class LottoView {
     private final Reader reader;
@@ -35,17 +35,17 @@ public class LottoView {
 
         String purchasedLottoNumbersMessage = getPurchasedLottoNumbersMessage(lottos);
 
-        String purchasedLottos = String.join(MessageFormat.LINE_SEPARATOR.getValue(),
+        String purchasedLottos = String.join(MessageFormatter.LINE_SEPARATOR.getValue(),
                 Message.PURCHASED_LOTTOS_COUNT.getValue(lottos.size()),
                 purchasedLottoNumbersMessage);
-        writer.writeLine(purchasedLottos + MessageFormat.LINE_SEPARATOR.getValue());
+        writer.writeLine(purchasedLottos + MessageFormatter.LINE_SEPARATOR.getValue());
     }
 
     private String getPurchasedLottoNumbersMessage(List<Lotto> lottos) {
         return lottos.stream()
                 .map(lotto -> lotto.getNumbers().toArray())
                 .map(Message.PURCHASED_LOTTO_NUMBERS::getValue)
-                .collect(Collectors.joining(MessageFormat.LINE_SEPARATOR.getValue()));
+                .collect(Collectors.joining(MessageFormatter.LINE_SEPARATOR.getValue()));
     }
 
     public WinningLottoNumbersDto inputWinningLottoNumbers() {
@@ -60,9 +60,9 @@ public class LottoView {
 
     public void showWinningLottoResult(WinningLottoResultDto winningLottoResultDto) {
         String winningLottoCountByRankMessage = getWinningLottoCountByRankMessage(
-                winningLottoResultDto.winningLottoCountByRank());
+                winningLottoResultDto.winningResult());
 
-        String winningLottoResultMessage = String.join(MessageFormat.LINE_SEPARATOR.getValue(),
+        String winningLottoResultMessage = String.join(MessageFormatter.LINE_SEPARATOR.getValue(),
                 Message.WINNING_STATISTICS_HEADER.getValue(),
                 Message.WINNING_STATISTICS_DIVIDER.getValue(),
                 winningLottoCountByRankMessage,
@@ -70,15 +70,24 @@ public class LottoView {
         writer.writeLine(winningLottoResultMessage);
     }
 
-    private String getWinningLottoCountByRankMessage(List<Integer> winningLottoCountByRank) {
-        Iterator<Integer> countIterator = winningLottoCountByRank.iterator();
+    private String getWinningLottoCountByRankMessage(List<LottoRank> winningResult) {
         return Arrays.stream(LottoRankMessage.values())
-                .map(lottoRankMessage -> Message.WINNING_LOTTOS_COUNT_PER_PRIZE.getValue(
-                        lottoRankMessage.getMessage(), countIterator.next()))
-                .collect(Collectors.joining(MessageFormat.LINE_SEPARATOR.getValue()));
+                .map(lottoRankMessage -> {
+                    LottoRank rank = lottoRankMessage.getRank();
+                    int lottoCountByRank = (int) winningResult.stream()
+                            .filter(rank::equals)
+                            .count();
+                    return Message.WINNING_LOTTOS_COUNT_PER_PRIZE.getValue(
+                            lottoRankMessage.getMessage(), lottoCountByRank);
+                })
+                .collect(Collectors.joining(MessageFormatter.LINE_SEPARATOR.getValue()));
     }
 
     public void showError(String message) {
-        writer.writeLine(message);
+        writer.writeLine(MessageFormatter.ERROR_MESSAGE_PREFIX.getValue() + message);
+    }
+
+    public void release() {
+        reader.close();
     }
 }

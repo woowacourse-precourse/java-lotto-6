@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.common.constants.LottoRank;
 import lotto.controller.dto.input.BonusBallDto;
 import lotto.controller.dto.input.LottoPurchaseAmountDto;
 import lotto.controller.dto.input.WinningLottoNumbersDto;
@@ -12,7 +13,7 @@ import lotto.controller.dto.output.PurchasedLottosDto;
 import lotto.controller.dto.output.WinningLottoResultDto;
 import lotto.mock.MockReader;
 import lotto.mock.MockWriter;
-import lotto.model.Lotto;
+import lotto.model.lotto.Lotto;
 import lotto.view.constants.Message;
 import org.junit.jupiter.api.Test;
 
@@ -84,9 +85,9 @@ class LottoViewTest {
     @Test
     void 로또당첨결과_출력_테스트() {
         //given
-        List<Integer> lottoCount = List.of(1, 0, 0, 0, 0);
+        List<LottoRank> winningResult = List.of(LottoRank.FIFTH);
         float profitRate = 62.5f;
-        WinningLottoResultDto winningLottoResultDto = new WinningLottoResultDto(lottoCount, profitRate);
+        WinningLottoResultDto winningLottoResultDto = new WinningLottoResultDto(winningResult, profitRate);
         //when
         lottoView.showWinningLottoResult(winningLottoResultDto);
         //then
@@ -110,6 +111,6 @@ class LottoViewTest {
         //when
         lottoView.showError(error);
         //then
-        assertThat(writer.getOutput()).isEqualTo(error + LINE_SEPARATOR);
+        assertThat(writer.getOutput()).isEqualTo("[ERROR] " + error + LINE_SEPARATOR);
     }
 }

@@ -6,6 +6,7 @@ import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private static int PRICE = 1000;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -33,5 +34,9 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
+    }
+    
+    public static int getPrice(){
+        return Lotto.PRICE;
     }
 }

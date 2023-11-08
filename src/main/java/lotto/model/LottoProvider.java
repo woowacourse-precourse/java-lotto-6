@@ -11,7 +11,7 @@ public class LottoProvider {
     private static final String NO = "NO";
 
     public List<Lotto> lottoGenerate(int each) {
-        return LottoNumberCreator.myLottoNumbersOf(each);
+        return LottoNumberCreator.myLottoNumbersFrom(each);
     }
 
     public WinningLotto winLottoGenerate(List<Integer> numbers, int bonusNumber) {

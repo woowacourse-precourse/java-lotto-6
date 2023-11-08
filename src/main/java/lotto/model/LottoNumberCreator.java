@@ -19,7 +19,7 @@ public class LottoNumberCreator {
         );
     }
 
-    public static List<Lotto> myLottoNumbersOf(int each) {
+    public static List<Lotto> myLottoNumbersFrom(int each) {
         while (each-- > GENERATE_END) {
             new LottoNumberCreator();
         }

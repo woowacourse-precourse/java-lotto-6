@@ -29,6 +29,15 @@ public class LottoPrize {
             addMatchCount(checkBonusNumber(userLottoNums, matchCount));
         }
 
+        printResultStats();
+    }
+
+    private void printResultStats() {
+        messageUtil.printWinningStatsResult(THREE_COUNT.getNumber(), THREE_COUNT.getPrice(), THREE_COUNT.getMatchCount());
+        messageUtil.printWinningStatsResult(FOUR_COUNT.getNumber(), FOUR_COUNT.getPrice(), FOUR_COUNT.getMatchCount());
+        messageUtil.printWinningStatsResult(FIVE_COUNT.getNumber(), FIVE_COUNT.getPrice(), FIVE_COUNT.getMatchCount());
+        messageUtil.printWinningStatsResult(FIVE_COUNT_WITH_BONUS.getNumber(), FIVE_COUNT_WITH_BONUS.getPrice(), FIVE_COUNT_WITH_BONUS.getMatchCount());
+        messageUtil.printWinningStatsResult(SIX_COUNT.getNumber(), SIX_COUNT.getPrice(), SIX_COUNT.getMatchCount());
     }
 
     private void addMatchCount(int matchCount) {

@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.PlayerBuyPrice;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoGameController {
 
@@ -13,7 +14,7 @@ public class LottoGameController {
         try {
             return new PlayerBuyPrice(InputView.inputAmount());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printException(e);
             return inputAmount();
         }
     }

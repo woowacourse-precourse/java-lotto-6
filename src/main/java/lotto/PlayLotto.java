@@ -83,10 +83,10 @@ public class PlayLotto {
     }
 
     public void printResult() {
-        referee.printResult();
+        referee.printResult(lottos, wining);
     }
 
     public void printRateOfReturn() {
-        referee.calculateRateOfReturn();
+        referee.calculateRateOfReturn(amount*1000);
     }
 }

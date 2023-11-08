@@ -12,6 +12,14 @@ public class Wining {
         jackpot = new ArrayList<>();
     }
 
+    public List<Integer> getJackpot() {
+        return jackpot;
+    }
+
+    public Integer getBonus() {
+        return bonus;
+    }
+
     public void setWinningNumber(List<Integer> numbers){
         validateWins(numbers);
         jackpot = numbers;

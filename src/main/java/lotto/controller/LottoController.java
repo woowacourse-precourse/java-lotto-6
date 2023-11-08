@@ -13,6 +13,17 @@ public class LottoController {
     }
 
     public void startGame() {
-        String purchaseAmount = consoleLottoView.getPurchaseAmount();
+        Integer amount = getPurchaseAmount();
+        lottoService.purchase(amount);
     }
+
+    private Integer getPurchaseAmount() {
+        try {
+            return consoleLottoView.getPurchaseAmount();
+        } catch (NumberFormatException e) {
+            consoleLottoView.displayError(e.getMessage());
+            return getPurchaseAmount();
+        }
+    }
+
 }

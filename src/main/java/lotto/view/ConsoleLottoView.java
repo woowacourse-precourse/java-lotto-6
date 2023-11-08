@@ -7,10 +7,12 @@ public class ConsoleLottoView implements LottoView {
 
     enum Message {
         PURCHASE_AMOUNT_MESSAGE("구입금액을 입력해 주세요."),
-        PURCHASE_DISPLAY_MESSAGE_PREFIX("개를 구매했습니다."),
+        PURCHASE_DISPLAY_MESSAGE_SUFFIX("개를 구매했습니다."),
+        NOT_NUMBER_ERROR_MESSAGE("숫자를 입력해 주세요."),
         WINNING_NUMBER_INPUT_MESSAGE("당첨 번호를 입력해 주세요."),
         BONUS_NUMBER_INPUT_MESSAGE("보너스 번호를 입력해 주세요."),
-        RESULT_DISPLAY_MESSAGE("당첨 통계");
+        RESULT_DISPLAY_MESSAGE("당첨 통계"),
+        ERROR_MESSAGE_PREFIX("[ERROR]");
 
         private final String message;
 
@@ -24,9 +26,15 @@ public class ConsoleLottoView implements LottoView {
     }
 
     @Override
-    public String getPurchaseAmount() {
+    public Integer getPurchaseAmount() {
         display(Message.PURCHASE_AMOUNT_MESSAGE.getMessage());
-        return input();
+
+        try {
+            return Integer.parseInt(input());
+        } catch (NumberFormatException e) {
+            display(Message.ERROR_MESSAGE_PREFIX.getMessage() + Message.NOT_NUMBER_ERROR_MESSAGE.getMessage());
+            return getPurchaseAmount();
+        }
     }
 
     @Override
@@ -48,11 +56,21 @@ public class ConsoleLottoView implements LottoView {
 
     }
 
+    @Override
+    public void displayError(String message) {
+        display(Message.ERROR_MESSAGE_PREFIX.getMessage() + message);
+    }
+
     private void display(String message) {
         System.out.println(message);
     }
 
     private String input() {
-        return Console.readLine();
+        try {
+            return Console.readLine();
+        } catch (IllegalStateException e) {
+            display(Message.ERROR_MESSAGE_PREFIX.getMessage() + e.getMessage());
+            return input();
+        }
     }
 }

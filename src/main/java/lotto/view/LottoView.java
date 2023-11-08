@@ -3,7 +3,7 @@ package lotto.view;
 import java.util.HashMap;
 
 public interface LottoView {
-    public String getPurchaseAmount();
+    public Integer getPurchaseAmount();
 
     public void displayPurchased();
 
@@ -12,4 +12,6 @@ public interface LottoView {
     public String getBonusNumber();
 
     public void displayResult(HashMap<String, Integer> result);
+
+    public void displayError(String message);
 }

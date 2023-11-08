@@ -16,4 +16,8 @@ public class ValidateConstant {
     public static String ERROR_COMMA_START_END() {
         return "[ERROR] 숫자 입력의 처음 또는 끝이 ',' 입니다.";
     }
+
+    public static String ERROR_CONSECUTIVE_EMPTY_VALUES() {
+        return "[ERROR] 문자열 \",,\" 사이에 숫자가 없습니다.";
+    }
 }

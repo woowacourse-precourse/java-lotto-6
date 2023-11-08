@@ -23,6 +23,7 @@ public class ValidateException {
     private static final Integer MAX_WIN_NUMBERS = 45;
     private static final Integer START_BONUS_NUMBER = 1;
     private static final Integer END_BONUS_NUMBER = 45;
+    private static final String SEQUENCE_COMMA = ",,";
 
     public static void includeString(String strLine) {
         Pattern pattern = Pattern.compile(KOREAN_ENGLISH_REGEX);
@@ -51,8 +52,8 @@ public class ValidateException {
     }
 
     public static void hasConsecutiveEmptyValues(String strLine) {
-        if (strLine.contains(",,")) {
-            throw new IllegalArgumentException("[ERROR] 문자열 \",,\" 사이에 숫자가 없습니다.");
+        if (strLine.contains(SEQUENCE_COMMA)) {
+            throw new IllegalArgumentException(ValidateConstant.ERROR_CONSECUTIVE_EMPTY_VALUES());
         }
     }
 

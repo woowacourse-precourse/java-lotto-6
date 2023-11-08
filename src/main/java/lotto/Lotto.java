@@ -39,6 +39,17 @@ public class Lotto {
             }
         }
     }
+    private void validate(List<Integer> numbers, Integer bonusNumber) {
+       validate(numbers);
+       if (numbers.contains(bonusNumber)){
+           Print.printMessage(ErrorMessage.DUPLICATED_NUMBER.getMessage());
+           throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.getMessage());
+       }
+       if (bonusNumber < LOTTO_MIN_VALUE || LOTTO_MAX_VALUE < bonusNumber){
+           Print.printMessage(ErrorMessage.NOT_IN_1_TO_45.getMessage());
+           throw new IllegalArgumentException(ErrorMessage.NOT_IN_1_TO_45.getMessage());
+       }
+    }
     public void printLotto(){
         Print.printLotto(numbers);
     }
@@ -46,7 +57,7 @@ public class Lotto {
     public int calcMatchNumber(List<Integer> winningNumber, Integer bonusNumber){
         int[] lottoMap = new int[MAX_LOTTO_MAP_SIZE + 1]; // 배열의 index를 1부터 사용하므로 +1
         int matchNumber = 0;
-
+        validate(winningNumber, bonusNumber);
         for (int i = 0; i < MAX_LOTTO_SIZE; i++){
             lottoMap[numbers.get(i)] = EXIST;
         }

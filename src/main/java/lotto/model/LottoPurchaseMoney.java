@@ -2,7 +2,7 @@ package lotto.model;
 
 import static lotto.model.Lotto.LOTTO_PRICE;
 
-public class PurchaseAmount {
+public class LottoPurchaseMoney {
 
     private static final int MAX_AMOUNT = 100_000;
     private static final int NO_REMAINDER = 0;
@@ -15,13 +15,13 @@ public class PurchaseAmount {
 
     private final int amount;
 
-    private PurchaseAmount(final int amount) {
+    private LottoPurchaseMoney(final int amount) {
         validate(amount);
         this.amount = amount;
     }
 
-    public static PurchaseAmount from(final int amount) {
-        return new PurchaseAmount(amount);
+    public static LottoPurchaseMoney from(final int amount) {
+        return new LottoPurchaseMoney(amount);
     }
 
     private void validate(final int amount) {

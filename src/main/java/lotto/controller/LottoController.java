@@ -3,8 +3,8 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.model.LottoStatistic;
 import lotto.model.Lottos;
-import lotto.model.PurchaseAmount;
-import lotto.model.WinningNumbers;
+import lotto.model.LottoPurchaseMoney;
+import lotto.model.LottoWinningNumbers;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -22,19 +22,19 @@ public class LottoController {
     }
 
     public void play() {
-        PurchaseAmount amount = askPurchaseAmount();
+        LottoPurchaseMoney amount = askPurchaseMoney();
         Lottos lottos = buyLottos(amount);
         printLottos(lottos);
-        WinningNumbers winningNumbers = askWinningNumbers();
-        LottoStatistic statistic = createStatisticOf(amount, lottos, winningNumbers);
+        LottoWinningNumbers lottoWinningNumbers = askWinningNumbers();
+        LottoStatistic statistic = createStatisticOf(amount, lottos, lottoWinningNumbers);
         printStatistic(statistic);
     }
 
-    private PurchaseAmount askPurchaseAmount() {
-        return lottoService.askPurchaseAmount(inputView::askPurchaseAmount);
+    private LottoPurchaseMoney askPurchaseMoney() {
+        return lottoService.askPurchaseMoney(inputView::askPurchaseMoney);
     }
 
-    private Lottos buyLottos(final PurchaseAmount amount) {
+    private Lottos buyLottos(final LottoPurchaseMoney amount) {
         return lottoService.buyLottos(amount);
     }
 
@@ -42,16 +42,16 @@ public class LottoController {
         outputView.printLottos(lottos);
     }
 
-    private WinningNumbers askWinningNumbers() {
+    private LottoWinningNumbers askWinningNumbers() {
         Lotto numbers = lottoService.askWinningNumbers(inputView::askWinningNumbers);
         return lottoService.createWinningNumbers(numbers, inputView::askBonusNumber);
     }
 
     private LottoStatistic createStatisticOf(
-            final PurchaseAmount amount,
+            final LottoPurchaseMoney amount,
             final Lottos lottos,
-            final WinningNumbers winningNumbers) {
-        return lottoService.createStatisticOf(amount, lottos, winningNumbers);
+            final LottoWinningNumbers lottoWinningNumbers) {
+        return lottoService.createStatistic(amount, lottos, lottoWinningNumbers);
     }
 
     private void printStatistic(final LottoStatistic statistic) {

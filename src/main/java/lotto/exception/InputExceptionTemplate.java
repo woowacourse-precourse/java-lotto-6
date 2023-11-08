@@ -2,11 +2,7 @@ package lotto.exception;
 
 public class InputExceptionTemplate {
 
-    public static final String ERROR = "[ERROR] ";
-
-    public <T> T run(final InputCallback<T> callback) {
-        return run(callback, null);
-    }
+    private static final String ERROR = "[ERROR] ";
 
     public <T> T run(final InputCallback<T> callback, final String message) {
         return executeWithCallback(callback, message);

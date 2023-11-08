@@ -51,14 +51,17 @@ public class Lotto {
     }
 
     protected void validateNotDuplicated(final List<Integer> numbers) {
-        boolean hasDuplicates = numbers.stream().distinct().count() != numbers.size();
-        if (hasDuplicates) {
+        if (hasDuplicates(numbers)) {
             throw new IllegalArgumentException(DUPLICATED_NUMBER);
         }
     }
 
     protected boolean isOutOfRange(final int number) {
         return number < MIN_NUMBER || number > MAX_NUMBER;
+    }
+
+    protected boolean hasDuplicates(final List<Integer> numbers) {
+        return numbers.size() != numbers.stream().distinct().count();
     }
 
     public boolean contains(final int number) {

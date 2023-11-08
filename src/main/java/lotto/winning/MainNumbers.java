@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import lotto.Askable;
 import lotto.Settings;
 
-public class MainNumber extends WinningNumber implements Askable<List<Integer>> {
+public class MainNumbers extends WinningNumber implements Askable<List<Integer>> {
     @Override
     public List<Integer> ask() {
         System.out.println(INPUT_WINNING_NUMBERS);

@@ -36,5 +36,13 @@ public class LottoService {
         return lottoResult;
     }
 
+    private int getMatchCount(LottoTicket ticket, WinningLotto winningLotto) {
+        List<Integer> ticketNumbers = ticket.getNumbers();
+        List<Integer> winningNumbers = winningLotto.getLotto().getNumbers();
+
+        return (int) ticketNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
 
 }

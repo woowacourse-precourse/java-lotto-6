@@ -20,7 +20,7 @@ public class InputView {
             System.out.println(INPUT_FEE_MENT);
             return Long.parseLong(consoleService.readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호가 잘못되었습니다. 번호를 다시 입력해주세요!");
         }
     }
 
@@ -34,7 +34,7 @@ public class InputView {
             System.out.println(INPUT_BONUS_NUMBER_MENT);
             return Integer.parseInt(consoleService.readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 잘못되었습니다. 번호를 다시 입력해주세요!");
         }
     }
 }

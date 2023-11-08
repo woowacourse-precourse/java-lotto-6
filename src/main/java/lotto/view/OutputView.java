@@ -74,4 +74,8 @@ public class OutputView {
     public void printTotalYield(String yield) {
         System.out.printf(INFORM_TOTAL_YIELD_MENT, yield);
     }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }

@@ -8,6 +8,7 @@ import lotto.dto.BuyLottoDto;
 import lotto.dto.LottoInfoDto;
 import lotto.dto.LottoRanksDto;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
@@ -15,24 +16,36 @@ public class Application {
         ObjectFactory objectFactory = new ObjectFactory();
         LottoController controller = objectFactory.lottoController();
         InputView inputView = objectFactory.inputView();
+        OutputView outputView = objectFactory.outputView();
 
-        run(inputView, controller);
+        run(inputView, controller, outputView);
     }
 
-    private static void run(InputView inputView, LottoController controller) {
-        BuyLottoDto buyLottoDto = createBuyLottoDto(inputView, controller);
+    private static void run(InputView inputView, LottoController controller, OutputView outputView) {
+        BuyLottoDto buyLottoDto = createBuyLottoDto(inputView, controller, outputView);
         WinningLottoTable winningLottoTable = createWinningLottoTable(inputView, buyLottoDto.getLottoBundle(),
-                controller);
+                controller, outputView);
         totalLotteriesYield(winningLottoTable, buyLottoDto.getLottoCnt(), controller);
     }
 
-    private static BuyLottoDto createBuyLottoDto(InputView inputView, LottoController controller) {
-        return controller.buyLotteries(inputView.number());
+    private static BuyLottoDto createBuyLottoDto(InputView inputView, LottoController controller,
+                                                 OutputView outputView) {
+        try {
+            return controller.buyLotteries(inputView.number());
+        } catch (IllegalArgumentException | IllegalStateException | IndexOutOfBoundsException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return createBuyLottoDto(inputView, controller, outputView);
+        }
     }
 
     private static WinningLottoTable createWinningLottoTable(InputView inputView, List<List<Integer>> lotteries,
-                                                             LottoController controller) {
-        return controller.informLottoResult(createLottoInfoDto(inputView, lotteries));
+                                                             LottoController controller, OutputView outputView) {
+        try {
+            return controller.informLottoResult(createLottoInfoDto(inputView, lotteries));
+        } catch (IllegalArgumentException | IllegalStateException | IndexOutOfBoundsException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return createWinningLottoTable(inputView, lotteries, controller, outputView);
+        }
     }
 
     private static LottoInfoDto createLottoInfoDto(InputView inputView, List<List<Integer>> lotteries) {

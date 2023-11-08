@@ -46,7 +46,7 @@ public class ObjectFactory {
         return new YieldCalculator();
     }
 
-    private OutputView outputView() {
+    public OutputView outputView() {
         return new OutputView();
     }
 }

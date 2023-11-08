@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.enumerte;
 
 public enum NumberType {
     BONUS, ORIGINAL

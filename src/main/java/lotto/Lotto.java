@@ -15,6 +15,18 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE.getValue()) {
+            throw new IllegalArgumentException();
+        }
+        if (numbers.stream().distinct().count() != LOTTO_SIZE.getValue()) {
+            throw new IllegalArgumentException();
+        }
+        if (numbers.stream().anyMatch(n -> n < MIN_LOTTO_NUMBER.getValue() || n > MAX_LOTTO_NUMBER.getValue())) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static List<Lotto> generateLottos(int purchaseAmount) {
         int count = purchaseAmount / LOTTO_PRICE.getValue();
         List<Lotto> lottos = new ArrayList<>();
@@ -30,18 +42,6 @@ public class Lotto {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
         return new Lotto(numbers);
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE.getValue()) {
-            throw new IllegalArgumentException();
-        }
-        if (numbers.stream().distinct().count() != LOTTO_SIZE.getValue()) {
-            throw new IllegalArgumentException();
-        }
-        if (numbers.stream().anyMatch(n -> n < MIN_LOTTO_NUMBER.getValue() || n > MAX_LOTTO_NUMBER.getValue())) {
-            throw new IllegalArgumentException();
-        }
     }
 
     public int countMatchingNumbers(List<Integer> winningNumbers) {

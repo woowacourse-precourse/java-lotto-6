@@ -37,6 +37,6 @@ public class OutputView {
 			chk++;
 		}
 		double rate = (double) totalPrizeMoney / amount / 10;
-		System.out.println("총 수익률은 " + String.format("%.1f", rate) + "%입니다.");
+		System.out.println("총 수익률은 " + String.format("%,.1f", rate) + "%입니다.");
 	}
 }

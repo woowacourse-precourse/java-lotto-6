@@ -2,6 +2,7 @@ package lotto.validator;
 
 import static lotto.util.Util.*;
 
+import java.util.List;
 import lotto.message.ErrorMessages;
 
 public class InputValidator {
@@ -34,6 +35,14 @@ public class InputValidator {
     public static void validateBonus(int bonus) {
         if (bonus < START_RANGE || bonus > END_RANGE) {
             throw new IllegalArgumentException(ErrorMessages.INVALID_BONUS_RANGE);
+        }
+    }
+
+    public static List<Integer> validateLottoFormat(String numbers) {
+        try {
+            return parseStringToIntList(numbers);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_TYPE);
         }
     }
 }

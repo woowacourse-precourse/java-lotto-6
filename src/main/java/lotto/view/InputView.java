@@ -1,9 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.validator.InputValidator;
 
@@ -23,9 +21,7 @@ public class InputView {
     }
 
     private static List<Integer> getLottoFormat(String numbers) {
-        return Arrays.stream(numbers.split(","))
-                .map(Integer::valueOf)
-                .collect(Collectors.toList());
+        return InputValidator.validateLottoFormat(numbers);
     }
 
     public static int inputBonusNumber() {

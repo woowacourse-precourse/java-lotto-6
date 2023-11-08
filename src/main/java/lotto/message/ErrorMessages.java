@@ -19,4 +19,7 @@ public class ErrorMessages {
             ERROR_MESSAGE_PREFIX + "구매 금액은 1000으로 나누어 떨어지는 수여야 합니다." + ERROR_MESSAGE_SUFFIX;
     public static final String LOTTO_WITH_BONUS_DUPLICATION =
             ERROR_MESSAGE_PREFIX + "로또 번호와 보너스 번호는 중복될 수 없습니다. 당첨 번호부터 다시 입력해주세요.";
+
+    public static final String INVALID_LOTTO_TYPE = ERROR_MESSAGE_PREFIX + "로또 번호는 정수여야 합니다."
+            + ERROR_MESSAGE_SUFFIX;
 }

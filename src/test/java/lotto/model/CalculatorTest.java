@@ -41,18 +41,16 @@ public class CalculatorTest {
         assertEquals(2, winningStatistics.get(Rank.FOURTH));
         assertEquals(2, winningStatistics.get(Rank.FIFTH));
     }
-    
-//    @DisplayName("총 수익률을 계산하는 기능 테스트")
-//    @Test
-//    public void testCalculateWinningRate() {
-//        Calculator calculator = new Calculator(playerLottos, winningNumbers);
-//
-//        Map<Rank, Integer> winningStatistics = calculator.calculateStatistics();
-//
-//        int money = 7000;
-//        double winningRate = calculator.calculateWinningRate(winningStatistics, money);
-//
-//        // Assert
-//        assertEquals(3287285, winningRate, 0.01);
-//    }
+
+    @DisplayName("총 수익률을 계산하는 기능 테스트")
+    @Test
+    public void testCalculateWinningRate() {
+        Calculator calculator = new Calculator(playerLottos, winningNumbers);
+        Map<Rank, Integer> winningStatistics = calculator.calculateStatistics();
+
+        int money = 7000;
+        double winningRate = calculator.calculateWinningRate(winningStatistics, money);
+
+        assertEquals(29001500, winningRate, 100);
+    }
 }

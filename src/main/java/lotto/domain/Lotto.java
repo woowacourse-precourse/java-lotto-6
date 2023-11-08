@@ -4,6 +4,7 @@ import lotto.exception.CustomException;
 import lotto.exception.constant.ErrorCode;
 import lotto.utils.Constant;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -18,6 +19,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        Collections.sort(numbers);
     }
 
     public int[] convertArray() {

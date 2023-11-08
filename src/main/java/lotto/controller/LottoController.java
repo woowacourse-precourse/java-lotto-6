@@ -25,5 +25,6 @@ public class LottoController {
 
         Map<String, Integer> result = lottos.calculateResult(winning);
         outputView.announceResult(result);
+        outputView.accounceProfit(lottos.calculateProfit(result));
     }
 }

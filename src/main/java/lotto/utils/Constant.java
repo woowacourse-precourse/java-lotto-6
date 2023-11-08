@@ -15,4 +15,11 @@ public class Constant {
             3, "three",
             7, "bonus"
     );
+    public static final Map<String, Integer> prize = Map.of(
+            "six", 2000000000,
+            "five", 1500000,
+            "four", 50000,
+            "three", 5000,
+            "bonus", 30000000
+    );
 }

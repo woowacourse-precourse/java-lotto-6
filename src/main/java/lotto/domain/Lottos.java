@@ -35,9 +35,12 @@ public class Lottos {
     }
 
     private void validateCnt(String purchase) {
-        if (!purchase.matches(Constant.numberRegex)) {
+        try {
+            int purchaseAmount = Integer.parseInt(purchase);
+        } catch (NumberFormatException e) {
             throw new CustomException(ErrorCode.INVALID_NUMBER_REGEX);
         }
+
         if ((Integer.parseInt(purchase) % 1000) != 0) {
             throw new CustomException(ErrorCode.INVALID_LOTTO_PURCHASE);
         }
@@ -81,5 +84,15 @@ public class Lottos {
             }
         }
         return result;
+    }
+
+    public float calculateProfit(Map<String, Integer> result) {
+        long reward = 0;
+        for (Map.Entry<String, Integer> entry : result.entrySet()) {
+            String lottoStatus = entry.getKey();
+            int count = entry.getValue();
+            reward += (long) (Constant.prize.get(lottoStatus)) * count;
+        }
+        return reward / (float) (lottoCnt * 1000);
     }
 }

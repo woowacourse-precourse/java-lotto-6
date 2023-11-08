@@ -12,24 +12,24 @@ public class LottoProfit {
 
     private final String lottoProfit;
 
-    public LottoProfit(long totalPurchaseMoney) {
-        long totalPrizeMoney = getTotalPrizeMoney();
+    public LottoProfit(double totalPurchaseMoney) {
+        double totalPrizeMoney = getTotalPrizeMoney();
         this.lottoProfit = StringFormat(totalPrizeMoney, totalPurchaseMoney);
     }
 
-    private static long getTotalPrizeMoney() {
+    private static double getTotalPrizeMoney() {
         return FIRST.getPrizeMoney() * FIRST.getCount()
-                + SECOND.getPrizeMoney() + SECOND.getCount()
-                + THIRD.getPrizeMoney() + THIRD.getCount()
-                + FORTH.getPrizeMoney() + FORTH.getCount()
-                + FIFTH.getPrizeMoney() + FIFTH.getCount();
+                + SECOND.getPrizeMoney() * SECOND.getCount()
+                + THIRD.getPrizeMoney() * THIRD.getCount()
+                + FORTH.getPrizeMoney() * FORTH.getCount()
+                + FIFTH.getPrizeMoney() * FIFTH.getCount();
     }
 
-    private static double calculateProfit(long totalPrizeMoney, long totalPurchaseMoney) {
-        return (totalPrizeMoney / totalPurchaseMoney) * PERCENT;
+    private static double calculateProfit(double totalPrizeMoney, double totalPurchaseMoney) {
+        return totalPrizeMoney / totalPurchaseMoney * PERCENT;
     }
 
-    private static String StringFormat(long totalPrizeMoney, long totalPurchaseMoney) {
+    private static String StringFormat(double totalPrizeMoney, double totalPurchaseMoney) {
         return String.format(PERCENT_FORMAT, calculateProfit(totalPrizeMoney, totalPurchaseMoney));
     }
 

@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class InputView {
     public static String readLine() {
         return Console.readLine();
+
     }
 
     public static List<String> split(String input) {

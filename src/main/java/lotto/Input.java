@@ -33,25 +33,46 @@ public class Input {
         lottoCount(amount / 1000);
     }
 
-    private void lottoCount(int divisionAmount){
-        System.out.println(divisionAmount+amountSpeech);
+    private void lottoCount(int divisionAmount) {
+        System.out.println(divisionAmount + amountSpeech);
         makeLottoNumber(divisionAmount);
     }
 
     private void makeLottoNumber(int lottoAmount) {
         lottos = new ArrayList<>();
         for (int i = 0; i < lottoAmount; i++) {
-            lottos.add(getNumber());
+            lottos.add(getLottoNumber());
         }
+
+        outputLottos();
     }
 
-    private List<Integer> getNumber(){
-        List<Integer> lottoNumber = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
+    private List<Integer> getLottoNumber() {
+        List<Integer> lottoNumber = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         return numberSort(lottoNumber);
     }
 
-    private List<Integer> numberSort(List<Integer> lottoNumber){
+    private List<Integer> numberSort(List<Integer> lottoNumber) {
         Collections.sort(lottoNumber);
         return lottoNumber;
+    }
+
+    private void outputLottos() {
+        StringBuilder lottosNumber = new StringBuilder();
+        for (List<Integer> lotto : lottos) {
+            lottosNumber.append("[");
+            appendNumber(lotto, lottosNumber);
+            lottosNumber.append("]\n");
+        }
+    }
+
+    private void appendNumber(List<Integer> lotto, StringBuilder lottosNumber) {
+        for (int i = 0; i < lotto.size(); i++) {
+            if (i == lotto.size() - 1) {
+                lottosNumber.append(i);
+                return;
+            }
+            lottosNumber.append(i+", ");
+        }
     }
 }

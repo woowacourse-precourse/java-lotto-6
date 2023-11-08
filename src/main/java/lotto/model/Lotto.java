@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.validation.Validator;
+import lotto.validation.LottoValidator;
 import lotto.view.OutputView;
 import lotto.view.constant.ErrorMessage;
 
@@ -17,7 +17,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (Validator.checkDuplicateValue(numbers)) {
+        if (LottoValidator.checkDuplicateValue(numbers)) {
             OutputView.printError(ErrorMessage.DUPLICATE_NUMBER.getMessage());
             throw new IllegalArgumentException(ErrorMessage.ERROR.getMessage() + ErrorMessage.DUPLICATE_NUMBER.getMessage());
         }

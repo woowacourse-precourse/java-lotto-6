@@ -3,6 +3,12 @@ package lotto.validator;
 import static lotto.util.Util.changeStringToInt;
 
 public class LottoInputValidator {
+    public static final int THOUSAND = 1000;
+    public static final int ZERO = 0;
+    public static final int SIX = 6;
+    public static final int ONE = 1;
+    public static final int FORTY_FIVE = 45;
+
     public static boolean isNumber(String number) {
         boolean isNumeric = true;
         for (int index = 0; index < number.length(); index++) {
@@ -15,7 +21,7 @@ public class LottoInputValidator {
     }
 
     public static boolean isOverOneUnderFortyFive(int number) {
-        return (number >= 1 && number <= 45);
+        return (number >= ONE && number <= FORTY_FIVE);
     }
 
     public static void validateBonusNumberNumeric(String number) {
@@ -37,7 +43,7 @@ public class LottoInputValidator {
     }
 
     private static void validateWinningNumberCount(String[] numbersArray) {
-        if (numbersArray.length != 6) {
+        if (numbersArray.length != SIX) {
             throw new IllegalArgumentException("[ERROR]: 입력된 숫자의 개수가 6개가 아닙니다.");
         }
     }
@@ -67,13 +73,13 @@ public class LottoInputValidator {
     }
 
     public static void validateThousandMultiple(int number) {
-        if (number % 1000 != 0) {
+        if (number % THOUSAND != ZERO) {
             throw new IllegalArgumentException("[ERROR]: 입력된 숫자가 1000의 배수가 아닙니다.");
         }
     }
 
     public static void validateUnderThousand(int number) {
-        if (number < 1000) {
+        if (number < THOUSAND) {
             throw new IllegalArgumentException("[ERROR]: 입력된 숫자가 1000보다 작습니다.");
         }
     }

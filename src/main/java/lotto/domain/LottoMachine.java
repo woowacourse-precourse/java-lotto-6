@@ -91,12 +91,9 @@ public class LottoMachine {
             rank += 1;
         }
         int investMoney = LOTTO_PRICE * lottos.size();
-        double earn = totalAmount - investMoney;
-        if(earn < 1){
-            return 0;
-        }
 
-        return (earn * 100 / investMoney);
+        return  (totalAmount * 100) /investMoney ;
+
     }
 
 }

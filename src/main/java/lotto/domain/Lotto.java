@@ -10,6 +10,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        sortedNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -27,6 +28,12 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public List<Integer> sortedNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.Lotto;
 import lotto.WinningNumberDTO;
 import lotto.validator.InputValidator;
 import lotto.view.IOVIew;
@@ -19,7 +20,7 @@ public class LottoIOController {
     }
 
     public void introOutput(){
-        iovIew.showSingleMessage(OutputMessage.PURCHASE_INTRODUCE_MESSAGE.getMessage());
+        iovIew.showSingleMessage(OutputMessage.PURCHASE_PRICE_MESSAGE.getMessage());
     }
 
     public Integer setPurchasePrice(){
@@ -67,6 +68,28 @@ public class LottoIOController {
             input=iovIew.userInput();
         }
         return Integer.parseInt(input);
+    }
+
+    public void getIntroducePurchaseNum(int lottoCount){
+        System.out.println(OutputMessage.PURCHASE_INTRODUCE_MESSAGE.getIntroduceMessage(lottoCount));
+    }
+
+    public void notifyLottoNums(List<Lotto> lottos){
+        for (Lotto lotto : lottos) {
+            lotto.printNum();
+        }
+    }
+
+    public void notifySetWinningNumber(){
+        System.out.println(OutputMessage.GET_NEXT_LINE.toString() + OutputMessage.GET_LOTTO_NUMBER_MESSAGE);
+    }
+
+    public void notifySetBonusNumber(){
+        System.out.println(OutputMessage.GET_NEXT_LINE.toString()+OutputMessage.GET_BONUS_NUMBER_MESSAGE);
+    }
+
+    public void notifyResult(){
+        System.out.println(OutputMessage.GET_NEXT_LINE.toString()+OutputMessage.RESULT_MESSAGE);
     }
 
 }

@@ -100,5 +100,6 @@ public class LottoService {
     public void setBonusLottoNumber(int bonusLottoNumber) {
         this.bonusLottoNumber = bonusLottoNumber;
     }
+
 }
 

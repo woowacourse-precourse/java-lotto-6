@@ -11,6 +11,7 @@ public class ValidationService {
 
     public int validationBuyMoney() {
         while (true) {
+
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 String buyMoney = Console.readLine();
@@ -21,6 +22,7 @@ public class ValidationService {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+
         }
     }
 
@@ -33,6 +35,7 @@ public class ValidationService {
 
     public List<Integer> validationSuccessLotto() {
         while (true) {
+
             try {
                 System.out.println();
                 System.out.println("당첨 번호를 입력해 주세요.");
@@ -45,6 +48,7 @@ public class ValidationService {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+
         }
     }
 
@@ -85,6 +89,7 @@ public class ValidationService {
 
     public int validationBonusLotto(List<Integer> successLottoNumbers) {
         while (true) {
+
             try {
                 System.out.println();
                 System.out.println("보너스 번호를 입력해 주세요.");
@@ -99,6 +104,7 @@ public class ValidationService {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+
         }
     }
 

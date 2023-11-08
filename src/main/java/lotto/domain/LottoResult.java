@@ -5,9 +5,10 @@ public class LottoResult {
     private int matchingCount;
     private WinningResult winningResult;
 
-    public LottoResult(boolean isWinner, int matchingCount) {
+    public LottoResult(boolean isWinner, int matchingCount, WinningResult winningResult) {
         this.isWinner = isWinner;
         this.matchingCount = matchingCount;
+        this.winningResult = winningResult;
     }
 
     public boolean isWinner() {

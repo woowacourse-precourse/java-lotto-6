@@ -1,4 +1,4 @@
-package lotto.vaildator;
+package lotto.validator;
 
 public class InputValidator extends Validator {
 
@@ -8,15 +8,14 @@ public class InputValidator extends Validator {
         return userPay;
     }
 
-    private static int parseValidInt(String inputPay) {
-        int inputedNumber = 0;
-        try {
-            inputedNumber = Integer.parseInt(inputPay);
-        } catch (NumberFormatException e) {
-            throwException("구입금액은 숫자로 입력하셔야 합니다.", e);
+        public static int parseValidInt(String input) {
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("구입금액은 숫자로 입력하셔야 합니다.");
+            }
         }
-        return inputedNumber;
-    }
+
 
     private static void purchaseValidMoney(int purchaseMoney) {
         if (purchaseMoney % 1000 != 0) {

@@ -24,4 +24,5 @@
   - verifyAmount : 입력받은 로또 구입 금액이 1000원 이상인지 확인하는 함수.
 - Generator : 
   - GenerateNumbers : 랜덤으로 로또 발행하는 함수
-
+- StringTo:
+  - StringToLottoNumber : 쉼표로 입력받은 당첨번호 list<Integer>로 변환하기

@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import lotto.Lotto;
 
 public class MakeNumber {
 
@@ -14,10 +15,14 @@ public class MakeNumber {
     private static final int ed_num = 45;
     private static final int cnt = 6;
 
-    public List<Integer> MakeRandom() {
-        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(st_num, ed_num, cnt));
-        Collections.sort(numbers);
-        return numbers;
+    public static void MakeRandom(List<Lotto> lottos, Long price) {
+        for (int i = 0; i < price / 1000; i++) {
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(st_num, ed_num, cnt));
+            Collections.sort(numbers);
+            lottos.add(new Lotto(numbers));
+        }
+
+        Output.PrintLotto(lottos);
     }
 
 }

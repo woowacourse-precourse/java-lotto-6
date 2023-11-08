@@ -1,8 +1,12 @@
-package domain;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import domain.BonusNumber;
+import domain.Lotto;
+import domain.WinningNumbers;
 import exception.DuplicateNumberException;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

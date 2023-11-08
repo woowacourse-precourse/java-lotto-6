@@ -25,24 +25,18 @@ public class LottoGame {
         ProfitCalculator profitCalculator = new ProfitCalculator();
         ProfitResultDisplay outputResult = new ProfitResultDisplay();
 
-        // LottoTicketPurchase
         int purchaseAmount = lottoTicketPurchase.getPurchaseAmount();
 
         System.out.println();
-
-        //LottoTicketQuantity
 
         int purchaseQuantity = lottoTicketQuantity.getPurchaseQuantity(purchaseAmount);
 
         lottoTicketQuantity.printPurchaseQuantity(purchaseQuantity);
 
-        //UserLottoNumbers
         List<List<Integer>> userLottoNumbers = lottoTicketDisplay.getUserLottoNumbers(purchaseQuantity);
         lottoTicketDisplay.printUserLottoNumbers(purchaseQuantity, userLottoNumbers);
 
         System.out.println();
-
-        //WinningNumberInput
 
         List<Integer> winningNumberList = new ArrayList<>();
 
@@ -50,22 +44,18 @@ public class LottoGame {
         String[] winningNumberStringList = winningNumberInput.makeWinningNumberStringList(winningNumbers, converter);
         winningNumberInput.getWinningNumbers(winningNumberStringList, winningNumberList, converter);
 
-        // Lotto클래스 검증용으로 활용
         Lotto lotto = new Lotto(winningNumberList);
 
-        //BonusNumberInput
         System.out.println();
 
         int bonusNumber = bonusNumberInput.getBonusNumber(converter);
 
         System.out.println();
 
-        // LottoResultDisplay
         lottoResultDisplay.outputLottoResultNotice();
         lottoResultDisplay.getLottoSuccessCount(userLottoNumbers, winningNumberList, bonusNumber);
         lottoResultDisplay.outputLottoResult();
 
-        // LotteryProfit
         outputResult.outputProfitResult(profitCalculator, lottoResultDisplay, purchaseAmount);
     }
 }

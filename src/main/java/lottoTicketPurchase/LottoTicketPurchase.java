@@ -49,5 +49,3 @@ public class LottoTicketPurchase {
         System.out.println(PURCHASE_AMOUNT_REQUEST_MESSAGE);
     }
 }
-
-

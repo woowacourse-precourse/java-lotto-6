@@ -50,10 +50,21 @@ public class InputView {
 
     private static void validateNumbersInput(String input) {
         ValidationUtils.validateNotNull(input);
+        validateProperInput(input);
         validateNotStartOrEndWithComma(input);
         validateNoConsecutiveCommas(input);
         validateNoCommasWithSpaces(input);
         validateNoSpecialCharactersExceptComma(input);
+    }
+
+    private static void validateProperInput(String input) {
+        if (input.trim().isEmpty()) {
+            throw new IllegalArgumentException("입력이 비어 있습니다.");
+        }
+
+        if (input.contains(" ")) {
+            throw new IllegalArgumentException("입력에 공백이 포함될 수 없습니다.");
+        }
     }
 
     private static void validateNotStartOrEndWithComma(String input) {

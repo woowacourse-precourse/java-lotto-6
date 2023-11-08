@@ -1,19 +1,18 @@
 package lotto.controller.machine;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constant.LottoNumber;
 import lotto.domain.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class NumberGenerator {
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
-    private static final int NUMBER_COUNT = 6;
-
     private List<Integer> createUniqueNumbers() {
         return Randoms.pickUniqueNumbersInRange(
-                MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT);
+                LottoNumber.MIN_NUMBER.getValue(),
+                LottoNumber.MAX_NUMBER.getValue(),
+                LottoNumber.NUMBER_COUNT.getValue());
     }
 
     public Lotto createLotto() {

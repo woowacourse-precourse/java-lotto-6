@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static java.util.Collections.nCopies;
+import static java.util.Collections.sort;
 import static lotto.constant.LottoConstant.LOTTO_SIZE;
 import static lotto.constant.LottoConstant.MAX_NUMBER;
 import static lotto.constant.LottoConstant.MAX_SCORE;
@@ -8,6 +9,7 @@ import static lotto.constant.LottoConstant.MIN_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 public class MyLotto {
@@ -26,7 +28,7 @@ public class MyLotto {
         return calculateStatistics(winningLotto);
     }
 
-    public List<List<Integer>> getMyLottoNumbers() {
+    public List<List<Integer>> getMyLottoNumbersWithSorting() {
         return myLottos.stream()
                 .map(Lotto::getSortedNumbers)
                 .toList();

@@ -50,7 +50,9 @@ public class InvalidInput {
         message = ExceptionMessage.OUT_OF_RANGE.getMessage();
 
         for (Integer number : numbers) {
-            outOfRangeNumberException(number);
+            if (outOfRangeNumberException(number)) {
+                return true;
+            }
         }
 
         return false;

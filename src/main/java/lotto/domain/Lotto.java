@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.exception.InvalidInput;
@@ -11,9 +12,11 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
     }
-    public List<Integer> getSortedNumbers(){
-        Collections.sort(numbers);
-        return numbers;
+
+    public List<Integer> getSortedNumbers() {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
     public int getSameNumberCount(Lotto myLottoNumbers) {
         long sameNumberCount = myLottoNumbers.numbers.stream()

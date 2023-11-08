@@ -18,7 +18,7 @@ public class Output {
     }
 
     public void generatedMyLottos() {
-        List<List<Integer>> myLottoNumbers = myLotto.getMyLottoNumbers();
+        List<List<Integer>> myLottoNumbers = myLotto.getMyLottoNumbersWithSorting() ;
 
         outputView.printLotto(quantity, myLottoNumbers);
     }

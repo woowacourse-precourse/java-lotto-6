@@ -1,9 +1,7 @@
 package domain;
 
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import lotto.Lotto;
 
 public class WinningStatistics {
@@ -73,7 +71,6 @@ public class WinningStatistics {
         totalRanking.put(Ranking.FOURTH, 0);
         totalRanking.put(Ranking.FIFTH, 0);
         totalRanking.put(Ranking.MISS, 0);
-        System.out.println(totalRanking);
     }
 
     private void saveTotalRanking(Ranking ranking) {
@@ -92,20 +89,4 @@ public class WinningStatistics {
         rateOfReturn = rateOfReturn / lottoPurchaseAmount * 100;
     }
 
-    public Map<Ranking, Integer> calculateStatistics(Lotto resultLotto, List<Lotto> userLottos, int bonusNumber) {
-        Map<Ranking, Integer> statistics = new EnumMap<>(Ranking.class);
-
-        for (Ranking ranking : Ranking.values()) {
-            statistics.put(ranking, 0);
-        }
-
-        for (Lotto userLotto : userLottos) {
-            int matchingCount = this.getMatchingCount();
-            boolean isBonusMatch = checkBonusNumber(resultLotto, bonusNumber);
-            Ranking ranking = Ranking.value(matchingCount, isBonusMatch);
-            statistics.put(ranking, statistics.get(ranking) + 1);
-        }
-
-        return statistics;
-    }
 }

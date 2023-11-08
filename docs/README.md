@@ -4,14 +4,14 @@
 - [x] 로또 구입 금액을 입력 받는 기능 - InputView#inputPurchaseAmount()
   - [x] 1,000원으로 나누어 떨어지지 않는 경우 예외 처리 - LottoGameService#validatePurchaseAmount()
 - [x] 당첨 번호를 입력 받는 기능 - InputView#inputWinningNumbers()
-  - [x] 쉼표를 기준을 구분 - LottoGameService#convertWinningNumbersToCollection()
+  - [x] 쉼표를 기준으로 숫자 구분 - LottoGameService#convertStringToCollection()
 - [x] 보너스 번호를 입력 받는 기능 - InputView#inputBonusNumber()
 - [x] 발행한 로또 수량 및 번호를 출력하는 기능 - OutputView#printPurchasedLottoNumbers()
   - [x] 로또 번호 생성 - LottoGameService#generateLottoNumbers()
   - [x] 1~45의 중복되지 않는 수 6개를 사용 - LottoNumbersGenerator#generateLottoNumbers() 
   - [x] 로또 번호는 오름차순으로 정렬 - Lotto#sortAscending()
 - [x] 당첨 내역을 출력하는 기능 - OutputView#printWinningStatistics()
-  - [x] 생성한 로또 번호와 당첨 번호를 비교 - LottoGameService#determineWinningRank()
+  - [x] 생성한 로또 번호와 당첨 번호를 비교하여 순위 결정 - LottoGameService#determineWinningRank()
   - [x] 당첨 횟수를 누적하여 갱신 - LottoGameService#updateWinningCount()
 - [x] 수익률을 소수점 둘째 자리에서 반올림하여 출력 - OutputView#printProfitRatio()
   - [x] 수익률을 계산 - LottoGameService#calculateProfitRate()
@@ -24,6 +24,8 @@
 당청 번호와 보너스 번호를 입력받아  
 사용자가 구매한 로또 번호와 비교하여  
 당첨 내역과 수익률을 출력하고 로또 게임을 종료한다.
+사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, 
+"[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 
 당첨은 1등부터 5등까지 있으며, 기준은 아래와 같다.
 - 1등: 6개 번호 일치 / 2,000,000,000원

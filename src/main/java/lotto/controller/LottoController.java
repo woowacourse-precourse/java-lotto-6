@@ -17,33 +17,45 @@ import java.util.stream.Collectors;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoService lottoService;
-    private final WinningInfo winningInfo;
+    private LottoService lottoService;
+    private WinningInfo winningInfo;
 
     public LottoController(){
         inputView = new InputView();
         outputView = new OutputView();
+    }
+
+    public void run() {
         winningInfo = new WinningInfo();
         lottoService = new LottoService(winningInfo);
+        start();
     }
 
     public void start(){
-        int buyCount = calculateLottoCount(inputView.readBuyAmount());
+        int buyCount = readAndCalculateLottoCount();
         outputView.displayPurchaseCount(buyCount);
         Lottos lottos = new Lottos(buyCount);
         printInfo(lottos.getLottos());
-        Map<Long, Long> winningResults = lottos.checkWinningNumbers(parseNumbers(inputView.readWinningNumbers()), inputView.readBonusNumber());
+        Map<Long, Long> winningResults = checkWinningNumbers(lottos);
         Message.displayStatistics();
 
         lottoService.WinningResults(winningResults);
-
         outputView.displayWinningResults(winningInfo.getWinnings());
 
-        double profit = lottoService.calculateProfitRate(buyCount,winningResults);
-
+        double profit = lottoService.calculateProfitRate(buyCount, winningResults);
         outputView.displayProfit(profit);
     }
 
+    private int readAndCalculateLottoCount() {
+        int money = inputView.readBuyAmount();
+        return calculateLottoCount(money);
+    }
+
+    private Map<Long, Long> checkWinningNumbers(Lottos lottos) {
+        List<Integer> winningNumbers = parseNumbers(inputView.readWinningNumbers());
+        int bonusNumber = inputView.readBonusNumber();
+        return lottos.checkWinningNumbers(winningNumbers, bonusNumber);
+    }
 
 
     private void printInfo(List<Lotto> lottos) {

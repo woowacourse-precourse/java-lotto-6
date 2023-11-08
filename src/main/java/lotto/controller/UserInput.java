@@ -19,7 +19,7 @@ public class UserInput {
         while (true) {
             try {
                 String userInput = Console.readLine();
-                UserException.validatePurchaseAmountOnlyInt(userInput);
+                UserException.validateAll(userInput);
                 Integer purchaseAmount = Integer.parseInt(userInput);
                 return purchaseAmount;
             } catch (IllegalArgumentException e) {

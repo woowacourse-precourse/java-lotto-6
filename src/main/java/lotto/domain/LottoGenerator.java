@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import static lotto.constants.Constants.ZERO;
+
 import lotto.Lotto;
+import lotto.ui.OutputView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,11 +23,16 @@ public class LottoGenerator {
     }
 
     private void generate(int amount) {
-        while (amount > Constants.ZERO) {
-            this.numbers = RandomNumberGenerator.getNumbers();
-            sort();
-            myLotto.add(new Lotto(this.numbers));
-            amount--;
+        try {
+            while (amount > ZERO) {
+                this.numbers = RandomNumberGenerator.getNumbers();
+                sort();
+                myLotto.add(new Lotto(this.numbers));
+                amount--;
+            }
+        } catch (IllegalArgumentException illegalArgumentException) {
+            OutputView.printError(illegalArgumentException.getMessage());
+            generate(amount);
         }
     }
 

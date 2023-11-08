@@ -3,25 +3,21 @@ package lotto.domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BuyerTest {
 
     @DisplayName("구매금액이 1,000원 이하라면 예외가 발생한다.")
-    @Test
-    void getCostUnderPrice() {
-        assertThatThrownBy(() -> new Buyer(0))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구매금액은 1,000원 이상이어야 합니다.");
-    }
-
-    @DisplayName("구매금액이 음수라면 예외가 발생한다.")
-    @Test
-    void getNegativeCost() {
-        assertThatThrownBy(() -> new Buyer(-2000))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구매금액은 1,000원 이상이어야 합니다.");
+    @ParameterizedTest
+    @ValueSource(ints = {0, -2000})
+    void getCostUnderPrice(int cost) {
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            new Buyer(cost);
+        }).withMessage("[ERROR] 구매금액은 1,000원 이상이어야 합니다.");
     }
 
     @DisplayName("구매금액이 1,000원 단위가 아니라면 예외가 발생한다.")

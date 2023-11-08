@@ -1,5 +1,6 @@
 package lotto;
 
+import java.security.interfaces.RSAKey;
 import java.util.List;
 
 public class Statistics {
@@ -8,11 +9,6 @@ public class Statistics {
     private final List<Integer> winningNumbers;
     private final Integer bonus;
 
-    int matching_3 = 0;
-    int matching_4 = 0;
-    int matching_5 = 0;
-    int matching_6 = 0;
-    int matching_bonus = 0;
     int matchingBonus = 0;
 
     public Statistics(List<List<Integer>> lottoNumbers, List<Integer> winningNumbers, Integer bonus) {
@@ -32,12 +28,13 @@ public class Statistics {
         printResult();
     }
 
+
     private int getMatchingCount(Integer number, int matchingCount) {
         if(number == bonus){
             matchingBonus++;
             return matchingCount;
         }
-        
+
         for (Integer winningNumber : winningNumbers) {
             if(number == winningNumber){
                 matchingCount++;
@@ -50,36 +47,35 @@ public class Statistics {
 
     private void countMatch(int matchingCount, int matchingBonus) {
         if(matchingCount == 3){
-            matching_3++;
+            Result.THREE.setMatch(Result.THREE.getMatch()+1);
         }
 
         if(matchingCount == 4){
-            matching_4++;
+            Result.FOUR.setMatch(Result.FOUR.getMatch()+1);
         }
 
         if(matchingCount == 5 && matchingBonus == 0){
-            matching_5++;
+            Result.FIVE.setMatch(Result.FIVE.getMatch()+1);
         }
 
         if(matchingCount == 5 && matchingBonus == 1){
-            matching_bonus++;
+            Result.BONUS.setMatch(Result.BONUS.getMatch()+1);
         }
 
         if(matchingCount == 6){
-            matching_6++;
+            Result.SIX.setMatch(Result.SIX.getMatch()+1);
         }
     }
 
     public void printResult(){
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + matching_3 +"개");
-        System.out.println("4개 일치 (50,000원) - " + matching_4 +"개");
-        System.out.println("5개 일치 (1,500,000원) - " + matching_5 +"개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matching_bonus +"개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + matching_6 +"개");
+        double revenue = 0;
+        for (Result result : Result.values()) {
+            System.out.println(result.getResult() + " - " + result.getMatch() + "개");
+            revenue += result.getMatch() * result.getMoney();
+        }
 
-        double revenue = (matching_3*5000)+(matching_4*50000)+(matching_5*1500000)+(matching_bonus*30000000)+(matching_6*2000000000);
         double revenuePercent = revenue/(lottoNumbers.size()*1000)*100;
 
         System.out.println("총 수익률은 "+ Math.round(revenuePercent * 100) / 100.0 +"%입니다.");

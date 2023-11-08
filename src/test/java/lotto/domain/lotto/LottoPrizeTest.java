@@ -14,7 +14,7 @@ class LottoPrizeTest {
         assertThat(LottoPrize.FIFTH).isEqualTo(LottoPrize.findLottoPrize(3, false));
         assertThat(LottoPrize.FOURTH).isEqualTo(LottoPrize.findLottoPrize(4, false));
         assertThat(LottoPrize.THIRD).isEqualTo(LottoPrize.findLottoPrize(5, false));
-        assertThat(LottoPrize.SECOND).isEqualTo(LottoPrize.findLottoPrize(4, true));
+        assertThat(LottoPrize.SECOND).isEqualTo(LottoPrize.findLottoPrize(5, true));
         assertThat(LottoPrize.FIRST).isEqualTo(LottoPrize.findLottoPrize(6, false));
     }
 
@@ -28,8 +28,8 @@ class LottoPrizeTest {
     @DisplayName("일치 번호가 4개이더라도 보너스 번호에 따라 2등과 4등으로 구별된다.")
     @Test
     void distinguishSecondOrFourthInBonusNumber() {
-        int matchCount = 4;
-        assertThat(LottoPrize.FOURTH)
+        int matchCount = 5;
+        assertThat(LottoPrize.THIRD)
             .isEqualTo(LottoPrize.findLottoPrize(matchCount, false));
         assertThat(LottoPrize.SECOND)
             .isEqualTo(LottoPrize.findLottoPrize(matchCount, true));

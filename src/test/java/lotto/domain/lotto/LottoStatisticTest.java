@@ -24,7 +24,7 @@ class LottoStatisticTest {
 
         lottos = Lottos.from(
             List.of(Lotto.from(List.of(1, 2, 3, 4, 5, 6)), Lotto.from(List.of(1, 2, 3, 4, 5, 7))));
-        winningLotto = WinningLotto.of(List.of(1, 2, 3, 4, 9, 10), BonusNumber.from(7));
+        winningLotto = WinningLotto.of(List.of(1, 2, 3, 4, 5, 10), BonusNumber.from(6));
 
         lottoStatistic.calculateWinningStatistics(lottos, winningLotto);
         lottoStatistic.calculateEarningRate(PurchaseAmount.from(2000));
@@ -36,7 +36,7 @@ class LottoStatisticTest {
     void calculateWinningStatistics() {
         Map<LottoPrize, Integer> winningCount = response.getWinningCount();
 
-        assertThat(1).isEqualTo(winningCount.get(LottoPrize.FOURTH));
+        assertThat(1).isEqualTo(winningCount.get(LottoPrize.THIRD));
         assertThat(1).isEqualTo(winningCount.get(LottoPrize.SECOND));
     }
 
@@ -45,7 +45,7 @@ class LottoStatisticTest {
     void calculateEarningRate() {
         PurchaseAmount purchaseAmount = PurchaseAmount.from(2000);
         TotalAmount totalAmount = TotalAmount.from(
-            LottoPrize.SECOND.prizeAmount() + LottoPrize.FOURTH.prizeAmount());
+            LottoPrize.SECOND.prizeAmount() + LottoPrize.THIRD.prizeAmount());
 
         double expectedEarningRate = totalAmount.dividedBy(purchaseAmount) * 100;
         assertThat(expectedEarningRate).isEqualTo(response.getEarningRate());

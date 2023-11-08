@@ -9,11 +9,7 @@ public class Input {
     public int inputAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         int amount = Integer.parseInt(Console.readLine());
-        //try {
-            validateAmount(amount);
-//        } catch (IllegalArgumentException e) {
-//            output.printError(e);
-//        }
+        validateAmount(amount);
         return amount;
     }
 

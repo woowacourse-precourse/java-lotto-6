@@ -24,27 +24,18 @@ public class Application {
         }
 
         Lotto winningNumbers = LottoNumbersMaker.generateWinningNumbers(InputView.getWinningNumbers());
+        int bonusNumber = InputView.getBonusNumber();
 
-        int bonusNumber=InputView.getBonusNumber();
+        RankChecker rankChecker = new RankChecker(winningNumbers, bonusNumber);
+
         EnumMap<Rank, Integer> rankCounts=new EnumMap<>(Rank.class);
         int totalPrizeMoney=0;
         for(Lotto lottoTicket: lottoTickets.getTickets()){
-            int countForMatchingWinningNumbers=0;
-            int countForMatchingBonusNumbers=0;
-            List<Integer> ticketNumbers=lottoTicket.getNumbers();
-            for(int ticketNumber: ticketNumbers){
-                if(winningNumbers.getNumbers().contains(ticketNumber)){
-                    countForMatchingWinningNumbers++;
-                }
+            Rank rank = rankChecker.check(lottoTicket);
+            if(rank==Rank.NOTHING){
+                continue;
             }
-            if(ticketNumbers.contains(bonusNumber)){
-                countForMatchingBonusNumbers++;
-            }
-
-            Rank rank=Rank.calculateRank(countForMatchingWinningNumbers, countForMatchingBonusNumbers);
-            if(rank!=Rank.NOTHING){
-                totalPrizeMoney+=rank.getPrizeMoney();
-            }
+            totalPrizeMoney+=rank.getPrizeMoney();
             rankCounts.put(rank, rankCounts.getOrDefault(rank, 0)+1);
         }
 

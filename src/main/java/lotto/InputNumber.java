@@ -1,11 +1,12 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.List;
 
 public class InputNumber {
 
-  private static List<Integer> prizeNumberList;
+  private static List<Integer> prizeNumberList = new ArrayList<>();
 
   public static List<Integer> createPrizeNumber() {
     System.out.println("당첨 번호를 입력해 주세요.");

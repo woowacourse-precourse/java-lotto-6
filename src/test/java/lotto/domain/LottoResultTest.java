@@ -106,12 +106,14 @@ public class LottoResultTest {
   }
 
   @Test
-  @DisplayName("당첨금을 이용해서 수익률을 계산한다.")
+  @DisplayName("당첨금액을 이용해 수익률을 계산한다.")
   void calculateRateOfReturn() {
     double purchaseAmount = userLottos.size() * NumberUtil.LOTTO_PRICE;
 
     double rateOfReturn = lottoResult.getTotalRate();
-    assertThat(rateOfReturn).isEqualTo(12345000 / purchaseAmount);
+    // 2,031,555,000 수익금액을 모두 합산한 값
+    assertThat(rateOfReturn).isEqualTo(2031555000 / purchaseAmount);
+
   }
 
 }

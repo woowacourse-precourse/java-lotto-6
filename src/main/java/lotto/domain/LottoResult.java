@@ -26,7 +26,7 @@ public class LottoResult {
         this.winningNumbers = Collections.unmodifiableList(winningNumbers);
         this.bonusNumber = bonusNumber;
 
-        winningResult = calculateWinCategory();
+        winningResult = calculateWinResult();
         totalRate = calculateRateOfReturn();
     }
 
@@ -38,7 +38,7 @@ public class LottoResult {
         return totalRate;
     }
 
-    private Map<LottoRank, Long> calculateWinCategory() {
+    private Map<LottoRank, Long> calculateWinResult() {
         return userLottos.stream()
                 .map(lotto -> lottoService.winningCheck(lotto.getNumbers(), winningNumbers, bonusNumber))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));

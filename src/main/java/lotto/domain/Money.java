@@ -26,7 +26,7 @@ public class Money {
     }
 
     public void validateNonZero(int amount) {
-        if (amount != ZERO.get()) {
+        if (amount == ZERO.get()) {
             throw new IllegalArgumentException(ZERO_ERROR.getMessage());
         }
     }

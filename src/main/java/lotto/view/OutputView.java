@@ -15,6 +15,7 @@ public class OutputView {
     private static final String CORRECT_BONUS_MSG = ", 보너스 볼 일치 ";
     private static final String TOTAL_PROFIT_RATE_MSG = "총 수익률은 %s%%입니다.";
     private static final String SPACE = " ";
+    private static final String DECIMAL_FORMAT_PATTERN = "#,##0.0";
 
     private OutputView() {
     }
@@ -61,7 +62,7 @@ public class OutputView {
     }
 
     private static String formatDecimal(final float rate) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+        DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT_PATTERN);
         return decimalFormat.format(rate);
     }
 }

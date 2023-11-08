@@ -25,5 +25,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또가 정상적으로 생성되는지 테스트")
+    @Test
+    void createLotto() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(lotto.getLotto()).containsExactly(1, 2, 3, 4, 5, 6);
+    }
 }

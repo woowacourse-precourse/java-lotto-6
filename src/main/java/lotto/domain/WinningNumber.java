@@ -21,10 +21,14 @@ public class WinningNumber {
     }
 
     public void checkMatchWinning(List<Lotto> publishedLottos) {
+
         publishedLottos.forEach(publishedLotto -> {
             int matchCount = publishedLotto.hasWinningNumber(winningLotto);
-            boolean matchBonus = publishedLotto.hasBonusNumber(bonusNumber);
-            Rank.calculatePrizeCount(matchCount, matchBonus);
+            if (matchCount == 5) {
+                Rank.calculatePrizeCount(matchCount, publishedLotto.hasBonusNumber(bonusNumber));
+            }
+
+            Rank.calculatePrizeCount(matchCount, false);
         });
     }
 

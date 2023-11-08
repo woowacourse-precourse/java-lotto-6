@@ -22,7 +22,6 @@
 ### * 수익률 계산 및 출력
 
 ## <class 정리>
-
 (class) Application
 
 (class) Lotto

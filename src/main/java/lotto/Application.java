@@ -43,7 +43,7 @@ public class Application {
         output.outputResult(ticketResults, yieldRate);
     }
 
-    public Lotto generateLotto() {
+    private Lotto generateLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
                 START_INCLUSIVE.getValue(), END_INCLUSIVE.getValue(), COUNT.getValue());
         List<Integer> sortedNumbers = new ArrayList<>(numbers);

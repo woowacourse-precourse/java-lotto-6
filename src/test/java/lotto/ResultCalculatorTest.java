@@ -29,4 +29,14 @@ public class ResultCalculatorTest {
 
         Assertions.assertTrue(totalPrize == 5000);
     }
+
+    @Test
+    @DisplayName("로또 구입 개수를 이용해 총 투자 금액을 정확하게 계산한다")
+    public void testCalculateInvestMoney() {
+        int lottoCount = 1;
+
+        long investMoney = calculator.calculateInvestMoney(lottoCount);
+
+        Assertions.assertTrue(investMoney == 1000);
+    }
 }

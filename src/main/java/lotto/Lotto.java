@@ -74,4 +74,48 @@ public class Lotto {
         return lottoList;
     }
 
+    public static List<Integer> inputWinningNumbers() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");  //TODO 추후 당첨번호 입력 메소드 분리
+        String lottoInput = Console.readLine();
+        List<Integer> winnerNumber = new ArrayList<>();
+        String[] inputArray = lottoInput.split(",");
+        if (inputArray.length != 6) {
+            System.out.println("[ERROR] 6자리 당첨번호를 다시 입력하세요.");
+            return inputWinningNumbers(); // 입력호출
+        }
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String token : inputArray) {
+            try {
+                int number = Integer.parseInt(token);
+                if (number < 1 || number > 45 || winningNumbers.contains(number)) {
+                    System.out.println("[ERROR] 1부터 45 사이의 중복되지 않는 숫자를 입력하세요.");
+                    return inputWinningNumbers(); // 입력호출
+                }
+                winningNumbers.add(number);
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 유효하지 않은 입력입니다. 다시 입력하세요.");
+                return inputWinningNumbers(); // 입력호출
+            }
+        }
+        for (String numStr : inputArray) {
+            winnerNumber.add(Integer.parseInt(numStr.trim()));
+        }
+        return winningNumbers;
+    }
+    public static int inputBonusNumber() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        int bonusNumber;
+        while (true) {
+            String bonusInput = Console.readLine();
+            try {
+                bonusNumber = Integer.parseInt(bonusInput);
+                if (bonusNumber >= 1 && bonusNumber <= 45) {
+                    return bonusNumber;
+                }
+                System.out.println("[ERROR] 1부터 45 사이의 숫자를 입력하세요.");
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 유효하지 않은 입력입니다. 숫자를 입력하세요.");
+            }
+        }
+    }
 }

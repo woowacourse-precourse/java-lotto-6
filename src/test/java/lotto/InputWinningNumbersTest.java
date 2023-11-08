@@ -3,6 +3,7 @@ package lotto;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_MONEY;
 import static lotto.message.ErrorMessage.WINNING_NUMBERS_LENGTH;
+import static lotto.message.ErrorMessage.WINNING_NUMBERS_RANGE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -28,10 +29,19 @@ public class InputWinningNumbersTest extends NsTest {
 
     @Test
     @DisplayName("6개가 아닌 당첨번호 입력 시 예외 테스트")
-    void validateNonNumericalPurchaseAmount_test() {
+    void validateWinningNumbersLength_test() {
         assertSimpleTest(() -> {
             runException("1,2,3,4,5,6,7");
             assertThat(output()).contains(WINNING_NUMBERS_LENGTH.errorMessage());
+        });
+    }
+
+    @Test
+    @DisplayName("1~45 범위 밖의 당첨번호 입력 시 예외 테스트")
+    void validateWinningNumbersRange_test() {
+        assertSimpleTest(() -> {
+            runException("1,2,3,4,5,1000");
+            assertThat(output()).contains(WINNING_NUMBERS_RANGE.errorMessage());
         });
     }
 

@@ -5,9 +5,8 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.service.ClientService;
 import lotto.domain.service.LottoService;
-import lotto.global.utils.console.ConsoleUtil;
 import lotto.global.utils.constant.OutputType;
-
+import lotto.global.utils.view.OutputView;
 
 public class LottoController {
     private final ClientService clientService;
@@ -26,7 +25,7 @@ public class LottoController {
     }
 
     private AllOfRandomLottoList getLottoList() {
-        ConsoleUtil.commonOutputLine(OutputType.OUTPUT_PURCHASE_PRICE.getComment());
+        OutputView.commonOutputLine(OutputType.OUTPUT_PURCHASE_PRICE.getComment());
         int lottoCount = clientService.getLottoCount();
         return lottoService.getLottoList(lottoCount);
     }

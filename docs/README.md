@@ -74,3 +74,6 @@ check new branch
 - compareOther()
   - input : Lotto / return : int
   - 다른 Lotto와의 교집합 계산
+- containNum()
+  - input : int / return : boolean
+  - 특정 값이 존재하는지에 대한 여부 확인

@@ -26,7 +26,16 @@ public class LottoTest {
         List<Integer> testNumbers = Arrays.asList(1, 2, 3, 4, 5, 46);
         assertThatThrownBy(() -> new Lotto(testNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 1~45의 숫자를 입력해주세요.");
+                .hasMessage("[ERROR] 번호는 1~45의 숫자를 입력해주세요.");
+    }
+
+    @DisplayName("로또 번호 유효성 검사 테스트 - 중복된 데이터 - 오류")
+    @Test
+    void validateNumbersDuplicatedTest() {
+        List<Integer> testNumbers = Arrays.asList(1, 2, 3, 4, 5, 5);
+        assertThatThrownBy(() -> new Lotto(testNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 중복되지 않은 숫자를 입력해주세요.");
     }
 
     @DisplayName("로또 번호 유효성 검사 테스트 - 정상 데이터 - 성공")

@@ -36,6 +36,29 @@ public enum Prizes {
         if (count_match_numbers < FIFTH_match) {
             return MISS;
         }
+
+        if (count_match_numbers == FIFTH_match) {
+            return FIFTH;
+        }
+
+        if (count_match_numbers == FOURTH_match) {
+            return FOURTH;
+        }
+
+        if (count_match_numbers == THIRD_match && !check_match_bonus_number) {
+            return THIRD;
+        }
+
+        if (count_match_numbers == THIRD_match && check_match_bonus_number) {
+            return SECOND;
+        }
+
+        if (count_match_numbers == FIRST_match) {
+            return FIRST;
+        }
+
+        throw new IllegalArgumentException(ERROR_MESSAGE_single);
+
     }
 
 

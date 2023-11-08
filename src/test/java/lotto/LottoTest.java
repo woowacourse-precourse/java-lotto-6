@@ -30,4 +30,10 @@ class LottoTest {
     void createLottoByWrongRange() {
         assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,100))).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 번호가 부족한 경우 예외가 발생한다.")
+    @Test
+    void createLottoByInsufficientNumbers() {
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3))).isInstanceOf(IllegalArgumentException.class);
+    }
 }

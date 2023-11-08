@@ -30,14 +30,14 @@ public class OutputView {
         print();
     }
 
-    public void showResults(String str) {
+    public void showResults(final String str) {
         print();
         print("당첨 통계");
         print("---");
         print(str);
     }
 
-    public void showYield(double yield) {
+    public void showYield(final double yield) {
         printYield(yield);
     }
 
@@ -45,11 +45,11 @@ public class OutputView {
         System.out.println();
     }
 
-    private void print(String str) {
+    private void print(final String str) {
         System.out.println(str);
     }
 
-    private void printYield(double yield) {
+    private void printYield(final double yield) {
         System.out.printf("총 수익률은 %.1f%%입니다.", yield);
     }
 }

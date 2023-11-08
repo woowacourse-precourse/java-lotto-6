@@ -5,6 +5,10 @@ import java.util.function.Supplier;
 
 public class ExceptionHandlingUtil {
 
+    private ExceptionHandlingUtil() {
+        
+    }
+
     public static <T> T handleException(Supplier<T> supplier) {
         while (true) {
             try {

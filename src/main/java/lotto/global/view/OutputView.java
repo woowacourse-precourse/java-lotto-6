@@ -21,6 +21,9 @@ public class OutputView {
     private static final String MATCH_SIX_PRIZE_COUNT_MESSAGE = "6개 일치 (%,d원) - %d개\n";
     private static final String TOTAL_RATE_OF_RETURN_MESSAGE = "총 수익률은 %,.1f%%입니다.";
 
+    private OutputView() {
+    }
+
     public static void printPurchaseCount(int count) {
         System.out.println(String.format(PURCHASED_COUNT_MESSAGE, count));
     }

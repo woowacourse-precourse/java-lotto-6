@@ -1,11 +1,18 @@
 package lotto.domain;
 
+import static lotto.constant.Number.RANK1_PRIZE;
+import static lotto.constant.Number.RANK2_PRIZE;
+import static lotto.constant.Number.RANK3_PRIZE;
+import static lotto.constant.Number.RANK4_PRIZE;
+import static lotto.constant.Number.RANK5_PRIZE;
+
 import java.util.HashMap;
 import java.util.Map;
+import lotto.view.OutputHandler;
 
 public class Statistic {
 
-    Map<Integer, Integer> rankCount = new HashMap<>();
+    private final Map<Integer, Integer> rankCount = new HashMap<>();
 
     public Statistic() {
         rankCount.put(1, 0);
@@ -34,5 +41,23 @@ public class Statistic {
             throw new IllegalArgumentException();
         }
         return count;
+    }
+
+    public void printWinningDetails() {
+        OutputHandler.showWinningDetails(getRank(1), getRank(2), getRank(3), getRank(4), getRank(5));
+    }
+
+    public void printEarningRate(long paymentPrice) {
+        long winningPrize = getWinningPrize();
+        double rateOfReturn = (double) winningPrize / paymentPrice;
+        OutputHandler.printRateOfReturn(rateOfReturn);
+    }
+
+    private long getWinningPrize() {
+        return getRank(1) * (long) RANK1_PRIZE.getNumber()
+                + getRank(2) * (long) RANK2_PRIZE.getNumber()
+                + getRank(3) * (long) RANK3_PRIZE.getNumber()
+                + getRank(4) * (long) RANK4_PRIZE.getNumber()
+                + getRank(5) * (long) RANK5_PRIZE.getNumber();
     }
 }

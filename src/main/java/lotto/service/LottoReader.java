@@ -2,25 +2,41 @@ package lotto.service;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.Statistic;
 
 public class LottoReader {
 
-    private final Lotto lotto;
+    private final List<Lotto> lottos;
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
     private int matchCount;
     private boolean bonusMatch;
 
-    public LottoReader(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
-        this.matchCount = 0;
-        this.bonusMatch = false;
-        this.lotto = lotto;
+    private Statistic statistic;
+
+    public LottoReader(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        this.lottos = lottos;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
-        match();
+        calculateStatistic();
     }
 
-    private void match() {
+    private void calculateStatistic() throws IllegalArgumentException {
+        statistic = new Statistic();
+        for (Lotto lotto : lottos) {
+            matchCount = 0;
+            bonusMatch = false;
+            calculateMatch(lotto);
+            Integer rank = getRank();
+            statistic.addRank(rank);
+        }
+    }
+
+    public Statistic getStatistic() {
+        return statistic;
+    }
+
+    private void calculateMatch(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
         for (Integer number : numbers) {
             if (winningNumbers.contains(number)) {

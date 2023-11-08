@@ -1,17 +1,11 @@
 package lotto.controller;
 
 import static lotto.constant.Number.LOTTO_PRICE;
-import static lotto.constant.Number.RANK1_PRIZE;
-import static lotto.constant.Number.RANK2_PRIZE;
-import static lotto.constant.Number.RANK3_PRIZE;
-import static lotto.constant.Number.RANK4_PRIZE;
-import static lotto.constant.Number.RANK5_PRIZE;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import lotto.checker.BonusNumberChecker;
-import lotto.checker.InputChecker;
 import lotto.checker.PaymentPriceChecker;
 import lotto.checker.WinningNumbersChecker;
 import lotto.domain.Lotto;
@@ -24,71 +18,66 @@ import lotto.view.OutputHandler;
 
 public class LottoController {
 
-    long paymentPrice;
-    long ticketCount;
-    List<Lotto> lottos;
-
-    List<Integer> winningNumbers;
-    int bonusNumber;
-    Statistic statistic = new Statistic();
-    LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
+    private long paymentPrice;
+    private List<Lotto> lottos;
+    private List<Integer> winningNumbers;
+    private int bonusNumber;
+    private PaymentPriceChecker paymentPriceChecker;
+    private LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
+    private WinningNumbersChecker winningNumbersChecker;
+    private BonusNumberChecker bonusNumberChecker;
+    private LottoReader lottoReader;
+    private Statistic statistic;
 
     public void start() throws IllegalArgumentException {
-        callPaymentPriceLoop();
-        winningNumbers = getWinningNumbersLoop();
-        bonusNumber = getBonusNumberLoop();
-        setStatic(lottos);
-        OutputHandler.showWinningDetails(
-                statistic.getRank(1),
-                statistic.getRank(2),
-                statistic.getRank(3),
-                statistic.getRank(4),
-                statistic.getRank(5));
-        showRateOfReturn();
+        buyLottos();
+        setWinningNumber();
+        printStatistic();
     }
 
-    void callPaymentPriceLoop() {
+    private void buyLottos() {
+        long ticketCount = getTicketCountLoop();
+        OutputHandler.sayTicketCount(ticketCount);
+        lottos = getLottos(ticketCount);
+    }
+
+    private long getTicketCountLoop() {
         try {
-            paymentPrice = getPaymentPrice();
-            ticketCount = getTicketCount(paymentPrice);
-            OutputHandler.sayTicketCount(ticketCount);
-            lottos = issueLottos(ticketCount);
+            return getTicketCount();
         } catch (IllegalArgumentException e) {
-            callPaymentPriceLoop();
+            return getTicketCountLoop();
         }
     }
 
-    long getPaymentPrice() throws IllegalArgumentException {
+    private long getTicketCount() throws IllegalArgumentException {
         OutputHandler.requirePaymentPrice();
         String paymentPriceInput = InputHandler.getInput();
-        long paymentPrice = Converter.pay(paymentPriceInput);
-        PaymentPriceChecker paymentPriceChecker = new PaymentPriceChecker(paymentPrice);
-        paymentPriceChecker.positive();
-        OutputHandler.printEmptyLine();
-        return paymentPrice;
-    }
-
-    long getTicketCount(long paymentPrice) throws IllegalArgumentException {
-        PaymentPriceChecker paymentPriceChecker = new PaymentPriceChecker(paymentPrice);
+        paymentPrice = Converter.pay(paymentPriceInput);
+        paymentPriceChecker = new PaymentPriceChecker(paymentPrice);
         paymentPriceChecker.positive();
         paymentPriceChecker.multipleOfPrice();
+        OutputHandler.printEmptyLine();
         return paymentPrice / LOTTO_PRICE.getNumber();
     }
 
-    List<Lotto> issueLottos(long ticketCount) {
+    private List<Lotto> getLottos(long ticketCount) {
         List<Lotto> lottos = new ArrayList<>();
         List<Integer> numbers;
         for (int i = 0; i < ticketCount; i++) {
             numbers = lottoNumberGenerator.getNumbers();
-            Lotto lotto = new Lotto(numbers);
-            lottos.add(lotto);
-            OutputHandler.printLottoNumbers(lotto.getNumbers());
+            lottos.add(new Lotto(numbers));
+            OutputHandler.printLottoNumbers(numbers);
         }
         OutputHandler.printEmptyLine();
         return lottos;
     }
 
-    List<Integer> getWinningNumbersLoop() {
+    private void setWinningNumber() {
+        winningNumbers = getWinningNumbersLoop();
+        bonusNumber = getBonusNumberLoop();
+    }
+
+    private List<Integer> getWinningNumbersLoop() {
         try {
             return getWinningNumbers();
         } catch (IllegalArgumentException e) {
@@ -96,20 +85,19 @@ public class LottoController {
         }
     }
 
-    List<Integer> getWinningNumbers() throws IllegalArgumentException {
-
+    private List<Integer> getWinningNumbers() throws IllegalArgumentException {
         OutputHandler.requireWinningNumbers();
         String winningNumbersInput = InputHandler.getInput();
         List<Integer> winningNumbers = Converter.winningNumbers(winningNumbersInput);
         winningNumbers.sort(Comparator.naturalOrder());
-        WinningNumbersChecker winningNumbersChecker = new WinningNumbersChecker(winningNumbers);
+        winningNumbersChecker = new WinningNumbersChecker(winningNumbers);
         winningNumbersChecker.rightSize();
         winningNumbersChecker.rightNumbers();
         OutputHandler.printEmptyLine();
         return winningNumbers;
     }
 
-    int getBonusNumberLoop() {
+    private int getBonusNumberLoop() {
         try {
             return getBonusNumber();
         } catch (IllegalArgumentException e) {
@@ -117,38 +105,22 @@ public class LottoController {
         }
     }
 
-    int getBonusNumber() throws IllegalArgumentException {
+    private int getBonusNumber() throws IllegalArgumentException {
         OutputHandler.requireBonusNumber();
         String bonusNumberInput = InputHandler.getInput();
-        InputChecker.nonEmpty(bonusNumberInput);
         int bonusNumber = Converter.bonusNumbers(bonusNumberInput);
-        BonusNumberChecker bonusNumberChecker = new BonusNumberChecker(bonusNumber);
+        bonusNumberChecker = new BonusNumberChecker(bonusNumber);
         bonusNumberChecker.rightRange();
         bonusNumberChecker.differentFrom(winningNumbers);
         OutputHandler.printEmptyLine();
         return bonusNumber;
     }
 
-    void setStatic(List<Lotto> lottos) throws IllegalArgumentException {
-        for (Lotto lotto : lottos) {
-            LottoReader lottoReader = new LottoReader(lotto, winningNumbers, bonusNumber);
-            Integer rank = lottoReader.getRank();
-            statistic.addRank(rank);
-        }
-    }
-
-    void showRateOfReturn() {
-        long winningPrize = getWinningPrize(statistic);
-        double rateOfReturn = (double) winningPrize / paymentPrice;
-        OutputHandler.printRateOfReturn(rateOfReturn);
-    }
-
-    long getWinningPrize(Statistic statistic) {
-        return statistic.getRank(1) * (long) RANK1_PRIZE.getNumber()
-                + statistic.getRank(2) * (long) RANK2_PRIZE.getNumber()
-                + statistic.getRank(3) * (long) RANK3_PRIZE.getNumber()
-                + statistic.getRank(4) * (long) RANK4_PRIZE.getNumber()
-                + statistic.getRank(5) * (long) RANK5_PRIZE.getNumber();
+    private void printStatistic() {
+        lottoReader = new LottoReader(lottos, winningNumbers, bonusNumber);
+        statistic = lottoReader.getStatistic();
+        statistic.printWinningDetails();
+        statistic.printEarningRate(paymentPrice);
     }
 }
 

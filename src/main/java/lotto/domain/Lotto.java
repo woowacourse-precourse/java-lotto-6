@@ -6,7 +6,6 @@ import static lotto.constant.Number.LOTTO_MAX_NUM;
 import static lotto.constant.Number.LOTTO_MIN_NUM;
 import static lotto.constant.Number.LOTTO_NUM_COUNT;
 
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -15,23 +14,18 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        checkUnique(numbers);
-        numbers.sort(Comparator.naturalOrder());
         this.numbers = numbers;
+        validate();
+        checkUnique();
     }
 
-    public List<Integer> getNumbers() {
-        return this.numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
+    private void validate() {
         if (numbers.size() != LOTTO_NUM_COUNT.getNumber()) {
             throw new IllegalArgumentException(REQUIRE_SIX_NUMBERS.getMessage());
         }
     }
 
-    private void checkUnique(List<Integer> numbers) {
+    private void checkUnique() {
         HashSet<Integer> uniqueNumbers = new HashSet<>();
         for (Integer number : numbers) {
             if (number < LOTTO_MIN_NUM.getNumber() || number > LOTTO_MAX_NUM.getNumber()) {
@@ -42,5 +36,9 @@ public class Lotto {
             }
             uniqueNumbers.add(number);
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

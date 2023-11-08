@@ -5,9 +5,7 @@ import Util.CheckList;
 import View.WinningNumberInputErrorText;
 
 import java.util.List;
-/*
-    제공된 lotto class
- */
+
 public class Lotto {
     private final List<Integer> numbers;
 

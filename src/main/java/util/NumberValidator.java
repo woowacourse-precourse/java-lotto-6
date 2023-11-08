@@ -1,6 +1,7 @@
 package util;
 
 import lotto.LottoGenerator;
+import view.InputView;
 
 import java.util.List;
 import java.util.Set;
@@ -44,7 +45,7 @@ public class NumberValidator {
     }
 
     public static boolean canGenerateBonusNumber(List<Integer> numbers, int bonusNumber){
-        return isInRange(numbers)
+        return isInRange(List.of(bonusNumber))
                 && isNotDuplicateWinnerNumbers(numbers, bonusNumber);
     }
 
@@ -124,6 +125,4 @@ public class NumberValidator {
         return number>= LottoGenerator.MIN_NUMBER_RANGE
                 && number<= LottoGenerator.MAX_NUMBER_RANGE;
     }
-
-
 }

@@ -29,12 +29,12 @@ public class CorrectLotto {
         }
     }
 
-    // 입력값이 숫자인지 확인하여 변환
+    // 입력값이 정수인지 확인하여 변환
     private int convertToInt(String number){
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e){
-            throw new IllegalArgumentException("입력값이 숫자가 아닙니다. 1~45 사이의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException("입력값이 정수가 아닙니다. 1~45 사이의 숫자를 입력해주세요.");
         }
     }
 

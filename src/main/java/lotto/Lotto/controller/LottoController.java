@@ -4,6 +4,7 @@ import lotto.Lotto.entity.Lotto;
 import lotto.Lotto.service.LottoService;
 import lotto.Lotto.service.UIService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
@@ -18,9 +19,10 @@ public class LottoController {
     //당첨 번호 설정 기능
     public void setWinningNumbers() {
         //당첨 번호를 입력받는 기능
-        Lotto winningLotto = null;
+        Lotto winningLotto = new Lotto();
+        List<Integer> winningNumbers = new ArrayList<Integer>();
         try {
-            List<Integer> winningNumbers = lottoService.getWinningNumbers();
+            winningNumbers = lottoService.getWinningNumbers();
             winningLotto = new Lotto(winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -30,7 +32,7 @@ public class LottoController {
         lottoService.setWinningNumbers(winningLotto);
 
         //보너스 번호를 입력받는 기능
-        int bonusNumber = uiService.readLottoNumber((List<Integer>) winningLotto);
+        int bonusNumber = uiService.readLottoNumber(winningNumbers);
         lottoService.setBonusNumber(bonusNumber);
     }
 }

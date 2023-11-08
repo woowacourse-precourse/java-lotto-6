@@ -17,9 +17,16 @@ public class UIService {
     public int readMoney() {
         System.out.println(PURCHASE_AMOUNT.getMessage());
         String moneyInput = readLine();
+        validateNumber(moneyInput);
         int money = Integer.parseInt(moneyInput);
         validateMoney(moneyInput);
         return money;
+    }
+
+    private void validateNumber(String moneyInput) {
+        if (moneyInput.matches(".*[^0-9].*")) {
+            throw new IllegalArgumentException(NOT_VALID_ERROR.getMessage());
+        }
     }
 
     private void validateMoney(String moneyInput) {

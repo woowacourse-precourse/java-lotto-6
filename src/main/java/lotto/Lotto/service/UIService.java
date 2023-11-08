@@ -13,21 +13,18 @@ public class UIService {
     public List<Integer> readLottoNumbers() {
         System.out.println(WINNING_NUMBER.getMessage());
         String numbersInput = readLine();
-        validateLottoNumbers(numbersInput);
+
         List<Integer> numbers =
                 Arrays.stream(numbersInput.split(","))
                         .map(Integer::parseInt)
                         .toList();
+        validateLottoNumbers(numbers);
         validateDuplication(numbers);
         return numbers;
     }
 
-    private void validateLottoNumbers(String input) {
-        if (input.matches(".*[^0-9].*")) {
-            throw new IllegalArgumentException(NOT_VALID_ERROR.getMessage());
-        }
-        int number = Integer.parseInt(input);
-        if (number >= 1 && number <= 45) {
+    private void validateLottoNumbers(List<Integer> input) {
+        if (input.stream().anyMatch(number -> number < 1 || number > 45)) {
             throw new IllegalArgumentException(OUT_OF_RANGE_ERROR.getMessage());
         }
     }
@@ -49,7 +46,7 @@ public class UIService {
 
     private void validateLottoNumber(String input, List<Integer> winningLotto) {
         int number = Integer.parseInt(input);
-        if (number >= 1 && number <= 45) {
+        if (number < 1 || number > 45) {
             throw new IllegalArgumentException(OUT_OF_RANGE_ERROR.getMessage());
         }
         if (winningLotto.contains(number)) {

@@ -1,11 +1,11 @@
 package model;
 
+import errorhandler.CustomIllegalArgumentException;
+import errorhandler.InputException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import util.CustomIllegalArgumentException;
-import util.GameProperty;
-import util.InputException;
+import lotto.GameProperty;
 
 public class Lotto {
     private final List<Integer> numbers;

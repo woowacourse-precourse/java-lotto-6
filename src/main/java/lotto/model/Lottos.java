@@ -16,7 +16,7 @@ public class Lottos {
         Map<Rank, Integer> rankResult = initRank();
         for (Lotto lotto : lottos) {
             Rank rank = user.getRank(lotto);
-            rankResult.put(rank, rankResult.get(rank) + 1);
+            rankResult.computeIfPresent(rank, (key, count) -> ++count);
         }
         return rankResult;
     }

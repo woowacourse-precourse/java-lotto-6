@@ -36,7 +36,7 @@ public class LottoResult {
         return finalResult;
     }
 
-    public Map<Rank, Integer> initFinalResult() {
+    private Map<Rank, Integer> initFinalResult() {
         Map<Rank, Integer> finalResult = new HashMap<>();
         finalResult.put(Rank.THREE_MATCH, 0);
         finalResult.put(Rank.FOUR_MATCH, 0);
@@ -47,7 +47,7 @@ public class LottoResult {
         return finalResult;
     }
 
-    public List<Rank> makeRanks() {
+    private List<Rank> makeRanks() {
         List<Rank> ranks = new ArrayList<>();
         for (int i = 0; i < counted.size(); i++) {
             ranks.add(Rank.decideRank(counted.get(i), checked.get(i)));

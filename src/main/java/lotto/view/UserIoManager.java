@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.model.lotto.Bonus;
 import lotto.model.lotto.Lotto;
+import lotto.model.lotto.WinningNumbers;
 import lotto.model.user.UserLotto;
 import lotto.model.user.UserLottoRank;
 import lotto.model.user.UserMoney;
@@ -38,11 +39,12 @@ public class UserIoManager {
         }
     }
 
-    public Bonus readBonusNumber() {
+    public WinningNumbers readBonusNumber(Lotto lotto) {
         while (true) {
             try {
                 outputView.printBonusNumberGuide();
-                return new Bonus(inputView.readBonusNumber());
+                Bonus bonus = new Bonus(inputView.readBonusNumber());
+                return new WinningNumbers(lotto, bonus);
             } catch (IllegalArgumentException e) {
                 printErrorMessage(e.getMessage());
             }

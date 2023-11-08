@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import util.LottoUtil;
+import util.PrizeMoneyUtil;
 
 public class LottoGenerate {
     public static int lottoTicketsCount(int moneyNumber) {
@@ -70,11 +71,11 @@ public class LottoGenerate {
 
     public static Double calculateLottoRate(int lottoTickets, List<Integer> lottoResult) {
         int money = lottoTickets * 1000;
-        int earning = (lottoResult.get(0) * 5000) +
-                (lottoResult.get(1) * 50000) +
-                (lottoResult.get(2) * 1500000) +
-                (lottoResult.get(3) * 30000000) +
-                (lottoResult.get(4) * 2000000000);
+        int earning = (lottoResult.get(0) * PrizeMoneyUtil.PRIZE_MONEY_3MATCH.getMoney()) +
+                (lottoResult.get(1) * PrizeMoneyUtil.PRIZE_MONEY_4MATCH.getMoney()) +
+                (lottoResult.get(2) * PrizeMoneyUtil.PRIZE_MONEY_5MATCH.getMoney()) +
+                (lottoResult.get(3) * PrizeMoneyUtil.PRIZE_MONEY_5MATCH_BONUS.getMoney()) +
+                (lottoResult.get(4) * PrizeMoneyUtil.PRIZE_MONEY_6MATCH.getMoney());
         double rate = (double) earning / money;
         rate = Math.round(rate * 1000.0) / 10.0;
         return rate;

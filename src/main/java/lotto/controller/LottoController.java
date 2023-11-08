@@ -18,15 +18,23 @@ public class LottoController {
     private MatchResult matchResult = new MatchResult();
 
     public void start() {
-        setPurchasePrice();
-        makeSeveralLottos();
-        makeMyLottoNumbers();
-        compareLottos();
-        OutputView.printEarningsRate(matchResult,purchasePrice);
+        try {
+            setPurchasePrice();
+            makeSeveralLottos();
+            makeMyLottoNumbers();
+            compareLottos();
+            OutputView.printEarningsRate(matchResult, purchasePrice);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void setPurchasePrice() {
-        purchasePrice = new PurchasePrice(InputView.inputPrice());
+        try {
+            purchasePrice = new PurchasePrice(InputView.inputPrice());
+        } catch (IllegalArgumentException e) {
+            throw e;
+        }
     }
 
     private Lotto makeLotto() {

@@ -5,9 +5,13 @@ public class PurchasePrice {
     private int price;
 
     public PurchasePrice(String price) {
-        validateNumber(price);
-        validateCondition(price);
-        this.price = Integer.parseInt(price);
+        try {
+            validateNumber(price);
+            validateCondition(price);
+            this.price = Integer.parseInt(price);
+        } catch (IllegalArgumentException e) {
+            throw e;
+        }
     }
 
     private void validateNumber(String price) {

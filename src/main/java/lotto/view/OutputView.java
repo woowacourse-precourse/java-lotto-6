@@ -38,6 +38,6 @@ public class OutputView {
 
     public static void printEarningsRate(MatchResult matchResult, PurchasePrice purchasePrice) {
         double earningRate = matchResult.getSumOfPrizeMoney()/purchasePrice.getPrice()*ADJUST_EARNING_RATE;
-        System.out.printf("총 수익률은 %.1f%%입니다",earningRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.",earningRate);
     }
 }

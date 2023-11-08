@@ -38,4 +38,5 @@ class MyLottoNumbersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("숫자만 입력 가능합니다");
     }
+
 }

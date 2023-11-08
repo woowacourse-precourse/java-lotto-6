@@ -2,19 +2,22 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class MyLottoNumbers {
     private static final int MIN_IN_RANGE = 1;
     private static final int MAX_IN_RANGE = 45;
     private static final int EXACT_SIZE = 6;
+    private static final int UNIQUE_NUMBER = 1;
     private List<Integer> myNumbers;
     private int bonusNumber;
 
     public MyLottoNumbers(String input) {
         List<Integer> beForeCheck;
         beForeCheck = validateNumber(validateSplit(input));
-        myNumbers = validateSize(beForeCheck);
+        validateSize(beForeCheck);
+        myNumbers = validateUnique(beForeCheck);
     }
 
     public void setBonusNumber(String bonusInput) {
@@ -60,11 +63,18 @@ public class MyLottoNumbers {
         return number;
     }
 
-    private List<Integer> validateSize(List<Integer> numbers) {
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != EXACT_SIZE) {
             throw new IllegalArgumentException("[ERROR] 6개의 숫자로 구성되어야 합니다.");
         }
-        return numbers;
     }
 
+    private List<Integer> validateUnique(List<Integer> numbers) {
+        for (int n : numbers) {
+            if (Collections.frequency(numbers,n)!=UNIQUE_NUMBER){
+                throw new IllegalArgumentException("[ERROR] 중복된 숫자가 존재합니다.");
+            }
+        }
+        return numbers;
+    }
 }

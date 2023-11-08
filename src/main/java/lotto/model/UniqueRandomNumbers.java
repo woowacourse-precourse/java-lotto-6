@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class UniqueRandomNumbers {
     }
 
     private List<Integer> generator() {
-        return Randoms.pickUniqueNumbersInRange(1,45,6);
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
     }
 
     private List<Integer> validateUnique(List<Integer> numbers) {

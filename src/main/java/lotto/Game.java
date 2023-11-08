@@ -13,11 +13,11 @@ public class Game {
     public void startGame() {
         WinningStatistics winningStatistics = new WinningStatistics();
 
-        int purchaseAmount = input.getValidPurchaseAmount();
-        List<Lotto> totalLotto = gameManager.createLotto(purchaseAmount);
         List<Integer> winningNumbers;
         int bonusNumber;
         String profitPercentage;
+        int purchaseAmount = input.getValidPurchaseAmount();
+        List<Lotto> totalLotto = gameManager.createLotto(purchaseAmount);
 
         Output.printPurchaseLottoQuantityMessage(totalLotto.size());
         Output.printTotalLotto(totalLotto);

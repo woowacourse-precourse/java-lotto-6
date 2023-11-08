@@ -9,12 +9,19 @@ public class WinningLotto {
     private Lotto winningNumbers;
     private int bonusNumber;
 
-
     public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
         validateBonusNumber(winningNumbers, bonusNumber);
         this.winningNumbers = new Lotto(winningNumbers);
         this.bonusNumber = bonusNumber;
     }
+
+
+    public Rank confirmWin(final Lotto lotto) {
+        int countOfMatch = this.winningNumbers.countOfMatch(lotto);
+        boolean matchBonus = lotto.contains(this.bonusNumber);
+        return Rank.valueOf(countOfMatch, matchBonus);
+    }
+
 
     private void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         if (bonusNumber < Constant.MIN_NUMBER || bonusNumber > Constant.MAX_NUMBER) {

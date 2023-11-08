@@ -46,6 +46,20 @@ public class Lotto {
         }
     }
 
+    public int countOfMatch(final Lotto lotto) {
+        int count = 0;
+        for (int number : lotto.numbers) {
+            if (this.numbers.contains(number)) {
+                ++count;
+            }
+        }
+        return count;
+    }
+
+    public boolean contains(final int number) {
+        return this.numbers.contains((number));
+    }
+
     @Override
     public String toString() {
         StringBuilder stringLotto = new StringBuilder();

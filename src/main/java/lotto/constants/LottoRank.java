@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.function.BiPredicate;
 
 public enum LottoRank {
+    NONE(0, (matchedNumbers, bonusWinningNumber) -> matchedNumbers < 3, ""),
     FIFTH(5000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 3,
             "3개 일치 (5,000원)"),
     FOURTH(50000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 4,
@@ -13,9 +14,7 @@ public enum LottoRank {
     SECOND(30000000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 5 && bonusWinningNumber,
             "5개 일치, 보너스 볼 일치 (30,000,000원)"),
     FIRST(2000000000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 6,
-            "6개 일치 (2,000,000,000원)"),
-    NONE(0, (matchedNumbers, bonusWinningNumber) -> matchedNumbers < 3,
-            "일치하는 숫자 없음");
+            "6개 일치 (2,000,000,000원)");
 
     private final BiPredicate<Integer, Boolean> picked;
     private final int prizeMoney;
@@ -46,4 +45,4 @@ public enum LottoRank {
     public String toString() {
         return description;
     }
-}
+    }

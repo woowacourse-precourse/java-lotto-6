@@ -1,6 +1,8 @@
 package lotto.validator;
 
 import static lotto.constants.ErrorType.*;
+import static lotto.constants.RangeType.PRIZE_NUMBER_MAX_RANGE;
+import static lotto.constants.RangeType.PRIZE_NUMBER_MIN_RANGE;
 import static lotto.constants.RegexType.*;
 
 import java.util.Arrays;
@@ -21,11 +23,23 @@ public class InputValidator {
         return new Lotto(parsePrizeNumbers(prizeNumbers));
     }
 
+    public static int validateBonusNumber(String bonusNumber) {
+        int validateBonusNumber = validateStringToInteger(bonusNumber);
+        validateBonusNumberRange(validateBonusNumber);
+        return validateBonusNumber;
+    }
+
     private static int validateStringToInteger(String amount) {
         try {
             return Integer.parseInt(amount);
         } catch (NumberFormatException ex) {
             throw new IllegalArgumentException(CAN_NOT_CONVERT_INTEGER.getErrorMessage());
+        }
+    }
+
+    private static void validateBonusNumberRange(int bonusNumber) {
+        if (bonusNumber < PRIZE_NUMBER_MIN_RANGE.getRange() || bonusNumber > PRIZE_NUMBER_MAX_RANGE.getRange()) {
+            throw new IllegalArgumentException(NUMBER_OVER_MAX_OR_MIN_RANGE.getErrorMessage());
         }
     }
 

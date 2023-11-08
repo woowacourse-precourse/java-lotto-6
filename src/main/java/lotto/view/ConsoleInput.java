@@ -18,6 +18,11 @@ public class ConsoleInput {
         return judgeReEnterPrizeNumbersValue();
     }
 
+    public static int inputBonusNumber() {
+        System.out.println(REQUEST_BONUS_NUMBER_MESSAGE.getMessage());
+        return judgeReEnterBonusNumberValue();
+    }
+
     private static int judgeReEnterAmountValue() {
         int amount;
         while (true) {
@@ -42,5 +47,19 @@ public class ConsoleInput {
             }
         }
         return prizeNumbers;
+    }
+
+    private static int judgeReEnterBonusNumberValue() {
+        int bonusNumber;
+        while (true) {
+            try {
+                bonusNumber = validateBonusNumber(Console.readLine());
+                break;
+            } catch (IllegalArgumentException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        Console.close();
+        return bonusNumber;
     }
 }

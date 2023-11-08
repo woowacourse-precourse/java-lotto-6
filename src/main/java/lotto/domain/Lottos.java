@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import lotto.utils.LottosIterator;
 
+
 public class Lottos {
 
     private final List<Lotto> lottos = new ArrayList<>();

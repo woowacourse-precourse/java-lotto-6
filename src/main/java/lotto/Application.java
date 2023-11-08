@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.service.RandomLottoGenerator;
 import lotto.view.ConsoleInput;
@@ -12,5 +13,7 @@ public class Application {
         RandomLottoGenerator randomLottoGenerator = new RandomLottoGenerator(amount);
         Lottos lottos = randomLottoGenerator.generate();
         ConsoleOutput.printAllRandomsLottos(lottos);
+        Lotto lotto = ConsoleInput.inputPrizeNumbers();
+        int bonusNumber = ConsoleInput.inputBonusNumber();
     }
 }

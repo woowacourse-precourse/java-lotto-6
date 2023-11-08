@@ -60,7 +60,7 @@ class PurchaseValidatorTest {
 
     @ParameterizedTest(name = "입력값 : {0}")
     @ValueSource(strings = {"1000", "2000000000"})
-    @DisplayName("구입 금액 생성 성공")
+    @DisplayName("구입 금액 예외 처리 통과")
     void givenAmount_whenValidate_thenNoException(String amount) {
         // when & then
         assertThatNoException()

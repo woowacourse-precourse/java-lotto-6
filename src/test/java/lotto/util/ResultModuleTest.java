@@ -58,11 +58,26 @@ public class ResultModuleTest extends NsTest {
         //when
         ResultModule.checkResult(result, lotto, LOTTO_NUM, BONUS_NUM);
         ResultModule.formattingResult(result);
-        System.out.println(result);
 
         //then
         assertSimpleTest(() ->
                 assertEquals(1, result.get(FIFTH_PLACE))
+        );
+    }
+
+    @DisplayName("[4등] 로또 번호가 4개 당첨되었을 때")
+    @Test
+    void getFourthPlace() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 9, 10));
+
+        //when
+        ResultModule.checkResult(result, lotto, LOTTO_NUM, BONUS_NUM);
+        ResultModule.formattingResult(result);
+
+        //then
+        assertSimpleTest(() ->
+                assertEquals(1, result.get(FOURTH_PLACE))
         );
     }
 

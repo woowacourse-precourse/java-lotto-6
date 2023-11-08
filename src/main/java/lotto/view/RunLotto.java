@@ -2,6 +2,9 @@ package lotto.view;
 
 public class RunLotto {
 
+    private final UserOutputView userOutputView = UserOutputView.getInstance();
+    private final UserInputView userInputView = UserInputView.getInstance();
+
     private RunLotto() {
     }
     private static class RunLottoHolder{
@@ -12,21 +15,21 @@ public class RunLotto {
     }
 
     public void runLotto(){
-        UserOutputView.getInstance().outputPurchaseAmount();
-        UserInputView.getInstance().inputPurchaseAmount();
+        userOutputView.outputPurchaseAmount();
+        userInputView.inputPurchaseAmount();
 
-        UserOutputView.getInstance().getBuyLottoTicketsNum();
-        UserOutputView.getInstance().getBuyLottoTickets();
+        userOutputView.getBuyLottoTicketsNum();
+        userOutputView.getBuyLottoTickets();
 
-        UserOutputView.getInstance().outputWinningNums();
-        UserInputView.getInstance().inputWinningNums();
+        userOutputView.outputWinningNums();
+        userInputView.inputWinningNums();
 
-        UserOutputView.getInstance().outputBonusNum();
-        UserInputView.getInstance().inputBonusNum();
+        userOutputView.outputBonusNum();
+        userInputView.inputBonusNum();
 
-        UserOutputView.getInstance().winningStatistics();
-        UserOutputView.getInstance().winningStatisticsResult();
-        UserOutputView.getInstance().winningLottoRateResult();
+        userOutputView.winningStatistics();
+        userOutputView.winningStatisticsResult();
+        userOutputView.winningLottoRateResult();
 
 
 

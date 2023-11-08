@@ -2,11 +2,11 @@ package view;
 
 import java.util.List;
 import java.util.Map;
-import model.LottoVO;
+import model.PurchasedLotto;
 
 public class OutputView {
 
-    public void showPurchaseLotto(LottoVO lottoVO) {
+    public void showPurchaseLotto(PurchasedLotto lottoVO) {
         System.out.println(lottoVO.getPurchaseLotto().size() + "개를 구매했습니다.");
         for (List<Integer> lottoNumbers : lottoVO.getPurchaseLotto()) {
             System.out.println(lottoNumbers);

@@ -47,4 +47,20 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public void winningResult(PurchasedLotto purchasedLotto) {
+        for (List<Integer> purchasedNumbers : purchasedLotto.getPurchaseLotto()) {
+            Set<Integer> LottoNumbers = new HashSet<>();
+            LottoNumbers.addAll(purchasedNumbers);
+            LottoNumbers.addAll(this.numbers);
+            switch (LottoNumbers.size() - purchasedNumbers.size()) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+
+            }
+        }
+    }
 }

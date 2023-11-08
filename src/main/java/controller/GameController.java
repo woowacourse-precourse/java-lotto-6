@@ -1,7 +1,7 @@
 package controller;
 
 import java.util.List;
-import model.LottoVO;
+import model.PurchasedLotto;
 import view.InputView;
 
 public class GameController {
@@ -9,11 +9,11 @@ public class GameController {
     GameService gameService;
     List<Integer> winningNumbers;
     int bonusNumber;
-    LottoVO lottoVO;
+    PurchasedLotto lottoVO;
 
     public void userPurchase() {
         int userPurchase = gameService.userPurchaseLotto();
-        lottoVO = new LottoVO(userPurchase);
+        lottoVO = new PurchasedLotto(userPurchase);
     }
 
     public void setWinningNumbers() {

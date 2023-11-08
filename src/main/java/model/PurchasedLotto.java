@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Set;
 import lotto.GameProperty;
 
-public class LottoVO {
+public class PurchasedLotto {
     private List<List<Integer>> purchaseLotto;
 
-    private LottoVO() {
+    private PurchasedLotto() {
     }
 
-    public LottoVO(int money) {
+    public PurchasedLotto(int money) {
         purchaseLotto(money);
     }
 

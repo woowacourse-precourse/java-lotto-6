@@ -36,7 +36,7 @@ class Money {
     public static int InputMoney() {
         while (true) {
             try {
-                System.out.println("구입금액을 입력해 주세요.");
+                System.out.println("구입 금액을 입력해 주세요.");
                 String m = Console.readLine();
                 return ExceptMoney(m);
             } catch (IllegalArgumentException e) {
@@ -68,7 +68,7 @@ class MyLotto {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             mylotto.add(numbers);
         }
-        PrintLottoPaper(cnt, mylotto);
+        ResultLottoPaper(cnt, mylotto);
         List<Integer> numbers = MakeFlattend(mylotto);
         return numbers;
     }
@@ -81,7 +81,7 @@ class MyLotto {
         return flattenedList;
     }
 
-    public static void PrintLottoPaper(int cnt, ArrayList<List<Integer>> mylotto) {
+    public static void ResultLottoPaper(int cnt, ArrayList<List<Integer>> mylotto) {
         System.out.println();
         System.out.println(cnt + "개를 구매했습니다.");
         for (List<Integer> row : mylotto) {

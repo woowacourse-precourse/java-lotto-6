@@ -2,6 +2,7 @@ package lotto.module.domain;
 
 import static lotto.global.constant.Game.LOTTO_SIZE;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,6 +13,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplication(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 

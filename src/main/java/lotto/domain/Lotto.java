@@ -14,41 +14,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        //validateCommaSeparatedInput();
         validateCount(numbers);
-//        validateNumericValues();
         validateNumberRange(numbers);
         validateNoDuplicates(numbers);
     }
 
     // TODO: 추가 기능 구현
-
-
-    @Override
-    public String toString() {
-        return numbers.toString();
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
-    public List<Integer> cloneNumbers() {
-        return new ArrayList<>(numbers);
-    }
-
     private void validateCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
-    }
-
-    private void validateCommaSeparatedInput() {
-
-    }
-
-    private void validateNumericValues() {
-
     }
 
     private void validateNumberRange(List<Integer> numbers) {
@@ -65,4 +40,18 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public List<Integer> cloneNumbers() {
+        return new ArrayList<>(numbers);
+    }
+
+
 }

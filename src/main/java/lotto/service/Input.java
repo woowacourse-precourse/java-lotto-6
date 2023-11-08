@@ -19,11 +19,18 @@ public class Input {
         System.out.println(MESSAGE_ENTER_WINNING_NUMBERS);
         String input = Console.readLine();
         List<Integer> winningNumber = new ArrayList<>();
-        for (String s : input.split(",")) {
-            // 6개 맞는지
-            // 숫자 맞는지
-            winningNumber.add(Integer.parseInt(s));
+        try {
+            for (String s : input.split(",")) {
+                winningNumber.add(Integer.parseInt(s));
+            }
+        } catch (NumberFormatException e) {
+            Output.printErrorMessage(" 유효 숫자가 아닙니다.");
         }
+        if (winningNumber.size() != 6) {
+            Output.printErrorMessage(" 6개 숫자를 입력해주세요.");
+            throw new IllegalArgumentException("6개 숫자를 입력해주세요.");
+        }
+
         return winningNumber;
     }
 
@@ -34,7 +41,8 @@ public class Input {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(e);
+            Output.printErrorMessage(" 유효 숫자가 아닙니다.");
         }
+        return 0;
     }
 }

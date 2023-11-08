@@ -14,16 +14,15 @@ public class Application {
     private static final int LOTTO_PRICE = 1000;
     public static final String MESSAGE_ERROR = "[ERROR]";
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        // 사용자 로또 발행
         int amount = validateAmount(Input.getPurchaseAmount());
         validateDivisible(amount);
         List<Lotto> lottoTickets = generateLottoTicket(amount);
         LottoReceipt lottoReceipt = new LottoReceipt(lottoTickets);
         Output.printLottoReceipt(lottoReceipt);
-
+        // 당첨 로또 발행
         Lotto lotto = new Lotto(Input.getWinningNumber());
         WinningLotto winningLotto = new WinningLotto(lotto, Input.getBonusNumber());
-
         // 당첨 통계
         LottoPrizeCalculator.checkLottoResult(lottoReceipt, winningLotto);
         Output.printLottoWinningResults(lottoReceipt);

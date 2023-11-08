@@ -67,9 +67,25 @@
 - 여러개 --> 여러개 비교 및 일치하는 개수 카운트
 - 여러개 --> 여러개 + 보너스볼 비교 및 일치하는 개수 카운트
 - MatchingResult 결과값을 가지는 클래스 생성
-- [ ] 당첨 통계를 내는 기능 구현
+- [x] 당첨 통계를 내는 기능 구현
+- LottoController 발행된 로또번호들의 출력로직에서 반환값 추가
+- Lottos 모든 lotto들에 대해 당첨 번호와 매칭하는 기능 구현
+- LottoRank 당첨 순위를 나타내는 enum 구현
+- WinnerStatistics 당첨 대조 결과를 전달받아 받아 집계하는 기능 구현
+    - 내부 래핑클래스 RankCounts, TotalPrizeAmount
 - [ ] 당첨 내역을 출력하는 기능 구현
 - [ ] 수익률을 계산하고 출력하는 기능 구현
+## 리팩터링 해야할 부분
+- [ ] issuedLottos 생성로직과 출력로직 분리
+- [ ] 메서드 순서 정리 및 개행 제거 
+- OutputMessage, OutPutView 등 점검
+- [ ] 테스트 정리
+- PurchaseBudgetTest 변경을 대비한 과한 테스트 로직 단순화 
+- LottoTest 사용하지 않는 변수 삭제
+- 포매팅 확인
+- [ ] InputUtils 개선 및 읽기 방식 통일
+- [ ] view 로직들 정리
+- [ ] getter 생성에 대한 고민, todo 해결
 
 ## 추가 기능
 - [ ] MVC 모방해보기
@@ -84,6 +100,7 @@
 - [ ] 자바 상수 사용
 - [ ] 클래스는 상수, 멤버 변수, 생성자, 메서드 순으로 작성
 - [ ] 메서드 추출 시 static 자동 추가 주의
+- [ ] MatchingResult 상수값 포장
 
 - ## ✏️ 과제 진행 요구 사항
 

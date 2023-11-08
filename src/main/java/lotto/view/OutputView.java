@@ -2,17 +2,20 @@ package lotto.view;
 
 import lotto.constants.OutputMessage;
 import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.domain.PurchaseQuantity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static lotto.constants.OutputMessage.*;
-import static lotto.constants.OutputMessage.ANNOUNCE_PURCHASE_QUANTITY_FORMAT;
 import static lotto.util.LottoGenerator.generateLottoNumbers;
 
 public class OutputView {
 
-    public static void announceIssuedLottos(PurchaseQuantity quantity) {
+    public static Lottos announceIssuedLottos(PurchaseQuantity quantity) {
         announcePurchaseQuantity(quantity);
-        showIssuedLottos(quantity);
+        return showIssuedLottos(quantity);
     }
 
     public static void announcePurchaseQuantity(PurchaseQuantity purchaseQuantity) {
@@ -20,11 +23,17 @@ public class OutputView {
         lineBreak();
     }
 
-    private static void showIssuedLottos(PurchaseQuantity quantity) {
+    private static Lottos showIssuedLottos(PurchaseQuantity quantity) {
+        List<Lotto> lottos = new ArrayList<>();
         quantity.forEach((repeat) -> {
-            printObject(new Lotto(generateLottoNumbers()));
+            Lotto lotto = new Lotto(generateLottoNumbers());
+            lottos.add(lotto);
+
+            printObject(lotto);
             lineBreak();
         });
+
+        return new Lottos(lottos);
     }
 
     public static void printObject(OutputMessage outputMessage, Object object) {

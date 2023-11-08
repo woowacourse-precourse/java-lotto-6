@@ -33,7 +33,7 @@ public class Lotto {
 
     public MatchingResult match(Lotto winningLotto, LottoNumber bonusNumber) {
         int count = match(winningLotto);
-        boolean isBonusCorrect = winningLotto.contains(bonusNumber);
+        boolean isBonusCorrect = numbers.contains(bonusNumber);
 
         return new MatchingResult(count, isBonusCorrect);
     }

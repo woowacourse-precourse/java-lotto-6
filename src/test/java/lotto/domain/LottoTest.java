@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.*;
 
 class LottoTest {
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -59,9 +60,9 @@ class LottoTest {
 
     public static Stream<Arguments> lottoNumbers_bonusNumber_Counts() {
         return Stream.of(
-                Arguments.arguments(List.of(1, 2, 3, 4, 5, 6), 6, 6),
-                Arguments.arguments(List.of(2, 3, 4, 5, 6, 7), 7, 5),
-                Arguments.arguments(List.of(3, 4, 5, 6, 7, 8), 7, 4),
+                Arguments.arguments(List.of(1, 2, 3, 4, 5, 6), 7, 6),  //1
+                Arguments.arguments(List.of(2, 3, 4, 5, 6, 7), 7, 5),  //2
+                Arguments.arguments(List.of(2, 3, 4, 5, 6, 8), 7, 5), // 3
                 Arguments.arguments(List.of(4, 5, 6, 7, 8, 9), 7, 3),
                 Arguments.arguments(List.of(5, 6, 7, 8, 9, 10), 7, 2),
                 Arguments.arguments(List.of(6, 7, 8, 9, 10, 11), 7, 1),
@@ -102,6 +103,6 @@ class LottoTest {
 
         //then
         assertThat(result.getCorrectCount()).isEqualTo(count);
-        assertThat(result.isBonusCorrect()).isTrue();
+        assertThat(result.isBonusCorrect()).isFalse();
     }
 }

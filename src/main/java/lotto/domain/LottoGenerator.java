@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGenerator {
-    public List<Lotto> generateLottoGroup(int lottoSize) {
+    public List<Lotto> generateLottos(int lottoSize) {
         List<Lotto> lottos = new ArrayList<>();
 
         while (lottos.size() < lottoSize) {

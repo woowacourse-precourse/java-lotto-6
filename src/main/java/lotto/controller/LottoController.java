@@ -27,7 +27,6 @@ public class LottoController {
     }
 
     public void run() {
-        System.out.println("123");
         int numberOfTickets = getValidPurchaseAmount();
         List<LottoTicket> purchasedTickets = purchaseLottoTickets(numberOfTickets);
         showPurchasedTickets(purchasedTickets);

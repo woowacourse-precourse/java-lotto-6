@@ -21,4 +21,11 @@ public class BonusNumberExceptionTest {
         assertThatThrownBy(() -> InputValidator.checkBonusNumberInput("77"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 숫자 입력 시 아무것도 입력하지 않으면 예외가 발생한다.")
+    @Test
+    public void inputBonusNumberByNoInput() {
+        assertThatThrownBy(() -> InputValidator.checkBonusNumberInput(""))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.view.constants.MessageType.BONUS_NUMBER_REQUEST_MESSAGE;
+import static lotto.view.constants.MessageType.WINNING_RESULT_WITH_BONUS_INFORMATION;
 import static lotto.view.constants.MessageType.COST_REQUEST_MESSAGE;
 import static lotto.view.constants.MessageType.EARNINGS_RATE_MESSAGE;
 import static lotto.view.constants.MessageType.LOTTO_COUNT_MESSAGE;
@@ -8,6 +9,7 @@ import static lotto.view.constants.MessageType.WINNING_RESULT_INFORMATION;
 import static lotto.view.constants.MessageType.WINNING_NUMBERS_REQUEST_MESSAGE;
 import static lotto.view.constants.MessageType.WINNING_RESULT_NOTICE;
 import static lotto.view.constants.SymbolType.INPUT_SEPARATOR;
+import static lotto.view.constants.SymbolType.NEWLINE;
 import static lotto.view.constants.SymbolType.OUTPUT_SEPARATOR;
 import static lotto.view.constants.SymbolType.POSTFIX;
 import static lotto.view.constants.SymbolType.PREFIX;
@@ -35,17 +37,17 @@ public final class View {
     }
 
     public static String requestWinningNumbers() {
-        printlnMessage(WINNING_NUMBERS_REQUEST_MESSAGE);
+        printlnMessageWithNewLine(WINNING_NUMBERS_REQUEST_MESSAGE);
         return Validator.validateWinningNumbers(enterMessage());
     }
 
     public static String requestBonusNumber() {
-        printlnMessage(BONUS_NUMBER_REQUEST_MESSAGE);
+        printlnMessageWithNewLine(BONUS_NUMBER_REQUEST_MESSAGE);
         return Validator.validateBonusNumber(enterMessage());
     }
 
     public static void printWinningResult(WinningResult winningResult, int cost) {
-        printlnMessage(WINNING_RESULT_NOTICE);
+        printlnMessageWithNewLine(WINNING_RESULT_NOTICE);
 
         Arrays.stream(WinningType.values())
                 .filter(winningType -> !winningType.equals(WinningType.NONE))
@@ -55,14 +57,21 @@ public final class View {
     }
 
     private static void printWinningNumbers(WinningType winningType, WinningResult winningResult) {
-        printlnFormat(WINNING_RESULT_INFORMATION,
+        printlnFormat(getResultInformation(winningType),
                 winningType.getWinningCount(),
                 winningType.getPrice(),
                 winningResult.getValue(winningType));
     }
 
+    private static MessageType getResultInformation(WinningType winningType) {
+        if (winningType.hasBonusNumber() == false) {
+            return WINNING_RESULT_INFORMATION;
+        }
+        return WINNING_RESULT_WITH_BONUS_INFORMATION;
+    }
+
     private static void printLottosCount(int count) {
-        printlnFormat(LOTTO_COUNT_MESSAGE, count);
+        printlnFormatWithNewLine(LOTTO_COUNT_MESSAGE, count);
     }
 
     private static void printLottosInfo(List<Lotto> lottos) {
@@ -92,8 +101,18 @@ public final class View {
         System.out.println(messageType.getMessage());
     }
 
+    private static void printlnMessageWithNewLine(MessageType messageType) {
+        System.out.print(NEWLINE.getSymbol());
+        printlnMessage(messageType);
+    }
+
     private static void printlnFormat(MessageType message, Object... args) {
         System.out.println(String.format(message.getMessage(), args));
+    }
+
+    private static void printlnFormatWithNewLine(MessageType message, Object... args) {
+        System.out.print(NEWLINE.getSymbol());
+        printlnFormat(message, args);
     }
 
     /* Input View */

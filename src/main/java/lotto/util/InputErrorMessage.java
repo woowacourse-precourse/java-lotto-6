@@ -9,14 +9,13 @@ public enum InputErrorMessage {
     NOT_AN_INTEGER("[ERROR] 숫자 이외의 값은 입력할 수 없습니다.");
 
     private final String message;
-    private final String messagePrefix = "[ERROR] ";
 
     InputErrorMessage(String message) {
         this.message = message;
     }
 
     public String getMessage() {
-        return messagePrefix + message;
+        return message;
     }
 }
 

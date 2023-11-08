@@ -15,7 +15,7 @@ public class InputValidator {
         try{
             Integer.parseInt(inputValue);
         } catch(IllegalArgumentException e) {
-            System.out.println(InputErrorMessage.NOT_A_NUMBER);
+            System.out.println(InputErrorMessage.NOT_A_NUMBER.getMessage());
 
             Input input = new Input();
             Output output = new Output();

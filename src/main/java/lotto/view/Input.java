@@ -9,7 +9,6 @@ import java.util.List;
 
 public class Input {
 
-
     InputValidator inputValidator = new InputValidator();
 
     public int insertMoney() {

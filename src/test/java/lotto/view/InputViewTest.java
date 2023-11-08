@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.constants.Message.CONTAINS_WHITESPACE;
+import static lotto.constants.Message.ENDS_WITH_DELIMITER;
 import static lotto.constants.Message.INVALID_NUMBER_FORMAT;
 import static lotto.constants.Message.INVALID_PURCHASE_AMOUNT;
 import static lotto.constants.Message.NEGATIVE_NUMBER;
@@ -61,5 +62,37 @@ public class InputViewTest {
     @Test
     public void testValidNumbers() {
         assertDoesNotThrow(() -> inputView.validateNumbers("1,2,3,4,5,6"));
+    }
+
+    @DisplayName("구분자(,)로 끝나는 당첨 번호를 입력하면 예외가 발생한다.")
+    @Test
+    public void testInvalidNumbersWithEndsWithComma() {
+        assertThatThrownBy(() -> inputView.validateNumbers("1,2,3,4,5,6,"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ENDS_WITH_DELIMITER);
+    }
+
+    @DisplayName("공백을 포함한 당첨 번호를 입력하면 예외가 발생한다.")
+    @Test
+    public void testInvalidNumbersWithBlank() {
+        assertThatThrownBy(() -> inputView.validateNumbers("1,2,3,4,,6"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(CONTAINS_WHITESPACE);
+    }
+
+    @DisplayName("숫자가 아닌 당첨 번호를 입력하면 예외가 발생한다.")
+    @Test
+    public void testInvalidNumbersWithNonNumeric() {
+        assertThatThrownBy(() -> inputView.validateNumbers("1,2,3,4,abc,6"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(INVALID_NUMBER_FORMAT);
+    }
+
+    @DisplayName("음수인 당첨 번호를 입력하면 예외가 발생한다.")
+    @Test
+    public void testInvalidNumbersWithNegative() {
+        assertThatThrownBy(() -> inputView.validateNumbers("1,2,3,4,-5,6"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(NEGATIVE_NUMBER);
     }
 }

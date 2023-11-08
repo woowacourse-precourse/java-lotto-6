@@ -40,7 +40,6 @@ public class LottoGame {
 
     private int receiveMoney() {
         OutputView.printPayRequest();
-
         String money = InputView.read();
         InputValidator.validateNumber(money);
 
@@ -68,9 +67,8 @@ public class LottoGame {
 
     private List<Integer> receiveWinningNumber() {
         OutputView.printWinNumberRequest();
-
         String input = InputView.read();
-        InputValidator.validateInputRequirement(input);
+        InputValidator.validateWinNumberRequirement(input);
 
         return convertNumber(input);
     }
@@ -83,7 +81,6 @@ public class LottoGame {
 
     private int receiveBonusNumber() {
         OutputView.printBonusRequest();
-
         String input = InputView.read();
         InputValidator.validateNumber(input);
 

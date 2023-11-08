@@ -24,6 +24,7 @@ public class LottoGameController {
         ResultCheck.setUpJudgeResult();
         ResultCheck.SetUpBonusChecker();
         ResultCheck.DeclarationLottoMatch();
+        ResultCheck.benefitCheck();
         View.printResultStatistics();
     }
 }

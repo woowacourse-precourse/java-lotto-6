@@ -51,13 +51,14 @@ public class View {
     }
 
     public static void printResultStatistics() {
+        String resultRevenue = getResultRevenue();
         System.out.println(PrintOutput.STATISTICS.label);
         System.out.println(PrintOutput.THREEMATCHES.label + threeMatch + PrintOutput.NUMBEROF.label);
         System.out.println(PrintOutput.FOURMATCHES.label + fourMatch + PrintOutput.NUMBEROF.label);
         System.out.println(PrintOutput.FIVEMATCHES.label + fiveMatch + PrintOutput.NUMBEROF.label);
         System.out.println(PrintOutput.FIVEWITHBONUSMATCHES.label + fiveWithBonusMatch + PrintOutput.NUMBEROF.label);
         System.out.println(PrintOutput.SIXMATCHES.label + sixMatch + PrintOutput.NUMBEROF.label);
-        System.out.println(PrintOutput.TOTALREVENUEFRONT.label + 0 + PrintOutput.TOTALREVENUEBACK.label);
+        System.out.println(PrintOutput.TOTALREVENUEFRONT.label + resultRevenue + PrintOutput.TOTALREVENUEBACK.label);
     }
 
     public static void printlottos() {

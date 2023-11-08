@@ -35,7 +35,7 @@ public class InputTest {
                 .hasMessageContaining(ErrorMessage.NON_NUMERIC_VALUE.getMessage());
     }
 
-    @DisplayName("당첨 번호 입력시 숫자가 아닌값이 입력되면 예외가 발생한다.")
+    @DisplayName("보너스 번호 입력시 숫자가 아닌값이 입력되면 예외가 발생한다.")
     @Test
     void askBonusNumberByNoneInteger() {
         System.setIn(createUserInput("1q"));

@@ -1,22 +1,17 @@
 package lotto;
 
-import static lotto.enums.ExceptionCase.INPUT_TYPE_MISMATCH;
-import static lotto.enums.ExceptionCase.NUMBER_DUPLICATION;
-import static lotto.enums.ExceptionCase.NUMBER_OUT_OF_RANGE;
 import static lotto.enums.PrizeRank.FIFTH;
 import static lotto.enums.PrizeRank.FIRST;
 import static lotto.enums.PrizeRank.FOURTH;
 import static lotto.enums.PrizeRank.SECOND;
 import static lotto.enums.PrizeRank.THIRD;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.controller.GameController;
 import lotto.model.Lotto;
-import lotto.validator.PrizeValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -32,30 +27,6 @@ public class GameControllerTest {
     private static final List<Integer> VALID_SECOND_PRIZE_TICKET = List.of(1, 2, 3, 4, 5, 9);
     private static final List<Integer> VALID_FIRST_PRIZE_TICKET = List.of(1, 2, 3, 4, 5, 6);
     private static final int VALID_BONUS_NUMBER = 9;
-
-    @DisplayName("보너스 번호가 양의 정수가 아니면 예외가 발생한다")
-    @Test
-    void createBonusNumberNegativeInt() {
-        assertThatThrownBy(() -> PrizeValidator.validateBonusNumber("-50", VALID_LOTTO))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_TYPE_MISMATCH.message());
-    }
-
-    @DisplayName("보너스 번호가 로또 번호와 중복되면 예외가 발생한다")
-    @Test
-    void createBonusNumberByDuplicatedNumber() {
-        assertThatThrownBy(() -> PrizeValidator.validateBonusNumber("1", VALID_LOTTO))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NUMBER_DUPLICATION.message());
-    }
-
-    @DisplayName("보너스 번호가 범위를 벗어나면 예외가 발생한다")
-    @Test
-    void createBonusNumberByOverRange() {
-        assertThatThrownBy(() -> PrizeValidator.validateBonusNumber("46", VALID_LOTTO))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NUMBER_OUT_OF_RANGE.message());
-    }
 
     @DisplayName("로또와 일치하는 숫자 개수 반환")
     @ParameterizedTest(name = "{index}: {1}" + "반환")

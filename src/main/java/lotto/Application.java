@@ -18,9 +18,6 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
-//        Lotto lotto = new Lotto();
-//
-//        lotto.Play();
     }
 
         public void inputPrice() {
@@ -35,7 +32,7 @@ public class Application {
                     price = Console.readLine();
                     total_price = Integer.parseInt(price);
                     count = total_price / money;
-                    System.out.printf("%d개를 구매했습니다.", count);
+                    System.out.printf("%d개를 구매했습니다.\n", count);
                     break;
                 } catch (NumberFormatException e) {
                     System.out.println("[ERROR] 숫자를 입력해 주세요.");
@@ -97,14 +94,7 @@ public class Application {
         System.out.print("%입니다.");
     }
 
-//    public void Play() {
-//        inputPrice();
-//        randomNums();
-//        viewNums();
-//        getInputNums();
-//        result();
     }
-}
 
 
 

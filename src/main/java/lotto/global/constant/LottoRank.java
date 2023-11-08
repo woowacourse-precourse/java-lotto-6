@@ -38,13 +38,17 @@ public enum LottoRank {
         return Arrays.stream(LottoRank.values())
                 .filter(lotto -> lotto.matchCount == matchCount)
                 .filter(lottoRank -> {
-                    if(lottoRank.matchCount == BONUS_NUMBER_MATCH_CRITERIA.getNumber()) {
-                        return lottoRank.bonusNumberMatch == bonusNumberMatch;
-                    }
-                    return true;
+                    return checkWhenMatchCountIsFive(bonusNumberMatch, lottoRank);
                 }).findFirst()
                 .get();
 
+    }
+
+    private static boolean checkWhenMatchCountIsFive(BonusNumberMatch bonusNumberMatch, LottoRank lottoRank) {
+        if(lottoRank.matchCount == BONUS_NUMBER_MATCH_CRITERIA.getNumber()) {
+            return lottoRank.bonusNumberMatch == bonusNumberMatch;
+        }
+        return true;
     }
 
     public String getMessage() {

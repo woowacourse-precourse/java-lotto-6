@@ -31,10 +31,11 @@ public enum Prize {
         return money;
     }
 
-    public static String prizeResult(Prize prize) {
-        if (prize == SECOND) {
-            return "5개 일치, 보너스 볼 일치 " + prize.panel + " - ";
-        }
-        return prize.match + "개 일치 " + prize.panel + " - ";
+    public String getPanel() {
+        return panel;
+    }
+
+    public int getMatch() {
+        return match;
     }
 }

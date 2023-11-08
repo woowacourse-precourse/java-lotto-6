@@ -24,9 +24,16 @@ public class OutputView {
     public void printPrizeResult(Map<Prize, Integer> res) {
         for (Map.Entry<Prize, Integer> pair : res.entrySet()) {
             if (pair.getKey() != Prize.NONE) {
-                System.out.println(Prize.prizeResult(pair.getKey()) + pair.getValue() + "개");
+                System.out.println(prizeResult(pair.getKey()) + pair.getValue() + "개");
             }
         }
+    }
+
+    public static String prizeResult(Prize prize) {
+        if (prize == Prize.SECOND) {
+            return "5개 일치, 보너스 볼 일치 " + prize.getPanel() + " - ";
+        }
+        return prize.getMatch() + "개 일치 " + prize.getPanel() + " - ";
     }
 
     public void printProfitRate(String profitRate) {

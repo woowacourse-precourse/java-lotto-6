@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.*;
+
 public class Application {
     public static void main(String[] args) {
         try {
@@ -9,7 +10,7 @@ public class Application {
             int purchaseAmount = Integer.parseInt(Console.readLine());
             LottoTicket lottoTicket = LottoTicket.purchase(purchaseAmount);
 
-            System.out.println("\n"+lottoTicket.getTickets().size() + "개를 구매했습니다.");
+            System.out.println("\n" + lottoTicket.getTickets().size() + "개를 구매했습니다.");
             lottoTicket.printTickets();
 
             WinningNumbers winningNumbers = WinningNumbers.inputWinningNumbers();

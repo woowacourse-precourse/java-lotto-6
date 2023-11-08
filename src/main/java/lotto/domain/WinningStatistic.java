@@ -9,7 +9,7 @@ public class WinningStatistic {
 
     public WinningStatistic() {
         this.statistic = new HashMap<>();
-        for(Rank rank : Rank.values()){
+        for (Rank rank : Rank.values()) {
             statistic.put(rank, 0);
         }
     }

@@ -50,7 +50,7 @@ class LottoTicketTest {
                 new Lotto(Arrays.asList(41, 42, 43, 44, 45, 46))
         );
         LottoTicket lottoTicket = new LottoTicket(lottoList);
-        WinningNumbers winningNumbers = new WinningNumbers(Arrays.asList(1, 2, 3, 4, 5, 6),10);
+        WinningNumbers winningNumbers = new WinningNumbers(Arrays.asList(1, 2, 3, 4, 5, 6), 10);
 
         WinningStatistic winningStatistic = lottoTicket.calculateResult(winningNumbers);
 

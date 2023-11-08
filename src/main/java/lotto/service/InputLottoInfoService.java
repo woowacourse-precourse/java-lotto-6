@@ -32,4 +32,9 @@ public class InputLottoInfoService {
 		return lottoNumbers;
 	}
 
+    public int inputBonusNumber() {
+        outputView.printAskingBonusNumber();
+        int bonusNumber = lottoUtil.bonusNumberParser(inputView.inputBonusNumber());
+        return bonusNumber;
+    }
 }

@@ -46,4 +46,8 @@ public class View {
         System.out.printf(Message.ONE_DECIMAL_FORMAT, returnRate);
         System.out.print(Message.PERCENT);
     }
+
+    public void printError(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
 }

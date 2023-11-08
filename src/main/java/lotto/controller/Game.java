@@ -21,12 +21,42 @@ public class Game {
     }
 
     public void start() {
-        Integer lottoCount = buyLotto();
+        Integer lottoCount = tryBuyLotto();
         List<Lotto> lottos = generateLottos(lottoCount);
-        Lotto answer = generateAnswer();
-        Integer bonus = generateBonus();
+        Lotto answer = tryGenerateAnswer();
+        Integer bonus = tryGenerateBonus();
         Result result = generateResult(lottos, answer, bonus);
         showReturnRate(lottoCount, result);
+    }
+
+    private Integer tryBuyLotto() {
+        while (true) {
+            try {
+                return buyLotto();
+            } catch (IllegalArgumentException e) {
+                view.printError(e);
+            }
+        }
+    }
+
+    private Lotto tryGenerateAnswer() {
+        while (true) {
+            try {
+                return generateAnswer();
+            } catch (IllegalArgumentException e) {
+                view.printError(e);
+            }
+        }
+    }
+
+    private Integer tryGenerateBonus() {
+        while (true) {
+            try {
+                return generateBonus();
+            } catch (IllegalArgumentException e) {
+                view.printError(e);
+            }
+        }
     }
 
     private Integer buyLotto() {

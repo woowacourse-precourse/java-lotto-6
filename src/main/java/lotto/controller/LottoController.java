@@ -5,6 +5,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoTicket;
 import lotto.model.Order;
 import lotto.model.WinStatistics;
+import lotto.util.SplitGenerator;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -61,7 +62,14 @@ public class LottoController {
     }
 
     private void inputWiningLotto() {
+        try {
+            String lottoNumbers = inputView.inputLotto();
 
+            this.winingLotto = new SplitGenerator(lottoNumbers).getLotto();
+
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
     }
 
     private void inputBonus() {

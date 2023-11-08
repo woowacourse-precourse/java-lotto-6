@@ -15,7 +15,11 @@ public class Input {
     }
 
     public String inputLotto() {
+        System.out.println(OutputMessage.ENTER_WINNING_NUMBERS_MESSAGE);
 
+        String lotto = Console.readLine();
+
+        return lotto;
     }
 
     public String inputBonus() {

@@ -32,7 +32,7 @@ public class Lotto {
             return false;
         }
 
-        if(0 >= num && num > 45) {
+        if(0 >= num || num > 45) {
             ExceptionMessage.WINNING_NUMBER_RANGE.printValue();
             return false;
         }

@@ -1,6 +1,6 @@
 package lotto;
 
-import java.util.Comparator;
+import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -18,9 +18,8 @@ public class Lotto {
 	}
 
 	static public Lotto createLotto() {
-		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM, MAX_LOTTO_NUM, LOTTO_NUM_RANGE);
-		numbers.sort(Integer::compare);
-		return new Lotto(numbers);
+		List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM, MAX_LOTTO_NUM, LOTTO_NUM_RANGE);
+		return new Lotto(randomNumbers);
 	}
 
 	private void validate(List<Integer> numbers) {
@@ -30,6 +29,12 @@ public class Lotto {
 	}
 
 	public void show() {
-		System.out.println(numbers);
+		ArrayList<Integer> showNumbers = new ArrayList(numbers);
+		showNumbers.sort(Integer::compareTo);
+		System.out.println(showNumbers);
+	}
+
+	public List<Integer> getNumbers() {
+		return numbers;
 	}
 }

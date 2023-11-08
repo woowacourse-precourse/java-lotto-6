@@ -13,6 +13,7 @@ public class LottoGame {
 		List<Lotto> lottos = makeLottos(money);
 		showLottos(lottos);
 		Winner winner = new Winner();
+		new Result(lottos, winner, money);
 	}
 
 	private void showLottos(List<Lotto> lottos) {

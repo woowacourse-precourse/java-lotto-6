@@ -17,9 +17,7 @@ public class Winner {
 	private List<Integer> validateNumbers() {
 		System.out.println("당첨 번호를 입력해 주세요.");
 		String inputNumbers = Console.readLine();
-		List<Integer> numbers = Arrays.stream(inputNumbers.split(","))
-			.map(Integer::parseInt)
-			.toList();
+		List<Integer> numbers = Arrays.stream(inputNumbers.split(",")).map(Integer::parseInt).toList();
 		if (numbers.size() != 6) {
 			throw new IllegalArgumentException("6개의 정수를 입력해야 합니다.");
 		}
@@ -77,6 +75,14 @@ public class Winner {
 			throw new IllegalArgumentException("당첨 번호와 중복 됐습니다.");
 		}
 		return number;
+	}
+
+	public List<Integer> getNumbers() {
+		return numbers;
+	}
+
+	public int getBonusNumber() {
+		return bonusNumber;
 	}
 }
 

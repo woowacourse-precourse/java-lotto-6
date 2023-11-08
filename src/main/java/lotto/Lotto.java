@@ -23,9 +23,16 @@ public class Lotto {
 	}
 
 	private void validate(List<Integer> numbers) {
-		if (numbers.size() != LOTTO_NUM_RANGE) {
+		if (numbers.size() != LOTTO_NUM_RANGE || duplicateNumber(numbers)) {
 			throw new IllegalArgumentException();
 		}
+	}
+
+	private boolean duplicateNumber(List<Integer> numbers) {
+		if (numbers.size() != numbers.stream().distinct().count()) {
+			return true;
+		}
+		return false;
 	}
 
 	public void show() {

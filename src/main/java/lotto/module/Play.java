@@ -14,7 +14,7 @@ public class Play {
     private final OutView outView = new OutView();
     private final LottoController control = new LottoController();
 
-    public void play(){
+    public void start(){
         lottoStart();
         initWinningLotto();
         System.out.println();

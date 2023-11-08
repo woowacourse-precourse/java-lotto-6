@@ -11,6 +11,7 @@ public class UserInput {
     private static String GET_PURCHASE_AMOUNT_MSG="구입금액을 입력해 주세요";
     private static String GET_BONUS_NUM_MSG="보너스 번호를 입력해 주세요.";
     private static String GET_WINNING_NUM_MSG="당첨 번호를 입력해 주세요.";
+    private List<Integer> winningNum;
     public Integer getPurchaseAmount() {
         System.out.println(GET_PURCHASE_AMOUNT_MSG);
         try{
@@ -23,7 +24,7 @@ public class UserInput {
     public Lotto getWinningNum() {
         System.out.println(GET_WINNING_NUM_MSG);
         try{
-            List<Integer> winningNum=makeWinningNumToList(Console.readLine());
+            winningNum=makeWinningNumToList(Console.readLine());
             return new Lotto(winningNum);
         }catch (IllegalArgumentException e) {
             return getWinningNum();
@@ -42,10 +43,17 @@ public class UserInput {
     public Integer getBonusNum() {
         System.out.println(GET_BONUS_NUM_MSG);
         try{
-            return validateBonusNum(validateConvertToInt(Console.readLine()));
+            return validateBonusNum(validateoverlapWinningNum(validateConvertToInt(Console.readLine())));
         }catch (IllegalArgumentException e){
             return getBonusNum();
         }
+    }
+    private Integer validateoverlapWinningNum(Integer Num) {
+        if (winningNum.contains(Num)) {
+            System.out.println("[ERROR] 당첨 번호와 중복됩니다.");
+            throw new IllegalArgumentException();
+        }
+        return Num;
     }
 
     private Integer validatePurchaseNum(Integer Num) {

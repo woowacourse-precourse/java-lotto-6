@@ -1,12 +1,14 @@
 package lotto.view;
 
-public class OutputView {
-    private static OutputView instance;
+import lotto.constant.message.LottoMessage;
 
-    public static OutputView getInstance() {
-        if (instance == null) {
-            instance = new OutputView();
-        }
-        return instance;
+public class OutputView {
+
+    public void printMessage(LottoMessage inputMoney) {
+
+    }
+
+    public void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
     }
 }

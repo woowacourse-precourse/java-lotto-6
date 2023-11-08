@@ -1,12 +1,20 @@
 package lotto.view;
 
-public class InputView {
-    private static InputView instance;
+import camp.nextstep.edu.missionutils.Console;
+import lotto.constant.message.LottoMessage;
 
-    public static InputView getInstance() {
-        if (instance == null) {
-            instance = new InputView();
-        }
-        return instance;
+public class InputView {
+    private final OutputView outputView;
+
+    public InputView(OutputView outputView) {
+        this.outputView = outputView;
     }
+
+    public int readLottoPurchaseMoney() {
+        outputView.printMessage(LottoMessage.INPUT_MONEY);
+        String money = Console.readLine();
+
+        return Integer.parseInt(money);
+    }
+
 }

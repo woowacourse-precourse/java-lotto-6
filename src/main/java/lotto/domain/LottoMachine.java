@@ -18,6 +18,7 @@ public class LottoMachine {
     private static final int COUNT_NUMBER = 6;
 
     private List<Lotto> lottos;
+    private Lotto winningLotto;
 
     public String readAmount() {
         System.out.println(PURCHASE_AMOUNT_GUIDE);
@@ -62,7 +63,7 @@ public class LottoMachine {
             }
         }
         validateWinningNumber(winningNumbers);
-        Lotto winningLotto = new Lotto(winningNumbers);
+        winningLotto = new Lotto(winningNumbers);
         return winningLotto;
     }
 
@@ -87,6 +88,15 @@ public class LottoMachine {
             if (winningNumber < 1 || winningNumber > 45) {
                 throw new IllegalArgumentException();
             }
+        }
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException();
+        }
+        if (winningLotto.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException();
         }
     }
 }

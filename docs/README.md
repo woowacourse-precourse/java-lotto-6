@@ -5,9 +5,13 @@
     - [x] 발행된 복권 리스트 보여주기(오름차순으로 정렬) - Display#Lottos
     
   - [x] 당첨번호+보너스번호 입력받기 - LottoMachine#readWinningNumber, LottoMachine#readBonusNumber
-    - [x] 당첨번호를 6개 입력하지 않은경우 예외처리
-    - [x] 당첨번호에 같은 번호를 입력한 경우 예외처리
-    - [x] 당첨번호가 1~45의 범위를 넘는 경우 예외처리
+    - [ ] 당첨번호 예외처리
+      - [x] 당첨번호를 6개 입력하지 않은경우
+      - [x] 당첨번호에 같은 번호를 입력한 경우
+      - [x] 당첨번호가 1~45의 범위를 넘는 경우
+    - [x] 보너스 번호 예외처리
+      - [x] 보너스번호가 당첨번호와 중복되는경우
+      - [x] 보너스 번호가 1~45 범위를 넘는 경우 
     
 - [ ] 로또 번호와 당첨 번호를 비교한다. - Operator#matchNumbers
 - [ ] 당첨내역 및 수익률을 출력한다. - Display#WinningRecords, Display#ProfitRate

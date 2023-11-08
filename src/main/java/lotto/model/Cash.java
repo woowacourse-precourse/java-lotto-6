@@ -12,7 +12,7 @@ public class Cash {
     }
 
     public void cashCheck(int cash){
-        if (cash % 1000 != 0){
+        if (cash % 1000 != 0 || cash < 1000){
             throw new IllegalArgumentException("[ERROR] 구입 금액은 천 원 단위여야 합니다.");
         }
     }

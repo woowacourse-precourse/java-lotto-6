@@ -5,19 +5,24 @@ import java.util.stream.Collectors;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-public class Input {
+public class Input extends Exceptions{
     public int getCash() {
         String given = readLine();
+        checkType(given);
         return Integer.parseInt(String.valueOf(given));
     }
 
     public List<Integer> getWinningNums() {
-        return Arrays.stream(readLine().split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        List<String> splits = Arrays.stream(readLine().split(",")).toList();
+        for (String s : splits){
+            checkType(s);
+        }
+        return splits.stream().map(Integer::parseInt).toList();
     }
 
     public int getBonusNum() {
-        return Integer.parseInt(readLine());
+        String given = readLine();
+        checkType(given);
+        return Integer.parseInt(given);
     }
 }

@@ -2,10 +2,8 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Error;
-import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.service.GameService;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 import org.junit.jupiter.api.*;
 
@@ -14,9 +12,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class GameControllerTest {
     private final InputStream systemIn = System.in;

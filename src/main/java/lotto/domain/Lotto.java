@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.view.ExceptionView;
-
 import java.util.List;
 
 public class Lotto {

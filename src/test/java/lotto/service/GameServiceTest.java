@@ -2,7 +2,6 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +10,6 @@ import java.util.Map;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class GameServiceTest {
     private GameService gameService = new GameService();

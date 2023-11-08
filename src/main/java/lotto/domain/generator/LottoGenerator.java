@@ -36,6 +36,25 @@ public record LottoGenerator(LottoNumberGenerator lottoNumberGenerator) {
         return new WinningLotto(lottoNumberGenerator.createByInput(numbers), bonusNumber);
     }
 
+    public List<Lotto> createLottoByPrice(final Money price) {
+        validatePrice(price);
+
+        final long lottoCount = price.amount() / LOTTO_PRICE;
+        return createLottoByCount(lottoCount);
+    }
+
+    private List<Lotto> createLottoByCount(final long lottoCount) {
+        validateCount(lottoCount);
+        return LongStream.rangeClosed(START_ORDER, lottoCount)
+                .mapToObj(order -> createOneLotto())
+                .toList();
+    }
+
+    private Lotto createOneLotto() {
+        List<Integer> lottoNumbers = lottoNumberGenerator.createLottoNumbers();
+        return new Lotto(lottoNumbers);
+    }
+
     private void validateNumbers(final String numbers) {
         if (numbers.isBlank()) {
             throw new IllegalArgumentException(NOT_EXIST_INPUT_ERROR.getErrorMessage());
@@ -71,19 +90,6 @@ public record LottoGenerator(LottoNumberGenerator lottoNumberGenerator) {
                 .anyMatch(number -> number == bonusNumber);
     }
 
-
-    private Lotto createOneLotto() {
-        List<Integer> lottoNumbers = lottoNumberGenerator.createLottoNumbers();
-        return new Lotto(lottoNumbers);
-    }
-
-    public List<Lotto> createLottoByPrice(final Money price) {
-        validatePrice(price);
-
-        final long lottoCount = price.amount() / LOTTO_PRICE;
-        return createLottoByCount(lottoCount);
-    }
-
     private void validatePrice(final Money price) {
         if (price.isLessThan(new Money(LOTTO_PRICE))) {
             throw new IllegalArgumentException(UNDER_THOUSAND_AMOUNT.getErrorMessage());
@@ -91,13 +97,6 @@ public record LottoGenerator(LottoNumberGenerator lottoNumberGenerator) {
         if (price.cantDividedBy(new Money(LOTTO_PRICE))) {
             throw new IllegalArgumentException(NOT_THOUSAND_UNIT.getErrorMessage());
         }
-    }
-
-    private List<Lotto> createLottoByCount(final long lottoCount) {
-        validateCount(lottoCount);
-        return LongStream.rangeClosed(START_ORDER, lottoCount)
-                .mapToObj(order -> createOneLotto())
-                .toList();
     }
 
     private void validateCount(final long lottoCount) {

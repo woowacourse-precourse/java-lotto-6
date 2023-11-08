@@ -32,10 +32,10 @@ public enum RottoResult {
         return index;
     }
 
-    private static int getAmout(int num) {
+    private static int getAmout(int index) {
         return Arrays.stream(RottoResult.values())
-                .filter(rottoResult -> rottoResult.getMatchingNumber() == num)
-                .findFirst().get().getAmout();
+                .filter(rottoResult -> rottoResult.getIndex() == index)
+                .findAny().get().getAmout();
     }
 
     public static int getIndex(int num) {
@@ -44,10 +44,10 @@ public enum RottoResult {
                 .findFirst().get().getIndex();
     }
 
-    public static int calculateAmout(List<Integer> numbers) {
-        int sum = 0;
-        for (Integer num : numbers) {
-            sum += getAmout(num);
+    public static double calculateAmout(List<Integer> numbers) {
+        double sum = 0;
+        for(int i = 1; i<6; i++){
+            sum += getAmout(i) * numbers.get(i);
         }
         return sum;
     }

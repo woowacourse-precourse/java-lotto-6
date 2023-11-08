@@ -25,6 +25,8 @@ public class ValidateException {
     private static final Integer END_BONUS_NUMBER = 45;
     private static final String SEQUENCE_COMMA = ",,";
     private static final char CHAR_DASH = '-';
+    // ================== 유저 ==================
+    private static final Integer BASIC_LOTTO_PRICE = 1000;
 
     public static void includeString(String strLine) {
         Pattern pattern = Pattern.compile(KOREAN_ENGLISH_REGEX);
@@ -95,9 +97,8 @@ public class ValidateException {
         return false;
     }
 
-    // ================== 유저 ==================
     public static boolean isMultipleOf1000(int amount) {
-        if (amount % 1000 == 0) {
+        if ((amount % BASIC_LOTTO_PRICE) == ZERO_NUM) {
             return true;
         }
         throw new IllegalArgumentException(ValidateConstant.ERROR_INPUT_1000_WON_UNIT());

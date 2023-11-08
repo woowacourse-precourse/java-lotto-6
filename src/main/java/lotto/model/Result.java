@@ -17,4 +17,11 @@ public class Result {
     public int getRankCount(Rank rank) {
         return result.getOrDefault(rank, 0);
     }
+
+    public int getWinnings() {
+        return result.entrySet()
+                .stream()
+                .mapToInt(entry -> entry.getKey().getWinnings() * entry.getValue())
+                .sum();
+    }
 }

@@ -74,6 +74,7 @@ public class Statistics {
 
         double revenue = (matching_3*5000)+(matching_4*50000)+(matching_5*1500000)+(matching_bonus*30000000)+(matching_6*2000000000);
         double revenuePercent = revenue/(lottoNumbers.size()*1000)*100;
-        System.out.println("총 수익률은 "+revenuePercent+"%입니다.");
+
+        System.out.println("총 수익률은 "+ Math.round(revenuePercent * 100) / 100.0 +"%입니다.");
     }
 }

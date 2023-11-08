@@ -39,8 +39,8 @@ public class BonusNumberTest {
 	@DisplayName("보너스 번호의 범위가 MIN_NUMBER ~ MAX_NUMBER가 아니라면 예외가 발생한다.")
 	@ValueSource(ints = {0, 46, 47})
 	@ParameterizedTest
-	void createBonusNumberByNumberOutOfRange() {
-		assertThatThrownBy(() -> new BonusNumber(answerLottoNumebers, 46))
+	void createBonusNumberByNumberOutOfRange(int bonusNumber) {
+		assertThatThrownBy(() -> new BonusNumber(answerLottoNumebers, bonusNumber))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining(ErrorMessage.LOTTO_NUMBER_RANGE_ERROR
 						.getFormattedMessage(Lotto.MIN_NUMBER, Lotto.MAX_NUMBER));

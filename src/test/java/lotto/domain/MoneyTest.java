@@ -14,7 +14,7 @@ public class MoneyTest {
 	@ValueSource(ints = { 400, 1200, 1001 })
 	@ParameterizedTest
 	void createMoneyByWrongMoneyUnit(int number) {
-		assertThatThrownBy(() -> new Money(300))
+		assertThatThrownBy(() -> new Money(number))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining(ErrorMessage.MONEY_UNIT_ERROR.getFormattedMessage(Money.UNIT));
 	}
@@ -38,7 +38,7 @@ public class MoneyTest {
 	@DisplayName("돈이 0보다 크다면 정상적으로 작동한다.")
 	@ValueSource(ints = { 1000, 2000, 3000 })
 	@ParameterizedTest
-	void checkNomalOperation2() {
-		new Money(1000);
+	void checkNomalOperation2(int number) {
+		new Money(number);
 	}
 }

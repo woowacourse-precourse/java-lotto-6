@@ -22,4 +22,8 @@ public class InputView {
         }
         return Integer.parseInt(amount);
     }
+
+    public void InputWinningNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }

@@ -10,19 +10,19 @@ public class AmountValidate {
 
     private void validateNumberFormat(String amount) {
         if (!amount.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력이 가능합니다.");
+            throw new IllegalArgumentException(ErrorConstants.INPUT_ONLY_NUMBER.getMessage());
         }
     }
 
     private void validateAmountUnder(String amount) {
         if (Integer.parseInt(amount) < 1000) {
-            throw new IllegalArgumentException("[ERROR] 금액은 1000원 이상이어야 합니다.");
+            throw new IllegalArgumentException(ErrorConstants.INPUT_OVER_1000.getMessage());
         }
     }
 
     private void validateAmountUnit(String amount) {
         if (Integer.parseInt(amount) % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 1000 단위여야합니다.");
+            throw new IllegalArgumentException(ErrorConstants.INPUT_UNIT_1000.getMessage());
         }
     }
 }

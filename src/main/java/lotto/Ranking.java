@@ -3,17 +3,17 @@ package lotto;
 import java.util.Arrays;
 
 public enum Ranking {
-    FIRST(6, false, 2000000000),
-    SECOND(5, true, 30000000),
-    THIRD(5, false, 1500000),
-    FOURTH(4, false, 50000),
-    FIFTH(3, false, 5000);
+    FIRST(6, false, 2000000000L),
+    SECOND(5, true, 30000000L),
+    THIRD(5, false, 1500000L),
+    FOURTH(4, false, 50000L),
+    FIFTH(3, false, 5000L);
 
     private final int winningNumber;
     private final boolean hasBonus;
-    private final int prize;
+    private final long prize;
 
-    Ranking(int winningNumber, boolean hasBonus, int prize) {
+    Ranking(int winningNumber, boolean hasBonus, long prize) {
         this.winningNumber = winningNumber;
         this.hasBonus = hasBonus;
         this.prize = prize;
@@ -29,5 +29,9 @@ public enum Ranking {
 
     private static boolean checkBonus(int winningNumber, boolean hasBonus) {
         return winningNumber == 5 && hasBonus;
+    }
+
+    public long getPrize() {
+        return prize;
     }
 }

@@ -69,6 +69,9 @@ public class LotteryGame {
             try {
                 outputHandler.print(Messasge.REQUEST_NUMBERS);
                 List<Integer> numbers = getLottoNumbers();
+                LottoNumberValidator.validateNumbersCount(numbers);
+                LottoNumberValidator.hasDuplicateNumbers(numbers);
+                LottoNumberValidator.validateLottoNumbersRange(numbers);
 
                 outputHandler.print(Messasge.REQUEST_BONUS_NUMBER);
                 int bonusNumber = getBonusNumber(numbers);

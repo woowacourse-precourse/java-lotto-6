@@ -14,10 +14,10 @@ import static lotto.service.OutputService.printError;
 
 public class InputService {
     public static long readExpense() {
-        try {
-            String input = readLine();
-            validateExpense(input);
+        String input = readLine();
 
+        try {
+            validateExpense(input);
             return parseLong(input);
         } catch (IllegalArgumentException e) {
             printError(e);
@@ -31,9 +31,9 @@ public class InputService {
 
         try {
             validateLottoNumType(input);
-
             return Lotto.create(parseAndSort(input));
         } catch (IllegalArgumentException e) {
+            printError(e);
             return readWinningLotto();
         }
     }
@@ -55,19 +55,18 @@ public class InputService {
 
         winningLotto.sort(null);
 
-        System.out.println("winningLotto = " + winningLotto);
-
         return winningLotto;
     }
 
 
     public static int readBonusNum(Lotto winningLotto) {
-        try {
-            String input = readLine();
-            validateBonusNum(input, winningLotto);
+        String input = readLine();
 
+        try {
+            validateBonusNum(input, winningLotto);
             return parseInt(input);
         } catch (IllegalArgumentException e) {
+            printError(e);
             return readBonusNum(winningLotto);
         }
     }

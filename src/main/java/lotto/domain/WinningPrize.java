@@ -28,6 +28,13 @@ public enum WinningPrize {
         return prizeAmount;
     }
 
+    public static LinkedHashMap<Integer, String> getPrizeMap() {
+        LinkedHashMap<Integer, String> prizeMap = new LinkedHashMap<>();
+        for (WinningPrize prize : WinningPrize.values()) {
+            prizeMap.put(prize.getNumberOfMatches(), prize.getPrizeAmount());
+        }
+        return prizeMap;
+    }
 }
 
 

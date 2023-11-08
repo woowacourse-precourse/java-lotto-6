@@ -3,7 +3,6 @@ package service;
 import common.Constant;
 import common.LottoNumberGenerator;
 import dto.Purchase;
-import dto.Result;
 import model.Amount;
 import model.Bonus;
 import model.Lotto;
@@ -12,13 +11,13 @@ import model.Reward;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LottoService {
 
     private static int count = 0;
     private static List<Lotto> lottos = new ArrayList<>();
-    private static List<Result> results = new ArrayList<>();
     private static EnumMap<Reward, Integer> reward = new EnumMap<>(Reward.class);
     private static LottoService instance = new LottoService();
     private LottoService(){}
@@ -40,7 +39,7 @@ public class LottoService {
         return amount / Constant.DIVIDE_UNIT;
     }
 
-    public void pick(Lotto lotto, Bonus bonus) {
+    public EnumMap<Reward, Integer> pick(Lotto lotto, Bonus bonus) {
         for(Lotto l : lottos){
             List<Integer> duplication = new ArrayList<>();
             duplication = l.getNumbers().stream().filter(s -> lotto.getNumbers().contains(s))
@@ -50,7 +49,20 @@ public class LottoService {
             boolean isSameBonus = false;
             if(l.getNumbers().contains(bonus)) isSameBonus = true;
 
-            results.add(new Result(sameCount, isSameBonus));
+            setReward(sameCount, isSameBonus);
         }
+    }
+
+    private void setReward(int sameCount, boolean isSameBouns){
+        if(sameCount == Reward.FIRST.getSameCount()) reward.put(Reward.FIRST, setCount(Reward.FIRST));
+        else if(sameCount == Reward.SECOND.getSameCount() && isSameBouns) reward.put(Reward.SECOND, setCount(Reward.SECOND));
+        else if(sameCount == Reward.THIRD.getSameCount() && ! isSameBouns) reward.put(Reward.THIRD, setCount(Reward.THIRD));
+        else if(sameCount == Reward.FOURTH.getSameCount()) reward.put(Reward.FOURTH, setCount(Reward.FOURTH));
+        else if (sameCount == Reward.FIFTH.getSameCount()) reward.put(Reward.FIFTH, setCount(Reward.FIFTH));
+    }
+
+    private int setCount(Reward key){
+        int value = reward.get(key);
+        return value + 1;
     }
 }

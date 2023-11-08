@@ -8,8 +8,12 @@ public class LottoBuyer {
     public static Integer getLottoCount() {
         Integer money = Integer.valueOf(Console.readLine());
         validateLottoPrice(money);
-        Integer lottoCount = money / LOTTO_PRICE;
+        Integer lottoCount = calculateLottoCount(money);
         return lottoCount;
+    }
+
+    private static Integer calculateLottoCount(Integer money) {
+        return money / LOTTO_PRICE;
     }
 
     private static void validateLottoPrice(Integer money) {

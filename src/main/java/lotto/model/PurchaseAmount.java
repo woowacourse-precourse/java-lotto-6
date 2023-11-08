@@ -4,7 +4,7 @@ import static lotto.configurations.ErrorMessages.*;
 import static lotto.configurations.SettingValues.*;
 
 public class PurchaseAmount {
-    Long paidMoney;
+    private Long paidMoney;
 
     public PurchaseAmount(Long paidMoney) {
         validate(paidMoney);

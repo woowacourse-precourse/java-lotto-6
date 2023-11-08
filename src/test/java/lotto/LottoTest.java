@@ -32,10 +32,7 @@ class LottoTest {
     @DisplayName("로또 번호를 출력한다.")
     @Test
     void printLottoNumbers() {
-        List<Integer> numbers = new ArrayList<>();
-        for (int i = 1; i < 7; i++) {
-            numbers.add(i);
-        }
+        List<Integer> numbers = createLottoNumbers();
         Lotto lotto = new Lotto(numbers);
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -46,4 +43,13 @@ class LottoTest {
         String captured = outputStream.toString().trim();
         assertThat(captured).isEqualTo("[1, 2, 3, 4, 5, 6]");
      }
+
+
+    List<Integer> createLottoNumbers() {
+        List<Integer> numbers = new ArrayList<>();
+        for (int i = 1; i < 7; i++) {
+            numbers.add(i);
+        }
+        return numbers;
+    }
 }

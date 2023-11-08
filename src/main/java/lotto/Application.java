@@ -38,6 +38,11 @@ public class Application {
         // 결과 출력
         ResultView.printResult(result);
 
+        // 상금과 수익률 계산 및 출력
+        long totalPrize = lottoController.calculateTotalPrize(result);
+        double returnRate = lottoController.calculateReturnRate(totalPrize, amount);
+        ResultView.printReturnRate(returnRate);
+
     }
 }
 

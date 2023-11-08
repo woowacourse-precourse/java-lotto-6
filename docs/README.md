@@ -5,8 +5,8 @@
     - 문자가 있거나 / 1000 단위가 아닐 경우, [ERROR] 메시지를 출력하고 다시 입력 받는다. - Price#validatePrice()
 
 
-- 로또를 생성해서 출력한다. - LottoGenerator#generateLotto()
-  - 구입 금액 / 1000 만큼 로또를 생성한다.
+- 로또를 생성해서 출력한다. - Lotto
+  - 구입 금액 / 1000 만큼 로또를 생성한다. - LottoGenerator#generateLotto()
   - 로또의 유효성을 검사한다. - Lotto#validate()
     - 로또 번호가 6개가 아니거나 / 중복될 경우, [ERROR] 메시지를 출력한다.
 

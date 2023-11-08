@@ -25,4 +25,11 @@ public class JackpotTest {
         assertThatThrownBy(() -> new Jackpot(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 5)), 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("잭팟 번호는 6자여야 한다.")
+    @Test
+    void createLottoByDuplicatedNumber() {
+        assertThatThrownBy(() -> new Jackpot(List.of(1, 2, 3, 4, 5), 7))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

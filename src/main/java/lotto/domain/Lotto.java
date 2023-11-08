@@ -8,7 +8,6 @@ import java.util.List;
 
 public class Lotto {
 
-    private Setting setting = Setting.getSetting();
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -21,25 +20,21 @@ public class Lotto {
     }
 
     private void manageException(List<Integer> numbers) {
-        try {
-            validateSize(numbers);
-            validateDuplication(numbers);
-            validateRange(numbers);
-        } catch (IllegalArgumentException e) {
-            setting.pickJackpot();
-        }
+        validateSize(numbers);
+        validateDuplication(numbers);
+        validateRange(numbers);
 
     }
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            new LottoException(Error.INVALID_NUMBER_COUNT);
+            throw new LottoException(Error.INVALID_NUMBER_COUNT);
         }
     }
 
     private void validateDuplication(List<Integer> numbers) {
         if (isDuplication(numbers)) {
-            new LottoException(Error.DUPLICATED_NUMBER);
+            throw new LottoException(Error.DUPLICATED_NUMBER);
         }
 
     }
@@ -52,7 +47,7 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         if (!checkRange(numbers)) {
-            new LottoException(Error.INVALID_RANGE);
+            throw new LottoException(Error.INVALID_RANGE);
         }
     }
 

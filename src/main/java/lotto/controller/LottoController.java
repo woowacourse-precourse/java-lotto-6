@@ -20,17 +20,17 @@ public class LottoController {
     }
 
     public void run() {
-        purchaseLottoTicketsAndDisplay();
-        calculateAndDisplayDrawingResult();
+        purchaseLottoTickets();
+        calculateDrawingResult();
     }
 
-    private void purchaseLottoTicketsAndDisplay() {
+    private void purchaseLottoTickets() {
         MoneyDto money = inputView.inputMoney();
         LottosDto lottoTickets = lottoService.purchaseLottoTickets(money);
         outputView.printPurchasedLottoTickets(lottoTickets);
     }
 
-    private void calculateAndDisplayDrawingResult() {
+    private void calculateDrawingResult() {
         WinningCombinationDto winningCombination = inputView.inputWinningCombination();
         DrawingResultDto result = lottoService.calculateDrawingResult(winningCombination);
         outputView.printResult(result);

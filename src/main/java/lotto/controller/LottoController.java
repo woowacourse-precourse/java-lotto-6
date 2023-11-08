@@ -17,8 +17,17 @@ public class LottoController {
         LottoStore lottoStore = purchaseLotto(money);
 
         LottoAnswer lottoAnswer = getLottoAnswerFromUser();
-        BonusNumber bonusNumber = getBonusNumberFromUser();
-        lottoAnswer.setBonusNumber(bonusNumber);
+
+
+        while (true) {
+            try {
+                BonusNumber bonusNumber = getBonusNumberFromUser();
+                lottoAnswer.setBonusNumber(bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         displayStatics(lottoStore, lottoAnswer, money);
     }

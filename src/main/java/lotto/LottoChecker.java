@@ -7,13 +7,15 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class LottoChecker {
-    private final HashSet<Integer> answerNumberSet;
-    private final int bonusNumber;
+    private HashSet<Integer> answerNumberSet;
+    private int bonusNumber;
 
-    public LottoChecker(String answerNumberSetInput, String bonusNumberInput) {
-        this.answerNumberSet = parseLottoNumberSet(answerNumberSetInput);
-        this.bonusNumber = parseLottoNumber(bonusNumberInput);
+    public void setAnswerNumber(String answerNumberSetInput) {
+    	answerNumberSet = parseLottoNumberSet(answerNumberSetInput);
+    }
 
+    public void setBonusNumber(String bonusNumberInput) {
+        bonusNumber = parseLottoNumber(bonusNumberInput);
         if (answerNumberSet.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
         }

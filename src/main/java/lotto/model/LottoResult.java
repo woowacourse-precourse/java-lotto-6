@@ -40,6 +40,7 @@ public class LottoResult {
             totalPrize += lottoStatus.getPrize();
         }
         double profitRate = ((double) totalPrize / (lottoResult.size() * LOTTO_PRICE)) * PERCENTAGE_FACTOR;
+
         return Math.round(profitRate * ROUND_DIGITS) / ROUND_DIGITS;
     }
 

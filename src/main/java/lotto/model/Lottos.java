@@ -24,11 +24,13 @@ public class Lottos {
 
     public List<LottoStatus> compareLotto(WinningNumbers winningNumbers) {
         List<LottoStatus> lottoStatuses = new ArrayList<>();
+
         for (Lotto lotto : lottos) {
             int correctCount = lotto.matchNumbers(winningNumbers.getWinningLotto());
             boolean hasBonusNumber = lotto.contains(winningNumbers.getBonusNumber());
             lottoStatuses.add(LottoStatus.getLottoStatus(correctCount, hasBonusNumber));
         }
+        
         return lottoStatuses;
     }
 

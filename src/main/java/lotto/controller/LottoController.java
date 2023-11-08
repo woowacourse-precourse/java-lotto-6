@@ -10,6 +10,14 @@ public class LottoController {
     LottoList lottoList;
     CorrectNum correctNum;
     BonusNum bonusNum;
+    LottoResult lottoResult;
+
+    public void lottogame(){
+        start();
+        middle();
+        middle2();
+        end();
+    }
 
     public void start(){
         String s = view.inputBuyingMoney();
@@ -17,8 +25,7 @@ public class LottoController {
             BuyingMoney buyingMoney = new BuyingMoney(s);
             int buyingnum = buyingMoney.buyingMoney;
             lottoList = new LottoList(buyingnum);
-            view.BuyingLottoOutput(lottoList.lottoList);
-            middle();
+            view.BuyingLottoOutput(lottoList.getLottoList());
         }catch (IllegalArgumentException e){
             view.inputExceptionMessage();
             start();
@@ -29,7 +36,6 @@ public class LottoController {
         String s = view.inputCorrectNUM();
         try {
             correctNum = new CorrectNum(s);
-            middle2();
         }catch (IllegalArgumentException e){
             view.outputExceptionMessage();
             middle();
@@ -46,5 +52,11 @@ public class LottoController {
         }
     }
 
+    public void end(){
+        for (Lotto lotto : lottoList.getLottoList()) {
+            for (int i : lotto.numbers) {
 
+            }
+        }
+    }
 }

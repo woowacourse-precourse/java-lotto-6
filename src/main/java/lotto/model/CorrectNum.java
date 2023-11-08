@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CorrectNum {
-    public List<Integer> correctNum = new ArrayList<>();
+    private final List<Integer> correctNum = new ArrayList<>();
+
+    public List<Integer> getCorrectNum() {
+        return correctNum;
+    }
 
     public CorrectNum(String s) {
         String correctString[] =correctStringArray(s);

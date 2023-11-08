@@ -6,7 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoList {
-    public List<Lotto> lottoList = new ArrayList<>();
+
+    private final List<Lotto> lottoList = new ArrayList<>();
+    public List<Lotto> getLottoList() {
+        return lottoList;
+    }
+
 
     public LottoList(int i) {
         int num = i/1000;

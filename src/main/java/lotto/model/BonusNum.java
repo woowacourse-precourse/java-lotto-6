@@ -1,7 +1,7 @@
 package lotto.model;
 
 public class BonusNum {
-    public int bonusNum;
+    private final int bonusNum;
 
     public BonusNum(String bonusNum) {
         validateCorrectStringNum(bonusNum);
@@ -13,6 +13,10 @@ public class BonusNum {
         if(Integer.parseInt(s)>=1 && Integer.parseInt(s)<=45){
             throw new IllegalArgumentException();
         }
+    }
+
+    public int getBonusNum() {
+        return bonusNum;
     }
 
     private void validateCorrectStringNum(String s) {

@@ -20,12 +20,12 @@ public class LottoGameResult {
         int sameCount = Comparer.compareLottoToWinning(lotto, winning);
         boolean containsBonus = Comparer.containsBonus(lotto, winning);
 
-        for (LottoRankEnum lottoRank : LottoRankEnum.values()) {
-            if (lottoRank.getSameCount() == sameCount) {
-                if (lottoRank.isContainsBonus() == containsBonus) {
-                    return lottoRank;
+        for (LottoRankEnum lottoRankEnum : LottoRankEnum.values()) {
+            if (lottoRankEnum.getSameCount() == sameCount) {
+                if (lottoRankEnum.isContainsBonus() == containsBonus) {
+                    return lottoRankEnum;
                 }
-                return lottoRank;
+                return lottoRankEnum;
             }
         }
         return LottoRankEnum.NOTHING;

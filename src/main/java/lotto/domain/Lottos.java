@@ -11,10 +11,6 @@ public class Lottos implements Iterable<Lotto> {
 
     private List<Lotto> lottos = new ArrayList<>();
 
-    public Lottos(Lotto... collect) {
-        // 생성자 구현 내용
-    }
-
     public int getLottoCount() {
         return lottos.size();
     }

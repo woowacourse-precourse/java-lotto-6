@@ -5,15 +5,12 @@ import lotto.validation.bonusnumber.domain.BonusNumberRangeCondition;
 import lotto.validation.bonusnumber.input.BonusNumberTypeCondition;
 
 public class BonusNumber {
-    private final int bonusNumber;
     private static final Validation bonusNumberValidation;
     private static final Validation inputValidation;
     private final static int MAX_NUM = 45;
     private final static int MIN_NUM = 1;
+    private final int bonusNumber;
 
-    public BonusNumber(int bonusNumber) {
-        this(String.valueOf(bonusNumber));
-    }
 
     public BonusNumber(String stringNumber) {
         inputValidation.validate(stringNumber);
@@ -24,11 +21,11 @@ public class BonusNumber {
 
     static {
         inputValidation = new Validation(
-                new BonusNumberTypeCondition(MAX_NUM, MIN_NUM)
+                new BonusNumberTypeCondition()
         );
 
         bonusNumberValidation = new Validation(
-                new BonusNumberRangeCondition(1, 45)
+                new BonusNumberRangeCondition(MIN_NUM, MAX_NUM)
         );
     }
 

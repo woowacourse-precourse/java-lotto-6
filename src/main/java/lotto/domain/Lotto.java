@@ -11,9 +11,12 @@ import lotto.validation.lotto.domain.LottoRangeCondition;
 import lotto.validation.lotto.input.LottoStringCondition;
 
 public class Lotto {
-    private final List<Integer> numbers;
     private static final Validation stringInputValidation;
     private static final Validation lottoDomainValidation;
+    private static final int lottoMinValue = 1;
+    private static final int lottoMaxValue = 45;
+    private static final int lottoSize = 6;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         this(convertListToString(numbers));
@@ -32,8 +35,8 @@ public class Lotto {
                 new LottoStringCondition()
         );
         lottoDomainValidation = new Validation(
-                new LottoRangeCondition(1, 45),
-                new LottoDuplicateCondition( 6)
+                new LottoRangeCondition(lottoMinValue, lottoMaxValue),
+                new LottoDuplicateCondition( lottoSize)
         );
     }
 

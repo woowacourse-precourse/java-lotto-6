@@ -35,11 +35,15 @@ public class Money {
         );
     }
 
-
-
     public static Money wons(int amount) {
         return new Money(amount);
     }
+
+
+    public static Double mod(Money money, Money other) {
+        return (double) money.amount / other.amount;
+    }
+
 
     public Money calculateChange(Money paid) {
         return new Money(this.amount % paid.amount);

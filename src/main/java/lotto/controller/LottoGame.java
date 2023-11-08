@@ -8,7 +8,6 @@ public class LottoGame {
     private final LottoService lottoService = new LottoService();
     private StatsService statsService;
     private Player player;
-    private static final int DIVIDED_AMOUNT = 1000;
 
     public void start() {
         lottoService.createLottoCount();

@@ -22,35 +22,35 @@ public class BonusNumberException {
 
     private void isNumber(String input) {
         try {
-            Integer.parseInt(input);
+                Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR + IS_NUMBER_MESSAGE);
+                throw new IllegalArgumentException(ERROR + IS_NUMBER_MESSAGE);
         }
     }
 
     private void isRightRange(String input) {
         int bonusNum = Integer.parseInt(input);
         if (bonusNum < BONUS_NUMBER_START || bonusNum > BONUS_NUMBER_FINISH) {
-            throw new IllegalArgumentException(ERROR + IS_RIGHT_RANGE_MESSAGE);
+                throw new IllegalArgumentException(ERROR + IS_RIGHT_RANGE_MESSAGE);
         }
     }
 
     private void isBlank(String input) {
         if (input.trim().isEmpty()) {
-            throw new IllegalArgumentException(ERROR + IS_BLANK_MESSAGE);
+                throw new IllegalArgumentException(ERROR + IS_BLANK_MESSAGE);
         }
     }
 
     private void isDuplicateWithWinnerNum(String bonusNumber, List<Integer> winnerNum) {
         int bonusNum = Integer.parseInt(bonusNumber);
         if (winnerNum.stream().anyMatch(i -> i == bonusNum)) {
-            throw new IllegalArgumentException(ERROR + IS_DUPLICATE_MESSAGE);
+                throw new IllegalArgumentException(ERROR + IS_DUPLICATE_MESSAGE);
         }
     }
 
     private void isNumberOnlyOne(String input) {
         if (input.split(",").length != 1) {
-            throw new IllegalArgumentException(ERROR + IS_ONLY_ONE_MESSAGE);
+                throw new IllegalArgumentException(ERROR + IS_ONLY_ONE_MESSAGE);
         }
     }
 }

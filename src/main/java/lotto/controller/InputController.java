@@ -18,34 +18,34 @@ public class InputController {
 
     public LottoPurchaseAmount getPurchaseAmount() {
         try {
-                String purchase = InputViewLottoPurchaseAmount.getPurchaseAmount();
-                lottoPurchaseAmount = new LottoPurchaseAmount(purchase);
-                return lottoPurchaseAmount;
+            String purchase = InputViewLottoPurchaseAmount.getPurchaseAmount();
+            lottoPurchaseAmount = new LottoPurchaseAmount(purchase);
+            return lottoPurchaseAmount;
         } catch (IllegalArgumentException e) {
-                OutputView.printError(e.getMessage());
-                return getPurchaseAmount();
+            OutputView.printError(e.getMessage());
+            return getPurchaseAmount();
         }
     }
 
     public List<Integer> getWinnerNumber() {
         try {
-                List<Integer> winnerNum = InputViewWinnerNumber.getWinnerNumber();
-                winnerNumber = new WinnerNumber(winnerNum);
-                return winnerNumber.getWinnerNumber();
+            List<Integer> winnerNum = InputViewWinnerNumber.getWinnerNumber();
+            winnerNumber = new WinnerNumber(winnerNum);
+            return winnerNumber.getWinnerNumber();
         } catch (IllegalArgumentException e) {
-                OutputView.printError(e.getMessage());
-                return getWinnerNumber();
+            OutputView.printError(e.getMessage());
+            return getWinnerNumber();
         }
     }
 
     public int getBonusNumber() {
         try {
-                String bonusNum = InputViewBonusNumber.getBonusNumber();
-                bonusNumber = new BonusNumber(bonusNum, winnerNumber.getWinnerNumber());
-                return bonusNumber.getBonusNumber();
+            String bonusNum = InputViewBonusNumber.getBonusNumber();
+            bonusNumber = new BonusNumber(bonusNum, winnerNumber.getWinnerNumber());
+            return bonusNumber.getBonusNumber();
         } catch (IllegalArgumentException e) {
-                OutputView.printError(e.getMessage());
-                return getBonusNumber();
+            OutputView.printError(e.getMessage());
+            return getBonusNumber();
         }
     }
 

@@ -22,19 +22,19 @@ public class LottoException {
 
     public void isDuplicate(List<Integer> input) {
         if (input.size() != input.stream().distinct().count()) {
-            throw new IllegalArgumentException(ERROR + IS_DUPLICATE_MESSAGE);
+                throw new IllegalArgumentException(ERROR + IS_DUPLICATE_MESSAGE);
         }
     }
 
     public void isSize(List<Integer> input) {
         if (input.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(ERROR + IS_SIZE_MESSAGE);
+                throw new IllegalArgumentException(ERROR + IS_SIZE_MESSAGE);
         }
     }
 
     public void isRightRange(List<Integer> input) {
         if (input.stream().anyMatch(i -> i < LOTTO_NUM_START || i > LOTTO_NUM_FINISH)) {
-            throw new IllegalArgumentException(ERROR + IS_RIGHT_RANGE_MESSAGE);
+                throw new IllegalArgumentException(ERROR + IS_RIGHT_RANGE_MESSAGE);
         }
 
     }
@@ -43,7 +43,7 @@ public class LottoException {
         boolean isAscending = IntStream.range(LOTTO_NUM_START, input.size())
                 .allMatch(i -> input.get(i - 1) < input.get(i));
         if (!isAscending) {
-            throw new IllegalStateException(ERROR + IS_NOT_ASCENDING_MESSAGE);
+                throw new IllegalStateException(ERROR + IS_NOT_ASCENDING_MESSAGE);
         }
     }
 }

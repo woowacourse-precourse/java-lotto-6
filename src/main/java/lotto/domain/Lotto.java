@@ -4,8 +4,9 @@ import static lotto.domain.constants.LottoConfig.LOTTO_NUMBER_MAX;
 import static lotto.domain.constants.LottoConfig.LOTTO_NUMBER_MIN;
 import static lotto.domain.constants.LottoConfig.LOTTO_SIZE;
 import static lotto.exception.constants.ErrorMessage.DUPLICATE_LOTTO_NUMBERS;
-import static lotto.exception.constants.ErrorMessage.INVALID_LOTTO_FORMAT;
+import static lotto.exception.constants.ErrorMessage.LOWER_SIZE_LOTTO;
 import static lotto.exception.constants.ErrorMessage.OUT_OF_RANGE_LOTTO_NUMBERS;
+import static lotto.exception.constants.ErrorMessage.OVER_SIZE_LOTTO;
 
 import java.util.List;
 import lotto.exception.LottoException;
@@ -47,8 +48,11 @@ public class Lotto {
     }
 
     private void validateSize(final List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE.getValue()) {
-            throw LottoException.of(INVALID_LOTTO_FORMAT);
+        if (numbers.size() > LOTTO_SIZE.getValue()) {
+            throw LottoException.of(OVER_SIZE_LOTTO);
+        }
+        if (numbers.size() < LOTTO_SIZE.getValue()) {
+            throw LottoException.of(LOWER_SIZE_LOTTO);
         }
     }
 

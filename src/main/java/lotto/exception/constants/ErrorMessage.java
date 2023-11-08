@@ -5,7 +5,9 @@ import static lotto.domain.constants.LottoConfig.LOTTO_UNIT_PRICE;
 public enum ErrorMessage {
     BONUS_LOTTO_DUPLICATE("보너스 숫자와 로또 내 숫자가 중복됩니다."),
     DUPLICATE_LOTTO_NUMBERS("하나의 로또에 중복된 숫자가 있습니다."),
-    INVALID_LOTTO_FORMAT("올바르지 않은 로또 형식입니다.(사이즈 초과 혹은 잘못된 형식)"),
+    INVALID_LOTTO_FORMAT("올바르지 않은 로또 형식입니다."),
+    OVER_SIZE_LOTTO("로또의 크기가 유효한 범위보다 큽니다."),
+    LOWER_SIZE_LOTTO("로또의 크기가 유효한 범위보다 작습니다."),
     INVALID_PURCHASE_AMOUNT(String.format(
             "구매 단위는 %d원 단위여야 합니다.", LOTTO_UNIT_PRICE.getValue())
     ),

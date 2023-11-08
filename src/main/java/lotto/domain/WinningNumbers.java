@@ -28,6 +28,9 @@ public class WinningNumbers {
     public ResultType matchingResult(List<Integer> numbers) {
         int matchingCount = getMatchingCount(numbers);
         boolean isBonusMatching = isBonusMatching(numbers);
+        if (isBonusMatching) {
+            matchingCount++;
+        }
         return ResultType.valueOf(matchingCount, isBonusMatching);
     }
 

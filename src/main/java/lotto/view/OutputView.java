@@ -66,9 +66,30 @@ public final class OutputView {
             ResultType resultType,
             Map<ResultType, Integer> lottoResult
     ) {
-        String format = getResultFormat(resultType);
-        return String.format(format,
+        if (isSecondPlace(resultType)) {
+            return makeResultString(
+                    SECOND_PLACE_FORMAT,
+                    resultType.getMatchCount() - 1,
+                    resultType,
+                    lottoResult
+            );
+        }
+        return makeResultString(
+                RESULT_FORMAT,
                 resultType.getMatchCount(),
+                resultType,
+                lottoResult
+        );
+    }
+
+    private static String makeResultString(
+            String format,
+            int matchingCount,
+            ResultType resultType,
+            Map<ResultType, Integer> lottoResult
+    ) {
+        return String.format(format,
+                matchingCount,
                 convertNumberFormat(resultType),
                 getResultCount(resultType, lottoResult)
         );
@@ -76,13 +97,6 @@ public final class OutputView {
 
     private static boolean isNotWin(ResultType resultType) {
         return resultType == NOT_WIN;
-    }
-
-    private static String getResultFormat(ResultType resultType) {
-        if (isSecondPlace(resultType)) {
-            return SECOND_PLACE_FORMAT;
-        }
-        return RESULT_FORMAT;
     }
 
     private static boolean isSecondPlace(ResultType resultType) {

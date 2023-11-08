@@ -1,6 +1,7 @@
 package validator;
 
 import enums.Constants;
+import enums.Message;
 import java.util.regex.Pattern;
 
 
@@ -18,7 +19,8 @@ public class InputDataValidator {
         }
     }
 
-    public void validBonusNumberInput(String data){
+    public void validBonusNumberInput(String data, String[] splitWinningData){
+        validDuplicateBonusNumberWithWinningNumber(data, splitWinningData);
         validIntegerInput(data);
     }
 
@@ -34,7 +36,7 @@ public class InputDataValidator {
     }
 
     public void isNumeric(String data){
-        if (!Pattern.matches(Constants.NUMERIC_REGEX.getConst(), data)){
+        if (!Pattern.matches(Message.NUMERIC_REGEX.getMessage(), data)){
             throw new IllegalArgumentException();
         }
     }
@@ -45,9 +47,17 @@ public class InputDataValidator {
     }
 
     public void validWinningNumberSize(String[] data){
-        int size = Integer.parseInt(Constants.WINNING_NUMBER_SIZE.getConst());
+        int size = Constants.LOTTO_NUMBER_SIZE;
         if(data.length != size){
             throw new IllegalArgumentException();
+        }
+    }
+
+    public void validDuplicateBonusNumberWithWinningNumber(String data, String[] splitWinningData){
+        for(String winningNumber : splitWinningData){
+            if(winningNumber.equals(data)){
+                throw new IllegalArgumentException();
+            }
         }
     }
 }

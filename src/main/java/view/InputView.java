@@ -9,7 +9,9 @@ public class InputView {
     InputDataValidator dataValidator = new InputDataValidator();
     OutputView outputView = new OutputView();
     Splitter splitter = new Splitter();
-    String inputData;
+    private String inputData;
+    private String[] splitWinningData;
+
 
     public int getLottoCostData(){
         while(true){
@@ -25,25 +27,24 @@ public class InputView {
     }
 
     public String[] getWinningNumber(){
-        String[] splitData;
         while(true){
             try{
                 inputData = Console.readLine();
-                splitData = splitter.commaSplitter(inputData);
-                dataValidator.validWinningNumberInput(splitData);
+                splitWinningData = splitter.commaSplitter(inputData);
+                dataValidator.validWinningNumberInput(splitWinningData);
                 break;
             }catch(IllegalArgumentException e){
                 outputView.printIlligalWinningNumberMessage();
             }
         }
-        return splitData;
+        return splitWinningData;
     }
 
     public int getBonusNumber(){
         while(true){
             try{
                 inputData = Console.readLine();
-                dataValidator.validBonusNumberInput(inputData);
+                dataValidator.validBonusNumberInput(inputData, splitWinningData);
                 break;
             }catch(IllegalArgumentException e){
                 outputView.printIlligalWinningNumberMessage();

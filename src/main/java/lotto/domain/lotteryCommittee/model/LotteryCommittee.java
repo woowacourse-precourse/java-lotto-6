@@ -6,6 +6,7 @@ import lotto.domain.buyer.model.Buyer;
 public class LotteryCommittee {
 
     private Lotto weeklyLottery;
+    private int bonusNum;
 
     public Lotto getWeeklyLottery() {
         return weeklyLottery;
@@ -15,13 +16,11 @@ public class LotteryCommittee {
         this.weeklyLottery = weeklyLottery;
     }
 
-    public void getWeeklyNumber() {
-
-        //TODO 이번 주 당첨 번호 입력 (6개 + 보너스 1)
+    public int getBonusNum() {
+        return bonusNum;
     }
 
-    public void announceResult(Buyer buyer) {
-
-        //TODO 결과 발표
+    public void setBonusNum(int bonusNum) {
+        this.bonusNum = bonusNum;
     }
 }

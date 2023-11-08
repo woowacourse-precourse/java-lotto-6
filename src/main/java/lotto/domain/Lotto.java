@@ -11,6 +11,7 @@ import lotto.exception.LottoValidationException;
  * 로또 게임에서 사용되는 로또 번호들의 집합을 나타내는 클래스.
  */
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

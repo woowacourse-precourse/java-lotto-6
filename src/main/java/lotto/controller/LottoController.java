@@ -1,12 +1,12 @@
 package lotto.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.WinningNumbers;
 import lotto.service.LottoService;
+import lotto.service.WinningService;
 import lotto.view.InputView;
 import lotto.view.ResultView;
 
@@ -16,41 +16,34 @@ import lotto.view.ResultView;
 public class LottoController {
 
     private final LottoService lottoService;
+    private final WinningService winningService;
 
-    public LottoController(LottoService lottoService) {
+    public LottoController(LottoService lottoService, WinningService winningService) {
         this.lottoService = lottoService;
+        this.winningService = winningService;
     }
 
     public void run() {
         int purchaseAmount = inputPurchaseAmount();
-        List<Lotto> lottos = createLottoTickets(purchaseAmount);
+        List<Lotto> lottos = lottoService.createLottoTickets(purchaseAmount);
         WinningNumbers winningNumbers = inputWinningNumbers();
-        displayResults(lottos, winningNumbers);
+        processWinningNumbers(lottos, winningNumbers, purchaseAmount);
     }
 
     private int inputPurchaseAmount() {
         return InputView.inputPurchaseAmount();
     }
 
-    private List<Lotto> createLottoTickets(int purchaseAmount) {
-        int ticketCount = lottoService.calculateNumberOfLottoTickets(purchaseAmount);
-        List<Lotto> lottos = lottoService.generateLottos(ticketCount);
-        ResultView.printPurchasedLottos(lottos);
-        return lottos;
-    }
-
     private WinningNumbers inputWinningNumbers() {
         return new WinningNumbers(InputView.inputWinningNumbers(), InputView.inputBonusNumber());
     }
 
-    private void displayResults(List<Lotto> lottos, WinningNumbers winningNumbers) {
-        Map<LottoRank, Integer> results = new HashMap<>();
-        for (Lotto lotto : lottos) {
-            int matchCount = winningNumbers.matchCount(lotto);
-            boolean matchBonusNumber = winningNumbers.matchBonusNumber(lotto);
-            LottoRank lottoRank = LottoRank.valueOf(matchCount, matchBonusNumber);
-            results.put(lottoRank, results.getOrDefault(lottoRank, 0) + 1);
-        }
+    private void processWinningNumbers(List<Lotto> lottos, WinningNumbers winningNumbers, int purchaseAmount) {
+        Map<LottoRank, Integer> results = winningService.calculateResults(lottos, winningNumbers);
+        int totalPrize = winningService.calculateTotalPrize(results);
+        double yield = winningService.calculateYield(purchaseAmount, totalPrize);
+
         ResultView.printWinningResults(results);
+        ResultView.printYield(yield);
     }
 }

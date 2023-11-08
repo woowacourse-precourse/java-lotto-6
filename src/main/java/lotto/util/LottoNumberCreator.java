@@ -8,10 +8,13 @@ import lotto.model.TotalLotto;
 import java.util.List;
 
 public class LottoNumberCreator {
+    private final TotalLotto totalLotto;
+
     public LottoNumberCreator(LottoPrice lottoPrice) {
         int numberForGenerateLottos = lottoPrice.getPrice() / 1000;
-        createLottoTickets(numberForGenerateLottos);
+        this.totalLotto = createLottoTickets(numberForGenerateLottos);
     }
+
 
     private TotalLotto createLottoTickets(int numberForGenerateLottos) {
         TotalLotto totalLotto = new TotalLotto();
@@ -20,6 +23,10 @@ public class LottoNumberCreator {
             Lotto lotto = new Lotto(numbers);
             totalLotto.generateTotalLotto(lotto);
         }
+        return totalLotto;
+    }
+
+    public TotalLotto getTotalLotto() {
         return totalLotto;
     }
 }

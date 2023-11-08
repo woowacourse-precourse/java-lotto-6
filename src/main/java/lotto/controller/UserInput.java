@@ -8,12 +8,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.exception.LottoException;
+import lotto.exception.UserException;
 import lotto.model.User;
 
 public class UserInput {
     public UserInput() {}
     public static Integer PurchaseAmount() {
         String userInput = Console.readLine();
+        UserException.validatePurchaseAmountOnlyInt(userInput);
         Integer purchaseAmount = Integer.parseInt(userInput);
         return purchaseAmount;
     }

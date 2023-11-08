@@ -70,8 +70,8 @@
 - [x] 잘못된 값을 입력할 경우 IllegalArgumentException을 던진다.
     - [x] 0~9로 이루어진 문자열이 아닌 경우
     - [x] 1부터 45까지의 범위를 넘는 숫자가 입력된 경우
-- [ ] IllegalArgumentException 발생 시 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-    - [ ] 에러 메시지는 "[ERROR]"로 시작한다.
+- [x] IllegalArgumentException 발생 시 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+    - [x] 에러 메시지는 "[ERROR]"로 시작한다.
 
 ### 구매한 로또 번호와 당첨 번호를 비교한다.
 

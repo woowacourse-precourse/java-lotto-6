@@ -40,6 +40,10 @@ public class MessageContainer {
         return ENTER_WINNING_NUMBERS;
     }
 
+    public String getEnterBonusNumbers() {
+        return ENTER_BONUS_NUMBERS;
+    }
+
     public String getWinningStatistics() {
         return WINNING_STATISTICS;
     }

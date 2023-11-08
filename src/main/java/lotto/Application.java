@@ -48,5 +48,18 @@ public class Application {
             break;
         }
 
+        Integer bonusNumber;
+        while (true) {
+            System.out.println(messageContainer.getEnterBonusNumbers());
+            try {
+                bonusNumber = lottoNumberConverter.convertBonusNumber(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            System.out.println();
+            break;
+        }
+
     }
 }

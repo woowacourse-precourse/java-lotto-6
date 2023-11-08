@@ -11,6 +11,10 @@ public class LottoController {
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
 
+    public void start() {
+
+    }
+
     private PurchaseAmount getPurchaseAmount() {
         outputView.printPurchaseAmountInputMessage();
         return new PurchaseAmount(inputView.readPurchaseAmount());

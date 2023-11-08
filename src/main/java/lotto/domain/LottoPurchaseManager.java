@@ -1,6 +1,11 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import lotto.model.Lotto;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoPurchaseManager {
 
@@ -12,4 +17,18 @@ public class LottoPurchaseManager {
         }
         return purchaseAmount / PRICE_OF_LOTTO;
     }
+
+    public List<Lotto> createLottos(int numOfLottos) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i=0; i<numOfLottos; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            try{
+                lottos.add(new Lotto(numbers));
+            } catch (IllegalArgumentException e) {
+                i--;
+            }
+        }
+        return lottos;
+    }
+
 }

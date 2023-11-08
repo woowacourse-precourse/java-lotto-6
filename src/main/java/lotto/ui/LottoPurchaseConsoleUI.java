@@ -2,6 +2,10 @@ package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.LottoPurchaseManager;
+import lotto.model.Lotto;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoPurchaseConsoleUI {
 
@@ -23,5 +27,14 @@ public class LottoPurchaseConsoleUI {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public List<Lotto> startPublishProcess(int numberOfLottos) {
+        List<Lotto> lottos = manager.createLottos(numberOfLottos);
+        System.out.println("\n" + numberOfLottos + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            lotto.printNumbers();
+        }
+        return lottos;
     }
 }

@@ -38,7 +38,7 @@ public class LottoController {
     public void produceStatistics() {
         for (int i = 0; i < user.purchasedLottoNumbers().size(); i++) {
             List<Integer> purchasedLottoNumber = user.purchasedLottoNumbers().get(i);
-            double numberOfMatch = countNumbefOfMatch(purchasedLottoNumber, winningNumber.numbers());
+            double numberOfMatch = countNumberfOfMatch(purchasedLottoNumber, winningNumber.numbers());
             increaseRankCount(calculateRank(numberOfMatch));
         }
     }
@@ -53,7 +53,7 @@ public class LottoController {
         }
     }
 
-    public double countNumbefOfMatch(List<Integer> purchasedLottoNumber, List<Integer> winningNumber) {
+    public double countNumberfOfMatch(List<Integer> purchasedLottoNumber, List<Integer> winningNumber) {
         double numberOfMatch = 0;
 
         for (Integer number : winningNumber) {

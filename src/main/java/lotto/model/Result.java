@@ -36,6 +36,6 @@ public class Result {
     }
 
     public void calculateEarningRate(int earning, int price) {
-        earningRate = (float) (earning * PERCENT) / price;
+        earningRate = (float) (earning / price) * PERCENT;
     }
 }

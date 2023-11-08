@@ -14,7 +14,8 @@ public class LottoService {
         this.numberGenerator = numberGenerator;
     }
 
-    public List<Lotto> generateLottos(int ticketCount) {
+    public List<Lotto> createLottoTickets(int purchaseAmount) {
+        int ticketCount = calculateNumberOfLottoTickets(purchaseAmount);
         return IntStream.range(0, ticketCount)
                 .mapToObj(i -> new Lotto(numberGenerator.generateUniqueNumbers()))
                 .collect(Collectors.toList());

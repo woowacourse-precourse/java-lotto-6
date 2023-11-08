@@ -1,21 +1,37 @@
 package lotto.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 import lotto.domain.WinningNumbers;
 
 public class WinningService {
 
-    public WinningService() {
-        // TODO: 생성자 구현
+    public Map<LottoRank, Integer> calculateResults(List<Lotto> lottos,
+            WinningNumbers winningNumbers) {
+        Map<LottoRank, Integer> results = new HashMap<>();
+        for (Lotto lotto : lottos) {
+            LottoRank rank = determineRank(lotto, winningNumbers);
+            results.put(rank, results.getOrDefault(rank, 0) + 1);
+        }
+        return results;
     }
 
-    public void checkWinning(Lotto lotto, WinningNumbers winningNumbers) {
-        // TODO: 당첨 여부를 확인하는 로직 구현
+    public LottoRank determineRank(Lotto lotto, WinningNumbers winningNumbers) {
+        int matchCount = winningNumbers.matchCount(lotto);
+        boolean matchBonusNumber = winningNumbers.matchBonusNumber(lotto);
+        return LottoRank.valueOf(matchCount, matchBonusNumber);
     }
 
-    public void calculatePrize(Lotto lotto, WinningNumbers winningNumbers) {
-        // TODO: 당첨금 계산 로직 구현
+    public int calculateTotalPrize(Map<LottoRank, Integer> results) {
+        return results.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
     }
 
-    // TODO: 추가적으로 필요한 메소드 구현
+    public double calculateYield(int purchaseAmount, int totalPrize) {
+        return (double) totalPrize / purchaseAmount;
+    }
 }

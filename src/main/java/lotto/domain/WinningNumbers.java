@@ -44,7 +44,8 @@ public class WinningNumbers {
 
     private void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new LottoValidationException(LottoError.BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBER.toString());
+            throw new LottoValidationException(
+                    LottoError.BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBER.toString());
         }
     }
 

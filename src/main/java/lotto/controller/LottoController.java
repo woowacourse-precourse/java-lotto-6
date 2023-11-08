@@ -16,4 +16,8 @@ public class LottoController {
         Lotto lotto = setLottoData();
         calculateLottoWinning(user, lotto);
     }
+
+    public User setUserData() {
+        return userInputDataService.inputUserData();
+    }
 }

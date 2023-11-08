@@ -32,6 +32,7 @@ public class GameController {
 
     public void startGame() {
         outputView.notifyInputAmount();
+
         int amount = inputView.readAmount();
 
         ArrayList<Lotto> lottoBundle = lottoGenerator.generateLottoBundle(amount);

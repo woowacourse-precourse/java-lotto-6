@@ -8,6 +8,9 @@ import java.util.List;
 public class InputView {
     private static InputView inputView;
 
+    private static final String MESSAGE_LOTTO_INPUT_NOT_NUMBER = "[ERROR] 숫자만 입력해야 합니다.";
+    private static final String MESSAGE_LOTTO_INPUT_NOT_NUMBER_EXCLUDE_COMMA = "[ERROR] 쉼표(,)를 제외하 숫자만 입력해야 합니다.";
+
     private InputView() {
     }
 
@@ -23,38 +26,42 @@ public class InputView {
     }
 
     public int readAmount() {
-        try {
-            String input = readInput();
-            System.out.println();
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+        while (true) {
+            try {
+                String input = readInput();
+                System.out.println();
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(MESSAGE_LOTTO_INPUT_NOT_NUMBER);
+            }
         }
     }
 
     public List<Integer> readMainNumbers() {
-        String input = readInput();
-        System.out.println();
-
-        try {
-            List<Integer> numbers = new ArrayList<>();
-            for (String s : input.split(",")) {
-                numbers.add(Integer.parseInt(s));
+        while (true) {
+            String input = readInput();
+            System.out.println();
+            try {
+                List<Integer> numbers = new ArrayList<>();
+                for (String s : input.split(",")) {
+                    numbers.add(Integer.parseInt(s));
+                }
+                return numbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(MESSAGE_LOTTO_INPUT_NOT_NUMBER_EXCLUDE_COMMA);
             }
-            return numbers;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
         }
     }
 
     public Integer readBonusNumber() {
-        String input = readInput();
-        System.out.println();
-
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+        while (true) {
+            try {
+                String input = readInput();
+                System.out.println();
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(MESSAGE_LOTTO_INPUT_NOT_NUMBER);
+            }
         }
     }
 }

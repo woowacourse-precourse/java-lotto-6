@@ -1,9 +1,20 @@
 package lotto.exception;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class Exceptions {
 
     public static void showErrorMessage() {
         System.out.println("[ERROR] 횟수는 숫자만 입력 가능합니다.");
+    }
+
+    public void isInvalidDuplicatedLottoNumber(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if(numbers.size() != uniqueNumbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 로또 번호가 있습니다.");
+        }
     }
 
     public void isInvalidPurchaseMoneyAmount(int money, int divided) {

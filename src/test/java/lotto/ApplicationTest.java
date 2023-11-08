@@ -113,6 +113,43 @@ class ApplicationTest extends NsTest {
         assertDoesNotThrow(() -> new Lotto(List.of(1, 2, 3, 4, 5, 45)));
     }
 
+    @DisplayName("형식에 맞지 않은 당첨 번호를 입력 받으면 예외가 발생한다.")
+    @Test
+    void createWinningNumbersByInvalidFormat() {
+        WinningLotto winningLotto = new WinningLotto();
+        assertThatThrownBy(() -> winningLotto.parseWinningNumbers("12 3 4,5 2"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("중복된 숫자를 포함한 당첨 번호를 입력 받으면 예외가 발생한다.")
+    @Test
+    void createWinningNumbersByDuplicatedNumber() {
+        WinningLotto winningLotto = new WinningLotto();
+        List<Integer> parsedWinningNumbers = winningLotto.parseWinningNumbers("1,1,2,3,4,5");
+
+        assertThatThrownBy(() -> winningLotto.validate(parsedWinningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("범위를 벗어난 당첨 번호를 입력 받으면 예외가 발생한다.")
+    @Test
+    void createWinningNumbersByInvalidRangeNumber() {
+        WinningLotto winningLotto = new WinningLotto();
+        List<Integer> parsedWinningNumbers = winningLotto.parseWinningNumbers("1,2,3,4,5,50");
+
+        assertThatThrownBy(() -> winningLotto.validate(parsedWinningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("1~45 사이의 중복되지 않은 숫자로 입력 받으면 정상 동작한다.")
+    @Test
+    void createWinningNumbers() {
+        WinningLotto winningLotto = new WinningLotto();
+        List<Integer> parsedWinningNumbers = winningLotto.parseWinningNumbers("1,2,3,4,5,6");
+
+        assertDoesNotThrow(() -> winningLotto.validate(parsedWinningNumbers));
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

@@ -158,4 +158,19 @@ class MachineTest {
             assertEquals(LottoRank.FIRST, result);
         }
     }
+
+    @Test
+    @DisplayName("로또 기계를 초기화 할 수 있습니다. - 기계가 가지고 있는 로또 볼이 사라집니다.")
+    void reset() {
+        // given
+        Machine<LottoTicket, LottoRank> machine = new LottoMachine();
+        machine.set(List.of(1, 2, 3, 4, 5, 6));
+        machine.set(7);
+        machine.initialize();
+        LottoTicket ticket = new LottoTicket(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+
+        // when && then
+        machine.reset();
+        assertThrows(NotInitializeException.class, () -> machine.match(ticket));
+    }
 }

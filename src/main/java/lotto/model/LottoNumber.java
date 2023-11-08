@@ -15,6 +15,18 @@ public class LottoNumber {
             }
     }
 
-    
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof LottoNumber){
+            return o.equals(number);
+        }
+        return number.equals(o);
+
+    }
+
+    @Override
+    public String toString(){
+        return Integer.toString(number);
+    }
 
 }

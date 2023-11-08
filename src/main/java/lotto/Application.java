@@ -23,8 +23,13 @@ public class Application {
             showSingleRankResult(lottoResult, rank);
             sum +=(Integer.parseInt(rank.getPrice().replaceAll(",","")) * lottoResult.get(rank));
         }
-        System.out.print("총 수익률은 "+ (sum/ inputTry /10) +"%입니다.");
+        printYieldResult(inputTry, sum);
     }
+
+    private static void printYieldResult(int inputTry, double sum) {
+        System.out.print("총 수익률은 "+ (sum / inputTry /10) +"%입니다.");
+    }
+
     private static void showSingleRankResult(Map<LottoGrade, Integer> map, LottoGrade rank) {
         if (rank.getCorrect()<3) {
             return;
@@ -151,12 +156,17 @@ public class Application {
         while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
-                int inputPrice = Integer.parseInt(readLine());
+                String inputValue = readLine();
+                int inputPrice = Integer.parseInt(inputValue);
                 validateThousandUnit(inputPrice);
+
                 inputTry = (inputPrice / 1000);
                 System.out.printf("\n%d개를 구매했습니다.\n", inputTry);
                 return inputTry;
-            } catch (IllegalArgumentException e) {
+            }catch (NumberFormatException NE){
+                System.out.println("[ERROR] 구입금액은 숫자로만 입력해주세요.");
+                NE.printStackTrace();
+            }catch (IllegalArgumentException e) {
                 e.printStackTrace();
             }
         }

@@ -1,22 +1,61 @@
 package lotto;
 
-import java.text.DecimalFormat;
+import io.IOHandler;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LottoGame {
 
+    private final IOHandler ioHandler = new IOHandler();
+
     public void start() {
-        // TODO: 로또 구입 금액 입력
-        // TODO: 발행한 로또 수량 및 번호 출력
-        // TODO: 당첨 번호 입력
-        // TODO: 보너스 번호 입력
-        // TODO: 당첨 내역 출력
-        // TODO: 수익률 출력
+        int purchaseAmount = setPurchaseAmount();
+        List<Lotto> lottos = Lotto.generateLottos(purchaseAmount);
+        ioHandler.printLottos(lottos);
+
+        List<Integer> winningNumbers = setWinningNumbers();
+        int bonusNumber = setBonusNumber(winningNumbers);
+
+        Map<LottoRank, Integer> winningHistory = getWinningHistory(lottos, winningNumbers, bonusNumber);
+        ioHandler.printWinningHistory(winningHistory);
+
+        double profitRate = calculateProfitRateFromWinningHistory(purchaseAmount, winningHistory);
+        ioHandler.printProfitRate(profitRate);
     }
 
-    public HashMap<LottoRank, Integer> getWinningHistory(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+    private int setPurchaseAmount() {
+        while (true) {
+            try {
+                return ioHandler.inputLottoPurchaseAmount();
+            } catch (IllegalArgumentException e) {
+                ioHandler.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> setWinningNumbers() {
+        while (true) {
+            try {
+                return ioHandler.inputWinningNumbers();
+            } catch (IllegalArgumentException e) {
+                ioHandler.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private int setBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                return ioHandler.inputBonusNumber(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                ioHandler.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    public Map<LottoRank, Integer> getWinningHistory(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         HashMap<LottoRank, Integer> winningHistory = new HashMap<>();
         for (LottoRank rank : LottoRank.values()) {
             winningHistory.put(rank, 0);

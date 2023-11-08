@@ -28,4 +28,14 @@ public class InputTest {
         assertThatThrownBy(() -> InputView.readPurchaseAmount())
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("당첨 번호 검증")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,1,1,1,1"})
+    void validateWinningNumbers(String input) {
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assertThatThrownBy(() -> InputView.readWinningNumbers())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

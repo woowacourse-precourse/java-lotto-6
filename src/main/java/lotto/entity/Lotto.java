@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    //해당 클래스는
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

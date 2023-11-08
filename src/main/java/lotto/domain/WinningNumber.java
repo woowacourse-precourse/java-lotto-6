@@ -15,6 +15,7 @@ public class WinningNumber {
 
     public WinningNumber(List<Integer> winningNumber, Integer bonusNumber) {
         validateWinningNumbers(winningNumber);
+        validateBonusNumber(winningNumber, bonusNumber);
         this.winningNumber = new Lotto(winningNumber);
         this.bonusNumber = bonusNumber;
     }
@@ -25,6 +26,12 @@ public class WinningNumber {
             validateRangeNumber(number);
             validateNumeric(String.valueOf(number));
         }
+    }
+
+    public static void validateBonusNumber(List<Integer> winningNumber, int bonus) {
+        validateNumeric(String.valueOf(bonus));
+        validateRangeNumber(bonus);
+        validateDuplicateAboutBonus(winningNumber, bonus);
     }
 
     private static void validateNumeric(String input) {
@@ -42,6 +49,12 @@ public class WinningNumber {
     private static void validateDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validateDuplicateAboutBonus(List<Integer> numbers, int bonus) {
+        if (numbers.contains(bonus)) {
             throw new IllegalArgumentException();
         }
     }

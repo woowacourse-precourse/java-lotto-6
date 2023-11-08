@@ -13,7 +13,7 @@ public class LottoWinningCalculationOutputView {
     private final static String FIRST_PLACE_MESSAGE = "6개 일치 (2,000,000,000원) - ";
     private final static String COUNT = "개";
     private final static String WINNING_RATE = "총 수익률은 ";
-    private final static String END = "입니다.";
+    private final static String END = "%입니다.";
 
 
     public void outputWinningStatistics(WinningStatistics winningStatistics) {

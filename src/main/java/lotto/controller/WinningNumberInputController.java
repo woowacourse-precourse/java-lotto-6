@@ -14,14 +14,7 @@ public class WinningNumberInputController {
     InputValidator inputValidator = new InputValidator();
     WinningNumberInputValidator winningNumberInputValidator = new WinningNumberInputValidator();
     LottoException lottoException = new LottoException();
-
-    public WinningNumber inputWinningLotto() {
-        Lotto lotto = inputWinningNumber();
-        int bonusNumber = inputBonusNumber(lotto);
-
-        return new WinningNumber(lotto, bonusNumber);
-    }
-
+    
     public Lotto inputWinningNumber() {
         String winningNumber = "";
         Lotto lotto;

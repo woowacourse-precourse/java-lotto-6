@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoWinningCalculationMachine;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumber;
@@ -18,7 +19,14 @@ public class LottoWinningCalculationController {
     }
 
     public void calculateWinningStatistics(Lottos lottos) {
-        WinningNumber winningNumber = winningNumberInputController.inputWinningLotto();
+        lottoWinningCalculationOutputView.outputWinningNumber();
+        Lotto lotto = winningNumberInputController.inputWinningNumber();
+
+        lottoWinningCalculationOutputView.outputBonusNumber();
+        int bonusNumber = winningNumberInputController.inputBonusNumber(lotto);
+
+        WinningNumber winningNumber = new WinningNumber(lotto, bonusNumber);
+
         WinningStatistics winningStatistics = lottoWinningCalculationMachine.calculateWinningStatistics(lottos,
                 winningNumber);
         lottoWinningCalculationOutputView.outputWinningStatistics(winningStatistics);

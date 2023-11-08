@@ -67,4 +67,19 @@ public class GameService {
             return (ArrayList<Integer>) ERROR.ERROR2.getValue();
         }
     }
+
+    public int validBonusNumber(String rawInput, ArrayList<Integer> winNumber) throws IllegalArgumentException {
+        try {
+            int rawBonusNumber = Integer.parseInt(rawInput);
+            if ((rawBonusNumber >= 1 && rawBonusNumber <= 45) && !winNumber.contains(rawBonusNumber)) {
+                return rawBonusNumber;
+            }
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 당첨 번호와 중복되지 않은 숫자여야 합니다.");
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 정확한 숫자로 보너스 번호를 입력해주세요.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return (int) ERROR.ERROR1.getValue();
+        }
+    }
 }

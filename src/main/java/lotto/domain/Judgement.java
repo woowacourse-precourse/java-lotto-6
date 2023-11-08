@@ -12,7 +12,7 @@ public class Judgement {
         if (count == 6) {
             return Ranking.FIRST;
         }
-        if (count == 5 && pickNumbers.contains(lottoWinningNumber.getSpecialNumber())) {
+        if (count == 5 && pickNumbers.contains(lottoWinningNumber.getBonusNumber())) {
             return Ranking.SECOND;
         }
         if (count == 5) {

@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -55,4 +56,66 @@ public class Ui {
 
         return input/1000;
     }
+
+
+    public List<Integer> checkWinningInput(String input){
+        List<Integer> winningValue = new ArrayList<>();
+        String [] stringValues = splitInput(input);
+        try{
+            checkNumOfInput(stringValues);
+            for(String stringValue : stringValues){
+                winningValue.add(checkValidIntValue(stringValue));
+            }
+            checkDuplicatedInput(winningValue);
+            return winningValue;
+        } catch (IllegalArgumentException e){
+            return null;
+        }
+    }
+
+    public Integer checkBonusInput(String input){
+        try{
+            return checkValidIntValue(input);
+        } catch (IllegalArgumentException e){
+            return null;
+        }
+    }
+
+    public Integer checkValidIntValue(String input){
+        int intValue = checkInteger(input.trim());
+        checkRangeOfInput(intValue);
+
+        return intValue;
+    }
+
+    public String[] splitInput(String input){
+
+        return input.split(",");
+    }
+
+    public void checkNumOfInput(String [] input){
+
+        if(input.length != 6){
+            print(ExceptionMessage.lottoNumber.getMessage());
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void checkRangeOfInput(int input){
+
+        if(input < 1 || 45 < input){
+            print(ExceptionMessage.rangeNumber.getMessage());
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void checkDuplicatedInput(List<Integer> input){
+
+        if(input.size() != input.stream().distinct().count()){
+            print(ExceptionMessage.duplicatedNumber.getMessage());
+            throw new IllegalArgumentException();
+        }
+    }
+
+
 }

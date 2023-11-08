@@ -9,8 +9,6 @@ import static org.assertj.core.api.Assertions.*;
 
 public class TestLottoFunction {
 
-
-
     @Test
     public void TestMakeLotto(){
 
@@ -23,7 +21,6 @@ public class TestLottoFunction {
             }
             System.out.println();
         }
-
         System.out.println("-----------------");
     }
 

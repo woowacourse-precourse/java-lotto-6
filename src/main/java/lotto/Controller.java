@@ -10,6 +10,9 @@ public class Controller {
     private List<Lotto> lottos = new ArrayList<>();
     private Integer numOfLotto;
 
+    private List<Integer> winningNumbers = new ArrayList<>();
+    Integer bonusNumber;
+
     Controller(Ui ui){
         this.ui = ui;
     }
@@ -35,6 +38,19 @@ public class Controller {
         for(int i=0;i<numOfLotto;i++){
             ui.print(lottos.get(i).toString());
         }
+
+        do{
+            ui.print(Notification.inputWinning.getMessage());
+            String inputWinning = ui.input();
+            winningNumbers = ui.checkWinningInput(inputWinning);
+        } while(winningNumbers == null);
+
+        do{
+            ui.print(Notification.inputBonus.getMessage());
+            String inputBonus = ui.input();
+            bonusNumber = ui.checkBonusInput(inputBonus);
+        } while(bonusNumber == null);
+
 
 
 

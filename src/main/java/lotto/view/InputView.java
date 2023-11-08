@@ -94,10 +94,17 @@ public class InputView {
 
     private void checkBonusNumberValidity(int bonusNumber, List<Integer> winningNumbers) {
         validateRangeBonusNumber(bonusNumber);
+        validateDuplicateBonusNumber(bonusNumber, winningNumbers);
     }
     private void validateRangeBonusNumber(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 값이어야 합니다.");
+        }
+    }
+
+    private void validateDuplicateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
         }
     }
 

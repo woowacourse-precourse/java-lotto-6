@@ -2,6 +2,9 @@ package lotto;
 
 import java.util.List;
 
+import static validate.InputValidation.validateLottoNumberCount;
+import static validate.InputValidation.validateNoDuplicateNumbers;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -11,9 +14,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        validateLottoNumberCount(numbers);
+        validateNoDuplicateNumbers(numbers);
     }
 
     // TODO: 추가 기능 구현

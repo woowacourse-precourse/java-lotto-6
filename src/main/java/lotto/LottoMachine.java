@@ -17,6 +17,9 @@ public class LottoMachine {
         String input = Console.readLine();
 
         try{
+            if(Integer.parseInt(input) % 1000 !=0){
+                throw new IllegalArgumentException();
+            }
             this.count = Integer.parseInt(input)/1000;
         } catch (IllegalArgumentException e){
             System.out.println(("[Error] 1000원 단위로 나누어 떨어져야 합니다."));

@@ -2,10 +2,10 @@ package lotto.controller;
 
 import lotto.domain.Calculator;
 import lotto.domain.LottoResult;
-import lotto.domain.WinningBonusNumber;
-import lotto.domain.WinningNumbers;
 import lotto.domain.PurchasedLotto;
 import lotto.domain.User;
+import lotto.domain.WinningBonusNumber;
+import lotto.domain.WinningNumbers;
 import lotto.dto.InputBonus;
 import lotto.dto.InputMoney;
 import lotto.dto.InputWinningNumbers;
@@ -35,6 +35,12 @@ public class GameController {
     private static LottoResultDTO lottoProgress(PurchasedLotto purchasedLotto) {
         WinningNumbers winningNumbers = inputWinningNumbers();
         WinningBonusNumber winningBonusNumber = inputBonusNumber(winningNumbers);
+        LottoResultDTO lottoResultDTO = matchingLotto(winningNumbers, winningBonusNumber, purchasedLotto);
+        return lottoResultDTO;
+    }
+
+    private static LottoResultDTO matchingLotto(WinningNumbers winningNumbers, WinningBonusNumber winningBonusNumber,
+                                             PurchasedLotto purchasedLotto) {
         LottoResult lottoResult = LottoService.compareLotto(winningNumbers, winningBonusNumber,
                 purchasedLotto);
         LottoResultDTO lottoResultDTO = new LottoResultDTO(lottoResult.getLottoResult());

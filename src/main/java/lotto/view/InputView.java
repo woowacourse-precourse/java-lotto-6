@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
 import lotto.validator.Validator;
 
 public class InputView {
@@ -18,6 +20,28 @@ public class InputView {
             System.out.println(e.getMessage());
             return inputPurchaseAmount();
         }
+    }
+
+    public List<Integer> inputWinningNumbers() {
+        System.out.println(INPUT_WINNING_NUMBERS);
+        String winningNumbersInput = Console.readLine().trim();
+        try {
+            Validator.validateWinningNumbers(winningNumbersInput);
+            return changeInputToNumber(winningNumbersInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinningNumbers();
+        }
+    }
+
+    private List<Integer> changeInputToNumber (String input) {
+        String[] values = input.split(",");
+        List<Integer> winningNumbers =  new ArrayList<>();
+        for (String value: values) {
+            int number = Integer.parseInt(value);
+            winningNumbers.add(number);
+        }
+        return winningNumbers;
     }
 
 }

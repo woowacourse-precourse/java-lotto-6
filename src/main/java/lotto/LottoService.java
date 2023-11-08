@@ -17,6 +17,7 @@ public class LottoService {
         int money = inputView.inputPurchaseAmount();
         int lottoCount = lottoShop.buyLotto(money);
         List<Lotto> lottoTickets = getLottoTickets(lottoCount);
+        List<Integer> winningNumbers = inputView.inputWinningNumbers();
     }
 
     public List<Lotto> getLottoTickets(int count) {

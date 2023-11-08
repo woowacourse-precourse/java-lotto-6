@@ -28,10 +28,13 @@ public class OutputView {
     public void printWinningResult(WinningResult winningResult, List<Lotto> lottoTikets) {
         System.out.printf("당첨 통계%n---%n");
         for (Rank rank : Rank.values()) {
-            System.out.printf(Locale.KOREA, "%d개 일치 (%,d원) - %d개%n",
-                    rank.getCountOfMatch(), rank.getPrizeMoney(), winningResult.getCount(rank));
+            System.out.printf("%d개 일치", rank.getCountOfMatch());
+            if (rank == Rank.SECOND) {
+                System.out.printf(", 보너스 볼 일치");
+            }
+            System.out.printf(Locale.KOREA, " (%,d원) - %d개%n", rank.getPrizeMoney(), winningResult.getCount(rank));
         }
         double yield = winningResult.calculateYield(lottoTikets.size() * Constant.LOTTO_PRICE.getValue());
-        System.out.printf("총 수익률은 %.1f입니다.%n", yield);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", yield);
     }
 }

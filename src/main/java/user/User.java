@@ -1,6 +1,7 @@
 package user;
 
 import lotto.LottoCollection;
+import lotto.LottoResult;
 
 import static validate.InputValidation.*;
 
@@ -14,6 +15,9 @@ public class User {
 
     private void validate(int purchaseAmount) {
         validateAmount(purchaseAmount);
+    }
+    public void printMyLottoNumbers() {
+        lottos.printLottoNumbers();
     }
 
 }

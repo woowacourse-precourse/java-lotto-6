@@ -33,4 +33,12 @@ public class LottoWinningResultSummary {
         int amountSpent = calcAmountSpent(lottoResult);
         return ((double) totalPrize / amountSpent) * 100;
     }
+
+    public LottoResult getLottoResult() {
+        return lottoResult;
+    }
+
+    public double getGrossProfitRate() {
+        return grossProfitRate;
+    }
 }

@@ -39,4 +39,15 @@ public class ValidateWinningNumber {
 
     }
 
+    public static void validateBonusNumber(String inputValue) {
+
+        int bonusNumber = ValidateNumber.isPositiveInteger(inputValue);
+        isRange(bonusNumber);
+
+        if(winningNumberList.contains(bonusNumber)){
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되는 보너스 번호를 입력할 수 없습니다.");
+        }
+
+    }
+
 }

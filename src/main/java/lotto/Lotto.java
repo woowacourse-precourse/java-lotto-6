@@ -27,11 +27,6 @@ public class Lotto {
         }
     }
 
-    public static Lotto create() {
-        List<Integer> lottoNums = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return new Lotto(lottoNums);
-    }
-
     public Result match(List<Integer> winnerNums, int bonusNum) {
         int matchCount = getMatchCount(winnerNums);
         boolean hitBonusNum = isHitBonusNum(bonusNum);

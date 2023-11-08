@@ -33,7 +33,6 @@ public class LottoController {
 
         List<Integer> results = lottoService.getResults(purchasedLottos, winnerNums, bonusNum);
         double earningRate = lottoService.calculateEarningRate(results, purchaseAmount);
-
         lottoView.printResult(results, earningRate);
     }
 

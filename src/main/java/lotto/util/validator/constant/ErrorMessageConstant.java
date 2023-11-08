@@ -1,6 +1,8 @@
 package lotto.util.validator.constant;
 
 public enum ErrorMessageConstant {
+    LOTTO_LENGTH_NOT_SIX_MESSAGE("로또 번호는 6개여야 합니다."),
+    LOTTO_NUMBER_DUPLICATE_MESSAGE("로또 번호는 서로 다른 수로 이루어져야 합니다."),
     WINNING_LENGTH_NOT_SIX_MESSAGE("당첨 번호는 6개 입력하셔야합니다."),
     WINNING_NUMBER_DUPLICATE_MESSAGE("당첨 번호는 서로 다른 수로 이루어져야합니다."),
     WINNING_NUMBER_IS_NOT_NUMERIC("당첨 번호는 숫자로 이루어져야합니다."),

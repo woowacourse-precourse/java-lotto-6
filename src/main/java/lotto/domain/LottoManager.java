@@ -4,13 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.constant.ExceptionMessage;
+import lotto.constant.NumberRange;
 
 public class LottoManager {
 
     private static final int INIT_RANKS_VALUE = 1;
     private static final int INCREASE_RANKS_VALUE = 1;
-    private static final int MIN_NUMBER_RANGE = 1;
-    private static final int MAX_NUMBER_RANGE = 45;
 
     private final Lotto winningLotto;
     private final int bonusNumber;
@@ -47,7 +46,7 @@ public class LottoManager {
     }
 
     private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
-        if (bonusNumber < MIN_NUMBER_RANGE || bonusNumber > MAX_NUMBER_RANGE) {
+        if (bonusNumber < NumberRange.MIN_NUMBER.getNumber() || bonusNumber > NumberRange.MAX_NUMBER.getNumber()) {
             throw new IllegalArgumentException(ExceptionMessage.OVER_NUMBER_RANGE.getMessage());
         }
         if (winningNumbers.contains(bonusNumber)) {

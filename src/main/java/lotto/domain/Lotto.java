@@ -3,11 +3,9 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import lotto.constant.ExceptionMessage;
+import lotto.constant.NumberRange;
 
 public class Lotto {
-
-    private static final int MIN_NUMBER_RANGE = 1;
-    private static final int MAX_NUMBER_RANGE = 45;
 
     private final List<Integer> numbers;
 
@@ -34,7 +32,7 @@ public class Lotto {
 
     private void checkLottoNumbersRange(List<Integer> numbers) {
         numbers.stream()
-                .filter(number -> number > MAX_NUMBER_RANGE || number < MIN_NUMBER_RANGE)
+                .filter(number -> number > NumberRange.MAX_NUMBER.getNumber() || number < NumberRange.MIN_NUMBER.getNumber())
                 .findAny()
                 .ifPresent(number -> {
                     throw new IllegalArgumentException(ExceptionMessage.OVER_NUMBER_RANGE.getMessage());

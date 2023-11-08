@@ -18,14 +18,15 @@ class PointCalculatorTest {
                 .map(Integer::valueOf)
                 .map(LottoNumber::of)
                 .collect(Collectors.toList()));
-        AnswerLotto answerLotto = new AnswerLotto(new Lotto(Arrays.stream(answerLottoNumbers.split(","))
+        Lotto answerLotto = new Lotto(Arrays.stream(answerLottoNumbers.split(","))
                 .map(Integer::valueOf)
                 .map(LottoNumber::of)
-                .toList()), LottoNumber.of(bonusNumber));
+                .toList());
         PointCalculator pointCalculator = new PointCalculator();
+        WinningInformation winningInformation = new WinningInformation(answerLotto, LottoNumber.of(bonusNumber));
 
         //When
-        double result = pointCalculator.calculateTotalPoint(lotto, answerLotto);
+        double result = pointCalculator.calculateTotalPoint(lotto, winningInformation);
 
         //Then
         assertThat(result).isEqualTo(expectedResult);

@@ -4,7 +4,7 @@ import constants.Grade;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.AnswerLotto;
+import lotto.WinningInformation;
 import lotto.Lotto;
 import lotto.LottoNumber;
 import lotto.Money;
@@ -24,8 +24,8 @@ public class LottoController {
 
     private PointResult generatePointResult(int lottoPurchaseCount) {
         List<Lotto> lottos = generateLottoWithCount(lottoPurchaseCount);
-        AnswerLotto answerLotto = generateAnswerLotto();
-        List<Double> lottoPointResult = getLottoPointResult(lottos, answerLotto);
+        WinningInformation winningInformation = generateWinningInformation();
+        List<Double> lottoPointResult = getLottoPointResult(lottos, winningInformation);
         return new PointResult(lottoPointResult);
     }
 
@@ -53,11 +53,11 @@ public class LottoController {
         return new Money(Integer.parseInt(InputView.inputNaturalNumber()));
     }
 
-    private AnswerLotto generateAnswerLotto() {
+    private WinningInformation generateWinningInformation() {
         OutputView.printAnswerLottoNumberInputMessage();
-        Lotto lotto = new Lotto(Parser.stringToLottoNumbers(InputView.inputAnswerLotto()));
+        Lotto answerLotto = new Lotto(Parser.stringToLottoNumbers(InputView.inputAnswerLotto()));
         LottoNumber bonusNumber = createBonusNumber();
-        return new AnswerLotto(lotto, bonusNumber);
+        return new WinningInformation(answerLotto, bonusNumber);
     }
 
     private LottoNumber createBonusNumber() {
@@ -65,11 +65,11 @@ public class LottoController {
         return LottoNumber.of(Integer.parseInt(InputView.inputNaturalNumber()));
     }
 
-    private List<Double> getLottoPointResult(List<Lotto> lottos, AnswerLotto answerLotto) {
+    private List<Double> getLottoPointResult(List<Lotto> lottos, WinningInformation winningInformation) {
         PointCalculator pointCalculator = new PointCalculator();
         List<Double> lottoPointResult = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            lottoPointResult.add(pointCalculator.calculateTotalPoint(lotto, answerLotto));
+            lottoPointResult.add(pointCalculator.calculateTotalPoint(lotto, winningInformation));
         }
         return lottoPointResult;
     }

@@ -2,7 +2,7 @@ package lotto;
 
 import constants.ErrorMessage;
 
-public class AnswerLotto {
+public class WinningInformation {
     private final Lotto answerLotto;
     private final LottoNumber bonusNumber;
 
@@ -14,7 +14,7 @@ public class AnswerLotto {
         return answerLotto;
     }
 
-    public AnswerLotto(Lotto answerLotto, LottoNumber bonusNumber) {
+    public WinningInformation(Lotto answerLotto, LottoNumber bonusNumber) {
         validateBonusNumber(answerLotto, bonusNumber);
         this.answerLotto = answerLotto;
         this.bonusNumber = bonusNumber;

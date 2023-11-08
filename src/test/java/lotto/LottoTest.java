@@ -62,14 +62,15 @@ class LottoTest {
         Lotto lotto = new Lotto(Stream.of(1, 2, 3, 4, 5, 6)
                 .map(LottoNumber::of)
                 .toList());
-        LottoNumber bonusNumber = LottoNumber.of(7);
-        AnswerLotto answerLotto = new AnswerLotto(new Lotto(Stream.of(1, 2, 3, 4, 5, 6)
+        Lotto answerLotto = new Lotto(Stream.of(1, 2, 3, 4, 5, 6)
                 .map(LottoNumber::of)
-                .toList()), bonusNumber);
+                .toList());
+        LottoNumber bonusNumber = LottoNumber.of(7);
+        WinningInformation winningInformation = new WinningInformation(answerLotto, bonusNumber);
 
         //When
         int expectedResult = 6;
-        int result = lotto.countMatchNumber(answerLotto.getAnswerLotto());
+        int result = lotto.countMatchNumber(winningInformation.getAnswerLotto());
 
         //When & Then
         assertThat(result).isEqualTo(expectedResult);

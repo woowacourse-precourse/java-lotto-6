@@ -46,7 +46,7 @@ class PointResultTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"3.0, 8000","'3.0, 4.0', 15000"}, delimiter = ',')
+    @CsvSource(value = {"3.0, 8000", "'3.0, 4.0', 15000"}, delimiter = ',')
     @DisplayName("수익률을 계산한다.")
     void calculateEarningRate(String inputPoints, int inputMoney) {
         //Given

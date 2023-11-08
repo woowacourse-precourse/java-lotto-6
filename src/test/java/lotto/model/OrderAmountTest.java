@@ -22,7 +22,7 @@ class OrderAmountTest {
     void calculateProfit(){
         OrderAmount order = new OrderAmount("8000");
         LottoResults results = new LottoResults( 0, 0, 0, 0, 1);
-        assertThat(order.calculateProfit(results)).isEqualTo(62.5);
+        assertThat(order.calculateProfit(results)).isEqualTo("62.5");
     }
 
     @Test

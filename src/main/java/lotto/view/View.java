@@ -37,7 +37,7 @@ public class View {
         printMessage(STATISTICS.getMessage() + result);
     }
 
-    public void printProfit(double profit) {
+    public void printProfit(String profit) {
         printMessage(PROFIT_START.getMessage() + profit + PROFIT_END.getMessage());
     }
 }

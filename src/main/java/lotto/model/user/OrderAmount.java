@@ -1,10 +1,12 @@
 package lotto.model.user;
 
+import static lotto.model.constants.IntegerConstants.HUNDRED_DIVISOR;
+import static lotto.model.constants.IntegerConstants.THOUSAND_DIVISOR;
 import static lotto.model.validator.InputValidator.checkNumericInput;
 import static lotto.model.validator.InputValidator.numberMustBeMultipleOf1000;
 
 public class OrderAmount {
-    private int money;
+    private final int money;
 
     public OrderAmount(String order) {
         checkNumericInput(order);
@@ -13,10 +15,10 @@ public class OrderAmount {
     }
 
     public int amountOfLotto() {
-        return money/1000;
+        return money/THOUSAND_DIVISOR.get();
     }
 
-    public double calculateProfit(LottoResults results) {
-        return Double.parseDouble(String.format("%1f", results.earning() / money * 100));
+    public String calculateProfit(LottoResults results) {
+        return String.format("%.1f", (results.earning() / money) * HUNDRED_DIVISOR.get());
     }
 }

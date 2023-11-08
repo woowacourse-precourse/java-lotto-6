@@ -3,7 +3,6 @@ package lotto.View;
 import static lotto.View.OutputMessage.Enter_Bonus_Numbers;
 import static lotto.View.OutputMessage.Enter_Lotto_Numbers;
 import static lotto.View.OutputMessage.Enter_Purchase_Mount;
-import static lotto.View.OutputMessage.TOTAL_PRIZE_TITLE;
 
 import java.util.ArrayList;
 import java.util.List;

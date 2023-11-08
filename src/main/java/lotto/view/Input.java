@@ -51,7 +51,7 @@ public class Input {
             return input;
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            return getCost();
+            return getBonusNumber();
         }
     }
 

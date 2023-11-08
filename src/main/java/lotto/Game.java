@@ -39,12 +39,11 @@ public class Game {
     }
 
     private int getLottoQuantity(){
-        String string = input.getCost();
-        int cost = stringToInt(string);
         try {
-            if(!(cost%LOTTO_PRICE == 0)){
-                throw new IllegalArgumentException("[ERROR] Cost should be divided by 1000.");
-            }
+            String string = input.getCost();
+            validateInput(string);
+            int cost = stringToInt(string);
+            validateLottoQuantity(cost);
             return cost/LOTTO_PRICE;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -54,7 +53,9 @@ public class Game {
 
     private Lotto getWinningNumbers(){
         try{
-            List<Integer> numbers = splitNumbers(input.getWinningNumber());
+            String string = input.getWinningNumber();
+            validateInput(string);
+            List<Integer> numbers = splitNumbers(string);
             validateWinningNumbers(numbers);
             validateDuplicate(numbers);
             return new Lotto(numbers);
@@ -66,7 +67,9 @@ public class Game {
 
     private int getBonusNumber(){
         try{
-            int number = Integer.parseInt(input.getBonusNumber());
+            String string = input.getBonusNumber();
+            validateInput(string);
+            int number = Integer.parseInt(string);
             validateBonusNumber(number);
             return number;
         } catch (IllegalArgumentException e){
@@ -86,6 +89,18 @@ public class Game {
             result.add(Integer.parseInt(string));
         }
         return result;
+    }
+
+    private void validateInput(String input){
+        if(input.isEmpty()){
+            throw new IllegalArgumentException("[ERROR] You should enter input.");
+        }
+    }
+
+    private void validateLottoQuantity(int cost){
+        if(!(cost%LOTTO_PRICE == 0)){
+            throw new IllegalArgumentException("[ERROR] Cost should be divided by 1000.");
+        }
     }
 
     private void validateWinningNumbers(List<Integer> numbers){

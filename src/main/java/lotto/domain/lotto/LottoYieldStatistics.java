@@ -1,4 +1,7 @@
-package lotto.domain;
+package lotto.domain.lotto;
+
+import lotto.domain.Money;
+import lotto.domain.winning.WinningGrade;
 
 import java.util.Map;
 

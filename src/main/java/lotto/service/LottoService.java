@@ -1,6 +1,10 @@
 package lotto.service;
 
 import lotto.domain.*;
+import lotto.domain.lotto.*;
+import lotto.domain.winning.WinningGrade;
+import lotto.domain.winning.WinningNumbers;
+import lotto.domain.winning.WinningResultMapper;
 
 import java.util.List;
 import java.util.Map;

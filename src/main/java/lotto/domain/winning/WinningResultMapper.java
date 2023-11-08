@@ -1,6 +1,6 @@
-package lotto.domain;
+package lotto.domain.winning;
 
-import lotto.message.ProcessMessage;
+import lotto.domain.winning.WinningGrade;
 import lotto.message.ResultMessage;
 
 import java.util.List;

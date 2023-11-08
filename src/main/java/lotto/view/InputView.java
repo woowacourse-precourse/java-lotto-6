@@ -3,7 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.BonusNumber;
 import lotto.domain.Money;
-import lotto.domain.WinningNumbers;
+import lotto.domain.winning.WinningNumbers;
 import lotto.validator.InputValidator;
 
 import java.util.Arrays;

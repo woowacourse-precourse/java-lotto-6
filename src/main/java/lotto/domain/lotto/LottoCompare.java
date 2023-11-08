@@ -1,4 +1,7 @@
-package lotto.domain;
+package lotto.domain.lotto;
+
+import lotto.domain.winning.WinningGrade;
+import lotto.domain.winning.WinningNumbers;
 
 import java.util.Arrays;
 import java.util.EnumMap;

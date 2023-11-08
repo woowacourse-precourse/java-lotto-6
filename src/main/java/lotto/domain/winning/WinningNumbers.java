@@ -1,5 +1,6 @@
-package lotto.domain;
+package lotto.domain.winning;
 
+import lotto.domain.BonusNumber;
 import lotto.exception.DuplicatedWinningNumbersAndBonusNumberException;
 import lotto.exception.DuplicatedNumberException;
 import lotto.exception.InvalidNumbersLengthException;

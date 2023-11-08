@@ -1,31 +1,28 @@
-package lotto.domain;
+package lotto.domain.winning;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Map;
 
 public enum WinningGrade {
-    DEFAULT(6, 0, 0, false),
-    FIFTH(5, 3, 5_000, false),
-    FOURTH(4, 4, 50_000, false),
-    THIRD(3, 5, 1_500_000, false),
-    SECOND(2, 5, 30_000_000, true),
-    FIRST(1, 6, 2_000_000_000, false);
+    DEFAULT(0,  0),
+    FIFTH( 3, 5_000),
+    FOURTH( 4, 50_000),
+    THIRD(5, 1_500_000),
+    SECOND(5, 30_000_000),
+    FIRST(6, 2_000_000_000);
 
-    private final int grade;
+    private static final int IS_SECOND_OR_THIRD = 5;
     private final int matchCount;
     private final int prizeMoney;
-    private final boolean bonusIncluded;
 
-    WinningGrade(int grade, int matchCount, int prizeMoney, boolean bonusIncluded) {
-        this.grade = grade;
+    WinningGrade(int matchCount, int prizeMoney) {
         this.matchCount = matchCount;
         this.prizeMoney = prizeMoney;
-        this.bonusIncluded = bonusIncluded;
     }
 
     public static WinningGrade findGrade(int matchCount, boolean bonusIncluded) {
-        if (matchCount == 5) {
+        if (matchCount == IS_SECOND_OR_THIRD) {
             return findSecondOrThirdGrade(bonusIncluded);
         }
         return findOthers(matchCount);
@@ -53,15 +50,15 @@ public enum WinningGrade {
     }
 
     private static int calculatePrizeMoney(Map.Entry<WinningGrade, Integer> grade) {
-        return grade.getKey().prizeMoney * grade.getValue();
+        return getPrizeMoney(grade) * getWinningCount(grade);
     }
 
-    @Override
-    public String toString() {
-        if (this == SECOND) {
-            return matchCount + "개 일치, 보너스 볼 일치 (" + convertToCommaPattern(prizeMoney) + "원) - ";
-        }
-        return matchCount + "개 일치 (" + convertToCommaPattern(prizeMoney) + "원) - ";
+    private static Integer getWinningCount(Map.Entry<WinningGrade, Integer> grade) {
+        return grade.getValue();
+    }
+
+    private static int getPrizeMoney(Map.Entry<WinningGrade, Integer> grade) {
+        return grade.getKey().prizeMoney;
     }
 
     public boolean isSecondGrade() {

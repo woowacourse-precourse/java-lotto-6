@@ -28,7 +28,7 @@ public class LottoMachine {
             money = Integer.parseInt(input);
             return true;
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자를 입력해야 합니다.");
+            System.out.println(ErrorType.FORMAT.getErrorMessage());
             return false;
         }
     }
@@ -36,9 +36,9 @@ public class LottoMachine {
     static boolean validateMoney(String input) {
         try {
             if (money < 0) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 양수여야 합니다.");
+                throw new IllegalArgumentException(ErrorType.SIGN.getErrorMessage());
             } else if (money % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.");
+                throw new IllegalArgumentException(ErrorType.UNIT.getErrorMessage());
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

@@ -41,10 +41,10 @@ public class WinningLotto {
     static public void validateBonusNumber() {
         try {
             if (bonusNumber < 1 | bonusNumber > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException(ErrorType.RANGE.getErrorMessage());
             }
             if (winningLotto.getNumbers().contains(bonusNumber)) {
-                throw new IllegalArgumentException("[ERROR] 중복되지 않은 번호를 입력해 주세요.");
+                throw new IllegalArgumentException(ErrorType.REPITITION.getErrorMessage());
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

@@ -25,6 +25,12 @@ public class Validator {
         validateMoneyUnit(money);
     }
 
+    public static void validateInputRange(final String input) {
+        if (input.length() > 9) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_OUT_OF_RANGE);
+        }
+    }
+
     private static void validateMoneyUnit(final int money) {
         if (money % Constant.MONEY_UNIT != 0 || money == 0) {
             throw new IllegalArgumentException(ErrorMessage.MONEY_WRONG_UNIT);

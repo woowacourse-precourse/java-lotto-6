@@ -9,6 +9,7 @@ public class ErrorMessage {
     public static final String NUMBER_WRONG_FORMAT = HEAD + "숫자는 자연수여야 합니다.";
     public static final String BONUS_AND_WINNING_DUPLICATE = HEAD + "당첨 번호와 중복될 수 없습니다.";
     public static final String MONEY_WRONG_UNIT = HEAD + "금액은 1000원 단위여야 합니다.";
+    public static final String INPUT_OUT_OF_RANGE = HEAD + "숫자는 9자리 자연수여야 합니다.";
 
     private ErrorMessage() {
     }

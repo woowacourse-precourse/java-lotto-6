@@ -1,7 +1,7 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.User;
+import lotto.domain.Buyer;
 import lotto.io.validator.BonusNumberValidator;
 import lotto.io.validator.LottoPurchaseAmountValidator;
 import lotto.io.validator.WinningNumberValidator;
@@ -21,7 +21,7 @@ public class InputProcessor {
         final String userInput = Console.readLine();
         LottoPurchaseAmountValidator.validate(userInput);
 
-        return Integer.parseInt(userInput) / User.LOTTO_PURCHASE_UNIT;
+        return Integer.parseInt(userInput) / Buyer.LOTTO_PURCHASE_UNIT;
     }
 
     public static List<Integer> readWiningNumbers() {

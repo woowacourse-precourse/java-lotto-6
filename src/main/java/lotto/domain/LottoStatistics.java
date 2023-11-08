@@ -8,19 +8,19 @@ import java.util.Map;
 
 public class LottoStatistics {
     private final WinningLottoHolder winningLottoHolder;
-    private final User user;
+    private final Buyer buyer;
     private final Map<WinningRank, Integer> winningResult = new EnumMap<>(WinningRank.class);
 
-    private LottoStatistics(final WinningLottoHolder winningLottoHolder, final User user) {
+    private LottoStatistics(final WinningLottoHolder winningLottoHolder, final Buyer buyer) {
         this.winningLottoHolder = winningLottoHolder;
-        this.user = user;
+        this.buyer = buyer;
 
         initWinningResult();
         calculateLottoWinningResult();
     }
 
-    public static LottoStatistics checkLottoResult(final WinningLottoHolder winningLottoHolder, final User user) {
-        return new LottoStatistics(winningLottoHolder, user);
+    public static LottoStatistics checkLottoResult(final WinningLottoHolder winningLottoHolder, final Buyer buyer) {
+        return new LottoStatistics(winningLottoHolder, buyer);
     }
 
     private void initWinningResult() {
@@ -30,7 +30,7 @@ public class LottoStatistics {
     }
 
     private void calculateLottoWinningResult() {
-        for (final Lotto userLotto : user.getLottos()) {
+        for (final Lotto userLotto : buyer.getLottos()) {
             final int matchCount = winningLottoHolder.calculateLottoMatchCount(userLotto);
             final boolean hasBonus = winningLottoHolder.isBonusNumberInclude(userLotto);
 
@@ -44,7 +44,7 @@ public class LottoStatistics {
     }
 
     public BigDecimal calculateEarningRate() {
-        final BigDecimal lottoPurchaseMoney = user.calculateLottoPurchaseMoney();
+        final BigDecimal lottoPurchaseMoney = buyer.calculateLottoPurchaseMoney();
         final BigDecimal totalWinningMoney = calculateTotalWinningMoney();
 
         return totalWinningMoney

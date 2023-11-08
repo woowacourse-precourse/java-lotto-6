@@ -16,14 +16,14 @@ public class LottoStatisticsTest {
     void getWinningResult() {
         // given
         final WinningLottoHolder winningLottoHolder = createLottoWinningMachine();
-        final User userLottoCaseA = createUserLottosCaseA();
-        final User userLottoCaseB = createUserLottosCaseB();
-        final User userLottoCaseC = createUserLottosCaseC();
+        final Buyer buyerLottoCaseA = createUserLottosCaseA();
+        final Buyer buyerLottoCaseB = createUserLottosCaseB();
+        final Buyer buyerLottoCaseC = createUserLottosCaseC();
 
         // when
-        final LottoStatistics caseA = LottoStatistics.checkLottoResult(winningLottoHolder, userLottoCaseA);
-        final LottoStatistics caseB = LottoStatistics.checkLottoResult(winningLottoHolder, userLottoCaseB);
-        final LottoStatistics caseC = LottoStatistics.checkLottoResult(winningLottoHolder, userLottoCaseC);
+        final LottoStatistics caseA = LottoStatistics.checkLottoResult(winningLottoHolder, buyerLottoCaseA);
+        final LottoStatistics caseB = LottoStatistics.checkLottoResult(winningLottoHolder, buyerLottoCaseB);
+        final LottoStatistics caseC = LottoStatistics.checkLottoResult(winningLottoHolder, buyerLottoCaseC);
 
         // then
         final Map<WinningRank, Integer> winningResultA = caseA.getWinningResult();
@@ -62,14 +62,14 @@ public class LottoStatisticsTest {
     void getEarningRate() {
         // given
         final WinningLottoHolder winningLottoHolder = createLottoWinningMachine();
-        final User userLottoCaseA = createUserLottosCaseA();
-        final User userLottoCaseB = createUserLottosCaseB();
-        final User userLottoCaseC = createUserLottosCaseC();
+        final Buyer buyerLottoCaseA = createUserLottosCaseA();
+        final Buyer buyerLottoCaseB = createUserLottosCaseB();
+        final Buyer buyerLottoCaseC = createUserLottosCaseC();
 
         // when
-        final LottoStatistics caseA = LottoStatistics.checkLottoResult(winningLottoHolder, userLottoCaseA);
-        final LottoStatistics caseB = LottoStatistics.checkLottoResult(winningLottoHolder, userLottoCaseB);
-        final LottoStatistics caseC = LottoStatistics.checkLottoResult(winningLottoHolder, userLottoCaseC);
+        final LottoStatistics caseA = LottoStatistics.checkLottoResult(winningLottoHolder, buyerLottoCaseA);
+        final LottoStatistics caseB = LottoStatistics.checkLottoResult(winningLottoHolder, buyerLottoCaseB);
+        final LottoStatistics caseC = LottoStatistics.checkLottoResult(winningLottoHolder, buyerLottoCaseC);
 
         // then
         assertAll(
@@ -91,8 +91,8 @@ public class LottoStatisticsTest {
      * 당첨 금액 = 2,031,610,000 <br>
      * -> 수익률 = 169,300.83333333333333333333333333... = 16930083.33% = 16930083.3%
      */
-    private User createUserLottosCaseA() {
-        return User.provideLottos(
+    private Buyer createUserLottosCaseA() {
+        return Buyer.provideLottos(
                 List.of(
                         Lotto.create(List.of(8, 9, 10, 11, 12, 13)), // None
                         Lotto.create(List.of(8, 9, 10, 11, 12, 13)), // None
@@ -115,8 +115,8 @@ public class LottoStatisticsTest {
      * 당첨 금액 = 15000 <br>
      * -> 수익률 = 0.88235294117647058823529411764706... = 88.23% = 88.2%
      */
-    private User createUserLottosCaseB() {
-        return User.provideLottos(
+    private Buyer createUserLottosCaseB() {
+        return Buyer.provideLottos(
                 List.of(
                         Lotto.create(List.of(8, 9, 10, 11, 12, 13)), // None
                         Lotto.create(List.of(8, 9, 10, 11, 12, 13)), // None
@@ -144,8 +144,8 @@ public class LottoStatisticsTest {
      * 당첨 금액 = 5000 <br>
      * -> 수익률 = 0.625 = 62.5%
      */
-    private User createUserLottosCaseC() {
-        return User.provideLottos(
+    private Buyer createUserLottosCaseC() {
+        return Buyer.provideLottos(
                 List.of(
                         Lotto.create(List.of(8, 21, 23, 41, 42, 43)), // None
                         Lotto.create(List.of(3, 5, 11, 16, 32, 38)), // None

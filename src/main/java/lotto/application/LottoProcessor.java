@@ -1,11 +1,11 @@
 package lotto.application;
 
 import lotto.domain.BonusNumber;
+import lotto.domain.Buyer;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.LottoProvider;
 import lotto.domain.LottoStatistics;
-import lotto.domain.User;
 import lotto.domain.WinningLottoHolder;
 import lotto.io.InputProcessor;
 import lotto.io.OutputProcessor;
@@ -15,7 +15,7 @@ import java.util.List;
 public class LottoProcessor {
     private final LottoGenerator lottoGenerator;
 
-    private User user;
+    private Buyer buyer;
     private WinningLottoHolder winningLottoHolder;
 
     public LottoProcessor(final LottoGenerator lottoGenerator) {
@@ -34,8 +34,8 @@ public class LottoProcessor {
                 final int lottoPurchaseCount = InputProcessor.readLottoPurchaseCount();
                 final List<Lotto> lottos = LottoProvider.provideByPurchaseQuantity(lottoGenerator, lottoPurchaseCount);
 
-                user = User.provideLottos(lottos);
-                OutputProcessor.printPurchaseInformation(user.getLottos());
+                buyer = Buyer.provideLottos(lottos);
+                OutputProcessor.printPurchaseInformation(buyer.getLottos());
                 break;
             } catch (final IllegalArgumentException e) {
                 OutputProcessor.printErrorMessage(e.getMessage());
@@ -72,7 +72,7 @@ public class LottoProcessor {
     }
 
     private void notifyLottoResult() {
-        final LottoStatistics lottoStatistics = LottoStatistics.checkLottoResult(winningLottoHolder, user);
+        final LottoStatistics lottoStatistics = LottoStatistics.checkLottoResult(winningLottoHolder, buyer);
         OutputProcessor.printWinningStatistics(lottoStatistics);
     }
 }

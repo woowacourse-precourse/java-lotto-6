@@ -64,13 +64,13 @@ public class InputValidator {
 
     public static void checkLottoRange(String number) {
         if (Integer.parseInt(number) < GameRule.MIN_LOTTO_NUMBER  || Integer.parseInt(number) > GameRule.MAX_LOTTO_NUMBER) {
-            throw LottoGameException.withMessage(ExceptionMessage.BONUS_DUPLICATE_ERROR);
+            throw LottoGameException.withMessage(ExceptionMessage.LOTTO_RANGE_ERROR);
         }
     }
 
     public static void checkDuplicateWithWinning(String number, WinningNumber winningNumber) {
         if (winningNumber.contain(Integer.parseInt(number))) {
-            throw LottoGameException.withMessage(ExceptionMessage.LOTTO_RANGE_ERROR);
+            throw LottoGameException.withMessage(ExceptionMessage.LOTTO_DUPLICATE_ERROR);
         }
     }
 }

@@ -42,7 +42,7 @@ public class LottoGame {
 		}
 	}
 
-	private static int calculateLottoCount(int userMoney) {
+	public static int calculateLottoCount(int userMoney) {
 
 		int lottoCount = (userMoney / 1000);
 

@@ -20,6 +20,14 @@ public class Lotto {
         return numbers;
     }
 
+    public boolean checkContainNumber(int number) {
+        return numbers.contains(number);
+    }
+
+    public int countContainNumbers(List<Integer> winningNumbers) {
+        return (int) numbers.stream().filter(winningNumbers::contains).count();
+    }
+
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE.get()) {
             throw new IllegalArgumentException(SIZE_ERROR.getMessage());

@@ -21,6 +21,17 @@ public class LottoGameController {
         this.gameService = new GameService();
     }
 
+    private long inputPurchasePrice() {
+        try {
+            inputView.printInputPricePrompt();
+            String rawPrice = Console.readLine();
+            InputValidator.validateUserInputPrice(rawPrice);
+            return Long.parseLong(rawPrice);
+        } catch (IllegalArgumentException e) {
+            resultView.printErrorMessage(e.getMessage());
+            return inputPurchasePrice();
+        }
+    }
     public void process() {
         this.gameService.setPurchaseAmount(inputPurchasePrice());
         this.gameService.purchaseTickets();

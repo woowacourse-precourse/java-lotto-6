@@ -19,6 +19,7 @@ public class Application {
         System.out.println();
 
         Service.checkLottos(lottos, winningNumbers, bonus);
-        Service.printResult(money);
+        double profitRate = Service.calculateProfitRate(money);
+        View.printResult(profitRate);
     }
 }

@@ -38,4 +38,13 @@ public class View {
         System.out.println("보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine());
     }
+
+    public static void printResult(double profitRate) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (LottoRank rank : LottoRank.values()) {
+            System.out.println(rank.getPrizeInfo() + rank.getAdditionalMatches() + "개");
+        }
+        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
+    }
 }

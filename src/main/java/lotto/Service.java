@@ -30,20 +30,11 @@ public class Service {
         }
     }
 
-    public static void printResult(int number) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
-
-        for (LottoRank rank : LottoRank.values()) {
-            System.out.println(rank.getPrizeInfo() + rank.getAdditionalMatches() + "개");
-        }
-
+    public static double calculateProfitRate(int money) {
         double totalWinnings = 0;
         for (LottoRank rank : LottoRank.values()) {
             totalWinnings += rank.getAdditionalMatches() * rank.getPrize();
         }
-
-        double profitRate = (totalWinnings / number) * 100;
-        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
+        return (totalWinnings / money) * 100;
     }
 }

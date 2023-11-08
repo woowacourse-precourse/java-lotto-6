@@ -23,7 +23,7 @@ public class InputConsole {
 
     public static List<Integer> inputWinningNumbers() {
         String inputWinningNumber = Console.readLine();
-        String inputWinningNumberNoSpace = inputWinningNumber.replaceAll(" ", "");
+        String inputWinningNumberNoSpace = removeWhiteSpace(inputWinningNumber);
         String[] splittedWinningNumber = inputWinningNumberNoSpace.split(",");
 
         List<Integer> winningNumbers = new ArrayList<>();
@@ -37,9 +37,13 @@ public class InputConsole {
 
     public static int inputBonusNumber() {
         String inputBonusNumber = Console.readLine();
-        String inputBonusNumberNoSpace = inputBonusNumber.replaceAll(" ", "");
+        String inputBonusNumberNoSpace = removeWhiteSpace(inputBonusNumber);
         validateInputPrice(inputBonusNumberNoSpace);
         return Integer.parseInt(inputBonusNumber);
+    }
+
+    public static String removeWhiteSpace(String input) {
+        return input.replaceAll(" ", "");
     }
 
 }

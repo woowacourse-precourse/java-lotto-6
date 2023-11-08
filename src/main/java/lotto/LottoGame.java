@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 import lotto.domain.LottoPurchaseAmount;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottoes;
-import lotto.domain.WinningNumber;
 import lotto.domain.WinningNumbers;
 import lotto.domain.strategy.RandomNumberStrategy;
 import lotto.dto.LottoNumbers;
@@ -26,8 +25,7 @@ public class LottoGame {
     public void run() {
         LottoPurchaseAmount lottoPurchaseAmount = createAmount();
         Lottoes lottoes = createLottoes(lottoPurchaseAmount.getLottoCount());
-        WinningNumbers winningNumbers = createNumbers();
-        registerBonusNumber(winningNumbers);
+        WinningNumbers winningNumbers = createWinningNumbersWithBonusNumber();
         LottoResult lottoResult = createLottoResult(lottoes, winningNumbers);
         printResult(lottoResult, lottoResult.getYieldRate(lottoPurchaseAmount.getAmount()));
     }
@@ -60,30 +58,20 @@ public class LottoGame {
         printLottoNumbers(lottoNumbers);
     }
 
-    private WinningNumbers createNumbers() {
-        try {
-            List<WinningNumber> winningNumbers = createWinningNumbers();
-            return new WinningNumbers(winningNumbers);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return createNumbers();
-        }
+    private WinningNumbers createWinningNumbersWithBonusNumber() {
+        WinningNumbers winningNumbers = createWinningNumbers();
+        registerBonusNumber(winningNumbers);
+        return winningNumbers;
     }
 
-    private List<WinningNumber> createWinningNumbers() {
+    private WinningNumbers createWinningNumbers() {
         try {
             List<Integer> winningNumbers = createWinningNumbersFromUser();
-            return convertToWiningNumber(winningNumbers);
+            return new WinningNumbers(winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createWinningNumbers();
         }
-    }
-
-    private List<WinningNumber> convertToWiningNumber(List<Integer> winningNumbers) {
-        return winningNumbers.stream()
-                .map(WinningNumber::new)
-                .collect(Collectors.toList());
     }
 
     private List<Integer> createWinningNumbersFromUser() {

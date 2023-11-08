@@ -15,10 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import common.enumtype.ResultType;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,9 +27,7 @@ class WinningNumbersTest {
 
     @BeforeEach
     void setUp() {
-        List<WinningNumber> numbers = IntStream.range(1, 7)
-                .mapToObj(WinningNumber::new)
-                .collect(Collectors.toList());
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         winningNumbers = new WinningNumbers(numbers);
         winningNumbers.registerBonusNumber(7);
     }
@@ -40,7 +35,7 @@ class WinningNumbersTest {
     @Test
     void 당첨_번호_6개_미만_예외() {
         // given
-        List<WinningNumber> numbers = createWinningNumbers(1, 2, 3, 4, 5);
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5);
 
         // when
         // then
@@ -52,7 +47,7 @@ class WinningNumbersTest {
     @Test
     void 당첨_번호_6개_초과_예외() {
         // given
-        List<WinningNumber> numbers = createWinningNumbers(1, 2, 3, 4, 5, 6, 7);
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6,7);
 
         // when
         // then
@@ -64,7 +59,7 @@ class WinningNumbersTest {
     @Test
     void 중복된_당첨_번호_에외() {
         // given
-        List<WinningNumber> numbers = createWinningNumbers(1, 2, 3, 4, 5, 5);
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
 
         // when
         // then
@@ -76,7 +71,7 @@ class WinningNumbersTest {
     @Test
     void 당첨_번호_생성() {
         // given
-        List<WinningNumber> numbers = createWinningNumbers(1, 2, 3, 4, 5, 6);
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
 
         // when
         WinningNumbers result = new WinningNumbers(numbers);
@@ -100,7 +95,7 @@ class WinningNumbersTest {
     @Test
     void 당첨_번호와_중복되는_보너스_번호_예외() {
         // given
-        List<WinningNumber> numbers = createWinningNumbers(1, 2, 3, 4, 5, 6);
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         WinningNumbers winningNumbers = new WinningNumbers(numbers);
         int bonusNumber = 6;
 
@@ -193,11 +188,5 @@ class WinningNumbersTest {
 
         // then
         assertThat(result).isEqualTo(FIRST_PLACE);
-    }
-
-    private List<WinningNumber> createWinningNumbers(int... numbers) {
-        return Arrays.stream(numbers)
-                .mapToObj(WinningNumber::new)
-                .collect(Collectors.toList());
     }
 }

@@ -1,33 +1,55 @@
 package lotto.io;
 
+import java.util.List;
+import java.util.Set;
+
 import camp.nextstep.edu.missionutils.Console;
-import lotto.util.ErrorCode;
+import lotto.Lotto;
+import lotto.LottoSeller;
 
 public class Input {
+
+	private static final String SEPARATOR = ",";
 
 	public static int readPurchaseAmount() {
 		while (true) {
 			try {
-				return validate(Console.readLine());
+				return LottoSeller.validatePurchaseAmount(Console.readLine());
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}
 		}
 	}
 
-	private static int validate(String value) {
-		int amount;
+	public static List<Integer> readWinningNumbers() {
 		while (true) {
+			var input = Console.readLine();
+			var split = input.split(SEPARATOR);
+
 			try {
-				amount = Integer.parseInt(value);
-				if((amount % 1000) != 0) {
-					throw new IllegalArgumentException(ErrorCode.INVALID_PURCHASE_AMOUNT.message());
-				}
-				return amount;
-			} catch (NumberFormatException e) {
-				throw new IllegalArgumentException(ErrorCode.INVALID_PURCHASE_VALUE.message());
+				return LottoSeller.validateWinningNumbers(split);
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
 			}
 		}
 	}
+
+	public static int readBonusNumbers() {
+		while (true) {
+			try {
+				final String value = Console.readLine();
+				final int number = LottoSeller.parseToInteger(value);
+				LottoSeller.checkRange(number);
+				return number;
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+
+
+
+
+
 
 }

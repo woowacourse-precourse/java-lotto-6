@@ -4,7 +4,7 @@ enum Script {
     TOTALPRICE("구입금액을 입력해 주세요."),
     WINNINGNUMBERS("당첨 번호를 입력해 주세요."),
     BONUSNUMBER("보너스 번호를 입력해 주세요."),
-    LOTTOCOUNT("");
+    RESULT("당첨 통계");
 
     private final String label;
 

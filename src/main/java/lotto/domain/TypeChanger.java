@@ -5,6 +5,9 @@ import java.util.stream.Collectors;
 import lotto.domain.validator.ValidateNumber;
 
 public class TypeChanger {
+    private static final String BLANK = " ";
+    private static final String COMMA = ",";
+    private static final String LENGTH_ZERO = "";
     private static TypeChanger typeChanger;
 
     private TypeChanger(){
@@ -19,8 +22,8 @@ public class TypeChanger {
 
 
     public List<String> stringToListWithComma(String numbers) {
-        numbers = numbers.replace(" ", "");
-        return List.of(numbers.split(","));
+        numbers = numbers.replace(BLANK, LENGTH_ZERO);
+        return List.of(numbers.split(COMMA));
     }
 
     public int from(String number) {

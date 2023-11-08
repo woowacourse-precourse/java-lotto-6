@@ -17,20 +17,21 @@ public class Lotto {
         validateNumberInRange(numbers);
     }
 
-    private void validateNumbersSize(List<Integer> numbers){
+    private void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
-    private void validateNumberInRange(List<Integer> numbers){
-        numbers.stream().forEach(num ->{
-            if(1 > num && num > 45){
+
+    private void validateNumberInRange(List<Integer> numbers) {
+        numbers.stream().forEach(num -> {
+            if (1 > num || num > 45) {
                 throw new IllegalArgumentException("1~45 숫자를 입력해주세요");
             }
         });
     }
 
-    public void printLotto(){
-        System.out.println( numbers.stream().map(Objects::toString).collect(Collectors.joining(", ", "[", "]")));
+    public void printLotto() {
+        System.out.println(numbers.stream().map(Objects::toString).collect(Collectors.joining(", ", "[", "]")));
     }
 }

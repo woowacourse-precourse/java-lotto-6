@@ -38,7 +38,6 @@ public class User {
                 validator.checkAmount(lottoAmountInput);
                 break;
             } catch (IllegalArgumentException e) {
-
             }
         }
         lottoCount = Integer.parseInt(lottoAmountInput) / 1000;
@@ -60,8 +59,7 @@ public class User {
     }
 
     private List<Integer> createLottoNumber() {
-        List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(constants.LOTTO_NUMBER_MIN, constants.LOTTO_NUMBER_MAX,constants.LOTTO_NUMBER);
+        List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(constants.LOTTO_NUMBER_MIN, constants.LOTTO_NUMBER_MAX, constants.LOTTO_NUMBER);
         return lottoNumber;
     }
-
 }

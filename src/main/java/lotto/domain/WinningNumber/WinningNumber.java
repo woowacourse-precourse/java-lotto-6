@@ -13,7 +13,6 @@ public class WinningNumber {
     InputUtil inputUtil = new InputUtil();
     WinningNumberValidator validator = new WinningNumberValidator();
 
-
     public void setWinningNumbers() {
         inputWinningNumbers();
     }
@@ -26,7 +25,6 @@ public class WinningNumber {
                 validator.checkLottoNumber(winningNumbersInput);
                 break;
             } catch (IllegalArgumentException e) {
-
             }
         }
         List<String> winningNumbersTemp = Arrays.asList(winningNumbersInput.split(","));
@@ -47,7 +45,6 @@ public class WinningNumber {
                 validator.checkBonusNumber(winningNumbers, bonusNumberInput);
                 break;
             } catch (IllegalArgumentException e) {
-
             }
         }
         this.bonusNumber = Integer.parseInt(bonusNumberInput);

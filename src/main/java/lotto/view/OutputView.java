@@ -1,7 +1,11 @@
 package lotto.view;
 
 import lotto.model.Lotto;
-import lotto.model.enums.Rank;
+import lotto.model.LottoRankResult;
+import lotto.view.enums.ErrorMessage;
+import lotto.view.enums.PrintMessage;
+import lotto.view.enums.RankMessage;
+import lotto.model.enums.RankPrize;
 
 import java.util.List;
 
@@ -11,31 +15,30 @@ public class OutputView {
     }
 
     public void printInputPurchaseMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(PrintMessage.INPUT_PURCHASE_MONEY.getMessage());
     }
 
     public void printInputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(PrintMessage.INPUT_WINNING_NUMBER.getMessage());
     }
 
     public void printInputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(PrintMessage.INPUT_BONUS_NUMBER.getMessage());
     }
 
     public void printTicketNumber(int ticketNumber) {
-        String output = ticketNumber + "개를 구매했습니다.";
+        String output = ticketNumber + PrintMessage.TICKET_NUMBER_FOOTER.getMessage();
         System.out.println(output);
     }
 
     public void printLottos(List<Lotto> lottos) {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         for (Lotto lotto : lottos) {
-            stringBuilder.append("[");
-            stringBuilder.append(makeLottoString(lotto));
-            stringBuilder.append("]");
-            stringBuilder.append("\n");
+            builder.append(PrintMessage.LOTTO_NUMBER_HEADER.getMessage());
+            builder.append(makeLottoString(lotto));
+            builder.append(PrintMessage.LOTTO_NUMBER_FOOTER.getMessage());
         }
-        System.out.println(stringBuilder);
+        System.out.println(builder);
     }
 
     private String makeLottoString(Lotto lotto) {
@@ -44,24 +47,43 @@ public class OutputView {
                 .stream()
                 .map(Object::toString)
                 .toList();
-        return String.join(", ", numbers);
+        return String.join(PrintMessage.JOIN_DELIMITER.getMessage(), numbers);
     }
 
-    public void printLottoResult(List<Integer> rankResult, double rateOfReturn) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("당첨 통계\n");
-        stringBuilder.append("---\n");
-        stringBuilder.append("3개 일치 (5,000원) - " + rankResult.get(Rank.RANK5.getRank() - 1) + "개\n");
-        stringBuilder.append("4개 일치 (50,000원) - " + rankResult.get(Rank.RANK4.getRank() - 1) + "개\n");
-        stringBuilder.append("5개 일치 (1,500,000원) - " + rankResult.get(Rank.RANK3.getRank() - 1) + "개\n");
-        stringBuilder.append("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankResult.get(Rank.RANK2.getRank() - 1) + "개\n");
-        stringBuilder.append("6개 일치 (2,000,000,000원) - " + rankResult.get(Rank.RANK1.getRank() - 1) + "개\n");
-        stringBuilder.append("총 수익률은 " + String.format("%.1f",rateOfReturn) + "%입니다.");
-        System.out.println(stringBuilder);
+    public void printLottoResult(LottoRankResult rankResult) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(PrintMessage.WINNING_HEADER.getMessage());
+        builder.append(PrintMessage.THREE_HYPHEN.getMessage());
+        builder.append(makeRankString(rankResult));
+        System.out.println(builder);
+    }
+
+    private String makeRankString(LottoRankResult rankResult) {
+        StringBuilder builder = new StringBuilder();
+        for (int rank = RankPrize.RANK5.getRank(); rank >= RankPrize.RANK1.getRank(); rank--) {
+            builder.append(RankMessage.getMessageByRank(rank));
+            builder.append(rankResult.getCount(rank));
+            builder.append(PrintMessage.RANK_FOOTER.getMessage());
+        }
+        return builder.toString();
+    }
+
+    public void printRateOfReturn(double rateOfReturn) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(PrintMessage.RATE_OF_RETURN_HEADER.getMessage());
+        builder.append(String.format("%.1f", rateOfReturn));
+        builder.append(PrintMessage.RATE_OF_RETURN_FOOTER.getMessage());
+        System.out.println(builder);
+    }
+
+    public void printErrorMessage(String message) {
+        String errorMessage = ErrorMessage.ERROR_HEADER.getMessage()
+                + message
+                + ErrorMessage.ERROR_FOOTER.getMessage();
+        System.out.println(errorMessage);
     }
 
     public void printBlankLine() {
         System.out.println();
     }
-
 }

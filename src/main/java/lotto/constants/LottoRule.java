@@ -3,7 +3,7 @@ package lotto.constants;
 import static lotto.exception.ExceptionMessage.GOAL_NUMBER_SIZE_EXCEPTION;
 import static lotto.exception.ExceptionMessage.INVEST_MONEY_VALUE_EXCEPTION;
 import static lotto.exception.ExceptionMessage.MONEY_REMAIN_EXCEPTION;
-import static lotto.exception.ExceptionMessage.UNVALID_GOAL_NUMBER;
+import static lotto.exception.ExceptionMessage.UNVALID_LOTTO_NUMBER;
 
 public enum LottoRule {
 
@@ -27,7 +27,7 @@ public enum LottoRule {
 
     public static void validateNumberValue(final int number) {
         if (number > MAXIMUM_NUMBER.value || number < MINIMUM_NUMBER.value) {
-            throw new IllegalArgumentException(UNVALID_GOAL_NUMBER.getMessage());
+            throw new IllegalArgumentException(UNVALID_LOTTO_NUMBER.getMessage());
         }
     }
 

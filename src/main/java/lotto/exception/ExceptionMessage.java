@@ -16,7 +16,7 @@ public enum ExceptionMessage {
     MONEY_REMAIN_EXCEPTION("구입 금액은 " + LOTTO_COST.getValue() + "으로 나눌 때 나머지가 " +
             LOTTO_COST_REMAIN_VALUE.getValue() + "이어야 합니다."),
     GOAL_NUMBER_SIZE_EXCEPTION("올바른 로또 정답 갯수가 아닙니다. 정답 갯수는 " + LOTTO_NUMBER_LENGTH.getValue() + "개여야 합니다."),
-    UNVALID_GOAL_NUMBER(
+    UNVALID_LOTTO_NUMBER(
             "로또에서 생성될 수 없는 숫자가 있습니다. 로또 번호는 " + MINIMUM_NUMBER.getValue() + " ~ " +
             MAXIMUM_NUMBER.getValue() + " 사이여야 합니다."
     ),

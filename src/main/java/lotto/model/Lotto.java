@@ -3,6 +3,7 @@ package lotto.model;
 import static lotto.constants.LottoRule.LOTTO_NUMBER_LENGTH;
 import static lotto.exception.ExceptionMessage.NUMBER_DUPLICATE_EXCEPTION;
 
+import lotto.constants.LottoRule;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateIsNumbersUnique(numbers);
         validateNumbersSize(numbers);
+        validateNumberValues(numbers);
 
         this.numbers = numbers;
     }
@@ -33,7 +35,12 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateNumberValues(final List<Integer> numbers) {
+        for (int number : numbers) {
+            LottoRule.validateNumberValue(number);
+        }
+    }
+
     public boolean isContainsNumber(final LottoNumber lottoNumber) {
         int number = lottoNumber.getNumber();
         return numbers.contains(number);

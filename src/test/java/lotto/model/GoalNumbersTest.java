@@ -4,7 +4,7 @@ import static lotto.exception.ExceptionMessage.GOAL_NUMBER_SIZE_EXCEPTION;
 import static lotto.exception.ExceptionMessage.NULL_EXCEPTION;
 import static lotto.exception.ExceptionMessage.NUMBER_DUPLICATE_EXCEPTION;
 import static lotto.exception.ExceptionMessage.NUMBER_FORMAT_EXCEPTION;
-import static lotto.exception.ExceptionMessage.UNVALID_GOAL_NUMBER;
+import static lotto.exception.ExceptionMessage.UNVALID_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -85,7 +85,7 @@ public class GoalNumbersTest {
 
             // when & then
             assertThatThrownBy(() -> GoalNumbers.from(goalNumbersInput)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(UNVALID_GOAL_NUMBER.getMessage());
+                    .hasMessage(UNVALID_LOTTO_NUMBER.getMessage());
         }
     }
 }

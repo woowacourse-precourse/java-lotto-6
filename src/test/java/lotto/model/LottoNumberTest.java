@@ -1,7 +1,7 @@
 package lotto.model;
 
 import static lotto.exception.ExceptionMessage.NUMBER_FORMAT_EXCEPTION;
-import static lotto.exception.ExceptionMessage.UNVALID_GOAL_NUMBER;
+import static lotto.exception.ExceptionMessage.UNVALID_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -42,7 +42,7 @@ public class LottoNumberTest {
         void unvalidNumberValueExceptionTest(final String numberInput) {
             // when & then
             assertThatThrownBy(() -> LottoNumber.from(numberInput)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(UNVALID_GOAL_NUMBER.getMessage());
+                    .hasMessage(UNVALID_LOTTO_NUMBER.getMessage());
         }
     }
 }

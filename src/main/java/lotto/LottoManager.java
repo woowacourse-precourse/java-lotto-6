@@ -16,6 +16,8 @@ public class LottoManager {
     private static final int LOTTO_MINIMUM_PRICE = 1000;
     private static final int ZERO_CHANGE = 0;
     private static final int LOOP_START_NUMBER = 0;
+    private static final int BONUS_NUMBER_START_NUMBER = 1;
+    private static final int BONUS_NUMBER_END_NUMBER = 45;
     private static final String SEPARATOR = ",";
 
     private final LottoPrinter lottoPrinter = new ConsoleLottoPrinter();
@@ -141,16 +143,34 @@ public class LottoManager {
     }
 
     private boolean validateBonusNumber(String bonusNumber) {
-        int validBonusNumber;
-        try {
-            validBonusNumber = Integer.parseInt(bonusNumber);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionInfo.BONUS_NUMBER_IS_NOT_INTEGER.getMessage());
-        }
+        int validBonusNumber = validateBonusIsIntegerType(bonusNumber);
+        validateBonusNumberIsInRange(validBonusNumber);
+        validateDuplicatedBonusNumber(validBonusNumber);
 
         this.bonusNumber = validBonusNumber;
 
         return true;
+    }
+
+    private int validateBonusIsIntegerType(String bonusNumber) {
+        try {
+            int validBonusNumber = Integer.parseInt(bonusNumber);
+            return validBonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionInfo.BONUS_NUMBER_IS_NOT_INTEGER.getMessage());
+        }
+    }
+
+    private void validateBonusNumberIsInRange(int bonusNumber) {
+        if (bonusNumber < BONUS_NUMBER_START_NUMBER || BONUS_NUMBER_END_NUMBER < bonusNumber) {
+            throw new IllegalArgumentException(ExceptionInfo.OUT_OF_RANGE_BONUS_NUMBER.getMessage());
+        }
+    }
+
+    private void validateDuplicatedBonusNumber(int bonusNumber) {
+        if (winningNumbers.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException(ExceptionInfo.DUPLICATED_BONUS_NUMBER.getMessage());
+        }
     }
 
 }

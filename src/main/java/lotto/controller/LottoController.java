@@ -17,4 +17,8 @@ package lotto.controller;public class LottoController {
         lottoResult(lottoList, winningResult, ticketCount);
 
     }
+    public int inputPlayerAmount() {
+        playerLottoAmount = new PlayerLottoAmount(InputView.inputPlayerAmount());
+        return playerLottoAmount.calculateLottoCount();
+    }
 }

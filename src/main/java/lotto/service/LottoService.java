@@ -10,9 +10,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class LottoService {
+import static lotto.grobal.LottoConstants.LOTTO_PRICE;
 
-    private static final int LOTTO_PRICE = 1000;
+public class LottoService {
 
     private final RandomLottoGenerator lottoGenerator;
 

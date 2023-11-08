@@ -3,9 +3,10 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.grobal.LottoConstants.LOTTO_NUMBER_SIZE;
+
 public class Lotto {
 
-    private static final int LOTTO_NUMBER_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

@@ -1,17 +1,17 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class InputView {
+import static lotto.grobal.LottoConstants.NUMBER_PATTERN;
+import static lotto.grobal.LottoConstants.LOTTO_PRICE;
+import static lotto.grobal.LottoConstants.MIN_LOTTO_NUMBER;
+import static lotto.grobal.LottoConstants.MAX_LOTTO_NUMBER;
 
-    private static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]+$");
-    private static final int LOTTO_PRICE = 1000;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
+public class InputView {
 
     public String input(String message) {
         System.out.println(message);

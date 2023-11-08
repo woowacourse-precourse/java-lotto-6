@@ -54,4 +54,8 @@ public class LottoView {
     public void printResult(Map<Rank, Long> results, double profitRate) {
         outputView.printResult(results, profitRate);
     }
+
+    public void printError(String message) {
+        outputView.printError(message);
+    }
 }

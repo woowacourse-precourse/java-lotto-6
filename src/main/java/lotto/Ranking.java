@@ -21,18 +21,6 @@ public enum Ranking {
         this.prize = prize;
     }
 
-    public static Ranking getRating(final int count, final boolean bonus) {
-        if (count == THIRD.count && !bonus) {
-            return THIRD;
-        }
-
-        if (count < FIFTH.count) {
-            return MISS;
-        }
-
-        return Arrays.stream(values()).filter(ranking -> ranking.count == count).findAny()
-                .orElseThrow(NoSuchElementException::new);
-    }
 
 
     public int getCount() {

@@ -1,5 +1,7 @@
 package lotto.util;
 
+import java.util.regex.Pattern;
+
 public class Constant {
     public static final int LOTTO_MIN_RANGE = 1;
     public static final int LOTTO_MAX_RANGE = 45;
@@ -13,4 +15,5 @@ public class Constant {
     public static final String REGEX_SPACE = "\\s";
     public static final String REGEX_NOSPACE = "";
     public static final String REGEX_THOSAND_SEPARATOR = "\\B(?=(\\d{3})+(?!\\d))";
+    public static final Pattern REGEX_NUMERIC = Pattern.compile("^[0-9]\\d*$");
 }

@@ -1,15 +1,12 @@
 package lotto.model;
 
 import static lotto.util.Constant.LOTTO_PER_PRICE;
+import static lotto.util.Constant.REGEX_NUMERIC;
 import static lotto.util.ErrorMessage.ERROR_MINIMUM_PRICE;
 import static lotto.util.ErrorMessage.ERROR_NOT_DIVIDE_LOTTO_PRICE;
 import static lotto.util.ErrorMessage.ERROR_NUMERIC_TYPE;
 
-import java.util.regex.Pattern;
-
 public class LottoPurchase {
-    private static final Pattern REGEX_NUMERIC = Pattern.compile("^[0-9]\\d*$");
-
     private int lottoPurchaseCount;
 
     public LottoPurchase(String inputNumber) {

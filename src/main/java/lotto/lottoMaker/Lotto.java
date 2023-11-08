@@ -9,7 +9,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        sortNubmers(numbers);
+        sortNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -17,20 +17,20 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
-        if(hasDuplcatedNumber(numbers)) {
+        if(hasDuplicatedNumber(numbers)) {
             throw new IllegalArgumentException();
         }
     }
 
     // TODO: 추가 기능 구현
-    private boolean hasDuplcatedNumber(List<Integer> numbers) {
+    private boolean hasDuplicatedNumber(List<Integer> numbers) {
         HashSet<Integer> num = new HashSet<>(numbers);
         if(num.size()==6) {
             return false;
         }
         return true;
     }
-    private void sortNubmers(List<Integer> numbers) {
+    private void sortNumbers(List<Integer> numbers) {
         Collections.sort(numbers);
     }
 

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.exception.DuplicatedLottoException;
 import lotto.exception.RangeLottoException;
 
@@ -15,8 +16,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        numbers.sort(Integer::compareTo);
-        this.numbers = numbers;
+        this.numbers = sorted(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -42,11 +42,24 @@ public class Lotto {
         }
     }
 
+    public List<Integer> sorted(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+
     public boolean isContain(int number) {
         return numbers.contains(number);
     }
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+
+    @Override
+    public String toString() {
+        return "" + numbers + "";
     }
 }

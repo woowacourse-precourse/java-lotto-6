@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.*;
 import lotto.dto.LottoResultDto;
+import lotto.dto.WinningCountDto;
 import lotto.dto.WinningNumberDto;
 import lotto.utility.Validation;
 import lotto.view.ExceptionView;
@@ -34,6 +35,7 @@ public class LottoManager {
         winningNumberDto = setWinningAndBounsNumber(); //당첨 숫자 입력하기
         lottosResult = judgeLottoWinning(userLottoCollection, winningNumberDto); //로또와 당첨번호 비교하기
         result = setLottosResult(lottosResult); //로또 최종결과 구하기
+
     }
 
     private void purchaseLotto() {
@@ -120,6 +122,9 @@ public class LottoManager {
     }
 
     private Result setLottosResult(List<LottoResultDto> lottosResult){
-        return new Result(lottosResult);
+        Result result = new Result(lottosResult);
+        OutputView.printLottosResult(result.getWinningCountDto());
+
+        return result;
     }
 }

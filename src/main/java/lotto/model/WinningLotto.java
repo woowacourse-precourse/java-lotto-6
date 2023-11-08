@@ -1,28 +1,26 @@
 package lotto.model;
 
 public class WinningLotto {
-    private final Lotto winningLotto;
-    private final int bonusNumber;
+    private final Lotto lotto;
+    private final BonusNumber bonusNumber;
 
-    public WinningLotto(Lotto winningLotto, int bonusNumber) {
-        validate(winningLotto, bonusNumber);
-        this.winningLotto = winningLotto;
+    public WinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {
+        validateDuplicateBonusNumber(winningLotto, bonusNumber);
+        this.lotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(Lotto winningLotto, int bonusNumber) {
-        validateRangeOverBonusNumber(bonusNumber);
-        validateDuplicateBonusNumber(winningLotto, bonusNumber);
+    private void validateDuplicateBonusNumber(Lotto winningLotto, BonusNumber bonusNumber) {
+        if (winningLotto.isNumberContain(bonusNumber.getNumber())) {
+            throw new IllegalArgumentException();
+        }
     }
 
-    private void validateRangeOverBonusNumber(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException();
-        }
+    public Lotto getLotto() {
+        return lotto;
     }
-    private void validateDuplicateBonusNumber(Lotto winningLotto, int bonusNumber) {
-        if (winningLotto.isNumberContain(bonusNumber)) {
-            throw new IllegalArgumentException();
-        }
+
+    public BonusNumber getBonusNumber() {
+        return bonusNumber;
     }
 }

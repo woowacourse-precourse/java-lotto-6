@@ -172,6 +172,5 @@ class LottoTest {
         rateOfProfit = Math.round(rateOfProfit * 10) / 10.0;  // 소수점 둘째 자리 반올림
 
         assertThat(rateOfProfit+100).isEqualTo(16550);   // 16550
-
     }
 }

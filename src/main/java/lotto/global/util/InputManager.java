@@ -58,8 +58,13 @@ public final class InputManager {
         checkEmptyValue(input);
 
         String[] splitNums = input.trim().split(",\\s*");
+
         return Arrays.stream(splitNums)
-                .map(InputManager::checkValidNumFormat)
+                .map(splitNum -> {
+                        int result = checkValidNumFormat(splitNum);
+                        checkValidRangeOfNumber(result);
+                        return result;
+                    })
                 .toList();
     }
 
@@ -80,9 +85,7 @@ public final class InputManager {
         checkEmptyValue(input);
 
         int result = checkValidNumFormat(input);
-        if (result < 1 || result > 45) {
-            throw new IllegalArgumentException(INVALID_RANGE_OF_LOTTO.getMessage());
-        }
+        checkValidRangeOfNumber(result);
         if (winNum.contains(result)) {
             throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER_IN_LOTTO.getMessage());
         }
@@ -101,6 +104,12 @@ public final class InputManager {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.getMessage());
+        }
+    }
+
+    private static void checkValidRangeOfNumber(int result) {
+        if (result < 1 || result > 45) {
+            throw new IllegalArgumentException(INVALID_RANGE_OF_LOTTO.getMessage());
         }
     }
 }

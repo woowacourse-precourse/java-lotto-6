@@ -18,7 +18,10 @@ public class LottoPlayerService {
 
 
     private static final int LOTTO_PRICE = 1000;
-    private static final int HUNDRED = 100;
+
+    private static final int THOUSAND = 1000;
+
+    private static final double TEN = 10.0;
     private static final int ZERO = 0;
     LottoPlayerRepository playerRepository = LottoPlayerRepository.getInstance();
     LottoRepository lottoRepository = LottoRepository.getInstance();
@@ -57,10 +60,13 @@ public class LottoPlayerService {
 
     //입력받은 로또 리스트의 번호를 오름차순 정렬하는 함수
     public List<Lotto> sortIssuedLottoAscending(List<Lotto> lottoList) {
-        List<Lotto> sortedLottoList = new ArrayList<>();
+        List<Lotto> sortedLottoList = new ArrayList<>(lottoList.size());
+
         for (Lotto lotto : lottoList) {
-            lotto.getNumbers().sort(Integer::compareTo);
-            sortedLottoList.add(lotto);
+            Lotto newLotto = new Lotto(lotto.getNumbers());
+            List<Integer> numbers = new ArrayList<>(newLotto.getNumbers());
+            numbers.sort(Integer::compareTo);
+            sortedLottoList.add(newLotto);
         }
         return sortedLottoList;
     }
@@ -82,7 +88,8 @@ public class LottoPlayerService {
 
 
         for (Lotto lotto : issuedLotto) {
-            List<Integer> lottoNumbers = lotto.getNumbers();
+            List<Integer> lottoNumbers = new ArrayList<>();
+            lottoNumbers.addAll(lotto.getNumbers());
             lottoNumbers.retainAll(winningNumbers);
 
             matchCount = lottoNumbers.size();
@@ -119,7 +126,7 @@ public class LottoPlayerService {
         return result;
     }
 
-    public double calculateTotalProfitRate(WinningStatistic statistics) {
+    public float calculateTotalProfitRate(WinningStatistic statistics) {
         LottoPlayer player = playerRepository.getLottoPlayer();
         int investment = player.getPurchaseAmount()*LOTTO_PRICE;
         int profit = statistics.getFifthPrizeCount()*FIFTH_PRIZE.getPrize()
@@ -128,9 +135,11 @@ public class LottoPlayerService {
                 + statistics.getSecondPrizeCount()*SECOND_PRIZE.getPrize()
                 + statistics.getFirstPrizeCount()*FIRST_PRIZE.getPrize();
 
-        double profitRate = HUNDRED * profit / investment;
+        float profitRate = (float) (THOUSAND * profit) / investment;
+        float roundedProfitRate = (float) (Math.round(profitRate) / TEN);
 
-        return profitRate;
+
+        return roundedProfitRate;
     }
 
     public int getMoney() {

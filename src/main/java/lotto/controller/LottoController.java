@@ -31,6 +31,7 @@ public class LottoController {
     public void checkLottoResult() {
         lottoWinner.createWinnerLotto();
         lottoWinner.matchWinnerLotto(lottos);
+        lottoWinner.showResultBoard();
     }
 
     public void generateLotto(int quantityOfLotto) {

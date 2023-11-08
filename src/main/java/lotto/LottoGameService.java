@@ -1,7 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Customer;
-import lotto.domain.LottoOffice;
 import lotto.domain.Seller;
 import util.InputValidator;
 
@@ -42,7 +42,7 @@ public class LottoGameService {
 
     private int askCustomerForMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        String inputValue = ConsoleIO.getInput("구입금액을 입력해 주세요.");
+        String inputValue = Console.readLine();
         InputValidator.validNumberType(inputValue);
 
         int money = Integer.parseInt(inputValue);

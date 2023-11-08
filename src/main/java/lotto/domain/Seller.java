@@ -22,7 +22,7 @@ public class Seller {
 
     private List<Integer> generateLottoNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
-                1,45,6);
+                1, 45, 6);
         Collections.sort(numbers);
         return numbers;
     }

@@ -2,7 +2,6 @@ package error;
 
 
 import constant.GameValues;
-import lotto.ConsoleIO;
 import util.FormatUtil;
 
 public enum ErrorMessage {

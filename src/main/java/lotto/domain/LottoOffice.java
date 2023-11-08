@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Console;
 import constant.Rank;
 import java.util.Arrays;
 import java.util.List;
-import lotto.ConsoleIO;
 import lotto.Lotto;
 import lotto.LottoValidator;
 import util.InputValidator;

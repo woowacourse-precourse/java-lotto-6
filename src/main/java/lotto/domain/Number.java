@@ -14,6 +14,7 @@ public class Number {
     private int value;
 
     private Number(final int value) {
+        Validator.validate(value);
         this.value = value;
     }
 

@@ -17,16 +17,20 @@ import java.util.List;
 3개 -> FIFTH.
  */
 public class CalculateController {
+    private final double RATE_VALUE = 100;
     Lotto lottos;
     List<Integer> prizeNumbers;
     int bonusNumber;
+    int lottoPrices;
     int[] results = new int[LottoController.LOTTO_COUNTS];
+    double profitRates;
 
 
-    public CalculateController(Lotto lottos, List<Integer> prizeNumbers, int bonusNumber) {
+    public CalculateController(Lotto lottos, List<Integer> prizeNumbers, int bonusNumber,int lottoPrices) {
         this.lottos = lottos;
         this.prizeNumbers = prizeNumbers;
         this.bonusNumber = bonusNumber;
+        this.lottoPrices = lottoPrices;
     }
 
     public int whatOfRanking() {
@@ -44,6 +48,16 @@ public class CalculateController {
     }
     public void calculateResults() {
         results[Rankings.RankingData.returnRank(whatOfRanking()).getValues()]++;
+    }
+    public double calculateRate() {
+        double sum = Arrays.stream(results).sum();
+        return (sum / lottoPrices) * RATE_VALUE;
+    }
+    void run() {
+        for (int i = 0; i < lottoPrices / 1000; i++) {
+            calculateResults();
+        }
+        profitRates = calculateRate();
     }
 
 }

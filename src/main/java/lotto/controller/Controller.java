@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Controller {
     private boolean flag;
     private final User user;
@@ -26,5 +29,31 @@ public class Controller {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private void inputPrizeNumbers() {
+        flag = false;
+        while (!flag) {
+            tryInputPrizeNumbers();
+        }
+    }
+
+    private void tryInputPrizeNumbers() {
+        try {
+            input = InputView.inputPrizeNumber();
+            setPrizeNumbers(input);
+            flag = true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void setPrizeNumbers(String input) {
+        List<String> splitString = StringUtil.splitWithComma(input);
+        List<Integer> prizeNumbers = new ArrayList<Integer>();
+        for (String string : splitString) {
+            prizeNumbers.add(changeStringToInt(string));
+        }
+        lottoCompany.setPrizeNumbers(prizeNumbers);
     }
 }

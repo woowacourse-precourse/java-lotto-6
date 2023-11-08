@@ -12,17 +12,17 @@ public class InputView {
     }
 
     public static String inputBuyLotto() {
-        System.out.println(INPUT_LOTTO_BUY_AMOUNT);
+//        System.out.println(INPUT_LOTTO_BUY_AMOUNT);
         return Console.readLine();
     }
 
     public static String inputWinningNumber() {
-        System.out.println(INPUT_LOTTO_WINNING_NUMBER);
+//        System.out.println(INPUT_LOTTO_WINNING_NUMBER);
         return Console.readLine();
     }
 
     public static int inputBonusNumber() {
-        System.out.println(INPUT_LOTTO_BONUS_NUMBER);
+//        System.out.println(INPUT_LOTTO_BONUS_NUMBER);
         return convertToInt(Console.readLine());
     }
 

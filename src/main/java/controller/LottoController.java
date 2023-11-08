@@ -35,7 +35,7 @@ public class LottoController {
 
         try {
             LottoAmount.exceptionMessage(input);
-            System.out.println();
+//            System.out.println();
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -46,7 +46,7 @@ public class LottoController {
     private String[] winningNumber() {
         try {
             String input = InputView.inputWinningNumber();
-            System.out.println();
+//            System.out.println();
             LottoAmount.expression(input);
             String[] winning = input.split(",");
             LottoAmount.winningValid(winning);

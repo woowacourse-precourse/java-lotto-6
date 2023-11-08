@@ -11,7 +11,7 @@ import java.util.List;
 public class outputView {
     private static final String OUTPUT_BUY = "개를 구매했습니다.";
     private static final String OUTPUT_RATE_START = "총 수익률은 ";
-    private static final String OUTPUT_RATE_END = "% 입니다.";
+    private static final String OUTPUT_RATE_END = "%입니다.";
     private static final String OUTPUT_COUNT = "개";
     private static final String OUTPUT_WINNING_STATISTICS = "당첨 통계";
 
@@ -22,7 +22,7 @@ public class outputView {
         int number = input / 1000;
         Lotto[] lottos = new Lotto[number];
 
-        try {
+//        try {
             for (int i = 0; i < number; i++) {
                 lottos[i] = new Lotto(LottoNumbers.setLottoNumbers());
             }
@@ -30,21 +30,21 @@ public class outputView {
             for (Lotto lotto : lottos) {
                 System.out.println(lotto.getLotto(lotto));
             }
-            System.out.println();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+//            System.out.println();
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
 
         return lottos;
     }
 
     public static void compare(Lotto[] lottos, String[] winning, int bonus, int input) {
-        try {
+//        try {
             int[] arr = makeArray(winning);
             getCnt(lottos, arr, bonus, input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+//        } catch (IllegalArgumentException e) {
+//            System.out.println(e.getMessage());
+//        }
     }
 
     private static int[] makeArray(String[] winning) {
@@ -110,9 +110,9 @@ public class outputView {
     }
 
     private static void print(int[] arr) {
-        System.out.println();
-        System.out.println(OUTPUT_WINNING_STATISTICS);
-        System.out.println("---");
+//        System.out.println();
+//        System.out.println(OUTPUT_WINNING_STATISTICS);
+//        System.out.println("---");
         System.out.println(Coincide.FIVE.getMessage() + arr[0] + OUTPUT_COUNT);
         System.out.println(Coincide.FOUR.getMessage() + arr[1] + OUTPUT_COUNT);
         System.out.println(Coincide.THIRD.getMessage() + arr[2] + OUTPUT_COUNT);

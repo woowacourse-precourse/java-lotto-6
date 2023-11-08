@@ -1,11 +1,10 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -43,11 +42,9 @@ public class Lotto {
     }
 
     public String toString() {
-        Collections.sort(numbers);
-        List<String> numbersToString = new ArrayList<>();
-        for (Integer num : numbers) {
-            numbersToString.add(num.toString());
-        }
-        return "[" + String.join(", ", numbersToString) + "]";
+        return "[" + numbers.stream()
+                .sorted()
+                .map(Object::toString)
+                .collect(Collectors.joining(", ")) + "]";
     }
 }

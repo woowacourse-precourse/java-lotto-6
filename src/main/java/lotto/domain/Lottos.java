@@ -16,14 +16,9 @@ public class Lottos {
         for (Lotto lotto : lottos) {
             Reward reward = lotto.match(luckyNumbers, bonusNumber);
             income += reward.getMoney();
-            computeRank(rewards, reward);
+            rewards.put(reward, rewards.get(reward) + 1);
         }
         return new GameResultResponse(rewards, computeProfit(income, payment));
-    }
-
-    private static void computeRank(EnumMap<Reward, Integer> totalReward, Reward reward) {
-        Integer matchNumber = totalReward.get(reward);
-        totalReward.put(reward, matchNumber + 1);
     }
 
     private String computeProfit(int income, int payment){
@@ -31,10 +26,10 @@ public class Lottos {
     }
 
     private static EnumMap<Reward, Integer> setUp() {
-        EnumMap<Reward, Integer> totalReward = new EnumMap<Reward, Integer>(Reward.class);
+        EnumMap<Reward, Integer> rewards = new EnumMap<>(Reward.class);
         for (Reward reward: Reward.values()) {
-            totalReward.computeIfAbsent(reward, k -> 0);
+            rewards.computeIfAbsent(reward, k -> 0);
         }
-        return totalReward;
+        return rewards;
     }
 }

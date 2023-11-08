@@ -24,6 +24,12 @@ public class LottoBonusPair {
         return new LottoBonusPair(winnerNumbers, bonusNumber);
     }
 
+    /**
+     * 발행된 로또의 당첨 순위를 담은 리스트를 반환하는 메서드.
+     *
+     * @param publishedLotto 발행된 로또
+     * @return 당첨 순위를 담은 정수 리스트
+     */
     public List<Integer> getResults(final PublishedLotto publishedLotto) {
         return publishedLotto.getPublishedLotto()
                 .stream()

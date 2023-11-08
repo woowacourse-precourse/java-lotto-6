@@ -14,6 +14,12 @@ public class LottoOutputView implements View {
     LottoOutputView() {
     }
 
+    /**
+     * 발행된 로또를 출력하는 메서드.
+     *
+     * @param count 발행된 로또의 개수(Integer)
+     * @param lottoList 발행된 로또(PublishedLotto) 객체의 문자열 표현
+     */
     public void printPublishedLotto(final Integer count, final String lottoList) {
         System.out.println(BOUGHT_LOTTO.getMessage(count, lottoList));
     }

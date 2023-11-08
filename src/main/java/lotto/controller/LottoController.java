@@ -26,15 +26,14 @@ public class LottoController implements Controller {
         calculateProfitService = (CalculateProfitService) Service.generateCalculateProfitService();
     }
 
+    /**
+     * 프로그램 시작 메서드
+     */
     public void programStart() {
         Integer money = getMoneyInput();
-
         PublishedLotto publishedLotto = getPublishedLotto(money);
-
         LottoBonusPair winnerNumberPair = getWinnerNumberPair();
-
         Long totalReward = getTotalReward(publishedLotto, winnerNumberPair);
-
         calculateProfit(money, totalReward);
     }
 

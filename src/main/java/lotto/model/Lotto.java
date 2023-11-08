@@ -17,10 +17,22 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    /**
+     * Lotto 객체가 매개 변수 정수의 포함 여부 확인 메서드.
+     *
+     * @param number 포함 여부를 확인하고 싶은 Integer 변수
+     * @return 포함되어 있다면 true, 그렇지 않으면 false
+     */
     public boolean contains(final Integer number) {
-        return this.numbers.contains(number);
+        return numbers.contains(number);
     }
 
+    /**
+     * Lotto 객체가 매개 변수 Lotto 객체와 겹치는 번호의 개수를 반환하는 메서드.
+     *
+     * @param other 확인할 다른 Lotto 객체
+     * @return 겹치는 번호의 개수(Integer)
+     */
     public Integer countSameNumbers(final Lotto other) {
         return Math.toIntExact(other.numbers.stream()
                 .filter(this::contains)

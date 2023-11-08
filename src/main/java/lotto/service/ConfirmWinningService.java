@@ -17,6 +17,13 @@ public class ConfirmWinningService implements Service {
         reward = 0L;
     }
 
+    /**
+     * 당첨 결과를 계산하고, 메시지로 출력하는 메서드
+     *
+     * @param lotto 발행된 로또(PublishedLotto)
+     * @param pair 당첨 번호와 당첨 보너스 번호 묶음(LottoBonusPair)
+     * @param outputView 출력 담당 객체(LottoOutputView)
+     */
     public void confirmWinning(final PublishedLotto lotto, final LottoBonusPair pair,
                                final LottoOutputView outputView) {
         List<Integer> rankList = pair.getResults(lotto);
@@ -30,6 +37,11 @@ public class ConfirmWinningService implements Service {
         outputView.printWinningResult(rankCount);
     }
 
+    /**
+     * 총 당첨 금액을 반환하는 메서드
+     *
+     * @return 총 당첨 금액(Long)
+     */
     public Long getTotalReward() {
         return this.reward;
     }

@@ -23,6 +23,11 @@ public class PublishedLotto {
         return new PublishedLotto(money);
     }
 
+    /**
+     * 발행된 로또의 개수를 반환하는 메서드.
+     *
+     * @return 발행된 로또의 개수(Integer)
+     */
     public Integer getCount() {
         return publishedLotto.size();
     }

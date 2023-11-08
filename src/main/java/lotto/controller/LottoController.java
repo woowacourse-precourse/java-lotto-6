@@ -17,5 +17,6 @@ public class LottoController {
         OutputView.printTicket(ticket);
         Lotto winningNumber = InputView.inputWinningNumber();
         BonusNumber bonusNumber = InputView.inputBonusNumber();
+        EnumMap<Prize, Integer> result = TicketService.getResult(ticket, winningNumber.getNumbers(), bonusNumber.getBonusNumber());
     }
 }

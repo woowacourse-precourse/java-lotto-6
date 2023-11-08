@@ -55,7 +55,7 @@ public static void main(String[] args) {
 - `InputSystem` : 값을 입력받음
 - `LotterySystem` : 세부 기능을 관리하는 상위 함수
 - `Perform` : 당첨여부 판단, 수익률 계산
-- `Validation` :로또 정보를 일급 객체로 관리하는 클래스
+- `Validation` : 입력받은 값을 검증함
 -  `Awards` : 당첨 이력과 상금 정보를 enum으로 관리함
 - `Draw` : 랜덤생성한 로또를 일급 객체로 관리함
 - `Errors` : 에러메세지 상수를 enum으로 관리함

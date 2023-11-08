@@ -3,8 +3,6 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.validator.InputValidator;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class InputView {
     private final String INPUT_MONEY_AMOUNT_MESSAGE = "구입금액을 입력해주세요.";

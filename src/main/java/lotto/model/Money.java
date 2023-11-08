@@ -3,6 +3,8 @@ package lotto.model;
 import static lotto.validator.ErrorMessage.ErrorMessage.NOT_DIVIDED_THOUSAND_EXCEPTION_MESSAGE;
 
 public class Money {
+    private static final int THOUSAND = 1000;
+
     private int money;
 
     public Money(int money) {
@@ -15,13 +17,13 @@ public class Money {
     }
 
     private static void validateMoneyIsDividedInThousand(int money) {
-        if (money % 1000 != 0) {
+        if (money % THOUSAND != 0) {
             throw new IllegalArgumentException(NOT_DIVIDED_THOUSAND_EXCEPTION_MESSAGE);
         }
     }
 
     public int amountOfLotto() {
-        return money / 1000;
+        return money / THOUSAND;
     }
 
     public int getMoney() {

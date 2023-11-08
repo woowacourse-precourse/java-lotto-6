@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinningLotto {
+    private final String DIVIDER = ",";
+
     private final List<Integer> winningLottoNumbers;
 
     public WinningLotto(String inputWinningLotto) {
@@ -21,7 +23,7 @@ public class WinningLotto {
 
     private List<Integer> splitWinningLottoNumber(String inputWinningLottoNumbers) {
         List<Integer> winningLottoNumbers = new ArrayList<>();
-        for (String inputWinningLottoNumber : inputWinningLottoNumbers.split(",")) {
+        for (String inputWinningLottoNumber : inputWinningLottoNumbers.split(DIVIDER)) {
             validateWinningLottoNumber(inputWinningLottoNumber);
             winningLottoNumbers.add(Integer.parseInt(inputWinningLottoNumber));
         }

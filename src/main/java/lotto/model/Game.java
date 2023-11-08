@@ -4,7 +4,6 @@ import lotto.LottoNumberGenerator.LottoGenerator;
 import lotto.validator.InputValidator;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Game {

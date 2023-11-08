@@ -1,7 +1,5 @@
 package lotto.model;
 
-import java.util.List;
-
 public enum Rank {
     FIRST(2000000000, 6, false, 0),
     SECOND(30000000, 5, true, 0),
@@ -19,10 +17,6 @@ public enum Rank {
         this.lotto = lotto;
         this.bonus = bonus;
         this.amount = amount;
-    }
-
-    public int getPrice() {
-        return price;
     }
 
     public int getAmount() {

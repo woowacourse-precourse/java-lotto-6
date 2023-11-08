@@ -7,7 +7,7 @@ public enum UnitNumber {
     PERCENTAGE(100),
     LOTTO_MIN_NUMBER(1),
     LOTTO_MAX_NUMBER(45),
-    ROUNDED_HELPER_NUMBER(100),
+    ROUNDED_HELPER_NUMBER(10),
     RANK_PLUS(1);
 
 

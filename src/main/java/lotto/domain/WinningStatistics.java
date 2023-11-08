@@ -9,11 +9,13 @@ import java.util.Map;
 
 public class WinningStatistics {
 
+    private static final int ZERO = 0;
+
     private Map<Ranking, Integer> statistics = new EnumMap<>(Ranking.class);
 
     public WinningStatistics(WinningLotto winningLotto, Lottos lottos) {
         Arrays.stream(Ranking.values())
-            .forEach(ranking -> statistics.put(ranking, 0));
+            .forEach(ranking -> statistics.put(ranking, ZERO));
 
         produceStatistics(winningLotto, lottos);
     }
@@ -33,7 +35,7 @@ public class WinningStatistics {
     public Money calculateTotalWinningPrize() {
         List<Ranking> rankings;
         rankings = new ArrayList<>(List.of(Ranking.values()));
-        long totalWinningPrize = 0;
+        long totalWinningPrize = ZERO;
         for (Ranking ranking : rankings) {
             totalWinningPrize += statistics.get(ranking) * ranking.getPrizeMoney();
         }

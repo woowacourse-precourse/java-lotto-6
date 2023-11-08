@@ -51,37 +51,37 @@ public class LottoService {
         return sortLotto;
     }
 
-    public List<Integer> integerList(String input){
+    public List<Integer> integerList(String input) {
         return Arrays.stream(intArray(input)).boxed().collect(Collectors.toList());
     }
 
-    private int[] intArray(String input){
+    private int[] intArray(String input) {
         return Arrays.stream(input.split(",")).mapToInt(Integer::parseInt).toArray();
     }
 
     public void checkLottoRanking(Customer customer, WinningNumber winningNumber) {
-        HashMap<Ranking,Integer> result = customer.getLottoResult();
-        for(Lotto lotto : customer.getPurchaseLotteries()) {
-            Ranking ranking = lottoRanking(winningNumber,lotto);
-            result.put(ranking,result.getOrDefault(ranking,0) + 1);
+        HashMap<Ranking, Integer> result = customer.getLottoResult();
+        for (Lotto lotto : customer.getPurchaseLotteries()) {
+            Ranking ranking = lottoRanking(winningNumber, lotto);
+            result.put(ranking, result.getOrDefault(ranking, 0) + 1);
         }
     }
 
-    private Ranking lottoRanking(WinningNumber winningNumber, Lotto lotto){
-        int count = countLottoNumber(winningNumber,lotto);
+    private Ranking lottoRanking(WinningNumber winningNumber, Lotto lotto) {
+        int count = countLottoNumber(winningNumber, lotto);
         boolean bonusCount = checkBonusNumberInLotto(winningNumber, lotto);
         Ranking ranking = Ranking.values()[count]; // 열거형 check
-        if(ranking == Ranking.FIVE && bonusCount){
+        if (ranking == Ranking.FIVE && bonusCount) {
             return Ranking.FIVE_BONUS;
         }
         return ranking;
     }
 
-    private int countLottoNumber(WinningNumber winningNumber, Lotto lotto){
-        return checkSameNumber(winningNumber.getWinningNumbers(),lotto.getNumbers());
+    private int countLottoNumber(WinningNumber winningNumber, Lotto lotto) {
+        return checkSameNumber(winningNumber.getWinningNumbers(), lotto.getNumbers());
     }
 
-    private boolean checkBonusNumberInLotto(WinningNumber winningNumber, Lotto lotto){
+    private boolean checkBonusNumberInLotto(WinningNumber winningNumber, Lotto lotto) {
         return lotto.getNumbers().contains(winningNumber.getBonusNumber());
     }
 

@@ -7,7 +7,7 @@ public class WinningNumber {
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
-    public WinningNumber(List<Integer> winningNumbers, int bonusNumber){
+    public WinningNumber(List<Integer> winningNumbers, int bonusNumber) {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }

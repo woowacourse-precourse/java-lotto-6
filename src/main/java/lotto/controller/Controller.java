@@ -8,6 +8,7 @@ import lotto.model.WinningNumber;
 import lotto.service.LottoService;
 import lotto.view.InputMessage;
 import lotto.view.OutputMessage;
+
 import java.util.List;
 
 public class Controller {
@@ -16,22 +17,27 @@ public class Controller {
     private WinningNumber winningNumber;
     private Customer customer;
 
-    public void start(){
-        getBuyLottoMoney();
-        winningNumberShow();
-        gameResult();
+    public void start() {
+        try {
+            getBuyLottoMoney();
+            winningNumberShow();
+            gameResult();
+        } catch (IllegalArgumentException e) {
+            Exceptions.showErrorMessage();
+        }
     }
 
     private void getBuyLottoMoney() {
         InputMessage.inputMoney();
-        int inputMoney = Integer.parseInt(Console.readLine());
+        String money = Console.readLine().trim();
+        int inputMoney = Integer.parseInt(money);
         customer = new Customer(inputMoney);
         lottoService.buyLottoByTicket(customer);
         resultLotto(customer);
     }
 
     private void gameResult() {
-        lottoService.checkLottoRanking(customer,winningNumber);
+        lottoService.checkLottoRanking(customer, winningNumber);
         OutputMessage.winningMessage();
         OutputMessage.showRank(customer.getLottoResult());
         OutputMessage.showYieldResult(customer.getYield());
@@ -45,7 +51,7 @@ public class Controller {
     }
 
     private void winningNumberShow() {
-        winningNumber = new WinningNumber(getWinningNumber(),getBonusNumber());
+        winningNumber = new WinningNumber(getWinningNumber(), getBonusNumber());
     }
 
     private List<Integer> getWinningNumber() { // String[] vs List<Integer> ..

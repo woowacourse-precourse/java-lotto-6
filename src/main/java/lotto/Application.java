@@ -5,6 +5,14 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
+        try {
+            playLottoGame();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void playLottoGame() {
         LottoGame lottoGame = new LottoGame();
 
         int price = Input.inputPrice();

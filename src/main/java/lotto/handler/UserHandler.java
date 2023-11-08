@@ -56,20 +56,30 @@ public class UserHandler {
     }
 
     public static List<String> getWinningNumberFromUser() {
+        List<String> winningNumbers = getAndValidateWinningNumbers();
+        int bonusNumber = getAndValidateBonusNumber();
+        checkDuplicateWithWinningNumbers(bonusNumber, winningNumbers);
+
+        return winningNumbers;
+    }
+
+    private static List<String> getAndValidateWinningNumbers() {
         ResultView.printNewLine();
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumberInput = Console.readLine();
 
-        List<String> winningNumbers = validateWinningNumberInput(winningNumberInput);
+        return validateWinningNumberInput(winningNumberInput);
+    }
 
+    private static int getAndValidateBonusNumber() {
         ResultView.printNewLine();
         System.out.println("보너스 번호를 입력해주세요.");
         String BonusNumberInput = Console.readLine();
         int bonusNumber = Integer.parseInt(BonusNumberInput);
-        checkvalidateBonusNumber(bonusNumber);
-        checkDuplicateWithWinningNumbers(bonusNumber, winningNumbers);
 
-        return winningNumbers;
+        checkvalidateBonusNumber(bonusNumber);
+
+        return bonusNumber;
     }
 
     private static List<String> validateWinningNumberInput(String winningNumberInput) {
@@ -137,6 +147,4 @@ public class UserHandler {
             }
         }
     }
-
-
 }

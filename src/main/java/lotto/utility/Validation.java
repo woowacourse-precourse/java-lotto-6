@@ -31,16 +31,20 @@ public class Validation {
         isNumbersRangeOneToFortyFive(winningNumbers);
     }
 
-    //사용자 구입 금액 예외처리
+    public static void validateBonusNumber(String bonusNumber){
+        isEmpty(bonusNumber);
+        isNumber(bonusNumber);
+    }
+
     private static void isEmpty(String input) {
         if (input.isEmpty()) {
             throw new IllegalStateException(ExceptionMessages.IS_EMPTY.getMessage());
         }
     }
 
-    private static void isNumber(String purchaseAmount) {
+    private static void isNumber(String input) {
         try {
-            Integer.parseInt(purchaseAmount);
+            Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new NumberFormatException(ExceptionMessages.NOT_NUMBER_MESSAGE.getMessage());
         }
@@ -52,7 +56,6 @@ public class Validation {
         }
     }
 
-    //당첨금액 입력 예외처리
     private static void isNotNumbersOrComma(String winningNumbers) {
         String WinningNumbersWithoutComma = winningNumbers.replaceAll(COMMA, EMPTY); //문자열에서 컴마 제거
 

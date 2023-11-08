@@ -7,8 +7,6 @@ import java.util.function.Predicate;
 public class WinningStatistics {
     private static final int ZERO = 0;
     private static final int ONE = 1;
-    private static final int HUNDRED = 100;
-    private static final double ONE_POINT_ZERO = 1.0;
 
     private final HashMap<PrizeType, Integer> lottoRecords;
     private double totalReward;
@@ -50,13 +48,10 @@ public class WinningStatistics {
         return lottoRecords;
     }
 
-    public double getTotalReward() {
-        return totalReward;
-    }
-
     public String calculateRewardRate(long amount) {
-        totalReward *= ONE_POINT_ZERO;
-        return roundDecimalPlaces((totalReward / amount) * HUNDRED);
+        totalReward *= 1.0;
+        String rate = roundDecimalPlaces((totalReward / amount) * 100);
+        return rate;
     }
 
     private String roundDecimalPlaces(double rate) {

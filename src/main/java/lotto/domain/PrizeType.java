@@ -31,11 +31,11 @@ public enum PrizeType {
     }
 
     public static List<PrizeType> getValues() {
-        List<PrizeType> prizeTypeValues = Stream.of(PrizeType.values())
+        List<PrizeType> prizeValues = Stream.of(PrizeType.values())
                 .filter(rankType -> rankType.matchNumbers >= 3)
                 .collect(Collectors.toList());
-        Collections.reverse(prizeTypeValues);
-        return prizeTypeValues;
+        Collections.reverse(prizeValues);
+        return prizeValues;
     }
 
     public static PrizeType getPrizeType(int matchNumbers, boolean matchBonus) {

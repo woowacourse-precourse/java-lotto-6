@@ -6,6 +6,7 @@ import java.util.List;
 
 public class LottoResult {
 
+    private static final double PERCENTAGE = 100.0;
     private final LinkedHashMap<Rank, Integer> rankHashMap;
 
     public LottoResult(LinkedHashMap<Rank, Integer> rankHashMap) {
@@ -18,6 +19,16 @@ public class LottoResult {
         Rank rank = lottoService.getLottoRank(lotto, winningNumbers, bonusNumber);
         rankHashMap.put(rank, rankHashMap.getOrDefault(rank, 0) + 1);
         return new LinkedHashMap<>(rankHashMap);
+    }
+
+    public double calculateProfit(int playerMoney) {
+        double sum = 0;
+        for (Rank rank : rankHashMap.keySet()) {
+            int prize = rank.getPrize();;
+            int number = rankHashMap.get(rank);
+            sum += prize * number;
+        }
+        return (sum / playerMoney) * PERCENTAGE;
     }
 
 }

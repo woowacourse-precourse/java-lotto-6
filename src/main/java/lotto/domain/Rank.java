@@ -1,21 +1,23 @@
 package lotto.domain;
 
 public enum Rank {
-    FIFTH(3,0,"3개 일치 (5,000원) - %d개"),
-    FOURTH(4,0,"4개 일치 (50,000원) - %d개"),
-    THIRD(5,0,"5개 일치 (1,500,000원) - %d개"),
-    SECOND(5,1,"5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
-    FIRST(6,0,"6개 일치 (2,000,000,000원) - %d개"),
-    FAIL(0, 0, ""),
+    FIFTH(3,0, 5000,"3개 일치 (5,000원) - %d개"),
+    FOURTH(4,0,50000,"4개 일치 (50,000원) - %d개"),
+    THIRD(5,0, 1500000,"5개 일치 (1,500,000원) - %d개"),
+    SECOND(5,1, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
+    FIRST(6,0, 2000000000, "6개 일치 (2,000,000,000원) - %d개"),
+    FAIL(0, 0, 0, ""),
     ;
 
     private final int winningNumber;
     private final int bonusNumber;
+    private final int prize;
     private final String drawResult;
 
-    Rank(int winningNumber, int bonusNumber, String drawResult) {
+    Rank(int winningNumber, int bonusNumber, int prize, String drawResult) {
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
+        this.prize = prize;
         this.drawResult = drawResult;
     }
     public int getWinningNumber() {
@@ -28,6 +30,10 @@ public enum Rank {
 
     public String getDrawResult() {
         return drawResult;
+    }
+
+    public int getPrize() {
+        return prize;
     }
 
     public static Rank getRank(int winningCount, int bonusCount){

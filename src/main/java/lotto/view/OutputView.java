@@ -16,6 +16,8 @@ public class OutputView {
     private static final String TYPE_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final String DRAW_RESULT = "당첨 통계";
     private static final String BRACKETS = "---";
+    private static final String CALCULATE_RESULT = "총 수익률은 %.1f%% 입니다.";
+
     public static void printPurchaseAmount() {
         System.out.println(TYPE_PURCHASE_AMOUNT);
     }
@@ -59,6 +61,11 @@ public class OutputView {
             }
             System.out.printf(rank.getDrawResult() + System.lineSeparator(), map.getOrDefault(rank, 0));
         }
+    }
+
+    public static void printProfitResult(double result) {
+        double roundedResult = Math.round(result * 10.0) / 10.0;
+        System.out.printf(CALCULATE_RESULT ,  roundedResult);
     }
 
     private static boolean checkFail(Rank rank){

@@ -62,6 +62,7 @@ public class LottoController {
             rankHashMap = result.getRankResult(lotto, winningLotto.getWinningNumbers(), bonusLotto.getBonusNumber());
         }
         OutputView.printRankResult(rankHashMap);
-
+        double profit = result.calculateProfit(amount.getMoney());
+        OutputView.printProfitResult(profit);
     }
 }

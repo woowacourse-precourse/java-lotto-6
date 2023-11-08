@@ -2,12 +2,14 @@ package lotto.view;
 
 import lotto.message.Message;
 import lotto.model.Lotto;
+import lotto.model.Rank;
 
 import java.util.List;
+import java.util.Map;
 
 import static lotto.constant.StringConstant.COMMA_SPACE;
 import static lotto.message.ErrorMessage.ERROR_PREFIX;
-import static lotto.message.LottoMessage.DISPLAY_LOTTO_NUMBER_FORMAT;
+import static lotto.message.LottoMessage.*;
 
 public class OutputView {
 
@@ -42,5 +44,27 @@ public class OutputView {
         printMessage(LottoNumberFormat);
     }
 
+
+    public void printWinningResultStatistics(Map<Rank, Integer> winningResult) {
+        winningResult.entrySet().stream()
+                .filter(entry -> entry.getKey() != Rank.PASS)
+                .forEach(entry -> {
+
+                    int winningCount = entry.getKey().getMatchedNumberCount();
+                    String reward = entry.getKey().rewardNumberFormat();
+                    int myWinningCount = entry.getValue();
+
+                    if (entry.getKey().isRequiredBonusMatch()) {
+                        System.out.printf(EXIST_BONUS_MESSAGE.getMessage(), winningCount, reward, myWinningCount);
+                        System.out.println();
+                    }
+
+                    if (!entry.getKey().isRequiredBonusMatch()) {
+                        System.out.printf(NOT_EXIST_BONUS_MESSEAGE.getMessage(), winningCount, reward, myWinningCount);
+                        System.out.println();
+                    }
+
+                });
+    }
 
 }

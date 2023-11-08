@@ -111,12 +111,19 @@ public class ConsoleUI {
     private void printLottoResult(Map<LottoResult, Integer> lottoResult) {
         for (LottoResult result : LottoResult.values()) {
             if (result != LottoResult.NONE) { // 'NONE'은 출력하지 않는다.
-                System.out.printf("%d개 일치 (%s) - %d개\n",
-                        result.getMatchCount(),
-                        result.getPrizeString(),
-                        lottoResult.getOrDefault(result, 0));
+                String resultString = getResultString(result, lottoResult.getOrDefault(result, 0));
+                System.out.println(resultString);
             }
         }
+    }
+
+    private String getResultString(LottoResult result, int count) {
+        if (result == LottoResult.SECOND) {
+            return String.format("%d개 일치, 보너스 볼 일치 (%s) - %d개",
+                    result.getMatchCount(), result.getPrizeString(), count);
+        }
+        return String.format("%d개 일치 (%s) - %d개",
+                result.getMatchCount(), result.getPrizeString(), count);
     }
 
     private void printEarningsRate(double earningsRate) {

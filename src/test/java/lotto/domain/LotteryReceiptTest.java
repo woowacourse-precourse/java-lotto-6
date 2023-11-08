@@ -16,9 +16,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 @DisplayName("[Unit] LotteryReceipt에 대한 테스트")
 @DisplayNameGeneration(ReplaceUnderscores.class)
 public class LotteryReceiptTest {
-
-    LottoRandom random = new FixedRandom();
-    LotteryOperator operator = new LotteryOperator(new LotteryRound(1), List.of(TestLotteryRanking.values()), 1000);
+    private LottoRandom random = new FixedRandom();
+    private LotteryOperator operator = new LotteryOperator(new LotteryRound(1), List.of(TestLotteryRanking.values()),
+            1000);
 
     @Test
     void createLotteryReceipt_quantity가_1보다_작으면은_예외를_발생시킨다() {
@@ -42,5 +42,4 @@ public class LotteryReceiptTest {
         assertThat(receipt.getPurchasedAmount())
                 .isEqualTo(originalPrice);
     }
-
 }

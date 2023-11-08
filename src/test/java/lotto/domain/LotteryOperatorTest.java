@@ -21,7 +21,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 @DisplayName("[Unit] LotteryOperator에 관한 테스트")
 @DisplayNameGeneration(ReplaceUnderscores.class)
 public class LotteryOperatorTest {
-
     private static Collection<? extends LotteryRanking> rankings = List.of(TestLotteryRanking.values());
 
     @Test
@@ -81,7 +80,5 @@ public class LotteryOperatorTest {
                     )
             );
         }
-
-
     }
 }

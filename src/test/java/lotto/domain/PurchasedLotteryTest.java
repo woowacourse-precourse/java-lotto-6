@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 @DisplayName("[Unit] PurchasedLottery에 관한 테스트")
 @DisplayNameGeneration(ReplaceUnderscores.class)
 public class PurchasedLotteryTest {
-
     @Test
     void createLottery_입력된_라운드와_생성된_객체의_라운드가_같아야_된다() {
         LotteryRound round = new LotteryRound(1);

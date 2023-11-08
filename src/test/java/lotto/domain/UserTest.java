@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 @DisplayName("[Unit] User에 관한 테스트")
 @DisplayNameGeneration(ReplaceUnderscores.class)
 public class UserTest {
-
     @Test
     void takeReceipt_receipt가_null이면_예외를_발생시킨다() {
         User user = new User();
@@ -29,7 +28,7 @@ public class UserTest {
         user.takeReceipt(LotteryReceipt.createLotteryReceipt(operator, 10, random));
         List<LotteryReceipt> receipts = user.getReceipts();
         assertThatThrownBy(() -> {
-            receipts.set(0, LotteryReceipt.createLotteryReceipt(operator, 20, random ));
+            receipts.set(0, LotteryReceipt.createLotteryReceipt(operator, 20, random));
         }).isInstanceOf(UnsupportedOperationException.class);
     }
 }

@@ -1,7 +1,6 @@
 package lotto;
 
 import static java.util.stream.Collectors.toList;
-import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
@@ -23,7 +22,6 @@ public class MyApplicationTest {
     private static List<String> outputs = Collections.emptyList();
     private static final InputStream systemIn = System.in;
     private static final PrintStream systemOut = System.out;
-
     private static ByteArrayOutputStream outBuffer;
 
     @BeforeEach
@@ -54,7 +52,6 @@ public class MyApplicationTest {
         System.setOut(outputPrintStream);
     }
 
-
     @AfterEach
     void clean() {
         outputs = Collections.emptyList();
@@ -66,7 +63,6 @@ public class MyApplicationTest {
         System.setIn(systemIn);
         System.setOut(systemOut);
     }
-
 
     protected static List<String> outputs() {
         return List.copyOf(outputs);

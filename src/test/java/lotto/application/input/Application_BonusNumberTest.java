@@ -7,9 +7,11 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+@DisplayName("[Application] 보너스번호에 관한 테스트")
 public class Application_BonusNumberTest extends Application_InputTest {
     @Disabled
     @ParameterizedTest(name = "''{0}''을 입력했을 시 IllegalArgumentException이 발생한다")

@@ -7,14 +7,13 @@ import static lotto.resource.TextResourceProvider.LOTTERY_RANKING_RESULT_SECOND_
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.MyApplicationTest;
 import lotto.CustomLotteryRanking;
+import lotto.MyApplicationTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("[Application] 어플리케이션의 로또 결과 출력문구에 관한 테스트")
 public class Application_LotteryResultsTest extends MyApplicationTest {
-
     @Test
     void 각_등수를_모두_출력한다() {
         runWithValidArgument();
@@ -60,5 +59,4 @@ public class Application_LotteryResultsTest extends MyApplicationTest {
     private static void runWithValidArgument() {
         run("100000", "1,2,3,4,5,6", "7");
     }
-
 }

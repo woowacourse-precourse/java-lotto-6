@@ -19,9 +19,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 @DisplayName("[Unit] LotteryResults에 관한 테스트")
 @DisplayNameGeneration(ReplaceUnderscores.class)
 public class LotteryResultsTest {
-
     private static int MAX = Integer.MAX_VALUE / 2;
-
     private static Collection<? extends LotteryRanking> rankings = List.of(TestLotteryRanking.values());
 
     @Test

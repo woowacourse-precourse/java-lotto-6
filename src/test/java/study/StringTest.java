@@ -13,7 +13,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class StringTest {
-
     @DisplayName("\"1,2\"을 ','로 split 했을 때 1과 2를 반환한다")
     @Test
     void split_outputTest1() {
@@ -60,14 +59,12 @@ public class StringTest {
 
     @DisplayName("정상 범위를 벗어난 인덱스를 입력하면 예외를 발생시킨다")
     @ParameterizedTest(name = "\"abc\" 값이 주어졌을 때 {0}번째 글자를 검색하면 StringIndexOutOfBoundsException를 발생시킨다")
-    @ValueSource(ints={-1,3})
+    @ValueSource(ints = {-1, 3})
     void charAt_ExceptionTest(int index) {
         String given = "abc";
 
-        assertThatThrownBy(()->{
+        assertThatThrownBy(() -> {
             given.charAt(index);
         }).isInstanceOf(IndexOutOfBoundsException.class);
     }
-
-
 }

@@ -13,8 +13,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 @DisplayName("[Application] 구입금액에 대한 테스트")
 public class Application_PurchaseAmountTest extends Application_InputTest {
-
-
     @Disabled
     @ParameterizedTest(name = "''{0}''을 입력했을 시 IllegalArgumentException이 발생한다")
     @MethodSource("getStringSourceCannotConvertToLong")

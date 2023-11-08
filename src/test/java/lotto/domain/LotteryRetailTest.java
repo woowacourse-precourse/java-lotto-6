@@ -16,10 +16,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 @DisplayName("[Unit] LotteryRetailer에 대한 테스트")
 @DisplayNameGeneration(ReplaceUnderscores.class)
 public class LotteryRetailTest {
-
     private LottoRandom random = new FixedRandom();
-    private LotteryOperator operator = new LotteryOperator(new LotteryRound(1), List.of(TestLotteryRanking.values()),
-            1000);
+    private LotteryOperator operator = new LotteryOperator(new LotteryRound(1),
+            List.of(TestLotteryRanking.values()), 1000);
     private LotteryRetailer retailer = new LotteryRetailer(random);
 
     @Test

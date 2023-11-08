@@ -39,9 +39,8 @@ public class SetTest {
     @DisplayName("입력한 숫자는 포함하고, 입력하지 숫자는 포함하지 않는다")
     @ParameterizedTest(name = "{0}을 입력했을 때 {1}를 반환한다")
     @CsvSource({"1, true", "2, true", "3, true", "4, false", "5, false"})
-    void contains_test(int number, boolean bool){
+    void contains_test(int number, boolean bool) {
         assertThat(numbers.contains(number))
                 .isEqualTo(bool);
     }
-
 }

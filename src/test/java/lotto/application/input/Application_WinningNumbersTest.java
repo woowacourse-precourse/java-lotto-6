@@ -22,7 +22,6 @@ public class Application_WinningNumbersTest extends Application_InputTest {
                 .isThrownBy(() -> {
                     runWithInvalidInput(invalidInput);
                 });
-
     }
 
     @ParameterizedTest(name = "''{0}''을 입력했을 시 에러메시지 내용을 출력한다")
@@ -49,7 +48,6 @@ public class Application_WinningNumbersTest extends Application_InputTest {
                 .isThrownBy(() -> {
                     runWithInvalidInput(invalidInput);
                 });
-
     }
 
     @ParameterizedTest(name = "''{0}''을 입력했을 시 에러메시지 내용을 출력한다")
@@ -76,7 +74,6 @@ public class Application_WinningNumbersTest extends Application_InputTest {
                 .isThrownBy(() -> {
                     runWithInvalidInput(invalidInput);
                 });
-
     }
 
     @ParameterizedTest(name = "''{0}''을 입력했을 시 에러메시지 내용을 출력한다")
@@ -103,7 +100,6 @@ public class Application_WinningNumbersTest extends Application_InputTest {
                 .isThrownBy(() -> {
                     runWithInvalidInput(invalidInput);
                 });
-
     }
 
     @ParameterizedTest(name = "''{0}''을 입력했을 시 에러메시지 내용을 출력한다")

@@ -17,9 +17,9 @@ import org.junit.jupiter.api.Test;
 @DisplayName("[Unit] LotteryResultsCalculator에 관한 테스트")
 @DisplayNameGeneration(ReplaceUnderscores.class)
 public class LotteryResultsCalculatorTest {
-
-    private  static LotteryOperator operator = new LotteryOperator(new LotteryRound(1), List.of(TestLotteryRanking.values()), 100000);
-    private static long MAX = Long.MAX_VALUE /  operator.getLotteryPrice();
+    private static LotteryOperator operator = new LotteryOperator(new LotteryRound(1),
+            List.of(TestLotteryRanking.values()), 100000);
+    private static long MAX = Long.MAX_VALUE / operator.getLotteryPrice();
 
     @Test
     void getTotalResults_비어있는_receipt이면_빈_집합을_반환한다() {

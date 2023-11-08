@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import java.util.Collections;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -8,18 +11,11 @@ import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 @DisplayName("[Unit] Lotto에 관한 테스트")
 @DisplayNameGeneration(ReplaceUnderscores.class)
 class LottoTest {
-
     @Nested
     class 생성자_테스트 {
-
         @Test
         void 로또_번호의_개수가_6개가_넘어가면_예외가_발생() {
             assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -48,8 +44,7 @@ class LottoTest {
 
     @Nested
     class matches_테스트 {
-
-        Lotto lotto;
+        private Lotto lotto;
 
         @BeforeEach
         void setUp() {

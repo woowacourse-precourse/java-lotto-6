@@ -17,8 +17,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 @DisplayName("[Unit] WinningLottery에 관한 테스트")
 @DisplayNameGeneration(ReplaceUnderscores.class)
 public class WinningLotteryTest {
-
-
     @ParameterizedTest
     @MethodSource
     void getResultFrom_등수가_같은_두_로또는_같은_결과를_가져와야_된다(Lotto a, Lotto b) {

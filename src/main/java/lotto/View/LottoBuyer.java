@@ -11,13 +11,15 @@ public class LottoBuyer {
         return money;
     }
 
-    private static Integer calculateLottoCount(Integer money) {
-        return money / LOTTO_PRICE;
-    }
-
     private static void validateLottoPrice(Integer money) {
         if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(LOTTO_PRICE_ERROR_MESSAGE);
         }
     }
+
+    private static Integer calculateLottoCount(Integer money) {
+        return money / LOTTO_PRICE;
+    }
+
+
 }

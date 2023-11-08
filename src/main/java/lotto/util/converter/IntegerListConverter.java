@@ -11,7 +11,7 @@ public class IntegerListConverter {
 
     public static List<Integer> convert(String value) {
         return Stream.of(value.split(DELIMITER))
-                .map(IntegerConverter::convert)
+                .map(NumericConverter::convert)
                 .toList();
     }
 }

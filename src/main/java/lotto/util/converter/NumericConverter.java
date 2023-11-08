@@ -2,8 +2,8 @@ package lotto.util.converter;
 
 import static lotto.util.message.ErrorMessages.NUMBER_FORMAT_EXCEPTION;
 
-public class IntegerConverter {
-    private IntegerConverter() {
+public class NumericConverter {
+    private NumericConverter() {
     }
 
     public static int convert(String value) {

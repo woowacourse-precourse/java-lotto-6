@@ -71,6 +71,6 @@ public class LottoGame {
 
     private void endGame() {
         Output.printLottoResult(ranks);
-//        Output.printProfit(profit, lottoCount);
+        Output.printProfit(profit, lottoCount);
     }
 }

@@ -71,8 +71,9 @@ public class View {
     }
 
     private int formatBonus(String bonus) {
+        String inputWithoutSpace = bonus.replaceAll("\\s+", "");
         try {
-            return Integer.parseInt(bonus);
+            return Integer.parseInt(inputWithoutSpace);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(BONUS_FORMAT);
         }

@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class LottoResult {
     private static final int INIT_VALUE = 0;
-    private static final int PLUS_ONE = 1;
+    private static final int INCREMENT = 1;
     private static final long START_VALUE = 0;
 
     private final WinningLotto winningLotto;
@@ -51,16 +51,19 @@ public class LottoResult {
 
     private void incrementResult(final Long count, final LottoCriteria rank, final Lotto lotto) {
         if (matchRank(count, rank, lotto)) {
-            rankingResult.merge(rank, PLUS_ONE, Integer::sum);
+            rankingResult.merge(rank, INCREMENT, Integer::sum);
         }
     }
 
     private boolean matchRank(final Long count, final LottoCriteria rank, final Lotto lotto) {
-        if ((count == rank.getMatchNumber() && !rank.hasBonus()) ||
-                isSecondPlace(count, rank, lotto)) {
+        if (isOtherPlace(count, rank, lotto) || isSecondPlace(count, rank, lotto)) {
             return true;
         }
         return false;
+    }
+
+    private boolean isOtherPlace(final Long count, final LottoCriteria rank, final Lotto lotto) {
+        return count == rank.getMatchNumber() && !rank.hasBonus() && !isBonusContain(lotto);
     }
 
     private boolean isSecondPlace(final Long count, final LottoCriteria rank, final Lotto lotto) {
@@ -68,7 +71,7 @@ public class LottoResult {
     }
 
     public final boolean isBonusContain(final Lotto lotto) {
-        return lotto.getNumbers().contains(winningLotto.bonus());
+        return lotto.getNumbers().contains(winningLotto.bonus().getBonusNumber());
     }
 
     public final float getReturnRate() {

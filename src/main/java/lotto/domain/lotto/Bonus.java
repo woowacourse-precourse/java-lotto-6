@@ -21,4 +21,8 @@ public class Bonus {
     private boolean isNotNumberInRange(final int bonusNumber) {
         return bonusNumber < MINIMUM.getValue() || bonusNumber > MAXIMUM.getValue();
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

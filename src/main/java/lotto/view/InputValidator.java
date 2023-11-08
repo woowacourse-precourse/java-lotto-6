@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.constants.ErrorMessage.IS_NOT_NUMERIC_ERROR_MESSAGE;
+
 import java.util.ArrayList;
 
 public class InputValidator {
@@ -22,7 +24,7 @@ public class InputValidator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("입력에 숫자가 아닌 문자가 포함되어 있거나 숫자가 너무 큽니다.");
+            throw new IllegalArgumentException(IS_NOT_NUMERIC_ERROR_MESSAGE);
         }
     }
 }

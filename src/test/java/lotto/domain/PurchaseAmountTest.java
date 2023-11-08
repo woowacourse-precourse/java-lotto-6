@@ -40,7 +40,7 @@ class PurchaseAmountTest {
     @ParameterizedTest
     @CsvSource(value = {"97000", "528000"})
     void purchaseLottoByInputAmount(int amount) {
-        // give
+        // given
         PurchaseAmount purchaseAmount = new PurchaseAmount(amount);
 
         // when

@@ -27,7 +27,7 @@ public class Lotto {
 		return numbers.contains(number);
 	}
 
-	public void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+	public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
 		if (numbers.contains(bonusNumber)) {
 			throw new IllegalArgumentException();
 		}

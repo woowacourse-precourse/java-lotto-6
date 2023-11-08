@@ -41,8 +41,8 @@ public class OutputView {
     }
 
     private static String getPrizeResultMessage(int sameCount, long prizeProfit, int prizeCount) {
-        DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
-        String formattedPrizeProfit = decimalFormat.format(prizeProfit);
+        DecimalFormat prizeProfitFormatter = new DecimalFormat(DECIMAL_FORMAT);
+        String formattedPrizeProfit = prizeProfitFormatter.format(prizeProfit);
         String bonusMessage = SPACE;
         if (prizeProfit == Prize.SECOND.getPrizeProfit()) {
             bonusMessage = BONUS_MESSAGE;

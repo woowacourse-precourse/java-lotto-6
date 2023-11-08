@@ -35,4 +35,11 @@ public class InputValidatorControllerTest {
         assertThatThrownBy(() -> inputLottoNumberValidate("1,2,3,4k,5,6"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 로또 번호 숫자로 입력됐는지 확인")
+    @Test
+    void inputLottoBonusNumberValidate_isLottoNumberDigit() {
+        assertThatThrownBy(() -> inputLottoNumberValidate("11k"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

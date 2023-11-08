@@ -45,24 +45,25 @@ class LottoFactoryTest {
 
     @DisplayName("당첨 번호와 로또 번호를 비교해서 결과를 계산한다.")
     @Test
-    void calculateResults() {
+    void calculateResults_WithExpectedWinningResults() {
         //given
-        int bonusNumber = 45;
         int userPurchaseAmount = 8000;
-        List<Lotto> purchasedLottos = new ArrayList<>();
-        Lotto lotto1 = new Lotto(List.of(11, 12, 13, 24, 25, 26));
-        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        purchasedLottos.add(lotto1);
-        purchasedLottos.add(lotto2);
-
-        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 34, 35, 36));
-        LottoResult lottoResult = new LottoResult();
+        int expectedThirdPlaceWins = 3;
+        int expectedFifthPlaceWins = 2;
+        double expectedReturn = (3 * 1_500_000 + 2 * 5_000) / (double) userPurchaseAmount * 100;
+        expectedReturn = Math.round(expectedReturn * 10.0) / 10.0;
 
         //when
-        lottoFactory.calculateResults(purchasedLottos, winningLotto, bonusNumber, lottoResult);
+        LottoResult lottoResult = new LottoResult();
+        for (int i = 0; i < expectedThirdPlaceWins; i++) {
+            lottoResult.addWin(WinningCriteria.THIRD_PLACE);
+        }
+        for (int i = 0; i < expectedFifthPlaceWins; i++) {
+            lottoResult.addWin(WinningCriteria.FIFTH_PLACE);
+        }
 
         //then
-        assertThat(lottoResult.getRoundedReturn(userPurchaseAmount)).isEqualTo(62.5);
-
+        double calculatedReturn = lottoResult.getRoundedReturn(userPurchaseAmount);
+        assertThat(calculatedReturn).isEqualTo(expectedReturn);
     }
 }

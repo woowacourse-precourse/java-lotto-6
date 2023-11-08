@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -40,6 +39,20 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(Arrays.asList(first, second, third, fourth, fifth, sixth)))
                 .isExactlyInstanceOf(IndexOutOfBoundsException.class)
                 .hasMessage(NUMBER_OUT_OF_RANGE_EXCEPTION);
+    }
+
+    @Test
+    @DisplayName("1등 로또와 구매한 로또가 몇개가 겹치는지 확인할 수 있다.")
+    void compare() {
+        // given
+        Lotto winnerLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto purchasedLotto = new Lotto(Arrays.asList(1, 5, 3, 4, 7, 6));
+
+        // when
+        int countOfMatch = purchasedLotto.compare(winnerLotto);
+
+        // then
+        assertThat(countOfMatch).isEqualTo(5);
     }
 
     @ParameterizedTest

@@ -2,7 +2,7 @@ package lotto.model;
 
 import java.util.List;
 import java.util.Objects;
-import lotto.constant.LottoNumber;
+import lotto.constant.LottoGameNumber;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,7 +21,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (Objects.isNull(numbers)
-                || numbers.size() != LottoNumber.COUNT
+                || numbers.size() != LottoGameNumber.COUNT
                 || isOutOfRange(numbers)
                 || hasDuplicatedNumber(numbers)) {
             throw new IllegalArgumentException();
@@ -34,7 +34,7 @@ public class Lotto {
     }
 
     private boolean isOutOfRange(int number) {
-        return number < LottoNumber.MINIMUM || number > LottoNumber.MAXIMUM;
+        return number < LottoGameNumber.MINIMUM || number > LottoGameNumber.MAXIMUM;
     }
 
     private boolean hasDuplicatedNumber(List<Integer> numbers) {

@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.constant.LottoNumber;
+import lotto.constant.LottoGameNumber;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,7 +34,7 @@ class LottoTest {
     @Test
     void createLottoByUnderRange() {
         // given
-        List<Integer> numbers = List.of(LottoNumber.MINIMUM - 1, LottoNumber.MINIMUM, 3, 4, 5, 6);
+        List<Integer> numbers = List.of(LottoGameNumber.MINIMUM - 1, LottoGameNumber.MINIMUM, 3, 4, 5, 6);
 
         // when
         ThrowingCallable target = () -> new Lotto(numbers);
@@ -47,7 +47,7 @@ class LottoTest {
     @Test
     void createLottoByExceedRange() {
         // given
-        List<Integer> numbers = List.of(1, 2, 3, 4, LottoNumber.MAXIMUM, LottoNumber.MAXIMUM + 1);
+        List<Integer> numbers = List.of(1, 2, 3, 4, LottoGameNumber.MAXIMUM, LottoGameNumber.MAXIMUM + 1);
 
         // when
         ThrowingCallable target = () -> new Lotto(numbers);

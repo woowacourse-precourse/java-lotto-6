@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.constant.LottoNumber;
+import lotto.constant.LottoGameNumber;
 import lotto.model.Lotto;
 
 public final class LottoGenerator {
@@ -13,7 +13,7 @@ public final class LottoGenerator {
     }
 
     public static Lotto generate() {
-        List<Integer> numbers = generateUniqueNumbers(LottoNumber.COUNT);
+        List<Integer> numbers = generateUniqueNumbers(LottoGameNumber.COUNT);
 
         return new Lotto(numbers);
     }
@@ -32,6 +32,6 @@ public final class LottoGenerator {
     }
 
     private static int generateNumber() {
-        return Randoms.pickNumberInRange(LottoNumber.MINIMUM, LottoNumber.MAXIMUM);
+        return Randoms.pickNumberInRange(LottoGameNumber.MINIMUM, LottoGameNumber.MAXIMUM);
     }
 }

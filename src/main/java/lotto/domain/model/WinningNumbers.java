@@ -1,19 +1,13 @@
 package lotto.domain.model;
 
-import static lotto.util.Constants.*;
-
-import java.util.Arrays;
-import java.util.List;
-import lotto.domain.model.LottoErrorMessages;
-import lotto.util.StringToNumberConvertor;
 
 public class WinningNumbers {
 
     private final Lotto winningLotto;
     private final LottoNumber bonusNumber;
 
-    private WinningNumbers(final List<Integer> winningNumbers,final int bonusNumber) {
-        this.winningLotto = new Lotto(winningNumbers);
+    public WinningNumbers(final Lotto lotto,final int bonusNumber) {
+        this.winningLotto = lotto;
         this.bonusNumber = new LottoNumber(bonusNumber);
         validateBonusNumberDuplication();
     }
@@ -25,13 +19,6 @@ public class WinningNumbers {
         }
     }
 
-    public static WinningNumbers of(String winningNumbers, int bonusNumber) {
-        List<Integer> numbers = Arrays.stream(winningNumbers.split(COMMA.getValue()))
-                .map(String::trim)
-                .map(StringToNumberConvertor::convert)
-                .toList();
-        return new WinningNumbers(numbers, bonusNumber);
-    }
 
     public Lotto getWinningLotto() {
         return winningLotto;

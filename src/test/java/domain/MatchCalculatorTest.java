@@ -30,11 +30,11 @@ public class MatchCalculatorTest {
     private static Stream<Arguments> provideLottoAndWinningNumbers() {
         return Stream.of(
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                        WinningNumbers.of("1,2,3,4,5,6", 7), 6, false),
+                        new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7), 6, false),
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                        WinningNumbers.of("1,2,3,4,7,8", 5), 4, true),
+                        new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 7, 8)), 5), 4, true),
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                        WinningNumbers.of("7, 8, 9, 10, 11, 12", 13), 0, false)
+                        new WinningNumbers(new Lotto(List.of(7, 8, 9, 10, 11, 12)), 13), 0, false)
         );
     }
 }

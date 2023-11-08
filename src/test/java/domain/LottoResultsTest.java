@@ -2,6 +2,7 @@ package domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.List;
 import lotto.domain.model.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.caclulator.LottoResultCalculator;
@@ -28,7 +29,7 @@ class LottoResultsTest {
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 11))
         ));
 
-        WinningNumbers winningNumbers = WinningNumbers.of("1,2,3,4,5,6", 7);
+        WinningNumbers winningNumbers = new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
 
         LottoResults results = LottoResultCalculator.calculateResults(lottos, winningNumbers);
         assertThat(results.rankCounts().get(LottoRank.FIRST)).isEqualTo(1);
@@ -53,9 +54,11 @@ class LottoResultsTest {
 
     private static Stream<Arguments> provideDataForTotalEarningsTest() {
         return Stream.of(
-                Arguments.of(WinningNumbers.of("1,2,3,4,5,6", 7), 2001500000L),
-                Arguments.of(WinningNumbers.of("1,2,3,4,5,10", 7), 3000000L),
-                Arguments.of(WinningNumbers.of("1,2,3,8,10,30", 7),
+                Arguments.of(new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7),
+                        2001500000L),
+                Arguments.of(new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 10)), 7),
+                        3000000L),
+                Arguments.of(new WinningNumbers(new Lotto(List.of(1, 2, 3, 8, 10, 30)), 7),
                         5000L + 50000L)
         );
     }

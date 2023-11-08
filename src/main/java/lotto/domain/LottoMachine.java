@@ -11,6 +11,7 @@ public class LottoMachine {
     private final List<Lotto> lottos;
 
     public LottoMachine(int purchaseAmount) {
+        validatePurchaseAmount(purchaseAmount);
         int purchaseCount = parseMoneyToCount(purchaseAmount);
         this.lottos = issuedLottos(purchaseCount);
     }
@@ -31,6 +32,12 @@ public class LottoMachine {
                 .stream()
                 .sorted()
                 .collect(Collectors.toList());
+    }
+
+    private void validatePurchaseAmount(int purchaseAmount) {
+        if (purchaseAmount % LottoConstant.LOTTO_PRICE > 0) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public List<Lotto> getLottos() {

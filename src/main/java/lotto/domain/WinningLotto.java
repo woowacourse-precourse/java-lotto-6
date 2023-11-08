@@ -17,6 +17,12 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public WinningLotto(Lotto lotto, int bonusNumber) {
+        this.lotto = lotto;
+        validate(lotto.getLottoNumbers(), bonusNumber);
+        this.bonusNumber = bonusNumber;
+    }
+
     private void validate(List<Integer> lotto, int bonusNumber) {
         if (lotto.contains(bonusNumber)) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE);

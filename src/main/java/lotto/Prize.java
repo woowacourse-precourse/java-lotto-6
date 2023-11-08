@@ -18,14 +18,4 @@ public enum Prize {
     public double getPrizeAmount() {
             return prizeAmount;
     }
-
-
-
-
-
-    public String getFormattedPrizeAmount(double rate) {
-        DecimalFormat df = new DecimalFormat("#,###");
-        return df.format(rate);
-    }
-
 }

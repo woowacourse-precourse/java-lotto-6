@@ -16,9 +16,4 @@ public class Util {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         }
-
-        public static String getFormattedPrizeAmount(double rate) {
-                DecimalFormat df = new DecimalFormat("#,###");
-                return df.format(rate).replace(",", "");
-        }
 }

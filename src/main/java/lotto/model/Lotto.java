@@ -84,54 +84,54 @@ public class Lotto {
     }
 
     public void getWinningData(List<List<Integer>> randomNumbers,int bonusNumber) {
-        int num = 0;
-        for (List<Integer> randomNumber : randomNumbers) {
-            num = compareWithBonus(randomNumber, bonusNumber);
+            int num = 0;
+            for (List<Integer> randomNumber : randomNumbers) {
+                num = compareWithBonus(randomNumber, bonusNumber);
 
-            if (num == 6) {
-                sixSame++;
+                if (num == 6) {
+                    sixSame++;
+                }
+                if (num == 5) {
+                    fiveBonus++;
+                }
+                if (num == 4) {
+                    fiveSame++;
+                }
+                if (num == 3) {
+                    fourSame++;
+                }
+                if (num == 2) {
+                    threeSame++;
+                }
             }
-            if (num == 5) {
-                fiveBonus++;
-            }
-            if (num == 4) {
-                fiveSame++;
-            }
-            if (num == 3) {
-                fourSame++;
-            }
-            if (num == 2) {
-                threeSame++;
-            }
-        }
     }
 
     public double multiplyAndAdd(int multiplier, double addition) {
-        return (multiplier * addition);
+            return (multiplier * addition);
     }
 
 
     public double calculatePrize() {
-        double prize = 0;
-        prize += multiplyAndAdd(sixSame, Prize.FIRST.getPrizeAmount());
-        prize += multiplyAndAdd(fiveBonus, Prize.SECOND.getPrizeAmount());
-        prize += multiplyAndAdd(fiveSame, Prize.THIRD.getPrizeAmount());
-        prize += multiplyAndAdd(fourSame, Prize.FOURTH.getPrizeAmount());
-        prize += multiplyAndAdd(threeSame, Prize.FIFTH.getPrizeAmount());
-        return prize;
+            double prize = 0;
+            prize += multiplyAndAdd(sixSame, Prize.FIRST.getPrizeAmount());
+            prize += multiplyAndAdd(fiveBonus, Prize.SECOND.getPrizeAmount());
+            prize += multiplyAndAdd(fiveSame, Prize.THIRD.getPrizeAmount());
+            prize += multiplyAndAdd(fourSame, Prize.FOURTH.getPrizeAmount());
+            prize += multiplyAndAdd(threeSame, Prize.FIFTH.getPrizeAmount());
+            return prize;
     }
 
     public void calculateReturn() {
-        if (cost == 0) {
-            value = 0.0;
-            return;
-        }
-        double totalPrize = calculatePrize();
-        double returnRate = (totalPrize / cost) * 100;
-        value = Math.round(returnRate * 10.0) / 10.0;
-        if (Math.abs(value - (int) value) < 0.01) {
-            value = Math.round(value);
-        }
+            if (cost == 0) {
+                value = 0.0;
+                return;
+            }
+            double totalPrize = calculatePrize();
+            double returnRate = (totalPrize / cost) * 100;
+            value = Math.round(returnRate * 10.0) / 10.0;
+            if (Math.abs(value - (int) value) < 0.01) {
+                value = Math.round(value);
+            }
 
     }
 

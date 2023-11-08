@@ -63,6 +63,10 @@ class ApplicationTest extends NsTest {
         assertThat(result).hasSize(quantity);
         assertThat(result).allSatisfy(lottoNumbers -> assertThat(lottoNumbers).hasSize(6));
     }
+
+
+
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

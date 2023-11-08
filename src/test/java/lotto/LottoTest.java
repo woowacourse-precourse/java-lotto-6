@@ -1,6 +1,7 @@
 package lotto;
 
     import lotto.model.Lotto;
+    import org.junit.jupiter.api.BeforeEach;
     import org.junit.jupiter.api.DisplayName;
     import org.junit.jupiter.api.Test;
 
@@ -48,9 +49,6 @@ class LottoTest {
 
         int matchCount = lotto.compareWith(inputNumbers);
 
-        assertThat(matchCount).isEqualTo(3); // 1, 2, 3이 일치
+        assertThat(matchCount).isEqualTo(3);
     }
-
-
-
 }

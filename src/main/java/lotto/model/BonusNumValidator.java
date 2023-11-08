@@ -1,7 +1,6 @@
 package lotto.model;
 
 import lotto.Constants;
-
 import java.util.List;
 import java.util.regex.Matcher;
 

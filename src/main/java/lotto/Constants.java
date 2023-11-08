@@ -14,8 +14,6 @@ public class Constants {
         public static final String SIX_RESULT = "6개 일치 (2,000,000,000원) ";
         public static final String DASH = "- ";
         public static final String NUMBER = "개";
-        public static final String TOTAL = "총 수익률은 ";
-        public static final String END = "입니다.";
         public static final String QUANTITY_RESULT = "개를 구매했습니다.";
         public static final Pattern purchasePattern = Pattern.compile("^[0-9]+$");
         public static final Pattern stringPattern = Pattern.compile("^[0-9]+(" + DELIMITER + "[0-9]+)*$");

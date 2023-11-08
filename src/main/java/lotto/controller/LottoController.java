@@ -1,15 +1,8 @@
 package lotto.controller;
 
 import java.util.List;
-import java.util.Random;
 import lotto.Constants;
 import lotto.model.Lotto;
-import lotto.view.OutputView;
-import lotto.model.Quantity;
-import lotto.model.RandomLotto;
-
-import lotto.Prize;
-
 import lotto.view.OutputView;
 
 public class LottoController {
@@ -58,6 +51,4 @@ public class LottoController {
                 OutputView.printWinningData(lotto.getCount());
                 OutputView.printRate(lotto.getValue());
         }
-
-
 }

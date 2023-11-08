@@ -10,6 +10,8 @@ public class Output {
     static final String LOTTO_PURCHASE_COUNT_MESSAGE = "개를 구매했습니다.";
     static final String LOTTO_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     static final String LOTTO_WINNING_NUMBERS_ERROR_MESSAGE = "1 ~ 45 사이의 중복되지 않는 숫자 6개를 입력해주세요.";
+    static final String LOTTO_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+    static final String LOTTO_BONUS_NUMBER_ERROR_MESSAGE = "1 ~ 45 사이의 당첨 번호와 중복되지 않는 숫자 1개를 입력해주세요.";
 
     public void printLottoPurchaseCountMessage(int count){
         System.out.println(count + LOTTO_PURCHASE_COUNT_MESSAGE);

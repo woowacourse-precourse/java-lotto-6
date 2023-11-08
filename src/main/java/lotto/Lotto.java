@@ -58,4 +58,8 @@ public class Lotto {
         return count != CORRECT_LOTTO_SIZE;
     }
 
+    public List<Integer> getNumbers(){
+        return this.numbers;
+    }
+
 }

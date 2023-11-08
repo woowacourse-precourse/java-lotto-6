@@ -45,7 +45,7 @@ public class Controller {
         Output.printScores(scoreBoard);
 
         Double earnLate = gameModel.calculateRoundEarnRate();
-
+        Output.printEarnRate(earnLate);
     }
 
 }

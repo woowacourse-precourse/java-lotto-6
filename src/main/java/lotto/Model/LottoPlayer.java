@@ -46,7 +46,10 @@ public class LottoPlayer {
         }
 
         public double getEarnRate(){
-            return (spentAmount / earnedAmount) * 100;
+            if (earnedAmount == 0) {
+                return 0.0;
+            }
+            return (double) earnedAmount / spentAmount * 100;
         }
         private void getReward(Prize prize) {
             earnedAmount += prize.getReward();

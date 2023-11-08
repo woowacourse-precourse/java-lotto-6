@@ -27,7 +27,7 @@ public class LottoHost {
 
     public void validateLotto(List<Integer> numbers){
         if(isNumbersOutOfRange(numbers)){
-            throw new IllegalArgumentException("[ERROR] 로또의 번호는 1~35 사이어야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또의 번호는 1~45 사이어야 합니다.");
         }
         if(isNumbersDuplicate(numbers)){
             throw new IllegalArgumentException("[ERROR] 로또의 번호는 서로 다른 숫자여야 합니다.");
@@ -41,20 +41,13 @@ public class LottoHost {
 
 
     private List<Integer> generateRandomNumbers(){
-        List<Integer> host = new ArrayList<>();
-        while (host.size() < 6) {
-            int randomNumber = Randoms.pickNumberInRange(1, 45);
-            if (!host.contains(randomNumber) && !isNumberOutOfRange(randomNumber)) {
-                host.add(randomNumber);
-            }
-        }
-        return host;
+        return Randoms.pickUniqueNumbersInRange(1,45,6);
     }
 
 
     private void validateLottoNumber(Integer number){
         if(isNumberOutOfRange(number)){
-            throw new IllegalArgumentException("[ERROR] 로또의 번호는 1~35 사이어야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또의 번호는 1~45 사이어야 합니다.");
         }
     }
 
@@ -77,7 +70,7 @@ public class LottoHost {
     }
 
     private boolean isNumberOutOfRange(Integer number){
-        return number < 1  || 35 < number;
+        return number < 1  || 45 < number;
     }
 
     public LottoData getLottoData(){

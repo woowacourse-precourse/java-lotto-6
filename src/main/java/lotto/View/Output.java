@@ -4,9 +4,11 @@ import static lotto.View.OutputMessage.Enter_Bonus_Numbers;
 import static lotto.View.OutputMessage.Enter_Lotto_Numbers;
 import static lotto.View.OutputMessage.Enter_Purchase_Mount;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.swing.JFormattedTextField;
 import lotto.Model.Prize;
 import lotto.Model.ScoreBoard;
 import lotto.Model.VO.LottoData;
@@ -25,6 +27,10 @@ public class Output {
         System.out.println();
     }
     public static void printInsertLottoNumbers(){System.out.println(Enter_Lotto_Numbers.message);}
+
+    public static void printEarnRate(Double earnRate){
+        System.out.printf("총 수익률은 %.1f%%입니다.",earnRate);
+    }
 
     public static void printScores(ScoreBoard roundScore){
             System.out.println();

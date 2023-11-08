@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Input {
     public static Integer insertInteger(){
-        String inputValue = Console.readLine().trim();
+        String inputValue = Console.readLine();
         InputValidator.validateInsertInteger(inputValue);
         return Integer.parseInt(inputValue);
     }

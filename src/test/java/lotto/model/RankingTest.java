@@ -30,6 +30,12 @@ public class RankingTest {
         assertThat(ranking.getReward()).isEqualTo(reward);
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"NONE, -1", "FIFTH, 3", "FOURTH, 4", "THIRD, 5", "SECOND, 5", "FIRST, 6",})
+    void getMatchCount_메서드는_자신의_매칭_갯수를_반환한다(Ranking ranking, int matchCount) {
+        assertThat(ranking.getMatchCount()).isEqualTo(matchCount);
+    }
+
     //매칭 갯수, 보너스 일치여부, 등수 를 제공한다.
     static List<Arguments> provideRankingTestData() {
         return Arrays.asList(

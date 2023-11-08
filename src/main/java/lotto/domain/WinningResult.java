@@ -6,7 +6,6 @@ import java.util.Map;
 import lotto.dto.WinningResultDTO;
 
 public class WinningResult {
-
     private static final int INITIAL_VALUE = 0;
     private static final int ADDING_COUNT = 1;
     private final Map<Rank, Integer> result = new EnumMap<>(Rank.class);

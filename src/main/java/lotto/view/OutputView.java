@@ -36,7 +36,8 @@ public class OutputView {
                 System.out.printf("%d개 일치 (%,d원) - %d개%n", rank.getNumber(), rank.getPrize(), result.get(rank));
             }
             if (rank.equals(Rank.SECOND)) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n", rank.getNumber(), rank.getPrize(), result.get(rank));
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n", rank.getNumber(), rank.getPrize(),
+                        result.get(rank));
             }
         }
     }

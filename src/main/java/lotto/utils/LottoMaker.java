@@ -6,7 +6,6 @@ import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 
 public class LottoMaker {
-
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
     private static final int LOTTO_NUMBERS_SIZE = 6;

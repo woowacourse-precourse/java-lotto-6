@@ -4,7 +4,6 @@ import java.util.Map;
 import lotto.domain.Rank;
 
 public class WinningResultDTO {
-
     private final Map<Rank, Integer> result;
 
     private WinningResultDTO(Map<Rank, Integer> result) {

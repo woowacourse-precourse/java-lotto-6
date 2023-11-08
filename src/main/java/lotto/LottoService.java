@@ -10,7 +10,6 @@ import lotto.dto.LottoDTO;
 import lotto.utils.LottoMaker;
 
 public class LottoService {
-
     private Lottos lottos;
 
     public void createLottos(int amountOfPurchasedLotto) {

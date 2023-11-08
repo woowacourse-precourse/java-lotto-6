@@ -67,7 +67,7 @@ public class Result {
 	}
 
 	private String calculateRateOfReturn() {
-		double rateOfReturn = ((double)prizeMoney / (double)(money * MONEY_UNIT)) * 100;
+		double rateOfReturn = ((double)prizeMoney / (double)money) * 100;
 		return String.format("%.1f", rateOfReturn);
 	}
 

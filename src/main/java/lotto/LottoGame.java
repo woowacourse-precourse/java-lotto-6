@@ -25,7 +25,8 @@ public class LottoGame {
 
 	private List<Lotto> makeLottos(int money) {
 		List<Lotto> lottos = new ArrayList<>();
-		for (int i = 0; i < money; i++) {
+		int loop = money / MONEY_UNIT;
+		for (int i = 0; i < loop; i++) {
 			lottos.add(Lotto.createLotto());
 		}
 		return lottos;
@@ -53,6 +54,6 @@ public class LottoGame {
 				System.out.println("[ERROR] 1000원 단위가 아닙니다.");
 			}
 		}
-		return money / MONEY_UNIT;
+		return money;
 	}
 }

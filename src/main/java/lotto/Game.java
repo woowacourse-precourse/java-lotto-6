@@ -64,13 +64,37 @@ public class Game {
         }
     }
     public void play(){
-        this.lottoMoney = inputUser.inputLottoMoney();
+        while (true){
+            try {
+                this.lottoMoney = inputUser.inputLottoMoney();
+                break;
+            }catch (IllegalArgumentException e){
+                outputUser.outputExceptionMessage(e.getMessage());
+            }
+        }
         makeNumberTicket(lottoMoney);
         outputUser.outputBuyLotto(this.totalLottoCount);
         outputUser.outputBuyLottoNumbers(this.numberTickets);
 
-        List<Integer> winningNumbers = inputUser.inputWinningNumber();
-        Integer bonusNumber = inputUser.inputBonusNumber();
+        List<Integer> winningNumbers = null;
+        while (true){
+            try {
+                winningNumbers = inputUser.inputWinningNumber();
+                break;
+            }catch (IllegalArgumentException e){
+                outputUser.outputExceptionMessage(e.getMessage());
+            }
+        }
+
+        Integer bonusNumber = null;
+        while (true){
+            try {
+                bonusNumber = inputUser.inputBonusNumber();
+                break;
+            }catch (IllegalArgumentException e){
+                outputUser.outputExceptionMessage(e.getMessage());
+            }
+        }
         this.winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
         resultLottoGame(this.numberTickets, this.winningLotto);

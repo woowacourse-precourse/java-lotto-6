@@ -48,7 +48,7 @@ public class InputUser {
         try {
             Integer.parseInt(inputMoney);
         }catch (NumberFormatException e){
-            throw new NumberFormatException("[ERROR] 구입 금액은 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자를 입력해야 합니다.");
         }
     }
     private void validateMoneyIsMultipleOfThousand(Integer lottoMoney){
@@ -68,14 +68,14 @@ public class InputUser {
                 Integer.parseInt(WinningNumber);
             }
         }catch (NumberFormatException e){
-            throw new NumberFormatException("[ERROR] 당첨 번호는 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자를 입력해야 합니다.");
         }
     }
     private void validateinputBonusNumberIsInteger(String inputBonusNumber){
         try {
             Integer.parseInt(inputBonusNumber);
         }catch (NumberFormatException e){
-            throw new NumberFormatException("[ERROR] 보너스 번호는 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자를 입력해야 합니다.");
         }
     }
 }

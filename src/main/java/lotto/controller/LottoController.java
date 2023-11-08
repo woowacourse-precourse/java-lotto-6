@@ -7,6 +7,7 @@ import lotto.util.LottoNumberGenerator;
 import lotto.util.NumberGenrator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.view.constant.OutputMessageConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +15,6 @@ import java.util.List;
 import static lotto.model.constant.PrizeConstants.*;
 
 public class LottoController {
-    private static final InputView inputView = new InputView();
-    private static final OutputView outputView = new OutputView();
     private static final NumberGenrator lottoNumberGenerator = new LottoNumberGenerator();
 
     public void start() {
@@ -30,18 +29,20 @@ public class LottoController {
     }
 
     private void printRateOfReturn(double returnOfRate) {
-        outputView.printRateOfReturnMessage(returnOfRate);
+        OutputView.printRateOfReturnMessage(returnOfRate);
     }
 
     private void printWinningResult(LottoResult lottoResult) {
-        outputView.printNewLine();
-        outputView.printResultMessage();
-        outputView.printWinningResult(FIFTH_PRIZE.getCount(), FIFTH_PRIZE.getPrice(), lottoResult.getRank().getFifthPlace());
-        outputView.printWinningResult(FOURTH_PRIZE.getCount(), FOURTH_PRIZE.getPrice(), lottoResult.getRank().getFourthPlace());
-        outputView.printWinningResult(THIRD_PRIZE.getCount(), THIRD_PRIZE.getPrice(), lottoResult.getRank().getThirdPlace());
-        outputView.printSecondPlace(SECOND_PRIZE.getCount(), SECOND_PRIZE.getPrice(), lottoResult.getRank().getSecondPlace());
-        outputView.printWinningResult(FIRST_PRIZE.getCount(), FIRST_PRIZE.getPrice(), lottoResult.getRank().getFirstPlace());
+        OutputView.printNewLine();
+        OutputView.printOutputMessage(OutputMessageConstants.WINNING_RESULT_OUTPUT_MESSAGE.getMessage());
+        OutputView.printOutputMessage(OutputMessageConstants.DIVIDER_OUTPUT_MESSAGE.getMessage());
+        OutputView.printWinningResult(FIFTH_PRIZE.getCount(), FIFTH_PRIZE.getPrice(), lottoResult.getRank().getFifthPlace());
+        OutputView.printWinningResult(FOURTH_PRIZE.getCount(), FOURTH_PRIZE.getPrice(), lottoResult.getRank().getFourthPlace());
+        OutputView.printWinningResult(THIRD_PRIZE.getCount(), THIRD_PRIZE.getPrice(), lottoResult.getRank().getThirdPlace());
+        OutputView.printSecondPlace(SECOND_PRIZE.getCount(), SECOND_PRIZE.getPrice(), lottoResult.getRank().getSecondPlace());
+        OutputView.printWinningResult(FIRST_PRIZE.getCount(), FIRST_PRIZE.getPrice(), lottoResult.getRank().getFirstPlace());
     }
+
     private LottoResult createLottoResult(WinningNumber winningNumber, Lottos lottos, BonusNumber bonusNumber) {
         LottoResult lottoResult = new LottoResult(winningNumber, lottos, bonusNumber);
         lottoResult.calcurateLottoRank();
@@ -49,24 +50,24 @@ public class LottoController {
     }
 
     private List<Lotto> createLotto(int lottoCount) {
-        outputView.printLottoCount(lottoCount);
+        OutputView.printLottoCount(lottoCount);
         List<Lotto> lottos = new ArrayList<>();
         for(int i = 0; i < lottoCount; i++) {
             Lotto lotto = new Lotto(lottoNumberGenerator.generate());
-            outputView.printLottoNumber(lotto.getNumbers());
+            OutputView.printLottoNumber(lotto.getNumbers());
             lottos.add(lotto);
         }
-        outputView.printNewLine();
+        OutputView.printNewLine();
         return lottos;
     }
 
     private PurchaseAmount getPurchaseAmount() {
         while(true) {
             try {
-                outputView.printPurchaseAmountInputMessage();
-                return new PurchaseAmount(inputView.readPurchaseAmount());
+                OutputView.printOutputMessage(OutputMessageConstants.PURCHASE_AMOUNT_INPUT_MESSAGE.getMessage());
+                return new PurchaseAmount(InputView.readPurchaseAmount());
             }catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
+                OutputView.printOutputMessage(e.getMessage());
             }
         }
     }
@@ -74,22 +75,22 @@ public class LottoController {
     private WinningNumber getWinningNumber() {
         while(true) {
             try {
-                outputView.printWinningNumbersInputMessage();
-                return new WinningNumber(inputView.readWinningNumber());
+                OutputView.printOutputMessage(OutputMessageConstants.WINNING_NUMBER_INPUT_MESSAGE.getMessage());
+                return new WinningNumber(InputView.readWinningNumber());
             } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
+                OutputView.printOutputMessage(e.getMessage());
             }
         }
     }
 
     private BonusNumber getBonusNumber(WinningNumber winningNumber) {
-        outputView.printNewLine();
+        OutputView.printNewLine();
         while (true) {
             try {
-                outputView.printBonusNumberInputMessage();
-                return new BonusNumber(inputView.readBonusNumber(), winningNumber);
+                OutputView.printOutputMessage(OutputMessageConstants.BONUS_NUMBER_INPUT_MESSAGE.getMessage());
+                return new BonusNumber(InputView.readBonusNumber(), winningNumber);
             } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
+                OutputView.printOutputMessage(e.getMessage());
             }
         }
     }

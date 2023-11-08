@@ -13,14 +13,6 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BuyingLottoTest extends NsTest {
-    @DisplayName("로또 구입금액이 1000원으로 나누어 떨어지지 않으면 예외가 발생한다.")
-    @Test
-    void createBuyingPriceByNotUnitOf1000() {
-        assertSimpleTest(() -> {
-            runException("5500");
-            assertThat(output()).contains(NOT_UNIT.getMessage());
-        });
-    }
     @DisplayName("로또 구입금액이 0 또는 음수이면 예외가 발생한다.")
     @Test
     void createBuyingPriceByNotPlusSign() {

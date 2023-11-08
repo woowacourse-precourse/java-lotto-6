@@ -10,13 +10,16 @@ import lotto.constant.LottoConstant;
 public class Customer {
     private List<Lotto> lottos;
     private Money budget;
+
     public Customer(Money budget) {
         lottos = new ArrayList<>();
         this.budget = budget;
     }
+
     public int getLottoCount() {
         return budget.getMoney() / LottoConstant.LOTTO_PRICE.getValue();
     }
+
     public List<Lotto> purchaseLotto() {
         List<Lotto> lottos = new ArrayList<>();
         int lottoCount = getLottoCount();
@@ -28,6 +31,7 @@ public class Customer {
 
         return lottos;
     }
+
     public void setLottos(List<Lotto> lottos) {
         this.lottos.addAll(lottos);
     }
@@ -35,7 +39,8 @@ public class Customer {
     public List<Lotto> getLottos() {
         return Collections.unmodifiableList(this.lottos);
     }
-    public void showLottos(){
+
+    public void showLottos() {
         this.getLottos()
                 .forEach(lotto ->
                         printMessage(lotto.getNumbers().toString()));

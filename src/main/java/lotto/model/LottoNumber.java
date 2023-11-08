@@ -8,17 +8,20 @@ import lotto.constant.LottoConstant;
 public class LottoNumber {
     private List<Integer> lottoNumbers;
     private String SEPERATOR = ",";
-    public LottoNumber(){
+
+    public LottoNumber() {
         this.generateLottoNumbers();
     }
-    private void generateLottoNumbers(){
+
+    private void generateLottoNumbers() {
         this.lottoNumbers = Randoms.pickUniqueNumbersInRange(
                 LottoConstant.START_NUMBER.getValue(),
                 LottoConstant.END_NUMBER.getValue(),
                 LottoConstant.DIGITS.getValue()
         );
     }
-    public List<Integer> getLottoNumbers(){
+
+    public List<Integer> getLottoNumbers() {
         return this.lottoNumbers;
     }
 }

@@ -15,10 +15,12 @@ import lotto.view.View;
 public class LottoController {
     private final LottoStore lottoStore;
     private final WinningCalculator winnings;
+
     public LottoController() {
         this.lottoStore = new LottoStore();
         winnings = new WinningCalculator();
     }
+
     public void run() {
         Customer customer = buyLottoAndPrintFlow();
 
@@ -42,13 +44,13 @@ public class LottoController {
                         + Message.RATE_OF_RETURN_SUFFIX.getMessage());
     }
 
-    private Customer buyLottoAndPrintFlow(){
+    private Customer buyLottoAndPrintFlow() {
         Customer customer = InputController.inputMoney();
         this.winnings.setSales(customer.getLottoCount());
         return customer;
     }
 
-    private int inputBonusNumberFlow(Lotto winningLotto){
+    private int inputBonusNumberFlow(Lotto winningLotto) {
         return InputController.inputBonusNumber(winningLotto);
     }
 }

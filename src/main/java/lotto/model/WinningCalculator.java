@@ -13,6 +13,7 @@ public final class WinningCalculator {
     private static final int PERCENT = 100;
 
     private int lottoSales;
+
     public void setSales(int sales) {
         this.lottoSales = sales;
     }

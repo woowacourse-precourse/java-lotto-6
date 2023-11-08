@@ -7,6 +7,7 @@ import lotto.constant.LottoResult;
 public class View {
     private static String BAR = " - ";
     private static String UNIT = "개";
+
     public static void printMessage(String message) {
         System.out.println(message);
     }

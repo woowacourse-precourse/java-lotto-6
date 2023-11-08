@@ -39,4 +39,19 @@ public class Lotto {
     public static int getPrice(){
         return Lotto.PRICE;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder("[");
+
+        for (Integer number : numbers) {
+            str.append(number).append(", ");
+        }
+
+        str.deleteCharAt(str.length()-1);
+        str.deleteCharAt(str.length()-1);
+        str.append("]");
+
+        return str.toString();
+    }
 }

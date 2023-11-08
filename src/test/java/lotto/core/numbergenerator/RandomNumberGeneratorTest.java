@@ -1,24 +1,21 @@
 package lotto.core.numbergenerator;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static lotto.core.enums.LottoNumberEnum.END_VALUE;
+import static lotto.core.enums.LottoNumberEnum.SIZE;
+import static lotto.core.enums.LottoNumberEnum.START_VALUE;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 class RandomNumberGeneratorTest {
-
+    @DisplayName("1~45사이 랜덤 번호를 생성한다.")
     @Test
     void createRandomUniqueNumber() {
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         List<Integer> randomUniqueNumber = randomNumberGenerator.createRandomUniqueNumber();
-        Assertions.assertThat(randomUniqueNumber.size()).isEqualTo(6);
-    }
-
-    @Test
-    void name() {
-        RandomNumberGenerator mockRandomNumberGenerator = Mockito.mock(RandomNumberGenerator.class);
-        Mockito.when(mockRandomNumberGenerator.createRandomUniqueNumber()).thenReturn(List.of(1,2,34,5,6));
+        assertThat(randomUniqueNumber.size()).isEqualTo(SIZE.getValue());
+        assertThat(randomUniqueNumber).allMatch(num -> num >= START_VALUE.getValue() && num <= END_VALUE.getValue());
     }
 }

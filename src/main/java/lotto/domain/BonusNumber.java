@@ -6,8 +6,6 @@ import static lotto.error.ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE;
 import static lotto.error.ErrorMessage.DUPLICATE_BONUS_NUMBER;
 import static lotto.error.ErrorMessage.INVALID_BONUS_NUMBER_FORMAT;
 
-import java.util.List;
-
 public class BonusNumber {
     private final Integer bonusNumber;
 
@@ -15,8 +13,8 @@ public class BonusNumber {
         this.bonusNumber = bonusNumber;
     }
 
-    public static BonusNumber from(String input,WinningNumbers winningNumbers) {
-        return new BonusNumber(validateBonusNumber(winningNumbers,input));
+    public static BonusNumber from(String input, WinningNumbers winningNumbers) {
+        return new BonusNumber(validateBonusNumber(winningNumbers, input));
     }
 
     private static Integer validateBonusNumber(WinningNumbers winningNumbers, String input) {
@@ -46,7 +44,7 @@ public class BonusNumber {
         }
     }
 
-    public boolean equals(Integer number){
+    public boolean equals(Integer number) {
         return bonusNumber.equals(number);
     }
 }

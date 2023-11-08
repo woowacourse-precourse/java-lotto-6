@@ -31,9 +31,9 @@ public class Lotto {
     }
 
     private void validateNumbersRange(final List<Integer> numbers) {
-        if (numbers.stream()
+        if (!numbers.stream()
                 .allMatch
-                        (num -> num < LOTTO_NUMBER_MIN.getValue() && num > LOTTO_NUMBER_MAX.getValue())) {
+                        (num -> num > LOTTO_NUMBER_MIN.getValue() && num < LOTTO_NUMBER_MAX.getValue())) {
             throw LottoException.of(OUT_OF_RANGE_LOTTO_NUMBERS);
         }
     }

@@ -4,22 +4,38 @@ import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class LottoStore {
     private static int price;
     private static List<Lotto> lottos;
-    private static WinningNumber winningNumbers;
+    private static Lotto winningNumbers;
     private static BonusNumber bonusNumber;
+    private static final String NUMBER_FORMAT_EXCEPTION="0보다 크고 2,147,483,647 이하의 값을 입력해 주셔야 합니다.";
 
     public void lottoGameStart() {
-        purchaseLotto();
-        lottoProcess();
+        try {
+            purchaseLotto();
+            lottoProcess();
+            showStatistics();
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+
     }
 
-    private void lottoProcess() {
-        winningNumbers = setWinningNumbers();
-        bonusNumber = setBonusNumbers(winningNumbers);
+    private void showStatistics() {
+        WinningStatistics winningStatistics = new WinningStatistics();
+        winningStatistics.calculateNumberOfWins(lottos, winningNumbers,bonusNumber.getBonusNumber());
+
+        HashMap<Rank, Integer> winningHistories = winningStatistics.getWinningHistory();
+        String rateOfReturn = winningStatistics.calculateRateOfReturn(price);
+
+        OutputView.printStatics(winningHistories);
+        OutputView.printRateOfReturn(rateOfReturn);
     }
 
     private void purchaseLotto() {
@@ -31,6 +47,11 @@ public class LottoStore {
         lottos = purchasedLotto1.getPurchasedLottos();
 
         printPurchaseInformation(numberOfPurchasedLotto, lottos);
+    }
+
+    private void lottoProcess() {
+        winningNumbers = setWinningNumbers();
+        bonusNumber = setBonusNumbers(winningNumbers);
     }
 
     private PurchasedLotto setPurchasedLottos(int numberOfLottoPurchased) {
@@ -45,20 +66,12 @@ public class LottoStore {
         OutputView.printNumberOfPurchasedLotto(numberOfPurchasedLotto);
         OutputView.printLottosList(lottos);
     }
-    private WinningNumber setWinningNumbers() {
-        return new WinningNumber(InputView.inputWinningNumber());
+    private Lotto setWinningNumbers() {
+        return new Lotto(InputView.inputWinningNumber());
     }
 
-    private BonusNumber setBonusNumbers(WinningNumber winningNumbers) {
+    private BonusNumber setBonusNumbers(Lotto winningNumbers) {
         return new BonusNumber(InputView.inputBonusNumber(), winningNumbers);
     }
 
-    private static void getWinningNumbers() {
-    }
-    private void getBonusNumber() {
-
-    }
-    private void printWinningStatistics() {
-
-    }
 }

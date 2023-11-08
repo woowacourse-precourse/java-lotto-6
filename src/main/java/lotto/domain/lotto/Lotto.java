@@ -37,7 +37,7 @@ public class Lotto {
 
     private void validateSize(List<LottoNumber> numbers) {
         if (isUnsuitableSize(numbers)) {
-            throw new IllegalArgumentException("숫자 6개를 입력해주세요");
+            throw new IllegalArgumentException(String.format("숫자 %s개를 입력해주세요.",LottoConstraint.SIZE));
         }
     }
 

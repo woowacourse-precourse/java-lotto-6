@@ -34,7 +34,7 @@ public class LottoNumber {
 
     private void validateInRange(Integer number) {
         if (notInRange(number)) {
-            throw new IllegalArgumentException("1~45사이의 값만 입력해주세요.");
+            throw new IllegalArgumentException(String.format("%s~%s사이의 값만 입력해주세요.",LottoConstraint.MIN,LottoConstraint.MAX));
         }
     }
 

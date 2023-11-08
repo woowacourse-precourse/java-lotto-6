@@ -11,6 +11,11 @@ public enum LottoConstraint {
         this.constraint = constraint;
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(constraint);
+    }
+
     public int getConstraint() {
         return constraint;
     }

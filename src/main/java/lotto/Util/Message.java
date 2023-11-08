@@ -2,7 +2,7 @@ package lotto.Util;
 
 public enum Message {
     REQUEST_PAYMENT("구입금액을 입력해 주세요."),
-    PURCHASE_NUMBER("개를 구매했습니다."),
+    NUMBER_OF_PURCHASE("개를 구매했습니다."),
     REQUEST_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
     REQUEST_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     CHECK_WINNING_MESSAGE("당첨 통계\n---"),

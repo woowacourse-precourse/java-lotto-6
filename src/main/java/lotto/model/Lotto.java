@@ -22,8 +22,4 @@ public class Lotto {
     public List<Integer> numbers() {
         return numbers;
     }
-
-    public int number(int index) {
-        return numbers.get(index);
-    }
 }

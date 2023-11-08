@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.text.DecimalFormat;
 import java.util.List;
-import lotto.Lotto;
 
 public class LottoResult {
 
@@ -42,9 +41,8 @@ public class LottoResult {
     }
 
     private double calculateROI() {
-        double myReturn =
-                ((this.fivethPrizeCount * 5) + (this.fourthPrizeCount * 50) + (this.thirdPrizeCount * 1500) + (
-                        this.secondPrizeCount * 30000) + (this.firstPrizeCount * 2000000)) * 100;
+        double myReturn = ((this.fivethPrizeCount * 5) + (this.fourthPrizeCount * 50) + (this.thirdPrizeCount * 1500)
+                + (this.secondPrizeCount * 30000) + (this.firstPrizeCount * 2000000)) * 100;
         double myInvestment = lottos.size();
 
         return myReturn / myInvestment;

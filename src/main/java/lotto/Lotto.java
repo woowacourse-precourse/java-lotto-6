@@ -4,6 +4,8 @@ import java.util.List;
 import lotto.domain.LottoNumber;
 
 public class Lotto {
+    private static final int SIZE_SCALE = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -18,11 +20,15 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+        validateSize(numbers);
         validateRange(numbers);
         validateDuplicate(numbers);
+    }
+
+    private void validateSize(final List<Integer> numbers) {
+        if (numbers.size() != SIZE_SCALE) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
     }
 
     private void validateRange(final List<Integer> numbers) {

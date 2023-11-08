@@ -33,4 +33,14 @@ public class GameView {
         }
         System.out.println("]");
     }
+
+    public static void printMatchNumbers(List<Integer> matchNumber) {
+        System.out.println(Phrase.STATISTICS.getPrintPhrase());
+        System.out.println(Phrase.DELIMITER.getPrintPhrase().repeat(3));
+        System.out.println(Phrase.THREE_MATCH.getPrintPhrase() + " " + Phrase.DELIMITER.getPrintPhrase() + " " + matchNumber.get(3) + Phrase.COUNT.getPrintPhrase());
+        System.out.println(Phrase.FOUR_MATCH.getPrintPhrase() + " " + Phrase.DELIMITER.getPrintPhrase() + " " + matchNumber.get(4) + Phrase.COUNT.getPrintPhrase());
+        System.out.println(Phrase.FIVE_MATCH.getPrintPhrase() + " " + Phrase.DELIMITER.getPrintPhrase() + " " + matchNumber.get(5) + Phrase.COUNT.getPrintPhrase());
+        System.out.println(Phrase.FIVE_BONUS_MATCH.getPrintPhrase() + " " + Phrase.DELIMITER.getPrintPhrase() + " " + matchNumber.get(7) + Phrase.COUNT.getPrintPhrase());
+        System.out.println(Phrase.SIX_MATCH.getPrintPhrase() + " " + Phrase.DELIMITER.getPrintPhrase() + " " + matchNumber.get(6) + Phrase.COUNT.getPrintPhrase());
+    }
 }

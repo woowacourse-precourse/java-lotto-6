@@ -4,7 +4,6 @@ import static lotto.util.ConstantNumbers.TICKET_PRICE;
 import static lotto.util.Validator.*;
 
 public class Money {
-
     private final Integer money;
 
     private Money (String money) {

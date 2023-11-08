@@ -14,7 +14,6 @@ class MoneyTest {
 
     @BeforeEach
     void reset() {
-        //Console.close();
         input = "18000";
         money = Money.of(input);
     }

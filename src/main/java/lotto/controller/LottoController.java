@@ -1,14 +1,13 @@
 package lotto.controller;
 
-import static lotto.util.ConstantMessages.COUNT_TICKET;
-import static lotto.util.ConstantMessages.DEPOSIT_TICKET_MONEY;
-import static lotto.util.ConstantMessages.INPUT_ANSWER_NUMBER;
-import static lotto.util.ConstantMessages.INPUT_BONUS_NUMBER;
+import static lotto.util.Convertor.convertListStringToInteger;
+import static lotto.util.Parser.parseStringtoList;
 import static lotto.util.Validator.*;
 import static lotto.view.OutputView.*;
 import static lotto.view.InputView.*;
 
 import java.util.List;
+import java.util.Optional;
 import lotto.Lotto;
 import lotto.exception.LottoException;
 import lotto.model.LottoResult;
@@ -17,71 +16,106 @@ import lotto.model.RandomLottoNumbers;
 
 public class LottoController {
     public void run() {
-        printMessage(DEPOSIT_TICKET_MONEY.getMessage());
         Money money = initMoney();
 
         RandomLottoNumbers randomLotto = createRandomLottoNumbers(money.countTicketQuantity());
-        printMessage(randomLotto.toString());
 
-        printMessage(INPUT_ANSWER_NUMBER.getMessage());
         Lotto answerLotto = inputAnswerLotto();
 
-        printMessage(INPUT_BONUS_NUMBER.getMessage());
         Integer bonusNumber = initBonusNumber(answerLotto);
 
         LottoResult lottoResult = LottoResult.of(randomLotto.checkResult(answerLotto, bonusNumber));
-        printLottoResult(lottoResult);
+
         checkResultAndReturn(money, lottoResult);
     }
 
     private Money initMoney() {
-        String input = inputNumber();
+
+        Optional<Money> moneyOptional;
+
+        do {
+            printInputMoney();
+            moneyOptional = checkMoneyException();
+        } while (moneyOptional.isEmpty());
+
+        return moneyOptional.get();
+    }
+
+    private Optional<Money> checkMoneyException () {
+        Optional<Money> moneyOptional;
 
         try {
-            Money.of(input);
+            moneyOptional = Optional.of(Money.of(inputNumber()));
         } catch (LottoException lottoException) {
             printMessage(lottoException.getMessage());
-            initMoney();
+            moneyOptional = Optional.empty();
         }
 
-        return Money.of(input);
+        return moneyOptional;
     }
 
     private RandomLottoNumbers createRandomLottoNumbers (Integer count) {
-        printMessage(count.toString() + COUNT_TICKET.getMessage());
+        printTicketQuantity(count.toString());
 
-        return RandomLottoNumbers.of(count);
+        RandomLottoNumbers randomLottoNumbers = RandomLottoNumbers.of(count);
+
+        printMessage(randomLottoNumbers.toString());
+
+        return randomLottoNumbers;
     }
 
     private Lotto inputAnswerLotto() {
-        List<Integer> inputAnswer;
-        Lotto lotto = null;
+
+        Optional<Lotto> lottoOptional;
+
+        do{
+            printInputAnswerLotto();
+            lottoOptional = checkLottoException();
+        } while (lottoOptional.isEmpty());
+
+        return lottoOptional.get();
+    }
+
+    private Optional<Lotto> checkLottoException () {
+        Optional<Lotto> lottoOptional;
 
         try {
-            inputAnswer = inputAnswerLottoNumber();
-            lotto = new Lotto(inputAnswer);
+            List<String> parseInput = parseStringtoList(inputNumber());
+            validateListIsInteger(parseInput);
+
+            lottoOptional = Optional.of(new Lotto(convertListStringToInteger(parseInput)));
         } catch (LottoException lottoException) {
             printMessage(lottoException.getMessage());
-            inputAnswerLotto();
+            lottoOptional = Optional.empty();
         }
 
-        return lotto;
+        return lottoOptional;
     }
 
     private Integer initBonusNumber(Lotto lotto) {
-        String inputBonusNumber = inputNumber();
-        Integer bonusNumber = 0;
+
+        Optional<Integer> bonusNumberOptional;
+
+        do {
+            printInputBonusNumber();
+            bonusNumberOptional = checkBonusNumberException(lotto);
+        } while (bonusNumberOptional.isEmpty());
+
+        return bonusNumberOptional.get();
+    }
+
+    private Optional<Integer> checkBonusNumberException (Lotto lotto) {
+        Optional<Integer> bonusNumberOptional;
 
         try {
-            bonusNumber = validateBonusNumber(inputBonusNumber);
-
-            lotto.checkDuplicateBonusNumber(bonusNumber);
+            bonusNumberOptional = Optional.of(validateBonusNumber(inputNumber()));
+            lotto.checkDuplicateBonusNumber(bonusNumberOptional.get());
         } catch (LottoException lottoException) {
             printMessage(lottoException.getMessage());
-            initBonusNumber(lotto);
+            bonusNumberOptional = Optional.empty();
         }
 
-        return bonusNumber;
+        return bonusNumberOptional.flatMap(Integer::describeConstable);
     }
 
     private Integer validateBonusNumber (String inputBonusNumber) {
@@ -96,6 +130,8 @@ public class LottoController {
     }
 
     private void checkResultAndReturn(Money money, LottoResult lottoResult) {
+        printLottoResult(lottoResult);
+
         printReturn(
                 money.calculateTotalReturn(
                         lottoResult.calculateTotal()

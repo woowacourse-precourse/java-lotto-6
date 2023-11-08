@@ -6,7 +6,6 @@ import static lotto.util.ConstantNumbers.LOTTO_GRADE_QUANTITY;
 import java.util.Map;
 
 public class LottoResult {
-
     private final Map<Integer, Integer> lottoResult;
 
     private LottoResult (Map<Integer, Integer> lottoResult) {
@@ -25,10 +24,8 @@ public class LottoResult {
         int total = 0;
 
         for (int i = 0; i < LOTTO_GRADE_QUANTITY.getConstant(); i++) {
-
             total += (Integer) MONEY_EACH_GRADE.getConstant().get(i)
                     * lottoResult.get(i);
-
         }
 
         return total;

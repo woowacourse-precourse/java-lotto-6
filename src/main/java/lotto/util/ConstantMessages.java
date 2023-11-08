@@ -10,8 +10,9 @@ public enum ConstantMessages {
     WINNING_STATISTICS("당첨 통계"),
     NONE_BONUS_RESULT_MESSAGE("%d개 일치 (%s) - %d개"),
     BONUS_RESULT_MESSAGE("%d개 일치, 보너스 볼 일치 (%s) - %d개"),
-    INPUT_PARSER_CHAR(","),
     START_RESULT_OUTPUT("---"),
+    MONEY_FORMAT("###,###원"),
+    INPUT_PARSER_CHAR(","),
     SPACE(" ");
 
     private final String message;

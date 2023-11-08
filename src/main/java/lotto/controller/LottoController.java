@@ -8,6 +8,7 @@ import lotto.model.Buyer;
 import lotto.model.LottoSeller;
 import lotto.model.Lottos;
 import lotto.model.Money;
+import lotto.model.PurchasngMoney;
 import lotto.model.WinnigLotto;
 import lotto.model.WinningNumbers;
 import lotto.model.dto.LottoPaper;
@@ -90,8 +91,7 @@ public class LottoController {
         while (true) {
             try {
                 String inputMoney = inputView.insertMoney();
-                BigDecimal parsedMoney = MoneyParser.parseMoney(inputMoney);
-                return new Money(parsedMoney);
+                return new PurchasngMoney(inputMoney);
             } catch (IllegalArgumentException e) {
                 handleException(e);
             }

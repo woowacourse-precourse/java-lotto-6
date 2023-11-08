@@ -15,6 +15,7 @@ public class Application {
         PrizeNumber prizeNumber = new PrizeNumber();
         PrizeChecker prizeChecker = new PrizeChecker();
         Ranking ranking;
+        int total;
 
         Message.start();
         purchase.Number(UserInput.purchasePrice());
@@ -32,7 +33,7 @@ public class Application {
         Message.printOuttro();
 
         ranking = prizeChecker.checkRank(lottos, prizeNumber);
-        int total = YieldCalculator.totalPrize(ranking);
+        total = YieldCalculator.totalPrize(ranking);
         ranking.calculateResult();
         ranking.printResult();
 

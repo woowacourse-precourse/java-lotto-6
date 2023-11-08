@@ -11,7 +11,7 @@ public class LottoResults {
     private final int userInputMoney;
     private final int lottoPapers;
     private int earnedMoney;
-    private List<Integer> results;
+    private final List<Integer> results;
 
     public LottoResults(String userInputMoney) {
         InputValidator.checkUserInputIsInteger(userInputMoney);
@@ -34,7 +34,7 @@ public class LottoResults {
         return LottoConstants.NOTHING;
     }
 
-    public void updateEachLottoResults(int LottoMatch, boolean BonusMatch) {
+    public void updateEachLottoResult(int LottoMatch, boolean BonusMatch) {
         LottoConstants prize = getLottoPrize(LottoMatch,BonusMatch);
         if (prize != LottoConstants.NOTHING) {
             earnedMoney += prize.getValue();

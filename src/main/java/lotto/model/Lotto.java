@@ -20,6 +20,13 @@ public class Lotto {
         if (validateIsDuplicated(numbers)) {
             throw new CustomException(ErrorMessage.LOTTO_MUST_HAVE_NOT_DUPLICATED_NUMBER);
         }
+        if (!validateIsInCorrectArea(numbers)) {
+            throw new CustomException(ErrorMessage.LOTTO_MUST_HAVE_BETWEEN_1_AND_45);
+        }
+    }
+
+    private boolean validateIsInCorrectArea(List<Integer> numbers) {
+        return numbers.stream().noneMatch(number -> number < 1 || number > 45);
     }
 
     private boolean validateIsDuplicated(List<Integer> numbers) {

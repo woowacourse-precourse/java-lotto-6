@@ -16,23 +16,6 @@ public class LottoGameDecisionMachine {
     private List<Integer> winningNumbers = new ArrayList<>();
     private int bonusNumber;
 
-    public void generateTickets(int purchaseAmount) {
-        int numTickets = purchaseAmount / 1000;
-        Random random = new Random();
-
-        for (int i = 0; i < numTickets; i++) {
-            List<Integer> numbers = new ArrayList<>();
-            while (numbers.size() < 6) {
-                int number = random.nextInt(45) + 1;
-                if (!numbers.contains(number)) {
-                    numbers.add(number);
-                }
-            }
-            Collections.sort(numbers);
-            Lotto lotto = new Lotto(numbers);
-            tickets.add(lotto);
-        }
-    }
     public void generateTickets_(int purchaseAmount) {
         int numTickets = purchaseAmount / 1000;
         for (int i = 0; i < numTickets; i++) {

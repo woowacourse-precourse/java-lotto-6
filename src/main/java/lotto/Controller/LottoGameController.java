@@ -3,6 +3,8 @@ package lotto.Controller;
 import lotto.Domain.LottoGameDecisionMachine;
 import lotto.Domain.Prize;
 import lotto.View.LottoGameView;
+import lotto.Domain.*;
+
 
 import java.util.*;
 
@@ -14,10 +16,12 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class LottoGameController {
     private LottoGameDecisionMachine machine;
     private LottoGameView view;
+    private isValid validator;
 
     public LottoGameController() {
         machine = new LottoGameDecisionMachine();
         view = new LottoGameView();
+        validator = new isValid();
     }
 
     public void run() {
@@ -41,7 +45,6 @@ public class LottoGameController {
         // 당첨 확인 및 결과 출력
         Map<Integer, Integer> results = machine.checkTickets();
         view.showWinning(results);
-        //view.displayResults(results);
 
         // 수익률 계산 및 출력
         double revenueRate = calculateRevenueRate(purchaseAmount, results);
@@ -49,12 +52,19 @@ public class LottoGameController {
     }
 
     private int getPurchaseAmountFromUser() {
+        String ERROR_MESSAGE = "[ERROR]";
         int purchaseAmount;
         do {
             System.out.println("구입금액을 입력해 주세요: ");
-
-            purchaseAmount =Integer.parseInt(readLine());
-        } while (purchaseAmount % 1000 != 0);
+            String input = readLine();
+            try {
+                int money = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.err.println(ERROR_MESSAGE);
+                throw new NumberFormatException(ERROR_MESSAGE);
+            }
+            purchaseAmount =Integer.parseInt(input);
+        }while (purchaseAmount % 1000 != 0);
         return purchaseAmount;
     }
 

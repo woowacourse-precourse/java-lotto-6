@@ -52,7 +52,6 @@ public class InputController {
 
     private void checkLottoList(String inputLottoNumber) {
         List<Integer> list = createWinningLottoList(inputLottoNumber);
-        checkRangeLottoNumber(list);
         storeLotto(list);
     }
 
@@ -66,15 +65,6 @@ public class InputController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return checkValidNumberFormat(Console.readLine());
-        }
-    }
-
-    public void checkRangeLottoNumber(List<Integer> integers){
-        try{
-            integers.forEach(Exception::isValidLottoNumberRangeException);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            checkRangeLottoNumber(createWinningLottoList(Console.readLine()));
         }
     }
 

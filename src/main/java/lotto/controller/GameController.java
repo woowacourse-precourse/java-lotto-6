@@ -83,7 +83,7 @@ public class GameController {
         return result;
     }
 
-    private void getRate(long purchaseMoney, long reward) {
+    private void getRate(int purchaseMoney, int reward) {
         Rate rate = new Rate(purchaseMoney, reward);
         outputView.println(rate);
     }

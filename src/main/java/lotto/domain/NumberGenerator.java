@@ -1,8 +1,6 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.configuration.Constants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,6 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static lotto.configuration.LottoConfig.*;
+import static lotto.configuration.Constants.Config.*;
+import static lotto.configuration.Constants.*;
 
 public class NumberGenerator {
 
@@ -18,7 +18,7 @@ public class NumberGenerator {
         try {
             number = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Constants.Error.MESSAGE + Constants.Error.CONVERT_NUMBER_ERROR);
+            throw new IllegalArgumentException(Errors.MESSAGE + Errors.CONVERT_NUMBER_ERROR);
         }
         return number;
     }
@@ -36,7 +36,7 @@ public class NumberGenerator {
     }
 
     public List<Integer> createNumbers(String input) {
-        return Arrays.stream(input.split(Constants.Rule.DELIM))
+        return Arrays.stream(input.split(DELIM))
                 .map(this::createOne)
                 .collect(Collectors.toList());
     }

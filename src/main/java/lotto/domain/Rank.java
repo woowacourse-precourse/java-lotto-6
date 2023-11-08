@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.configuration.Constants;
+import static lotto.configuration.Constants.*;
 
 public enum Rank {
     FIRST(6, 2000000000),
@@ -10,9 +10,9 @@ public enum Rank {
     FIFTH(3, 5000);
 
     private final int matchCount;
-    private final long reward;
+    private final int reward;
 
-    Rank(int matchCount, long reward) {
+    Rank(int matchCount, int reward) {
         this.matchCount = matchCount;
         this.reward = reward;
     }
@@ -21,7 +21,7 @@ public enum Rank {
         return matchCount;
     }
 
-    public long getReward() {
+    public int getReward() {
         return reward;
     }
 
@@ -31,7 +31,7 @@ public enum Rank {
                 return value;
             }
         }
-        throw new IllegalArgumentException(Constants.Error.MESSAGE + Constants.Error.BUSINESS_LOGIC);
+        throw new IllegalArgumentException(Errors.MESSAGE + Errors.BUSINESS_LOGIC);
     }
 
 }

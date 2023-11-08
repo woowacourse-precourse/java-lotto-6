@@ -1,7 +1,10 @@
 package lotto.domain;
 
+import lotto.configuration.Constants;
+
 import java.util.*;
 
+import static lotto.configuration.Constants.Message.*;
 import static lotto.domain.Rank.*;
 
 public class Result {
@@ -50,8 +53,8 @@ public class Result {
         return lotto.contains(bonus);
     }
 
-    public long getReward() {
-        long reward = 0L;
+    public int getReward() {
+        int reward = 0;
         for (Rank rank : Rank.values()) {
             Integer count = store.get(rank);
             reward += rank.getReward() * count;
@@ -61,12 +64,11 @@ public class Result {
 
     @Override
     public String toString() {
-        return "\n당첨 통계\n" +
-                "---\n" +
-                "3개 일치 (5,000원) - " + store.get(FIFTH) + "개\n" +
-                "4개 일치 (50,000원) - " + store.get(FOURTH) + "개\n" +
-                "5개 일치 (1,500,000원) - " + store.get(THIRD) + "개\n" +
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - " + store.get(SECOND) + "개\n" +
-                "6개 일치 (2,000,000,000원) - " + store.get(FIRST) + "개\n";
+        return SHOW_RESULT +
+                FIFTH_IS + store.get(FIFTH) + Constants.Message.COUNT +
+                FOURTH_IS + store.get(FOURTH) + Constants.Message.COUNT +
+                THIRD_IS + store.get(THIRD) + Constants.Message.COUNT +
+                SECOND_IS + store.get(SECOND) + Constants.Message.COUNT +
+                FIRST_IS + store.get(FIRST) + Constants.Message.COUNT;
     }
 }

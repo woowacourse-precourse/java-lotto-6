@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import lotto.configuration.Constants;
+import static lotto.configuration.Constants.Config.*;
+import static lotto.configuration.Constants.*;
 
 public class Money {
     private final int money;
@@ -15,12 +16,12 @@ public class Money {
     }
 
     public int getLottoCount() {
-        return money / Constants.Rule.PRICE;
+        return money / PRICE;
     }
 
     private void validate(int money) {
-        if (money % Constants.Rule.PRICE != 0) {
-            throw new IllegalArgumentException(Constants.Error.MESSAGE + Constants.Rule.PRICE + Constants.Error.NEED_MULTIPLE_OF_PRICE);
+        if (money % PRICE != 0) {
+            throw new IllegalArgumentException(Errors.MESSAGE + PRICE + Errors.NEED_MULTIPLE_OF_PRICE);
         }
     }
 }

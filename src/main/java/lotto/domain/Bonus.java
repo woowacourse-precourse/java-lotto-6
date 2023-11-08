@@ -1,9 +1,8 @@
 package lotto.domain;
 
-import lotto.configuration.Constants;
-
 import java.util.List;
 
+import static lotto.configuration.Constants.*;
 import static lotto.configuration.LottoConfig.*;
 
 public class Bonus {
@@ -21,17 +20,14 @@ public class Bonus {
 
     private void validateRange(int bonus) {
         if (bonus < START.getValue() || bonus > END.getValue()) {
-            throw new IllegalArgumentException(Constants.Error.MESSAGE
-                    + Constants.Error.LOTTO_IS
-                    + START.getValue() + Constants.Error.FROM + END.getValue()
-                    + Constants.Error.MUST_CHECK_RANGE);
+            throw new IllegalArgumentException(Errors.MESSAGE + Errors.LOTTO_IS + START.getValue() + Errors.FROM + END.getValue() + Errors.MUST_CHECK_RANGE);
         }
     }
 
     private void validateDuplicate(int bonus, Lotto winningLotto) {
         List<Integer> numbers = winningLotto.getNumbers();
         if (numbers.contains(bonus)) {
-            throw new IllegalArgumentException(Constants.Error.MESSAGE + Constants.Error.BONUS_MUST_NOT_DUPLICATE);
+            throw new IllegalArgumentException(Errors.MESSAGE + Errors.BONUS_MUST_NOT_DUPLICATE);
         }
     }
 

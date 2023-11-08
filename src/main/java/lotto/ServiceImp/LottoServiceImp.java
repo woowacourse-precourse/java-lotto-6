@@ -46,38 +46,25 @@ public class LottoServiceImp implements LottoService {
                 // continue;
             }
         }
-
         return resultRecord;
     }
 
     private int getResultRecordOfEachLotto(Lotto lotto, Lotto winningLotteryNumber, int bonusNumber)
     {
         int overlappedSize = lotto.compare(winningLotteryNumber);
-
-        if (overlappedSize == RecordConstant.NameOfRanking.SIX_MATCH.getMatchNumber())
-        {
+        if (overlappedSize == RecordConstant.NameOfRanking.SIX_MATCH.getMatchNumber()) {
             return RecordConstant.NameOfRanking.SIX_MATCH.getIndex();
         }
-
-        if (overlappedSize == RecordConstant.NameOfRanking.FIVE_MATCH.getMatchNumber())
-        {
-            if (lotto.contains(bonusNumber))
-            {
-                return RecordConstant.NameOfRanking.FIVE_BONUS_MATCH.getIndex();
-            }
+        if (overlappedSize == RecordConstant.NameOfRanking.FIVE_MATCH.getMatchNumber()) {
+            if (lotto.contains(bonusNumber)) { return RecordConstant.NameOfRanking.FIVE_BONUS_MATCH.getIndex(); }
             return RecordConstant.NameOfRanking.FIVE_MATCH.getIndex();
         }
-
-        if (overlappedSize == RecordConstant.NameOfRanking.FOUR_MATCH.getMatchNumber())
-        {
+        if (overlappedSize == RecordConstant.NameOfRanking.FOUR_MATCH.getMatchNumber()) {
             return RecordConstant.NameOfRanking.FOUR_MATCH.getIndex();
         }
-
-        if (overlappedSize == RecordConstant.NameOfRanking.THREE_MATCH.getMatchNumber())
-        {
+        if (overlappedSize == RecordConstant.NameOfRanking.THREE_MATCH.getMatchNumber()) {
             return RecordConstant.NameOfRanking.THREE_MATCH.getIndex();
         }
-
         throw new OutOfRankingException("랭킹 안의 범위가 아닙니다");
     }
 

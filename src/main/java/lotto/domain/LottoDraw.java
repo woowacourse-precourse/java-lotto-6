@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoDraw {
-    private List<Lotto> lottos = new ArrayList();
-
+    private List<Lotto> lottos = new ArrayList<>();
     private List<Integer> drawNumbers;
     private Integer bonusNumber;
 
-    public void createLottos(Integer amount, Integer price) {
-        for (int i = 0; i < amount / price; i++) {
+    public void createLottos(Integer amount, Integer ticketPrice) {
+        for (int i = 0; i < amount / ticketPrice; i++) {
             lottos.add(Lotto.create());
         }
     }

@@ -36,12 +36,10 @@ public class DrawController {
 
 
         List<Rank> ranks = lottoDraw.getRanks();
-        RankStatistics rankStatistics = new RankStatistics(ranks);
+        RankStatistics rankStatistics = new RankStatistics(ranks, purchaseAmount);
         outputPort.printRankStatistics(rankStatistics.getRankInfos());
 
-
-//        outputPort.printProfitRate()
-
+        outputPort.printProfitRate(rankStatistics.getProfitRate());
     }
 
 }

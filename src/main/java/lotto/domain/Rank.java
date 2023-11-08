@@ -60,8 +60,16 @@ public enum Rank {
         return prize;
     }
 
+    public String getPrizeByWon() {
+        return String.format("%,d", prize);
+    }
+
     public int getMatchBallCount() {
         return matchBallCount;
+    }
+
+    public boolean isMatchBonus() {
+        return isMatchBonus;
     }
 }
 

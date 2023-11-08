@@ -21,14 +21,14 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    List<Integer> convertToNumeric(String numbersInput) {
+    private List<Integer> convertToNumeric(String numbersInput) {
         numbersInput = deleteWhiteSpace(numbersInput);
         numbersInput = correctCommas(numbersInput);
         validateWinningNumberNumeric(numbersInput);
         return Utils.convertStringToIntegerList(numbersInput);
     }
 
-    void validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) {
         validateWinningNumberLength(numbers);
         validateWinningNumberRange(numbers);
         validateWinningNumberDuplication(numbers);
@@ -40,20 +40,20 @@ public class Lotto {
         }
     }
 
-    String deleteWhiteSpace(String winningNumber) {
+    private String deleteWhiteSpace(String winningNumber) {
         return winningNumber.replace("\\s", "");
     }
 
-    String correctCommas(String winningNumber) {
+    private String correctCommas(String winningNumber) {
         winningNumber = winningNumber.replaceAll("^,|,$", "");
         winningNumber = winningNumber.replaceAll(",+", ",");
         return winningNumber;
     }
 
-    boolean isInvalidInputArguments(Character argument) {
+    private boolean isInvalidInputArguments(Character argument) {
         return !(Character.isDigit(argument) || argument == ',');
     }
-    void validateWinningNumberNumeric(String winningNumber) {
+    private void validateWinningNumberNumeric(String winningNumber) {
         for (int winningNumberIndex = 0; winningNumberIndex < winningNumber.length(); winningNumberIndex++) {
             if (isInvalidInputArguments(winningNumber.charAt(winningNumberIndex))) {
                 Exception.raiseInvalidWinningNumberArgumentException();
@@ -61,7 +61,7 @@ public class Lotto {
         }
     }
 
-    void validateWinningNumberRange(List<Integer> winningNumber) {
+    private void validateWinningNumberRange(List<Integer> winningNumber) {
         for (int lottoNumber : winningNumber) {
             if (LottoUtils.isOutOfLottoRange(lottoNumber)) {
                 Exception.raiseInvalidWinningNumberRangeException();
@@ -69,7 +69,7 @@ public class Lotto {
         }
     }
 
-    void validateWinningNumberDuplication(List<Integer> winningNumber) {
+    private void validateWinningNumberDuplication(List<Integer> winningNumber) {
         Set<Integer> comparativeGroup = new HashSet<>(winningNumber);
         if (comparativeGroup.size() != winningNumber.size()) {
             Exception.raiseInvalidWinningNumberDuplicationException();

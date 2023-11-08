@@ -42,7 +42,7 @@ public class LottoGame {
         return winningLottoResult;
     }
 
-    public long calculateEarnings(Map<Integer, Integer> winningLottoResult) {
+    private long calculateEarnings(Map<Integer, Integer> winningLottoResult) {
         long earnings = 0;
         for (int prize = FIFTH_PRIZE; prize <= FIRST_PRIZE; prize++) {
             earnings += winningLottoResult.get(prize) * PRIZE_MONEY.get(prize - 1);

@@ -57,11 +57,11 @@ public class Money {
         }
     }
 
-    boolean canPurchaseLotto() {
+    protected boolean canPurchaseLotto() {
         return money >= LottoUtils.LOTTO_PRICE;
     }
 
-    void purchaseLotto() {
+    protected void purchaseLotto() {
         money -= LottoUtils.LOTTO_PRICE;
     }
 

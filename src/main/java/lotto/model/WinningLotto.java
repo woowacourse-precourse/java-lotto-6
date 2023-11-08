@@ -23,7 +23,7 @@ public class WinningLotto extends Lotto {
         this.bonusNumber = validateBonusNumber(bonusNumber);
     }
 
-    int validateBonusNumber(String bonusNumberInput) {
+    private int validateBonusNumber(String bonusNumberInput) {
         validateBonusNumberLength(bonusNumberInput);
         validateBonusNumberNumeric(bonusNumberInput);
         int bonusNumber = Integer.parseInt(bonusNumberInput);
@@ -32,31 +32,31 @@ public class WinningLotto extends Lotto {
         return bonusNumber;
     }
 
-    void validateBonusNumberLength(String bonusNumber) {
+    private void validateBonusNumberLength(String bonusNumber) {
         if (bonusNumber.length() > MAX_BONUS_NUMBER_LENGTH || bonusNumber.length() < MIN_BONUS_NUMBER_LENGTH) {
             Exception.raiseInvalidInputException();
         }
     }
 
-    void validateBonusNumberNumeric(String bonusNumberInput) {
+    private void validateBonusNumberNumeric(String bonusNumberInput) {
         if (!Character.isDigit(bonusNumberInput.charAt(0))) {
             Exception.raiseInvalidBonusNumberArgumentException();
         }
     }
 
-    void validateBonusNumberDuplication(List<Integer> winningNumber, int bonusNumber) {
+    private void validateBonusNumberDuplication(List<Integer> winningNumber, int bonusNumber) {
         if (winningNumber.contains(bonusNumber)) {
             Exception.raiseInvalidWinningNumberDuplicationException();
         }
     }
 
-    void validateBonusNumberRange(int bonusNumber) {
+    private void validateBonusNumberRange(int bonusNumber) {
         if (LottoUtils.isOutOfLottoRange(bonusNumber)) {
             Exception.raiseInvalidBonusNumberRangeMessage();
         }
     }
 
-    int countContains(Lotto lotto) {
+    private int countContains(Lotto lotto) {
         int duplicatedNumbersCount = 0;
         for (int lottoNumber : lotto.getNumbers()) {
             if (super.getNumbers().contains(lottoNumber)) {
@@ -66,7 +66,7 @@ public class WinningLotto extends Lotto {
         return duplicatedNumbersCount;
     }
 
-    int judgePrize(Lotto lotto) {
+    protected int judgePrize(Lotto lotto) {
         int duplicatedNumberCount = countContains(lotto);
         if (duplicatedNumberCount == 5 && lotto.getNumbers().contains(bonusNumber)) {
             return SECOND_PRIZE;

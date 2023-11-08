@@ -7,6 +7,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameController {
 
@@ -32,12 +33,14 @@ public class GameController {
     public void startGame() {
         outputView.notifyInputAmount();
         int amount = inputView.readAmount();
-
         ArrayList<Lotto> lottoBundle = lottoGenerator.generateLottoBundle(amount);
         outputView.printAmount(lottoBundle.size());
         outputView.printLottoNumbers(lottoBundle);
 
-        WinningNumber winningNumber = inputView.readWinningNumber();
+        List<Integer> mainNumbers = inputView.readMainNumbers();
+        Integer bonusNumber = inputView.readBonusNumber();
+
+        WinningNumber winningNumber = new WinningNumber(mainNumbers, bonusNumber);
 
     }
 }

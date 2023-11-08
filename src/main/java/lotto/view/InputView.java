@@ -1,7 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.model.WinningNumber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +32,7 @@ public class InputView {
         }
     }
 
-    public WinningNumber readWinningNumber() {
+    public List<Integer> readMainNumbers() {
         String input = readInput();
         System.out.println();
 
@@ -42,7 +41,18 @@ public class InputView {
             for (String s : input.split(",")) {
                 numbers.add(Integer.parseInt(s));
             }
-            return new WinningNumber(numbers);
+            return numbers;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public Integer readBonusNumber() {
+        String input = readInput();
+        System.out.println();
+
+        try {
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }

@@ -1,6 +1,9 @@
 package lotto.parse;
 import java.util.*;
 import java.util.stream.Collectors;
+import lotto.exception.CustomException;
+import lotto.exception.ErrorCode;
+import lotto.exception.GlobalExceptionHandler;
 
 public class Parsing {
     public static int stringToInt(String inputValue){
@@ -8,7 +11,7 @@ public class Parsing {
     }
     public static int isDivisible(int inputValue){
         if(inputValue%1000 != 0){
-            throw new IllegalArgumentException();
+            GlobalExceptionHandler.handleCustomException(new CustomException(ErrorCode.NOT_DIVISIBLE_BY_1000));
         }
         System.out.println();
         return inputValue/1000;

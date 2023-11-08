@@ -24,9 +24,13 @@ public class LottoController {
     }
 
     private static void buyLotto() {
+        OutputView.printLottoCnt(lottoCnt);
         while(lottoCnt-- > 0) {
-            lottos.add(new Lotto(setLottoNumbers()));
+            Lotto lotto = new Lotto(setLottoNumbers());
+            lottos.add(lotto);
+            OutputView.printLottoList(lotto.getNumbers());
         }
+
     }
 
     private static List<Integer> setLottoNumbers() {

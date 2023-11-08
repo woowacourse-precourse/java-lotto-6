@@ -78,7 +78,7 @@ public class LottoMachine {
         return bonusNumberText;
     }
 
-    public int BonusNumberTextToInt(String bonusNumberText) {
+    public int bonusNumberTextToInt(String bonusNumberText) {
         int bonusNumber = Integer.parseInt(bonusNumberText);
         validateBonusNumber(bonusNumber);
         return bonusNumber;

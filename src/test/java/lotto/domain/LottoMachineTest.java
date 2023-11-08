@@ -59,7 +59,7 @@ class LottoMachineTest {
         String bonusNumberText = "7";
 
         lottoMachine.textToLotto(winningNumberText);
-        int actual = lottoMachine.BonusNumberTextToInt(bonusNumberText);
+        int actual = lottoMachine.bonusNumberTextToInt(bonusNumberText);
 
         assertThat(actual).isEqualTo(7);
 
@@ -71,7 +71,7 @@ class LottoMachineTest {
     void BonusNumberTextToInt_예외(String value) {
         String bonusNumberText = value;
 
-        assertThatThrownBy(() -> lottoMachine.BonusNumberTextToInt(bonusNumberText))
+        assertThatThrownBy(() -> lottoMachine.bonusNumberTextToInt(bonusNumberText))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -83,7 +83,7 @@ class LottoMachineTest {
 
         lottoMachine.textToLotto(winningNumberText);
 
-        assertThatThrownBy(() -> lottoMachine.BonusNumberTextToInt(bonusNumberText))
+        assertThatThrownBy(() -> lottoMachine.bonusNumberTextToInt(bonusNumberText))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

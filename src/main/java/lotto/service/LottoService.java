@@ -14,7 +14,7 @@ public class LottoService {
     private static final int maxNum = 45;
     private static final int pickNum = 6;
 
-    public static List<Lotto> getAllLottos(int count) {
+    public static List<Lotto> getAllLottos(Long count) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i<count; i++) {
             lottos.add(createLotto());

@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.exception.ExceptionEnum;
+import lotto.exception.LottoGameException;
+
 import java.util.List;
 
 public class Lotto {
@@ -12,7 +15,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new LottoGameException(ExceptionEnum.NOT_ENOUGH_NUMBER_EXCEPTION);
         }
     }
 

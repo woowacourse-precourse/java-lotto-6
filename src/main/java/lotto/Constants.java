@@ -18,10 +18,11 @@ public class Constants {
     public static final String NUMBER_TYPE_ERROR = "[ERROR] 번호는 숫자만 입력되어야 합니다.";
     public static final String NUMBER_BOUNDARY_ERROR = "[ERROR] 번호는 1~45 범위 내에 해당해야 합니다.";
     public static final String BONUS_DUPLICATION_ERROR = "[ERROR] 보너스 번호는 당첨 번호와 중복되어서는 안 됩니다.";
+    public static final String BONUS_SIZE_ERROR = "[ERROR] 보너스 번호는 1자리 이상이어야 합니다.";
     public static final String BUYING_PRICE_DIGIT_ERROR = "[ERROR] 구입 금액은 6자리 이하여야 합니다.";
     public static final String BUYING_PRICE_BOUNDARY_ERROR = "[ERROR] 구입 금액은 1000원 이상, 100000원 이하여야 합니다.";
     public static final String BUYING_PRICE_REST_ERROR = "[ERROR] 구입 금액은 1000원 단위여야 합니다.";
-    public static final String LOTTO_SIZE_ERROR = "[ERROR] 번호는 6개여야 합니다.";
+    public static final String NUMBERS_SIZE_ERROR = "[ERROR] 번호는 6개여야 합니다.";
     public static final String NUMBER_DUPLICATE_ERROR = "[ERROR] 모든 번호는 중복이지 않아야 합니다.";
     public static final String WINNING_NUMBER_TYPE_ERROR = "[ERROR] 당첨 번호는 숫자와 쉼표(,)만이 입력 가능합니다.";
 

@@ -2,7 +2,7 @@ package lotto;
 
 import static lotto.Constants.*;
 
-public class BuyingPrice extends Input {
+public class BuyingPrice extends InputNumber {
     private Integer price;
 
     public BuyingPrice() {
@@ -35,21 +35,10 @@ public class BuyingPrice extends Input {
         return price;
     }
 
-    protected String removeEmpty(String readLine) {
-        return readLine.replaceAll("\\s", "");
-    }
-
-    private void checkDigit(String readLine) {
+    @Override
+    protected void checkDigit(String readLine) {
         if (readLine.length() > 6) {
             throw new IllegalArgumentException(BUYING_PRICE_DIGIT_ERROR);
-        }
-    }
-
-    protected Integer translateToValueType(String noEmptyReadLine) {
-        try {
-            return Integer.parseInt(noEmptyReadLine);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NUMBER_TYPE_ERROR);
         }
     }
 

@@ -2,17 +2,13 @@ package lotto;
 
 import static lotto.Constants.*;
 
-public abstract class Input<T> {
-    public void save(String readLine) {}
-    protected T validate(String readLine) {return null;}
-    protected String removeEmpty(String readLine) {
-        return readLine.replaceAll("\\s", "");
-    }
-    protected T translateToValueType(String noEmptyReadLine) {return null;}
+public abstract class InputNumber extends Input {
 
-    protected void checkBoundary(Integer number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException(NUMBER_BOUNDARY_ERROR);
+    protected Integer translateToValueType(String noEmptyReadLine) {
+        try {
+            return Integer.parseInt(noEmptyReadLine);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NUMBER_TYPE_ERROR);
         }
     }
 }

@@ -1,13 +1,9 @@
 package lotto;
 
-import static lotto.Constants.*;
-
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-public class Lotto {
+public class Lotto extends InputNumbers {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -17,19 +13,11 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(LOTTO_SIZE_ERROR);
-        }
+        checkSize(numbers);
+        checkDuplication(numbers);
     }
 
     // TODO: 추가 기능 구현
-
-    private void checkDuplication(List<Integer> numbers) {
-        Set<Integer> noDuplicationNumbers = new HashSet<>(numbers);
-        if (numbers.size() != noDuplicationNumbers.size()) {
-            throw new IllegalArgumentException(NUMBER_DUPLICATE_ERROR);
-        }
-    }
 
     public int countEqual(List<Integer> numbers) {
         List<Integer> originalNumbers = new ArrayList<>(this.numbers);

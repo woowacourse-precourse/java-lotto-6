@@ -4,7 +4,7 @@ import static lotto.Constants.*;
 
 import java.util.List;
 
-public class Bonus extends Input {
+public class Bonus extends InputNumber {
     private Integer number;
 
     public Bonus() {
@@ -29,22 +29,15 @@ public class Bonus extends Input {
 
     protected Integer validate(String readLine) {
         String noEmptyReadLine = removeEmpty(readLine);
+        checkDigit(noEmptyReadLine);
         Integer bonusNumber = translateToValueType(noEmptyReadLine);
         checkBoundary(bonusNumber);
         return bonusNumber;
     }
 
-    protected String removeEmpty(String readLine) {
-        return readLine.replaceAll("\\s", "");
-    }
-
-    protected Integer translateToValueType(String noEmptyReadLine) {
-        Integer result;
-        try {
-            result = Integer.parseInt(noEmptyReadLine);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NUMBER_TYPE_ERROR);
+    protected void checkDigit(String readLine) {
+        if(readLine.length() == 0) {
+            throw new IllegalArgumentException(BONUS_SIZE_ERROR);
         }
-        return result;
     }
 }

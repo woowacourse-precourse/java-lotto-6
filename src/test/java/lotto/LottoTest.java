@@ -4,8 +4,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -24,4 +27,10 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("보너스가 맞았으면 true를 반환한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"1:true", "4:false"}, delimiter = ':')
+    void isBonus(int input, boolean expect) {
+        assertEquals(List.of(1,2,3).contains(input), expect);
+    }
 }

@@ -1,7 +1,7 @@
 package lotto.domain.prize;
 
 import java.util.List;
-import lotto.domain.cash.Cash;
+import lotto.domain.purchasingMoney.PurchasingMoney;
 import lotto.dto.WinStateInformationDTO;
 
 public class Prize {
@@ -19,7 +19,7 @@ public class Prize {
         return new Prize(entirePrizeCashAmount);
     }
 
-    public double getYield(Cash cash) {
+    public double getYield(PurchasingMoney cash) {
         return (double) this.amount * 100 / cash.amount();
     }
 

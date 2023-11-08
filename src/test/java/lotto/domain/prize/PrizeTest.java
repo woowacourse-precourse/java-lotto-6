@@ -1,7 +1,7 @@
 package lotto.domain.prize;
 
 import java.util.List;
-import lotto.domain.cash.Cash;
+import lotto.domain.purchasingMoney.PurchasingMoney;
 import lotto.dto.WinStateInformationDTO;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -14,11 +14,11 @@ public class PrizeTest {
     void calculatePrizeYieldTest() {
         // given
         List<WinStateInformationDTO> winStateInformationDTOS = List.of(
-                new WinStateInformationDTO("",1,2000),
-                new WinStateInformationDTO("",3,6000),
-                new WinStateInformationDTO("",8,7000)
+                new WinStateInformationDTO("",1,200),
+                new WinStateInformationDTO("",3,600),
+                new WinStateInformationDTO("",8,700)
         );
-        Cash cash = new Cash(1000000);
+        PurchasingMoney cash = new PurchasingMoney(100000);
         double expectedYield = 7.6;
 
         // when

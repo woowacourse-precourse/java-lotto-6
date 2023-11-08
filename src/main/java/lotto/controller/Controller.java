@@ -18,27 +18,37 @@ import lotto.domain.result.WinningResult;
 import lotto.domain.Purchase;
 import lotto.exception.LottoException;
 import lotto.model.Model;
-import lotto.view.LottoView;
+import lotto.view.View;
 
 public class Controller {
     private final Model model;
-    private final LottoView view;
+    private final View view;
 
-    public Controller(Model model, LottoView view) {
+    public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
     }
 
     public void run() {
+        PurchaseResult purchaseResult = purchaseLotto();
+        ResultDto resultDto = calculateResult(purchaseResult);
+        printResult(resultDto);
+    }
+
+    public PurchaseResult purchaseLotto() {
         PurchaseResult purchaseResult = generatePurchaseResult();
         view.displayPurchaseResult(purchaseResult);
+        return purchaseResult;
+    }
 
+    public ResultDto calculateResult(PurchaseResult purchaseResult) {
         WinningResult winningResult = generateWinningNumbers();
-
-        MatchResult matchResult = calculateMatch(purchaseResult, winningResult);
+        MatchResult matchResult = calculateMatches(purchaseResult, winningResult);
         CalculateResult calculateResult = calculateProfit(matchResult, purchaseResult);
+        return ResultDto.of(matchResult, calculateResult);
+    }
 
-        ResultDto resultDto = ResultDto.of(matchResult, calculateResult);
+    public void printResult(ResultDto resultDto) {
         view.displayResult(resultDto);
     }
 
@@ -49,18 +59,7 @@ public class Controller {
         return new PurchaseResult(lottos, purchase);
     }
 
-    private List<Lotto> generateLottos(Purchase purchase) {
-        return model.generateLottos(purchase);
-    }
-
-    private WinningResult generateWinningNumbers() {
-        List<Integer> winningNumbers = promptWinningNumbers();
-        int bonusNumber = promptBonusNumber(winningNumbers);
-
-        return new WinningResult(winningNumbers, bonusNumber);
-    }
-
-    private Purchase promptPurchase() {
+    public Purchase promptPurchase() {
         int purchasePrice = 0;
         boolean isValidInput = false;
 
@@ -77,7 +76,18 @@ public class Controller {
         return new Purchase(purchasePrice);
     }
 
-    private List<Integer> promptWinningNumbers() {
+    private List<Lotto> generateLottos(Purchase purchase) {
+        return model.generateLottos(purchase);
+    }
+
+    private WinningResult generateWinningNumbers() {
+        List<Integer> winningNumbers = promptWinningNumbers();
+        int bonusNumber = promptBonusNumber(winningNumbers);
+
+        return new WinningResult(winningNumbers, bonusNumber);
+    }
+
+    public List<Integer> promptWinningNumbers() {
         List<Integer> winningNumbers = new ArrayList<>();
         boolean isValidInput = false;
 
@@ -94,7 +104,7 @@ public class Controller {
         return winningNumbers;
     }
 
-    private int promptBonusNumber(List<Integer> winningNumbers) {
+    public int promptBonusNumber(List<Integer> winningNumbers) {
         int bonusNumber = 0;
         boolean isValidInput = false;
 
@@ -111,7 +121,7 @@ public class Controller {
         return bonusNumber;
     }
 
-    private MatchResult calculateMatch(PurchaseResult purchaseResult, WinningResult winningResult) {
+    private MatchResult calculateMatches(PurchaseResult purchaseResult, WinningResult winningResult) {
         return model.calculateMatch(purchaseResult, winningResult);
     }
 

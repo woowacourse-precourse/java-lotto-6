@@ -13,8 +13,8 @@ import java.util.List;
 public class LottoService {
     private final InputView inputView;
 
-    public LottoService() {
-        this.inputView = new InputView();
+    public LottoService(InputView inputView) {
+        this.inputView = inputView;
     }
 
     public Money inputMoney() {

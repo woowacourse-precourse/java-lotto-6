@@ -38,4 +38,8 @@ public record Money(int purchaseMoney) {
     public int getLottoCount() {
         return purchaseMoney / CURRENCY;
     }
+
+    public int getPurchaseMoney() {
+        return purchaseMoney;
+    }
 }

@@ -3,7 +3,7 @@ package lotto.Storage;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringJoiner;
-import lotto.model.Lotto;
+import lotto.Lotto;
 
 public class LottoStorage implements Iterable<Lotto> {
     private final List<Lotto> purchaseNumbers;

@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.Lotto;
 import lotto.utils.Validator;
 
 public class WinningNumbers {

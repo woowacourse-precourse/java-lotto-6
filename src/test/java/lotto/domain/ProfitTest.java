@@ -9,13 +9,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 
-class LotteriesTest {
+class ProfitTest {
 
-    @ParameterizedTest(name = "사용자 로또 번호 : {0}, 보너스 번호 : {1}, 예상 결과 : {2}")
-    @ArgumentsSource(CalculateTotalWinningPriceArgumentsProvider.class)
-    @DisplayName("총 로또 당첨 금액을 구하는 기능 테스트")
-    void calculateTotalWinningPrice(final List<Integer> numbers, final int bonusNumber, final BigDecimal expected) {
-        // given
+    @ParameterizedTest
+    @ArgumentsSource(CalculateProfitArgumentsProvider.class)
+    @DisplayName("총 수익률을 계산하는 기능 테스트")
+    void calculateTest(final List<Integer> numbers, final int bonusNumber, final BigDecimal expected) {
+        // give
+        Money money = Money.from(8000);
         Lotteries lotteries = Lotteries.from(List.of(
                 new Lotto(List.of(8, 21, 23, 41, 42, 43)),
                 new Lotto(List.of(3, 5, 11, 16, 32, 38)),
@@ -26,10 +27,11 @@ class LotteriesTest {
                 new Lotto(List.of(2, 13, 22, 32, 38, 45)),
                 new Lotto(List.of(1, 3, 5, 14, 22, 45))
         ));
+        Profit profit = Profit.from(money, lotteries);
         Lotto lotto = new Lotto(numbers);
 
         // when
-        BigDecimal actual = lotteries.calculateTotalWinningPrice(lotto, bonusNumber);
+        BigDecimal actual = profit.calculate(lotto, bonusNumber);
 
         // then
         assertEquals(expected, actual);

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
+
 public class Money {
     private static final int MIN_POSITIVE_RANGE = 1;
     private static final int SCALE = 1_000;
@@ -43,5 +45,9 @@ public class Money {
 
     public int calculateLottoPurchaseCount() {
         return amount / SCALE;
+    }
+
+    public BigDecimal getAmount() {
+        return BigDecimal.valueOf(amount);
     }
 }

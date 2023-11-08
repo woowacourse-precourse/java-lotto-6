@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
 import java.util.List;
 import lotto.Lotto;
 
@@ -19,9 +20,11 @@ public class Lotteries {
         return lotteries;
     }
 
-    public List<Rank> calculateRanks(final Lotto other, final int bonusNumber) {
-        return lotteries.stream()
+    public BigDecimal calculateTotalWinningPrice(final Lotto other, final int bonusNumber) {
+        int sum = lotteries.stream()
                 .map(lotto -> lotto.calculateRank(other, bonusNumber))
-                .toList();
+                .mapToInt(Rank::getPrice)
+                .sum();
+        return BigDecimal.valueOf(sum);
     }
 }

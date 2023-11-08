@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.domain.Rank;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +15,7 @@ class RankTest {
     void 적절한_상태를_반환하는지_확인(){
         Rank secondPlace = Rank.getRank(5,1);
 
-        String status = secondPlace.getStatus();
+        String status = secondPlace.getState();
 
         Assertions.assertThat(status).isEqualTo("5개 일치, 보너스 볼 일치 (30,000,000원)");
     }

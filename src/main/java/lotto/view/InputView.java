@@ -1,4 +1,4 @@
-package view;
+package lotto.view;
 
 import static lotto.validator.Validator.validateInteger;
 

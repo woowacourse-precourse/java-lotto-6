@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -78,7 +79,7 @@ public class Application {
 
         List<Integer> numbers;
         for (int i = 0; i < lottoCount; i++){
-            numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             numbers.sort(Comparator.naturalOrder());
             lottos[i] = new Lotto(numbers);
             System.out.println(numbers);

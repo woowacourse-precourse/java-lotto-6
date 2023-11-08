@@ -11,7 +11,7 @@ public class LottoController {
         player.buyLotto();
         player.outputLottoInfo();
         selectWinningNumber();
-        //TODO: 당첨 통계 출력
+        outputWinningStatistics();
     }
 
     private void settingPlayer() {
@@ -55,5 +55,12 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void outputWinningStatistics() {
+        ResultDTO resultDTO = player.calculateResult(winningNumber);
+        int quantity = player.getPurchaseQuantity();
+        WinningStatistics winningStatistics = new WinningStatistics(resultDTO, quantity);
+        winningStatistics.outputAllStatisticsInfo();
     }
 }

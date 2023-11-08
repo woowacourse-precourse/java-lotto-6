@@ -13,12 +13,16 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateDuplicatedNumber(numbers);
-        validateNumberRange(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
+        validateLength(numbers);
+        validateDuplicatedNumber(numbers);
+        validateNumberRange(numbers);
+    }
+
+    private void validateLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 6개의 숫자를 쉼표로 구분해서 입력해 주세요.");
         }

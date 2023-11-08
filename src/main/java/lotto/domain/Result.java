@@ -13,4 +13,9 @@ public class Result {
         Arrays.stream(Rank.values())
             .forEach(rank -> result.put(rank, 0));
     }
+
+    public void increaseRankCount(int matchCount, boolean isContainBonusNumber) {
+        Rank rank = Rank.getRank(matchCount, isContainBonusNumber);
+        result.put(rank, result.get(rank) + 1);
+    }
 }

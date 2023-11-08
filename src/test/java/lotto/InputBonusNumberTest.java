@@ -1,5 +1,9 @@
 package lotto;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.message.ErrorMessage.BONUS_NUMBER_RANGE;
+import static lotto.message.ErrorMessage.NUMBER_FORMAT_BONUS_NUMBER;
+import static lotto.message.ErrorMessage.NUMBER_FORMAT_MONEY;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -18,6 +22,15 @@ public class InputBonusNumberTest extends NsTest {
 
         assertThat(input.getValidBonusNumber()).isEqualTo(7);
 
+    }
+
+    @Test
+    @DisplayName("숫자가 아닌 보너스 번호 입력 시 예외 테스트")
+    void validateNonNumericalBonusNumber_test() {
+        assertSimpleTest(() -> {
+            runException("pobi");
+            assertThat(output()).contains(NUMBER_FORMAT_BONUS_NUMBER.errorMessage());
+        });
     }
 
     private void command(final String... args) {

@@ -15,7 +15,7 @@ public class Application {
                money =Integer.valueOf(Console.readLine());
 
                if ( (money % 1000) != 0) {
-                   throw new IllegalArgumentException("1,000원 단위로 입력하세요.");
+                   throw new IllegalArgumentException("[ERROR]1,000원 단위로 입력하세요.");
                }
                break;
            }catch (NumberFormatException e){
@@ -68,6 +68,23 @@ public class Application {
         return numbers;
     }
 
+    private static int getBonceNumber(List<Integer> winningnumber){
+        int input;
+        while (true){
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                input=  Integer.valueOf(Console.readLine());
+                if(winningnumber.contains(input)){
+                    throw new IllegalArgumentException("[ERROR] 중복된 번호입니다.");
+                }
+                break;
+            }catch (NumberFormatException e){
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력입니다.");
+            }
+        }
+        return input;
+    }
+
     private  static List<Integer> stringToList(String[] input){
         List<Integer> List = new ArrayList<>();
         List<Integer> integerList = Arrays.stream(input)
@@ -76,6 +93,10 @@ public class Application {
         return List;
     }
 
+    private  static  void resultPrint(){
+        System.out.println("당첨 통계\n"+ "---");
+
+    }
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int money;
@@ -89,12 +110,12 @@ public class Application {
 
         printLottes(lottes,ticket);
 
-        System.out.println("당첨 번호를 입력해 주세요.");
+        winningnumber = stringToList(getWinningnumber());
 
-        winningnumber = getWinningnumber();
+        bouncenumber = getBonceNumber(winningnumber);
 
-        bouncenumber = Integer.valueOf(Console.readLine());
 
+        resultPrint();
     }
 
 }

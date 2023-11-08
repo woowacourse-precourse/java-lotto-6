@@ -18,7 +18,7 @@ public class LottoController {
         List<Lotto> lottoTickets = lottoService.purchaseLottoTickets(purchaseAmount);
         outputView.displayLottoTickets(lottoTickets);
         List<Integer> winningNumbers = inputView.readWinningNumbers();
-        int bonusNumber = inputView.readBonusNumber();
+        int bonusNumber = inputView.readBonusNumber(winningNumbers);
         Map<LottoRank, Integer> results = lottoService.checkWinningResults(lottoTickets, winningNumbers, bonusNumber);
         outputView.displayResults(results);
         outputView.displayProfitRate(lottoService.calculateProfitRate(results, lottoTickets.size()));

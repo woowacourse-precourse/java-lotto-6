@@ -78,8 +78,21 @@ public class InputView {
         }
     }
 
-    public int readBonusNumber() {
-        String input = Console.readLine();
-        return Integer.parseInt(input);
+    public int readBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                System.out.print("보너스 볼을 입력해 주세요: ");
+                String input = Console.readLine();
+                int bonusNumber = Integer.parseInt(input);
+                validateBonusNumber(bonusNumber, winningNumbers);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
+
+    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+    }
+
 }

@@ -45,10 +45,11 @@ public class DrawController {
     }
 
     private void checkYield() {
-        int totalPrizeMoney = 0;
+        long totalPrizeMoney = 0;
         for (LottoRankings rank : lottoResult.getLottoResult().keySet()) {
             totalPrizeMoney += rank.getWinningAmount() * lottoResult.getLottoResult().get(rank);
         }
+        System.out.println(totalPrizeMoney);
         yield.calculateYield(totalPrizeMoney, purchaseLotto.getPurchaseAmount());
         OutputView.printYieldMessage(yield.getYield());
     }

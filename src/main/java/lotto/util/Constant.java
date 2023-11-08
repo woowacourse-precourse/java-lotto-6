@@ -7,6 +7,7 @@ public class Constant {
     public static final int AMOUNT_UNIT = 1000;
     public static final int MINIMUM_AMOUNT = 1000;
     public static final int LOTTO_PRICE = 1000;
+    public static final int CONVERT_PERCENT = 100;
     public static final int NOTHING = 0;
 
     public static final String PURCHASE_AMOUNT_PATTERN = "^[0-9]*$";

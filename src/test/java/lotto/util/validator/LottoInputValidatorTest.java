@@ -21,6 +21,17 @@ class LottoInputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.LOTTO_LENGTH_NOT_SIX_MESSAGE.getMessage());
     }
 
+    @DisplayName("당첨 번호 입력 개수가 6개 미만일 경우 예외가 발생한다.")
+    @Test
+    void inputWinningNumbersUnderBySize() {
+        //given
+        String values = "1,2,3,4,5";
+
+        //when,then
+        Assertions.assertThatThrownBy(() -> lottoInputValidator.validate(values))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.LOTTO_LENGTH_NOT_SIX_MESSAGE.getMessage());
+    }
+
     @DisplayName("당첨 번호에 숫자 이외의 값이 들어가있을 경우 예외가 발생한다.")
     @Test
     void inputWinningNumbersNotNumber() {

@@ -1,9 +1,9 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.LottoGame.*;
+import static lotto.Lotto.getTwoNumbers;
+import static lotto.Lotto.issuanceLotto;
 
 public class Application {
     public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class Application {
         lottoCnt = issuanceLotto(Input.money());
 
         Output.howManyLottoMessage(lottoCnt);
-        lottoBundle = LottoGame.getLottoBundle();
+        lottoBundle = Lotto.getLottoBundle();
 
         Output.winningNumberGuide();
         winningNumbers = Input.winningNumbers();

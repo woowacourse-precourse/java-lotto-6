@@ -5,6 +5,10 @@ import lotto.model.Game;
 import lotto.model.Lotto;
 import lotto.view.GameView;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class GameController {
     Game game = new Game();
     Lotto lotto;
@@ -35,6 +39,15 @@ public class GameController {
     private void checkAmountValid(int amount) {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 게임 금액은 1000의 배수여야 합니다.");
+        }
+    }
+
+    public void requestLottoNumbers() {
+        game.generateLottoNumbers(game.getAmount() / game.getOneForPrice());
+        for (List<Integer> numbers : game.getUserLottoNumbers()) {
+            List<Integer> sortedUserLottoNumber = new ArrayList<>(numbers);
+            Collections.sort(sortedUserLottoNumber);
+            GameView.printLottoNumbers(sortedUserLottoNumber);
         }
     }
 }

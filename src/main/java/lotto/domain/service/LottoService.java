@@ -13,7 +13,7 @@ public class LottoService {
         List<Integer> numbers = lotto.getNumbers();
         count = matchGeneratedNumbersAndNumbers(count, generatedNumbers, numbers);
         if (count != 6) {
-            count = matchGeneratedNumbersAndBonusNumber(bonus, count, generatedNumbers);
+            count = matchGeneratedNumbersAndBonusNumber(count, generatedNumbers, bonus);
             if (count == 6) {
                 return new Result(count, true);
             }
@@ -28,7 +28,7 @@ public class LottoService {
         return count;
     }
 
-    private int matchGeneratedNumbersAndBonusNumber(Bonus bonus, int count, List<Integer> generatedNumbers) {
+    private int matchGeneratedNumbersAndBonusNumber(int count, List<Integer> generatedNumbers, Bonus bonus) {
         Integer number = bonus.getNumber();
         for (Integer generatedNumber : generatedNumbers) {
             if (generatedNumber.equals(number)) {

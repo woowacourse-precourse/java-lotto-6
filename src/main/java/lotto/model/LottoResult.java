@@ -1,6 +1,9 @@
 package lotto.model;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public enum LottoResult {
     FIFTH_PRIZE(3, false, 5000, 0),
@@ -35,6 +38,16 @@ public enum LottoResult {
             return true;
         }
         return false;
+    }
+
+    public static void sort(List<LottoResult> lottoResults){
+        Collections.sort(lottoResults, new Comparator<LottoResult>() {
+            @Override
+            public int compare(LottoResult o1, LottoResult o2) {
+                return o1.toString().compareTo(o2.toString());
+            }
+        });
+
     }
 
     public Integer getIndex(){

@@ -25,17 +25,12 @@ public class LottoBatchResult {
 
         });
 
-        Collections.sort(lottoResults, new Comparator<LottoResult>() {
-            @Override
-            public int compare(LottoResult o1, LottoResult o2) {
-                return o1.toString().compareTo(o2.toString());
-            }
-        });
-
+        LottoResult.sort(lottoResults);
 
         this.lottoResults = lottoResults;
 
     }
+
 
 
     public Float calculateLottoProfitRate(Integer purchaseAmount){

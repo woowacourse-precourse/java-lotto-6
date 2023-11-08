@@ -9,7 +9,7 @@ public enum WinningRankType {
     THIRD_PLACE(5, 0, count -> count * 1500000),
     FOURTH_PLACE(4, 0, count -> count * 50000),
     FIFTH_PLACE(3, 0, count -> count * 5000),
-    NO_RANK(0, 0, count -> count);
+    NO_RANK(0, 0, count -> 0);
 
     private int winningCondition;
     private int bonusCondition;

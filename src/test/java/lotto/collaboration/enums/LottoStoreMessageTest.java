@@ -2,6 +2,7 @@ package lotto.collaboration.enums;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.app.collaboration.enums.LottoStoreMessage;
 import org.junit.jupiter.api.Test;
 
 class LottoStoreMessageTest {

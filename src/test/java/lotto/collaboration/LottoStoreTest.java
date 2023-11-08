@@ -5,7 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.collaboration.dto.PlayerLotto;
+import lotto.app.collaboration.LottoStore;
+import lotto.app.collaboration.dto.PlayerLotto;
 import org.junit.jupiter.api.Test;
 
 class LottoStoreTest {

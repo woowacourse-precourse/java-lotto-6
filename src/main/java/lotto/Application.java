@@ -1,15 +1,15 @@
 package lotto;
 
-import static lotto.enums.ApplicationMessage.EXCEPTION_APPLICATION;
+import static lotto.app.enums.ApplicationMessage.EXCEPTION_APPLICATION;
 
-import lotto.collaboration.LottoStore;
-import lotto.game.LottoGame;
-import lotto.game.views.LottoGameView;
-import lotto.game.views.LottoStoreView;
-import lotto.game.views.WinningLottoView;
-import lotto.io.ConsoleInput;
-import lotto.io.ConsoleOutput;
-import lotto.io.game.LottosRandoms;
+import lotto.app.collaboration.LottoStore;
+import lotto.app.game.LottoGame;
+import lotto.app.game.views.LottoGameView;
+import lotto.app.game.views.LottoStoreView;
+import lotto.app.game.views.WinningLottoView;
+import lotto.app.io.ConsoleInput;
+import lotto.app.io.ConsoleOutput;
+import lotto.app.io.game.LottosRandoms;
 
 public class Application {
 
@@ -32,6 +32,7 @@ public class Application {
     private static LottoGame getLottoGame() {
         ConsoleInput input = new ConsoleInput();
         ConsoleOutput output = new ConsoleOutput();
+
         return new LottoGame(
                 new LottoGameView(
                         new LottoStoreView(input, output),

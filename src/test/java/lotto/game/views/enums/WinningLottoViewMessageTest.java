@@ -1,5 +1,6 @@
 package lotto.game.views.enums;
 
+import lotto.app.game.views.enums.WinningLottoViewMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,5 +1,6 @@
 package lotto.collaboration.enums;
 
+import lotto.app.collaboration.enums.WinningLottoMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -3,6 +3,7 @@ package lotto.io;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import lotto.ConsoleTestSuper;
+import lotto.app.io.ConsoleOutput;
 import org.junit.jupiter.api.Test;
 
 class ConsoleOutputTest extends ConsoleTestSuper {

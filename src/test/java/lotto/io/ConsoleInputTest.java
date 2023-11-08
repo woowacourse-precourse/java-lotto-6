@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.ConsoleTestSuper;
+import lotto.app.io.ConsoleInput;
 import org.junit.jupiter.api.Test;
 
 class ConsoleInputTest extends ConsoleTestSuper {

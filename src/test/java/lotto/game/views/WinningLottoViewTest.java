@@ -4,8 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.ConsoleTestSuper;
-import lotto.io.ConsoleInput;
-import lotto.io.ConsoleOutput;
+import lotto.app.game.views.WinningLottoView;
+import lotto.app.io.ConsoleInput;
+import lotto.app.io.ConsoleOutput;
 import org.junit.jupiter.api.Test;
 
 class WinningLottoViewTest extends ConsoleTestSuper {
